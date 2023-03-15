@@ -291,3 +291,36 @@ uptime_kuma_container_labels_traefik_tls_certResolver: "{{ devture_traefik_certR
 # /etke/uptime_kuma                                                    #
 #                                                                      #
 ########################################################################
+
+########################################################################
+#                                                                      #
+# moan0s/role-garage
+#                                                                      #
+########################################################################
+
+garage_enabled: false
+
+garage_identifier: mash-garage
+
+# Base directory that contains everything
+garage_base_path: "{{ mash_playbook_base_path }}/garage"
+
+garage_user_uid: "{{ mash_playbook_uid }}"
+garage_user_gid: "{{ mash_playbook_uid }}"
+
+garage_container_additional_networks: |
+  {{
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+  }}
+
+garage_container_labels_traefik_enabled: "{{ mash_playbook_reverse_proxy_type in ['playbook-managed-traefik', 'other-traefik-container'] }}"
+garage_garage_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+garage_container_labels_traefik_entrypoints: "{{ devture_traefik_entrypoint_primary }}"
+garage_container_labels_traefik_tls_certResolver: "{{ devture_traefik_certResolver_primary }}"
+
+########################################################################
+#                                                                      #
+# /moan0s/role-garage
+#                                                                      #
+########################################################################
+

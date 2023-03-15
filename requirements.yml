@@ -41,3 +41,6 @@
 
 - src: git+https://gitlab.com/etke.cc/roles/uptime_kuma.git
   version: v1.20.2-1
+
+- src: git+https://github.com/moan0s/role-garage.git
+  version: 2ab4523652f4261cdc8e2163985ef3817e4f060c
