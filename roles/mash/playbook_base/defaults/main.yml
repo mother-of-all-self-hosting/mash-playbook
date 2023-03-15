@@ -1,0 +1,59 @@
+---
+
+mash_playbook_user_username: mash
+mash_playbook_user_groupname: mash
+
+# By default, the playbook creates the user (`mash_playbook_user_username`)
+# and group (`mash_playbook_user_groupname`) with a random id.
+# To use a specific user/group id, override these variables.
+mash_playbook_uid: ~
+mash_playbook_gid: ~
+
+# A secret used as a base, for generating various other secrets.
+# You can put any string here, but generating a strong one is preferred (e.g. `pwgen -s 64 1`).
+mash_playbook_generic_secret_key: ''
+
+# Controls the base path where all services will be installed
+mash_playbook_base_path: /mash
+mash_playbook_base_path_mode: "750"
+
+# The architecture that your server runs.
+# Recognized values by us are 'amd64', 'arm32' and 'arm64'.
+# Not all architectures support all services, so your experience (on non-amd64) may vary.
+mash_playbook_architecture: "{{ 'amd64' if ansible_architecture == 'x86_64' else ('arm64' if ansible_architecture == 'aarch64' else ('arm32' if ansible_architecture.startswith('armv') else '')) }}"
+
+# Specifies the type of reverse-proxy used by the playbook.
+#
+# Changing this has an effect on whether a reverse-proxy is installed at all and what its type is,
+# as well as how all other services are configured.
+#
+# Valid options and a description of their behavior:
+#
+# - `playbook-managed-traefik`
+#     - the playbook will run a managed Traefik instance (mash-traefik)
+#     - Traefik will do SSL termination, unless you disable it (e.g. `devture_traefik_config_entrypoint_web_secure_enabled: false`)
+#     - if SSL termination is enabled (as it is by default), you need to populate: `devture_traefik_config_certificatesResolvers_acme_email`
+#
+# - `other-traefik-container`
+#     - this playbook will not install Traefik
+#     - nevertheless, the playbook expects that you would install Traefik yourself via other means
+#     - you should make sure your Traefik configuration is compatible with what the playbook would have configured (web, web-secure entrypoints, etc.)
+#     - you need to set `mash_playbook_reverse_proxyable_services_additional_network` to the name of your Traefik network
+#
+# - `none`
+#     - no reverse-proxy will be installed
+#     - no port exposure will be done for any of the container services
+#     - it's up to you to expose the ports you want, etc.
+mash_playbook_reverse_proxy_type: playbook-managed-traefik
+
+# Controls whether to install Docker or not
+# Also see `devture_docker_sdk_for_python_installation_enabled`.
+mash_playbook_docker_installation_enabled: true
+
+# Controls whether to attach Traefik labels to services.
+# This is separate from `devture_traefik_enabled`, because you may wish to disable Traefik installation by the playbook,
+# yet still use Traefik installed in another way.
+mash_playbook_traefik_labels_enabled: "{{ mash_playbook_reverse_proxy_type in ['playbook-managed-traefik', 'other-traefik-container'] }}"
+
+# Controls the additional network that reverse-proxyable services will be connected to.
+mash_playbook_reverse_proxyable_services_additional_network: "{{ devture_traefik_container_network if devture_traefik_enabled else '' }}"

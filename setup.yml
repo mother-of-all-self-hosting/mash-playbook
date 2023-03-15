@@ -1,0 +1,64 @@
+- name: "Set up a self-hosted server"
+  hosts: "{{ target if target is defined else 'mash_servers' }}"
+  become: true
+
+  roles:
+    # This role has no tasks at all
+    - role: galaxy/com.devture.ansible.role.playbook_help
+
+    # This role has no tasks at all
+    - role: galaxy/com.devture.ansible.role.systemd_docker_base
+
+    - when: mash_playbook_docker_installation_enabled | bool
+      role: galaxy/geerlingguy.docker
+      vars:
+        docker_install_compose: false
+      tags:
+        - setup-docker
+        - setup-all
+        - install-docker
+        - install-all
+
+    - when: devture_docker_sdk_for_python_installation_enabled | bool
+      role: galaxy/com.devture.ansible.role.docker_sdk_for_python
+      tags:
+        - setup-docker
+        - setup-all
+        - install-docker
+        - install-all
+
+    - when: devture_timesync_installation_enabled | bool
+      role: galaxy/com.devture.ansible.role.timesync
+      tags:
+        - setup-timesync
+        - setup-all
+        - install-timesync
+        - install-all
+
+    - role: mash/playbook_base
+
+    # This role exposes various tags (setup-postgres, setup-all, upgrade-postgres, import-postgres, etc.), so we don't tag it here.
+    - role: galaxy/com.devture.ansible.role.postgres
+
+    - role: galaxy/com.devture.ansible.role.container_socket_proxy
+
+    - role: galaxy/com.devture.ansible.role.traefik
+
+    - role: galaxy/miniflux
+
+    - role: galaxy/radicale
+
+    - role: galaxy/uptime_kuma
+
+    - when: devture_systemd_service_manager_enabled | bool
+      role: galaxy/com.devture.ansible.role.systemd_service_manager
+
+    # This is pretty much last, because we want it to better serve as a "last known good configuration".
+    # See: https://github.com/spantaleev/matrix-docker-ansible-deploy/pull/2217#issuecomment-1301487601
+    - when: devture_playbook_state_preserver_enabled | bool
+      role: galaxy/com.devture.ansible.role.playbook_state_preserver
+      tags:
+        - setup-all
+        - install-all
+
+    - role: galaxy/com.devture.ansible.role.playbook_runtime_messages

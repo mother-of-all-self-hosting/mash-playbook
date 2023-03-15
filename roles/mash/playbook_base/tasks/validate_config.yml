@@ -1,0 +1,14 @@
+---
+
+- name: Fail if required mash playbook settings not defined
+  fail:
+    msg: >-
+      You need to define a required configuration setting (`{{ item }}`) for using this role.
+  when: "vars[item] == ''"
+  with_items:
+    - mash_playbook_generic_secret_key
+
+- name: Fail if mash_playbook_reverse_proxy_type is set incorrectly
+  ansible.builtin.fail:
+    msg: "Detected that variable mash_playbook_reverse_proxy_type (current value: `{{ mash_playbook_reverse_proxy_type }}`) appears to be set incorrectly. See roles/custom/mash_playbook_base/defaults/main.yml for valid choices."
+  when: mash_playbook_reverse_proxy_type not in ['playbook-managed-traefik', 'other-traefik-container', 'none']

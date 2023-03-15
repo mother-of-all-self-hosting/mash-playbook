@@ -1,0 +1,293 @@
+---
+
+########################################################################
+#                                                                      #
+# com.devture.ansible.role.systemd_service_manager                     #
+#                                                                      #
+########################################################################
+
+devture_systemd_service_manager_services_list_auto: |
+  {{
+    ([{'name': (devture_postgres_identifier + '.service'), 'priority': 500, 'groups': ['mash', 'postgres']}] if devture_postgres_enabled else [])
+    +
+    ([{'name': (devture_container_socket_proxy_identifier + '.service'), 'priority': 2900, 'groups': ['mash', 'reverse-proxies', 'container-socket-proxy']}] if devture_container_socket_proxy_enabled else [])
+    +
+    ([{'name': (devture_traefik_identifier + '.service'), 'priority': 3000, 'groups': ['mash', 'traefik', 'reverse-proxies']}] if devture_traefik_enabled else [])
+    +
+    ([{'name': (miniflux_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'miniflux']}] if miniflux_enabled else [])
+    +
+    ([{'name': (radicale_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'radicale']}] if radicale_enabled else [])
+    +
+    ([{'name': (uptime_kuma_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'uptime-kuma']}] if uptime_kuma_enabled else [])
+  }}
+
+########################################################################
+#                                                                      #
+# /com.devture.ansible.role.systemd_service_manager                    #
+#                                                                      #
+########################################################################
+
+
+
+########################################################################
+#                                                                      #
+# com.devture.ansible.role.postgres                                    #
+#                                                                      #
+########################################################################
+
+devture_postgres_enabled: false
+
+devture_postgres_identifier: mash-postgres
+
+devture_postgres_architecture: "{{ mash_playbook_architecture }}"
+
+devture_postgres_base_path: "{{ mash_playbook_base_path }}/postgres"
+
+devture_postgres_uid: "{{ mash_playbook_uid }}"
+devture_postgres_gid: "{{ mash_playbook_gid }}"
+
+devture_postgres_systemd_services_to_stop_for_maintenance_list: |
+  {{
+    ([(miniflux_identifier + '.service')] if miniflux_enabled else [])
+  }}
+
+devture_postgres_managed_databases_auto: |
+  {{
+    ([{
+      'name': miniflux_database_name,
+      'username': miniflux_database_username,
+      'password': miniflux_database_password,
+    }] if miniflux_enabled else [])
+  }}
+
+########################################################################
+#                                                                      #
+# /com.devture.ansible.role.postgres                                   #
+#                                                                      #
+########################################################################
+
+
+
+########################################################################
+#                                                                      #
+# com.devture.ansible.role.playbook_state_preserver                    #
+#                                                                      #
+########################################################################
+
+# To completely disable this feature, use `devture_playbook_state_preserver_enabled: false`.
+
+devture_playbook_state_preserver_uid: "{{ mash_playbook_uid }}"
+devture_playbook_state_preserver_gid: "{{ mash_playbook_gid }}"
+
+devture_playbook_state_preserver_vars_preservation_dst: "{{ mash_playbook_base_path }}/vars.yml"
+
+devture_playbook_state_preserver_commit_hash_preservation_dst: "{{ mash_playbook_base_path }}/git_hash.yml"
+
+########################################################################
+#                                                                      #
+# /com.devture.ansible.role.playbook_state_preserver                   #
+#                                                                      #
+########################################################################
+
+
+
+########################################################################
+#                                                                      #
+# com.devture.ansible.role.container_socket_proxy                      #
+#                                                                      #
+########################################################################
+
+devture_container_socket_proxy_enabled: "{{ devture_traefik_enabled }}"
+
+devture_container_socket_proxy_identifier: mash-container-socket-proxy
+
+devture_container_socket_proxy_base_path: "{{ mash_playbook_base_path }}/container-socket-proxy"
+
+devture_container_socket_proxy_uid: "{{ mash_playbook_uid }}"
+devture_container_socket_proxy_gid: "{{ mash_playbook_gid }}"
+
+# Traefik requires read access to the containers APIs to do its job
+devture_container_socket_proxy_api_containers_enabled: true
+
+########################################################################
+#                                                                      #
+# /com.devture.ansible.role.container_socket_proxy                     #
+#                                                                      #
+########################################################################
+
+
+
+########################################################################
+#                                                                      #
+# com.devture.ansible.role.traefik                                     #
+#                                                                      #
+########################################################################
+
+devture_traefik_enabled: "{{ mash_playbook_reverse_proxy_type == 'playbook-managed-traefik' }}"
+
+devture_traefik_identifier: mash-traefik
+
+devture_traefik_base_path: "{{ mash_playbook_base_path }}/traefik"
+
+devture_traefik_uid: "{{ mash_playbook_uid }}"
+devture_traefik_gid: "{{ mash_playbook_gid }}"
+
+devture_traefik_config_providers_docker_endpoint: "{{ devture_container_socket_proxy_endpoint if devture_container_socket_proxy_enabled else 'unix:///var/run/docker.sock' }}"
+
+devture_traefik_container_additional_networks: |
+  {{
+    ([devture_container_socket_proxy_container_network] if devture_container_socket_proxy_enabled else [])
+  }}
+
+devture_traefik_systemd_required_services_list: |
+  {{
+    (['docker.service'])
+    +
+    ([devture_container_socket_proxy_identifier + '.service'] if devture_container_socket_proxy_enabled else [])
+  }}
+
+########################################################################
+#                                                                      #
+# /com.devture.ansible.role.traefik                                    #
+#                                                                      #
+########################################################################
+
+
+
+########################################################################
+#                                                                      #
+# com.devture.ansible.role.docker_sdk_for_python                       #
+#                                                                      #
+########################################################################
+
+# To completely disable installing the Docker SDK for Python, use `devture_docker_sdk_for_python_installation_enabled: false`.
+
+devture_docker_sdk_for_python_installation_enabled: true
+
+########################################################################
+#                                                                      #
+# /com.devture.ansible.role.docker_sdk_for_python                      #
+#                                                                      #
+########################################################################
+
+
+
+########################################################################
+#                                                                      #
+# com.devture.ansible.role.timesync                                    #
+#                                                                      #
+########################################################################
+
+# To completely disable installing systemd-timesyncd/ntpd, use `devture_timesync_installation_enabled: false`.
+
+devture_timesync_installation_enabled: false
+
+########################################################################
+#                                                                      #
+# /com.devture.ansible.role.timesync                                   #
+#                                                                      #
+########################################################################
+
+
+
+########################################################################
+#                                                                      #
+# etke/miniflux                                                        #
+#                                                                      #
+########################################################################
+
+miniflux_enabled: false
+
+miniflux_identifier: mash-miniflux
+
+miniflux_base_path: "{{ mash_playbook_base_path }}/miniflux"
+
+miniflux_uid: "{{ mash_playbook_uid }}"
+miniflux_gid: "{{ mash_playbook_gid }}"
+
+miniflux_container_additional_networks: |
+  {{
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+    +
+    ([devture_postgres_container_network] if devture_postgres_enabled and miniflux_database_hostname == devture_postgres_identifier and devture_postgres_container_network != miniflux_container_network else [])
+  }}
+
+miniflux_container_labels_traefik_enabled: "{{ mash_playbook_reverse_proxy_type in ['playbook-managed-traefik', 'other-traefik-container'] }}"
+miniflux_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+miniflux_container_labels_traefik_entrypoints: "{{ devture_traefik_entrypoint_primary }}"
+miniflux_container_labels_traefik_tls_certResolver: "{{ devture_traefik_certResolver_primary }}"
+
+miniflux_database_hostname: "{{ devture_postgres_connection_hostname if devture_postgres_enabled else '' }}"
+miniflux_database_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'miniflux.db', rounds=655555) | to_uuid }}"
+
+########################################################################
+#                                                                      #
+# /etke/miniflux                                                       #
+#                                                                      #
+########################################################################
+
+
+
+########################################################################
+#                                                                      #
+# etke/radicale                                                        #
+#                                                                      #
+########################################################################
+
+radicale_enabled: false
+
+radicale_identifier: mash-radicale
+
+radicale_base_path: "{{ mash_playbook_base_path }}/radicale"
+
+radicale_uid: "{{ mash_playbook_uid }}"
+radicale_gid: "{{ mash_playbook_gid }}"
+
+radicale_container_additional_networks: |
+  {{
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+  }}
+
+radicale_container_labels_traefik_enabled: "{{ mash_playbook_reverse_proxy_type in ['playbook-managed-traefik', 'other-traefik-container'] }}"
+radicale_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+radicale_container_labels_traefik_entrypoints: "{{ devture_traefik_entrypoint_primary }}"
+radicale_container_labels_traefik_tls_certResolver: "{{ devture_traefik_certResolver_primary }}"
+
+########################################################################
+#                                                                      #
+# /etke/radicale                                                       #
+#                                                                      #
+########################################################################
+
+
+
+########################################################################
+#                                                                      #
+# etke/uptime_kuma                                                     #
+#                                                                      #
+########################################################################
+
+uptime_kuma_enabled: false
+
+uptime_kuma_identifier: mash-uptime-kuma
+
+uptime_kuma_base_path: "{{ mash_playbook_base_path }}/uptime-kuma"
+
+uptime_kuma_uid: "{{ mash_playbook_uid }}"
+uptime_kuma_gid: "{{ mash_playbook_gid }}"
+
+uptime_kuma_container_additional_networks: |
+  {{
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+  }}
+
+uptime_kuma_container_labels_traefik_enabled: "{{ mash_playbook_reverse_proxy_type in ['playbook-managed-traefik', 'other-traefik-container'] }}"
+uptime_kuma_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+uptime_kuma_container_labels_traefik_entrypoints: "{{ devture_traefik_entrypoint_primary }}"
+uptime_kuma_container_labels_traefik_tls_certResolver: "{{ devture_traefik_certResolver_primary }}"
+
+########################################################################
+#                                                                      #
+# /etke/uptime_kuma                                                    #
+#                                                                      #
+########################################################################

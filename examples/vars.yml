@@ -1,0 +1,165 @@
+---
+
+# Below is an example which installs a few services on the host, in different configuration.
+# You should tweak this example as you see fit and enable the services that you need.
+
+########################################################################
+#                                                                      #
+# Playbook                                                             #
+#                                                                      #
+########################################################################
+
+# Put a strong secret below, generated with `pwgen -s 64 1` or in another way
+# Various other secrets will be derived from this secret automatically.
+mash_playbook_generic_secret_key: ''
+
+########################################################################
+#                                                                      #
+# /Playbook                                                            #
+#                                                                      #
+########################################################################
+
+
+########################################################################
+#                                                                      #
+# Docker                                                               #
+#                                                                      #
+########################################################################
+
+# Docker is installed by default.
+#
+# To disable Docker installation (in case you'd be installing Docker in another way),
+# uncomment the line below:
+# mash_playbook_docker_installation_enabled: false
+
+# Docker SDK for Python is installed by default.
+#
+# To disable Docker SDK for Python installation (in case you'd be installing the SDK in another way),
+# uncomment the line below:
+# devture_docker_sdk_for_python_installation_enabled: false
+
+########################################################################
+#                                                                      #
+# /Docker                                                              #
+#                                                                      #
+########################################################################
+
+
+
+########################################################################
+#                                                                      #
+# com.devture.ansible.role.timesync                                    #
+#                                                                      #
+########################################################################
+
+# To ensure the server's clock is synchronized (using systemd-timesyncd/ntpd),
+# we enable the timesync service.
+
+devture_timesync_installation_enabled: true
+
+########################################################################
+#                                                                      #
+# /com.devture.ansible.role.timesync                                   #
+#                                                                      #
+########################################################################
+
+
+
+########################################################################
+#                                                                      #
+# devture-traefik                                                      #
+#                                                                      #
+########################################################################
+
+# Most services require a reverse-proxy, so we enable Traefik here.
+#
+# Learn more about the Traefik service in docs/services/traefik.md
+
+mash_playbook_reverse_proxy_type: playbook-managed-traefik
+
+########################################################################
+#                                                                      #
+# /devture-traefik                                                     #
+#                                                                      #
+########################################################################
+
+
+
+########################################################################
+#                                                                      #
+# devture-postgres                                                     #
+#                                                                      #
+########################################################################
+
+# Most services require a Postgres database, so we enable Postgres here.
+#
+# Learn more about the Postgres service in docs/services/postgres.md
+
+devture_postgres_enabled: true
+
+# Put a strong password below, generated with `pwgen -s 64 1` or in another way
+devture_postgres_connection_password: ''
+
+########################################################################
+#                                                                      #
+# /devture-postgres                                                    #
+#                                                                      #
+########################################################################
+
+
+
+########################################################################
+#                                                                      #
+# miniflux                                                             #
+#                                                                      #
+########################################################################
+
+# Learn more about the Miniflux service in docs/services/miniflux.md
+#
+# This service is only here as an example. If you don't wish to use the
+# Miniflux service, remove the whole section.
+
+miniflux_enabled: true
+
+miniflux_hostname: mash.example.com
+miniflux_path_prefix: /miniflux
+
+miniflux_admin_login: your-username-here
+miniflux_admin_password: a-strong-password-here
+
+########################################################################
+#                                                                      #
+# /miniflux                                                            #
+#                                                                      #
+########################################################################
+
+
+
+########################################################################
+#                                                                      #
+# uptime-kuma                                                          #
+#                                                                      #
+########################################################################
+
+# Learn more about the Uptime-kuma service in docs/services/uptime-kuma.md
+#
+# This service is only here as an example. If you don't wish to use the
+# Uptime-kuma service, remove the whole section.
+
+uptime_kuma_enabled: true
+
+uptime_kuma_hostname: uptime-kuma.example.com
+
+# For now, hosting uptime-kuma under a path is not supported.
+# See: https://github.com/louislam/uptime-kuma/issues/147
+# uptime_kuma_path_prefix: /uptime-kuma
+
+########################################################################
+#                                                                      #
+# /uptime-kuma                                                         #
+#                                                                      #
+########################################################################
+
+
+# You can add additional services here, as you see fit.
+# To discover new services and configuration, see docs/services/README.md

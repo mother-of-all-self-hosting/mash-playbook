@@ -1,0 +1,24 @@
+---
+
+- name: Ensure mash group is created
+  ansible.builtin.group:
+    name: "{{ mash_playbook_user_groupname }}"
+    gid: "{{ omit if mash_playbook_gid is none else mash_playbook_gid }}"
+    state: present
+  register: mash_base_group_result
+
+- name: Ensure mash user is created
+  ansible.builtin.user:
+    name: "{{ mash_playbook_user_username }}"
+    uid: "{{ omit if mash_playbook_uid is none else mash_playbook_uid }}"
+    state: present
+    group: "{{ mash_playbook_user_groupname }}"
+    home: "{{ mash_playbook_base_path }}"
+    create_home: false
+    system: true
+  register: mash_base_user_result
+
+- name: Initialize mash_playbook_uid and mash_playbook_gid
+  ansible.builtin.set_fact:
+    mash_playbook_uid: "{{ mash_base_user_result.uid }}"
+    mash_playbook_gid: "{{ mash_base_group_result.gid }}"

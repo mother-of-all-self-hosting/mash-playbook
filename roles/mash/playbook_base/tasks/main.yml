@@ -1,0 +1,16 @@
+---
+
+# This needs to always run, because it populates `mash_playbook_uid` and `mash_playbook_gid`,
+# which are required by many other roles.
+- block:
+    - ansible.builtin.include_tasks: "{{ role_path }}/tasks/setup_user.yml"
+  tags:
+    - always
+
+- block:
+    - ansible.builtin.include_tasks: "{{ role_path }}/tasks/validate_config.yml"
+
+    - ansible.builtin.include_tasks: "{{ role_path }}/tasks/setup_base_dir.yml"
+  tags:
+    - setup-all
+    - install-all

@@ -1,0 +1,44 @@
+# Shows help
+default:
+	@just --list --justfile {{ justfile() }}
+
+# Pulls external Ansible roles
+roles:
+	rm -rf roles/galaxy
+	ansible-galaxy install -r requirements.yml -p roles/galaxy/ --force
+
+# Runs ansible-lint against all roles in the playbook
+lint:
+	ansible-lint
+
+# Runs the playbook with --tags=install-all,start and optional arguments
+install-all *extra_args: (run-tags "install-all,start" extra_args)
+
+# Runs installation tasks for a single service
+install-service service:
+	just --justfile {{ justfile() }} run --tags=install-{{ service }},start-group --extra-vars=group={{ service }}
+
+# Runs the playbook with --tags=setup-all,start and optional arguments
+setup-all *extra_args: (run-tags "setup-all,start" extra_args)
+
+# Runs the playbook with the given list of arguments
+run +extra_args:
+	time ansible-playbook -i inventory/hosts setup.yml {{ extra_args }}
+
+# Runs the playbook with the given list of comma-separated tags and optional arguments
+run-tags tags *extra_args:
+	just --justfile {{ justfile() }} run --tags={{ tags }} {{ extra_args }}
+
+# Starts all services
+start-all *extra_args: (run-tags "start-all" extra_args)
+
+# Starts a specific service group
+start-group group *extra_args:
+	@just --justfile {{ justfile() }} run-tags start-group --extra-vars="group={{ group }}" {{ extra_args }}
+
+# Stops all services
+stop-all *extra_args: (run-tags "stop-all" extra_args)
+
+# Stops a specific service group
+stop-group group *extra_args:
+	@just --justfile {{ justfile() }} run-tags stop-group --extra-vars="group={{ group }}" {{ extra_args }}

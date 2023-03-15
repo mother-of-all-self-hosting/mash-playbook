@@ -1,0 +1,9 @@
+---
+
+- name: Ensure mash base paths exists
+  ansible.builtin.file:
+    path: "{{ mash_playbook_base_path }}"
+    state: directory
+    mode: "{{ mash_playbook_base_path_mode }}"
+    owner: "{{ mash_playbook_uid }}"
+    group: "{{ mash_playbook_gid }}"
