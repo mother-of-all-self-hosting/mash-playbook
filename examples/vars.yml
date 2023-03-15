@@ -77,6 +77,9 @@ devture_timesync_installation_enabled: true
 
 mash_playbook_reverse_proxy_type: playbook-managed-traefik
 
+# The E-Mail address that traefik will use to obtain certificates with
+devture_traefik_config_certificatesResolvers_acme_email: yourmail@example.com
+
 ########################################################################
 #                                                                      #
 # /devture-traefik                                                     #
