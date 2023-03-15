@@ -2,7 +2,7 @@
 
 To configure the playbook, you need to have done the following things:
 
-- have a server where services services will run
+- have a server where services will run
 - [retrieved the playbook's source code](getting-the-playbook.md) to your computer
 
 You can then follow these steps inside the playbook directory:
