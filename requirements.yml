@@ -43,4 +43,4 @@
   version: v1.20.2-1
 
 - src: git+https://github.com/moan0s/role-garage.git
-  version: 2ab4523652f4261cdc8e2163985ef3817e4f060c
+  version: 78f0a926f5a486fe08a567b7d3fb2c082001d97a
