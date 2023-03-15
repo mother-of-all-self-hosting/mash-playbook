@@ -1,18 +1,20 @@
 # Configuring DNS
 
-To reach your services, you'd need to do some DNS configuration.
+To reach your services, you'd need to do some DNS configuration. We recommend you set up at least one (sub-)domain. Each service can be hostet at a subpath of this domain or on separate (sub-)domains.
 
-## DNS settings example
+A simple example could be this
 
-The DNS setup is dependent on which services you want to activate. You need t oset the first entry and an entry for each
-service you activate that needs a (sub-)domain. Feel free to adjust the host to you liking (you can even use a separate domain).
+| Service               | Type  | Host                | Target              |
+|-----------------------|-------|---------------------|---------------------|
+| Miniflux and radicale | A     | `mash.example.com`  | `IP of your server` |
+| Nextcloud             | CNAME | `cloud.example.com` | `mash.example.com`  |
 
-| Service     | Type  | Host                   | Target              |
-|-------------|-------|------------------------|---------------------|
-| -           | A     | `example.com`          | `IP of your server` |
-| Radicale    | CNAME | `calendar.example.com` | `example.com`       |
-| Miniflux    | CNAME | `feed.example.com`     | `example.com`       |
-| Uptime-kuma | CNAME | `status.example.com`   | `example.com`       |
+Here you could reach the feedreader miniflux at https://mash.example.com/miniflux (if you set
+`miniflux_path_prefix: /miniflux` in your `vars.yml`) and radicale at https://mash.example.com/radicale. In the example
+the nextcloud has a different subdomain, so you could access it at https://cloud.example.com
+
+Feel free to change this as you like, just make sure that you set `<service>_hostname` and `<service>_path_prefix`
+accordingly in your `vars.yml`.
 
 Be mindful as to how long it will take for the DNS records to propagate.
 
