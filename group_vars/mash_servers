@@ -24,7 +24,7 @@ devture_systemd_service_manager_services_list_auto: |
     +
     ([{'name': (radicale_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'radicale']}] if radicale_enabled else [])
     +
-    ([{'name': (vaultwarden_identifier + '.service'), 'priority': 1000, 'groups': ['mash', 'vaultwarden', 'vaultwarden-server']}])
+    ([{'name': (vaultwarden_identifier + '.service'), 'priority': 1000, 'groups': ['mash', 'vaultwarden', 'vaultwarden-server']}] if vaultwarden_enabled else [])
     +
     ([{'name': (uptime_kuma_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'uptime-kuma']}] if uptime_kuma_enabled else [])
   }}
