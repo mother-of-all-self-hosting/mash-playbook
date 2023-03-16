@@ -48,6 +48,8 @@
 
     - role: galaxy/radicale
 
+    - role: galaxy/vaultwarden
+
     - role: galaxy/uptime_kuma
 
     - when: devture_systemd_service_manager_enabled | bool

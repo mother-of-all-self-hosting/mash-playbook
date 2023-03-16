@@ -7,6 +7,7 @@
 | [PostgreSQL](https://www.postgresql.org) | A powerful, open source object-relational database system | [Link](postgres.md) |
 | [Radicale](https://miniflux.app/) | A Free and Open-Source CalDAV and CardDAV Server (solution for hosting contacts and calendars) | [Link](radicale.md) |
 | [Traefik](https://doc.traefik.io/traefik/) | A container-aware reverse-proxy server | [Link](traefik.md) |
+| [Vaultwarden](https://github.com/dani-garcia/vaultwarden) | A lightweight unofficial and compatible implementation of the [Bitwarden](https://bitwarden.com/) password manager | [Link](vaultwarden.md) |
 | [Uptime-kuma](https://uptime.kuma.pet/) | A fancy self-hosted monitoring tool | [Link](uptime-kuma.md) |
 
 

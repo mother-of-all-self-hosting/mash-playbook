@@ -41,3 +41,7 @@
 
 - src: git+https://gitlab.com/etke.cc/roles/uptime_kuma.git
   version: v1.20.2-1
+
+- src: git+https://github.com/mother-of-all-self-hosting/ansible-role-vaultwarden.git
+  name: vaultwarden
+  version: v1.27.0-0
