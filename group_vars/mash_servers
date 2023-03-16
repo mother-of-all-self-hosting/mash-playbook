@@ -347,7 +347,7 @@ radicale_container_labels_traefik_tls_certResolver: "{{ devture_traefik_certReso
 #                                                                      #
 ########################################################################
 
-vaultwarden_enable: false
+vaultwarden_enabled: false
 
 vaultwarden_identifier: "{{ mash_playbook_service_identifier_prefix }}vaultwarden"
 
