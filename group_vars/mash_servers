@@ -213,11 +213,18 @@ miniflux_base_path: "{{ mash_playbook_base_path }}/miniflux"
 miniflux_uid: "{{ mash_playbook_uid }}"
 miniflux_gid: "{{ mash_playbook_gid }}"
 
+miniflux_systemd_required_services_list: |
+  {{
+    (['docker.service'])
+    +
+    ([devture_postgres_identifier ~ '.service'] if devture_postgres_enabled and miniflux_database_hostname == devture_postgres_identifier else [])
+  }}
+
 miniflux_container_additional_networks: |
   {{
     ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
     +
-    ([devture_postgres_container_network] if devture_postgres_enabled and miniflux_database_hostname == devture_postgres_identifier and devture_postgres_container_network != miniflux_container_network else [])
+    ([devture_postgres_container_network] if devture_postgres_enabled and miniflux_database_hostname == devture_postgres_identifier and miniflux_container_network != devture_postgres_container_network else [])
   }}
 
 miniflux_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
@@ -288,7 +295,7 @@ vaultwarden_systemd_required_systemd_services_list: |
   {{
     (['docker.service'])
     +
-    ([devture_postgres_identifier ~ '.service'] if devture_postgres_enabled else [])
+    ([devture_postgres_identifier ~ '.service'] if devture_postgres_enabled and vaultwarden_database_hostname == devture_postgres_identifier else [])
   }}
 
 vaultwarden_container_additional_networks: |
