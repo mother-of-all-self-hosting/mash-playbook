@@ -39,7 +39,7 @@ devture_systemd_service_manager_services_list_auto: |
 
 devture_postgres_enabled: false
 
-devture_postgres_identifier: mash-postgres
+devture_postgres_identifier: "{{ mash_playbook_service_identifier_prefix }}postgres"
 
 devture_postgres_architecture: "{{ mash_playbook_architecture }}"
 
@@ -107,7 +107,7 @@ devture_playbook_state_preserver_commit_hash_preservation_dst: "{{ mash_playbook
 
 devture_container_socket_proxy_enabled: "{{ devture_traefik_enabled }}"
 
-devture_container_socket_proxy_identifier: mash-container-socket-proxy
+devture_container_socket_proxy_identifier: "{{ mash_playbook_service_identifier_prefix }}container-socket-proxy"
 
 devture_container_socket_proxy_base_path: "{{ mash_playbook_base_path }}/container-socket-proxy"
 
@@ -133,7 +133,7 @@ devture_container_socket_proxy_api_containers_enabled: true
 
 devture_traefik_enabled: "{{ mash_playbook_reverse_proxy_type == 'playbook-managed-traefik' }}"
 
-devture_traefik_identifier: mash-traefik
+devture_traefik_identifier: "{{ mash_playbook_service_identifier_prefix }}traefik"
 
 devture_traefik_base_path: "{{ mash_playbook_base_path }}/traefik"
 
@@ -206,7 +206,7 @@ devture_timesync_installation_enabled: false
 
 miniflux_enabled: false
 
-miniflux_identifier: mash-miniflux
+miniflux_identifier: "{{ mash_playbook_service_identifier_prefix }}miniflux"
 
 miniflux_base_path: "{{ mash_playbook_base_path }}/miniflux"
 
@@ -244,7 +244,7 @@ miniflux_database_password: "{{ '%s' | format(mash_playbook_generic_secret_key) 
 
 radicale_enabled: false
 
-radicale_identifier: mash-radicale
+radicale_identifier: "{{ mash_playbook_service_identifier_prefix }}radicale"
 
 radicale_base_path: "{{ mash_playbook_base_path }}/radicale"
 
@@ -277,7 +277,7 @@ radicale_container_labels_traefik_tls_certResolver: "{{ devture_traefik_certReso
 
 vaultwarden_enable: false
 
-vaultwarden_identifier: mash-vaultwarden
+vaultwarden_identifier: "{{ mash_playbook_service_identifier_prefix }}vaultwarden"
 
 vaultwarden_uid: "{{ mash_playbook_uid }}"
 vaultwarden_gid: "{{ mash_playbook_gid }}"
@@ -322,7 +322,7 @@ vaultwarden_database_password: "{{ '%s' | format(mash_playbook_generic_secret_ke
 
 uptime_kuma_enabled: false
 
-uptime_kuma_identifier: mash-uptime-kuma
+uptime_kuma_identifier: "{{ mash_playbook_service_identifier_prefix }}uptime-kuma"
 
 uptime_kuma_base_path: "{{ mash_playbook_base_path }}/uptime-kuma"
 
