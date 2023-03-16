@@ -1,4 +1,4 @@
-# Miniflux
+# Garage
 
 [Garage](https://garagehq.deuxfleurs.fr/) is an open-source distributed object storage service tailored for self-hosting.
 
