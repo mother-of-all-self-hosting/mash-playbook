@@ -50,15 +50,15 @@ Before doing the actual import, **you need to upload your Postgres dump file to 
 To import, run this command (make sure to replace `<server-path-to-postgres-dump.sql>` with a file path on your server):
 
 ```sh
-ansible-playbook -i inventory/hosts setup.yml \
---extra-vars='server_path_postgres_dump=<server-path-to-postgres-dump.sql> postgres_default_import_database=main' \
---tags=import-postgres
+just run-tags import-postgres \
+--extra-vars=server_path_postgres_dump=SERVER_PATH_TO_POSTGRES_DUMP_FILE \
+--extra-vars=postgres_default_import_database=main
 ```
 
 **Notes**:
 
-- `<server-path-to-postgres-dump.sql>` must be a file path to a Postgres dump file on the server (not on your local machine!)
-- `postgres_default_import_database` defaults to `main`, which is useful for importing multiple databases (for dumps made with `pg_dumpall`). If you're importing a single database (e.g. `miniflux`), consider changing `postgres_default_import_database` accordingly
+- `SERVER_PATH_TO_POSTGRES_DUMP_FILE` must be a file path to a Postgres dump file on the server (not on your local machine!)
+- `postgres_default_import_database` defaults to `main`, which is useful for importing multiple databases (for dumps made with `pg_dumpall`). If you're importing a single database (e.g. `miniflux`), consider changing `postgres_default_import_database` to the name of the database (e.g. `miniflux`)
 
 
 ## Maintenance
@@ -102,7 +102,7 @@ To perform a `FULL` Postgres [VACUUM](https://www.postgresql.org/docs/current/sq
 Example:
 
 ```bash
-ansible-playbook -i inventory/hosts setup.yml --tags=run-postgres-vacuum,start
+just run-tags run-postgres-vacuum,start
 ```
 
 **Note**: this will automatically stop Synapse temporarily and restart it later. You'll also need plenty of available disk space in your Postgres data directory (usually `/mash/postgres/data`).
@@ -136,7 +136,7 @@ Upgrades must be performed manually.
 This playbook can upgrade your existing Postgres setup with the following command:
 
 ```sh
-ansible-playbook -i inventory/hosts setup.yml --tags=upgrade-postgres
+just run-tags upgrade-postgres
 ```
 
 **The old Postgres data directory is backed up** automatically, by renaming it to `/mash/postgres/data-auto-upgrade-backup`.
