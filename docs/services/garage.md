@@ -97,7 +97,7 @@ and get an access key for it with
 ansible-playbook -i inventory/hosts setup.yml --tags=create-bucket --extra-key "bucket=<bucketname> keyname=<keyname>"
 ```
 
-arage is very versatile so make sure to check out the [documentation](https://garagehq.deuxfleurs.fr/documentation/quick-start/). You can always execute you own commands by ssh-ing to the server and running
+Garage is very versatile so make sure to check out the [documentation](https://garagehq.deuxfleurs.fr/documentation/quick-start/). You can always execute you own commands by ssh-ing to the server and running
 
 ```
 docker exec -it <any_node_name> /garage <command>
