@@ -14,6 +14,12 @@ devture_systemd_service_manager_services_list_auto: |
     +
     ([{'name': (devture_traefik_identifier + '.service'), 'priority': 3000, 'groups': ['mash', 'traefik', 'reverse-proxies']}] if devture_traefik_enabled else [])
     +
+    ([{'name': (devture_woodpecker_ci_server_identifier + '.service'), 'priority': 4000, 'groups': ['mash', 'woodpecker', 'ci', 'woodpecker-ci-server']}] if devture_woodpecker_ci_server_enabled else [])
+    +
+    ([{'name': (devture_woodpecker_ci_agent_identifier + '.service'), 'priority': 4100, 'groups': ['mash', 'woodpecker', 'ci', 'woodpecker-ci-agent']}] if devture_woodpecker_ci_agent_enabled else [])
+    +
+    ([{'name': (gitea_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'gitea', 'gitea-server']}])
+    +
     ([{'name': (miniflux_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'miniflux']}] if miniflux_enabled else [])
     +
     ([{'name': (radicale_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'radicale']}] if radicale_enabled else [])
@@ -55,6 +61,18 @@ devture_postgres_systemd_services_to_stop_for_maintenance_list: |
 
 devture_postgres_managed_databases_auto: |
   {{
+    ([{
+      'name': gitea_config_database_name,
+      'username': gitea_config_database_username,
+      'password': gitea_config_database_password,
+    }] if gitea_enabled else [])
+    +
+    ([{
+      'name': devture_woodpecker_ci_server_database_datasource_db_name,
+      'username': devture_woodpecker_ci_server_database_datasource_username,
+      'password': devture_woodpecker_ci_server_database_datasource_password,
+    }] if devture_woodpecker_ci_server_enabled else [])
+    +
     ([{
       'name': miniflux_database_name,
       'username': miniflux_database_username,
@@ -193,6 +211,53 @@ devture_timesync_installation_enabled: false
 ########################################################################
 #                                                                      #
 # /com.devture.ansible.role.timesync                                   #
+#                                                                      #
+########################################################################
+
+
+
+########################################################################
+#                                                                      #
+# gitea                                                                #
+#                                                                      #
+########################################################################
+
+gitea_enabled: false
+
+gitea_identifier: "{{ mash_playbook_service_identifier_prefix }}gitea"
+
+gitea_base_path: "{{ mash_playbook_base_path }}/gitea"
+
+gitea_uid: "{{ mash_playbook_uid }}"
+gitea_gid: "{{ mash_playbook_gid }}"
+
+gitea_systemd_required_systemd_services_list: |
+  {{
+    (['docker.service'])
+    +
+    ([devture_postgres_identifier ~ '.service'] if devture_postgres_enabled and gitea_config_database_hostname == devture_postgres_identifier else [])
+  }}
+
+gitea_container_additional_networks: |
+  {{
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+    +
+    ([devture_postgres_container_network] if devture_postgres_enabled and gitea_config_database_hostname == devture_postgres_identifier and gitea_container_network != devture_postgres_container_network else [])
+  }}
+
+gitea_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+gitea_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+gitea_container_labels_traefik_entrypoints: "{{ devture_traefik_entrypoint_primary }}"
+gitea_container_labels_traefik_tls_certResolver: "{{ devture_traefik_certResolver_primary }}"
+
+gitea_config_database_hostname: "{{ devture_postgres_identifier if devture_postgres_enabled else '' }}"
+gitea_config_database_port: "{{ '5432' if devture_postgres_enabled else '' }}"
+gitea_config_database_username: "gitea"
+gitea_config_database_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'db.gitea', rounds=655555) | to_uuid }}"
+
+########################################################################
+#                                                                      #
+# /gitea                                                               #
 #                                                                      #
 ########################################################################
 
@@ -349,5 +414,97 @@ uptime_kuma_container_labels_traefik_tls_certResolver: "{{ devture_traefik_certR
 ########################################################################
 #                                                                      #
 # /etke/uptime_kuma                                                    #
+#                                                                      #
+########################################################################
+
+
+
+########################################################################
+#                                                                      #
+# woodpecker-ci-server                                                 #
+#                                                                      #
+########################################################################
+
+devture_woodpecker_ci_server_enabled: false
+
+devture_woodpecker_ci_server_identifier: "{{ mash_playbook_service_identifier_prefix }}woodpecker-ci-server"
+
+devture_woodpecker_ci_server_uid: "{{ mash_playbook_uid }}"
+devture_woodpecker_ci_server_gid: "{{ mash_playbook_gid }}"
+
+devture_woodpecker_ci_server_base_path: "{{ mash_playbook_base_path }}/woodpecker-ci/server"
+
+devture_woodpecker_ci_server_systemd_required_systemd_services_list: |
+  {{
+    (['docker.service'])
+    +
+    ([devture_postgres_identifier ~ '.service'] if devture_postgres_enabled and devture_woodpecker_ci_server_database_datasource_hostname == devture_postgres_identifier else [])
+  }}
+
+devture_woodpecker_ci_server_container_additional_networks: |
+  {{
+    (
+      ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+      +
+      ([devture_postgres_container_network] if devture_postgres_enabled and devture_woodpecker_ci_server_database_datasource_hostname == devture_postgres_identifier and devture_woodpecker_ci_server_container_network != devture_postgres_container_network else [])
+    ) | unique
+  }}
+
+devture_woodpecker_ci_server_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+devture_woodpecker_ci_server_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+
+devture_woodpecker_ci_server_database_driver: postgres
+devture_woodpecker_ci_server_database_datasource: "postgres://{{ devture_woodpecker_ci_server_database_datasource_username }}:{{ devture_woodpecker_ci_server_database_datasource_password }}@{{ devture_woodpecker_ci_server_database_datasource_hostname }}:{{ devture_woodpecker_ci_server_database_datasource_port }}/{{ devture_woodpecker_ci_server_database_datasource_db_name }}?sslmode=disable"
+
+devture_woodpecker_ci_server_database_datasource_hostname: "{{ devture_postgres_identifier if devture_postgres_enabled else '' }}"
+devture_woodpecker_ci_server_database_datasource_port: "{{ '5432' if devture_postgres_enabled else '' }}"
+devture_woodpecker_ci_server_database_datasource_username: woodpecker_ci_server
+devture_woodpecker_ci_server_database_datasource_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'woodpecker.ci', rounds=655555) | to_uuid }}"
+devture_woodpecker_ci_server_database_datasource_db_name: woodpecker_ci_server
+
+########################################################################
+#                                                                      #
+# /woodpecker-ci-server                                                #
+#                                                                      #
+########################################################################
+
+
+
+########################################################################
+#                                                                      #
+# woodpecker-ci-agent                                                  #
+#                                                                      #
+########################################################################
+
+devture_woodpecker_ci_agent_enabled: false
+
+devture_woodpecker_ci_agent_identifier: "{{ mash_playbook_service_identifier_prefix }}woodpecker-ci-agent"
+
+devture_woodpecker_ci_agent_uid: "{{ mash_playbook_uid }}"
+devture_woodpecker_ci_agent_gid: "{{ mash_playbook_gid }}"
+
+devture_woodpecker_ci_agent_base_path: "{{ mash_playbook_base_path }}/woodpecker-ci/agent"
+
+devture_woodpecker_ci_agent_systemd_required_systemd_services_list: |
+  {{
+    (['docker.service'])
+    +
+    ([devture_woodpecker_ci_server_identifier ~ '.service'] if devture_woodpecker_ci_server_enabled else [])
+  }}
+
+devture_woodpecker_ci_agent_container_additional_networks: |
+  {{
+    (
+      ([devture_woodpecker_ci_server_container_network] if devture_woodpecker_ci_server_enabled and devture_woodpecker_ci_server_container_network != devture_woodpecker_ci_agent_container_network else [])
+    ) | unique
+  }}
+
+devture_woodpecker_ci_agent_config_server: "{{ (devture_woodpecker_ci_server_identifier + ':' + devture_woodpecker_ci_server_config_grpc_addr_port | string) if devture_woodpecker_ci_agent_enabled else '' }}"
+
+devture_woodpecker_ci_agent_config_agent_secret: "{{ devture_woodpecker_ci_server_config_agent_secret if devture_woodpecker_ci_agent_enabled else '' }}"
+
+########################################################################
+#                                                                      #
+# /woodpecker-ci-agent                                                 #
 #                                                                      #
 ########################################################################

@@ -33,6 +33,12 @@
 - src: git+https://github.com/devture/com.devture.ansible.role.playbook_runtime_messages.git
   version: 9b4b088c62b528b73a9a7c93d3109b091dd42ec6
 
+- src: git+https://github.com/devture/com.devture.ansible.role.woodpecker_ci_server.git
+  version: v0.15.7-1
+
+- src: git+https://github.com/devture/com.devture.ansible.role.woodpecker_ci_agent.git
+  version: v0.15.7-0
+
 - src: git+https://gitlab.com/etke.cc/roles/miniflux.git
   version: v2.0.42-1
 
@@ -45,3 +51,7 @@
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-vaultwarden.git
   name: vaultwarden
   version: v1.27.0-1
+
+- src: git+https://github.com/mother-of-all-self-hosting/ansible-role-gitea.git
+  name: gitea
+  version: v1.18.5-1

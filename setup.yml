@@ -44,6 +44,8 @@
 
     - role: galaxy/com.devture.ansible.role.traefik
 
+    - role: galaxy/gitea
+
     - role: galaxy/miniflux
 
     - role: galaxy/radicale
@@ -51,6 +53,9 @@
     - role: galaxy/vaultwarden
 
     - role: galaxy/uptime_kuma
+
+    - role: galaxy/com.devture.ansible.role.woodpecker_ci_server
+    - role: galaxy/com.devture.ansible.role.woodpecker_ci_agent
 
     - when: devture_systemd_service_manager_enabled | bool
       role: galaxy/com.devture.ansible.role.systemd_service_manager
