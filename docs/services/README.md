@@ -1,4 +1,4 @@
-# Support services
+# Supported services
 
 |              Name              |              Description              | Documentation |
 | ------------------------------ | ------------------------------------- | ------------- |
