@@ -110,9 +110,9 @@ just run-tags run-postgres-vacuum,start
 
 ### Backing up PostgreSQL
 
-To automatically make Postgres database backups on a fixed schedule, see [Setting up postgres backup](configuring-playbook-postgres-backup.md).
+To automatically make Postgres database backups on a fixed schedule, consider enabling the [Postgres Backup](postgres-backup.md) service.
 
-To make a one off back up of the current PostgreSQL database, make sure it's running and then execute a command like this on the server:
+To make a one-off back up of the current PostgreSQL database, make sure it's running and then execute a command like this on the server:
 
 ```bash
 /usr/bin/docker exec \
@@ -216,3 +216,8 @@ devture_postgres_process_extra_arguments: [
   "-c max_parallel_maintenance_workers=3",
 ]
 ```
+
+
+## Recommended other services
+
+You may also wish to look into [Postgres Backup](postgres-backup.md) for backing up your Postgres database.

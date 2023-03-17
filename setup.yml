@@ -40,6 +40,8 @@
     # This role exposes various tags (setup-postgres, setup-all, upgrade-postgres, import-postgres, etc.), so we don't tag it here.
     - role: galaxy/com.devture.ansible.role.postgres
 
+    - role: galaxy/com.devture.ansible.role.postgres_backup
+
     - role: galaxy/com.devture.ansible.role.container_socket_proxy
 
     - role: galaxy/com.devture.ansible.role.traefik

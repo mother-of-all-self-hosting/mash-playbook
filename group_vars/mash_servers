@@ -12,6 +12,8 @@ devture_systemd_service_manager_services_list_auto: |
     +
     ([{'name': (devture_postgres_identifier + '.service'), 'priority': 500, 'groups': ['mash', 'postgres']}] if devture_postgres_enabled else [])
     +
+    ([{'name': (devture_postgres_backup_identifier + '.service'), 'priority': 5000, 'groups': ['mash', 'backup', 'postgres-backup']}] if devture_postgres_backup_enabled else [])
+    +
     ([{'name': (devture_container_socket_proxy_identifier + '.service'), 'priority': 2900, 'groups': ['mash', 'reverse-proxies', 'container-socket-proxy']}] if devture_container_socket_proxy_enabled else [])
     +
     ([{'name': (devture_traefik_identifier + '.service'), 'priority': 3000, 'groups': ['mash', 'traefik', 'reverse-proxies']}] if devture_traefik_enabled else [])
@@ -111,6 +113,49 @@ devture_postgres_managed_databases_auto: |
 ########################################################################
 #                                                                      #
 # /com.devture.ansible.role.postgres                                   #
+#                                                                      #
+########################################################################
+
+
+
+########################################################################
+#                                                                      #
+# com.devture.ansible.role.postgres_backup                             #
+#                                                                      #
+########################################################################
+
+devture_postgres_backup_enabled: false
+
+devture_postgres_backup_identifier: "{{ mash_playbook_service_identifier_prefix }}postgres-backup"
+
+devture_postgres_backup_architecture: "{{ mash_playbook_architecture }}"
+
+devture_postgres_backup_base_path: "{{ mash_playbook_base_path }}/postgres-backup"
+
+devture_postgres_backup_systemd_required_services_list: |
+  {{
+    (['docker.service'])
+    +
+    ([(devture_postgres_identifier + '.service')] if devture_postgres_enabled else [])
+  }}
+
+devture_postgres_backup_container_network: "{{ devture_postgres_container_network }}"
+
+devture_postgres_backup_uid: "{{ mash_playbook_uid }}"
+devture_postgres_backup_gid: "{{ mash_playbook_gid }}"
+
+devture_postgres_backup_connection_hostname: "{{ devture_postgres_connection_hostname if devture_postgres_enabled else '' }}"
+devture_postgres_backup_connection_port: "{{ devture_postgres_connection_port if devture_postgres_enabled else 5432 }}"
+devture_postgres_backup_connection_username: "{{ devture_postgres_connection_username if devture_postgres_enabled else '' }}"
+devture_postgres_backup_connection_password: "{{ devture_postgres_connection_password if devture_postgres_enabled else '' }}"
+
+devture_postgres_backup_postgres_data_path: "{{ devture_postgres_data_path if devture_postgres_enabled else '' }}"
+
+devture_postgres_backup_databases: "{{ devture_postgres_managed_databases | map(attribute='name') if devture_postgres_enabled else [] }}"
+
+########################################################################
+#                                                                      #
+# /com.devture.ansible.role.postgres_backup                            #
 #                                                                      #
 ########################################################################
 
