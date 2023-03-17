@@ -58,6 +58,8 @@
 
     - role: galaxy/radicale
 
+    - role: galaxy/redmine
+
     - role: galaxy/redis
 
     - role: galaxy/vaultwarden
