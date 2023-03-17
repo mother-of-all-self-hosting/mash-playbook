@@ -23,7 +23,7 @@ To enable this service, add the following configuration to your `vars.yml` file 
 
 redmine_enabled: true
 
-redmine_hostname: mash.example.com
+redmine_hostname: redmine.example.com
 
 ########################################################################
 #                                                                      #
@@ -32,7 +32,7 @@ redmine_hostname: mash.example.com
 ########################################################################
 ```
 
-In the example configuration above, we configure the service to be hosted at `https://mash.example.com`.
+In the example configuration above, we configure the service to be hosted at `https://redmine.example.com`.
 
 
 ## Usage

@@ -140,29 +140,6 @@ miniflux_admin_password: a-strong-password-here
 
 ########################################################################
 #                                                                      #
-# redmine                                                             #
-#                                                                      #
-########################################################################
-
-# Learn more about the redmine service in docs/services/redmine.md
-#
-# This service is only here as an example. If you don't wish to use the
-# redmine service, remove the whole section.
-
-redmine_enabled: true
-
-redmine_hostname: mash.example.com
-
-########################################################################
-#                                                                      #
-# /redmine                                                            #
-#                                                                      #
-########################################################################
-
-
-
-########################################################################
-#                                                                      #
 # uptime-kuma                                                          #
 #                                                                      #
 ########################################################################
