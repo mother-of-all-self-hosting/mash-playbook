@@ -48,6 +48,8 @@
 
     - role: galaxy/miniflux
 
+    - role: galaxy/nextcloud
+
     - role: galaxy/radicale
 
     - role: galaxy/vaultwarden

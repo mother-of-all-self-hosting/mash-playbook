@@ -20,6 +20,10 @@ devture_systemd_service_manager_services_list_auto: |
     +
     ([{'name': (gitea_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'gitea', 'gitea-server']}])
     +
+    ([{'name': (nextcloud_identifier + '-server.service'), 'priority': 1000, 'groups': ['mash', 'nextcloud', 'nextcloud-server']}] if nextcloud_enabled else [])
+    +
+    ([{'name': (nextcloud_identifier + '-cron.timer'), 'priority': 2500, 'groups': ['mash', 'nextcloud', 'nextcloud-cron']}] if nextcloud_enabled else [])
+    +
     ([{'name': (miniflux_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'miniflux']}] if miniflux_enabled else [])
     +
     ([{'name': (radicale_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'radicale']}] if radicale_enabled else [])
@@ -78,6 +82,12 @@ devture_postgres_managed_databases_auto: |
       'username': miniflux_database_username,
       'password': miniflux_database_password,
     }] if miniflux_enabled else [])
+    +
+    ([{
+      'name': nextcloud_database_name,
+      'username': nextcloud_database_username,
+      'password': nextcloud_database_password,
+    }] if nextcloud_enabled else [])
     +
     ([{
       'name': vaultwarden_database_name,
@@ -265,7 +275,7 @@ gitea_config_database_password: "{{ '%s' | format(mash_playbook_generic_secret_k
 
 ########################################################################
 #                                                                      #
-# etke/miniflux                                                        #
+# miniflux                                                             #
 #                                                                      #
 ########################################################################
 
@@ -302,7 +312,7 @@ miniflux_database_password: "{{ '%s' | format(mash_playbook_generic_secret_key) 
 
 ########################################################################
 #                                                                      #
-# /etke/miniflux                                                       #
+# miniflux                                                             #
 #                                                                      #
 ########################################################################
 
@@ -310,7 +320,54 @@ miniflux_database_password: "{{ '%s' | format(mash_playbook_generic_secret_key) 
 
 ########################################################################
 #                                                                      #
-# etke/radicale                                                        #
+# nextcloud                                                            #
+#                                                                      #
+########################################################################
+
+nextcloud_enabled: false
+
+nextcloud_identifier: "{{ mash_playbook_service_identifier_prefix }}nextcloud"
+
+nextcloud_base_path: "{{ mash_playbook_base_path }}/nextcloud"
+
+nextcloud_uid: "{{ mash_playbook_uid }}"
+nextcloud_gid: "{{ mash_playbook_gid }}"
+
+nextcloud_systemd_required_systemd_services_list: |
+  {{
+    (['docker.service'])
+    +
+    ([devture_postgres_identifier ~ '.service'] if devture_postgres_enabled and nextcloud_database_hostname == devture_postgres_identifier else [])
+  }}
+
+nextcloud_container_additional_networks: |
+  {{
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+    +
+    ([devture_postgres_container_network] if devture_postgres_enabled and nextcloud_database_hostname == devture_postgres_identifier and nextcloud_container_network != devture_postgres_container_network else [])
+  }}
+
+nextcloud_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+nextcloud_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+nextcloud_container_labels_traefik_entrypoints: "{{ devture_traefik_entrypoint_primary }}"
+nextcloud_container_labels_traefik_tls_certResolver: "{{ devture_traefik_certResolver_primary }}"
+
+nextcloud_database_hostname: "{{ devture_postgres_identifier if devture_postgres_enabled else '' }}"
+nextcloud_database_port: "{{ '5432' if devture_postgres_enabled else '' }}"
+nextcloud_database_username: "nextcloud"
+nextcloud_database_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'db.nextcloud', rounds=655555) | to_uuid }}"
+
+########################################################################
+#                                                                      #
+# /nextcloud                                                           #
+#                                                                      #
+########################################################################
+
+
+
+########################################################################
+#                                                                      #
+# radicale                                                             #
 #                                                                      #
 ########################################################################
 
@@ -335,7 +392,7 @@ radicale_container_labels_traefik_tls_certResolver: "{{ devture_traefik_certReso
 
 ########################################################################
 #                                                                      #
-# /etke/radicale                                                       #
+# radicale                                                             #
 #                                                                      #
 ########################################################################
 
