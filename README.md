@@ -31,27 +31,14 @@ When updating the playbook, refer to [the changelog](CHANGELOG.md) to catch up w
 - GitHub issues: [mother-of-all-self-hosting/mash-playbook/issues](https://github.com/mother-of-all-self-hosting/mash-playbook/issues)
 
 
-## Related projects
-
-You may also be interested in these other Ansible playbooks:
-
-- [matrix-docker-ansible-deploy](https://github.com/spantaleev/matrix-docker-ansible-deploy) - for deploying a fully-featured [Matrix](https://matrix.org) homeserver
-
-- [peertube-docker-ansible-deploy](https://github.com/spantaleev/peertube-docker-ansible-deploy) - for deploying a [PeerTube](https://joinpeertube.org/) video-platform server - this playbook will soon be merged into `mash-playbook`
-
-The [Matrix](https://matrix.org) playbook ([matrix-docker-ansible-deploy](https://github.com/spantaleev/matrix-docker-ansible-deploy)) will remain independent, because the Matrix ecosystem is incredibly large - lots of bots, bridges and other pieces of software. It deserves its own dedicated playbook.
-
-All other playbooks are for smaller pieces and will be moved into into this playbook for ease of maintenance and all [reasons explained below](#why-create-such-a-mega-playbook).
-
-
 ## Why create such a mega playbook?
 
-All our [Related](#related-projects) Ansible playbooks re-use roles (for Postgres, Traefik, etc.), but are still hard to maintain and there's a lot of duplication of effort.
+We used to maintain separate playbooks for various services (Matrix, Nextcloud, Gitea, Vaultwarden, PeerTube, ..). They re-used roles (for Postgres, Traefik, etc.), but were still hard to maintain due to the large duplication of effort.
 
-Most of these playbooks host services which require a Postgres database, a Traefik reverse-proxy, a backup solution, etc. All of them need to come with documentation, etc.
+Most of these playbooks hosted services which require a Postgres database, a Traefik reverse-proxy, a backup solution, etc. All of them needed to come with documentation, etc.
 All these things need to be created and kept up-to-date in each and every playbook.
 
-Having to use a dedicated Ansible playbook for each and every piece of software means that you have to juggle many playbooks and make sure they don't conflict with one another when installing services on the same server. All [Related](#related-projects) playbooks interoperate nicely, but still require at least a bit of manual configuration to achieve this interoperability.
+Having to use a dedicated Ansible playbook for each and every piece of software means that you have to juggle many playbooks and make sure they don't conflict with one another when installing services on the same server. All these related playbooks interoperated nicely, but still required at least a bit of manual configuration to achieve this interoperability.
 
 Using specialized Ansible playbooks also means that trying out new software is difficult. Despite the playbooks being similar (which eases the learning curve), each one is still a new git repository you need to clone and maintain, etc.
 

@@ -28,7 +28,11 @@ devture_systemd_service_manager_services_list_auto: |
     +
     ([{'name': (miniflux_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'miniflux']}] if miniflux_enabled else [])
     +
+    ([{'name': (peertube_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'peertube']}] if peertube_enabled else [])
+    +
     ([{'name': (radicale_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'radicale']}] if radicale_enabled else [])
+    +
+    ([{'name': (redis_identifier + '.service'), 'priority': 750, 'groups': ['mash', 'redis']}] if redis_enabled else [])
     +
     ([{'name': (vaultwarden_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'vaultwarden', 'vaultwarden-server']}] if vaultwarden_enabled else [])
     +
@@ -90,6 +94,12 @@ devture_postgres_managed_databases_auto: |
       'username': nextcloud_database_username,
       'password': nextcloud_database_password,
     }] if nextcloud_enabled else [])
+    +
+    ([{
+      'name': peertube_config_database_name,
+      'username': peertube_config_database_username,
+      'password': peertube_config_database_password,
+    }] if peertube_enabled else [])
     +
     ([{
       'name': vaultwarden_database_name,
@@ -400,6 +410,61 @@ nextcloud_database_password: "{{ '%s' | format(mash_playbook_generic_secret_key)
 
 ########################################################################
 #                                                                      #
+# peertube                                                             #
+#                                                                      #
+########################################################################
+
+peertube_enabled: false
+
+peertube_identifier: "{{ mash_playbook_service_identifier_prefix }}peertube"
+
+peertube_base_path: "{{ mash_playbook_base_path }}/peertube"
+
+peertube_uid: "{{ mash_playbook_uid }}"
+peertube_gid: "{{ mash_playbook_gid }}"
+
+peertube_container_additional_networks: |
+  {{
+    (
+      ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+      +
+      ([devture_postgres_container_network] if devture_postgres_enabled and peertube_config_database_hostname == devture_postgres_identifier and peertube_container_network != devture_postgres_container_network else [])
+      +
+      ([redis_container_network] if peertube_config_redis_hostname == redis_identifier else [])
+    ) | unique
+  }}
+
+peertube_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+peertube_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+peertube_container_labels_traefik_entrypoints: "{{ devture_traefik_entrypoint_primary }}"
+peertube_container_labels_traefik_tls_certResolver: "{{ devture_traefik_certResolver_primary }}"
+
+peertube_config_database_hostname: "{{ devture_postgres_identifier if devture_postgres_enabled else '' }}"
+peertube_config_database_port: "{{ '5432' if devture_postgres_enabled else '' }}"
+peertube_config_database_username: peertube
+peertube_config_database_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'db.peertube', rounds=655555) | to_uuid }}"
+
+peertube_config_redis_hostname: "{{ redis_identifier if redis_enabled else '' }}"
+
+peertube_systemd_required_services_list: |
+  {{
+    (['docker.service'])
+    +
+    ([devture_postgres_identifier ~ '.service'] if devture_postgres_enabled and peertube_config_database_hostname == devture_postgres_identifier else [])
+    +
+    ([redis_identifier ~ '.service'] if redis_enabled and peertube_config_redis_hostname == redis_identifier else [])
+  }}
+
+########################################################################
+#                                                                      #
+# /peertube                                                            #
+#                                                                      #
+########################################################################
+
+
+
+########################################################################
+#                                                                      #
 # radicale                                                             #
 #                                                                      #
 ########################################################################
@@ -426,6 +491,29 @@ radicale_container_labels_traefik_tls_certResolver: "{{ devture_traefik_certReso
 ########################################################################
 #                                                                      #
 # radicale                                                             #
+#                                                                      #
+########################################################################
+
+
+
+########################################################################
+#                                                                      #
+# redis                                                                #
+#                                                                      #
+########################################################################
+
+redis_enabled: false
+
+redis_identifier: "{{ mash_playbook_service_identifier_prefix }}redis"
+
+redis_base_path: "{{ mash_playbook_base_path }}/redis"
+
+redis_uid: "{{ mash_playbook_uid }}"
+redis_gid: "{{ mash_playbook_gid }}"
+
+########################################################################
+#                                                                      #
+# /redis                                                               #
 #                                                                      #
 ########################################################################
 
