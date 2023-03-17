@@ -58,4 +58,8 @@
 
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-nextcloud.git
   name: nextcloud
-  version: v25.0.4-0
+  version: v25.0.4-1
+
+- src: git+https://github.com/mother-of-all-self-hosting/ansible-role-collabora-online.git
+  name: collabora_online
+  version: v22.05.12.1.1-0

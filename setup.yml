@@ -44,6 +44,8 @@
 
     - role: galaxy/com.devture.ansible.role.traefik
 
+    - role: galaxy/collabora_online
+
     - role: galaxy/gitea
 
     - role: galaxy/miniflux

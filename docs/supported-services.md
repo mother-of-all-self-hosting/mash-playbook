@@ -2,6 +2,7 @@
 
 |              Name              |              Description              | Documentation |
 | ------------------------------ | ------------------------------------- | ------------- |
+| [Collabora Online](https://www.collaboraoffice.com/) | Your Private Office Suite In The Cloud | [Link](services/collabora-online.md) |
 | [Docker](https://www.docker.com/) | Open-source software for deploying containerized applications | [Link](services/docker.md) |
 | [Gitea](https://gitea.io/) | A painless self-hosted Git service. | [Link](services/gitea.md) |
 | [Miniflux](https://miniflux.app/) | Minimalist and opinionated feed reader. | [Link](services/miniflux.md) |
