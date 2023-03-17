@@ -4,17 +4,17 @@
 
 By running services in containers, we can have a predictable and up-to-date setup, across multiple supported distros and CPU architectures.
 
-This project is fairly new and only supports a few [services](docs/services/README.md) so far, but will grow to support self-hosting a large number of [FOSS](https://en.wikipedia.org/wiki/Free_and_open-source_software) pieces of software.
+This project is fairly new and only [supports a handful of services](docs/supported-services.md) so far, but will grow to support self-hosting a large number of [FOSS](https://en.wikipedia.org/wiki/Free_and_open-source_software) pieces of software.
 
 
 ## Supported services
 
-See the [full list of supported services here](docs/services/README.md).
+See the [full list of supported services here](docs/supported-services.md).
 
 
 ## Installation
 
-To configure and install service on your own server, follow the [README in the docs/ directory](docs/README.md).
+To configure and install services on your own server, follow the [README in the docs/ directory](docs/README.md).
 
 
 ## Changes
@@ -35,15 +35,9 @@ When updating the playbook, refer to [the changelog](CHANGELOG.md) to catch up w
 
 You may also be interested in these other Ansible playbooks:
 
-- [gitea-docker-ansible-deploy](https://github.com/spantaleev/gitea-docker-ansible-deploy) - for deploying a [Gitea](https://gitea.io/) git version-control server - this playbook will soon be merged into `mash-playbook`
-
-- [nextcloud-docker-ansible-deploy](https://github.com/spantaleev/nextcloud-docker-ansible-deploy) - for deploying a [Nextcloud](https://nextcloud.com/) server - this playbook will soon be merged into `mash-playbook`
-
 - [matrix-docker-ansible-deploy](https://github.com/spantaleev/matrix-docker-ansible-deploy) - for deploying a fully-featured [Matrix](https://matrix.org) homeserver
 
 - [peertube-docker-ansible-deploy](https://github.com/spantaleev/peertube-docker-ansible-deploy) - for deploying a [PeerTube](https://joinpeertube.org/) video-platform server - this playbook will soon be merged into `mash-playbook`
-
-- [vaultwarden-docker-ansible-deploy](https://github.com/spantaleev/vaultwarden-docker-ansible-deploy) - for deploying a [Vaultwarden](https://github.com/dani-garcia/vaultwarden) password manager server (unofficial [Bitwarden](https://bitwarden.com/) compatible server) - this playbook will soon be merged into `mash-playbook`
 
 The [Matrix](https://matrix.org) playbook ([matrix-docker-ansible-deploy](https://github.com/spantaleev/matrix-docker-ansible-deploy)) will remain independent, because the Matrix ecosystem is incredibly large - lots of bots, bridges and other pieces of software. It deserves its own dedicated playbook.
 

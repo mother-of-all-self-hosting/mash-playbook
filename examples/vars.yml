@@ -165,4 +165,4 @@ uptime_kuma_hostname: uptime-kuma.example.com
 
 
 # You can add additional services here, as you see fit.
-# To discover new services and configuration, see docs/services/README.md
+# To discover new services and configuration, see docs/supported-services.md
