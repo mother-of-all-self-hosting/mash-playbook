@@ -52,7 +52,7 @@
 
     - role: galaxy/nextcloud
 
-    - role: peertube
+    - role: galaxy/peertube
 
     - role: galaxy/radicale
 
