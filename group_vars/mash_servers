@@ -20,7 +20,7 @@ devture_systemd_service_manager_services_list_auto: |
     +
     ([{'name': (devture_woodpecker_ci_agent_identifier + '.service'), 'priority': 4100, 'groups': ['mash', 'woodpecker', 'ci', 'woodpecker-ci-agent']}] if devture_woodpecker_ci_agent_enabled else [])
     +
-    ([{'name': (gitea_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'gitea', 'gitea-server']}])
+    ([{'name': (gitea_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'gitea', 'gitea-server']}] if gitea_enabled else [])
     +
     ([{'name': (nextcloud_identifier + '-server.service'), 'priority': 2000, 'groups': ['mash', 'nextcloud', 'nextcloud-server']}] if nextcloud_enabled else [])
     +
