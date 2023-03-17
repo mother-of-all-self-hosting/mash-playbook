@@ -45,6 +45,6 @@ After [installation](../installing.md), you should follow Nextcloud's setup wiza
 
 You can choose any username/password for your account.
 
-In **Storage & database**, you should choose PostgreSQL (changing the default **SQLite** choice), with the credentials you see after running `just print-nextcloud-db-credentials`
+In **Storage & database**, you should choose PostgreSQL (changing the default **SQLite** choice), with the credentials you see after running `just run-tags print-nextcloud-db-credentials`
 
 Once you've fully installed Nextcloud, you'd better adjust its default configuration (URL paths, trusted reverse-proxies, etc.) by running: `just run-tags adjust-nextcloud-config`
