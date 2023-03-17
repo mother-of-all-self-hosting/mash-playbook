@@ -43,7 +43,7 @@
   version: v0.15.7-0
 
 - src: git+https://gitlab.com/etke.cc/roles/miniflux.git
-  version: v2.0.42-1
+  version: v2.0.43-0
 
 - src: git+https://gitlab.com/etke.cc/roles/radicale.git
   version: v3.1.8.1-1
