@@ -526,9 +526,13 @@ peertube_systemd_required_services_list: |
 ########################################################################
 
 prometheus_node_exporter_enabled: true
+
+prometheus_node_exporter_identifier: "{{ mash_playbook_service_identifier_prefix }}prometheus-node-exporter"
+
+prometheus_node_exporter_base_path: "{{ mash_playbook_base_path }}/prometheus-node-exporter"
+
 prometheus_node_exporter_uid: "{{ mash_playbook_uid }}"
 prometheus_node_exporter_gid: "{{ mash_playbook_gid }}"
-prometheus_node_exporter_base_path: "{{ mash_playbook_base_path }}/node-exporter"
 
 prometheus_node_exporter_basicauth_enabled: true
 prometheus_node_exporter_basicauth_user: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'node.user', rounds=655555) | to_uuid }}"
