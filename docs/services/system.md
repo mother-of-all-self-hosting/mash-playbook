@@ -35,3 +35,32 @@ To avoid these calculations and set your own size explicitly, set the `system_sw
 ```yaml
 system_swap_size: 4096
 ```
+
+### ssh
+
+> **Warning**: advanced functionality! While the default config with a few adjustments was battle tested on hundreds of servers,
+> you should use it with caution and verify everything before you apply the changes!
+
+To enable [ssh server](https://www.openssh.com/) config and authorized/unauthorized keys management, add the following configuration to your `vars.yml` file and re-run the [installation](../installing.md) process:
+
+```yaml
+########################################################################
+#                                                                      #
+# system                                                               #
+#                                                                      #
+########################################################################
+
+system_security_ssh_enabled: true
+system_security_ssh_authorizedkeys: [] # list of authorized public keys
+system_security_ssh_unauthorizedkeys: [] # list of unauthorized/revoked public keys
+
+########################################################################
+#                                                                      #
+# /system                                                              #
+#                                                                      #
+########################################################################
+```
+
+[Default configuration](https://gitlab.com/etke.cc/roles/ssh/-/blob/main/defaults/main.yml) is good enough as-is, but we strongly suggest you to **verify everything before applying any changes!**, otherwise you may lock yourself out.
+
+There are various of different configuration options - check the defaults and adjust them to your needs.

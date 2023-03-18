@@ -6,6 +6,9 @@
 - src: git+https://gitlab.com/etke.cc/roles/swap
   version: 33ce32b065276a96b7e2562752f3a63913ed5480
 
+- src: git+https://gitlab.com/etke.cc/roles/ssh
+  version: 7458ce11f26822427eb5dc7356e59b3bd2399f7b
+
 - src: git+https://github.com/devture/com.devture.ansible.role.docker_sdk_for_python.git
   version: 129c8590e106b83e6f4c259649a613c6279e937a
 

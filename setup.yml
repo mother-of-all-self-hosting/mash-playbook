@@ -39,6 +39,8 @@
 
     - role: galaxy/swap
 
+    - role: galaxy/ssh
+
     # This role exposes various tags (setup-postgres, setup-all, upgrade-postgres, import-postgres, etc.), so we don't tag it here.
     - role: galaxy/com.devture.ansible.role.postgres
 
