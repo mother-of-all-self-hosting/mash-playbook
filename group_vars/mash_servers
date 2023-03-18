@@ -525,7 +525,7 @@ peertube_systemd_required_services_list: |
 #                                                                      #
 ########################################################################
 
-prometheus_node_exporter_enabled: true
+prometheus_node_exporter_enabled: false
 
 prometheus_node_exporter_identifier: "{{ mash_playbook_service_identifier_prefix }}prometheus-node-exporter"
 
