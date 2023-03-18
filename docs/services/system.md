@@ -64,3 +64,27 @@ system_security_ssh_unauthorizedkeys: [] # list of unauthorized/revoked public k
 [Default configuration](https://gitlab.com/etke.cc/roles/ssh/-/blob/main/defaults/main.yml) is good enough as-is, but we strongly suggest you to **verify everything before applying any changes!**, otherwise you may lock yourself out.
 
 There are various of different configuration options - check the defaults and adjust them to your needs.
+
+### fail2ban
+
+To enable [fail2ban](https://fail2ban.org/wiki/index.php/Main_Page) installation, management and integration with SSHd, add the following configuration to your `vars.yml` file and re-run the [installation](../installing.md) process:
+
+```yaml
+########################################################################
+#                                                                      #
+# system                                                               #
+#                                                                      #
+########################################################################
+
+system_security_fail2ban_enabled: true
+system_security_fail2ban_sshd_port: 22
+# if you decided to use the playbook-managed ssh described above,
+# you can replace the line above with the following:
+# system_security_fail2ban_sshd_port: "{{ system_security_ssh_port }}"
+
+########################################################################
+#                                                                      #
+# /system                                                              #
+#                                                                      #
+########################################################################
+```
