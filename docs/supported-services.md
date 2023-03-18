@@ -4,6 +4,7 @@
 | ------------------------------ | ------------------------------------- | ------------- |
 | [Collabora Online](https://www.collaboraoffice.com/) | Your Private Office Suite In The Cloud | [Link](services/collabora-online.md) |
 | [Docker](https://www.docker.com/) | Open-source software for deploying containerized applications | [Link](services/docker.md) |
+| [Docker Registry](https://docs.docker.com/registry/) | A container image distribution registry | [Link](services/docker-registry.md) |
 | [Gitea](https://gitea.io/) | A painless self-hosted Git service. | [Link](services/gitea.md) |
 | [Miniflux](https://miniflux.app/) | Minimalist and opinionated feed reader. | [Link](services/miniflux.md) |
 | [Nextcloud](https://nextcloud.com/) | The most popular self-hosted collaboration solution for tens of millions of users at thousands of organizations across the globe. | [Link](services/nextcloud.md) |

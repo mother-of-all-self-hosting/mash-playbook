@@ -29,8 +29,6 @@ devture_systemd_service_manager_services_list_auto: |
     +
     ([{'name': (devture_postgres_identifier + '.service'), 'priority': 500, 'groups': ['mash', 'postgres']}] if devture_postgres_enabled else [])
     +
-    ([{'name': (prometheus_node_exporter_identifier + '.service'), 'priority': 500, 'groups': ['mash', 'metrics', 'prometheus-node-exporter']}] if prometheus_node_exporter_enabled else [])
-    +
     ([{'name': (devture_postgres_backup_identifier + '.service'), 'priority': 5000, 'groups': ['mash', 'backup', 'postgres-backup']}] if devture_postgres_backup_enabled else [])
     +
     ([{'name': (devture_container_socket_proxy_identifier + '.service'), 'priority': 2900, 'groups': ['mash', 'reverse-proxies', 'container-socket-proxy']}] if devture_container_socket_proxy_enabled else [])
@@ -41,6 +39,10 @@ devture_systemd_service_manager_services_list_auto: |
     +
     ([{'name': (devture_woodpecker_ci_agent_identifier + '.service'), 'priority': 4100, 'groups': ['mash', 'woodpecker', 'ci', 'woodpecker-ci-agent']}] if devture_woodpecker_ci_agent_enabled else [])
     +
+    ([{'name': (docker_registry_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'docker-registry']}] if docker_registry_enabled else [])
+    +
+    ([{'name': (docker_registry_identifier + '-garbage-collect.timer'), 'priority': 2500, 'groups': ['mash', 'docker-registry', 'gc']}] if docker_registry_enabled else [])
+    +
     ([{'name': (gitea_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'gitea', 'gitea-server']}] if gitea_enabled else [])
     +
     ([{'name': (nextcloud_identifier + '-server.service'), 'priority': 2000, 'groups': ['mash', 'nextcloud', 'nextcloud-server']}] if nextcloud_enabled else [])
@@ -50,6 +52,8 @@ devture_systemd_service_manager_services_list_auto: |
     ([{'name': (miniflux_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'miniflux']}] if miniflux_enabled else [])
     +
     ([{'name': (peertube_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'peertube']}] if peertube_enabled else [])
+    +
+    ([{'name': (prometheus_node_exporter_identifier + '.service'), 'priority': 500, 'groups': ['mash', 'metrics', 'prometheus-node-exporter']}] if prometheus_node_exporter_enabled else [])
     +
     ([{'name': (radicale_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'radicale']}] if radicale_enabled else [])
     +
@@ -338,6 +342,39 @@ collabora_online_container_labels_traefik_tls_certResolver: "{{ devture_traefik_
 ########################################################################
 #                                                                      #
 # /collabora-online                                                    #
+#                                                                      #
+########################################################################
+
+
+
+########################################################################
+#                                                                      #
+# docker-registry                                                      #
+#                                                                      #
+########################################################################
+
+docker_registry_enabled: false
+
+docker_registry_identifier: "{{ mash_playbook_service_identifier_prefix }}docker-registry"
+
+docker_registry_base_path: "{{ mash_playbook_base_path }}/docker-registry"
+
+docker_registry_uid: "{{ mash_playbook_uid }}"
+docker_registry_gid: "{{ mash_playbook_gid }}"
+
+docker_registry_container_additional_networks: |
+  {{
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+  }}
+
+docker_registry_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+docker_registry_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+docker_registry_container_labels_traefik_entrypoints: "{{ devture_traefik_entrypoint_primary }}"
+docker_registry_container_labels_traefik_tls_certResolver: "{{ devture_traefik_certResolver_primary }}"
+
+########################################################################
+#                                                                      #
+# /docker-registry                                                     #
 #                                                                      #
 ########################################################################
 

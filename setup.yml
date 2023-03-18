@@ -50,6 +50,8 @@
 
     - role: galaxy/collabora_online
 
+    - role: galaxy/docker_registry
+
     - role: galaxy/gitea
 
     - role: galaxy/miniflux
