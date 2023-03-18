@@ -34,6 +34,8 @@ devture_systemd_service_manager_services_list_auto: |
     +
     ([{'name': (radicale_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'radicale']}] if radicale_enabled else [])
     +
+    ([{'name': (redmine_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'redmine']}] if redmine_enabled else [])
+    +
     ([{'name': (redis_identifier + '.service'), 'priority': 750, 'groups': ['mash', 'redis']}] if redis_enabled else [])
     +
     ([{'name': (vaultwarden_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'vaultwarden', 'vaultwarden-server']}] if vaultwarden_enabled else [])
@@ -69,6 +71,8 @@ devture_postgres_gid: "{{ mash_playbook_gid }}"
 devture_postgres_systemd_services_to_stop_for_maintenance_list: |
   {{
     ([(miniflux_identifier + '.service')] if miniflux_enabled else [])
+    +
+    ([(redmine_identifier + '.service')] if redmine_enabled else [])
   }}
 
 devture_postgres_managed_databases_auto: |
@@ -90,6 +94,12 @@ devture_postgres_managed_databases_auto: |
       'username': miniflux_database_username,
       'password': miniflux_database_password,
     }] if miniflux_enabled else [])
+    +
+    ([{
+      'name': redmine_database_name,
+      'username': redmine_database_username,
+      'password': redmine_database_password,
+    }] if redmine_enabled else [])
     +
     ([{
       'name': nextcloud_database_name,
@@ -400,7 +410,7 @@ miniflux_database_password: "{{ '%s' | format(mash_playbook_generic_secret_key) 
 
 ########################################################################
 #                                                                      #
-# miniflux                                                             #
+# /miniflux                                                             #
 #                                                                      #
 ########################################################################
 
@@ -535,10 +545,58 @@ radicale_container_labels_traefik_tls_certResolver: "{{ devture_traefik_certReso
 
 ########################################################################
 #                                                                      #
-# radicale                                                             #
+# /radicale                                                             #
 #                                                                      #
 ########################################################################
 
+
+########################################################################
+#                                                                      #
+# redmine                                                             #
+#                                                                      #
+########################################################################
+
+redmine_enabled: false
+
+redmine_identifier: "{{ mash_playbook_service_identifier_prefix }}redmine"
+
+redmine_base_path: "{{ mash_playbook_base_path }}/redmine"
+
+redmine_uid: "{{ mash_playbook_uid }}"
+redmine_gid: "{{ mash_playbook_gid }}"
+
+redmine_secret_key_base: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'secret.base', rounds=655555) | to_uuid }}"
+redmine_secret_token: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'secret.token', rounds=655555) | to_uuid }}"
+redmine_database_cipher_key: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'db.cipherkey', rounds=655555) | to_uuid }}"
+
+redmine_systemd_required_services_list: |
+  {{
+    (['docker.service'])
+    +
+    ([devture_postgres_identifier ~ '.service'] if devture_postgres_enabled and redmine_database_hostname == devture_postgres_identifier else [])
+  }}
+
+redmine_container_additional_networks: |
+  {{
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+    +
+    ([devture_postgres_container_network] if devture_postgres_enabled and redmine_database_hostname == devture_postgres_identifier and redmine_container_network != devture_postgres_container_network else [])
+  }}
+
+redmine_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+redmine_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+redmine_container_labels_traefik_entrypoints: "{{ devture_traefik_entrypoint_primary }}"
+redmine_container_labels_traefik_tls_certResolver: "{{ devture_traefik_certResolver_primary }}"
+
+redmine_database_type: "{{ 'postgresql' if devture_postgres_enabled else 'sqlite3' }}"
+redmine_database_hostname: "{{ devture_postgres_connection_hostname if devture_postgres_enabled else '' }}"
+redmine_database_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'redmine.db', rounds=655555) | to_uuid }}"
+
+########################################################################
+#                                                                      #
+# /redmine                                                             #
+#                                                                      #
+########################################################################
 
 
 ########################################################################
