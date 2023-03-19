@@ -77,6 +77,10 @@
   name: docker_registry
   version: v2.8.1-1
 
+- src: git+https://github.com/mother-of-all-self-hosting/ansible-role-docker-registry-browser.git
+  name: docker_registry_browser
+  version: v1.6.0-0
+
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-gitea.git
   name: gitea
   version: v1.18.5-3

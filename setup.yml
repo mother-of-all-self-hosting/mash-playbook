@@ -57,6 +57,7 @@
     - role: galaxy/collabora_online
 
     - role: galaxy/docker_registry
+    - role: galaxy/docker_registry_browser
 
     - role: galaxy/gitea
 

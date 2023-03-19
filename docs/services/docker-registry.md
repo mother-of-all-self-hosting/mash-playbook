@@ -77,10 +77,10 @@ docker rmi registry.example.com/alpine:3.17.2
 docker pull registry.example.com/alpine:3.17.2
 ```
 
-The base URL (e.g. `https://registry.example.com`) serves an empty (blank) page. To browse your registry's images, you may need another piece of software, like [klausmeyer/docker-registry-browser](https://github.com/klausmeyer/docker-registry-browser/tree/master) which is not yet supported by this playbook, but will be supported soon.
+The base URL (e.g. `https://registry.example.com`) serves an empty (blank) page. To browse your registry's images via a web interface, you may need another piece of software, like [Docker Registry Browser](docker-registry-browser.md).
 
 
 ## Recommended other services
 
-- Docker Registry Browser - support coming to this playbook soon
+- [Docker Registry Browser](docker-registry-browser.md) - Web Interface for the Docker Registry HTTP API V2 written in Ruby on Rails
 - Docker Registry Purger - support coming to this playbook soon
