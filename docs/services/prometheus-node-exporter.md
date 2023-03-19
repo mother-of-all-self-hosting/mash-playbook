@@ -9,7 +9,7 @@ To enable this service, add the following configuration to your `vars.yml` file 
 ```yaml
 ########################################################################
 #                                                                      #
-# prometheus-node-expoter                                              #
+# prometheus-node-exporter                                             #
 #                                                                      #
 ########################################################################
 
@@ -21,7 +21,7 @@ prometheus_node_exporter_basicauth_password: your password
 
 ########################################################################
 #                                                                      #
-# /prometheus-node-expoter                                             #
+# /prometheus-node-exporter                                            #
 #                                                                      #
 ########################################################################
 ```
