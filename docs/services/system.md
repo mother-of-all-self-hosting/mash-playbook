@@ -51,6 +51,9 @@ To enable [ssh server](https://www.openssh.com/) config and authorized/unauthori
 ########################################################################
 
 system_security_ssh_enabled: true
+
+system_security_ssh_port: 22
+
 system_security_ssh_authorizedkeys: [] # list of authorized public keys
 system_security_ssh_unauthorizedkeys: [] # list of unauthorized/revoked public keys
 
@@ -61,9 +64,11 @@ system_security_ssh_unauthorizedkeys: [] # list of unauthorized/revoked public k
 ########################################################################
 ```
 
-[Default configuration](https://gitlab.com/etke.cc/roles/ssh/-/blob/main/defaults/main.yml) is good enough as-is, but we strongly suggest you to **verify everything before applying any changes!**, otherwise you may lock yourself out.
+The [default configuration](https://gitlab.com/etke.cc/roles/ssh/-/blob/main/defaults/main.yml) is good enough as-is, but we strongly suggest you to **verify everything before applying any changes!**, otherwise you may lock yourself out of the server.
 
-There are various of different configuration options - check the defaults and adjust them to your needs.
+With this configuration, the default `/etc/ssh/sshd_config` file on your server will be replaced by a new one, managed by the [ssh role](https://gitlab.com/etke.cc/roles/ssh) (see its [templates/etc/ssh/sshd_config.j2](https://gitlab.com/etke.cc/roles/ssh/-/blob/main/templates/etc/ssh/sshd_config.j2) file).
+
+There are various configuration options - check the defaults and adjust them to your needs.
 
 ### fail2ban
 
@@ -77,8 +82,9 @@ To enable [fail2ban](https://fail2ban.org/wiki/index.php/Main_Page) installation
 ########################################################################
 
 system_security_fail2ban_enabled: true
+
 system_security_fail2ban_sshd_port: 22
-# if you decided to use the playbook-managed ssh described above,
+# If you enabled playbook-managed ssh as described above,
 # you can replace the line above with the following:
 # system_security_fail2ban_sshd_port: "{{ system_security_ssh_port }}"
 
