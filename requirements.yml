@@ -93,10 +93,6 @@
   name: nextcloud
   version: v25.0.4-1
 
-- src: git+https://github.com/mother-of-all-self-hosting/ansible-role-collabora-online.git
-  name: collabora_online
-  version: v22.05.12.1.1-0
-
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-peertube.git
   name: peertube
   version: v5.0.1-0
