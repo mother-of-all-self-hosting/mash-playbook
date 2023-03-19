@@ -982,7 +982,7 @@ devture_woodpecker_ci_agent_config_agent_secret: "{{ devture_woodpecker_ci_serve
 
 hubsite_enabled: false
 
-hubsite_service_list: |
+hubsite_service_list_auto: |
   {{
     ([{'name': 'Miniflux', 'url': 'https://' +  miniflux_hostname + miniflux_path_prefix, 'logo_location': '{{ role_path }}/assets/miniflux.png', 'description': 'An opinionated feed reader '}] if miniflux_enabled else [])
     +
