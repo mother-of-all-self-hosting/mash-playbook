@@ -746,6 +746,7 @@ redmine_container_labels_traefik_tls_certResolver: "{{ devture_traefik_certResol
 
 redmine_database_type: "{{ 'postgresql' if devture_postgres_enabled else 'sqlite3' }}"
 redmine_database_hostname: "{{ devture_postgres_connection_hostname if devture_postgres_enabled else '' }}"
+redmine_database_username: "redmine"
 redmine_database_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'redmine.db', rounds=655555) | to_uuid }}"
 
 ########################################################################
