@@ -59,9 +59,11 @@ devture_systemd_service_manager_services_list_auto: |
     +
     ([{'name': (docker_registry_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'docker-registry']}] if docker_registry_enabled else [])
     +
-    ([{'name': (docker_registry_identifier + '-garbage-collect.timer'), 'priority': 2500, 'groups': ['mash', 'docker-registry', 'gc']}] if docker_registry_enabled else [])
+    ([{'name': (docker_registry_identifier + '-garbage-collect.timer'), 'priority': 2500, 'groups': ['mash', 'docker-registry', 'docker-registry-gc']}] if docker_registry_enabled else [])
     +
     ([{'name': (docker_registry_browser_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'docker-registry-browser']}] if docker_registry_browser_enabled else [])
+    +
+    ([{'name': (docker_registry_purger_identifier + '.timer'), 'priority': 3000, 'groups': ['mash', 'docker-registry-purger']}] if docker_registry_purger_enabled else [])
     +
     ([{'name': (gitea_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'gitea', 'gitea-server']}] if gitea_enabled else [])
     +
@@ -428,6 +430,29 @@ docker_registry_browser_container_labels_traefik_tls_certResolver: "{{ devture_t
 ########################################################################
 #                                                                      #
 # /docker-registry-browser                                             #
+#                                                                      #
+########################################################################
+
+
+
+########################################################################
+#                                                                      #
+# docker-registry-purger                                               #
+#                                                                      #
+########################################################################
+
+docker_registry_purger_enabled: false
+
+docker_registry_purger_identifier: "{{ mash_playbook_service_identifier_prefix }}docker-registry-purger"
+
+docker_registry_purger_base_path: "{{ mash_playbook_base_path }}/docker-registry-purger"
+
+docker_registry_purger_uid: "{{ mash_playbook_uid }}"
+docker_registry_purger_gid: "{{ mash_playbook_gid }}"
+
+########################################################################
+#                                                                      #
+# /docker-registry-purger                                              #
 #                                                                      #
 ########################################################################
 

@@ -37,8 +37,8 @@ docker_registry_browser_basic_auth_username: admin
 # You can put any string here, but generating a strong one is preferred (e.g. `pwgen -s 64 1`).
 docker_registry_browser_basic_auth_password: ''
 
-# To integrate with a locally running (in a container) Docker Registry,
-# point to its local container address and change the browser to run in the registry's network.
+# To integrate with a locally running (in a container) Docker Registry (see `docker-registry.md`),
+# point to its local container address and configure the browser to run in the registry's network.
 docker_registry_browser_docker_registry_url: "http://{{ docker_registry_identifier }}:5000"
 docker_registry_browser_container_network: "{{ docker_registry_container_network }}"
 

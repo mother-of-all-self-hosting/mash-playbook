@@ -58,6 +58,7 @@
 
     - role: galaxy/docker_registry
     - role: galaxy/docker_registry_browser
+    - role: galaxy/docker_registry_purger
 
     - role: galaxy/gitea
 
