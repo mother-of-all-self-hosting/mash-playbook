@@ -58,7 +58,7 @@ After installation, you should be able to:
 - pull images from your registry from any IP address
 - push images to your registry from the whitelisted IP addresses (`docker_registry_private_services_whitelisted_ip_ranges`)
 
-With custom Traefik configuration (hint: see `docker_registry_container_labels_traefik_rule_*` variables in the [docker_registry role]()), you may be able to add additional restrictions.
+With custom Traefik configuration (hint: see [`docker_registry_container_labels_traefik_rule_*` variables](https://github.com/mother-of-all-self-hosting/ansible-role-docker-registry/blob/main/defaults/main.yml) in the [docker-registry role](https://github.com/mother-of-all-self-hosting/ansible-role-docker-registry)), you may be able to add additional restrictions.
 
 To **test pushing** images, try the following:
 

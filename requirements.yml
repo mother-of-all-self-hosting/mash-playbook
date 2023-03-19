@@ -69,7 +69,7 @@
 
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-docker-registry.git
   name: docker_registry
-  version: v2.8.1-0
+  version: v2.8.1-1
 
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-gitea.git
   name: gitea
