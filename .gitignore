@@ -1,4 +1,4 @@
-/inventory/*
+/inventory
 
 # ignore roles pulled by ansible-galaxy
 /roles/galaxy/*
