@@ -1,6 +1,6 @@
 # Hubsite
 
-Hubsite is will provide you with a simple, static site that shows an overview of the available services.
+[Hubsite](https://github.com/moan0s/hubsite) is will provide you with a simple, static site that shows an overview of the available services.
 
 You can use the following variables to enable & control your hubsite:
 
