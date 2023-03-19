@@ -1,6 +1,4 @@
-/inventory/*
-!/inventory/.gitkeep
-!/inventory/host_vars/.gitkeep
+/inventory
 
 # ignore roles pulled by ansible-galaxy
 /roles/galaxy/*

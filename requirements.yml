@@ -3,6 +3,15 @@
 - src: geerlingguy.docker
   version: 6.1.0
 
+- src: git+https://gitlab.com/etke.cc/roles/swap
+  version: 33ce32b065276a96b7e2562752f3a63913ed5480
+
+- src: git+https://gitlab.com/etke.cc/roles/ssh
+  version: 237adf859f9270db8a60e720bc4a58164806644e
+
+- src: git+https://gitlab.com/etke.cc/roles/fail2ban
+  version: 09886730e8d3c061f22d1da4a542899063f97f0a
+
 - src: git+https://github.com/devture/com.devture.ansible.role.docker_sdk_for_python.git
   version: 129c8590e106b83e6f4c259649a613c6279e937a
 
@@ -37,10 +46,10 @@
   version: 9b4b088c62b528b73a9a7c93d3109b091dd42ec6
 
 - src: git+https://github.com/devture/com.devture.ansible.role.woodpecker_ci_server.git
-  version: v0.15.7-1
+  version: v0.15.7-2
 
 - src: git+https://github.com/devture/com.devture.ansible.role.woodpecker_ci_agent.git
-  version: v0.15.7-0
+  version: v0.15.7-1
 
 - src: git+https://gitlab.com/etke.cc/roles/miniflux.git
   version: v2.0.43-0
@@ -54,16 +63,31 @@
 - src: git+https://gitlab.com/etke.cc/roles/redis.git
   version: v7.0.9-0
 
-- src: git+https://gitlab.com/etke.cc/roles/redmine.git
-  version: v5.0.5-0
+- src: git+https://gitlab.com/etke.cc/roles/prometheus_node_exporter.git
+  version: v1.5.0-4
 
-- src: git+https://github.com/mother-of-all-self-hosting/ansible-role-vaultwarden.git
-  name: vaultwarden
-  version: v1.27.0-1
+- src: git+https://gitlab.com/etke.cc/roles/redmine.git
+  version: v5.0.5-1
+
+- src: git+https://github.com/mother-of-all-self-hosting/ansible-role-collabora-online.git
+  name: collabora_online
+  version: v22.05.12.1.1-0
+
+- src: git+https://github.com/mother-of-all-self-hosting/ansible-role-docker-registry.git
+  name: docker_registry
+  version: v2.8.1-1
+
+- src: git+https://github.com/mother-of-all-self-hosting/ansible-role-docker-registry-browser.git
+  name: docker_registry_browser
+  version: v1.6.0-0
+
+- src: git+https://github.com/mother-of-all-self-hosting/ansible-role-docker-registry-purger.git
+  name: docker_registry_purger
+  version: v1.0.0-0
 
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-gitea.git
   name: gitea
-  version: v1.18.5-2
+  version: v1.18.5-3
 
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-nextcloud.git
   name: nextcloud
@@ -76,6 +100,10 @@
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-peertube.git
   name: peertube
   version: v5.0.1-0
+
+- src: git+https://github.com/mother-of-all-self-hosting/ansible-role-vaultwarden.git
+  name: vaultwarden
+  version: v1.27.0-2
 
 - src: git+https://github.com/moan0s/hubsite.git
   name: hubsite

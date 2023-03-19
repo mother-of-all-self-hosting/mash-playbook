@@ -2,6 +2,41 @@
 
 ########################################################################
 #                                                                      #
+# system/security                                                      #
+#                                                                      #
+########################################################################
+
+system_security_ssh_enabled: false
+system_security_fail2ban_enabled: false
+
+########################################################################
+#                                                                      #
+# /system/security                                                     #
+#                                                                      #
+########################################################################
+
+
+
+
+########################################################################
+#                                                                      #
+# system/swap                                                          #
+#                                                                      #
+########################################################################
+
+system_swap_enabled: false
+
+########################################################################
+#                                                                      #
+# /system/swap                                                         #
+#                                                                      #
+########################################################################
+
+
+
+
+########################################################################
+#                                                                      #
 # com.devture.ansible.role.systemd_service_manager                     #
 #                                                                      #
 ########################################################################
@@ -22,6 +57,14 @@ devture_systemd_service_manager_services_list_auto: |
     +
     ([{'name': (devture_woodpecker_ci_agent_identifier + '.service'), 'priority': 4100, 'groups': ['mash', 'woodpecker', 'ci', 'woodpecker-ci-agent']}] if devture_woodpecker_ci_agent_enabled else [])
     +
+    ([{'name': (docker_registry_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'docker-registry']}] if docker_registry_enabled else [])
+    +
+    ([{'name': (docker_registry_identifier + '-garbage-collect.timer'), 'priority': 2500, 'groups': ['mash', 'docker-registry', 'docker-registry-gc']}] if docker_registry_enabled else [])
+    +
+    ([{'name': (docker_registry_browser_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'docker-registry-browser']}] if docker_registry_browser_enabled else [])
+    +
+    ([{'name': (docker_registry_purger_identifier + '.timer'), 'priority': 3000, 'groups': ['mash', 'docker-registry-purger']}] if docker_registry_purger_enabled else [])
+    +
     ([{'name': (gitea_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'gitea', 'gitea-server']}] if gitea_enabled else [])
     +
     ([{'name': (nextcloud_identifier + '-server.service'), 'priority': 2000, 'groups': ['mash', 'nextcloud', 'nextcloud-server']}] if nextcloud_enabled else [])
@@ -31,6 +74,8 @@ devture_systemd_service_manager_services_list_auto: |
     ([{'name': (miniflux_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'miniflux']}] if miniflux_enabled else [])
     +
     ([{'name': (peertube_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'peertube']}] if peertube_enabled else [])
+    +
+    ([{'name': (prometheus_node_exporter_identifier + '.service'), 'priority': 500, 'groups': ['mash', 'metrics', 'prometheus-node-exporter']}] if prometheus_node_exporter_enabled else [])
     +
     ([{'name': (radicale_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'radicale']}] if radicale_enabled else [])
     +
@@ -328,6 +373,95 @@ collabora_online_container_labels_traefik_tls_certResolver: "{{ devture_traefik_
 
 ########################################################################
 #                                                                      #
+# docker-registry                                                      #
+#                                                                      #
+########################################################################
+
+docker_registry_enabled: false
+
+docker_registry_identifier: "{{ mash_playbook_service_identifier_prefix }}docker-registry"
+
+docker_registry_base_path: "{{ mash_playbook_base_path }}/docker-registry"
+
+docker_registry_uid: "{{ mash_playbook_uid }}"
+docker_registry_gid: "{{ mash_playbook_gid }}"
+
+docker_registry_container_additional_networks: |
+  {{
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+  }}
+
+docker_registry_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+docker_registry_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+docker_registry_container_labels_traefik_entrypoints: "{{ devture_traefik_entrypoint_primary }}"
+docker_registry_container_labels_traefik_tls_certResolver: "{{ devture_traefik_certResolver_primary }}"
+
+########################################################################
+#                                                                      #
+# /docker-registry                                                     #
+#                                                                      #
+########################################################################
+
+
+
+########################################################################
+#                                                                      #
+# docker-registry-browser                                              #
+#                                                                      #
+########################################################################
+
+docker_registry_browser_enabled: false
+
+docker_registry_browser_identifier: "{{ mash_playbook_service_identifier_prefix }}docker-registry-browser"
+
+docker_registry_browser_base_path: "{{ mash_playbook_base_path }}/docker-registry-browser"
+
+docker_registry_browser_uid: "{{ mash_playbook_uid }}"
+docker_registry_browser_gid: "{{ mash_playbook_gid }}"
+
+docker_registry_browser_container_additional_networks: |
+  {{
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+  }}
+
+docker_registry_browser_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+docker_registry_browser_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+docker_registry_browser_container_labels_traefik_entrypoints: "{{ devture_traefik_entrypoint_primary }}"
+docker_registry_browser_container_labels_traefik_tls_certResolver: "{{ devture_traefik_certResolver_primary }}"
+
+########################################################################
+#                                                                      #
+# /docker-registry-browser                                             #
+#                                                                      #
+########################################################################
+
+
+
+########################################################################
+#                                                                      #
+# docker-registry-purger                                               #
+#                                                                      #
+########################################################################
+
+docker_registry_purger_enabled: false
+
+docker_registry_purger_identifier: "{{ mash_playbook_service_identifier_prefix }}docker-registry-purger"
+
+docker_registry_purger_base_path: "{{ mash_playbook_base_path }}/docker-registry-purger"
+
+docker_registry_purger_uid: "{{ mash_playbook_uid }}"
+docker_registry_purger_gid: "{{ mash_playbook_gid }}"
+
+########################################################################
+#                                                                      #
+# /docker-registry-purger                                              #
+#                                                                      #
+########################################################################
+
+
+
+########################################################################
+#                                                                      #
 # gitea                                                                #
 #                                                                      #
 ########################################################################
@@ -519,6 +653,53 @@ peertube_systemd_required_services_list: |
 ########################################################################
 
 
+########################################################################
+#                                                                      #
+# prometheus_node_exporter                                             #
+#                                                                      #
+########################################################################
+
+prometheus_node_exporter_enabled: false
+
+prometheus_node_exporter_identifier: "{{ mash_playbook_service_identifier_prefix }}prometheus-node-exporter"
+
+prometheus_node_exporter_base_path: "{{ mash_playbook_base_path }}/prometheus-node-exporter"
+
+prometheus_node_exporter_uid: "{{ mash_playbook_uid }}"
+prometheus_node_exporter_gid: "{{ mash_playbook_gid }}"
+
+prometheus_node_exporter_basicauth_enabled: true
+prometheus_node_exporter_basicauth_user: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'node.user', rounds=655555) | to_uuid }}"
+prometheus_node_exporter_basicauth_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'node.password', rounds=655555) | to_uuid }}"
+
+prometheus_node_exporter_container_additional_networks: |
+  {{
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+  }}
+
+prometheus_node_exporter_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+prometheus_node_exporter_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+prometheus_node_exporter_container_labels_traefik_entrypoints: "{{ devture_traefik_entrypoint_primary }}"
+prometheus_node_exporter_container_labels_traefik_tls_certResolver: "{{ devture_traefik_certResolver_primary }}"
+
+prometheus_node_exporter_process_extra_arguments:
+  - "--collector.disable-defaults"
+  - "--collector.cpu"
+  - "--collector.filesystem"
+  - "--collector.meminfo"
+  - "--collector.systemd"
+  - "--collector.uname"
+prometheus_node_exporter_container_extra_arguments:
+  - "--security-opt apparmor=unconfined"
+  - "--mount type=bind,src=/var/run/dbus/system_bus_socket,dst=/var/run/dbus/system_bus_socket,ro,bind-propagation=rslave"
+
+########################################################################
+#                                                                      #
+# /prometheus_node_exporter                                            #
+#                                                                      #
+########################################################################
+
+
 
 ########################################################################
 #                                                                      #
@@ -592,6 +773,7 @@ redmine_container_labels_traefik_tls_certResolver: "{{ devture_traefik_certResol
 
 redmine_database_type: "{{ 'postgresql' if devture_postgres_enabled else 'sqlite3' }}"
 redmine_database_hostname: "{{ devture_postgres_connection_hostname if devture_postgres_enabled else '' }}"
+redmine_database_username: "redmine"
 redmine_database_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'redmine.db', rounds=655555) | to_uuid }}"
 
 ########################################################################

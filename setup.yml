@@ -37,6 +37,14 @@
 
     - role: mash/playbook_base
 
+    - role: galaxy/swap
+
+    - when: system_security_ssh_enabled | bool
+      role: galaxy/ssh
+
+    - when: system_security_fail2ban_enabled | bool
+      role: galaxy/fail2ban
+
     # This role exposes various tags (setup-postgres, setup-all, upgrade-postgres, import-postgres, etc.), so we don't tag it here.
     - role: galaxy/com.devture.ansible.role.postgres
 
@@ -48,6 +56,10 @@
 
     - role: galaxy/collabora_online
 
+    - role: galaxy/docker_registry
+    - role: galaxy/docker_registry_browser
+    - role: galaxy/docker_registry_purger
+
     - role: galaxy/gitea
 
     - role: galaxy/miniflux
@@ -57,6 +69,8 @@
     - role: galaxy/nextcloud
 
     - role: galaxy/peertube
+
+    - role: galaxy/prometheus_node_exporter
 
     - role: galaxy/radicale
 
