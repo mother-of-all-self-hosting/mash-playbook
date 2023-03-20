@@ -97,6 +97,8 @@ devture_systemd_service_manager_services_list_auto: |
     +
     ([{'name': (peertube_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'peertube']}] if peertube_enabled else [])
     +
+    ([{'name': (prometheus_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'metrics', 'prometheus']}] if prometheus_enabled else [])
+    +
     ([{'name': (prometheus_blackbox_exporter_identifier + '.service'), 'priority': 500, 'groups': ['mash', 'metrics', 'prometheus-blackbox-exporter']}] if prometheus_blackbox_exporter_enabled else [])
     +
     ([{'name': (prometheus_node_exporter_identifier + '.service'), 'priority': 500, 'groups': ['mash', 'metrics', 'prometheus-node-exporter']}] if prometheus_node_exporter_enabled else [])
@@ -730,6 +732,29 @@ peertube_systemd_required_services_list: |
 
 ########################################################################
 #                                                                      #
+# prometheus                                                           #
+#                                                                      #
+########################################################################
+
+prometheus_enabled: false
+
+prometheus_identifier: "{{ mash_playbook_service_identifier_prefix }}prometheus"
+
+prometheus_base_path: "{{ mash_playbook_base_path }}/prometheus"
+
+prometheus_uid: "{{ mash_playbook_uid }}"
+prometheus_gid: "{{ mash_playbook_gid }}"
+
+########################################################################
+#                                                                      #
+# /prometheus                                                          #
+#                                                                      #
+########################################################################
+
+
+
+########################################################################
+#                                                                      #
 # prometheus_blackbox_exporter                                         #
 #                                                                      #
 ########################################################################
@@ -762,6 +787,7 @@ prometheus_blackbox_exporter_container_labels_traefik_tls_certResolver: "{{ devt
 # /prometheus_blackbox_exporter                                        #
 #                                                                      #
 ########################################################################
+
 
 
 ########################################################################

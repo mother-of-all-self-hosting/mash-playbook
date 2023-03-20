@@ -1,4 +1,4 @@
-# Prometheus Blackbox Expoter
+# Prometheus Blackbox Exporter
 
 This playbook can configure [Prometheus Blackbox Exporter](https://github.com/prometheus/blackbox_exporter).
 

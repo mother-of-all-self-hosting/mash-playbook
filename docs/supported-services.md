@@ -13,6 +13,7 @@
 | [Miniflux](https://miniflux.app/) | Minimalist and opinionated feed reader. | [Link](services/miniflux.md) |
 | [Nextcloud](https://nextcloud.com/) | The most popular self-hosted collaboration solution for tens of millions of users at thousands of organizations across the globe. | [Link](services/nextcloud.md) |
 | [PeerTube](https://joinpeertube.org/) | A tool for sharing online videos | [Link](services/peertube.md) |
+| [Prometheus](https://prometheus.io/) | A metrics collection and alerting monitoring solution | [Link](services/prometheus.md) |
 | [Prometheus Node Exporter](https://github.com/prometheus/node_exporter) | Exporter for machine metrics | [Link](services/prometheus-node-exporter.md) |
 | [Prometheus Blackbox Exporter](https://github.com/prometheus/blackbox_exporter) | Blackbox probing of HTTP/HTTPS/DNS/TCP/ICMP and gRPC endpoints | [Link](services/prometheus-blackbox-exporter.md) |
 | [Postgres](https://www.postgresql.org) | A powerful, open source object-relational database system | [Link](services/postgres.md) |
@@ -37,4 +38,3 @@
 |              Name              |              Description              |
 | ------------------------------ | ------------------------------------- |
 | [Garage](https://garagehq.deuxfleurs.fr/), by absorbing [garage-docker-ansible-deploy](https://github.com/moan0s/garage-docker-ansible-deploy) | Open-source distributed object storage service tailored for self-hosting |
-| [Prometheus](https://prometheus.io/)| Monitoring system and time series database |

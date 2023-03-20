@@ -108,6 +108,10 @@
   name: peertube
   version: v5.0.1-0
 
+- src: git+https://github.com/mother-of-all-self-hosting/ansible-role-prometheus.git
+  name: prometheus
+  version: v2.42.0-0
+
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-vaultwarden.git
   name: vaultwarden
   version: v1.27.0-2
