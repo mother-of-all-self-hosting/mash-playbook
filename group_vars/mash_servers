@@ -807,7 +807,7 @@ prometheus_blackbox_exporter_base_path: "{{ mash_playbook_base_path }}/prometheu
 prometheus_blackbox_exporter_uid: "{{ mash_playbook_uid }}"
 prometheus_blackbox_exporter_gid: "{{ mash_playbook_gid }}"
 
-prometheus_blackbox_exporter_basicauth_enabled: true
+prometheus_blackbox_exporter_basicauth_enabled: "{{ prometheus_blackbox_exporter_container_labels_traefik_enabled }}"
 prometheus_blackbox_exporter_basicauth_user: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'blackbox.user', rounds=655555) | to_uuid }}"
 prometheus_blackbox_exporter_basicauth_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'blackbox.password', rounds=655555) | to_uuid }}"
 
@@ -816,7 +816,8 @@ prometheus_blackbox_exporter_container_additional_networks: |
     ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
   }}
 
-prometheus_blackbox_exporter_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+# Only enable Traefik labels if a hostname is set (indicating that this will be exposed publicly)
+prometheus_blackbox_exporter_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled and prometheus_blackbox_exporter_hostname }}"
 prometheus_blackbox_exporter_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
 prometheus_blackbox_exporter_container_labels_traefik_entrypoints: "{{ devture_traefik_entrypoint_primary }}"
 prometheus_blackbox_exporter_container_labels_traefik_tls_certResolver: "{{ devture_traefik_certResolver_primary }}"
