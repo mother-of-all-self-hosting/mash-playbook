@@ -67,7 +67,7 @@
   version: v1.5.0-4
 
 - src: git+https://gitlab.com/etke.cc/roles/prometheus_blackbox_exporter.git
-  version: v0.23.0-0
+  version: v0.23.0-1
 
 - src: git+https://gitlab.com/etke.cc/roles/redmine.git
   version: v5.0.5-1
