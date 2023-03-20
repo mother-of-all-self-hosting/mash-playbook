@@ -64,6 +64,8 @@
 
     - role: galaxy/gitea
 
+    - role: galaxy/grafana
+
     - role: galaxy/miniflux
 
     - role: galaxy/nextcloud

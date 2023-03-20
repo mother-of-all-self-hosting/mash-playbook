@@ -74,4 +74,4 @@ If you're scraping others services running in containers over the container netw
 
 ## Recommended other services
 
-You may also wish to look into **Grafana** - soon to be supported by this playbook.
+To visualize your Prometheus metrics (time-series), you may wish to use a tool like [Grafana](grafana.md).

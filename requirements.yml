@@ -54,6 +54,9 @@
 - src: git+https://gitlab.com/etke.cc/roles/miniflux.git
   version: v2.0.43-1
 
+- src: git+https://gitlab.com/etke.cc/roles/grafana.git
+  version: v9.4.3-0
+
 - src: git+https://gitlab.com/etke.cc/roles/radicale.git
   version: v3.1.8.1-1
 
