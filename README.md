@@ -6,6 +6,8 @@ By running services in containers, we can have a predictable and up-to-date setu
 
 This project is fairly new and only [supports a handful of services](docs/supported-services.md) so far, but will grow to support self-hosting a large number of [FOSS](https://en.wikipedia.org/wiki/Free_and_open-source_software) pieces of software.
 
+[Installation](docs/README.md) (upgrades) and some maintenance tasks are automated using [Ansible](https://www.ansible.com/) (see [our Ansible guide](docs/ansible.md)).
+
 
 ## Supported services
 
