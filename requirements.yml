@@ -72,6 +72,10 @@
 - src: git+https://gitlab.com/etke.cc/roles/redmine.git
   version: v5.0.5-1
 
+- src: git+https://github.com/mother-of-all-self-hosting/ansible-role-aux.git
+  name: aux
+  version: v1.0.0-0
+
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-collabora-online.git
   name: collabora_online
   version: v22.05.12.1.1-0
