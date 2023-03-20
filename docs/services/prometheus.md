@@ -56,16 +56,16 @@ prometheus_config_scrape_configs_additional:
     metrics_path: /metrics
     scrape_interval: 120s
     scrape_timeout: 120s
-	static_configs:
-	  - targets:
+    static_configs:
+      - targets:
           - some-host:8080
 
   - job_name: another_job
     metrics_path: /metrics
     scrape_interval: 120s
     scrape_timeout: 120s
-	static_configs:
-	  - targets:
+    static_configs:
+      - targets:
           - another-host:8080
 ```
 
