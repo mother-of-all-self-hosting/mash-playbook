@@ -6,7 +6,7 @@ You can use the following variables to enable & control your hubsite:
 
 ```yaml
 hubsite_enabled: true
-hubsite_domain: "example.com"
+hubsite_hostname: "example.com"
 hubsite_title: "My services"
 hubsite_subtitle: "Just click on a service to use it"
 # Use the `hubsite_service_list_additional` variable to add services that are not provided by this playbook
