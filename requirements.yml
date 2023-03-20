@@ -98,7 +98,7 @@
 
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-gitea.git
   name: gitea
-  version: v1.18.5-3
+  version: v1.19.0-0
 
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-nextcloud.git
   name: nextcloud
