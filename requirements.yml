@@ -58,7 +58,7 @@
   version: v3.1.8.1-1
 
 - src: git+https://gitlab.com/etke.cc/roles/uptime_kuma.git
-  version: v1.21.0-1
+  version: v1.21.0-0
 
 - src: git+https://gitlab.com/etke.cc/roles/redis.git
   version: v7.0.9-0
