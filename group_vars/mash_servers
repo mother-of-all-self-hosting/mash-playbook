@@ -65,6 +65,8 @@ devture_systemd_service_manager_services_list_auto: |
     +
     ([{'name': (docker_registry_purger_identifier + '.timer'), 'priority': 3000, 'groups': ['mash', 'docker-registry-purger']}] if docker_registry_purger_enabled else [])
     +
+    ([{'name': (focalboard_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'focalboard']}] if focalboard_enabled else [])
+    +
     ([{'name': (gitea_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'gitea', 'gitea-server']}] if gitea_enabled else [])
     +
     ([{'name': (nextcloud_identifier + '-server.service'), 'priority': 2000, 'groups': ['mash', 'nextcloud', 'nextcloud-server']}] if nextcloud_enabled else [])
@@ -122,6 +124,12 @@ devture_postgres_systemd_services_to_stop_for_maintenance_list: |
 
 devture_postgres_managed_databases_auto: |
   {{
+    ([{
+      'name': focalboard_database_name,
+      'username': focalboard_database_username,
+      'password': focalboard_database_password,
+    }] if focalboard_enabled and focalboard_database_type == 'postgres' and focalboard_database_hostname == devture_postgres_identifier else [])
+    +
     ([{
       'name': gitea_config_database_name,
       'username': gitea_config_database_username,
@@ -453,6 +461,53 @@ docker_registry_purger_gid: "{{ mash_playbook_gid }}"
 ########################################################################
 #                                                                      #
 # /docker-registry-purger                                              #
+#                                                                      #
+########################################################################
+
+
+
+########################################################################
+#                                                                      #
+# focalboard                                                           #
+#                                                                      #
+########################################################################
+
+focalboard_enabled: false
+
+focalboard_identifier: "{{ mash_playbook_service_identifier_prefix }}focalboard"
+
+focalboard_base_path: "{{ mash_playbook_base_path }}/focalboard"
+
+focalboard_uid: "{{ mash_playbook_uid }}"
+focalboard_gid: "{{ mash_playbook_gid }}"
+
+focalboard_systemd_required_systemd_services_list: |
+  {{
+    (['docker.service'])
+    +
+    ([devture_postgres_identifier ~ '.service'] if devture_postgres_enabled and focalboard_database_hostname == devture_postgres_identifier else [])
+  }}
+
+focalboard_database_type: "{{ 'postgres' if devture_postgres_enabled else '' }}"
+focalboard_database_hostname: "{{ devture_postgres_identifier if devture_postgres_enabled else '' }}"
+focalboard_database_port: "{{ '5432' if devture_postgres_enabled else '' }}"
+focalboard_database_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'db.focalboard', rounds=655555) | to_uuid }}"
+
+focalboard_container_additional_networks: |
+  {{
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+    +
+    ([devture_postgres_container_network] if devture_postgres_enabled and focalboard_database_hostname == devture_postgres_identifier else [])
+  }}
+
+focalboard_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+focalboard_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+focalboard_container_labels_traefik_entrypoints: "{{ devture_traefik_entrypoint_primary }}"
+focalboard_container_labels_traefik_tls_certResolver: "{{ devture_traefik_certResolver_primary }}"
+
+########################################################################
+#                                                                      #
+# /focalboard                                                          #
 #                                                                      #
 ########################################################################
 

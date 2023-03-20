@@ -60,6 +60,8 @@
     - role: galaxy/docker_registry_browser
     - role: galaxy/docker_registry_purger
 
+    - role: galaxy/focalboard
+
     - role: galaxy/gitea
 
     - role: galaxy/miniflux

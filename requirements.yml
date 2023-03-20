@@ -85,6 +85,10 @@
   name: docker_registry_purger
   version: v1.0.0-0
 
+- src: git+https://github.com/mother-of-all-self-hosting/ansible-role-focalboard.git
+  name: focalboard
+  version: v7.8.0-0
+
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-gitea.git
   name: gitea
   version: v1.18.5-3
