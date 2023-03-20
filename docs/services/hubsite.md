@@ -5,10 +5,19 @@
 You can use the following variables to enable & control your hubsite:
 
 ```yaml
+########################################################################
+#                                                                      #
+# hubsite                                                              #
+#                                                                      #
+########################################################################
+
 hubsite_enabled: true
-hubsite_hostname: "example.com"
+
+hubsite_hostname: mash.example.com
+
 hubsite_title: "My services"
 hubsite_subtitle: "Just click on a service to use it"
+
 # Use the `hubsite_service_list_additional` variable to add services that are not provided by this playbook
 # hubsite_service_list: |
 #   {{
@@ -22,4 +31,8 @@ hubsite_subtitle: "Just click on a service to use it"
 #     +
 #     ([{'name': 'Uptime Kuma', 'logo_location': '{{ role_path }}/assets/uptime-kuma.png', 'description': 'Check if the status of services'}])
 #   }}
-```
+########################################################################
+#                                                                      #
+# /hubsite                                                             #
+#                                                                      #
+########################################################################
