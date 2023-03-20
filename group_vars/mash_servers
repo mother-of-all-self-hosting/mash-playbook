@@ -982,21 +982,6 @@ devture_woodpecker_ci_agent_config_agent_secret: "{{ devture_woodpecker_ci_serve
 
 hubsite_enabled: false
 
-hubsite_service_list_auto: |
-  {{
-    ([{'name': 'Miniflux', 'url': 'https://' +  miniflux_hostname + miniflux_path_prefix, 'logo_location': '{{ role_path }}/assets/miniflux.png', 'description': 'An opinionated feed reader '}] if miniflux_enabled else [])
-    +
-    ([{'name': 'Uptime Kuma', 'url': 'https://' + uptime_kuma_hostname + uptime_kuma_path_prefix, 'logo_location': '{{ role_path }}/assets/uptime-kuma.png', 'description': 'Check if the status of services'}] if uptime_kuma_enabled else [])
-    +
-    ([{'name': 'Nextcloud', 'url': 'https://' + nextcloud_hostname + nextcloud_path_prefix, 'logo_location': '{{ role_path }}/assets/nextcloud.png', 'description': 'Sync your files & much more'}] if nextcloud_enabled else [])
-    +
-    ([{'name': 'Peertube', 'url': 'https://' + peertube_hostname + peertube_path_prefix, 'logo_location': '{{ role_path }}/assets/peertube.png', 'description': 'Watch videos '}] if peertube_enabled else [])
-    +
-    ([{'name': 'Vaultwarden', 'url': 'https://' + vaultwarden_hostname + vaultwarden_path_prefix, ' logo_location': '{{ role_path }}/assets/vaultwarden.png', 'description': 'Securly access your passwords'}] if vaultwarden_enabled else [])
-    +
-    ([{'name': 'Gitea', 'url': 'https://' + gitea_hostname + gitea_path_prefix, 'logo_location': '{{ role_path }}/assets/gitea.png', 'description': 'A git service'}] if gitea_enabled else [])
-  }}
-
 hubsite_identifier: "{{ mash_playbook_service_identifier_prefix }}hubsite"
 
 hubsite_base_path: "{{ mash_playbook_base_path }}/hubsite"
@@ -1018,6 +1003,72 @@ hubsite_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabl
 hubsite_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
 hubsite_container_labels_traefik_entrypoints: "{{ devture_traefik_entrypoint_primary }}"
 hubsite_container_labels_traefik_tls_certResolver: "{{ devture_traefik_certResolver_primary }}"
+
+# Services
+##########
+
+# Gitea
+hubsite_service_gitea_enabled: "{{ gitea_enabled }}"
+hubsite_service_gitea_name: Gitea
+hubsite_service_gitea_url: "'https://{{ gitea_hostname }}{{ gitea_path_prefix }}"
+hubsite_service_gitea_logo_location: "{{ role_path }}/assets/gitea.png"
+hubsite_service_gitea_description: "A git service"
+hubsite_service_gitea_priority: 1000
+
+# Miniflux
+hubsite_service_miniflux_enabled: "{{ miniflux_enabled }}"
+hubsite_service_miniflux_name: Miniflux
+hubsite_service_miniflux_url: "'https://{{ miniflux_hostname }}{{ miniflux_path_prefix }}"
+hubsite_service_miniflux_logo_location: "{{ role_path }}/assets/miniflux.png"
+hubsite_service_miniflux_description: "An opinionated feed reader"
+hubsite_service_miniflux_priority: 1000
+
+# Nextcloud
+hubsite_service_nextcloud_enabled: "{{ nextcloud_enabled }}"
+hubsite_service_nextcloud_name: Nextcloud
+hubsite_service_nextcloud_url: "'https://{{ nextcloud_hostname }}{{ nextcloud_path_prefix }}"
+hubsite_service_nextcloud_logo_location: "{{ role_path }}/assets/nextcloud.png"
+hubsite_service_nextcloud_description: "Sync your files & much more"
+hubsite_service_nextcloud_priority: 1000
+
+# Peertube
+hubsite_service_peertube_enabled: "{{ peertube_enabled }}"
+hubsite_service_peertube_name: Peertube
+hubsite_service_peertube_url: "'https://{{ peertube_hostname }}{{ peertube_path_prefix }}"
+hubsite_service_peertube_logo_location: "{{ role_path }}/assets/peertube.png"
+hubsite_service_peertube_description: "Watch and upload videos"
+hubsite_service_peertube_priority: 1000
+
+# Uptime Kuma
+hubsite_service_uptime_kuma_enabled: "{{ uptime_kuma_enabled }}"
+hubsite_service_uptime_kuma_name: Uptime Kuma
+hubsite_service_uptime_kuma_url: "'https://{{ uptime_kuma_hostname }}{{ uptime_kuma_path_prefix }}"
+hubsite_service_uptime_kuma_logo_location: "{{ role_path }}/assets/uptime-kuma.png"
+hubsite_service_uptime_kuma_description: "An opinionated feed reader"
+hubsite_service_uptime_kuma_priority: 1000
+
+# Vaultwarden
+hubsite_service_vaultwarden_enabled: "{{ vaultwarden_enabled }}"
+hubsite_service_vaultwarden_name: Vaultwarden
+hubsite_service_vaultwarden_url: "'https://{{ vaultwarden_hostname }}{{ vaultwarden_path_prefix }}"
+hubsite_service_vaultwarden_logo_location: "{{ role_path }}/assets/vaultwarden.png"
+hubsite_service_vaultwarden_description: "Securely access your passwords"
+hubsite_service_vaultwarden_priority: 1000
+
+hubsite_service_list_auto: |
+  {{
+    ([{'name': hubsite_service_gitea_name, 'url': hubsite_service_gitea_url, 'logo_location': hubsite_service_gitea_logo_location, 'description': hubsite_service_gitea_description, 'priority': hubsite_service_gitea_priority}] if hubsite_service_gitea_enabled else [])
+    +
+    ([{'name': hubsite_service_miniflux_name, 'url': hubsite_service_miniflux_url, 'logo_location': hubsite_service_miniflux_logo_location, 'description': hubsite_service_miniflux_description, 'priority': hubsite_service_miniflux_priority}] if hubsite_service_miniflux_enabled else [])
+    +
+    ([{'name': hubsite_service_nextcloud_name, 'url': hubsite_service_nextcloud_url, 'logo_location': hubsite_service_nextcloud_logo_location, 'description': hubsite_service_nextcloud_description, 'priority': hubsite_service_nextcloud_priority}] if hubsite_service_nextcloud_enabled else [])
+    +
+    ([{'name': hubsite_service_peertube_name, 'url': hubsite_service_peertube_url, 'logo_location': hubsite_service_peertube_logo_location, 'description': hubsite_service_peertube_description, 'priority': hubsite_service_peertube_priority}] if hubsite_service_peertube_enabled else [])
+    +
+    ([{'name': hubsite_service_uptime_kuma_name, 'url': hubsite_service_uptime_kuma_url, 'logo_location': hubsite_service_uptime_kuma_logo_location, 'description': hubsite_service_uptime_kuma_description, 'priority': hubsite_service_uptime_kuma_priority}] if hubsite_service_uptime_kuma_enabled else [])
+    +
+    ([{'name': hubsite_service_vaultwarden_name, 'url': hubsite_service_vaultwarden_url, 'logo_location': hubsite_service_vaultwarden_logo_location, 'description': hubsite_service_vaultwarden_description, 'priority': hubsite_service_vaultwarden_priority}] if hubsite_service_vaultwarden_enabled else [])
+  }}
 
 ########################################################################
 #                                                                      #

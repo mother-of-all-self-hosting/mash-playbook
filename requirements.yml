@@ -103,4 +103,4 @@
 
 - src: git+https://github.com/moan0s/hubsite.git
   name: hubsite
-  version: 48d2fa4111afd83e2f1450b0828f4613d34814b0
+  version: 8085a75f54447c47369ee60cbb56c9e27a3bccc2
