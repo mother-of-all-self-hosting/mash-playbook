@@ -58,7 +58,7 @@ prometheus_config_scrape_configs_additional:
     scrape_timeout: 120s
 	static_configs:
 	  - targets:
-	      - some-host:8080
+          - some-host:8080
 
   - job_name: another_job
     metrics_path: /metrics
@@ -66,7 +66,7 @@ prometheus_config_scrape_configs_additional:
     scrape_timeout: 120s
 	static_configs:
 	  - targets:
-	      - another-host:8080
+          - another-host:8080
 ```
 
 If you're scraping others services running in containers over the container network, make sure the Prometheus container is connected to their own network by adjusting `prometheus_container_additional_networks` as demonstrated above for [Integrating with Prometheus Node Exporter](#integrating-with-prometheus-node-exporter).
