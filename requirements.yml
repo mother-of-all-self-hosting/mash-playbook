@@ -64,7 +64,7 @@
   version: v7.0.9-0
 
 - src: git+https://gitlab.com/etke.cc/roles/prometheus_node_exporter.git
-  version: v1.5.0-4
+  version: v1.5.0-6
 
 - src: git+https://gitlab.com/etke.cc/roles/prometheus_blackbox_exporter.git
   version: v0.23.0-1
