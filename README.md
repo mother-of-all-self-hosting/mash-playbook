@@ -1,3 +1,5 @@
+[![Support room on Matrix](https://img.shields.io/matrix/mash-playbook:devture.com.svg?label=%23mash-playbook%3Adevture.com&logo=matrix&style=for-the-badge&server_fqdn=matrix.devture.com)](https://matrix.to/#/#mash-playbook:devture.com) [![donate](https://liberapay.com/assets/widgets/donate.svg)](https://liberapay.com/mother-of-all-self-hosting/donate)
+
 # Mother-of-All-Self-Hosting Ansible playbook
 
 **MASH** (**M**other-of-**A**ll-**S**elf-**H**osting) is an [Ansible](https://www.ansible.com/) playbook that helps you self-host services as [Docker](https://www.docker.com/) containers on your own server.
@@ -5,6 +7,8 @@
 By running services in containers, we can have a predictable and up-to-date setup, across multiple supported distros and CPU architectures.
 
 This project is fairly new and only [supports a handful of services](docs/supported-services.md) so far, but will grow to support self-hosting a large number of [FOSS](https://en.wikipedia.org/wiki/Free_and_open-source_software) pieces of software.
+
+[Installation](docs/README.md) (upgrades) and some maintenance tasks are automated using [Ansible](https://www.ansible.com/) (see [our Ansible guide](docs/ansible.md)).
 
 
 ## Supported services
@@ -33,7 +37,7 @@ When updating the playbook, refer to [the changelog](CHANGELOG.md) to catch up w
 
 ## Why create such a mega playbook?
 
-We used to maintain separate playbooks for various services (Matrix, Nextcloud, Gitea, Vaultwarden, PeerTube, ..). They re-used roles (for Postgres, Traefik, etc.), but were still hard to maintain due to the large duplication of effort.
+We used to maintain separate playbooks for various services ([Matrix](https://github.com/spantaleev/matrix-docker-ansible-deploy), [Nextcloud](https://github.com/spantaleev/nextcloud-docker-ansible-deploy), [Gitea](https://github.com/spantaleev/gitea-docker-ansible-deploy), [Gitlab](https://github.com/spantaleev/gitlab-docker-ansible-deploy), [Vaultwarden](https://github.com/spantaleev/vaultwarden-docker-ansible-deploy), [PeerTube](https://github.com/spantaleev/peertube-docker-ansible-deploy), ..). They re-used Ansible roles (for [Postgres](https://github.com/devture/com.devture.ansible.role.postgres), [Traefik](https://github.com/devture/com.devture.ansible.role.traefik), etc.), but were still hard to maintain due to the large duplication of effort.
 
 Most of these playbooks hosted services which require a Postgres database, a Traefik reverse-proxy, a backup solution, etc. All of them needed to come with documentation, etc.
 All these things need to be created and kept up-to-date in each and every playbook.
@@ -54,6 +58,9 @@ We're finding the need for a playbook which combines all of this into one, so th
 - backups are made easy, because everything lives together (same base data path, same Postgres instance)
 
 Having one large playbook with all services does not necessarily mean you need to host everything on the same server though. Feel free to use as many servers as you see fit. While containers provide some level of isolation, it's still better to not put all your eggs in one basket and create a single point of failure.
+
+All of the aforementioned playbooks have been absorbed into this one. See the [full list of supported services here](docs/supported-services.md).
+The [Matrix playbook](https://github.com/spantaleev/matrix-docker-ansible-deploy) will remain separate, because it contains a huge number of components and will likely grow even more. It deserves to stand on its own.
 
 
 ## What's with the name?

@@ -2,6 +2,26 @@
 
 ########################################################################
 #                                                                      #
+# aux                                                                  #
+#                                                                      #
+########################################################################
+
+aux_directory_default_owner: "{{ mash_playbook_user_username }}"
+aux_directory_default_group: "{{ mash_playbook_user_groupname }}"
+
+aux_file_default_owner: "{{ mash_playbook_user_username }}"
+aux_file_default_group: "{{ mash_playbook_user_groupname }}"
+
+########################################################################
+#                                                                      #
+# /aux                                                                 #
+#                                                                      #
+########################################################################
+
+
+
+########################################################################
+#                                                                      #
 # system/security                                                      #
 #                                                                      #
 ########################################################################
@@ -65,7 +85,11 @@ devture_systemd_service_manager_services_list_auto: |
     +
     ([{'name': (docker_registry_purger_identifier + '.timer'), 'priority': 3000, 'groups': ['mash', 'docker-registry-purger']}] if docker_registry_purger_enabled else [])
     +
+    ([{'name': (focalboard_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'focalboard']}] if focalboard_enabled else [])
+    +
     ([{'name': (gitea_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'gitea', 'gitea-server']}] if gitea_enabled else [])
+    +
+    ([{'name': (grafana_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'grafana']}] if grafana_enabled else [])
     +
     ([{'name': (nextcloud_identifier + '-server.service'), 'priority': 2000, 'groups': ['mash', 'nextcloud', 'nextcloud-server']}] if nextcloud_enabled else [])
     +
@@ -74,6 +98,10 @@ devture_systemd_service_manager_services_list_auto: |
     ([{'name': (miniflux_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'miniflux']}] if miniflux_enabled else [])
     +
     ([{'name': (peertube_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'peertube']}] if peertube_enabled else [])
+    +
+    ([{'name': (prometheus_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'metrics', 'prometheus']}] if prometheus_enabled else [])
+    +
+    ([{'name': (prometheus_blackbox_exporter_identifier + '.service'), 'priority': 500, 'groups': ['mash', 'metrics', 'prometheus-blackbox-exporter']}] if prometheus_blackbox_exporter_enabled else [])
     +
     ([{'name': (prometheus_node_exporter_identifier + '.service'), 'priority': 500, 'groups': ['mash', 'metrics', 'prometheus-node-exporter']}] if prometheus_node_exporter_enabled else [])
     +
@@ -124,6 +152,12 @@ devture_postgres_systemd_services_to_stop_for_maintenance_list: |
 
 devture_postgres_managed_databases_auto: |
   {{
+    ([{
+      'name': focalboard_database_name,
+      'username': focalboard_database_username,
+      'password': focalboard_database_password,
+    }] if focalboard_enabled and focalboard_database_type == 'postgres' and focalboard_database_hostname == devture_postgres_identifier else [])
+    +
     ([{
       'name': gitea_config_database_name,
       'username': gitea_config_database_username,
@@ -462,6 +496,53 @@ docker_registry_purger_gid: "{{ mash_playbook_gid }}"
 
 ########################################################################
 #                                                                      #
+# focalboard                                                           #
+#                                                                      #
+########################################################################
+
+focalboard_enabled: false
+
+focalboard_identifier: "{{ mash_playbook_service_identifier_prefix }}focalboard"
+
+focalboard_base_path: "{{ mash_playbook_base_path }}/focalboard"
+
+focalboard_uid: "{{ mash_playbook_uid }}"
+focalboard_gid: "{{ mash_playbook_gid }}"
+
+focalboard_systemd_required_systemd_services_list: |
+  {{
+    (['docker.service'])
+    +
+    ([devture_postgres_identifier ~ '.service'] if devture_postgres_enabled and focalboard_database_hostname == devture_postgres_identifier else [])
+  }}
+
+focalboard_database_type: "{{ 'postgres' if devture_postgres_enabled else '' }}"
+focalboard_database_hostname: "{{ devture_postgres_identifier if devture_postgres_enabled else '' }}"
+focalboard_database_port: "{{ '5432' if devture_postgres_enabled else '' }}"
+focalboard_database_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'db.focalboard', rounds=655555) | to_uuid }}"
+
+focalboard_container_additional_networks: |
+  {{
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+    +
+    ([devture_postgres_container_network] if devture_postgres_enabled and focalboard_database_hostname == devture_postgres_identifier else [])
+  }}
+
+focalboard_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+focalboard_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+focalboard_container_labels_traefik_entrypoints: "{{ devture_traefik_entrypoint_primary }}"
+focalboard_container_labels_traefik_tls_certResolver: "{{ devture_traefik_certResolver_primary }}"
+
+########################################################################
+#                                                                      #
+# /focalboard                                                          #
+#                                                                      #
+########################################################################
+
+
+
+########################################################################
+#                                                                      #
 # gitea                                                                #
 #                                                                      #
 ########################################################################
@@ -502,6 +583,43 @@ gitea_config_database_password: "{{ '%s' | format(mash_playbook_generic_secret_k
 ########################################################################
 #                                                                      #
 # /gitea                                                               #
+#                                                                      #
+########################################################################
+
+
+
+########################################################################
+#                                                                      #
+# grafana                                                              #
+#                                                                      #
+########################################################################
+
+grafana_enabled: false
+
+grafana_identifier: "{{ mash_playbook_service_identifier_prefix }}grafana"
+
+grafana_base_path: "{{ mash_playbook_base_path }}/grafana"
+
+grafana_uid: "{{ mash_playbook_uid }}"
+grafana_gid: "{{ mash_playbook_gid }}"
+
+grafana_container_additional_networks: "{{ grafana_container_additional_networks_reverse_proxy + grafana_container_additional_networks_additional }}"
+
+grafana_container_additional_networks_reverse_proxy: |
+  {{
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+  }}
+
+grafana_container_additional_networks_additional: []
+
+grafana_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+grafana_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+grafana_container_labels_traefik_entrypoints: "{{ devture_traefik_entrypoint_primary }}"
+grafana_container_labels_traefik_tls_certResolver: "{{ devture_traefik_certResolver_primary }}"
+
+########################################################################
+#                                                                      #
+# /grafana                                                             #
 #                                                                      #
 ########################################################################
 
@@ -655,6 +773,67 @@ peertube_systemd_required_services_list: |
 
 ########################################################################
 #                                                                      #
+# prometheus                                                           #
+#                                                                      #
+########################################################################
+
+prometheus_enabled: false
+
+prometheus_identifier: "{{ mash_playbook_service_identifier_prefix }}prometheus"
+
+prometheus_base_path: "{{ mash_playbook_base_path }}/prometheus"
+
+prometheus_uid: "{{ mash_playbook_uid }}"
+prometheus_gid: "{{ mash_playbook_gid }}"
+
+########################################################################
+#                                                                      #
+# /prometheus                                                          #
+#                                                                      #
+########################################################################
+
+
+
+########################################################################
+#                                                                      #
+# prometheus_blackbox_exporter                                         #
+#                                                                      #
+########################################################################
+
+prometheus_blackbox_exporter_enabled: false
+
+prometheus_blackbox_exporter_identifier: "{{ mash_playbook_service_identifier_prefix }}prometheus-blackbox-exporter"
+
+prometheus_blackbox_exporter_base_path: "{{ mash_playbook_base_path }}/prometheus-blackbox-exporter"
+
+prometheus_blackbox_exporter_uid: "{{ mash_playbook_uid }}"
+prometheus_blackbox_exporter_gid: "{{ mash_playbook_gid }}"
+
+prometheus_blackbox_exporter_basicauth_enabled: "{{ prometheus_blackbox_exporter_container_labels_traefik_enabled }}"
+prometheus_blackbox_exporter_basicauth_user: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'blackbox.user', rounds=655555) | to_uuid }}"
+prometheus_blackbox_exporter_basicauth_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'blackbox.password', rounds=655555) | to_uuid }}"
+
+prometheus_blackbox_exporter_container_additional_networks: |
+  {{
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+  }}
+
+# Only enable Traefik labels if a hostname is set (indicating that this will be exposed publicly)
+prometheus_blackbox_exporter_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled and prometheus_blackbox_exporter_hostname }}"
+prometheus_blackbox_exporter_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+prometheus_blackbox_exporter_container_labels_traefik_entrypoints: "{{ devture_traefik_entrypoint_primary }}"
+prometheus_blackbox_exporter_container_labels_traefik_tls_certResolver: "{{ devture_traefik_certResolver_primary }}"
+
+########################################################################
+#                                                                      #
+# /prometheus_blackbox_exporter                                        #
+#                                                                      #
+########################################################################
+
+
+
+########################################################################
+#                                                                      #
 # prometheus_node_exporter                                             #
 #                                                                      #
 ########################################################################
@@ -668,7 +847,7 @@ prometheus_node_exporter_base_path: "{{ mash_playbook_base_path }}/prometheus-no
 prometheus_node_exporter_uid: "{{ mash_playbook_uid }}"
 prometheus_node_exporter_gid: "{{ mash_playbook_gid }}"
 
-prometheus_node_exporter_basicauth_enabled: true
+prometheus_node_exporter_basicauth_enabled: "{{ prometheus_node_exporter_container_labels_traefik_enabled }}"
 prometheus_node_exporter_basicauth_user: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'node.user', rounds=655555) | to_uuid }}"
 prometheus_node_exporter_basicauth_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'node.password', rounds=655555) | to_uuid }}"
 
@@ -677,7 +856,8 @@ prometheus_node_exporter_container_additional_networks: |
     ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
   }}
 
-prometheus_node_exporter_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+# Only enable Traefik labels if a hostname is set (indicating that this will be exposed publicly)
+prometheus_node_exporter_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled and prometheus_node_exporter_hostname }}"
 prometheus_node_exporter_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
 prometheus_node_exporter_container_labels_traefik_entrypoints: "{{ devture_traefik_entrypoint_primary }}"
 prometheus_node_exporter_container_labels_traefik_tls_certResolver: "{{ devture_traefik_certResolver_primary }}"
