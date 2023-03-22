@@ -37,7 +37,7 @@
   version: v0.1.1-1
 
 - src: git+https://github.com/devture/com.devture.ansible.role.traefik.git
-  version: v2.9.8-2
+  version: v2.9.9-0
 
 - src: git+https://github.com/devture/com.devture.ansible.role.systemd_service_manager.git
   version: 6ccb88ac5fc27e1e70afcd48278ade4b564a9096
