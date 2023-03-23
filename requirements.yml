@@ -4,7 +4,7 @@
   version: 6.1.0
 
 - src: git+https://gitlab.com/etke.cc/roles/swap
-  version: 33ce32b065276a96b7e2562752f3a63913ed5480
+  version: b0f865ec892652dcf6f4737027bc99550ccd972d
 
 - src: git+https://gitlab.com/etke.cc/roles/ssh
   version: 237adf859f9270db8a60e720bc4a58164806644e
