@@ -36,6 +36,8 @@ To avoid these calculations and set your own size explicitly, set the `system_sw
 system_swap_size: 4096
 ```
 
+**Warning**: changing `system_swap_size` subsequently will not recreate the SWAP file with the new size. You will need to disable swap, re-run the playbook (to make it clean up), then enable it again with the new size.
+
 ### ssh
 
 > **Warning**: advanced functionality! While the default config with a few adjustments was battle tested on hundreds of servers,
