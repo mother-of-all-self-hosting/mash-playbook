@@ -105,7 +105,7 @@
 
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-nextcloud.git
   name: nextcloud
-  version: v25.0.4-1
+  version: v26.0.0-0
 
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-peertube.git
   name: peertube
