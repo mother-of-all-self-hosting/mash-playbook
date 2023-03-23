@@ -111,6 +111,8 @@ devture_systemd_service_manager_services_list_auto: |
     +
     ([{'name': (redis_identifier + '.service'), 'priority': 750, 'groups': ['mash', 'redis']}] if redis_enabled else [])
     +
+    ([{'name': (syncthing_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'syncthing']}] if syncthing_enabled else [])
+    +
     ([{'name': (vaultwarden_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'vaultwarden', 'vaultwarden-server']}] if vaultwarden_enabled else [])
     +
     ([{'name': (uptime_kuma_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'uptime-kuma']}] if uptime_kuma_enabled else [])
@@ -981,6 +983,39 @@ redis_gid: "{{ mash_playbook_gid }}"
 ########################################################################
 #                                                                      #
 # /redis                                                               #
+#                                                                      #
+########################################################################
+
+
+
+########################################################################
+#                                                                      #
+# syncthing                                                            #
+#                                                                      #
+########################################################################
+
+syncthing_enabled: false
+
+syncthing_identifier: "{{ mash_playbook_service_identifier_prefix }}syncthing"
+
+syncthing_uid: "{{ mash_playbook_uid }}"
+syncthing_gid: "{{ mash_playbook_gid }}"
+
+syncthing_base_path: "{{ mash_playbook_base_path }}/syncthing"
+
+syncthing_container_additional_networks: |
+  {{
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+  }}
+
+syncthing_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+syncthing_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+syncthing_container_labels_traefik_entrypoints: "{{ devture_traefik_entrypoint_primary }}"
+syncthing_container_labels_traefik_tls_certResolver: "{{ devture_traefik_certResolver_primary }}"
+
+########################################################################
+#                                                                      #
+# /syncthing                                                           #
 #                                                                      #
 ########################################################################
 

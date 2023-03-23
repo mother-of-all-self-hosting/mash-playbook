@@ -84,6 +84,8 @@
 
     - role: galaxy/redis
 
+    - role: galaxy/syncthing
+
     - role: galaxy/vaultwarden
 
     - role: galaxy/uptime_kuma

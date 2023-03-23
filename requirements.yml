@@ -115,6 +115,10 @@
   name: prometheus
   version: v2.43.0-0
 
+- src: git+https://github.com/mother-of-all-self-hosting/ansible-role-syncthing.git
+  name: syncthing
+  version: v1.23.2-0
+
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-vaultwarden.git
   name: vaultwarden
   version: v1.27.0-2
