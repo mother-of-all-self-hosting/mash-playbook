@@ -59,7 +59,7 @@ In the example configuration above, we configure the service to be hosted at `ht
 
 You can remove the `syncthing_path_prefix` variable definition, to make it default to `/`, so that the service is served at `https://mash.example.com/`.
 
-### Authenticaiton
+### Authentication
 
 You can log in with **any** of the Basic Auth credentials defined in `syncthing_basicauth_credentials`. Syncthing is **not a multi-user system**, so whichever user you authenticate with, you'd ultimately end up looking at the same shared system.
 
@@ -85,3 +85,5 @@ As mentioned in [Configuration & Data](#configuration--data) above, you should:
 
 - get rid of the `Default Folder` directory that was automatically created in `/var/syncthing/Sync`
 - change the default data directory, by going to **Actions** -> **Settings** -> **General** tab -> **Edit Folder Defaults** and changing **Folder Path** to `/data`
+
+As mentioned in [Authentication](#authentication) above, you'd probably wish to permanently disable the "no GUI password set" security warnings as described there.
