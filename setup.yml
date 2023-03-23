@@ -68,6 +68,8 @@
 
     - role: galaxy/miniflux
 
+    - role: galaxy/hubsite
+
     - role: galaxy/nextcloud
 
     - role: galaxy/peertube

@@ -118,3 +118,7 @@
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-vaultwarden.git
   name: vaultwarden
   version: v1.27.0-2
+
+- src: git+https://github.com/moan0s/hubsite.git
+  name: hubsite
+  version: da6fed398a9dd0761db941cb903b53277c341cc6
