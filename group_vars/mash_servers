@@ -1017,6 +1017,8 @@ vaultwarden_container_additional_networks: |
 
 vaultwarden_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
 vaultwarden_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+vaultwarden_container_labels_traefik_entrypoints: "{{ devture_traefik_entrypoint_primary }}"
+vaultwarden_container_labels_traefik_tls_certResolver: "{{ devture_traefik_certResolver_primary }}"
 
 vaultwarden_database_hostname: "{{ devture_postgres_identifier if devture_postgres_enabled else '' }}"
 vaultwarden_database_port: "{{ '5432' if devture_postgres_enabled else '' }}"
