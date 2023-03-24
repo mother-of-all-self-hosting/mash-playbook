@@ -1,0 +1,23 @@
+# Firezone
+
+[Firezone](https://www.firezone.dev/) is a self-hosted VPN server with Web UI.
+
+To enable Firezone add the following to your `vars.yml`:
+
+```yaml
+##############
+## FIREZONE ##
+##############
+
+firezone_enabled: true
+firezone_hostname: example.org
+
+firezone_default_admin_email: "user@invalid.org"
+firezone_default_admin_password: "<securepassword>"
+
+# Generate this with `openssl rand -base64 32`
+firezone_database_encryption_key: "<secret>"
+```
+
+Use `ansible-playbook -i inventory/hosts setup.yml --tags=firezone-create-or-reset-admin` to create the configured
+admin account or reset the password to the password set in `vars.yml`.
