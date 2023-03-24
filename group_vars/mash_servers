@@ -120,6 +120,8 @@ devture_systemd_service_manager_services_list_auto: |
     ([{'name': (hubsite_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'hubsite']}] if hubsite_enabled else [])
     +
     ([{'name': (firezone_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'firezone']}] if firezone_enabled else [])
+    +
+    ([{'name': (gotosocial_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'gotosocial']}] if gotosocial_enabled else [])
   }}
 
 ########################################################################
