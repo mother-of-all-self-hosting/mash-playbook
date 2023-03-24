@@ -125,4 +125,4 @@
 
 - src: git+https://github.com/moan0s/role-firezone.git
   name: firezone
-  version: 9916b11161b3cdf3485c6b3c475573fc90cd1823
+  version: 260f0049ea07e1a39df7cf118b267c15477f70be
