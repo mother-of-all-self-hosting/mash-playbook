@@ -1,6 +1,6 @@
 # Firezone
 
-[Firezone](https://www.firezone.dev/) is a self-hosted VPN server with Web UI.
+[Firezone](https://www.firezone.dev/) is a self-hosted VPN server with Web UI that this playbook can install using the ansible role [moan0s/role-firezone](https://github.com/moan0s/role-firezone).
 
 To enable Firezone add the following to your `vars.yml`:
 
