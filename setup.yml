@@ -66,6 +66,8 @@
 
     - role: galaxy/gitea
 
+    - role: galaxy/gotosocial
+
     - role: galaxy/grafana
 
     - role: galaxy/miniflux
