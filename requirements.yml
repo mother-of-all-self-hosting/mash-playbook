@@ -125,7 +125,7 @@
 
 - src: git+https://github.com/moan0s/hubsite.git
   name: hubsite
-  version: da6fed398a9dd0761db941cb903b53277c341cc6
+  version: b64a45e4b9e01a773598a9a753dcd2dff1179c1b
 
 - src: git+https://github.com/moan0s/role-firezone.git
   name: firezone
