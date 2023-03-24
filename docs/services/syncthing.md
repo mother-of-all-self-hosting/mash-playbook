@@ -67,6 +67,18 @@ Authentication is **done at the reverse-proxy level** (Traefik), so upon logging
 
 You can hide the warning permanently by going to **Actions** -> **Advanced** -> **GUI** section -> checking the **Insecure Admin Access** checkbox.
 
+### Networking
+
+By default, the following ports will be exposed by the container on **all network interfaces**:
+
+- `22000` over **TCP**, controlled by `syncthing_container_sync_tcp_bind_port` - used for TCP based sync protocol traffic
+- `22000` over **UDP**, controlled by `syncthing_container_sync_udp_bind_port` - used for QUIC based sync protocol traffic
+- `21027` over **UDP**, controlled by `syncthing_container_local_discovery_udp_bind_port` - used for discovery broadcasts on IPv4 and multicasts on IPv6
+
+Docker automatically opens these ports in the server's firewall, so you **likely don't need to do anything**. If you use another firewall in front of the server, you may need to adjust it.
+
+To learn more, see the upstream [Firewall documentation](https://docs.syncthing.net/users/firewall.html).
+
 ### Configuration & Data
 
 The Syncthing configuration (stored in `syncthing_config_path` on the host) is mounted to the `/var/syncthing` directory in the container.
