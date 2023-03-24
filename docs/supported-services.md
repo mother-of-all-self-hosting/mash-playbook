@@ -11,6 +11,7 @@
 | [Focalboard](https://www.focalboard.com/) | An open source, self-hosted alternative to [Trello](https://trello.com/), [Notion](https://www.notion.so/), and [Asana](https://asana.com/). | [Link](services/focalboard.md) |
 | [Firezone](https://www.firezone.dev/) | A self-hosted VPN server (based on [WireGuard](https://en.wikipedia.org/wiki/WireGuard)) with a Web UI | [Link](services/firezone.md) |
 | [Gitea](https://gitea.io/) | A painless self-hosted Git service. | [Link](services/gitea.md) |
+| [GotoSocial](https://gotosocial.org/) | [GoToSocial](https://gotosocial.org/) is a self-hosted [ActivityPub](https://activitypub.rocks/) social network server | [Link](services/gotosocial.md) |
 | [Grafana](https://grafana.com/) | An open and composable observability and data visualization platform, often used with [Prometheus](services/prometheus.md) | [Link](services/grafana.md) |
 | [Hubsite](https://github.com/moan0s/hubsite) | A simple, static site that shows an overview of the available services | [Link](services/hubsite.md) |
 | [Miniflux](https://miniflux.app/) | Minimalist and opinionated feed reader. | [Link](services/miniflux.md) |
