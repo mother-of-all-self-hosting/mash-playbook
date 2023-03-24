@@ -23,20 +23,18 @@ gotosocial_hostname: 'social.example.org'
 ########################################################################
 ```
 
-After installation, you can use `just run-tags firezone-create-or-reset-admin` any time to:
-- create the configured admin account
-- or, reset the password to the current password configured in `vars.yml`
-
-### Networking
-
-By default, the following ports will be exposed by the container on **all network interfaces**:
-
-- `51820` over **UDP**, controlled by `firezone_wireguard_bind_port` - used for [Wireguard](https://en.wikipedia.org/wiki/WireGuard) connections
-
-Docker automatically opens these ports in the server's firewall, so you **likely don't need to do anything**. If you use another firewall in front of the server, you may need to adjust it.
+After installation, you can use `ansible-playbook -i inventory/hosts setup.yml --tags=gotosocial-add-user --extra-vars "username=<username> email=<email> password=<password>"`
+to create your a user. Change `--tags=gotosocial-add-user` to `--tags=gotosocial-add-admin` to create an admin account.
 
 ### Usage
 
-After [installing](../installing.md), you can login at the URL specified in `firezone_hostname`, with the credentials set in `firezone_default_admin_email` and `firezone_default_admin_password`.
+After [installing](../installing.md), you can visti at the URL specified in `firezone_hostname` and should see your instance.
+Start to customize it at `social.example.org/admin`.
 
-Refer to the [official documentation](https://www.firezone.dev/docs/user-guides/add-devices/) to figure out how to add devices, etc.
+Use the [GtS CLI Tool](https://docs.gotosocial.org/en/latest/admin/cli/) to do admin & maintenance tasks. E.g. use 
+```bash
+docker exec -it mash-gotosocial /gotosocial/gotosocial admin account demote --username <username>
+```
+to demote a user from admin to normal user.
+
+Refer to the [great official documentation](https://docs.gotosocial.org/en/latest/) for more information on GoToSocial.

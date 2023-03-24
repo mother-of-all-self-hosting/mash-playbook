@@ -130,3 +130,7 @@
 - src: git+https://github.com/moan0s/role-firezone.git
   name: firezone
   version: 260f0049ea07e1a39df7cf118b267c15477f70be
+
+- src: git+https://github.com/moan0s/role-gotosocial.git
+  name: gotosocial
+  version: 837b94371e6d8629a8c5a659c6362fc678f775ef
