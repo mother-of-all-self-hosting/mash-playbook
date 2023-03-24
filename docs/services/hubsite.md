@@ -19,17 +19,17 @@ hubsite_title: "My services"
 hubsite_subtitle: "Just click on a service to use it"
 
 # Use the `hubsite_service_list_additional` variable to add services that are not provided by this playbook
-# hubsite_service_list: |
+# hubsite_service_list_additional: |
 #   {{
-#     ([{'name': 'My blog', 'logo_location': '', 'description': 'A link to a blog not hosted by this playbook'}])
+#     ([{'name': 'My blog', 'url': 'https://example.com', 'logo_location': '', 'description': 'A link to a blog not hosted by this playbook', 'priority': 1000 }])
 #   }}
 
 # If you want to explicitly control which services you want to show on this page you can overwrite 
 # hubsite_service_list_auto: |
 #   {{
-#     ([{'name': 'Miniflux', 'logo_location': '{{ role_path }}/assets/miniflux.png', 'description': 'An opinionated feed reader '}])
+#     ([{'name': 'Miniflux', 'url': hubsite_service_miniflux_url, 'logo_location': '{{ role_path }}/assets/miniflux.png', 'description': 'An opinionated feed reader', 'priority': hubsite_service_miniflux_priority}] if hubsite_service_miniflux_enabled else [])
 #     +
-#     ([{'name': 'Uptime Kuma', 'logo_location': '{{ role_path }}/assets/uptime-kuma.png', 'description': 'Check if the status of services'}])
+#     ([{'name': 'Uptime Kuma', 'url': hubsite_service_uptime_kuma_url, 'logo_location': '{{ role_path }}/assets/uptime-kuma.png', 'description': 'Check the status of the services', 'priority': hubsite_service_uptime_kuma_priority}] if hubsite_service_uptime_kuma_enabled else [])
 #   }}
 ########################################################################
 #                                                                      #
