@@ -19,5 +19,5 @@ firezone_default_admin_password: "<securepassword>"
 firezone_database_encryption_key: "<secret>"
 ```
 
-Use `ansible-playbook -i inventory/hosts setup.yml --tags=firezone-create-or-reset-admin` to create the configured
+Use `just run-tags firezone-create-or-reset-admin` to create the configured
 admin account or reset the password to the password set in `vars.yml`.
