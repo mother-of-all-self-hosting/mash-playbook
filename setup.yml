@@ -54,6 +54,8 @@
 
     - role: galaxy/com.devture.ansible.role.traefik
 
+    - role: galaxy/adguard_home
+
     - role: galaxy/collabora_online
 
     - role: galaxy/docker_registry
