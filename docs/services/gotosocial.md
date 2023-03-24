@@ -1,6 +1,6 @@
 # GoToSocial
 
-[GoToSocial](https://gotosocial.org/) is a self-hosted [ActivityPub](https://activitypub.rocks/) social network server, that this playbook can install, powered by the [moan0s/role-gotosocial](https://github.com/moan0s/role-gotosocial) Ansible role.
+[GoToSocial](https://gotosocial.org/) is a self-hosted [ActivityPub](https://activitypub.rocks/) social network server, that this playbook can install, powered by the [mother-of-all-self-hosting/ansible-role-gotosocial](https://github.com/mother-of-all-self-hosting/ansible-role-gotosocial) Ansible role.
 
 ## Configuration
 
