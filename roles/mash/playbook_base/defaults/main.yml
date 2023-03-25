@@ -63,7 +63,7 @@ mash_playbook_reverse_proxy_type: none
 
 # Controls whether to install Docker or not
 # Also see `devture_docker_sdk_for_python_installation_enabled`.
-mash_playbook_docker_installation_enabled: true
+mash_playbook_docker_installation_enabled: false
 
 # Controls whether to attach Traefik labels to services.
 # This is separate from `devture_traefik_enabled`, because you may wish to disable Traefik installation by the playbook,

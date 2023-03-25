@@ -356,9 +356,7 @@ devture_traefik_systemd_required_services_list: |
 #                                                                      #
 ########################################################################
 
-# To completely disable installing the Docker SDK for Python, use `devture_docker_sdk_for_python_installation_enabled: false`.
-
-devture_docker_sdk_for_python_installation_enabled: true
+devture_docker_sdk_for_python_installation_enabled: false
 
 ########################################################################
 #                                                                      #
