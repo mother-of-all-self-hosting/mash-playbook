@@ -9,6 +9,7 @@ This service requires the following other services:
 
 - a [Postgres](postgres.md) database
 - a [Traefik](traefik.md) reverse-proxy server
+- a [Redis](redis.md) data-store (optional)
 
 
 ## Configuration
@@ -26,6 +27,9 @@ nextcloud_enabled: true
 
 nextcloud_hostname: mash.example.com
 nextcloud_path_prefix: /nextcloud
+
+# Enable redis (optional)
+#nextcloud_redis_enabled: true
 
 ########################################################################
 #                                                                      #
