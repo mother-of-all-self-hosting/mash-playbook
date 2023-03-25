@@ -1378,7 +1378,7 @@ gotosocial_enabled: false
 
 gotosocial_identifier: "{{ mash_playbook_service_identifier_prefix }}gotosocial"
 
-gotosocial_base_path: "{{ mash_playbook_base_path }}/gotosocial"
+gotosocial_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}gotosocial"
 
 gotosocial_uid: "{{ mash_playbook_uid }}"
 gotosocial_gid: "{{ mash_playbook_gid }}"
