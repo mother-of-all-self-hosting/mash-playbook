@@ -1,6 +1,7 @@
 ---
 
-- src: geerlingguy.docker
+- src: git+https://github.com/geerlingguy/ansible-role-docker
+  name: geerlingguy.docker
   version: 6.1.0
 
 - src: git+https://gitlab.com/etke.cc/roles/swap
