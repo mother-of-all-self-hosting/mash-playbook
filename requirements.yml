@@ -4,13 +4,13 @@
   name: geerlingguy.docker
   version: 6.1.0
 
-- src: git+https://gitlab.com/etke.cc/roles/swap
+- src: git+https://gitlab.com/etke.cc/roles/swap.git
   version: 843a0222b76a5ec361b35f31bf4dc872b6d7d54e
 
-- src: git+https://gitlab.com/etke.cc/roles/ssh
+- src: git+https://gitlab.com/etke.cc/roles/ssh.git
   version: 237adf859f9270db8a60e720bc4a58164806644e
 
-- src: git+https://gitlab.com/etke.cc/roles/fail2ban
+- src: git+https://gitlab.com/etke.cc/roles/fail2ban.git
   version: 09886730e8d3c061f22d1da4a542899063f97f0a
 
 - src: git+https://github.com/devture/com.devture.ansible.role.docker_sdk_for_python.git
