@@ -1272,7 +1272,7 @@ hubsite_service_adguard_home_enabled: "{{ adguard_home_enabled }}"
 hubsite_service_adguard_home_name: Adguard Home
 hubsite_service_adguard_home_url: "https://{{ adguard_home_hostname }}{{ adguard_home_path_prefix }}"
 hubsite_service_adguard_home_logo_location: "{{ role_path }}/assets/shield.png"
-hubsite_service_adguard_home_description: "A DNS based adblocker"
+hubsite_service_adguard_home_description: "A network-wide DNS software for blocking ads & tracking"
 hubsite_service_adguard_home_priority: 1000
 
 # Docker Registry Browser
@@ -1288,7 +1288,7 @@ hubsite_service_focalboard_enabled: "{{ focalboard_enabled }}"
 hubsite_service_focalboard_name: Focalboard
 hubsite_service_focalboard_url: "https://{{ focalboard_hostname }}{{ focalboard_path_prefix }}"
 hubsite_service_focalboard_logo_location: "{{ role_path }}/assets/focalboard.png"
-hubsite_service_focalboard_description: "A git service"
+hubsite_service_focalboard_description: "An open source, self-hosted alternative to Trello, Notion, and Asana."
 hubsite_service_focalboard_priority: 1000
 
 # Gitea
@@ -1337,7 +1337,7 @@ hubsite_service_radicale_enabled: "{{ radicale_enabled }}"
 hubsite_service_radicale_name: Radicale
 hubsite_service_radicale_url: "https://{{ radicale_hostname }}{{ radicale_path_prefix }}"
 hubsite_service_radicale_logo_location: "{{ role_path }}/assets/radicale.png"
-hubsite_service_radicale_description: ""
+hubsite_service_radicale_description: "Sync contacts and calendars"
 hubsite_service_radicale_priority: 1000
 
 # Syncthing
@@ -1345,7 +1345,7 @@ hubsite_service_syncthing_enabled: "{{ syncthing_enabled }}"
 hubsite_service_syncthing_name: Syncthing
 hubsite_service_syncthing_url: "https://{{ syncthing_hostname }}{{ syncthing_path_prefix }}"
 hubsite_service_syncthing_logo_location: "{{ role_path }}/assets/syncthing.png"
-hubsite_service_syncthing_description: ""
+hubsite_service_syncthing_description: "Sync your files"
 hubsite_service_syncthing_priority: 1000
 
 # Uptime Kuma
@@ -1370,7 +1370,7 @@ hubsite_service_woodpecker_ci_enabled: "{{ woodpecker_ci_enabled }}"
 hubsite_service_woodpecker_ci_name: Woodpecker CI
 hubsite_service_woodpecker_ci_url: "https://{{ devture_woodpecker_ci_server_hostname }}"
 hubsite_service_woodpecker_ci_logo_location: "{{ role_path }}/assets/woodpecker.png"
-hubsite_service_woodpecker_ci_description: "Securely access your passwords"
+hubsite_service_woodpecker_ci_description: "Check you CI"
 hubsite_service_woodpecker_ci_priority: 1000
 
 hubsite_service_list_auto: |
