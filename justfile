@@ -15,7 +15,7 @@ roles:
 
 # Updates requirements.yml if there are any new tags available. Requires agru
 update:
-	@agru -u
+    @agru -u
 
 # Runs ansible-lint against all roles in the playbook
 lint:
