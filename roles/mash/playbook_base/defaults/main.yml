@@ -7,6 +7,8 @@ mash_playbook_identifier: mash
 mash_playbook_user_username: "{{ mash_playbook_identifier }}"
 mash_playbook_user_groupname: "{{ mash_playbook_identifier }}"
 
+mash_playbook_user_home: "{{ mash_playbook_base_path }}"
+
 # By default, the playbook creates the user (`mash_playbook_user_username`)
 # and group (`mash_playbook_user_groupname`) with a random id.
 # To use a specific user/group id, override these variables.
@@ -17,9 +19,14 @@ mash_playbook_gid: ~
 # You can put any string here, but generating a strong one is preferred (e.g. `pwgen -s 64 1`).
 mash_playbook_generic_secret_key: ''
 
-# Controls the prefixed used for all service identifiers.
+# Controls the prefix used for all service identifiers.
 # This affects systemd service names, container names, container networks, etc.
 mash_playbook_service_identifier_prefix: "{{ mash_playbook_identifier }}-"
+
+# Controls the prefix of the base directory for all services.
+# Example: `/mash/{PREFIX}traefik`.
+# If `mash_playbook_identifier` is the default (mash), we intentionally use an empty prefix.
+mash_playbook_service_base_directory_name_prefix: "{{ '' if mash_playbook_identifier == 'mash' else (mash_playbook_identifier + '-') }}"
 
 # Controls the base path where all services will be installed
 mash_playbook_base_path: "/{{ mash_playbook_identifier }}"
@@ -52,11 +59,11 @@ mash_playbook_architecture: "{{ 'amd64' if ansible_architecture == 'x86_64' else
 #     - no reverse-proxy will be installed
 #     - no port exposure will be done for any of the container services
 #     - it's up to you to expose the ports you want, etc.
-mash_playbook_reverse_proxy_type: playbook-managed-traefik
+mash_playbook_reverse_proxy_type: none
 
 # Controls whether to install Docker or not
 # Also see `devture_docker_sdk_for_python_installation_enabled`.
-mash_playbook_docker_installation_enabled: true
+mash_playbook_docker_installation_enabled: false
 
 # Controls whether to attach Traefik labels to services.
 # This is separate from `devture_traefik_enabled`, because you may wish to disable Traefik installation by the playbook,

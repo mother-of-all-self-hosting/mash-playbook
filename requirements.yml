@@ -1,6 +1,7 @@
 ---
 
-- src: geerlingguy.docker
+- src: git+https://github.com/geerlingguy/ansible-role-docker
+  name: geerlingguy.docker
   version: 6.1.0
 
 - src: git+https://gitlab.com/etke.cc/roles/swap
@@ -74,6 +75,10 @@
 
 - src: git+https://gitlab.com/etke.cc/roles/redmine.git
   version: v5.0.5-1
+
+- src: git+https://github.com/mother-of-all-self-hosting/ansible-role-adguard-home.git
+  name: adguard_home
+  version: v0.107.26-0
 
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-aux.git
   name: aux
