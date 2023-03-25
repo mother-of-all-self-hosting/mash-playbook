@@ -17,9 +17,14 @@ mash_playbook_gid: ~
 # You can put any string here, but generating a strong one is preferred (e.g. `pwgen -s 64 1`).
 mash_playbook_generic_secret_key: ''
 
-# Controls the prefixed used for all service identifiers.
+# Controls the prefix used for all service identifiers.
 # This affects systemd service names, container names, container networks, etc.
 mash_playbook_service_identifier_prefix: "{{ mash_playbook_identifier }}-"
+
+# Controls the prefix of the base directory for all services.
+# Example: `/mash/{PREFIX}traefik`.
+# If `mash_playbook_identifier` is the default (mash), we intentionally use an empty prefix.
+mash_playbook_service_base_directory_name_prefix: "{{ '' if mash_playbook_identifier == 'mash' else (mash_playbook_identifier + '-') }}"
 
 # Controls the base path where all services will be installed
 mash_playbook_base_path: "/{{ mash_playbook_identifier }}"
