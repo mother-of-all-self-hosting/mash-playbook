@@ -89,7 +89,7 @@
   version: v1.27.0-2
   name: vaultwarden
 - src: git+https://github.com/moan0s/hubsite.git
-  version: da6fed398a9dd0761db941cb903b53277c341cc6
+  version: 6b20c472d36ce5765dc44675d42cce74cbcbd0fe
   name: hubsite
 - src: git+https://github.com/moan0s/role-firezone.git
   version: ac8564d5e11a75107ba93aec6427b83be824c30a
