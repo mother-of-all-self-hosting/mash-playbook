@@ -59,7 +59,7 @@ mash_playbook_architecture: "{{ 'amd64' if ansible_architecture == 'x86_64' else
 #     - no reverse-proxy will be installed
 #     - no port exposure will be done for any of the container services
 #     - it's up to you to expose the ports you want, etc.
-mash_playbook_reverse_proxy_type: playbook-managed-traefik
+mash_playbook_reverse_proxy_type: none
 
 # Controls whether to install Docker or not
 # Also see `devture_docker_sdk_for_python_installation_enabled`.
