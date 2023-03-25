@@ -1275,6 +1275,30 @@ hubsite_container_labels_traefik_tls_certResolver: "{{ devture_traefik_certResol
 # Services
 ##########
 
+# Adguard home
+hubsite_service_adguard_home_enabled: "{{ adguard_home_enabled }}"
+hubsite_service_adguard_home_name: Adguard Home
+hubsite_service_adguard_home_url: "https://{{ adguard_home_hostname }}{{ adguard_home_path_prefix }}"
+hubsite_service_adguard_home_logo_location: "{{ role_path }}/assets/shield.png"
+hubsite_service_adguard_home_description: "A network-wide DNS software for blocking ads & tracking"
+hubsite_service_adguard_home_priority: 1000
+
+# Docker Registry Browser
+hubsite_service_docker_registry_browser_enabled: "{{ docker_registry_browser_enabled }}"
+hubsite_service_docker_registry_browser_name: Docker Registry Browser
+hubsite_service_docker_registry_browser_url: "https://{{ docker_registry_browser_hostname }}{{ docker_registry_browser_path_prefix }}"
+hubsite_service_docker_registry_browser_logo_location: "{{ role_path }}/assets/docker.png"
+hubsite_service_docker_registry_browser_description: "Browse docker images"
+hubsite_service_docker_registry_browser_priority: 1000
+
+# Focalboard
+hubsite_service_focalboard_enabled: "{{ focalboard_enabled }}"
+hubsite_service_focalboard_name: Focalboard
+hubsite_service_focalboard_url: "https://{{ focalboard_hostname }}{{ focalboard_path_prefix }}"
+hubsite_service_focalboard_logo_location: "{{ role_path }}/assets/focalboard.png"
+hubsite_service_focalboard_description: "An open source, self-hosted alternative to Trello, Notion, and Asana."
+hubsite_service_focalboard_priority: 1000
+
 # Gitea
 hubsite_service_gitea_enabled: "{{ gitea_enabled }}"
 hubsite_service_gitea_name: Gitea
@@ -1290,6 +1314,14 @@ hubsite_service_gotosocial_url: "https://{{ gotosocial_hostname }}"
 hubsite_service_gotosocial_logo_location: "{{ role_path }}/assets/gotosocial.png"
 hubsite_service_gotosocial_description: "A fediverse server"
 hubsite_service_gotosocial_priority: 1000
+
+# Grafana
+hubsite_service_grafana_enabled: "{{ grafana_enabled }}"
+hubsite_service_grafana_name: Grafana
+hubsite_service_grafana_url: "https://{{ grafana_hostname }}{{ grafana_path_prefix }}"
+hubsite_service_grafana_logo_location: "{{ role_path }}/assets/grafana.png"
+hubsite_service_grafana_description: "Check how your server is doing"
+hubsite_service_grafana_priority: 1000
 
 # Miniflux
 hubsite_service_miniflux_enabled: "{{ miniflux_enabled }}"
@@ -1315,6 +1347,22 @@ hubsite_service_peertube_logo_location: "{{ role_path }}/assets/peertube.png"
 hubsite_service_peertube_description: "Watch and upload videos"
 hubsite_service_peertube_priority: 1000
 
+# Radicale
+hubsite_service_radicale_enabled: "{{ radicale_enabled }}"
+hubsite_service_radicale_name: Radicale
+hubsite_service_radicale_url: "https://{{ radicale_hostname }}{{ radicale_path_prefix }}"
+hubsite_service_radicale_logo_location: "{{ role_path }}/assets/radicale.png"
+hubsite_service_radicale_description: "Sync contacts and calendars"
+hubsite_service_radicale_priority: 1000
+
+# Syncthing
+hubsite_service_syncthing_enabled: "{{ syncthing_enabled }}"
+hubsite_service_syncthing_name: Syncthing
+hubsite_service_syncthing_url: "https://{{ syncthing_hostname }}{{ syncthing_path_prefix }}"
+hubsite_service_syncthing_logo_location: "{{ role_path }}/assets/syncthing.png"
+hubsite_service_syncthing_description: "Sync your files"
+hubsite_service_syncthing_priority: 1000
+
 # Uptime Kuma
 hubsite_service_uptime_kuma_enabled: "{{ uptime_kuma_enabled }}"
 hubsite_service_uptime_kuma_name: Uptime Kuma
@@ -1332,11 +1380,25 @@ hubsite_service_vaultwarden_logo_location: "{{ role_path }}/assets/vaultwarden.p
 hubsite_service_vaultwarden_description: "Securely access your passwords"
 hubsite_service_vaultwarden_priority: 1000
 
+# Woodpecker CI
+hubsite_service_woodpecker_ci_enabled: "{{ devture_woodpecker_ci_server_enabled }}"
+hubsite_service_woodpecker_ci_name: Woodpecker CI
+hubsite_service_woodpecker_ci_url: "https://{{ devture_woodpecker_ci_server_hostname }}"
+hubsite_service_woodpecker_ci_logo_location: "{{ role_path }}/assets/woodpecker.png"
+hubsite_service_woodpecker_ci_description: "Check you CI"
+hubsite_service_woodpecker_ci_priority: 1000
+
 hubsite_service_list_auto: |
   {{
+    ([{'name': hubsite_service_adguard_home_name, 'url': hubsite_service_adguard_home_url, 'logo_location': hubsite_service_adguard_home_logo_location, 'description': hubsite_service_adguard_home_description, 'priority': hubsite_service_adguard_home_priority}] if hubsite_service_adguard_home_enabled else [])
+    +
+    ([{'name': hubsite_service_focalboard_name, 'url': hubsite_service_focalboard_url, 'logo_location': hubsite_service_focalboard_logo_location, 'description': hubsite_service_focalboard_description, 'priority': hubsite_service_focalboard_priority}] if hubsite_service_focalboard_enabled else [])
+    +
     ([{'name': hubsite_service_gitea_name, 'url': hubsite_service_gitea_url, 'logo_location': hubsite_service_gitea_logo_location, 'description': hubsite_service_gitea_description, 'priority': hubsite_service_gitea_priority}] if hubsite_service_gitea_enabled else [])
     +
     ([{'name': hubsite_service_gotosocial_name, 'url': hubsite_service_gotosocial_url, 'logo_location': hubsite_service_gotosocial_logo_location, 'description': hubsite_service_gotosocial_description, 'priority': hubsite_service_gotosocial_priority}] if hubsite_service_gotosocial_enabled else [])
+    +
+    ([{'name': hubsite_service_grafana_name, 'url': hubsite_service_grafana_url, 'logo_location': hubsite_service_grafana_logo_location, 'description': hubsite_service_grafana_description, 'priority': hubsite_service_grafana_priority}] if hubsite_service_grafana_enabled else [])
     +
     ([{'name': hubsite_service_miniflux_name, 'url': hubsite_service_miniflux_url, 'logo_location': hubsite_service_miniflux_logo_location, 'description': hubsite_service_miniflux_description, 'priority': hubsite_service_miniflux_priority}] if hubsite_service_miniflux_enabled else [])
     +
@@ -1344,9 +1406,15 @@ hubsite_service_list_auto: |
     +
     ([{'name': hubsite_service_peertube_name, 'url': hubsite_service_peertube_url, 'logo_location': hubsite_service_peertube_logo_location, 'description': hubsite_service_peertube_description, 'priority': hubsite_service_peertube_priority}] if hubsite_service_peertube_enabled else [])
     +
+    ([{'name': hubsite_service_radicale_name, 'url': hubsite_service_radicale_url, 'logo_location': hubsite_service_radicale_logo_location, 'description': hubsite_service_radicale_description, 'priority': hubsite_service_radicale_priority}] if hubsite_service_radicale_enabled else [])
+    +
     ([{'name': hubsite_service_uptime_kuma_name, 'url': hubsite_service_uptime_kuma_url, 'logo_location': hubsite_service_uptime_kuma_logo_location, 'description': hubsite_service_uptime_kuma_description, 'priority': hubsite_service_uptime_kuma_priority}] if hubsite_service_uptime_kuma_enabled else [])
     +
+    ([{'name': hubsite_service_syncthing_name, 'url': hubsite_service_syncthing_url, 'logo_location': hubsite_service_syncthing_logo_location, 'description': hubsite_service_syncthing_description, 'priority': hubsite_service_syncthing_priority}] if hubsite_service_syncthing_enabled else [])
+    +
     ([{'name': hubsite_service_vaultwarden_name, 'url': hubsite_service_vaultwarden_url, 'logo_location': hubsite_service_vaultwarden_logo_location, 'description': hubsite_service_vaultwarden_description, 'priority': hubsite_service_vaultwarden_priority}] if hubsite_service_vaultwarden_enabled else [])
+    +
+    ([{'name': hubsite_service_woodpecker_ci_name, 'url': hubsite_service_woodpecker_ci_url, 'logo_location': hubsite_service_woodpecker_ci_logo_location, 'description': hubsite_service_woodpecker_ci_description, 'priority': hubsite_service_woodpecker_ci_priority}] if hubsite_service_woodpecker_ci_enabled else [])
   }}
 
 ########################################################################
