@@ -133,4 +133,4 @@
 
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-gotosocial.git
   name: gotosocial
-  version: 883bc23dcd0df782505a58f50c53c984e739ebbd
+  version: 148933d390a2a789ee4595a593d825e64d5e6f46
