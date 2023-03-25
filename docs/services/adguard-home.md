@@ -76,3 +76,10 @@ After installation, you can go to the AdGuard Home URL, as defined in `adguard_h
 As mentioned in the [URL](#url) section above, you may hit some annoyances when hosting under a subpath.
 
 The first time you visit the AdGuard Home pages, you'll go through a setup wizard **make sure to set the HTTP port to `3000`**. This is the in-container port that our Traefik setup expects and uses for serving the install wizard to begin with. If you go with the default (`80`), the web UI will stop working after the installation wizard completes.
+
+Things you should consider doing later:
+
+- increasing the per-client Rate Limit (from the default of `20`) in the **DNS server configuration** section in **Settings** -> **DNS Settings**
+- enabling caching in the **DNS cache configuration** section in **Settings** -> **DNS Settings**
+- adding additional blocklists by discovering them on [Firebog](https://firebog.net/) or other sources and importing them from **Filters** -> **DNS blocklists**
+- reading the AdGuard Home [README](https://github.com/AdguardTeam/AdGuardHome/blob/master/README.md) and [Wiki](https://github.com/AdguardTeam/AdGuardHome/wiki)
