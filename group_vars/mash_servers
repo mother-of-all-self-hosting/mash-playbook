@@ -777,7 +777,7 @@ peertube_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base
 peertube_uid: "{{ mash_playbook_uid }}"
 peertube_gid: "{{ mash_playbook_gid }}"
 
-peertube_container_additional_networks: |
+peertube_container_additional_networks_auto: |
   {{
     (
       ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
@@ -800,10 +800,8 @@ peertube_config_database_password: "{{ '%s' | format(mash_playbook_generic_secre
 
 peertube_config_redis_hostname: "{{ redis_identifier if redis_enabled else '' }}"
 
-peertube_systemd_required_services_list: |
+peertube_systemd_required_services_list_auto: |
   {{
-    (['docker.service'])
-    +
     ([devture_postgres_identifier ~ '.service'] if devture_postgres_enabled and peertube_config_database_hostname == devture_postgres_identifier else [])
     +
     ([redis_identifier ~ '.service'] if redis_enabled and peertube_config_redis_hostname == redis_identifier else [])
