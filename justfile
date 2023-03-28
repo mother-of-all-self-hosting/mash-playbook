@@ -25,7 +25,10 @@ install-all *extra_args: (run-tags "install-all,start" extra_args)
 
 # Runs installation tasks for a single service
 install-service service *extra_args:
-    just --justfile {{ justfile() }} run --tags=install-{{ service }},start-group --extra-vars=group={{ service }} {{ extra_args }}
+    just --justfile {{ justfile() }} run \
+    --tags=install-{{ service }},start-group \
+    --extra-vars=group={{ service }} \
+    --extra-vars=devture_systemd_service_manager_service_restart_mode=one-by-one {{ extra_args }}
 
 # Runs the playbook with --tags=setup-all,start and optional arguments
 setup-all *extra_args: (run-tags "setup-all,start" extra_args)
