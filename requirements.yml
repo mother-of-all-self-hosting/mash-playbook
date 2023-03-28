@@ -80,7 +80,7 @@
   version: v26.0.0-0
   name: nextcloud
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-peertube.git
-  version: v5.1.0-1
+  version: v5.1.0-2
   name: peertube
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-prometheus.git
   version: v2.43.0-0
