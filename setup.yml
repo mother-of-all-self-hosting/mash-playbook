@@ -92,6 +92,8 @@
 
     - role: galaxy/redis
 
+    - role: galaxy/soft_serve
+
     - role: galaxy/syncthing
 
     - role: galaxy/vaultwarden

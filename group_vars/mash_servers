@@ -123,6 +123,8 @@ devture_systemd_service_manager_services_list_auto: |
     +
     ([{'name': (redis_identifier + '.service'), 'priority': 750, 'groups': ['mash', 'redis']}] if redis_enabled else [])
     +
+    ([{'name': (soft_serve_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'soft-serve']}] if soft_serve_enabled else [])
+    +
     ([{'name': (syncthing_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'syncthing']}] if syncthing_enabled else [])
     +
     ([{'name': (vaultwarden_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'vaultwarden', 'vaultwarden-server']}] if vaultwarden_enabled else [])
@@ -1128,6 +1130,30 @@ redis_gid: "{{ mash_playbook_gid }}"
 ########################################################################
 #                                                                      #
 # /redis                                                               #
+#                                                                      #
+########################################################################
+
+
+
+
+########################################################################
+#                                                                      #
+# soft-serve                                                           #
+#                                                                      #
+########################################################################
+
+soft_serve_enabled: false
+
+soft_serve_identifier: "{{ mash_playbook_service_identifier_prefix }}soft-serve"
+
+soft_serve_uid: "{{ mash_playbook_uid }}"
+soft_serve_gid: "{{ mash_playbook_gid }}"
+
+soft_serve_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}soft-serve"
+
+########################################################################
+#                                                                      #
+# /soft-serve                                                          #
 #                                                                      #
 ########################################################################
 
