@@ -14,7 +14,9 @@ To enable this service, add the following configuration to your `vars.yml` file 
 ########################################################################
 
 soft_serve_enabled: true
-soft_serve_hostname: mash.example.com # an URL Soft Serve will advertise
+# The hostname of this system.
+# It will be used for generating git clone URLs (e.g. ssh://mash.example.com/repository.git)
+soft_serve_hostname: mash.example.com
 soft_serve_container_bind_port: 2222 # Expose Soft Serve's port. For git servers the usual git-over-ssh port is 22
 soft_serve_initial_admin_key: YOUR PUBLIC SSH KEY HERE
 

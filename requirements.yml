@@ -50,7 +50,7 @@
 - src: git+https://gitlab.com/etke.cc/roles/redmine.git
   version: v5.0.5-1
 - src: git+https://gitlab.com/etke.cc/roles/soft_serve.git
-  version: v0.4.6-0
+  version: v0.4.6-1
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-adguard-home.git
   version: v0.107.26-0
   name: adguard_home
