@@ -70,6 +70,8 @@
 
     - role: galaxy/grafana
 
+    - role: galaxy/keycloak
+
     - role: galaxy/miniflux
 
     - role: galaxy/hubsite
