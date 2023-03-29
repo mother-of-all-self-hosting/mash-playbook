@@ -730,23 +730,19 @@ nextcloud_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_bas
 nextcloud_uid: "{{ mash_playbook_uid }}"
 nextcloud_gid: "{{ mash_playbook_gid }}"
 
-nextcloud_systemd_required_systemd_services_list: |
+nextcloud_systemd_required_services_list_auto: |
   {{
     (['docker.service'])
     +
     ([devture_postgres_identifier ~ '.service'] if devture_postgres_enabled and nextcloud_database_hostname == devture_postgres_identifier else [])
-    +
-    ([redis_identifier ~ '.service'] if redis_enabled and nextcloud_redis_enabled and nextcloud_redis_hostname == redis_identifier else [])
   }}
 
-nextcloud_container_additional_networks: |
+nextcloud_container_additional_networks_auto: |
   {{
     ( 
       ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
       +
       ([devture_postgres_container_network] if devture_postgres_enabled and nextcloud_database_hostname == devture_postgres_identifier and nextcloud_container_network != devture_postgres_container_network else [])
-      +
-      ([redis_container_network] if redis_enabled and nextcloud_redis_enabled and nextcloud_redis_hostname == redis_identifier else [])
     ) | unique
   }}
 
@@ -759,9 +755,6 @@ nextcloud_database_hostname: "{{ devture_postgres_identifier if devture_postgres
 nextcloud_database_port: "{{ '5432' if devture_postgres_enabled else '' }}"
 nextcloud_database_username: "nextcloud"
 nextcloud_database_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'db.nextcloud', rounds=655555) | to_uuid }}"
-
-nextcloud_redis_enabled: false
-nextcloud_redis_hostname: "{{ redis_identifier if redis_enabled and nextcloud_redis_enabled else '' }}"
 
 ########################################################################
 #                                                                      #
