@@ -831,7 +831,7 @@ nextcloud_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_bas
 nextcloud_uid: "{{ mash_playbook_uid }}"
 nextcloud_gid: "{{ mash_playbook_gid }}"
 
-nextcloud_systemd_required_systemd_services_list_auto: |
+nextcloud_systemd_required_services_list_auto: |
   {{
     ([devture_postgres_identifier ~ '.service'] if devture_postgres_enabled and nextcloud_database_hostname == devture_postgres_identifier else [])
   }}
