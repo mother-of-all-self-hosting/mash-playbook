@@ -23,12 +23,12 @@ gotosocial_hostname: 'social.example.org'
 ########################################################################
 ```
 
-After installation, you can use `ansible-playbook -i inventory/hosts setup.yml --tags=gotosocial-add-user --extra-vars "username=<username> email=<email> password=<password>"`
+After installation, you can use `just run-tags gotosocial-add-user --extra-vars=username=USERNAME --extra-vars=password=PASSWORD --extra-vars=email=<email>"`
 to create your a user. Change `--tags=gotosocial-add-user` to `--tags=gotosocial-add-admin` to create an admin account.
 
 ### Usage
 
-After [installing](../installing.md), you can visti at the URL specified in `firezone_hostname` and should see your instance.
+After [installing](../installing.md), you can visti at the URL specified in `gotosocial_hostname` and should see your instance.
 Start to customize it at `social.example.org/admin`.
 
 Use the [GtS CLI Tool](https://docs.gotosocial.org/en/latest/admin/cli/) to do admin & maintenance tasks. E.g. use 
