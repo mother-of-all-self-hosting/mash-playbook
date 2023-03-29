@@ -93,6 +93,8 @@ devture_systemd_service_manager_services_list_auto: |
     +
     ([{'name': (gitea_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'gitea', 'gitea-server']}] if gitea_enabled else [])
     +
+    ([{'name': (gotosocial_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'gotosocial']}] if gotosocial_enabled else [])
+    +
     ([{'name': (grafana_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'grafana']}] if grafana_enabled else [])
     +
     ([{'name': (keycloak_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'keycloak']}] if keycloak_enabled else [])
@@ -187,6 +189,12 @@ devture_postgres_managed_databases_auto: |
       'username': devture_woodpecker_ci_server_database_datasource_username,
       'password': devture_woodpecker_ci_server_database_datasource_password,
     }] if devture_woodpecker_ci_server_enabled else [])
+    +
+    ([{
+      'name': gotosocial_database_name,
+      'username': gotosocial_database_username,
+      'password': gotosocial_database_password,
+    }] if gotosocial_enabled else [])
     +
     ([{
       'name': keycloak_database_name,
@@ -831,14 +839,12 @@ nextcloud_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_bas
 nextcloud_uid: "{{ mash_playbook_uid }}"
 nextcloud_gid: "{{ mash_playbook_gid }}"
 
-nextcloud_systemd_required_systemd_services_list: |
+nextcloud_systemd_required_services_list_auto: |
   {{
-    (['docker.service'])
-    +
     ([devture_postgres_identifier ~ '.service'] if devture_postgres_enabled and nextcloud_database_hostname == devture_postgres_identifier else [])
   }}
 
-nextcloud_container_additional_networks: |
+nextcloud_container_additional_networks_auto: |
   {{
     ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
     +
@@ -1462,6 +1468,14 @@ hubsite_service_gitea_logo_location: "{{ role_path }}/assets/gitea.png"
 hubsite_service_gitea_description: "A git service"
 hubsite_service_gitea_priority: 1000
 
+# GoToSocial
+hubsite_service_gotosocial_enabled: "{{ gotosocial_enabled }}"
+hubsite_service_gotosocial_name: GoToSocial
+hubsite_service_gotosocial_url: "https://{{ gotosocial_hostname }}"
+hubsite_service_gotosocial_logo_location: "{{ role_path }}/assets/gotosocial.png"
+hubsite_service_gotosocial_description: "A fediverse server"
+hubsite_service_gotosocial_priority: 1000
+
 # Grafana
 hubsite_service_grafana_enabled: "{{ grafana_enabled }}"
 hubsite_service_grafana_name: Grafana
@@ -1469,7 +1483,6 @@ hubsite_service_grafana_url: "https://{{ grafana_hostname }}{{ grafana_path_pref
 hubsite_service_grafana_logo_location: "{{ role_path }}/assets/grafana.png"
 hubsite_service_grafana_description: "Check how your server is doing"
 hubsite_service_grafana_priority: 1000
-
 
 # Miniflux
 hubsite_service_miniflux_enabled: "{{ miniflux_enabled }}"
@@ -1544,6 +1557,8 @@ hubsite_service_list_auto: |
     +
     ([{'name': hubsite_service_gitea_name, 'url': hubsite_service_gitea_url, 'logo_location': hubsite_service_gitea_logo_location, 'description': hubsite_service_gitea_description, 'priority': hubsite_service_gitea_priority}] if hubsite_service_gitea_enabled else [])
     +
+    ([{'name': hubsite_service_gotosocial_name, 'url': hubsite_service_gotosocial_url, 'logo_location': hubsite_service_gotosocial_logo_location, 'description': hubsite_service_gotosocial_description, 'priority': hubsite_service_gotosocial_priority}] if hubsite_service_gotosocial_enabled else [])
+    +
     ([{'name': hubsite_service_grafana_name, 'url': hubsite_service_grafana_url, 'logo_location': hubsite_service_grafana_logo_location, 'description': hubsite_service_grafana_description, 'priority': hubsite_service_grafana_priority}] if hubsite_service_grafana_enabled else [])
     +
     ([{'name': hubsite_service_miniflux_name, 'url': hubsite_service_miniflux_url, 'logo_location': hubsite_service_miniflux_logo_location, 'description': hubsite_service_miniflux_description, 'priority': hubsite_service_miniflux_priority}] if hubsite_service_miniflux_enabled else [])
@@ -1613,5 +1628,51 @@ firezone_container_labels_traefik_tls_certResolver: "{{ devture_traefik_certReso
 ########################################################################
 #                                                                      #
 # /firezone                                                             #
+#                                                                      #
+########################################################################
+
+
+########################################################################
+#                                                                      #
+# gotsocial                                                            #
+#                                                                      #
+########################################################################
+
+gotosocial_enabled: false
+
+gotosocial_identifier: "{{ mash_playbook_service_identifier_prefix }}gotosocial"
+
+gotosocial_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}gotosocial"
+
+gotosocial_uid: "{{ mash_playbook_uid }}"
+gotosocial_gid: "{{ mash_playbook_gid }}"
+
+gotosocial_database_host: "{{ devture_postgres_identifier if devture_postgres_enabled else '' }}"
+gotosocial_database_port: "{{ '5432' if devture_postgres_enabled else '' }}"
+gotosocial_database_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'db.gotosocial', rounds=655555) | to_uuid }}"
+gotosocial_database_username: "{{ gotosocial_identifier }}"
+
+gotosocial_systemd_required_services_list: |
+  {{
+    (['docker.service'])
+    +
+    ([devture_postgres_identifier ~ '.service'] if devture_postgres_enabled and gotosocial_database_host == devture_postgres_identifier else [])
+  }}
+
+gotosocial_container_additional_networks: |
+  {{
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+    +
+    ([devture_postgres_container_network] if devture_postgres_enabled and gotosocial_database_host == devture_postgres_identifier and gotosocial_container_network != devture_postgres_container_network else [])
+  }}
+
+gotosocial_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+gotosocial_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+gotosocial_container_labels_traefik_entrypoints: "{{ devture_traefik_entrypoint_primary }}"
+gotosocial_container_labels_traefik_tls_certResolver: "{{ devture_traefik_certResolver_primary }}"
+
+########################################################################
+#                                                                      #
+# /gotosocial                                                          #
 #                                                                      #
 ########################################################################
