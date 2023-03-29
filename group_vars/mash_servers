@@ -1616,7 +1616,6 @@ gotosocial_gid: "{{ mash_playbook_gid }}"
 
 gotosocial_database_host: "{{ devture_postgres_identifier if devture_postgres_enabled else '' }}"
 gotosocial_database_port: "{{ '5432' if devture_postgres_enabled else '' }}"
-gotosocial_database_name: "{{ gotosocial_identifier }}"
 gotosocial_database_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'db.gotosocial', rounds=655555) | to_uuid }}"
 gotosocial_database_username: "{{ gotosocial_identifier }}"
 
