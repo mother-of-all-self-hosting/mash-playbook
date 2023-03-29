@@ -103,7 +103,7 @@
   version: 6b20c472d36ce5765dc44675d42cce74cbcbd0fe
   name: hubsite
 - src: git+https://github.com/moan0s/role-firezone.git
-  version: ac8564d5e11a75107ba93aec6427b83be824c30a
+  version: 3a2a1e4c6b484b643a847941937a80d0efd86d6c
   name: firezone
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-gotosocial.git
   name: gotosocial

@@ -1602,7 +1602,6 @@ firezone_generic_secret: "{{ mash_playbook_generic_secret_key }}"
 
 firezone_database_host: "{{ devture_postgres_identifier if devture_postgres_enabled else '' }}"
 firezone_database_port: "{{ '5432' if devture_postgres_enabled else '' }}"
-firezone_database_name: "{{ firezone_identifier }}"
 firezone_database_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'fz.db.user', rounds=655555) | to_uuid }}"
 firezone_database_user: "{{ firezone_identifier }}"
 
