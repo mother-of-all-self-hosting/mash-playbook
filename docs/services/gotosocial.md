@@ -72,7 +72,7 @@ yourPC$ just run-tags import-postgres --extra-vars=server_path_postgres_dump=/ma
 Start the services on the new server
 
 ```bash
-yourPC$ ansible-playbook -i inventory/hosts setup.yml --tags=install-all
+yourPC$ ansible-playbook -i inventory/hosts setup.yml --tags=start
 ```
 
 Done 🥳
