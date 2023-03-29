@@ -105,3 +105,6 @@
 - src: git+https://github.com/moan0s/role-firezone.git
   version: ac8564d5e11a75107ba93aec6427b83be824c30a
   name: firezone
+- src: git+https://github.com/mother-of-all-self-hosting/ansible-role-gotosocial.git
+  name: gotosocial
+  version: 148933d390a2a789ee4595a593d825e64d5e6f46
