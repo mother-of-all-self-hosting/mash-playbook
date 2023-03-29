@@ -14,7 +14,20 @@ To enable this service, add the following configuration to your `vars.yml` file 
 ########################################################################
 
 gotosocial_enabled: true
+
+
+# Hostname that this server will be reachable at.
+# DO NOT change this after your server has already run once, or you will break things!
+# Examples: ["gts.example.org","some.server.com"]
 gotosocial_hostname: 'social.example.org'
+
+# Domain to use when federating profiles. It defaults to `gotosocial_hostname` but you can cange it when you want your server to be at
+# eg., `gotosocial_hostname: gts.example.org`, but you want the domain on accounts to be "example.org" because it looks better
+# or is just shorter/easier to remember.
+#
+# Please read the appropriate section of the installation guide before you go messing around with this setting:
+# https://docs.gotosocial.org/installation_guide/advanced/#can-i-host-my-instance-at-fediexampleorg-but-have-just-exampleorg-in-my-username
+# gotosocial_account_domain: "example.org"
 
 ########################################################################
 #                                                                      #
@@ -23,12 +36,12 @@ gotosocial_hostname: 'social.example.org'
 ########################################################################
 ```
 
-After installation, you can use `ansible-playbook -i inventory/hosts setup.yml --tags=gotosocial-add-user --extra-vars "username=<username> email=<email> password=<password>"`
+After installation, you can use `just run-tags gotosocial-add-user --extra-vars=username=<username> --extra-vars=password=<password> --extra-vars=email=<email>"`
 to create your a user. Change `--tags=gotosocial-add-user` to `--tags=gotosocial-add-admin` to create an admin account.
 
 ### Usage
 
-After [installing](../installing.md), you can visti at the URL specified in `firezone_hostname` and should see your instance.
+After [installing](../installing.md), you can visit at the URL specified in `gotosocial_hostname` and should see your instance.
 Start to customize it at `social.example.org/admin`.
 
 Use the [GtS CLI Tool](https://docs.gotosocial.org/en/latest/admin/cli/) to do admin & maintenance tasks. E.g. use 
@@ -65,14 +78,14 @@ serverA$ rsync -av -e "ssh" data/* root@serverB:/mash/gotosocial/data/
 Install (but don't start) the service and database on the server.
 
 ```bash
-yourPC$ ansible-playbook -i inventory/hosts setup.yml --tags=install-all
+yourPC$ just run-tags install-all
 yourPC$ just run-tags import-postgres --extra-vars=server_path_postgres_dump=/mash/gotosocial/latest.sql --extra-vars=postgres_default_import_database=mash-gotosocial
 ```
 
 Start the services on the new server
 
 ```bash
-yourPC$ ansible-playbook -i inventory/hosts setup.yml --tags=start
+yourPC$ just run-tags start
 ```
 
 Done 🥳

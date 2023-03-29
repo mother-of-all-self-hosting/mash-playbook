@@ -78,11 +78,14 @@
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-keycloak.git
   version: v21.0.1-1
   name: keycloak
+- src: git+https://github.com/mother-of-all-self-hosting/ansible-role-navidrome.git
+  version: v0.49.3-1
+  name: navidrome
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-netbox.git
   version: v3.4.6-2.5.1-0
   name: netbox
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-nextcloud.git
-  version: v26.0.0-0
+  version: v26.0.0-1
   name: nextcloud
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-peertube.git
   version: v5.1.0-2
@@ -97,14 +100,14 @@
   version: v1.28.0-0
   name: vaultwarden
 - src: git+https://github.com/moan0s/hubsite.git
-  version: c5df0485b558c89a6f15966bcdf3f129fd83cfa3
+  version: 6b20c472d36ce5765dc44675d42cce74cbcbd0fe
   name: hubsite
 - src: git+https://github.com/moan0s/role-firezone.git
-  version: ac8564d5e11a75107ba93aec6427b83be824c30a
+  version: 3a2a1e4c6b484b643a847941937a80d0efd86d6c
   name: firezone
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-gotosocial.git
   name: gotosocial
-  version: 148933d390a2a789ee4595a593d825e64d5e6f46
+  version: d608eb330af28b75d3e4881b2e8c09af64d078f1
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-owncast.git
   name: owncast
   version: ff233df159fbda65b2bb637adbfaf34383ec4229

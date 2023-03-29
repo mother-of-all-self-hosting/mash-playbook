@@ -78,6 +78,8 @@
 
     - role: galaxy/hubsite
 
+    - role: galaxy/navidrome
+
     - role: galaxy/netbox
 
     - role: galaxy/nextcloud
