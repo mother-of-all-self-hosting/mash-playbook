@@ -14,7 +14,20 @@ To enable this service, add the following configuration to your `vars.yml` file 
 ########################################################################
 
 gotosocial_enabled: true
+
+
+# Hostname that this server will be reachable at.
+# DO NOT change this after your server has already run once, or you will break things!
+# Examples: ["gts.example.org","some.server.com"]
 gotosocial_hostname: 'social.example.org'
+
+# Domain to use when federating profiles. It defaults to `gotosocial_hostname` but you can cange it when you want your server to be at
+# eg., `gotosocial_hostname: gts.example.org`, but you want the domain on accounts to be "example.org" because it looks better
+# or is just shorter/easier to remember.
+#
+# Please read the appropriate section of the installation guide before you go messing around with this setting:
+# https://docs.gotosocial.org/installation_guide/advanced/#can-i-host-my-instance-at-fediexampleorg-but-have-just-exampleorg-in-my-username
+# gotosocial_account_domain: "example.org"
 
 ########################################################################
 #                                                                      #
