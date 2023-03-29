@@ -65,14 +65,14 @@ serverA$ rsync -av -e "ssh" data/* root@serverB:/mash/gotosocial/data/
 Install (but don't start) the service and database on the server.
 
 ```bash
-yourPC$ ansible-playbook -i inventory/hosts setup.yml --tags=install-all
+yourPC$ just run-tags install-all
 yourPC$ just run-tags import-postgres --extra-vars=server_path_postgres_dump=/mash/gotosocial/latest.sql --extra-vars=postgres_default_import_database=mash-gotosocial
 ```
 
 Start the services on the new server
 
 ```bash
-yourPC$ ansible-playbook -i inventory/hosts setup.yml --tags=start
+yourPC$ just run-tags start
 ```
 
 Done 🥳
