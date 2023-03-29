@@ -99,6 +99,8 @@ devture_systemd_service_manager_services_list_auto: |
     +
     ([{'name': (miniflux_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'miniflux']}] if miniflux_enabled else [])
     +
+    ([{'name': (navidrome_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'navidrome']}] if navidrome_enabled else [])
+    +
     ([{'name': (netbox_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'netbox', 'netbox-server']}] if netbox_enabled else [])
     +
     ([{'name': (netbox_identifier + '-worker.service'), 'priority': 2500, 'groups': ['mash', 'netbox', 'netbox-worker']}] if netbox_enabled else [])
@@ -776,6 +778,39 @@ miniflux_database_password: "{{ '%s' | format(mash_playbook_generic_secret_key) 
 ########################################################################
 #                                                                      #
 # /miniflux                                                            #
+#                                                                      #
+########################################################################
+
+
+
+########################################################################
+#                                                                      #
+# navidrome                                                            #
+#                                                                      #
+########################################################################
+
+navidrome_enabled: false
+
+navidrome_identifier: "{{ mash_playbook_service_identifier_prefix }}navidrome"
+
+navidrome_uid: "{{ mash_playbook_uid }}"
+navidrome_gid: "{{ mash_playbook_gid }}"
+
+navidrome_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}navidrome"
+
+navidrome_container_additional_networks_auto: |
+  {{
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+  }}
+
+navidrome_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+navidrome_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+navidrome_container_labels_traefik_entrypoints: "{{ devture_traefik_entrypoint_primary }}"
+navidrome_container_labels_traefik_tls_certResolver: "{{ devture_traefik_certResolver_primary }}"
+
+########################################################################
+#                                                                      #
+# /navidrome                                                           #
 #                                                                      #
 ########################################################################
 

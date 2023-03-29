@@ -16,6 +16,7 @@
 | [Hubsite](https://github.com/moan0s/hubsite) | A simple, static site that shows an overview of the available services | [Link](services/hubsite.md) |
 | [Keycloak](https://www.keycloak.org/) | An open source identity and access management solution. | [Link](services/keycloak.md) |
 | [Miniflux](https://miniflux.app/) | Minimalist and opinionated feed reader. | [Link](services/miniflux.md) |
+| [Navidrome](https://www.navidrome.org/) | [Subsonic-API](http://www.subsonic.org/pages/api.jsp) compatible music server | [Link](services/navidrome.md)
 | [NetBox](https://docs.netbox.dev/en/stable/) | Web application that provides [IP address management (IPAM)](https://en.wikipedia.org/wiki/IP_address_management) and [data center infrastructure management (DCIM)](https://en.wikipedia.org/wiki/Data_center_management#Data_center_infrastructure_management) functionality | [Link](services/netbox.md) |
 | [Nextcloud](https://nextcloud.com/) | The most popular self-hosted collaboration solution for tens of millions of users at thousands of organizations across the globe. | [Link](services/nextcloud.md) |
 | [PeerTube](https://joinpeertube.org/) | A tool for sharing online videos | [Link](services/peertube.md) |
