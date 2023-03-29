@@ -1,3 +1,18 @@
+# 2023-03-29
+
+## (Backward Compatibility Break) Firezone database renamed
+
+If you are running firezone with the default postgres integration the playbook automatically created the database `mash-firezone`.
+To follow the naming scheme we now renamed it just `firezone`. You will have to rename you database manually by running the following commands on your server
+
+```bash
+systemctl stop mash-firezone
+docker exec -it mash-postgres psql -U root
+ALTER DATABASE "mash-firezone" RENAME TO firezone;
+```
+
+Then run `just install-all` and you should be good to go!
+
 # 2023-03-26
 
 ## (Backward Compatibility Break) PeerTube is no longer wired to Redis automatically
