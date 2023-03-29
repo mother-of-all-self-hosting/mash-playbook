@@ -72,9 +72,13 @@
 
     - role: galaxy/grafana
 
+    - role: galaxy/keycloak
+
     - role: galaxy/miniflux
 
     - role: galaxy/hubsite
+
+    - role: galaxy/netbox
 
     - role: galaxy/nextcloud
 
@@ -89,6 +93,8 @@
     - role: galaxy/redmine
 
     - role: galaxy/redis
+
+    - role: galaxy/soft_serve
 
     - role: galaxy/syncthing
 

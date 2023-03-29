@@ -93,13 +93,23 @@ devture_systemd_service_manager_services_list_auto: |
     +
     ([{'name': (gitea_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'gitea', 'gitea-server']}] if gitea_enabled else [])
     +
+    ([{'name': (gotosocial_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'gotosocial']}] if gotosocial_enabled else [])
+    +
     ([{'name': (grafana_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'grafana']}] if grafana_enabled else [])
+    +
+    ([{'name': (keycloak_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'keycloak']}] if keycloak_enabled else [])
+    +
+    ([{'name': (miniflux_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'miniflux']}] if miniflux_enabled else [])
+    +
+    ([{'name': (netbox_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'netbox', 'netbox-server']}] if netbox_enabled else [])
+    +
+    ([{'name': (netbox_identifier + '-worker.service'), 'priority': 2500, 'groups': ['mash', 'netbox', 'netbox-worker']}] if netbox_enabled else [])
+    +
+    ([{'name': (netbox_identifier + '-housekeeping.service'), 'priority': 2500, 'groups': ['mash', 'netbox', 'netbox-housekeeping']}] if netbox_enabled else [])
     +
     ([{'name': (nextcloud_identifier + '-server.service'), 'priority': 2000, 'groups': ['mash', 'nextcloud', 'nextcloud-server']}] if nextcloud_enabled else [])
     +
     ([{'name': (nextcloud_identifier + '-cron.timer'), 'priority': 2500, 'groups': ['mash', 'nextcloud', 'nextcloud-cron']}] if nextcloud_enabled else [])
-    +
-    ([{'name': (miniflux_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'miniflux']}] if miniflux_enabled else [])
     +
     ([{'name': (peertube_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'peertube']}] if peertube_enabled else [])
     +
@@ -115,6 +125,8 @@ devture_systemd_service_manager_services_list_auto: |
     +
     ([{'name': (redis_identifier + '.service'), 'priority': 750, 'groups': ['mash', 'redis']}] if redis_enabled else [])
     +
+    ([{'name': (soft_serve_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'soft-serve']}] if soft_serve_enabled else [])
+    +
     ([{'name': (syncthing_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'syncthing']}] if syncthing_enabled else [])
     +
     ([{'name': (vaultwarden_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'vaultwarden', 'vaultwarden-server']}] if vaultwarden_enabled else [])
@@ -122,8 +134,6 @@ devture_systemd_service_manager_services_list_auto: |
     ([{'name': (uptime_kuma_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'uptime-kuma']}] if uptime_kuma_enabled else [])
     +
     ([{'name': (hubsite_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'hubsite']}] if hubsite_enabled else [])
-    +
-    ([{'name': (gotosocial_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'gotosocial']}] if gotosocial_enabled else [])
   }}
 
 ########################################################################
@@ -185,6 +195,12 @@ devture_postgres_managed_databases_auto: |
     }] if gotosocial_enabled else [])
     +
     ([{
+      'name': keycloak_database_name,
+      'username': keycloak_database_username,
+      'password': keycloak_database_password,
+    }] if keycloak_enabled and keycloak_database_type == 'postgres' and keycloak_database_hostname == devture_postgres_identifier else [])
+    +
+    ([{
       'name': miniflux_database_name,
       'username': miniflux_database_username,
       'password': miniflux_database_password,
@@ -195,6 +211,12 @@ devture_postgres_managed_databases_auto: |
       'username': redmine_database_username,
       'password': redmine_database_password,
     }] if redmine_enabled else [])
+    +
+    ([{
+      'name': netbox_database_name,
+      'username': netbox_database_username,
+      'password': netbox_database_password,
+    }] if netbox_enabled else [])
     +
     ([{
       'name': nextcloud_database_name,
@@ -680,6 +702,50 @@ grafana_container_labels_traefik_tls_certResolver: "{{ devture_traefik_certResol
 
 ########################################################################
 #                                                                      #
+# keycloak                                                             #
+#                                                                      #
+########################################################################
+
+keycloak_enabled: false
+
+keycloak_identifier: "{{ mash_playbook_service_identifier_prefix }}keycloak"
+
+keycloak_uid: "{{ mash_playbook_uid }}"
+keycloak_gid: "{{ mash_playbook_gid }}"
+
+keycloak_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}keycloak"
+
+keycloak_systemd_required_systemd_services_list_auto: |
+  {{
+    ([devture_postgres_identifier ~ '.service'] if devture_postgres_enabled and keycloak_database_hostname == devture_postgres_identifier else [])
+  }}
+
+keycloak_container_additional_networks_auto: |
+  {{
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+    +
+    ([devture_postgres_container_network] if devture_postgres_enabled and keycloak_database_hostname == devture_postgres_identifier and keycloak_container_network != devture_postgres_container_network else [])
+  }}
+
+keycloak_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+keycloak_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+keycloak_container_labels_traefik_entrypoints: "{{ devture_traefik_entrypoint_primary }}"
+keycloak_container_labels_traefik_tls_certResolver: "{{ devture_traefik_certResolver_primary }}"
+
+keycloak_database_hostname: "{{ devture_postgres_identifier if devture_postgres_enabled else '' }}"
+keycloak_database_port: "{{ '5432' if devture_postgres_enabled else '' }}"
+keycloak_database_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'db.keycloak', rounds=655555) | to_uuid }}"
+
+########################################################################
+#                                                                      #
+# /keycloak                                                            #
+#                                                                      #
+########################################################################
+
+
+
+########################################################################
+#                                                                      #
 # miniflux                                                             #
 #                                                                      #
 ########################################################################
@@ -717,7 +783,7 @@ miniflux_database_password: "{{ '%s' | format(mash_playbook_generic_secret_key) 
 
 ########################################################################
 #                                                                      #
-# /miniflux                                                             #
+# /miniflux                                                            #
 #                                                                      #
 ########################################################################
 
@@ -772,6 +838,52 @@ nextcloud_database_password: "{{ '%s' | format(mash_playbook_generic_secret_key)
 
 ########################################################################
 #                                                                      #
+# netbox                                                              #
+#                                                                      #
+########################################################################
+
+netbox_enabled: false
+
+netbox_identifier: "{{ mash_playbook_service_identifier_prefix }}netbox"
+
+netbox_uid: "{{ mash_playbook_uid }}"
+netbox_gid: "{{ mash_playbook_gid }}"
+
+netbox_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}netbox"
+
+netbox_systemd_required_services_list_auto: |
+  {{
+    ([devture_postgres_identifier ~ '.service'] if devture_postgres_enabled and nextcloud_database_hostname == devture_postgres_identifier else [])
+  }}
+
+netbox_container_additional_networks_auto: |
+  {{
+    (
+      ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+      +
+      ([devture_postgres_container_network] if devture_postgres_enabled and netbox_database_hostname == devture_postgres_identifier and netbox_container_network != devture_postgres_container_network else [])
+    ) | unique
+  }}
+
+netbox_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+netbox_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+netbox_container_labels_traefik_entrypoints: "{{ devture_traefik_entrypoint_primary }}"
+netbox_container_labels_traefik_tls_certResolver: "{{ devture_traefik_certResolver_primary }}"
+
+netbox_database_hostname: "{{ devture_postgres_identifier if devture_postgres_enabled else '' }}"
+netbox_database_port: "{{ '5432' if devture_postgres_enabled else '' }}"
+netbox_database_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'db.netbox', rounds=655555) | to_uuid }}"
+
+########################################################################
+#                                                                      #
+# /netbox                                                             #
+#                                                                      #
+########################################################################
+
+
+
+########################################################################
+#                                                                      #
 # peertube                                                             #
 #                                                                      #
 ########################################################################
@@ -785,14 +897,12 @@ peertube_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base
 peertube_uid: "{{ mash_playbook_uid }}"
 peertube_gid: "{{ mash_playbook_gid }}"
 
-peertube_container_additional_networks: |
+peertube_container_additional_networks_auto: |
   {{
     (
       ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
       +
       ([devture_postgres_container_network] if devture_postgres_enabled and peertube_config_database_hostname == devture_postgres_identifier and peertube_container_network != devture_postgres_container_network else [])
-      +
-      ([redis_container_network] if peertube_config_redis_hostname == redis_identifier else [])
     ) | unique
   }}
 
@@ -806,15 +916,9 @@ peertube_config_database_port: "{{ '5432' if devture_postgres_enabled else '' }}
 peertube_config_database_username: peertube
 peertube_config_database_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'db.peertube', rounds=655555) | to_uuid }}"
 
-peertube_config_redis_hostname: "{{ redis_identifier if redis_enabled else '' }}"
-
-peertube_systemd_required_services_list: |
+peertube_systemd_required_services_list_auto: |
   {{
-    (['docker.service'])
-    +
     ([devture_postgres_identifier ~ '.service'] if devture_postgres_enabled and peertube_config_database_hostname == devture_postgres_identifier else [])
-    +
-    ([redis_identifier ~ '.service'] if redis_enabled and peertube_config_redis_hostname == redis_identifier else [])
   }}
 
 ########################################################################
@@ -1034,6 +1138,30 @@ redis_gid: "{{ mash_playbook_gid }}"
 ########################################################################
 #                                                                      #
 # /redis                                                               #
+#                                                                      #
+########################################################################
+
+
+
+
+########################################################################
+#                                                                      #
+# soft-serve                                                           #
+#                                                                      #
+########################################################################
+
+soft_serve_enabled: false
+
+soft_serve_identifier: "{{ mash_playbook_service_identifier_prefix }}soft-serve"
+
+soft_serve_uid: "{{ mash_playbook_uid }}"
+soft_serve_gid: "{{ mash_playbook_gid }}"
+
+soft_serve_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}soft-serve"
+
+########################################################################
+#                                                                      #
+# /soft-serve                                                          #
 #                                                                      #
 ########################################################################
 
