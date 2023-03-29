@@ -94,7 +94,7 @@
   version: v1.23.2-0
   name: syncthing
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-vaultwarden.git
-  version: v1.27.0-2
+  version: v1.28.0-0
   name: vaultwarden
 - src: git+https://github.com/moan0s/hubsite.git
   version: 6b20c472d36ce5765dc44675d42cce74cbcbd0fe
