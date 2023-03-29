@@ -79,7 +79,7 @@
   version: v21.0.1-1
   name: keycloak
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-navidrome.git
-  version: v0.49.3-0
+  version: v0.49.3-1
   name: navidrome
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-netbox.git
   version: v3.4.6-2.5.1-0
