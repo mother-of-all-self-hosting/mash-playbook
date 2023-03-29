@@ -15,7 +15,7 @@
         uid: "{{ omit if mash_playbook_uid is none else mash_playbook_uid }}"
         state: present
         group: "{{ mash_playbook_user_groupname }}"
-        home: "{{ mash_playbook_base_path }}"
+        home: "{{ mash_playbook_user_home }}"
         create_home: false
         system: true
       register: mash_base_user_result

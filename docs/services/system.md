@@ -25,12 +25,7 @@ system_swap_enabled: true
 
 A swap file will be created in `/var/swap` (configured using the `system_swap_path` variable) and enabled in your `/etc/fstab` file.
 
-By default, the swap file will have the following size:
-
-- on systems with `<= 2GB` of RAM, swap file size = `total RAM * 2`
-- on systems with `> 2GB` of RAM, swap file size = `1GB`
-
-To avoid these calculations and set your own size explicitly, set the `system_swap_size` variable in megabytes, example (4gb):
+By default, the swap file will have `1GB` size, but you can set the `system_swap_size` variable in megabytes, example (4gb):
 
 ```yaml
 system_swap_size: 4096
