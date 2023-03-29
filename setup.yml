@@ -82,6 +82,8 @@
 
     - role: galaxy/nextcloud
 
+    - role: galaxy/owncast
+
     - role: galaxy/peertube
 
     - role: galaxy/prometheus
