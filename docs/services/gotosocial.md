@@ -38,3 +38,41 @@ docker exec -it mash-gotosocial /gotosocial/gotosocial admin account demote --us
 to demote a user from admin to normal user.
 
 Refer to the [great official documentation](https://docs.gotosocial.org/en/latest/) for more information on GoToSocial.
+
+
+## Migrate an existing instance
+
+The following assumes you want to migrate from `serverA` to `serverB` (managed by mash) but you just cave to adjust the copy commands if you are on the same server.
+
+Stop the initial instance on `serverA`
+
+```bash
+serverA$ systemctl stop gotosocial
+```
+
+Dump the database (depending on your existing setup you might have to adjust this)
+```
+serverA$ pg_dump gotosocial > latest.sql
+```
+
+Copy the files to the new server
+
+```bash
+serverA$ rsync -av -e "ssh" latest.sql root@serverB:/mash/gotosocial/
+serverA$ rsync -av -e "ssh" data/* root@serverB:/mash/gotosocial/data/
+```
+
+Install (but don't start) the service and database on the server.
+
+```bash
+yourPC$ ansible-playbook -i inventory/hosts setup.yml --tags=install-all
+yourPC$ just run-tags import-postgres --extra-vars=server_path_postgres_dump=/mash/gotosocial/latest.sql --extra-vars=postgres_default_import_database=mash-gotosocial
+```
+
+Start the services on the new server
+
+```bash
+yourPC$ ansible-playbook -i inventory/hosts setup.yml --tags=install-all
+```
+
+Done 🥳
