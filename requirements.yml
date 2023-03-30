@@ -100,14 +100,14 @@
   version: v1.28.0-0
   name: vaultwarden
 - src: git+https://github.com/moan0s/hubsite.git
-  version: 6b20c472d36ce5765dc44675d42cce74cbcbd0fe
+  version: v1.23.3-0
   name: hubsite
 - src: git+https://github.com/moan0s/role-firezone.git
-  version: 3a2a1e4c6b484b643a847941937a80d0efd86d6c
+  version: v0.7.25-0
   name: firezone
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-gotosocial.git
+  version: v0.7.1-0
   name: gotosocial
-  version: d608eb330af28b75d3e4881b2e8c09af64d078f1
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-owncast.git
+  version: v0.0.13-0
   name: owncast
-  version: ff233df159fbda65b2bb637adbfaf34383ec4229
