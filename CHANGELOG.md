@@ -1,3 +1,27 @@
+# 2023-03-29
+
+## (Backward Compatibility Break) Firezone database renamed
+
+If you are running [Firezone](docs/services/firezone.md) with the default [Postgres](docs/services/postgres.md) integration the playbook automatically created the database with the name `mash-firezone`.
+To be consistent with how this playbook names databases for all other services, going forward we've changed the database name to be just `firezone`. You will have to rename you database manually by running the following commands on your server:
+
+1. Stop Firezone: `systemctl stop mash-firezone`
+2. Run a Postgres `psql` shell: `/mash/postgres/bin/cli`
+3. Execute this query: `ALTER DATABASE "mash-firezone" RENAME TO firezone;` and then quit the shell with `\q`
+
+Then update the playbook (don't forget to run `just roles`), run `just install-all` and you should be good to go!
+
+# 2023-03-26
+
+## (Backward Compatibility Break) PeerTube is no longer wired to Redis automatically
+
+As described in our [Redis](docs/services/redis.md) services docs, running a single instance of Redis to be used by multiple services is not a good practice.
+
+For this reason, we're no longer auto-wiring PeerTube to Redis. If you're running other services (which may require Redis in the future) on the same host, it's recommended that you follow the [Creating a Redis instance dedicated to PeerTube](docs/services/peertube.md#creating-a-redis-instance-dedicated-to-peertube) documentation.
+
+If you're only running PeerTube on a dedicated server (no other services that may need Redis) or you'd like to stick to what you've used until now (a single shared Redis instance), follow the [Using the shared Redis instance for PeerTube](docs/services/peertube.md#using-the-shared-redis-instance-for-peertube) documentation.
+
+
 # 2023-03-25
 
 ## (Backward Compatibility Break) Docker no longer installed by default

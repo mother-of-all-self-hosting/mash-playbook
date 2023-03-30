@@ -1,6 +1,6 @@
 # Firezone
 
-[Firezone](https://www.firezone.dev/) is a self-hosted VPN server (based on [WireGuard](https://en.wikipedia.org/wiki/WireGuard)) with Web UI that this playbook can install, powered by the [moan0s/role-firezone](https://github.com/moan0s/role-firezone) Ansible role.
+[Firezone](https://www.firezone.dev/) is a self-hosted VPN server (based on [WireGuard](https://en.wikipedia.org/wiki/WireGuard)) with Web UI that this playbook can install, powered by the [mother-of-all-self-hosting/ansible-role-firezone](https://github.com/mother-of-all-self-hosting/ansible-role-firezone) Ansible role.
 
 ## Configuration
 

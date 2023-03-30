@@ -93,13 +93,25 @@ devture_systemd_service_manager_services_list_auto: |
     +
     ([{'name': (gitea_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'gitea', 'gitea-server']}] if gitea_enabled else [])
     +
+    ([{'name': (gotosocial_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'gotosocial']}] if gotosocial_enabled else [])
+    +
     ([{'name': (grafana_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'grafana']}] if grafana_enabled else [])
+    +
+    ([{'name': (keycloak_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'keycloak']}] if keycloak_enabled else [])
+    +
+    ([{'name': (miniflux_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'miniflux']}] if miniflux_enabled else [])
+    +
+    ([{'name': (navidrome_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'navidrome']}] if navidrome_enabled else [])
+    +
+    ([{'name': (netbox_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'netbox', 'netbox-server']}] if netbox_enabled else [])
+    +
+    ([{'name': (netbox_identifier + '-worker.service'), 'priority': 2500, 'groups': ['mash', 'netbox', 'netbox-worker']}] if netbox_enabled else [])
+    +
+    ([{'name': (netbox_identifier + '-housekeeping.service'), 'priority': 2500, 'groups': ['mash', 'netbox', 'netbox-housekeeping']}] if netbox_enabled else [])
     +
     ([{'name': (nextcloud_identifier + '-server.service'), 'priority': 2000, 'groups': ['mash', 'nextcloud', 'nextcloud-server']}] if nextcloud_enabled else [])
     +
     ([{'name': (nextcloud_identifier + '-cron.timer'), 'priority': 2500, 'groups': ['mash', 'nextcloud', 'nextcloud-cron']}] if nextcloud_enabled else [])
-    +
-    ([{'name': (miniflux_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'miniflux']}] if miniflux_enabled else [])
     +
     ([{'name': (peertube_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'peertube']}] if peertube_enabled else [])
     +
@@ -114,6 +126,8 @@ devture_systemd_service_manager_services_list_auto: |
     ([{'name': (redmine_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'redmine']}] if redmine_enabled else [])
     +
     ([{'name': (redis_identifier + '.service'), 'priority': 750, 'groups': ['mash', 'redis']}] if redis_enabled else [])
+    +
+    ([{'name': (soft_serve_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'soft-serve']}] if soft_serve_enabled else [])
     +
     ([{'name': (syncthing_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'syncthing']}] if syncthing_enabled else [])
     +
@@ -177,6 +191,18 @@ devture_postgres_managed_databases_auto: |
     }] if devture_woodpecker_ci_server_enabled else [])
     +
     ([{
+      'name': gotosocial_database_name,
+      'username': gotosocial_database_username,
+      'password': gotosocial_database_password,
+    }] if gotosocial_enabled else [])
+    +
+    ([{
+      'name': keycloak_database_name,
+      'username': keycloak_database_username,
+      'password': keycloak_database_password,
+    }] if keycloak_enabled and keycloak_database_type == 'postgres' and keycloak_database_hostname == devture_postgres_identifier else [])
+    +
+    ([{
       'name': miniflux_database_name,
       'username': miniflux_database_username,
       'password': miniflux_database_password,
@@ -187,6 +213,12 @@ devture_postgres_managed_databases_auto: |
       'username': redmine_database_username,
       'password': redmine_database_password,
     }] if redmine_enabled else [])
+    +
+    ([{
+      'name': netbox_database_name,
+      'username': netbox_database_username,
+      'password': netbox_database_password,
+    }] if netbox_enabled else [])
     +
     ([{
       'name': nextcloud_database_name,
@@ -672,6 +704,50 @@ grafana_container_labels_traefik_tls_certResolver: "{{ devture_traefik_certResol
 
 ########################################################################
 #                                                                      #
+# keycloak                                                             #
+#                                                                      #
+########################################################################
+
+keycloak_enabled: false
+
+keycloak_identifier: "{{ mash_playbook_service_identifier_prefix }}keycloak"
+
+keycloak_uid: "{{ mash_playbook_uid }}"
+keycloak_gid: "{{ mash_playbook_gid }}"
+
+keycloak_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}keycloak"
+
+keycloak_systemd_required_systemd_services_list_auto: |
+  {{
+    ([devture_postgres_identifier ~ '.service'] if devture_postgres_enabled and keycloak_database_hostname == devture_postgres_identifier else [])
+  }}
+
+keycloak_container_additional_networks_auto: |
+  {{
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+    +
+    ([devture_postgres_container_network] if devture_postgres_enabled and keycloak_database_hostname == devture_postgres_identifier and keycloak_container_network != devture_postgres_container_network else [])
+  }}
+
+keycloak_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+keycloak_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+keycloak_container_labels_traefik_entrypoints: "{{ devture_traefik_entrypoint_primary }}"
+keycloak_container_labels_traefik_tls_certResolver: "{{ devture_traefik_certResolver_primary }}"
+
+keycloak_database_hostname: "{{ devture_postgres_identifier if devture_postgres_enabled else '' }}"
+keycloak_database_port: "{{ '5432' if devture_postgres_enabled else '' }}"
+keycloak_database_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'db.keycloak', rounds=655555) | to_uuid }}"
+
+########################################################################
+#                                                                      #
+# /keycloak                                                            #
+#                                                                      #
+########################################################################
+
+
+
+########################################################################
+#                                                                      #
 # miniflux                                                             #
 #                                                                      #
 ########################################################################
@@ -709,7 +785,40 @@ miniflux_database_password: "{{ '%s' | format(mash_playbook_generic_secret_key) 
 
 ########################################################################
 #                                                                      #
-# /miniflux                                                             #
+# /miniflux                                                            #
+#                                                                      #
+########################################################################
+
+
+
+########################################################################
+#                                                                      #
+# navidrome                                                            #
+#                                                                      #
+########################################################################
+
+navidrome_enabled: false
+
+navidrome_identifier: "{{ mash_playbook_service_identifier_prefix }}navidrome"
+
+navidrome_uid: "{{ mash_playbook_uid }}"
+navidrome_gid: "{{ mash_playbook_gid }}"
+
+navidrome_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}navidrome"
+
+navidrome_container_additional_networks_auto: |
+  {{
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+  }}
+
+navidrome_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+navidrome_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+navidrome_container_labels_traefik_entrypoints: "{{ devture_traefik_entrypoint_primary }}"
+navidrome_container_labels_traefik_tls_certResolver: "{{ devture_traefik_certResolver_primary }}"
+
+########################################################################
+#                                                                      #
+# /navidrome                                                           #
 #                                                                      #
 ########################################################################
 
@@ -732,8 +841,6 @@ nextcloud_gid: "{{ mash_playbook_gid }}"
 
 nextcloud_systemd_required_services_list_auto: |
   {{
-    (['docker.service'])
-    +
     ([devture_postgres_identifier ~ '.service'] if devture_postgres_enabled and nextcloud_database_hostname == devture_postgres_identifier else [])
   }}
 
@@ -766,6 +873,52 @@ nextcloud_database_password: "{{ '%s' | format(mash_playbook_generic_secret_key)
 
 ########################################################################
 #                                                                      #
+# netbox                                                              #
+#                                                                      #
+########################################################################
+
+netbox_enabled: false
+
+netbox_identifier: "{{ mash_playbook_service_identifier_prefix }}netbox"
+
+netbox_uid: "{{ mash_playbook_uid }}"
+netbox_gid: "{{ mash_playbook_gid }}"
+
+netbox_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}netbox"
+
+netbox_systemd_required_services_list_auto: |
+  {{
+    ([devture_postgres_identifier ~ '.service'] if devture_postgres_enabled and nextcloud_database_hostname == devture_postgres_identifier else [])
+  }}
+
+netbox_container_additional_networks_auto: |
+  {{
+    (
+      ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+      +
+      ([devture_postgres_container_network] if devture_postgres_enabled and netbox_database_hostname == devture_postgres_identifier and netbox_container_network != devture_postgres_container_network else [])
+    ) | unique
+  }}
+
+netbox_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+netbox_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+netbox_container_labels_traefik_entrypoints: "{{ devture_traefik_entrypoint_primary }}"
+netbox_container_labels_traefik_tls_certResolver: "{{ devture_traefik_certResolver_primary }}"
+
+netbox_database_hostname: "{{ devture_postgres_identifier if devture_postgres_enabled else '' }}"
+netbox_database_port: "{{ '5432' if devture_postgres_enabled else '' }}"
+netbox_database_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'db.netbox', rounds=655555) | to_uuid }}"
+
+########################################################################
+#                                                                      #
+# /netbox                                                             #
+#                                                                      #
+########################################################################
+
+
+
+########################################################################
+#                                                                      #
 # peertube                                                             #
 #                                                                      #
 ########################################################################
@@ -779,14 +932,12 @@ peertube_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base
 peertube_uid: "{{ mash_playbook_uid }}"
 peertube_gid: "{{ mash_playbook_gid }}"
 
-peertube_container_additional_networks: |
+peertube_container_additional_networks_auto: |
   {{
     (
       ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
       +
       ([devture_postgres_container_network] if devture_postgres_enabled and peertube_config_database_hostname == devture_postgres_identifier and peertube_container_network != devture_postgres_container_network else [])
-      +
-      ([redis_container_network] if peertube_config_redis_hostname == redis_identifier else [])
     ) | unique
   }}
 
@@ -800,15 +951,9 @@ peertube_config_database_port: "{{ '5432' if devture_postgres_enabled else '' }}
 peertube_config_database_username: peertube
 peertube_config_database_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'db.peertube', rounds=655555) | to_uuid }}"
 
-peertube_config_redis_hostname: "{{ redis_identifier if redis_enabled else '' }}"
-
-peertube_systemd_required_services_list: |
+peertube_systemd_required_services_list_auto: |
   {{
-    (['docker.service'])
-    +
     ([devture_postgres_identifier ~ '.service'] if devture_postgres_enabled and peertube_config_database_hostname == devture_postgres_identifier else [])
-    +
-    ([redis_identifier ~ '.service'] if redis_enabled and peertube_config_redis_hostname == redis_identifier else [])
   }}
 
 ########################################################################
@@ -1028,6 +1173,30 @@ redis_gid: "{{ mash_playbook_gid }}"
 ########################################################################
 #                                                                      #
 # /redis                                                               #
+#                                                                      #
+########################################################################
+
+
+
+
+########################################################################
+#                                                                      #
+# soft-serve                                                           #
+#                                                                      #
+########################################################################
+
+soft_serve_enabled: false
+
+soft_serve_identifier: "{{ mash_playbook_service_identifier_prefix }}soft-serve"
+
+soft_serve_uid: "{{ mash_playbook_uid }}"
+soft_serve_gid: "{{ mash_playbook_gid }}"
+
+soft_serve_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}soft-serve"
+
+########################################################################
+#                                                                      #
+# /soft-serve                                                          #
 #                                                                      #
 ########################################################################
 
@@ -1269,6 +1438,30 @@ hubsite_container_labels_traefik_tls_certResolver: "{{ devture_traefik_certResol
 # Services
 ##########
 
+# Adguard home
+hubsite_service_adguard_home_enabled: "{{ adguard_home_enabled }}"
+hubsite_service_adguard_home_name: Adguard Home
+hubsite_service_adguard_home_url: "https://{{ adguard_home_hostname }}{{ adguard_home_path_prefix }}"
+hubsite_service_adguard_home_logo_location: "{{ role_path }}/assets/shield.png"
+hubsite_service_adguard_home_description: "A network-wide DNS software for blocking ads & tracking"
+hubsite_service_adguard_home_priority: 1000
+
+# Docker Registry Browser
+hubsite_service_docker_registry_browser_enabled: "{{ docker_registry_browser_enabled }}"
+hubsite_service_docker_registry_browser_name: Docker Registry Browser
+hubsite_service_docker_registry_browser_url: "https://{{ docker_registry_browser_hostname }}{{ docker_registry_browser_path_prefix }}"
+hubsite_service_docker_registry_browser_logo_location: "{{ role_path }}/assets/docker.png"
+hubsite_service_docker_registry_browser_description: "Browse docker images"
+hubsite_service_docker_registry_browser_priority: 1000
+
+# Focalboard
+hubsite_service_focalboard_enabled: "{{ focalboard_enabled }}"
+hubsite_service_focalboard_name: Focalboard
+hubsite_service_focalboard_url: "https://{{ focalboard_hostname }}{{ focalboard_path_prefix }}"
+hubsite_service_focalboard_logo_location: "{{ role_path }}/assets/focalboard.png"
+hubsite_service_focalboard_description: "An open source, self-hosted alternative to Trello, Notion, and Asana."
+hubsite_service_focalboard_priority: 1000
+
 # Gitea
 hubsite_service_gitea_enabled: "{{ gitea_enabled }}"
 hubsite_service_gitea_name: Gitea
@@ -1276,6 +1469,22 @@ hubsite_service_gitea_url: "https://{{ gitea_hostname }}{{ gitea_path_prefix }}"
 hubsite_service_gitea_logo_location: "{{ role_path }}/assets/gitea.png"
 hubsite_service_gitea_description: "A git service"
 hubsite_service_gitea_priority: 1000
+
+# GoToSocial
+hubsite_service_gotosocial_enabled: "{{ gotosocial_enabled }}"
+hubsite_service_gotosocial_name: GoToSocial
+hubsite_service_gotosocial_url: "https://{{ gotosocial_hostname }}"
+hubsite_service_gotosocial_logo_location: "{{ role_path }}/assets/gotosocial.png"
+hubsite_service_gotosocial_description: "A fediverse server"
+hubsite_service_gotosocial_priority: 1000
+
+# Grafana
+hubsite_service_grafana_enabled: "{{ grafana_enabled }}"
+hubsite_service_grafana_name: Grafana
+hubsite_service_grafana_url: "https://{{ grafana_hostname }}{{ grafana_path_prefix }}"
+hubsite_service_grafana_logo_location: "{{ role_path }}/assets/grafana.png"
+hubsite_service_grafana_description: "Check how your server is doing"
+hubsite_service_grafana_priority: 1000
 
 # Miniflux
 hubsite_service_miniflux_enabled: "{{ miniflux_enabled }}"
@@ -1301,6 +1510,22 @@ hubsite_service_peertube_logo_location: "{{ role_path }}/assets/peertube.png"
 hubsite_service_peertube_description: "Watch and upload videos"
 hubsite_service_peertube_priority: 1000
 
+# Radicale
+hubsite_service_radicale_enabled: "{{ radicale_enabled }}"
+hubsite_service_radicale_name: Radicale
+hubsite_service_radicale_url: "https://{{ radicale_hostname }}{{ radicale_path_prefix }}"
+hubsite_service_radicale_logo_location: "{{ role_path }}/assets/radicale.png"
+hubsite_service_radicale_description: "Sync contacts and calendars"
+hubsite_service_radicale_priority: 1000
+
+# Syncthing
+hubsite_service_syncthing_enabled: "{{ syncthing_enabled }}"
+hubsite_service_syncthing_name: Syncthing
+hubsite_service_syncthing_url: "https://{{ syncthing_hostname }}{{ syncthing_path_prefix }}"
+hubsite_service_syncthing_logo_location: "{{ role_path }}/assets/syncthing.png"
+hubsite_service_syncthing_description: "Sync your files"
+hubsite_service_syncthing_priority: 1000
+
 # Uptime Kuma
 hubsite_service_uptime_kuma_enabled: "{{ uptime_kuma_enabled }}"
 hubsite_service_uptime_kuma_name: Uptime Kuma
@@ -1318,9 +1543,25 @@ hubsite_service_vaultwarden_logo_location: "{{ role_path }}/assets/vaultwarden.p
 hubsite_service_vaultwarden_description: "Securely access your passwords"
 hubsite_service_vaultwarden_priority: 1000
 
+# Woodpecker CI
+hubsite_service_woodpecker_ci_enabled: "{{ devture_woodpecker_ci_server_enabled }}"
+hubsite_service_woodpecker_ci_name: Woodpecker CI
+hubsite_service_woodpecker_ci_url: "https://{{ devture_woodpecker_ci_server_hostname }}"
+hubsite_service_woodpecker_ci_logo_location: "{{ role_path }}/assets/woodpecker.png"
+hubsite_service_woodpecker_ci_description: "Check you CI"
+hubsite_service_woodpecker_ci_priority: 1000
+
 hubsite_service_list_auto: |
   {{
+    ([{'name': hubsite_service_adguard_home_name, 'url': hubsite_service_adguard_home_url, 'logo_location': hubsite_service_adguard_home_logo_location, 'description': hubsite_service_adguard_home_description, 'priority': hubsite_service_adguard_home_priority}] if hubsite_service_adguard_home_enabled else [])
+    +
+    ([{'name': hubsite_service_focalboard_name, 'url': hubsite_service_focalboard_url, 'logo_location': hubsite_service_focalboard_logo_location, 'description': hubsite_service_focalboard_description, 'priority': hubsite_service_focalboard_priority}] if hubsite_service_focalboard_enabled else [])
+    +
     ([{'name': hubsite_service_gitea_name, 'url': hubsite_service_gitea_url, 'logo_location': hubsite_service_gitea_logo_location, 'description': hubsite_service_gitea_description, 'priority': hubsite_service_gitea_priority}] if hubsite_service_gitea_enabled else [])
+    +
+    ([{'name': hubsite_service_gotosocial_name, 'url': hubsite_service_gotosocial_url, 'logo_location': hubsite_service_gotosocial_logo_location, 'description': hubsite_service_gotosocial_description, 'priority': hubsite_service_gotosocial_priority}] if hubsite_service_gotosocial_enabled else [])
+    +
+    ([{'name': hubsite_service_grafana_name, 'url': hubsite_service_grafana_url, 'logo_location': hubsite_service_grafana_logo_location, 'description': hubsite_service_grafana_description, 'priority': hubsite_service_grafana_priority}] if hubsite_service_grafana_enabled else [])
     +
     ([{'name': hubsite_service_miniflux_name, 'url': hubsite_service_miniflux_url, 'logo_location': hubsite_service_miniflux_logo_location, 'description': hubsite_service_miniflux_description, 'priority': hubsite_service_miniflux_priority}] if hubsite_service_miniflux_enabled else [])
     +
@@ -1328,9 +1569,15 @@ hubsite_service_list_auto: |
     +
     ([{'name': hubsite_service_peertube_name, 'url': hubsite_service_peertube_url, 'logo_location': hubsite_service_peertube_logo_location, 'description': hubsite_service_peertube_description, 'priority': hubsite_service_peertube_priority}] if hubsite_service_peertube_enabled else [])
     +
+    ([{'name': hubsite_service_radicale_name, 'url': hubsite_service_radicale_url, 'logo_location': hubsite_service_radicale_logo_location, 'description': hubsite_service_radicale_description, 'priority': hubsite_service_radicale_priority}] if hubsite_service_radicale_enabled else [])
+    +
     ([{'name': hubsite_service_uptime_kuma_name, 'url': hubsite_service_uptime_kuma_url, 'logo_location': hubsite_service_uptime_kuma_logo_location, 'description': hubsite_service_uptime_kuma_description, 'priority': hubsite_service_uptime_kuma_priority}] if hubsite_service_uptime_kuma_enabled else [])
     +
+    ([{'name': hubsite_service_syncthing_name, 'url': hubsite_service_syncthing_url, 'logo_location': hubsite_service_syncthing_logo_location, 'description': hubsite_service_syncthing_description, 'priority': hubsite_service_syncthing_priority}] if hubsite_service_syncthing_enabled else [])
+    +
     ([{'name': hubsite_service_vaultwarden_name, 'url': hubsite_service_vaultwarden_url, 'logo_location': hubsite_service_vaultwarden_logo_location, 'description': hubsite_service_vaultwarden_description, 'priority': hubsite_service_vaultwarden_priority}] if hubsite_service_vaultwarden_enabled else [])
+    +
+    ([{'name': hubsite_service_woodpecker_ci_name, 'url': hubsite_service_woodpecker_ci_url, 'logo_location': hubsite_service_woodpecker_ci_logo_location, 'description': hubsite_service_woodpecker_ci_description, 'priority': hubsite_service_woodpecker_ci_priority}] if hubsite_service_woodpecker_ci_enabled else [])
   }}
 
 ########################################################################
@@ -1357,7 +1604,6 @@ firezone_generic_secret: "{{ mash_playbook_generic_secret_key }}"
 
 firezone_database_host: "{{ devture_postgres_identifier if devture_postgres_enabled else '' }}"
 firezone_database_port: "{{ '5432' if devture_postgres_enabled else '' }}"
-firezone_database_name: "{{ firezone_identifier }}"
 firezone_database_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'fz.db.user', rounds=655555) | to_uuid }}"
 firezone_database_user: "{{ firezone_identifier }}"
 
@@ -1383,5 +1629,51 @@ firezone_container_labels_traefik_tls_certResolver: "{{ devture_traefik_certReso
 ########################################################################
 #                                                                      #
 # /firezone                                                             #
+#                                                                      #
+########################################################################
+
+
+########################################################################
+#                                                                      #
+# gotsocial                                                            #
+#                                                                      #
+########################################################################
+
+gotosocial_enabled: false
+
+gotosocial_identifier: "{{ mash_playbook_service_identifier_prefix }}gotosocial"
+
+gotosocial_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}gotosocial"
+
+gotosocial_uid: "{{ mash_playbook_uid }}"
+gotosocial_gid: "{{ mash_playbook_gid }}"
+
+gotosocial_database_host: "{{ devture_postgres_identifier if devture_postgres_enabled else '' }}"
+gotosocial_database_port: "{{ '5432' if devture_postgres_enabled else '' }}"
+gotosocial_database_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'db.gotosocial', rounds=655555) | to_uuid }}"
+gotosocial_database_username: "{{ gotosocial_identifier }}"
+
+gotosocial_systemd_required_services_list: |
+  {{
+    (['docker.service'])
+    +
+    ([devture_postgres_identifier ~ '.service'] if devture_postgres_enabled and gotosocial_database_host == devture_postgres_identifier else [])
+  }}
+
+gotosocial_container_additional_networks: |
+  {{
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+    +
+    ([devture_postgres_container_network] if devture_postgres_enabled and gotosocial_database_host == devture_postgres_identifier and gotosocial_container_network != devture_postgres_container_network else [])
+  }}
+
+gotosocial_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+gotosocial_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+gotosocial_container_labels_traefik_entrypoints: "{{ devture_traefik_entrypoint_primary }}"
+gotosocial_container_labels_traefik_tls_certResolver: "{{ devture_traefik_certResolver_primary }}"
+
+########################################################################
+#                                                                      #
+# /gotosocial                                                          #
 #                                                                      #
 ########################################################################
