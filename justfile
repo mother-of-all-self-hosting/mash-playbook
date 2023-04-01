@@ -35,7 +35,7 @@ setup-all *extra_args: (run-tags "setup-all,start" extra_args)
 
 # Runs the playbook with the given list of arguments
 run +extra_args:
-    time ansible-playbook -i inventory/hosts setup.yml {{ extra_args }}
+    ansible-playbook -i inventory/hosts setup.yml {{ extra_args }}
 
 # Runs the playbook with the given list of comma-separated tags and optional arguments
 run-tags tags *extra_args:
