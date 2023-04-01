@@ -575,6 +575,54 @@ docker_registry_purger_gid: "{{ mash_playbook_gid }}"
 
 ########################################################################
 #                                                                      #
+# firezone                                                             #
+#                                                                      #
+########################################################################
+
+firezone_enabled: false
+
+firezone_identifier: "{{ mash_playbook_service_identifier_prefix }}firezone"
+
+firezone_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}firezone"
+
+firezone_uid: "{{ mash_playbook_uid }}"
+firezone_gid: "{{ mash_playbook_gid }}"
+firezone_generic_secret: "{{ mash_playbook_generic_secret_key }}"
+
+firezone_database_host: "{{ devture_postgres_identifier if devture_postgres_enabled else '' }}"
+firezone_database_port: "{{ '5432' if devture_postgres_enabled else '' }}"
+firezone_database_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'fz.db.user', rounds=655555) | to_uuid }}"
+firezone_database_user: "{{ firezone_identifier }}"
+
+firezone_systemd_required_services_list: |
+  {{
+    (['docker.service'])
+    +
+    ([devture_postgres_identifier ~ '.service'] if devture_postgres_enabled and firezone_database_host == devture_postgres_identifier else [])
+  }}
+
+firezone_container_additional_networks: |
+  {{
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+    +
+    ([devture_postgres_container_network] if devture_postgres_enabled and firezone_database_host == devture_postgres_identifier and firezone_container_network != devture_postgres_container_network else [])
+  }}
+
+firezone_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+firezone_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+firezone_container_labels_traefik_entrypoints: "{{ devture_traefik_entrypoint_primary }}"
+firezone_container_labels_traefik_tls_certResolver: "{{ devture_traefik_certResolver_primary }}"
+
+########################################################################
+#                                                                      #
+# /firezone                                                            #
+#                                                                      #
+########################################################################
+
+
+
+########################################################################
+#                                                                      #
 # focalboard                                                           #
 #                                                                      #
 ########################################################################
@@ -669,6 +717,53 @@ gitea_config_database_password: "{{ '%s' | format(mash_playbook_generic_secret_k
 
 ########################################################################
 #                                                                      #
+# gotosocial                                                           #
+#                                                                      #
+########################################################################
+
+gotosocial_enabled: false
+
+gotosocial_identifier: "{{ mash_playbook_service_identifier_prefix }}gotosocial"
+
+gotosocial_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}gotosocial"
+
+gotosocial_uid: "{{ mash_playbook_uid }}"
+gotosocial_gid: "{{ mash_playbook_gid }}"
+
+gotosocial_database_host: "{{ devture_postgres_identifier if devture_postgres_enabled else '' }}"
+gotosocial_database_port: "{{ '5432' if devture_postgres_enabled else '' }}"
+gotosocial_database_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'db.gotosocial', rounds=655555) | to_uuid }}"
+gotosocial_database_username: "{{ gotosocial_identifier }}"
+
+gotosocial_systemd_required_services_list: |
+  {{
+    (['docker.service'])
+    +
+    ([devture_postgres_identifier ~ '.service'] if devture_postgres_enabled and gotosocial_database_host == devture_postgres_identifier else [])
+  }}
+
+gotosocial_container_additional_networks: |
+  {{
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+    +
+    ([devture_postgres_container_network] if devture_postgres_enabled and gotosocial_database_host == devture_postgres_identifier and gotosocial_container_network != devture_postgres_container_network else [])
+  }}
+
+gotosocial_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+gotosocial_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+gotosocial_container_labels_traefik_entrypoints: "{{ devture_traefik_entrypoint_primary }}"
+gotosocial_container_labels_traefik_tls_certResolver: "{{ devture_traefik_certResolver_primary }}"
+
+########################################################################
+#                                                                      #
+# /gotosocial                                                          #
+#                                                                      #
+########################################################################
+
+
+
+########################################################################
+#                                                                      #
 # grafana                                                              #
 #                                                                      #
 ########################################################################
@@ -699,6 +794,199 @@ grafana_container_labels_traefik_tls_certResolver: "{{ devture_traefik_certResol
 ########################################################################
 #                                                                      #
 # /grafana                                                             #
+#                                                                      #
+########################################################################
+
+
+
+########################################################################
+#                                                                      #
+# hubsite                                                              #
+#                                                                      #
+########################################################################
+
+hubsite_enabled: false
+
+hubsite_identifier: "{{ mash_playbook_service_identifier_prefix }}hubsite"
+
+hubsite_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}hubsite"
+
+hubsite_uid: "{{ mash_playbook_uid }}"
+hubsite_gid: "{{ mash_playbook_gid }}"
+
+hubsite_systemd_required_services_list: |
+  {{
+    (['docker.service'])
+  }}
+
+hubsite_container_additional_networks: |
+  {{
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+  }}
+
+hubsite_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+hubsite_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+hubsite_container_labels_traefik_entrypoints: "{{ devture_traefik_entrypoint_primary }}"
+hubsite_container_labels_traefik_tls_certResolver: "{{ devture_traefik_certResolver_primary }}"
+
+# Services
+##########
+
+# Adguard home
+hubsite_service_adguard_home_enabled: "{{ adguard_home_enabled }}"
+hubsite_service_adguard_home_name: Adguard Home
+hubsite_service_adguard_home_url: "https://{{ adguard_home_hostname }}{{ adguard_home_path_prefix }}"
+hubsite_service_adguard_home_logo_location: "{{ role_path }}/assets/shield.png"
+hubsite_service_adguard_home_description: "A network-wide DNS software for blocking ads & tracking"
+hubsite_service_adguard_home_priority: 1000
+
+# Docker Registry Browser
+hubsite_service_docker_registry_browser_enabled: "{{ docker_registry_browser_enabled }}"
+hubsite_service_docker_registry_browser_name: Docker Registry Browser
+hubsite_service_docker_registry_browser_url: "https://{{ docker_registry_browser_hostname }}{{ docker_registry_browser_path_prefix }}"
+hubsite_service_docker_registry_browser_logo_location: "{{ role_path }}/assets/docker.png"
+hubsite_service_docker_registry_browser_description: "Browse docker images"
+hubsite_service_docker_registry_browser_priority: 1000
+
+# Focalboard
+hubsite_service_focalboard_enabled: "{{ focalboard_enabled }}"
+hubsite_service_focalboard_name: Focalboard
+hubsite_service_focalboard_url: "https://{{ focalboard_hostname }}{{ focalboard_path_prefix }}"
+hubsite_service_focalboard_logo_location: "{{ role_path }}/assets/focalboard.png"
+hubsite_service_focalboard_description: "An open source, self-hosted alternative to Trello, Notion, and Asana."
+hubsite_service_focalboard_priority: 1000
+
+# Gitea
+hubsite_service_gitea_enabled: "{{ gitea_enabled }}"
+hubsite_service_gitea_name: Gitea
+hubsite_service_gitea_url: "https://{{ gitea_hostname }}{{ gitea_path_prefix }}"
+hubsite_service_gitea_logo_location: "{{ role_path }}/assets/gitea.png"
+hubsite_service_gitea_description: "A git service"
+hubsite_service_gitea_priority: 1000
+
+# GoToSocial
+hubsite_service_gotosocial_enabled: "{{ gotosocial_enabled }}"
+hubsite_service_gotosocial_name: GoToSocial
+hubsite_service_gotosocial_url: "https://{{ gotosocial_hostname }}"
+hubsite_service_gotosocial_logo_location: "{{ role_path }}/assets/gotosocial.png"
+hubsite_service_gotosocial_description: "A fediverse server"
+hubsite_service_gotosocial_priority: 1000
+
+# Grafana
+hubsite_service_grafana_enabled: "{{ grafana_enabled }}"
+hubsite_service_grafana_name: Grafana
+hubsite_service_grafana_url: "https://{{ grafana_hostname }}{{ grafana_path_prefix }}"
+hubsite_service_grafana_logo_location: "{{ role_path }}/assets/grafana.png"
+hubsite_service_grafana_description: "Check how your server is doing"
+hubsite_service_grafana_priority: 1000
+
+# Miniflux
+hubsite_service_miniflux_enabled: "{{ miniflux_enabled }}"
+hubsite_service_miniflux_name: Miniflux
+hubsite_service_miniflux_url: "https://{{ miniflux_hostname }}{{ miniflux_path_prefix }}"
+hubsite_service_miniflux_logo_location: "{{ role_path }}/assets/miniflux.png"
+hubsite_service_miniflux_description: "An opinionated feed reader"
+hubsite_service_miniflux_priority: 1000
+
+# Nextcloud
+hubsite_service_nextcloud_enabled: "{{ nextcloud_enabled }}"
+hubsite_service_nextcloud_name: Nextcloud
+hubsite_service_nextcloud_url: "https://{{ nextcloud_hostname }}{{ nextcloud_path_prefix }}"
+hubsite_service_nextcloud_logo_location: "{{ role_path }}/assets/nextcloud.png"
+hubsite_service_nextcloud_description: "Sync your files & much more"
+hubsite_service_nextcloud_priority: 1000
+
+# Owncast
+hubsite_service_owncast_enabled: "{{ owncast_enabled }}"
+hubsite_service_owncast_name: owncast
+hubsite_service_owncast_url: "https://{{ owncast_hostname }}{{ owncast_path_prefix }}"
+hubsite_service_owncast_logo_location: "{{ role_path }}/assets/owncast.png"
+hubsite_service_owncast_description: "Livestream & Chat"
+hubsite_service_owncast_priority: 1000
+
+# Peertube
+hubsite_service_peertube_enabled: "{{ peertube_enabled }}"
+hubsite_service_peertube_name: Peertube
+hubsite_service_peertube_url: "https://{{ peertube_hostname }}{{ peertube_path_prefix }}"
+hubsite_service_peertube_logo_location: "{{ role_path }}/assets/peertube.png"
+hubsite_service_peertube_description: "Watch and upload videos"
+hubsite_service_peertube_priority: 1000
+
+# Radicale
+hubsite_service_radicale_enabled: "{{ radicale_enabled }}"
+hubsite_service_radicale_name: Radicale
+hubsite_service_radicale_url: "https://{{ radicale_hostname }}{{ radicale_path_prefix }}"
+hubsite_service_radicale_logo_location: "{{ role_path }}/assets/radicale.png"
+hubsite_service_radicale_description: "Sync contacts and calendars"
+hubsite_service_radicale_priority: 1000
+
+# Syncthing
+hubsite_service_syncthing_enabled: "{{ syncthing_enabled }}"
+hubsite_service_syncthing_name: Syncthing
+hubsite_service_syncthing_url: "https://{{ syncthing_hostname }}{{ syncthing_path_prefix }}"
+hubsite_service_syncthing_logo_location: "{{ role_path }}/assets/syncthing.png"
+hubsite_service_syncthing_description: "Sync your files"
+hubsite_service_syncthing_priority: 1000
+
+# Uptime Kuma
+hubsite_service_uptime_kuma_enabled: "{{ uptime_kuma_enabled }}"
+hubsite_service_uptime_kuma_name: Uptime Kuma
+hubsite_service_uptime_kuma_url: "https://{{ uptime_kuma_hostname }}{{ uptime_kuma_path_prefix }}"
+hubsite_service_uptime_kuma_logo_location: "{{ role_path }}/assets/uptime-kuma.png"
+hubsite_service_uptime_kuma_description: "Check the status of the services"
+hubsite_service_uptime_kuma_priority: 1000
+
+# Vaultwarden
+# The vaultwarden service link is deactivated by default for security reasons, see: https://github.com/dani-garcia/vaultwarden/wiki/Hardening-Guide#hiding-under-a-subdir
+hubsite_service_vaultwarden_enabled: false
+hubsite_service_vaultwarden_name: Vaultwarden
+hubsite_service_vaultwarden_url: "https://{{ vaultwarden_hostname }}{{ vaultwarden_path_prefix }}"
+hubsite_service_vaultwarden_logo_location: "{{ role_path }}/assets/vaultwarden.png"
+hubsite_service_vaultwarden_description: "Securely access your passwords"
+hubsite_service_vaultwarden_priority: 1000
+
+# Woodpecker CI
+hubsite_service_woodpecker_ci_enabled: "{{ devture_woodpecker_ci_server_enabled }}"
+hubsite_service_woodpecker_ci_name: Woodpecker CI
+hubsite_service_woodpecker_ci_url: "https://{{ devture_woodpecker_ci_server_hostname }}"
+hubsite_service_woodpecker_ci_logo_location: "{{ role_path }}/assets/woodpecker.png"
+hubsite_service_woodpecker_ci_description: "Check you CI"
+hubsite_service_woodpecker_ci_priority: 1000
+
+hubsite_service_list_auto: |
+  {{
+    ([{'name': hubsite_service_adguard_home_name, 'url': hubsite_service_adguard_home_url, 'logo_location': hubsite_service_adguard_home_logo_location, 'description': hubsite_service_adguard_home_description, 'priority': hubsite_service_adguard_home_priority}] if hubsite_service_adguard_home_enabled else [])
+    +
+    ([{'name': hubsite_service_focalboard_name, 'url': hubsite_service_focalboard_url, 'logo_location': hubsite_service_focalboard_logo_location, 'description': hubsite_service_focalboard_description, 'priority': hubsite_service_focalboard_priority}] if hubsite_service_focalboard_enabled else [])
+    +
+    ([{'name': hubsite_service_gitea_name, 'url': hubsite_service_gitea_url, 'logo_location': hubsite_service_gitea_logo_location, 'description': hubsite_service_gitea_description, 'priority': hubsite_service_gitea_priority}] if hubsite_service_gitea_enabled else [])
+    +
+    ([{'name': hubsite_service_gotosocial_name, 'url': hubsite_service_gotosocial_url, 'logo_location': hubsite_service_gotosocial_logo_location, 'description': hubsite_service_gotosocial_description, 'priority': hubsite_service_gotosocial_priority}] if hubsite_service_gotosocial_enabled else [])
+    +
+    ([{'name': hubsite_service_grafana_name, 'url': hubsite_service_grafana_url, 'logo_location': hubsite_service_grafana_logo_location, 'description': hubsite_service_grafana_description, 'priority': hubsite_service_grafana_priority}] if hubsite_service_grafana_enabled else [])
+    +
+    ([{'name': hubsite_service_miniflux_name, 'url': hubsite_service_miniflux_url, 'logo_location': hubsite_service_miniflux_logo_location, 'description': hubsite_service_miniflux_description, 'priority': hubsite_service_miniflux_priority}] if hubsite_service_miniflux_enabled else [])
+    +
+    ([{'name': hubsite_service_nextcloud_name, 'url': hubsite_service_nextcloud_url, 'logo_location': hubsite_service_nextcloud_logo_location, 'description': hubsite_service_nextcloud_description, 'priority': hubsite_service_nextcloud_priority}] if hubsite_service_nextcloud_enabled else [])
+    +
+    ([{'name': hubsite_service_owncast_name, 'url': hubsite_service_owncast_url, 'logo_location': hubsite_service_owncast_logo_location, 'description': hubsite_service_owncast_description, 'priority': hubsite_service_owncast_priority}] if hubsite_service_owncast_enabled else [])
+    +
+    ([{'name': hubsite_service_peertube_name, 'url': hubsite_service_peertube_url, 'logo_location': hubsite_service_peertube_logo_location, 'description': hubsite_service_peertube_description, 'priority': hubsite_service_peertube_priority}] if hubsite_service_peertube_enabled else [])
+    +
+    ([{'name': hubsite_service_radicale_name, 'url': hubsite_service_radicale_url, 'logo_location': hubsite_service_radicale_logo_location, 'description': hubsite_service_radicale_description, 'priority': hubsite_service_radicale_priority}] if hubsite_service_radicale_enabled else [])
+    +
+    ([{'name': hubsite_service_uptime_kuma_name, 'url': hubsite_service_uptime_kuma_url, 'logo_location': hubsite_service_uptime_kuma_logo_location, 'description': hubsite_service_uptime_kuma_description, 'priority': hubsite_service_uptime_kuma_priority}] if hubsite_service_uptime_kuma_enabled else [])
+    +
+    ([{'name': hubsite_service_syncthing_name, 'url': hubsite_service_syncthing_url, 'logo_location': hubsite_service_syncthing_logo_location, 'description': hubsite_service_syncthing_description, 'priority': hubsite_service_syncthing_priority}] if hubsite_service_syncthing_enabled else [])
+    +
+    ([{'name': hubsite_service_vaultwarden_name, 'url': hubsite_service_vaultwarden_url, 'logo_location': hubsite_service_vaultwarden_logo_location, 'description': hubsite_service_vaultwarden_description, 'priority': hubsite_service_vaultwarden_priority}] if hubsite_service_vaultwarden_enabled else [])
+    +
+    ([{'name': hubsite_service_woodpecker_ci_name, 'url': hubsite_service_woodpecker_ci_url, 'logo_location': hubsite_service_woodpecker_ci_logo_location, 'description': hubsite_service_woodpecker_ci_description, 'priority': hubsite_service_woodpecker_ci_priority}] if hubsite_service_woodpecker_ci_enabled else [])
+  }}
+
+########################################################################
+#                                                                      #
+# /hubsite                                                             #
 #                                                                      #
 ########################################################################
 
@@ -875,7 +1163,7 @@ nextcloud_database_password: "{{ '%s' | format(mash_playbook_generic_secret_key)
 
 ########################################################################
 #                                                                      #
-# netbox                                                              #
+# netbox                                                               #
 #                                                                      #
 ########################################################################
 
@@ -913,7 +1201,40 @@ netbox_database_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | 
 
 ########################################################################
 #                                                                      #
-# /netbox                                                             #
+# /netbox                                                              #
+#                                                                      #
+########################################################################
+
+
+
+########################################################################
+#                                                                      #
+# owncast                                                              #
+#                                                                      #
+########################################################################
+
+owncast_enabled: false
+
+owncast_identifier: "{{ mash_playbook_service_identifier_prefix }}owncast"
+
+owncast_uid: "{{ mash_playbook_uid }}"
+owncast_gid: "{{ mash_playbook_gid }}"
+
+owncast_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}owncast"
+
+owncast_container_additional_networks: |
+  {{
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+  }}
+
+owncast_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+owncast_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+owncast_container_labels_traefik_entrypoints: "{{ devture_traefik_entrypoint_primary }}"
+owncast_container_labels_traefik_tls_certResolver: "{{ devture_traefik_certResolver_primary }}"
+
+########################################################################
+#                                                                      #
+# /owncast                                                             #
 #                                                                      #
 ########################################################################
 
@@ -1107,6 +1428,7 @@ radicale_container_labels_traefik_tls_certResolver: "{{ devture_traefik_certReso
 ########################################################################
 
 
+
 ########################################################################
 #                                                                      #
 # redmine                                                             #
@@ -1155,6 +1477,7 @@ redmine_database_password: "{{ '%s' | format(mash_playbook_generic_secret_key) |
 # /redmine                                                             #
 #                                                                      #
 ########################################################################
+
 
 
 ########################################################################
@@ -1404,322 +1727,6 @@ devture_woodpecker_ci_agent_config_agent_secret: "{{ devture_woodpecker_ci_serve
 ########################################################################
 #                                                                      #
 # /woodpecker-ci-agent                                                 #
-#                                                                      #
-########################################################################
-
-########################################################################
-#                                                                      #
-# hubsite                                                              #
-#                                                                      #
-########################################################################
-
-hubsite_enabled: false
-
-hubsite_identifier: "{{ mash_playbook_service_identifier_prefix }}hubsite"
-
-hubsite_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}hubsite"
-
-hubsite_uid: "{{ mash_playbook_uid }}"
-hubsite_gid: "{{ mash_playbook_gid }}"
-
-hubsite_systemd_required_services_list: |
-  {{
-    (['docker.service'])
-  }}
-
-hubsite_container_additional_networks: |
-  {{
-    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
-  }}
-
-hubsite_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
-hubsite_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
-hubsite_container_labels_traefik_entrypoints: "{{ devture_traefik_entrypoint_primary }}"
-hubsite_container_labels_traefik_tls_certResolver: "{{ devture_traefik_certResolver_primary }}"
-
-# Services
-##########
-
-# Adguard home
-hubsite_service_adguard_home_enabled: "{{ adguard_home_enabled }}"
-hubsite_service_adguard_home_name: Adguard Home
-hubsite_service_adguard_home_url: "https://{{ adguard_home_hostname }}{{ adguard_home_path_prefix }}"
-hubsite_service_adguard_home_logo_location: "{{ role_path }}/assets/shield.png"
-hubsite_service_adguard_home_description: "A network-wide DNS software for blocking ads & tracking"
-hubsite_service_adguard_home_priority: 1000
-
-# Docker Registry Browser
-hubsite_service_docker_registry_browser_enabled: "{{ docker_registry_browser_enabled }}"
-hubsite_service_docker_registry_browser_name: Docker Registry Browser
-hubsite_service_docker_registry_browser_url: "https://{{ docker_registry_browser_hostname }}{{ docker_registry_browser_path_prefix }}"
-hubsite_service_docker_registry_browser_logo_location: "{{ role_path }}/assets/docker.png"
-hubsite_service_docker_registry_browser_description: "Browse docker images"
-hubsite_service_docker_registry_browser_priority: 1000
-
-# Focalboard
-hubsite_service_focalboard_enabled: "{{ focalboard_enabled }}"
-hubsite_service_focalboard_name: Focalboard
-hubsite_service_focalboard_url: "https://{{ focalboard_hostname }}{{ focalboard_path_prefix }}"
-hubsite_service_focalboard_logo_location: "{{ role_path }}/assets/focalboard.png"
-hubsite_service_focalboard_description: "An open source, self-hosted alternative to Trello, Notion, and Asana."
-hubsite_service_focalboard_priority: 1000
-
-# Gitea
-hubsite_service_gitea_enabled: "{{ gitea_enabled }}"
-hubsite_service_gitea_name: Gitea
-hubsite_service_gitea_url: "https://{{ gitea_hostname }}{{ gitea_path_prefix }}"
-hubsite_service_gitea_logo_location: "{{ role_path }}/assets/gitea.png"
-hubsite_service_gitea_description: "A git service"
-hubsite_service_gitea_priority: 1000
-
-# GoToSocial
-hubsite_service_gotosocial_enabled: "{{ gotosocial_enabled }}"
-hubsite_service_gotosocial_name: GoToSocial
-hubsite_service_gotosocial_url: "https://{{ gotosocial_hostname }}"
-hubsite_service_gotosocial_logo_location: "{{ role_path }}/assets/gotosocial.png"
-hubsite_service_gotosocial_description: "A fediverse server"
-hubsite_service_gotosocial_priority: 1000
-
-# Grafana
-hubsite_service_grafana_enabled: "{{ grafana_enabled }}"
-hubsite_service_grafana_name: Grafana
-hubsite_service_grafana_url: "https://{{ grafana_hostname }}{{ grafana_path_prefix }}"
-hubsite_service_grafana_logo_location: "{{ role_path }}/assets/grafana.png"
-hubsite_service_grafana_description: "Check how your server is doing"
-hubsite_service_grafana_priority: 1000
-
-# Miniflux
-hubsite_service_miniflux_enabled: "{{ miniflux_enabled }}"
-hubsite_service_miniflux_name: Miniflux
-hubsite_service_miniflux_url: "https://{{ miniflux_hostname }}{{ miniflux_path_prefix }}"
-hubsite_service_miniflux_logo_location: "{{ role_path }}/assets/miniflux.png"
-hubsite_service_miniflux_description: "An opinionated feed reader"
-hubsite_service_miniflux_priority: 1000
-
-# Nextcloud
-hubsite_service_nextcloud_enabled: "{{ nextcloud_enabled }}"
-hubsite_service_nextcloud_name: Nextcloud
-hubsite_service_nextcloud_url: "https://{{ nextcloud_hostname }}{{ nextcloud_path_prefix }}"
-hubsite_service_nextcloud_logo_location: "{{ role_path }}/assets/nextcloud.png"
-hubsite_service_nextcloud_description: "Sync your files & much more"
-hubsite_service_nextcloud_priority: 1000
-
-# Owncast
-hubsite_service_owncast_enabled: "{{ owncast_enabled }}"
-hubsite_service_owncast_name: owncast
-hubsite_service_owncast_url: "https://{{ owncast_hostname }}{{ owncast_path_prefix }}"
-hubsite_service_owncast_logo_location: "{{ role_path }}/assets/owncast.png"
-hubsite_service_owncast_description: "Livestream & Chat"
-hubsite_service_owncast_priority: 1000
-
-# Peertube
-hubsite_service_peertube_enabled: "{{ peertube_enabled }}"
-hubsite_service_peertube_name: Peertube
-hubsite_service_peertube_url: "https://{{ peertube_hostname }}{{ peertube_path_prefix }}"
-hubsite_service_peertube_logo_location: "{{ role_path }}/assets/peertube.png"
-hubsite_service_peertube_description: "Watch and upload videos"
-hubsite_service_peertube_priority: 1000
-
-# Radicale
-hubsite_service_radicale_enabled: "{{ radicale_enabled }}"
-hubsite_service_radicale_name: Radicale
-hubsite_service_radicale_url: "https://{{ radicale_hostname }}{{ radicale_path_prefix }}"
-hubsite_service_radicale_logo_location: "{{ role_path }}/assets/radicale.png"
-hubsite_service_radicale_description: "Sync contacts and calendars"
-hubsite_service_radicale_priority: 1000
-
-# Syncthing
-hubsite_service_syncthing_enabled: "{{ syncthing_enabled }}"
-hubsite_service_syncthing_name: Syncthing
-hubsite_service_syncthing_url: "https://{{ syncthing_hostname }}{{ syncthing_path_prefix }}"
-hubsite_service_syncthing_logo_location: "{{ role_path }}/assets/syncthing.png"
-hubsite_service_syncthing_description: "Sync your files"
-hubsite_service_syncthing_priority: 1000
-
-# Uptime Kuma
-hubsite_service_uptime_kuma_enabled: "{{ uptime_kuma_enabled }}"
-hubsite_service_uptime_kuma_name: Uptime Kuma
-hubsite_service_uptime_kuma_url: "https://{{ uptime_kuma_hostname }}{{ uptime_kuma_path_prefix }}"
-hubsite_service_uptime_kuma_logo_location: "{{ role_path }}/assets/uptime-kuma.png"
-hubsite_service_uptime_kuma_description: "Check the status of the services"
-hubsite_service_uptime_kuma_priority: 1000
-
-# Vaultwarden
-# The vaultwarden service link is deactivated by default for security reasons, see: https://github.com/dani-garcia/vaultwarden/wiki/Hardening-Guide#hiding-under-a-subdir
-hubsite_service_vaultwarden_enabled: false
-hubsite_service_vaultwarden_name: Vaultwarden
-hubsite_service_vaultwarden_url: "https://{{ vaultwarden_hostname }}{{ vaultwarden_path_prefix }}"
-hubsite_service_vaultwarden_logo_location: "{{ role_path }}/assets/vaultwarden.png"
-hubsite_service_vaultwarden_description: "Securely access your passwords"
-hubsite_service_vaultwarden_priority: 1000
-
-# Woodpecker CI
-hubsite_service_woodpecker_ci_enabled: "{{ devture_woodpecker_ci_server_enabled }}"
-hubsite_service_woodpecker_ci_name: Woodpecker CI
-hubsite_service_woodpecker_ci_url: "https://{{ devture_woodpecker_ci_server_hostname }}"
-hubsite_service_woodpecker_ci_logo_location: "{{ role_path }}/assets/woodpecker.png"
-hubsite_service_woodpecker_ci_description: "Check you CI"
-hubsite_service_woodpecker_ci_priority: 1000
-
-hubsite_service_list_auto: |
-  {{
-    ([{'name': hubsite_service_adguard_home_name, 'url': hubsite_service_adguard_home_url, 'logo_location': hubsite_service_adguard_home_logo_location, 'description': hubsite_service_adguard_home_description, 'priority': hubsite_service_adguard_home_priority}] if hubsite_service_adguard_home_enabled else [])
-    +
-    ([{'name': hubsite_service_focalboard_name, 'url': hubsite_service_focalboard_url, 'logo_location': hubsite_service_focalboard_logo_location, 'description': hubsite_service_focalboard_description, 'priority': hubsite_service_focalboard_priority}] if hubsite_service_focalboard_enabled else [])
-    +
-    ([{'name': hubsite_service_gitea_name, 'url': hubsite_service_gitea_url, 'logo_location': hubsite_service_gitea_logo_location, 'description': hubsite_service_gitea_description, 'priority': hubsite_service_gitea_priority}] if hubsite_service_gitea_enabled else [])
-    +
-    ([{'name': hubsite_service_gotosocial_name, 'url': hubsite_service_gotosocial_url, 'logo_location': hubsite_service_gotosocial_logo_location, 'description': hubsite_service_gotosocial_description, 'priority': hubsite_service_gotosocial_priority}] if hubsite_service_gotosocial_enabled else [])
-    +
-    ([{'name': hubsite_service_grafana_name, 'url': hubsite_service_grafana_url, 'logo_location': hubsite_service_grafana_logo_location, 'description': hubsite_service_grafana_description, 'priority': hubsite_service_grafana_priority}] if hubsite_service_grafana_enabled else [])
-    +
-    ([{'name': hubsite_service_miniflux_name, 'url': hubsite_service_miniflux_url, 'logo_location': hubsite_service_miniflux_logo_location, 'description': hubsite_service_miniflux_description, 'priority': hubsite_service_miniflux_priority}] if hubsite_service_miniflux_enabled else [])
-    +
-    ([{'name': hubsite_service_nextcloud_name, 'url': hubsite_service_nextcloud_url, 'logo_location': hubsite_service_nextcloud_logo_location, 'description': hubsite_service_nextcloud_description, 'priority': hubsite_service_nextcloud_priority}] if hubsite_service_nextcloud_enabled else [])
-    +
-    ([{'name': hubsite_service_owncast_name, 'url': hubsite_service_owncast_url, 'logo_location': hubsite_service_owncast_logo_location, 'description': hubsite_service_owncast_description, 'priority': hubsite_service_owncast_priority}] if hubsite_service_owncast_enabled else [])
-    +
-    ([{'name': hubsite_service_peertube_name, 'url': hubsite_service_peertube_url, 'logo_location': hubsite_service_peertube_logo_location, 'description': hubsite_service_peertube_description, 'priority': hubsite_service_peertube_priority}] if hubsite_service_peertube_enabled else [])
-    +
-    ([{'name': hubsite_service_radicale_name, 'url': hubsite_service_radicale_url, 'logo_location': hubsite_service_radicale_logo_location, 'description': hubsite_service_radicale_description, 'priority': hubsite_service_radicale_priority}] if hubsite_service_radicale_enabled else [])
-    +
-    ([{'name': hubsite_service_uptime_kuma_name, 'url': hubsite_service_uptime_kuma_url, 'logo_location': hubsite_service_uptime_kuma_logo_location, 'description': hubsite_service_uptime_kuma_description, 'priority': hubsite_service_uptime_kuma_priority}] if hubsite_service_uptime_kuma_enabled else [])
-    +
-    ([{'name': hubsite_service_syncthing_name, 'url': hubsite_service_syncthing_url, 'logo_location': hubsite_service_syncthing_logo_location, 'description': hubsite_service_syncthing_description, 'priority': hubsite_service_syncthing_priority}] if hubsite_service_syncthing_enabled else [])
-    +
-    ([{'name': hubsite_service_vaultwarden_name, 'url': hubsite_service_vaultwarden_url, 'logo_location': hubsite_service_vaultwarden_logo_location, 'description': hubsite_service_vaultwarden_description, 'priority': hubsite_service_vaultwarden_priority}] if hubsite_service_vaultwarden_enabled else [])
-    +
-    ([{'name': hubsite_service_woodpecker_ci_name, 'url': hubsite_service_woodpecker_ci_url, 'logo_location': hubsite_service_woodpecker_ci_logo_location, 'description': hubsite_service_woodpecker_ci_description, 'priority': hubsite_service_woodpecker_ci_priority}] if hubsite_service_woodpecker_ci_enabled else [])
-  }}
-
-########################################################################
-#                                                                      #
-# /hubsite                                                             #
-#                                                                      #
-########################################################################
-
-########################################################################
-#                                                                      #
-# firezone                                                              #
-#                                                                      #
-########################################################################
-
-firezone_enabled: false
-
-firezone_identifier: "{{ mash_playbook_service_identifier_prefix }}firezone"
-
-firezone_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}firezone"
-
-firezone_uid: "{{ mash_playbook_uid }}"
-firezone_gid: "{{ mash_playbook_gid }}"
-firezone_generic_secret: "{{ mash_playbook_generic_secret_key }}"
-
-firezone_database_host: "{{ devture_postgres_identifier if devture_postgres_enabled else '' }}"
-firezone_database_port: "{{ '5432' if devture_postgres_enabled else '' }}"
-firezone_database_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'fz.db.user', rounds=655555) | to_uuid }}"
-firezone_database_user: "{{ firezone_identifier }}"
-
-firezone_systemd_required_services_list: |
-  {{
-    (['docker.service'])
-    +
-    ([devture_postgres_identifier ~ '.service'] if devture_postgres_enabled and firezone_database_host == devture_postgres_identifier else [])
-  }}
-
-firezone_container_additional_networks: |
-  {{
-    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
-    +
-    ([devture_postgres_container_network] if devture_postgres_enabled and firezone_database_host == devture_postgres_identifier and firezone_container_network != devture_postgres_container_network else [])
-  }}
-
-firezone_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
-firezone_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
-firezone_container_labels_traefik_entrypoints: "{{ devture_traefik_entrypoint_primary }}"
-firezone_container_labels_traefik_tls_certResolver: "{{ devture_traefik_certResolver_primary }}"
-
-########################################################################
-#                                                                      #
-# /firezone                                                             #
-#                                                                      #
-########################################################################
-
-
-########################################################################
-#                                                                      #
-# gotosocial                                                            #
-#                                                                      #
-########################################################################
-
-gotosocial_enabled: false
-
-gotosocial_identifier: "{{ mash_playbook_service_identifier_prefix }}gotosocial"
-
-gotosocial_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}gotosocial"
-
-gotosocial_uid: "{{ mash_playbook_uid }}"
-gotosocial_gid: "{{ mash_playbook_gid }}"
-
-gotosocial_database_host: "{{ devture_postgres_identifier if devture_postgres_enabled else '' }}"
-gotosocial_database_port: "{{ '5432' if devture_postgres_enabled else '' }}"
-gotosocial_database_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'db.gotosocial', rounds=655555) | to_uuid }}"
-gotosocial_database_username: "{{ gotosocial_identifier }}"
-
-gotosocial_systemd_required_services_list: |
-  {{
-    (['docker.service'])
-    +
-    ([devture_postgres_identifier ~ '.service'] if devture_postgres_enabled and gotosocial_database_host == devture_postgres_identifier else [])
-  }}
-
-gotosocial_container_additional_networks: |
-  {{
-    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
-    +
-    ([devture_postgres_container_network] if devture_postgres_enabled and gotosocial_database_host == devture_postgres_identifier and gotosocial_container_network != devture_postgres_container_network else [])
-  }}
-
-gotosocial_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
-gotosocial_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
-gotosocial_container_labels_traefik_entrypoints: "{{ devture_traefik_entrypoint_primary }}"
-gotosocial_container_labels_traefik_tls_certResolver: "{{ devture_traefik_certResolver_primary }}"
-
-########################################################################
-#                                                                      #
-# /gotosocial                                                          #
-#                                                                      #
-########################################################################
-
-
-
-########################################################################
-#                                                                      #
-# owncast                                                              #
-#                                                                      #
-########################################################################
-
-owncast_enabled: false
-
-owncast_identifier: "{{ mash_playbook_service_identifier_prefix }}owncast"
-
-owncast_uid: "{{ mash_playbook_uid }}"
-owncast_gid: "{{ mash_playbook_gid }}"
-
-owncast_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}owncast"
-
-owncast_container_additional_networks: |
-  {{
-    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
-  }}
-
-owncast_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
-owncast_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
-owncast_container_labels_traefik_entrypoints: "{{ devture_traefik_entrypoint_primary }}"
-owncast_container_labels_traefik_tls_certResolver: "{{ devture_traefik_certResolver_primary }}"
-
-########################################################################
-#                                                                      #
-# /owncast                                                             #
 #                                                                      #
 ########################################################################
 
