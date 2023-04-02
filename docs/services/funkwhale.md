@@ -1,4 +1,4 @@
-# funkwhale
+# Funkwhale
 
 [Funkwhale](funkwhale.audio/) is a community-driven project that lets you listen and share music and audio within a decentralized, open network.
 
@@ -22,11 +22,16 @@ To enable this service, add the following configuration to your `vars.yml` file 
 # funkwhale                                                               #
 #                                                                      #
 ########################################################################
+
 funkwhale_enabled: true
+
 funkwhale_hostname: mash.example.com
+
 # Put a strong secret below, generated with `pwgen -s 64 1` or in another way
 funkwhale_django_secret_key: ''
+
 # Redis configuration, as described below
+
 ########################################################################
 #                                                                      #
 # /funkwhale                                                              #
@@ -50,26 +55,35 @@ To install a single (non-dedicated) Redis instance (`mash-redis`) and hook funkw
 # redis                                                                #
 #                                                                      #
 ########################################################################
+
 redis_enabled: true
+
 ########################################################################
 #                                                                      #
 # /redis                                                               #
 #                                                                      #
 ########################################################################
+
+
 ########################################################################
 #                                                                      #
 # funkwhale                                                               #
 #                                                                      #
 ########################################################################
+
 # Base configuration as shown above
+
 # Point funkwhale to the shared Redis instance
 funkwhale_config_redis_hostname: "{{ redis_identifier }}"
+
 # Make sure the funkwhale service (mash-funkwhale.service) starts after the shared Redis service (mash-redis.service)
 funkwhale_systemd_required_services_list_custom:
   - "{{ redis_identifier }}.service"
+
 # Make sure the funkwhale container is connected to the container network of the shared Redis service (mash-redis)
 funkwhale_container_additional_networks_custom:
   - "{{ redis_identifier }}"
+
 ########################################################################
 #                                                                      #
 # /funkwhale                                                              #
@@ -94,28 +108,36 @@ Then, create a new `vars.yml` file for the
 
 ```yaml
 ---
+
 ########################################################################
 #                                                                      #
 # Playbook                                                             #
 #                                                                      #
 ########################################################################
+
 # Put a strong secret below, generated with `pwgen -s 64 1` or in another way
 # Various other secrets will be derived from this secret automatically.
 mash_playbook_generic_secret_key: ''
+
 # Override service names and directory path prefixes
 mash_playbook_service_identifier_prefix: 'mash-funkwhale-'
 mash_playbook_service_base_directory_name_prefix: 'funkwhale-'
+
 ########################################################################
 #                                                                      #
 # /Playbook                                                            #
 #                                                                      #
 ########################################################################
+
+
 ########################################################################
 #                                                                      #
 # redis                                                                #
 #                                                                      #
 ########################################################################
+
 redis_enabled: true
+
 ########################################################################
 #                                                                      #
 # /redis                                                               #
@@ -133,16 +155,22 @@ Then, adjust your main inventory host's variables file (`inventory/host_vars/fun
 # funkwhale                                                               #
 #                                                                      #
 ########################################################################
+
 # Base configuration as shown above
+
+
 # Point funkwhale to its dedicated Redis instance
 funkwhale_environment_variable_redis_host: mash-funkwhale-redis
 funkwhale_environment_variable_redis_cache_host: mash-funkwhale-redis
+
 # Make sure the funkwhale service (mash-funkwhale.service) starts after its dedicated Redis service (mash-funkwhale-redis.service)
 funkwhale_systemd_required_services_list_custom:
   - "mash-funkwhale-redis.service"
+
 # Make sure the funkwhale container is connected to the container network of its dedicated Redis service (mash-funkwhale-redis)
 funkwhale_container_additional_networks_custom:
   - "mash-funkwhale-redis"
+
 ########################################################################
 #                                                                      #
 # /funkwhale                                                              #
@@ -158,4 +186,9 @@ If you've decided to install a dedicated Redis instance for funkwhale, make sure
 
 ## Usage
 
-After installation, you can go to the funkwhale URL, as defined in `funkwhale_hostname`.
+After installation, you can go to the funkwhale URL, as defined in `funkwhale_hostname`. To login and get started you first have to create a user. You need to log onto your server and execute 
+```bash
+docker exec -it mash-funkwhale-api funkwhale-manage createsuperuser --username USERNAME --email YOURNAME@invalid.org
+```
+
+All other users can be created in the Web GUI.
