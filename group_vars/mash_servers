@@ -1122,6 +1122,9 @@ navidrome_container_labels_traefik_tls_certResolver: "{{ devture_traefik_certRes
 
 nextcloud_enabled: false
 
+nextcloud_user_username: "{{ mash_playbook_user_username }}"
+nextcloud_user_groupname: "{{ mash_playbook_user_groupname }}"
+
 nextcloud_identifier: "{{ mash_playbook_service_identifier_prefix }}nextcloud"
 
 nextcloud_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}nextcloud"
