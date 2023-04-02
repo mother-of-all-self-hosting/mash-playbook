@@ -186,9 +186,9 @@ If you've decided to install a dedicated Redis instance for funkwhale, make sure
 
 ## Usage
 
-After installation, you can go to the funkwhale URL, as defined in `funkwhale_hostname`. To login and get started you first have to create a user. You need to log onto your server and execute 
+After installation, you can go to the funkwhale URL, as defined in `funkwhale_hostname`. To login and get started you first have to create a user. you can do this with
 ```bash
-docker exec -it mash-funkwhale-api funkwhale-manage createsuperuser --username USERNAME --email YOURNAME@invalid.org
+just run-tags funkwhale-add-superuser --extra-vars=username=USERNAME --extra-vars=password=PASSWORD --extra-vars=email=EMAIL
 ```
 
 All other users can be created in the Web GUI.
