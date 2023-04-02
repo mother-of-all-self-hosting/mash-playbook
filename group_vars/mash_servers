@@ -91,6 +91,14 @@ devture_systemd_service_manager_services_list_auto: |
     +
     ([{'name': (focalboard_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'focalboard']}] if focalboard_enabled else [])
     +
+    ([{'name': (funkwhale_api_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'funkwhale']}] if funkwhale_enabled else [])
+    +
+    ([{'name': (funkwhale_frontend_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'funkwhale']}] if funkwhale_enabled else [])
+    +
+    ([{'name': (funkwhale_celery_beat_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'funkwhale']}] if funkwhale_enabled else [])
+    +
+    ([{'name': (funkwhale_celery_worker_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'funkwhale']}] if funkwhale_enabled else [])
+    +
     ([{'name': (gitea_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'gitea', 'gitea-server']}] if gitea_enabled else [])
     +
     ([{'name': (gotosocial_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'gotosocial']}] if gotosocial_enabled else [])
@@ -187,6 +195,12 @@ devture_postgres_managed_databases_auto: |
       'username': focalboard_database_username,
       'password': focalboard_database_password,
     }] if focalboard_enabled and focalboard_database_type == 'postgres' and focalboard_database_hostname == devture_postgres_identifier else [])
+    +
+    ([{
+      'name': funkwhale_database_name,
+      'username': funkwhale_database_username,
+      'password': funkwhale_database_password,
+    }] if funkwhale_enabled and funkwhale_database_hostname == devture_postgres_identifier else [])
     +
     ([{
       'name': gitea_config_database_name,
