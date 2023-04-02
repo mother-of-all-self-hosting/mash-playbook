@@ -224,7 +224,6 @@ These files are not all managed by Ansible (at least not yet), so you may someti
 
 To rebuild your Jitsi configuration:
 
-- SSH into the server and do this:
-  - stop all Jitsi services (`systemctl stop mash-jitsi-*`).
-  - remove all Jitsi configuration & data (`rm -rf /mash/jitsi`)
+- ask Ansible to stop all Jitsi services: `just run-tags stop-group --extra-vars=group=jitsi`
+- SSH into the server and do this and remove all Jitsi configuration & data (`rm -rf /mash/jitsi`)
 - ask Ansible to set up Jitsi anew and restart services (`just install-service jitsi`)
