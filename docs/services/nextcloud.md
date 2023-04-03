@@ -52,7 +52,7 @@ As described on the [Redis](redis.md) documentation page, if you're hosting addi
 
 If you're only running Nextcloud on this server and don't need to use Redis for anything else, you can [use a single Redis instance](#using-the-shared-redis-instance-for-nextcloud).
 
-**Regardless** of the method of installing Redis, you may need to adjust your Nextcloud configuration file () to **add** this:
+**Regardless** of the method of installing Redis, you may need to adjust your Nextcloud configuration file (e.g. `/mash/nextcloud/data/config/config.php`) to **add** this:
 
 ```php
   'memcache.distributed' => '\OC\Memcache\Redis',
