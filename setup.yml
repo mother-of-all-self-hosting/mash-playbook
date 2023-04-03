@@ -66,6 +66,8 @@
 
     - role: galaxy/focalboard
 
+    - role: galaxy/funkwhale
+
     - role: galaxy/gitea
 
     - role: galaxy/gotosocial

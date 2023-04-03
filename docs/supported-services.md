@@ -11,6 +11,7 @@
 | [Docker Registry Purger](https://github.com/devture/docker-registry-purger) | A small tool used for purging a private Docker Registry's old tags | [Link](services/docker-registry-purger.md) |
 | [Focalboard](https://www.focalboard.com/) | An open source, self-hosted alternative to [Trello](https://trello.com/), [Notion](https://www.notion.so/), and [Asana](https://asana.com/). | [Link](services/focalboard.md) |
 | [Firezone](https://www.firezone.dev/) | A self-hosted VPN server (based on [WireGuard](https://en.wikipedia.org/wiki/WireGuard)) with a Web UI | [Link](services/firezone.md) |
+| [Funkwhale](https://funkwhale.audio/) | Listen and share music with a selfhosted streaming server.| [Link](services/funkwhale.md) |
 | [Gitea](https://gitea.io/) | A painless self-hosted [Git](https://git-scm.com/) service. | [Link](services/gitea.md) |
 | [GoToSocial](https://gotosocial.org/) | A self-hosted [ActivityPub](https://activitypub.rocks/) social network server | [Link](services/gotosocial.md) |
 | [Grafana](https://grafana.com/) | An open and composable observability and data visualization platform, often used with [Prometheus](services/prometheus.md) | [Link](services/grafana.md) |

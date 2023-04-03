@@ -91,6 +91,14 @@ devture_systemd_service_manager_services_list_auto: |
     +
     ([{'name': (focalboard_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'focalboard']}] if focalboard_enabled else [])
     +
+    ([{'name': (funkwhale_api_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'funkwhale']}] if funkwhale_enabled else [])
+    +
+    ([{'name': (funkwhale_frontend_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'funkwhale']}] if funkwhale_enabled else [])
+    +
+    ([{'name': (funkwhale_celery_beat_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'funkwhale']}] if funkwhale_enabled else [])
+    +
+    ([{'name': (funkwhale_celery_worker_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'funkwhale']}] if funkwhale_enabled else [])
+    +
     ([{'name': (gitea_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'gitea', 'gitea-server']}] if gitea_enabled else [])
     +
     ([{'name': (gotosocial_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'gotosocial']}] if gotosocial_enabled else [])
@@ -187,6 +195,12 @@ devture_postgres_managed_databases_auto: |
       'username': focalboard_database_username,
       'password': focalboard_database_password,
     }] if focalboard_enabled and focalboard_database_type == 'postgres' and focalboard_database_hostname == devture_postgres_identifier else [])
+    +
+    ([{
+      'name': funkwhale_database_name,
+      'username': funkwhale_database_username,
+      'password': funkwhale_database_password,
+    }] if funkwhale_enabled and funkwhale_database_hostname == devture_postgres_identifier else [])
     +
     ([{
       'name': gitea_config_database_name,
@@ -671,6 +685,69 @@ focalboard_container_labels_traefik_tls_certResolver: "{{ devture_traefik_certRe
 ########################################################################
 #                                                                      #
 # /focalboard                                                          #
+#                                                                      #
+########################################################################
+
+
+
+########################################################################
+#                                                                      #
+# funkwhale                                                            #
+#                                                                      #
+########################################################################
+
+funkwhale_enabled: false
+
+funkwhale_identifier: "{{ mash_playbook_service_identifier_prefix }}funkwhale"
+
+funkwhale_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}funkwhale"
+
+funkwhale_uid: "{{ mash_playbook_uid }}"
+funkwhale_gid: "{{ mash_playbook_gid }}"
+
+funkwhale_database_hostname: "{{ devture_postgres_identifier if devture_postgres_enabled else '' }}"
+funkwhale_database_port: "{{ '5432' if devture_postgres_enabled else '' }}"
+funkwhale_database_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'db.funkwhale', rounds=655555) | to_uuid }}"
+funkwhale_database_username: "{{ funkwhale_identifier }}"
+
+funkwhale_api_systemd_required_services_list_auto: |
+  {{
+    ([devture_postgres_identifier ~ '.service'] if devture_postgres_enabled and funkwhale_database_hostname == devture_postgres_identifier else [])
+  }}
+
+funkwhale_frontend_systemd_required_services_list_auto: |
+  {{
+    ([devture_postgres_identifier ~ '.service'] if devture_postgres_enabled and funkwhale_database_hostname == devture_postgres_identifier else [])
+  }}
+
+
+funkwhale_api_container_additional_networks_auto: |
+  {{
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+    +
+    ([devture_postgres_container_network] if devture_postgres_enabled and funkwhale_database_hostname == devture_postgres_identifier and funkwhale_api_container_network != devture_postgres_container_network else [])
+  }}
+
+funkwhale_frontend_container_additional_networks_auto: |
+  {{
+    ([devture_postgres_container_network] if devture_postgres_enabled and funkwhale_database_hostname == devture_postgres_identifier and funkwhale_frontend_container_network != devture_postgres_container_network else [])
+    +
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+  }}
+
+funkwhale_api_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+funkwhale_api_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+funkwhale_api_container_labels_traefik_entrypoints: "{{ devture_traefik_entrypoint_primary }}"
+funkwhale_api_container_labels_traefik_tls_certResolver: "{{ devture_traefik_certResolver_primary }}"
+
+funkwhale_frontend_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+funkwhale_frontend_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+funkwhale_frontend_container_labels_traefik_entrypoints: "{{ devture_traefik_entrypoint_primary }}"
+funkwhale_frontend_container_labels_traefik_tls_certResolver: "{{ devture_traefik_certResolver_primary }}"
+
+########################################################################
+#                                                                      #
+# /funkwhale                                                           #
 #                                                                      #
 ########################################################################
 
