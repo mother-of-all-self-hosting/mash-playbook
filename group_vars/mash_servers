@@ -745,7 +745,6 @@ funkwhale_frontend_container_labels_traefik_docker_network: "{{ mash_playbook_re
 funkwhale_frontend_container_labels_traefik_entrypoints: "{{ devture_traefik_entrypoint_primary }}"
 funkwhale_frontend_container_labels_traefik_tls_certResolver: "{{ devture_traefik_certResolver_primary }}"
 
-
 ########################################################################
 #                                                                      #
 # /funkwhale                                                           #
