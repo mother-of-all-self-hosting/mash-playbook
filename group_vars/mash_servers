@@ -710,12 +710,16 @@ funkwhale_database_port: "{{ '5432' if devture_postgres_enabled else '' }}"
 funkwhale_database_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'db.funkwhale', rounds=655555) | to_uuid }}"
 funkwhale_database_username: "{{ funkwhale_identifier }}"
 
-funkwhale_systemd_required_services_list: |
+funkwhale_api_systemd_required_services_list_auto: |
   {{
-    (['docker.service'])
-    +
     ([devture_postgres_identifier ~ '.service'] if devture_postgres_enabled and funkwhale_database_hostname == devture_postgres_identifier else [])
   }}
+
+funkwhale_frontend_systemd_required_services_list_auto: |
+  {{
+    ([devture_postgres_identifier ~ '.service'] if devture_postgres_enabled and funkwhale_database_hostname == devture_postgres_identifier else [])
+  }}
+
 
 funkwhale_api_container_additional_networks_auto: |
   {{
