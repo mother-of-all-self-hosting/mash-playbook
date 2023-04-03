@@ -79,7 +79,7 @@
   version: v0.49.3-2
   name: navidrome
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-netbox.git
-  version: v3.4.7-2.5.2-1
+  version: v3.4.7-2.5.2-2
   name: netbox
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-nextcloud.git
   version: v26.0.0-4
