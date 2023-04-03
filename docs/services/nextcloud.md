@@ -43,9 +43,31 @@ You can remove the `nextcloud_path_prefix` variable definition, to make it defau
 
 ### Redis
 
+Redis can **optionally** be enabled to improve Nextcloud performance.
+It's dubious whether using using Redis helps much, so we recommend that you **start without** it, for a simpler deployment.
+
+To learn more, read the [Memory caching](https://docs.nextcloud.com/server/latest/admin_manual/configuration_server/caching_configuration.html) section of the Nextcloud documentation.
+
 As described on the [Redis](redis.md) documentation page, if you're hosting additional services which require Redis on the same server, you'd better go for installing a separate Redis instance for each service. See [Creating a Redis instance dedicated to Nextcloud](#creating-a-redis-instance-dedicated-to-nextcloud).
 
 If you're only running Nextcloud on this server and don't need to use Redis for anything else, you can [use a single Redis instance](#using-the-shared-redis-instance-for-nextcloud).
+
+**Regardless** of the method of installing Redis, you may need to adjust your Nextcloud configuration file () to **add** this:
+
+```php
+  'memcache.distributed' => '\OC\Memcache\Redis',
+  'memcache.locking' => '\OC\Memcache\Redis',
+  'redis' => [
+     'host' => 'REDIS_HOSTNAME_HERE',
+     'port' => 6379,
+  ],
+```
+
+Where `REDIS_HOSTNAME_HERE` is to be replaced with:
+
+- `mash-nextcloud-redis`, when [Creating a Redis instance dedicated to Nextcloud](#creating-a-redis-instance-dedicated-to-nextcloud)
+- `mash-redis`, when [using a single Redis instance](#using-the-shared-redis-instance-for-nextcloud).
+
 
 #### Using the shared Redis instance for Nextcloud
 
@@ -175,6 +197,7 @@ nextcloud_container_additional_networks_custom:
 #                                                                      #
 ########################################################################
 ```
+
 ## Installation
 
 If you've decided to install a dedicated Redis instance for Nextcloud, make sure to first do [installation](../installing.md) for the supplementary inventory host (e.g. `nextcloud.example.com-deps`), before running installation for the main one (e.g. `nextcloud.example.com`).
