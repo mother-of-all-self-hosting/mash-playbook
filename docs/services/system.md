@@ -51,8 +51,8 @@ system_security_ssh_enabled: true
 
 system_security_ssh_port: 22
 
-system_security_ssh_authorizedkeys: [] # list of authorized public keys
-system_security_ssh_unauthorizedkeys: [] # list of unauthorized/revoked public keys
+system_security_ssh_authorizedkeys_host: [] # list of authorized public keys
+system_security_ssh_unauthorizedkeys_host: [] # list of unauthorized/revoked public keys
 
 ########################################################################
 #                                                                      #

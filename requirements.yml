@@ -106,7 +106,7 @@
 - src: git+https://gitlab.com/etke.cc/roles/soft_serve.git
   version: v0.4.7-0
 - src: git+https://gitlab.com/etke.cc/roles/ssh.git
-  version: 237adf859f9270db8a60e720bc4a58164806644e
+  version: 13440992374e0fef8f6360a0856b78b37a1fd831
 - src: git+https://gitlab.com/etke.cc/roles/swap.git
   version: abfb18b6862108bbf24347500446203170324d7f
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-syncthing.git
