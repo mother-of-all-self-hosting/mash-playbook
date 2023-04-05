@@ -135,6 +135,8 @@ devture_systemd_service_manager_services_list_auto: |
     +
     ([{'name': (redmine_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'redmine']}] if redmine_enabled else [])
     +
+    ([{'name': (redmine_identifier + '-send-reminders.timer'), 'priority': 2000, 'groups': ['mash', 'redmine']}] if redmine_enabled else [])
+    +
     ([{'name': (redis_identifier + '.service'), 'priority': 750, 'groups': ['mash', 'redis']}] if redis_enabled else [])
     +
     ([{'name': (soft_serve_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'soft-serve']}] if soft_serve_enabled else [])
