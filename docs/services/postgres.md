@@ -4,7 +4,7 @@
 
 Many of the services installed by this playbook require a Postgres database.
 
-Enabling the Postgres database service will automatically wire all other services to use it.
+Enabling the Postgres database service will automatically wire all other services which require such a database to use it.
 
 
 ## Configuration
@@ -45,7 +45,7 @@ Importing multiple databases (as dumped by `pg_dumpall`) is also supported.
 Before doing the actual import, **you need to upload your Postgres dump file to the server** (any path is okay).
 
 
-### Importing
+### Importing a dump file
 
 To import, run this command (make sure to replace `SERVER_PATH_TO_POSTGRES_DUMP_FILE` with a file path on your server):
 
