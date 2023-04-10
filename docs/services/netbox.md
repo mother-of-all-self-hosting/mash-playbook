@@ -213,7 +213,6 @@ You can use the configuration in the [Keycloak section](#keycloak) as a template
 To integrate with [Keycloak](keycloak.md) use the following **additional** configuration:
 
 ```yaml
-
 netbox_environment_variables_additional_variables: |
   REMOTE_AUTH_ENABLED=True
   REMOTE_AUTH_BACKEND=social_core.backends.keycloak.KeycloakOAuth2
