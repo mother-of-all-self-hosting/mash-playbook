@@ -21,21 +21,6 @@ gotosocial_enabled: true
 # Examples: ["gts.example.org","some.server.com"]
 gotosocial_hostname: 'social.example.org'
 
-# Domain to use when federating profiles. It defaults to `gotosocial_hostname` but you can cange it when you want your server to be at
-# eg., `gotosocial_hostname: gts.example.org`, but you want the domain on accounts to be "example.org" because it looks better
-# or is just shorter/easier to remember.
-#
-# Please read the appropriate section of the installation guide before you go messing around with this setting:
-# https://docs.gotosocial.org/installation_guide/advanced/#can-i-host-my-instance-at-fediexampleorg-but-have-just-exampleorg-in-my-username
-# gotosocial_account_domain: "example.org"
-
-# Uncomment and adjust the following lines to enable GTS to send emails (reports, notifications, password resets etc..)
-# Check out https://docs.gotosocial.org/en/latest/configuration/smtp/ for a configuration reference
-# gotosocial_smtp_host: 'smtp.example.org'
-# gotosocial_smtp_username: ggotosocial@example.org
-# gotosocial_smtp_password: yourpassword
-# gotosocial_smtp_from: ggotosocial@example.org
-
 ########################################################################
 #                                                                      #
 # /gotosocial                                                          #
@@ -59,6 +44,26 @@ to demote a user from admin to normal user.
 
 Refer to the [great official documentation](https://docs.gotosocial.org/en/latest/) for more information on GoToSocial.
 
+## Advanced configuration
+
+You can use the following variables in your `vars.yml` to further configure GoToSocial, e.g. enable e-mail notifications.
+
+```
+# Domain to use when federating profiles. It defaults to `gotosocial_hostname` but you can cange it when you want your server to be at
+# eg., `gotosocial_hostname: gts.example.org`, but you want the domain on accounts to be "example.org" because it looks better
+# or is just shorter/easier to remember.
+#
+# Please read the appropriate section of the installation guide before you go messing around with this setting:
+# https://docs.gotosocial.org/installation_guide/advanced/#can-i-host-my-instance-at-fediexampleorg-but-have-just-exampleorg-in-my-username
+# gotosocial_account_domain: "example.org"
+
+# Uncomment and adjust the following lines to enable GTS to send emails (reports, notifications, password resets etc..)
+# Check out https://docs.gotosocial.org/en/latest/configuration/smtp/ for a configuration reference
+# gotosocial_smtp_host: 'smtp.example.org'
+# gotosocial_smtp_username: gotosocial@example.org
+# gotosocial_smtp_password: yourpassword
+# gotosocial_smtp_from: gotosocial@example.org
+```
 
 ## Migrate an existing instance
 
