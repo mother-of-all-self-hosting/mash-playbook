@@ -31,7 +31,31 @@ gotosocial_hostname: 'social.example.org'
 After installation, you can use `just run-tags gotosocial-add-user --extra-vars=username=<username> --extra-vars=password=<password> --extra-vars=email=<email>"`
 to create your a user. Change `--tags=gotosocial-add-user` to `--tags=gotosocial-add-admin` to create an admin account.
 
-### Usage
+## Advanced account domain configuration
+
+The account domain is the second part of a user handle in the Fediverse. If your handle is @username@example.org, `example.org` is your account domain. By default GoToSocial will use `gotosocial_hostname` that you provide as account domain e.g. `social.example.org`. You might want to change this by setting `gotosocial_account_domain` if you want the domain on accounts to be `example.org` because it looks better or is just shorter/easier to remember.
+
+**Warning** DO NOT change this change this after your server has already run once, or you will break things!
+
+If you decide to use this read [the appropriate section of the installation guide](https://docs.gotosocial.org/installation_guide/advanced/#can-i-host-my-instance-at-fediexampleorg-but-have-just-exampleorg-in-my-username=) as you will have to do some additional work on the base domain.
+
+```yaml
+gotosocial_account_domain: "example.org"
+```
+
+## E-Mail configuration
+
+You can use the following variables in your `vars.yml` to enable e-mail notifications.
+
+```yml
+# Check out https://docs.gotosocial.org/en/latest/configuration/smtp/ for a configuration reference
+gotosocial_smtp_host: 'smtp.example.org'
+gotosocial_smtp_username: gotosocial@example.org
+gotosocial_smtp_password: yourpassword
+gotosocial_smtp_from: gotosocial@example.org
+```
+
+## Usage
 
 After [installing](../installing.md), you can visit at the URL specified in `gotosocial_hostname` and should see your instance.
 Start to customize it at `social.example.org/admin`.
@@ -44,26 +68,7 @@ to demote a user from admin to normal user.
 
 Refer to the [great official documentation](https://docs.gotosocial.org/en/latest/) for more information on GoToSocial.
 
-## Advanced configuration
 
-You can use the following variables in your `vars.yml` to further configure GoToSocial, e.g. enable e-mail notifications.
-
-```
-# Domain to use when federating profiles. It defaults to `gotosocial_hostname` but you can cange it when you want your server to be at
-# eg., `gotosocial_hostname: gts.example.org`, but you want the domain on accounts to be "example.org" because it looks better
-# or is just shorter/easier to remember.
-#
-# Please read the appropriate section of the installation guide before you go messing around with this setting:
-# https://docs.gotosocial.org/installation_guide/advanced/#can-i-host-my-instance-at-fediexampleorg-but-have-just-exampleorg-in-my-username
-# gotosocial_account_domain: "example.org"
-
-# Uncomment and adjust the following lines to enable GTS to send emails (reports, notifications, password resets etc..)
-# Check out https://docs.gotosocial.org/en/latest/configuration/smtp/ for a configuration reference
-# gotosocial_smtp_host: 'smtp.example.org'
-# gotosocial_smtp_username: gotosocial@example.org
-# gotosocial_smtp_password: yourpassword
-# gotosocial_smtp_from: gotosocial@example.org
-```
 
 ## Migrate an existing instance
 
