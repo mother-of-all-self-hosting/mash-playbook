@@ -74,6 +74,8 @@
 
     - role: galaxy/grafana
 
+    - role: galaxy/mariadb
+
     - role: galaxy/miniflux
 
     - role: galaxy/hubsite

@@ -121,6 +121,8 @@ devture_systemd_service_manager_services_list_auto: |
     +
     ([{'name': (nextcloud_identifier + '-cron.timer'), 'priority': 2500, 'groups': ['mash', 'nextcloud', 'nextcloud-cron']}] if nextcloud_enabled else [])
     +
+    ([{'name': (mariadb_identifier + '.service'), 'priority': 500, 'groups': ['mash', 'mariadb']}] if mariadb_enabled else [])
+    +
     ([{'name': (owncast_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'owncast']}] if owncast_enabled else [])
     +
     ([{'name': (peertube_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'peertube']}] if peertube_enabled else [])
@@ -1287,6 +1289,34 @@ netbox_database_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | 
 ########################################################################
 #                                                                      #
 # /netbox                                                              #
+#                                                                      #
+########################################################################
+
+
+
+########################################################################
+#                                                                      #
+# mariadb                                                              #
+#                                                                      #
+########################################################################
+
+mariadb_enabled: false
+
+mariadb_identifier: "{{ mash_playbook_service_identifier_prefix }}mariadb"
+
+mariadb_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}mariadb"
+
+mariadb_uid: "{{ mash_playbook_uid }}"
+mariadb_gid: "{{ mash_playbook_gid }}"
+
+# This will be extended in the future, to auto-create datases for services
+# which depend on MariaDB.
+# See `devture_postgres_managed_databases_auto`
+mariadb_managed_databases_auto: []
+
+########################################################################
+#                                                                      #
+# /mariadb                                                             #
 #                                                                      #
 ########################################################################
 

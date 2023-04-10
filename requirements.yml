@@ -84,6 +84,9 @@
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-nextcloud.git
   version: v26.0.0-4
   name: nextcloud
+- src: git+https://github.com/mother-of-all-self-hosting/ansible-role-mariadb.git
+  version: v10.11.2-0
+  name: mariadb
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-owncast.git
   version: v0.0.13-0
   name: owncast
