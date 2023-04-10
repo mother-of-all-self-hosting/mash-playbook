@@ -95,7 +95,8 @@ redis_enabled: true
 # Base configuration as shown above
 
 # Point NetBox to the shared Redis instance
-netbox_config_redis_hostname: "{{ redis_identifier }}"
+netbox_environment_variable_redis_host: "{{ redis_identifier }}"
+netbox_environment_variable_redis_cache_host: "{{ redis_identifier }}"
 
 # Make sure the NetBox service (mash-netbox.service) starts after the shared Redis service (mash-redis.service)
 netbox_systemd_required_services_list_custom:
@@ -217,6 +218,10 @@ netbox_environment_variables_additional_variables: |
   REMOTE_AUTH_ENABLED=True
   REMOTE_AUTH_BACKEND=social_core.backends.keycloak.KeycloakOAuth2
 
+  # Space-separated names of groups that new users will be assigned to.
+  # These groups must be created manually (from the Admin panel's Groups section) before use.
+  REMOTE_AUTH_DEFAULT_GROUPS=
+
 netbox_configuration_extra_python: |
   # These need to match your Client app information in Keycloak. See below
   SOCIAL_AUTH_KEYCLOAK_KEY = ''
@@ -238,14 +243,17 @@ netbox_configuration_extra_python: |
 The Client app needs to be created and configured in a special way on the Keycloak side by:
 
 - activating **Client authentication**
+- **Valid redirect URIs**: `https://NETBOX_URL/oauth/complete/keycloak/`
+- **Web origins**: `https://NETBOX_URL/`
 - in **Advanced**, changing the following settings:
   - **Request object signature algorithm** = `RS256`
-  - **Request object signature algorithm** = `RS256`
-- in **Client scopes** (for this Client app via the **Client scopes** tab, not for all apps via the left-most menu), configure the `*-dedicated` scope (e.g. `netbox-dedicated` if you named your Client app `netbox`) and add a new mapper with the following settings:
+  - **User info signed response algorithm** = `RS256`
+- in **Client scopes** (for this Client app via the **Client scopes** tab, not for all apps via the left-most menu), configure the `*-dedicated` scope (e.g. `netbox-dedicated` if you named your Client app `netbox`) and in the **Mappers** tab, click **Configure a new mapper** add a new **Audience** mapper with the following settings:
   - **Name** = anything you like (e.g. `netbox-audience`)
   - **Included Client Audience** = the key of this Client app (e.g. `netbox`)
   - **Add to access token** = On
 
+For additional environment variables controlling groups and permissions for new users (like `REMOTE_AUTH_DEFAULT_GROUPS`), see the NetBox documentation for [Remote Authentication](https://docs.netbox.dev/en/stable/configuration/remote-authentication/).
 
 ## Installation
 
