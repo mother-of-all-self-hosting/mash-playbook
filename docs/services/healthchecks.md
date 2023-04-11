@@ -43,7 +43,7 @@ You can remove the `healthchecks_path_prefix` variable definition, to make it de
 
 **Note**: there are minor quirks when hosting under a subpath, such as:
 
-- Fonts not loading, because it attempts to load them from `/static` instead of `/path-prefix/static`
+- [Fonts not loading, because it attempts to load them from `/static` instead of `/path-prefix/static`](https://github.com/healthchecks/healthchecks/issues/822)
 
 ### Authentication
 
