@@ -105,6 +105,16 @@ devture_systemd_service_manager_services_list_auto: |
     +
     ([{'name': (grafana_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'grafana']}] if grafana_enabled else [])
     +
+    ([{'name': (hubsite_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'hubsite']}] if hubsite_enabled else [])
+    +
+    ([{'name': (jitsi_identifier + '-web.service'), 'priority': 4200, 'groups': ['mash', 'jitsi', 'jitsi-web']}] if jitsi_enabled else [])
+    +
+    ([{'name': (jitsi_identifier + '-prosody.service'), 'priority': 4000, 'groups': ['mash', 'jitsi', 'jitsi-prosody']}] if jitsi_enabled else [])
+    +
+    ([{'name': (jitsi_identifier + '-jicofo.service'), 'priority': 4100, 'groups': ['mash', 'jitsi', 'jitsi-jicofo']}] if jitsi_enabled else [])
+    +
+    ([{'name': (jitsi_identifier + '-jvb.service'), 'priority': 4100, 'groups': ['mash', 'jitsi', 'jitsi-jvb']}] if jitsi_enabled else [])
+    +
     ([{'name': (keycloak_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'keycloak']}] if keycloak_enabled else [])
     +
     ([{'name': (miniflux_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'miniflux']}] if miniflux_enabled else [])
@@ -148,16 +158,6 @@ devture_systemd_service_manager_services_list_auto: |
     ([{'name': (vaultwarden_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'vaultwarden', 'vaultwarden-server']}] if vaultwarden_enabled else [])
     +
     ([{'name': (uptime_kuma_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'uptime-kuma']}] if uptime_kuma_enabled else [])
-    +
-    ([{'name': (hubsite_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'hubsite']}] if hubsite_enabled else [])
-    +
-    ([{'name': (jitsi_identifier + '-web.service'), 'priority': 4200, 'groups': ['mash', 'jitsi', 'jitsi-web']}] if jitsi_enabled else [])
-    +
-    ([{'name': (jitsi_identifier + '-prosody.service'), 'priority': 4000, 'groups': ['mash', 'jitsi', 'jitsi-prosody']}] if jitsi_enabled else [])
-    +
-    ([{'name': (jitsi_identifier + '-jicofo.service'), 'priority': 4100, 'groups': ['mash', 'jitsi', 'jitsi-jicofo']}] if jitsi_enabled else [])
-    +
-    ([{'name': (jitsi_identifier + '-jvb.service'), 'priority': 4100, 'groups': ['mash', 'jitsi', 'jitsi-jvb']}] if jitsi_enabled else [])
   }}
 
 ########################################################################
