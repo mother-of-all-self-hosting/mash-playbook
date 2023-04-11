@@ -1,3 +1,5 @@
+---
+
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-adguard-home.git
   version: v0.107.26-1
   name: adguard_home
@@ -64,6 +66,9 @@
   name: gotosocial
 - src: git+https://gitlab.com/etke.cc/roles/grafana.git
   version: v9.4.7-1
+- src: git+https://github.com/mother-of-all-self-hosting/ansible-role-healthchecks.git
+  version: v2.8-0
+  name: healthchecks
 - src: git+https://github.com/moan0s/hubsite.git
   version: v1.23.3-1
   name: hubsite
@@ -73,6 +78,9 @@
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-keycloak.git
   version: v21.0.2-0
   name: keycloak
+- src: git+https://github.com/mother-of-all-self-hosting/ansible-role-mariadb.git
+  version: v10.11.2-0
+  name: mariadb
 - src: git+https://gitlab.com/etke.cc/roles/miniflux.git
   version: v2.0.43-2
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-navidrome.git
@@ -84,9 +92,6 @@
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-nextcloud.git
   version: v26.0.0-4
   name: nextcloud
-- src: git+https://github.com/mother-of-all-self-hosting/ansible-role-mariadb.git
-  version: v10.11.2-0
-  name: mariadb
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-owncast.git
   version: v0.0.13-0
   name: owncast

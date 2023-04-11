@@ -107,6 +107,8 @@ devture_systemd_service_manager_services_list_auto: |
     +
     ([{'name': (hubsite_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'hubsite']}] if hubsite_enabled else [])
     +
+    ([{'name': (healthchecks_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'healthchecks']}] if healthchecks_enabled else [])
+    +
     ([{'name': (jitsi_identifier + '-web.service'), 'priority': 4200, 'groups': ['mash', 'jitsi', 'jitsi-web']}] if jitsi_enabled else [])
     +
     ([{'name': (jitsi_identifier + '-prosody.service'), 'priority': 4000, 'groups': ['mash', 'jitsi', 'jitsi-prosody']}] if jitsi_enabled else [])
@@ -211,6 +213,12 @@ devture_postgres_managed_databases_auto: |
       'username': gitea_config_database_username,
       'password': gitea_config_database_password,
     }] if gitea_enabled else [])
+    +
+    ([{
+      'name': healthchecks_database_name,
+      'username': healthchecks_database_username,
+      'password': healthchecks_database_password,
+    }] if healthchecks_enabled and healthchecks_database_hostname == devture_postgres_identifier else [])
     +
     ([{
       'name': devture_woodpecker_ci_server_database_datasource_db_name,
@@ -881,6 +889,53 @@ grafana_container_labels_traefik_tls_certResolver: "{{ devture_traefik_certResol
 ########################################################################
 #                                                                      #
 # /grafana                                                             #
+#                                                                      #
+########################################################################
+
+
+
+########################################################################
+#                                                                      #
+# healthchecks                                                         #
+#                                                                      #
+########################################################################
+
+healthchecks_enabled: false
+
+healthchecks_identifier: "{{ mash_playbook_service_identifier_prefix }}healthchecks"
+
+healthchecks_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}healthchecks"
+
+healthchecks_uid: "{{ mash_playbook_uid }}"
+healthchecks_gid: "{{ mash_playbook_gid }}"
+
+healthchecks_systemd_required_services_list: |
+  {{
+    (['docker.service'])
+    +
+    ([devture_postgres_identifier ~ '.service'] if devture_postgres_enabled and healthchecks_database_hostname == devture_postgres_identifier else [])
+  }}
+
+healthchecks_container_additional_networks: |
+  {{
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+    +
+    ([devture_postgres_container_network] if devture_postgres_enabled and healthchecks_database_hostname == devture_postgres_identifier and healthchecks_container_network != devture_postgres_container_network else [])
+  }}
+
+healthchecks_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+healthchecks_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+healthchecks_container_labels_traefik_entrypoints: "{{ devture_traefik_entrypoint_primary }}"
+healthchecks_container_labels_traefik_tls_certResolver: "{{ devture_traefik_certResolver_primary }}"
+
+healthchecks_database_hostname: "{{ devture_postgres_connection_hostname if devture_postgres_enabled else '' }}"
+healthchecks_database_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'healthchecks.db', rounds=655555) | to_uuid }}"
+
+healthchecks_environment_variable_secret_key: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'healthchecks', rounds=655555) | to_uuid }}"
+
+########################################################################
+#                                                                      #
+# /healthchecks                                                        #
 #                                                                      #
 ########################################################################
 

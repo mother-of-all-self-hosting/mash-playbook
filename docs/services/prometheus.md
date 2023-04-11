@@ -74,4 +74,5 @@ If you're scraping others services running in containers over the container netw
 
 ## Recommended other services
 
-To visualize your Prometheus metrics (time-series), you may wish to use a tool like [Grafana](grafana.md).
+- [Grafana](grafana.md) - a web-based tool for visualizing your Prometheus metrics (time-series)
+- [Healthchecks](healthchecks.md) - a simple and Effective Cron Job Monitoring solution
