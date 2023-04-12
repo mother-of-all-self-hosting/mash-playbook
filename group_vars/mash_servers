@@ -121,6 +121,8 @@ devture_systemd_service_manager_services_list_auto: |
     +
     ([{'name': (miniflux_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'miniflux']}] if miniflux_enabled else [])
     +
+    ([{'name': (mrs_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'mrs']}] if mrs_enabled else [])
+    +
     ([{'name': (navidrome_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'navidrome']}] if navidrome_enabled else [])
     +
     ([{'name': (netbox_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'netbox', 'netbox-server']}] if netbox_enabled else [])
@@ -1218,6 +1220,40 @@ miniflux_database_password: "{{ '%s' | format(mash_playbook_generic_secret_key) 
 ########################################################################
 #                                                                      #
 # /miniflux                                                            #
+#                                                                      #
+########################################################################
+
+
+
+
+########################################################################
+#                                                                      #
+# mrs                                                                  #
+#                                                                      #
+########################################################################
+
+mrs_enabled: false
+
+mrs_identifier: "{{ mash_playbook_service_identifier_prefix }}mrs"
+
+mrs_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}mrs"
+
+mrs_uid: "{{ mash_playbook_uid }}"
+mrs_gid: "{{ mash_playbook_gid }}"
+
+mrs_container_additional_networks: |
+  {{
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+  }}
+
+mrs_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+mrs_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+mrs_container_labels_traefik_entrypoints: "{{ devture_traefik_entrypoint_primary }}"
+mrs_container_labels_traefik_tls_certResolver: "{{ devture_traefik_certResolver_primary }}"
+
+########################################################################
+#                                                                      #
+# /mrs                                                                 #
 #                                                                      #
 ########################################################################
 

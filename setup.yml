@@ -78,6 +78,8 @@
 
     - role: galaxy/miniflux
 
+    - role: galaxy/mrs
+
     - role: galaxy/healthchecks
 
     - role: galaxy/hubsite
