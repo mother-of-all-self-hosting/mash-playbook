@@ -1,6 +1,6 @@
 # Matrix Rooms Search API
 
-[Matrix Rooms Search](https://gitlab.com/etke.cc/mrs) is a fully-featured, standalone, matrix rooms search service.
+[Matrix Rooms Search](https://gitlab.com/etke.cc/mrs) is a fully-featured, standalone, [Matrix](https://matrix.org/) rooms search service.
 
 ## Dependencies
 
@@ -26,10 +26,10 @@ mrs_hostname: mrs.example.com
 mrs_admin_login: admin
 mrs_admin_password: changeme
 mrs_admin_ips:
-	- 123.123.123.123
+  - 123.123.123.123
 
 mrs_servers:
-	- matrix.org
+  - matrix.org
 
 ########################################################################
 #                                                                      #
@@ -43,6 +43,6 @@ In the example configuration above, we configure the service to be hosted at `ht
 
 ## Usage
 
-After installation, call the `https://mrs.example.com/-/full` endpoint using admin credentials to discover and parse content
+After installation, call the `https://mrs.example.com/-/full` endpoint using admin credentials (see the `mrs_admin_*` variables) to discover and parse content.
 
-[API documentation](https://gitlab.com/etke.cc/mrs/api/-/blob/main/openapi.yml)
+To see the list of supported public and private APIs, see the [API documentation](https://gitlab.com/etke.cc/mrs/api/-/blob/main/openapi.yml).
