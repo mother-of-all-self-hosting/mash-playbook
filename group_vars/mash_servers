@@ -1138,6 +1138,55 @@ hubsite_service_list_auto: |
 
 ########################################################################
 #                                                                      #
+# jitsi                                                                #
+#                                                                      #
+########################################################################
+
+jitsi_enabled: false
+
+jitsi_architecture: "{{ mash_playbook_architecture }}"
+
+jitsi_identifier: "{{ mash_playbook_service_identifier_prefix }}jitsi"
+
+jitsi_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}jitsi"
+
+jitsi_uid: "{{ mash_playbook_uid }}"
+jitsi_gid: "{{ mash_playbook_gid }}"
+
+jitsi_web_container_additional_networks_auto: |
+  {{
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+  }}
+
+jitsi_prosody_container_additional_networks_auto: |
+  {{
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+  }}
+
+jitsi_jvb_container_additional_networks_auto: |
+  {{
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+  }}
+
+jitsi_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+jitsi_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+jitsi_container_labels_traefik_entrypoints: "{{ devture_traefik_entrypoint_primary }}"
+jitsi_container_labels_traefik_tls_certResolver: "{{ devture_traefik_certResolver_primary }}"
+
+jitsi_jibri_xmpp_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'jibri', rounds=655555) | to_uuid }}"
+jitsi_jicofo_auth_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'jicofo', rounds=655555) | to_uuid }}"
+jitsi_jvb_auth_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'jvb', rounds=655555) | to_uuid }}"
+
+########################################################################
+#                                                                      #
+# /jitsi                                                               #
+#                                                                      #
+########################################################################
+
+
+
+########################################################################
+#                                                                      #
 # keycloak                                                             #
 #                                                                      #
 ########################################################################
@@ -1933,55 +1982,6 @@ devture_woodpecker_ci_agent_config_agent_secret: "{{ devture_woodpecker_ci_serve
 ########################################################################
 #                                                                      #
 # /woodpecker-ci-agent                                                 #
-#                                                                      #
-########################################################################
-
-
-
-########################################################################
-#                                                                      #
-# jitsi                                                                #
-#                                                                      #
-########################################################################
-
-jitsi_enabled: false
-
-jitsi_architecture: "{{ mash_playbook_architecture }}"
-
-jitsi_identifier: "{{ mash_playbook_service_identifier_prefix }}jitsi"
-
-jitsi_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}jitsi"
-
-jitsi_uid: "{{ mash_playbook_uid }}"
-jitsi_gid: "{{ mash_playbook_gid }}"
-
-jitsi_web_container_additional_networks_auto: |
-  {{
-    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
-  }}
-
-jitsi_prosody_container_additional_networks_auto: |
-  {{
-    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
-  }}
-
-jitsi_jvb_container_additional_networks_auto: |
-  {{
-    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
-  }}
-
-jitsi_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
-jitsi_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
-jitsi_container_labels_traefik_entrypoints: "{{ devture_traefik_entrypoint_primary }}"
-jitsi_container_labels_traefik_tls_certResolver: "{{ devture_traefik_certResolver_primary }}"
-
-jitsi_jibri_xmpp_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'jibri', rounds=655555) | to_uuid }}"
-jitsi_jicofo_auth_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'jicofo', rounds=655555) | to_uuid }}"
-jitsi_jvb_auth_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'jvb', rounds=655555) | to_uuid }}"
-
-########################################################################
-#                                                                      #
-# /jitsi                                                               #
 #                                                                      #
 ########################################################################
 
