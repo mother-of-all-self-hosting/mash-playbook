@@ -60,7 +60,7 @@ You can create additional users from the web UI after that.
 
 If you've got a [Syncthing](syncthing.md) service running, you can use it to synchronize your music directory onto the server and then mount it as read-only into the Navidrome container.
 
-We recommend that you make use of the [aux](aux.md) role to create some shared directory like this:
+We recommend that you make use of the [aux](auxiliary.md) role to create some shared directory like this:
 
 ```yaml
 ########################################################################
