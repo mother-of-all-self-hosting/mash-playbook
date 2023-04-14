@@ -88,6 +88,8 @@
 
     - role: galaxy/keycloak
 
+    - role: lago
+
     - role: galaxy/navidrome
 
     - role: galaxy/netbox

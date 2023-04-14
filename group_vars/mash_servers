@@ -119,6 +119,16 @@ devture_systemd_service_manager_services_list_auto: |
     +
     ([{'name': (keycloak_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'keycloak']}] if keycloak_enabled else [])
     +
+    ([{'name': (lago_identifier + '-api.service'), 'priority': 2000, 'groups': ['mash', 'lago', 'lago-api']}] if lago_enabled else [])
+    +
+    ([{'name': (lago_identifier + '-api-worker.service'), 'priority': 2500, 'groups': ['mash', 'lago', 'lago-api-worker']}] if lago_enabled else [])
+    +
+    ([{'name': (lago_identifier + '-api-clock.service'), 'priority': 2500, 'groups': ['mash', 'lago', 'lago-api-clock']}] if lago_enabled else [])
+    +
+    ([{'name': (lago_identifier + '-front.service'), 'priority': 2200, 'groups': ['mash', 'lago', 'lago-front']}] if lago_enabled else [])
+    +
+    ([{'name': (lago_identifier + '-pdf.service'), 'priority': 1900, 'groups': ['mash', 'lago', 'lago-pdf']}] if lago_enabled else [])
+    +
     ([{'name': (miniflux_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'miniflux']}] if miniflux_enabled else [])
     +
     ([{'name': (mrs_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'mrs']}] if mrs_enabled else [])
@@ -239,6 +249,12 @@ devture_postgres_managed_databases_auto: |
       'username': keycloak_database_username,
       'password': keycloak_database_password,
     }] if keycloak_enabled and keycloak_database_type == 'postgres' and keycloak_database_hostname == devture_postgres_identifier else [])
+    +
+    ([{
+      'name': lago_database_name,
+      'username': lago_database_username,
+      'password': lago_database_password,
+    }] if lago_enabled and lago_database_hostname == devture_postgres_identifier else [])
     +
     ([{
       'name': miniflux_database_name,
@@ -1224,6 +1240,57 @@ keycloak_database_password: "{{ '%s' | format(mash_playbook_generic_secret_key) 
 ########################################################################
 #                                                                      #
 # /keycloak                                                            #
+#                                                                      #
+########################################################################
+
+
+
+########################################################################
+#                                                                      #
+# lago                                                                 #
+#                                                                      #
+########################################################################
+
+lago_enabled: false
+
+lago_architecture: "{{ mash_playbook_architecture }}"
+
+lago_identifier: "{{ mash_playbook_service_identifier_prefix }}lago"
+
+lago_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}lago"
+
+lago_uid: "{{ mash_playbook_uid }}"
+lago_gid: "{{ mash_playbook_gid }}"
+
+lago_api_container_additional_networks_auto: |
+  {{
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+    +
+    ([devture_postgres_container_network] if devture_postgres_enabled and lago_database_hostname == devture_postgres_identifier and lago_api_container_network != devture_postgres_container_network else [])
+  }}
+
+lago_front_container_additional_networks_auto: |
+  {{
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+  }}
+
+lago_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+lago_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+lago_container_labels_traefik_entrypoints: "{{ devture_traefik_entrypoint_primary }}"
+lago_container_labels_traefik_tls_certResolver: "{{ devture_traefik_certResolver_primary }}"
+
+lago_database_hostname: "{{ devture_postgres_identifier if devture_postgres_enabled else '' }}"
+lago_database_port: "{{ '5432' if devture_postgres_enabled else '' }}"
+lago_database_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'lago.db', rounds=655555) | to_uuid }}"
+
+lago_api_environment_variable_secret_key_base: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'lago.sec.key', rounds=655555) | to_uuid }}"
+lago_api_environment_variable_encryption_primary_key: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'lago.enc.primary', rounds=655555) | to_uuid }}"
+lago_api_environment_variable_encryption_deterministic_key: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'lago.deter.key', rounds=655555) | to_uuid }}"
+lago_api_environment_variable_encryption_key_derivation_salt: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'lago.deriv.salt', rounds=655555) | to_uuid }}"
+
+########################################################################
+#                                                                      #
+# /lago                                                                #
 #                                                                      #
 ########################################################################
 
