@@ -65,6 +65,8 @@ devture_systemd_service_manager_services_list_auto: |
   {{
     ([{'name': (adguard_home_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'adguard-home']}] if adguard_home_enabled else [])
     +
+    ([{'name': (appsmith_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'appsmith']}] if appsmith_enabled else [])
+    +
     ([{'name': (collabora_online_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'collabora-online']}] if collabora_online_enabled else [])
     +
     ([{'name': (devture_postgres_identifier + '.service'), 'priority': 500, 'groups': ['mash', 'postgres']}] if devture_postgres_enabled else [])
@@ -498,6 +500,39 @@ adguard_home_container_labels_traefik_tls_certResolver: "{{ devture_traefik_cert
 ########################################################################
 #                                                                      #
 # /adguard-home                                                        #
+#                                                                      #
+########################################################################
+
+
+
+########################################################################
+#                                                                      #
+# appsmith                                                             #
+#                                                                      #
+########################################################################
+
+appsmith_enabled: false
+
+appsmith_identifier: "{{ mash_playbook_service_identifier_prefix }}appsmith"
+
+appsmith_uid: "{{ mash_playbook_uid }}"
+appsmith_gid: "{{ mash_playbook_gid }}"
+
+appsmith_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}appsmith"
+
+appsmith_container_additional_networks_auto: |
+  {{
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+  }}
+
+appsmith_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+appsmith_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+appsmith_container_labels_traefik_entrypoints: "{{ devture_traefik_entrypoint_primary }}"
+appsmith_container_labels_traefik_tls_certResolver: "{{ devture_traefik_certResolver_primary }}"
+
+########################################################################
+#                                                                      #
+# /appsmith                                                            #
 #                                                                      #
 ########################################################################
 

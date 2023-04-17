@@ -3,6 +3,9 @@
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-adguard-home.git
   version: v0.107.26-1
   name: adguard_home
+- src: git+https://github.com/mother-of-all-self-hosting/ansible-role-appsmith.git
+  version: v1.9.15-0
+  name: appsmith
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-aux.git
   version: v1.0.0-0
   name: aux
