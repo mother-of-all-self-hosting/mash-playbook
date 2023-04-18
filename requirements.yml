@@ -49,8 +49,8 @@
   name: docker_registry_purger
 - src: git+https://gitlab.com/etke.cc/roles/fail2ban.git
   version: 09886730e8d3c061f22d1da4a542899063f97f0a
-- src: git+https://github.com/moan0s/role-firezone.git
-  version: v0.7.25-0
+- src: git+https://github.com/mother-of-all-self-hosting/ansible-role-firezone.git
+  version: v0.7.25-2
   name: firezone
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-focalboard.git
   version: v7.9.3-1
