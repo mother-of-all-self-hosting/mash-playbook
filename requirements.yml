@@ -90,7 +90,7 @@
 - src: git+https://gitlab.com/etke.cc/roles/miniflux.git
   version: v2.0.43-2
 - src: git+https://gitlab.com/etke.cc/mrs/ansible-role-mrs.git
-  version: v0.0.0-2
+  version: v0.0.0-3
   name: mrs
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-navidrome.git
   version: v0.49.3-2
