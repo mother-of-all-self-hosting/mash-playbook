@@ -65,6 +65,10 @@ devture_systemd_service_manager_services_list_auto: |
   {{
     ([{'name': (adguard_home_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'adguard-home']}] if adguard_home_enabled else [])
     +
+    ([{'name': (authentik_server_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'authentik']}] if authentik_enabled else [])
+    +
+    ([{'name': (authentik_worker_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'authentik']}] if authentik_enabled else [])
+    +
     ([{'name': (collabora_online_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'collabora-online']}] if collabora_online_enabled else [])
     +
     ([{'name': (devture_postgres_identifier + '.service'), 'priority': 500, 'groups': ['mash', 'postgres']}] if devture_postgres_enabled else [])
@@ -209,6 +213,11 @@ devture_postgres_systemd_services_to_stop_for_maintenance_list: |
 devture_postgres_managed_databases_auto: |
   {{
     ([{
+      'name': authentik_database_name,
+      'username': authentik_database_username,
+      'password': authentik_database_password,
+    }] if authentik_enabled and authentik_database_hostname == devture_postgres_identifier else [])
+    +([{
       'name': focalboard_database_name,
       'username': focalboard_database_username,
       'password': focalboard_database_password,
@@ -501,6 +510,55 @@ adguard_home_container_labels_traefik_tls_certResolver: "{{ devture_traefik_cert
 #                                                                      #
 ########################################################################
 
+########################################################################
+#                                                                      #
+# authentik                                                            #
+#                                                                      #
+########################################################################
+
+authentik_enabled: false
+
+authentik_identifier: "{{ mash_playbook_service_identifier_prefix }}authentik"
+
+authentik_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}authentik"
+
+authentik_uid: "{{ mash_playbook_uid }}"
+authentik_gid: "{{ mash_playbook_gid }}"
+
+authentik_database_hostname: "{{ devture_postgres_identifier if devture_postgres_enabled else '' }}"
+authentik_database_port: "{{ '5432' if devture_postgres_enabled else '' }}"
+authentik_database_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'db.authentik', rounds=655555) | to_uuid }}"
+authentik_database_username: "{{ authentik_identifier }}"
+
+authentik_server_systemd_required_services_list_auto: |
+  {{
+    ([devture_postgres_identifier ~ '.service'] if devture_postgres_enabled and authentik_database_hostname == devture_postgres_identifier else [])
+  }}
+
+authentik_server_container_additional_networks_auto: |
+  {{
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+    +
+    ([devture_postgres_container_network] if devture_postgres_enabled and authentik_database_hostname == devture_postgres_identifier and authentik_server_container_network != devture_postgres_container_network else [])
+  }}
+
+authentik_frontend_container_additional_networks_auto: |
+  {{
+    ([devture_postgres_container_network] if devture_postgres_enabled and authentik_database_hostname == devture_postgres_identifier and authentik_frontend_container_network != devture_postgres_container_network else [])
+    +
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+  }}
+
+authentik_server_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+authentik_server_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+authentik_server_container_labels_traefik_entrypoints: "{{ devture_traefik_entrypoint_primary }}"
+authentik_server_container_labels_traefik_tls_certResolver: "{{ devture_traefik_certResolver_primary }}"
+
+########################################################################
+#                                                                      #
+# /funkwhale                                                           #
+#                                                                      #
+########################################################################
 
 
 ########################################################################

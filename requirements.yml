@@ -3,6 +3,9 @@
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-adguard-home.git
   version: v0.107.26-1
   name: adguard_home
+- src: git+https://github.com/mother-of-all-self-hosting/ansible-role-authentik.git
+  version: v2023.4.0-1
+  name: authentik
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-aux.git
   version: v1.0.0-0
   name: aux

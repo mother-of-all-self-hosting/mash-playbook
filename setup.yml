@@ -56,6 +56,8 @@
 
     - role: galaxy/adguard_home
 
+    - role: galaxy/authentik
+
     - role: galaxy/collabora_online
 
     - role: galaxy/docker_registry
