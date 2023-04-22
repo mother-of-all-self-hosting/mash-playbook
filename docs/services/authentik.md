@@ -157,6 +157,7 @@ Then, adjust your main inventory host's variables file (`inventory/host_vars/aut
 
 
 # Point authentik to its dedicated Redis instance
+authentik_config_redis_hostname: 'mash-authentik-redis'
 authentik_environment_variable_redis_host: mash-authentik-redis
 authentik_environment_variable_redis_cache_host: mash-authentik-redis
 
