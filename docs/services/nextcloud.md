@@ -207,9 +207,9 @@ Nextcloud supports Single-Sign-On (SSO) via LDAP, SAML, and OIDC. To make use of
 
 MASH can connect Nextcloud with authentik via OIDC. The setup is quite straightforward, refer to [this blogpost by Jack](https://blog.cubieserver.de/2022/complete-guide-to-nextcloud-oidc-authentication-with-authentik/) for a full explanation.
 
-In short you should
+In short you should:
 
-* Create a new provider in authentik and trimm the client secret to <64 characters
+* Create a new provider in authentik and trim the client secret to <64 characters
 * Create an application in authentik using this provider
 * Install the app `user_oidc` in Nextcloud
 * Fill in the details from authentik in the app settings
