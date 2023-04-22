@@ -76,7 +76,7 @@
   version: v2.8.1-0
   name: healthchecks
 - src: git+https://github.com/moan0s/hubsite.git
-  version: v1.23.3-1
+  version: v1.23.3-2
   name: hubsite
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-jitsi.git
   version: v8319-6
