@@ -183,49 +183,9 @@ If you've decided to install a dedicated Redis instance for authentik, make sure
 
 ## Usage
 
-After installation, you can go to the authentik URL, as defined in `authentik_hostname`. Set the admin password there and start adding applications and users! Refer to the [official documentation]() to learn how to integrate services. Below are some tested examples
+After installation, you can set the admin password at `https://<authentik_hostname>/if/flow/initial-setup/`. Set the admin password there and start adding applications and users! Refer to the [official documentation](https://goauthentik.io/docs/) to learn how to integrate services. For this playbook tested examples are described in the respective service documentation. See
 
-### Grafana
+* [Grafana](./grafana.md)
+* [Nextcloud](./nextcloud.md)
 
-To enable SSO for Grafana you should
 
-* Create a new OAUTH provider in authentik called `grafana`
-* Create an application also named `grafana` in authentik using this provider
-* Add the following configuration to your `vars.yml` file and re-run the [installation](../installing.md) process (make sure to adjust `authentik.example.com`)
-
-```yaml
-grafana_environment_variables_additional_variables: |
-  GF_AUTH_GENERIC_OAUTH_ENABLED=true
-  GF_AUTH_GENERIC_OAUTH_NAME=authentik
-  GF_AUTH_GENERIC_OAUTH_CLIENT_ID=COPIED-CLIENTID
-  GF_AUTH_GENERIC_OAUTH_CLIENT_SECRET=COPIED-CLIENTSECRET
-  GF_AUTH_GENERIC_OAUTH_SCOPES=openid profile email
-  GF_AUTH_GENERIC_OAUTH_AUTH_URL=https://authentik.example.com/application/o/authorize/
-  GF_AUTH_GENERIC_OAUTH_TOKEN_URL=https://authentik.example.com/application/o/token/
-  GF_AUTH_GENERIC_OAUTH_API_URL=https://authentik.example.com/application/o/userinfo/
-  GF_AUTH_SIGNOUT_REDIRECT_URL=https://authentik.example.com/application/o/grafana/end-session/
-  # Optionally enable auto-login (bypasses Grafana login screen)
-  #GF_AUTH_OAUTH_AUTO_LOGIN="true"
-  GF_AUTH_GENERIC_OAUTH_ALLOW_ASSIGN_GRAFANA_ADMIN=true
-  # Optionally map user groups to Grafana roles
-  GF_AUTH_GENERIC_OAUTH_ROLE_ATTRIBUTE_PATH="contains(groups[*], 'Grafana Admins') && 'Admin' || contains(groups[*], 'Grafana Editors') && 'Editor' || 'Viewer'"
-
-```
-
-### Nextcloud
-
-**The official documentation of authentik to connect nextcloud via SAML seems broken**
-
-MASH can connect Nextcloud with authentik via OIDC. The setup is quite straightforward, refer to [this blogpost by Jack](https://blog.cubieserver.de/2022/complete-guide-to-nextcloud-oidc-authentication-with-authentik/) for a full explanation.
-
-In short you shoudl
-
-* Create a new provider in authentik and trimm the client secret to <64 characters
-* Create an application in authentik using this provider
-* Install the app `user_oidc` in Nextcloud
-* Fill in the details from authentik in the app settings
-
-**Troubleshooting**
-
-If you encounter problems during login check (error message containes `SHA1 mismatch`) that
-* Nextcloud users and authentik users do not have the same name -> if they do check `Use unique user ID` in the OIDC App settings

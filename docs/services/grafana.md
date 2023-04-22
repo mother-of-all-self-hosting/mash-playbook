@@ -82,6 +82,35 @@ grafana_dashboard_download_urls: |
 ```
 
 
+#### Single-Sign-On / Authentik
+
+Grafana supports Single-Sign-On (SSO) via OAUTH. To make use of this you'll need a Identity Provider like [authentik](./authentik.md) or [Keycloak](./keycloak.md). Using authentik you can connect and Authentik like this:
+
+* Create a new OAUTH provider in authentik called `grafana`
+* Create an application also named `grafana` in authentik using this provider
+* Add the following configuration to your `vars.yml` file and re-run the [installation](../installing.md) process (make sure to adjust `authentik.example.com`)
+
+```yaml
+grafana_environment_variables_additional_variables: |
+  GF_AUTH_GENERIC_OAUTH_ENABLED=true
+  GF_AUTH_GENERIC_OAUTH_NAME=authentik
+  GF_AUTH_GENERIC_OAUTH_CLIENT_ID=COPIED-CLIENTID
+  GF_AUTH_GENERIC_OAUTH_CLIENT_SECRET=COPIED-CLIENTSECRET
+  GF_AUTH_GENERIC_OAUTH_SCOPES=openid profile email
+  GF_AUTH_GENERIC_OAUTH_AUTH_URL=https://authentik.example.com/application/o/authorize/
+  GF_AUTH_GENERIC_OAUTH_TOKEN_URL=https://authentik.example.com/application/o/token/
+  GF_AUTH_GENERIC_OAUTH_API_URL=https://authentik.example.com/application/o/userinfo/
+  GF_AUTH_SIGNOUT_REDIRECT_URL=https://authentik.example.com/application/o/grafana/end-session/
+  # Optionally enable auto-login (bypasses Grafana login screen)
+  #GF_AUTH_OAUTH_AUTO_LOGIN="true"
+  GF_AUTH_GENERIC_OAUTH_ALLOW_ASSIGN_GRAFANA_ADMIN=true
+  # Optionally map user groups to Grafana roles
+  GF_AUTH_GENERIC_OAUTH_ROLE_ATTRIBUTE_PATH="contains(groups[*], 'Grafana Admins') && 'Admin' || contains(groups[*], 'Grafana Editors') && 'Editor' || 'Viewer'"
+```
+
+Make sure the user you want to login as has an email address in authentik, otherwise there will be an error.
+
+
 ## Usage
 
 After installation, you should be able to access your new Gitea instance at the configured URL (see above).
