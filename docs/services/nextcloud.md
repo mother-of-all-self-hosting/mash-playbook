@@ -198,6 +198,27 @@ nextcloud_container_additional_networks_custom:
 ########################################################################
 ```
 
+###  Single-Sign-On / Authentik
+
+Nextcloud supports Single-Sign-On (SSO) via LDAP, SAML, and OIDC. To make use of this you'll need a Identity Provider like [authentik](./authentik.md) or [Keycloak](./keycloak.md). The following assumes you use authentik.
+
+
+**The official documentation of authentik to connect nextcloud via SAML seems broken**
+
+MASH can connect Nextcloud with authentik via OIDC. The setup is quite straightforward, refer to [this blogpost by Jack](https://blog.cubieserver.de/2022/complete-guide-to-nextcloud-oidc-authentication-with-authentik/) for a full explanation.
+
+In short you should:
+
+* Create a new provider in authentik and trim the client secret to <64 characters
+* Create an application in authentik using this provider
+* Install the app `user_oidc` in Nextcloud
+* Fill in the details from authentik in the app settings
+
+**Troubleshooting**
+
+If you encounter problems during login check (error message containes `SHA1 mismatch`) that
+* Nextcloud users and authentik users do not have the same name -> if they do check `Use unique user ID` in the OIDC App settings
+
 ## Installation
 
 If you've decided to install a dedicated Redis instance for Nextcloud, make sure to first do [installation](../installing.md) for the supplementary inventory host (e.g. `nextcloud.example.com-deps`), before running installation for the main one (e.g. `nextcloud.example.com`).
