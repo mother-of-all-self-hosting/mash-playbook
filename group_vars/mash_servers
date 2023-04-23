@@ -1092,7 +1092,7 @@ hubsite_service_adguard_home_priority: 1000
 # authentik
 hubsite_service_authentik_enabled: "{{ authentik_enabled }}"
 hubsite_service_authentik_name: Authentik
-hubsite_service_authentik_url: "https://{{ authentik_hostname }}{{ authentik_path_prefix }}"
+hubsite_service_authentik_url: "https://{{ authentik_hostname }}"
 hubsite_service_authentik_logo_location: "{{ role_path }}/assets/authentik.png"
 hubsite_service_authentik_description: "An open source identity provider"
 hubsite_service_authentik_priority: 1000
