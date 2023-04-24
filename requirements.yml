@@ -45,7 +45,7 @@
   version: v2.8.1-1
   name: docker_registry
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-docker-registry-browser.git
-  version: v1.6.0-0
+  version: v1.6.1-0
   name: docker_registry_browser
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-docker-registry-purger.git
   version: v1.0.0-0
