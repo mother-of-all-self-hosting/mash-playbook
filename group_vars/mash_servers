@@ -178,6 +178,8 @@ devture_systemd_service_manager_services_list_auto: |
     ([{'name': (vaultwarden_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'vaultwarden', 'vaultwarden-server']}] if vaultwarden_enabled else [])
     +
     ([{'name': (uptime_kuma_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'uptime-kuma']}] if uptime_kuma_enabled else [])
+    +
+    ([{'name': (wg_easy_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'wg-easy']}] if wg_easy_enabled else [])
   }}
 
 ########################################################################
@@ -2108,6 +2110,39 @@ uptime_kuma_container_labels_traefik_tls_certResolver: "{{ devture_traefik_certR
 ########################################################################
 #                                                                      #
 # /etke/uptime_kuma                                                    #
+#                                                                      #
+########################################################################
+
+
+
+########################################################################
+#                                                                      #
+# wg-easy                                                              #
+#                                                                      #
+########################################################################
+
+wg_easy_enabled: false
+
+wg_easy_identifier: "{{ mash_playbook_service_identifier_prefix }}wg-easy"
+
+wg_easy_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}wg-easy"
+
+wg_easy_uid: "{{ mash_playbook_uid }}"
+wg_easy_gid: "{{ mash_playbook_gid }}"
+
+wg_easy_container_additional_networks_auto: |
+  {{
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+  }}
+
+wg_easy_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+wg_easy_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+wg_easy_container_labels_traefik_entrypoints: "{{ devture_traefik_entrypoint_primary }}"
+wg_easy_container_labels_traefik_tls_certResolver: "{{ devture_traefik_certResolver_primary }}"
+
+########################################################################
+#                                                                      #
+# /wg-easy                                                             #
 #                                                                      #
 ########################################################################
 

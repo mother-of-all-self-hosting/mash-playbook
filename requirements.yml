@@ -137,3 +137,6 @@
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-vaultwarden.git
   version: v1.28.1-0
   name: vaultwarden
+- src: git+https://github.com/mother-of-all-self-hosting/ansible-role-wg-easy.git
+  version: v7-0
+  name: wg_easy
