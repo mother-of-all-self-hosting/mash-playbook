@@ -12,6 +12,8 @@
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-aux.git
   version: v1.0.0-0
   name: aux
+- src: git+https://gitlab.com/etke.cc/roles/backup_borg.git
+  version: v1.2.4-1.7.12-1
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-collabora-online.git
   version: v22.05.13.1.1-0
   name: collabora_online
