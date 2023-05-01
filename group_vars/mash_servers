@@ -623,14 +623,29 @@ backup_borg_postgresql_databases_password: "{{ devture_postgres_connection_passw
 backup_borg_postgresql_databases_port: "{{ devture_postgres_connection_port if devture_postgres_enabled else 5432 }}"
 backup_borg_postgresql_databases: "{{ devture_postgres_managed_databases | map(attribute='name') if devture_postgres_enabled else [] }}"
 
+backup_borg_mysql_enabled: "{{ mariadb_enabled }}"
+backup_borg_mysql_databases_hostname: "{{ mariadb_identifier if mariadb_enabled else '' }}"
+backup_borg_mysql_databases_username: "root"
+backup_borg_mysql_databases_password: "{{ mariadb_root_passsword if mariadb_enabled else '' }}"
+backup_borg_mysql_databases_port: "{{ devture_postgres_connection_port if mariadb_enabled else 3306 }}"
+backup_borg_mysql_databases: "{{ mariadb_managed_databases | map(attribute='name') if mariadb_enabled else [] }}"
+
+
 backup_borg_location_source_directories:
   - "{{ mash_playbook_base_path }}"
+
+backup_borg_location_exclude_patterns:
+  - "{{ devture_postgres_data_path if devture_postgres_enabled else '' }}"
+  - "{{ mariadb_data_path if mariadb_enabled else '' }}"
+
 
 backup_borg_systemd_required_services_list: |
   {{
     ['docker.service']
     +
     ([devture_postgres_identifier ~ '.service'] if devture_postgres_enabled else [])
+    +
+    ([mariadb_identifier ~ '.service'] if mariadb_enabled else [])
   }}
 
 ########################################################################
