@@ -630,14 +630,15 @@ backup_borg_mysql_databases_password: "{{ mariadb_root_passsword if mariadb_enab
 backup_borg_mysql_databases_port: "{{ devture_postgres_connection_port if mariadb_enabled else 3306 }}"
 backup_borg_mysql_databases: "{{ mariadb_managed_databases | map(attribute='name') if mariadb_enabled else [] }}"
 
-
 backup_borg_location_source_directories:
   - "{{ mash_playbook_base_path }}"
 
-backup_borg_location_exclude_patterns:
-  - "{{ devture_postgres_data_path if devture_postgres_enabled else '' }}"
-  - "{{ mariadb_data_path if mariadb_enabled else '' }}"
-
+backup_borg_location_exclude_patterns: |
+  {{
+    ([devture_postgres_data_path] if devture_postgres_enabled else [])
+    +
+    ([mariadb_data_path] if mariadb_enabled else [])
+  }}
 
 backup_borg_systemd_required_services_list: |
   {{
