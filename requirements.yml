@@ -81,7 +81,7 @@
   version: v1.23.3-2
   name: hubsite
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-jitsi.git
-  version: v8319-6
+  version: v8615-0
   name: jitsi
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-keycloak.git
   version: v21.0.2-0
