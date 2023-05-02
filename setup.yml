@@ -60,6 +60,8 @@
 
     - role: galaxy/authentik
 
+    - role: galaxy/backup_borg
+
     - role: galaxy/collabora_online
 
     - role: galaxy/docker_registry
