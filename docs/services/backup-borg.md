@@ -8,7 +8,7 @@ You will need a remote server where borg will store the backups. There are hoste
 
 The backup will run based on `backup_borg_schedule` var (systemd timer calendar), default: 4am every day.
 
-By default, if you're using the integrated Postgres database server (as opposed to [an external Postgres server](configuring-playbook-external-postgres.md)), Borg backups will also include dumps of your Postgres database. An alternative solution for backing up the Postgres database is [postgres backup](configuring-playbook-postgres-backup.md). If you decide to go with another solution, you can disable Postgres-backup support for Borg using the `backup_borg_postgresql_enabled` variable.
+By default, if you're using the integrated Postgres database server (as opposed to [an external Postgres server](configuring-playbook-external-postgres.md)) or MariaDB as MySQL server, Borg backups will also include dumps of your databases. An alternative solution for backing up the Postgres database is [postgres backup](configuring-playbook-postgres-backup.md). If you decide to go with another solution, you can disable Postgres-backup support for Borg using the `backup_borg_postgresql_enabled` variable.
 
 
 ## Prerequisites
