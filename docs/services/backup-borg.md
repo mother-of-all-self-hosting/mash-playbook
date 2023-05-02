@@ -38,6 +38,13 @@ cat PUBKEY | ssh USER@HOST 'dd of=.ssh/authorized_keys oflag=append conv=notrunc
 Minimal working configuration (`inventory/host_vars/<yourdomain>/vars.yml`) to enable borg backup:
 
 ```yaml
+
+########################################################################
+#                                                                      #
+# backup-borg                                                          #
+#                                                                      #
+########################################################################
+
 backup_borg_enabled: true
 backup_borg_location_repositories:
  - ssh://USER@HOST/./REPO
@@ -50,6 +57,12 @@ backup_borg_ssh_key_private: |
   RydWQgZXhlcmNpdGF0aW9uIHVsbGFtY28gbGFib3JpcyBuaXNpIHV0IGFsaXF1aXAgZXgg
   ZWEgY29tbW9kbyBjb25zZXF1YXQuIA==
   -----END OPENSSH PRIVATE KEY-----
+
+########################################################################
+#                                                                      #
+# /backup-borg                                                         #
+#                                                                      #
+########################################################################
 ```
 
 where:
