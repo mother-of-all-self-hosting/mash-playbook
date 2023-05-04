@@ -26,8 +26,13 @@ To enable this service, add the following configuration to your `vars.yml` file 
 ########################################################################
 
 authentik_enabled: true
+
 authentik_hostname: authentik.example.com
-authentik_secret_key: 'verysecret'
+
+# Put a strong secret below, generated with `pwgen -s 64 1` or in another way
+authentik_secret_key: ''
+
+# Redis configuration, as described below
 
 ########################################################################
 #                                                                      #
@@ -64,7 +69,7 @@ redis_enabled: true
 
 ########################################################################
 #                                                                      #
-# authentik                                                               #
+# authentik                                                            #
 #                                                                      #
 ########################################################################
 
@@ -83,7 +88,7 @@ authentik_container_additional_networks_custom:
 
 ########################################################################
 #                                                                      #
-# /authentik                                                              #
+# /authentik                                                           #
 #                                                                      #
 ########################################################################
 ```
@@ -149,16 +154,14 @@ Then, adjust your main inventory host's variables file (`inventory/host_vars/aut
 ```yaml
 ########################################################################
 #                                                                      #
-# authentik                                                               #
+# authentik                                                            #
 #                                                                      #
 ########################################################################
 
 # Base configuration as shown above
 
-
 # Point authentik to its dedicated Redis instance
-authentik_environment_variable_redis_host: mash-authentik-redis
-authentik_environment_variable_redis_cache_host: mash-authentik-redis
+authentik_config_redis_hostname: mash-authentik-redis
 
 # Make sure the authentik service (mash-authentik.service) starts after its dedicated Redis service (mash-authentik-redis.service)
 authentik_systemd_required_services_list_custom:
@@ -170,7 +173,7 @@ authentik_container_additional_networks_custom:
 
 ########################################################################
 #                                                                      #
-# /authentik                                                              #
+# /authentik                                                           #
 #                                                                      #
 ########################################################################
 ```
@@ -185,7 +188,7 @@ If you've decided to install a dedicated Redis instance for authentik, make sure
 
 After installation, you can set the admin password at `https://<authentik_hostname>/if/flow/initial-setup/`. Set the admin password there and start adding applications and users! Refer to the [official documentation](https://goauthentik.io/docs/) to learn how to integrate services. For this playbook tested examples are described in the respective service documentation. See
 
-* [Grafana](./grafana.md)
-* [Nextcloud](./nextcloud.md)
+* [Grafana](./grafana.md#single-sign-on-authentik)
+* [Nextcloud](./nextcloud.md#single-sign-on-authentik)
 
 
