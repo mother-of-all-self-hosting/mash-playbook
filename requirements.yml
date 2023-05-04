@@ -87,7 +87,7 @@
   version: v21.0.2-0
   name: keycloak
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-lago.git
-  version: v0.30.0-0
+  version: v0.31.0-0
   name: lago
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-mariadb.git
   version: v10.11.2-0
