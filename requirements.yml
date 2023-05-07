@@ -93,7 +93,7 @@
   version: v10.11.2-0
   name: mariadb
 - src: git+https://gitlab.com/etke.cc/roles/miniflux.git
-  version: v2.0.43-2
+  version: v2.0.44-0
 - src: git+https://gitlab.com/etke.cc/mrs/ansible-role-mrs.git
   version: v0.0.0-9
   name: mrs
