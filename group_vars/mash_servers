@@ -537,7 +537,7 @@ anonaddy_database_password: "{{ '%s' | format(mash_playbook_generic_secret_key) 
 anonaddy_database_username: "{{ anonaddy_identifier }}"
 
  
-authentik_server_systemd_required_services_list_auto: |
+anonaddy_systemd_required_services_list_auto: |
   {{
     ([mariadb_identifier ~ '.service'] if mariadb_enabled and anonaddy_database_hostname == mariadb_identifier else [])
   }}
@@ -554,6 +554,9 @@ anonaddy_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_prox
 anonaddy_container_labels_traefik_entrypoints: "{{ devture_traefik_entrypoint_primary }}"
 anonaddy_container_labels_traefik_tls_certResolver: "{{ devture_traefik_certResolver_primary }}"
 
+anonaddy_container_rspamd_labels_traefik_enabled: "{{ anonaddy_rspamd_enabled and mash_playbook_traefik_labels_enabled }}"
+anonaddy_container_rspamd_labels_traefik_entrypoints: "{{ devture_traefik_entrypoint_primary }}"
+anonaddy_container_rspamd_labels_tls_certResolver: "{{ devture_traefik_certResolver_primary }}"
 
 ########################################################################
 #                                                                      #
