@@ -529,7 +529,7 @@ anonaddy_identifier: "{{ mash_playbook_service_identifier_prefix }}anonaddy"
 anonaddy_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}anonaddy"
 
 anonaddy_uid: "{{ mash_playbook_uid }}"
-anonaddy_gid: "{{ mash_playbook_uid }}"
+anonaddy_gid: "{{ mash_playbook_gid }}"
 
 anonaddy_database_hostname: "{{ mariadb_identifier if mariadb_enabled else '' }}"
 anonaddy_database_port: "{{ '3306' if mariadb_enabled else '' }}"
