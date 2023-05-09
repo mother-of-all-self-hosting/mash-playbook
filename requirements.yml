@@ -84,7 +84,7 @@
   version: v8615-0
   name: jitsi
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-keycloak.git
-  version: v21.0.2-0
+  version: v21.1.1-0
   name: keycloak
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-lago.git
   version: v0.31.0-0
