@@ -73,7 +73,7 @@
   version: v0.8.1-0
   name: gotosocial
 - src: git+https://gitlab.com/etke.cc/roles/grafana.git
-  version: v9.5.1-0
+  version: v9.5.2-0
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-healthchecks.git
   version: v2.8.1-0
   name: healthchecks
