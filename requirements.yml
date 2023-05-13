@@ -61,7 +61,7 @@
   version: v7.9.3-2
   name: focalboard
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-funkwhale.git
-  version: v1.3.0-rc5-3
+  version: v1.3.0-rc6-0
   name: funkwhale
 - src: git+https://github.com/geerlingguy/ansible-role-docker
   version: 6.1.0
