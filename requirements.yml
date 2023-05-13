@@ -112,6 +112,9 @@
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-peertube.git
   version: v5.1.0-3
   name: peertube
+- src: git+https://github.com/mother-of-all-self-hosting/ansible-role-postgres-exporter.git
+  version: v0.12.0-0
+  name: peertube
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-prometheus.git
   version: v2.43.0-0
   name: prometheus

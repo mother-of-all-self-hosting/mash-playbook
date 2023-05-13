@@ -106,6 +106,8 @@
 
     - role: galaxy/peertube
 
+    - role: galaxy/postgres-exporter
+
     - role: galaxy/prometheus
     - role: galaxy/prometheus_node_exporter
     - role: galaxy/prometheus_blackbox_exporter
