@@ -220,4 +220,8 @@ devture_postgres_process_extra_arguments: [
 
 ## Recommended other services
 
-You may also wish to look into [Postgres Backup](postgres-backup.md) for backing up your Postgres database.
+You may also wish to look into:
+
+- [Postgres Backup](postgres-backup.md) for backing up your Postgres database
+
+- [Prometheus](prometheus.md), [prometheus-postgres-exporter](prometheus-postgres-exporter.md) and [Grafana](grafana.md) for monitoring your Postgres database
