@@ -163,6 +163,8 @@ devture_systemd_service_manager_services_list_auto: |
     +
     ([{'name': (prometheus_node_exporter_identifier + '.service'), 'priority': 500, 'groups': ['mash', 'metrics', 'prometheus-node-exporter']}] if prometheus_node_exporter_enabled else [])
     +
+    ([{'name': (prometheus_postgres_exporter_identifier + '.service'), 'priority': 500, 'groups': ['mash', 'metrics', 'prometheus-postgres-exporter']}] if prometheus_postgres_exporter_enabled else [])
+    +
     ([{'name': (radicale_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'radicale']}] if radicale_enabled else [])
     +
     ([{'name': (redmine_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'redmine']}] if redmine_enabled else [])
@@ -300,10 +302,10 @@ devture_postgres_managed_databases_auto: |
     }] if peertube_enabled else [])
     +
     ([{
-      'name': postgres_exporter_database_name,
-      'username': postgres_exporter_database_username,
-      'password': postgres_exporter_database_password,
-    }] if postgres_exporter_enabled else [])
+      'name': prometheus_postgres_exporter_database_name,
+      'username': prometheus_postgres_exporter_database_username,
+      'password': prometheus_postgres_exporter_database_password,
+    }] if prometheus_postgres_exporter_enabled else [])
     +
     ([{
       'name': firezone_database_name,
@@ -1833,43 +1835,50 @@ peertube_systemd_required_services_list_auto: |
 
 ########################################################################
 #                                                                      #
-# postgres_exporter                                             #
+# prometheus_postgres_exporter                                             #
 #                                                                      #
 ########################################################################
 
-postgres_exporter_enabled: false
+prometheus_postgres_exporter_enabled: false
 
-postgres_exporter_identifier: "{{ mash_playbook_service_identifier_prefix }}postgres-exporter"
+prometheus_postgres_exporter_identifier: "{{ mash_playbook_service_identifier_prefix }}prometheus-postgres-exporter"
 
-postgres_exporter_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}postgres-exporter"
+prometheus_postgres_exporter_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}prometeus-postgres-exporter"
 
-postgres_exporter_uid: "{{ mash_playbook_uid }}"
-postgres_exporter_gid: "{{ mash_playbook_gid }}"
+prometheus_postgres_exporter_uid: "{{ mash_playbook_uid }}"
+prometheus_postgres_exporter_gid: "{{ mash_playbook_gid }}"
 
-postgres_exporter_basicauth_enabled: "{{ postgres_exporter_container_labels_traefik_enabled }}"
-postgres_exporter_basicauth_user: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'postgres-exporter.user', rounds=655555) | to_uuid }}"
-postgres_exporter_basicauth_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'postgres-exporter.password', rounds=655555) | to_uuid }}"
+prometheus_postgres_exporter_basicauth_enabled: "{{ prometheus_postgres_exporter_container_labels_traefik_enabled }}"
+prometheus_postgres_exporter_basicauth_user: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'prometheus-postgres-exporter.user', rounds=655555) | to_uuid }}"
+prometheus_postgres_exporter_basicauth_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'prometheus-postgres-exporter.password', rounds=655555) | to_uuid }}"
 
-postgres_exporter_container_additional_networks: |
+prometheus_postgres_exporter_container_additional_networks: |
   {{
     ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
     +
-    ([devture_postgres_container_network] if devture_postgres_enabled and postgres_exporter_database_hostname == devture_postgres_identifier and postgres_exporter_container_network != devture_postgres_container_network else [])
+    ([devture_postgres_container_network] if devture_postgres_enabled and prometheus_postgres_exporter_database_hostname == devture_postgres_identifier and prometheus_postgres_exporter_container_network != devture_postgres_container_network else [])
   }}
 
+prometheus_postgres_exporter_server_fqn: "{{ prometheus_postgres_exporter_database_hostname }}"
+
 # Only enable Traefik labels if a hostname is set (indicating that this will be exposed publicly)
-postgres_exporter_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled and postgres_exporter_hostname | length > 0 }}"
-postgres_exporter_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
-postgres_exporter_container_labels_traefik_entrypoints: "{{ devture_traefik_entrypoint_primary }}"
-postgres_exporter_container_labels_traefik_tls_certResolver: "{{ devture_traefik_certResolver_primary }}"
+prometheus_postgres_exporter_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled and prometheus_postgres_exporter_hostname | length > 0 }}"
+prometheus_postgres_exporter_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+prometheus_postgres_exporter_container_labels_traefik_entrypoints: "{{ devture_traefik_entrypoint_primary }}"
+prometheus_postgres_exporter_container_labels_traefik_tls_certResolver: "{{ devture_traefik_certResolver_primary }}"
 
-postgres_exporter_database_hostname: "{{ devture_postgres_connection_hostname if devture_postgres_enabled else '' }}"
-postgres_exporter_database_username: postgres-exporter
-postgres_exporter_database_password: "{{ devture_postgres_connection_password if devture_postgres_enabled else '' }}"
-postgres_exporter_database_port: "{{ devture_postgres_connection_port if devture_postgres_enabled else 5432 }}"
-postgres_exporter_database_ssl: false
+prometheus_postgres_exporter_database_hostname: "{{ devture_postgres_connection_hostname if devture_postgres_enabled else '' }}"
+prometheus_postgres_exporter_database_username: prometheus_postgres_exporter
+prometheus_postgres_exporter_database_password: "{{ devture_postgres_connection_password if devture_postgres_enabled else '' }}"
+prometheus_postgres_exporter_database_port: "{{ devture_postgres_connection_port if devture_postgres_enabled else 5432 }}"
+prometheus_postgres_exporter_database_ssl: false
 
-postgres_exporter_permission_grant_command: "{{ devture_postgres_bin_path }}/cli-non-interactive -c 'GRANT pg_monitor to \"{{ postgres_exporter_database_username }}\";'"
+prometheus_postgres_exporter_systemd_required_services_list: |
+  {{
+    ['docker.service']
+    +
+    ([devture_postgres_identifier ~ '.service'] if devture_postgres_enabled else [])
+  }}
 
 ########################################################################
 #                                                                      #
