@@ -1843,7 +1843,7 @@ prometheus_postgres_exporter_enabled: false
 
 prometheus_postgres_exporter_identifier: "{{ mash_playbook_service_identifier_prefix }}prometheus-postgres-exporter"
 
-prometheus_postgres_exporter_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}prometeus-postgres-exporter"
+prometheus_postgres_exporter_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}prometheus-postgres-exporter"
 
 prometheus_postgres_exporter_uid: "{{ mash_playbook_uid }}"
 prometheus_postgres_exporter_gid: "{{ mash_playbook_gid }}"
@@ -1859,7 +1859,7 @@ prometheus_postgres_exporter_container_additional_networks: |
     ([devture_postgres_container_network] if devture_postgres_enabled and prometheus_postgres_exporter_database_hostname == devture_postgres_identifier and prometheus_postgres_exporter_container_network != devture_postgres_container_network else [])
   }}
 
-prometheus_postgres_exporter_server_fqn: "{{ prometheus_postgres_exporter_database_hostname }}"
+prometheus_postgres_exporter_server_fqn: "{{ prometheus_postgres_exporter_hostname }}"
 
 # Only enable Traefik labels if a hostname is set (indicating that this will be exposed publicly)
 prometheus_postgres_exporter_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled and prometheus_postgres_exporter_hostname | length > 0 }}"
