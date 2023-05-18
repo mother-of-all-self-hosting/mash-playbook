@@ -3,7 +3,7 @@
 To install services using this Ansible playbook, you need:
 
 - (Recommended) An **x86-64** (`amd64`) or **arm64** server running one of these operating systems:
-  - **RedHat**-based distros (7 or newer)
+  - **Red Hat Enterprise Linux** or derivative distros, e.g. Rocky Linux (Major version 7 or newer)
   - **Debian** (10/Buster or newer)
   - **Ubuntu** (18.04 or newer, although [20.04 may be problematic](ansible.md#supported-ansible-versions))
   - **Archlinux**
