@@ -70,7 +70,7 @@
   version: v1.19.3-0
   name: gitea
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-gotosocial.git
-  version: v0.8.1-0
+  version: v0.8.1-1
   name: gotosocial
 - src: git+https://gitlab.com/etke.cc/roles/grafana.git
   version: v9.5.2-0
