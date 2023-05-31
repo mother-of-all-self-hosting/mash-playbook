@@ -107,7 +107,7 @@
   version: v26.0.1-0
   name: nextcloud
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-owncast.git
-  version: v0.0.13-0
+  version: v0.1.0-0
   name: owncast
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-peertube.git
   version: v5.1.0-3
