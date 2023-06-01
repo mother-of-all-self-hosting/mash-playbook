@@ -1,6 +1,8 @@
 # Firezone
 
-[Firezone](https://www.firezone.dev/) is a self-hosted VPN server (based on [WireGuard](https://en.wikipedia.org/wiki/WireGuard)) with Web UI that this playbook can install, powered by the [mother-of-all-self-hosting/ansible-role-firezone](https://github.com/mother-of-all-self-hosting/ansible-role-firezone) Ansible role.
+[Firezone](https://www.firezone.dev/) is a self-hosted VPN server (based on [WireGuard](https://www.wireguard.com/)) with Web UI that this playbook can install, powered by the [mother-of-all-self-hosting/ansible-role-firezone](https://github.com/mother-of-all-self-hosting/ansible-role-firezone) Ansible role.
+
+A more-lightweigth alternative for a self-hosted WireGuard VPN server which is more compatible with various ARM devices is [WireGuard Easy](wg-easy.md).
 
 ## Configuration
 
@@ -38,7 +40,7 @@ After installation, you can use `just run-tags firezone-create-or-reset-admin` a
 
 By default, the following ports will be exposed by the container on **all network interfaces**:
 
-- `51820` over **UDP**, controlled by `firezone_wireguard_bind_port` - used for [Wireguard](https://en.wikipedia.org/wiki/WireGuard) connections
+- `51820` over **UDP**, controlled by `firezone_wireguard_bind_port` - used for [Wireguard](https://www.wireguard.com/) connections
 
 Docker automatically opens these ports in the server's firewall, so you **likely don't need to do anything**. If you use another firewall in front of the server, you may need to adjust it.
 

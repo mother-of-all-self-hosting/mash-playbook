@@ -5,6 +5,8 @@
 # If this causes SSH connection troubles, disable it by adding `ansible_ssh_pipelining=False`
 # to the host line below or by adding `ansible_ssh_pipelining: False` to your variables file.
 #
+# If SSH is configured to listen to a non-standard port (i.e. something different than port 22), you need to add `ansible_port=<your configured SSH port>`.
+#
 # If you're running this Ansible playbook on the same server as the one you're installing to,
 # consider adding an additional `ansible_connection=local` argument to the host line below.
 #

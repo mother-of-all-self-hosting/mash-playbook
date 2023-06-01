@@ -56,6 +56,12 @@
 
     - role: galaxy/adguard_home
 
+    - role: galaxy/appsmith
+
+    - role: galaxy/authentik
+
+    - role: galaxy/backup_borg
+
     - role: galaxy/collabora_online
 
     - role: galaxy/docker_registry
@@ -74,13 +80,21 @@
 
     - role: galaxy/grafana
 
+    - role: galaxy/mariadb
+
     - role: galaxy/miniflux
+
+    - role: galaxy/mrs
+
+    - role: galaxy/healthchecks
 
     - role: galaxy/hubsite
 
     - role: galaxy/jitsi
 
     - role: galaxy/keycloak
+
+    - role: galaxy/lago
 
     - role: galaxy/mobilizon
 
@@ -99,6 +113,7 @@
     - role: galaxy/prometheus
     - role: galaxy/prometheus_node_exporter
     - role: galaxy/prometheus_blackbox_exporter
+    - role: galaxy/prometheus_postgres_exporter
 
     - role: galaxy/radicale
 
@@ -113,6 +128,8 @@
     - role: galaxy/vaultwarden
 
     - role: galaxy/uptime_kuma
+
+    - role: galaxy/wg_easy
 
     - role: galaxy/com.devture.ansible.role.woodpecker_ci_server
     - role: galaxy/com.devture.ansible.role.woodpecker_ci_agent

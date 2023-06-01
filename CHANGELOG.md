@@ -1,3 +1,12 @@
+# 2023-04-23
+
+## (Backward Compatibility Break) Authentik container variables renamed
+
+For the authentik role there wehre initially two containers: `authentic_worker_container` and `authentic_server_container`. To simnplifiy the setup this was reduced to one container.
+As the role is pretty young and to avoid confusion because of legacy and reverted design decisions all variables containing `authentik_server_container` will now start with authentik_container. This means you will have to renemae these variables in your `vars.yml` if you already use authentik. If you use a standard setup this only includes 
+
+* `authentic_server_container_additional_networks_custom` -> `authentik_container_additional_networks_custom`
+
 # 2023-03-29
 
 ## (Backward Compatibility Break) Firezone database renamed

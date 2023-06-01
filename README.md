@@ -6,7 +6,7 @@
 
 By running services in containers, we can have a predictable and up-to-date setup, across multiple supported distros and CPU architectures.
 
-This project is fairly new and only [supports a handful of services](docs/supported-services.md) so far, but will grow to support self-hosting a large number of [FOSS](https://en.wikipedia.org/wiki/Free_and_open-source_software) pieces of software.
+This project allows self-hosting of a [large number of services](docs/supported-services.md) and will continue to grow by adding support for [FOSS](https://en.wikipedia.org/wiki/Free_and_open-source_software).
 
 [Installation](docs/README.md) (upgrades) and some maintenance tasks are automated using [Ansible](https://www.ansible.com/) (see [our Ansible guide](docs/ansible.md)).
 
