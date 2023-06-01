@@ -2,6 +2,14 @@
 
 [Mobilizon](https://joinmobilizon.org/en/) is a ActivityPub/Fediverse server to create and share events here powered by the [mother-of-all-self-hosting/ansible-role-mobilizon](https://github.com/mother-of-all-self-hosting/ansible-role-mobilizon) Ansible role.
 
+## Depedencies
+
+
+This service requires the following other services:
+
+- a [Postgis](postgis.md) database (postgres based database that supports geospatial data)
+- a [Traefik](traefik.md) reverse-proxy server
+
 ## Configuration
 
 To enable this service, add the following configuration to your `vars.yml` file. Also you need to enable postgis which will serve as database for mobilizon.
@@ -27,23 +35,6 @@ mobilizon_hostname: 'events.example.org'
 ########################################################################
 #                                                                      #
 # /mobilizon                                                           #
-#                                                                      #
-########################################################################
-
-########################################################################
-#                                                                      #
-# postgis                                                              #
-#                                                                      #
-########################################################################
-
-postgis_enabled: true
-
-# Put a strong password below, generated with `pwgen -s 64 1` or in another way
-postgis_connection_password: ''
-
-########################################################################
-#                                                                      #
-# /postgis                                                             #
 #                                                                      #
 ########################################################################
 ```
