@@ -115,6 +115,9 @@
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-peertube.git
   version: v5.1.0-3
   name: peertube
+- src: git+https://github.com/mother-of-all-self-hosting/ansible-role-postgis.git
+  version: v15-3.3-0
+  name: postgis
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-prometheus.git
   version: v2.44.0-0
   name: prometheus
