@@ -24,6 +24,7 @@
 | [Lago](https://www.getlago.com/) | Open-source metering and usage-based billing | [Link](services/lago.md) |
 | [MariaDB](https://mariadb.org/) | A powerful, open source object-relational database system | [Link](services/mariadb.md) |
 | [Matrix Rooms Search API](https://gitlab.com/etke.cc/mrs/api) | A fully-featured, standalone, matrix rooms search service. | [Link](services/mrs.md) |
+| [MongoDB](https://www.mongodb.com/) | A source-available cross-platform document-oriented (NoSQL) database program. | [Link](services/mongodb.md) |
 | [Miniflux](https://miniflux.app/) | Minimalist and opinionated feed reader. | [Link](services/miniflux.md) |
 | [Mobilizon](https://joinmobilizon.org/en/) | An ActivityPub/Fediverse server to create and share events. | [Link](services/mobilizon.md) |
 | [Navidrome](https://www.navidrome.org/) | [Subsonic-API](http://www.subsonic.org/pages/api.jsp) compatible music server | [Link](services/navidrome.md)

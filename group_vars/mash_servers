@@ -141,6 +141,8 @@ devture_systemd_service_manager_services_list_auto: |
     +
     ([{'name': (miniflux_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'miniflux']}] if miniflux_enabled else [])
     +
+    ([{'name': (mongodb_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'mongodb']}] if mongodb_enabled else [])
+    +
     ([{'name': (mrs_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'mrs']}] if mrs_enabled else [])
     +
     ([{'name': (navidrome_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'navidrome']}] if navidrome_enabled else [])
@@ -1615,6 +1617,31 @@ mobilizon_container_labels_traefik_tls_certResolver: "{{ devture_traefik_certRes
 ########################################################################
 #                                                                      #
 # /mobilizon                                                          #
+#                                                                      #
+########################################################################
+
+
+
+########################################################################
+#                                                                      #
+# mongodb                                                              #
+#                                                                      #
+########################################################################
+
+mongodb_enabled: false
+
+mongodb_identifier: "{{ mash_playbook_service_identifier_prefix }}mongodb"
+
+mongodb_uid: "{{ mash_playbook_uid }}"
+mongodb_gid: "{{ mash_playbook_gid }}"
+
+mongodb_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}mongodb"
+
+mongodb_managed_databases_auto: []
+
+########################################################################
+#                                                                      #
+# /mongodb                                                             #
 #                                                                      #
 ########################################################################
 
