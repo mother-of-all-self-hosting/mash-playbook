@@ -63,6 +63,8 @@ Table of contents:
 
 - [Getting a database terminal](#getting-a-database-terminal), for when you wish to execute SQL queries
 
+- [Backing up MongoDB](#backing-up-mongodb), for when you wish to make a backup
+
 ### Getting a database terminal
 
 You can use the `/mash/mongodb/bin/cli` tool to get interactive terminal access using the MongoDB Shell [mongosh](https://www.mongodb.com/docs/mongodb-shell/).
