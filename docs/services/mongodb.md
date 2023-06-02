@@ -61,7 +61,7 @@ This section shows you how to perform various maintenance tasks related to the M
 
 Table of contents:
 
-- [Getting a database terminal](#getting-a-database-terminal), for when you wish to execute SQL queries
+- [Getting a database terminal](#getting-a-database-terminal), for when you wish to execute queries
 
 - [Backing up MongoDB](#backing-up-mongodb), for when you wish to make a backup
 
