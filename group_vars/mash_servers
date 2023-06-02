@@ -111,6 +111,8 @@ devture_systemd_service_manager_services_list_auto: |
     +
     ([{'name': (gotosocial_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'gotosocial']}] if gotosocial_enabled else [])
     +
+    ([{'name': (mobilizon_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'mobilizon']}] if mobilizon_enabled else [])
+    +
     ([{'name': (grafana_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'grafana']}] if grafana_enabled else [])
     +
     ([{'name': (hubsite_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'hubsite']}] if hubsite_enabled else [])
@@ -158,6 +160,8 @@ devture_systemd_service_manager_services_list_auto: |
     ([{'name': (owncast_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'owncast']}] if owncast_enabled else [])
     +
     ([{'name': (peertube_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'peertube']}] if peertube_enabled else [])
+    +
+    ([{'name': (postgis_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'metrics', 'postgis']}] if postgis_enabled else [])
     +
     ([{'name': (prometheus_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'metrics', 'prometheus']}] if prometheus_enabled else [])
     +
@@ -1566,6 +1570,55 @@ miniflux_database_password: "{{ '%s' | format(mash_playbook_generic_secret_key) 
 ########################################################################
 
 
+########################################################################
+#                                                                      #
+# mobilizon                                                           #
+#                                                                      #
+########################################################################
+
+mobilizon_enabled: false
+
+mobilizon_identifier: "{{ mash_playbook_service_identifier_prefix }}mobilizon"
+
+mobilizon_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}mobilizon"
+
+mobilizon_uid: "{{ mash_playbook_uid }}"
+mobilizon_gid: "{{ mash_playbook_gid }}"
+
+mobilizon_secret_key: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'sk.mobilizon', rounds=655555) | to_uuid }}"
+mobilizon_secret_key_base: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'skb.mobilizon', rounds=655555) | to_uuid }}"
+
+mobilizon_database_hostname: "{{ postgis_identifier if postgis_enabled else '' }}"
+mobilizon_database_port: "{{ '5432' if postgis_enabled else '' }}"
+mobilizon_database_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'db.mobilizon', rounds=655555) | to_uuid }}"
+mobilizon_database_username: "{{ mobilizon_identifier }}"
+
+mobilizon_systemd_required_services_list: |
+  {{
+    (['docker.service'])
+    +
+    ([postgis_identifier ~ '.service'] if postgis_enabled and mobilizon_database_hostname == postgis_identifier else [])
+  }}
+
+mobilizon_container_additional_networks: |
+  {{
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+    +
+    ([postgis_container_network] if postgis_enabled and mobilizon_database_hostname == postgis_identifier and mobilizon_container_network != postgis_container_network else [])
+  }}
+
+mobilizon_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+mobilizon_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+mobilizon_container_labels_traefik_entrypoints: "{{ devture_traefik_entrypoint_primary }}"
+mobilizon_container_labels_traefik_tls_certResolver: "{{ devture_traefik_certResolver_primary }}"
+
+########################################################################
+#                                                                      #
+# /mobilizon                                                          #
+#                                                                      #
+########################################################################
+
+
 
 
 ########################################################################
@@ -1832,6 +1885,44 @@ peertube_systemd_required_services_list_auto: |
 # /peertube                                                            #
 #                                                                      #
 ########################################################################
+
+########################################################################
+#                                                                      #
+# postgis                                                              #
+#                                                                      #
+########################################################################
+
+postgis_enabled: false
+
+postgis_identifier: "{{ mash_playbook_service_identifier_prefix }}postgis"
+
+postgis_architecture: "{{ mash_playbook_architecture }}"
+
+postgis_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}postgis"
+
+postgis_uid: "{{ mash_playbook_uid }}"
+postgis_gid: "{{ mash_playbook_gid }}"
+
+postgis_systemd_services_to_stop_for_maintenance_list: |
+  {{
+    ([(mobilizon_identifier + '.service')] if miniflux_enabled else [])
+  }}
+
+postgis_managed_databases_auto: |
+  {{
+    ([{
+      'name': mobilizon_database_name,
+      'username': mobilizon_database_username,
+      'password': mobilizon_database_password,
+    }] if mobilizon_enabled and mobilizon_database_type == 'postgis' and mobilizon_database_hostname == postgis_identifier else [])
+  }}
+
+########################################################################
+#                                                                      #
+# /postgis                                                             #
+#                                                                      #
+########################################################################
+
 
 
 

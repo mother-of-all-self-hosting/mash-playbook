@@ -96,6 +96,8 @@
 
     - role: galaxy/lago
 
+    - role: galaxy/mobilizon
+
     - role: galaxy/navidrome
 
     - role: galaxy/netbox
@@ -105,6 +107,8 @@
     - role: galaxy/owncast
 
     - role: galaxy/peertube
+
+    - role: galaxy/postgis
 
     - role: galaxy/prometheus
     - role: galaxy/prometheus_node_exporter
