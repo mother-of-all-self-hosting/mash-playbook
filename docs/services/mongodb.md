@@ -45,7 +45,7 @@ Before doing the actual import, **you need to upload your MongoDB dump file to t
 
 ### Importing a dump
 
-To import, run this command (make sure to replace `SERVER_PATH_TO_POSTGRES_DUMP_FILE` with a file path on your server):
+To import, run this command (make sure to replace `SERVER_PATH_TO_MONGODB_DUMP_DIRECTORY` with a file path on your server):
 
 ```sh
 just run-tags import-mongodb \
