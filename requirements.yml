@@ -81,7 +81,7 @@
   version: v1.23.3-2
   name: hubsite
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-infisical.git
-  version: v0.3.8-2
+  version: v0.3.8-3
   name: infisical
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-jitsi.git
   version: v8615-0
