@@ -119,6 +119,10 @@ devture_systemd_service_manager_services_list_auto: |
     +
     ([{'name': (healthchecks_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'healthchecks']}] if healthchecks_enabled else [])
     +
+    ([{'name': (infisical_identifier + '-backend.service'), 'priority': 2000, 'groups': ['mash', 'infisical', 'infisical-backend']}] if infisical_enabled else [])
+    +
+    ([{'name': (infisical_identifier + '-frontend.service'), 'priority': 2000, 'groups': ['mash', 'infisical', 'infisical-frontend']}] if infisical_enabled else [])
+    +
     ([{'name': (jitsi_identifier + '-web.service'), 'priority': 4200, 'groups': ['mash', 'jitsi', 'jitsi-web']}] if jitsi_enabled else [])
     +
     ([{'name': (jitsi_identifier + '-prosody.service'), 'priority': 4000, 'groups': ['mash', 'jitsi', 'jitsi-prosody']}] if jitsi_enabled else [])
@@ -140,6 +144,8 @@ devture_systemd_service_manager_services_list_auto: |
     ([{'name': (lago_identifier + '-pdf.service'), 'priority': 1900, 'groups': ['mash', 'lago', 'lago-pdf']}] if lago_enabled else [])
     +
     ([{'name': (miniflux_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'miniflux']}] if miniflux_enabled else [])
+    +
+    ([{'name': (mongodb_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'mongodb']}] if mongodb_enabled else [])
     +
     ([{'name': (mrs_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'mrs']}] if mrs_enabled else [])
     +
@@ -1384,6 +1390,70 @@ hubsite_service_list_auto: |
 
 ########################################################################
 #                                                                      #
+# infisical                                                            #
+#                                                                      #
+########################################################################
+
+infisical_enabled: false
+
+infisical_identifier: "{{ mash_playbook_service_identifier_prefix }}infisical"
+
+infisical_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}infisical"
+
+infisical_uid: "{{ mash_playbook_uid }}"
+infisical_gid: "{{ mash_playbook_gid }}"
+
+infisical_backend_systemd_required_services_list: |
+  {{
+    (['docker.service'])
+    +
+    ([mongodb_identifier ~ '.service'] if mongodb_enabled and infisical_mongodb_hostname == mongodb_identifier else [])
+  }}
+
+infisical_backend_container_additional_networks: |
+  {{
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+    +
+    ([mongodb_container_network] if mongodb_enabled and infisical_mongodb_hostname == mongodb_identifier and infisical_backend_container_network != mongodb_container_network else [])
+  }}
+
+infisical_backend_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+infisical_backend_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+infisical_backend_container_labels_traefik_entrypoints: "{{ devture_traefik_entrypoint_primary }}"
+infisical_backend_container_labels_traefik_tls_certResolver: "{{ devture_traefik_certResolver_primary }}"
+
+# Intentionally not auto-generating infisical_backend_environment_variable_encryption_key here.
+# We prefer it to be explicit as it seems important that it remains stable.
+
+infisical_backend_environment_variable_jwt_signup_secret: "{{ ('%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'inf.jwt.signup', rounds=655555) | to_uuid | replace('-', ''))[0:32] }}"
+infisical_backend_environment_variable_jwt_refresh_secret: "{{ ('%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'inf.jwt.r', rounds=655555) | to_uuid | replace('-', ''))[0:32] }}"
+infisical_backend_environment_variable_jwt_auth_secret: "{{ ('%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'inf.jwt.a', rounds=655555) | to_uuid | replace('-', ''))[0:32] }}"
+infisical_backend_environment_variable_jwt_service_secret: "{{ ('%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'inf.jwt.svc', rounds=655555) | to_uuid | replace('-', ''))[0:32] }}"
+
+infisical_frontend_container_additional_networks: |
+  {{
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+  }}
+
+infisical_frontend_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+infisical_frontend_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+infisical_frontend_container_labels_traefik_entrypoints: "{{ devture_traefik_entrypoint_primary }}"
+infisical_frontend_container_labels_traefik_tls_certResolver: "{{ devture_traefik_certResolver_primary }}"
+
+infisical_mongodb_hostname: "{{ mongodb_identifier if mongodb_enabled else '' }}"
+infisical_mongodb_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'infisical.db', rounds=655555) | to_uuid }}"
+infisical_mongodb_auth_source: "{{ infisical_mongodb_db_name }}"
+
+########################################################################
+#                                                                      #
+# /infisical                                                           #
+#                                                                      #
+########################################################################
+
+
+
+########################################################################
+#                                                                      #
 # jitsi                                                                #
 #                                                                      #
 ########################################################################
@@ -1615,6 +1685,38 @@ mobilizon_container_labels_traefik_tls_certResolver: "{{ devture_traefik_certRes
 ########################################################################
 #                                                                      #
 # /mobilizon                                                          #
+#                                                                      #
+########################################################################
+
+
+
+########################################################################
+#                                                                      #
+# mongodb                                                              #
+#                                                                      #
+########################################################################
+
+mongodb_enabled: false
+
+mongodb_identifier: "{{ mash_playbook_service_identifier_prefix }}mongodb"
+
+mongodb_uid: "{{ mash_playbook_uid }}"
+mongodb_gid: "{{ mash_playbook_gid }}"
+
+mongodb_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}mongodb"
+
+mongodb_managed_databases_auto: |
+  {{
+    ([{
+      'name': infisical_mongodb_db_name,
+      'username': infisical_mongodb_username,
+      'password': infisical_mongodb_password,
+    }] if infisical_enabled and infisical_mongodb_hostname == mongodb_identifier else [])
+  }}
+
+########################################################################
+#                                                                      #
+# /mongodb                                                             #
 #                                                                      #
 ########################################################################
 

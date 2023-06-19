@@ -50,6 +50,8 @@
 
     - role: galaxy/com.devture.ansible.role.postgres_backup
 
+    - role: galaxy/mongodb
+
     - role: galaxy/com.devture.ansible.role.container_socket_proxy
 
     - role: galaxy/com.devture.ansible.role.traefik
@@ -87,6 +89,8 @@
     - role: galaxy/mrs
 
     - role: galaxy/healthchecks
+
+    - role: galaxy/infisical
 
     - role: galaxy/hubsite
 
@@ -134,7 +138,7 @@
     - role: galaxy/com.devture.ansible.role.woodpecker_ci_server
     - role: galaxy/com.devture.ansible.role.woodpecker_ci_agent
 
-    - role: galaxy/aux
+    - role: galaxy/auxiliary
 
     - when: devture_systemd_service_manager_enabled | bool
       role: galaxy/com.devture.ansible.role.systemd_service_manager
