@@ -73,7 +73,7 @@
   version: v0.9.0-3
   name: gotosocial
 - src: git+https://gitlab.com/etke.cc/roles/grafana.git
-  version: v9.5.3-0
+  version: v10.0.0-0
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-healthchecks.git
   version: v2.9.2-0
   name: healthchecks
@@ -96,7 +96,7 @@
   version: v10.11.2-0
   name: mariadb
 - src: git+https://gitlab.com/etke.cc/roles/miniflux.git
-  version: v2.0.44-0
+  version: v2.0.45-0
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-mobilizon.git
   version: v3.1.0-1
   name: mobilizon
@@ -132,7 +132,7 @@
 - src: git+https://gitlab.com/etke.cc/roles/prometheus_node_exporter.git
   version: v1.6.0-0
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-prometheus-postgres-exporter.git
-  version: v0.12.0-0
+  version: v0.13.0-0
   name: prometheus_postgres_exporter
 - src: git+https://gitlab.com/etke.cc/roles/radicale.git
   version: v3.1.8.2-3
