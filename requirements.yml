@@ -7,7 +7,7 @@
   version: v1.9.22-0
   name: appsmith
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-authentik.git
-  version: v2023.5.3-0
+  version: v2023.5.4-0
   name: authentik
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-aux.git
   version: v1.0.0-1
