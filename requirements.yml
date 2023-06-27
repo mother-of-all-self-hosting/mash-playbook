@@ -4,7 +4,7 @@
   version: v0.107.26-1
   name: adguard_home
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-appsmith.git
-  version: v1.9.23-0
+  version: v1.9.24-0
   name: appsmith
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-authentik.git
   version: v2023.5.4-0
