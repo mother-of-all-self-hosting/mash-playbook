@@ -125,6 +125,8 @@
 
     - role: galaxy/redis
 
+    - role: galaxy/rumqttd
+
     - role: galaxy/soft_serve
 
     - role: galaxy/syncthing
