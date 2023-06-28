@@ -1,0 +1,37 @@
+# rumqttd
+
+A high performance, embeddable [MQTT](https://en.wikipedia.org/wiki/MQTT) broker installed via [mother-of-all-self-hosting/ansible-role-rumqttd](https://github.com/mother-of-all-self-hosting/ansible-role-rumqttd).
+
+
+# Configuring this role for your playbook
+
+## Dependencies
+
+This service does not require any dependecies.
+
+## Configuration
+
+To enable this service, add the following configuration to your `vars.yml` file and re-run the [installation](../installing.md) process:
+
+```yaml
+########################################################################
+#                                                                      #
+# rumqttd                                                              #
+#                                                                      #
+########################################################################
+
+rumqttd_enabled: true
+
+
+########################################################################
+#                                                                      #
+# /rumqttd                                                             #
+#                                                                      #
+########################################################################
+```
+
+
+
+## Usage
+
+You can then start to send MQTT messages to your broker on port 1883 via your 
