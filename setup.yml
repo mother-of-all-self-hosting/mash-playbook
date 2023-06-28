@@ -94,6 +94,8 @@
 
     - role: galaxy/hubsite
 
+    - role: galaxy/influxdb
+
     - role: galaxy/jitsi
 
     - role: galaxy/keycloak
