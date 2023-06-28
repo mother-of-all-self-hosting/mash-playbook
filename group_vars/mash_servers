@@ -185,7 +185,7 @@ devture_systemd_service_manager_services_list_auto: |
     +
     ([{'name': (redis_identifier + '.service'), 'priority': 750, 'groups': ['mash', 'redis']}] if redis_enabled else [])
     +
-    ([{'name': (rumqttd_identifier + '.service'), 'priority': 750, 'groups': ['mash', 'rumqttd']}] if rumqttd_enabled else [])
+    ([{'name': (rumqttd_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'rumqttd']}] if rumqttd_enabled else [])
     +
     ([{'name': (soft_serve_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'soft-serve']}] if soft_serve_enabled else [])
     +
