@@ -191,6 +191,8 @@ devture_systemd_service_manager_services_list_auto: |
     +
     ([{'name': (syncthing_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'syncthing']}] if syncthing_enabled else [])
     +
+    ([{'name': (telegraf_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'telegraf']}] if telegraf_enabled else [])
+    +
     ([{'name': (vaultwarden_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'vaultwarden', 'vaultwarden-server']}] if vaultwarden_enabled else [])
     +
     ([{'name': (uptime_kuma_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'uptime-kuma']}] if uptime_kuma_enabled else [])
@@ -2397,6 +2399,34 @@ syncthing_container_labels_traefik_tls_certResolver: "{{ devture_traefik_certRes
 #                                                                      #
 ########################################################################
 
+########################################################################
+#                                                                      #
+# telegraf                                                             #
+#                                                                      #
+########################################################################
+
+telegraf_enabled: false
+
+telegraf_identifier: "{{ mash_playbook_service_identifier_prefix }}telegraf"
+
+telegraf_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}telegraf"
+
+telegraf_uid: "{{ mash_playbook_uid }}"
+telegraf_gid: "{{ mash_playbook_gid }}"
+
+telegraf_systemd_required_services_list: |
+  {{
+    (['docker.service'])
+    +
+    ([(influxdb_identifier + '.service')] if influxdb_enabled else [])
+  }}
+
+
+########################################################################
+#                                                                      #
+# /telegraf                                                            #
+#                                                                      #
+########################################################################
 
 
 ########################################################################

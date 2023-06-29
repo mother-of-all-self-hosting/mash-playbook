@@ -131,6 +131,8 @@
 
     - role: galaxy/syncthing
 
+    - role: galaxy/telegraf
+
     - role: galaxy/vaultwarden
 
     - role: galaxy/uptime_kuma
