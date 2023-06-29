@@ -13,11 +13,8 @@ To enable this service, add the following configuration to your `vars.yml` file 
 #                                                                      #
 ########################################################################
 
-# Configuring this role for your playbook
-
 influxdb_enabled: true
 influxdb_hostname: 'example.org'
-
 
 # Advanced configuration
 # Configure the inital user, organization and bucket
