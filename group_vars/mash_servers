@@ -123,6 +123,8 @@ devture_systemd_service_manager_services_list_auto: |
     +
     ([{'name': (infisical_identifier + '-frontend.service'), 'priority': 2000, 'groups': ['mash', 'infisical', 'infisical-frontend']}] if infisical_enabled else [])
     +
+    ([{'name': (influxdb + '.service'), 'priority': 2000, 'groups': ['mash', 'influxdb']}] if influxdb_enabled else [])
+    +
     ([{'name': (jitsi_identifier + '-web.service'), 'priority': 4200, 'groups': ['mash', 'jitsi', 'jitsi-web']}] if jitsi_enabled else [])
     +
     ([{'name': (jitsi_identifier + '-prosody.service'), 'priority': 4000, 'groups': ['mash', 'jitsi', 'jitsi-prosody']}] if jitsi_enabled else [])
@@ -1447,6 +1449,46 @@ infisical_mongodb_auth_source: "{{ infisical_mongodb_db_name }}"
 ########################################################################
 #                                                                      #
 # /infisical                                                           #
+#                                                                      #
+########################################################################
+
+
+
+
+########################################################################
+#                                                                      #
+# influxdb                                                             #
+#                                                                      #
+########################################################################
+
+influxdb_enabled: false
+
+influxdb_identifier: "{{ mash_playbook_service_identifier_prefix }}influxdb"
+
+influxdb_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}influxdb"
+
+influxdb_uid: "{{ mash_playbook_uid }}"
+influxdb_gid: "{{ mash_playbook_gid }}"
+
+influxdb_systemd_required_services_list: |
+  {{
+    (['docker.service'])
+  }}
+
+influxdb_container_additional_networks: |
+  {{
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+  }}
+
+influxdb_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+influxdb_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+influxdb_container_labels_traefik_entrypoints: "{{ devture_traefik_entrypoint_primary }}"
+influxdb_container_labels_traefik_tls_certResolver: "{{ devture_traefik_certResolver_primary }}"
+
+
+########################################################################
+#                                                                      #
+# /influxdb                                                            #
 #                                                                      #
 ########################################################################
 
