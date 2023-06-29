@@ -123,7 +123,7 @@ devture_systemd_service_manager_services_list_auto: |
     +
     ([{'name': (infisical_identifier + '-frontend.service'), 'priority': 2000, 'groups': ['mash', 'infisical', 'infisical-frontend']}] if infisical_enabled else [])
     +
-    ([{'name': (influxdb + '.service'), 'priority': 2000, 'groups': ['mash', 'influxdb']}] if influxdb_enabled else [])
+    ([{'name': (influxdb_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'influxdb']}] if influxdb_enabled else [])
     +
     ([{'name': (jitsi_identifier + '-web.service'), 'priority': 4200, 'groups': ['mash', 'jitsi', 'jitsi-web']}] if jitsi_enabled else [])
     +
