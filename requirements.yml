@@ -84,7 +84,7 @@
   version: v0.3.8-4
   name: infisical
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-influxdb.git
-  version: v2.7.0-2
+  version: v2.7.0-3
   name: influxdb
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-jitsi.git
   version: v8615-0
