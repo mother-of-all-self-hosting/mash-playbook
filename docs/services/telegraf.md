@@ -1,6 +1,6 @@
 # Telegraf
 
-[Telegraf](https://www.influxdata.com/) is a plugin-driven server agent for collecting & reporting metric, that this playbook can install, powered by the [mother-of-all-self-hosting/ansible-role-influxdb](https://github.com/mother-of-all-self-hosting/ansible-role-influxdb) Ansible role. It heavily depends on [InfluxDB](influxdb.md)
+[Telegraf](https://www.influxdata.com/) is a plugin-driven server agent for collecting & reporting metric, that this playbook can install, powered by the [mother-of-all-self-hosting/ansible-role-telegraf](https://github.com/mother-of-all-self-hosting/ansible-role-telegraf) Ansible role. It heavily depends on [InfluxDB](influxdb.md)
 
 ## Prerequisits
 
