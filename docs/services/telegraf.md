@@ -4,15 +4,15 @@
 
 ## Prerequisits
 
-* A installed and running [infuxdb](influxdb.md).
+* A functioning [InfluxDB](influxdb.md) instance.
 
 ## Configuration
 
 To enable this service, add the following configuration to your `vars.yml` file and re-run the [installation](../installing.md) process:
 
-This role depends on a influxdb configuring telegraf. You need to obtain the influx token and config link in the influxdb.
-In your browser, visit the influxdb and go to Load Data -> Telegraf.
-There you need to add a telegraf configuraion. You can now obtain these values from the setup instructions and oaste them here.
+This role depends on InfluxDB. You need to obtain the influx token and config link in from InfluxDB.
+In your browser, visit the InfluxDB instance and go to **Load Data** -> **Telegraf**.
+There you need to add a Telegraf configuration. You can now obtain these values from the setup instructions and paste them here.
 
 ```yaml
 telegraf_enabled: true
@@ -22,5 +22,5 @@ telegraf_config_link: https://influxdb.example.org/api/v2/telegrafs/0123456789
 
 ## Usage
 
-In your influxdb configure the telegraf plugins as you like.
+In your InfluxDB instance, configure the Telegraf plugins as you like.
 
