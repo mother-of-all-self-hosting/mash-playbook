@@ -1,6 +1,6 @@
 # rumqttd
 
-[rumqttd](https://github.com/bytebeamio/rumqtt/tree/main/rumqttd) is a high performance, embeddable [MQTT](https://en.wikipedia.org/wiki/MQTT) broker installed via [mother-of-all-self-hosting/ansible-role-rumqttd](https://github.com/mother-of-all-self-hosting/ansible-role-rumqttd).
+[rumqttd](https://github.com/bytebeamio/rumqtt) is a high performance, embeddable [MQTT](https://en.wikipedia.org/wiki/MQTT) broker installed via [mother-of-all-self-hosting/ansible-role-rumqttd](https://github.com/mother-of-all-self-hosting/ansible-role-rumqttd).
 
 
 # Configuring this role for your playbook
