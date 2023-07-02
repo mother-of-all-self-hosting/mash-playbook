@@ -156,7 +156,7 @@
   version: v1.23.5-0
   name: syncthing
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-telegraf.git
-  version: v1.27.1-1
+  version: v1.27.1-2
   name: telegraf
 - src: git+https://gitlab.com/etke.cc/roles/uptime_kuma.git
   version: v1.22.0-0
