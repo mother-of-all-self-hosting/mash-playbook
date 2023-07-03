@@ -104,6 +104,8 @@
 
     - role: galaxy/mobilizon
 
+    - role: galaxy/mosquitto
+
     - role: galaxy/navidrome
 
     - role: galaxy/netbox

@@ -149,6 +149,8 @@ devture_systemd_service_manager_services_list_auto: |
     +
     ([{'name': (mongodb_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'mongodb']}] if mongodb_enabled else [])
     +
+    ([{'name': (mosquitto_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'mosquitto']}] if mosquitto_enabled else [])
+    +
     ([{'name': (mrs_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'mrs']}] if mrs_enabled else [])
     +
     ([{'name': (navidrome_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'navidrome']}] if navidrome_enabled else [])
@@ -1766,7 +1768,33 @@ mongodb_managed_databases_auto: |
 #                                                                      #
 ########################################################################
 
+########################################################################
+#                                                                      #
+# mosquitto                                                           #
+#                                                                      #
+########################################################################
 
+mosquitto_enabled: false
+
+mosquitto_identifier: "{{ mash_playbook_service_identifier_prefix }}mosquitto"
+
+mosquitto_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}mosquitto"
+
+mosquitto_uid: "{{ mash_playbook_uid }}"
+mosquitto_gid: "{{ mash_playbook_gid }}"
+
+mosquitto_systemd_required_services_list: |
+  {{
+    (['docker.service'])
+  }}
+
+
+
+########################################################################
+#                                                                      #
+# /mosquitto                                                          #
+#                                                                      #
+########################################################################
 
 
 ########################################################################
