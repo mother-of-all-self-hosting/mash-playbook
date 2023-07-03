@@ -105,7 +105,7 @@
   name: mobilizon
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-mongodb.git
   version: v6.0.6-0
-  name: mosquitto
+  name: mongodb
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-mosquitto.git
   version: v2.0.15-0
   name: mosquitto
