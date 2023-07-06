@@ -91,6 +91,9 @@ Grafana supports Single-Sign-On (SSO) via OAUTH. To make use of this you'll need
 * Add the following configuration to your `vars.yml` file and re-run the [installation](../installing.md) process (make sure to adjust `authentik.example.com`)
 
 ```yaml
+# To make Grafana honor the expiration time of JWT tokens, enable this experimental feature below.
+# grafana_feature_toggles_enable: accessTokenExpirationCheck
+
 grafana_environment_variables_additional_variables: |
   GF_AUTH_GENERIC_OAUTH_ENABLED=true
   GF_AUTH_GENERIC_OAUTH_NAME=authentik
