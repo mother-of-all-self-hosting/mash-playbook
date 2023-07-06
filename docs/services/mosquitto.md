@@ -10,11 +10,14 @@ To enable this service, add the following configuration to your `vars.yml` file 
 
 ```yaml
 mosquitto_enabled: true
+
+# If you need to change the MQTT port you can uncomment and adjust
+# mosquitto_container_mqtt_host_bind_port: "1884"
 ```
 
 ## Usage
 
-After installation, you can use `just run-tags mosquitto-add-user --extra-vars=username=<username> --extra-vars=password=<password>"` to create a user. For the setting to take effect, you must restart the container.
+After installation, you can use `just run-tags mosquitto-add-user --extra-vars=username=<username> --extra-vars=password=<password>` to create a user. For the setting to take effect, you must restart the container. To do that you can use `just restart-group mosquitto`.
 
 You can then start to send and subscribe to MQTT topics. Use port 1883 and the servers IP or any domain you configured to point at this server.
 
