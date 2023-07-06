@@ -96,7 +96,7 @@
   version: v0.39.0-0
   name: lago
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-mariadb.git
-  version: v10.11.2-0
+  version: v10.11.4-0
   name: mariadb
 - src: git+https://gitlab.com/etke.cc/roles/miniflux.git
   version: v2.0.45-0
