@@ -1770,7 +1770,7 @@ mongodb_managed_databases_auto: |
 
 ########################################################################
 #                                                                      #
-# mosquitto                                                           #
+# mosquitto                                                            #
 #                                                                      #
 ########################################################################
 
@@ -1783,16 +1783,9 @@ mosquitto_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_bas
 mosquitto_uid: "{{ mash_playbook_uid }}"
 mosquitto_gid: "{{ mash_playbook_gid }}"
 
-mosquitto_systemd_required_services_list: |
-  {{
-    (['docker.service'])
-  }}
-
-
-
 ########################################################################
 #                                                                      #
-# /mosquitto                                                          #
+# /mosquitto                                                           #
 #                                                                      #
 ########################################################################
 
