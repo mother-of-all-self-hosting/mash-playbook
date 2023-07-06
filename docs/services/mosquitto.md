@@ -17,7 +17,7 @@ mosquitto_enabled: true
 
 ## Usage
 
-After installation, you can use `just run-tags mosquitto-add-user --extra-vars=username=<username> --extra-vars=password=<password>` to create a user. For the setting to take effect, you must restart the container. To do that you can use `just restart-group mosquitto`.
+After installation, you can use `just run-tags mosquitto-add-user --extra-vars=username=<username> --extra-vars=password=<password>` to create a user. For the setting to take effect, you must restart the container. To do that you can use `just start-group mosquitto`.
 
 You can then start to send and subscribe to MQTT topics. Use port 1883 and the servers IP or any domain you configured to point at this server.
 
