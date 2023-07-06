@@ -1964,8 +1964,7 @@ mariadb_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_
 mariadb_uid: "{{ mash_playbook_uid }}"
 mariadb_gid: "{{ mash_playbook_gid }}"
 
-# This will be extended in the future, to auto-create datases for services
-# which depend on MariaDB.
+# This will be extended in the future, to auto-create databases for services which depend on MariaDB.
 # See `devture_postgres_managed_databases_auto`
 mariadb_managed_databases_auto: []
 
