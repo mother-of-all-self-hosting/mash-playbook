@@ -35,3 +35,7 @@ rumqttd_enabled: true
 ## Usage
 
 You can then start to send and subscribe to MQTT topics. Use port 1883 and the servers IP or any domain you configured to point at this server.
+
+## Alternatives
+
+* [Mosquitto](mosquitto.md) is another, more feature-complete MQTT broker
