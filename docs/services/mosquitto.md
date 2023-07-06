@@ -1,5 +1,4 @@
-# Mosquitto Ansible Role
-
+# Mosquitto
 
 [Mosquitto](https://mosquitto.org/) is an open source [MQTT](https://en.wikipedia.org/wiki/MQTT) broker.
 
@@ -19,7 +18,7 @@ mosquitto_enabled: true
 
 After installation, you can use `just run-tags mosquitto-add-user --extra-vars=username=<username> --extra-vars=password=<password>` to create a user. For the setting to take effect, you must restart the container. To do that you can use `just start-group mosquitto`.
 
-You can then start to send and subscribe to MQTT topics. Use port 1883 and the servers IP or any domain you configured to point at this server.
+You can then start to send and subscribe to MQTT topics. Use port `1883` and the server's IP or any domain you configured to point to this server.
 
 ## Alternatives
 
