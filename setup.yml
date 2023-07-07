@@ -64,6 +64,8 @@
 
     - role: galaxy/backup_borg
 
+    - role: galaxy/clickhouse
+
     - role: galaxy/collabora_online
 
     - role: galaxy/docker_registry
