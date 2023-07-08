@@ -76,6 +76,8 @@
 
     - role: galaxy/focalboard
 
+    - role: galaxy/frigate
+
     - role: galaxy/funkwhale
 
     - role: galaxy/gitea

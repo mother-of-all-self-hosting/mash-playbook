@@ -63,6 +63,9 @@
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-focalboard.git
   version: v7.9.3-2
   name: focalboard
+- src: git+https://github.com/cvwright/ansible-role-frigate.git
+  version: ca53b84f26f0349fac171a6830fa05fbbe6178a3
+  name: frigate
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-funkwhale.git
   version: v1.3.0-rc6-0
   name: funkwhale
