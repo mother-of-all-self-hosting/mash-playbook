@@ -64,7 +64,7 @@
   version: v7.9.3-2
   name: focalboard
 - src: git+https://github.com/cvwright/ansible-role-frigate.git
-  version: ca53b84f26f0349fac171a6830fa05fbbe6178a3
+  version: c7a26fd23c557d2a86a6edb5f1a6137cc6502e2c
   name: frigate
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-funkwhale.git
   version: v1.3.0-rc6-0
