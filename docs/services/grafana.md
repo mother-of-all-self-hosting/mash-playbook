@@ -108,7 +108,7 @@ grafana_environment_variables_additional_variables: |
   #GF_AUTH_OAUTH_AUTO_LOGIN="true"
   GF_AUTH_GENERIC_OAUTH_ALLOW_ASSIGN_GRAFANA_ADMIN=true
   # Optionally map user groups to Grafana roles
-  GF_AUTH_GENERIC_OAUTH_ROLE_ATTRIBUTE_PATH="contains(groups[*], 'Grafana Admins') && 'Admin' || contains(groups[*], 'Grafana Editors') && 'Editor' || 'Viewer'"
+  GF_AUTH_GENERIC_OAUTH_ROLE_ATTRIBUTE_PATH=contains(groups[*], 'Grafana Admins') && 'Admin' || contains(groups[*], 'Grafana Editors') && 'Editor' || 'Viewer'
 ```
 
 Make sure the user you want to login as has an email address in authentik, otherwise there will be an error.
