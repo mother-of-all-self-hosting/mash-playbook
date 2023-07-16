@@ -144,7 +144,7 @@
   version: v0.13.1-0
   name: prometheus_postgres_exporter
 - src: git+https://gitlab.com/etke.cc/roles/radicale.git
-  version: v3.1.8.2-3
+  version: v3.1.8.3-0
 - src: git+https://gitlab.com/etke.cc/roles/redis.git
   version: v7.0.10-0
 - src: git+https://gitlab.com/etke.cc/roles/redmine.git
