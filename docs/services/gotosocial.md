@@ -23,7 +23,6 @@ To enable this service, add the following configuration to your `vars.yml` file 
 
 gotosocial_enabled: true
 
-
 # Hostname that this server will be reachable at.
 # DO NOT change this after your server has already run once, or you will break things!
 # Examples: ["gts.example.org","some.server.com"]
@@ -35,9 +34,6 @@ gotosocial_hostname: 'social.example.org'
 #                                                                      #
 ########################################################################
 ```
-
-After installation, you can use `just run-tags gotosocial-add-user --extra-vars=username=<username> --extra-vars=password=<password> --extra-vars=email=<email>"`
-to create your a user. Change `--tags=gotosocial-add-user` to `--tags=gotosocial-add-admin` to create an admin account.
 
 ## Advanced account domain configuration
 
@@ -65,12 +61,19 @@ gotosocial_smtp_from: gotosocial@example.org
 
 ## Usage
 
-After [installing](../installing.md), you can visit at the URL specified in `gotosocial_hostname` and should see your instance.
-Start to customize it at `social.example.org/admin`.
+After [installing](../installing.md), you can:
+
+- create an **administrator** user account with a command like this: `just run-tags gotosocial-add-admin --extra-vars=username=USERNAME_HERE --extra-vars=password=PASSWORD_HERE --extra-vars=email=EMAIL_HERE`
+
+- create a **regular** (non-administrator) user account with a command like this: `just run-tags gotosocial-add-user --extra-vars=username=USERNAME_HERE --extra-vars=password=PASSWORD_HERE --extra-vars=email=EMAIL_HERE`
+
+Then, you should be able to visit the URL specified in `gotosocial_hostname` and see your instance.
+
+To customize your instance, go to the `/admin` page.
 
 Use the [GtS CLI Tool](https://docs.gotosocial.org/en/latest/admin/cli/) to do admin & maintenance tasks. E.g. use
 ```bash
-docker exec -it mash-gotosocial /gotosocial/gotosocial admin account demote --username <username>
+docker exec -it mash-gotosocial /gotosocial/gotosocial admin account demote --username USERNAME_HERE
 ```
 to demote a user from admin to normal user.
 
