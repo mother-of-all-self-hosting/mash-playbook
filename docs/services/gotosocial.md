@@ -2,6 +2,14 @@
 
 [GoToSocial](https://gotosocial.org/) is a self-hosted [ActivityPub](https://activitypub.rocks/) social network server, that this playbook can install, powered by the [mother-of-all-self-hosting/ansible-role-gotosocial](https://github.com/mother-of-all-self-hosting/ansible-role-gotosocial) Ansible role.
 
+## Dependencies
+
+This service requires the following other services:
+
+- a [Postgres](postgres.md) database
+- a [Traefik](traefik.md) reverse-proxy server
+
+
 ## Configuration
 
 To enable this service, add the following configuration to your `vars.yml` file and re-run the [installation](../installing.md) process:
@@ -60,7 +68,7 @@ gotosocial_smtp_from: gotosocial@example.org
 After [installing](../installing.md), you can visit at the URL specified in `gotosocial_hostname` and should see your instance.
 Start to customize it at `social.example.org/admin`.
 
-Use the [GtS CLI Tool](https://docs.gotosocial.org/en/latest/admin/cli/) to do admin & maintenance tasks. E.g. use 
+Use the [GtS CLI Tool](https://docs.gotosocial.org/en/latest/admin/cli/) to do admin & maintenance tasks. E.g. use
 ```bash
 docker exec -it mash-gotosocial /gotosocial/gotosocial admin account demote --username <username>
 ```
