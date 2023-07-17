@@ -70,7 +70,7 @@
   version: 6.1.0
   name: geerlingguy.docker
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-gitea.git
-  version: v1.19.4-0
+  version: v1.20.0-0
   name: gitea
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-gotosocial.git
   version: v0.9.0-3
