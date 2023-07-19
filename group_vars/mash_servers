@@ -113,6 +113,8 @@ devture_systemd_service_manager_services_list_auto: |
     +
     ([{'name': (gotosocial_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'gotosocial']}] if gotosocial_enabled else [])
     +
+    ([{'name': (ilmo_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'ilmo']}] if ilmo_enabled else [])
+    +
     ([{'name': (mobilizon_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'mobilizon']}] if mobilizon_enabled else [])
     +
     ([{'name': (grafana_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'grafana']}] if grafana_enabled else [])
@@ -280,6 +282,12 @@ devture_postgres_managed_databases_auto: |
       'username': gotosocial_database_username,
       'password': gotosocial_database_password,
     }] if gotosocial_enabled else [])
+    +
+    ([{
+      'name': ilmo_database_name,
+      'username': ilmo_database_username,
+      'password': ilmo_database_password,
+    }] if ilmo_enabled else [])
     +
     ([{
       'name': keycloak_database_name,
@@ -1421,6 +1429,55 @@ hubsite_service_list_auto: |
 ########################################################################
 #                                                                      #
 # /hubsite                                                             #
+#                                                                      #
+########################################################################
+
+
+
+########################################################################
+#                                                                      #
+# ilmo                                                                 #
+#                                                                      #
+########################################################################
+
+ilmo_enabled: false
+
+ilmo_identifier: "{{ mash_playbook_service_identifier_prefix }}ilmo"
+
+ilmo_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}ilmo"
+
+ilmo_uid: "{{ mash_playbook_uid }}"
+ilmo_gid: "{{ mash_playbook_gid }}"
+
+ilmo_secret: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'secret.ilmo', rounds=655555) | to_uuid }}"
+
+ilmo_database_host: "{{ devture_postgres_identifier if devture_postgres_enabled else '' }}"
+ilmo_database_port: "{{ '5432' if devture_postgres_enabled else '' }}"
+ilmo_database_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'db.ilmo', rounds=655555) | to_uuid }}"
+ilmo_database_username: "ilmo"
+
+ilmo_systemd_required_services_list: |
+  {{
+    (['docker.service'])
+    +
+    ([devture_postgres_identifier ~ '.service'] if devture_postgres_enabled and ilmo_database_host == devture_postgres_identifier else [])
+  }}
+
+ilmo_container_additional_networks: |
+  {{
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+    +
+    ([devture_postgres_container_network] if devture_postgres_enabled and ilmo_database_host == devture_postgres_identifier and ilmo_container_network != devture_postgres_container_network else [])
+  }}
+
+ilmo_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+ilmo_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+ilmo_container_labels_traefik_entrypoints: "{{ devture_traefik_entrypoint_primary }}"
+ilmo_container_labels_traefik_tls_certResolver: "{{ devture_traefik_certResolver_primary }}"
+
+########################################################################
+#                                                                      #
+# /ilmo                                                                #
 #                                                                      #
 ########################################################################
 

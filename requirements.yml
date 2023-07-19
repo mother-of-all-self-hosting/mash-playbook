@@ -83,6 +83,9 @@
 - src: git+https://github.com/moan0s/hubsite.git
   version: v1.23.3-2
   name: hubsite
+- src: git+https://github.com/moan0s/ansible-role-ilmo.git
+  version: v1.0.3-0
+  name: ilmo
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-infisical.git
   version: v0.3.8-4
   name: infisical

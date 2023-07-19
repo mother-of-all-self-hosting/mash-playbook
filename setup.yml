@@ -96,6 +96,8 @@
 
     - role: galaxy/hubsite
 
+    - role: galaxy/ilmo
+
     - role: galaxy/influxdb
 
     - role: galaxy/jitsi
