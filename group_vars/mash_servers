@@ -1885,8 +1885,10 @@ n8n_identifier: "{{ mash_playbook_service_identifier_prefix }}n8n"
 
 n8n_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}n8n"
 
-n8n_uid: "{{ mash_playbook_uid }}"
-n8n_gid: "{{ mash_playbook_gid }}"
+# Please see the note attached to this comment on why we can't use mash's playbook uid and gid
+# https://github.com/kinduff/ansible-docker-n8n/blob/v1.4.2/defaults/main.yml
+n8n_uid: "1000"
+n8n_gid: "1000"
 
 n8n_systemd_required_services_list: |
   {{
