@@ -90,6 +90,8 @@
 
     - role: galaxy/mrs
 
+    - role: galaxy/n8n
+
     - role: galaxy/healthchecks
 
     - role: galaxy/infisical

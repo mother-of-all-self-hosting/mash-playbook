@@ -31,6 +31,7 @@
 | [Mosquitto](https://mosquitto.org/) | An open-source MQTT broker | [Link](services/mosquitto.md) |
 | [Miniflux](https://miniflux.app/) | Minimalist and opinionated feed reader. | [Link](services/miniflux.md) |
 | [Mobilizon](https://joinmobilizon.org/en/) | An ActivityPub/Fediverse server to create and share events. | [Link](services/mobilizon.md) |
+| [n8n](https://n8n.io/) | Workflow automation for technical people. | [Link](services/n8n.md) |
 | [Navidrome](https://www.navidrome.org/) | [Subsonic-API](http://www.subsonic.org/pages/api.jsp) compatible music server | [Link](services/navidrome.md)
 | [NetBox](https://docs.netbox.dev/en/stable/) | Web application that provides [IP address management (IPAM)](https://en.wikipedia.org/wiki/IP_address_management) and [data center infrastructure management (DCIM)](https://en.wikipedia.org/wiki/Data_center_management#Data_center_infrastructure_management) functionality | [Link](services/netbox.md) |
 | [Nextcloud](https://nextcloud.com/) | The most popular self-hosted collaboration solution for tens of millions of users at thousands of organizations across the globe. | [Link](services/nextcloud.md) |

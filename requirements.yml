@@ -1,5 +1,4 @@
 ---
-
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-adguard-home.git
   version: v0.107.26-1
   name: adguard_home
@@ -103,6 +102,9 @@
   name: mariadb
 - src: git+https://gitlab.com/etke.cc/roles/miniflux.git
   version: v2.0.45-0
+- src: git+https://github.com/kinduff/ansible-docker-n8n.git
+  version: v1.4.1
+  name: n8n
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-mobilizon.git
   version: v3.1.0-2
   name: mobilizon
