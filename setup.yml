@@ -108,6 +108,8 @@
 
     - role: galaxy/lago
 
+    - role: galaxy/linkding
+
     - role: galaxy/mobilizon
 
     - role: galaxy/mosquitto
