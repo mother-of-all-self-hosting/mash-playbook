@@ -32,7 +32,6 @@ linkding_database_engine: postgres
 
 linkding_superuser_username: change me
 linkding_superuser_password: change me
-
 ########################################################################
 #                                                                      #
 # /linkding                                                            #
@@ -44,16 +43,10 @@ In the example configuration above, we configure the service to be hosted at `ht
 
 You can remove the `linkding_path_prefix` variable definition, so that the service is served at `https://mash.example.com/`.
 
-## Usage
-
 ### Superuser
 
 Please note the use of [`linkding_superuser_username`](https://github.com/sissbruecker/linkding/blob/master/docs/Options.md#ld_superuser_name) and [`linkding_superuser_password`](https://github.com/sissbruecker/linkding/blob/master/docs/Options.md#ld_superuser_password) variables. These are not mandatory and are meant to be set the first time you run this role.
 
-### Database
+## Usage
 
-The role defaults to SQlite, but you can opt to use PostgreSQL by adding the following:
-
-```yaml
-linkding_database_engine: postgres
-```
+After installation, you can log in with your superuser login (`linkding_superuser_username`) and password (`linkding_superuser_password`).
