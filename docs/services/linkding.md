@@ -6,7 +6,7 @@
 
 This service requires the following other services:
 
--   a [Postgres](postgres.md) database
+-   a [Postgres](postgres.md) database, but [SQLite](https://www.sqlite.org/) is also a possibility (see `linkding_database_engine` below)
 -   a [Traefik](traefik.md) reverse-proxy server
 
 ## Configuration
@@ -24,6 +24,12 @@ linkding_enabled: true
 
 linkding_hostname: mash.example.com
 linkding_path_prefix: /linkding
+
+# We configure Linkding to use Postgres by default. See docs/services/postgres.md.
+# To use an external Postgres server, you need to tweak additional `linkding_database_*` variables.
+# Feel free to remove the line below to make Linkding use SQLite.
+linkding_database_engine: postgres
+
 linkding_superuser_username: change me
 linkding_superuser_password: change me
 
