@@ -107,7 +107,7 @@
   version: v10.11.4-0
   name: mariadb
 - src: git+https://gitlab.com/etke.cc/roles/miniflux.git
-  version: v2.0.45-0
+  version: v2.0.46-0
 - src: git+https://github.com/kinduff/ansible-docker-n8n.git
   version: v1.4.2
   name: n8n
