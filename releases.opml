@@ -1,0 +1,43 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<opml version="1.0">
+  <head>
+    <title>Release feeds for roles</title>
+  </head>
+  <body>
+    <outline text="adguard_home" title="adguard_home" type="rss" htmlUrl="https://github.com/AdguardTeam/AdguardHome" xmlUrl="https://github.com/AdguardTeam/AdguardHome/releases.atom" />
+    <outline text="ansible" title="ansible" type="rss" htmlUrl="https://pypi.org/project/ansible/#history" xmlUrl="https://pypi.org/rss/project/ansible/releases.xml" />
+    <outline text="ansible-core" title="ansible-core" type="rss" htmlUrl="https://pypi.org/project/ansible-core/#history" xmlUrl="https://pypi.org/rss/project/ansible-core/releases.xml" />
+    <outline text="appsmith" title="appsmith" type="rss" htmlUrl="https://github.com/appsmithorg/appsmith" xmlUrl="https://github.com/appsmithorg/appsmith/releases.atom" />
+    <outline text="backup_borg" title="backup_borg" type="rss" htmlUrl="https://gitlab.com/etke.cc/borgmatic" xmlUrl="https://gitlab.com/etke.cc/borgmatic/-/tags?format=atom" />
+    <outline text="com.devture.ansible.role.container_socket_proxy" title="com.devture.ansible.role.container_socket_proxy" type="rss" htmlUrl="https://github.com/Tecnativa/docker-socket-proxy" xmlUrl="https://github.com/Tecnativa/docker-socket-proxy/releases.atom" />
+    <outline text="com.devture.ansible.role.postgres" title="com.devture.ansible.role.postgres" type="rss" htmlUrl="https://github.com/postgres/postgres" xmlUrl="https://github.com/postgres/postgres/releases.atom" />
+    <outline text="com.devture.ansible.role.postgres_backup" title="com.devture.ansible.role.postgres_backup" type="rss" htmlUrl="https://github.com/prodrigestivill/docker-postgres-backup-local" xmlUrl="https://github.com/prodrigestivill/docker-postgres-backup-local/releases.atom" />
+    <outline text="com.devture.ansible.role.traefik" title="com.devture.ansible.role.traefik" type="rss" htmlUrl="https://github.com/traefik/traefik" xmlUrl="https://github.com/traefik/traefik/releases.atom" />
+    <outline text="com.devture.ansible.role.woodpecker_ci_agent" title="com.devture.ansible.role.woodpecker_ci_agent" type="rss" htmlUrl="https://github.com/woodpecker-ci/woodpecker" xmlUrl="https://github.com/woodpecker-ci/woodpecker/releases.atom" />
+    <outline text="com.devture.ansible.role.woodpecker_ci_server" title="com.devture.ansible.role.woodpecker_ci_server" type="rss" htmlUrl="https://github.com/woodpecker-ci/woodpecker" xmlUrl="https://github.com/woodpecker-ci/woodpecker/releases.atom" />
+    <outline text="focalboard" title="focalboard" type="rss" htmlUrl="https://github.com/mattermost/focalboard" xmlUrl="https://github.com/mattermost/focalboard/releases.atom" />
+    <outline text="grafana" title="grafana" type="rss" htmlUrl="https://github.com/grafana/grafana" xmlUrl="https://github.com/grafana/grafana/releases.atom" />
+    <outline text="healthchecks" title="healthchecks" type="rss" htmlUrl="https://github.com/healthchecks/healthchecks" xmlUrl="https://github.com/healthchecks/healthchecks/releases.atom" />
+    <outline text="infisical" title="infisical" type="rss" htmlUrl="https://github.com/Infisical/infisical" xmlUrl="https://github.com/Infisical/infisical/releases.atom" />
+    <outline text="jitsi" title="jitsi" type="rss" htmlUrl="https://github.com/jitsi/docker-jitsi-meet" xmlUrl="https://github.com/jitsi/docker-jitsi-meet/releases.atom" />
+    <outline text="keycloak" title="keycloak" type="rss" htmlUrl="https://github.com/keycloak/keycloak" xmlUrl="https://github.com/keycloak/keycloak/releases.atom" />
+    <outline text="lago" title="lago" type="rss" htmlUrl="https://github.com/lago/lago" xmlUrl="https://github.com/lago/lago/releases.atom" />
+    <outline text="linkding" title="linkding" type="rss" htmlUrl="https://github.com/sissbruecker/linkding" xmlUrl="https://github.com/sissbruecker/linkding/releases.atom" />
+    <outline text="miniflux" title="miniflux" type="rss" htmlUrl="https://github.com/miniflux/v2" xmlUrl="https://github.com/miniflux/v2/releases.atom" />
+    <outline text="mongodb" title="mongodb" type="rss" htmlUrl="https://github.com/mongodb/mongo" xmlUrl="https://github.com/mongodb/mongo/releases.atom" />
+    <outline text="n8n" title="n8n" type="rss" htmlUrl="https://github.com/n8n-io/n8n" xmlUrl="https://github.com/n8n-io/n8n/releases.atom" />
+    <outline text="navidrome" title="navidrome" type="rss" htmlUrl="https://github.com/navidrome/navidrome" xmlUrl="https://github.com/navidrome/navidrome/releases.atom" />
+    <outline text="netbox" title="netbox" type="rss" htmlUrl="https://github.com/netbox-community/netbox-docker/" xmlUrl="https://github.com/netbox-community/netbox-docker//releases.atom" />
+    <outline text="owncast" title="owncast" type="rss" htmlUrl="https://github.com/owncast/owncast" xmlUrl="https://github.com/owncast/owncast/releases.atom" />
+    <outline text="prometheus" title="prometheus" type="rss" htmlUrl="https://github.com/prometheus/prometheus" xmlUrl="https://github.com/prometheus/prometheus/releases.atom" />
+    <outline text="prometheus_blackbox_exporter" title="prometheus_blackbox_exporter" type="rss" htmlUrl="https://github.com/prometheus/blackbox_exporter" xmlUrl="https://github.com/prometheus/blackbox_exporter/releases.atom" />
+    <outline text="prometheus_node_exporter" title="prometheus_node_exporter" type="rss" htmlUrl="https://github.com/prometheus/node_exporter" xmlUrl="https://github.com/prometheus/node_exporter/releases.atom" />
+    <outline text="prometheus_postgres_exporter" title="prometheus_postgres_exporter" type="rss" htmlUrl="https://github.com/prometheus-community/postgres_exporter" xmlUrl="https://github.com/prometheus-community/postgres_exporter/releases.atom" />
+    <outline text="radicale" title="radicale" type="rss" htmlUrl="https://github.com/tomsquest/docker-radicale" xmlUrl="https://github.com/tomsquest/docker-radicale/releases.atom" />
+    <outline text="redis" title="redis" type="rss" htmlUrl="https://github.com/redis/redis" xmlUrl="https://github.com/redis/redis/releases.atom" />
+    <outline text="redmine" title="redmine" type="rss" htmlUrl="https://github.com/redmine/redmine" xmlUrl="https://github.com/redmine/redmine/releases.atom" />
+    <outline text="soft_serve" title="soft_serve" type="rss" htmlUrl="https://github.com/charmbracelet/soft-serve" xmlUrl="https://github.com/charmbracelet/soft-serve/releases.atom" />
+    <outline text="uptime_kuma" title="uptime_kuma" type="rss" htmlUrl="https://github.com/louislam/uptime-kuma" xmlUrl="https://github.com/louislam/uptime-kuma/releases.atom" />
+    <outline text="wg_easy" title="wg_easy" type="rss" htmlUrl="https://github.com/WeeJeWel/wg-easy" xmlUrl="https://github.com/WeeJeWel/wg-easy/releases.atom" />
+  </body>
+</opml>

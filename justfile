@@ -13,12 +13,17 @@ roles:
     fi
 
 # Updates requirements.yml if there are any new tags available. Requires agru
-update:
+update: && opml
     @agru -u
 
 # Runs ansible-lint against all roles in the playbook
 lint:
     ansible-lint
+
+# dumps an OPML file with extracted git feeds for roles
+opml:
+    @echo "generating opml..."
+    @python bin/feeds.py . dump
 
 # Runs the playbook with --tags=install-all,start and optional arguments
 install-all *extra_args: (run-tags "install-all,start" extra_args)
