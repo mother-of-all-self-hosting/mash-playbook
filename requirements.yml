@@ -61,7 +61,7 @@
   version: v0.7.30-0
   name: firezone
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-focalboard.git
-  version: v7.9.3-2
+  version: v7.10.4-0
   name: focalboard
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-funkwhale.git
   version: v1.3.0-rc6-0
