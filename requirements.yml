@@ -41,7 +41,7 @@
 - src: git+https://github.com/devture/com.devture.ansible.role.timesync.git
   version: v1.0.0-0
 - src: git+https://github.com/devture/com.devture.ansible.role.traefik.git
-  version: v2.10.3-0
+  version: v2.10.4-0
 - src: git+https://github.com/devture/com.devture.ansible.role.woodpecker_ci_agent.git
   version: v0.15.8-0
 - src: git+https://github.com/devture/com.devture.ansible.role.woodpecker_ci_server.git
