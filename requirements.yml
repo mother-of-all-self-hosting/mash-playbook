@@ -4,7 +4,7 @@
   version: v0.107.26-1
   name: adguard_home
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-appsmith.git
-  version: v1.9.27-0
+  version: v1.9.29-0
   name: appsmith
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-authentik.git
   version: v2023.6.1-0
@@ -41,7 +41,7 @@
 - src: git+https://github.com/devture/com.devture.ansible.role.timesync.git
   version: v1.0.0-0
 - src: git+https://github.com/devture/com.devture.ansible.role.traefik.git
-  version: v2.10.3-0
+  version: v2.10.4-0
 - src: git+https://github.com/devture/com.devture.ansible.role.woodpecker_ci_agent.git
   version: v0.15.8-0
 - src: git+https://github.com/devture/com.devture.ansible.role.woodpecker_ci_server.git
@@ -61,7 +61,7 @@
   version: v0.7.30-0
   name: firezone
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-focalboard.git
-  version: v7.9.3-2
+  version: v7.10.4-0
   name: focalboard
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-funkwhale.git
   version: v1.3.0-rc6-0
@@ -70,10 +70,10 @@
   version: 6.1.0
   name: geerlingguy.docker
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-gitea.git
-  version: v1.20.0-0
+  version: v1.20.1-0
   name: gitea
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-gotosocial.git
-  version: v0.9.0-3
+  version: v0.10.0-0
   name: gotosocial
 - src: git+https://gitlab.com/etke.cc/roles/grafana.git
   version: v10.0.2-1
@@ -101,13 +101,16 @@
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-lago.git
   version: v0.40.0-0
   name: lago
+- src: git+https://github.com/kinduff/ansible-docker-linkding.git
+  version: v1.9.0
+  name: linkding
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-mariadb.git
   version: v10.11.4-0
   name: mariadb
 - src: git+https://gitlab.com/etke.cc/roles/miniflux.git
-  version: v2.0.45-0
+  version: v2.0.46-0
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-mobilizon.git
-  version: v3.1.0-2
+  version: v3.1.3-0
   name: mobilizon
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-mongodb.git
   version: v6.0.6-0
@@ -118,6 +121,9 @@
 - src: git+https://gitlab.com/etke.cc/mrs/ansible-role-mrs.git
   version: v0.0.0-9
   name: mrs
+- src: git+https://github.com/kinduff/ansible-docker-n8n.git
+  version: v1.4.2
+  name: n8n
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-navidrome.git
   version: v0.49.3-2
   name: navidrome
@@ -144,7 +150,7 @@
 - src: git+https://gitlab.com/etke.cc/roles/prometheus_node_exporter.git
   version: v1.6.1-0
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-prometheus-postgres-exporter.git
-  version: v0.13.1-0
+  version: v0.13.2-0
   name: prometheus_postgres_exporter
 - src: git+https://gitlab.com/etke.cc/roles/radicale.git
   version: v3.1.8.3-0

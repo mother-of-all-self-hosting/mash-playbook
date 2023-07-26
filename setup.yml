@@ -90,6 +90,8 @@
 
     - role: galaxy/mrs
 
+    - role: galaxy/n8n
+
     - role: galaxy/healthchecks
 
     - role: galaxy/infisical
@@ -105,6 +107,8 @@
     - role: galaxy/keycloak
 
     - role: galaxy/lago
+
+    - role: galaxy/linkding
 
     - role: galaxy/mobilizon
 

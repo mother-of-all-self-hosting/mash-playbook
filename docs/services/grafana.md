@@ -116,7 +116,7 @@ Make sure the user you want to login as has an email address in authentik, other
 
 ## Usage
 
-After installation, you should be able to access your new Gitea instance at the configured URL (see above).
+After installation, you should be able to access your new Grafana instance at the configured URL (see above).
 
 Going there, you'll be taken to the initial setup wizard, which will let you assign some paswords and other configuration.
 
