@@ -99,7 +99,7 @@
   version: v21.1.1-0
   name: keycloak
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-lago.git
-  version: v0.40.0-0
+  version: v0.41.0-0
   name: lago
 - src: git+https://github.com/kinduff/ansible-docker-linkding.git
   version: v1.9.0
