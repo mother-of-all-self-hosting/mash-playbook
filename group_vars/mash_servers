@@ -73,6 +73,10 @@ devture_systemd_service_manager_services_list_auto: |
     +
     ([{'name': (authentik_worker_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'authentik']}] if authentik_enabled else [])
     +
+    ([{'name': (changedetection_identifier + '.service'), 'priority': 2100, 'groups': ['mash', 'changedetection']}] if changedetection_enabled else [])
+    +
+    ([{'name': (changedetection_playwright_driver_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'changedetection']}] if changedetection_enabled else [])
+    +
     ([{'name': (clickhouse_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'clickhouse']}] if clickhouse_enabled else [])
     +
     ([{'name': (collabora_online_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'collabora-online']}] if collabora_online_enabled else [])
@@ -713,6 +717,36 @@ backup_borg_systemd_required_services_list: |
 #                                                                      #
 ########################################################################
 
+########################################################################
+#                                                                      #
+# Changedetection.io                                                   #
+#                                                                      #
+########################################################################
+
+changedetection_enabled: false
+
+changedetection_identifier: "{{ mash_playbook_service_identifier_prefix }}changedetection"
+
+changedetection_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}changedetection"
+
+changedetection_uid: "{{ mash_playbook_uid }}"
+changedetection_gid: "{{ mash_playbook_gid }}"
+
+changedetection_container_additional_networks_auto: |
+  {{
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+  }}
+
+changedetection_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+changedetection_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+changedetection_container_labels_traefik_entrypoints: "{{ devture_traefik_entrypoint_primary }}"
+changedetection_container_labels_traefik_tls_certResolver: "{{ devture_traefik_certResolver_primary }}"
+
+########################################################################
+#                                                                      #
+# /Changedetection.io                                                  #
+#                                                                      #
+########################################################################
 
 
 ########################################################################
