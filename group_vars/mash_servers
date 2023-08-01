@@ -75,7 +75,7 @@ devture_systemd_service_manager_services_list_auto: |
     +
     ([{'name': (changedetection_identifier + '.service'), 'priority': 2100, 'groups': ['mash', 'changedetection']}] if changedetection_enabled else [])
     +
-    ([{'name': (changedetection_playwright_driver_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'changedetection']}] if changedetection_enabled else [])
+    ([{'name': (changedetection_playwright_driver_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'changedetection']}] if changedetection_playwright_driver_enabled else [])
     +
     ([{'name': (clickhouse_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'clickhouse']}] if clickhouse_enabled else [])
     +
