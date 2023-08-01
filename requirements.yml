@@ -16,6 +16,7 @@
   version: v1.2.4-1.7.15-1
 - src: git+https://github.com/nielscil/ansible-role-changedetection.git
   version: v0.44-0
+  name: changedetection
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-clickhouse.git
   version: v23.6.1.1524-0
   name: clickhouse

@@ -64,6 +64,8 @@
 
     - role: galaxy/backup_borg
 
+    - role: galaxy/changedetection
+
     - role: galaxy/clickhouse
 
     - role: galaxy/collabora_online
