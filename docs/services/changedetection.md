@@ -1,6 +1,6 @@
 # Changedetection.io
 
-[Changedetection.io](https://github.com/dgtlmoon/changedetection.io) is simple  **website change detection and restock monitoring** solution.
+[Changedetection.io](https://github.com/dgtlmoon/changedetection.io) is a simple **website change detection and restock monitoring** solution.
 
 
 ## Dependencies
