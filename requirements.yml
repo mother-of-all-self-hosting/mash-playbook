@@ -13,7 +13,7 @@
   version: v1.0.0-1
   name: auxiliary
 - src: git+https://gitlab.com/etke.cc/roles/backup_borg.git
-  version: v1.2.4-1.7.15-2
+  version: v1.2.4-1.7.15-3
 - src: git+https://github.com/nielscil/ansible-role-changedetection.git
   version: v0.44-0
   name: changedetection
