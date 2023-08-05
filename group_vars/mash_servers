@@ -63,6 +63,8 @@ system_swap_enabled: false
 
 devture_systemd_service_manager_services_list_auto: |
   {{
+    ([{'name': (alertmanager_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'alertmanager', 'monitoring']}] if alertmanager_enabled else [])
+    +
     ([{'name': (backup_borg_identifier + '.timer'), 'priority': 5000, 'groups': ['mash', 'backup', 'borg']}] if backup_borg_enabled else [])
     +
     ([{'name': (adguard_home_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'adguard-home']}] if adguard_home_enabled else [])
@@ -606,6 +608,41 @@ appsmith_container_labels_traefik_tls_certResolver: "{{ devture_traefik_certReso
 ########################################################################
 #                                                                      #
 # /appsmith                                                            #
+#                                                                      #
+########################################################################
+
+
+
+########################################################################
+#                                                                      #
+# alertmanager                                                         #
+#                                                                      #
+########################################################################
+
+alertmanager_enabled: false
+
+alertmanager_identifier: "{{ mash_playbook_service_identifier_prefix }}alertmanager"
+
+alertmanager_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}alertmanager"
+
+alertmanager_uid: "{{ mash_playbook_uid }}"
+alertmanager_gid: "{{ mash_playbook_gid }}"
+
+# Only enable Traefik labels if a hostname is set (indicating that this will be exposed publicly)
+alertmanager_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled and alertmanager_hostname | length > 0 }}"
+alertmanager_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+alertmanager_container_labels_traefik_entrypoints: "{{ devture_traefik_entrypoint_primary }}"
+alertmanager_container_labels_traefik_tls_certResolver: "{{ devture_traefik_certResolver_primary }}"
+
+alertmanager_container_additional_networks: |
+  {{
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+  }}
+
+
+########################################################################
+#                                                                      #
+# /alertmanager                                                        #
 #                                                                      #
 ########################################################################
 

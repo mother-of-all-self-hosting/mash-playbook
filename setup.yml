@@ -60,6 +60,8 @@
 
     - role: galaxy/appsmith
 
+    - role: galaxy/alertmanager
+
     - role: galaxy/authentik
 
     - role: galaxy/backup_borg
