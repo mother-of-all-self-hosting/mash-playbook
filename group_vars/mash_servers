@@ -2415,6 +2415,18 @@ prometheus_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_ba
 prometheus_uid: "{{ mash_playbook_uid }}"
 prometheus_gid: "{{ mash_playbook_gid }}"
 
+# Only enable Traefik labels if a hostname is set (indicating that this will be exposed publicly)
+prometheus_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled and prometheus_hostname | length > 0 }}"
+prometheus_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+prometheus_container_labels_traefik_entrypoints: "{{ devture_traefik_entrypoint_primary }}"
+prometheus_container_labels_traefik_tls_certResolver: "{{ devture_traefik_certResolver_primary }}"
+
+prometheus_container_additional_networks: |
+  {{
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+  }}
+
+
 ########################################################################
 #                                                                      #
 # /prometheus                                                          #
