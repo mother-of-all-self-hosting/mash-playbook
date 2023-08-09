@@ -134,7 +134,7 @@
   version: v3.4.7-2.5.2-3
   name: netbox
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-nextcloud.git
-  version: v27.0.0-1
+  version: v27.0.1-0
   name: nextcloud
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-owncast.git
   version: v0.1.0-0
