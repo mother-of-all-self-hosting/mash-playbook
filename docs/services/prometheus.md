@@ -72,6 +72,20 @@ prometheus_config_scrape_configs_additional:
 If you're scraping others services running in containers over the container network, make sure the Prometheus container is connected to their own network by adjusting `prometheus_container_additional_networks` as demonstrated above for [Integrating with Prometheus Node Exporter](#integrating-with-prometheus-node-exporter).
 
 
+### Exposing the web interface
+
+By setting a hostname you will expose prometheus on this domain.
+Usually you should also set up basic_auth in this case, otherwise everyone will be able to access your metrics
+
+```yaml
+prometheus_hostname: prometheus.example.com
+
+# Uncommenting the following lines allows you to configure basic auth
+# prometheus_basic_auth_enabled: true
+# prometheus_basic_auth_username: ''
+# prometheus_basic_auth_password: ''
+```
+
 ## Recommended other services
 
 - [Grafana](grafana.md) - a web-based tool for visualizing your Prometheus metrics (time-series)
