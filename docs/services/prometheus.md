@@ -86,6 +86,16 @@ prometheus_hostname: prometheus.example.com
 # prometheus_basic_auth_password: ''
 ```
 
+### Adding alert rules
+
+```
+# The alert rules were manually created in /mash/prometheus/config/alert.yml
+# any update must be made there
+# Setting this variable will tell prometheus to use the file you created
+prometheus_config_rule_files_additional:
+  - "/etc/prometheus/alert.yml"
+```
+
 ## Recommended other services
 
 - [Grafana](grafana.md) - a web-based tool for visualizing your Prometheus metrics (time-series)
