@@ -46,9 +46,9 @@
 - src: git+https://github.com/devture/com.devture.ansible.role.traefik.git
   version: v2.10.4-1
 - src: git+https://github.com/devture/com.devture.ansible.role.woodpecker_ci_agent.git
-  version: v1.0-0
+  version: v1.0.2-0
 - src: git+https://github.com/devture/com.devture.ansible.role.woodpecker_ci_server.git
-  version: v1.0-0
+  version: v1.0.2-0
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-docker-registry.git
   version: v2.8.1-1
   name: docker_registry
