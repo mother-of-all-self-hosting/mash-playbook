@@ -70,7 +70,7 @@
   version: v1.3.0-rc6-0
   name: funkwhale
 - src: git+https://github.com/geerlingguy/ansible-role-docker
-  version: 6.1.0
+  version: 6.2.0
   name: geerlingguy.docker
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-gitea.git
   version: v1.20.2-0
@@ -158,7 +158,7 @@
 - src: git+https://gitlab.com/etke.cc/roles/radicale.git
   version: v3.1.8.3-0
 - src: git+https://gitlab.com/etke.cc/roles/redis.git
-  version: v7.0.10-0
+  version: v7.0.12-0
 - src: git+https://gitlab.com/etke.cc/roles/redmine.git
   version: v5.0.5-2
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-rumqttd.git
