@@ -13,7 +13,7 @@
   version: v1.0.0-1
   name: auxiliary
 - src: git+https://gitlab.com/etke.cc/roles/backup_borg.git
-  version: v1.2.4-1.8.2-0
+  version: v1.2.5-1.8.2-0
 - src: git+https://github.com/nielscil/ansible-role-changedetection.git
   version: v0.44.2-0
   name: changedetection
@@ -79,7 +79,7 @@
   version: v0.11.0-0
   name: gotosocial
 - src: git+https://gitlab.com/etke.cc/roles/grafana.git
-  version: v10.1.0-0
+  version: v10.1.1-0
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-healthchecks.git
   version: v2.10-0
   name: healthchecks
