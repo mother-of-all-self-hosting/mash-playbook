@@ -140,7 +140,7 @@
   version: v0.1.0-0
   name: owncast
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-peertube.git
-  version: v5.2.0-0
+  version: v5.2.1-0
   name: peertube
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-postgis.git
   version: v15-3.3-0
