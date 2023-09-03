@@ -105,6 +105,8 @@ devture_systemd_service_manager_services_list_auto: |
     +
     ([{'name': (focalboard_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'focalboard']}] if focalboard_enabled else [])
     +
+    ([{'name': (frigate_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'frigate']}] if frigate_enabled else [])
+    +
     ([{'name': (funkwhale_api_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'funkwhale']}] if funkwhale_enabled else [])
     +
     ([{'name': (funkwhale_frontend_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'funkwhale']}] if funkwhale_enabled else [])
@@ -987,6 +989,28 @@ focalboard_container_labels_traefik_tls_certResolver: "{{ devture_traefik_certRe
 ########################################################################
 #                                                                      #
 # /focalboard                                                          #
+#                                                                      #
+########################################################################
+
+
+
+########################################################################
+#                                                                      #
+# frigate                                                              #
+#                                                                      #
+########################################################################
+
+frigate_enabled: false
+frigate_identifier: "{{ mash_playbook_service_identifier_prefix }}frigate"
+frigate_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}frigate"
+
+# Yes, unfortunately Frigate requires to run as root :\
+frigate_uid: "0"
+frigate_gid: "0"
+
+########################################################################
+#                                                                      #
+# /frigate                                                             #
 #                                                                      #
 ########################################################################
 
