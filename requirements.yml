@@ -96,7 +96,7 @@
   version: v2.7.0-3
   name: influxdb
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-jitsi.git
-  version: v8615-2
+  version: v8922-0
   name: jitsi
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-keycloak.git
   version: v21.1.1-0
