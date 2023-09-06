@@ -42,5 +42,6 @@
     <outline text="uptime_kuma" title="uptime_kuma" type="rss" htmlUrl="https://github.com/louislam/uptime-kuma" xmlUrl="https://github.com/louislam/uptime-kuma/releases.atom" />
     <outline text="vaultwarden" title="vaultwarden" type="rss" htmlUrl="https://github.com/dani-garcia/vaultwarden" xmlUrl="https://github.com/dani-garcia/vaultwarden/releases.atom" />
     <outline text="wg_easy" title="wg_easy" type="rss" htmlUrl="https://github.com/WeeJeWel/wg-easy" xmlUrl="https://github.com/WeeJeWel/wg-easy/releases.atom" />
+	<outline text="forgejo" title="forgejo" type="rss" htmlUrl="https://github.com/NeonMinnen/ansible-role-forgejo" xmlUrl="https://github.com/NeonMinnen/ansible-role-forgejo/releases.atom" />
   </body>
 </opml>
