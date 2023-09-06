@@ -1,6 +1,6 @@
 # Gitea
 
-[Gitea](https://gitea.io/) is a painless self-hosted Git service.
+[Gitea](https://gitea.io/) is a painless self-hosted Git service. You may also wish to look into [Forgejo](https://forgejo.org/) - a fork of Gitea that this playbook also [supports](forgejo.md).
 
 
 ## Dependencies

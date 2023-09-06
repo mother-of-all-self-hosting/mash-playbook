@@ -1,6 +1,6 @@
 # Forgejo
 
-[Forgejo](https://forgejo.org/) is a painless self-hosted Git service, an alternative fork to Gitea.
+[Forgejo](https://forgejo.org/) is a painless self-hosted Git service, an alternative fork to [Gitea](https://gitea.io/) (that this playbook also [supports](gitea.md)).
 
 
 ## Dependencies
