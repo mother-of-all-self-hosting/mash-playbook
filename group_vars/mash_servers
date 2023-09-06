@@ -376,7 +376,7 @@ devture_postgres_managed_databases_auto: |
       'username': vaultwarden_database_username,
       'password': vaultwarden_database_password,
     }] if vaultwarden_enabled else [])
-
+    +
      'name': forgejo_config_database_name,
      'username': forgejo_config_database_username,
      'password': forgejo_config_database_password,
