@@ -153,6 +153,8 @@
 
     - role: galaxy/wg_easy
 
+    - role: galaxy/forgejo
+
     - role: galaxy/com.devture.ansible.role.woodpecker_ci_server
     - role: galaxy/com.devture.ansible.role.woodpecker_ci_agent
 
