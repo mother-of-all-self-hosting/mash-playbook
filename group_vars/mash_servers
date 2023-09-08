@@ -263,7 +263,8 @@ devture_postgres_managed_databases_auto: |
       'username': authentik_database_username,
       'password': authentik_database_password,
     }] if authentik_enabled and authentik_database_hostname == devture_postgres_identifier else [])
-    +([{
+    +
+    ([{
       'name': focalboard_database_name,
       'username': focalboard_database_username,
       'password': focalboard_database_password,
@@ -2811,7 +2812,7 @@ vaultwarden_systemd_required_systemd_services_list: |
     ([devture_postgres_identifier ~ '.service'] if devture_postgres_enabled and vaultwarden_database_hostname == devture_postgres_identifier else [])
   }}
 
-vaultwarden_container_additional_networks: |
+vaultwarden_container_additional_networks_auto: |
   {{
     ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
     +
