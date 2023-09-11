@@ -188,5 +188,5 @@
   version: v7-0
   name: wg_easy
 - src: git+https://github.com/NeonMinnen/ansible-role-forgejo.git
-  version: e5fd0a9b1d73674062220655bc81fe017096d71a
+  version: v1.20.4-0-0
   name: forgejo
