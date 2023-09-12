@@ -60,6 +60,8 @@
 
     - role: galaxy/appsmith
 
+    - role: galaxy/authelia
+
     - role: galaxy/authentik
 
     - role: galaxy/backup_borg

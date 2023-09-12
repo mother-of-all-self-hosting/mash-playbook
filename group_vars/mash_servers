@@ -19,6 +19,61 @@ aux_file_default_group: "{{ mash_playbook_user_groupname }}"
 ########################################################################
 
 
+########################################################################
+#                                                                      #
+# authelia                                                             #
+#                                                                      #
+########################################################################
+
+authelia_enabled: false
+
+authelia_identifier: "{{ mash_playbook_service_identifier_prefix }}authelia"
+
+authelia_uid: "{{ mash_playbook_uid }}"
+authelia_gid: "{{ mash_playbook_gid }}"
+
+authelia_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}authelia"
+
+authelia_systemd_required_services_list_auto: |
+  {{
+    ([devture_postgres_identifier ~ '.service'] if devture_postgres_enabled and authelia_config_storage_postgres_host == devture_postgres_identifier else [])
+  }}
+
+authelia_container_additional_networks_auto: |
+  {{
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+    +
+    ([devture_postgres_container_network] if devture_postgres_enabled and authelia_config_storage_postgres_host == devture_postgres_identifier and authelia_container_network != devture_postgres_container_network else [])
+  }}
+
+authelia_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+authelia_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+authelia_container_labels_traefik_entrypoints: "{{ devture_traefik_entrypoint_primary }}"
+authelia_container_labels_traefik_tls_certResolver: "{{ devture_traefik_certResolver_primary }}"
+
+authelia_config_jwt_secret: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'jwt.authelia', rounds=655555) | to_uuid }}"
+
+authelia_config_session_secret: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'ses.authelia', rounds=655555) | to_uuid }}"
+
+authelia_config_identity_providers_oidc_hmac_secret: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'hm.authelia', rounds=655555) | to_uuid }}"
+
+authelia_config_storage_postgres_host: "{{ devture_postgres_identifier if devture_postgres_enabled else '' }}"
+authelia_config_storage_postgres_port: "{{ '5432' if devture_postgres_enabled else '' }}"
+authelia_config_storage_postgres_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'db.authelia', rounds=655555) | to_uuid }}"
+
+# If Postgres and MariaDB are bot enabled, we favor Postgres.
+# We only enable MySQL if it's the only enabled component (that is, if Postgres is not enabled at the same time).
+authelia_config_storage_mysql_host: "{{ mariadb_identifier if mariadb_enabled and not devture_postgres_enabled else '' }}"
+authelia_config_storage_mysql_port: "{{ '3306' if mariadb_enabled else '' }}"
+authelia_config_storage_mysql_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'db.authelia', rounds=655555) | to_uuid }}"
+
+########################################################################
+#                                                                      #
+# /authelia                                                            #
+#                                                                      #
+########################################################################
+
+
 
 ########################################################################
 #                                                                      #
@@ -72,6 +127,8 @@ devture_systemd_service_manager_services_list_auto: |
     ([{'name': (authentik_server_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'authentik']}] if authentik_enabled else [])
     +
     ([{'name': (authentik_worker_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'authentik']}] if authentik_enabled else [])
+    +
+    ([{'name': (authelia_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'authelia']}] if authelia_enabled else [])
     +
     ([{'name': (changedetection_identifier + '.service'), 'priority': 2100, 'groups': ['mash', 'changedetection']}] if changedetection_enabled else [])
     +
@@ -258,6 +315,12 @@ devture_postgres_systemd_services_to_stop_for_maintenance_list: |
 
 devture_postgres_managed_databases_auto: |
   {{
+    ([{
+      'name': authelia_config_storage_postgres_database,
+      'username': authelia_config_storage_postgres_username,
+      'password': authelia_config_storage_postgres_password,
+    }] if authelia_enabled and authelia_config_storage_postgres_host == devture_postgres_identifier else [])
+    +
     ([{
       'name': authentik_database_name,
       'username': authentik_database_username,
@@ -2234,9 +2297,14 @@ mariadb_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_
 mariadb_uid: "{{ mash_playbook_uid }}"
 mariadb_gid: "{{ mash_playbook_gid }}"
 
-# This will be extended in the future, to auto-create databases for services which depend on MariaDB.
-# See `devture_postgres_managed_databases_auto`
-mariadb_managed_databases_auto: []
+mariadb_managed_databases_auto: |
+  {{
+    ([{
+      'name': authelia_config_storage_mysql_database,
+      'username': authelia_config_storage_mysql_username,
+      'password': authelia_config_storage_mysql_password,
+    }] if authelia_enabled and authelia_config_storage_mysql_host == mariadb_identifier else [])
+  }}
 
 ########################################################################
 #                                                                      #

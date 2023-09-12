@@ -5,6 +5,7 @@
 | [AUX](https://github.com/mother-of-all-self-hosting/ansible-role-aux) | Auxiliary file/directory management on your server via Ansible | [Link](services/auxiliary.md) |
 | [AdGuard Home](https://adguard.com/en/adguard-home/overview.html/) | A network-wide DNS software for blocking ads & tracking | [Link](services/adguard-home.md) |
 | [Appsmith](https://www.appsmith.com/) | Platform for building and deploying custom internal tools and applications without writing code | [Link](services/appsmith.md) |
+| [Authelia](https://www.authelia.com/) | An open-source authentication and authorization server that can work as a companion to [common reverse proxies](https://www.authelia.com/overview/prologue/supported-proxies/) (like [Traefik](traefik.md) frequently used by this playbook) | [Link](services/authelia.md) |
 | [authentik](https://goauthentik.io/) | An open-source Identity Provider focused on flexibility and versatility. | [Link](services/authentik.md) |
 | [borgbackup](https://www.borgbackup.org/) (via [borgmatic](https://torsion.org/borgmatic/)) | A deduplicating backup program with optional compression and encryption| [Link](services/backup-borg.md) |
 | [Changedetection.io](https://github.com/dgtlmoon/changedetection.io) |  A simple website change detection and restock monitoring solution. | [Link](services/changedetection.md) |
