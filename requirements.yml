@@ -69,6 +69,9 @@
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-focalboard.git
   version: v7.10.4-0
   name: focalboard
+- src: git+https://github.com/NeonMinnen/ansible-role-forgejo.git
+  version: v1.20.4-0-0
+  name: forgejo
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-funkwhale.git
   version: v1.3.0-rc6-0
   name: funkwhale
@@ -99,7 +102,7 @@
   version: v2.7.0-3
   name: influxdb
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-jitsi.git
-  version: v8922-0
+  version: v8922-1
   name: jitsi
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-keycloak.git
   version: v22.0.2-0
@@ -190,6 +193,3 @@
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-wg-easy.git
   version: v7-0
   name: wg_easy
-- src: git+https://github.com/NeonMinnen/ansible-role-forgejo.git
-  version: v1.20.4-0-0
-  name: forgejo
