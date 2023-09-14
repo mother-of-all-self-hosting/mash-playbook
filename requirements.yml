@@ -188,7 +188,7 @@
 - src: git+https://gitlab.com/etke.cc/roles/uptime_kuma.git
   version: v1.23.1-0
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-vaultwarden.git
-  version: v1.29.2-1
+  version: v1.29.2-2
   name: vaultwarden
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-wg-easy.git
   version: v7-0
