@@ -18,7 +18,7 @@
 - src: git+https://gitlab.com/etke.cc/roles/backup_borg.git
   version: v1.2.5-1.8.2-0
 - src: git+https://github.com/nielscil/ansible-role-changedetection.git
-  version: v0.44.2-0
+  version: v0.45.1-0
   name: changedetection
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-clickhouse.git
   version: v23.6.1.1524-0
