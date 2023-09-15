@@ -198,7 +198,7 @@ devture_systemd_service_manager_services_list_auto: |
     +
     ([{'name': (jitsi_identifier + '-jvb.service'), 'priority': 4100, 'groups': ['mash', 'jitsi', 'jitsi-jvb']}] if jitsi_enabled else [])
     +
-    ([{'name': (keycloak_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'keycloak']}] if keycloak_enabled else [])
+    ([{'name': (keycloak_identifier + '.service'), 'priority': 1000, 'groups': ['mash', 'keycloak']}] if keycloak_enabled else [])
     +
     ([{'name': (lago_identifier + '-api.service'), 'priority': 2000, 'groups': ['mash', 'lago', 'lago-api']}] if lago_enabled else [])
     +
