@@ -302,7 +302,7 @@ devture_postgres_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_serv
 devture_postgres_uid: "{{ mash_playbook_uid }}"
 devture_postgres_gid: "{{ mash_playbook_gid }}"
 
-devture_postgres_systemd_services_to_stop_for_maintenance_list: |
+devture_postgres_systemd_services_to_stop_for_maintenance_list_auto: |
   {{
     ([(miniflux_identifier + '.service')] if miniflux_enabled else [])
     +
