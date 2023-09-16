@@ -2404,7 +2404,7 @@ postgis_gid: "{{ mash_playbook_gid }}"
 
 postgis_systemd_services_to_stop_for_maintenance_list: |
   {{
-    ([(mobilizon_identifier + '.service')] if miniflux_enabled else [])
+    ([(mobilizon_identifier + '.service')] if mobilizon_enabled else [])
   }}
 
 postgis_managed_databases_auto: |
