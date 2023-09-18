@@ -16,7 +16,7 @@
   version: v1.0.0-1
   name: auxiliary
 - src: git+https://gitlab.com/etke.cc/roles/backup_borg.git
-  version: v1.2.5-1.8.2-0
+  version: v1.2.5-1.8.2-1
 - src: git+https://github.com/nielscil/ansible-role-changedetection.git
   version: v0.45.1-0
   name: changedetection
@@ -169,7 +169,7 @@
 - src: git+https://gitlab.com/etke.cc/roles/redis.git
   version: v7.2.0-0
 - src: git+https://gitlab.com/etke.cc/roles/redmine.git
-  version: v5.0.5-2
+  version: v5.0.5-3
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-rumqttd.git
   version: v0.21.0-0
   name: rumqttd
