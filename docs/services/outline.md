@@ -41,7 +41,6 @@ outline_container_additional_networks_custom: |
     [redis_container_network]
   }}
 
-
 outline_environment_variable_aws_access_key_id: ''
 outline_environment_variable_aws_secret_access_key: ''
 outline_environment_variable_aws_region: eu-central-1 # example
