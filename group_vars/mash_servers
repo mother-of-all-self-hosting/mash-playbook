@@ -236,6 +236,8 @@ devture_systemd_service_manager_services_list_auto: |
     +
     ([{'name': (mariadb_identifier + '.service'), 'priority': 500, 'groups': ['mash', 'mariadb']}] if mariadb_enabled else [])
     +
+    ([{'name': (outline_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'outline']}] if outline_enabled else [])
+    +
     ([{'name': (owncast_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'owncast']}] if owncast_enabled else [])
     +
     ([{'name': (peertube_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'peertube']}] if peertube_enabled else [])
@@ -411,6 +413,12 @@ devture_postgres_managed_databases_auto: |
       'username': nextcloud_database_username,
       'password': nextcloud_database_password,
     }] if nextcloud_enabled else [])
+    +
+    ([{
+      'name': outline_database_name,
+      'username': outline_database_username,
+      'password': outline_database_password,
+    }] if outline_enabled and outline_database_hostname == devture_postgres_identifier else [])
     +
     ([{
       'name': peertube_config_database_name,
@@ -786,6 +794,8 @@ backup_borg_systemd_required_services_list: |
 #                                                                      #
 ########################################################################
 
+
+
 ########################################################################
 #                                                                      #
 # Changedetection.io                                                   #
@@ -816,6 +826,7 @@ changedetection_container_labels_traefik_tls_certResolver: "{{ devture_traefik_c
 # /Changedetection.io                                                  #
 #                                                                      #
 ########################################################################
+
 
 
 ########################################################################
@@ -2304,6 +2315,52 @@ mariadb_managed_databases_auto: |
 ########################################################################
 #                                                                      #
 # /mariadb                                                             #
+#                                                                      #
+########################################################################
+
+
+########################################################################
+#                                                                      #
+# outline                                                              #
+#                                                                      #
+########################################################################
+
+outline_enabled: false
+
+outline_identifier: "{{ mash_playbook_service_identifier_prefix }}outline"
+
+outline_uid: "{{ mash_playbook_uid }}"
+outline_gid: "{{ mash_playbook_gid }}"
+
+outline_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}outline"
+
+outline_systemd_required_services_list_auto: |
+  {{
+    ([devture_postgres_identifier ~ '.service'] if devture_postgres_enabled and outline_database_hostname == devture_postgres_identifier else [])
+  }}
+
+outline_container_additional_networks_auto: |
+  {{
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+    +
+    ([devture_postgres_container_network] if devture_postgres_enabled and outline_database_hostname == devture_postgres_identifier and outline_container_network != devture_postgres_container_network else [])
+  }}
+
+outline_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+outline_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+outline_container_labels_traefik_entrypoints: "{{ devture_traefik_entrypoint_primary }}"
+outline_container_labels_traefik_tls_certResolver: "{{ devture_traefik_certResolver_primary }}"
+
+outline_environment_variable_utils_secret: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'utils.out', rounds=655555) | to_uuid }}"
+
+outline_database_hostname: "{{ devture_postgres_identifier if devture_postgres_enabled else '' }}"
+outline_database_port: "{{ '5432' if devture_postgres_enabled else '' }}"
+outline_database_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'db.out', rounds=655555) | to_uuid }}"
+outline_database_sslmode: "{{ 'disable' if devture_postgres_enabled and outline_database_hostname == devture_postgres_identifier else 'prefer' }}"
+
+########################################################################
+#                                                                      #
+# /outline                                                             #
 #                                                                      #
 ########################################################################
 

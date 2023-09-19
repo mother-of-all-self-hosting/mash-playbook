@@ -126,6 +126,8 @@
 
     - role: galaxy/owncast
 
+    - role: galaxy/outline
+
     - role: galaxy/peertube
 
     - role: galaxy/postgis
