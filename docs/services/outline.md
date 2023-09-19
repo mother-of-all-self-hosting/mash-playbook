@@ -10,7 +10,7 @@ This service requires the following other services:
 - [Postgres](postgres.md)
 - [Redis](redis.md)
 - a [Traefik](traefik.md) reverse-proxy server
-- an AWS S3 (or S3-compatible) public bucket for storing assets, configured as described [here](https://docs.getoutline.com/s/hosting/doc/file-storage-N4M0T6Ypu7)
+- a public S3 bucket on AWS S3 (or [compatible S3 altenative](https://docs.getoutline.com/s/hosting/doc/file-storage-N4M0T6Ypu7#h-s3-compatible-services)) for storing assets, configured as described [here](https://docs.getoutline.com/s/hosting/doc/file-storage-N4M0T6Ypu7)
 
 
 ## Configuration
