@@ -59,6 +59,7 @@ just run-tags import-postgres \
 
 - `SERVER_PATH_TO_POSTGRES_DUMP_FILE` must be a file path to a Postgres dump file on the server (not on your local machine!)
 - `postgres_default_import_database` defaults to `main`, which is useful for importing multiple databases (for dumps made with `pg_dumpall`). If you're importing a single database (e.g. `miniflux`), consider changing `postgres_default_import_database` to the name of the database (e.g. `miniflux`)
+- after importing a large database, it's a good idea to run [an `ANALYZE` operation](https://www.postgresql.org/docs/current/sql-analyze.html) to make Postgres rebuild its database statistics and optimize its query planner. You can easily do this via the playbook by running `just run-tags run-postgres-vacuum -e postgres_vacuum_preset=analyze` (see [Vacuuming PostgreSQL](#vacuuming-postgresql) for more details).
 
 
 ## Maintenance
@@ -95,17 +96,22 @@ When in doubt, consider [making a backup](#backing-up-postgresql).
 
 ### Vacuuming PostgreSQL
 
-Deleting lots data from Postgres does not make it release disk space, until you perform a `VACUUM` operation.
+Deleting lots data from Postgres does not make it release disk space, until you perform a [`VACUUM` operation](https://www.postgresql.org/docs/current/sql-vacuum.html).
 
-To perform a `FULL` Postgres [VACUUM](https://www.postgresql.org/docs/current/sql-vacuum.html), run the playbook with `--tags=run-postgres-vacuum`.
+You can run different `VACUUM` operations via the playbook, with the default preset being `vacuum-complete`:
 
-Example:
+- (default) `vacuum-complete`: stops all services temporarily and runs `VACUUM FULL VERBOSE ANALYZE`.
+- `vacuum-full`: stops all services temporarily and runs `VACUUM FULL VERBOSE`
+- `vacuum`: runs `VACUUM VERBOSE` without stopping any services
+- `vacuum-analyze` runs `VACUUM VERBOSE ANALYZE` without stopping any services
+- `analyze` runs `ANALYZE VERBOSE` without stopping any services (this is just [ANALYZE](https://www.postgresql.org/docs/current/sql-analyze.html) without doing a vacuum, so it's faster)
 
-```bash
-just run-tags run-postgres-vacuum,start
-```
+**Note**: for the `vacuum-complete` and `vacuum-full` presets, you'll need plenty of available disk space in your Postgres data directory (usually `/mash/postgres/data`). These presets also stop all services while the vacuum operation is running.
 
-**Note**: this will automatically stop Synapse temporarily and restart it later. You'll also need plenty of available disk space in your Postgres data directory (usually `/mash/postgres/data`).
+Example playbook invocations:
+
+- `just run-tags run-postgres-vacuum`: runs the default `vacuum-complete` preset and restarts all services
+- `just run-tags run-postgres-vacuum -e postgres_vacuum_preset=analyze`: runs the `analyze` preset with all services remaining operational at all times
 
 
 ### Backing up PostgreSQL
