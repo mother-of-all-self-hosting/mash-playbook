@@ -76,7 +76,7 @@
   version: v1.3.0-rc6-0
   name: funkwhale
 - src: git+https://github.com/geerlingguy/ansible-role-docker
-  version: 6.2.0
+  version: 7.0.1
   name: geerlingguy.docker
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-gitea.git
   version: v1.20.4-0
@@ -85,7 +85,7 @@
   version: v0.11.0-0
   name: gotosocial
 - src: git+https://gitlab.com/etke.cc/roles/grafana.git
-  version: v10.1.2-0
+  version: v10.1.4-0
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-healthchecks.git
   version: v2.10-0
   name: healthchecks
