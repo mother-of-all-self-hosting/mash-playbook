@@ -10,7 +10,7 @@
   version: v4.37.5-0
   name: authelia
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-authentik.git
-  version: v2023.8.3-0
+  version: v2023.8.3-1
   name: authentik
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-aux.git
   version: v1.0.0-1
