@@ -2812,6 +2812,57 @@ redis_gid: "{{ mash_playbook_gid }}"
 #                                                                      #
 ########################################################################
 
+
+
+########################################################################
+#                                                                      #
+# roundcube                                                            #
+#                                                                      #
+########################################################################
+
+roundcube_enabled: false
+
+roundcube_identifier: "{{ mash_playbook_service_identifier_prefix }}roundcube"
+
+roundcube_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}roundcube"
+
+roundcube_uid: "0"
+roundcube_gid: "0"
+
+roundcube_database_type: "{{ 'postgresql' if devture_postgres_enabled else 'sqlite' }}"
+roundcube_database_hostname: "{{ devture_postgres_identifier if devture_postgres_enabled else '' }}"
+roundcube_database_port: "{{ '5432' if devture_postgres_enabled else '' }}"
+roundcube_database_name: "{{ 'roundcube' if devture_postgres_enabled else '' }}"
+roundcube_database_username: "{{ 'roundcube' if devture_postgres_enabled else '' }}"
+roundcube_database_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'db.roundcube', rounds=655555) | to_uuid }}"
+
+roundcube_systemd_required_systemd_services_list: |
+  {{
+    (['docker.service'])
+    +
+    ([devture_postgres_identifier ~ '.service'] if devture_postgres_enabled and roundcube_database_hostname == devture_postgres_identifier else [])
+  }}
+
+roundcube_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+roundcube_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+roundcube_container_labels_traefik_entrypoints: "{{ devture_traefik_entrypoint_primary }}"
+roundcube_container_labels_traefik_tls_certResolver: "{{ devture_traefik_certResolver_primary }}"
+
+roundcube_container_additional_networks: |
+  {{
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+    +
+    ([devture_postgres_container_network] if devture_postgres_enabled and roundcube_database_hostname == devture_postgres_identifier and roundcube_container_network != devture_postgres_container_network else [])
+  }}
+
+########################################################################
+#                                                                      #
+# /roundcube                                                           #
+#                                                                      #
+########################################################################
+
+
+
 ########################################################################
 #                                                                      #
 # rumqttd                                                              #
@@ -2832,6 +2883,7 @@ rumqttd_gid: "{{ mash_playbook_gid }}"
 # /rumqttd                                                             #
 #                                                                      #
 ########################################################################
+
 
 
 ########################################################################
@@ -2916,6 +2968,7 @@ telegraf_systemd_required_services_list: |
 # /telegraf                                                            #
 #                                                                      #
 ########################################################################
+
 
 
 ########################################################################
@@ -3029,6 +3082,8 @@ wg_easy_container_labels_traefik_tls_certResolver: "{{ devture_traefik_certResol
 #                                                                      #
 ########################################################################
 
+
+
 ########################################################################
 #                                                                      #
 # forgejo                                                             #
@@ -3073,6 +3128,7 @@ forgejo_config_database_password: "{{ '%s' | format(mash_playbook_generic_secret
 # /forgejo                                                               #
 #                                                                      #
 ########################################################################
+
 
 
 ########################################################################
@@ -3162,52 +3218,5 @@ devture_woodpecker_ci_agent_config_agent_secret: "{{ devture_woodpecker_ci_serve
 ########################################################################
 #                                                                      #
 # /woodpecker-ci-agent                                                 #
-#                                                                      #
-########################################################################
-
-########################################################################
-#                                                                      #
-# roundcube                                                            #
-#                                                                      #
-########################################################################
-
-roundcube_enabled: false
-
-roundcube_identifier: "{{ mash_playbook_service_identifier_prefix }}roundcube"
-
-roundcube_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}roundcube"
-
-roundcube_uid: "0"
-roundcube_gid: "0"
-
-roundcube_database_type: "{{ 'postgresql' if devture_postgres_enabled else 'sqlite' }}"
-roundcube_database_hostname: "{{ devture_postgres_identifier if devture_postgres_enabled else '' }}"
-roundcube_database_port: "{{ '5432' if devture_postgres_enabled else '' }}"
-roundcube_database_name: "{{ 'roundcube' if devture_postgres_enabled else '' }}"
-roundcube_database_username: "{{ 'roundcube' if devture_postgres_enabled else '' }}"
-roundcube_database_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'db.roundcube', rounds=655555) | to_uuid }}"
-
-roundcube_systemd_required_systemd_services_list: |
-  {{
-    (['docker.service'])
-    +
-    ([devture_postgres_identifier ~ '.service'] if devture_postgres_enabled and roundcube_database_hostname == devture_postgres_identifier else [])
-  }}
-
-roundcube_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
-roundcube_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
-roundcube_container_labels_traefik_entrypoints: "{{ devture_traefik_entrypoint_primary }}"
-roundcube_container_labels_traefik_tls_certResolver: "{{ devture_traefik_certResolver_primary }}"
-
-roundcube_container_additional_networks: |
-  {{
-    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
-    +
-    ([devture_postgres_container_network] if devture_postgres_enabled and roundcube_database_hostname == devture_postgres_identifier and roundcube_container_network != devture_postgres_container_network else [])
-  }}
-
-########################################################################
-#                                                                      #
-# /roundcube                                                           #
 #                                                                      #
 ########################################################################
