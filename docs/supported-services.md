@@ -58,7 +58,7 @@
 | [rumqttd](https://github.com/bytebeamio/rumqtt) | A high performance, embeddable [MQTT](https://en.wikipedia.org/wiki/MQTT) broker | [Link](services/rumqttd.md) |
 | [Soft Serve](https://github.com/charmbracelet/soft-serve) | A tasty, self-hostable [Git](https://git-scm.com/) server for the command line | [Link](services/soft-serve.md) |
 | [Syncthing](https://syncthing.net/) | A continuous file synchronization program which synchronizes files between two or more computers in real time | [Link](services/syncthing.md) |
-| [Telegraf](https://www.influxdata.com/) | An open source server agent to help you collect metrics from your stacks, sensors, and systems. | [Link](services/telegraf.md) |
+| [Telegraf](https://www.influxdata.com/time-series-platform/telegraf/) | An open source server agent to help you collect metrics from your stacks, sensors, and systems. | [Link](services/telegraf.md) |
 | [Traefik](https://doc.traefik.io/traefik/) | A container-aware reverse-proxy server | [Link](services/traefik.md) |
 | [Vaultwarden](https://github.com/dani-garcia/vaultwarden) | A lightweight unofficial and compatible implementation of the [Bitwarden](https://bitwarden.com/) password manager | [Link](services/vaultwarden.md) |
 | [Uptime-kuma](https://uptime.kuma.pet/) | A fancy self-hosted monitoring tool | [Link](services/uptime-kuma.md) |
