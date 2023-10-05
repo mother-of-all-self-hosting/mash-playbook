@@ -196,6 +196,6 @@
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-wg-easy.git
   version: v7-0
   name: wg_easy
-- src: git+https://git.sr.ht/~sergiodj/ansible-role-roundcube
+- src: git+https://github.com/mother-of-all-self-hosting/ansible-role-roundcube.git
   version: v1.6.3-0
   name: roundcube
