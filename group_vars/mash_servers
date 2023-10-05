@@ -264,6 +264,8 @@ devture_systemd_service_manager_services_list_auto: |
     +
     ([{'name': (redis_identifier + '.service'), 'priority': 750, 'groups': ['mash', 'redis']}] if redis_enabled else [])
     +
+    ([{'name': (roundcube_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'roundcube']}] if roundcube_enabled else [])
+    +
     ([{'name': (rumqttd_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'rumqttd']}] if rumqttd_enabled else [])
     +
     ([{'name': (soft_serve_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'soft-serve']}] if soft_serve_enabled else [])
@@ -279,8 +281,6 @@ devture_systemd_service_manager_services_list_auto: |
     ([{'name': (wg_easy_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'wg-easy']}] if wg_easy_enabled else [])
     +
     ([{'name': (forgejo_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'forgejo', 'forgejo-server']}] if forgejo_enabled else [])
-    +
-    ([{'name': (roundcube_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'roundcube']}] if roundcube_enabled else [])
   }}
 
 ########################################################################
