@@ -164,6 +164,8 @@
     - role: galaxy/com.devture.ansible.role.woodpecker_ci_server
     - role: galaxy/com.devture.ansible.role.woodpecker_ci_agent
 
+    - role: galaxy/roundcube
+
     - role: galaxy/auxiliary
 
     - when: devture_systemd_service_manager_enabled | bool
