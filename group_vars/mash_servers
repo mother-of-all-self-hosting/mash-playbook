@@ -158,6 +158,8 @@ devture_systemd_service_manager_services_list_auto: |
     +
     ([{'name': (docker_registry_purger_identifier + '.timer'), 'priority': 3000, 'groups': ['mash', 'docker-registry-purger']}] if docker_registry_purger_enabled else [])
     +
+    ([{'name': (echoip_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'echoip']}] if echoip_enabled else [])
+    +
     ([{'name': (firezone_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'firezone']}] if firezone_enabled else [])
     +
     ([{'name': (focalboard_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'focalboard']}] if focalboard_enabled else [])
@@ -982,6 +984,44 @@ docker_registry_purger_gid: "{{ mash_playbook_gid }}"
 ########################################################################
 #                                                                      #
 # /docker-registry-purger                                              #
+#                                                                      #
+########################################################################
+
+
+
+########################################################################
+#                                                                      #
+# echoip                                                             #
+#                                                                      #
+########################################################################
+
+echoip_enabled: false
+
+echoip_identifier: "{{ mash_playbook_service_identifier_prefix }}echoip"
+
+echoip_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}echoip"
+
+echoip_uid: "{{ mash_playbook_uid }}"
+echoip_gid: "{{ mash_playbook_gid }}"
+
+echoip_systemd_required_services_list: |
+  {{
+    (['docker.service'])
+  }}
+
+echoip_container_additional_networks: |
+  {{
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+  }}
+
+echoip_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+echoip_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+echoip_container_labels_traefik_entrypoints: "{{ devture_traefik_entrypoint_primary }}"
+echoip_container_labels_traefik_tls_certResolver: "{{ devture_traefik_certResolver_primary }}"
+
+########################################################################
+#                                                                      #
+# /echoip                                                            #
 #                                                                      #
 ########################################################################
 

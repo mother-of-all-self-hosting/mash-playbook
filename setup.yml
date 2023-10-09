@@ -77,6 +77,8 @@
     - role: galaxy/docker_registry_browser
     - role: galaxy/docker_registry_purger
 
+    - role: galaxy/echoip
+
     - role: galaxy/firezone
 
     - role: galaxy/focalboard
