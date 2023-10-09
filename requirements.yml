@@ -128,7 +128,7 @@
   version: v2.0.15-1
   name: mosquitto
 - src: git+https://gitlab.com/etke.cc/mrs/ansible-role-mrs.git
-  version: v0.0.0-10
+  version: v0.0.0-11
   name: mrs
 - src: git+https://github.com/kinduff/ansible-docker-n8n.git
   version: v1.4.2
@@ -173,6 +173,9 @@
   version: v7.2.0-0
 - src: git+https://gitlab.com/etke.cc/roles/redmine.git
   version: v5.0.6-0
+- src: git+https://github.com/mother-of-all-self-hosting/ansible-role-roundcube.git
+  version: v1.6.3-0
+  name: roundcube
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-rumqttd.git
   version: v0.21.0-0
   name: rumqttd
@@ -189,13 +192,10 @@
   version: v1.27.1-2
   name: telegraf
 - src: git+https://gitlab.com/etke.cc/roles/uptime_kuma.git
-  version: v1.23.2-0
+  version: v1.23.3-0
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-vaultwarden.git
   version: v1.29.2-2
   name: vaultwarden
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-wg-easy.git
   version: v7-0
   name: wg_easy
-- src: git+https://github.com/mother-of-all-self-hosting/ansible-role-roundcube.git
-  version: v1.6.3-0
-  name: roundcube
