@@ -1100,6 +1100,8 @@ freshrss_identifier: "{{ mash_playbook_service_identifier_prefix }}freshrss"
 
 freshrss_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}freshrss"
 
+# freshrss_uid and freshrss_gid are intentionally not being set here.
+# FreshRSS can only work with a specific user and group, as hardcoded in the role defaults.
 freshrss_uid: "0"
 freshrss_gid: "33"
 

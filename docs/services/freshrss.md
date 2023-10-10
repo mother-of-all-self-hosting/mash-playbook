@@ -7,7 +7,7 @@
 This service requires the following other services:
 
 -   a [Traefik](traefik.md) reverse-proxy server
--   an optional [Postgres](postgres.md) database, but [SQLite](https://www.sqlite.org/) is set by default.
+-   an optional [Postgres](postgres.md) database, but FreshRSS will default to [SQLite](https://www.sqlite.org/) if you don't have Postgres enabled.
 
 ## Configuration
 
