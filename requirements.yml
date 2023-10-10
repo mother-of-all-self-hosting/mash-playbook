@@ -61,6 +61,9 @@
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-docker-registry-purger.git
   version: v1.0.0-0
   name: docker_registry_purger
+- src: git+https://github.com/mother-of-all-self-hosting/ansible-role-echoip.git
+  version: v0.0.0-0
+  name: echoip
 - src: git+https://gitlab.com/etke.cc/roles/fail2ban.git
   version: 09886730e8d3c061f22d1da4a542899063f97f0a
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-firezone.git
