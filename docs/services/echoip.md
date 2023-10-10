@@ -1,6 +1,6 @@
 # EchoIP
 
-[EchoIP](https://github.com/mpolden/echoip) is simple service for looking up your IP address, powers the [ifconfig.co](https://ifconfig.co)
+[EchoIP](https://github.com/mpolden/echoip) is simple service for looking up your IP address, powering [ifconfig.co](https://ifconfig.co)
 
 ## Dependencies
 
