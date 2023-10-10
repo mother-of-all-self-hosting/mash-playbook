@@ -83,6 +83,8 @@
 
     - role: galaxy/focalboard
 
+    - role: galaxy/freshrss
+
     - role: galaxy/funkwhale
 
     - role: galaxy/gitea
