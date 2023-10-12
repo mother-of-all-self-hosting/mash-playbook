@@ -19,6 +19,7 @@
     <outline text="com.devture.ansible.role.woodpecker_ci_server" title="com.devture.ansible.role.woodpecker_ci_server" type="rss" htmlUrl="https://github.com/woodpecker-ci/woodpecker" xmlUrl="https://github.com/woodpecker-ci/woodpecker/releases.atom" />
     <outline text="echoip" title="echoip" type="rss" htmlUrl="https://github.com/mpolden/echoip" xmlUrl="https://github.com/mpolden/echoip/releases.atom" />
     <outline text="focalboard" title="focalboard" type="rss" htmlUrl="https://github.com/mattermost/focalboard" xmlUrl="https://github.com/mattermost/focalboard/releases.atom" />
+    <outline text="freshrss" title="freshrss" type="rss" htmlUrl="https://github.com/freshrss/freshrss" xmlUrl="https://github.com/freshrss/freshrss/releases.atom" />
     <outline text="grafana" title="grafana" type="rss" htmlUrl="https://github.com/grafana/grafana" xmlUrl="https://github.com/grafana/grafana/releases.atom" />
     <outline text="healthchecks" title="healthchecks" type="rss" htmlUrl="https://github.com/healthchecks/healthchecks" xmlUrl="https://github.com/healthchecks/healthchecks/releases.atom" />
     <outline text="infisical" title="infisical" type="rss" htmlUrl="https://github.com/Infisical/infisical" xmlUrl="https://github.com/Infisical/infisical/releases.atom" />

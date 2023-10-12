@@ -76,7 +76,7 @@
   version: v1.20.4-1-1
   name: forgejo
 - src: git+https://github.com/kinduff/ansible-docker-freshrss.git
-  version: v2.0.0
+  version: v2.1.0
   name: freshrss
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-funkwhale.git
   version: v1.3.1-0
@@ -91,7 +91,7 @@
   version: v0.11.0-1
   name: gotosocial
 - src: git+https://gitlab.com/etke.cc/roles/grafana.git
-  version: v10.1.4-0
+  version: v10.1.5-0
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-healthchecks.git
   version: v2.10-0
   name: healthchecks
