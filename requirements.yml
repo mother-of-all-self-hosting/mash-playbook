@@ -79,7 +79,7 @@
   version: v2.0.0
   name: freshrss
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-funkwhale.git
-  version: v1.3.0-rc6-0
+  version: v1.3.1-0
   name: funkwhale
 - src: git+https://github.com/geerlingguy/ansible-role-docker
   version: 7.0.1
