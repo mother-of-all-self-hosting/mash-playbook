@@ -96,7 +96,7 @@
   version: v2.10-0
   name: healthchecks
 - src: git+https://github.com/moan0s/hubsite.git
-  version: v1.23.3-2
+  version: v1.25.2-0
   name: hubsite
 - src: git+https://github.com/moan0s/ansible-role-ilmo.git
   version: v1.0.4-0
