@@ -152,7 +152,7 @@
   version: v0.72.0-0-0
   name: outline
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-owncast.git
-  version: v0.1.0-0
+  version: v0.1.1-1
   name: owncast
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-peertube.git
   version: v5.2.1-0
