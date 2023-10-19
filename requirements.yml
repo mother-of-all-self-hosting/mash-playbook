@@ -16,7 +16,7 @@
   version: v1.0.0-1
   name: auxiliary
 - src: git+https://gitlab.com/etke.cc/roles/backup_borg.git
-  version: v1.2.6-1.8.2-0
+  version: v1.2.6-1.8.3-0
 - src: git+https://github.com/nielscil/ansible-role-changedetection.git
   version: v0.45.2-0
   name: changedetection
@@ -134,7 +134,7 @@
   version: v2.0.15-1
   name: mosquitto
 - src: git+https://gitlab.com/etke.cc/mrs/ansible-role-mrs.git
-  version: v0.0.0-11
+  version: v0.0.0-12
   name: mrs
 - src: git+https://github.com/kinduff/ansible-docker-n8n.git
   version: v1.4.2
