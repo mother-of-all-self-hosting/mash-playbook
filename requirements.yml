@@ -91,7 +91,7 @@
   version: v0.12.0-0
   name: gotosocial
 - src: git+https://gitlab.com/etke.cc/roles/grafana.git
-  version: v10.1.5-0
+  version: v10.2.0-0
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-healthchecks.git
   version: v3.0-0
   name: healthchecks
@@ -134,7 +134,7 @@
   version: v2.0.15-1
   name: mosquitto
 - src: git+https://gitlab.com/etke.cc/mrs/ansible-role-mrs.git
-  version: v0.0.0-13
+  version: v0.0.0-14
   name: mrs
 - src: git+https://github.com/kinduff/ansible-docker-n8n.git
   version: v1.4.2
