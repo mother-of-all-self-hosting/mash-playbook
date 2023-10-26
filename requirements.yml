@@ -134,7 +134,7 @@
   version: v2.0.15-1
   name: mosquitto
 - src: git+https://gitlab.com/etke.cc/mrs/ansible-role-mrs.git
-  version: v0.0.0-15
+  version: v0.0.0-16
   name: mrs
 - src: git+https://github.com/kinduff/ansible-docker-n8n.git
   version: v1.4.2
