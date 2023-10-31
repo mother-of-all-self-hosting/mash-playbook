@@ -1,9 +1,20 @@
+# 2023-10-18
+
+## Postgres parameters are automatically tuned now
+
+The playbook has provided some hints about [Tuning PostgreSQL](docs/maintenance-postgres.md#tuning-postgresql) for quite a while now.
+
+From now on, the [Postgres Ansible role](https://github.com/devture/com.devture.ansible.role.postgres) automatically tunes your Postgres configuration with the same [calculation logic](https://github.com/le0pard/pgtune/blob/master/src/features/configuration/configurationSlice.js) that powers https://pgtune.leopard.in.ua/.
+
+Our [Tuning PostgreSQL](docs/maintenance-postgres.md#tuning-postgresql) documentation page has details about how you can turn auto-tuning off or adjust the automatically-determined Postgres configuration parameters manually.
+
+
 # 2023-04-23
 
 ## (Backward Compatibility Break) Authentik container variables renamed
 
 For the authentik role there wehre initially two containers: `authentic_worker_container` and `authentic_server_container`. To simnplifiy the setup this was reduced to one container.
-As the role is pretty young and to avoid confusion because of legacy and reverted design decisions all variables containing `authentik_server_container` will now start with authentik_container. This means you will have to renemae these variables in your `vars.yml` if you already use authentik. If you use a standard setup this only includes 
+As the role is pretty young and to avoid confusion because of legacy and reverted design decisions all variables containing `authentik_server_container` will now start with authentik_container. This means you will have to renemae these variables in your `vars.yml` if you already use authentik. If you use a standard setup this only includes
 
 * `authentic_server_container_additional_networks_custom` -> `authentik_container_additional_networks_custom`
 

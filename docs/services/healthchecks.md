@@ -25,7 +25,7 @@ To enable this service, add the following configuration to your `vars.yml` file 
 healthchecks_enabled: true
 
 healthchecks_hostname: mash.example.com
-# Note: hosting under a path prefix is somewhat problematic. See below.
+
 healthchecks_path_prefix: /healthchecks
 
 ########################################################################
@@ -40,10 +40,6 @@ healthchecks_path_prefix: /healthchecks
 In the example configuration above, we configure the service to be hosted at `https://mash.example.com/healthchecks`.
 
 You can remove the `healthchecks_path_prefix` variable definition, to make it default to `/`, so that the service is served at `https://mash.example.com/`.
-
-**Note**: there are minor quirks when hosting under a subpath, such as:
-
-- [Fonts not loading, because it attempts to load them from `/static` instead of `/path-prefix/static`](https://github.com/healthchecks/healthchecks/issues/822)
 
 ### Authentication
 

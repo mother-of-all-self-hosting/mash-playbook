@@ -259,3 +259,31 @@ This will install and configure the [Office](https://apps.nextcloud.com/apps/ric
 You should then be able to click any document (`.doc`, `.odt`, `.pdf`, etc.) in Nextcloud Files and it should automatically open a Collabora Online editor.
 
 You can also create new documents via the "plus" button.
+
+### Preview Generator
+
+It is possible to setup preview generation, using this playbook.
+
+First modify your `vars.yml` file by adding at least the following line (other options are also present, check the corresponding `defaults/main.yml` file):
+
+```yaml
+nextcloud_preview_enabled: true
+```
+
+then install Nextcloud (or rerun the playbook if already installed).
+
+Next, from the Settings/Application menu in your Nextcloud instance install the preview generator app (https://apps.nextcloud.com/apps/previewgenerator).
+
+After the application is installed run `just run-tags adjust-nextcloud-config` that will start the original preview-generation and when finished, enables the periodic generation of new images.
+
+The original generation may take a long time, but a continuous prompt is presented by ansible as some visual feedback (it is being run as an async task), however it will timeout after approximately 27 hours.
+
+On 60GBs, most of the data being images, it took about 10 minutes to finish.
+
+If it takes more time to run than a day, you may want to start it from the host by calling
+
+```sh
+/usr/bin/env docker exec mash-nextcloud-server php /var/www/html/occ preview:generate-all
+```
+
+Also, please note: every time Nextcloud version is updated, you should rerun: `just run-tags adjust-nextcloud-config`.
