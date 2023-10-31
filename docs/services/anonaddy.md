@@ -1,6 +1,6 @@
 # AnonAddy
 
-[AnonAddy](https://anonaddy.com/) is an open-source Anonymous Email Forwarding. MASH can install AnonAddy with the [`nielscil/ansible-role-anonaddy`](https://github.com/nielscil/ansible-role-anonaddy) ansible role.
+[AnonAddy](https://anonaddy.com/) is an open-source Anonymous Email Forwarding.
 
 
 ## Dependencies
@@ -22,14 +22,14 @@ This service requires extra DNS records. The following setup is an example where
 - RSPAMD is reachable from: `https://anonaddy-rspamd.example.com`
 - AnonAddy maildomain is: `localpart@anonaddy.example.com`
 
-| Description                | Type  | Host                                      | Priority | Weight | Target                           |
-|--------------------------- |-------|-------------------------------------------|----------|--------|----------------------------------|
-| AnonAddy site              | CNAME | `anonaddy.example.com`                    | -        | -      | `mash.example.com`               |
-| RSPAMD (optional)          | CNAME | `anonaddy-rspamd.example.com`             | -        | -      | `mash.example.com`               |
-| Mail                       | MX    | `anonaddy.example.com`                    | 10       | 0      | `mash.example.com`               |
-| DKIM (optional)            | TXT   | `default._domainkey.anonaddy.example.com` | -        | -      | Get from `install-anonaddy-dkim` |
-| DMARC (optional)           | TXT   | `_dmarc.anonaddy.example.com`             | -        | -      | `v=DMARC1; p=quarantine;`        |
-| SPF (optional)             | TXT   | `anonaddy.example.com`                    | -        | -      | `v=spf1 ip4:<your-ip> -all`      |
+| Description                | Type  | Host                                      | Priority | Weight | Target                            |
+|--------------------------- |-------|-------------------------------------------|----------|--------|-----------------------------------|
+| AnonAddy site              | CNAME | `anonaddy.example.com`                    | -        | -      | `mash.example.com`                |
+| RSPAMD (optional)          | CNAME | `anonaddy-rspamd.example.com`             | -        | -      | `mash.example.com`                |
+| Mail                       | MX    | `anonaddy.example.com`                    | 10       | 0      | `mash.example.com`                |
+| DKIM (optional)            | TXT   | `default._domainkey.anonaddy.example.com` | -        | -      | Get from `generate-anonaddy-dkim` |
+| DMARC (optional)           | TXT   | `_dmarc.anonaddy.example.com`             | -        | -      | `v=DMARC1; p=quarantine;`         |
+| SPF (optional)             | TXT   | `anonaddy.example.com`                    | -        | -      | `v=spf1 ip4:<your-ip> -all`       |
 
 ## Configuration
 
@@ -223,8 +223,11 @@ anonaddy_rspamd_password: ''
 # hostname should be unique and not part of main anonaddy domain
 anonaddy_rspamd_hostname: anonaddy-rspamd.example.com
 
-# Get the path from install-anonaddy-dkim
-anonaddy_dkim_signing_key_path: '/data/dkim/anonaddy.example.com.private'
+# Get the key from generate-anonaddy-dkim
+anonaddy_dkim_signing_key: |
+  -----BEGIN PRIVATE KEY-----
+  ...
+  -----END PRIVATE KEY-----
 
 ########################################################################
 #                                                                      #
@@ -263,7 +266,7 @@ If you've decided to install a dedicated Redis instance for AnonAddy, make sure 
 
 ### Install DKIM (optional)
 
-If you've decided to use DKIM, run the tag `install-anonaddy-dkim` after you installed the whole application using `install-all`. Paste the printed DKIM public key in the DKIM DNS record and add the printed value for `anonaddy_dkim_signing_key_path` to your variables as seen in [configure dkim](#dkim-and-rspamd-optional).
+If you've decided to use DKIM, run the tag `generate-anonaddy-dkim` with **only** the inventory host where anonaddy is being installed. This can be done before installation, but make sure your host variables are already defined. After generating, paste the printed DKIM public key in the DKIM DNS record and add the printed value for `anonaddy_dkim_signing_key` to your variables as seen in [configure dkim](#dkim-and-rspamd-optional).
 
 
 ### Install GPG (optional)
