@@ -474,7 +474,7 @@ devture_postgres_managed_databases_auto: |
      'name': semaphore_database_name,
      'username': semaphore_database_username,
      'password': semaphore_database_password,
-    }] if semaphore_enabled and semaphore_database_hostname == devture_postgres_identifier else [])
+    }] if semaphore_enabled and semaphore_database_host == devture_postgres_identifier else [])
   }}
 
 ########################################################################
@@ -3002,7 +3002,7 @@ rumqttd_gid: "{{ mash_playbook_gid }}"
 
 ########################################################################
 #                                                                      #
-# semaphore                                                           #
+# semaphore                                                            #
 #                                                                      #
 ########################################################################
 
@@ -3041,7 +3041,7 @@ semaphore_container_labels_traefik_tls_certResolver: "{{ devture_traefik_certRes
 
 ########################################################################
 #                                                                      #
-# /semaphore                                                          #
+# /semaphore                                                           #
 #                                                                      #
 ########################################################################
 
