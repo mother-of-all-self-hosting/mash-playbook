@@ -151,6 +151,8 @@
 
     - role: galaxy/rumqttd
 
+    - role: galaxy/semaphore
+
     - role: galaxy/soft_serve
 
     - role: galaxy/syncthing
