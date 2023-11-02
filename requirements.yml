@@ -187,6 +187,9 @@
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-rumqttd.git
   version: v0.21.0-0
   name: rumqttd
+- src: git+https://github.com/mother-of-all-self-hosting/ansible-role-semaphore.git
+  version: v2.9.36-0
+  name: semaphore
 - src: git+https://gitlab.com/etke.cc/roles/soft_serve.git
   version: v0.4.7-0
 - src: git+https://gitlab.com/etke.cc/roles/ssh.git
