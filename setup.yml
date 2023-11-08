@@ -133,6 +133,8 @@
 
     - role: galaxy/outline
 
+    - role: galaxy/oxitraffic
+
     - role: galaxy/peertube
 
     - role: galaxy/postgis
