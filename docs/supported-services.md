@@ -44,6 +44,7 @@
 | [Nextcloud](https://nextcloud.com/) | The most popular self-hosted collaboration solution for tens of millions of users at thousands of organizations across the globe. | [Link](services/nextcloud.md) |
 | [Outline](https://www.getoutline.com/) | An open-source knowledge base for growing teams. | [Link](services/outline.md) |
 | [Owncast](https://owncast.online/) | Owncast is a free and open source live video and web chat server for use with existing popular broadcasting software. | [Link](services/owncast.md) |
+| [OxiTraffic](https://codeberg.org/mo8it/oxitraffic) | [OxiTraffic](https://codeberg.org/mo8it/oxitraffic) is a self-hosted, simple and privacy respecting website traffic tracker. | [Link](services/oxitraffic.md) |
 | [PeerTube](https://joinpeertube.org/) | A tool for sharing online videos | [Link](services/peertube.md) |
 | [Postgis](https://postgis.net/) | A spatial database extender for PostgreSQL object-relational database | [Link](services/postgis.md) |
 | [Postgres](https://www.postgresql.org) | A powerful, open source object-relational database system | [Link](services/postgres.md) |
