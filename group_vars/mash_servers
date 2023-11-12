@@ -122,6 +122,8 @@ devture_systemd_service_manager_services_list_auto: |
     +
     ([{'name': (adguard_home_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'adguard-home']}] if adguard_home_enabled else [])
     +
+    ([{'name': (anonaddy_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'anonaddy']}] if anonaddy_enabled else [])
+    +
     ([{'name': (appsmith_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'appsmith']}] if appsmith_enabled else [])
     +
     ([{'name': (authentik_server_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'authentik']}] if authentik_enabled else [])
@@ -679,6 +681,53 @@ adguard_home_container_labels_traefik_tls_certResolver: "{{ devture_traefik_cert
 #                                                                      #
 ########################################################################
 
+########################################################################
+#                                                                      #
+# anonaddy                                                             #
+#                                                                      #
+########################################################################
+
+anonaddy_enabled: false
+
+anonaddy_identifier: "{{ mash_playbook_service_identifier_prefix }}anonaddy"
+
+anonaddy_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}anonaddy"
+
+anonaddy_uid: "{{ mash_playbook_uid }}"
+anonaddy_gid: "{{ mash_playbook_gid }}"
+
+anonaddy_database_hostname: "{{ mariadb_identifier if mariadb_enabled else '' }}"
+anonaddy_database_port: "{{ '3306' if mariadb_enabled else '' }}"
+anonaddy_database_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'db.anonaddy', rounds=655555) | to_uuid }}"
+anonaddy_database_username: "{{ anonaddy_identifier }}"
+
+ 
+anonaddy_systemd_required_services_list_auto: |
+  {{
+    ([mariadb_identifier ~ '.service'] if mariadb_enabled and anonaddy_database_hostname == mariadb_identifier else [])
+  }}
+
+anonaddy_container_additional_networks_auto: |
+  {{
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+    +
+    ([mariadb_container_network] if mariadb_enabled and anonaddy_database_hostname == mariadb_identifier and anonaddy_container_network != mariadb_enabled else [])
+  }}
+
+anonaddy_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+anonaddy_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+anonaddy_container_labels_traefik_entrypoints: "{{ devture_traefik_entrypoint_primary }}"
+anonaddy_container_labels_traefik_tls_certResolver: "{{ devture_traefik_certResolver_primary }}"
+
+anonaddy_container_rspamd_labels_traefik_enabled: "{{ anonaddy_rspamd_enabled and mash_playbook_traefik_labels_enabled }}"
+anonaddy_container_rspamd_labels_traefik_entrypoints: "{{ devture_traefik_entrypoint_primary }}"
+anonaddy_container_rspamd_labels_tls_certResolver: "{{ devture_traefik_certResolver_primary }}"
+
+########################################################################
+#                                                                      #
+# /anonaddy                                                            #
+#                                                                      #
+########################################################################
 
 
 ########################################################################
@@ -2428,6 +2477,12 @@ mariadb_gid: "{{ mash_playbook_gid }}"
 
 mariadb_managed_databases_auto: |
   {{
+    ([{
+      'name': anonaddy_database_name,
+      'username': anonaddy_database_username,
+      'password': anonaddy_database_password,
+    }] if anonaddy_enabled and anonaddy_database_hostname == mariadb_identifier else [])
+    +
     ([{
       'name': authelia_config_storage_mysql_database,
       'username': authelia_config_storage_mysql_username,

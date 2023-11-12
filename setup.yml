@@ -58,6 +58,8 @@
     - role: galaxy/com.devture.ansible.role.traefik
 
     - role: galaxy/adguard_home
+    
+    - role: galaxy/anonaddy
 
     - role: galaxy/appsmith
 
