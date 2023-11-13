@@ -170,7 +170,7 @@
   version: v0.24.0-0
   name: prometheus_blackbox_exporter
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-prometheus-node-exporter.git
-  version: v1.6.1-0
+  version: v1.7.0-0
   name: prometheus_node_exporter
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-prometheus-postgres-exporter.git
   version: v0.14.0-0
@@ -203,7 +203,7 @@
   version: v1.27.1-2
   name: telegraf
 - src: git+https://gitlab.com/etke.cc/roles/uptime_kuma.git
-  version: v1.23.3-0
+  version: v1.23.4-0
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-vaultwarden.git
   version: v1.30.0-0
   name: vaultwarden
