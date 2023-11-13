@@ -1173,7 +1173,9 @@ freshrss_container_labels_traefik_entrypoints: "{{ devture_traefik_entrypoint_pr
 freshrss_container_labels_traefik_tls_certResolver: "{{ devture_traefik_certResolver_primary }}"
 
 freshrss_database_hostname: "{{ devture_postgres_connection_hostname if devture_postgres_enabled else '' }}"
-freshrss_database_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'freshrss.db', rounds=655555) | to_uuid }}"
+
+# Intentionally not auto-generating freshrss_database_password.
+# It's meant to be explicitly defined, so that it can be used in the setup wizard after installation.
 
 ########################################################################
 #                                                                      #
