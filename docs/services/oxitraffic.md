@@ -36,3 +36,13 @@ You must include the counting script on the `oxitraffic_tracked_origin` by addin
 ```html
 <script type="module" src="https://YOUR-OXITRAFFIC_HOSTNAME/count.js"></script>
 ```
+
+# Notes on Troubleshooting
+
+Internal OxiTraffic errors will not be logged to `stdout` and will therefore not be part of `journalctl -fu mash-oxitraffic`. You should check the log file that is created by OxiTraffic with `tail -f logs/oxitraffic`.
+
+# Data Protection
+
+*This is not legal advice, talk to a lawyer!*
+
+OxiTraffic does not collet IP Adresses, Browser Information etc.. Each visitor is assigned a anonymous ID upon visiting the site. This will only be used to store information on how long the visitor spends on this site. No cookies are set.
