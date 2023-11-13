@@ -155,7 +155,7 @@
   version: v0.1.1-1
   name: owncast
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-oxitraffic.git
-  version: v0.8.0-0
+  version: v0.8.0-1
   name: oxitraffic
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-peertube.git
   version: v5.2.1-0
