@@ -70,6 +70,9 @@ devture_timesync_installation_enabled: true
 # Most services require a reverse-proxy, so we enable Traefik here.
 #
 # Learn more about the Traefik service in docs/services/traefik.md
+#
+# If your server already runs Traefik, you will run into port conflicts by installing it twice.
+# See docs/interoperability.md for solutions.
 
 mash_playbook_reverse_proxy_type: playbook-managed-traefik
 

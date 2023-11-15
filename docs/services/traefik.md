@@ -2,7 +2,7 @@
 
 [Traefik](https://doc.traefik.io/traefik/) is a container-aware reverse-proxy server.
 
-Many of the services installed by this playbook need to be exposed to the web (HTTP/HTTPS). This is handled by Traefik.
+Many of the services installed by this playbook need to be exposed to the web (HTTP/HTTPS). This is handled by Traefik, which is installed by default if you have used the [example `vars.yml` file](../../examples/vars.yml).
 
 Enabling the Traefik service will automatically wire all other services to use it.
 
@@ -42,6 +42,21 @@ This [Ansible role we use for Traefik](https://github.com/devture/com.devture.an
 
 Below, you can find some guidance about common tweaks you may wish to do.
 
+## Using another Traefik instance (not installing Traefik)
+
+Sometimes you may already have a Traefik instance running on the server and you may wish to not have the playbook install Traefik.
+
+To tell the playbook that you're running a Traefik instance and you'd still like all services installed by the playbook to be connected to that Traefik instance, you need the following configuration:
+
+```yml
+# Tell the playbook you're using Traefik installed in another way.
+# It won't bother installing Traefik.
+nextcloud_playbook_reverse_proxy_type: other-traefik-container
+
+# Tell the playbook to attach services which require reverse-proxying to an additional network by default (e.g. traefik)
+# This needs to match your Traefik network.
+mash_playbook_reverse_proxyable_services_additional_network: traefik
+```
 
 ## Increase logging verbosity
 
