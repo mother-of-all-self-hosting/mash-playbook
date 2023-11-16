@@ -164,7 +164,7 @@
   version: v15-3.3-0
   name: postgis
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-prometheus.git
-  version: v2.47.2-0
+  version: v2.48.0-0
   name: prometheus
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-prometheus-blackbox-exporter.git
   version: v0.24.0-0
