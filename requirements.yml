@@ -203,7 +203,7 @@
   version: v1.27.1-2
   name: telegraf
 - src: git+https://gitlab.com/etke.cc/roles/uptime_kuma.git
-  version: v1.23.4-0
+  version: v1.23.5-0
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-vaultwarden.git
   version: v1.30.0-0
   name: vaultwarden
