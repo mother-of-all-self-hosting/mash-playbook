@@ -3,18 +3,18 @@ default:
     @just --list --justfile {{ justfile() }}
 
 # Pulls external Ansible roles
-roles:
+roles: requirements-yml
     #!/usr/bin/env sh
     if [ -x "$(command -v agru)" ]; then
-    	agru
+        agru -r {{ justfile_directory() }}/requirements.yml
     else
-    	rm -rf roles/galaxy
-    	ansible-galaxy install -r requirements.yml -p roles/galaxy/ --force
+        rm -rf roles/galaxy
+        ansible-galaxy install -r requirements.yml -p roles/galaxy/ --force
     fi
 
 # Updates requirements.yml if there are any new tags available. Requires agru
 update: && opml
-    @agru -u
+    @agru -r {{ justfile_directory() }}/requirements.all.yml -u
 
 # Runs ansible-lint against all roles in the playbook
 lint:
@@ -39,7 +39,7 @@ install-service service *extra_args:
 setup-all *extra_args: (run-tags "setup-all,start" extra_args)
 
 # Runs the playbook with the given list of arguments
-run +extra_args:
+run +extra_args: requirements-yml
     ansible-playbook -i inventory/hosts setup.yml {{ extra_args }}
 
 # Runs the playbook with the given list of comma-separated tags and optional arguments
@@ -59,3 +59,10 @@ stop-all *extra_args: (run-tags "stop-all" extra_args)
 # Stops a specific service group
 stop-group group *extra_args:
     @just --justfile {{ justfile() }} run-tags stop-group --extra-vars="group={{ group }}" {{ extra_args }}
+
+# Prepares the requirements.yml file
+requirements-yml:
+    #!/usr/bin/env sh
+    if [ ! -f "{{ justfile_directory() }}/requirements.yml" ]; then
+        cp {{ justfile_directory() }}/requirements.all.yml {{ justfile_directory() }}/requirements.yml
+    fi
