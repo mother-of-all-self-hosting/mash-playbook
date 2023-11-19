@@ -7,5 +7,5 @@
 # ignores vscode file
 .vscode
 
-# ingores macos files
+# ignores macos files
 .DS_Store
