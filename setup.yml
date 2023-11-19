@@ -4,13 +4,13 @@
 
   roles:
     # This role has no tasks at all
-    - role: galaxy/com.devture.ansible.role.playbook_help
+    - role: galaxy/playbook_help
 
     # This role has no tasks at all
-    - role: galaxy/com.devture.ansible.role.systemd_docker_base
+    - role: galaxy/systemd_docker_base
 
     - when: mash_playbook_docker_installation_enabled | bool
-      role: galaxy/geerlingguy.docker
+      role: galaxy/docker
       vars:
         docker_install_compose: false
         docker_install_compose_plugin: false
@@ -21,7 +21,7 @@
         - install-all
 
     - when: devture_docker_sdk_for_python_installation_enabled | bool
-      role: galaxy/com.devture.ansible.role.docker_sdk_for_python
+      role: galaxy/docker_sdk_for_python
       tags:
         - setup-docker
         - setup-all
@@ -29,7 +29,7 @@
         - install-all
 
     - when: devture_timesync_installation_enabled | bool
-      role: galaxy/com.devture.ansible.role.timesync
+      role: galaxy/timesync
       tags:
         - setup-timesync
         - setup-all
@@ -47,15 +47,15 @@
       role: galaxy/fail2ban
 
     # This role exposes various tags (setup-postgres, setup-all, upgrade-postgres, import-postgres, etc.), so we don't tag it here.
-    - role: galaxy/com.devture.ansible.role.postgres
+    - role: galaxy/postgres
 
-    - role: galaxy/com.devture.ansible.role.postgres_backup
+    - role: galaxy/postgres_backup
 
     - role: galaxy/mongodb
 
-    - role: galaxy/com.devture.ansible.role.container_socket_proxy
+    - role: galaxy/container_socket_proxy
 
-    - role: galaxy/com.devture.ansible.role.traefik
+    - role: galaxy/traefik
 
     - role: galaxy/adguard_home
 
@@ -167,22 +167,22 @@
 
     - role: galaxy/forgejo
 
-    - role: galaxy/com.devture.ansible.role.woodpecker_ci_server
-    - role: galaxy/com.devture.ansible.role.woodpecker_ci_agent
+    - role: galaxy/woodpecker_ci_server
+    - role: galaxy/woodpecker_ci_agent
 
     - role: galaxy/roundcube
 
     - role: galaxy/auxiliary
 
     - when: devture_systemd_service_manager_enabled | bool
-      role: galaxy/com.devture.ansible.role.systemd_service_manager
+      role: galaxy/systemd_service_manager
 
     # This is pretty much last, because we want it to better serve as a "last known good configuration".
     # See: https://github.com/spantaleev/matrix-docker-ansible-deploy/pull/2217#issuecomment-1301487601
     - when: devture_playbook_state_preserver_enabled | bool
-      role: galaxy/com.devture.ansible.role.playbook_state_preserver
+      role: galaxy/playbook_state_preserver
       tags:
         - setup-all
         - install-all
 
-    - role: galaxy/com.devture.ansible.role.playbook_runtime_messages
+    - role: galaxy/playbook_runtime_messages
