@@ -39,7 +39,7 @@ install-service service *extra_args:
 setup-all *extra_args: (run-tags "setup-all,start" extra_args)
 
 # Runs the playbook with the given list of arguments
-run +extra_args: requirements-yml
+run +extra_args: requirements-yml setup-yml
     ansible-playbook -i inventory/hosts setup.yml {{ extra_args }}
 
 # Runs the playbook with the given list of comma-separated tags and optional arguments
@@ -65,4 +65,11 @@ requirements-yml:
     #!/usr/bin/env sh
     if [ ! -f "{{ justfile_directory() }}/requirements.yml" ]; then
         cp {{ justfile_directory() }}/requirements.all.yml {{ justfile_directory() }}/requirements.yml
+    fi
+
+# Prepares the setup.yml file
+setup-yml:
+    #!/usr/bin/env sh
+    if [ ! -f "{{ justfile_directory() }}/setup.yml" ]; then
+        cp {{ justfile_directory() }}/setup.all.yml {{ justfile_directory() }}/setup.yml
     fi
