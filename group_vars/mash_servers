@@ -116,178 +116,179 @@ system_swap_enabled: false
 #                                                                      #
 ########################################################################
 
-devture_systemd_service_manager_services_list_auto: |
-  {{
-    ([{'name': (backup_borg_identifier + '.timer'), 'priority': 5000, 'groups': ['mash', 'backup', 'borg']}] if backup_borg_enabled else [])
-    +
-    ([{'name': (adguard_home_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'adguard-home']}] if adguard_home_enabled else [])
-    +
-    ([{'name': (appsmith_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'appsmith']}] if appsmith_enabled else [])
-    +
-    ([{'name': (authentik_server_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'authentik']}] if authentik_enabled else [])
-    +
-    ([{'name': (authentik_worker_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'authentik']}] if authentik_enabled else [])
-    +
-    ([{'name': (authelia_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'authelia']}] if authelia_enabled else [])
-    +
-    ([{'name': (changedetection_identifier + '.service'), 'priority': 2100, 'groups': ['mash', 'changedetection']}] if changedetection_enabled else [])
-    +
-    ([{'name': (changedetection_playwright_driver_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'changedetection']}] if changedetection_playwright_driver_enabled else [])
-    +
-    ([{'name': (clickhouse_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'clickhouse']}] if clickhouse_enabled else [])
-    +
-    ([{'name': (collabora_online_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'collabora-online']}] if collabora_online_enabled else [])
-    +
-    ([{'name': (devture_postgres_identifier + '.service'), 'priority': 500, 'groups': ['mash', 'postgres']}] if devture_postgres_enabled else [])
-    +
-    ([{'name': (devture_postgres_backup_identifier + '.service'), 'priority': 5000, 'groups': ['mash', 'backup', 'postgres-backup']}] if devture_postgres_backup_enabled else [])
-    +
-    ([{'name': (devture_container_socket_proxy_identifier + '.service'), 'priority': 2900, 'groups': ['mash', 'reverse-proxies', 'container-socket-proxy']}] if devture_container_socket_proxy_enabled else [])
-    +
-    ([{'name': (devture_traefik_identifier + '.service'), 'priority': 3000, 'groups': ['mash', 'traefik', 'reverse-proxies']}] if devture_traefik_enabled else [])
-    +
-    ([{'name': (devture_woodpecker_ci_server_identifier + '.service'), 'priority': 4000, 'groups': ['mash', 'woodpecker', 'ci', 'woodpecker-ci-server']}] if devture_woodpecker_ci_server_enabled else [])
-    +
-    ([{'name': (devture_woodpecker_ci_agent_identifier + '.service'), 'priority': 4100, 'groups': ['mash', 'woodpecker', 'ci', 'woodpecker-ci-agent']}] if devture_woodpecker_ci_agent_enabled else [])
-    +
-    ([{'name': (docker_registry_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'docker-registry']}] if docker_registry_enabled else [])
-    +
-    ([{'name': (docker_registry_identifier + '-garbage-collect.timer'), 'priority': 2500, 'groups': ['mash', 'docker-registry', 'docker-registry-gc']}] if docker_registry_enabled else [])
-    +
-    ([{'name': (docker_registry_browser_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'docker-registry-browser']}] if docker_registry_browser_enabled else [])
-    +
-    ([{'name': (docker_registry_purger_identifier + '.timer'), 'priority': 3000, 'groups': ['mash', 'docker-registry-purger']}] if docker_registry_purger_enabled else [])
-    +
-    ([{'name': (echoip_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'echoip']}] if echoip_enabled else [])
-    +
-    ([{'name': (firezone_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'firezone']}] if firezone_enabled else [])
-    +
-    ([{'name': (focalboard_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'focalboard']}] if focalboard_enabled else [])
-    +
-    ([{'name': (freshrss_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'freshrss']}] if freshrss_enabled else [])
-    +
-    ([{'name': (funkwhale_api_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'funkwhale']}] if funkwhale_enabled else [])
-    +
-    ([{'name': (funkwhale_frontend_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'funkwhale']}] if funkwhale_enabled else [])
-    +
-    ([{'name': (funkwhale_celery_beat_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'funkwhale']}] if funkwhale_enabled else [])
-    +
-    ([{'name': (funkwhale_celery_worker_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'funkwhale']}] if funkwhale_enabled else [])
-    +
-    ([{'name': (gitea_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'gitea', 'gitea-server']}] if gitea_enabled else [])
-    +
-    ([{'name': (gotosocial_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'gotosocial']}] if gotosocial_enabled else [])
-    +
-    ([{'name': (ilmo_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'ilmo']}] if ilmo_enabled else [])
-    +
-    ([{'name': (mobilizon_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'mobilizon']}] if mobilizon_enabled else [])
-    +
-    ([{'name': (grafana_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'grafana']}] if grafana_enabled else [])
-    +
-    ([{'name': (hubsite_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'hubsite']}] if hubsite_enabled else [])
-    +
-    ([{'name': (healthchecks_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'healthchecks']}] if healthchecks_enabled else [])
-    +
-    ([{'name': (infisical_identifier + '-backend.service'), 'priority': 2000, 'groups': ['mash', 'infisical', 'infisical-backend']}] if infisical_enabled else [])
-    +
-    ([{'name': (infisical_identifier + '-frontend.service'), 'priority': 2000, 'groups': ['mash', 'infisical', 'infisical-frontend']}] if infisical_enabled else [])
-    +
-    ([{'name': (influxdb_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'influxdb']}] if influxdb_enabled else [])
-    +
-    ([{'name': (jitsi_identifier + '-web.service'), 'priority': 4200, 'groups': ['mash', 'jitsi', 'jitsi-web']}] if jitsi_enabled else [])
-    +
-    ([{'name': (jitsi_identifier + '-prosody.service'), 'priority': 4000, 'groups': ['mash', 'jitsi', 'jitsi-prosody']}] if jitsi_enabled else [])
-    +
-    ([{'name': (jitsi_identifier + '-jicofo.service'), 'priority': 4100, 'groups': ['mash', 'jitsi', 'jitsi-jicofo']}] if jitsi_enabled else [])
-    +
-    ([{'name': (jitsi_identifier + '-jvb.service'), 'priority': 4100, 'groups': ['mash', 'jitsi', 'jitsi-jvb']}] if jitsi_enabled else [])
-    +
-    ([{'name': (keycloak_identifier + '.service'), 'priority': 1000, 'groups': ['mash', 'keycloak']}] if keycloak_enabled else [])
-    +
-    ([{'name': (lago_identifier + '-api.service'), 'priority': 2000, 'groups': ['mash', 'lago', 'lago-api']}] if lago_enabled else [])
-    +
-    ([{'name': (lago_identifier + '-api-worker.service'), 'priority': 2500, 'groups': ['mash', 'lago', 'lago-api-worker']}] if lago_enabled else [])
-    +
-    ([{'name': (lago_identifier + '-api-clock.service'), 'priority': 2500, 'groups': ['mash', 'lago', 'lago-api-clock']}] if lago_enabled else [])
-    +
-    ([{'name': (lago_identifier + '-front.service'), 'priority': 2200, 'groups': ['mash', 'lago', 'lago-front']}] if lago_enabled else [])
-    +
-    ([{'name': (lago_identifier + '-pdf.service'), 'priority': 1900, 'groups': ['mash', 'lago', 'lago-pdf']}] if lago_enabled else [])
-    +
-    ([{'name': (linkding_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'linkding']}] if linkding_enabled else [])
-    +
-    ([{'name': (miniflux_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'miniflux']}] if miniflux_enabled else [])
-    +
-    ([{'name': (mongodb_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'mongodb']}] if mongodb_enabled else [])
-    +
-    ([{'name': (mosquitto_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'mosquitto']}] if mosquitto_enabled else [])
-    +
-    ([{'name': (mrs_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'mrs']}] if mrs_enabled else [])
-    +
-    ([{'name': (n8n_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'n8n']}] if n8n_enabled else [])
-    +
-    ([{'name': (navidrome_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'navidrome']}] if navidrome_enabled else [])
-    +
-    ([{'name': (netbox_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'netbox', 'netbox-server']}] if netbox_enabled else [])
-    +
-    ([{'name': (netbox_identifier + '-worker.service'), 'priority': 2500, 'groups': ['mash', 'netbox', 'netbox-worker']}] if netbox_enabled else [])
-    +
-    ([{'name': (netbox_identifier + '-housekeeping.service'), 'priority': 2500, 'groups': ['mash', 'netbox', 'netbox-housekeeping']}] if netbox_enabled else [])
-    +
-    ([{'name': (nextcloud_identifier + '-server.service'), 'priority': 2000, 'groups': ['mash', 'nextcloud', 'nextcloud-server']}] if nextcloud_enabled else [])
-    +
-    ([{'name': (nextcloud_identifier + '-cron.timer'), 'priority': 2500, 'groups': ['mash', 'nextcloud', 'nextcloud-cron']}] if nextcloud_enabled else [])
-    +
-    ([{'name': (mariadb_identifier + '.service'), 'priority': 500, 'groups': ['mash', 'mariadb']}] if mariadb_enabled else [])
-    +
-    ([{'name': (outline_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'outline']}] if outline_enabled else [])
-    +
-    ([{'name': (owncast_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'owncast']}] if owncast_enabled else [])
-    +
-    ([{'name': (oxitraffic_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'oxitraffic']}] if oxitraffic_enabled else [])
-    +
-    ([{'name': (peertube_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'peertube']}] if peertube_enabled else [])
-    +
-    ([{'name': (postgis_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'metrics', 'postgis']}] if postgis_enabled else [])
-    +
-    ([{'name': (prometheus_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'metrics', 'prometheus']}] if prometheus_enabled else [])
-    +
-    ([{'name': (prometheus_blackbox_exporter_identifier + '.service'), 'priority': 500, 'groups': ['mash', 'metrics', 'prometheus-blackbox-exporter']}] if prometheus_blackbox_exporter_enabled else [])
-    +
-    ([{'name': (prometheus_ssh_exporter_identifier + '.service'), 'priority': 500, 'groups': ['mash', 'metrics', 'prometheus-ssh-exporter']}] if prometheus_ssh_exporter_enabled else [])
-    +
-    ([{'name': (prometheus_node_exporter_identifier + '.service'), 'priority': 500, 'groups': ['mash', 'metrics', 'prometheus-node-exporter']}] if prometheus_node_exporter_enabled else [])
-    +
-    ([{'name': (prometheus_postgres_exporter_identifier + '.service'), 'priority': 500, 'groups': ['mash', 'metrics', 'prometheus-postgres-exporter']}] if prometheus_postgres_exporter_enabled else [])
-    +
-    ([{'name': (radicale_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'radicale']}] if radicale_enabled else [])
-    +
-    ([{'name': (redmine_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'redmine']}] if redmine_enabled else [])
-    +
-    ([{'name': (redmine_identifier + '-send-reminders.timer'), 'priority': 2000, 'groups': ['mash', 'redmine']}] if redmine_enabled else [])
-    +
-    ([{'name': (redmine_identifier + '-recurring-tasks.timer'), 'priority': 2000, 'groups': ['mash', 'redmine']}] if redmine_enabled and redmine_recurring_tasks_enabled else [])
-    +
-    ([{'name': (redis_identifier + '.service'), 'priority': 750, 'groups': ['mash', 'redis']}] if redis_enabled else [])
-    +
-    ([{'name': (roundcube_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'roundcube']}] if roundcube_enabled else [])
-    +
-    ([{'name': (rumqttd_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'rumqttd']}] if rumqttd_enabled else [])
-    +
-    ([{'name': (soft_serve_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'soft-serve']}] if soft_serve_enabled else [])
-    +
-    ([{'name': (syncthing_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'syncthing']}] if syncthing_enabled else [])
-    +
-    ([{'name': (telegraf_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'telegraf']}] if telegraf_enabled else [])
-    +
-    ([{'name': (vaultwarden_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'vaultwarden', 'vaultwarden-server']}] if vaultwarden_enabled else [])
-    +
-    ([{'name': (uptime_kuma_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'uptime-kuma']}] if uptime_kuma_enabled else [])
-    +
-    ([{'name': (wg_easy_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'wg-easy']}] if wg_easy_enabled else [])
-    +
-    ([{'name': (forgejo_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'forgejo', 'forgejo-server']}] if forgejo_enabled else [])
-  }}
+mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
+  - |-
+    {{ ({'name': (backup_borg_identifier + '.timer'), 'priority': 5000, 'groups': ['mash', 'backup', 'borg']} if backup_borg_enabled else omit) }}
+  - |-
+    {{ ({'name': (adguard_home_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'adguard-home']} if adguard_home_enabled else omit) }}
+  - |-
+    {{ ({'name': (appsmith_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'appsmith']} if appsmith_enabled else omit) }}
+  - |-
+    {{ ({'name': (authentik_server_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'authentik']} if authentik_enabled else omit) }}
+  - |-
+    {{ ({'name': (authentik_worker_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'authentik']} if authentik_enabled else omit) }}
+  - |-
+    {{ ({'name': (authelia_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'authelia']} if authelia_enabled else omit) }}
+  - |-
+    {{ ({'name': (changedetection_identifier + '.service'), 'priority': 2100, 'groups': ['mash', 'changedetection']} if changedetection_enabled else omit) }}
+  - |-
+    {{ ({'name': (changedetection_playwright_driver_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'changedetection']} if changedetection_playwright_driver_enabled else omit) }}
+  - |-
+    {{ ({'name': (clickhouse_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'clickhouse']} if clickhouse_enabled else omit) }}
+  - |-
+    {{ ({'name': (collabora_online_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'collabora-online']} if collabora_online_enabled else omit) }}
+  - |-
+    {{ ({'name': (devture_postgres_identifier + '.service'), 'priority': 500, 'groups': ['mash', 'postgres']} if devture_postgres_enabled else omit) }}
+  - |-
+    {{ ({'name': (devture_postgres_backup_identifier + '.service'), 'priority': 5000, 'groups': ['mash', 'backup', 'postgres-backup']} if devture_postgres_backup_enabled else omit) }}
+  - |-
+    {{ ({'name': (devture_container_socket_proxy_identifier + '.service'), 'priority': 2900, 'groups': ['mash', 'reverse-proxies', 'container-socket-proxy']} if devture_container_socket_proxy_enabled else omit) }}
+  - |-
+    {{ ({'name': (devture_traefik_identifier + '.service'), 'priority': 3000, 'groups': ['mash', 'traefik', 'reverse-proxies']} if devture_traefik_enabled else omit) }}
+  - |-
+    {{ ({'name': (devture_woodpecker_ci_server_identifier + '.service'), 'priority': 4000, 'groups': ['mash', 'woodpecker', 'ci', 'woodpecker-ci-server']} if devture_woodpecker_ci_server_enabled else omit) }}
+  - |-
+    {{ ({'name': (devture_woodpecker_ci_agent_identifier + '.service'), 'priority': 4100, 'groups': ['mash', 'woodpecker', 'ci', 'woodpecker-ci-agent']} if devture_woodpecker_ci_agent_enabled else omit) }}
+  - |-
+    {{ ({'name': (docker_registry_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'docker-registry']} if docker_registry_enabled else omit) }}
+  - |-
+    {{ ({'name': (docker_registry_identifier + '-garbage-collect.timer'), 'priority': 2500, 'groups': ['mash', 'docker-registry', 'docker-registry-gc']} if docker_registry_enabled else omit) }}
+  - |-
+    {{ ({'name': (docker_registry_browser_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'docker-registry-browser']} if docker_registry_browser_enabled else omit) }}
+  - |-
+    {{ ({'name': (docker_registry_purger_identifier + '.timer'), 'priority': 3000, 'groups': ['mash', 'docker-registry-purger']} if docker_registry_purger_enabled else omit) }}
+  - |-
+    {{ ({'name': (echoip_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'echoip']} if echoip_enabled else omit) }}
+  - |-
+    {{ ({'name': (firezone_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'firezone']} if firezone_enabled else omit) }}
+  - |-
+    {{ ({'name': (focalboard_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'focalboard']} if focalboard_enabled else omit) }}
+  - |-
+    {{ ({'name': (freshrss_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'freshrss']} if freshrss_enabled else omit) }}
+  - |-
+    {{ ({'name': (funkwhale_api_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'funkwhale']} if funkwhale_enabled else omit) }}
+  - |-
+    {{ ({'name': (funkwhale_frontend_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'funkwhale']} if funkwhale_enabled else omit) }}
+  - |-
+    {{ ({'name': (funkwhale_celery_beat_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'funkwhale']} if funkwhale_enabled else omit) }}
+  - |-
+    {{ ({'name': (funkwhale_celery_worker_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'funkwhale']} if funkwhale_enabled else omit) }}
+  - |-
+    {{ ({'name': (gitea_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'gitea', 'gitea-server']} if gitea_enabled else omit) }}
+  - |-
+    {{ ({'name': (gotosocial_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'gotosocial']} if gotosocial_enabled else omit) }}
+  - |-
+    {{ ({'name': (ilmo_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'ilmo']} if ilmo_enabled else omit) }}
+  - |-
+    {{ ({'name': (mobilizon_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'mobilizon']} if mobilizon_enabled else omit) }}
+  - |-
+    {{ ({'name': (grafana_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'grafana']} if grafana_enabled else omit) }}
+  - |-
+    {{ ({'name': (hubsite_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'hubsite']} if hubsite_enabled else omit) }}
+  - |-
+    {{ ({'name': (healthchecks_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'healthchecks']} if healthchecks_enabled else omit) }}
+  - |-
+    {{ ({'name': (infisical_identifier + '-backend.service'), 'priority': 2000, 'groups': ['mash', 'infisical', 'infisical-backend']} if infisical_enabled else omit) }}
+  - |-
+    {{ ({'name': (infisical_identifier + '-frontend.service'), 'priority': 2000, 'groups': ['mash', 'infisical', 'infisical-frontend']} if infisical_enabled else omit) }}
+  - |-
+    {{ ({'name': (influxdb_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'influxdb']} if influxdb_enabled else omit) }}
+  - |-
+    {{ ({'name': (jitsi_identifier + '-web.service'), 'priority': 4200, 'groups': ['mash', 'jitsi', 'jitsi-web']} if jitsi_enabled else omit) }}
+  - |-
+    {{ ({'name': (jitsi_identifier + '-prosody.service'), 'priority': 4000, 'groups': ['mash', 'jitsi', 'jitsi-prosody']} if jitsi_enabled else omit) }}
+  - |-
+    {{ ({'name': (jitsi_identifier + '-jicofo.service'), 'priority': 4100, 'groups': ['mash', 'jitsi', 'jitsi-jicofo']} if jitsi_enabled else omit) }}
+  - |-
+    {{ ({'name': (jitsi_identifier + '-jvb.service'), 'priority': 4100, 'groups': ['mash', 'jitsi', 'jitsi-jvb']} if jitsi_enabled else omit) }}
+  - |-
+    {{ ({'name': (keycloak_identifier + '.service'), 'priority': 1000, 'groups': ['mash', 'keycloak']} if keycloak_enabled else omit) }}
+  - |-
+    {{ ({'name': (lago_identifier + '-api.service'), 'priority': 2000, 'groups': ['mash', 'lago', 'lago-api']} if lago_enabled else omit) }}
+  - |-
+    {{ ({'name': (lago_identifier + '-api-worker.service'), 'priority': 2500, 'groups': ['mash', 'lago', 'lago-api-worker']} if lago_enabled else omit) }}
+  - |-
+    {{ ({'name': (lago_identifier + '-api-clock.service'), 'priority': 2500, 'groups': ['mash', 'lago', 'lago-api-clock']} if lago_enabled else omit) }}
+  - |-
+    {{ ({'name': (lago_identifier + '-front.service'), 'priority': 2200, 'groups': ['mash', 'lago', 'lago-front']} if lago_enabled else omit) }}
+  - |-
+    {{ ({'name': (lago_identifier + '-pdf.service'), 'priority': 1900, 'groups': ['mash', 'lago', 'lago-pdf']} if lago_enabled else omit) }}
+  - |-
+    {{ ({'name': (linkding_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'linkding']} if linkding_enabled else omit) }}
+  - |-
+    {{ ({'name': (miniflux_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'miniflux']} if miniflux_enabled else omit) }}
+  - |-
+    {{ ({'name': (mongodb_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'mongodb']} if mongodb_enabled else omit) }}
+  - |-
+    {{ ({'name': (mosquitto_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'mosquitto']} if mosquitto_enabled else omit) }}
+  - |-
+    {{ ({'name': (mrs_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'mrs']} if mrs_enabled else omit) }}
+  - |-
+    {{ ({'name': (n8n_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'n8n']} if n8n_enabled else omit) }}
+  - |-
+    {{ ({'name': (navidrome_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'navidrome']} if navidrome_enabled else omit) }}
+  - |-
+    {{ ({'name': (netbox_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'netbox', 'netbox-server']} if netbox_enabled else omit) }}
+  - |-
+    {{ ({'name': (netbox_identifier + '-worker.service'), 'priority': 2500, 'groups': ['mash', 'netbox', 'netbox-worker']} if netbox_enabled else omit) }}
+  - |-
+    {{ ({'name': (netbox_identifier + '-housekeeping.service'), 'priority': 2500, 'groups': ['mash', 'netbox', 'netbox-housekeeping']} if netbox_enabled else omit) }}
+  - |-
+    {{ ({'name': (nextcloud_identifier + '-server.service'), 'priority': 2000, 'groups': ['mash', 'nextcloud', 'nextcloud-server']} if nextcloud_enabled else omit) }}
+  - |-
+    {{ ({'name': (nextcloud_identifier + '-cron.timer'), 'priority': 2500, 'groups': ['mash', 'nextcloud', 'nextcloud-cron']} if nextcloud_enabled else omit) }}
+  - |-
+    {{ ({'name': (mariadb_identifier + '.service'), 'priority': 500, 'groups': ['mash', 'mariadb']} if mariadb_enabled else omit) }}
+  - |-
+    {{ ({'name': (outline_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'outline']} if outline_enabled else omit) }}
+  - |-
+    {{ ({'name': (owncast_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'owncast']} if owncast_enabled else omit) }}
+  - |-
+    {{ ({'name': (oxitraffic_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'oxitraffic']} if oxitraffic_enabled else omit) }}
+  - |-
+    {{ ({'name': (peertube_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'peertube']} if peertube_enabled else omit) }}
+  - |-
+    {{ ({'name': (postgis_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'metrics', 'postgis']} if postgis_enabled else omit) }}
+  - |-
+    {{ ({'name': (prometheus_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'metrics', 'prometheus']} if prometheus_enabled else omit) }}
+  - |-
+    {{ ({'name': (prometheus_blackbox_exporter_identifier + '.service'), 'priority': 500, 'groups': ['mash', 'metrics', 'prometheus-blackbox-exporter']} if prometheus_blackbox_exporter_enabled else omit) }}
+  - |-
+    {{ ({'name': (prometheus_ssh_exporter_identifier + '.service'), 'priority': 500, 'groups': ['mash', 'metrics', 'prometheus-ssh-exporter']} if prometheus_ssh_exporter_enabled else omit) }}
+  - |-
+    {{ ({'name': (prometheus_node_exporter_identifier + '.service'), 'priority': 500, 'groups': ['mash', 'metrics', 'prometheus-node-exporter']} if prometheus_node_exporter_enabled else omit) }}
+  - |-
+    {{ ({'name': (prometheus_postgres_exporter_identifier + '.service'), 'priority': 500, 'groups': ['mash', 'metrics', 'prometheus-postgres-exporter']} if prometheus_postgres_exporter_enabled else omit) }}
+  - |-
+    {{ ({'name': (radicale_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'radicale']} if radicale_enabled else omit) }}
+  - |-
+    {{ ({'name': (redmine_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'redmine']} if redmine_enabled else omit) }}
+  - |-
+    {{ ({'name': (redmine_identifier + '-send-reminders.timer'), 'priority': 2000, 'groups': ['mash', 'redmine']} if redmine_enabled else omit) }}
+  - |-
+    {{ ({'name': (redmine_identifier + '-recurring-tasks.timer'), 'priority': 2000, 'groups': ['mash', 'redmine']} if redmine_enabled and redmine_recurring_tasks_enabled else omit) }}
+  - |-
+    {{ ({'name': (redis_identifier + '.service'), 'priority': 750, 'groups': ['mash', 'redis']} if redis_enabled else omit) }}
+  - |-
+    {{ ({'name': (roundcube_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'roundcube']} if roundcube_enabled else omit) }}
+  - |-
+    {{ ({'name': (rumqttd_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'rumqttd']} if rumqttd_enabled else omit) }}
+  - |-
+    {{ ({'name': (soft_serve_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'soft-serve']} if soft_serve_enabled else omit) }}
+  - |-
+    {{ ({'name': (syncthing_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'syncthing']} if syncthing_enabled else omit) }}
+  - |-
+    {{ ({'name': (telegraf_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'telegraf']} if telegraf_enabled else omit) }}
+  - |-
+    {{ ({'name': (vaultwarden_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'vaultwarden', 'vaultwarden-server']} if vaultwarden_enabled else omit) }}
+  - |-
+    {{ ({'name': (uptime_kuma_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'uptime-kuma']} if uptime_kuma_enabled else omit) }}
+  - |-
+    {{ ({'name': (wg_easy_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'wg-easy']} if wg_easy_enabled else omit) }}
+  - |-
+    {{ ({'name': (forgejo_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'forgejo', 'forgejo-server']} if forgejo_enabled else omit) }}
+
+devture_systemd_service_manager_services_list_auto: "{{ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized | reject('equalto', omit) }}"
 
 ########################################################################
 #                                                                      #
@@ -318,164 +319,217 @@ devture_postgres_gid: "{{ mash_playbook_gid }}"
 # It may not be optimal though, because some services may not be dependant on Postgres at all, etc.
 devture_postgres_systemd_services_to_stop_for_maintenance_list_auto: "{{ devture_systemd_service_manager_services_list_auto | map(attribute='name') | reject('equalto', (devture_postgres_identifier + '.service')) }}"
 
-devture_postgres_managed_databases_auto: |
-  {{
-    ([{
-      'name': authelia_config_storage_postgres_database,
-      'username': authelia_config_storage_postgres_username,
-      'password': authelia_config_storage_postgres_password,
-    }] if authelia_enabled and authelia_config_storage_postgres_host == devture_postgres_identifier else [])
-    +
-    ([{
-      'name': authentik_database_name,
-      'username': authentik_database_username,
-      'password': authentik_database_password,
-    }] if authentik_enabled and authentik_database_hostname == devture_postgres_identifier else [])
-    +
-    ([{
-      'name': focalboard_database_name,
-      'username': focalboard_database_username,
-      'password': focalboard_database_password,
-    }] if focalboard_enabled and focalboard_database_type == 'postgres' and focalboard_database_hostname == devture_postgres_identifier else [])
-    +
-    ([{
-      'name': freshrss_database_name,
-      'username': freshrss_database_username,
-      'password': freshrss_database_password,
-    }] if freshrss_enabled and freshrss_database_hostname == devture_postgres_identifier else [])
-    +
-    ([{
-      'name': funkwhale_database_name,
-      'username': funkwhale_database_username,
-      'password': funkwhale_database_password,
-    }] if funkwhale_enabled and funkwhale_database_hostname == devture_postgres_identifier else [])
-    +
-    ([{
-      'name': gitea_config_database_name,
-      'username': gitea_config_database_username,
-      'password': gitea_config_database_password,
-    }] if gitea_enabled else [])
-    +
-    ([{
-      'name': healthchecks_database_name,
-      'username': healthchecks_database_username,
-      'password': healthchecks_database_password,
-    }] if healthchecks_enabled and healthchecks_database_hostname == devture_postgres_identifier else [])
-    +
-    ([{
-      'name': devture_woodpecker_ci_server_database_datasource_db_name,
-      'username': devture_woodpecker_ci_server_database_datasource_username,
-      'password': devture_woodpecker_ci_server_database_datasource_password,
-    }] if devture_woodpecker_ci_server_enabled else [])
-    +
-    ([{
-      'name': gotosocial_database_name,
-      'username': gotosocial_database_username,
-      'password': gotosocial_database_password,
-    }] if gotosocial_enabled else [])
-    +
-    ([{
-      'name': ilmo_database_name,
-      'username': ilmo_database_username,
-      'password': ilmo_database_password,
-    }] if ilmo_enabled else [])
-    +
-    ([{
-      'name': keycloak_database_name,
-      'username': keycloak_database_username,
-      'password': keycloak_database_password,
-    }] if keycloak_enabled and keycloak_database_type == 'postgres' and keycloak_database_hostname == devture_postgres_identifier else [])
-    +
-    ([{
-      'name': lago_database_name,
-      'username': lago_database_username,
-      'password': lago_database_password,
-    }] if lago_enabled and lago_database_hostname == devture_postgres_identifier else [])
-    +
-    ([{
-      'name': linkding_database_name,
-      'username': linkding_database_username,
-      'password': linkding_database_password,
-    }] if linkding_enabled and linkding_database_engine == 'postgres' else [])
-    +
-    ([{
-      'name': miniflux_database_name,
-      'username': miniflux_database_username,
-      'password': miniflux_database_password,
-    }] if miniflux_enabled else [])
-    +
-    ([{
-      'name': redmine_database_name,
-      'username': redmine_database_username,
-      'password': redmine_database_password,
-    }] if redmine_enabled else [])
-    +
-    ([{
-      'name': n8n_database_name,
-      'username': n8n_database_username,
-      'password': n8n_database_password,
-    }] if n8n_enabled else [])
-    +
-    ([{
-      'name': netbox_database_name,
-      'username': netbox_database_username,
-      'password': netbox_database_password,
-    }] if netbox_enabled else [])
-    +
-    ([{
-      'name': nextcloud_database_name,
-      'username': nextcloud_database_username,
-      'password': nextcloud_database_password,
-    }] if nextcloud_enabled else [])
-    +
-    ([{
-      'name': outline_database_name,
-      'username': outline_database_username,
-      'password': outline_database_password,
-    }] if outline_enabled and outline_database_hostname == devture_postgres_identifier else [])
-    +
-    ([{
-      'name': oxitraffic_database_name,
-      'username': oxitraffic_database_username,
-      'password': oxitraffic_database_password,
-    }] if oxitraffic_enabled and oxitraffic_database_hostname == devture_postgres_identifier else [])
-    +
-    ([{
-      'name': peertube_config_database_name,
-      'username': peertube_config_database_username,
-      'password': peertube_config_database_password,
-    }] if peertube_enabled else [])
-    +
-    ([{
-      'name': prometheus_postgres_exporter_database_name,
-      'username': prometheus_postgres_exporter_database_username,
-      'password': prometheus_postgres_exporter_database_password,
-    }] if prometheus_postgres_exporter_enabled else [])
-    +
-    ([{
-      'name': firezone_database_name,
-      'username': firezone_database_user,
-      'password': firezone_database_password,
-    }] if firezone_enabled else [])
-    +
-    ([{
-      'name': vaultwarden_database_name,
-      'username': vaultwarden_database_username,
-      'password': vaultwarden_database_password,
-    }] if vaultwarden_enabled else [])
-    +
-    ([{
-     'name': forgejo_config_database_name,
-     'username': forgejo_config_database_username,
-     'password': forgejo_config_database_password,
-    }] if forgejo_enabled else [])
-    +
-    ([{
-     'name': roundcube_database_name,
-     'username': roundcube_database_username,
-     'password': roundcube_database_password,
-    }] if roundcube_enabled and roundcube_database_hostname == devture_postgres_identifier else [])
-  }}
+mash_playbook_devture_postgres_managed_databases_auto_itemized:
+  - |-
+    {{
+      ({
+        'name': authelia_config_storage_postgres_database,
+        'username': authelia_config_storage_postgres_username,
+        'password': authelia_config_storage_postgres_password,
+      } if authelia_enabled and authelia_config_storage_postgres_host == devture_postgres_identifier else omit)
+    }}
+  - |-
+    {{
+      ({
+        'name': authentik_database_name,
+        'username': authentik_database_username,
+        'password': authentik_database_password,
+      } if authentik_enabled and authentik_database_hostname == devture_postgres_identifier else omit)
+    }}
+  - |-
+    {{
+      ({
+        'name': focalboard_database_name,
+        'username': focalboard_database_username,
+        'password': focalboard_database_password,
+      } if focalboard_enabled and focalboard_database_type == 'postgres' and focalboard_database_hostname == devture_postgres_identifier else omit)
+    }}
+  - |-
+    {{
+      ({
+        'name': freshrss_database_name,
+        'username': freshrss_database_username,
+        'password': freshrss_database_password,
+      } if freshrss_enabled and freshrss_database_hostname == devture_postgres_identifier else omit)
+    }}
+  - |-
+    {{
+      ({
+        'name': funkwhale_database_name,
+        'username': funkwhale_database_username,
+        'password': funkwhale_database_password,
+      } if funkwhale_enabled and funkwhale_database_hostname == devture_postgres_identifier else omit)
+    }}
+  - |-
+    {{
+      ({
+        'name': gitea_config_database_name,
+        'username': gitea_config_database_username,
+        'password': gitea_config_database_password,
+      } if gitea_enabled else omit)
+    }}
+  - |-
+    {{
+      ({
+        'name': healthchecks_database_name,
+        'username': healthchecks_database_username,
+        'password': healthchecks_database_password,
+      } if healthchecks_enabled and healthchecks_database_hostname == devture_postgres_identifier else omit)
+    }}
+  - |-
+    {{
+      ({
+        'name': devture_woodpecker_ci_server_database_datasource_db_name,
+        'username': devture_woodpecker_ci_server_database_datasource_username,
+        'password': devture_woodpecker_ci_server_database_datasource_password,
+      } if devture_woodpecker_ci_server_enabled else omit)
+    }}
+  - |-
+    {{
+      ({
+        'name': gotosocial_database_name,
+        'username': gotosocial_database_username,
+        'password': gotosocial_database_password,
+      } if gotosocial_enabled else omit)
+    }}
+  - |-
+    {{
+      ({
+        'name': ilmo_database_name,
+        'username': ilmo_database_username,
+        'password': ilmo_database_password,
+      } if ilmo_enabled else omit)
+    }}
+  - |-
+    {{
+      ({
+        'name': keycloak_database_name,
+        'username': keycloak_database_username,
+        'password': keycloak_database_password,
+      } if keycloak_enabled and keycloak_database_type == 'postgres' and keycloak_database_hostname == devture_postgres_identifier else omit)
+    }}
+  - |-
+    {{
+      ({
+        'name': lago_database_name,
+        'username': lago_database_username,
+        'password': lago_database_password,
+      } if lago_enabled and lago_database_hostname == devture_postgres_identifier else omit)
+    }}
+  - |-
+    {{
+      ({
+        'name': linkding_database_name,
+        'username': linkding_database_username,
+        'password': linkding_database_password,
+      } if linkding_enabled and linkding_database_engine == 'postgres' else omit)
+    }}
+  - |-
+    {{
+      ({
+        'name': miniflux_database_name,
+        'username': miniflux_database_username,
+        'password': miniflux_database_password,
+      } if miniflux_enabled else omit)
+    }}
+  - |-
+    {{
+      ({
+        'name': redmine_database_name,
+        'username': redmine_database_username,
+        'password': redmine_database_password,
+      } if redmine_enabled else omit)
+    }}
+  - |-
+    {{
+      ({
+        'name': n8n_database_name,
+        'username': n8n_database_username,
+        'password': n8n_database_password,
+      } if n8n_enabled else omit)
+    }}
+  - |-
+    {{
+      ({
+        'name': netbox_database_name,
+        'username': netbox_database_username,
+        'password': netbox_database_password,
+      } if netbox_enabled else omit)
+    }}
+  - |-
+    {{
+      ({
+        'name': nextcloud_database_name,
+        'username': nextcloud_database_username,
+        'password': nextcloud_database_password,
+      } if nextcloud_enabled else omit)
+    }}
+  - |-
+    {{
+      ({
+        'name': outline_database_name,
+        'username': outline_database_username,
+        'password': outline_database_password,
+      } if outline_enabled and outline_database_hostname == devture_postgres_identifier else omit)
+    }}
+  - |-
+    {{
+      ({
+        'name': oxitraffic_database_name,
+        'username': oxitraffic_database_username,
+        'password': oxitraffic_database_password,
+      } if oxitraffic_enabled and oxitraffic_database_hostname == devture_postgres_identifier else omit)
+    }}
+  - |-
+    {{
+      ({
+        'name': peertube_config_database_name,
+        'username': peertube_config_database_username,
+        'password': peertube_config_database_password,
+      } if peertube_enabled else omit)
+    }}
+  - |-
+    {{
+      ({
+        'name': prometheus_postgres_exporter_database_name,
+        'username': prometheus_postgres_exporter_database_username,
+        'password': prometheus_postgres_exporter_database_password,
+      } if prometheus_postgres_exporter_enabled else omit)
+    }}
+  - |-
+    {{
+      ({
+        'name': firezone_database_name,
+        'username': firezone_database_user,
+        'password': firezone_database_password,
+      } if firezone_enabled else omit)
+    }}
+  - |-
+    {{
+      ({
+        'name': vaultwarden_database_name,
+        'username': vaultwarden_database_username,
+        'password': vaultwarden_database_password,
+      } if vaultwarden_enabled else omit)
+    }}
+  - |-
+    {{
+      ({
+        'name': forgejo_config_database_name,
+        'username': forgejo_config_database_username,
+        'password': forgejo_config_database_password,
+      } if forgejo_enabled else omit)
+    }}
+  - |-
+    {{
+      ({
+        'name': roundcube_database_name,
+        'username': roundcube_database_username,
+        'password': roundcube_database_password,
+      } if roundcube_enabled and roundcube_database_hostname == devture_postgres_identifier else omit)
+    }}
+
+devture_postgres_managed_databases_auto: "{{ mash_playbook_devture_postgres_managed_databases_auto_itemized | reject('equalto', omit) }}"
 
 ########################################################################
 #                                                                      #
@@ -2428,14 +2482,17 @@ mariadb_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_
 mariadb_uid: "{{ mash_playbook_uid }}"
 mariadb_gid: "{{ mash_playbook_gid }}"
 
-mariadb_managed_databases_auto: |
-  {{
-    ([{
-      'name': authelia_config_storage_mysql_database,
-      'username': authelia_config_storage_mysql_username,
-      'password': authelia_config_storage_mysql_password,
-    }] if authelia_enabled and authelia_config_storage_mysql_host == mariadb_identifier else [])
-  }}
+mash_playbook_mariadb_managed_databases_auto_itemized:
+  - |-
+    {{
+      ({
+        'name': authelia_config_storage_mysql_database,
+        'username': authelia_config_storage_mysql_username,
+        'password': authelia_config_storage_mysql_password,
+      } if authelia_enabled and authelia_config_storage_mysql_host == mariadb_identifier else omit)
+    }}
+
+mariadb_managed_databases_auto: "{{ mash_playbook_mariadb_managed_databases_auto_itemized | reject('equalto', omit) }}"
 
 ########################################################################
 #                                                                      #
