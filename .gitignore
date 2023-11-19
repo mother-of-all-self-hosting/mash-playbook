@@ -9,3 +9,5 @@
 
 # ignores macos files
 .DS_Store
+
+/requirements.yml
