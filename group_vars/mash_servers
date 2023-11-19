@@ -61,7 +61,7 @@ authelia_config_storage_postgres_host: "{{ devture_postgres_identifier if devtur
 authelia_config_storage_postgres_port: "{{ '5432' if devture_postgres_enabled else '' }}"
 authelia_config_storage_postgres_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'db.authelia', rounds=655555) | to_uuid }}"
 
-# If Postgres and MariaDB are bot enabled, we favor Postgres.
+# If Postgres and MariaDB are not enabled, we favor Postgres.
 # We only enable MySQL if it's the only enabled component (that is, if Postgres is not enabled at the same time).
 authelia_config_storage_mysql_host: "{{ mariadb_identifier if mariadb_enabled and not devture_postgres_enabled else '' }}"
 authelia_config_storage_mysql_port: "{{ '3306' if mariadb_enabled else '' }}"
