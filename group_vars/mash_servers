@@ -547,6 +547,8 @@ devture_postgres_managed_databases_auto: "{{ mash_playbook_devture_postgres_mana
 
 devture_postgres_backup_enabled: false
 
+devture_postgres_backup_postgres_role_include_name: galaxy/postgres
+
 devture_postgres_backup_identifier: "{{ mash_playbook_service_identifier_prefix }}postgres-backup"
 
 devture_postgres_backup_architecture: "{{ mash_playbook_architecture }}"
