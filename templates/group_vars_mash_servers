@@ -274,7 +274,7 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
   # /role-specific:gotosocial
 
   # role-specific:grafana
-   - |-
+  - |-
     {{ ({'name': (grafana_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'grafana']} if grafana_enabled else omit) }}
   # /role-specific:grafana
 
@@ -370,7 +370,7 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
   # /role-specific:n8n
 
   # role-specific:navidrome
-   - |-
+  - |-
     {{ ({'name': (navidrome_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'navidrome']} if navidrome_enabled else omit) }}
   # /role-specific:navidrome
 

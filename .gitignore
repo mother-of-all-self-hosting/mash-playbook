@@ -11,10 +11,11 @@
 .DS_Store
 
 /requirements.yml
-/requirements.yml.srchash
-
 /setup.yml
-/setup.yml.srchash
-
 /group_vars/mash_servers
-/group_vars/mash_servers.srchash
+
+/run/*
+!/run/.gitkeep
+
+/group_vars/*
+!/group_vars/.gitkeep

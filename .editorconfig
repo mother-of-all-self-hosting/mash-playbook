@@ -27,7 +27,7 @@ indent_size = 4
 indent_style = space
 indent_size = 2
 
-[group_vars/mash_servers_all]
+[templates/group_vars_mash_servers]
 indent_style = space
 indent_size = 2
 
