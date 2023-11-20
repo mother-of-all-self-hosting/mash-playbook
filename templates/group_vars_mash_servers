@@ -141,6 +141,10 @@ system_swap_enabled: false
 ########################################################################
 
 mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
+  # Dummy entry, which is not role-specific.
+  # Ensures there's at least one entry defined in the list.
+  - "{{ omit }}"
+
   # role-specific:backup_borg
   - |-
     {{ ({'name': (backup_borg_identifier + '.timer'), 'priority': 5000, 'groups': ['mash', 'backup', 'borg']} if backup_borg_enabled else omit) }}
@@ -542,6 +546,10 @@ devture_postgres_gid: "{{ mash_playbook_gid }}"
 devture_postgres_systemd_services_to_stop_for_maintenance_list_auto: "{{ devture_systemd_service_manager_services_list_auto | map(attribute='name') | reject('equalto', (devture_postgres_identifier + '.service')) }}"
 
 mash_playbook_devture_postgres_managed_databases_auto_itemized:
+  # Dummy entry, which is not role-specific.
+  # Ensures there's at least one entry defined in the list.
+  - "{{ omit }}"
+
   # role-specific:authelia
   - |-
     {{
@@ -2916,6 +2924,10 @@ mariadb_uid: "{{ mash_playbook_uid }}"
 mariadb_gid: "{{ mash_playbook_gid }}"
 
 mash_playbook_mariadb_managed_databases_auto_itemized:
+  # Dummy entry, which is not role-specific.
+  # Ensures there's at least one entry defined in the list.
+  - "{{ omit }}"
+
   # role-specific:authelia
   - |-
     {{
