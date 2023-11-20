@@ -19,10 +19,10 @@ roles: _requirements-yml
 # Optimizes the playbook based on stored configuration (vars.yml paths)
 optimize-restore:
     #!/usr/bin/env sh
-    if [ -f "$optimization_vars_files_file_path" ]; then
+    if [ -f "{{ optimization_vars_files_file_path }}" ]; then
         just --justfile {{ justfile() }} \
         _optimize-for-var-paths \
-        $(cat $optimization_vars_files_file_path)
+        $(cat {{ optimization_vars_files_file_path }})
     else
         echo "Cannot restore optimization state from a file ($optimization_vars_files_file_path), because it doesn't exist"
         exit 1
@@ -144,10 +144,10 @@ _ensure_file_prepared src_path dst_path:
             cp {{ src_path }} {{ dst_path }}
             echo $src_hash > $hash_path
 
-            if [ -f "$optimization_vars_files_file_path" ]; then
+            if [ -f "{{ optimization_vars_files_file_path }}" ]; then
                 just --justfile {{ justfile() }} \
                 _optimize-for-var-paths \
-                $(cat $optimization_vars_files_file_path)
+                $(cat {{ optimization_vars_files_file_path }})
             fi
         fi
     fi
