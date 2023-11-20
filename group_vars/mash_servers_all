@@ -141,54 +141,118 @@ system_swap_enabled: false
 ########################################################################
 
 mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
+  # role-specific:backup_borg
   - |-
     {{ ({'name': (backup_borg_identifier + '.timer'), 'priority': 5000, 'groups': ['mash', 'backup', 'borg']} if backup_borg_enabled else omit) }}
+  # /role-specific:backup_borg
+
+  # role-specific:adguard_home
   - |-
     {{ ({'name': (adguard_home_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'adguard-home']} if adguard_home_enabled else omit) }}
+  # /role-specific:adguard_home
+
+  # role-specific:appsmith
   - |-
     {{ ({'name': (appsmith_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'appsmith']} if appsmith_enabled else omit) }}
+  # /role-specific:appsmith
+
+  # role-specific:authentik
   - |-
     {{ ({'name': (authentik_server_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'authentik']} if authentik_enabled else omit) }}
   - |-
     {{ ({'name': (authentik_worker_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'authentik']} if authentik_enabled else omit) }}
+  # /role-specific:authentik
+
+  # role-specific:authelia
   - |-
     {{ ({'name': (authelia_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'authelia']} if authelia_enabled else omit) }}
+  # /role-specific:authelia
+
+  # role-specific:changedetection
   - |-
     {{ ({'name': (changedetection_identifier + '.service'), 'priority': 2100, 'groups': ['mash', 'changedetection']} if changedetection_enabled else omit) }}
   - |-
     {{ ({'name': (changedetection_playwright_driver_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'changedetection']} if changedetection_playwright_driver_enabled else omit) }}
+  # /role-specific:changedetection
+
+  # role-specific:clickhouse
   - |-
     {{ ({'name': (clickhouse_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'clickhouse']} if clickhouse_enabled else omit) }}
+  # /role-specific:clickhouse
+
+  # role-specific:collabora_online
   - |-
     {{ ({'name': (collabora_online_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'collabora-online']} if collabora_online_enabled else omit) }}
+  # /role-specific:collabora_online
+
+  # role-specific:postgres
   - |-
     {{ ({'name': (devture_postgres_identifier + '.service'), 'priority': 500, 'groups': ['mash', 'postgres']} if devture_postgres_enabled else omit) }}
+  # /role-specific:postgres
+
+  # role-specific:postgres_backup
   - |-
     {{ ({'name': (devture_postgres_backup_identifier + '.service'), 'priority': 5000, 'groups': ['mash', 'backup', 'postgres-backup']} if devture_postgres_backup_enabled else omit) }}
+  # /role-specific:postgres_backup
+
+  # role-specific:container_socket_proxy
   - |-
     {{ ({'name': (devture_container_socket_proxy_identifier + '.service'), 'priority': 2900, 'groups': ['mash', 'reverse-proxies', 'container-socket-proxy']} if devture_container_socket_proxy_enabled else omit) }}
+  # /role-specific:container_socket_proxy
+
+  # role-specific:traefik
   - |-
     {{ ({'name': (devture_traefik_identifier + '.service'), 'priority': 3000, 'groups': ['mash', 'traefik', 'reverse-proxies']} if devture_traefik_enabled else omit) }}
+  # /role-specific:traefik
+
+  # role-specific:woodpecker_ci_server
   - |-
     {{ ({'name': (devture_woodpecker_ci_server_identifier + '.service'), 'priority': 4000, 'groups': ['mash', 'woodpecker', 'ci', 'woodpecker-ci-server']} if devture_woodpecker_ci_server_enabled else omit) }}
+  # /role-specific:woodpecker_ci_server
+
+  # role-specific:woodpecker_ci_agent
   - |-
     {{ ({'name': (devture_woodpecker_ci_agent_identifier + '.service'), 'priority': 4100, 'groups': ['mash', 'woodpecker', 'ci', 'woodpecker-ci-agent']} if devture_woodpecker_ci_agent_enabled else omit) }}
+  # /role-specific:woodpecker_ci_agent
+
+  # role-specific:docker_registry
   - |-
     {{ ({'name': (docker_registry_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'docker-registry']} if docker_registry_enabled else omit) }}
   - |-
     {{ ({'name': (docker_registry_identifier + '-garbage-collect.timer'), 'priority': 2500, 'groups': ['mash', 'docker-registry', 'docker-registry-gc']} if docker_registry_enabled else omit) }}
+  # /role-specific:docker_registry
+
+  # role-specific:docker_registry_browser
   - |-
     {{ ({'name': (docker_registry_browser_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'docker-registry-browser']} if docker_registry_browser_enabled else omit) }}
+  # /role-specific:docker_registry_browser
+
+  # role-specific:docker_registry_purger
   - |-
     {{ ({'name': (docker_registry_purger_identifier + '.timer'), 'priority': 3000, 'groups': ['mash', 'docker-registry-purger']} if docker_registry_purger_enabled else omit) }}
+  # /role-specific:docker_registry_purger
+
+  # role-specific:echoip
   - |-
     {{ ({'name': (echoip_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'echoip']} if echoip_enabled else omit) }}
+  # /role-specific:echoip
+
+  # role-specific:firezone
   - |-
     {{ ({'name': (firezone_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'firezone']} if firezone_enabled else omit) }}
+  # /role-specific:firezone
+
+  # role-specific:focalboard
   - |-
     {{ ({'name': (focalboard_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'focalboard']} if focalboard_enabled else omit) }}
+  # /role-specific:focalboard
+
+  # role-specific:freshrss
   - |-
     {{ ({'name': (freshrss_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'freshrss']} if freshrss_enabled else omit) }}
+  # /role-specific:freshrss
+
+  # role-specific:funkwhale
   - |-
     {{ ({'name': (funkwhale_api_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'funkwhale']} if funkwhale_enabled else omit) }}
   - |-
@@ -197,26 +261,51 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
     {{ ({'name': (funkwhale_celery_beat_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'funkwhale']} if funkwhale_enabled else omit) }}
   - |-
     {{ ({'name': (funkwhale_celery_worker_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'funkwhale']} if funkwhale_enabled else omit) }}
+  # /role-specific:funkwhale
+
+  # role-specific:gitea
   - |-
     {{ ({'name': (gitea_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'gitea', 'gitea-server']} if gitea_enabled else omit) }}
+  # /role-specific:gitea
+
+  # role-specific:gotosocial
   - |-
     {{ ({'name': (gotosocial_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'gotosocial']} if gotosocial_enabled else omit) }}
-  - |-
-    {{ ({'name': (ilmo_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'ilmo']} if ilmo_enabled else omit) }}
-  - |-
-    {{ ({'name': (mobilizon_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'mobilizon']} if mobilizon_enabled else omit) }}
-  - |-
+  # /role-specific:gotosocial
+
+  # role-specific:grafana
+   - |-
     {{ ({'name': (grafana_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'grafana']} if grafana_enabled else omit) }}
+  # /role-specific:grafana
+
+  # role-specific:hubsite
   - |-
     {{ ({'name': (hubsite_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'hubsite']} if hubsite_enabled else omit) }}
+  # /role-specific:hubsite
+
+  # role-specific:healthchecks
   - |-
     {{ ({'name': (healthchecks_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'healthchecks']} if healthchecks_enabled else omit) }}
+  # /role-specific:healthchecks
+
+  # role-specific:ilmo
+  - |-
+    {{ ({'name': (ilmo_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'ilmo']} if ilmo_enabled else omit) }}
+  # /role-specific:ilmo
+
+  # role-specific:infisical
   - |-
     {{ ({'name': (infisical_identifier + '-backend.service'), 'priority': 2000, 'groups': ['mash', 'infisical', 'infisical-backend']} if infisical_enabled else omit) }}
   - |-
     {{ ({'name': (infisical_identifier + '-frontend.service'), 'priority': 2000, 'groups': ['mash', 'infisical', 'infisical-frontend']} if infisical_enabled else omit) }}
+  # /role-specific:infisical
+
+  # role-specific:influxdb
   - |-
     {{ ({'name': (influxdb_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'influxdb']} if influxdb_enabled else omit) }}
+  # /role-specific:influxdb
+
+  # role-specific:jitsi
   - |-
     {{ ({'name': (jitsi_identifier + '-web.service'), 'priority': 4200, 'groups': ['mash', 'jitsi', 'jitsi-web']} if jitsi_enabled else omit) }}
   - |-
@@ -225,8 +314,14 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
     {{ ({'name': (jitsi_identifier + '-jicofo.service'), 'priority': 4100, 'groups': ['mash', 'jitsi', 'jitsi-jicofo']} if jitsi_enabled else omit) }}
   - |-
     {{ ({'name': (jitsi_identifier + '-jvb.service'), 'priority': 4100, 'groups': ['mash', 'jitsi', 'jitsi-jvb']} if jitsi_enabled else omit) }}
+  # /role-specific:jitsi
+
+  # role-specific:keycloak
   - |-
     {{ ({'name': (keycloak_identifier + '.service'), 'priority': 1000, 'groups': ['mash', 'keycloak']} if keycloak_enabled else omit) }}
+  # /role-specific:keycloak
+
+  # role-specific:lago
   - |-
     {{ ({'name': (lago_identifier + '-api.service'), 'priority': 2000, 'groups': ['mash', 'lago', 'lago-api']} if lago_enabled else omit) }}
   - |-
@@ -237,80 +332,182 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
     {{ ({'name': (lago_identifier + '-front.service'), 'priority': 2200, 'groups': ['mash', 'lago', 'lago-front']} if lago_enabled else omit) }}
   - |-
     {{ ({'name': (lago_identifier + '-pdf.service'), 'priority': 1900, 'groups': ['mash', 'lago', 'lago-pdf']} if lago_enabled else omit) }}
+  # /role-specific:lago
+
+  # role-specific:linkding
   - |-
     {{ ({'name': (linkding_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'linkding']} if linkding_enabled else omit) }}
+  # /role-specific:linkding
+
+  # role-specific:miniflux
   - |-
     {{ ({'name': (miniflux_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'miniflux']} if miniflux_enabled else omit) }}
+  # /role-specific:miniflux
+
+  # role-specific:mobilizon
+  - |-
+    {{ ({'name': (mobilizon_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'mobilizon']} if mobilizon_enabled else omit) }}
+  # /role-specific:mobilizon
+
+  # role-specific:mongodb
   - |-
     {{ ({'name': (mongodb_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'mongodb']} if mongodb_enabled else omit) }}
+  # /role-specific:mongodb
+
+  # role-specific:mosquitto
   - |-
     {{ ({'name': (mosquitto_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'mosquitto']} if mosquitto_enabled else omit) }}
+  # /role-specific:mosquitto
+
+  # role-specific:mrs
   - |-
     {{ ({'name': (mrs_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'mrs']} if mrs_enabled else omit) }}
+  # /role-specific:mrs
+
+  # role-specific:n8n
   - |-
     {{ ({'name': (n8n_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'n8n']} if n8n_enabled else omit) }}
-  - |-
+  # /role-specific:n8n
+
+  # role-specific:navidrome
+   - |-
     {{ ({'name': (navidrome_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'navidrome']} if navidrome_enabled else omit) }}
+  # /role-specific:navidrome
+
+  # role-specific:netbox
   - |-
     {{ ({'name': (netbox_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'netbox', 'netbox-server']} if netbox_enabled else omit) }}
   - |-
     {{ ({'name': (netbox_identifier + '-worker.service'), 'priority': 2500, 'groups': ['mash', 'netbox', 'netbox-worker']} if netbox_enabled else omit) }}
   - |-
     {{ ({'name': (netbox_identifier + '-housekeeping.service'), 'priority': 2500, 'groups': ['mash', 'netbox', 'netbox-housekeeping']} if netbox_enabled else omit) }}
+  # /role-specific:netbox
+
+  # role-specific:nextcloud
   - |-
     {{ ({'name': (nextcloud_identifier + '-server.service'), 'priority': 2000, 'groups': ['mash', 'nextcloud', 'nextcloud-server']} if nextcloud_enabled else omit) }}
   - |-
     {{ ({'name': (nextcloud_identifier + '-cron.timer'), 'priority': 2500, 'groups': ['mash', 'nextcloud', 'nextcloud-cron']} if nextcloud_enabled else omit) }}
+  # /role-specific:nextcloud
+
+  # role-specific:mariadb
   - |-
     {{ ({'name': (mariadb_identifier + '.service'), 'priority': 500, 'groups': ['mash', 'mariadb']} if mariadb_enabled else omit) }}
+  # /role-specific:mariadb
+
+  # role-specific:outline
   - |-
     {{ ({'name': (outline_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'outline']} if outline_enabled else omit) }}
+  # /role-specific:outline
+
+  # role-specific:owncast
   - |-
     {{ ({'name': (owncast_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'owncast']} if owncast_enabled else omit) }}
+  # /role-specific:owncast
+
+  # role-specific:oxitraffic
   - |-
     {{ ({'name': (oxitraffic_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'oxitraffic']} if oxitraffic_enabled else omit) }}
+  # /role-specific:oxitraffic
+
+  # role-specific:peertube
   - |-
     {{ ({'name': (peertube_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'peertube']} if peertube_enabled else omit) }}
+  # /role-specific:peertube
+
+  # role-specific:postgis
   - |-
     {{ ({'name': (postgis_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'metrics', 'postgis']} if postgis_enabled else omit) }}
+  # /role-specific:postgis
+
+  # role-specific:prometheus
   - |-
     {{ ({'name': (prometheus_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'metrics', 'prometheus']} if prometheus_enabled else omit) }}
+  # /role-specific:prometheus
+
+  # role-specific:prometheus_blackbox_exporter
   - |-
     {{ ({'name': (prometheus_blackbox_exporter_identifier + '.service'), 'priority': 500, 'groups': ['mash', 'metrics', 'prometheus-blackbox-exporter']} if prometheus_blackbox_exporter_enabled else omit) }}
+  # /role-specific:prometheus_blackbox_exporter
+
+  # role-specific:prometheus_ssh_exporter
   - |-
     {{ ({'name': (prometheus_ssh_exporter_identifier + '.service'), 'priority': 500, 'groups': ['mash', 'metrics', 'prometheus-ssh-exporter']} if prometheus_ssh_exporter_enabled else omit) }}
+  # /role-specific:prometheus_ssh_exporter
+
+  # role-specific:prometheus_node_exporter
   - |-
     {{ ({'name': (prometheus_node_exporter_identifier + '.service'), 'priority': 500, 'groups': ['mash', 'metrics', 'prometheus-node-exporter']} if prometheus_node_exporter_enabled else omit) }}
+  # /role-specific:prometheus_node_exporter
+
+  # role-specific:prometheus_postgres_exporter
   - |-
     {{ ({'name': (prometheus_postgres_exporter_identifier + '.service'), 'priority': 500, 'groups': ['mash', 'metrics', 'prometheus-postgres-exporter']} if prometheus_postgres_exporter_enabled else omit) }}
+  # /role-specific:prometheus_postgres_exporter
+
+  # role-specific:radicale
   - |-
     {{ ({'name': (radicale_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'radicale']} if radicale_enabled else omit) }}
+  # /role-specific:radicale
+
+  # role-specific:redmine
   - |-
     {{ ({'name': (redmine_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'redmine']} if redmine_enabled else omit) }}
   - |-
     {{ ({'name': (redmine_identifier + '-send-reminders.timer'), 'priority': 2000, 'groups': ['mash', 'redmine']} if redmine_enabled else omit) }}
   - |-
     {{ ({'name': (redmine_identifier + '-recurring-tasks.timer'), 'priority': 2000, 'groups': ['mash', 'redmine']} if redmine_enabled and redmine_recurring_tasks_enabled else omit) }}
+  # /role-specific:redmine
+
+  # role-specific:redis
   - |-
     {{ ({'name': (redis_identifier + '.service'), 'priority': 750, 'groups': ['mash', 'redis']} if redis_enabled else omit) }}
+  # /role-specific:redis
+
+  # role-specific:roundcube
   - |-
     {{ ({'name': (roundcube_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'roundcube']} if roundcube_enabled else omit) }}
+  # /role-specific:roundcube
+
+  # role-specific:rumqttd
   - |-
     {{ ({'name': (rumqttd_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'rumqttd']} if rumqttd_enabled else omit) }}
+  # /role-specific:rumqttd
+
+  # role-specific:soft_serve
   - |-
     {{ ({'name': (soft_serve_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'soft-serve']} if soft_serve_enabled else omit) }}
+  # /role-specific:soft_serve
+
+  # role-specific:syncthing
   - |-
     {{ ({'name': (syncthing_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'syncthing']} if syncthing_enabled else omit) }}
+  # /role-specific:syncthing
+
+  # role-specific:telegraf
   - |-
     {{ ({'name': (telegraf_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'telegraf']} if telegraf_enabled else omit) }}
+  # /role-specific:telegraf
+
+  # role-specific:vaultwarden
   - |-
     {{ ({'name': (vaultwarden_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'vaultwarden', 'vaultwarden-server']} if vaultwarden_enabled else omit) }}
+  # /role-specific:vaultwarden
+
+  # role-specific:uptime_kuma
   - |-
     {{ ({'name': (uptime_kuma_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'uptime-kuma']} if uptime_kuma_enabled else omit) }}
+  # /role-specific:uptime_kuma
+
+  # role-specific:wg_easy
   - |-
     {{ ({'name': (wg_easy_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'wg-easy']} if wg_easy_enabled else omit) }}
+  # /role-specific:wg_easy
+
+  # role-specific:forgejo
   - |-
     {{ ({'name': (forgejo_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'forgejo', 'forgejo-server']} if forgejo_enabled else omit) }}
+  # /role-specific:forgejo
 
 devture_systemd_service_manager_services_list_auto: "{{ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized | reject('equalto', omit) }}"
 
@@ -695,7 +892,7 @@ devture_traefik_systemd_required_services_list: |
 
 ########################################################################
 #                                                                      #
-# traefik                                                              #
+# /traefik                                                             #
 #                                                                      #
 ########################################################################
 # /role-specific:traefik
@@ -1585,6 +1782,7 @@ hubsite_container_labels_traefik_tls_certResolver: "{{ devture_traefik_certResol
 # Services
 ##########
 
+# role-specific:adguard_home
 # Adguard home
 hubsite_service_adguard_home_enabled: "{{ adguard_home_enabled }}"
 hubsite_service_adguard_home_name: Adguard Home
@@ -1592,7 +1790,9 @@ hubsite_service_adguard_home_url: "https://{{ adguard_home_hostname }}{{ adguard
 hubsite_service_adguard_home_logo_location: "{{ role_path }}/assets/shield.png"
 hubsite_service_adguard_home_description: "A network-wide DNS software for blocking ads & tracking"
 hubsite_service_adguard_home_priority: 1000
+# /role-specific:adguard_home
 
+# role-specific:authentik
 # authentik
 hubsite_service_authentik_enabled: "{{ authentik_enabled }}"
 hubsite_service_authentik_name: Authentik
@@ -1600,7 +1800,9 @@ hubsite_service_authentik_url: "https://{{ authentik_hostname }}"
 hubsite_service_authentik_logo_location: "{{ role_path }}/assets/authentik.png"
 hubsite_service_authentik_description: "An open source identity provider"
 hubsite_service_authentik_priority: 1000
+# /role-specific:authentik
 
+# role-specific:appsmith
 # Appsmith
 hubsite_service_appsmith_enabled: "{{ appsmith_enabled }}"
 hubsite_service_appsmith_name: Appsmith
@@ -1608,7 +1810,9 @@ hubsite_service_appsmith_url: "https://{{ appsmith_hostname }}{{ appsmith_path_p
 hubsite_service_appsmith_logo_location: "{{ role_path }}/assets/appsmith.png"
 hubsite_service_appsmith_description: "Platform for building and deploying custom internal tools and applications without writing code"
 hubsite_service_appsmith_priority: 1000
+# /role-specific:appsmith
 
+# role-specific:docker_registry_browser
 # Docker Registry Browser
 hubsite_service_docker_registry_browser_enabled: "{{ docker_registry_browser_enabled }}"
 hubsite_service_docker_registry_browser_name: Docker Registry Browser
@@ -1616,7 +1820,9 @@ hubsite_service_docker_registry_browser_url: "https://{{ docker_registry_browser
 hubsite_service_docker_registry_browser_logo_location: "{{ role_path }}/assets/docker.png"
 hubsite_service_docker_registry_browser_description: "Browse docker images"
 hubsite_service_docker_registry_browser_priority: 1000
+# /role-specific:docker_registry_browser
 
+# role-specific:firezone
 # Firezone
 hubsite_service_firezone_enabled: "{{ firezone_enabled }}"
 hubsite_service_firezone_name: Firezone
@@ -1624,7 +1830,9 @@ hubsite_service_firezone_url: "https://{{ firezone_hostname }}"
 hubsite_service_firezone_logo_location: "{{ role_path }}/assets/firezone.png"
 hubsite_service_firezone_description: "A self-hosted VPN server, based on Wireguard"
 hubsite_service_firezone_priority: 1000
+# /role-specific:firezone
 
+# role-specific:focalboard
 # Focalboard
 hubsite_service_focalboard_enabled: "{{ focalboard_enabled }}"
 hubsite_service_focalboard_name: Focalboard
@@ -1632,7 +1840,9 @@ hubsite_service_focalboard_url: "https://{{ focalboard_hostname }}{{ focalboard_
 hubsite_service_focalboard_logo_location: "{{ role_path }}/assets/focalboard.png"
 hubsite_service_focalboard_description: "An open source, self-hosted alternative to Trello, Notion, and Asana."
 hubsite_service_focalboard_priority: 1000
+# /role-specific:focalboard
 
+# role-specific:freshrss
 # FreshRSS
 hubsite_service_freshrss_enabled: "{{ freshrss_enabled }}"
 hubsite_service_freshrss_name: FreshRSS
@@ -1640,7 +1850,9 @@ hubsite_service_freshrss_url: "https://{{ freshrss_hostname }}{{ freshrss_path_p
 hubsite_service_freshrss_logo_location: "{{ role_path }}/assets/freshrss.png"
 hubsite_service_freshrss_description: "RSS and Atom feed aggregator."
 hubsite_service_freshrss_priority: 1000
+# /role-specific:freshrss
 
+# role-specific:funkwhale
 # Funkwhale
 hubsite_service_funkwhale_enabled: "{{ funkwhale_enabled }}"
 hubsite_service_funkwhale_name: Funkwhale
@@ -1648,7 +1860,9 @@ hubsite_service_funkwhale_url: "https://{{ funkwhale_hostname }}"
 hubsite_service_funkwhale_logo_location: "{{ role_path }}/assets/funkwhale.png"
 hubsite_service_funkwhale_description: "Listen and share music with a selfhosted streaming server"
 hubsite_service_funkwhale_priority: 1000
+# /role-specific:funkwhale
 
+# role-specific:gitea
 # Gitea
 hubsite_service_gitea_enabled: "{{ gitea_enabled }}"
 hubsite_service_gitea_name: Gitea
@@ -1656,7 +1870,9 @@ hubsite_service_gitea_url: "https://{{ gitea_hostname }}{{ gitea_path_prefix }}"
 hubsite_service_gitea_logo_location: "{{ role_path }}/assets/gitea.png"
 hubsite_service_gitea_description: "A git service"
 hubsite_service_gitea_priority: 1000
+# /role-specific:gitea
 
+# role-specific:gotosocial
 # GoToSocial
 hubsite_service_gotosocial_enabled: "{{ gotosocial_enabled }}"
 hubsite_service_gotosocial_name: GoToSocial
@@ -1664,7 +1880,9 @@ hubsite_service_gotosocial_url: "https://{{ gotosocial_hostname }}"
 hubsite_service_gotosocial_logo_location: "{{ role_path }}/assets/gotosocial.png"
 hubsite_service_gotosocial_description: "A fediverse server"
 hubsite_service_gotosocial_priority: 1000
+# /role-specific:gotosocial
 
+# role-specific:grafana
 # Grafana
 hubsite_service_grafana_enabled: "{{ grafana_enabled }}"
 hubsite_service_grafana_name: Grafana
@@ -1672,7 +1890,9 @@ hubsite_service_grafana_url: "https://{{ grafana_hostname }}{{ grafana_path_pref
 hubsite_service_grafana_logo_location: "{{ role_path }}/assets/grafana.png"
 hubsite_service_grafana_description: "Check how your server is doing"
 hubsite_service_grafana_priority: 1000
+# /role-specific:grafana
 
+# role-specific:healthchecks
 # Healthchecks
 hubsite_service_healthchecks_enabled: "{{ healthchecks_enabled }}"
 hubsite_service_healthchecks_name: Healthchecks
@@ -1680,7 +1900,9 @@ hubsite_service_healthchecks_url: "https://{{ healthchecks_hostname }}{{ healthc
 hubsite_service_healthchecks_logo_location: "{{ role_path }}/assets/healthchecks.png"
 hubsite_service_healthchecks_description: "A simple and Effective Cron Job Monitoring solution"
 hubsite_service_healthchecks_priority: 1000
+# /role-specific:healthchecks
 
+# role-specific:keycloak
 # Keycloak
 hubsite_service_keycloak_enabled: "{{ keycloak_enabled }}"
 hubsite_service_keycloak_name: Keycloak
@@ -1688,7 +1910,9 @@ hubsite_service_keycloak_url: "https://{{ keycloak_hostname }}{{ keycloak_path_p
 hubsite_service_keycloak_logo_location: "{{ role_path }}/assets/keycloak.png"
 hubsite_service_keycloak_description: "An open source identity and access management solution."
 hubsite_service_keycloak_priority: 1000
+# /role-specific:keycloak
 
+# role-specific:miniflux
 # Miniflux
 hubsite_service_miniflux_enabled: "{{ miniflux_enabled }}"
 hubsite_service_miniflux_name: Miniflux
@@ -1696,7 +1920,9 @@ hubsite_service_miniflux_url: "https://{{ miniflux_hostname }}{{ miniflux_path_p
 hubsite_service_miniflux_logo_location: "{{ role_path }}/assets/miniflux.png"
 hubsite_service_miniflux_description: "An opinionated feed reader"
 hubsite_service_miniflux_priority: 1000
+# /role-specific:miniflux
 
+# role-specific:n8n
 # n8n
 hubsite_service_n8n_enabled: "{{ n8n_enabled }}"
 hubsite_service_n8n_name: n8n
@@ -1704,7 +1930,9 @@ hubsite_service_n8n_url: "https://{{ n8n_hostname }}{{ n8n_path_prefix }}"
 hubsite_service_n8n_logo_location: "{{ role_path }}/assets/n8n.png"
 hubsite_service_n8n_description: "Workflow automation for technical people."
 hubsite_service_n8n_priority: 1000
+# /role-specific:n8n
 
+# role-specific:linkding
 # Linkding
 hubsite_service_linkding_enabled: "{{ linkding_enabled }}"
 hubsite_service_linkding_name: Linkding
@@ -1712,7 +1940,9 @@ hubsite_service_linkding_url: "https://{{ linkding_hostname }}{{ linkding_path_p
 hubsite_service_linkding_logo_location: "{{ role_path }}/assets/linkding.png"
 hubsite_service_linkding_description: "Bookmark manager that is designed be to be minimal and fast."
 hubsite_service_linkding_priority: 1000
+# /role-specific:linkding
 
+# role-specific:nextcloud
 # Nextcloud
 hubsite_service_nextcloud_enabled: "{{ nextcloud_enabled }}"
 hubsite_service_nextcloud_name: Nextcloud
@@ -1720,7 +1950,9 @@ hubsite_service_nextcloud_url: "https://{{ nextcloud_hostname }}{{ nextcloud_pat
 hubsite_service_nextcloud_logo_location: "{{ role_path }}/assets/nextcloud.png"
 hubsite_service_nextcloud_description: "Sync your files & much more"
 hubsite_service_nextcloud_priority: 1000
+# /role-specific:nextcloud
 
+# role-specific:owncast
 # Owncast
 hubsite_service_owncast_enabled: "{{ owncast_enabled }}"
 hubsite_service_owncast_name: Owncast
@@ -1728,7 +1960,9 @@ hubsite_service_owncast_url: "https://{{ owncast_hostname }}"
 hubsite_service_owncast_logo_location: "{{ role_path }}/assets/owncast.png"
 hubsite_service_owncast_description: "Livestream & Chat"
 hubsite_service_owncast_priority: 1000
+# /role-specific:owncast
 
+# role-specific:peertube
 # Peertube
 hubsite_service_peertube_enabled: "{{ peertube_enabled }}"
 hubsite_service_peertube_name: Peertube
@@ -1736,7 +1970,9 @@ hubsite_service_peertube_url: "https://{{ peertube_hostname }}{{ peertube_path_p
 hubsite_service_peertube_logo_location: "{{ role_path }}/assets/peertube.png"
 hubsite_service_peertube_description: "Watch and upload videos"
 hubsite_service_peertube_priority: 1000
+# /role-specific:peertube
 
+# role-specific:radicale
 # Radicale
 hubsite_service_radicale_enabled: "{{ radicale_enabled }}"
 hubsite_service_radicale_name: Radicale
@@ -1744,7 +1980,9 @@ hubsite_service_radicale_url: "https://{{ radicale_hostname }}{{ radicale_path_p
 hubsite_service_radicale_logo_location: "{{ role_path }}/assets/radicale.png"
 hubsite_service_radicale_description: "Sync contacts and calendars"
 hubsite_service_radicale_priority: 1000
+# /role-specific:radicale
 
+# role-specific:syncthing
 # Syncthing
 hubsite_service_syncthing_enabled: "{{ syncthing_enabled }}"
 hubsite_service_syncthing_name: Syncthing
@@ -1752,7 +1990,9 @@ hubsite_service_syncthing_url: "https://{{ syncthing_hostname }}{{ syncthing_pat
 hubsite_service_syncthing_logo_location: "{{ role_path }}/assets/syncthing.png"
 hubsite_service_syncthing_description: "Sync your files"
 hubsite_service_syncthing_priority: 1000
+# /role-specific:syncthing
 
+# role-specific:uptime_kuma
 # Uptime Kuma
 hubsite_service_uptime_kuma_enabled: "{{ uptime_kuma_enabled }}"
 hubsite_service_uptime_kuma_name: Uptime Kuma
@@ -1760,7 +2000,9 @@ hubsite_service_uptime_kuma_url: "https://{{ uptime_kuma_hostname }}{{ uptime_ku
 hubsite_service_uptime_kuma_logo_location: "{{ role_path }}/assets/uptime-kuma.png"
 hubsite_service_uptime_kuma_description: "Check the status of the services"
 hubsite_service_uptime_kuma_priority: 1000
+# /role-specific:uptime_kuma
 
+# role-specific:vaultwarden
 # Vaultwarden
 # The vaultwarden service link is deactivated by default for security reasons, see: https://github.com/dani-garcia/vaultwarden/wiki/Hardening-Guide#hiding-under-a-subdir
 hubsite_service_vaultwarden_enabled: false
@@ -1769,7 +2011,9 @@ hubsite_service_vaultwarden_url: "https://{{ vaultwarden_hostname }}{{ vaultward
 hubsite_service_vaultwarden_logo_location: "{{ role_path }}/assets/vaultwarden.png"
 hubsite_service_vaultwarden_description: "Securely access your passwords"
 hubsite_service_vaultwarden_priority: 1000
+# /role-specific:vaultwarden
 
+# role-specific:woodpecker_ci_server
 # Woodpecker CI
 hubsite_service_woodpecker_ci_enabled: "{{ devture_woodpecker_ci_server_enabled }}"
 hubsite_service_woodpecker_ci_name: Woodpecker CI
@@ -1777,7 +2021,9 @@ hubsite_service_woodpecker_ci_url: "https://{{ devture_woodpecker_ci_server_host
 hubsite_service_woodpecker_ci_logo_location: "{{ role_path }}/assets/woodpecker.png"
 hubsite_service_woodpecker_ci_description: "Check you CI"
 hubsite_service_woodpecker_ci_priority: 1000
+# /role-specific:woodpecker_ci_server
 
+# role-specific:forgejo
 # Forgejo
 hubsite_service_forgejo_enabled: "{{ forgejo_enabled }}"
 hubsite_service_forgejo_name: Forgejo
@@ -1785,6 +2031,7 @@ hubsite_service_forgejo_url: "https://{{ forgejo_hostname }}{{ forgejo_path_pref
 hubsite_service_forgejo_logo_location: "{{ role_path }}/assets/forgejo.png"
 hubsite_service_forgejo_description: "Another git service"
 hubsite_service_forgejo_priority: 1000
+# /role-specific:forgejo
 
 hubsite_service_list_auto: |
   {{
