@@ -11,4 +11,7 @@
 .DS_Store
 
 /requirements.yml
+/requirements.yml.srchash
+
 /setup.yml
+/setup.yml.srchash

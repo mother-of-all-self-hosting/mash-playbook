@@ -62,14 +62,29 @@ stop-group group *extra_args:
 
 # Prepares the requirements.yml file
 requirements-yml:
-    #!/usr/bin/env sh
-    if [ ! -f "{{ justfile_directory() }}/requirements.yml" ]; then
-        cp {{ justfile_directory() }}/requirements.all.yml {{ justfile_directory() }}/requirements.yml
-    fi
+    @just --justfile {{ justfile() }} _ensure_file_prepared {{ justfile_directory() }}/requirements.all.yml {{ justfile_directory() }}/requirements.yml
 
 # Prepares the setup.yml file
 setup-yml:
+    @just --justfile {{ justfile() }} _ensure_file_prepared {{ justfile_directory() }}/setup.all.yml {{ justfile_directory() }}/setup.yml
+
+_ensure_file_prepared src_path dst_path:
     #!/usr/bin/env sh
-    if [ ! -f "{{ justfile_directory() }}/setup.yml" ]; then
-        cp {{ justfile_directory() }}/setup.all.yml {{ justfile_directory() }}/setup.yml
+    hash_path={{ dst_path }}.srchash
+    src_hash=$(md5sum {{ src_path }} | cut -d ' ' -f 1)
+
+    if [ ! -f "{{ dst_path }}" ] || [ ! -f "$hash_path" ]; then
+        echo "One of the ORS"
+        cp {{ src_path }} {{ dst_path }}
+        echo $src_hash > $hash_path
+    else
+        current_hash=$(cat $hash_path)
+
+        if [ "$current_hash" != "$src_hash" ]; then
+            echo "Hash is different ($current_hash != $src_hash)"
+            cp {{ src_path }} {{ dst_path }}
+            echo $src_hash > $hash_path
+        else
+            echo "Hash matches!"
+        fi
     fi
