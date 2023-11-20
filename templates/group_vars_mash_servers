@@ -60,15 +60,19 @@ authelia_config_session_secret: "{{ '%s' | format(mash_playbook_generic_secret_k
 
 authelia_config_identity_providers_oidc_hmac_secret: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'hm.authelia', rounds=655555) | to_uuid }}"
 
+# role-specific:postgres
 authelia_config_storage_postgres_host: "{{ devture_postgres_identifier if devture_postgres_enabled else '' }}"
 authelia_config_storage_postgres_port: "{{ '5432' if devture_postgres_enabled else '' }}"
 authelia_config_storage_postgres_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'db.authelia', rounds=655555) | to_uuid }}"
+# /role-specific:postgres
 
+# role-specific:mariadb
 # If Postgres and MariaDB are not enabled, we favor Postgres.
 # We only enable MySQL if it's the only enabled component (that is, if Postgres is not enabled at the same time).
-authelia_config_storage_mysql_host: "{{ mariadb_identifier if mariadb_enabled and not devture_postgres_enabled else '' }}"
+authelia_config_storage_mysql_host: "{{ mariadb_identifier if mariadb_enabled and not devture_postgres_enabled | default(false) else '' }}"
 authelia_config_storage_mysql_port: "{{ '3306' if mariadb_enabled else '' }}"
 authelia_config_storage_mysql_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'db.authelia', rounds=655555) | to_uuid }}"
+# /role-specific:mariadb
 
 ########################################################################
 #                                                                      #
@@ -875,6 +879,7 @@ devture_postgres_backup_container_network: "{{ devture_postgres_container_networ
 devture_postgres_backup_uid: "{{ mash_playbook_uid }}"
 devture_postgres_backup_gid: "{{ mash_playbook_gid }}"
 
+# role-specific:postgres
 devture_postgres_backup_connection_hostname: "{{ devture_postgres_connection_hostname if devture_postgres_enabled else '' }}"
 devture_postgres_backup_connection_port: "{{ devture_postgres_connection_port if devture_postgres_enabled else 5432 }}"
 devture_postgres_backup_connection_username: "{{ devture_postgres_connection_username if devture_postgres_enabled else '' }}"
@@ -883,6 +888,7 @@ devture_postgres_backup_connection_password: "{{ devture_postgres_connection_pas
 devture_postgres_backup_postgres_data_path: "{{ devture_postgres_data_path if devture_postgres_enabled else '' }}"
 
 devture_postgres_backup_databases: "{{ devture_postgres_managed_databases | map(attribute='name') if devture_postgres_enabled else [] }}"
+# /role-specific:postgres
 
 ########################################################################
 #                                                                      #
@@ -961,18 +967,20 @@ devture_traefik_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_servi
 devture_traefik_uid: "{{ mash_playbook_uid }}"
 devture_traefik_gid: "{{ mash_playbook_gid }}"
 
+# role-specific:container_socket_proxy
 devture_traefik_config_providers_docker_endpoint: "{{ devture_container_socket_proxy_endpoint if devture_container_socket_proxy_enabled else 'unix:///var/run/docker.sock' }}"
+# /role-specific:container_socket_proxy
 
 devture_traefik_container_additional_networks: |
   {{
-    ([devture_container_socket_proxy_container_network] if devture_container_socket_proxy_enabled else [])
+    ([devture_container_socket_proxy_container_network] if devture_container_socket_proxy_enabled | default(false) else [])
   }}
 
 devture_traefik_systemd_required_services_list: |
   {{
     (['docker.service'])
     +
-    ([devture_container_socket_proxy_identifier + '.service'] if devture_container_socket_proxy_enabled else [])
+    ([devture_container_socket_proxy_identifier + '.service'] if devture_container_socket_proxy_enabled | default(false) else [])
   }}
 
 ########################################################################
@@ -1043,10 +1051,12 @@ adguard_home_container_additional_networks: |
     ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
   }}
 
+# role-specific:traefik
 adguard_home_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
 adguard_home_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
 adguard_home_container_labels_traefik_entrypoints: "{{ devture_traefik_entrypoint_primary }}"
 adguard_home_container_labels_traefik_tls_certResolver: "{{ devture_traefik_certResolver_primary }}"
+# /role-specific:traefik
 
 ########################################################################
 #                                                                      #
@@ -1078,10 +1088,12 @@ appsmith_container_additional_networks_auto: |
     ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
   }}
 
+# role-specific:traefik
 appsmith_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
 appsmith_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
 appsmith_container_labels_traefik_entrypoints: "{{ devture_traefik_entrypoint_primary }}"
 appsmith_container_labels_traefik_tls_certResolver: "{{ devture_traefik_certResolver_primary }}"
+# /role-specific:traefik
 
 ########################################################################
 #                                                                      #
@@ -1108,10 +1120,12 @@ authentik_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_bas
 authentik_uid: "{{ mash_playbook_uid }}"
 authentik_gid: "{{ mash_playbook_gid }}"
 
+# role-specific:postgres
 authentik_database_hostname: "{{ devture_postgres_identifier if devture_postgres_enabled else '' }}"
 authentik_database_port: "{{ '5432' if devture_postgres_enabled else '' }}"
 authentik_database_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'db.authentik', rounds=655555) | to_uuid }}"
 authentik_database_username: "{{ authentik_identifier }}"
+# /role-specific:postgres
 
 authentik_server_systemd_required_services_list_auto: |
   {{
@@ -1125,10 +1139,12 @@ authentik_container_additional_networks_auto: |
     ([devture_postgres_container_network] if devture_postgres_enabled and authentik_database_hostname == devture_postgres_identifier and authentik_container_network != devture_postgres_container_network else [])
   }}
 
+# role-specific:traefik
 authentik_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
 authentik_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
 authentik_container_labels_traefik_entrypoints: "{{ devture_traefik_entrypoint_primary }}"
 authentik_container_labels_traefik_tls_certResolver: "{{ devture_traefik_certResolver_primary }}"
+# /role-specific:traefik
 
 ########################################################################
 #                                                                      #
@@ -1162,37 +1178,41 @@ backup_borg_storage_archive_name_format: "{{ mash_playbook_service_identifier_pr
 
 backup_borg_container_image_self_build: "{{ mash_playbook_architecture not in ['amd64', 'arm32', 'arm64'] }}"
 
+# role-specific:postgres
 backup_borg_postgresql_enabled: "{{ devture_postgres_enabled }}"
 backup_borg_postgresql_databases_hostname: "{{ devture_postgres_connection_hostname if devture_postgres_enabled else '' }}"
 backup_borg_postgresql_databases_username: "{{ devture_postgres_connection_username if devture_postgres_enabled else '' }}"
 backup_borg_postgresql_databases_password: "{{ devture_postgres_connection_password if devture_postgres_enabled else '' }}"
 backup_borg_postgresql_databases_port: "{{ devture_postgres_connection_port if devture_postgres_enabled else 5432 }}"
 backup_borg_postgresql_databases: "{{ devture_postgres_managed_databases | map(attribute='name') if devture_postgres_enabled else [] }}"
+# /role-specific:postgres
 
+# role-specific:mariadb
 backup_borg_mysql_enabled: "{{ mariadb_enabled }}"
 backup_borg_mysql_databases_hostname: "{{ mariadb_identifier if mariadb_enabled else '' }}"
 backup_borg_mysql_databases_username: "root"
 backup_borg_mysql_databases_password: "{{ mariadb_root_passsword if mariadb_enabled else '' }}"
 backup_borg_mysql_databases_port: 3306
 backup_borg_mysql_databases: "{{ mariadb_managed_databases | map(attribute='name') if mariadb_enabled else [] }}"
+# /role-specific:mariadb
 
 backup_borg_location_source_directories:
   - "{{ mash_playbook_base_path }}"
 
 backup_borg_location_exclude_patterns: |
   {{
-    ([devture_postgres_data_path] if devture_postgres_enabled else [])
+    ([devture_postgres_data_path] if devture_postgres_enabled | default(false) else [])
     +
-    ([mariadb_data_path] if mariadb_enabled else [])
+    ([mariadb_data_path] if mariadb_enabled | default(false) else [])
   }}
 
 backup_borg_systemd_required_services_list: |
   {{
     ['docker.service']
     +
-    ([devture_postgres_identifier ~ '.service'] if devture_postgres_enabled else [])
+    ([devture_postgres_identifier ~ '.service'] if devture_postgres_enabled | default(false) else [])
     +
-    ([mariadb_identifier ~ '.service'] if mariadb_enabled else [])
+    ([mariadb_identifier ~ '.service'] if mariadb_enabled | default(false) else [])
   }}
 
 ########################################################################
@@ -1225,10 +1245,12 @@ changedetection_container_additional_networks_auto: |
     ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
   }}
 
+# role-specific:traefik
 changedetection_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
 changedetection_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
 changedetection_container_labels_traefik_entrypoints: "{{ devture_traefik_entrypoint_primary }}"
 changedetection_container_labels_traefik_tls_certResolver: "{{ devture_traefik_certResolver_primary }}"
+# /role-specific:traefik
 
 ########################################################################
 #                                                                      #
@@ -1290,10 +1312,12 @@ collabora_online_container_additional_networks: |
     ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
   }}
 
+# role-specific:traefik
 collabora_online_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
 collabora_online_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
 collabora_online_container_labels_traefik_entrypoints: "{{ devture_traefik_entrypoint_primary }}"
 collabora_online_container_labels_traefik_tls_certResolver: "{{ devture_traefik_certResolver_primary }}"
+# /role-specific:traefik
 
 ########################################################################
 #                                                                      #
@@ -1325,10 +1349,12 @@ docker_registry_container_additional_networks: |
     ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
   }}
 
+# role-specific:traefik
 docker_registry_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
 docker_registry_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
 docker_registry_container_labels_traefik_entrypoints: "{{ devture_traefik_entrypoint_primary }}"
 docker_registry_container_labels_traefik_tls_certResolver: "{{ devture_traefik_certResolver_primary }}"
+# /role-specific:traefik
 
 ########################################################################
 #                                                                      #
@@ -1360,10 +1386,12 @@ docker_registry_browser_container_additional_networks: |
     ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
   }}
 
+# role-specific:traefik
 docker_registry_browser_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
 docker_registry_browser_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
 docker_registry_browser_container_labels_traefik_entrypoints: "{{ devture_traefik_entrypoint_primary }}"
 docker_registry_browser_container_labels_traefik_tls_certResolver: "{{ devture_traefik_certResolver_primary }}"
+# /role-specific:traefik
 
 ########################################################################
 #                                                                      #
@@ -1423,10 +1451,12 @@ echoip_container_additional_networks: |
     ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
   }}
 
+# role-specific:traefik
 echoip_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
 echoip_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
 echoip_container_labels_traefik_entrypoints: "{{ devture_traefik_entrypoint_primary }}"
 echoip_container_labels_traefik_tls_certResolver: "{{ devture_traefik_certResolver_primary }}"
+# /role-specific:traefik
 
 ########################################################################
 #                                                                      #
@@ -1454,29 +1484,33 @@ firezone_uid: "{{ mash_playbook_uid }}"
 firezone_gid: "{{ mash_playbook_gid }}"
 firezone_generic_secret: "{{ mash_playbook_generic_secret_key }}"
 
+# role-specific:postgres
 firezone_database_host: "{{ devture_postgres_identifier if devture_postgres_enabled else '' }}"
 firezone_database_port: "{{ '5432' if devture_postgres_enabled else '' }}"
 firezone_database_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'fz.db.user', rounds=655555) | to_uuid }}"
 firezone_database_user: "{{ firezone_identifier }}"
+# /role-specific:postgres
 
 firezone_systemd_required_services_list: |
   {{
     (['docker.service'])
     +
-    ([devture_postgres_identifier ~ '.service'] if devture_postgres_enabled and firezone_database_host == devture_postgres_identifier else [])
+    ([devture_postgres_identifier ~ '.service'] if devture_postgres_enabled | default(false) and firezone_database_host == devture_postgres_identifier else [])
   }}
 
 firezone_container_additional_networks: |
   {{
     ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
     +
-    ([devture_postgres_container_network] if devture_postgres_enabled and firezone_database_host == devture_postgres_identifier and firezone_container_network != devture_postgres_container_network else [])
+    ([devture_postgres_container_network] if devture_postgres_enabled | default(false) and firezone_database_host == devture_postgres_identifier and firezone_container_network != devture_postgres_container_network else [])
   }}
 
+# role-specific:traefik
 firezone_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
 firezone_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
 firezone_container_labels_traefik_entrypoints: "{{ devture_traefik_entrypoint_primary }}"
 firezone_container_labels_traefik_tls_certResolver: "{{ devture_traefik_certResolver_primary }}"
+# /role-specific:traefik
 
 ########################################################################
 #                                                                      #
@@ -1508,22 +1542,26 @@ focalboard_systemd_required_systemd_services_list_auto: |
     ([devture_postgres_identifier ~ '.service'] if devture_postgres_enabled and focalboard_database_hostname == devture_postgres_identifier else [])
   }}
 
+# role-specific:postgres
 focalboard_database_type: "{{ 'postgres' if devture_postgres_enabled else '' }}"
 focalboard_database_hostname: "{{ devture_postgres_identifier if devture_postgres_enabled else '' }}"
 focalboard_database_port: "{{ '5432' if devture_postgres_enabled else '' }}"
 focalboard_database_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'db.focalboard', rounds=655555) | to_uuid }}"
+# /role-specific:postgres
 
 focalboard_container_additional_networks_auto: |
   {{
     ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
     +
-    ([devture_postgres_container_network] if devture_postgres_enabled and focalboard_database_hostname == devture_postgres_identifier else [])
+    ([devture_postgres_container_network] if devture_postgres_enabled | default(false) and focalboard_database_hostname == devture_postgres_identifier else [])
   }}
 
+# role-specific:traefik
 focalboard_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
 focalboard_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
 focalboard_container_labels_traefik_entrypoints: "{{ devture_traefik_entrypoint_primary }}"
 focalboard_container_labels_traefik_tls_certResolver: "{{ devture_traefik_certResolver_primary }}"
+# /role-specific:traefik
 
 ########################################################################
 #                                                                      #
