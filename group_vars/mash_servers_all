@@ -1,5 +1,6 @@
 ---
 
+# role-specific:auxiliary
 ########################################################################
 #                                                                      #
 # aux                                                                  #
@@ -17,8 +18,10 @@ aux_file_default_group: "{{ mash_playbook_user_groupname }}"
 # /aux                                                                 #
 #                                                                      #
 ########################################################################
+# /role-specific:auxiliary
 
 
+# role-specific:authelia
 ########################################################################
 #                                                                      #
 # authelia                                                             #
@@ -72,30 +75,50 @@ authelia_config_storage_mysql_password: "{{ '%s' | format(mash_playbook_generic_
 # /authelia                                                            #
 #                                                                      #
 ########################################################################
+# /role-specific:authelia
 
 
 
+# role-specific:ssh
 ########################################################################
 #                                                                      #
-# system/security                                                      #
+# ssh                                                                  #
 #                                                                      #
 ########################################################################
 
 system_security_ssh_enabled: false
+
+########################################################################
+#                                                                      #
+# /ssh                                                                 #
+#                                                                      #
+########################################################################
+# /role-specific:ssh
+
+
+
+# role-specific:fail2ban
+########################################################################
+#                                                                      #
+# fail2ban                                                             #
+#                                                                      #
+########################################################################
+
 system_security_fail2ban_enabled: false
 
 ########################################################################
 #                                                                      #
-# /system/security                                                     #
+# /fail2ban                                                            #
 #                                                                      #
 ########################################################################
+# /role-specific:fail2ban
 
 
 
-
+# role-specific:swap
 ########################################################################
 #                                                                      #
-# system/swap                                                          #
+# swap                                                                 #
 #                                                                      #
 ########################################################################
 
@@ -103,16 +126,17 @@ system_swap_enabled: false
 
 ########################################################################
 #                                                                      #
-# /system/swap                                                         #
+# /swap                                                                #
 #                                                                      #
 ########################################################################
+# /role-specific:swap
 
 
 
-
+# role-specific:systemd_service_manager
 ########################################################################
 #                                                                      #
-# com.devture.ansible.role.systemd_service_manager                     #
+# systemd_service_manager                                              #
 #                                                                      #
 ########################################################################
 
@@ -292,15 +316,16 @@ devture_systemd_service_manager_services_list_auto: "{{ mash_playbook_devture_sy
 
 ########################################################################
 #                                                                      #
-# /com.devture.ansible.role.systemd_service_manager                    #
+# /systemd_service_manager                                             #
 #                                                                      #
 ########################################################################
+# /role-specific:systemd_service_manager
 
 
-
+# role-specific:postgres
 ########################################################################
 #                                                                      #
-# com.devture.ansible.role.postgres                                    #
+# postgres                                                             #
 #                                                                      #
 ########################################################################
 
@@ -533,15 +558,16 @@ devture_postgres_managed_databases_auto: "{{ mash_playbook_devture_postgres_mana
 
 ########################################################################
 #                                                                      #
-# /com.devture.ansible.role.postgres                                   #
+# /postgres                                                            #
 #                                                                      #
 ########################################################################
+# /role-specific:postgres
 
 
-
+# role-specific:postgres_backup
 ########################################################################
 #                                                                      #
-# com.devture.ansible.role.postgres_backup                             #
+# postgres_backup                                                      #
 #                                                                      #
 ########################################################################
 
@@ -578,15 +604,16 @@ devture_postgres_backup_databases: "{{ devture_postgres_managed_databases | map(
 
 ########################################################################
 #                                                                      #
-# /com.devture.ansible.role.postgres_backup                            #
+# /postgres_backup                                                     #
 #                                                                      #
 ########################################################################
+# /role-specific:postgres_backup
 
 
-
+# role-specific:playbook_state_preserver
 ########################################################################
 #                                                                      #
-# com.devture.ansible.role.playbook_state_preserver                    #
+# playbook_state_preserver                                             #
 #                                                                      #
 ########################################################################
 
@@ -601,15 +628,17 @@ devture_playbook_state_preserver_commit_hash_preservation_dst: "{{ mash_playbook
 
 ########################################################################
 #                                                                      #
-# /com.devture.ansible.role.playbook_state_preserver                   #
+# /playbook_state_preserver                                            #
 #                                                                      #
 ########################################################################
+# /role-specific:playbook_state_preserver
 
 
 
+# role-specific:container_socket_proxy
 ########################################################################
 #                                                                      #
-# com.devture.ansible.role.container_socket_proxy                      #
+# container_socket_proxy                                               #
 #                                                                      #
 ########################################################################
 
@@ -627,15 +656,17 @@ devture_container_socket_proxy_api_containers_enabled: true
 
 ########################################################################
 #                                                                      #
-# /com.devture.ansible.role.container_socket_proxy                     #
+# /container_socket_proxy                                              #
 #                                                                      #
 ########################################################################
+# /role-specific:container_socket_proxy
 
 
 
+# role-specific:traefik
 ########################################################################
 #                                                                      #
-# com.devture.ansible.role.traefik                                     #
+# traefik                                                              #
 #                                                                      #
 ########################################################################
 
@@ -664,15 +695,17 @@ devture_traefik_systemd_required_services_list: |
 
 ########################################################################
 #                                                                      #
-# /com.devture.ansible.role.traefik                                    #
+# traefik                                                              #
 #                                                                      #
 ########################################################################
+# /role-specific:traefik
 
 
 
+# role-specific:docker_sdk_for_python
 ########################################################################
 #                                                                      #
-# com.devture.ansible.role.docker_sdk_for_python                       #
+# docker_sdk_for_python                                                #
 #                                                                      #
 ########################################################################
 
@@ -680,15 +713,17 @@ devture_docker_sdk_for_python_installation_enabled: false
 
 ########################################################################
 #                                                                      #
-# /com.devture.ansible.role.docker_sdk_for_python                      #
+# /docker_sdk_for_python                                               #
 #                                                                      #
 ########################################################################
+# /role-specific:docker_sdk_for_python
 
 
 
+# role-specific:timesync
 ########################################################################
 #                                                                      #
-# com.devture.ansible.role.timesync                                    #
+# timesync                                                             #
 #                                                                      #
 ########################################################################
 
@@ -698,12 +733,14 @@ devture_timesync_installation_enabled: false
 
 ########################################################################
 #                                                                      #
-# /com.devture.ansible.role.timesync                                   #
+# /timesync                                                            #
 #                                                                      #
 ########################################################################
+# /role-specific:timesync
 
 
 
+# role-specific:adguard_home
 ########################################################################
 #                                                                      #
 # adguard-home                                                         #
@@ -734,9 +771,11 @@ adguard_home_container_labels_traefik_tls_certResolver: "{{ devture_traefik_cert
 # /adguard-home                                                        #
 #                                                                      #
 ########################################################################
+# /role-specific:adguard_home
 
 
 
+# role-specific:appsmith
 ########################################################################
 #                                                                      #
 # appsmith                                                             #
@@ -767,9 +806,11 @@ appsmith_container_labels_traefik_tls_certResolver: "{{ devture_traefik_certReso
 # /appsmith                                                            #
 #                                                                      #
 ########################################################################
+# /role-specific:appsmith
 
 
 
+# role-specific:authentik
 ########################################################################
 #                                                                      #
 # authentik                                                            #
@@ -812,9 +853,11 @@ authentik_container_labels_traefik_tls_certResolver: "{{ devture_traefik_certRes
 # /authentik                                                           #
 #                                                                      #
 ########################################################################
+# /role-specific:authentik
 
 
 
+# role-specific:backup_borg
 ########################################################################
 #                                                                      #
 # backup-borg                                                          #
@@ -875,9 +918,11 @@ backup_borg_systemd_required_services_list: |
 # /backup-borg                                                         #
 #                                                                      #
 ########################################################################
+# /role-specific:backup_borg
 
 
 
+# role-specific:changedetection
 ########################################################################
 #                                                                      #
 # Changedetection.io                                                   #
@@ -908,9 +953,11 @@ changedetection_container_labels_traefik_tls_certResolver: "{{ devture_traefik_c
 # /Changedetection.io                                                  #
 #                                                                      #
 ########################################################################
+# /role-specific:changedetection
 
 
 
+# role-specific:clickhouse
 ########################################################################
 #                                                                      #
 # clickhouse                                                           #
@@ -936,9 +983,11 @@ clickhouse_gid: "{{ mash_playbook_gid }}"
 # /clickhouse                                                          #
 #                                                                      #
 ########################################################################
+# /role-specific:clickhouse
 
 
 
+# role-specific:collabora_online
 ########################################################################
 #                                                                      #
 # collabora-online                                                     #
@@ -969,9 +1018,11 @@ collabora_online_container_labels_traefik_tls_certResolver: "{{ devture_traefik_
 # /collabora-online                                                    #
 #                                                                      #
 ########################################################################
+# /role-specific:collabora_online
 
 
 
+# role-specific:docker_registry
 ########################################################################
 #                                                                      #
 # docker-registry                                                      #
@@ -1002,9 +1053,11 @@ docker_registry_container_labels_traefik_tls_certResolver: "{{ devture_traefik_c
 # /docker-registry                                                     #
 #                                                                      #
 ########################################################################
+# /role-specific:docker_registry
 
 
 
+# role-specific:docker_registry_browser
 ########################################################################
 #                                                                      #
 # docker-registry-browser                                              #
@@ -1035,9 +1088,10 @@ docker_registry_browser_container_labels_traefik_tls_certResolver: "{{ devture_t
 # /docker-registry-browser                                             #
 #                                                                      #
 ########################################################################
+# /role-specific:docker_registry_browser
 
 
-
+# role-specific:docker_registry_purger
 ########################################################################
 #                                                                      #
 # docker-registry-purger                                               #
@@ -1058,12 +1112,13 @@ docker_registry_purger_gid: "{{ mash_playbook_gid }}"
 # /docker-registry-purger                                              #
 #                                                                      #
 ########################################################################
+# /role-specific:docker_registry_purger
 
 
-
+# role-specific:echoip
 ########################################################################
 #                                                                      #
-# echoip                                                             #
+# echoip                                                               #
 #                                                                      #
 ########################################################################
 
@@ -1093,12 +1148,14 @@ echoip_container_labels_traefik_tls_certResolver: "{{ devture_traefik_certResolv
 
 ########################################################################
 #                                                                      #
-# /echoip                                                            #
+# /echoip                                                              #
 #                                                                      #
 ########################################################################
+# /role-specific:echoip
 
 
 
+# role-specific:firezone
 ########################################################################
 #                                                                      #
 # firezone                                                             #
@@ -1144,9 +1201,11 @@ firezone_container_labels_traefik_tls_certResolver: "{{ devture_traefik_certReso
 # /firezone                                                            #
 #                                                                      #
 ########################################################################
+# /role-specific:firezone
 
 
 
+# role-specific:focalboard
 ########################################################################
 #                                                                      #
 # focalboard                                                           #
@@ -1189,9 +1248,11 @@ focalboard_container_labels_traefik_tls_certResolver: "{{ devture_traefik_certRe
 # /focalboard                                                          #
 #                                                                      #
 ########################################################################
+# /role-specific:focalboard
 
 
 
+# role-specific:freshrss
 ########################################################################
 #                                                                      #
 # freshrss                                                             #
@@ -1238,9 +1299,10 @@ freshrss_database_hostname: "{{ devture_postgres_connection_hostname if devture_
 # /freshrss                                                            #
 #                                                                      #
 ########################################################################
+# /role-specific:freshrss
 
 
-
+# role-specific:funkwhale
 ########################################################################
 #                                                                      #
 # funkwhale                                                            #
@@ -1271,7 +1333,6 @@ funkwhale_frontend_systemd_required_services_list_auto: |
     ([devture_postgres_identifier ~ '.service'] if devture_postgres_enabled and funkwhale_database_hostname == devture_postgres_identifier else [])
   }}
 
-
 funkwhale_api_container_additional_networks_auto: |
   {{
     ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
@@ -1301,9 +1362,10 @@ funkwhale_frontend_container_labels_traefik_tls_certResolver: "{{ devture_traefi
 # /funkwhale                                                           #
 #                                                                      #
 ########################################################################
+# /role-specific:funkwhale
 
 
-
+# role-specific:gitea
 ########################################################################
 #                                                                      #
 # gitea                                                                #
@@ -1348,9 +1410,11 @@ gitea_config_database_password: "{{ '%s' | format(mash_playbook_generic_secret_k
 # /gitea                                                               #
 #                                                                      #
 ########################################################################
+# /role-specific:gitea
 
 
 
+# role-specific:gotosocial
 ########################################################################
 #                                                                      #
 # gotosocial                                                           #
@@ -1395,9 +1459,11 @@ gotosocial_container_labels_traefik_tls_certResolver: "{{ devture_traefik_certRe
 # /gotosocial                                                          #
 #                                                                      #
 ########################################################################
+# /role-specific:gotosocial
 
 
 
+# role-specific:grafana
 ########################################################################
 #                                                                      #
 # grafana                                                              #
@@ -1432,9 +1498,11 @@ grafana_container_labels_traefik_tls_certResolver: "{{ devture_traefik_certResol
 # /grafana                                                             #
 #                                                                      #
 ########################################################################
+# /role-specific:grafana
 
 
 
+# role-specific:healthchecks
 ########################################################################
 #                                                                      #
 # healthchecks                                                         #
@@ -1479,9 +1547,11 @@ healthchecks_environment_variable_secret_key: "{{ '%s' | format(mash_playbook_ge
 # /healthchecks                                                        #
 #                                                                      #
 ########################################################################
+# /role-specific:healthchecks
 
 
 
+# role-specific:hubsite
 ########################################################################
 #                                                                      #
 # hubsite                                                              #
@@ -1772,9 +1842,11 @@ hubsite_service_list_auto: |
 # /hubsite                                                             #
 #                                                                      #
 ########################################################################
+# /role-specific:hubsite
 
 
 
+# role-specific:ilmo
 ########################################################################
 #                                                                      #
 # ilmo                                                                 #
@@ -1821,9 +1893,11 @@ ilmo_container_labels_traefik_tls_certResolver: "{{ devture_traefik_certResolver
 # /ilmo                                                                #
 #                                                                      #
 ########################################################################
+# /role-specific:ilmo
 
 
 
+# role-specific:infisical
 ########################################################################
 #                                                                      #
 # infisical                                                            #
@@ -1885,10 +1959,12 @@ infisical_mongodb_auth_source: "{{ infisical_mongodb_db_name }}"
 # /infisical                                                           #
 #                                                                      #
 ########################################################################
+# /role-specific:infisical
 
 
 
 
+# role-specific:influxdb
 ########################################################################
 #                                                                      #
 # influxdb                                                             #
@@ -1925,9 +2001,11 @@ influxdb_container_labels_traefik_tls_certResolver: "{{ devture_traefik_certReso
 # /influxdb                                                            #
 #                                                                      #
 ########################################################################
+# /role-specific:influxdb
 
 
 
+# role-specific:jitsi
 ########################################################################
 #                                                                      #
 # jitsi                                                                #
@@ -1976,9 +2054,11 @@ jitsi_jvb_auth_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | p
 # /jitsi                                                               #
 #                                                                      #
 ########################################################################
+# /role-specific:jitsi
 
 
 
+# role-specific:keycloak
 ########################################################################
 #                                                                      #
 # keycloak                                                             #
@@ -2020,9 +2100,11 @@ keycloak_database_password: "{{ '%s' | format(mash_playbook_generic_secret_key) 
 # /keycloak                                                            #
 #                                                                      #
 ########################################################################
+# /role-specific:keycloak
 
 
 
+# role-specific:lago
 ########################################################################
 #                                                                      #
 # lago                                                                 #
@@ -2071,7 +2153,10 @@ lago_api_environment_variable_encryption_key_derivation_salt: "{{ '%s' | format(
 # /lago                                                                #
 #                                                                      #
 ########################################################################
+# /role-specific:lago
 
+
+# role-specific:linkding
 ########################################################################
 #                                                                      #
 # linkding                                                             #
@@ -2114,8 +2199,10 @@ linkding_database_password: "{{ '%s' | format(mash_playbook_generic_secret_key) 
 # /linkding                                                            #
 #                                                                      #
 ########################################################################
+# /role-specific:linkding
 
 
+# role-specific:miniflux
 ########################################################################
 #                                                                      #
 # miniflux                                                             #
@@ -2158,11 +2245,14 @@ miniflux_database_password: "{{ '%s' | format(mash_playbook_generic_secret_key) 
 # /miniflux                                                            #
 #                                                                      #
 ########################################################################
+# /role-specific:miniflux
 
 
+
+# role-specific:mobilizon
 ########################################################################
 #                                                                      #
-# mobilizon                                                           #
+# mobilizon                                                            #
 #                                                                      #
 ########################################################################
 
@@ -2205,12 +2295,14 @@ mobilizon_container_labels_traefik_tls_certResolver: "{{ devture_traefik_certRes
 
 ########################################################################
 #                                                                      #
-# /mobilizon                                                          #
+# /mobilizon                                                           #
 #                                                                      #
 ########################################################################
+# /role-specific:mobilizon
 
 
 
+# role-specific:mongodb
 ########################################################################
 #                                                                      #
 # mongodb                                                              #
@@ -2240,7 +2332,10 @@ mongodb_managed_databases_auto: |
 # /mongodb                                                             #
 #                                                                      #
 ########################################################################
+# /role-specific:mongodb
 
+
+# role-specific:mosquitto
 ########################################################################
 #                                                                      #
 # mosquitto                                                            #
@@ -2261,8 +2356,10 @@ mosquitto_gid: "{{ mash_playbook_gid }}"
 # /mosquitto                                                           #
 #                                                                      #
 ########################################################################
+# /role-specific:mosquitto
 
 
+# role-specific:mrs
 ########################################################################
 #                                                                      #
 # mrs                                                                  #
@@ -2293,9 +2390,11 @@ mrs_container_labels_traefik_tls_certResolver: "{{ devture_traefik_certResolver_
 # /mrs                                                                 #
 #                                                                      #
 ########################################################################
+# /role-specific:mrs
 
 
 
+# role-specific:n8n
 ########################################################################
 #                                                                      #
 # n8n                                                                  #
@@ -2340,9 +2439,11 @@ n8n_database_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | pas
 # /n8n                                                                 #
 #                                                                      #
 ########################################################################
+# /role-specific:n8n
 
 
 
+# role-specific:navidrome
 ########################################################################
 #                                                                      #
 # navidrome                                                            #
@@ -2373,9 +2474,11 @@ navidrome_container_labels_traefik_tls_certResolver: "{{ devture_traefik_certRes
 # /navidrome                                                           #
 #                                                                      #
 ########################################################################
+# /role-specific:navidrome
 
 
 
+# role-specific:nextcloud
 ########################################################################
 #                                                                      #
 # nextcloud                                                            #
@@ -2420,9 +2523,11 @@ nextcloud_database_password: "{{ '%s' | format(mash_playbook_generic_secret_key)
 # /nextcloud                                                           #
 #                                                                      #
 ########################################################################
+# /role-specific:nextcloud
 
 
 
+# role-specific:netbox
 ########################################################################
 #                                                                      #
 # netbox                                                               #
@@ -2466,9 +2571,11 @@ netbox_database_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | 
 # /netbox                                                              #
 #                                                                      #
 ########################################################################
+# /role-specific:netbox
 
 
 
+# role-specific:mariadb
 ########################################################################
 #                                                                      #
 # mariadb                                                              #
@@ -2501,8 +2608,10 @@ mariadb_managed_databases_auto: "{{ mash_playbook_mariadb_managed_databases_auto
 # /mariadb                                                             #
 #                                                                      #
 ########################################################################
+# /role-specific:mariadb
 
 
+# role-specific:outline
 ########################################################################
 #                                                                      #
 # outline                                                              #
@@ -2547,9 +2656,11 @@ outline_database_sslmode: "{{ 'disable' if devture_postgres_enabled and outline_
 # /outline                                                             #
 #                                                                      #
 ########################################################################
+# /role-specific:outline
 
 
 
+# role-specific:owncast
 ########################################################################
 #                                                                      #
 # owncast                                                              #
@@ -2580,9 +2691,11 @@ owncast_container_labels_traefik_tls_certResolver: "{{ devture_traefik_certResol
 # /owncast                                                             #
 #                                                                      #
 ########################################################################
+# /role-specific:owncast
 
 
 
+# role-specific:oxitraffic
 ########################################################################
 #                                                                      #
 # oxitraffic                                                           #
@@ -2626,9 +2739,11 @@ oxitraffic_container_labels_traefik_tls_certResolver: "{{ devture_traefik_certRe
 # /oxitraffic                                                          #
 #                                                                      #
 ########################################################################
+# /role-specific:oxitraffic
 
 
 
+# role-specific:peertube
 ########################################################################
 #                                                                      #
 # peertube                                                             #
@@ -2673,7 +2788,11 @@ peertube_systemd_required_services_list_auto: |
 # /peertube                                                            #
 #                                                                      #
 ########################################################################
+# /role-specific:peertube
 
+
+
+# role-specific:postgis
 ########################################################################
 #                                                                      #
 # postgis                                                              #
@@ -2710,13 +2829,15 @@ postgis_managed_databases_auto: |
 # /postgis                                                             #
 #                                                                      #
 ########################################################################
+# /role-specific:postgis
 
 
 
 
+# role-specific:prometheus_postgres_exporter
 ########################################################################
 #                                                                      #
-# prometheus_postgres_exporter                                             #
+# prometheus_postgres_exporter                                         #
 #                                                                      #
 ########################################################################
 
@@ -2766,9 +2887,11 @@ prometheus_postgres_exporter_systemd_required_services_list: |
 # /prometheus_node_exporter                                            #
 #                                                                      #
 ########################################################################
+# /role-specific:prometheus_postgres_exporter
 
 
 
+# role-specific:prometheus
 ########################################################################
 #                                                                      #
 # prometheus                                                           #
@@ -2801,9 +2924,11 @@ prometheus_container_additional_networks: |
 # /prometheus                                                          #
 #                                                                      #
 ########################################################################
+# /role-specific:prometheus
 
 
 
+# role-specific:prometheus_blackbox_exporter
 ########################################################################
 #                                                                      #
 # prometheus_blackbox_exporter                                         #
@@ -2839,9 +2964,11 @@ prometheus_blackbox_exporter_container_labels_traefik_tls_certResolver: "{{ devt
 # /prometheus_blackbox_exporter                                        #
 #                                                                      #
 ########################################################################
+# /role-specific:prometheus_blackbox_exporter
 
 
 
+# role-specific:prometheus_ssh_exporter
 ########################################################################
 #                                                                      #
 # prometheus_ssh_exporter                                              #
@@ -2877,9 +3004,11 @@ prometheus_ssh_exporter_container_labels_traefik_tls_certResolver: "{{ devture_t
 # /prometheus_ssh_exporter                                             #
 #                                                                      #
 ########################################################################
+# /role-specific:prometheus_ssh_exporter
 
 
 
+# role-specific:prometheus_node_exporter
 ########################################################################
 #                                                                      #
 # prometheus_node_exporter                                             #
@@ -2926,9 +3055,11 @@ prometheus_node_exporter_container_extra_arguments:
 # /prometheus_node_exporter                                            #
 #                                                                      #
 ########################################################################
+# /role-specific:prometheus_node_exporter
 
 
 
+# role-specific:radicale
 ########################################################################
 #                                                                      #
 # radicale                                                             #
@@ -2956,15 +3087,17 @@ radicale_container_labels_traefik_tls_certResolver: "{{ devture_traefik_certReso
 
 ########################################################################
 #                                                                      #
-# /radicale                                                             #
+# /radicale                                                            #
 #                                                                      #
 ########################################################################
+# /role-specific:radicale
 
 
 
+# role-specific:redmine
 ########################################################################
 #                                                                      #
-# redmine                                                             #
+# redmine                                                              #
 #                                                                      #
 ########################################################################
 
@@ -3010,9 +3143,11 @@ redmine_database_password: "{{ '%s' | format(mash_playbook_generic_secret_key) |
 # /redmine                                                             #
 #                                                                      #
 ########################################################################
+# /role-specific:redmine
 
 
 
+# role-specific:redis
 ########################################################################
 #                                                                      #
 # redis                                                                #
@@ -3033,9 +3168,11 @@ redis_gid: "{{ mash_playbook_gid }}"
 # /redis                                                               #
 #                                                                      #
 ########################################################################
+# /role-specific:redis
 
 
 
+# role-specific:roundcube
 ########################################################################
 #                                                                      #
 # roundcube                                                            #
@@ -3082,9 +3219,11 @@ roundcube_container_additional_networks: |
 # /roundcube                                                           #
 #                                                                      #
 ########################################################################
+# /role-specific:roundcube
 
 
 
+# role-specific:rumqttd
 ########################################################################
 #                                                                      #
 # rumqttd                                                              #
@@ -3105,9 +3244,11 @@ rumqttd_gid: "{{ mash_playbook_gid }}"
 # /rumqttd                                                             #
 #                                                                      #
 ########################################################################
+# /role-specific:rumqttd
 
 
 
+# role-specific:soft_serve
 ########################################################################
 #                                                                      #
 # soft-serve                                                           #
@@ -3128,9 +3269,11 @@ soft_serve_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_ba
 # /soft-serve                                                          #
 #                                                                      #
 ########################################################################
+# /role-specific:soft_serve
 
 
 
+# role-specific:syncthing
 ########################################################################
 #                                                                      #
 # syncthing                                                            #
@@ -3161,7 +3304,10 @@ syncthing_container_labels_traefik_tls_certResolver: "{{ devture_traefik_certRes
 # /syncthing                                                           #
 #                                                                      #
 ########################################################################
+# /role-specific:syncthing
 
+
+# role-specific:telegraf
 ########################################################################
 #                                                                      #
 # telegraf                                                             #
@@ -3190,9 +3336,11 @@ telegraf_systemd_required_services_list: |
 # /telegraf                                                            #
 #                                                                      #
 ########################################################################
+# /role-specific:telegraf
 
 
 
+# role-specific:vaultwarden
 ########################################################################
 #                                                                      #
 # vaultwarden                                                          #
@@ -3237,12 +3385,14 @@ vaultwarden_database_password: "{{ '%s' | format(mash_playbook_generic_secret_ke
 # /vaultwarden                                                         #
 #                                                                      #
 ########################################################################
+# /role-specific:vaultwarden
 
 
 
+# role-specific:uptime_kuma
 ########################################################################
 #                                                                      #
-# etke/uptime_kuma                                                     #
+# uptime_kuma                                                          #
 #                                                                      #
 ########################################################################
 
@@ -3267,12 +3417,14 @@ uptime_kuma_container_labels_traefik_tls_certResolver: "{{ devture_traefik_certR
 
 ########################################################################
 #                                                                      #
-# /etke/uptime_kuma                                                    #
+# /uptime_kuma                                                         #
 #                                                                      #
 ########################################################################
+# /role-specific:uptime_kuma
 
 
 
+# role-specific:wg_easy
 ########################################################################
 #                                                                      #
 # wg-easy                                                              #
@@ -3303,12 +3455,14 @@ wg_easy_container_labels_traefik_tls_certResolver: "{{ devture_traefik_certResol
 # /wg-easy                                                             #
 #                                                                      #
 ########################################################################
+# /role-specific:wg_easy
 
 
 
+# role-specific:forgejo
 ########################################################################
 #                                                                      #
-# forgejo                                                             #
+# forgejo                                                              #
 #                                                                      #
 ########################################################################
 
@@ -3347,12 +3501,14 @@ forgejo_config_database_password: "{{ '%s' | format(mash_playbook_generic_secret
 
 ########################################################################
 #                                                                      #
-# /forgejo                                                               #
+# /forgejo                                                             #
 #                                                                      #
 ########################################################################
+# /role-specific:forgejo
 
 
 
+# role-specific:woodpecker_ci_server
 ########################################################################
 #                                                                      #
 # woodpecker-ci-server                                                 #
@@ -3401,9 +3557,11 @@ devture_woodpecker_ci_server_database_datasource_db_name: woodpecker_ci_server
 # /woodpecker-ci-server                                                #
 #                                                                      #
 ########################################################################
+# /role-specific:woodpecker_ci_server
 
 
 
+# role-specific:woodpecker_ci_agent
 ########################################################################
 #                                                                      #
 # woodpecker-ci-agent                                                  #
@@ -3442,3 +3600,4 @@ devture_woodpecker_ci_agent_config_agent_secret: "{{ devture_woodpecker_ci_serve
 # /woodpecker-ci-agent                                                 #
 #                                                                      #
 ########################################################################
+# /role-specific:woodpecker_ci_agent
