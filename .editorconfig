@@ -27,6 +27,10 @@ indent_size = 4
 indent_style = space
 indent_size = 2
 
+[group_vars/mash_servers_all]
+indent_style = space
+indent_size = 2
+
 [justfile]
 indent_style = space
 indent_size = 4
