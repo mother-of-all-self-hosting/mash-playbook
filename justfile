@@ -78,17 +78,13 @@ _ensure_file_prepared src_path dst_path:
     src_hash=$(md5sum {{ src_path }} | cut -d ' ' -f 1)
 
     if [ ! -f "{{ dst_path }}" ] || [ ! -f "$hash_path" ]; then
-        echo "One of the ORS"
         cp {{ src_path }} {{ dst_path }}
         echo $src_hash > $hash_path
     else
         current_hash=$(cat $hash_path)
 
         if [ "$current_hash" != "$src_hash" ]; then
-            echo "Hash is different ($current_hash != $src_hash)"
             cp {{ src_path }} {{ dst_path }}
             echo $src_hash > $hash_path
-        else
-            echo "Hash matches!"
         fi
     fi
