@@ -2916,6 +2916,7 @@ mariadb_uid: "{{ mash_playbook_uid }}"
 mariadb_gid: "{{ mash_playbook_gid }}"
 
 mash_playbook_mariadb_managed_databases_auto_itemized:
+  # role-specific:authelia
   - |-
     {{
       ({
@@ -2924,6 +2925,7 @@ mash_playbook_mariadb_managed_databases_auto_itemized:
         'password': authelia_config_storage_mysql_password,
       } if authelia_enabled and authelia_config_storage_mysql_host == mariadb_identifier else omit)
     }}
+  # /role-specific:authelia
 
 mariadb_managed_databases_auto: "{{ mash_playbook_mariadb_managed_databases_auto_itemized | reject('equalto', omit) }}"
 
