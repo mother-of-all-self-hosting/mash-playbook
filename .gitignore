@@ -15,3 +15,6 @@
 
 /setup.yml
 /setup.yml.srchash
+
+/group_vars/mash_servers
+/group_vars/mash_servers.srchash

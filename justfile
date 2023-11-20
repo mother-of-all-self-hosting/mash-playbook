@@ -39,7 +39,7 @@ install-service service *extra_args:
 setup-all *extra_args: (run-tags "setup-all,start" extra_args)
 
 # Runs the playbook with the given list of arguments
-run +extra_args: requirements-yml setup-yml
+run +extra_args: requirements-yml setup-yml group-vars-mash-servers
     ansible-playbook -i inventory/hosts setup.yml {{ extra_args }}
 
 # Runs the playbook with the given list of comma-separated tags and optional arguments
@@ -67,6 +67,10 @@ requirements-yml:
 # Prepares the setup.yml file
 setup-yml:
     @just --justfile {{ justfile() }} _ensure_file_prepared {{ justfile_directory() }}/setup.all.yml {{ justfile_directory() }}/setup.yml
+
+# Prepares the group_vars/mash_servers file
+group-vars-mash-servers:
+    @just --justfile {{ justfile() }} _ensure_file_prepared {{ justfile_directory() }}/group_vars/mash_servers_all {{ justfile_directory() }}/group_vars/mash_servers
 
 _ensure_file_prepared src_path dst_path:
     #!/usr/bin/env sh
