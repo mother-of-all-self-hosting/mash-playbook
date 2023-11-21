@@ -195,9 +195,11 @@
 - src: git+https://github.com/devture/com.devture.ansible.role.playbook_help.git
   version: c1f40e82b4d6b072b6f0e885239322bdaaaf554f
   name: playbook_help
+  activation_prefix: ""
 - src: git+https://github.com/devture/com.devture.ansible.role.playbook_runtime_messages.git
   version: 9b4b088c62b528b73a9a7c93d3109b091dd42ec6
   name: playbook_runtime_messages
+  activation_prefix: ""
 - src: git+https://github.com/devture/com.devture.ansible.role.playbook_state_preserver.git
   version: ff2fd42e1c1a9e28e3312bbd725395f9c2fc7f16
   name: playbook_state_preserver
@@ -273,9 +275,11 @@
 - src: git+https://github.com/devture/com.devture.ansible.role.systemd_docker_base.git
   version: v1.0.0-0
   name: systemd_docker_base
+  activation_prefix: ""
 - src: git+https://github.com/devture/com.devture.ansible.role.systemd_service_manager.git
   version: v1.0.0-1
   name: systemd_service_manager
+  activation_prefix: ""
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-telegraf.git
   version: v1.27.1-2
   name: telegraf
