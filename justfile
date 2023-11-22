@@ -41,14 +41,14 @@ _reconfigure-for-all-hosts inventory_path='inventory':
     #!/usr/bin/env sh
     just --justfile {{ justfile() }} \
     _optimize-for-var-paths \
-    $(find {{ inventory_path }}/host_vars/ -maxdepth 2 -name '*.yml' -exec readlink -f {} \;)
+    $(find {{ inventory_path }}/host_vars/ -maxdepth 2 -name 'vars.yml' -exec readlink -f {} \;)
 
 # Optimizes the playbook based on the enabled components for a single host
 optimize-for-host hostname inventory_path='inventory':
     #!/usr/bin/env sh
     just --justfile {{ justfile() }} \
     _optimize-for-var-paths \
-    $(find {{ inventory_path }}/host_vars/{{ hostname }} -maxdepth 1 -name '*.yml' -exec readlink -f {} \;)
+    $(find {{ inventory_path }}/host_vars/{{ hostname }} -maxdepth 1 -name 'vars.yml' -exec readlink -f {} \;)
 
 # Optimizes the playbook based on the enabled components found in the given vars.yml files
 _optimize-for-var-paths +PATHS:
