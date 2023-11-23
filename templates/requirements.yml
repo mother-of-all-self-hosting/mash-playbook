@@ -125,7 +125,7 @@
   name: jitsi
   activation_prefix: jitsi_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-keycloak.git
-  version: v22.0.5-0
+  version: v23.0.0-0
   name: keycloak
   activation_prefix: keycloak_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-lago.git
