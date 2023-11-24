@@ -88,6 +88,10 @@
   version: v1.3.1-0
   name: funkwhale
   activation_prefix: funkwhale_
+- src: git+https://github.com/kinduff/ansible-docker-filebrowser.git
+  version: v1.1.1
+  name: filebrowser
+  activation_prefix: filebrowser_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-gitea.git
   version: v1.21.0-0
   name: gitea

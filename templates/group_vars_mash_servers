@@ -250,6 +250,11 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
     {{ ({'name': (firezone_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'firezone']} if firezone_enabled else omit) }}
   # /role-specific:firezone
 
+  # role-specific:filebrowser
+  - |-
+    {{ ({'name': (filebrowser_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'filebrowser']} if filebrowser_enabled else omit) }}
+  # /role-specific:filebrowser
+
   # role-specific:focalboard
   - |-
     {{ ({'name': (focalboard_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'focalboard']} if focalboard_enabled else omit) }}
@@ -1684,6 +1689,39 @@ funkwhale_frontend_container_labels_traefik_tls_certResolver: "{{ devture_traefi
 ########################################################################
 # /role-specific:funkwhale
 
+
+# role-specific:filebrowser
+########################################################################
+#                                                                      #
+# filebrowser                                                             #
+#                                                                      #
+########################################################################
+
+filebrowser_enabled: false
+
+filebrowser_identifier: "{{ mash_playbook_service_identifier_prefix }}filebrowser"
+
+filebrowser_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}filebrowser"
+
+filebrowser_uid: "{{ mash_playbook_uid }}"
+filebrowser_gid: "{{ mash_playbook_gid }}"
+
+filebrowser_container_additional_networks: |
+  {{
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+  }}
+
+filebrowser_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+filebrowser_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+filebrowser_container_labels_traefik_entrypoints: "{{ devture_traefik_entrypoint_primary }}"
+filebrowser_container_labels_traefik_tls_certResolver: "{{ devture_traefik_certResolver_primary }}"
+
+########################################################################
+#                                                                      #
+# /filebrowser                                                            #
+#                                                                      #
+########################################################################
+# /role-specific:filebrowser
 
 # role-specific:gitea
 ########################################################################

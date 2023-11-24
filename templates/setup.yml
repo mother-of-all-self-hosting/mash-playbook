@@ -136,6 +136,10 @@
     - role: galaxy/firezone
     # /role-specific:firezone
 
+    # role-specific:filebrowser
+    - role: galaxy/filebrowser
+    # /role-specific:filebrowser
+
     # role-specific:focalboard
     - role: galaxy/focalboard
     # /role-specific:focalboard
