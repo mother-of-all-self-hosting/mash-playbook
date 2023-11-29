@@ -173,7 +173,7 @@
   name: netbox
   activation_prefix: netbox_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-nextcloud.git
-  version: v27.1.3-0
+  version: v27.1.4-0
   name: nextcloud
   activation_prefix: nextcloud_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-outline.git
