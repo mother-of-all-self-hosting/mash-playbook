@@ -3183,7 +3183,7 @@ netbox_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_d
 
 netbox_systemd_required_services_list_auto: |
   {{
-    ([devture_postgres_identifier ~ '.service'] if devture_postgres_enabled and nextcloud_database_hostname == devture_postgres_identifier else [])
+    ([devture_postgres_identifier ~ '.service'] if devture_postgres_enabled and netbox_database_hostname == devture_postgres_identifier else [])
   }}
 
 netbox_container_additional_networks_auto: |
