@@ -28,9 +28,6 @@ nextcloud_enabled: true
 nextcloud_hostname: mash.example.com
 nextcloud_path_prefix: /nextcloud
 
-# To enable samba external drives using smbclient, uncomment the following
-#nextcloud_container_image_customizations_samba_enabled: true
-
 # Redis configuration, as described below
 
 ########################################################################
@@ -221,6 +218,14 @@ In short you should:
 
 If you encounter problems during login check (error message containes `SHA1 mismatch`) that
 * Nextcloud users and authentik users do not have the same name -> if they do check `Use unique user ID` in the OIDC App settings
+
+### Samba
+
+To enable [Samba](https://www.samba.org/) external Windows fileshares using [smbclient](https://www.samba.org/samba/docs/current/man-html/smbclient.1.html), add the following additional configuration to your `vars.yml` file:
+
+```yml
+nextcloud_container_image_customizations_samba_enabled: true
+```
 
 ## Installation
 
