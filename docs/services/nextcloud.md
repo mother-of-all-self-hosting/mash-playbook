@@ -29,7 +29,7 @@ nextcloud_hostname: mash.example.com
 nextcloud_path_prefix: /nextcloud
 
 # To enable samba external drives using smbclient, uncomment the following
-#nextcloud_container_image_customizations_smb_enabled: true
+#nextcloud_container_image_customizations_samba_enabled: true
 
 # Redis configuration, as described below
 
