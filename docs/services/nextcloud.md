@@ -219,6 +219,14 @@ In short you should:
 If you encounter problems during login check (error message containes `SHA1 mismatch`) that
 * Nextcloud users and authentik users do not have the same name -> if they do check `Use unique user ID` in the OIDC App settings
 
+### Samba
+
+To enable [Samba](https://www.samba.org/) external Windows fileshares using [smbclient](https://www.samba.org/samba/docs/current/man-html/smbclient.1.html), add the following additional configuration to your `vars.yml` file:
+
+```yml
+nextcloud_container_image_customizations_samba_enabled: true
+```
+
 ## Installation
 
 If you've decided to install a dedicated Redis instance for Nextcloud, make sure to first do [installation](../installing.md) for the supplementary inventory host (e.g. `nextcloud.example.com-deps`), before running installation for the main one (e.g. `nextcloud.example.com`).
