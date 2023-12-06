@@ -241,7 +241,7 @@
   name: radicale
   activation_prefix: radicale_
 - src: git+https://gitlab.com/etke.cc/roles/redis.git
-  version: v7.2.3-1
+  version: v7.2.3-2
   name: redis
   activation_prefix: redis_
 - src: git+https://gitlab.com/etke.cc/roles/redmine.git
