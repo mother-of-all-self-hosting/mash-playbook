@@ -852,7 +852,7 @@ mash_playbook_devture_postgres_managed_databases_auto_itemized:
         'name': semaphore_database_name,
         'username': semaphore_database_username,
         'password': semaphore_database_password,
-      } if semaphore_enabled and semaphore_database_hostname == devture_postgres_identifier else omit)
+      } if semaphore_enabled and semaphore_database_host == devture_postgres_identifier else omit)
     }}
   # /role-specific:semaphore
 
