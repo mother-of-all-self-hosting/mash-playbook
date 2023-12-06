@@ -288,6 +288,10 @@
     - role: galaxy/rumqttd
     # /role-specific:rumqttd
 
+    # role-specific:semaphore
+    - role: galaxy/semaphore
+    # /role-specific:semaphore
+
     # role-specific:soft_serve
     - role: galaxy/soft_serve
     # /role-specific:soft_serve
