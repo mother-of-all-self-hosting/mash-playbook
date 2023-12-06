@@ -484,7 +484,7 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
 
   # role-specific:semaphore
   - |-
-    {{ ({'name': (semaphore_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'soft-serve']} if semaphore_enabled else omit) }}
+    {{ ({'name': (semaphore_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'semaphore']} if semaphore_enabled else omit) }}
   # /role-specific:semaphore
 
   # role-specific:soft_serve
