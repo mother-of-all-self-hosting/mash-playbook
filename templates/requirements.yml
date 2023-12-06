@@ -37,7 +37,7 @@
   name: collabora_online
   activation_prefix: collabora_online_
 - src: git+https://github.com/devture/com.devture.ansible.role.container_socket_proxy.git
-  version: v0.1.1-2
+  version: v0.1.1-3
   name: container_socket_proxy
   activation_prefix: devture_traefik_
 - src: git+https://github.com/geerlingguy/ansible-role-docker
