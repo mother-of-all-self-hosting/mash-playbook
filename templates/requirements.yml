@@ -29,7 +29,7 @@
   name: changedetection
   activation_prefix: changedetection_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-clickhouse.git
-  version: v23.6.1.1524-1
+  version: v23.10.5.20-0
   name: clickhouse
   activation_prefix: clickhouse_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-collabora-online.git
