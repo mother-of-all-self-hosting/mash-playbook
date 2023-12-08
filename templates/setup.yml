@@ -212,6 +212,10 @@
     - role: galaxy/linkding
     # /role-specific:linkding
 
+    # role-specific:loki
+    - role: galaxy/loki
+    # /role-specific:loki
+
     # role-specific:mobilizon
     - role: galaxy/mobilizon
     # /role-specific:mobilizon
