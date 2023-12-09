@@ -67,6 +67,43 @@ With this configuration, the default `/etc/ssh/sshd_config` file on your server 
 
 There are various configuration options - check the defaults and adjust them to your needs.
 
+### cleanup
+
+Playbook may perform some housekeeping automatically, cleaning up unused docker resources, logs, even kernels (debian-only) and packages (debian-only). Here is how to enable different housekeeping tasks that will run on `setup-all`, `setup-cleanup`, `install-cleanup`:
+
+
+```yaml
+########################################################################
+#                                                                      #
+# system                                                               #
+#                                                                      #
+########################################################################
+
+# runs `docker system prune -a -f --volumes` to remove unused images and containers
+system_cleanup_docker: true
+
+# configures a systemd unit (and timer) that runs `journalctl --vacuum-time=7d` daily, you can control schedules using system_cleanup_logs_* vars
+system_cleanup_logs: true
+
+# list of arbitrary absolute paths to remove on each invocation
+system_cleanup_paths: []
+
+# The following options are Debian only, will have no effect on any other distro family
+
+# runs safe-upgrade, apt autoclean, aptautoremove, etc.
+system_cleanup_apt: true
+
+# WARNING: very dangerous! Purges old linux kernels, and their modules
+system_cleanup_kernels: false
+
+########################################################################
+#                                                                      #
+# /system                                                              #
+#                                                                      #
+########################################################################
+```
+
+
 ### fail2ban
 
 To enable [fail2ban](https://fail2ban.org/wiki/index.php/Main_Page) installation, management and integration with SSHd, add the following configuration to your `vars.yml` file and re-run the [installation](../installing.md) process:
