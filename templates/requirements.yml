@@ -169,7 +169,7 @@
   name: navidrome
   activation_prefix: navidrome_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-netbox.git
-  version: v3.6.0-2.7.0-4
+  version: v3.6.6-2.7.0-0
   name: netbox
   activation_prefix: netbox_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-nextcloud.git
