@@ -28,6 +28,9 @@
   version: v0.45.5-0
   name: changedetection
   activation_prefix: changedetection_
+- src: git+https://gitlab.com/etke.cc/roles/cleanup.git
+  version: main
+  activation_prefix: system_cleanup_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-clickhouse.git
   version: v23.10.5.20-0
   name: clickhouse
