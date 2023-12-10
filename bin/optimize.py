@@ -146,6 +146,8 @@ all_role_definitions = load_yaml_file(args.src_requirements_yml_path)
 
 enabled_role_definitions = []
 for role_definition in all_role_definitions:
+    if 'name' not in role_definition:
+        raise Exception('Role definition does not have a name and should be adjusted to have one: {0}'.format(role_definition))
     if is_role_definition_in_use(role_definition, used_variable_names):
         enabled_role_definitions.append(role_definition)
 
