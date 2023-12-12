@@ -10,7 +10,6 @@ This service requires the following other services:
 - [Postgres](postgres.md)
 - [Redis](redis.md)
 - a [Traefik](traefik.md) reverse-proxy server
-- a public S3 bucket on AWS S3 (or [compatible S3 altenative](https://docs.getoutline.com/s/hosting/doc/file-storage-N4M0T6Ypu7#h-s3-compatible-services)) for storing assets, configured as described [here](https://docs.getoutline.com/s/hosting/doc/file-storage-N4M0T6Ypu7)
 
 
 ## Configuration
@@ -41,12 +40,8 @@ outline_container_additional_networks_custom: |
     [redis_container_network]
   }}
 
-outline_environment_variable_aws_access_key_id: ''
-outline_environment_variable_aws_secret_access_key: ''
-outline_environment_variable_aws_region: eu-central-1 # example
-outline_environment_variable_aws_s3_upload_bucket_url: https://OUTLINE_ASSETS_BUCKET_NAME.s3.eu-central-1.amazonaws.com
-outline_environment_variable_aws_s3_upload_bucket_name: OUTLINE_ASSETS_BUCKET_NAME
-outline_environment_variable_aws_s3_force_path_style: false
+# By default, files are stored locally.
+# To use another file storage provider, see the "File Storage" section below.
 
 # At least one authentication method MUST be enabled for Outline to work.
 # See the "Authentication" section below.
@@ -64,6 +59,24 @@ In the example configuration above, we configure the service to be hosted at `ht
 
 While the Outline Ansible role provides an `outline_path_prefix` variable, Outline does not support being hosted at a subpath right now.
 
+### File Storage
+
+Outline supports multiple [file storage](https://docs.getoutline.com/s/hosting/doc/file-storage-N4M0T6Ypu7) mechanisms.
+
+The default configuration stores files locally in a `data` directory, but you can also stores files on AWS S3 (or [compatible S3 altenative](https://docs.getoutline.com/s/hosting/doc/file-storage-N4M0T6Ypu7#h-s3-compatible-services)).
+
+To enable S3 storage, add the following to your `vars.yml` configuration:
+
+```yml
+outline_environment_variable_file_storage: s3
+
+outline_environment_variable_aws_access_key_id: ''
+outline_environment_variable_aws_secret_access_key: ''
+outline_environment_variable_aws_region: eu-central-1 # example
+outline_environment_variable_aws_s3_upload_bucket_url: https://OUTLINE_ASSETS_BUCKET_NAME.s3.eu-central-1.amazonaws.com
+outline_environment_variable_aws_s3_upload_bucket_name: OUTLINE_ASSETS_BUCKET_NAME
+outline_environment_variable_aws_s3_force_path_style: false
+```
 
 ### Authentication
 
