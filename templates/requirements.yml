@@ -109,7 +109,7 @@
   name: healthchecks
   activation_prefix: healthchecks_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-hubsite.git
-  version: v1.25.3-0
+  version: v1.25.3-2
   name: hubsite
   activation_prefix: hubsite_
 - src: git+https://github.com/moan0s/ansible-role-ilmo.git
