@@ -2847,6 +2847,7 @@ linkding_container_labels_traefik_tls_certResolver: "{{ devture_traefik_certReso
 
 linkding_database_hostname: "{{ devture_postgres_connection_hostname if devture_postgres_enabled else '' }}"
 linkding_database_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'linkding.db', rounds=655555) | to_uuid }}"
+linkding_database_engine: "{{ 'postgres' if devture_postgres_enabled and linkding_database_hostname == devture_postgres_connection_hostname else 'sqlite' }}"
 
 ########################################################################
 #                                                                      #
