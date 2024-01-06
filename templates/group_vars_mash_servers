@@ -1769,14 +1769,12 @@ gotosocial_database_port: "{{ '5432' if devture_postgres_enabled else '' }}"
 gotosocial_database_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'db.gotosocial', rounds=655555) | to_uuid }}"
 gotosocial_database_username: "{{ gotosocial_identifier }}"
 
-gotosocial_systemd_required_services_list: |
+gotosocial_systemd_required_services_list_auto: |
   {{
-    (['docker.service'])
-    +
     ([devture_postgres_identifier ~ '.service'] if devture_postgres_enabled and gotosocial_database_host == devture_postgres_identifier else [])
   }}
 
-gotosocial_container_additional_networks: |
+gotosocial_container_additional_networks_auto: |
   {{
     ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
     +
