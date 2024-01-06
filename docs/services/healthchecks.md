@@ -49,24 +49,22 @@ You can create as many accounts as you wish.
 
 ### Email integration
 
-To allow Healthchecks to send emails, add the following **additional** configuration:
+If you've enabled the [exim-relay](exim-relay.md) mailer service, Healtchecks will automatically be configured to send through it.
 
-```yaml
-healthchecks_environment_variables_additional_variables: |
-  DEFAULT_FROM_EMAIL=healthchecks@example.com
-  EMAIL_HOST=smtp.example.com
-  EMAIL_HOST_PASSWORD=
-  EMAIL_HOST_USER=
-  EMAIL_PORT=587
-  EMAIL_USE_TLS=True
-  EMAIL_USE_VERIFICATION=True
-```
+If you need to configure Healthchecks to send email directly, the [ansible.role.healthchecks](https://github.com/mother-of-all-self-hosting/ansible-role-healthchecks) Ansible role provides various variables for tweaking the email-sending configuration in its `default/main.yml` file (`healthchecks_environment_variable_default_from_email` and various `healthchecks_environment_variable_email_*` variables).
+
 
 ### Integrating with other services
 
 Refer to the [upstream `.env.example` file](https://github.com/healthchecks/healthchecks/blob/master/docker/.env.example) for discovering additional environment variables.
 
-You can pass these to the Healthchecks container using the `healthchecks_environment_variables_additional_variables` variable. See [Email integration](#email-integration) for an example.
+You can pass these to the Healthchecks container using the `healthchecks_environment_variables_additional_variables` variable. Example:
+
+```yml
+healthchecks_environment_variables_additional_variables: |
+  DISCORD_CLIENT_ID=123
+  DISCORD_CLIENT_SECRET=456
+```
 
 
 ## Usage
