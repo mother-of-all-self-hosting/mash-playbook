@@ -136,6 +136,10 @@
     - role: galaxy/echoip
     # /role-specific:echoip
 
+    # role-specific:exim_relay
+    - role: galaxy/exim_relay
+    # /role-specific:exim_relay
+
     # role-specific:firezone
     - role: galaxy/firezone
     # /role-specific:firezone
