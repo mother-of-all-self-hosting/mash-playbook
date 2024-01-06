@@ -9,7 +9,8 @@ This service requires the following other services:
 
 - a [Postgres](postgres.md) database
 - a [Traefik](traefik.md) reverse-proxy server
-- a [Redis](redis.md) data-store (optional), installation details [below](#redis)
+- (optional) a [Redis](redis.md) data-store, installation details [below](#redis)
+- (optional) the [exim-relay](exim-relay.md) mailer
 
 
 ## Configuration
