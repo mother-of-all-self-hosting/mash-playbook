@@ -112,6 +112,36 @@ devture_postgres_connection_password: ''
 
 ########################################################################
 #                                                                      #
+# exim_relay                                                           #
+#                                                                      #
+########################################################################
+
+# Various services need to send out email.
+#
+# Enabling this Exim relay SMTP mailer service automatically wires
+# all other services to send email through it.
+#
+# exim-relay then gives you a centralized place for configuring email-sending.
+
+exim_relay_enabled: true
+
+exim_relay_hostname: mash.example.com
+
+exim_relay_sender_address: "someone@{{ exim_relay_hostname }}"
+
+# By default, exim-relay attempts to deliver emails directly.
+# To make it relay via an external SMTP server, see docs/services/exim-relay.md
+
+########################################################################
+#                                                                      #
+# /exim_relay                                                          #
+#                                                                      #
+########################################################################
+
+
+
+########################################################################
+#                                                                      #
 # miniflux                                                             #
 #                                                                      #
 ########################################################################
