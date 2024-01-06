@@ -4066,10 +4066,8 @@ vaultwarden_gid: "{{ mash_playbook_gid }}"
 
 vaultwarden_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}vaultwarden"
 
-vaultwarden_systemd_required_systemd_services_list: |
+vaultwarden_systemd_required_systemd_services_list_auto: |
   {{
-    (['docker.service'])
-    +
     ([devture_postgres_identifier ~ '.service'] if devture_postgres_enabled and vaultwarden_database_hostname == devture_postgres_identifier else [])
   }}
 
