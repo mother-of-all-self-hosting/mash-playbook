@@ -53,7 +53,6 @@ If you've enabled the [exim-relay](exim-relay.md) mailer service, Healtchecks wi
 
 If you need to configure Healthchecks to send email directly, the [ansible.role.healthchecks](https://github.com/mother-of-all-self-hosting/ansible-role-healthchecks) Ansible role provides various variables for tweaking the email-sending configuration in its `default/main.yml` file (`healthchecks_environment_variable_default_from_email` and various `healthchecks_environment_variable_email_*` variables).
 
-
 ### Integrating with other services
 
 Refer to the [upstream `.env.example` file](https://github.com/healthchecks/healthchecks/blob/master/docker/.env.example) for discovering additional environment variables.
