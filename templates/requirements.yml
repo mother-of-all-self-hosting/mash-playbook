@@ -221,7 +221,7 @@
   name: postgres
   activation_prefix: devture_postgres_
 - src: git+https://github.com/devture/com.devture.ansible.role.postgres_backup.git
-  version: b29a9c551dd09079f5ef26d494973a499088b9e8
+  version: 9185490c32eadc4f06d5ba9c6eeea02704573065
   name: postgres_backup
   activation_prefix: devture_postgres_backup_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-prometheus.git
