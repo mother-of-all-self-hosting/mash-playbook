@@ -347,6 +347,11 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
     {{ ({'name': (lago_identifier + '-pdf.service'), 'priority': 1900, 'groups': ['mash', 'lago', 'lago-pdf']} if lago_enabled else omit) }}
   # /role-specific:lago
 
+  # role-specific:loki
+  - |-
+    {{ ({'name': (loki_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'loki']} if loki_enabled else omit) }}
+  # /role-specific:loki
+
   # role-specific:linkding
   - |-
     {{ ({'name': (linkding_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'linkding']} if linkding_enabled else omit) }}
@@ -2858,6 +2863,43 @@ lago_api_environment_variable_encryption_key_derivation_salt: "{{ '%s' | format(
 #                                                                      #
 ########################################################################
 # /role-specific:lago
+
+
+
+# role-specific:loki
+########################################################################
+#                                                                      #
+# loki                                                                 #
+#                                                                      #
+########################################################################
+
+loki_enabled: false
+
+loki_identifier: "{{ mash_playbook_service_identifier_prefix }}loki"
+
+loki_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}loki"
+
+loki_uid: "{{ mash_playbook_uid }}"
+loki_gid: "{{ mash_playbook_gid }}"
+
+# Only enable Traefik labels if a hostname is set (indicating that this will be exposed publicly)
+loki_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled and loki_hostname | length > 0 }}"
+loki_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+loki_container_labels_traefik_entrypoints: "{{ devture_traefik_entrypoint_primary }}"
+loki_container_labels_traefik_tls_certResolver: "{{ devture_traefik_certResolver_primary }}"
+
+loki_container_additional_networks: |
+  {{
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+  }}
+
+########################################################################
+#                                                                      #
+# /loki                                                                #
+#                                                                      #
+########################################################################
+# /role-specific:loki
+
 
 
 # role-specific:linkding
