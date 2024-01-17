@@ -67,7 +67,7 @@ redis_enabled: true
 
 ########################################################################
 #                                                                      #
-# funkwhale                                                               #
+# funkwhale                                                            #
 #                                                                      #
 ########################################################################
 
@@ -76,17 +76,17 @@ redis_enabled: true
 # Point funkwhale to the shared Redis instance
 funkwhale_config_redis_hostname: "{{ redis_identifier }}"
 
-# Make sure the funkwhale service (mash-funkwhale.service) starts after the shared Redis service (mash-redis.service)
-funkwhale_systemd_required_services_list_custom:
+# Make sure the funkwhale API service (mash-funkwhale-api.service) starts after the shared Redis service
+funkwhale_api_systemd_required_services_list_custom:
   - "{{ redis_identifier }}.service"
 
-# Make sure the funkwhale container is connected to the container network of the shared Redis service (mash-redis)
-funkwhale_container_additional_networks_custom:
-  - "{{ redis_identifier }}"
+# Make sure the funkwhale API service (mash-funkwhale-api.service) is connected to the container network of the shared Redis service
+funkwhale_api_container_additional_networks_custom:
+  - "{{ redis_container_network }}"
 
 ########################################################################
 #                                                                      #
-# /funkwhale                                                              #
+# /funkwhale                                                           #
 #                                                                      #
 ########################################################################
 ```
@@ -152,28 +152,26 @@ Then, adjust your main inventory host's variables file (`inventory/host_vars/fun
 ```yaml
 ########################################################################
 #                                                                      #
-# funkwhale                                                               #
+# funkwhale                                                            #
 #                                                                      #
 ########################################################################
 
 # Base configuration as shown above
 
-
 # Point funkwhale to its dedicated Redis instance
-funkwhale_environment_variable_redis_host: mash-funkwhale-redis
-funkwhale_environment_variable_redis_cache_host: mash-funkwhale-redis
+funkwhale_config_redis_hostname: mash-funkwhale-redis
 
-# Make sure the funkwhale service (mash-funkwhale.service) starts after its dedicated Redis service (mash-funkwhale-redis.service)
-funkwhale_systemd_required_services_list_custom:
+# Make sure the funkwhale API service (mash-funkwhale-api.service) starts after its dedicated Redis service
+funkwhale_api_systemd_required_services_list_custom:
   - "mash-funkwhale-redis.service"
 
-# Make sure the funkwhale container is connected to the container network of its dedicated Redis service (mash-funkwhale-redis)
-funkwhale_container_additional_networks_custom:
+# Make sure the funkwhale API service (mash-funkwhale-api.service) is connected to the container network of its dedicated Redis service
+funkwhale_api_container_additional_networks_custom:
   - "mash-funkwhale-redis"
 
 ########################################################################
 #                                                                      #
-# /funkwhale                                                              #
+# /funkwhale                                                           #
 #                                                                      #
 ########################################################################
 ```

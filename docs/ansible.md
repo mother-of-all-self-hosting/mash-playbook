@@ -54,7 +54,7 @@ Docker is normally installed by the playbook, so this may be a bit of a chicken 
 Once you have a working Docker installation on the server, **clone the playbook** somewhere on the server and configure it as per usual (`inventory/hosts`, `inventory/host_vars/..`, etc.), as described in [configuring the playbook](configuring-playbook.md).
 
 You would then need to add `ansible_connection=community.docker.nsenter` to the host line in `inventory/hosts`. This tells Ansible to connect to the "remote" machine by switching Linux namespaces with [nsenter](https://man7.org/linux/man-pages/man1/nsenter.1.html), instead of using SSH.
-Alternatively, you can leave your `inventory/hosts` as is and specify the connection type in **each** `ansible-playbook` call you do later, like this: `ansible-playbook --connection=community.docker.nsenter ...`
+Alternatively, you can leave your `inventory/hosts` as is and specify the connection type in **each** `ansible-playbook` call you do later, like this: `just install-all --connection=community.docker.nsenter` (or `ansible-playbook --connection=community.docker.nsenter ...`).
 
 Run this from the playbook's directory:
 
@@ -65,7 +65,7 @@ docker run -it --rm \
 -w /work \
 -v `pwd`:/work \
 --entrypoint=/bin/sh \
-docker.io/devture/ansible:2.13.6-r0-3
+docker.io/devture/ansible:2.16.1-r0-0
 ```
 
 Once you execute the above command, you'll be dropped into a `/work` directory inside a Docker container.
@@ -73,7 +73,7 @@ The `/work` directory contains the playbook's code.
 
 First, consider running `git config --global --add safe.directory /work` to [resolve directory ownership issues](#resolve-directory-ownership-issues).
 
-Finally, you can execute `ansible-playbook ...` (or `ansible-playbook --connection=community.docker.nsenter ...`) commands as per normal now.
+Finally, you can execute `just` or `ansible-playbook ...` (e.g. `ansible-playbook --connection=community.docker.nsenter ...`) commands as per normal now.
 
 
 ### Running Ansible in a container on another computer (not the server)
@@ -86,7 +86,7 @@ docker run -it --rm \
 -v `pwd`:/work \
 -v $HOME/.ssh/id_rsa:/root/.ssh/id_rsa:ro \
 --entrypoint=/bin/sh \
-docker.io/devture/ansible:2.13.6-r0-3
+docker.io/devture/ansible:2.16.1-r0-0
 ```
 
 The above command tries to mount an SSH key (`$HOME/.ssh/id_rsa`) into the container (at `/root/.ssh/id_rsa`).
@@ -97,7 +97,7 @@ The `/work` directory contains the playbook's code.
 
 First, consider running `git config --global --add safe.directory /work` to [resolve directory ownership issues](#resolve-directory-ownership-issues).
 
-Finally, you execute `ansible-playbook ...` commands as per normal now.
+Finally, you execute `just` or `ansible-playbook ...` commands as per normal now.
 
 
 #### If you don't use SSH keys for authentication

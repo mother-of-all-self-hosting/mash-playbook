@@ -8,15 +8,16 @@
     <outline text="ansible" title="ansible" type="rss" htmlUrl="https://pypi.org/project/ansible/#history" xmlUrl="https://pypi.org/rss/project/ansible/releases.xml" />
     <outline text="ansible-core" title="ansible-core" type="rss" htmlUrl="https://pypi.org/project/ansible-core/#history" xmlUrl="https://pypi.org/rss/project/ansible-core/releases.xml" />
     <outline text="appsmith" title="appsmith" type="rss" htmlUrl="https://github.com/appsmithorg/appsmith" xmlUrl="https://github.com/appsmithorg/appsmith/releases.atom" />
+    <outline text="authelia" title="authelia" type="rss" htmlUrl="https://github.com/authelia/authelia" xmlUrl="https://github.com/authelia/authelia/releases.atom" />
+    <outline text="authentik" title="authentik" type="rss" htmlUrl="https://github.com/goauthentik/authentik" xmlUrl="https://github.com/goauthentik/authentik/releases.atom" />
     <outline text="backup_borg" title="backup_borg" type="rss" htmlUrl="https://gitlab.com/etke.cc/borgmatic" xmlUrl="https://gitlab.com/etke.cc/borgmatic/-/tags?format=atom" />
     <outline text="changedetection" title="changedetection" type="rss" htmlUrl="https://github.com/dgtlmoon/changedetection.io" xmlUrl="https://github.com/dgtlmoon/changedetection.io/releases.atom" />
-    <outline text="com.devture.ansible.role.container_socket_proxy" title="com.devture.ansible.role.container_socket_proxy" type="rss" htmlUrl="https://github.com/Tecnativa/docker-socket-proxy" xmlUrl="https://github.com/Tecnativa/docker-socket-proxy/releases.atom" />
-    <outline text="com.devture.ansible.role.postgres" title="com.devture.ansible.role.postgres" type="rss" htmlUrl="https://github.com/postgres/postgres" xmlUrl="https://github.com/postgres/postgres/releases.atom" />
-    <outline text="com.devture.ansible.role.postgres_backup" title="com.devture.ansible.role.postgres_backup" type="rss" htmlUrl="https://github.com/prodrigestivill/docker-postgres-backup-local" xmlUrl="https://github.com/prodrigestivill/docker-postgres-backup-local/releases.atom" />
-    <outline text="com.devture.ansible.role.traefik" title="com.devture.ansible.role.traefik" type="rss" htmlUrl="https://github.com/traefik/traefik" xmlUrl="https://github.com/traefik/traefik/releases.atom" />
-    <outline text="com.devture.ansible.role.woodpecker_ci_agent" title="com.devture.ansible.role.woodpecker_ci_agent" type="rss" htmlUrl="https://github.com/woodpecker-ci/woodpecker" xmlUrl="https://github.com/woodpecker-ci/woodpecker/releases.atom" />
-    <outline text="com.devture.ansible.role.woodpecker_ci_server" title="com.devture.ansible.role.woodpecker_ci_server" type="rss" htmlUrl="https://github.com/woodpecker-ci/woodpecker" xmlUrl="https://github.com/woodpecker-ci/woodpecker/releases.atom" />
+    <outline text="clickhouse" title="clickhouse" type="rss" htmlUrl="https://github.com/ClickHouse/ClickHouse" xmlUrl="https://github.com/ClickHouse/ClickHouse/releases.atom" />
+    <outline text="container_socket_proxy" title="container_socket_proxy" type="rss" htmlUrl="https://github.com/Tecnativa/docker-socket-proxy" xmlUrl="https://github.com/Tecnativa/docker-socket-proxy/releases.atom" />
+    <outline text="echoip" title="echoip" type="rss" htmlUrl="https://github.com/mpolden/echoip" xmlUrl="https://github.com/mpolden/echoip/releases.atom" />
+    <outline text="exim_relay" title="exim_relay" type="rss" htmlUrl="https://github.com/devture/exim-relay" xmlUrl="https://github.com/devture/exim-relay/releases.atom" />
     <outline text="focalboard" title="focalboard" type="rss" htmlUrl="https://github.com/mattermost/focalboard" xmlUrl="https://github.com/mattermost/focalboard/releases.atom" />
+    <outline text="freshrss" title="freshrss" type="rss" htmlUrl="https://github.com/freshrss/freshrss" xmlUrl="https://github.com/freshrss/freshrss/releases.atom" />
     <outline text="grafana" title="grafana" type="rss" htmlUrl="https://github.com/grafana/grafana" xmlUrl="https://github.com/grafana/grafana/releases.atom" />
     <outline text="healthchecks" title="healthchecks" type="rss" htmlUrl="https://github.com/healthchecks/healthchecks" xmlUrl="https://github.com/healthchecks/healthchecks/releases.atom" />
     <outline text="infisical" title="infisical" type="rss" htmlUrl="https://github.com/Infisical/infisical" xmlUrl="https://github.com/Infisical/infisical/releases.atom" />
@@ -29,17 +30,27 @@
     <outline text="n8n" title="n8n" type="rss" htmlUrl="https://github.com/n8n-io/n8n" xmlUrl="https://github.com/n8n-io/n8n/releases.atom" />
     <outline text="navidrome" title="navidrome" type="rss" htmlUrl="https://github.com/navidrome/navidrome" xmlUrl="https://github.com/navidrome/navidrome/releases.atom" />
     <outline text="netbox" title="netbox" type="rss" htmlUrl="https://github.com/netbox-community/netbox-docker/" xmlUrl="https://github.com/netbox-community/netbox-docker//releases.atom" />
+    <outline text="outline" title="outline" type="rss" htmlUrl="https://github.com/outline/outline" xmlUrl="https://github.com/outline/outline/releases.atom" />
     <outline text="owncast" title="owncast" type="rss" htmlUrl="https://github.com/owncast/owncast" xmlUrl="https://github.com/owncast/owncast/releases.atom" />
+    <outline text="peertube" title="peertube" type="rss" htmlUrl="https://github.com/Chocobozzz/PeerTube" xmlUrl="https://github.com/Chocobozzz/PeerTube/releases.atom" />
+    <outline text="postgres" title="postgres" type="rss" htmlUrl="https://github.com/postgres/postgres" xmlUrl="https://github.com/postgres/postgres/releases.atom" />
+    <outline text="postgres_backup" title="postgres_backup" type="rss" htmlUrl="https://github.com/prodrigestivill/docker-postgres-backup-local" xmlUrl="https://github.com/prodrigestivill/docker-postgres-backup-local/releases.atom" />
     <outline text="prometheus" title="prometheus" type="rss" htmlUrl="https://github.com/prometheus/prometheus" xmlUrl="https://github.com/prometheus/prometheus/releases.atom" />
     <outline text="prometheus_blackbox_exporter" title="prometheus_blackbox_exporter" type="rss" htmlUrl="https://github.com/prometheus/blackbox_exporter" xmlUrl="https://github.com/prometheus/blackbox_exporter/releases.atom" />
     <outline text="prometheus_node_exporter" title="prometheus_node_exporter" type="rss" htmlUrl="https://github.com/prometheus/node_exporter" xmlUrl="https://github.com/prometheus/node_exporter/releases.atom" />
     <outline text="prometheus_postgres_exporter" title="prometheus_postgres_exporter" type="rss" htmlUrl="https://github.com/prometheus-community/postgres_exporter" xmlUrl="https://github.com/prometheus-community/postgres_exporter/releases.atom" />
+    <outline text="prometheus_ssh_exporter" title="prometheus_ssh_exporter" type="rss" htmlUrl="https://github.com/treydock/ssh_exporter" xmlUrl="https://github.com/treydock/ssh_exporter/releases.atom" />
     <outline text="radicale" title="radicale" type="rss" htmlUrl="https://github.com/tomsquest/docker-radicale" xmlUrl="https://github.com/tomsquest/docker-radicale/releases.atom" />
     <outline text="redis" title="redis" type="rss" htmlUrl="https://github.com/redis/redis" xmlUrl="https://github.com/redis/redis/releases.atom" />
     <outline text="redmine" title="redmine" type="rss" htmlUrl="https://github.com/redmine/redmine" xmlUrl="https://github.com/redmine/redmine/releases.atom" />
+    <outline text="roundcube" title="roundcube" type="rss" htmlUrl="https://github.com/roundcube/roundcubemail" xmlUrl="https://github.com/roundcube/roundcubemail/releases.atom" />
     <outline text="soft_serve" title="soft_serve" type="rss" htmlUrl="https://github.com/charmbracelet/soft-serve" xmlUrl="https://github.com/charmbracelet/soft-serve/releases.atom" />
+    <outline text="syncthing" title="syncthing" type="rss" htmlUrl="https://github.com/syncthing/syncthing/" xmlUrl="https://github.com/syncthing/syncthing//releases.atom" />
+    <outline text="traefik" title="traefik" type="rss" htmlUrl="https://github.com/traefik/traefik" xmlUrl="https://github.com/traefik/traefik/releases.atom" />
     <outline text="uptime_kuma" title="uptime_kuma" type="rss" htmlUrl="https://github.com/louislam/uptime-kuma" xmlUrl="https://github.com/louislam/uptime-kuma/releases.atom" />
     <outline text="vaultwarden" title="vaultwarden" type="rss" htmlUrl="https://github.com/dani-garcia/vaultwarden" xmlUrl="https://github.com/dani-garcia/vaultwarden/releases.atom" />
     <outline text="wg_easy" title="wg_easy" type="rss" htmlUrl="https://github.com/WeeJeWel/wg-easy" xmlUrl="https://github.com/WeeJeWel/wg-easy/releases.atom" />
+    <outline text="woodpecker_ci_agent" title="woodpecker_ci_agent" type="rss" htmlUrl="https://github.com/woodpecker-ci/woodpecker" xmlUrl="https://github.com/woodpecker-ci/woodpecker/releases.atom" />
+    <outline text="woodpecker_ci_server" title="woodpecker_ci_server" type="rss" htmlUrl="https://github.com/woodpecker-ci/woodpecker" xmlUrl="https://github.com/woodpecker-ci/woodpecker/releases.atom" />
   </body>
 </opml>

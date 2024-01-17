@@ -71,13 +71,29 @@ You can hide the warning permanently by going to **Actions** -> **Advanced** -> 
 
 By default, the following ports will be exposed by the container on **all network interfaces**:
 
-- `22000` over **TCP**, controlled by `syncthing_container_sync_tcp_bind_port` - used for TCP based sync protocol traffic
-- `22000` over **UDP**, controlled by `syncthing_container_sync_udp_bind_port` - used for QUIC based sync protocol traffic
+- `22000` over **TCP**, controlled by `syncthing_container_sync_tcp_bind_port` and `syncthing_container_sync_tcp_port` - used for TCP based sync protocol traffic
+- `22000` over **UDP**, controlled by `syncthing_container_sync_udp_bind_port` and `syncthing_container_sync_udp_port` - used for QUIC based sync protocol traffic
 - `21027` over **UDP**, controlled by `syncthing_container_local_discovery_udp_bind_port` - used for discovery broadcasts on IPv4 and multicasts on IPv6
 
 Docker automatically opens these ports in the server's firewall, so you **likely don't need to do anything**. If you use another firewall in front of the server, you may need to adjust it.
 
-To learn more, see the upstream [Firewall documentation](https://docs.syncthing.net/users/firewall.html).
+If you have multiple devices on the same LAN, you may wish to assign a unique port to each one as recommended in the [Local network setup section on ArchWiki](https://wiki.archlinux.org/title/Syncthing#Local_network_setup).
+
+As the upstream [Firewall documentation](https://docs.syncthing.net/users/firewall.html) says:
+
+> The external forwarded ports and the internal destination ports have to be the same (e.g. 22000/TCP).
+
+Because of this, the Syncthing Ansible role makes the actually exposed ports (`syncthing_container_sync_*_bind_port` variables) the same as the ports that the Syncthing program in the container actually listens on (`syncthing_container_sync_tcp_port` or `syncthing_container_sync_udp_port`). That is to say, **the `_bind_port` variables are automatically adjusted** based on the values of `syncthing_container_sync_tcp_port` and `syncthing_container_sync_udp_port`.
+
+However, changing `syncthing_container_sync_tcp_port` or `syncthing_container_sync_udp_port` in Ansible does not change the Syncthing configuration and the port Syncthing decides to listen, but merely tells the Ansible role which ports you'd like to use, so it can wire things correctly.
+
+**To effectively change the Syncthing ports** being used:
+
+1. Adjust `syncthing_container_sync_tcp_port` and `syncthing_container_sync_udp_port` in your `vars.yml`
+2. Re-install the Syncthing service by re-running the Ansible playbook
+3. Log in to the Syncthing Web UI (see [Usage](#usage))
+4. Go to **Settings** -> **Connections** and put something like this in the **Sync Protocol Listen Addresses** configuration (inspired by the [Listen Addresses documentation](https://docs.syncthing.net/v1.27.0/users/config#listen-addresses)): `tcp://0.0.0.0:TCP_PORT_HERE, quic://0.0.0.0:UDP_PORT_HERE, dynamic+https://relays.syncthing.net/endpoint` (adjust `TCP_PORT_HERE` and `UDP_PORT_HERE` with the port numbers you've chosen for `syncthing_container_sync_tcp_port` and `syncthing_container_sync_udp_port`)
+
 
 ### Configuration & Data
 

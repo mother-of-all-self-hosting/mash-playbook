@@ -1,0 +1,368 @@
+- name: "Set up a self-hosted server"
+  hosts: "{{ target if target is defined else 'mash_servers' }}"
+  become: true
+
+  roles:
+    # role-specific:playbook_help
+    # This role has no tasks at all
+    - role: galaxy/playbook_help
+    # /role-specific:playbook_help
+
+    # role-specific:systemd_docker_base
+    # This role has no tasks at all
+    - role: galaxy/systemd_docker_base
+    # /role-specific:systemd_docker_base
+
+    # role-specific:docker
+    - when: mash_playbook_docker_installation_enabled | bool
+      role: galaxy/docker
+      vars:
+        docker_install_compose: false
+        docker_install_compose_plugin: false
+      tags:
+        - setup-docker
+        - setup-all
+        - install-docker
+        - install-all
+    # /role-specific:docker
+
+    # role-specific:docker_sdk_for_python
+    - when: devture_docker_sdk_for_python_installation_enabled | bool
+      role: galaxy/docker_sdk_for_python
+      tags:
+        - setup-docker
+        - setup-all
+        - install-docker
+        - install-all
+    # /role-specific:docker_sdk_for_python
+
+    # role-specific:timesync
+    - when: devture_timesync_installation_enabled | bool
+      role: galaxy/timesync
+      tags:
+        - setup-timesync
+        - setup-all
+        - install-timesync
+        - install-all
+    # /role-specific:timesync
+
+    # No role-specific checks here, as it's a local role that is always installed.
+    - role: mash/playbook_base
+
+    # role-specific:swap
+    - role: galaxy/swap
+    # /role-specific:swap
+
+    # role-specific:cleanup
+    - role: galaxy/cleanup
+    # /role-specific:cleanup
+
+    # role-specific:ssh
+    - when: system_security_ssh_enabled | bool
+      role: galaxy/ssh
+    # /role-specific:ssh
+
+    # role-specific:fail2ban
+    - when: system_security_fail2ban_enabled | bool
+      role: galaxy/fail2ban
+    # /role-specific:fail2ban
+
+    # role-specific:postgres
+    # This role exposes various tags (setup-postgres, setup-all, upgrade-postgres, import-postgres, etc.), so we don't tag it here.
+    - role: galaxy/postgres
+    # /role-specific:postgres
+
+    # role-specific:postgres_backup
+    - role: galaxy/postgres_backup
+    # /role-specific:postgres_backup
+
+    # role-specific:mongodb
+    - role: galaxy/mongodb
+    # /role-specific:mongodb
+
+    # role-specific:container_socket_proxy
+    - role: galaxy/container_socket_proxy
+    # /role-specific:container_socket_proxy
+
+    # role-specific:traefik
+    - role: galaxy/traefik
+    # /role-specific:traefik
+
+    # role-specific:adguard_home
+    - role: galaxy/adguard_home
+    # /role-specific:adguard_home
+
+    # role-specific:alertmanager
+    - role: galaxy/alertmanager
+    # /role-specific:alertmanager
+
+    # role-specific:appsmith
+    - role: galaxy/appsmith
+    # /role-specific:appsmith
+
+    # role-specific:authelia
+    - role: galaxy/authelia
+    # /role-specific:authelia
+
+    # role-specific:authentik
+    - role: galaxy/authentik
+    # /role-specific:authentik
+
+    # role-specific:backup_borg
+    - role: galaxy/backup_borg
+    # /role-specific:backup_borg
+
+    # role-specific:changedetection
+    - role: galaxy/changedetection
+    # /role-specific:changedetection
+
+    # role-specific:clickhouse
+    - role: galaxy/clickhouse
+    # /role-specific:clickhouse
+
+    # role-specific:collabora_online
+    - role: galaxy/collabora_online
+    # /role-specific:collabora_online
+
+    # role-specific:docker_registry
+    - role: galaxy/docker_registry
+    # /role-specific:docker_registry
+
+    # role-specific:docker_registry_browser
+    - role: galaxy/docker_registry_browser
+    # /role-specific:docker_registry_browser
+
+    # role-specific:docker_registry_purger
+    - role: galaxy/docker_registry_purger
+    # /role-specific:docker_registry_purger
+
+    # role-specific:echoip
+    - role: galaxy/echoip
+    # /role-specific:echoip
+
+    # role-specific:exim_relay
+    - role: galaxy/exim_relay
+    # /role-specific:exim_relay
+
+    # role-specific:firezone
+    - role: galaxy/firezone
+    # /role-specific:firezone
+
+    # role-specific:focalboard
+    - role: galaxy/focalboard
+    # /role-specific:focalboard
+
+    # role-specific:freshrss
+    - role: galaxy/freshrss
+    # /role-specific:freshrss
+
+    # role-specific:funkwhale
+    - role: galaxy/funkwhale
+    # /role-specific:funkwhale
+
+    # role-specific:gitea
+    - role: galaxy/gitea
+    # /role-specific:gitea
+
+    # role-specific:gotosocial
+    - role: galaxy/gotosocial
+    # /role-specific:gotosocial
+
+    # role-specific:grafana
+    - role: galaxy/grafana
+    # /role-specific:grafana
+
+    # role-specific:mariadb
+    - role: galaxy/mariadb
+    # /role-specific:mariadb
+
+    # role-specific:miniflux
+    - role: galaxy/miniflux
+    # /role-specific:miniflux
+
+    # role-specific:mrs
+    - role: galaxy/mrs
+    # /role-specific:mrs
+
+    # role-specific:n8n
+    - role: galaxy/n8n
+    # /role-specific:n8n
+
+    # role-specific:healthchecks
+    - role: galaxy/healthchecks
+    # /role-specific:healthchecks
+
+    # role-specific:infisical
+    - role: galaxy/infisical
+    # /role-specific:infisical
+
+    # role-specific:hubsite
+    - role: galaxy/hubsite
+    # /role-specific:hubsite
+
+    # role-specific:ilmo
+    - role: galaxy/ilmo
+    # /role-specific:ilmo
+
+    # role-specific:influxdb
+    - role: galaxy/influxdb
+    # /role-specific:influxdb
+
+    # role-specific:jitsi
+    - role: galaxy/jitsi
+    # /role-specific:jitsi
+
+    # role-specific:keycloak
+    - role: galaxy/keycloak
+    # /role-specific:keycloak
+
+    # role-specific:lago
+    - role: galaxy/lago
+    # /role-specific:lago
+
+    # role-specific:linkding
+    - role: galaxy/linkding
+    # /role-specific:linkding
+
+    # role-specific:mobilizon
+    - role: galaxy/mobilizon
+    # /role-specific:mobilizon
+
+    # role-specific:mosquitto
+    - role: galaxy/mosquitto
+    # /role-specific:mosquitto
+
+    # role-specific:navidrome
+    - role: galaxy/navidrome
+    # /role-specific:navidrome
+
+    # role-specific:netbox
+    - role: galaxy/netbox
+    # /role-specific:netbox
+
+    # role-specific:nextcloud
+    - role: galaxy/nextcloud
+    # /role-specific:nextcloud
+
+    # role-specific:owncast
+    - role: galaxy/owncast
+    # /role-specific:owncast
+
+    # role-specific:outline
+    - role: galaxy/outline
+    # /role-specific:outline
+
+    # role-specific:oxitraffic
+    - role: galaxy/oxitraffic
+    # /role-specific:oxitraffic
+
+    # role-specific:peertube
+    - role: galaxy/peertube
+    # /role-specific:peertube
+
+    # role-specific:postgis
+    - role: galaxy/postgis
+    # /role-specific:postgis
+
+    # role-specific:prometheus
+    - role: galaxy/prometheus
+    # /role-specific:prometheus
+
+    # role-specific:prometheus_node_exporter
+    - role: galaxy/prometheus_node_exporter
+    # /role-specific:prometheus_node_exporter
+
+    # role-specific:prometheus_blackbox_exporter
+    - role: galaxy/prometheus_blackbox_exporter
+    # /role-specific:prometheus_blackbox_exporter
+
+    # role-specific:prometheus_postgres_exporter
+    - role: galaxy/prometheus_postgres_exporter
+    # /role-specific:prometheus_postgres_exporter
+
+    # role-specific:prometheus_ssh_exporter
+    - role: galaxy/prometheus_ssh_exporter
+    # /role-specific:prometheus_ssh_exporter
+
+    # role-specific:radicale
+    - role: galaxy/radicale
+    # /role-specific:radicale
+
+    # role-specific:redmine
+    - role: galaxy/redmine
+    # /role-specific:redmine
+
+    # role-specific:redis
+    - role: galaxy/redis
+    # /role-specific:redis
+
+    # role-specific:rumqttd
+    - role: galaxy/rumqttd
+    # /role-specific:rumqttd
+
+    # role-specific:semaphore
+    - role: galaxy/semaphore
+    # /role-specific:semaphore
+
+    # role-specific:soft_serve
+    - role: galaxy/soft_serve
+    # /role-specific:soft_serve
+
+    # role-specific:syncthing
+    - role: galaxy/syncthing
+    # /role-specific:syncthing
+
+    # role-specific:telegraf
+    - role: galaxy/telegraf
+    # /role-specific:telegraf
+
+    # role-specific:vaultwarden
+    - role: galaxy/vaultwarden
+    # /role-specific:vaultwarden
+
+    # role-specific:uptime_kuma
+    - role: galaxy/uptime_kuma
+    # /role-specific:uptime_kuma
+
+    # role-specific:wg_easy
+    - role: galaxy/wg_easy
+    # /role-specific:wg_easy
+
+    # role-specific:forgejo
+    - role: galaxy/forgejo
+    # /role-specific:forgejo
+
+    # role-specific:woodpecker_ci_server
+    - role: galaxy/woodpecker_ci_server
+    # /role-specific:woodpecker_ci_server
+
+    # role-specific:woodpecker_ci_agent
+    - role: galaxy/woodpecker_ci_agent
+    # /role-specific:woodpecker_ci_agent
+
+    # role-specific:roundcube
+    - role: galaxy/roundcube
+    # /role-specific:roundcube
+
+    # role-specific:auxiliary
+    - role: galaxy/auxiliary
+    # /role-specific:auxiliary
+
+    # role-specific:systemd_service_manager
+    - when: devture_systemd_service_manager_enabled | bool
+      role: galaxy/systemd_service_manager
+    # /role-specific:systemd_service_manager
+
+    # role-specific:playbook_state_preserver
+    # This is pretty much last, because we want it to better serve as a "last known good configuration".
+    # See: https://github.com/spantaleev/matrix-docker-ansible-deploy/pull/2217#issuecomment-1301487601
+    - when: devture_playbook_state_preserver_enabled | bool
+      role: galaxy/playbook_state_preserver
+      tags:
+        - setup-all
+        - install-all
+    # /role-specific:playbook_state_preserver
+
+    # role-specific:playbook_runtime_messages
+    - role: galaxy/playbook_runtime_messages
+    # /role-specific:playbook_runtime_messages

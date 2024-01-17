@@ -1,5 +1,6 @@
 ---
 
+# role-specific:auxiliary
 ########################################################################
 #                                                                      #
 # aux                                                                  #
@@ -17,30 +18,111 @@ aux_file_default_group: "{{ mash_playbook_user_groupname }}"
 # /aux                                                                 #
 #                                                                      #
 ########################################################################
+# /role-specific:auxiliary
 
 
+# role-specific:authelia
+########################################################################
+#                                                                      #
+# authelia                                                             #
+#                                                                      #
+########################################################################
+
+authelia_enabled: false
+
+authelia_identifier: "{{ mash_playbook_service_identifier_prefix }}authelia"
+
+authelia_uid: "{{ mash_playbook_uid }}"
+authelia_gid: "{{ mash_playbook_gid }}"
+
+authelia_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}authelia"
+
+authelia_systemd_required_services_list_auto: |
+  {{
+    ([devture_postgres_identifier ~ '.service'] if devture_postgres_enabled and authelia_config_storage_postgres_host == devture_postgres_identifier else [])
+  }}
+
+authelia_container_additional_networks_auto: |
+  {{
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+    +
+    ([devture_postgres_container_network] if devture_postgres_enabled and authelia_config_storage_postgres_host == devture_postgres_identifier and authelia_container_network != devture_postgres_container_network else [])
+  }}
+
+authelia_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+authelia_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+authelia_container_labels_traefik_entrypoints: "{{ devture_traefik_entrypoint_primary }}"
+authelia_container_labels_traefik_tls_certResolver: "{{ devture_traefik_certResolver_primary }}"
+
+authelia_config_jwt_secret: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'jwt.authelia', rounds=655555) | to_uuid }}"
+
+authelia_config_session_secret: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'ses.authelia', rounds=655555) | to_uuid }}"
+
+authelia_config_identity_providers_oidc_hmac_secret: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'hm.authelia', rounds=655555) | to_uuid }}"
+
+# role-specific:postgres
+authelia_config_storage_postgres_host: "{{ devture_postgres_identifier if devture_postgres_enabled else '' }}"
+authelia_config_storage_postgres_port: "{{ '5432' if devture_postgres_enabled else '' }}"
+authelia_config_storage_postgres_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'db.authelia', rounds=655555) | to_uuid }}"
+# /role-specific:postgres
+
+# role-specific:mariadb
+# If Postgres and MariaDB are not enabled, we favor Postgres.
+# We only enable MySQL if it's the only enabled component (that is, if Postgres is not enabled at the same time).
+authelia_config_storage_mysql_host: "{{ mariadb_identifier if mariadb_enabled and not devture_postgres_enabled | default(false) else '' }}"
+authelia_config_storage_mysql_port: "{{ '3306' if mariadb_enabled else '' }}"
+authelia_config_storage_mysql_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'db.authelia', rounds=655555) | to_uuid }}"
+# /role-specific:mariadb
 
 ########################################################################
 #                                                                      #
-# system/security                                                      #
+# /authelia                                                            #
+#                                                                      #
+########################################################################
+# /role-specific:authelia
+
+
+
+# role-specific:ssh
+########################################################################
+#                                                                      #
+# ssh                                                                  #
 #                                                                      #
 ########################################################################
 
 system_security_ssh_enabled: false
+
+########################################################################
+#                                                                      #
+# /ssh                                                                 #
+#                                                                      #
+########################################################################
+# /role-specific:ssh
+
+
+
+# role-specific:fail2ban
+########################################################################
+#                                                                      #
+# fail2ban                                                             #
+#                                                                      #
+########################################################################
+
 system_security_fail2ban_enabled: false
 
 ########################################################################
 #                                                                      #
-# /system/security                                                     #
+# /fail2ban                                                            #
 #                                                                      #
 ########################################################################
+# /role-specific:fail2ban
 
 
 
-
+# role-specific:swap
 ########################################################################
 #                                                                      #
-# system/swap                                                          #
+# swap                                                                 #
 #                                                                      #
 ########################################################################
 
@@ -48,187 +130,422 @@ system_swap_enabled: false
 
 ########################################################################
 #                                                                      #
-# /system/swap                                                         #
+# /swap                                                                #
+#                                                                      #
+########################################################################
+# /role-specific:swap
+
+
+
+# role-specific:systemd_service_manager
+########################################################################
+#                                                                      #
+# systemd_service_manager                                              #
 #                                                                      #
 ########################################################################
 
+mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
+  # Dummy entry, which is not role-specific.
+  # Ensures there's at least one entry defined in the list.
+  - "{{ omit }}"
 
+  # role-specific:backup_borg
+  - |-
+    {{ ({'name': (backup_borg_identifier + '.timer'), 'priority': 5000, 'groups': ['mash', 'backup', 'borg']} if backup_borg_enabled else omit) }}
+  # /role-specific:backup_borg
 
+  # role-specific:adguard_home
+  - |-
+    {{ ({'name': (adguard_home_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'adguard-home']} if adguard_home_enabled else omit) }}
+  # /role-specific:adguard_home
+
+  # role-specific:alertmanager
+  - |-
+    {{ ({'name': (alertmanager_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'alertmanager']} if alertmanager_enabled else omit) }}
+  # /role-specific:alertmanager
+
+  # role-specific:appsmith
+  - |-
+    {{ ({'name': (appsmith_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'appsmith']} if appsmith_enabled else omit) }}
+  # /role-specific:appsmith
+
+  # role-specific:authentik
+  - |-
+    {{ ({'name': (authentik_server_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'authentik']} if authentik_enabled else omit) }}
+  - |-
+    {{ ({'name': (authentik_worker_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'authentik']} if authentik_enabled else omit) }}
+  # /role-specific:authentik
+
+  # role-specific:authelia
+  - |-
+    {{ ({'name': (authelia_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'authelia']} if authelia_enabled else omit) }}
+  # /role-specific:authelia
+
+  # role-specific:changedetection
+  - |-
+    {{ ({'name': (changedetection_identifier + '.service'), 'priority': 2100, 'groups': ['mash', 'changedetection']} if changedetection_enabled else omit) }}
+  - |-
+    {{ ({'name': (changedetection_playwright_driver_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'changedetection']} if changedetection_playwright_driver_enabled else omit) }}
+  # /role-specific:changedetection
+
+  # role-specific:clickhouse
+  - |-
+    {{ ({'name': (clickhouse_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'clickhouse']} if clickhouse_enabled else omit) }}
+  # /role-specific:clickhouse
+
+  # role-specific:collabora_online
+  - |-
+    {{ ({'name': (collabora_online_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'collabora-online']} if collabora_online_enabled else omit) }}
+  # /role-specific:collabora_online
+
+  # role-specific:postgres
+  - |-
+    {{ ({'name': (devture_postgres_identifier + '.service'), 'priority': 500, 'groups': ['mash', 'postgres']} if devture_postgres_enabled else omit) }}
+  # /role-specific:postgres
+
+  # role-specific:postgres_backup
+  - |-
+    {{ ({'name': (devture_postgres_backup_identifier + '.service'), 'priority': 5000, 'groups': ['mash', 'backup', 'postgres-backup']} if devture_postgres_backup_enabled else omit) }}
+  # /role-specific:postgres_backup
+
+  # role-specific:container_socket_proxy
+  - |-
+    {{ ({'name': (devture_container_socket_proxy_identifier + '.service'), 'priority': 200, 'groups': ['mash', 'reverse-proxies', 'container-socket-proxy']} if devture_container_socket_proxy_enabled else omit) }}
+  # /role-specific:container_socket_proxy
+
+  # role-specific:traefik
+  - |-
+    {{ ({'name': (devture_traefik_identifier + '.service'), 'priority': 250, 'groups': ['mash', 'traefik', 'reverse-proxies']} if devture_traefik_enabled else omit) }}
+  # /role-specific:traefik
+
+  # role-specific:woodpecker_ci_server
+  - |-
+    {{ ({'name': (devture_woodpecker_ci_server_identifier + '.service'), 'priority': 4000, 'groups': ['mash', 'woodpecker', 'ci', 'woodpecker-ci-server']} if devture_woodpecker_ci_server_enabled else omit) }}
+  # /role-specific:woodpecker_ci_server
+
+  # role-specific:woodpecker_ci_agent
+  - |-
+    {{ ({'name': (devture_woodpecker_ci_agent_identifier + '.service'), 'priority': 4100, 'groups': ['mash', 'woodpecker', 'ci', 'woodpecker-ci-agent']} if devture_woodpecker_ci_agent_enabled else omit) }}
+  # /role-specific:woodpecker_ci_agent
+
+  # role-specific:docker_registry
+  - |-
+    {{ ({'name': (docker_registry_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'docker-registry']} if docker_registry_enabled else omit) }}
+  - |-
+    {{ ({'name': (docker_registry_identifier + '-garbage-collect.timer'), 'priority': 2500, 'groups': ['mash', 'docker-registry', 'docker-registry-gc']} if docker_registry_enabled else omit) }}
+  # /role-specific:docker_registry
+
+  # role-specific:docker_registry_browser
+  - |-
+    {{ ({'name': (docker_registry_browser_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'docker-registry-browser']} if docker_registry_browser_enabled else omit) }}
+  # /role-specific:docker_registry_browser
+
+  # role-specific:docker_registry_purger
+  - |-
+    {{ ({'name': (docker_registry_purger_identifier + '.timer'), 'priority': 3000, 'groups': ['mash', 'docker-registry-purger']} if docker_registry_purger_enabled else omit) }}
+  # /role-specific:docker_registry_purger
+
+  # role-specific:echoip
+  - |-
+    {{ ({'name': (echoip_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'echoip']} if echoip_enabled else omit) }}
+  # /role-specific:echoip
+
+  # role-specific:exim_relay
+  - |-
+    {{ ({'name': (exim_relay_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'exim-relay']} if exim_relay_enabled else omit) }}
+  # /role-specific:exim_relay
+
+  # role-specific:firezone
+  - |-
+    {{ ({'name': (firezone_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'firezone']} if firezone_enabled else omit) }}
+  # /role-specific:firezone
+
+  # role-specific:focalboard
+  - |-
+    {{ ({'name': (focalboard_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'focalboard']} if focalboard_enabled else omit) }}
+  # /role-specific:focalboard
+
+  # role-specific:freshrss
+  - |-
+    {{ ({'name': (freshrss_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'freshrss']} if freshrss_enabled else omit) }}
+  # /role-specific:freshrss
+
+  # role-specific:funkwhale
+  - |-
+    {{ ({'name': (funkwhale_api_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'funkwhale']} if funkwhale_enabled else omit) }}
+  - |-
+    {{ ({'name': (funkwhale_frontend_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'funkwhale']} if funkwhale_enabled else omit) }}
+  - |-
+    {{ ({'name': (funkwhale_celery_beat_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'funkwhale']} if funkwhale_enabled else omit) }}
+  - |-
+    {{ ({'name': (funkwhale_celery_worker_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'funkwhale']} if funkwhale_enabled else omit) }}
+  # /role-specific:funkwhale
+
+  # role-specific:gitea
+  - |-
+    {{ ({'name': (gitea_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'gitea', 'gitea-server']} if gitea_enabled else omit) }}
+  # /role-specific:gitea
+
+  # role-specific:gotosocial
+  - |-
+    {{ ({'name': (gotosocial_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'gotosocial']} if gotosocial_enabled else omit) }}
+  # /role-specific:gotosocial
+
+  # role-specific:grafana
+  - |-
+    {{ ({'name': (grafana_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'grafana']} if grafana_enabled else omit) }}
+  # /role-specific:grafana
+
+  # role-specific:hubsite
+  - |-
+    {{ ({'name': (hubsite_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'hubsite']} if hubsite_enabled else omit) }}
+  # /role-specific:hubsite
+
+  # role-specific:healthchecks
+  - |-
+    {{ ({'name': (healthchecks_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'healthchecks']} if healthchecks_enabled else omit) }}
+  # /role-specific:healthchecks
+
+  # role-specific:ilmo
+  - |-
+    {{ ({'name': (ilmo_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'ilmo']} if ilmo_enabled else omit) }}
+  # /role-specific:ilmo
+
+  # role-specific:infisical
+  - |-
+    {{ ({'name': (infisical_identifier + '-backend.service'), 'priority': 2000, 'groups': ['mash', 'infisical', 'infisical-backend']} if infisical_enabled else omit) }}
+  - |-
+    {{ ({'name': (infisical_identifier + '-frontend.service'), 'priority': 2000, 'groups': ['mash', 'infisical', 'infisical-frontend']} if infisical_enabled else omit) }}
+  # /role-specific:infisical
+
+  # role-specific:influxdb
+  - |-
+    {{ ({'name': (influxdb_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'influxdb']} if influxdb_enabled else omit) }}
+  # /role-specific:influxdb
+
+  # role-specific:jitsi
+  - |-
+    {{ ({'name': (jitsi_identifier + '-web.service'), 'priority': 4200, 'groups': ['mash', 'jitsi', 'jitsi-web']} if jitsi_enabled else omit) }}
+  - |-
+    {{ ({'name': (jitsi_identifier + '-prosody.service'), 'priority': 4000, 'groups': ['mash', 'jitsi', 'jitsi-prosody']} if jitsi_enabled else omit) }}
+  - |-
+    {{ ({'name': (jitsi_identifier + '-jicofo.service'), 'priority': 4100, 'groups': ['mash', 'jitsi', 'jitsi-jicofo']} if jitsi_enabled else omit) }}
+  - |-
+    {{ ({'name': (jitsi_identifier + '-jvb.service'), 'priority': 4100, 'groups': ['mash', 'jitsi', 'jitsi-jvb']} if jitsi_enabled else omit) }}
+  # /role-specific:jitsi
+
+  # role-specific:keycloak
+  - |-
+    {{ ({'name': (keycloak_identifier + '.service'), 'priority': 1000, 'groups': ['mash', 'keycloak']} if keycloak_enabled else omit) }}
+  # /role-specific:keycloak
+
+  # role-specific:lago
+  - |-
+    {{ ({'name': (lago_identifier + '-api.service'), 'priority': 2000, 'groups': ['mash', 'lago', 'lago-api']} if lago_enabled else omit) }}
+  - |-
+    {{ ({'name': (lago_identifier + '-api-worker.service'), 'priority': 2500, 'groups': ['mash', 'lago', 'lago-api-worker']} if lago_enabled else omit) }}
+  - |-
+    {{ ({'name': (lago_identifier + '-api-clock.service'), 'priority': 2500, 'groups': ['mash', 'lago', 'lago-api-clock']} if lago_enabled else omit) }}
+  - |-
+    {{ ({'name': (lago_identifier + '-front.service'), 'priority': 2200, 'groups': ['mash', 'lago', 'lago-front']} if lago_enabled else omit) }}
+  - |-
+    {{ ({'name': (lago_identifier + '-pdf.service'), 'priority': 1900, 'groups': ['mash', 'lago', 'lago-pdf']} if lago_enabled else omit) }}
+  # /role-specific:lago
+
+  # role-specific:linkding
+  - |-
+    {{ ({'name': (linkding_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'linkding']} if linkding_enabled else omit) }}
+  # /role-specific:linkding
+
+  # role-specific:miniflux
+  - |-
+    {{ ({'name': (miniflux_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'miniflux']} if miniflux_enabled else omit) }}
+  # /role-specific:miniflux
+
+  # role-specific:mobilizon
+  - |-
+    {{ ({'name': (mobilizon_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'mobilizon']} if mobilizon_enabled else omit) }}
+  # /role-specific:mobilizon
+
+  # role-specific:mongodb
+  - |-
+    {{ ({'name': (mongodb_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'mongodb']} if mongodb_enabled else omit) }}
+  # /role-specific:mongodb
+
+  # role-specific:mosquitto
+  - |-
+    {{ ({'name': (mosquitto_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'mosquitto']} if mosquitto_enabled else omit) }}
+  # /role-specific:mosquitto
+
+  # role-specific:mrs
+  - |-
+    {{ ({'name': (mrs_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'mrs']} if mrs_enabled else omit) }}
+  # /role-specific:mrs
+
+  # role-specific:n8n
+  - |-
+    {{ ({'name': (n8n_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'n8n']} if n8n_enabled else omit) }}
+  # /role-specific:n8n
+
+  # role-specific:navidrome
+  - |-
+    {{ ({'name': (navidrome_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'navidrome']} if navidrome_enabled else omit) }}
+  # /role-specific:navidrome
+
+  # role-specific:netbox
+  - |-
+    {{ ({'name': (netbox_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'netbox', 'netbox-server']} if netbox_enabled else omit) }}
+  - |-
+    {{ ({'name': (netbox_identifier + '-worker.service'), 'priority': 2500, 'groups': ['mash', 'netbox', 'netbox-worker']} if netbox_enabled else omit) }}
+  - |-
+    {{ ({'name': (netbox_identifier + '-housekeeping.service'), 'priority': 2500, 'groups': ['mash', 'netbox', 'netbox-housekeeping']} if netbox_enabled else omit) }}
+  # /role-specific:netbox
+
+  # role-specific:nextcloud
+  - |-
+    {{ ({'name': (nextcloud_identifier + '-server.service'), 'priority': 2000, 'groups': ['mash', 'nextcloud', 'nextcloud-server']} if nextcloud_enabled else omit) }}
+  - |-
+    {{ ({'name': (nextcloud_identifier + '-cron.timer'), 'priority': 2500, 'groups': ['mash', 'nextcloud', 'nextcloud-cron']} if nextcloud_enabled else omit) }}
+  # /role-specific:nextcloud
+
+  # role-specific:mariadb
+  - |-
+    {{ ({'name': (mariadb_identifier + '.service'), 'priority': 500, 'groups': ['mash', 'mariadb']} if mariadb_enabled else omit) }}
+  # /role-specific:mariadb
+
+  # role-specific:outline
+  - |-
+    {{ ({'name': (outline_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'outline']} if outline_enabled else omit) }}
+  # /role-specific:outline
+
+  # role-specific:owncast
+  - |-
+    {{ ({'name': (owncast_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'owncast']} if owncast_enabled else omit) }}
+  # /role-specific:owncast
+
+  # role-specific:oxitraffic
+  - |-
+    {{ ({'name': (oxitraffic_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'oxitraffic']} if oxitraffic_enabled else omit) }}
+  # /role-specific:oxitraffic
+
+  # role-specific:peertube
+  - |-
+    {{ ({'name': (peertube_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'peertube']} if peertube_enabled else omit) }}
+  # /role-specific:peertube
+
+  # role-specific:postgis
+  - |-
+    {{ ({'name': (postgis_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'metrics', 'postgis']} if postgis_enabled else omit) }}
+  # /role-specific:postgis
+
+  # role-specific:prometheus
+  - |-
+    {{ ({'name': (prometheus_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'metrics', 'prometheus']} if prometheus_enabled else omit) }}
+  # /role-specific:prometheus
+
+  # role-specific:prometheus_blackbox_exporter
+  - |-
+    {{ ({'name': (prometheus_blackbox_exporter_identifier + '.service'), 'priority': 500, 'groups': ['mash', 'metrics', 'prometheus-blackbox-exporter']} if prometheus_blackbox_exporter_enabled else omit) }}
+  # /role-specific:prometheus_blackbox_exporter
+
+  # role-specific:prometheus_ssh_exporter
+  - |-
+    {{ ({'name': (prometheus_ssh_exporter_identifier + '.service'), 'priority': 500, 'groups': ['mash', 'metrics', 'prometheus-ssh-exporter']} if prometheus_ssh_exporter_enabled else omit) }}
+  # /role-specific:prometheus_ssh_exporter
+
+  # role-specific:prometheus_node_exporter
+  - |-
+    {{ ({'name': (prometheus_node_exporter_identifier + '.service'), 'priority': 500, 'groups': ['mash', 'metrics', 'prometheus-node-exporter']} if prometheus_node_exporter_enabled else omit) }}
+  # /role-specific:prometheus_node_exporter
+
+  # role-specific:prometheus_postgres_exporter
+  - |-
+    {{ ({'name': (prometheus_postgres_exporter_identifier + '.service'), 'priority': 500, 'groups': ['mash', 'metrics', 'prometheus-postgres-exporter']} if prometheus_postgres_exporter_enabled else omit) }}
+  # /role-specific:prometheus_postgres_exporter
+
+  # role-specific:radicale
+  - |-
+    {{ ({'name': (radicale_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'radicale']} if radicale_enabled else omit) }}
+  # /role-specific:radicale
+
+  # role-specific:redmine
+  - |-
+    {{ ({'name': (redmine_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'redmine']} if redmine_enabled else omit) }}
+  - |-
+    {{ ({'name': (redmine_identifier + '-send-reminders.timer'), 'priority': 2000, 'groups': ['mash', 'redmine']} if redmine_enabled else omit) }}
+  - |-
+    {{ ({'name': (redmine_identifier + '-recurring-tasks.timer'), 'priority': 2000, 'groups': ['mash', 'redmine']} if redmine_enabled and redmine_recurring_tasks_enabled else omit) }}
+  # /role-specific:redmine
+
+  # role-specific:redis
+  - |-
+    {{ ({'name': (redis_identifier + '.service'), 'priority': 750, 'groups': ['mash', 'redis']} if redis_enabled else omit) }}
+  # /role-specific:redis
+
+  # role-specific:roundcube
+  - |-
+    {{ ({'name': (roundcube_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'roundcube']} if roundcube_enabled else omit) }}
+  # /role-specific:roundcube
+
+  # role-specific:rumqttd
+  - |-
+    {{ ({'name': (rumqttd_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'rumqttd']} if rumqttd_enabled else omit) }}
+  # /role-specific:rumqttd
+
+  # role-specific:semaphore
+  - |-
+    {{ ({'name': (semaphore_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'semaphore']} if semaphore_enabled else omit) }}
+  # /role-specific:semaphore
+
+  # role-specific:soft_serve
+  - |-
+    {{ ({'name': (soft_serve_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'soft-serve']} if soft_serve_enabled else omit) }}
+  # /role-specific:soft_serve
+
+  # role-specific:syncthing
+  - |-
+    {{ ({'name': (syncthing_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'syncthing']} if syncthing_enabled else omit) }}
+  # /role-specific:syncthing
+
+  # role-specific:telegraf
+  - |-
+    {{ ({'name': (telegraf_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'telegraf']} if telegraf_enabled else omit) }}
+  # /role-specific:telegraf
+
+  # role-specific:vaultwarden
+  - |-
+    {{ ({'name': (vaultwarden_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'vaultwarden', 'vaultwarden-server']} if vaultwarden_enabled else omit) }}
+  # /role-specific:vaultwarden
+
+  # role-specific:uptime_kuma
+  - |-
+    {{ ({'name': (uptime_kuma_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'uptime-kuma']} if uptime_kuma_enabled else omit) }}
+  # /role-specific:uptime_kuma
+
+  # role-specific:wg_easy
+  - |-
+    {{ ({'name': (wg_easy_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'wg-easy']} if wg_easy_enabled else omit) }}
+  # /role-specific:wg_easy
+
+  # role-specific:forgejo
+  - |-
+    {{ ({'name': (forgejo_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'forgejo', 'forgejo-server']} if forgejo_enabled else omit) }}
+  # /role-specific:forgejo
+
+devture_systemd_service_manager_services_list_auto: "{{ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized | reject('equalto', omit) }}"
 
 ########################################################################
 #                                                                      #
-# com.devture.ansible.role.systemd_service_manager                     #
+# /systemd_service_manager                                             #
 #                                                                      #
 ########################################################################
+# /role-specific:systemd_service_manager
 
-devture_systemd_service_manager_services_list_auto: |
-  {{
-    ([{'name': (alertmanager_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'alertmanager', 'monitoring']}] if alertmanager_enabled else [])
-    +
-    ([{'name': (backup_borg_identifier + '.timer'), 'priority': 5000, 'groups': ['mash', 'backup', 'borg']}] if backup_borg_enabled else [])
-    +
-    ([{'name': (adguard_home_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'adguard-home']}] if adguard_home_enabled else [])
-    +
-    ([{'name': (appsmith_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'appsmith']}] if appsmith_enabled else [])
-    +
-    ([{'name': (authentik_server_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'authentik']}] if authentik_enabled else [])
-    +
-    ([{'name': (authentik_worker_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'authentik']}] if authentik_enabled else [])
-    +
-    ([{'name': (changedetection_identifier + '.service'), 'priority': 2100, 'groups': ['mash', 'changedetection']}] if changedetection_enabled else [])
-    +
-    ([{'name': (changedetection_playwright_driver_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'changedetection']}] if changedetection_playwright_driver_enabled else [])
-    +
-    ([{'name': (clickhouse_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'clickhouse']}] if clickhouse_enabled else [])
-    +
-    ([{'name': (collabora_online_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'collabora-online']}] if collabora_online_enabled else [])
-    +
-    ([{'name': (devture_postgres_identifier + '.service'), 'priority': 500, 'groups': ['mash', 'postgres']}] if devture_postgres_enabled else [])
-    +
-    ([{'name': (devture_postgres_backup_identifier + '.service'), 'priority': 5000, 'groups': ['mash', 'backup', 'postgres-backup']}] if devture_postgres_backup_enabled else [])
-    +
-    ([{'name': (devture_container_socket_proxy_identifier + '.service'), 'priority': 2900, 'groups': ['mash', 'reverse-proxies', 'container-socket-proxy']}] if devture_container_socket_proxy_enabled else [])
-    +
-    ([{'name': (devture_traefik_identifier + '.service'), 'priority': 3000, 'groups': ['mash', 'traefik', 'reverse-proxies']}] if devture_traefik_enabled else [])
-    +
-    ([{'name': (devture_woodpecker_ci_server_identifier + '.service'), 'priority': 4000, 'groups': ['mash', 'woodpecker', 'ci', 'woodpecker-ci-server']}] if devture_woodpecker_ci_server_enabled else [])
-    +
-    ([{'name': (devture_woodpecker_ci_agent_identifier + '.service'), 'priority': 4100, 'groups': ['mash', 'woodpecker', 'ci', 'woodpecker-ci-agent']}] if devture_woodpecker_ci_agent_enabled else [])
-    +
-    ([{'name': (docker_registry_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'docker-registry']}] if docker_registry_enabled else [])
-    +
-    ([{'name': (docker_registry_identifier + '-garbage-collect.timer'), 'priority': 2500, 'groups': ['mash', 'docker-registry', 'docker-registry-gc']}] if docker_registry_enabled else [])
-    +
-    ([{'name': (docker_registry_browser_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'docker-registry-browser']}] if docker_registry_browser_enabled else [])
-    +
-    ([{'name': (docker_registry_purger_identifier + '.timer'), 'priority': 3000, 'groups': ['mash', 'docker-registry-purger']}] if docker_registry_purger_enabled else [])
-    +
-    ([{'name': (firezone_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'firezone']}] if firezone_enabled else [])
-    +
-    ([{'name': (focalboard_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'focalboard']}] if focalboard_enabled else [])
-    +
-    ([{'name': (funkwhale_api_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'funkwhale']}] if funkwhale_enabled else [])
-    +
-    ([{'name': (funkwhale_frontend_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'funkwhale']}] if funkwhale_enabled else [])
-    +
-    ([{'name': (funkwhale_celery_beat_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'funkwhale']}] if funkwhale_enabled else [])
-    +
-    ([{'name': (funkwhale_celery_worker_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'funkwhale']}] if funkwhale_enabled else [])
-    +
-    ([{'name': (gitea_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'gitea', 'gitea-server']}] if gitea_enabled else [])
-    +
-    ([{'name': (gotosocial_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'gotosocial']}] if gotosocial_enabled else [])
-    +
-    ([{'name': (ilmo_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'ilmo']}] if ilmo_enabled else [])
-    +
-    ([{'name': (mobilizon_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'mobilizon']}] if mobilizon_enabled else [])
-    +
-    ([{'name': (grafana_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'grafana']}] if grafana_enabled else [])
-    +
-    ([{'name': (hubsite_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'hubsite']}] if hubsite_enabled else [])
-    +
-    ([{'name': (healthchecks_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'healthchecks']}] if healthchecks_enabled else [])
-    +
-    ([{'name': (infisical_identifier + '-backend.service'), 'priority': 2000, 'groups': ['mash', 'infisical', 'infisical-backend']}] if infisical_enabled else [])
-    +
-    ([{'name': (infisical_identifier + '-frontend.service'), 'priority': 2000, 'groups': ['mash', 'infisical', 'infisical-frontend']}] if infisical_enabled else [])
-    +
-    ([{'name': (influxdb_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'influxdb']}] if influxdb_enabled else [])
-    +
-    ([{'name': (jitsi_identifier + '-web.service'), 'priority': 4200, 'groups': ['mash', 'jitsi', 'jitsi-web']}] if jitsi_enabled else [])
-    +
-    ([{'name': (jitsi_identifier + '-prosody.service'), 'priority': 4000, 'groups': ['mash', 'jitsi', 'jitsi-prosody']}] if jitsi_enabled else [])
-    +
-    ([{'name': (jitsi_identifier + '-jicofo.service'), 'priority': 4100, 'groups': ['mash', 'jitsi', 'jitsi-jicofo']}] if jitsi_enabled else [])
-    +
-    ([{'name': (jitsi_identifier + '-jvb.service'), 'priority': 4100, 'groups': ['mash', 'jitsi', 'jitsi-jvb']}] if jitsi_enabled else [])
-    +
-    ([{'name': (keycloak_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'keycloak']}] if keycloak_enabled else [])
-    +
-    ([{'name': (lago_identifier + '-api.service'), 'priority': 2000, 'groups': ['mash', 'lago', 'lago-api']}] if lago_enabled else [])
-    +
-    ([{'name': (lago_identifier + '-api-worker.service'), 'priority': 2500, 'groups': ['mash', 'lago', 'lago-api-worker']}] if lago_enabled else [])
-    +
-    ([{'name': (lago_identifier + '-api-clock.service'), 'priority': 2500, 'groups': ['mash', 'lago', 'lago-api-clock']}] if lago_enabled else [])
-    +
-    ([{'name': (lago_identifier + '-front.service'), 'priority': 2200, 'groups': ['mash', 'lago', 'lago-front']}] if lago_enabled else [])
-    +
-    ([{'name': (lago_identifier + '-pdf.service'), 'priority': 1900, 'groups': ['mash', 'lago', 'lago-pdf']}] if lago_enabled else [])
-    +
-    ([{'name': (linkding_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'linkding']}] if linkding_enabled else [])
-    +
-    ([{'name': (miniflux_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'miniflux']}] if miniflux_enabled else [])
-    +
-    ([{'name': (mongodb_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'mongodb']}] if mongodb_enabled else [])
-    +
-    ([{'name': (mosquitto_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'mosquitto']}] if mosquitto_enabled else [])
-    +
-    ([{'name': (mrs_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'mrs']}] if mrs_enabled else [])
-    +
-    ([{'name': (n8n_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'n8n']}] if n8n_enabled else [])
-    +
-    ([{'name': (navidrome_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'navidrome']}] if navidrome_enabled else [])
-    +
-    ([{'name': (netbox_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'netbox', 'netbox-server']}] if netbox_enabled else [])
-    +
-    ([{'name': (netbox_identifier + '-worker.service'), 'priority': 2500, 'groups': ['mash', 'netbox', 'netbox-worker']}] if netbox_enabled else [])
-    +
-    ([{'name': (netbox_identifier + '-housekeeping.service'), 'priority': 2500, 'groups': ['mash', 'netbox', 'netbox-housekeeping']}] if netbox_enabled else [])
-    +
-    ([{'name': (nextcloud_identifier + '-server.service'), 'priority': 2000, 'groups': ['mash', 'nextcloud', 'nextcloud-server']}] if nextcloud_enabled else [])
-    +
-    ([{'name': (nextcloud_identifier + '-cron.timer'), 'priority': 2500, 'groups': ['mash', 'nextcloud', 'nextcloud-cron']}] if nextcloud_enabled else [])
-    +
-    ([{'name': (mariadb_identifier + '.service'), 'priority': 500, 'groups': ['mash', 'mariadb']}] if mariadb_enabled else [])
-    +
-    ([{'name': (owncast_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'owncast']}] if owncast_enabled else [])
-    +
-    ([{'name': (peertube_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'peertube']}] if peertube_enabled else [])
-    +
-    ([{'name': (postgis_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'metrics', 'postgis']}] if postgis_enabled else [])
-    +
-    ([{'name': (prometheus_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'metrics', 'prometheus']}] if prometheus_enabled else [])
-    +
-    ([{'name': (prometheus_blackbox_exporter_identifier + '.service'), 'priority': 500, 'groups': ['mash', 'metrics', 'prometheus-blackbox-exporter']}] if prometheus_blackbox_exporter_enabled else [])
-    +
-    ([{'name': (prometheus_node_exporter_identifier + '.service'), 'priority': 500, 'groups': ['mash', 'metrics', 'prometheus-node-exporter']}] if prometheus_node_exporter_enabled else [])
-    +
-    ([{'name': (prometheus_postgres_exporter_identifier + '.service'), 'priority': 500, 'groups': ['mash', 'metrics', 'prometheus-postgres-exporter']}] if prometheus_postgres_exporter_enabled else [])
-    +
-    ([{'name': (radicale_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'radicale']}] if radicale_enabled else [])
-    +
-    ([{'name': (redmine_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'redmine']}] if redmine_enabled else [])
-    +
-    ([{'name': (redmine_identifier + '-send-reminders.timer'), 'priority': 2000, 'groups': ['mash', 'redmine']}] if redmine_enabled else [])
-    +
-    ([{'name': (redis_identifier + '.service'), 'priority': 750, 'groups': ['mash', 'redis']}] if redis_enabled else [])
-    +
-    ([{'name': (rumqttd_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'rumqttd']}] if rumqttd_enabled else [])
-    +
-    ([{'name': (soft_serve_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'soft-serve']}] if soft_serve_enabled else [])
-    +
-    ([{'name': (syncthing_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'syncthing']}] if syncthing_enabled else [])
-    +
-    ([{'name': (telegraf_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'telegraf']}] if telegraf_enabled else [])
-    +
-    ([{'name': (vaultwarden_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'vaultwarden', 'vaultwarden-server']}] if vaultwarden_enabled else [])
-    +
-    ([{'name': (uptime_kuma_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'uptime-kuma']}] if uptime_kuma_enabled else [])
-    +
-    ([{'name': (wg_easy_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'wg-easy']}] if wg_easy_enabled else [])
-  }}
 
+# role-specific:postgres
 ########################################################################
 #                                                                      #
-# /com.devture.ansible.role.systemd_service_manager                    #
-#                                                                      #
-########################################################################
-
-
-
-########################################################################
-#                                                                      #
-# com.devture.ansible.role.postgres                                    #
+# postgres                                                             #
 #                                                                      #
 ########################################################################
 
@@ -243,154 +560,332 @@ devture_postgres_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_serv
 devture_postgres_uid: "{{ mash_playbook_uid }}"
 devture_postgres_gid: "{{ mash_playbook_gid }}"
 
-devture_postgres_systemd_services_to_stop_for_maintenance_list: |
-  {{
-    ([(miniflux_identifier + '.service')] if miniflux_enabled else [])
-    +
-    ([(n8n_identifier + '.service')] if n8n_enabled else [])
-    +
-    ([(linkding_identifier + '.service')] if linkding_enabled and linkding_database_engine == 'postgres' else [])
-    +
-    ([(redmine_identifier + '.service')] if redmine_enabled else [])
-  }}
+# This includes everything for maximum safety.
+# It may not be optimal though, because some services may not be dependant on Postgres at all, etc.
+devture_postgres_systemd_services_to_stop_for_maintenance_list_auto: "{{ devture_systemd_service_manager_services_list_auto | map(attribute='name') | reject('equalto', (devture_postgres_identifier + '.service')) }}"
 
-devture_postgres_managed_databases_auto: |
-  {{
-    ([{
-      'name': authentik_database_name,
-      'username': authentik_database_username,
-      'password': authentik_database_password,
-    }] if authentik_enabled and authentik_database_hostname == devture_postgres_identifier else [])
-    +([{
-      'name': focalboard_database_name,
-      'username': focalboard_database_username,
-      'password': focalboard_database_password,
-    }] if focalboard_enabled and focalboard_database_type == 'postgres' and focalboard_database_hostname == devture_postgres_identifier else [])
-    +
-    ([{
-      'name': funkwhale_database_name,
-      'username': funkwhale_database_username,
-      'password': funkwhale_database_password,
-    }] if funkwhale_enabled and funkwhale_database_hostname == devture_postgres_identifier else [])
-    +
-    ([{
-      'name': gitea_config_database_name,
-      'username': gitea_config_database_username,
-      'password': gitea_config_database_password,
-    }] if gitea_enabled else [])
-    +
-    ([{
-      'name': healthchecks_database_name,
-      'username': healthchecks_database_username,
-      'password': healthchecks_database_password,
-    }] if healthchecks_enabled and healthchecks_database_hostname == devture_postgres_identifier else [])
-    +
-    ([{
-      'name': devture_woodpecker_ci_server_database_datasource_db_name,
-      'username': devture_woodpecker_ci_server_database_datasource_username,
-      'password': devture_woodpecker_ci_server_database_datasource_password,
-    }] if devture_woodpecker_ci_server_enabled else [])
-    +
-    ([{
-      'name': gotosocial_database_name,
-      'username': gotosocial_database_username,
-      'password': gotosocial_database_password,
-    }] if gotosocial_enabled else [])
-    +
-    ([{
-      'name': ilmo_database_name,
-      'username': ilmo_database_username,
-      'password': ilmo_database_password,
-    }] if ilmo_enabled else [])
-    +
-    ([{
-      'name': keycloak_database_name,
-      'username': keycloak_database_username,
-      'password': keycloak_database_password,
-    }] if keycloak_enabled and keycloak_database_type == 'postgres' and keycloak_database_hostname == devture_postgres_identifier else [])
-    +
-    ([{
-      'name': lago_database_name,
-      'username': lago_database_username,
-      'password': lago_database_password,
-    }] if lago_enabled and lago_database_hostname == devture_postgres_identifier else [])
-    +
-    ([{
-      'name': linkding_database_name,
-      'username': linkding_database_username,
-      'password': linkding_database_password,
-    }] if linkding_enabled and linkding_database_engine == 'postgres' else [])
-    +
-    ([{
-      'name': miniflux_database_name,
-      'username': miniflux_database_username,
-      'password': miniflux_database_password,
-    }] if miniflux_enabled else [])
-    +
-    ([{
-      'name': redmine_database_name,
-      'username': redmine_database_username,
-      'password': redmine_database_password,
-    }] if redmine_enabled else [])
-    +
-    ([{
-      'name': n8n_database_name,
-      'username': n8n_database_username,
-      'password': n8n_database_password,
-    }] if n8n_enabled else [])
-    +
-    ([{
-      'name': netbox_database_name,
-      'username': netbox_database_username,
-      'password': netbox_database_password,
-    }] if netbox_enabled else [])
-    +
-    ([{
-      'name': nextcloud_database_name,
-      'username': nextcloud_database_username,
-      'password': nextcloud_database_password,
-    }] if nextcloud_enabled else [])
-    +
-    ([{
-      'name': peertube_config_database_name,
-      'username': peertube_config_database_username,
-      'password': peertube_config_database_password,
-    }] if peertube_enabled else [])
-    +
-    ([{
-      'name': prometheus_postgres_exporter_database_name,
-      'username': prometheus_postgres_exporter_database_username,
-      'password': prometheus_postgres_exporter_database_password,
-    }] if prometheus_postgres_exporter_enabled else [])
-    +
-    ([{
-      'name': firezone_database_name,
-      'username': firezone_database_user,
-      'password': firezone_database_password,
-    }] if firezone_enabled else [])
-    +
-    ([{
-      'name': vaultwarden_database_name,
-      'username': vaultwarden_database_username,
-      'password': vaultwarden_database_password,
-    }] if vaultwarden_enabled else [])
-  }}
+mash_playbook_devture_postgres_managed_databases_auto_itemized:
+  # Dummy entry, which is not role-specific.
+  # Ensures there's at least one entry defined in the list.
+  - "{{ omit }}"
+
+  # role-specific:authelia
+  - |-
+    {{
+      ({
+        'name': authelia_config_storage_postgres_database,
+        'username': authelia_config_storage_postgres_username,
+        'password': authelia_config_storage_postgres_password,
+      } if authelia_enabled and authelia_config_storage_postgres_host == devture_postgres_identifier else omit)
+    }}
+  # /role-specific:authelia
+
+  # role-specific:authentik
+  - |-
+    {{
+      ({
+        'name': authentik_database_name,
+        'username': authentik_database_username,
+        'password': authentik_database_password,
+      } if authentik_enabled and authentik_database_hostname == devture_postgres_identifier else omit)
+    }}
+  # /role-specific:authentik
+
+  # role-specific:focalboard
+  - |-
+    {{
+      ({
+        'name': focalboard_database_name,
+        'username': focalboard_database_username,
+        'password': focalboard_database_password,
+      } if focalboard_enabled and focalboard_database_type == 'postgres' and focalboard_database_hostname == devture_postgres_identifier else omit)
+    }}
+  # /role-specific:focalboard
+
+  # role-specific:freshrss
+  - |-
+    {{
+      ({
+        'name': freshrss_database_name,
+        'username': freshrss_database_username,
+        'password': freshrss_database_password,
+      } if freshrss_enabled and freshrss_database_hostname == devture_postgres_identifier else omit)
+    }}
+  # /role-specific:freshrss
+
+  # role-specific:funkwhale
+  - |-
+    {{
+      ({
+        'name': funkwhale_database_name,
+        'username': funkwhale_database_username,
+        'password': funkwhale_database_password,
+      } if funkwhale_enabled and funkwhale_database_hostname == devture_postgres_identifier else omit)
+    }}
+  # /role-specific:funkwhale
+
+  # role-specific:gitea
+  - |-
+    {{
+      ({
+        'name': gitea_config_database_name,
+        'username': gitea_config_database_username,
+        'password': gitea_config_database_password,
+      } if gitea_enabled else omit)
+    }}
+  # /role-specific:gitea
+
+  # role-specific:healthchecks
+  - |-
+    {{
+      ({
+        'name': healthchecks_database_name,
+        'username': healthchecks_database_username,
+        'password': healthchecks_database_password,
+      } if healthchecks_enabled and healthchecks_database_hostname == devture_postgres_identifier else omit)
+    }}
+  # /role-specific:healthchecks
+
+  # role-specific:woodpecker_ci_server
+  - |-
+    {{
+      ({
+        'name': devture_woodpecker_ci_server_database_datasource_db_name,
+        'username': devture_woodpecker_ci_server_database_datasource_username,
+        'password': devture_woodpecker_ci_server_database_datasource_password,
+      } if devture_woodpecker_ci_server_enabled else omit)
+    }}
+  # /role-specific:woodpecker_ci_server
+
+  # role-specific:gotosocial
+  - |-
+    {{
+      ({
+        'name': gotosocial_database_name,
+        'username': gotosocial_database_username,
+        'password': gotosocial_database_password,
+      } if gotosocial_enabled else omit)
+    }}
+  # /role-specific:gotosocial
+
+  # role-specific:ilmo
+  - |-
+    {{
+      ({
+        'name': ilmo_database_name,
+        'username': ilmo_database_username,
+        'password': ilmo_database_password,
+      } if ilmo_enabled else omit)
+    }}
+  # /role-specific:ilmo
+
+  # role-specific:keycloak
+  - |-
+    {{
+      ({
+        'name': keycloak_database_name,
+        'username': keycloak_database_username,
+        'password': keycloak_database_password,
+      } if keycloak_enabled and keycloak_database_type == 'postgres' and keycloak_database_hostname == devture_postgres_identifier else omit)
+    }}
+  # /role-specific:keycloak
+
+  # role-specific:lago
+  - |-
+    {{
+      ({
+        'name': lago_database_name,
+        'username': lago_database_username,
+        'password': lago_database_password,
+      } if lago_enabled and lago_database_hostname == devture_postgres_identifier else omit)
+    }}
+  # /role-specific:lago
+
+  # role-specific:linkding
+  - |-
+    {{
+      ({
+        'name': linkding_database_name,
+        'username': linkding_database_username,
+        'password': linkding_database_password,
+      } if linkding_enabled and linkding_database_engine == 'postgres' else omit)
+    }}
+  # /role-specific:linkding
+
+  # role-specific:miniflux
+  - |-
+    {{
+      ({
+        'name': miniflux_database_name,
+        'username': miniflux_database_username,
+        'password': miniflux_database_password,
+      } if miniflux_enabled else omit)
+    }}
+  # /role-specific:miniflux
+
+  # role-specific:redmine
+  - |-
+    {{
+      ({
+        'name': redmine_database_name,
+        'username': redmine_database_username,
+        'password': redmine_database_password,
+      } if redmine_enabled else omit)
+    }}
+  # /role-specific:redmine
+
+  # role-specific:n8n
+  - |-
+    {{
+      ({
+        'name': n8n_database_name,
+        'username': n8n_database_username,
+        'password': n8n_database_password,
+      } if n8n_enabled else omit)
+    }}
+  # /role-specific:n8n
+
+  # role-specific:netbox
+  - |-
+    {{
+      ({
+        'name': netbox_database_name,
+        'username': netbox_database_username,
+        'password': netbox_database_password,
+      } if netbox_enabled else omit)
+    }}
+  # /role-specific:netbox
+
+  # role-specific:nextcloud
+  - |-
+    {{
+      ({
+        'name': nextcloud_database_name,
+        'username': nextcloud_database_username,
+        'password': nextcloud_database_password,
+      } if nextcloud_enabled else omit)
+    }}
+  # /role-specific:nextcloud
+
+  # role-specific:outline
+  - |-
+    {{
+      ({
+        'name': outline_database_name,
+        'username': outline_database_username,
+        'password': outline_database_password,
+      } if outline_enabled and outline_database_hostname == devture_postgres_identifier else omit)
+    }}
+  # /role-specific:outline
+
+  # role-specific:oxitraffic
+  - |-
+    {{
+      ({
+        'name': oxitraffic_database_name,
+        'username': oxitraffic_database_username,
+        'password': oxitraffic_database_password,
+      } if oxitraffic_enabled and oxitraffic_database_hostname == devture_postgres_identifier else omit)
+    }}
+  # /role-specific:oxitraffic
+
+  # role-specific:peertube
+  - |-
+    {{
+      ({
+        'name': peertube_config_database_name,
+        'username': peertube_config_database_username,
+        'password': peertube_config_database_password,
+      } if peertube_enabled else omit)
+    }}
+  # /role-specific:peertube
+
+  # role-specific:prometheus_postgres_exporter
+  - |-
+    {{
+      ({
+        'name': prometheus_postgres_exporter_database_name,
+        'username': prometheus_postgres_exporter_database_username,
+        'password': prometheus_postgres_exporter_database_password,
+      } if prometheus_postgres_exporter_enabled else omit)
+    }}
+  # /role-specific:prometheus_postgres_exporter
+
+  # role-specific:firezone
+  - |-
+    {{
+      ({
+        'name': firezone_database_name,
+        'username': firezone_database_username,
+        'password': firezone_database_password,
+      } if firezone_enabled else omit)
+    }}
+  # /role-specific:firezone
+
+  # role-specific:vaultwarden
+  - |-
+    {{
+      ({
+        'name': vaultwarden_database_name,
+        'username': vaultwarden_database_username,
+        'password': vaultwarden_database_password,
+      } if vaultwarden_enabled else omit)
+    }}
+  # /role-specific:vaultwarden
+
+  # role-specific:forgejo
+  - |-
+    {{
+      ({
+        'name': forgejo_config_database_name,
+        'username': forgejo_config_database_username,
+        'password': forgejo_config_database_password,
+      } if forgejo_enabled else omit)
+    }}
+  # /role-specific:forgejo
+
+  # role-specific:roundcube
+  - |-
+    {{
+      ({
+        'name': roundcube_database_name,
+        'username': roundcube_database_username,
+        'password': roundcube_database_password,
+      } if roundcube_enabled and roundcube_database_hostname == devture_postgres_identifier else omit)
+    }}
+  # /role-specific:roundcube
+
+  # role-specific:semaphore
+  - |-
+    {{
+      ({
+        'name': semaphore_database_name,
+        'username': semaphore_database_username,
+        'password': semaphore_database_password,
+      } if semaphore_enabled and semaphore_database_host == devture_postgres_identifier else omit)
+    }}
+  # /role-specific:semaphore
+
+devture_postgres_managed_databases_auto: "{{ mash_playbook_devture_postgres_managed_databases_auto_itemized | reject('equalto', omit) }}"
 
 ########################################################################
 #                                                                      #
-# /com.devture.ansible.role.postgres                                   #
+# /postgres                                                            #
 #                                                                      #
 ########################################################################
+# /role-specific:postgres
 
 
-
+# role-specific:postgres_backup
 ########################################################################
 #                                                                      #
-# com.devture.ansible.role.postgres_backup                             #
+# postgres_backup                                                      #
 #                                                                      #
 ########################################################################
 
 devture_postgres_backup_enabled: false
+
+devture_postgres_backup_postgres_role_include_name: galaxy/postgres
 
 devture_postgres_backup_identifier: "{{ mash_playbook_service_identifier_prefix }}postgres-backup"
 
@@ -398,17 +893,21 @@ devture_postgres_backup_architecture: "{{ mash_playbook_architecture }}"
 
 devture_postgres_backup_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}postgres-backup"
 
-devture_postgres_backup_systemd_required_services_list: |
-  {{
-    (['docker.service'])
-    +
-    ([(devture_postgres_identifier + '.service')] if devture_postgres_enabled else [])
-  }}
-
-devture_postgres_backup_container_network: "{{ devture_postgres_container_network }}"
-
 devture_postgres_backup_uid: "{{ mash_playbook_uid }}"
 devture_postgres_backup_gid: "{{ mash_playbook_gid }}"
+
+# role-specific:postgres
+devture_postgres_backup_systemd_required_services_list_auto: |
+  {{
+    ([(devture_postgres_identifier + '.service')] if (devture_postgres_enabled and devture_postgres_backup_connection_hostname == devture_postgres_connection_hostname) else [])
+  }}
+
+devture_postgres_backup_container_network: "{{ (devture_postgres_container_network if (devture_postgres_enabled and devture_postgres_backup_connection_hostname == devture_postgres_connection_hostname) else devture_postgres_backup_identifier) }}"
+
+devture_postgres_backup_container_additional_networks_auto: |-
+  {{
+      ([devture_postgres_container_network] if (devture_postgres_enabled and devture_postgres_backup_connection_hostname == devture_postgres_connection_hostname and devture_postgres_backup_container_network != devture_postgres_container_network) else [])
+  }}
 
 devture_postgres_backup_connection_hostname: "{{ devture_postgres_connection_hostname if devture_postgres_enabled else '' }}"
 devture_postgres_backup_connection_port: "{{ devture_postgres_connection_port if devture_postgres_enabled else 5432 }}"
@@ -418,18 +917,20 @@ devture_postgres_backup_connection_password: "{{ devture_postgres_connection_pas
 devture_postgres_backup_postgres_data_path: "{{ devture_postgres_data_path if devture_postgres_enabled else '' }}"
 
 devture_postgres_backup_databases: "{{ devture_postgres_managed_databases | map(attribute='name') if devture_postgres_enabled else [] }}"
+# /role-specific:postgres
 
 ########################################################################
 #                                                                      #
-# /com.devture.ansible.role.postgres_backup                            #
+# /postgres_backup                                                     #
 #                                                                      #
 ########################################################################
+# /role-specific:postgres_backup
 
 
-
+# role-specific:playbook_state_preserver
 ########################################################################
 #                                                                      #
-# com.devture.ansible.role.playbook_state_preserver                    #
+# playbook_state_preserver                                             #
 #                                                                      #
 ########################################################################
 
@@ -444,15 +945,17 @@ devture_playbook_state_preserver_commit_hash_preservation_dst: "{{ mash_playbook
 
 ########################################################################
 #                                                                      #
-# /com.devture.ansible.role.playbook_state_preserver                   #
+# /playbook_state_preserver                                            #
 #                                                                      #
 ########################################################################
+# /role-specific:playbook_state_preserver
 
 
 
+# role-specific:container_socket_proxy
 ########################################################################
 #                                                                      #
-# com.devture.ansible.role.container_socket_proxy                      #
+# container_socket_proxy                                               #
 #                                                                      #
 ########################################################################
 
@@ -470,15 +973,17 @@ devture_container_socket_proxy_api_containers_enabled: true
 
 ########################################################################
 #                                                                      #
-# /com.devture.ansible.role.container_socket_proxy                     #
+# /container_socket_proxy                                              #
 #                                                                      #
 ########################################################################
+# /role-specific:container_socket_proxy
 
 
 
+# role-specific:traefik
 ########################################################################
 #                                                                      #
-# com.devture.ansible.role.traefik                                     #
+# traefik                                                              #
 #                                                                      #
 ########################################################################
 
@@ -491,31 +996,35 @@ devture_traefik_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_servi
 devture_traefik_uid: "{{ mash_playbook_uid }}"
 devture_traefik_gid: "{{ mash_playbook_gid }}"
 
+# role-specific:container_socket_proxy
 devture_traefik_config_providers_docker_endpoint: "{{ devture_container_socket_proxy_endpoint if devture_container_socket_proxy_enabled else 'unix:///var/run/docker.sock' }}"
+# /role-specific:container_socket_proxy
 
-devture_traefik_container_additional_networks: |
+devture_traefik_container_additional_networks_auto: |
   {{
-    ([devture_container_socket_proxy_container_network] if devture_container_socket_proxy_enabled else [])
+    ([devture_container_socket_proxy_container_network] if devture_container_socket_proxy_enabled | default(false) else [])
   }}
 
 devture_traefik_systemd_required_services_list: |
   {{
     (['docker.service'])
     +
-    ([devture_container_socket_proxy_identifier + '.service'] if devture_container_socket_proxy_enabled else [])
+    ([devture_container_socket_proxy_identifier + '.service'] if devture_container_socket_proxy_enabled | default(false) else [])
   }}
 
 ########################################################################
 #                                                                      #
-# /com.devture.ansible.role.traefik                                    #
+# /traefik                                                             #
 #                                                                      #
 ########################################################################
+# /role-specific:traefik
 
 
 
+# role-specific:docker_sdk_for_python
 ########################################################################
 #                                                                      #
-# com.devture.ansible.role.docker_sdk_for_python                       #
+# docker_sdk_for_python                                                #
 #                                                                      #
 ########################################################################
 
@@ -523,15 +1032,17 @@ devture_docker_sdk_for_python_installation_enabled: false
 
 ########################################################################
 #                                                                      #
-# /com.devture.ansible.role.docker_sdk_for_python                      #
+# /docker_sdk_for_python                                               #
 #                                                                      #
 ########################################################################
+# /role-specific:docker_sdk_for_python
 
 
 
+# role-specific:timesync
 ########################################################################
 #                                                                      #
-# com.devture.ansible.role.timesync                                    #
+# timesync                                                             #
 #                                                                      #
 ########################################################################
 
@@ -541,12 +1052,14 @@ devture_timesync_installation_enabled: false
 
 ########################################################################
 #                                                                      #
-# /com.devture.ansible.role.timesync                                   #
+# /timesync                                                            #
 #                                                                      #
 ########################################################################
+# /role-specific:timesync
 
 
 
+# role-specific:adguard_home
 ########################################################################
 #                                                                      #
 # adguard-home                                                         #
@@ -567,52 +1080,23 @@ adguard_home_container_additional_networks: |
     ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
   }}
 
+# role-specific:traefik
 adguard_home_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
 adguard_home_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
 adguard_home_container_labels_traefik_entrypoints: "{{ devture_traefik_entrypoint_primary }}"
 adguard_home_container_labels_traefik_tls_certResolver: "{{ devture_traefik_certResolver_primary }}"
+# /role-specific:traefik
 
 ########################################################################
 #                                                                      #
 # /adguard-home                                                        #
 #                                                                      #
 ########################################################################
+# /role-specific:adguard_home
 
 
 
-########################################################################
-#                                                                      #
-# appsmith                                                             #
-#                                                                      #
-########################################################################
-
-appsmith_enabled: false
-
-appsmith_identifier: "{{ mash_playbook_service_identifier_prefix }}appsmith"
-
-appsmith_uid: "{{ mash_playbook_uid }}"
-appsmith_gid: "{{ mash_playbook_gid }}"
-
-appsmith_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}appsmith"
-
-appsmith_container_additional_networks_auto: |
-  {{
-    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
-  }}
-
-appsmith_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
-appsmith_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
-appsmith_container_labels_traefik_entrypoints: "{{ devture_traefik_entrypoint_primary }}"
-appsmith_container_labels_traefik_tls_certResolver: "{{ devture_traefik_certResolver_primary }}"
-
-########################################################################
-#                                                                      #
-# /appsmith                                                            #
-#                                                                      #
-########################################################################
-
-
-
+# role-specific:alertmanager
 ########################################################################
 #                                                                      #
 # alertmanager                                                         #
@@ -645,9 +1129,47 @@ alertmanager_container_additional_networks: |
 # /alertmanager                                                        #
 #                                                                      #
 ########################################################################
+# /role-specific:alertmanager
+
+
+# role-specific:appsmith
+########################################################################
+#                                                                      #
+# appsmith                                                             #
+#                                                                      #
+########################################################################
+
+appsmith_enabled: false
+
+appsmith_identifier: "{{ mash_playbook_service_identifier_prefix }}appsmith"
+
+appsmith_uid: "{{ mash_playbook_uid }}"
+appsmith_gid: "{{ mash_playbook_gid }}"
+
+appsmith_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}appsmith"
+
+appsmith_container_additional_networks_auto: |
+  {{
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+  }}
+
+# role-specific:traefik
+appsmith_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+appsmith_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+appsmith_container_labels_traefik_entrypoints: "{{ devture_traefik_entrypoint_primary }}"
+appsmith_container_labels_traefik_tls_certResolver: "{{ devture_traefik_certResolver_primary }}"
+# /role-specific:traefik
+
+########################################################################
+#                                                                      #
+# /appsmith                                                            #
+#                                                                      #
+########################################################################
+# /role-specific:appsmith
 
 
 
+# role-specific:authentik
 ########################################################################
 #                                                                      #
 # authentik                                                            #
@@ -663,10 +1185,12 @@ authentik_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_bas
 authentik_uid: "{{ mash_playbook_uid }}"
 authentik_gid: "{{ mash_playbook_gid }}"
 
+# role-specific:postgres
 authentik_database_hostname: "{{ devture_postgres_identifier if devture_postgres_enabled else '' }}"
 authentik_database_port: "{{ '5432' if devture_postgres_enabled else '' }}"
 authentik_database_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'db.authentik', rounds=655555) | to_uuid }}"
 authentik_database_username: "{{ authentik_identifier }}"
+# /role-specific:postgres
 
 authentik_server_systemd_required_services_list_auto: |
   {{
@@ -680,19 +1204,23 @@ authentik_container_additional_networks_auto: |
     ([devture_postgres_container_network] if devture_postgres_enabled and authentik_database_hostname == devture_postgres_identifier and authentik_container_network != devture_postgres_container_network else [])
   }}
 
+# role-specific:traefik
 authentik_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
 authentik_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
 authentik_container_labels_traefik_entrypoints: "{{ devture_traefik_entrypoint_primary }}"
 authentik_container_labels_traefik_tls_certResolver: "{{ devture_traefik_certResolver_primary }}"
+# /role-specific:traefik
 
 ########################################################################
 #                                                                      #
 # /authentik                                                           #
 #                                                                      #
 ########################################################################
+# /role-specific:authentik
 
 
 
+# role-specific:backup_borg
 ########################################################################
 #                                                                      #
 # backup-borg                                                          #
@@ -715,37 +1243,41 @@ backup_borg_storage_archive_name_format: "{{ mash_playbook_service_identifier_pr
 
 backup_borg_container_image_self_build: "{{ mash_playbook_architecture not in ['amd64', 'arm32', 'arm64'] }}"
 
+# role-specific:postgres
 backup_borg_postgresql_enabled: "{{ devture_postgres_enabled }}"
 backup_borg_postgresql_databases_hostname: "{{ devture_postgres_connection_hostname if devture_postgres_enabled else '' }}"
 backup_borg_postgresql_databases_username: "{{ devture_postgres_connection_username if devture_postgres_enabled else '' }}"
 backup_borg_postgresql_databases_password: "{{ devture_postgres_connection_password if devture_postgres_enabled else '' }}"
 backup_borg_postgresql_databases_port: "{{ devture_postgres_connection_port if devture_postgres_enabled else 5432 }}"
 backup_borg_postgresql_databases: "{{ devture_postgres_managed_databases | map(attribute='name') if devture_postgres_enabled else [] }}"
+# /role-specific:postgres
 
+# role-specific:mariadb
 backup_borg_mysql_enabled: "{{ mariadb_enabled }}"
 backup_borg_mysql_databases_hostname: "{{ mariadb_identifier if mariadb_enabled else '' }}"
 backup_borg_mysql_databases_username: "root"
 backup_borg_mysql_databases_password: "{{ mariadb_root_passsword if mariadb_enabled else '' }}"
 backup_borg_mysql_databases_port: 3306
 backup_borg_mysql_databases: "{{ mariadb_managed_databases | map(attribute='name') if mariadb_enabled else [] }}"
+# /role-specific:mariadb
 
 backup_borg_location_source_directories:
   - "{{ mash_playbook_base_path }}"
 
 backup_borg_location_exclude_patterns: |
   {{
-    ([devture_postgres_data_path] if devture_postgres_enabled else [])
+    ([devture_postgres_data_path] if devture_postgres_enabled | default(false) else [])
     +
-    ([mariadb_data_path] if mariadb_enabled else [])
+    ([mariadb_data_path] if mariadb_enabled | default(false) else [])
   }}
 
 backup_borg_systemd_required_services_list: |
   {{
     ['docker.service']
     +
-    ([devture_postgres_identifier ~ '.service'] if devture_postgres_enabled else [])
+    ([devture_postgres_identifier ~ '.service'] if devture_postgres_enabled | default(false) else [])
     +
-    ([mariadb_identifier ~ '.service'] if mariadb_enabled else [])
+    ([mariadb_identifier ~ '.service'] if mariadb_enabled | default(false) else [])
   }}
 
 ########################################################################
@@ -753,7 +1285,11 @@ backup_borg_systemd_required_services_list: |
 # /backup-borg                                                         #
 #                                                                      #
 ########################################################################
+# /role-specific:backup_borg
 
+
+
+# role-specific:changedetection
 ########################################################################
 #                                                                      #
 # Changedetection.io                                                   #
@@ -774,18 +1310,23 @@ changedetection_container_additional_networks_auto: |
     ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
   }}
 
+# role-specific:traefik
 changedetection_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
 changedetection_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
 changedetection_container_labels_traefik_entrypoints: "{{ devture_traefik_entrypoint_primary }}"
 changedetection_container_labels_traefik_tls_certResolver: "{{ devture_traefik_certResolver_primary }}"
+# /role-specific:traefik
 
 ########################################################################
 #                                                                      #
 # /Changedetection.io                                                  #
 #                                                                      #
 ########################################################################
+# /role-specific:changedetection
 
 
+
+# role-specific:clickhouse
 ########################################################################
 #                                                                      #
 # clickhouse                                                           #
@@ -811,9 +1352,11 @@ clickhouse_gid: "{{ mash_playbook_gid }}"
 # /clickhouse                                                          #
 #                                                                      #
 ########################################################################
+# /role-specific:clickhouse
 
 
 
+# role-specific:collabora_online
 ########################################################################
 #                                                                      #
 # collabora-online                                                     #
@@ -834,19 +1377,23 @@ collabora_online_container_additional_networks: |
     ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
   }}
 
+# role-specific:traefik
 collabora_online_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
 collabora_online_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
 collabora_online_container_labels_traefik_entrypoints: "{{ devture_traefik_entrypoint_primary }}"
 collabora_online_container_labels_traefik_tls_certResolver: "{{ devture_traefik_certResolver_primary }}"
+# /role-specific:traefik
 
 ########################################################################
 #                                                                      #
 # /collabora-online                                                    #
 #                                                                      #
 ########################################################################
+# /role-specific:collabora_online
 
 
 
+# role-specific:docker_registry
 ########################################################################
 #                                                                      #
 # docker-registry                                                      #
@@ -867,19 +1414,23 @@ docker_registry_container_additional_networks: |
     ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
   }}
 
+# role-specific:traefik
 docker_registry_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
 docker_registry_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
 docker_registry_container_labels_traefik_entrypoints: "{{ devture_traefik_entrypoint_primary }}"
 docker_registry_container_labels_traefik_tls_certResolver: "{{ devture_traefik_certResolver_primary }}"
+# /role-specific:traefik
 
 ########################################################################
 #                                                                      #
 # /docker-registry                                                     #
 #                                                                      #
 ########################################################################
+# /role-specific:docker_registry
 
 
 
+# role-specific:docker_registry_browser
 ########################################################################
 #                                                                      #
 # docker-registry-browser                                              #
@@ -900,19 +1451,22 @@ docker_registry_browser_container_additional_networks: |
     ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
   }}
 
+# role-specific:traefik
 docker_registry_browser_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
 docker_registry_browser_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
 docker_registry_browser_container_labels_traefik_entrypoints: "{{ devture_traefik_entrypoint_primary }}"
 docker_registry_browser_container_labels_traefik_tls_certResolver: "{{ devture_traefik_certResolver_primary }}"
+# /role-specific:traefik
 
 ########################################################################
 #                                                                      #
 # /docker-registry-browser                                             #
 #                                                                      #
 ########################################################################
+# /role-specific:docker_registry_browser
 
 
-
+# role-specific:docker_registry_purger
 ########################################################################
 #                                                                      #
 # docker-registry-purger                                               #
@@ -933,9 +1487,75 @@ docker_registry_purger_gid: "{{ mash_playbook_gid }}"
 # /docker-registry-purger                                              #
 #                                                                      #
 ########################################################################
+# /role-specific:docker_registry_purger
 
 
+# role-specific:echoip
+########################################################################
+#                                                                      #
+# echoip                                                               #
+#                                                                      #
+########################################################################
 
+echoip_enabled: false
+
+echoip_identifier: "{{ mash_playbook_service_identifier_prefix }}echoip"
+
+echoip_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}echoip"
+
+echoip_uid: "{{ mash_playbook_uid }}"
+echoip_gid: "{{ mash_playbook_gid }}"
+
+echoip_systemd_required_services_list: |
+  {{
+    (['docker.service'])
+  }}
+
+echoip_container_additional_networks: |
+  {{
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+  }}
+
+# role-specific:traefik
+echoip_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+echoip_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+echoip_container_labels_traefik_entrypoints: "{{ devture_traefik_entrypoint_primary }}"
+echoip_container_labels_traefik_tls_certResolver: "{{ devture_traefik_certResolver_primary }}"
+# /role-specific:traefik
+
+########################################################################
+#                                                                      #
+# /echoip                                                              #
+#                                                                      #
+########################################################################
+# /role-specific:echoip
+
+
+# role-specific:exim_relay
+########################################################################
+#                                                                      #
+# exim_relay                                                           #
+#                                                                      #
+########################################################################
+
+exim_relay_enabled: false
+
+exim_relay_identifier: "{{ mash_playbook_service_identifier_prefix }}exim-relay"
+
+exim_relay_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}exim-relay"
+
+exim_relay_uid: "{{ mash_playbook_uid }}"
+exim_relay_gid: "{{ mash_playbook_gid }}"
+
+########################################################################
+#                                                                      #
+# /exim_relay                                                          #
+#                                                                      #
+########################################################################
+# /role-specific:exim_relay
+
+
+# role-specific:firezone
 ########################################################################
 #                                                                      #
 # firezone                                                             #
@@ -952,38 +1572,42 @@ firezone_uid: "{{ mash_playbook_uid }}"
 firezone_gid: "{{ mash_playbook_gid }}"
 firezone_generic_secret: "{{ mash_playbook_generic_secret_key }}"
 
+# role-specific:postgres
 firezone_database_host: "{{ devture_postgres_identifier if devture_postgres_enabled else '' }}"
 firezone_database_port: "{{ '5432' if devture_postgres_enabled else '' }}"
 firezone_database_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'fz.db.user', rounds=655555) | to_uuid }}"
-firezone_database_user: "{{ firezone_identifier }}"
+firezone_database_username: "{{ firezone_identifier }}"
+# /role-specific:postgres
 
-firezone_systemd_required_services_list: |
+firezone_systemd_required_services_list_auto: |
   {{
-    (['docker.service'])
-    +
-    ([devture_postgres_identifier ~ '.service'] if devture_postgres_enabled and firezone_database_host == devture_postgres_identifier else [])
+    ([devture_postgres_identifier ~ '.service'] if devture_postgres_enabled | default(false) and firezone_database_host == devture_postgres_identifier else [])
   }}
 
-firezone_container_additional_networks: |
+firezone_container_additional_networks_auto: |
   {{
     ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
     +
-    ([devture_postgres_container_network] if devture_postgres_enabled and firezone_database_host == devture_postgres_identifier and firezone_container_network != devture_postgres_container_network else [])
+    ([devture_postgres_container_network] if devture_postgres_enabled | default(false) and firezone_database_host == devture_postgres_identifier and firezone_container_network != devture_postgres_container_network else [])
   }}
 
+# role-specific:traefik
 firezone_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
 firezone_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
 firezone_container_labels_traefik_entrypoints: "{{ devture_traefik_entrypoint_primary }}"
 firezone_container_labels_traefik_tls_certResolver: "{{ devture_traefik_certResolver_primary }}"
+# /role-specific:traefik
 
 ########################################################################
 #                                                                      #
 # /firezone                                                            #
 #                                                                      #
 ########################################################################
+# /role-specific:firezone
 
 
 
+# role-specific:focalboard
 ########################################################################
 #                                                                      #
 # focalboard                                                           #
@@ -1004,31 +1628,87 @@ focalboard_systemd_required_systemd_services_list_auto: |
     ([devture_postgres_identifier ~ '.service'] if devture_postgres_enabled and focalboard_database_hostname == devture_postgres_identifier else [])
   }}
 
+# role-specific:postgres
 focalboard_database_type: "{{ 'postgres' if devture_postgres_enabled else '' }}"
 focalboard_database_hostname: "{{ devture_postgres_identifier if devture_postgres_enabled else '' }}"
 focalboard_database_port: "{{ '5432' if devture_postgres_enabled else '' }}"
 focalboard_database_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'db.focalboard', rounds=655555) | to_uuid }}"
+# /role-specific:postgres
 
 focalboard_container_additional_networks_auto: |
   {{
     ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
     +
-    ([devture_postgres_container_network] if devture_postgres_enabled and focalboard_database_hostname == devture_postgres_identifier else [])
+    ([devture_postgres_container_network] if devture_postgres_enabled | default(false) and focalboard_database_hostname == devture_postgres_identifier else [])
   }}
 
+# role-specific:traefik
 focalboard_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
 focalboard_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
 focalboard_container_labels_traefik_entrypoints: "{{ devture_traefik_entrypoint_primary }}"
 focalboard_container_labels_traefik_tls_certResolver: "{{ devture_traefik_certResolver_primary }}"
+# /role-specific:traefik
 
 ########################################################################
 #                                                                      #
 # /focalboard                                                          #
 #                                                                      #
 ########################################################################
+# /role-specific:focalboard
 
 
 
+# role-specific:freshrss
+########################################################################
+#                                                                      #
+# freshrss                                                             #
+#                                                                      #
+########################################################################
+
+freshrss_enabled: false
+
+freshrss_identifier: "{{ mash_playbook_service_identifier_prefix }}freshrss"
+
+freshrss_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}freshrss"
+
+# freshrss_uid and freshrss_gid are intentionally not being set here.
+# FreshRSS can only work with a specific user and group, as hardcoded in the role defaults.
+freshrss_uid: "0"
+freshrss_gid: "33"
+
+freshrss_systemd_required_services_list: |
+  {{
+    (['docker.service'])
+    +
+    ([devture_postgres_identifier ~ '.service'] if devture_postgres_enabled and freshrss_database_hostname == devture_postgres_identifier else [])
+  }}
+
+freshrss_container_additional_networks: |
+  {{
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+    +
+    ([devture_postgres_container_network] if devture_postgres_enabled and freshrss_database_hostname == devture_postgres_identifier and freshrss_container_network != devture_postgres_container_network else [])
+  }}
+
+freshrss_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+freshrss_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+freshrss_container_labels_traefik_entrypoints: "{{ devture_traefik_entrypoint_primary }}"
+freshrss_container_labels_traefik_tls_certResolver: "{{ devture_traefik_certResolver_primary }}"
+
+freshrss_database_hostname: "{{ devture_postgres_connection_hostname if devture_postgres_enabled else '' }}"
+
+# Intentionally not auto-generating freshrss_database_password.
+# It's meant to be explicitly defined, so that it can be used in the setup wizard after installation.
+
+########################################################################
+#                                                                      #
+# /freshrss                                                            #
+#                                                                      #
+########################################################################
+# /role-specific:freshrss
+
+
+# role-specific:funkwhale
 ########################################################################
 #                                                                      #
 # funkwhale                                                            #
@@ -1059,7 +1739,6 @@ funkwhale_frontend_systemd_required_services_list_auto: |
     ([devture_postgres_identifier ~ '.service'] if devture_postgres_enabled and funkwhale_database_hostname == devture_postgres_identifier else [])
   }}
 
-
 funkwhale_api_container_additional_networks_auto: |
   {{
     ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
@@ -1089,9 +1768,10 @@ funkwhale_frontend_container_labels_traefik_tls_certResolver: "{{ devture_traefi
 # /funkwhale                                                           #
 #                                                                      #
 ########################################################################
+# /role-specific:funkwhale
 
 
-
+# role-specific:gitea
 ########################################################################
 #                                                                      #
 # gitea                                                                #
@@ -1136,9 +1816,11 @@ gitea_config_database_password: "{{ '%s' | format(mash_playbook_generic_secret_k
 # /gitea                                                               #
 #                                                                      #
 ########################################################################
+# /role-specific:gitea
 
 
 
+# role-specific:gotosocial
 ########################################################################
 #                                                                      #
 # gotosocial                                                           #
@@ -1154,23 +1836,23 @@ gotosocial_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_ba
 gotosocial_uid: "{{ mash_playbook_uid }}"
 gotosocial_gid: "{{ mash_playbook_gid }}"
 
-gotosocial_database_host: "{{ devture_postgres_identifier if devture_postgres_enabled else '' }}"
-gotosocial_database_port: "{{ '5432' if devture_postgres_enabled else '' }}"
-gotosocial_database_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'db.gotosocial', rounds=655555) | to_uuid }}"
-gotosocial_database_username: "{{ gotosocial_identifier }}"
-
-gotosocial_systemd_required_services_list: |
+gotosocial_systemd_required_services_list_auto: |
   {{
-    (['docker.service'])
-    +
     ([devture_postgres_identifier ~ '.service'] if devture_postgres_enabled and gotosocial_database_host == devture_postgres_identifier else [])
   }}
 
-gotosocial_container_additional_networks: |
+gotosocial_systemd_wanted_services_list_auto: |
+  {{
+    ([(exim_relay_identifier | default('mash-exim-relay')) ~ '.service'] if (exim_relay_enabled | default(false) and gotosocial_smtp_host == exim_relay_identifier | default('mash-exim-relay')) else [])
+  }}
+
+gotosocial_container_additional_networks_auto: |
   {{
     ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
     +
     ([devture_postgres_container_network] if devture_postgres_enabled and gotosocial_database_host == devture_postgres_identifier and gotosocial_container_network != devture_postgres_container_network else [])
+    +
+    ([exim_relay_container_network | default('mash-exim-relay')] if (exim_relay_enabled | default(false) and gotosocial_smtp_host == exim_relay_identifier | default('mash-exim-relay') and gotosocial_container_network != exim_relay_container_network) else [])
   }}
 
 gotosocial_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
@@ -1178,14 +1860,27 @@ gotosocial_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_pr
 gotosocial_container_labels_traefik_entrypoints: "{{ devture_traefik_entrypoint_primary }}"
 gotosocial_container_labels_traefik_tls_certResolver: "{{ devture_traefik_certResolver_primary }}"
 
+gotosocial_database_host: "{{ devture_postgres_identifier if devture_postgres_enabled else '' }}"
+gotosocial_database_port: "{{ '5432' if devture_postgres_enabled else '' }}"
+gotosocial_database_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'db.gotosocial', rounds=655555) | to_uuid }}"
+gotosocial_database_username: "{{ gotosocial_identifier }}"
+
+# role-specific:exim_relay
+gotosocial_smtp_host: "{{ exim_relay_identifier if exim_relay_enabled else '' }}"
+gotosocial_smtp_port: 8025
+gotosocial_smtp_from: "{{ exim_relay_sender_address if exim_relay_enabled else '' }}"
+# /role-specific:exim_relay
+
 ########################################################################
 #                                                                      #
 # /gotosocial                                                          #
 #                                                                      #
 ########################################################################
+# /role-specific:gotosocial
 
 
 
+# role-specific:grafana
 ########################################################################
 #                                                                      #
 # grafana                                                              #
@@ -1220,9 +1915,11 @@ grafana_container_labels_traefik_tls_certResolver: "{{ devture_traefik_certResol
 # /grafana                                                             #
 #                                                                      #
 ########################################################################
+# /role-specific:grafana
 
 
 
+# role-specific:healthchecks
 ########################################################################
 #                                                                      #
 # healthchecks                                                         #
@@ -1238,18 +1935,23 @@ healthchecks_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_
 healthchecks_uid: "{{ mash_playbook_uid }}"
 healthchecks_gid: "{{ mash_playbook_gid }}"
 
-healthchecks_systemd_required_services_list: |
+healthchecks_systemd_required_systemd_services_list_auto: |
   {{
-    (['docker.service'])
-    +
     ([devture_postgres_identifier ~ '.service'] if devture_postgres_enabled and healthchecks_database_hostname == devture_postgres_identifier else [])
   }}
 
-healthchecks_container_additional_networks: |
+healthchecks_systemd_wanted_systemd_services_list_auto: |
+  {{
+    ([(exim_relay_identifier | default('mash-exim-relay')) ~ '.service'] if (exim_relay_enabled | default(false) and healthchecks_environment_variable_email_host == exim_relay_identifier | default('mash-exim-relay')) else [])
+  }}
+
+healthchecks_container_additional_networks_auto: |
   {{
     ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
     +
     ([devture_postgres_container_network] if devture_postgres_enabled and healthchecks_database_hostname == devture_postgres_identifier and healthchecks_container_network != devture_postgres_container_network else [])
+    +
+    ([exim_relay_container_network | default('mash-exim-relay')] if (exim_relay_enabled | default(false) and healthchecks_environment_variable_email_host == exim_relay_identifier | default('mash-exim-relay') and healthchecks_container_network != exim_relay_container_network) else [])
   }}
 
 healthchecks_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
@@ -1262,14 +1964,24 @@ healthchecks_database_password: "{{ '%s' | format(mash_playbook_generic_secret_k
 
 healthchecks_environment_variable_secret_key: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'healthchecks', rounds=655555) | to_uuid }}"
 
+# role-specific:exim_relay
+healthchecks_environment_variable_default_from_email: "{{ exim_relay_sender_address if exim_relay_enabled else '' }}"
+healthchecks_environment_variable_email_host: "{{ exim_relay_identifier if exim_relay_enabled else '' }}"
+healthchecks_environment_variable_email_port: "{{ 8025 if exim_relay_enabled else '587' }}"
+healthchecks_environment_variable_email_use_tls: "{{ false if exim_relay_enabled else true }}"
+healthchecks_environment_variable_email_use_verification: "{{ false if exim_relay_enabled else true }}"
+# /role-specific:exim_relay
+
 ########################################################################
 #                                                                      #
 # /healthchecks                                                        #
 #                                                                      #
 ########################################################################
+# /role-specific:healthchecks
 
 
 
+# role-specific:hubsite
 ########################################################################
 #                                                                      #
 # hubsite                                                              #
@@ -1303,6 +2015,7 @@ hubsite_container_labels_traefik_tls_certResolver: "{{ devture_traefik_certResol
 # Services
 ##########
 
+# role-specific:adguard_home
 # Adguard home
 hubsite_service_adguard_home_enabled: "{{ adguard_home_enabled }}"
 hubsite_service_adguard_home_name: Adguard Home
@@ -1310,7 +2023,9 @@ hubsite_service_adguard_home_url: "https://{{ adguard_home_hostname }}{{ adguard
 hubsite_service_adguard_home_logo_location: "{{ role_path }}/assets/shield.png"
 hubsite_service_adguard_home_description: "A network-wide DNS software for blocking ads & tracking"
 hubsite_service_adguard_home_priority: 1000
+# /role-specific:adguard_home
 
+# role-specific:authentik
 # authentik
 hubsite_service_authentik_enabled: "{{ authentik_enabled }}"
 hubsite_service_authentik_name: Authentik
@@ -1318,7 +2033,9 @@ hubsite_service_authentik_url: "https://{{ authentik_hostname }}"
 hubsite_service_authentik_logo_location: "{{ role_path }}/assets/authentik.png"
 hubsite_service_authentik_description: "An open source identity provider"
 hubsite_service_authentik_priority: 1000
+# /role-specific:authentik
 
+# role-specific:appsmith
 # Appsmith
 hubsite_service_appsmith_enabled: "{{ appsmith_enabled }}"
 hubsite_service_appsmith_name: Appsmith
@@ -1326,7 +2043,9 @@ hubsite_service_appsmith_url: "https://{{ appsmith_hostname }}{{ appsmith_path_p
 hubsite_service_appsmith_logo_location: "{{ role_path }}/assets/appsmith.png"
 hubsite_service_appsmith_description: "Platform for building and deploying custom internal tools and applications without writing code"
 hubsite_service_appsmith_priority: 1000
+# /role-specific:appsmith
 
+# role-specific:docker_registry_browser
 # Docker Registry Browser
 hubsite_service_docker_registry_browser_enabled: "{{ docker_registry_browser_enabled }}"
 hubsite_service_docker_registry_browser_name: Docker Registry Browser
@@ -1334,7 +2053,9 @@ hubsite_service_docker_registry_browser_url: "https://{{ docker_registry_browser
 hubsite_service_docker_registry_browser_logo_location: "{{ role_path }}/assets/docker.png"
 hubsite_service_docker_registry_browser_description: "Browse docker images"
 hubsite_service_docker_registry_browser_priority: 1000
+# /role-specific:docker_registry_browser
 
+# role-specific:firezone
 # Firezone
 hubsite_service_firezone_enabled: "{{ firezone_enabled }}"
 hubsite_service_firezone_name: Firezone
@@ -1342,7 +2063,9 @@ hubsite_service_firezone_url: "https://{{ firezone_hostname }}"
 hubsite_service_firezone_logo_location: "{{ role_path }}/assets/firezone.png"
 hubsite_service_firezone_description: "A self-hosted VPN server, based on Wireguard"
 hubsite_service_firezone_priority: 1000
+# /role-specific:firezone
 
+# role-specific:focalboard
 # Focalboard
 hubsite_service_focalboard_enabled: "{{ focalboard_enabled }}"
 hubsite_service_focalboard_name: Focalboard
@@ -1350,7 +2073,19 @@ hubsite_service_focalboard_url: "https://{{ focalboard_hostname }}{{ focalboard_
 hubsite_service_focalboard_logo_location: "{{ role_path }}/assets/focalboard.png"
 hubsite_service_focalboard_description: "An open source, self-hosted alternative to Trello, Notion, and Asana."
 hubsite_service_focalboard_priority: 1000
+# /role-specific:focalboard
 
+# role-specific:freshrss
+# FreshRSS
+hubsite_service_freshrss_enabled: "{{ freshrss_enabled }}"
+hubsite_service_freshrss_name: FreshRSS
+hubsite_service_freshrss_url: "https://{{ freshrss_hostname }}{{ freshrss_path_prefix }}"
+hubsite_service_freshrss_logo_location: "{{ role_path }}/assets/freshrss.png"
+hubsite_service_freshrss_description: "RSS and Atom feed aggregator."
+hubsite_service_freshrss_priority: 1000
+# /role-specific:freshrss
+
+# role-specific:funkwhale
 # Funkwhale
 hubsite_service_funkwhale_enabled: "{{ funkwhale_enabled }}"
 hubsite_service_funkwhale_name: Funkwhale
@@ -1358,7 +2093,9 @@ hubsite_service_funkwhale_url: "https://{{ funkwhale_hostname }}"
 hubsite_service_funkwhale_logo_location: "{{ role_path }}/assets/funkwhale.png"
 hubsite_service_funkwhale_description: "Listen and share music with a selfhosted streaming server"
 hubsite_service_funkwhale_priority: 1000
+# /role-specific:funkwhale
 
+# role-specific:gitea
 # Gitea
 hubsite_service_gitea_enabled: "{{ gitea_enabled }}"
 hubsite_service_gitea_name: Gitea
@@ -1366,7 +2103,9 @@ hubsite_service_gitea_url: "https://{{ gitea_hostname }}{{ gitea_path_prefix }}"
 hubsite_service_gitea_logo_location: "{{ role_path }}/assets/gitea.png"
 hubsite_service_gitea_description: "A git service"
 hubsite_service_gitea_priority: 1000
+# /role-specific:gitea
 
+# role-specific:gotosocial
 # GoToSocial
 hubsite_service_gotosocial_enabled: "{{ gotosocial_enabled }}"
 hubsite_service_gotosocial_name: GoToSocial
@@ -1374,7 +2113,9 @@ hubsite_service_gotosocial_url: "https://{{ gotosocial_hostname }}"
 hubsite_service_gotosocial_logo_location: "{{ role_path }}/assets/gotosocial.png"
 hubsite_service_gotosocial_description: "A fediverse server"
 hubsite_service_gotosocial_priority: 1000
+# /role-specific:gotosocial
 
+# role-specific:grafana
 # Grafana
 hubsite_service_grafana_enabled: "{{ grafana_enabled }}"
 hubsite_service_grafana_name: Grafana
@@ -1382,7 +2123,9 @@ hubsite_service_grafana_url: "https://{{ grafana_hostname }}{{ grafana_path_pref
 hubsite_service_grafana_logo_location: "{{ role_path }}/assets/grafana.png"
 hubsite_service_grafana_description: "Check how your server is doing"
 hubsite_service_grafana_priority: 1000
+# /role-specific:grafana
 
+# role-specific:healthchecks
 # Healthchecks
 hubsite_service_healthchecks_enabled: "{{ healthchecks_enabled }}"
 hubsite_service_healthchecks_name: Healthchecks
@@ -1390,7 +2133,9 @@ hubsite_service_healthchecks_url: "https://{{ healthchecks_hostname }}{{ healthc
 hubsite_service_healthchecks_logo_location: "{{ role_path }}/assets/healthchecks.png"
 hubsite_service_healthchecks_description: "A simple and Effective Cron Job Monitoring solution"
 hubsite_service_healthchecks_priority: 1000
+# /role-specific:healthchecks
 
+# role-specific:keycloak
 # Keycloak
 hubsite_service_keycloak_enabled: "{{ keycloak_enabled }}"
 hubsite_service_keycloak_name: Keycloak
@@ -1398,7 +2143,9 @@ hubsite_service_keycloak_url: "https://{{ keycloak_hostname }}{{ keycloak_path_p
 hubsite_service_keycloak_logo_location: "{{ role_path }}/assets/keycloak.png"
 hubsite_service_keycloak_description: "An open source identity and access management solution."
 hubsite_service_keycloak_priority: 1000
+# /role-specific:keycloak
 
+# role-specific:miniflux
 # Miniflux
 hubsite_service_miniflux_enabled: "{{ miniflux_enabled }}"
 hubsite_service_miniflux_name: Miniflux
@@ -1406,7 +2153,9 @@ hubsite_service_miniflux_url: "https://{{ miniflux_hostname }}{{ miniflux_path_p
 hubsite_service_miniflux_logo_location: "{{ role_path }}/assets/miniflux.png"
 hubsite_service_miniflux_description: "An opinionated feed reader"
 hubsite_service_miniflux_priority: 1000
+# /role-specific:miniflux
 
+# role-specific:n8n
 # n8n
 hubsite_service_n8n_enabled: "{{ n8n_enabled }}"
 hubsite_service_n8n_name: n8n
@@ -1414,7 +2163,9 @@ hubsite_service_n8n_url: "https://{{ n8n_hostname }}{{ n8n_path_prefix }}"
 hubsite_service_n8n_logo_location: "{{ role_path }}/assets/n8n.png"
 hubsite_service_n8n_description: "Workflow automation for technical people."
 hubsite_service_n8n_priority: 1000
+# /role-specific:n8n
 
+# role-specific:linkding
 # Linkding
 hubsite_service_linkding_enabled: "{{ linkding_enabled }}"
 hubsite_service_linkding_name: Linkding
@@ -1422,7 +2173,9 @@ hubsite_service_linkding_url: "https://{{ linkding_hostname }}{{ linkding_path_p
 hubsite_service_linkding_logo_location: "{{ role_path }}/assets/linkding.png"
 hubsite_service_linkding_description: "Bookmark manager that is designed be to be minimal and fast."
 hubsite_service_linkding_priority: 1000
+# /role-specific:linkding
 
+# role-specific:nextcloud
 # Nextcloud
 hubsite_service_nextcloud_enabled: "{{ nextcloud_enabled }}"
 hubsite_service_nextcloud_name: Nextcloud
@@ -1430,7 +2183,9 @@ hubsite_service_nextcloud_url: "https://{{ nextcloud_hostname }}{{ nextcloud_pat
 hubsite_service_nextcloud_logo_location: "{{ role_path }}/assets/nextcloud.png"
 hubsite_service_nextcloud_description: "Sync your files & much more"
 hubsite_service_nextcloud_priority: 1000
+# /role-specific:nextcloud
 
+# role-specific:owncast
 # Owncast
 hubsite_service_owncast_enabled: "{{ owncast_enabled }}"
 hubsite_service_owncast_name: Owncast
@@ -1438,7 +2193,9 @@ hubsite_service_owncast_url: "https://{{ owncast_hostname }}"
 hubsite_service_owncast_logo_location: "{{ role_path }}/assets/owncast.png"
 hubsite_service_owncast_description: "Livestream & Chat"
 hubsite_service_owncast_priority: 1000
+# /role-specific:owncast
 
+# role-specific:peertube
 # Peertube
 hubsite_service_peertube_enabled: "{{ peertube_enabled }}"
 hubsite_service_peertube_name: Peertube
@@ -1446,7 +2203,9 @@ hubsite_service_peertube_url: "https://{{ peertube_hostname }}{{ peertube_path_p
 hubsite_service_peertube_logo_location: "{{ role_path }}/assets/peertube.png"
 hubsite_service_peertube_description: "Watch and upload videos"
 hubsite_service_peertube_priority: 1000
+# /role-specific:peertube
 
+# role-specific:radicale
 # Radicale
 hubsite_service_radicale_enabled: "{{ radicale_enabled }}"
 hubsite_service_radicale_name: Radicale
@@ -1454,7 +2213,9 @@ hubsite_service_radicale_url: "https://{{ radicale_hostname }}{{ radicale_path_p
 hubsite_service_radicale_logo_location: "{{ role_path }}/assets/radicale.png"
 hubsite_service_radicale_description: "Sync contacts and calendars"
 hubsite_service_radicale_priority: 1000
+# /role-specific:radicale
 
+# role-specific:syncthing
 # Syncthing
 hubsite_service_syncthing_enabled: "{{ syncthing_enabled }}"
 hubsite_service_syncthing_name: Syncthing
@@ -1462,7 +2223,9 @@ hubsite_service_syncthing_url: "https://{{ syncthing_hostname }}{{ syncthing_pat
 hubsite_service_syncthing_logo_location: "{{ role_path }}/assets/syncthing.png"
 hubsite_service_syncthing_description: "Sync your files"
 hubsite_service_syncthing_priority: 1000
+# /role-specific:syncthing
 
+# role-specific:uptime_kuma
 # Uptime Kuma
 hubsite_service_uptime_kuma_enabled: "{{ uptime_kuma_enabled }}"
 hubsite_service_uptime_kuma_name: Uptime Kuma
@@ -1470,7 +2233,9 @@ hubsite_service_uptime_kuma_url: "https://{{ uptime_kuma_hostname }}{{ uptime_ku
 hubsite_service_uptime_kuma_logo_location: "{{ role_path }}/assets/uptime-kuma.png"
 hubsite_service_uptime_kuma_description: "Check the status of the services"
 hubsite_service_uptime_kuma_priority: 1000
+# /role-specific:uptime_kuma
 
+# role-specific:vaultwarden
 # Vaultwarden
 # The vaultwarden service link is deactivated by default for security reasons, see: https://github.com/dani-garcia/vaultwarden/wiki/Hardening-Guide#hiding-under-a-subdir
 hubsite_service_vaultwarden_enabled: false
@@ -1479,7 +2244,9 @@ hubsite_service_vaultwarden_url: "https://{{ vaultwarden_hostname }}{{ vaultward
 hubsite_service_vaultwarden_logo_location: "{{ role_path }}/assets/vaultwarden.png"
 hubsite_service_vaultwarden_description: "Securely access your passwords"
 hubsite_service_vaultwarden_priority: 1000
+# /role-specific:vaultwarden
 
+# role-specific:woodpecker_ci_server
 # Woodpecker CI
 hubsite_service_woodpecker_ci_enabled: "{{ devture_woodpecker_ci_server_enabled }}"
 hubsite_service_woodpecker_ci_name: Woodpecker CI
@@ -1487,64 +2254,347 @@ hubsite_service_woodpecker_ci_url: "https://{{ devture_woodpecker_ci_server_host
 hubsite_service_woodpecker_ci_logo_location: "{{ role_path }}/assets/woodpecker.png"
 hubsite_service_woodpecker_ci_description: "Check you CI"
 hubsite_service_woodpecker_ci_priority: 1000
+# /role-specific:woodpecker_ci_server
 
-hubsite_service_list_auto: |
-  {{
-    ([{'name': hubsite_service_adguard_home_name, 'url': hubsite_service_adguard_home_url, 'logo_location': hubsite_service_adguard_home_logo_location, 'description': hubsite_service_adguard_home_description, 'priority': hubsite_service_adguard_home_priority}] if hubsite_service_adguard_home_enabled else [])
-    +
-    ([{'name': hubsite_service_authentik_name, 'url': hubsite_service_authentik_url, 'logo_location': hubsite_service_authentik_logo_location, 'description': hubsite_service_authentik_description, 'priority': hubsite_service_adguard_home_priority}] if hubsite_service_authentik_enabled else [])
-    +
-    ([{'name': hubsite_service_appsmith_name, 'url': hubsite_service_appsmith_url, 'logo_location': hubsite_service_appsmith_logo_location, 'description': hubsite_service_appsmith_description, 'priority': hubsite_service_appsmith_priority}] if hubsite_service_appsmith_enabled else [])
-    +
-    ([{'name': hubsite_service_docker_registry_browser_name, 'url': hubsite_service_docker_registry_browser_url, 'logo_location': hubsite_service_docker_registry_browser_logo_location, 'description': hubsite_service_docker_registry_browser_description, 'priority': hubsite_service_docker_registry_browser_priority}] if hubsite_service_docker_registry_browser_enabled else [])
-    +
-    ([{'name': hubsite_service_firezone_name, 'url': hubsite_service_firezone_url, 'logo_location': hubsite_service_firezone_logo_location, 'description': hubsite_service_firezone_description, 'priority': hubsite_service_firezone_priority}] if hubsite_service_firezone_enabled else [])
-    +
-    ([{'name': hubsite_service_focalboard_name, 'url': hubsite_service_focalboard_url, 'logo_location': hubsite_service_focalboard_logo_location, 'description': hubsite_service_focalboard_description, 'priority': hubsite_service_focalboard_priority}] if hubsite_service_focalboard_enabled else [])
-    +
-    ([{'name': hubsite_service_funkwhale_name, 'url': hubsite_service_funkwhale_url, 'logo_location': hubsite_service_funkwhale_logo_location, 'description': hubsite_service_funkwhale_description, 'priority': hubsite_service_funkwhale_priority}] if hubsite_service_funkwhale_enabled else [])
-    +
-    ([{'name': hubsite_service_gitea_name, 'url': hubsite_service_gitea_url, 'logo_location': hubsite_service_gitea_logo_location, 'description': hubsite_service_gitea_description, 'priority': hubsite_service_gitea_priority}] if hubsite_service_gitea_enabled else [])
-    +
-    ([{'name': hubsite_service_gotosocial_name, 'url': hubsite_service_gotosocial_url, 'logo_location': hubsite_service_gotosocial_logo_location, 'description': hubsite_service_gotosocial_description, 'priority': hubsite_service_gotosocial_priority}] if hubsite_service_gotosocial_enabled else [])
-    +
-    ([{'name': hubsite_service_grafana_name, 'url': hubsite_service_grafana_url, 'logo_location': hubsite_service_grafana_logo_location, 'description': hubsite_service_grafana_description, 'priority': hubsite_service_grafana_priority}] if hubsite_service_grafana_enabled else [])
-    +
-    ([{'name': hubsite_service_healthchecks_name, 'url': hubsite_service_healthchecks_url, 'logo_location': hubsite_service_healthchecks_logo_location, 'description': hubsite_service_healthchecks_description, 'priority': hubsite_service_healthchecks_priority}] if hubsite_service_healthchecks_enabled else [])
-    +
-    ([{'name': hubsite_service_keycloak_name, 'url': hubsite_service_keycloak_url, 'logo_location': hubsite_service_keycloak_logo_location, 'description': hubsite_service_keycloak_description, 'priority': hubsite_service_keycloak_priority}] if hubsite_service_keycloak_enabled else [])
-    +
-    ([{'name': hubsite_service_miniflux_name, 'url': hubsite_service_miniflux_url, 'logo_location': hubsite_service_miniflux_logo_location, 'description': hubsite_service_miniflux_description, 'priority': hubsite_service_miniflux_priority}] if hubsite_service_miniflux_enabled else [])
-    +
-    ([{'name': hubsite_service_n8n_name, 'url': hubsite_service_n8n_url, 'logo_location': hubsite_service_n8n_logo_location, 'description': hubsite_service_n8n_description, 'priority': hubsite_service_n8n_priority}] if hubsite_service_n8n_enabled else [])
-    +
-    ([{'name': hubsite_service_nextcloud_name, 'url': hubsite_service_nextcloud_url, 'logo_location': hubsite_service_nextcloud_logo_location, 'description': hubsite_service_nextcloud_description, 'priority': hubsite_service_nextcloud_priority}] if hubsite_service_nextcloud_enabled else [])
-    +
-    ([{'name': hubsite_service_linkding_name, 'url': hubsite_service_linkding_url, 'logo_location': hubsite_service_linkding_logo_location, 'description': hubsite_service_linkding_description, 'priority': hubsite_service_linkding_priority}] if hubsite_service_linkding_enabled else [])
-    +
-    ([{'name': hubsite_service_owncast_name, 'url': hubsite_service_owncast_url, 'logo_location': hubsite_service_owncast_logo_location, 'description': hubsite_service_owncast_description, 'priority': hubsite_service_owncast_priority}] if hubsite_service_owncast_enabled else [])
-    +
-    ([{'name': hubsite_service_peertube_name, 'url': hubsite_service_peertube_url, 'logo_location': hubsite_service_peertube_logo_location, 'description': hubsite_service_peertube_description, 'priority': hubsite_service_peertube_priority}] if hubsite_service_peertube_enabled else [])
-    +
-    ([{'name': hubsite_service_radicale_name, 'url': hubsite_service_radicale_url, 'logo_location': hubsite_service_radicale_logo_location, 'description': hubsite_service_radicale_description, 'priority': hubsite_service_radicale_priority}] if hubsite_service_radicale_enabled else [])
-    +
-    ([{'name': hubsite_service_uptime_kuma_name, 'url': hubsite_service_uptime_kuma_url, 'logo_location': hubsite_service_uptime_kuma_logo_location, 'description': hubsite_service_uptime_kuma_description, 'priority': hubsite_service_uptime_kuma_priority}] if hubsite_service_uptime_kuma_enabled else [])
-    +
-    ([{'name': hubsite_service_syncthing_name, 'url': hubsite_service_syncthing_url, 'logo_location': hubsite_service_syncthing_logo_location, 'description': hubsite_service_syncthing_description, 'priority': hubsite_service_syncthing_priority}] if hubsite_service_syncthing_enabled else [])
-    +
-    ([{'name': hubsite_service_vaultwarden_name, 'url': hubsite_service_vaultwarden_url, 'logo_location': hubsite_service_vaultwarden_logo_location, 'description': hubsite_service_vaultwarden_description, 'priority': hubsite_service_vaultwarden_priority}] if hubsite_service_vaultwarden_enabled else [])
-    +
-    ([{'name': hubsite_service_woodpecker_ci_name, 'url': hubsite_service_woodpecker_ci_url, 'logo_location': hubsite_service_woodpecker_ci_logo_location, 'description': hubsite_service_woodpecker_ci_description, 'priority': hubsite_service_woodpecker_ci_priority}] if hubsite_service_woodpecker_ci_enabled else [])
-  }}
+# role-specific:forgejo
+# Forgejo
+hubsite_service_forgejo_enabled: "{{ forgejo_enabled }}"
+hubsite_service_forgejo_name: Forgejo
+hubsite_service_forgejo_url: "https://{{ forgejo_hostname }}{{ forgejo_path_prefix }}"
+hubsite_service_forgejo_logo_location: "{{ role_path }}/assets/forgejo.png"
+hubsite_service_forgejo_description: "Another git service"
+hubsite_service_forgejo_priority: 1000
+# /role-specific:forgejo
+
+mash_playbook_hubsite_service_list_auto_itemized:
+  # Dummy entry, which is not role-specific.
+  # Ensures there's at least one entry defined in the list.
+  - "{{ omit }}"
+
+  # role-specific:adguard_home
+  - |-
+    {{
+      ({
+        'name': hubsite_service_adguard_home_name,
+        'url': hubsite_service_adguard_home_url,
+        'logo_location': hubsite_service_adguard_home_logo_location,
+        'description': hubsite_service_adguard_home_description,
+        'priority': hubsite_service_adguard_home_priority,
+      } if hubsite_service_adguard_home_enabled else omit)
+    }}
+  # /role-specific:adguard_home
+
+  # role-specific:authentik
+  - |-
+    {{
+      ({
+        'name': hubsite_service_authentik_name,
+        'url': hubsite_service_authentik_url,
+        'logo_location': hubsite_service_authentik_logo_location,
+        'description': hubsite_service_authentik_description,
+        'priority': hubsite_service_adguard_home_priority,
+      } if hubsite_service_authentik_enabled else omit)
+    }}
+  # /role-specific:authentik
+
+  # role-specific:appsmith
+  - |-
+    {{
+      ({
+        'name': hubsite_service_appsmith_name,
+        'url': hubsite_service_appsmith_url,
+        'logo_location': hubsite_service_appsmith_logo_location,
+        'description': hubsite_service_appsmith_description,
+        'priority': hubsite_service_appsmith_priority,
+      } if hubsite_service_appsmith_enabled else omit)
+    }}
+  # /role-specific:appsmith
+
+  # role-specific:docker_registry_browser
+  - |-
+    {{
+      ({
+        'name': hubsite_service_docker_registry_browser_name,
+        'url': hubsite_service_docker_registry_browser_url,
+        'logo_location': hubsite_service_docker_registry_browser_logo_location,
+        'description': hubsite_service_docker_registry_browser_description,
+        'priority': hubsite_service_docker_registry_browser_priority,
+      } if hubsite_service_docker_registry_browser_enabled else omit)
+    }}
+  # /role-specific:docker_registry_browser
+
+  # role-specific:firezone
+  - |-
+    {{
+      ({
+        'name': hubsite_service_firezone_name,
+        'url': hubsite_service_firezone_url,
+        'logo_location': hubsite_service_firezone_logo_location,
+        'description': hubsite_service_firezone_description,
+        'priority': hubsite_service_firezone_priority,
+      } if hubsite_service_firezone_enabled else omit)
+    }}
+  # /role-specific:firezone
+
+  # role-specific:focalboard
+  - |-
+    {{
+      ({
+        'name': hubsite_service_focalboard_name,
+        'url': hubsite_service_focalboard_url,
+        'logo_location': hubsite_service_focalboard_logo_location,
+        'description': hubsite_service_focalboard_description,
+        'priority': hubsite_service_focalboard_priority,
+      } if hubsite_service_focalboard_enabled else omit)
+    }}
+  # /role-specific:focalboard
+
+  # role-specific:freshrss
+  - |-
+    {{
+      ({
+        'name': hubsite_service_freshrss_name,
+        'url': hubsite_service_freshrss_url,
+        'logo_location': hubsite_service_freshrss_logo_location,
+        'description': hubsite_service_freshrss_description,
+        'priority': hubsite_service_freshrss_priority,
+      } if hubsite_service_freshrss_enabled else omit)
+    }}
+  # /role-specific:freshrss
+
+  # role-specific:funkwhale
+  - |-
+    {{
+      ({
+        'name': hubsite_service_funkwhale_name,
+        'url': hubsite_service_funkwhale_url,
+        'logo_location': hubsite_service_funkwhale_logo_location,
+        'description': hubsite_service_funkwhale_description,
+        'priority': hubsite_service_funkwhale_priority,
+      } if hubsite_service_funkwhale_enabled else omit)
+    }}
+  # /role-specific:funkwhale
+
+  # role-specific:gitea
+  - |-
+    {{
+      ({
+        'name': hubsite_service_gitea_name,
+        'url': hubsite_service_gitea_url,
+        'logo_location': hubsite_service_gitea_logo_location,
+        'description': hubsite_service_gitea_description,
+        'priority': hubsite_service_gitea_priority,
+      } if hubsite_service_gitea_enabled else omit)
+    }}
+  # /role-specific:gitea
+
+  # role-specific:gotosocial
+  - |-
+    {{
+      ({
+        'name': hubsite_service_gotosocial_name,
+        'url': hubsite_service_gotosocial_url,
+        'logo_location': hubsite_service_gotosocial_logo_location,
+        'description': hubsite_service_gotosocial_description,
+        'priority': hubsite_service_gotosocial_priority,
+      } if hubsite_service_gotosocial_enabled else omit)
+    }}
+  # /role-specific:gotosocial
+
+  # role-specific:grafana
+  - |-
+    {{
+      ({
+        'name': hubsite_service_grafana_name,
+        'url': hubsite_service_grafana_url,
+        'logo_location': hubsite_service_grafana_logo_location,
+        'description': hubsite_service_grafana_description,
+        'priority': hubsite_service_grafana_priority,
+      } if hubsite_service_grafana_enabled else omit)
+    }}
+  # /role-specific:grafana
+
+  # role-specific:healthchecks
+  - |-
+    {{
+      ({
+        'name': hubsite_service_healthchecks_name,
+        'url': hubsite_service_healthchecks_url,
+        'logo_location': hubsite_service_healthchecks_logo_location,
+        'description': hubsite_service_healthchecks_description,
+        'priority': hubsite_service_healthchecks_priority,
+      } if hubsite_service_healthchecks_enabled else omit)
+    }}
+  # /role-specific:healthchecks
+
+  # role-specific:keycloak
+  - |-
+    {{
+      ({
+        'name': hubsite_service_keycloak_name,
+        'url': hubsite_service_keycloak_url,
+        'logo_location': hubsite_service_keycloak_logo_location,
+        'description': hubsite_service_keycloak_description,
+        'priority': hubsite_service_keycloak_priority,
+      } if hubsite_service_keycloak_enabled else omit)
+    }}
+  # /role-specific:keycloak
+
+  # role-specific:miniflux
+  - |-
+    {{
+      ({
+        'name': hubsite_service_miniflux_name,
+        'url': hubsite_service_miniflux_url,
+        'logo_location': hubsite_service_miniflux_logo_location,
+        'description': hubsite_service_miniflux_description,
+        'priority': hubsite_service_miniflux_priority,
+      } if hubsite_service_miniflux_enabled else omit)
+    }}
+  # /role-specific:miniflux
+
+  # role-specific:n8n
+  - |-
+    {{
+      ({
+        'name': hubsite_service_n8n_name,
+        'url': hubsite_service_n8n_url,
+        'logo_location': hubsite_service_n8n_logo_location,
+        'description': hubsite_service_n8n_description,
+        'priority': hubsite_service_n8n_priority,
+      } if hubsite_service_n8n_enabled else omit)
+    }}
+  # /role-specific:n8n
+
+  # role-specific:nextcloud
+  - |-
+    {{
+      ({
+        'name': hubsite_service_nextcloud_name,
+        'url': hubsite_service_nextcloud_url,
+        'logo_location': hubsite_service_nextcloud_logo_location,
+        'description': hubsite_service_nextcloud_description,
+        'priority': hubsite_service_nextcloud_priority,
+      } if hubsite_service_nextcloud_enabled else omit)
+    }}
+  # /role-specific:nextcloud
+
+  # role-specific:linkding
+  - |-
+    {{
+      ({
+        'name': hubsite_service_linkding_name,
+        'url': hubsite_service_linkding_url,
+        'logo_location': hubsite_service_linkding_logo_location,
+        'description': hubsite_service_linkding_description,
+        'priority': hubsite_service_linkding_priority,
+      } if hubsite_service_linkding_enabled else omit)
+    }}
+  # /role-specific:linkding
+
+  # role-specific:owncast
+  - |-
+    {{
+      ({
+        'name': hubsite_service_owncast_name,
+        'url': hubsite_service_owncast_url,
+        'logo_location': hubsite_service_owncast_logo_location,
+        'description': hubsite_service_owncast_description,
+        'priority': hubsite_service_owncast_priority,
+      } if hubsite_service_owncast_enabled else omit)
+    }}
+  # /role-specific:owncast
+
+  # role-specific:peertube
+  - |-
+    {{
+      ({
+        'name': hubsite_service_peertube_name,
+        'url': hubsite_service_peertube_url,
+        'logo_location': hubsite_service_peertube_logo_location,
+        'description': hubsite_service_peertube_description,
+        'priority': hubsite_service_peertube_priority,
+      } if hubsite_service_peertube_enabled else omit)
+    }}
+  # /role-specific:peertube
+
+  # role-specific:radicale
+  - |-
+    {{
+      ({
+        'name': hubsite_service_radicale_name,
+        'url': hubsite_service_radicale_url,
+        'logo_location': hubsite_service_radicale_logo_location,
+        'description': hubsite_service_radicale_description,
+        'priority': hubsite_service_radicale_priority,
+      } if hubsite_service_radicale_enabled else omit)
+    }}
+  # /role-specific:radicale
+
+  # role-specific:uptime_kuma
+  - |-
+    {{
+      ({
+        'name': hubsite_service_uptime_kuma_name,
+        'url': hubsite_service_uptime_kuma_url,
+        'logo_location': hubsite_service_uptime_kuma_logo_location,
+        'description': hubsite_service_uptime_kuma_description,
+        'priority': hubsite_service_uptime_kuma_priority,
+      } if hubsite_service_uptime_kuma_enabled else omit)
+    }}
+  # /role-specific:uptime_kuma
+
+  # role-specific:syncthing
+  - |-
+    {{
+      ({
+        'name': hubsite_service_syncthing_name,
+        'url': hubsite_service_syncthing_url,
+        'logo_location': hubsite_service_syncthing_logo_location,
+        'description': hubsite_service_syncthing_description,
+        'priority': hubsite_service_syncthing_priority
+      } if hubsite_service_syncthing_enabled else omit)
+    }}
+  # /role-specific:syncthing
+
+  # role-specific:vaultwarden
+  - |-
+    {{
+      ({
+        'name': hubsite_service_vaultwarden_name,
+        'url': hubsite_service_vaultwarden_url,
+        'logo_location': hubsite_service_vaultwarden_logo_location,
+        'description': hubsite_service_vaultwarden_description,
+        'priority': hubsite_service_vaultwarden_priority
+      } if hubsite_service_vaultwarden_enabled else omit)
+    }}
+  # /role-specific:vaultwarden
+
+  # role-specific:woodpecker_ci_server
+  - |-
+    {{
+      ({
+        'name': hubsite_service_woodpecker_ci_name,
+        'url': hubsite_service_woodpecker_ci_url,
+        'logo_location': hubsite_service_woodpecker_ci_logo_location,
+        'description': hubsite_service_woodpecker_ci_description,
+        'priority': hubsite_service_woodpecker_ci_priority
+      } if hubsite_service_woodpecker_ci_enabled else omit)
+    }}
+  # /role-specific:woodpecker_ci_server
+
+hubsite_service_list_auto: "{{ mash_playbook_hubsite_service_list_auto_itemized | reject('equalto', omit) }}"
 
 ########################################################################
 #                                                                      #
 # /hubsite                                                             #
 #                                                                      #
 ########################################################################
+# /role-specific:hubsite
 
 
 
+# role-specific:ilmo
 ########################################################################
 #                                                                      #
 # ilmo                                                                 #
@@ -1591,9 +2641,11 @@ ilmo_container_labels_traefik_tls_certResolver: "{{ devture_traefik_certResolver
 # /ilmo                                                                #
 #                                                                      #
 ########################################################################
+# /role-specific:ilmo
 
 
 
+# role-specific:infisical
 ########################################################################
 #                                                                      #
 # infisical                                                            #
@@ -1655,10 +2707,12 @@ infisical_mongodb_auth_source: "{{ infisical_mongodb_db_name }}"
 # /infisical                                                           #
 #                                                                      #
 ########################################################################
+# /role-specific:infisical
 
 
 
 
+# role-specific:influxdb
 ########################################################################
 #                                                                      #
 # influxdb                                                             #
@@ -1695,9 +2749,11 @@ influxdb_container_labels_traefik_tls_certResolver: "{{ devture_traefik_certReso
 # /influxdb                                                            #
 #                                                                      #
 ########################################################################
+# /role-specific:influxdb
 
 
 
+# role-specific:jitsi
 ########################################################################
 #                                                                      #
 # jitsi                                                                #
@@ -1714,6 +2770,8 @@ jitsi_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_di
 
 jitsi_uid: "{{ mash_playbook_uid }}"
 jitsi_gid: "{{ mash_playbook_gid }}"
+
+jitsi_user_username: "{{ mash_playbook_user_username }}"
 
 jitsi_web_container_additional_networks_auto: |
   {{
@@ -1744,9 +2802,11 @@ jitsi_jvb_auth_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | p
 # /jitsi                                                               #
 #                                                                      #
 ########################################################################
+# /role-specific:jitsi
 
 
 
+# role-specific:keycloak
 ########################################################################
 #                                                                      #
 # keycloak                                                             #
@@ -1788,9 +2848,11 @@ keycloak_database_password: "{{ '%s' | format(mash_playbook_generic_secret_key) 
 # /keycloak                                                            #
 #                                                                      #
 ########################################################################
+# /role-specific:keycloak
 
 
 
+# role-specific:lago
 ########################################################################
 #                                                                      #
 # lago                                                                 #
@@ -1839,7 +2901,10 @@ lago_api_environment_variable_encryption_key_derivation_salt: "{{ '%s' | format(
 # /lago                                                                #
 #                                                                      #
 ########################################################################
+# /role-specific:lago
 
+
+# role-specific:linkding
 ########################################################################
 #                                                                      #
 # linkding                                                             #
@@ -1876,14 +2941,17 @@ linkding_container_labels_traefik_tls_certResolver: "{{ devture_traefik_certReso
 
 linkding_database_hostname: "{{ devture_postgres_connection_hostname if devture_postgres_enabled else '' }}"
 linkding_database_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'linkding.db', rounds=655555) | to_uuid }}"
+linkding_database_engine: "{{ 'postgres' if devture_postgres_enabled and linkding_database_hostname == devture_postgres_connection_hostname else 'sqlite' }}"
 
 ########################################################################
 #                                                                      #
 # /linkding                                                            #
 #                                                                      #
 ########################################################################
+# /role-specific:linkding
 
 
+# role-specific:miniflux
 ########################################################################
 #                                                                      #
 # miniflux                                                             #
@@ -1926,11 +2994,14 @@ miniflux_database_password: "{{ '%s' | format(mash_playbook_generic_secret_key) 
 # /miniflux                                                            #
 #                                                                      #
 ########################################################################
+# /role-specific:miniflux
 
 
+
+# role-specific:mobilizon
 ########################################################################
 #                                                                      #
-# mobilizon                                                           #
+# mobilizon                                                            #
 #                                                                      #
 ########################################################################
 
@@ -1973,12 +3044,14 @@ mobilizon_container_labels_traefik_tls_certResolver: "{{ devture_traefik_certRes
 
 ########################################################################
 #                                                                      #
-# /mobilizon                                                          #
+# /mobilizon                                                           #
 #                                                                      #
 ########################################################################
+# /role-specific:mobilizon
 
 
 
+# role-specific:mongodb
 ########################################################################
 #                                                                      #
 # mongodb                                                              #
@@ -2008,7 +3081,10 @@ mongodb_managed_databases_auto: |
 # /mongodb                                                             #
 #                                                                      #
 ########################################################################
+# /role-specific:mongodb
 
+
+# role-specific:mosquitto
 ########################################################################
 #                                                                      #
 # mosquitto                                                            #
@@ -2029,8 +3105,10 @@ mosquitto_gid: "{{ mash_playbook_gid }}"
 # /mosquitto                                                           #
 #                                                                      #
 ########################################################################
+# /role-specific:mosquitto
 
 
+# role-specific:mrs
 ########################################################################
 #                                                                      #
 # mrs                                                                  #
@@ -2061,9 +3139,11 @@ mrs_container_labels_traefik_tls_certResolver: "{{ devture_traefik_certResolver_
 # /mrs                                                                 #
 #                                                                      #
 ########################################################################
+# /role-specific:mrs
 
 
 
+# role-specific:n8n
 ########################################################################
 #                                                                      #
 # n8n                                                                  #
@@ -2108,9 +3188,11 @@ n8n_database_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | pas
 # /n8n                                                                 #
 #                                                                      #
 ########################################################################
+# /role-specific:n8n
 
 
 
+# role-specific:navidrome
 ########################################################################
 #                                                                      #
 # navidrome                                                            #
@@ -2141,9 +3223,11 @@ navidrome_container_labels_traefik_tls_certResolver: "{{ devture_traefik_certRes
 # /navidrome                                                           #
 #                                                                      #
 ########################################################################
+# /role-specific:navidrome
 
 
 
+# role-specific:nextcloud
 ########################################################################
 #                                                                      #
 # nextcloud                                                            #
@@ -2164,12 +3248,19 @@ nextcloud_systemd_required_services_list_auto: |
     ([devture_postgres_identifier ~ '.service'] if devture_postgres_enabled and nextcloud_database_hostname == devture_postgres_identifier else [])
   }}
 
+nextcloud_systemd_wanted_services_list_auto: |
+  {{
+    ([(exim_relay_identifier | default('mash-exim-relay')) ~ '.service'] if (exim_relay_enabled | default(false) and nextcloud_config_parameter_mail_smtphost == exim_relay_identifier | default('mash-exim-relay')) else [])
+  }}
+
 nextcloud_container_additional_networks_auto: |
   {{
     (
       ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
       +
       ([devture_postgres_container_network] if devture_postgres_enabled and nextcloud_database_hostname == devture_postgres_identifier and nextcloud_container_network != devture_postgres_container_network else [])
+    +
+    ([exim_relay_container_network | default('mash-exim-relay')] if (exim_relay_enabled | default(false) and nextcloud_config_parameter_mail_smtphost == exim_relay_identifier | default('mash-exim-relay') and nextcloud_container_network != exim_relay_container_network) else [])
     ) | unique
   }}
 
@@ -2183,14 +3274,25 @@ nextcloud_database_port: "{{ '5432' if devture_postgres_enabled else '' }}"
 nextcloud_database_username: "nextcloud"
 nextcloud_database_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'db.nextcloud', rounds=655555) | to_uuid }}"
 
+# role-specific:exim_relay
+nextcloud_config_parameter_mail_smtphost: "{{ exim_relay_identifier if exim_relay_enabled else '' }}"
+nextcloud_config_parameter_mail_smtpport: "{{ 8025 if exim_relay_enabled else '' }}"
+nextcloud_config_parameter_mail_smtpsecure: ''
+nextcloud_config_parameter_mail_smtpauth: false
+nextcloud_config_parameter_mail_from_address: "{{ (exim_relay_sender_address | split('@'))[0] if exim_relay_enabled else '' }}"
+nextcloud_config_parameter_mail_domain: "{{ (exim_relay_sender_address | split('@'))[1] if exim_relay_enabled else '' }}"
+# /role-specific:exim_relay
+
 ########################################################################
 #                                                                      #
 # /nextcloud                                                           #
 #                                                                      #
 ########################################################################
+# /role-specific:nextcloud
 
 
 
+# role-specific:netbox
 ########################################################################
 #                                                                      #
 # netbox                                                               #
@@ -2208,7 +3310,7 @@ netbox_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_d
 
 netbox_systemd_required_services_list_auto: |
   {{
-    ([devture_postgres_identifier ~ '.service'] if devture_postgres_enabled and nextcloud_database_hostname == devture_postgres_identifier else [])
+    ([devture_postgres_identifier ~ '.service'] if devture_postgres_enabled and netbox_database_hostname == devture_postgres_identifier else [])
   }}
 
 netbox_container_additional_networks_auto: |
@@ -2234,9 +3336,11 @@ netbox_database_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | 
 # /netbox                                                              #
 #                                                                      #
 ########################################################################
+# /role-specific:netbox
 
 
 
+# role-specific:mariadb
 ########################################################################
 #                                                                      #
 # mariadb                                                              #
@@ -2252,18 +3356,82 @@ mariadb_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_
 mariadb_uid: "{{ mash_playbook_uid }}"
 mariadb_gid: "{{ mash_playbook_gid }}"
 
-# This will be extended in the future, to auto-create databases for services which depend on MariaDB.
-# See `devture_postgres_managed_databases_auto`
-mariadb_managed_databases_auto: []
+mash_playbook_mariadb_managed_databases_auto_itemized:
+  # Dummy entry, which is not role-specific.
+  # Ensures there's at least one entry defined in the list.
+  - "{{ omit }}"
+
+  # role-specific:authelia
+  - |-
+    {{
+      ({
+        'name': authelia_config_storage_mysql_database,
+        'username': authelia_config_storage_mysql_username,
+        'password': authelia_config_storage_mysql_password,
+      } if authelia_enabled and authelia_config_storage_mysql_host == mariadb_identifier else omit)
+    }}
+  # /role-specific:authelia
+
+mariadb_managed_databases_auto: "{{ mash_playbook_mariadb_managed_databases_auto_itemized | reject('equalto', omit) }}"
 
 ########################################################################
 #                                                                      #
 # /mariadb                                                             #
 #                                                                      #
 ########################################################################
+# /role-specific:mariadb
+
+
+# role-specific:outline
+########################################################################
+#                                                                      #
+# outline                                                              #
+#                                                                      #
+########################################################################
+
+outline_enabled: false
+
+outline_identifier: "{{ mash_playbook_service_identifier_prefix }}outline"
+
+outline_uid: "{{ mash_playbook_uid }}"
+outline_gid: "{{ mash_playbook_gid }}"
+
+outline_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}outline"
+
+outline_systemd_required_services_list_auto: |
+  {{
+    ([devture_postgres_identifier ~ '.service'] if devture_postgres_enabled and outline_database_hostname == devture_postgres_identifier else [])
+  }}
+
+outline_container_additional_networks_auto: |
+  {{
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+    +
+    ([devture_postgres_container_network] if devture_postgres_enabled and outline_database_hostname == devture_postgres_identifier and outline_container_network != devture_postgres_container_network else [])
+  }}
+
+outline_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+outline_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+outline_container_labels_traefik_entrypoints: "{{ devture_traefik_entrypoint_primary }}"
+outline_container_labels_traefik_tls_certResolver: "{{ devture_traefik_certResolver_primary }}"
+
+outline_environment_variable_utils_secret: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'utils.out', rounds=655555) | to_uuid }}"
+
+outline_database_hostname: "{{ devture_postgres_identifier if devture_postgres_enabled else '' }}"
+outline_database_port: "{{ '5432' if devture_postgres_enabled else '' }}"
+outline_database_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'db.out', rounds=655555) | to_uuid }}"
+outline_database_sslmode: "{{ 'disable' if devture_postgres_enabled and outline_database_hostname == devture_postgres_identifier else 'prefer' }}"
+
+########################################################################
+#                                                                      #
+# /outline                                                             #
+#                                                                      #
+########################################################################
+# /role-specific:outline
 
 
 
+# role-specific:owncast
 ########################################################################
 #                                                                      #
 # owncast                                                              #
@@ -2294,9 +3462,59 @@ owncast_container_labels_traefik_tls_certResolver: "{{ devture_traefik_certResol
 # /owncast                                                             #
 #                                                                      #
 ########################################################################
+# /role-specific:owncast
 
 
 
+# role-specific:oxitraffic
+########################################################################
+#                                                                      #
+# oxitraffic                                                           #
+#                                                                      #
+########################################################################
+
+oxitraffic_enabled: false
+
+oxitraffic_identifier: "{{ mash_playbook_service_identifier_prefix }}oxitraffic"
+
+oxitraffic_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}oxitraffic"
+
+oxitraffic_uid: "{{ mash_playbook_uid }}"
+oxitraffic_gid: "{{ mash_playbook_gid }}"
+
+oxitraffic_database_hostname: "{{ devture_postgres_identifier if devture_postgres_enabled else '' }}"
+oxitraffic_database_port: "{{ '5432' if devture_postgres_enabled else '' }}"
+oxitraffic_database_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'db.oxitraffic', rounds=655555) | to_uuid }}"
+
+oxitraffic_systemd_required_services_list: |
+  {{
+    (['docker.service'])
+    +
+    ([devture_postgres_identifier ~ '.service'] if devture_postgres_enabled and oxitraffic_database_hostname == devture_postgres_identifier else [])
+  }}
+
+oxitraffic_container_additional_networks: |
+  {{
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+    +
+    ([devture_postgres_container_network] if devture_postgres_enabled and oxitraffic_database_hostname == devture_postgres_identifier and oxitraffic_container_network != devture_postgres_container_network else [])
+  }}
+
+oxitraffic_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+oxitraffic_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+oxitraffic_container_labels_traefik_entrypoints: "{{ devture_traefik_entrypoint_primary }}"
+oxitraffic_container_labels_traefik_tls_certResolver: "{{ devture_traefik_certResolver_primary }}"
+
+########################################################################
+#                                                                      #
+# /oxitraffic                                                          #
+#                                                                      #
+########################################################################
+# /role-specific:oxitraffic
+
+
+
+# role-specific:peertube
 ########################################################################
 #                                                                      #
 # peertube                                                             #
@@ -2341,7 +3559,11 @@ peertube_systemd_required_services_list_auto: |
 # /peertube                                                            #
 #                                                                      #
 ########################################################################
+# /role-specific:peertube
 
+
+
+# role-specific:postgis
 ########################################################################
 #                                                                      #
 # postgis                                                              #
@@ -2361,7 +3583,7 @@ postgis_gid: "{{ mash_playbook_gid }}"
 
 postgis_systemd_services_to_stop_for_maintenance_list: |
   {{
-    ([(mobilizon_identifier + '.service')] if miniflux_enabled else [])
+    ([(mobilizon_identifier + '.service')] if mobilizon_enabled else [])
   }}
 
 postgis_managed_databases_auto: |
@@ -2378,13 +3600,15 @@ postgis_managed_databases_auto: |
 # /postgis                                                             #
 #                                                                      #
 ########################################################################
+# /role-specific:postgis
 
 
 
 
+# role-specific:prometheus_postgres_exporter
 ########################################################################
 #                                                                      #
-# prometheus_postgres_exporter                                             #
+# prometheus_postgres_exporter                                         #
 #                                                                      #
 ########################################################################
 
@@ -2407,8 +3631,6 @@ prometheus_postgres_exporter_container_additional_networks: |
     +
     ([devture_postgres_container_network] if devture_postgres_enabled and prometheus_postgres_exporter_database_hostname == devture_postgres_identifier and prometheus_postgres_exporter_container_network != devture_postgres_container_network else [])
   }}
-
-prometheus_postgres_exporter_server_fqn: "{{ prometheus_postgres_exporter_hostname }}"
 
 # Only enable Traefik labels if a hostname is set (indicating that this will be exposed publicly)
 prometheus_postgres_exporter_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled and prometheus_postgres_exporter_hostname | length > 0 }}"
@@ -2434,9 +3656,11 @@ prometheus_postgres_exporter_systemd_required_services_list: |
 # /prometheus_node_exporter                                            #
 #                                                                      #
 ########################################################################
+# /role-specific:prometheus_postgres_exporter
 
 
 
+# role-specific:prometheus
 ########################################################################
 #                                                                      #
 # prometheus                                                           #
@@ -2452,14 +3676,28 @@ prometheus_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_ba
 prometheus_uid: "{{ mash_playbook_uid }}"
 prometheus_gid: "{{ mash_playbook_gid }}"
 
+# Only enable Traefik labels if a hostname is set (indicating that this will be exposed publicly)
+prometheus_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled and prometheus_hostname | length > 0 }}"
+prometheus_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+prometheus_container_labels_traefik_entrypoints: "{{ devture_traefik_entrypoint_primary }}"
+prometheus_container_labels_traefik_tls_certResolver: "{{ devture_traefik_certResolver_primary }}"
+
+prometheus_container_additional_networks: |
+  {{
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+  }}
+
+
 ########################################################################
 #                                                                      #
 # /prometheus                                                          #
 #                                                                      #
 ########################################################################
+# /role-specific:prometheus
 
 
 
+# role-specific:prometheus_blackbox_exporter
 ########################################################################
 #                                                                      #
 # prometheus_blackbox_exporter                                         #
@@ -2495,9 +3733,51 @@ prometheus_blackbox_exporter_container_labels_traefik_tls_certResolver: "{{ devt
 # /prometheus_blackbox_exporter                                        #
 #                                                                      #
 ########################################################################
+# /role-specific:prometheus_blackbox_exporter
 
 
 
+# role-specific:prometheus_ssh_exporter
+########################################################################
+#                                                                      #
+# prometheus_ssh_exporter                                              #
+#                                                                      #
+########################################################################
+
+prometheus_ssh_exporter_enabled: false
+
+prometheus_ssh_exporter_identifier: "{{ mash_playbook_service_identifier_prefix }}prometheus-ssh-exporter"
+
+prometheus_ssh_exporter_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}prometheus-ssh-exporter"
+
+prometheus_ssh_exporter_uid: "{{ mash_playbook_uid }}"
+prometheus_ssh_exporter_gid: "{{ mash_playbook_gid }}"
+
+prometheus_ssh_exporter_basicauth_enabled: "{{ prometheus_ssh_exporter_container_labels_traefik_enabled }}"
+prometheus_ssh_exporter_basicauth_user: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'ssh.user', rounds=655555) | to_uuid }}"
+prometheus_ssh_exporter_basicauth_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'ssh.password', rounds=655555) | to_uuid }}"
+
+prometheus_ssh_exporter_container_additional_networks: |
+  {{
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+  }}
+
+# Only enable Traefik labels if a hostname is set (indicating that this will be exposed publicly)
+prometheus_ssh_exporter_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled and prometheus_ssh_exporter_hostname }}"
+prometheus_ssh_exporter_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+prometheus_ssh_exporter_container_labels_traefik_entrypoints: "{{ devture_traefik_entrypoint_primary }}"
+prometheus_ssh_exporter_container_labels_traefik_tls_certResolver: "{{ devture_traefik_certResolver_primary }}"
+
+########################################################################
+#                                                                      #
+# /prometheus_ssh_exporter                                             #
+#                                                                      #
+########################################################################
+# /role-specific:prometheus_ssh_exporter
+
+
+
+# role-specific:prometheus_node_exporter
 ########################################################################
 #                                                                      #
 # prometheus_node_exporter                                             #
@@ -2544,9 +3824,11 @@ prometheus_node_exporter_container_extra_arguments:
 # /prometheus_node_exporter                                            #
 #                                                                      #
 ########################################################################
+# /role-specific:prometheus_node_exporter
 
 
 
+# role-specific:radicale
 ########################################################################
 #                                                                      #
 # radicale                                                             #
@@ -2574,15 +3856,17 @@ radicale_container_labels_traefik_tls_certResolver: "{{ devture_traefik_certReso
 
 ########################################################################
 #                                                                      #
-# /radicale                                                             #
+# /radicale                                                            #
 #                                                                      #
 ########################################################################
+# /role-specific:radicale
 
 
 
+# role-specific:redmine
 ########################################################################
 #                                                                      #
-# redmine                                                             #
+# redmine                                                              #
 #                                                                      #
 ########################################################################
 
@@ -2628,9 +3912,11 @@ redmine_database_password: "{{ '%s' | format(mash_playbook_generic_secret_key) |
 # /redmine                                                             #
 #                                                                      #
 ########################################################################
+# /role-specific:redmine
 
 
 
+# role-specific:redis
 ########################################################################
 #                                                                      #
 # redis                                                                #
@@ -2651,7 +3937,62 @@ redis_gid: "{{ mash_playbook_gid }}"
 # /redis                                                               #
 #                                                                      #
 ########################################################################
+# /role-specific:redis
 
+
+
+# role-specific:roundcube
+########################################################################
+#                                                                      #
+# roundcube                                                            #
+#                                                                      #
+########################################################################
+
+roundcube_enabled: false
+
+roundcube_identifier: "{{ mash_playbook_service_identifier_prefix }}roundcube"
+
+roundcube_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}roundcube"
+
+roundcube_uid: "0"
+roundcube_gid: "0"
+
+roundcube_database_type: "{{ 'postgresql' if devture_postgres_enabled else 'sqlite' }}"
+roundcube_database_hostname: "{{ devture_postgres_identifier if devture_postgres_enabled else '' }}"
+roundcube_database_port: "{{ '5432' if devture_postgres_enabled else '' }}"
+roundcube_database_name: "{{ 'roundcube' if devture_postgres_enabled else '' }}"
+roundcube_database_username: "{{ 'roundcube' if devture_postgres_enabled else '' }}"
+roundcube_database_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'db.roundcube', rounds=655555) | to_uuid }}"
+
+roundcube_systemd_required_systemd_services_list: |
+  {{
+    (['docker.service'])
+    +
+    ([devture_postgres_identifier ~ '.service'] if devture_postgres_enabled and roundcube_database_hostname == devture_postgres_identifier else [])
+  }}
+
+roundcube_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+roundcube_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+roundcube_container_labels_traefik_entrypoints: "{{ devture_traefik_entrypoint_primary }}"
+roundcube_container_labels_traefik_tls_certResolver: "{{ devture_traefik_certResolver_primary }}"
+
+roundcube_container_additional_networks: |
+  {{
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+    +
+    ([devture_postgres_container_network] if devture_postgres_enabled and roundcube_database_hostname == devture_postgres_identifier and roundcube_container_network != devture_postgres_container_network else [])
+  }}
+
+########################################################################
+#                                                                      #
+# /roundcube                                                           #
+#                                                                      #
+########################################################################
+# /role-specific:roundcube
+
+
+
+# role-specific:rumqttd
 ########################################################################
 #                                                                      #
 # rumqttd                                                              #
@@ -2672,8 +4013,60 @@ rumqttd_gid: "{{ mash_playbook_gid }}"
 # /rumqttd                                                             #
 #                                                                      #
 ########################################################################
+# /role-specific:rumqttd
 
 
+
+# role-specific:semaphore
+########################################################################
+#                                                                      #
+# semaphore                                                            #
+#                                                                      #
+########################################################################
+
+semaphore_enabled: false
+
+semaphore_identifier: "{{ mash_playbook_service_identifier_prefix }}semaphore"
+
+semaphore_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}semaphore"
+
+semaphore_uid: "{{ mash_playbook_uid }}"
+semaphore_gid: "{{ mash_playbook_gid }}"
+
+semaphore_database_host: "{{ devture_postgres_identifier if devture_postgres_enabled else '' }}"
+semaphore_database_port: "{{ '5432' if devture_postgres_enabled else '' }}"
+semaphore_database_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'db.semaphore', rounds=655555) | to_uuid }}"
+semaphore_database_username: "{{ semaphore_identifier }}"
+
+semaphore_systemd_required_services_list: |
+  {{
+    (['docker.service'])
+    +
+    ([devture_postgres_identifier ~ '.service'] if devture_postgres_enabled and semaphore_database_host == devture_postgres_identifier else [])
+  }}
+
+semaphore_container_additional_networks: |
+  {{
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+    +
+    ([devture_postgres_container_network] if devture_postgres_enabled and semaphore_database_host == devture_postgres_identifier and semaphore_container_network != devture_postgres_container_network else [])
+  }}
+
+semaphore_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+semaphore_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+semaphore_container_labels_traefik_entrypoints: "{{ devture_traefik_entrypoint_primary }}"
+semaphore_container_labels_traefik_tls_certResolver: "{{ devture_traefik_certResolver_primary }}"
+
+########################################################################
+#                                                                      #
+# /semaphore                                                           #
+#                                                                      #
+########################################################################
+# /role-specific:semaphore
+
+
+
+# role-specific:soft_serve
 ########################################################################
 #                                                                      #
 # soft-serve                                                           #
@@ -2694,9 +4087,11 @@ soft_serve_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_ba
 # /soft-serve                                                          #
 #                                                                      #
 ########################################################################
+# /role-specific:soft_serve
 
 
 
+# role-specific:syncthing
 ########################################################################
 #                                                                      #
 # syncthing                                                            #
@@ -2727,7 +4122,10 @@ syncthing_container_labels_traefik_tls_certResolver: "{{ devture_traefik_certRes
 # /syncthing                                                           #
 #                                                                      #
 ########################################################################
+# /role-specific:syncthing
 
+
+# role-specific:telegraf
 ########################################################################
 #                                                                      #
 # telegraf                                                             #
@@ -2756,8 +4154,11 @@ telegraf_systemd_required_services_list: |
 # /telegraf                                                            #
 #                                                                      #
 ########################################################################
+# /role-specific:telegraf
 
 
+
+# role-specific:vaultwarden
 ########################################################################
 #                                                                      #
 # vaultwarden                                                          #
@@ -2773,18 +4174,23 @@ vaultwarden_gid: "{{ mash_playbook_gid }}"
 
 vaultwarden_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}vaultwarden"
 
-vaultwarden_systemd_required_systemd_services_list: |
+vaultwarden_systemd_required_systemd_services_list_auto: |
   {{
-    (['docker.service'])
-    +
     ([devture_postgres_identifier ~ '.service'] if devture_postgres_enabled and vaultwarden_database_hostname == devture_postgres_identifier else [])
   }}
 
-vaultwarden_container_additional_networks: |
+vaultwarden_systemd_wanted_systemd_services_list_auto: |
+  {{
+    ([(exim_relay_identifier | default('mash-exim-relay')) ~ '.service'] if (exim_relay_enabled | default(false) and vaultwarden_config_smtp_host == exim_relay_identifier | default('mash-exim-relay')) else [])
+  }}
+
+vaultwarden_container_additional_networks_auto: |
   {{
     ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
     +
     ([devture_postgres_container_network] if devture_postgres_enabled and vaultwarden_database_hostname == devture_postgres_identifier and vaultwarden_container_network != devture_postgres_container_network else [])
+    +
+    ([exim_relay_container_network | default('mash-exim-relay')] if (exim_relay_enabled | default(false) and vaultwarden_config_smtp_host == exim_relay_identifier | default('mash-exim-relay') and vaultwarden_container_network != exim_relay_container_network) else [])
   }}
 
 vaultwarden_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
@@ -2797,17 +4203,26 @@ vaultwarden_database_port: "{{ '5432' if devture_postgres_enabled else '' }}"
 vaultwarden_database_username: "vaultwarden"
 vaultwarden_database_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'db.vaultwarden', rounds=655555) | to_uuid }}"
 
+# role-specific:exim_relay
+vaultwarden_config_smtp_from: "{{ exim_relay_sender_address if exim_relay_enabled else '' }}"
+vaultwarden_config_smtp_host: "{{ exim_relay_identifier if exim_relay_enabled else '' }}"
+vaultwarden_config_smtp_port: "{{ 8025 if exim_relay_enabled else '587' }}"
+vaultwarden_config_smtp_security: "{{ 'off' if exim_relay_enabled else 'starttls' }}"
+# /role-specific:exim_relay
+
 ########################################################################
 #                                                                      #
 # /vaultwarden                                                         #
 #                                                                      #
 ########################################################################
+# /role-specific:vaultwarden
 
 
 
+# role-specific:uptime_kuma
 ########################################################################
 #                                                                      #
-# etke/uptime_kuma                                                     #
+# uptime_kuma                                                          #
 #                                                                      #
 ########################################################################
 
@@ -2832,12 +4247,14 @@ uptime_kuma_container_labels_traefik_tls_certResolver: "{{ devture_traefik_certR
 
 ########################################################################
 #                                                                      #
-# /etke/uptime_kuma                                                    #
+# /uptime_kuma                                                         #
 #                                                                      #
 ########################################################################
+# /role-specific:uptime_kuma
 
 
 
+# role-specific:wg_easy
 ########################################################################
 #                                                                      #
 # wg-easy                                                              #
@@ -2868,9 +4285,60 @@ wg_easy_container_labels_traefik_tls_certResolver: "{{ devture_traefik_certResol
 # /wg-easy                                                             #
 #                                                                      #
 ########################################################################
+# /role-specific:wg_easy
 
 
 
+# role-specific:forgejo
+########################################################################
+#                                                                      #
+# forgejo                                                              #
+#                                                                      #
+########################################################################
+
+forgejo_enabled: false
+
+forgejo_identifier: "{{ mash_playbook_service_identifier_prefix }}forgejo"
+
+forgejo_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}forgejo"
+
+forgejo_uid: "{{ mash_playbook_uid }}"
+forgejo_gid: "{{ mash_playbook_gid }}"
+
+forgejo_systemd_required_systemd_services_list: |
+  {{
+    (['docker.service'])
+    +
+    ([devture_postgres_identifier ~ '.service'] if devture_postgres_enabled and forgejo_config_database_hostname == devture_postgres_identifier else [])
+  }}
+
+forgejo_container_additional_networks: |
+  {{
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+    +
+    ([devture_postgres_container_network] if devture_postgres_enabled and forgejo_config_database_hostname == devture_postgres_identifier and forgejo_container_network != devture_postgres_container_network else [])
+  }}
+
+forgejo_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+forgejo_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+forgejo_container_labels_traefik_entrypoints: "{{ devture_traefik_entrypoint_primary }}"
+forgejo_container_labels_traefik_tls_certResolver: "{{ devture_traefik_certResolver_primary }}"
+
+forgejo_config_database_hostname: "{{ devture_postgres_identifier if devture_postgres_enabled else '' }}"
+forgejo_config_database_port: "{{ '5432' if devture_postgres_enabled else '' }}"
+forgejo_config_database_username: "forgejo"
+forgejo_config_database_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'db.forgejo', rounds=655555) | to_uuid }}"
+
+########################################################################
+#                                                                      #
+# /forgejo                                                             #
+#                                                                      #
+########################################################################
+# /role-specific:forgejo
+
+
+
+# role-specific:woodpecker_ci_server
 ########################################################################
 #                                                                      #
 # woodpecker-ci-server                                                 #
@@ -2919,9 +4387,11 @@ devture_woodpecker_ci_server_database_datasource_db_name: woodpecker_ci_server
 # /woodpecker-ci-server                                                #
 #                                                                      #
 ########################################################################
+# /role-specific:woodpecker_ci_server
 
 
 
+# role-specific:woodpecker_ci_agent
 ########################################################################
 #                                                                      #
 # woodpecker-ci-agent                                                  #
@@ -2960,4 +4430,4 @@ devture_woodpecker_ci_agent_config_agent_secret: "{{ devture_woodpecker_ci_serve
 # /woodpecker-ci-agent                                                 #
 #                                                                      #
 ########################################################################
-
+# /role-specific:woodpecker_ci_agent

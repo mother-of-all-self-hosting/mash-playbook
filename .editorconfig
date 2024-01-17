@@ -19,7 +19,15 @@ trim_trailing_whitespace = true
 indent_style = space
 indent_size = 2
 
+[*.py]
+indent_style = space
+indent_size = 4
+
 [group_vars/mash_servers]
+indent_style = space
+indent_size = 2
+
+[templates/group_vars_mash_servers]
 indent_style = space
 indent_size = 2
 

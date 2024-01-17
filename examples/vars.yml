@@ -70,6 +70,9 @@ devture_timesync_installation_enabled: true
 # Most services require a reverse-proxy, so we enable Traefik here.
 #
 # Learn more about the Traefik service in docs/services/traefik.md
+#
+# If your server already runs Traefik, you will run into port conflicts by installing it twice.
+# See docs/interoperability.md for solutions.
 
 mash_playbook_reverse_proxy_type: playbook-managed-traefik
 
@@ -102,6 +105,36 @@ devture_postgres_connection_password: ''
 ########################################################################
 #                                                                      #
 # /devture-postgres                                                    #
+#                                                                      #
+########################################################################
+
+
+
+########################################################################
+#                                                                      #
+# exim_relay                                                           #
+#                                                                      #
+########################################################################
+
+# Various services need to send out email.
+#
+# Enabling this Exim relay SMTP mailer service automatically wires
+# all other services to send email through it.
+#
+# exim-relay then gives you a centralized place for configuring email-sending.
+
+exim_relay_enabled: true
+
+exim_relay_hostname: mash.example.com
+
+exim_relay_sender_address: "someone@{{ exim_relay_hostname }}"
+
+# By default, exim-relay attempts to deliver emails directly.
+# To make it relay via an external SMTP server, see docs/services/exim-relay.md
+
+########################################################################
+#                                                                      #
+# /exim_relay                                                          #
 #                                                                      #
 ########################################################################
 

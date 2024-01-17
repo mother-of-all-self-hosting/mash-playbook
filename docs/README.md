@@ -2,9 +2,13 @@
 
 - [Prerequisites](prerequisites.md) - go here to a guided installation using this Ansible playbook
 
+- [Configuring DNS](configuring-dns.md)
+
 - [Getting this playbook's source code](getting-the-playbook.md)
 
 - [Configuring the playbook](configuring-playbook.md)
+
+- [Configuring interoperability with other services](interoperability.md)
 
 - [Installing](installing.md)
 

@@ -7,5 +7,15 @@
 # ignores vscode file
 .vscode
 
-# ingores macos files
+# ignores macos files
 .DS_Store
+
+/requirements.yml
+/setup.yml
+/group_vars/mash_servers
+
+/run/*
+!/run/.gitkeep
+
+/group_vars/*
+!/group_vars/.gitkeep

@@ -17,4 +17,6 @@ You can then follow these steps inside the playbook directory:
 
 5. edit the inventory hosts file (`inventory/hosts`) to your liking
 
+If you're installing services on the same server using another playbook (like [matrix-docker-ansible-deploy](https://github.com/spantaleev/matrix-docker-ansible-deploy)) or you already have [Traefik](./services/traefik.md) or [Docker](./services/docker.md) installed on the server, consult our [Interoperability](./interoperability.md) documentation.
+
 When you're done with all the configuration you'd like to do, continue with [Installing](installing.md).
