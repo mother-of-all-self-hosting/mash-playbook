@@ -205,12 +205,12 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
 
   # role-specific:container_socket_proxy
   - |-
-    {{ ({'name': (devture_container_socket_proxy_identifier + '.service'), 'priority': 2900, 'groups': ['mash', 'reverse-proxies', 'container-socket-proxy']} if devture_container_socket_proxy_enabled else omit) }}
+    {{ ({'name': (devture_container_socket_proxy_identifier + '.service'), 'priority': 200, 'groups': ['mash', 'reverse-proxies', 'container-socket-proxy']} if devture_container_socket_proxy_enabled else omit) }}
   # /role-specific:container_socket_proxy
 
   # role-specific:traefik
   - |-
-    {{ ({'name': (devture_traefik_identifier + '.service'), 'priority': 3000, 'groups': ['mash', 'traefik', 'reverse-proxies']} if devture_traefik_enabled else omit) }}
+    {{ ({'name': (devture_traefik_identifier + '.service'), 'priority': 250, 'groups': ['mash', 'traefik', 'reverse-proxies']} if devture_traefik_enabled else omit) }}
   # /role-specific:traefik
 
   # role-specific:woodpecker_ci_server
