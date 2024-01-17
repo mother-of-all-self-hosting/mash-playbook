@@ -8,7 +8,6 @@ This service requires the following other services:
 
 - a [Traefik](traefik.md) reverse-proxy server
 
-
 ## Configuration
 
 To enable this service, add the following configuration to your `vars.yml` file and re-run the [installation](../installing.md) process:
@@ -22,10 +21,6 @@ To enable this service, add the following configuration to your `vars.yml` file 
 
 loki_enabled: true
 
-loki_hostname: loki.example.com
-
-
-
 ########################################################################
 #                                                                      #
 # /loki                                                                #
@@ -33,7 +28,21 @@ loki_hostname: loki.example.com
 ########################################################################
 ```
 
+### Exposing the web interface
+
+By setting a hostname you will expose loki on this domain.
+Usually you should also set up basic_auth in this case, otherwise everyone will be able to access your metrics
+
+```yaml
+loki_hostname: loki.example.org
+
+# Uncommenting the following lines allows you to configure basic auth
+# loki_basic_auth_enabled: true
+# loki_basic_auth_username: ''
+# loki_basic_auth_password: ''
+```
 
 ## Usage
 
-After [installing](../installing.md), ....
+After [installing](../installing.md), refer to the [official documentation](https://grafana.com/docs/loki/latest/reference/api/#post-lokiapiv1push) to send logs throught loki's API withtout agent.
+Promtail agent is comming soon
