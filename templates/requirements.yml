@@ -7,7 +7,7 @@
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-alertmanager.git
   version: v0.26.0-0
   name: alertmanager
-  activation_prefix: alertmanager
+  activation_prefix: alertmanager_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-appsmith.git
   version: v1.9.50-0
   name: appsmith
