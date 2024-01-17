@@ -44,5 +44,5 @@ loki_hostname: loki.example.org
 
 ## Usage
 
-After [installing](../installing.md), refer to the [official documentation](https://grafana.com/docs/loki/latest/reference/api/#post-lokiapiv1push) to send logs throught loki's API withtout agent.
-Promtail agent is comming soon
+After [installing](../installing.md), refer to the [official documentation](https://grafana.com/docs/loki/latest/reference/api/#post-lokiapiv1push) to send logs to loki's API without an agent.
+[Promtail agent](https://grafana.com/docs/loki/latest/send-data/promtail/) is coming soon.
