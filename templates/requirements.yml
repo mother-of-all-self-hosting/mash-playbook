@@ -72,8 +72,8 @@
   version: v4.97-r0-0-1
   name: exim_relay
   activation_prefix: exim_relay_
-- src: git+https://gitlab.com/etke.cc/roles/fail2ban.git
-  version: 09886730e8d3c061f22d1da4a542899063f97f0a
+- src: git+https://github.com/sudo-Tiz/ansible-role-fail2ban.git
+  version: 9f38b649c924c5aaef5785204cb93da758094a2c
   name: fail2ban
   activation_prefix: system_security_fail2ban_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-firezone.git
