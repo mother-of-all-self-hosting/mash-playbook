@@ -10,6 +10,9 @@
         - install-all
     # /role-specific:playbook_help
 
+    # No role-specific checks here, as it's a local role that is always installed.
+    - role: mash/playbook_base
+
     # role-specific:systemd_docker_base
     # This role has no tasks at all
     - role: galaxy/systemd_docker_base
@@ -47,9 +50,6 @@
         - install-timesync
         - install-all
     # /role-specific:timesync
-
-    # No role-specific checks here, as it's a local role that is always installed.
-    - role: mash/playbook_base
 
     # role-specific:swap
     - role: galaxy/swap
