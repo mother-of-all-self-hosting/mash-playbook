@@ -138,6 +138,10 @@
     - role: galaxy/echoip
     # /role-specific:echoip
 
+    # role-specific:etcd
+    - role: galaxy/etcd
+    # /role-specific:etcd
+
     # role-specific:exim_relay
     - role: galaxy/exim_relay
     # /role-specific:exim_relay
