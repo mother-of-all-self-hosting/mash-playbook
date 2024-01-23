@@ -159,6 +159,11 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
     {{ ({'name': (adguard_home_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'adguard-home']} if adguard_home_enabled else omit) }}
   # /role-specific:adguard_home
 
+  # role-specific:apisix_gateway
+  - |-
+    {{ ({'name': (apisix_gateway_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'apisix-gateway']} if apisix_gateway_enabled else omit) }}
+  # /role-specific:apisix_gateway
+
   # role-specific:appsmith
   - |-
     {{ ({'name': (appsmith_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'appsmith']} if appsmith_enabled else omit) }}
@@ -1093,6 +1098,61 @@ adguard_home_container_labels_traefik_tls_certResolver: "{{ devture_traefik_cert
 #                                                                      #
 ########################################################################
 # /role-specific:adguard_home
+
+
+
+# role-specific:apisix_gateway
+########################################################################
+#                                                                      #
+# apisix_gateway                                                       #
+#                                                                      #
+########################################################################
+
+apisix_gateway_enabled: false
+
+apisix_gateway_identifier: "{{ mash_playbook_service_identifier_prefix }}apisix-gateway"
+
+apisix_gateway_uid: "{{ mash_playbook_uid }}"
+apisix_gateway_gid: "{{ mash_playbook_gid }}"
+
+apisix_gateway_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}apisix-gateway"
+
+apisix_gateway_container_additional_networks_auto: |
+  {{
+    ([mash_playbook_reverse_proxyable_services_additional_network] if (mash_playbook_reverse_proxyable_services_additional_network and apisix_gateway_container_labels_traefik_enabled) else [])
+  }}
+
+apisix_gateway_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+apisix_gateway_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+apisix_gateway_container_labels_traefik_entrypoints: "{{ devture_traefik_entrypoint_primary }}"
+apisix_gateway_container_labels_traefik_tls_certResolver: "{{ devture_traefik_certResolver_primary }}"
+
+# role-specific:etcd
+apisix_gateway_config_deployment_etcd_host: |
+  {{
+    ([('http://' + etcd_identifier + ':2379')] if etcd_enabled else [])
+  }}
+
+apisix_gateway_config_deployment_etcd_user: "{{ ('root' if (etcd_enabled and not etcd_environment_variable_allow_none_authentication) else '') }}"
+apisix_gateway_config_deployment_etcd_password: "{{ (etcd_environment_variable_etcd_root_password if (etcd_enabled and not etcd_environment_variable_allow_none_authentication) else '') }}"
+
+apisix_gateway_container_additional_networks_custom: |
+  {{
+    ([etcd_container_network] if etcd_enabled else [])
+  }}
+
+apisix_gateway_systemd_required_systemd_services_list_auto: |
+  {{
+    ([(etcd_identifier + '.service')] if etcd_enabled else [])
+  }}
+# /role-specific:etcd
+
+########################################################################
+#                                                                      #
+# /apisix_gateway                                                      #
+#                                                                      #
+########################################################################
+# /role-specific:apisix_gateway
 
 
 

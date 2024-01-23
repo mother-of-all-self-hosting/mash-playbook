@@ -8,6 +8,10 @@
   version: v1.9.50-0
   name: appsmith
   activation_prefix: appsmith_
+- src: git+https://github.com/mother-of-all-self-hosting/ansible-role-apisix-gateway.git
+  version: v3.8.0-0
+  name: apisix_gateway
+  activation_prefix: apisix_gateway_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-authelia.git
   version: v4.37.5-1
   name: authelia
