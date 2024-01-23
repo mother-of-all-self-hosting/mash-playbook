@@ -15,12 +15,14 @@ To enable this service, add the following configuration to your `vars.yml` file 
 
 prometheus_ssh_exporter_enabled: true
 
-# if you want to export ssh's probe endpoint, uncomment and adjust the following vars
-
+# To expose the metrics publicly, enable and configure the lines below:
 # prometheus_ssh_exporter_hostname: mash.example.com
-# prometheus_ssh_exporter_path_prefix: /metrics/ssh-exporter
-# prometheus_ssh_exporter_basicauth_user: your_username
-# prometheus_ssh_exporter_basicauth_password: your password
+# prometheus_ssh_exporter_path_prefix: /metrics/mash-prometheus-ssh-exporter
+
+# To protect the metrics with HTTP Basic Auth, enable and configure the lines below.
+# See: https://doc.traefik.io/traefik/middlewares/http/basicauth/#users
+# prometheus_ssh_exporter_container_labels_metrics_middleware_basic_auth_enabled: true
+# prometheus_ssh_exporter_container_labels_metrics_middleware_basic_auth_users: ''
 
 ########################################################################
 #                                                                      #
@@ -31,4 +33,4 @@ prometheus_ssh_exporter_enabled: true
 
 ## Usage
 
-After you've installed the ssh exporter, your ssh prober will be available on `mash.example.com/metrics/ssh-exporter` with the basic auth credentials you've configured if hostname and path prefix where provided
+After you've installed the ssh exporter, your ssh prober will be available on `mash.example.com/metrics/mash-prometheus-ssh-exporter` with the basic auth credentials you've configured if hostname and path prefix were provided.

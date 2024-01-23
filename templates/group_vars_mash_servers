@@ -3866,14 +3866,12 @@ prometheus_ssh_exporter_enabled: false
 
 prometheus_ssh_exporter_identifier: "{{ mash_playbook_service_identifier_prefix }}prometheus-ssh-exporter"
 
+prometheus_ssh_exporter_path_prefix: "{{ mash_playbook_metrics_exposure_path_prefix }}/{{ prometheus_ssh_exporter_identifier }}"
+
 prometheus_ssh_exporter_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}prometheus-ssh-exporter"
 
 prometheus_ssh_exporter_uid: "{{ mash_playbook_uid }}"
 prometheus_ssh_exporter_gid: "{{ mash_playbook_gid }}"
-
-prometheus_ssh_exporter_basicauth_enabled: "{{ prometheus_ssh_exporter_container_labels_traefik_enabled }}"
-prometheus_ssh_exporter_basicauth_user: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'ssh.user', rounds=655555) | to_uuid }}"
-prometheus_ssh_exporter_basicauth_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'ssh.password', rounds=655555) | to_uuid }}"
 
 prometheus_ssh_exporter_container_additional_networks: |
   {{
@@ -3885,6 +3883,9 @@ prometheus_ssh_exporter_container_labels_traefik_enabled: "{{ mash_playbook_trae
 prometheus_ssh_exporter_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
 prometheus_ssh_exporter_container_labels_traefik_entrypoints: "{{ devture_traefik_entrypoint_primary }}"
 prometheus_ssh_exporter_container_labels_traefik_tls_certResolver: "{{ devture_traefik_certResolver_primary }}"
+
+prometheus_ssh_exporter_container_labels_metrics_middleware_basic_auth_enabled: "{{ mash_playbook_metrics_exposure_http_basic_auth_enabled }}"
+prometheus_ssh_exporter_container_labels_metrics_middleware_basic_auth_users: "{{ mash_playbook_metrics_exposure_http_basic_auth_users }}"
 
 ########################################################################
 #                                                                      #
