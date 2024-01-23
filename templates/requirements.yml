@@ -8,6 +8,10 @@
   version: v1.9.50-0
   name: appsmith
   activation_prefix: appsmith_
+- src: git+https://github.com/mother-of-all-self-hosting/ansible-role-apisix-dashboard.git
+  version: v3.0.1-0
+  name: apisix_dashboard
+  activation_prefix: apisix_dashboard_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-apisix-gateway.git
   version: v3.8.0-0
   name: apisix_gateway
