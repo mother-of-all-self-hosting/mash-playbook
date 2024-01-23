@@ -3732,6 +3732,7 @@ prometheus_postgres_exporter_enabled: false
 
 prometheus_postgres_exporter_identifier: "{{ mash_playbook_service_identifier_prefix }}prometheus-postgres-exporter"
 
+prometheus_postgres_exporter_hostname: "{{ mash_playbook_metrics_exposure_hostname }}"
 prometheus_postgres_exporter_path_prefix: "{{ mash_playbook_metrics_exposure_path_prefix }}/{{ prometheus_postgres_exporter_identifier }}"
 
 prometheus_postgres_exporter_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}prometheus-postgres-exporter"
@@ -3825,6 +3826,7 @@ prometheus_blackbox_exporter_enabled: false
 
 prometheus_blackbox_exporter_identifier: "{{ mash_playbook_service_identifier_prefix }}prometheus-blackbox-exporter"
 
+prometheus_blackbox_exporter_hostname: "{{ mash_playbook_metrics_exposure_hostname }}"
 prometheus_blackbox_exporter_path_prefix: "{{ mash_playbook_metrics_exposure_path_prefix }}/{{ prometheus_blackbox_exporter_identifier }}"
 
 prometheus_blackbox_exporter_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}prometheus-blackbox-exporter"
@@ -3866,6 +3868,7 @@ prometheus_ssh_exporter_enabled: false
 
 prometheus_ssh_exporter_identifier: "{{ mash_playbook_service_identifier_prefix }}prometheus-ssh-exporter"
 
+prometheus_ssh_exporter_hostname: "{{ mash_playbook_metrics_exposure_hostname }}"
 prometheus_ssh_exporter_path_prefix: "{{ mash_playbook_metrics_exposure_path_prefix }}/{{ prometheus_ssh_exporter_identifier }}"
 
 prometheus_ssh_exporter_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}prometheus-ssh-exporter"
@@ -3907,6 +3910,7 @@ prometheus_node_exporter_enabled: false
 
 prometheus_node_exporter_identifier: "{{ mash_playbook_service_identifier_prefix }}prometheus-node-exporter"
 
+prometheus_node_exporter_hostname: "{{ mash_playbook_metrics_exposure_hostname }}"
 prometheus_node_exporter_path_prefix: "{{ mash_playbook_metrics_exposure_path_prefix }}/{{ prometheus_node_exporter_identifier }}"
 
 prometheus_node_exporter_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}prometheus-node-exporter"
