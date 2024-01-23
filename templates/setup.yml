@@ -4,8 +4,10 @@
 
   roles:
     # role-specific:playbook_help
-    # This role has no tasks at all
     - role: galaxy/playbook_help
+      tags:
+        - setup-all
+        - install-all
     # /role-specific:playbook_help
 
     # role-specific:systemd_docker_base
