@@ -1187,6 +1187,12 @@ apisix_gateway_container_labels_traefik_docker_network: "{{ mash_playbook_revers
 apisix_gateway_container_labels_traefik_entrypoints: "{{ devture_traefik_entrypoint_primary }}"
 apisix_gateway_container_labels_traefik_tls_certResolver: "{{ devture_traefik_certResolver_primary }}"
 
+apisix_gateway_container_labels_metrics_enabled: "{{ prometheus_enabled | default(false) or mash_playbook_metrics_exposure_enabled }}"
+apisix_gateway_container_labels_metrics_hostname: "{{ mash_playbook_metrics_exposure_hostname }}"
+apisix_gateway_container_labels_metrics_path_prefix: "{{ mash_playbook_metrics_exposure_path_prefix }}/{{ apisix_gateway_identifier }}"
+apisix_gateway_container_labels_metrics_middleware_basic_auth_enabled: "{{ mash_playbook_metrics_exposure_http_basic_auth_enabled }}"
+apisix_gateway_container_labels_metrics_middleware_basic_auth_users: "{{ mash_playbook_metrics_exposure_http_basic_auth_users }}"
+
 # role-specific:etcd
 apisix_gateway_config_deployment_etcd_host: |
   {{
@@ -3763,7 +3769,7 @@ prometheus_postgres_exporter_systemd_required_services_list: |
 
 ########################################################################
 #                                                                      #
-# /prometheus_node_exporter                                            #
+# /prometheus_postgres_exporter                                        #
 #                                                                      #
 ########################################################################
 # /role-specific:prometheus_postgres_exporter
@@ -3898,14 +3904,12 @@ prometheus_node_exporter_enabled: false
 
 prometheus_node_exporter_identifier: "{{ mash_playbook_service_identifier_prefix }}prometheus-node-exporter"
 
+prometheus_node_exporter_path_prefix: "{{ mash_playbook_metrics_exposure_path_prefix }}/{{ prometheus_node_exporter_identifier }}"
+
 prometheus_node_exporter_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}prometheus-node-exporter"
 
 prometheus_node_exporter_uid: "{{ mash_playbook_uid }}"
 prometheus_node_exporter_gid: "{{ mash_playbook_gid }}"
-
-prometheus_node_exporter_basicauth_enabled: "{{ prometheus_node_exporter_container_labels_traefik_enabled }}"
-prometheus_node_exporter_basicauth_user: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'node.user', rounds=655555) | to_uuid }}"
-prometheus_node_exporter_basicauth_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'node.password', rounds=655555) | to_uuid }}"
 
 prometheus_node_exporter_container_additional_networks: |
   {{
@@ -3918,6 +3922,9 @@ prometheus_node_exporter_container_labels_traefik_docker_network: "{{ mash_playb
 prometheus_node_exporter_container_labels_traefik_entrypoints: "{{ devture_traefik_entrypoint_primary }}"
 prometheus_node_exporter_container_labels_traefik_tls_certResolver: "{{ devture_traefik_certResolver_primary }}"
 
+prometheus_node_exporter_container_labels_metrics_middleware_basic_auth_enabled: "{{ mash_playbook_metrics_exposure_http_basic_auth_enabled }}"
+prometheus_node_exporter_container_labels_metrics_middleware_basic_auth_users: "{{ mash_playbook_metrics_exposure_http_basic_auth_users }}"
+
 prometheus_node_exporter_process_extra_arguments:
   - "--collector.disable-defaults"
   - "--collector.cpu"
@@ -3925,6 +3932,7 @@ prometheus_node_exporter_process_extra_arguments:
   - "--collector.meminfo"
   - "--collector.systemd"
   - "--collector.uname"
+
 prometheus_node_exporter_container_extra_arguments:
   - "--security-opt apparmor=unconfined"
   - "--mount type=bind,src=/var/run/dbus/system_bus_socket,dst=/var/run/dbus/system_bus_socket,ro,bind-propagation=rslave"

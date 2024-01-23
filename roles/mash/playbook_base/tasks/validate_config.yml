@@ -1,12 +1,14 @@
 ---
 
-- name: Fail if required mash playbook settings not defined
+- name: Fail if required mash-playbook settings not defined
   ansible.builtin.fail:
     msg: >-
-      You need to define a required configuration setting (`{{ item }}`) for using this role.
-  when: "vars[item] == ''"
+      You need to define a required configuration setting (`{{ item.name }}`).
+  when: "item.when | bool and vars[item.name] == ''"
   with_items:
-    - mash_playbook_generic_secret_key
+    - {'name': 'mash_playbook_generic_secret_key', 'when': true}
+    - {'name': 'mash_playbook_generic_secret_key', 'when': true}
+    - {'name': 'mash_playbook_metrics_exposure_hostname', 'when': "{{ mash_playbook_metrics_exposure_enabled }}"}
 
 - name: Fail if mash_playbook_reverse_proxy_type is set incorrectly
   ansible.builtin.fail:

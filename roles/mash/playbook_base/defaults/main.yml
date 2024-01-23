@@ -72,3 +72,12 @@ mash_playbook_traefik_labels_enabled: "{{ mash_playbook_reverse_proxy_type in ['
 
 # Controls the additional network that reverse-proxyable services will be connected to.
 mash_playbook_reverse_proxyable_services_additional_network: "{{ devture_traefik_container_network if devture_traefik_enabled else '' }}"
+
+# Controls whether various services should expose metrics publicly.
+# If Prometheus is operating on the same machine, exposing metrics publicly is not necessary.
+mash_playbook_metrics_exposure_enabled: false
+mash_playbook_metrics_exposure_hostname: ''
+mash_playbook_metrics_exposure_path_prefix: /metrics
+mash_playbook_metrics_exposure_http_basic_auth_enabled: false
+# See https://doc.traefik.io/traefik/middlewares/http/basicauth/#users
+mash_playbook_metrics_exposure_http_basic_auth_users: ''

@@ -18,12 +18,12 @@ prometheus_node_exporter_enabled: true
 
 # To expose the metrics publicly, enable and configure the lines below:
 # prometheus_node_exporter_hostname: mash.example.com
-# prometheus_node_exporter_path_prefix: /metrics/node-exporter
+# prometheus_node_exporter_path_prefix: /metrics/mash-prometheus-node-exporter
 
-# To protect the metrics with HTTP Basic Auth, enable and configure the lines below:
-# prometheus_node_exporter_basicauth_enabled: true
-# prometheus_node_exporter_basicauth_user: your_username
-# prometheus_node_exporter_basicauth_password: your password
+# To protect the metrics with HTTP Basic Auth, enable and configure the lines below.
+# See: https://doc.traefik.io/traefik/middlewares/http/basicauth/#users
+# prometheus_node_exporter_container_labels_metrics_middleware_basic_auth_enabled: true
+# prometheus_node_exporter_container_labels_metrics_middleware_basic_auth_users: ''
 
 ########################################################################
 #                                                                      #
@@ -36,6 +36,6 @@ Unless you're scraping the Prometheus Node Exporter metrics from a local [Promet
 
 ## Usage
 
-After you installed the node exporter, your node stats will be available on `mash.example.com/metrics/node-exporter` with basic auth credentials you configured
+After you installed the node exporter, your node stats will be available on `mash.example.com/metrics/mash-prometheus-node-exporter` with the basic auth credentials you configured.
 
 To integrate Prometheus Node Exporter with a [Prometheus](prometheus.md) instance, see the [Integrating with Prometheus Node Exporter](prometheus.md#integrating-with-prometheus-node-exporter) section of the documentation.
