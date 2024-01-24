@@ -141,7 +141,7 @@
   name: lago
   activation_prefix: lago_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-loki.git
-  version: v2.8.7-2
+  version: v2.8.7-3
   name: loki
   activation_prefix: loki
 - src: git+https://github.com/kinduff/ansible-docker-linkding.git
