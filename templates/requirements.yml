@@ -4,10 +4,6 @@
   version: v0.107.43-0
   name: adguard_home
   activation_prefix: adguard_home_
-- src: git+https://github.com/mother-of-all-self-hosting/ansible-role-appsmith.git
-  version: v1.9.50-0
-  name: appsmith
-  activation_prefix: appsmith_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-apisix-dashboard.git
   version: v3.0.1-0
   name: apisix_dashboard
@@ -16,6 +12,10 @@
   version: v3.8.0-2
   name: apisix_gateway
   activation_prefix: apisix_gateway_
+- src: git+https://github.com/mother-of-all-self-hosting/ansible-role-appsmith.git
+  version: v1.9.50-0
+  name: appsmith
+  activation_prefix: appsmith_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-authelia.git
   version: v4.37.5-1
   name: authelia
@@ -29,7 +29,7 @@
   name: auxiliary
   activation_prefix: aux_
 - src: git+https://gitlab.com/etke.cc/roles/backup_borg.git
-  version: v1.2.7-1.8.6-0
+  version: v1.2.7-1.8.7-0
   name: backup_borg
   activation_prefix: backup_borg_
 - src: git+https://github.com/nielscil/ansible-role-changedetection.git
