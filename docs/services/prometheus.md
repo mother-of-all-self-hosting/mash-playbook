@@ -81,9 +81,9 @@ Usually you should also set up basic_auth in this case, otherwise everyone will 
 prometheus_hostname: prometheus.example.com
 
 # Uncommenting the following lines allows you to configure basic auth
-# prometheus_basic_auth_enabled: true
-# prometheus_basic_auth_username: ''
-# prometheus_basic_auth_password: ''
+# prometheus_container_labels_metrics_middleware_basic_auth_enabled: true
+# Use `htpasswd -nb USERNAME PASSSWORD` to generate the users below.
+# prometheus_container_labels_metrics_middleware_basic_auth_users: ''
 ```
 
 ## Recommended other services
