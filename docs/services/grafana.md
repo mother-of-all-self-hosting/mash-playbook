@@ -59,7 +59,7 @@ grafana_provisioning_datasources:
     url: "http://{{ prometheus_identifier }}:9090"
 
 # Prometheus runs in another container network, so we need to connect to it.
-grafana_container_additional_networks_additional:
+grafana_container_additional_networks_custom:
   - "{{ prometheus_container_network }}"
 ```
 
