@@ -229,7 +229,7 @@
   name: postgis
   activation_prefix: postgis_
 - src: git+https://github.com/devture/com.devture.ansible.role.postgres.git
-  version: v16.1-5
+  version: v16.1-6
   name: postgres
   activation_prefix: devture_postgres_
 - src: git+https://github.com/devture/com.devture.ansible.role.postgres_backup.git
