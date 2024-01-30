@@ -27,7 +27,7 @@ prometheus_postgres_exporter_enabled: true
 
 ########################################################################
 #                                                                      #
-# /prometheus_postgres_exporter                                                   #
+# /prometheus_postgres_exporter                                        #
 #                                                                      #
 ########################################################################
 ```
