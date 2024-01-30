@@ -10,7 +10,7 @@ To enable this service, add the following configuration to your `vars.yml` file 
 ```yaml
 ########################################################################
 #                                                                      #
-# prometheus_postgres_exporter                                                    #
+# prometheus_postgres_exporter                                         #
 #                                                                      #
 ########################################################################
 
