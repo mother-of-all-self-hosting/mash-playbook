@@ -53,7 +53,7 @@
   name: container_socket_proxy
   activation_prefix: devture_traefik_
 - src: git+https://github.com/geerlingguy/ansible-role-docker
-  version: 7.0.2
+  version: 7.1.0
   name: docker
   activation_prefix: mash_playbook_docker_installation_enabled
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-docker-registry.git
