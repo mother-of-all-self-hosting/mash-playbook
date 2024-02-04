@@ -66,4 +66,4 @@ After [installing](../installing.md), refer to the [official documentation](http
 ## Recommended other services
 
 - [Grafana](grafana.md) - a web-based tool for visualizing your Promtail logs (stored in [Grafana Loki](grafana-loki.md) or elsewhere)
-- [Promtail](promtail.md) - an agent which ships the contents of local logs to a private [Grafana Loki](services/grafana-loki.md) instance
+- [Promtail](promtail.md) - an agent which ships the contents of local logs to a private [Grafana Loki](grafana-loki.md) instance

@@ -39,3 +39,8 @@ Unless you're scraping the Prometheus Node Exporter metrics from a local [Promet
 After you installed the node exporter, your node stats will be available on `mash.example.com/metrics/mash-prometheus-node-exporter` with the basic auth credentials you configured.
 
 To integrate Prometheus Node Exporter with a [Prometheus](prometheus.md) instance, see the [Integrating with Prometheus Node Exporter](prometheus.md#integrating-with-prometheus-node-exporter) section of the documentation.
+
+
+## Recommended other services
+
+- [Promtail](promtail.md) - an agent which ships the contents of local logs to a private [Grafana Loki](grafana-loki.md) instance
