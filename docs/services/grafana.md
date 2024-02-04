@@ -47,6 +47,9 @@ Grafana is merely a visualization tool. It needs to pull data from a metrics (ti
 
 You can add multiple data sources to Grafana.
 
+Below, we show a few examples of connecting Grafana to local datasources (running in containers on the same machine).
+**If you're enabling multiple, you need to "merge" the configurations**. That is, don't define `grafana_provisioning_datasources` or `grafana_container_additional_networks_custom` twice, but combine them.
+
 #### Integrating with a local Prometheus instance
 
 If you're installing [Prometheus](prometheus.md) on the same server, you can hook Grafana to it over the container network with the following **additional** configuration:
@@ -57,14 +60,46 @@ grafana_provisioning_datasources:
     type: prometheus
     access: proxy
     url: "http://{{ prometheus_identifier }}:9090"
+	# Enable below if connecting to a remote instance that uses Basic Auth.
+	# basicAuth: true
+    # basicAuthUser: loki
+    # secureJsonData:
+    #   basicAuthPassword: ""
 
 # Prometheus runs in another container network, so we need to connect to it.
 grafana_container_additional_networks_custom:
   - "{{ prometheus_container_network }}"
 ```
 
-For connecting to a **remote** Prometheus instance, you may need to adjust this configuration somehow.
+For connecting to a **remote** Prometheus instance, you may need to adjust this configuration.
 
+#### Integrating with a local Loki instance
+
+If you're installing [Grafana Loki](grafana-loki.md) on the same server, you can hook Grafana to it over the container network with the following **additional** configuration:
+
+```yaml
+grafana_provisioning_datasources:
+  - name: Loki (your-tenant-id)
+    type: loki
+    access: proxy
+    url: "http://{{ loki_identifier }}:{{ loki_server_http_listen_port }}"
+	# Enable below and also (basicAuthPassword) if connecting to a remote instance that uses Basic Auth.
+	# basicAuth: true
+    # basicAuthUser: loki
+    jsonData:
+      httpHeaderName1: X-Scope-OrgID
+    secureJsonData:
+      httpHeaderValue1: "your-tenant-id"
+      # basicAuthPassword: ""
+
+# Loki runs in another container network, so we need to connect to it.
+grafana_container_additional_networks_custom:
+  - "{{ loki_container_network }}"
+```
+
+For connecting to a **remote** Loki instance, you may need to adjust this configuration.
+
+If you're installing [Promtail](./promtail.md) on the same server as Loki, by default it's configured to send `mash` as the tenant ID.
 
 ### Integrating with Prometheus Node Exporter
 

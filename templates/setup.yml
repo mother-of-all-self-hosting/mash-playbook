@@ -234,6 +234,10 @@
     - role: galaxy/linkding
     # /role-specific:linkding
 
+    # role-specific:loki
+    - role: galaxy/loki
+    # /role-specific:loki
+
     # role-specific:mobilizon
     - role: galaxy/mobilizon
     # /role-specific:mobilizon
@@ -293,6 +297,10 @@
     # role-specific:prometheus_ssh_exporter
     - role: galaxy/prometheus_ssh_exporter
     # /role-specific:prometheus_ssh_exporter
+
+    # role-specific:promtail
+    - role: galaxy/promtail
+    # /role-specific:promtail
 
     # role-specific:radicale
     - role: galaxy/radicale

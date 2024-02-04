@@ -152,6 +152,10 @@
   version: v0.50.0-0
   name: lago
   activation_prefix: lago_
+- src: git+https://github.com/mother-of-all-self-hosting/ansible-role-loki.git
+  version: v2.9.4-3
+  name: loki
+  activation_prefix: loki_
 - src: git+https://github.com/kinduff/ansible-docker-linkding.git
   version: v1.9.0
   name: linkding
@@ -256,6 +260,10 @@
   version: v1.5.0-2
   name: prometheus_ssh_exporter
   activation_prefix: prometheus_ssh_exporter_
+- src: git+https://github.com/mother-of-all-self-hosting/ansible-role-promtail.git
+  version: v2.9.4-0
+  name: promtail
+  activation_prefix: promtail_
 - src: git+https://gitlab.com/etke.cc/roles/radicale.git
   version: v3.1.8.3-1
   name: radicale

@@ -27,6 +27,7 @@
 | [Gitea](https://gitea.io/) | A painless self-hosted [Git](https://git-scm.com/) service. | [Link](services/gitea.md) |
 | [GoToSocial](https://gotosocial.org/) | A self-hosted [ActivityPub](https://activitypub.rocks/) social network server | [Link](services/gotosocial.md) |
 | [Grafana](https://grafana.com/) | An open and composable observability and data visualization platform, often used with [Prometheus](services/prometheus.md) | [Link](services/grafana.md) |
+| [Grafana Loki](https://grafana.com/docs/loki/latest/) | Open-source log aggregation system that helps collect, store, and analyze logs in a scalable and efficient manner | [Link](services/grafana-loki.md) |
 | [Healthchecks](https://healthchecks.io/) | A simple and Effective Cron Job Monitoring solution | [Link](services/healthchecks.md) |
 | [Hubsite](https://github.com/moan0s/hubsite) | A simple, static site that shows an overview of the available services | [Link](services/hubsite.md) |
 | [ILMO](https://github.com/moan0s/ILMO2) | An open source library management tool. | [Link](services/ilmo.md) |
@@ -58,6 +59,7 @@
 | [Prometheus SSH Exporter](https://github.com/treydock/ssh_exporter) | SSH probes | [Link](services/prometheus-ssh-exporter.md) |
 | [Prometheus Node Exporter](https://github.com/prometheus/node_exporter) | Exporter for machine metrics | [Link](services/prometheus-node-exporter.md) |
 | [Prometheus Postgres Exporter](https://github.com/prometheus-community/postgres_exporter) | A PostgreSQL metric exporter for Prometheus | [Link](services/prometheus-postgres-exporter.md) |
+| [Promtail](https://grafana.com/docs/loki/latest/send-data/promtail/) | An agent which ships the contents of local logs to a private [Grafana Loki](services/grafana-loki.md) instance | [Link](services/promtail.md) |
 | [Radicale](https://radicale.org/) | A Free and Open-Source CalDAV and CardDAV Server (solution for hosting contacts and calendars) | [Link](services/radicale.md) |
 | [Redmine](https://redmine.org/) | A flexible project management web application. | [Link](services/redmine.md) |
 | [Redis](https://redis.io/) | An in-memory data store used by millions of developers as a database, cache, streaming engine, and message broker. | [Link](services/redis.md) |
