@@ -66,6 +66,14 @@ promtail_varlog_scraper_enabled: true
 # promtail_varlog_scraper_host_path: /var/log
 ```
 
+You can see the configuration for this scraper in the `promtail_varlog_scraper_config` variable in [the `defaults/main.yml` file](https://github.com/mother-of-all-self-hosting/ansible-role-promtail/blob/main/defaults/main.yml) of the ansible-role-promtail Ansible role.
+
+When using this scraper, beware that **log-rotation may lead to double-ingestion** as described [here](https://grafana.com/docs/loki/latest/send-data/promtail/configuration/#example-static-config) in the official documentation:
+
+> If you are rotating logs, be careful when using a wildcard pattern like *.log, and make sure it doesn’t match the rotated log file. For example, if you move your logs from server.log to server.01-01-1970.log in the same directory every night, a static config with a wildcard search pattern like *.log will pick up that new file and read it, effectively causing the entire days logs to be re-ingested.
+
+To work around it, you may wish to adjust `promtail_varlog_scraper_config_labels_path_suffix` which defaults to `/**/*log`.
+
 #### Scraping other directories
 
 Besides the predefined scrapers described above, you can also define your own additional ones with the help of these variables:
@@ -78,7 +86,6 @@ Here's an example for scraping some hypothethical SSH logs stored somewhere:
 ```yml
 promtail_container_additional_mounts_custom:
   - "type=bind,source=</path/to/ssh/logs>,target=/data/ssh,readonly"
-
 
 promtail_config_scrape_configs_custom:
   - job_name: ssh
@@ -146,7 +153,11 @@ promtail_config_clients_custom:
   # Note the double /loki/loki.
   # This assumes Loki is installed at a `/loki` path-prefix.
   - url: https://mash.example.com/loki/loki/api/v1/push
+    tenant_id: some-tenant-id-here
 ```
+
+For more information about configuring clients, see the [Promtail `clients` configuration reference](https://grafana.com/docs/loki/latest/send-data/promtail/configuration/#clients).
+
 
 ### Exposing the web interface
 
