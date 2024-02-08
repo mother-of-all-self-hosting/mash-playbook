@@ -3078,7 +3078,7 @@ languagetool_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_
 languagetool_container_labels_traefik_entrypoints: "{{ devture_traefik_entrypoint_primary }}"
 languagetool_container_labels_traefik_tls_certResolver: "{{ devture_traefik_certResolver_primary }}"
 
-languagetool_container_additional_networks_auto: |
+languagetool_container_additional_networks: |
   {{
     ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
   }}
