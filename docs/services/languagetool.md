@@ -45,4 +45,5 @@ languagetool_ngrams_langs_enabled: ['fr', 'en']
 ## Usage
 
 After [installing](../installing.md), you can test your instance by requesting [HTTP API](https://dev.languagetool.org/public-http-api) with ``curl --data "language=en-US&text=a simple test" https://mash.exemple.org/v2/check``
-See the list of [software that supports LanguageTool as an add-on](https://dev.languagetool.org/software-that-supports-languagetool-as-a-plug-in-or-add-on)
+See the list of [software that supports LanguageTool as an add-on](https://dev.languagetool.org/software-that-supports-languagetool-as-a-plug-in-or-add-on) and set ``https://mash.exemple.org/v2`` as the LanguageTool server.
+
