@@ -3059,7 +3059,7 @@ lago_api_environment_variable_encryption_key_derivation_salt: "{{ '%s' | format(
 # role-specific:languagetool
 ########################################################################
 #                                                                      #
-# languagetool                                                                 #
+# languagetool                                                         #
 #                                                                      #
 ########################################################################
 
@@ -3084,7 +3084,7 @@ languagetool_container_additional_networks_auto: |
 
 ########################################################################
 #                                                                      #
-# /languagetool                                                                #
+# /languagetool                                                        #
 #                                                                      #
 ########################################################################
 # /role-specific:languagetool
