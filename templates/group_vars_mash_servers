@@ -362,6 +362,11 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
     {{ ({'name': (lago_identifier + '-pdf.service'), 'priority': 1900, 'groups': ['mash', 'lago', 'lago-pdf']} if lago_enabled else omit) }}
   # /role-specific:lago
 
+  # role-specific:languagetool
+  - |-
+    {{ ({'name': (languagetool_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'languagetool']} if languagetool_enabled else omit) }}
+  # /role-specific:languagetool
+
   # role-specific:loki
   - |-
     {{ ({'name': (loki_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'loki']} if loki_enabled else omit) }}
@@ -2267,6 +2272,16 @@ hubsite_service_keycloak_description: "An open source identity and access manage
 hubsite_service_keycloak_priority: 1000
 # /role-specific:keycloak
 
+# role-specific:languagetool
+# LanguageTool
+hubsite_service_languagetool_enabled: "{{ languagetool_enabled }}"
+hubsite_service_languagetool_name: LanguageTool
+hubsite_service_languagetool_url: "https://{{ languagetool_hostname }}{{ languagetool_path_prefix }}"
+hubsite_service_languagetool_logo_location: "{{ role_path }}/assets/languagetool.png"
+hubsite_service_languagetool_description: "An open source online grammar, style and spell checker"
+hubsite_service_languagetool_priority: 1000
+# /role-specific:languagetool
+
 # role-specific:miniflux
 # Miniflux
 hubsite_service_miniflux_enabled: "{{ miniflux_enabled }}"
@@ -2561,6 +2576,19 @@ mash_playbook_hubsite_service_list_auto_itemized:
       } if hubsite_service_keycloak_enabled else omit)
     }}
   # /role-specific:keycloak
+
+ # role-specific:languagetool
+  - |-
+    {{
+      ({
+        'name': hubsite_service_languagetool_name,
+        'url': hubsite_service_languagetool_url,
+        'logo_location': hubsite_service_languagetool_logo_location,
+        'description': hubsite_service_languagetool_description,
+        'priority': hubsite_service_languagetool_priority,
+      } if hubsite_service_languagetool_enabled else omit)
+    }}
+  # /role-specific:languagetool
 
   # role-specific:miniflux
   - |-
@@ -3025,6 +3053,41 @@ lago_api_environment_variable_encryption_key_derivation_salt: "{{ '%s' | format(
 #                                                                      #
 ########################################################################
 # /role-specific:lago
+
+
+
+# role-specific:languagetool
+########################################################################
+#                                                                      #
+# languagetool                                                         #
+#                                                                      #
+########################################################################
+
+languagetool_enabled: false
+
+languagetool_identifier: "{{ mash_playbook_service_identifier_prefix }}languagetool"
+
+languagetool_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}languagetool"
+
+languagetool_uid: "{{ mash_playbook_uid }}"
+languagetool_gid: "{{ mash_playbook_gid }}"
+
+languagetool_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+languagetool_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+languagetool_container_labels_traefik_entrypoints: "{{ devture_traefik_entrypoint_primary }}"
+languagetool_container_labels_traefik_tls_certResolver: "{{ devture_traefik_certResolver_primary }}"
+
+languagetool_container_additional_networks_auto: |
+  {{
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+  }}
+
+########################################################################
+#                                                                      #
+# /languagetool                                                        #
+#                                                                      #
+########################################################################
+# /role-specific:languagetool
 
 
 
