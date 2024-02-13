@@ -153,7 +153,7 @@
   name: lago
   activation_prefix: lago_
 - src: git+https://gitlab.com/etke.cc/roles/languagetool.git
-  version: v6.3-0
+  version: v6.3-1
   name: languagetool
   activation_prefix: languagetool_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-loki.git
