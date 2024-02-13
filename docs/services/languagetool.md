@@ -16,7 +16,7 @@ To enable this service, add the following configuration to your `vars.yml` file 
 ```yaml
 ########################################################################
 #                                                                      #
-# LanguageTool                                                         #
+# languagetool                                                         #
 #                                                                      #
 ########################################################################
 
@@ -27,7 +27,7 @@ languagetool_path_prefix: /languagetool
 
 ########################################################################
 #                                                                      #
-# /LanguageTool                                                        #
+# /languagetool                                                        #
 #                                                                      #
 ########################################################################
 ```
@@ -36,12 +36,20 @@ In the example configuration above, we configure the service to be hosted at `ht
 
 You can remove the `languagetool_path_prefix` variable definition, to make it default to `/`, so that the service is served at `https://mash.example.com/`.
 
-### Downloading models
+### Enabling n-gram data
 
-By default, no language model are present. Enable `languagetool_ngrams_enabled` and configure `languagetool_ngrams_langs_enabled` so that the service downloads models.
+LanguageTool can make use of large n-gram data sets to detect errors with words that are often confused, like *their* and *there*.
+Learn more in [Finding errors using n-gram data](https://dev.languagetool.org/finding-errors-using-n-gram-data).
+
+The **n-gram data set is huge and thus not part of the LanguageTool installation**. To make use of it with your own LanguageTool server, you may enable n-gram data and choose which languages to download n-gram data for.
+
+For a list of languages for which the Ansible role supports downloading n-gram data, consult the `languagetool_ngrams_langs` variable in [the `default/main.yml` file](https://gitlab.com/etke.cc/roles/languagetool/-/blob/main/defaults/main.yml). Additional languages may be available. If the role doesn't have a download URL for them, consider redefining `languagetool_ngrams_langs` yourself with your own language-code to download URL mapping or submit a PR to the [languagetool Ansible role](https://gitlab.com/etke.cc/roles/languagetool).
 
 ```yaml
 languagetool_ngrams_enabled: true
+
+# See `languagetool_ngrams_langs` for a list of language-codes
+# that the Ansible role supports.
 languagetool_ngrams_langs_enabled: ['fr', 'en']
 ```
 
