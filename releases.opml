@@ -28,7 +28,9 @@
     <outline text="jitsi" title="jitsi" type="rss" htmlUrl="https://github.com/jitsi/docker-jitsi-meet" xmlUrl="https://github.com/jitsi/docker-jitsi-meet/releases.atom" />
     <outline text="keycloak" title="keycloak" type="rss" htmlUrl="https://github.com/keycloak/keycloak" xmlUrl="https://github.com/keycloak/keycloak/releases.atom" />
     <outline text="lago" title="lago" type="rss" htmlUrl="https://github.com/lago/lago" xmlUrl="https://github.com/lago/lago/releases.atom" />
+    <outline text="languagetool" title="languagetool" type="rss" htmlUrl="https://github.com/Erikvl87/docker-languagetool" xmlUrl="https://github.com/Erikvl87/docker-languagetool/releases.atom" />
     <outline text="linkding" title="linkding" type="rss" htmlUrl="https://github.com/sissbruecker/linkding" xmlUrl="https://github.com/sissbruecker/linkding/releases.atom" />
+    <outline text="loki" title="loki" type="rss" htmlUrl="https://github.com/grafana/loki" xmlUrl="https://github.com/grafana/loki/releases.atom" />
     <outline text="miniflux" title="miniflux" type="rss" htmlUrl="https://github.com/miniflux/v2" xmlUrl="https://github.com/miniflux/v2/releases.atom" />
     <outline text="mongodb" title="mongodb" type="rss" htmlUrl="https://github.com/mongodb/mongo" xmlUrl="https://github.com/mongodb/mongo/releases.atom" />
     <outline text="n8n" title="n8n" type="rss" htmlUrl="https://github.com/n8n-io/n8n" xmlUrl="https://github.com/n8n-io/n8n/releases.atom" />
@@ -44,6 +46,7 @@
     <outline text="prometheus_node_exporter" title="prometheus_node_exporter" type="rss" htmlUrl="https://github.com/prometheus/node_exporter" xmlUrl="https://github.com/prometheus/node_exporter/releases.atom" />
     <outline text="prometheus_postgres_exporter" title="prometheus_postgres_exporter" type="rss" htmlUrl="https://github.com/prometheus-community/postgres_exporter" xmlUrl="https://github.com/prometheus-community/postgres_exporter/releases.atom" />
     <outline text="prometheus_ssh_exporter" title="prometheus_ssh_exporter" type="rss" htmlUrl="https://github.com/treydock/ssh_exporter" xmlUrl="https://github.com/treydock/ssh_exporter/releases.atom" />
+    <outline text="promtail" title="promtail" type="rss" htmlUrl="https://github.com/grafana/loki" xmlUrl="https://github.com/grafana/loki/releases.atom" />
     <outline text="radicale" title="radicale" type="rss" htmlUrl="https://github.com/tomsquest/docker-radicale" xmlUrl="https://github.com/tomsquest/docker-radicale/releases.atom" />
     <outline text="redis" title="redis" type="rss" htmlUrl="https://github.com/redis/redis" xmlUrl="https://github.com/redis/redis/releases.atom" />
     <outline text="redmine" title="redmine" type="rss" htmlUrl="https://github.com/redmine/redmine" xmlUrl="https://github.com/redmine/redmine/releases.atom" />
