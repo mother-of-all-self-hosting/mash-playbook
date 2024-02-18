@@ -169,7 +169,7 @@
   name: mariadb
   activation_prefix: mariadb_
 - src: git+https://gitlab.com/etke.cc/roles/miniflux.git
-  version: v2.0.51-0
+  version: v2.1.0-0
   name: miniflux
   activation_prefix: miniflux_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-mobilizon.git
