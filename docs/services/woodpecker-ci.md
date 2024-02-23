@@ -26,8 +26,6 @@ This service requires the following other services:
 
 ### Configuration
 
-Until [this Woodpecker CI issue](https://github.com/woodpecker-ci/woodpecker/issues/1636) is solved, Woodpecker CI can only be hosted at its own dedicated domain name, at the root path (`/`). It **cannot** be hosted at a subpath (e.g. `/ci`).
-
 To enable this service, add the following configuration to your `vars.yml` file and re-run the [installation](../installing.md) process:
 
 ```yaml
@@ -60,6 +58,12 @@ devture_woodpecker_ci_server_config_admins:
 ```
 
 In the example configuration above, we configure the service to be hosted at `https://woodpecker.example.com`.
+
+If you want to host the service at a subpath (e.g. `/ci`), you should set the following variable:
+
+```
+devture_woodpecker_ci_server_path_prefix: /ci
+```
 
 #### Gitea Integration
 
