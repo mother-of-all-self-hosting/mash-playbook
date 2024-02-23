@@ -26,8 +26,6 @@ This service requires the following other services:
 
 ### Configuration
 
-Until [this Woodpecker CI issue](https://github.com/woodpecker-ci/woodpecker/issues/1636) is solved, Woodpecker CI can only be hosted at its own dedicated domain name, at the root path (`/`). It **cannot** be hosted at a subpath (e.g. `/ci`).
-
 To enable this service, add the following configuration to your `vars.yml` file and re-run the [installation](../installing.md) process:
 
 ```yaml
@@ -39,7 +37,9 @@ To enable this service, add the following configuration to your `vars.yml` file 
 
 devture_woodpecker_ci_server_enabled: true
 
-devture_woodpecker_ci_server_hostname: woodpecker.example.com
+devture_woodpecker_ci_server_hostname: mash.example.com
+
+devture_woodpecker_ci_server_path_prefix: /ci
 
 # Generate this secret with `openssl rand -hex 32`
 devture_woodpecker_ci_server_config_agent_secret: ''
@@ -59,7 +59,9 @@ devture_woodpecker_ci_server_config_admins:
 ########################################################################
 ```
 
-In the example configuration above, we configure the service to be hosted at `https://woodpecker.example.com`.
+In the example configuration above, we configure the service to be hosted at `https://mash.example.com/ci`.
+
+If you want to host the service at the root path, remove the `devture_woodpecker_ci_server_path_prefix` variable override.
 
 #### Gitea Integration
 
@@ -80,11 +82,11 @@ devture_woodpecker_ci_server_container_add_host_domain_name: "{{ gitea_hostname 
 devture_woodpecker_ci_server_container_add_host_ip_address: "{{ ansible_host }}"
 ```
 
-To integrate with version-control systems other than Gitea, you'll need similar configuration.
+To integrate with version-control systems other than Gitea (e.g. [Forgejo](forgejo.md)), you'll need similar configuration.
 
 ### Usage
 
-After installation, you should be able to access the Woodpecker CI server instance at `https://woodpecker.DOMAIN` (matching the `devture_woodpecker_ci_server_hostname` value configured in `vars.yml`).
+After installation, you should be able to access the Woodpecker CI server instance at `https://mash.DOMAIN/ci` (matching the `devture_woodpecker_ci_server_hostname` and `devture_woodpecker_ci_server_path_prefix` values configured in `vars.yml`).
 
 The **Log in** button should take you to Gitea, where you can authorize Woodpecker CI with the OAuth 2 application.
 
