@@ -57,3 +57,22 @@ Going there, you'll be taken to the initial setup wizard, which will let you ass
 ## Recommended other services
 
 You may also wish to look into [Woodpecker CI](woodpecker-ci.md), which can integrate nicely with Forgejo.
+
+
+## Integration with Woodpecker CI
+
+If you want to integrate Forgejo with [Woodpecker CI](woodpecker-ci.md), and if you plan to serve Woodpecker CI under a subpath on the same host as Forgejo (e.g., Forgejo lives at `https://mash.example.com` and Woodpecker CI lives at `https://mash.example.com/ci`), then you need to configure Forgejo to use the host's external IP when invoking webhooks from Woodpecker CI.  You can do it by setting the following variables:
+
+```yaml
+forgejo_container_add_host_domain_name: "{{ devture_woodpecker_ci_server_hostname }}"
+forgejo_container_add_host_domain_ip_address: "{{ ansible_host }}"
+```
+
+You will also need to edit Forgejo's configuration file (which lives under `/mash/forgejo/config/app.ini` on the host) and allow the service to communicate with your host's IP:
+
+```
+[webhook]
+ALLOWED_HOST_LIST = A.B.C.D
+```
+
+In the example above, replace `A.B.C.D` with your host's IP address.
