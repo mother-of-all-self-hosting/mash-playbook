@@ -66,13 +66,10 @@ If you want to integrate Forgejo with [Woodpecker CI](woodpecker-ci.md), and if 
 ```yaml
 forgejo_container_add_host_domain_name: "{{ devture_woodpecker_ci_server_hostname }}"
 forgejo_container_add_host_domain_ip_address: "{{ ansible_host }}"
-```
 
-You will also need to edit Forgejo's configuration file (which lives under `/mash/forgejo/config/app.ini` on the host) and allow the service to communicate with your host's IP:
-
+# If ansible_host points to an internal IP address, you may need to allow Forgego to make requests to it.
+# By default, requests are only allowed to external IP addresses for security reasons.
+# See: https://forgejo.org/docs/latest/admin/config-cheat-sheet/#webhook-webhook
+forgejo_container_additional_environment_variables: |
+  FORGEJO__webhook__ALLOWED_HOST_LIST=external,{{ ansible_host }}
 ```
-[webhook]
-ALLOWED_HOST_LIST = A.B.C.D
-```
-
-In the example above, replace `A.B.C.D` with your host's IP address.
