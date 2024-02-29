@@ -60,8 +60,8 @@ grafana_provisioning_datasources:
     type: prometheus
     access: proxy
     url: "http://{{ prometheus_identifier }}:9090"
-	# Enable below if connecting to a remote instance that uses Basic Auth.
-	# basicAuth: true
+    # Enable below if connecting to a remote instance that uses Basic Auth.
+    # basicAuth: true
     # basicAuthUser: loki
     # secureJsonData:
     #   basicAuthPassword: ""
@@ -83,8 +83,8 @@ grafana_provisioning_datasources:
     type: loki
     access: proxy
     url: "http://{{ loki_identifier }}:{{ loki_server_http_listen_port }}"
-	# Enable below and also (basicAuthPassword) if connecting to a remote instance that uses Basic Auth.
-	# basicAuth: true
+    # Enable below and also (basicAuthPassword) if connecting to a remote instance that uses Basic Auth.
+    # basicAuth: true
     # basicAuthUser: loki
     jsonData:
       httpHeaderName1: X-Scope-OrgID
