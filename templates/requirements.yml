@@ -64,6 +64,10 @@
   version: v1.6.1-0
   name: docker_registry_browser
   activation_prefix: docker_registry_browser_
+- src: git+https://github.com/mother-of-all-self-hosting/ansible-role-docker-registry-proxy.git
+  version: v1.0.0-0
+  name: docker_registry_proxy
+  activation_prefix: docker_registry_proxy_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-docker-registry-purger.git
   version: v1.0.0-0
   name: docker_registry_purger

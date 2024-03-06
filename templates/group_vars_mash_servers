@@ -240,6 +240,11 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
     {{ ({'name': (docker_registry_identifier + '-garbage-collect.timer'), 'priority': 2500, 'groups': ['mash', 'docker-registry', 'docker-registry-gc']} if docker_registry_enabled else omit) }}
   # /role-specific:docker_registry
 
+  # role-specific:docker_registry_proxy
+  - |-
+    {{ ({'name': (docker_registry_proxy_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'docker-registry-proxy']} if docker_registry_proxy_enabled else omit) }}
+  # /role-specific:docker_registry_proxy
+
   # role-specific:docker_registry_browser
   - |-
     {{ ({'name': (docker_registry_browser_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'docker-registry-browser']} if docker_registry_browser_enabled else omit) }}
@@ -1532,6 +1537,46 @@ docker_registry_container_labels_traefik_tls_certResolver: "{{ devture_traefik_c
 #                                                                      #
 ########################################################################
 # /role-specific:docker_registry
+
+
+
+# role-specific:docker_registry_proxy
+########################################################################
+#                                                                      #
+# docker-registry-proxy                                              #
+#                                                                      #
+########################################################################
+
+docker_registry_proxy_enabled: false
+
+docker_registry_proxy_identifier: "{{ mash_playbook_service_identifier_prefix }}docker-registry-proxy"
+
+docker_registry_proxy_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}docker-registry-proxy"
+
+docker_registry_proxy_uid: "{{ mash_playbook_uid }}"
+docker_registry_proxy_gid: "{{ mash_playbook_gid }}"
+
+docker_registry_proxy_target_scheme: "{{ 'http' if docker_registry_enabled else '' }}"
+docker_registry_proxy_target_host: "{{ docker_registry_identifier+':5000' if docker_registry_enabled else '' }}"
+
+docker_registry_proxy_container_additional_networks: |
+  {{
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+  }}
+
+# role-specific:traefik
+docker_registry_proxy_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+docker_registry_proxy_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+docker_registry_proxy_container_labels_traefik_entrypoints: "{{ devture_traefik_entrypoint_primary }}"
+docker_registry_proxy_container_labels_traefik_tls_certResolver: "{{ devture_traefik_certResolver_primary }}"
+# /role-specific:traefik
+
+########################################################################
+#                                                                      #
+# /docker-registry-proxy                                             #
+#                                                                      #
+########################################################################
+# /role-specific:docker_registry_proxy
 
 
 
