@@ -11,8 +11,6 @@ A Woodpecker CI installation contains 2 components:
 
 It's better to run the **agent** instances elsewhere (not on the source-control server or a server serving anything of value) - on a machine that doesn't contain sensitive data.
 
-**Warning**: At the moment, running the **server** and **agent** on different machines cannot be done due to the server's gRPC port not being exposed publicly (at the Traefik level). If you need to do this, consider submitting a PR to the [Woodpecker CI server role](https://github.com/devture/com.devture.ansible.role.woodpecker_ci_server) to add support for this.
-
 Small installations which only run trusted CI jobs can afford to run an agent instance on the source-control server itself.
 
 ## Woodpecker CI Server
@@ -123,15 +121,22 @@ devture_woodpecker_ci_agent_enabled: true
 #
 # Otherwise, you'll need to configure the variables below:
 
-# This needs to point to the server's gRPC port.
-# By default, this port is not exposed, so.. you may need to do some extra work,
-# which possibly involves contributing a PR to the Woodpecker CI server role:
-# https://github.com/devture/com.devture.ansible.role.woodpecker_ci_server
+# This needs to point to the server's gRPC host:port.
+# If your Woodpecker CI Server is deployed using this playbook, its
+# gRPC port will likely be 443.  E.g., ci.example.com:443.
 devture_woodpecker_ci_agent_config_server: ''
 
 # Enter your server's secret below.
 # This value must match the `devture_woodpecker_ci_server_config_agent_secret` variable.
 devture_woodpecker_ci_agent_config_agent_secret: ''
+
+# Uncomment the line below if you want the agent to connect to the
+# server over a secure gRPC channel (recommended).
+#devture_woodpecker_ci_agent_config_grpc_secure: true
+
+# Uncomment the line below if you want the agent to verify the
+# server's TLS certificate when connecting over a secure gRPC channel.
+#devture_woodpecker_ci_agent_config_grpc_verify: true
 
 ########################################################################
 #                                                                      #
