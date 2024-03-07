@@ -52,6 +52,10 @@ devture_woodpecker_ci_server_config_admins:
   - YOUR_USERNAME_HERE
   - ANOTHER_USERNAME_HERE
 
+# Uncomment the line below if you'll be running Woodpecker CI agents on remote machines.
+# If you'll only run agents on the same machine as the server, you can keep gRPC expose disabled.
+# devture_woodpecker_ci_server_container_labels_traefik_grpc_enabled: true
+
 ########################################################################
 #                                                                      #
 # /woodpecker-ci-server                                                #
