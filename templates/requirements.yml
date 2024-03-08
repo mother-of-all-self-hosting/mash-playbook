@@ -101,7 +101,7 @@
   name: focalboard
   activation_prefix: focalboard_
 - src: git+https://github.com/NeonMinnen/ansible-role-forgejo.git
-  version: v1.21.6-0-0
+  version: v1.21.7-0-0
   name: forgejo
   activation_prefix: forgejo_
 - src: git+https://github.com/kinduff/ansible-docker-freshrss.git
