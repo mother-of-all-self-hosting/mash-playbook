@@ -109,7 +109,7 @@ You can get around this issue by using the following workaround which changes th
 3. Run `systemctl restart mash-adguard-home` to restart the service
 4. Perform the first time setup as documented under [usage](https://github.com/mother-of-all-self-hosting/mash-playbook/blob/main/docs/services/adguard-home.md#usage)
 5. Run `systemctl stop mash-adguard-home` to stop the service
-6. Run `chown -R mash:mash /mash/adguard-home/workdir` to change ownership of the files created during the first time setup from `root` to `mash`. Optionally Use `ls -ll /mash/adguard-home/workdir` check the permissions before and after running `chrown`.
+6. Run `chown -R mash:mash /mash/adguard-home/workdir` to change ownership of the files created during the first time setup from `root` to `mash`. Optionally Use `ls -ll /mash/adguard-home/workdir` check the file ownership before and after running `chrown`.
 7. Edit `/etc/systemd/system/mash-adguard-home.service` and add the line `--user=996:3992 \` back
 8. Run `systemctl daemon-reload` to reload systemd
 9. Run `systemctl restart mash-adguard-home` to restart the service
