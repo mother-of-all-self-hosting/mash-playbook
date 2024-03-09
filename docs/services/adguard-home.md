@@ -87,7 +87,7 @@ Things you should consider doing later:
 
 ## Troubleshooting and workaround
 
-Adguard Home does currently support being setup with a non-root account (see [issue](https://github.com/AdguardTeam/AdGuardHome/issues/4714)). As the playbook uses the user 'mash', meaning you will encounter the following error when it tries to start for the first time: 
+Adguard Home does currently support being setup with a non-root account (see [issue](https://github.com/AdguardTeam/AdGuardHome/issues/4714)). As the playbook uses the user `mash`, meaning you will encounter the following error when it tries to start for the first time: 
 
 ```
 mar 02 19:11:59 $hostname mash-adguard-home[872496]: 2024/03/02 18:11:59.706251 [info] Checking if AdGuard Home has necessary permissions
