@@ -83,3 +83,33 @@ Things you should consider doing later:
 - enabling caching in the **DNS cache configuration** section in **Settings** -> **DNS Settings**
 - adding additional blocklists by discovering them on [Firebog](https://firebog.net/) or other sources and importing them from **Filters** -> **DNS blocklists**
 - reading the AdGuard Home [README](https://github.com/AdguardTeam/AdGuardHome/blob/master/README.md) and [Wiki](https://github.com/AdguardTeam/AdGuardHome/wiki)
+
+
+## Troubleshooting and workaround
+
+Adguard Home does currently support being setup with a non-root account (see [issue](https://github.com/AdguardTeam/AdGuardHome/issues/4714)). As the playbook uses the user 'mash', meaning you will encounter the following error when it tries to start for the first time: 
+
+```
+mar 02 19:11:59 $hostname mash-adguard-home[872496]: 2024/03/02 18:11:59.706251 [info] Checking if AdGuard Home has necessary permissions
+mar 02 19:11:59 $hostname mash-adguard-home[872496]: 2024/03/02 18:11:59.706257 [fatal] This is the first launch of AdGuard Home. You must run it as Administrator.
+```
+
+You can get around this issue by using the following workaround which changes the user to root for the first time setup and then changes it back. You will need root to run the commands so unless you're already root, prepend the commands with `sudo` or change to root with `su`.   
+
+1. Edit `/etc/systemd/system/mash-adguard-home.service` and remove the line `--user=996:3992 \`
+	```
+	ExecStartPre=/usr/bin/env docker create \
+	                        --rm \
+	                        --name=mash-adguard-home \
+	                        --log-driver=none \
+	                        --user=996:3992 \  <--- remove temorarily
+	```
+2. Run `systemctl daemon-reload` to reload systemd
+3. Run `systemctl restart mash-adguard-home` to restart the service
+4. Perform the first time setup as documented under [usage](https://github.com/QEDeD/mash-playbook/edit/main/docs/services/adguard-home.md#usage)
+5. Run `systemctl stop mash-adguard-home` to stop the service
+6. Run `chown -R mash:mash /mash/adguard-home/workdir` to change ownership of the files created during the first time setup from `root` to `mash`. Optionally Use `ls -ll /mash/adguard-home/workdir` check the permissions before and after running `chrown`.
+7. Edit `/etc/systemd/system/mash-adguard-home.service` and add the line `--user=996:3992 \` back
+8. Run `systemctl daemon-reload` to reload systemd
+9. Run `systemctl restart mash-adguard-home` to restart the service
+10. Check that the service is running correctly with `journalctl -fu mash-adguard-home`
