@@ -97,6 +97,7 @@ mar 02 19:11:59 $hostname mash-adguard-home[872496]: 2024/03/02 18:11:59.706257 
 You can get around this issue by using the following workaround which changes the user to root for the first time setup and then changes it back. You will need root to run the commands so unless you're already root, prepend the commands with `sudo` or change to root with `su`.   
 
 1. Edit `/etc/systemd/system/mash-adguard-home.service` and remove the line `--user=996:3992 \`
+	
 	```
 	ExecStartPre=/usr/bin/env docker create \
 	                        --rm \
