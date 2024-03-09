@@ -96,7 +96,7 @@ mar 02 19:11:59 $hostname mash-adguard-home[872496]: 2024/03/02 18:11:59.706257 
 
 You can get around this issue by using the following workaround which changes the user to root for the first time setup and then changes it back. You will need root to run the commands so unless you're already root, prepend the commands with `sudo` or change to root with `su`.   
 
-1. Edit `/etc/systemd/system/mash-adguard-home.service` and remove the line `--user=996:3992 \`
+1. Edit `/etc/systemd/system/mash-adguard-home.service` and remove or comment out the line `--user=996:3992 \`
 	
 	```
 	ExecStartPre=/usr/bin/env docker create \
@@ -110,7 +110,7 @@ You can get around this issue by using the following workaround which changes th
 4. Perform the first time setup as documented under [usage](https://github.com/mother-of-all-self-hosting/mash-playbook/blob/main/docs/services/adguard-home.md#usage)
 5. Run `systemctl stop mash-adguard-home` to stop the service
 6. Run `chown -R mash:mash /mash/adguard-home/workdir` to change ownership of the files created during the first time setup from `root` to `mash`. Optionally Use `ls -ll /mash/adguard-home/workdir` check the file ownership before and after running `chown`.
-7. Edit `/etc/systemd/system/mash-adguard-home.service` and add the line `--user=996:3992 \` back
+7. Edit `/etc/systemd/system/mash-adguard-home.service` and add or uncomment the line `--user=996:3992 \` back
 8. Run `systemctl daemon-reload` to reload systemd
 9. Run `systemctl restart mash-adguard-home` to restart the service
 10. Check that the service is running correctly with `journalctl -fu mash-adguard-home`
