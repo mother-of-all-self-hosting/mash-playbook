@@ -83,11 +83,3 @@
 ## Related playbooks
 
 - [matrix-docker-ansible-deploy](https://github.com/spantaleev/matrix-docker-ansible-deploy) - for deploying a fully-featured [Matrix](https://matrix.org) homeserver. This playbook will remain independent, because the Matrix ecosystem is incredibly large - lots of bots, bridges and other pieces of software. It deserves its own dedicated playbook.
-
-
-## Coming soon
-
-|              Name              |              Description              |
-| ------------------------------ | ------------------------------------- |
-| [Garage](https://garagehq.deuxfleurs.fr/), by absorbing [garage-docker-ansible-deploy](https://github.com/moan0s/garage-docker-ansible-deploy) | Open-source distributed object storage service tailored for self-hosting |
-
