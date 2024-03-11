@@ -40,6 +40,13 @@ devture_woodpecker_ci_server_hostname: mash.example.com
 devture_woodpecker_ci_server_path_prefix: /ci
 
 # Generate this secret with `openssl rand -hex 32`
+#
+# Note that this playbook only supports agent-specific secrets, which
+# means that if you choose to share this secret with an agent, the
+# server will register it as a non-persistent agent.
+#
+# See the definition of
+# devture_woodpecker_ci_agent_config_agent_secret below for more details.
 devture_woodpecker_ci_server_config_agent_secret: ''
 
 devture_woodpecker_ci_server_config_admins: [YOUR_USERNAME_HERE]
@@ -126,9 +133,15 @@ devture_woodpecker_ci_agent_enabled: true
 # gRPC port will likely be 443.  E.g., ci.example.com:443.
 devture_woodpecker_ci_agent_config_server: ''
 
-# Enter your server's secret below.
-# This value must match the `devture_woodpecker_ci_server_config_agent_secret` variable.
-devture_woodpecker_ci_agent_config_agent_secret: ''
+# This playbook only supports agent-specific secrets, i.e., it is not recommended to use
+# a shared secret between Woodpecker CI Server and all of its agents.  Please refer to
+# the following upstream documentation in order to learn how to register an agent and
+# obtain a secret for it:
+#
+#   https://woodpecker-ci.org/docs/administration/agent-config#using-agent-token
+#
+# then, when you have the agent secret, uncomment the following line.
+#devture_woodpecker_ci_agent_config_agent_secret: ''
 
 # Uncomment the line below if you want the agent to connect to the
 # server over a secure gRPC channel (recommended).
