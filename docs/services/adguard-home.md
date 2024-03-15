@@ -87,16 +87,16 @@ Things you should consider doing later:
 
 ## Troubleshooting and workaround
 
-Adguard Home does currently support being setup with a non-root account (see [issue](https://github.com/AdguardTeam/AdGuardHome/issues/4714)). As the playbook uses the user `mash`, meaning you will encounter the following error when it tries to start for the first time: 
+Adguard Home does not currently support being setup with a non-`root` account (see [issue](https://github.com/AdguardTeam/AdGuardHome/issues/4714)). As the playbook uses the user `mash` when starting services, you will likely encounter the following error when `adguard-home.service` tries to start for the first time: 
 
 ```
 mar 02 19:11:59 $hostname mash-adguard-home[872496]: 2024/03/02 18:11:59.706251 [info] Checking if AdGuard Home has necessary permissions
 mar 02 19:11:59 $hostname mash-adguard-home[872496]: 2024/03/02 18:11:59.706257 [fatal] This is the first launch of AdGuard Home. You must run it as Administrator.
 ```
 
-You can get around this issue by using the following workaround which changes the user to root for the first time setup and then changes it back. You will need root to run the commands so unless you're already root, prepend the commands with `sudo` or change to root with `su`.   
+You can workaround this issue by editing `mash-adguard-home.service` and temporarily make it start Adguard Home as the `root` user for the first time, and then revert it back to using a regular user afterwards.  Follow the steps below, which require you to be `root` to execute the commands:
 
-1. Edit `/etc/systemd/system/mash-adguard-home.service` and remove or comment out the line starting with `--user` (e.g. `--user=996:3992 \` - the numbers represent the uid/gid of the `mash` user, so your values may be different):
+1. Run `systemctl edit --full mash-adguard-home.service` to edit Adguard Home's service file and remove or comment out the line starting with `--user` (e.g. `--user=996:3992 \` - the numbers represent the uid/gid of the `mash` user, so your values may be different):
 	
 	```
 	ExecStartPre=/usr/bin/env docker create \
@@ -105,10 +105,10 @@ You can get around this issue by using the following workaround which changes th
 	                        --log-driver=none \
 	                        --user=996:3992 \  <--- remove temporarily
 	```
-2. Run `systemctl daemon-reload` to reload systemd
-3. Run `systemctl restart mash-adguard-home` to restart the service
-4. Perform the first time setup as documented under [usage](https://github.com/mother-of-all-self-hosting/mash-playbook/blob/main/docs/services/adguard-home.md#usage)
-5. Run `systemctl stop mash-adguard-home` to stop the service
-6. Run `chown -R mash:mash /mash/adguard-home/workdir` to change ownership of the files created during the first time setup from `root` to `mash`. Optionally Use `ls -ll /mash/adguard-home/workdir` check the file ownership before and after running `chown`.
-7. Run the playbook again to rebuild `/etc/systemd/system/mash-adguard-home.service` and start AdGuard Home again: `just install-service adguard-home`
-8. If you didn't get any errors, Adguard Home should be running correctly. You can also check on the service with: `journalctl -fu mash-adguard-home`
+
+2. Run `systemctl restart mash-adguard-home.service` to restart the service.
+3. Perform the first time setup as documented under [usage](https://github.com/mother-of-all-self-hosting/mash-playbook/blob/main/docs/services/adguard-home.md#usage).
+4. Run `systemctl stop mash-adguard-home.service` to stop the service.
+5. Run `chown -R mash:mash /mash/adguard-home/workdir` to change ownership of the files created during the first-time setup from `root` to `mash`. Optionally, use `ls -ll /mash/adguard-home/workdir` to check the file ownership before and after running `chown`.
+6. Run the playbook again to rebuild `/etc/systemd/system/mash-adguard-home.service` and start AdGuard Home again: `just install-service adguard-home.service`.
+7. If you didn't get any errors, Adguard Home should be running correctly. You can also check on the service with: `journalctl -fu mash-adguard-home.service`.
