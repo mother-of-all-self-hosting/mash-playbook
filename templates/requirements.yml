@@ -29,7 +29,7 @@
   name: auxiliary
   activation_prefix: aux_
 - src: git+https://gitlab.com/etke.cc/roles/backup_borg.git
-  version: v1.2.7-1.8.8-0
+  version: v1.2.7-1.8.9-0
   name: backup_borg
   activation_prefix: backup_borg_
 - src: git+https://github.com/nielscil/ansible-role-changedetection.git
@@ -65,7 +65,7 @@
   name: docker_registry_browser
   activation_prefix: docker_registry_browser_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-docker-registry-proxy.git
-  version: v1.1.0-0
+  version: v1.1.1-0
   name: docker_registry_proxy
   activation_prefix: docker_registry_proxy_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-docker-registry-purger.git
