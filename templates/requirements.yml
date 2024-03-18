@@ -189,7 +189,7 @@
   name: mosquitto
   activation_prefix: mosquitto_
 - src: git+https://gitlab.com/etke.cc/mrs/ansible-role-mrs.git
-  version: v0.0.0-23
+  version: v0.0.0-24
   name: mrs
   activation_prefix: mrs_
 - src: git+https://github.com/kinduff/ansible-docker-n8n.git
