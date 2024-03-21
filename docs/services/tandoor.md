@@ -1,6 +1,6 @@
 # Tandoor
 
-[Tandoor](https://docs.tandoor.dev/) is a recipe manager that allows you to manage your ever growing collection of digital recipes.
+[Tandoor](https://docs.tandoor.dev/) is a self-hosted recipe manager, that this playbook can install, powered by the [ansible-role-tandoor](https://github.com/IUCCA/ansible-role-tandoor) Ansible role.
 
 
 ## Dependencies
