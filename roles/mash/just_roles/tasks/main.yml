@@ -1,5 +1,23 @@
 ---
 
+- name: Copy requirements.yml to playbook directory
+  copy:
+    src: "{{ playbook_dir }}/templates/requirements.yml"
+    dest: "{{ playbook_dir }}/requirements.yml"
+    force: yes
+
+- name: Copy setup.yml to playbook directory
+  copy:
+    src: "{{ playbook_dir }}/templates/setup.yml"
+    dest: "{{ playbook_dir }}/setup.yml"
+    force: yes
+
+- name: Copy group_vars_mash_servers.yml to playbook directory
+  copy:
+    src: "{{ playbook_dir }}/templates/group_vars_mash_servers"
+    dest: "{{ playbook_dir }}/group_vars/mash_servers"
+    force: yes
+
 - name: Change directory to the playbook directory
   shell: /usr/bin/just roles
   args:
