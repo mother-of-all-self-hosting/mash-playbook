@@ -1,4 +1,4 @@
-- name: "Pre+Task on localhost"
+- name: "Pre-Task on localhost"
   hosts: localhost
   gather_facts: yes
   become: no
