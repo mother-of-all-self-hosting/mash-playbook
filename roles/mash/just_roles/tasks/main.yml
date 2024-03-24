@@ -22,4 +22,3 @@
   shell: /usr/bin/just roles
   args:
     chdir: "{{ playbook_dir }}"
-#  when: just_roles_enabled|default(false)|bool
