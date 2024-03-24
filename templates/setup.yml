@@ -1,3 +1,12 @@
+#- name: "Pre+Task on localhost"
+#  hosts: localhost
+#  gather_facts: yes
+#  become: no
+#  roles:
+#    - role: mash/just_roles
+#      tags:
+#        - roles
+
 - name: "Set up a self-hosted server"
   hosts: "{{ target if target is defined else 'mash_servers' }}"
   become: true
