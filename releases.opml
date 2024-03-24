@@ -52,6 +52,7 @@
     <outline text="redis" title="redis" type="rss" htmlUrl="https://github.com/redis/redis" xmlUrl="https://github.com/redis/redis/releases.atom" />
     <outline text="redmine" title="redmine" type="rss" htmlUrl="https://github.com/redmine/redmine" xmlUrl="https://github.com/redmine/redmine/releases.atom" />
     <outline text="roundcube" title="roundcube" type="rss" htmlUrl="https://github.com/roundcube/roundcubemail" xmlUrl="https://github.com/roundcube/roundcubemail/releases.atom" />
+    <outline text="semaphore" title="semaphore" type="rss" htmlUrl="https://github.com/ansible-semaphore/semaphore" xmlUrl="https://github.com/ansible-semaphore/semaphore/releases.atom" />
     <outline text="soft_serve" title="soft_serve" type="rss" htmlUrl="https://github.com/charmbracelet/soft-serve" xmlUrl="https://github.com/charmbracelet/soft-serve/releases.atom" />
     <outline text="syncthing" title="syncthing" type="rss" htmlUrl="https://github.com/syncthing/syncthing/" xmlUrl="https://github.com/syncthing/syncthing//releases.atom" />
     <outline text="traefik" title="traefik" type="rss" htmlUrl="https://github.com/traefik/traefik" xmlUrl="https://github.com/traefik/traefik/releases.atom" />
