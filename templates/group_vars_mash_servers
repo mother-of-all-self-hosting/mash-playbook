@@ -1975,6 +1975,8 @@ gitea_container_additional_networks_auto: |
     ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
     +
     ([devture_postgres_container_network] if devture_postgres_enabled and gitea_config_database_hostname == devture_postgres_identifier and gitea_container_network != devture_postgres_container_network else [])
+    +
+    ([exim_relay_container_network | default('mash-exim-relay')] if (exim_relay_enabled | default(false) and gitea_config_mailer_smtp_addr == exim_relay_identifier | default('mash-exim-relay') and gitea_container_network != exim_relay_container_network) else [])
   }}
 
 gitea_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
@@ -1986,6 +1988,14 @@ gitea_config_database_hostname: "{{ devture_postgres_identifier if devture_postg
 gitea_config_database_port: "{{ '5432' if devture_postgres_enabled else '' }}"
 gitea_config_database_username: "gitea"
 gitea_config_database_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'db.gitea', rounds=655555) | to_uuid }}"
+
+# role-specific:exim_relay
+gitea_config_mailer_enabled: "{{ 'true' if exim_relay_enabled else '' }}"
+gitea_config_mailer_smtp_addr: "{{ exim_relay_identifier if exim_relay_enabled else '' }}"
+gitea_config_mailer_smtp_port: 8025
+gitea_config_mailer_from: "{{ exim_relay_sender_address if exim_relay_enabled else '' }}"
+gitea_config_mailer_protocol: "{{ 'smtp' if exim_relay_enabled else '' }}"
+# /role-specific:exim_relay
 
 ########################################################################
 #                                                                      #
