@@ -1970,7 +1970,7 @@ gitea_systemd_required_systemd_services_list: |
     ([devture_postgres_identifier ~ '.service'] if devture_postgres_enabled and gitea_config_database_hostname == devture_postgres_identifier else [])
   }}
 
-gitea_container_additional_networks: |
+gitea_container_additional_networks_auto: |
   {{
     ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
     +
