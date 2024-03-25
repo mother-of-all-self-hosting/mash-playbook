@@ -17,7 +17,7 @@ To enable this service, add the following configuration to your `vars.yml` file 
 ```yaml
 ########################################################################
 #                                                                      #
-# tandoor                                                            #
+# tandoor                                                              #
 #                                                                      #
 ########################################################################
 
