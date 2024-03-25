@@ -24,10 +24,9 @@ To enable this service, add the following configuration to your `vars.yml` file 
 tandoor_enabled: true
 
 tandoor_hostname: tandoor.example.com
-#path prefix is not supported at the moment
+
+# path prefix is not supported at the moment
 #tandoor_path_prefix: /tandoor
-
-
 
 ########################################################################
 #                                                                      #
