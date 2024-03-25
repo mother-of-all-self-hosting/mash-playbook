@@ -2780,6 +2780,19 @@ mash_playbook_hubsite_service_list_auto_itemized:
     }}
   # /role-specific:syncthing
 
+  # role-specific:tandoor
+  - |-
+    {{
+      ({
+        'name': hubsite_service_tandoor_name,
+        'url': hubsite_service_tandoor_url,
+        'logo_location': hubsite_service_tandoor_logo_location,
+        'description': hubsite_service_tandoor_description,
+        'priority': hubsite_service_tandoor_priority,
+      } if hubsite_service_tandoor_enabled else omit)
+    }}
+  # /role-specific:tandoor
+
   # role-specific:vaultwarden
   - |-
     {{
