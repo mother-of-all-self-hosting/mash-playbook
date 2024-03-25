@@ -4490,7 +4490,7 @@ syncthing_container_labels_traefik_tls_certResolver: "{{ devture_traefik_certRes
 
 ########################################################################
 #                                                                      #
-# tandoor                                                            #
+# tandoor                                                              #
 #                                                                      #
 ########################################################################
 
