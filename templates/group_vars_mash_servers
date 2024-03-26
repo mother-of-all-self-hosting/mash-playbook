@@ -512,6 +512,11 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
     {{ ({'name': (redis_identifier + '.service'), 'priority': 750, 'groups': ['mash', 'redis']} if redis_enabled else omit) }}
   # /role-specific:redis
 
+  # role-specific:keydb
+  - |-
+    {{ ({'name': (keydb_identifier + '.service'), 'priority': 750, 'groups': ['mash', 'keydb']} if keydb_enabled else omit) }}
+  # /role-specific:keydb
+
   # role-specific:roundcube
   - |-
     {{ ({'name': (roundcube_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'roundcube']} if roundcube_enabled else omit) }}
@@ -4355,7 +4360,7 @@ redis_gid: "{{ mash_playbook_gid }}"
 
 keydb_enabled: false
 
-redis_identifier: "{{ mash_playbook_service_identifier_prefix }}keydb"
+keydb_identifier: "{{ mash_playbook_service_identifier_prefix }}keydb"
 
 keydb_uid: "{{ mash_playbook_uid }}"
 keydb_gid: "{{ mash_playbook_gid }}"
