@@ -230,6 +230,10 @@
     - role: galaxy/keycloak
     # /role-specific:keycloak
 
+    # role-specific:keydb
+    - role: galaxy/keydb
+    # /role-specific:keydb
+
     # role-specific:lago
     - role: galaxy/lago
     # /role-specific:lago
