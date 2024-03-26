@@ -4346,6 +4346,38 @@ redis_gid: "{{ mash_playbook_gid }}"
 # /role-specific:redis
 
 
+# role-specific:keydb
+########################################################################
+#                                                                      #
+# keydb                                                                #
+#                                                                      #
+########################################################################
+
+keydb_enabled: false
+
+redis_identifier: "{{ mash_playbook_service_identifier_prefix }}keydb"
+
+keydb_uid: "{{ mash_playbook_uid }}"
+keydb_gid: "{{ mash_playbook_gid }}"
+
+keydb_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}keydb"
+
+keydb_arch: |-
+  {{
+    ({
+      'amd64': 'x86_64',
+      'arm32': 'arm32',
+      'arm64': 'arm64',
+    })[mash_playbook_architecture]
+  }}
+
+########################################################################
+#                                                                      #
+# /keydb                                                               #
+#                                                                      #
+########################################################################
+# /role-specific:keydb
+
 
 # role-specific:roundcube
 ########################################################################

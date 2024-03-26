@@ -2,6 +2,8 @@
 
 [Redis](https://redis.io/) is an open source, in-memory data store used by millions of developers as a database, cache, streaming engine, and message broker.
 
+We used to used to advocate for using Redis, but since [Redis is now "source available"](https://redis.com/blog/redis-adopts-dual-source-available-licensing/) we recommend that you use [KeyDB](keydb.md) instead. KeyDB is compatible with Redis, so switching should be straightforward. You can learn more about the switch from Redis to KeyDB in [this changelog entry](https://github.com/spantaleev/matrix-docker-ansible-deploy/blob/50813c600db1c47b1f3e76707b81fe05d6c46ef5/CHANGELOG.md#backward-compatibility-break-the-playbook-now-defaults-to-keydb-instead-of-redis) for [matrix-docker-ansible-deploy](https://github.com/spantaleev/matrix-docker-ansible-deploy).
+
 Some of the services installed by this playbook require a Redis data store.
 
 **Warning**: Because Redis is not as flexible as [Postgres](postgres.md) when it comes to authentication and data separation, it's **recommended that you run separate Redis instances** (one for each service). Redis supports multiple database and a [SELECT](https://redis.io/commands/select/) command for switching between them. However, **reusing the same Redis instance is not good enough** because:

@@ -9,7 +9,7 @@ This service requires the following other services:
 
 - a [Postgres](postgres.md) database
 - a [Traefik](traefik.md) reverse-proxy server
-- (optional) a [Redis](redis.md) data-store, installation details [below](#redis)
+- (optional) a [KeyDB](keydb.md) data-store, installation details [below](#keydb)
 - (optional) the [exim-relay](exim-relay.md) mailer
 
 
@@ -29,7 +29,7 @@ nextcloud_enabled: true
 nextcloud_hostname: mash.example.com
 nextcloud_path_prefix: /nextcloud
 
-# Redis configuration, as described below
+# KeyDB configuration, as described below
 
 ########################################################################
 #                                                                      #
@@ -42,23 +42,23 @@ In the example configuration above, we configure the service to be hosted at `ht
 
 You can remove the `nextcloud_path_prefix` variable definition, to make it default to `/`, so that the service is served at `https://mash.example.com/`.
 
-### Redis
+### KeyDB
 
-Redis can **optionally** be enabled to improve Nextcloud performance.
-It's dubious whether using using Redis helps much, so we recommend that you **start without** it, for a simpler deployment.
+KeyDB can **optionally** be enabled to improve Nextcloud performance.
+It's dubious whether using using KeyDB helps much, so we recommend that you **start without** it, for a simpler deployment.
 
 To learn more, read the [Memory caching](https://docs.nextcloud.com/server/latest/admin_manual/configuration_server/caching_configuration.html) section of the Nextcloud documentation.
 
-As described on the [Redis](redis.md) documentation page, if you're hosting additional services which require Redis on the same server, you'd better go for installing a separate Redis instance for each service. See [Creating a Redis instance dedicated to Nextcloud](#creating-a-redis-instance-dedicated-to-nextcloud).
+As described on the [KeyDB](keydb.md) documentation page, if you're hosting additional services which require KeyDB on the same server, you'd better go for installing a separate KeyDB instance for each service. See [Creating a KeyDB instance dedicated to Nextcloud](#creating-a-keydb-instance-dedicated-to-nextcloud).
 
-If you're only running Nextcloud on this server and don't need to use Redis for anything else, you can [use a single Redis instance](#using-the-shared-redis-instance-for-nextcloud).
+If you're only running Nextcloud on this server and don't need to use KeyDB for anything else, you can [use a single KeyDB instance](#using-the-shared-keydb-instance-for-nextcloud).
 
-**Regardless** of the method of installing Redis, you may need to adjust your Nextcloud configuration file (e.g. `/mash/nextcloud/data/config/config.php`) to **add** this:
+**Regardless** of the method of installing KeyDB, you may need to adjust your Nextcloud configuration file (e.g. `/mash/nextcloud/data/config/config.php`) to **add** this:
 
 ```php
-  'memcache.distributed' => '\OC\Memcache\Redis',
-  'memcache.locking' => '\OC\Memcache\Redis',
-  'redis' => [
+  'memcache.distributed' => '\OC\Memcache\KeyDB',
+  'memcache.locking' => '\OC\Memcache\KeyDB',
+  'keydb' => [
      'host' => 'REDIS_HOSTNAME_HERE',
      'port' => 6379,
   ],
@@ -66,26 +66,26 @@ If you're only running Nextcloud on this server and don't need to use Redis for 
 
 Where `REDIS_HOSTNAME_HERE` is to be replaced with:
 
-- `mash-nextcloud-redis`, when [Creating a Redis instance dedicated to Nextcloud](#creating-a-redis-instance-dedicated-to-nextcloud)
-- `mash-redis`, when [using a single Redis instance](#using-the-shared-redis-instance-for-nextcloud).
+- `mash-nextcloud-keydb`, when [Creating a KeyDB instance dedicated to Nextcloud](#creating-a-keydb-instance-dedicated-to-nextcloud)
+- `mash-keydb`, when [using a single KeyDB instance](#using-the-shared-keydb-instance-for-nextcloud).
 
 
-#### Using the shared Redis instance for Nextcloud
+#### Using the shared KeyDB instance for Nextcloud
 
-To install a single (non-dedicated) Redis instance (`mash-redis`) and hook Nextcloud to it, add the following **additional** configuration:
+To install a single (non-dedicated) KeyDB instance (`mash-keydb`) and hook Nextcloud to it, add the following **additional** configuration:
 
 ```yaml
 ########################################################################
 #                                                                      #
-# redis                                                                #
+# keydb                                                                #
 #                                                                      #
 ########################################################################
 
-redis_enabled: true
+keydb_enabled: true
 
 ########################################################################
 #                                                                      #
-# /redis                                                               #
+# /keydb                                                               #
 #                                                                      #
 ########################################################################
 
@@ -98,16 +98,16 @@ redis_enabled: true
 
 # Base configuration as shown above
 
-# Point Nextcloud to the shared Redis instance
-nextcloud_redis_hostname: "{{ redis_identifier }}"
+# Point Nextcloud to the shared KeyDB instance
+nextcloud_redis_hostname: "{{ keydb_identifier }}"
 
-# Make sure the Nextcloud service (mash-nextcloud.service) starts after the shared Redis service (mash-redis.service)
+# Make sure the Nextcloud service (mash-nextcloud.service) starts after the shared KeyDB service (mash-keydb.service)
 nextcloud_systemd_required_services_list_custom:
-  - "{{ redis_identifier }}.service"
+  - "{{ keydb_identifier }}.service"
 
-# Make sure the Nextcloud container is connected to the container network of the shared Redis service (mash-redis)
+# Make sure the Nextcloud container is connected to the container network of the shared KeyDB service (mash-keydb)
 nextcloud_container_additional_networks_custom:
-  - "{{ redis_identifier }}"
+  - "{{ keydb_identifier }}"
 
 ########################################################################
 #                                                                      #
@@ -115,11 +115,11 @@ nextcloud_container_additional_networks_custom:
 #                                                                      #
 ########################################################################
 ```
-This will create a `mash-redis` Redis instance on this host.
+This will create a `mash-keydb` KeyDB instance on this host.
 
-This is only recommended if you won't be installing other services which require Redis. Alternatively, go for [Creating a Redis instance dedicated to Nextcloud](#creating-a-redis-instance-dedicated-to-nextcloud).
+This is only recommended if you won't be installing other services which require KeyDB. Alternatively, go for [Creating a KeyDB instance dedicated to Nextcloud](#creating-a-keydb-instance-dedicated-to-nextcloud).
 
-#### Creating a Redis instance dedicated to Nextcloud
+#### Creating a KeyDB instance dedicated to Nextcloud
 
 The following instructions are based on the [Running multiple instances of the same service on the same host](../running-multiple-instances.md) documentation.
 
@@ -155,20 +155,20 @@ mash_playbook_service_base_directory_name_prefix: 'nextcloud-'
 
 ########################################################################
 #                                                                      #
-# redis                                                                #
+# keydb                                                                #
 #                                                                      #
 ########################################################################
 
-redis_enabled: true
+keydb_enabled: true
 
 ########################################################################
 #                                                                      #
-# /redis                                                               #
+# /keydb                                                               #
 #                                                                      #
 ########################################################################
 ```
 
-This will create a `mash-nextcloud-redis` instance on this host with its data in `/mash/nextcloud-redis`.
+This will create a `mash-nextcloud-keydb` instance on this host with its data in `/mash/nextcloud-keydb`.
 
 Then, adjust your main inventory host's variables file (`inventory/host_vars/nextcloud.example.com/vars.yml`) like this:
 
@@ -181,16 +181,16 @@ Then, adjust your main inventory host's variables file (`inventory/host_vars/nex
 
 # Base configuration as shown above
 
-# Point Nextcloud to its dedicated Redis instance
-nextcloud_redis_hostname: mash-nextcloud-redis
+# Point Nextcloud to its dedicated KeyDB instance
+nextcloud_redis_hostname: mash-nextcloud-keydb
 
-# Make sure the Nextcloud service (mash-nextcloud.service) starts after its dedicated Redis service (mash-nextcloud-redis.service)
+# Make sure the Nextcloud service (mash-nextcloud.service) starts after its dedicated KeyDB service (mash-nextcloud-keydb.service)
 nextcloud_systemd_required_services_list_custom:
-  - "mash-nextcloud-redis.service"
+  - "mash-nextcloud-keydb.service"
 
-# Make sure the Nextcloud container is connected to the container network of its dedicated Redis service (mash-nextcloud-redis)
+# Make sure the Nextcloud container is connected to the container network of its dedicated KeyDB service (mash-nextcloud-keydb)
 nextcloud_container_additional_networks_custom:
-  - "mash-nextcloud-redis"
+  - "mash-nextcloud-keydb"
 
 ########################################################################
 #                                                                      #
@@ -230,7 +230,7 @@ nextcloud_container_image_customizations_samba_enabled: true
 
 ## Installation
 
-If you've decided to install a dedicated Redis instance for Nextcloud, make sure to first do [installation](../installing.md) for the supplementary inventory host (e.g. `nextcloud.example.com-deps`), before running installation for the main one (e.g. `nextcloud.example.com`).
+If you've decided to install a dedicated KeyDB instance for Nextcloud, make sure to first do [installation](../installing.md) for the supplementary inventory host (e.g. `nextcloud.example.com-deps`), before running installation for the main one (e.g. `nextcloud.example.com`).
 
 ## Usage
 

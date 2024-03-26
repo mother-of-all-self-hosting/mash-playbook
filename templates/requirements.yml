@@ -152,6 +152,10 @@
   version: v24.0.2-0
   name: keycloak
   activation_prefix: keycloak_
+- src: git+https://github.com/mother-of-all-self-hosting/ansible-role-keydb.git
+  version: v6.3.4-1
+  name: keydb
+  activation_prefix: keydb_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-lago.git
   version: v0.50.0-0
   name: lago
