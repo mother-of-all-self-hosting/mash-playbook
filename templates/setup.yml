@@ -338,6 +338,10 @@
     - role: galaxy/syncthing
     # /role-specific:syncthing
 
+    # role-specific:tandoor
+    - role: galaxy/tandoor
+    # /role-specific:tandoor
+
     # role-specific:telegraf
     - role: galaxy/telegraf
     # /role-specific:telegraf

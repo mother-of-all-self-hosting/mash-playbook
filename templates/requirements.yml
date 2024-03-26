@@ -320,6 +320,10 @@
   version: v1.0.0-4
   name: systemd_service_manager
   activation_prefix: ""
+- src: git+https://github.com/IUCCA/ansible-role-tandoor.git
+  version: v1.5.14-0
+  name: tandoor
+  activation_prefix: tandoor_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-telegraf.git
   version: v1.27.1-2
   name: telegraf
