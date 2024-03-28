@@ -35,7 +35,7 @@ tandoor_path_prefix: /tandoor
 
 ### URL
 
-In the example configuration above, we configure the service to be hosted at `https://tandoor.example.com/`.
+In the example configuration above, we configure the service to be hosted at `https://mash.example.com/tandoor`.
 
 ### Authentication
 
