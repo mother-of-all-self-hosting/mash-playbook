@@ -23,10 +23,8 @@ To enable this service, add the following configuration to your `vars.yml` file 
 
 tandoor_enabled: true
 
-tandoor_hostname: tandoor.example.com
-
-# path prefix is not supported at the moment
-#tandoor_path_prefix: /tandoor
+tandoor_hostname: mash.example.com
+tandoor_path_prefix: /tandoor
 
 ########################################################################
 #                                                                      #
@@ -37,7 +35,7 @@ tandoor_hostname: tandoor.example.com
 
 ### URL
 
-In the example configuration above, we configure the service to be hosted at `https://tandoor.example.com/`.
+In the example configuration above, we configure the service to be hosted at `https://mash.example.com/tandoor`.
 
 ### Authentication
 
