@@ -8,7 +8,7 @@ parser = argparse.ArgumentParser(description='Extracts release feeds from roles'
 parser.add_argument('root_dir', help='Root dir which to traverse recursively for defaults/main.yml roles files')
 parser.add_argument('action', help='Pass "check" to list roles with missing feeds or "dump" to dump an OPML file')
 args = parser.parse_args()
-if args.action not in ['check', 'dump', 'hookshot']:
+if args.action not in ['check', 'dump']:
     sys.exit('Error: possible arguments are "check" or "dump"')
 
 excluded_paths = [
@@ -71,30 +71,21 @@ def validate_url(text):
 
 
 def format_feeds_from_git_repos(git_repos):
-    feeds = {
-        'ansible': {
-            'text': 'ansible',
-            'title': 'ansible',
-            'type': 'rss',
-            'htmlUrl': 'https://pypi.org/project/ansible/#history',
-            'xmlUrl': 'https://pypi.org/rss/project/ansible/releases.xml'
-        },
-        'ansible-core': {
-            'text': 'ansible-core',
-            'title': 'ansible-core',
-            'type': 'rss',
-            'htmlUrl': 'https://pypi.org/project/ansible-core/#history',
-            'xmlUrl': 'https://pypi.org/rss/project/ansible-core/releases.xml'
-        }
-    }
+    feeds = {}
     for role, git_repos in git_repos.items():
         for idx, git_repo in enumerate(git_repos):
             if 'github' in git_repo:
                 atomFilePath = git_repo.replace('.git', '') + '/releases.atom'
             elif ('gitlab' in git_repo or 'mau.dev' in git_repo):
                 atomFilePath = git_repo.replace('.git', '') + '/-/tags?format=atom'
-            elif 'git.zx2c4.com' in git_repo:
+            elif 'git.zx2c4.com' in git_repo: # cgit
                 atomFilePath = git_repo + '/atom/'
+            elif 'framagit.org' in git_repo: # gitlab
+                atomFilePath = git_repo.replace('.git', '') + '/-/tags?format=atom'
+            elif 'git.osgeo.org' in git_repo: # gitea
+                atomFilePath = git_repo.replace('.git', '') + '.atom'
+            elif 'dev.funkwhale.audio' in git_repo: # gitlab
+                atomFilePath = git_repo.replace('.git', '') + '/-/tags?format=atom'
             else:
                 print('Unrecognized git repository: %s' % git_repo)
                 continue
@@ -137,14 +128,6 @@ def dump_opml_file_from_feeds(feeds):
     tree.write(file_name, encoding = 'UTF-8', xml_declaration = True)
     print('Generated %s' % file_name)
 
-def dump_hookshot_commands(feeds):
-    file_name = 'releases.hookshot.txt'
-    f = open(file_name, 'w')
-    for role, feed_dict in feeds.items():
-        f.write('!hookshot feed %s %s\n' % (feed_dict['xmlUrl'], role))
-    f.close()
-    print('Generated %s' % file_name)
-
 if __name__ == '__main__':
     file_paths = get_roles_files_from_dir(root_dir=args.root_dir)
     break_on_missing = args.action == 'check'
@@ -153,5 +136,3 @@ if __name__ == '__main__':
 
     if args.action == 'dump':
         dump_opml_file_from_feeds(feeds)
-    if args.action == 'hookshot':
-        dump_hookshot_commands(feeds)
