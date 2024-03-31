@@ -29,7 +29,7 @@
   name: auxiliary
   activation_prefix: aux_
 - src: git+https://gitlab.com/etke.cc/roles/backup_borg.git
-  version: v1.2.7-1.8.9-0
+  version: v1.2.8-1.8.9-0
   name: backup_borg
   activation_prefix: backup_borg_
 - src: git+https://github.com/nielscil/ansible-role-changedetection.git
@@ -85,7 +85,7 @@
   name: etcd
   activation_prefix: etcd_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-exim-relay.git
-  version: v4.97-r0-0-2
+  version: v4.97-r0-0-3
   name: exim_relay
   activation_prefix: exim_relay_
 - src: git+https://gitlab.com/etke.cc/roles/fail2ban.git
@@ -177,7 +177,7 @@
   name: mariadb
   activation_prefix: mariadb_
 - src: git+https://gitlab.com/etke.cc/roles/miniflux.git
-  version: v2.1.1-0
+  version: v2.1.2-0
   name: miniflux
   activation_prefix: miniflux_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-mobilizon.git
@@ -277,11 +277,11 @@
   name: promtail
   activation_prefix: promtail_
 - src: git+https://gitlab.com/etke.cc/roles/radicale.git
-  version: v3.1.9.0-0
+  version: v3.1.9.1-0
   name: radicale
   activation_prefix: radicale_
 - src: git+https://gitlab.com/etke.cc/roles/redis.git
-  version: v7.2.3-2
+  version: v7.2.4-0
   name: redis
   activation_prefix: redis_
 - src: git+https://gitlab.com/etke.cc/roles/redmine.git
