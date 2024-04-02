@@ -3901,6 +3901,12 @@ peertube_systemd_required_services_list_auto: |
     ([devture_postgres_identifier ~ '.service'] if devture_postgres_enabled and peertube_config_database_hostname == devture_postgres_identifier else [])
   }}
 
+# role-specific:exim_relay
+peertube_config_smtp_hostname: "{{ exim_relay_identifier if exim_relay_enabled else '' }}"
+peertube_config_smtp_port: "{{ 8025 if exim_relay_enabled else '' }}"
+peertube_config_smtp_from: "{{ exim_relay_sender_address if exim_relay_enabled else '' }}"
+# /role-specific:exim_relay
+
 ########################################################################
 #                                                                      #
 # /peertube                                                            #
