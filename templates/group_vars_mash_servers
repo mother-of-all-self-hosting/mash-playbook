@@ -3883,6 +3883,8 @@ peertube_container_additional_networks_auto: |
       ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
       +
       ([devture_postgres_container_network] if devture_postgres_enabled and peertube_config_database_hostname == devture_postgres_identifier and peertube_container_network != devture_postgres_container_network else [])
+      +
+      ([exim_relay_container_network | default('mash-exim-relay')] if (exim_relay_enabled | default(false) and peertube_config_smtp_hostname == exim_relay_identifier | default('mash-exim-relay') and peertube_container_network != exim_relay_container_network) else [])
     ) | unique
   }}
 
@@ -3899,6 +3901,11 @@ peertube_config_database_password: "{{ '%s' | format(mash_playbook_generic_secre
 peertube_systemd_required_services_list_auto: |
   {{
     ([devture_postgres_identifier ~ '.service'] if devture_postgres_enabled and peertube_config_database_hostname == devture_postgres_identifier else [])
+  }}
+
+peertube_systemd_wanted_services_list_auto: |
+  {{
+    ([(exim_relay_identifier | default('mash-exim-relay')) ~ '.service'] if (exim_relay_enabled | default(false) and peertube_config_smtp_hostname == exim_relay_identifier | default('mash-exim-relay')) else [])
   }}
 
 # role-specific:exim_relay
