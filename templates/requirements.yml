@@ -225,7 +225,7 @@
   name: oxitraffic
   activation_prefix: oxitraffic_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-peertube.git
-  version: v6.0.3-0
+  version: v6.0.3-4
   name: peertube
   activation_prefix: peertube_
 - src: git+https://github.com/devture/com.devture.ansible.role.playbook_help.git
