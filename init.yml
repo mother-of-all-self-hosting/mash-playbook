@@ -1,0 +1,98 @@
+---
+- name: Set up a self-hosted server
+  hosts: localhost
+  become: false
+  tasks:
+    - name: Pull latest changes from Git repository
+      git:
+        repo: "https://github.com/your/repo.git"
+        dest: "{{ playbook_dir }}"
+      register: git_pull_output
+      tags:
+        - git
+      when: "'git' in ansible_run_tags"
+
+    - name: Display Git pull output
+      debug:
+        var: git_pull_output.stdout_lines
+      tags:
+        - git
+      when: "'git' in ansible_run_tags"
+
+
+    - name: Run 'just optimize-reset'
+      command: just optimize-reset
+      args:
+        chdir: "{{ playbook_dir }}"
+      register: optimize_output
+      tags:
+        - optimize-reset
+      when: "'optimize-reset' in ansible_run_tags"
+
+    - name: Run 'just optimize'
+      command: just optimize
+      args:
+        chdir: "{{ playbook_dir }}"
+      register: optimize_output
+      tags:
+        - optimize
+      when: "'optimize-reset' not in ansible_run_tags and 'optimize' in ansible_run_tags"
+
+
+    - name: Display optimize output
+      debug:
+        var: optimize_output.stdout_lines
+      tags:
+        - optimize
+      when: "'optimize-reset' not in ansible_run_tags and 'optimize' in ansible_run_tags"
+
+
+    - name: Run 'just roles'
+      command: just roles
+      args:
+        chdir: "{{ playbook_dir }}"
+      register: roles_output
+      tags:
+        - roles
+      when: "'roles' in ansible_run_tags"
+
+    - name: Display roles output
+      debug:
+        var: roles_output.stdout_lines
+      tags:
+        - roles
+      when: "'roles' in ansible_run_tags"
+
+    - name: Run 'just install-all'
+      command: just install-all
+      args:
+        chdir: "{{ playbook_dir }}"
+      register: install_output
+      tags:
+        - install
+      when: "'setup' not in ansible_run_tags and 'install' in ansible_run_tags"
+
+    - name: Display install-all output
+      debug:
+        var: install_output.stdout_lines
+      tags:
+        - install
+      when: "'setup' not in ansible_run_tags and 'install' in ansible_run_tags"
+
+
+    - name: Run 'just setup-all'
+      command: just setup-all
+      args:
+        chdir: "{{ playbook_dir }}"
+      register: setup_output
+      tags:
+        - setup
+      when: "'install' not in ansible_run_tags and 'setup' in ansible_run_tags"
+
+
+    - name: Display setup-all output
+      debug:
+        var: setup_output.stdout_lines
+      tags:
+        - setup
+      when: "'install' not in ansible_run_tags and 'setup' in ansible_run_tags"
