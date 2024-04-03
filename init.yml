@@ -4,13 +4,18 @@
   become: false
   tasks:
     - name: Pull latest changes from Git repository
-      git:
-        repo: "https://github.com/your/repo.git"
-        dest: "{{ playbook_dir }}"
+      shell: "git --work-tree={{ playbook_dir }} --git-dir={{ playbook_dir }}/.git pull"
+      args:
+        executable: /bin/bash
       register: git_pull_output
+      environment:
+        GIT_ASKPASS: echo
+        GIT_TERMINAL_PROMPT: 0
       tags:
         - git
+        -
       when: "'git' in ansible_run_tags"
+
 
     - name: Display Git pull output
       debug:
