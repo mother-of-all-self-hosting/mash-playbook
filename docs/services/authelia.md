@@ -16,9 +16,9 @@ This service requires the following other services:
   - (optional) a MySQL / [MariaDB](mariadb.md) database - if enabled for your Ansible inventory host (and you don't also enable Postgres), Authelia will be connected to the MariaDB server automatically
   - or SQLite, used by default when none of the above database choices is enabled for your Ansible inventory host
 
-- (optional, but recommended) [Redis](redis.md)
+- (optional, but recommended) [KeyDB](keydb.md)
   - for storing session information in a persistent manner
-  - if Redis is not enabled, session information is stored in-memory and restarting Authelia destroys user sessions
+  - if KeyDB is not enabled, session information is stored in-memory and restarting Authelia destroys user sessions
 
 - a [Traefik](traefik.md) reverse-proxy server
   - for serving the Authelia portal website
@@ -87,11 +87,11 @@ authelia_config_access_control_rules:
  - domain: 'service1.example.com'
    policy: one_factor
 
-# The configuration below connects Authelia to the Redis instance, for session storage purposes.
-# You may wish to run a separate Redis instance for Authelia, because Redis is not multi-tenant.
+# The configuration below connects Authelia to the KeyDB instance, for session storage purposes.
+# You may wish to run a separate KeyDB instance for Authelia, because KeyDB is not multi-tenant.
 # Read more in docs/services/redis.md.
-# If Redis is not available, session data will be stored in memory and will be lost on container restart.
-authelia_config_session_redis_host: "{{ redis_identifier if redis_enabled else '' }}"
+# If KeyDB is not available, session data will be stored in memory and will be lost on container restart.
+authelia_config_session_redis_host: "{{ keydb_identifier if keydb_enabled else '' }}"
 
 ########################################################################
 #                                                                      #
@@ -111,9 +111,9 @@ On the Authelia base URL, there's a portal website where you can log in and mana
 
 ### Session storage
 
-As mentioned in the default configuration above (see `authelia_config_session_redis_host`), you may wish to run [Redis](redis.md) for storing session data.
+As mentioned in the default configuration above (see `authelia_config_session_redis_host`), you may wish to run [KeyDB](keydb.md) for storing session data.
 
-You may wish to run a separate Redis instance for Authelia, because Redis is not multi-tenant. See [our Redis documentation page](redis.md) for additional details. When running a separate instance of Redis, you may need to connect Authelia to the Redis instance's container network via the `authelia_container_additional_networks_custom` variable.
+You may wish to run a separate KeyDB instance for Authelia, because KeyDB is not multi-tenant. See [our KeyDB documentation page](keydb.md) for additional details. When running a separate instance of KeyDB, you may need to connect Authelia to the KeyDB instance's container network via the `authelia_container_additional_networks_custom` variable.
 
 
 ### Authentication storage providers

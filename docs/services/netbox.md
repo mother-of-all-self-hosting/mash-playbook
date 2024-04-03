@@ -8,7 +8,7 @@
 This service requires the following other services:
 
 - a [Postgres](postgres.md) database
-- a [Redis](redis.md) data-store, installation details [below](#redis)
+- a [KeyDB](keydb.md) data-store, installation details [below](#keydb)
 - a [Traefik](traefik.md) reverse-proxy server
 
 
@@ -38,7 +38,7 @@ netbox_environment_variable_superuser_email: your.email@example.com
 # Changing the password subsequently will not affect the user's password.
 netbox_environment_variable_superuser_password: ''
 
-# Redis configuration, as described below
+# KeyDB configuration, as described below
 
 ########################################################################
 #                                                                      #
@@ -60,28 +60,28 @@ If `netbox_environment_variable_superuser_*` variables are specified, NetBox wil
 
 [Single-Sign-On](#single-sign-on-sso-integration) is also supported.
 
-### Redis
+### KeyDB
 
-As described on the [Redis](redis.md) documentation page, if you're hosting additional services which require Redis on the same server, you'd better go for installing a separate Redis instance for each service. See [Creating a Redis instance dedicated to NetBox](#creating-a-redis-instance-dedicated-to-netbox).
+As described on the [KeyDB](keydb.md) documentation page, if you're hosting additional services which require KeyDB on the same server, you'd better go for installing a separate KeyDB instance for each service. See [Creating a KeyDB instance dedicated to NetBox](#creating-a-keydb-instance-dedicated-to-netbox).
 
-If you're only running NetBox on this server and don't need to use Redis for anything else, you can [use a single Redis instance](#using-the-shared-redis-instance-for-netbox).
+If you're only running NetBox on this server and don't need to use KeyDB for anything else, you can [use a single KeyDB instance](#using-the-shared-keydb-instance-for-netbox).
 
-#### Using the shared Redis instance for NetBox
+#### Using the shared KeyDB instance for NetBox
 
-To install a single (non-dedicated) Redis instance (`mash-redis`) and hook NetBox to it, add the following **additional** configuration:
+To install a single (non-dedicated) KeyDB instance (`mash-keydb`) and hook NetBox to it, add the following **additional** configuration:
 
 ```yaml
 ########################################################################
 #                                                                      #
-# redis                                                                #
+# keydb                                                                #
 #                                                                      #
 ########################################################################
 
-redis_enabled: true
+keydb_enabled: true
 
 ########################################################################
 #                                                                      #
-# /redis                                                               #
+# /keydb                                                               #
 #                                                                      #
 ########################################################################
 
@@ -94,17 +94,17 @@ redis_enabled: true
 
 # Base configuration as shown above
 
-# Point NetBox to the shared Redis instance
-netbox_environment_variable_redis_host: "{{ redis_identifier }}"
-netbox_environment_variable_redis_cache_host: "{{ redis_identifier }}"
+# Point NetBox to the shared KeyDB instance
+netbox_environment_variable_redis_host: "{{ keydb_identifier }}"
+netbox_environment_variable_redis_cache_host: "{{ keydb_identifier }}"
 
-# Make sure the NetBox service (mash-netbox.service) starts after the shared Redis service (mash-redis.service)
+# Make sure the NetBox service (mash-netbox.service) starts after the shared KeyDB service (mash-keydb.service)
 netbox_systemd_required_services_list_custom:
-  - "{{ redis_identifier }}.service"
+  - "{{ keydb_identifier }}.service"
 
-# Make sure the NetBox container is connected to the container network of the shared Redis service (mash-redis)
+# Make sure the NetBox container is connected to the container network of the shared KeyDB service (mash-keydb)
 netbox_container_additional_networks_custom:
-  - "{{ redis_identifier }}"
+  - "{{ keydb_identifier }}"
 
 ########################################################################
 #                                                                      #
@@ -113,12 +113,12 @@ netbox_container_additional_networks_custom:
 ########################################################################
 ```
 
-This will create a `mash-redis` Redis instance on this host.
+This will create a `mash-keydb` KeyDB instance on this host.
 
-This is only recommended if you won't be installing other services which require Redis. Alternatively, go for [Creating a Redis instance dedicated to NetBox](#creating-a-redis-instance-dedicated-to-netbox).
+This is only recommended if you won't be installing other services which require KeyDB. Alternatively, go for [Creating a KeyDB instance dedicated to NetBox](#creating-a-keydb-instance-dedicated-to-netbox).
 
 
-#### Creating a Redis instance dedicated to NetBox
+#### Creating a KeyDB instance dedicated to NetBox
 
 The following instructions are based on the [Running multiple instances of the same service on the same host](../running-multiple-instances.md) documentation.
 
@@ -154,20 +154,20 @@ mash_playbook_service_base_directory_name_prefix: 'netbox-'
 
 ########################################################################
 #                                                                      #
-# redis                                                                #
+# keydb                                                                #
 #                                                                      #
 ########################################################################
 
-redis_enabled: true
+keydb_enabled: true
 
 ########################################################################
 #                                                                      #
-# /redis                                                               #
+# /keydb                                                               #
 #                                                                      #
 ########################################################################
 ```
 
-This will create a `mash-netbox-redis` instance on this host with its data in `/mash/netbox-redis`.
+This will create a `mash-netbox-keydb` instance on this host with its data in `/mash/netbox-keydb`.
 
 Then, adjust your main inventory host's variables file (`inventory/host_vars/netbox.example.com/vars.yml`) like this:
 
@@ -181,17 +181,17 @@ Then, adjust your main inventory host's variables file (`inventory/host_vars/net
 # Base configuration as shown above
 
 
-# Point NetBox to its dedicated Redis instance
-netbox_environment_variable_redis_host: mash-netbox-redis
-netbox_environment_variable_redis_cache_host: mash-netbox-redis
+# Point NetBox to its dedicated KeyDB instance
+netbox_environment_variable_redis_host: mash-netbox-keydb
+netbox_environment_variable_redis_cache_host: mash-netbox-keydb
 
-# Make sure the NetBox service (mash-netbox.service) starts after its dedicated Redis service (mash-netbox-redis.service)
+# Make sure the NetBox service (mash-netbox.service) starts after its dedicated KeyDB service (mash-netbox-keydb.service)
 netbox_systemd_required_services_list_custom:
-  - "mash-netbox-redis.service"
+  - "mash-netbox-keydb.service"
 
-# Make sure the NetBox container is connected to the container network of its dedicated Redis service (mash-netbox-redis)
+# Make sure the NetBox container is connected to the container network of its dedicated KeyDB service (mash-netbox-keydb)
 netbox_container_additional_networks_custom:
-  - "mash-netbox-redis"
+  - "mash-netbox-keydb"
 
 ########################################################################
 #                                                                      #
@@ -257,7 +257,7 @@ For additional environment variables controlling groups and permissions for new 
 
 ## Installation
 
-If you've decided to install a dedicated Redis instance for NetBox, make sure to first do [installation](../installing.md) for the supplementary inventory host (e.g. `netbox.example.com-deps`), before running installation for the main one (e.g. `netbox.example.com`).
+If you've decided to install a dedicated KeyDB instance for NetBox, make sure to first do [installation](../installing.md) for the supplementary inventory host (e.g. `netbox.example.com-deps`), before running installation for the main one (e.g. `netbox.example.com`).
 
 
 ## Usage

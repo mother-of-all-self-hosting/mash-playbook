@@ -8,7 +8,7 @@
 This service requires the following other services:
 
 - [Postgres](postgres.md)
-- [Redis](redis.md)
+- [KeyDB](keydb.md)
 - a [Traefik](traefik.md) reverse-proxy server
 
 
@@ -30,14 +30,14 @@ outline_hostname: outline.example.com
 # This must be generated with: `openssl rand -hex 32`
 outline_environment_variable_secret_key: ''
 
-# The configuration below connects Outline to the Redis instance, for session storage purposes.
-# You may wish to run a separate Redis instance for Outline, because Redis is not multi-tenant.
-# Read more in docs/services/redis.md.
-outline_redis_hostname: "{{ redis_identifier if redis_enabled else '' }}"
+# The configuration below connects Outline to the KeyDB instance, for session storage purposes.
+# You may wish to run a separate KeyDB instance for Outline, because KeyDB is not multi-tenant.
+# Read more in docs/services/keydb.md.
+outline_redis_hostname: "{{ keydb_identifier if keydb_enabled else '' }}"
 
 outline_container_additional_networks_custom: |
   {{
-    [redis_container_network]
+    [keydb_container_network]
   }}
 
 # By default, files are stored locally.

@@ -10,7 +10,7 @@
 This service requires the following other services:
 
 - a [Postgres](postgres.md) database
-- a [Redis](redis.md) data-store, installation details [below](#redis)
+- a [KeyDB](keydb.md) data-store, installation details [below](#keydb)
 - a [Traefik](traefik.md) reverse-proxy server
 
 
@@ -32,7 +32,7 @@ authentik_hostname: authentik.example.com
 # Put a strong secret below, generated with `pwgen -s 64 1` or in another way
 authentik_secret_key: ''
 
-# Redis configuration, as described below
+# KeyDB configuration, as described below
 
 ########################################################################
 #                                                                      #
@@ -41,28 +41,28 @@ authentik_secret_key: ''
 ########################################################################
 ```
 
-### Redis
+### KeyDB
 
-As described on the [Redis](redis.md) documentation page, if you're hosting additional services which require Redis on the same server, you'd better go for installing a separate Redis instance for each service. See [Creating a Redis instance dedicated to authentik](#creating-a-redis-instance-dedicated-to-authentik).
+As described on the [KeyDB](keydb.md) documentation page, if you're hosting additional services which require KeyDB on the same server, you'd better go for installing a separate KeyDB instance for each service. See [Creating a KeyDB instance dedicated to authentik](#creating-a-keydb-instance-dedicated-to-authentik).
 
-If you're only running authentik on this server and don't need to use Redis for anything else, you can [use a single Redis instance](#using-the-shared-redis-instance-for-authentik).
+If you're only running authentik on this server and don't need to use KeyDB for anything else, you can [use a single KeyDB instance](#using-the-shared-keydb-instance-for-authentik).
 
-#### Using the shared Redis instance for authentik
+#### Using the shared KeyDB instance for authentik
 
-To install a single (non-dedicated) Redis instance (`mash-redis`) and hook authentik to it, add the following **additional** configuration:
+To install a single (non-dedicated) KeyDB instance (`mash-keydb`) and hook authentik to it, add the following **additional** configuration:
 
 ```yaml
 ########################################################################
 #                                                                      #
-# redis                                                                #
+# keydb                                                                #
 #                                                                      #
 ########################################################################
 
-redis_enabled: true
+keydb_enabled: true
 
 ########################################################################
 #                                                                      #
-# /redis                                                               #
+# /keydb                                                               #
 #                                                                      #
 ########################################################################
 
@@ -75,16 +75,16 @@ redis_enabled: true
 
 # Base configuration as shown above
 
-# Point authentik to the shared Redis instance
-authentik_config_redis_hostname: "{{ redis_identifier }}"
+# Point authentik to the shared KeyDB instance
+authentik_config_redis_hostname: "{{ keydb_identifier }}"
 
-# Make sure the authentik service (mash-authentik.service) starts after the shared Redis service (mash-redis.service)
+# Make sure the authentik service (mash-authentik.service) starts after the shared KeyDB service (mash-keydb.service)
 authentik_systemd_required_services_list_custom:
-  - "{{ redis_identifier }}.service"
+  - "{{ keydb_identifier }}.service"
 
-# Make sure the authentik container is connected to the container network of the shared Redis service (mash-redis)
+# Make sure the authentik container is connected to the container network of the shared KeyDB service (mash-keydb)
 authentik_container_additional_networks_custom:
-  - "{{ redis_identifier }}"
+  - "{{ keydb_identifier }}"
 
 ########################################################################
 #                                                                      #
@@ -93,12 +93,12 @@ authentik_container_additional_networks_custom:
 ########################################################################
 ```
 
-This will create a `mash-redis` Redis instance on this host.
+This will create a `mash-keydb` KeyDB instance on this host.
 
-This is only recommended if you won't be installing other services which require Redis. Alternatively, go for [Creating a Redis instance dedicated to authentik](#creating-a-redis-instance-dedicated-to-authentik).
+This is only recommended if you won't be installing other services which require KeyDB. Alternatively, go for [Creating a KeyDB instance dedicated to authentik](#creating-a-keydb-instance-dedicated-to-authentik).
 
 
-#### Creating a Redis instance dedicated to authentik
+#### Creating a KeyDB instance dedicated to authentik
 
 The following instructions are based on the [Running multiple instances of the same service on the same host](../running-multiple-instances.md) documentation.
 
@@ -134,20 +134,20 @@ mash_playbook_service_base_directory_name_prefix: 'authentik-'
 
 ########################################################################
 #                                                                      #
-# redis                                                                #
+# keydb                                                                #
 #                                                                      #
 ########################################################################
 
-redis_enabled: true
+keydb_enabled: true
 
 ########################################################################
 #                                                                      #
-# /redis                                                               #
+# /keydb                                                               #
 #                                                                      #
 ########################################################################
 ```
 
-This will create a `mash-authentik-redis` instance on this host with its data in `/mash/authentik-redis`.
+This will create a `mash-authentik-keydb` instance on this host with its data in `/mash/authentik-keydb`.
 
 Then, adjust your main inventory host's variables file (`inventory/host_vars/authentik.example.com/vars.yml`) like this:
 
@@ -160,16 +160,16 @@ Then, adjust your main inventory host's variables file (`inventory/host_vars/aut
 
 # Base configuration as shown above
 
-# Point authentik to its dedicated Redis instance
-authentik_config_redis_hostname: mash-authentik-redis
+# Point authentik to its dedicated KeyDB instance
+authentik_config_redis_hostname: mash-authentik-keydb
 
-# Make sure the authentik service (mash-authentik.service) starts after its dedicated Redis service (mash-authentik-redis.service)
+# Make sure the authentik service (mash-authentik.service) starts after its dedicated KeyDB service (mash-authentik-keydb.service)
 authentik_systemd_required_services_list_custom:
-  - "mash-authentik-redis.service"
+  - "mash-authentik-keydb.service"
 
-# Make sure the authentik container is connected to the container network of its dedicated Redis service (mash-authentik-redis)
+# Make sure the authentik container is connected to the container network of its dedicated KeyDB service (mash-authentik-keydb)
 authentik_container_additional_networks_custom:
-  - "mash-authentik-redis"
+  - "mash-authentik-keydb"
 
 ########################################################################
 #                                                                      #
@@ -181,7 +181,7 @@ authentik_container_additional_networks_custom:
 
 ## Installation
 
-If you've decided to install a dedicated Redis instance for authentik, make sure to first do [installation](../installing.md) for the supplementary inventory host (e.g. `authentik.example.com-deps`), before running installation for the main one (e.g. `authentik.example.com`).
+If you've decided to install a dedicated KeyDB instance for authentik, make sure to first do [installation](../installing.md) for the supplementary inventory host (e.g. `authentik.example.com-deps`), before running installation for the main one (e.g. `authentik.example.com`).
 
 
 ## Usage
