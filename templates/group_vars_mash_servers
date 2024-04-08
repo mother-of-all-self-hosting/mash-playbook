@@ -4635,12 +4635,9 @@ tandoor_database_password: "{{ '%s' | format(mash_playbook_generic_secret_key) |
 tandoor_environment_variable_secret: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'secret.tandoor', rounds=655555) | to_uuid }}"
 
 # role-specific:exim_relay
-tandoor_config_parameter_mail_smtphost: "{{ exim_relay_identifier if exim_relay_enabled else '' }}"
-tandoor_config_parameter_mail_smtpport: "{{ 8025 if exim_relay_enabled else '' }}"
-tandoor_config_parameter_mail_smtpsecure: ''
-tandoor_config_parameter_mail_smtpauth: false
-tandoor_config_parameter_mail_from_address: "{{ (exim_relay_sender_address | split('@'))[0] if exim_relay_enabled else '' }}"
-tandoor_config_parameter_mail_domain: "{{ (exim_relay_sender_address | split('@'))[1] if exim_relay_enabled else '' }}"
+tandoor_email_host: "{{ exim_relay_identifier if exim_relay_enabled else '' }}"
+tandoor_email_port: "{{ 8025 if exim_relay_enabled else '' }}"
+tandoor_default_from_email: "{{ exim_relay_sender_address if exim_relay_enabled else '' }}"
 # /role-specific:exim_relay
 
 ########################################################################
