@@ -1507,9 +1507,10 @@ wetty_container_additional_networks_auto: |
     ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
   }}
 
-# role-specific:traefik
 wetty_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
 wetty_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+
+# role-specific:traefik
 wetty_container_labels_traefik_entrypoints: "{{ devture_traefik_entrypoint_primary }}"
 wetty_container_labels_traefik_tls_certResolver: "{{ devture_traefik_certResolver_primary }}"
 # /role-specific:traefik
