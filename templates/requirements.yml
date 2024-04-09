@@ -36,10 +36,6 @@
   version: v0.45.17-0
   name: changedetection
   activation_prefix: changedetection_
-- src: git+https://github.com/spatterIight/ansible-role-wetty.git
-  version: v2.5-0
-  name: wetty
-  activation_prefix: wetty_
 - src: git+https://gitlab.com/etke.cc/roles/cleanup.git
   version: main
   name: cleanup
@@ -125,7 +121,7 @@
   name: gotosocial
   activation_prefix: gotosocial_
 - src: git+https://gitlab.com/etke.cc/roles/grafana.git
-  version: v10.4.1-0
+  version: v10.4.1-1
   name: grafana
   activation_prefix: grafana_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-healthchecks.git
@@ -352,6 +348,10 @@
   version: v1.30.5-1
   name: vaultwarden
   activation_prefix: vaultwarden_
+- src: git+https://github.com/spatterIight/ansible-role-wetty.git
+  version: v2.5-0
+  name: wetty
+  activation_prefix: wetty_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-wg-easy.git
   version: v7-1
   name: wg_easy
