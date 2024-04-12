@@ -337,7 +337,7 @@
   name: timesync
   activation_prefix: devture_timesync_
 - src: git+https://github.com/devture/com.devture.ansible.role.traefik.git
-  version: v2.11.0-4
+  version: v2.11.2-0
   name: traefik
   activation_prefix: devture_traefik_
 - src: git+https://gitlab.com/etke.cc/roles/uptime_kuma.git
