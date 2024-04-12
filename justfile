@@ -69,7 +69,7 @@ _optimize-for-var-paths +PATHS:
     --dst-group-vars-yml-path={{ justfile_directory() }}/group_vars/mash_servers
 
 # Updates requirements.yml if there are any new tags available. Requires agru
-update: && opml
+update: && opml versions
     @agru -r {{ templates_directory_path }}/requirements.yml -u
 
 # Runs ansible-lint against all roles in the playbook
@@ -80,6 +80,11 @@ lint:
 opml:
     @echo "generating opml..."
     @python bin/feeds.py . dump
+
+# dumps versions of the components found in the roles to the VERSIONS.md file
+versions:
+    @echo "generating versions..."
+    @python bin/versions.py
 
 # Runs the playbook with --tags=install-all,start and optional arguments
 install-all *extra_args: (run-tags "install-all,start" extra_args)
