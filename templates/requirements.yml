@@ -212,6 +212,10 @@
   version: v28.0.2-1
   name: nextcloud
   activation_prefix: nextcloud_
+- src: git+https://codeberg.org/moanos/ansible-role-notfellchen.git
+  version: v0.1.0-1
+  name: notfellchen
+  activation_prefix: notfellchen_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-outline.git
   version: v0.74.0-0-0
   name: outline
