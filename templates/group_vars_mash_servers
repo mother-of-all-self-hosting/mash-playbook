@@ -564,6 +564,11 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
     {{ ({'name': (vaultwarden_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'vaultwarden', 'vaultwarden-server']} if vaultwarden_enabled else omit) }}
   # /role-specific:vaultwarden
 
+  # role-specific:wallabag
+  - |-
+    {{ ({'name': (wallabag_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'wallabag']} if wallabag_enabled else omit) }}
+  # /role-specific:wallabag
+
   # role-specific:uptime_kuma
   - |-
     {{ ({'name': (uptime_kuma_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'uptime-kuma']} if uptime_kuma_enabled else omit) }}
@@ -879,6 +884,17 @@ mash_playbook_devture_postgres_managed_databases_auto_itemized:
       } if vaultwarden_enabled else omit)
     }}
   # /role-specific:vaultwarden
+
+  # role-specific:wallabag
+  - |-
+    {{
+      ({
+        'name': wallabag_database,
+        'username': wallabag_database_username,
+        'password': wallabag_database_password,
+      } if wallabag_enabled else omit)
+    }}
+  # /role-specific:wallabag
 
   # role-specific:forgejo
   - |-
@@ -2547,6 +2563,16 @@ hubsite_service_vaultwarden_description: "Securely access your passwords"
 hubsite_service_vaultwarden_priority: 1000
 # /role-specific:vaultwarden
 
+# role-specific:wallabag
+# Wallabag
+hubsite_service_wallabag_enabled: "{{ wallabag_enabled }}"
+hubsite_service_wallabag_name: Wallabag
+hubsite_service_wallabag_url: "https://{{ wallabag_hostname }}{{ wallabag_path_prefix }}"
+hubsite_service_wallabag_logo_location: "{{ role_path }}/assets/wallabag.png"
+hubsite_service_wallabag_description: "Save articles to read later"
+hubsite_service_wallabag_priority: 1000
+# /role-specific:wallabag
+
 # role-specific:woodpecker_ci_server
 # Woodpecker CI
 hubsite_service_woodpecker_ci_enabled: "{{ devture_woodpecker_ci_server_enabled }}"
@@ -2896,6 +2922,19 @@ mash_playbook_hubsite_service_list_auto_itemized:
       } if hubsite_service_vaultwarden_enabled else omit)
     }}
   # /role-specific:vaultwarden
+
+  # role-specific:wallabag
+  - |-
+    {{
+      ({
+        'name': hubsite_service_wallabag_name,
+        'url': hubsite_service_wallabag_url,
+        'logo_location': hubsite_service_wallabag_logo_location,
+        'description': hubsite_service_wallabag_description,
+        'priority': hubsite_service_wallabag_priority
+      } if hubsite_service_wallabag_enabled else omit)
+    }}
+  # /role-specific:wallabag
 
   # role-specific:woodpecker_ci_server
   - |-
@@ -4913,6 +4952,62 @@ forgejo_config_database_password: "{{ '%s' | format(mash_playbook_generic_secret
 #                                                                      #
 ########################################################################
 # /role-specific:forgejo
+
+
+
+# role-specific:wallabag
+########################################################################
+#                                                                      #
+# wallabag                                                             #
+#                                                                      #
+########################################################################
+
+wallabag_enabled: false
+
+wallabag_identifier: "{{ mash_playbook_service_identifier_prefix }}wallabag"
+
+wallabag_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}wallabag"
+
+wallabag_uid: "{{ mash_playbook_uid }}"
+wallabag_gid: "{{ mash_playbook_gid }}"
+
+wallabag_systemd_required_systemd_services_list: |
+  {{
+    (['docker.service'])
+    +
+    ([devture_postgres_identifier ~ '.service'] if devture_postgres_enabled and wallabag_database_hostname == devture_postgres_identifier else [])
+  }}
+
+wallabag_container_additional_networks: |
+  {{
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+    +
+    ([devture_postgres_container_network] if devture_postgres_enabled and wallabag_database_hostname == devture_postgres_identifier and wallabag_container_network != devture_postgres_container_network else [])
+  }}
+
+wallabag_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+wallabag_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+wallabag_container_labels_traefik_entrypoints: "{{ devture_traefik_entrypoint_primary }}"
+wallabag_container_labels_traefik_tls_certResolver: "{{ devture_traefik_certResolver_primary }}"
+
+
+wallabag_database_hostname: "{{ devture_postgres_identifier if devture_postgres_enabled else '' }}"
+wallabag_database_port: "{{ '5432' if devture_postgres_enabled else '' }}"
+wallabag_database_username: "wallabag"
+wallabag_database_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'db.wallabag', rounds=655555) | to_uuid }}"
+
+# role-specific:exim_relay
+wallabag_mailser_dsn: "{{ 'smtp://{{ exim_relay_identifier }}' if exim_relay_enabled else '' }}"
+wallabag_from_email: "{{ exim_relay_sender_address if exim_relay_enabled else '' }}"
+wallabag_two_factor_sender: "{{ exim_relay_sender_address if exim_relay_enabled else '' }}"
+# /role-specific:exim_relay
+
+########################################################################
+#                                                                      #
+# /wallabag                                                            #
+#                                                                      #
+########################################################################
+# /role-specific:wallabag
 
 
 

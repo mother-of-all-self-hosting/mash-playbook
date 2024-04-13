@@ -348,6 +348,10 @@
   version: v1.30.5-1
   name: vaultwarden
   activation_prefix: vaultwarden_
+- src: git+https://github.com/Bergruebe/ansible-role-wallabag.git
+  version: v0.1.0
+  name: wallabag
+  activation_prefix: wallabag_
 - src: git+https://github.com/spatterIight/ansible-role-wetty.git
   version: v2.5-0
   name: wetty

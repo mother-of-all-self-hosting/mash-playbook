@@ -358,6 +358,10 @@
     - role: galaxy/vaultwarden
     # /role-specific:vaultwarden
 
+    # role-specific:wallabag
+    - role: galaxy/wallabag
+    # /role-specific:wallabag
+
     # role-specific:uptime_kuma
     - role: galaxy/uptime_kuma
     # /role-specific:uptime_kuma
