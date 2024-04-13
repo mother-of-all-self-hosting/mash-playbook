@@ -3816,11 +3816,11 @@ notfellchen_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_b
 notfellchen_uid: "{{ mash_playbook_uid }}"
 notfellchen_gid: "{{ mash_playbook_gid }}"
 
-notfellchen_secret: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'secret.notfellchen', rounds=655555) | to_uuid }}"
+notfellchen_secret: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'secret.nf', rounds=655555) | to_uuid }}"
 
 notfellchen_database_host: "{{ devture_postgres_identifier if devture_postgres_enabled else '' }}"
 notfellchen_database_port: "{{ '5432' if devture_postgres_enabled else '' }}"
-notfellchen_database_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'db.notfellchen', rounds=655555) | to_uuid }}"
+notfellchen_database_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'db.nf', rounds=655555) | to_uuid }}"
 notfellchen_database_username: "notfellchen"
 
 notfellchen_systemd_required_services_list: |
