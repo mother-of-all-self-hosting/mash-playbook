@@ -2181,9 +2181,19 @@ grafana_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_
 grafana_uid: "{{ mash_playbook_uid }}"
 grafana_gid: "{{ mash_playbook_gid }}"
 
+
+# role-specific:exim_relay
+grafana_smtp_enabled: "{{ exim_relay_enabled | default(false) }}"
+grafana_smtp_host: "{{ exim_relay_identifier if exim_relay_enabled else '' }}"
+grafana_smtp_port: 8025
+grafana_smtp_from_address: "{{ exim_relay_sender_address if exim_relay_enabled else '' }}"
+# /role-specific:exim_relay
+
 grafana_container_additional_networks_auto: |
   {{
     ([mash_playbook_reverse_proxyable_services_additional_network] if (grafana_container_labels_traefik_enabled and mash_playbook_reverse_proxyable_services_additional_network) else [])
+    +
+    ([exim_relay_container_network | default('mash-exim-relay')] if (exim_relay_enabled | default(false) and grafana_smtp_host == exim_relay_identifier | default('mash-exim-relay') and grafana_container_network != exim_relay_container_network) else [])
   }}
 
 grafana_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
