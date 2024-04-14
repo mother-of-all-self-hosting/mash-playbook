@@ -4978,12 +4978,14 @@ wallabag_systemd_required_systemd_services_list: |
     ([devture_postgres_identifier ~ '.service'] if devture_postgres_enabled and wallabag_database_hostname == devture_postgres_identifier else [])
   }}
 
-wallabag_container_additional_networks: |
+wallabag_container_additional_networks_auto: |
   {{
     ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
     +
     ([devture_postgres_container_network] if devture_postgres_enabled and wallabag_database_hostname == devture_postgres_identifier and wallabag_container_network != devture_postgres_container_network else [])
   }}
+wallabag_container_additional_networks_custom: ""
+wallabag_container_additional_networks: "{{ wallabag_container_additional_networks_auto }}{{ wallabag_container_additional_networks_custom }}"
 
 wallabag_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
 wallabag_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
