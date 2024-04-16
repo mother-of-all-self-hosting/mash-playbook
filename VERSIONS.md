@@ -24,7 +24,7 @@
 * Forgejo: 1.21.10-0
 * Freshrss: 1.23.0
 * Funkwhale: 1.4.0
-* Gitea: 1.21.10
+* Gitea: 1.21.11
 * Gotosocial: 0.15.0
 * Grafana: 10.4.2
 * Healthchecks: v3.3
