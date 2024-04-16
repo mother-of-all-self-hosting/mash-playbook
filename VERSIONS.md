@@ -51,7 +51,8 @@
 * Netbox: v3.7.0-2.8.0
 * Netbox Container Image Customizations Keycloak Sso Expiration Middleware: a2ac39b1c73a50742c6e834e89162f87528c7f73
 * Nextcloud: 28.0.2
-* Notfellchen: 0.1.0
+* Notfellchen: 0.1.1
+* Notfellchen Sws: 2
 * Outline: 0.74.0-0
 * Owncast: 0.1.2
 * Oxitraffic: 0.9.0
