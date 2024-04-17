@@ -5,7 +5,7 @@
 * Authelia: 4.37.5
 * Authentik: 2024.2.2
 * Borg: 1.2.8
-* Borgmatic: 1.8.9
+* Borgmatic: 1.8.10
 * Changedetection: 0.45.17
 * Changedetection Playwright Driver: latest
 * Clickhouse: 23.10.5.20
@@ -19,12 +19,12 @@
 * Echoip: latest
 * Etcd: 3.5.11
 * Exim Relay: 4.97.1-r0-0
-* Firezone: 0.7.35
+* Firezone: 0.7.36
 * Focalboard: 7.10.4
 * Forgejo: 1.21.10-0
 * Freshrss: 1.23.0
 * Funkwhale: 1.4.0
-* Gitea: 1.21.10
+* Gitea: 1.21.11
 * Gotosocial: 0.15.0
 * Grafana: 10.4.2
 * Healthchecks: v3.3
