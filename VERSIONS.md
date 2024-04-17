@@ -19,7 +19,7 @@
 * Echoip: latest
 * Etcd: 3.5.11
 * Exim Relay: 4.97.1-r0-0
-* Firezone: 0.7.35
+* Firezone: 0.7.36
 * Focalboard: 7.10.4
 * Forgejo: 1.21.10-0
 * Freshrss: 1.23.0
