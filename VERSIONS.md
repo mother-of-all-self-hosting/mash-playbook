@@ -5,7 +5,7 @@
 * Authelia: 4.37.5
 * Authentik: 2024.2.2
 * Borg: 1.2.8
-* Borgmatic: 1.8.9
+* Borgmatic: 1.8.10
 * Changedetection: 0.45.17
 * Changedetection Playwright Driver: latest
 * Clickhouse: 23.10.5.20
