@@ -65,6 +65,14 @@ mash_playbook_reverse_proxy_type: none
 # Also see `devture_docker_sdk_for_python_installation_enabled`.
 mash_playbook_docker_installation_enabled: false
 
+mash_playbook_docker_installation_daemon_options: "{{ mash_playbook_docker_installation_daemon_options_auto | combine(mash_playbook_docker_installation_daemon_options_custom, recursive=True) }}"
+
+mash_playbook_docker_installation_daemon_options_auto:
+  experimental: "{{ devture_systemd_docker_base_ipv6_enabled }}"
+  ip6tables: "{{ devture_systemd_docker_base_ipv6_enabled }}"
+
+mash_playbook_docker_installation_daemon_options_custom: {}
+
 # Controls whether to attach Traefik labels to services.
 # This is separate from `devture_traefik_enabled`, because you may wish to disable Traefik installation by the playbook,
 # yet still use Traefik installed in another way.

@@ -1016,13 +1016,7 @@ devture_playbook_state_preserver_commit_hash_preservation_dst: "{{ mash_playbook
 #                                                                      #
 ########################################################################
 
-docker_daemon_options: |
-  {{
-    {
-      'experimental': devture_systemd_docker_base_ipv6_enabled,
-      'ip6tables': devture_systemd_docker_base_ipv6_enabled,
-    }
-  }}
+docker_daemon_options: "{{ mash_playbook_docker_installation_daemon_options }}"
 
 ########################################################################
 #                                                                      #
