@@ -21,7 +21,7 @@
   name: authelia
   activation_prefix: authelia_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-authentik.git
-  version: v2024.2.2-0
+  version: v2024.2.3-0
   name: authentik
   activation_prefix: authentik_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-aux.git
@@ -29,7 +29,7 @@
   name: auxiliary
   activation_prefix: aux_
 - src: git+https://gitlab.com/etke.cc/roles/backup_borg.git
-  version: v1.2.8-1.8.9-0
+  version: v1.2.8-1.8.10-0
   name: backup_borg
   activation_prefix: backup_borg_
 - src: git+https://github.com/nielscil/ansible-role-changedetection.git
@@ -85,7 +85,7 @@
   name: etcd
   activation_prefix: etcd_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-exim-relay.git
-  version: v4.97.1-r0-0-1
+  version: v4.97.1-r0-0-2
   name: exim_relay
   activation_prefix: exim_relay_
 - src: git+https://gitlab.com/etke.cc/roles/fail2ban.git
@@ -93,7 +93,7 @@
   name: fail2ban
   activation_prefix: system_security_fail2ban_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-firezone.git
-  version: v0.7.35-7
+  version: v0.7.36-0
   name: firezone
   activation_prefix: firezone_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-focalboard.git
@@ -101,7 +101,7 @@
   name: focalboard
   activation_prefix: focalboard_
 - src: git+https://github.com/NeonMinnen/ansible-role-forgejo.git
-  version: v1.21.10-0-0
+  version: v1.21.11-0-0
   name: forgejo
   activation_prefix: forgejo_
 - src: git+https://github.com/kinduff/ansible-docker-freshrss.git
@@ -113,7 +113,7 @@
   name: funkwhale
   activation_prefix: funkwhale_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-gitea.git
-  version: v1.21.10-0
+  version: v1.21.11-0
   name: gitea
   activation_prefix: gitea_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-gotosocial.git
