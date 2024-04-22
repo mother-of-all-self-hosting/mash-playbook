@@ -33,7 +33,7 @@
   name: backup_borg
   activation_prefix: backup_borg_
 - src: git+https://github.com/nielscil/ansible-role-changedetection.git
-  version: v0.45.17-0
+  version: v0.45.20-0
   name: changedetection
   activation_prefix: changedetection_
 - src: git+https://gitlab.com/etke.cc/roles/cleanup.git
@@ -93,7 +93,7 @@
   name: fail2ban
   activation_prefix: system_security_fail2ban_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-firezone.git
-  version: v0.7.36-0
+  version: v0.7.36-1
   name: firezone
   activation_prefix: firezone_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-focalboard.git
@@ -341,7 +341,7 @@
   name: traefik
   activation_prefix: devture_traefik_
 - src: git+https://gitlab.com/etke.cc/roles/uptime_kuma.git
-  version: v1.23.11-0
+  version: v1.23.12-0
   name: uptime_kuma
   activation_prefix: uptime_kuma_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-vaultwarden.git

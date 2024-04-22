@@ -3,10 +3,10 @@
 * Apisix Gateway: 3.8.0
 * Appsmith: v1.9.50
 * Authelia: 4.37.5
-* Authentik: 2024.2.2
+* Authentik: 2024.2.3
 * Borg: 1.2.8
 * Borgmatic: 1.8.10
-* Changedetection: 0.45.17
+* Changedetection: 0.45.20
 * Changedetection Playwright Driver: latest
 * Clickhouse: 23.10.5.20
 * Collabora Online: 22.05.13.1.1
@@ -21,7 +21,7 @@
 * Exim Relay: 4.97.1-r0-0
 * Firezone: 0.7.36
 * Focalboard: 7.10.4
-* Forgejo: 1.21.10-0
+* Forgejo: 1.21.11-0
 * Freshrss: 1.23.0
 * Funkwhale: 1.4.0
 * Gitea: 1.21.11
@@ -73,7 +73,7 @@
 * Tandoor Frontend: 1.25.4-alpine
 * Telegraf: 1.27.1
 * Traefik: v2.11.2
-* Uptime Kuma: 1.23.11
+* Uptime Kuma: 1.23.12
 * Vaultwarden: 1.30.5
 * Wetty: 2.5
 * Wg Easy: 7
