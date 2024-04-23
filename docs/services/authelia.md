@@ -196,3 +196,4 @@ If a dedicated variable is not available for you to use or if you wish to overri
 
 - [authentik](authentik.md) - An open-source Identity Provider focused on flexibility and versatility.
 - [Keycloak](keycloak.md) - An open source identity and access management solution
+- [OAuth2-Proxy](oauth2-proxy.md) - A reverse proxy and static file server that provides authentication using OpenID Connect Providers (Google, GitHub, [Authentik](authentik.md), [Keycloak](keycloak.md), and others) to SSO-protect services which do not support SSO natively

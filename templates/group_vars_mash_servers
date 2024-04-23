@@ -443,6 +443,11 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
     {{ ({'name': (mariadb_identifier + '.service'), 'priority': 500, 'groups': ['mash', 'mariadb']} if mariadb_enabled else omit) }}
   # /role-specific:mariadb
 
+  # role-specific:oauth2_proxy
+  - |-
+    {{ ({'name': (oauth2_proxy_identifier + '.service'), 'priority': 1900, 'groups': ['mash', 'oauth2-proxy']} if oauth2_proxy_enabled else omit) }}
+  # /role-specific:oauth2_proxy
+
   # role-specific:outline
   - |-
     {{ ({'name': (outline_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'outline']} if outline_enabled else omit) }}
@@ -3833,6 +3838,38 @@ outline_database_sslmode: "{{ 'disable' if devture_postgres_enabled and outline_
 #                                                                      #
 ########################################################################
 # /role-specific:outline
+
+
+
+# role-specific:oauth2_proxy
+########################################################################
+#                                                                      #
+# oauth2_proxy                                                         #
+#                                                                      #
+########################################################################
+
+oauth2_proxy_enabled: false
+
+oauth2_proxy_identifier: "{{ mash_playbook_service_identifier_prefix }}oauth2-proxy"
+
+oauth2_proxy_uid: "{{ mash_playbook_uid }}"
+oauth2_proxy_gid: "{{ mash_playbook_gid }}"
+
+oauth2_proxy_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}oauth2-proxy"
+
+oauth2_proxy_container_network: "{{ (mash_playbook_reverse_proxyable_services_additional_network if mash_playbook_traefik_labels_enabled else '') | default(oauth2_proxy_identifier) }}"
+
+oauth2_proxy_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+oauth2_proxy_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+oauth2_proxy_container_labels_traefik_entrypoints: "{{ devture_traefik_entrypoint_primary }}"
+oauth2_proxy_container_labels_traefik_tls_certResolver: "{{ devture_traefik_certResolver_primary }}"
+
+########################################################################
+#                                                                      #
+# /oauth2_proxy                                                        #
+#                                                                      #
+########################################################################
+# /role-specific:oauth2_proxy
 
 
 

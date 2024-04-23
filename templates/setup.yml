@@ -274,6 +274,10 @@
     - role: galaxy/nextcloud
     # /role-specific:nextcloud
 
+    # role-specific:oauth2_proxy
+    - role: galaxy/oauth2_proxy
+    # /role-specific:oauth2_proxy
+
     # role-specific:owncast
     - role: galaxy/owncast
     # /role-specific:owncast
