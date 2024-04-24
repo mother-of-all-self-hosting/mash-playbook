@@ -21,7 +21,7 @@
 * Exim Relay: 4.97.1-r0-0
 * Firezone: 0.7.36
 * Focalboard: 7.10.4
-* Forgejo: 1.21.11-0
+* Forgejo: 1.21.11-1
 * Freshrss: 1.23.0
 * Funkwhale: 1.4.0
 * Gitea: 1.21.11
@@ -51,13 +51,14 @@
 * Netbox: v3.7.0-2.8.0
 * Netbox Container Image Customizations Keycloak Sso Expiration Middleware: a2ac39b1c73a50742c6e834e89162f87528c7f73
 * Nextcloud: 28.0.2
+* Oauth2 Proxy: v7.6.0
 * Outline: 0.74.0-0
 * Owncast: 0.1.2
 * Oxitraffic: 0.9.0
 * Peertube: v6.0.4
 * Prometheus: v2.51.2
 * Prometheus Blackbox Exporter: v0.25.0
-* Prometheus Node Exporter: v1.7.0
+* Prometheus Node Exporter: v1.8.0
 * Prometheus Postgres Exporter: v0.14.0
 * Prometheus Ssh Exporter: v1.5.0
 * Promtail: 2.9.5
