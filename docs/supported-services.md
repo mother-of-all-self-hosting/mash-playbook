@@ -78,7 +78,7 @@
 | [Vaultwarden](https://github.com/dani-garcia/vaultwarden) | A lightweight unofficial and compatible implementation of the [Bitwarden](https://bitwarden.com/) password manager | [Link](services/vaultwarden.md) |
 | [Uptime-kuma](https://uptime.kuma.pet/) | A fancy self-hosted monitoring tool | [Link](services/uptime-kuma.md) |
 | [Wetty](https://github.com/butlerx/wetty) | An SSH terminal over HTTP/HTTPS | [Link](services/wetty.md) |
-| [WireGuard Easy](https://github.com/WeeJeWel/wg-easy) | The easiest way to run [WireGuard](https://www.wireguard.com/) VPN + Web-based Admin UI. | [Link](services/wg-easy.md) |
+| [WireGuard Easy](https://github.com/wg-easy/wg-easy) | The easiest way to run [WireGuard](https://www.wireguard.com/) VPN + Web-based Admin UI. | [Link](services/wg-easy.md) |
 | [Forgejo](https://forgejo.org/) | An alternative fork of Gitea. Easy and painless self-hosted git server. | [Link](services/forgejo.md) |
 | [Woodpecker CI](https://woodpecker-ci.org/) | A simple Continuous Integration (CI) engine with great extensibility. | [Link](services/woodpecker-ci.md) |
 | System-related | A collection of various system-related components | [Link](services/system.md) |
