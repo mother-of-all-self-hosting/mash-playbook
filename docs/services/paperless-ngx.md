@@ -2,7 +2,7 @@
 
 [Paperless-ngx](https://paperless-ngx.com) s a community-supported open-source document management system that transforms your physical documents into a searchable online archive so you can keep, well, less paper. MASH can install paperless-ngx with the [`mother-of-all-self-hosting/ansible-role-paperless`](https://github.com/mother-of-all-self-hosting/ansible-role-paperless) ansible role.
 
-**Warning** Paperless-ngx currently [does not support](https://github.com/paperless-ngx/paperless-ngx/issues/6352) running the container rootless, therfore the role has not the usual security features of other services provided by this playbook. This put your system more at higher risk as vulerabilities can have a higher impact.
+**Warning** Paperless-ngx currently [does not support](https://github.com/paperless-ngx/paperless-ngx/issues/6352) running the container rootless, therefore the role has not the usual security features of other services provided by this playbook. This put your system more at higher risk as vulnerabilities can have a higher impact.
 
 ## Dependencies
 
@@ -28,6 +28,11 @@ paperless_enabled: true
 
 paperless_hostname: paperless.example.org
 
+# Set the following variables to create an initial admin user
+# It will not re-create an admin user, it will not change a password if the user is already created
+# paperless_admin_user: USERNAME
+# paperless_admin_password: SECURE_PASSWORD
+
 # KeyDB configuration, as described below
 
 ########################################################################
@@ -41,9 +46,9 @@ paperless_hostname: paperless.example.org
 
 As described on the [KeyDB](keydb.md) documentation page, if you're hosting additional services which require KeyDB on the same server, you'd better go for installing a separate KeyDB instance for each service. See [Creating a KeyDB instance dedicated to paperless-ngx](#creating-a-keydb-instance-dedicated-to-paperless-ngx).
 
-If you're only running paperless-ngx on this server and don't need to use KeyDB for anything else, you can [use a single KeyDB instance](#using-the-shared-keydb-instance-for-authentik).
+If you're only running paperless-ngx on this server and don't need to use KeyDB for anything else, you can [use a single KeyDB instance](#using-the-shared-keydb-instance-for-paperless).
 
-#### Using the shared KeyDB instance for authentik
+#### Using the shared KeyDB instance for paperless-ngx
 
 To install a single (non-dedicated) KeyDB instance (`mash-keydb`) and hook paperless to it, add the following **additional** configuration:
 
@@ -74,11 +79,11 @@ keydb_enabled: true
 # Point paperless to the shared KeyDB instance
 paperless_redis_hostname: "{{ keydb_identifier }}"
 
-# Make sure the authentik service (mash-authentik.service) starts after the shared KeyDB service (mash-keydb.service)
+# Make sure the paperless service (mash-paperless.service) starts after the shared KeyDB service (mash-keydb.service)
 paperless_systemd_required_services_list_custom:
   - "{{ keydb_identifier }}.service"
 
-# Make sure the authentik container is connected to the container network of the shared KeyDB service (mash-keydb)
+# Make sure the paperless container is connected to the container network of the shared KeyDB service (mash-keydb)
 paperless_container_additional_networks_custom:
   - "{{ keydb_identifier }}"
 
@@ -156,15 +161,15 @@ Then, adjust your main inventory host's variables file (`inventory/host_vars/pap
 
 # Base configuration as shown above
 
-# Point authentik to its dedicated KeyDB instance
-paperless_redis_hostname: mash-authentik-keydb
+# Point paperless to its dedicated KeyDB instance
+paperless_redis_hostname: mash-paperless-keydb
 
-# Make sure the authentik service (mash-paperless.service) starts after its dedicated KeyDB service (mash-paperless-keydb.service)
+# Make sure the paperless service (mash-paperless.service) starts after its dedicated KeyDB service (mash-paperless-keydb.service)
 paperless_systemd_required_services_list_custom:
   - "mash-paperless-keydb.service"
 
-# Make sure the authentik container is connected to the container network of its dedicated KeyDB service (mash-paperless-keydb)
-authentik_container_additional_networks_custom:
+# Make sure the paperless container is connected to the container network of its dedicated KeyDB service (mash-paperless-keydb)
+paperless_container_additional_networks_custom:
   - "mash-paperless-keydb"
 
 ########################################################################
