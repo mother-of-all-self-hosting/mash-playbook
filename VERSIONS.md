@@ -5,8 +5,8 @@
 * Authelia: 4.37.5
 * Authentik: 2024.2.3
 * Borg: 1.2.8
-* Borgmatic: 1.8.10
-* Changedetection: 0.45.20
+* Borgmatic: 1.8.11
+* Changedetection: 0.45.21
 * Changedetection Playwright Driver: latest
 * Clickhouse: 23.10.5.20
 * Collabora Online: 22.05.13.1.1
@@ -32,7 +32,7 @@
 * Ilmo: 1.0.4
 * Infisical: v0.3.8
 * Influxdb: 2.7.5
-* Jitsi: stable-9364-1
+* Jitsi: stable-9457-2
 * Jitsi Ldap: 3
 * Jitsi Prosody Auth Matrix User Verification Repo: 2839499cb03894d8cfc3e5b2219441427cb133d8
 * Keycloak: 24.0.2
@@ -41,16 +41,16 @@
 * Languagetool: 6.3
 * Linkding: latest
 * Loki: 2.9.4
-* Miniflux: 2.1.2
+* Miniflux: 2.1.3
 * Mobilizon: 3.1.0
 * Mongodb: 7.0.4
 * Mosquitto: 2.0.15
 * Mrs: latest
 * N8N: next
-* Navidrome: 0.51.1
+* Navidrome: 0.52.0
 * Netbox: v3.7.0-2.8.0
 * Netbox Container Image Customizations Keycloak Sso Expiration Middleware: a2ac39b1c73a50742c6e834e89162f87528c7f73
-* Nextcloud: 28.0.2
+* Nextcloud: 28.0.4
 * Oauth2 Proxy: v7.6.0
 * Outline: 0.74.0-0
 * Owncast: 0.1.2
@@ -74,9 +74,9 @@
 * Tandoor Frontend: 1.25.4-alpine
 * Telegraf: 1.27.1
 * Traefik: v2.11.2
-* Uptime Kuma: 1.23.12
+* Uptime Kuma: 1.23.13
 * Vaultwarden: 1.30.5
 * Wetty: 2.5
-* Wg Easy: 7
+* Wg Easy: 12
 * Woodpecker Ci Agent: v2.4.1
 * Woodpecker Ci Server: v2.4.1
