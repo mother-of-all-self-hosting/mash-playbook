@@ -1,0 +1,135 @@
+# Calibre-Web
+
+[calibre_web](https://github.com/janeczku/calibre-web) is a web app that offers a clean and intuitive interface for browsing, reading, and downloading eBooks using a valid [Calibre](https://calibre-ebook.com/) database.
+
+
+## Dependencies
+
+This service requires the following other services:
+
+- a [Traefik](traefik.md) reverse-proxy server
+
+
+## Configuration
+
+To enable this service, add the following configuration to your `vars.yml` file and re-run the [installation](../installing.md) process:
+
+```yaml
+########################################################################
+#                                                                      #
+# calibre_web                                                            #
+#                                                                      #
+########################################################################
+
+calibre_web_enabled: true
+
+calibre_web_hostname: mash.example.com
+calibre_web_path_prefix: /calibre_web
+
+# By default, calibre_web will look at the /books directory for your Calibre database.
+#
+# You'd need to mount some book directory into the calibre_web container, like shown below.
+# The "Syncthing integration" section below may be relevant.
+# calibre_web_container_additional_volumes:
+#   - type: bind
+#     src: /on-host/path/to/books
+#     dst: /books
+
+########################################################################
+#                                                                      #
+# /calibre_web                                                           #
+#                                                                      #
+########################################################################
+```
+
+### URL
+
+In the example configuration above, we configure the service to be hosted at `https://mash.example.com/calibre_web`.
+
+You can remove the `calibre_web_path_prefix` variable definition, to make it default to `/`, so that the service is served at `https://mash.example.com/`.
+
+### Authentication
+
+The default username is `admin` and the default password is `admin123`.
+You'll be able to change the password and add additional users in the web UI.
+
+On the initial setup screen, enter /books as your calibre library location.
+If you haven't placed a Calibre database in that directory yet, it will error as an invalid location.
+
+### Syncthing integration
+
+If you've got a [Syncthing](syncthing.md) service running, you can use it to synchronize your music directory onto the server and then mount it as read-only into the calibre_web container.
+
+We recommend that you make use of the [aux](auxiliary.md) role to create some shared directory like this:
+
+```yaml
+########################################################################
+#                                                                      #
+# aux                                                                  #
+#                                                                      #
+########################################################################
+
+aux_directory_definitions:
+  - dest: "{{ mash_playbook_base_path }}/storage"
+  - dest: "{{ mash_playbook_base_path }}/storage/books"
+
+########################################################################
+#                                                                      #
+# /aux                                                                 #
+#                                                                      #
+########################################################################
+```
+
+You can then mount this `{{ mash_playbook_base_path }}/storage/books` directory into the Syncthing container and synchronize it with some other computer:
+
+```yaml
+########################################################################
+#                                                                      #
+# syncthing                                                            #
+#                                                                      #
+########################################################################
+
+# Other Syncthing configuration..
+
+syncthing_container_additional_volumes:
+  - type: bind
+    src: "{{ mash_playbook_base_path }}/storage/books"
+    dst: /books
+
+########################################################################
+#                                                                      #
+# /syncthing                                                           #
+#                                                                      #
+########################################################################
+```
+
+Finally, mount the `{{ mash_playbook_base_path }}/storage/books` directory into the calibre_web container as read-only:
+
+```yaml
+########################################################################
+#                                                                      #
+# calibre_web                                                            #
+#                                                                      #
+########################################################################
+
+# Other calibre_web configuration..
+
+calibre_web_container_additional_volumes:
+  - type: bind
+    src: "{{ mash_playbook_base_path }}/storage/books"
+    dst: /books
+
+########################################################################
+#                                                                      #
+# /calibre_web                                                           #
+#                                                                      #
+########################################################################
+```
+
+## Usage
+
+After installation, you can go to the calibre_web URL, as defined in `calibre_web_hostname` and `calibre_web_path_prefix`.
+
+## Recommended other services
+
+- [Syncthing](syncthing.md) - a continuous file synchronization program which synchronizes files between two or more computers in real time. See [Syncthing integration](#syncthing-integration)
