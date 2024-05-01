@@ -228,6 +228,9 @@
   version: v0.9.0-0
   name: oxitraffic
   activation_prefix: oxitraffic_
+- src: git+https://github.com/mother-of-all-self-hosting/ansible-role-paperless.git
+  version: v2.7.2-1
+  name: paperless
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-peertube.git
   version: v6.0.4-0
   name: peertube

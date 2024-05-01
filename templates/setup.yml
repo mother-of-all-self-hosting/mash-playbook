@@ -290,6 +290,10 @@
     - role: galaxy/oxitraffic
     # /role-specific:oxitraffic
 
+    # role-specific:paperless
+    - role: galaxy/paperless
+    # /role-specific:paperless
+
     # role-specific:peertube
     - role: galaxy/peertube
     # /role-specific:peertube
