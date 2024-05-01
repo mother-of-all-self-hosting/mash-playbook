@@ -2,6 +2,7 @@
 
 [calibre_web](https://github.com/janeczku/calibre-web) is a web app that offers a clean and intuitive interface for browsing, reading, and downloading eBooks using a valid [Calibre](https://calibre-ebook.com/) database.
 
+**Warning** Paperless-ngx currently [does not support](https://hub.docker.com/r/linuxserver/calibre-web) running the container rootless, therefore the role has not the usual security features of other services provided by this playbook. This put your system more at higher risk as vulnerabilities can have a higher impact.
 
 ## Dependencies
 
