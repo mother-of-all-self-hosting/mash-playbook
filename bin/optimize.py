@@ -52,11 +52,11 @@ def write_to_file(contents, path):
 
 # Matches the beginning of role-specific blocks.
 # Example: `# role-specific:playbook_help`
-regex_role_specific_block_start = regex.compile('^\s*#\s*role-specific\:\s*([^\s]+)$')
+regex_role_specific_block_start = regex.compile('^\\s*#\\s*role-specific:\\s*([^\\s]+)$')
 
 # Matches the end of role-specific blocks.
 # Example: `# /role-specific:playbook_help`
-regex_role_specific_block_end = regex.compile('^\s*#\s*/role-specific\:\s*([^\s]+)$')
+regex_role_specific_block_end = regex.compile('^\\s*#\\s*/role-specific:\\s*([^\\s]+)$')
 
 def process_file_contents(file_name, enabled_role_names, known_role_names):
     contents = read_file(file_name)

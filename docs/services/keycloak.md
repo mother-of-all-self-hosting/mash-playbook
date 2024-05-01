@@ -54,8 +54,14 @@ On each start after that, Keycloak will attempt to create the user again and rep
 
 Subsequent changes to the password will not affect an existing user's password.
 
+
 ## Usage
 
 After installation, you can go to the Keycloak URL, as defined in `keycloak_hostname` and `keycloak_path_prefix` and log in as described in [Authentication](#authentication).
 
 Follow the [Keycloak documentation](https://www.keycloak.org/documentation) or other guides for learning how to use Keycloak.
+
+
+## Related services
+
+- [OAuth2-Proxy](oauth2-proxy.md) - A reverse proxy and static file server that provides authentication using OpenID Connect Providers (Google, GitHub, [Authentik](authentik.md), [Keycloak](keycloak.md), and others) to SSO-protect services which do not support SSO natively

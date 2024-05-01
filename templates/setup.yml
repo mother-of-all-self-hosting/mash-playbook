@@ -274,6 +274,10 @@
     - role: galaxy/nextcloud
     # /role-specific:nextcloud
 
+    # role-specific:oauth2_proxy
+    - role: galaxy/oauth2_proxy
+    # /role-specific:oauth2_proxy
+
     # role-specific:owncast
     - role: galaxy/owncast
     # /role-specific:owncast
@@ -285,6 +289,10 @@
     # role-specific:oxitraffic
     - role: galaxy/oxitraffic
     # /role-specific:oxitraffic
+
+    # role-specific:paperless
+    - role: galaxy/paperless
+    # /role-specific:paperless
 
     # role-specific:peertube
     - role: galaxy/peertube

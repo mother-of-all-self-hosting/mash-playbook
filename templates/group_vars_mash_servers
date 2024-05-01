@@ -438,17 +438,22 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
     {{ ({'name': (nextcloud_identifier + '-cron.timer'), 'priority': 2500, 'groups': ['mash', 'nextcloud', 'nextcloud-cron']} if nextcloud_enabled else omit) }}
   # /role-specific:nextcloud
 
-  # role-specific:mariadb
-  - |-
-    {{ ({'name': (mariadb_identifier + '.service'), 'priority': 500, 'groups': ['mash', 'mariadb']} if mariadb_enabled else omit) }}
-  # /role-specific:mariadb
-
   # role-specific:notfellchen
   - |-
     {{ ({'name': (notfellchen_identifier  + '.service'), 'priority': 2000, 'groups': ['mash', 'notfellchen']} if notfellchen_enabled else omit) }}
   - |-
     {{ ({'name': (notfellchen_sws_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'notfellchen', 'notfellchen-sws']} if notfellchen_enabled else omit) }}
   # /role-specific:notfellchen
+
+  # role-specific:mariadb
+  - |-
+    {{ ({'name': (mariadb_identifier + '.service'), 'priority': 500, 'groups': ['mash', 'mariadb']} if mariadb_enabled else omit) }}
+  # /role-specific:mariadb
+
+  # role-specific:oauth2_proxy
+  - |-
+    {{ ({'name': (oauth2_proxy_identifier + '.service'), 'priority': 1900, 'groups': ['mash', 'oauth2-proxy']} if oauth2_proxy_enabled else omit) }}
+  # /role-specific:oauth2_proxy
 
   # role-specific:outline
   - |-
@@ -464,6 +469,11 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
   - |-
     {{ ({'name': (oxitraffic_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'oxitraffic']} if oxitraffic_enabled else omit) }}
   # /role-specific:oxitraffic
+
+  # role-specific:paperless
+  - |-
+    {{ ({'name': (paperless_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'paperless']} if paperless_enabled else omit) }}
+  # /role-specific:paperless
 
   # role-specific:peertube
   - |-
@@ -854,6 +864,18 @@ mash_playbook_devture_postgres_managed_databases_auto_itemized:
     }}
   # /role-specific:oxitraffic
 
+
+  # role-specific:paperless
+  - |-
+    {{
+      ({
+        'name': paperless_database_name,
+        'username': paperless_database_username,
+        'password': paperless_database_password,
+      } if paperless_enabled and paperless_database_hostname == devture_postgres_identifier else omit)
+    }}
+  # /role-specific:paperless
+
   # role-specific:peertube
   - |-
     {{
@@ -1034,13 +1056,7 @@ devture_playbook_state_preserver_commit_hash_preservation_dst: "{{ mash_playbook
 #                                                                      #
 ########################################################################
 
-docker_daemon_options: |
-  {{
-    {
-      'experimental': devture_systemd_docker_base_ipv6_enabled,
-      'ip6tables': devture_systemd_docker_base_ipv6_enabled,
-    }
-  }}
+docker_daemon_options: "{{ mash_playbook_docker_installation_daemon_options }}"
 
 ########################################################################
 #                                                                      #
@@ -3918,6 +3934,38 @@ outline_database_sslmode: "{{ 'disable' if devture_postgres_enabled and outline_
 
 
 
+# role-specific:oauth2_proxy
+########################################################################
+#                                                                      #
+# oauth2_proxy                                                         #
+#                                                                      #
+########################################################################
+
+oauth2_proxy_enabled: false
+
+oauth2_proxy_identifier: "{{ mash_playbook_service_identifier_prefix }}oauth2-proxy"
+
+oauth2_proxy_uid: "{{ mash_playbook_uid }}"
+oauth2_proxy_gid: "{{ mash_playbook_gid }}"
+
+oauth2_proxy_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}oauth2-proxy"
+
+oauth2_proxy_container_network: "{{ (mash_playbook_reverse_proxyable_services_additional_network if mash_playbook_traefik_labels_enabled else '') | default(oauth2_proxy_identifier) }}"
+
+oauth2_proxy_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+oauth2_proxy_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+oauth2_proxy_container_labels_traefik_entrypoints: "{{ devture_traefik_entrypoint_primary }}"
+oauth2_proxy_container_labels_traefik_tls_certResolver: "{{ devture_traefik_certResolver_primary }}"
+
+########################################################################
+#                                                                      #
+# /oauth2_proxy                                                        #
+#                                                                      #
+########################################################################
+# /role-specific:oauth2_proxy
+
+
+
 # role-specific:owncast
 ########################################################################
 #                                                                      #
@@ -3998,6 +4046,54 @@ oxitraffic_container_labels_traefik_tls_certResolver: "{{ devture_traefik_certRe
 #                                                                      #
 ########################################################################
 # /role-specific:oxitraffic
+
+
+# role-specific:paperless
+########################################################################
+#                                                                      #
+# paperless                                                            #
+#                                                                      #
+########################################################################
+
+paperless_enabled: false
+
+paperless_identifier: "{{ mash_playbook_service_identifier_prefix }}paperless"
+
+paperless_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}paperless"
+
+paperless_uid: "{{ mash_playbook_uid }}"
+paperless_gid: "{{ mash_playbook_gid }}"
+
+paperless_database_hostname: "{{ devture_postgres_identifier if devture_postgres_enabled else '' }}"
+paperless_database_username: "paperless"
+paperless_database_port: "{{ '5432' if devture_postgres_enabled else '' }}"
+paperless_database_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'db.paperless', rounds=655555) | to_uuid }}"
+
+paperless_systemd_required_services_list: |
+  {{
+    (['docker.service'])
+    +
+    ([devture_postgres_identifier ~ '.service'] if devture_postgres_enabled and paperless_database_hostname == devture_postgres_identifier else [])
+  }}
+
+paperless_container_additional_networks_auto: |
+  {{
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+    +
+    ([devture_postgres_container_network] if devture_postgres_enabled and paperless_database_hostname == devture_postgres_identifier and paperless_container_network != devture_postgres_container_network else [])
+  }}
+
+paperless_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+paperless_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+paperless_container_labels_traefik_entrypoints: "{{ devture_traefik_entrypoint_primary }}"
+paperless_container_labels_traefik_tls_certResolver: "{{ devture_traefik_certResolver_primary }}"
+
+########################################################################
+#                                                                      #
+# /paperless                                                           #
+#                                                                      #
+########################################################################
+# /role-specific:paperless
 
 
 

@@ -24,7 +24,7 @@ hubsite_subtitle: "Just click on a service to use it"
 #     ([{'name': 'My blog', 'url': 'https://example.com', 'logo_location': '', 'description': 'A link to a blog not hosted by this playbook', 'priority': 1000 }])
 #   }}
 
-# If you want to explicitly control which services you want to show on this page you can overwrite 
+# If you want to explicitly control which services you want to show on this page you can overwrite
 # hubsite_service_list_auto: |
 #   {{
 #     ([{'name': 'Miniflux', 'url': hubsite_service_miniflux_url, 'logo_location': '{{ role_path }}/assets/miniflux.png', 'description': 'An opinionated feed reader', 'priority': hubsite_service_miniflux_priority}] if hubsite_service_miniflux_enabled else [])
@@ -36,3 +36,6 @@ hubsite_subtitle: "Just click on a service to use it"
 # /hubsite                                                             #
 #                                                                      #
 ########################################################################
+```
+
+You can SSO-protect this website with the help of [Authelia](authelia.md) or [OAuth2-Proxy](oauth2-proxy.md) (connected to any OIDC provider).
