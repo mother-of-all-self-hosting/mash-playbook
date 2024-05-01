@@ -438,6 +438,13 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
     {{ ({'name': (nextcloud_identifier + '-cron.timer'), 'priority': 2500, 'groups': ['mash', 'nextcloud', 'nextcloud-cron']} if nextcloud_enabled else omit) }}
   # /role-specific:nextcloud
 
+  # role-specific:notfellchen
+  - |-
+    {{ ({'name': (notfellchen_identifier  + '.service'), 'priority': 2000, 'groups': ['mash', 'notfellchen']} if notfellchen_enabled else omit) }}
+  - |-
+    {{ ({'name': (notfellchen_sws_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'notfellchen', 'notfellchen-sws']} if notfellchen_enabled else omit) }}
+  # /role-specific:notfellchen
+
   # role-specific:mariadb
   - |-
     {{ ({'name': (mariadb_identifier + '.service'), 'priority': 500, 'groups': ['mash', 'mariadb']} if mariadb_enabled else omit) }}
@@ -823,6 +830,17 @@ mash_playbook_devture_postgres_managed_databases_auto_itemized:
       } if nextcloud_enabled else omit)
     }}
   # /role-specific:nextcloud
+
+  # role-specific:notfellchen
+  - |-
+    {{
+      ({
+        'name': notfellchen_database_name,
+        'username': notfellchen_database_username,
+        'password': notfellchen_database_password,
+      } if notfellchen_enabled else omit)
+    }}
+  # /role-specific:notfellchen
 
   # role-specific:outline
   - |-
@@ -3807,6 +3825,64 @@ mariadb_managed_databases_auto: "{{ mash_playbook_mariadb_managed_databases_auto
 #                                                                      #
 ########################################################################
 # /role-specific:mariadb
+
+
+
+# role-specific:notfellchen
+########################################################################
+#                                                                      #
+# notfellchen                                                          #
+#                                                                      #
+########################################################################
+
+notfellchen_enabled: false
+
+notfellchen_identifier: "{{ mash_playbook_service_identifier_prefix }}notfellchen"
+
+notfellchen_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}notfellchen"
+
+notfellchen_uid: "{{ mash_playbook_uid }}"
+notfellchen_gid: "{{ mash_playbook_gid }}"
+
+notfellchen_secret: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'secret.nf', rounds=655555) | to_uuid }}"
+
+notfellchen_database_host: "{{ devture_postgres_identifier if devture_postgres_enabled else '' }}"
+notfellchen_database_port: "{{ '5432' if devture_postgres_enabled else '' }}"
+notfellchen_database_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'db.nf', rounds=655555) | to_uuid }}"
+notfellchen_database_username: "notfellchen"
+
+notfellchen_systemd_required_services_list: |
+  {{
+    (['docker.service'])
+    +
+    ([devture_postgres_identifier ~ '.service'] if devture_postgres_enabled and notfellchen_database_host == devture_postgres_identifier else [])
+  }}
+
+notfellchen_container_additional_networks: |
+  {{
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+    +
+    ([devture_postgres_container_network] if devture_postgres_enabled and notfellchen_database_host == devture_postgres_identifier and notfellchen_container_network != devture_postgres_container_network else [])
+  }}
+
+notfellchen_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+notfellchen_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+notfellchen_container_labels_traefik_entrypoints: "{{ devture_traefik_entrypoint_primary }}"
+notfellchen_container_labels_traefik_tls_certResolver: "{{ devture_traefik_certResolver_primary }}"
+
+notfellchen_sws_container_labels_traefik_enabled: "{{ notfellchen_container_labels_traefik_enabled }}"
+notfellchen_sws_container_labels_traefik_docker_network: "{{ notfellchen_container_labels_traefik_docker_network }}"
+notfellchen_sws_container_labels_traefik_entrypoints: "{{ notfellchen_container_labels_traefik_entrypoints }}"
+notfellchen_sws_container_labels_traefik_tls_certResolver: "{{ notfellchen_container_labels_traefik_tls_certResolver }}"
+
+
+########################################################################
+#                                                                      #
+# /notfellchen                                                         #
+#                                                                      #
+########################################################################
+# /role-specific:notfellchen
+
 
 
 # role-specific:outline
