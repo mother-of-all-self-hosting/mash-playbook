@@ -18,14 +18,14 @@ To enable this service, add the following configuration to your `vars.yml` file 
 ```yaml
 ########################################################################
 #                                                                      #
-# calibre_web                                                            #
+# calibre-web                                                            #
 #                                                                      #
 ########################################################################
 
 calibre_web_enabled: true
 
 calibre_web_hostname: mash.example.com
-calibre_web_path_prefix: /calibre_web
+calibre_web_path_prefix: /calibre-web
 
 # By default, calibre_web will look at the /books directory for your Calibre database.
 #
@@ -38,24 +38,24 @@ calibre_web_path_prefix: /calibre_web
 
 ########################################################################
 #                                                                      #
-# /calibre_web                                                           #
+# /calibre-web                                                           #
 #                                                                      #
 ########################################################################
 ```
 
 ### URL
 
-In the example configuration above, we configure the service to be hosted at `https://mash.example.com/calibre_web`.
+In the example configuration above, we configure the service to be hosted at `https://mash.example.com/calibre-web`.
 
 You can remove the `calibre_web_path_prefix` variable definition, to make it default to `/`, so that the service is served at `https://mash.example.com/`.
 
 ### Authentication
 
 The default username is `admin` and the default password is `admin123`.
-You'll be able to change the password and add additional users in the web UI.
+You'll be able to change the username and password, and add additional users in the web UI.
 
 On the initial setup screen, enter /books as your calibre library location.
-If you haven't placed a Calibre database in that directory yet, it will error as an invalid location.
+If you haven't placed a Calibre database in that directory on the host yet, it will error as an invalid location.
 
 ### Syncthing integration
 
@@ -104,16 +104,16 @@ syncthing_container_additional_volumes:
 ########################################################################
 ```
 
-Finally, mount the `{{ mash_playbook_base_path }}/storage/books` directory into the calibre_web container as read-only:
+Finally, mount the `{{ mash_playbook_base_path }}/storage/books` directory into the calibre-web container as read-only:
 
 ```yaml
 ########################################################################
 #                                                                      #
-# calibre_web                                                            #
+# calibre-web                                                            #
 #                                                                      #
 ########################################################################
 
-# Other calibre_web configuration..
+# Other calibre-web configuration..
 
 calibre_web_container_additional_volumes:
   - type: bind
@@ -122,14 +122,14 @@ calibre_web_container_additional_volumes:
 
 ########################################################################
 #                                                                      #
-# /calibre_web                                                           #
+# /calibre-web                                                           #
 #                                                                      #
 ########################################################################
 ```
 
 ## Usage
 
-After installation, you can go to the calibre_web URL, as defined in `calibre_web_hostname` and `calibre_web_path_prefix`.
+After installation, you can go to the calibre-web URL, as defined in `calibre_web_hostname` and `calibre_web_path_prefix`.
 
 ## Recommended other services
 

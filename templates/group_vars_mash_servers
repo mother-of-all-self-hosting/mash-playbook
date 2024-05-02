@@ -186,10 +186,10 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
     {{ ({'name': (authelia_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'authelia']} if authelia_enabled else omit) }}
   # /role-specific:authelia
 
-  # role-specific:calibre_web
+  # role-specific:calibre-web
   - |-
-    {{ ({'name': (calibre_web_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'calibre_web']} if calibre_web_enabled else omit) }}
-  # /role-specific:calibre_web
+    {{ ({'name': (calibre_web_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'calibre-web']} if calibre_web_enabled else omit) }}
+  # /role-specific:calibre-web
 
   # role-specific:changedetection
   - |-
@@ -1532,21 +1532,21 @@ wetty_container_labels_traefik_tls_certResolver: "{{ devture_traefik_certResolve
 
 
 
-# role-specific:calibre_web
+# role-specific:calibre-web
 ########################################################################
 #                                                                      #
-# calibre_web                                                            #
+# calibre-web                                                            #
 #                                                                      #
 ########################################################################
 
 calibre_web_enabled: false
 
-calibre_web_identifier: "{{ mash_playbook_service_identifier_prefix }}calibre_web"
+calibre_web_identifier: "{{ mash_playbook_service_identifier_prefix }}calibre-web"
 
 calibre_web_uid: "{{ mash_playbook_uid }}"
 calibre_web_gid: "{{ mash_playbook_gid }}"
 
-calibre_web_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}calibre_web"
+calibre_web_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}calibre-web"
 
 calibre_web_container_additional_networks_auto: |
   {{
@@ -1560,10 +1560,10 @@ calibre_web_container_labels_traefik_tls_certResolver: "{{ devture_traefik_certR
 
 ########################################################################
 #                                                                      #
-# /calibre_web                                                           #
+# /calibre-web                                                           #
 #                                                                      #
 ########################################################################
-# /role-specific:calibre_web
+# /role-specific:calibre-web
 
 
 
