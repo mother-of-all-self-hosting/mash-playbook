@@ -3,10 +3,10 @@
 * Apisix Gateway: 3.8.0
 * Appsmith: v1.9.50
 * Authelia: 4.37.5
-* Authentik: 2024.2.3
+* Authentik: 2024.4.1
 * Borg: 1.2.8
 * Borgmatic: 1.8.11
-* Changedetection: 0.45.21
+* Changedetection: 0.45.22
 * Changedetection Playwright Driver: latest
 * Clickhouse: 23.10.5.20
 * Collabora Online: 22.05.13.1.1
@@ -38,7 +38,7 @@
 * Keycloak: 24.0.2
 * Keydb: 6.3.4
 * Lago: v0.50.0-beta
-* Languagetool: 6.3
+* Languagetool: 6.4
 * Linkding: latest
 * Loki: 2.9.4
 * Miniflux: 2.1.3

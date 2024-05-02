@@ -33,7 +33,7 @@
   name: backup_borg
   activation_prefix: backup_borg_
 - src: git+https://github.com/nielscil/ansible-role-changedetection.git
-  version: v0.45.21-0
+  version: v0.45.22-0
   name: changedetection
   activation_prefix: changedetection_
 - src: git+https://gitlab.com/etke.cc/roles/cleanup.git
@@ -161,7 +161,7 @@
   name: lago
   activation_prefix: lago_
 - src: git+https://gitlab.com/etke.cc/roles/languagetool.git
-  version: v6.3-1
+  version: v6.4-0
   name: languagetool
   activation_prefix: languagetool_
 - src: git+https://github.com/kinduff/ansible-docker-linkding.git
