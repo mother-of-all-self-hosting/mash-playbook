@@ -56,7 +56,7 @@
 * Oauth2 Proxy: v7.6.0
 * Outline: 0.74.0-0
 * Owncast: 0.1.2
-* Oxitraffic: 0.9.0
+* Oxitraffic: 0.10.1
 * Paperless: 2.7.2
 * Peertube: v6.0.4
 * Prometheus: v2.51.2
