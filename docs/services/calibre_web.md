@@ -1,6 +1,6 @@
 # Calibre-Web
 
-[calibre_web](https://github.com/janeczku/calibre-web) is a web app that offers a clean and intuitive interface for browsing, reading, and downloading eBooks using a valid [Calibre](https://calibre-ebook.com/) database.
+[Calibre-Web](https://github.com/janeczku/calibre-web) is a web app that offers a clean and intuitive interface for browsing, reading, and downloading eBooks using a valid [Calibre](https://calibre-ebook.com/) database.
 
 **Warning** Paperless-ngx currently [does not support](https://hub.docker.com/r/linuxserver/calibre-web) running the container rootless, therefore the role has not the usual security features of other services provided by this playbook. This put your system more at higher risk as vulnerabilities can have a higher impact.
 
@@ -59,7 +59,7 @@ If you haven't placed a Calibre database in that directory on the host yet, it w
 
 ### Syncthing integration
 
-If you've got a [Syncthing](syncthing.md) service running, you can use it to synchronize your music directory onto the server and then mount it as read-only into the calibre_web container.
+If you've got a [Syncthing](syncthing.md) service running, you can use it to synchronize your books directory onto the server and then mount it as read-only into the calibre_web container.
 
 We recommend that you make use of the [aux](auxiliary.md) role to create some shared directory like this:
 
