@@ -37,7 +37,7 @@
   name: calibre-web
   activation_prefix: calibre-web
 - src: git+https://github.com/nielscil/ansible-role-changedetection.git
-  version: v0.45.20-0
+  version: v0.45.22-0
   name: changedetection
   activation_prefix: changedetection_
 - src: git+https://gitlab.com/etke.cc/roles/cleanup.git
@@ -105,7 +105,7 @@
   name: focalboard
   activation_prefix: focalboard_
 - src: git+https://github.com/NeonMinnen/ansible-role-forgejo.git
-  version: v1.21.11-1-0
+  version: v7.0.2-0
   name: forgejo
   activation_prefix: forgejo_
 - src: git+https://github.com/kinduff/ansible-docker-freshrss.git
@@ -117,7 +117,7 @@
   name: funkwhale
   activation_prefix: funkwhale_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-gitea.git
-  version: v1.21.11-0
+  version: v1.21.11-1
   name: gitea
   activation_prefix: gitea_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-gotosocial.git
@@ -165,7 +165,7 @@
   name: lago
   activation_prefix: lago_
 - src: git+https://gitlab.com/etke.cc/roles/languagetool.git
-  version: v6.3-1
+  version: v6.4-0
   name: languagetool
   activation_prefix: languagetool_
 - src: git+https://github.com/kinduff/ansible-docker-linkding.git
@@ -216,6 +216,10 @@
   version: v28.0.4-0
   name: nextcloud
   activation_prefix: nextcloud_
+- src: git+https://codeberg.org/moanos/ansible-role-notfellchen.git
+  version: v0.1.0-2
+  name: notfellchen
+  activation_prefix: notfellchen_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-oauth2-proxy.git
   version: v7.6.0-1
   name: oauth2_proxy
@@ -229,9 +233,12 @@
   name: owncast
   activation_prefix: owncast_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-oxitraffic.git
-  version: v0.9.0-0
+  version: v0.10.1-0
   name: oxitraffic
   activation_prefix: oxitraffic_
+- src: git+https://github.com/mother-of-all-self-hosting/ansible-role-paperless.git
+  version: v2.7.2-1
+  name: paperless
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-peertube.git
   version: v6.0.4-0
   name: peertube
