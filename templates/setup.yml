@@ -126,6 +126,10 @@
     - role: galaxy/wetty
     # /role-specific:wetty
 
+    # role-specific:calibre-web
+    - role: galaxy/calibre-web
+    # /role-specific:calibre-web
+
     # role-specific:clickhouse
     - role: galaxy/clickhouse
     # /role-specific:clickhouse

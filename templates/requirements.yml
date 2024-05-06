@@ -21,7 +21,7 @@
   name: authelia
   activation_prefix: authelia_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-authentik.git
-  version: v2024.4.1-0
+  version: v2024.2.3-0
   name: authentik
   activation_prefix: authentik_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-aux.git
@@ -29,9 +29,13 @@
   name: auxiliary
   activation_prefix: aux_
 - src: git+https://gitlab.com/etke.cc/roles/backup_borg.git
-  version: v1.2.8-1.8.11-0
+  version: v1.2.8-1.8.10-0
   name: backup_borg
   activation_prefix: backup_borg_
+- src: git+https://github.com/lingawakad/ansible-role-calibre-web.git
+  version: v0.6.21-0
+  name: calibre-web
+  activation_prefix: calibre-web
 - src: git+https://github.com/nielscil/ansible-role-changedetection.git
   version: v0.45.22-0
   name: changedetection
@@ -57,7 +61,7 @@
   name: docker
   activation_prefix: mash_playbook_docker_installation_enabled
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-docker-registry.git
-  version: v2.8.3-2
+  version: v2.8.3-1
   name: docker_registry
   activation_prefix: docker_registry_enabled
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-docker-registry-browser.git
@@ -109,7 +113,7 @@
   name: freshrss
   activation_prefix: freshrss_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-funkwhale.git
-  version: v1.4.0-5
+  version: v1.4.0-4
   name: funkwhale
   activation_prefix: funkwhale_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-gitea.git
@@ -145,7 +149,7 @@
   name: influxdb
   activation_prefix: influxdb_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-jitsi.git
-  version: v9457-3
+  version: v9457-2
   name: jitsi
   activation_prefix: jitsi_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-keycloak.git
@@ -177,7 +181,7 @@
   name: mariadb
   activation_prefix: mariadb_
 - src: git+https://gitlab.com/etke.cc/roles/miniflux.git
-  version: v2.1.3-0
+  version: v2.1.2-0
   name: miniflux
   activation_prefix: miniflux_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-mobilizon.git
@@ -201,7 +205,7 @@
   name: n8n
   activation_prefix: n8n_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-navidrome.git
-  version: v0.52.0-0
+  version: v0.51.1-0
   name: navidrome
   activation_prefix: navidrome_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-netbox.git
@@ -352,7 +356,7 @@
   name: traefik
   activation_prefix: devture_traefik_
 - src: git+https://gitlab.com/etke.cc/roles/uptime_kuma.git
-  version: v1.23.13-0
+  version: v1.23.12-0
   name: uptime_kuma
   activation_prefix: uptime_kuma_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-vaultwarden.git
