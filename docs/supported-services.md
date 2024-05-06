@@ -10,7 +10,8 @@
 | [Authelia](https://www.authelia.com/) | An open-source authentication and authorization server that can work as a companion to [common reverse proxies](https://www.authelia.com/overview/prologue/supported-proxies/) (like [Traefik](traefik.md) frequently used by this playbook) | [Link](services/authelia.md) |
 | [authentik](https://goauthentik.io/) | An open-source Identity Provider focused on flexibility and versatility. | [Link](services/authentik.md) |
 | [borgbackup](https://www.borgbackup.org/) (via [borgmatic](https://torsion.org/borgmatic/)) | A deduplicating backup program with optional compression and encryption| [Link](services/backup-borg.md) |
-| [Changedetection.io](https://github.com/dgtlmoon/changedetection.io) |  A simple website change detection and restock monitoring solution. | [Link](services/changedetection.md) |
+| [Calibre-Web](https://github.com/janeczku/calibre-web) | Web app for browsing, reading and downloading eBooks stored in a [Calibre](https://calibre-ebook.com/) database | [Link](services/calibre-web.md) |
+| [Changedetection.io](https://github.com/dgtlmoon/changedetection.io) | A simple website change detection and restock monitoring solution. | [Link](services/changedetection.md) |
 | [ClickHouse](https://clickhouse.com/) | An open-source column-oriented DBMS for online analytical processing (OLAP) that allows users to generate analytical reports using SQL queries in real-time. | [Link](services/clickhouse.md) |
 | [Collabora Online](https://www.collaboraoffice.com/) | Your Private Office Suite In The Cloud | [Link](services/collabora-online.md) |
 | [Docker](https://www.docker.com/) | Open-source software for deploying containerized applications | [Link](services/docker.md) |
