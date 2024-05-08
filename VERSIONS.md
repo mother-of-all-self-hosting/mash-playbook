@@ -6,6 +6,7 @@
 * Authentik: 2024.4.1
 * Borg: 1.2.8
 * Borgmatic: 1.8.11
+* Calibre Web: 0.6.21
 * Changedetection: 0.45.22
 * Changedetection Playwright Driver: latest
 * Clickhouse: 23.10.5.20
@@ -21,7 +22,7 @@
 * Exim Relay: 4.97.1-r0-0
 * Firezone: 0.7.36
 * Focalboard: 7.10.4
-* Forgejo: 1.21.11-1
+* Forgejo: 7.0.2
 * Freshrss: 1.23.0
 * Funkwhale: 1.4.0
 * Gitea: 1.21.11
@@ -35,7 +36,7 @@
 * Jitsi: stable-9457-2
 * Jitsi Ldap: 3
 * Jitsi Prosody Auth Matrix User Verification Repo: 2839499cb03894d8cfc3e5b2219441427cb133d8
-* Keycloak: 24.0.2
+* Keycloak: 24.0.4
 * Keydb: 6.3.4
 * Lago: v0.50.0-beta
 * Languagetool: 6.4
@@ -50,7 +51,7 @@
 * Navidrome: 0.52.0
 * Netbox: v3.7.0-2.8.0
 * Netbox Container Image Customizations Keycloak Sso Expiration Middleware: a2ac39b1c73a50742c6e834e89162f87528c7f73
-* Nextcloud: 28.0.4
+* Nextcloud: 28.0.5
 * Notfellchen: 0.1.1
 * Notfellchen Sws: 2
 * Oauth2 Proxy: v7.6.0
@@ -72,7 +73,7 @@
 * Rumqttd: 0.21.0
 * Semaphore: 2.9.56
 * Soft Serve: v0.4.7
-* Syncthing: 1.27.6
+* Syncthing: 1.27.7
 * Tandoor Api: 1.5.17
 * Tandoor Frontend: 1.25.4-alpine
 * Telegraf: 1.27.1
