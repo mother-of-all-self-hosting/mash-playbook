@@ -59,8 +59,8 @@
 * Owncast: 0.1.2
 * Oxitraffic: 0.10.1
 * Paperless: 2.7.2
-* Peertube: v6.0.4
-* Prometheus: v2.51.2
+* Peertube: v6.1.0
+* Prometheus: v2.52.0
 * Prometheus Blackbox Exporter: v0.25.0
 * Prometheus Node Exporter: v1.8.0
 * Prometheus Postgres Exporter: v0.14.0
