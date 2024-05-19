@@ -15,7 +15,7 @@
 * Docker Compose: v2.11.1
 * Docker Registry: 2.8.3
 * Docker Registry Browser: 1.6.1
-* Docker Registry Proxy: v1.2.0
+* Docker Registry Proxy: v1.2.1
 * Docker Registry Purger: 1.0.0
 * Echoip: latest
 * Etcd: 3.5.11
@@ -27,7 +27,7 @@
 * Funkwhale: 1.4.0
 * Gitea: 1.21.11
 * Gotosocial: 0.15.0
-* Grafana: 10.4.2
+* Grafana: 11.0.0
 * Healthchecks: v3.3
 * Hubsite Nginx: 1.25.4
 * Ilmo: 1.0.4
@@ -48,7 +48,7 @@
 * Mosquitto: 2.0.15
 * Mrs: latest
 * N8N: next
-* Navidrome: 0.52.0
+* Navidrome: 0.52.5
 * Netbox: v3.7.0-2.8.0
 * Netbox Container Image Customizations Keycloak Sso Expiration Middleware: a2ac39b1c73a50742c6e834e89162f87528c7f73
 * Nextcloud: 28.0.5
