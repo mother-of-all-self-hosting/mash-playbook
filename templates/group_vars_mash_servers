@@ -4108,7 +4108,7 @@ paperless_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_bas
 paperless_uid: "{{ mash_playbook_uid }}"
 paperless_gid: "{{ mash_playbook_gid }}"
 
-paperless_secret_key: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'paperless_secret_key', rounds=655555) | to_uuid }}"
+paperless_secret_key: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'paperless.secret', rounds=655555) | to_uuid }}"
 
 paperless_database_hostname: "{{ devture_postgres_identifier if devture_postgres_enabled else '' }}"
 paperless_database_username: "paperless"
