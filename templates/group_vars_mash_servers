@@ -482,6 +482,10 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
   # role-specific:paperless
   - |-
     {{ ({'name': (paperless_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'paperless']} if paperless_enabled else omit) }}
+  - |-
+    {{ ({'name': (paperless_tika_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'paperless']} if paperless_enabled and paperless_tika_enabled else omit) }}
+  - |-
+    {{ ({'name': (paperless_gotenberg_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'paperless']} if paperless_enabled and paperless_gotenberg_enabled else omit) }}
   # /role-specific:paperless
 
   # role-specific:peertube
@@ -4108,7 +4112,7 @@ paperless_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_bas
 paperless_uid: "{{ mash_playbook_uid }}"
 paperless_gid: "{{ mash_playbook_gid }}"
 
-paperless_secret_key: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'paperless_secret_key', rounds=655555) | to_uuid }}"
+paperless_secret_key: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'paperless.secret', rounds=655555) | to_uuid }}"
 
 paperless_database_hostname: "{{ devture_postgres_identifier if devture_postgres_enabled else '' }}"
 paperless_database_username: "paperless"
