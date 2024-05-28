@@ -10,8 +10,9 @@
         - install-all
     # /role-specific:playbook_help
 
-    # No role-specific checks here, as it's a local role that is always installed.
+    # No role-specific checks here. Local roles are always installed.
     - role: mash/playbook_base
+    - role: mash/playbook_migration
 
     # role-specific:systemd_docker_base
     # This role has no tasks at all
