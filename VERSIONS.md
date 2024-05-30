@@ -1,4 +1,4 @@
-* Adguard Home: v0.107.46
+* Adguard Home: v0.107.50
 * Apisix Dashboard: 3.0.1
 * Apisix Gateway: 3.8.0
 * Appsmith: v1.9.50
@@ -25,14 +25,14 @@
 * Forgejo: 7.0.2
 * Freshrss: 1.23.0
 * Funkwhale: 1.4.0
-* Gitea: 1.21.11
+* Gitea: 1.22.0
 * Gotosocial: 0.15.0
 * Grafana: 11.0.0
 * Healthchecks: v3.3
 * Hubsite Nginx: 1.25.4
 * Ilmo: 1.0.4
 * Infisical: v0.3.8
-* Influxdb: 2.7.5
+* Influxdb: 2.7.6
 * Jitsi: stable-9457-2
 * Jitsi Ldap: 3
 * Jitsi Prosody Auth Matrix User Verification Repo: 2839499cb03894d8cfc3e5b2219441427cb133d8
@@ -51,22 +51,24 @@
 * Navidrome: 0.52.5
 * Netbox: v3.7.0-2.8.0
 * Netbox Container Image Customizations Keycloak Sso Expiration Middleware: a2ac39b1c73a50742c6e834e89162f87528c7f73
-* Nextcloud: 28.0.5
+* Nextcloud: 29.0.0
 * Notfellchen: 0.1.1
 * Notfellchen Sws: 2
 * Oauth2 Proxy: v7.6.0
 * Outline: 0.74.0-0
 * Owncast: 0.1.2
 * Oxitraffic: 0.10.1
-* Paperless: 2.7.2
+* Paperless: 2.8.6
+* Paperless Gotenberg: 8.5.0
+* Paperless Tika: 2.9.1-minimal
 * Peertube: v6.1.0
-* Prometheus: v2.52.0
+* Prometheus: v2.52.1
 * Prometheus Blackbox Exporter: v0.25.0
-* Prometheus Node Exporter: v1.8.0
+* Prometheus Node Exporter: v1.8.1
 * Prometheus Postgres Exporter: v0.14.0
 * Prometheus Ssh Exporter: v1.5.0
 * Promtail: 2.9.5
-* Radicale: 3.1.9.1
+* Radicale: 3.2.0.0
 * Redis: 7.2.4
 * Redmine: 5.1.2
 * Roundcube: 1.6.6
