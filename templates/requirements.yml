@@ -49,7 +49,7 @@
   name: clickhouse
   activation_prefix: clickhouse_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-collabora-online.git
-  version: v22.05.13.1.1-0
+  version: v24.04.3.1.1-0
   name: collabora_online
   activation_prefix: collabora_online_
 - src: git+https://github.com/devture/com.devture.ansible.role.container_socket_proxy.git
