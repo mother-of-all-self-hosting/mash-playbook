@@ -43,7 +43,7 @@
 * Linkding: latest
 * Loki: 2.9.4
 * Miniflux: 2.1.3
-* Mobilizon: 3.1.0
+* Mobilizon: 4.1.0
 * Mongodb: 7.0.4
 * Mosquitto: 2.0.15
 * Mrs: latest
