@@ -213,6 +213,11 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
     {{ ({'name': (collabora_online_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'collabora-online']} if collabora_online_enabled else omit) }}
   # /role-specific:collabora_online
 
+  # role-specific:couchdb
+  - |-
+    {{ ({'name': (couchdb_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'couchdb']} if couchdb_enabled else omit) }}
+  # /role-specific:couchdb
+
   # role-specific:postgres
   - |-
     {{ ({'name': (devture_postgres_identifier + '.service'), 'priority': 500, 'groups': ['mash', 'postgres']} if devture_postgres_enabled else omit) }}
@@ -1675,6 +1680,37 @@ collabora_online_container_labels_traefik_tls_certResolver: "{{ devture_traefik_
 #                                                                      #
 ########################################################################
 # /role-specific:collabora_online
+
+
+
+# role-specific:couchdb
+########################################################################
+#                                                                      #
+# couchdb                                                              #
+#                                                                      #
+########################################################################
+couchdb_enabled: false
+
+couchdb_identifier: "{{ mash_playbook_service_identifier_prefix }}couchdb"
+
+couchdb_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}couchdb"
+
+couchdb_uid: "5984"
+couchdb_gid: "5984"
+
+couchdb_admin_user: "{{ mash_playbook_service_identifier_prefix }}admin"
+couchdb_admin_passwd: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'db.couchdb', rounds=655555) | to_uuid }}"
+couchdb_config_uuid: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'uuid.couchdb', rounds=655555) | to_uuid }}"
+
+couchdb_config_couch_chttpd_auth_secret: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'secret.couchdb', rounds=655555) | to_uuid }}"
+
+
+########################################################################
+#                                                                      #
+# /couchdb                                                             #
+#                                                                      #
+########################################################################
+# /role-specific:couchdb
 
 
 
