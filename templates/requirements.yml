@@ -53,7 +53,7 @@
   name: collabora_online
   activation_prefix: collabora_online_
 - src: git+https://github.com/Bergruebe/ansible-role-couchdb.git
-  version: v3.3.3-0
+  version: v3.3.3-1
   name: couchdb
   activation_prefix: couchdb_
 - src: git+https://github.com/devture/com.devture.ansible.role.container_socket_proxy.git
