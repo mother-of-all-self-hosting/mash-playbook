@@ -1773,6 +1773,8 @@ docker_registry_browser_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbo
 docker_registry_browser_uid: "{{ mash_playbook_uid }}"
 docker_registry_browser_gid: "{{ mash_playbook_gid }}"
 
+docker_registry_browser_secret_key_base: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'browser', rounds=655555) }}"
+
 docker_registry_browser_container_additional_networks: |
   {{
     ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])

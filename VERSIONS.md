@@ -10,11 +10,11 @@
 * Changedetection: 0.45.22
 * Changedetection Playwright Driver: latest
 * Clickhouse: 23.10.5.20
-* Collabora Online: 22.05.13.1.1
+* Collabora Online: 24.04.3.1.1
 * Container Socket Proxy: 0.1.2
 * Docker Compose: v2.11.1
 * Docker Registry: 2.8.3
-* Docker Registry Browser: 1.6.1
+* Docker Registry Browser: 1.7.2
 * Docker Registry Proxy: v1.2.1
 * Docker Registry Purger: 1.0.0
 * Echoip: latest
@@ -23,7 +23,7 @@
 * Firezone: 0.7.36
 * Focalboard: 7.10.4
 * Forgejo: 7.0.2
-* Freshrss: 1.23.0
+* Freshrss: 1.24.0
 * Funkwhale: 1.4.0
 * Gitea: 1.22.0
 * Gotosocial: 0.15.0
@@ -84,5 +84,5 @@
 * Vaultwarden: 1.30.5
 * Wetty: 2.5
 * Wg Easy: 12
-* Woodpecker Ci Agent: v2.4.1
-* Woodpecker Ci Server: v2.4.1
+* Woodpecker Ci Agent: v2.5.0
+* Woodpecker Ci Server: v2.5.0
