@@ -279,6 +279,10 @@
     - role: galaxy/nextcloud
     # /role-specific:nextcloud
 
+    # role-specific:notfellchen
+    - role: galaxy/notfellchen
+    # /role-specific:notfellchen
+
     # role-specific:oauth2_proxy
     - role: galaxy/oauth2_proxy
     # /role-specific:oauth2_proxy
