@@ -29,7 +29,7 @@
   name: auxiliary
   activation_prefix: aux_
 - src: git+https://gitlab.com/etke.cc/roles/backup_borg.git
-  version: v1.2.8-1.8.11-0
+  version: v1.2.8-1.8.11-1
   name: backup_borg
   activation_prefix: backup_borg_
 - src: git+https://github.com/lingawakad/ansible-role-calibre-web.git
@@ -53,7 +53,7 @@
   name: collabora_online
   activation_prefix: collabora_online_
 - src: git+https://github.com/devture/com.devture.ansible.role.container_socket_proxy.git
-  version: v0.1.2-1
+  version: v0.1.2-2
   name: container_socket_proxy
   activation_prefix: devture_traefik_
 - src: git+https://github.com/geerlingguy/ansible-role-docker
@@ -125,7 +125,7 @@
   name: gotosocial
   activation_prefix: gotosocial_
 - src: git+https://gitlab.com/etke.cc/roles/grafana.git
-  version: v11.0.0-0
+  version: v11.0.0-1
   name: grafana
   activation_prefix: grafana_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-healthchecks.git
@@ -149,7 +149,7 @@
   name: influxdb
   activation_prefix: influxdb_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-jitsi.git
-  version: v9457-3
+  version: v9457-5
   name: jitsi
   activation_prefix: jitsi_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-keycloak.git
@@ -157,7 +157,7 @@
   name: keycloak
   activation_prefix: keycloak_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-keydb.git
-  version: v6.3.4-1
+  version: v6.3.4-2
   name: keydb
   activation_prefix: keydb_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-lago.git
@@ -260,15 +260,15 @@
   name: postgis
   activation_prefix: postgis_
 - src: git+https://github.com/devture/com.devture.ansible.role.postgres.git
-  version: v16.3-0
+  version: v16.3-1
   name: postgres
   activation_prefix: devture_postgres_
 - src: git+https://github.com/devture/com.devture.ansible.role.postgres_backup.git
-  version: 046004a8cb9946979b72ce81c2526c8033ea8067
+  version: 8c3585fb4857dbac026b2974bb6525289240effb
   name: postgres_backup
   activation_prefix: devture_postgres_backup_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-prometheus.git
-  version: v2.52.0-0
+  version: v2.52.0-1
   name: prometheus
   activation_prefix: prometheus_enabled
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-prometheus-blackbox-exporter.git
@@ -276,11 +276,11 @@
   name: prometheus_blackbox_exporter
   activation_prefix: prometheus_blackbox_exporter_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-prometheus-node-exporter.git
-  version: v1.8.1-0
+  version: v1.8.1-1
   name: prometheus_node_exporter
   activation_prefix: prometheus_node_exporter_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-prometheus-postgres-exporter.git
-  version: v0.14.0-4
+  version: v0.14.0-5
   name: prometheus_postgres_exporter
   activation_prefix: prometheus_postgres_exporter_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-prometheus-ssh-exporter.git
@@ -296,7 +296,7 @@
   name: radicale
   activation_prefix: radicale_
 - src: git+https://gitlab.com/etke.cc/roles/redis.git
-  version: v7.2.4-0
+  version: v7.2.4-1
   name: redis
   activation_prefix: redis_
 - src: git+https://gitlab.com/etke.cc/roles/redmine.git
@@ -332,7 +332,7 @@
   name: syncthing
   activation_prefix: syncthing_
 - src: git+https://github.com/devture/com.devture.ansible.role.systemd_docker_base.git
-  version: v1.1.0-0
+  version: v1.2.0-0
   name: systemd_docker_base
   activation_prefix: ""
 - src: git+https://github.com/devture/com.devture.ansible.role.systemd_service_manager.git
@@ -352,7 +352,7 @@
   name: timesync
   activation_prefix: devture_timesync_
 - src: git+https://github.com/devture/com.devture.ansible.role.traefik.git
-  version: v2.11.2-0
+  version: v2.11.2-1
   name: traefik
   activation_prefix: devture_traefik_
 - src: git+https://gitlab.com/etke.cc/roles/uptime_kuma.git
