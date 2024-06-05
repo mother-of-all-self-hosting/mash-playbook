@@ -27,13 +27,12 @@ Some Advices:
 ├── .gitignore
 ├── LICENSE
 └── README.md
-
 ```
 - You will need to decide for a license, without it ansible-galaxy won't work.
 
 ### 4. Update the MASH-Playbook to support your created Ansible role
 There are a few files that you need to adappt:
- ````
+ ```
 .
 ├── docs/
 │   ├── supported-services.md  -> Add your service
@@ -141,7 +140,7 @@ authentik_container_additional_networks_auto: |
 
 ##### Support exim-relay
 The [exim-relay](https://github.com/devture/exim-relay) is an easy way to configure for all services a way for outgoing mail.
-````
+```yaml
 [...]
 
 # role-specific:YOUR-SERVICE
