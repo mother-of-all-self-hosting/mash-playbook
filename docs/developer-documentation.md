@@ -1,14 +1,19 @@
 # Developer Documentation
 
 ## Support a new service | Create your own role
+
 ### 1. Check if
-- the role doesn't exist already in [`supported-services.md`](supported-services.md) or if someone else is already [working on it](https://github.com/mother-of-all-self-hosting/mash-playbook/pulls).
-- the service you wish is possible in a docker container
-- a docker image already exists.
-### 2. Create the ansible role in a public git repository.
+
+- the role doesn't exist already in [`supported-services.md`](supported-services.md) and no one else is already [working on it](https://github.com/mother-of-all-self-hosting/mash-playbook/pulls)
+
+- the service you wish to add can run in a Docker container
+
+- a container image already exists
+
+### 2. Create the Ansible role in a public git repository.
 You can follow the structure of existing roles, like the [`ansible-role-gitea`](https://github.com/mother-of-all-self-hosting/ansible-role-gitea) or the [`ansible-role-gotosocial`](https://github.com/mother-of-all-self-hosting/ansible-role-gotosocial).
 
-Some Advices:
+Some advice:
  - Your file structure will probably look something like this:
 
 ```
@@ -30,9 +35,10 @@ Some Advices:
 ├── LICENSE
 └── README.md
 ```
-- You will need to decide on a licence, without it, ansible-galaxy won't work.
+- You will need to decide on a licence, without it, ansible-galaxy won't work. We recommend AGPLv3, like all of MASH.
 
 ### 3. Update the MASH-Playbook to support your created Ansible role
+
 There are a few files that you need to adapt:
 ```
 .
@@ -42,13 +48,13 @@ There are a few files that you need to adapt:
 │       └── YOUR-SERVICE.md  -> document how to use it
 ├── templates/
 │   ├── group_vars_mash_servers  -> Add default config
-│   └── requirements.yml  -> add your ansible role
-└── VERSIONS.md  -> Add the version of your service
+│   └── requirements.yml  -> add your Ansible role
+│   └── setup.yml  -> add your Ansible role
 ```
 <details>
 
 <summary> file: templates / group_vars_mash_servers </summary>
-In this file you define the default options, which are not already defined by default in your ansible role, and integrate it into the playbook.
+In this file you wire your role with the rest of the playbook - integrating with the service manager or potentially with other roles.
 
 ```yaml
 # role-specific:systemd_service_manager
@@ -228,6 +234,6 @@ mash_playbook_hubsite_service_list_auto_itemized:
 
 </details>
 
-### Advices
-- Add to the file `defaults/main.yml` in your ansible-role somewhere a line with `# Project source code URL: YOUR-SERVICE-GIT-REPO`.
-  Only then [`bin/feeds.py`](/bin/feeds.py) can find automatically the feed for new releases.
+### Additional hints
+
+- Add a line like `# Project source code URL: YOUR-SERVICE-GIT-REPO` to your Ansible role's `defaults/main.yml` file, so that [`bin/feeds.py`](/bin/feeds.py) can automatically find the Atom/RSS feed for new releases.
