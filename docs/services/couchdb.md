@@ -1,9 +1,11 @@
 # CouchDB
 
-CouchDB is a NoSQL database that uses JSON for documents.
+[CouchDB](https://couchdb.apache.org/) is a NoSQL database that uses JSON for documents.
 This Ansible role is designed to install and configure CouchDB for using the [official CouchDB Docker image](https://github.com/apache/couchdb-docker) via the [ansible-role-couchdb](https://github.com/Bergruebe/ansible-role-couchdb).
 
 **Warning**: This role will not delete or modify existing databases or users. It will only create new databases and users if they do not already exist.
+
+**Warning**: This role **does not automatically integrate with Traefik** yet (see details below). PRs are welcome!
 
 ## Features
 
@@ -24,7 +26,7 @@ To use this role with the MASH playbook, add following lines to your inventory f
 #                                                                      #
 ########################################################################
 
-couchdb_enabled:: true
+couchdb_enabled: true
 
 couchdb_hostname: couchdb.example.com
 
@@ -54,7 +56,7 @@ couchdb_tables_custom:
 
 ########################################################################
 #                                                                      #
-# /cocuhdb                                                             #
+# /couchdb                                                             #
 #                                                                      #
 ########################################################################
 ```
@@ -72,6 +74,8 @@ For more information on possible configuration, refer to the comments in the [`d
 
 By default, this role **will not expose the CouchDB port** to the host machine. If you want to access CouchDB from outside the Docker container, you will need to expose the port in your playbook via the `couchdb_container_http_host_bind_port` variable. Or you can just add the container to another docker network via the `couchdb_container_additional_networks_custom` variable.
 Please consider the use of a reverse proxy for secure access to CouchDB.
+
+Currently, the [ansible-role-couchdb](https://github.com/Bergruebe/ansible-role-couchdb) Ansible role **does not automatically integrate with Traefik**. PRs are welcome!
 
 ## Contributing
 

@@ -1704,7 +1704,6 @@ couchdb_config_uuid: "{{ '%s' | format(mash_playbook_generic_secret_key) | passw
 
 couchdb_config_couch_chttpd_auth_secret: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'secret.couchdb', rounds=655555) | to_uuid }}"
 
-
 ########################################################################
 #                                                                      #
 # /couchdb                                                             #
