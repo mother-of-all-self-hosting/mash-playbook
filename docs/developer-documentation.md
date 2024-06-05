@@ -1,11 +1,13 @@
 # Developer Documentation
 
 ## Support a new service | Create your own role
-### 1. Check if the role don't exist allready 
-in [`supported-services.md`](supported-services.md) or someone else is allready [working on it](https://github.com/mother-of-all-self-hosting/mash-playbook/pulls).
-### 2. Check if the service you wish is possible in a docker container and if an docker image allready exists.
-### 3. Create the ansible role in a public git repository.
+### 1. Check if
+- the role doesn't exist already in [`supported-services.md`](supported-services.md) or if someone else is already [working on it](https://github.com/mother-of-all-self-hosting/mash-playbook/pulls).
+- the service you wish is possible in a docker container
+- a docker image already exists.
+### 2. Create the ansible role in a public git repository.
 You can follow the structure of existing roles, like the [`ansible-role-gitea`](https://github.com/mother-of-all-self-hosting/ansible-role-gitea) or the [`ansible-role-gotosocial`](https://github.com/mother-of-all-self-hosting/ansible-role-gotosocial).
+
 Some Advices:
  - Your file structure will probably look something like this:
 
@@ -28,11 +30,11 @@ Some Advices:
 ├── LICENSE
 └── README.md
 ```
-- You will need to decide for a license, without it ansible-galaxy won't work.
+- You will need to decide on a licence, without it, ansible-galaxy won't work.
 
-### 4. Update the MASH-Playbook to support your created Ansible role
-There are a few files that you need to adappt:
- ```
+### 3. Update the MASH-Playbook to support your created Ansible role
+There are a few files that you need to adapt:
+```
 .
 ├── docs/
 │   ├── supported-services.md  -> Add your service
@@ -43,9 +45,10 @@ There are a few files that you need to adappt:
 │   └── requirements.yml  -> add your ansible role
 └── VERSIONS.md  -> Add the version of your service
 ```
+<details>
 
-#### `templates/group_vars_mash_servers`
-In this file you define the default options, which are not allready deffined by default in your ansible role and integrate it into the playbook.
+<summary> file: templates / group_vars_mash_servers </summary>
+In this file you define the default options, which are not already defined by default in your ansible role, and integrate it into the playbook.
 
 ```yaml
 # role-specific:systemd_service_manager
@@ -71,7 +74,11 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
 # /role-specific:systemd_service_manager
 
 ```
-##### Support Postgres
+</details>
+
+<details>
+<summary>Support Postgres</summary>
+
 ```yaml
 # role-specific:postgres
 ########################################################################
@@ -124,11 +131,6 @@ YOUR-SERVICE_container_additional_networks_auto: |
   {{
     ([devture_postgres_identifier ~ '.service'] if devture_postgres_enabled and YOUR-SERVICE_database_hostname == devture_postgres_identifier else [])
   }}
-
-authentik_container_additional_networks_auto: |
-  {{
-    ([devture_postgres_container_network] if devture_postgres_enabled and authentik_database_hostname == devture_postgres_identifier and authentik_container_network != devture_postgres_container_network else [])
-  }}
   
 ########################################################################
 #                                                                      #
@@ -136,9 +138,10 @@ authentik_container_additional_networks_auto: |
 #                                                                      #
 ########################################################################
 # /role-specific:YOUR-SERVICE
-````
+```
+</details><details>
+<summary>Support exim-relay</summary>
 
-##### Support exim-relay
 The [exim-relay](https://github.com/devture/exim-relay) is an easy way to configure for all services a way for outgoing mail.
 ```yaml
 [...]
@@ -151,6 +154,13 @@ The [exim-relay](https://github.com/devture/exim-relay) is an easy way to config
 ########################################################################
 
 [...]
+
+YOUR-SERVICE_container_additional_networks_auto: |
+  {{
+	[...]
+	+
+    ([exim_relay_container_network | default('mash-exim-relay')] if (exim_relay_enabled | default(false) and YOUR-SERVICE_config_mailer_smtp_addr == exim_relay_identifier | default('mash-exim-relay') and YOUR-SERVICE_container_network != exim_relay_container_network) else [])
+  }}
 
 # role-specific:exim_relay
 YOUR-SERVICE_config_mailer_enabled: "{{ 'true' if exim_relay_enabled else '' }}"
@@ -167,8 +177,10 @@ YOUR-SERVICE_config_mailer_protocol: "{{ 'smtp' if exim_relay_enabled else '' }}
 ########################################################################
 # /role-specific:YOUR-SERVICE
 ```
+</details><details>
 
-##### Support hubsite
+<summary>Support hubsite</summary>
+
 - Add the logo of your Service to [`ansible-role-hubsite/assets`](https://github.com/mother-of-all-self-hosting/ansible-role-hubsite/tree/main/assets) via a pull request.
 - configure the `group_vars_mash_servers` file:
 
@@ -213,3 +225,9 @@ mash_playbook_hubsite_service_list_auto_itemized:
   # /role-specific:YOUR-SERVICE
 [...]
 ```
+
+</details>
+
+### Advices
+- Add to the file `defaults/main.yml` in your ansible-role somewhere a line with `# Project source code URL: YOUR-SERVICE-GIT-REPO`.
+  Only then [`bin/feeds.py`](/bin/feeds.py) can find automatically the feed for new releases.
