@@ -139,6 +139,10 @@
     - role: galaxy/collabora_online
     # /role-specific:collabora_online
 
+    # role-specific:couchdb
+    - role: galaxy/couchdb
+    # /role-specific:couchdb
+
     # role-specific:docker_registry
     - role: galaxy/docker_registry
     # /role-specific:docker_registry
