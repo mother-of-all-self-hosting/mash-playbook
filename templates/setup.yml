@@ -311,6 +311,10 @@
     - role: galaxy/peertube
     # /role-specific:peertube
 
+    # role-specific:plausible
+    - role: galaxy/plausible
+    # /role-specific:plausible
+
     # role-specific:postgis
     - role: galaxy/postgis
     # /role-specific:postgis

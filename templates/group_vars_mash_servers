@@ -503,6 +503,11 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
     {{ ({'name': (postgis_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'metrics', 'postgis']} if postgis_enabled else omit) }}
   # /role-specific:postgis
 
+  # role-specific:plausible
+  - |-
+    {{ ({'name': (plausible_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'plausible']} if plausible_enabled else omit) }}
+  # /role-specific:plausible
+
   # role-specific:prometheus
   - |-
     {{ ({'name': (prometheus_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'metrics', 'prometheus']} if prometheus_enabled else omit) }}
@@ -904,6 +909,17 @@ mash_playbook_devture_postgres_managed_databases_auto_itemized:
       } if peertube_enabled else omit)
     }}
   # /role-specific:peertube
+
+  # role-specific:plausible
+  - |-
+    {{
+      ({
+        'name': plausible_database_name,
+        'username': plausible_database_username,
+        'password': plausible_database_password,
+      } if plausible_enabled else omit)
+    }}
+  # /role-specific:plausible
 
   # role-specific:prometheus_postgres_exporter
   - |-
@@ -1631,10 +1647,24 @@ clickhouse_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_ba
 clickhouse_uid: "{{ mash_playbook_uid }}"
 clickhouse_gid: "{{ mash_playbook_gid }}"
 
-# This will be extended in the future, to auto-create databases for services which depend on MariaDB.
-# See `devture_postgres_managed_databases_auto`
-# TODO
-# clickhouse_managed_databases_auto: []
+clickhouse_managed_databases_auto_itemized:
+  # Dummy entry, which is not role-specific.
+  # Ensures there's at least one entry defined in the list.
+  - "{{ omit }}"
+
+  # role-specific:plausible
+  - |-
+    {{
+      ({
+        'name': plausible_clickhouse_database_name,
+        'username': plausible_clickhouse_database_username,
+        'password': plausible_clickhouse_database_password,
+        'additional_sql': ('GRANT SELECT ON system.replicas TO ' + plausible_clickhouse_database_username + '; GRANT SELECT ON system.parts TO ' + plausible_clickhouse_database_username + ';')
+      } if plausible_enabled and plausible_clickhouse_database_hostname == clickhouse_identifier else omit)
+    }}
+  # /role-specific:plausible
+
+clickhouse_managed_databases_auto: "{{ clickhouse_managed_databases_auto_itemized | reject('equalto', omit) }}"
 
 ########################################################################
 #                                                                      #
@@ -4251,6 +4281,76 @@ peertube_config_smtp_from: "{{ exim_relay_sender_address if exim_relay_enabled e
 #                                                                      #
 ########################################################################
 # /role-specific:peertube
+
+
+# role-specific:plausible
+########################################################################
+#                                                                      #
+# plausible                                                            #
+#                                                                      #
+########################################################################
+
+plausible_enabled: false
+
+plausible_identifier: "{{ mash_playbook_service_identifier_prefix }}plausible"
+
+plausible_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}plausible"
+
+plausible_uid: "{{ mash_playbook_uid }}"
+plausible_gid: "{{ mash_playbook_gid }}"
+
+plausible_systemd_required_systemd_services_list_auto: |
+  {{
+    ([devture_postgres_identifier ~ '.service'] if devture_postgres_enabled and plausible_database_hostname == devture_postgres_identifier else [])
+    +
+    ([clickhouse_identifier ~ '.service'] if clickhouse_enabled | default(false) and plausible_clickhouse_database_hostname == clickhouse_identifier| default('mash-clickhouse') else [])
+  }}
+
+plausible_systemd_wanted_systemd_services_list_auto: |
+  {{
+    ([(exim_relay_identifier | default('mash-exim-relay')) ~ '.service'] if (exim_relay_enabled | default(false) and plausible_environment_variable_smtp_host_addr == exim_relay_identifier | default('mash-exim-relay')) else [])
+  }}
+
+plausible_container_additional_networks_auto: |
+  {{
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+    +
+    ([devture_postgres_container_network] if devture_postgres_enabled and plausible_database_hostname == devture_postgres_identifier and plausible_container_network != devture_postgres_container_network else [])
+    +
+    ([clickhouse_container_network | default('mash-clickhouse')] if (clickhouse_enabled | default(false) and plausible_clickhouse_database_hostname == clickhouse_identifier | default('mash-clickhouse') and plausible_container_network != clickhouse_container_network | default('mash-clickhouse')) else [])
+    +
+    ([exim_relay_container_network | default('mash-exim-relay')] if (exim_relay_enabled | default(false) and plausible_environment_variable_smtp_host_addr == exim_relay_identifier | default('mash-exim-relay') and plausible_container_network != exim_relay_container_network) else [])
+  }}
+
+plausible_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+plausible_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+plausible_container_labels_traefik_entrypoints: "{{ devture_traefik_entrypoint_primary }}"
+plausible_container_labels_traefik_tls_certResolver: "{{ devture_traefik_certResolver_primary }}"
+
+plausible_database_hostname: "{{ devture_postgres_connection_hostname if devture_postgres_enabled else '' }}"
+plausible_database_password: "{{ ('%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'plausible.db', rounds=655555) | to_uuid) if devture_postgres_enabled else '' }}"
+
+# role-specific:clickhouse
+plausible_clickhouse_database_hostname: "{{ clickhouse_identifier if clickhouse_enabled else '' }}"
+plausible_clickhouse_database_password: "{{ ('%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'plaus.clk.db', rounds=655555) | to_uuid) if clickhouse_enabled else '' }}"
+# /role-specific:clickhouse
+
+# role-specific:exim_relay
+# As of 2024-06-28, only `Bamboo.SMTPAdapter` behaves well when no SMTP username/password AUTH is required (as is the case for exim-relay).
+# The Bamboo.Mua SMTP adapter is more modern, but always sends authentication, even when the SMTP user is empty.
+plausible_environment_variable_mailer_adapter: "{{ 'Bamboo.SMTPAdapter' if exim_relay_enabled else 'Bamboo.LocalAdapter' }}"
+plausible_environment_variable_mailer_email: "{{ exim_relay_sender_address if exim_relay_enabled else '' }}"
+plausible_environment_variable_smtp_host_addr: "{{ exim_relay_identifier if exim_relay_enabled else '' }}"
+plausible_environment_variable_smtp_host_port: "{{ 8025 if exim_relay_enabled else '587' }}"
+plausible_environment_variable_smtp_host_ssl_enabled: false
+# /role-specific:exim_relay
+
+########################################################################
+#                                                                      #
+# /plausible                                                           #
+#                                                                      #
+########################################################################
+# /role-specific:plausible
 
 
 
