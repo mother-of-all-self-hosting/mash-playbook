@@ -37,7 +37,7 @@
   name: calibre-web
   activation_prefix: calibre-web
 - src: git+https://github.com/nielscil/ansible-role-changedetection.git
-  version: v0.45.22-0
+  version: v0.45.23-0
   name: changedetection
   activation_prefix: changedetection_
 - src: git+https://gitlab.com/etke.cc/roles/cleanup.git
@@ -52,14 +52,14 @@
   version: v24.04.3.1.1-0
   name: collabora_online
   activation_prefix: collabora_online_
-- src: git+https://github.com/Bergruebe/ansible-role-couchdb.git
-  version: v3.3.3-1
-  name: couchdb
-  activation_prefix: couchdb_
 - src: git+https://github.com/devture/com.devture.ansible.role.container_socket_proxy.git
   version: v0.1.2-2
   name: container_socket_proxy
   activation_prefix: devture_traefik_
+- src: git+https://github.com/Bergruebe/ansible-role-couchdb.git
+  version: v3.3.3-1
+  name: couchdb
+  activation_prefix: couchdb_
 - src: git+https://github.com/geerlingguy/ansible-role-docker
   version: 7.2.0
   name: docker
@@ -73,7 +73,7 @@
   name: docker_registry_browser
   activation_prefix: docker_registry_browser_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-docker-registry-proxy.git
-  version: v1.2.1-0
+  version: v1.2.2-0
   name: docker_registry_proxy
   activation_prefix: docker_registry_proxy_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-docker-registry-purger.git
@@ -352,7 +352,7 @@
   name: tandoor
   activation_prefix: tandoor_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-telegraf.git
-  version: v1.27.1-2
+  version: v1.30.2-0
   name: telegraf
   activation_prefix: telegraf_
 - src: git+https://github.com/devture/com.devture.ansible.role.timesync.git
