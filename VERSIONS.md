@@ -70,7 +70,7 @@
 * Prometheus Postgres Exporter: v0.14.0
 * Prometheus Ssh Exporter: v1.5.0
 * Promtail: 2.9.5
-* Radicale: 3.2.0.0
+* Radicale: 3.2.1.0
 * Redis: 7.2.4
 * Redmine: 5.1.2
 * Roundcube: 1.6.7
@@ -81,7 +81,7 @@
 * Tandoor Api: 1.5.17
 * Tandoor Frontend: 1.25.4-alpine
 * Telegraf: 1.30.2
-* Traefik: v2.11.2
+* Traefik: v2.11.4
 * Uptime Kuma: 1.23.13
 * Vaultwarden: 1.30.5
 * Wetty: 2.5
