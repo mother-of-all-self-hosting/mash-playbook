@@ -380,10 +380,10 @@
   name: wg_easy
   activation_prefix: wg_easy_
 - src: git+https://github.com/devture/com.devture.ansible.role.woodpecker_ci_agent.git
-  version: v2.5.0-1
+  version: v2.6.0-0
   name: woodpecker_ci_agent
   activation_prefix: devture_woodpecker_ci_agent_
 - src: git+https://github.com/devture/com.devture.ansible.role.woodpecker_ci_server.git
-  version: v2.5.0-0
+  version: v2.6.0-0
   name: woodpecker_ci_server
   activation_prefix: devture_woodpecker_ci_server_
