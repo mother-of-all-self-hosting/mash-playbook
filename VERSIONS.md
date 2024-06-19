@@ -23,7 +23,7 @@
 * Exim Relay: 4.97.1-r0-0
 * Firezone: 0.7.36
 * Focalboard: 7.10.4
-* Forgejo: 7.0.2
+* Forgejo: 7.0.4
 * Freshrss: 1.24.0
 * Funkwhale: 1.4.0
 * Gitea: 1.22.0
@@ -37,7 +37,7 @@
 * Jitsi: stable-9457-2
 * Jitsi Ldap: 3
 * Jitsi Prosody Auth Matrix User Verification Repo: 2839499cb03894d8cfc3e5b2219441427cb133d8
-* Keycloak: 24.0.5
+* Keycloak: 25.0.0
 * Keydb: 6.3.4
 * Lago: v0.50.0-beta
 * Languagetool: 6.4
@@ -64,7 +64,7 @@
 * Paperless Tika: 2.9.1-minimal
 * Peertube: v6.1.0
 * Plausible: v2.1.1
-* Prometheus: v2.52.0
+* Prometheus: v2.53.0
 * Prometheus Blackbox Exporter: v0.25.0
 * Prometheus Node Exporter: v1.8.1
 * Prometheus Postgres Exporter: v0.14.0
@@ -72,7 +72,7 @@
 * Promtail: 2.9.5
 * Radicale: 3.2.1.0
 * Redis: 7.2.4
-* Redmine: 5.1.2
+* Redmine: 5.1.3
 * Roundcube: 1.6.7
 * Rumqttd: 0.21.0
 * Semaphore: 2.9.56
@@ -86,5 +86,5 @@
 * Vaultwarden: 1.30.5
 * Wetty: 2.5
 * Wg Easy: 12
-* Woodpecker Ci Agent: v2.5.0
-* Woodpecker Ci Server: v2.5.0
+* Woodpecker Ci Agent: v2.6.0
+* Woodpecker Ci Server: v2.6.0
