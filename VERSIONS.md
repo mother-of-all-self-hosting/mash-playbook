@@ -27,7 +27,7 @@
 * Freshrss: 1.24.0
 * Funkwhale: 1.4.0
 * Gitea: 1.22.0
-* Gotosocial: 0.15.0
+* Gotosocial: 0.16.0
 * Grafana: 11.0.0
 * Healthchecks: v3.3
 * Hubsite Nginx: 1.25.4
