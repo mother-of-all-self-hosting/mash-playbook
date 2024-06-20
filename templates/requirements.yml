@@ -33,7 +33,7 @@
   name: backup_borg
   activation_prefix: backup_borg_
 - src: git+https://github.com/lingawakad/ansible-role-calibre-web.git
-  version: v0.6.21-0
+  version: v0.6.21-1
   name: calibre-web
   activation_prefix: calibre-web
 - src: git+https://github.com/nielscil/ansible-role-changedetection.git
