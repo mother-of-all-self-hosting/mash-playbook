@@ -36,6 +36,14 @@ calibre_web_path_prefix: /calibre-web
 #     src: /on-host/path/to/books
 #     dst: /books
 
+#
+#
+#
+# Enable this extension explicitly to add the Calibre ebook-convert binary (x64 only). Omit this variable for a lightweight image.
+# The path to the binary is /usr/bin/ebook-convert (has to be specified in the web interface)
+#calibre_web_environment_variables_extension: |
+#  DOCKER_MODS=linuxserver/mods:universal-calibre
+
 ########################################################################
 #                                                                      #
 # /calibre-web                                                           #
