@@ -5,7 +5,7 @@
 * Authelia: 4.37.5
 * Authentik: 2024.4.1
 * Borg: 1.2.8
-* Borgmatic: 1.8.11
+* Borgmatic: 1.8.12
 * Calibre Web: 0.6.21
 * Changedetection: 0.45.23
 * Changedetection Playwright Driver: latest
@@ -29,7 +29,7 @@
 * Gitea: 1.22.0
 * Gotosocial: 0.16.0
 * Grafana: 11.0.0
-* Healthchecks: v3.3
+* Healthchecks: v3.4
 * Hubsite Nginx: 1.25.4
 * Ilmo: 1.0.4
 * Infisical: v0.3.8
@@ -70,7 +70,7 @@
 * Prometheus Postgres Exporter: v0.14.0
 * Prometheus Ssh Exporter: v1.5.0
 * Promtail: 2.9.5
-* Radicale: 3.2.1.0
+* Radicale: 3.2.2.0
 * Redis: 7.2.4
 * Redmine: 5.1.3
 * Roundcube: 1.6.7
