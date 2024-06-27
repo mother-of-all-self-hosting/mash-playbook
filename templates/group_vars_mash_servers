@@ -2211,10 +2211,8 @@ gitea_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_di
 gitea_uid: "{{ mash_playbook_uid }}"
 gitea_gid: "{{ mash_playbook_gid }}"
 
-gitea_systemd_required_systemd_services_list: |
+gitea_systemd_required_systemd_services_list_auto: |
   {{
-    ([devture_systemd_docker_base_docker_service_name] if devture_systemd_docker_base_docker_service_name else [])
-    +
     ([devture_postgres_identifier ~ '.service'] if devture_postgres_enabled and gitea_config_database_hostname == devture_postgres_identifier else [])
   }}
 
