@@ -10,9 +10,11 @@
 | [Authelia](https://www.authelia.com/) | An open-source authentication and authorization server that can work as a companion to [common reverse proxies](https://www.authelia.com/overview/prologue/supported-proxies/) (like [Traefik](traefik.md) frequently used by this playbook) | [Link](services/authelia.md) |
 | [authentik](https://goauthentik.io/) | An open-source Identity Provider focused on flexibility and versatility. | [Link](services/authentik.md) |
 | [borgbackup](https://www.borgbackup.org/) (via [borgmatic](https://torsion.org/borgmatic/)) | A deduplicating backup program with optional compression and encryption| [Link](services/backup-borg.md) |
-| [Changedetection.io](https://github.com/dgtlmoon/changedetection.io) |  A simple website change detection and restock monitoring solution. | [Link](services/changedetection.md) |
+| [Calibre-Web](https://github.com/janeczku/calibre-web) | Web app for browsing, reading and downloading eBooks stored in a [Calibre](https://calibre-ebook.com/) database | [Link](services/calibre-web.md) |
+| [Changedetection.io](https://github.com/dgtlmoon/changedetection.io) | A simple website change detection and restock monitoring solution. | [Link](services/changedetection.md) |
 | [ClickHouse](https://clickhouse.com/) | An open-source column-oriented DBMS for online analytical processing (OLAP) that allows users to generate analytical reports using SQL queries in real-time. | [Link](services/clickhouse.md) |
 | [Collabora Online](https://www.collaboraoffice.com/) | Your Private Office Suite In The Cloud | [Link](services/collabora-online.md) |
+| [CouchDB](https://couchdb.apache.org/) | An open-source document-oriented NoSQL database, implemented in Erlang. | [Link](services/couchdb.md) |
 | [Docker](https://www.docker.com/) | Open-source software for deploying containerized applications | [Link](services/docker.md) |
 | [Docker Registry](https://docs.docker.com/registry/) | A container image distribution registry | [Link](services/docker-registry.md) |
 | [Docker Registry Browser](https://github.com/klausmeyer/docker-registry-browser) | Web Interface for the Docker Registry HTTP API V2 written in Ruby on Rails | [Link](services/docker-registry-browser.md) |
@@ -56,6 +58,7 @@
 | [OxiTraffic](https://codeberg.org/mo8it/oxitraffic) | [OxiTraffic](https://codeberg.org/mo8it/oxitraffic) is a self-hosted, simple and privacy respecting website traffic tracker. | [Link](services/oxitraffic.md) |
 | [Paperless-ngx](https://paperless-ngx.com) | [Paperless-ngx](https://paperless-ngx.com) is a community-supported open-source document management system that transforms your physical documents into a searchable online archive so you can keep, well, less paper. | [Link](services/paperless-ngx.md) |
 | [PeerTube](https://joinpeertube.org/) | A tool for sharing online videos | [Link](services/peertube.md) |
+| [Plausible Analytics](https://plausible.io/) | Intuitive, lightweight and open source web analytics | [Link](services/plausible.md) |
 | [Postgis](https://postgis.net/) | A spatial database extender for PostgreSQL object-relational database | [Link](services/postgis.md) |
 | [Postgres](https://www.postgresql.org) | A powerful, open source object-relational database system | [Link](services/postgres.md) |
 | [Postgres Backup](https://github.com/prodrigestivill/docker-postgres-backup-local) | A solution for backing up PostgresSQL to local filesystem with periodic backups. | [Link](services/postgres-backup.md) |

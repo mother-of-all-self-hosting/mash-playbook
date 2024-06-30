@@ -11,9 +11,11 @@
     <outline text="authelia" title="authelia" type="rss" htmlUrl="https://github.com/authelia/authelia" xmlUrl="https://github.com/authelia/authelia/releases.atom" />
     <outline text="authentik" title="authentik" type="rss" htmlUrl="https://github.com/goauthentik/authentik" xmlUrl="https://github.com/goauthentik/authentik/releases.atom" />
     <outline text="backup_borg" title="backup_borg" type="rss" htmlUrl="https://gitlab.com/etke.cc/borgmatic" xmlUrl="https://gitlab.com/etke.cc/borgmatic/-/tags?format=atom" />
+    <outline text="calibre-web" title="calibre-web" type="rss" htmlUrl="https://github.com/calibre_web/calibre_web" xmlUrl="https://github.com/calibre_web/calibre_web/releases.atom" />
     <outline text="changedetection" title="changedetection" type="rss" htmlUrl="https://github.com/dgtlmoon/changedetection.io" xmlUrl="https://github.com/dgtlmoon/changedetection.io/releases.atom" />
     <outline text="clickhouse" title="clickhouse" type="rss" htmlUrl="https://github.com/ClickHouse/ClickHouse" xmlUrl="https://github.com/ClickHouse/ClickHouse/releases.atom" />
     <outline text="container_socket_proxy" title="container_socket_proxy" type="rss" htmlUrl="https://github.com/Tecnativa/docker-socket-proxy" xmlUrl="https://github.com/Tecnativa/docker-socket-proxy/releases.atom" />
+    <outline text="couchdb" title="couchdb" type="rss" htmlUrl="https://github.com/apache/couchdb" xmlUrl="https://github.com/apache/couchdb/releases.atom" />
     <outline text="docker_registry" title="docker_registry" type="rss" htmlUrl="https://github.com/distribution/distribution/" xmlUrl="https://github.com/distribution/distribution//releases.atom" />
     <outline text="docker_registry_proxy" title="docker_registry_proxy" type="rss" htmlUrl="https://gitlab.com/etke.cc/docker-registry-proxy" xmlUrl="https://gitlab.com/etke.cc/docker-registry-proxy/-/tags?format=atom" />
     <outline text="echoip" title="echoip" type="rss" htmlUrl="https://github.com/mpolden/echoip" xmlUrl="https://github.com/mpolden/echoip/releases.atom" />
@@ -23,6 +25,7 @@
     <outline text="focalboard" title="focalboard" type="rss" htmlUrl="https://github.com/mattermost/focalboard" xmlUrl="https://github.com/mattermost/focalboard/releases.atom" />
     <outline text="freshrss" title="freshrss" type="rss" htmlUrl="https://github.com/freshrss/freshrss" xmlUrl="https://github.com/freshrss/freshrss/releases.atom" />
     <outline text="funkwhale" title="funkwhale" type="rss" htmlUrl="https://dev.funkwhale.audio/funkwhale/funkwhale" xmlUrl="https://dev.funkwhale.audio/funkwhale/funkwhale/-/tags?format=atom" />
+    <outline text="gotosocial" title="gotosocial" type="rss" htmlUrl="https://github.com/superseriousbusiness/gotosocial" xmlUrl="https://github.com/superseriousbusiness/gotosocial/releases.atom" />
     <outline text="grafana" title="grafana" type="rss" htmlUrl="https://github.com/grafana/grafana" xmlUrl="https://github.com/grafana/grafana/releases.atom" />
     <outline text="healthchecks" title="healthchecks" type="rss" htmlUrl="https://github.com/healthchecks/healthchecks" xmlUrl="https://github.com/healthchecks/healthchecks/releases.atom" />
     <outline text="infisical" title="infisical" type="rss" htmlUrl="https://github.com/Infisical/infisical" xmlUrl="https://github.com/Infisical/infisical/releases.atom" />
@@ -44,8 +47,11 @@
     <outline text="oauth2_proxy" title="oauth2_proxy" type="rss" htmlUrl="https://github.com/oauth2-proxy/oauth2-proxy" xmlUrl="https://github.com/oauth2-proxy/oauth2-proxy/releases.atom" />
     <outline text="outline" title="outline" type="rss" htmlUrl="https://github.com/outline/outline" xmlUrl="https://github.com/outline/outline/releases.atom" />
     <outline text="owncast" title="owncast" type="rss" htmlUrl="https://github.com/owncast/owncast" xmlUrl="https://github.com/owncast/owncast/releases.atom" />
-    <outline text="paperless" title="paperless" type="rss" htmlUrl="https://github.com/gopaperless/paperless" xmlUrl="https://github.com/gopaperless/paperless/releases.atom" />
+    <outline text="paperless" title="paperless" type="rss" htmlUrl="https://github.com/paperless-ngx/paperless-ngx" xmlUrl="https://github.com/paperless-ngx/paperless-ngx/releases.atom" />
+    <outline text="paperless-2" title="paperless-2" type="rss" htmlUrl="https://github.com/apache/tika" xmlUrl="https://github.com/apache/tika/releases.atom" />
+    <outline text="paperless-3" title="paperless-3" type="rss" htmlUrl="https://github.com/gotenberg/gotenberg" xmlUrl="https://github.com/gotenberg/gotenberg/releases.atom" />
     <outline text="peertube" title="peertube" type="rss" htmlUrl="https://github.com/Chocobozzz/PeerTube" xmlUrl="https://github.com/Chocobozzz/PeerTube/releases.atom" />
+    <outline text="plausible" title="plausible" type="rss" htmlUrl="https://github.com/plausible/analytics" xmlUrl="https://github.com/plausible/analytics/releases.atom" />
     <outline text="postgis" title="postgis" type="rss" htmlUrl="https://git.osgeo.org/gitea/postgis/postgis" xmlUrl="https://git.osgeo.org/gitea/postgis/postgis.atom" />
     <outline text="postgres" title="postgres" type="rss" htmlUrl="https://github.com/postgres/postgres" xmlUrl="https://github.com/postgres/postgres/releases.atom" />
     <outline text="postgres_backup" title="postgres_backup" type="rss" htmlUrl="https://github.com/prodrigestivill/docker-postgres-backup-local" xmlUrl="https://github.com/prodrigestivill/docker-postgres-backup-local/releases.atom" />

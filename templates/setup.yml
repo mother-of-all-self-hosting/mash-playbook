@@ -10,8 +10,9 @@
         - install-all
     # /role-specific:playbook_help
 
-    # No role-specific checks here, as it's a local role that is always installed.
+    # No role-specific checks here. Local roles are always installed.
     - role: mash/playbook_base
+    - role: mash/playbook_migration
 
     # role-specific:systemd_docker_base
     # This role has no tasks at all
@@ -126,6 +127,10 @@
     - role: galaxy/wetty
     # /role-specific:wetty
 
+    # role-specific:calibre-web
+    - role: galaxy/calibre-web
+    # /role-specific:calibre-web
+
     # role-specific:clickhouse
     - role: galaxy/clickhouse
     # /role-specific:clickhouse
@@ -133,6 +138,10 @@
     # role-specific:collabora_online
     - role: galaxy/collabora_online
     # /role-specific:collabora_online
+
+    # role-specific:couchdb
+    - role: galaxy/couchdb
+    # /role-specific:couchdb
 
     # role-specific:docker_registry
     - role: galaxy/docker_registry
@@ -274,6 +283,10 @@
     - role: galaxy/nextcloud
     # /role-specific:nextcloud
 
+    # role-specific:notfellchen
+    - role: galaxy/notfellchen
+    # /role-specific:notfellchen
+
     # role-specific:oauth2_proxy
     - role: galaxy/oauth2_proxy
     # /role-specific:oauth2_proxy
@@ -297,6 +310,10 @@
     # role-specific:peertube
     - role: galaxy/peertube
     # /role-specific:peertube
+
+    # role-specific:plausible
+    - role: galaxy/plausible
+    # /role-specific:plausible
 
     # role-specific:postgis
     - role: galaxy/postgis

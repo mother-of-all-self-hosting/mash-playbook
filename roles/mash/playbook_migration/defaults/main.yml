@@ -1,0 +1,11 @@
+---
+
+# Controls if the old apt repository for Docker (`signed-by=/etc/apt/trusted.gpg.d/docker.asc`) will be removed,
+# so that the Docker role (7.2.0+) can install a new non-conflicting one (`signed-by=/etc/apt/keyrings/docker.asc`).
+#
+# Without this migration, the role would choke at the "galaxy/docker : Add Docker repository." task when trying to add the repository again:
+# > An exception occurred during task execution. To see the full traceback, use -vvv. The error was: apt_pkg.Error: E:Conflicting values set for option Signed-By regarding source https://download.docker.com/linux/ubuntu/ focal: /etc/apt/trusted.gpg.d/docker.asc != /etc/apt/keyrings/docker.asc, E:The list of sources could not be read.
+#
+# Related to: https://github.com/geerlingguy/ansible-role-docker/pull/436
+mash_playbook_migration_docker_trusted_gpg_d_migration_enabled: true
+mash_playbook_migration_docker_trusted_gpg_d_migration_repository_path: "/etc/apt/sources.list.d/docker.list"
