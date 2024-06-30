@@ -73,7 +73,7 @@
   name: docker_registry_browser
   activation_prefix: docker_registry_browser_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-docker-registry-proxy.git
-  version: v1.2.2-0
+  version: v1.2.3-0
   name: docker_registry_proxy
   activation_prefix: docker_registry_proxy_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-docker-registry-purger.git
@@ -125,11 +125,11 @@
   name: gitea
   activation_prefix: gitea_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-gotosocial.git
-  version: v0.16.0-0
+  version: v0.16.0-1
   name: gotosocial
   activation_prefix: gotosocial_
 - src: git+https://gitlab.com/etke.cc/roles/grafana.git
-  version: v11.0.0-1
+  version: v11.1.0-0
   name: grafana
   activation_prefix: grafana_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-healthchecks.git
@@ -304,7 +304,7 @@
   name: radicale
   activation_prefix: radicale_
 - src: git+https://gitlab.com/etke.cc/roles/redis.git
-  version: v7.2.4-1
+  version: v7.2.4-2
   name: redis
   activation_prefix: redis_
 - src: git+https://gitlab.com/etke.cc/roles/redmine.git

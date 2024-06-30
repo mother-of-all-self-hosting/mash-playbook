@@ -16,7 +16,7 @@
 * Docker Compose: v2.11.1
 * Docker Registry: 2.8.3
 * Docker Registry Browser: 1.7.2
-* Docker Registry Proxy: v1.2.2
+* Docker Registry Proxy: v1.2.3
 * Docker Registry Purger: 1.0.0
 * Echoip: latest
 * Etcd: 3.5.11
@@ -28,7 +28,7 @@
 * Funkwhale: 1.4.0
 * Gitea: 1.22.0
 * Gotosocial: 0.16.0
-* Grafana: 11.0.0
+* Grafana: 11.1.0
 * Healthchecks: v3.4
 * Hubsite Nginx: 1.25.4
 * Ilmo: 1.0.4
