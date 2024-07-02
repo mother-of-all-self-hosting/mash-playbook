@@ -19,7 +19,8 @@ This service requires the following other services:
 ########################################################################
 
 wordpress_enabled: true
-wordpress_hostname: 'example.org    '
+
+wordpress_hostname: example.org
 
 ########################################################################
 #                                                                      #
@@ -54,7 +55,7 @@ mariadb_root_passsword: ''
 
 ## Usage
 
-Navigate to the domain you set as `wordpress_hostname`, select a language and create a admin user.
+Navigate to the domain you set as `wordpress_hostname`, select a language and create an admin user.
 
 > **Make sure to create a user with a strong password**
 
