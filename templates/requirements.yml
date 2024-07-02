@@ -32,6 +32,10 @@
   version: v1.2.8-1.8.12-1
   name: backup_borg
   activation_prefix: backup_borg_
+- src: git+https://github.com/sudo-Tiz/ansible-role-cadvisor.git
+  version: main
+  name: cadvisor
+  activation_prefix: cadvisor_
 - src: git+https://github.com/lingawakad/ansible-role-calibre-web.git
   version: v0.6.21-1
   name: calibre-web
