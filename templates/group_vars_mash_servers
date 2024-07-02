@@ -434,6 +434,11 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
     {{ ({'name': (navidrome_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'navidrome']} if navidrome_enabled else omit) }}
   # /role-specific:navidrome
 
+  # role-specific:neko
+  - |-
+    {{ ({'name': (neko_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'neko']} if neko_enabled else omit) }}
+  # /role-specific:neko
+
   # role-specific:netbox
   - |-
     {{ ({'name': (netbox_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'netbox', 'netbox-server']} if netbox_enabled else omit) }}
@@ -3782,6 +3787,40 @@ navidrome_container_labels_traefik_tls_certResolver: "{{ devture_traefik_certRes
 #                                                                      #
 ########################################################################
 # /role-specific:navidrome
+
+
+# role-specific:neko
+########################################################################
+#                                                                      #
+# neko                                                                 #
+#                                                                      #
+########################################################################
+
+neko_enabled: false
+
+neko_identifier: "{{ mash_playbook_service_identifier_prefix }}neko"
+
+neko_uid: "{{ mash_playbook_uid }}"
+neko_gid: "{{ mash_playbook_gid }}"
+
+neko_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}neko"
+
+neko_container_additional_networks_auto: |
+  {{
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+  }}
+
+neko_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+neko_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+neko_container_labels_traefik_entrypoints: "{{ devture_traefik_entrypoint_primary }}"
+neko_container_labels_traefik_tls_certResolver: "{{ devture_traefik_certResolver_primary }}"
+
+########################################################################
+#                                                                      #
+# /neko                                                                #
+#                                                                      #
+########################################################################
+# /role-specific:neko
 
 
 

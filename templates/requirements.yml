@@ -212,6 +212,10 @@
   version: v0.52.5-0
   name: navidrome
   activation_prefix: navidrome_
+- src: git+https://github.com/mother-of-all-self-hosting/ansible-role-neko.git
+  version: v2.8.12-0
+  name: neko
+  activation_prefix: neko_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-netbox.git
   version: v3.7.0-2.8.0-0
   name: netbox

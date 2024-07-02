@@ -275,6 +275,10 @@
     - role: galaxy/navidrome
     # /role-specific:navidrome
 
+    # role-specific:neko
+    - role: galaxy/neko
+    # /role-specific:neko
+
     # role-specific:netbox
     - role: galaxy/netbox
     # /role-specific:netbox
