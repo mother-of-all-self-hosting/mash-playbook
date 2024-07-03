@@ -5420,7 +5420,7 @@ wordpress_gid: "{{ mash_playbook_gid }}"
 
 wordpress_systemd_required_systemd_services_list_auto: |
   {{
-    ([mariadb_identifier ~ '.service'] if mariadb_enabled and wordpress_database_hostname == mariadb_identifier else [])
+    ([(mariadb_identifier | default('mash-mariadb')) ~ '.service'] if mariadb_enabled | default(false) and wordpress_database_hostname == mariadb_identifier | default('mash-mariadb') else [])
   }}
 
 
