@@ -25,6 +25,11 @@ redmine_enabled: true
 
 redmine_hostname: redmine.example.com
 
+# If you'll be installing Redmine plugins which pull Ruby gems,
+# which need to compile native code, consider installing build tools in the contianer image,
+# by uncommenting the line below.
+# redmine_container_image_customizations_build_tools_installation_enabled: true
+
 ########################################################################
 #                                                                      #
 # /redmine                                                             #
