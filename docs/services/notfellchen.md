@@ -1,4 +1,4 @@
-# ILMO
+# Notfellchen
 
 [Notfellchen](https://codeberg.org/moanos/notfellchen) is a self-hosted tool to list animals available for adoption to increase their chance of finding a forever-home.
 
