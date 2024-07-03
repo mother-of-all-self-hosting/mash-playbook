@@ -3942,7 +3942,7 @@ mash_playbook_mariadb_managed_databases_auto_itemized:
         'name': wordpress_database_name,
         'username': wordpress_database_username,
         'password': wordpress_database_password,
-      } if wordpress_enabled and wordpress_database_hostname == mariadb_identifier else omit)
+      } if wordpress_enabled and wordpress_database_hostname == mariadb_identifier | default('mash-mariadb') else omit)
     }}
   # /role-specific:wordpress
 
