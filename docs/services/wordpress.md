@@ -29,30 +29,6 @@ wordpress_hostname: example.org
 ########################################################################
 ```
 
-### Enable MariaDB as database
-
-If not already done you need to enable MariaDB so Wordpress can use it as database.
-
-```yaml
-########################################################################
-#                                                                      #
-# mariadb                                                              #
-#                                                                      #
-########################################################################
-
-mariadb_enabled: true
-
-# Put a strong password below, generated with `pwgen -s 64 1` or in another way
-mariadb_root_passsword: ''
-
-########################################################################
-#                                                                      #
-# /mariadb                                                             #
-#                                                                      #
-########################################################################
-```
-
-
 ## Usage
 
 Navigate to the domain you set as `wordpress_hostname`, select a language and create an admin user.
