@@ -50,3 +50,14 @@ wordpress_container_labels_middleware_basic_auth_enabled: true
 # See: https://doc.traefik.io/traefik/middlewares/http/basicauth/#users
 wordpress_container_labels_middleware_basic_auth_users: ''
 ```
+
+### Increase upload limit
+
+Increasing the upload limit can be done by manually editing the file `/mash/wordpress/data/.htaccess` and adding the following at the end of the file
+
+```.htaccess
+php_value upload_max_filesize 256M
+php_value post_max_size 256M
+php_value max_execution_time 600
+php_value max_input_time 600
+```
