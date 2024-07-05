@@ -53,11 +53,8 @@ wordpress_container_labels_middleware_basic_auth_users: ''
 
 ### Increase upload limit
 
-Increasing the upload limit can be done by manually editing the file `/mash/wordpress/data/.htaccess` and adding the following at the end of the file
+By default we set the upload limit to `64M`. Increasing or decreasing the upload limit can be done by adding the following to your `vars.yml`
 
-```.htaccess
-php_value upload_max_filesize 256M
-php_value post_max_size 256M
-php_value max_execution_time 600
-php_value max_input_time 600
+```yaml
+wordpress_max_upload_size: '64M'
 ```
