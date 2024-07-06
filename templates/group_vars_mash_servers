@@ -275,6 +275,11 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
     {{ ({'name': (echoip_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'echoip']} if echoip_enabled else omit) }}
   # /role-specific:echoip
 
+  # role-specific:endlessh
+  - |-
+    {{ ({'name': (endlessh_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'endlessh']} if endlessh_enabled else omit) }}
+  # /role-specific:endlessh
+
   # role-specific:etcd
   - |-
     {{ ({'name': (etcd_identifier + '.service'), 'priority': 500, 'groups': ['mash', 'etcd']} if etcd_enabled else omit) }}
@@ -1931,6 +1936,43 @@ echoip_container_labels_traefik_tls_certResolver: "{{ devture_traefik_certResolv
 ########################################################################
 # /role-specific:echoip
 
+
+# role-specific:endlessh
+########################################################################
+#                                                                      #
+# endlessh                                                             #
+#                                                                      #
+########################################################################
+
+endlessh_enabled: false
+endlessh_hostname: "{{ mash_playbook_metrics_exposure_hostname }}"
+endlessh_path_prefix: "{{ mash_playbook_metrics_exposure_path_prefix }}/{{ endlessh_identifier }}"
+endlessh_identifier: "{{ mash_playbook_service_identifier_prefix }}endlessh"
+endlessh_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}endlessh"
+endlessh_uid: "{{ mash_playbook_uid }}"
+endlessh_gid: "{{ mash_playbook_gid }}"
+
+endlessh_container_additional_networks_auto: |
+  {{
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+  }}
+
+
+# Only enable Traefik labels if a hostname is set (indicating that this will be exposed publicly)
+endlessh_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled and endlessh_hostname }}"
+endlessh_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+endlessh_container_labels_traefik_entrypoints: "{{ devture_traefik_entrypoint_primary }}"
+endlessh_container_labels_traefik_tls_certResolver: "{{ devture_traefik_certResolver_primary }}"
+
+endlessh_container_labels_metrics_middleware_basic_auth_enabled: "{{ mash_playbook_metrics_exposure_http_basic_auth_enabled }}"
+endlessh_container_labels_metrics_middleware_basic_auth_users: "{{ mash_playbook_metrics_exposure_http_basic_auth_users }}"
+
+########################################################################
+#                                                                      #
+# /endlessh                                                            #
+#                                                                      #
+########################################################################
+# /role-specific:endlessh
 
 # role-specific:etcd
 ########################################################################
