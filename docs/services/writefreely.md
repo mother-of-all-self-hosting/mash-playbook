@@ -25,8 +25,9 @@ writefreely_enabled: true
 
 writefreely_hostname: writefreely.example.com
 
-writefreely_instance_name: 'A Writefreely blog'
-writefreely_instance_description: 'My Writefreely blog'
+writefreely_instance_name: 'A Writefreely blog' # optional
+writefreely_instance_description: 'My Writefreely blog' #optional
+
 
 ########################################################################
 #                                                                      #
@@ -36,8 +37,13 @@ writefreely_instance_description: 'My Writefreely blog'
 ```
 
 In the example above, we configure the service to be hosted at `writefreely.example.com`.
+You can add the following variables to add an admin during the first setup process:
+```
+writefreely_env_admin_user: ''
+writefreely_env_admin_password: ''
+```
 
-After installation, it is recommended to create an admin account with
+Alternatively you can add admins after installation with
 ```
 just run-tags writefreely-add-admin --extra-vars=username=<username> --extra-vars=password=<password>
 ```
