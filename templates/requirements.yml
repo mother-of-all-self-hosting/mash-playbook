@@ -88,6 +88,10 @@
   version: v0.0.0-0
   name: echoip
   activation_prefix: echoip_
+- src: git+https://github.com/sudo-Tiz/ansible-role-endlessh.git
+  version: main
+  name: endlessh
+  activation_prefix: endlessh_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-etcd.git
   version: v3.5.11-0
   name: etcd
