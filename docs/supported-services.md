@@ -87,6 +87,7 @@
 | [Forgejo](https://forgejo.org/) | An alternative fork of Gitea. Easy and painless self-hosted git server. | [Link](services/forgejo.md) |
 | [Woodpecker CI](https://woodpecker-ci.org/) | A simple Continuous Integration (CI) engine with great extensibility. | [Link](services/woodpecker-ci.md) |
 | [WordPress](https://wordpress.org/) | A widley used open source web content management system | [Link](services/wordpress.md) |
+| [Writefreely](https://writefreely.org) | A clean, minimalist publishing platform made for writers with optional federation via ActivityPub. | [Link](services/writefreely.md) |
 | System-related | A collection of various system-related components | [Link](services/system.md) |
 
 

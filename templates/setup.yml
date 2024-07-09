@@ -411,6 +411,10 @@
     - role: galaxy/wordpress
     # /role-specific:wordpress
 
+    # role-specific:writefreely
+    - role: galaxy/writefreely
+    # /role-specific:writefreely
+
     # role-specific:roundcube
     - role: galaxy/roundcube
     # /role-specific:roundcube

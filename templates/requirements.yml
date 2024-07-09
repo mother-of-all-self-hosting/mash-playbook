@@ -395,3 +395,7 @@
   version: v6.5.5-2
   name: wordpress
   activation_prefix: wordpress_
+- src: git+https://github.com/ZenKyma/ansible-role-writefreely.git
+  version: v0.15.0-1
+  name: writefreely
+  activation_prefix: writefreely_

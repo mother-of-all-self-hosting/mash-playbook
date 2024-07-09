@@ -629,6 +629,12 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
     {{ ({'name': (forgejo_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'forgejo', 'forgejo-server']} if forgejo_enabled else omit) }}
   # /role-specific:forgejo
 
+  # role-specific:writefreely
+  - |-
+    {{ ({'name': (writefreely_identifier  + '.service'), 'priority': 2000, 'groups': ['mash', 'writefreely']} if writefreely_enabled else omit) }}
+  # /role-specific:writefreely
+
+
 devture_systemd_service_manager_services_list_auto: "{{ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized | reject('equalto', omit) }}"
 
 ########################################################################
@@ -2724,6 +2730,16 @@ hubsite_service_woodpecker_ci_description: "Check you CI"
 hubsite_service_woodpecker_ci_priority: 1000
 # /role-specific:woodpecker_ci_server
 
+# role-specific:writefreely
+# writefreely
+hubsite_service_writefreely_enabled: "{{ writefreely_enabled }}"
+hubsite_service_writefreely_name: writefreely
+hubsite_service_writefreely_url: "https://{{ writefreely_hostname }}"
+hubsite_service_writefreely_logo_location: "{{ role_path }}/assets/writefreely.png"
+hubsite_service_writefreely_description: "A minimalist web blog"
+hubsite_service_writefreely_priority: 1000
+# /role-specific:writefreely
+
 # role-specific:forgejo
 # Forgejo
 hubsite_service_forgejo_enabled: "{{ forgejo_enabled }}"
@@ -3076,6 +3092,19 @@ mash_playbook_hubsite_service_list_auto_itemized:
       } if hubsite_service_woodpecker_ci_enabled else omit)
     }}
   # /role-specific:woodpecker_ci_server
+
+  # role-specific:writefreely
+  - |-
+    {{
+      ({
+        'name': hubsite_service_writefreely_name,
+        'url': hubsite_service_writefreely_url,
+        'logo_location': hubsite_service_writefreely_logo_location,
+        'description': hubsite_service_writefreely_description,
+        'priority': hubsite_service_writefreely_priority,
+      } if hubsite_service_writefreely_enabled else omit)
+    }}
+  # /role-specific:writefreely
 
 hubsite_service_list_auto: "{{ mash_playbook_hubsite_service_list_auto_itemized | reject('equalto', omit) }}"
 
@@ -5441,6 +5470,7 @@ devture_woodpecker_ci_agent_config_agent_secret: "{{ devture_woodpecker_ci_serve
 # /role-specific:woodpecker_ci_agent
 
 
+
 # role-specific:wordpress
 ########################################################################
 #                                                                      #
@@ -5486,3 +5516,41 @@ wordpress_database_password: "{{ '%s' | format(mash_playbook_generic_secret_key)
 #                                                                      #
 ########################################################################
 # /role-specific:wordpress
+
+
+
+# role-specific:writefreely
+########################################################################
+#                                                                      #
+# writefreely                                                          #
+#                                                                      #
+########################################################################
+
+writefreely_enabled: false
+
+writefreely_identifier: "{{ mash_playbook_service_identifier_prefix }}writefreely"
+
+writefreely_uid: "{{ mash_playbook_uid }}"
+writefreely_gid: "{{ mash_playbook_gid }}"
+
+writefreely_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}writefreely"
+
+writefreely_container_additional_networks_auto: |
+  {{
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+  }}
+
+writefreely_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+writefreely_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+
+# role-specific:traefik
+writefreely_container_labels_traefik_entrypoints: "{{ devture_traefik_entrypoint_primary }}"
+writefreely_container_labels_traefik_tls_certResolver: "{{ devture_traefik_certResolver_primary }}"
+# /role-specific:traefik
+
+########################################################################
+#                                                                      #
+# /writefreely                                                         #
+#                                                                      #
+########################################################################
+# /role-specific:writefreely

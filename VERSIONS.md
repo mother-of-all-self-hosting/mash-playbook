@@ -89,3 +89,4 @@
 * Woodpecker Ci Agent: v2.6.0
 * Woodpecker Ci Server: v2.6.0
 * Wordpress: 6.5.5
+* Writefreely: v0.15.0
