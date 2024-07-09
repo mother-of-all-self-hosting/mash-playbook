@@ -407,6 +407,10 @@
     - role: galaxy/woodpecker_ci_agent
     # /role-specific:woodpecker_ci_agent
 
+    # role-specific:wordpress
+    - role: galaxy/wordpress
+    # /role-specific:wordpress
+
     # role-specific:writefreely
     - role: galaxy/writefreely
     # /role-specific:writefreely
