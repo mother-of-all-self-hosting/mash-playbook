@@ -407,6 +407,10 @@
     - role: galaxy/woodpecker_ci_agent
     # /role-specific:woodpecker_ci_agent
 
+    # role-specific:writefreely
+    - role: galaxy/writefreely
+    # /role-specific:writefreely
+
     # role-specific:roundcube
     - role: galaxy/roundcube
     # /role-specific:roundcube

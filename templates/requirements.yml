@@ -391,3 +391,7 @@
   version: v2.6.0-0
   name: woodpecker_ci_server
   activation_prefix: devture_woodpecker_ci_server_
+- src: git+https://dev.synkosmos.org/timofej/ansible-role-writefreely.git
+  version: v0.15.0-0
+  name: writefreely
+  activation_prefix: writefreely_
