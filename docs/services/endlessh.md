@@ -1,20 +1,20 @@
 # Endlessh
 
-[Endlessh-go](https://github.com/shizunge/endlessh-go) is a Golang implementation of [endlessh](https://github.com/skeeto/endlessh), an [SSH trapit](https://nullprogram.com/blog/2019/03/22). Installing it is powered by the [mother-of-all-self-hosting/ansible-role-endlessh](https://github.com/mother-of-all-self-hosting/ansible-role-endlessh) Ansible role.
+[Endlessh-go](https://github.com/shizunge/endlessh-go) is a Golang implementation of [endlessh](https://github.com/skeeto/endlessh), an [SSH tarpit](https://nullprogram.com/blog/2019/03/22). Installing it is powered by the [mother-of-all-self-hosting/ansible-role-endlessh](https://github.com/mother-of-all-self-hosting/ansible-role-endlessh) Ansible role.
 
 ## Dependencies
 
 This service requires the following other services:
 
--   (optionally) [Traefik](traefik.md) - a reverse-proxy server for exposing endlessh publicly
--   (optionally) [Prometheus](./prometheus.md) - a database for storing metrics
--   (optionally) [Grafana](./grafana.md) - a web UI that can query the prometheus datasource (connection) and display the logs
+- (optionally) [Traefik](traefik.md) - a reverse-proxy server for exposing endlessh publicly
+- (optionally) [Prometheus](./prometheus.md) - a database for storing metrics
+- (optionally) [Grafana](./grafana.md) - a web UI that can query the prometheus datasource (connection) and display the logs
 
-## Prerequesites
+## Prerequisites
 
-An SSH trapit server needs a port to mimic the SSH server. Port 22 is therefore a good choice.
-If you already have your ssh server on this port, you'll have to relocate it.
-I recommend a random port for the ssh server (eg: 14567) and port 22 for the trapit.
+An SSH tarpit server needs a port to mimic the SSH server. Port 22 is therefore a good choice.
+If you already have your SSH server on this port, you'll have to relocate it.
+I recommend using a random port for the ssh server (eg: 14567) and port 22 for the tarpit.
 
 ## Installing
 
@@ -32,6 +32,7 @@ To enable this service, add the following configuration to your `vars.yml` file 
 ########################################################################
 
 endlessh_enabled: true
+
 ########################################################################
 #                                                                      #
 # /endlessh                                                            #
@@ -50,27 +51,27 @@ See the full list of options in the [default/main.yml](default/main.yml) file
 
 ## Integrating with Prometheus
 
-Endlessh can natively expose metrics to prometheus.
+Endlessh can natively expose metrics to [Prometheus](./prometheus.md).
 
 ### Prerequesites
 
-The bare minimium is to ensure Prometheus can reach endlessh entrypoint.
+The bare minimium is to ensure Prometheus can reach endlessh.
 
--   If Endlessh is on a different host than Prometheus, refer to section [Expose metrics publicly](endlessh.md#)
--   If Endlessh is on the same host than prometheus, refer to section [Ensure Prometheus is on the same container network as endlessh.](endlessh.md#)
+- If Endlessh is on a different host than Prometheus, refer to section [Expose metrics publicly](endlessh.md#)
+- If Endlessh is on the same host than prometheus, refer to section [Ensure Prometheus is on the same container network as endlessh.](endlessh.md#)
 
 ### Ensure Prometheus is on the same container network as endlessh.
 
 If endlessh and prometheus do not share a network (like traefik), you will have to
 
--   Either connect Prometheus container network to Endlessh by editing `prometheus_container_additional_networks_auto`
--   Either connect Endlessh container network to Prometheus by editing `endlessh_container_additional_networks_custom`
+- Either connect Prometheus container network to Endlessh by editing `prometheus_container_additional_networks_auto`
+- Either connect Endlessh container network to Prometheus by editing `endlessh_container_additional_networks_custom`
 
 Exemple:
 
 ```yaml
 prometheus_container_additional_networks:
-    - "{{ endlessh_container_network }}"
+  - "{{ endlessh_container_network }}"
 ```
 
 ### Set container extra flag:
@@ -79,7 +80,7 @@ The bare minimum is to set container extra flag `-enable_prometheus`
 
 ```yaml
 endlessh_container_extra_arguments_custom:
-    - "-enable_prometheus"
+  - "-enable_prometheus"
 ```
 
 Default endlessh port for metrics is `2112`. It can be changed via container extra flag `-prometheus_port=8085`.
