@@ -4,6 +4,15 @@
 
 A more-lightweigth alternative for a self-hosted WireGuard VPN server which is more compatible with various ARM devices is [WireGuard Easy](wg-easy.md).
 
+
+## Dependencies
+
+This service requires the following other services:
+
+- a [Postgres](postgres.md) database
+- a [Traefik](traefik.md) reverse-proxy server
+
+
 ## Configuration
 
 To enable this service, add the following configuration to your `vars.yml` file and re-run the [installation](../installing.md) process:
