@@ -29,7 +29,7 @@
   name: auxiliary
   activation_prefix: aux_
 - src: git+https://gitlab.com/etke.cc/roles/backup_borg.git
-  version: v1.2.8-1.8.12-1
+  version: v1.2.8-1.8.13-0
   name: backup_borg
   activation_prefix: backup_borg_
 - src: git+https://github.com/lingawakad/ansible-role-calibre-web.git
@@ -37,7 +37,7 @@
   name: calibre-web
   activation_prefix: calibre-web_
 - src: git+https://github.com/nielscil/ansible-role-changedetection.git
-  version: v0.45.23-0
+  version: v0.45.25-0
   name: changedetection
   activation_prefix: changedetection_
 - src: git+https://gitlab.com/etke.cc/roles/cleanup.git
@@ -284,7 +284,7 @@
   name: postgres_backup
   activation_prefix: devture_postgres_backup_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-prometheus.git
-  version: v2.53.0-0
+  version: v2.53.1-0
   name: prometheus
   activation_prefix: prometheus_enabled
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-prometheus-blackbox-exporter.git
@@ -292,7 +292,7 @@
   name: prometheus_blackbox_exporter
   activation_prefix: prometheus_blackbox_exporter_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-prometheus-node-exporter.git
-  version: v1.8.1-1
+  version: v1.8.2-0
   name: prometheus_node_exporter
   activation_prefix: prometheus_node_exporter_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-prometheus-postgres-exporter.git

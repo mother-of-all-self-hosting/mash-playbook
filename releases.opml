@@ -76,5 +76,6 @@
     <outline text="wg_easy" title="wg_easy" type="rss" htmlUrl="https://github.com/wg-easy/wg-easy" xmlUrl="https://github.com/wg-easy/wg-easy/releases.atom" />
     <outline text="woodpecker_ci_agent" title="woodpecker_ci_agent" type="rss" htmlUrl="https://github.com/woodpecker-ci/woodpecker" xmlUrl="https://github.com/woodpecker-ci/woodpecker/releases.atom" />
     <outline text="woodpecker_ci_server" title="woodpecker_ci_server" type="rss" htmlUrl="https://github.com/woodpecker-ci/woodpecker" xmlUrl="https://github.com/woodpecker-ci/woodpecker/releases.atom" />
+    <outline text="writefreely" title="writefreely" type="rss" htmlUrl="https://github.com/writefreely/writefreely" xmlUrl="https://github.com/writefreely/writefreely/releases.atom" />
   </body>
 </opml>
