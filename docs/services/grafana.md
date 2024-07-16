@@ -60,6 +60,8 @@ grafana_provisioning_datasources:
     type: prometheus
     access: proxy
     url: "http://{{ prometheus_identifier }}:9090"
+    jsonData:
+      timeInterval: "{{ prometheus_config_global_scrape_interval }}"
     # Enable below if connecting to a remote instance that uses Basic Auth.
     # basicAuth: true
     # basicAuthUser: loki
