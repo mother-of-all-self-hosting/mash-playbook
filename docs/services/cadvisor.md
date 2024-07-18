@@ -43,47 +43,28 @@ cAdvisor can scrape metrics from system and containers. These metrics can be :
 -   Displayed on the cAdvisor Web UI
 -   Exposed to a metric-storage server like [Prometheus](./prometheus.md).
 
-## Exposing publicly the Web UI
+## Exposing publicly cAdvisor
 
-To expose cAdvisor to the web, you need to assign a hostname in `cadvisor_hostname` and optionally a path-prefix.
+To expose cAdvisor WebUI and metrics to the web, you need to assign a hostname in `cadvisor_hostname` and optionally a path-prefix.
 
 ```yaml
 # To expose the metrics publicly, enable and configure the lines below:
 cadvisor_hostname: mash.example.com
 cadvisor_path_prefix: /
 
-# To protect the metrics with HTTP Basic Auth, enable and configure the lines below.
+# To protect the web ui and your metrics with HTTP Basic Auth, enable and configure the lines below.
 # See: https://doc.traefik.io/traefik/middlewares/http/basicauth/#users
 cadvisor_container_labels_traefik_middleware_basic_auth_enabled: true
 cadvisor_container_labels_traefik_middleware_basic_auth_users: ""
 ```
 
-### Exposing metrics publicly
-
-Unless you're scraping the cadvisor metrics from a local [Prometheus](prometheus.md) instance, as described in [Integrating with Prometheus](cadvisor.md#), you will probably wish to expose the metrics publicly so that a remote Prometheus instance can fetch them. When exposing publicly, it's natural to set up [HTTP Basic Authentication](https://developer.mozilla.org/en-US/docs/Web/HTTP/Authentication) **or anyone would be able to read your metrics**.
-
-```yaml
-cadvisor_container_labels_metrics_enabled: true
-
-# To expose the metrics publicly, enable and configure the lines below:
-<!-- cadvisor_hostname: mash.example.com -->
-<!-- cadvisor_path_prefix: /metrics/mash-cadvisor -->
-
-# To protect the metrics with HTTP Basic Auth, enable and configure the lines below.
-# See: https://doc.traefik.io/traefik/middlewares/http/basicauth/#users
-cadvisor_container_labels_metrics_middleware_basic_auth_enabled: true
-cadvisor_container_labels_metrics_middleware_basic_auth_users: ""
-```
-
 ## Integrating with Prometheus
-
-cAdvisor can expose its metrics to [Prometheus](./prometheus.md).
 
 ### Prerequesites
 
 The bare minimium is to ensure Prometheus can reach cadvisor.
 
--   If cadvisor is on a different host than Prometheus, refer to section [Expose metrics publicly](cadvisor.md#)
+-   If cadvisor is on a different host than Prometheus, refer to section [Exposing publicly cAdvisor](cadvisor.md#Exposing-publicly-cAdvisor)
 -   If cadvisor is on the same host than prometheus, refer to section [Ensure Prometheus is on the same container network as cadvisor.](cadvisor.md#)
 
 ### Ensure Prometheus is on the same container network as cAdvisor.
@@ -104,12 +85,24 @@ prometheus_container_additional_networks:
 
 ### Write the scrape config for prometheus
 
+```yaml
+prometheus_config_scrape_configs_additional:
+    - job_name: cadvisor
+      scrape_interval: 5s
+      scrape_timeout: 5s
+      static_configs:
+          - targets:
+                - "{{ cadvisor_identifier }}:8080"
+```
+
+replace the target by your ip_adress:port if cAdvisor is on a different host than Prometheus
+
 # Healthcheck
 
 ```yaml
 cadvisor_environment_variables_extension: |
 
-# CADVISOR_HEALTHCHECK_URL=http://localhost:8080/cadvisor/healthz
+# CADVISOR_HEALTHCHECK_URL=http://localhost:8080/healthz
 ```
 
 ## Usage
