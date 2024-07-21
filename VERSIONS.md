@@ -9,7 +9,7 @@
 * Calibre Web: 0.6.22
 * Changedetection: 0.45.25
 * Changedetection Playwright Driver: latest
-* Clickhouse: 24.4.2.141
+* Clickhouse: 24.6.2.17
 * Collabora Online: 24.04.3.1.1
 * Container Socket Proxy: 0.2.0
 * Couchdb: 3.3.3
@@ -61,10 +61,10 @@
 * Outline: 0.74.0-0
 * Owncast: 0.1.2
 * Oxitraffic: 0.10.1
-* Paperless: 2.8.6
-* Paperless Gotenberg: 8.5.0
-* Paperless Tika: 2.9.1-minimal
-* Peertube: v6.1.0
+* Paperless: 2.11.0
+* Paperless Gotenberg: 8.8.0
+* Paperless Tika: 2.9.2.1
+* Peertube: v6.2.0
 * Plausible: v2.1.1
 * Prometheus: v2.53.1
 * Prometheus Blackbox Exporter: v0.25.0
@@ -83,12 +83,12 @@
 * Tandoor Api: 1.5.17
 * Tandoor Frontend: 1.25.4-alpine
 * Telegraf: 1.30.2
-* Traefik: v3.0.4
+* Traefik: v3.1.0
 * Uptime Kuma: 1.23.13
 * Vaultwarden: 1.31.0
 * Wetty: 2.5
 * Wg Easy: 13
-* Woodpecker Ci Agent: v2.6.0
-* Woodpecker Ci Server: v2.6.0
+* Woodpecker Ci Agent: v2.7.0
+* Woodpecker Ci Server: v2.7.0
 * Wordpress: 6.5.5
 * Writefreely: v0.15.0
