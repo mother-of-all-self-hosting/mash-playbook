@@ -42,7 +42,7 @@ The account domain is the second part of a user handle in the Fediverse. If your
 
 **Warning** DO NOT change this change this after your server has already run once, or you will break things!
 
-If you decide to use this read [the appropriate section of the installation guide](https://docs.gotosocial.org/installation_guide/advanced/#can-i-host-my-instance-at-fediexampleorg-but-have-just-exampleorg-in-my-username=) as you will have to do some additional work on the base domain.
+If you decide to use this read [the appropriate section of the documentation](https://docs.gotosocial.org/en/latest/advanced/host-account-domain/) as you will have to do some additional work on the base domain.
 
 ```yaml
 gotosocial_account_domain: "example.org"
