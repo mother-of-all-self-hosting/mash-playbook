@@ -3,7 +3,7 @@
 * Apisix Gateway: 3.8.0
 * Appsmith: v1.9.50
 * Authelia: 4.37.5
-* Authentik: 2024.4.1
+* Authentik: 2024.6.1
 * Borg: 1.2.8
 * Borgmatic: 1.8.13
 * Calibre Web: 0.6.22
@@ -29,7 +29,7 @@
 * Funkwhale: 1.4.0
 * Gitea: 1.22.1
 * Gotosocial: 0.16.0
-* Grafana: 11.1.0
+* Grafana: 11.1.3
 * Healthchecks: v3.4
 * Hubsite Nginx: 1.25.4
 * Ilmo: 1.0.4
@@ -73,7 +73,7 @@
 * Prometheus Ssh Exporter: v1.5.0
 * Promtail: 2.9.5
 * Radicale: 3.2.2.0
-* Redis: 7.2.4
+* Redis: 7.2.5
 * Redmine: 5.1.3
 * Roundcube: 1.6.7
 * Rumqttd: 0.21.0
