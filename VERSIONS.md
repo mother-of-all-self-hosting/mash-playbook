@@ -3,7 +3,7 @@
 * Apisix Gateway: 3.8.0
 * Appsmith: v1.9.50
 * Authelia: 4.37.5
-* Authentik: 2024.6.1
+* Authentik: 2024.6.2
 * Borg: 1.2.8
 * Borgmatic: 1.8.13
 * Calibre Web: 0.6.22
@@ -54,7 +54,7 @@
 * Neko: firefox
 * Netbox: v3.7.0-2.8.0
 * Netbox Container Image Customizations Keycloak Sso Expiration Middleware: a2ac39b1c73a50742c6e834e89162f87528c7f73
-* Nextcloud: 29.0.3
+* Nextcloud: 29.0.4
 * Notfellchen: 0.1.1
 * Notfellchen Sws: 2
 * Oauth2 Proxy: v7.6.0
@@ -83,7 +83,7 @@
 * Tandoor Api: 1.5.17
 * Tandoor Frontend: 1.25.4-alpine
 * Telegraf: 1.30.2
-* Traefik: v3.1.0
+* Traefik: v3.1.1
 * Uptime Kuma: 1.23.13
 * Vaultwarden: 1.31.0
 * Wetty: 2.5
