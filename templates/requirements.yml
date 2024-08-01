@@ -113,7 +113,7 @@
   name: focalboard
   activation_prefix: focalboard_
 - src: git+https://github.com/Viraxi/ansible-role-forgejo.git
-  version: v7.0.5-0
+  version: v7.0.6-0
   name: forgejo
   activation_prefix: forgejo_
 - src: git+https://github.com/kinduff/ansible-docker-freshrss.git
@@ -252,7 +252,7 @@
   version: v2.11.0-0
   name: paperless
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-peertube.git
-  version: v6.2.0-0
+  version: v6.2.1-0
   name: peertube
   activation_prefix: peertube_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-plausible.git

@@ -24,7 +24,7 @@
 * Exim Relay: 4.98-r0-0
 * Firezone: 0.7.36
 * Focalboard: 7.10.4
-* Forgejo: 7.0.5
+* Forgejo: 7.0.6
 * Freshrss: 1.24.0
 * Funkwhale: 1.4.0
 * Gitea: 1.22.1
@@ -64,7 +64,7 @@
 * Paperless: 2.11.0
 * Paperless Gotenberg: 8.8.0
 * Paperless Tika: 2.9.2.1
-* Peertube: v6.2.0
+* Peertube: v6.2.1
 * Plausible: v2.1.1
 * Prometheus: v2.53.1
 * Prometheus Blackbox Exporter: v0.25.0
