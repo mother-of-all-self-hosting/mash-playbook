@@ -24,7 +24,7 @@
 * Exim Relay: 4.98-r0-0
 * Firezone: 0.7.36
 * Focalboard: 7.10.4
-* Forgejo: 7.0.6
+* Forgejo: 8.0.0
 * Freshrss: 1.24.0
 * Funkwhale: 1.4.0
 * Gitea: 1.22.1
@@ -35,7 +35,7 @@
 * Ilmo: 1.0.4
 * Infisical: v0.3.8
 * Influxdb: 2.7.6
-* Jitsi: stable-9584-1
+* Jitsi: stable-9646
 * Jitsi Ldap: 3
 * Jitsi Prosody Auth Matrix User Verification Repo: 2839499cb03894d8cfc3e5b2219441427cb133d8
 * Keycloak: 25.0.0
