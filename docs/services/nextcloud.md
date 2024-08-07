@@ -296,3 +296,12 @@ If it takes more time to run than a day, you may want to start it from the host 
 ```
 
 Also, please note: every time Nextcloud version is updated, you should rerun: `just run-tags adjust-nextcloud-config`.
+
+Other supported variables:
+
+`nextcloud_preview_preview_max_x` and `nextcloud_preview_preview_max_y` sets the maximum size of the preview in pixels..
+Their default value according to the [documentation](https://docs.nextcloud.com/server/latest/admin_manual/configuration_files/previews_configuration.html) is `null` which is set by the playbook.
+Using a numeric value will set the corresponding nextcloud variable and sets the size of the preview images.
+
+`nextcloud_preview_app_jpeg_quality` JPEG quality setting for preview images.
+The default follows upstream default with 80.
