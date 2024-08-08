@@ -427,6 +427,10 @@
     - role: galaxy/auxiliary
     # /role-specific:auxiliary
 
+    # role-specific:matterbridge
+    - role: galaxy/matterbridge
+    # /role-specific:matterbridge
+
     # role-specific:systemd_service_manager
     - when: devture_systemd_service_manager_enabled | bool
       role: galaxy/systemd_service_manager
