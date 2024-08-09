@@ -3,10 +3,10 @@
 * Apisix Gateway: 3.8.0
 * Appsmith: v1.9.50
 * Authelia: 4.37.5
-* Authentik: 2024.6.2
+* Authentik: 2024.6.3
 * Borg: 1.2.8
 * Borgmatic: 1.8.13
-* Calibre Web: 0.6.22
+* Calibre Web: 0.6.23
 * Changedetection: 0.45.25
 * Changedetection Playwright Driver: latest
 * Clickhouse: 24.6.2.17
@@ -21,7 +21,7 @@
 * Echoip: latest
 * Endlessh: 2024.0119.1
 * Etcd: 3.5.11
-* Exim Relay: 4.98-r0-0
+* Exim Relay: 4.98-r0-1
 * Firezone: 0.7.36
 * Focalboard: 7.10.4
 * Forgejo: 8.0.0
@@ -66,7 +66,7 @@
 * Paperless Tika: 2.9.2.1
 * Peertube: v6.2.1
 * Plausible: v2.1.1
-* Prometheus: v2.53.1
+* Prometheus: v2.54.0
 * Prometheus Blackbox Exporter: v0.25.0
 * Prometheus Node Exporter: v1.8.2
 * Prometheus Postgres Exporter: v0.14.0
@@ -79,11 +79,11 @@
 * Rumqttd: 0.21.0
 * Semaphore: 2.9.56
 * Soft Serve: v0.4.7
-* Syncthing: 1.27.9
+* Syncthing: 1.27.10
 * Tandoor Api: 1.5.17
 * Tandoor Frontend: 1.25.4-alpine
 * Telegraf: 1.30.2
-* Traefik: v3.1.1
+* Traefik: v3.1.2
 * Uptime Kuma: 1.23.13
 * Vaultwarden: 1.31.0
 * Wetty: 2.5
