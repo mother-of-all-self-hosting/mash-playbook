@@ -24,7 +24,7 @@
 * Exim Relay: 4.98-r0-1
 * Firezone: 0.7.36
 * Focalboard: 7.10.4
-* Forgejo: 8.0.0
+* Forgejo: 8.0.1
 * Freshrss: 1.24.0
 * Funkwhale: 1.4.0
 * Gitea: 1.22.1
@@ -75,7 +75,7 @@
 * Radicale: 3.2.2.0
 * Redis: 7.2.5
 * Redmine: 5.1.3
-* Roundcube: 1.6.7
+* Roundcube: 1.6.8
 * Rumqttd: 0.21.0
 * Semaphore: 2.9.56
 * Soft Serve: v0.4.7
@@ -85,7 +85,7 @@
 * Telegraf: 1.30.2
 * Traefik: v3.1.2
 * Uptime Kuma: 1.23.13
-* Vaultwarden: 1.31.0
+* Vaultwarden: 1.32.0
 * Wetty: 2.5
 * Wg Easy: 13
 * Woodpecker Ci Agent: v2.7.0
