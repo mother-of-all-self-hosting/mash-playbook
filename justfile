@@ -10,9 +10,11 @@ optimization_vars_files_file_path := run_directory_path + "/optimization-vars-fi
 roles: _requirements-yml
     #!/usr/bin/env sh
     if [ -x "$(command -v agru)" ]; then
+        echo "[NOTE] This command just updates the roles, but if you want to update everything at once (playbook, roles, etc.) - use 'just update'"
         agru -r {{ justfile_directory() }}/requirements.yml
     else
         echo "[NOTE] You are using the standard ansible-galaxy tool to install roles, which is slow and lacks other features. We recommend installing the 'agru' tool to speed up the process: https://github.com/etkecc/agru#where-to-get"
+        echo "[NOTE] This command just updates the roles, but if you want to update everything at once (playbook, roles, etc.) - use 'just update'"
         rm -rf roles/galaxy
         ansible-galaxy install -r {{ justfile_directory() }}/requirements.yml -p roles/galaxy/ --force
     fi
