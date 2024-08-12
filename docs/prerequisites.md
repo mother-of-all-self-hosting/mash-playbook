@@ -26,7 +26,7 @@ If your distro runs within an [LXC container](https://linuxcontainers.org/), you
 
 - [git](https://git-scm.com/) is the recommended way to download the playbook to your computer. `git` may also be required on the server if you will be [self-building](self-building.md) components.
 
-- [just](https://github.com/casey/just) for running `just roles` and playbook installation commands, etc. (see [`justfile`](../justfile)). You can get by without `just` (by running `ansible-galaxy`, `ansible-playbook` commands manually), but maintaining your playbook setup will require more manual work. `just` (thanks to the commands defined in the `justfile`) keeps various files (`setup.yml`, `requirements.yml`, `group_vars/mash_servers`) up-to-date with the templates in [the `templates/` directory](../templates/) automatically.
+- [just](https://github.com/casey/just) for running `just update` and playbook installation commands, etc. (see [`justfile`](../justfile)). You can get by without `just` (by running `ansible-galaxy`, `ansible-playbook` commands manually), but maintaining your playbook setup will require more manual work. `just` (thanks to the commands defined in the `justfile`) keeps various files (`setup.yml`, `requirements.yml`, `group_vars/mash_servers`) up-to-date with the templates in [the `templates/` directory](../templates/) automatically.
 
 - at least one domain name you can use
 
