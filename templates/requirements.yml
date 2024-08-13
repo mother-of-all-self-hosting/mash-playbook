@@ -73,7 +73,7 @@
   name: docker_registry_browser
   activation_prefix: docker_registry_browser_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-docker-registry-proxy.git
-  version: v1.2.3-0
+  version: v1.2.4-0
   name: docker_registry_proxy
   activation_prefix: docker_registry_proxy_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-docker-registry-purger.git
@@ -204,7 +204,7 @@
   version: v2.0.15-1
   name: mosquitto
   activation_prefix: mosquitto_
-- src: git+https://gitlab.com/etke.cc/mrs/ansible-role-mrs.git
+- src: git+https://github.com/mother-of-all-self-hosting/ansible-role-mrs.git
   version: v0.0.0-25
   name: mrs
   activation_prefix: mrs_

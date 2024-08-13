@@ -16,7 +16,7 @@
 * Docker Compose: v2.11.1
 * Docker Registry: 2.8.3
 * Docker Registry Browser: 1.7.2
-* Docker Registry Proxy: v1.2.3
+* Docker Registry Proxy: v1.2.4
 * Docker Registry Purger: 1.0.0
 * Echoip: latest
 * Endlessh: 2024.0119.1
