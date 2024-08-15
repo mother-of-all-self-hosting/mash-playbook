@@ -29,7 +29,7 @@
 * Funkwhale: 1.4.0
 * Gitea: 1.22.1
 * Gotosocial: 0.16.0
-* Grafana: 11.1.3
+* Grafana: 11.1.4
 * Healthchecks: v3.4
 * Hubsite Nginx: 1.25.4
 * Ilmo: 1.0.4
@@ -61,8 +61,8 @@
 * Outline: 0.74.0-0
 * Owncast: 0.1.2
 * Oxitraffic: 0.10.1
-* Paperless: 2.11.0
-* Paperless Gotenberg: 8.8.0
+* Paperless: 2.11.4
+* Paperless Gotenberg: 8.9.1
 * Paperless Tika: 2.9.2.1
 * Peertube: v6.2.1
 * Plausible: v2.1.1

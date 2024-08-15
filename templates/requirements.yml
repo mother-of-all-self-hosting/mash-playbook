@@ -133,7 +133,7 @@
   name: gotosocial
   activation_prefix: gotosocial_
 - src: git+https://gitlab.com/etke.cc/roles/grafana.git
-  version: v11.1.3-1
+  version: v11.1.4-0
   name: grafana
   activation_prefix: grafana_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-healthchecks.git
