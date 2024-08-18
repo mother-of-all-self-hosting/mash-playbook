@@ -28,7 +28,7 @@
   version: v1.0.0-3
   name: auxiliary
   activation_prefix: aux_
-- src: git+https://gitlab.com/etke.cc/roles/backup_borg.git
+- src: git+https://github.com/mother-of-all-self-hosting/ansible-role-backup_borg.git
   version: v1.2.8-1.8.13-0
   name: backup_borg
   activation_prefix: backup_borg_
@@ -40,7 +40,7 @@
   version: v0.45.25-0
   name: changedetection
   activation_prefix: changedetection_
-- src: git+https://gitlab.com/etke.cc/roles/cleanup.git
+- src: git+https://github.com/mother-of-all-self-hosting/ansible-role-cleanup.git
   version: main
   name: cleanup
   activation_prefix: system_cleanup_
@@ -100,7 +100,7 @@
   version: v4.98-r0-1-0
   name: exim_relay
   activation_prefix: exim_relay_
-- src: git+https://gitlab.com/etke.cc/roles/fail2ban.git
+- src: git+https://github.com/mother-of-all-self-hosting/ansible-role-fail2ban.git
   version: e25d0d9b5282dbb5a1ec4cd23d26c16998e4334f
   name: fail2ban
   activation_prefix: system_security_fail2ban_
@@ -132,7 +132,7 @@
   version: v0.16.0-1
   name: gotosocial
   activation_prefix: gotosocial_
-- src: git+https://gitlab.com/etke.cc/roles/grafana.git
+- src: git+https://github.com/mother-of-all-self-hosting/ansible-role-grafana.git
   version: v11.1.4-0
   name: grafana
   activation_prefix: grafana_
@@ -172,7 +172,7 @@
   version: v0.50.0-0
   name: lago
   activation_prefix: lago_
-- src: git+https://gitlab.com/etke.cc/roles/languagetool.git
+- src: git+https://github.com/mother-of-all-self-hosting/ansible-role-languagetool.git
   version: v6.4-0
   name: languagetool
   activation_prefix: languagetool_
@@ -188,7 +188,7 @@
   version: v11.4.2-3
   name: mariadb
   activation_prefix: mariadb_
-- src: git+https://gitlab.com/etke.cc/roles/miniflux.git
+- src: git+https://github.com/mother-of-all-self-hosting/ansible-role-miniflux.git
   version: v2.1.4-0
   name: miniflux
   activation_prefix: miniflux_
@@ -307,15 +307,15 @@
   version: v2.9.5-0
   name: promtail
   activation_prefix: promtail_
-- src: git+https://gitlab.com/etke.cc/roles/radicale.git
+- src: git+https://github.com/mother-of-all-self-hosting/ansible-role-radicale.git
   version: v3.2.2.0-0
   name: radicale
   activation_prefix: radicale_
-- src: git+https://gitlab.com/etke.cc/roles/redis.git
+- src: git+https://github.com/mother-of-all-self-hosting/ansible-role-redis.git
   version: v7.2.5-0
   name: redis
   activation_prefix: redis_
-- src: git+https://gitlab.com/etke.cc/roles/redmine.git
+- src: git+https://github.com/mother-of-all-self-hosting/ansible-role-redmine.git
   version: v5.1.3-1
   name: redmine
   activation_prefix: redmine_
@@ -331,15 +331,15 @@
   version: v2.9.56-0
   name: semaphore
   activation_prefix: semaphore_
-- src: git+https://gitlab.com/etke.cc/roles/soft_serve.git
+- src: git+https://github.com/mother-of-all-self-hosting/ansible-role-soft_serve.git
   version: v0.4.7-0
   name: soft_serve
   activation_prefix: soft_serve_
-- src: git+https://gitlab.com/etke.cc/roles/ssh.git
+- src: git+https://github.com/mother-of-all-self-hosting/ansible-role-ssh.git
   version: 13440992374e0fef8f6360a0856b78b37a1fd831
   name: ssh
   activation_prefix: system_security_ssh_
-- src: git+https://gitlab.com/etke.cc/roles/swap.git
+- src: git+https://github.com/mother-of-all-self-hosting/ansible-role-swap.git
   version: abfb18b6862108bbf24347500446203170324d7f
   name: swap
   activation_prefix: system_swap_
@@ -371,7 +371,7 @@
   version: v3.1.2-0
   name: traefik
   activation_prefix: devture_traefik_
-- src: git+https://gitlab.com/etke.cc/roles/uptime_kuma.git
+- src: git+https://github.com/mother-of-all-self-hosting/ansible-role-uptime_kuma.git
   version: v1.23.13-0
   name: uptime_kuma
   activation_prefix: uptime_kuma_
