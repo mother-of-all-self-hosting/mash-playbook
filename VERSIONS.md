@@ -44,7 +44,7 @@
 * Languagetool: 6.4
 * Linkding: latest
 * Loki: 2.9.4
-* Miniflux: 2.1.4
+* Miniflux: 2.2.0
 * Mobilizon: 4.1.0
 * Mongodb: 7.0.4
 * Mosquitto: 2.0.15
