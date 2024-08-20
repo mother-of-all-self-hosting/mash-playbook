@@ -38,7 +38,7 @@
 * Jitsi: stable-9646
 * Jitsi Ldap: 3
 * Jitsi Prosody Auth Matrix User Verification Repo: 2839499cb03894d8cfc3e5b2219441427cb133d8
-* Keycloak: 25.0.0
+* Keycloak: 25.0.4
 * Keydb: 6.3.4
 * Lago: v0.50.0-beta
 * Languagetool: 6.4
@@ -48,7 +48,7 @@
 * Mobilizon: 4.1.0
 * Mongodb: 7.0.4
 * Mosquitto: 2.0.15
-* Mrs: latest
+* Mrs: v0.1.0
 * N8N: next
 * Navidrome: 0.52.5
 * Neko: firefox
