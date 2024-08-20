@@ -30,7 +30,7 @@
 * Gitea: 1.22.1
 * Gotosocial: 0.16.0
 * Grafana: 11.1.4
-* Healthchecks: v3.4
+* Healthchecks: v3.5.1
 * Hubsite Nginx: 1.25.4
 * Ilmo: 1.0.4
 * Infisical: v0.3.8
