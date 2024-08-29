@@ -3,13 +3,13 @@
 * Apisix Gateway: 3.8.0
 * Appsmith: v1.9.50
 * Authelia: 4.37.5
-* Authentik: 2024.6.3
+* Authentik: 2024.6.4
 * Borg: 1.2.8
 * Borgmatic: 1.8.13
 * Calibre Web: 0.6.23
 * Changedetection: 0.45.25
 * Changedetection Playwright Driver: latest
-* Clickhouse: 24.6.2.17
+* Clickhouse: 24.8.2.3
 * Collabora Online: 24.04.3.1.1
 * Container Socket Proxy: 0.2.0
 * Couchdb: 3.3.3
@@ -24,13 +24,13 @@
 * Exim Relay: 4.98-r0-1
 * Firezone: 0.7.36
 * Focalboard: 7.10.4
-* Forgejo: 8.0.1
-* Freshrss: 1.24.0
+* Forgejo: 8.0.2
+* Freshrss: 1.24.2
 * Funkwhale: 1.4.0
 * Gitea: 1.22.1
 * Gotosocial: 0.16.0
 * Grafana: 11.1.4
-* Healthchecks: v3.4
+* Healthchecks: v3.5.2
 * Hubsite Nginx: 1.25.4
 * Ilmo: 1.0.4
 * Infisical: v0.3.8
@@ -58,7 +58,7 @@
 * Notfellchen: 0.1.1
 * Notfellchen Sws: 2
 * Oauth2 Proxy: v7.6.0
-* Outline: 0.74.0-0
+* Outline: 0.78.0
 * Owncast: 0.1.2
 * Oxitraffic: 0.10.1
 * Paperless: 2.11.4
@@ -66,7 +66,7 @@
 * Paperless Tika: 2.9.2.1
 * Peertube: v6.2.1
 * Plausible: v2.1.1
-* Prometheus: v2.54.0
+* Prometheus: v2.54.1
 * Prometheus Blackbox Exporter: v0.25.0
 * Prometheus Node Exporter: v1.8.2
 * Prometheus Postgres Exporter: v0.14.0
@@ -80,8 +80,8 @@
 * Semaphore: 2.9.56
 * Soft Serve: v0.4.7
 * Syncthing: 1.27.10
-* Tandoor Api: 1.5.17
-* Tandoor Frontend: 1.25.4-alpine
+* Tandoor Api: 1.5.19
+* Tandoor Frontend: 1.27-alpine
 * Telegraf: 1.30.2
 * Traefik: v3.1.2
 * Uptime Kuma: 1.23.13
