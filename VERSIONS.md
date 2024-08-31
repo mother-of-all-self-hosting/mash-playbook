@@ -72,7 +72,7 @@
 * Prometheus Postgres Exporter: v0.14.0
 * Prometheus Ssh Exporter: v1.5.0
 * Promtail: 2.9.5
-* Radicale: 3.2.2.0
+* Radicale: 3.2.3.0
 * Redis: 7.2.5
 * Redmine: 5.1.3
 * Roundcube: 1.6.8
