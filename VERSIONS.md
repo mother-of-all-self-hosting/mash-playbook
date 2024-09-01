@@ -13,7 +13,7 @@
 * Collabora Online: 24.04.3.1.1
 * Container Socket Proxy: 0.2.0
 * Couchdb: 3.3.3
-* Docker Compose: v2.11.1
+* Docker Compose: v2.29.2
 * Docker Registry: 2.8.3
 * Docker Registry Browser: 1.7.2
 * Docker Registry Proxy: v1.2.4
