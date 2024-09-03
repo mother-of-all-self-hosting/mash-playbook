@@ -69,8 +69,6 @@ The bare minimium is to ensure Prometheus can reach cadvisor.
 
 ### Ensure Prometheus is on the same container network as cAdvisor.
 
-If you are using MASH playbook, cadvisor should already be connected to prometheus container network
-
 If cadvisor and prometheus do not share a network, you will have to
 
 -   Either connect Prometheus container network to cadvisor by editing `prometheus_container_additional_networks_auto`
@@ -96,14 +94,6 @@ prometheus_config_scrape_configs_additional:
 ```
 
 replace the target by your ip_adress:port if cAdvisor is on a different host than Prometheus
-
-# Healthcheck
-
-```yaml
-cadvisor_environment_variables_extension: |
-
-# CADVISOR_HEALTHCHECK_URL=http://localhost:8080/healthz
-```
 
 ## Usage
 
