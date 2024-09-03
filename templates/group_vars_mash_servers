@@ -188,7 +188,7 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
 
   # role-specific:cadvisor
   - |-
-    {{ ({'name': (cadvisor_identifier + '.service'), 'priority': 500, 'groups': ['mash', 'metrics', 'prometheus-node-exporter']} if cadvisor_enabled else omit) }}
+    {{ ({'name': (cadvisor_identifier + '.service'), 'priority': 500, 'groups': ['mash', 'metrics', 'cadvisor']} if cadvisor_enabled else omit) }}
   # /role-specific:cadvisor
 
   # role-specific:calibre-web
