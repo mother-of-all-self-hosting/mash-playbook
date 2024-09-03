@@ -1641,7 +1641,7 @@ cadvisor_container_additional_networks_auto: |
   }}
 
 cadvisor_process_extra_arguments_auto:
-  - "--url_base_prefix={{ cadvisor_container_labels_traefik_path_prefix }}"
+  - "--url_base_prefix={{ cadvisor_path_prefix }}"
 
 ########################################################################
 #                                                                      #
