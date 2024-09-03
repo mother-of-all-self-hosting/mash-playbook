@@ -167,6 +167,10 @@
     - role: galaxy/echoip
     # /role-specific:echoip
 
+    # role-specific:endlessh
+    - role: galaxy/endlessh
+    # /role-specific:endlessh
+
     # role-specific:etcd
     - role: galaxy/etcd
     # /role-specific:etcd
@@ -278,6 +282,10 @@
     # role-specific:navidrome
     - role: galaxy/navidrome
     # /role-specific:navidrome
+
+    # role-specific:neko
+    - role: galaxy/neko
+    # /role-specific:neko
 
     # role-specific:netbox
     - role: galaxy/netbox
@@ -406,6 +414,14 @@
     # role-specific:woodpecker_ci_agent
     - role: galaxy/woodpecker_ci_agent
     # /role-specific:woodpecker_ci_agent
+
+    # role-specific:wordpress
+    - role: galaxy/wordpress
+    # /role-specific:wordpress
+
+    # role-specific:writefreely
+    - role: galaxy/writefreely
+    # /role-specific:writefreely
 
     # role-specific:roundcube
     - role: galaxy/roundcube

@@ -17,7 +17,7 @@
     <outline text="container_socket_proxy" title="container_socket_proxy" type="rss" htmlUrl="https://github.com/Tecnativa/docker-socket-proxy" xmlUrl="https://github.com/Tecnativa/docker-socket-proxy/releases.atom" />
     <outline text="couchdb" title="couchdb" type="rss" htmlUrl="https://github.com/apache/couchdb" xmlUrl="https://github.com/apache/couchdb/releases.atom" />
     <outline text="docker_registry" title="docker_registry" type="rss" htmlUrl="https://github.com/distribution/distribution/" xmlUrl="https://github.com/distribution/distribution//releases.atom" />
-    <outline text="docker_registry_proxy" title="docker_registry_proxy" type="rss" htmlUrl="https://gitlab.com/etke.cc/docker-registry-proxy" xmlUrl="https://gitlab.com/etke.cc/docker-registry-proxy/-/tags?format=atom" />
+    <outline text="docker_registry_proxy" title="docker_registry_proxy" type="rss" htmlUrl="https://github.com/etkecc/docker-registry-proxy" xmlUrl="https://github.com/etkecc/docker-registry-proxy/releases.atom" />
     <outline text="echoip" title="echoip" type="rss" htmlUrl="https://github.com/mpolden/echoip" xmlUrl="https://github.com/mpolden/echoip/releases.atom" />
     <outline text="etcd" title="etcd" type="rss" htmlUrl="https://github.com/etcd-io/etcd" xmlUrl="https://github.com/etcd-io/etcd/releases.atom" />
     <outline text="exim_relay" title="exim_relay" type="rss" htmlUrl="https://github.com/devture/exim-relay" xmlUrl="https://github.com/devture/exim-relay/releases.atom" />
@@ -76,5 +76,6 @@
     <outline text="wg_easy" title="wg_easy" type="rss" htmlUrl="https://github.com/wg-easy/wg-easy" xmlUrl="https://github.com/wg-easy/wg-easy/releases.atom" />
     <outline text="woodpecker_ci_agent" title="woodpecker_ci_agent" type="rss" htmlUrl="https://github.com/woodpecker-ci/woodpecker" xmlUrl="https://github.com/woodpecker-ci/woodpecker/releases.atom" />
     <outline text="woodpecker_ci_server" title="woodpecker_ci_server" type="rss" htmlUrl="https://github.com/woodpecker-ci/woodpecker" xmlUrl="https://github.com/woodpecker-ci/woodpecker/releases.atom" />
+    <outline text="writefreely" title="writefreely" type="rss" htmlUrl="https://github.com/writefreely/writefreely" xmlUrl="https://github.com/writefreely/writefreely/releases.atom" />
   </body>
 </opml>

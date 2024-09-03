@@ -53,15 +53,17 @@ If you're installing [Prometheus](prometheus.md) on the same server, you can hoo
 
 ```yaml
 grafana_provisioning_datasources:
-    - name: Prometheus
-      type: prometheus
-      access: proxy
-      url: "http://{{ prometheus_identifier }}:9090"
-      # Enable below if connecting to a remote instance that uses Basic Auth.
-      # basicAuth: true
-      # basicAuthUser: loki
-      # secureJsonData:
-      #   basicAuthPassword: ""
+  - name: Prometheus
+    type: prometheus
+    access: proxy
+    url: "http://{{ prometheus_identifier }}:9090"
+    jsonData:
+      timeInterval: "{{ prometheus_config_global_scrape_interval }}"
+    # Enable below if connecting to a remote instance that uses Basic Auth.
+    # basicAuth: true
+    # basicAuthUser: loki
+    # secureJsonData:
+    #   basicAuthPassword: ""
 
 # Prometheus runs in another container network, so we need to connect to it.
 grafana_container_additional_networks_custom:
@@ -121,11 +123,12 @@ The cAdvisor role exposes a list of URLs containing dashboards (JSON files) in i
 
 You can add this **additional** configuration to make the Grafana service pull these dashboards:
 
-````yaml
+```yaml
 grafana_dashboard_download_urls: |
   {{
     cadvisor_dashboard_urls
   }}
+```
 
 ### Single-Sign-On
 
@@ -159,7 +162,7 @@ grafana_environment_variables_additional_variables: |
   GF_AUTH_GENERIC_OAUTH_ALLOW_ASSIGN_GRAFANA_ADMIN=true
   # Optionally map user groups to Grafana roles
   GF_AUTH_GENERIC_OAUTH_ROLE_ATTRIBUTE_PATH=contains(groups[*], 'Grafana Admins') && 'Admin' || contains(groups[*], 'Grafana Editors') && 'Editor' || 'Viewer'
-````
+```
 
 Make sure the user you want to login as has an email address in authentik, otherwise there will be an error.
 

@@ -10,8 +10,11 @@ optimization_vars_files_file_path := run_directory_path + "/optimization-vars-fi
 roles: _requirements-yml
     #!/usr/bin/env sh
     if [ -x "$(command -v agru)" ]; then
+        echo "[NOTE] This command just updates the roles, but if you want to update everything at once (playbook, roles, etc.) - use 'just update'"
         agru -r {{ justfile_directory() }}/requirements.yml
     else
+        echo "[NOTE] You are using the standard ansible-galaxy tool to install roles, which is slow and lacks other features. We recommend installing the 'agru' tool to speed up the process: https://github.com/etkecc/agru#where-to-get"
+        echo "[NOTE] This command just updates the roles, but if you want to update everything at once (playbook, roles, etc.) - use 'just update'"
         rm -rf roles/galaxy
         ansible-galaxy install -r {{ justfile_directory() }}/requirements.yml -p roles/galaxy/ --force
     fi
@@ -68,9 +71,30 @@ _optimize-for-var-paths +PATHS:
     --src-group-vars-yml-path={{ templates_directory_path }}/group_vars_mash_servers \
     --dst-group-vars-yml-path={{ justfile_directory() }}/group_vars/mash_servers
 
-# Updates requirements.yml if there are any new tags available. Requires agru
-update: && opml versions
-    @agru -r {{ templates_directory_path }}/requirements.yml -u
+# Updates the playbook and installs the necessary Ansible roles pinned in requirements.yml. If a -u flag is passed, also updates the requirements.yml file with new role versions (if available)
+update *flags: update-playbook-only
+    #!/usr/bin/env sh
+    if [ -x "$(command -v agru)" ]; then
+        echo {{ if flags == "" { "Installing roles pinned in requirements.yml..." } else if flags == "-u" { "Updating roles and pinning new versions in requirements.yml..." } else { "Unknown flags passed" } }}
+        agru -r {{ templates_directory_path }}/requirements.yml {{ flags }}
+    else
+        echo "[NOTE] You are using the standard ansible-galaxy tool to install roles, which is slow and lacks other features. We recommend installing the 'agru' tool to speed up the process: https://github.com/etkecc/agru#where-to-get"
+        echo "Installing roles..."
+        rm -rf roles/galaxy
+        ansible-galaxy install -r requirements.yml -p roles/galaxy/ --force
+    fi
+
+    if [[ "{{ flags }}" == "-u" ]]; then
+        just --justfile {{ justfile() }} versions
+        just --justfile {{ justfile() }} opml
+    fi
+
+# Updates the playbook without installing/updating Ansible roles
+update-playbook-only:
+    @echo "Updating playbook..."
+    @git stash -q
+    @git pull -q
+    @-git stash pop -q
 
 # Runs ansible-lint against all roles in the playbook
 lint:
