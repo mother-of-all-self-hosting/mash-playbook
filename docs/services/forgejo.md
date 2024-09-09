@@ -56,7 +56,7 @@ Going there, you'll be taken to the initial setup wizard, which will let you ass
 
 ## Recommended other services
 
-You may also wish to look into [Woodpecker CI](woodpecker-ci.md), which can integrate nicely with Forgejo.
+You may also wish to look into [Woodpecker CI](woodpecker-ci.md) and [Forgejo Runner](forgejo-runner.md), which can integrate nicely with Forgejo.
 
 
 ## Integration with Woodpecker CI

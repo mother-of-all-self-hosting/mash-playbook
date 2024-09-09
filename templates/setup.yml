@@ -407,6 +407,10 @@
     - role: galaxy/forgejo
     # /role-specific:forgejo
 
+    # role-specific:forgejo_runner
+    - role: galaxy/forgejo_runner
+    # /role-specific:forgejo_runner
+
     # role-specific:woodpecker_ci_server
     - role: galaxy/woodpecker_ci_server
     # /role-specific:woodpecker_ci_server
