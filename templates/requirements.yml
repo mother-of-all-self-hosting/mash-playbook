@@ -384,7 +384,7 @@
   name: wetty
   activation_prefix: wetty_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-wg-easy.git
-  version: v13-1
+  version: v14-0
   name: wg_easy
   activation_prefix: wg_easy_
 - src: git+https://github.com/devture/com.devture.ansible.role.woodpecker_ci_agent.git
