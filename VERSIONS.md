@@ -38,7 +38,7 @@
 * Jitsi: stable-9646
 * Jitsi Ldap: 3
 * Jitsi Prosody Auth Matrix User Verification Repo: 2839499cb03894d8cfc3e5b2219441427cb133d8
-* Keycloak: 25.0.4
+* Keycloak: 25.0.5
 * Keydb: 6.3.4
 * Lago: v0.50.0-beta
 * Languagetool: 6.4
@@ -58,7 +58,7 @@
 * Notfellchen: 0.1.1
 * Notfellchen Sws: 2
 * Oauth2 Proxy: v7.6.0
-* Outline: 0.78.0
+* Outline: 0.79.1
 * Owncast: 0.1.2
 * Oxitraffic: 0.10.1
 * Paperless: 2.11.4
@@ -87,7 +87,7 @@
 * Uptime Kuma: 1.23.13
 * Vaultwarden: 1.32.0
 * Wetty: 2.5
-* Wg Easy: 13
+* Wg Easy: 14
 * Woodpecker Ci Agent: v2.7.1
 * Woodpecker Ci Server: v2.7.1
 * Wordpress: 6.5.5
