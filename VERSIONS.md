@@ -54,7 +54,7 @@
 * Neko: firefox
 * Netbox: v3.7.0-2.8.0
 * Netbox Container Image Customizations Keycloak Sso Expiration Middleware: a2ac39b1c73a50742c6e834e89162f87528c7f73
-* Nextcloud: 29.0.4
+* Nextcloud: 29.0.6
 * Notfellchen: 0.1.1
 * Notfellchen Sws: 2
 * Oauth2 Proxy: v7.6.0
@@ -73,6 +73,7 @@
 * Prometheus Ssh Exporter: v1.5.0
 * Promtail: 2.9.5
 * Radicale: 3.2.3.0
+* Readeck: 0.15.3
 * Redis: 7.2.5
 * Redmine: 5.1.3
 * Roundcube: 1.6.8
