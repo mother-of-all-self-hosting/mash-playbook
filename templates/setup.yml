@@ -354,6 +354,10 @@
     # role-specific:radicale
     - role: galaxy/radicale
     # /role-specific:radicale
+    
+    # role-specific:readeck
+    - role: galaxy/readeck
+    # /role-specific:readeck
 
     # role-specific:redmine
     - role: galaxy/redmine
