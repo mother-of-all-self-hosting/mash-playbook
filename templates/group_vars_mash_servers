@@ -597,6 +597,11 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
     {{ ({'name': (soft_serve_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'soft-serve']} if soft_serve_enabled else omit) }}
   # /role-specific:soft_serve
 
+  # role-specific:stirling_pdf
+  - |-
+    {{ ({'name': (stirling_pdf_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'stirling_pdf']} if stirling_pdf_enabled else omit) }}
+  # /role-specific:stirling_pdf
+
   # role-specific:syncthing
   - |-
     {{ ({'name': (syncthing_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'syncthing']} if syncthing_enabled else omit) }}
@@ -5139,6 +5144,41 @@ soft_serve_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_ba
 #                                                                      #
 ########################################################################
 # /role-specific:soft_serve
+
+
+
+# role-specific:stirling-pdf
+########################################################################
+#                                                                      #
+# stirling-pdf                                                         #
+#                                                                      #
+########################################################################
+
+stirling_pdf_enabled: false
+
+stirling_pdf_identifier: "{{ mash_playbook_service_identifier_prefix }}stirling-pdf"
+
+stirling_pdf_uid: "{{ mash_playbook_uid }}"
+stirling_pdf_gid: "{{ mash_playbook_gid }}"
+
+stirling_pdf_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}stirling-pdf"
+
+stirling_pdf_container_additional_networks_auto: |
+  {{
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+  }}
+
+stirling_pdf_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+stirling_pdf_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+stirling_pdf_container_labels_traefik_entrypoints: "{{ devture_traefik_entrypoint_primary }}"
+stirling_pdf_container_labels_traefik_tls_certResolver: "{{ devture_traefik_certResolver_primary }}"
+
+########################################################################
+#                                                                      #
+# /stirling-pdf                                                        #
+#                                                                      #
+########################################################################
+# /role-specific:stirling-pdf
 
 
 

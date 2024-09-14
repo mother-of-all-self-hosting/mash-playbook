@@ -343,6 +343,10 @@
   version: 13440992374e0fef8f6360a0856b78b37a1fd831
   name: ssh
   activation_prefix: system_security_ssh_
+- src: git+https://github.com/Bergruebe/ansible-role-stirling-pdf.git
+  version: v0.28.3-fat
+  name: stirling_pdf
+  activation_prefix: stirling_pdf_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-swap.git
   version: abfb18b6862108bbf24347500446203170324d7f
   name: swap
