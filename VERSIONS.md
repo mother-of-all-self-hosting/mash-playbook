@@ -27,7 +27,7 @@
 * Forgejo: 8.0.3
 * Freshrss: 1.24.2
 * Funkwhale: 1.4.0
-* Gitea: 1.22.1
+* Gitea: 1.22.2
 * Gotosocial: 0.16.0
 * Grafana: 11.1.4
 * Healthchecks: v3.6
@@ -54,7 +54,7 @@
 * Neko: firefox
 * Netbox: v3.7.0-2.8.0
 * Netbox Container Image Customizations Keycloak Sso Expiration Middleware: a2ac39b1c73a50742c6e834e89162f87528c7f73
-* Nextcloud: 29.0.6
+* Nextcloud: 29.0.7
 * Notfellchen: 0.1.1
 * Notfellchen Sws: 2
 * Oauth2 Proxy: v7.6.0
@@ -76,7 +76,7 @@
 * Readeck: 0.15.3
 * Redis: 7.2.5
 * Redmine: 5.1.3
-* Roundcube: 1.6.8
+* Roundcube: 1.6.9
 * Rumqttd: 0.21.0
 * Semaphore: 2.9.56
 * Soft Serve: v0.4.7
