@@ -639,6 +639,11 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
     {{ ({'name': (forgejo_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'forgejo', 'forgejo-server']} if forgejo_enabled else omit) }}
   # /role-specific:forgejo
 
+  # role-specific:forgejo_runner
+  - |-
+    {{ ({'name': (forgejo_runner_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'forgejo-runner']} if forgejo_runner_enabled else omit) }}
+  # /role-specific:forgejo_runner
+
   # role-specific:writefreely
   - |-
     {{ ({'name': (writefreely_identifier  + '.service'), 'priority': 2000, 'groups': ['mash', 'writefreely']} if writefreely_enabled else omit) }}
@@ -5454,6 +5459,36 @@ forgejo_config_database_password: "{{ '%s' | format(mash_playbook_generic_secret
 #                                                                      #
 ########################################################################
 # /role-specific:forgejo
+
+
+
+# role-specific:forgejo_runner
+########################################################################
+#                                                                      #
+# forgejo_runner                                                       #
+#                                                                      #
+########################################################################
+
+forgejo_runner_enabled: false
+
+forgejo_runner_uid: "0"
+forgejo_runner_gid: "0"
+
+forgejo_runner_identifier: "{{ mash_playbook_service_identifier_prefix }}forgejo-runner"
+
+forgejo_runner_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}forgejo-runner"
+
+forgejo_runner_systemd_required_systemd_services_list: |
+  {{
+    ([devture_systemd_docker_base_docker_service_name] if devture_systemd_docker_base_docker_service_name else [])
+  }}
+
+########################################################################
+#                                                                      #
+# /forgejo_runner                                                      #
+#                                                                      #
+########################################################################
+# /role-specific:forgejo_runner
 
 
 
