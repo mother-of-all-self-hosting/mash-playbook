@@ -11,6 +11,7 @@
     <outline text="authelia" title="authelia" type="rss" htmlUrl="https://github.com/authelia/authelia" xmlUrl="https://github.com/authelia/authelia/releases.atom" />
     <outline text="authentik" title="authentik" type="rss" htmlUrl="https://github.com/goauthentik/authentik" xmlUrl="https://github.com/goauthentik/authentik/releases.atom" />
     <outline text="backup_borg" title="backup_borg" type="rss" htmlUrl="https://gitlab.com/etke.cc/borgmatic" xmlUrl="https://gitlab.com/etke.cc/borgmatic/-/tags?format=atom" />
+    <outline text="cadvisor" title="cadvisor" type="rss" htmlUrl="https://github.com/google/cadvisor" xmlUrl="https://github.com/google/cadvisor/releases.atom" />
     <outline text="calibre-web" title="calibre-web" type="rss" htmlUrl="https://github.com/calibre_web/calibre_web" xmlUrl="https://github.com/calibre_web/calibre_web/releases.atom" />
     <outline text="changedetection" title="changedetection" type="rss" htmlUrl="https://github.com/dgtlmoon/changedetection.io" xmlUrl="https://github.com/dgtlmoon/changedetection.io/releases.atom" />
     <outline text="clickhouse" title="clickhouse" type="rss" htmlUrl="https://github.com/ClickHouse/ClickHouse" xmlUrl="https://github.com/ClickHouse/ClickHouse/releases.atom" />
