@@ -354,7 +354,7 @@
     # role-specific:radicale
     - role: galaxy/radicale
     # /role-specific:radicale
-    
+
     # role-specific:readeck
     - role: galaxy/readeck
     # /role-specific:readeck
@@ -378,6 +378,10 @@
     # role-specific:soft_serve
     - role: galaxy/soft_serve
     # /role-specific:soft_serve
+
+    # role-specific:stirling_pdf
+    - role: galaxy/stirling_pdf
+    # /role-specific:stirling_pdf
 
     # role-specific:syncthing
     - role: galaxy/syncthing
