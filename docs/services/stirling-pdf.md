@@ -1,10 +1,13 @@
 # Stirling PDF
-Stirling PDF is a online PDF converter and editor with many functionalities. Visit the [official website](https://www.stirlingpdf.com) or [demo](https://stirlingpdf.io) to learn more.
+
+Stirling PDF is an online PDF converter and editor with many functionalities. Visit the [official website](https://www.stirlingpdf.com) or [demo](https://stirlingpdf.io) to learn more.
 
 ## Dependencies
-- traefik (optional)
+
+- a [Traefik](traefik.md) reverse-proxy server (optional)
 
 ## Configuration
+
 To enable this service, add the following configuration to your `vars.yml` file and re-run the [installation](../installing.md) process:
 
 ```yaml
@@ -15,6 +18,7 @@ To enable this service, add the following configuration to your `vars.yml` file 
 ########################################################################
 
 stirling_pdf_enabled: true
+
 stirling_pdf_hostname: stirlingpdf.example.com
 
 # The path at which stirling_pdf is served.
@@ -30,8 +34,10 @@ stirling_pdf_install_calibre: false
 #                                                                      #
 ########################################################################
 ```
+
 ### Optional Configuration
-you can decide if you want to configure via environment variables or a configuration file. Environment variables outrank the configuration file.
+
+You can decide if you want to configure via environment variables or a configuration file. Environment variables outrank the configuration file.
 
 To set addition environment variables use `stirling_pdf_environment_variables_extensions` in your `vars.yml` file.
 To use the configuration file, use `stirling_pdf_extra_config` in your `vars.yml` file.
@@ -49,4 +55,4 @@ stirling_pdf_environment_variables_extensions: |
 
 Find all possible arguments in the [official documentation](https://docs.stirlingpdf.com/Advanced%20Configuration/How%20to%20add%20configurations).
 
-All possible variables to configure the ansible-role can be found in the [defaults/main.yml](https://github.com/Bergruebe/ansible-role-stirling-pdf/blob/main/defaults/main.yml) file.
+All possible variables to configure the ansible-role can be found in its [defaults/main.yml](https://github.com/Bergruebe/ansible-role-stirling-pdf/blob/main/defaults/main.yml) file.
