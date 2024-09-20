@@ -5152,7 +5152,7 @@ soft_serve_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_ba
 
 
 
-# role-specific:stirling-pdf
+# role-specific:stirling_pdf
 ########################################################################
 #                                                                      #
 # stirling-pdf                                                         #
@@ -5183,7 +5183,7 @@ stirling_pdf_container_labels_traefik_tls_certResolver: "{{ devture_traefik_cert
 # /stirling-pdf                                                        #
 #                                                                      #
 ########################################################################
-# /role-specific:stirling-pdf
+# /role-specific:stirling_pdf
 
 
 
