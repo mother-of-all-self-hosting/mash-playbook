@@ -207,6 +207,10 @@
     - role: galaxy/mariadb
     # /role-specific:mariadb
 
+    # role-specific:freescout
+    - role: galaxy/freescout
+    # /role-specific:freescout
+
     # role-specific:miniflux
     - role: galaxy/miniflux
     # /role-specific:miniflux
@@ -355,6 +359,10 @@
     - role: galaxy/radicale
     # /role-specific:radicale
 
+    # role-specific:readeck
+    - role: galaxy/readeck
+    # /role-specific:readeck
+
     # role-specific:redmine
     - role: galaxy/redmine
     # /role-specific:redmine
@@ -374,6 +382,10 @@
     # role-specific:soft_serve
     - role: galaxy/soft_serve
     # /role-specific:soft_serve
+
+    # role-specific:stirling_pdf
+    - role: galaxy/stirling_pdf
+    # /role-specific:stirling_pdf
 
     # role-specific:syncthing
     - role: galaxy/syncthing
@@ -402,6 +414,10 @@
     # role-specific:forgejo
     - role: galaxy/forgejo
     # /role-specific:forgejo
+
+    # role-specific:forgejo_runner
+    - role: galaxy/forgejo_runner
+    # /role-specific:forgejo_runner
 
     # role-specific:woodpecker_ci_server
     - role: galaxy/woodpecker_ci_server

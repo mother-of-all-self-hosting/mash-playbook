@@ -191,6 +191,11 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
     {{ ({'name': (calibre_web_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'calibre-web']} if calibre_web_enabled else omit) }}
   # /role-specific:calibre-web
 
+  # role-specific:readeck
+  - |-
+    {{ ({'name': (readeck_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'readeck']} if readeck_enabled else omit) }}
+  # /role-specific:readeck
+
   # role-specific:changedetection
   - |-
     {{ ({'name': (changedetection_identifier + '.service'), 'priority': 2100, 'groups': ['mash', 'changedetection']} if changedetection_enabled else omit) }}
@@ -404,6 +409,11 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
     {{ ({'name': (linkding_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'linkding']} if linkding_enabled else omit) }}
   # /role-specific:linkding
 
+  # role-specific:freescout
+  - |-
+    {{ ({'name': (freescout_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'freescout']} if freescout_enabled else omit) }}
+  # /role-specific:freescout
+
   # role-specific:miniflux
   - |-
     {{ ({'name': (miniflux_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'miniflux']} if miniflux_enabled else omit) }}
@@ -592,6 +602,11 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
     {{ ({'name': (soft_serve_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'soft-serve']} if soft_serve_enabled else omit) }}
   # /role-specific:soft_serve
 
+  # role-specific:stirling_pdf
+  - |-
+    {{ ({'name': (stirling_pdf_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'stirling_pdf']} if stirling_pdf_enabled else omit) }}
+  # /role-specific:stirling_pdf
+
   # role-specific:syncthing
   - |-
     {{ ({'name': (syncthing_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'syncthing']} if syncthing_enabled else omit) }}
@@ -633,6 +648,11 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
   - |-
     {{ ({'name': (forgejo_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'forgejo', 'forgejo-server']} if forgejo_enabled else omit) }}
   # /role-specific:forgejo
+
+  # role-specific:forgejo_runner
+  - |-
+    {{ ({'name': (forgejo_runner_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'forgejo-runner']} if forgejo_runner_enabled else omit) }}
+  # /role-specific:forgejo_runner
 
   # role-specific:writefreely
   - |-
@@ -819,6 +839,17 @@ mash_playbook_devture_postgres_managed_databases_auto_itemized:
       } if linkding_enabled and linkding_database_engine == 'postgres' else omit)
     }}
   # /role-specific:linkding
+
+  # role-specific:freescout
+  - |-
+    {{
+      ({
+        'name': freescout_database_name,
+        'username': freescout_database_username,
+        'password': freescout_database_password,
+      } if freescout_enabled else omit)
+    }}
+  # /role-specific:freescout
 
   # role-specific:miniflux
   - |-
@@ -1649,6 +1680,41 @@ calibre_web_container_labels_traefik_tls_certResolver: "{{ devture_traefik_certR
 #                                                                      #
 ########################################################################
 # /role-specific:calibre-web
+
+
+
+# role-specific:readeck
+########################################################################
+#                                                                      #
+# readeck                                                            #
+#                                                                      #
+########################################################################
+
+readeck_enabled: false
+
+readeck_identifier: "{{ mash_playbook_service_identifier_prefix }}readeck"
+
+readeck_uid: "{{ mash_playbook_uid }}"
+readeck_gid: "{{ mash_playbook_gid }}"
+
+readeck_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}readeck"
+
+readeck_container_additional_networks_auto: |
+  {{
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+  }}
+
+readeck_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+readeck_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+readeck_container_labels_traefik_entrypoints: "{{ devture_traefik_entrypoint_primary }}"
+readeck_container_labels_traefik_tls_certResolver: "{{ devture_traefik_certResolver_primary }}"
+
+########################################################################
+#                                                                      #
+# /readeck                                                           #
+#                                                                      #
+########################################################################
+# /role-specific:readeck
 
 
 
@@ -3590,6 +3656,50 @@ linkding_database_engine: "{{ 'postgres' if devture_postgres_enabled and linkdin
 
 
 
+# role-specific:freescout
+########################################################################
+#                                                                      #
+# freescout                                                            #
+#                                                                      #
+########################################################################
+
+freescout_enabled: false
+
+freescout_identifier: "{{ mash_playbook_service_identifier_prefix }}freescout"
+
+freescout_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}freescout"
+
+freescout_systemd_required_services_list: |
+  {{
+    ([devture_systemd_docker_base_docker_service_name] if devture_systemd_docker_base_docker_service_name else [])
+    +
+    ([devture_postgres_identifier ~ '.service'] if devture_postgres_enabled and freescout_database_hostname == devture_postgres_identifier else [])
+  }}
+
+freescout_container_additional_networks: |
+  {{
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+    +
+    ([devture_postgres_container_network] if devture_postgres_enabled and freescout_database_hostname == devture_postgres_identifier and freescout_container_network != devture_postgres_container_network else [])
+  }}
+
+freescout_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+freescout_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+freescout_container_labels_traefik_entrypoints: "{{ devture_traefik_entrypoint_primary }}"
+freescout_container_labels_traefik_tls_certResolver: "{{ devture_traefik_certResolver_primary }}"
+
+freescout_database_hostname: "{{ devture_postgres_connection_hostname if devture_postgres_enabled else '' }}"
+freescout_database_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'freescout.db', rounds=655555) | to_uuid }}"
+
+########################################################################
+#                                                                      #
+# /freescout                                                           #
+#                                                                      #
+########################################################################
+# /role-specific:freescout
+
+
+
 # role-specific:miniflux
 ########################################################################
 #                                                                      #
@@ -5102,6 +5212,41 @@ soft_serve_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_ba
 
 
 
+# role-specific:stirling_pdf
+########################################################################
+#                                                                      #
+# stirling-pdf                                                         #
+#                                                                      #
+########################################################################
+
+stirling_pdf_enabled: false
+
+stirling_pdf_identifier: "{{ mash_playbook_service_identifier_prefix }}stirling-pdf"
+
+stirling_pdf_uid: "{{ mash_playbook_uid }}"
+stirling_pdf_gid: "{{ mash_playbook_gid }}"
+
+stirling_pdf_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}stirling-pdf"
+
+stirling_pdf_container_additional_networks_auto: |
+  {{
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+  }}
+
+stirling_pdf_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+stirling_pdf_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+stirling_pdf_container_labels_traefik_entrypoints: "{{ devture_traefik_entrypoint_primary }}"
+stirling_pdf_container_labels_traefik_tls_certResolver: "{{ devture_traefik_certResolver_primary }}"
+
+########################################################################
+#                                                                      #
+# /stirling-pdf                                                        #
+#                                                                      #
+########################################################################
+# /role-specific:stirling_pdf
+
+
+
 # role-specific:syncthing
 ########################################################################
 #                                                                      #
@@ -5391,7 +5536,7 @@ forgejo_systemd_required_systemd_services_list: |
     ([devture_postgres_identifier ~ '.service'] if devture_postgres_enabled and forgejo_config_database_hostname == devture_postgres_identifier else [])
   }}
 
-forgejo_container_additional_networks: |
+forgejo_container_additional_networks_auto: |
   {{
     ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
     +
@@ -5414,6 +5559,36 @@ forgejo_config_database_password: "{{ '%s' | format(mash_playbook_generic_secret
 #                                                                      #
 ########################################################################
 # /role-specific:forgejo
+
+
+
+# role-specific:forgejo_runner
+########################################################################
+#                                                                      #
+# forgejo_runner                                                       #
+#                                                                      #
+########################################################################
+
+forgejo_runner_enabled: false
+
+forgejo_runner_uid: "0"
+forgejo_runner_gid: "0"
+
+forgejo_runner_identifier: "{{ mash_playbook_service_identifier_prefix }}forgejo-runner"
+
+forgejo_runner_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}forgejo-runner"
+
+forgejo_runner_systemd_required_systemd_services_list: |
+  {{
+    ([devture_systemd_docker_base_docker_service_name] if devture_systemd_docker_base_docker_service_name else [])
+  }}
+
+########################################################################
+#                                                                      #
+# /forgejo_runner                                                      #
+#                                                                      #
+########################################################################
+# /role-specific:forgejo_runner
 
 
 
