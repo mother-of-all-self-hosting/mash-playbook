@@ -6,11 +6,10 @@
 * Authentik: 2024.8.2
 * Borg: 1.2.8
 * Borgmatic: 1.8.13
-* Cadvisor: v0.49.1
 * Calibre Web: 0.6.23
 * Changedetection: 0.45.25
 * Changedetection Playwright Driver: latest
-* Clickhouse: 24.8.2.3
+* Clickhouse: 24.8.4.13
 * Collabora Online: 24.04.3.1.1
 * Container Socket Proxy: 0.2.0
 * Couchdb: 3.3.3
@@ -52,11 +51,11 @@
 * Mosquitto: 2.0.15
 * Mrs: v0.1.0
 * N8N: next
-* Navidrome: 0.53.1
+* Navidrome: 0.53.2
 * Neko: firefox
 * Netbox: v3.7.0-2.8.0
 * Netbox Container Image Customizations Keycloak Sso Expiration Middleware: a2ac39b1c73a50742c6e834e89162f87528c7f73
-* Nextcloud: 29.0.7
+* Nextcloud: 30.0.0
 * Notfellchen: 0.1.1
 * Notfellchen Sws: 2
 * Oauth2 Proxy: v7.6.0
@@ -66,7 +65,7 @@
 * Paperless: 2.11.4
 * Paperless Gotenberg: 8.9.1
 * Paperless Tika: 2.9.2.1
-* Peertube: v6.2.1
+* Peertube: v6.3.0
 * Plausible: v2.1.1
 * Prometheus: v2.54.1
 * Prometheus Blackbox Exporter: v0.25.0
@@ -74,7 +73,7 @@
 * Prometheus Postgres Exporter: v0.14.0
 * Prometheus Ssh Exporter: v1.5.0
 * Promtail: 2.9.5
-* Radicale: 3.2.3.0
+* Radicale: 3.2.3.1
 * Readeck: 0.15.3
 * Redis: 7.2.5
 * Redmine: 5.1.3
@@ -82,6 +81,7 @@
 * Rumqttd: 0.21.0
 * Semaphore: 2.9.56
 * Soft Serve: v0.4.7
+* Stirling Pdf: 0.29.0-fat
 * Syncthing: 1.27.12
 * Tandoor Api: 1.5.19
 * Tandoor Frontend: 1.27-alpine

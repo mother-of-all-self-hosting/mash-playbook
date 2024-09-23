@@ -11,7 +11,6 @@
     <outline text="authelia" title="authelia" type="rss" htmlUrl="https://github.com/authelia/authelia" xmlUrl="https://github.com/authelia/authelia/releases.atom" />
     <outline text="authentik" title="authentik" type="rss" htmlUrl="https://github.com/goauthentik/authentik" xmlUrl="https://github.com/goauthentik/authentik/releases.atom" />
     <outline text="backup_borg" title="backup_borg" type="rss" htmlUrl="https://gitlab.com/etke.cc/borgmatic" xmlUrl="https://gitlab.com/etke.cc/borgmatic/-/tags?format=atom" />
-    <outline text="cadvisor" title="cadvisor" type="rss" htmlUrl="https://github.com/google/cadvisor" xmlUrl="https://github.com/google/cadvisor/releases.atom" />
     <outline text="calibre-web" title="calibre-web" type="rss" htmlUrl="https://github.com/calibre_web/calibre_web" xmlUrl="https://github.com/calibre_web/calibre_web/releases.atom" />
     <outline text="changedetection" title="changedetection" type="rss" htmlUrl="https://github.com/dgtlmoon/changedetection.io" xmlUrl="https://github.com/dgtlmoon/changedetection.io/releases.atom" />
     <outline text="clickhouse" title="clickhouse" type="rss" htmlUrl="https://github.com/ClickHouse/ClickHouse" xmlUrl="https://github.com/ClickHouse/ClickHouse/releases.atom" />
@@ -68,6 +67,7 @@
     <outline text="roundcube" title="roundcube" type="rss" htmlUrl="https://github.com/roundcube/roundcubemail" xmlUrl="https://github.com/roundcube/roundcubemail/releases.atom" />
     <outline text="semaphore" title="semaphore" type="rss" htmlUrl="https://github.com/ansible-semaphore/semaphore" xmlUrl="https://github.com/ansible-semaphore/semaphore/releases.atom" />
     <outline text="soft_serve" title="soft_serve" type="rss" htmlUrl="https://github.com/charmbracelet/soft-serve" xmlUrl="https://github.com/charmbracelet/soft-serve/releases.atom" />
+    <outline text="stirling_pdf" title="stirling_pdf" type="rss" htmlUrl="https://github.com/Stirling-Tools/Stirling-PDF" xmlUrl="https://github.com/Stirling-Tools/Stirling-PDF/releases.atom" />
     <outline text="syncthing" title="syncthing" type="rss" htmlUrl="https://github.com/syncthing/syncthing/" xmlUrl="https://github.com/syncthing/syncthing//releases.atom" />
     <outline text="tandoor" title="tandoor" type="rss" htmlUrl="https://github.com/TandoorRecipes/recipes" xmlUrl="https://github.com/TandoorRecipes/recipes/releases.atom" />
     <outline text="traefik" title="traefik" type="rss" htmlUrl="https://github.com/traefik/traefik" xmlUrl="https://github.com/traefik/traefik/releases.atom" />
