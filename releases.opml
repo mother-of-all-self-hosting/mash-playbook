@@ -23,6 +23,7 @@
     <outline text="exim_relay" title="exim_relay" type="rss" htmlUrl="https://github.com/devture/exim-relay" xmlUrl="https://github.com/devture/exim-relay/releases.atom" />
     <outline text="firezone" title="firezone" type="rss" htmlUrl="https://github.com/firezone/firezone" xmlUrl="https://github.com/firezone/firezone/releases.atom" />
     <outline text="focalboard" title="focalboard" type="rss" htmlUrl="https://github.com/mattermost/focalboard" xmlUrl="https://github.com/mattermost/focalboard/releases.atom" />
+    <outline text="freescout" title="freescout" type="rss" htmlUrl="https://github.com/tiredofit/docker-freescout" xmlUrl="https://github.com/tiredofit/docker-freescout/releases.atom" />
     <outline text="freshrss" title="freshrss" type="rss" htmlUrl="https://github.com/freshrss/freshrss" xmlUrl="https://github.com/freshrss/freshrss/releases.atom" />
     <outline text="funkwhale" title="funkwhale" type="rss" htmlUrl="https://dev.funkwhale.audio/funkwhale/funkwhale" xmlUrl="https://dev.funkwhale.audio/funkwhale/funkwhale/-/tags?format=atom" />
     <outline text="gotosocial" title="gotosocial" type="rss" htmlUrl="https://github.com/superseriousbusiness/gotosocial" xmlUrl="https://github.com/superseriousbusiness/gotosocial/releases.atom" />
