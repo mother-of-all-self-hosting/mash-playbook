@@ -26,6 +26,7 @@
 | [exim-relay](https://github.com/devture/exim-relay) | A lightweight [Exim](https://www.exim.org/) SMTP mail relay server | [Link](services/exim-relay.md) |
 | [Focalboard](https://www.focalboard.com/) | An open source, self-hosted alternative to [Trello](https://trello.com/), [Notion](https://www.notion.so/), and [Asana](https://asana.com/). | [Link](services/focalboard.md) |
 | [FreshRSS](https://freshrss.org/) | RSS and Atom feed aggregator. | [Link](services/freshrss.md) |
+| [Freescout](https://freescout.net/) | A free help desk software | [Link](services/freescout.md) |
 | [Firezone](https://www.firezone.dev/) | A self-hosted VPN server (based on [WireGuard](https://www.wireguard.com/)) with a Web UI | [Link](services/firezone.md) |
 | [Funkwhale](https://funkwhale.audio/) | Listen and share music with a selfhosted streaming server.| [Link](services/funkwhale.md) |
 | [Gitea](https://gitea.io/) | A painless self-hosted [Git](https://git-scm.com/) service. | [Link](services/gitea.md) |

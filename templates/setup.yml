@@ -207,6 +207,10 @@
     - role: galaxy/mariadb
     # /role-specific:mariadb
 
+    # role-specific:freescout
+    - role: galaxy/freescout
+    # /role-specific:freescout
+
     # role-specific:miniflux
     - role: galaxy/miniflux
     # /role-specific:miniflux
