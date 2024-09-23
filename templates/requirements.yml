@@ -120,7 +120,7 @@
   version: v3.5.1-0
   name: forgejo_runner
   activation_prefix: forgejo_runner_
-- src: git+https://github.com/mother-of-all-self-hosting/anislbe-role-freescout.git
+- src: git+https://github.com/mother-of-all-self-hosting/ansible-role-freescout.git
   version: v1.17.87-0
   name: freescout
   activation_prefix: freescout_
