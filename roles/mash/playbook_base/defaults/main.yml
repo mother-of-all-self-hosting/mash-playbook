@@ -46,8 +46,8 @@ mash_playbook_architecture: "{{ 'amd64' if ansible_architecture == 'x86_64' else
 #
 # - `playbook-managed-traefik`
 #     - the playbook will run a managed Traefik instance (mash-traefik)
-#     - Traefik will do SSL termination, unless you disable it (e.g. `devture_traefik_config_entrypoint_web_secure_enabled: false`)
-#     - if SSL termination is enabled (as it is by default), you need to populate: `devture_traefik_config_certificatesResolvers_acme_email`
+#     - Traefik will do SSL termination, unless you disable it (e.g. `traefik_config_entrypoint_web_secure_enabled: false`)
+#     - if SSL termination is enabled (as it is by default), you need to populate: `traefik_config_certificatesResolvers_acme_email`
 #
 # - `other-traefik-container`
 #     - this playbook will not install Traefik
@@ -74,12 +74,12 @@ mash_playbook_docker_installation_daemon_options_auto:
 mash_playbook_docker_installation_daemon_options_custom: {}
 
 # Controls whether to attach Traefik labels to services.
-# This is separate from `devture_traefik_enabled`, because you may wish to disable Traefik installation by the playbook,
+# This is separate from `traefik_enabled`, because you may wish to disable Traefik installation by the playbook,
 # yet still use Traefik installed in another way.
 mash_playbook_traefik_labels_enabled: "{{ mash_playbook_reverse_proxy_type in ['playbook-managed-traefik', 'other-traefik-container'] }}"
 
 # Controls the additional network that reverse-proxyable services will be connected to.
-mash_playbook_reverse_proxyable_services_additional_network: "{{ devture_traefik_container_network if devture_traefik_enabled | default(false) else '' }}"
+mash_playbook_reverse_proxyable_services_additional_network: "{{ traefik_container_network if traefik_enabled | default(false) else '' }}"
 
 # Controls whether various services should expose metrics publicly.
 # If Prometheus is operating on the same machine, exposing metrics publicly is not necessary.

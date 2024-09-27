@@ -63,7 +63,7 @@ devture_timesync_installation_enabled: true
 
 ########################################################################
 #                                                                      #
-# devture-traefik                                                      #
+# traefik                                                      #
 #                                                                      #
 ########################################################################
 
@@ -77,11 +77,11 @@ devture_timesync_installation_enabled: true
 mash_playbook_reverse_proxy_type: playbook-managed-traefik
 
 # The email address that Traefik will pass to Let's Encrypt when obtaining SSL certificates
-devture_traefik_config_certificatesResolvers_acme_email: your-email@example.com
+traefik_config_certificatesResolvers_acme_email: your-email@example.com
 
 ########################################################################
 #                                                                      #
-# /devture-traefik                                                     #
+# /traefik                                                     #
 #                                                                      #
 ########################################################################
 
@@ -89,7 +89,7 @@ devture_traefik_config_certificatesResolvers_acme_email: your-email@example.com
 
 ########################################################################
 #                                                                      #
-# devture-postgres                                                     #
+# postgres                                                     #
 #                                                                      #
 ########################################################################
 
@@ -97,14 +97,14 @@ devture_traefik_config_certificatesResolvers_acme_email: your-email@example.com
 #
 # Learn more about the Postgres service in docs/services/postgres.md
 
-devture_postgres_enabled: true
+postgres_enabled: true
 
 # Put a strong password below, generated with `pwgen -s 64 1` or in another way
-devture_postgres_connection_password: ''
+postgres_connection_password: ''
 
 ########################################################################
 #                                                                      #
-# /devture-postgres                                                    #
+# /postgres                                                    #
 #                                                                      #
 ########################################################################
 

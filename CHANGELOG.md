@@ -1,3 +1,20 @@
+# 2024-09-27
+
+## (BC Break) Postgres, Traefik & Woodpecker CI roles have been relocated and variable names need adjustments
+
+Various roles have been relocated from the [devture](https://github.com/devture) organization to the [mother-of-all-self-hosting](https://github.com/mother-of-all-self-hosting) organization.
+
+Along with the relocation, the `devture_` prefix was dropped from their variable names, so you need to adjust your `vars.yml` configuration.
+
+You need to do the following replacements:
+
+- `devture_postgres_` -> `postgres_`
+- `devture_traefik_` -> `traefik_`
+- `devture_woodpecker_ci_` -> `woodpecker_ci_`
+
+As always, the playbook would let you know about this and point out any variables you may have missed.
+
+
 # 2024-07-06
 
 ## Traefik v3 and HTTP/3 are here now
@@ -18,7 +35,7 @@ If you're using the playbook's Traefik instance to reverse-proxy to some other s
 
 If you've tweaked any of this playbook's `_path_prefix` variables and made them use a regular expression, you will now need to make additional adjustments. The playbook makes extensive use of `PathPrefix()` matchers in Traefik rules and `PathPrefix` does not support regular expressions anymore. To work around it, you may now need to override a whole `_traefik_rule` variable and switch it from [`PathPrefix` to `PathRegexp`](https://doc.traefik.io/traefik/routing/routers/#path-pathprefix-and-pathregexp).
 
-You **may potentially downgrade to Traefik v2** (if necessary) by adding `devture_traefik_verison: v2.11.4` to your configuration.
+You **may potentially downgrade to Traefik v2** (if necessary) by adding `traefik_verison: v2.11.4` to your configuration.
 
 
 ### HTTP/3 is enabled by default
@@ -35,7 +52,7 @@ Still, if HTTP/3 cannot function correctly in your setup, it's best to disable a
 To **disable HTTP/3**, you can use the following configuration:
 
 ```yml
-devture_traefik_config_entrypoint_web_secure_http3_enabled: false
+traefik_config_entrypoint_web_secure_http3_enabled: false
 ```
 
 

@@ -1,5 +1,11 @@
 ---
 
+- tags:
+    - setup-all
+    - install-all
+  block:
+    - ansible.builtin.include_tasks: "{{ role_path }}/tasks/validate_config.yml"
+
 - when: ansible_os_family == 'Debian' and mash_playbook_docker_installation_enabled | bool and mash_playbook_migration_docker_trusted_gpg_d_migration_enabled | bool
   tags:
     - setup-all
