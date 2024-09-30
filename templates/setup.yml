@@ -423,6 +423,10 @@
     - role: galaxy/woodpecker_ci_server
     # /role-specific:woodpecker_ci_server
 
+    # role-specific:versatiles
+    - role: galaxy/versatiles
+    # /role-specific:versatiles
+
     # role-specific:woodpecker_ci_agent
     - role: galaxy/woodpecker_ci_agent
     # /role-specific:woodpecker_ci_agent

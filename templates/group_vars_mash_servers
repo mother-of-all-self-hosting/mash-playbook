@@ -5478,6 +5478,41 @@ uptime_kuma_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_
 
 
 
+# role-specific:versatiles
+########################################################################
+#                                                                      #
+# versatiles                                                          #
+#                                                                      #
+########################################################################
+
+versatiles_enabled: false
+
+versatiles_identifier: "{{ mash_playbook_service_identifier_prefix }}versatiles"
+
+versatiles_uid: "{{ mash_playbook_uid }}"
+versatiles_gid: "{{ mash_playbook_gid }}"
+
+versatiles_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}versatiles"
+
+versatiles_container_additional_networks_auto: |
+  {{
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+  }}
+
+versatiles_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+versatiles_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+versatiles_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
+versatiles_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
+
+########################################################################
+#                                                                      #
+# /versatiles                                                         #
+#                                                                      #
+########################################################################
+# /role-specific:versatiles
+
+
+
 # role-specific:wg_easy
 ########################################################################
 #                                                                      #

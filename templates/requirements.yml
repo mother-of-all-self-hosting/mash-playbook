@@ -395,6 +395,10 @@
   version: v1.32.0-0
   name: vaultwarden
   activation_prefix: vaultwarden_
+- src: git+https://github.com/moan0s/ansible-role-versatiles.git
+  version: v0.12.6-1
+  name: versatiles
+  activation_prefix: versatiles_
 - src: git+https://github.com/spatterIight/ansible-role-wetty.git
   version: v2.5-0
   name: wetty
