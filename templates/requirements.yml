@@ -200,8 +200,6 @@
   version: v1.26.0-0
   name: matterbridge
   activation_prefix: matterbridge_
-- src: git+https://gitlab.com/etke.cc/roles/miniflux.git
-  version: v2.1.4-0
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-miniflux.git
   version: v2.2.0-0
   name: miniflux
