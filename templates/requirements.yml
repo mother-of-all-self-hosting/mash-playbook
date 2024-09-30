@@ -196,7 +196,8 @@
   version: v11.4.3-0
   name: mariadb
   activation_prefix: mariadb_
-- src: git+https://github.com/oliverlorenz/ansible-role-matterbridge.git
+- src: git+https://github.com/mother-of-all-self-hosting/ansible-role-matterbridge.git
+  version: v1.26.0-0
   name: matterbridge
   activation_prefix: matterbridge_
 - src: git+https://gitlab.com/etke.cc/roles/miniflux.git
