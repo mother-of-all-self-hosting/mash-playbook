@@ -19,11 +19,11 @@ To enable this service, add the following configuration to your `vars.yml` file 
 
 stirling_pdf_enabled: true
 
-stirling_pdf_hostname: stirlingpdf.example.com
+stirling_pdf_hostname: mash.example.com
 
 # The path at which stirling_pdf is served.
 # This value must either be `/` or not end with a slash (e.g. `/pdf`).
-stirling_pdf_path_prefix: /
+stirling_pdf_path_prefix: /stirlingpdf
 
 # Set to true to download calibre onto stirling-pdf enabling pdf to/from book and advanced html conversion | default false
 stirling_pdf_install_calibre: false
