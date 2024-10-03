@@ -3055,6 +3055,19 @@ mash_playbook_hubsite_service_list_auto_itemized:
     }}
   # /role-specific:languagetool
 
+  # role-specific:linkding
+  - |-
+    {{
+      ({
+        'name': hubsite_service_linkding_name,
+        'url': hubsite_service_linkding_url,
+        'logo_location': hubsite_service_linkding_logo_location,
+        'description': hubsite_service_linkding_description,
+        'priority': hubsite_service_linkding_priority,
+      } if hubsite_service_linkding_enabled else omit)
+    }}
+  # /role-specific:linkding
+
   # role-specific:miniflux
   - |-
     {{
@@ -3067,6 +3080,19 @@ mash_playbook_hubsite_service_list_auto_itemized:
       } if hubsite_service_miniflux_enabled else omit)
     }}
   # /role-specific:miniflux
+
+  # role-specific:navidrome
+  - |-
+    {{
+      ({
+        'name': hubsite_service_navidrome_name,
+        'url': hubsite_service_navidrome_url,
+        'logo_location': hubsite_service_navidrome_logo_location,
+        'description': hubsite_service_navidrome_description,
+        'priority': hubsite_service_navidrome_priority,
+      } if hubsite_service_navidrome_enabled else omit)
+    }}
+  # /role-specific:navidrome
 
   # role-specific:n8n
   - |-
@@ -3093,19 +3119,6 @@ mash_playbook_hubsite_service_list_auto_itemized:
       } if hubsite_service_nextcloud_enabled else omit)
     }}
   # /role-specific:nextcloud
-
-  # role-specific:linkding
-  - |-
-    {{
-      ({
-        'name': hubsite_service_linkding_name,
-        'url': hubsite_service_linkding_url,
-        'logo_location': hubsite_service_linkding_logo_location,
-        'description': hubsite_service_linkding_description,
-        'priority': hubsite_service_linkding_priority,
-      } if hubsite_service_linkding_enabled else omit)
-    }}
-  # /role-specific:linkding
 
   # role-specific:owncast
   - |-
