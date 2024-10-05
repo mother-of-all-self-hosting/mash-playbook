@@ -1,0 +1,424 @@
+# Below is an example which installs a few services on the host, in different configuration.
+# You should tweak this example as you see fit and enable the services that you need.
+
+########################################################################
+#                                                                      #
+# Playbook                                                             #
+#                                                                      #
+########################################################################
+
+# Put a strong secret below, generated with `pwgen -s 64 1` or in another way
+# Various other secrets will be derived from this secret automatically.
+mash_playbook_generic_secret_key: "{{vault_mash_playbook_generic_secret_key}}"
+
+########################################################################
+#                                                                      #
+# /Playbook                                                            #
+#                                                                      #
+########################################################################
+
+########################################################################
+#                                                                      #
+# system                                                               #
+#                                                                      #
+########################################################################
+
+#SSH 
+
+system_security_ssh_enabled: true
+
+system_security_ssh_port: "{{ansible_ssh_port}}"
+
+system_security_ssh_authorizedkeys_host: ["{{ ssh_key_1 }}","{{ ssh_key_2 }}"] # list of authorized public keys
+system_security_ssh_unauthorizedkeys_host: [] # list of unauthorized/revoked public keys
+#/SSH 
+
+
+#fail2ban 
+system_security_fail2ban_enabled: true
+
+system_security_fail2ban_sshd_port: "{{ system_security_ssh_port }}"
+# If you enabled playbook-managed ssh as described above,
+# you can replace the line above with the following:
+# system_security_fail2ban_sshd_port: "{{ system_security_ssh_port }}"
+
+#/fail2ban 
+
+########################################################################
+#                                                                      #
+# /system                                                              #
+#                                                                      #
+########################################################################
+
+
+########################################################################
+#                                                                      #
+# Docker                                                               #
+#                                                                      #
+########################################################################
+
+# To disable Docker installation (in case you'd be installing Docker in another way),
+# remove the line below.
+mash_playbook_docker_installation_enabled: false
+
+# To disable Docker SDK for Python installation (in case you'd be installing the SDK in another way),
+# remove the line below.
+devture_docker_sdk_for_python_installation_enabled: true
+
+########################################################################
+#                                                                      #
+# /Docker                                                              #
+#                                                                      #
+########################################################################
+
+
+
+########################################################################
+#                                                                      #
+# com.devture.ansible.role.timesync                                    #
+#                                                                      #
+########################################################################
+
+# To ensure the server's clock is synchronized (using systemd-timesyncd/ntpd),
+# we enable the timesync service.
+
+devture_timesync_installation_enabled: false
+
+########################################################################
+#                                                                      #
+# /com.devture.ansible.role.timesync                                   #
+#                                                                      #
+########################################################################
+
+
+
+########################################################################
+#                                                                      #
+# devture-traefik                                                      #
+#                                                                      #
+########################################################################
+
+# Most services require a reverse-proxy, so we enable Traefik here.
+#
+# Learn more about the Traefik service in docs/services/traefik.md
+
+# mash_playbook_reverse_proxy_type: playbook-managed-traefik
+
+# The email address that Traefik will pass to Let's Encrypt when obtaining SSL certificates
+# devture_traefik_config_certificatesResolvers_acme_email: your-email@example.com
+
+# Or, if you'd like to install Traefik yourself:
+#
+mash_playbook_reverse_proxy_type: other-traefik-container
+mash_playbook_reverse_proxyable_services_additional_network: traefik
+
+
+########################################################################
+#                                                                      #
+# /devture-traefik                                                     #
+#                                                                      #
+########################################################################
+
+
+
+########################################################################
+#                                                                      #
+# devture-postgres                                                     #
+#                                                                      #
+########################################################################
+
+# Most services require a Postgres database, so we enable Postgres here.
+#
+# Learn more about the Postgres service in docs/services/postgres.md
+
+devture_postgres_enabled: true
+
+# Put a strong password below, generated with `pwgen -s 64 1` or in another way
+devture_postgres_connection_password: "{{vault_devture_postgres_connection_password}}"
+
+########################################################################
+#                                                                      #
+# /devture-postgres                                                    #
+#                                                                      #
+########################################################################
+
+
+########################################################################
+#                                                                      #
+# uptime-kuma                                                          #
+#                                                                      #
+########################################################################
+
+# Learn more about the Uptime-kuma service in docs/services/uptime-kuma.md
+#
+# This service is only here as an example. If you don't wish to use the
+# Uptime-kuma service, remove the whole section.
+
+#uptime_kuma_enabled: true
+
+#uptime_kuma_hostname: uptime-kuma.example.com
+
+# For now, hosting uptime-kuma under a path is not supported.
+# See: https://github.com/louislam/uptime-kuma/issues/147
+# uptime_kuma_path_prefix: /uptime-kuma
+
+########################################################################
+#                                                                      #
+# /uptime-kuma                                                         #
+#                                                                      #
+########################################################################
+
+
+# You can add additional services here, as you see fit.
+# To discover new services and configuration, see docs/supported-services.md
+
+########################################################################
+#                                                                      #
+# nextcloud                                                            #
+#                                                                      #
+########################################################################
+
+nextcloud_enabled: true
+
+# This is your Nextcloud server's domain name.
+#
+# Example value: nextcloud.example.com
+
+nextcloud_hostname: "nextcloud.{{domain}}"
+nextcloud_path_prefix: /
+
+#nextcloud_config_additional_parameters:
+#  - key: mail_smtphost
+#    value: smtp.sendgrid.net
+#    type: string
+
+nextcloud_collabora_app_wopi_url: "{{ collabora_online_url }}"
+
+# By default, various private IPv4 networks are whitelited to connect to the WOPI API (document serving API).
+# If your Collabora Online installation does not live on the same server as Nextcloud,
+# you may need to adjust the list of networks.
+# If necessary, redefined the `nextcloud_collabora_app_wopi_allowlist` environment variable here.
+
+########################################################################
+#                                                                      #
+# /nextcloud                                                           #
+#                                                                      #
+########################################################################
+
+########################################################################
+#                                                                      #
+# collabora-online                                                     #
+#                                                                      #
+########################################################################
+
+collabora_online_enabled: true
+
+collabora_online_hostname: "collabora.{{domain}}"
+
+# A password for the admin interface, available at: https://COLLABORA_ONLINE_DOMAIN/browser/dist/admin/admin.html
+collabora_online_env_variable_password: "{{vault_collabora_online_env_variable_password}}"
+
+collabora_online_aliasgroup: "https://{{ nextcloud_hostname | replace('.', '\\.') }}:443"
+
+########################################################################
+#                                                                      #
+# /collabora-online                                                    #
+#                                                                      #
+########################################################################
+
+########################################################################
+#                                                                      #
+# gitea                                                                #
+#                                                                      #
+########################################################################
+
+gitea_enabled: true
+
+# Gitea uses port 22 by default.
+# We recommend that you move your regular SSH server to another port,
+# and stick to this default.
+#
+# If you wish to use another port, uncomment the variable below
+# and adjust the port as you see fit.
+# gitea_ssh_port: 222
+
+gitea_hostname: "gitea.{{domain}}"
+#gitea_path_prefix: /gitea
+
+########################################################################
+#                                                                      #
+# /gitea                                                               #
+#                                                                      #
+########################################################################
+
+########################################################################
+#                                                                      #
+# firezone                                                             #
+#                                                                      #
+########################################################################
+
+firezone_enabled: true
+
+firezone_hostname: "vpn.{{domain}}"
+
+firezone_default_admin_email: "{{admin_user_email}}"
+
+firezone_default_admin_password: "{{vault_firezone_default_admin_password}}"
+
+# Generate this with `openssl rand -base64 32`
+firezone_database_encryption_key: "{{vault_firezone_database_encryption_key}}"
+
+########################################################################
+#                                                                      #
+# /firezone                                                            #
+#                                                                      #
+########################################################################
+
+
+########################################################################
+#                                                                      #
+# miniflux                                                             #
+#                                                                      #
+########################################################################
+
+# Learn more about the Miniflux service in docs/services/miniflux.md
+#
+# This service is only here as an example. If you don't wish to use the
+# Miniflux service, remove the whole section.
+
+miniflux_enabled: false
+
+miniflux_hostname: "rss.{{domain}}"
+#miniflux_path_prefix: /miniflux
+
+miniflux_admin_login: Tray2941
+miniflux_admin_password: "{{vault_miniflux_admin_password}}"
+
+########################################################################
+#                                                                      #
+# /miniflux                                                            #
+#                                                                      #
+########################################################################
+
+########################################################################
+#                                                                      #
+# adguard-home                                                         #
+#                                                                      #
+########################################################################
+
+adguard_home_enabled: true
+
+adguard_home_hostname: "dns.{{domain}}"
+
+# Hosting under a subpath sort of works, but is not ideal
+# (see the URL section below for details).
+# Consider using a dedicated hostname and removing the line below.
+
+#adguard_home_path_prefix: /adguard-home
+
+# Expose only on 192.168.1.15
+adguard_home_container_dns_tcp_bind_port: '10.1.154.10:53'
+adguard_home_container_dns_udp_bind_port: '10.1.154.10:53'
+
+########################################################################
+#                                                                      #
+# /adguard-home                                                        #
+#                                                                      #
+########################################################################
+
+########################################################################
+#                                                                      #
+# netbox                                                               #
+#                                                                      #
+########################################################################
+
+netbox_enabled: false
+
+netbox_hostname: "ipam.{{domain}}"
+#netbox_path_prefix: /netbox
+
+# Put a strong secret below, generated with `pwgen -s 64 1` or in another way
+netbox_environment_variable_secret_key: ''
+
+# The following superuser will be created upon launch.
+netbox_environment_variable_superuser_name: your_username_here
+netbox_environment_variable_superuser_email: your.email@example.com
+# Put a strong secret below, generated with `pwgen -s 64 1` or in another way.
+# Changing the password subsequently will not affect the user's password.
+netbox_environment_variable_superuser_password: ''
+
+# Redis configuration, as described below
+
+########################################################################
+#                                                                      #
+# /netbox                                                              #
+#                                                                      #
+########################################################################
+
+########################################################################
+#                                                                      #
+# freshrss                                                             #
+#                                                                      #
+########################################################################
+
+freshrss_enabled: true
+
+freshrss_hostname: "rss.{{domain}}"
+#freshrss_path_prefix: /freshrss
+
+# Put a strong password below, generated with `pwgen -s 64 1` or in another way.
+# You will need to use this password in the setup wizard after installation.
+freshrss_database_password: "{{vault_freshrss_database_password}}"
+
+
+########################################################################
+#                                                                      #
+# /freshrss                                                            #
+#                                                                      #
+########################################################################
+
+
+########################################################################
+#                                                                      #
+# hubsite                                                              #
+#                                                                      #
+########################################################################
+
+hubsite_enabled: true
+
+hubsite_hostname: "hub.{{domain}}"
+
+hubsite_title: "TheWRT brings you..."
+hubsite_subtitle: "These wonderful services!"
+
+# If you want to explicitly control which services you want to show on this page you can overwrite 
+
+# hubsite_service_list_auto: |
+#   {{
+#     ([{'name': 'Miniflux', 'url': hubsite_service_miniflux_url, 'logo_location': '{{ role_path }}/assets/miniflux.png', 'description': 'An opinionated feed reader', 'priority': hubsite_service_miniflux_priority}] if hubsite_service_miniflux_enabled else [])
+#     +
+#     ([{'name': 'Uptime Kuma', 'url': hubsite_service_uptime_kuma_url, 'logo_location': '{{ role_path }}/assets/uptime-kuma.png', 'description': 'Check the status of the services', 'priority': hubsite_service_uptime_kuma_priority}] if hubsite_service_uptime_kuma_enabled else [])
+#     +
+#     ([{'name': 'Uptime Kuma', 'url': hubsite_service_uptime_kuma_url, 'logo_location': '{{ role_path }}/assets/uptime-kuma.png', 'description': 'Check the status of the services', 'priority': hubsite_service_uptime_kuma_priority}] if hubsite_service_uptime_kuma_enabled else [])
+#   
+#   }}
+
+# Use the `hubsite_service_list_additional` variable to add services that are not provided by this playbook
+# hubsite_service_list_additional: |
+#   {{
+#     ([{'name': 'My blog', 'url': 'https://example.com', 'logo_location': '', 'description': 'A link to a blog not hosted by this playbook', 'priority': 1000 }])
+#   }}
+
+
+########################################################################
+#                                                                      #
+# /hubsite                                                             #
+#                                                                      #
+########################################################################
+
+
+
+# "{{ }}"
+
+# .{{domain}}
+

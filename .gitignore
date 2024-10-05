@@ -1,4 +1,10 @@
-/inventory
+/inventory/hosts
+
+# Ignore folder that would expose domain
+inventory/host_vars/
+!inventory/host_vars/domain/
+
+.gitignore.swp
 
 # ignore roles pulled by ansible-galaxy
 /roles/galaxy/*
