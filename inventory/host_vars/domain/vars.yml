@@ -416,6 +416,28 @@ hubsite_subtitle: "These wonderful services!"
 #                                                                      #
 ########################################################################
 
+########################################################################
+#                                                                      #
+# stirling-pdf                                                         #
+#                                                                      #
+########################################################################
+
+stirling_pdf_enabled: true
+
+stirling_pdf_hostname: "pdf.{{domain}}"
+
+# The path at which stirling_pdf is served.
+# This value must either be `/` or not end with a slash (e.g. `/pdf`).
+stirling_pdf_path_prefix: /
+
+# Set to true to download calibre onto stirling-pdf enabling pdf to/from book and advanced html conversion | default false
+stirling_pdf_install_calibre: true
+
+########################################################################
+#                                                                      #
+# /stirling-pdf                                                        #
+#                                                                      #
+########################################################################
 
 
 # "{{ }}"
