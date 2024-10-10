@@ -2,7 +2,7 @@
 
 ![Versatiles Logo](../assets/versatiles-logo.png)
 
-[Versatiles](https://versatiles.org) is a a free stack for generating and serving vector tiles from [OpenStreetMap](https://openstreetmap.com) data.
+[Versatiles](https://versatiles.org) is a a free stack for generating and serving vector tiles based on [OpenStreetMap](https://openstreetmap.com) data.
 
 
 ## Dependencies
@@ -44,7 +44,7 @@ After installation, you should be able to access your new Versatiles instance at
 ![Map of Dresden](../assets/versatiles-map-example.jpeg)
 
 
-To embed the map in a website Copy&Paste the following snippt and replace `tiles.example.com` with your `versatiles_hostname`.
+To embed the map in a website Copy & Paste the following snippet and replace `tiles.example.com` with your `versatiles_hostname`.
 
 ```html
 <!-- add MapLibre JavaScript and CSS -->
@@ -61,7 +61,6 @@ To embed the map in a website Copy&Paste the following snippt and replace `tiles
     style: 'https://tiles.example.com/assets/styles/colorful.json'
   }).addControl(new maplibregl.NavigationControl());
 </script>
-
 ```
 
 For adjustments, check out the amazing [examples from maplibre](https://maplibre.org/maplibre-gl-js/docs/examples/).
