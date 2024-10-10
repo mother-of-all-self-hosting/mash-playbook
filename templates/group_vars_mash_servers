@@ -477,6 +477,10 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
     {{ ({'name': (notfellchen_identifier  + '.service'), 'priority': 2000, 'groups': ['mash', 'notfellchen']} if notfellchen_enabled else omit) }}
   - |-
     {{ ({'name': (notfellchen_sws_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'notfellchen', 'notfellchen-sws']} if notfellchen_enabled else omit) }}
+  - |-
+    {{ ({'name': (notfellchen_celery_beat_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'notfellchen']} if notfellchen_enabled else omit) }}
+  - |-
+    {{ ({'name': (notfellchen_celery_worker_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'notfellchen']} if notfellchen_enabled else omit) }}
   # /role-specific:notfellchen
 
   # role-specific:mariadb
