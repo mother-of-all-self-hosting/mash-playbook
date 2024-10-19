@@ -1,6 +1,6 @@
 # Postgres Backup
 
-This playbook can configure [docker-postgres-backup-local](https://github.com/prodrigestivill/docker-postgres-backup-local) for you via the [com.devture.ansible.role.postgres_backup](https://github.com/devture/com.devture.ansible.role.postgres_backup) Ansible role.
+This playbook can configure [docker-postgres-backup-local](https://github.com/prodrigestivill/docker-postgres-backup-local) for you via the [mother-of-all-self-hosting/ansible-role-postgres-backup](https://github.com/mother-of-all-self-hosting/ansible-role-postgres-backup) Ansible role.
 
 For a more complete backup solution (one that includes not only Postgres, but also other configuration/data files), you may wish to look into [borg backup](backup-borg.md).
 

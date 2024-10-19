@@ -38,7 +38,7 @@ traefik_config_certificatesResolvers_acme_email: your-email@example.com
 Enabling the Traefik service, as shown above, automatically installs a [tecnativa/docker-socket-proxy](https://github.com/Tecnativa/docker-socket-proxy) service/container (powered by the [com.devture.ansible.role.container_socket_proxy](https://github.com/devture/com.devture.ansible.role.container_socket_proxy) Ansible role) to improve security by not mounting a Docker socket into the Traefik container.
 
 
-This [Ansible role we use for Traefik](https://github.com/devture/com.devture.ansible.role.traefik) supports various configuration options. Feel free to consult [its `default/main.yml` variables file](https://github.com/devture/com.devture.ansible.role.traefik/blob/main/defaults/main.yml).
+This [Ansible role we use for Traefik](https://github.com/mother-of-all-self-hosting/ansible-role-traefik) supports various configuration options. Feel free to consult [its `default/main.yml` variables file](https://github.com/mother-of-all-self-hosting/ansible-role-traefik/blob/main/defaults/main.yml).
 
 Below, you can find some guidance about common tweaks you may wish to do.
 

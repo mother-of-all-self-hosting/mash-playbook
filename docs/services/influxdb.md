@@ -28,6 +28,12 @@ influxdb_hostname: 'example.org'
 #influxdb_init_password: "SUPERSECRETPASSWORD"
 #influxdb_init_org: "EXAMPLE_ORG"
 #influxdb_init_bucket: "SOMEBUCKET"
+#
+# In order to let external services (like Proxmox or Grafana) access the http API of influxdb,
+# you need to specifically expose the corresponding port:
+#
+# Takes an "<ip>:<port>" (e.g. "127.0.0.1:8086") or "<port>" value (e.g. "8086"), or empty string to not expose.
+#influxdb_container_http_host_bind_port: ""
 
 ########################################################################
 #                                                                      #
