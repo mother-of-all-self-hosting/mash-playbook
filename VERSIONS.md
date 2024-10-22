@@ -84,17 +84,17 @@
 * Semaphore: 2.9.56
 * Soft Serve: v0.4.7
 * Stirling Pdf: 0.29.0-fat
-* Syncthing: 1.27.12
+* Syncthing: 1.28.0
 * Tandoor Api: 1.5.19
 * Tandoor Frontend: 1.27-alpine
 * Telegraf: 1.30.2
 * Traefik: v3.1.3
 * Uptime Kuma: 1.23.15
-* Vaultwarden: 1.32.0
+* Vaultwarden: 1.32.2
 * Versatiles: 0.12.6
 * Wetty: 2.5
 * Wg Easy: 14
 * Woodpecker Ci Agent: v2.7.1
 * Woodpecker Ci Server: v2.7.1
-* Wordpress: 6.5.5
+* Wordpress: 6.6.2
 * Writefreely: v0.15.0
