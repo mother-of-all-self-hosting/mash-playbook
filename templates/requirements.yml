@@ -57,7 +57,7 @@
   name: container_socket_proxy
   activation_prefix: traefik_
 - src: git+https://github.com/Bergruebe/ansible-role-couchdb.git
-  version: v3.3.3-1
+  version: v3.4.2-0
   name: couchdb
   activation_prefix: couchdb_
 - src: git+https://github.com/geerlingguy/ansible-role-docker
