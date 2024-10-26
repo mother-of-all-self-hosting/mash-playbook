@@ -326,6 +326,7 @@ adguard_home_container_dns_udp_bind_port: '10.1.154.10:53'
 #                                                                      #
 ########################################################################
 
+
 ########################################################################
 #                                                                      #
 # netbox                                                               #
@@ -388,7 +389,7 @@ hubsite_enabled: true
 
 hubsite_hostname: "hub.{{domain}}"
 
-hubsite_title: "TheWRT brings you..."
+hubsite_title: "We bring you..."
 hubsite_subtitle: "These wonderful services!"
 
 # If you want to explicitly control which services you want to show on this page you can overwrite 
@@ -439,8 +440,41 @@ stirling_pdf_install_calibre: true
 #                                                                      #
 ########################################################################
 
+########################################################################
+#                                                                      #
+# authentik                                                            #
+#                                                                      #
+########################################################################
+
+authentik_enabled: true
+
+authentik_hostname: "authentik.{{domain}}"
+
+# Put a strong secret below, generated with `pwgen -s 64 1` or in another way
+authentik_secret_key:  "{{authentik_secret_key_vault}}"
+
+# KeyDB configuration, as described below
+
+# Point authentik to its dedicated KeyDB instance
+authentik_config_redis_hostname: authentik-keydb
+
+# Make sure the authentik service (mash-authentik.service) starts after its dedicated KeyDB service (mash-authentik-keydb.service)
+authentik_systemd_required_services_list_custom:
+  - "authentik-keydb.service"
+
+# Make sure the authentik container is connected to the container network of its dedicated KeyDB service (mash-authentik-keydb)
+authentik_container_additional_networks_custom:
+  - "authentik-keydb"
+
+########################################################################
+#                                                                      #
+# /authentik                                                           #
+#                                                                      #
+########################################################################
+
 
 # "{{ }}"
 
 # .{{domain}}
+
 
