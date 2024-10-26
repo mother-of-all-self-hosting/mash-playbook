@@ -59,7 +59,7 @@ system_security_fail2ban_sshd_port: "{{ system_security_ssh_port }}"
 
 # To disable Docker installation (in case you'd be installing Docker in another way),
 # remove the line below.
-mash_playbook_docker_installation_enabled: enable
+mash_playbook_docker_installation_enabled: true
 
 # To disable Docker SDK for Python installation (in case you'd be installing the SDK in another way),
 # remove the line below.
