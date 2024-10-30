@@ -40,7 +40,7 @@
 * Jitsi: stable-9779
 * Jitsi Ldap: 3
 * Jitsi Prosody Auth Matrix User Verification Repo: 2839499cb03894d8cfc3e5b2219441427cb133d8
-* Keycloak: 26.0.3
+* Keycloak: 26.0.4
 * Keydb: 6.3.4
 * Lago: v0.50.0-beta
 * Languagetool: 6.5
