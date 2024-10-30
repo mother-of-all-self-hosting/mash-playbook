@@ -57,7 +57,7 @@
   name: container_socket_proxy
   activation_prefix: traefik_
 - src: git+https://github.com/Bergruebe/ansible-role-couchdb.git
-  version: v3.4.2-0
+  version: v3.4.3-0
   name: couchdb
   activation_prefix: couchdb_
 - src: git+https://github.com/geerlingguy/ansible-role-docker
@@ -141,7 +141,7 @@
   name: gotosocial
   activation_prefix: gotosocial_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-grafana.git
-  version: v11.1.7-0
+  version: v11.2.2-0
   name: grafana
   activation_prefix: grafana_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-healthchecks.git
@@ -169,7 +169,7 @@
   name: jitsi
   activation_prefix: jitsi_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-keycloak.git
-  version: v26.0.1-0
+  version: v26.0.3-0
   name: keycloak
   activation_prefix: keycloak_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-keydb.git
@@ -201,7 +201,7 @@
   name: matterbridge
   activation_prefix: matterbridge_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-miniflux.git
-  version: v2.2.1-0
+  version: v2.2.2-0
   name: miniflux
   activation_prefix: miniflux_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-mobilizon.git
@@ -264,7 +264,7 @@
   version: v2.13.0-0
   name: paperless
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-peertube.git
-  version: v6.3.0-0
+  version: v6.3.3-0
   name: peertube
   activation_prefix: peertube_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-plausible.git
@@ -320,7 +320,7 @@
   name: promtail
   activation_prefix: promtail_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-radicale.git
-  version: v3.2.3.1-0
+  version: v3.3.0.1-0
   name: radicale
   activation_prefix: radicale_
 - src: git+https://github.com/lingawakad/ansible-role-readeck.git
