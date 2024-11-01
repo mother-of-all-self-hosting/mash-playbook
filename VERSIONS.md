@@ -3,7 +3,7 @@
 * Apisix Gateway: 3.8.0
 * Appsmith: v1.9.50
 * Authelia: 4.37.5
-* Authentik: 2024.8.3
+* Authentik: 2024.10.0
 * Borg: 1.2.8
 * Borgmatic: 1.8.13
 * Calibre Web: 0.6.23
@@ -40,7 +40,7 @@
 * Jitsi: stable-9779
 * Jitsi Ldap: 3
 * Jitsi Prosody Auth Matrix User Verification Repo: 2839499cb03894d8cfc3e5b2219441427cb133d8
-* Keycloak: 26.0.4
+* Keycloak: 26.0.5
 * Keydb: 6.3.4
 * Lago: v0.50.0-beta
 * Languagetool: 6.5
@@ -64,7 +64,7 @@
 * Outline: 0.80.2
 * Owncast: 0.1.2
 * Oxitraffic: 0.10.1
-* Paperless: 2.13.0
+* Paperless: 2.13.2
 * Paperless Gotenberg: 8.12.0
 * Paperless Tika: 3.0.0.0
 * Peertube: v6.3.3
