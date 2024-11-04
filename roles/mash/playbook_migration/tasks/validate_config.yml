@@ -1,0 +1,67 @@
+---
+
+- name: (Deprecation) Catch and report devture_postgres_backup variables
+  ansible.builtin.fail:
+    msg: |-
+      The postgres-backup role in the playbook now lives under the MASH organization (https://github.com/mother-of-all-self-hosting/ansible-role-postgres-backup).
+      The new role is pretty much the same, but uses differently named variables.
+
+      Please change your configuration (vars.yml) to rename all `devture_postgres_backup_`-prefixed variables (`devture_postgres_backup_*` -> `postgres_backup_*`).
+
+      The following variables in your configuration need to be renamed: {{ vars | dict2items | selectattr('key', 'match', 'devture_postgres_backup_.*') | map (attribute='key') | join(', ') }}
+  when: "vars | dict2items | selectattr('key', 'match', 'devture_postgres_backup_.*') | list | items2dict"
+
+- name: (Deprecation) Catch and report devture_postgres variables
+  ansible.builtin.fail:
+    msg: |-
+      The postgres role in the playbook now lives under the MASH organization (https://github.com/mother-of-all-self-hosting/ansible-role-postgres).
+      The new role is pretty much the same, but uses differently named variables.
+
+      Please change your configuration (vars.yml) to rename all `devture_postgres_`-prefixed variables (`devture_postgres_*` -> `postgres_*`).
+
+      The following variables in your configuration need to be renamed: {{ vars | dict2items | selectattr('key', 'match', 'devture_postgres_.*') | map (attribute='key') | join(', ') }}
+  when: "vars | dict2items | selectattr('key', 'match', 'devture_postgres_.*') | list | items2dict"
+
+- name: (Deprecation) Catch and report traefik_certs_dumper variables
+  ansible.builtin.fail:
+    msg: |-
+      The traefik-certs-dumper role in the playbook now lives under the MASH organization (https://github.com/mother-of-all-self-hosting/ansible-role-traefik-certs-dumper).
+      The new role is pretty much the same, but uses differently named variables.
+
+      Please change your configuration (vars.yml) to rename all `devture_traefik_certs_dumper_`-prefixed variables (`devture_traefik_certs_dumper_*` -> `traefik_certs_dumper_*`).
+
+      The following variables in your configuration need to be renamed: {{ vars | dict2items | selectattr('key', 'match', 'devture_traefik_certs_dumper_.*') | map (attribute='key') | join(', ') }}
+  when: "vars | dict2items | selectattr('key', 'match', 'devture_traefik_certs_dumper_.*') | list | items2dict"
+
+- name: (Deprecation) Catch and report devture_traefik variables
+  ansible.builtin.fail:
+    msg: |-
+      The traefik role in the playbook now lives under the MASH organization (https://github.com/mother-of-all-self-hosting/ansible-role-traefik).
+      The new role is pretty much the same, but uses differently named variables.
+
+      Please change your configuration (vars.yml) to rename all `devture_traefik_`-prefixed variables (`devture_traefik_*` -> `traefik_*`).
+
+      The following variables in your configuration need to be renamed: {{ vars | dict2items | selectattr('key', 'match', 'devture_traefik_.*') | map (attribute='key') | join(', ') }}
+  when: "vars | dict2items | selectattr('key', 'match', 'devture_traefik_.*') | list | items2dict"
+
+- name: (Deprecation) Catch and report devture_woodpecker_server variables
+  ansible.builtin.fail:
+    msg: |-
+      The woodpecker-ci-server role in the playbook now lives under the MASH organization (https://github.com/mother-of-all-self-hosting/ansible-role-woodpecker-ci-server).
+      The new role is pretty much the same, but uses differently named variables.
+
+      Please change your configuration (vars.yml) to rename all `devture_woodpecker_ci_server_`-prefixed variables (`devture_woodpecker_ci_server_*` -> `woodpecker_ci_server_*`).
+
+      The following variables in your configuration need to be renamed: {{ vars | dict2items | selectattr('key', 'match', 'devture_woodpecker_ci_server_.*') | map (attribute='key') | join(', ') }}
+  when: "vars | dict2items | selectattr('key', 'match', 'devture_woodpecker_ci_server_.*') | list | items2dict"
+
+- name: (Deprecation) Catch and report devture_woodpecker_agent variables
+  ansible.builtin.fail:
+    msg: |-
+      The woodpecker-ci-agent role in the playbook now lives under the MASH organization (https://github.com/mother-of-all-self-hosting/ansible-role-woodpecker-ci-agent).
+      The new role is pretty much the same, but uses differently named variables.
+
+      Please change your configuration (vars.yml) to rename all `devture_woodpecker_ci_agent_`-prefixed variables (`devture_woodpecker_ci_agent_*` -> `woodpecker_ci_agent_*`).
+
+      The following variables in your configuration need to be renamed: {{ vars | dict2items | selectattr('key', 'match', 'devture_woodpecker_ci_agent_.*') | map (attribute='key') | join(', ') }}
+  when: "vars | dict2items | selectattr('key', 'match', 'devture_woodpecker_ci_agent_.*') | list | items2dict"

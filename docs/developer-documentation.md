@@ -94,7 +94,7 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
 ########################################################################
 [...]
 
-mash_playbook_devture_postgres_managed_databases_auto_itemized:
+mash_playbook_postgres_managed_databases_auto_itemized:
   [...]
   # role-specific:YOUR-SERVICE
   - |-
@@ -106,7 +106,7 @@ mash_playbook_devture_postgres_managed_databases_auto_itemized:
       } if gYOUR-SERVICE_enabled else omit)
     }}
   # /role-specific:YOUR-SERVICE
-  
+
   [...]
 ########################################################################
 #                                                                      #
@@ -127,17 +127,17 @@ mash_playbook_devture_postgres_managed_databases_auto_itemized:
 [...]
 
 # role-specific:postgres
-YOUR-SERVICE_database_hostname: "{{ devture_postgres_identifier if devture_postgres_enabled else '' }}"
-YOUR-SERVICE_database_port: "{{ '5432' if devture_postgres_enabled else '' }}"
+YOUR-SERVICE_database_hostname: "{{ postgres_identifier if postgres_enabled else '' }}"
+YOUR-SERVICE_database_port: "{{ '5432' if postgres_enabled else '' }}"
 YOUR-SERVICE_database_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'db.authentik', rounds=655555) | to_uuid }}"
 YOUR-SERVICE_database_username: "{{ authentik_identifier }}"
 # /role-specific:postgres
 
 YOUR-SERVICE_container_additional_networks_auto: |
   {{
-    ([devture_postgres_identifier ~ '.service'] if devture_postgres_enabled and YOUR-SERVICE_database_hostname == devture_postgres_identifier else [])
+    ([postgres_identifier ~ '.service'] if postgres_enabled and YOUR-SERVICE_database_hostname == postgres_identifier else [])
   }}
-  
+
 ########################################################################
 #                                                                      #
 # /YOUR-SERVICE                                                        #
@@ -175,7 +175,7 @@ YOUR-SERVICE_config_mailer_smtp_port: 8025
 YOUR-SERVICE_config_mailer_from: "{{ exim_relay_sender_address if exim_relay_enabled else '' }}"
 YOUR-SERVICE_config_mailer_protocol: "{{ 'smtp' if exim_relay_enabled else '' }}"
 # /role-specific:exim_relay
-  
+
 ########################################################################
 #                                                                      #
 # /YOUR-SERVICE                                                        #

@@ -2,7 +2,8 @@
 
 This playbook can install and configure [Woodpecker CI](https://woodpecker-ci.org/) for you.
 
-Woodpecker CI is a [Continuous Integration](https://en.wikipedia.org/wiki/Continuous_integration) engine which can build and deploy your code automatically after pushing to a Gitea repository.
+Woodpecker CI is a [Continuous Integration](https://en.wikipedia.org/wiki/Continuous_integration) engine which can build and deploy your code automatically after pushing to a [Gitea](./gitea.md) or [Forgejo](./forgejo.md) repository.
+If you are using [Forgejo](./forgejo.md), you might also be interested in [Forgejo Runner](https://code.forgejo.org/forgejo/runner) (that this playbook also [supports](forgejo-runner.md)).
 
 A Woodpecker CI installation contains 2 components:
 
@@ -33,11 +34,11 @@ To enable this service, add the following configuration to your `vars.yml` file 
 #                                                                      #
 ########################################################################
 
-devture_woodpecker_ci_server_enabled: true
+woodpecker_ci_server_enabled: true
 
-devture_woodpecker_ci_server_hostname: mash.example.com
+woodpecker_ci_server_hostname: mash.example.com
 
-devture_woodpecker_ci_server_path_prefix: /ci
+woodpecker_ci_server_path_prefix: /ci
 
 # Generate this secret with `openssl rand -hex 32`
 #
@@ -46,20 +47,20 @@ devture_woodpecker_ci_server_path_prefix: /ci
 # server will register it as a non-persistent agent.
 #
 # See the definition of
-# devture_woodpecker_ci_agent_config_agent_secret below for more details.
-devture_woodpecker_ci_server_config_agent_secret: ''
+# woodpecker_ci_agent_config_agent_secret below for more details.
+woodpecker_ci_server_config_agent_secret: ''
 
-devture_woodpecker_ci_server_config_admins: [YOUR_USERNAME_HERE]
+woodpecker_ci_server_config_admins: [YOUR_USERNAME_HERE]
 
 # Add one or more usernames that match your version control system (e.g. Gitea) below.
 # These users will have admin privileges upon signup.
-devture_woodpecker_ci_server_config_admins:
+woodpecker_ci_server_config_admins:
   - YOUR_USERNAME_HERE
   - ANOTHER_USERNAME_HERE
 
 # Uncomment the line below if you'll be running Woodpecker CI agents on remote machines.
 # If you'll only run agents on the same machine as the server, you can keep gRPC expose disabled.
-# devture_woodpecker_ci_server_container_labels_traefik_grpc_enabled: true
+# woodpecker_ci_server_container_labels_traefik_grpc_enabled: true
 
 ########################################################################
 #                                                                      #
@@ -70,32 +71,32 @@ devture_woodpecker_ci_server_config_admins:
 
 In the example configuration above, we configure the service to be hosted at `https://mash.example.com/ci`.
 
-If you want to host the service at the root path, remove the `devture_woodpecker_ci_server_path_prefix` variable override.
+If you want to host the service at the root path, remove the `woodpecker_ci_server_path_prefix` variable override.
 
 #### Gitea Integration
 
 The Woodpecker CI server can integrate with [Gitea](gitea.md) using the following **additional** `vars.yml` configuration:
 
 ```yaml
-devture_woodpecker_ci_server_provider: gitea
+woodpecker_ci_server_provider: gitea
 
 # We must use the public URL here, because it's also used for login redirects
-devture_woodpecker_ci_server_config_gitea_url: "{{ gitea_config_root_url }}"
+woodpecker_ci_server_config_gitea_url: "{{ gitea_config_root_url }}"
 
 # Populate these with the OAuth 2 application information
 # (see the Gitea configuration section above)
-devture_woodpecker_ci_server_config_gitea_client: GITEA_OAUTH_CLIENT_ID_HERE
-devture_woodpecker_ci_server_config_gitea_secret: GITEA_OAUTH_CLIENT_SECRET_HERE
+woodpecker_ci_server_config_gitea_client: GITEA_OAUTH_CLIENT_ID_HERE
+woodpecker_ci_server_config_gitea_secret: GITEA_OAUTH_CLIENT_SECRET_HERE
 
-devture_woodpecker_ci_server_container_add_host_domain_name: "{{ gitea_hostname }}"
-devture_woodpecker_ci_server_container_add_host_ip_address: "{{ ansible_host }}"
+woodpecker_ci_server_container_add_host_domain_name: "{{ gitea_hostname }}"
+woodpecker_ci_server_container_add_host_ip_address: "{{ ansible_host }}"
 ```
 
 To integrate with version-control systems other than Gitea (e.g. [Forgejo](forgejo.md)), you'll need similar configuration.
 
 ### Usage
 
-After installation, you should be able to access the Woodpecker CI server instance at `https://mash.DOMAIN/ci` (matching the `devture_woodpecker_ci_server_hostname` and `devture_woodpecker_ci_server_path_prefix` values configured in `vars.yml`).
+After installation, you should be able to access the Woodpecker CI server instance at `https://mash.DOMAIN/ci` (matching the `woodpecker_ci_server_hostname` and `woodpecker_ci_server_path_prefix` values configured in `vars.yml`).
 
 The **Log in** button should take you to Gitea, where you can authorize Woodpecker CI with the OAuth 2 application.
 
@@ -121,7 +122,7 @@ This service requires the following other services:
 #                                                                      #
 ########################################################################
 
-devture_woodpecker_ci_agent_enabled: true
+woodpecker_ci_agent_enabled: true
 
 # If the agent runs on the same machine as the server, enabling the agent
 # is everything you need. The agent and server will be wired automatically.
@@ -131,7 +132,7 @@ devture_woodpecker_ci_agent_enabled: true
 # This needs to point to the server's gRPC host:port.
 # If your Woodpecker CI Server is deployed using this playbook, its
 # gRPC port will likely be 443.  E.g., ci.example.com:443.
-devture_woodpecker_ci_agent_config_server: ''
+woodpecker_ci_agent_config_server: ''
 
 # This playbook only supports agent-specific secrets, i.e., it is not recommended to use
 # a shared secret between Woodpecker CI Server and all of its agents.  Please refer to
@@ -141,15 +142,15 @@ devture_woodpecker_ci_agent_config_server: ''
 #   https://woodpecker-ci.org/docs/administration/agent-config#using-agent-token
 #
 # then, when you have the agent secret, uncomment the following line.
-#devture_woodpecker_ci_agent_config_agent_secret: ''
+#woodpecker_ci_agent_config_agent_secret: ''
 
 # Uncomment the line below if you want the agent to connect to the
 # server over a secure gRPC channel (recommended).
-#devture_woodpecker_ci_agent_config_grpc_secure: true
+#woodpecker_ci_agent_config_grpc_secure: true
 
 # Uncomment the line below if you want the agent to verify the
 # server's TLS certificate when connecting over a secure gRPC channel.
-#devture_woodpecker_ci_agent_config_grpc_verify: true
+#woodpecker_ci_agent_config_grpc_verify: true
 
 ########################################################################
 #                                                                      #
