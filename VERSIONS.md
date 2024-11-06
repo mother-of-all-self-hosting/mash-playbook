@@ -4,8 +4,8 @@
 * Appsmith: v1.9.50
 * Authelia: 4.37.5
 * Authentik: 2024.10.0
-* Borg: 1.2.8
-* Borgmatic: 1.8.13
+* Borg: 1.4.0
+* Borgmatic: 1.9.0
 * Calibre Web: 0.6.23
 * Changedetection: 0.45.25
 * Changedetection Playwright Driver: latest
@@ -30,12 +30,12 @@
 * Freshrss: 1.24.2
 * Funkwhale: 1.4.0
 * Gitea: 1.22.3
-* Gotosocial: 0.17.0
+* Gotosocial: 0.17.2
 * Grafana: 11.2.2
 * Healthchecks: v3.7
 * Hubsite Nginx: 1.27.2
 * Ilmo: 1.0.4
-* Infisical: v0.3.8
+* Infisical: v0.4.2
 * Influxdb: 2.7.6
 * Jitsi: stable-9779
 * Jitsi Ldap: 3
@@ -69,14 +69,14 @@
 * Paperless Tika: 3.0.0.0
 * Peertube: v6.3.3
 * Plausible: v2.1.4
-* Prometheus: v2.54.1
+* Prometheus: v2.55.1
 * Prometheus Blackbox Exporter: v0.25.0
 * Prometheus Node Exporter: v1.8.2
 * Prometheus Postgres Exporter: v0.14.0
 * Prometheus Ssh Exporter: v1.5.0
 * Promtail: 2.9.5
 * Radicale: 3.3.0.1
-* Readeck: 0.15.3
+* Readeck: 0.15.6
 * Redis: 7.2.5
 * Redmine: 5.1.3
 * Roundcube: 1.6.9
@@ -88,7 +88,7 @@
 * Tandoor Api: 1.5.19
 * Tandoor Frontend: 1.27-alpine
 * Telegraf: 1.30.2
-* Traefik: v3.1.3
+* Traefik: v3.2.0
 * Uptime Kuma: 1.23.15
 * Vaultwarden: 1.32.3
 * Versatiles: 0.12.6
