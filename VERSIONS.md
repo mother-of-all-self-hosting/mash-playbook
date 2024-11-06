@@ -26,7 +26,7 @@
 * Focalboard: 7.10.4
 * Forgejo: 9.0.0
 * Forgejo Runner: 3.5.1
-* Freescout: 1.17.87
+* Freescout: 1.17.90
 * Freshrss: 1.24.2
 * Funkwhale: 1.4.0
 * Gitea: 1.22.3
