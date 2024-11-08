@@ -3,7 +3,7 @@
 * Apisix Gateway: 3.8.0
 * Appsmith: v1.9.50
 * Authelia: 4.37.5
-* Authentik: 2024.10.0
+* Authentik: 2024.10.1
 * Borg: 1.4.0
 * Borgmatic: 1.9.0
 * Calibre Web: 0.6.23
@@ -26,7 +26,7 @@
 * Focalboard: 7.10.4
 * Forgejo: 9.0.0
 * Forgejo Runner: 3.5.1
-* Freescout: 1.17.90
+* Freescout: 1.17.92
 * Freshrss: 1.24.2
 * Funkwhale: 1.4.0
 * Gitea: 1.22.3
