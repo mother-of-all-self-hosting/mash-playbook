@@ -3,9 +3,9 @@
 * Apisix Gateway: 3.8.0
 * Appsmith: v1.9.50
 * Authelia: 4.37.5
-* Authentik: 2024.10.1
+* Authentik: 2024.10.2
 * Borg: 1.4.0
-* Borgmatic: 1.9.0
+* Borgmatic: 1.9.1
 * Calibre Web: 0.6.23
 * Changedetection: 0.45.25
 * Changedetection Playwright Driver: latest
@@ -26,18 +26,18 @@
 * Focalboard: 7.10.4
 * Forgejo: 9.0.0
 * Forgejo Runner: 3.5.1
-* Freescout: 1.17.92
+* Freescout: 1.17.93
 * Freshrss: 1.24.2
 * Funkwhale: 1.4.0
 * Gitea: 1.22.3
 * Gotosocial: 0.17.2
-* Grafana: 11.2.2
+* Grafana: 11.3.0
 * Healthchecks: v3.7
 * Hubsite Nginx: 1.27.2
 * Ilmo: 1.0.4
 * Infisical: v0.4.2
 * Influxdb: 2.7.6
-* Jitsi: stable-9779
+* Jitsi: stable-9823
 * Jitsi Ldap: 3
 * Jitsi Prosody Auth Matrix User Verification Repo: 2839499cb03894d8cfc3e5b2219441427cb133d8
 * Keycloak: 26.0.5
@@ -47,7 +47,7 @@
 * Linkding: latest
 * Loki: 2.9.4
 * Matterbridge: 1.26.0
-* Miniflux: 2.2.2
+* Miniflux: 2.2.3
 * Mobilizon: 4.1.0
 * Mongodb: 7.0.4
 * Mosquitto: 2.0.15
@@ -57,7 +57,7 @@
 * Neko: firefox
 * Netbox: v3.7.0-2.8.0
 * Netbox Container Image Customizations Keycloak Sso Expiration Middleware: a2ac39b1c73a50742c6e834e89162f87528c7f73
-* Nextcloud: 30.0.1
+* Nextcloud: 30.0.2
 * Notfellchen: 0.1.1
 * Notfellchen Sws: 2
 * Oauth2 Proxy: v7.6.0
@@ -78,7 +78,7 @@
 * Radicale: 3.3.0.1
 * Readeck: 0.15.6
 * Redis: 7.2.5
-* Redmine: 5.1.3
+* Redmine: 5.1.4
 * Roundcube: 1.6.9
 * Rumqttd: 0.21.0
 * Semaphore: 2.9.56
@@ -90,7 +90,7 @@
 * Telegraf: 1.30.2
 * Traefik: v3.2.0
 * Uptime Kuma: 1.23.15
-* Vaultwarden: 1.32.3
+* Vaultwarden: 1.32.4
 * Versatiles: 0.12.6
 * Wetty: 2.5
 * Wg Easy: 14

@@ -2358,6 +2358,9 @@ gitea_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyab
 gitea_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
 gitea_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
 
+gitea_container_labels_traefik_compression_middleware_enabled: "{{ mash_playbook_reverse_proxy_traefik_middleware_compession_enabled }}"
+gitea_container_labels_traefik_compression_middleware_name: "{{ mash_playbook_reverse_proxy_traefik_middleware_compession_name if mash_playbook_reverse_proxy_traefik_middleware_compession_enabled else '' }}"
+
 gitea_config_database_hostname: "{{ postgres_identifier if postgres_enabled else '' }}"
 gitea_config_database_port: "{{ '5432' if postgres_enabled else '' }}"
 gitea_config_database_username: "gitea"
@@ -3762,6 +3765,9 @@ miniflux_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_prox
 miniflux_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
 miniflux_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
 
+miniflux_container_labels_traefik_compression_middleware_enabled: "{{ mash_playbook_reverse_proxy_traefik_middleware_compession_enabled }}"
+miniflux_container_labels_traefik_compression_middleware_name: "{{ mash_playbook_reverse_proxy_traefik_middleware_compession_name if mash_playbook_reverse_proxy_traefik_middleware_compession_enabled else '' }}"
+
 miniflux_database_hostname: "{{ postgres_connection_hostname if postgres_enabled else '' }}"
 miniflux_database_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'miniflux.db', rounds=655555) | to_uuid }}"
 
@@ -3994,6 +4000,9 @@ navidrome_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_pro
 navidrome_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
 navidrome_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
 
+navidrome_container_labels_traefik_compression_middleware_enabled: "{{ mash_playbook_reverse_proxy_traefik_middleware_compession_enabled }}"
+navidrome_container_labels_traefik_compression_middleware_name: "{{ mash_playbook_reverse_proxy_traefik_middleware_compession_name if mash_playbook_reverse_proxy_traefik_middleware_compession_enabled else '' }}"
+
 ########################################################################
 #                                                                      #
 # /navidrome                                                           #
@@ -4078,6 +4087,9 @@ nextcloud_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_ena
 nextcloud_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
 nextcloud_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
 nextcloud_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
+
+nextcloud_container_labels_traefik_compression_middleware_enabled: "{{ mash_playbook_reverse_proxy_traefik_middleware_compession_enabled }}"
+nextcloud_container_labels_traefik_compression_middleware_name: "{{ mash_playbook_reverse_proxy_traefik_middleware_compession_name if mash_playbook_reverse_proxy_traefik_middleware_compession_enabled else '' }}"
 
 nextcloud_database_hostname: "{{ postgres_identifier if postgres_enabled else '' }}"
 nextcloud_database_port: "{{ '5432' if postgres_enabled else '' }}"
@@ -5449,6 +5461,9 @@ vaultwarden_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_p
 vaultwarden_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
 vaultwarden_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
 
+vaultwarden_container_labels_traefik_compression_middleware_enabled: "{{ mash_playbook_reverse_proxy_traefik_middleware_compession_enabled }}"
+vaultwarden_container_labels_traefik_compression_middleware_name: "{{ mash_playbook_reverse_proxy_traefik_middleware_compession_name if mash_playbook_reverse_proxy_traefik_middleware_compession_enabled else '' }}"
+
 vaultwarden_database_hostname: "{{ postgres_identifier if postgres_enabled else '' }}"
 vaultwarden_database_port: "{{ '5432' if postgres_enabled else '' }}"
 vaultwarden_database_username: "vaultwarden"
@@ -5688,6 +5703,9 @@ woodpecker_ci_server_container_additional_networks: |
 
 woodpecker_ci_server_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
 woodpecker_ci_server_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+
+woodpecker_ci_server_container_labels_traefik_compression_middleware_enabled: "{{ mash_playbook_reverse_proxy_traefik_middleware_compession_enabled }}"
+woodpecker_ci_server_container_labels_traefik_compression_middleware_name: "{{ mash_playbook_reverse_proxy_traefik_middleware_compession_name if mash_playbook_reverse_proxy_traefik_middleware_compession_enabled else '' }}"
 
 woodpecker_ci_server_database_driver: postgres
 woodpecker_ci_server_database_datasource: "postgres://{{ woodpecker_ci_server_database_datasource_username }}:{{ woodpecker_ci_server_database_datasource_password }}@{{ woodpecker_ci_server_database_datasource_hostname }}:{{ woodpecker_ci_server_database_datasource_port }}/{{ woodpecker_ci_server_database_datasource_db_name }}?sslmode=disable"
