@@ -9,7 +9,9 @@ Enabling the Traefik service will automatically wire all other services to use i
 
 ## Configuration
 
-To enable this service, add the following configuration to your `vars.yml` file and re-run the [installation](../installing.md) process:
+To enable this service, add the following configuration to your `vars.yml` file and re-run the [installation](../installing.md) process.
+
+### Traefik managed by the playbook
 
 ```yaml
 ########################################################################
@@ -23,11 +25,6 @@ mash_playbook_reverse_proxy_type: playbook-managed-traefik
 # The email address that Traefik will pass to Let's Encrypt when obtaining SSL certificates
 traefik_config_certificatesResolvers_acme_email: your-email@example.com
 
-# Or, if you'd like to install Traefik yourself:
-#
-# mash_playbook_reverse_proxy_type: other-traefik-container
-# mash_playbook_reverse_proxyable_services_additional_network: traefik
-
 ########################################################################
 #                                                                      #
 # /traefik                                                             #
@@ -37,12 +34,11 @@ traefik_config_certificatesResolvers_acme_email: your-email@example.com
 
 Enabling the Traefik service, as shown above, automatically installs a [tecnativa/docker-socket-proxy](https://github.com/Tecnativa/docker-socket-proxy) service/container (powered by the [com.devture.ansible.role.container_socket_proxy](https://github.com/devture/com.devture.ansible.role.container_socket_proxy) Ansible role) to improve security by not mounting a Docker socket into the Traefik container.
 
-
 This [Ansible role we use for Traefik](https://github.com/mother-of-all-self-hosting/ansible-role-traefik) supports various configuration options. Feel free to consult [its `default/main.yml` variables file](https://github.com/mother-of-all-self-hosting/ansible-role-traefik/blob/main/defaults/main.yml).
 
 Below, you can find some guidance about common tweaks you may wish to do.
 
-## Using another Traefik instance (not installing Traefik)
+### Traefik managed by you
 
 Sometimes you may already have a Traefik instance running on the server and you may wish to not have the playbook install Traefik.
 
@@ -56,6 +52,14 @@ mash_playbook_reverse_proxy_type: other-traefik-container
 # Tell the playbook to attach services which require reverse-proxying to an additional network by default (e.g. traefik)
 # This needs to match your Traefik network.
 mash_playbook_reverse_proxyable_services_additional_network: traefik
+
+# Uncomment and adjust the variables below if you'd like to enable HTTP-compression.
+#
+# For this to work, you will need to define a compress middleware (https://doc.traefik.io/traefik/middlewares/http/compress/) for your Traefik instance
+# using a file (https://doc.traefik.io/traefik/providers/file/) or Docker (https://doc.traefik.io/traefik/providers/docker/) configuration provider.
+#
+# mash_playbook_reverse_proxy_traefik_middleware_compession_enabled: true
+# mash_playbook_reverse_proxy_traefik_middleware_compession_name: my-compression-middleware@file
 ```
 
 ## Increase logging verbosity

@@ -13,9 +13,9 @@ Below, we offer some suggestions for how to make this playbook more interoperabl
 
 ## Disabling Traefik installation
 
-If you're installing [Traefik](services/traefik.md) on your server in another way, you can use your already installed Traefik instance and [disable the Traefik instance installed by MASH](services/traefik.md#using-another-traefik-instance-not-installing-traefik).
+If you're installing [Traefik](services/traefik.md) on your server in another way, you can use your already installed Traefik instance by pointing MASH to your existing Traefik reverse-proxy (see the [Traefik managed by you](services/traefik.md#traefik-managed-by-you) guide).
 
-If you are using the [matrix-docker-ansible-deploy](https://github.com/spantaleev/matrix-docker-ansible-deploy) playbook, it already runs its own Traefik instance (`matrix-traefik`). We recommend that you [disable the Traefik instance installed by MASH](services/traefik.md#using-another-traefik-instance-not-installing-traefik), because the Traefik instance installed by the Matrix playbook does the same, but also contains additional configuration for handling the Matrix federation port (`8448`).
+If you are using the [matrix-docker-ansible-deploy](https://github.com/spantaleev/matrix-docker-ansible-deploy) playbook against the same server where you'd like MASH services installed, it already runs its own Traefik instance (`matrix-traefik`). In this case, we recommend following the same [Traefik managed by you](services/traefik.md#traefik-managed-by-you) guide, because `matrix-docker-ansible-deploy` installs Traefik the same way, but also injects additional configuration for handling the Matrix federation port (`8448` on a `matrix-federation` entrypoint) and internal communication between services (a `matrix-internal-matrix-client-api` entrypoint).
 
 
 ## Disabling Docker installation

@@ -78,6 +78,13 @@ mash_playbook_docker_installation_daemon_options_custom: {}
 # yet still use Traefik installed in another way.
 mash_playbook_traefik_labels_enabled: "{{ mash_playbook_reverse_proxy_type in ['playbook-managed-traefik', 'other-traefik-container'] }}"
 
+# Specifies whether the Traefik reverse-proxy (if `mash_playbook_reverse_proxy_type` indicates that Traefik is being used) defines a compression middleware.
+mash_playbook_reverse_proxy_traefik_middleware_compession_enabled: "{{ traefik_config_http_middlewares_compression_enabled if (traefik_enabled and traefik_config_http_middlewares_compression_enabled) else false }}"
+
+# Specifies the name of the compression middleware defined for the Traefik reverse-proxy (if `mash_playbook_reverse_proxy_type` indicates that Traefik is being used).
+# It's better to use a fully-qualified middleware name (e.g. `compression@docker` or `compression@file`) here to prevent ambiguity.
+mash_playbook_reverse_proxy_traefik_middleware_compession_name: "{{ (traefik_config_http_middlewares_compression_middleware_name + '@file') if traefik_enabled else '' }}"
+
 # Controls the additional network that reverse-proxyable services will be connected to.
 mash_playbook_reverse_proxyable_services_additional_network: "{{ traefik_container_network if traefik_enabled | default(false) else '' }}"
 
