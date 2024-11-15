@@ -133,7 +133,7 @@
   name: funkwhale
   activation_prefix: funkwhale_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-gitea.git
-  version: v1.22.3-0
+  version: v1.22.3-1
   name: gitea
   activation_prefix: gitea_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-gotosocial.git
