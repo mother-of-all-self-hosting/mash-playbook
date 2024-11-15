@@ -47,7 +47,7 @@ writefreely_env_admin_user: ''
 writefreely_env_admin_password: ''
 ```
 
-Alternatively you can add admins after [installation](./installing.md) with:
+Alternatively you can add admins after [installation](../installing.md) with:
 
 ```sh
 just run-tags writefreely-add-admin --extra-vars=username=<username> --extra-vars=password=<password>
