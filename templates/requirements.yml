@@ -249,7 +249,7 @@
   name: oauth2_proxy
   activation_prefix: oauth2_proxy_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-outline.git
-  version: v0.80.2-0
+  version: v0.81.0-0
   name: outline
   activation_prefix: outline_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-owncast.git
