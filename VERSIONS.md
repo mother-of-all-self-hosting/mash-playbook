@@ -61,7 +61,7 @@
 * Notfellchen: 0.1.1
 * Notfellchen Sws: 2
 * Oauth2 Proxy: v7.6.0
-* Outline: 0.80.2
+* Outline: 0.81.0
 * Owncast: 0.1.2
 * Oxitraffic: 0.10.1
 * Paperless: 2.13.2
