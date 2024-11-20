@@ -6,7 +6,7 @@
 * Authentik: 2024.10.2
 * Borg: 1.4.0
 * Borgmatic: 1.9.1
-* Calibre Web: 0.6.23
+* Calibre Web: 0.6.24
 * Changedetection: 0.45.25
 * Changedetection Playwright Driver: latest
 * Clickhouse: 24.8.4.13
