@@ -2,8 +2,6 @@
 
 [Valkey](https://valkey.io/) is a flexible distributed key-value datastore that is optimized for caching and other realtime workloads.
 
-We used to advocate for using [Redis](redis.md), but since [Redis is now "source available"](https://redis.com/blog/redis-adopts-dual-source-available-licensing/) we recommend that you use [KeyDB](./keydb.md) or Valkey instead. Valkey is compatible with Redis, so switching should be straightforward. You can learn more about the switch from Redis to KeyDB in [this changelog entry](https://github.com/spantaleev/matrix-docker-ansible-deploy/blob/50813c600db1c47b1f3e76707b81fe05d6c46ef5/CHANGELOG.md#backward-compatibility-break-the-playbook-now-defaults-to-valkey-instead-of-redis) for [matrix-docker-ansible-deploy](https://github.com/spantaleev/matrix-docker-ansible-deploy). By similar logic, one may also decide to go with the Valkey alternative to Redis, which is likely better maintained and more compatible (see [this issue](https://github.com/mother-of-all-self-hosting/mash-playbook/issues/247)).
-
 Some of the services installed by this playbook require a Valkey data store.
 
 **Warning**: Because Valkey is not as flexible as [Postgres](postgres.md) when it comes to authentication and data separation, it's **recommended that you run separate Valkey instances** (one for each service). Valkey supports multiple database and a [SELECT](https://valkey.io/commands/select/) command for switching between them. However, **reusing the same Valkey instance is not good enough** because:
