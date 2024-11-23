@@ -8,7 +8,7 @@
 This service requires the following other services:
 
 - a [Postgres](postgres.md) database
-- a [KeyDB](keydb.md) data-store, installation details [below](#keydb)
+- a [Valkey](valkey.md) data-store, installation details [below](#valkey)
 - a [Traefik](traefik.md) reverse-proxy server
 
 
@@ -30,7 +30,7 @@ funkwhale_hostname: mash.example.com
 # Put a strong secret below, generated with `pwgen -s 64 1` or in another way
 funkwhale_django_secret_key: ''
 
-# KeyDB configuration, as described below
+# Valkey configuration, as described below
 
 ########################################################################
 #                                                                      #
@@ -39,28 +39,28 @@ funkwhale_django_secret_key: ''
 ########################################################################
 ```
 
-### KeyDB
+### Valkey
 
-As described on the [KeyDB](keydb.md) documentation page, if you're hosting additional services which require KeyDB on the same server, you'd better go for installing a separate KeyDB instance for each service. See [Creating a KeyDB instance dedicated to funkwhale](#creating-a-keydb-instance-dedicated-to-funkwhale).
+As described on the [Valkey](valkey.md) documentation page, if you're hosting additional services which require KeyDB on the same server, you'd better go for installing a separate Valkey instance for each service. See [Creating a Valkey instance dedicated to funkwhale](#creating-a-valkey-instance-dedicated-to-funkwhale).
 
-If you're only running funkwhale on this server and don't need to use KeyDB for anything else, you can [use a single KeyDB instance](#using-the-shared-keydb-instance-for-funkwhale).
+If you're only running funkwhale on this server and don't need to use KeyDB for anything else, you can [use a single Valkey instance](#using-the-shared-valkey-instance-for-funkwhale).
 
-#### Using the shared KeyDB instance for funkwhale
+#### Using the shared Valkey instance for funkwhale
 
-To install a single (non-dedicated) KeyDB instance (`mash-keydb`) and hook funkwhale to it, add the following **additional** configuration:
+To install a single (non-dedicated) Valkey instance (`mash-valkey`) and hook funkwhale to it, add the following **additional** configuration:
 
 ```yaml
 ########################################################################
 #                                                                      #
-# keydb                                                                #
+# valkey                                                               #
 #                                                                      #
 ########################################################################
 
-keydb_enabled: true
+valkey_enabled: true
 
 ########################################################################
 #                                                                      #
-# /keydb                                                               #
+# /valkey                                                              #
 #                                                                      #
 ########################################################################
 
@@ -73,16 +73,16 @@ keydb_enabled: true
 
 # Base configuration as shown above
 
-# Point funkwhale to the shared KeyDB instance
-funkwhale_config_redis_hostname: "{{ keydb_identifier }}"
+# Point funkwhale to the shared Valkey instance
+funkwhale_config_redis_hostname: "{{ valkey_identifier }}"
 
 # Make sure the funkwhale API service (mash-funkwhale-api.service) starts after the shared KeyDB service
 funkwhale_api_systemd_required_services_list_custom:
-  - "{{ keydb_identifier }}.service"
+  - "{{ valkey_identifier }}.service"
 
 # Make sure the funkwhale API service (mash-funkwhale-api.service) is connected to the container network of the shared KeyDB service
 funkwhale_api_container_additional_networks_custom:
-  - "{{ keydb_container_network }}"
+  - "{{ valkey_container_network }}"
 
 ########################################################################
 #                                                                      #
@@ -91,12 +91,12 @@ funkwhale_api_container_additional_networks_custom:
 ########################################################################
 ```
 
-This will create a `mash-keydb` KeyDB instance on this host.
+This will create a `mash-valkey` Valkey instance on this host.
 
-This is only recommended if you won't be installing other services which require KeyDB. Alternatively, go for [Creating a KeyDB instance dedicated to funkwhale](#creating-a-keydb-instance-dedicated-to-funkwhale).
+This is only recommended if you won't be installing other services which require KeyDB. Alternatively, go for [Creating a Valkey instance dedicated to funkwhale](#creating-a-valkey-instance-dedicated-to-funkwhale).
 
 
-#### Creating a KeyDB instance dedicated to funkwhale
+#### Creating a Valkey instance dedicated to funkwhale
 
 The following instructions are based on the [Running multiple instances of the same service on the same host](../running-multiple-instances.md) documentation.
 
@@ -132,20 +132,20 @@ mash_playbook_service_base_directory_name_prefix: 'funkwhale-'
 
 ########################################################################
 #                                                                      #
-# keydb                                                                #
+# valkey                                                               #
 #                                                                      #
 ########################################################################
 
-keydb_enabled: true
+valkey_enabled: true
 
 ########################################################################
 #                                                                      #
-# /keydb                                                               #
+# /valkey                                                              #
 #                                                                      #
 ########################################################################
 ```
 
-This will create a `mash-funkwhale-keydb` instance on this host with its data in `/mash/funkwhale-keydb`.
+This will create a `mash-funkwhale-valkey` instance on this host with its data in `/mash/funkwhale-valkey`.
 
 Then, adjust your main inventory host's variables file (`inventory/host_vars/funkwhale.example.com/vars.yml`) like this:
 
@@ -158,16 +158,16 @@ Then, adjust your main inventory host's variables file (`inventory/host_vars/fun
 
 # Base configuration as shown above
 
-# Point funkwhale to its dedicated KeyDB instance
-funkwhale_config_redis_hostname: mash-funkwhale-keydb
+# Point funkwhale to its dedicated Valkey instance
+funkwhale_config_redis_hostname: mash-funkwhale-valkey
 
 # Make sure the funkwhale API service (mash-funkwhale-api.service) starts after its dedicated KeyDB service
 funkwhale_api_systemd_required_services_list_custom:
-  - "mash-funkwhale-keydb.service"
+  - "mash-funkwhale-valkey.service"
 
 # Make sure the funkwhale API service (mash-funkwhale-api.service) is connected to the container network of its dedicated KeyDB service
 funkwhale_api_container_additional_networks_custom:
-  - "mash-funkwhale-keydb"
+  - "mash-funkwhale-valkey"
 
 ########################################################################
 #                                                                      #
@@ -179,7 +179,7 @@ funkwhale_api_container_additional_networks_custom:
 
 ## Installation
 
-If you've decided to install a dedicated KeyDB instance for funkwhale, make sure to first do [installation](../installing.md) for the supplementary inventory host (e.g. `funkwhale.example.com-deps`), before running installation for the main one (e.g. `funkwhale.example.com`).
+If you've decided to install a dedicated Valkey instance for funkwhale, make sure to first do [installation](../installing.md) for the supplementary inventory host (e.g. `funkwhale.example.com-deps`), before running installation for the main one (e.g. `funkwhale.example.com`).
 
 
 ## Usage

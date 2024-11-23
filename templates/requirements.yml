@@ -395,6 +395,10 @@
   version: v1.23.15-1
   name: uptime_kuma
   activation_prefix: uptime_kuma_
+- src: git+https://github.com/mother-of-all-self-hosting/ansible-role-valkey.git
+  version: v8.0.1-0
+  name: valkey
+  activation_prefix: valkey_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-vaultwarden.git
   version: v1.32.5-1
   name: vaultwarden

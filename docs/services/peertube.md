@@ -8,7 +8,7 @@
 This service requires the following other services:
 
 - a [Postgres](postgres.md) database
-- a [KeyDB](keydb.md) data-store, installation details [below](#keydb)
+- a [Valkey](valkey.md) data-store, installation details [below](#valkey)
 - a [Traefik](traefik.md) reverse-proxy server
 
 
@@ -47,7 +47,7 @@ peertube_config_root_user_initial_password: ''
 # Then, replace the example IP range below, and re-run the playbook.
 # peertube_trusted_proxies_values_custom: ["172.21.0.0/16"]
 
-# KeyDB configuration, as described below
+# Valkey configuration, as described below
 
 ########################################################################
 #                                                                      #
@@ -60,28 +60,28 @@ In the example configuration above, we configure the service to be hosted at `ht
 
 Hosting PeerTube under a subpath (by configuring the `peertube_path_prefix` variable) does not seem to be possible right now, due to PeerTube limitations.
 
-### KeyDB
+### Valkey
 
-As described on the [KeyDB](keydb.md) documentation page, if you're hosting additional services which require KeyDB on the same server, you'd better go for installing a separate KeyDB instance for each service. See [Creating a KeyDB instance dedicated to PeerTube](#creating-a-keydb-instance-dedicated-to-peertube).
+As described on the [Valkey](valkey.md) documentation page, if you're hosting additional services which require KeyDB on the same server, you'd better go for installing a separate Valkey instance for each service. See [Creating a Valkey instance dedicated to PeerTube](#creating-a-valkey-instance-dedicated-to-peertube).
 
-If you're only running PeerTube on this server and don't need to use KeyDB for anything else, you can [use a single KeyDB instance](#using-the-shared-keydb-instance-for-peertube).
+If you're only running PeerTube on this server and don't need to use KeyDB for anything else, you can [use a single Valkey instance](#using-the-shared-valkey-instance-for-peertube).
 
-#### Using the shared KeyDB instance for PeerTube
+#### Using the shared Valkey instance for PeerTube
 
-To install a single (non-dedicated) KeyDB instance (`mash-keydb`) and hook PeerTube to it, add the following **additional** configuration:
+To install a single (non-dedicated) Valkey instance (`mash-valkey`) and hook PeerTube to it, add the following **additional** configuration:
 
 ```yaml
 ########################################################################
 #                                                                      #
-# keydb                                                                #
+# valkey                                                               #
 #                                                                      #
 ########################################################################
 
-keydb_enabled: true
+valkey_enabled: true
 
 ########################################################################
 #                                                                      #
-# /keydb                                                               #
+# /valkey                                                              #
 #                                                                      #
 ########################################################################
 
@@ -94,16 +94,16 @@ keydb_enabled: true
 
 # Base configuration as shown above
 
-# Point PeerTube to the shared KeyDB instance
-peertube_config_redis_hostname: "{{ keydb_identifier }}"
+# Point PeerTube to the shared Valkey instance
+peertube_config_redis_hostname: "{{ valkey_identifier }}"
 
-# Make sure the PeerTube service (mash-peertube.service) starts after the shared KeyDB service (mash-keydb.service)
+# Make sure the PeerTube service (mash-peertube.service) starts after the shared KeyDB service (mash-valkey.service)
 peertube_systemd_required_services_list_custom:
-  - "{{ keydb_identifier }}.service"
+  - "{{ valkey_identifier }}.service"
 
-# Make sure the PeerTube container is connected to the container network of the shared KeyDB service (mash-keydb)
+# Make sure the PeerTube container is connected to the container network of the shared KeyDB service (mash-valkey)
 peertube_container_additional_networks_custom:
-  - "{{ keydb_identifier }}"
+  - "{{ valkey_identifier }}"
 
 ########################################################################
 #                                                                      #
@@ -112,12 +112,12 @@ peertube_container_additional_networks_custom:
 ########################################################################
 ```
 
-This will create a `mash-keydb` KeyDB instance on this host.
+This will create a `mash-valkey` Valkey instance on this host.
 
-This is only recommended if you won't be installing other services which require KeyDB. Alternatively, go for [Creating a KeyDB instance dedicated to PeerTube](#creating-a-keydb-instance-dedicated-to-peertube).
+This is only recommended if you won't be installing other services which require KeyDB. Alternatively, go for [Creating a Valkey instance dedicated to PeerTube](#creating-a-valkey-instance-dedicated-to-peertube).
 
 
-#### Creating a KeyDB instance dedicated to PeerTube
+#### Creating a Valkey instance dedicated to PeerTube
 
 The following instructions are based on the [Running multiple instances of the same service on the same host](../running-multiple-instances.md) documentation.
 
@@ -153,20 +153,20 @@ mash_playbook_service_base_directory_name_prefix: 'peertube-'
 
 ########################################################################
 #                                                                      #
-# keydb                                                                #
+# valkey                                                               #
 #                                                                      #
 ########################################################################
 
-keydb_enabled: true
+valkey_enabled: true
 
 ########################################################################
 #                                                                      #
-# /keydb                                                               #
+# /valkey                                                              #
 #                                                                      #
 ########################################################################
 ```
 
-This will create a `mash-peertube-keydb` instance on this host with its data in `/mash/peertube-keydb`.
+This will create a `mash-peertube-valkey` instance on this host with its data in `/mash/peertube-valkey`.
 
 Then, adjust your main inventory host's variables file (`inventory/host_vars/peertube.example.com/vars.yml`) like this:
 
@@ -179,16 +179,16 @@ Then, adjust your main inventory host's variables file (`inventory/host_vars/pee
 
 # Base configuration as shown above
 
-# Point PeerTube to its dedicated KeyDB instance
-peertube_config_redis_hostname: mash-peertube-keydb
+# Point PeerTube to its dedicated Valkey instance
+peertube_config_redis_hostname: mash-peertube-valkey
 
-# Make sure the PeerTube service (mash-peertube.service) starts after its dedicated KeyDB service (mash-peertube-keydb.service)
+# Make sure the PeerTube service (mash-peertube.service) starts after its dedicated KeyDB service (mash-peertube-valkey.service)
 peertube_systemd_required_services_list_custom:
-  - "mash-peertube-keydb.service"
+  - "mash-peertube-valkey.service"
 
-# Make sure the PeerTube container is connected to the container network of its dedicated KeyDB service (mash-peertube-keydb)
+# Make sure the PeerTube container is connected to the container network of its dedicated KeyDB service (mash-peertube-valkey)
 peertube_container_additional_networks_custom:
-  - "mash-peertube-keydb"
+  - "mash-peertube-valkey"
 
 ########################################################################
 #                                                                      #
@@ -200,7 +200,7 @@ peertube_container_additional_networks_custom:
 
 ## Installation
 
-If you've decided to install a dedicated KeyDB instance for PeerTube, make sure to first do [installation](../installing.md) for the supplementary inventory host (e.g. `peertube.example.com-deps`), before running installation for the main one (e.g. `peertube.example.com`).
+If you've decided to install a dedicated Valkey instance for PeerTube, make sure to first do [installation](../installing.md) for the supplementary inventory host (e.g. `peertube.example.com-deps`), before running installation for the main one (e.g. `peertube.example.com`).
 
 
 ## Usage

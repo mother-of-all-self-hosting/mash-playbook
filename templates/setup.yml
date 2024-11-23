@@ -399,6 +399,10 @@
     - role: galaxy/telegraf
     # /role-specific:telegraf
 
+    # role-specific:valkey
+    - role: galaxy/valkey
+    # /role-specific:valkey
+
     # role-specific:vaultwarden
     - role: galaxy/vaultwarden
     # /role-specific:vaultwarden

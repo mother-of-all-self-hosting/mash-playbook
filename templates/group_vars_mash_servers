@@ -628,6 +628,11 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
     {{ ({'name': (telegraf_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'telegraf']} if telegraf_enabled else omit) }}
   # /role-specific:telegraf
 
+  # role-specific:valkey
+  - |-
+    {{ ({'name': (valkey_identifier + '.service'), 'priority': 750, 'groups': ['mash', 'valkey']} if valkey_enabled else omit) }}
+  # /role-specific:valkey
+
   # role-specific:vaultwarden
   - |-
     {{ ({'name': (vaultwarden_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'vaultwarden', 'vaultwarden-server']} if vaultwarden_enabled else omit) }}
@@ -5418,6 +5423,33 @@ telegraf_systemd_required_services_list: |
 #                                                                      #
 ########################################################################
 # /role-specific:telegraf
+
+
+
+# role-specific:valkey
+########################################################################
+#                                                                      #
+# valkey                                                               #
+#                                                                      #
+########################################################################
+
+valkey_enabled: false
+
+valkey_identifier: "{{ mash_playbook_service_identifier_prefix }}valkey"
+
+valkey_uid: "{{ mash_playbook_uid }}"
+valkey_gid: "{{ mash_playbook_gid }}"
+
+valkey_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}valkey"
+
+valkey_arch: "{{ mash_playbook_architecture }}"
+
+########################################################################
+#                                                                      #
+# /valkey                                                              #
+#                                                                      #
+########################################################################
+# /role-specific:valkey
 
 
 
