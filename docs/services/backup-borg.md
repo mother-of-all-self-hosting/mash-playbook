@@ -87,7 +87,7 @@ Check the `roles/galaxy/backup-borg/defaults/main.yml` file for the full list of
 
 ## Installing
 
-After configuring the playbook, run the [installation](installing.md) command again:
+After configuring the playbook, run the [installation](../installing.md) command again:
 
 ```
 just install-all

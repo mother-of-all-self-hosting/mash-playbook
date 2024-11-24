@@ -9,7 +9,7 @@ This service requires the following other services:
 
 - a [Postgres](postgres.md) database
 - a [Traefik](traefik.md) reverse-proxy server
-- (optional) a [KeyDB](keydb.md) data-store, installation details [below](#keydb)
+- (optional) a [Valkey](valkey.md) data-store, installation details [below](#valkey)
 - (optional) the [exim-relay](exim-relay.md) mailer
 
 
@@ -29,7 +29,7 @@ nextcloud_enabled: true
 nextcloud_hostname: mash.example.com
 nextcloud_path_prefix: /nextcloud
 
-# KeyDB configuration, as described below
+# Valkey configuration, as described below
 
 ########################################################################
 #                                                                      #
@@ -42,50 +42,50 @@ In the example configuration above, we configure the service to be hosted at `ht
 
 You can remove the `nextcloud_path_prefix` variable definition, to make it default to `/`, so that the service is served at `https://mash.example.com/`.
 
-### KeyDB
+### Valkey
 
-KeyDB can **optionally** be enabled to improve Nextcloud performance.
-It's dubious whether using using KeyDB helps much, so we recommend that you **start without** it, for a simpler deployment.
+Valkey can **optionally** be enabled to improve Nextcloud performance.
+It's dubious whether using using Valkey helps much, so we recommend that you **start without** it, for a simpler deployment.
 
 To learn more, read the [Memory caching](https://docs.nextcloud.com/server/latest/admin_manual/configuration_server/caching_configuration.html) section of the Nextcloud documentation.
 
-As described on the [KeyDB](keydb.md) documentation page, if you're hosting additional services which require KeyDB on the same server, you'd better go for installing a separate KeyDB instance for each service. See [Creating a KeyDB instance dedicated to Nextcloud](#creating-a-keydb-instance-dedicated-to-nextcloud).
+As described on the [Valkey](valkey.md) documentation page, if you're hosting additional services which require Valkey on the same server, you'd better go for installing a separate Valkey instance for each service. See [Creating a Valkey instance dedicated to Nextcloud](#creating-a-valkey-instance-dedicated-to-nextcloud).
 
-If you're only running Nextcloud on this server and don't need to use KeyDB for anything else, you can [use a single KeyDB instance](#using-the-shared-keydb-instance-for-nextcloud).
+If you're only running Nextcloud on this server and don't need to use Valkey for anything else, you can [use a single Valkey instance](#using-the-shared-valkey-instance-for-nextcloud).
 
-**Regardless** of the method of installing KeyDB, you may need to adjust your Nextcloud configuration file (e.g. `/mash/nextcloud/data/config/config.php`) to **add** this:
+**Regardless** of the method of installing Valkey, you may need to adjust your Nextcloud configuration file (e.g. `/mash/nextcloud/data/config/config.php`) to **add** this:
 
 ```php
-  'memcache.distributed' => '\OC\Memcache\KeyDB',
-  'memcache.locking' => '\OC\Memcache\KeyDB',
-  'keydb' => [
-     'host' => 'REDIS_HOSTNAME_HERE',
+  'memcache.distributed' => '\OC\Memcache\Redis',
+  'memcache.locking' => '\OC\Memcache\Redis',
+  'redis' => [
+     'host' => 'VALKEY_HOSTNAME_HERE',
      'port' => 6379,
   ],
 ```
 
-Where `REDIS_HOSTNAME_HERE` is to be replaced with:
+Where `VALKEY_HOSTNAME_HERE` is to be replaced with:
 
-- `mash-nextcloud-keydb`, when [Creating a KeyDB instance dedicated to Nextcloud](#creating-a-keydb-instance-dedicated-to-nextcloud)
-- `mash-keydb`, when [using a single KeyDB instance](#using-the-shared-keydb-instance-for-nextcloud).
+- `mash-nextcloud-valkey`, when [Creating a Valkey instance dedicated to Nextcloud](#creating-a-valkey-instance-dedicated-to-nextcloud)
+- `mash-valkey`, when [using a single Valkey instance](#using-the-shared-valkey-instance-for-nextcloud).
 
 
-#### Using the shared KeyDB instance for Nextcloud
+#### Using the shared Valkey instance for Nextcloud
 
-To install a single (non-dedicated) KeyDB instance (`mash-keydb`) and hook Nextcloud to it, add the following **additional** configuration:
+To install a single (non-dedicated) Valkey instance (`mash-valkey`) and hook Nextcloud to it, add the following **additional** configuration:
 
 ```yaml
 ########################################################################
 #                                                                      #
-# keydb                                                                #
+# valkey                                                               #
 #                                                                      #
 ########################################################################
 
-keydb_enabled: true
+valkey_enabled: true
 
 ########################################################################
 #                                                                      #
-# /keydb                                                               #
+# /valkey                                                              #
 #                                                                      #
 ########################################################################
 
@@ -98,16 +98,16 @@ keydb_enabled: true
 
 # Base configuration as shown above
 
-# Point Nextcloud to the shared KeyDB instance
-nextcloud_redis_hostname: "{{ keydb_identifier }}"
+# Point Nextcloud to the shared Valkey instance
+nextcloud_redis_hostname: "{{ valkey_identifier }}"
 
-# Make sure the Nextcloud service (mash-nextcloud.service) starts after the shared KeyDB service (mash-keydb.service)
+# Make sure the Nextcloud service (mash-nextcloud.service) starts after the shared KeyDB service (mash-valkey.service)
 nextcloud_systemd_required_services_list_custom:
-  - "{{ keydb_identifier }}.service"
+  - "{{ valkey_identifier }}.service"
 
-# Make sure the Nextcloud container is connected to the container network of the shared KeyDB service (mash-keydb)
+# Make sure the Nextcloud container is connected to the container network of the shared KeyDB service (mash-valkey)
 nextcloud_container_additional_networks_custom:
-  - "{{ keydb_identifier }}"
+  - "{{ valkey_identifier }}"
 
 ########################################################################
 #                                                                      #
@@ -115,11 +115,11 @@ nextcloud_container_additional_networks_custom:
 #                                                                      #
 ########################################################################
 ```
-This will create a `mash-keydb` KeyDB instance on this host.
+This will create a `mash-valkey` Valkey instance on this host.
 
-This is only recommended if you won't be installing other services which require KeyDB. Alternatively, go for [Creating a KeyDB instance dedicated to Nextcloud](#creating-a-keydb-instance-dedicated-to-nextcloud).
+This is only recommended if you won't be installing other services which require KeyDB. Alternatively, go for [Creating a Valkey instance dedicated to Nextcloud](#creating-a-valkey-instance-dedicated-to-nextcloud).
 
-#### Creating a KeyDB instance dedicated to Nextcloud
+#### Creating a Valkey instance dedicated to Nextcloud
 
 The following instructions are based on the [Running multiple instances of the same service on the same host](../running-multiple-instances.md) documentation.
 
@@ -155,20 +155,20 @@ mash_playbook_service_base_directory_name_prefix: 'nextcloud-'
 
 ########################################################################
 #                                                                      #
-# keydb                                                                #
+# valkey                                                               #
 #                                                                      #
 ########################################################################
 
-keydb_enabled: true
+valkey_enabled: true
 
 ########################################################################
 #                                                                      #
-# /keydb                                                               #
+# /valkey                                                              #
 #                                                                      #
 ########################################################################
 ```
 
-This will create a `mash-nextcloud-keydb` instance on this host with its data in `/mash/nextcloud-keydb`.
+This will create a `mash-nextcloud-valkey` instance on this host with its data in `/mash/nextcloud-valkey`.
 
 Then, adjust your main inventory host's variables file (`inventory/host_vars/nextcloud.example.com/vars.yml`) like this:
 
@@ -181,16 +181,16 @@ Then, adjust your main inventory host's variables file (`inventory/host_vars/nex
 
 # Base configuration as shown above
 
-# Point Nextcloud to its dedicated KeyDB instance
-nextcloud_redis_hostname: mash-nextcloud-keydb
+# Point Nextcloud to its dedicated Valkey instance
+nextcloud_redis_hostname: mash-nextcloud-valkey
 
-# Make sure the Nextcloud service (mash-nextcloud.service) starts after its dedicated KeyDB service (mash-nextcloud-keydb.service)
+# Make sure the Nextcloud service (mash-nextcloud.service) starts after its dedicated KeyDB service (mash-nextcloud-valkey.service)
 nextcloud_systemd_required_services_list_custom:
-  - "mash-nextcloud-keydb.service"
+  - "mash-nextcloud-valkey.service"
 
-# Make sure the Nextcloud container is connected to the container network of its dedicated KeyDB service (mash-nextcloud-keydb)
+# Make sure the Nextcloud container is connected to the container network of its dedicated KeyDB service (mash-nextcloud-valkey)
 nextcloud_container_additional_networks_custom:
-  - "mash-nextcloud-keydb"
+  - "mash-nextcloud-valkey"
 
 ########################################################################
 #                                                                      #
@@ -230,7 +230,7 @@ nextcloud_container_image_customizations_samba_enabled: true
 
 ## Installation
 
-If you've decided to install a dedicated KeyDB instance for Nextcloud, make sure to first do [installation](../installing.md) for the supplementary inventory host (e.g. `nextcloud.example.com-deps`), before running installation for the main one (e.g. `nextcloud.example.com`).
+If you've decided to install a dedicated Valkey instance for Nextcloud, make sure to first do [installation](../installing.md) for the supplementary inventory host (e.g. `nextcloud.example.com-deps`), before running installation for the main one (e.g. `nextcloud.example.com`).
 
 ## Usage
 

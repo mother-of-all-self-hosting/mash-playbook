@@ -9,7 +9,7 @@
 This service requires the following other services:
 
 - a [Postgres](postgres.md) database
-- a [KeyDB](keydb.md) data-store, installation details [below](#keydb)
+- a [Valkey](valkey.md) data-store, installation details [below](#valkey)
 - a [Traefik](traefik.md) reverse-proxy server
 
 
@@ -33,7 +33,7 @@ paperless_hostname: paperless.example.org
 # paperless_admin_user: USERNAME
 # paperless_admin_password: SECURE_PASSWORD
 
-# KeyDB configuration, as described below
+# Valkey configuration, as described below
 
 ########################################################################
 #                                                                      #
@@ -42,28 +42,28 @@ paperless_hostname: paperless.example.org
 ########################################################################
 ```
 
-### KeyDB
+### Valkey
 
-As described on the [KeyDB](keydb.md) documentation page, if you're hosting additional services which require KeyDB on the same server, you'd better go for installing a separate KeyDB instance for each service. See [Creating a KeyDB instance dedicated to paperless-ngx](#creating-a-keydb-instance-dedicated-to-paperless-ngx).
+As described on the [Valkey](valkey.md) documentation page, if you're hosting additional services which require KeyDB on the same server, you'd better go for installing a separate Valkey instance for each service. See [Creating a Valkey instance dedicated to paperless-ngx](#creating-a-valkey-instance-dedicated-to-paperless-ngx).
 
-If you're only running paperless-ngx on this server and don't need to use KeyDB for anything else, you can [use a single KeyDB instance](#using-the-shared-keydb-instance-for-paperless).
+If you're only running paperless-ngx on this server and don't need to use KeyDB for anything else, you can [use a single Valkey instance](#using-the-shared-valkey-instance-for-paperless).
 
-#### Using the shared KeyDB instance for paperless-ngx
+#### Using the shared Valkey instance for paperless-ngx
 
-To install a single (non-dedicated) KeyDB instance (`mash-keydb`) and hook paperless to it, add the following **additional** configuration:
+To install a single (non-dedicated) Valkey instance (`mash-valkey`) and hook paperless to it, add the following **additional** configuration:
 
 ```yaml
 ########################################################################
 #                                                                      #
-# keydb                                                                #
+# valkey                                                               #
 #                                                                      #
 ########################################################################
 
-keydb_enabled: true
+valkey_enabled: true
 
 ########################################################################
 #                                                                      #
-# /keydb                                                               #
+# /valkey                                                              #
 #                                                                      #
 ########################################################################
 
@@ -76,16 +76,16 @@ keydb_enabled: true
 
 # Base configuration as shown above
 
-# Point paperless to the shared KeyDB instance
-paperless_redis_hostname: "{{ keydb_identifier }}"
+# Point paperless to the shared Valkey instance
+paperless_redis_hostname: "{{ valkey_identifier }}"
 
-# Make sure the paperless service (mash-paperless.service) starts after the shared KeyDB service (mash-keydb.service)
+# Make sure the paperless service (mash-paperless.service) starts after the shared KeyDB service (mash-valkey.service)
 paperless_systemd_required_services_list_custom:
-  - "{{ keydb_identifier }}.service"
+  - "{{ valkey_identifier }}.service"
 
-# Make sure the paperless container is connected to the container network of the shared KeyDB service (mash-keydb)
+# Make sure the paperless container is connected to the container network of the shared KeyDB service (mash-valkey)
 paperless_container_additional_networks_custom:
-  - "{{ keydb_identifier }}"
+  - "{{ valkey_identifier }}"
 
 ########################################################################
 #                                                                      #
@@ -94,12 +94,12 @@ paperless_container_additional_networks_custom:
 ########################################################################
 ```
 
-This will create a `mash-keydb` KeyDB instance on this host.
+This will create a `mash-valkey` Valkey instance on this host.
 
-This is only recommended if you won't be installing other services which require KeyDB. Alternatively, go for [Creating a KeyDB instance dedicated to paperless-ngx](#creating-a-keydb-instance-dedicated-to-paperless-ngx).
+This is only recommended if you won't be installing other services which require KeyDB. Alternatively, go for [Creating a Valkey instance dedicated to paperless-ngx](#creating-a-valkey-instance-dedicated-to-paperless-ngx).
 
 
-#### Creating a KeyDB instance dedicated to paperless
+#### Creating a Valkey instance dedicated to paperless
 
 The following instructions are based on the [Running multiple instances of the same service on the same host](../running-multiple-instances.md) documentation.
 
@@ -135,20 +135,20 @@ mash_playbook_service_base_directory_name_prefix: 'paperless-'
 
 ########################################################################
 #                                                                      #
-# keydb                                                                #
+# valkey                                                               #
 #                                                                      #
 ########################################################################
 
-keydb_enabled: true
+valkey_enabled: true
 
 ########################################################################
 #                                                                      #
-# /keydb                                                               #
+# /valkey                                                              #
 #                                                                      #
 ########################################################################
 ```
 
-This will create a `mash-paperless-keydb` instance on this host with its data in `/mash/paperless-keydb`.
+This will create a `mash-paperless-valkey` instance on this host with its data in `/mash/paperless-valkey`.
 
 Then, adjust your main inventory host's variables file (`inventory/host_vars/paperless.example.org/vars.yml`) like this:
 
@@ -161,16 +161,16 @@ Then, adjust your main inventory host's variables file (`inventory/host_vars/pap
 
 # Base configuration as shown above
 
-# Point paperless to its dedicated KeyDB instance
-paperless_redis_hostname: mash-paperless-keydb
+# Point paperless to its dedicated Valkey instance
+paperless_redis_hostname: mash-paperless-valkey
 
-# Make sure the paperless service (mash-paperless.service) starts after its dedicated KeyDB service (mash-paperless-keydb.service)
+# Make sure the paperless service (mash-paperless.service) starts after its dedicated KeyDB service (mash-paperless-valkey.service)
 paperless_systemd_required_services_list_custom:
-  - "mash-paperless-keydb.service"
+  - "mash-paperless-valkey.service"
 
-# Make sure the paperless container is connected to the container network of its dedicated KeyDB service (mash-paperless-keydb)
+# Make sure the paperless container is connected to the container network of its dedicated KeyDB service (mash-paperless-valkey)
 paperless_container_additional_networks_custom:
-  - "mash-paperless-keydb"
+  - "mash-paperless-valkey"
 
 ########################################################################
 #                                                                      #
@@ -182,7 +182,7 @@ paperless_container_additional_networks_custom:
 
 ## Installation
 
-If you've decided to install a dedicated KeyDB instance for paperless, make sure to first do [installation](../installing.md) for the supplementary inventory host (e.g. `paperless.example.org-deps`), before running installation for the main one (e.g. `paperless.example.org`).
+If you've decided to install a dedicated Valkey instance for paperless, make sure to first do [installation](../installing.md) for the supplementary inventory host (e.g. `paperless.example.org-deps`), before running installation for the main one (e.g. `paperless.example.org`).
 
 
 ## Usage

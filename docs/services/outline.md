@@ -8,7 +8,7 @@
 This service requires the following other services:
 
 - [Postgres](postgres.md)
-- [KeyDB](keydb.md)
+- [Valkey](valkey.md)
 - a [Traefik](traefik.md) reverse-proxy server
 
 
@@ -30,14 +30,14 @@ outline_hostname: outline.example.com
 # This must be generated with: `openssl rand -hex 32`
 outline_environment_variable_secret_key: ''
 
-# The configuration below connects Outline to the KeyDB instance, for session storage purposes.
-# You may wish to run a separate KeyDB instance for Outline, because KeyDB is not multi-tenant.
-# Read more in docs/services/keydb.md.
-outline_redis_hostname: "{{ keydb_identifier if keydb_enabled else '' }}"
+# The configuration below connects Outline to the Valkey instance, for session storage purposes.
+# You may wish to run a separate Valkey instance for Outline, because Valkey is not multi-tenant.
+# Read more in docs/services/valkey.md.
+outline_redis_hostname: "{{ valkey_identifier if valkey_enabled else '' }}"
 
 outline_container_additional_networks_custom: |
   {{
-    [keydb_container_network]
+    [valkey_container_network]
   }}
 
 # By default, files are stored locally.
