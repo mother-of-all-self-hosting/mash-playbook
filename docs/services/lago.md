@@ -8,7 +8,7 @@
 This service requires the following other services:
 
 - a [Postgres](postgres.md) database
-- a [KeyDB](keydb.md) data-store, installation details [below](#keydb)
+- a [Valkey](valkey.md) data-store, installation details [below](#valkey)
 - a [Traefik](traefik.md) reverse-proxy server
 
 
@@ -34,7 +34,7 @@ lago_api_environment_variable_lago_rsa_private_key: ''
 # unless you'd like to run a server with public registration enabled.
 lago_front_environment_variable_lago_disable_signup: false
 
-# KeyDB configuration, as described below
+# Valkey configuration, as described below
 
 ########################################################################
 #                                                                      #
@@ -63,28 +63,28 @@ We recommend installing with public registration enabled at first, creating your
 It should be noted that disabling public signup with this variable merely disables the Sign-Up page in the web interface, but [does not actually disable signups due to a Lago bug](https://github.com/getlago/lago/issues/220).
 
 
-### KeyDB
+### Valkey
 
-As described on the [KeyDB](keydb.md) documentation page, if you're hosting additional services which require KeyDB on the same server, you'd better go for installing a separate KeyDB instance for each service. See [Creating a KeyDB instance dedicated to Lago](#creating-a-keydb-instance-dedicated-to-lago).
+As described on the [Valkey](valkey.md) documentation page, if you're hosting additional services which require KeyDB on the same server, you'd better go for installing a separate Valkey instance for each service. See [Creating a Valkey instance dedicated to Lago](#creating-a-valkey-instance-dedicated-to-lago).
 
-If you're only running Lago on this server and don't need to use KeyDB for anything else, you can [use a single KeyDB instance](#using-the-shared-keydb-instance-for-lago).
+If you're only running Lago on this server and don't need to use KeyDB for anything else, you can [use a single Valkey instance](#using-the-shared-valkey-instance-for-lago).
 
-#### Using the shared KeyDB instance for Lago
+#### Using the shared Valkey instance for Lago
 
-To install a single (non-dedicated) KeyDB instance (`mash-keydb`) and hook Lago to it, add the following **additional** configuration:
+To install a single (non-dedicated) Valkey instance (`mash-valkey`) and hook Lago to it, add the following **additional** configuration:
 
 ```yaml
 ########################################################################
 #                                                                      #
-# keydb                                                                #
+# valkey                                                               #
 #                                                                      #
 ########################################################################
 
-keydb_enabled: true
+valkey_enabled: true
 
 ########################################################################
 #                                                                      #
-# /keydb                                                               #
+# /valkey                                                              #
 #                                                                      #
 ########################################################################
 
@@ -97,16 +97,16 @@ keydb_enabled: true
 
 # Base configuration as shown above
 
-# Point Lago to the shared KeyDB instance
-lago_redis_hostname: "{{ keydb_identifier }}"
+# Point Lago to the shared Valkey instance
+lago_redis_hostname: "{{ valkey_identifier }}"
 
-# Make sure the Lago service (mash-lago.service) starts after the shared KeyDB service (mash-keydb.service)
+# Make sure the Lago service (mash-lago.service) starts after the shared KeyDB service (mash-valkey.service)
 lago_api_systemd_required_services_list_custom:
-  - "{{ keydb_identifier }}.service"
+  - "{{ valkey_identifier }}.service"
 
-# Make sure the Lago container is connected to the container network of the shared KeyDB service (mash-keydb)
+# Make sure the Lago container is connected to the container network of the shared KeyDB service (mash-valkey)
 lago_api_container_additional_networks_custom:
-  - "{{ keydb_identifier }}"
+  - "{{ valkey_identifier }}"
 
 ########################################################################
 #                                                                      #
@@ -115,11 +115,11 @@ lago_api_container_additional_networks_custom:
 ########################################################################
 ```
 
-This will create a `mash-keydb` KeyDB instance on this host.
+This will create a `mash-valkey` Valkey instance on this host.
 
-This is only recommended if you won't be installing other services which require KeyDB. Alternatively, go for [Creating a KeyDB instance dedicated to Lago](#creating-a-keydb-instance-dedicated-to-lago).
+This is only recommended if you won't be installing other services which require KeyDB. Alternatively, go for [Creating a Valkey instance dedicated to Lago](#creating-a-valkey-instance-dedicated-to-lago).
 
-#### Creating a KeyDB instance dedicated to Lago
+#### Creating a Valkey instance dedicated to Lago
 
 The following instructions are based on the [Running multiple instances of the same service on the same host](../running-multiple-instances.md) documentation.
 
@@ -155,20 +155,20 @@ mash_playbook_service_base_directory_name_prefix: 'lago-'
 
 ########################################################################
 #                                                                      #
-# keydb                                                                #
+# valkey                                                               #
 #                                                                      #
 ########################################################################
 
-keydb_enabled: true
+valkey_enabled: true
 
 ########################################################################
 #                                                                      #
-# /keydb                                                               #
+# /valkey                                                              #
 #                                                                      #
 ########################################################################
 ```
 
-This will create a `mash-lago-keydb` instance on this host with its data in `/mash/lago-keydb`.
+This will create a `mash-lago-valkey` instance on this host with its data in `/mash/lago-valkey`.
 
 Then, adjust your main inventory host's variables file (`inventory/host_vars/lago.example.com/vars.yml`) like this:
 
@@ -181,16 +181,16 @@ Then, adjust your main inventory host's variables file (`inventory/host_vars/lag
 
 # Base configuration as shown above
 
-# Point Lago to its dedicated KeyDB instance
-lago_redis_hostname: mash-lago-keydb
+# Point Lago to its dedicated Valkey instance
+lago_redis_hostname: mash-lago-valkey
 
-# Make sure the Lago service (mash-lago.service) starts after its dedicated KeyDB service (mash-lago-keydb.service)
+# Make sure the Lago service (mash-lago.service) starts after its dedicated KeyDB service (mash-lago-valkey.service)
 lago_api_systemd_required_services_list_custom:
-  - "mash-lago-keydb.service"
+  - "mash-lago-valkey.service"
 
-# Make sure the Lago container is connected to the container network of its dedicated KeyDB service (mash-lago-keydb)
+# Make sure the Lago container is connected to the container network of its dedicated KeyDB service (mash-lago-valkey)
 lago_api_container_additional_networks_custom:
-  - "mash-lago-keydb"
+  - "mash-lago-valkey"
 
 ########################################################################
 #                                                                      #

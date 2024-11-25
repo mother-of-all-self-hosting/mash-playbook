@@ -628,6 +628,11 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
     {{ ({'name': (telegraf_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'telegraf']} if telegraf_enabled else omit) }}
   # /role-specific:telegraf
 
+  # role-specific:valkey
+  - |-
+    {{ ({'name': (valkey_identifier + '.service'), 'priority': 750, 'groups': ['mash', 'valkey']} if valkey_enabled else omit) }}
+  # /role-specific:valkey
+
   # role-specific:vaultwarden
   - |-
     {{ ({'name': (vaultwarden_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'vaultwarden', 'vaultwarden-server']} if vaultwarden_enabled else omit) }}
@@ -1543,7 +1548,7 @@ backup_borg_postgresql_databases: "{{ postgres_managed_databases | map(attribute
 backup_borg_mysql_enabled: "{{ mariadb_enabled }}"
 backup_borg_mysql_databases_hostname: "{{ mariadb_identifier if mariadb_enabled else '' }}"
 backup_borg_mysql_databases_username: "root"
-backup_borg_mysql_databases_password: "{{ mariadb_root_passsword if mariadb_enabled else '' }}"
+backup_borg_mysql_databases_password: "{{ mariadb_root_password if mariadb_enabled else '' }}"
 backup_borg_mysql_databases_port: 3306
 backup_borg_mysql_databases: "{{ mariadb_managed_databases | map(attribute='name') if mariadb_enabled else [] }}"
 # /role-specific:mariadb
@@ -5421,6 +5426,33 @@ telegraf_systemd_required_services_list: |
 
 
 
+# role-specific:valkey
+########################################################################
+#                                                                      #
+# valkey                                                               #
+#                                                                      #
+########################################################################
+
+valkey_enabled: false
+
+valkey_identifier: "{{ mash_playbook_service_identifier_prefix }}valkey"
+
+valkey_uid: "{{ mash_playbook_uid }}"
+valkey_gid: "{{ mash_playbook_gid }}"
+
+valkey_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}valkey"
+
+valkey_arch: "{{ mash_playbook_architecture }}"
+
+########################################################################
+#                                                                      #
+# /valkey                                                              #
+#                                                                      #
+########################################################################
+# /role-specific:valkey
+
+
+
 # role-specific:vaultwarden
 ########################################################################
 #                                                                      #
@@ -5501,7 +5533,7 @@ uptime_kuma_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_b
 uptime_kuma_uid: "{{ mash_playbook_uid }}"
 uptime_kuma_gid: "{{ mash_playbook_gid }}"
 
-uptime_kuma_container_additional_networks: |
+uptime_kuma_container_additional_networks_auto: |
   {{
     ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
   }}

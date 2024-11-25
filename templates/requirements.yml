@@ -21,7 +21,7 @@
   name: authelia
   activation_prefix: authelia_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-authentik.git
-  version: v2024.10.2-0
+  version: v2024.10.4-0
   name: authentik
   activation_prefix: authentik_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-aux.git
@@ -29,11 +29,11 @@
   name: auxiliary
   activation_prefix: aux_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-backup_borg.git
-  version: v1.4.0-1.9.1-0
+  version: v1.4.0-1.9.2-1
   name: backup_borg
   activation_prefix: backup_borg_
 - src: git+https://github.com/lingawakad/ansible-role-calibre-web.git
-  version: v0.6.23-0
+  version: v0.6.24-0
   name: calibre-web
   activation_prefix: calibre-web_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-changedetection.git
@@ -61,7 +61,7 @@
   name: couchdb
   activation_prefix: couchdb_
 - src: git+https://github.com/geerlingguy/ansible-role-docker
-  version: 7.4.1
+  version: 7.4.3
   name: docker
   activation_prefix: mash_playbook_docker_installation_enabled
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-docker-registry.git
@@ -112,12 +112,12 @@
   version: v7.10.4-0
   name: focalboard
   activation_prefix: focalboard_
-- src: git+https://github.com/syne909/ansible-role-forgejo.git
-  version: v9.0.0-0
+- src: git+https://github.com/reduktr/ansible-role-forgejo.git
+  version: v9.0.2-0
   name: forgejo
   activation_prefix: forgejo_
 - src: git+https://git.sergiodj.net/sergiodj/ansible-role-forgejo-runner.git
-  version: v3.5.1-0
+  version: v5.0.0
   name: forgejo_runner
   activation_prefix: forgejo_runner_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-freescout.git
@@ -141,7 +141,7 @@
   name: gotosocial
   activation_prefix: gotosocial_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-grafana.git
-  version: v11.3.0-0
+  version: v11.3.1-0
   name: grafana
   activation_prefix: grafana_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-healthchecks.git
@@ -165,7 +165,7 @@
   name: influxdb
   activation_prefix: influxdb_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-jitsi.git
-  version: v9823-0
+  version: v9823-1
   name: jitsi
   activation_prefix: jitsi_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-keycloak.git
@@ -193,7 +193,7 @@
   name: loki
   activation_prefix: loki_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-mariadb.git
-  version: v11.4.3-0
+  version: v11.4.4-2
   name: mariadb
   activation_prefix: mariadb_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-matterbridge.git
@@ -249,7 +249,7 @@
   name: oauth2_proxy
   activation_prefix: oauth2_proxy_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-outline.git
-  version: v0.80.2-0
+  version: v0.81.0-0
   name: outline
   activation_prefix: outline_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-owncast.git
@@ -288,7 +288,7 @@
   name: postgis
   activation_prefix: postgis_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-postgres.git
-  version: v17.0-1
+  version: v17.0-2
   name: postgres
   activation_prefix: postgres_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-postgres-backup.git
@@ -356,7 +356,7 @@
   name: ssh
   activation_prefix: system_security_ssh_
 - src: git+https://github.com/Bergruebe/ansible-role-stirling-pdf.git
-  version: v0.29.0
+  version: v0.33.0-0
   name: stirling_pdf
   activation_prefix: stirling_pdf_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-swap.git
@@ -376,7 +376,7 @@
   name: systemd_service_manager
   activation_prefix: ""
 - src: git+https://github.com/IUCCA/ansible-role-tandoor.git
-  version: v1.5.19-0
+  version: v1.5.22-0
   name: tandoor
   activation_prefix: tandoor_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-telegraf.git
@@ -388,15 +388,19 @@
   name: timesync
   activation_prefix: devture_timesync_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-traefik.git
-  version: v3.2.0-1
+  version: v3.2.1-0
   name: traefik
   activation_prefix: traefik_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-uptime_kuma.git
-  version: v1.23.15-0
+  version: v1.23.15-1
   name: uptime_kuma
   activation_prefix: uptime_kuma_
+- src: git+https://github.com/mother-of-all-self-hosting/ansible-role-valkey.git
+  version: v8.0.1-0
+  name: valkey
+  activation_prefix: valkey_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-vaultwarden.git
-  version: v1.32.4-1
+  version: v1.32.5-1
   name: vaultwarden
   activation_prefix: vaultwarden_
 - src: git+https://github.com/moan0s/ansible-role-versatiles.git

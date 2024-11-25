@@ -2,7 +2,7 @@
 
 [Redis](https://redis.io/) is an open source, in-memory data store used by millions of developers as a database, cache, streaming engine, and message broker.
 
-We used to used to advocate for using Redis, but since [Redis is now "source available"](https://redis.com/blog/redis-adopts-dual-source-available-licensing/) we recommend that you use [KeyDB](keydb.md) instead. KeyDB is compatible with Redis, so switching should be straightforward. You can learn more about the switch from Redis to KeyDB in [this changelog entry](https://github.com/spantaleev/matrix-docker-ansible-deploy/blob/50813c600db1c47b1f3e76707b81fe05d6c46ef5/CHANGELOG.md#backward-compatibility-break-the-playbook-now-defaults-to-keydb-instead-of-redis) for [matrix-docker-ansible-deploy](https://github.com/spantaleev/matrix-docker-ansible-deploy).
+⚠️ We used to used to advocate for using Redis, but since [Redis is now "source available"](https://redis.com/blog/redis-adopts-dual-source-available-licensing/) we recommend that you use [Valkey](valkey.md) instead. Valkey is compatible with Redis, so switching should be straightforward. You can learn more about the switch from Redis to KeyDB in [this changelog entry](https://github.com/spantaleev/matrix-docker-ansible-deploy/blob/50813c600db1c47b1f3e76707b81fe05d6c46ef5/CHANGELOG.md#backward-compatibility-break-the-playbook-now-defaults-to-valkey-instead-of-redis) for [matrix-docker-ansible-deploy](https://github.com/spantaleev/matrix-docker-ansible-deploy). Since 2024-11-23, we recommend [Valkey](valkey.md) instead of [KeyDB](./keydb.md).
 
 Some of the services installed by this playbook require a Redis data store.
 
