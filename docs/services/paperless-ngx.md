@@ -178,6 +178,24 @@ paperless_container_additional_networks_custom:
 #                                                                      #
 ########################################################################
 ```
+### Languages
+If your documents aren't only english documents, it's recommend to set [PAPERLESS_OCR_LANGUAGE](https://docs.paperless-ngx.com/configuration/#PAPERLESS_OCR_LANGUAGE).
+> It should be a 3-letter code, see the list of languages Tesseract supports.
+> Set this to the language most of your documents are written in.
+> This can be a combination of multiple languages such as `deu+eng`, in which case Tesseract will use whatever language matches best. Keep in mind that Tesseract uses much more CPU time with multiple languages enabled.
+
+```
+paperless_environment_variables_extension: |
+   PAPERLESS_OCR_LANGUAGE=deu+eng
+```
+
+Additional if the language is not English, German, Italian, Spanish or French, the language has to be installed with the Command
+[PAPERLESS_OCR_LANGUAGES](https://docs.paperless-ngx.com/configuration/#PAPERLESS_OCR_LANGUAGES)
+```
+paperless_environment_variables_extension: |
+   PAPERLESS_OCR_LANGUAGES=tur ces chi-tra
+```
+> Make sure it's a space-separated list when using several values.
 
 
 ## Installation
