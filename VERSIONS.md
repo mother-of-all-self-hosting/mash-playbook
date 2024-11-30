@@ -3,9 +3,9 @@
 * Apisix Gateway: 3.8.0
 * Appsmith: v1.9.50
 * Authelia: 4.37.5
-* Authentik: 2024.10.2
+* Authentik: 2024.10.4
 * Borg: 1.4.0
-* Borgmatic: 1.9.2
+* Borgmatic: 1.9.3
 * Calibre Web: 0.6.24
 * Changedetection: 0.45.25
 * Changedetection Playwright Driver: latest
@@ -26,10 +26,10 @@
 * Focalboard: 7.10.4
 * Forgejo: 9.0.2
 * Forgejo Runner: 5.0.0
-* Freescout: 1.17.93
+* Freescout: 1.17.95
 * Freshrss: 1.24.2
 * Funkwhale: 1.4.0
-* Gitea: 1.22.3
+* Gitea: 1.22.4
 * Gotosocial: 0.17.2
 * Grafana: 11.3.1
 * Healthchecks: v3.7
@@ -88,8 +88,9 @@
 * Tandoor Api: 1.5.22
 * Tandoor Frontend: 1.27-alpine
 * Telegraf: 1.30.2
-* Traefik: v3.2.0
+* Traefik: v3.2.1
 * Uptime Kuma: 1.23.15
+* Valkey: 8.0.1
 * Vaultwarden: 1.32.5
 * Versatiles: 0.12.6
 * Wetty: 2.5
