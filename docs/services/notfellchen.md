@@ -34,28 +34,28 @@ notfellchen_hostname: notfellchen.example.com
 ########################################################################
 ```
 
-### KeyDB
+### Valkey
 
-As described on the [KeyDB](keydb.md) documentation page, if you're hosting additional services which require KeyDB on the same server, you'd better go for installing a separate KeyDB instance for each service. See [Creating a KeyDB instance dedicated to notfellchen](#creating-a-keydb-instance-dedicated-to-notfellchen).
+As described on the [Valkey](valkey.md) documentation page, if you're hosting additional services which require KeyDB on the same server, you'd better go for installing a separate Valkey instance for each service. See [Creating a Valkey instance dedicated to notfellchen](#creating-a-valkey-instance-dedicated-to-notfellchen).
 
-If you're only running notfellchen on this server and don't need to use KeyDB for anything else, you can [use a single KeyDB instance](#using-the-shared-keydb-instance-for-notfellchen).
+If you're only running notfellchen on this server and don't need to use KeyDB for anything else, you can [use a single Valkey instance](#using-the-shared-valkey-instance-for-notfellchen).
 
-#### Using the shared KeyDB instance for notfellchen
+#### Using the shared Valkey instance for notfellchen
 
-To install a single (non-dedicated) KeyDB instance (`mash-keydb`) and hook notfellchen to it, add the following **additional** configuration:
+To install a single (non-dedicated) Valkey instance (`mash-valkey`) and hook notfellchen to it, add the following **additional** configuration:
 
 ```yaml
 ########################################################################
 #                                                                      #
-# keydb                                                                #
+# valkey                                                               #
 #                                                                      #
 ########################################################################
 
-keydb_enabled: true
+valkey_enabled: true
 
 ########################################################################
 #                                                                      #
-# /keydb                                                               #
+# /valkey                                                              #
 #                                                                      #
 ########################################################################
 
@@ -68,16 +68,16 @@ keydb_enabled: true
 
 # Base configuration as shown above
 
-# Point notfellchen to the shared KeyDB instance
-notfellchen_config_redis_hostname: "{{ keydb_identifier }}"
+# Point notfellchen to the shared Valkey instance
+notfellchen_config_redis_hostname: "{{ valkey_identifier }}"
 
 # Make sure the notfellchen API service (mash-notfellchen.service) starts after the shared KeyDB service
 notfellchen_api_systemd_required_services_list_custom:
-  - "{{ keydb_identifier }}.service"
+  - "{{ valkey_identifier }}.service"
 
 # Make sure the notfellchen API service (mash-notfellchen.service) is connected to the container network of the shared KeyDB service
 notfellchen_container_additional_networks_custom:
-  - "{{ keydb_container_network }}"
+  - "{{ valkey_container_network }}"
 
 ########################################################################
 #                                                                      #
@@ -86,12 +86,12 @@ notfellchen_container_additional_networks_custom:
 ########################################################################
 ```
 
-This will create a `mash-keydb` KeyDB instance on this host.
+This will create a `mash-valkey` Valkey instance on this host.
 
-This is only recommended if you won't be installing other services which require KeyDB. Alternatively, go for [Creating a KeyDB instance dedicated to notfellchen](#creating-a-keydb-instance-dedicated-to-notfellchen).
+This is only recommended if you won't be installing other services which require KeyDB. Alternatively, go for [Creating a Valkey instance dedicated to notfellchen](#creating-a-valkey-instance-dedicated-to-notfellchen).
 
 
-#### Creating a KeyDB instance dedicated to notfellchen
+#### Creating a Valkey instance dedicated to notfellchen
 
 The following instructions are based on the [Running multiple instances of the same service on the same host](../running-multiple-instances.md) documentation.
 
@@ -127,20 +127,20 @@ mash_playbook_service_base_directory_name_prefix: 'notfellchen-'
 
 ########################################################################
 #                                                                      #
-# keydb                                                                #
+# valkey                                                               #
 #                                                                      #
 ########################################################################
 
-keydb_enabled: true
+valkey_enabled: true
 
 ########################################################################
 #                                                                      #
-# /keydb                                                               #
+# /valkey                                                              #
 #                                                                      #
 ########################################################################
 ```
 
-This will create a `mash-notfellchen-keydb` instance on this host with its data in `/mash/notfellchen-keydb`.
+This will create a `mash-notfellchen-valkey` instance on this host with its data in `/mash/notfellchen-valkey`.
 
 Then, adjust your main inventory host's variables file (`inventory/host_vars/notfellchen.example.com/vars.yml`) like this:
 
@@ -153,16 +153,16 @@ Then, adjust your main inventory host's variables file (`inventory/host_vars/not
 
 # Base configuration as shown above
 
-# Point notfellchen to its dedicated KeyDB instance
-notfellchen_config_redis_hostname: mash-notfellchen-keydb
+# Point notfellchen to its dedicated Valkey instance
+notfellchen_config_redis_hostname: mash-notfellchen-valkey
 
 # Make sure the notfellchen ervice (mash-notfellchen.service) starts after its dedicated KeyDB service
 notfellchen_systemd_required_services_list_custom:
-  - "mash-notfellchen-keydb.service"
+  - "mash-notfellchen-valkey.service"
 
 # Make sure the notfellchen service (mash-notfellchen.service) is connected to the container network of its dedicated KeyDB service
 notfellchen_api_container_additional_networks_custom:
-  - "mash-notfellchen-keydb"
+  - "mash-notfellchen-valkey"
 
 ########################################################################
 #                                                                      #

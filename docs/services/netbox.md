@@ -8,7 +8,7 @@
 This service requires the following other services:
 
 - a [Postgres](postgres.md) database
-- a [KeyDB](keydb.md) data-store, installation details [below](#keydb)
+- a [Valkey](valkey.md) data-store, installation details [below](#valkey)
 - a [Traefik](traefik.md) reverse-proxy server
 
 
@@ -38,7 +38,7 @@ netbox_environment_variable_superuser_email: your.email@example.com
 # Changing the password subsequently will not affect the user's password.
 netbox_environment_variable_superuser_password: ''
 
-# KeyDB configuration, as described below
+# Valkey configuration, as described below
 
 ########################################################################
 #                                                                      #
@@ -60,28 +60,28 @@ If `netbox_environment_variable_superuser_*` variables are specified, NetBox wil
 
 [Single-Sign-On](#single-sign-on-sso-integration) is also supported.
 
-### KeyDB
+### Valkey
 
-As described on the [KeyDB](keydb.md) documentation page, if you're hosting additional services which require KeyDB on the same server, you'd better go for installing a separate KeyDB instance for each service. See [Creating a KeyDB instance dedicated to NetBox](#creating-a-keydb-instance-dedicated-to-netbox).
+As described on the [Valkey](valkey.md) documentation page, if you're hosting additional services which require KeyDB on the same server, you'd better go for installing a separate Valkey instance for each service. See [Creating a Valkey instance dedicated to NetBox](#creating-a-valkey-instance-dedicated-to-netbox).
 
-If you're only running NetBox on this server and don't need to use KeyDB for anything else, you can [use a single KeyDB instance](#using-the-shared-keydb-instance-for-netbox).
+If you're only running NetBox on this server and don't need to use KeyDB for anything else, you can [use a single Valkey instance](#using-the-shared-valkey-instance-for-netbox).
 
-#### Using the shared KeyDB instance for NetBox
+#### Using the shared Valkey instance for NetBox
 
-To install a single (non-dedicated) KeyDB instance (`mash-keydb`) and hook NetBox to it, add the following **additional** configuration:
+To install a single (non-dedicated) Valkey instance (`mash-valkey`) and hook NetBox to it, add the following **additional** configuration:
 
 ```yaml
 ########################################################################
 #                                                                      #
-# keydb                                                                #
+# valkey                                                               #
 #                                                                      #
 ########################################################################
 
-keydb_enabled: true
+valkey_enabled: true
 
 ########################################################################
 #                                                                      #
-# /keydb                                                               #
+# /valkey                                                              #
 #                                                                      #
 ########################################################################
 
@@ -94,17 +94,17 @@ keydb_enabled: true
 
 # Base configuration as shown above
 
-# Point NetBox to the shared KeyDB instance
-netbox_environment_variable_redis_host: "{{ keydb_identifier }}"
-netbox_environment_variable_redis_cache_host: "{{ keydb_identifier }}"
+# Point NetBox to the shared Valkey instance
+netbox_environment_variable_redis_host: "{{ valkey_identifier }}"
+netbox_environment_variable_redis_cache_host: "{{ valkey_identifier }}"
 
-# Make sure the NetBox service (mash-netbox.service) starts after the shared KeyDB service (mash-keydb.service)
+# Make sure the NetBox service (mash-netbox.service) starts after the shared KeyDB service (mash-valkey.service)
 netbox_systemd_required_services_list_custom:
-  - "{{ keydb_identifier }}.service"
+  - "{{ valkey_identifier }}.service"
 
-# Make sure the NetBox container is connected to the container network of the shared KeyDB service (mash-keydb)
+# Make sure the NetBox container is connected to the container network of the shared KeyDB service (mash-valkey)
 netbox_container_additional_networks_custom:
-  - "{{ keydb_identifier }}"
+  - "{{ valkey_identifier }}"
 
 ########################################################################
 #                                                                      #
@@ -113,12 +113,12 @@ netbox_container_additional_networks_custom:
 ########################################################################
 ```
 
-This will create a `mash-keydb` KeyDB instance on this host.
+This will create a `mash-valkey` Valkey instance on this host.
 
-This is only recommended if you won't be installing other services which require KeyDB. Alternatively, go for [Creating a KeyDB instance dedicated to NetBox](#creating-a-keydb-instance-dedicated-to-netbox).
+This is only recommended if you won't be installing other services which require KeyDB. Alternatively, go for [Creating a Valkey instance dedicated to NetBox](#creating-a-valkey-instance-dedicated-to-netbox).
 
 
-#### Creating a KeyDB instance dedicated to NetBox
+#### Creating a Valkey instance dedicated to NetBox
 
 The following instructions are based on the [Running multiple instances of the same service on the same host](../running-multiple-instances.md) documentation.
 
@@ -154,20 +154,20 @@ mash_playbook_service_base_directory_name_prefix: 'netbox-'
 
 ########################################################################
 #                                                                      #
-# keydb                                                                #
+# valkey                                                               #
 #                                                                      #
 ########################################################################
 
-keydb_enabled: true
+valkey_enabled: true
 
 ########################################################################
 #                                                                      #
-# /keydb                                                               #
+# /valkey                                                              #
 #                                                                      #
 ########################################################################
 ```
 
-This will create a `mash-netbox-keydb` instance on this host with its data in `/mash/netbox-keydb`.
+This will create a `mash-netbox-valkey` instance on this host with its data in `/mash/netbox-valkey`.
 
 Then, adjust your main inventory host's variables file (`inventory/host_vars/netbox.example.com/vars.yml`) like this:
 
@@ -181,17 +181,17 @@ Then, adjust your main inventory host's variables file (`inventory/host_vars/net
 # Base configuration as shown above
 
 
-# Point NetBox to its dedicated KeyDB instance
-netbox_environment_variable_redis_host: mash-netbox-keydb
-netbox_environment_variable_redis_cache_host: mash-netbox-keydb
+# Point NetBox to its dedicated Valkey instance
+netbox_environment_variable_redis_host: mash-netbox-valkey
+netbox_environment_variable_redis_cache_host: mash-netbox-valkey
 
-# Make sure the NetBox service (mash-netbox.service) starts after its dedicated KeyDB service (mash-netbox-keydb.service)
+# Make sure the NetBox service (mash-netbox.service) starts after its dedicated KeyDB service (mash-netbox-valkey.service)
 netbox_systemd_required_services_list_custom:
-  - "mash-netbox-keydb.service"
+  - "mash-netbox-valkey.service"
 
-# Make sure the NetBox container is connected to the container network of its dedicated KeyDB service (mash-netbox-keydb)
+# Make sure the NetBox container is connected to the container network of its dedicated KeyDB service (mash-netbox-valkey)
 netbox_container_additional_networks_custom:
-  - "mash-netbox-keydb"
+  - "mash-netbox-valkey"
 
 ########################################################################
 #                                                                      #
@@ -257,7 +257,7 @@ For additional environment variables controlling groups and permissions for new 
 
 ## Installation
 
-If you've decided to install a dedicated KeyDB instance for NetBox, make sure to first do [installation](../installing.md) for the supplementary inventory host (e.g. `netbox.example.com-deps`), before running installation for the main one (e.g. `netbox.example.com`).
+If you've decided to install a dedicated Valkey instance for NetBox, make sure to first do [installation](../installing.md) for the supplementary inventory host (e.g. `netbox.example.com-deps`), before running installation for the main one (e.g. `netbox.example.com`).
 
 
 ## Usage

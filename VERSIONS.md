@@ -3,10 +3,10 @@
 * Apisix Gateway: 3.8.0
 * Appsmith: v1.9.50
 * Authelia: 4.37.5
-* Authentik: 2024.10.2
+* Authentik: 2024.10.4
 * Borg: 1.4.0
-* Borgmatic: 1.9.1
-* Calibre Web: 0.6.23
+* Borgmatic: 1.9.3
+* Calibre Web: 0.6.24
 * Changedetection: 0.45.25
 * Changedetection Playwright Driver: latest
 * Clickhouse: 24.8.4.13
@@ -24,14 +24,14 @@
 * Exim Relay: 4.98-r0-1
 * Firezone: 0.7.36
 * Focalboard: 7.10.4
-* Forgejo: 9.0.0
-* Forgejo Runner: 3.5.1
-* Freescout: 1.17.93
+* Forgejo: 9.0.2
+* Forgejo Runner: 5.0.0
+* Freescout: 1.17.95
 * Freshrss: 1.24.2
 * Funkwhale: 1.4.0
-* Gitea: 1.22.3
+* Gitea: 1.22.4
 * Gotosocial: 0.17.2
-* Grafana: 11.3.0
+* Grafana: 11.3.1
 * Healthchecks: v3.7
 * Hubsite Nginx: 1.27.2
 * Ilmo: 1.0.4
@@ -83,14 +83,15 @@
 * Rumqttd: 0.21.0
 * Semaphore: 2.9.56
 * Soft Serve: v0.4.7
-* Stirling Pdf: 0.29.0-fat
+* Stirling Pdf: 0.33.0-fat
 * Syncthing: 1.28.0
-* Tandoor Api: 1.5.19
+* Tandoor Api: 1.5.22
 * Tandoor Frontend: 1.27-alpine
 * Telegraf: 1.30.2
-* Traefik: v3.2.0
+* Traefik: v3.2.1
 * Uptime Kuma: 1.23.15
-* Vaultwarden: 1.32.4
+* Valkey: 8.0.1
+* Vaultwarden: 1.32.5
 * Versatiles: 0.12.6
 * Wetty: 2.5
 * Wg Easy: 14

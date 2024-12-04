@@ -123,6 +123,13 @@ install-service service *extra_args:
 # Runs the playbook with --tags=setup-all,start and optional arguments
 setup-all *extra_args: (run-tags "setup-all,start" extra_args)
 
+# Runs setup tasks for a single service
+setup-service service *extra_args:
+    just --justfile {{ justfile() }} run \
+    --tags=setup-{{ service }},start-group \
+    --extra-vars=group={{ service }} \
+    --extra-vars=devture_systemd_service_manager_service_restart_mode=one-by-one {{ extra_args }}
+
 # Runs the playbook with the given list of arguments
 run +extra_args: _requirements-yml _setup-yml _group-vars-mash-servers
     ansible-playbook -i inventory/hosts setup.yml {{ extra_args }}
