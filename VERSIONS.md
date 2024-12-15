@@ -35,7 +35,7 @@
 * Healthchecks: v3.7
 * Hubsite Nginx: 1.27.2
 * Ilmo: 1.0.4
-* Infisical: v0.4.2
+* Infisical: v0.43.19
 * Influxdb: 2.7.6
 * Jitsi: stable-9823
 * Jitsi Ldap: 3
@@ -57,7 +57,7 @@
 * Neko: firefox
 * Netbox: v3.7.0-2.8.0
 * Netbox Container Image Customizations Keycloak Sso Expiration Middleware: a2ac39b1c73a50742c6e834e89162f87528c7f73
-* Nextcloud: 30.0.2
+* Nextcloud: 30.0.4
 * Notfellchen: 0.1.1
 * Notfellchen Sws: 2
 * Oauth2 Proxy: v7.6.0
