@@ -9,6 +9,7 @@ This service requires the following other services:
 
 - a [MongoDB](mongodb.md) document-oriented database server
 - a [Traefik](traefik.md) reverse-proxy server
+- a [Valkey](valkey.md) data-store, installation details [below](#valkey)
 
 
 ## Configuration
@@ -54,6 +55,140 @@ Public registration can be enabled/disabled using the `infisical_backend_environ
 
 We recommend installing with public registration enabled at first (which is the default value for this variable), creating your first user account, and then disabling public registration by explicitly setting `infisical_backend_environment_variable_invite_only_signup` to `true`. Enabling invite-only signup requires that you configure [Email configuration](#email-configuration)
 
+
+### Valkey
+
+As described on the Valkey documentation page, if you're hosting additional services which require KeyDB on the same server, you'd better go for installing a separate Valkey instance for each service. See Creating a Valkey instance dedicated to Infisical.
+
+If you're only running Infisical on this server and don't need to use KeyDB for anything else, you can use a single Valkey instance.
+Using the shared Valkey instance for Infisical
+
+To install a single (non-dedicated) Valkey instance (mash-valkey) and hook Infisical to it, add the following additional configuration:
+
+```yaml
+########################################################################
+#                                                                      #
+# valkey                                                               #
+#                                                                      #
+########################################################################
+
+valkey_enabled: true
+
+########################################################################
+#                                                                      #
+# /valkey                                                              #
+#                                                                      #
+########################################################################
+
+
+########################################################################
+#                                                                      #
+# infisical                                                            #
+#                                                                      #
+########################################################################
+
+# Base configuration as shown above
+
+# Point Infisical to the shared Valkey instance
+infisical_environment_variable_redis_host: "{{ valkey_identifier }}"
+infisical_environment_variable_redis_cache_host: "{{ valkey_identifier }}"
+
+# Make sure the Infisical service (mash-infisical.service) starts after the shared KeyDB service (mash-valkey.service)
+infisical_systemd_required_services_list_custom:
+  - "{{ valkey_identifier }}.service"
+
+# Make sure the Infisical container is connected to the container network of the shared KeyDB service (mash-valkey)
+infisical_container_additional_networks_custom:
+  - "{{ valkey_identifier }}"
+
+########################################################################
+#                                                                      #
+# /infisical                                                           #
+#                                                                      #
+########################################################################
+```
+
+This will create a mash-valkey Valkey instance on this host.
+
+This is only recommended if you won't be installing other services which require KeyDB. Alternatively, go for Creating a Valkey instance dedicated to Infisical.
+Creating a Valkey instance dedicated to Infisical
+
+The following instructions are based on the Running multiple instances of the same service on the same host documentation.
+
+Adjust your inventory/hosts file as described in Re-do your inventory to add supplementary hosts, adding a new supplementary host (e.g. if infisical.example.com is your main one, create infisical.example.com-deps).
+
+Then, create a new vars.yml file for the
+
+inventory/host_vars/infisical.example.com-deps/vars.yml:
+
+```yaml
+
+########################################################################
+#                                                                      #
+# Playbook                                                             #
+#                                                                      #
+########################################################################
+
+# Put a strong secret below, generated with `pwgen -s 64 1` or in another way
+# Various other secrets will be derived from this secret automatically.
+mash_playbook_generic_secret_key: ''
+
+# Override service names and directory path prefixes
+mash_playbook_service_identifier_prefix: 'mash-infisical-'
+mash_playbook_service_base_directory_name_prefix: 'infisical-'
+
+########################################################################
+#                                                                      #
+# /Playbook                                                            #
+#                                                                      #
+########################################################################
+
+
+########################################################################
+#                                                                      #
+# valkey                                                               #
+#                                                                      #
+########################################################################
+
+valkey_enabled: true
+
+########################################################################
+#                                                                      #
+# /valkey                                                              #
+#                                                                      #
+########################################################################
+
+This will create a mash-infisical-valkey instance on this host with its data in /mash/infisical-valkey.
+
+Then, adjust your main inventory host's variables file (inventory/host_vars/infisical.example.com/vars.yml) like this:
+
+########################################################################
+#                                                                      #
+# infisical                                                            #
+#                                                                      #
+########################################################################
+
+# Base configuration as shown above
+
+
+# Point Infisical to its dedicated Valkey instance
+infisical_environment_variable_redis_host: mash-infisical-valkey
+infisical_environment_variable_redis_cache_host: mash-infisical-valkey
+
+# Make sure the Infisical service (mash-infisical.service) starts after its dedicated KeyDB service (mash-infisical-valkey.service)
+infisical_systemd_required_services_list_custom:
+  - "mash-infisical-valkey.service"
+
+# Make sure the Infisical container is connected to the container network of its dedicated KeyDB service (mash-infisical-valkey)
+infisical_container_additional_networks_custom:
+  - "mash-infisical-valkey"
+
+########################################################################
+#                                                                      #
+# /infisical                                                           #
+#                                                                      #
+########################################################################
+```
 
 ### Email configuration
 
