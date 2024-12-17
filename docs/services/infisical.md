@@ -58,9 +58,9 @@ We recommend installing with public registration enabled at first (which is the 
 
 ### Valkey
 
-As described on the Valkey documentation page, if you're hosting additional services which require KeyDB on the same server, you'd better go for installing a separate Valkey instance for each service. See Creating a Valkey instance dedicated to Infisical.
+As described on the Valkey documentation page, if you're hosting additional services which require Valkey on the same server, you'd better go for installing a separate Valkey instance for each service. See Creating a Valkey instance dedicated to Infisical.
 
-If you're only running Infisical on this server and don't need to use KeyDB for anything else, you can use a single Valkey instance.
+If you're only running Infisical on this server and don't need to use Valkey for anything else, you can use a single Valkey instance.
 Using the shared Valkey instance for Infisical
 
 To install a single (non-dedicated) Valkey instance (mash-valkey) and hook Infisical to it, add the following additional configuration:
@@ -93,11 +93,11 @@ valkey_enabled: true
 infisical_environment_variable_redis_host: "{{ valkey_identifier }}"
 infisical_environment_variable_redis_cache_host: "{{ valkey_identifier }}"
 
-# Make sure the Infisical service (mash-infisical.service) starts after the shared KeyDB service (mash-valkey.service)
+# Make sure the Infisical service (mash-infisical.service) starts after the shared Valkey service (mash-valkey.service)
 infisical_systemd_required_services_list_custom:
   - "{{ valkey_identifier }}.service"
 
-# Make sure the Infisical container is connected to the container network of the shared KeyDB service (mash-valkey)
+# Make sure the Infisical container is connected to the container network of the shared Valkey service (mash-valkey)
 infisical_container_additional_networks_custom:
   - "{{ valkey_identifier }}"
 
@@ -110,7 +110,7 @@ infisical_container_additional_networks_custom:
 
 This will create a mash-valkey Valkey instance on this host.
 
-This is only recommended if you won't be installing other services which require KeyDB. Alternatively, go for Creating a Valkey instance dedicated to Infisical.
+This is only recommended if you won't be installing other services which require Valkey. Alternatively, go for Creating a Valkey instance dedicated to Infisical.
 Creating a Valkey instance dedicated to Infisical
 
 The following instructions are based on the Running multiple instances of the same service on the same host documentation.
@@ -175,11 +175,11 @@ Then, adjust your main inventory host's variables file (inventory/host_vars/infi
 infisical_environment_variable_redis_host: mash-infisical-valkey
 infisical_environment_variable_redis_cache_host: mash-infisical-valkey
 
-# Make sure the Infisical service (mash-infisical.service) starts after its dedicated KeyDB service (mash-infisical-valkey.service)
+# Make sure the Infisical service (mash-infisical.service) starts after its dedicated Valkey service (mash-infisical-valkey.service)
 infisical_systemd_required_services_list_custom:
   - "mash-infisical-valkey.service"
 
-# Make sure the Infisical container is connected to the container network of its dedicated KeyDB service (mash-infisical-valkey)
+# Make sure the Infisical container is connected to the container network of its dedicated Valkey service (mash-infisical-valkey)
 infisical_container_additional_networks_custom:
   - "mash-infisical-valkey"
 
