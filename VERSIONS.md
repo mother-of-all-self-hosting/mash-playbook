@@ -3,9 +3,9 @@
 * Apisix Gateway: 3.8.0
 * Appsmith: v1.9.50
 * Authelia: 4.37.5
-* Authentik: 2024.10.4
+* Authentik: 2024.12.0
 * Borg: 1.4.0
-* Borgmatic: 1.9.3
+* Borgmatic: 1.9.4
 * Calibre Web: 0.6.24
 * Changedetection: 0.45.25
 * Changedetection Playwright Driver: latest
@@ -21,23 +21,23 @@
 * Echoip: latest
 * Endlessh: 2024.0119.1
 * Etcd: 3.5.11
-* Exim Relay: 4.98-r0-1
+* Exim Relay: 4.98-r0-3
 * Firezone: 0.7.36
 * Focalboard: 7.10.4
-* Forgejo: 9.0.2
-* Forgejo Runner: 5.0.0
-* Freescout: 1.17.95
+* Forgejo: 9.0.3
+* Forgejo Runner: 5.0.3
+* Freescout: 1.17.97
 * Freshrss: 1.24.2
 * Funkwhale: 1.4.0
 * Gitea: 1.22.4
 * Gotosocial: 0.17.2
-* Grafana: 11.3.1
-* Healthchecks: v3.7
+* Grafana: 11.4.0
+* Healthchecks: v3.9
 * Hubsite Nginx: 1.27.2
 * Ilmo: 1.0.4
-* Infisical: v0.4.2
+* Infisical: v0.43.19
 * Influxdb: 2.7.6
-* Jitsi: stable-9823
+* Jitsi: stable-9909
 * Jitsi Ldap: 3
 * Jitsi Prosody Auth Matrix User Verification Repo: 2839499cb03894d8cfc3e5b2219441427cb133d8
 * Keycloak: 26.0.5
@@ -57,11 +57,11 @@
 * Neko: firefox
 * Netbox: v3.7.0-2.8.0
 * Netbox Container Image Customizations Keycloak Sso Expiration Middleware: a2ac39b1c73a50742c6e834e89162f87528c7f73
-* Nextcloud: 30.0.2
+* Nextcloud: 30.0.4
 * Notfellchen: 0.1.1
 * Notfellchen Sws: 2
 * Oauth2 Proxy: v7.6.0
-* Outline: 0.81.0
+* Outline: 0.81.1
 * Owncast: 0.1.2
 * Oxitraffic: 0.10.1
 * Paperless: 2.13.2
@@ -75,27 +75,28 @@
 * Prometheus Postgres Exporter: v0.14.0
 * Prometheus Ssh Exporter: v1.5.0
 * Promtail: 2.9.5
-* Radicale: 3.3.0.1
-* Readeck: 0.15.6
+* Radicale: 3.3.2.0
+* Readeck: 0.16.0
 * Redis: 7.2.5
-* Redmine: 5.1.4
+* Redmine: 6.0.2
 * Roundcube: 1.6.9
 * Rumqttd: 0.21.0
+* Searxng: latest
 * Semaphore: 2.9.56
 * Soft Serve: v0.4.7
 * Stirling Pdf: 0.33.0-fat
-* Syncthing: 1.28.0
-* Tandoor Api: 1.5.22
+* Syncthing: 1.28.1
+* Tandoor Api: 1.5.24
 * Tandoor Frontend: 1.27-alpine
 * Telegraf: 1.30.2
 * Traefik: v3.2.1
-* Uptime Kuma: 1.23.15
+* Uptime Kuma: 1.23.16
 * Valkey: 8.0.1
-* Vaultwarden: 1.32.5
+* Vaultwarden: 1.32.7
 * Versatiles: 0.12.6
 * Wetty: 2.5
 * Wg Easy: 14
-* Woodpecker Ci Agent: v2.7.1
-* Woodpecker Ci Server: v2.7.1
+* Woodpecker Ci Agent: v2.8.0
+* Woodpecker Ci Server: v2.8.0
 * Wordpress: 6.6.2
 * Writefreely: v0.15.0
