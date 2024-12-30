@@ -668,6 +668,11 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
     {{ ({'name': (forgejo_runner_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'forgejo-runner']} if forgejo_runner_enabled else omit) }}
   # /role-specific:forgejo_runner
 
+  # role-specific:tsdproxy
+  - |-
+    {{ ({'name': (tsdproxy_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'tsdproxy']} if tsdproxy_enabled else omit) }}
+  # /role-specific:tsdproxy
+
   # role-specific:writefreely
   - |-
     {{ ({'name': (writefreely_identifier  + '.service'), 'priority': 2000, 'groups': ['mash', 'writefreely']} if writefreely_enabled else omit) }}
@@ -5468,6 +5473,51 @@ telegraf_systemd_required_services_list: |
 #                                                                      #
 ########################################################################
 # /role-specific:telegraf
+
+
+
+# role-specific:tsdproxy
+########################################################################
+#                                                                      #
+# tsdproxy                                                             #
+#                                                                      #
+########################################################################
+
+tsdproxy_enabled: false
+
+tsdproxy_identifier: "{{ mash_playbook_service_identifier_prefix }}tsdproxy"
+
+tsdproxy_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}tsdproxy"
+
+tsdproxy_uid: "{{ mash_playbook_uid }}"
+tsdproxy_gid: "{{ mash_playbook_gid }}"
+
+# role-specific:container_socket_proxy
+tsdproxy_docker_endpoint_is_unix_socket: "{{ false if devture_container_socket_proxy_enabled else true }}"
+tsdproxy_docker_endpoint: "{{ devture_container_socket_proxy_endpoint if devture_container_socket_proxy_enabled == true and tsdproxy_enabled == true else 'unix:///var/run/docker.sock' }}"
+# TSDProxy needs access to the Docker Networks and images to work
+devture_container_socket_proxy_api_network_enabled: "{{ true if tsdproxy_docker_endpoint == devture_container_socket_proxy_endpoint else false }}"
+devture_container_socket_proxy_api_images_enabled: "{{ true if tsdproxy_docker_endpoint == devture_container_socket_proxy_endpoint else false }}"
+# /role-specific:container_socket_proxy
+
+tsdproxy_container_additional_networks_auto: |
+  {{
+    ([devture_container_socket_proxy_container_network] if devture_container_socket_proxy_enabled | default(false) else [])
+  }}
+
+tsdproxy_systemd_required_services_list: |
+  {{
+    ([devture_systemd_docker_base_docker_service_name] if devture_systemd_docker_base_docker_service_name else [])
+    +
+    ([devture_container_socket_proxy_identifier + '.service'] if devture_container_socket_proxy_enabled | default(false) else [])
+  }}
+
+########################################################################
+#                                                                      #
+# /tsdproxy                                                            #
+#                                                                      #
+########################################################################
+# /role-specific:tsdproxy
 
 
 
