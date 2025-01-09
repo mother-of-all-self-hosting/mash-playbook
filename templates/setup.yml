@@ -379,6 +379,10 @@
     - role: galaxy/rumqttd
     # /role-specific:rumqttd
 
+    # role-specific:searxng
+    - role: galaxy/searxng
+    # /role-specific:searxng
+
     # role-specific:semaphore
     - role: galaxy/semaphore
     # /role-specific:semaphore
