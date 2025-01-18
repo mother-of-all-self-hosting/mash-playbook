@@ -195,6 +195,5 @@ Below is a rough guide to help you migrate from Gitea (tested with version v1.23
 
 	You can do this by:
 
-	- removing its configuration from `vars.yml` and [re-running the playbook](../installing.md)
-	- deleting the `/mash/gitea` directory manually
+	- removing its configuration from `vars.yml` and [re-running the playbook](../installing.md). This will also delete the `/mash/gitea` directory
 	- dropping the `gitea` database from the Postgres server (execute `/mash/postgres/bin/cli` and run `DROP DATABASE gitea;`)
