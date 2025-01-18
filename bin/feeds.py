@@ -86,6 +86,10 @@ def format_feeds_from_git_repos(git_repos):
                 atomFilePath = git_repo.replace('.git', '') + '.atom'
             elif 'dev.funkwhale.audio' in git_repo: # gitlab
                 atomFilePath = git_repo.replace('.git', '') + '/-/tags?format=atom'
+            elif 'codeberg.org' in git_repo:
+                atomFilePath = git_repo.replace('.git', '') + '/releases.atom'
+            elif 'code.forgejo.org' in git_repo:
+                atomFilePath = git_repo.replace('.git', '') + '/releases.atom'
             else:
                 print('Unrecognized git repository: %s' % git_repo)
                 continue
