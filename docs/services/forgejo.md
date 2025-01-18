@@ -1,6 +1,6 @@
 # Forgejo
 
-[Forgejo](https://forgejo.org/) is a painless self-hosted Git service, an alternative fork to [Gitea](https://gitea.io/) (that this playbook also [supports](gitea.md)).
+[Forgejo](https://forgejo.org/) is a self-hosted lightweight software forge (Git hosting service, etc.), an alternative to [Gitea](https://gitea.io/) (that this playbook also [supports](gitea.md)).
 
 
 ## Dependencies
@@ -73,3 +73,128 @@ forgejo_container_add_host_domain_ip_address: "{{ ansible_host }}"
 forgejo_container_additional_environment_variables: |
   FORGEJO__webhook__ALLOWED_HOST_LIST=external,{{ ansible_host }}
 ```
+
+## Migrating from Gitea
+
+Forgejo is a fork of Gitea and upgrading from Gitea versions up and including v1.22.0 was relatively easy, but [Gitea versions after v1.22.0 do not allow such transparent upgrades anymore](https://forgejo.org/2024-12-gitea-compatibility/).
+
+Nevertheless, upgrades may be possible with some manual work.
+
+Below is a rough guide to help you migrate from Gitea (tested with version v1.23.1) to Forgejo (v10.0.0).
+
+1. Adjust `vars.yml` to enable the Forgejo service (prepare DNS records if using a dedicated hostname instead of your old Gitea hostname). We do not disable Gitea just yet.
+
+2. Stop Gitea by running this on the server: `systemctl stop mash-gitea.service`
+
+3. Dump the Gitea database and adapt for Forgejo
+
+	Run these commands on the server:
+
+	```sh
+	mkdir /mash/gitea-to-forgejo-migration
+
+	docker run \
+	--rm \
+	--user=$(id -u mash):$(id -g mash) \
+	--cap-drop=ALL \
+	--env-file=/mash/postgres/env-postgres-psql \
+	--mount type=bind,src=/mash/gitea-to-forgejo-migration,dst=/out \
+	--network=mash-postgres \
+	--entrypoint=/bin/sh \
+	docker.io/postgres:17.2-alpine \
+	-c 'set -o pipefail && pg_dump -h mash-postgres -d gitea > /out/forgejo.sql'
+
+	sed --in-place 's/OWNER TO gitea/OWNER TO forgejo/g' /mash/gitea-to-forgejo-migration/forgejo.sql
+	```
+
+4. Prepare the `forgejo` Postgres database by running the playbook: `just run-tags install-postgres`
+
+5. Import the database dump into the `forgejo` Postgres database
+
+	Run this command on the server:
+
+	```sh
+	docker run \
+	--rm \
+	--user=$(id -u mash):$(id -g mash) \
+	--cap-drop=ALL \
+	--env-file=/mash/postgres/env-postgres-psql \
+	--mount type=bind,src=/mash/gitea-to-forgejo-migration,dst=/out \
+	--network=mash-postgres \
+	--entrypoint=/bin/sh \
+	docker.io/postgres:17.2-alpine \
+	-c 'set -o pipefail && psql -h mash-postgres -d forgejo < /out/forgejo.sql'
+	```
+
+6. Install Forgejo using the playbook, but do not start it yet: `just run-tags install-forgejo`
+
+7. Sync some files from Gitea by running these commands on the server
+
+	```sh
+	rsync -avr /mash/gitea/data/. /mash/forgejo/data/.
+
+	# These files seem to live in a different place now, so we move them around.
+	mv /mash/forgejo/data/data/gitea/repo-avatars /mash/forgejo/data/repo-avatars
+	rmdir /mash/forgejo/data/data/gitea
+	```
+
+8. **For Gitea versions older than v1.22, skip this step**. For newer versions, revert the `forgejo` database to a schema migration version that Forgejo supports
+
+	In this guide, we're using Gitea v1.23.1, the database schema version for which (`312`) is newer than what Forgejo supports (`305`).
+	We need to [revert all migrations that are newer than `305`](https://github.com/go-gitea/gitea/tree/v1.23.1/models/migrations/v1_23).
+
+	This may not always be possible or easy. For Gitea v1.23.1, the reverts can be done by running `/mash/postgres/bin/cli`, switching to the `forgejo` database (`\c forgejo`), and running the following queries:
+
+	```sql
+	-- Revert 311
+	ALTER TABLE issue DROP COLUMN time_estimate;
+
+	-- Revert 310
+	ALTER TABLE protected_branch DROP column priority;
+
+	-- Revert 309
+	-- Drop the composite index on (user_id, status, updated_unix)
+	DROP INDEX IF EXISTS "IDX_notification_u_s_uu";
+
+	DROP INDEX IF EXISTS "IDX_notification_user_id";
+	DROP INDEX IF EXISTS "IDX_notification_repo_id";
+	DROP INDEX IF EXISTS "IDX_notification_status";
+	DROP INDEX IF EXISTS "IDX_notification_source";
+	DROP INDEX IF EXISTS "IDX_notification_issue_id";
+	DROP INDEX IF EXISTS "IDX_notification_commit_id";
+	DROP INDEX IF EXISTS "IDX_notification_updated_by";
+
+
+	-- Revert 308
+	DROP INDEX IF EXISTS "IDX_action_r_u_d";
+	DROP INDEX IF EXISTS "IDX_action_au_r_c_u_d";
+	DROP INDEX IF EXISTS "IDX_action_c_u_d";
+	DROP INDEX IF EXISTS "IDX_action_c_u";
+
+	-- Revert 307
+	-- Nothing to do
+
+	-- Revert 306
+	ALTER TABLE protected_branch DROP COLUMN block_admin_merge_override;
+
+	-- Mark as reverted
+	UPDATE version SET version = 305;
+	```
+
+9. Start Forgejo by running this on the server: `systemctl start mash-forgejo.service`
+
+10. Complete the Forgejo installation on the web
+
+	Forgejo may show an Installation page at the base URL with various configuration options, most of which prefilled.
+
+	Our experience was that the "Run as user" field was empty, but required and "read only". Using the browser's inspector was necessary to remove the `readonly` attribute from the field, so we could enter a `git` value in it.
+
+	After completing the installation, you should be able to access your new Forgejo instance.
+
+11. If everything is working, consider uninstalling Gitea
+
+	You can do this by:
+
+	- removing its configuration from `vars.yml` and [re-running the playbook](../installing.md)
+	- deleting the `/mash/gitea` directory manually
+	- dropping the `gitea` database from the Postgres server (execute `/mash/postgres/bin/cli` and run `DROP DATABASE gitea;`)
