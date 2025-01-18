@@ -5,7 +5,7 @@
 * Authelia: 4.37.5
 * Authentik: 2024.12.2
 * Borg: 1.4.0
-* Borgmatic: 1.9.5
+* Borgmatic: 1.9.6
 * Calibre Web: 0.6.24
 * Changedetection: 0.48.04
 * Changedetection Playwright Driver: latest
@@ -26,7 +26,7 @@
 * Focalboard: 7.10.4
 * Forgejo: 9.0.3
 * Forgejo Runner: 5.0.4
-* Freescout: 1.17.98
+* Freescout: 1.17.100
 * Freshrss: 1.24.2
 * Funkwhale: 1.4.0
 * Gitea: 1.23.1
@@ -53,7 +53,7 @@
 * Mosquitto: 2.0.15
 * Mrs: v0.1.0
 * N8N: next
-* Navidrome: 0.54.3
+* Navidrome: 0.54.4
 * Neko: firefox
 * Netbox: v3.7.0-2.8.0
 * Netbox Container Image Customizations Keycloak Sso Expiration Middleware: a2ac39b1c73a50742c6e834e89162f87528c7f73
@@ -89,7 +89,7 @@
 * Tandoor Api: 1.5.24
 * Tandoor Frontend: 1.27-alpine
 * Telegraf: 1.30.2
-* Traefik: v3.2.2
+* Traefik: v3.3.2
 * Uptime Kuma: 1.23.16
 * Valkey: 8.0.1
 * Vaultwarden: 1.32.7
