@@ -35,7 +35,7 @@ If not, the container will mount the docker socket at `/var/run/docker.sock`, bu
 
 ## Adding a new service
 
-This proxy creates a separate endpoint in the Tailscale network for each service, without creating a sidecar container each time.
+This proxy creates a separate Tailscale machine (node) in the Tailscale network for each service, without creating a sidecar container each time.
 
 To add a new service, you have to make sure that the service and proxy are in a same container network. You can do this by adding the proxy to the network of the service or the other way round.
 
