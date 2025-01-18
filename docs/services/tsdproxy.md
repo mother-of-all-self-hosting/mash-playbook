@@ -1,19 +1,44 @@
 # TSDProxy
 
+[TSDProxy](https://almeidapaulopt.github.io/tsdproxy/) is an application that automatically creates a proxy to virtual addresses in your [Tailscale](https://tailscale.com/) network.
+
+
+## Configuration
+
+To enable this service, add the following configuration to your `vars.yml` file and re-run the [installation](../installing.md) process:
+
 It is mandatory to set the following variables:
 
 ```yaml
+########################################################################
+#                                                                      #
+# tsdproxy                                                             #
+#                                                                      #
+########################################################################
+
+tsdproxy_enabled: true
+
 tsdproxy_tailscale_authkey: '' # OR
 tsdproxy_tailscale_authkeyfile: '' # use this to load authkey from file. If this is defined, Authkey is ignored
+
+########################################################################
+#                                                                      #
+# /tsdproxy                                                            #
+#                                                                      #
+########################################################################
 ```
 
 If [com.devture.ansible.role.container_socket_proxy](https://github.com/devture/com.devture.ansible.role.container_socket_proxy) is installed by the playbook (default), the container will use the proxy.
 If not, the container will mount the docker socket at `/var/run/docker.sock`, but you can change that by setting `tsdproxy_docker_socket` to something else. Don't forget to adjust the `tsdproxy_docker_endpoint_is_unix_socket` to false if you are using a tcp endpoint. 
 
-## Add a new Service
+## Usage
 
-This proxy creates for each service a own machine in the Tailscale network, without creating a sidecar container each time.
+## Adding a new service
+
+This proxy creates a separate endpoint in the Tailscale network for each service, without creating a sidecar container each time.
+
 To add a new service, you have to make sure that the service and proxy are in a same container network. You can do this by adding the proxy to the network of the service or the other way round.
+
 ```yaml
 tsdproxy_container_additional_networks_custom:
   - YOUR-SERVICE-NETWORK
