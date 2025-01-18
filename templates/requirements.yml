@@ -324,7 +324,7 @@
   name: radicale
   activation_prefix: radicale_
 - src: git+https://github.com/lingawakad/ansible-role-readeck.git
-  version: v0.16.0-2
+  version: v0.17.1-0
   name: readeck
   activation_prefix: readeck_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-redis.git
