@@ -28,18 +28,18 @@ The next step is to add the service to the proxy.
 
 ```yaml
 YOUR-SERVICE_container_labels_additional_labels: |
-	tsdproxy.enable: "true"
-	tsdproxy.container_port: 8080
+  tsdproxy.enable: "true"
+  tsdproxy.container_port: 8080
 ```
 
 The following labels are optional, please read the [official TSDProxy documentation](https://almeidapaulopt.github.io/tsdproxy/docs/docker/) for more information.
 
 ```yaml	
-	tsdproxy.name: "my-service"
-	tsdproxy.autodetect: "false"
-	tsdproxy.proxyprovider: "providername"
-	tsdproxy.ephemeral: "false"
-	tsdproxy.funnel: "false"
+  tsdproxy.name: "my-service"
+  tsdproxy.autodetect: "false"
+  tsdproxy.proxyprovider: "providername"
+  tsdproxy.ephemeral: "false"
+  tsdproxy.funnel: "false"
 ```
 
 ### Connecting a service to the proxy via a Proxy list
