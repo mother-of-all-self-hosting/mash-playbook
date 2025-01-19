@@ -217,6 +217,6 @@ Below is a rough guide to help you migrate from Gitea (tested with version v1.23
 
 	You can do this by:
 
-	- removing the Gitea configuration from `vars.yml` and [re-running the playbook](../installing.md). This will delete the `/mash/gitea` directory
+	- removing the Gitea configuration from `vars.yml` and [re-running the playbook](../installing.md) (e.g. `just run-tags setup-gitea`). This will delete the `/mash/gitea` directory
 	- dropping the `gitea` database from the Postgres server (execute `/mash/postgres/bin/cli` and run `DROP DATABASE gitea;`)
 	- deleting the `/mash/gitea-to-forgejo-migration` temporary directory: `rm -rf /mash/gitea-to-forgejo-migration`
