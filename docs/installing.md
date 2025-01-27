@@ -74,7 +74,7 @@ just install-all
 
 This will do a full installation and start all services.
 
-Proceed to [Maintaining your setup in the future](#2-maintaining-your-setup-in-the-future) and [Finalize the installation](#3-finalize-the-installation)
+Proceed to [Maintaining your setup in the future](#2-maintaining-your-setup-in-the-future).
 
 
 ### Installing a server into which you'll import old data

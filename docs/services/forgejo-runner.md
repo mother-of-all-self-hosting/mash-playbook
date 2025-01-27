@@ -54,4 +54,4 @@ Labels are an important aspect of the runner, and as such should be carefully ch
 
 After the installation, the runner will register with the Forgejo instance (provided via the `forgejo_runner_instance_url` variable) and generate a `.runner` file inside its configuration path.  This file should not be modified manually.  If for some reason you wish to force the registration to run again, you can delete the `.runner` file and restart the service.
 
-If you with to change the labels associated with the runner, you can simply modify the `forgejo_runner_labels` variable and run the playbook again.  There is no need to delete the `.runner` file and run the registration again.
+If you wish to change the labels associated with the runner, you can simply modify the `forgejo_runner_labels` variable and run the playbook again.  There is no need to delete the `.runner` file and run the registration again.
