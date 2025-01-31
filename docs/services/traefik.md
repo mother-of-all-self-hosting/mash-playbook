@@ -22,9 +22,6 @@ To enable this service, add the following configuration to your `vars.yml` file 
 
 mash_playbook_reverse_proxy_type: playbook-managed-traefik
 
-# The email address that Traefik will pass to Let's Encrypt when obtaining SSL certificates
-traefik_config_certificatesResolvers_acme_email: your-email@example.com
-
 ########################################################################
 #                                                                      #
 # /traefik                                                             #
