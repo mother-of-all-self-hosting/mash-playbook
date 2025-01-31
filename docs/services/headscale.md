@@ -36,7 +36,7 @@ headscale_hostname: headscale.example.com
 
 In the example configuration above, we configure the service to be hosted at `https://headscale.example.com`.
 
-A `headscale_path_prefix` variable can be adjusted to host under a subpath (e.g. `headscale_path_prefix: /headscale`), but this hasn't been tested yet.
+The `headscale_path_prefix` variable can be adjusted to host Headscale under a subpath (e.g. `headscale_path_prefix: /headscale`) on the given hostname.
 
 
 ## Usage
