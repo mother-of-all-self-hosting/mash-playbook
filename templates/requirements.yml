@@ -21,7 +21,7 @@
   name: authelia
   activation_prefix: authelia_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-authentik.git
-  version: v2024.12.2-0
+  version: v2024.12.3-0
   name: authentik
   activation_prefix: authentik_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-aux.git
@@ -144,6 +144,10 @@
   version: v11.4.0-0
   name: grafana
   activation_prefix: grafana_
+- src: git+https://github.com/mother-of-all-self-hosting/ansible-role-headscale.git
+  version: v0.24.2-1
+  name: headscale
+  activation_prefix: headscale_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-healthchecks.git
   version: v3.9-1
   name: healthchecks
@@ -392,7 +396,7 @@
   name: timesync
   activation_prefix: devture_timesync_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-traefik.git
-  version: v3.3.2-0
+  version: v3.3.3-0
   name: traefik
   activation_prefix: traefik_
 - src: git+https://github.com/Bergruebe/ansible-role-tsdproxy.git

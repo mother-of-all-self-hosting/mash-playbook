@@ -343,6 +343,11 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
     {{ ({'name': (hubsite_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'hubsite']} if hubsite_enabled else omit) }}
   # /role-specific:hubsite
 
+  # role-specific:headscale
+  - |-
+    {{ ({'name': (headscale_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'headscale']} if headscale_enabled else omit) }}
+  # /role-specific:headscale
+
   # role-specific:healthchecks
   - |-
     {{ ({'name': (healthchecks_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'healthchecks']} if healthchecks_enabled else omit) }}
@@ -2500,6 +2505,41 @@ grafana_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_prim
 #                                                                      #
 ########################################################################
 # /role-specific:grafana
+
+
+
+# role-specific:headscale
+########################################################################
+#                                                                      #
+# headscale                                                            #
+#                                                                      #
+########################################################################
+
+headscale_enabled: false
+
+headscale_identifier: "{{ mash_playbook_service_identifier_prefix }}headscale"
+
+headscale_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}headscale"
+
+headscale_uid: "{{ mash_playbook_uid }}"
+headscale_gid: "{{ mash_playbook_gid }}"
+
+headscale_container_additional_networks_auto: |
+  {{
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+  }}
+
+headscale_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+headscale_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+headscale_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
+headscale_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
+
+########################################################################
+#                                                                      #
+# /headscale                                                           #
+#                                                                      #
+########################################################################
+# /role-specific:headscale
 
 
 

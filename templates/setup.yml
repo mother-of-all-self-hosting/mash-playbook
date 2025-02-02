@@ -231,6 +231,10 @@
     - role: galaxy/infisical
     # /role-specific:infisical
 
+    # role-specific:headscale
+    - role: galaxy/headscale
+    # /role-specific:headscale
+
     # role-specific:hubsite
     - role: galaxy/hubsite
     # /role-specific:hubsite
