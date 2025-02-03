@@ -55,7 +55,7 @@
 - src: git+https://github.com/devture/com.devture.ansible.role.container_socket_proxy.git
   version: v0.2.0-0
   name: container_socket_proxy
-  activation_prefix: traefik_
+  activation_prefix: mash_
 - src: git+https://github.com/Bergruebe/ansible-role-couchdb.git
   version: v3.4.3-0
   name: couchdb
@@ -398,7 +398,7 @@
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-traefik.git
   version: v3.3.3-0
   name: traefik
-  activation_prefix: traefik_
+  activation_prefix: mash_
 - src: git+https://github.com/Bergruebe/ansible-role-tsdproxy.git
   version: v1.2.0-1
   name: tsdproxy
