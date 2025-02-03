@@ -38,7 +38,10 @@ If you find yourself needing to resort to such hacks, please consider reporting 
 
 Alternatively, you can run Ansible inside a Docker container (powered by the [devture/ansible](https://hub.docker.com/r/devture/ansible/) Docker image).
 
-This ensures that you're using a very recent Ansible version, which is less likely to be incompatible with the playbook.
+This ensures that:
+
+- you're using a very recent Ansible version, which is less likely to be incompatible with the playbook
+- you also get access to the [agru](https://github.com/etkecc/agru) tool for quicker Ansible role installation (when running `just roles`) compared to `ansible-galaxy`
 
 You can either [run Ansible in a container on the server itself](#running-ansible-in-a-container-on-the-server-itself) or [run Ansible in a container on another computer (not the server)](#running-ansible-in-a-container-on-another-computer-not-the-server).
 
@@ -65,7 +68,7 @@ docker run -it --rm \
 -w /work \
 -v `pwd`:/work \
 --entrypoint=/bin/sh \
-docker.io/devture/ansible:2.18.1-r0-0
+docker.io/devture/ansible:2.18.1-r0-2
 ```
 
 Once you execute the above command, you'll be dropped into a `/work` directory inside a Docker container.
@@ -86,7 +89,7 @@ docker run -it --rm \
 -v `pwd`:/work \
 -v $HOME/.ssh/id_rsa:/root/.ssh/id_rsa:ro \
 --entrypoint=/bin/sh \
-docker.io/devture/ansible:2.18.1-r0-0
+docker.io/devture/ansible:2.18.1-r0-2
 ```
 
 The above command tries to mount an SSH key (`$HOME/.ssh/id_rsa`) into the container (at `/root/.ssh/id_rsa`).
