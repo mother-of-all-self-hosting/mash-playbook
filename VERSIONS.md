@@ -5,7 +5,7 @@
 * Authelia: 4.37.5
 * Authentik: 2024.12.3
 * Borg: 1.4.0
-* Borgmatic: 1.9.6
+* Borgmatic: 1.9.9
 * Calibre Web: 0.6.24
 * Changedetection: 0.48.04
 * Changedetection Playwright Driver: latest
