@@ -121,11 +121,11 @@
   name: forgejo_runner
   activation_prefix: forgejo_runner_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-freescout.git
-  version: v1.17.100-0
+  version: v1.17.103-0
   name: freescout
   activation_prefix: freescout_
 - src: git+https://github.com/kinduff/ansible-docker-freshrss.git
-  version: v2.4.0
+  version: v2.5.0
   name: freshrss
   activation_prefix: freshrss_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-funkwhale.git
@@ -141,7 +141,7 @@
   name: gotosocial
   activation_prefix: gotosocial_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-grafana.git
-  version: v11.4.0-0
+  version: v11.5.1-0
   name: grafana
   activation_prefix: grafana_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-headscale.git
@@ -324,7 +324,7 @@
   name: promtail
   activation_prefix: promtail_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-radicale.git
-  version: v3.4.0.0-0
+  version: v3.4.1.0-0
   name: radicale
   activation_prefix: radicale_
 - src: git+https://github.com/lingawakad/ansible-role-readeck.git
@@ -336,7 +336,7 @@
   name: redis
   activation_prefix: redis_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-redmine.git
-  version: v6.0.2-0
+  version: v6.0.3-0
   name: redmine
   activation_prefix: redmine_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-roundcube.git
