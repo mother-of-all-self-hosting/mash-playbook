@@ -80,8 +80,9 @@
 | [Roundcube](https://roundcube.net/) | A browser-based multilingual IMAP client with an application-like user interface | [Link](services/roundcube.md) |
 | [rumqttd](https://github.com/bytebeamio/rumqtt) | A high performance, embeddable [MQTT](https://en.wikipedia.org/wiki/MQTT) broker | [Link](services/rumqttd.md) |
 | [SearXNG](https://github.com/searxng/searxng) | A privacy-respecting, hackable [metasearch engine](https://en.wikipedia.org/wiki/Metasearch_engine) | [Link](services/searxng.md) |
-| [Ansible Semaphore](https://www.ansible-semaphore.com/) | A responsive web UI for running Ansible playbooks  | [Link](services/semaphore.md) |
+| [Ansible Semaphore](https://www.ansible-semaphore.com/) | A responsive web UI for running Ansible playbooks | [Link](services/semaphore.md) |
 | [Soft Serve](https://github.com/charmbracelet/soft-serve) | A tasty, self-hostable [Git](https://git-scm.com/) server for the command line | [Link](services/soft-serve.md) |
+| [Sonarr](https://sonarr.tv/) | A smart PVR for newsgroup and bittorrent users | [Link](services/sonarr.md) |
 | [Stirling PDF](https://github.com/Stirling-Tools/Stirling-PDF) | A self-hosted PDF converter | [Link](services/stirling-pdf.md) |
 | [Syncthing](https://syncthing.net/) | A continuous file synchronization program which synchronizes files between two or more computers in real time | [Link](services/syncthing.md) |
 | [Tandoor](https://docs.tandoor.dev/) | The recipe manager that allows you to manage your ever growing collection of digital recipes.| [Link](services/tandoor.md)
