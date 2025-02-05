@@ -359,6 +359,10 @@
   version: v0.4.7-0
   name: soft_serve
   activation_prefix: soft_serve_
+- src: git+https://github.com/spatterIight/ansible-role-sonarr.git
+  version: v4.0.12-0
+  name: sonarr
+  activation_prefix: sonarr_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-ssh.git
   version: 13440992374e0fef8f6360a0856b78b37a1fd831
   name: ssh
