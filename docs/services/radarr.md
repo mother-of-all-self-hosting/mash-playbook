@@ -1,6 +1,6 @@
-# Sonarr
+# Radarr
 
-[Sonarr](https://sonarr.tv/) is a smart PVR for newsgroup and bittorrent users.
+[Radarr](https://radarr.video/) is a movie organizer/manager for usenet and torrent users.
 
 ## Dependencies
 
@@ -15,18 +15,18 @@ To enable this service, add the following configuration to your `vars.yml` file 
 ```yaml
 ########################################################################
 #                                                                      #
-# sonarr                                                               #
+# radarr                                                               #
 #                                                                      #
 ########################################################################
 
-sonarr_enabled: true
+radarr_enabled: true
 
-sonarr_hostname: sonarr.example.com
+radarr_hostname: radarr.example.com
 
-# To mount additional data directories, use `sonarr_container_additional_volumes`
+# To mount additional data directories, use `radarr_container_additional_volumes`
 #
 # Example:
-# sonarr_container_additional_volumes:
+# radarr_container_additional_volumes:
 #   - type: bind
 #     src: /path/on/the/host
 #     dst: /data
@@ -37,19 +37,19 @@ sonarr_hostname: sonarr.example.com
 
 ########################################################################
 #                                                                      #
-# /sonarr                                                              #
+# /radarr                                                              #
 #                                                                      #
 ########################################################################
 ```
 
 ### URL
 
-In the example configuration above, we configure the service to be hosted at `https://sonarr.example.com`.
+In the example configuration above, we configure the service to be hosted at `https://radarr.example.com`.
 
-A `sonarr_path_prefix` variable can be adjusted to host under a subpath (e.g. `sonarr_path_prefix: /sonarr`), but this hasn't been tested yet.
+A `radarr_path_prefix` variable can be adjusted to host under a subpath (e.g. `radarr_path_prefix: /radarr`), but this hasn't been tested yet.
 
 ## Usage
 
-After [installation](../installing.md), you should access your new Sonarr instance at the URL you've chosen and configure a username and password. The recommended authenticaton method is `Forms (Login Page)`.
+After [installation](../installing.md), you should access your new Radarr instance at the URL you've chosen and configure a username and password. The recommended authenticaton method is `Forms (Login Page)`.
 
-For additional configuration options, refer to [ansible-role-sonarr](https://github.com/spatterIight/ansible-role-sonarr)'s `defaults/main.yml` file.
+For additional configuration options, refer to [ansible-role-radarr](https://github.com/spatterIight/ansible-role-radarr)'s `defaults/main.yml` file.
