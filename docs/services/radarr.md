@@ -53,3 +53,7 @@ A `radarr_path_prefix` variable can be adjusted to host under a subpath (e.g. `r
 After [installation](../installing.md), you should access your new Radarr instance at the URL you've chosen and configure a username and password. The recommended authenticaton method is `Forms (Login Page)`.
 
 For additional configuration options, refer to [ansible-role-radarr](https://github.com/spatterIight/ansible-role-radarr)'s `defaults/main.yml` file.
+
+## Recommended other services
+
+You may also wish to look into [Sonarr](sonarr.md), a similar application that is also apart of the [*Arr stack](https://wiki.servarr.com/) of media automation tools.
