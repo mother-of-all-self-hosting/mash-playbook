@@ -168,6 +168,10 @@
   version: v2.7.6-0
   name: influxdb
   activation_prefix: influxdb_
+- src: git+https://github.com/spatterIight/ansible-role-jackett.git
+  version: v0.22.1377-0
+  name: jackett
+  activation_prefix: jackett_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-jitsi.git
   version: v10008-0
   name: jitsi
