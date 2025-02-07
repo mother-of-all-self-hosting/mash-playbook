@@ -54,7 +54,7 @@ For additional configuration options, refer to [ansible-role-jackett](https://gi
 
 ## Command-line arguments 
 
-Additionally command line arguments can be passed to Jackett by use of the `RUN_OPTS` environment variable. To specify this, add the following to your configuration:
+Additional command line arguments can be passed to Jackett by use of the `RUN_OPTS` environment variable. To specify this, add the following to your configuration:
 
 ```yaml
 # To add additional environment variables, use `jackett_container_additional_environment_variables`
