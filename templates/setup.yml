@@ -247,6 +247,10 @@
     - role: galaxy/influxdb
     # /role-specific:influxdb
 
+    # role-specific:jackett
+    - role: galaxy/jackett
+    # /role-specific:jackett
+
     # role-specific:jitsi
     - role: galaxy/jitsi
     # /role-specific:jitsi

@@ -370,6 +370,11 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
     {{ ({'name': (influxdb_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'influxdb']} if influxdb_enabled else omit) }}
   # /role-specific:influxdb
 
+  # role-specific:jackett
+  - |-
+    {{ ({'name': (jackett_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'jackett']} if jackett_enabled else omit) }}
+  # /role-specific:jackett
+
   # role-specific:jitsi
   - |-
     {{ ({'name': (jitsi_identifier + '-web.service'), 'priority': 4200, 'groups': ['mash', 'jitsi', 'jitsi-web']} if jitsi_enabled else omit) }}
@@ -3437,7 +3442,6 @@ infisical_mongodb_auth_source: "{{ infisical_mongodb_db_name }}"
 
 
 
-
 # role-specific:influxdb
 ########################################################################
 #                                                                      #
@@ -3470,6 +3474,44 @@ influxdb_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_pri
 #                                                                      #
 ########################################################################
 # /role-specific:influxdb
+
+
+
+# role-specific:jackett
+########################################################################
+#                                                                      #
+# jackett                                                              #
+#                                                                      #
+########################################################################
+
+jackett_enabled: false
+
+jackett_identifier: "{{ mash_playbook_service_identifier_prefix }}jackett"
+
+jackett_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}jackett"
+
+jackett_uid: "{{ mash_playbook_uid }}"
+jackett_gid: "{{ mash_playbook_gid }}"
+
+jackett_container_additional_networks_auto: |
+  {{
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+  }}
+
+jackett_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+jackett_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+
+# role-specific:traefik
+jackett_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
+jackett_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
+# /role-specific:traefik
+
+########################################################################
+#                                                                      #
+# /jackett                                                             #
+#                                                                      #
+########################################################################
+# /role-specific:jackett
 
 
 

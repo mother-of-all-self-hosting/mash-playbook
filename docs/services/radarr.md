@@ -56,4 +56,4 @@ For additional configuration options, refer to [ansible-role-radarr](https://git
 
 ## Recommended other services
 
-You may also wish to look into [Sonarr](sonarr.md), a similar application that is also apart of the [*Arr stack](https://wiki.servarr.com/) of media automation tools.
+You may also wish to look into [Sonarr](sonarr.md) and [Jackett](jackett.md), which are similar applications that are also apart of the [*Arr stack](https://wiki.servarr.com/) of media automation tools. For information on intergrating Jackett into your Sonarr instance, see the [relevant Jackett documentation](jackett.md#intergration-with-sonarrradarr).
