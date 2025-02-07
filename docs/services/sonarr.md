@@ -23,6 +23,18 @@ sonarr_enabled: true
 
 sonarr_hostname: sonarr.example.com
 
+# To mount additional data directories, use `sonarr_container_additional_volumes`
+#
+# Example:
+# sonarr_container_additional_volumes:
+#   - type: bind
+#     src: /path/on/the/host
+#     dst: /data
+#   - type: bind
+#     src: /another-path/on/the/host
+#     dst: /read-only
+#     options: readonly
+
 ########################################################################
 #                                                                      #
 # /sonarr                                                              #
