@@ -327,6 +327,10 @@
   version: v2.9.5-0
   name: promtail
   activation_prefix: promtail_
+- src: git+https://github.com/spatterIight/ansible-role-qbittorrent.git
+  version: v5.0.3-0
+  name: qbittorrent
+  activation_prefix: qbittorrent_
 - src: git+https://github.com/spatterIight/ansible-role-radarr.git
   version: v5.18.4-0
   name: radarr
