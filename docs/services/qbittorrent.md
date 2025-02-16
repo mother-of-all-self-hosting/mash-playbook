@@ -49,7 +49,7 @@ After [installation](../installing.md), you should access your new qBittorrent i
 
 To login you'll need to obtain the randomly generated password for your instance, to get this run `just run-tags print-qbittorrent-password`
 
-Once you've got that, login and change the password under `Tools -> Options -> WebUI` in the `Authentication` section.
+Once you've got that, login as the `admin` user with the password and change it under `Tools -> Options -> WebUI` in the `Authentication` section.
 
 For additional configuration options, refer to [ansible-role-qbittorrent](https://github.com/spatterIight/ansible-role-qbittorrent)'s `defaults/main.yml` file.
 
