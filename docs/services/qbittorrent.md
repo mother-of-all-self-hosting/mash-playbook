@@ -43,6 +43,12 @@ qbittorrent_container_torrenting_bind_port: "{{ qbittorrent_container_torrenting
 ########################################################################
 ```
 
+### URL
+
+In the example configuration above, we configure the service to be hosted at `https://qbittorrent.example.com`.
+
+A `qbittorrent_path_prefix` variable can be adjusted to host under a subpath (e.g. `qbittorrent_path_prefix: /qbittorrent`), but this hasn't been tested yet.
+
 ## Usage
 
 After [installation](../installing.md), you should access your new qBittorrent instance at the URL you've chosen.
@@ -62,3 +68,11 @@ Set the `host` field to your qBittorrent URL (without the protocol) and `port` a
 Fill in the rest of the form with your preferences, and you're done!
 
 ![Sonarr Add Download Client](../assets/sonarr-add-download-client.png)
+
+## Recommended other services
+
+Consider these other supported services that are also in the [*Arr stack](https://wiki.servarr.com/) of media automation tools:
+
+- [Radarr](radarr.md)
+- [Sonarr](sonarr.md)
+- [Jackett](jackett.md)
