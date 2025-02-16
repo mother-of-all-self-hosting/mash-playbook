@@ -47,9 +47,9 @@ qbittorrent_container_torrenting_bind_port: "{{ qbittorrent_container_torrenting
 
 After [installation](../installing.md), you should access your new qBittorrent instance at the URL you've chosen.
 
-To login you'll need to obtain the randomly generated password for your instance, to get this run `just run-tags print-qbittorrent-password`
+To login you'll need to obtain the **temporary** randomly generated password for your instance, to get this run `just run-tags print-qbittorrent-password`
 
-Once you've got that, login as the `admin` user with the password and change it under `Tools -> Options -> WebUI` in the `Authentication` section.
+Once you've got that, login as the `admin` user with the password and change it under `Tools -> Options -> WebUI` in the `Authentication` section. Make sure you change the password, since the default one is temporary and will change with each start-up.
 
 For additional configuration options, refer to [ansible-role-qbittorrent](https://github.com/spatterIight/ansible-role-qbittorrent)'s `defaults/main.yml` file.
 
