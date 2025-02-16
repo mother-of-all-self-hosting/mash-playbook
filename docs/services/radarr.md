@@ -63,3 +63,4 @@ Consider these other supported services that are also in the [*Arr stack](https:
   - For Jackett integration instructions, see the [setup guide](jackett.md#intergration-with-sonarrradarr)
 - [qBittorrent](qbittorrent.md)
   - For qBittorrent integration instructions, see the [setup guide](qbittorrent.md#intergration-with-sonarrradarr)
+- [Overseerr](overseerr.md)
