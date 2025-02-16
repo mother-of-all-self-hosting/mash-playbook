@@ -39,6 +39,7 @@
 | [ILMO](https://github.com/moan0s/ILMO2) | An open source library management tool. | [Link](services/ilmo.md) |
 | [Infisical](https://infisical.com/) | An open-source end-to-end encrypted platform for securely managing secrets and configs across your team, devices, and infrastructure. | [Link](services/infisical.md) |
 | [InfluxDB](https://www.influxdata.com/) | A self-hosted time-series database. | [Link](services/influxdb.md) |
+| [Jackett](https://github.com/Jackett/Jackett) | An API for your favorite torrent trackers | [Link](services/jackett.md) |
 | [Jitsi](https://jitsi.org/) | A fully encrypted, 100% Open Source video conferencing solution | [Link](services/jitsi.md) |
 | [Keycloak](https://www.keycloak.org/) | An open source identity and access management solution. | [Link](services/keycloak.md) |
 | [KeyDB](https://docs.keydb.dev/) | An in-memory data store used by millions of developers as a database, cache, streaming engine, and message broker. | [Link](services/keydb.md) |
@@ -73,6 +74,7 @@
 | [Prometheus Node Exporter](https://github.com/prometheus/node_exporter) | Exporter for machine metrics | [Link](services/prometheus-node-exporter.md) |
 | [Prometheus Postgres Exporter](https://github.com/prometheus-community/postgres_exporter) | A PostgreSQL metric exporter for Prometheus | [Link](services/prometheus-postgres-exporter.md) |
 | [Promtail](https://grafana.com/docs/loki/latest/send-data/promtail/) | An agent which ships the contents of local logs to a private [Grafana Loki](services/grafana-loki.md) instance | [Link](services/promtail.md) |
+| [Radarr](https://radarr.video/) | A movie organizer/manager for usenet and torrent users | [Link](services/radarr.md) |
 | [Radicale](https://radicale.org/) | A Free and Open-Source CalDAV and CardDAV Server (solution for hosting contacts and calendars) | [Link](services/radicale.md) |
 | [Readeck](https://readeck.org) | A bookmark manager and a read-later tool combined in one. | [Link](services/readeck.md) |
 | [Redmine](https://redmine.org/) | A flexible project management web application. | [Link](services/redmine.md) |
@@ -80,8 +82,9 @@
 | [Roundcube](https://roundcube.net/) | A browser-based multilingual IMAP client with an application-like user interface | [Link](services/roundcube.md) |
 | [rumqttd](https://github.com/bytebeamio/rumqtt) | A high performance, embeddable [MQTT](https://en.wikipedia.org/wiki/MQTT) broker | [Link](services/rumqttd.md) |
 | [SearXNG](https://github.com/searxng/searxng) | A privacy-respecting, hackable [metasearch engine](https://en.wikipedia.org/wiki/Metasearch_engine) | [Link](services/searxng.md) |
-| [Ansible Semaphore](https://www.ansible-semaphore.com/) | A responsive web UI for running Ansible playbooks  | [Link](services/semaphore.md) |
+| [Ansible Semaphore](https://www.ansible-semaphore.com/) | A responsive web UI for running Ansible playbooks | [Link](services/semaphore.md) |
 | [Soft Serve](https://github.com/charmbracelet/soft-serve) | A tasty, self-hostable [Git](https://git-scm.com/) server for the command line | [Link](services/soft-serve.md) |
+| [Sonarr](https://sonarr.tv/) | A smart PVR for newsgroup and bittorrent users | [Link](services/sonarr.md) |
 | [Stirling PDF](https://github.com/Stirling-Tools/Stirling-PDF) | A self-hosted PDF converter | [Link](services/stirling-pdf.md) |
 | [Syncthing](https://syncthing.net/) | A continuous file synchronization program which synchronizes files between two or more computers in real time | [Link](services/syncthing.md) |
 | [Tandoor](https://docs.tandoor.dev/) | The recipe manager that allows you to manage your ever growing collection of digital recipes.| [Link](services/tandoor.md)

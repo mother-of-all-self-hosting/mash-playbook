@@ -247,6 +247,10 @@
     - role: galaxy/influxdb
     # /role-specific:influxdb
 
+    # role-specific:jackett
+    - role: galaxy/jackett
+    # /role-specific:jackett
+
     # role-specific:jitsi
     - role: galaxy/jitsi
     # /role-specific:jitsi
@@ -359,6 +363,10 @@
     - role: galaxy/promtail
     # /role-specific:promtail
 
+   # role-specific:radarr
+    - role: galaxy/radarr
+    # /role-specific:radarr
+
     # role-specific:radicale
     - role: galaxy/radicale
     # /role-specific:radicale
@@ -390,6 +398,10 @@
     # role-specific:soft_serve
     - role: galaxy/soft_serve
     # /role-specific:soft_serve
+
+    # role-specific:sonarr
+    - role: galaxy/sonarr
+    # /role-specific:sonarr
 
     # role-specific:stirling_pdf
     - role: galaxy/stirling_pdf

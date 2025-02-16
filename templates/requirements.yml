@@ -61,7 +61,7 @@
   name: couchdb
   activation_prefix: couchdb_
 - src: git+https://github.com/geerlingguy/ansible-role-docker
-  version: 7.4.4
+  version: 7.4.5
   name: docker
   activation_prefix: mash_playbook_docker_installation_enabled
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-docker-registry.git
@@ -97,7 +97,7 @@
   name: etcd
   activation_prefix: etcd_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-exim-relay.git
-  version: v4.98-r0-4-0
+  version: v4.98-r0-4-1
   name: exim_relay
   activation_prefix: exim_relay_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-fail2ban.git
@@ -113,7 +113,7 @@
   name: focalboard
   activation_prefix: focalboard_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-forgejo.git
-  version: v10.0.0-1
+  version: v10.0.1-0
   name: forgejo
   activation_prefix: forgejo_
 - src: git+https://git.sergiodj.net/sergiodj/ansible-role-forgejo-runner.git
@@ -133,7 +133,7 @@
   name: funkwhale
   activation_prefix: funkwhale_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-gitea.git
-  version: v1.23.1-0
+  version: v1.23.3-0
   name: gitea
   activation_prefix: gitea_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-gotosocial.git
@@ -168,6 +168,10 @@
   version: v2.7.6-0
   name: influxdb
   activation_prefix: influxdb_
+- src: git+https://github.com/spatterIight/ansible-role-jackett.git
+  version: v0.22.1377-0
+  name: jackett
+  activation_prefix: jackett_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-jitsi.git
   version: v10008-0
   name: jitsi
@@ -323,6 +327,10 @@
   version: v2.9.5-0
   name: promtail
   activation_prefix: promtail_
+- src: git+https://github.com/spatterIight/ansible-role-radarr.git
+  version: v5.18.4-0
+  name: radarr
+  activation_prefix: radarr_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-radicale.git
   version: v3.4.1.0-0
   name: radicale
@@ -359,12 +367,16 @@
   version: v0.4.7-0
   name: soft_serve
   activation_prefix: soft_serve_
+- src: git+https://github.com/spatterIight/ansible-role-sonarr.git
+  version: v4.0.12-0
+  name: sonarr
+  activation_prefix: sonarr_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-ssh.git
   version: 13440992374e0fef8f6360a0856b78b37a1fd831
   name: ssh
   activation_prefix: system_security_ssh_
 - src: git+https://github.com/Bergruebe/ansible-role-stirling-pdf.git
-  version: v0.33.0-0
+  version: v0.41.0-0
   name: stirling_pdf
   activation_prefix: stirling_pdf_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-swap.git
@@ -400,7 +412,7 @@
   name: traefik
   activation_prefix: mash_
 - src: git+https://github.com/Bergruebe/ansible-role-tsdproxy.git
-  version: v1.2.0-1
+  version: v1.4.4-0
   name: tsdproxy
   activation_prefix: tsdproxy_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-uptime_kuma.git
@@ -408,11 +420,11 @@
   name: uptime_kuma
   activation_prefix: uptime_kuma_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-valkey.git
-  version: v8.0.1-0
+  version: v8.0.1-1
   name: valkey
   activation_prefix: valkey_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-vaultwarden.git
-  version: v1.33.1-0
+  version: v1.33.2-0
   name: vaultwarden
   activation_prefix: vaultwarden_
 - src: git+https://github.com/moan0s/ansible-role-versatiles.git
