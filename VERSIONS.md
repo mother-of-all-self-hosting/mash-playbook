@@ -5,7 +5,7 @@
 * Authelia: 4.37.5
 * Authentik: 2024.12.3
 * Borg: 1.4.0
-* Borgmatic: 1.9.9
+* Borgmatic: 1.9.10
 * Calibre Web: 0.6.24
 * Changedetection: 0.48.04
 * Changedetection Playwright Driver: latest
@@ -24,13 +24,13 @@
 * Exim Relay: 4.98-r0-4
 * Firezone: 0.7.36
 * Focalboard: 7.10.4
-* Forgejo: 10.0.0
+* Forgejo: 10.0.1
 * Forgejo Runner: 6.2.0
-* Freescout: 1.17.103
+* Freescout: 1.17.105
 * Freshrss: 1.25.0
 * Funkwhale: 1.4.0
-* Gitea: 1.23.1
-* Gotosocial: 0.17.2
+* Gitea: 1.23.3
+* Gotosocial: 0.17.4
 * Grafana: 11.5.1
 * Headscale: v0.24.2
 * Healthchecks: v3.9
@@ -38,6 +38,7 @@
 * Ilmo: 1.0.4
 * Infisical: v0.43.19
 * Influxdb: 2.7.6
+* Jackett: 0.22.1377
 * Jitsi: stable-10008
 * Jitsi Ldap: 3
 * Jitsi Prosody Auth Matrix User Verification Repo: 2839499cb03894d8cfc3e5b2219441427cb133d8
@@ -76,6 +77,7 @@
 * Prometheus Postgres Exporter: v0.14.0
 * Prometheus Ssh Exporter: v1.5.0
 * Promtail: 2.9.5
+* Radarr: 5.18.4
 * Radicale: 3.4.1.0
 * Readeck: 0.17.1
 * Redis: 7.2.5
@@ -85,16 +87,17 @@
 * Searxng: latest
 * Semaphore: 2.9.56
 * Soft Serve: v0.4.7
-* Stirling Pdf: 0.33.0-fat
+* Sonarr: 4.0.12
+* Stirling Pdf: 0.41.0-fat
 * Syncthing: 1.29.2
-* Tandoor Api: 1.5.24
+* Tandoor Api: 1.5.31
 * Tandoor Frontend: 1.27-alpine
 * Telegraf: 1.30.2
 * Traefik: v3.3.3
-* Tsdproxy: 1.2.0
+* Tsdproxy: 1.4.4
 * Uptime Kuma: 1.23.16
 * Valkey: 8.0.1
-* Vaultwarden: 1.33.1
+* Vaultwarden: 1.33.2
 * Versatiles: 0.12.6
 * Wetty: 2.5
 * Wg Easy: 14
