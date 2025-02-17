@@ -38,7 +38,7 @@ A `overseerr_path_prefix` variable can be adjusted to host under a subpath (e.g.
 
 ## Usage
 
-After [installation](../installing.md), you should access your new Overseerr instance at the URL you've chosen.
+After [installation](../installing.md), you should access your new Overseerr instance at the URL you've chosen. Follow the prompts to finish setup. For information regarding intergration with Plex, Sonarr, and Radarr, see below.
 
 For additional configuration options, refer to [ansible-role-overseerr](https://github.com/spatterIight/ansible-role-overseerr)'s `defaults/main.yml` file.
 
