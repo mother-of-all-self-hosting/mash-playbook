@@ -139,3 +139,11 @@ Paste this into the Sonarr/Radarr form, under `API Key`.
 Next, click `Copy Torznab Feed` of the indexer (tracker) you added to Jackett. Paste this into the Sonarr/Radarr form too, under `URL`. 
 
 Fill in the rest of the form with your preferences, and you're done!
+
+## Recommended other services
+
+Consider these other supported services that are also in the [*Arr stack](https://wiki.servarr.com/) of media automation tools:
+
+- [Radarr](radarr.md)
+- [Sonarr](sonarr.md)
+- [qBittorrent](qbittorrent.md)

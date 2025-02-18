@@ -363,7 +363,11 @@
     - role: galaxy/promtail
     # /role-specific:promtail
 
-   # role-specific:radarr
+    # role-specific:qbittorrent
+    - role: galaxy/qbittorrent
+    # /role-specific:qbittorrent
+
+    # role-specific:radarr
     - role: galaxy/radarr
     # /role-specific:radarr
 
