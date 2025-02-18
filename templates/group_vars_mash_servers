@@ -3421,7 +3421,7 @@ ihatemoney_default_from_email: "{{ exim_relay_sender_address if exim_relay_enabl
 
 ########################################################################
 #                                                                      #
-# /ihatemoney                                                             #
+# /ihatemoney                                                          #
 #                                                                      #
 ########################################################################
 # /role-specific:ihatemoney
