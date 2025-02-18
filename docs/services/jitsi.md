@@ -18,9 +18,9 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
 The playbook can install and configure the [Jitsi](https://jitsi.org/) video-conferencing platform for you.
 
-The Ansible role for Jitsi is developed and maintained by [MASH (mother-of-all-self-hosting) project](https://github.com/mother-of-all-self-hosting/ansible-role-jitsi). For details about configuring Jitsi, you can check them via:
-- [the role's documentation at the MASH project](https://github.com/mother-of-all-self-hosting/ansible-role-jitsi/blob/main/docs/configuring-jitsi.md)
-- `roles/galaxy/jitsi/docs/configuring-jitsi.md` locally, if you have [fetched the Ansible roles](../installing.md)
+The Ansible role for Jitsi is developed and maintained by [the MASH project](https://github.com/mother-of-all-self-hosting/ansible-role-jitsi). For details about configuring Jitsi, you can check them via:
+- 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-jitsi/blob/main/docs/configuring-jitsi.md) online
+- 📁 `roles/galaxy/jitsi/docs/configuring-jitsi.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 ## Prerequisites
 
