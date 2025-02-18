@@ -3366,7 +3366,7 @@ hubsite_service_list_auto: "{{ mash_playbook_hubsite_service_list_auto_itemized 
 # role-specific:ihatemoney
 ########################################################################
 #                                                                      #
-# ihatemoney                                                              #
+# ihatemoney                                                           #
 #                                                                      #
 ########################################################################
 
