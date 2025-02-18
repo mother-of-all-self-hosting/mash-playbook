@@ -88,16 +88,4 @@ Check [the official user guide](https://jitsi.github.io/handbook/docs/category/u
 
 ## Troubleshooting
 
-### Rebuilding your Jitsi installation
-
-**If you ever run into any trouble** or **if you change configuration (`jitsi_*` variables) too much**, we urge you to rebuild your Jitsi setup.
-
-We normally don't require such manual intervention for other services, but Jitsi services generate a lot of configuration files on their own.
-
-These files are not all managed by Ansible (at least not yet), so you may sometimes need to delete them all and start fresh.
-
-To rebuild your Jitsi configuration:
-
-- ask Ansible to stop all Jitsi services: `just run-tags stop-group --extra-vars=group=jitsi`
-- SSH into the server and do this and remove all Jitsi configuration & data (`rm -rf /mash/jitsi`)
-- ask Ansible to set up Jitsi anew and restart services (`just install-service jitsi`)
+See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-jitsi/blob/main/docs/configuring-jitsi.md#troubleshooting) on the role's documentation for details.
