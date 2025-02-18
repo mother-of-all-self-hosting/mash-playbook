@@ -82,8 +82,9 @@ See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-ji
 
 ## Usage
 
-After installation, you can go to the [Jitsi URL](#url) and start an audio/video conference.
+After installation, open the specified URL such as `https://mash.example.com/jitsi`, and you can start a videoconference. Note that you'll need to log in to your Jitsi's account if you have configured authentication with `internal` auth.
 
+Check [the official user guide](https://jitsi.github.io/handbook/docs/category/user-guide) for details about how to use Jitsi Meet.
 
 ## Troubleshooting
 
