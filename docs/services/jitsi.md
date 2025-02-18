@@ -66,90 +66,13 @@ You can remove the `jitsi_path_prefix` variable definition, to make it default t
 - [When hosting under a subpath, pwa-worker.js is attempted to be loaded from the base domain without a subpath](https://github.com/jitsi/docker-jitsi-meet/issues/1515)
 - [When hosting under a subpath, ending the meeting redirects to the base domain without subpath](https://github.com/jitsi/docker-jitsi-meet/issues/1514)
 
+### Enable authentication and guests mode (optional)
 
-### Authentication
+By default the Jitsi Meet instance **does not require for anyone to log in, and is open to use without an account**.
 
-By default the Jitsi Meet instance **does not require any kind of login and is open to use for anyone without registration**.
+If you would like to control who is allowed to start meetings on your instance, you'd need to enable Jitsi's authentication and optionally guests mode.
 
-If you're fine with such an open Jitsi instance, please skip ahead.
-
-If you would like to control who is allowed to open meetings on your new Jitsi instance, then please follow the following steps to enable Jitsi's authentication and optionally guests mode.
-Currently, there are three supported authentication modes: `internal` (default), `matrix` and `ldap`.
-
-**Note:** Authentication is not tested via the playbook's self-checks.
-We therefore recommend that you manually verify if authentication is required by Jitsi.
-For this, try to manually create a conference in your browser.
-
-
-#### Authenticate using Jitsi accounts (Auth-Type 'internal')
-
-The default authentication mechanism is `internal` auth, which requires Jitsi accounts to be setup and is the recommended setup.
-
-With authentication enabled, all meeting rooms have to be opened by a registered user, after which guests are free to join.
-If a registered host is not yet present, guests are put on hold in individual waiting rooms.
-
-Use the following **additional** configuration:
-
-```yaml
-jitsi_enable_auth: true
-jitsi_enable_guests: true
-jitsi_prosody_auth_internal_accounts:
-  - username: "jitsi-moderator"
-    password: "secret-password"
-  - username: "another-user"
-    password: "another-password"
-```
-
-**Caution:** Accounts added here and subsequently removed will not be automatically removed from the Prosody server until user account cleaning is integrated into the [ansible-role-jitsi](https://github.com/mother-of-all-self-hosting/ansible-role-jitsi) Ansible role.
-
-**If you get an error** like this: "Error: Account creation/modification not supported.", it's likely that you had previously installed Jitsi without auth/guest support. In such a case, you should look into [Rebuilding your Jitsi installation](#rebuilding-your-jitsi-installation).
-
-
-#### Authenticate using Matrix OpenID (Auth-Type 'matrix')
-
-Using this authentication type require a [Matrix User Verification Service](https://github.com/matrix-org/matrix-user-verification-service).
-
-This playbook does **not** support installing the Matrix User Verification Service. You can install this service with the [matrix-docker-ansible-deploy](https://github.com/spantaleev/matrix-docker-ansible-deploy) playbook. See the [Setting up Matrix User Verification Service](https://github.com/spantaleev/matrix-docker-ansible-deploy/blob/master/docs/configuring-playbook-user-verification-service.md) documentation for `matrix-docker-ansible-deploy`.
-
-To enable Matrix auth for a Jitsi installation managed by this playbook, use this **additional** configuration:
-
-```yaml
-jitsi_enable_auth: true
-jitsi_auth_type: matrix
-
-# Auth token for Matrix User Verification Service
-jitsi_prosody_auth_matrix_uvs_auth_token: ''
-# URL where Matrix User Verification Service is hosted
-jitsi_prosody_auth_matrix_uvs_location: ''
-```
-
-You may also wish to see the [matrix-docker-ansible-deploy](https://github.com/spantaleev/matrix-docker-ansible-deploy) playbook's [Authenticate using Matrix OpenID (Auth-Type 'matrix')](https://github.com/spantaleev/matrix-docker-ansible-deploy/blob/master/docs/configuring-playbook-jitsi.md#authenticate-using-matrix-openid-auth-type-matrix) documentation section.
-
-
-### Authenticate using LDAP (Auth-Type 'ldap')
-
-An example LDAP configuration could be:
-
-```yaml
-jitsi_enable_auth: true
-jitsi_auth_type: ldap
-jitsi_ldap_url: "ldap://ldap.DOMAIN"
-jitsi_ldap_base: "OU=People,DC=DOMAIN"
-#jitsi_ldap_binddn: ""
-#jitsi_ldap_bindpw: ""
-jitsi_ldap_filter: "uid=%u"
-jitsi_ldap_auth_method: "bind"
-jitsi_ldap_version: "3"
-jitsi_ldap_use_tls: true
-jitsi_ldap_tls_ciphers: ""
-jitsi_ldap_tls_check_peer: true
-jitsi_ldap_tls_cacert_file: "/etc/ssl/certs/ca-certificates.crt"
-jitsi_ldap_tls_cacert_dir: "/etc/ssl/certs"
-jitsi_ldap_start_tls: false
-```
-
-For more information refer to the [docker-jitsi-meet](https://github.com/jitsi/docker-jitsi-meet#authentication-using-ldap) and the [saslauthd `LDAP_SASLAUTHD`](https://github.com/winlibs/cyrus-sasl/blob/master/saslauthd/LDAP_SASLAUTHD) documentation.
-
+See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-jitsi/blob/main/docs/configuring-jitsi.md#configure-jitsi-authentication-and-guests-mode-optional) on the role's documentation for details about how to configure the authentication and guests mode. The recommended authentication method is `internal` as it also works in federated rooms. If you want to enable authentication with Matrix OpenID making use of [Matrix User Verification Service (UVS)](https://github.com/spantaleev/matrix-docker-ansible-deploy/blob/master/docs/configuring-playbook-user-verification-service.md), see [here](https://github.com/mother-of-all-self-hosting/ansible-role-jitsi/blob/main/docs/configuring-jitsi.md#authenticate-using-matrix-openid-auth-type-matrix) for details about how to set it up.
 
 ### Networking
 
