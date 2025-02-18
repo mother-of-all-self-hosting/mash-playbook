@@ -2,7 +2,8 @@
 
 [n.eko](https://neko.m1k1o.net/) is a self-hosted virtual browser, that this playbook can install, powered by the [mother-of-all-self-hosting/ansible-role-neko](https://github.com/mother-of-all-self-hosting/ansible-role-neko) Ansible role.
 
-**WARNING** The neko service will run in a container with root privileges, no dropped capabilities and will be able to write inside the container. This seems to be a neccessary deviation from the usual security standards in this playbook.
+> [!WARNING]
+> The neko service will run in a container with root privileges, no dropped capabilities and will be able to write inside the container. This seems to be a neccessary deviation from the usual security standards in this playbook.
 
 ## Dependencies
 

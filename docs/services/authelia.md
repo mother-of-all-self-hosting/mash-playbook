@@ -4,7 +4,8 @@
 
 Authelia has 2 [modes of operation](#modes-of-operation) (Forward-Auth and OpenID Connect). Read below for more information.
 
-**Warning**: this service is a new addition to the playbook. It may not fully work or be configured in a suboptimal manner.
+> [!WARNING]
+> This service is a new addition to the playbook. It may not fully work or be configured in a suboptimal manner.
 
 
 ## Dependencies
