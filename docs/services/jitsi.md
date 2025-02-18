@@ -22,6 +22,12 @@ The Ansible role for Jitsi is developed and maintained by [MASH (mother-of-all-s
 - [the role's documentation at the MASH project](https://github.com/mother-of-all-self-hosting/ansible-role-jitsi/blob/main/docs/configuring-jitsi.md)
 - `roles/galaxy/jitsi/docs/configuring-jitsi.md` locally, if you have [fetched the Ansible roles](installing.md#update-ansible-roles)
 
+## Prerequisites
+
+Before proceeding, make sure to check server's requirements recommended by [the official deployment guide](https://jitsi.github.io/handbook/docs/devops-guide/devops-guide-requirements).
+
+You may need to open some ports to your server, if you use another firewall in front of the server. Refer [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-jitsi/blob/main/docs/configuring-jitsi.md#prerequisites) to check which ones to be configured.
+
 ## Dependencies
 
 This service requires the following other services:
@@ -73,18 +79,6 @@ By default the Jitsi Meet instance **does not require for anyone to log in, and 
 If you would like to control who is allowed to start meetings on your instance, you'd need to enable Jitsi's authentication and optionally guests mode.
 
 See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-jitsi/blob/main/docs/configuring-jitsi.md#configure-jitsi-authentication-and-guests-mode-optional) on the role's documentation for details about how to configure the authentication and guests mode.
-
-### Networking
-
-**In addition** to ports `80` and `443` exposed by the [Traefik](traefik.md) reverse-proxy, the following ports will be exposed by the Jitsi containers on **all network interfaces**:
-
-- `4443` over **TCP**, controlled by `jitsi_jvb_rtp_tcp_port` - RTP media fallback over TCP
-- `10000` over **UDP**, controlled by `jitsi_jvb_rtp_udp_port` - RTP media over UDP. Depending on your firewall/NAT setup, incoming RTP packets on port `10000` may have the external IP of your firewall as destination address, due to the usage of STUN in JVB (see [`jitsi_jvb_stun_servers`](https://github.com/mother-of-all-self-hosting/ansible-role-jitsi/blob/main/defaults/main.yml)).
-
-Docker automatically opens these ports in the server's firewall, so you **likely don't need to do anything**. If you use another firewall in front of the server, you may need to adjust it.
-
-To learn more, see the upstream [Firewall documentation](https://jitsi.github.io/handbook/docs/devops-guide/devops-guide-docker/#external-ports).
-
 
 ### (Optional) Making your Jitsi server work on a LAN
 
