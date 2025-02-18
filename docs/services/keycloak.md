@@ -2,7 +2,8 @@
 
 [Keycloak](https://www.keycloak.org/) is an open source identity and access management solution.
 
-**Warning**: this service is a new addition to the playbook. It may not fully work or be configured in a suboptimal manner.
+> [!WARNING]
+> This service is a new addition to the playbook. It may not fully work or be configured in a suboptimal manner.
 
 
 ## Dependencies

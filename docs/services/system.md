@@ -31,12 +31,13 @@ By default, the swap file will have `1GB` size, but you can set the `system_swap
 system_swap_size: 4096
 ```
 
-**Warning**: changing `system_swap_size` subsequently will not recreate the SWAP file with the new size. You will need to disable swap, re-run the playbook (to make it clean up), then enable it again with the new size.
+> [!WARNING]
+> Changing `system_swap_size` subsequently will not recreate the SWAP file with the new size. You will need to disable swap, re-run the playbook (to make it clean up), then enable it again with the new size.
 
 ### ssh
 
-> **Warning**: advanced functionality! While the default config with a few adjustments was battle tested on hundreds of servers,
-> you should use it with caution and verify everything before you apply the changes!
+> [!WARNING]
+> Advanced functionality! While the default config with a few adjustments was battle tested on hundreds of servers, you should use it with caution and verify everything before you apply the changes!
 
 To enable [ssh server](https://www.openssh.com/) config and authorized/unauthorized keys management, add the following configuration to your `vars.yml` file and re-run the [installation](../installing.md) process:
 

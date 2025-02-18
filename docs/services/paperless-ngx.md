@@ -2,7 +2,8 @@
 
 [Paperless-ngx](https://paperless-ngx.com) s a community-supported open-source document management system that transforms your physical documents into a searchable online archive so you can keep, well, less paper. MASH can install paperless-ngx with the [`mother-of-all-self-hosting/ansible-role-paperless`](https://github.com/mother-of-all-self-hosting/ansible-role-paperless) ansible role.
 
-**Warning** Paperless-ngx currently [does not support](https://github.com/paperless-ngx/paperless-ngx/issues/6352) running the container rootless, therefore the role has not the usual security features of other services provided by this playbook. This put your system more at higher risk as vulnerabilities can have a higher impact.
+> [!WARNING]
+> Paperless-ngx currently [does not support](https://github.com/paperless-ngx/paperless-ngx/issues/6352) running the container rootless, therefore the role has not the usual security features of other services provided by this playbook. This put your system more at higher risk as vulnerabilities can have a higher impact.
 
 ## Dependencies
 
