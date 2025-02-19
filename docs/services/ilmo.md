@@ -4,7 +4,8 @@
 
 Read [the documentation](https://ilmo2.readthedocs.io/) to learn what you can do with it.
 
-**Warning**: This service is a custom solution for a small library. Feel free to use it but don't expect a solution that works for every use case
+> [!WARNING]
+> This service is a custom solution for a small library. Feel free to use it but don't expect a solution that works for every use case
 
 ## Dependencies
 
