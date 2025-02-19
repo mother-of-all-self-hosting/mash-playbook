@@ -4474,7 +4474,7 @@ oauth2_proxy_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver
 # role-specific:overseerr
 ########################################################################
 #                                                                      #
-# overseerr                                                          #
+# overseerr                                                            #
 #                                                                      #
 ########################################################################
 
@@ -4502,7 +4502,7 @@ overseerr_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_pr
 
 ########################################################################
 #                                                                      #
-# /overseerr                                                         #
+# /overseerr                                                           #
 #                                                                      #
 ########################################################################
 # /role-specific:overseerr
