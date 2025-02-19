@@ -42,19 +42,19 @@ After [installation](../installing.md), you should access your new Overseerr ins
 
 1. Sign in to Overseerr via Plex. You should get a browser pop-up window.
 
-![Overseerr Sign In](../assets/overseerr-setup-1.png)
+![Overseerr Sign In](../assets/overseerr/setup-1.png)
 
 2. Configure Plex. There are a few ways to do this, either by manually filling in the form with your Plex URL or clicking the little 'load' icon the right to populate the drop-down and selecting one of those. Whichever you do, its best to select an option that uses HTTPS. Click the `Save` button.
 
-![Overseerr Configure Plex](../assets/overseerr-setup-2.png)
+![Overseerr Configure Plex](../assets/overseerr/setup-2.png)
 
 3. Configure Plex some more. Scroll down and click the `Sync Libraries` button and select the libraries you want Overseerr to know about. Next, click `Start Scan` and then `Continue`.
 
-![Overseerr Configure Plex](../assets/overseerr-setup-3.png)
+![Overseerr Configure Plex](../assets/overseerr/setup-3.png)
 
 4. Configure Radarr & Sonarr. The only tricky bit here is getting your API key for the service, which can be obtained at your Radarr/Sonarr `Settings -> General` page.
 
-![Overseerr Configure Radarr](../assets/overseerr-setup-4.png)
+![Overseerr Configure Radarr](../assets/overseerr/setup-4.png)
 
 For additional configuration options, refer to [ansible-role-overseerr](https://github.com/spatterIight/ansible-role-overseerr)'s `defaults/main.yml` file.
 
