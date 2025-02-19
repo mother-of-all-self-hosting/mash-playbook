@@ -65,4 +65,4 @@ Consider these other supported services that are also in the [*Arr stack](https:
 - [Radarr](radarr.md)
 - [Sonarr](sonarr.md)
 - [Jackett](jackett.md)
-- [Overseerr](overseerr.md)
+- [qBittorrent](qbittorrent.md)
