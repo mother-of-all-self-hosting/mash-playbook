@@ -311,6 +311,10 @@
     - role: galaxy/oauth2_proxy
     # /role-specific:oauth2_proxy
 
+    # role-specific:overseerr
+    - role: galaxy/overseerr
+    # /role-specific:overseerr
+
     # role-specific:owncast
     - role: galaxy/owncast
     # /role-specific:owncast

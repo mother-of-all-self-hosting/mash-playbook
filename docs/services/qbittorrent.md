@@ -57,7 +57,7 @@ To login you'll need to obtain the **temporary** randomly generated password for
 
 Once you've got that, login as the `admin` user with the password and change it under `Tools -> Options -> WebUI` in the `Authentication` section. Make sure you change the password, since the default one is temporary and will change with each start-up.
 
-For additional configuration options, refer to [ansible-role-qbittorrent](https://github.com/spatterIight/ansible-role-qbittorrent)'s `defaults/main.yml` file.
+For additional configuration options, refer to [ansible-role-qbittorrent](https://github.com/mother-of-all-self-hosting/ansible-role-qbittorrent)'s `defaults/main.yml` file.
 
 ## Intergration with Sonarr/Radarr
 
@@ -76,3 +76,4 @@ Consider these other supported services that are also in the [*Arr stack](https:
 - [Radarr](radarr.md)
 - [Sonarr](sonarr.md)
 - [Jackett](jackett.md)
+- [Overseerr](overseerr.md)
