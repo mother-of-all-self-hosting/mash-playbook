@@ -1324,7 +1324,7 @@ adguard_home_gid: "{{ mash_playbook_gid }}"
 
 adguard_home_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}adguard-home"
 
-adguard_home_container_additional_networks: |
+adguard_home_container_additional_networks_auto: |
   {{
     ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
   }}
