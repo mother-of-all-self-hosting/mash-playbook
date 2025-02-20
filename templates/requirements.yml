@@ -256,14 +256,14 @@
   version: v7.6.0-1
   name: oauth2_proxy
   activation_prefix: oauth2_proxy_
-- src: git+https://github.com/spatterIight/ansible-role-overseerr.git
-  version: v1.33.2-0
-  name: overseerr
-  activation_prefix: overseerr_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-outline.git
   version: v0.81.1-0
   name: outline
   activation_prefix: outline_
+- src: git+https://github.com/spatterIight/ansible-role-overseerr.git
+  version: v1.33.2-0
+  name: overseerr
+  activation_prefix: overseerr_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-owncast.git
   version: v0.2.1-0
   name: owncast
