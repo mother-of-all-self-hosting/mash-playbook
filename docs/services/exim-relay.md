@@ -11,7 +11,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
 Various services need to send out email.
 
-The default playbook configuration (`examples/vars.yml`) recommends that you enable the Exim relay SMTP mailer service (powered by [exim-relay](https://github.com/devture/exim-relay) and the [ansible-role-exim-relay](https://github.com/mother-of-all-self-hosting/ansible-role-exim-relay) Ansible role).
+The default playbook configuration (`examples/vars.yml`) recommends that you enable the Exim relay SMTP mailer service (powered by [exim-relay](https://github.com/devture/exim-relay) and the [ansible-role-exim-relay](https://github.com/mother-of-all-self-hosting/ansible-role-exim-relay) Ansible role). Enabling this service **automatically wires various other services to send email through it**. Exim-relay then gives you a centralized place for configuring email-sending.
 
 The Ansible role for exim-relay is developed and maintained by [the MASH project](https://github.com/mother-of-all-self-hosting/ansible-role-exim-relay). For details about configuring exim-relay, you can check them via:
 - 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-exim-relay/blob/main/docs/configuring-exim-relay.md) online
@@ -28,21 +28,11 @@ To enable this service, add the following configuration to your `vars.yml` file 
 #                                                                      #
 ########################################################################
 
-# Various services need to send out email.
-#
-# Enabling this Exim relay SMTP mailer service automatically wires
-# all other services to send email through it.
-#
-# exim-relay then gives you a centralized place for configuring email-sending.
-
 exim_relay_enabled: true
 
 exim_relay_hostname: mash.example.com
 
 exim_relay_sender_address: "someone@{{ exim_relay_hostname }}"
-
-# By default, exim-relay attempts to deliver emails directly.
-# To make it relay via an external SMTP server, see the "Relaying via an external SMTP server" section below.
 
 ########################################################################
 #                                                                      #
@@ -50,8 +40,6 @@ exim_relay_sender_address: "someone@{{ exim_relay_hostname }}"
 #                                                                      #
 ########################################################################
 ```
-
-Enabling this service, **automatically wires various other services to send email through it**.
 
 ### Relaying email through another SMTP server (optional)
 
