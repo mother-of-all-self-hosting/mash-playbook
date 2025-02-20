@@ -51,13 +51,14 @@ For details about configuration, refer [this section](https://github.com/mother-
 
 💡 To improve deliverability, we recommend relaying email through another SMTP server anyway.
 
-## Using a per-service sender address
+### Using a per-service sender address (optional)
 
 By default, all roles that this playbook wires to `exim-relay` will all be configured to send emails using a `From` address as configured in `exim_relay_sender_address`.
 
 To configure a given service to use another sender address, override the specific variables for the given service.
 
-For example, to make [Vaultwarden](vaultwarden.md) (automatically wired to send via `exim-relay` if you have it enabled) send emails from a custom address (instead of the default, `exim_relay_sender_address`), use configuration like this:
+For example, to make [Vaultwarden](vaultwarden.md) (automatically wired to send via `exim-relay` if you have it enabled) send emails from a custom address (instead of the default, `exim_relay_sender_address`), add the following configuration to your `vars.yml` file:
+
 ```yml
 vaultwarden_config_smtp_from: vaultwarden@example.com
 ```
