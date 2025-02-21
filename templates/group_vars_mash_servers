@@ -235,7 +235,7 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
 
   # role-specific:container_socket_proxy
   - |-
-    {{ ({'name': (devture_container_socket_proxy_identifier + '.service'), 'priority': 200, 'groups': ['mash', 'reverse-proxies', 'container-socket-proxy']} if devture_container_socket_proxy_enabled else omit) }}
+    {{ ({'name': (container_socket_proxy_identifier + '.service'), 'priority': 200, 'groups': ['mash', 'reverse-proxies', 'container-socket-proxy']} if container_socket_proxy_enabled else omit) }}
   # /role-specific:container_socket_proxy
 
   # role-specific:traefik
@@ -1208,17 +1208,17 @@ docker_daemon_options: "{{ mash_playbook_docker_installation_daemon_options }}"
 #                                                                      #
 ########################################################################
 
-devture_container_socket_proxy_enabled: "{{ traefik_enabled }}"
+container_socket_proxy_enabled: "{{ traefik_enabled }}"
 
-devture_container_socket_proxy_identifier: "{{ mash_playbook_service_identifier_prefix }}container-socket-proxy"
+container_socket_proxy_identifier: "{{ mash_playbook_service_identifier_prefix }}container-socket-proxy"
 
-devture_container_socket_proxy_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}container-socket-proxy"
+container_socket_proxy_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}container-socket-proxy"
 
-devture_container_socket_proxy_uid: "{{ mash_playbook_uid }}"
-devture_container_socket_proxy_gid: "{{ mash_playbook_gid }}"
+container_socket_proxy_uid: "{{ mash_playbook_uid }}"
+container_socket_proxy_gid: "{{ mash_playbook_gid }}"
 
 # Traefik requires read access to the containers APIs to do its job
-devture_container_socket_proxy_api_containers_enabled: true
+container_socket_proxy_api_containers_enabled: true
 
 ########################################################################
 #                                                                      #
@@ -1246,19 +1246,19 @@ traefik_uid: "{{ mash_playbook_uid }}"
 traefik_gid: "{{ mash_playbook_gid }}"
 
 # role-specific:container_socket_proxy
-traefik_config_providers_docker_endpoint: "{{ devture_container_socket_proxy_endpoint if devture_container_socket_proxy_enabled else 'unix:///var/run/docker.sock' }}"
+traefik_config_providers_docker_endpoint: "{{ container_socket_proxy_endpoint if container_socket_proxy_enabled else 'unix:///var/run/docker.sock' }}"
 # /role-specific:container_socket_proxy
 
 traefik_container_additional_networks_auto: |
   {{
-    ([devture_container_socket_proxy_container_network] if devture_container_socket_proxy_enabled | default(false) else [])
+    ([container_socket_proxy_container_network] if container_socket_proxy_enabled | default(false) else [])
   }}
 
 traefik_systemd_required_services_list: |
   {{
     ([devture_systemd_docker_base_docker_service_name] if devture_systemd_docker_base_docker_service_name else [])
     +
-    ([devture_container_socket_proxy_identifier + '.service'] if devture_container_socket_proxy_enabled | default(false) else [])
+    ([container_socket_proxy_identifier + '.service'] if container_socket_proxy_enabled | default(false) else [])
   }}
 
 ########################################################################
@@ -5748,23 +5748,23 @@ tsdproxy_uid: "{{ mash_playbook_uid }}"
 tsdproxy_gid: "{{ mash_playbook_gid }}"
 
 # role-specific:container_socket_proxy
-tsdproxy_docker_endpoint_is_unix_socket: "{{ false if devture_container_socket_proxy_enabled else true }}"
-tsdproxy_docker_endpoint: "{{ devture_container_socket_proxy_endpoint if devture_container_socket_proxy_enabled == true and tsdproxy_enabled == true else 'unix:///var/run/docker.sock' }}"
+tsdproxy_docker_endpoint_is_unix_socket: "{{ false if container_socket_proxy_enabled else true }}"
+tsdproxy_docker_endpoint: "{{ container_socket_proxy_endpoint if container_socket_proxy_enabled == true and tsdproxy_enabled == true else 'unix:///var/run/docker.sock' }}"
 # TSDProxy needs access to the Docker Networks and images to work
-devture_container_socket_proxy_api_network_enabled: "{{ true if tsdproxy_docker_endpoint == devture_container_socket_proxy_endpoint else false }}"
-devture_container_socket_proxy_api_images_enabled: "{{ true if tsdproxy_docker_endpoint == devture_container_socket_proxy_endpoint else false }}"
+container_socket_proxy_api_network_enabled: "{{ true if tsdproxy_docker_endpoint == container_socket_proxy_endpoint else false }}"
+container_socket_proxy_api_images_enabled: "{{ true if tsdproxy_docker_endpoint == container_socket_proxy_endpoint else false }}"
 # /role-specific:container_socket_proxy
 
 tsdproxy_container_additional_networks_auto: |
   {{
-    ([devture_container_socket_proxy_container_network] if devture_container_socket_proxy_enabled | default(false) else [])
+    ([container_socket_proxy_container_network] if container_socket_proxy_enabled | default(false) else [])
   }}
 
 tsdproxy_systemd_required_services_list: |
   {{
     ([devture_systemd_docker_base_docker_service_name] if devture_systemd_docker_base_docker_service_name else [])
     +
-    ([devture_container_socket_proxy_identifier + '.service'] if devture_container_socket_proxy_enabled | default(false) else [])
+    ([container_socket_proxy_identifier + '.service'] if container_socket_proxy_enabled | default(false) else [])
   }}
 
 ########################################################################
