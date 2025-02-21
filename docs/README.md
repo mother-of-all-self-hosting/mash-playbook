@@ -1,5 +1,6 @@
 <!--
 SPDX-FileCopyrightText: 2023 Slavi Pantaleev
+SPDX-FileCopyrightText: 2025 Suguru Hirahara
 
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->
@@ -17,6 +18,8 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 - [Configuring interoperability with other services](interoperability.md)
 
 - [Installing](installing.md)
+
+- [Playbook tags](playbook-tags.md)
 
 - [Importing an existing Postgres database (from another installation)](services/postgres.md#importing) (optional)
 
