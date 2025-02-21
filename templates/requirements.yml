@@ -396,7 +396,7 @@
   name: syncthing
   activation_prefix: syncthing_
 - src: git+https://github.com/devture/com.devture.ansible.role.systemd_docker_base.git
-  version: v1.3.0-0
+  version: v1.4.0-0
   name: systemd_docker_base
   activation_prefix: ""
 - src: git+https://github.com/devture/com.devture.ansible.role.systemd_service_manager.git
