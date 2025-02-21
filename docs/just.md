@@ -11,7 +11,7 @@ This playbook supports running playbook commands via [`just`](https://github.com
 
 The `just` utility executes shortcut commands (called as "recipes"), which invoke `ansible-playbook`, [`ansible-galaxy`](https://docs.ansible.com/ansible/latest/cli/ansible-galaxy.html) or [`agru`](https://github.com/etkecc/agru) (depending on what is available in your system). The targets of the recipes are defined in [`justfile`](../justfile).
 
-For some recipes such as `just update`, our `justfile` recommends installing [`agru`](https://github.com/etkecc/agru) (a faster alternative to `ansible-galaxy`) to speed up the process.
+For some recipes such as `just update`, our `justfile` recommends installing `agru` (a faster alternative to `ansible-galaxy`) to speed up the process.
 
 Here are some examples of shortcuts:
 
