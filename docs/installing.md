@@ -1,3 +1,11 @@
+<!--
+SPDX-FileCopyrightText: 2023 - 2025 Slavi Pantaleev
+SPDX-FileCopyrightText: 2024 Nikita Chernyi
+SPDX-FileCopyrightText: 2024 - 2025 Suguru Hirahara
+
+SPDX-License-Identifier: AGPL-3.0-or-later
+-->
+
 # Installing
 
 If you've [configured the playbook](configuring-playbook.md) and have prepared the required domains (DNS records) depending on the services you've enabled, you can start the installation procedure.
@@ -11,47 +19,15 @@ We recommend installing and using using `just` - otherwise, you'll need to do mo
 
 - update the Ansible roles in this playbook by either running `just update` or `git pull && just roles`. `just update` is a shortcut that calls `git pull` and `just roles` with a single command, while `just roles` is a shortcut which ultimately runs either [agru](https://github.com/etkecc/agru) or [ansible-galaxy](https://docs.ansible.com/ansible/latest/cli/ansible-galaxy.html) to download Ansible roles defined in the `requirements.yml` file. If you don't have `just`, you can also manually run the `roles` commands seen in the [`justfile`](../justfile).
 
-
-## Playbook tags introduction
+## Installing services
 
 The Ansible playbook's tasks are tagged, so that certain parts of the Ansible playbook can be run without running all other tasks.
 
 The general command syntax is:
-
 - (**recommended**) when using `just`: `just run-tags COMMA_SEPARATED_TAGS_GO_HERE`
-
 - when not using `just`: `ansible-playbook -i inventory/hosts setup.yml --tags=COMMA_SEPARATED_TAGS_GO_HERE`
 
-Here are some playbook tags that you should be familiar with:
-
-- `setup-all` - runs all setup tasks (installation and uninstallation) for all components, but does not start/restart services
-
-- `install-all` - like `setup-all`, but skips uninstallation tasks. Useful for maintaining your setup quickly when its components remain unchanged. If you adjust your `vars.yml` to remove components, you'd need to run `setup-all` though, or these components will still remain installed
-
-- `setup-SERVICE` (e.g. `setup-miniflux`) - runs the setup tasks only for a given role ([Miniflux](services/miniflux.md) in this example), but does not start/restart services. You can discover these additional tags in each role (`roles/**/tasks/main.yml`). Running per-component setup tasks is **not recommended**, as components sometimes depend on each other and running just the setup tasks for a given component may not be enough. For example, for setting up the [Miniflux](services/miniflux.md) service, in addition to the `setup-miniflux` tag, changes to the database are also necessary (the `setup-postgres` tag).
-
-- `install-SERVICE` (e.g. `install-miniflux`) - like `setup-SERVICE`, but skips uninstallation tasks. See `install-all` above for additional information.
-
-- `start` - starts all systemd services and makes them start automatically in the future
-
-- `stop` - stops all systemd services
-
-`setup-*` tags and `install-*` tags **do not start services** automatically, because you may wish to do things before starting services, such as importing a database dump, restoring data from another server, etc.
-
-When using `just`, there are also helpful shortcuts you can use:
-
-- `just install-all`: runs all installation tasks and starts/restarts the services
-
-- `just setup-all`: runs all installation tasks and also uninstallation tasks that clean up after services you have removed from your `vars.yml` file. This task also starts/restarts all services.
-
-- `just install-service SERVICE_NAME`: runs the installation tasks only for the `SERVICE_NAME` service and starts/restarts the service. As mentioned above, this is not usually recommended, as installing a service may require running installation tasks for other (dependent) roles to prepare a database, etc.
-
-- `just stop-all`: stops all services
-
-- `just start-all`: starts all services
-
-
-## 1. Installing services
+It is recommended to get yourself familiar with the [playbook tags](playbook-tags.md) before proceeding.
 
 If you **don't** use SSH keys for authentication, but rather a regular password, you may need to add `--ask-pass` to the all Ansible (or `just`) commands
 
@@ -114,7 +90,7 @@ Proceed to [Maintaining your setup in the future](#2-maintaining-your-setup-in-t
 
 Feel free to **re-run the setup command any time** you think something is off with the server configuration. Ansible will take your configuration and update your server to match.
 
-Note that if you remove components from `vars.yml`, or if we switch some component from being installed by default to not being installed by default anymore, you'd need to use `setup-all` instead of `install-all`. See [Playbook tags introduction](#playbook-tags-introduction)
+Note that if you remove components from `vars.yml`, or if we switch some component from being installed by default to not being installed by default anymore, you'd need to use `setup-all` instead of `install-all`. See [this page on the playbook tags](playbook-tags.md) for more information.
 
 To do it with `just`:
 
