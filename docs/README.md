@@ -29,4 +29,6 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
 - [Maintenance and Troubleshooting](maintenance-and-troubleshooting.md)
 
+- [Running `just` commands](just.md)
+
 - [Uninstalling](uninstalling.md)
