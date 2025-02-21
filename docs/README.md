@@ -1,3 +1,9 @@
+<!--
+SPDX-FileCopyrightText: 2023 Slavi Pantaleev
+
+SPDX-License-Identifier: AGPL-3.0-or-later
+-->
+
 # Table of Contents
 
 - [Prerequisites](prerequisites.md) - go here to a guided installation using this Ansible playbook
