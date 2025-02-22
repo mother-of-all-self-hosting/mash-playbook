@@ -5195,7 +5195,7 @@ radicale_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base
 radicale_uid: "{{ mash_playbook_uid }}"
 radicale_gid: "{{ mash_playbook_gid }}"
 
-radicale_container_additional_networks: |
+radicale_container_additional_networks_auto: |
   {{
     ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
   }}
