@@ -308,7 +308,7 @@
   name: postgres_backup
   activation_prefix: postgres_backup_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-prometheus.git
-  version: v2.55.1-1
+  version: v2.55.1-2
   name: prometheus
   activation_prefix: prometheus_enabled
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-prometheus-blackbox-exporter.git
