@@ -57,7 +57,7 @@
   name: container_socket_proxy
   activation_prefix: mash_
 - src: git+https://github.com/Bergruebe/ansible-role-couchdb.git
-  version: v3.4.3-0
+  version: v3.4.2-1
   name: couchdb
   activation_prefix: couchdb_
 - src: git+https://github.com/geerlingguy/ansible-role-docker
@@ -384,7 +384,7 @@
   name: ssh
   activation_prefix: system_security_ssh_
 - src: git+https://github.com/Bergruebe/ansible-role-stirling-pdf.git
-  version: v0.41.0-0
+  version: v0.42.0-0
   name: stirling_pdf
   activation_prefix: stirling_pdf_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-swap.git
@@ -420,7 +420,7 @@
   name: traefik
   activation_prefix: mash_
 - src: git+https://github.com/Bergruebe/ansible-role-tsdproxy.git
-  version: v1.4.4-0
+  version: v1.4.4-1
   name: tsdproxy
   activation_prefix: tsdproxy_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-uptime_kuma.git
