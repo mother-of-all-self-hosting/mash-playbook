@@ -105,7 +105,7 @@
   name: fail2ban
   activation_prefix: system_security_fail2ban_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-firezone.git
-  version: v0.7.36-1
+  version: v0.7.36-2
   name: firezone
   activation_prefix: firezone_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-focalboard.git
