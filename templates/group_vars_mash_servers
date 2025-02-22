@@ -4856,10 +4856,8 @@ prometheus_postgres_exporter_database_password: "{{ postgres_connection_password
 prometheus_postgres_exporter_database_port: "{{ postgres_connection_port if postgres_enabled else 5432 }}"
 prometheus_postgres_exporter_database_ssl: false
 
-prometheus_postgres_exporter_systemd_required_services_list: |
+prometheus_postgres_exporter_systemd_required_services_list_auto: |
   {{
-    ([devture_systemd_docker_base_docker_service_name] if devture_systemd_docker_base_docker_service_name else [])
-    +
     ([postgres_identifier ~ '.service'] if postgres_enabled else [])
   }}
 
