@@ -57,7 +57,7 @@
   name: container_socket_proxy
   activation_prefix: mash_
 - src: git+https://github.com/Bergruebe/ansible-role-couchdb.git
-  version: v3.4.3-0
+  version: v3.4.2-1
   name: couchdb
   activation_prefix: couchdb_
 - src: git+https://github.com/geerlingguy/ansible-role-docker
