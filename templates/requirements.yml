@@ -192,7 +192,7 @@
   version: v6.5-1
   name: languagetool
   activation_prefix: languagetool_
-- src: git+https://github.com/kinduff/ansible-docker-linkding.git
+- src: git+https://github.com/mother-of-all-self-hosting/ansible-role-linkding.git
   version: v1.38.0-0
   name: linkding
   activation_prefix: linkding_
