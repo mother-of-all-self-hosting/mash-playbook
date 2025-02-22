@@ -339,6 +339,10 @@
     - role: galaxy/plausible
     # /role-specific:plausible
 
+    # role-specific:plex
+    - role: galaxy/plex
+    # /role-specific:plex
+
     # role-specific:postgis
     - role: galaxy/postgis
     # /role-specific:postgis
