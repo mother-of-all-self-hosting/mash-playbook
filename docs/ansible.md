@@ -45,14 +45,14 @@ This ensures that:
 - you're using a very recent Ansible version, which is less likely to be incompatible with the playbook
 - you also get access to the [agru](https://github.com/etkecc/agru) tool for quicker Ansible role installation (when running `just roles`) compared to `ansible-galaxy`
 
-You can either [run Ansible in a container on the Matrix server itself](#running-ansible-in-a-container-on-the-matrix-server-itself) or [run Ansible in a container on another computer (not the Matrix server)](#running-ansible-in-a-container-on-another-computer-not-the-matrix-server).
+You can either [run Ansible in a container on the server itself](#running-ansible-in-a-container-on-the-server-itself) or [run Ansible in a container on another computer (not the server)](#running-ansible-in-a-container-on-another-computer-not-the-server).
 
-### Running Ansible in a container on the Matrix server itself
+### Running Ansible in a container on the server itself
 
-To run Ansible in a (Docker) container on the Matrix server itself, you need to have a working Docker installation. Docker is normally installed by the playbook, so this may be a bit of a chicken and egg problem. To solve it:
+To run Ansible in a (Docker) container on the server itself, you need to have a working Docker installation. Docker is normally installed by the playbook, so this may be a bit of a chicken and egg problem. To solve it:
 
-- you **either** need to install Docker manually first. Follow [the upstream instructions](https://docs.docker.com/engine/install/) for your distribution and consider setting `matrix_playbook_docker_installation_enabled: false` in your `vars.yml` file, to prevent the playbook from installing Docker
-- **or** you need to run the playbook in another way (e.g. [Running Ansible in a container on another computer (not the Matrix server)](#running-ansible-in-a-container-on-another-computer-not-the-matrix-server)) at least the first time around
+- you **either** need to install Docker manually first. Follow [the upstream instructions](https://docs.docker.com/engine/install/) for your distribution and consider setting `mash_playbook_docker_installation_enabled: false` in your `vars.yml` file, to prevent the playbook from installing Docker
+- **or** you need to run the playbook in another way (e.g. [Running Ansible in a container on another computer (not the server)](#running-ansible-in-a-container-on-another-computer-not-the-server)) at least the first time around
 
 Once you have a working Docker installation on the server, **clone the playbook** somewhere on the server and configure it as per usual (`inventory/hosts`, `inventory/host_vars/…`, etc.), as described in [configuring the playbook](configuring-playbook.md).
 
@@ -78,7 +78,7 @@ First, consider running `git config --global --add safe.directory /work` to [res
 
 Finally, you can execute `just` or `ansible-playbook …` (e.g. `ansible-playbook --connection=community.docker.nsenter …`) commands as per normal now.
 
-### Running Ansible in a container on another computer (not the Matrix server)
+### Running Ansible in a container on another computer (not the server)
 
 Run this from the playbook's directory:
 
