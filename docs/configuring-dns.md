@@ -1,3 +1,10 @@
+<!--
+SPDX-FileCopyrightText: 2023 Julian-Samuel Gebühr
+SPDX-FileCopyrightText: 2023 Slavi Pantaleev
+
+SPDX-License-Identifier: AGPL-3.0-or-later
+-->
+
 # Configuring DNS
 
 To reach your services, you'd need to do some DNS configuration.
@@ -28,7 +35,7 @@ With such a setup, you could reach:
 
 - Nextcloud at its own dedicated domain, at `https://cloud.example.com`
 
-Hosting services at subpaths is more convenient, because it doesn't require you to create additional DNS records and no new SSL certificates need to be retrieved. 
+Hosting services at subpaths is more convenient, because it doesn't require you to create additional DNS records and no new SSL certificates need to be retrieved.
 
 Still, if you'd like each service to have its own dedicated domain (or subdomain), feel free to configure services that way by making sure that you set `<service>_hostname` and `<service>_path_prefix`
 accordingly in your `vars.yml`.
