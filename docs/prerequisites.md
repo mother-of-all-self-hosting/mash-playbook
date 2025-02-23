@@ -30,17 +30,19 @@ We will be using `example.com` as the domain in the following instruction. Pleas
 
 - Strong password (random strings) generator. The playbook often requires you to create a strong password and use it for settings on `vars.yml`, components, etc. As any tools should be fine, this playbook has adopted [`pwgen`](https://linux.die.net/man/1/pwgen) (running `pwgen -s 64 1`). [Password Tech](https://pwgen-win.sourceforge.io/), formerly known as "PWGen for Windows", is available as free and open source password generator for Windows. Generally, using a random generator available on the internet is not recommended.
 
-- (Recommended) An **x86-64** (`amd64`) or **arm64** server running one of these operating systems:
-  - **Red Hat Enterprise Linux** or derivative distros, e.g. Rocky Linux (Major version 7 or newer)
-  - **Debian** (10/Buster or newer)
-  - **Ubuntu** (18.04 or newer, although [20.04 may be problematic](ansible.md#supported-ansible-versions))
+## Server
+
+- (Recommended) An **x86** server running one of these operating systems that make use of [systemd](https://systemd.io/):
   - **Archlinux**
+  - **CentOS**, **Rocky Linux**, **AlmaLinux**, or possibly other RHEL alternatives (although your mileage may vary)
+  - **Debian** (10/Buster or newer)
+  - **Ubuntu** (18.04 or newer, although [20.04 may be problematic](ansible.md#supported-ansible-versions) if you run the Ansible playbook on it)
 
-Generally, newer is better. We only strive to support released stable versions of distributions, not betas or pre-releases. This playbook can take over your whole server or co-exist with other services that you have there.
+  Generally, newer is better. We only strive to support released stable versions of distributions, not betas or pre-releases. The playbook can take over your whole server or co-exist with other services that you have there.
 
-This playbook somewhat supports running on non-`amd64` architectures like ARM. See [Alternative Architectures](alternative-architectures.md).
+  This playbook somewhat supports running on non-`amd64` architectures like ARM. See [Alternative Architectures](alternative-architectures.md).
 
-If your distro runs within an [LXC container](https://linuxcontainers.org/), you may hit [this issue](https://github.com/spantaleev/matrix-docker-ansible-deploy/issues/703). It can be worked around, if absolutely necessary, but we suggest that you avoid running from within an LXC container.
+  If your distro runs within an [LXC container](https://linuxcontainers.org/), you may hit [this issue](https://github.com/spantaleev/matrix-docker-ansible-deploy/issues/703). It can be worked around, if absolutely necessary, but we suggest that you avoid running from within an LXC container.
 
 - `root` access to your server (or a user capable of elevating to `root` via `sudo`).
 
