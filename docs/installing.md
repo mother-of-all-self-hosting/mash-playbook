@@ -95,6 +95,8 @@ just start-all
 # ansible-playbook -i inventory/hosts setup.yml --tags=start
 ```
 
+Regardless of the installation way you have chosen, **if an error is not returned, the installation has completed and the services have been started successfully**🎉
+
 ## Things to do next
 
 After you have started the services, you can:
