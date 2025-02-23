@@ -95,6 +95,16 @@ just start-all
 # ansible-playbook -i inventory/hosts setup.yml --tags=start
 ```
 
+## Things to do next
+
+After you have started the services, you can:
+
+- start using the configured services
+- or set up additional services
+- or learn how to [upgrade services when new versions are released](maintenance-upgrading-services.md)
+- or come say Hi in our [Matrix](https://matrix.org) support room - [#mash-playbook:devture.com](https://matrix.to/#/#mash-playbook:devture.com). You might learn something or get to help someone else new to hosting services with this playbook.
+- or help make this playbook better by contributing (code, documentation, or [coffee/beer](https://liberapay.com/mother-of-all-self-hosting/donate))
+
 ## 2. Maintaining your setup in the future
 
 Feel free to **re-run the setup command any time** you think something is off with the server configuration. Ansible will take your configuration and update your server to match.
@@ -118,14 +128,3 @@ ansible-playbook -i inventory/hosts setup.yml --tags=install-all,start
 # Or, to run potential uninstallation tasks too:
 ansible-playbook -i inventory/hosts setup.yml --tags=setup-all,start
 ```
-
-
-## 3. Things to do next
-
-After you have started the services, you can:
-
-- start using the configured services
-- or set up additional services
-- or learn how to [upgrade services when new versions are released](maintenance-upgrading-services.md)
-- or come say Hi in our [Matrix](https://matrix.org) support room - [#mash-playbook:devture.com](https://matrix.to/#/#mash-playbook:devture.com). You might learn something or get to help someone else new to hosting services with this playbook.
-- or help make this playbook better by contributing (code, documentation, or [coffee/beer](https://liberapay.com/mother-of-all-self-hosting/donate))
