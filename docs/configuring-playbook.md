@@ -1,20 +1,26 @@
 <!--
-SPDX-FileCopyrightText: 2023 Slavi Pantaleev
-SPDX-FileCopyrightText: 2023 Julian-Samuel Gebühr
+SPDX-FileCopyrightText: 2018 - 2025 Slavi Pantaleev
+SPDX-FileCopyrightText: 2018 - 2024 MDAD project contributors
+SPDX-FileCopyrightText: 2020 Sabine Laszakovits
+SPDX-FileCopyrightText: 2021 Cody Neiman
+SPDX-FileCopyrightText: 2021 Matthew Cengia
+SPDX-FileCopyrightText: 2021 Toni Spets
+SPDX-FileCopyrightText: 2022 Julian Foad
+SPDX-FileCopyrightText: 2022 Vladimir Panteleev
+SPDX-FileCopyrightText: 2022 - 2023 Julian-Samuel Gebühr
 SPDX-FileCopyrightText: 2023 MASH project contributors
+SPDX-FileCopyrightText: 2023 Shreyas Ajjarapu
 SPDX-FileCopyrightText: 2023 Nikita Chernyi
+SPDX-FileCopyrightText: 2024 - 2025 Suguru Hirahara
 
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 
-# Configuring the Ansible playbook
+# Configuring the playbook
 
-To configure the playbook, you need to have done the following things:
+<sup>[Prerequisites](prerequisites.md) > [Configuring your DNS settings](configuring-dns.md) > [Getting the playbook](getting-the-playbook.md) > Configuring the playbook > [Installing](installing.md)</sup>
 
-- have a server where services will run
-- [retrieved the playbook's source code](getting-the-playbook.md) to your computer
-
-You can then follow these steps inside the playbook directory:
+If you've configured your DNS records and retrieved the playbook's source code to your computer, you can start configuring the playbook. To do so, follow these steps inside the playbook directory:
 
 1. create a directory to hold your configuration (`mkdir -p inventory/host_vars/<your-domain>`)
 
