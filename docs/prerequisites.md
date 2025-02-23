@@ -18,6 +18,18 @@ To install services using this Ansible playbook, you need to prepare several req
 
 We will be using `example.com` as the domain in the following instruction. Please remember to replace it with your own domain before running any commands.
 
+## Your local computer
+
+- [Ansible](http://ansible.com/) program. It's used to run this playbook and configures your server for you. Take a look at [our guide about Ansible](ansible.md) for more information, as well as [version requirements](ansible.md#supported-ansible-versions) and alternative ways to run Ansible.
+
+- [passlib](https://passlib.readthedocs.io/en/stable/index.html) Python library. See [this official documentation](https://passlib.readthedocs.io/en/stable/install.html#installation-instructions) for an instruction to install it. On most distros, you need to install some `python-passlib` or `py3-passlib` package, etc.
+
+- [`git`](https://git-scm.com/) as the recommended way to download the playbook. `git` may also be required on the server if you will be [self-building](self-building.md) components.
+
+- [`just`](https://github.com/casey/just) for running `just roles`, `just update`, etc. (see [`justfile`](../justfile)), although you can also run these commands manually. Take at look at this documentation for more information: [Running `just` commands](just.md).
+
+- Strong password (random strings) generator. The playbook often requires you to create a strong password and use it for settings on `vars.yml`, components, etc. As any tools should be fine, this playbook has adopted [`pwgen`](https://linux.die.net/man/1/pwgen) (running `pwgen -s 64 1`). [Password Tech](https://pwgen-win.sourceforge.io/), formerly known as "PWGen for Windows", is available as free and open source password generator for Windows. Generally, using a random generator available on the internet is not recommended.
+
 - (Recommended) An **x86-64** (`amd64`) or **arm64** server running one of these operating systems:
   - **Red Hat Enterprise Linux** or derivative distros, e.g. Rocky Linux (Major version 7 or newer)
   - **Debian** (10/Buster or newer)
@@ -35,14 +47,6 @@ If your distro runs within an [LXC container](https://linuxcontainers.org/), you
 - [Python](https://www.python.org/) being installed on the server. Most distributions install Python by default, but some don't (e.g. Ubuntu 18.04) and require manual installation (something like `apt-get install python3`). On some distros, Ansible may incorrectly [detect the Python version](https://docs.ansible.com/ansible/latest/reference_appendices/interpreter_discovery.html) (2 vs 3) and you may need to explicitly specify the interpreter path in `inventory/hosts` during installation (e.g. `ansible_python_interpreter=/usr/bin/python3`)
 
 - [sudo](https://www.sudo.ws/) being installed on the server, even when you've configured Ansible to log in as `root`. Some distributions, like a minimal Debian net install, do not include the `sudo` package by default.
-
-- The [Ansible](http://ansible.com/) program being installed on your own computer. It's used to run this playbook and configures your server for you. Take a look at [our guide about Ansible](ansible.md) for more information, as well as [version requirements](ansible.md#supported-ansible-versions) and alternative ways to run Ansible.
-
-- the [passlib](https://passlib.readthedocs.io/en/stable/index.html) Python library installed on the computer you run Ansible. On most distros, you need to install some `python-passlib` or `py3-passlib` package, etc.
-
-- [git](https://git-scm.com/) is the recommended way to download the playbook to your computer. `git` may also be required on the server if you will be [self-building](self-building.md) components.
-
-- [just](https://github.com/casey/just) for running `just update` and playbook installation commands, etc. (see [`justfile`](../justfile)). You can get by without `just` (by running `ansible-galaxy`, `ansible-playbook` commands manually), but maintaining your playbook setup will require more manual work. `just` (thanks to the commands defined in the `justfile`) keeps various files (`setup.yml`, `requirements.yml`, `group_vars/mash_servers`) up-to-date with the templates in [the `templates/` directory](../templates/) automatically.
 
 - at least one domain name you can use
 
