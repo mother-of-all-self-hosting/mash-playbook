@@ -25,9 +25,9 @@ Before installing, you need to update the Ansible roles that this playbook uses 
 To update your playbook directory and all upstream Ansible roles (defined in the `requirements.yml` file), run:
 
 - either: `just update`
-- or: a combination of `git pull` and `just roles` (or `make roles` if you have `make` program on your computer instead of `just`)
+- or: a combination of `git pull` and `just roles`
 
-If you don't have either `just` tool or `make` program, you can run the `ansible-galaxy` tool directly: `rm -rf roles/galaxy; ansible-galaxy install -r requirements.yml -p roles/galaxy/ --force`
+If you don't have either `just` tool, you can run the `ansible-galaxy` tool directly: `rm -rf roles/galaxy; ansible-galaxy install -r requirements.yml -p roles/galaxy/ --force`
 
 For details about `just` commands, take a look at: [Running `just` commands](just.md).
 
