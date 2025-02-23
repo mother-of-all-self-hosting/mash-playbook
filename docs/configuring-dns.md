@@ -1,4 +1,5 @@
 <!--
+SPDX-FileCopyrightText: 2018 - 2024 MDAD project contributors
 SPDX-FileCopyrightText: 2023 Julian-Samuel Gebühr
 SPDX-FileCopyrightText: 2023 Slavi Pantaleev
 
@@ -6,6 +7,8 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 
 # Configuring DNS
+
+<sup>[Prerequisites](prerequisites.md) > Configuring your DNS settings > [Getting the playbook](getting-the-playbook.md) > [Configuring the playbook](configuring-playbook.md) > [Installing](installing.md)</sup>
 
 To reach your services, you'd need to do some DNS configuration.
 
@@ -42,4 +45,8 @@ accordingly in your `vars.yml`.
 
 Be mindful as to how long it will take for the DNS records to propagate.
 
-When you're done configuring DNS, proceed to [Configuring the playbook](configuring-playbook.md).
+**Note**: if you are using Cloudflare DNS, make sure to disable the proxy and set all records to "DNS only". Otherwise, fetching certificates will fail.
+
+---------------------------------------------
+
+[▶️](getting-the-playbook.md) When you're done with the DNS configuration and ready to proceed, continue with [Getting the playbook](getting-the-playbook.md).
