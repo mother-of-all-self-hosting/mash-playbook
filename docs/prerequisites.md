@@ -46,11 +46,11 @@ We will be using `example.com` as the domain in the following instruction. Pleas
 
 - `root` access to your server (or a user capable of elevating to `root` via `sudo`).
 
-- [Python](https://www.python.org/) being installed on the server. Most distributions install Python by default, but some don't (e.g. Ubuntu 18.04) and require manual installation (something like `apt-get install python3`). On some distros, Ansible may incorrectly [detect the Python version](https://docs.ansible.com/ansible/latest/reference_appendices/interpreter_discovery.html) (2 vs 3) and you may need to explicitly specify the interpreter path in `inventory/hosts` during installation (e.g. `ansible_python_interpreter=/usr/bin/python3`)
+- [Python](https://www.python.org/). Most distributions install Python by default, but some don't (e.g. Ubuntu 18.04) and require manual installation (something like `apt-get install python3`). On some distros, Ansible may incorrectly [detect the Python version](https://docs.ansible.com/ansible/latest/reference_appendices/interpreter_discovery.html) (2 vs 3) and you may need to explicitly specify the interpreter path in `inventory/hosts` during installation (e.g. `ansible_python_interpreter=/usr/bin/python3`)
 
-- [sudo](https://www.sudo.ws/) being installed on the server, even when you've configured Ansible to log in as `root`. Some distributions, like a minimal Debian net install, do not include the `sudo` package by default.
+- [sudo](https://www.sudo.ws/), even when you've configured Ansible to log in as `root`. Some distributions, like a minimal Debian net install, do not include the `sudo` package by default.
 
-- at least one domain name you can use
+- Properly configured DNS records for `example.com` (details in [Configuring DNS](configuring-dns.md)).
 
 - Some TCP/UDP ports open. This playbook (actually [Docker itself](https://docs.docker.com/network/iptables/)) configures the server's internal firewall for you. In most cases, you don't need to do anything special. But **if your server is running behind another firewall**, you'd need to open these ports:
 
@@ -58,4 +58,6 @@ We will be using `example.com` as the domain in the following instruction. Pleas
   - `443/tcp`: HTTPS webserver
   - potentially some other ports, depending on the services that you enable in the **configuring the playbook** step (later on). Consult each service's documentation page in `docs/` for that.
 
-When ready to proceed, continue with [Configuring DNS](configuring-dns.md).
+---------------------------------------------
+
+[▶️](configuring-dns.md) When ready to proceed, continue with [Configuring DNS](configuring-dns.md).
