@@ -1,3 +1,12 @@
+<!--
+SPDX-FileCopyrightText: 2023 Slavi Pantaleev
+SPDX-FileCopyrightText: 2023 Julian-Samuel Gebühr
+SPDX-FileCopyrightText: 2023 MASH project contributors
+SPDX-FileCopyrightText: 2023 Nikita Chernyi
+
+SPDX-License-Identifier: AGPL-3.0-or-later
+-->
+
 # Configuring the Ansible playbook
 
 To configure the playbook, you need to have done the following things:
