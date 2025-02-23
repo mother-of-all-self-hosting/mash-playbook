@@ -1,6 +1,6 @@
 <!--
 SPDX-FileCopyrightText: 2019 - 2023 Slavi Pantaleev
-SPDX-FileCopyrightText: 2024 Suguru Hirahara
+SPDX-FileCopyrightText: 2024 - 2025 Suguru Hirahara
 
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->
@@ -9,7 +9,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
 <sup>[Prerequisites](prerequisites.md) > [Configuring your DNS settings](configuring-dns.md) > Getting the playbook > [Configuring the playbook](configuring-playbook.md) > [Installing](installing.md)</sup>
 
-This Ansible playbook is meant to be executed on your own computer (not the Matrix server).
+This Ansible playbook is meant to be executed on your own computer (not on the server).
 
 In special cases (if your computer cannot run Ansible, etc.) you may put the playbook on the server as well.
 
@@ -24,18 +24,18 @@ We recommend using the [git](https://git-scm.com/) tool to get the playbook's so
 Once you've installed git on your computer, you can go to any directory of your choosing and run the following command to retrieve the playbook's source code:
 
 ```sh
-git clone https://github.com/spantaleev/matrix-docker-ansible-deploy.git
+git clone https://github.com/mother-of-all-self-hosting/mash-playbook.git
 ```
 
-This will create a new `matrix-docker-ansible-deploy` directory. You're supposed to execute all other installation commands inside that directory.
+This will create a new `mash-playbook` directory. You're supposed to execute all other installation commands inside that directory.
 
 ## Downloading the playbook as a ZIP archive
 
 Alternatively, you can download the playbook as a ZIP archive. This is not recommended, as it's not easy to keep up to date with future updates. We suggest you [use git](#using-git-to-get-the-playbook) instead.
 
-The latest version is always at the following URL: https://github.com/spantaleev/matrix-docker-ansible-deploy/archive/master.zip
+The latest version is always at the following URL: https://github.com/mother-of-all-self-hosting/mash-playbook/archive/master.zip
 
-You can extract this archive anywhere. You'll get a directory called `matrix-docker-ansible-deploy-master`. You're supposed to execute all other installation commands inside that directory.
+You can extract this archive anywhere. You'll get a directory called `mash-playbook-master`. You're supposed to execute all other installation commands inside that directory.
 
 ---------------------------------------------
 
