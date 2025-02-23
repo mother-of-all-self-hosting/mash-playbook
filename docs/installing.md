@@ -105,13 +105,17 @@ After you have started the services, you can:
 - or come say Hi in our [Matrix](https://matrix.org) support room - [#mash-playbook:devture.com](https://matrix.to/#/#mash-playbook:devture.com). You might learn something or get to help someone else new to hosting services with this playbook.
 - or help make this playbook better by contributing (code, documentation, or [coffee/beer](https://liberapay.com/mother-of-all-self-hosting/donate))
 
-## 2. Maintaining your setup in the future
+### ⚠️ Keep the playbook and services up-to-date
 
-Feel free to **re-run the setup command any time** you think something is off with the server configuration. Ansible will take your configuration and update your server to match.
+While this playbook helps you to set up Matrix services and maintain them, it will **not** automatically run the maintenance task for you. You will need to update the playbook and re-run it **manually**.
 
-Note that if you remove components from `vars.yml`, or if we switch some component from being installed by default to not being installed by default anymore, you'd need to use `setup-all` instead of `install-all`. See [this page on the playbook tags](playbook-tags.md) for more information.
+The upstream projects, which this playbook makes use of, occasionally if not often suffer from security vulnerabilities.
 
-To do it with `just`:
+Since it is unsafe to keep outdated services running on the server connected to the internet, please consider to update the playbook and re-run it periodically, in order to keep the services up-to-date.
+
+For more information about upgrading or maintaining services with the playbook, take at look at this page: [Upgrading the Matrix services](maintenance-upgrading-services.md)
+
+Feel free to **re-run the setup command any time** you think something is wrong with the server configuration. Ansible will take your configuration and update your server to match.
 
 ```sh
 just install-all
@@ -128,3 +132,5 @@ ansible-playbook -i inventory/hosts setup.yml --tags=install-all,start
 # Or, to run potential uninstallation tasks too:
 ansible-playbook -i inventory/hosts setup.yml --tags=setup-all,start
 ```
+
+**Note**: see [this page on the playbook tags](playbook-tags.md) for more information about those tags.
