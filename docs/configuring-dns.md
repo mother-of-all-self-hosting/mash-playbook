@@ -2,6 +2,7 @@
 SPDX-FileCopyrightText: 2018 - 2024 MDAD project contributors
 SPDX-FileCopyrightText: 2023 Julian-Samuel Gebühr
 SPDX-FileCopyrightText: 2023 Slavi Pantaleev
+SPDX-FileCopyrightText: 2025 Suguru Hirahara
 
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->
@@ -21,12 +22,14 @@ To reach your services, you'd need to do some DNS configuration.
 Some services (like [Uptime-kuma](services/uptime-kuma.md)) require being hosted at their own dedicated domain.
 Others, you can put on their own domain/subdomain or at subpaths on any domain you'd like.
 
-As an **example** setup, consider this one:
+## Example DNS settings
 
-| Service                    | Type  | Host                | Target              |
-|--------------------------- |-------|---------------------|---------------------|
-| Miniflux, Radicale, others | A     | `mash.example.com`  | `IP of your server` |
-| Nextcloud                  | CNAME | `cloud.example.com` | `mash.example.com`  |
+As an example setup, adjust DNS records as below.
+
+| Service                    | Type  | Host    | Priority | Weight | Port | Target             |
+|--------------------------- | ----- | ------- | -------- | ------ | ---- | -------------------|
+| Miniflux, Radicale, others | A     | `mash`  | -        | -      | -    | `mash-server-IP`   |
+| Nextcloud                  | CNAME | `cloud` | -        | -      | -    | `mash.example.com` |
 
 With such a setup, you could reach:
 
