@@ -65,7 +65,7 @@ This will do a full installation and start all services.
 
 ### Installing a server into which you'll import old data
 
-If you will be importing data into your newly created Matrix server, install it, but **do not** start its services just yet. Starting its services or messing with its database now will affect your data import later on.
+If you will be importing data into your newly created server, install it, but **do not** start its services just yet. Starting its services or messing with its database now will affect your data import later on.
 
 To do the installation **without** starting services, run only the `install-all` tag:
 
@@ -107,13 +107,13 @@ After you have started the services, you can:
 
 ### ⚠️ Keep the playbook and services up-to-date
 
-While this playbook helps you to set up Matrix services and maintain them, it will **not** automatically run the maintenance task for you. You will need to update the playbook and re-run it **manually**.
+While this playbook helps you to set up services and maintain them, it will **not** automatically run the maintenance task for you. You will need to update the playbook and re-run it **manually**.
 
 The upstream projects, which this playbook makes use of, occasionally if not often suffer from security vulnerabilities.
 
 Since it is unsafe to keep outdated services running on the server connected to the internet, please consider to update the playbook and re-run it periodically, in order to keep the services up-to-date.
 
-For more information about upgrading or maintaining services with the playbook, take at look at this page: [Upgrading the Matrix services](maintenance-upgrading-services.md)
+For more information about upgrading or maintaining services with the playbook, take at look at this page: [Upgrading services](maintenance-upgrading-services.md)
 
 Feel free to **re-run the setup command any time** you think something is wrong with the server configuration. Ansible will take your configuration and update your server to match.
 
