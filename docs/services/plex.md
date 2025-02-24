@@ -119,6 +119,12 @@ plex_nvidia_visible_devices: "all"
 
 Upstream documentation: https://docs.linuxserver.io/images/docker-plex/#nvidia
 
+---
+
+To verify Plex is detecting your GPU navigate to `Settings -> Transcoder -> Hardware transcoding device` and select your GPU. If you do not see the `Hardware transcoding device` drop-down make sure you have ticked the `Use hardware acceleration when available` checkbox. If everything is working right you should see something like this:
+
+![Plex Configure Transcoding](../assets/plex/transcoder.png)
+
 ### Mounting additional media directories
 
 To mount additional media directories, or to simply mount a directory without changing its permissions, the following configuration is available:
@@ -160,6 +166,10 @@ plex_version_environment_variable: latest
 ``` 
 
 ## Usage
+
+After [installation](../installing.md), you should access your new Plex instance at the URL you've chosen. Follow the prompts to finish setup. When prompted to add your media libraries keep in mind that it will be the path **inside** the container, most likely some variation of your `plex_media_bind_path` variable.
+
+If it is your first time setting up the server, make sure you have set your Plex claim token with the variable `plex_claim_token` which can be obtained from https://plex.tv/claim. You only have to do this once, so once the server it setup you can remove the variable.
 
 ## Recommended other services
 
