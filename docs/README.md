@@ -49,7 +49,7 @@ If your server and services experience issues, feel free to come to [our support
 
 - [Configuring interoperability with other services](interoperability.md)
 
-- [Developer Documentation](developer-documentation.md)
+- [Developer documentation](developer-documentation.md)
 
 - [Playbook tags](playbook-tags.md)
 
