@@ -5,7 +5,7 @@ SPDX-FileCopyrightText: 2020 Hardy Erlinger
 SPDX-FileCopyrightText: 2021 - 2024 MDAD project contributors
 SPDX-FileCopyrightText: 2021 Marc Leuser
 SPDX-FileCopyrightText: 2024 Kim Brose
-SPDX-FileCopyrightText: 2024 Suguru Hirahara
+SPDX-FileCopyrightText: 2024 - 2025 Suguru Hirahara
 
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->
@@ -87,7 +87,7 @@ Table of contents:
 
 ### Getting a database terminal
 
-You can use the `/mash/postgres/bin/cli` tool to get interactive terminal access ([psql](https://www.postgresql.org/docs/15/app-psql.html)) to the PostgreSQL server.
+You can use the `/mash/postgres/bin/cli` tool to get interactive terminal access ([psql](https://www.postgresql.org/docs/current/app-psql.html)) to the PostgreSQL server.
 
 By default, this tool puts you in the `main` database, which contains nothing.
 
