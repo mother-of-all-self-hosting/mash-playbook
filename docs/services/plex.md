@@ -52,7 +52,7 @@ A `plex_path_prefix` variable can be adjusted to host under a subpath (e.g. `ple
 
 ### Exposing ports 
 
-The Plex container by default exposes no ports. For various runs one may want to expose some. The below defines what these ports are and why you may want to expose them.
+By default no ports are exposed, but you'll most likely want to adjust this. The below defines what these ports are and why you may want to expose them.
 
 ```yaml
 # The main Plex webserver port, you'll want to set this variable (and configure port-forwarding in your router) if you want to access Plex from https://app.plex.tv
