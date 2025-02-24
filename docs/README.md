@@ -49,11 +49,17 @@ If your server and services experience issues, feel free to come to [our support
 
 - [Configuring interoperability with other services](interoperability.md)
 
+- [Developer Documentation](developer-documentation.md)
+
 - [Playbook tags](playbook-tags.md)
 
 - [Running `just` commands](just.md)
 
+- [Running multiple instances of the same service on the same host](running-multiple-instances.md)
+
 - [Self-building](self-building.md)
+
+- [Supported services](supported-services.md)
 
 - [Uninstalling](uninstalling.md)
 
