@@ -76,7 +76,7 @@ just run-tags import-postgres \
 
 ## Maintenance
 
-This document shows you how to perform various maintenance tasks related to the Postgres database server used by Matrix.
+This section shows you how to perform various maintenance tasks related to the Postgres database server used by various components of this playbook.
 
 Table of contents:
 - [Getting a database terminal](#getting-a-database-terminal), for when you wish to execute SQL queries
@@ -85,24 +85,22 @@ Table of contents:
 - [Upgrading PostgreSQL](#upgrading-postgresql), for upgrading to new major versions of PostgreSQL. Such **manual upgrades are sometimes required**.
 - [Tuning PostgreSQL](#tuning-postgresql) to make it run faster
 
-## Getting a database terminal
+### Getting a database terminal
 
-You can use the `/matrix/postgres/bin/cli` tool to get interactive terminal access ([psql](https://www.postgresql.org/docs/11/app-psql.html)) to the PostgreSQL server.
+You can use the `/mash/postgres/bin/cli` tool to get interactive terminal access ([psql](https://www.postgresql.org/docs/15/app-psql.html)) to the PostgreSQL server.
 
-If you are using an [external Postgres server](configuring-playbook-external-postgres.md), the above tool will not be available.
-
-By default, this tool puts you in the `matrix` database, which contains nothing.
+By default, this tool puts you in the `main` database, which contains nothing.
 
 To see the available databases, run `\list` (or just `\l`).
 
-To change to another database (for example `synapse`), run `\connect synapse` (or just `\c synapse`).
+To change to another database (for example `miniflux`), run `\connect miniflux` (or just `\c miniflux`).
 
 You can then proceed to write queries. Example: `SELECT COUNT(*) FROM users;`
 
 > [!WARNING]
 > **Modifying the database directly (especially as services are running) is dangerous and may lead to irreversible database corruption.** When in doubt, consider [making a backup](#backing-up-postgresql).
 
-## Vacuuming PostgreSQL
+### Vacuuming PostgreSQL
 
 Deleting lots data from Postgres does not make it release disk space, until you perform a [`VACUUM` operation](https://www.postgresql.org/docs/current/sql-vacuum.html).
 
@@ -114,35 +112,31 @@ You can run different `VACUUM` operations via the playbook, with the default pre
 - `vacuum-analyze` runs `VACUUM VERBOSE ANALYZE` without stopping any services
 - `analyze` runs `ANALYZE VERBOSE` without stopping any services (this is just [ANALYZE](https://www.postgresql.org/docs/current/sql-analyze.html) without doing a vacuum, so it's faster)
 
-**Note**: for the `vacuum-complete` and `vacuum-full` presets, you'll need plenty of available disk space in your Postgres data directory (usually `/matrix/postgres/data`). These presets also stop all services (e.g. Synapse, etc.) while the vacuum operation is running.
+**Note**: for the `vacuum-complete` and `vacuum-full` presets, you'll need plenty of available disk space in your Postgres data directory (usually `/mash/postgres/data`). These presets also stop all services while the vacuum operation is running.
 
 Example playbook invocations:
 
 - `just run-tags run-postgres-vacuum`: runs the default `vacuum-complete` preset and restarts all services
 - `just run-tags run-postgres-vacuum -e postgres_vacuum_preset=analyze`: runs the `analyze` preset with all services remaining operational at all times
 
-## Backing up PostgreSQL
+### Backing up PostgreSQL
 
-To automatically make Postgres database backups on a fixed schedule, see [Setting up Postgres backup](configuring-playbook-postgres-backup.md).
+To automatically make Postgres database backups on a fixed schedule, consider enabling the [Postgres Backup](postgres-backup.md) service.
 
-To make a one off back up of the current PostgreSQL database, make sure it's running and then execute a command like this on the server:
+To make a one-off back up of the current PostgreSQL database, make sure it's running and then execute a command like this on the server:
 
 ```sh
 /usr/bin/docker exec \
---env-file=/matrix/postgres/env-postgres-psql \
-matrix-postgres \
-/usr/local/bin/pg_dumpall -h matrix-postgres \
+--env-file=/mash/postgres/env-postgres-psql \
+mash-postgres \
+/usr/local/bin/pg_dumpall -h mash-postgres \
 | gzip -c \
-> /matrix/postgres.sql.gz
+> /mash/postgres.sql.gz
 ```
 
-If you are using an [external Postgres server](configuring-playbook-external-postgres.md), the above command will not work, because neither the credentials file (`/matrix/postgres/env-postgres-psql`), nor the `matrix-postgres` container is available.
+Restoring a backup made this way can be done by [importing it](#importing).
 
-Restoring a backup made this way can be done by [importing it](importing-postgres.md).
-
-## Upgrading PostgreSQL
-
-Unless you are using an [external Postgres server](configuring-playbook-external-postgres.md), this playbook initially installs Postgres for you.
+### Upgrading PostgreSQL
 
 Once installed, the playbook attempts to preserve the Postgres version it starts with. This is because newer Postgres versions cannot start with data generated by older Postgres versions.
 
@@ -154,13 +148,13 @@ The playbook can upgrade your existing Postgres setup with the following command
 just run-tags upgrade-postgres
 ```
 
-**The old Postgres data directory is backed up** automatically, by renaming it to `/matrix/postgres/data-auto-upgrade-backup`. To rename to a different path, pass some extra flags to the command above, like this: `--extra-vars="postgres_auto_upgrade_backup_data_path=/another/disk/matrix-postgres-before-upgrade"`
+**The old Postgres data directory is backed up** automatically, by renaming it to `/mash/postgres/data-auto-upgrade-backup`. To rename to a different path, pass some extra flags to the command above, like this: `--extra-vars="postgres_auto_upgrade_backup_data_path=/another/disk/mash-postgres-before-upgrade"`
 
 The auto-upgrade-backup directory stays around forever, until you **manually decide to delete it**.
 
 As part of the upgrade, the database is dumped to `/tmp`, an upgraded and empty Postgres server is started, and then the dump is restored into the new server. To use a different directory for the dump, pass some extra flags to the command above, like this: `--extra-vars="postgres_dump_dir=/directory/to/dump/here"`
 
-To save disk space in `/tmp`, the dump file is gzipped on the fly at the expense of CPU usage. If you have plenty of space in `/tmp` and would rather avoid gzipping, you can explicitly pass a dump filename which doesn't end in `.gz`. Example: `--extra-vars="postgres_dump_name=matrix-postgres-dump.sql"`
+To save disk space in `/tmp`, the dump file is gzipped on the fly at the expense of CPU usage. If you have plenty of space in `/tmp` and would rather avoid gzipping, you can explicitly pass a dump filename which doesn't end in `.gz`. Example: `--extra-vars="postgres_dump_name=mash-postgres-dump.sql"`
 
 **All databases, roles, etc. on the Postgres server are migrated**.
 
