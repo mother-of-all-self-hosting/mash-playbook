@@ -4809,7 +4809,7 @@ plex_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary
 
 ########################################################################
 #                                                                      #
-# /plex                                                              #
+# /plex                                                                #
 #                                                                      #
 ########################################################################
 # /role-specific:plex
