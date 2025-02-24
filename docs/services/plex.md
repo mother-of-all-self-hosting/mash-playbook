@@ -93,7 +93,6 @@ For Intel/ATI/AMD GPUs enabling hardware acceleration is as easy as mounting the
 
 ```yaml
 # The path where the Intel/ATI/AMD GPU is on the host system
-# For NVIDIA GPUs see 'plex_nvidia_visible_devices' and 'plex_container_runtime'
 plex_gpu_path: "/dev/dri"
 
 # The path to mount the Intel/ATI/AMD GPU to in the container.
