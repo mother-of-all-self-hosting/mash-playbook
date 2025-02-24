@@ -1,4 +1,4 @@
-# Developer Documentation
+# Developer documentation
 
 ## Support a new service | Create your own role
 
