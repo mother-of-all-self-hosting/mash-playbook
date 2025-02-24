@@ -48,7 +48,7 @@ It is possible to host SearXNG under a subpath (by configuring the `searxng_path
 
 ### Configuring rate-limiting
 
-If you want to enable rate-limiting, you will also need to enable Valkey.  As described on the [Valkey](valkey.md) documentation page, if you're hosting additional services which require Valkey on the same server, you'd better go for installing a separate Valkey instance for each service. See [Creating a Valkey instance dedicated to SearXNG](...).
+If you want to enable rate-limiting, you will also need to enable Valkey. As described on the [Valkey](valkey.md) documentation page, if you're hosting additional services which require Valkey on the same server, you'd better go for installing a separate Valkey instance for each service. See [Creating a Valkey instance dedicated to SearXNG](...).
 
 You will also need to enable rate-limiting for SearXNG by setting:
 
@@ -136,7 +136,7 @@ searxng_container_additional_networks_custom:
 
 ### Configuring basic authentication
 
-If you are running a private instance, you might want to protect it with so that only authorized people can use it.  An easy option is to choose a non-trivial subpath by modifying the `searxng_path_prefix`.  Another, more complete option is to enable basic authentication for the instance.
+If you are running a private instance, you might want to protect it with so that only authorized people can use it. An easy option is to choose a non-trivial subpath by modifying the `searxng_path_prefix`. Another, more complete option is to enable basic authentication for the instance.
 
 To do the latter, you need to set the following variables:
 

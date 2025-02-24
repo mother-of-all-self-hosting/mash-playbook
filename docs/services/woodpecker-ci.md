@@ -148,11 +148,11 @@ woodpecker_ci_agent_enabled: true
 
 # This needs to point to the server's gRPC host:port.
 # If your Woodpecker CI Server is deployed using this playbook, its
-# gRPC port will likely be 443.  E.g., ci.example.com:443.
+# gRPC port will likely be 443. E.g., ci.example.com:443.
 woodpecker_ci_agent_config_server: ''
 
 # This playbook only supports agent-specific secrets, i.e., it is not recommended to use
-# a shared secret between Woodpecker CI Server and all of its agents.  Please refer to
+# a shared secret between Woodpecker CI Server and all of its agents. Please refer to
 # the following upstream documentation in order to learn how to register an agent and
 # obtain a secret for it:
 #

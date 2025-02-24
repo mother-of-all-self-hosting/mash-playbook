@@ -95,7 +95,7 @@ mar 02 19:11:59 $hostname mash-adguard-home[872496]: 2024/03/02 18:11:59.706251 
 mar 02 19:11:59 $hostname mash-adguard-home[872496]: 2024/03/02 18:11:59.706257 [fatal] This is the first launch of AdGuard Home. You must run it as Administrator.
 ```
 
-You can workaround this issue by editing `mash-adguard-home.service` and temporarily make it start Adguard Home as the `root` user for the first time, and then revert it back to using a regular user afterwards.  Follow the steps below, which require you to be `root` to execute the commands:
+You can workaround this issue by editing `mash-adguard-home.service` and temporarily make it start Adguard Home as the `root` user for the first time, and then revert it back to using a regular user afterwards. Follow the steps below, which require you to be `root` to execute the commands:
 
 1. Run `systemctl edit --full mash-adguard-home.service` to edit Adguard Home's service file and remove or comment out the line starting with `--user` (e.g. `--user=996:3992 \` - the numbers represent the uid/gid of the `mash` user, so your values may be different):
 	
