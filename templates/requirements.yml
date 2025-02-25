@@ -184,6 +184,10 @@
   version: v6.3.4-3
   name: keydb
   activation_prefix: keydb_
+- src: git+https://gitlab.com/horvathg.1988/ansible-role-labelstudio.git
+  version: hg-backend
+  name: labelstudio
+  activation_prefix: labelstudio_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-lago.git
   version: v0.50.0-0
   name: lago
