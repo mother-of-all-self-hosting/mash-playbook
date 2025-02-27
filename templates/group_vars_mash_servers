@@ -3696,7 +3696,7 @@ labelstudio_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_
 labelstudio_container_labels_traefik_compression_middleware_enabled: "{{ mash_playbook_reverse_proxy_traefik_middleware_compession_enabled }}"
 labelstudio_container_labels_traefik_compression_middleware_name: "{{ mash_playbook_reverse_proxy_traefik_middleware_compession_name if mash_playbook_reverse_proxy_traefik_middleware_compession_enabled else '' }}"
 
-labelstudio_postgre_backend_enabled: "{{ postgres_enabled }}"
+labelstudio_postgres_backend_enabled: "{{ postgres_enabled }}"
 labelstudio_database_name: "labelstudio"
 labelstudio_database_username: "labelstudio"
 labelstudio_database_port: "{{ '5432' if postgres_enabled else '' }}"
