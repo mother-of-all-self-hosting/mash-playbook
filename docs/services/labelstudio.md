@@ -54,4 +54,3 @@ labelstudio_environment_variables_password: "admin-user-password"
 
 It is possible to attach a pre-labeling backend to LabelStudio.
 One such example project can be found in [this repository](https://github.com/seblful/label-studio-yolo-backend).
-Although we created a role for such backends in-house, currently it is not in a state to be upstreamed as it contains too many specific variables.
