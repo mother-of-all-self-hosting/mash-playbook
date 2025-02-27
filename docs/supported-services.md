@@ -34,11 +34,13 @@
 | [GoToSocial](https://gotosocial.org/) | A self-hosted [ActivityPub](https://activitypub.rocks/) social network server | [Link](services/gotosocial.md) |
 | [Grafana](https://grafana.com/) | An open and composable observability and data visualization platform, often used with [Prometheus](services/prometheus.md) | [Link](services/grafana.md) |
 | [Grafana Loki](https://grafana.com/docs/loki/latest/) | Open-source log aggregation system that helps collect, store, and analyze logs in a scalable and efficient manner | [Link](services/grafana-loki.md) |
+| [Headscale](https://headscale.net/) | A Tailscale-compatible control server for managing Tailscale devices | [Link](services/headscale.md) |
 | [Healthchecks](https://healthchecks.io/) | A simple and Effective Cron Job Monitoring solution | [Link](services/healthchecks.md) |
 | [Hubsite](https://github.com/moan0s/hubsite) | A simple, static site that shows an overview of the available services | [Link](services/hubsite.md) |
 | [ILMO](https://github.com/moan0s/ILMO2) | An open source library management tool. | [Link](services/ilmo.md) |
 | [Infisical](https://infisical.com/) | An open-source end-to-end encrypted platform for securely managing secrets and configs across your team, devices, and infrastructure. | [Link](services/infisical.md) |
 | [InfluxDB](https://www.influxdata.com/) | A self-hosted time-series database. | [Link](services/influxdb.md) |
+| [Jackett](https://github.com/Jackett/Jackett) | An API for your favorite torrent trackers | [Link](services/jackett.md) |
 | [Jitsi](https://jitsi.org/) | A fully encrypted, 100% Open Source video conferencing solution | [Link](services/jitsi.md) |
 | [Keycloak](https://www.keycloak.org/) | An open source identity and access management solution. | [Link](services/keycloak.md) |
 | [KeyDB](https://docs.keydb.dev/) | An in-memory data store used by millions of developers as a database, cache, streaming engine, and message broker. | [Link](services/keydb.md) |
@@ -59,6 +61,7 @@
 | [Nextcloud](https://nextcloud.com/) | The most popular self-hosted collaboration solution for tens of millions of users at thousands of organizations across the globe. | [Link](services/nextcloud.md) |
 | [Outline](https://www.getoutline.com/) | An open-source knowledge base for growing teams. | [Link](services/outline.md) |
 | [OAuth2-Proxy](https://oauth2-proxy.github.io/oauth2-proxy/) | A reverse proxy and static file server that provides authentication using OpenID Connect Providers (Google, GitHub, [Keycloak](services/keycloak.md), and others) to SSO-protect services which do not support SSO natively. | [Link](services/oauth2-proxy.md) |
+| [Overseerr](https://overseerr.dev/) | A request management and media discovery tool for the Plex ecosystem | [Link](services/overseerr.md) |
 | [Owncast](https://owncast.online/) | Owncast is a free and open source live video and web chat server for use with existing popular broadcasting software. | [Link](services/owncast.md) |
 | [OxiTraffic](https://codeberg.org/mo8it/oxitraffic) | [OxiTraffic](https://codeberg.org/mo8it/oxitraffic) is a self-hosted, simple and privacy respecting website traffic tracker. | [Link](services/oxitraffic.md) |
 | [Paperless-ngx](https://paperless-ngx.com) | [Paperless-ngx](https://paperless-ngx.com) is a community-supported open-source document management system that transforms your physical documents into a searchable online archive so you can keep, well, less paper. | [Link](services/paperless-ngx.md) |
@@ -73,6 +76,8 @@
 | [Prometheus Node Exporter](https://github.com/prometheus/node_exporter) | Exporter for machine metrics | [Link](services/prometheus-node-exporter.md) |
 | [Prometheus Postgres Exporter](https://github.com/prometheus-community/postgres_exporter) | A PostgreSQL metric exporter for Prometheus | [Link](services/prometheus-postgres-exporter.md) |
 | [Promtail](https://grafana.com/docs/loki/latest/send-data/promtail/) | An agent which ships the contents of local logs to a private [Grafana Loki](services/grafana-loki.md) instance | [Link](services/promtail.md) |
+| [qBittorrent](https://www.qbittorrent.org/) | A BitTorrent client written in native C++ | [Link](services/qbittorrent.md) |
+| [Radarr](https://radarr.video/) | A movie organizer/manager for usenet and torrent users | [Link](services/radarr.md) |
 | [Radicale](https://radicale.org/) | A Free and Open-Source CalDAV and CardDAV Server (solution for hosting contacts and calendars) | [Link](services/radicale.md) |
 | [Readeck](https://readeck.org) | A bookmark manager and a read-later tool combined in one. | [Link](services/readeck.md) |
 | [Redmine](https://redmine.org/) | A flexible project management web application. | [Link](services/redmine.md) |
@@ -80,20 +85,22 @@
 | [Roundcube](https://roundcube.net/) | A browser-based multilingual IMAP client with an application-like user interface | [Link](services/roundcube.md) |
 | [rumqttd](https://github.com/bytebeamio/rumqtt) | A high performance, embeddable [MQTT](https://en.wikipedia.org/wiki/MQTT) broker | [Link](services/rumqttd.md) |
 | [SearXNG](https://github.com/searxng/searxng) | A privacy-respecting, hackable [metasearch engine](https://en.wikipedia.org/wiki/Metasearch_engine) | [Link](services/searxng.md) |
-| [Ansible Semaphore](https://www.ansible-semaphore.com/) | A responsive web UI for running Ansible playbooks  | [Link](services/semaphore.md) |
+| [Ansible Semaphore](https://www.ansible-semaphore.com/) | A responsive web UI for running Ansible playbooks | [Link](services/semaphore.md) |
 | [Soft Serve](https://github.com/charmbracelet/soft-serve) | A tasty, self-hostable [Git](https://git-scm.com/) server for the command line | [Link](services/soft-serve.md) |
+| [Sonarr](https://sonarr.tv/) | A smart PVR for newsgroup and bittorrent users | [Link](services/sonarr.md) |
 | [Stirling PDF](https://github.com/Stirling-Tools/Stirling-PDF) | A self-hosted PDF converter | [Link](services/stirling-pdf.md) |
 | [Syncthing](https://syncthing.net/) | A continuous file synchronization program which synchronizes files between two or more computers in real time | [Link](services/syncthing.md) |
 | [Tandoor](https://docs.tandoor.dev/) | The recipe manager that allows you to manage your ever growing collection of digital recipes.| [Link](services/tandoor.md)
 | [Telegraf](https://www.influxdata.com/time-series-platform/telegraf/) | An open source server agent to help you collect metrics from your stacks, sensors, and systems. | [Link](services/telegraf.md) |
 | [Traefik](https://doc.traefik.io/traefik/) | A container-aware reverse-proxy server | [Link](services/traefik.md) |
+| [TSDProxy](https://almeidapaulopt.github.io/tsdproxy/) | A proxy for virtual services in Tailscale | [Link](services/tsdproxy.md) |
 | [Uptime-kuma](https://uptime.kuma.pet/) | A fancy self-hosted monitoring tool | [Link](services/uptime-kuma.md) |
 | [Valkey](https://valkey.io/) | A flexible distributed key-value datastore that is optimized for caching and other realtime workloads. | [Link](services/valkey.md) |
 | [Vaultwarden](https://github.com/dani-garcia/vaultwarden) | A lightweight unofficial and compatible implementation of the [Bitwarden](https://bitwarden.com/)password manager | [Link](services/vaultwarden.md) |
 | [Versatiles](https://versatiles.org) | A free stack for generating and serving vector tiles from OpenStreetMap. | [Link](services/versatiles.md) |
 | [Wetty](https://github.com/butlerx/wetty) | An SSH terminal over HTTP/HTTPS | [Link](services/wetty.md) |
 | [WireGuard Easy](https://github.com/wg-easy/wg-easy) | The easiest way to run [WireGuard](https://www.wireguard.com/) VPN + Web-based Admin UI. | [Link](services/wg-easy.md) |
-| [Forgejo](https://forgejo.org/) | An alternative fork of Gitea. Easy and painless self-hosted git server. | [Link](services/forgejo.md) |
+| [Forgejo](https://forgejo.org/) | A self-hosted lightweight software forge (Git hosting service, etc). An alternative to [Gitea](./services/gitea.md). | [Link](services/forgejo.md) |
 | [Forgejo Runner](https://code.forgejo.org/forgejo/runner) | A runner to use with Forgejo Actions | [Link](services/forgejo-runner.md) |
 | [Woodpecker CI](https://woodpecker-ci.org/) | A simple Continuous Integration (CI) engine with great extensibility. | [Link](services/woodpecker-ci.md) |
 | [WordPress](https://wordpress.org/) | A widley used open source web content management system | [Link](services/wordpress.md) |

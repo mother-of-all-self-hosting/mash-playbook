@@ -235,6 +235,10 @@
     - role: galaxy/infisical
     # /role-specific:infisical
 
+    # role-specific:headscale
+    - role: galaxy/headscale
+    # /role-specific:headscale
+
     # role-specific:hubsite
     - role: galaxy/hubsite
     # /role-specific:hubsite
@@ -246,6 +250,10 @@
     # role-specific:influxdb
     - role: galaxy/influxdb
     # /role-specific:influxdb
+
+    # role-specific:jackett
+    - role: galaxy/jackett
+    # /role-specific:jackett
 
     # role-specific:jitsi
     - role: galaxy/jitsi
@@ -307,6 +315,10 @@
     - role: galaxy/oauth2_proxy
     # /role-specific:oauth2_proxy
 
+    # role-specific:overseerr
+    - role: galaxy/overseerr
+    # /role-specific:overseerr
+
     # role-specific:owncast
     - role: galaxy/owncast
     # /role-specific:owncast
@@ -359,6 +371,14 @@
     - role: galaxy/promtail
     # /role-specific:promtail
 
+    # role-specific:qbittorrent
+    - role: galaxy/qbittorrent
+    # /role-specific:qbittorrent
+
+    # role-specific:radarr
+    - role: galaxy/radarr
+    # /role-specific:radarr
+
     # role-specific:radicale
     - role: galaxy/radicale
     # /role-specific:radicale
@@ -391,6 +411,10 @@
     - role: galaxy/soft_serve
     # /role-specific:soft_serve
 
+    # role-specific:sonarr
+    - role: galaxy/sonarr
+    # /role-specific:sonarr
+
     # role-specific:stirling_pdf
     - role: galaxy/stirling_pdf
     # /role-specific:stirling_pdf
@@ -406,6 +430,10 @@
     # role-specific:telegraf
     - role: galaxy/telegraf
     # /role-specific:telegraf
+
+    # role-specific:tsdproxy
+    - role: galaxy/tsdproxy
+    # /role-specific:tsdproxy
 
     # role-specific:valkey
     - role: galaxy/valkey

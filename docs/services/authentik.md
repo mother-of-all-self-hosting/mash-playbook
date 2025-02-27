@@ -3,7 +3,8 @@
 [authentik](https://goauthentik.io/) is an open-source Identity Provider focused on flexibility and versatility. MASH can install authentik with the [`mother-of-all-self-hosting/ansible-role-authentik`](https://github.com/mother-of-all-self-hosting/ansible-role-authentik) ansible role.
 
 
-**Warning:** SSO is pretty complex and while this role will install authentik for you we only tested OIDC and OAUTH integration. There is a high probability that using outposts/LDAP would need further configuration efforts. Make sure you test before using this in production and feel free to provide feedback!
+> [!WARNING]
+> SSO is pretty complex and while this role will install authentik for you we only tested OIDC and OAUTH integration. There is a high probability that using outposts/LDAP would need further configuration efforts. Make sure you test before using this in production and feel free to provide feedback!
 
 ## Dependencies
 

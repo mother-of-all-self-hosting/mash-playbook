@@ -3,7 +3,8 @@
 [Notfellchen](https://codeberg.org/moanos/notfellchen) is a self-hosted tool to list animals available for adoption to increase their chance of finding a forever-home.
 
 
-**Warning**: This service is a custom solution. Feel free to use it but don't expect a solution that works for every use case. Issues with this should be filed in the [project itself](https://codeberg.org/moanos/notfellchen).
+> [!WARNING]
+> This service is a custom solution. Feel free to use it but don't expect a solution that works for every use case. Issues with this should be filed in the [project itself](https://codeberg.org/moanos/notfellchen).
 
 ## Dependencies
 

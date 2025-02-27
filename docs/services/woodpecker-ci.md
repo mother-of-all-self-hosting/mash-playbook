@@ -92,7 +92,24 @@ woodpecker_ci_server_container_add_host_domain_name: "{{ gitea_hostname }}"
 woodpecker_ci_server_container_add_host_ip_address: "{{ ansible_host }}"
 ```
 
-To integrate with version-control systems other than Gitea (e.g. [Forgejo](forgejo.md)), you'll need similar configuration.
+#### Forgejo Integration
+
+The Woodpecker CI server can integrate with [Forgejo](forgejo.md) using the following **additional** `vars.yml` configuration:
+
+```yaml
+woodpecker_ci_server_provider: forgejo
+
+# We must use the public URL here, because it's also used for login redirects
+woodpecker_ci_server_config_forgejo_url: "{{ forgejo_config_root_url }}"
+
+# Populate these with the OAuth 2 application information
+# (see the Forgejo configuration section above)
+woodpecker_ci_server_config_forgejo_client: FORGEJO_OAUTH_CLIENT_ID_HERE
+woodpecker_ci_server_config_forgejo_secret: FORGEJO_OAUTH_CLIENT_SECRET_HERE
+
+woodpecker_ci_server_container_add_host_domain_name: "{{ forgejo_hostname }}"
+woodpecker_ci_server_container_add_host_ip_address: "{{ ansible_host }}"
+```
 
 ### Usage
 
@@ -131,11 +148,11 @@ woodpecker_ci_agent_enabled: true
 
 # This needs to point to the server's gRPC host:port.
 # If your Woodpecker CI Server is deployed using this playbook, its
-# gRPC port will likely be 443.  E.g., ci.example.com:443.
+# gRPC port will likely be 443. E.g., ci.example.com:443.
 woodpecker_ci_agent_config_server: ''
 
 # This playbook only supports agent-specific secrets, i.e., it is not recommended to use
-# a shared secret between Woodpecker CI Server and all of its agents.  Please refer to
+# a shared secret between Woodpecker CI Server and all of its agents. Please refer to
 # the following upstream documentation in order to learn how to register an agent and
 # obtain a secret for it:
 #
