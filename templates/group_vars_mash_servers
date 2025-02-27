@@ -3701,6 +3701,7 @@ labelstudio_database_name: "labelstudio"
 labelstudio_database_username: "labelstudio"
 labelstudio_database_port: "{{ '5432' if postgres_enabled else '' }}"
 labelstudio_database_hostname: "{{ postgres_identifier if postgres_enabled else '' }}"
+labelstudio_database_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'db.labelstudio', rounds=655555) | to_uuid }}"
 
 ########################################################################
 #                                                                      #

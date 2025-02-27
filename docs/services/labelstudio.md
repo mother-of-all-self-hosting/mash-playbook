@@ -24,10 +24,6 @@ To enable this service, add the following configuration to your `vars.yml` file 
 labelstudio_enabled: true
 labelstudio_hostname: "example.labelstudio.hostname.com"
 
-# Although this is not strictly necessary, it is highly recommended
-labelstudio_postgre_backend_enabled: true
-labelstudio_database_password: "some-very-serious-password"
-
 ########################################################################
 #                                                                      #
 # /LabelStudio                                                         #
