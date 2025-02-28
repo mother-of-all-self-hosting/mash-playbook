@@ -43,6 +43,7 @@
 | [Jitsi](https://jitsi.org/) | A fully encrypted, 100% Open Source video conferencing solution | [Link](services/jitsi.md) |
 | [Keycloak](https://www.keycloak.org/) | An open source identity and access management solution. | [Link](services/keycloak.md) |
 | [KeyDB](https://docs.keydb.dev/) | An in-memory data store used by millions of developers as a database, cache, streaming engine, and message broker. | [Link](services/keydb.md) |
+| [LabelStudio](https://labelstud.io/) | Label Studio is an open source data labeling tool that supports multiple projects, users, and data types in one platform | [Link](services/labelstudio.md) |
 | [Lago](https://www.getlago.com/) | Open-source metering and usage-based billing | [Link](services/lago.md) |
 | [languageTool](https://languagetool.org/) | An open source online grammar, style and spell checker | [Link](services/languagetool.md) |
 | [linkding](https://github.com/sissbruecker/linkding/) | Bookmark manager designed to be minimal and fast. | [Link](services/linkding.md) |
