@@ -173,7 +173,7 @@
   name: jackett
   activation_prefix: jackett_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-jitsi.git
-  version: v10073-1
+  version: v10078-0
   name: jitsi
   activation_prefix: jitsi_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-keycloak.git
