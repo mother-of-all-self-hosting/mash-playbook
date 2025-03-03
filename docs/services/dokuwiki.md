@@ -1,6 +1,7 @@
 # DokuWiki
 
-[Dokuwiki](https://dokuwiki.org/) is a common wiki engine that does not require a database.
+[DokuWiki](https://dokuwiki.org/) is a lightweight, file-based wiki engine with intuitive syntax and no database requirements.
+``
 
 
 ## Dependencies
