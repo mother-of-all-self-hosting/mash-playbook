@@ -2061,7 +2061,7 @@ dokuwiki_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_pri
 
 ########################################################################
 #                                                                      #
-# /dokuwiki                                                              #
+# /dokuwiki                                                            #
 #                                                                      #
 ########################################################################
 # /role-specific:dokuwiki
