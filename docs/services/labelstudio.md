@@ -22,7 +22,7 @@ To enable this service, add the following configuration to your `vars.yml` file 
 ########################################################################
 
 labelstudio_enabled: true
-labelstudio_hostname: "example.labelstudio.hostname.com"
+labelstudio_hostname: labelstudio.example.com
 
 ########################################################################
 #                                                                      #
@@ -31,7 +31,7 @@ labelstudio_hostname: "example.labelstudio.hostname.com"
 ########################################################################
 ```
 
-In the example configuration above, we configure the service to be hosted at `example.labelstudio.hostname.com`.
+In the example configuration above, we configure the service to be hosted at `labelstudio.example.com`.
 Also, PostgreSQL backend is used based on [the official documentation](https://labelstud.io/guide/storedata#PostgreSQL-database).
 
 ## Usage
