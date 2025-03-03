@@ -23,7 +23,7 @@ roles: _requirements-yml
 optimize-restore:
     #!/usr/bin/env sh
     if [ -f "{{ optimization_vars_files_file_path }}" ]; then
-        just --justfile {{ justfile() }} \
+        @{{ just_executable() }} --justfile {{ justfile() }} \
         _optimize-for-var-paths \
         $(cat {{ optimization_vars_files_file_path }})
     else
@@ -42,14 +42,14 @@ optimize inventory_path='inventory': _reconfigure-for-all-hosts
 
 _reconfigure-for-all-hosts inventory_path='inventory':
     #!/usr/bin/env sh
-    just --justfile {{ justfile() }} \
+    @{{ just_executable() }} --justfile {{ justfile() }} \
     _optimize-for-var-paths \
     $(find {{ inventory_path }}/host_vars/ -maxdepth 2 -name 'vars.yml' -exec readlink -f {} \;)
 
 # Optimizes the playbook based on the enabled components for a single host
 optimize-for-host hostname inventory_path='inventory':
     #!/usr/bin/env sh
-    just --justfile {{ justfile() }} \
+    @{{ just_executable() }} --justfile {{ justfile() }} \
     _optimize-for-var-paths \
     $(find {{ inventory_path }}/host_vars/{{ hostname }} -maxdepth 1 -name 'vars.yml' -exec readlink -f {} \;)
 
@@ -58,9 +58,9 @@ _optimize-for-var-paths +PATHS:
     #!/usr/bin/env sh
     echo '{{ PATHS }}' > {{ optimization_vars_files_file_path }}
 
-    just --justfile {{ justfile() }} _save_hash_for_file {{ templates_directory_path }}/requirements.yml {{ justfile_directory() }}/requirements.yml
-    just --justfile {{ justfile() }} _save_hash_for_file {{ templates_directory_path }}/setup.yml {{ justfile_directory() }}/setup.yml
-    just --justfile {{ justfile() }} _save_hash_for_file {{ templates_directory_path }}/group_vars_mash_servers {{ justfile_directory() }}/group_vars/mash_servers
+    @{{ just_executable() }} --justfile {{ justfile() }} _save_hash_for_file {{ templates_directory_path }}/requirements.yml {{ justfile_directory() }}/requirements.yml
+    @{{ just_executable() }} --justfile {{ justfile() }} _save_hash_for_file {{ templates_directory_path }}/setup.yml {{ justfile_directory() }}/setup.yml
+    @{{ just_executable() }} --justfile {{ justfile() }} _save_hash_for_file {{ templates_directory_path }}/group_vars_mash_servers {{ justfile_directory() }}/group_vars/mash_servers
 
     /usr/bin/env python {{ justfile_directory() }}/bin/optimize.py \
     --vars-paths='{{ PATHS }}' \
@@ -85,8 +85,8 @@ update *flags: update-playbook-only
     fi
 
     if [[ "{{ flags }}" == "-u" ]]; then
-        just --justfile {{ justfile() }} versions
-        just --justfile {{ justfile() }} opml
+        @{{ just_executable() }} --justfile {{ justfile() }} versions
+        @{{ just_executable() }} --justfile {{ justfile() }} opml
     fi
 
 # Updates the playbook without installing/updating Ansible roles
@@ -115,7 +115,7 @@ install-all *extra_args: (run-tags "install-all,start" extra_args)
 
 # Runs installation tasks for a single service
 install-service service *extra_args:
-    just --justfile {{ justfile() }} run \
+    @{{ just_executable() }} --justfile {{ justfile() }} run \
     --tags=install-{{ service }},start-group \
     --extra-vars=group={{ service }} \
     --extra-vars=devture_systemd_service_manager_service_restart_mode=one-by-one {{ extra_args }}
@@ -125,7 +125,7 @@ setup-all *extra_args: (run-tags "setup-all,start" extra_args)
 
 # Runs setup tasks for a single service
 setup-service service *extra_args:
-    just --justfile {{ justfile() }} run \
+    @{{ just_executable() }} --justfile {{ justfile() }} run \
     --tags=setup-{{ service }},start-group \
     --extra-vars=group={{ service }} \
     --extra-vars=devture_systemd_service_manager_service_restart_mode=one-by-one {{ extra_args }}
@@ -136,7 +136,7 @@ run +extra_args: _requirements-yml _setup-yml _group-vars-mash-servers
 
 # Runs the playbook with the given list of comma-separated tags and optional arguments
 run-tags tags *extra_args:
-    just --justfile {{ justfile() }} run --tags={{ tags }} {{ extra_args }}
+    @{{ just_executable() }} --justfile {{ justfile() }} run --tags={{ tags }} {{ extra_args }}
 
 # Starts all services
 start-all *extra_args: (run-tags "start-all" extra_args)
@@ -181,7 +181,7 @@ _ensure_file_prepared src_path dst_path:
             echo $src_hash > $hash_path
 
             if [ -f "{{ optimization_vars_files_file_path }}" ]; then
-                just --justfile {{ justfile() }} \
+                @{{ just_executable() }} --justfile {{ justfile() }} \
                 _optimize-for-var-paths \
                 $(cat {{ optimization_vars_files_file_path }})
             fi
