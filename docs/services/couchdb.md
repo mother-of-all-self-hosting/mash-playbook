@@ -3,9 +3,9 @@
 [CouchDB](https://couchdb.apache.org/) is a NoSQL database that uses JSON for documents.
 This Ansible role is designed to install and configure CouchDB for using the [official CouchDB Docker image](https://github.com/apache/couchdb-docker) via the [ansible-role-couchdb](https://github.com/Bergruebe/ansible-role-couchdb).
 
-**Warning**: This role will not delete or modify existing databases or users. It will only create new databases and users if they do not already exist.
-
-**Warning**: This role **does not automatically integrate with Traefik** yet (see details below). PRs are welcome!
+> [!WARNING]
+> - This role will not delete or modify existing databases or users. It will only create new databases and users if they do not already exist.
+> - This role **does not automatically integrate with Traefik** yet (see details below). PRs are welcome!
 
 ## Features
 

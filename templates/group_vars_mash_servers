@@ -235,7 +235,7 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
 
   # role-specific:container_socket_proxy
   - |-
-    {{ ({'name': (devture_container_socket_proxy_identifier + '.service'), 'priority': 200, 'groups': ['mash', 'reverse-proxies', 'container-socket-proxy']} if devture_container_socket_proxy_enabled else omit) }}
+    {{ ({'name': (container_socket_proxy_identifier + '.service'), 'priority': 200, 'groups': ['mash', 'reverse-proxies', 'container-socket-proxy']} if container_socket_proxy_enabled else omit) }}
   # /role-specific:container_socket_proxy
 
   # role-specific:traefik
@@ -503,6 +503,11 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
     {{ ({'name': (oauth2_proxy_identifier + '.service'), 'priority': 1900, 'groups': ['mash', 'oauth2-proxy']} if oauth2_proxy_enabled else omit) }}
   # /role-specific:oauth2_proxy
 
+  # role-specific:overseerr
+  - |-
+    {{ ({'name': (overseerr_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'overseerr']} if overseerr_enabled else omit) }}
+  # /role-specific:overseerr
+
   # role-specific:outline
   - |-
     {{ ({'name': (outline_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'outline']} if outline_enabled else omit) }}
@@ -571,6 +576,11 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
   - |-
     {{ ({'name': (promtail_identifier + '.service'), 'priority': 500, 'groups': ['mash', 'logs', 'promtail']} if promtail_enabled else omit) }}
   # /role-specific:promtail
+
+  # role-specific:qbittorrent
+  - |-
+    {{ ({'name': (qbittorrent_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'qbittorrent']} if qbittorrent_enabled else omit) }}
+  # /role-specific:qbittorrent
 
   # role-specific:radarr
   - |-
@@ -1139,7 +1149,7 @@ postgres_backup_connection_password: "{{ postgres_connection_password if postgre
 
 postgres_backup_postgres_data_path: "{{ postgres_data_path if postgres_enabled else '' }}"
 
-postgres_backup_databases: "{{ postgres_managed_databases | map(attribute='name') if postgres_enabled else [] }}"
+postgres_backup_databases_auto: "{{ postgres_managed_databases | map(attribute='name') if postgres_enabled else [] }}"
 # /role-specific:postgres
 
 ########################################################################
@@ -1198,17 +1208,17 @@ docker_daemon_options: "{{ mash_playbook_docker_installation_daemon_options }}"
 #                                                                      #
 ########################################################################
 
-devture_container_socket_proxy_enabled: "{{ traefik_enabled }}"
+container_socket_proxy_enabled: "{{ traefik_enabled }}"
 
-devture_container_socket_proxy_identifier: "{{ mash_playbook_service_identifier_prefix }}container-socket-proxy"
+container_socket_proxy_identifier: "{{ mash_playbook_service_identifier_prefix }}container-socket-proxy"
 
-devture_container_socket_proxy_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}container-socket-proxy"
+container_socket_proxy_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}container-socket-proxy"
 
-devture_container_socket_proxy_uid: "{{ mash_playbook_uid }}"
-devture_container_socket_proxy_gid: "{{ mash_playbook_gid }}"
+container_socket_proxy_uid: "{{ mash_playbook_uid }}"
+container_socket_proxy_gid: "{{ mash_playbook_gid }}"
 
 # Traefik requires read access to the containers APIs to do its job
-devture_container_socket_proxy_api_containers_enabled: true
+container_socket_proxy_api_containers_enabled: true
 
 ########################################################################
 #                                                                      #
@@ -1236,19 +1246,19 @@ traefik_uid: "{{ mash_playbook_uid }}"
 traefik_gid: "{{ mash_playbook_gid }}"
 
 # role-specific:container_socket_proxy
-traefik_config_providers_docker_endpoint: "{{ devture_container_socket_proxy_endpoint if devture_container_socket_proxy_enabled else 'unix:///var/run/docker.sock' }}"
+traefik_config_providers_docker_endpoint: "{{ container_socket_proxy_endpoint if container_socket_proxy_enabled else 'unix:///var/run/docker.sock' }}"
 # /role-specific:container_socket_proxy
 
 traefik_container_additional_networks_auto: |
   {{
-    ([devture_container_socket_proxy_container_network] if devture_container_socket_proxy_enabled | default(false) else [])
+    ([container_socket_proxy_container_network] if container_socket_proxy_enabled | default(false) else [])
   }}
 
 traefik_systemd_required_services_list: |
   {{
     ([devture_systemd_docker_base_docker_service_name] if devture_systemd_docker_base_docker_service_name else [])
     +
-    ([devture_container_socket_proxy_identifier + '.service'] if devture_container_socket_proxy_enabled | default(false) else [])
+    ([container_socket_proxy_identifier + '.service'] if container_socket_proxy_enabled | default(false) else [])
   }}
 
 ########################################################################
@@ -1314,7 +1324,7 @@ adguard_home_gid: "{{ mash_playbook_gid }}"
 
 adguard_home_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}adguard-home"
 
-adguard_home_container_additional_networks: |
+adguard_home_container_additional_networks_auto: |
   {{
     ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
   }}
@@ -1571,7 +1581,7 @@ backup_borg_postgresql_databases_hostname: "{{ postgres_connection_hostname if p
 backup_borg_postgresql_databases_username: "{{ postgres_connection_username if postgres_enabled else '' }}"
 backup_borg_postgresql_databases_password: "{{ postgres_connection_password if postgres_enabled else '' }}"
 backup_borg_postgresql_databases_port: "{{ postgres_connection_port if postgres_enabled else 5432 }}"
-backup_borg_postgresql_databases: "{{ postgres_managed_databases | map(attribute='name') if postgres_enabled else [] }}"
+backup_borg_postgresql_databases_auto: "{{ postgres_managed_databases | map(attribute='name') if postgres_enabled else [] }}"
 # /role-specific:postgres
 
 # role-specific:mariadb
@@ -2636,12 +2646,7 @@ hubsite_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_
 hubsite_uid: "{{ mash_playbook_uid }}"
 hubsite_gid: "{{ mash_playbook_gid }}"
 
-hubsite_systemd_required_services_list: |
-  {{
-    ([devture_systemd_docker_base_docker_service_name] if devture_systemd_docker_base_docker_service_name else [])
-  }}
-
-hubsite_container_additional_networks: |
+hubsite_container_additional_networks_auto: |
   {{
     ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
   }}
@@ -3761,14 +3766,12 @@ linkding_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base
 linkding_uid: "{{ mash_playbook_uid }}"
 linkding_gid: "{{ mash_playbook_gid }}"
 
-linkding_systemd_required_services_list: |
+linkding_systemd_required_services_list_auto: |
   {{
-    ([devture_systemd_docker_base_docker_service_name] if devture_systemd_docker_base_docker_service_name else [])
-    +
     ([postgres_identifier ~ '.service'] if postgres_enabled and linkding_database_hostname == postgres_identifier else [])
   }}
 
-linkding_container_additional_networks: |
+linkding_container_additional_networks_auto: |
   {{
     ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
     +
@@ -3853,14 +3856,12 @@ miniflux_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base
 miniflux_uid: "{{ mash_playbook_uid }}"
 miniflux_gid: "{{ mash_playbook_gid }}"
 
-miniflux_systemd_required_services_list: |
+miniflux_systemd_required_services_list_auto: |
   {{
-    ([devture_systemd_docker_base_docker_service_name] if devture_systemd_docker_base_docker_service_name else [])
-    +
     ([postgres_identifier ~ '.service'] if postgres_enabled and miniflux_database_hostname == postgres_identifier else [])
   }}
 
-miniflux_container_additional_networks: |
+miniflux_container_additional_networks_auto: |
   {{
     ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
     +
@@ -4461,6 +4462,44 @@ oauth2_proxy_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver
 
 
 
+# role-specific:overseerr
+########################################################################
+#                                                                      #
+# overseerr                                                            #
+#                                                                      #
+########################################################################
+
+overseerr_enabled: false
+
+overseerr_identifier: "{{ mash_playbook_service_identifier_prefix }}overseerr"
+
+overseerr_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}overseerr"
+
+overseerr_uid: "{{ mash_playbook_uid }}"
+overseerr_gid: "{{ mash_playbook_gid }}"
+
+overseerr_container_additional_networks_auto: |
+  {{
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+  }}
+
+overseerr_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+overseerr_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+
+# role-specific:traefik
+overseerr_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
+overseerr_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
+# /role-specific:traefik
+
+########################################################################
+#                                                                      #
+# /overseerr                                                           #
+#                                                                      #
+########################################################################
+# /role-specific:overseerr
+
+
+
 # role-specific:owncast
 ########################################################################
 #                                                                      #
@@ -4817,10 +4856,8 @@ prometheus_postgres_exporter_database_password: "{{ postgres_connection_password
 prometheus_postgres_exporter_database_port: "{{ postgres_connection_port if postgres_enabled else 5432 }}"
 prometheus_postgres_exporter_database_ssl: false
 
-prometheus_postgres_exporter_systemd_required_services_list: |
+prometheus_postgres_exporter_systemd_required_services_list_auto: |
   {{
-    ([devture_systemd_docker_base_docker_service_name] if devture_systemd_docker_base_docker_service_name else [])
-    +
     ([postgres_identifier ~ '.service'] if postgres_enabled else [])
   }}
 
@@ -4973,7 +5010,7 @@ prometheus_node_exporter_base_path: "{{ mash_playbook_base_path }}/{{ mash_playb
 prometheus_node_exporter_uid: "{{ mash_playbook_uid }}"
 prometheus_node_exporter_gid: "{{ mash_playbook_gid }}"
 
-prometheus_node_exporter_container_additional_networks: |
+prometheus_node_exporter_container_additional_networks_auto: |
   {{
     ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
   }}
@@ -5064,6 +5101,44 @@ promtail_container_additional_networks_auto: |
 
 
 
+# role-specific:qbittorrent
+########################################################################
+#                                                                      #
+# qbittorrent                                                          #
+#                                                                      #
+########################################################################
+
+qbittorrent_enabled: false
+
+qbittorrent_identifier: "{{ mash_playbook_service_identifier_prefix }}qbittorrent"
+
+qbittorrent_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}qbittorrent"
+
+qbittorrent_uid: "{{ mash_playbook_uid }}"
+qbittorrent_gid: "{{ mash_playbook_gid }}"
+
+qbittorrent_container_additional_networks_auto: |
+  {{
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+  }}
+
+qbittorrent_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+qbittorrent_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+
+# role-specific:traefik
+qbittorrent_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
+qbittorrent_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
+# /role-specific:traefik
+
+########################################################################
+#                                                                      #
+# /qbittorrent                                                         #
+#                                                                      #
+########################################################################
+# /role-specific:qbittorrent
+
+
+
 # role-specific:radarr
 ########################################################################
 #                                                                      #
@@ -5118,7 +5193,7 @@ radicale_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base
 radicale_uid: "{{ mash_playbook_uid }}"
 radicale_gid: "{{ mash_playbook_gid }}"
 
-radicale_container_additional_networks: |
+radicale_container_additional_networks_auto: |
   {{
     ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
   }}
@@ -5662,23 +5737,23 @@ tsdproxy_uid: "{{ mash_playbook_uid }}"
 tsdproxy_gid: "{{ mash_playbook_gid }}"
 
 # role-specific:container_socket_proxy
-tsdproxy_docker_endpoint_is_unix_socket: "{{ false if devture_container_socket_proxy_enabled else true }}"
-tsdproxy_docker_endpoint: "{{ devture_container_socket_proxy_endpoint if devture_container_socket_proxy_enabled == true and tsdproxy_enabled == true else 'unix:///var/run/docker.sock' }}"
+tsdproxy_docker_endpoint_is_unix_socket: "{{ false if container_socket_proxy_enabled else true }}"
+tsdproxy_docker_endpoint: "{{ container_socket_proxy_endpoint if container_socket_proxy_enabled == true and tsdproxy_enabled == true else 'unix:///var/run/docker.sock' }}"
 # TSDProxy needs access to the Docker Networks and images to work
-devture_container_socket_proxy_api_network_enabled: "{{ true if tsdproxy_docker_endpoint == devture_container_socket_proxy_endpoint else false }}"
-devture_container_socket_proxy_api_images_enabled: "{{ true if tsdproxy_docker_endpoint == devture_container_socket_proxy_endpoint else false }}"
+container_socket_proxy_api_network_enabled: "{{ true if tsdproxy_docker_endpoint == container_socket_proxy_endpoint else false }}"
+container_socket_proxy_api_images_enabled: "{{ true if tsdproxy_docker_endpoint == container_socket_proxy_endpoint else false }}"
 # /role-specific:container_socket_proxy
 
 tsdproxy_container_additional_networks_auto: |
   {{
-    ([devture_container_socket_proxy_container_network] if devture_container_socket_proxy_enabled | default(false) else [])
+    ([container_socket_proxy_container_network] if container_socket_proxy_enabled | default(false) else [])
   }}
 
 tsdproxy_systemd_required_services_list: |
   {{
     ([devture_systemd_docker_base_docker_service_name] if devture_systemd_docker_base_docker_service_name else [])
     +
-    ([devture_container_socket_proxy_identifier + '.service'] if devture_container_socket_proxy_enabled | default(false) else [])
+    ([container_socket_proxy_identifier + '.service'] if container_socket_proxy_enabled | default(false) else [])
   }}
 
 ########################################################################

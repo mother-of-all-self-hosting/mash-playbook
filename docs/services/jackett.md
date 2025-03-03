@@ -118,7 +118,7 @@ Once you've installed Jackett and setup an admin password you can start configur
 
 To add an indexer, click the `+ Add indexer` button and select your tracker from the list.
 
-![Jackett Add Indexer](../assets/jackett-add-indexer.png)
+![Jackett Add Indexer](../assets/jackett/add-indexer.png)
 
 If its a semi-private or private tracker you will have to add some specific configuration, like a username and password. If its public you can just add it as-is.
 
@@ -128,14 +128,23 @@ Once its added you can test it using the `Test ✓` button, if it returns succes
 
 To add Jackett to your [Sonarr](sonarr.md) or [Radarr](radarr.md) instance navigate to the form at `Settings > Indexers > Add > Torznab > Custom`:
 
-![Sonarr Add Indexer](../assets/sonarr-add-indexer.png)
+![Sonarr Add Indexer](../assets/sonarr/add-indexer.png)
 
 Next copy Jackett's `API Key` from in the top right of the Jackett dashboard:
 
-![Jackett API Key](../assets/jackett-api-key.png)
+![Jackett API Key](../assets/jackett/api-key.png)
 
 Paste this into the Sonarr/Radarr form, under `API Key`. 
 
 Next, click `Copy Torznab Feed` of the indexer (tracker) you added to Jackett. Paste this into the Sonarr/Radarr form too, under `URL`. 
 
 Fill in the rest of the form with your preferences, and you're done!
+
+## Recommended other services
+
+Consider these other supported services that are also in the [*Arr stack](https://wiki.servarr.com/) of media automation tools:
+
+- [Radarr](radarr.md)
+- [Sonarr](sonarr.md)
+- [qBittorrent](qbittorrent.md)
+- [Overseerr](overseerr.md)

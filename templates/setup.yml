@@ -311,6 +311,10 @@
     - role: galaxy/oauth2_proxy
     # /role-specific:oauth2_proxy
 
+    # role-specific:overseerr
+    - role: galaxy/overseerr
+    # /role-specific:overseerr
+
     # role-specific:owncast
     - role: galaxy/owncast
     # /role-specific:owncast
@@ -363,7 +367,11 @@
     - role: galaxy/promtail
     # /role-specific:promtail
 
-   # role-specific:radarr
+    # role-specific:qbittorrent
+    - role: galaxy/qbittorrent
+    # /role-specific:qbittorrent
+
+    # role-specific:radarr
     - role: galaxy/radarr
     # /role-specific:radarr
 

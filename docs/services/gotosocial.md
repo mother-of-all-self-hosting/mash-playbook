@@ -40,7 +40,8 @@ gotosocial_hostname: 'social.example.org'
 
 The account domain is the second part of a user handle in the Fediverse. If your handle is @username@example.org, `example.org` is your account domain. By default GoToSocial will use `gotosocial_hostname` that you provide as account domain e.g. `social.example.org`. You might want to change this by setting `gotosocial_account_domain` if you want the domain on accounts to be `example.org` because it looks better or is just shorter/easier to remember.
 
-**Warning** DO NOT change this change this after your server has already run once, or you will break things!
+> [!WARNING]
+> DO NOT change this change this after your server has already run once, or you will break things!
 
 If you decide to use this read [the appropriate section of the documentation](https://docs.gotosocial.org/en/latest/advanced/host-account-domain/) as you will have to do some additional work on the base domain.
 

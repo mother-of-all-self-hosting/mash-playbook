@@ -1,6 +1,6 @@
 # Versatiles
 
-![Versatiles Logo](../assets/versatiles-logo.png)
+![Versatiles Logo](../assets/versatiles/logo.png)
 
 [Versatiles](https://versatiles.org) is a a free stack for generating and serving vector tiles based on [OpenStreetMap](https://openstreetmap.com) data.
 
@@ -41,7 +41,7 @@ In the example configuration above, we configure the service to be hosted at `ht
 
 After installation, you should be able to access your new Versatiles instance at: `https://tiles.example.com`.
 
-![Map of Dresden](../assets/versatiles-map-example.jpeg)
+![Map of Dresden](../assets/versatiles/map-example.jpeg)
 
 
 To embed the map in a website Copy & Paste the following snippet and replace `tiles.example.com` with your `versatiles_hostname`.

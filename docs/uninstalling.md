@@ -1,6 +1,7 @@
 # Uninstalling
 
-**Warning**: If you have some trouble with your installation, you can just [re-run the playbook](installing.md) and it will try to set things up again. **Uninstalling and then installing anew rarely solves anything**.
+> [!WARNING]
+> If you have some trouble with your installation, you can just [re-run the playbook](installing.md) and it will try to set things up again. **Uninstalling and then installing anew rarely solves anything**.
 
 To uninstall, run these commands (most are meant to be executed on the server itself):
 
