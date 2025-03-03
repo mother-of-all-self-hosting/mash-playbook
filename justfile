@@ -1,6 +1,6 @@
 # Shows help
 default:
-    {{ just_executable() }} --list --justfile {{ justfile() }}
+    @{{ just_executable() }} --list --justfile {{ justfile() }}
 
 run_directory_path := justfile_directory() + "/run"
 templates_directory_path := justfile_directory() + "/templates"
@@ -143,26 +143,26 @@ start-all *extra_args: (run-tags "start-all" extra_args)
 
 # Starts a specific service group
 start-group group *extra_args:
-    {{ just_executable() }} --justfile {{ justfile() }} run-tags start-group --extra-vars="group={{ group }}" {{ extra_args }}
+    @{{ just_executable() }} --justfile {{ justfile() }} run-tags start-group --extra-vars="group={{ group }}" {{ extra_args }}
 
 # Stops all services
 stop-all *extra_args: (run-tags "stop-all" extra_args)
 
 # Stops a specific service group
 stop-group group *extra_args:
-    {{ just_executable() }} --justfile {{ justfile() }} run-tags stop-group --extra-vars="group={{ group }}" {{ extra_args }}
+    @{{ just_executable() }} --justfile {{ justfile() }} run-tags stop-group --extra-vars="group={{ group }}" {{ extra_args }}
 
 # Prepares the requirements.yml file
 _requirements-yml:
-    {{ just_executable() }} --justfile {{ justfile() }} _ensure_file_prepared {{ templates_directory_path }}/requirements.yml {{ justfile_directory() }}/requirements.yml
+    @{{ just_executable() }} --justfile {{ justfile() }} _ensure_file_prepared {{ templates_directory_path }}/requirements.yml {{ justfile_directory() }}/requirements.yml
 
 # Prepares the setup.yml file
 _setup-yml:
-    {{ just_executable() }} --justfile {{ justfile() }} _ensure_file_prepared {{ templates_directory_path }}/setup.yml {{ justfile_directory() }}/setup.yml
+    @{{ just_executable() }} --justfile {{ justfile() }} _ensure_file_prepared {{ templates_directory_path }}/setup.yml {{ justfile_directory() }}/setup.yml
 
 # Prepares the group_vars/mash_servers file
 _group-vars-mash-servers:
-    {{ just_executable() }} --justfile {{ justfile() }} _ensure_file_prepared {{ templates_directory_path }}/group_vars_mash_servers {{ justfile_directory() }}/group_vars/mash_servers
+    @{{ just_executable() }} --justfile {{ justfile() }} _ensure_file_prepared {{ templates_directory_path }}/group_vars_mash_servers {{ justfile_directory() }}/group_vars/mash_servers
 
 _ensure_file_prepared src_path dst_path:
     #!/usr/bin/env sh
