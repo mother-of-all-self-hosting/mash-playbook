@@ -32,16 +32,17 @@ labelstudio_hostname: labelstudio.example.com
 ```
 
 In the example configuration above, we configure the service to be hosted at `labelstudio.example.com`.
-Also, PostgreSQL backend is used based on [the official documentation](https://labelstud.io/guide/storedata#PostgreSQL-database).
 
 ## Usage
 
 After installation, you should be able to access your new LabelStudio instance at the configured URL (see above).
 
-Going there, you can register new accounts, login with them and start working.
+Going there, you can register new accounts, log in with them and start working.
+
 Keep in mind that every user will see every project.
-It may be more secure to disable user registration and use an admin user---created during setup---to send out sign-up emails for wannabe users.
-This admin user can be enabled by the following settings:
+It may be more secure to disable user registration and use an admin use (created during setup) to send out sign-up emails to additional users later on.
+
+This admin user can be enabled by using the following settings:
 
 ```yml
 labelstudio_environment_variables_disable_signup_without_link: true
