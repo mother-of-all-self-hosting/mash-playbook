@@ -159,6 +159,10 @@
     - role: galaxy/docker_registry_purger
     # /role-specific:docker_registry_purger
 
+    # role-specific:dokuwiki
+    - role: galaxy/dokuwiki
+    # /role-specific:dokuwiki
+
     # role-specific:echoip
     - role: galaxy/echoip
     # /role-specific:echoip
