@@ -1,3 +1,5 @@
+# Comment out this if you wish to include the directory for your configuration
+# to git repository.
 /inventory
 
 # ignore roles pulled by ansible-galaxy
