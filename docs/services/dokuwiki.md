@@ -1,4 +1,4 @@
-# Dokuwiki
+# DokuWiki
 
 [Dokuwiki](https://dokuwiki.org/) is a common wiki engine that does not require a database.
 
