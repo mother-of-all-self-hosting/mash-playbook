@@ -101,7 +101,7 @@
   name: etcd
   activation_prefix: etcd_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-exim-relay.git
-  version: v4.98.1-r0-0-0
+  version: v4.98.1-r0-1-0
   name: exim_relay
   activation_prefix: exim_relay_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-fail2ban.git
@@ -177,7 +177,7 @@
   name: jackett
   activation_prefix: jackett_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-jitsi.git
-  version: v10008-3
+  version: v10078-1-0
   name: jitsi
   activation_prefix: jitsi_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-keycloak.git
@@ -188,6 +188,10 @@
   version: v6.3.4-3
   name: keydb
   activation_prefix: keydb_
+- src: git+https://gitlab.com/horvathg.1988/ansible-role-labelstudio.git
+  version: v1.0.0-3
+  name: labelstudio
+  activation_prefix: labelstudio_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-lago.git
   version: v0.50.0-0
   name: lago
@@ -336,7 +340,7 @@
   name: promtail
   activation_prefix: promtail_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-qbittorrent.git
-  version: v5.0.3-3
+  version: v5.0.4-0
   name: qbittorrent
   activation_prefix: qbittorrent_
 - src: git+https://github.com/spatterIight/ansible-role-radarr.git
@@ -360,7 +364,7 @@
   name: redmine
   activation_prefix: redmine_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-roundcube.git
-  version: v1.6.9-0
+  version: v1.6.10-0
   name: roundcube
   activation_prefix: roundcube_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-rumqttd.git
@@ -420,7 +424,7 @@
   name: timesync
   activation_prefix: devture_timesync_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-traefik.git
-  version: v3.3.3-4
+  version: v3.3.4-0
   name: traefik
   activation_prefix: mash_
 - src: git+https://github.com/Bergruebe/ansible-role-tsdproxy.git

@@ -267,6 +267,10 @@
     - role: galaxy/keydb
     # /role-specific:keydb
 
+    # role-specific:labelstudio
+    - role: galaxy/labelstudio
+    # /role-specific:labelstudio
+
     # role-specific:lago
     - role: galaxy/lago
     # /role-specific:lago
