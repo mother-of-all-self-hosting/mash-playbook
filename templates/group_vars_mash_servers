@@ -1724,11 +1724,6 @@ cadvisor_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_prox
 cadvisor_container_labels_traefik_entrypoints: "{{ devture_traefik_entrypoint_primary }}"
 cadvisor_container_labels_traefik_tls_certResolver: "{{ devture_traefik_certResolver_primary }}"
 
-cadvisor_container_labels_metrics_enabled: "{{ prometheus_enabled | default(false) or mash_playbook_metrics_exposure_enabled }}"
-cadvisor_container_labels_metrics_hostname: "{{ mash_playbook_metrics_exposure_hostname }}"
-cadvisor_container_labels_metrics_path_prefix: "{{ mash_playbook_metrics_exposure_path_prefix }}/{{ cadvisor_identifier }}"
-cadvisor_container_labels_metrics_traefik_middleware_basic_auth_enabled: "{{ mash_playbook_metrics_exposure_http_basic_auth_enabled }}"
-cadvisor_container_labels_metrics_traefik_middleware_basic_auth_users: "{{ mash_playbook_metrics_exposure_http_basic_auth_users }}"
 cadvisor_container_labels_metrics_middleware_basic_auth_enabled: "{{ mash_playbook_metrics_exposure_http_basic_auth_enabled }}"
 cadvisor_container_labels_metrics_middleware_basic_auth_users: "{{ mash_playbook_metrics_exposure_http_basic_auth_users }}"
 
