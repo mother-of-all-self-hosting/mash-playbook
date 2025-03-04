@@ -23,11 +23,10 @@ To enable this service, add the following configuration to your `vars.yml` file 
 
 cadvisor_enabled: true
 # You will have to mount specific folders depending on your need
-# cadvisor_container_extra_arguments:
-#   - "--mount type=bind,source=/,destination=/rootfs,readonly"
-#   - "--mount type=bind,source=/sys,destination=/sys,readonly"
-#   - "--mount type=bind,source=/var/lib/docker/,destination=/var/lib/docker,readonly"
-#   - "--mount type=bind,source=/dev/disk/,destination=/dev/disk,readonly"
+#   - "--mount type=bind,source=/sys,destination=/sys,readonly" # Provides access to system information and kernel parameters.
+#   - "--mount type=bind,source=/var/lib/docker/,destination=/var/lib/docker,readonly" # Allows monitoring of Docker containers while preventing data modifications.
+#   - "--mount type=bind,source=/,destination=/rootfs,readonly" # Enables access to the host's root filesystem for comprehensive process monitoring.
+#   - "--mount type=bind,source=/dev/disk/,destination=/dev/disk,readonly" # Grants access to disk information and statistics.
 
 ########################################################################
 #                                                                      #
@@ -38,10 +37,10 @@ cadvisor_enabled: true
 
 See the full list of options in the [default/main.yml](default/main.yml) file
 
-cAdvisor can scrape metrics from system and containers. These metrics can be :
+cAdvisor can listen on a port and display metrics in two ways:
 
--   Displayed on the cAdvisor Web UI
--   Exposed to a metric-storage server like [Prometheus](./prometheus.md).
+ - Through the Web UI accessible at the root endpoint (/), which integrates Google Analytics for performance tracking.
+ - Through the /metrics endpoint, where metrics are exposed in the standard Prometheus format.
 
 ## Exposing publicly cAdvisor
 
