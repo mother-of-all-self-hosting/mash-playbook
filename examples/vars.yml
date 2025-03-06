@@ -1,3 +1,8 @@
+# SPDX-License-Identifier: 2023 - 2025 Slavi Pantaleev
+# SPDX-License-Identifier: 2023 Julian-Samuel Gebühr
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
 ---
 
 # Below is an example which installs a few services on the host, in different configuration.
