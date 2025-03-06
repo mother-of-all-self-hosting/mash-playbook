@@ -7,6 +7,8 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
 # Configuring interoperability with other services
 
+*If you are installing the services on the [Matrix](https://matrix.org) server configured and managed with [matrix-docker-ansible-deploy (MDAD)](https://github.com/spantaleev/matrix-docker-ansible-deploy/) Ansible playbook, you probably might want to check [this guide](setting-up-services-on-mdad-server.md).*
+
 This playbook tries to get you up and running with minimal effort and provided you have followed the [example `vars.yml` file](../examples/vars.yml), will install the [Traefik](services/traefik.md) reverse-proxy server by default.
 
 Sometimes, you're using a server which already has Traefik. In such cases these are undesirable:
