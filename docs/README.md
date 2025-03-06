@@ -59,6 +59,8 @@ If your server and services experience issues, feel free to come to [our support
 
 - [Self-building](self-building.md)
 
+- [Setting up services on the Matrix server configured with the MDAD playbook](setting-up-services-on-mdad-server.md)
+
 - [Supported services](supported-services.md)
 
 - [Uninstalling](uninstalling.md)
