@@ -260,6 +260,10 @@
   version: v0.4.0-0
   name: notfellchen
   activation_prefix: notfellchen_
+- src: git+https://github.com/mother-of-all-self-hosting/ansible-role-ntfy.git
+  version: v2.11.0-4
+  name: ntfy
+  activation_prefix: ntfy_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-oauth2-proxy.git
   version: v7.6.0-1
   name: oauth2_proxy
