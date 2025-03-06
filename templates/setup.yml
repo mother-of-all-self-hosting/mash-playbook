@@ -315,6 +315,10 @@
     - role: galaxy/notfellchen
     # /role-specific:notfellchen
 
+    # role-specific:ntfy
+    - role: galaxy/ntfy
+    # /role-specific:ntfy
+
     # role-specific:oauth2_proxy
     - role: galaxy/oauth2_proxy
     # /role-specific:oauth2_proxy
