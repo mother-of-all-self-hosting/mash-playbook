@@ -1,3 +1,10 @@
+<!--
+SPDX-License-Identifier: 2023 - 2024 Slavi Pantaleev
+SPDX-License-Identifier: 2025 Suguru Hirahara
+
+SPDX-License-Identifier: AGPL-3.0-or-later
+-->
+
 # Configuring interoperability with other services
 
 This playbook tries to get you up and running with minimal effort and provided you have followed the [example `vars.yml` file](../examples/vars.yml), will install the [Traefik](services/traefik.md) reverse-proxy server by default.
