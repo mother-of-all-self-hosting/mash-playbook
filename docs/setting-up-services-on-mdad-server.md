@@ -38,7 +38,7 @@ If you are adding the common `mash.example.com` domain, set the same IP address 
 
 ## Configure the MASH playbook
 
-Next, you'll need to copy the sample inventory hosts file ([`hosts`](../examples/hosts)) and configuration file ([`vars.yml`](../examples/matrix-docker-ansible-deploy/vars.yml)) modified for installing services on your Matrix server.
+Next, you'll need to copy the sample inventory hosts file ([`hosts`](../examples/hosts)) and configuration file ([`vars.yml`](../examples/mash-for-matrix-docker-ansible-deploy-users/vars.yml)) modified for installing services on your Matrix server.
 
 To do so, run the following commands inside the playbook directory. Before creating a directory, make sure to replace `mash.example.com` with your domain. Here `example.com` should be the same one where the Matrix server is hosted.
 
@@ -47,7 +47,7 @@ mkdir -p inventory/host_vars/mash.example.com
 
 cp examples/hosts inventory/hosts
 
-cp examples/matrix-docker-ansible-deploy/vars.yml inventory/host_vars/mash.example.com/vars.yml
+cp examples/mash-for-matrix-docker-ansible-deploy-users/vars.yml inventory/host_vars/mash.example.com/vars.yml
 ```
 
 ### Configure `hosts` file
