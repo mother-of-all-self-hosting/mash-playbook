@@ -105,7 +105,7 @@ If you're installing [Promtail](./promtail.md) on the same server as Loki, by de
 
 ### Integrating with Prometheus Node Exporter and/or cAdvisor
 
-If you've installed [Prometheus Node Exporter](prometheus-node-exporter.md) and/or [cAdvisor](cadvisor.md) on any host (target) scraped by Prometheus, you may wish to install a grafana dashboard for them.
+If you've installed [Prometheus Node Exporter](prometheus-node-exporter.md) and/or [cAdvisor](cadvisor.md) on any host (target) scraped by Prometheus, you may wish to install a Grafana dashboard for them.
 
 The Prometheus Node Exporter role as well as the cAdvisor role exposes a list of URLs containing dashboards (JSON files) in there `<role_name>_dashboard_urls` variable.
 
