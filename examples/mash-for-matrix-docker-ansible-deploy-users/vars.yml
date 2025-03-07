@@ -1,11 +1,18 @@
 # SPDX-License-Identifier: 2023 - 2025 Slavi Pantaleev
 # SPDX-License-Identifier: 2023 Julian-Samuel Gebühr
+# SPDX-License-Identifier: 2025 Suguru Hirahara
 #
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
 ---
 
-# Below is an example which installs a few services on the host, in different configuration.
+# Below is an example which installs a few services on the same server
+# as your Matrix services have been installed and configured with
+# matrix-docker-ansible-deploy (MDAD) playbook.
+#
+# If you are installing services on the server where neither Docker
+# nor Traefik is installed, see vars.yml on the parent directory instead.
+#
 # You should tweak this example as you see fit and enable the services that you need.
 
 ########################################################################
@@ -30,10 +37,6 @@ mash_playbook_generic_secret_key: ''
 # Docker                                                               #
 #                                                                      #
 ########################################################################
-
-# To disable Docker installation (in case you'd be installing Docker in another way),
-# remove the line below.
-mash_playbook_docker_installation_enabled: true
 
 # To disable Docker SDK for Python installation (in case you'd be installing the SDK in another way),
 # remove the line below.
@@ -72,14 +75,21 @@ devture_timesync_installation_enabled: true
 #                                                                      #
 ########################################################################
 
-# Most services require a reverse-proxy, so we enable Traefik here.
-#
-# Learn more about the Traefik service in docs/services/traefik.md
-#
-# If your server already runs Traefik, you will run into port conflicts by installing it twice.
-# See docs/interoperability.md for solutions.
+# We're relying on the matrix-docker-ansible-deploy playbook to manage Traefik,
+# so tell mash-playbook about it.
+mash_playbook_reverse_proxy_type: other-traefik-container
 
-mash_playbook_reverse_proxy_type: playbook-managed-traefik
+# Tell the playbook to attach services which require reverse-proxying to an additional network by default (e.g. traefik)
+# This needs to match your Traefik network.
+mash_playbook_reverse_proxyable_services_additional_network: traefik
+
+# Uncomment and adjust the variables below if you'd like to enable HTTP-compression.
+#
+# For this to work, you will need to define a compress middleware (https://doc.traefik.io/traefik/middlewares/http/compress/) for your Traefik instance
+# using a file (https://doc.traefik.io/traefik/providers/file/) or Docker (https://doc.traefik.io/traefik/providers/docker/) configuration provider.
+#
+# mash_playbook_reverse_proxy_traefik_middleware_compession_enabled: true
+# mash_playbook_reverse_proxy_traefik_middleware_compession_name: my-compression-middleware@file
 
 ########################################################################
 #                                                                      #

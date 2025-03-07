@@ -59,6 +59,8 @@ If your server and services experience issues, feel free to come to [our support
 
 - [Self-building](self-building.md)
 
+- [Setting up MASH services on a Matrix server configured with the matrix-docker-ansible-deploy Ansible playbook](setting-up-services-on-mdad-server.md)
+
 - [Supported services](supported-services.md)
 
 - [Uninstalling](uninstalling.md)
