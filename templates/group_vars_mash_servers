@@ -275,6 +275,11 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
     {{ ({'name': (docker_registry_purger_identifier + '.timer'), 'priority': 3000, 'groups': ['mash', 'docker-registry-purger']} if docker_registry_purger_enabled else omit) }}
   # /role-specific:docker_registry_purger
 
+  # role-specific:dokuwiki
+  - |-
+    {{ ({'name': (dokuwiki_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'dokuwiki']} if dokuwiki_enabled else omit) }}
+  # /role-specific:dokuwiki
+
   # role-specific:echoip
   - |-
     {{ ({'name': (echoip_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'echoip']} if echoip_enabled else omit) }}
@@ -2035,6 +2040,50 @@ docker_registry_purger_gid: "{{ mash_playbook_gid }}"
 #                                                                      #
 ########################################################################
 # /role-specific:docker_registry_purger
+
+
+
+# role-specific:dokuwiki
+########################################################################
+#                                                                      #
+# dokuwiki                                                             #
+#                                                                      #
+########################################################################
+
+dokuwiki_enabled: false
+
+dokuwiki_identifier: "{{ mash_playbook_service_identifier_prefix }}dokuwiki"
+
+dokuwiki_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}dokuwiki"
+
+dokuwiki_uid: "{{ mash_playbook_uid }}"
+dokuwiki_gid: "{{ mash_playbook_gid }}"
+
+dokuwiki_systemd_required_services_list: |
+  {{
+    ([devture_systemd_docker_base_docker_service_name] if devture_systemd_docker_base_docker_service_name else [])
+  }}
+
+dokuwiki_container_additional_networks: |
+  {{
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+  }}
+
+dokuwiki_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+dokuwiki_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+
+# role-specific:traefik
+dokuwiki_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
+dokuwiki_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
+# /role-specific:traefik
+
+########################################################################
+#                                                                      #
+# /dokuwiki                                                            #
+#                                                                      #
+########################################################################
+# /role-specific:dokuwiki
+
 
 
 # role-specific:echoip
