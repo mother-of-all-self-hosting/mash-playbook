@@ -6,7 +6,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
 # Setting up services on the Matrix server configured with the MDAD playbook
 
-If you use the [matrix-docker-ansible-deploy (MDAD)](https://github.com/spantaleev/matrix-docker-ansible-deploy/) Ansible playbook to manage [Matrix](https://matrix.org/) services on your server, you can configure the MASH playbook to set up services such as [Forgejo](services/forgejo.md), [GoToSocial](services/gotosocial.md), [Nextcloud](services/nextcloud.md), and [PeerTube](services/peertube.md), along with the Matrix services on the same server. This page explains how to do so.
+If you use the [matrix-docker-ansible-deploy (MDAD)](https://github.com/spantaleev/matrix-docker-ansible-deploy/) Ansible playbook to manage [Matrix](https://matrix.org/) services on your server, you can configure the MASH playbook to set up services such as [Forgejo](services/forgejo.md), [GoToSocial](services/gotosocial.md), [Nextcloud](services/nextcloud.md), [PeerTube](services/peertube.md) and tons of other [supported services](./supported-services.md), along with the Matrix services on the same server. This page explains how to do so.
 
 The basic steps to configure the MASH playbook and use it to install services are pretty same as doing so with the MDAD playbook: **setting up prerequisites (if running this playbook on a different computer), retrieving the MASH playbook, configuring it as well as the DNS records, and installing the services on the server**. If you have been accustomed to maintain Matrix services with the MDAD playbook, it should not be difficult to set up and use this playbook too.
 
