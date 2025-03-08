@@ -142,14 +142,24 @@ postgres_connection_password: ''
 #
 # exim-relay then gives you a centralized place for configuring email-sending.
 
+# By default, exim-relay attempts to deliver emails directly. It may or
+# may not work, depending on your domain configuration.
+#
+# Exim-relay supports DomainKeys Identified Mail (DKIM), and you may
+# probably want to consider enabling it in order to improve deliverability.
+# Without proper authentication setting, your outgoing email is most
+# likely to be quarantined as spam at recipient's mail servers.
+#
+# Alternatively, you can have the exim-relay use via an external SMTP
+# server to relay emails.
+#
+# See docs/services/exim-relay.md for details about configuration.
+
 exim_relay_enabled: true
 
 exim_relay_hostname: mash.example.com
 
 exim_relay_sender_address: "someone@{{ exim_relay_hostname }}"
-
-# By default, exim-relay attempts to deliver emails directly.
-# To make it relay via an external SMTP server, see docs/services/exim-relay.md
 
 ########################################################################
 #                                                                      #
