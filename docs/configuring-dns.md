@@ -15,7 +15,7 @@ To reach your services, you'd need to do some DNS configuration.
 
 **We recommend** that you:
 
-- create at least one generic domain (e.g. `mash.example.com`) for easily hosting various services at different subpaths (e.g. `mash.example.com/miniflux`, `mash.example.com/radicale`, etc.)
+- create at least one generic domain (e.g. `mash.example.com`) for easily hosting various services at different subpaths (e.g. `mash.example.com/miniflux`, `mash.example.com/radicale`, etc.). Even if you plan on hosting services at a dedicated subdomain, it's still convenient to have a generic domain and to use additional `CNAME` DNS records that point to it.
 
 - create additional domains (`CNAME` DNS records pointing to the main generic domain) for large services or services that explicitly require their own dedicated domain
 
@@ -27,8 +27,11 @@ As an example setup, adjust DNS records as below.
 
 | Service                    | Type  | Host    | Priority | Weight | Port | Target             |
 |--------------------------- | ----- | ------- | -------- | ------ | ---- | -------------------|
-| Miniflux, Radicale, others | A     | `mash`  | -        | -      | -    | `mash-server-IP`   |
+| Miniflux, Radicale, others | A     | `mash`  | -        | -      | -    | `mash-server-IPv4` |
+| Miniflux, Radicale, others | AAAA  | `mash`  | -        | -      | -    | `mash-server-IPv6` |
 | Nextcloud                  | CNAME | `cloud` | -        | -      | -    | `mash.example.com` |
+
+If you don't have IPv6 connectivity yet, you can skip the `AAAA` record. For more details about IPv6, see the [Configuring IPv6](./configuring-ipv6.md) documentation page.
 
 With such a setup, you could reach:
 

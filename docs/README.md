@@ -49,6 +49,8 @@ If your server and services experience issues, feel free to come to [our support
 
 - [Configuring interoperability with other services](interoperability.md)
 
+- [Configuring IPv6](configuring-ipv6.md)
+
 - [Developer documentation](developer-documentation.md)
 
 - [Playbook tags](playbook-tags.md)
