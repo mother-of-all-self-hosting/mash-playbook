@@ -81,6 +81,8 @@ mash_playbook_docker_installation_daemon_options_auto: |
 
 mash_playbook_docker_installation_daemon_options_custom: {}
 
+mash_playbook_docker_installation_daemon_options_file_path: /etc/docker/daemon.json
+
 # Controls whether to attach Traefik labels to services.
 # This is separate from `traefik_enabled`, because you may wish to disable Traefik installation by the playbook,
 # yet still use Traefik installed in another way.

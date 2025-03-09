@@ -20,6 +20,7 @@
 | [Docker Registry Browser](https://github.com/klausmeyer/docker-registry-browser) | Web Interface for the Docker Registry HTTP API V2 written in Ruby on Rails | [Link](services/docker-registry-browser.md) |
 | [Docker Registry Proxy](https://gitlab.com/etke.cc/docker-registry-proxy/) | Pass-through docker registry (distribution) proxy with metadata caching, docker-compatible errors, prometheus metrics, etc. | [Link](services/docker-registry-proxy.md) |
 | [Docker Registry Purger](https://github.com/devture/docker-registry-purger) | A small tool used for purging a private Docker Registry's old tags | [Link](services/docker-registry-purger.md) |
+| [DokuWiki](https://dokuwiki.org/) | A lightweight, file-based wiki engine with intuitive syntax and no database requirements | [Link](services/dokuwiki.md) |
 | [Echo IP](https://github.com/mpolden/echoip) | A simple service for looking up your IP address | [Link](services/echoip.md) |
 | [Endlessh-go](https://github.com/shizunge/endlessh-go) | A golang implementation of endlessh, a ssh trapit | [Link](services/endlessh.md) |
 | [etcd](https://etcd.io/) | A distributed, reliable key-value store for the most critical data of a distributed system | [Link](services/etcd.md) |
@@ -43,6 +44,7 @@
 | [Jitsi](https://jitsi.org/) | A fully encrypted, 100% Open Source video conferencing solution | [Link](services/jitsi.md) |
 | [Keycloak](https://www.keycloak.org/) | An open source identity and access management solution. | [Link](services/keycloak.md) |
 | [KeyDB](https://docs.keydb.dev/) | An in-memory data store used by millions of developers as a database, cache, streaming engine, and message broker. | [Link](services/keydb.md) |
+| [LabelStudio](https://labelstud.io/) | Label Studio is an open source data labeling tool that supports multiple projects, users, and data types in one platform | [Link](services/labelstudio.md) |
 | [Lago](https://www.getlago.com/) | Open-source metering and usage-based billing | [Link](services/lago.md) |
 | [languageTool](https://languagetool.org/) | An open source online grammar, style and spell checker | [Link](services/languagetool.md) |
 | [linkding](https://github.com/sissbruecker/linkding/) | Bookmark manager designed to be minimal and fast. | [Link](services/linkding.md) |

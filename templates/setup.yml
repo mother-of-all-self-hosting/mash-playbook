@@ -159,6 +159,10 @@
     - role: galaxy/docker_registry_purger
     # /role-specific:docker_registry_purger
 
+    # role-specific:dokuwiki
+    - role: galaxy/dokuwiki
+    # /role-specific:dokuwiki
+
     # role-specific:echoip
     - role: galaxy/echoip
     # /role-specific:echoip
@@ -262,6 +266,10 @@
     # role-specific:keydb
     - role: galaxy/keydb
     # /role-specific:keydb
+
+    # role-specific:labelstudio
+    - role: galaxy/labelstudio
+    # /role-specific:labelstudio
 
     # role-specific:lago
     - role: galaxy/lago

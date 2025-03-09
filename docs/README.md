@@ -49,6 +49,8 @@ If your server and services experience issues, feel free to come to [our support
 
 - [Configuring interoperability with other services](interoperability.md)
 
+- [Configuring IPv6](configuring-ipv6.md)
+
 - [Developer documentation](developer-documentation.md)
 
 - [Playbook tags](playbook-tags.md)
@@ -58,6 +60,8 @@ If your server and services experience issues, feel free to come to [our support
 - [Running multiple instances of the same service on the same host](running-multiple-instances.md)
 
 - [Self-building](self-building.md)
+
+- [Setting up MASH services on a Matrix server configured with the matrix-docker-ansible-deploy Ansible playbook](setting-up-services-on-mdad-server.md)
 
 - [Supported services](supported-services.md)
 

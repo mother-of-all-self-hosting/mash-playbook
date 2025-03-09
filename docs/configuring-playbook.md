@@ -32,7 +32,7 @@ If you've configured your DNS records and retrieved the playbook's source code t
 
 5. edit the inventory hosts file (`inventory/hosts`) to your liking
 
-6. (optional, advanced) you may wish to keep your `inventory` directory under version control with [git](https://git-scm.com/) or any other version-control system.
+6. (optional, advanced) you may wish to keep your `inventory` directory under version control with [git](https://git-scm.com/) or any other version-control system. The `inventory` directory path is ignored via `.gitignore`, so it won't be part of the playbook repository. You can safely create a new git repository inside that directory with `git init`, etc.
 
 For a basic installation, that's all you need.
 

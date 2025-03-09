@@ -1,4 +1,13 @@
+<!--
+SPDX-License-Identifier: 2023 - 2024 Slavi Pantaleev
+SPDX-License-Identifier: 2025 Suguru Hirahara
+
+SPDX-License-Identifier: AGPL-3.0-or-later
+-->
+
 # Configuring interoperability with other services
+
+*If you are installing the services on the [Matrix](https://matrix.org) server configured and managed with the [matrix-docker-ansible-deploy (MDAD)](https://github.com/spantaleev/matrix-docker-ansible-deploy/) Ansible playbook, you probably might want to check [this guide](setting-up-services-on-mdad-server.md).*
 
 This playbook tries to get you up and running with minimal effort and provided you have followed the [example `vars.yml` file](../examples/vars.yml), will install the [Traefik](services/traefik.md) reverse-proxy server by default.
 
@@ -20,12 +29,7 @@ If you are using the [matrix-docker-ansible-deploy](https://github.com/spantalee
 
 ## Disabling Docker installation
 
-If you're installing [Docker](https://www.docker.com/) on your server in another way, disable this component from the playbook:
-
-```yaml
-mash_playbook_docker_installation_enabled: false
-```
-
+If you're installing [Docker](https://www.docker.com/) on your server in another way, remove the variable `mash_playbook_docker_installation_enabled` from your `vars.yml`.
 
 ## Disabling timesyncing (systemd-timesyncd / ntp) installation
 
