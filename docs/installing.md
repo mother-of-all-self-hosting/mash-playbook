@@ -31,6 +31,8 @@ If you don't have either `just` tool, you can run the `ansible-galaxy` tool dire
 
 For details about `just` commands, take a look at: [Running `just` commands](just.md).
 
+**Note**: if you're not using the [`just`](https://github.com/casey/just) utility, you need to create `setup.yml`, `requirements.yml` and `group_vars/mash_servers` based on the up-to-date templates found in the [`templates/` directory](../templates). If you are using `just`, these files are created and maintained up-to-date automatically.
+
 ## Installing services
 
 The Ansible playbook's tasks are tagged, so that certain parts of the Ansible playbook can be run without running all other tasks.
