@@ -18,7 +18,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
 # ntfy
 
-The playbook can install and configure the [ntfy](https://ntfy.sh/) push notifications server for you.
+The playbook can install and configure the [ntfy](https://ntfy.sh/) (pronounced "notify") push notifications server for you.
 
 ntfy lets you send push notifications to your phone or desktop via scripts from any computer, using simple HTTP PUT or POST requests. It enables you to send/receive notifications, without relying on servers owned and controlled by third parties.
 
