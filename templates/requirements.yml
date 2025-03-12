@@ -29,7 +29,7 @@
   name: auxiliary
   activation_prefix: aux_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-backup_borg.git
-  version: v1.4.0-1.9.10-6
+  version: v1.4.0-1.9.13-0
   name: backup_borg
   activation_prefix: backup_borg_
 - src: git+https://github.com/lingawakad/ansible-role-calibre-web.git
@@ -57,7 +57,7 @@
   name: container_socket_proxy
   activation_prefix: mash_
 - src: git+https://github.com/Bergruebe/ansible-role-couchdb.git
-  version: v3.4.2-1
+  version: v3.4.3-0
   name: couchdb
   activation_prefix: couchdb_
 - src: git+https://github.com/geerlingguy/ansible-role-docker
@@ -100,14 +100,14 @@
   version: v3.5.11-0
   name: etcd
   activation_prefix: etcd_
-- src: git+https://github.com/mother-of-all-self-hosting/ansible-role-exim-relay.git
-  version: v4.98.1-r0-2-0
-  name: exim_relay
-  activation_prefix: exim_relay_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-etherpad.git
   version: v2.2.7-4
   name: etherpad
   activation_prefix: etherpad_
+- src: git+https://github.com/mother-of-all-self-hosting/ansible-role-exim-relay.git
+  version: v4.98.1-r0-2-0
+  name: exim_relay
+  activation_prefix: exim_relay_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-fail2ban.git
   version: e25d0d9b5282dbb5a1ec4cd23d26c16998e4334f
   name: fail2ban
@@ -129,7 +129,7 @@
   name: forgejo_runner
   activation_prefix: forgejo_runner_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-freescout.git
-  version: v1.17.105-0
+  version: v1.17.110-0
   name: freescout
   activation_prefix: freescout_
 - src: git+https://github.com/kinduff/ansible-docker-freshrss.git
@@ -201,11 +201,11 @@
   name: lago
   activation_prefix: lago_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-languagetool.git
-  version: v6.5-2
+  version: v6.5-3
   name: languagetool
   activation_prefix: languagetool_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-linkding.git
-  version: v1.38.1-2
+  version: v1.39.1-0
   name: linkding
   activation_prefix: linkding_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-loki.git
@@ -356,7 +356,7 @@
   name: radarr
   activation_prefix: radarr_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-radicale.git
-  version: v3.4.1.0-2
+  version: v3.4.1.1-0
   name: radicale
   activation_prefix: radicale_
 - src: git+https://github.com/lingawakad/ansible-role-readeck.git
@@ -368,7 +368,7 @@
   name: redis
   activation_prefix: redis_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-redmine.git
-  version: v6.0.3-0
+  version: v6.0.4-0
   name: redmine
   activation_prefix: redmine_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-roundcube.git
@@ -460,7 +460,7 @@
   name: wetty
   activation_prefix: wetty_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-wg-easy.git
-  version: v14-3
+  version: v15.0.0-beta.7-1
   name: wg_easy
   activation_prefix: wg_easy_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-woodpecker-ci-agent.git
