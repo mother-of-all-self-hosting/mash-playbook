@@ -12,14 +12,12 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
 # Etherpad
 
-The playbook can install and configure [Etherpad](https://etherpad.org) for you.
-
-Etherpad is an open source collaborative text editor. When enabled together with the Jitsi video-conferencing platform (see [our docs on Jitsi](jitsi.md)), it will be made available as an option during the conferences.
+The playbook can install and configure [Etherpad](https://etherpad.org), an open source collaborative text editor, for you.
 
 The [Ansible role for Etherpad](https://github.com/mother-of-all-self-hosting/ansible-role-etherpad) is developed and maintained by the MASH project. For details about configuring Etherpad, you can check them via:
 
 - 🌐 [the role's documentation at the MASH project](https://github.com/mother-of-all-self-hosting/ansible-role-etherpad/blob/main/docs/configuring-etherpad.md) online
-- 📁 `roles/galaxy/etherpad/docs/configuring-etherpad.md` locally, if you have [fetched the Ansible roles](installing.md#update-ansible-roles)
+- 📁 `roles/galaxy/etherpad/docs/configuring-etherpad.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 ## Dependencies
 
@@ -61,6 +59,12 @@ You probably might want to enable authentication to disallow anonymous access to
 It is possible to enable HTTP basic authentication by **creating an admin user** with `etherpad_admin_username` and `etherpad_admin_password` variables. The admin user account is also used by plugins for authentication and authorization.
 
 See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-etherpad/blob/main/docs/configuring-etherpad.md#create-admin-user-optional) on the role's documentation for details about how to create the admin user.
+
+### Control Etherpad's availability on Jitsi conferences (optional)
+
+If a Jitsi video-conferencing platform (see [our docs on Jitsi](jitsi.md)) is enabled on your server, you can configure it so to make Etherpad available on conferences.
+
+See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-jitsi/blob/main/docs/configuring-jitsi.md#control-etherpads-availability-on-jitsi-conferences) on the Jitsi role's documentation for details about how to set it up.
 
 ## Usage
 
