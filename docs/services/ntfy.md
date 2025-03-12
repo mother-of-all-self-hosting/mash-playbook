@@ -1,9 +1,4 @@
 <!--
-SPDX-FileCopyrightText: 2022 - 2024 Slavi Pantaleev
-SPDX-FileCopyrightText: 2022 Julian Foad
-SPDX-FileCopyrightText: 2022 MDAD project contributors
-SPDX-FileCopyrightText: 2023 Felix Stupp
-SPDX-FileCopyrightText: 2024 - 2025 Suguru Hirahara
 SPDX-FileCopyrightText: 2020 - 2024 MDAD project contributors
 SPDX-FileCopyrightText: 2020 - 2024 Slavi Pantaleev
 SPDX-FileCopyrightText: 2020 Aaron Raimist
