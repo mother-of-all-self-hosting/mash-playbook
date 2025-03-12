@@ -103,7 +103,7 @@ mash_playbook_postgres_managed_databases_auto_itemized:
         'name': YOUR-SERVICE_database_name,
         'username': YOUR-SERVICE_database_username,
         'password': YOUR-SERVICE_database_password,
-      } if gYOUR-SERVICE_enabled else omit)
+      } if YOUR-SERVICE_enabled else omit)
     }}
   # /role-specific:YOUR-SERVICE
 
