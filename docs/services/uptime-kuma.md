@@ -5,9 +5,23 @@ SPDX-FileCopyrightText: 2025 Suguru Hirahara
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 
-# Uptime-kuma
+# Uptime Kuma
 
-[Uptime-kuma](https://uptime.kuma.pet/) is a fancy self-hosted monitoring tool. You can add a monitor for various web services like HTTP, TCP port, Docker Container, PostgreSQL, and so on.
+[Uptime Kuma](https://uptime.kuma.pet/) is a fancy self-hosted monitoring tool similar to [Uptime Robot](https://uptimerobot.com/). It has functions such as below:
+
+- Monitoring uptime for HTTP(s) / TCP / HTTP(s) Keyword / HTTP(s) Json Query / Ping / DNS Record / Push / Steam Game Server / Docker Containers
+- Fancy, Reactive, Fast UI/UX
+- Notifications via Matrix, Telegram, Discord, Gotify, Slack, Pushover, Email (SMTP), and [90+ notification services](https://github.com/louislam/uptime-kuma/tree/master/src/components/notifications)
+- 20-second intervals
+- [Multi-Language](https://github.com/louislam/uptime-kuma/tree/master/src/lang)
+- Multiple status pages
+- Map status pages to specific domains
+- Ping chart
+- Certificate info
+- Proxy support
+- 2FA support
+
+✨ Kuma (くま/熊) means bear 🐻 in Japanese.
 
 
 ## Dependencies
@@ -45,6 +59,6 @@ uptime_kuma_hostname: mash.example.com
 
 ## Usage
 
-When you open the Uptime-kuma Web UI for the first time, it starts a setup wizard where you'll create your admin credentials. You can then add monitors for web services as many as you like.
+When you open the Uptime Kuma's web UI for the first time, it starts a setup wizard where you'll create your admin credentials. You can then add monitors for web services as many as you like.
 
-If you have enabled a self-hosted [ntfy](ntfy.md) server, it is possible to set up the Uptime-kuma instance to have it send notifications to a ntfy's "topic" (channel) when the monitored web service is down, without relaying the notifications through servers owned and controlled by third parties.
+If you have enabled a self-hosted [ntfy](ntfy.md) server, it is possible to set up the Uptime Kuma instance to have it send notifications to a ntfy's "topic" (channel) when the monitored web service is down, without relaying them through servers owned and controlled by third parties.
