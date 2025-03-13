@@ -50,5 +50,5 @@ After installation, you should be able to go to the URL as configured via `docke
 
 ## Recommended other services
 
-- [Docker Registry](docker-registry.md) - a container image distribution registry developed by [Docker Inc](https://www.docker.com/), wired automatically to the proxy, just disable registry's traefik labels
-- [Grafana](grafana.md) - a multi-platform open source analytics and interactive visualization web application, Docker Registry Proxy comes with [pre-configured grafana dashboard](https://gitlab.com/etke.cc/docker-registry-proxy/-/blob/main/contrib/grafana-dashboard.json)
+- [Docker Registry](docker-registry.md) — a container image distribution registry developed by [Docker Inc](https://www.docker.com/), wired automatically to the proxy, just disable registry's traefik labels
+- [Grafana](grafana.md) — a multi-platform open source analytics and interactive visualization web application, Docker Registry Proxy comes with [pre-configured grafana dashboard](https://gitlab.com/etke.cc/docker-registry-proxy/-/blob/main/contrib/grafana-dashboard.json)

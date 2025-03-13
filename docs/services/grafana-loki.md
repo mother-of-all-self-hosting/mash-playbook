@@ -12,9 +12,9 @@ Loki is just a log storage system. In order to make use of it, you'd need at lea
 
 This service requires the following other services:
 
-- (optionally) [Traefik](traefik.md) - a reverse-proxy server for exposing Loki publicly
-- (optionally) [Promtail](./promtail.md) - an agent that can send logs to Loki
-- (optionally) [Grafana](./grafana.md) - a web UI that can query the Loki datasource (connection) and display the logs
+- (optionally) [Traefik](traefik.md) — a reverse-proxy server for exposing Loki publicly
+- (optionally) [Promtail](./promtail.md) — an agent that can send logs to Loki
+- (optionally) [Grafana](./grafana.md) — a web UI that can query the Loki datasource (connection) and display the logs
 
 
 ## Configuration
@@ -65,5 +65,5 @@ After [installing](../installing.md), refer to the [official documentation](http
 
 ## Recommended other services
 
-- [Grafana](grafana.md) - a web-based tool for visualizing your Promtail logs (stored in [Grafana Loki](grafana-loki.md) or elsewhere)
-- [Promtail](promtail.md) - an agent which ships the contents of local logs to a private [Grafana Loki](grafana-loki.md) instance
+- [Grafana](grafana.md) — a web-based tool for visualizing your Promtail logs (stored in [Grafana Loki](grafana-loki.md) or elsewhere)
+- [Promtail](promtail.md) — an agent which ships the contents of local logs to a private [Grafana Loki](grafana-loki.md) instance

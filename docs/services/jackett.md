@@ -2,7 +2,7 @@
 
 [Jackett](https://github.com/Jackett/Jackett) is an API for your favorite torrent trackers.
 
-> Jackett works as a proxy server: it translates queries from apps ([Sonarr](https://github.com/Sonarr/Sonarr), [Radarr](https://github.com/Radarr/Radarr), [SickRage](https://sickrage.github.io/), [CouchPotato](https://couchpota.to/), [Mylar3](https://github.com/mylar3/mylar3), [Lidarr](https://github.com/lidarr/lidarr), [DuckieTV](https://github.com/SchizoDuckie/DuckieTV), [qBittorrent](https://www.qbittorrent.org/), [Nefarious](https://github.com/lardbit/nefarious), [NZBHydra2](https://github.com/theotherp/nzbhydra2) etc.) into tracker-site-specific http queries, parses the html or json response, and then sends results back to the requesting software. This allows for getting recent uploads (like RSS) and performing searches. Jackett is a single repository of maintained indexer scraping & translation logic - removing the burden from other apps.
+> Jackett works as a proxy server: it translates queries from apps ([Sonarr](https://github.com/Sonarr/Sonarr), [Radarr](https://github.com/Radarr/Radarr), [SickRage](https://sickrage.github.io/), [CouchPotato](https://couchpota.to/), [Mylar3](https://github.com/mylar3/mylar3), [Lidarr](https://github.com/lidarr/lidarr), [DuckieTV](https://github.com/SchizoDuckie/DuckieTV), [qBittorrent](https://www.qbittorrent.org/), [Nefarious](https://github.com/lardbit/nefarious), [NZBHydra2](https://github.com/theotherp/nzbhydra2) etc.) into tracker-site-specific http queries, parses the html or json response, and then sends results back to the requesting software. This allows for getting recent uploads (like RSS) and performing searches. Jackett is a single repository of maintained indexer scraping & translation logic — removing the burden from other apps.
 
 ## Dependencies
 
@@ -52,7 +52,7 @@ After [installation](../installing.md), you should access your new Jackett insta
 
 For additional configuration options, refer to [ansible-role-jackett](https://github.com/spatterIight/ansible-role-jackett)'s `defaults/main.yml` file.
 
-## Command-line arguments 
+## Command-line arguments
 
 Additional command line arguments can be passed to Jackett by use of the `RUN_OPTS` environment variable. To specify this, add the following to your configuration:
 
@@ -102,13 +102,13 @@ Jackett v0.22.1377
                            environment variable.
 
   --NoRestart              Don't restart after update
-  
+
   --PIDFile                Specify the location of PID file
-  
+
   --NoUpdates              Disable automatic updates
-  
+
   --help                   Display this help screen.
-  
+
   --version                Display version information.
 ```
 
@@ -134,9 +134,9 @@ Next copy Jackett's `API Key` from in the top right of the Jackett dashboard:
 
 ![Jackett API Key](../assets/jackett/api-key.png)
 
-Paste this into the Sonarr/Radarr form, under `API Key`. 
+Paste this into the Sonarr/Radarr form, under `API Key`.
 
-Next, click `Copy Torznab Feed` of the indexer (tracker) you added to Jackett. Paste this into the Sonarr/Radarr form too, under `URL`. 
+Next, click `Copy Torznab Feed` of the indexer (tracker) you added to Jackett. Paste this into the Sonarr/Radarr form too, under `URL`.
 
 Fill in the rest of the form with your preferences, and you're done!
 

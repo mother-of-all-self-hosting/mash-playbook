@@ -66,7 +66,7 @@ You can remove the `wg_easy_path_prefix` variable definition, to make it default
 
 **In addition** to ports `80` and `443` exposed by the [Traefik](traefik.md) reverse-proxy, the following ports will be exposed by the WireGuard containers on **all network interfaces**:
 
-- `51820` over **UDP**, controlled by `wg_easy_environment_variables_additional_variable_wg_port` and `wg_easy_container_wireguard_bind_port` - used for [Wireguard](https://www.wireguard.com/) connections
+- `51820` over **UDP**, controlled by `wg_easy_environment_variables_additional_variable_wg_port` and `wg_easy_container_wireguard_bind_port` — used for [Wireguard](https://www.wireguard.com/) connections
 
 Docker automatically opens these ports in the server's firewall, so you **likely don't need to do anything**. If you use another firewall in front of the server, you may need to adjust it.
 
@@ -138,8 +138,8 @@ After installation, you can go to the WireGuard Easy URL, as defined in `wg_easy
 
 You can authenticate with the password set in `wg_easy_environment_variables_additional_variable_password`.
 
-You can then create various Clients and import the configuration for them onto your devices - either by downloading a file or by scanning a QR code.
+You can then create various Clients and import the configuration for them onto your devices — either by downloading a file or by scanning a QR code.
 
 ## Recommended other services
 
-- [AdGuard Home](adguard-home.md) - A network-wide DNS software for blocking ads & tracking
+- [AdGuard Home](adguard-home.md) — A network-wide DNS software for blocking ads & tracking

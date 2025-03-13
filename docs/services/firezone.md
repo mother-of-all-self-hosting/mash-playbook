@@ -49,7 +49,7 @@ After installation, you can use `just run-tags firezone-create-or-reset-admin` a
 
 By default, the following ports will be exposed by the container on **all network interfaces**:
 
-- `51820` over **UDP**, controlled by `firezone_wireguard_bind_port` - used for [Wireguard](https://www.wireguard.com/) connections
+- `51820` over **UDP**, controlled by `firezone_wireguard_bind_port` — used for [Wireguard](https://www.wireguard.com/) connections
 
 Docker automatically opens these ports in the server's firewall, so you **likely don't need to do anything**. If you use another firewall in front of the server, you may need to adjust it.
 

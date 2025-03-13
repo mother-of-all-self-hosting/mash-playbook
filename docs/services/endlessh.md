@@ -6,9 +6,9 @@
 
 This service requires the following other services:
 
-- (optionally) [Traefik](traefik.md) - a reverse-proxy server for exposing endlessh publicly
-- (optionally) [Prometheus](./prometheus.md) - a database for storing metrics
-- (optionally) [Grafana](./grafana.md) - a web UI that can query the prometheus datasource (connection) and display the logs
+- (optionally) [Traefik](traefik.md) — a reverse-proxy server for exposing endlessh publicly
+- (optionally) [Prometheus](./prometheus.md) — a database for storing metrics
+- (optionally) [Grafana](./grafana.md) — a web UI that can query the prometheus datasource (connection) and display the logs
 
 ## Prerequisites
 
