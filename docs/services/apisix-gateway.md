@@ -84,4 +84,4 @@ Example: `curl -H 'X-API-KEY: YOUR_SECRET_API_KEY_HERE' https://admin.api.exampl
 
 ## Recommended other services
 
-- [APISIX dashboard](apisix-dashboard.md) - a dashboard (web UI) for APISIX
+- [APISIX dashboard](apisix-dashboard.md) — a dashboard (web UI) for APISIX

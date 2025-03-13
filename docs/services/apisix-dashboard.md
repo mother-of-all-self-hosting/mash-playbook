@@ -11,7 +11,7 @@ This service requires the following other services:
 
 - a [Traefik](traefik.md) reverse-proxy server
 - an [etcd](etcd.md) key-value store
-- (optional) [APISIX Gateway](./apisix-gateway.md) - there's no point in administrating APISIX Gateway configuration stored in etcd without having an APISIX Gateway instance to initialize and consume it
+- (optional) [APISIX Gateway](./apisix-gateway.md) — there's no point in administrating APISIX Gateway configuration stored in etcd without having an APISIX Gateway instance to initialize and consume it
 
 
 ## Configuration

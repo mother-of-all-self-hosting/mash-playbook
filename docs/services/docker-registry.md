@@ -82,5 +82,5 @@ The base URL (e.g. `https://registry.example.com`) serves an empty (blank) page.
 
 ## Recommended other services
 
-- [Docker Registry Browser](docker-registry-browser.md) - Web Interface for the Docker Registry HTTP API V2 written in Ruby on Rails
-- [Docker Registry Purger](docker-registry-purger.md) - a small tool used for purging a private Docker Registry's old tags
+- [Docker Registry Browser](docker-registry-browser.md) — Web Interface for the Docker Registry HTTP API V2 written in Ruby on Rails
+- [Docker Registry Purger](docker-registry-purger.md) — a small tool used for purging a private Docker Registry's old tags

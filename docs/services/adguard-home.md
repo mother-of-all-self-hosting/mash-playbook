@@ -57,8 +57,8 @@ When **hosting under a subpath**, you may hit [this bug](https://github.com/Adgu
 
 By default, the following ports will be exposed by the container on **all network interfaces**:
 
-- `53` over **TCP**, controlled by `adguard_home_container_dns_tcp_bind_port` - used for DNS over TCP
-- `53` over **UDP**, controlled by `adguard_home_container_dns_udp_bind_port` - used for DNS over UDP
+- `53` over **TCP**, controlled by `adguard_home_container_dns_tcp_bind_port` — used for DNS over TCP
+- `53` over **UDP**, controlled by `adguard_home_container_dns_udp_bind_port` — used for DNS over UDP
 
 Docker automatically opens these ports in the server's firewall, so you **likely don't need to do anything**. If you use another firewall in front of the server, you may need to adjust it.
 
@@ -88,7 +88,7 @@ Things you should consider doing later:
 
 ## Troubleshooting and workaround
 
-Adguard Home does not currently support being setup with a non-`root` account (see [issue](https://github.com/AdguardTeam/AdGuardHome/issues/4714)). As the playbook uses the user `mash` when starting services, you will likely encounter the following error when `adguard-home.service` tries to start for the first time: 
+Adguard Home does not currently support being setup with a non-`root` account (see [issue](https://github.com/AdguardTeam/AdGuardHome/issues/4714)). As the playbook uses the user `mash` when starting services, you will likely encounter the following error when `adguard-home.service` tries to start for the first time:
 
 ```
 mar 02 19:11:59 $hostname mash-adguard-home[872496]: 2024/03/02 18:11:59.706251 [info] Checking if AdGuard Home has necessary permissions
@@ -97,8 +97,8 @@ mar 02 19:11:59 $hostname mash-adguard-home[872496]: 2024/03/02 18:11:59.706257 
 
 You can workaround this issue by editing `mash-adguard-home.service` and temporarily make it start Adguard Home as the `root` user for the first time, and then revert it back to using a regular user afterwards. Follow the steps below, which require you to be `root` to execute the commands:
 
-1. Run `systemctl edit --full mash-adguard-home.service` to edit Adguard Home's service file and remove or comment out the line starting with `--user` (e.g. `--user=996:3992 \` - the numbers represent the uid/gid of the `mash` user, so your values may be different):
-	
+1. Run `systemctl edit --full mash-adguard-home.service` to edit Adguard Home's service file and remove or comment out the line starting with `--user` (e.g. `--user=996:3992 \` — the numbers represent the uid/gid of the `mash` user, so your values may be different):
+
 	```
 	ExecStartPre=/usr/bin/env docker create \
 	                        --rm \

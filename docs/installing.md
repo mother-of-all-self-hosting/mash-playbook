@@ -106,7 +106,7 @@ After you have started the services, you can:
 - start using the configured services
 - or set up additional services
 - or learn how to [upgrade services when new versions are released](maintenance-upgrading-services.md)
-- or come say Hi in our [Matrix](https://matrix.org) support room - [#mash-playbook:devture.com](https://matrix.to/#/#mash-playbook:devture.com). You might learn something or get to help someone else new to hosting services with this playbook.
+- or come say Hi in our [Matrix](https://matrix.org) support room — [#mash-playbook:devture.com](https://matrix.to/#/#mash-playbook:devture.com). You might learn something or get to help someone else new to hosting services with this playbook.
 - or help make this playbook better by contributing (code, documentation, or [coffee/beer](https://liberapay.com/mother-of-all-self-hosting/donate))
 
 ### ⚠️ Keep the playbook and services up-to-date

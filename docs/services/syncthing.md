@@ -71,9 +71,9 @@ You can hide the warning permanently by going to **Actions** -> **Advanced** -> 
 
 By default, the following ports will be exposed by the container on **all network interfaces**:
 
-- `22000` over **TCP**, controlled by `syncthing_container_sync_tcp_bind_port` and `syncthing_container_sync_tcp_port` - used for TCP based sync protocol traffic
-- `22000` over **UDP**, controlled by `syncthing_container_sync_udp_bind_port` and `syncthing_container_sync_udp_port` - used for QUIC based sync protocol traffic
-- `21027` over **UDP**, controlled by `syncthing_container_local_discovery_udp_bind_port` - used for discovery broadcasts on IPv4 and multicasts on IPv6
+- `22000` over **TCP**, controlled by `syncthing_container_sync_tcp_bind_port` and `syncthing_container_sync_tcp_port` — used for TCP based sync protocol traffic
+- `22000` over **UDP**, controlled by `syncthing_container_sync_udp_bind_port` and `syncthing_container_sync_udp_port` — used for QUIC based sync protocol traffic
+- `21027` over **UDP**, controlled by `syncthing_container_local_discovery_udp_bind_port` — used for discovery broadcasts on IPv4 and multicasts on IPv6
 
 Docker automatically opens these ports in the server's firewall, so you **likely don't need to do anything**. If you use another firewall in front of the server, you may need to adjust it.
 

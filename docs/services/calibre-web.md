@@ -41,7 +41,7 @@ calibre_web_path_prefix: /calibre-web
 #
 #
 # Enable this extension explicitly to add the Calibre ebook-convert binary (x64 only). Omit this variable for a lightweight image.
-# The path to the binary is /usr/bin/ebook-convert (has to be specified in the web interface - also specify the path to Calibre binaries as well; usr/bin)
+# The path to the binary is /usr/bin/ebook-convert (has to be specified in the web interface — also specify the path to Calibre binaries as well; usr/bin)
 #calibre_web_environment_variables_extension: |
 #  DOCKER_MODS=linuxserver/mods:universal-calibre
 
@@ -142,4 +142,4 @@ After installation, you can go to the calibre-web URL, as defined in `calibre_we
 
 ## Recommended other services
 
-- [Syncthing](syncthing.md) - a continuous file synchronization program which synchronizes files between two or more computers in real time. See [Syncthing integration](#syncthing-integration)
+- [Syncthing](syncthing.md) — a continuous file synchronization program which synchronizes files between two or more computers in real time. See [Syncthing integration](#syncthing-integration)
