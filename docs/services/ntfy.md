@@ -94,7 +94,7 @@ To receive push notifications from the ntfy server, you need to **install [the n
 
 See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-ntfy/blob/main/docs/configuring-ntfy.md#usage) on the role's documentation for details.
 
-If you enable [Uptime-kuma](uptime-kuma.md), the self-hosted monitoring tool (hint: this playbook enables it by default on its example `vars.yml` files), it is possible to set it up to have it send notifications to a topic when the monitored web service is down. You can subscribe to the topic both from the ntfy Android/iOS app and the web app.
+If you enable [Uptime Kuma](uptime-kuma.md), the self-hosted monitoring tool (hint: this playbook enables it by default on its example `vars.yml` files), it is possible to set it up to have it send notifications to a topic when the monitored web service is down. You can subscribe to the topic both from the ntfy Android/iOS app and the web app.
 
 ### UnifiedPush-compatible application
 

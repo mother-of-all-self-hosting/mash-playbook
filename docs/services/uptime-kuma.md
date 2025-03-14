@@ -46,7 +46,7 @@ uptime_kuma_enabled: true
 
 uptime_kuma_hostname: mash.example.com
 
-# For now, hosting uptime-kuma under a path is not supported.
+# For now, hosting Uptime Kuma under a path is not supported.
 # See: https://github.com/louislam/uptime-kuma/issues/147
 # uptime_kuma_path_prefix: /uptime-kuma
 
