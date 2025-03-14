@@ -202,16 +202,16 @@ miniflux_admin_password: a-strong-password-here
 #                                                                      #
 ########################################################################
 
-# Learn more about the Uptime-kuma service in docs/services/uptime-kuma.md
+# Learn more about the Uptime Kuma service in docs/services/uptime-kuma.md
 #
 # This service is only here as an example. If you don't wish to use the
-# Uptime-kuma service, remove the whole section.
+# Uptime Kuma service, remove the whole section.
 
 uptime_kuma_enabled: true
 
 uptime_kuma_hostname: uptime-kuma.example.com
 
-# For now, hosting uptime-kuma under a path is not supported.
+# For now, hosting Uptime Kuma under a path is not supported.
 # See: https://github.com/louislam/uptime-kuma/issues/147
 # uptime_kuma_path_prefix: /uptime-kuma
 
