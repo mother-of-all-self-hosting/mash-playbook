@@ -17,6 +17,11 @@ Our new [Configuring IPv6](./docs/configuring-ipv6.md) documentation page has mo
 
 - [configuring IPv6 (`AAAA`) DNS records](./docs/configuring-ipv6.md#configuring-dns-records-for-ipv6)
 
+> [!WARNING]
+> Not all mash-playbook Ansible roles respect the `devture_systemd_docker_base_ipv6_enabled` setting yet.
+> Even if you enable this setting, you may still see that some container networks and services aren't IPv6-enabled.
+> **Consider sending pull requests** for the playbook roles that do not respect the `devture_systemd_docker_base_ipv6_enabled` seting yet.
+
 # 2025-02-21
 
 ## Docker daemon options are no longer adjusted when IPv6 is enabled

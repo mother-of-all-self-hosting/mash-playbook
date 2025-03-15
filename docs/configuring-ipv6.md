@@ -24,6 +24,11 @@ Enabling IPv6 consists of 2 steps:
 
 💡 If you've followed a recent version of our documentation, you would have already done these steps, so there's nothing else to do.
 
+> [!WARNING]
+> Not all mash-playbook Ansible roles respect the `devture_systemd_docker_base_ipv6_enabled` setting yet.
+> Even if you enable this setting, you may still see that some container networks and services aren't IPv6-enabled.
+> **Consider sending pull requests** for the playbook roles that do not respect the `devture_systemd_docker_base_ipv6_enabled` seting yet.
+
 ## Enabling IPv6 support for the playbook
 
 You can enable IPv6 support for all components' Docker container networks by using the following `vars.yml` configuration:
@@ -70,7 +75,7 @@ Doing this:
 
 > [!WARNING]
 > Without enabling this and assuming you have IPv6 `AAAA` DNS records pointing to the server (see [Configuring DNS records for IPv6](#configuring-dns-records-for-ipv6)), IPv6 traffic will still be handled, but NAT64 will be used instead of NAT66.
-> As such, containers will only have an IPv4 address and all IPv6 traffic that reaches them will seem to originate from a local IP.
+> As such, containers will only have an IPv4 address and all IPv6 traffic that reaches them will seem to originate from a local IP. Containers also won't be able to make outgoing (even cross-container) IPv6 requests.
 
 To confirm connectivity, see the following other resources:
 

@@ -19,7 +19,7 @@ To reach your services, you'd need to do some DNS configuration.
 
 - create additional domains (`CNAME` DNS records pointing to the main generic domain) for large services or services that explicitly require their own dedicated domain
 
-Some services (like [Uptime-kuma](services/uptime-kuma.md)) require being hosted at their own dedicated domain. Others, you can put on their own domain/subdomain or at subpaths on any domain you'd like.
+Some services (like [Uptime Kuma](services/uptime-kuma.md)) require being hosted at their own dedicated domain. Others, you can put on their own domain/subdomain or at subpaths on any domain you'd like.
 
 ## Example DNS settings
 

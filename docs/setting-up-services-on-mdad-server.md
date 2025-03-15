@@ -35,7 +35,7 @@ To configure them, go to your DNS service provider, and adjust DNS records as de
 
 If you are adding the common `mash.example.com` domain, set the same IP address as the Matrix server (e.g. `matrix.example.com`) to its A record.
 
-💡 As [uptime-kuma](services/uptime-kuma.md), which needs its subdomain for now, will be enabled by default with the sample configuration file, you can go ahead and set its CNAME record in advance. The record should match with `uptime_kuma_hostname`, which will be specified when configuring `vars.yml` file next. If you will not enable the service, you do not have to add the CNAME record, of course.
+💡 As [Uptime Kuma](services/uptime-kuma.md), which needs its subdomain for now, will be enabled by default with the sample configuration file, you can go ahead and set its CNAME record in advance. The record should match with `uptime_kuma_hostname`, which will be specified when configuring `vars.yml` file next. If you will not enable the service, you do not have to add the CNAME record, of course.
 
 ## Configure the MASH playbook
 
@@ -63,7 +63,7 @@ If you have edited the MDAD's `hosts` file on your preference (such as adjusting
 
 Having edited the `hosts` file, you need to edit the `vars.yml` file by setting passwords, etc. Check the comments on the file for details about how to configure it.
 
-Note that `example.com` is specified as hostname values for services enabled by default such as [exim-relay](services/exim-relay.md), [uptime-kuma](services/uptime-kuma.md), etc., so do not forget to replace them with your domain.
+Note that `example.com` is specified as hostname values for services enabled by default such as [exim-relay](services/exim-relay.md), [Uptime Kuma](services/uptime-kuma.md), etc., so do not forget to replace them with your domain.
 
 💡 The modified sample `vars.yml` file is not configured to install basic services such as [Docker](services/docker.md) and [Traefik](services/traefik.md), as both have been installed and configured on your Matrix server with the MDAD playbook. Installing them with this playbook will cause conflicts on the server. You can check [this page on interoperability](interoperability.md) for more information.
 

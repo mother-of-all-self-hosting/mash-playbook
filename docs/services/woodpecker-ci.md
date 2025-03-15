@@ -10,7 +10,7 @@ A Woodpecker CI installation contains 2 components:
 - one [Woodpecker CI **server**](#woodpecker-ci-server) (web interface, central management node)
 - one or more [Woodpecker CI **agent**](#woodpecker-ci-agent) instances (which run your CI jobs)
 
-It's better to run the **agent** instances elsewhere (not on the source-control server or a server serving anything of value) - on a machine that doesn't contain sensitive data.
+It's better to run the **agent** instances elsewhere (not on the source-control server or a server serving anything of value) — on a machine that doesn't contain sensitive data.
 
 Small installations which only run trusted CI jobs can afford to run an agent instance on the source-control server itself.
 
@@ -128,7 +128,7 @@ As mentioned above, unless you completely trust your CI workloads, it's best to 
 
 This service requires the following other services:
 
-- a Woodpecker CI Server - installed via this playbook or otherwise
+- a Woodpecker CI Server — installed via this playbook or otherwise
 
 ### Configuration
 

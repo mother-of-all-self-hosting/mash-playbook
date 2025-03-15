@@ -295,6 +295,11 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
     {{ ({'name': (etcd_identifier + '.service'), 'priority': 500, 'groups': ['mash', 'etcd']} if etcd_enabled else omit) }}
   # /role-specific:etcd
 
+  # role-specific:etherpad
+  - |-
+    {{ ({'name': (etherpad_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'etherpad']} if etherpad_enabled else omit) }}
+  # /role-specific:etherpad
+
   # role-specific:exim_relay
   - |-
     {{ ({'name': (exim_relay_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'exim-relay']} if exim_relay_enabled else omit) }}
@@ -502,6 +507,11 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
   - |-
     {{ ({'name': (notfellchen_celery_worker_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'notfellchen']} if notfellchen_enabled else omit) }}
   # /role-specific:notfellchen
+
+  # role-specific:ntfy
+  - |-
+    {{ ({'name': (ntfy_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'ntfy']} if ntfy_enabled else omit) }}
+  # /role-specific:ntfy
 
   # role-specific:mariadb
   - |-
@@ -777,6 +787,17 @@ mash_playbook_postgres_managed_databases_auto_itemized:
       } if authentik_enabled and authentik_database_hostname == postgres_identifier else omit)
     }}
   # /role-specific:authentik
+
+  # role-specific:etherpad
+  - |-
+    {{
+      ({
+        'name': etherpad_database_name,
+        'username': etherpad_database_username,
+        'password': etherpad_database_password,
+      } if etherpad_enabled else omit)
+    }}
+  # /role-specific:etherpad
 
   # role-specific:focalboard
   - |-
@@ -2190,6 +2211,55 @@ etcd_environment_variable_etcd_root_password: "{{ '' if etcd_environment_variabl
 ########################################################################
 # /role-specific:etcd
 
+# role-specific:etherpad
+########################################################################
+#                                                                      #
+# etherpad                                                             #
+#                                                                      #
+########################################################################
+
+etherpad_enabled: false
+
+etherpad_identifier: "{{ mash_playbook_service_identifier_prefix }}etherpad"
+
+etherpad_uid: "{{ mash_playbook_uid }}"
+etherpad_gid: "{{ mash_playbook_gid }}"
+
+etherpad_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}etherpad"
+
+etherpad_systemd_required_services_list_auto: |
+  {{
+    ([postgres_identifier ~ '.service'] if postgres_enabled | default(false) and etherpad_database_hostname == postgres_identifier else [])
+  }}
+
+etherpad_container_additional_networks_auto: |
+  {{
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+    +
+    ([postgres_container_network] if postgres_enabled | default(false) and etherpad_database_hostname == postgres_identifier and etherpad_container_network != postgres_container_network else [])
+  }}
+
+etherpad_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+etherpad_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+
+# role-specific:postgres
+etherpad_database_hostname: "{{ postgres_identifier if postgres_enabled else '' }}"
+etherpad_database_port: "{{ '5432' if postgres_enabled else '' }}"
+etherpad_database_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'db.etherpad', rounds=655555) | to_uuid }}"
+etherpad_database_username: "{{ etherpad_identifier }}"
+# /role-specific:postgres
+
+# role-specific:traefik
+etherpad_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
+etherpad_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
+# /role-specific:traefik
+
+########################################################################
+#                                                                      #
+# /etherpad                                                            #
+#                                                                      #
+########################################################################
+# /role-specific:etherpad
 
 # role-specific:exim_relay
 ########################################################################
@@ -2764,6 +2834,16 @@ hubsite_service_docker_registry_browser_description: "Browse docker images"
 hubsite_service_docker_registry_browser_priority: 1000
 # /role-specific:docker_registry_browser
 
+# role-specific:etherpad
+# etherpad
+hubsite_service_etherpad_enabled: "{{ etherpad_enabled }}"
+hubsite_service_etherpad_name: Etherpad
+hubsite_service_etherpad_url: "https://{{ etherpad_hostname }}{{ etherpad_path_prefix }}"
+hubsite_service_etherpad_logo_location: "{{ role_path }}/assets/etherpad.png"
+hubsite_service_etherpad_description: "Open source collaborative text editor"
+hubsite_service_etherpad_priority: 1000
+# /role-specific:etherpad
+
 # role-specific:firezone
 # Firezone
 hubsite_service_firezone_enabled: "{{ firezone_enabled }}"
@@ -2924,6 +3004,16 @@ hubsite_service_nextcloud_description: "Sync your files & much more"
 hubsite_service_nextcloud_priority: 1000
 # /role-specific:nextcloud
 
+# role-specific:ntfy
+# ntfy
+hubsite_service_ntfy_enabled: "{{ ntfy_enabled }}"
+hubsite_service_ntfy_name: ntfy
+hubsite_service_ntfy_url: "https://{{ ntfy_hostname }}{{ ntfy_path_prefix }}"
+hubsite_service_ntfy_logo_location: "{{ role_path }}/assets/ntfy.png"
+hubsite_service_ntfy_description: "Send push notifications from any computer"
+hubsite_service_ntfy_priority: 1000
+# /role-specific:ntfy
+
 # role-specific:owncast
 # Owncast
 hubsite_service_owncast_enabled: "{{ owncast_enabled }}"
@@ -3081,6 +3171,19 @@ mash_playbook_hubsite_service_list_auto_itemized:
       } if hubsite_service_docker_registry_browser_enabled else omit)
     }}
   # /role-specific:docker_registry_browser
+
+  # role-specific:etherpad
+  - |-
+    {{
+      ({
+        'name': hubsite_service_etherpad_name,
+        'url': hubsite_service_etherpad_url,
+        'logo_location': hubsite_service_etherpad_logo_location,
+        'description': hubsite_service_etherpad_description,
+        'priority': hubsite_service_etherpad_priority,
+      } if hubsite_service_etherpad_enabled else omit)
+    }}
+  # /role-specific:etherpad
 
   # role-specific:firezone
   - |-
@@ -3289,6 +3392,19 @@ mash_playbook_hubsite_service_list_auto_itemized:
       } if hubsite_service_nextcloud_enabled else omit)
     }}
   # /role-specific:nextcloud
+
+  # role-specific:ntfy
+  - |-
+    {{
+      ({
+        'name': hubsite_service_ntfy_name,
+        'url': hubsite_service_ntfy_url,
+        'logo_location': hubsite_service_ntfy_logo_location,
+        'description': hubsite_service_ntfy_description,
+        'priority': hubsite_service_ntfy_priority,
+      } if hubsite_service_ntfy_enabled else omit)
+    }}
+  # /role-specific:ntfy
 
   # role-specific:owncast
   - |-
@@ -4514,6 +4630,56 @@ notfellchen_sws_container_labels_traefik_tls_certResolver: "{{ notfellchen_conta
 ########################################################################
 # /role-specific:notfellchen
 
+
+# role-specific:ntfy
+########################################################################
+#                                                                      #
+# ntfy                                                                 #
+#                                                                      #
+########################################################################
+
+ntfy_enabled: false
+
+ntfy_identifier: "{{ mash_playbook_service_identifier_prefix }}ntfy"
+
+ntfy_uid: "{{ mash_playbook_uid }}"
+ntfy_gid: "{{ mash_playbook_gid }}"
+
+ntfy_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}ntfy"
+
+ntfy_container_additional_networks_auto: |
+  {{
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+    +
+    ([exim_relay_container_network | default('mash-exim-relay')] if (exim_relay_enabled | default(false) and ntfy_smtp_sender_addr_host == exim_relay_identifier | default('mash-exim-relay') and ntfy_container_network != exim_relay_container_network) else [])
+  }}
+
+ntfy_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+ntfy_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+
+ntfy_visitor_request_limit_exempt_hosts_hostnames_auto: |
+  {{
+    [ntfy_hostname]
+  }}
+
+# role-specific:traefik
+ntfy_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
+ntfy_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
+# /role-specific:traefik
+
+# role-specific:exim_relay
+ntfy_smtp_sender_enabled: "{{ 'true' if exim_relay_enabled else '' }}"
+ntfy_smtp_sender_addr_host: "{{ exim_relay_identifier if exim_relay_enabled else '' }}"
+ntfy_smtp_sender_addr_port: 8025
+ntfy_smtp_sender_from: "{{ exim_relay_sender_address if exim_relay_enabled else '' }}"
+# /role-specific:exim_relay
+
+########################################################################
+#                                                                      #
+# /ntfy                                                                #
+#                                                                      #
+########################################################################
+# /role-specific:ntfy
 
 
 # role-specific:outline

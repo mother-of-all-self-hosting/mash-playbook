@@ -54,7 +54,7 @@ There are a few files that you need to adapt:
 <details>
 
 <summary> file: templates / group_vars_mash_servers </summary>
-In this file you wire your role with the rest of the playbook - integrating with the service manager or potentially with other roles.
+In this file you wire your role with the rest of the playbook — integrating with the service manager or potentially with other roles.
 
 ```yaml
 # role-specific:systemd_service_manager
@@ -103,7 +103,7 @@ mash_playbook_postgres_managed_databases_auto_itemized:
         'name': YOUR-SERVICE_database_name,
         'username': YOUR-SERVICE_database_username,
         'password': YOUR-SERVICE_database_password,
-      } if gYOUR-SERVICE_enabled else omit)
+      } if YOUR-SERVICE_enabled else omit)
     }}
   # /role-specific:YOUR-SERVICE
 

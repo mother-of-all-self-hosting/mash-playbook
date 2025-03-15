@@ -175,6 +175,10 @@
     - role: galaxy/etcd
     # /role-specific:etcd
 
+    # role-specific:etherpad
+    - role: galaxy/etherpad
+    # /role-specific:etherpad
+
     # role-specific:exim_relay
     - role: galaxy/exim_relay
     # /role-specific:exim_relay
@@ -314,6 +318,10 @@
     # role-specific:notfellchen
     - role: galaxy/notfellchen
     # /role-specific:notfellchen
+
+    # role-specific:ntfy
+    - role: galaxy/ntfy
+    # /role-specific:ntfy
 
     # role-specific:oauth2_proxy
     - role: galaxy/oauth2_proxy
