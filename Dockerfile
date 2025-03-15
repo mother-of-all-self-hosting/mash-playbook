@@ -1,4 +1,4 @@
-FROM alpine:3.21
+FROM alpine:3.21.3
 
 ENV ANSIBLE_LOG_PATH=" "
 WORKDIR /playbook
