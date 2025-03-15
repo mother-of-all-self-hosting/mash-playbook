@@ -65,6 +65,8 @@ mash_playbook_docker_installation_enabled: true
 # remove the line below.
 devture_docker_sdk_for_python_installation_enabled: true
 
+devture_systemd_docker_base_ipv6_enabled: true
+
 mash_playbook_docker_installation_daemon_options_custom: {
   "default-address-pools": [
     {
