@@ -84,7 +84,7 @@
 * Promtail: 2.9.5
 * Qbittorrent: 5.0.4
 * Radarr: 5.18.4
-* Radicale: 3.4.1.1
+* Radicale: 3.5.0.0
 * Readeck: 0.17.1
 * Redis: 7.4.2
 * Redmine: 6.0.4
