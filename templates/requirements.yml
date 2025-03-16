@@ -129,7 +129,7 @@
   name: forgejo_runner
   activation_prefix: forgejo_runner_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-freescout.git
-  version: v1.17.110-0
+  version: v1.17.110-1
   name: freescout
   activation_prefix: freescout_
 - src: git+https://github.com/kinduff/ansible-docker-freshrss.git
@@ -368,7 +368,7 @@
   name: redis
   activation_prefix: redis_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-redmine.git
-  version: v6.0.4-0
+  version: v6.0.4-1
   name: redmine
   activation_prefix: redmine_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-roundcube.git
