@@ -58,7 +58,7 @@
 * Mosquitto: 2.0.15
 * Mrs: v0.1.0
 * N8N: next
-* Navidrome: 0.55.0
+* Navidrome: 0.55.1
 * Neko: firefox
 * Netbox: v3.7.0-2.8.0
 * Netbox Container Image Customizations Keycloak Sso Expiration Middleware: a2ac39b1c73a50742c6e834e89162f87528c7f73
@@ -94,7 +94,7 @@
 * Semaphore: 2.9.56
 * Soft Serve: v0.4.7
 * Sonarr: 4.0.12
-* Stirling Pdf: 0.42.0-fat
+* Stirling Pdf: 0.44.2-fat
 * Syncthing: 1.29.3
 * Tandoor Api: 1.5.31
 * Tandoor Frontend: 1.27-alpine
@@ -106,7 +106,7 @@
 * Vaultwarden: 1.33.2
 * Versatiles: 0.12.6
 * Wetty: 2.5
-* Wg Easy: 15.0.0-beta.7
+* Wg Easy: 15.0.0-beta.10
 * Woodpecker Ci Agent: v3.1.0
 * Woodpecker Ci Server: v3.1.0
 * Wordpress: 6.6.2
