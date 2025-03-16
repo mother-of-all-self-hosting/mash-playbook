@@ -9,7 +9,7 @@
 * Calibre Web: 0.6.24
 * Changedetection: 0.48.04
 * Changedetection Playwright Driver: latest
-* Clickhouse: 24.8.4.13
+* Clickhouse: 25.2.2.39
 * Collabora Online: 24.04.3.1.1
 * Container Socket Proxy: 0.3.0
 * Couchdb: 3.4.2
