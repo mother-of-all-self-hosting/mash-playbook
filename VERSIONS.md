@@ -15,8 +15,8 @@
 * Couchdb: 3.4.2
 * Docker Compose: v2.32.1
 * Docker Registry: 2.8.3
-* Docker Registry Browser: 1.7.2
-* Docker Registry Proxy: v1.2.4
+* Docker Registry Browser: 1.7.5
+* Docker Registry Proxy: v1.2.5
 * Docker Registry Purger: 1.0.0
 * Dokuwiki: 2024-02-06b
 * Echoip: latest
