@@ -6306,7 +6306,7 @@ forgejo_config_database_username: "forgejo"
 forgejo_config_database_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'db.forgejo', rounds=655555) | to_uuid }}"
 
 # role-specific:exim_relay
-forgejo_config_mailer_enabled: "{{ 'true' if exim_relay_enabled else '' }}"
+forgejo_config_mailer_enabled: "{{ exim_relay_enabled }}"
 forgejo_config_mailer_smtp_addr: "{{ exim_relay_identifier if exim_relay_enabled else '' }}"
 forgejo_config_mailer_smtp_port: 8025
 forgejo_config_mailer_from: "{{ exim_relay_sender_address if exim_relay_enabled else '' }}"
