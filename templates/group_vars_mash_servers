@@ -2547,7 +2547,7 @@ gitea_config_database_username: "gitea"
 gitea_config_database_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'db.gitea', rounds=655555) | to_uuid }}"
 
 # role-specific:exim_relay
-gitea_config_mailer_enabled: "{{ 'true' if exim_relay_enabled else '' }}"
+gitea_config_mailer_enabled: "{{ exim_relay_enabled }}"
 gitea_config_mailer_smtp_addr: "{{ exim_relay_identifier if exim_relay_enabled else '' }}"
 gitea_config_mailer_smtp_port: 8025
 gitea_config_mailer_from: "{{ exim_relay_sender_address if exim_relay_enabled else '' }}"
