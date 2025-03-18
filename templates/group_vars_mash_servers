@@ -4668,7 +4668,7 @@ ntfy_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary
 # /role-specific:traefik
 
 # role-specific:exim_relay
-ntfy_smtp_sender_enabled: "{{ 'true' if exim_relay_enabled else '' }}"
+ntfy_smtp_sender_enabled: "{{ exim_relay_enabled }}"
 ntfy_smtp_sender_addr_host: "{{ exim_relay_identifier if exim_relay_enabled else '' }}"
 ntfy_smtp_sender_addr_port: 8025
 ntfy_smtp_sender_from: "{{ exim_relay_sender_address if exim_relay_enabled else '' }}"
