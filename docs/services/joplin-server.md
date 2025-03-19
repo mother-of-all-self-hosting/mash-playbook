@@ -38,8 +38,6 @@ This service requires the following other services:
 - [Traefik](traefik.md) reverse-proxy server
 - (optional) [exim-relay](exim-relay.md) mailer
 
-Though the mailer is technically not a prerequisite, it is highly recommended to set it up for the log in credentials update function to work.
-
 ## Adjusting the playbook configuration
 
 To enable this service, add the following configuration to your `vars.yml` file and re-run the [installation](../installing.md) process:
@@ -69,9 +67,13 @@ As the most of the necessary settings for the role have been taken care of by th
 
 During installation, the Joplin Server by default creates its admin user with `admin@localhost` as its email address and `admin` as its password. To change the credentials from the admin page after logging in, authentication is required with an email sent to the updated email address. Email address authentication is also required by default for changing the credentials of non-admin users.
 
+Though the mailer is technically not requisite, it is highly recommended to set it up for the log in credentials update function to work.
+
 See [this section](https://codeberg.org/acioustick/ansible-role-joplin-server/src/branch/master/docs/configuring-joplin-server.md#configure-the-mailer) on the role's documentation for details about configuring the mailer.
 
-⚠️ **Note**: without setting an authentication method such as DKIM, SPF, and DMARC for your hostname, emails are most likely to be quarantined as spam at recipient's mail servers. If you have set up a mail server with the [exim-relay Ansible role](https://github.com/mother-of-all-self-hosting/ansible-role-exim-relay), you can enable DKIM signing with it. Refer [its documentation](https://github.com/mother-of-all-self-hosting/ansible-role-exim-relay/blob/main/docs/configuring-exim-relay.md#enable-dkim-support-optional) for details.
+**Notes**:
+- **You can use exim-relay as the mailer, which is enabled on this playbook by default.** See [here](exim-relay.md) for details about how to set it up.
+- Without setting an authentication method such as DKIM, SPF, and DMARC for your hostname, emails are most likely to be quarantined as spam at recipient's mail servers. If you have set up a mail server with the [exim-relay Ansible role](https://github.com/mother-of-all-self-hosting/ansible-role-exim-relay), you can enable DKIM signing with it. Refer [its documentation](https://github.com/mother-of-all-self-hosting/ansible-role-exim-relay/blob/main/docs/configuring-exim-relay.md#enable-dkim-support-optional) for details.
 
 ## Usage
 
