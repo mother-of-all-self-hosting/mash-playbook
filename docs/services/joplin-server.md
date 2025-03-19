@@ -79,6 +79,8 @@ See [this section](https://codeberg.org/acioustick/ansible-role-joplin-server/sr
 
 To configure and manage the Joplin Server, go to `mash.example.com/joplin/login` specified with `joplin_server_hostname` and `joplin_server_path_prefix`, enter the admin credentials (email address: `admin@localhost`, password: `admin`) to log in. **After logging in, make sure to change the credentials.**
 
+For security reason, the developer recommends to create a non-admin user for synchronization. You can create one on the "Users" page. After creating, you can use the email and password you specified for the user to synchronize data with your Joplin clients.
+
 See [this section](https://codeberg.org/acioustick/ansible-role-joplin-server/src/branch/master/docs/configuring-joplin-server.md#usage) on the role's documentation for details about configuring the Joplin Server and the client application.
 
 ## Troubleshooting
