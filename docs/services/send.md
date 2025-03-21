@@ -18,7 +18,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
 # Send
 
-The playbook can install and configure [Send](https://joplinapp.org/help/dev/spec/architecture#joplin-server) for you.
+The playbook can install and configure [Send](https://joplinapp.org/help/dev/spec/architecture#send) for you.
 
 Send is a self-hosted server component for [Send](https://joplinapp.org/) — a privacy-focused note taking and to-do application, which can handle a large number of notes organized into notebooks.
 
@@ -26,9 +26,9 @@ While Send is architectured to be "offline first", with a Send it is able to not
 
 See the project's [documentation](https://joplinapp.org/help/) to learn what Send and Send do and why they might be useful to you.
 
-For details about configuring the [Ansible role for Send](https://codeberg.org/acioustick/ansible-role-joplin-server), you can check them via:
-- 🌐 [the role's documentation](https://codeberg.org/acioustick/ansible-role-joplin-server/src/branch/master/docs/configuring-joplin-server.md) online
-- 📁 `roles/galaxy/joplin_server/docs/configuring-joplin-server.md` locally, if you have [fetched the Ansible roles](../installing.md)
+For details about configuring the [Ansible role for Send](https://codeberg.org/acioustick/ansible-role-send), you can check them via:
+- 🌐 [the role's documentation](https://codeberg.org/acioustick/ansible-role-send/src/branch/master/docs/configuring-send.md) online
+- 📁 `roles/galaxy/joplin_server/docs/configuring-send.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 ## Dependencies
 
@@ -69,7 +69,7 @@ During installation, the Send by default creates its admin user with `admin@loca
 
 Though the mailer is technically not requisite, it is highly recommended to set it up for the log in credentials update function to work.
 
-See [this section](https://codeberg.org/acioustick/ansible-role-joplin-server/src/branch/master/docs/configuring-joplin-server.md#configure-the-mailer) on the role's documentation for details about configuring the mailer.
+See [this section](https://codeberg.org/acioustick/ansible-role-send/src/branch/master/docs/configuring-send.md#configure-the-mailer) on the role's documentation for details about configuring the mailer.
 
 **Notes**:
 - **You can use exim-relay as the mailer, which is enabled on this playbook by default.** See [here](exim-relay.md) for details about how to set it up.
@@ -81,8 +81,8 @@ To configure and manage the Send, go to `mash.example.com/joplin/login` specifie
 
 For security reason, the developer recommends to create a non-admin user for synchronization. You can create one on the "Users" page. After creating, you can use the email and password you specified for the user to synchronize data with your Send clients.
 
-See [this section](https://codeberg.org/acioustick/ansible-role-joplin-server/src/branch/master/docs/configuring-joplin-server.md#usage) on the role's documentation for details about configuring the Send and the client application.
+See [this section](https://codeberg.org/acioustick/ansible-role-send/src/branch/master/docs/configuring-send.md#usage) on the role's documentation for details about configuring the Send and the client application.
 
 ## Troubleshooting
 
-See [this section](https://codeberg.org/acioustick/ansible-role-joplin-server/src/branch/master/docs/configuring-joplin-server.md#troubleshooting) on the role's documentation for details.
+See [this section](https://codeberg.org/acioustick/ansible-role-send/src/branch/master/docs/configuring-send.md#troubleshooting) on the role's documentation for details.
