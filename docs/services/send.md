@@ -32,8 +32,8 @@ For details about configuring the [Ansible role for Send](https://codeberg.org/a
 
 This service requires the following other services:
 
-- [Postgres](postgres.md) database
 - [Traefik](traefik.md) reverse-proxy server
+- [Valkey](valkey.md) data-store
 
 ## Adjusting the playbook configuration
 
