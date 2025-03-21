@@ -140,7 +140,7 @@ mash_example_com
 
 [mash_example_com]
 mash.example.com ansible_host=YOUR_SERVER_IP_ADDRESS_HERE
-mash.example.com-funkwhale-deps ansible_host=YOUR_SERVER_IP_ADDRESS_HERE
+mash.example.com-send-deps ansible_host=YOUR_SERVER_IP_ADDRESS_HERE
 …
 ```
 
@@ -150,9 +150,9 @@ You can just add an entry for the supplementary host to `[mash_example_com]` if 
 
 ##### Create `vars.yml` for the dedicated instance
 
-Then, create a new directory where `vars.yml` for the supplementary host is stored. If `mash.example.com` is your main host, name the directory as `mash.example.com-funkwhale-deps`. Its path therefore will be `inventory/host_vars/mash.example.com-funkwhale-deps`.
+Then, create a new directory where `vars.yml` for the supplementary host is stored. If `mash.example.com` is your main host, name the directory as `mash.example.com-send-deps`. Its path therefore will be `inventory/host_vars/mash.example.com-send-deps`.
 
-After creating the directory, add a new `vars.yml` file inside it with a content below. It will have running the playbook create a `mash-funkwhale-valkey` instance on the new host, setting `/mash/funkwhale-valkey` to the base directory of the dedicated Valkey instance.
+After creating the directory, add a new `vars.yml` file inside it with a content below. It will have running the playbook create a `mash-send-valkey` instance on the new host, setting `/mash/send-valkey` to the base directory of the dedicated Valkey instance.
 
 ```yaml
 # This is vars.yml for the supplementary host of Funkwhale.
@@ -169,8 +169,8 @@ After creating the directory, add a new `vars.yml` file inside it with a content
 mash_playbook_generic_secret_key: ''
 
 # Override service names and directory path prefixes
-mash_playbook_service_identifier_prefix: 'mash-funkwhale-'
-mash_playbook_service_base_directory_name_prefix: 'funkwhale-'
+mash_playbook_service_identifier_prefix: 'mash-send-'
+mash_playbook_service_base_directory_name_prefix: 'send-'
 
 ########################################################################
 #                                                                      #
@@ -201,31 +201,31 @@ Having configured `vars.yml` for the dedicated instance, add the following confi
 ```yaml
 ########################################################################
 #                                                                      #
-# funkwhale                                                            #
+# send                                                                 #
 #                                                                      #
 ########################################################################
 
 # Add the base configuration as specified above
 
 # Point Funkwhale to its dedicated Valkey instance
-funkwhale_config_redis_hostname: mash-funkwhale-valkey
+send_config_redis_hostname: mash-send-valkey
 
-# Make sure the Funkwhale API service (mash-funkwhale-api.service) starts after its dedicated Valkey service
-funkwhale_api_systemd_required_services_list_custom:
-  - "mash-funkwhale-valkey.service"
+# Make sure the Funkwhale API service (mash-send-api.service) starts after its dedicated Valkey service
+send_api_systemd_required_services_list_custom:
+  - "mash-send-valkey.service"
 
-# Make sure the Funkwhale API service (mash-funkwhale-api.service) is connected to the container network of its dedicated Valkey service
-funkwhale_api_container_additional_networks_custom:
-  - "mash-funkwhale-valkey"
+# Make sure the Funkwhale API service (mash-send-api.service) is connected to the container network of its dedicated Valkey service
+send_api_container_additional_networks_custom:
+  - "mash-send-valkey"
 
 ########################################################################
 #                                                                      #
-# /funkwhale                                                           #
+# /send                                                                #
 #                                                                      #
 ########################################################################
 ```
 
-Running the installation command will create the dedicated Valkey instance named `mash-funkwhale-valkey`.
+Running the installation command will create the dedicated Valkey instance named `mash-send-valkey`.
 
 #### Setting up a shared Valkey instance
 
@@ -251,26 +251,26 @@ valkey_enabled: true
 
 ########################################################################
 #                                                                      #
-# funkwhale                                                            #
+# send                                                                 #
 #                                                                      #
 ########################################################################
 
 # Add the base configuration as specified above
 
 # Point Funkwhale to the shared Valkey instance
-funkwhale_config_redis_hostname: "{{ valkey_identifier }}"
+send_config_redis_hostname: "{{ valkey_identifier }}"
 
-# Make sure the Funkwhale API service (mash-funkwhale-api.service) starts after the shared Valkey service
-funkwhale_api_systemd_required_services_list_custom:
+# Make sure the Funkwhale API service (mash-send-api.service) starts after the shared Valkey service
+send_api_systemd_required_services_list_custom:
   - "{{ valkey_identifier }}.service"
 
-# Make sure the Funkwhale API service (mash-funkwhale-api.service) is connected to the container network of the shared Valkey service
-funkwhale_api_container_additional_networks_custom:
+# Make sure the Funkwhale API service (mash-send-api.service) is connected to the container network of the shared Valkey service
+send_api_container_additional_networks_custom:
   - "{{ valkey_container_network }}"
 
 ########################################################################
 #                                                                      #
-# /funkwhale                                                           #
+# /send                                                                #
 #                                                                      #
 ########################################################################
 ```
@@ -279,7 +279,7 @@ Running the installation command will create the shared Valkey instance named `m
 
 ## Installation
 
-If you have decided to install the dedicated Valkey instance for Funkwhale, make sure to run the [installing](../installing.md) command for the supplementary host (`mash.example.com-funkwhale-deps`) first, before running it for the main host (`mash.example.com`).
+If you have decided to install the dedicated Valkey instance for Funkwhale, make sure to run the [installing](../installing.md) command for the supplementary host (`mash.example.com-send-deps`) first, before running it for the main host (`mash.example.com`).
 
 Note that running the `just` commands for installation (`just install-all` or `just setup-all`) automatically takes care of the order. See [here](../running-multiple-instances.md#1-adjust-hosts) for more details about it.
 
