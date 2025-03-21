@@ -18,13 +18,11 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
 # Send
 
-The playbook can install and configure [Send](https://joplinapp.org/help/dev/spec/architecture#send) for you.
+The playbook can install and configure [Send](https://github.com/timvisee/send) for you.
 
-Send is a self-hosted server component for [Send](https://joplinapp.org/) — a privacy-focused note taking and to-do application, which can handle a large number of notes organized into notebooks.
+Send is a fork of Mozilla's discontinued [Firefox Send](https://github.com/mozilla/send) which allows you to send files to others with a link. Files are end-to-end encrypted so they cannot be read by the server, and also can be protected with a password.
 
-While Send is architectured to be "offline first", with a Send it is able to not only synchronize data among devices but also [share a notebook](https://joplinapp.org/help/apps/share_notebook/) with users and [publish a note](https://joplinapp.org/help/apps/publish_note/) on the internet to share it with anyone.
-
-See the project's [documentation](https://joplinapp.org/help/) to learn what Send and Send do and why they might be useful to you.
+See the project's [documentation](https://github.com/timvisee/send/blob/master/README.md) to learn what Send does and why it might be useful to you.
 
 For details about configuring the [Ansible role for Send](https://codeberg.org/acioustick/ansible-role-send), you can check them via:
 - 🌐 [the role's documentation](https://codeberg.org/acioustick/ansible-role-send/src/branch/master/docs/configuring-send.md) online
