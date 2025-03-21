@@ -109,17 +109,17 @@ send_environment_variable_max_downloads: 10
 
 ### Configure Valkey
 
-Funkwhale requires a Valkey data-store to work. This playbook supports it, and you can set up a Valkey instance by enabling it on `vars.yml`.
+Send requires a Valkey data-store to work. This playbook supports it, and you can set up a Valkey instance by enabling it on `vars.yml`.
 
-If Funkwhale is the sole service which requires Valkey on your server, it is fine to set up just a single Valkey instance. However, **it is not recommended if there are other services which require it, because sharing the Valkey instance has security concerns and possibly causes data conflicts**, as described on the [documentation for configuring Valkey](valkey.md). In this case, you should install a dedicated Valkey instance for each of them.
+If Send is the sole service which requires Valkey on your server, it is fine to set up just a single Valkey instance. However, **it is not recommended if there are other services which require it, because sharing the Valkey instance has security concerns and possibly causes data conflicts**, as described on the [documentation for configuring Valkey](valkey.md). In this case, you should install a dedicated Valkey instance for each of them.
 
-If you are unsure whether you will install other services along with Funkwhale or you have already set up services which need Valkey (such as [Nextcloud](nextcloud.md), [PeerTube](peertube.md), and [SearXNG](searxng.md)), it is recommended to install a Valkey instance dedicated to Funkwhale.
+If you are unsure whether you will install other services along with Send or you have already set up services which need Valkey (such as [Nextcloud](nextcloud.md), [PeerTube](peertube.md), and [SearXNG](searxng.md)), it is recommended to install a Valkey instance dedicated to Send.
 
 *See [below](#setting-up-a-shared-valkey-instance) for an instruction to install a shared instance.*
 
 #### Setting up a dedicated Valkey instance
 
-To create a dedicated instance for Funkwhale, you can follow the steps below:
+To create a dedicated instance for Send, you can follow the steps below:
 
 1. Adjust the `hosts` file
 2. Create a new `vars.yml` file for the dedicated instance
@@ -129,7 +129,7 @@ To create a dedicated instance for Funkwhale, you can follow the steps below:
 
 ##### Adjust `hosts`
 
-At first, you need to adjust `inventory/hosts` file to add a supplementary host for Funkwhale.
+At first, you need to adjust `inventory/hosts` file to add a supplementary host for Send.
 
 The content should be something like below. Make sure to replace `mash.example.com` with your hostname and `YOUR_SERVER_IP_ADDRESS_HERE` with the IP address of the host, respectively. The same IP address should be set to both, unless the Valkey instance will be served from a different machine.
 
@@ -155,7 +155,7 @@ Then, create a new directory where `vars.yml` for the supplementary host is stor
 After creating the directory, add a new `vars.yml` file inside it with a content below. It will have running the playbook create a `mash-send-valkey` instance on the new host, setting `/mash/send-valkey` to the base directory of the dedicated Valkey instance.
 
 ```yaml
-# This is vars.yml for the supplementary host of Funkwhale.
+# This is vars.yml for the supplementary host of Send.
 
 ---
 
@@ -207,14 +207,14 @@ Having configured `vars.yml` for the dedicated instance, add the following confi
 
 # Add the base configuration as specified above
 
-# Point Funkwhale to its dedicated Valkey instance
+# Point Send to its dedicated Valkey instance
 send_config_redis_hostname: mash-send-valkey
 
-# Make sure the Funkwhale API service (mash-send-api.service) starts after its dedicated Valkey service
+# Make sure the Send API service (mash-send-api.service) starts after its dedicated Valkey service
 send_api_systemd_required_services_list_custom:
   - "mash-send-valkey.service"
 
-# Make sure the Funkwhale API service (mash-send-api.service) is connected to the container network of its dedicated Valkey service
+# Make sure the Send API service (mash-send-api.service) is connected to the container network of its dedicated Valkey service
 send_api_container_additional_networks_custom:
   - "mash-send-valkey"
 
@@ -229,9 +229,9 @@ Running the installation command will create the dedicated Valkey instance named
 
 #### Setting up a shared Valkey instance
 
-If you host only Funkwhale on this server, it is fine to set up a single shared Valkey instance.
+If you host only Send on this server, it is fine to set up a single shared Valkey instance.
 
-To install the single instance and hook Funkwhale to it, add the following configuration to `inventory/host_vars/mash.example.com/vars.yml`:
+To install the single instance and hook Send to it, add the following configuration to `inventory/host_vars/mash.example.com/vars.yml`:
 
 ```yaml
 ########################################################################
@@ -257,14 +257,14 @@ valkey_enabled: true
 
 # Add the base configuration as specified above
 
-# Point Funkwhale to the shared Valkey instance
+# Point Send to the shared Valkey instance
 send_config_redis_hostname: "{{ valkey_identifier }}"
 
-# Make sure the Funkwhale API service (mash-send-api.service) starts after the shared Valkey service
+# Make sure the Send API service (mash-send-api.service) starts after the shared Valkey service
 send_api_systemd_required_services_list_custom:
   - "{{ valkey_identifier }}.service"
 
-# Make sure the Funkwhale API service (mash-send-api.service) is connected to the container network of the shared Valkey service
+# Make sure the Send API service (mash-send-api.service) is connected to the container network of the shared Valkey service
 send_api_container_additional_networks_custom:
   - "{{ valkey_container_network }}"
 
@@ -279,7 +279,7 @@ Running the installation command will create the shared Valkey instance named `m
 
 ## Installation
 
-If you have decided to install the dedicated Valkey instance for Funkwhale, make sure to run the [installing](../installing.md) command for the supplementary host (`mash.example.com-send-deps`) first, before running it for the main host (`mash.example.com`).
+If you have decided to install the dedicated Valkey instance for Send, make sure to run the [installing](../installing.md) command for the supplementary host (`mash.example.com-send-deps`) first, before running it for the main host (`mash.example.com`).
 
 Note that running the `just` commands for installation (`just install-all` or `just setup-all`) automatically takes care of the order. See [here](../running-multiple-instances.md#1-adjust-hosts) for more details about it.
 
