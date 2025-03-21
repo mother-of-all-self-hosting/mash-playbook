@@ -210,12 +210,12 @@ Having configured `vars.yml` for the dedicated instance, add the following confi
 # Point Send to its dedicated Valkey instance
 send_config_redis_hostname: mash-send-valkey
 
-# Make sure the Send API service (mash-send-api.service) starts after its dedicated Valkey service
-send_api_systemd_required_services_list_custom:
+# Make sure the Send service (mash-send.service) starts after its dedicated Valkey service (mash-send-valkey.service)
+send_systemd_required_services_list_custom:
   - "mash-send-valkey.service"
 
-# Make sure the Send API service (mash-send-api.service) is connected to the container network of its dedicated Valkey service
-send_api_container_additional_networks_custom:
+# Make sure the Send service (mash-send.service) is connected to the container network of its dedicated Valkey service (mash-send-valkey)
+send_container_additional_networks_custom:
   - "mash-send-valkey"
 
 ########################################################################
@@ -260,12 +260,12 @@ valkey_enabled: true
 # Point Send to the shared Valkey instance
 send_config_redis_hostname: "{{ valkey_identifier }}"
 
-# Make sure the Send API service (mash-send-api.service) starts after the shared Valkey service
-send_api_systemd_required_services_list_custom:
+# Make sure the Send service (mash-send.service) starts after its dedicated Valkey service (mash-send-valkey.service)
+send_systemd_required_services_list_custom:
   - "{{ valkey_identifier }}.service"
 
-# Make sure the Send API service (mash-send-api.service) is connected to the container network of the shared Valkey service
-send_api_container_additional_networks_custom:
+# Make sure the Send container is connected to the container network of its dedicated Valkey service (mash-send-valkey)
+send_container_additional_networks_custom:
   - "{{ valkey_container_network }}"
 
 ########################################################################
