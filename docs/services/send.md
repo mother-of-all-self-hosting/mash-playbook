@@ -28,7 +28,7 @@ See the project's [documentation](https://joplinapp.org/help/) to learn what Sen
 
 For details about configuring the [Ansible role for Send](https://codeberg.org/acioustick/ansible-role-send), you can check them via:
 - 🌐 [the role's documentation](https://codeberg.org/acioustick/ansible-role-send/src/branch/master/docs/configuring-send.md) online
-- 📁 `roles/galaxy/joplin_server/docs/configuring-send.md` locally, if you have [fetched the Ansible roles](../installing.md)
+- 📁 `roles/galaxy/send/docs/configuring-send.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 ## Dependencies
 
@@ -45,18 +45,18 @@ To enable this service, add the following configuration to your `vars.yml` file 
 ```yaml
 ########################################################################
 #                                                                      #
-# joplin_server                                                        #
+# send                                                                 #
 #                                                                      #
 ########################################################################
 
-joplin_server_enabled: true
+send_enabled: true
 
-joplin_server_hostname: mash.example.com
-joplin_server_path_prefix: /joplin
+send_hostname: mash.example.com
+send_path_prefix: /joplin
 
 ########################################################################
 #                                                                      #
-# joplin_server                                                        #
+# send                                                                 #
 #                                                                      #
 ########################################################################
 ```
@@ -77,7 +77,7 @@ See [this section](https://codeberg.org/acioustick/ansible-role-send/src/branch/
 
 ## Usage
 
-To configure and manage the Send, go to `mash.example.com/joplin/login` specified with `joplin_server_hostname` and `joplin_server_path_prefix`, enter the admin credentials (email address: `admin@localhost`, password: `admin`) to log in. **After logging in, make sure to change the credentials.**
+To configure and manage the Send, go to `mash.example.com/joplin/login` specified with `send_hostname` and `send_path_prefix`, enter the admin credentials (email address: `admin@localhost`, password: `admin`) to log in. **After logging in, make sure to change the credentials.**
 
 For security reason, the developer recommends to create a non-admin user for synchronization. You can create one on the "Users" page. After creating, you can use the email and password you specified for the user to synchronize data with your Send clients.
 
