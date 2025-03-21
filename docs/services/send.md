@@ -48,8 +48,7 @@ To enable this service, add the following configuration to your `vars.yml` file 
 
 send_enabled: true
 
-send_hostname: mash.example.com
-send_path_prefix: /joplin
+send_hostname: send.example.com
 
 ########################################################################
 #                                                                      #
@@ -58,7 +57,7 @@ send_path_prefix: /joplin
 ########################################################################
 ```
 
-As the most of the necessary settings for the role have been taken care of by the playbook, you can enable Send on your server with this minimum configuration.
+**Note**: hosting Send under a subpath (by configuring the `send_path_prefix` variable) does not seem to be possible due to Send's technical limitations.
 
 ## Usage
 
