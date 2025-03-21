@@ -16,17 +16,17 @@ SPDX-FileCopyrightText: 2024 - 2025 Suguru Hirahara
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 
-# Joplin Server
+# Send
 
-The playbook can install and configure [Joplin Server](https://joplinapp.org/help/dev/spec/architecture#joplin-server) for you.
+The playbook can install and configure [Send](https://joplinapp.org/help/dev/spec/architecture#joplin-server) for you.
 
-Joplin Server is a self-hosted server component for [Joplin](https://joplinapp.org/) — a privacy-focused note taking and to-do application, which can handle a large number of notes organized into notebooks.
+Send is a self-hosted server component for [Send](https://joplinapp.org/) — a privacy-focused note taking and to-do application, which can handle a large number of notes organized into notebooks.
 
-While Joplin is architectured to be "offline first", with a Joplin Server it is able to not only synchronize data among devices but also [share a notebook](https://joplinapp.org/help/apps/share_notebook/) with users and [publish a note](https://joplinapp.org/help/apps/publish_note/) on the internet to share it with anyone.
+While Send is architectured to be "offline first", with a Send it is able to not only synchronize data among devices but also [share a notebook](https://joplinapp.org/help/apps/share_notebook/) with users and [publish a note](https://joplinapp.org/help/apps/publish_note/) on the internet to share it with anyone.
 
-See the project's [documentation](https://joplinapp.org/help/) to learn what Joplin and Joplin Server do and why they might be useful to you.
+See the project's [documentation](https://joplinapp.org/help/) to learn what Send and Send do and why they might be useful to you.
 
-For details about configuring the [Ansible role for Joplin Server](https://codeberg.org/acioustick/ansible-role-joplin-server), you can check them via:
+For details about configuring the [Ansible role for Send](https://codeberg.org/acioustick/ansible-role-joplin-server), you can check them via:
 - 🌐 [the role's documentation](https://codeberg.org/acioustick/ansible-role-joplin-server/src/branch/master/docs/configuring-joplin-server.md) online
 - 📁 `roles/galaxy/joplin_server/docs/configuring-joplin-server.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
@@ -61,11 +61,11 @@ joplin_server_path_prefix: /joplin
 ########################################################################
 ```
 
-As the most of the necessary settings for the role have been taken care of by the playbook, you can enable Joplin Server on your server with this minimum configuration.
+As the most of the necessary settings for the role have been taken care of by the playbook, you can enable Send on your server with this minimum configuration.
 
 ### Configure the mailer
 
-During installation, the Joplin Server by default creates its admin user with `admin@localhost` as its email address and `admin` as its password. To change the credentials from the admin page after logging in, authentication is required with an email sent to the updated email address. Email address authentication is also required by default for changing the credentials of non-admin users.
+During installation, the Send by default creates its admin user with `admin@localhost` as its email address and `admin` as its password. To change the credentials from the admin page after logging in, authentication is required with an email sent to the updated email address. Email address authentication is also required by default for changing the credentials of non-admin users.
 
 Though the mailer is technically not requisite, it is highly recommended to set it up for the log in credentials update function to work.
 
@@ -77,11 +77,11 @@ See [this section](https://codeberg.org/acioustick/ansible-role-joplin-server/sr
 
 ## Usage
 
-To configure and manage the Joplin Server, go to `mash.example.com/joplin/login` specified with `joplin_server_hostname` and `joplin_server_path_prefix`, enter the admin credentials (email address: `admin@localhost`, password: `admin`) to log in. **After logging in, make sure to change the credentials.**
+To configure and manage the Send, go to `mash.example.com/joplin/login` specified with `joplin_server_hostname` and `joplin_server_path_prefix`, enter the admin credentials (email address: `admin@localhost`, password: `admin`) to log in. **After logging in, make sure to change the credentials.**
 
-For security reason, the developer recommends to create a non-admin user for synchronization. You can create one on the "Users" page. After creating, you can use the email and password you specified for the user to synchronize data with your Joplin clients.
+For security reason, the developer recommends to create a non-admin user for synchronization. You can create one on the "Users" page. After creating, you can use the email and password you specified for the user to synchronize data with your Send clients.
 
-See [this section](https://codeberg.org/acioustick/ansible-role-joplin-server/src/branch/master/docs/configuring-joplin-server.md#usage) on the role's documentation for details about configuring the Joplin Server and the client application.
+See [this section](https://codeberg.org/acioustick/ansible-role-joplin-server/src/branch/master/docs/configuring-joplin-server.md#usage) on the role's documentation for details about configuring the Send and the client application.
 
 ## Troubleshooting
 
