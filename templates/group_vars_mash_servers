@@ -656,6 +656,11 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
     {{ ({'name': (semaphore_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'semaphore']} if semaphore_enabled else omit) }}
   # /role-specific:semaphore
 
+  # role-specific:send
+  - |-
+    {{ ({'name': (send_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'send']} if send_enabled else omit) }}
+  # /role-specific:send
+
   # role-specific:soft_serve
   - |-
     {{ ({'name': (soft_serve_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'soft-serve']} if soft_serve_enabled else omit) }}
@@ -3070,6 +3075,16 @@ hubsite_service_radicale_description: "Sync contacts and calendars"
 hubsite_service_radicale_priority: 1000
 # /role-specific:radicale
 
+# role-specific:send
+# Send
+hubsite_service_send_enabled: "{{ send_enabled }}"
+hubsite_service_send_name: Send
+hubsite_service_send_url: "https://{{ send_hostname }}{{ send_path_prefix }}"
+hubsite_service_send_logo_location: ""
+hubsite_service_send_description: "Send end-to-end encrypted files to others with a link."
+hubsite_service_send_priority: 1000
+# /role-specific:send
+
 # role-specific:syncthing
 # Syncthing
 hubsite_service_syncthing_enabled: "{{ syncthing_enabled }}"
@@ -3496,6 +3511,19 @@ mash_playbook_hubsite_service_list_auto_itemized:
       } if hubsite_service_uptime_kuma_enabled else omit)
     }}
   # /role-specific:uptime_kuma
+
+  # role-specific:send
+  - |-
+    {{
+      ({
+        'name': hubsite_service_send_name,
+        'url': hubsite_service_send_url,
+        'logo_location': hubsite_service_send_logo_location,
+        'description': hubsite_service_send_description,
+        'priority': hubsite_service_send_priority,
+      } if hubsite_service_send_enabled else omit)
+    }}
+  # /role-specific:send
 
   # role-specific:syncthing
   - |-
@@ -5885,6 +5913,46 @@ semaphore_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_pr
 #                                                                      #
 ########################################################################
 # /role-specific:semaphore
+
+
+
+# role-specific:send
+########################################################################
+#                                                                      #
+# send                                                                 #
+#                                                                      #
+########################################################################
+
+send_enabled: false
+
+send_identifier: "{{ mash_playbook_service_identifier_prefix }}send"
+
+send_uid: "{{ mash_playbook_uid }}"
+send_gid: "{{ mash_playbook_gid }}"
+
+send_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}send"
+
+send_container_additional_networks_auto: |
+  {{
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+  }}
+
+# Required for a Redis / KeyDB / Valkey instance
+send_environment_variable_redis_host: "{{ send_config_redis_hostname }}"
+
+# role-specific:traefik
+send_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+send_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+send_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
+send_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
+# /role-specific:traefik
+
+########################################################################
+#                                                                      #
+# /send                                                                #
+#                                                                      #
+########################################################################
+# /role-specific:send
 
 
 
