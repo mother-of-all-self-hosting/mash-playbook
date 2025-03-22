@@ -263,6 +263,10 @@
     - role: galaxy/jitsi
     # /role-specific:jitsi
 
+    # role-specific:joplin_server
+    - role: galaxy/joplin_server
+    # /role-specific:joplin_server
+
     # role-specific:keycloak
     - role: galaxy/keycloak
     # /role-specific:keycloak

@@ -169,7 +169,7 @@ YOUR-SERVICE_container_additional_networks_auto: |
   }}
 
 # role-specific:exim_relay
-YOUR-SERVICE_config_mailer_enabled: "{{ 'true' if exim_relay_enabled else '' }}"
+YOUR-SERVICE_config_mailer_enabled: "{{ exim_relay_enabled }}"
 YOUR-SERVICE_config_mailer_smtp_addr: "{{ exim_relay_identifier if exim_relay_enabled else '' }}"
 YOUR-SERVICE_config_mailer_smtp_port: 8025
 YOUR-SERVICE_config_mailer_from: "{{ exim_relay_sender_address if exim_relay_enabled else '' }}"
