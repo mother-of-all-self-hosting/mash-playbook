@@ -221,9 +221,12 @@ Note that running the `just` commands for installation (`just install-all` or `j
 
 ## Usage
 
-After installation, you can go to the Funkwhale URL, as defined in `funkwhale_hostname`. To login and get started you first have to create a user. you can do this with
+After installation, your Funkwhale instance becomes available at the URL specified with `funkwhale_hostname`.
+
+To log in to the service and get started, you have to create a user ("superuser") at first. To do so, run the command below after replacing `USERNAME`, `PASSWORD`, and `EMAIL_ADDRESS`:
+
 ```bash
-just run-tags funkwhale-add-superuser --extra-vars=username=USERNAME --extra-vars=password=PASSWORD --extra-vars=email=EMAIL
+just run-tags funkwhale-add-superuser --extra-vars=username=USERNAME --extra-vars=password=PASSWORD --extra-vars=email=EMAIL_ADDRESS
 ```
 
-All other users can be created in the Web GUI.
+Log in to the web UI with the superuser to create other users.
