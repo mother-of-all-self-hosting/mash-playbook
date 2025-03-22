@@ -21,7 +21,7 @@ This service requires the following other services:
 
 ## Configuration
 
-To enable this service, add the following configuration to your `vars.yml` file and re-run the [installation](../installing.md) process:
+To enable this service, add the following configuration to your `vars.yml` file:
 
 ```yaml
 ########################################################################
