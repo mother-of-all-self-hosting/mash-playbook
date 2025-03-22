@@ -53,7 +53,7 @@ If Funkwhale is the sole service which requires Valkey on your server, it is fin
 
 If you are unsure whether you will install other services along with Funkwhale or you have already set up services which need Valkey, it is recommended to install a Valkey instance dedicated to Funkwhale.
 
-#### Using the shared Valkey instance
+#### Setting up a shared Valkey instance
 
 If you host only Funkwhale on this server, it is fine to set up a single shared Valkey instance.
 
@@ -103,7 +103,7 @@ funkwhale_api_container_additional_networks_custom:
 
 Running the installation command will create the shared Valkey instance named `mash-valkey`.
 
-#### Creating a Valkey instance dedicated to Funkwhale
+#### Setting up a dedicated Valkey instance
 
 To create a dedicated instance for Funkwhale, you can follow the steps below:
 
