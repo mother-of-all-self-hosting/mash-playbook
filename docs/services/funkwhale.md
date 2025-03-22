@@ -115,7 +115,7 @@ To create a dedicated instance for Funkwhale, you can follow the steps below:
 
 At first, you need to adjust `inventory/hosts` file to add a supplementary host for Funkwhale. See [here](../running-multiple-instances.md#re-do-your-inventory-to-add-supplementary-hosts) for details.
 
-The content should be something like below. Make sure to replace `mash.example.com` with your hostname.
+The content should be something like below. Make sure to replace `mash.example.com` with your hostname and `YOUR_SERVER_IP_ADDRESS_HERE` with the IP address of the host, respectively. The same IP address should be set to both, unless the Valkey instance will be served from a different machine.
 
 ```ini
 [mash_servers]
@@ -123,10 +123,12 @@ The content should be something like below. Make sure to replace `mash.example.c
 mash_example_com
 
 [mash_example_com]
-mash.example.com ansible_host=1.2.3.4
-mash.example.com-funkwhale-deps ansible_host=1.2.3.4
+mash.example.com ansible_host=YOUR_SERVER_IP_ADDRESS_HERE
+mash.example.com-funkwhale-deps ansible_host=YOUR_SERVER_IP_ADDRESS_HERE
 …
 ```
+
+`mash_example_com` can be any string and does not have to match with the hostname.
 
 You can just add an entry for the supplementary host to `[mash_example_com]` if there are other entries there already.
 
