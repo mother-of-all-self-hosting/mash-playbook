@@ -51,57 +51,7 @@ Funkwhale requires a Valkey data-store to work. This playbook supports it, and y
 
 If Funkwhale is the sole service which requires Valkey on your server, it is fine to set up just a single Valkey instance. However, **it is not recommended if there are other services which require it, because sharing the Valkey instance has security concerns and possibly causes data conflicts**, as described on the [documentation for configuring Valkey](valkey.md). In this case, you should install a dedicated Valkey instance for each of them.
 
-If you are unsure whether you will install other services along with Funkwhale or you have already set up services which need Valkey, it is recommended to install a Valkey instance dedicated to Funkwhale.
-
-#### Setting up a shared Valkey instance
-
-If you host only Funkwhale on this server, it is fine to set up a single shared Valkey instance.
-
-To install the single instance and hook Funkwhale to it, add the following configuration to `vars.yml`:
-
-```yaml
-########################################################################
-#                                                                      #
-# valkey                                                               #
-#                                                                      #
-########################################################################
-
-valkey_enabled: true
-
-########################################################################
-#                                                                      #
-# /valkey                                                              #
-#                                                                      #
-########################################################################
-
-
-########################################################################
-#                                                                      #
-# funkwhale                                                            #
-#                                                                      #
-########################################################################
-
-# Add the base configuration as specified above
-
-# Point Funkwhale to the shared Valkey instance
-funkwhale_config_redis_hostname: "{{ valkey_identifier }}"
-
-# Make sure the Funkwhale API service (mash-funkwhale-api.service) starts after the shared Valkey service
-funkwhale_api_systemd_required_services_list_custom:
-  - "{{ valkey_identifier }}.service"
-
-# Make sure the Funkwhale API service (mash-funkwhale-api.service) is connected to the container network of the shared Valkey service
-funkwhale_api_container_additional_networks_custom:
-  - "{{ valkey_container_network }}"
-
-########################################################################
-#                                                                      #
-# /funkwhale                                                           #
-#                                                                      #
-########################################################################
-```
-
-Running the installation command will create the shared Valkey instance named `mash-valkey`.
+If you are unsure whether you will install other services along with Funkwhale or you have already set up services which need Valkey, it is recommended to install a Valkey instance dedicated to Funkwhale. See [below](#setting-up-a-shared-valkey-instance) for an instruction to install a shared instance.
 
 #### Setting up a dedicated Valkey instance
 
@@ -212,6 +162,56 @@ funkwhale_api_container_additional_networks_custom:
 ```
 
 Running the installation command will create the dedicated Valkey instance named `mash-funkwhale-valkey`.
+
+#### Setting up a shared Valkey instance
+
+If you host only Funkwhale on this server, it is fine to set up a single shared Valkey instance.
+
+To install the single instance and hook Funkwhale to it, add the following configuration to `inventory/host_vars/mash.example.com/vars.yml`:
+
+```yaml
+########################################################################
+#                                                                      #
+# valkey                                                               #
+#                                                                      #
+########################################################################
+
+valkey_enabled: true
+
+########################################################################
+#                                                                      #
+# /valkey                                                              #
+#                                                                      #
+########################################################################
+
+
+########################################################################
+#                                                                      #
+# funkwhale                                                            #
+#                                                                      #
+########################################################################
+
+# Add the base configuration as specified above
+
+# Point Funkwhale to the shared Valkey instance
+funkwhale_config_redis_hostname: "{{ valkey_identifier }}"
+
+# Make sure the Funkwhale API service (mash-funkwhale-api.service) starts after the shared Valkey service
+funkwhale_api_systemd_required_services_list_custom:
+  - "{{ valkey_identifier }}.service"
+
+# Make sure the Funkwhale API service (mash-funkwhale-api.service) is connected to the container network of the shared Valkey service
+funkwhale_api_container_additional_networks_custom:
+  - "{{ valkey_container_network }}"
+
+########################################################################
+#                                                                      #
+# /funkwhale                                                           #
+#                                                                      #
+########################################################################
+```
+
+Running the installation command will create the shared Valkey instance named `mash-valkey`.
 
 ## Installation
 
