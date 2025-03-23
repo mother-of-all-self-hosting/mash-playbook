@@ -1,3 +1,11 @@
+<!--
+SPDX-FileCopyrightText: 2023 Julian-Samuel Gebühr
+SPDX-FileCopyrightText: 2023 - 2024 Slavi Pantaleev
+SPDX-FileCopyrightText: 2025 Suguru Hirahara
+
+SPDX-License-Identifier: AGPL-3.0-or-later
+-->
+
 # Lago
 
 [Lago](https://www.getlago.com/) is an open-source metering and usage-based billing solution.
@@ -8,13 +16,13 @@
 This service requires the following other services:
 
 - a [Postgres](postgres.md) database
-- a [Valkey](valkey.md) data-store, installation details [below](#valkey)
 - a [Traefik](traefik.md) reverse-proxy server
+- a [Valkey](valkey.md) data-store; see [below](#configure-valkey) for details about installation
 
 
 ## Configuration
 
-To enable this service, add the following configuration to your `vars.yml` file and re-run the [installation](../installing.md) process:
+To enable this service, add the following configuration to your `vars.yml` file:
 
 ```yaml
 ########################################################################
@@ -43,91 +51,56 @@ lago_front_environment_variable_lago_disable_signup: false
 ########################################################################
 ```
 
+**Notes**:
+- Hosting Lago under a subpath (by configuring the `lago_path_prefix` variable) does not seem to be possible right now, due to Lago limitations.
+- Our setup hosts the Lago frontend at the root path (`/`) and the Lago API at the `/api` prefix. This seems to work well, except for [PDF invoices failing due to a Lago bug](https://github.com/getlago/lago/issues/221).
 
-### URL
+### Configure Valkey
 
-In the example configuration above, we configure the service to be hosted at `https://lago.example.com`.
+Lago requires a Valkey data-store to work. This playbook supports it, and you can set up a Valkey instance by enabling it on `vars.yml`.
 
-Hosting Lago under a subpath (by configuring the `lago_path_prefix` variable) does not seem to be possible right now, due to Lago limitations.
+If Lago is the sole service which requires Valkey on your server, it is fine to set up just a single Valkey instance. However, **it is not recommended if there are other services which require it, because sharing the Valkey instance has security concerns and possibly causes data conflicts**, as described on the [documentation for configuring Valkey](valkey.md). In this case, you should install a dedicated Valkey instance for each of them.
 
-Our setup hosts the Lago frontend at the root path (`/`) and the Lago API at the `/api` prefix.
-This seems to work well, except for [PDF invoices failing due to a Lago bug](https://github.com/getlago/lago/issues/221).
+If you are unsure whether you will install other services along with Lago or you have already set up services which need Valkey, it is recommended to install a Valkey instance dedicated to Lago. See [below](#setting-up-a-shared-valkey-instance) for an instruction to install a shared instance.
 
+#### Setting up a dedicated Valkey instance
 
-### Authentication
+To create a dedicated instance for Lago, you can follow the steps below:
 
-Public registration can be enabled/disabled using the `lago_front_environment_variable_lago_disable_signup` variable.
+1. Adjust the `hosts` file
+2. Create a new `vars.yml` file for the dedicated instance
+3. Edit the existing `vars.yml` file for the main host
 
-We recommend installing with public registration enabled at first, creating your first user account, and then disabling public registration (unless you need it).
+##### Adjust `hosts`
 
-It should be noted that disabling public signup with this variable merely disables the Sign-Up page in the web interface, but [does not actually disable signups due to a Lago bug](https://github.com/getlago/lago/issues/220).
+At first, you need to adjust `inventory/hosts` file to add a supplementary host for Lago. See [here](../running-multiple-instances.md#re-do-your-inventory-to-add-supplementary-hosts) for details.
 
+The content should be something like below. Make sure to replace `mash.example.com` with your hostname and `YOUR_SERVER_IP_ADDRESS_HERE` with the IP address of the host, respectively. The same IP address should be set to both, unless the Valkey instance will be served from a different machine.
 
-### Valkey
+```ini
+[mash_servers]
+[mash_servers:children]
+mash_example_com
 
-As described on the [Valkey](valkey.md) documentation page, if you're hosting additional services which require KeyDB on the same server, you'd better go for installing a separate Valkey instance for each service. See [Creating a Valkey instance dedicated to Lago](#creating-a-valkey-instance-dedicated-to-lago).
-
-If you're only running Lago on this server and don't need to use KeyDB for anything else, you can [use a single Valkey instance](#using-the-shared-valkey-instance-for-lago).
-
-#### Using the shared Valkey instance for Lago
-
-To install a single (non-dedicated) Valkey instance (`mash-valkey`) and hook Lago to it, add the following **additional** configuration:
-
-```yaml
-########################################################################
-#                                                                      #
-# valkey                                                               #
-#                                                                      #
-########################################################################
-
-valkey_enabled: true
-
-########################################################################
-#                                                                      #
-# /valkey                                                              #
-#                                                                      #
-########################################################################
-
-
-########################################################################
-#                                                                      #
-# lago                                                                 #
-#                                                                      #
-########################################################################
-
-# Base configuration as shown above
-
-# Point Lago to the shared Valkey instance
-lago_redis_hostname: "{{ valkey_identifier }}"
-
-# Make sure the Lago service (mash-lago.service) starts after the shared KeyDB service (mash-valkey.service)
-lago_api_systemd_required_services_list_custom:
-  - "{{ valkey_identifier }}.service"
-
-# Make sure the Lago container is connected to the container network of the shared KeyDB service (mash-valkey)
-lago_api_container_additional_networks_custom:
-  - "{{ valkey_identifier }}"
-
-########################################################################
-#                                                                      #
-# /lago                                                                #
-#                                                                      #
-########################################################################
+[mash_example_com]
+mash.example.com ansible_host=YOUR_SERVER_IP_ADDRESS_HERE
+mash.example.com-lago-deps ansible_host=YOUR_SERVER_IP_ADDRESS_HERE
+…
 ```
 
-This will create a `mash-valkey` Valkey instance on this host.
+`mash_example_com` can be any string and does not have to match with the hostname.
 
-This is only recommended if you won't be installing other services which require KeyDB. Alternatively, go for [Creating a Valkey instance dedicated to Lago](#creating-a-valkey-instance-dedicated-to-lago).
+You can just add an entry for the supplementary host to `[mash_example_com]` if there are other entries there already.
 
-#### Creating a Valkey instance dedicated to Lago
+##### Create `vars.yml` for the dedicated instance
 
-The following instructions are based on the [Running multiple instances of the same service on the same host](../running-multiple-instances.md) documentation.
+Then, create a new directory where `vars.yml` for the supplementary host is stored. If `mash.example.com` is your main host, name the directory as `mash.example.com-lago-deps`. Its path therefore will be `inventory/host_vars/mash.example.com-lago-deps`.
 
-Adjust your `inventory/hosts` file as described in [Re-do your inventory to add supplementary hosts](../running-multiple-instances.md#re-do-your-inventory-to-add-supplementary-hosts), adding a new supplementary host (e.g. if `lago.example.com` is your main one, create `lago.example.com-deps`).
+After creating the directory, add a new `vars.yml` file inside it with a content below. It will have running the playbook create a `mash-lago-valkey` instance on the new host, setting `/mash/lago-valkey` to the base directory of the dedicated Valkey instance.
 
-Then, create a new `vars.yml` file for the
-
-`inventory/host_vars/lago.example.com-deps/vars.yml`:
+**Notes**:
+- As this `vars.yml` file will be used for the new host, make sure to set `mash_playbook_generic_secret_key`. It does not need to be same as the one on `vars.yml` for the main host. Without setting it, the Valkey instance will not be configured.
+- Since these variables are used to configure the service name and directory path of the Valkey instance, you do not have to have them matched with the hostname of the server. For example, even if the hostname is `www.example.com`, you do **not** need to set `mash_playbook_service_base_directory_name_prefix` to `www-`. If you are not sure which string you should set, you might as well use the values as they are.
 
 ```yaml
 ---
@@ -139,7 +112,6 @@ Then, create a new `vars.yml` file for the
 ########################################################################
 
 # Put a strong secret below, generated with `pwgen -s 64 1` or in another way
-# Various other secrets will be derived from this secret automatically.
 mash_playbook_generic_secret_key: ''
 
 # Override service names and directory path prefixes
@@ -168,42 +140,109 @@ valkey_enabled: true
 ########################################################################
 ```
 
-This will create a `mash-lago-valkey` instance on this host with its data in `/mash/lago-valkey`.
+##### Edit the main `vars.yml` file
 
-Then, adjust your main inventory host's variables file (`inventory/host_vars/lago.example.com/vars.yml`) like this:
+Having configured `vars.yml` for the dedicated instance, add the following configuration to `vars.yml` for the main host, whose path should be `inventory/host_vars/mash.example.com/vars.yml` (replace `mash.example.com` with yours).
 
 ```yaml
 ########################################################################
 #                                                                      #
-# lago                                                             #
+# lago                                                                 #
 #                                                                      #
 ########################################################################
 
-# Base configuration as shown above
+# Add the base configuration as specified above
 
 # Point Lago to its dedicated Valkey instance
 lago_redis_hostname: mash-lago-valkey
 
-# Make sure the Lago service (mash-lago.service) starts after its dedicated KeyDB service (mash-lago-valkey.service)
+# Make sure the Lago service (mash-lago.service) starts after its dedicated Valkey service (mash-lago-valkey.service)
 lago_api_systemd_required_services_list_custom:
   - "mash-lago-valkey.service"
 
-# Make sure the Lago container is connected to the container network of its dedicated KeyDB service (mash-lago-valkey)
+# Make sure the Lago container is connected to the container network of its dedicated Valkey service (mash-lago-valkey)
 lago_api_container_additional_networks_custom:
   - "mash-lago-valkey"
 
 ########################################################################
 #                                                                      #
-# /lago                                                            #
+# /lago                                                                #
 #                                                                      #
 ########################################################################
 ```
 
+Running the installation command will create the dedicated Valkey instance named `mash-lago-valkey`.
+
+#### Setting up a shared Valkey instance
+
+If you host only Lago on this server, it is fine to set up a single shared Valkey instance.
+
+To install the single instance and hook Lago to it, add the following configuration to `inventory/host_vars/mash.example.com/vars.yml`:
+
+```yaml
+########################################################################
+#                                                                      #
+# valkey                                                               #
+#                                                                      #
+########################################################################
+
+valkey_enabled: true
+
+########################################################################
+#                                                                      #
+# /valkey                                                              #
+#                                                                      #
+########################################################################
+
+
+########################################################################
+#                                                                      #
+# lago                                                                 #
+#                                                                      #
+########################################################################
+
+# Add the base configuration as specified above
+
+# Point Lago to the shared Valkey instance
+lago_redis_hostname: "{{ valkey_identifier }}"
+
+# Make sure the Lago service (mash-lago.service) starts after the shared Valkey service (mash-valkey.service)
+lago_api_systemd_required_services_list_custom:
+  - "{{ valkey_identifier }}.service"
+
+# Make sure the Lago container is connected to the container network of the shared Valkey service (mash-valkey)
+lago_api_container_additional_networks_custom:
+  - "{{ valkey_identifier }}"
+
+########################################################################
+#                                                                      #
+# /lago                                                                #
+#                                                                      #
+########################################################################
+```
+
+Running the installation command will create the shared Valkey instance named `mash-valkey`.
+
+### Configure authentication
+
+By default, the Lago instance allows anyone to sign up from the web interface.
+
+We recommend installing with registration open to public at first to create your first user. After creating the user, you can disable public registration by adding the following configuration to `vars.yml`:
+
+```yaml
+lago_front_environment_variable_lago_disable_signup: true
+```
+
+## Installation
+
+If you have decided to install the dedicated Valkey instance for Lago, make sure to run the [installing](../installing.md) command for the supplementary host (`mash.example.com-lago-deps`) first, before running it for the main host (`mash.example.com`).
+
+Note that running the `just` commands for installation (`just install-all` or `just setup-all`) automatically takes care of the order. See [here](../running-multiple-instances.md#re-do-your-inventory-to-add-supplementary-hosts) for more details about it.
 
 ## Usage
 
-After installation, you can go to the Lago URL, as defined in `lago_hostname`.
+After installation, your Lago instance becomes available at the URL specified with `lago_hostname`.
 
-As mentioned in [Authentication](#authentication) above, you can create the first user from the web interface.
+To log in to the service and get started, you need to create a user from the web interface.
 
-If you'd like to prevent other users from registering, consider disabling public registration by removing the `lago_front_environment_variable_lago_disable_signup` references from your configuration and re-running the playbook (`just install-service lago`).
+After creating the first user, you can prevent others from registering by making registration closed. To do so, configure [authentication](#configure-authentication) and re-run the playbook: `just install-service lago`
