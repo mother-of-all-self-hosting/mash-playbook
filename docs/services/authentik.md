@@ -1,3 +1,10 @@
+<!--
+SPDX-FileCopyrightText: 2023 Julian-Samuel Gebühr
+SPDX-FileCopyrightText: 2023 - 2024 Slavi Pantaleev
+
+SPDX-License-Identifier: AGPL-3.0-or-later
+-->
+
 # Authentik
 
 [authentik](https://goauthentik.io/) is an open-source Identity Provider focused on flexibility and versatility. MASH can install authentik with the [`mother-of-all-self-hosting/ansible-role-authentik`](https://github.com/mother-of-all-self-hosting/ansible-role-authentik) ansible role.
@@ -191,5 +198,3 @@ After installation, you can set the admin password at `https://<authentik_hostna
 
 * [Grafana](./grafana.md#single-sign-on-authentik)
 * [Nextcloud](./nextcloud.md#single-sign-on-authentik)
-
-
