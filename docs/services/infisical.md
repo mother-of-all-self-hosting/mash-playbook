@@ -49,13 +49,7 @@ infisical_backend_environment_variable_encryption_key: ''
 ########################################################################
 ```
 
-
-### URL
-
-In the example configuration above, we configure the service to be hosted at `https://infisical.example.com`.
-
-Hosting Infisical under a subpath (by configuring the `infisical_path_prefix` variable) does not seem to be possible right now, due to Infisical limitations.
-
+**Note**: hosting Infisical under a subpath (by configuring the `infisical_path_prefix` variable) does not seem to be possible right now, due to Infisical limitations.
 
 ### Authentication
 
