@@ -1,5 +1,6 @@
 <!--
-SPDX-FileCopyrightText: 2023 Slavi Pantaleev
+SPDX-FileCopyrightText: 2023 Julian-Samuel Gebühr
+SPDX-FileCopyrightText: 2023 - 2024 Slavi Pantaleev
 SPDX-FileCopyrightText: 2025 Suguru Hirahara
 
 SPDX-License-Identifier: AGPL-3.0-or-later
@@ -252,6 +253,11 @@ infisical_backend_environment_variable_smtp_name: Infisical
 
 For additional SMTP-related variables, consult the [`defaults/main.yml` file](https://github.com/mother-of-all-self-hosting/ansible-role-infisical/blob/main/defaults/main.yml) in the [ansible-role-infisical](https://github.com/mother-of-all-self-hosting/ansible-role-infisical) Ansible role.
 
+## Installation
+
+If you have decided to install the dedicated Valkey instance for authentik, make sure to run the [installing](../installing.md) command for the supplementary host (`mash.example.com-authentik-deps`) first, before running it for the main host (`mash.example.com`).
+
+Note that running the `just` commands for installation (`just install-all` or `just setup-all`) automatically takes care of the order. See [here](../running-multiple-instances.md#re-do-your-inventory-to-add-supplementary-hosts) for more details about it.
 
 ## Usage
 
