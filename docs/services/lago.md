@@ -55,15 +55,6 @@ lago_front_environment_variable_lago_disable_signup: false
 - Hosting Lago under a subpath (by configuring the `infisical_path_prefix` variable) does not seem to be possible right now, due to Lago limitations.
 - Our setup hosts the Lago frontend at the root path (`/`) and the Lago API at the `/api` prefix. This seems to work well, except for [PDF invoices failing due to a Lago bug](https://github.com/getlago/lago/issues/221).
 
-### Authentication
-
-Public registration can be enabled/disabled using the `lago_front_environment_variable_lago_disable_signup` variable.
-
-We recommend installing with public registration enabled at first, creating your first user account, and then disabling public registration (unless you need it).
-
-It should be noted that disabling public signup with this variable merely disables the Sign-Up page in the web interface, but [does not actually disable signups due to a Lago bug](https://github.com/getlago/lago/issues/220).
-
-
 ### Valkey
 
 As described on the [Valkey](valkey.md) documentation page, if you're hosting additional services which require KeyDB on the same server, you'd better go for installing a separate Valkey instance for each service. See [Creating a Valkey instance dedicated to Lago](#creating-a-valkey-instance-dedicated-to-lago).
@@ -199,6 +190,14 @@ lago_api_container_additional_networks_custom:
 #                                                                      #
 ########################################################################
 ```
+
+### Authentication
+
+Public registration can be enabled/disabled using the `lago_front_environment_variable_lago_disable_signup` variable.
+
+We recommend installing with public registration enabled at first, creating your first user account, and then disabling public registration (unless you need it).
+
+It should be noted that disabling public signup with this variable merely disables the Sign-Up page in the web interface, but [does not actually disable signups due to a Lago bug](https://github.com/getlago/lago/issues/220).
 
 
 ## Usage
