@@ -52,7 +52,7 @@ lago_front_environment_variable_lago_disable_signup: false
 ```
 
 **Notes**:
-- Hosting Lago under a subpath (by configuring the `infisical_path_prefix` variable) does not seem to be possible right now, due to Lago limitations.
+- Hosting Lago under a subpath (by configuring the `lago_path_prefix` variable) does not seem to be possible right now, due to Lago limitations.
 - Our setup hosts the Lago frontend at the root path (`/`) and the Lago API at the `/api` prefix. This seems to work well, except for [PDF invoices failing due to a Lago bug](https://github.com/getlago/lago/issues/221).
 
 ### Configure Valkey
@@ -84,7 +84,7 @@ mash_example_com
 
 [mash_example_com]
 mash.example.com ansible_host=YOUR_SERVER_IP_ADDRESS_HERE
-mash.example.com-infisical-deps ansible_host=YOUR_SERVER_IP_ADDRESS_HERE
+mash.example.com-lago-deps ansible_host=YOUR_SERVER_IP_ADDRESS_HERE
 …
 ```
 
@@ -94,9 +94,9 @@ You can just add an entry for the supplementary host to `[mash_example_com]` if 
 
 ##### Create `vars.yml` for the dedicated instance
 
-Then, create a new directory where `vars.yml` for the supplementary host is stored. If `mash.example.com` is your main host, name the directory as `mash.example.com-infisical-deps`. Its path therefore will be `inventory/host_vars/mash.example.com-infisical-deps`.
+Then, create a new directory where `vars.yml` for the supplementary host is stored. If `mash.example.com` is your main host, name the directory as `mash.example.com-lago-deps`. Its path therefore will be `inventory/host_vars/mash.example.com-lago-deps`.
 
-After creating the directory, add a new `vars.yml` file inside it with a content below. It will have running the playbook create a `mash-infisical-valkey` instance on the new host, setting `/mash/infisical-valkey` to the base directory of the dedicated Valkey instance.
+After creating the directory, add a new `vars.yml` file inside it with a content below. It will have running the playbook create a `mash-lago-valkey` instance on the new host, setting `/mash/lago-valkey` to the base directory of the dedicated Valkey instance.
 
 **Notes**:
 - As this `vars.yml` file will be used for the new host, make sure to set `mash_playbook_generic_secret_key`. It does not need to be same as the one on `vars.yml` for the main host. Without setting it, the Valkey instance will not be configured.
@@ -171,7 +171,7 @@ lago_api_container_additional_networks_custom:
 ########################################################################
 ```
 
-Running the installation command will create the dedicated Valkey instance named `mash-infisical-valkey`.
+Running the installation command will create the dedicated Valkey instance named `mash-lago-valkey`.
 
 #### Setting up a shared Valkey instance
 
@@ -235,14 +235,14 @@ lago_front_environment_variable_lago_disable_signup: true
 
 ## Installation
 
-If you have decided to install the dedicated Valkey instance for Lago, make sure to run the [installing](../installing.md) command for the supplementary host (`mash.example.com-infisical-deps`) first, before running it for the main host (`mash.example.com`).
+If you have decided to install the dedicated Valkey instance for Lago, make sure to run the [installing](../installing.md) command for the supplementary host (`mash.example.com-lago-deps`) first, before running it for the main host (`mash.example.com`).
 
 Note that running the `just` commands for installation (`just install-all` or `just setup-all`) automatically takes care of the order. See [here](../running-multiple-instances.md#re-do-your-inventory-to-add-supplementary-hosts) for more details about it.
 
 ## Usage
 
-After installation, your Lago instance becomes available at the URL specified with `infisical_hostname`.
+After installation, your Lago instance becomes available at the URL specified with `lago_hostname`.
 
 To log in to the service and get started, you need to create a user from the web interface.
 
-After creating the first user, you can prevent others from registering by making registration closed. To do so, configure [authentication](#configure-authentication) and re-run the playbook: `just install-service infisical`
+After creating the first user, you can prevent others from registering by making registration closed. To do so, configure [authentication](#configure-authentication) and re-run the playbook: `just install-service lago`
