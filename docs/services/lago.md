@@ -55,11 +55,13 @@ lago_front_environment_variable_lago_disable_signup: false
 - Hosting Lago under a subpath (by configuring the `infisical_path_prefix` variable) does not seem to be possible right now, due to Lago limitations.
 - Our setup hosts the Lago frontend at the root path (`/`) and the Lago API at the `/api` prefix. This seems to work well, except for [PDF invoices failing due to a Lago bug](https://github.com/getlago/lago/issues/221).
 
-### Valkey
+### Configure Valkey
 
-As described on the [Valkey](valkey.md) documentation page, if you're hosting additional services which require KeyDB on the same server, you'd better go for installing a separate Valkey instance for each service. See [Creating a Valkey instance dedicated to Lago](#creating-a-valkey-instance-dedicated-to-lago).
+Infisical requires a Valkey data-store to work. This playbook supports it, and you can set up a Valkey instance by enabling it on `vars.yml`.
 
-If you're only running Lago on this server and don't need to use KeyDB for anything else, you can [use a single Valkey instance](#using-the-shared-valkey-instance-for-lago).
+If Infisical is the sole service which requires Valkey on your server, it is fine to set up just a single Valkey instance. However, **it is not recommended if there are other services which require it, because sharing the Valkey instance has security concerns and possibly causes data conflicts**, as described on the [documentation for configuring Valkey](valkey.md). In this case, you should install a dedicated Valkey instance for each of them.
+
+If you are unsure whether you will install other services along with Infisical or you have already set up services which need Valkey, it is recommended to install a Valkey instance dedicated to Infisical. See [below](#setting-up-a-shared-valkey-instance) for an instruction to install a shared instance.
 
 #### Using the shared Valkey instance for Lago
 
