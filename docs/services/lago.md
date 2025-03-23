@@ -1,5 +1,7 @@
 <!--
+SPDX-FileCopyrightText: 2023 Julian-Samuel Gebühr
 SPDX-FileCopyrightText: 2023 - 2024 Slavi Pantaleev
+SPDX-FileCopyrightText: 2025 Suguru Hirahara
 
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->
@@ -14,13 +16,13 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 This service requires the following other services:
 
 - a [Postgres](postgres.md) database
-- a [Valkey](valkey.md) data-store, installation details [below](#valkey)
 - a [Traefik](traefik.md) reverse-proxy server
+- a [Valkey](valkey.md) data-store; see [below](#configure-valkey) for details about installation
 
 
 ## Configuration
 
-To enable this service, add the following configuration to your `vars.yml` file and re-run the [installation](../installing.md) process:
+To enable this service, add the following configuration to your `vars.yml` file:
 
 ```yaml
 ########################################################################
@@ -49,16 +51,9 @@ lago_front_environment_variable_lago_disable_signup: false
 ########################################################################
 ```
 
-
-### URL
-
-In the example configuration above, we configure the service to be hosted at `https://lago.example.com`.
-
-Hosting Lago under a subpath (by configuring the `lago_path_prefix` variable) does not seem to be possible right now, due to Lago limitations.
-
-Our setup hosts the Lago frontend at the root path (`/`) and the Lago API at the `/api` prefix.
-This seems to work well, except for [PDF invoices failing due to a Lago bug](https://github.com/getlago/lago/issues/221).
-
+**Notes**:
+- Hosting Lago under a subpath (by configuring the `infisical_path_prefix` variable) does not seem to be possible right now, due to Lago limitations.
+- Our setup hosts the Lago frontend at the root path (`/`) and the Lago API at the `/api` prefix. This seems to work well, except for [PDF invoices failing due to a Lago bug](https://github.com/getlago/lago/issues/221).
 
 ### Authentication
 
