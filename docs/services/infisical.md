@@ -51,12 +51,6 @@ infisical_backend_environment_variable_encryption_key: ''
 
 **Note**: hosting Infisical under a subpath (by configuring the `infisical_path_prefix` variable) does not seem to be possible right now, due to Infisical limitations.
 
-### Authentication
-
-Public registration can be enabled/disabled using the `infisical_backend_environment_variable_invite_only_signup` variable.
-
-We recommend installing with public registration enabled at first (which is the default value for this variable), creating your first user account, and then disabling public registration by explicitly setting `infisical_backend_environment_variable_invite_only_signup` to `true`. Enabling invite-only signup requires that you configure [Email configuration](#email-configuration)
-
 ### Configure Valkey
 
 Infisical requires a Valkey data-store to work. This playbook supports it, and you can set up a Valkey instance by enabling it on `vars.yml`.
@@ -227,9 +221,15 @@ infisical_container_additional_networks_custom:
 
 Running the installation command will create the shared Valkey instance named `mash-valkey`.
 
-### Email configuration
+### Configure authentication
 
-As described in the Infisical documentation about [Email](https://infisical.com/docs/self-hosting/configuration/email), some important functionality requires email-sending to be configured.
+Public registration can be enabled/disabled using the `infisical_backend_environment_variable_invite_only_signup` variable.
+
+We recommend installing with public registration enabled at first (which is the default value for this variable), creating your first user account, and then disabling public registration by explicitly setting `infisical_backend_environment_variable_invite_only_signup` to `true`. Enabling invite-only signup requires the mailer to be configured with the settings below.
+
+### Configure the mailer
+
+As described in the Infisical documentation about [email](https://infisical.com/docs/self-hosting/configuration/email), some important functionality requires email-sending to be configured.
 
 Here are some additional variables you can add to your `vars.yml` file:
 
@@ -257,6 +257,6 @@ Note that running the `just` commands for installation (`just install-all` or `j
 
 After installation, you can go to the Infisical URL, as defined in `infisical_hostname`.
 
-As mentioned in [Authentication](#authentication) above, you can create the first user from the web interface.
+As mentioned in [Authentication](#configure-authentication) above, you can create the first user from the web interface.
 
-If you'd like to prevent other users from registering, consider disabling public registration as described in the [Authentication](#authentication) section and re-running the playbook (`just install-service infisical`).
+If you'd like to prevent other users from registering, consider disabling public registration as described in the [Authentication](#configure-authentication) section and re-running the playbook (`just install-service infisical`).
