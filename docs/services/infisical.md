@@ -70,9 +70,11 @@ If authentik is the sole service which requires Valkey on your server, it is fin
 
 If you are unsure whether you will install other services along with authentik or you have already set up services which need Valkey, it is recommended to install a Valkey instance dedicated to authentik. See [below](#setting-up-a-shared-valkey-instance) for an instruction to install a shared instance.
 
-Using the shared Valkey instance for Infisical
+#### Setting up a shared Valkey instance
 
-To install a single (non-dedicated) Valkey instance (mash-valkey) and hook Infisical to it, add the following additional configuration:
+If you host only authentik on this server, it is fine to set up a single shared Valkey instance.
+
+To install the single instance and hook authentik to it, add the following configuration to `inventory/host_vars/mash.example.com/vars.yml`:
 
 ```yaml
 ########################################################################
@@ -96,7 +98,7 @@ valkey_enabled: true
 #                                                                      #
 ########################################################################
 
-# Base configuration as shown above
+# Add the base configuration as specified above
 
 # Point Infisical to the shared Valkey instance
 infisical_environment_variable_redis_host: "{{ valkey_identifier }}"
@@ -117,9 +119,8 @@ infisical_container_additional_networks_custom:
 ########################################################################
 ```
 
-This will create a mash-valkey Valkey instance on this host.
+Running the installation command will create the shared Valkey instance named `mash-valkey`.
 
-This is only recommended if you won't be installing other services which require Valkey. Alternatively, go for Creating a Valkey instance dedicated to Infisical.
 Creating a Valkey instance dedicated to Infisical
 
 The following instructions are based on the Running multiple instances of the same service on the same host documentation.
