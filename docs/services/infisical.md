@@ -1,5 +1,6 @@
 <!--
 SPDX-FileCopyrightText: 2023 Slavi Pantaleev
+SPDX-FileCopyrightText: 2025 Suguru Hirahara
 
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->
@@ -15,12 +16,12 @@ This service requires the following other services:
 
 - a [MongoDB](mongodb.md) document-oriented database server
 - a [Traefik](traefik.md) reverse-proxy server
-- a [Valkey](valkey.md) data-store, installation details [below](#valkey)
+- a [Valkey](valkey.md) data-store; see [below](#configure-valkey) for details about installation
 
 
 ## Configuration
 
-To enable this service, add the following configuration to your `vars.yml` file and re-run the [installation](../installing.md) process:
+To enable this service, add the following configuration to your `vars.yml` file:
 
 ```yaml
 ########################################################################
@@ -61,12 +62,14 @@ Public registration can be enabled/disabled using the `infisical_backend_environ
 
 We recommend installing with public registration enabled at first (which is the default value for this variable), creating your first user account, and then disabling public registration by explicitly setting `infisical_backend_environment_variable_invite_only_signup` to `true`. Enabling invite-only signup requires that you configure [Email configuration](#email-configuration)
 
+### Configure Valkey
 
-### Valkey
+authentik requires a Valkey data-store to work. This playbook supports it, and you can set up a Valkey instance by enabling it on `vars.yml`.
 
-As described on the Valkey documentation page, if you're hosting additional services which require Valkey on the same server, you'd better go for installing a separate Valkey instance for each service. See Creating a Valkey instance dedicated to Infisical.
+If authentik is the sole service which requires Valkey on your server, it is fine to set up just a single Valkey instance. However, **it is not recommended if there are other services which require it, because sharing the Valkey instance has security concerns and possibly causes data conflicts**, as described on the [documentation for configuring Valkey](valkey.md). In this case, you should install a dedicated Valkey instance for each of them.
 
-If you're only running Infisical on this server and don't need to use Valkey for anything else, you can use a single Valkey instance.
+If you are unsure whether you will install other services along with authentik or you have already set up services which need Valkey, it is recommended to install a Valkey instance dedicated to authentik. See [below](#setting-up-a-shared-valkey-instance) for an instruction to install a shared instance.
+
 Using the shared Valkey instance for Infisical
 
 To install a single (non-dedicated) Valkey instance (mash-valkey) and hook Infisical to it, add the following additional configuration:
