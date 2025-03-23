@@ -241,8 +241,8 @@ Note that running the `just` commands for installation (`just install-all` or `j
 
 ## Usage
 
-After installation, you can go to the Lago URL, as defined in `lago_hostname`.
+After installation, your Infisical instance becomes available at the URL specified with `infisical_hostname`.
 
-As mentioned in [Authentication](#authentication) above, you can create the first user from the web interface.
+To log in to the service and get started, you need to create a user from the web interface.
 
-If you'd like to prevent other users from registering, consider disabling public registration by removing the `lago_front_environment_variable_lago_disable_signup` references from your configuration and re-running the playbook (`just install-service lago`).
+After creating the first user, you can prevent others from registering by making registration closed. To do so, configure [authentication](#configure-authentication) and re-run the playbook: `just install-service infisical`
