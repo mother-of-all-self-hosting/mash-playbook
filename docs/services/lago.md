@@ -191,11 +191,15 @@ lago_api_container_additional_networks_custom:
 ########################################################################
 ```
 
-### Authentication
+### Configure authentication
 
-Public registration can be enabled/disabled using the `lago_front_environment_variable_lago_disable_signup` variable.
+By default, the Lago instance allows anyone to sign up from the web interface.
 
-We recommend installing with public registration enabled at first, creating your first user account, and then disabling public registration (unless you need it).
+We recommend installing with registration open to public at first to create your first user. After creating the user, you can disable public registration by adding the following configuration to `vars.yml`:
+
+```yaml
+lago_front_environment_variable_lago_disable_signup: true
+```
 
 ## Usage
 
