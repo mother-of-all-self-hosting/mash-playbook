@@ -161,6 +161,8 @@ After creating the directory, add a new `vars.yml` file inside it with a content
 - Since these variables are used to configure the service name and directory path of the Valkey instance, you do not have to have them matched with the hostname of the server. For example, even if the hostname is `www.example.com`, you do **not** need to set `mash_playbook_service_base_directory_name_prefix` to `www-`. If you are not sure which string you should set, you might as well use the values as they are.
 
 ```yaml
+---
+
 ########################################################################
 #                                                                      #
 # Playbook                                                             #
