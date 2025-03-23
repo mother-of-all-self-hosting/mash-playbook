@@ -223,15 +223,21 @@ Running the installation command will create the shared Valkey instance named `m
 
 ### Configure authentication
 
-Public registration can be enabled/disabled using the `infisical_backend_environment_variable_invite_only_signup` variable.
+By default, the Infisical instance allows anyone to sign up from the web interface.
 
-We recommend installing with public registration enabled at first (which is the default value for this variable), creating your first user account, and then disabling public registration by explicitly setting `infisical_backend_environment_variable_invite_only_signup` to `true`. Enabling invite-only signup requires the mailer to be configured with the settings below.
+We recommend installing with registration open to public at first to create your first user. After creating the user, you can disable public registration by adding the following configuration to `vars.yml`:
+
+```yaml
+infisical_backend_environment_variable_invite_only_signup: true
+```
+
+Note that enabling invite-only registration requires the mailer to be configured with the settings below.
 
 ### Configure the mailer
 
 As described in the Infisical documentation about [email](https://infisical.com/docs/self-hosting/configuration/email), some important functionality requires email-sending to be configured.
 
-Here are some additional variables you can add to your `vars.yml` file:
+To enable the mailer function, add the following configuration to your `vars.yml` file:
 
 ```yaml
 infisical_backend_environment_variable_smtp_host: smtp.example.com
@@ -255,8 +261,8 @@ Note that running the `just` commands for installation (`just install-all` or `j
 
 ## Usage
 
-After installation, you can go to the Infisical URL, as defined in `infisical_hostname`.
+After installation, your Infisical instance becomes available at the URL specified with `infisical_hostname`.
 
-As mentioned in [Authentication](#configure-authentication) above, you can create the first user from the web interface.
+To log in to the service and get started, you need to create a user from the web interface.
 
-If you'd like to prevent other users from registering, consider disabling public registration as described in the [Authentication](#configure-authentication) section and re-running the playbook (`just install-service infisical`).
+After creating the first user, you can prevent others from registering by making registration invite-only. To do so, configure [authentication](#configure-authentication) and re-run the playbook: `just install-service infisical`
