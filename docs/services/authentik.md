@@ -1,6 +1,7 @@
 <!--
 SPDX-FileCopyrightText: 2023 Julian-Samuel Gebühr
 SPDX-FileCopyrightText: 2023 - 2024 Slavi Pantaleev
+SPDX-FileCopyrightText: 2025 Suguru Hirahara
 
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->
@@ -18,13 +19,13 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 This service requires the following other services:
 
 - a [Postgres](postgres.md) database
-- a [Valkey](valkey.md) data-store, installation details [below](#valkey)
+- a [Valkey](valkey.md) data-store; see [below](#configure-valkey) for details about installation
 - a [Traefik](traefik.md) reverse-proxy server
 
 
 ## Configuration
 
-To enable this service, add the following configuration to your `vars.yml` file and re-run the [installation](../installing.md) process:
+To enable this service, add the following configuration to your `vars.yml` file:
 
 ```yaml
 ########################################################################
@@ -49,11 +50,13 @@ authentik_secret_key: ''
 ########################################################################
 ```
 
-### Valkey
+### Configure Valkey
 
-As described on the [Valkey](valkey.md) documentation page, if you're hosting additional services which require KeyDB on the same server, you'd better go for installing a separate Valkey instance for each service. See [Creating a Valkey instance dedicated to authentik](#creating-a-valkey-instance-dedicated-to-authentik).
+Funkwhale requires a Valkey data-store to work. This playbook supports it, and you can set up a Valkey instance by enabling it on `vars.yml`.
 
-If you're only running authentik on this server and don't need to use KeyDB for anything else, you can [use a single Valkey instance](#using-the-shared-valkey-instance-for-authentik).
+If Funkwhale is the sole service which requires Valkey on your server, it is fine to set up just a single Valkey instance. However, **it is not recommended if there are other services which require it, because sharing the Valkey instance has security concerns and possibly causes data conflicts**, as described on the [documentation for configuring Valkey](valkey.md). In this case, you should install a dedicated Valkey instance for each of them.
+
+If you are unsure whether you will install other services along with Funkwhale or you have already set up services which need Valkey, it is recommended to install a Valkey instance dedicated to Funkwhale. See [below](#setting-up-a-shared-valkey-instance) for an instruction to install a shared instance.
 
 #### Using the shared Valkey instance for authentik
 
