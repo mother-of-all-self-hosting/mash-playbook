@@ -142,7 +142,7 @@ mash_example_com
 
 [mash_example_com]
 mash.example.com ansible_host=YOUR_SERVER_IP_ADDRESS_HERE
-mash.example.com-authentik-deps ansible_host=YOUR_SERVER_IP_ADDRESS_HERE
+mash.example.com-infisical-deps ansible_host=YOUR_SERVER_IP_ADDRESS_HERE
 …
 ```
 
@@ -152,9 +152,9 @@ You can just add an entry for the supplementary host to `[mash_example_com]` if 
 
 ##### Create `vars.yml` for the dedicated instance
 
-Then, create a new directory where `vars.yml` for the supplementary host is stored. If `mash.example.com` is your main host, name the directory as `mash.example.com-authentik-deps`. Its path therefore will be `inventory/host_vars/mash.example.com-authentik-deps`.
+Then, create a new directory where `vars.yml` for the supplementary host is stored. If `mash.example.com` is your main host, name the directory as `mash.example.com-infisical-deps`. Its path therefore will be `inventory/host_vars/mash.example.com-infisical-deps`.
 
-After creating the directory, add a new `vars.yml` file inside it with a content below. It will have running the playbook create a `mash-authentik-valkey` instance on the new host, setting `/mash/authentik-valkey` to the base directory of the dedicated Valkey instance.
+After creating the directory, add a new `vars.yml` file inside it with a content below. It will have running the playbook create a `mash-infisical-valkey` instance on the new host, setting `/mash/infisical-valkey` to the base directory of the dedicated Valkey instance.
 
 **Notes**:
 - As this `vars.yml` file will be used for the new host, make sure to set `mash_playbook_generic_secret_key`. It does not need to be same as the one on `vars.yml` for the main host. Without setting it, the Valkey instance will not be configured.
@@ -230,7 +230,7 @@ infisical_container_additional_networks_custom:
 ########################################################################
 ```
 
-Running the installation command will create the dedicated Valkey instance named `mash-authentik-valkey`.
+Running the installation command will create the dedicated Valkey instance named `mash-infisical-valkey`.
 
 ### Email configuration
 
