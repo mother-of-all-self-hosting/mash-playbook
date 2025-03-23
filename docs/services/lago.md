@@ -197,9 +197,6 @@ Public registration can be enabled/disabled using the `lago_front_environment_va
 
 We recommend installing with public registration enabled at first, creating your first user account, and then disabling public registration (unless you need it).
 
-It should be noted that disabling public signup with this variable merely disables the Sign-Up page in the web interface, but [does not actually disable signups due to a Lago bug](https://github.com/getlago/lago/issues/220).
-
-
 ## Usage
 
 After installation, you can go to the Lago URL, as defined in `lago_hostname`.
