@@ -233,6 +233,12 @@ We recommend installing with registration open to public at first to create your
 lago_front_environment_variable_lago_disable_signup: true
 ```
 
+## Installation
+
+If you have decided to install the dedicated Valkey instance for Infisical, make sure to run the [installing](../installing.md) command for the supplementary host (`mash.example.com-infisical-deps`) first, before running it for the main host (`mash.example.com`).
+
+Note that running the `just` commands for installation (`just install-all` or `just setup-all`) automatically takes care of the order. See [here](../running-multiple-instances.md#re-do-your-inventory-to-add-supplementary-hosts) for more details about it.
+
 ## Usage
 
 After installation, you can go to the Lago URL, as defined in `lago_hostname`.
