@@ -235,7 +235,7 @@ Note that enabling invite-only registration requires the mailer to be configured
 
 ### Configure the mailer
 
-As described in the Infisical documentation about [email](https://infisical.com/docs/self-hosting/configuration/email), some important functionality requires email-sending to be configured.
+As described in the Infisical documentation about [email](https://infisical.com/docs/self-hosting/configuration/email), Infisical requires the mailer (SMTP server) for important functionality such as user registration.
 
 To enable the mailer function, add the following configuration to your `vars.yml` file:
 
