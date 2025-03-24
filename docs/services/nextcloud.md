@@ -56,17 +56,17 @@ You can remove the `nextcloud_path_prefix` variable definition, to make it defau
 
 Valkey can **optionally** be enabled to improve Nextcloud performance.
 
-If Infisical is the sole service which requires Valkey on your server, it is fine to set up just a single Valkey instance. However, **it is not recommended if there are other services which require it, because sharing the Valkey instance has security concerns and possibly causes data conflicts**, as described on the [documentation for configuring Valkey](valkey.md). In this case, you should install a dedicated Valkey instance for each of them.
+If Nextcloud is the sole service which requires Valkey on your server, it is fine to set up just a single Valkey instance. However, **it is not recommended if there are other services which require it, because sharing the Valkey instance has security concerns and possibly causes data conflicts**, as described on the [documentation for configuring Valkey](valkey.md). In this case, you should install a dedicated Valkey instance for each of them.
 
-If you are unsure whether you will install other services along with Infisical or you have already set up services which need Valkey, it is recommended to install a Valkey instance dedicated to Infisical. See [below](#setting-up-a-shared-valkey-instance) for an instruction to install a shared instance.
+If you are unsure whether you will install other services along with Nextcloud or you have already set up services which need Valkey, it is recommended to install a Valkey instance dedicated to Nextcloud. See [below](#setting-up-a-shared-valkey-instance) for an instruction to install a shared instance.
 
 💡 It is dubious whether using Valkey helps much, so we recommend that you **start without** it for a simpler deployment. To learn more, read the [Memory caching](https://docs.nextcloud.com/server/latest/admin_manual/configuration_server/caching_configuration.html) section of the Nextcloud documentation.
 
 #### Setting up a shared Valkey instance
 
-If you host only Infisical on this server, it is fine to set up a single shared Valkey instance.
+If you host only Nextcloud on this server, it is fine to set up a single shared Valkey instance.
 
-To install the single instance and hook Infisical to it, add the following configuration to `inventory/host_vars/mash.example.com/vars.yml`:
+To install the single instance and hook Nextcloud to it, add the following configuration to `inventory/host_vars/mash.example.com/vars.yml`:
 
 ```yaml
 ########################################################################
@@ -114,7 +114,7 @@ Running the installation command will create the shared Valkey instance named `m
 
 #### Setting up a dedicated Valkey instance
 
-To create a dedicated instance for Infisical, you can follow the steps below:
+To create a dedicated instance for Nextcloud, you can follow the steps below:
 
 1. Adjust the `hosts` file
 2. Create a new `vars.yml` file for the dedicated instance
@@ -122,7 +122,7 @@ To create a dedicated instance for Infisical, you can follow the steps below:
 
 ##### Adjust `hosts`
 
-At first, you need to adjust `inventory/hosts` file to add a supplementary host for Infisical. See [here](../running-multiple-instances.md#re-do-your-inventory-to-add-supplementary-hosts) for details.
+At first, you need to adjust `inventory/hosts` file to add a supplementary host for Nextcloud. See [here](../running-multiple-instances.md#re-do-your-inventory-to-add-supplementary-hosts) for details.
 
 The content should be something like below. Make sure to replace `mash.example.com` with your hostname and `YOUR_SERVER_IP_ADDRESS_HERE` with the IP address of the host, respectively. The same IP address should be set to both, unless the Valkey instance will be served from a different machine.
 
@@ -271,7 +271,7 @@ nextcloud_container_image_customizations_samba_enabled: true
 
 ## Installation
 
-If you have decided to install the dedicated Valkey instance for Infisical, make sure to run the [installing](../installing.md) command for the supplementary host (`mash.example.com-infisical-deps`) first, before running it for the main host (`mash.example.com`).
+If you have decided to install the dedicated Valkey instance for Nextcloud, make sure to run the [installing](../installing.md) command for the supplementary host (`mash.example.com-infisical-deps`) first, before running it for the main host (`mash.example.com`).
 
 Note that running the `just` commands for installation (`just install-all` or `just setup-all`) automatically takes care of the order. See [here](../running-multiple-instances.md#re-do-your-inventory-to-add-supplementary-hosts) for more details about it.
 
