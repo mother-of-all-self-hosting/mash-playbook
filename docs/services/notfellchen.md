@@ -217,15 +217,12 @@ If you have decided to install the dedicated Valkey instance for Funkwhale, make
 
 Note that running the `just` commands for installation (`just install-all` or `just setup-all`) automatically takes care of the order. See [here](../running-multiple-instances.md#re-do-your-inventory-to-add-supplementary-hosts) for more details about it.
 
-## Setting up the first user
-
-You need to create a first user (unless you import an existing database).
-You can do this conveniently by running
-
-```bash
-just run-tags notfellchen-add-superuser --extra-vars=username=USERNAME --extra-vars=password=PASSWORD --extra-vars=email=EMAIL
-```
-
 ## Usage
 
-After installation, you can go to the URL, as defined in `notfellchen_hostname`. Log in with the user credentials from above.
+After installation, your Funkwhale instance becomes available at the URL specified with `funkwhale_hostname`.
+
+To log in to the service and get started, you have to create a user ("superuser") at first. To do so, run the command below after replacing `USERNAME`, `PASSWORD`, and `EMAIL_ADDRESS`:
+
+```bash
+just run-tags funkwhale-add-superuser --extra-vars=username=USERNAME --extra-vars=password=PASSWORD --extra-vars=email=EMAIL_ADDRESS
+```
