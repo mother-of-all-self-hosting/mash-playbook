@@ -36,10 +36,8 @@ searxng_enabled: true
 
 searxng_instance_name: My Example Instance Name'
 
-searxng_hostname: searxng.example.com
-
-# If you want to server SearXNG under a subpath, you can specify it here.
-#searxng_path_prefix: '/'
+searxng_hostname: mash.example.com
+searxng_path_prefix: /searxng
 
 # Generate the secret key with "openssl rand -hex 32".
 searxng_secret_key: 'MY_SECRET_KEY'
@@ -50,10 +48,6 @@ searxng_secret_key: 'MY_SECRET_KEY'
 #                                                                      #
 ########################################################################
 ```
-
-In the example configuration above, we configure the service to be hosted at `https://searxng.example.com`.
-
-It is possible to host SearXNG under a subpath (by configuring the `searxng_path_prefix` variable).
 
 ### Configuring rate-limiting
 
@@ -246,3 +240,9 @@ searxng_basic_auth_password: 'my_password'
 If you have decided to install the dedicated Valkey instance for Lago, make sure to run the [installing](../installing.md) command for the supplementary host (`mash.example.com-lago-deps`) first, before running it for the main host (`mash.example.com`).
 
 Note that running the `just` commands for installation (`just install-all` or `just setup-all`) automatically takes care of the order. See [here](../running-multiple-instances.md#re-do-your-inventory-to-add-supplementary-hosts) for more details about it.
+
+## Usage
+
+After installation, your Lago instance becomes available at the URL specified with `searxng_hostname` and `searxng_path_prefix`. With the configuration above, the service is hosted at `https://mash.example.com/searxng`.
+
+If authentication is enabled, you can log in with the username and password specified with `searxng_basic_auth_username` and `searxng_basic_auth_password`.
