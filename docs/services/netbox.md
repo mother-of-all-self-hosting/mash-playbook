@@ -38,27 +38,12 @@ netbox_path_prefix: /netbox
 # Put a strong secret below, generated with `pwgen -s 64 1` or in another way
 netbox_environment_variable_secret_key: ''
 
-# The following superuser will be created upon launch.
-netbox_environment_variable_superuser_name: your_username_here
-netbox_environment_variable_superuser_email: your.email@example.com
-# Put a strong secret below, generated with `pwgen -s 64 1` or in another way.
-# Changing the password subsequently will not affect the user's password.
-netbox_environment_variable_superuser_password: ''
-
-# Valkey configuration, as described below
-
 ########################################################################
 #                                                                      #
 # /netbox                                                              #
 #                                                                      #
 ########################################################################
 ```
-
-### Authentication
-
-If `netbox_environment_variable_superuser_*` variables are specified, NetBox will try to create the user (if missing).
-
-[Single-Sign-On](#single-sign-on-sso-integration) is also supported.
 
 ### Configure Valkey
 
@@ -229,6 +214,21 @@ netbox_container_additional_networks_custom:
 ```
 
 Running the installation command will create the shared Valkey instance named `mash-valkey`.
+
+### Authentication
+
+You can create the "superuser" (if missing) for NetBox upon launch by adding the following configuration to `vars.yml`:
+
+```yaml
+netbox_environment_variable_superuser_name: your_username_here
+netbox_environment_variable_superuser_email: your.email@example.com
+
+# Put a strong secret below, generated with `pwgen -s 64 1` or in another way.
+# Changing the password subsequently will not affect the user's password.
+netbox_environment_variable_superuser_password: ''
+```
+
+Single-Sign-On is also supported. See below for details.
 
 ### Single-Sign-On (SSO) integration
 
