@@ -53,15 +53,15 @@ paperless_hostname: paperless.example.com
 
 ### Configure Valkey
 
-authentik requires a Valkey data-store to work. This playbook supports it, and you can set up a Valkey instance by enabling it on `vars.yml`.
+Paperless-ngx requires a Valkey data-store to work. This playbook supports it, and you can set up a Valkey instance by enabling it on `vars.yml`.
 
-If authentik is the sole service which requires Valkey on your server, it is fine to set up just a single Valkey instance. However, **it is not recommended if there are other services which require it, because sharing the Valkey instance has security concerns and possibly causes data conflicts**, as described on the [documentation for configuring Valkey](valkey.md). In this case, you should install a dedicated Valkey instance for each of them.
+If Paperless-ngx is the sole service which requires Valkey on your server, it is fine to set up just a single Valkey instance. However, **it is not recommended if there are other services which require it, because sharing the Valkey instance has security concerns and possibly causes data conflicts**, as described on the [documentation for configuring Valkey](valkey.md). In this case, you should install a dedicated Valkey instance for each of them.
 
-If you are unsure whether you will install other services along with authentik or you have already set up services which need Valkey, it is recommended to install a Valkey instance dedicated to authentik. See [below](#setting-up-a-shared-valkey-instance) for an instruction to install a shared instance.
+If you are unsure whether you will install other services along with Paperless-ngx or you have already set up services which need Valkey, it is recommended to install a Valkey instance dedicated to Paperless-ngx. See [below](#setting-up-a-shared-valkey-instance) for an instruction to install a shared instance.
 
 #### Setting up a dedicated Valkey instance
 
-To create a dedicated instance for authentik, you can follow the steps below:
+To create a dedicated instance for Paperless-ngx, you can follow the steps below:
 
 1. Adjust the `hosts` file
 2. Create a new `vars.yml` file for the dedicated instance
@@ -69,7 +69,7 @@ To create a dedicated instance for authentik, you can follow the steps below:
 
 ##### Adjust `hosts`
 
-At first, you need to adjust `inventory/hosts` file to add a supplementary host for authentik. See [here](../running-multiple-instances.md#re-do-your-inventory-to-add-supplementary-hosts) for details.
+At first, you need to adjust `inventory/hosts` file to add a supplementary host for Paperless-ngx. See [here](../running-multiple-instances.md#re-do-your-inventory-to-add-supplementary-hosts) for details.
 
 The content should be something like below. Make sure to replace `mash.example.com` with your hostname and `YOUR_SERVER_IP_ADDRESS_HERE` with the IP address of the host, respectively. The same IP address should be set to both, unless the Valkey instance will be served from a different machine.
 
@@ -171,9 +171,9 @@ Running the installation command will create the dedicated Valkey instance named
 
 #### Setting up a shared Valkey instance
 
-If you host only authentik on this server, it is fine to set up a single shared Valkey instance.
+If you host only Paperless-ngx on this server, it is fine to set up a single shared Valkey instance.
 
-To install the single instance and hook authentik to it, add the following configuration to `inventory/host_vars/mash.example.com/vars.yml`:
+To install the single instance and hook Paperless-ngx to it, add the following configuration to `inventory/host_vars/mash.example.com/vars.yml`:
 
 ```yaml
 ########################################################################
@@ -221,12 +221,12 @@ Running the installation command will create the shared Valkey instance named `m
 
 ## Installation
 
-If you have decided to install the dedicated Valkey instance for authentik, make sure to run the [installing](../installing.md) command for the supplementary host (`mash.example.com-authentik-deps`) first, before running it for the main host (`mash.example.com`).
+If you have decided to install the dedicated Valkey instance for Paperless-ngx, make sure to run the [installing](../installing.md) command for the supplementary host (`mash.example.com-authentik-deps`) first, before running it for the main host (`mash.example.com`).
 
 Note that running the `just` commands for installation (`just install-all` or `just setup-all`) automatically takes care of the order. See [here](../running-multiple-instances.md#re-do-your-inventory-to-add-supplementary-hosts) for more details about it.
 
 ## Usage
 
-After installation, your Infisical instance becomes available at the URL specified with `infisical_hostname`.
+After installation, your Paperless-ngx instance becomes available at the URL specified with `infisical_hostname`.
 
 Refer to the [official documentation](https://docs.paperless-ngx.com/) to learn how to use paperless.
