@@ -152,11 +152,11 @@ Having configured `vars.yml` for the dedicated instance, add the following confi
 # Point Paperless-ngx to its dedicated Valkey instance
 paperless_redis_hostname: mash-paperless-valkey
 
-# Make sure the Paperless-ngx service (mash-paperless.service) starts after its dedicated KeyDB service (mash-paperless-valkey.service)
+# Make sure the Paperless-ngx service (mash-paperless.service) starts after its dedicated Valkey service (mash-paperless-valkey.service)
 paperless_systemd_required_services_list_custom:
   - "mash-paperless-valkey.service"
 
-# Make sure the Paperless-ngx container is connected to the container network of its dedicated KeyDB service (mash-paperless-valkey)
+# Make sure the Paperless-ngx container is connected to the container network of its dedicated Valkey service (mash-paperless-valkey)
 paperless_container_additional_networks_custom:
   - "mash-paperless-valkey"
 
@@ -202,11 +202,11 @@ valkey_enabled: true
 # Point Paperless-ngx to the shared Valkey instance
 paperless_redis_hostname: "{{ valkey_identifier }}"
 
-# Make sure the Paperless-ngx service (mash-paperless.service) starts after the shared KeyDB service (mash-valkey.service)
+# Make sure the Paperless-ngx service (mash-paperless.service) starts after the shared Valkey service (mash-valkey.service)
 paperless_systemd_required_services_list_custom:
   - "{{ valkey_identifier }}.service"
 
-# Make sure the Paperless-ngx container is connected to the container network of the shared KeyDB service (mash-valkey)
+# Make sure the Paperless-ngx container is connected to the container network of the shared Valkey service (mash-valkey)
 paperless_container_additional_networks_custom:
   - "{{ valkey_identifier }}"
 
