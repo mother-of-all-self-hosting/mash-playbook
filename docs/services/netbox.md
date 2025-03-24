@@ -68,57 +68,6 @@ If Infisical is the sole service which requires Valkey on your server, it is fin
 
 If you are unsure whether you will install other services along with Infisical or you have already set up services which need Valkey, it is recommended to install a Valkey instance dedicated to Infisical. See [below](#setting-up-a-shared-valkey-instance) for an instruction to install a shared instance.
 
-#### Setting up a shared Valkey instance
-
-If you host only Infisical on this server, it is fine to set up a single shared Valkey instance.
-
-To install the single instance and hook Infisical to it, add the following configuration to `inventory/host_vars/mash.example.com/vars.yml`:
-
-```yaml
-########################################################################
-#                                                                      #
-# valkey                                                               #
-#                                                                      #
-########################################################################
-
-valkey_enabled: true
-
-########################################################################
-#                                                                      #
-# /valkey                                                              #
-#                                                                      #
-########################################################################
-
-
-########################################################################
-#                                                                      #
-# netbox                                                               #
-#                                                                      #
-########################################################################
-
-# Add the base configuration as specified above
-
-# Point NetBox to the shared Valkey instance
-netbox_environment_variable_redis_host: "{{ valkey_identifier }}"
-netbox_environment_variable_redis_cache_host: "{{ valkey_identifier }}"
-
-# Make sure the NetBox service (mash-netbox.service) starts after the shared KeyDB service (mash-valkey.service)
-netbox_systemd_required_services_list_custom:
-  - "{{ valkey_identifier }}.service"
-
-# Make sure the NetBox container is connected to the container network of the shared KeyDB service (mash-valkey)
-netbox_container_additional_networks_custom:
-  - "{{ valkey_identifier }}"
-
-########################################################################
-#                                                                      #
-# /netbox                                                              #
-#                                                                      #
-########################################################################
-```
-
-Running the installation command will create the shared Valkey instance named `mash-valkey`.
-
 #### Setting up a dedicated Valkey instance
 
 To create a dedicated instance for Infisical, you can follow the steps below:
@@ -229,6 +178,57 @@ netbox_container_additional_networks_custom:
 ```
 
 Running the installation command will create the dedicated Valkey instance named `mash-infisical-valkey`.
+
+#### Setting up a shared Valkey instance
+
+If you host only Infisical on this server, it is fine to set up a single shared Valkey instance.
+
+To install the single instance and hook Infisical to it, add the following configuration to `inventory/host_vars/mash.example.com/vars.yml`:
+
+```yaml
+########################################################################
+#                                                                      #
+# valkey                                                               #
+#                                                                      #
+########################################################################
+
+valkey_enabled: true
+
+########################################################################
+#                                                                      #
+# /valkey                                                              #
+#                                                                      #
+########################################################################
+
+
+########################################################################
+#                                                                      #
+# netbox                                                               #
+#                                                                      #
+########################################################################
+
+# Add the base configuration as specified above
+
+# Point NetBox to the shared Valkey instance
+netbox_environment_variable_redis_host: "{{ valkey_identifier }}"
+netbox_environment_variable_redis_cache_host: "{{ valkey_identifier }}"
+
+# Make sure the NetBox service (mash-netbox.service) starts after the shared KeyDB service (mash-valkey.service)
+netbox_systemd_required_services_list_custom:
+  - "{{ valkey_identifier }}.service"
+
+# Make sure the NetBox container is connected to the container network of the shared KeyDB service (mash-valkey)
+netbox_container_additional_networks_custom:
+  - "{{ valkey_identifier }}"
+
+########################################################################
+#                                                                      #
+# /netbox                                                              #
+#                                                                      #
+########################################################################
+```
+
+Running the installation command will create the shared Valkey instance named `mash-valkey`.
 
 ### Single-Sign-On (SSO) integration
 
