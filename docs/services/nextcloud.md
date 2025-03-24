@@ -63,23 +63,6 @@ As described on the [Valkey](valkey.md) documentation page, if you're hosting ad
 
 If you're only running Nextcloud on this server and don't need to use Valkey for anything else, you can [use a single Valkey instance](#using-the-shared-valkey-instance-for-nextcloud).
 
-**Regardless** of the method of installing Valkey, you may need to adjust your Nextcloud configuration file (e.g. `/mash/nextcloud/data/config/config.php`) to **add** this:
-
-```php
-  'memcache.distributed' => '\OC\Memcache\Redis',
-  'memcache.locking' => '\OC\Memcache\Redis',
-  'redis' => [
-     'host' => 'VALKEY_HOSTNAME_HERE',
-     'port' => 6379,
-  ],
-```
-
-Where `VALKEY_HOSTNAME_HERE` is to be replaced with:
-
-- `mash-nextcloud-valkey`, when [Creating a Valkey instance dedicated to Nextcloud](#creating-a-valkey-instance-dedicated-to-nextcloud)
-- `mash-valkey`, when [using a single Valkey instance](#using-the-shared-valkey-instance-for-nextcloud).
-
-
 #### Using the shared Valkey instance for Nextcloud
 
 To install a single (non-dedicated) Valkey instance (`mash-valkey`) and hook Nextcloud to it, add the following **additional** configuration:
@@ -208,6 +191,24 @@ nextcloud_container_additional_networks_custom:
 #                                                                      #
 ########################################################################
 ```
+
+#### Adjust Nextcloud configuration file
+
+If a Valkey instance is enabled for Nextcloud in either way, adjust your Nextcloud configuration file (e.g. `/mash/nextcloud/data/config/config.php`) to **add** this:
+
+```php
+  'memcache.distributed' => '\OC\Memcache\Redis',
+  'memcache.locking' => '\OC\Memcache\Redis',
+  'redis' => [
+     'host' => 'VALKEY_HOSTNAME_HERE',
+     'port' => 6379,
+  ],
+```
+
+Where `VALKEY_HOSTNAME_HERE` is to be replaced with:
+
+- `mash-nextcloud-valkey` if the dedicated Valkey instance is used
+- `mash-valkey` if the single Valkey instance is used
 
 ###  Single-Sign-On / Authentik
 
