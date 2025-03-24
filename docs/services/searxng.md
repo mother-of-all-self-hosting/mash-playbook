@@ -84,7 +84,7 @@ mash_example_com
 
 [mash_example_com]
 mash.example.com ansible_host=YOUR_SERVER_IP_ADDRESS_HERE
-mash.example.com-lago-deps ansible_host=YOUR_SERVER_IP_ADDRESS_HERE
+mash.example.com-searxng-deps ansible_host=YOUR_SERVER_IP_ADDRESS_HERE
 …
 ```
 
@@ -94,9 +94,9 @@ You can just add an entry for the supplementary host to `[mash_example_com]` if 
 
 ##### Create `vars.yml` for the dedicated instance
 
-Then, create a new directory where `vars.yml` for the supplementary host is stored. If `mash.example.com` is your main host, name the directory as `mash.example.com-lago-deps`. Its path therefore will be `inventory/host_vars/mash.example.com-lago-deps`.
+Then, create a new directory where `vars.yml` for the supplementary host is stored. If `mash.example.com` is your main host, name the directory as `mash.example.com-searxng-deps`. Its path therefore will be `inventory/host_vars/mash.example.com-searxng-deps`.
 
-After creating the directory, add a new `vars.yml` file inside it with a content below. It will have running the playbook create a `mash-lago-valkey` instance on the new host, setting `/mash/lago-valkey` to the base directory of the dedicated Valkey instance.
+After creating the directory, add a new `vars.yml` file inside it with a content below. It will have running the playbook create a `mash-searxng-valkey` instance on the new host, setting `/mash/searxng-valkey` to the base directory of the dedicated Valkey instance.
 
 **Notes**:
 - As this `vars.yml` file will be used for the new host, make sure to set `mash_playbook_generic_secret_key`. It does not need to be same as the one on `vars.yml` for the main host. Without setting it, the Valkey instance will not be configured.
@@ -171,7 +171,7 @@ searxng_container_additional_networks_custom:
 ########################################################################
 ```
 
-Running the installation command will create the dedicated Valkey instance named `mash-lago-valkey`.
+Running the installation command will create the dedicated Valkey instance named `mash-searxng-valkey`.
 
 #### Setting up a shared Valkey instance
 
@@ -197,7 +197,7 @@ valkey_enabled: true
 
 ########################################################################
 #                                                                      #
-# lago                                                                 #
+# searxng                                                              #
 #                                                                      #
 ########################################################################
 
@@ -206,7 +206,7 @@ valkey_enabled: true
 # Point SearXNG to the shared Valkey instance
 searxng_rate_limiter_config_valkey_hostname: "{{ valkey_identifier }}"
 
-# Make sure the SearXNG service (mash-lago.service) starts after the shared Valkey service (mash-valkey.service)
+# Make sure the SearXNG service (mash-searxng.service) starts after the shared Valkey service (mash-valkey.service)
 searxng_systemd_required_services_list_custom:
   - "{{ valkey_identifier }}.service"
 
@@ -216,7 +216,7 @@ searxng_container_additional_networks_custom:
 
 ########################################################################
 #                                                                      #
-# /lago                                                                #
+# /searxng                                                             #
 #                                                                      #
 ########################################################################
 ```
@@ -237,7 +237,7 @@ searxng_basic_auth_password: 'my_password'
 
 ## Installation
 
-If you have decided to install the dedicated Valkey instance for SearXNG, make sure to run the [installing](../installing.md) command for the supplementary host (`mash.example.com-lago-deps`) first, before running it for the main host (`mash.example.com`).
+If you have decided to install the dedicated Valkey instance for SearXNG, make sure to run the [installing](../installing.md) command for the supplementary host (`mash.example.com-searxng-deps`) first, before running it for the main host (`mash.example.com`).
 
 Note that running the `just` commands for installation (`just install-all` or `just setup-all`) automatically takes care of the order. See [here](../running-multiple-instances.md#re-do-your-inventory-to-add-supplementary-hosts) for more details about it.
 
