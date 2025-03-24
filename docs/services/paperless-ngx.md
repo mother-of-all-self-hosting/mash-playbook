@@ -8,7 +8,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
 # Paperless-ngx
 
-[Paperless-ngx](https://paperless-ngx.com) s a community-supported open-source document management system that transforms your physical documents into a searchable online archive so you can keep, well, less paper. MASH can install Paperless-ngx with the [`mother-of-all-self-hosting/ansible-role-paperless`](https://github.com/mother-of-all-self-hosting/ansible-role-paperless) ansible role.
+[Paperless-ngx](https://paperless-ngx.com) is a community-supported open-source document management system that transforms your physical documents into a searchable online archive to organize them paperless.
 
 > [!WARNING]
 > Paperless-ngx currently [does not support](https://github.com/paperless-ngx/paperless-ngx/issues/6352) running the container rootless, therefore the role has not the usual security features of other services provided by this playbook. This put your system more at higher risk as vulnerabilities can have a higher impact.
@@ -218,6 +218,14 @@ paperless_container_additional_networks_custom:
 ```
 
 Running the installation command will create the shared Valkey instance named `mash-valkey`.
+
+### Extending the configuration
+
+There are some additional things you may wish to configure about the service.
+
+Take a look at:
+
+- [Paperless-ngx](https://github.com/mother-of-all-self-hosting/ansible-role-paperless)'s [`defaults/main.yml`](https://github.com/mother-of-all-self-hosting/ansible-role-paperless/blob/main/defaults/main.yml) for some variables that you can customize via your `vars.yml` file.
 
 ## Installation
 
