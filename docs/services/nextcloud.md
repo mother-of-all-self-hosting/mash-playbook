@@ -281,63 +281,54 @@ Refer to [this blogpost by a third party](https://blog.cubieserver.de/2022/compl
 - The official documentation of authentik to connect nextcloud via SAML does not seem to work (as of August 2023).
 - If you cannot log in due to an error (the error message contains `SHA1 mismatch`), make sure that Nextcloud users and authentik users do not have the same name. If they do, check `Use unique user ID` in the OIDC App settings.
 
-## Recommended other services
+## Recommended services
 
 ### Collabora Online
 
-To integrate the [Collabora Online](collabora-online.md) office suite, first install it by following its dedicated documentation page.
+To integrate the [Collabora Online](collabora-online.md) office suite, first install it by following its documentation page.
 
-Then add the following **additional** Nextcloud configuration:
+Then, add the following configuration for Nextcloud:
 
 ```yaml
 nextcloud_collabora_app_wopi_url: "{{ collabora_online_url }}"
-
-# By default, various private IPv4 networks are whitelited to connect to the WOPI API (document serving API).
-# If your Collabora Online installation does not live on the same server as Nextcloud,
-# you may need to adjust the list of networks.
-# If necessary, redefined the `nextcloud_collabora_app_wopi_allowlist` environment variable here.
 ```
 
-There's **no need** to [re-run the playbook](../installing.md) after adjusting your `vars.yml` file.
-You should, however run: `just run-tags install-nextcloud-app-collabora`
+**Note**: by default, various private IPv4 networks are whitelited to connect to the WOPI API (document serving API). If your Collabora Online installation does not live on the same server as Nextcloud, you may need to adjust the list of networks. If necessary, redefine the `nextcloud_collabora_app_wopi_allowlist` environment variable on `vars.yml`.
 
-This will install and configure the [Office](https://apps.nextcloud.com/apps/richdocuments) app for Nextcloud.
+After adding the configuration, run this command to install and configure the [Office](https://apps.nextcloud.com/apps/richdocuments) app for Nextcloud: `just run-tags install-nextcloud-app-collabora`
 
-You should then be able to click any document (`.doc`, `.odt`, `.pdf`, etc.) in Nextcloud Files and it should automatically open a Collabora Online editor.
-
-You can also create new documents via the "plus" button.
+You should then be able to open any document (`.doc`, `.odt`, `.pdf`, etc.) and create new ones in Nextcloud Files with Collabora Online editor.
 
 ### Preview Generator
 
-It is possible to setup preview generation, using this playbook.
+It is also possible to set up preview generation by following the steps below.
 
-First modify your `vars.yml` file by adding at least the following line (other options are also present, check the corresponding `defaults/main.yml` file):
+#### Enable preview on `vars.yml`
+
+First, add the following configuration to `vars.yml` and run the playbook.
 
 ```yaml
 nextcloud_preview_enabled: true
 ```
 
-then install Nextcloud (or rerun the playbook if already installed).
-
-Next, from the Settings/Application menu in your Nextcloud instance install the preview generator app (https://apps.nextcloud.com/apps/previewgenerator).
-
-After the application is installed run `just run-tags adjust-nextcloud-config` that will start the original preview-generation and when finished, enables the periodic generation of new images.
-
-The original generation may take a long time, but a continuous prompt is presented by ansible as some visual feedback (it is being run as an async task), however it will timeout after approximately 27 hours.
-
-On 60GBs, most of the data being images, it took about 10 minutes to finish.
-
-If it takes more time to run than a day, you may want to start it from the host by calling
-
-```sh
-/usr/bin/env docker exec mash-nextcloud-server php /var/www/html/occ preview:generate-all
-```
-
 Other supported variables:
 
-`nextcloud_preview_preview_max_x` and `nextcloud_preview_preview_max_y` sets the maximum size of the preview in pixels..
-Their default value according to the [documentation](https://docs.nextcloud.com/server/latest/admin_manual/configuration_files/previews_configuration.html) is `null` which is set by the playbook.
-Using a numeric value will set the corresponding nextcloud variable and sets the size of the preview images.
+- `nextcloud_preview_preview_max_x` and `nextcloud_preview_preview_max_y`
+  - Set the maximum size of the preview in pixels. The default value on this playbook is `null`. Setting a numeric value configures the corresponding nextcloud variable and the size of the preview images. See the [documentation](https://docs.nextcloud.com/server/latest/admin_manual/configuration_files/previews_configuration.html) for details.
+- `nextcloud_preview_app_jpeg_quality`
+  - JPEG quality for preview images. The default value is 80, based on the value by the upstream project.
 
-`nextcloud_preview_app_jpeg_quality` JPEG quality setting for preview images.
-The default follows upstream default with 80.
+Check `defaults/main.yml` for Nextcloud for other options.
+
+#### Install the app on Nextcloud and run the command for config adjustment
+
+Next, install the preview generator app (https://apps.nextcloud.com/apps/previewgenerator) from the Settings/Application menu in your Nextcloud instance.
+
+After it is installed, run the command `just run-tags adjust-nextcloud-config` against your server. It starts original preview-generation and enables periodic generation of new images on your server.
+
+**Notes**:
+- The original generation may take a long time, and a continuous prompt is presented by Ansible as some visual feedback (it is being run as an async task). Note it will timeout after approximately 27 hours. For reference, it should take about 10 minutes to finish generating previews of 60 GB data, most of which being image files.
+- If it takes more time to run than a day, you may want to start it by running the command on the host:
+  ```sh
+  /usr/bin/env docker exec mash-nextcloud-server php /var/www/html/occ preview:generate-all
+  ```
