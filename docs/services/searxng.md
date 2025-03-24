@@ -1,4 +1,6 @@
 <!--
+SPDX-FileCopyrightText: 2023 Julian-Samuel Gebühr
+SPDX-FileCopyrightText: 2023 - 2024 Slavi Pantaleev
 SPDX-FileCopyrightText: 2024 Sergio Durigan Junior
 SPDX-FileCopyrightText: 2025 Suguru Hirahara
 
@@ -21,7 +23,7 @@ If rate-limiting is enabled, then it also requires:
 
 ## Configuration
 
-To enable this service, add the following configuration to your `vars.yml` file and re-run the [installation](../installing.md) process:
+To enable this service, add the following configuration to your `vars.yml` file:
 
 ```yaml
 ########################################################################
@@ -55,21 +57,56 @@ It is possible to host SearXNG under a subpath (by configuring the `searxng_path
 
 ### Configuring rate-limiting
 
-If you want to enable rate-limiting, you will also need to enable Valkey. As described on the [Valkey](valkey.md) documentation page, if you're hosting additional services which require Valkey on the same server, you'd better go for installing a separate Valkey instance for each service. See [Creating a Valkey instance dedicated to SearXNG](...).
-
-You will also need to enable rate-limiting for SearXNG by setting:
+If you want to enable rate-limiting, add the following configuration to `vars.yml`:
 
 ```yaml
 searxng_enable_rate_limiter: true
 ```
 
-#### Creating a Valkey instance dedicated to SearXNG
+Rate-limiting also requires a Valkey data-store to work. This playbook supports it, and you can set up a Valkey instance by enabling it on `vars.yml`.
 
-The following instructions are based on the [Running multiple instances of the same service on the same host](running-multiple-instances.md#re-do-your-inventory-to-add-supplementary-hosts) documentation.
+If Lago is the sole service which requires Valkey on your server, it is fine to set up just a single Valkey instance. However, **it is not recommended if there are other services which require it, because sharing the Valkey instance has security concerns and possibly causes data conflicts**, as described on the [documentation for configuring Valkey](valkey.md). In this case, you should install a dedicated Valkey instance for each of them.
 
-Adjust your `inventory/hosts` file as described in [Re-do your inventory to add supplementary hosts](../running-multiple-instances.md#re-do-your-inventory-to-add-supplementary-hosts), adding a new supplementary host (e.g. if `searxng.example.com` is your main one, create `searxng.example.com-deps`).
+If you are unsure whether you will install other services along with Lago or you have already set up services which need Valkey, it is recommended to install a Valkey instance dedicated to Lago. See [below](#setting-up-a-shared-valkey-instance) for an instruction to install a shared instance.
 
-Then, create a new `vars.yml` file for the `inventory/host_vars/searxng.example.com-deps/vars.yml`:
+#### Setting up a dedicated Valkey instance
+
+To create a dedicated instance for Lago, you can follow the steps below:
+
+1. Adjust the `hosts` file
+2. Create a new `vars.yml` file for the dedicated instance
+3. Edit the existing `vars.yml` file for the main host
+
+##### Adjust `hosts`
+
+At first, you need to adjust `inventory/hosts` file to add a supplementary host for Lago. See [here](../running-multiple-instances.md#re-do-your-inventory-to-add-supplementary-hosts) for details.
+
+The content should be something like below. Make sure to replace `mash.example.com` with your hostname and `YOUR_SERVER_IP_ADDRESS_HERE` with the IP address of the host, respectively. The same IP address should be set to both, unless the Valkey instance will be served from a different machine.
+
+```ini
+[mash_servers]
+[mash_servers:children]
+mash_example_com
+
+[mash_example_com]
+mash.example.com ansible_host=YOUR_SERVER_IP_ADDRESS_HERE
+mash.example.com-lago-deps ansible_host=YOUR_SERVER_IP_ADDRESS_HERE
+…
+```
+
+`mash_example_com` can be any string and does not have to match with the hostname.
+
+You can just add an entry for the supplementary host to `[mash_example_com]` if there are other entries there already.
+
+##### Create `vars.yml` for the dedicated instance
+
+Then, create a new directory where `vars.yml` for the supplementary host is stored. If `mash.example.com` is your main host, name the directory as `mash.example.com-lago-deps`. Its path therefore will be `inventory/host_vars/mash.example.com-lago-deps`.
+
+After creating the directory, add a new `vars.yml` file inside it with a content below. It will have running the playbook create a `mash-lago-valkey` instance on the new host, setting `/mash/lago-valkey` to the base directory of the dedicated Valkey instance.
+
+**Notes**:
+- As this `vars.yml` file will be used for the new host, make sure to set `mash_playbook_generic_secret_key`. It does not need to be same as the one on `vars.yml` for the main host. Without setting it, the Valkey instance will not be configured.
+- Since these variables are used to configure the service name and directory path of the Valkey instance, you do not have to have them matched with the hostname of the server. For example, even if the hostname is `www.example.com`, you do **not** need to set `mash_playbook_service_base_directory_name_prefix` to `www-`. If you are not sure which string you should set, you might as well use the values as they are.
 
 ```yaml
 ---
@@ -81,7 +118,6 @@ Then, create a new `vars.yml` file for the `inventory/host_vars/searxng.example.
 ########################################################################
 
 # Put a strong secret below, generated with `pwgen -s 64 1` or in another way
-# Various other secrets will be derived from this secret automatically.
 mash_playbook_generic_secret_key: ''
 
 # Override service names and directory path prefixes
@@ -110,9 +146,9 @@ valkey_enabled: true
 ########################################################################
 ```
 
-This will create a `mash-searxng-valkey` instance on this host with its data in `/mash/searxng-valkey`.
+##### Edit the main `vars.yml` file
 
-Then, adjust your main inventory host's variables file (`inventory/host_vars/searxng.example.com/vars.yml`) like this:
+Having configured `vars.yml` for the dedicated instance, add the following configuration to `vars.yml` for the main host, whose path should be `inventory/host_vars/mash.example.com/vars.yml` (replace `mash.example.com` with yours).
 
 ```yaml
 ########################################################################
@@ -121,7 +157,7 @@ Then, adjust your main inventory host's variables file (`inventory/host_vars/sea
 #                                                                      #
 ########################################################################
 
-# Base configuration as shown above
+# Add the base configuration as specified above
 
 # Point Searxng to its dedicated Valkey instance
 searxng_rate_limiter_config_valkey_hostname: mash-searxng-valkey
@@ -141,14 +177,22 @@ searxng_container_additional_networks_custom:
 ########################################################################
 ```
 
+Running the installation command will create the dedicated Valkey instance named `mash-lago-valkey`.
+
 ### Configuring basic authentication
 
 If you are running a private instance, you might want to protect it with so that only authorized people can use it. An easy option is to choose a non-trivial subpath by modifying the `searxng_path_prefix`. Another, more complete option is to enable basic authentication for the instance.
 
-To do the latter, you need to set the following variables:
+To do the latter, add the following configuration to `vars.yml`:
 
 ```yaml
 searxng_basic_auth_enabled: true
 searxng_basic_auth_username: 'my_username'
 searxng_basic_auth_password: 'my_password'
 ```
+
+## Installation
+
+If you have decided to install the dedicated Valkey instance for Lago, make sure to run the [installing](../installing.md) command for the supplementary host (`mash.example.com-lago-deps`) first, before running it for the main host (`mash.example.com`).
+
+Note that running the `just` commands for installation (`just install-all` or `just setup-all`) automatically takes care of the order. See [here](../running-multiple-instances.md#re-do-your-inventory-to-add-supplementary-hosts) for more details about it.
