@@ -179,6 +179,56 @@ searxng_container_additional_networks_custom:
 
 Running the installation command will create the dedicated Valkey instance named `mash-lago-valkey`.
 
+#### Setting up a shared Valkey instance
+
+If you host only Lago on this server, it is fine to set up a single shared Valkey instance.
+
+To install the single instance and hook Lago to it, add the following configuration to `inventory/host_vars/mash.example.com/vars.yml`:
+
+```yaml
+########################################################################
+#                                                                      #
+# valkey                                                               #
+#                                                                      #
+########################################################################
+
+valkey_enabled: true
+
+########################################################################
+#                                                                      #
+# /valkey                                                              #
+#                                                                      #
+########################################################################
+
+
+########################################################################
+#                                                                      #
+# lago                                                                 #
+#                                                                      #
+########################################################################
+
+# Add the base configuration as specified above
+
+# Point Lago to the shared Valkey instance
+lago_redis_hostname: "{{ valkey_identifier }}"
+
+# Make sure the Lago service (mash-lago.service) starts after the shared Valkey service (mash-valkey.service)
+lago_api_systemd_required_services_list_custom:
+  - "{{ valkey_identifier }}.service"
+
+# Make sure the Lago container is connected to the container network of the shared Valkey service (mash-valkey)
+lago_api_container_additional_networks_custom:
+  - "{{ valkey_identifier }}"
+
+########################################################################
+#                                                                      #
+# /lago                                                                #
+#                                                                      #
+########################################################################
+```
+
+Running the installation command will create the shared Valkey instance named `mash-valkey`.
+
 ### Configuring basic authentication
 
 If you are running a private instance, you might want to protect it with so that only authorized people can use it. An easy option is to choose a non-trivial subpath by modifying the `searxng_path_prefix`. Another, more complete option is to enable basic authentication for the instance.
