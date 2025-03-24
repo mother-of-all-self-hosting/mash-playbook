@@ -19,13 +19,13 @@ This service requires the following other services:
 
 - a [Postgres](postgres.md) database
 - a [Traefik](traefik.md) reverse-proxy server
-- (optional) a [Valkey](valkey.md) data-store, installation details [below](#valkey)
+- (optional) a [Valkey](valkey.md) data-store; see [below](#configure-valkey) for details about installation
 - (optional) the [exim-relay](exim-relay.md) mailer
 
 
 ## Configuration
 
-To enable this service, add the following configuration to your `vars.yml` file and re-run the [installation](../installing.md) process:
+To enable this service, add the following configuration to your `vars.yml` file:
 
 ```yaml
 ########################################################################
@@ -54,14 +54,13 @@ You can remove the `nextcloud_path_prefix` variable definition, to make it defau
 
 ### Valkey
 
-Valkey can **optionally** be enabled to improve Nextcloud performance.
-It's dubious whether using using Valkey helps much, so we recommend that you **start without** it, for a simpler deployment.
+Valkey can **optionally** be enabled to improve Nextcloud performance. It's dubious whether using using Valkey helps much, so we recommend that you **start without** it, for a simpler deployment.
 
 To learn more, read the [Memory caching](https://docs.nextcloud.com/server/latest/admin_manual/configuration_server/caching_configuration.html) section of the Nextcloud documentation.
 
-As described on the [Valkey](valkey.md) documentation page, if you're hosting additional services which require Valkey on the same server, you'd better go for installing a separate Valkey instance for each service. See [Creating a Valkey instance dedicated to Nextcloud](#creating-a-valkey-instance-dedicated-to-nextcloud).
+If Infisical is the sole service which requires Valkey on your server, it is fine to set up just a single Valkey instance. However, **it is not recommended if there are other services which require it, because sharing the Valkey instance has security concerns and possibly causes data conflicts**, as described on the [documentation for configuring Valkey](valkey.md). In this case, you should install a dedicated Valkey instance for each of them.
 
-If you're only running Nextcloud on this server and don't need to use Valkey for anything else, you can [use a single Valkey instance](#using-the-shared-valkey-instance-for-nextcloud).
+If you are unsure whether you will install other services along with Infisical or you have already set up services which need Valkey, it is recommended to install a Valkey instance dedicated to Infisical. See [below](#setting-up-a-shared-valkey-instance) for an instruction to install a shared instance.
 
 #### Using the shared Valkey instance for Nextcloud
 
