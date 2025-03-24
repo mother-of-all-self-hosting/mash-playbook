@@ -19,7 +19,7 @@ This service requires the following other services:
 
 If rate-limiting is enabled, then it also requires:
 
-- a [Valkey](valkey.md) database
+- a [Valkey](valkey.md) data-store; see [below](#configuring-rate-limiting) for details about installation
 
 ## Configuration
 
