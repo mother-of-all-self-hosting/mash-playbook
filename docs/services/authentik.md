@@ -8,8 +8,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
 # authentik
 
-[authentik](https://goauthentik.io/) is an open-source Identity Provider focused on flexibility and versatility. MASH can install authentik with the [`mother-of-all-self-hosting/ansible-role-authentik`](https://github.com/mother-of-all-self-hosting/ansible-role-authentik) ansible role.
-
+[authentik](https://goauthentik.io/) is an open-source Identity Provider focused on flexibility and versatility.
 
 > [!WARNING]
 > SSO is pretty complex and while this role will install authentik for you we only tested OIDC and OAUTH integration. There is a high probability that using outposts/LDAP would need further configuration efforts. Make sure you test before using this in production and feel free to provide feedback!
@@ -217,6 +216,14 @@ authentik_container_additional_networks_custom:
 ```
 
 Running the installation command will create the shared Valkey instance named `mash-valkey`.
+
+### Extending the configuration
+
+There are some additional things you may wish to configure about the service.
+
+Take a look at:
+
+- [authentik](https://github.com/mother-of-all-self-hosting/ansible-role-authentik)'s [`defaults/main.yml`](https://github.com/mother-of-all-self-hosting/ansible-role-authentik/blob/main/defaults/main.yml) for some variables that you can customize via your `vars.yml` file.
 
 ## Installation
 
