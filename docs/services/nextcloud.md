@@ -240,23 +240,6 @@ Where `VALKEY_HOSTNAME_HERE` is to be replaced with:
 - `mash-nextcloud-valkey` if the dedicated Valkey instance is used
 - `mash-valkey` if the single Valkey instance is used
 
-### Single-Sign-On
-
-Nextcloud supports Single-Sign-On (SSO) via LDAP, SAML, and OIDC. To make use of it, an Identity Provider like [authentik](./authentik.md) or [Keycloak](./keycloak.md) needs to be set up.
-
-For example, you can enable SSO with authentik via OIDC by following the steps below:
-
-* Create a new provider in authentik and trim the client secret to less than 64 characters
-* Create an application in authentik using this provider
-* Install the app `user_oidc` in Nextcloud
-* Fill in the details from authentik in the app settings
-
-Refer to [this blogpost by a third party](https://blog.cubieserver.de/2022/complete-guide-to-nextcloud-oidc-authentication-with-authentik/) for details.
-
-**Notes**:
-- The official documentation of authentik to connect nextcloud via SAML does not seem to work (as of August 2023).
-- If you cannot log in due to an error (the error message contains `SHA1 mismatch`), make sure that Nextcloud users and authentik users do not have the same name. If they do, check `Use unique user ID` in the OIDC App settings.
-
 ### Samba
 
 To enable [Samba](https://www.samba.org/) external Windows fileshares using [smbclient](https://www.samba.org/samba/docs/current/man-html/smbclient.1.html), add the following configuration to your `vars.yml` file:
@@ -280,6 +263,23 @@ To get started, go to the URL and follow Nextcloud's set up wizard.
 In **Storage & database**, it is recommended to choose PostgreSQL (changing the default **SQLite** choice). To check credentials for it, run this command: `just run-tags print-nextcloud-db-credentials`
 
 Once you have completed the set up wizard, update the configuration (URL paths, trusted reverse-proxies, etc.) by running this command: `just run-tags adjust-nextcloud-config`. **You should re-run the command every time the Nextcloud version is updated.**
+
+### Single-Sign-On (SSO) integration
+
+Nextcloud supports Single-Sign-On (SSO) via LDAP, SAML, and OIDC. To make use of it, an Identity Provider like [authentik](./authentik.md) or [Keycloak](./keycloak.md) needs to be set up.
+
+For example, you can enable SSO with authentik via OIDC by following the steps below:
+
+* Create a new provider in authentik and trim the client secret to less than 64 characters
+* Create an application in authentik using this provider
+* Install the app `user_oidc` in Nextcloud
+* Fill in the details from authentik in the app settings
+
+Refer to [this blogpost by a third party](https://blog.cubieserver.de/2022/complete-guide-to-nextcloud-oidc-authentication-with-authentik/) for details.
+
+**Notes**:
+- The official documentation of authentik to connect nextcloud via SAML does not seem to work (as of August 2023).
+- If you cannot log in due to an error (the error message contains `SHA1 mismatch`), make sure that Nextcloud users and authentik users do not have the same name. If they do, check `Use unique user ID` in the OIDC App settings.
 
 ## Recommended other services
 
