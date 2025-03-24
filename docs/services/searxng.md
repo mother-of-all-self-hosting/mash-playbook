@@ -153,14 +153,14 @@ Having configured `vars.yml` for the dedicated instance, add the following confi
 
 # Add the base configuration as specified above
 
-# Point Searxng to its dedicated Valkey instance
+# Point SearXNG to its dedicated Valkey instance
 searxng_rate_limiter_config_valkey_hostname: mash-searxng-valkey
 
-# Make sure the Searxng service (mash-searxng.service) starts after its dedicated Valkey service (mash-searxng-valkey.service)
+# Make sure the SearXNG service (mash-searxng.service) starts after its dedicated Valkey service (mash-searxng-valkey.service)
 searxng_systemd_required_services_list_custom:
   - "mash-searxng-valkey.service"
 
-# Make sure the Searxng container is connected to the container network of its dedicated Valkey service (mash-searxng-valkey)
+# Make sure the SearXNG container is connected to the container network of its dedicated Valkey service (mash-searxng-valkey)
 searxng_container_additional_networks_custom:
   - "mash-searxng-valkey"
 
