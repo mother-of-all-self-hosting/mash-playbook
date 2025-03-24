@@ -62,9 +62,11 @@ If Infisical is the sole service which requires Valkey on your server, it is fin
 
 If you are unsure whether you will install other services along with Infisical or you have already set up services which need Valkey, it is recommended to install a Valkey instance dedicated to Infisical. See [below](#setting-up-a-shared-valkey-instance) for an instruction to install a shared instance.
 
-#### Using the shared Valkey instance for Nextcloud
+#### Setting up a shared Valkey instance
 
-To install a single (non-dedicated) Valkey instance (`mash-valkey`) and hook Nextcloud to it, add the following **additional** configuration:
+If you host only Infisical on this server, it is fine to set up a single shared Valkey instance.
+
+To install the single instance and hook Infisical to it, add the following configuration to `inventory/host_vars/mash.example.com/vars.yml`:
 
 ```yaml
 ########################################################################
@@ -88,7 +90,7 @@ valkey_enabled: true
 #                                                                      #
 ########################################################################
 
-# Base configuration as shown above
+# Add the base configuration as specified above
 
 # Point Nextcloud to the shared Valkey instance
 nextcloud_redis_hostname: "{{ valkey_identifier }}"
@@ -107,19 +109,47 @@ nextcloud_container_additional_networks_custom:
 #                                                                      #
 ########################################################################
 ```
-This will create a `mash-valkey` Valkey instance on this host.
 
-This is only recommended if you won't be installing other services which require KeyDB. Alternatively, go for [Creating a Valkey instance dedicated to Nextcloud](#creating-a-valkey-instance-dedicated-to-nextcloud).
+Running the installation command will create the shared Valkey instance named `mash-valkey`.
 
-#### Creating a Valkey instance dedicated to Nextcloud
+#### Setting up a dedicated Valkey instance
 
-The following instructions are based on the [Running multiple instances of the same service on the same host](../running-multiple-instances.md) documentation.
+To create a dedicated instance for Infisical, you can follow the steps below:
 
-Adjust your `inventory/hosts` file as described in [Re-do your inventory to add supplementary hosts](../running-multiple-instances.md#re-do-your-inventory-to-add-supplementary-hosts), adding a new supplementary host (e.g. if `nextcloud.example.com` is your main one, create `nectcloud.example.com-deps`).
+1. Adjust the `hosts` file
+2. Create a new `vars.yml` file for the dedicated instance
+3. Edit the existing `vars.yml` file for the main host
 
-Then, create a new `vars.yml` file for the
+##### Adjust `hosts`
 
-`inventory/host_vars/nextcloud.example.com-deps/vars.yml`:
+At first, you need to adjust `inventory/hosts` file to add a supplementary host for Infisical. See [here](../running-multiple-instances.md#re-do-your-inventory-to-add-supplementary-hosts) for details.
+
+The content should be something like below. Make sure to replace `mash.example.com` with your hostname and `YOUR_SERVER_IP_ADDRESS_HERE` with the IP address of the host, respectively. The same IP address should be set to both, unless the Valkey instance will be served from a different machine.
+
+```ini
+[mash_servers]
+[mash_servers:children]
+mash_example_com
+
+[mash_example_com]
+mash.example.com ansible_host=YOUR_SERVER_IP_ADDRESS_HERE
+mash.example.com-infisical-deps ansible_host=YOUR_SERVER_IP_ADDRESS_HERE
+…
+```
+
+`mash_example_com` can be any string and does not have to match with the hostname.
+
+You can just add an entry for the supplementary host to `[mash_example_com]` if there are other entries there already.
+
+##### Create `vars.yml` for the dedicated instance
+
+Then, create a new directory where `vars.yml` for the supplementary host is stored. If `mash.example.com` is your main host, name the directory as `mash.example.com-infisical-deps`. Its path therefore will be `inventory/host_vars/mash.example.com-infisical-deps`.
+
+After creating the directory, add a new `vars.yml` file inside it with a content below. It will have running the playbook create a `mash-infisical-valkey` instance on the new host, setting `/mash/infisical-valkey` to the base directory of the dedicated Valkey instance.
+
+**Notes**:
+- As this `vars.yml` file will be used for the new host, make sure to set `mash_playbook_generic_secret_key`. It does not need to be same as the one on `vars.yml` for the main host. Without setting it, the Valkey instance will not be configured.
+- Since these variables are used to configure the service name and directory path of the Valkey instance, you do not have to have them matched with the hostname of the server. For example, even if the hostname is `www.example.com`, you do **not** need to set `mash_playbook_service_base_directory_name_prefix` to `www-`. If you are not sure which string you should set, you might as well use the values as they are.
 
 ```yaml
 ---
@@ -131,7 +161,6 @@ Then, create a new `vars.yml` file for the
 ########################################################################
 
 # Put a strong secret below, generated with `pwgen -s 64 1` or in another way
-# Various other secrets will be derived from this secret automatically.
 mash_playbook_generic_secret_key: ''
 
 # Override service names and directory path prefixes
@@ -160,9 +189,9 @@ valkey_enabled: true
 ########################################################################
 ```
 
-This will create a `mash-nextcloud-valkey` instance on this host with its data in `/mash/nextcloud-valkey`.
+##### Edit the main `vars.yml` file
 
-Then, adjust your main inventory host's variables file (`inventory/host_vars/nextcloud.example.com/vars.yml`) like this:
+Having configured `vars.yml` for the dedicated instance, add the following configuration to `vars.yml` for the main host, whose path should be `inventory/host_vars/mash.example.com/vars.yml` (replace `mash.example.com` with yours).
 
 ```yaml
 ########################################################################
@@ -171,7 +200,7 @@ Then, adjust your main inventory host's variables file (`inventory/host_vars/nex
 #                                                                      #
 ########################################################################
 
-# Base configuration as shown above
+# Add the base configuration as specified above
 
 # Point Nextcloud to its dedicated Valkey instance
 nextcloud_redis_hostname: mash-nextcloud-valkey
@@ -190,6 +219,8 @@ nextcloud_container_additional_networks_custom:
 #                                                                      #
 ########################################################################
 ```
+
+Running the installation command will create the dedicated Valkey instance named `mash-infisical-valkey`.
 
 #### Adjust Nextcloud configuration file
 
