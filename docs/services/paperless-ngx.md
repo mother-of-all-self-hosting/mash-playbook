@@ -227,6 +227,6 @@ Note that running the `just` commands for installation (`just install-all` or `j
 
 ## Usage
 
-Access your instance in your browser at `https://paperless.example.org`
+After installation, your Infisical instance becomes available at the URL specified with `infisical_hostname`.
 
 Refer to the [official documentation](https://docs.paperless-ngx.com/) to learn how to use paperless.
