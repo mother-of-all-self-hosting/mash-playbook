@@ -236,8 +236,7 @@ NetBox supports different [Remote Authentication](https://docs.netbox.dev/en/sta
 
 Each module's Python file contains detailed information about how to configure it. It should be noted that module-specific configuration is passed as Python configuration (via `netbox_configuration_extra_python`), and **not as environment variables**.
 
-We have detailed information about integrating with [Keycloak](keycloak.md) below.
-You can use the configuration in the [Keycloak section](#keycloak) as a template for configuring other backends.
+We have detailed information about integrating with [Keycloak](keycloak.md) below. You can use the configuration in the [Keycloak section](#keycloak) as a template for configuring other backends.
 
 #### Keycloak
 
