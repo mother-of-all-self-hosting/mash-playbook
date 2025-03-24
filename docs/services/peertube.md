@@ -34,11 +34,7 @@ peertube_enabled: true
 
 peertube_hostname: peertube.example.com
 
-# PeerTube does not support being hosted at a subpath right now,
-# so using the peertube_path_prefix variable is not possible.
-
-# A PeerTube secret.
-# You can put any string here, but generating a strong one is preferred (e.g. `pwgen -s 64 1`).
+# Put a strong secret below, generated with `pwgen -s 64 1` or in another way
 peertube_config_secret: ''
 
 # An email address to be associated with the `root` PeerTube administrator account.
@@ -47,14 +43,6 @@ peertube_config_admin_email: ''
 # The initial password that the `root` PeerTube administrator account will be created with.
 # You can put any string here, but generating a strong one is preferred (e.g. `pwgen -s 64 1`).
 peertube_config_root_user_initial_password: ''
-
-# Uncomment and adjust this after completing the initial installation.
-# Find the `traefik` network's IP address range by running the following command on the server:
-# `docker network inspect traefik -f "{{ (index .IPAM.Config 0).Subnet }}"`
-# Then, replace the example IP range below, and re-run the playbook.
-# peertube_trusted_proxies_values_custom: ["172.21.0.0/16"]
-
-# Valkey configuration, as described below
 
 ########################################################################
 #                                                                      #
@@ -238,6 +226,18 @@ Running the installation command will create the dedicated Valkey instance named
 If you have decided to install the dedicated Valkey instance for Infisical, make sure to run the [installing](../installing.md) command for the supplementary host (`mash.example.com-infisical-deps`) first, before running it for the main host (`mash.example.com`).
 
 Note that running the `just` commands for installation (`just install-all` or `just setup-all`) automatically takes care of the order. See [here](../running-multiple-instances.md#re-do-your-inventory-to-add-supplementary-hosts) for more details about it.
+
+### Adjust Traefik network's IP address range
+
+After completing the initial installation, it is necessary to adjust the Traefik network's IP address range.
+
+First, find the `traefik` network's IP address range by running the following command on the server: `docker network inspect traefik -f "{{ (index .IPAM.Config 0).Subnet }}"`
+
+Then, add the following configuration after replacing the example IP range below, and re-run the playbook.
+
+```yaml
+peertube_trusted_proxies_values_custom: ["172.21.0.0/16"]
+```
 
 ## Usage
 
