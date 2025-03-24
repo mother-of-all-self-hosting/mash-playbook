@@ -84,17 +84,17 @@ valkey_enabled: true
 # Point notfellchen to the shared Valkey instance
 notfellchen_config_redis_hostname: "{{ valkey_identifier }}"
 
-# Make sure the notfellchen API service (mash-notfellchen.service) starts after the shared KeyDB service
+# Make sure the notfellchen API service (mash-notfellchen.service) starts after the shared Valkey service
 notfellchen_api_systemd_required_services_list_custom:
   - "{{ valkey_identifier }}.service"
 
-# Make sure the notfellchen API service (mash-notfellchen.service) is connected to the container network of the shared KeyDB service
+# Make sure the notfellchen API service (mash-notfellchen.service) is connected to the container network of the shared Valkey service
 notfellchen_container_additional_networks_custom:
   - "{{ valkey_container_network }}"
 
 ########################################################################
 #                                                                      #
-# /notfellchen                                                           #
+# /notfellchen                                                         #
 #                                                                      #
 ########################################################################
 ```
@@ -185,7 +185,7 @@ Having configured `vars.yml` for the dedicated instance, add the following confi
 ```yaml
 ########################################################################
 #                                                                      #
-# notfellchen                                                            #
+# notfellchen                                                          #
 #                                                                      #
 ########################################################################
 
@@ -194,11 +194,11 @@ Having configured `vars.yml` for the dedicated instance, add the following confi
 # Point notfellchen to its dedicated Valkey instance
 notfellchen_config_redis_hostname: mash-notfellchen-valkey
 
-# Make sure the notfellchen ervice (mash-notfellchen.service) starts after its dedicated KeyDB service
+# Make sure the notfellchen ervice (mash-notfellchen.service) starts after its dedicated Valkey service
 notfellchen_systemd_required_services_list_custom:
   - "mash-notfellchen-valkey.service"
 
-# Make sure the notfellchen service (mash-notfellchen.service) is connected to the container network of its dedicated KeyDB service
+# Make sure the notfellchen service (mash-notfellchen.service) is connected to the container network of its dedicated Valkey service
 notfellchen_api_container_additional_networks_custom:
   - "mash-notfellchen-valkey"
 
