@@ -80,7 +80,7 @@ mash_example_com
 
 [mash_example_com]
 mash.example.com ansible_host=YOUR_SERVER_IP_ADDRESS_HERE
-mash.example.com-authentik-deps ansible_host=YOUR_SERVER_IP_ADDRESS_HERE
+mash.example.com-paperless-deps ansible_host=YOUR_SERVER_IP_ADDRESS_HERE
 …
 ```
 
@@ -90,9 +90,9 @@ You can just add an entry for the supplementary host to `[mash_example_com]` if 
 
 ##### Create `vars.yml` for the dedicated instance
 
-Then, create a new directory where `vars.yml` for the supplementary host is stored. If `mash.example.com` is your main host, name the directory as `mash.example.com-authentik-deps`. Its path therefore will be `inventory/host_vars/mash.example.com-authentik-deps`.
+Then, create a new directory where `vars.yml` for the supplementary host is stored. If `mash.example.com` is your main host, name the directory as `mash.example.com-paperless-deps`. Its path therefore will be `inventory/host_vars/mash.example.com-paperless-deps`.
 
-After creating the directory, add a new `vars.yml` file inside it with a content below. It will have running the playbook create a `mash-authentik-valkey` instance on the new host, setting `/mash/authentik-valkey` to the base directory of the dedicated Valkey instance.
+After creating the directory, add a new `vars.yml` file inside it with a content below. It will have running the playbook create a `mash-paperless-valkey` instance on the new host, setting `/mash/paperless-valkey` to the base directory of the dedicated Valkey instance.
 
 **Notes**:
 - As this `vars.yml` file will be used for the new host, make sure to set `mash_playbook_generic_secret_key`. It does not need to be same as the one on `vars.yml` for the main host. Without setting it, the Valkey instance will not be configured.
@@ -167,7 +167,7 @@ paperless_container_additional_networks_custom:
 ########################################################################
 ```
 
-Running the installation command will create the dedicated Valkey instance named `mash-authentik-valkey`.
+Running the installation command will create the dedicated Valkey instance named `mash-paperless-valkey`.
 
 #### Setting up a shared Valkey instance
 
@@ -221,12 +221,12 @@ Running the installation command will create the shared Valkey instance named `m
 
 ## Installation
 
-If you have decided to install the dedicated Valkey instance for Paperless-ngx, make sure to run the [installing](../installing.md) command for the supplementary host (`mash.example.com-authentik-deps`) first, before running it for the main host (`mash.example.com`).
+If you have decided to install the dedicated Valkey instance for Paperless-ngx, make sure to run the [installing](../installing.md) command for the supplementary host (`mash.example.com-paperless-deps`) first, before running it for the main host (`mash.example.com`).
 
 Note that running the `just` commands for installation (`just install-all` or `just setup-all`) automatically takes care of the order. See [here](../running-multiple-instances.md#re-do-your-inventory-to-add-supplementary-hosts) for more details about it.
 
 ## Usage
 
-After installation, your Paperless-ngx instance becomes available at the URL specified with `infisical_hostname`.
+After installation, your Paperless-ngx instance becomes available at the URL specified with `paperless_hostname`.
 
 Refer to the [official documentation](https://docs.paperless-ngx.com/) to learn how to use paperless.
