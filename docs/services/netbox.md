@@ -162,11 +162,11 @@ Having configured `vars.yml` for the dedicated instance, add the following confi
 netbox_environment_variable_redis_host: mash-netbox-valkey
 netbox_environment_variable_redis_cache_host: mash-netbox-valkey
 
-# Make sure the NetBox service (mash-netbox.service) starts after its dedicated KeyDB service (mash-netbox-valkey.service)
+# Make sure the NetBox service (mash-netbox.service) starts after its dedicated Valkey service (mash-netbox-valkey.service)
 netbox_systemd_required_services_list_custom:
   - "mash-netbox-valkey.service"
 
-# Make sure the NetBox container is connected to the container network of its dedicated KeyDB service (mash-netbox-valkey)
+# Make sure the NetBox container is connected to the container network of its dedicated Valkey service (mash-netbox-valkey)
 netbox_container_additional_networks_custom:
   - "mash-netbox-valkey"
 
@@ -213,11 +213,11 @@ valkey_enabled: true
 netbox_environment_variable_redis_host: "{{ valkey_identifier }}"
 netbox_environment_variable_redis_cache_host: "{{ valkey_identifier }}"
 
-# Make sure the NetBox service (mash-netbox.service) starts after the shared KeyDB service (mash-valkey.service)
+# Make sure the NetBox service (mash-netbox.service) starts after the shared Valkey service (mash-valkey.service)
 netbox_systemd_required_services_list_custom:
   - "{{ valkey_identifier }}.service"
 
-# Make sure the NetBox container is connected to the container network of the shared KeyDB service (mash-valkey)
+# Make sure the NetBox container is connected to the container network of the shared Valkey service (mash-valkey)
 netbox_container_additional_networks_custom:
   - "{{ valkey_identifier }}"
 
