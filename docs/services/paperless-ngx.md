@@ -8,7 +8,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
 # Paperless-ngx
 
-[Paperless-ngx](https://paperless-ngx.com) s a community-supported open-source document management system that transforms your physical documents into a searchable online archive so you can keep, well, less paper. MASH can install paperless-ngx with the [`mother-of-all-self-hosting/ansible-role-paperless`](https://github.com/mother-of-all-self-hosting/ansible-role-paperless) ansible role.
+[Paperless-ngx](https://paperless-ngx.com) s a community-supported open-source document management system that transforms your physical documents into a searchable online archive so you can keep, well, less paper. MASH can install Paperless-ngx with the [`mother-of-all-self-hosting/ansible-role-paperless`](https://github.com/mother-of-all-self-hosting/ansible-role-paperless) ansible role.
 
 > [!WARNING]
 > Paperless-ngx currently [does not support](https://github.com/paperless-ngx/paperless-ngx/issues/6352) running the container rootless, therefore the role has not the usual security features of other services provided by this playbook. This put your system more at higher risk as vulnerabilities can have a higher impact.
@@ -149,14 +149,14 @@ Having configured `vars.yml` for the dedicated instance, add the following confi
 
 # Add the base configuration as specified above
 
-# Point paperless to its dedicated Valkey instance
+# Point Paperless-ngx to its dedicated Valkey instance
 paperless_redis_hostname: mash-paperless-valkey
 
-# Make sure the paperless service (mash-paperless.service) starts after its dedicated KeyDB service (mash-paperless-valkey.service)
+# Make sure the Paperless-ngx service (mash-paperless.service) starts after its dedicated KeyDB service (mash-paperless-valkey.service)
 paperless_systemd_required_services_list_custom:
   - "mash-paperless-valkey.service"
 
-# Make sure the paperless container is connected to the container network of its dedicated KeyDB service (mash-paperless-valkey)
+# Make sure the Paperless-ngx container is connected to the container network of its dedicated KeyDB service (mash-paperless-valkey)
 paperless_container_additional_networks_custom:
   - "mash-paperless-valkey"
 
@@ -199,14 +199,14 @@ valkey_enabled: true
 
 # Add the base configuration as specified above
 
-# Point paperless to the shared Valkey instance
+# Point Paperless-ngx to the shared Valkey instance
 paperless_redis_hostname: "{{ valkey_identifier }}"
 
-# Make sure the paperless service (mash-paperless.service) starts after the shared KeyDB service (mash-valkey.service)
+# Make sure the Paperless-ngx service (mash-paperless.service) starts after the shared KeyDB service (mash-valkey.service)
 paperless_systemd_required_services_list_custom:
   - "{{ valkey_identifier }}.service"
 
-# Make sure the paperless container is connected to the container network of the shared KeyDB service (mash-valkey)
+# Make sure the Paperless-ngx container is connected to the container network of the shared KeyDB service (mash-valkey)
 paperless_container_additional_networks_custom:
   - "{{ valkey_identifier }}"
 
@@ -229,4 +229,4 @@ Note that running the `just` commands for installation (`just install-all` or `j
 
 After installation, your Paperless-ngx instance becomes available at the URL specified with `paperless_hostname`.
 
-Refer to the [official documentation](https://docs.paperless-ngx.com/) to learn how to use paperless.
+Refer to the [official documentation](https://docs.paperless-ngx.com/) to learn how to use Paperless-ngx.
