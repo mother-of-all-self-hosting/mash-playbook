@@ -210,14 +210,14 @@ valkey_enabled: true
 # Add the base configuration as specified above
 
 # Point Lago to the shared Valkey instance
-lago_redis_hostname: "{{ valkey_identifier }}"
+searxng_rate_limiter_config_valkey_hostname: "{{ valkey_identifier }}"
 
 # Make sure the Lago service (mash-lago.service) starts after the shared Valkey service (mash-valkey.service)
-lago_api_systemd_required_services_list_custom:
+searxng_systemd_required_services_list_custom:
   - "{{ valkey_identifier }}.service"
 
 # Make sure the Lago container is connected to the container network of the shared Valkey service (mash-valkey)
-lago_api_container_additional_networks_custom:
+searxng_container_additional_networks_custom:
   - "{{ valkey_identifier }}"
 
 ########################################################################
