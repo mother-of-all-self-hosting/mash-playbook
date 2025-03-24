@@ -154,11 +154,11 @@ Having configured `vars.yml` for the dedicated instance, add the following confi
 # Point PeerTube to its dedicated Valkey instance
 peertube_config_redis_hostname: mash-peertube-valkey
 
-# Make sure the PeerTube service (mash-peertube.service) starts after its dedicated KeyDB service (mash-peertube-valkey.service)
+# Make sure the PeerTube service (mash-peertube.service) starts after its dedicated Valkey service (mash-peertube-valkey.service)
 peertube_systemd_required_services_list_custom:
   - "mash-peertube-valkey.service"
 
-# Make sure the PeerTube container is connected to the container network of its dedicated KeyDB service (mash-peertube-valkey)
+# Make sure the PeerTube container is connected to the container network of its dedicated Valkey service (mash-peertube-valkey)
 peertube_container_additional_networks_custom:
   - "mash-peertube-valkey"
 
@@ -204,11 +204,11 @@ valkey_enabled: true
 # Point PeerTube to the shared Valkey instance
 peertube_config_redis_hostname: "{{ valkey_identifier }}"
 
-# Make sure the PeerTube service (mash-peertube.service) starts after the shared KeyDB service (mash-valkey.service)
+# Make sure the PeerTube service (mash-peertube.service) starts after the shared Valkey service (mash-valkey.service)
 peertube_systemd_required_services_list_custom:
   - "{{ valkey_identifier }}.service"
 
-# Make sure the PeerTube container is connected to the container network of the shared KeyDB service (mash-valkey)
+# Make sure the PeerTube container is connected to the container network of the shared Valkey service (mash-valkey)
 peertube_container_additional_networks_custom:
   - "{{ valkey_identifier }}"
 
