@@ -273,14 +273,13 @@ Note that running the `just` commands for installation (`just install-all` or `j
 
 ## Usage
 
-After [installation](../installing.md), you should follow Nextcloud's setup wizard at the URL you've chosen.
+After installation, your Nextcloud instance becomes available at the URL specified with `nextcloud_hostname` and `nextcloud_path_prefix`. With the configuration above, the service is hosted at `https://mash.example.com/nextcloud`.
 
-You can choose any username/password for your account.
+To get started, go to the URL and follow Nextcloud's set up wizard.
 
-In **Storage & database**, you should choose PostgreSQL (changing the default **SQLite** choice), with the credentials you see after running `just run-tags print-nextcloud-db-credentials`
+In **Storage & database**, it is recommended to choose PostgreSQL (changing the default **SQLite** choice). To check credentials for it, run this command: `just run-tags print-nextcloud-db-credentials`
 
-Once you've fully installed Nextcloud, you'd better adjust its default configuration (URL paths, trusted reverse-proxies, etc.) by running: `just run-tags adjust-nextcloud-config`
-
+Once you have completed the set up wizard, update the configuration (URL paths, trusted reverse-proxies, etc.) by running this command: `just run-tags adjust-nextcloud-config`. **You should re-run the command every time the Nextcloud version is updated.**
 
 ## Recommended other services
 
@@ -333,8 +332,6 @@ If it takes more time to run than a day, you may want to start it from the host 
 ```sh
 /usr/bin/env docker exec mash-nextcloud-server php /var/www/html/occ preview:generate-all
 ```
-
-Also, please note: every time Nextcloud version is updated, you should rerun: `just run-tags adjust-nextcloud-config`.
 
 Other supported variables:
 
