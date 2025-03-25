@@ -285,11 +285,9 @@ Note that running the `just` commands for installation (`just install-all` or `j
 
 ## Usage
 
-To configure and manage the Send, go to `mash.example.com/joplin/login` specified with `send_hostname` and `send_path_prefix`, enter the admin credentials (email address: `admin@localhost`, password: `admin`) to log in. **After logging in, make sure to change the credentials.**
+After installation, your Send instance becomes available at the URL specified with `send_hostname` and `send_path_prefix`.
 
-For security reason, the developer recommends to create a non-admin user for synchronization. You can create one on the "Users" page. After creating, you can use the email and password you specified for the user to synchronize data with your Send clients.
-
-See [this section](https://codeberg.org/acioustick/ansible-role-send/src/branch/master/docs/configuring-send.md#usage) on the role's documentation for details about configuring the Send and the client application.
+See [this section](https://codeberg.org/acioustick/ansible-role-send/src/branch/master/docs/configuring-send.md#usage) on the role's documentation for details about its [CLI client](https://github.com/timvisee/ffsend). The instruction to takedown illegal materials is also available [here](https://codeberg.org/acioustick/ansible-role-send/src/branch/master/docs/configuring-send.md#takedown-illegal-materials).
 
 ## Troubleshooting
 
