@@ -74,6 +74,8 @@ Then, create a new `vars.yml` file inside each of them with a content below.
 For the supplementary host for NetBox, create `inventory/host_vars/mash.example.com-netbox-deps/vars.yml` with this content.
 
 ```yaml
+# This is vars.yml for the supplementary host of NetBox.
+
 ---
 
 ########################################################################
@@ -114,6 +116,8 @@ valkey_enabled: true
 For the supplementary host for PeerTube, create `inventory/host_vars/mash.example.com-peertube-deps/vars.yml` with this content.
 
 ```yaml
+# This is vars.yml for the supplementary host of PeerTube.
+
 ---
 
 ########################################################################

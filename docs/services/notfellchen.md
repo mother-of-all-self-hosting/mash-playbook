@@ -91,6 +91,8 @@ Then, create a new directory where `vars.yml` for the supplementary host is stor
 After creating the directory, add a new `vars.yml` file inside it with a content below. It will have running the playbook create a `mash-notfellchen-valkey` instance on the new host, setting `/mash/notfellchen-valkey` to the base directory of the dedicated Valkey instance.
 
 ```yaml
+# This is vars.yml for the supplementary host of Notfellchen.
+
 ---
 
 ########################################################################
