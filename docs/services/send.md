@@ -83,6 +83,8 @@ send_container_additional_volumes:
 
 Make sure permissions of the directory specified to `src` (`/path/on/the/host`).
 
+See [this section](https://codeberg.org/acioustick/ansible-role-send/src/branch/master/docs/configuring-send.md#configure-a-storage-backend) on the role's documentation for details about how to set up Amazon S3 compatible object storage and Google Cloud Storage.
+
 ## Usage
 
 To configure and manage the Send, go to `mash.example.com/joplin/login` specified with `send_hostname` and `send_path_prefix`, enter the admin credentials (email address: `admin@localhost`, password: `admin`) to log in. **After logging in, make sure to change the credentials.**
