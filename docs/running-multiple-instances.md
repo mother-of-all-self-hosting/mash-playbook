@@ -1,3 +1,10 @@
+<!--
+SPDX-FileCopyrightText: 2024 Slavi Pantaleev
+SPDX-FileCopyrightText: 2025 Suguru Hirahara
+
+SPDX-License-Identifier: AGPL-3.0-or-later
+-->
+
 ## Running multiple instances of the same service on the same host
 
 The way this playbook is structured, each Ansible role can only be invoked once and made to install one instance of the service it's responsible for.
