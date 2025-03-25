@@ -58,7 +58,7 @@ Valkey can **optionally** be enabled to improve Nextcloud performance.
 
 If Nextcloud is the sole service which requires Valkey on your server, it is fine to set up just a single Valkey instance. However, **it is not recommended if there are other services which require it, because sharing the Valkey instance has security concerns and possibly causes data conflicts**, as described on the [documentation for configuring Valkey](valkey.md). In this case, you should install a dedicated Valkey instance for each of them.
 
-If you are unsure whether you will install other services along with Nextcloud or you have already set up services which need Valkey, it is recommended to install a Valkey instance dedicated to Nextcloud. See [below](#setting-up-a-shared-valkey-instance) for an instruction to install a shared instance.
+If you are unsure whether you will install other services along with Nextcloud or you have already set up services which need Valkey (such as [PeerTube](peertube.md), [Funkwhale](funkwhale.md), and [SearXNG](searxng.md)), it is recommended to install a Valkey instance dedicated to Nextcloud. See [below](#setting-up-a-shared-valkey-instance) for an instruction to install a shared instance.
 
 💡 It is dubious whether using Valkey helps much, so we recommend that you **start without** it for a simpler deployment. To learn more, read the [Memory caching](https://docs.nextcloud.com/server/latest/admin_manual/configuration_server/caching_configuration.html) section of the Nextcloud documentation.
 
