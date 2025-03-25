@@ -157,11 +157,11 @@ Having configured `vars.yml` for the dedicated instance, add the following confi
 # Point Nextcloud to its dedicated Valkey instance
 nextcloud_redis_hostname: mash-nextcloud-valkey
 
-# Make sure the Nextcloud service (mash-nextcloud.service) starts after its dedicated KeyDB service (mash-nextcloud-valkey.service)
+# Make sure the Nextcloud service (mash-nextcloud.service) starts after its dedicated Valkey service (mash-nextcloud-valkey.service)
 nextcloud_systemd_required_services_list_custom:
   - "mash-nextcloud-valkey.service"
 
-# Make sure the Nextcloud container is connected to the container network of its dedicated KeyDB service (mash-nextcloud-valkey)
+# Make sure the Nextcloud container is connected to the container network of its dedicated Valkey service (mash-nextcloud-valkey)
 nextcloud_container_additional_networks_custom:
   - "mash-nextcloud-valkey"
 
@@ -207,11 +207,11 @@ valkey_enabled: true
 # Point Nextcloud to the shared Valkey instance
 nextcloud_redis_hostname: "{{ valkey_identifier }}"
 
-# Make sure the Nextcloud service (mash-nextcloud.service) starts after the shared KeyDB service (mash-valkey.service)
+# Make sure the Nextcloud service (mash-nextcloud.service) starts after the shared Valkey service (mash-valkey.service)
 nextcloud_systemd_required_services_list_custom:
   - "{{ valkey_identifier }}.service"
 
-# Make sure the Nextcloud container is connected to the container network of the shared KeyDB service (mash-valkey)
+# Make sure the Nextcloud container is connected to the container network of the shared Valkey service (mash-valkey)
 nextcloud_container_additional_networks_custom:
   - "{{ valkey_identifier }}"
 
