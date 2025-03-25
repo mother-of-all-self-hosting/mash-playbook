@@ -71,7 +71,7 @@ To create a dedicated instance for Infisical, you can follow the steps below:
 
 ##### Adjust `hosts`
 
-At first, you need to adjust `inventory/hosts` file to add a supplementary host for Infisical. See [here](../running-multiple-instances.md#re-do-your-inventory-to-add-supplementary-hosts) for details.
+At first, you need to adjust `inventory/hosts` file to add a supplementary host for Infisical. See [here](../running-multiple-instances.md#1-adjust-hosts) for details.
 
 The content should be something like below. Make sure to replace `mash.example.com` with your hostname and `YOUR_SERVER_IP_ADDRESS_HERE` with the IP address of the host, respectively. The same IP address should be set to both, unless the Valkey instance will be served from a different machine.
 
@@ -263,7 +263,7 @@ For additional SMTP-related variables, consult the [`defaults/main.yml` file](ht
 
 If you have decided to install the dedicated Valkey instance for Infisical, make sure to run the [installing](../installing.md) command for the supplementary host (`mash.example.com-infisical-deps`) first, before running it for the main host (`mash.example.com`).
 
-Note that running the `just` commands for installation (`just install-all` or `just setup-all`) automatically takes care of the order. See [here](../running-multiple-instances.md#re-do-your-inventory-to-add-supplementary-hosts) for more details about it.
+Note that running the `just` commands for installation (`just install-all` or `just setup-all`) automatically takes care of the order. See [here](../running-multiple-instances.md#1-adjust-hosts) for more details about it.
 
 ## Usage
 
