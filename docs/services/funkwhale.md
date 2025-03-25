@@ -51,7 +51,9 @@ Funkwhale requires a Valkey data-store to work. This playbook supports it, and y
 
 If Funkwhale is the sole service which requires Valkey on your server, it is fine to set up just a single Valkey instance. However, **it is not recommended if there are other services which require it, because sharing the Valkey instance has security concerns and possibly causes data conflicts**, as described on the [documentation for configuring Valkey](valkey.md). In this case, you should install a dedicated Valkey instance for each of them.
 
-If you are unsure whether you will install other services along with Funkwhale or you have already set up services which need Valkey (such as [Nextcloud](nextcloud.md), [PeerTube](peertube.md), and [SearXNG](searxng.md)), it is recommended to install a Valkey instance dedicated to Funkwhale. See [below](#setting-up-a-shared-valkey-instance) for an instruction to install a shared instance.
+If you are unsure whether you will install other services along with Funkwhale or you have already set up services which need Valkey (such as [Nextcloud](nextcloud.md), [PeerTube](peertube.md), and [SearXNG](searxng.md)), it is recommended to install a Valkey instance dedicated to Funkwhale.
+
+*See [below](#setting-up-a-shared-valkey-instance) for an instruction to install a shared instance.*
 
 #### Setting up a dedicated Valkey instance
 
