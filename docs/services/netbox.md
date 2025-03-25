@@ -51,7 +51,9 @@ Netbox requires a Valkey data-store to work. This playbook supports it, and you 
 
 If Netbox is the sole service which requires Valkey on your server, it is fine to set up just a single Valkey instance. However, **it is not recommended if there are other services which require it, because sharing the Valkey instance has security concerns and possibly causes data conflicts**, as described on the [documentation for configuring Valkey](valkey.md). In this case, you should install a dedicated Valkey instance for each of them.
 
-If you are unsure whether you will install other services along with Netbox or you have already set up services which need Valkey, it is recommended to install a Valkey instance dedicated to Netbox. See [below](#setting-up-a-shared-valkey-instance) for an instruction to install a shared instance.
+If you are unsure whether you will install other services along with Netbox or you have already set up services which need Valkey (such as [Nextcloud](nextcloud.md), [PeerTube](peertube.md), and [Funkwhale](funkwhale.md)), it is recommended to install a Valkey instance dedicated to Netbox.
+
+*See [below](#setting-up-a-shared-valkey-instance) for an instruction to install a shared instance.*
 
 #### Setting up a dedicated Valkey instance
 
@@ -61,9 +63,11 @@ To create a dedicated instance for Netbox, you can follow the steps below:
 2. Create a new `vars.yml` file for the dedicated instance
 3. Edit the existing `vars.yml` file for the main host
 
+*See [this page](../running-multiple-instances.md) for details about configuring multiple instances of Valkey on the same server.*
+
 ##### Adjust `hosts`
 
-At first, you need to adjust `inventory/hosts` file to add a supplementary host for Netbox. See [here](../running-multiple-instances.md#re-do-your-inventory-to-add-supplementary-hosts) for details.
+At first, you need to adjust `inventory/hosts` file to add a supplementary host for Netbox.
 
 The content should be something like below. Make sure to replace `mash.example.com` with your hostname and `YOUR_SERVER_IP_ADDRESS_HERE` with the IP address of the host, respectively. The same IP address should be set to both, unless the Valkey instance will be served from a different machine.
 
@@ -88,11 +92,9 @@ Then, create a new directory where `vars.yml` for the supplementary host is stor
 
 After creating the directory, add a new `vars.yml` file inside it with a content below. It will have running the playbook create a `mash-netbox-valkey` instance on the new host, setting `/mash/netbox-valkey` to the base directory of the dedicated Valkey instance.
 
-**Notes**:
-- As this `vars.yml` file will be used for the new host, make sure to set `mash_playbook_generic_secret_key`. It does not need to be same as the one on `vars.yml` for the main host. Without setting it, the Valkey instance will not be configured.
-- Since these variables are used to configure the service name and directory path of the Valkey instance, you do not have to have them matched with the hostname of the server. For example, even if the hostname is `www.example.com`, you do **not** need to set `mash_playbook_service_base_directory_name_prefix` to `www-`. If you are not sure which string you should set, you might as well use the values as they are.
-
 ```yaml
+# This is vars.yml for the supplementary host of NetBox.
+
 ---
 
 ########################################################################
@@ -288,7 +290,7 @@ For additional environment variables controlling groups and permissions for new 
 
 If you have decided to install the dedicated Valkey instance for Netbox, make sure to run the [installing](../installing.md) command for the supplementary host (`mash.example.com-netbox-deps`) first, before running it for the main host (`mash.example.com`).
 
-Note that running the `just` commands for installation (`just install-all` or `just setup-all`) automatically takes care of the order. See [here](../running-multiple-instances.md#re-do-your-inventory-to-add-supplementary-hosts) for more details about it.
+Note that running the `just` commands for installation (`just install-all` or `just setup-all`) automatically takes care of the order. See [here](../running-multiple-instances.md#1-adjust-hosts) for more details about it.
 
 ## Usage
 
