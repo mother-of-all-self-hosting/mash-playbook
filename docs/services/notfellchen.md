@@ -61,9 +61,11 @@ To create a dedicated instance for Notfellchen, you can follow the steps below:
 2. Create a new `vars.yml` file for the dedicated instance
 3. Edit the existing `vars.yml` file for the main host
 
+*See [this page](../running-multiple-instances.md) for details about configuring multiple instances of Valkey on the same server.*
+
 ##### Adjust `hosts`
 
-At first, you need to adjust `inventory/hosts` file to add a supplementary host for Notfellchen. See [here](../running-multiple-instances.md#1-adjust-hosts) for details.
+At first, you need to adjust `inventory/hosts` file to add a supplementary host for Notfellchen.
 
 The content should be something like below. Make sure to replace `mash.example.com` with your hostname and `YOUR_SERVER_IP_ADDRESS_HERE` with the IP address of the host, respectively. The same IP address should be set to both, unless the Valkey instance will be served from a different machine.
 
@@ -87,10 +89,6 @@ You can just add an entry for the supplementary host to `[mash_example_com]` if 
 Then, create a new directory where `vars.yml` for the supplementary host is stored. If `mash.example.com` is your main host, name the directory as `mash.example.com-notfellchen-deps`. Its path therefore will be `inventory/host_vars/mash.example.com-notfellchen-deps`.
 
 After creating the directory, add a new `vars.yml` file inside it with a content below. It will have running the playbook create a `mash-notfellchen-valkey` instance on the new host, setting `/mash/notfellchen-valkey` to the base directory of the dedicated Valkey instance.
-
-**Notes**:
-- As this `vars.yml` file will be used for the new host, make sure to set `mash_playbook_generic_secret_key`. It does not need to be same as the one on `vars.yml` for the main host. Without setting it, the Valkey instance will not be configured.
-- Since these variables are used to configure the service name and directory path of the Valkey instance, you do not have to have them matched with the hostname of the server. For example, even if the hostname is `www.example.com`, you do **not** need to set `mash_playbook_service_base_directory_name_prefix` to `www-`. If you are not sure which string you should set, you might as well use the values as they are.
 
 ```yaml
 ---

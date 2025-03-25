@@ -47,9 +47,11 @@ This creates a new group (called `mash_example_com`) which contains all 3 hosts:
 - (**new**) `mash.example.com-peertube-deps` — a new host, for your [PeerTube](services/peertube.md) dependencies
 - (old) `mash.example.com` — your main inventory host
 
-You can just add a new entry to `[mash_example_com]` in order to add another supplementary host to the group.
+You can just add a new entry to `[mash_example_com]` in order to have another supplementary host contained in the group.
 
-💡 When running Ansible commands later on, you can use the `-l` flag to limit which host to run them against. Here are a few examples:
+### Note: use `-l` flag to select a host to run Ansible commands
+
+When running Ansible commands later on, you can use the `-l` flag to limit which host to run them against. Here are a few examples:
 
 - `just install-all` — runs the [installation](installing.md) process on all hosts (3 hosts in this case)
 - `just install-all -l mash_example_com` — runs the installation process on all hosts in the `mash_example_com` group (same 3 hosts as `just install-all` in this case)
@@ -65,7 +67,9 @@ First, create new directories where `vars.yml` for the supplementary hosts are s
 
 Then, create a new `vars.yml` file inside each of them with a content below.
 
-**Note**: as this `vars.yml` file will be used for the new host, make sure to set `mash_playbook_generic_secret_key`. It does not need to be same as the one on `vars.yml` for the main host.
+**Notes**:
+- As this `vars.yml` file will be used for the new host, make sure to set `mash_playbook_generic_secret_key`. It does not need to be same as the one on `vars.yml` for the main host.
+- These variables are not related to the hostname of the server. For example, even if it is `www.example.com`, you do not need to include `www` in either of them. If you are not sure which string you should set, you might as well use the values as they are.
 
 For the supplementary host for NetBox, create `inventory/host_vars/mash.example.com-netbox-deps/vars.yml` with this content.
 
