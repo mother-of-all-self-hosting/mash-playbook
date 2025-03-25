@@ -225,7 +225,8 @@ peertube_container_additional_networks_custom:
 
 Finally, run the [installation](installing.md) command to create supplementary hosts and wire them to the main host.
 
-⚠️ Make sure to run the command for the supplementary hosts first, before running it for the main host. Note that running the `just` command for installation (`just install-all` or `just setup-all`) automatically takes care of the order.
+> [!WARNING]
+> Make sure to run the command for the supplementary hosts first, before running it for the main host. Note that running the `just` command for installation (`just install-all` or `just setup-all`) automatically takes care of starting services in the correct order (thanks to the explicit dependencies defined between them).
 
 ## Questions & Answers
 
