@@ -391,6 +391,10 @@
   version: v2.9.56-0
   name: semaphore
   activation_prefix: semaphore_
+- src: git+https://github.com/mother-of-all-self-hosting/ansible-role-send.git
+  version: v2025.2.4-0
+  name: send
+  activation_prefix: send_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-soft_serve.git
   version: v0.4.7-1
   name: soft_serve
