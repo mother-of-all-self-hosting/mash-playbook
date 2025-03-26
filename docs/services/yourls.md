@@ -34,7 +34,7 @@ For details about configuring the [Ansible role for YOURLS](https://codeberg.org
 This service requires the following other services:
 
 - [Traefik](traefik.md) reverse-proxy server
-- [Valkey](valkey.md) data-store; see [below](#configure-valkey) for details about installation
+- MySQL / [MariaDB](mariadb.md) database
 
 ## Adjusting the playbook configuration
 
