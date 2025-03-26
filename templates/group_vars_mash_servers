@@ -3899,9 +3899,11 @@ infisical_frontend_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_
 infisical_frontend_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
 # /role-specific:traefik
 
+# role-specific:mongodb
 infisical_mongodb_hostname: "{{ mongodb_identifier if mongodb_enabled else '' }}"
 infisical_mongodb_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'infisical.db', rounds=655555) | to_uuid }}"
 infisical_mongodb_auth_source: "{{ infisical_mongodb_db_name }}"
+# /role-specific:mongodb
 
 ########################################################################
 #                                                                      #
