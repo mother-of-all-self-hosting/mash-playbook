@@ -103,11 +103,11 @@ For connecting to a **remote** Loki instance, you may need to adjust this config
 
 If you're installing [Promtail](./promtail.md) on the same server as Loki, by default it's configured to send `mash` as the tenant ID.
 
-### Integrating with Prometheus Node Exporter
+### Integrating with Prometheus Node Exporter and/or cAdvisor
 
-If you've installed [Prometheus Node Exporter](prometheus-node-exporter.md) on any host (target) scraped by Prometheus, you may wish to install a dashboard for Prometheus Node Exporter.
+If you've installed [Prometheus Node Exporter](prometheus-node-exporter.md) and/or [cAdvisor](cadvisor.md) on any host (target) scraped by Prometheus, you may wish to install a Grafana dashboard for them.
 
-The Prometheus Node Exporter role exposes a list of URLs containing dashboards (JSON files) in its `prometheus_node_exporter_dashboard_urls` variable.
+The Prometheus Node Exporter role as well as the cAdvisor role exposes a list of URLs containing dashboards (JSON files) in there `<role_name>_dashboard_urls` variable.
 
 You can add this **additional** configuration to make the Grafana service pull these dashboards:
 
@@ -115,6 +115,7 @@ You can add this **additional** configuration to make the Grafana service pull t
 grafana_dashboard_download_urls: |
   {{
     prometheus_node_exporter_dashboard_urls
+    cadvisor_dashboard_urls
   }}
 ```
 
