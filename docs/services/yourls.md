@@ -96,9 +96,11 @@ yourls_environment_variable_pass: YOUR_ADMIN_PASSWORD_HERE
 
 ## Usage
 
-After installation, your YOURLS instance becomes available at the URL specified with `yourls_hostname` and `yourls_path_prefix`.
+After running the command for installation, YOURLS's admin UI is available at the specified hostname with `/admin/` such as `yourls.example.com/admin/`.
 
-See [this section](https://codeberg.org/acioustick/ansible-role-yourls/src/branch/master/docs/configuring-yourls.md#usage) on the role's documentation for details about its [CLI client](https://github.com/timvisee/ffyourls). The instruction to takedown illegal materials is also available [here](https://codeberg.org/acioustick/ansible-role-yourls/src/branch/master/docs/configuring-yourls.md#takedown-illegal-materials).
+First, open the page with a web browser to complete installation on the server by clicking "Install YOURLS" button. After that, click the anchor link "YOURLS Administration Page" to log in with the username (`yourls_environment_variable_user`) and password (`yourls_environment_variable_pass`).
+
+The help file is available at `yourls.example.com/readme.html`.
 
 ## Troubleshooting
 
