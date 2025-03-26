@@ -52,16 +52,16 @@ authelia_container_additional_networks_auto: |
 authelia_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
 authelia_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
 
-# role-specific:traefik
-authelia_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
-authelia_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
-# /role-specific:traefik
-
 authelia_config_jwt_secret: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'jwt.authelia', rounds=655555) | to_uuid }}"
 
 authelia_config_session_secret: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'ses.authelia', rounds=655555) | to_uuid }}"
 
 authelia_config_identity_providers_oidc_hmac_secret: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'hm.authelia', rounds=655555) | to_uuid }}"
+
+# role-specific:traefik
+authelia_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
+authelia_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
+# /role-specific:traefik
 
 # role-specific:postgres
 authelia_config_storage_postgres_host: "{{ postgres_identifier if postgres_enabled else '' }}"
@@ -1332,10 +1332,6 @@ traefik_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_
 traefik_uid: "{{ mash_playbook_uid }}"
 traefik_gid: "{{ mash_playbook_gid }}"
 
-# role-specific:container_socket_proxy
-traefik_config_providers_docker_endpoint: "{{ container_socket_proxy_endpoint if container_socket_proxy_enabled else 'unix:///var/run/docker.sock' }}"
-# /role-specific:container_socket_proxy
-
 traefik_container_additional_networks_auto: |
   {{
     ([container_socket_proxy_container_network] if container_socket_proxy_enabled | default(false) else [])
@@ -1347,6 +1343,10 @@ traefik_systemd_required_services_list: |
     +
     ([container_socket_proxy_identifier + '.service'] if container_socket_proxy_enabled | default(false) else [])
   }}
+
+# role-specific:container_socket_proxy
+traefik_config_providers_docker_endpoint: "{{ container_socket_proxy_endpoint if container_socket_proxy_enabled else 'unix:///var/run/docker.sock' }}"
+# /role-specific:container_socket_proxy
 
 ########################################################################
 #                                                                      #
@@ -1515,16 +1515,16 @@ apisix_gateway_container_additional_networks_auto: |
 apisix_gateway_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
 apisix_gateway_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
 
-# role-specific:traefik
-apisix_gateway_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
-apisix_gateway_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
-# /role-specific:traefik
-
 apisix_gateway_container_labels_metrics_enabled: "{{ prometheus_enabled | default(false) or mash_playbook_metrics_exposure_enabled }}"
 apisix_gateway_container_labels_metrics_hostname: "{{ mash_playbook_metrics_exposure_hostname }}"
 apisix_gateway_container_labels_metrics_path_prefix: "{{ mash_playbook_metrics_exposure_path_prefix }}/{{ apisix_gateway_identifier }}"
 apisix_gateway_container_labels_metrics_middleware_basic_auth_enabled: "{{ mash_playbook_metrics_exposure_http_basic_auth_enabled }}"
 apisix_gateway_container_labels_metrics_middleware_basic_auth_users: "{{ mash_playbook_metrics_exposure_http_basic_auth_users }}"
+
+# role-specific:traefik
+apisix_gateway_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
+apisix_gateway_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
+# /role-specific:traefik
 
 # role-specific:etcd
 apisix_gateway_config_deployment_etcd_host: |
@@ -1609,13 +1609,6 @@ authentik_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_bas
 authentik_uid: "{{ mash_playbook_uid }}"
 authentik_gid: "{{ mash_playbook_gid }}"
 
-# role-specific:postgres
-authentik_database_hostname: "{{ postgres_identifier if postgres_enabled else '' }}"
-authentik_database_port: "{{ '5432' if postgres_enabled else '' }}"
-authentik_database_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'db.authentik', rounds=655555) | to_uuid }}"
-authentik_database_username: "{{ authentik_identifier }}"
-# /role-specific:postgres
-
 authentik_server_systemd_required_services_list_auto: |
   {{
     ([postgres_identifier ~ '.service'] if postgres_enabled and authentik_database_hostname == postgres_identifier else [])
@@ -1630,6 +1623,13 @@ authentik_container_additional_networks_auto: |
 
 authentik_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
 authentik_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+
+# role-specific:postgres
+authentik_database_hostname: "{{ postgres_identifier if postgres_enabled else '' }}"
+authentik_database_port: "{{ '5432' if postgres_enabled else '' }}"
+authentik_database_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'db.authentik', rounds=655555) | to_uuid }}"
+authentik_database_username: "{{ authentik_identifier }}"
+# /role-specific:postgres
 
 # role-specific:traefik
 authentik_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
@@ -1668,25 +1668,6 @@ backup_borg_storage_archive_name_format: "{{ mash_playbook_service_identifier_pr
 
 backup_borg_container_image_self_build: "{{ mash_playbook_architecture not in ['amd64', 'arm32', 'arm64'] }}"
 
-backup_borg_postgresql_enabled: "{{ postgres_enabled }}"
-backup_borg_mysql_enabled: "{{ mariadb_enabled }}"
-
-# role-specific:postgres
-backup_borg_postgresql_databases_hostname: "{{ postgres_connection_hostname if postgres_enabled else '' }}"
-backup_borg_postgresql_databases_username: "{{ postgres_connection_username if postgres_enabled else '' }}"
-backup_borg_postgresql_databases_password: "{{ postgres_connection_password if postgres_enabled else '' }}"
-backup_borg_postgresql_databases_port: "{{ postgres_connection_port if postgres_enabled else 5432 }}"
-backup_borg_postgresql_databases_auto: "{{ postgres_managed_databases | map(attribute='name') if postgres_enabled else [] }}"
-# /role-specific:postgres
-
-# role-specific:mariadb
-backup_borg_mysql_databases_hostname: "{{ mariadb_identifier if mariadb_enabled else '' }}"
-backup_borg_mysql_databases_username: "root"
-backup_borg_mysql_databases_password: "{{ mariadb_root_password if mariadb_enabled else '' }}"
-backup_borg_mysql_databases_port: 3306
-backup_borg_mysql_databases: "{{ mariadb_managed_databases | map(attribute='name') if mariadb_enabled else [] }}"
-# /role-specific:mariadb
-
 backup_borg_location_source_directories:
   - "{{ mash_playbook_base_path }}"
 
@@ -1705,6 +1686,25 @@ backup_borg_systemd_required_services_list: |
     +
     ([mariadb_identifier ~ '.service'] if mariadb_enabled | default(false) else [])
   }}
+
+backup_borg_postgresql_enabled: "{{ postgres_enabled }}"
+backup_borg_mysql_enabled: "{{ mariadb_enabled }}"
+
+# role-specific:postgres
+backup_borg_postgresql_databases_hostname: "{{ postgres_connection_hostname if postgres_enabled else '' }}"
+backup_borg_postgresql_databases_username: "{{ postgres_connection_username if postgres_enabled else '' }}"
+backup_borg_postgresql_databases_password: "{{ postgres_connection_password if postgres_enabled else '' }}"
+backup_borg_postgresql_databases_port: "{{ postgres_connection_port if postgres_enabled else 5432 }}"
+backup_borg_postgresql_databases_auto: "{{ postgres_managed_databases | map(attribute='name') if postgres_enabled else [] }}"
+# /role-specific:postgres
+
+# role-specific:mariadb
+backup_borg_mysql_databases_hostname: "{{ mariadb_identifier if mariadb_enabled else '' }}"
+backup_borg_mysql_databases_username: "root"
+backup_borg_mysql_databases_password: "{{ mariadb_root_password if mariadb_enabled else '' }}"
+backup_borg_mysql_databases_port: 3306
+backup_borg_mysql_databases: "{{ mariadb_managed_databases | map(attribute='name') if mariadb_enabled else [] }}"
+# /role-specific:mariadb
 
 ########################################################################
 #                                                                      #
@@ -2227,6 +2227,8 @@ endlessh_container_additional_networks_auto: |
     ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
   }}
 
+endlessh_container_labels_metrics_middleware_basic_auth_enabled: "{{ mash_playbook_metrics_exposure_http_basic_auth_enabled }}"
+endlessh_container_labels_metrics_middleware_basic_auth_users: "{{ mash_playbook_metrics_exposure_http_basic_auth_users }}"
 
 # Only enable Traefik labels if a hostname is set (indicating that this will be exposed publicly)
 endlessh_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled and endlessh_hostname }}"
@@ -2236,9 +2238,6 @@ endlessh_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_prox
 endlessh_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
 endlessh_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
 # /role-specific:traefik
-
-endlessh_container_labels_metrics_middleware_basic_auth_enabled: "{{ mash_playbook_metrics_exposure_http_basic_auth_enabled }}"
-endlessh_container_labels_metrics_middleware_basic_auth_users: "{{ mash_playbook_metrics_exposure_http_basic_auth_users }}"
 
 ########################################################################
 #                                                                      #
@@ -2363,13 +2362,6 @@ firezone_uid: "{{ mash_playbook_uid }}"
 firezone_gid: "{{ mash_playbook_gid }}"
 firezone_generic_secret: "{{ mash_playbook_generic_secret_key }}"
 
-# role-specific:postgres
-firezone_database_host: "{{ postgres_identifier if postgres_enabled else '' }}"
-firezone_database_port: "{{ '5432' if postgres_enabled else '' }}"
-firezone_database_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'fz.db.user', rounds=655555) | to_uuid }}"
-firezone_database_username: "{{ firezone_identifier }}"
-# /role-specific:postgres
-
 firezone_systemd_required_services_list_auto: |
   {{
     ([postgres_identifier ~ '.service'] if postgres_enabled | default(false) and firezone_database_host == postgres_identifier else [])
@@ -2384,6 +2376,13 @@ firezone_container_additional_networks_auto: |
 
 firezone_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
 firezone_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+
+# role-specific:postgres
+firezone_database_host: "{{ postgres_identifier if postgres_enabled else '' }}"
+firezone_database_port: "{{ '5432' if postgres_enabled else '' }}"
+firezone_database_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'fz.db.user', rounds=655555) | to_uuid }}"
+firezone_database_username: "{{ firezone_identifier }}"
+# /role-specific:postgres
 
 # role-specific:traefik
 firezone_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
@@ -2420,14 +2419,6 @@ focalboard_systemd_required_systemd_services_list_auto: |
     ([postgres_identifier ~ '.service'] if postgres_enabled and focalboard_database_hostname == postgres_identifier else [])
   }}
 
-focalboard_database_type: "{{ 'postgres' if postgres_enabled else '' }}"
-
-# role-specific:postgres
-focalboard_database_hostname: "{{ postgres_identifier if postgres_enabled else '' }}"
-focalboard_database_port: "{{ '5432' if postgres_enabled else '' }}"
-focalboard_database_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'db.focalboard', rounds=655555) | to_uuid }}"
-# /role-specific:postgres
-
 focalboard_container_additional_networks_auto: |
   {{
     ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
@@ -2437,6 +2428,14 @@ focalboard_container_additional_networks_auto: |
 
 focalboard_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
 focalboard_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+
+focalboard_database_type: "{{ 'postgres' if postgres_enabled else '' }}"
+
+# role-specific:postgres
+focalboard_database_hostname: "{{ postgres_identifier if postgres_enabled else '' }}"
+focalboard_database_port: "{{ '5432' if postgres_enabled else '' }}"
+focalboard_database_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'db.focalboard', rounds=655555) | to_uuid }}"
+# /role-specific:postgres
 
 # role-specific:traefik
 focalboard_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
@@ -2523,13 +2522,6 @@ funkwhale_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_bas
 funkwhale_uid: "{{ mash_playbook_uid }}"
 funkwhale_gid: "{{ mash_playbook_gid }}"
 
-# role-specific:postgres
-funkwhale_database_hostname: "{{ postgres_identifier if postgres_enabled else '' }}"
-funkwhale_database_port: "{{ '5432' if postgres_enabled else '' }}"
-funkwhale_database_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'db.funkwhale', rounds=655555) | to_uuid }}"
-funkwhale_database_username: "{{ funkwhale_identifier }}"
-# /role-specific:postgres
-
 funkwhale_api_systemd_required_services_list_auto: |
   {{
     ([postgres_identifier ~ '.service'] if postgres_enabled and funkwhale_database_hostname == postgres_identifier else [])
@@ -2558,6 +2550,13 @@ funkwhale_api_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels
 funkwhale_api_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
 funkwhale_frontend_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
 funkwhale_frontend_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+
+# role-specific:postgres
+funkwhale_database_hostname: "{{ postgres_identifier if postgres_enabled else '' }}"
+funkwhale_database_port: "{{ '5432' if postgres_enabled else '' }}"
+funkwhale_database_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'db.funkwhale', rounds=655555) | to_uuid }}"
+funkwhale_database_username: "{{ funkwhale_identifier }}"
+# /role-specific:postgres
 
 # role-specific:traefik
 funkwhale_api_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
@@ -2719,14 +2718,6 @@ grafana_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_
 grafana_uid: "{{ mash_playbook_uid }}"
 grafana_gid: "{{ mash_playbook_gid }}"
 
-
-# role-specific:exim_relay
-grafana_smtp_enabled: "{{ exim_relay_enabled | default(false) }}"
-grafana_smtp_host: "{{ exim_relay_identifier if exim_relay_enabled else '' }}"
-grafana_smtp_port: 8025
-grafana_smtp_from_address: "{{ exim_relay_sender_address if exim_relay_enabled else '' }}"
-# /role-specific:exim_relay
-
 grafana_container_additional_networks_auto: |
   {{
     ([mash_playbook_reverse_proxyable_services_additional_network] if (grafana_container_labels_traefik_enabled and mash_playbook_reverse_proxyable_services_additional_network) else [])
@@ -2736,6 +2727,13 @@ grafana_container_additional_networks_auto: |
 
 grafana_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
 grafana_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+
+# role-specific:exim_relay
+grafana_smtp_enabled: "{{ exim_relay_enabled | default(false) }}"
+grafana_smtp_host: "{{ exim_relay_identifier if exim_relay_enabled else '' }}"
+grafana_smtp_port: 8025
+grafana_smtp_from_address: "{{ exim_relay_sender_address if exim_relay_enabled else '' }}"
+# /role-specific:exim_relay
 
 # role-specific:traefik
 grafana_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
@@ -2824,6 +2822,8 @@ healthchecks_container_additional_networks_auto: |
     ([exim_relay_container_network | default('mash-exim-relay')] if (exim_relay_enabled | default(false) and healthchecks_environment_variable_email_host == exim_relay_identifier | default('mash-exim-relay') and healthchecks_container_network != exim_relay_container_network) else [])
   }}
 
+healthchecks_environment_variable_secret_key: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'healthchecks', rounds=655555) | to_uuid }}"
+
 healthchecks_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
 healthchecks_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
 
@@ -2836,8 +2836,6 @@ healthchecks_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver
 healthchecks_database_hostname: "{{ postgres_connection_hostname if postgres_enabled else '' }}"
 healthchecks_database_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'healthchecks.db', rounds=655555) | to_uuid }}"
 # /role-specific:postgres
-
-healthchecks_environment_variable_secret_key: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'healthchecks', rounds=655555) | to_uuid }}"
 
 # role-specific:exim_relay
 healthchecks_environment_variable_default_from_email: "{{ exim_relay_sender_address if exim_relay_enabled else '' }}"
@@ -3759,10 +3757,7 @@ ihatemoney_container_additional_networks_auto: |
 ihatemoney_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
 ihatemoney_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
 
-# role-specific:traefik
-ihatemoney_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
-ihatemoney_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
-# /role-specific:traefik
+ihatemoney_environment_variable_secret: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'secret.imoney', rounds=655555) | to_uuid }}"
 
 # role-specific:postgres
 ihatemoney_database_hostname: "{{ postgres_identifier if postgres_enabled else '' }}"
@@ -3771,13 +3766,16 @@ ihatemoney_database_username: "ihatemoney"
 ihatemoney_database_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'db.ihatemoney', rounds=655555) | to_uuid }}"
 # /role-specific:postgres
 
-ihatemoney_environment_variable_secret: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'secret.imoney', rounds=655555) | to_uuid }}"
-
 # role-specific:exim_relay
 ihatemoney_email_host: "{{ exim_relay_identifier if exim_relay_enabled else '' }}"
 ihatemoney_email_port: "{{ 8025 if exim_relay_enabled else '' }}"
 ihatemoney_default_from_email: "{{ exim_relay_sender_address if exim_relay_enabled else '' }}"
 # /role-specific:exim_relay
+
+# role-specific:traefik
+ihatemoney_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
+ihatemoney_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
+# /role-specific:traefik
 
 ########################################################################
 #                                                                      #
@@ -3806,13 +3804,6 @@ ilmo_gid: "{{ mash_playbook_gid }}"
 
 ilmo_secret: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'secret.ilmo', rounds=655555) | to_uuid }}"
 
-# role-specific:postgres
-ilmo_database_host: "{{ postgres_identifier if postgres_enabled else '' }}"
-ilmo_database_port: "{{ '5432' if postgres_enabled else '' }}"
-ilmo_database_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'db.ilmo', rounds=655555) | to_uuid }}"
-ilmo_database_username: "ilmo"
-# /role-specific:postgres
-
 ilmo_systemd_required_services_list: |
   {{
     ([devture_systemd_docker_base_docker_service_name] if devture_systemd_docker_base_docker_service_name else [])
@@ -3829,6 +3820,13 @@ ilmo_container_additional_networks: |
 
 ilmo_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
 ilmo_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+
+# role-specific:postgres
+ilmo_database_host: "{{ postgres_identifier if postgres_enabled else '' }}"
+ilmo_database_port: "{{ '5432' if postgres_enabled else '' }}"
+ilmo_database_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'db.ilmo', rounds=655555) | to_uuid }}"
+ilmo_database_username: "ilmo"
+# /role-specific:postgres
 
 # role-specific:traefik
 ilmo_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
@@ -4025,6 +4023,10 @@ jitsi_jvb_container_additional_networks_auto: |
     ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
   }}
 
+jitsi_jibri_xmpp_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'jibri', rounds=655555) | to_uuid }}"
+jitsi_jicofo_auth_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'jicofo', rounds=655555) | to_uuid }}"
+jitsi_jvb_auth_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'jvb', rounds=655555) | to_uuid }}"
+
 jitsi_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
 jitsi_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
 
@@ -4032,10 +4034,6 @@ jitsi_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyab
 jitsi_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
 jitsi_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
 # /role-specific:traefik
-
-jitsi_jibri_xmpp_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'jibri', rounds=655555) | to_uuid }}"
-jitsi_jicofo_auth_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'jicofo', rounds=655555) | to_uuid }}"
-jitsi_jvb_auth_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'jvb', rounds=655555) | to_uuid }}"
 
 ########################################################################
 #                                                                      #
@@ -4139,17 +4137,17 @@ keycloak_container_additional_networks_auto: |
 keycloak_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
 keycloak_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
 
-# role-specific:traefik
-keycloak_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
-keycloak_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
-# /role-specific:traefik
-
 keycloak_container_labels_metrics_hostname: "{{ mash_playbook_metrics_exposure_hostname }}"
 keycloak_container_labels_metrics_path_prefix: "{{ mash_playbook_metrics_exposure_path_prefix }}/{{ keycloak_identifier }}"
 keycloak_container_labels_metrics_middleware_basic_auth_enabled: "{{ mash_playbook_metrics_exposure_http_basic_auth_enabled }}"
 keycloak_container_labels_metrics_middleware_basic_auth_users: "{{ mash_playbook_metrics_exposure_http_basic_auth_users }}"
 
 keycloak_environment_variable_kc_metrics_enabled: "{{ prometheus_enabled | default(false) or mash_playbook_metrics_exposure_enabled }}"
+
+# role-specific:traefik
+keycloak_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
+keycloak_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
+# /role-specific:traefik
 
 # role-specific:postgres
 keycloak_database_hostname: "{{ postgres_identifier if postgres_enabled else '' }}"
@@ -4248,6 +4246,11 @@ lago_front_container_additional_networks_auto: |
     ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
   }}
 
+lago_api_environment_variable_secret_key_base: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'lago.sec.key', rounds=655555) | to_uuid }}"
+lago_api_environment_variable_encryption_primary_key: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'lago.enc.primary', rounds=655555) | to_uuid }}"
+lago_api_environment_variable_encryption_deterministic_key: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'lago.deter.key', rounds=655555) | to_uuid }}"
+lago_api_environment_variable_encryption_key_derivation_salt: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'lago.deriv.salt', rounds=655555) | to_uuid }}"
+
 lago_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
 lago_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
 
@@ -4261,11 +4264,6 @@ lago_database_hostname: "{{ postgres_identifier if postgres_enabled else '' }}"
 lago_database_port: "{{ '5432' if postgres_enabled else '' }}"
 lago_database_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'lago.db', rounds=655555) | to_uuid }}"
 # /role-specific:postgres
-
-lago_api_environment_variable_secret_key_base: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'lago.sec.key', rounds=655555) | to_uuid }}"
-lago_api_environment_variable_encryption_primary_key: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'lago.enc.primary', rounds=655555) | to_uuid }}"
-lago_api_environment_variable_encryption_deterministic_key: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'lago.deter.key', rounds=655555) | to_uuid }}"
-lago_api_environment_variable_encryption_key_derivation_salt: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'lago.deriv.salt', rounds=655555) | to_uuid }}"
 
 ########################################################################
 #                                                                      #
@@ -4292,6 +4290,11 @@ languagetool_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_
 languagetool_uid: "{{ mash_playbook_uid }}"
 languagetool_gid: "{{ mash_playbook_gid }}"
 
+languagetool_container_additional_networks_auto: |
+  {{
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+  }}
+
 languagetool_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
 languagetool_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
 
@@ -4299,11 +4302,6 @@ languagetool_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_
 languagetool_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
 languagetool_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
 # /role-specific:traefik
-
-languagetool_container_additional_networks_auto: |
-  {{
-    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
-  }}
 
 ########################################################################
 #                                                                      #
@@ -4330,6 +4328,11 @@ loki_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_dir
 loki_uid: "{{ mash_playbook_uid }}"
 loki_gid: "{{ mash_playbook_gid }}"
 
+loki_container_additional_networks_auto: |
+  {{
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+  }}
+
 # Only enable Traefik labels if a hostname is set (indicating that this will be exposed publicly)
 loki_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled and loki_hostname | length > 0 }}"
 loki_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
@@ -4338,11 +4341,6 @@ loki_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyabl
 loki_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
 loki_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
 # /role-specific:traefik
-
-loki_container_additional_networks_auto: |
-  {{
-    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
-  }}
 
 ########################################################################
 #                                                                      #
@@ -4524,14 +4522,6 @@ mobilizon_gid: "{{ mash_playbook_gid }}"
 mobilizon_secret_key: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'sk.mobilizon', rounds=655555) | to_uuid }}"
 mobilizon_secret_key_base: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'skb.mobilizon', rounds=655555) | to_uuid }}"
 
-# role-specific:postgis
-mobilizon_database_hostname: "{{ postgis_identifier if postgis_enabled else '' }}"
-mobilizon_database_name: "mobilizon"
-mobilizon_database_port: "{{ '5432' if postgis_enabled else '' }}"
-mobilizon_database_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'db.mobilizon', rounds=655555) | to_uuid }}"
-mobilizon_database_username: "mobilizon"
-# /role-specific:postgis
-
 mobilizon_systemd_required_services_list: |
   {{
     ([devture_systemd_docker_base_docker_service_name] if devture_systemd_docker_base_docker_service_name else [])
@@ -4548,6 +4538,14 @@ mobilizon_container_additional_networks: |
 
 mobilizon_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
 mobilizon_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+
+# role-specific:postgis
+mobilizon_database_hostname: "{{ postgis_identifier if postgis_enabled else '' }}"
+mobilizon_database_name: "mobilizon"
+mobilizon_database_port: "{{ '5432' if postgis_enabled else '' }}"
+mobilizon_database_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'db.mobilizon', rounds=655555) | to_uuid }}"
+mobilizon_database_username: "mobilizon"
+# /role-specific:postgis
 
 # role-specific:traefik
 mobilizon_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
@@ -4997,13 +4995,6 @@ notfellchen_gid: "{{ mash_playbook_gid }}"
 
 notfellchen_secret: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'secret.nf', rounds=655555) | to_uuid }}"
 
-# role-specific:postgres
-notfellchen_database_host: "{{ postgres_identifier if postgres_enabled else '' }}"
-notfellchen_database_port: "{{ '5432' if postgres_enabled else '' }}"
-notfellchen_database_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'db.nf', rounds=655555) | to_uuid }}"
-notfellchen_database_username: "notfellchen"
-# /role-specific:postgres
-
 notfellchen_systemd_required_services_list: |
   {{
     ([devture_systemd_docker_base_docker_service_name] if devture_systemd_docker_base_docker_service_name else [])
@@ -5024,6 +5015,13 @@ notfellchen_sws_container_labels_traefik_enabled: "{{ notfellchen_container_labe
 notfellchen_sws_container_labels_traefik_docker_network: "{{ notfellchen_container_labels_traefik_docker_network }}"
 notfellchen_sws_container_labels_traefik_entrypoints: "{{ notfellchen_container_labels_traefik_entrypoints }}"
 notfellchen_sws_container_labels_traefik_tls_certResolver: "{{ notfellchen_container_labels_traefik_tls_certResolver }}"
+
+# role-specific:postgres
+notfellchen_database_host: "{{ postgres_identifier if postgres_enabled else '' }}"
+notfellchen_database_port: "{{ '5432' if postgres_enabled else '' }}"
+notfellchen_database_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'db.nf', rounds=655555) | to_uuid }}"
+notfellchen_database_username: "notfellchen"
+# /role-specific:postgres
 
 # role-specific:traefik
 notfellchen_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
@@ -5117,6 +5115,8 @@ outline_container_additional_networks_auto: |
     ([postgres_container_network] if postgres_enabled and outline_database_hostname == postgres_identifier and outline_container_network != postgres_container_network else [])
   }}
 
+outline_environment_variable_utils_secret: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'utils.out', rounds=655555) | to_uuid }}"
+
 outline_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
 outline_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
 
@@ -5124,8 +5124,6 @@ outline_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxy
 outline_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
 outline_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
 # /role-specific:traefik
-
-outline_environment_variable_utils_secret: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'utils.out', rounds=655555) | to_uuid }}"
 
 # role-specific:postgres
 outline_database_hostname: "{{ postgres_identifier if postgres_enabled else '' }}"
@@ -5270,12 +5268,6 @@ oxitraffic_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_ba
 oxitraffic_uid: "{{ mash_playbook_uid }}"
 oxitraffic_gid: "{{ mash_playbook_gid }}"
 
-# role-specific:postgres
-oxitraffic_database_hostname: "{{ postgres_identifier if postgres_enabled else '' }}"
-oxitraffic_database_port: "{{ '5432' if postgres_enabled else '' }}"
-oxitraffic_database_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'db.oxitraffic', rounds=655555) | to_uuid }}"
-# /role-specific:postgres
-
 oxitraffic_systemd_required_services_list: |
   {{
     ([devture_systemd_docker_base_docker_service_name] if devture_systemd_docker_base_docker_service_name else [])
@@ -5292,6 +5284,12 @@ oxitraffic_container_additional_networks: |
 
 oxitraffic_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
 oxitraffic_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+
+# role-specific:postgres
+oxitraffic_database_hostname: "{{ postgres_identifier if postgres_enabled else '' }}"
+oxitraffic_database_port: "{{ '5432' if postgres_enabled else '' }}"
+oxitraffic_database_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'db.oxitraffic', rounds=655555) | to_uuid }}"
+# /role-specific:postgres
 
 # role-specific:traefik
 oxitraffic_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
@@ -5324,13 +5322,6 @@ paperless_gid: "{{ mash_playbook_gid }}"
 
 paperless_secret_key: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'paperless.secret', rounds=655555) | to_uuid }}"
 
-# role-specific:postgres
-paperless_database_hostname: "{{ postgres_identifier if postgres_enabled else '' }}"
-paperless_database_username: "paperless"
-paperless_database_port: "{{ '5432' if postgres_enabled else '' }}"
-paperless_database_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'db.paperless', rounds=655555) | to_uuid }}"
-# /role-specific:postgres
-
 paperless_systemd_required_services_list: |
   {{
     ([devture_systemd_docker_base_docker_service_name] if devture_systemd_docker_base_docker_service_name else [])
@@ -5349,6 +5340,13 @@ paperless_container_additional_networks_auto: |
 
 paperless_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
 paperless_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+
+# role-specific:postgres
+paperless_database_hostname: "{{ postgres_identifier if postgres_enabled else '' }}"
+paperless_database_username: "paperless"
+paperless_database_port: "{{ '5432' if postgres_enabled else '' }}"
+paperless_database_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'db.paperless', rounds=655555) | to_uuid }}"
+# /role-specific:postgres
 
 # role-specific:traefik
 paperless_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
@@ -5397,6 +5395,16 @@ peertube_container_additional_networks_auto: |
     ) | unique
   }}
 
+peertube_systemd_required_services_list_auto: |
+  {{
+    ([postgres_identifier ~ '.service'] if postgres_enabled and peertube_config_database_hostname == postgres_identifier else [])
+  }}
+
+peertube_systemd_wanted_services_list_auto: |
+  {{
+    ([(exim_relay_identifier | default('mash-exim-relay')) ~ '.service'] if (exim_relay_enabled | default(false) and peertube_config_smtp_hostname == exim_relay_identifier | default('mash-exim-relay')) else [])
+  }}
+
 peertube_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
 peertube_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
 
@@ -5411,16 +5419,6 @@ peertube_config_database_port: "{{ '5432' if postgres_enabled else '' }}"
 peertube_config_database_username: peertube
 peertube_config_database_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'db.peertube', rounds=655555) | to_uuid }}"
 # /role-specific:postgres
-
-peertube_systemd_required_services_list_auto: |
-  {{
-    ([postgres_identifier ~ '.service'] if postgres_enabled and peertube_config_database_hostname == postgres_identifier else [])
-  }}
-
-peertube_systemd_wanted_services_list_auto: |
-  {{
-    ([(exim_relay_identifier | default('mash-exim-relay')) ~ '.service'] if (exim_relay_enabled | default(false) and peertube_config_smtp_hostname == exim_relay_identifier | default('mash-exim-relay')) else [])
-  }}
 
 # role-specific:exim_relay
 peertube_config_smtp_hostname: "{{ exim_relay_identifier if exim_relay_enabled else '' }}"
@@ -5580,6 +5578,14 @@ prometheus_postgres_exporter_container_additional_networks: |
     ([postgres_container_network] if postgres_enabled and prometheus_postgres_exporter_database_hostname == postgres_identifier and prometheus_postgres_exporter_container_network != postgres_container_network else [])
   }}
 
+prometheus_postgres_exporter_systemd_required_services_list_auto: |
+  {{
+    ([postgres_identifier ~ '.service'] if postgres_enabled else [])
+  }}
+
+prometheus_postgres_exporter_container_labels_metrics_middleware_basic_auth_enabled: "{{ mash_playbook_metrics_exposure_http_basic_auth_enabled }}"
+prometheus_postgres_exporter_container_labels_metrics_middleware_basic_auth_users: "{{ mash_playbook_metrics_exposure_http_basic_auth_users }}"
+
 # Only enable Traefik labels if a hostname is set (indicating that this will be exposed publicly)
 prometheus_postgres_exporter_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled and prometheus_postgres_exporter_hostname | length > 0 }}"
 prometheus_postgres_exporter_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
@@ -5589,9 +5595,6 @@ prometheus_postgres_exporter_container_labels_traefik_entrypoints: "{{ traefik_e
 prometheus_postgres_exporter_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
 # /role-specific:traefik
 
-prometheus_postgres_exporter_container_labels_metrics_middleware_basic_auth_enabled: "{{ mash_playbook_metrics_exposure_http_basic_auth_enabled }}"
-prometheus_postgres_exporter_container_labels_metrics_middleware_basic_auth_users: "{{ mash_playbook_metrics_exposure_http_basic_auth_users }}"
-
 # role-specific:postgres
 prometheus_postgres_exporter_database_hostname: "{{ postgres_connection_hostname if postgres_enabled else '' }}"
 prometheus_postgres_exporter_database_username: prometheus_postgres_exporter
@@ -5599,11 +5602,6 @@ prometheus_postgres_exporter_database_password: "{{ postgres_connection_password
 prometheus_postgres_exporter_database_port: "{{ postgres_connection_port if postgres_enabled else 5432 }}"
 prometheus_postgres_exporter_database_ssl: false
 # /role-specific:postgres
-
-prometheus_postgres_exporter_systemd_required_services_list_auto: |
-  {{
-    ([postgres_identifier ~ '.service'] if postgres_enabled else [])
-  }}
 
 ########################################################################
 #                                                                      #
@@ -5630,6 +5628,11 @@ prometheus_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_ba
 prometheus_uid: "{{ mash_playbook_uid }}"
 prometheus_gid: "{{ mash_playbook_gid }}"
 
+prometheus_container_additional_networks_auto: |
+  {{
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+  }}
+
 # Only enable Traefik labels if a hostname is set (indicating that this will be exposed publicly)
 prometheus_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled and prometheus_hostname | length > 0 }}"
 prometheus_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
@@ -5638,12 +5641,6 @@ prometheus_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_pr
 prometheus_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
 prometheus_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
 # /role-specific:traefik
-
-prometheus_container_additional_networks_auto: |
-  {{
-    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
-  }}
-
 
 ########################################################################
 #                                                                      #
@@ -5682,13 +5679,13 @@ prometheus_blackbox_exporter_container_additional_networks: |
 prometheus_blackbox_exporter_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled and prometheus_blackbox_exporter_hostname }}"
 prometheus_blackbox_exporter_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
 
+prometheus_blackbox_exporter_container_labels_metrics_middleware_basic_auth_enabled: "{{ mash_playbook_metrics_exposure_http_basic_auth_enabled }}"
+prometheus_blackbox_exporter_container_labels_metrics_middleware_basic_auth_users: "{{ mash_playbook_metrics_exposure_http_basic_auth_users }}"
+
 # role-specific:traefik
 prometheus_blackbox_exporter_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
 prometheus_blackbox_exporter_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
 # /role-specific:traefik
-
-prometheus_blackbox_exporter_container_labels_metrics_middleware_basic_auth_enabled: "{{ mash_playbook_metrics_exposure_http_basic_auth_enabled }}"
-prometheus_blackbox_exporter_container_labels_metrics_middleware_basic_auth_users: "{{ mash_playbook_metrics_exposure_http_basic_auth_users }}"
 
 ########################################################################
 #                                                                      #
@@ -5723,6 +5720,9 @@ prometheus_ssh_exporter_container_additional_networks: |
     ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
   }}
 
+prometheus_ssh_exporter_container_labels_metrics_middleware_basic_auth_enabled: "{{ mash_playbook_metrics_exposure_http_basic_auth_enabled }}"
+prometheus_ssh_exporter_container_labels_metrics_middleware_basic_auth_users: "{{ mash_playbook_metrics_exposure_http_basic_auth_users }}"
+
 # Only enable Traefik labels if a hostname is set (indicating that this will be exposed publicly)
 prometheus_ssh_exporter_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled and prometheus_ssh_exporter_hostname }}"
 prometheus_ssh_exporter_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
@@ -5731,9 +5731,6 @@ prometheus_ssh_exporter_container_labels_traefik_docker_network: "{{ mash_playbo
 prometheus_ssh_exporter_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
 prometheus_ssh_exporter_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
 # /role-specific:traefik
-
-prometheus_ssh_exporter_container_labels_metrics_middleware_basic_auth_enabled: "{{ mash_playbook_metrics_exposure_http_basic_auth_enabled }}"
-prometheus_ssh_exporter_container_labels_metrics_middleware_basic_auth_users: "{{ mash_playbook_metrics_exposure_http_basic_auth_users }}"
 
 ########################################################################
 #                                                                      #
@@ -5772,11 +5769,6 @@ prometheus_node_exporter_container_additional_networks_auto: |
 prometheus_node_exporter_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled and prometheus_node_exporter_hostname }}"
 prometheus_node_exporter_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
 
-# role-specific:traefik
-prometheus_node_exporter_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
-prometheus_node_exporter_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
-# /role-specific:traefik
-
 prometheus_node_exporter_container_labels_metrics_middleware_basic_auth_enabled: "{{ mash_playbook_metrics_exposure_http_basic_auth_enabled }}"
 prometheus_node_exporter_container_labels_metrics_middleware_basic_auth_users: "{{ mash_playbook_metrics_exposure_http_basic_auth_users }}"
 
@@ -5791,6 +5783,11 @@ prometheus_node_exporter_process_extra_arguments:
 prometheus_node_exporter_container_extra_arguments:
   - "--security-opt apparmor=unconfined"
   - "--mount type=bind,src=/var/run/dbus/system_bus_socket,dst=/var/run/dbus/system_bus_socket,ro,bind-propagation=rslave"
+
+# role-specific:traefik
+prometheus_node_exporter_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
+prometheus_node_exporter_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
+# /role-specific:traefik
 
 ########################################################################
 #                                                                      #
@@ -5817,25 +5814,6 @@ promtail_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base
 promtail_uid: "{{ mash_playbook_uid }}"
 promtail_gid: "{{ mash_playbook_gid }}"
 
-# role-specific:loki
-promtail_config_clients_auto: |
-  {{
-    ([{
-      'url': ('http://' + loki_identifier + ':' + (loki_server_http_listen_port | string) + '/loki/api/v1/push'),
-      'tenant_id': 'mash',
-    }] if loki_enabled else [])
-  }}
-# /role-specific:loki
-
-# Only enable Traefik labels if a hostname is set (indicating that this will be exposed publicly)
-promtail_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
-promtail_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
-
-# role-specific:traefik
-promtail_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
-promtail_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
-# /role-specific:traefik
-
 promtail_container_labels_metrics_enabled: "{{ prometheus_enabled | default(false) or mash_playbook_metrics_exposure_enabled }}"
 promtail_container_labels_metrics_hostname: "{{ mash_playbook_metrics_exposure_hostname }}"
 promtail_container_labels_metrics_path_prefix: "{{ mash_playbook_metrics_exposure_path_prefix }}/{{ promtail_identifier }}"
@@ -5850,6 +5828,25 @@ promtail_container_additional_networks_auto: |
       ([loki_container_network] if (loki_enabled | default(false) and loki_container_network | default('') != promtail_container_network) else [])
     ) | unique
   }}
+
+# Only enable Traefik labels if a hostname is set (indicating that this will be exposed publicly)
+promtail_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+promtail_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+
+# role-specific:loki
+promtail_config_clients_auto: |
+  {{
+    ([{
+      'url': ('http://' + loki_identifier + ':' + (loki_server_http_listen_port | string) + '/loki/api/v1/push'),
+      'tenant_id': 'mash',
+    }] if loki_enabled else [])
+  }}
+# /role-specific:loki
+
+# role-specific:traefik
+promtail_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
+promtail_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
+# /role-specific:traefik
 
 ########################################################################
 #                                                                      #
@@ -6108,6 +6105,23 @@ roundcube_gid: "0"
 
 roundcube_database_type: "{{ 'postgresql' if postgres_enabled else 'sqlite' }}"
 
+roundcube_systemd_required_systemd_services_list: |
+  {{
+    ([devture_systemd_docker_base_docker_service_name] if devture_systemd_docker_base_docker_service_name else [])
+    +
+    ([postgres_identifier ~ '.service'] if postgres_enabled and roundcube_database_hostname == postgres_identifier else [])
+  }}
+
+roundcube_container_additional_networks: |
+  {{
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+    +
+    ([postgres_container_network] if postgres_enabled and roundcube_database_hostname == postgres_identifier and roundcube_container_network != postgres_container_network else [])
+  }}
+
+roundcube_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+roundcube_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+
 # role-specific:postgres
 roundcube_database_hostname: "{{ postgres_identifier if postgres_enabled else '' }}"
 roundcube_database_port: "{{ '5432' if postgres_enabled else '' }}"
@@ -6116,27 +6130,10 @@ roundcube_database_username: "{{ 'roundcube' if postgres_enabled else '' }}"
 roundcube_database_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'db.roundcube', rounds=655555) | to_uuid }}"
 # /role-specific:postgres
 
-roundcube_systemd_required_systemd_services_list: |
-  {{
-    ([devture_systemd_docker_base_docker_service_name] if devture_systemd_docker_base_docker_service_name else [])
-    +
-    ([postgres_identifier ~ '.service'] if postgres_enabled and roundcube_database_hostname == postgres_identifier else [])
-  }}
-
-roundcube_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
-roundcube_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
-
 # role-specific:traefik
 roundcube_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
 roundcube_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
 # /role-specific:traefik
-
-roundcube_container_additional_networks: |
-  {{
-    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
-    +
-    ([postgres_container_network] if postgres_enabled and roundcube_database_hostname == postgres_identifier and roundcube_container_network != postgres_container_network else [])
-  }}
 
 ########################################################################
 #                                                                      #
@@ -6193,6 +6190,11 @@ searxng_systemd_required_systemd_services_list: |
     ([devture_systemd_docker_base_docker_service_name] if devture_systemd_docker_base_docker_service_name else [])
   }}
 
+searxng_container_additional_networks: |
+  {{
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+  }}
+
 searxng_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
 searxng_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
 
@@ -6200,11 +6202,6 @@ searxng_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxy
 searxng_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
 searxng_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
 # /role-specific:traefik
-
-searxng_container_additional_networks: |
-  {{
-    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
-  }}
 
 ########################################################################
 #                                                                      #
@@ -6231,13 +6228,6 @@ semaphore_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_bas
 semaphore_uid: "{{ mash_playbook_uid }}"
 semaphore_gid: "{{ mash_playbook_gid }}"
 
-# role-specific:postgres
-semaphore_database_host: "{{ postgres_identifier if postgres_enabled else '' }}"
-semaphore_database_port: "{{ '5432' if postgres_enabled else '' }}"
-semaphore_database_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'db.semaphore', rounds=655555) | to_uuid }}"
-semaphore_database_username: "{{ semaphore_identifier }}"
-# /role-specific:postgres
-
 semaphore_systemd_required_services_list: |
   {{
     ([devture_systemd_docker_base_docker_service_name] if devture_systemd_docker_base_docker_service_name else [])
@@ -6254,6 +6244,13 @@ semaphore_container_additional_networks: |
 
 semaphore_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
 semaphore_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+
+# role-specific:postgres
+semaphore_database_host: "{{ postgres_identifier if postgres_enabled else '' }}"
+semaphore_database_port: "{{ '5432' if postgres_enabled else '' }}"
+semaphore_database_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'db.semaphore', rounds=655555) | to_uuid }}"
+semaphore_database_username: "{{ semaphore_identifier }}"
+# /role-specific:postgres
 
 # role-specific:traefik
 semaphore_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
@@ -6489,6 +6486,8 @@ tandoor_frontend_container_additional_networks_auto: |
     ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
   }}
 
+tandoor_environment_variable_secret: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'secret.tandoor', rounds=655555) | to_uuid }}"
+
 tandoor_frontend_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
 tandoor_frontend_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
 
@@ -6503,8 +6502,6 @@ tandoor_database_port: "{{ '5432' if postgres_enabled else '' }}"
 tandoor_database_username: "tandoor"
 tandoor_database_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'db.tandoor', rounds=655555) | to_uuid }}"
 # /role-specific:postgres
-
-tandoor_environment_variable_secret: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'secret.tandoor', rounds=655555) | to_uuid }}"
 
 # role-specific:exim_relay
 tandoor_email_host: "{{ exim_relay_identifier if exim_relay_enabled else '' }}"
@@ -6570,14 +6567,6 @@ tsdproxy_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base
 tsdproxy_uid: "{{ mash_playbook_uid }}"
 tsdproxy_gid: "{{ mash_playbook_gid }}"
 
-# role-specific:container_socket_proxy
-tsdproxy_docker_endpoint_is_unix_socket: "{{ false if container_socket_proxy_enabled else true }}"
-tsdproxy_docker_endpoint: "{{ container_socket_proxy_endpoint if container_socket_proxy_enabled == true and tsdproxy_enabled == true else 'unix:///var/run/docker.sock' }}"
-# TSDProxy needs access to the Docker Networks and images to work
-container_socket_proxy_api_network_enabled: "{{ true if tsdproxy_docker_endpoint == container_socket_proxy_endpoint else false }}"
-container_socket_proxy_api_images_enabled: "{{ true if tsdproxy_docker_endpoint == container_socket_proxy_endpoint else false }}"
-# /role-specific:container_socket_proxy
-
 tsdproxy_container_additional_networks_auto: |
   {{
     ([container_socket_proxy_container_network] if container_socket_proxy_enabled | default(false) else [])
@@ -6589,6 +6578,14 @@ tsdproxy_systemd_required_services_list: |
     +
     ([container_socket_proxy_identifier + '.service'] if container_socket_proxy_enabled | default(false) else [])
   }}
+
+# role-specific:container_socket_proxy
+tsdproxy_docker_endpoint_is_unix_socket: "{{ false if container_socket_proxy_enabled else true }}"
+tsdproxy_docker_endpoint: "{{ container_socket_proxy_endpoint if container_socket_proxy_enabled == true and tsdproxy_enabled == true else 'unix:///var/run/docker.sock' }}"
+# TSDProxy needs access to the Docker Networks and images to work
+container_socket_proxy_api_network_enabled: "{{ true if tsdproxy_docker_endpoint == container_socket_proxy_endpoint else false }}"
+container_socket_proxy_api_images_enabled: "{{ true if tsdproxy_docker_endpoint == container_socket_proxy_endpoint else false }}"
+# /role-specific:container_socket_proxy
 
 ########################################################################
 #                                                                      #
@@ -6936,13 +6933,14 @@ woodpecker_ci_server_container_additional_networks: |
 
 woodpecker_ci_server_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
 woodpecker_ci_server_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+
 woodpecker_ci_server_container_labels_traefik_compression_middleware_enabled: "{{ mash_playbook_reverse_proxy_traefik_middleware_compession_enabled }}"
 woodpecker_ci_server_container_labels_traefik_compression_middleware_name: "{{ mash_playbook_reverse_proxy_traefik_middleware_compession_name if mash_playbook_reverse_proxy_traefik_middleware_compession_enabled else '' }}"
 
 woodpecker_ci_server_database_driver: postgres
+woodpecker_ci_server_database_datasource: "postgres://{{ woodpecker_ci_server_database_datasource_username }}:{{ woodpecker_ci_server_database_datasource_password }}@{{ woodpecker_ci_server_database_datasource_hostname }}:{{ woodpecker_ci_server_database_datasource_port }}/{{ woodpecker_ci_server_database_datasource_db_name }}?sslmode=disable"
 
 # role-specific:postgres
-woodpecker_ci_server_database_datasource: "postgres://{{ woodpecker_ci_server_database_datasource_username }}:{{ woodpecker_ci_server_database_datasource_password }}@{{ woodpecker_ci_server_database_datasource_hostname }}:{{ woodpecker_ci_server_database_datasource_port }}/{{ woodpecker_ci_server_database_datasource_db_name }}?sslmode=disable"
 woodpecker_ci_server_database_datasource_hostname: "{{ postgres_identifier if postgres_enabled else '' }}"
 woodpecker_ci_server_database_datasource_port: "{{ '5432' if postgres_enabled else '' }}"
 woodpecker_ci_server_database_datasource_username: woodpecker_ci_server
@@ -7122,14 +7120,14 @@ yourls_container_additional_networks_auto: |
 
 yourls_environment_variable_cookiekey: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'secret.yourls', rounds=655555) | to_uuid }}"
 
+yourls_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+yourls_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+
 # role-specific:mariadb
 yourls_environment_variable_db_user: "yourls"
 yourls_environment_variable_db_pass: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'db.yourls', rounds=655555) | to_uuid }}"
 yourls_environment_variable_db_host_name: "{{ mariadb_identifier if mariadb_enabled else '' }}"
 # /role-specific:mariadb
-
-yourls_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
-yourls_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
 
 # role-specific:traefik
 yourls_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
