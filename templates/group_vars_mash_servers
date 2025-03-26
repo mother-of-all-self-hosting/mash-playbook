@@ -4524,11 +4524,13 @@ mobilizon_gid: "{{ mash_playbook_gid }}"
 mobilizon_secret_key: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'sk.mobilizon', rounds=655555) | to_uuid }}"
 mobilizon_secret_key_base: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'skb.mobilizon', rounds=655555) | to_uuid }}"
 
+# role-specific:postgis
 mobilizon_database_hostname: "{{ postgis_identifier if postgis_enabled else '' }}"
 mobilizon_database_name: "mobilizon"
 mobilizon_database_port: "{{ '5432' if postgis_enabled else '' }}"
 mobilizon_database_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'db.mobilizon', rounds=655555) | to_uuid }}"
 mobilizon_database_username: "mobilizon"
+# /role-specific:postgis
 
 mobilizon_systemd_required_services_list: |
   {{
