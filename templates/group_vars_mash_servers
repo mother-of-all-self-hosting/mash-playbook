@@ -738,6 +738,10 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
     {{ ({'name': (writefreely_identifier  + '.service'), 'priority': 2000, 'groups': ['mash', 'writefreely']} if writefreely_enabled else omit) }}
   # /role-specific:writefreely
 
+  # role-specific:yourls
+  - |-
+    {{ ({'name': (yourls_identifier  + '.service'), 'priority': 2000, 'groups': ['mash', 'yourls']} if yourls_enabled else omit) }}
+  # /role-specific:yourls
 
 devture_systemd_service_manager_services_list_auto: "{{ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized | reject('equalto', omit) }}"
 
@@ -3146,6 +3150,16 @@ hubsite_service_writefreely_description: "A minimalist web blog"
 hubsite_service_writefreely_priority: 1000
 # /role-specific:writefreely
 
+# role-specific:yourls
+# yourls
+hubsite_service_yourls_enabled: "{{ yourls_enabled }}"
+hubsite_service_yourls_name: YOURLS
+hubsite_service_yourls_url: "https://{{ yourls_hostname }}/admin/"  # accessing to the hostname directly returns 403 error
+hubsite_service_yourls_logo_location: ""
+hubsite_service_yourls_description: "Your Own URL Shortener, on your server"
+hubsite_service_yourls_priority: 1000
+# /role-specific:yourls
+
 # role-specific:forgejo
 # Forgejo
 hubsite_service_forgejo_enabled: "{{ forgejo_enabled }}"
@@ -3589,6 +3603,19 @@ mash_playbook_hubsite_service_list_auto_itemized:
       } if hubsite_service_writefreely_enabled else omit)
     }}
   # /role-specific:writefreely
+
+  # role-specific:yourls
+  - |-
+    {{
+      ({
+        'name': hubsite_service_yourls_name,
+        'url': hubsite_service_yourls_url,
+        'logo_location': hubsite_service_yourls_logo_location,
+        'description': hubsite_service_yourls_description,
+        'priority': hubsite_service_yourls_priority,
+      } if hubsite_service_yourls_enabled else omit)
+    }}
+  # /role-specific:yourls
 
 hubsite_service_list_auto: "{{ mash_playbook_hubsite_service_list_auto_itemized | reject('equalto', omit) }}"
 
@@ -4691,6 +4718,17 @@ mash_playbook_mariadb_managed_databases_auto_itemized:
       } if wordpress_enabled and wordpress_database_hostname == mariadb_identifier | default('mash-mariadb') else omit)
     }}
   # /role-specific:wordpress
+
+  # role-specific:yourls
+  - |-
+    {{
+      ({
+        'name': yourls_environment_variable_db_name,
+        'username': yourls_environment_variable_db_user,
+        'password': yourls_environment_variable_db_pass,
+      } if yourls_enabled and yourls_environment_variable_db_host_name == mariadb_identifier | default('mash-mariadb') else omit)
+    }}
+  # /role-specific:yourls
 
 mariadb_managed_databases_auto: "{{ mash_playbook_mariadb_managed_databases_auto_itemized | reject('equalto', omit) }}"
 
@@ -6702,3 +6740,55 @@ writefreely_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_
 #                                                                      #
 ########################################################################
 # /role-specific:writefreely
+
+
+
+# role-specific:yourls
+########################################################################
+#                                                                      #
+# yourls                                                               #
+#                                                                      #
+########################################################################
+
+yourls_enabled: false
+
+yourls_identifier: "{{ mash_playbook_service_identifier_prefix }}yourls"
+
+yourls_uid: "{{ mash_playbook_uid }}"
+yourls_gid: "{{ mash_playbook_gid }}"
+
+yourls_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}yourls"
+
+yourls_systemd_required_systemd_services_list_auto: |
+  {{
+    ([mariadb_identifier ~ '.service'] if mariadb_enabled and yourls_environment_variable_db_host_name == mariadb_identifier else [])
+  }}
+
+yourls_container_additional_networks_auto: |
+  {{
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+    +
+    ([mariadb_container_network] if mariadb_enabled | default(false) and yourls_environment_variable_db_host_name == mariadb_identifier and yourls_container_network != mariadb_container_network else [])
+  }}
+
+yourls_environment_variable_cookiekey: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'secret.yourls', rounds=655555) | to_uuid }}"
+
+# role-specific:mariadb
+yourls_environment_variable_db_user: "yourls"
+yourls_environment_variable_db_pass: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'db.yourls', rounds=655555) | to_uuid }}"
+yourls_environment_variable_db_host_name: "{{ mariadb_identifier if mariadb_enabled else '' }}"
+# /role-specific:mariadb
+
+# role-specific:traefik
+yourls_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+yourls_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+yourls_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
+yourls_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
+# /role-specific:traefik
+
+########################################################################
+#                                                                      #
+# /yourls                                                              #
+#                                                                      #
+########################################################################
+# /role-specific:yourls
