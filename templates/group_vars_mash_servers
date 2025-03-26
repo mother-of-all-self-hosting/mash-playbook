@@ -1669,6 +1669,7 @@ backup_borg_storage_archive_name_format: "{{ mash_playbook_service_identifier_pr
 backup_borg_container_image_self_build: "{{ mash_playbook_architecture not in ['amd64', 'arm32', 'arm64'] }}"
 
 backup_borg_postgresql_enabled: "{{ postgres_enabled }}"
+backup_borg_mysql_enabled: "{{ mariadb_enabled }}"
 
 # role-specific:postgres
 backup_borg_postgresql_databases_hostname: "{{ postgres_connection_hostname if postgres_enabled else '' }}"
@@ -1679,7 +1680,6 @@ backup_borg_postgresql_databases_auto: "{{ postgres_managed_databases | map(attr
 # /role-specific:postgres
 
 # role-specific:mariadb
-backup_borg_mysql_enabled: "{{ mariadb_enabled }}"
 backup_borg_mysql_databases_hostname: "{{ mariadb_identifier if mariadb_enabled else '' }}"
 backup_borg_mysql_databases_username: "root"
 backup_borg_mysql_databases_password: "{{ mariadb_root_password if mariadb_enabled else '' }}"
@@ -7039,10 +7039,11 @@ wordpress_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }
 wordpress_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
 # /role-specific:traefik
 
-
+# role-specific:mariadb
 wordpress_database_hostname: "{{ mariadb_identifier if mariadb_enabled | default(false) else '' }}"
 wordpress_mysql_port: "{{ '3306' if mariadb_enabled | default(false) else '' }}"
 wordpress_database_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'db.mariadb', rounds=655555) | to_uuid }}"
+# /role-specific:mariadb
 
 ########################################################################
 #                                                                      #
