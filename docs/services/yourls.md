@@ -85,6 +85,15 @@ mariadb_root_password: ''
 ########################################################################
 ```
 
+### Set the admin username and password
+
+You also need to create an instance's user to access to the admin UI after installation. To create one, add the following configuration to your `vars.yml` file. Make sure to replace `YOUR_ADMIN_USERNAME_HERE` and `YOUR_ADMIN_PASSWORD_HERE`.
+
+```yaml
+yourls_environment_variable_user: YOUR_ADMIN_USERNAME_HERE
+yourls_environment_variable_pass: YOUR_ADMIN_PASSWORD_HERE
+```
+
 ## Installation
 
 If you have decided to install the dedicated Valkey instance for YOURLS, make sure to run the [installing](../installing.md) command for the supplementary host (`mash.example.com-yourls-deps`) first, before running it for the main host (`mash.example.com`).
