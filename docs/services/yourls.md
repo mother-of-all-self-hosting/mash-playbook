@@ -25,8 +25,8 @@ YOURLS is a fork of Mozilla's discontinued [Firefox YOURLS](https://github.com/m
 
 See the project's [documentation](https://github.com/timvisee/yourls/blob/master/README.md) to learn what YOURLS does and why it might be useful to you.
 
-For details about configuring the [Ansible role for YOURLS](https://github.com/mother-of-all-self-hosting/ansible-role-yourls), you can check them via:
-- 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-yourls/blob/main/docs/configuring-yourls.md) online
+For details about configuring the [Ansible role for YOURLS](https://codeberg.org/acioustick/ansible-role-yourls), you can check them via:
+- 🌐 [the role's documentation](https://codeberg.org/acioustick/ansible-role-yourls/src/branch/master/docs/configuring-yourls.md) online
 - 📁 `roles/galaxy/yourls/docs/configuring-yourls.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 ## Dependencies
@@ -84,13 +84,13 @@ yourls_container_additional_volumes:
 
 Make sure permissions of the directory specified to `src` (`/path/on/the/host`).
 
-See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-yourls/blob/main/docs/configuring-yourls.md#configure-a-storage-backend) on the role's documentation for details about how to set up Amazon S3 compatible object storage and Google Cloud Storage.
+See [this section](https://codeberg.org/acioustick/ansible-role-yourls/src/branch/master/docs/configuring-yourls.md#configure-a-storage-backend) on the role's documentation for details about how to set up Amazon S3 compatible object storage and Google Cloud Storage.
 
 ### Configure upload and download limits (optional)
 
 You can also configure settings for uploading and downloading limits (such as the maximum upload file size and number of the download, as well as expiry time).
 
-See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-yourls/blob/main/docs/configuring-yourls.md#configure-upload-and-download-limits-optional) on the role's documentation for details about how to set up.
+See [this section](https://codeberg.org/acioustick/ansible-role-yourls/src/branch/master/docs/configuring-yourls.md#configure-upload-and-download-limits-optional) on the role's documentation for details about how to set up.
 
 **To mitigate the risk of your server being overwhelmed by legal / illegal use, it is important to set proper limits for the server.** For example, if you intend to use the YOURLS instance for yourlsing relatively small files to a small group of your friends or family, then you can make the default limits stricter as below:
 
@@ -287,8 +287,8 @@ Note that running the `just` commands for installation (`just install-all` or `j
 
 After installation, your YOURLS instance becomes available at the URL specified with `yourls_hostname` and `yourls_path_prefix`.
 
-See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-yourls/blob/main/docs/configuring-yourls.md#usage) on the role's documentation for details about its [CLI client](https://github.com/timvisee/ffyourls). The instruction to takedown illegal materials is also available [here](https://github.com/mother-of-all-self-hosting/ansible-role-yourls/blob/main/docs/configuring-yourls.md#takedown-illegal-materials).
+See [this section](https://codeberg.org/acioustick/ansible-role-yourls/src/branch/master/docs/configuring-yourls.md#usage) on the role's documentation for details about its [CLI client](https://github.com/timvisee/ffyourls). The instruction to takedown illegal materials is also available [here](https://codeberg.org/acioustick/ansible-role-yourls/src/branch/master/docs/configuring-yourls.md#takedown-illegal-materials).
 
 ## Troubleshooting
 
-See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-yourls/blob/main/docs/configuring-yourls.md#troubleshooting) on the role's documentation for details.
+See [this section](https://codeberg.org/acioustick/ansible-role-yourls/src/branch/master/docs/configuring-yourls.md#troubleshooting) on the role's documentation for details.
