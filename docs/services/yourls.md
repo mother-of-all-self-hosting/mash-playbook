@@ -19,11 +19,11 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
 # YOURLS
 
-The playbook can install and configure [YOURLS](https://github.com/timvisee/yourls) for you.
+The playbook can install and configure [YOURLS](https://yourls.org) for you.
 
-YOURLS is a fork of Mozilla's discontinued [Firefox YOURLS](https://github.com/mozilla/yourls) which allows you to yourls files to others with a link. Files are end-to-end encrypted so they cannot be read by the server, and also can be protected with a password.
+YOURLS is a set of PHP scripts that will allow you to run Your Own URL Shortener, on your server.
 
-See the project's [documentation](https://github.com/timvisee/yourls/blob/master/README.md) to learn what YOURLS does and why it might be useful to you.
+See the project's [documentation](https://yourls.org/docs) to learn what YOURLS does and why it might be useful to you.
 
 For details about configuring the [Ansible role for YOURLS](https://codeberg.org/acioustick/ansible-role-yourls), you can check them via:
 - 🌐 [the role's documentation](https://codeberg.org/acioustick/ansible-role-yourls/src/branch/master/docs/configuring-yourls.md) online
