@@ -38,7 +38,7 @@ This service requires the following other services:
 
 ## Adjusting the playbook configuration
 
-To enable this service, add the following configuration to your `vars.yml` file:
+To enable this service, add the following configuration to your `vars.yml` file and re-run the [installation](../installing.md) process:
 
 ```yaml
 ########################################################################
@@ -93,12 +93,6 @@ You also need to create an instance's user to access to the admin UI after insta
 yourls_environment_variable_user: YOUR_ADMIN_USERNAME_HERE
 yourls_environment_variable_pass: YOUR_ADMIN_PASSWORD_HERE
 ```
-
-## Installation
-
-If you have decided to install the dedicated Valkey instance for YOURLS, make sure to run the [installing](../installing.md) command for the supplementary host (`mash.example.com-yourls-deps`) first, before running it for the main host (`mash.example.com`).
-
-Note that running the `just` commands for installation (`just install-all` or `just setup-all`) automatically takes care of the order. See [here](../running-multiple-instances.md#1-adjust-hosts) for more details about it.
 
 ## Usage
 
