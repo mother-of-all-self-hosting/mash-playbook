@@ -62,6 +62,29 @@ yourls_hostname: yourls.example.com
 - It is optionally possible to use a shorter hostname different from the main one. If doing so, make sure to point a DNS record for the domain to the server where the YOURLS instance is going to be hosted.
 - Hosting YOURLS under a subpath (by configuring the `yourls_path_prefix` variable) does not seem to be possible due to YOURLS's technical limitations.
 
+### Enable MariaDB
+
+You can enable a MariaDB instance by adding the following configuration:
+
+```yaml
+########################################################################
+#                                                                      #
+# mariadb                                                              #
+#                                                                      #
+########################################################################
+
+mariadb_enabled: true
+
+# Put a strong password below, generated with `pwgen -s 64 1` or in another way
+mariadb_root_password: ''
+
+########################################################################
+#                                                                      #
+# /mariadb                                                             #
+#                                                                      #
+########################################################################
+```
+
 ## Installation
 
 If you have decided to install the dedicated Valkey instance for YOURLS, make sure to run the [installing](../installing.md) command for the supplementary host (`mash.example.com-yourls-deps`) first, before running it for the main host (`mash.example.com`).
