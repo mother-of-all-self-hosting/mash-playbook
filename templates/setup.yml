@@ -423,6 +423,10 @@
     - role: galaxy/semaphore
     # /role-specific:semaphore
 
+    # role-specific:send
+    - role: galaxy/send
+    # /role-specific:send
+
     # role-specific:soft_serve
     - role: galaxy/soft_serve
     # /role-specific:soft_serve
