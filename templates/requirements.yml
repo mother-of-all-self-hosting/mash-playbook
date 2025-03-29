@@ -61,7 +61,7 @@
   name: couchdb
   activation_prefix: couchdb_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-cryptpad.git
-  version: v2024.12.0-0
+  version: v2024.12.0-1
   name: cryptpad
   activation_prefix: cryptpad_
 - src: git+https://github.com/geerlingguy/ansible-role-docker
