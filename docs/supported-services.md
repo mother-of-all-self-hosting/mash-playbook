@@ -1,3 +1,18 @@
+<!--
+SPDX-FileCopyrightText: 2023 - 2024 Julian-Samuel Gebühr
+SPDX-FileCopyrightText: 2023 - 2024 Sergio Durigan Junior
+SPDX-FileCopyrightText: 2023 - 2025 MASH project contributors
+SPDX-FileCopyrightText: 2023 - 2025 Slavi Pantaleev
+SPDX-FileCopyrightText: 2023 Alejandro AR
+SPDX-FileCopyrightText: 2023 Nikita Chernyi
+SPDX-FileCopyrightText: 2024 Katherine Door
+SPDX-FileCopyrightText: 2024 Oliver Lorenz
+SPDX-FileCopyrightText: 2025 Gergely Horváth
+SPDX-FileCopyrightText: 2025 Suguru Hirahara
+
+SPDX-License-Identifier: AGPL-3.0-or-later
+-->
+
 # Supported services
 
 |              Name              |              Description              | Documentation |
