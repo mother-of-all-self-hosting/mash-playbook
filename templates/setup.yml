@@ -247,6 +247,10 @@
     - role: galaxy/hubsite
     # /role-specific:hubsite
 
+    # role-specific:ihatemoney
+    - role: galaxy/ihatemoney
+    # /role-specific:ihatemoney
+
     # role-specific:ilmo
     - role: galaxy/ilmo
     # /role-specific:ilmo
