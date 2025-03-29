@@ -165,7 +165,7 @@
   name: hubsite
   activation_prefix: hubsite_
 - src: git+https://github.com/IUCCA/ansible-role-ihatemoney.git
-  version: v6.1.5-5
+  version: v6.1.5-7
   name: ihatemoney
   activation_prefix: ihatemoney_
 - src: git+https://github.com/moan0s/ansible-role-ilmo.git
