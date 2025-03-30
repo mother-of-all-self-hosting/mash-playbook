@@ -1942,47 +1942,6 @@ docker_registry_container_labels_traefik_tls_certResolver: "{{ traefik_certResol
 
 
 
-# role-specific:docker_registry_proxy
-########################################################################
-#                                                                      #
-# docker-registry-proxy                                              #
-#                                                                      #
-########################################################################
-
-docker_registry_proxy_enabled: false
-
-docker_registry_proxy_identifier: "{{ mash_playbook_service_identifier_prefix }}docker-registry-proxy"
-
-docker_registry_proxy_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}docker-registry-proxy"
-
-docker_registry_proxy_uid: "{{ mash_playbook_uid }}"
-docker_registry_proxy_gid: "{{ mash_playbook_gid }}"
-
-docker_registry_proxy_target_scheme: "{{ 'http' if docker_registry_enabled else '' }}"
-docker_registry_proxy_target_host: "{{ docker_registry_identifier+':5000' if docker_registry_enabled else '' }}"
-
-docker_registry_proxy_container_additional_networks: |
-  {{
-    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
-  }}
-
-docker_registry_proxy_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
-docker_registry_proxy_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
-
-# role-specific:traefik
-docker_registry_proxy_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
-docker_registry_proxy_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
-# /role-specific:traefik
-
-########################################################################
-#                                                                      #
-# /docker-registry-proxy                                             #
-#                                                                      #
-########################################################################
-# /role-specific:docker_registry_proxy
-
-
-
 # role-specific:docker_registry_browser
 ########################################################################
 #                                                                      #
@@ -2020,6 +1979,48 @@ docker_registry_browser_container_labels_traefik_tls_certResolver: "{{ traefik_c
 #                                                                      #
 ########################################################################
 # /role-specific:docker_registry_browser
+
+
+
+# role-specific:docker_registry_proxy
+########################################################################
+#                                                                      #
+# docker-registry-proxy                                                #
+#                                                                      #
+########################################################################
+
+docker_registry_proxy_enabled: false
+
+docker_registry_proxy_identifier: "{{ mash_playbook_service_identifier_prefix }}docker-registry-proxy"
+
+docker_registry_proxy_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}docker-registry-proxy"
+
+docker_registry_proxy_uid: "{{ mash_playbook_uid }}"
+docker_registry_proxy_gid: "{{ mash_playbook_gid }}"
+
+docker_registry_proxy_target_scheme: "{{ 'http' if docker_registry_enabled else '' }}"
+docker_registry_proxy_target_host: "{{ docker_registry_identifier+':5000' if docker_registry_enabled else '' }}"
+
+docker_registry_proxy_container_additional_networks: |
+  {{
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+  }}
+
+docker_registry_proxy_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+docker_registry_proxy_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+
+# role-specific:traefik
+docker_registry_proxy_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
+docker_registry_proxy_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
+# /role-specific:traefik
+
+########################################################################
+#                                                                      #
+# /docker-registry-proxy                                               #
+#                                                                      #
+########################################################################
+# /role-specific:docker_registry_proxy
+
 
 
 # role-specific:docker_registry_purger
