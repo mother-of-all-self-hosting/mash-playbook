@@ -4907,6 +4907,59 @@ neko_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary
 
 
 
+# role-specific:netbox
+########################################################################
+#                                                                      #
+# netbox                                                               #
+#                                                                      #
+########################################################################
+
+netbox_enabled: false
+
+netbox_identifier: "{{ mash_playbook_service_identifier_prefix }}netbox"
+
+netbox_uid: "{{ mash_playbook_uid }}"
+netbox_gid: "{{ mash_playbook_gid }}"
+
+netbox_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}netbox"
+
+netbox_systemd_required_services_list_auto: |
+  {{
+    ([postgres_identifier ~ '.service'] if postgres_enabled and netbox_database_hostname == postgres_identifier else [])
+  }}
+
+netbox_container_additional_networks_auto: |
+  {{
+    (
+      ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+      +
+      ([postgres_container_network] if postgres_enabled and netbox_database_hostname == postgres_identifier and netbox_container_network != postgres_container_network else [])
+    ) | unique
+  }}
+
+netbox_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+netbox_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+
+# role-specific:postgres
+netbox_database_hostname: "{{ postgres_identifier if postgres_enabled else '' }}"
+netbox_database_port: "{{ '5432' if postgres_enabled else '' }}"
+netbox_database_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'db.netbox', rounds=655555) | to_uuid }}"
+# /role-specific:postgres
+
+# role-specific:traefik
+netbox_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
+netbox_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
+# /role-specific:traefik
+
+########################################################################
+#                                                                      #
+# /netbox                                                              #
+#                                                                      #
+########################################################################
+# /role-specific:netbox
+
+
+
 # role-specific:nextcloud
 ########################################################################
 #                                                                      #
@@ -4976,59 +5029,6 @@ nextcloud_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_pr
 #                                                                      #
 ########################################################################
 # /role-specific:nextcloud
-
-
-
-# role-specific:netbox
-########################################################################
-#                                                                      #
-# netbox                                                               #
-#                                                                      #
-########################################################################
-
-netbox_enabled: false
-
-netbox_identifier: "{{ mash_playbook_service_identifier_prefix }}netbox"
-
-netbox_uid: "{{ mash_playbook_uid }}"
-netbox_gid: "{{ mash_playbook_gid }}"
-
-netbox_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}netbox"
-
-netbox_systemd_required_services_list_auto: |
-  {{
-    ([postgres_identifier ~ '.service'] if postgres_enabled and netbox_database_hostname == postgres_identifier else [])
-  }}
-
-netbox_container_additional_networks_auto: |
-  {{
-    (
-      ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
-      +
-      ([postgres_container_network] if postgres_enabled and netbox_database_hostname == postgres_identifier and netbox_container_network != postgres_container_network else [])
-    ) | unique
-  }}
-
-netbox_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
-netbox_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
-
-# role-specific:postgres
-netbox_database_hostname: "{{ postgres_identifier if postgres_enabled else '' }}"
-netbox_database_port: "{{ '5432' if postgres_enabled else '' }}"
-netbox_database_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'db.netbox', rounds=655555) | to_uuid }}"
-# /role-specific:postgres
-
-# role-specific:traefik
-netbox_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
-netbox_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
-# /role-specific:traefik
-
-########################################################################
-#                                                                      #
-# /netbox                                                              #
-#                                                                      #
-########################################################################
-# /role-specific:netbox
 
 
 
