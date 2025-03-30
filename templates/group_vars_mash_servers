@@ -1792,44 +1792,6 @@ changedetection_container_labels_traefik_tls_certResolver: "{{ traefik_certResol
 
 
 
-# role-specific:readeck
-########################################################################
-#                                                                      #
-# readeck                                                            #
-#                                                                      #
-########################################################################
-
-readeck_enabled: false
-
-readeck_identifier: "{{ mash_playbook_service_identifier_prefix }}readeck"
-
-readeck_uid: "{{ mash_playbook_uid }}"
-readeck_gid: "{{ mash_playbook_gid }}"
-
-readeck_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}readeck"
-
-readeck_container_additional_networks_auto: |
-  {{
-    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
-  }}
-
-readeck_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
-readeck_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
-
-# role-specific:traefik
-readeck_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
-readeck_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
-# /role-specific:traefik
-
-########################################################################
-#                                                                      #
-# /readeck                                                           #
-#                                                                      #
-########################################################################
-# /role-specific:readeck
-
-
-
 # role-specific:clickhouse
 ########################################################################
 #                                                                      #
@@ -5932,6 +5894,44 @@ radicale_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_pri
 #                                                                      #
 ########################################################################
 # /role-specific:radicale
+
+
+
+# role-specific:readeck
+########################################################################
+#                                                                      #
+# readeck                                                              #
+#                                                                      #
+########################################################################
+
+readeck_enabled: false
+
+readeck_identifier: "{{ mash_playbook_service_identifier_prefix }}readeck"
+
+readeck_uid: "{{ mash_playbook_uid }}"
+readeck_gid: "{{ mash_playbook_gid }}"
+
+readeck_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}readeck"
+
+readeck_container_additional_networks_auto: |
+  {{
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+  }}
+
+readeck_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+readeck_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+
+# role-specific:traefik
+readeck_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
+readeck_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
+# /role-specific:traefik
+
+########################################################################
+#                                                                      #
+# /readeck                                                             #
+#                                                                      #
+########################################################################
+# /role-specific:readeck
 
 
 
