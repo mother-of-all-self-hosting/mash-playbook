@@ -3677,7 +3677,6 @@ ihatemoney_container_additional_networks_auto: |
     ) | unique
   }}
 
-
 ihatemoney_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
 ihatemoney_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
 ihatemoney_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
