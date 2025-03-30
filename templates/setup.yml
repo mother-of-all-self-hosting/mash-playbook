@@ -503,6 +503,10 @@
     - role: galaxy/writefreely
     # /role-specific:writefreely
 
+    # role-specific:yourls
+    - role: galaxy/yourls
+    # /role-specific:yourls
+
     # role-specific:roundcube
     - role: galaxy/roundcube
     # /role-specific:roundcube
