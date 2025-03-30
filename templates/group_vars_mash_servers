@@ -58,17 +58,6 @@ authelia_config_session_secret: "{{ '%s' | format(mash_playbook_generic_secret_k
 
 authelia_config_identity_providers_oidc_hmac_secret: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'hm.authelia', rounds=655555) | to_uuid }}"
 
-# role-specific:traefik
-authelia_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
-authelia_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
-# /role-specific:traefik
-
-# role-specific:postgres
-authelia_config_storage_postgres_host: "{{ postgres_identifier if postgres_enabled else '' }}"
-authelia_config_storage_postgres_port: "{{ '5432' if postgres_enabled else '' }}"
-authelia_config_storage_postgres_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'db.authelia', rounds=655555) | to_uuid }}"
-# /role-specific:postgres
-
 # role-specific:mariadb
 # If Postgres and MariaDB are not enabled, we favor Postgres.
 # We only enable MySQL if it's the only enabled component (that is, if Postgres is not enabled at the same time).
@@ -76,6 +65,17 @@ authelia_config_storage_mysql_host: "{{ mariadb_identifier if mariadb_enabled an
 authelia_config_storage_mysql_port: "{{ '3306' if mariadb_enabled else '' }}"
 authelia_config_storage_mysql_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'db.authelia', rounds=655555) | to_uuid }}"
 # /role-specific:mariadb
+
+# role-specific:postgres
+authelia_config_storage_postgres_host: "{{ postgres_identifier if postgres_enabled else '' }}"
+authelia_config_storage_postgres_port: "{{ '5432' if postgres_enabled else '' }}"
+authelia_config_storage_postgres_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'db.authelia', rounds=655555) | to_uuid }}"
+# /role-specific:postgres
+
+# role-specific:traefik
+authelia_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
+authelia_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
+# /role-specific:traefik
 
 ########################################################################
 #                                                                      #
@@ -1457,11 +1457,6 @@ apisix_dashboard_container_additional_networks_auto: |
 apisix_dashboard_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
 apisix_dashboard_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
 
-# role-specific:traefik
-apisix_dashboard_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
-apisix_dashboard_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
-# /role-specific:traefik
-
 # role-specific:etcd
 apisix_dashboard_config_conf_etcd_endpoints: |
   {{
@@ -1481,6 +1476,11 @@ apisix_dashboard_systemd_required_systemd_services_list_auto: |
     ([(etcd_identifier + '.service')] if etcd_enabled else [])
   }}
 # /role-specific:etcd
+
+# role-specific:traefik
+apisix_dashboard_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
+apisix_dashboard_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
+# /role-specific:traefik
 
 ########################################################################
 #                                                                      #
@@ -1521,11 +1521,6 @@ apisix_gateway_container_labels_metrics_path_prefix: "{{ mash_playbook_metrics_e
 apisix_gateway_container_labels_metrics_middleware_basic_auth_enabled: "{{ mash_playbook_metrics_exposure_http_basic_auth_enabled }}"
 apisix_gateway_container_labels_metrics_middleware_basic_auth_users: "{{ mash_playbook_metrics_exposure_http_basic_auth_users }}"
 
-# role-specific:traefik
-apisix_gateway_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
-apisix_gateway_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
-# /role-specific:traefik
-
 # role-specific:etcd
 apisix_gateway_config_deployment_etcd_host: |
   {{
@@ -1545,6 +1540,11 @@ apisix_gateway_systemd_required_systemd_services_list_auto: |
     ([(etcd_identifier + '.service')] if etcd_enabled else [])
   }}
 # /role-specific:etcd
+
+# role-specific:traefik
+apisix_gateway_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
+apisix_gateway_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
+# /role-specific:traefik
 
 ########################################################################
 #                                                                      #
@@ -1687,16 +1687,8 @@ backup_borg_systemd_required_services_list: |
     ([mariadb_identifier ~ '.service'] if mariadb_enabled | default(false) else [])
   }}
 
-backup_borg_postgresql_enabled: "{{ postgres_enabled }}"
 backup_borg_mysql_enabled: "{{ mariadb_enabled }}"
-
-# role-specific:postgres
-backup_borg_postgresql_databases_hostname: "{{ postgres_connection_hostname if postgres_enabled else '' }}"
-backup_borg_postgresql_databases_username: "{{ postgres_connection_username if postgres_enabled else '' }}"
-backup_borg_postgresql_databases_password: "{{ postgres_connection_password if postgres_enabled else '' }}"
-backup_borg_postgresql_databases_port: "{{ postgres_connection_port if postgres_enabled else 5432 }}"
-backup_borg_postgresql_databases_auto: "{{ postgres_managed_databases | map(attribute='name') if postgres_enabled else [] }}"
-# /role-specific:postgres
+backup_borg_postgresql_enabled: "{{ postgres_enabled }}"
 
 # role-specific:mariadb
 backup_borg_mysql_databases_hostname: "{{ mariadb_identifier if mariadb_enabled else '' }}"
@@ -1705,6 +1697,14 @@ backup_borg_mysql_databases_password: "{{ mariadb_root_password if mariadb_enabl
 backup_borg_mysql_databases_port: 3306
 backup_borg_mysql_databases: "{{ mariadb_managed_databases | map(attribute='name') if mariadb_enabled else [] }}"
 # /role-specific:mariadb
+
+# role-specific:postgres
+backup_borg_postgresql_databases_hostname: "{{ postgres_connection_hostname if postgres_enabled else '' }}"
+backup_borg_postgresql_databases_username: "{{ postgres_connection_username if postgres_enabled else '' }}"
+backup_borg_postgresql_databases_password: "{{ postgres_connection_password if postgres_enabled else '' }}"
+backup_borg_postgresql_databases_port: "{{ postgres_connection_port if postgres_enabled else 5432 }}"
+backup_borg_postgresql_databases_auto: "{{ postgres_managed_databases | map(attribute='name') if postgres_enabled else [] }}"
+# /role-specific:postgres
 
 ########################################################################
 #                                                                      #
@@ -2486,17 +2486,18 @@ freshrss_container_additional_networks: |
 freshrss_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
 freshrss_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
 
+# role-specific:postgres
+freshrss_database_hostname: "{{ postgres_connection_hostname if postgres_enabled else '' }}"
+#
+# Intentionally not auto-generating freshrss_database_password.
+# It's meant to be explicitly defined, so that it can be used in the setup wizard after installation.
+#
+# /role-specific:postgres
+
 # role-specific:traefik
 freshrss_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
 freshrss_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
 # /role-specific:traefik
-
-# role-specific:postgres
-freshrss_database_hostname: "{{ postgres_connection_hostname if postgres_enabled else '' }}"
-# /role-specific:postgres
-
-# Intentionally not auto-generating freshrss_database_password.
-# It's meant to be explicitly defined, so that it can be used in the setup wizard after installation.
 
 ########################################################################
 #                                                                      #
@@ -2608,10 +2609,13 @@ gitea_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyab
 gitea_container_labels_traefik_compression_middleware_enabled: "{{ mash_playbook_reverse_proxy_traefik_middleware_compession_enabled }}"
 gitea_container_labels_traefik_compression_middleware_name: "{{ mash_playbook_reverse_proxy_traefik_middleware_compession_name if mash_playbook_reverse_proxy_traefik_middleware_compession_enabled else '' }}"
 
-# role-specific:traefik
-gitea_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
-gitea_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
-# /role-specific:traefik
+# role-specific:exim_relay
+gitea_config_mailer_enabled: "{{ exim_relay_enabled }}"
+gitea_config_mailer_smtp_addr: "{{ exim_relay_identifier if exim_relay_enabled else '' }}"
+gitea_config_mailer_smtp_port: 8025
+gitea_config_mailer_from: "{{ exim_relay_sender_address if exim_relay_enabled else '' }}"
+gitea_config_mailer_protocol: "{{ 'smtp' if exim_relay_enabled else '' }}"
+# /role-specific:exim_relay
 
 # role-specific:postgres
 gitea_config_database_hostname: "{{ postgres_identifier if postgres_enabled else '' }}"
@@ -2620,13 +2624,10 @@ gitea_config_database_username: "gitea"
 gitea_config_database_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'db.gitea', rounds=655555) | to_uuid }}"
 # /role-specific:postgres
 
-# role-specific:exim_relay
-gitea_config_mailer_enabled: "{{ exim_relay_enabled }}"
-gitea_config_mailer_smtp_addr: "{{ exim_relay_identifier if exim_relay_enabled else '' }}"
-gitea_config_mailer_smtp_port: 8025
-gitea_config_mailer_from: "{{ exim_relay_sender_address if exim_relay_enabled else '' }}"
-gitea_config_mailer_protocol: "{{ 'smtp' if exim_relay_enabled else '' }}"
-# /role-specific:exim_relay
+# role-specific:traefik
+gitea_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
+gitea_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
+# /role-specific:traefik
 
 ########################################################################
 #                                                                      #
@@ -2675,10 +2676,11 @@ gotosocial_container_additional_networks_auto: |
 gotosocial_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
 gotosocial_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
 
-# role-specific:traefik
-gotosocial_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
-gotosocial_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
-# /role-specific:traefik
+# role-specific:exim_relay
+gotosocial_smtp_host: "{{ exim_relay_identifier if exim_relay_enabled else '' }}"
+gotosocial_smtp_port: 8025
+gotosocial_smtp_from: "{{ exim_relay_sender_address if exim_relay_enabled else '' }}"
+# /role-specific:exim_relay
 
 # role-specific:postgres
 gotosocial_database_host: "{{ postgres_identifier if postgres_enabled else '' }}"
@@ -2687,11 +2689,10 @@ gotosocial_database_password: "{{ '%s' | format(mash_playbook_generic_secret_key
 gotosocial_database_username: "{{ gotosocial_identifier }}"
 # /role-specific:postgres
 
-# role-specific:exim_relay
-gotosocial_smtp_host: "{{ exim_relay_identifier if exim_relay_enabled else '' }}"
-gotosocial_smtp_port: 8025
-gotosocial_smtp_from: "{{ exim_relay_sender_address if exim_relay_enabled else '' }}"
-# /role-specific:exim_relay
+# role-specific:traefik
+gotosocial_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
+gotosocial_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
+# /role-specific:traefik
 
 ########################################################################
 #                                                                      #
@@ -2827,16 +2828,6 @@ healthchecks_environment_variable_secret_key: "{{ '%s' | format(mash_playbook_ge
 healthchecks_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
 healthchecks_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
 
-# role-specific:traefik
-healthchecks_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
-healthchecks_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
-# /role-specific:traefik
-
-# role-specific:postgres
-healthchecks_database_hostname: "{{ postgres_connection_hostname if postgres_enabled else '' }}"
-healthchecks_database_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'healthchecks.db', rounds=655555) | to_uuid }}"
-# /role-specific:postgres
-
 # role-specific:exim_relay
 healthchecks_environment_variable_default_from_email: "{{ exim_relay_sender_address if exim_relay_enabled else '' }}"
 healthchecks_environment_variable_email_host: "{{ exim_relay_identifier if exim_relay_enabled else '' }}"
@@ -2844,6 +2835,16 @@ healthchecks_environment_variable_email_port: "{{ 8025 if exim_relay_enabled els
 healthchecks_environment_variable_email_use_tls: "{{ false if exim_relay_enabled else true }}"
 healthchecks_environment_variable_email_use_verification: "{{ false if exim_relay_enabled else true }}"
 # /role-specific:exim_relay
+
+# role-specific:postgres
+healthchecks_database_hostname: "{{ postgres_connection_hostname if postgres_enabled else '' }}"
+healthchecks_database_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'healthchecks.db', rounds=655555) | to_uuid }}"
+# /role-specific:postgres
+
+# role-specific:traefik
+healthchecks_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
+healthchecks_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
+# /role-specific:traefik
 
 ########################################################################
 #                                                                      #
@@ -3759,18 +3760,18 @@ ihatemoney_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_pr
 
 ihatemoney_environment_variable_secret: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'secret.imoney', rounds=655555) | to_uuid }}"
 
+# role-specific:exim_relay
+ihatemoney_email_host: "{{ exim_relay_identifier if exim_relay_enabled else '' }}"
+ihatemoney_email_port: "{{ 8025 if exim_relay_enabled else '' }}"
+ihatemoney_default_from_email: "{{ exim_relay_sender_address if exim_relay_enabled else '' }}"
+# /role-specific:exim_relay
+
 # role-specific:postgres
 ihatemoney_database_hostname: "{{ postgres_identifier if postgres_enabled else '' }}"
 ihatemoney_database_port: "{{ '5432' if postgres_enabled else '' }}"
 ihatemoney_database_username: "ihatemoney"
 ihatemoney_database_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'db.ihatemoney', rounds=655555) | to_uuid }}"
 # /role-specific:postgres
-
-# role-specific:exim_relay
-ihatemoney_email_host: "{{ exim_relay_identifier if exim_relay_enabled else '' }}"
-ihatemoney_email_port: "{{ 8025 if exim_relay_enabled else '' }}"
-ihatemoney_default_from_email: "{{ exim_relay_sender_address if exim_relay_enabled else '' }}"
-# /role-specific:exim_relay
 
 # role-specific:traefik
 ihatemoney_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
@@ -3890,18 +3891,18 @@ infisical_frontend_container_additional_networks: |
     ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
   }}
 
+# role-specific:mongodb
+infisical_mongodb_hostname: "{{ mongodb_identifier if mongodb_enabled else '' }}"
+infisical_mongodb_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'infisical.db', rounds=655555) | to_uuid }}"
+infisical_mongodb_auth_source: "{{ infisical_mongodb_db_name }}"
+# /role-specific:mongodb
+
 # role-specific:traefik
 infisical_backend_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
 infisical_backend_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
 infisical_frontend_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
 infisical_frontend_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
 # /role-specific:traefik
-
-# role-specific:mongodb
-infisical_mongodb_hostname: "{{ mongodb_identifier if mongodb_enabled else '' }}"
-infisical_mongodb_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'infisical.db', rounds=655555) | to_uuid }}"
-infisical_mongodb_auth_source: "{{ infisical_mongodb_db_name }}"
-# /role-specific:mongodb
 
 ########################################################################
 #                                                                      #
@@ -4077,10 +4078,13 @@ joplin_server_container_additional_networks_auto: |
 joplin_server_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
 joplin_server_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
 
-# role-specific:traefik
-joplin_server_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
-joplin_server_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
-# /role-specific:traefik
+# role-specific:exim_relay
+joplin_server_environment_variable_mailer_enabled: "{{ exim_relay_enabled }}"
+joplin_server_environment_variable_mailer_host: "{{ exim_relay_identifier if exim_relay_enabled else '' }}"
+joplin_server_environment_variable_mailer_port: 8025
+joplin_server_environment_variable_mailer_noreply_email: "{{ exim_relay_sender_address if exim_relay_enabled else '' }}"
+joplin_server_environment_variable_mailer_security: MailerSecurity.None
+# /role-specific:exim_relay
 
 # role-specific:postgres
 joplin_server_environment_variable_database_host: "{{ postgres_identifier if postgres_enabled else '' }}"
@@ -4089,13 +4093,10 @@ joplin_server_environment_variable_database_user: "{{ joplin_server_identifier }
 joplin_server_environment_variable_database_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'db.joplinserver', rounds=655555) | to_uuid }}"
 # /role-specific:postgres
 
-# role-specific:exim_relay
-joplin_server_environment_variable_mailer_enabled: "{{ exim_relay_enabled }}"
-joplin_server_environment_variable_mailer_host: "{{ exim_relay_identifier if exim_relay_enabled else '' }}"
-joplin_server_environment_variable_mailer_port: 8025
-joplin_server_environment_variable_mailer_noreply_email: "{{ exim_relay_sender_address if exim_relay_enabled else '' }}"
-joplin_server_environment_variable_mailer_security: MailerSecurity.None
-# /role-specific:exim_relay
+# role-specific:traefik
+joplin_server_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
+joplin_server_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
+# /role-specific:traefik
 
 ########################################################################
 #                                                                      #
@@ -4144,16 +4145,16 @@ keycloak_container_labels_metrics_middleware_basic_auth_users: "{{ mash_playbook
 
 keycloak_environment_variable_kc_metrics_enabled: "{{ prometheus_enabled | default(false) or mash_playbook_metrics_exposure_enabled }}"
 
-# role-specific:traefik
-keycloak_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
-keycloak_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
-# /role-specific:traefik
-
 # role-specific:postgres
 keycloak_database_hostname: "{{ postgres_identifier if postgres_enabled else '' }}"
 keycloak_database_port: "{{ '5432' if postgres_enabled else '' }}"
 keycloak_database_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'db.keycloak', rounds=655555) | to_uuid }}"
 # /role-specific:postgres
+
+# role-specific:traefik
+keycloak_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
+keycloak_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
+# /role-specific:traefik
 
 ########################################################################
 #                                                                      #
@@ -4194,11 +4195,6 @@ labelstudio_container_labels_traefik_compression_middleware_name: "{{ mash_playb
 
 labelstudio_postgres_backend_enabled: "{{ postgres_enabled }}"
 
-# role-specific:traefik
-labelstudio_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
-labelstudio_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
-# /role-specific:traefik
-
 # role-specific:postgres
 labelstudio_database_name: "labelstudio"
 labelstudio_database_username: "labelstudio"
@@ -4206,6 +4202,11 @@ labelstudio_database_port: "{{ '5432' if postgres_enabled else '' }}"
 labelstudio_database_hostname: "{{ postgres_identifier if postgres_enabled else '' }}"
 labelstudio_database_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'db.labelstudio', rounds=655555) | to_uuid }}"
 # /role-specific:postgres
+
+# role-specific:traefik
+labelstudio_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
+labelstudio_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
+# /role-specific:traefik
 
 ########################################################################
 #                                                                      #
@@ -4254,16 +4255,16 @@ lago_api_environment_variable_encryption_key_derivation_salt: "{{ '%s' | format(
 lago_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
 lago_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
 
-# role-specific:traefik
-lago_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
-lago_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
-# /role-specific:traefik
-
 # role-specific:postgres
 lago_database_hostname: "{{ postgres_identifier if postgres_enabled else '' }}"
 lago_database_port: "{{ '5432' if postgres_enabled else '' }}"
 lago_database_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'lago.db', rounds=655555) | to_uuid }}"
 # /role-specific:postgres
+
+# role-specific:traefik
+lago_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
+lago_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
+# /role-specific:traefik
 
 ########################################################################
 #                                                                      #
@@ -4382,16 +4383,16 @@ linkding_container_additional_networks_auto: |
 linkding_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
 linkding_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
 
-# role-specific:traefik
-linkding_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
-linkding_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
-# /role-specific:traefik
-
 # role-specific:postgres
 linkding_database_hostname: "{{ postgres_connection_hostname if postgres_enabled else '' }}"
 linkding_database_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'linkding.db', rounds=655555) | to_uuid }}"
 linkding_database_engine: "{{ 'postgres' if postgres_enabled and linkding_database_hostname == postgres_connection_hostname else 'sqlite' }}"
 # /role-specific:postgres
+
+# role-specific:traefik
+linkding_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
+linkding_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
+# /role-specific:traefik
 
 ########################################################################
 #                                                                      #
@@ -4432,15 +4433,15 @@ freescout_container_additional_networks: |
 freescout_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
 freescout_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
 
-# role-specific:traefik
-freescout_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
-freescout_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
-# /role-specific:traefik
-
 # role-specific:postgres
 freescout_database_hostname: "{{ postgres_connection_hostname if postgres_enabled else '' }}"
 freescout_database_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'freescout.db', rounds=655555) | to_uuid }}"
 # /role-specific:postgres
+
+# role-specific:traefik
+freescout_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
+freescout_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
+# /role-specific:traefik
 
 ########################################################################
 #                                                                      #
@@ -4484,15 +4485,15 @@ miniflux_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_prox
 miniflux_container_labels_traefik_compression_middleware_enabled: "{{ mash_playbook_reverse_proxy_traefik_middleware_compession_enabled }}"
 miniflux_container_labels_traefik_compression_middleware_name: "{{ mash_playbook_reverse_proxy_traefik_middleware_compession_name if mash_playbook_reverse_proxy_traefik_middleware_compession_enabled else '' }}"
 
-# role-specific:traefik
-miniflux_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
-miniflux_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
-# /role-specific:traefik
-
 # role-specific:postgres
 miniflux_database_hostname: "{{ postgres_connection_hostname if postgres_enabled else '' }}"
 miniflux_database_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'miniflux.db', rounds=655555) | to_uuid }}"
 # /role-specific:postgres
+
+# role-specific:traefik
+miniflux_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
+miniflux_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
+# /role-specific:traefik
 
 ########################################################################
 #                                                                      #
@@ -4691,15 +4692,15 @@ n8n_container_additional_networks: |
 n8n_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
 n8n_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
 
-# role-specific:traefik
-n8n_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
-n8n_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
-# /role-specific:traefik
-
 # role-specific:postgres
 n8n_database_hostname: "{{ postgres_connection_hostname if postgres_enabled else '' }}"
 n8n_database_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'n8n.db', rounds=655555) | to_uuid }}"
 # /role-specific:postgres
+
+# role-specific:traefik
+n8n_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
+n8n_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
+# /role-specific:traefik
 
 ########################################################################
 #                                                                      #
@@ -4829,18 +4830,6 @@ nextcloud_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_pro
 nextcloud_container_labels_traefik_compression_middleware_enabled: "{{ mash_playbook_reverse_proxy_traefik_middleware_compession_enabled }}"
 nextcloud_container_labels_traefik_compression_middleware_name: "{{ mash_playbook_reverse_proxy_traefik_middleware_compession_name if mash_playbook_reverse_proxy_traefik_middleware_compession_enabled else '' }}"
 
-# role-specific:traefik
-nextcloud_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
-nextcloud_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
-# /role-specific:traefik
-
-# role-specific:postgres
-nextcloud_database_hostname: "{{ postgres_identifier if postgres_enabled else '' }}"
-nextcloud_database_port: "{{ '5432' if postgres_enabled else '' }}"
-nextcloud_database_username: "nextcloud"
-nextcloud_database_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'db.nextcloud', rounds=655555) | to_uuid }}"
-# /role-specific:postgres
-
 # role-specific:exim_relay
 nextcloud_config_parameter_mail_smtphost: "{{ exim_relay_identifier if exim_relay_enabled else '' }}"
 nextcloud_config_parameter_mail_smtpport: "{{ 8025 if exim_relay_enabled else '' }}"
@@ -4849,6 +4838,18 @@ nextcloud_config_parameter_mail_smtpauth: false
 nextcloud_config_parameter_mail_from_address: "{{ (exim_relay_sender_address | split('@'))[0] if exim_relay_enabled else '' }}"
 nextcloud_config_parameter_mail_domain: "{{ (exim_relay_sender_address | split('@'))[1] if exim_relay_enabled else '' }}"
 # /role-specific:exim_relay
+
+# role-specific:postgres
+nextcloud_database_hostname: "{{ postgres_identifier if postgres_enabled else '' }}"
+nextcloud_database_port: "{{ '5432' if postgres_enabled else '' }}"
+nextcloud_database_username: "nextcloud"
+nextcloud_database_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'db.nextcloud', rounds=655555) | to_uuid }}"
+# /role-specific:postgres
+
+# role-specific:traefik
+nextcloud_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
+nextcloud_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
+# /role-specific:traefik
 
 ########################################################################
 #                                                                      #
@@ -4892,16 +4893,16 @@ netbox_container_additional_networks_auto: |
 netbox_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
 netbox_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
 
-# role-specific:traefik
-netbox_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
-netbox_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
-# /role-specific:traefik
-
 # role-specific:postgres
 netbox_database_hostname: "{{ postgres_identifier if postgres_enabled else '' }}"
 netbox_database_port: "{{ '5432' if postgres_enabled else '' }}"
 netbox_database_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'db.netbox', rounds=655555) | to_uuid }}"
 # /role-specific:postgres
+
+# role-specific:traefik
+netbox_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
+netbox_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
+# /role-specific:traefik
 
 ########################################################################
 #                                                                      #
@@ -5067,17 +5068,17 @@ ntfy_visitor_request_limit_exempt_hosts_hostnames_auto: |
     [ntfy_hostname]
   }}
 
-# role-specific:traefik
-ntfy_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
-ntfy_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
-# /role-specific:traefik
-
 # role-specific:exim_relay
 ntfy_smtp_sender_enabled: "{{ exim_relay_enabled }}"
 ntfy_smtp_sender_addr_host: "{{ exim_relay_identifier if exim_relay_enabled else '' }}"
 ntfy_smtp_sender_addr_port: 8025
 ntfy_smtp_sender_from: "{{ exim_relay_sender_address if exim_relay_enabled else '' }}"
 # /role-specific:exim_relay
+
+# role-specific:traefik
+ntfy_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
+ntfy_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
+# /role-specific:traefik
 
 ########################################################################
 #                                                                      #
@@ -5120,17 +5121,17 @@ outline_environment_variable_utils_secret: "{{ '%s' | format(mash_playbook_gener
 outline_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
 outline_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
 
-# role-specific:traefik
-outline_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
-outline_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
-# /role-specific:traefik
-
 # role-specific:postgres
 outline_database_hostname: "{{ postgres_identifier if postgres_enabled else '' }}"
 outline_database_port: "{{ '5432' if postgres_enabled else '' }}"
 outline_database_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'db.out', rounds=655555) | to_uuid }}"
 outline_database_sslmode: "{{ 'disable' if postgres_enabled and outline_database_hostname == postgres_identifier else 'prefer' }}"
 # /role-specific:postgres
+
+# role-specific:traefik
+outline_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
+outline_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
+# /role-specific:traefik
 
 ########################################################################
 #                                                                      #
@@ -5341,6 +5342,12 @@ paperless_container_additional_networks_auto: |
 paperless_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
 paperless_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
 
+# role-specific:exim_relay
+paperless_email_host: "{{ exim_relay_identifier if exim_relay_enabled else '' }}"
+paperless_email_port: "{{ 8025 if exim_relay_enabled else '' }}"
+paperless_email_from: "{{ exim_relay_sender_address if exim_relay_enabled else '' }}"
+# /role-specific:exim_relay
+
 # role-specific:postgres
 paperless_database_hostname: "{{ postgres_identifier if postgres_enabled else '' }}"
 paperless_database_username: "paperless"
@@ -5352,12 +5359,6 @@ paperless_database_password: "{{ '%s' | format(mash_playbook_generic_secret_key)
 paperless_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
 paperless_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
 # /role-specific:traefik
-
-# role-specific:exim_relay
-paperless_email_host: "{{ exim_relay_identifier if exim_relay_enabled else '' }}"
-paperless_email_port: "{{ 8025 if exim_relay_enabled else '' }}"
-paperless_email_from: "{{ exim_relay_sender_address if exim_relay_enabled else '' }}"
-# /role-specific:exim_relay
 
 ########################################################################
 #                                                                      #
@@ -5408,10 +5409,11 @@ peertube_systemd_wanted_services_list_auto: |
 peertube_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
 peertube_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
 
-# role-specific:traefik
-peertube_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
-peertube_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
-# /role-specific:traefik
+# role-specific:exim_relay
+peertube_config_smtp_hostname: "{{ exim_relay_identifier if exim_relay_enabled else '' }}"
+peertube_config_smtp_port: "{{ 8025 if exim_relay_enabled else '' }}"
+peertube_config_smtp_from: "{{ exim_relay_sender_address if exim_relay_enabled else '' }}"
+# /role-specific:exim_relay
 
 # role-specific:postgres
 peertube_config_database_hostname: "{{ postgres_identifier if postgres_enabled else '' }}"
@@ -5420,11 +5422,10 @@ peertube_config_database_username: peertube
 peertube_config_database_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'db.peertube', rounds=655555) | to_uuid }}"
 # /role-specific:postgres
 
-# role-specific:exim_relay
-peertube_config_smtp_hostname: "{{ exim_relay_identifier if exim_relay_enabled else '' }}"
-peertube_config_smtp_port: "{{ 8025 if exim_relay_enabled else '' }}"
-peertube_config_smtp_from: "{{ exim_relay_sender_address if exim_relay_enabled else '' }}"
-# /role-specific:exim_relay
+# role-specific:traefik
+peertube_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
+peertube_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
+# /role-specific:traefik
 
 ########################################################################
 #                                                                      #
@@ -5476,16 +5477,6 @@ plausible_container_additional_networks_auto: |
 plausible_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
 plausible_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
 
-# role-specific:traefik
-plausible_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
-plausible_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
-# /role-specific:traefik
-
-# role-specific:postgres
-plausible_database_hostname: "{{ postgres_connection_hostname if postgres_enabled else '' }}"
-plausible_database_password: "{{ ('%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'plausible.db', rounds=655555) | to_uuid) if postgres_enabled else '' }}"
-# /role-specific:postgres
-
 # role-specific:clickhouse
 plausible_clickhouse_database_hostname: "{{ clickhouse_identifier if clickhouse_enabled else '' }}"
 plausible_clickhouse_database_password: "{{ ('%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'plaus.clk.db', rounds=655555) | to_uuid) if clickhouse_enabled else '' }}"
@@ -5500,6 +5491,16 @@ plausible_environment_variable_smtp_host_addr: "{{ exim_relay_identifier if exim
 plausible_environment_variable_smtp_host_port: "{{ 8025 if exim_relay_enabled else '587' }}"
 plausible_environment_variable_smtp_host_ssl_enabled: false
 # /role-specific:exim_relay
+
+# role-specific:postgres
+plausible_database_hostname: "{{ postgres_connection_hostname if postgres_enabled else '' }}"
+plausible_database_password: "{{ ('%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'plausible.db', rounds=655555) | to_uuid) if postgres_enabled else '' }}"
+# /role-specific:postgres
+
+# role-specific:traefik
+plausible_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
+plausible_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
+# /role-specific:traefik
 
 ########################################################################
 #                                                                      #
@@ -5590,11 +5591,6 @@ prometheus_postgres_exporter_container_labels_metrics_middleware_basic_auth_user
 prometheus_postgres_exporter_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled and prometheus_postgres_exporter_hostname | length > 0 }}"
 prometheus_postgres_exporter_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
 
-# role-specific:traefik
-prometheus_postgres_exporter_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
-prometheus_postgres_exporter_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
-# /role-specific:traefik
-
 # role-specific:postgres
 prometheus_postgres_exporter_database_hostname: "{{ postgres_connection_hostname if postgres_enabled else '' }}"
 prometheus_postgres_exporter_database_username: prometheus_postgres_exporter
@@ -5602,6 +5598,11 @@ prometheus_postgres_exporter_database_password: "{{ postgres_connection_password
 prometheus_postgres_exporter_database_port: "{{ postgres_connection_port if postgres_enabled else 5432 }}"
 prometheus_postgres_exporter_database_ssl: false
 # /role-specific:postgres
+
+# role-specific:traefik
+prometheus_postgres_exporter_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
+prometheus_postgres_exporter_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
+# /role-specific:traefik
 
 ########################################################################
 #                                                                      #
@@ -6008,11 +6009,6 @@ redmine_container_additional_networks: |
 redmine_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
 redmine_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
 
-# role-specific:traefik
-redmine_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
-redmine_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
-# /role-specific:traefik
-
 redmine_database_type: "{{ 'postgresql' if postgres_enabled else 'sqlite3' }}"
 
 # role-specific:postgres
@@ -6020,6 +6016,11 @@ redmine_database_hostname: "{{ postgres_connection_hostname if postgres_enabled 
 redmine_database_username: "redmine"
 redmine_database_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'redmine.db', rounds=655555) | to_uuid }}"
 # /role-specific:postgres
+
+# role-specific:traefik
+redmine_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
+redmine_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
+# /role-specific:traefik
 
 ########################################################################
 #                                                                      #
@@ -6491,10 +6492,11 @@ tandoor_environment_variable_secret: "{{ '%s' | format(mash_playbook_generic_sec
 tandoor_frontend_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
 tandoor_frontend_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
 
-# role-specific:traefik
-tandoor_frontend_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
-tandoor_frontend_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
-# /role-specific:traefik
+# role-specific:exim_relay
+tandoor_email_host: "{{ exim_relay_identifier if exim_relay_enabled else '' }}"
+tandoor_email_port: "{{ 8025 if exim_relay_enabled else '' }}"
+tandoor_default_from_email: "{{ exim_relay_sender_address if exim_relay_enabled else '' }}"
+# /role-specific:exim_relay
 
 # role-specific:postgres
 tandoor_database_hostname: "{{ postgres_identifier if postgres_enabled else '' }}"
@@ -6503,11 +6505,10 @@ tandoor_database_username: "tandoor"
 tandoor_database_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'db.tandoor', rounds=655555) | to_uuid }}"
 # /role-specific:postgres
 
-# role-specific:exim_relay
-tandoor_email_host: "{{ exim_relay_identifier if exim_relay_enabled else '' }}"
-tandoor_email_port: "{{ 8025 if exim_relay_enabled else '' }}"
-tandoor_default_from_email: "{{ exim_relay_sender_address if exim_relay_enabled else '' }}"
-# /role-specific:exim_relay
+# role-specific:traefik
+tandoor_frontend_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
+tandoor_frontend_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
+# /role-specific:traefik
 
 ########################################################################
 #                                                                      #
@@ -6663,10 +6664,12 @@ vaultwarden_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_p
 vaultwarden_container_labels_traefik_compression_middleware_enabled: "{{ mash_playbook_reverse_proxy_traefik_middleware_compession_enabled }}"
 vaultwarden_container_labels_traefik_compression_middleware_name: "{{ mash_playbook_reverse_proxy_traefik_middleware_compession_name if mash_playbook_reverse_proxy_traefik_middleware_compession_enabled else '' }}"
 
-# role-specific:traefik
-vaultwarden_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
-vaultwarden_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
-# /role-specific:traefik
+# role-specific:exim_relay
+vaultwarden_config_smtp_from: "{{ exim_relay_sender_address if exim_relay_enabled else '' }}"
+vaultwarden_config_smtp_host: "{{ exim_relay_identifier if exim_relay_enabled else '' }}"
+vaultwarden_config_smtp_port: "{{ 8025 if exim_relay_enabled else '587' }}"
+vaultwarden_config_smtp_security: "{{ 'off' if exim_relay_enabled else 'starttls' }}"
+# /role-specific:exim_relay
 
 # role-specific:postgres
 vaultwarden_database_hostname: "{{ postgres_identifier if postgres_enabled else '' }}"
@@ -6675,12 +6678,10 @@ vaultwarden_database_username: "vaultwarden"
 vaultwarden_database_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'db.vaultwarden', rounds=655555) | to_uuid }}"
 # /role-specific:postgres
 
-# role-specific:exim_relay
-vaultwarden_config_smtp_from: "{{ exim_relay_sender_address if exim_relay_enabled else '' }}"
-vaultwarden_config_smtp_host: "{{ exim_relay_identifier if exim_relay_enabled else '' }}"
-vaultwarden_config_smtp_port: "{{ 8025 if exim_relay_enabled else '587' }}"
-vaultwarden_config_smtp_security: "{{ 'off' if exim_relay_enabled else 'starttls' }}"
-# /role-specific:exim_relay
+# role-specific:traefik
+vaultwarden_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
+vaultwarden_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
+# /role-specific:traefik
 
 ########################################################################
 #                                                                      #
@@ -6840,10 +6841,13 @@ forgejo_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxy
 forgejo_container_labels_traefik_compression_middleware_enabled: "{{ mash_playbook_reverse_proxy_traefik_middleware_compession_enabled }}"
 forgejo_container_labels_traefik_compression_middleware_name: "{{ mash_playbook_reverse_proxy_traefik_middleware_compession_name if mash_playbook_reverse_proxy_traefik_middleware_compession_enabled else '' }}"
 
-# role-specific:traefik
-forgejo_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
-forgejo_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
-# /role-specific:traefik
+# role-specific:exim_relay
+forgejo_config_mailer_enabled: "{{ exim_relay_enabled }}"
+forgejo_config_mailer_smtp_addr: "{{ exim_relay_identifier if exim_relay_enabled else '' }}"
+forgejo_config_mailer_smtp_port: 8025
+forgejo_config_mailer_from: "{{ exim_relay_sender_address if exim_relay_enabled else '' }}"
+forgejo_config_mailer_protocol: "{{ 'smtp' if exim_relay_enabled else '' }}"
+# /role-specific:exim_relay
 
 # role-specific:postgres
 forgejo_config_database_hostname: "{{ postgres_identifier if postgres_enabled else '' }}"
@@ -6852,13 +6856,10 @@ forgejo_config_database_username: "forgejo"
 forgejo_config_database_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'db.forgejo', rounds=655555) | to_uuid }}"
 # /role-specific:postgres
 
-# role-specific:exim_relay
-forgejo_config_mailer_enabled: "{{ exim_relay_enabled }}"
-forgejo_config_mailer_smtp_addr: "{{ exim_relay_identifier if exim_relay_enabled else '' }}"
-forgejo_config_mailer_smtp_port: 8025
-forgejo_config_mailer_from: "{{ exim_relay_sender_address if exim_relay_enabled else '' }}"
-forgejo_config_mailer_protocol: "{{ 'smtp' if exim_relay_enabled else '' }}"
-# /role-specific:exim_relay
+# role-specific:traefik
+forgejo_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
+forgejo_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
+# /role-specific:traefik
 
 ########################################################################
 #                                                                      #
@@ -7032,16 +7033,16 @@ wordpress_container_additional_networks_auto: |
 wordpress_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
 wordpress_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
 
-# role-specific:traefik
-wordpress_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
-wordpress_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
-# /role-specific:traefik
-
 # role-specific:mariadb
 wordpress_database_hostname: "{{ mariadb_identifier if mariadb_enabled | default(false) else '' }}"
 wordpress_mysql_port: "{{ '3306' if mariadb_enabled | default(false) else '' }}"
 wordpress_database_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'db.mariadb', rounds=655555) | to_uuid }}"
 # /role-specific:mariadb
+
+# role-specific:traefik
+wordpress_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
+wordpress_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
+# /role-specific:traefik
 
 ########################################################################
 #                                                                      #
