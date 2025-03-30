@@ -363,6 +363,11 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
     {{ ({'name': (healthchecks_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'healthchecks']} if healthchecks_enabled else omit) }}
   # /role-specific:healthchecks
 
+  # role-specific:ihatemoney
+  - |-
+    {{ ({'name': (ihatemoney_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'ihatemoney']} if ihatemoney_enabled else omit) }}
+  # /role-specific:ihatemoney
+
   # role-specific:ilmo
   - |-
     {{ ({'name': (ilmo_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'ilmo']} if ilmo_enabled else omit) }}
@@ -896,6 +901,18 @@ mash_playbook_postgres_managed_databases_auto_itemized:
       } if gotosocial_enabled else omit)
     }}
   # /role-specific:gotosocial
+
+  # role-specific:ihatemoney
+  - |-
+    {{
+      ({
+        'name': ihatemoney_database_name,
+        'username': ihatemoney_database_username,
+        'password': ihatemoney_database_password,
+      } if ihatemoney_enabled else omit)
+    }}
+  # /role-specific:ihatemoney
+
 
   # role-specific:ilmo
   - |-
@@ -2945,6 +2962,16 @@ hubsite_service_healthchecks_description: "A simple and Effective Cron Job Monit
 hubsite_service_healthchecks_priority: 1000
 # /role-specific:healthchecks
 
+# role-specific:ihatemoney
+# ihatemoney
+hubsite_service_ihatemoney_enabled: "{{ ihatemoney_enabled }}"
+hubsite_service_ihatemoney_name: ihatemoney
+hubsite_service_ihatemoney_url: "https://{{ ihatemoney_hostname }}{{ ihatemoney_path_prefix }}"
+hubsite_service_ihatemoney_logo_location: "{{ role_path }}/assets/ihatemoney.png"
+hubsite_service_ihatemoney_description: "Manage your shared expenses, easily"
+hubsite_service_ihatemoney_priority: 1000
+# /role-specific:ihatemoney
+
 # role-specific:joplin_server
 # Joplin Server
 hubsite_service_joplin_server_enabled: "{{ joplin_server_enabled }}"
@@ -3330,6 +3357,19 @@ mash_playbook_hubsite_service_list_auto_itemized:
     }}
   # /role-specific:healthchecks
 
+  # role-specific:ihatemoney
+  - |-
+    {{
+      ({
+        'name': hubsite_service_ihatemoney_name,
+        'url': hubsite_service_ihatemoney_url,
+        'logo_location': hubsite_service_ihatemoney_logo_location,
+        'description': hubsite_service_ihatemoney_description,
+        'priority': hubsite_service_ihatemoney_priority,
+      } if hubsite_service_ihatemoney_enabled else omit)
+    }}
+  # /role-specific:ihatemoney
+
   # role-specific:joplin_server
   - |-
     {{
@@ -3598,6 +3638,69 @@ hubsite_service_list_auto: "{{ mash_playbook_hubsite_service_list_auto_itemized 
 #                                                                      #
 ########################################################################
 # /role-specific:hubsite
+
+
+# role-specific:ihatemoney
+########################################################################
+#                                                                      #
+# ihatemoney                                                           #
+#                                                                      #
+########################################################################
+
+ihatemoney_enabled: false
+
+ihatemoney_identifier: "{{ mash_playbook_service_identifier_prefix }}ihatemoney"
+
+ihatemoney_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}ihatemoney"
+
+ihatemoney_uid: "{{ mash_playbook_uid }}"
+ihatemoney_gid: "{{ mash_playbook_gid }}"
+
+ihatemoney_systemd_required_services_list_auto: |
+  {{
+    ([postgres_identifier ~ '.service'] if postgres_enabled and ihatemoney_database_hostname == postgres_identifier else [])
+  }}
+
+ihatemoney_systemd_wanted_services_list_auto: |
+  {{
+    ([(exim_relay_identifier | default('mash-exim-relay')) ~ '.service'] if (exim_relay_enabled | default(false) and ihatemoney_email_host == exim_relay_identifier | default('mash-exim-relay')) else [])
+  }}
+
+ihatemoney_container_additional_networks_auto: |
+  {{
+    (
+      ([postgres_container_network] if postgres_enabled and ihatemoney_database_hostname == postgres_identifier and ihatemoney_container_network != postgres_container_network else [])
+      +
+      ([exim_relay_container_network | default('mash-exim-relay')] if (exim_relay_enabled | default(false) and ihatemoney_email_host == exim_relay_identifier | default('mash-exim-relay') and ihatemoney_container_network != exim_relay_container_network) else [])
+      +  
+      ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+    ) | unique
+  }}
+
+ihatemoney_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+ihatemoney_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+ihatemoney_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
+ihatemoney_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
+
+ihatemoney_database_hostname: "{{ postgres_identifier if postgres_enabled else '' }}"
+ihatemoney_database_port: "{{ '5432' if postgres_enabled else '' }}"
+ihatemoney_database_username: "ihatemoney"
+ihatemoney_database_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'db.ihatemoney', rounds=655555) | to_uuid }}"
+
+ihatemoney_environment_variable_secret: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'secret.imoney', rounds=655555) | to_uuid }}"
+
+# role-specific:exim_relay
+ihatemoney_email_host: "{{ exim_relay_identifier if exim_relay_enabled else '' }}"
+ihatemoney_email_port: "{{ 8025 if exim_relay_enabled else '' }}"
+ihatemoney_default_from_email: "{{ exim_relay_sender_address if exim_relay_enabled else '' }}"
+# /role-specific:exim_relay
+
+########################################################################
+#                                                                      #
+# /ihatemoney                                                          #
+#                                                                      #
+########################################################################
+# /role-specific:ihatemoney
 
 
 
