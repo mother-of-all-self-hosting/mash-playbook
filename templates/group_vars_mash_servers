@@ -152,11 +152,6 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
   # Ensures there's at least one entry defined in the list.
   - "{{ omit }}"
 
-  # role-specific:backup_borg
-  - |-
-    {{ ({'name': (backup_borg_identifier + '.timer'), 'priority': 5000, 'groups': ['mash', 'backup', 'borg']} if backup_borg_enabled else omit) }}
-  # /role-specific:backup_borg
-
   # role-specific:adguard_home
   - |-
     {{ ({'name': (adguard_home_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'adguard-home']} if adguard_home_enabled else omit) }}
@@ -177,6 +172,11 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
     {{ ({'name': (appsmith_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'appsmith']} if appsmith_enabled else omit) }}
   # /role-specific:appsmith
 
+  # role-specific:authelia
+  - |-
+    {{ ({'name': (authelia_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'authelia']} if authelia_enabled else omit) }}
+  # /role-specific:authelia
+
   # role-specific:authentik
   - |-
     {{ ({'name': (authentik_server_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'authentik']} if authentik_enabled else omit) }}
@@ -184,20 +184,15 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
     {{ ({'name': (authentik_worker_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'authentik']} if authentik_enabled else omit) }}
   # /role-specific:authentik
 
-  # role-specific:authelia
+  # role-specific:backup_borg
   - |-
-    {{ ({'name': (authelia_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'authelia']} if authelia_enabled else omit) }}
-  # /role-specific:authelia
+    {{ ({'name': (backup_borg_identifier + '.timer'), 'priority': 5000, 'groups': ['mash', 'backup', 'borg']} if backup_borg_enabled else omit) }}
+  # /role-specific:backup_borg
 
   # role-specific:calibre-web
   - |-
     {{ ({'name': (calibre_web_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'calibre-web']} if calibre_web_enabled else omit) }}
   # /role-specific:calibre-web
-
-  # role-specific:readeck
-  - |-
-    {{ ({'name': (readeck_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'readeck']} if readeck_enabled else omit) }}
-  # /role-specific:readeck
 
   # role-specific:changedetection
   - |-
@@ -205,11 +200,6 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
   - |-
     {{ ({'name': (changedetection_playwright_driver_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'changedetection']} if changedetection_playwright_driver_enabled else omit) }}
   # /role-specific:changedetection
-
-  # role-specific:wetty
-  - |-
-    {{ ({'name': (wetty_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'wetty']} if wetty_enabled else omit) }}
-  # /role-specific:wetty
 
   # role-specific:clickhouse
   - |-
@@ -226,35 +216,10 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
     {{ ({'name': (couchdb_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'couchdb']} if couchdb_enabled else omit) }}
   # /role-specific:couchdb
 
-  # role-specific:postgres
-  - |-
-    {{ ({'name': (postgres_identifier + '.service'), 'priority': 500, 'groups': ['mash', 'postgres']} if postgres_enabled else omit) }}
-  # /role-specific:postgres
-
-  # role-specific:postgres_backup
-  - |-
-    {{ ({'name': (postgres_backup_identifier + '.service'), 'priority': 5000, 'groups': ['mash', 'backup', 'postgres-backup']} if postgres_backup_enabled else omit) }}
-  # /role-specific:postgres_backup
-
   # role-specific:container_socket_proxy
   - |-
     {{ ({'name': (container_socket_proxy_identifier + '.service'), 'priority': 200, 'groups': ['mash', 'reverse-proxies', 'container-socket-proxy']} if container_socket_proxy_enabled else omit) }}
   # /role-specific:container_socket_proxy
-
-  # role-specific:traefik
-  - |-
-    {{ ({'name': (traefik_identifier + '.service'), 'priority': 250, 'groups': ['mash', 'traefik', 'reverse-proxies']} if traefik_enabled else omit) }}
-  # /role-specific:traefik
-
-  # role-specific:woodpecker_ci_server
-  - |-
-    {{ ({'name': (woodpecker_ci_server_identifier + '.service'), 'priority': 4000, 'groups': ['mash', 'woodpecker', 'ci', 'woodpecker-ci-server']} if woodpecker_ci_server_enabled else omit) }}
-  # /role-specific:woodpecker_ci_server
-
-  # role-specific:woodpecker_ci_agent
-  - |-
-    {{ ({'name': (woodpecker_ci_agent_identifier + '.service'), 'priority': 4100, 'groups': ['mash', 'woodpecker', 'ci', 'woodpecker-ci-agent']} if woodpecker_ci_agent_enabled else omit) }}
-  # /role-specific:woodpecker_ci_agent
 
   # role-specific:docker_registry
   - |-
@@ -263,15 +228,15 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
     {{ ({'name': (docker_registry_identifier + '-garbage-collect.timer'), 'priority': 2500, 'groups': ['mash', 'docker-registry', 'docker-registry-gc']} if docker_registry_enabled else omit) }}
   # /role-specific:docker_registry
 
-  # role-specific:docker_registry_proxy
-  - |-
-    {{ ({'name': (docker_registry_proxy_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'docker-registry-proxy']} if docker_registry_proxy_enabled else omit) }}
-  # /role-specific:docker_registry_proxy
-
   # role-specific:docker_registry_browser
   - |-
     {{ ({'name': (docker_registry_browser_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'docker-registry-browser']} if docker_registry_browser_enabled else omit) }}
   # /role-specific:docker_registry_browser
+
+  # role-specific:docker_registry_proxy
+  - |-
+    {{ ({'name': (docker_registry_proxy_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'docker-registry-proxy']} if docker_registry_proxy_enabled else omit) }}
+  # /role-specific:docker_registry_proxy
 
   # role-specific:docker_registry_purger
   - |-
@@ -318,6 +283,21 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
     {{ ({'name': (focalboard_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'focalboard']} if focalboard_enabled else omit) }}
   # /role-specific:focalboard
 
+  # role-specific:forgejo
+  - |-
+    {{ ({'name': (forgejo_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'forgejo', 'forgejo-server']} if forgejo_enabled else omit) }}
+  # /role-specific:forgejo
+
+  # role-specific:forgejo_runner
+  - |-
+    {{ ({'name': (forgejo_runner_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'forgejo-runner']} if forgejo_runner_enabled else omit) }}
+  # /role-specific:forgejo_runner
+
+  # role-specific:freescout
+  - |-
+    {{ ({'name': (freescout_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'freescout']} if freescout_enabled else omit) }}
+  # /role-specific:freescout
+
   # role-specific:freshrss
   - |-
     {{ ({'name': (freshrss_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'freshrss']} if freshrss_enabled else omit) }}
@@ -351,11 +331,6 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
     {{ ({'name': (grafana_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'grafana']} if grafana_enabled else omit) }}
   # /role-specific:grafana
 
-  # role-specific:hubsite
-  - |-
-    {{ ({'name': (hubsite_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'hubsite']} if hubsite_enabled else omit) }}
-  # /role-specific:hubsite
-
   # role-specific:headscale
   - |-
     {{ ({'name': (headscale_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'headscale']} if headscale_enabled else omit) }}
@@ -365,6 +340,11 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
   - |-
     {{ ({'name': (healthchecks_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'healthchecks']} if healthchecks_enabled else omit) }}
   # /role-specific:healthchecks
+
+  # role-specific:hubsite
+  - |-
+    {{ ({'name': (hubsite_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'hubsite']} if hubsite_enabled else omit) }}
+  # /role-specific:hubsite
 
   # role-specific:ihatemoney
   - |-
@@ -409,15 +389,20 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
     {{ ({'name': (joplin_server_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'joplin-server']} if joplin_server_enabled else omit) }}
   # /role-specific:joplin_server
 
-  # role-specific:labelstudio
-  - |-
-    {{ ({'name': (labelstudio_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'labelstudio']} if labelstudio_enabled else omit) }}
-  # /role-specific:labelstudio
-
   # role-specific:keycloak
   - |-
     {{ ({'name': (keycloak_identifier + '.service'), 'priority': 1000, 'groups': ['mash', 'keycloak']} if keycloak_enabled else omit) }}
   # /role-specific:keycloak
+
+  # role-specific:keydb
+  - |-
+    {{ ({'name': (keydb_identifier + '.service'), 'priority': 750, 'groups': ['mash', 'keydb']} if keydb_enabled else omit) }}
+  # /role-specific:keydb
+
+  # role-specific:labelstudio
+  - |-
+    {{ ({'name': (labelstudio_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'labelstudio']} if labelstudio_enabled else omit) }}
+  # /role-specific:labelstudio
 
   # role-specific:lago
   - |-
@@ -437,20 +422,20 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
     {{ ({'name': (languagetool_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'languagetool']} if languagetool_enabled else omit) }}
   # /role-specific:languagetool
 
-  # role-specific:loki
-  - |-
-    {{ ({'name': (loki_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'loki']} if loki_enabled else omit) }}
-  # /role-specific:loki
-
   # role-specific:linkding
   - |-
     {{ ({'name': (linkding_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'linkding']} if linkding_enabled else omit) }}
   # /role-specific:linkding
 
-  # role-specific:freescout
+  # role-specific:loki
   - |-
-    {{ ({'name': (freescout_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'freescout']} if freescout_enabled else omit) }}
-  # /role-specific:freescout
+    {{ ({'name': (loki_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'loki']} if loki_enabled else omit) }}
+  # /role-specific:loki
+
+  # role-specific:mariadb
+  - |-
+    {{ ({'name': (mariadb_identifier + '.service'), 'priority': 500, 'groups': ['mash', 'mariadb']} if mariadb_enabled else omit) }}
+  # /role-specific:mariadb
 
   # role-specific:miniflux
   - |-
@@ -526,25 +511,20 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
     {{ ({'name': (ntfy_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'ntfy']} if ntfy_enabled else omit) }}
   # /role-specific:ntfy
 
-  # role-specific:mariadb
-  - |-
-    {{ ({'name': (mariadb_identifier + '.service'), 'priority': 500, 'groups': ['mash', 'mariadb']} if mariadb_enabled else omit) }}
-  # /role-specific:mariadb
-
   # role-specific:oauth2_proxy
   - |-
     {{ ({'name': (oauth2_proxy_identifier + '.service'), 'priority': 1900, 'groups': ['mash', 'oauth2-proxy']} if oauth2_proxy_enabled else omit) }}
   # /role-specific:oauth2_proxy
 
-  # role-specific:overseerr
-  - |-
-    {{ ({'name': (overseerr_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'overseerr']} if overseerr_enabled else omit) }}
-  # /role-specific:overseerr
-
   # role-specific:outline
   - |-
     {{ ({'name': (outline_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'outline']} if outline_enabled else omit) }}
   # /role-specific:outline
+
+  # role-specific:overseerr
+  - |-
+    {{ ({'name': (overseerr_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'overseerr']} if overseerr_enabled else omit) }}
+  # /role-specific:overseerr
 
   # role-specific:owncast
   - |-
@@ -570,15 +550,25 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
     {{ ({'name': (peertube_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'peertube']} if peertube_enabled else omit) }}
   # /role-specific:peertube
 
+  # role-specific:plausible
+  - |-
+    {{ ({'name': (plausible_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'plausible']} if plausible_enabled else omit) }}
+  # /role-specific:plausible
+
   # role-specific:postgis
   - |-
     {{ ({'name': (postgis_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'metrics', 'postgis']} if postgis_enabled else omit) }}
   # /role-specific:postgis
 
-  # role-specific:plausible
+  # role-specific:postgres
   - |-
-    {{ ({'name': (plausible_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'plausible']} if plausible_enabled else omit) }}
-  # /role-specific:plausible
+    {{ ({'name': (postgres_identifier + '.service'), 'priority': 500, 'groups': ['mash', 'postgres']} if postgres_enabled else omit) }}
+  # /role-specific:postgres
+
+  # role-specific:postgres_backup
+  - |-
+    {{ ({'name': (postgres_backup_identifier + '.service'), 'priority': 5000, 'groups': ['mash', 'backup', 'postgres-backup']} if postgres_backup_enabled else omit) }}
+  # /role-specific:postgres_backup
 
   # role-specific:prometheus
   - |-
@@ -590,11 +580,6 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
     {{ ({'name': (prometheus_blackbox_exporter_identifier + '.service'), 'priority': 500, 'groups': ['mash', 'metrics', 'prometheus-blackbox-exporter']} if prometheus_blackbox_exporter_enabled else omit) }}
   # /role-specific:prometheus_blackbox_exporter
 
-  # role-specific:prometheus_ssh_exporter
-  - |-
-    {{ ({'name': (prometheus_ssh_exporter_identifier + '.service'), 'priority': 500, 'groups': ['mash', 'metrics', 'prometheus-ssh-exporter']} if prometheus_ssh_exporter_enabled else omit) }}
-  # /role-specific:prometheus_ssh_exporter
-
   # role-specific:prometheus_node_exporter
   - |-
     {{ ({'name': (prometheus_node_exporter_identifier + '.service'), 'priority': 500, 'groups': ['mash', 'metrics', 'prometheus-node-exporter']} if prometheus_node_exporter_enabled else omit) }}
@@ -604,6 +589,11 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
   - |-
     {{ ({'name': (prometheus_postgres_exporter_identifier + '.service'), 'priority': 500, 'groups': ['mash', 'metrics', 'prometheus-postgres-exporter']} if prometheus_postgres_exporter_enabled else omit) }}
   # /role-specific:prometheus_postgres_exporter
+
+  # role-specific:prometheus_ssh_exporter
+  - |-
+    {{ ({'name': (prometheus_ssh_exporter_identifier + '.service'), 'priority': 500, 'groups': ['mash', 'metrics', 'prometheus-ssh-exporter']} if prometheus_ssh_exporter_enabled else omit) }}
+  # /role-specific:prometheus_ssh_exporter
 
   # role-specific:promtail
   - |-
@@ -625,6 +615,16 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
     {{ ({'name': (radicale_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'radicale']} if radicale_enabled else omit) }}
   # /role-specific:radicale
 
+  # role-specific:readeck
+  - |-
+    {{ ({'name': (readeck_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'readeck']} if readeck_enabled else omit) }}
+  # /role-specific:readeck
+
+  # role-specific:redis
+  - |-
+    {{ ({'name': (redis_identifier + '.service'), 'priority': 750, 'groups': ['mash', 'redis']} if redis_enabled else omit) }}
+  # /role-specific:redis
+
   # role-specific:redmine
   - |-
     {{ ({'name': (redmine_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'redmine']} if redmine_enabled else omit) }}
@@ -633,16 +633,6 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
   - |-
     {{ ({'name': (redmine_identifier + '-recurring-tasks.timer'), 'priority': 2000, 'groups': ['mash', 'redmine']} if redmine_enabled and redmine_recurring_tasks_enabled else omit) }}
   # /role-specific:redmine
-
-  # role-specific:redis
-  - |-
-    {{ ({'name': (redis_identifier + '.service'), 'priority': 750, 'groups': ['mash', 'redis']} if redis_enabled else omit) }}
-  # /role-specific:redis
-
-  # role-specific:keydb
-  - |-
-    {{ ({'name': (keydb_identifier + '.service'), 'priority': 750, 'groups': ['mash', 'keydb']} if keydb_enabled else omit) }}
-  # /role-specific:keydb
 
   # role-specific:roundcube
   - |-
@@ -701,6 +691,21 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
     {{ ({'name': (telegraf_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'telegraf']} if telegraf_enabled else omit) }}
   # /role-specific:telegraf
 
+  # role-specific:traefik
+  - |-
+    {{ ({'name': (traefik_identifier + '.service'), 'priority': 250, 'groups': ['mash', 'traefik', 'reverse-proxies']} if traefik_enabled else omit) }}
+  # /role-specific:traefik
+
+  # role-specific:tsdproxy
+  - |-
+    {{ ({'name': (tsdproxy_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'tsdproxy']} if tsdproxy_enabled else omit) }}
+  # /role-specific:tsdproxy
+
+  # role-specific:uptime_kuma
+  - |-
+    {{ ({'name': (uptime_kuma_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'uptime-kuma']} if uptime_kuma_enabled else omit) }}
+  # /role-specific:uptime_kuma
+
   # role-specific:valkey
   - |-
     {{ ({'name': (valkey_identifier + '.service'), 'priority': 750, 'groups': ['mash', 'valkey']} if valkey_enabled else omit) }}
@@ -711,35 +716,30 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
     {{ ({'name': (vaultwarden_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'vaultwarden', 'vaultwarden-server']} if vaultwarden_enabled else omit) }}
   # /role-specific:vaultwarden
 
-  # role-specific:uptime_kuma
+  # role-specific:wetty
   - |-
-    {{ ({'name': (uptime_kuma_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'uptime-kuma']} if uptime_kuma_enabled else omit) }}
-  # /role-specific:uptime_kuma
+    {{ ({'name': (wetty_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'wetty']} if wetty_enabled else omit) }}
+  # /role-specific:wetty
 
   # role-specific:wg_easy
   - |-
     {{ ({'name': (wg_easy_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'wg-easy']} if wg_easy_enabled else omit) }}
   # /role-specific:wg_easy
 
+  # role-specific:woodpecker_ci_agent
+  - |-
+    {{ ({'name': (woodpecker_ci_agent_identifier + '.service'), 'priority': 4100, 'groups': ['mash', 'woodpecker', 'ci', 'woodpecker-ci-agent']} if woodpecker_ci_agent_enabled else omit) }}
+  # /role-specific:woodpecker_ci_agent
+
+  # role-specific:woodpecker_ci_server
+  - |-
+    {{ ({'name': (woodpecker_ci_server_identifier + '.service'), 'priority': 4000, 'groups': ['mash', 'woodpecker', 'ci', 'woodpecker-ci-server']} if woodpecker_ci_server_enabled else omit) }}
+  # /role-specific:woodpecker_ci_server
+
   # role-specific:wordpress
   - |-
     {{ ({'name': (wordpress_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'wordpress']} if wordpress_enabled else omit) }}
   # /role-specific:wordpress
-
-  # role-specific:forgejo
-  - |-
-    {{ ({'name': (forgejo_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'forgejo', 'forgejo-server']} if forgejo_enabled else omit) }}
-  # /role-specific:forgejo
-
-  # role-specific:forgejo_runner
-  - |-
-    {{ ({'name': (forgejo_runner_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'forgejo-runner']} if forgejo_runner_enabled else omit) }}
-  # /role-specific:forgejo_runner
-
-  # role-specific:tsdproxy
-  - |-
-    {{ ({'name': (tsdproxy_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'tsdproxy']} if tsdproxy_enabled else omit) }}
-  # /role-specific:tsdproxy
 
   # role-specific:writefreely
   - |-
