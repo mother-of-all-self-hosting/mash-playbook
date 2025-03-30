@@ -3413,6 +3413,19 @@ mash_playbook_hubsite_service_list_auto_itemized:
     }}
   # /role-specific:focalboard
 
+  # role-specific:forgejo
+  - |-
+    {{
+      ({
+        'name': hubsite_service_forgejo_name,
+        'url': hubsite_service_forgejo_url,
+        'logo_location': hubsite_service_forgejo_logo_location,
+        'description': hubsite_service_forgejo_description,
+        'priority': hubsite_service_forgejo_priority,
+      } if hubsite_service_forgejo_enabled else omit)
+    }}
+  # /role-specific:forgejo
+
   # role-specific:freshrss
   - |-
     {{
