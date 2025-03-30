@@ -2471,6 +2471,55 @@ forgejo_runner_systemd_required_systemd_services_list: |
 
 
 
+# role-specific:freescout
+########################################################################
+#                                                                      #
+# freescout                                                            #
+#                                                                      #
+########################################################################
+
+freescout_enabled: false
+
+freescout_identifier: "{{ mash_playbook_service_identifier_prefix }}freescout"
+
+freescout_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}freescout"
+
+freescout_systemd_required_services_list: |
+  {{
+    ([devture_systemd_docker_base_docker_service_name] if devture_systemd_docker_base_docker_service_name else [])
+    +
+    ([postgres_identifier ~ '.service'] if postgres_enabled and freescout_database_hostname == postgres_identifier else [])
+  }}
+
+freescout_container_additional_networks: |
+  {{
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+    +
+    ([postgres_container_network] if postgres_enabled and freescout_database_hostname == postgres_identifier and freescout_container_network != postgres_container_network else [])
+  }}
+
+freescout_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+freescout_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+
+# role-specific:postgres
+freescout_database_hostname: "{{ postgres_connection_hostname if postgres_enabled else '' }}"
+freescout_database_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'freescout.db', rounds=655555) | to_uuid }}"
+# /role-specific:postgres
+
+# role-specific:traefik
+freescout_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
+freescout_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
+# /role-specific:traefik
+
+########################################################################
+#                                                                      #
+# /freescout                                                           #
+#                                                                      #
+########################################################################
+# /role-specific:freescout
+
+
+
 # role-specific:freshrss
 ########################################################################
 #                                                                      #
@@ -4420,55 +4469,6 @@ linkding_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_pri
 #                                                                      #
 ########################################################################
 # /role-specific:linkding
-
-
-
-# role-specific:freescout
-########################################################################
-#                                                                      #
-# freescout                                                            #
-#                                                                      #
-########################################################################
-
-freescout_enabled: false
-
-freescout_identifier: "{{ mash_playbook_service_identifier_prefix }}freescout"
-
-freescout_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}freescout"
-
-freescout_systemd_required_services_list: |
-  {{
-    ([devture_systemd_docker_base_docker_service_name] if devture_systemd_docker_base_docker_service_name else [])
-    +
-    ([postgres_identifier ~ '.service'] if postgres_enabled and freescout_database_hostname == postgres_identifier else [])
-  }}
-
-freescout_container_additional_networks: |
-  {{
-    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
-    +
-    ([postgres_container_network] if postgres_enabled and freescout_database_hostname == postgres_identifier and freescout_container_network != postgres_container_network else [])
-  }}
-
-freescout_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
-freescout_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
-
-# role-specific:postgres
-freescout_database_hostname: "{{ postgres_connection_hostname if postgres_enabled else '' }}"
-freescout_database_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'freescout.db', rounds=655555) | to_uuid }}"
-# /role-specific:postgres
-
-# role-specific:traefik
-freescout_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
-freescout_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
-# /role-specific:traefik
-
-########################################################################
-#                                                                      #
-# /freescout                                                           #
-#                                                                      #
-########################################################################
-# /role-specific:freescout
 
 
 
