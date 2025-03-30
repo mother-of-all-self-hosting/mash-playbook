@@ -6903,6 +6903,49 @@ wg_easy_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_prim
 
 
 
+# role-specific:woodpecker_ci_agent
+########################################################################
+#                                                                      #
+# woodpecker-ci-agent                                                  #
+#                                                                      #
+########################################################################
+
+woodpecker_ci_agent_enabled: false
+
+woodpecker_ci_agent_identifier: "{{ mash_playbook_service_identifier_prefix }}woodpecker-ci-agent"
+
+woodpecker_ci_agent_uid: "{{ mash_playbook_uid }}"
+woodpecker_ci_agent_gid: "{{ mash_playbook_gid }}"
+
+woodpecker_ci_agent_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}woodpecker-ci/agent"
+
+woodpecker_ci_agent_systemd_required_systemd_services_list: |
+  {{
+    ([devture_systemd_docker_base_docker_service_name] if devture_systemd_docker_base_docker_service_name else [])
+    +
+    ([woodpecker_ci_server_identifier ~ '.service'] if woodpecker_ci_server_enabled else [])
+  }}
+
+woodpecker_ci_agent_container_additional_networks: |
+  {{
+    (
+      ([woodpecker_ci_server_container_network] if woodpecker_ci_server_enabled and woodpecker_ci_server_container_network != woodpecker_ci_agent_container_network else [])
+    ) | unique
+  }}
+
+woodpecker_ci_agent_config_server: "{{ (woodpecker_ci_server_identifier + ':' + woodpecker_ci_server_config_grpc_addr_port | string) if woodpecker_ci_agent_enabled else '' }}"
+
+woodpecker_ci_agent_config_agent_secret: "{{ woodpecker_ci_server_config_agent_secret if woodpecker_ci_agent_enabled else '' }}"
+
+########################################################################
+#                                                                      #
+# /woodpecker-ci-agent                                                 #
+#                                                                      #
+########################################################################
+# /role-specific:woodpecker_ci_agent
+
+
+
 # role-specific:woodpecker_ci_server
 ########################################################################
 #                                                                      #
@@ -6958,49 +7001,6 @@ woodpecker_ci_server_database_datasource_db_name: woodpecker_ci_server
 #                                                                      #
 ########################################################################
 # /role-specific:woodpecker_ci_server
-
-
-
-# role-specific:woodpecker_ci_agent
-########################################################################
-#                                                                      #
-# woodpecker-ci-agent                                                  #
-#                                                                      #
-########################################################################
-
-woodpecker_ci_agent_enabled: false
-
-woodpecker_ci_agent_identifier: "{{ mash_playbook_service_identifier_prefix }}woodpecker-ci-agent"
-
-woodpecker_ci_agent_uid: "{{ mash_playbook_uid }}"
-woodpecker_ci_agent_gid: "{{ mash_playbook_gid }}"
-
-woodpecker_ci_agent_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}woodpecker-ci/agent"
-
-woodpecker_ci_agent_systemd_required_systemd_services_list: |
-  {{
-    ([devture_systemd_docker_base_docker_service_name] if devture_systemd_docker_base_docker_service_name else [])
-    +
-    ([woodpecker_ci_server_identifier ~ '.service'] if woodpecker_ci_server_enabled else [])
-  }}
-
-woodpecker_ci_agent_container_additional_networks: |
-  {{
-    (
-      ([woodpecker_ci_server_container_network] if woodpecker_ci_server_enabled and woodpecker_ci_server_container_network != woodpecker_ci_agent_container_network else [])
-    ) | unique
-  }}
-
-woodpecker_ci_agent_config_server: "{{ (woodpecker_ci_server_identifier + ':' + woodpecker_ci_server_config_grpc_addr_port | string) if woodpecker_ci_agent_enabled else '' }}"
-
-woodpecker_ci_agent_config_agent_secret: "{{ woodpecker_ci_server_config_agent_secret if woodpecker_ci_agent_enabled else '' }}"
-
-########################################################################
-#                                                                      #
-# /woodpecker-ci-agent                                                 #
-#                                                                      #
-########################################################################
-# /role-specific:woodpecker_ci_agent
 
 
 
