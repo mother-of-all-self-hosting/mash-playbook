@@ -2966,16 +2966,6 @@ hubsite_service_adguard_home_description: "A network-wide DNS software for block
 hubsite_service_adguard_home_priority: 1000
 # /role-specific:adguard_home
 
-# role-specific:authentik
-# authentik
-hubsite_service_authentik_enabled: "{{ authentik_enabled }}"
-hubsite_service_authentik_name: Authentik
-hubsite_service_authentik_url: "https://{{ authentik_hostname }}"
-hubsite_service_authentik_logo_location: "{{ role_path }}/assets/authentik.png"
-hubsite_service_authentik_description: "An open source identity provider"
-hubsite_service_authentik_priority: 1000
-# /role-specific:authentik
-
 # role-specific:appsmith
 # Appsmith
 hubsite_service_appsmith_enabled: "{{ appsmith_enabled }}"
@@ -2985,6 +2975,16 @@ hubsite_service_appsmith_logo_location: "{{ role_path }}/assets/appsmith.png"
 hubsite_service_appsmith_description: "Platform for building and deploying custom internal tools and applications without writing code"
 hubsite_service_appsmith_priority: 1000
 # /role-specific:appsmith
+
+# role-specific:authentik
+# authentik
+hubsite_service_authentik_enabled: "{{ authentik_enabled }}"
+hubsite_service_authentik_name: Authentik
+hubsite_service_authentik_url: "https://{{ authentik_hostname }}"
+hubsite_service_authentik_logo_location: "{{ role_path }}/assets/authentik.png"
+hubsite_service_authentik_description: "An open source identity provider"
+hubsite_service_authentik_priority: 1000
+# /role-specific:authentik
 
 # role-specific:docker_registry_browser
 # Docker Registry Browser
@@ -3025,6 +3025,16 @@ hubsite_service_focalboard_logo_location: "{{ role_path }}/assets/focalboard.png
 hubsite_service_focalboard_description: "An open source, self-hosted alternative to Trello, Notion, and Asana."
 hubsite_service_focalboard_priority: 1000
 # /role-specific:focalboard
+
+# role-specific:forgejo
+# Forgejo
+hubsite_service_forgejo_enabled: "{{ forgejo_enabled }}"
+hubsite_service_forgejo_name: Forgejo
+hubsite_service_forgejo_url: "https://{{ forgejo_hostname }}{{ forgejo_path_prefix }}"
+hubsite_service_forgejo_logo_location: "{{ role_path }}/assets/forgejo.png"
+hubsite_service_forgejo_description: "Another git service"
+hubsite_service_forgejo_priority: 1000
+# /role-specific:forgejo
 
 # role-specific:freshrss
 # FreshRSS
@@ -3136,6 +3146,16 @@ hubsite_service_languagetool_description: "An open source online grammar, style 
 hubsite_service_languagetool_priority: 1000
 # /role-specific:languagetool
 
+# role-specific:linkding
+# Linkding
+hubsite_service_linkding_enabled: "{{ linkding_enabled }}"
+hubsite_service_linkding_name: Linkding
+hubsite_service_linkding_url: "https://{{ linkding_hostname }}{{ linkding_path_prefix }}"
+hubsite_service_linkding_logo_location: "{{ role_path }}/assets/linkding.png"
+hubsite_service_linkding_description: "Bookmark manager that is designed be to be minimal and fast."
+hubsite_service_linkding_priority: 1000
+# /role-specific:linkding
+
 # role-specific:miniflux
 # Miniflux
 hubsite_service_miniflux_enabled: "{{ miniflux_enabled }}"
@@ -3145,16 +3165,6 @@ hubsite_service_miniflux_logo_location: "{{ role_path }}/assets/miniflux.png"
 hubsite_service_miniflux_description: "An opinionated feed reader"
 hubsite_service_miniflux_priority: 1000
 # /role-specific:miniflux
-
-# role-specific:navidrome
-# Navidrome
-hubsite_service_navidrome_enabled: "{{ navidrome_enabled }}"
-hubsite_service_navidrome_name: Navidrome
-hubsite_service_navidrome_url: "https://{{ navidrome_hostname }}{{ navidrome_path_prefix }}"
-hubsite_service_navidrome_logo_location: "{{ role_path }}/assets/navidrome.png"
-hubsite_service_navidrome_description: "A Subsonic-API compatible music server"
-hubsite_service_navidrome_priority: 1000
-# /role-specific:navidrome
 
 # role-specific:n8n
 # n8n
@@ -3166,15 +3176,15 @@ hubsite_service_n8n_description: "Workflow automation for technical people."
 hubsite_service_n8n_priority: 1000
 # /role-specific:n8n
 
-# role-specific:linkding
-# Linkding
-hubsite_service_linkding_enabled: "{{ linkding_enabled }}"
-hubsite_service_linkding_name: Linkding
-hubsite_service_linkding_url: "https://{{ linkding_hostname }}{{ linkding_path_prefix }}"
-hubsite_service_linkding_logo_location: "{{ role_path }}/assets/linkding.png"
-hubsite_service_linkding_description: "Bookmark manager that is designed be to be minimal and fast."
-hubsite_service_linkding_priority: 1000
-# /role-specific:linkding
+# role-specific:navidrome
+# Navidrome
+hubsite_service_navidrome_enabled: "{{ navidrome_enabled }}"
+hubsite_service_navidrome_name: Navidrome
+hubsite_service_navidrome_url: "https://{{ navidrome_hostname }}{{ navidrome_path_prefix }}"
+hubsite_service_navidrome_logo_location: "{{ role_path }}/assets/navidrome.png"
+hubsite_service_navidrome_description: "A Subsonic-API compatible music server"
+hubsite_service_navidrome_priority: 1000
+# /role-specific:navidrome
 
 # role-specific:nextcloud
 # Nextcloud
@@ -3307,16 +3317,6 @@ hubsite_service_yourls_description: "Your Own URL Shortener, on your server"
 hubsite_service_yourls_priority: 1000
 # /role-specific:yourls
 
-# role-specific:forgejo
-# Forgejo
-hubsite_service_forgejo_enabled: "{{ forgejo_enabled }}"
-hubsite_service_forgejo_name: Forgejo
-hubsite_service_forgejo_url: "https://{{ forgejo_hostname }}{{ forgejo_path_prefix }}"
-hubsite_service_forgejo_logo_location: "{{ role_path }}/assets/forgejo.png"
-hubsite_service_forgejo_description: "Another git service"
-hubsite_service_forgejo_priority: 1000
-# /role-specific:forgejo
-
 mash_playbook_hubsite_service_list_auto_itemized:
   # Dummy entry, which is not role-specific.
   # Ensures there's at least one entry defined in the list.
@@ -3335,19 +3335,6 @@ mash_playbook_hubsite_service_list_auto_itemized:
     }}
   # /role-specific:adguard_home
 
-  # role-specific:authentik
-  - |-
-    {{
-      ({
-        'name': hubsite_service_authentik_name,
-        'url': hubsite_service_authentik_url,
-        'logo_location': hubsite_service_authentik_logo_location,
-        'description': hubsite_service_authentik_description,
-        'priority': hubsite_service_adguard_home_priority,
-      } if hubsite_service_authentik_enabled else omit)
-    }}
-  # /role-specific:authentik
-
   # role-specific:appsmith
   - |-
     {{
@@ -3360,6 +3347,19 @@ mash_playbook_hubsite_service_list_auto_itemized:
       } if hubsite_service_appsmith_enabled else omit)
     }}
   # /role-specific:appsmith
+
+  # role-specific:authentik
+  - |-
+    {{
+      ({
+        'name': hubsite_service_authentik_name,
+        'url': hubsite_service_authentik_url,
+        'logo_location': hubsite_service_authentik_logo_location,
+        'description': hubsite_service_authentik_description,
+        'priority': hubsite_service_adguard_home_priority,
+      } if hubsite_service_authentik_enabled else omit)
+    }}
+  # /role-specific:authentik
 
   # role-specific:docker_registry_browser
   - |-
@@ -3582,19 +3582,6 @@ mash_playbook_hubsite_service_list_auto_itemized:
     }}
   # /role-specific:miniflux
 
-  # role-specific:navidrome
-  - |-
-    {{
-      ({
-        'name': hubsite_service_navidrome_name,
-        'url': hubsite_service_navidrome_url,
-        'logo_location': hubsite_service_navidrome_logo_location,
-        'description': hubsite_service_navidrome_description,
-        'priority': hubsite_service_navidrome_priority,
-      } if hubsite_service_navidrome_enabled else omit)
-    }}
-  # /role-specific:navidrome
-
   # role-specific:n8n
   - |-
     {{
@@ -3607,6 +3594,19 @@ mash_playbook_hubsite_service_list_auto_itemized:
       } if hubsite_service_n8n_enabled else omit)
     }}
   # /role-specific:n8n
+
+  # role-specific:navidrome
+  - |-
+    {{
+      ({
+        'name': hubsite_service_navidrome_name,
+        'url': hubsite_service_navidrome_url,
+        'logo_location': hubsite_service_navidrome_logo_location,
+        'description': hubsite_service_navidrome_description,
+        'priority': hubsite_service_navidrome_priority,
+      } if hubsite_service_navidrome_enabled else omit)
+    }}
+  # /role-specific:navidrome
 
   # role-specific:nextcloud
   - |-
@@ -3673,19 +3673,6 @@ mash_playbook_hubsite_service_list_auto_itemized:
     }}
   # /role-specific:radicale
 
-  # role-specific:uptime_kuma
-  - |-
-    {{
-      ({
-        'name': hubsite_service_uptime_kuma_name,
-        'url': hubsite_service_uptime_kuma_url,
-        'logo_location': hubsite_service_uptime_kuma_logo_location,
-        'description': hubsite_service_uptime_kuma_description,
-        'priority': hubsite_service_uptime_kuma_priority,
-      } if hubsite_service_uptime_kuma_enabled else omit)
-    }}
-  # /role-specific:uptime_kuma
-
   # role-specific:send
   - |-
     {{
@@ -3724,6 +3711,19 @@ mash_playbook_hubsite_service_list_auto_itemized:
       } if hubsite_service_tandoor_enabled else omit)
     }}
   # /role-specific:tandoor
+
+  # role-specific:uptime_kuma
+  - |-
+    {{
+      ({
+        'name': hubsite_service_uptime_kuma_name,
+        'url': hubsite_service_uptime_kuma_url,
+        'logo_location': hubsite_service_uptime_kuma_logo_location,
+        'description': hubsite_service_uptime_kuma_description,
+        'priority': hubsite_service_uptime_kuma_priority,
+      } if hubsite_service_uptime_kuma_enabled else omit)
+    }}
+  # /role-specific:uptime_kuma
 
   # role-specific:vaultwarden
   - |-
