@@ -6063,6 +6063,31 @@ readeck_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_prim
 
 
 
+# role-specific:redis
+########################################################################
+#                                                                      #
+# redis                                                                #
+#                                                                      #
+########################################################################
+
+redis_enabled: false
+
+redis_identifier: "{{ mash_playbook_service_identifier_prefix }}redis"
+
+redis_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}redis"
+
+redis_uid: "{{ mash_playbook_uid }}"
+redis_gid: "{{ mash_playbook_gid }}"
+
+########################################################################
+#                                                                      #
+# /redis                                                               #
+#                                                                      #
+########################################################################
+# /role-specific:redis
+
+
+
 # role-specific:redmine
 ########################################################################
 #                                                                      #
@@ -6119,31 +6144,6 @@ redmine_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_prim
 #                                                                      #
 ########################################################################
 # /role-specific:redmine
-
-
-
-# role-specific:redis
-########################################################################
-#                                                                      #
-# redis                                                                #
-#                                                                      #
-########################################################################
-
-redis_enabled: false
-
-redis_identifier: "{{ mash_playbook_service_identifier_prefix }}redis"
-
-redis_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}redis"
-
-redis_uid: "{{ mash_playbook_uid }}"
-redis_gid: "{{ mash_playbook_gid }}"
-
-########################################################################
-#                                                                      #
-# /redis                                                               #
-#                                                                      #
-########################################################################
-# /role-specific:redis
 
 
 
