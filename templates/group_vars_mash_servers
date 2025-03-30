@@ -6656,6 +6656,44 @@ container_socket_proxy_api_images_enabled: "{{ true if tsdproxy_docker_endpoint 
 
 
 
+# role-specific:uptime_kuma
+########################################################################
+#                                                                      #
+# uptime_kuma                                                          #
+#                                                                      #
+########################################################################
+
+uptime_kuma_enabled: false
+
+uptime_kuma_identifier: "{{ mash_playbook_service_identifier_prefix }}uptime-kuma"
+
+uptime_kuma_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}uptime-kuma"
+
+uptime_kuma_uid: "{{ mash_playbook_uid }}"
+uptime_kuma_gid: "{{ mash_playbook_gid }}"
+
+uptime_kuma_container_additional_networks_auto: |
+  {{
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+  }}
+
+uptime_kuma_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+uptime_kuma_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+
+# role-specific:traefik
+uptime_kuma_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
+uptime_kuma_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
+# /role-specific:traefik
+
+########################################################################
+#                                                                      #
+# /uptime_kuma                                                         #
+#                                                                      #
+########################################################################
+# /role-specific:uptime_kuma
+
+
+
 # role-specific:valkey
 ########################################################################
 #                                                                      #
@@ -6748,44 +6786,6 @@ vaultwarden_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_
 #                                                                      #
 ########################################################################
 # /role-specific:vaultwarden
-
-
-
-# role-specific:uptime_kuma
-########################################################################
-#                                                                      #
-# uptime_kuma                                                          #
-#                                                                      #
-########################################################################
-
-uptime_kuma_enabled: false
-
-uptime_kuma_identifier: "{{ mash_playbook_service_identifier_prefix }}uptime-kuma"
-
-uptime_kuma_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}uptime-kuma"
-
-uptime_kuma_uid: "{{ mash_playbook_uid }}"
-uptime_kuma_gid: "{{ mash_playbook_gid }}"
-
-uptime_kuma_container_additional_networks_auto: |
-  {{
-    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
-  }}
-
-uptime_kuma_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
-uptime_kuma_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
-
-# role-specific:traefik
-uptime_kuma_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
-uptime_kuma_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
-# /role-specific:traefik
-
-########################################################################
-#                                                                      #
-# /uptime_kuma                                                         #
-#                                                                      #
-########################################################################
-# /role-specific:uptime_kuma
 
 
 
