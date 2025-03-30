@@ -2970,7 +2970,7 @@ hubsite_service_adguard_home_priority: 1000
 # Appsmith
 hubsite_service_appsmith_enabled: "{{ appsmith_enabled }}"
 hubsite_service_appsmith_name: Appsmith
-hubsite_service_appsmith_url: "https://{{ appsmith_hostname }}{{ appsmith_path_prefix }}"
+hubsite_service_appsmith_url: "{{ appsmith_scheme }}://{{ appsmith_hostname }}{{ appsmith_path_prefix }}"
 hubsite_service_appsmith_logo_location: "{{ role_path }}/assets/appsmith.png"
 hubsite_service_appsmith_description: "Platform for building and deploying custom internal tools and applications without writing code"
 hubsite_service_appsmith_priority: 1000
@@ -3000,7 +3000,7 @@ hubsite_service_docker_registry_browser_priority: 1000
 # etherpad
 hubsite_service_etherpad_enabled: "{{ etherpad_enabled }}"
 hubsite_service_etherpad_name: Etherpad
-hubsite_service_etherpad_url: "https://{{ etherpad_hostname }}{{ etherpad_path_prefix }}"
+hubsite_service_etherpad_url: "{{ etherpad_scheme }}://{{ etherpad_hostname }}{{ etherpad_path_prefix }}"
 hubsite_service_etherpad_logo_location: "{{ role_path }}/assets/etherpad.png"
 hubsite_service_etherpad_description: "Open source collaborative text editor"
 hubsite_service_etherpad_priority: 1000
@@ -3030,7 +3030,7 @@ hubsite_service_focalboard_priority: 1000
 # Forgejo
 hubsite_service_forgejo_enabled: "{{ forgejo_enabled }}"
 hubsite_service_forgejo_name: Forgejo
-hubsite_service_forgejo_url: "https://{{ forgejo_hostname }}{{ forgejo_path_prefix }}"
+hubsite_service_forgejo_url: "{{ forgejo_scheme }}://{{ forgejo_hostname }}{{ forgejo_path_prefix }}"
 hubsite_service_forgejo_logo_location: "{{ role_path }}/assets/forgejo.png"
 hubsite_service_forgejo_description: "Another git service"
 hubsite_service_forgejo_priority: 1000
@@ -3040,7 +3040,7 @@ hubsite_service_forgejo_priority: 1000
 # FreshRSS
 hubsite_service_freshrss_enabled: "{{ freshrss_enabled }}"
 hubsite_service_freshrss_name: FreshRSS
-hubsite_service_freshrss_url: "https://{{ freshrss_hostname }}{{ freshrss_path_prefix }}"
+hubsite_service_freshrss_url: "{{ freshrss_scheme }}://{{ freshrss_hostname }}{{ freshrss_path_prefix }}"
 hubsite_service_freshrss_logo_location: "{{ role_path }}/assets/freshrss.png"
 hubsite_service_freshrss_description: "RSS and Atom feed aggregator."
 hubsite_service_freshrss_priority: 1000
@@ -3060,7 +3060,7 @@ hubsite_service_funkwhale_priority: 1000
 # Gitea
 hubsite_service_gitea_enabled: "{{ gitea_enabled }}"
 hubsite_service_gitea_name: Gitea
-hubsite_service_gitea_url: "https://{{ gitea_hostname }}{{ gitea_path_prefix }}"
+hubsite_service_gitea_url: "{{ gitea_scheme }}://{{ gitea_hostname }}{{ gitea_path_prefix }}"
 hubsite_service_gitea_logo_location: "{{ role_path }}/assets/gitea.png"
 hubsite_service_gitea_description: "A git service"
 hubsite_service_gitea_priority: 1000
@@ -3110,7 +3110,7 @@ hubsite_service_ihatemoney_priority: 1000
 # Joplin Server
 hubsite_service_joplin_server_enabled: "{{ joplin_server_enabled }}"
 hubsite_service_joplin_server_name: Joplin Server
-hubsite_service_joplin_server_url: "https://{{ joplin_server_hostname }}{{ joplin_server_path_prefix }}"
+hubsite_service_joplin_server_url: "{{ joplin_server_scheme }}://{{ joplin_server_hostname }}{{ joplin_server_path_prefix }}"
 hubsite_service_joplin_server_logo_location: ""  # Note official logos are non-free. See: https://github.com/laurent22/joplin/blob/dev/Assets/LICENSE
 hubsite_service_joplin_server_description: "Self-hosted server component for Joplin"
 hubsite_service_joplin_server_priority: 1000
@@ -3120,7 +3120,7 @@ hubsite_service_joplin_server_priority: 1000
 # Keycloak
 hubsite_service_keycloak_enabled: "{{ keycloak_enabled }}"
 hubsite_service_keycloak_name: Keycloak
-hubsite_service_keycloak_url: "https://{{ keycloak_hostname }}{{ keycloak_path_prefix }}"
+hubsite_service_keycloak_url: "{{ keycloak_scheme }}://{{ keycloak_hostname }}{{ keycloak_path_prefix }}"
 hubsite_service_keycloak_logo_location: "{{ role_path }}/assets/keycloak.png"
 hubsite_service_keycloak_description: "An open source identity and access management solution."
 hubsite_service_keycloak_priority: 1000
@@ -3150,7 +3150,7 @@ hubsite_service_languagetool_priority: 1000
 # Linkding
 hubsite_service_linkding_enabled: "{{ linkding_enabled }}"
 hubsite_service_linkding_name: Linkding
-hubsite_service_linkding_url: "https://{{ linkding_hostname }}{{ linkding_path_prefix }}"
+hubsite_service_linkding_url: "{{ linkding_scheme }}://{{ linkding_hostname }}{{ linkding_path_prefix }}"
 hubsite_service_linkding_logo_location: "{{ role_path }}/assets/linkding.png"
 hubsite_service_linkding_description: "Bookmark manager that is designed be to be minimal and fast."
 hubsite_service_linkding_priority: 1000
@@ -3160,7 +3160,7 @@ hubsite_service_linkding_priority: 1000
 # Miniflux
 hubsite_service_miniflux_enabled: "{{ miniflux_enabled }}"
 hubsite_service_miniflux_name: Miniflux
-hubsite_service_miniflux_url: "https://{{ miniflux_hostname }}{{ miniflux_path_prefix }}"
+hubsite_service_miniflux_url: "{{ miniflux_scheme }}://{{ miniflux_hostname }}{{ miniflux_path_prefix }}"
 hubsite_service_miniflux_logo_location: "{{ role_path }}/assets/miniflux.png"
 hubsite_service_miniflux_description: "An opinionated feed reader"
 hubsite_service_miniflux_priority: 1000
@@ -3170,7 +3170,7 @@ hubsite_service_miniflux_priority: 1000
 # n8n
 hubsite_service_n8n_enabled: "{{ n8n_enabled }}"
 hubsite_service_n8n_name: n8n
-hubsite_service_n8n_url: "https://{{ n8n_hostname }}{{ n8n_path_prefix }}"
+hubsite_service_n8n_url: "{{ n8n_scheme }}://{{ n8n_hostname }}{{ n8n_path_prefix }}"
 hubsite_service_n8n_logo_location: "{{ role_path }}/assets/n8n.png"
 hubsite_service_n8n_description: "Workflow automation for technical people."
 hubsite_service_n8n_priority: 1000
@@ -3180,7 +3180,7 @@ hubsite_service_n8n_priority: 1000
 # Navidrome
 hubsite_service_navidrome_enabled: "{{ navidrome_enabled }}"
 hubsite_service_navidrome_name: Navidrome
-hubsite_service_navidrome_url: "https://{{ navidrome_hostname }}{{ navidrome_path_prefix }}"
+hubsite_service_navidrome_url: "{{ navidrome_scheme }}://{{ navidrome_hostname }}{{ navidrome_path_prefix }}"
 hubsite_service_navidrome_logo_location: "{{ role_path }}/assets/navidrome.png"
 hubsite_service_navidrome_description: "A Subsonic-API compatible music server"
 hubsite_service_navidrome_priority: 1000
@@ -3190,7 +3190,7 @@ hubsite_service_navidrome_priority: 1000
 # Nextcloud
 hubsite_service_nextcloud_enabled: "{{ nextcloud_enabled }}"
 hubsite_service_nextcloud_name: Nextcloud
-hubsite_service_nextcloud_url: "https://{{ nextcloud_hostname }}{{ nextcloud_path_prefix }}"
+hubsite_service_nextcloud_url: "{{ nextcloud_scheme }}://{{ nextcloud_hostname }}{{ nextcloud_path_prefix }}"
 hubsite_service_nextcloud_logo_location: "{{ role_path }}/assets/nextcloud.png"
 hubsite_service_nextcloud_description: "Sync your files & much more"
 hubsite_service_nextcloud_priority: 1000
@@ -3260,7 +3260,7 @@ hubsite_service_syncthing_priority: 1000
 # tandoor
 hubsite_service_tandoor_enabled: "{{ tandoor_enabled }}"
 hubsite_service_tandoor_name: tandoor
-hubsite_service_tandoor_url: "https://{{ tandoor_hostname }}{{ tandoor_path_prefix }}"
+hubsite_service_tandoor_url: "{{ tandoor_scheme }}://{{ tandoor_hostname }}{{ tandoor_path_prefix }}"
 hubsite_service_tandoor_logo_location: "{{ role_path }}/assets/tandoor.png"
 hubsite_service_tandoor_description: "The recipe manager that allows you to manage your ever growing collection of digital recipes."
 hubsite_service_tandoor_priority: 1000
@@ -3291,7 +3291,7 @@ hubsite_service_vaultwarden_priority: 1000
 # Woodpecker CI
 hubsite_service_woodpecker_ci_enabled: "{{ woodpecker_ci_server_enabled }}"
 hubsite_service_woodpecker_ci_name: Woodpecker CI
-hubsite_service_woodpecker_ci_url: "https://{{ woodpecker_ci_server_hostname }}"
+hubsite_service_woodpecker_ci_url: "{{ woodpecker_ci_server_scheme }}://{{ woodpecker_ci_server_hostname }}"
 hubsite_service_woodpecker_ci_logo_location: "{{ role_path }}/assets/woodpecker.png"
 hubsite_service_woodpecker_ci_description: "Check you CI"
 hubsite_service_woodpecker_ci_priority: 1000
@@ -3311,7 +3311,7 @@ hubsite_service_writefreely_priority: 1000
 # yourls
 hubsite_service_yourls_enabled: "{{ yourls_enabled }}"
 hubsite_service_yourls_name: YOURLS
-hubsite_service_yourls_url: "https://{{ yourls_hostname }}/admin/"  # accessing to the hostname directly returns 403 error
+hubsite_service_yourls_url: "{{ yourls_scheme }}://{{ yourls_hostname }}/admin/"  # accessing to the hostname directly returns 403 error
 hubsite_service_yourls_logo_location: ""
 hubsite_service_yourls_description: "Your Own URL Shortener, on your server"
 hubsite_service_yourls_priority: 1000
