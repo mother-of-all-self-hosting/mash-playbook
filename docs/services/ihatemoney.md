@@ -23,8 +23,10 @@ To enable this service, add the following configuration to your `vars.yml` file 
 
 ihatemoney_enabled: true
 
-# To enable the Admin dashboard, first generate a hashed password with:
-# docker exec -it mash-ihatemoney ihatemoney generate_password_hash
+# To enable the Admin dashboard:
+# - go through an installation without specifying this variable
+# - once ihatemoney is running, run this command to generate a hashed password: `docker exec -it mash-ihatemoney ihatemoney generate_password_hash`
+# - populate this variable with the hashed password and run the installation process again
 # ihatemoney_admin_password:
 
 # The `ihatemoney_public_project_creation` variable controls project creation access.
@@ -50,3 +52,5 @@ In the example configuration above, we configure the service to be hosted at `ht
 ## Usage
 
 After installation, you can go to the ihatemoney URL, as defined in `ihatemoney_hostname` and `ihatemoney_path_prefix`.
+
+If you'd like to enable the Admin dashboard, follow the comments for the `ihatemoney_admin_password` in the [Configuration](#configuration) section above.
