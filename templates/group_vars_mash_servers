@@ -511,6 +511,11 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
     {{ ({'name': (postgres_backup_identifier + '.service'), 'priority': 5000, 'groups': ['mash', 'backup', 'postgres-backup']} if postgres_backup_enabled else omit) }}
   # /role-specific:postgres_backup
 
+  # role-specific:privatebin
+  - |-
+    {{ ({'name': (privatebin_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'privatebin']} if privatebin_enabled else omit) }}
+  # /role-specific:privatebin
+
   # role-specific:prometheus
   - |-
     {{ ({'name': (prometheus_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'metrics', 'prometheus']} if prometheus_enabled else omit) }}
@@ -1049,6 +1054,17 @@ mash_playbook_postgres_managed_databases_auto_itemized:
       } if plausible_enabled else omit)
     }}
   # /role-specific:plausible
+
+  # role-specific:privatebin
+  - |-
+    {{
+      ({
+        'name': privatebin_database_name,
+        'username': privatebin_database_username,
+        'password': privatebin_database_password,
+      } if privatebin_enabled else omit)
+    }}
+  # /role-specific:privatebin
 
   # role-specific:prometheus_postgres_exporter
   - |-
@@ -3281,6 +3297,16 @@ hubsite_service_peertube_description: "Watch and upload videos"
 hubsite_service_peertube_priority: 1000
 # /role-specific:peertube
 
+# role-specific:privatebin
+# PrivateBin
+hubsite_service_privatebin_enabled: "{{ privatebin_enabled }}"
+hubsite_service_privatebin_name: PrivateBin
+hubsite_service_privatebin_url: "{{ privatebin_scheme }}://{{ privatebin_hostname }}{{ privatebin_path_prefix }}"
+hubsite_service_privatebin_logo_location: ""
+hubsite_service_privatebin_description: "Minimalist, open source online pastebin where the server has zero knowledge of pasted data."
+hubsite_service_privatebin_priority: 1000
+# /role-specific:privatebin
+
 # role-specific:radicale
 # Radicale
 hubsite_service_radicale_enabled: "{{ radicale_enabled }}"
@@ -3740,6 +3766,19 @@ mash_playbook_hubsite_service_list_auto_itemized:
       } if hubsite_service_peertube_enabled else omit)
     }}
   # /role-specific:peertube
+
+  # role-specific:privatebin
+  - |-
+    {{
+      ({
+        'name': hubsite_service_privatebin_name,
+        'url': hubsite_service_privatebin_url,
+        'logo_location': hubsite_service_privatebin_logo_location,
+        'description': hubsite_service_privatebin_description,
+        'priority': hubsite_service_privatebin_priority,
+      } if hubsite_service_privatebin_enabled else omit)
+    }}
+  # /role-specific:privatebin
 
   # role-specific:radicale
   - |-
@@ -5685,6 +5724,57 @@ postgis_managed_databases_auto: |
 #                                                                      #
 ########################################################################
 # /role-specific:postgis
+
+
+
+# role-specific:privatebin
+########################################################################
+#                                                                      #
+# privatebin                                                           #
+#                                                                      #
+########################################################################
+
+privatebin_enabled: false
+
+privatebin_identifier: "{{ mash_playbook_service_identifier_prefix }}privatebin"
+
+privatebin_uid: "{{ mash_playbook_uid }}"
+privatebin_gid: "{{ mash_playbook_gid }}"
+
+privatebin_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}privatebin"
+
+privatebin_systemd_required_services_list_auto: |
+ {{
+    ([postgres_identifier ~ '.service'] if postgres_enabled and privatebin_database_hostname == postgres_identifier else [])
+  }}
+
+privatebin_container_additional_networks_auto: |
+  {{
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+    +
+    ([postgres_container_network] if postgres_enabled | default(false) and privatebin_database_hostname == postgres_identifier and privatebin_container_network != postgres_container_network else [])
+  }}
+
+privatebin_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+privatebin_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+
+# role-specific:postgres
+privatebin_database_hostname: "{{ postgres_identifier if postgres_enabled else '' }}"
+privatebin_database_username: "{{ privatebin_identifier }}"
+privatebin_database_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'db.authentik', rounds=655555) | to_uuid }}"
+# /role-specific:postgres
+
+# role-specific:traefik
+privatebin_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
+privatebin_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
+# /role-specific:traefik
+
+########################################################################
+#                                                                      #
+# /privatebin                                                          #
+#                                                                      #
+########################################################################
+# /role-specific:privatebin
 
 
 
