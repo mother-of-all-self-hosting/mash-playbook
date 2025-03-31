@@ -757,6 +757,17 @@ mash_playbook_postgres_managed_databases_auto_itemized:
     }}
   # /role-specific:etherpad
 
+  # role-specific:firezone
+  - |-
+    {{
+      ({
+        'name': firezone_database_name,
+        'username': firezone_database_username,
+        'password': firezone_database_password,
+      } if firezone_enabled else omit)
+    }}
+  # /role-specific:firezone
+
   # role-specific:focalboard
   - |-
     {{
@@ -767,6 +778,28 @@ mash_playbook_postgres_managed_databases_auto_itemized:
       } if focalboard_enabled and focalboard_database_type == 'postgres' and focalboard_database_hostname == postgres_identifier else omit)
     }}
   # /role-specific:focalboard
+
+  # role-specific:forgejo
+  - |-
+    {{
+      ({
+        'name': forgejo_config_database_name,
+        'username': forgejo_config_database_username,
+        'password': forgejo_config_database_password,
+      } if forgejo_enabled else omit)
+    }}
+  # /role-specific:forgejo
+
+  # role-specific:freescout
+  - |-
+    {{
+      ({
+        'name': freescout_database_name,
+        'username': freescout_database_username,
+        'password': freescout_database_password,
+      } if freescout_enabled else omit)
+    }}
+  # /role-specific:freescout
 
   # role-specific:freshrss
   - |-
@@ -801,39 +834,6 @@ mash_playbook_postgres_managed_databases_auto_itemized:
     }}
   # /role-specific:gitea
 
-  # role-specific:healthchecks
-  - |-
-    {{
-      ({
-        'name': healthchecks_database_name,
-        'username': healthchecks_database_username,
-        'password': healthchecks_database_password,
-      } if healthchecks_enabled and healthchecks_database_hostname == postgres_identifier else omit)
-    }}
-  # /role-specific:healthchecks
-
-  # role-specific:joplin_server
-  - |-
-    {{
-      ({
-        'name': joplin_server_environment_variable_database_name,
-        'username': joplin_server_environment_variable_database_user,
-        'password': joplin_server_environment_variable_database_password,
-      } if joplin_server_enabled else omit)
-    }}
-  # /role-specific:joplin_server
-
-  # role-specific:woodpecker_ci_server
-  - |-
-    {{
-      ({
-        'name': woodpecker_ci_server_database_datasource_db_name,
-        'username': woodpecker_ci_server_database_datasource_username,
-        'password': woodpecker_ci_server_database_datasource_password,
-      } if woodpecker_ci_server_enabled else omit)
-    }}
-  # /role-specific:woodpecker_ci_server
-
   # role-specific:gotosocial
   - |-
     {{
@@ -844,6 +844,17 @@ mash_playbook_postgres_managed_databases_auto_itemized:
       } if gotosocial_enabled else omit)
     }}
   # /role-specific:gotosocial
+
+  # role-specific:healthchecks
+  - |-
+    {{
+      ({
+        'name': healthchecks_database_name,
+        'username': healthchecks_database_username,
+        'password': healthchecks_database_password,
+      } if healthchecks_enabled and healthchecks_database_hostname == postgres_identifier else omit)
+    }}
+  # /role-specific:healthchecks
 
   # role-specific:ihatemoney
   - |-
@@ -867,6 +878,17 @@ mash_playbook_postgres_managed_databases_auto_itemized:
       } if ilmo_enabled else omit)
     }}
   # /role-specific:ilmo
+
+  # role-specific:joplin_server
+  - |-
+    {{
+      ({
+        'name': joplin_server_environment_variable_database_name,
+        'username': joplin_server_environment_variable_database_user,
+        'password': joplin_server_environment_variable_database_password,
+      } if joplin_server_enabled else omit)
+    }}
+  # /role-specific:joplin_server
 
   # role-specific:keycloak
   - |-
@@ -912,17 +934,6 @@ mash_playbook_postgres_managed_databases_auto_itemized:
     }}
   # /role-specific:linkding
 
-  # role-specific:freescout
-  - |-
-    {{
-      ({
-        'name': freescout_database_name,
-        'username': freescout_database_username,
-        'password': freescout_database_password,
-      } if freescout_enabled else omit)
-    }}
-  # /role-specific:freescout
-
   # role-specific:miniflux
   - |-
     {{
@@ -933,17 +944,6 @@ mash_playbook_postgres_managed_databases_auto_itemized:
       } if miniflux_enabled else omit)
     }}
   # /role-specific:miniflux
-
-  # role-specific:redmine
-  - |-
-    {{
-      ({
-        'name': redmine_database_name,
-        'username': redmine_database_username,
-        'password': redmine_database_password,
-      } if redmine_enabled else omit)
-    }}
-  # /role-specific:redmine
 
   # role-specific:n8n
   - |-
@@ -1056,38 +1056,16 @@ mash_playbook_postgres_managed_databases_auto_itemized:
     }}
   # /role-specific:prometheus_postgres_exporter
 
-  # role-specific:firezone
+  # role-specific:redmine
   - |-
     {{
       ({
-        'name': firezone_database_name,
-        'username': firezone_database_username,
-        'password': firezone_database_password,
-      } if firezone_enabled else omit)
+        'name': redmine_database_name,
+        'username': redmine_database_username,
+        'password': redmine_database_password,
+      } if redmine_enabled else omit)
     }}
-  # /role-specific:firezone
-
-  # role-specific:vaultwarden
-  - |-
-    {{
-      ({
-        'name': vaultwarden_database_name,
-        'username': vaultwarden_database_username,
-        'password': vaultwarden_database_password,
-      } if vaultwarden_enabled else omit)
-    }}
-  # /role-specific:vaultwarden
-
-  # role-specific:forgejo
-  - |-
-    {{
-      ({
-        'name': forgejo_config_database_name,
-        'username': forgejo_config_database_username,
-        'password': forgejo_config_database_password,
-      } if forgejo_enabled else omit)
-    }}
-  # /role-specific:forgejo
+  # /role-specific:redmine
 
   # role-specific:roundcube
   - |-
@@ -1121,6 +1099,28 @@ mash_playbook_postgres_managed_databases_auto_itemized:
       } if tandoor_enabled and tandoor_database_hostname == postgres_identifier else omit)
     }}
   # /role-specific:tandoor
+
+  # role-specific:vaultwarden
+  - |-
+    {{
+      ({
+        'name': vaultwarden_database_name,
+        'username': vaultwarden_database_username,
+        'password': vaultwarden_database_password,
+      } if vaultwarden_enabled else omit)
+    }}
+  # /role-specific:vaultwarden
+
+  # role-specific:woodpecker_ci_server
+  - |-
+    {{
+      ({
+        'name': woodpecker_ci_server_database_datasource_db_name,
+        'username': woodpecker_ci_server_database_datasource_username,
+        'password': woodpecker_ci_server_database_datasource_password,
+      } if woodpecker_ci_server_enabled else omit)
+    }}
+  # /role-specific:woodpecker_ci_server
 
 postgres_managed_databases_auto: "{{ mash_playbook_postgres_managed_databases_auto_itemized | reject('equalto', omit) }}"
 
