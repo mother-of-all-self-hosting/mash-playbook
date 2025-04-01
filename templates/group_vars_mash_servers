@@ -1059,10 +1059,10 @@ mash_playbook_postgres_managed_databases_auto_itemized:
   - |-
     {{
       ({
-        'name': privatebin_database_name,
-        'username': privatebin_database_username,
-        'password': privatebin_database_password,
-      } if privatebin_enabled else omit)
+        'name': privatebin_database_postgres_name,
+        'username': privatebin_database_postgres_username,
+        'password': privatebin_database_postgres_password,
+      } if privatebin_enabled and privatebin_database_postgres_hostname == postgres_identifier else omit)
     }}
   # /role-specific:privatebin
 
@@ -4658,6 +4658,17 @@ mash_playbook_mariadb_managed_databases_auto_itemized:
     }}
   # /role-specific:authelia
 
+  # role-specific:privatebin
+  - |-
+    {{
+      ({
+        'name': privatebin_database_mysql_name,
+        'username': privatebin_database_mysql_username,
+        'password': privatebin_database_mysql_password,
+      } if privatebin_enabled and privatebin_database_mysql_hostname == mariadb_identifier else omit)
+    }}
+  # /role-specific:privatebin
+
   # role-specific:wordpress
   - |-
     {{
@@ -5744,24 +5755,38 @@ privatebin_gid: "{{ mash_playbook_gid }}"
 privatebin_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}privatebin"
 
 privatebin_systemd_required_services_list_auto: |
- {{
-    ([postgres_identifier ~ '.service'] if postgres_enabled and privatebin_database_hostname == postgres_identifier else [])
+  {{
+    ([mariadb_identifier ~ '.service'] if mariadb_enabled and privatebin_database_mysql_hostname == mariadb_identifier else [])
+    +
+    ([postgres_identifier ~ '.service'] if postgres_enabled and privatebin_database_postgres_hostname == postgres_identifier else [])
   }}
 
 privatebin_container_additional_networks_auto: |
   {{
     ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
     +
-    ([postgres_container_network] if postgres_enabled | default(false) and privatebin_database_hostname == postgres_identifier and privatebin_container_network != postgres_container_network else [])
+    ([mariadb_container_network] if mariadb_enabled and privatebin_database_mysql_hostname == mariadb_identifier and privatebin_container_network != mariadb_container_network else [])
+    +
+    ([postgres_container_network] if postgres_enabled and privatebin_database_postgres_hostname == postgres_identifier and privatebin_container_network != postgres_container_network else [])
   }}
 
 privatebin_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
 privatebin_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
 
+# Note that valid values for "privatebin_config_model" are Filesystem, GoogleCloudStorage, MySQL, SQLite, PostgreSQL, and S3, meaning neither MySQL (MariaDB) nor Postgres would be a must.
+
+# role-specific:mariadb
+# This is activated only if MariaDB is enabled and "privatebin_config_model" is set to "MySQL".
+privatebin_database_mysql_hostname: "{{ mariadb_identifier if mariadb_enabled and privatebin_config_model == 'MySQL' else '' }}"
+privatebin_database_mysql_username: "{{ privatebin_identifier }}"
+privatebin_database_mysql_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'db.privatebinm', rounds=655555) | to_uuid }}"
+# /role-specific:mariadb
+
 # role-specific:postgres
-privatebin_database_hostname: "{{ postgres_identifier if postgres_enabled else '' }}"
-privatebin_database_username: "{{ privatebin_identifier }}"
-privatebin_database_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'db.authentik', rounds=655555) | to_uuid }}"
+# This is activated only if Postgres is enabled and "privatebin_config_model" is set to "PostgreSQL".
+privatebin_database_postgres_hostname: "{{ postgres_identifier if postgres_enabled and privatebin_config_model == 'PostgreSQL' else '' }}"
+privatebin_database_postgres_username: "{{ privatebin_identifier }}"
+privatebin_database_postgres_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'db.privatebinp', rounds=655555) | to_uuid }}"
 # /role-specific:postgres
 
 # role-specific:traefik
