@@ -61,9 +61,45 @@ privatebin_path_prefix: bin
 ########################################################################
 ```
 
-### Enable MariaDB
+### Configure a storage for pastes
 
-You can enable a MariaDB instance by adding the following configuration:
+PrivateBin instance requires a storage backend to work. The available options: local filesystem (default), PostgreSQL, MySQL, SQLite, Google Cloud Storage, and Amazon S3.
+
+#### Local filesystem (default)
+
+To use local filesystem database for a storage, you need to add a Docker volume to mount in the container, so that the directory for storing files is shared with the host machine.
+
+To add the volume, prepare a directory on the host machine and add the following configuration to your `vars.yml` file, setting the directory path to `src`:
+
+```yaml
+privatebin_container_additional_volumes:
+  - type: bind
+    src: /path/on/the/host
+    dst: /srv/data
+    options:
+```
+
+Make sure permissions of the directory specified to `src`. If not correctly specified, the service returns a permission error while trying to put data to it.
+
+#### PostgreSQL
+
+To use PostgreSQL for a storage, add the following configuration to your `vars.yml` file:
+
+```yaml
+privatebin_config_model: PostgreSQL
+```
+
+Make sure that PostgreSQL is enabled on `vars.yml`.
+
+#### MySQL
+
+To use MySQL for a storage, add the following configuration to your `vars.yml` file:
+
+```yaml
+privatebin_config_model: MySQL
+```
+
+You can enable a [MariaDB](mariadb.md) instance by adding the following configuration:
 
 ```yaml
 ########################################################################
@@ -83,6 +119,10 @@ mariadb_root_password: ''
 #                                                                      #
 ########################################################################
 ```
+
+#### Google Cloud Storage / Amazon S3
+
+See [this section](https://codeberg.org/acioustick/ansible-role-privatebin/src/branch/master/docs/configuring-privatebin.md#configure-a-storage-for-pastes) on the role's documentation for details about how to configure a storage at Google Cloud Storage or Amazon S3.
 
 ### Set the admin username and password
 
