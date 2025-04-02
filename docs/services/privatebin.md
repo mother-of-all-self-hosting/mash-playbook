@@ -19,11 +19,11 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
 # PrivateBin
 
-The playbook can install and configure [PrivateBin](https://privatebin.org) for you.
+The playbook can install and configure [PrivateBin](https://privatebin.info) for you.
 
-PrivateBin is a set of PHP scripts that will allow you to run Your Own URL Shortener, on your server.
+PrivateBin is a minimalist, open source online pastebin where the server has zero knowledge of pasted data.
 
-See the project's [documentation](https://privatebin.org/docs) to learn what PrivateBin does and why it might be useful to you.
+See the project's [documentation](https://github.com/PrivateBin/PrivateBin/tree/master/doc) to learn what PrivateBin does and why it might be useful to you.
 
 For details about configuring the [Ansible role for PrivateBin](https://codeberg.org/acioustick/ansible-role-privatebin), you can check them via:
 - 🌐 [the role's documentation](https://codeberg.org/acioustick/ansible-role-privatebin/src/branch/master/docs/configuring-privatebin.md) online
