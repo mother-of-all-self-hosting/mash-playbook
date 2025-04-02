@@ -99,14 +99,31 @@ See [here](mariadb.md) on the role's documentation for details about how to conf
 
 See [this section](https://codeberg.org/acioustick/ansible-role-privatebin/src/branch/master/docs/configuring-privatebin.md#configure-a-storage-for-pastes) on the role's documentation for details about how to configure a storage at Google Cloud Storage or Amazon S3.
 
-### Set the admin username and password
+### Configure a URL shortener (optional)
 
-You also need to create an instance's user to access to the admin UI after installation. To create one, add the following configuration to your `vars.yml` file. Make sure to replace `YOUR_ADMIN_USERNAME_HERE` and `YOUR_ADMIN_PASSWORD_HERE`.
+It is possible to have the PrivateBin instance use a URL shortener such as Bit.ly and a [YOURLS](https://yourls.org) instance, so that users can shorten a URL of a paste with it. **It is recommended to use a self-hosted shortener only and set a password to a paste, as the shortener will leak the paste's encryption key.**
+
+YOURLS is available on the playbook. See [here](yourls.md) for details about how to install it.
+
+**Notes**
+- YOURLS requires a MariaDB instance (see [here](mariadb.md) for details about configuring it with the playbook); if PostgreSQL is going to be used for PrivateBin (or other services), you need to use both of them.
+- If you are going to install PrivateBin and YOURLS at the same time, **you need to complete installation of YOURLS at first** by visiting its admin UI available at the specified hostname with `/admin/` such as `yourls.example.com/admin/`. Otherwise the function to shorten a paste's URL does not work. See [here](yourls.md#usage) for the instruction to complete instalation.
+
+#### Use a private YOURLS instance with API access key
+
+If you are using the private YOURLS instance, you might probably want to disallow a third party to use it without credentials. You can configure authentication by adding the following configuration to your `vars.yml` file:
 
 ```yaml
-privatebin_environment_variable_user: YOUR_ADMIN_USERNAME_HERE
-privatebin_environment_variable_pass: YOUR_ADMIN_PASSWORD_HERE
+privatebin_config_yourlsapi_enabled: true
+
+# Set the "signature" (access key) issued by the YOURLS instance for using the account
+privatebin_config_yourlsapi_signature: ''
+
+# Set URL of the YOURLS instance's API, called to shorten a paste URL
+privatebin_config_yourlsapi_url: https://yourls.example.com/yourls-api.php
 ```
+
+You can find the "signature" and API's URL on the "Tools" page of the YOURLS instance.
 
 ## Usage
 
