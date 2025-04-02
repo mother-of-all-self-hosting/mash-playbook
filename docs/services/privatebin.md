@@ -51,18 +51,15 @@ To enable this service, add the following configuration to your `vars.yml` file 
 
 privatebin_enabled: true
 
-privatebin_hostname: privatebin.example.com
+privatebin_hostname: mash.example.com
+privatebin_path_prefix: bin
 
 ########################################################################
 #                                                                      #
-# privatebin                                                           #
+# /privatebin                                                          #
 #                                                                      #
 ########################################################################
 ```
-
-**Notes**:
-- It is optionally possible to use a shorter hostname different from the main one. If doing so, make sure to point a DNS record for the domain to the server where the PrivateBin instance is going to be hosted.
-- Hosting PrivateBin under a subpath (by configuring the `privatebin_path_prefix` variable) does not seem to be possible due to PrivateBin's technical limitations.
 
 ### Enable MariaDB
 
