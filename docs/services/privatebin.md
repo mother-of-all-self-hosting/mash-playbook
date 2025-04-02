@@ -17,15 +17,15 @@ SPDX-FileCopyrightText: 2024 - 2025 Suguru Hirahara
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 
-# YOURLS
+# PrivateBin
 
-The playbook can install and configure [YOURLS](https://yourls.org) for you.
+The playbook can install and configure [PrivateBin](https://yourls.org) for you.
 
-YOURLS is a set of PHP scripts that will allow you to run Your Own URL Shortener, on your server.
+PrivateBin is a set of PHP scripts that will allow you to run Your Own URL Shortener, on your server.
 
-See the project's [documentation](https://yourls.org/docs) to learn what YOURLS does and why it might be useful to you.
+See the project's [documentation](https://yourls.org/docs) to learn what PrivateBin does and why it might be useful to you.
 
-For details about configuring the [Ansible role for YOURLS](https://codeberg.org/acioustick/ansible-role-yourls), you can check them via:
+For details about configuring the [Ansible role for PrivateBin](https://codeberg.org/acioustick/ansible-role-yourls), you can check them via:
 - 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-yourls/blob/main/docs/configuring-yourls.md) online
 - 📁 `roles/galaxy/yourls/docs/configuring-yourls.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
@@ -59,8 +59,8 @@ yourls_hostname: yourls.example.com
 ```
 
 **Notes**:
-- It is optionally possible to use a shorter hostname different from the main one. If doing so, make sure to point a DNS record for the domain to the server where the YOURLS instance is going to be hosted.
-- Hosting YOURLS under a subpath (by configuring the `yourls_path_prefix` variable) does not seem to be possible due to YOURLS's technical limitations.
+- It is optionally possible to use a shorter hostname different from the main one. If doing so, make sure to point a DNS record for the domain to the server where the PrivateBin instance is going to be hosted.
+- Hosting PrivateBin under a subpath (by configuring the `yourls_path_prefix` variable) does not seem to be possible due to PrivateBin's technical limitations.
 
 ### Enable MariaDB
 
@@ -96,9 +96,9 @@ yourls_environment_variable_pass: YOUR_ADMIN_PASSWORD_HERE
 
 ## Usage
 
-After running the command for installation, YOURLS's admin UI is available at the specified hostname with `/admin/` such as `yourls.example.com/admin/`.
+After running the command for installation, PrivateBin's admin UI is available at the specified hostname with `/admin/` such as `yourls.example.com/admin/`.
 
-First, open the page with a web browser to complete installation on the server by clicking "Install YOURLS" button. After that, click the anchor link "YOURLS Administration Page" to log in with the username (`yourls_environment_variable_user`) and password (`yourls_environment_variable_pass`).
+First, open the page with a web browser to complete installation on the server by clicking "Install PrivateBin" button. After that, click the anchor link "PrivateBin Administration Page" to log in with the username (`yourls_environment_variable_user`) and password (`yourls_environment_variable_pass`).
 
 The help file is available at `yourls.example.com/readme.html`.
 
