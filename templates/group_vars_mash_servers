@@ -93,6 +93,11 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
     {{ ({'name': (adguard_home_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'adguard-home']} if adguard_home_enabled else omit) }}
   # /role-specific:adguard_home
 
+  # role-specific:anonymousoverflow
+  - |-
+    {{ ({'name': (anonymousoverflow_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'anonymousoverflow']} if anonymousoverflow_enabled else omit) }}
+  # /role-specific:anonymousoverflow
+
   # role-specific:apisix_dashboard
   - |-
     {{ ({'name': (apisix_dashboard_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'apisix-dashboard']} if apisix_dashboard_enabled else omit) }}
@@ -1366,6 +1371,46 @@ adguard_home_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver
 #                                                                      #
 ########################################################################
 # /role-specific:adguard_home
+
+
+
+# role-specific:anonymousoverflow
+########################################################################
+#                                                                      #
+# anonymousoverflow                                                    #
+#                                                                      #
+########################################################################
+
+anonymousoverflow_enabled: false
+
+anonymousoverflow_identifier: "{{ mash_playbook_service_identifier_prefix }}anonymousoverflow"
+
+anonymousoverflow_uid: "{{ mash_playbook_uid }}"
+anonymousoverflow_gid: "{{ mash_playbook_gid }}"
+
+anonymousoverflow_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}anonymousoverflow"
+
+anonymousoverflow_container_additional_networks_auto: |
+  {{
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+  }}
+
+anonymousoverflow_environment_variable_jwt_signing_secret: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'anonymousoverflo', rounds=655555) | to_uuid }}"
+
+anonymousoverflow_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+anonymousoverflow_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+
+# role-specific:traefik
+anonymousoverflow_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
+anonymousoverflow_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
+# /role-specific:traefik
+
+########################################################################
+#                                                                      #
+# /anonymousoverflow                                                   #
+#                                                                      #
+########################################################################
+# /role-specific:anonymousoverflow
 
 
 
@@ -2966,6 +3011,16 @@ hubsite_service_adguard_home_description: "A network-wide DNS software for block
 hubsite_service_adguard_home_priority: 1000
 # /role-specific:adguard_home
 
+# role-specific:anonymousoverflow
+# AnonymousOverflow
+hubsite_service_anonymousoverflow_enabled: "{{ anonymousoverflow_enabled }}"
+hubsite_service_anonymousoverflow_name: AnonymousOverflow
+hubsite_service_anonymousoverflow_url: "{{ anonymousoverflow_scheme }}://{{ anonymousoverflow_hostname }}{{ anonymousoverflow_path_prefix }}"
+hubsite_service_anonymousoverflow_logo_location: ""
+hubsite_service_anonymousoverflow_description: "View StackOverflow threads without exposing your IP address, browsing habits, and other browser fingerprinting data to the website."
+hubsite_service_anonymousoverflow_priority: 1000
+# /role-specific:anonymousoverflow
+
 # role-specific:appsmith
 # Appsmith
 hubsite_service_appsmith_enabled: "{{ appsmith_enabled }}"
@@ -3334,6 +3389,19 @@ mash_playbook_hubsite_service_list_auto_itemized:
       } if hubsite_service_adguard_home_enabled else omit)
     }}
   # /role-specific:adguard_home
+
+  # role-specific:anonymousoverflow
+  - |-
+    {{
+      ({
+        'name': hubsite_service_anonymousoverflow_name,
+        'url': hubsite_service_anonymousoverflow_url,
+        'logo_location': hubsite_service_anonymousoverflow_logo_location,
+        'description': hubsite_service_anonymousoverflow_description,
+        'priority': hubsite_service_anonymousoverflow_priority,
+      } if hubsite_service_anonymousoverflow_enabled else omit)
+    }}
+  # /role-specific:anonymousoverflow
 
   # role-specific:appsmith
   - |-

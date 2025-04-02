@@ -95,6 +95,10 @@
     - role: galaxy/adguard_home
     # /role-specific:adguard_home
 
+    # role-specific:anonymousoverflow
+    - role: galaxy/anonymousoverflow
+    # /role-specific:anonymousoverflow
+
     # role-specific:appsmith
     - role: galaxy/appsmith
     # /role-specific:appsmith

@@ -4,6 +4,10 @@
   version: v0.107.59-0
   name: adguard_home
   activation_prefix: adguard_home_
+- src: git+https://github.com/mother-of-all-self-hosting/ansible-role-anonymousoverflow.git
+  version: v2024.8.23-0
+  name: anonymousoverflow
+  activation_prefix: anonymousoverflow_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-apisix-dashboard.git
   version: v3.0.1-0
   name: apisix_dashboard
