@@ -137,11 +137,7 @@ See its [configuration sample file](https://github.com/PrivateBin/PrivateBin/blo
 
 ## Usage
 
-After running the command for installation, PrivateBin's admin UI is available at the specified hostname with `/admin/` such as `privatebin.example.com/admin/`.
-
-First, open the page with a web browser to complete installation on the server by clicking "Install PrivateBin" button. After that, click the anchor link "PrivateBin Administration Page" to log in with the username (`privatebin_environment_variable_user`) and password (`privatebin_environment_variable_pass`).
-
-The help file is available at `privatebin.example.com/readme.html`.
+After running the command for installation, PrivateBin becomes available at the specified hostname with the prefix (`mash.example.com/bin`).
 
 ## Troubleshooting
 
