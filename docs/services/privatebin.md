@@ -26,7 +26,7 @@ PrivateBin is a set of PHP scripts that will allow you to run Your Own URL Short
 See the project's [documentation](https://privatebin.org/docs) to learn what PrivateBin does and why it might be useful to you.
 
 For details about configuring the [Ansible role for PrivateBin](https://codeberg.org/acioustick/ansible-role-privatebin), you can check them via:
-- 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-privatebin/blob/main/docs/configuring-privatebin.md) online
+- 🌐 [the role's documentation](https://codeberg.org/acioustick/ansible-role-privatebin/src/branch/master/docs/configuring-privatebin.md) online
 - 📁 `roles/galaxy/privatebin/docs/configuring-privatebin.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 ## Dependencies
@@ -104,4 +104,4 @@ The help file is available at `privatebin.example.com/readme.html`.
 
 ## Troubleshooting
 
-See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-privatebin/blob/main/docs/configuring-privatebin.md#troubleshooting) on the role's documentation for details.
+See [this section](https://codeberg.org/acioustick/ansible-role-privatebin/src/branch/master/docs/configuring-privatebin.md#troubleshooting) on the role's documentation for details.
