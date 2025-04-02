@@ -34,7 +34,9 @@ For details about configuring the [Ansible role for PrivateBin](https://codeberg
 This service requires the following other services:
 
 - [Traefik](traefik.md) reverse-proxy server
-- MySQL / [MariaDB](mariadb.md) database
+- (optional) MySQL / [MariaDB](mariadb.md) database
+- (optional) [Postgres](postgres.md) database
+- (optional) [YOURLS](yourls.md)
 
 ## Adjusting the playbook configuration
 
