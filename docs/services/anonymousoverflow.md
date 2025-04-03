@@ -57,41 +57,7 @@ anonymousoverflow_hostname: anonymousoverflow.example.com
 ########################################################################
 ```
 
-**Notes**:
-- It is optionally possible to use a shorter hostname different from the main one. If doing so, make sure to point a DNS record for the domain to the server where the AnonymousOverflow instance is going to be hosted.
-- Hosting AnonymousOverflow under a subpath (by configuring the `anonymousoverflow_path_prefix` variable) does not seem to be possible due to AnonymousOverflow's technical limitations.
-
-### Enable MariaDB
-
-You can enable a MariaDB instance by adding the following configuration:
-
-```yaml
-########################################################################
-#                                                                      #
-# mariadb                                                              #
-#                                                                      #
-########################################################################
-
-mariadb_enabled: true
-
-# Put a strong password below, generated with `pwgen -s 64 1` or in another way
-mariadb_root_password: ''
-
-########################################################################
-#                                                                      #
-# /mariadb                                                             #
-#                                                                      #
-########################################################################
-```
-
-### Set the admin username and password
-
-You also need to create an instance's user to access to the admin UI after installation. To create one, add the following configuration to your `vars.yml` file. Make sure to replace `YOUR_ADMIN_USERNAME_HERE` and `YOUR_ADMIN_PASSWORD_HERE`.
-
-```yaml
-anonymousoverflow_environment_variable_user: YOUR_ADMIN_USERNAME_HERE
-anonymousoverflow_environment_variable_pass: YOUR_ADMIN_PASSWORD_HERE
-```
+**Note**: hosting AnonymousOverflow under a subpath (by configuring the `anonymousoverflow_path_prefix` variable) does not seem to be possible due to AnonymousOverflow's technical limitations.
 
 ## Usage
 
