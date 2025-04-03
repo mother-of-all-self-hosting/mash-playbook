@@ -19,15 +19,15 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
 # AnonymousOverflow
 
-The playbook can install and configure [AnonymousOverflow](https://yourls.org) for you.
+The playbook can install and configure [AnonymousOverflow](https://anonymousoverflow.org) for you.
 
 AnonymousOverflow is a set of PHP scripts that will allow you to run Your Own URL Shortener, on your server.
 
-See the project's [documentation](https://yourls.org/docs) to learn what AnonymousOverflow does and why it might be useful to you.
+See the project's [documentation](https://anonymousoverflow.org/docs) to learn what AnonymousOverflow does and why it might be useful to you.
 
-For details about configuring the [Ansible role for AnonymousOverflow](https://codeberg.org/acioustick/ansible-role-yourls), you can check them via:
-- 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-yourls/blob/main/docs/configuring-yourls.md) online
-- 📁 `roles/galaxy/yourls/docs/configuring-yourls.md` locally, if you have [fetched the Ansible roles](../installing.md)
+For details about configuring the [Ansible role for AnonymousOverflow](https://codeberg.org/acioustick/ansible-role-anonymousoverflow), you can check them via:
+- 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-anonymousoverflow/blob/main/docs/configuring-anonymousoverflow.md) online
+- 📁 `roles/galaxy/anonymousoverflow/docs/configuring-anonymousoverflow.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 ## Dependencies
 
@@ -43,24 +43,24 @@ To enable this service, add the following configuration to your `vars.yml` file 
 ```yaml
 ########################################################################
 #                                                                      #
-# yourls                                                               #
+# anonymousoverflow                                                    #
 #                                                                      #
 ########################################################################
 
-yourls_enabled: true
+anonymousoverflow_enabled: true
 
-yourls_hostname: yourls.example.com
+anonymousoverflow_hostname: anonymousoverflow.example.com
 
 ########################################################################
 #                                                                      #
-# yourls                                                               #
+# anonymousoverflow                                                    #
 #                                                                      #
 ########################################################################
 ```
 
 **Notes**:
 - It is optionally possible to use a shorter hostname different from the main one. If doing so, make sure to point a DNS record for the domain to the server where the AnonymousOverflow instance is going to be hosted.
-- Hosting AnonymousOverflow under a subpath (by configuring the `yourls_path_prefix` variable) does not seem to be possible due to AnonymousOverflow's technical limitations.
+- Hosting AnonymousOverflow under a subpath (by configuring the `anonymousoverflow_path_prefix` variable) does not seem to be possible due to AnonymousOverflow's technical limitations.
 
 ### Enable MariaDB
 
@@ -90,18 +90,18 @@ mariadb_root_password: ''
 You also need to create an instance's user to access to the admin UI after installation. To create one, add the following configuration to your `vars.yml` file. Make sure to replace `YOUR_ADMIN_USERNAME_HERE` and `YOUR_ADMIN_PASSWORD_HERE`.
 
 ```yaml
-yourls_environment_variable_user: YOUR_ADMIN_USERNAME_HERE
-yourls_environment_variable_pass: YOUR_ADMIN_PASSWORD_HERE
+anonymousoverflow_environment_variable_user: YOUR_ADMIN_USERNAME_HERE
+anonymousoverflow_environment_variable_pass: YOUR_ADMIN_PASSWORD_HERE
 ```
 
 ## Usage
 
-After running the command for installation, AnonymousOverflow's admin UI is available at the specified hostname with `/admin/` such as `yourls.example.com/admin/`.
+After running the command for installation, AnonymousOverflow's admin UI is available at the specified hostname with `/admin/` such as `anonymousoverflow.example.com/admin/`.
 
-First, open the page with a web browser to complete installation on the server by clicking "Install AnonymousOverflow" button. After that, click the anchor link "AnonymousOverflow Administration Page" to log in with the username (`yourls_environment_variable_user`) and password (`yourls_environment_variable_pass`).
+First, open the page with a web browser to complete installation on the server by clicking "Install AnonymousOverflow" button. After that, click the anchor link "AnonymousOverflow Administration Page" to log in with the username (`anonymousoverflow_environment_variable_user`) and password (`anonymousoverflow_environment_variable_pass`).
 
-The help file is available at `yourls.example.com/readme.html`.
+The help file is available at `anonymousoverflow.example.com/readme.html`.
 
 ## Troubleshooting
 
-See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-yourls/blob/main/docs/configuring-yourls.md#troubleshooting) on the role's documentation for details.
+See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-anonymousoverflow/blob/main/docs/configuring-anonymousoverflow.md#troubleshooting) on the role's documentation for details.
