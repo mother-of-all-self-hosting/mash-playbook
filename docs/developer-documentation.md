@@ -1,3 +1,10 @@
+<!--
+SPDX-FileCopyrightText: 2024 Bergrübe
+SPDX-FileCopyrightText: 2024 Slavi Pantaleev
+
+SPDX-License-Identifier: AGPL-3.0-or-later
+-->
+
 # Developer documentation
 
 ## Support a new service | Create your own role
