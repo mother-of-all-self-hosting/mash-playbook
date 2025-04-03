@@ -61,11 +61,11 @@ anonymousoverflow_hostname: anonymousoverflow.example.com
 
 ## Usage
 
-After running the command for installation, AnonymousOverflow's admin UI is available at the specified hostname with `/admin/` such as `anonymousoverflow.example.com/admin/`.
+After running the command for installation, AnonymousOverflow becomes available at the specified hostname like `https://anonymousoverflow.example.com`.
 
-First, open the page with a web browser to complete installation on the server by clicking "Install AnonymousOverflow" button. After that, click the anchor link "AnonymousOverflow Administration Page" to log in with the username (`anonymousoverflow_environment_variable_user`) and password (`anonymousoverflow_environment_variable_pass`).
+[Libredirect](https://libredirect.github.io/), an extension for Firefox and Chromium-based desktop browsers, has support for redirections to AnonymousOverflow. See [this section](https://github.com/httpjamesm/AnonymousOverflow/blob/main/README.md#how-to-make-stack-overflow-links-take-you-to-anonymousoverflow-automatically) on the official documentation for more information.
 
-The help file is available at `anonymousoverflow.example.com/readme.html`.
+If you would like to publish your instance so that it can be used by anyone including Libredirect, please consider to send a PR to the [upstream project](https://github.com/httpjamesm/AnonymousOverflow) to add yours to [`instances.json`](https://github.com/httpjamesm/AnonymousOverflow/blob/main/instances.json), which Libredirect automatically fetches using a script (see [this FAQ entry](https://libredirect.github.io/faq.html#where_the_hell_are_those_instances_coming_from)).
 
 ## Troubleshooting
 
