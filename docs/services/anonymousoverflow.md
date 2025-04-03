@@ -34,7 +34,6 @@ For details about configuring the [Ansible role for AnonymousOverflow](https://g
 This service requires the following other services:
 
 - [Traefik](traefik.md) reverse-proxy server
-- MySQL / [MariaDB](mariadb.md) database
 
 ## Adjusting the playbook configuration
 
