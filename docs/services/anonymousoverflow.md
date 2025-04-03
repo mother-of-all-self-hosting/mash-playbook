@@ -19,13 +19,13 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
 # AnonymousOverflow
 
-The playbook can install and configure [AnonymousOverflow](https://anonymousoverflow.org) for you.
+The playbook can install and configure [AnonymousOverflow](https://github.com/httpjamesm/AnonymousOverflow) for you.
 
-AnonymousOverflow is a set of PHP scripts that will allow you to run Your Own URL Shortener, on your server.
+AnonymousOverflow allows you to view StackOverflow threads without exposing your IP address, browsing habits, and other browser fingerprinting data to the website.
 
-See the project's [documentation](https://anonymousoverflow.org/docs) to learn what AnonymousOverflow does and why it might be useful to you.
+See the project's [documentation](https://github.com/httpjamesm/AnonymousOverflow/blob/main/README.md) to learn what AnonymousOverflow does and why it might be useful to you.
 
-For details about configuring the [Ansible role for AnonymousOverflow](https://codeberg.org/acioustick/ansible-role-anonymousoverflow), you can check them via:
+For details about configuring the [Ansible role for AnonymousOverflow](https://github.com/mother-of-all-self-hosting/ansible-role-anonymousoverflow), you can check them via:
 - 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-anonymousoverflow/blob/main/docs/configuring-anonymousoverflow.md) online
 - 📁 `roles/galaxy/anonymousoverflow/docs/configuring-anonymousoverflow.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
