@@ -496,6 +496,6 @@
   name: writefreely
   activation_prefix: writefreely_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-yourls.git
-  version: v1.9.2-1
+  version: v1.10.0-0
   name: yourls
   activation_prefix: yourls_
