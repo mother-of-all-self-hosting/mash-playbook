@@ -52,7 +52,7 @@ anonymousoverflow_hostname: anonymousoverflow.example.com
 
 ########################################################################
 #                                                                      #
-# anonymousoverflow                                                    #
+# /anonymousoverflow                                                   #
 #                                                                      #
 ########################################################################
 ```
