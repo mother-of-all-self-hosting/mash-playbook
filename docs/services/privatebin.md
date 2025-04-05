@@ -93,26 +93,7 @@ To use MySQL for a storage, add the following configuration to your `vars.yml` f
 privatebin_config_model: MySQL
 ```
 
-You can enable a [MariaDB](mariadb.md) instance by adding the following configuration:
-
-```yaml
-########################################################################
-#                                                                      #
-# mariadb                                                              #
-#                                                                      #
-########################################################################
-
-mariadb_enabled: true
-
-# Put a strong password below, generated with `pwgen -s 64 1` or in another way
-mariadb_root_password: ''
-
-########################################################################
-#                                                                      #
-# /mariadb                                                             #
-#                                                                      #
-########################################################################
-```
+See [here](mariadb.md) on the role's documentation for details about how to configure a MariaDB instance with the playbook.
 
 #### Google Cloud Storage / Amazon S3
 
