@@ -35,7 +35,7 @@ This service requires the following other services:
 
 - [Traefik](traefik.md) reverse-proxy server
 - (optional) MySQL / [MariaDB](mariadb.md) database
-- (optional) [Postgres](postgres.md) database
+- (optional) [Postgres](postgres.md) database — required on the default configuration
 - (optional) [YOURLS](yourls.md)
 
 ## Adjusting the playbook configuration
@@ -61,11 +61,15 @@ privatebin_path_prefix: bin
 ########################################################################
 ```
 
-### Configure a storage for pastes
+### Configure a storage for pastes (optional)
 
-PrivateBin instance requires a storage backend to work. The available options: local filesystem (default), PostgreSQL, MySQL, SQLite, Google Cloud Storage, and Amazon S3.
+PrivateBin instance requires a storage backend to work. The available options: PostgreSQL (default), local filesystem, MySQL, SQLite, Google Cloud Storage, and Amazon S3.
 
-#### Local filesystem (default)
+As the playbook enables the [PostgreSQL service](postgres.md) on `vars.yml` by default, it is configured to use it as the default backend. If it is fine for you, you do not have to add configuration for the storage.
+
+See below for the instruction to use one of the others.
+
+#### Local filesystem
 
 To use local filesystem database for a storage, you need to add a Docker volume to mount in the container, so that the directory for storing files is shared with the host machine.
 
@@ -80,16 +84,6 @@ privatebin_container_additional_volumes:
 ```
 
 Make sure permissions of the directory specified to `src`. If not correctly specified, the service returns a permission error while trying to put data to it.
-
-#### PostgreSQL
-
-To use PostgreSQL for a storage, add the following configuration to your `vars.yml` file:
-
-```yaml
-privatebin_config_model: PostgreSQL
-```
-
-Make sure that PostgreSQL is enabled on `vars.yml`.
 
 #### MySQL
 
