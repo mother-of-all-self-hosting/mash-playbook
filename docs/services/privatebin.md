@@ -125,6 +125,16 @@ privatebin_config_yourlsapi_url: https://yourls.example.com/yourls-api.php
 
 You can find the "signature" and API's URL on the "Tools" page of the YOURLS instance.
 
+### Extending the configuration
+
+There are some additional things you may wish to configure about the component.
+
+Take a look at:
+
+- [PrivateBin](https://github.com/mother-of-all-self-hosting/ansible-role-privatebin)'s [`defaults/main.yml`](https://github.com/mother-of-all-self-hosting/ansible-role-privatebin/blob/main/defaults/main.yml) for some variables that you can customize via your `vars.yml` file.
+
+See its [configuration sample file](https://github.com/PrivateBin/PrivateBin/blob/master/cfg/conf.sample.php) and the [documentation](https://github.com/PrivateBin/PrivateBin/wiki/Configuration) for a complete list of PrivateBin's config options such as [discussion](https://github.com/mother-of-all-self-hosting/ansible-role-privatebin/blob/main/docs/configuring-privatebin.md#configure-the-discussion-feature-optional), [password](https://github.com/mother-of-all-self-hosting/ansible-role-privatebin/blob/main/docs/configuring-privatebin.md#configure-the-password-feature-optional), [file upload](https://github.com/mother-of-all-self-hosting/ansible-role-privatebin/blob/main/docs/configuring-privatebin.md#configure-the-file-upload-feature-optional), and [default theme](https://github.com/mother-of-all-self-hosting/ansible-role-privatebin/blob/main/docs/configuring-privatebin.md#configure-the-default-template-optional) features.
+
 ## Usage
 
 After running the command for installation, PrivateBin's admin UI is available at the specified hostname with `/admin/` such as `privatebin.example.com/admin/`.
