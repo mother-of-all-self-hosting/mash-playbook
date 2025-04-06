@@ -95,6 +95,10 @@
     - role: galaxy/adguard_home
     # /role-specific:adguard_home
 
+    # role-specific:anonymousoverflow
+    - role: galaxy/anonymousoverflow
+    # /role-specific:anonymousoverflow
+
     # role-specific:appsmith
     - role: galaxy/appsmith
     # /role-specific:appsmith
@@ -247,6 +251,10 @@
     - role: galaxy/hubsite
     # /role-specific:hubsite
 
+    # role-specific:ihatemoney
+    - role: galaxy/ihatemoney
+    # /role-specific:ihatemoney
+
     # role-specific:ilmo
     - role: galaxy/ilmo
     # /role-specific:ilmo
@@ -362,6 +370,10 @@
     # role-specific:postgis
     - role: galaxy/postgis
     # /role-specific:postgis
+
+    # role-specific:privatebin
+    - role: galaxy/privatebin
+    # /role-specific:privatebin
 
     # role-specific:prometheus
     - role: galaxy/prometheus
@@ -498,6 +510,10 @@
     # role-specific:writefreely
     - role: galaxy/writefreely
     # /role-specific:writefreely
+
+    # role-specific:yourls
+    - role: galaxy/yourls
+    # /role-specific:yourls
 
     # role-specific:roundcube
     - role: galaxy/roundcube
