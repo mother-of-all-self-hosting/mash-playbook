@@ -1,4 +1,4 @@
-# SPDX-FileCopyrightText: 2024 Suguru Hirahara
+# SPDX-FileCopyrightText: 2024 - 2025 Suguru Hirahara
 #
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
@@ -16,7 +16,7 @@ permissions:
 
 jobs:
   stale:
-    if: github.repository == 'spantaleev/matrix-docker-ansible-deploy'
+    if: github.repository == 'mother-of-all-self-hosting/mash-playbook'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/stale@v9
