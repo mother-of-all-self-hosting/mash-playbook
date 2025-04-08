@@ -39,7 +39,7 @@ This service requires the following other services:
 
 ## Adjusting the playbook configuration
 
-To enable this service, add the following configuration to your `vars.yml` file:
+To enable this service, add the following configuration to your `vars.yml` file and re-run the [installation](../installing.md) process:
 
 ```yaml
 ########################################################################
@@ -86,12 +86,6 @@ anki_container_additional_volumes:
 ```
 
 Make sure permissions of the directory specified to `src` (`/path/on/the/host`).
-
-## Installation
-
-If you have decided to install the dedicated Valkey instance for Anki, make sure to run the [installing](../installing.md) command for the supplementary host (`mash.example.com-anki-deps`) first, before running it for the main host (`mash.example.com`).
-
-Note that running the `just` commands for installation (`just install-all` or `just setup-all`) automatically takes care of the order. See [here](../running-multiple-instances.md#1-adjust-hosts) for more details about it.
 
 ## Usage
 
