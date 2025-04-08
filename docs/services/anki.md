@@ -89,9 +89,9 @@ Make sure permissions of the directory specified to `src` (`/path/on/the/host`).
 
 ## Usage
 
-After installation, your Anki instance becomes available at the URL specified with `anki_hostname` and `anki_path_prefix`.
+After installation, the synchronization server becomes available at the URL specified with `anki_hostname` and `anki_path_prefix`.
 
-See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-anki/blob/main/docs/configuring-anki.md#usage) on the role's documentation for details about its [CLI client](https://github.com/timvisee/ffanki). The instruction to takedown illegal materials is also available [here](https://github.com/mother-of-all-self-hosting/ansible-role-anki/blob/main/docs/configuring-anki.md#takedown-illegal-materials).
+If the instance is served under the subpath, make sure to include a trailing slash when configuring Anki (`mash.example.com/anki/`). See [here](https://docs.ankiweb.net/sync-server.html#reverse-proxies) for more information.
 
 ## Troubleshooting
 
