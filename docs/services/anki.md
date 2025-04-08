@@ -19,15 +19,15 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
 # Anki
 
-The playbook can install and configure [Anki](https://github.com/timvisee/send) for you.
+The playbook can install and configure [Anki](https://github.com/timvisee/anki) for you.
 
-Anki is a fork of Mozilla's discontinued [Firefox Anki](https://github.com/mozilla/send) which allows you to send files to others with a link. Files are end-to-end encrypted so they cannot be read by the server, and also can be protected with a password.
+Anki is a fork of Mozilla's discontinued [Firefox Anki](https://github.com/mozilla/anki) which allows you to send files to others with a link. Files are end-to-end encrypted so they cannot be read by the server, and also can be protected with a password.
 
-See the project's [documentation](https://github.com/timvisee/send/blob/master/README.md) to learn what Anki does and why it might be useful to you.
+See the project's [documentation](https://github.com/timvisee/anki/blob/master/README.md) to learn what Anki does and why it might be useful to you.
 
-For details about configuring the [Ansible role for Anki](https://github.com/mother-of-all-self-hosting/ansible-role-send), you can check them via:
-- 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-send/blob/main/docs/configuring-send.md) online
-- 📁 `roles/galaxy/send/docs/configuring-send.md` locally, if you have [fetched the Ansible roles](../installing.md)
+For details about configuring the [Ansible role for Anki](https://github.com/mother-of-all-self-hosting/ansible-role-anki), you can check them via:
+- 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-anki/blob/main/docs/configuring-anki.md) online
+- 📁 `roles/galaxy/anki/docs/configuring-anki.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 ## Dependencies
 
@@ -43,22 +43,22 @@ To enable this service, add the following configuration to your `vars.yml` file:
 ```yaml
 ########################################################################
 #                                                                      #
-# send                                                                 #
+# anki                                                                 #
 #                                                                      #
 ########################################################################
 
-send_enabled: true
+anki_enabled: true
 
-send_hostname: send.example.com
+anki_hostname: anki.example.com
 
 ########################################################################
 #                                                                      #
-# /send                                                                #
+# /anki                                                                #
 #                                                                      #
 ########################################################################
 ```
 
-**Note**: hosting Anki under a subpath (by configuring the `send_path_prefix` variable) does not seem to be possible due to Anki's technical limitations.
+**Note**: hosting Anki under a subpath (by configuring the `anki_path_prefix` variable) does not seem to be possible due to Anki's technical limitations.
 
 ### Configure a storage backend
 
@@ -67,7 +67,7 @@ The service provides these storage backend options: local filesystem (default), 
 With the default configuration, the directory for storing files inside the Docker container is set to `/uploads`. You can change it by adding and adjusting the following configuration to your `vars.yml` file:
 
 ```yaml
-send_environment_variable_file_dir: YOUR_DIRECTORY_HERE
+anki_environment_variable_file_dir: YOUR_DIRECTORY_HERE
 ```
 
 **By default this role removes uploaded files when uninstalling the service**. In order to make those files persistent, you need to add a Docker volume to mount in the container, so that the directory for storing files is shared with the host machine.
@@ -75,34 +75,34 @@ send_environment_variable_file_dir: YOUR_DIRECTORY_HERE
 To add the volume, prepare a directory on the host machine and add the following configuration to your `vars.yml` file, setting the directory path to `src`:
 
 ```yaml
-send_container_additional_volumes:
+anki_container_additional_volumes:
   - type: bind
     src: /path/on/the/host
-    dst: "{{ send_environment_variable_file_dir }}"
+    dst: "{{ anki_environment_variable_file_dir }}"
     options:
 ```
 
 Make sure permissions of the directory specified to `src` (`/path/on/the/host`).
 
-See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-send/blob/main/docs/configuring-send.md#configure-a-storage-backend) on the role's documentation for details about how to set up Amazon S3 compatible object storage and Google Cloud Storage.
+See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-anki/blob/main/docs/configuring-anki.md#configure-a-storage-backend) on the role's documentation for details about how to set up Amazon S3 compatible object storage and Google Cloud Storage.
 
 ### Configure upload and download limits (optional)
 
 You can also configure settings for uploading and downloading limits (such as the maximum upload file size and number of the download, as well as expiry time).
 
-See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-send/blob/main/docs/configuring-send.md#configure-upload-and-download-limits-optional) on the role's documentation for details about how to set up.
+See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-anki/blob/main/docs/configuring-anki.md#configure-upload-and-download-limits-optional) on the role's documentation for details about how to set up.
 
-**To mitigate the risk of your server being overwhelmed by legal / illegal use, it is important to set proper limits for the server.** For example, if you intend to use the Anki instance for sending relatively small files to a small group of your friends or family, then you can make the default limits stricter as below:
+**To mitigate the risk of your server being overwhelmed by legal / illegal use, it is important to set proper limits for the server.** For example, if you intend to use the Anki instance for ankiing relatively small files to a small group of your friends or family, then you can make the default limits stricter as below:
 
 ```yaml
 # Set maximum upload file size to 100 MB (default: 2 GB, 2147483648 in bytes)
-send_environment_variable_max_file_size: 104857600
+anki_environment_variable_max_file_size: 104857600
 
 # Set maximum upload expiry time to 2 days (default: 7 days, 604800 seconds)
-send_environment_variable_max_expire_seconds: 172800
+anki_environment_variable_max_expire_seconds: 172800
 
 # Set maximum number of downloads to 10 (default: 20)
-send_environment_variable_max_downloads: 10
+anki_environment_variable_max_downloads: 10
 ```
 
 💡 If your server does not have enough free disk space or you are worried about it, it is worth considering to use cloud storage instead of the local filesystem.
@@ -140,7 +140,7 @@ mash_example_com
 
 [mash_example_com]
 mash.example.com ansible_host=YOUR_SERVER_IP_ADDRESS_HERE
-mash.example.com-send-deps ansible_host=YOUR_SERVER_IP_ADDRESS_HERE
+mash.example.com-anki-deps ansible_host=YOUR_SERVER_IP_ADDRESS_HERE
 …
 ```
 
@@ -150,9 +150,9 @@ You can just add an entry for the supplementary host to `[mash_example_com]` if 
 
 ##### Create `vars.yml` for the dedicated instance
 
-Then, create a new directory where `vars.yml` for the supplementary host is stored. If `mash.example.com` is your main host, name the directory as `mash.example.com-send-deps`. Its path therefore will be `inventory/host_vars/mash.example.com-send-deps`.
+Then, create a new directory where `vars.yml` for the supplementary host is stored. If `mash.example.com` is your main host, name the directory as `mash.example.com-anki-deps`. Its path therefore will be `inventory/host_vars/mash.example.com-anki-deps`.
 
-After creating the directory, add a new `vars.yml` file inside it with a content below. It will have running the playbook create a `mash-send-valkey` instance on the new host, setting `/mash/send-valkey` to the base directory of the dedicated Valkey instance.
+After creating the directory, add a new `vars.yml` file inside it with a content below. It will have running the playbook create a `mash-anki-valkey` instance on the new host, setting `/mash/anki-valkey` to the base directory of the dedicated Valkey instance.
 
 ```yaml
 # This is vars.yml for the supplementary host of Anki.
@@ -169,8 +169,8 @@ After creating the directory, add a new `vars.yml` file inside it with a content
 mash_playbook_generic_secret_key: ''
 
 # Override service names and directory path prefixes
-mash_playbook_service_identifier_prefix: 'mash-send-'
-mash_playbook_service_base_directory_name_prefix: 'send-'
+mash_playbook_service_identifier_prefix: 'mash-anki-'
+mash_playbook_service_base_directory_name_prefix: 'anki-'
 
 ########################################################################
 #                                                                      #
@@ -201,31 +201,31 @@ Having configured `vars.yml` for the dedicated instance, add the following confi
 ```yaml
 ########################################################################
 #                                                                      #
-# send                                                                 #
+# anki                                                                 #
 #                                                                      #
 ########################################################################
 
 # Add the base configuration as specified above
 
 # Point Anki to its dedicated Valkey instance
-send_config_redis_hostname: mash-send-valkey
+anki_config_redis_hostname: mash-anki-valkey
 
-# Make sure the Anki service (mash-send.service) starts after its dedicated Valkey service (mash-send-valkey.service)
-send_systemd_required_services_list_custom:
-  - "mash-send-valkey.service"
+# Make sure the Anki service (mash-anki.service) starts after its dedicated Valkey service (mash-anki-valkey.service)
+anki_systemd_required_services_list_custom:
+  - "mash-anki-valkey.service"
 
-# Make sure the Anki service (mash-send.service) is connected to the container network of its dedicated Valkey service (mash-send-valkey)
-send_container_additional_networks_custom:
-  - "mash-send-valkey"
+# Make sure the Anki service (mash-anki.service) is connected to the container network of its dedicated Valkey service (mash-anki-valkey)
+anki_container_additional_networks_custom:
+  - "mash-anki-valkey"
 
 ########################################################################
 #                                                                      #
-# /send                                                                #
+# /anki                                                                #
 #                                                                      #
 ########################################################################
 ```
 
-Running the installation command will create the dedicated Valkey instance named `mash-send-valkey`.
+Running the installation command will create the dedicated Valkey instance named `mash-anki-valkey`.
 
 #### Setting up a shared Valkey instance
 
@@ -251,26 +251,26 @@ valkey_enabled: true
 
 ########################################################################
 #                                                                      #
-# send                                                                 #
+# anki                                                                 #
 #                                                                      #
 ########################################################################
 
 # Add the base configuration as specified above
 
 # Point Anki to the shared Valkey instance
-send_config_redis_hostname: "{{ valkey_identifier }}"
+anki_config_redis_hostname: "{{ valkey_identifier }}"
 
-# Make sure the Anki service (mash-send.service) starts after its dedicated Valkey service (mash-send-valkey.service)
-send_systemd_required_services_list_custom:
+# Make sure the Anki service (mash-anki.service) starts after its dedicated Valkey service (mash-anki-valkey.service)
+anki_systemd_required_services_list_custom:
   - "{{ valkey_identifier }}.service"
 
-# Make sure the Anki container is connected to the container network of its dedicated Valkey service (mash-send-valkey)
-send_container_additional_networks_custom:
+# Make sure the Anki container is connected to the container network of its dedicated Valkey service (mash-anki-valkey)
+anki_container_additional_networks_custom:
   - "{{ valkey_container_network }}"
 
 ########################################################################
 #                                                                      #
-# /send                                                                #
+# /anki                                                                #
 #                                                                      #
 ########################################################################
 ```
@@ -279,16 +279,16 @@ Running the installation command will create the shared Valkey instance named `m
 
 ## Installation
 
-If you have decided to install the dedicated Valkey instance for Anki, make sure to run the [installing](../installing.md) command for the supplementary host (`mash.example.com-send-deps`) first, before running it for the main host (`mash.example.com`).
+If you have decided to install the dedicated Valkey instance for Anki, make sure to run the [installing](../installing.md) command for the supplementary host (`mash.example.com-anki-deps`) first, before running it for the main host (`mash.example.com`).
 
 Note that running the `just` commands for installation (`just install-all` or `just setup-all`) automatically takes care of the order. See [here](../running-multiple-instances.md#1-adjust-hosts) for more details about it.
 
 ## Usage
 
-After installation, your Anki instance becomes available at the URL specified with `send_hostname` and `send_path_prefix`.
+After installation, your Anki instance becomes available at the URL specified with `anki_hostname` and `anki_path_prefix`.
 
-See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-send/blob/main/docs/configuring-send.md#usage) on the role's documentation for details about its [CLI client](https://github.com/timvisee/ffsend). The instruction to takedown illegal materials is also available [here](https://github.com/mother-of-all-self-hosting/ansible-role-send/blob/main/docs/configuring-send.md#takedown-illegal-materials).
+See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-anki/blob/main/docs/configuring-anki.md#usage) on the role's documentation for details about its [CLI client](https://github.com/timvisee/ffanki). The instruction to takedown illegal materials is also available [here](https://github.com/mother-of-all-self-hosting/ansible-role-anki/blob/main/docs/configuring-anki.md#takedown-illegal-materials).
 
 ## Troubleshooting
 
-See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-send/blob/main/docs/configuring-send.md#troubleshooting) on the role's documentation for details.
+See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-anki/blob/main/docs/configuring-anki.md#troubleshooting) on the role's documentation for details.
