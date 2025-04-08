@@ -50,7 +50,8 @@ To enable this service, add the following configuration to your `vars.yml` file:
 
 anki_enabled: true
 
-anki_hostname: anki.example.com
+anki_hostname: mash.example.com
+anki_path_prefix: /anki
 
 ########################################################################
 #                                                                      #
@@ -58,8 +59,6 @@ anki_hostname: anki.example.com
 #                                                                      #
 ########################################################################
 ```
-
-**Note**: hosting Anki under a subpath (by configuring the `anki_path_prefix` variable) does not seem to be possible due to Anki's technical limitations.
 
 ### Configure a storage backend
 
