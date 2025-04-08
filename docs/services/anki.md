@@ -60,17 +60,20 @@ anki_path_prefix: /anki
 ########################################################################
 ```
 
-### Configure a storage backend
+### Set the username and password
 
-The service provides these storage backend options: local filesystem (default), Amazon S3 compatible object storage, and Google Cloud Storage.
-
-With the default configuration, the directory for storing files inside the Docker container is set to `/uploads`. You can change it by adding and adjusting the following configuration to your `vars.yml` file:
+You also need to create a user to log in to the instance with a client application. To create one, add the following configuration to your `vars.yml` file. Make sure to replace `YOUR_USERNAME_HERE` and `YOUR_PASSWORD_HERE`.
 
 ```yaml
-anki_environment_variable_file_dir: YOUR_DIRECTORY_HERE
+anki_environment_variables_username: YOUR_USERNAME_HERE
+anki_environment_variables_password: YOUR_PASSWORD_HERE
 ```
 
-**By default this role removes uploaded files when uninstalling the service**. In order to make those files persistent, you need to add a Docker volume to mount in the container, so that the directory for storing files is shared with the host machine.
+**Note**: if the username is changed after creating the user, a new user with the specified username will be created by running the installation command, instead of renaming the user.
+
+### Mount a directory for storing data
+
+The service requires a Docker volume to be mounted, so that the directory for storing files is shared with the host machine.
 
 To add the volume, prepare a directory on the host machine and add the following configuration to your `vars.yml` file, setting the directory path to `src`:
 
@@ -78,7 +81,7 @@ To add the volume, prepare a directory on the host machine and add the following
 anki_container_additional_volumes:
   - type: bind
     src: /path/on/the/host
-    dst: "{{ anki_environment_variable_file_dir }}"
+    dst: /data
     options:
 ```
 
