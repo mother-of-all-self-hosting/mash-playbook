@@ -19,15 +19,17 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
 # Anki
 
-The playbook can install and configure [Anki](https://github.com/timvisee/anki) for you.
+The playbook can install and configure [a synchronization server](https://github.com/ankitects/anki/tree/main/docs/syncserver) for [Anki](https://apps.ankiweb.net) for you.
 
-Anki is a fork of Mozilla's discontinued [Firefox Anki](https://github.com/mozilla/anki) which allows you to send files to others with a link. Files are end-to-end encrypted so they cannot be read by the server, and also can be protected with a password.
+Anki is a flashcard program that helps you spend more time on challenging material, and less on what you already know. The playbook enables to run a self-hosted synchronization server, similar to what AnkiWeb.net offers.
 
-See the project's [documentation](https://github.com/timvisee/anki/blob/master/README.md) to learn what Anki does and why it might be useful to you.
+See the project's [documentation](https://docs.ankiweb.net/sync-server.html) to learn what the synchronization server does and why it might be useful to you.
 
-For details about configuring the [Ansible role for Anki](https://github.com/mother-of-all-self-hosting/ansible-role-anki), you can check them via:
+For details about configuring the [Ansible role for the server](https://github.com/mother-of-all-self-hosting/ansible-role-anki), you can check them via:
 - 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-anki/blob/main/docs/configuring-anki.md) online
 - 📁 `roles/galaxy/anki/docs/configuring-anki.md` locally, if you have [fetched the Ansible roles](../installing.md)
+
+✨ Anki (暗記) means "Memorize" in Japanese.
 
 ## Dependencies
 
