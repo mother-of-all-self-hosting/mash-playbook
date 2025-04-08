@@ -95,6 +95,10 @@
     - role: galaxy/adguard_home
     # /role-specific:adguard_home
 
+    # role-specific:anki
+    - role: galaxy/anki
+    # /role-specific:anki
+
     # role-specific:anonymousoverflow
     - role: galaxy/anonymousoverflow
     # /role-specific:anonymousoverflow
