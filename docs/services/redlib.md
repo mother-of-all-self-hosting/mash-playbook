@@ -57,7 +57,11 @@ redlib_hostname: redlib.example.com
 ########################################################################
 ```
 
-**Note**: hosting Redlib under a subpath (by configuring the `redlib_path_prefix` variable) does not seem to be possible due to Redlib's technical limitations.
+**Note**: hosting Redlib under a subpath (by configuring the `redlib_path_prefix` variable) is technically possible but not recommended, as most of the functions do not work as expected due to Redlib's technical limitations (pages and resources are not correctly loaded, and links are broken).
+
+### Configure instance and user settings (optional)
+
+There are various options for the instance and user settings. See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-redlib/blob/main/docs/configuring-redlib.md#configure-instance-and-user-settings-optional) on the role's documentation for details.
 
 ## Usage
 
