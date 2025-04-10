@@ -67,9 +67,9 @@ There are various options for the instance and user settings. See [this section]
 
 After running the command for installation, Redlib becomes available at the specified hostname like `https://redlib.example.com`.
 
-[Libredirect](https://libredirect.github.io/), an extension for Firefox and Chromium-based desktop browsers, has support for redirections to Redlib. See [this section](https://github.com/httpjamesm/Redlib/blob/main/README.md#how-to-make-stack-overflow-links-take-you-to-redlib-automatically) on the official documentation for more information.
+[Libredirect](https://libredirect.github.io/), an extension for Firefox and Chromium-based desktop browsers, has support for redirections to Redlib.
 
-If you would like to publish your instance so that it can be used by anyone including Libredirect, please consider to send a PR to the [upstream project](https://github.com/httpjamesm/Redlib) to add yours to [`instances.json`](https://github.com/httpjamesm/Redlib/blob/main/instances.json), which Libredirect automatically fetches using a script (see [this FAQ entry](https://libredirect.github.io/faq.html#where_the_hell_are_those_instances_coming_from)).
+If you would like to make your instance public so that it can be used by anyone including Libredirect, please consider to send a PR to the [upstream project](https://github.com/redlib-org/redlib-instances) to add yours to the list, which Libredirect automatically fetches using a script (see [this FAQ entry](https://libredirect.github.io/faq.html#where_the_hell_are_those_instances_coming_from)). See [here](https://github.com/redlib-org/redlib-instances/blob/main/README.md) for details about how to do so.
 
 ## Troubleshooting
 
