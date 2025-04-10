@@ -25,9 +25,9 @@ Redlib allows you to view StackOverflow threads without exposing your IP address
 
 See the project's [documentation](https://github.com/httpjamesm/Redlib/blob/main/README.md) to learn what Redlib does and why it might be useful to you.
 
-For details about configuring the [Ansible role for Redlib](https://github.com/mother-of-all-self-hosting/ansible-role-anonymousoverflow), you can check them via:
-- 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-anonymousoverflow/blob/main/docs/configuring-anonymousoverflow.md) online
-- 📁 `roles/galaxy/anonymousoverflow/docs/configuring-anonymousoverflow.md` locally, if you have [fetched the Ansible roles](../installing.md)
+For details about configuring the [Ansible role for Redlib](https://github.com/mother-of-all-self-hosting/ansible-role-redlib), you can check them via:
+- 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-redlib/blob/main/docs/configuring-redlib.md) online
+- 📁 `roles/galaxy/redlib/docs/configuring-redlib.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 ## Dependencies
 
@@ -42,31 +42,31 @@ To enable this service, add the following configuration to your `vars.yml` file 
 ```yaml
 ########################################################################
 #                                                                      #
-# anonymousoverflow                                                    #
+# redlib                                                               #
 #                                                                      #
 ########################################################################
 
-anonymousoverflow_enabled: true
+redlib_enabled: true
 
-anonymousoverflow_hostname: anonymousoverflow.example.com
+redlib_hostname: redlib.example.com
 
 ########################################################################
 #                                                                      #
-# /anonymousoverflow                                                   #
+# /redlib                                                              #
 #                                                                      #
 ########################################################################
 ```
 
-**Note**: hosting Redlib under a subpath (by configuring the `anonymousoverflow_path_prefix` variable) does not seem to be possible due to Redlib's technical limitations.
+**Note**: hosting Redlib under a subpath (by configuring the `redlib_path_prefix` variable) does not seem to be possible due to Redlib's technical limitations.
 
 ## Usage
 
-After running the command for installation, Redlib becomes available at the specified hostname like `https://anonymousoverflow.example.com`.
+After running the command for installation, Redlib becomes available at the specified hostname like `https://redlib.example.com`.
 
-[Libredirect](https://libredirect.github.io/), an extension for Firefox and Chromium-based desktop browsers, has support for redirections to Redlib. See [this section](https://github.com/httpjamesm/Redlib/blob/main/README.md#how-to-make-stack-overflow-links-take-you-to-anonymousoverflow-automatically) on the official documentation for more information.
+[Libredirect](https://libredirect.github.io/), an extension for Firefox and Chromium-based desktop browsers, has support for redirections to Redlib. See [this section](https://github.com/httpjamesm/Redlib/blob/main/README.md#how-to-make-stack-overflow-links-take-you-to-redlib-automatically) on the official documentation for more information.
 
 If you would like to publish your instance so that it can be used by anyone including Libredirect, please consider to send a PR to the [upstream project](https://github.com/httpjamesm/Redlib) to add yours to [`instances.json`](https://github.com/httpjamesm/Redlib/blob/main/instances.json), which Libredirect automatically fetches using a script (see [this FAQ entry](https://libredirect.github.io/faq.html#where_the_hell_are_those_instances_coming_from)).
 
 ## Troubleshooting
 
-See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-anonymousoverflow/blob/main/docs/configuring-anonymousoverflow.md#troubleshooting) on the role's documentation for details.
+See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-redlib/blob/main/docs/configuring-redlib.md#troubleshooting) on the role's documentation for details.
