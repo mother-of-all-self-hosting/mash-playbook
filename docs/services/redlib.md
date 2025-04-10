@@ -19,11 +19,11 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
 # Redlib
 
-The playbook can install and configure [Redlib](https://github.com/httpjamesm/Redlib) for you.
+The playbook can install and configure [Redlib](https://github.com/redlib-org/redlib) for you.
 
-Redlib allows you to view StackOverflow threads without exposing your IP address, browsing habits, and other browser fingerprinting data to the website.
+Redlib allows you to browse Reddit without exposing your IP address, browsing habits, and other browser fingerprinting data to the website.
 
-See the project's [documentation](https://github.com/httpjamesm/Redlib/blob/main/README.md) to learn what Redlib does and why it might be useful to you.
+See the project's [documentation](https://github.com/redlib-org/redlib/blob/main/README.md) to learn what Redlib does and why it might be useful to you.
 
 For details about configuring the [Ansible role for Redlib](https://github.com/mother-of-all-self-hosting/ansible-role-redlib), you can check them via:
 - 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-redlib/blob/main/docs/configuring-redlib.md) online
