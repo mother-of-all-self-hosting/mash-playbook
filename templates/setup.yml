@@ -427,6 +427,10 @@
     - role: galaxy/redis
     # /role-specific:redis
 
+    # role-specific:redlib
+    - role: galaxy/redlib
+    # /role-specific:redlib
+
     # role-specific:rumqttd
     - role: galaxy/rumqttd
     # /role-specific:rumqttd
