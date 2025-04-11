@@ -1929,7 +1929,7 @@ clickhouse_managed_databases_auto_itemized:
         'name': plausible_clickhouse_database_name,
         'username': plausible_clickhouse_database_username,
         'password': plausible_clickhouse_database_password,
-        'additional_sql': ('GRANT SELECT ON system.replicas TO ' + plausible_clickhouse_database_username + '; GRANT SELECT ON system.parts TO ' + plausible_clickhouse_database_username + ';')
+        'additional_sql': ('GRANT SELECT ON system.replicas TO ' + plausible_clickhouse_database_username + '; GRANT SELECT ON system.parts TO ' + plausible_clickhouse_database_username + '; GRANT CREATE FUNCTION ON *.* TO ' + plausible_clickhouse_database_username + '; GRANT DROP FUNCTION ON *.* TO ' + plausible_clickhouse_database_username + ';')
       } if plausible_enabled and plausible_clickhouse_database_hostname == clickhouse_identifier else omit)
     }}
   # /role-specific:plausible
