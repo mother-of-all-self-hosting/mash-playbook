@@ -19,11 +19,11 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
 # Docmost
 
-The playbook can install and configure [Docmost](https://github.com/timvisee/docmost) for you.
+The playbook can install and configure [Docmost](https://docmost.com/) for you.
 
-Docmost is a fork of Mozilla's discontinued [Firefox Docmost](https://github.com/mozilla/docmost) which allows you to send files to others with a link. Files are end-to-end encrypted so they cannot be read by the server, and also can be protected with a password.
+Docmost is an free and open-source collaborative wiki and documentation software, designed for seamless real-time collaboration. It can be used to manage a wiki, a knowledge base, project documentation, etc. It has various functions such as granular permissions management system, page history to track changes of articles, etc. It also supports diagramming tools like Draw.io, Excalidraw and Mermaid.
 
-See the project's [documentation](https://github.com/timvisee/docmost/blob/master/README.md) to learn what Docmost does and why it might be useful to you.
+See the project's [documentation](https://docmost.com/docs/) to learn what Docmost does and why it might be useful to you.
 
 For details about configuring the [Ansible role for Docmost](https://github.com/mother-of-all-self-hosting/ansible-role-docmost), you can check them via:
 - 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-docmost/blob/main/docs/configuring-docmost.md) online
