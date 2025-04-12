@@ -56,7 +56,8 @@
     # see /docs/services/system.md
 
     # role-specific:swap
-    - role: galaxy/swap
+    - when: system_swap_enabled | bool
+      role: galaxy/swap
     # /role-specific:swap
 
     # role-specific:cleanup
