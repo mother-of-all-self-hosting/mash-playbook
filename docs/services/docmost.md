@@ -78,27 +78,6 @@ Make sure permissions of the directory specified to `src` (`/path/on/the/host`).
 
 See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-docmost/blob/main/docs/configuring-docmost.md#configure-a-storage-backend) on the role's documentation for details about how to set up Amazon S3 compatible object storage for Docmost.
 
-### Configure upload and download limits (optional)
-
-You can also configure settings for uploading and downloading limits (such as the maximum upload file size and number of the download, as well as expiry time).
-
-See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-docmost/blob/main/docs/configuring-docmost.md#configure-upload-and-download-limits-optional) on the role's documentation for details about how to set up.
-
-**To mitigate the risk of your server being overwhelmed by legal / illegal use, it is important to set proper limits for the server.** For example, if you intend to use the Docmost instance for docmosting relatively small files to a small group of your friends or family, then you can make the default limits stricter as below:
-
-```yaml
-# Set maximum upload file size to 100 MB (default: 2 GB, 2147483648 in bytes)
-docmost_environment_variable_max_file_size: 104857600
-
-# Set maximum upload expiry time to 2 days (default: 7 days, 604800 seconds)
-docmost_environment_variable_max_expire_seconds: 172800
-
-# Set maximum number of downloads to 10 (default: 20)
-docmost_environment_variable_max_downloads: 10
-```
-
-💡 If your server does not have enough free disk space or you are worried about it, it is worth considering to use cloud storage instead of the local filesystem.
-
 ### Configure Valkey
 
 Docmost requires a Valkey data-store to work. This playbook supports it, and you can set up a Valkey instance by enabling it on `vars.yml`.
