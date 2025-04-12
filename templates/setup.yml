@@ -55,24 +55,24 @@
     # system
     # see /docs/services/system.md
 
-    # role-specific:swap
-    - when: system_swap_enabled | bool
-      role: galaxy/swap
-    # /role-specific:swap
-
     # role-specific:cleanup
     - role: galaxy/cleanup
     # /role-specific:cleanup
+
+    # role-specific:fail2ban
+    - when: system_security_fail2ban_enabled | bool
+      role: galaxy/fail2ban
+    # /role-specific:fail2ban
 
     # role-specific:ssh
     - when: system_security_ssh_enabled | bool
       role: galaxy/ssh
     # /role-specific:ssh
 
-    # role-specific:fail2ban
-    - when: system_security_fail2ban_enabled | bool
-      role: galaxy/fail2ban
-    # /role-specific:fail2ban
+    # role-specific:swap
+    - when: system_swap_enabled | bool
+      role: galaxy/swap
+    # /role-specific:swap
 
     # /system
 
