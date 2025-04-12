@@ -262,6 +262,16 @@ docmost_container_additional_networks_custom:
 
 Running the installation command will create the shared Valkey instance named `mash-valkey`.
 
+### Enable Telemetry (optional)
+
+By default this playbook disables Docmost's [telemetry](https://docmost.com/docs/self-hosting/environment-variables#telemetry) which collects information about the active version, user count, page count, space and workspace count, and sends to the Docmost server (see [here](https://github.com/docmost/docmost/blob/main/apps/server/src/integrations/telemetry/telemetry.service.ts)).
+
+If you are fine with sending such infomation and want to help developers, add the following configuration to your `vars.yml` file:
+
+```yaml
+docmost_environment_variable_disable_telemetry: false
+```
+
 ## Installation
 
 If you have decided to install the dedicated Valkey instance for Docmost, make sure to run the [installing](../installing.md) command for the supplementary host (`mash.example.com-docmost-deps`) first, before running it for the main host (`mash.example.com`).
