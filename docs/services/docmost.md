@@ -34,7 +34,9 @@ For details about configuring the [Ansible role for Docmost](https://github.com/
 This service requires the following other services:
 
 - [Traefik](traefik.md) reverse-proxy server
+- [Postgres](postgres.md) database
 - [Valkey](valkey.md) data-store; see [below](#configure-valkey) for details about installation
+- (optional) [exim-relay](exim-relay.md) mailer — required on the default configuration
 
 ## Adjusting the playbook configuration
 
