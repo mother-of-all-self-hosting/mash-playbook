@@ -78,6 +78,20 @@ Make sure permissions of the directory specified to `src` (`/path/on/the/host`).
 
 See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-docmost/blob/main/docs/configuring-docmost.md#configure-a-storage-backend) on the role's documentation for details about how to set up Amazon S3 compatible object storage for Docmost.
 
+### Configure the mailer
+
+You can configure a mailer for functions such as user invitation. Docmost supports a SMTP server and Postmark.
+
+**You can use exim-relay as the mailer, which is enabled on this playbook by default.** If you enable exim-relay on the playbook and will use it for Docmost, you do not have to add settings for them, as Docmost is wired to the mailer automatically. See [here](exim-relay.md) for details about how to set it up.
+
+If you will use another SMTP server or Postmark, see [this section](https://github.com/mother-of-all-self-hosting/ansible-role-docmost/blob/main/docs/configuring-docmost.md#configure-the-mailer) on the role's documentation for details about configuring the mailer.
+
+If you do not want to enable a mailer for Docmost altogether, add the following configuration to your `vars.yml` file:
+
+```yaml
+docmost_mailer_enabled: false
+```
+
 ### Configure Valkey
 
 Docmost requires a Valkey data-store to work. This playbook supports it, and you can set up a Valkey instance by enabling it on `vars.yml`.
