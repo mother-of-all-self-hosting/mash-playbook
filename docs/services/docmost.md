@@ -19,15 +19,15 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
 # Docmost
 
-The playbook can install and configure [Docmost](https://github.com/timvisee/send) for you.
+The playbook can install and configure [Docmost](https://github.com/timvisee/docmost) for you.
 
-Docmost is a fork of Mozilla's discontinued [Firefox Docmost](https://github.com/mozilla/send) which allows you to send files to others with a link. Files are end-to-end encrypted so they cannot be read by the server, and also can be protected with a password.
+Docmost is a fork of Mozilla's discontinued [Firefox Docmost](https://github.com/mozilla/docmost) which allows you to send files to others with a link. Files are end-to-end encrypted so they cannot be read by the server, and also can be protected with a password.
 
-See the project's [documentation](https://github.com/timvisee/send/blob/master/README.md) to learn what Docmost does and why it might be useful to you.
+See the project's [documentation](https://github.com/timvisee/docmost/blob/master/README.md) to learn what Docmost does and why it might be useful to you.
 
-For details about configuring the [Ansible role for Docmost](https://github.com/mother-of-all-self-hosting/ansible-role-send), you can check them via:
-- 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-send/blob/main/docs/configuring-send.md) online
-- 📁 `roles/galaxy/send/docs/configuring-send.md` locally, if you have [fetched the Ansible roles](../installing.md)
+For details about configuring the [Ansible role for Docmost](https://github.com/mother-of-all-self-hosting/ansible-role-docmost), you can check them via:
+- 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-docmost/blob/main/docs/configuring-docmost.md) online
+- 📁 `roles/galaxy/docmost/docs/configuring-docmost.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 ## Dependencies
 
@@ -43,22 +43,22 @@ To enable this service, add the following configuration to your `vars.yml` file:
 ```yaml
 ########################################################################
 #                                                                      #
-# send                                                                 #
+# docmost                                                              #
 #                                                                      #
 ########################################################################
 
-send_enabled: true
+docmost_enabled: true
 
-send_hostname: send.example.com
+docmost_hostname: docmost.example.com
 
 ########################################################################
 #                                                                      #
-# /send                                                                #
+# /docmost                                                             #
 #                                                                      #
 ########################################################################
 ```
 
-**Note**: hosting Docmost under a subpath (by configuring the `send_path_prefix` variable) does not seem to be possible due to Docmost's technical limitations.
+**Note**: hosting Docmost under a subpath (by configuring the `docmost_path_prefix` variable) does not seem to be possible due to Docmost's technical limitations.
 
 ### Configure a storage backend
 
@@ -67,7 +67,7 @@ The service provides these storage backend options: local filesystem (default), 
 With the default configuration, the directory for storing files inside the Docker container is set to `/uploads`. You can change it by adding and adjusting the following configuration to your `vars.yml` file:
 
 ```yaml
-send_environment_variable_file_dir: YOUR_DIRECTORY_HERE
+docmost_environment_variable_file_dir: YOUR_DIRECTORY_HERE
 ```
 
 **By default this role removes uploaded files when uninstalling the service**. In order to make those files persistent, you need to add a Docker volume to mount in the container, so that the directory for storing files is shared with the host machine.
@@ -75,34 +75,34 @@ send_environment_variable_file_dir: YOUR_DIRECTORY_HERE
 To add the volume, prepare a directory on the host machine and add the following configuration to your `vars.yml` file, setting the directory path to `src`:
 
 ```yaml
-send_container_additional_volumes:
+docmost_container_additional_volumes:
   - type: bind
     src: /path/on/the/host
-    dst: "{{ send_environment_variable_file_dir }}"
+    dst: "{{ docmost_environment_variable_file_dir }}"
     options:
 ```
 
 Make sure permissions of the directory specified to `src` (`/path/on/the/host`).
 
-See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-send/blob/main/docs/configuring-send.md#configure-a-storage-backend) on the role's documentation for details about how to set up Amazon S3 compatible object storage and Google Cloud Storage.
+See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-docmost/blob/main/docs/configuring-docmost.md#configure-a-storage-backend) on the role's documentation for details about how to set up Amazon S3 compatible object storage and Google Cloud Storage.
 
 ### Configure upload and download limits (optional)
 
 You can also configure settings for uploading and downloading limits (such as the maximum upload file size and number of the download, as well as expiry time).
 
-See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-send/blob/main/docs/configuring-send.md#configure-upload-and-download-limits-optional) on the role's documentation for details about how to set up.
+See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-docmost/blob/main/docs/configuring-docmost.md#configure-upload-and-download-limits-optional) on the role's documentation for details about how to set up.
 
-**To mitigate the risk of your server being overwhelmed by legal / illegal use, it is important to set proper limits for the server.** For example, if you intend to use the Docmost instance for sending relatively small files to a small group of your friends or family, then you can make the default limits stricter as below:
+**To mitigate the risk of your server being overwhelmed by legal / illegal use, it is important to set proper limits for the server.** For example, if you intend to use the Docmost instance for docmosting relatively small files to a small group of your friends or family, then you can make the default limits stricter as below:
 
 ```yaml
 # Set maximum upload file size to 100 MB (default: 2 GB, 2147483648 in bytes)
-send_environment_variable_max_file_size: 104857600
+docmost_environment_variable_max_file_size: 104857600
 
 # Set maximum upload expiry time to 2 days (default: 7 days, 604800 seconds)
-send_environment_variable_max_expire_seconds: 172800
+docmost_environment_variable_max_expire_seconds: 172800
 
 # Set maximum number of downloads to 10 (default: 20)
-send_environment_variable_max_downloads: 10
+docmost_environment_variable_max_downloads: 10
 ```
 
 💡 If your server does not have enough free disk space or you are worried about it, it is worth considering to use cloud storage instead of the local filesystem.
@@ -140,7 +140,7 @@ mash_example_com
 
 [mash_example_com]
 mash.example.com ansible_host=YOUR_SERVER_IP_ADDRESS_HERE
-mash.example.com-send-deps ansible_host=YOUR_SERVER_IP_ADDRESS_HERE
+mash.example.com-docmost-deps ansible_host=YOUR_SERVER_IP_ADDRESS_HERE
 …
 ```
 
@@ -150,9 +150,9 @@ You can just add an entry for the supplementary host to `[mash_example_com]` if 
 
 ##### Create `vars.yml` for the dedicated instance
 
-Then, create a new directory where `vars.yml` for the supplementary host is stored. If `mash.example.com` is your main host, name the directory as `mash.example.com-send-deps`. Its path therefore will be `inventory/host_vars/mash.example.com-send-deps`.
+Then, create a new directory where `vars.yml` for the supplementary host is stored. If `mash.example.com` is your main host, name the directory as `mash.example.com-docmost-deps`. Its path therefore will be `inventory/host_vars/mash.example.com-docmost-deps`.
 
-After creating the directory, add a new `vars.yml` file inside it with a content below. It will have running the playbook create a `mash-send-valkey` instance on the new host, setting `/mash/send-valkey` to the base directory of the dedicated Valkey instance.
+After creating the directory, add a new `vars.yml` file inside it with a content below. It will have running the playbook create a `mash-docmost-valkey` instance on the new host, setting `/mash/docmost-valkey` to the base directory of the dedicated Valkey instance.
 
 ```yaml
 # This is vars.yml for the supplementary host of Docmost.
@@ -169,8 +169,8 @@ After creating the directory, add a new `vars.yml` file inside it with a content
 mash_playbook_generic_secret_key: ''
 
 # Override service names and directory path prefixes
-mash_playbook_service_identifier_prefix: 'mash-send-'
-mash_playbook_service_base_directory_name_prefix: 'send-'
+mash_playbook_service_identifier_prefix: 'mash-docmost-'
+mash_playbook_service_base_directory_name_prefix: 'docmost-'
 
 ########################################################################
 #                                                                      #
@@ -201,31 +201,31 @@ Having configured `vars.yml` for the dedicated instance, add the following confi
 ```yaml
 ########################################################################
 #                                                                      #
-# send                                                                 #
+# docmost                                                              #
 #                                                                      #
 ########################################################################
 
 # Add the base configuration as specified above
 
 # Point Docmost to its dedicated Valkey instance
-send_config_redis_hostname: mash-send-valkey
+docmost_config_redis_hostname: mash-docmost-valkey
 
-# Make sure the Docmost service (mash-send.service) starts after its dedicated Valkey service (mash-send-valkey.service)
-send_systemd_required_services_list_custom:
-  - "mash-send-valkey.service"
+# Make sure the Docmost service (mash-docmost.service) starts after its dedicated Valkey service (mash-docmost-valkey.service)
+docmost_systemd_required_services_list_custom:
+  - "mash-docmost-valkey.service"
 
-# Make sure the Docmost service (mash-send.service) is connected to the container network of its dedicated Valkey service (mash-send-valkey)
-send_container_additional_networks_custom:
-  - "mash-send-valkey"
+# Make sure the Docmost service (mash-docmost.service) is connected to the container network of its dedicated Valkey service (mash-docmost-valkey)
+docmost_container_additional_networks_custom:
+  - "mash-docmost-valkey"
 
 ########################################################################
 #                                                                      #
-# /send                                                                #
+# /docmost                                                             #
 #                                                                      #
 ########################################################################
 ```
 
-Running the installation command will create the dedicated Valkey instance named `mash-send-valkey`.
+Running the installation command will create the dedicated Valkey instance named `mash-docmost-valkey`.
 
 #### Setting up a shared Valkey instance
 
@@ -251,26 +251,26 @@ valkey_enabled: true
 
 ########################################################################
 #                                                                      #
-# send                                                                 #
+# docmost                                                              #
 #                                                                      #
 ########################################################################
 
 # Add the base configuration as specified above
 
 # Point Docmost to the shared Valkey instance
-send_config_redis_hostname: "{{ valkey_identifier }}"
+docmost_config_redis_hostname: "{{ valkey_identifier }}"
 
-# Make sure the Docmost service (mash-send.service) starts after its dedicated Valkey service (mash-send-valkey.service)
-send_systemd_required_services_list_custom:
+# Make sure the Docmost service (mash-docmost.service) starts after its dedicated Valkey service (mash-docmost-valkey.service)
+docmost_systemd_required_services_list_custom:
   - "{{ valkey_identifier }}.service"
 
-# Make sure the Docmost container is connected to the container network of its dedicated Valkey service (mash-send-valkey)
-send_container_additional_networks_custom:
+# Make sure the Docmost container is connected to the container network of its dedicated Valkey service (mash-docmost-valkey)
+docmost_container_additional_networks_custom:
   - "{{ valkey_container_network }}"
 
 ########################################################################
 #                                                                      #
-# /send                                                                #
+# /docmost                                                             #
 #                                                                      #
 ########################################################################
 ```
@@ -279,16 +279,16 @@ Running the installation command will create the shared Valkey instance named `m
 
 ## Installation
 
-If you have decided to install the dedicated Valkey instance for Docmost, make sure to run the [installing](../installing.md) command for the supplementary host (`mash.example.com-send-deps`) first, before running it for the main host (`mash.example.com`).
+If you have decided to install the dedicated Valkey instance for Docmost, make sure to run the [installing](../installing.md) command for the supplementary host (`mash.example.com-docmost-deps`) first, before running it for the main host (`mash.example.com`).
 
 Note that running the `just` commands for installation (`just install-all` or `just setup-all`) automatically takes care of the order. See [here](../running-multiple-instances.md#1-adjust-hosts) for more details about it.
 
 ## Usage
 
-After installation, your Docmost instance becomes available at the URL specified with `send_hostname` and `send_path_prefix`.
+After installation, your Docmost instance becomes available at the URL specified with `docmost_hostname` and `docmost_path_prefix`.
 
-See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-send/blob/main/docs/configuring-send.md#usage) on the role's documentation for details about its [CLI client](https://github.com/timvisee/ffsend). The instruction to takedown illegal materials is also available [here](https://github.com/mother-of-all-self-hosting/ansible-role-send/blob/main/docs/configuring-send.md#takedown-illegal-materials).
+See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-docmost/blob/main/docs/configuring-docmost.md#usage) on the role's documentation for details about its [CLI client](https://github.com/timvisee/ffdocmost). The instruction to takedown illegal materials is also available [here](https://github.com/mother-of-all-self-hosting/ansible-role-docmost/blob/main/docs/configuring-docmost.md#takedown-illegal-materials).
 
 ## Troubleshooting
 
-See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-send/blob/main/docs/configuring-send.md#troubleshooting) on the role's documentation for details.
+See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-docmost/blob/main/docs/configuring-docmost.md#troubleshooting) on the role's documentation for details.
