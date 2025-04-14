@@ -50,11 +50,11 @@ Due to an [upstream bug](https://github.com/linuxserver/docker-plex/issues/422) 
 
 1. Run [installation](../installing.md) with `plex_claim_token` set to `""`
 2. Obtain a `plex_claim_token` from https://plex.tv/claim. 
-3. Run [installation](../installing.md) again with `plex_claim_token` set to token you obtained
+3. Run [installation](../installing.md) again with `plex_claim_token` set to the token you obtained
 
 If you do not follow these steps you will get an error like: `s6-applyuidgid: fatal: unable to set supplementary group list: Operation not permitted`. If this happens simply follow the steps above.
 
-Once the server has been successfully claimed you can once again remove the `plex_claim_token` variable.
+Once the server has been successfully claimed you can remove the `plex_claim_token` variable.
 
 ## Usage
 
