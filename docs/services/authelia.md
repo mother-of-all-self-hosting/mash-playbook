@@ -13,8 +13,8 @@ Authelia has 2 [modes of operation](#modes-of-operation) (Forward-Auth and OpenI
 This service requires the following other services:
 
 - a database
-  - (optional) a [Postgres](postgres.md) database - if enabled for your Ansible inventory host, Authelia will be connected to the Postgres server automatically
-  - (optional) a MySQL / [MariaDB](mariadb.md) database - if enabled for your Ansible inventory host (and you don't also enable Postgres), Authelia will be connected to the MariaDB server automatically
+  - (optional) a [Postgres](postgres.md) database — if enabled for your Ansible inventory host, Authelia will be connected to the Postgres server automatically
+  - (optional) a MySQL / [MariaDB](mariadb.md) database — if enabled for your Ansible inventory host (and you don't also enable Postgres), Authelia will be connected to the MariaDB server automatically
   - or SQLite, used by default when none of the above database choices is enabled for your Ansible inventory host
 
 - (optional, but recommended) [Valkey](valkey.md)
@@ -195,6 +195,6 @@ If a dedicated variable is not available for you to use or if you wish to overri
 
 ## Related services
 
-- [authentik](authentik.md) - An open-source Identity Provider focused on flexibility and versatility.
-- [Keycloak](keycloak.md) - An open source identity and access management solution
-- [OAuth2-Proxy](oauth2-proxy.md) - A reverse proxy and static file server that provides authentication using OpenID Connect Providers (Google, GitHub, [Authentik](authentik.md), [Keycloak](keycloak.md), and others) to SSO-protect services which do not support SSO natively
+- [authentik](authentik.md) — An open-source Identity Provider focused on flexibility and versatility.
+- [Keycloak](keycloak.md) — An open source identity and access management solution
+- [OAuth2-Proxy](oauth2-proxy.md) — A reverse proxy and static file server that provides authentication using OpenID Connect Providers (Google, GitHub, [Authentik](authentik.md), [Keycloak](keycloak.md), and others) to SSO-protect services which do not support SSO natively

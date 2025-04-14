@@ -66,7 +66,7 @@ The [default configuration](https://gitlab.com/etke.cc/roles/ssh/-/blob/main/def
 
 With this configuration, the default `/etc/ssh/sshd_config` file on your server will be replaced by a new one, managed by the [ssh role](https://gitlab.com/etke.cc/roles/ssh) (see its [templates/etc/ssh/sshd_config.j2](https://gitlab.com/etke.cc/roles/ssh/-/blob/main/templates/etc/ssh/sshd_config.j2) file).
 
-There are various configuration options - check the defaults and adjust them to your needs.
+There are various configuration options — check the defaults and adjust them to your needs.
 
 ### cleanup
 

@@ -52,8 +52,12 @@
         - install-all
     # /role-specific:timesync
 
+    # system
+    # see /docs/services/system.md
+
     # role-specific:swap
-    - role: galaxy/swap
+    - when: system_swap_enabled | bool
+      role: galaxy/swap
     # /role-specific:swap
 
     # role-specific:cleanup
@@ -69,6 +73,8 @@
     - when: system_security_fail2ban_enabled | bool
       role: galaxy/fail2ban
     # /role-specific:fail2ban
+
+    # /system
 
     # role-specific:postgres
     # This role exposes various tags (setup-postgres, setup-all, upgrade-postgres, import-postgres, etc.), so we don't tag it here.
@@ -94,6 +100,14 @@
     # role-specific:adguard_home
     - role: galaxy/adguard_home
     # /role-specific:adguard_home
+
+    # role-specific:anki
+    - role: galaxy/anki
+    # /role-specific:anki
+
+    # role-specific:anonymousoverflow
+    - role: galaxy/anonymousoverflow
+    # /role-specific:anonymousoverflow
 
     # role-specific:appsmith
     - role: galaxy/appsmith
@@ -159,6 +173,10 @@
     - role: galaxy/docker_registry_purger
     # /role-specific:docker_registry_purger
 
+    # role-specific:dokuwiki
+    - role: galaxy/dokuwiki
+    # /role-specific:dokuwiki
+
     # role-specific:echoip
     - role: galaxy/echoip
     # /role-specific:echoip
@@ -170,6 +188,10 @@
     # role-specific:etcd
     - role: galaxy/etcd
     # /role-specific:etcd
+
+    # role-specific:etherpad
+    - role: galaxy/etherpad
+    # /role-specific:etherpad
 
     # role-specific:exim_relay
     - role: galaxy/exim_relay
@@ -239,6 +261,10 @@
     - role: galaxy/hubsite
     # /role-specific:hubsite
 
+    # role-specific:ihatemoney
+    - role: galaxy/ihatemoney
+    # /role-specific:ihatemoney
+
     # role-specific:ilmo
     - role: galaxy/ilmo
     # /role-specific:ilmo
@@ -255,6 +281,10 @@
     - role: galaxy/jitsi
     # /role-specific:jitsi
 
+    # role-specific:joplin_server
+    - role: galaxy/joplin_server
+    # /role-specific:joplin_server
+
     # role-specific:keycloak
     - role: galaxy/keycloak
     # /role-specific:keycloak
@@ -262,6 +292,10 @@
     # role-specific:keydb
     - role: galaxy/keydb
     # /role-specific:keydb
+
+    # role-specific:labelstudio
+    - role: galaxy/labelstudio
+    # /role-specific:labelstudio
 
     # role-specific:lago
     - role: galaxy/lago
@@ -307,6 +341,10 @@
     - role: galaxy/notfellchen
     # /role-specific:notfellchen
 
+    # role-specific:ntfy
+    - role: galaxy/ntfy
+    # /role-specific:ntfy
+
     # role-specific:oauth2_proxy
     - role: galaxy/oauth2_proxy
     # /role-specific:oauth2_proxy
@@ -346,6 +384,10 @@
     # role-specific:postgis
     - role: galaxy/postgis
     # /role-specific:postgis
+
+    # role-specific:privatebin
+    - role: galaxy/privatebin
+    # /role-specific:privatebin
 
     # role-specific:prometheus
     - role: galaxy/prometheus
@@ -395,6 +437,10 @@
     - role: galaxy/redis
     # /role-specific:redis
 
+    # role-specific:redlib
+    - role: galaxy/redlib
+    # /role-specific:redlib
+
     # role-specific:rumqttd
     - role: galaxy/rumqttd
     # /role-specific:rumqttd
@@ -406,6 +452,10 @@
     # role-specific:semaphore
     - role: galaxy/semaphore
     # /role-specific:semaphore
+
+    # role-specific:send
+    - role: galaxy/send
+    # /role-specific:send
 
     # role-specific:soft_serve
     - role: galaxy/soft_serve
@@ -478,6 +528,10 @@
     # role-specific:writefreely
     - role: galaxy/writefreely
     # /role-specific:writefreely
+
+    # role-specific:yourls
+    - role: galaxy/yourls
+    # /role-specific:yourls
 
     # role-specific:roundcube
     - role: galaxy/roundcube

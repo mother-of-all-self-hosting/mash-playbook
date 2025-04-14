@@ -6,7 +6,7 @@
 
 This service requires the following other services:
 
-- [Traefik](traefik.md) - a reverse-proxy server 
+- [Traefik](traefik.md) — a reverse-proxy server
 
 
 ## Configuration

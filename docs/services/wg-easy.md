@@ -66,9 +66,59 @@ You can remove the `wg_easy_path_prefix` variable definition, to make it default
 
 **In addition** to ports `80` and `443` exposed by the [Traefik](traefik.md) reverse-proxy, the following ports will be exposed by the WireGuard containers on **all network interfaces**:
 
-- `51820` over **UDP**, controlled by `wg_easy_environment_variables_additional_variable_wg_port` and `wg_easy_container_wireguard_bind_port` - used for [Wireguard](https://www.wireguard.com/) connections
+- `51820` over **UDP**, controlled by `wg_easy_environment_variables_additional_variable_wg_port` and `wg_easy_container_wireguard_bind_port` — used for [Wireguard](https://www.wireguard.com/) connections
 
 Docker automatically opens these ports in the server's firewall, so you **likely don't need to do anything**. If you use another firewall in front of the server, you may need to adjust it.
+
+### Adjusting the host's iptables configuration
+
+If you're running `iptables`/`ip6tables` on the host with a custom config (which whitelists some traffic and denies everything else), you may find that WireGuard clients cannot reach certain ports on server where wg-easy runs via its LAN IP address (e.g. `192.168.1.50`).
+
+You may wish to adjust your iptables configuration (typically `/etc/iptables/iptables.rules`) like this:
+
+```iptables
+# ... Additional configuration ...
+
+# Allow all private IPv4 ranges (RFC1918 private addresses) to access us via SSH.
+#
+# This allows wg-easy WireGuard clients which try to speak to us via our LAN IP to be able to reach us.
+# They "exit" through mash-wg-easy's container subnet (e.g. 172.18.0.1).
+-A INPUT -m tcp -p tcp --dport 22 -s 10.0.0.0/8 -j ACCEPT
+-A INPUT -m tcp -p tcp --dport 22 -s 172.16.0.0/12 -j ACCEPT
+-A INPUT -m tcp -p tcp --dport 22 -s 192.168.0.0/16 -j ACCEPT
+
+# Allow private IPv4 ranges to access us via HTTP.
+# This is like the above private IPv4 range rules for SSH.
+-A INPUT -m tcp -p tcp --dport 80 -s 10.0.0.0/8 -j ACCEPT
+-A INPUT -m tcp -p tcp --dport 80 -s 172.16.0.0/12 -j ACCEPT
+-A INPUT -m tcp -p tcp --dport 80 -s 192.168.0.0/16 -j ACCEPT
+
+# ... Additional configuration ...
+```
+
+or for ip6tables (typically `/etc/iptables/ip6tables.rules`) like this:
+
+```iptables
+# ... Additional configuration ...
+
+# Allow all private IPv6 ranges to access us via SSH.
+#
+# This allows wg-easy WireGuard clients which try to speak to us via our LAN IP to be able to reach us.
+# They "exit" through mash-wg-easy's container subnet (e.g. 172.18.0.1).
+# Unique Local Addresses (ULA)
+-A INPUT -p tcp --dport 22 -s fc00::/7 -j ACCEPT
+# Link-local addresses
+-A INPUT -p tcp --dport 22 -s fe80::/10 -j ACCEPT
+
+# Allow private IPv6 ranges to access us via HTTP.
+# This is like the above private IPv6 range rules for SSH.
+-A INPUT -m tcp -p tcp --dport 80 -s fc00::/7 -j ACCEPT
+-A INPUT -m tcp -p tcp --dport 80 -s fe80::/10 -j ACCEPT
+
+# ... Additional configuration ...
+```
+
+After doing so, you'll wish to restart `iptables`/`ip6tables`. Restarting iptables typically necessitates restarting Docker (`docker.service`) as well.
 
 ### Additional configuration
 
@@ -88,9 +138,8 @@ After installation, you can go to the WireGuard Easy URL, as defined in `wg_easy
 
 You can authenticate with the password set in `wg_easy_environment_variables_additional_variable_password`.
 
-You can then create various Clients and import the configuration for them onto your devices - either by downloading a file or by scanning a QR code.
-
+You can then create various Clients and import the configuration for them onto your devices — either by downloading a file or by scanning a QR code.
 
 ## Recommended other services
 
-- [AdGuard Home](adguard-home.md) - A network-wide DNS software for blocking ads & tracking
+- [AdGuard Home](adguard-home.md) — A network-wide DNS software for blocking ads & tracking

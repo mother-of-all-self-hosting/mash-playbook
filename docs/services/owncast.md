@@ -37,7 +37,7 @@ owncast_hostname: live.example.com
 
 By default, the following ports will be exposed by the container on **all network interfaces**:
 
-- `1935` over **TCP**, controlled by `owncast_container_rtmp_bind_port` - used for TCP based [RTMP](https://en.wikipedia.org/wiki/Real-Time_Messaging_Protocol)
+- `1935` over **TCP**, controlled by `owncast_container_rtmp_bind_port` — used for TCP based [RTMP](https://en.wikipedia.org/wiki/Real-Time_Messaging_Protocol)
 
 Docker automatically opens this port in the server's firewall, so you **likely don't need to do anything**. If you use another firewall in front of the server, you may need to adjust it.
 

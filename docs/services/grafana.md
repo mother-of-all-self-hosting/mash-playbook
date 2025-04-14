@@ -41,21 +41,36 @@ In the example configuration above, we configure the service to be hosted at `ht
 
 You can remove the `grafana_path_prefix` variable definition, to make it default to `/`, so that the service is served at `https://mash.example.com/`.
 
-### Configuring data sources
+### File provisioning
 
-Grafana is merely a visualization tool. It needs to pull data from a metrics (time-series) database, like [Prometheus](prometheus.md).
+A fully configured Grafana instance is a system of many components, such as dashboards, data sources, notification points, and other resources. All of these things can be configured via the UI, but many can also be configured directly via `File provisioning`.
 
-You can add multiple data sources to Grafana.
+Below, we show a few examples of using file provisioning, keep in mind that **If you're enabling multiple of one component, you need to "merge" the configurations**. That is, don't define `grafana_provisioning_datasources_datasources` twice, but combine them.
 
-Below, we show a few examples of connecting Grafana to local datasources (running in containers on the same machine).
-**If you're enabling multiple, you need to "merge" the configurations**. That is, don't define `grafana_provisioning_datasources` or `grafana_container_additional_networks_custom` twice, but combine them.
+To see all components with file provisioning support see the roles [defaults/main.yml](https://github.com/mother-of-all-self-hosting/ansible-role-grafana/blob/main/defaults/main.yml) file and search for `grafana_provisioning_`
+
+#### Datasources
+
+For Grafana to create graphs, charts, and alerts it needs to pull data from a metrics (time-series) database, like [Prometheus](prometheus.md), this can be done via the `grafana_provisioning_datasources_datasources` variable.
+
+By default Grafana will automatically delete previously provisioned data sources when they’re removed from `grafana_provisioning_datasources_datasources` via the `grafana_provisioning_datasources_prune` variable. If you want to instead manually delete provisioned datasources the following configuration applies:
+
+```yaml
+grafana_provisioning_datasources_prune: false
+grafana_provisioning_datasources_deleteDatasources:
+  - name: Prometheus
+    orgId: 1
+    
+  - name: Loki
+    orgId: 1
+```
 
 #### Integrating with a local Prometheus instance
 
 If you're installing [Prometheus](prometheus.md) on the same server, you can hook Grafana to it over the container network with the following **additional** configuration:
 
 ```yaml
-grafana_provisioning_datasources:
+grafana_provisioning_datasources_datasources:
   - name: Prometheus
     type: prometheus
     access: proxy
@@ -80,7 +95,7 @@ For connecting to a **remote** Prometheus instance, you may need to adjust this 
 If you're installing [Grafana Loki](grafana-loki.md) on the same server, you can hook Grafana to it over the container network with the following **additional** configuration:
 
 ```yaml
-grafana_provisioning_datasources:
+grafana_provisioning_datasources_datasources:
   - name: Loki (your-tenant-id)
     type: loki
     access: proxy
@@ -102,6 +117,48 @@ grafana_container_additional_networks_custom:
 For connecting to a **remote** Loki instance, you may need to adjust this configuration.
 
 If you're installing [Promtail](./promtail.md) on the same server as Loki, by default it's configured to send `mash` as the tenant ID.
+
+#### Alerts
+
+With alerts you can recieve notifications when specific conditions regarding your data are met. Since there is no `prune` option (like datasources) you must add your alert to `grafana_provisioning_alerts_deleteRules` when you want it removed.
+
+The below alert example is truncated, for a full example see the [official example](https://github.com/grafana/provisioning-alerting-examples/blob/main/config-files/grafana/provisioning/alerting/alert_rules.yaml).
+
+As you can see in the official example these YAML alerts are not very human readable. It is reccomended you create your alert in the UI and then select the `Export rules` option to create the proper values.
+
+```yaml
+grafana_provisioning_alerts_groups:
+  - orgId: 1
+    name: my_rule_group
+    folder: my_first_folder
+    interval: 60s
+    rules:
+      - uid: my_id_1
+      
+grafana_provisioning_alerts_deleteRules:
+  - orgId: 1
+    uid: my_id_1
+```
+
+#### Contact points
+
+To specify **where** a firing alert should be routed to (Slack, Discord, Webhook URL) you must configure a contact point. Similarly to alerts there is no prune support, so you must add your alert to `grafana_provisioning_contact_points_contactPoints` when you want it removed.
+
+```yaml
+grafana_provisioning_contact_points_contactPoints:
+  - orgId: 1
+    name: Matrix
+    receivers:
+      - uid: first_uid
+        type: webhook
+        disableResolveMessage: false
+        settings:
+          url: "https://matrix.example.com/_matrix/maubot/plugin/bot.maubot.alertbot/webhook/!roomid"
+          
+grafana_provisioning_contact_points_deleteContactPoints:
+  - orgId: 1
+    uid: first_uid
+```
 
 ### Integrating with Prometheus Node Exporter
 

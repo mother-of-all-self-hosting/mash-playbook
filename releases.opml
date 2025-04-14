@@ -18,8 +18,10 @@
     <outline text="couchdb" title="couchdb" type="rss" htmlUrl="https://github.com/apache/couchdb" xmlUrl="https://github.com/apache/couchdb/releases.atom" />
     <outline text="docker_registry" title="docker_registry" type="rss" htmlUrl="https://github.com/distribution/distribution/" xmlUrl="https://github.com/distribution/distribution//releases.atom" />
     <outline text="docker_registry_proxy" title="docker_registry_proxy" type="rss" htmlUrl="https://github.com/etkecc/docker-registry-proxy" xmlUrl="https://github.com/etkecc/docker-registry-proxy/releases.atom" />
+    <outline text="dokuwiki" title="dokuwiki" type="rss" htmlUrl="https://github.com/dokuwiki/docker" xmlUrl="https://github.com/dokuwiki/docker/releases.atom" />
     <outline text="echoip" title="echoip" type="rss" htmlUrl="https://github.com/mpolden/echoip" xmlUrl="https://github.com/mpolden/echoip/releases.atom" />
     <outline text="etcd" title="etcd" type="rss" htmlUrl="https://github.com/etcd-io/etcd" xmlUrl="https://github.com/etcd-io/etcd/releases.atom" />
+    <outline text="etherpad" title="etherpad" type="rss" htmlUrl="https://github.com/ether/etherpad-lite" xmlUrl="https://github.com/ether/etherpad-lite/releases.atom" />
     <outline text="exim_relay" title="exim_relay" type="rss" htmlUrl="https://github.com/devture/exim-relay" xmlUrl="https://github.com/devture/exim-relay/releases.atom" />
     <outline text="firezone" title="firezone" type="rss" htmlUrl="https://github.com/firezone/firezone" xmlUrl="https://github.com/firezone/firezone/releases.atom" />
     <outline text="focalboard" title="focalboard" type="rss" htmlUrl="https://github.com/mattermost/focalboard" xmlUrl="https://github.com/mattermost/focalboard/releases.atom" />
@@ -38,6 +40,7 @@
     <outline text="jitsi" title="jitsi" type="rss" htmlUrl="https://github.com/jitsi/docker-jitsi-meet" xmlUrl="https://github.com/jitsi/docker-jitsi-meet/releases.atom" />
     <outline text="keycloak" title="keycloak" type="rss" htmlUrl="https://github.com/keycloak/keycloak" xmlUrl="https://github.com/keycloak/keycloak/releases.atom" />
     <outline text="keydb" title="keydb" type="rss" htmlUrl="https://github.com/Snapchat/KeyDB" xmlUrl="https://github.com/Snapchat/KeyDB/releases.atom" />
+    <outline text="labelstudio" title="labelstudio" type="rss" htmlUrl="https://github.com/labelstudio/labelstudio" xmlUrl="https://github.com/labelstudio/labelstudio/releases.atom" />
     <outline text="lago" title="lago" type="rss" htmlUrl="https://github.com/lago/lago" xmlUrl="https://github.com/lago/lago/releases.atom" />
     <outline text="languagetool" title="languagetool" type="rss" htmlUrl="https://github.com/Erikvl87/docker-languagetool" xmlUrl="https://github.com/Erikvl87/docker-languagetool/releases.atom" />
     <outline text="linkding" title="linkding" type="rss" htmlUrl="https://github.com/sissbruecker/linkding" xmlUrl="https://github.com/sissbruecker/linkding/releases.atom" />
@@ -49,6 +52,7 @@
     <outline text="navidrome" title="navidrome" type="rss" htmlUrl="https://github.com/navidrome/navidrome" xmlUrl="https://github.com/navidrome/navidrome/releases.atom" />
     <outline text="netbox" title="netbox" type="rss" htmlUrl="https://github.com/netbox-community/netbox-docker/" xmlUrl="https://github.com/netbox-community/netbox-docker//releases.atom" />
     <outline text="nextcloud" title="nextcloud" type="rss" htmlUrl="https://github.com/nextcloud/server" xmlUrl="https://github.com/nextcloud/server/releases.atom" />
+    <outline text="ntfy" title="ntfy" type="rss" htmlUrl="https://github.com/binwiederhier/ntfy" xmlUrl="https://github.com/binwiederhier/ntfy/releases.atom" />
     <outline text="oauth2_proxy" title="oauth2_proxy" type="rss" htmlUrl="https://github.com/oauth2-proxy/oauth2-proxy" xmlUrl="https://github.com/oauth2-proxy/oauth2-proxy/releases.atom" />
     <outline text="outline" title="outline" type="rss" htmlUrl="https://github.com/outline/outline" xmlUrl="https://github.com/outline/outline/releases.atom" />
     <outline text="overseerr" title="overseerr" type="rss" htmlUrl="https://github.com/sct/overseerr" xmlUrl="https://github.com/sct/overseerr/releases.atom" />

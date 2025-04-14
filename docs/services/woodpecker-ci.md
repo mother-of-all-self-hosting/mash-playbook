@@ -10,7 +10,7 @@ A Woodpecker CI installation contains 2 components:
 - one [Woodpecker CI **server**](#woodpecker-ci-server) (web interface, central management node)
 - one or more [Woodpecker CI **agent**](#woodpecker-ci-agent) instances (which run your CI jobs)
 
-It's better to run the **agent** instances elsewhere (not on the source-control server or a server serving anything of value) - on a machine that doesn't contain sensitive data.
+It's better to run the **agent** instances elsewhere (not on the source-control server or a server serving anything of value) — on a machine that doesn't contain sensitive data.
 
 Small installations which only run trusted CI jobs can afford to run an agent instance on the source-control server itself.
 
@@ -128,7 +128,7 @@ As mentioned above, unless you completely trust your CI workloads, it's best to 
 
 This service requires the following other services:
 
-- a Woodpecker CI Server - installed via this playbook or otherwise
+- a Woodpecker CI Server — installed via this playbook or otherwise
 
 ### Configuration
 
@@ -148,11 +148,11 @@ woodpecker_ci_agent_enabled: true
 
 # This needs to point to the server's gRPC host:port.
 # If your Woodpecker CI Server is deployed using this playbook, its
-# gRPC port will likely be 443.  E.g., ci.example.com:443.
+# gRPC port will likely be 443. E.g., ci.example.com:443.
 woodpecker_ci_agent_config_server: ''
 
 # This playbook only supports agent-specific secrets, i.e., it is not recommended to use
-# a shared secret between Woodpecker CI Server and all of its agents.  Please refer to
+# a shared secret between Woodpecker CI Server and all of its agents. Please refer to
 # the following upstream documentation in order to learn how to register an agent and
 # obtain a secret for it:
 #

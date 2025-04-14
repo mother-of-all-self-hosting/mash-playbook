@@ -1,3 +1,8 @@
+# SPDX-FileCopyrightText: 2023 - 2025 Slavi Pantaleev
+# SPDX-FileCopyrightText: 2023 Julian-Samuel Gebühr
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
 ---
 
 # Below is an example which installs a few services on the host, in different configuration.
@@ -33,6 +38,23 @@ mash_playbook_docker_installation_enabled: true
 # To disable Docker SDK for Python installation (in case you'd be installing the SDK in another way),
 # remove the line below.
 devture_docker_sdk_for_python_installation_enabled: true
+
+# Controls whether container networks will be created with IPv6 support.
+#
+# If you also have IPv6 support on your server/network and AAAA DNS records pointing to the server,
+# enabling this will effectively give you full public IPv6 connectivity (powered by NAT66).
+#
+# We recommend leaving this enabled even if you don't currently have IPv6 connectivity on your server/network.
+# This way, once you eventually get IPv6 connectivity, you won't have to change anything (besides DNS records).
+#
+# Flipping this setting later on requires manual work (stopping services, deleting and recreating all container networks).
+#
+# In the future, this setting will likely default to `true`, so if you really want IPv6 disabled, explicitly set this to `false`.
+#
+# People managing Docker themselves and running an older Docker version will need additional configuration.
+#
+# Learn more in `docs/configuring-ipv6.md`.
+devture_systemd_docker_base_ipv6_enabled: true
 
 ########################################################################
 #                                                                      #
@@ -120,14 +142,24 @@ postgres_connection_password: ''
 #
 # exim-relay then gives you a centralized place for configuring email-sending.
 
+# By default, exim-relay attempts to deliver emails directly. It may or
+# may not work, depending on your domain configuration.
+#
+# Exim-relay supports DomainKeys Identified Mail (DKIM), and you may
+# probably want to consider enabling it in order to improve deliverability.
+# Without proper authentication setting, your outgoing email is most
+# likely to be quarantined as spam at recipient's mail servers.
+#
+# Alternatively, you can have the exim-relay use via an external SMTP
+# server to relay emails.
+#
+# See docs/services/exim-relay.md for details about configuration.
+
 exim_relay_enabled: true
 
 exim_relay_hostname: mash.example.com
 
 exim_relay_sender_address: "someone@{{ exim_relay_hostname }}"
-
-# By default, exim-relay attempts to deliver emails directly.
-# To make it relay via an external SMTP server, see docs/services/exim-relay.md
 
 ########################################################################
 #                                                                      #
@@ -170,16 +202,16 @@ miniflux_admin_password: a-strong-password-here
 #                                                                      #
 ########################################################################
 
-# Learn more about the Uptime-kuma service in docs/services/uptime-kuma.md
+# Learn more about the Uptime Kuma service in docs/services/uptime-kuma.md
 #
 # This service is only here as an example. If you don't wish to use the
-# Uptime-kuma service, remove the whole section.
+# Uptime Kuma service, remove the whole section.
 
 uptime_kuma_enabled: true
 
 uptime_kuma_hostname: uptime-kuma.example.com
 
-# For now, hosting uptime-kuma under a path is not supported.
+# For now, hosting Uptime Kuma under a path is not supported.
 # See: https://github.com/louislam/uptime-kuma/issues/147
 # uptime_kuma_path_prefix: /uptime-kuma
 
