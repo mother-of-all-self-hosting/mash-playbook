@@ -46,7 +46,7 @@ plex_claim_token: ""
 
 ## First-time setup
 
-Due to an [upstream bug](https://github.com/linuxserver/docker-plex/issues/422) there is a bit of dance you must do when setting up Plex for the first time. The dance is as follows:
+Due to an [upstream bug](https://github.com/linuxserver/docker-plex/issues/422) there is a bit of a dance you must do when setting up Plex for the first time. The dance is as follows:
 
 1. Run [installation](../installing.md) with `plex_claim_token` set to `""`
 2. Obtain a `plex_claim_token` from https://plex.tv/claim. 
@@ -58,7 +58,7 @@ Once the server has been successfully claimed you can remove the `plex_claim_tok
 
 ## Usage
 
-Once you have completed [first-time setup](first-time-setup) you should access your new Plex instance at the URL you've chosen. Follow the prompts to finish setup. When prompted to add your media libraries keep in mind that it will be the path **inside** the container, most likely some variation of your `plex_media_bind_path` variable.
+Once you have completed [first-time setup](#first-time-setup) you should access your new Plex instance at the URL you've chosen. Follow the prompts to finish setup. When prompted to add your media libraries keep in mind that it will be the path **inside** the container, most likely some variation of your `plex_media_bind_path` variable.
 
 ### Exposing ports 
 
@@ -87,11 +87,11 @@ plex_container_dlna_tcp_bind_port: 32469
 plex_container_roku_bind_port: 8324
 
 # A older Bonjour/Avahi network discovery port
-# You probably dont need this
+# You probably don't need this
 plex_container_bonjour_port: 5353
 ```
 Upstream documentation #1: https://support.plex.tv/articles/201543147-what-network-ports-do-i-need-to-allow-through-my-firewall/
-Upsteam documentation #2: https://docs.linuxserver.io/images/docker-plex/#umask-for-running-applications
+Upstream documentation #2: https://docs.linuxserver.io/images/docker-plex/#umask-for-running-applications
 
 ### Hardware Acceleration
 
@@ -114,7 +114,7 @@ Upstream documentation: https://docs.linuxserver.io/images/docker-plex/#intelati
 
 #### NVIDIA
 
-For NVIDIA GPUs enabling hardware acceleration is a little bit tricky, since it (currently) requires the manual installation of the [NVIDIA container runtime](https://github.com/NVIDIA/nvidia-container-toolkit). Consult your distributions documentation on installing this.
+For NVIDIA GPUs enabling hardware acceleration is a little bit tricky since it (currently) requires the manual installation of the [NVIDIA container runtime](https://github.com/NVIDIA/nvidia-container-toolkit). Consult your distribution's documentation on installing this.
 
 Once the runtime is installed and available, add the following configuration:
 
@@ -166,10 +166,10 @@ plex_container_read_only: false
 
 # Valid settings for 'plex_version_environment_variable' are:
 #
-# 1. docker: Let Docker handle the Plex Version, we keep our Dockerhub Endpoint up to date with the latest public builds.
-# 2. latest: will update plex to the latest version available that you are entitled to.
-# 3. public: will update plexpass users to the latest public version, useful for plexpass users that don't want to be on the bleeding edge but still want the latest public updates.
-# 4. <specific-version>: will select a specific version (eg 0.9.12.4.1192-9a47d21) of plex to install, note you cannot use this to access plexpass versions if you do not have plexpass.
+# 1: docker: Let Docker handle the Plex Version, we keep our Dockerhub Endpoint up to date with the latest public builds.
+# 2: latest: will update plex to the latest version available that you are entitled to.
+# 3: public: will update plexpass users to the latest public version, useful for plexpass users that don't want to be on the bleeding edge but still want the latest public updates.
+# 4: <specific-version>: will select a specific version (eg 0.9.12.4.1192-9a47d21) of plex to install, note you cannot use this to access plexpass versions if you do not have plexpass.
 #
 # NOTE -> You cannot update to a PlexPass only (beta) version if you are not logged in with a PlexPass account
 plex_version_environment_variable: latest
