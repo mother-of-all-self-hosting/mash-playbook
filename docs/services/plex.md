@@ -44,11 +44,21 @@ plex_claim_token: ""
 ########################################################################
 ```
 
-### URL
+## First-time setup
 
-In the example configuration above, we configure the service to be hosted at `https://plex.example.com`.
+Due to an [upstream bug](https://github.com/linuxserver/docker-plex/issues/422) there is a bit of dance you must do when setting up Plex for the first time. The dance is as follows:
 
-A `plex_path_prefix` variable can be adjusted to host under a subpath (e.g. `plex_path_prefix: /plex`), but this hasn't been tested yet.
+1. Run [installation](../installing.md) with `plex_claim_token` set to `""`
+2. Obtain a `plex_claim_token` from https://plex.tv/claim. 
+3. Run [installation](../installing.md) again with `plex_claim_token` set to token you obtained
+
+If you do not follow these steps you will get an error like: `s6-applyuidgid: fatal: unable to set supplementary group list: Operation not permitted`. If this happens simply follow the steps above.
+
+Once the server has been successfully claimed you can once again remove the `plex_claim_token` variable.
+
+## Usage
+
+Once you have completed [first-time setup](first-time-setup) you should access your new Plex instance at the URL you've chosen. Follow the prompts to finish setup. When prompted to add your media libraries keep in mind that it will be the path **inside** the container, most likely some variation of your `plex_media_bind_path` variable.
 
 ### Exposing ports 
 
@@ -164,12 +174,6 @@ plex_container_read_only: false
 # NOTE -> You cannot update to a PlexPass only (beta) version if you are not logged in with a PlexPass account
 plex_version_environment_variable: latest
 ``` 
-
-## Usage
-
-After [installation](../installing.md), you should access your new Plex instance at the URL you've chosen. Follow the prompts to finish setup. When prompted to add your media libraries keep in mind that it will be the path **inside** the container, most likely some variation of your `plex_media_bind_path` variable.
-
-If it is your first time setting up the server, make sure you have set your Plex claim token with the variable `plex_claim_token` which can be obtained from https://plex.tv/claim. You only have to do this once, so once the server it setup you can remove the variable.
 
 ## Recommended other services
 
