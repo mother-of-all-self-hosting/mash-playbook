@@ -316,7 +316,7 @@
   name: plausible
   activation_prefix: plausible_
 - src: git+https://github.com/spatterIight/ansible-role-plex.git
-  version: develop
+  version: v1.41.6-0
   name: plex
   activation_prefix: plex_
 - src: git+https://github.com/devture/com.devture.ansible.role.playbook_help.git
