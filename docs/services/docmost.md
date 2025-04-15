@@ -29,6 +29,9 @@ For details about configuring the [Ansible role for Docmost](https://github.com/
 - 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-docmost/blob/main/docs/configuring-docmost.md) online
 - 📁 `roles/galaxy/docmost/docs/configuring-docmost.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
+>[!NOTE]
+> The role is based on Node.js docker image, and is currently expected to run with uid 1000.
+
 ## Dependencies
 
 This service requires the following other services:

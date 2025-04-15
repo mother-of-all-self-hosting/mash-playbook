@@ -2184,8 +2184,12 @@ docmost_enabled: false
 
 docmost_identifier: "{{ mash_playbook_service_identifier_prefix }}docmost"
 
-docmost_uid: "{{ mash_playbook_uid }}"
-docmost_gid: "{{ mash_playbook_gid }}"
+# The role is based on Node.js docker image, and is currently expected to run with uid 1000.
+#
+# See: https://github.com/nodejs/docker-node/blob/main/docs/BestPractices.md#non-root-user
+# and https://github.com/docmost/docmost/blob/main/Dockerfile
+docmost_uid: 1000
+docmost_gid: 1000
 
 docmost_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}docmost"
 
