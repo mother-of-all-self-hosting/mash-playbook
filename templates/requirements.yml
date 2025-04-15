@@ -116,6 +116,10 @@
   version: v2.2.7-4
   name: etherpad
   activation_prefix: etherpad_
+- src: git+https://github.com/mother-of-all-self-hosting/ansible-role-excalidraw.git
+  version: v2025.4.15-0
+  name: excalidraw
+  activation_prefix: excalidraw_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-exim-relay.git
   version: v4.98.1-r0-2-0
   name: exim_relay

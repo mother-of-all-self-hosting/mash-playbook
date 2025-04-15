@@ -197,6 +197,10 @@
     - role: galaxy/etherpad
     # /role-specific:etherpad
 
+    # role-specific:excalidraw
+    - role: galaxy/excalidraw
+    # /role-specific:excalidraw
+
     # role-specific:exim_relay
     - role: galaxy/exim_relay
     # /role-specific:exim_relay
