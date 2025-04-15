@@ -52,8 +52,12 @@
         - install-all
     # /role-specific:timesync
 
+    # system
+    # see /docs/services/system.md
+
     # role-specific:swap
-    - role: galaxy/swap
+    - when: system_swap_enabled | bool
+      role: galaxy/swap
     # /role-specific:swap
 
     # role-specific:cleanup
@@ -69,6 +73,8 @@
     - when: system_security_fail2ban_enabled | bool
       role: galaxy/fail2ban
     # /role-specific:fail2ban
+
+    # /system
 
     # role-specific:postgres
     # This role exposes various tags (setup-postgres, setup-all, upgrade-postgres, import-postgres, etc.), so we don't tag it here.
@@ -94,6 +100,10 @@
     # role-specific:adguard_home
     - role: galaxy/adguard_home
     # /role-specific:adguard_home
+
+    # role-specific:anki
+    - role: galaxy/anki
+    # /role-specific:anki
 
     # role-specific:anonymousoverflow
     - role: galaxy/anonymousoverflow
@@ -422,6 +432,10 @@
     # role-specific:redis
     - role: galaxy/redis
     # /role-specific:redis
+
+    # role-specific:redlib
+    - role: galaxy/redlib
+    # /role-specific:redlib
 
     # role-specific:rumqttd
     - role: galaxy/rumqttd

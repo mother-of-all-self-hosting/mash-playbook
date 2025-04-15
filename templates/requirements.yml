@@ -4,6 +4,10 @@
   version: v0.107.59-0
   name: adguard_home
   activation_prefix: adguard_home_
+- src: git+https://github.com/mother-of-all-self-hosting/ansible-role-anki.git
+  version: v25.02-1
+  name: anki
+  activation_prefix: anki_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-anonymousoverflow.git
   version: v2024.8.23-0
   name: anonymousoverflow
@@ -25,7 +29,7 @@
   name: authelia
   activation_prefix: authelia_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-authentik.git
-  version: v2025.2.2-0
+  version: v2025.2.3-0
   name: authentik
   activation_prefix: authentik_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-aux.git
@@ -49,7 +53,7 @@
   name: cleanup
   activation_prefix: system_cleanup_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-clickhouse.git
-  version: v25.2.2.39-0
+  version: v25.3.2.39-2
   name: clickhouse
   activation_prefix: clickhouse_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-collabora-online.git
@@ -189,7 +193,7 @@
   name: jackett
   activation_prefix: jackett_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-jitsi.git
-  version: v10133-1-0
+  version: v10184-0
   name: jitsi
   activation_prefix: jitsi_
 - src: git+https://codeberg.org/acioustick/ansible-role-joplin-server.git
@@ -277,7 +281,7 @@
   name: notfellchen
   activation_prefix: notfellchen_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-ntfy.git
-  version: v2.11.0-4
+  version: v2.11.0-5
   name: ntfy
   activation_prefix: ntfy_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-oauth2-proxy.git
@@ -308,7 +312,7 @@
   name: peertube
   activation_prefix: peertube_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-plausible.git
-  version: v2.1.5-1
+  version: v3.0.1-0
   name: plausible
   activation_prefix: plausible_
 - src: git+https://github.com/devture/com.devture.ansible.role.playbook_help.git
@@ -383,6 +387,10 @@
   version: v7.4.2-0
   name: redis
   activation_prefix: redis_
+- src: git+https://github.com/mother-of-all-self-hosting/ansible-role-redlib.git
+  version: v2025.4.9-0
+  name: redlib
+  activation_prefix: redlib_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-redmine.git
   version: v6.0.4-2
   name: redmine
@@ -404,7 +412,7 @@
   name: semaphore
   activation_prefix: semaphore_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-send.git
-  version: v2025.2.4-0
+  version: v2025.2.4-1
   name: send
   activation_prefix: send_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-soft_serve.git
@@ -428,7 +436,7 @@
   name: swap
   activation_prefix: system_swap_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-syncthing.git
-  version: v1.29.4-0
+  version: v1.29.5-0
   name: syncthing
   activation_prefix: syncthing_
 - src: git+https://github.com/devture/com.devture.ansible.role.systemd_docker_base.git

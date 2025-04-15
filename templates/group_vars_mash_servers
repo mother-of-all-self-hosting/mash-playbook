@@ -93,6 +93,11 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
     {{ ({'name': (adguard_home_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'adguard-home']} if adguard_home_enabled else omit) }}
   # /role-specific:adguard_home
 
+  # role-specific:anki
+  - |-
+    {{ ({'name': (anki_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'anki']} if anki_enabled else omit) }}
+  # /role-specific:anki
+
   # role-specific:anonymousoverflow
   - |-
     {{ ({'name': (anonymousoverflow_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'anonymousoverflow']} if anonymousoverflow_enabled else omit) }}
@@ -570,6 +575,11 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
   - |-
     {{ ({'name': (redis_identifier + '.service'), 'priority': 750, 'groups': ['mash', 'redis']} if redis_enabled else omit) }}
   # /role-specific:redis
+
+  # role-specific:redlib
+  - |-
+    {{ ({'name': (redlib_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'redlib']} if redlib_enabled else omit) }}
+  # /role-specific:redlib
 
   # role-specific:redmine
   - |-
@@ -1390,6 +1400,44 @@ adguard_home_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver
 
 
 
+# role-specific:anki
+########################################################################
+#                                                                      #
+# anki                                                                 #
+#                                                                      #
+########################################################################
+
+anki_enabled: false
+
+anki_identifier: "{{ mash_playbook_service_identifier_prefix }}anki"
+
+anki_uid: "{{ mash_playbook_uid }}"
+anki_gid: "{{ mash_playbook_gid }}"
+
+anki_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}anki"
+
+anki_container_additional_networks_auto: |
+  {{
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+  }}
+
+anki_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+anki_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+
+# role-specific:traefik
+anki_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
+anki_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
+# /role-specific:traefik
+
+########################################################################
+#                                                                      #
+# /anki                                                                #
+#                                                                      #
+########################################################################
+# /role-specific:anki
+
+
+
 # role-specific:anonymousoverflow
 ########################################################################
 #                                                                      #
@@ -1881,7 +1929,7 @@ clickhouse_managed_databases_auto_itemized:
         'name': plausible_clickhouse_database_name,
         'username': plausible_clickhouse_database_username,
         'password': plausible_clickhouse_database_password,
-        'additional_sql': ('GRANT SELECT ON system.replicas TO ' + plausible_clickhouse_database_username + '; GRANT SELECT ON system.parts TO ' + plausible_clickhouse_database_username + ';')
+        'additional_sql': ('GRANT SELECT ON system.replicas TO ' + plausible_clickhouse_database_username + '; GRANT SELECT ON system.parts TO ' + plausible_clickhouse_database_username + '; GRANT CREATE FUNCTION ON *.* TO ' + plausible_clickhouse_database_username + '; GRANT DROP FUNCTION ON *.* TO ' + plausible_clickhouse_database_username + ';')
       } if plausible_enabled and plausible_clickhouse_database_hostname == clickhouse_identifier else omit)
     }}
   # /role-specific:plausible
@@ -3317,6 +3365,16 @@ hubsite_service_radicale_description: "Sync contacts and calendars"
 hubsite_service_radicale_priority: 1000
 # /role-specific:radicale
 
+# role-specific:redlib
+# Redlib
+hubsite_service_redlib_enabled: "{{ redlib_enabled }}"
+hubsite_service_redlib_name: Redlib
+hubsite_service_redlib_url: "{{ redlib_scheme }}://{{ redlib_hostname }}{{ redlib_path_prefix }}"
+hubsite_service_redlib_logo_location: ""
+hubsite_service_redlib_description: "Browse Reddit without exposing your IP address, browsing habits, and other browser fingerprinting data to the website."
+hubsite_service_redlib_priority: 1000
+# /role-specific:redlib
+
 # role-specific:send
 # Send
 hubsite_service_send_enabled: "{{ send_enabled }}"
@@ -3792,6 +3850,19 @@ mash_playbook_hubsite_service_list_auto_itemized:
       } if hubsite_service_radicale_enabled else omit)
     }}
   # /role-specific:radicale
+
+  # role-specific:redlib
+  - |-
+    {{
+      ({
+        'name': hubsite_service_redlib_name,
+        'url': hubsite_service_redlib_url,
+        'logo_location': hubsite_service_redlib_logo_location,
+        'description': hubsite_service_redlib_description,
+        'priority': hubsite_service_redlib_priority,
+      } if hubsite_service_redlib_enabled else omit)
+    }}
+  # /role-specific:redlib
 
   # role-specific:send
   - |-
@@ -6282,6 +6353,44 @@ redis_gid: "{{ mash_playbook_gid }}"
 #                                                                      #
 ########################################################################
 # /role-specific:redis
+
+
+
+# role-specific:redlib
+########################################################################
+#                                                                      #
+# redlib                                                               #
+#                                                                      #
+########################################################################
+
+redlib_enabled: false
+
+redlib_identifier: "{{ mash_playbook_service_identifier_prefix }}redlib"
+
+redlib_uid: "{{ mash_playbook_uid }}"
+redlib_gid: "{{ mash_playbook_gid }}"
+
+redlib_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}redlib"
+
+redlib_container_additional_networks_auto: |
+  {{
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+  }}
+
+redlib_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+redlib_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+
+# role-specific:traefik
+redlib_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
+redlib_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
+# /role-specific:traefik
+
+########################################################################
+#                                                                      #
+# /redlib                                                              #
+#                                                                      #
+########################################################################
+# /role-specific:redlib
 
 
 
