@@ -92,6 +92,10 @@
   version: 129c8590e106b83e6f4c259649a613c6279e937a
   name: docker_sdk_for_python
   activation_prefix: devture_docker_sdk_for_python_installation_enabled
+- src: git+https://github.com/mother-of-all-self-hosting/ansible-role-docmost.git
+  version: v0.10.1-1
+  name: docmost
+  activation_prefix: docmost_
 - src: git+https://github.com/shukon/ansible-role-dokuwiki.git
   version: v2024-02-06b-2
   name: dokuwiki
