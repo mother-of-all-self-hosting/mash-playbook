@@ -173,6 +173,10 @@
     - role: galaxy/docker_registry_purger
     # /role-specific:docker_registry_purger
 
+    # role-specific:docmost
+    - role: galaxy/docmost
+    # /role-specific:docmost
+
     # role-specific:dokuwiki
     - role: galaxy/dokuwiki
     # /role-specific:dokuwiki
@@ -376,6 +380,10 @@
     # role-specific:plausible
     - role: galaxy/plausible
     # /role-specific:plausible
+
+    # role-specific:plex
+    - role: galaxy/plex
+    # /role-specific:plex
 
     # role-specific:postgis
     - role: galaxy/postgis

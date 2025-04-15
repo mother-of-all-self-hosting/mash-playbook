@@ -1,7 +1,7 @@
 ---
 
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-adguard-home.git
-  version: v0.107.59-0
+  version: v0.107.60-0
   name: adguard_home
   activation_prefix: adguard_home_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-anki.git
@@ -92,6 +92,10 @@
   version: 129c8590e106b83e6f4c259649a613c6279e937a
   name: docker_sdk_for_python
   activation_prefix: devture_docker_sdk_for_python_installation_enabled
+- src: git+https://github.com/mother-of-all-self-hosting/ansible-role-docmost.git
+  version: v0.10.1-1
+  name: docmost
+  activation_prefix: docmost_
 - src: git+https://github.com/shukon/ansible-role-dokuwiki.git
   version: v2024-02-06b-2
   name: dokuwiki
@@ -305,7 +309,7 @@
   name: oxitraffic
   activation_prefix: oxitraffic_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-paperless.git
-  version: v2.13.2-0
+  version: v2.15.2-1
   name: paperless
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-peertube.git
   version: v7.0.1-2
@@ -315,6 +319,10 @@
   version: v3.0.1-0
   name: plausible
   activation_prefix: plausible_
+- src: git+https://github.com/spatterIight/ansible-role-plex.git
+  version: v1.41.6-0
+  name: plex
+  activation_prefix: plex_
 - src: git+https://github.com/devture/com.devture.ansible.role.playbook_help.git
   version: 201c939eed363de269a83ba29784fc3244846048
   name: playbook_help
@@ -428,7 +436,7 @@
   name: ssh
   activation_prefix: system_security_ssh_
 - src: git+https://github.com/Bergruebe/ansible-role-stirling-pdf.git
-  version: v0.45.0-1
+  version: v0.45.5-0
   name: stirling_pdf
   activation_prefix: stirling_pdf_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-swap.git
@@ -464,7 +472,7 @@
   name: traefik
   activation_prefix: mash_
 - src: git+https://github.com/Bergruebe/ansible-role-tsdproxy.git
-  version: v1.4.4-1
+  version: v1.4.7-0
   name: tsdproxy
   activation_prefix: tsdproxy_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-uptime_kuma.git
