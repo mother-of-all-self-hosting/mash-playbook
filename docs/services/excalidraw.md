@@ -17,11 +17,11 @@ SPDX-FileCopyrightText: 2024 - 2025 Suguru Hirahara
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 
-# Anki
+# Excalidraw
 
-The playbook can install and configure [a synchronization server](https://github.com/ankitects/anki/tree/main/docs/syncserver) for [Anki](https://apps.ankiweb.net) for you.
+The playbook can install and configure [a synchronization server](https://github.com/ankitects/anki/tree/main/docs/syncserver) for [Excalidraw](https://apps.ankiweb.net) for you.
 
-Anki is a flashcard program that helps you spend more time on challenging material, and less on what you already know. The playbook enables to run a self-hosted synchronization server, similar to what AnkiWeb.net offers.
+Excalidraw is a flashcard program that helps you spend more time on challenging material, and less on what you already know. The playbook enables to run a self-hosted synchronization server, similar to what ExcalidrawWeb.net offers.
 
 See the project's [documentation](https://docs.ankiweb.net/sync-server.html) to learn what the synchronization server does and why it might be useful to you.
 
@@ -29,7 +29,7 @@ For details about configuring the [Ansible role for the server](https://github.c
 - 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-anki/blob/main/docs/configuring-anki.md) online
 - 📁 `roles/galaxy/anki/docs/configuring-anki.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
-✨ Anki (暗記) means "Memorize" in Japanese.
+✨ Excalidraw (暗記) means "Memorize" in Japanese.
 
 ## Dependencies
 
@@ -91,7 +91,7 @@ Make sure permissions of the directory specified to `src` (`/path/on/the/host`).
 
 After installation, the synchronization server becomes available at the URL specified with `anki_hostname` and `anki_path_prefix`.
 
-If the instance is served under the subpath, make sure to include a trailing slash when configuring Anki (`mash.example.com/anki/`). See [here](https://docs.ankiweb.net/sync-server.html#reverse-proxies) for more information.
+If the instance is served under the subpath, make sure to include a trailing slash when configuring Excalidraw (`mash.example.com/anki/`). See [here](https://docs.ankiweb.net/sync-server.html#reverse-proxies) for more information.
 
 ## Troubleshooting
 
