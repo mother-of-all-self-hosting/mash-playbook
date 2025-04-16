@@ -30,7 +30,8 @@ For details about configuring the [Ansible role for Docmost](https://github.com/
 - 📁 `roles/galaxy/docmost/docs/configuring-docmost.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 >[!NOTE]
-> The role is based on Node.js docker image, and is currently expected to run with uid 1000.
+> - The role is based on Node.js docker image, and is currently expected to run with uid 1000.
+> - Excalidraw is available on the playbook. See [here](excalidraw.md) for details about how to install it.
 
 ## Dependencies
 
