@@ -19,15 +19,15 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
 # Excalidraw
 
-The playbook can install and configure [a synchronization server](https://github.com/ankitects/anki/tree/main/docs/syncserver) for [Excalidraw](https://apps.ankiweb.net) for you.
+The playbook can install and configure [a synchronization server](https://github.com/excalidrawtects/excalidraw/tree/main/docs/syncserver) for [Excalidraw](https://apps.excalidrawweb.net) for you.
 
 Excalidraw is a flashcard program that helps you spend more time on challenging material, and less on what you already know. The playbook enables to run a self-hosted synchronization server, similar to what ExcalidrawWeb.net offers.
 
-See the project's [documentation](https://docs.ankiweb.net/sync-server.html) to learn what the synchronization server does and why it might be useful to you.
+See the project's [documentation](https://docs.excalidrawweb.net/sync-server.html) to learn what the synchronization server does and why it might be useful to you.
 
-For details about configuring the [Ansible role for the server](https://github.com/mother-of-all-self-hosting/ansible-role-anki), you can check them via:
-- 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-anki/blob/main/docs/configuring-anki.md) online
-- 📁 `roles/galaxy/anki/docs/configuring-anki.md` locally, if you have [fetched the Ansible roles](../installing.md)
+For details about configuring the [Ansible role for the server](https://github.com/mother-of-all-self-hosting/ansible-role-excalidraw), you can check them via:
+- 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-excalidraw/blob/main/docs/configuring-excalidraw.md) online
+- 📁 `roles/galaxy/excalidraw/docs/configuring-excalidraw.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 ✨ Excalidraw (暗記) means "Memorize" in Japanese.
 
@@ -44,18 +44,18 @@ To enable this service, add the following configuration to your `vars.yml` file 
 ```yaml
 ########################################################################
 #                                                                      #
-# anki                                                                 #
+# excalidraw                                                           #
 #                                                                      #
 ########################################################################
 
-anki_enabled: true
+excalidraw_enabled: true
 
-anki_hostname: mash.example.com
-anki_path_prefix: /anki
+excalidraw_hostname: mash.example.com
+excalidraw_path_prefix: /excalidraw
 
 ########################################################################
 #                                                                      #
-# /anki                                                                #
+# /excalidraw                                                          #
 #                                                                      #
 ########################################################################
 ```
@@ -65,8 +65,8 @@ anki_path_prefix: /anki
 You also need to create a user to log in to the instance with a client application. To create one, add the following configuration to your `vars.yml` file. Make sure to replace `YOUR_USERNAME_HERE` and `YOUR_PASSWORD_HERE`.
 
 ```yaml
-anki_environment_variables_username: YOUR_USERNAME_HERE
-anki_environment_variables_password: YOUR_PASSWORD_HERE
+excalidraw_environment_variables_username: YOUR_USERNAME_HERE
+excalidraw_environment_variables_password: YOUR_PASSWORD_HERE
 ```
 
 **Note**: if the username is changed after creating the user, a new user with the specified username will be created by running the installation command, instead of renaming the user.
@@ -78,7 +78,7 @@ The service requires a Docker volume to be mounted, so that the directory for st
 To add the volume, prepare a directory on the host machine and add the following configuration to your `vars.yml` file, setting the directory path to `src`:
 
 ```yaml
-anki_container_additional_volumes:
+excalidraw_container_additional_volumes:
   - type: bind
     src: /path/on/the/host
     dst: /data
@@ -89,10 +89,10 @@ Make sure permissions of the directory specified to `src` (`/path/on/the/host`).
 
 ## Usage
 
-After installation, the synchronization server becomes available at the URL specified with `anki_hostname` and `anki_path_prefix`.
+After installation, the synchronization server becomes available at the URL specified with `excalidraw_hostname` and `excalidraw_path_prefix`.
 
-If the instance is served under the subpath, make sure to include a trailing slash when configuring Excalidraw (`mash.example.com/anki/`). See [here](https://docs.ankiweb.net/sync-server.html#reverse-proxies) for more information.
+If the instance is served under the subpath, make sure to include a trailing slash when configuring Excalidraw (`mash.example.com/excalidraw/`). See [here](https://docs.excalidrawweb.net/sync-server.html#reverse-proxies) for more information.
 
 ## Troubleshooting
 
-See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-anki/blob/main/docs/configuring-anki.md#troubleshooting) on the role's documentation for details.
+See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-excalidraw/blob/main/docs/configuring-excalidraw.md#troubleshooting) on the role's documentation for details.
