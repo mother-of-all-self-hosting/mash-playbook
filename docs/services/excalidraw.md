@@ -19,17 +19,15 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
 # Excalidraw
 
-The playbook can install and configure [a synchronization server](https://github.com/excalidrawtects/excalidraw/tree/main/docs/syncserver) for [Excalidraw](https://apps.excalidrawweb.net) for you.
+The playbook can install and configure the [Excalidraw](https://excalidraw.com/) client for you.
 
-Excalidraw is a flashcard program that helps you spend more time on challenging material, and less on what you already know. The playbook enables to run a self-hosted synchronization server, similar to what ExcalidrawWeb.net offers.
+Excalidraw is a free and open source virtual whiteboard for sketching hand-drawn like diagrams. It saves data locally on the browser, and the data is end-to-end encrypted.
 
-See the project's [documentation](https://docs.excalidrawweb.net/sync-server.html) to learn what the synchronization server does and why it might be useful to you.
+See the project's [documentation](https://docs.excalidraw.com/) to learn what it does and why it might be useful to you.
 
 For details about configuring the [Ansible role for the server](https://github.com/mother-of-all-self-hosting/ansible-role-excalidraw), you can check them via:
 - 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-excalidraw/blob/main/docs/configuring-excalidraw.md) online
 - 📁 `roles/galaxy/excalidraw/docs/configuring-excalidraw.md` locally, if you have [fetched the Ansible roles](../installing.md)
-
-✨ Excalidraw (暗記) means "Memorize" in Japanese.
 
 ## Dependencies
 
@@ -50,8 +48,7 @@ To enable this service, add the following configuration to your `vars.yml` file 
 
 excalidraw_enabled: true
 
-excalidraw_hostname: mash.example.com
-excalidraw_path_prefix: /excalidraw
+excalidraw_hostname: excalidraw.example.com
 
 ########################################################################
 #                                                                      #
@@ -60,38 +57,14 @@ excalidraw_path_prefix: /excalidraw
 ########################################################################
 ```
 
-### Set the username and password
-
-You also need to create a user to log in to the instance with a client application. To create one, add the following configuration to your `vars.yml` file. Make sure to replace `YOUR_USERNAME_HERE` and `YOUR_PASSWORD_HERE`.
-
-```yaml
-excalidraw_environment_variables_username: YOUR_USERNAME_HERE
-excalidraw_environment_variables_password: YOUR_PASSWORD_HERE
-```
-
-**Note**: if the username is changed after creating the user, a new user with the specified username will be created by running the installation command, instead of renaming the user.
-
-### Mount a directory for storing data
-
-The service requires a Docker volume to be mounted, so that the directory for storing files is shared with the host machine.
-
-To add the volume, prepare a directory on the host machine and add the following configuration to your `vars.yml` file, setting the directory path to `src`:
-
-```yaml
-excalidraw_container_additional_volumes:
-  - type: bind
-    src: /path/on/the/host
-    dst: /data
-    options:
-```
-
-Make sure permissions of the directory specified to `src` (`/path/on/the/host`).
+**Note**: hosting Excalidraw client under a subpath (by configuring the `excalidraw_path_prefix` variable) does not seem to be possible due to Excalidraw's technical limitations.
 
 ## Usage
 
-After installation, the synchronization server becomes available at the URL specified with `excalidraw_hostname` and `excalidraw_path_prefix`.
+After installation, the Excalidraw client becomes available at the URL specified with `excalidraw_hostname`.
 
-If the instance is served under the subpath, make sure to include a trailing slash when configuring Excalidraw (`mash.example.com/excalidraw/`). See [here](https://docs.excalidrawweb.net/sync-server.html#reverse-proxies) for more information.
+>[!NOTE]
+> At the moment, self-hosting your own instance doesn't support sharing or collaboration features (see [here](https://docs.excalidraw.com/docs/introduction/development#self-hosting)).
 
 ## Troubleshooting
 
