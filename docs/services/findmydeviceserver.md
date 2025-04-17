@@ -83,11 +83,9 @@ findmydeviceserver_config_registrationtoken: YOUR_TOKEN_HERE
 
 ## Usage
 
-After running the command for installation, FindMyDeviceServer becomes available at the specified hostname like `https://findmydeviceserver.example.com`.
+After running the command for installation, FindMyDeviceServer becomes available at the specified hostname like `https://fmd.example.com`.
 
-[Libredirect](https://libredirect.github.io/), an extension for Firefox and Chromium-based desktop browsers, has support for redirections to FindMyDeviceServer.
-
-If you would like to make your instance public so that it can be used by anyone including Libredirect, please consider to send a PR to the [upstream project](https://github.com/findmydeviceserver-org/findmydeviceserver-instances) to add yours to the list, which Libredirect automatically fetches using a script (see [this FAQ entry](https://libredirect.github.io/faq.html#where_the_hell_are_those_instances_coming_from)). See [here](https://github.com/findmydeviceserver-org/findmydeviceserver-instances/blob/main/README.md) for details about how to do so.
+See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-findmydeviceserver/blob/main/docs/configuring-findmydeviceserver.md#usage) on the role's documentation for details about how to set up the client (FindMyDevice).
 
 ## Troubleshooting
 
