@@ -87,6 +87,9 @@ After running the command for installation, FindMyDeviceServer becomes available
 
 See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-findmydeviceserver/blob/main/docs/configuring-findmydeviceserver.md#usage) on the role's documentation for details about how to set up the client (FindMyDevice).
 
+>[!NOTE]
+> As sending commands from FindMyDeviceServer to your device requires a UnifiedPush Distributor application, you might be interested in self-hosting a [ntfy](ntfy.md) Push Server along with it.
+
 ## Troubleshooting
 
 See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-findmydeviceserver/blob/main/docs/configuring-findmydeviceserver.md#troubleshooting) on the role's documentation for details.
