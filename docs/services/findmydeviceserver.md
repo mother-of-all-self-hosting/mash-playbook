@@ -48,7 +48,7 @@ To enable this service, add the following configuration to your `vars.yml` file 
 
 findmydeviceserver_enabled: true
 
-findmydeviceserver_hostname: findmydeviceserver.example.com
+findmydeviceserver_hostname: fmd.example.com
 
 ########################################################################
 #                                                                      #
@@ -57,11 +57,29 @@ findmydeviceserver_hostname: findmydeviceserver.example.com
 ########################################################################
 ```
 
-**Note**: hosting FindMyDeviceServer under a subpath (by configuring the `findmydeviceserver_path_prefix` variable) is technically possible but not recommended, as most of the functions do not work as expected due to FindMyDeviceServer's technical limitations (pages and resources are not correctly loaded, and links are broken).
+**Note**: hosting FindMyDeviceServer under a subpath (by configuring the `findmydeviceserver_path_prefix` variable) does not seem to be possible due to FindMyDeviceServer's technical limitations.
 
-### Configure instance and user settings (optional)
+### Set the path for storing a database file on the host
 
-There are various options for the instance and user settings. See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-findmydeviceserver/blob/main/docs/configuring-findmydeviceserver.md#configure-instance-and-user-settings-optional) on the role's documentation for details.
+For a persistent storage for a database file, you need to add a Docker volume to mount in the container to share it with the host machine.
+
+To add the volume, prepare a directory on the host machine and add the following configuration to your `vars.yml` file:
+
+```yaml
+findmydeviceserver_database_path: /path/on/the/host
+```
+
+Make sure permissions of the directory specified to `/path/on/the/host`.
+
+### Set a registration token (optional)
+
+With the default setting, the instance will be public and open to registration by anyone.
+
+To make it private and have it require a token for registration, set it by adding the following configuration to your `vars.yml` file. Make sure to replace `YOUR_TOKEN_HERE` with your own value. Generating a strong token (e.g. `pwgen -s 64 1`) is recommended.
+
+```yaml
+findmydeviceserver_config_registrationtoken: YOUR_TOKEN_HERE
+```
 
 ## Usage
 
