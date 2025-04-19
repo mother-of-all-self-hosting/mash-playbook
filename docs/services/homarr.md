@@ -86,9 +86,7 @@ Make sure permissions of the directory specified to `src` (`/path/on/the/host`).
 
 After running the command for installation, Homarr becomes available at the specified hostname like `https://homarr.example.com`.
 
-[Libredirect](https://libredirect.github.io/), an extension for Firefox and Chromium-based desktop browsers, has support for redirections to Homarr. See [this section](https://github.com/httpjamesm/Homarr/blob/main/README.md#how-to-make-stack-overflow-links-take-you-to-homarr-automatically) on the official documentation for more information.
-
-If you would like to publish your instance so that it can be used by anyone including Libredirect, please consider to send a PR to the [upstream project](https://github.com/httpjamesm/Homarr) to add yours to [`instances.json`](https://github.com/httpjamesm/Homarr/blob/main/instances.json), which Libredirect automatically fetches using a script (see [this FAQ entry](https://libredirect.github.io/faq.html#where_the_hell_are_those_instances_coming_from)).
+You can open the page with a web browser to start the onboarding process. See [this official guide](https://homarr.dev/docs/getting-started/after-the-installation/) for details.
 
 ## Troubleshooting
 
