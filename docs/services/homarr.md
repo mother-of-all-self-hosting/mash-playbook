@@ -88,6 +88,20 @@ After running the command for installation, Homarr becomes available at the spec
 
 You can open the page with a web browser to start the onboarding process. See [this official guide](https://homarr.dev/docs/getting-started/after-the-installation/) for details.
 
+### Playbook's services on Homarr
+
+On Homarr's board it is possible to create and add icons of many services, including the ones which can be installed with this playbook such as [Nextcloud](nextcloud.md), [PeerTube](peertube.md), [PrivateBin](privatebin.md), [Syncthing](syncthing.md), etc.
+
+Homarr also integrates with various software, to which you can connect your applications to interact via widgets. Here is a list of integrations which are also available on this playbook:
+
+- **Torrent client**: [qBittorent](qbittorrent.md)
+- **Media server**: [Plex](plex.md)
+- **Media collection managers**: [Sonarr](sonarr.md) and [Radarr](radarr.md)
+- **Media request manager**: [Overseerr](overseerr.md)
+- **DNS ad-blocker**: [AdGuard Home](adguard-home.md)
+
+See [this page](https://homarr.dev/docs/category/integrations) on the official documentation for the latest information about integrations.
+
 ## Troubleshooting
 
 See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-homarr/blob/main/docs/configuring-homarr.md#troubleshooting) on the role's documentation for details.
