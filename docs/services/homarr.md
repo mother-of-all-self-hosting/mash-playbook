@@ -19,11 +19,11 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
 # Homarr
 
-The playbook can install and configure [Homarr](https://github.com/httpjamesm/Homarr) for you.
+The playbook can install and configure [Homarr](https://homarr.dev) for you.
 
-Homarr allows you to view StackOverflow threads without exposing your IP address, browsing habits, and other browser fingerprinting data to the website.
+Homarr is a highly customizable dashboard for management of your favorite applications and services with a drag-and-drop grid system, which integrates with various self-hosted applications.
 
-See the project's [documentation](https://github.com/httpjamesm/Homarr/blob/main/README.md) to learn what Homarr does and why it might be useful to you.
+See the project's [documentation](https://homarr.dev/docs/getting-started) to learn what Homarr does and why it might be useful to you.
 
 For details about configuring the [Ansible role for Homarr](https://github.com/mother-of-all-self-hosting/ansible-role-homarr), you can check them via:
 - 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-homarr/blob/main/docs/configuring-homarr.md) online
