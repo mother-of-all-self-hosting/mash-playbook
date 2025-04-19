@@ -59,6 +59,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 | [Grafana Loki](https://grafana.com/docs/loki/latest/) | Open-source log aggregation system that helps collect, store, and analyze logs in a scalable and efficient manner | [Link](services/grafana-loki.md) |
 | [Headscale](https://headscale.net/) | A Tailscale-compatible control server for managing Tailscale devices | [Link](services/headscale.md) |
 | [Healthchecks](https://healthchecks.io/) | A simple and Effective Cron Job Monitoring solution | [Link](services/healthchecks.md) |
+| [Homarr](https://homarr.dev/) | Highly customizable dashboard for management of your favorite applications and services with a drag-and-drop grid system | [Link](services/homarr.md) |
 | [Hubsite](https://github.com/moan0s/hubsite) | A simple, static site that shows an overview of the available services | [Link](services/hubsite.md) |
 | [Ihatemoney](https://github.com/spiral-project/ihatemoney) | An open source shared budget manager. | [Link](services/ihatemoney.md) |
 | [ILMO](https://github.com/moan0s/ILMO2) | An open source library management tool. | [Link](services/ilmo.md) |
