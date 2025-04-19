@@ -269,6 +269,10 @@
     - role: galaxy/headscale
     # /role-specific:headscale
 
+    # role-specific:homarr
+    - role: galaxy/homarr
+    # /role-specific:homarr
+
     # role-specific:hubsite
     - role: galaxy/hubsite
     # /role-specific:hubsite
