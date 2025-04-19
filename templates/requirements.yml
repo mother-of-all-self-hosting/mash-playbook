@@ -232,6 +232,10 @@
   version: v1.39.1-0
   name: linkding
   activation_prefix: linkding_
+- src: git+https://github.com/mother-of-all-self-hosting/ansible-role-listmonk.git
+  version: v4.1.0-0
+  name: listmonk
+  activation_prefix: listmonk_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-loki.git
   version: v2.9.4-3
   name: loki
