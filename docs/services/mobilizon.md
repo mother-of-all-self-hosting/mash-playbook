@@ -1,3 +1,9 @@
+<!--
+SPDX-FileCopyrightText: 2023 Julian-Samuel Gebühr
+
+SPDX-License-Identifier: AGPL-3.0-or-later
+-->
+
 # Mobilizon
 
 [Mobilizon](https://joinmobilizon.org/en/) is a ActivityPub/Fediverse server to create and share events here powered by the [mother-of-all-self-hosting/ansible-role-mobilizon](https://github.com/mother-of-all-self-hosting/ansible-role-mobilizon) Ansible role.
