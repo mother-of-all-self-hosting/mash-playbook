@@ -72,6 +72,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 | [Lago](https://www.getlago.com/) | Open-source metering and usage-based billing | [Link](services/lago.md) |
 | [languageTool](https://languagetool.org/) | An open source online grammar, style and spell checker | [Link](services/languagetool.md) |
 | [linkding](https://github.com/sissbruecker/linkding/) | Bookmark manager designed to be minimal and fast. | [Link](services/linkding.md) |
+| [Listmonk](https://listmonk.app) | Self-hosted newsletter and mailing list manager. | [Link](services/listmonk.md) |
 | [MariaDB](https://mariadb.org/) | A powerful, open source object-relational database system | [Link](services/mariadb.md) |
 | [Matrix Rooms Search API](https://gitlab.com/etke.cc/mrs/api) | A fully-featured, standalone, matrix rooms search service. | [Link](services/mrs.md) |
 | [Matterbridge](https://github.com/42wim/matterbridge) | Bridges Messenger Chatrooms | [Link](services/matterbridge.md) |
