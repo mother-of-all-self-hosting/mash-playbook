@@ -43,4 +43,4 @@ To integrate Prometheus Node Exporter with a [Prometheus](prometheus.md) instanc
 
 ## Recommended other services
 
-- [Promtail](promtail.md) - an agent which ships the contents of local logs to a private [Grafana Loki](grafana-loki.md) instance
+- [Promtail](promtail.md) — an agent which ships the contents of local logs to a private [Grafana Loki](grafana-loki.md) instance

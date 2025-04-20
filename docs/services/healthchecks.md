@@ -80,4 +80,4 @@ After creating the superuser account, you can go to the [Healthchecks URL](#url)
 
 ## Recommended other services
 
-- [Prometheus](prometheus.md) - a metrics collection and alerting monitoring solution
+- [Prometheus](prometheus.md) — a metrics collection and alerting monitoring solution

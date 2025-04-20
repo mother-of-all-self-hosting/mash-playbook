@@ -13,7 +13,7 @@ Various services need to send out email.
 
 The default playbook configuration (`examples/vars.yml`) recommends that you enable the Exim relay SMTP mailer service (powered by [exim-relay](https://github.com/devture/exim-relay) and the [ansible-role-exim-relay](https://github.com/mother-of-all-self-hosting/ansible-role-exim-relay) Ansible role). Enabling this service **automatically wires various other services to send email through it**. Exim-relay then gives you a centralized place for configuring email-sending.
 
-The Ansible role for exim-relay is developed and maintained by [the MASH project](https://github.com/mother-of-all-self-hosting/ansible-role-exim-relay). For details about configuring exim-relay, you can check them via:
+The [Ansible role for exim-relay](https://github.com/mother-of-all-self-hosting/ansible-role-exim-relay) is developed and maintained by the MASH project. For details about configuring exim-relay, you can check them via:
 - 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-exim-relay/blob/main/docs/configuring-exim-relay.md) online
 - 📁 `roles/galaxy/exim_relay/docs/configuring-exim-relay.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
@@ -41,15 +41,21 @@ exim_relay_sender_address: "someone@{{ exim_relay_hostname }}"
 ########################################################################
 ```
 
-### Relaying email through another SMTP server (optional)
+### Enable DKIM authentication to improve deliverability (optional)
 
-By default, exim-relay attempts to deliver emails directly. This may or may not work, depending on your domain configuration (SPF settings, etc.)
+By default, exim-relay attempts to deliver emails directly. This may or may not work, depending on your domain configuration.
+
+To improve email deliverability, you can configure authentication methods such as DKIM (DomainKeys Identified Mail), SPF, and DMARC for your domain. Without setting any of these authentication methods, your outgoing email is most likely to be quarantined as spam at recipient's mail servers.
+
+For details about configuring DKIM, refer [this section](https://github.com/mother-of-all-self-hosting/ansible-role-exim-relay/blob/main/docs/configuring-exim-relay.md#enable-dkim-support-optional) on the role's documentation.
+
+💡 If you cannot enable DKIM, SPF, or DMARC on your domain for some reason, we recommend relaying email through another SMTP server.
+
+### Relaying email through another SMTP server (optional)
 
 **On some cloud providers such as Google Cloud, [port 25 is always blocked](https://cloud.google.com/compute/docs/tutorials/sending-mail/), so sending email directly from your server is not possible.** In this case, you will need to relay email through another SMTP server.
 
 For details about configuration, refer [this section](https://github.com/mother-of-all-self-hosting/ansible-role-exim-relay/blob/main/docs/configuring-exim-relay.md#relaying-email-through-another-smtp-server) on the role's document.
-
-💡 To improve deliverability, we recommend relaying email through another SMTP server anyway.
 
 ### Using a per-service sender address (optional)
 

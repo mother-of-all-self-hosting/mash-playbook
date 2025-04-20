@@ -66,3 +66,4 @@ Consider these other supported services that are also in the [*Arr stack](https:
 - [Sonarr](sonarr.md)
 - [Jackett](jackett.md)
 - [qBittorrent](qbittorrent.md)
+- [Plex](plex.md)

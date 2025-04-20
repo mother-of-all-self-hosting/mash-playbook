@@ -7,8 +7,8 @@
 
 This service requires the following other services:
 
-- [Grafana Loki](grafana-loki.md) - a log-storage server where you'd be sending the logs
-- (optional) [Traefik](traefik.md) - a reverse-proxy server, if you're exposing Promtail's metrics or API
+- [Grafana Loki](grafana-loki.md) — a log-storage server where you'd be sending the logs
+- (optional) [Traefik](traefik.md) — a reverse-proxy server, if you're exposing Promtail's metrics or API
 
 
 ## Configuration
@@ -178,5 +178,5 @@ When exposing metrics, and especially the whole API, it's important to protected
 
 ## Recommended other services
 
-- [Grafana Loki](grafana-loki.md) - a storage server for your logs compatible with Promtail
-- [Grafana](grafana.md) - a web-based tool for visualizing your Promtail logs (stored in [Grafana Loki](grafana-loki.md) or elsewhere)
+- [Grafana Loki](grafana-loki.md) — a storage server for your logs compatible with Promtail
+- [Grafana](grafana.md) — a web-based tool for visualizing your Promtail logs (stored in [Grafana Loki](grafana-loki.md) or elsewhere)

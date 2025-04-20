@@ -48,8 +48,8 @@ To embed the map in a website Copy & Paste the following snippet and replace `ti
 
 ```html
 <!-- add MapLibre JavaScript and CSS -->
-<script src="https://tiles.example.com/assets/maplibre-gl/maplibre-gl.js"></script>
-<link href="https://tiles.example.com/assets/maplibre-gl/maplibre-gl.css" rel="stylesheet" />
+<script src="https://tiles.example.com/assets/lib/maplibre-gl/maplibre-gl.js"></script>
+<link href="https://tiles.example.com/assets/lib/maplibre-gl/maplibre-gl.css" rel="stylesheet" />
 
 <!-- add container for the map -->
 <div id="map" style="width:100%;aspect-ratio:16/9"></div>

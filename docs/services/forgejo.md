@@ -83,7 +83,7 @@ Nevertheless, upgrades may be possible with some manual work.
 Below is a rough guide to help you migrate from Gitea (tested with version v1.23.1) to Forgejo (v10.0.0).
 
 > [!WARNING]
-> 2FA does not seem to be working in Forgejo. If this is something you require to get working, do know that it's still an unsolved problem. Details for resetting/disabling 2FA are below.
+> 2FA does not seem to be working in Forgejo, but [some work](https://codeberg.org/forgejo/forgejo/pulls/7251) has landed in [v10.0.2](https://codeberg.org/forgejo/forgejo/src/commit/c5c0948ae5c96a694cc36945c3d9d5dae439bdd0/release-notes-published/10.0.2.md) which possibly improves things. If this is something you require to get working, do know that it's still an unsolved problem. Details for resetting/disabling 2FA are below.
 
 1. Adjust `vars.yml` to enable the Forgejo service (prepare DNS records if using a dedicated hostname instead of your old Gitea hostname). We do not disable Gitea just yet.
 

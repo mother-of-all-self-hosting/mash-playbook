@@ -1,23 +1,70 @@
+<!--
+SPDX-FileCopyrightText: 2018 - 2023 Slavi Pantaleev
+SPDX-FileCopyrightText: 2018 Aaron Raimist
+SPDX-FileCopyrightText: 2019 Lyubomir Popov
+SPDX-FileCopyrightText: 2024 - 2025 Suguru Hirahara
+
+SPDX-License-Identifier: AGPL-3.0-or-later
+-->
+
 # Table of Contents
 
-- [Prerequisites](prerequisites.md) - go here to a guided installation using this Ansible playbook
+## ⬇️ Installaton guide <!-- NOTE: the 🚀 emoji is used by "Getting started" on README.md -->
 
-- [Configuring DNS](configuring-dns.md)
+<!-- TODO: consider to add a quick start guide like the MDAD project has done. -->
 
-- [Getting this playbook's source code](getting-the-playbook.md)
+Follow this guide to install services on your server using this Ansible playbook.
+
+- [Prerequisites](prerequisites.md)
+
+- [Configuring DNS settings](configuring-dns.md)
+
+- [Getting the playbook](getting-the-playbook.md)
 
 - [Configuring the playbook](configuring-playbook.md)
 
-- [Configuring interoperability with other services](interoperability.md)
-
 - [Installing](installing.md)
 
-- [Importing an existing Postgres database (from another installation)](services/postgres.md#importing) (optional)
+## 🛠️ Configuration options
 
-- [Maintenance / upgrading services](maintenance-upgrading-services.md)
+You can check useful documentation for configuring components in [`services`](services/) directory. See [this page](supported-services.md) for a list of all supported services.
 
-- [Maintenance / PostgreSQL](services/postgres.md#maintenance)
+## 👨‍🔧 Maintenance
+
+If your server and services experience issues, feel free to come to [our support room](https://matrix.to/#/#mash-playbook:devture.com) on Matrix and ask for help.
+
+<!-- NOTE: sort list items alphabetically -->
 
 - [Maintenance and Troubleshooting](maintenance-and-troubleshooting.md)
 
+- [PostgreSQL maintenance](services/postgres.md#maintenance)
+
+- [Upgrading services](maintenance-upgrading-services.md)
+
+## Other documentation pages <!-- NOTE: this header's title and the section below need optimization -->
+
+<!-- NOTE: sort list items under faq.md alphabetically -->
+
+- [Alternative architectures](alternative-architectures.md)
+
+- [Configuring interoperability with other services](interoperability.md)
+
+- [Configuring IPv6](configuring-ipv6.md)
+
+- [Developer documentation](developer-documentation.md)
+
+- [Playbook tags](playbook-tags.md)
+
+- [Running `just` commands](just.md)
+
+- [Running multiple instances of the same service on the same host](running-multiple-instances.md)
+
+- [Self-building](self-building.md)
+
+- [Setting up MASH services on a Matrix server configured with the matrix-docker-ansible-deploy Ansible playbook](setting-up-services-on-mdad-server.md)
+
+- [Supported services](supported-services.md)
+
 - [Uninstalling](uninstalling.md)
+
+- [Using Ansible for the playbook](ansible.md)

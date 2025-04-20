@@ -138,4 +138,4 @@ You can also connect various Subsonic-API-compatible [apps](https://www.navidrom
 
 ## Recommended other services
 
-- [Syncthing](syncthing.md) - a continuous file synchronization program which synchronizes files between two or more computers in real time. See [Syncthing integration](#syncthing-integration)
+- [Syncthing](syncthing.md) — a continuous file synchronization program which synchronizes files between two or more computers in real time. See [Syncthing integration](#syncthing-integration)
