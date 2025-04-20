@@ -67,7 +67,7 @@
 * Notfellchen Sws: 2
 * Ntfy: v2.11.0
 * Oauth2 Proxy: v7.6.0
-* Outline: 0.82.0
+* Outline: 0.83.0
 * Overseerr: 1.33.2
 * Owncast: 0.2.1
 * Oxitraffic: 0.10.1
