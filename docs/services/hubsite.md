@@ -39,3 +39,6 @@ hubsite_subtitle: "Just click on a service to use it"
 ```
 
 You can SSO-protect this website with the help of [Authelia](authelia.md) or [OAuth2-Proxy](oauth2-proxy.md) (connected to any OIDC provider).
+
+>[!NOTE]
+> You might be also interested in setting up [Homarr](homarr.md), a customizable dashboard for managing your favorite applications and services.

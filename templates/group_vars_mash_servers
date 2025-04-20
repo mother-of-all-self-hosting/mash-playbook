@@ -302,6 +302,11 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
     {{ ({'name': (healthchecks_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'healthchecks']} if healthchecks_enabled else omit) }}
   # /role-specific:healthchecks
 
+  # role-specific:homarr
+  - |-
+    {{ ({'name': (homarr_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'homarr']} if homarr_enabled else omit) }}
+  # /role-specific:homarr
+
   # role-specific:hubsite
   - |-
     {{ ({'name': (hubsite_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'hubsite']} if hubsite_enabled else omit) }}
@@ -3231,6 +3236,46 @@ healthchecks_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver
 #                                                                      #
 ########################################################################
 # /role-specific:healthchecks
+
+
+
+# role-specific:homarr
+########################################################################
+#                                                                      #
+# homarr                                                               #
+#                                                                      #
+########################################################################
+
+homarr_enabled: false
+
+homarr_identifier: "{{ mash_playbook_service_identifier_prefix }}homarr"
+
+homarr_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}homarr"
+
+homarr_uid: "{{ mash_playbook_uid }}"
+homarr_gid: "{{ mash_playbook_gid }}"
+
+homarr_container_additional_networks_auto: |
+  {{
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+  }}
+
+homarr_environment_variables_auth_secret: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'homarr', rounds=655555) | to_uuid }}"
+
+homarr_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+homarr_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+
+# role-specific:traefik
+homarr_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
+homarr_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
+# /role-specific:traefik
+
+########################################################################
+#                                                                      #
+# /homarr                                                              #
+#                                                                      #
+########################################################################
+# /role-specific:homarr
 
 
 
