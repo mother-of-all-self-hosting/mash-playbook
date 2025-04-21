@@ -251,9 +251,7 @@ Note that running the `just` commands for installation (`just install-all` or `j
 
 ## Usage
 
-After installation, your Ghostfolio instance becomes available at the URL specified with `ghostfolio_hostname`.
-
-To get started, go to the URL on a web browser and create a first workspace by inputting required information. For an email address, make sure to input your own email address, not the one of the mailer.
+After installation, your Ghostfolio instance becomes available at the URL specified with `ghostfolio_hostname` like `https://ghostfolio.example.com`.
 
 ## Troubleshooting
 
