@@ -234,6 +234,14 @@ ghostfolio_container_additional_networks_custom:
 
 Running the installation command will create the shared Valkey instance named `mash-valkey`.
 
+### Set Coingecko API keys (optional)
+
+If you have either or both of *CoinGecko* Demo API key and *CoinGecko* Pro API key, you can specify them by adding the following configuration to your `vars.yml` file:
+
+```yaml
+ghostfolio_environment_variable_api_key_coingecko_demo: YOUR_DEMO_KEY_HERE
+ghostfolio_environment_variable_api_key_coingecko_pro: YOUR_PRO_KEY_HERE
+```
 
 ## Installation
 
