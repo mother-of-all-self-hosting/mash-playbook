@@ -64,36 +64,6 @@ ghostfolio_hostname: ghostfolio.example.com
 
 **Note**: hosting Ghostfolio under a subpath (by configuring the `ghostfolio_path_prefix` variable) does not seem to be possible due to Ghostfolio's technical limitations.
 
-### Configure a storage backend
-
-The service provides these storage backend options: local filesystem (default) and Amazon S3 compatible object storage.
-
-If local filesystem is used, **this role by default removes uploaded files when uninstalling the service**. In order to make those files persistent, you need to add a Docker volume to mount in the container, so that the directory for storing files is shared with the host machine.
-
-To add the volume, prepare a directory on the host machine and add the following configuration to your `vars.yml` file, setting the directory path to `src`:
-
-```yaml
-ghostfolio_data_path: /path/on/the/host
-```
-
-Make sure permissions of the directory specified to `src` (`/path/on/the/host`).
-
-See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-ghostfolio/blob/main/docs/configuring-ghostfolio.md#configure-a-storage-backend) on the role's documentation for details about how to set up Amazon S3 compatible object storage for Ghostfolio.
-
-### Configure the mailer
-
-You can configure a mailer for functions such as user invitation. Ghostfolio supports a SMTP server and Postmark.
-
-**You can use exim-relay as the mailer, which is enabled on this playbook by default.** If you enable exim-relay on the playbook and will use it for Ghostfolio, you do not have to add settings for them, as Ghostfolio is wired to the mailer automatically. See [here](exim-relay.md) for details about how to set it up.
-
-If you will use another SMTP server or Postmark, see [this section](https://github.com/mother-of-all-self-hosting/ansible-role-ghostfolio/blob/main/docs/configuring-ghostfolio.md#configure-the-mailer) on the role's documentation for details about configuring the mailer.
-
-If you do not want to enable a mailer for Ghostfolio altogether, add the following configuration to your `vars.yml` file:
-
-```yaml
-ghostfolio_mailer_enabled: false
-```
-
 ### Configure Valkey
 
 Ghostfolio requires a Valkey data-store to work. This playbook supports it, and you can set up a Valkey instance by enabling it on `vars.yml`.
@@ -264,15 +234,6 @@ ghostfolio_container_additional_networks_custom:
 
 Running the installation command will create the shared Valkey instance named `mash-valkey`.
 
-### Enable Telemetry (optional)
-
-By default this playbook disables Ghostfolio's [telemetry](https://ghostfolio.com/docs/self-hosting/environment-variables#telemetry) which collects information about the active version, user count, page count, space and workspace count, and sends to the Ghostfolio server (see [here](https://github.com/ghostfolio/ghostfolio/blob/main/apps/server/src/integrations/telemetry/telemetry.service.ts)).
-
-If you are fine with sending such infomation and want to help developers, add the following configuration to your `vars.yml` file:
-
-```yaml
-ghostfolio_environment_variable_disable_telemetry: false
-```
 
 ## Installation
 
