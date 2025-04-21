@@ -228,6 +228,10 @@
   version: v11.4.4-2
   name: mariadb
   activation_prefix: mariadb_
+- src: git+https://github.com/acterglobal/ansible-role-matomo.git
+  version: main
+  name: matomo
+  activation_prefix: matomo_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-matterbridge.git
   version: v1.26.0-0
   name: matterbridge
@@ -503,7 +507,3 @@
   version: v1.10.0-0
   name: yourls
   activation_prefix: yourls_
-- src: git+https://github.com/acterglobal/ansible-role-matomo.git
-  version: main
-  name: matomo
-  activation_prefix: matomo_
