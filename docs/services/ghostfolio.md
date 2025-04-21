@@ -19,19 +19,18 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
 # Ghostfolio
 
-The playbook can install and configure [Ghostfolio](https://ghostfolio.com/) for you.
+The playbook can install and configure [Ghostfolio](https://ghostfol.io/) for you.
 
-Ghostfolio is an free and open-source collaborative wiki and documentation software, designed for seamless real-time collaboration. It can be used to manage a wiki, a knowledge base, project documentation, etc. It has various functions such as granular permissions management system, page history to track changes of articles, etc. It also supports diagramming tools like Draw.io, Excalidraw and Mermaid.
+Ghostfolio is a free software for wealth management to keep track of assets such as stocks, bonds, ETFs, etc.
 
-See the project's [documentation](https://ghostfolio.com/docs/) to learn what Ghostfolio does and why it might be useful to you.
+See the project's [documentation](https://ghostfol.io/en/features) to learn what Ghostfolio does and why it might be useful to you.
 
 For details about configuring the [Ansible role for Ghostfolio](https://github.com/mother-of-all-self-hosting/ansible-role-ghostfolio), you can check them via:
 - 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-ghostfolio/blob/main/docs/configuring-ghostfolio.md) online
 - 📁 `roles/galaxy/ghostfolio/docs/configuring-ghostfolio.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 >[!NOTE]
-> - The role is based on Node.js docker image, and is currently expected to run with uid 1000.
-> - Excalidraw is available on the playbook. See [here](excalidraw.md) for details about how to install it.
+> The role is based on Node.js docker image, and is expected to run with uid 1000.
 
 ## Dependencies
 
