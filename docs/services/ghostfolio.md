@@ -19,15 +19,15 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
 # Ghostfolio
 
-The playbook can install and configure [Ghostfolio](https://docmost.com/) for you.
+The playbook can install and configure [Ghostfolio](https://ghostfolio.com/) for you.
 
 Ghostfolio is an free and open-source collaborative wiki and documentation software, designed for seamless real-time collaboration. It can be used to manage a wiki, a knowledge base, project documentation, etc. It has various functions such as granular permissions management system, page history to track changes of articles, etc. It also supports diagramming tools like Draw.io, Excalidraw and Mermaid.
 
-See the project's [documentation](https://docmost.com/docs/) to learn what Ghostfolio does and why it might be useful to you.
+See the project's [documentation](https://ghostfolio.com/docs/) to learn what Ghostfolio does and why it might be useful to you.
 
-For details about configuring the [Ansible role for Ghostfolio](https://github.com/mother-of-all-self-hosting/ansible-role-docmost), you can check them via:
-- 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-docmost/blob/main/docs/configuring-docmost.md) online
-- 📁 `roles/galaxy/docmost/docs/configuring-docmost.md` locally, if you have [fetched the Ansible roles](../installing.md)
+For details about configuring the [Ansible role for Ghostfolio](https://github.com/mother-of-all-self-hosting/ansible-role-ghostfolio), you can check them via:
+- 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-ghostfolio/blob/main/docs/configuring-ghostfolio.md) online
+- 📁 `roles/galaxy/ghostfolio/docs/configuring-ghostfolio.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 >[!NOTE]
 > - The role is based on Node.js docker image, and is currently expected to run with uid 1000.
@@ -49,22 +49,22 @@ To enable this service, add the following configuration to your `vars.yml` file:
 ```yaml
 ########################################################################
 #                                                                      #
-# docmost                                                              #
+# ghostfolio                                                           #
 #                                                                      #
 ########################################################################
 
-docmost_enabled: true
+ghostfolio_enabled: true
 
-docmost_hostname: docmost.example.com
+ghostfolio_hostname: ghostfolio.example.com
 
 ########################################################################
 #                                                                      #
-# /docmost                                                             #
+# /ghostfolio                                                          #
 #                                                                      #
 ########################################################################
 ```
 
-**Note**: hosting Ghostfolio under a subpath (by configuring the `docmost_path_prefix` variable) does not seem to be possible due to Ghostfolio's technical limitations.
+**Note**: hosting Ghostfolio under a subpath (by configuring the `ghostfolio_path_prefix` variable) does not seem to be possible due to Ghostfolio's technical limitations.
 
 ### Configure a storage backend
 
@@ -75,12 +75,12 @@ If local filesystem is used, **this role by default removes uploaded files when 
 To add the volume, prepare a directory on the host machine and add the following configuration to your `vars.yml` file, setting the directory path to `src`:
 
 ```yaml
-docmost_data_path: /path/on/the/host
+ghostfolio_data_path: /path/on/the/host
 ```
 
 Make sure permissions of the directory specified to `src` (`/path/on/the/host`).
 
-See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-docmost/blob/main/docs/configuring-docmost.md#configure-a-storage-backend) on the role's documentation for details about how to set up Amazon S3 compatible object storage for Ghostfolio.
+See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-ghostfolio/blob/main/docs/configuring-ghostfolio.md#configure-a-storage-backend) on the role's documentation for details about how to set up Amazon S3 compatible object storage for Ghostfolio.
 
 ### Configure the mailer
 
@@ -88,12 +88,12 @@ You can configure a mailer for functions such as user invitation. Ghostfolio sup
 
 **You can use exim-relay as the mailer, which is enabled on this playbook by default.** If you enable exim-relay on the playbook and will use it for Ghostfolio, you do not have to add settings for them, as Ghostfolio is wired to the mailer automatically. See [here](exim-relay.md) for details about how to set it up.
 
-If you will use another SMTP server or Postmark, see [this section](https://github.com/mother-of-all-self-hosting/ansible-role-docmost/blob/main/docs/configuring-docmost.md#configure-the-mailer) on the role's documentation for details about configuring the mailer.
+If you will use another SMTP server or Postmark, see [this section](https://github.com/mother-of-all-self-hosting/ansible-role-ghostfolio/blob/main/docs/configuring-ghostfolio.md#configure-the-mailer) on the role's documentation for details about configuring the mailer.
 
 If you do not want to enable a mailer for Ghostfolio altogether, add the following configuration to your `vars.yml` file:
 
 ```yaml
-docmost_mailer_enabled: false
+ghostfolio_mailer_enabled: false
 ```
 
 ### Configure Valkey
@@ -129,7 +129,7 @@ mash_example_com
 
 [mash_example_com]
 mash.example.com ansible_host=YOUR_SERVER_IP_ADDRESS_HERE
-mash.example.com-docmost-deps ansible_host=YOUR_SERVER_IP_ADDRESS_HERE
+mash.example.com-ghostfolio-deps ansible_host=YOUR_SERVER_IP_ADDRESS_HERE
 …
 ```
 
@@ -139,9 +139,9 @@ You can just add an entry for the supplementary host to `[mash_example_com]` if 
 
 ##### Create `vars.yml` for the dedicated instance
 
-Then, create a new directory where `vars.yml` for the supplementary host is stored. If `mash.example.com` is your main host, name the directory as `mash.example.com-docmost-deps`. Its path therefore will be `inventory/host_vars/mash.example.com-docmost-deps`.
+Then, create a new directory where `vars.yml` for the supplementary host is stored. If `mash.example.com` is your main host, name the directory as `mash.example.com-ghostfolio-deps`. Its path therefore will be `inventory/host_vars/mash.example.com-ghostfolio-deps`.
 
-After creating the directory, add a new `vars.yml` file inside it with a content below. It will have running the playbook create a `mash-docmost-valkey` instance on the new host, setting `/mash/docmost-valkey` to the base directory of the dedicated Valkey instance.
+After creating the directory, add a new `vars.yml` file inside it with a content below. It will have running the playbook create a `mash-ghostfolio-valkey` instance on the new host, setting `/mash/ghostfolio-valkey` to the base directory of the dedicated Valkey instance.
 
 ```yaml
 # This is vars.yml for the supplementary host of Ghostfolio.
@@ -158,8 +158,8 @@ After creating the directory, add a new `vars.yml` file inside it with a content
 mash_playbook_generic_secret_key: ''
 
 # Override service names and directory path prefixes
-mash_playbook_service_identifier_prefix: 'mash-docmost-'
-mash_playbook_service_base_directory_name_prefix: 'docmost-'
+mash_playbook_service_identifier_prefix: 'mash-ghostfolio-'
+mash_playbook_service_base_directory_name_prefix: 'ghostfolio-'
 
 ########################################################################
 #                                                                      #
@@ -190,31 +190,31 @@ Having configured `vars.yml` for the dedicated instance, add the following confi
 ```yaml
 ########################################################################
 #                                                                      #
-# docmost                                                              #
+# ghostfolio                                                           #
 #                                                                      #
 ########################################################################
 
 # Add the base configuration as specified above
 
 # Point Ghostfolio to its dedicated Valkey instance
-docmost_config_redis_hostname: mash-docmost-valkey
+ghostfolio_config_redis_hostname: mash-ghostfolio-valkey
 
-# Make sure the Ghostfolio service (mash-docmost.service) starts after its dedicated Valkey service (mash-docmost-valkey.service)
-docmost_systemd_required_services_list_custom:
-  - "mash-docmost-valkey.service"
+# Make sure the Ghostfolio service (mash-ghostfolio.service) starts after its dedicated Valkey service (mash-ghostfolio-valkey.service)
+ghostfolio_systemd_required_services_list_custom:
+  - "mash-ghostfolio-valkey.service"
 
-# Make sure the Ghostfolio service (mash-docmost.service) is connected to the container network of its dedicated Valkey service (mash-docmost-valkey)
-docmost_container_additional_networks_custom:
-  - "mash-docmost-valkey"
+# Make sure the Ghostfolio service (mash-ghostfolio.service) is connected to the container network of its dedicated Valkey service (mash-ghostfolio-valkey)
+ghostfolio_container_additional_networks_custom:
+  - "mash-ghostfolio-valkey"
 
 ########################################################################
 #                                                                      #
-# /docmost                                                             #
+# /ghostfolio                                                          #
 #                                                                      #
 ########################################################################
 ```
 
-Running the installation command will create the dedicated Valkey instance named `mash-docmost-valkey`.
+Running the installation command will create the dedicated Valkey instance named `mash-ghostfolio-valkey`.
 
 #### Setting up a shared Valkey instance
 
@@ -240,26 +240,26 @@ valkey_enabled: true
 
 ########################################################################
 #                                                                      #
-# docmost                                                              #
+# ghostfolio                                                           #
 #                                                                      #
 ########################################################################
 
 # Add the base configuration as specified above
 
 # Point Ghostfolio to the shared Valkey instance
-docmost_config_redis_hostname: "{{ valkey_identifier }}"
+ghostfolio_config_redis_hostname: "{{ valkey_identifier }}"
 
-# Make sure the Ghostfolio service (mash-docmost.service) starts after its dedicated Valkey service (mash-docmost-valkey.service)
-docmost_systemd_required_services_list_custom:
+# Make sure the Ghostfolio service (mash-ghostfolio.service) starts after its dedicated Valkey service (mash-ghostfolio-valkey.service)
+ghostfolio_systemd_required_services_list_custom:
   - "{{ valkey_identifier }}.service"
 
-# Make sure the Ghostfolio container is connected to the container network of its dedicated Valkey service (mash-docmost-valkey)
-docmost_container_additional_networks_custom:
+# Make sure the Ghostfolio container is connected to the container network of its dedicated Valkey service (mash-ghostfolio-valkey)
+ghostfolio_container_additional_networks_custom:
   - "{{ valkey_container_network }}"
 
 ########################################################################
 #                                                                      #
-# /docmost                                                             #
+# /ghostfolio                                                          #
 #                                                                      #
 ########################################################################
 ```
@@ -268,26 +268,26 @@ Running the installation command will create the shared Valkey instance named `m
 
 ### Enable Telemetry (optional)
 
-By default this playbook disables Ghostfolio's [telemetry](https://docmost.com/docs/self-hosting/environment-variables#telemetry) which collects information about the active version, user count, page count, space and workspace count, and sends to the Ghostfolio server (see [here](https://github.com/docmost/docmost/blob/main/apps/server/src/integrations/telemetry/telemetry.service.ts)).
+By default this playbook disables Ghostfolio's [telemetry](https://ghostfolio.com/docs/self-hosting/environment-variables#telemetry) which collects information about the active version, user count, page count, space and workspace count, and sends to the Ghostfolio server (see [here](https://github.com/ghostfolio/ghostfolio/blob/main/apps/server/src/integrations/telemetry/telemetry.service.ts)).
 
 If you are fine with sending such infomation and want to help developers, add the following configuration to your `vars.yml` file:
 
 ```yaml
-docmost_environment_variable_disable_telemetry: false
+ghostfolio_environment_variable_disable_telemetry: false
 ```
 
 ## Installation
 
-If you have decided to install the dedicated Valkey instance for Ghostfolio, make sure to run the [installing](../installing.md) command for the supplementary host (`mash.example.com-docmost-deps`) first, before running it for the main host (`mash.example.com`).
+If you have decided to install the dedicated Valkey instance for Ghostfolio, make sure to run the [installing](../installing.md) command for the supplementary host (`mash.example.com-ghostfolio-deps`) first, before running it for the main host (`mash.example.com`).
 
 Note that running the `just` commands for installation (`just install-all` or `just setup-all`) automatically takes care of the order. See [here](../running-multiple-instances.md#1-adjust-hosts) for more details about it.
 
 ## Usage
 
-After installation, your Ghostfolio instance becomes available at the URL specified with `docmost_hostname`.
+After installation, your Ghostfolio instance becomes available at the URL specified with `ghostfolio_hostname`.
 
 To get started, go to the URL on a web browser and create a first workspace by inputting required information. For an email address, make sure to input your own email address, not the one of the mailer.
 
 ## Troubleshooting
 
-See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-docmost/blob/main/docs/configuring-docmost.md#troubleshooting) on the role's documentation for details.
+See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-ghostfolio/blob/main/docs/configuring-ghostfolio.md#troubleshooting) on the role's documentation for details.
