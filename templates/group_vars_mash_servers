@@ -277,6 +277,11 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
     {{ ({'name': (funkwhale_watch_imports_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'funkwhale']} if funkwhale_enabled and funkwhale_watch_imports_enabled else omit) }}
   # /role-specific:funkwhale
 
+  # role-specific:ghostfolio
+  - |-
+    {{ ({'name': (ghostfolio_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'ghostfolio', 'ghostfolio-server']} if ghostfolio_enabled else omit) }}
+  # /role-specific:ghostfolio
+
   # role-specific:gitea
   - |-
     {{ ({'name': (gitea_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'gitea', 'gitea-server']} if gitea_enabled else omit) }}
@@ -883,6 +888,17 @@ mash_playbook_postgres_managed_databases_auto_itemized:
       } if funkwhale_enabled and funkwhale_database_hostname == postgres_identifier else omit)
     }}
   # /role-specific:funkwhale
+
+  # role-specific:ghostfolio
+  - |-
+    {{
+      ({
+        'name': ghostfolio_environment_variable_postgres_db,
+        'username': ghostfolio_environment_variable_postgres_user,
+        'password': ghostfolio_environment_variable_postgres_password,
+      } if ghostfolio_enabled else omit)
+    }}
+  # /role-specific:ghostfolio
 
   # role-specific:gitea
   - |-
@@ -2956,6 +2972,69 @@ funkwhale_frontend_container_labels_traefik_tls_certResolver: "{{ traefik_certRe
 #                                                                      #
 ########################################################################
 # /role-specific:funkwhale
+
+
+
+# role-specific:ghostfolio
+########################################################################
+#                                                                      #
+# ghostfolio                                                           #
+#                                                                      #
+########################################################################
+
+ghostfolio_enabled: false
+
+ghostfolio_identifier: "{{ mash_playbook_service_identifier_prefix }}ghostfolio"
+
+ghostfolio_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}ghostfolio"
+
+# The role is based on Node.js docker image, and is expected to run with uid 1000.
+#
+# See: https://github.com/nodejs/docker-node/blob/main/docs/BestPractices.md#non-root-user
+# and https://github.com/ghostfolio/ghostfolio/blob/main/Dockerfile
+ghostfolio_uid: 1000
+ghostfolio_gid: 1000
+
+ghostfolio_systemd_required_systemd_services_list_auto: |
+  {{
+    ([postgres_identifier ~ '.service'] if postgres_enabled and ghostfolio_database_host == postgres_identifier else [])
+  }}
+
+ghostfolio_container_additional_networks_auto: |
+  {{
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+    +
+    ([postgres_container_network] if postgres_enabled and ghostfolio_database_host == postgres_identifier and ghostfolio_container_network != postgres_container_network else [])
+  }}
+
+ghostfolio_environment_variable_access_token_salt: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'at.ghostfolio', rounds=655555) | to_uuid }}"
+ghostfolio_environment_variable_jwt_secret_key: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'jsk.ghostfolio', rounds=655555) | to_uuid }}"
+
+# Required for a Redis / KeyDB / Valkey instance
+ghostfolio_environment_variable_redis_host: "{{ ghostfolio_config_redis_hostname }}"
+
+ghostfolio_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+ghostfolio_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+
+# role-specific:postgres
+ghostfolio_database_host: "{{ postgres_identifier if postgres_enabled else '' }}"
+ghostfolio_database_port: "{{ '5432' if postgres_enabled else '' }}"
+ghostfolio_environment_variable_postgres_user: ghostfolio
+ghostfolio_environment_variable_postgres_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'db.ghostfolio', rounds=655555) | to_uuid }}"
+# /role-specific:postgres
+
+# role-specific:traefik
+ghostfolio_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
+ghostfolio_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
+# /role-specific:traefik
+
+########################################################################
+#                                                                      #
+# /ghostfolio                                                          #
+#                                                                      #
+########################################################################
+# /role-specific:ghostfolio
+
 
 
 # role-specific:gitea
