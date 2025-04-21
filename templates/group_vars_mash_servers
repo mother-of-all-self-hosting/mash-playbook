@@ -4721,7 +4721,7 @@ mariadb_managed_databases_auto: "{{ mash_playbook_mariadb_managed_databases_auto
 # role-specific:matomo
 ########################################################################
 #                                                                      #
-# matomo                                                                #
+# matomo                                                               #
 #                                                                      #
 ########################################################################
 
