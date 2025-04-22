@@ -23,6 +23,13 @@ To enable this service, add the following configuration to your `vars.yml` file 
 matomo_enabled: true
 
 matomo_hostname: matomo.example.com
+
+########################################################################
+#                                                                      #
+# /matomo                                                              #
+#                                                                      #
+########################################################################
+
 ```
 
 ## Usage
