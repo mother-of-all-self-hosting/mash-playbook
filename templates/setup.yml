@@ -225,6 +225,10 @@
     - role: galaxy/funkwhale
     # /role-specific:funkwhale
 
+    # role-specific:ghostfolio
+    - role: galaxy/ghostfolio
+    # /role-specific:ghostfolio
+
     # role-specific:gitea
     - role: galaxy/gitea
     # /role-specific:gitea

@@ -160,6 +160,10 @@
   version: v1.4.0-9
   name: funkwhale
   activation_prefix: funkwhale_
+- src: git+https://github.com/mother-of-all-self-hosting/ansible-role-ghostfolio.git
+  version: v2.154.0-0
+  name: ghostfolio
+  activation_prefix: ghostfolio_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-gitea.git
   version: v1.23.5-2
   name: gitea
