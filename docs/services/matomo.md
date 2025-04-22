@@ -24,6 +24,7 @@ matomo_enabled: true
 
 matomo_hostname: matomo.example.com
 ```
+
 ## Usage
 
 After installation, visit your Matomo instance at the configured URL. You'll be guided through a setup wizard where you can:
