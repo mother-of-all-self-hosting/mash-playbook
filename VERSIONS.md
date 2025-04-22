@@ -3,7 +3,7 @@
 * Apisix Gateway: 3.8.0
 * Appsmith: v1.9.50
 * Authelia: 4.37.5
-* Authentik: 2025.2.1
+* Authentik: 2025.2.4
 * Borg: 1.4.0
 * Borgmatic: 1.9.13
 * Calibre Web: 0.6.24
