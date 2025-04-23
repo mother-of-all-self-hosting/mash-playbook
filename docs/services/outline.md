@@ -130,7 +130,7 @@ mash_example_com
 
 [mash_example_com]
 mash.example.com ansible_host=YOUR_SERVER_IP_ADDRESS_HERE
-mash.example.com-notfellchen-deps ansible_host=YOUR_SERVER_IP_ADDRESS_HERE
+mash.example.com-outline-deps ansible_host=YOUR_SERVER_IP_ADDRESS_HERE
 …
 ```
 
@@ -140,9 +140,9 @@ You can just add an entry for the supplementary host to `[mash_example_com]` if 
 
 ##### Create `vars.yml` for the dedicated instance
 
-Then, create a new directory where `vars.yml` for the supplementary host is stored. If `mash.example.com` is your main host, name the directory as `mash.example.com-notfellchen-deps`. Its path therefore will be `inventory/host_vars/mash.example.com-notfellchen-deps`.
+Then, create a new directory where `vars.yml` for the supplementary host is stored. If `mash.example.com` is your main host, name the directory as `mash.example.com-outline-deps`. Its path therefore will be `inventory/host_vars/mash.example.com-outline-deps`.
 
-After creating the directory, add a new `vars.yml` file inside it with a content below. It will have running the playbook create a `mash-notfellchen-valkey` instance on the new host, setting `/mash/notfellchen-valkey` to the base directory of the dedicated Valkey instance.
+After creating the directory, add a new `vars.yml` file inside it with a content below. It will have running the playbook create a `mash-outline-valkey` instance on the new host, setting `/mash/outline-valkey` to the base directory of the dedicated Valkey instance.
 
 ```yaml
 # This is vars.yml for the supplementary host of Outline.
@@ -159,8 +159,8 @@ After creating the directory, add a new `vars.yml` file inside it with a content
 mash_playbook_generic_secret_key: ''
 
 # Override service names and directory path prefixes
-mash_playbook_service_identifier_prefix: 'mash-notfellchen-'
-mash_playbook_service_base_directory_name_prefix: 'notfellchen-'
+mash_playbook_service_identifier_prefix: 'mash-outline-'
+mash_playbook_service_base_directory_name_prefix: 'outline-'
 
 ########################################################################
 #                                                                      #
@@ -191,31 +191,31 @@ Having configured `vars.yml` for the dedicated instance, add the following confi
 ```yaml
 ########################################################################
 #                                                                      #
-# notfellchen                                                          #
+# outline                                                              #
 #                                                                      #
 ########################################################################
 
 # Add the base configuration as specified above
 
-# Point notfellchen to its dedicated Valkey instance
-notfellchen_config_redis_hostname: mash-notfellchen-valkey
+# Point outline to its dedicated Valkey instance
+outline_config_redis_hostname: mash-outline-valkey
 
-# Make sure the notfellchen ervice (mash-notfellchen.service) starts after its dedicated Valkey service
-notfellchen_systemd_required_services_list_custom:
-  - "mash-notfellchen-valkey.service"
+# Make sure the outline ervice (mash-outline.service) starts after its dedicated Valkey service
+outline_systemd_required_services_list_custom:
+  - "mash-outline-valkey.service"
 
-# Make sure the notfellchen service (mash-notfellchen.service) is connected to the container network of its dedicated Valkey service
-notfellchen_api_container_additional_networks_custom:
-  - "mash-notfellchen-valkey"
+# Make sure the outline service (mash-outline.service) is connected to the container network of its dedicated Valkey service
+outline_api_container_additional_networks_custom:
+  - "mash-outline-valkey"
 
 ########################################################################
 #                                                                      #
-# /notfellchen                                                         #
+# /outline                                                             #
 #                                                                      #
 ########################################################################
 ```
 
-Running the installation command will create the dedicated Valkey instance named `mash-notfellchen-valkey`.
+Running the installation command will create the dedicated Valkey instance named `mash-outline-valkey`.
 
 #### Setting up a shared Valkey instance
 
@@ -241,26 +241,26 @@ valkey_enabled: true
 
 ########################################################################
 #                                                                      #
-# notfellchen                                                          #
+# outline                                                              #
 #                                                                      #
 ########################################################################
 
 # Add the base configuration as specified above
 
-# Point notfellchen to the shared Valkey instance
-notfellchen_config_redis_hostname: "{{ valkey_identifier }}"
+# Point outline to the shared Valkey instance
+outline_config_redis_hostname: "{{ valkey_identifier }}"
 
-# Make sure the notfellchen API service (mash-notfellchen.service) starts after the shared Valkey service
-notfellchen_api_systemd_required_services_list_custom:
+# Make sure the outline API service (mash-outline.service) starts after the shared Valkey service
+outline_api_systemd_required_services_list_custom:
   - "{{ valkey_identifier }}.service"
 
-# Make sure the notfellchen API service (mash-notfellchen.service) is connected to the container network of the shared Valkey service
-notfellchen_container_additional_networks_custom:
+# Make sure the outline API service (mash-outline.service) is connected to the container network of the shared Valkey service
+outline_container_additional_networks_custom:
   - "{{ valkey_container_network }}"
 
 ########################################################################
 #                                                                      #
-# /notfellchen                                                         #
+# /outline                                                             #
 #                                                                      #
 ########################################################################
 ```
@@ -269,6 +269,6 @@ Running the installation command will create the shared Valkey instance named `m
 
 ## Installation
 
-If you have decided to install the dedicated Valkey instance for Outline, make sure to run the [installing](../installing.md) command for the supplementary host (`mash.example.com-notfellchen-deps`) first, before running it for the main host (`mash.example.com`).
+If you have decided to install the dedicated Valkey instance for Outline, make sure to run the [installing](../installing.md) command for the supplementary host (`mash.example.com-outline-deps`) first, before running it for the main host (`mash.example.com`).
 
 Note that running the `just` commands for installation (`just install-all` or `just setup-all`) automatically takes care of the order. See [here](../running-multiple-instances.md#1-adjust-hosts) for more details about it.
