@@ -60,11 +60,7 @@ outline_container_additional_networks_custom: |
 ########################################################################
 ```
 
-### URL
-
-In the example configuration above, we configure the service to be hosted at `https://outline.example.com`.
-
-While the Outline Ansible role provides an `outline_path_prefix` variable, Outline does not support being hosted at a subpath right now.
+**Note**: hosting Outline under a subpath (by configuring the `outline_path_prefix` variable) does not seem to be possible due to Outline's technical limitations.
 
 ### File Storage
 
@@ -272,3 +268,7 @@ Running the installation command will create the shared Valkey instance named `m
 If you have decided to install the dedicated Valkey instance for Outline, make sure to run the [installing](../installing.md) command for the supplementary host (`mash.example.com-outline-deps`) first, before running it for the main host (`mash.example.com`).
 
 Note that running the `just` commands for installation (`just install-all` or `just setup-all`) automatically takes care of the order. See [here](../running-multiple-instances.md#1-adjust-hosts) for more details about it.
+
+## Usage
+
+After installation, your Outline instance becomes available at the URL specified with `outline_hostname`.
