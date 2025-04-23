@@ -99,17 +99,17 @@ Unfortunately, even with SMTP settings being defined, we haven't been able to ge
 
 ### Configure Valkey
 
-Notfellchen requires a Valkey data-store to work. This playbook supports it, and you can set up a Valkey instance by enabling it on `vars.yml`.
+Outline requires a Valkey data-store to work. This playbook supports it, and you can set up a Valkey instance by enabling it on `vars.yml`.
 
-If Notfellchen is the sole service which requires Valkey on your server, it is fine to set up just a single Valkey instance. However, **it is not recommended if there are other services which require it, because sharing the Valkey instance has security concerns and possibly causes data conflicts**, as described on the [documentation for configuring Valkey](valkey.md). In this case, you should install a dedicated Valkey instance for each of them.
+If Outline is the sole service which requires Valkey on your server, it is fine to set up just a single Valkey instance. However, **it is not recommended if there are other services which require it, because sharing the Valkey instance has security concerns and possibly causes data conflicts**, as described on the [documentation for configuring Valkey](valkey.md). In this case, you should install a dedicated Valkey instance for each of them.
 
-If you are unsure whether you will install other services along with Notfellchen or you have already set up services which need Valkey (such as [Nextcloud](nextcloud.md), [PeerTube](peertube.md), and [Funkwhale](funkwhale.md)), it is recommended to install a Valkey instance dedicated to Notfellchen.
+If you are unsure whether you will install other services along with Outline or you have already set up services which need Valkey (such as [Nextcloud](nextcloud.md), [PeerTube](peertube.md), and [Funkwhale](funkwhale.md)), it is recommended to install a Valkey instance dedicated to Outline.
 
 *See [below](#setting-up-a-shared-valkey-instance) for an instruction to install a shared instance.*
 
 #### Setting up a dedicated Valkey instance
 
-To create a dedicated instance for Notfellchen, you can follow the steps below:
+To create a dedicated instance for Outline, you can follow the steps below:
 
 1. Adjust the `hosts` file
 2. Create a new `vars.yml` file for the dedicated instance
@@ -119,7 +119,7 @@ To create a dedicated instance for Notfellchen, you can follow the steps below:
 
 ##### Adjust `hosts`
 
-At first, you need to adjust `inventory/hosts` file to add a supplementary host for Notfellchen.
+At first, you need to adjust `inventory/hosts` file to add a supplementary host for Outline.
 
 The content should be something like below. Make sure to replace `mash.example.com` with your hostname and `YOUR_SERVER_IP_ADDRESS_HERE` with the IP address of the host, respectively. The same IP address should be set to both, unless the Valkey instance will be served from a different machine.
 
@@ -145,7 +145,7 @@ Then, create a new directory where `vars.yml` for the supplementary host is stor
 After creating the directory, add a new `vars.yml` file inside it with a content below. It will have running the playbook create a `mash-notfellchen-valkey` instance on the new host, setting `/mash/notfellchen-valkey` to the base directory of the dedicated Valkey instance.
 
 ```yaml
-# This is vars.yml for the supplementary host of Notfellchen.
+# This is vars.yml for the supplementary host of Outline.
 
 ---
 
@@ -219,9 +219,9 @@ Running the installation command will create the dedicated Valkey instance named
 
 #### Setting up a shared Valkey instance
 
-If you host only Notfellchen on this server, it is fine to set up a single shared Valkey instance.
+If you host only Outline on this server, it is fine to set up a single shared Valkey instance.
 
-To install the single instance and hook Notfellchen to it, add the following configuration to `inventory/host_vars/mash.example.com/vars.yml`:
+To install the single instance and hook Outline to it, add the following configuration to `inventory/host_vars/mash.example.com/vars.yml`:
 
 ```yaml
 ########################################################################
@@ -269,6 +269,6 @@ Running the installation command will create the shared Valkey instance named `m
 
 ## Installation
 
-If you have decided to install the dedicated Valkey instance for Notfellchen, make sure to run the [installing](../installing.md) command for the supplementary host (`mash.example.com-notfellchen-deps`) first, before running it for the main host (`mash.example.com`).
+If you have decided to install the dedicated Valkey instance for Outline, make sure to run the [installing](../installing.md) command for the supplementary host (`mash.example.com-notfellchen-deps`) first, before running it for the main host (`mash.example.com`).
 
 Note that running the `just` commands for installation (`just install-all` or `just setup-all`) automatically takes care of the order. See [here](../running-multiple-instances.md#1-adjust-hosts) for more details about it.
