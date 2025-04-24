@@ -85,7 +85,7 @@
 * Qbittorrent: 5.0.4
 * Radarr: 5.18.4
 * Radicale: 3.5.0.0
-* Readeck: 0.17.1
+* Readeck: 0.18.0
 * Redis: 7.4.2
 * Redmine: 6.0.4
 * Roundcube: 1.6.10
