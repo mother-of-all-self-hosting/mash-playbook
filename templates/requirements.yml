@@ -331,6 +331,7 @@
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-paperless.git
   version: v2.15.2-1
   name: paperless
+  activation_prefix: paperless_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-peertube.git
   version: v7.0.1-2
   name: peertube
