@@ -19,15 +19,15 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
 # ConvertX
 
-The playbook can install and configure [ConvertX](https://github.com/redlib-org/redlib) for you.
+The playbook can install and configure [ConvertX](https://github.com/convertx-org/convertx) for you.
 
 ConvertX allows you to browse Reddit without exposing your IP address, browsing habits, and other browser fingerprinting data to the website.
 
-See the project's [documentation](https://github.com/redlib-org/redlib/blob/main/README.md) to learn what ConvertX does and why it might be useful to you.
+See the project's [documentation](https://github.com/convertx-org/convertx/blob/main/README.md) to learn what ConvertX does and why it might be useful to you.
 
-For details about configuring the [Ansible role for ConvertX](https://github.com/mother-of-all-self-hosting/ansible-role-redlib), you can check them via:
-- 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-redlib/blob/main/docs/configuring-redlib.md) online
-- 📁 `roles/galaxy/redlib/docs/configuring-redlib.md` locally, if you have [fetched the Ansible roles](../installing.md)
+For details about configuring the [Ansible role for ConvertX](https://github.com/mother-of-all-self-hosting/ansible-role-convertx), you can check them via:
+- 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-convertx/blob/main/docs/configuring-convertx.md) online
+- 📁 `roles/galaxy/convertx/docs/configuring-convertx.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 ## Dependencies
 
@@ -42,35 +42,35 @@ To enable this service, add the following configuration to your `vars.yml` file 
 ```yaml
 ########################################################################
 #                                                                      #
-# redlib                                                               #
+# convertx                                                             #
 #                                                                      #
 ########################################################################
 
-redlib_enabled: true
+convertx_enabled: true
 
-redlib_hostname: redlib.example.com
+convertx_hostname: convertx.example.com
 
 ########################################################################
 #                                                                      #
-# /redlib                                                              #
+# /convertx                                                            #
 #                                                                      #
 ########################################################################
 ```
 
-**Note**: hosting ConvertX under a subpath (by configuring the `redlib_path_prefix` variable) is technically possible but not recommended, as most of the functions do not work as expected due to ConvertX's technical limitations (pages and resources are not correctly loaded, and links are broken).
+**Note**: hosting ConvertX under a subpath (by configuring the `convertx_path_prefix` variable) is technically possible but not recommended, as most of the functions do not work as expected due to ConvertX's technical limitations (pages and resources are not correctly loaded, and links are broken).
 
 ### Configure instance and user settings (optional)
 
-There are various options for the instance and user settings. See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-redlib/blob/main/docs/configuring-redlib.md#configure-instance-and-user-settings-optional) on the role's documentation for details.
+There are various options for the instance and user settings. See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-convertx/blob/main/docs/configuring-convertx.md#configure-instance-and-user-settings-optional) on the role's documentation for details.
 
 ## Usage
 
-After running the command for installation, ConvertX becomes available at the specified hostname like `https://redlib.example.com`.
+After running the command for installation, ConvertX becomes available at the specified hostname like `https://convertx.example.com`.
 
 [Libredirect](https://libredirect.github.io/), an extension for Firefox and Chromium-based desktop browsers, has support for redirections to ConvertX.
 
-If you would like to make your instance public so that it can be used by anyone including Libredirect, please consider to send a PR to the [upstream project](https://github.com/redlib-org/redlib-instances) to add yours to the list, which Libredirect automatically fetches using a script (see [this FAQ entry](https://libredirect.github.io/faq.html#where_the_hell_are_those_instances_coming_from)). See [here](https://github.com/redlib-org/redlib-instances/blob/main/README.md) for details about how to do so.
+If you would like to make your instance public so that it can be used by anyone including Libredirect, please consider to send a PR to the [upstream project](https://github.com/convertx-org/convertx-instances) to add yours to the list, which Libredirect automatically fetches using a script (see [this FAQ entry](https://libredirect.github.io/faq.html#where_the_hell_are_those_instances_coming_from)). See [here](https://github.com/convertx-org/convertx-instances/blob/main/README.md) for details about how to do so.
 
 ## Troubleshooting
 
-See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-redlib/blob/main/docs/configuring-redlib.md#troubleshooting) on the role's documentation for details.
+See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-convertx/blob/main/docs/configuring-convertx.md#troubleshooting) on the role's documentation for details.
