@@ -418,6 +418,11 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
     {{ ({'name': (mariadb_identifier + '.service'), 'priority': 500, 'groups': ['mash', 'mariadb']} if mariadb_enabled else omit) }}
   # /role-specific:mariadb
 
+  # role-specific:matomo
+  - |-
+    {{ ({'name': (matomo_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'matomo']} if matomo_enabled else omit) }}
+  # /role-specific:matomo
+
   # role-specific:miniflux
   - |-
     {{ ({'name': (miniflux_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'miniflux']} if miniflux_enabled else omit) }}
@@ -5220,6 +5225,17 @@ mash_playbook_mariadb_managed_databases_auto_itemized:
     }}
   # /role-specific:authelia
 
+  # role-specific:matomo
+  - |-
+    {{
+      ({
+        'name': matomo_config_database_name,
+        'username': matomo_config_database_username,
+        'password': matomo_config_database_password,
+      } if matomo_enabled and matomo_config_database_hostname == mariadb_identifier else omit)
+    }}
+  # /role-specific:matomo
+
   # role-specific:privatebin
   - |-
     {{
@@ -5261,6 +5277,63 @@ mariadb_managed_databases_auto: "{{ mash_playbook_mariadb_managed_databases_auto
 #                                                                      #
 ########################################################################
 # /role-specific:mariadb
+
+
+
+# role-specific:matomo
+########################################################################
+#                                                                      #
+# matomo                                                               #
+#                                                                      #
+########################################################################
+
+matomo_enabled: false
+
+matomo_identifier: "{{ mash_playbook_service_identifier_prefix }}matomo"
+
+matomo_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}matomo"
+
+matomo_uid: "{{ mash_playbook_uid }}"
+matomo_gid: "{{ mash_playbook_gid }}"
+
+matomo_systemd_required_systemd_services_list_auto: |
+  {{
+    ([mariadb_identifier ~ '.service'] if mariadb_enabled and matomo_config_database_hostname == mariadb_identifier else [])
+  }}
+
+matomo_container_additional_networks_auto: |
+  {{
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+    +
+    ([mariadb_container_network] if mariadb_enabled and matomo_config_database_hostname == mariadb_identifier and matomo_container_network != mariadb_container_network else [])
+  }}
+
+matomo_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+matomo_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+matomo_container_labels_traefik_compression_middleware_enabled: "{{ mash_playbook_reverse_proxy_traefik_middleware_compession_enabled }}"
+matomo_container_labels_traefik_compression_middleware_name: "{{ mash_playbook_reverse_proxy_traefik_middleware_compession_name if mash_playbook_reverse_proxy_traefik_middleware_compession_enabled else '' }}"
+
+# role-specific:mariadb
+matomo_config_database_hostname: "{{ mariadb_identifier if mariadb_enabled else '' }}"
+matomo_config_database_port: "{{ '3306' if mariadb_enabled else '' }}"
+matomo_config_database_username: "matomo"
+matomo_config_database_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'db.matomo', rounds=655555) | to_uuid }}"
+matomo_config_database_name: "matomo"
+matomo_config_database_adapter: "mysql"
+matomo_config_database_tables_prefix: "matomo_"
+# /role-specific:mariadb
+
+# role-specific:traefik
+matomo_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
+matomo_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
+# /role-specific:traefik
+
+########################################################################
+#                                                                      #
+# /matomo                                                              #
+#                                                                      #
+########################################################################
+# /role-specific:matomo
 
 
 
