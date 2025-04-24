@@ -157,6 +157,11 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
     {{ ({'name': (collabora_online_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'collabora-online']} if collabora_online_enabled else omit) }}
   # /role-specific:collabora_online
 
+  # role-specific:convertx
+  - |-
+    {{ ({'name': (convertx_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'convertx']} if convertx_enabled else omit) }}
+  # /role-specific:convertx
+
   # role-specific:couchdb
   - |-
     {{ ({'name': (couchdb_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'couchdb']} if couchdb_enabled else omit) }}
@@ -2048,6 +2053,46 @@ collabora_online_container_labels_traefik_tls_certResolver: "{{ traefik_certReso
 #                                                                      #
 ########################################################################
 # /role-specific:collabora_online
+
+
+
+# role-specific:convertx
+########################################################################
+#                                                                      #
+# convertx                                                             #
+#                                                                      #
+########################################################################
+
+convertx_enabled: false
+
+convertx_identifier: "{{ mash_playbook_service_identifier_prefix }}convertx"
+
+convertx_uid: "{{ mash_playbook_uid }}"
+convertx_gid: "{{ mash_playbook_gid }}"
+
+convertx_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}convertx"
+
+convertx_container_additional_networks_auto: |
+  {{
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+  }}
+
+convertx_environment_variables_jwt_secret: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'jwt.convertx', rounds=655555) | to_uuid }}"
+
+convertx_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+convertx_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+
+# role-specific:traefik
+convertx_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
+convertx_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
+# /role-specific:traefik
+
+########################################################################
+#                                                                      #
+# /convertx                                                            #
+#                                                                      #
+########################################################################
+# /role-specific:convertx
 
 
 

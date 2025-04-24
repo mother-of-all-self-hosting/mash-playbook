@@ -153,6 +153,10 @@
     - role: galaxy/collabora_online
     # /role-specific:collabora_online
 
+    # role-specific:convertx
+    - role: galaxy/convertx
+    # /role-specific:convertx
+
     # role-specific:couchdb
     - role: galaxy/couchdb
     # /role-specific:couchdb

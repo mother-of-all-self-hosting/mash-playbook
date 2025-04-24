@@ -64,6 +64,10 @@
   version: v0.3.0-4
   name: container_socket_proxy
   activation_prefix: mash_
+- src: git+https://github.com/mother-of-all-self-hosting/ansible-role-convertx.git
+  version: v0.12.1-1
+  name: convertx
+  activation_prefix: convertx_
 - src: git+https://github.com/Bergruebe/ansible-role-couchdb.git
   version: v3.4.3-0
   name: couchdb
