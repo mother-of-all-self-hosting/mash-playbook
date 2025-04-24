@@ -48,7 +48,8 @@ To enable this service, add the following configuration to your `vars.yml` file 
 
 convertx_enabled: true
 
-convertx_hostname: convertx.example.com
+convertx_hostname: mash.example.com
+convertx_environment_variables_webroot: /convertx
 
 ########################################################################
 #                                                                      #
@@ -57,19 +58,13 @@ convertx_hostname: convertx.example.com
 ########################################################################
 ```
 
-**Note**: hosting ConvertX under a subpath (by configuring the `convertx_path_prefix` variable) is technically possible but not recommended, as most of the functions do not work as expected due to ConvertX's technical limitations (pages and resources are not correctly loaded, and links are broken).
+As the most of the necessary settings for the role have been taken care of by the playbook, you can enable ConvertX on your server with this minimum configuration.
 
-### Configure instance and user settings (optional)
-
-There are various options for the instance and user settings. See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-convertx/blob/main/docs/configuring-convertx.md#configure-instance-and-user-settings-optional) on the role's documentation for details.
+See the role's documentation for details about configuring ConvertX per your preference (such as [enabling account registration](https://github.com/mother-of-all-self-hosting/ansible-role-convertx/blob/main/docs/configuring-convertx.md#enable-account-registration-optional)).
 
 ## Usage
 
-After running the command for installation, ConvertX becomes available at the specified hostname like `https://convertx.example.com`.
-
-[Libredirect](https://libredirect.github.io/), an extension for Firefox and Chromium-based desktop browsers, has support for redirections to ConvertX.
-
-If you would like to make your instance public so that it can be used by anyone including Libredirect, please consider to send a PR to the [upstream project](https://github.com/convertx-org/convertx-instances) to add yours to the list, which Libredirect automatically fetches using a script (see [this FAQ entry](https://libredirect.github.io/faq.html#where_the_hell_are_those_instances_coming_from)). See [here](https://github.com/convertx-org/convertx-instances/blob/main/README.md) for details about how to do so.
+After running the command for installation, ConvertX becomes available at the specified hostname with the subpath like `https://mash.example.com/convertx`. To use it, open the URL on the browser and create an account.
 
 ## Troubleshooting
 
