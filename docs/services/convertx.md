@@ -19,11 +19,11 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
 # ConvertX
 
-The playbook can install and configure [ConvertX](https://github.com/convertx-org/convertx) for you.
+The playbook can install and configure [ConvertX](https://github.com/C4illin/ConvertX) for you.
 
-ConvertX allows you to browse Reddit without exposing your IP address, browsing habits, and other browser fingerprinting data to the website.
+ConvertX is a self-hosted online file converter which supports a lot of different formats for pictures, video, images, document files, etc.
 
-See the project's [documentation](https://github.com/convertx-org/convertx/blob/main/README.md) to learn what ConvertX does and why it might be useful to you.
+See the project's [documentation](https://github.com/C4illin/ConvertX/blob/main/README.md) to learn what ConvertX does and why it might be useful to you.
 
 For details about configuring the [Ansible role for ConvertX](https://github.com/mother-of-all-self-hosting/ansible-role-convertx), you can check them via:
 - 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-convertx/blob/main/docs/configuring-convertx.md) online
