@@ -1,3 +1,10 @@
+<!--
+SPDX-FileCopyrightText: 2023 Julian-Samuel Gebühr
+SPDX-FileCopyrightText: 2023 Slavi Pantaleev
+
+SPDX-License-Identifier: AGPL-3.0-or-later
+-->
+
 # Mosquitto
 
 [Mosquitto](https://mosquitto.org/) is an open source [MQTT](https://en.wikipedia.org/wiki/MQTT) broker.
