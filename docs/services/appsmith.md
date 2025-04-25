@@ -1,3 +1,9 @@
+<!--
+SPDX-FileCopyrightText: 2023 Slavi Pantaleev
+
+SPDX-License-Identifier: AGPL-3.0-or-later
+-->
+
 # Appsmith
 
 [Appsmith](https://www.appsmith.com/) is an open-source platform that enables developers to build and deploy custom internal tools and applications without writing code.
