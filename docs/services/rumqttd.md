@@ -1,3 +1,9 @@
+<!--
+SPDX-FileCopyrightText: 2023 Julian-Samuel Gebühr
+
+SPDX-License-Identifier: AGPL-3.0-or-later
+-->
+
 # rumqttd
 
 [rumqttd](https://github.com/bytebeamio/rumqtt) is a high performance, embeddable [MQTT](https://en.wikipedia.org/wiki/MQTT) broker installed via [mother-of-all-self-hosting/ansible-role-rumqttd](https://github.com/mother-of-all-self-hosting/ansible-role-rumqttd).
