@@ -52,7 +52,7 @@ When it comes to the structure of roles, you can follow existing roles such as [
     ├── LICENSE
     └── README.md
     ```
-- You will also need to decide on a licence. Otherwise ansible-galaxy won't work. We recommend AGPLv3, as all roles of the MASH playbook.
+- You will also need to decide on a licence. Otherwise ansible-galaxy won't work. We recommend AGPLv3, as it is adoped by the most roles of the MASH playbook.
 - If you are committed to free software, you might probably be interested in publishing the role based on [REUSE](https://reuse.software/), an initiative by [FSFE](https://fsfe.org/).
 
 ### 3. Update the MASH playbook to support your created Ansible role
