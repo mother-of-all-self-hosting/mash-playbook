@@ -71,18 +71,6 @@ By default, GoToSocial uses `gotosocial_hostname` that you provide for the serve
 > [!WARNING]
 > Configuring it must be done before starting GoToSocial for the first time. Once you have federated with someone, you cannot change your domain layout.
 
-## E-Mail configuration
-
-You can use the following variables in your `vars.yml` to enable e-mail notifications.
-
-```yml
-# Check out https://docs.gotosocial.org/en/latest/configuration/smtp/ for a configuration reference
-gotosocial_smtp_host: 'smtp.example.org'
-gotosocial_smtp_username: gotosocial@example.org
-gotosocial_smtp_password: yourpassword
-gotosocial_smtp_from: gotosocial@example.org
-```
-
 ## Usage
 
 After [installing](../installing.md), you can:
