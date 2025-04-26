@@ -53,7 +53,7 @@ gotosocial_enabled: true
 # Hostname that this server will be reachable at.
 # DO NOT change this after your server has already run once, or you will break things!
 # Examples: ["gts.example.org","some.server.com"]
-gotosocial_hostname: 'social.example.org'
+gotosocial_hostname: 'social.example.com'
 
 ########################################################################
 #                                                                      #
@@ -73,59 +73,24 @@ By default, GoToSocial uses `gotosocial_hostname` that you provide for the serve
 
 ## Usage
 
-After [installing](../installing.md), you can:
+After running the command for installation, you can create user account(s).
 
-- create an **administrator** user account with a command like this: `just run-tags gotosocial-add-admin --extra-vars=username=USERNAME_HERE --extra-vars=password=PASSWORD_HERE --extra-vars=email=EMAIL_HERE`
+Run this command to create an **administrator** user account:
 
-- create a **regular** (non-administrator) user account with a command like this: `just run-tags gotosocial-add-user --extra-vars=username=USERNAME_HERE --extra-vars=password=PASSWORD_HERE --extra-vars=email=EMAIL_HERE`
-
-Then, you should be able to visit the URL specified in `gotosocial_hostname` and see your instance.
-
-To customize your instance, go to the `/admin` page.
-
-Use the [GtS CLI Tool](https://docs.gotosocial.org/en/latest/admin/cli/) to do admin & maintenance tasks. E.g. use
-```bash
-docker exec -it mash-gotosocial /gotosocial/gotosocial admin account demote --username USERNAME_HERE
+```sh
+just run-tags gotosocial-add-admin --extra-vars=username=USERNAME_HERE --extra-vars=password=PASSWORD_HERE --extra-vars=email=EMAIL_ADDRESS_HERE
 ```
-to demote a user from admin to normal user.
 
-Refer to the [great official documentation](https://docs.gotosocial.org/en/latest/) for more information on GoToSocial.
+Run this command to create a **regular** (non-administrator) user account:
 
+```sh
+just run-tags gotosocial-add-user --extra-vars=username=USERNAME_HERE --extra-vars=password=PASSWORD_HERE --extra-vars=email=EMAIL_ADDRESS_HERE
+```
 
+Now you should be able to visit the URL at the specified hostname like `https://social.example.com` and check your instance.
+
+See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-gotosocial/blob/main/docs/configuring-gotosocial.md#usage) on the role's documentation for details about how to use a CLI tool, etc.
 
 ## Migrate an existing instance
 
-The following assumes you want to migrate from `serverA` to `serverB` (managed by mash) but you just cave to adjust the copy commands if you are on the same server.
-
-Stop the initial instance on `serverA`
-
-```bash
-serverA$ systemctl stop gotosocial
-```
-
-Dump the database (depending on your existing setup you might have to adjust this)
-```
-serverA$ pg_dump gotosocial > latest.sql
-```
-
-Copy the files to the new server
-
-```bash
-serverA$ rsync -av -e "ssh" latest.sql root@serverB:/mash/gotosocial/
-serverA$ rsync -av -e "ssh" data/* root@serverB:/mash/gotosocial/data/
-```
-
-Install (but don't start) the service and database on the server.
-
-```bash
-yourPC$ just run-tags install-all
-yourPC$ just run-tags import-postgres --extra-vars=server_path_postgres_dump=/mash/gotosocial/latest.sql --extra-vars=postgres_default_import_database=mash-gotosocial
-```
-
-Start the services on the new server
-
-```bash
-yourPC$ just run-tags start
-```
-
-Done 🥳
+You can migrate your existing GoToSocial instance to the server which you manage with the MASH playbook. See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-gotosocial/blob/main/docs/configuring-gotosocial.md#migrate-an-existing-instance) on the role's documentation for details.
