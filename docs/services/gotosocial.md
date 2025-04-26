@@ -93,4 +93,6 @@ See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-go
 
 ## Migrate an existing instance
 
-You can migrate your existing GoToSocial instance to the server which you manage with the MASH playbook. See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-gotosocial/blob/main/docs/configuring-gotosocial.md#migrate-an-existing-instance) on the role's documentation for details.
+You can migrate your existing GoToSocial instance to the server which you manage with the MASH playbook. It is also possible to migrate on the same server (from an existing GoToSocial instance to the new one to start managing it with the MASH playbook, for example).
+
+See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-gotosocial/blob/main/docs/configuring-gotosocial.md#migrate-an-existing-instance) on the role's documentation for details.
