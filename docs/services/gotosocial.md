@@ -68,6 +68,9 @@ On ActivityPub-powered platforms like GoToSocial, the user handle consists of tw
 
 By default, GoToSocial uses `gotosocial_hostname` that you provide for the server's domain, but you can use a shorter one without the subdomain (`example.com`). See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-gotosocial/blob/main/docs/configuring-gotosocial.md#set-a-shorter-domain-for-your-handle-optional) on the role's documentation for details about how to set it up.
 
+> [!WARNING]
+> Configuring it must be done before starting GoToSocial for the first time. Once you have federated with someone, you cannot change your domain layout.
+
 ## E-Mail configuration
 
 You can use the following variables in your `vars.yml` to enable e-mail notifications.
