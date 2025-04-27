@@ -37,7 +37,7 @@
   name: auxiliary
   activation_prefix: aux_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-backup_borg.git
-  version: v1.4.0-1.9.13-1
+  version: v1.4.1-1.9.14-0
   name: backup_borg
   activation_prefix: backup_borg_
 - src: git+https://github.com/lingawakad/ansible-role-calibre-web.git
@@ -117,7 +117,7 @@
   name: etcd
   activation_prefix: etcd_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-etherpad.git
-  version: v2.2.7-4
+  version: v2.3.0-0
   name: etherpad
   activation_prefix: etherpad_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-excalidraw.git
@@ -153,7 +153,7 @@
   name: forgejo_runner
   activation_prefix: forgejo_runner_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-freescout.git
-  version: v1.17.110-1
+  version: v1.17.113-0
   name: freescout
   activation_prefix: freescout_
 - src: git+https://github.com/kinduff/ansible-docker-freshrss.git
@@ -177,7 +177,7 @@
   name: gotosocial
   activation_prefix: gotosocial_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-grafana.git
-  version: v11.6.0-0
+  version: v11.6.0-security-01-0
   name: grafana
   activation_prefix: grafana_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-headscale.git
@@ -233,7 +233,7 @@
   name: keydb
   activation_prefix: keydb_
 - src: git+https://gitlab.com/horvathg.1988/ansible-role-labelstudio.git
-  version: v1.0.0-3
+  version: v1.0.0-4
   name: labelstudio
   activation_prefix: labelstudio_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-lago.git
@@ -269,7 +269,7 @@
   name: matterbridge
   activation_prefix: matterbridge_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-miniflux.git
-  version: v2.2.4-3
+  version: v2.2.8-0
   name: miniflux
   activation_prefix: miniflux_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-mobilizon.git
@@ -341,17 +341,13 @@
   name: paperless
   activation_prefix: paperless_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-peertube.git
-  version: v7.0.1-2
+  version: v7.1.1-0
   name: peertube
   activation_prefix: peertube_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-plausible.git
   version: v3.0.1-0
   name: plausible
   activation_prefix: plausible_
-- src: git+https://github.com/spatterIight/ansible-role-plex.git
-  version: v1.41.6-0
-  name: plex
-  activation_prefix: plex_
 - src: git+https://github.com/devture/com.devture.ansible.role.playbook_help.git
   version: 201c939eed363de269a83ba29784fc3244846048
   name: playbook_help
@@ -364,6 +360,10 @@
   version: ff2fd42e1c1a9e28e3312bbd725395f9c2fc7f16
   name: playbook_state_preserver
   activation_prefix: devture_playbook_state_preserver_
+- src: git+https://github.com/spatterIight/ansible-role-plex.git
+  version: v1.41.6-0
+  name: plex
+  activation_prefix: plex_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-postgis.git
   version: v15-3.3-0
   name: postgis
@@ -389,7 +389,7 @@
   name: prometheus_blackbox_exporter
   activation_prefix: prometheus_blackbox_exporter_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-prometheus-node-exporter.git
-  version: v1.8.2-5
+  version: v1.9.1-0
   name: prometheus_node_exporter
   activation_prefix: prometheus_node_exporter_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-prometheus-postgres-exporter.git
@@ -413,7 +413,7 @@
   name: radarr
   activation_prefix: radarr_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-radicale.git
-  version: v3.5.0.0-0
+  version: v3.5.2.0-0
   name: radicale
   activation_prefix: radicale_
 - src: git+https://github.com/lingawakad/ansible-role-readeck.git
@@ -449,7 +449,7 @@
   name: semaphore
   activation_prefix: semaphore_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-send.git
-  version: v3.4.25-0
+  version: v2025.2.4-1
   name: send
   activation_prefix: send_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-soft_serve.git
