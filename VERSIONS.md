@@ -3,7 +3,7 @@
 * Apisix Gateway: 3.8.0
 * Appsmith: v1.9.50
 * Authelia: 4.37.5
-* Authentik: 2025.2.1
+* Authentik: 2025.2.4
 * Borg: 1.4.0
 * Borgmatic: 1.9.13
 * Calibre Web: 0.6.24
@@ -67,7 +67,7 @@
 * Notfellchen Sws: 2
 * Ntfy: v2.11.0
 * Oauth2 Proxy: v7.6.0
-* Outline: 0.82.0
+* Outline: 0.83.0
 * Overseerr: 1.33.2
 * Owncast: 0.2.1
 * Oxitraffic: 0.10.1
@@ -85,7 +85,7 @@
 * Qbittorrent: 5.0.4
 * Radarr: 5.18.4
 * Radicale: 3.5.0.0
-* Readeck: 0.17.1
+* Readeck: 0.18.0
 * Redis: 7.4.2
 * Redmine: 6.0.4
 * Roundcube: 1.6.10
