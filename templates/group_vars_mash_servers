@@ -8,10 +8,10 @@
 ########################################################################
 
 aux_directory_default_owner: "{{ mash_playbook_user_name }}"
-aux_directory_default_group: "{{ mash_playbook_user_groupname }}"
+aux_directory_default_group: "{{ mash_playbook_group_name }}"
 
 aux_file_default_owner: "{{ mash_playbook_user_name }}"
-aux_file_default_group: "{{ mash_playbook_user_groupname }}"
+aux_file_default_group: "{{ mash_playbook_group_name }}"
 
 ########################################################################
 #                                                                      #

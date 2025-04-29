@@ -4,7 +4,7 @@
   block:
     - name: Ensure mash group is created
       ansible.builtin.group:
-        name: "{{ mash_playbook_user_groupname }}"
+        name: "{{ mash_playbook_group_name }}"
         gid: "{{ omit if mash_playbook_gid is none else mash_playbook_gid }}"
         state: present
       register: mash_base_group_result
@@ -14,7 +14,7 @@
         name: "{{ mash_playbook_user_name }}"
         uid: "{{ omit if mash_playbook_uid is none else mash_playbook_uid }}"
         state: present
-        group: "{{ mash_playbook_user_groupname }}"
+        group: "{{ mash_playbook_group_name }}"
         home: "{{ mash_playbook_user_home }}"
         create_home: false
         system: true

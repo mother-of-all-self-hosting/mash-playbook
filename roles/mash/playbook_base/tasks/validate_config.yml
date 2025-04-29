@@ -23,3 +23,4 @@
   when: "item.old in vars"
   with_items:
     - {'old': 'mash_playbook_user_username', 'new': 'mash_playbook_user_name'}
+    - {'old': 'mash_playbook_user_groupname', 'new': 'mash_playbook_group_name'}

@@ -5,12 +5,12 @@
 mash_playbook_identifier: mash
 
 mash_playbook_user_name: "{{ mash_playbook_identifier }}"
-mash_playbook_user_groupname: "{{ mash_playbook_identifier }}"
+mash_playbook_group_name: "{{ mash_playbook_identifier }}"
 
 mash_playbook_user_home: "{{ mash_playbook_base_path }}"
 
 # By default, the playbook creates the user (`mash_playbook_user_name`)
-# and group (`mash_playbook_user_groupname`) with a random id.
+# and group (`mash_playbook_group_name`) with a random id.
 # To use a specific user/group id, override these variables.
 mash_playbook_uid: ~
 mash_playbook_gid: ~
