@@ -11,7 +11,7 @@
 
     - name: Ensure mash user is created
       ansible.builtin.user:
-        name: "{{ mash_playbook_user_username }}"
+        name: "{{ mash_playbook_user_name }}"
         uid: "{{ omit if mash_playbook_uid is none else mash_playbook_uid }}"
         state: present
         group: "{{ mash_playbook_user_groupname }}"

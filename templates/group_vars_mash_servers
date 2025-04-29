@@ -7,10 +7,10 @@
 #                                                                      #
 ########################################################################
 
-aux_directory_default_owner: "{{ mash_playbook_user_username }}"
+aux_directory_default_owner: "{{ mash_playbook_user_name }}"
 aux_directory_default_group: "{{ mash_playbook_user_groupname }}"
 
-aux_file_default_owner: "{{ mash_playbook_user_username }}"
+aux_file_default_owner: "{{ mash_playbook_user_name }}"
 aux_file_default_group: "{{ mash_playbook_user_groupname }}"
 
 ########################################################################
@@ -4711,7 +4711,7 @@ jitsi_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_di
 jitsi_uid: "{{ mash_playbook_uid }}"
 jitsi_gid: "{{ mash_playbook_gid }}"
 
-jitsi_user_username: "{{ mash_playbook_user_username }}"
+jitsi_user_username: "{{ mash_playbook_user_name }}"
 
 jitsi_web_container_additional_networks_auto: |
   {{
