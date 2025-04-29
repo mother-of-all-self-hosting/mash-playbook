@@ -1,41 +1,22 @@
+<!--
+SPDX-FileCopyrightText: 2021 foxcris
+SPDX-FileCopyrightText: 2021 - 2024 Slavi Pantaleev
+SPDX-FileCopyrightText: 2023 Julian-Samuel Gebühr
+SPDX-FileCopyrightText: 2024 - 2025 Suguru Hirahara
+
+SPDX-License-Identifier: AGPL-3.0-or-later
+-->
+
 # rumqttd
 
-[rumqttd](https://github.com/bytebeamio/rumqtt) is a high performance, embeddable [MQTT](https://en.wikipedia.org/wiki/MQTT) broker installed via [mother-of-all-self-hosting/ansible-role-rumqttd](https://github.com/mother-of-all-self-hosting/ansible-role-rumqttd).
+The playbook can install and configure [rumqttd](https://github.com/bytebeamio/rumqtt) for you.
 
+rumqttd is a high performance, embeddable [MQTT](https://en.wikipedia.org/wiki/MQTT) broker.
 
-# Configuring this role for your playbook
-
-## Dependencies
-
-This service does not require any dependecies.
-
-## Configuration
-
-To enable this service, add the following configuration to your `vars.yml` file and re-run the [installation](../installing.md) process:
-
-```yaml
-########################################################################
-#                                                                      #
-# rumqttd                                                              #
-#                                                                      #
-########################################################################
-
-
-rumqttd_enabled: true
-
-
-########################################################################
-#                                                                      #
-# /rumqttd                                                             #
-#                                                                      #
-########################################################################
-```
-
-
-## Usage
-
-You can then start to send and subscribe to MQTT topics. Use port 1883 and the servers IP or any domain you configured to point at this server.
+The [Ansible role for rumqttd](https://github.com/mother-of-all-self-hosting/ansible-role-rumqttd) is developed and maintained by the MASH project. For details about configuring rumqttd, you can check them via:
+- 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-rumqttd/blob/main/docs/configuring-rumqttd.md) online
+- 📁 `roles/galaxy/rumqttd/docs/configuring-rumqttd.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 ## Alternatives
 
-* [Mosquitto](mosquitto.md) is another, more feature-complete MQTT broker
+[Mosquitto](mosquitto.md) is another, more feature-complete MQTT broker.

@@ -40,7 +40,7 @@ Working as a **Push Server**, a ntfy server can forward messages to a **Distribu
 
 This role installs and manages a self-hosted ntfy server as the Push Server, which the Distributor (such as the ntfy Android app) on your device listens to.
 
-Your UnifiedPush-compatible applications (such as [Tusky](https://tusky.app/) and [DAVx⁵](https://www.davx5.com/)) listen to the Distributor, and push notitications are "distributed" from it. This means that the UnifiedPush-compatible applications cannot receive push notifications from the Push Server without the Distributor.
+Your UnifiedPush-compatible applications (such as [DAVx⁵](https://www.davx5.com/), [FindMyDevice](https://gitlab.com/Nulide/findmydevice/), and [Tusky](https://tusky.app/)) listen to the Distributor, and push notitications are "distributed" from it. This means that the UnifiedPush-compatible applications cannot receive push notifications from the Push Server without the Distributor.
 
 As the ntfy Android app functions as the Distributor too, you do not have to install something else on your device.
 
@@ -101,6 +101,8 @@ If you enable [Uptime Kuma](uptime-kuma.md), the self-hosted monitoring tool (hi
 To receive push notifications on a UnifiedPush-compatible application, it must be able to communicate with the ntfy Android app which works as the Distributor on the same device.
 
 Consult to documentation of applications for instruction about how to enable UnifiedPush support. Note that some applications quietly detect and use the Distributor, so you do not always have to configure the applications.
+
+This playbook supports a couple of services which implement UnifiedPush, such as [FindMyDeviceServer](findmydeviceserver.md). It is the official server for [FindMyDevice](https://gitlab.com/Nulide/findmydevice/), the Android application which allows you to locate, ring, wipe and issue other commands to your device when it is lost.
 
 If you are configuring UnifiedPush on a [Matrix](https://matrix.org) client, you can refer [this section](https://github.com/spantaleev/matrix-docker-ansible-deploy/blob/master/docs/configuring-playbook-ntfy.md#setting-up-a-unifiedpush-compatible-matrix-client) on matrix-docker-ansible-deploy (MDAD) playbook's documentation.
 

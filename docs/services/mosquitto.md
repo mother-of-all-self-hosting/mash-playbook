@@ -1,25 +1,22 @@
+<!--
+SPDX-FileCopyrightText: 2021 foxcris
+SPDX-FileCopyrightText: 2021 - 2024 Slavi Pantaleev
+SPDX-FileCopyrightText: 2023 Julian-Samuel Gebühr
+SPDX-FileCopyrightText: 2024 - 2025 Suguru Hirahara
+
+SPDX-License-Identifier: AGPL-3.0-or-later
+-->
+
 # Mosquitto
 
-[Mosquitto](https://mosquitto.org/) is an open source [MQTT](https://en.wikipedia.org/wiki/MQTT) broker.
+The playbook can install and configure [Mosquitto](https://mosquitto.org/) for you.
 
+Mosquitto is a high performance, embeddable [MQTT](https://en.wikipedia.org/wiki/MQTT) broker.
 
-## Configuration
-
-To enable this service, add the following configuration to your `vars.yml` file and re-run the [installation](../installing.md) process:
-
-```yaml
-mosquitto_enabled: true
-
-# If you need to change the MQTT port you can uncomment and adjust
-# mosquitto_container_mqtt_host_bind_port: "1884"
-```
-
-## Usage
-
-After installation, you can use `just run-tags mosquitto-add-user --extra-vars=username=<username> --extra-vars=password=<password>` to create a user. For the setting to take effect, you must restart the container. To do that you can use `just start-group mosquitto`.
-
-You can then start to send and subscribe to MQTT topics. Use port `1883` and the server's IP or any domain you configured to point to this server.
+The [Ansible role for Mosquitto](https://github.com/mother-of-all-self-hosting/ansible-role-mosquitto) is developed and maintained by the MASH project. For details about configuring Mosquitto, you can check them via:
+- 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-mosquitto/blob/main/docs/configuring-mosquitto.md) online
+- 📁 `roles/galaxy/mosquitto/docs/configuring-mosquitto.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 ## Alternatives
 
-* [rumqttd](rumqttd.md) is another MQTT broker
+[rumqttd](rumqttd.md) is another high performance, embeddable MQTT broker.
