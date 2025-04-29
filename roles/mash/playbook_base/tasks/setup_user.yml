@@ -19,6 +19,7 @@
         home: "{{ mash_playbook_user_home }}"
         create_home: false
         system: "{{ mash_playbook_user_system }}"
+        shell: "{{ mash_playbook_user_shell }}"
       register: mash_base_user_result
 
     - name: Initialize mash_playbook_uid and mash_playbook_gid

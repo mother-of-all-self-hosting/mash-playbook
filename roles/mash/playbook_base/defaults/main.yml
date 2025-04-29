@@ -7,6 +7,7 @@ mash_playbook_identifier: mash
 mash_playbook_user_name: "{{ mash_playbook_identifier }}"
 mash_playbook_user_home: "{{ mash_playbook_base_path }}"
 mash_playbook_user_system: true
+mash_playbook_user_shell: /sbin/nologin
 
 mash_playbook_group_name: "{{ mash_playbook_identifier }}"
 mash_playbook_group_system: true
