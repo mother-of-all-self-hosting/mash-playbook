@@ -1230,6 +1230,17 @@ mash_playbook_postgres_managed_databases_auto_itemized:
     }}
   # /role-specific:vaultwarden
 
+  # role-specific:wallabag
+  - |-
+    {{
+      ({
+        'name': wallabag_database_name,
+        'username': wallabag_database_username,
+        'password': wallabag_database_password,
+      } if wallabag_enabled and wallabag_database_hostname == postgres_identifier else omit)
+    }}
+  # /role-specific:wallabag
+  
   # role-specific:woodpecker_ci_server
   - |-
     {{
