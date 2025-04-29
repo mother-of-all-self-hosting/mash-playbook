@@ -7,6 +7,7 @@
         name: "{{ mash_playbook_group_name }}"
         gid: "{{ omit if mash_playbook_gid is none else mash_playbook_gid }}"
         state: present
+        system: "{{ mash_playbook_group_system }}"
       register: mash_base_group_result
 
     - name: Ensure mash user is created
