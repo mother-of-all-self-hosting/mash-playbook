@@ -548,7 +548,11 @@
     # role-specific:versatiles
     - role: galaxy/versatiles
     # /role-specific:versatiles
-
+    
+    # role-specific:wallabag
+    - role: galaxy/wallabag
+    # /role-specific:wallabag
+    
     # role-specific:woodpecker_ci_agent
     - role: galaxy/woodpecker_ci_agent
     # /role-specific:woodpecker_ci_agent
