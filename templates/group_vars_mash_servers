@@ -722,6 +722,11 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
     {{ ({'name': (vaultwarden_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'vaultwarden', 'vaultwarden-server']} if vaultwarden_enabled else omit) }}
   # /role-specific:vaultwarden
 
+  # role-specific:wallabag
+  - |-
+    {{ ({'name': (wallabag_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'wallabag']} if wallabag_enabled else omit) }}
+  # /role-specific:wallabag
+  
   # role-specific:wetty
   - |-
     {{ ({'name': (wetty_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'wetty']} if wetty_enabled else omit) }}
