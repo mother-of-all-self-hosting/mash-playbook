@@ -4,13 +4,16 @@
 # This affects user/groups, systemd service names, container names, container networks, base installation path, etc.
 mash_playbook_identifier: mash
 
-mash_playbook_user_username: "{{ mash_playbook_identifier }}"
-mash_playbook_user_groupname: "{{ mash_playbook_identifier }}"
-
+mash_playbook_user_name: "{{ mash_playbook_identifier }}"
 mash_playbook_user_home: "{{ mash_playbook_base_path }}"
+mash_playbook_user_system: true
+mash_playbook_user_shell: /sbin/nologin
 
-# By default, the playbook creates the user (`mash_playbook_user_username`)
-# and group (`mash_playbook_user_groupname`) with a random id.
+mash_playbook_group_name: "{{ mash_playbook_identifier }}"
+mash_playbook_group_system: true
+
+# By default, the playbook creates the user (`mash_playbook_user_name`)
+# and group (`mash_playbook_group_name`) with a random id.
 # To use a specific user/group id, override these variables.
 mash_playbook_uid: ~
 mash_playbook_gid: ~
