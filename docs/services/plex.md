@@ -177,10 +177,11 @@ plex_version_environment_variable: latest
 
 ## Recommended other services
 
-Consider these other supported services that are also in the [*Arr stack](https://wiki.servarr.com/) of media automation tools:
+Consider these other related services:
 
 - [Radarr](radarr.md)
 - [Sonarr](sonarr.md)
 - [Jackett](jackett.md)
 - [qBittorrent](qbittorrent.md)
 - [Overseerr](overseerr.md)
+- [Jellyfin](jellyfin.md)

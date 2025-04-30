@@ -4711,8 +4711,8 @@ jellyfin_identifier: "{{ mash_playbook_service_identifier_prefix }}jellyfin"
 
 jellyfin_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}jellyfin"
 
-jellyfin_uid: "{{ mash_playbook_uid }}"
-jellyfin_gid: "{{ mash_playbook_gid }}"
+jellyfin_uid: "0"
+jellyfin_gid: "0"
 
 jellyfin_container_additional_networks_auto: |
   {{
