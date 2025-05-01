@@ -70,7 +70,11 @@ See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-lo
 
 ## Usage
 
-After [installing](../installing.md), refer to the [official documentation](https://grafana.com/docs/loki/latest/reference/api/#post-lokiapiv1push) to send logs to loki's API without an agent or set up one or more instances of the [Promtail](./promtail.md) agent.
+Refer to the [official documentation](https://grafana.com/docs/loki/latest/reference/api/#post-lokiapiv1push) for details about how to send logs throught Loki's API without an agent.
+
+## Troubleshooting
+
+See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-loki/blob/main/docs/configuring-loki.md#troubleshooting) on the role's documentation for details.
 
 ## Recommended other services
 
