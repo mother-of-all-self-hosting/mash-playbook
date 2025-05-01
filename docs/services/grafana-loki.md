@@ -1,3 +1,9 @@
+<!--
+SPDX-FileCopyrightText: 2024 Slavi Pantaleev
+
+SPDX-License-Identifier: AGPL-3.0-or-later
+-->
+
 # Grafana Loki
 
 [Grafana Loki](https://grafana.com/docs/loki/latest/) is a set of components that can be composed into a fully featured logging stack. Installing it is powered by the [mother-of-all-self-hosting/ansible-role-loki](https://github.com/mother-of-all-self-hosting/ansible-role-loki) Ansible role.
