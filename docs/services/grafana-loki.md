@@ -31,16 +31,16 @@ For details about configuring the [Ansible role for Loki](https://github.com/mot
 
 >[!NOTE]
 > As Loki is just a log storage system, you would need at least two other components in order to make use of it:
-> - an agent such as [Promtail](./promtail.md) to send logs to Loki
-> - a system such as [Grafana](./grafana.md)) to read the logs out of Loki and display them nicely
+> - an agent such as Promtail to send logs to Loki
+> - a system such as Grafana to read the logs out of Loki and display them nicely
 
 ## Dependencies
 
 This service requires the following other services:
 
-- (optionally) [Traefik](traefik.md) — a reverse-proxy server for exposing Loki publicly
-- (optionally) [Promtail](./promtail.md) — an agent that can send logs to Loki
-- (optionally) [Grafana](./grafana.md) — a web UI that can query the Loki datasource (connection) and display the logs
+- (optional) [Traefik](traefik.md) — a reverse-proxy server for exposing Loki publicly
+- (optional; recommended) [Promtail](./promtail.md) — an agent which ships the contents of local logs to a private Grafana Loki instance
+- (optional; recommended) [Grafana](./grafana.md) — a web-based tool for visualizing your Promtail logs (stored in Grafana Loki or elsewhere)
 
 ## Configuration
 
@@ -75,8 +75,3 @@ Refer to the [official documentation](https://grafana.com/docs/loki/latest/refer
 ## Troubleshooting
 
 See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-loki/blob/main/docs/configuring-loki.md#troubleshooting) on the role's documentation for details.
-
-## Recommended other services
-
-- [Grafana](grafana.md) — a web-based tool for visualizing your Promtail logs (stored in [Grafana Loki](grafana-loki.md) or elsewhere)
-- [Promtail](promtail.md) — an agent which ships the contents of local logs to a private [Grafana Loki](grafana-loki.md) instance
