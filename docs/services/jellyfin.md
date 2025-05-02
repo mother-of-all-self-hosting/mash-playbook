@@ -93,7 +93,7 @@ jellyfin_gpu_path: "/dev/dri"
 jellyfin_gpu_bind_path: "{{ jellyfin_gpu_path }}"
 ```
 
-Upstream documentation: https://github.com/linuxserver/docker-jellyfin#intelatiamd\
+Upstream documentation: https://github.com/linuxserver/docker-jellyfin#intelatiamd
 
 #### NVIDIA
 
