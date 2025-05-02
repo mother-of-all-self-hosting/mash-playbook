@@ -20,7 +20,7 @@ To enable this service, add the following configuration to your `vars.yml` file 
 ########################################################################
 
 jellyfin_enabled: true
-jellyfin_hostname: jellyfin.spatterlight.space
+jellyfin_hostname: jellyfin.example.com
 jellyfin_container_additional_volumes:
   - type: bind
     src: /path/on/the/host/movies
