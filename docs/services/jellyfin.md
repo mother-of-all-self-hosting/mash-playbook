@@ -72,7 +72,7 @@ jellyfin_container_client_discover_bind_port: 7359
 # The server address the client discovery service should respond with
 jellyfin_published_server_url: "http://{{ ansible_default_ipv4.address }}:{{ jellyfin_container_http_bind_port }}"
 ```
-Upstream documentation #1: https://jellyfin.org/docs/general/post-install/networking/
+Upstream documentation: https://jellyfin.org/docs/general/post-install/networking/
 
 After setting these variables you should be able to discover and connect to your Jellyfin server entirely on the LAN. If for some reason it is still not discoverable try inputting your `jellyfin_published_server_url` manually.
 
