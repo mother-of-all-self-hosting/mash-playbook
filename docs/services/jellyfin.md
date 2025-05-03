@@ -44,7 +44,6 @@ Unlike most MASH services, this service **runs with root privileges** and requir
 
 ## Usage
 
-
 After [installation](../installing.md), you should access your new Jellyfin instance at the URL you've chosen and create a username and password:
 
 ![Jellyfin Configure User](../assets/jellyfin/setup-1.png)
