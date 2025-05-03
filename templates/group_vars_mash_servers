@@ -8026,7 +8026,7 @@ yourls_gid: "{{ mash_playbook_gid }}"
 
 yourls_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}yourls"
 
-yourls_systemd_required_systemd_services_list_auto: |
+yourls_systemd_required_services_list_auto: |
   {{
     ([mariadb_identifier ~ '.service'] if mariadb_enabled and yourls_environment_variable_db_host_name == mariadb_identifier else [])
   }}
