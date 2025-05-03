@@ -4835,7 +4835,7 @@ keycloak_gid: "{{ mash_playbook_gid }}"
 
 keycloak_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}keycloak"
 
-keycloak_systemd_required_systemd_services_list_auto: |
+keycloak_systemd_required_services_list_auto: |
   {{
     ([postgres_identifier ~ '.service'] if postgres_enabled and keycloak_database_hostname == postgres_identifier else [])
   }}
