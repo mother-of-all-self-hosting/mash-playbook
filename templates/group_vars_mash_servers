@@ -7,11 +7,11 @@
 #                                                                      #
 ########################################################################
 
-aux_directory_default_owner: "{{ mash_playbook_user_username }}"
-aux_directory_default_group: "{{ mash_playbook_user_groupname }}"
+aux_directory_default_owner: "{{ mash_playbook_user_name }}"
+aux_directory_default_group: "{{ mash_playbook_group_name }}"
 
-aux_file_default_owner: "{{ mash_playbook_user_username }}"
-aux_file_default_group: "{{ mash_playbook_user_groupname }}"
+aux_file_default_owner: "{{ mash_playbook_user_name }}"
+aux_file_default_group: "{{ mash_playbook_group_name }}"
 
 ########################################################################
 #                                                                      #
@@ -1812,10 +1812,18 @@ authentik_container_additional_networks_auto: |
     ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
     +
     ([postgres_container_network] if postgres_enabled and authentik_database_hostname == postgres_identifier and authentik_container_network != postgres_container_network else [])
+    +
+    ([exim_relay_container_network | default('mash-exim-relay')] if (exim_relay_enabled | default(false) and authentik_email_host == exim_relay_identifier | default('mash-exim-relay') and authentik_container_network != exim_relay_container_network) else [])
   }}
 
 authentik_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
 authentik_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+
+# role-specific:exim_relay
+authentik_email_host: "{{ exim_relay_identifier if exim_relay_enabled else '' }}"
+authentik_email_port: "{{ 8025 if exim_relay_enabled else '587' }}"
+authentik_email_from: "{{ exim_relay_sender_address if exim_relay_enabled else '' }}"
+# /role-specific:exim_relay
 
 # role-specific:postgres
 authentik_database_hostname: "{{ postgres_identifier if postgres_enabled else '' }}"
@@ -4754,7 +4762,7 @@ jitsi_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_di
 jitsi_uid: "{{ mash_playbook_uid }}"
 jitsi_gid: "{{ mash_playbook_gid }}"
 
-jitsi_user_username: "{{ mash_playbook_user_username }}"
+jitsi_user_username: "{{ mash_playbook_user_name }}"
 
 jitsi_web_container_additional_networks_auto: |
   {{
