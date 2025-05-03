@@ -3053,7 +3053,7 @@ ghostfolio_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_ba
 ghostfolio_uid: 1000
 ghostfolio_gid: 1000
 
-ghostfolio_systemd_required_systemd_services_list_auto: |
+ghostfolio_systemd_required_services_list_auto: |
   {{
     ([postgres_identifier ~ '.service'] if postgres_enabled and ghostfolio_database_host == postgres_identifier else [])
   }}
