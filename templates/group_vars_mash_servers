@@ -423,6 +423,11 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
     {{ ({'name': (matomo_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'matomo']} if matomo_enabled else omit) }}
   # /role-specific:matomo
 
+  # role-specific:minecraft
+  - |-
+    {{ ({'name': (minecraft_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'minecraft']} if minecraft_enabled else omit) }}
+  # /role-specific:minecraft
+
   # role-specific:miniflux
   - |-
     {{ ({'name': (miniflux_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'miniflux']} if miniflux_enabled else omit) }}
@@ -5340,6 +5345,31 @@ matomo_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_prima
 #                                                                      #
 ########################################################################
 # /role-specific:matomo
+
+
+
+# role-specific:minecraft
+########################################################################
+#                                                                      #
+# minecraft                                                            #
+#                                                                      #
+########################################################################
+
+minecraft_enabled: false
+
+minecraft_identifier: "{{ mash_playbook_service_identifier_prefix }}minecraft"
+
+minecraft_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}minecraft"
+
+minecraft_uid: "{{ mash_playbook_uid }}"
+minecraft_gid: "{{ mash_playbook_gid }}"
+
+########################################################################
+#                                                                      #
+# /minecraft                                                           #
+#                                                                      #
+########################################################################
+# /role-specific:minecraft
 
 
 
