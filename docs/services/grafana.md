@@ -60,7 +60,7 @@ grafana_provisioning_datasources_prune: false
 grafana_provisioning_datasources_deleteDatasources:
   - name: Prometheus
     orgId: 1
-    
+
   - name: Loki
     orgId: 1
 ```
@@ -99,7 +99,7 @@ grafana_provisioning_datasources_datasources:
   - name: Loki (your-tenant-id)
     type: loki
     access: proxy
-    url: "http://{{ loki_identifier }}:{{ loki_server_http_listen_port }}"
+    url: "{{ loki_scheme }}://{{ loki_identifier }}:{{ loki_server_http_listen_port }}"
     # Enable below and also (basicAuthPassword) if connecting to a remote instance that uses Basic Auth.
     # basicAuth: true
     # basicAuthUser: loki
@@ -134,7 +134,7 @@ grafana_provisioning_alerts_groups:
     interval: 60s
     rules:
       - uid: my_id_1
-      
+
 grafana_provisioning_alerts_deleteRules:
   - orgId: 1
     uid: my_id_1
@@ -154,7 +154,7 @@ grafana_provisioning_contact_points_contactPoints:
         disableResolveMessage: false
         settings:
           url: "https://matrix.example.com/_matrix/maubot/plugin/bot.maubot.alertbot/webhook/!roomid"
-          
+
 grafana_provisioning_contact_points_deleteContactPoints:
   - orgId: 1
     uid: first_uid

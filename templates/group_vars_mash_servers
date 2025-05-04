@@ -6765,7 +6765,7 @@ promtail_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_prox
 promtail_config_clients_auto: |
   {{
     ([{
-      'url': ('http://' + loki_identifier + ':' + (loki_server_http_listen_port | string) + '/loki/api/v1/push'),
+      'url': (loki_scheme + '://' + loki_identifier + ':' + (loki_server_http_listen_port | string) + '/loki/api/v1/push'),
       'tenant_id': 'mash',
     }] if loki_enabled else [])
   }}
