@@ -2873,10 +2873,8 @@ freescout_identifier: "{{ mash_playbook_service_identifier_prefix }}freescout"
 
 freescout_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}freescout"
 
-freescout_systemd_required_services_list: |
+freescout_systemd_required_services_list_auto: |
   {{
-    ([devture_systemd_docker_base_docker_service_name] if devture_systemd_docker_base_docker_service_name else [])
-    +
     ([postgres_identifier ~ '.service'] if postgres_enabled and freescout_database_hostname == postgres_identifier else [])
   }}
 
