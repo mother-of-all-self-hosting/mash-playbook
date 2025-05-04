@@ -6152,10 +6152,8 @@ paperless_gid: "{{ mash_playbook_gid }}"
 
 paperless_secret_key: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'paperless.secret', rounds=655555) | to_uuid }}"
 
-paperless_systemd_required_services_list: |
+paperless_systemd_required_services_list_auto: |
   {{
-    ([devture_systemd_docker_base_docker_service_name] if devture_systemd_docker_base_docker_service_name else [])
-    +
     ([postgres_identifier ~ '.service'] if postgres_enabled and paperless_database_hostname == postgres_identifier else [])
   }}
 
