@@ -108,7 +108,7 @@
 * Rumqttd: 0.21.0
 * Searxng: latest
 * Semaphore: 2.9.56
-* Send: latest
+* Send: v3.4.25
 * Soft Serve: v0.4.7
 * Sonarr: 4.0.14
 * Stirling Pdf: 0.45.5-fat
