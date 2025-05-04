@@ -7831,10 +7831,8 @@ woodpecker_ci_agent_gid: "{{ mash_playbook_gid }}"
 
 woodpecker_ci_agent_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}woodpecker-ci/agent"
 
-woodpecker_ci_agent_systemd_required_systemd_services_list: |
+woodpecker_ci_agent_systemd_required_services_list_auto: |
   {{
-    ([devture_systemd_docker_base_docker_service_name] if devture_systemd_docker_base_docker_service_name else [])
-    +
     ([woodpecker_ci_server_identifier ~ '.service'] if woodpecker_ci_server_enabled else [])
   }}
 
