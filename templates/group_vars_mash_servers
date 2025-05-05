@@ -2417,11 +2417,6 @@ echoip_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_d
 echoip_uid: "{{ mash_playbook_uid }}"
 echoip_gid: "{{ mash_playbook_gid }}"
 
-echoip_systemd_required_services_list: |
-  {{
-    ([devture_systemd_docker_base_docker_service_name] if devture_systemd_docker_base_docker_service_name else [])
-  }}
-
 echoip_container_additional_networks: |
   {{
     ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
