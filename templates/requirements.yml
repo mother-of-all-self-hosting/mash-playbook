@@ -425,7 +425,7 @@
   name: redis
   activation_prefix: redis_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-redlib.git
-  version: v2025.4.9-0
+  version: v2025.4.9-1
   name: redlib
   activation_prefix: redlib_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-redmine.git
