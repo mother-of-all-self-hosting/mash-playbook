@@ -133,7 +133,7 @@
   name: fail2ban
   activation_prefix: system_security_fail2ban_
 - src: https://github.com/mother-of-all-self-hosting/ansible-role-findmydeviceserver.git
-  version: v0.10.0-2
+  version: v0.10.0-3
   name: findmydeviceserver
   activation_prefix: findmydeviceserver_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-firezone.git
