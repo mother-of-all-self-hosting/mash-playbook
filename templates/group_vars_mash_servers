@@ -7501,10 +7501,8 @@ telegraf_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base
 telegraf_uid: "{{ mash_playbook_uid }}"
 telegraf_gid: "{{ mash_playbook_gid }}"
 
-telegraf_systemd_required_services_list: |
+telegraf_systemd_required_services_list_auto: |
   {{
-    ([devture_systemd_docker_base_docker_service_name] if devture_systemd_docker_base_docker_service_name else [])
-    +
     ([(influxdb_identifier + '.service')] if influxdb_enabled else [])
   }}
 
