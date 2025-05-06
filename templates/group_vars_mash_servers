@@ -1658,7 +1658,7 @@ apisix_gateway_container_additional_networks_custom: |
     ([etcd_container_network] if etcd_enabled else [])
   }}
 
-apisix_gateway_systemd_required_systemd_services_list_auto: |
+apisix_gateway_systemd_required_services_list_auto: |
   {{
     ([(etcd_identifier + '.service')] if etcd_enabled else [])
   }}
