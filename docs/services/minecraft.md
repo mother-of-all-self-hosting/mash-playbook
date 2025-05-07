@@ -29,8 +29,6 @@ To enable this service, add the following configuration to your `vars.yml` file 
 
 minecraft_enabled: true
 minecraft_bind_port: 25565
-minecraft_container_volumes_additional:
-  - /run/screen/S-ubuntu:/run/screen/S-{{ minecraft_identifier }}
 minecraft_environment_variables_additional: |
   MOTD=[Your Server Name Here]
   TYPE=PAPER
@@ -55,12 +53,6 @@ minecraft_environment_variables_additional: |
   ALLOW_FLIGHT=TRUE
   SIMULATION_DISTANCE=16
   PLAYER_IDLE_TIMEOUT=0
-  ENABLE_AUTOPAUSE=true
-  MAX_TICK_TIME=-1
-  JVM_DD_OPTS=disable.watchdog:true
-  AUTOPAUSE_TIMEOUT_EST=30
-  AUTOPAUSE_TIMEOUT_INIT=30
-  AUTOPAUSE_TIMEOUT_KN=30
   INITIAL_ENABLED_PACKS=vanilla,bundle
 
 ########################################################################
@@ -70,7 +62,7 @@ minecraft_environment_variables_additional: |
 ########################################################################
 ```
 
-In the example configuration above, we configure the server to be hosted on port `25565`. Port forwarding will be required to access it. It will be the `latest` [Paper minecraft server](https://papermc.io/) with 2GB of RAM, hard difficulty, only you on the whitelist, rather generous render distance, PvP, bundles, and an automatic server pause when the last player leaves.
+In the example configuration above, we configure the server to be hosted on port `25565`. Port forwarding will be required to access it. It will be the `latest` [Paper minecraft server](https://papermc.io/) with 2GB of RAM, hard difficulty, only you on the whitelist, rather generous render distance, PvP, and bundles.
 
 See the full set of available [Environment Variables](https://docker-minecraft-server.readthedocs.io/en/latest/variables/) to configure the server.
 
