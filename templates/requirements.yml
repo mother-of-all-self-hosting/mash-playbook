@@ -268,6 +268,10 @@
   version: v1.26.0-0
   name: matterbridge
   activation_prefix: matterbridge_
+- src: git+https://github.com/XHawk87/ansible-role-minecraft.git
+  version: v2025.4.2-0
+  name: minecraft
+  activation_prefix: minecraft_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-miniflux.git
   version: v2.2.8-2
   name: miniflux

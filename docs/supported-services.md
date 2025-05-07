@@ -9,6 +9,7 @@ SPDX-FileCopyrightText: 2024 Katherine Door
 SPDX-FileCopyrightText: 2024 Oliver Lorenz
 SPDX-FileCopyrightText: 2025 Gergely Horváth
 SPDX-FileCopyrightText: 2025 Suguru Hirahara
+SPDX-FileCopyrightText: 2025 XHawk87
 
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->
@@ -81,6 +82,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 | [Matomo](https://matomo.org/) | Free and open source web analytics platform | [Link](services/matomo.md) |
 | [Matrix Rooms Search API](https://gitlab.com/etke.cc/mrs/api) | A fully-featured, standalone, matrix rooms search service. | [Link](services/mrs.md) |
 | [Matterbridge](https://github.com/42wim/matterbridge) | Bridges Messenger Chatrooms | [Link](services/matterbridge.md) |
+| [Minecraft](https://docker-minecraft-server.readthedocs.io) | The popular voxel-based sandbox game | [Link](services/minecraft.md) |
 | [Miniflux](https://miniflux.app/) | Minimalist and opinionated feed reader. | [Link](services/miniflux.md) |
 | [Mobilizon](https://joinmobilizon.org/en/) | An ActivityPub/Fediverse server to create and share events. | [Link](services/mobilizon.md) |
 | [MongoDB](https://www.mongodb.com/) | A source-available cross-platform document-oriented (NoSQL) database program. | [Link](services/mongodb.md) |

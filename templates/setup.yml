@@ -253,6 +253,10 @@
     - role: galaxy/freescout
     # /role-specific:freescout
 
+    # role-specific:minecraft
+    - role: galaxy/minecraft
+    # /role-specific:minecraft
+
     # role-specific:miniflux
     - role: galaxy/miniflux
     # /role-specific:miniflux
