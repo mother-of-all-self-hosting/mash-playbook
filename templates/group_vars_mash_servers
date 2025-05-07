@@ -6271,14 +6271,14 @@ plausible_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_bas
 plausible_uid: "{{ mash_playbook_uid }}"
 plausible_gid: "{{ mash_playbook_gid }}"
 
-plausible_systemd_required_systemd_services_list_auto: |
+plausible_systemd_required_services_list_auto: |
   {{
     ([postgres_identifier ~ '.service'] if postgres_enabled and plausible_database_hostname == postgres_identifier else [])
     +
     ([clickhouse_identifier ~ '.service'] if clickhouse_enabled | default(false) and plausible_clickhouse_database_hostname == clickhouse_identifier| default('mash-clickhouse') else [])
   }}
 
-plausible_systemd_wanted_systemd_services_list_auto: |
+plausible_systemd_wanted_services_list_auto: |
   {{
     ([(exim_relay_identifier | default('mash-exim-relay')) ~ '.service'] if (exim_relay_enabled | default(false) and plausible_environment_variable_smtp_host_addr == exim_relay_identifier | default('mash-exim-relay')) else [])
   }}
