@@ -253,7 +253,7 @@
   name: listmonk
   activation_prefix: listmonk_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-loki.git
-  version: v3.5.0-3
+  version: v3.5.0-4
   name: loki
   activation_prefix: loki_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-mariadb.git
