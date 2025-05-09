@@ -3323,12 +3323,12 @@ healthchecks_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_
 healthchecks_uid: "{{ mash_playbook_uid }}"
 healthchecks_gid: "{{ mash_playbook_gid }}"
 
-healthchecks_systemd_required_systemd_services_list_auto: |
+healthchecks_systemd_required_services_list_auto: |
   {{
     ([postgres_identifier ~ '.service'] if postgres_enabled and healthchecks_database_hostname == postgres_identifier else [])
   }}
 
-healthchecks_systemd_wanted_systemd_services_list_auto: |
+healthchecks_systemd_wanted_services_list_auto: |
   {{
     ([(exim_relay_identifier | default('mash-exim-relay')) ~ '.service'] if (exim_relay_enabled | default(false) and healthchecks_environment_variable_email_host == exim_relay_identifier | default('mash-exim-relay')) else [])
   }}
