@@ -54,7 +54,7 @@ collabora_online_enabled: true
 
 collabora_online_hostname: collabora.example.com
 
-# A password for the admin interface, available at: https://COLLABORA_ONLINE_DOMAIN/browser/dist/admin/admin.html
+# A password for the admin interface, available at: https://collabora.example.com/browser/dist/admin/admin.html
 # Use only alpha-numeric characters
 collabora_online_environment_variable_password: ''
 
