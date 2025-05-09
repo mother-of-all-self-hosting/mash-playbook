@@ -1,3 +1,9 @@
+<!--
+SPDX-FileCopyrightText: 2023 Slavi Pantaleev
+
+SPDX-License-Identifier: AGPL-3.0-or-later
+-->
+
 # Collabora Online
 
 The [Collabora Online Development Edition (CODE)](https://www.collaboraoffice.com/) office suite, together with the [Office App](https://apps.nextcloud.com/apps/richdocuments) for [Nextcloud](nextcloud.md) enables you to edit office documents online.
