@@ -34,9 +34,9 @@ collabora_online_hostname: collabora.example.com
 
 # A password for the admin interface, available at: https://COLLABORA_ONLINE_DOMAIN/browser/dist/admin/admin.html
 # Use only alpha-numeric characters
-collabora_online_env_variable_password: ''
+collabora_online_environment_variable_password: ''
 
-collabora_online_aliasgroup: "https://{{ nextcloud_hostname | replace('.', '\\.') }}:443"
+collabora_online_environment_variable_aliasgroup1: "https://{{ nextcloud_hostname | replace('.', '\\.') }}:443"
 
 ########################################################################
 #                                                                      #
@@ -59,5 +59,5 @@ There's an admin interface with various statistics and information at: `https://
 
 Use your admin credentials for logging in:
 
-- the default username is `admin`, as specified in `collabora_online_env_variable_username`
-- the password is the one you've specified in `collabora_online_env_variable_password`
+- the default username is `admin`, as specified in `collabora_online_environment_variable_username`
+- the password is the one you've specified in `collabora_online_environment_variable_password`
