@@ -90,3 +90,7 @@ Use your admin credentials for logging in:
 
 - the default username is `admin`, as specified with `collabora_online_environment_variable_username`
 - the password is the one you've specified with `collabora_online_environment_variable_password`
+
+## Troubleshooting
+
+See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-collabora-online/blob/main/docs/configuring-collabora-online.md#troubleshooting) on the role's documentation for details.
