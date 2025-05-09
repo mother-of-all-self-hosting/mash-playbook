@@ -58,8 +58,6 @@ collabora_online_hostname: collabora.example.com
 # Use only alpha-numeric characters
 collabora_online_environment_variable_password: ''
 
-collabora_online_environment_variable_aliasgroup1: "https://{{ nextcloud_hostname | replace('.', '\\.') }}:443"
-
 ########################################################################
 #                                                                      #
 # /collabora-online                                                    #
@@ -67,19 +65,28 @@ collabora_online_environment_variable_aliasgroup1: "https://{{ nextcloud_hostnam
 ########################################################################
 ```
 
-In the example configuration above, we configure the service to be hosted at `https://collabora.example.com`.
+### Integrate CODE instance with Nextcloud (optional)
 
+To use a CODE instance to edit office documents, you need to integrate it with a File Sync and Share solution that implements the WOPI (*Web Application Open Platform Interface*) protocol, such as Nextcloud.
 
-## Integrating with Nextcloud
+For example, if you want to integrate the instance with the Nextcloud instance which this playbook manages, add the following configuration to your `vars.yml` file.
 
-To learn how to integrate Collabora Online with Nextcloud, see the [Collabora Online section](nextcloud.md#collabora-online) in our Nextcloud documentation.
+```yaml
+collabora_online_environment_variable_aliasgroup1: "https://{{ nextcloud_hostname | replace('.', '\\.') }}:443"
+```
 
+>[!NOTE]
+> For details, see the [Collabora Online section](nextcloud.md#collabora-online) on our Nextcloud documentation.
 
-## Admin Interface
+## Usage
 
-There's an admin interface with various statistics and information at: `https://COLLABORA_ONLINE_DOMAIN/browser/dist/admin/admin.html`
+After installation, your CODE instance becomes available at the URL specified with `collabora_online_hostname`.
+
+### Admin Interface
+
+There's an admin interface with various statistics and information at: `https://collabora.example.com/browser/dist/admin/admin.html`
 
 Use your admin credentials for logging in:
 
-- the default username is `admin`, as specified in `collabora_online_environment_variable_username`
-- the password is the one you've specified in `collabora_online_environment_variable_password`
+- the default username is `admin`, as specified with `collabora_online_environment_variable_username`
+- the password is the one you've specified with `collabora_online_environment_variable_password`
