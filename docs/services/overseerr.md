@@ -60,10 +60,11 @@ For additional configuration options, refer to [ansible-role-overseerr](https://
 
 ## Recommended other services
 
-Consider these other supported services that are also in the [*Arr stack](https://wiki.servarr.com/) of media automation tools:
+Consider these other related services:
 
 - [Radarr](radarr.md)
 - [Sonarr](sonarr.md)
 - [Jackett](jackett.md)
 - [qBittorrent](qbittorrent.md)
 - [Plex](plex.md)
+- [Jellyfin](jellyfin.md)

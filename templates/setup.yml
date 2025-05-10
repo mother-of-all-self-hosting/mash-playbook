@@ -305,6 +305,10 @@
     - role: galaxy/jackett
     # /role-specific:jackett
 
+    # role-specific:jellyfin
+    - role: galaxy/jellyfin
+    # /role-specific:jellyfin
+
     # role-specific:jitsi
     - role: galaxy/jitsi
     # /role-specific:jitsi
