@@ -423,6 +423,11 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
     {{ ({'name': (matomo_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'matomo']} if matomo_enabled else omit) }}
   # /role-specific:matomo
 
+  # role-specific:matterbridge
+  - |-
+    {{ ({'name': (matterbridge_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'matterbridge']} if matterbridge_enabled else omit) }}
+  # /role-specific:matterbridge
+
   # role-specific:minecraft
   - |-
     {{ ({'name': (minecraft_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'minecraft']} if minecraft_enabled else omit) }}
@@ -5340,6 +5345,31 @@ matomo_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_prima
 #                                                                      #
 ########################################################################
 # /role-specific:matomo
+
+
+
+# role-specific:matterbridge
+########################################################################
+#                                                                      #
+# matterbridge                                                         #
+#                                                                      #
+########################################################################
+
+matterbridge_enabled: false
+
+matterbridge_identifier: "{{ mash_playbook_service_identifier_prefix }}matterbridge"
+
+matterbridge_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}matterbridge"
+
+matterbridge_uid: "{{ mash_playbook_uid }}"
+matterbridge_gid: "{{ mash_playbook_gid }}"
+
+########################################################################
+#                                                                      #
+# /matterbridge                                                        #
+#                                                                      #
+########################################################################
+# /role-specific:matterbridge
 
 
 
