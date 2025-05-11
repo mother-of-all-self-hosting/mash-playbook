@@ -209,9 +209,9 @@
     - role: galaxy/exim_relay
     # /role-specific:exim_relay
 
-    # role-specific:findmydeviceserver
+    # role-specific:fmd_server
     - role: galaxy/fmd_server
-    # /role-specific:findmydeviceserver
+    # /role-specific:fmd_server
 
     # role-specific:firezone
     - role: galaxy/firezone
