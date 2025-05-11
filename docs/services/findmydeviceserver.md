@@ -21,7 +21,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
 The playbook can install and configure [FindMyDeviceServer](https://gitlab.com/fmd-foss/fmd-server) for you.
 
-FindMyDeviceServer is the official server for [FindMyDevice (FMD)](https://gitlab.com/Nulide/findmydevice), which allows you to locate, ring, wipe and issue other commands to your Android device when it is lost.
+FindMyDeviceServer is the official server for [FindMyDevice (FMD)](https://gitlab.com/fmd-foss/fmd-android), which allows you to locate, ring, wipe and issue other commands to your Android device when it is lost.
 
 See the project's [documentation](https://gitlab.com/fmd-foss/fmd-server/-/blob/master/README.md) to learn what FindMyDeviceServer does and why it might be useful to you.
 
