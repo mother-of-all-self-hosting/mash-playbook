@@ -102,7 +102,7 @@ To receive push notifications on a UnifiedPush-compatible application, it must b
 
 Consult to documentation of applications for instruction about how to enable UnifiedPush support. Note that some applications quietly detect and use the Distributor, so you do not always have to configure the applications.
 
-This playbook supports a couple of services which implement UnifiedPush, such as [FMD Server](findmydeviceserver.md). It is the official server for [FMD (FindMyDevice)](https://gitlab.com/fmd-foss/fmd-android/), the Android application which allows you to locate, ring, wipe and issue other commands to your device when it is lost.
+This playbook supports a couple of services which implement UnifiedPush, such as [FMD Server](fmd-server.md). It is the official server for [FMD (FindMyDevice)](https://gitlab.com/fmd-foss/fmd-android/), the Android application which allows you to locate, ring, wipe and issue other commands to your device when it is lost.
 
 If you are configuring UnifiedPush on a [Matrix](https://matrix.org) client, you can refer [this section](https://github.com/spantaleev/matrix-docker-ansible-deploy/blob/master/docs/configuring-playbook-ntfy.md#setting-up-a-unifiedpush-compatible-matrix-client) on matrix-docker-ansible-deploy (MDAD) playbook's documentation.
 
