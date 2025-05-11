@@ -132,14 +132,14 @@
   version: e25d0d9b5282dbb5a1ec4cd23d26c16998e4334f
   name: fail2ban
   activation_prefix: system_security_fail2ban_
-- src: git+https://github.com/mother-of-all-self-hosting/ansible-role-fmd-server.git
-  version: v0.10.0-3
-  name: fmd_server
-  activation_prefix: findmydeviceserver_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-firezone.git
   version: v0.7.36-3
   name: firezone
   activation_prefix: firezone_
+- src: git+https://github.com/mother-of-all-self-hosting/ansible-role-fmd-server.git
+  version: v0.10.0-3
+  name: fmd_server
+  activation_prefix: findmydeviceserver_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-focalboard.git
   version: v7.10.4-2
   name: focalboard
