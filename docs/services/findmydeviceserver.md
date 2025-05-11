@@ -17,15 +17,15 @@ SPDX-FileCopyrightText: 2024 - 2025 Suguru Hirahara
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 
-# FindMyDeviceServer
+# FMD Server
 
-The playbook can install and configure [FindMyDeviceServer](https://gitlab.com/fmd-foss/fmd-server) for you.
+The playbook can install and configure [FMD Server](https://gitlab.com/fmd-foss/fmd-server) for you.
 
-FindMyDeviceServer is the official server for [FindMyDevice (FMD)](https://gitlab.com/fmd-foss/fmd-android), which allows you to locate, ring, wipe and issue other commands to your Android device when it is lost.
+FMD Server is the official server for [FindMyDevice (FMD)](https://gitlab.com/fmd-foss/fmd-android), which allows you to locate, ring, wipe and issue other commands to your Android device when it is lost.
 
-See the project's [documentation](https://gitlab.com/fmd-foss/fmd-server/-/blob/master/README.md) to learn what FindMyDeviceServer does and why it might be useful to you.
+See the project's [documentation](https://gitlab.com/fmd-foss/fmd-server/-/blob/master/README.md) to learn what FMD Server does and why it might be useful to you.
 
-For details about configuring the [Ansible role for FindMyDeviceServer](https://github.com/mother-of-all-self-hosting/ansible-role-findmydeviceserver), you can check them via:
+For details about configuring the [Ansible role for FMD Server](https://github.com/mother-of-all-self-hosting/ansible-role-findmydeviceserver), you can check them via:
 - 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-findmydeviceserver/blob/main/docs/configuring-findmydeviceserver.md) online
 - 📁 `roles/galaxy/findmydeviceserver/docs/configuring-findmydeviceserver.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
@@ -57,7 +57,7 @@ findmydeviceserver_hostname: fmd.example.com
 ########################################################################
 ```
 
-**Note**: hosting FindMyDeviceServer under a subpath (by configuring the `findmydeviceserver_path_prefix` variable) does not seem to be possible due to FindMyDeviceServer's technical limitations.
+**Note**: hosting FMD Server under a subpath (by configuring the `findmydeviceserver_path_prefix` variable) does not seem to be possible due to FMD Server's technical limitations.
 
 ### Set the path for storing a database file on the host
 
@@ -83,12 +83,12 @@ findmydeviceserver_config_registrationtoken: YOUR_TOKEN_HERE
 
 ## Usage
 
-After running the command for installation, FindMyDeviceServer becomes available at the specified hostname like `https://fmd.example.com`.
+After running the command for installation, FMD Server becomes available at the specified hostname like `https://fmd.example.com`.
 
 See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-findmydeviceserver/blob/main/docs/configuring-findmydeviceserver.md#usage) on the role's documentation for details about how to set up the client (FindMyDevice).
 
 >[!NOTE]
-> As sending commands from FindMyDeviceServer to your device requires a UnifiedPush Distributor application, you might be interested in self-hosting a [ntfy](ntfy.md) Push Server along with it.
+> As sending commands from FMD Server to your device requires a UnifiedPush Distributor application, you might be interested in self-hosting a [ntfy](ntfy.md) Push Server along with it.
 
 ## Troubleshooting
 
