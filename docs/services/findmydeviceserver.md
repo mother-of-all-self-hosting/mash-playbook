@@ -19,11 +19,11 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
 # FindMyDeviceServer
 
-The playbook can install and configure [FindMyDeviceServer](https://gitlab.com/Nulide/findmydeviceserver) for you.
+The playbook can install and configure [FindMyDeviceServer](https://gitlab.com/fmd-foss/fmd-server) for you.
 
 FindMyDeviceServer is the official server for [FindMyDevice (FMD)](https://gitlab.com/Nulide/findmydevice), which allows you to locate, ring, wipe and issue other commands to your Android device when it is lost.
 
-See the project's [documentation](https://gitlab.com/Nulide/findmydeviceserver/-/blob/master/README.md) to learn what FindMyDeviceServer does and why it might be useful to you.
+See the project's [documentation](https://gitlab.com/fmd-foss/fmd-server/-/blob/master/README.md) to learn what FindMyDeviceServer does and why it might be useful to you.
 
 For details about configuring the [Ansible role for FindMyDeviceServer](https://github.com/mother-of-all-self-hosting/ansible-role-findmydeviceserver), you can check them via:
 - 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-findmydeviceserver/blob/main/docs/configuring-findmydeviceserver.md) online

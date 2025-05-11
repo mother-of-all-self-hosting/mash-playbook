@@ -28,7 +28,7 @@
     <outline text="etherpad" title="etherpad" type="rss" htmlUrl="https://github.com/ether/etherpad-lite" xmlUrl="https://github.com/ether/etherpad-lite/releases.atom" />
     <outline text="excalidraw" title="excalidraw" type="rss" htmlUrl="https://github.com/excalidraw/excalidraw" xmlUrl="https://github.com/excalidraw/excalidraw/releases.atom" />
     <outline text="exim_relay" title="exim_relay" type="rss" htmlUrl="https://github.com/devture/exim-relay" xmlUrl="https://github.com/devture/exim-relay/releases.atom" />
-    <outline text="findmydeviceserver" title="findmydeviceserver" type="rss" htmlUrl="https://gitlab.com/Nulide/findmydeviceserver" xmlUrl="https://gitlab.com/Nulide/findmydeviceserver/-/tags?format=atom" />
+    <outline text="findmydeviceserver" title="findmydeviceserver" type="rss" htmlUrl="https://gitlab.com/fmd-foss/fmd-server" xmlUrl="https://gitlab.com/fmd-foss/fmd-server/-/tags?format=atom" />
     <outline text="firezone" title="firezone" type="rss" htmlUrl="https://github.com/firezone/firezone" xmlUrl="https://github.com/firezone/firezone/releases.atom" />
     <outline text="focalboard" title="focalboard" type="rss" htmlUrl="https://github.com/mattermost/focalboard" xmlUrl="https://github.com/mattermost/focalboard/releases.atom" />
     <outline text="forgejo" title="forgejo" type="rss" htmlUrl="https://codeberg.org/forgejo/forgejo" xmlUrl="https://codeberg.org/forgejo/forgejo/releases.atom" />
