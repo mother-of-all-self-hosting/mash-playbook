@@ -3981,19 +3981,6 @@ mash_playbook_hubsite_service_list_auto_itemized:
     }}
   # /role-specific:excalidraw
 
-  # role-specific:fmd_server
-  - |-
-    {{
-      ({
-        'name': hubsite_service_findmydeviceserver_name,
-        'url': hubsite_service_findmydeviceserver_url,
-        'logo_location': hubsite_service_findmydeviceserver_logo_location,
-        'description': hubsite_service_findmydeviceserver_description,
-        'priority': hubsite_service_findmydeviceserver_priority,
-      } if hubsite_service_findmydeviceserver_enabled else omit)
-    }}
-  # /role-specific:fmd_server
-
   # role-specific:firezone
   - |-
     {{
@@ -4006,6 +3993,19 @@ mash_playbook_hubsite_service_list_auto_itemized:
       } if hubsite_service_firezone_enabled else omit)
     }}
   # /role-specific:firezone
+
+  # role-specific:fmd_server
+  - |-
+    {{
+      ({
+        'name': hubsite_service_findmydeviceserver_name,
+        'url': hubsite_service_findmydeviceserver_url,
+        'logo_location': hubsite_service_findmydeviceserver_logo_location,
+        'description': hubsite_service_findmydeviceserver_description,
+        'priority': hubsite_service_findmydeviceserver_priority,
+      } if hubsite_service_findmydeviceserver_enabled else omit)
+    }}
+  # /role-specific:fmd_server
 
   # role-specific:focalboard
   - |-
