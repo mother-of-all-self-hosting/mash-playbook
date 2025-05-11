@@ -6151,10 +6151,8 @@ oxitraffic_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_ba
 oxitraffic_uid: "{{ mash_playbook_uid }}"
 oxitraffic_gid: "{{ mash_playbook_gid }}"
 
-oxitraffic_systemd_required_services_list: |
+oxitraffic_systemd_required_services_list_auto: |
   {{
-    ([devture_systemd_docker_base_docker_service_name] if devture_systemd_docker_base_docker_service_name else [])
-    +
     ([postgres_identifier ~ '.service'] if postgres_enabled and oxitraffic_database_hostname == postgres_identifier else [])
   }}
 
