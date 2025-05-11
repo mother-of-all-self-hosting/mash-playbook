@@ -19,7 +19,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
 # FMD Server
 
-The playbook can install and configure [FMD Server](https://gitlab.com/fmd-foss/fmd-server) for you.
+The playbook can install and configure [FMD Server](https://gitlab.com/fmd-foss/fmd-server) (aka. FindMyDeviceServer) for you.
 
 FMD Server is the official server for [FMD (FindMyDevice)](https://gitlab.com/fmd-foss/fmd-android), which allows you to locate, ring, wipe and issue other commands to your Android device when it is lost.
 
