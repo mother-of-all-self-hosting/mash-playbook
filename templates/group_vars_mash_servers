@@ -7249,10 +7249,8 @@ semaphore_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_bas
 semaphore_uid: "{{ mash_playbook_uid }}"
 semaphore_gid: "{{ mash_playbook_gid }}"
 
-semaphore_systemd_required_services_list: |
+semaphore_systemd_required_services_list_auto: |
   {{
-    ([devture_systemd_docker_base_docker_service_name] if devture_systemd_docker_base_docker_service_name else [])
-    +
     ([postgres_identifier ~ '.service'] if postgres_enabled and semaphore_database_host == postgres_identifier else [])
   }}
 
