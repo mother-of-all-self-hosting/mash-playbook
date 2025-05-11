@@ -2630,7 +2630,7 @@ exim_relay_gid: "{{ mash_playbook_gid }}"
 # role-specific:findmydeviceserver
 ########################################################################
 #                                                                      #
-# findmydeviceserver                                                   #
+# fmd_server                                                           #
 #                                                                      #
 ########################################################################
 
@@ -2658,7 +2658,7 @@ findmydeviceserver_container_labels_traefik_tls_certResolver: "{{ traefik_certRe
 
 ########################################################################
 #                                                                      #
-# /findmydeviceserver                                                  #
+# /fmd_server                                                          #
 #                                                                      #
 ########################################################################
 # /role-specific:findmydeviceserver
