@@ -21,7 +21,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
 The playbook can install and configure [FMD Server](https://gitlab.com/fmd-foss/fmd-server) for you.
 
-FMD Server is the official server for [FindMyDevice (FMD)](https://gitlab.com/fmd-foss/fmd-android), which allows you to locate, ring, wipe and issue other commands to your Android device when it is lost.
+FMD Server is the official server for [FMD (FindMyDevice)](https://gitlab.com/fmd-foss/fmd-android), which allows you to locate, ring, wipe and issue other commands to your Android device when it is lost.
 
 See the project's [documentation](https://gitlab.com/fmd-foss/fmd-server/-/blob/master/README.md) to learn what FMD Server does and why it might be useful to you.
 
@@ -85,7 +85,7 @@ findmydeviceserver_config_registrationtoken: YOUR_TOKEN_HERE
 
 After running the command for installation, FMD Server becomes available at the specified hostname like `https://fmd.example.com`.
 
-See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-findmydeviceserver/blob/main/docs/configuring-findmydeviceserver.md#usage) on the role's documentation for details about how to set up the client (FindMyDevice).
+See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-findmydeviceserver/blob/main/docs/configuring-findmydeviceserver.md#usage) on the role's documentation for details about how to set up the client (FMD).
 
 >[!NOTE]
 > As sending commands from FMD Server to your device requires a UnifiedPush Distributor application, you might be interested in self-hosting a [ntfy](ntfy.md) Push Server along with it.
