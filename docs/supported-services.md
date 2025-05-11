@@ -47,7 +47,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 | [Etherpad](https://etherpad.org) | Open source collaborative text editor | [Link](services/etherpad.md) |
 | [Excalidraw](https://excalidraw.com/) | Virtual whiteboard for sketching hand-drawn like diagrams | [Link](services/excalidraw.md) |
 | [exim-relay](https://github.com/devture/exim-relay) | A lightweight [Exim](https://www.exim.org/) SMTP mail relay server | [Link](services/exim-relay.md) |
-| [FindMyDeviceServer](https://gitlab.com/fmd-foss/fmd-server) | Official server for FindMyDevice | [Link](services/findmydeviceserver.md) |
+| [FMD Server](https://gitlab.com/fmd-foss/fmd-server) | Official server for FindMyDevice | [Link](services/findmydeviceserver.md) |
 | [Firezone](https://www.firezone.dev/) | A self-hosted VPN server (based on [WireGuard](https://www.wireguard.com/)) with a Web UI | [Link](services/firezone.md) |
 | [Focalboard](https://www.focalboard.com/) | An open source, self-hosted alternative to [Trello](https://trello.com/), [Notion](https://www.notion.so/), and [Asana](https://asana.com/). | [Link](services/focalboard.md) |
 | [Forgejo](https://forgejo.org/) | A self-hosted lightweight software forge (Git hosting service, etc). An alternative to [Gitea](./services/gitea.md). | [Link](services/forgejo.md) |
