@@ -42,7 +42,7 @@ To enable this service, add the following configuration to your `vars.yml` file 
 ```yaml
 ########################################################################
 #                                                                      #
-# findmydeviceserver                                                   #
+# fmd_server                                                           #
 #                                                                      #
 ########################################################################
 
@@ -52,7 +52,7 @@ findmydeviceserver_hostname: fmd.example.com
 
 ########################################################################
 #                                                                      #
-# /findmydeviceserver                                                  #
+# /fmd_server                                                          #
 #                                                                      #
 ########################################################################
 ```

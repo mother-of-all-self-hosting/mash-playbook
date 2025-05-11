@@ -210,7 +210,7 @@
     # /role-specific:exim_relay
 
     # role-specific:findmydeviceserver
-    - role: galaxy/findmydeviceserver
+    - role: galaxy/fmd_server
     # /role-specific:findmydeviceserver
 
     # role-specific:firezone
