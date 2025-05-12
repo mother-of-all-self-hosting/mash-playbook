@@ -1,9 +1,9 @@
-# n.eko
+# Neko
 
-[n.eko](https://neko.m1k1o.net/) is a self-hosted virtual browser, that this playbook can install, powered by the [mother-of-all-self-hosting/ansible-role-neko](https://github.com/mother-of-all-self-hosting/ansible-role-neko) Ansible role.
+[Neko](https://neko.m1k1o.net/) is a self-hosted virtual browser, that this playbook can install, powered by the [mother-of-all-self-hosting/ansible-role-neko](https://github.com/mother-of-all-self-hosting/ansible-role-neko) Ansible role.
 
 > [!WARNING]
-> The neko service will run in a container with root privileges, no dropped capabilities and will be able to write inside the container. This seems to be a neccessary deviation from the usual security standards in this playbook.
+> The Neko service will run in a container with root privileges, no dropped capabilities and will be able to write inside the container. This seems to be a neccessary deviation from the usual security standards in this playbook.
 
 ## Dependencies
 
@@ -37,11 +37,10 @@ neko_password_admin: 'SUPER_SECURE_PASSWORD'
 
 ## Advanced configuration
 
-There are different flavours of neko and while `firefox` is the default, you can try others by setting
+There are different flavours of Neko and while `firefox` is the default, you can try others by setting
 
 ```yaml
 neko_version: "kde"
 ```
 
 All available tags can be found on [Dockerhub](https://hub.docker.com/r/m1k1o/neko/tags)
-

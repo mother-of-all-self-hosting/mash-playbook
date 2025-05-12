@@ -1,6 +1,33 @@
+<!--
+SPDX-FileCopyrightText: 2020 - 2024 MDAD project contributors
+SPDX-FileCopyrightText: 2020 - 2024 Slavi Pantaleev
+SPDX-FileCopyrightText: 2020 Aaron Raimist
+SPDX-FileCopyrightText: 2020 Chris van Dijk
+SPDX-FileCopyrightText: 2020 Dominik Zajac
+SPDX-FileCopyrightText: 2020 Mickaël Cornière
+SPDX-FileCopyrightText: 2022 François Darveau
+SPDX-FileCopyrightText: 2022 Julian Foad
+SPDX-FileCopyrightText: 2022 Warren Bailey
+SPDX-FileCopyrightText: 2023 Antonis Christofides
+SPDX-FileCopyrightText: 2023 Felix Stupp
+SPDX-FileCopyrightText: 2023 Julian-Samuel Gebühr
+SPDX-FileCopyrightText: 2023 Pierre 'McFly' Marty
+SPDX-FileCopyrightText: 2024 - 2025 Suguru Hirahara
+
+SPDX-License-Identifier: AGPL-3.0-or-later
+-->
+
 # GoToSocial
 
-[GoToSocial](https://gotosocial.org/) is a self-hosted [ActivityPub](https://activitypub.rocks/) social network server, that this playbook can install, powered by the [mother-of-all-self-hosting/ansible-role-gotosocial](https://github.com/mother-of-all-self-hosting/ansible-role-gotosocial) Ansible role.
+The playbook can install and configure [GotoSocial](https://gotosocial.org/) for you.
+
+GoToSocial is a self-hosted [ActivityPub](https://activitypub.rocks/) social network server. With GoToSocial, you can keep in touch with your friends, post, read, and share images and articles.
+
+See the project's [documentation](https://docs.gotosocial.org/) to learn what GotoSocial does and why it might be useful to you.
+
+For details about configuring the [Ansible role for GoToSocial](https://github.com/mother-of-all-self-hosting/ansible-role-gotosocial), you can check them via:
+- 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-gotosocial/blob/main/docs/configuring-gotosocial.md) online
+- 📁 `roles/galaxy/gotosocial/docs/configuring-gotosocial.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 ## Dependencies
 
@@ -9,7 +36,6 @@ This service requires the following other services:
 - a [Postgres](postgres.md) database
 - a [Traefik](traefik.md) reverse-proxy server
 - (optional) the [exim-relay](exim-relay.md) mailer
-
 
 ## Configuration
 
@@ -27,7 +53,7 @@ gotosocial_enabled: true
 # Hostname that this server will be reachable at.
 # DO NOT change this after your server has already run once, or you will break things!
 # Examples: ["gts.example.org","some.server.com"]
-gotosocial_hostname: 'social.example.org'
+gotosocial_hostname: 'social.example.com'
 
 ########################################################################
 #                                                                      #
@@ -36,86 +62,37 @@ gotosocial_hostname: 'social.example.org'
 ########################################################################
 ```
 
-## Advanced account domain configuration
+### Set a shorter domain for your handle (optional)
 
-The account domain is the second part of a user handle in the Fediverse. If your handle is @username@example.org, `example.org` is your account domain. By default GoToSocial will use `gotosocial_hostname` that you provide as account domain e.g. `social.example.org`. You might want to change this by setting `gotosocial_account_domain` if you want the domain on accounts to be `example.org` because it looks better or is just shorter/easier to remember.
+On ActivityPub-powered platforms like GoToSocial, the user handle consists of two parts: username and server. For example, if your handle is `@user@social.example.com`, `user` is the username and `social.example.com` indicates the server.
+
+By default, GoToSocial uses `gotosocial_hostname` that you provide for the server's domain, but you can use a shorter one without the subdomain (`example.com`). See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-gotosocial/blob/main/docs/configuring-gotosocial.md#set-a-shorter-domain-for-your-handle-optional) on the role's documentation for details about how to set it up.
 
 > [!WARNING]
-> DO NOT change this change this after your server has already run once, or you will break things!
-
-If you decide to use this read [the appropriate section of the documentation](https://docs.gotosocial.org/en/latest/advanced/host-account-domain/) as you will have to do some additional work on the base domain.
-
-```yaml
-gotosocial_account_domain: "example.org"
-```
-
-## E-Mail configuration
-
-You can use the following variables in your `vars.yml` to enable e-mail notifications.
-
-```yml
-# Check out https://docs.gotosocial.org/en/latest/configuration/smtp/ for a configuration reference
-gotosocial_smtp_host: 'smtp.example.org'
-gotosocial_smtp_username: gotosocial@example.org
-gotosocial_smtp_password: yourpassword
-gotosocial_smtp_from: gotosocial@example.org
-```
+> Configuring it must be done before starting GoToSocial for the first time. Once you have federated with someone, you cannot change your domain layout.
 
 ## Usage
 
-After [installing](../installing.md), you can:
+After running the command for installation, you can create user account(s).
 
-- create an **administrator** user account with a command like this: `just run-tags gotosocial-add-admin --extra-vars=username=USERNAME_HERE --extra-vars=password=PASSWORD_HERE --extra-vars=email=EMAIL_HERE`
+Run this command to create an **administrator** user account:
 
-- create a **regular** (non-administrator) user account with a command like this: `just run-tags gotosocial-add-user --extra-vars=username=USERNAME_HERE --extra-vars=password=PASSWORD_HERE --extra-vars=email=EMAIL_HERE`
-
-Then, you should be able to visit the URL specified in `gotosocial_hostname` and see your instance.
-
-To customize your instance, go to the `/admin` page.
-
-Use the [GtS CLI Tool](https://docs.gotosocial.org/en/latest/admin/cli/) to do admin & maintenance tasks. E.g. use
-```bash
-docker exec -it mash-gotosocial /gotosocial/gotosocial admin account demote --username USERNAME_HERE
+```sh
+just run-tags gotosocial-add-admin --extra-vars=username=USERNAME_HERE --extra-vars=password=PASSWORD_HERE --extra-vars=email=EMAIL_ADDRESS_HERE
 ```
-to demote a user from admin to normal user.
 
-Refer to the [great official documentation](https://docs.gotosocial.org/en/latest/) for more information on GoToSocial.
+Run this command to create a **regular** (non-administrator) user account:
 
+```sh
+just run-tags gotosocial-add-user --extra-vars=username=USERNAME_HERE --extra-vars=password=PASSWORD_HERE --extra-vars=email=EMAIL_ADDRESS_HERE
+```
 
+Now you should be able to visit the URL at the specified hostname like `https://social.example.com` and check your instance.
+
+See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-gotosocial/blob/main/docs/configuring-gotosocial.md#usage) on the role's documentation for details about how to use a CLI tool, etc.
 
 ## Migrate an existing instance
 
-The following assumes you want to migrate from `serverA` to `serverB` (managed by mash) but you just cave to adjust the copy commands if you are on the same server.
+You can migrate your existing GoToSocial instance to the server which you manage with the MASH playbook. It is also possible to migrate on the same server (from an existing GoToSocial instance to the new one to start managing it with the MASH playbook, for example).
 
-Stop the initial instance on `serverA`
-
-```bash
-serverA$ systemctl stop gotosocial
-```
-
-Dump the database (depending on your existing setup you might have to adjust this)
-```
-serverA$ pg_dump gotosocial > latest.sql
-```
-
-Copy the files to the new server
-
-```bash
-serverA$ rsync -av -e "ssh" latest.sql root@serverB:/mash/gotosocial/
-serverA$ rsync -av -e "ssh" data/* root@serverB:/mash/gotosocial/data/
-```
-
-Install (but don't start) the service and database on the server.
-
-```bash
-yourPC$ just run-tags install-all
-yourPC$ just run-tags import-postgres --extra-vars=server_path_postgres_dump=/mash/gotosocial/latest.sql --extra-vars=postgres_default_import_database=mash-gotosocial
-```
-
-Start the services on the new server
-
-```bash
-yourPC$ just run-tags start
-```
-
-Done 🥳
+See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-gotosocial/blob/main/docs/configuring-gotosocial.md#migrate-an-existing-instance) on the role's documentation for details.

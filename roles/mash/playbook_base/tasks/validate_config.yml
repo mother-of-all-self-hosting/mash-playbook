@@ -14,3 +14,13 @@
   ansible.builtin.fail:
     msg: "Detected that variable mash_playbook_reverse_proxy_type (current value: `{{ mash_playbook_reverse_proxy_type }}`) appears to be set incorrectly. See roles/custom/mash_playbook_base/defaults/main.yml for valid choices."
   when: mash_playbook_reverse_proxy_type not in ['playbook-managed-traefik', 'other-traefik-container', 'none']
+
+- name: (Deprecation) Catch and report renamed mash-playbook settings
+  ansible.builtin.fail:
+    msg: >-
+      Your configuration contains a variable, which now has a different name.
+      Please rename the variable (`{{ item.old }}` -> `{{ item.new }}`) on your configuration file (vars.yml).
+  when: "item.old in vars"
+  with_items:
+    - {'old': 'mash_playbook_user_username', 'new': 'mash_playbook_user_name'}
+    - {'old': 'mash_playbook_user_groupname', 'new': 'mash_playbook_group_name'}

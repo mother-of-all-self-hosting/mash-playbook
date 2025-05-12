@@ -153,6 +153,10 @@
     - role: galaxy/collabora_online
     # /role-specific:collabora_online
 
+    # role-specific:convertx
+    - role: galaxy/convertx
+    # /role-specific:convertx
+
     # role-specific:couchdb
     - role: galaxy/couchdb
     # /role-specific:couchdb
@@ -172,6 +176,10 @@
     # role-specific:docker_registry_purger
     - role: galaxy/docker_registry_purger
     # /role-specific:docker_registry_purger
+
+    # role-specific:docmost
+    - role: galaxy/docmost
+    # /role-specific:docmost
 
     # role-specific:dokuwiki
     - role: galaxy/dokuwiki
@@ -193,6 +201,10 @@
     - role: galaxy/etherpad
     # /role-specific:etherpad
 
+    # role-specific:excalidraw
+    - role: galaxy/excalidraw
+    # /role-specific:excalidraw
+
     # role-specific:exim_relay
     - role: galaxy/exim_relay
     # /role-specific:exim_relay
@@ -200,6 +212,10 @@
     # role-specific:firezone
     - role: galaxy/firezone
     # /role-specific:firezone
+
+    # role-specific:fmd_server
+    - role: galaxy/fmd_server
+    # /role-specific:fmd_server
 
     # role-specific:focalboard
     - role: galaxy/focalboard
@@ -212,6 +228,10 @@
     # role-specific:funkwhale
     - role: galaxy/funkwhale
     # /role-specific:funkwhale
+
+    # role-specific:ghostfolio
+    - role: galaxy/ghostfolio
+    # /role-specific:ghostfolio
 
     # role-specific:gitea
     - role: galaxy/gitea
@@ -232,6 +252,10 @@
     # role-specific:freescout
     - role: galaxy/freescout
     # /role-specific:freescout
+
+    # role-specific:minecraft
+    - role: galaxy/minecraft
+    # /role-specific:minecraft
 
     # role-specific:miniflux
     - role: galaxy/miniflux
@@ -256,6 +280,10 @@
     # role-specific:headscale
     - role: galaxy/headscale
     # /role-specific:headscale
+
+    # role-specific:homarr
+    - role: galaxy/homarr
+    # /role-specific:homarr
 
     # role-specific:hubsite
     - role: galaxy/hubsite
@@ -312,6 +340,10 @@
     # role-specific:linkding
     - role: galaxy/linkding
     # /role-specific:linkding
+
+    # role-specific:listmonk
+    - role: galaxy/listmonk
+    # /role-specific:listmonk
 
     # role-specific:loki
     - role: galaxy/loki
@@ -380,6 +412,10 @@
     # role-specific:plausible
     - role: galaxy/plausible
     # /role-specific:plausible
+
+    # role-specific:plex
+    - role: galaxy/plex
+    # /role-specific:plex
 
     # role-specific:postgis
     - role: galaxy/postgis
@@ -540,6 +576,10 @@
     # role-specific:auxiliary
     - role: galaxy/auxiliary
     # /role-specific:auxiliary
+
+    # role-specific:matomo
+    - role: galaxy/matomo
+    # /role-specific:matomo
 
     # role-specific:matterbridge
     - role: galaxy/matterbridge

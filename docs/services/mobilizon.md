@@ -1,9 +1,17 @@
+<!--
+SPDX-FileCopyrightText: 2023 Julian-Samuel Gebühr
+SPDX-FileCopyrightText: 2025 Suguru Hirahara
+
+SPDX-License-Identifier: AGPL-3.0-or-later
+-->
+
 # Mobilizon
 
-[Mobilizon](https://joinmobilizon.org/en/) is a ActivityPub/Fediverse server to create and share events here powered by the [mother-of-all-self-hosting/ansible-role-mobilizon](https://github.com/mother-of-all-self-hosting/ansible-role-mobilizon) Ansible role.
+The playbook can install and configure [Mobilizon](https://joinmobilizon.org/en/) for you.
+
+Mobilizon is a ActivityPub/Fediverse server to create and share events. See the project's [documentation](https://docs.mobilizon.org/) to learn what it does and why it might be useful to you.
 
 ## Depedencies
-
 
 This service requires the following other services:
 
@@ -12,8 +20,7 @@ This service requires the following other services:
 
 ## Configuration
 
-To enable this service, add the following configuration to your `vars.yml` file. Also you need to enable postgis which will serve as database for mobilizon.
-After that you can re-run the [installation](../installing.md) process.
+To enable this service, add the following configuration to your `vars.yml` file and re-run the [installation](../installing.md) process:
 
 ```yaml
 ########################################################################
@@ -24,13 +31,7 @@ After that you can re-run the [installation](../installing.md) process.
 
 mobilizon_enabled: true
 
-
-# Hostname that this server will be reachable at.
-# DO NOT change this after your server has already run once, or you will break things!
 mobilizon_hostname: 'events.example.org'
-
-# to open registrations uncomment the following line
-# mobilizon_registrations_open: true
 
 ########################################################################
 #                                                                      #
@@ -39,11 +40,46 @@ mobilizon_hostname: 'events.example.org'
 ########################################################################
 ```
 
-After installation, you can use `just run-tags mobilizon-add-admin --extra-vars=password=<password> --extra-vars=email=<email>`
-to create your an admin account.
+>[!WARNING]
+> DO NOT change the hostname after the instance has already run once. If changed, the Mobilizon instance stop working properly!
+
+### Enable Postgis
+
+You also need to enable [Postgis](./postgis.md) for a database server by adding the following configuration:
+
+```yaml
+########################################################################
+#                                                                      #
+# postgis                                                              #
+#                                                                      #
+########################################################################
+
+postgis_enabled: true
+
+# Put a strong password below, generated with `pwgen -s 64 1` or in another way
+postgis_connection_password: ''
+
+########################################################################
+#                                                                      #
+# /postgis                                                             #
+#                                                                      #
+########################################################################
+```
+
+### Make registration open (optional)
+
+To enable registration at the instance by anyone, add the following configuration to your `vars.yml` file:
+
+```yaml
+mobilizon_registrations_open: true
+```
 
 ### Usage
 
 After [installing](../installing.md), you can visit at the URL specified in `mobilizon_hostname` and should see your instance.
 
-Refer to the [great official documentation](https://docs.joinmobilizon.org/use/) for more information on Mobilizon.
+To create an admin account, run the following command:
+
+```sh
+just run-tags mobilizon-add-admin --extra-vars=password=<password> --extra-vars=email=<email>
+```
