@@ -1,3 +1,9 @@
+<!--
+SPDX-FileCopyrightText: 2024 Julian-Samuel Gebühr
+
+SPDX-License-Identifier: AGPL-3.0-or-later
+-->
+
 # Neko
 
 [Neko](https://neko.m1k1o.net/) is a self-hosted virtual browser, that this playbook can install, powered by the [mother-of-all-self-hosting/ansible-role-neko](https://github.com/mother-of-all-self-hosting/ansible-role-neko) Ansible role.
