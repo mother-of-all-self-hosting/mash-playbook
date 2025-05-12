@@ -269,6 +269,10 @@
     - role: galaxy/ilmo
     # /role-specific:ilmo
 
+    # role-specific:immich
+    - role: galaxy/immich
+    # /role-specific:immich
+
     # role-specific:influxdb
     - role: galaxy/influxdb
     # /role-specific:influxdb

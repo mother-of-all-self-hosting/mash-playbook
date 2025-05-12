@@ -302,6 +302,15 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
     {{ ({'name': (ilmo_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'ilmo']} if ilmo_enabled else omit) }}
   # /role-specific:ilmo
 
+  # role-specific:immich
+  - |-
+    {{ ({'name': (immich_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'immich']} if immich_enabled else omit) }}
+  - |-
+    {{ ({'name': (immich_identifier + '-machine-learning.service'), 'priority': 200, 'groups': ['mash', 'immich']} if immich_enabled else omit) }}
+  - |-
+    {{ ({'name': (immich_identifier + '-database.service'), 'priority': 2000, 'groups': ['mash', 'immich']} if immich_enabled else omit) }}
+  # /role-specific:immich
+
   # role-specific:infisical
   - |-
     {{ ({'name': (infisical_identifier + '-backend.service'), 'priority': 2000, 'groups': ['mash', 'infisical', 'infisical-backend']} if infisical_enabled else omit) }}
@@ -4101,6 +4110,61 @@ ilmo_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary
 ########################################################################
 # /role-specific:ilmo
 
+
+# # role-specific:immich
+# ########################################################################
+# #                                                                      #
+# # immich                                                               #
+# #                                                                      #
+# ########################################################################
+
+immich_enabled: false
+
+immich_identifier: "{{ mash_playbook_service_identifier_prefix }}immich"
+immich_database_identifier: "{{ mash_playbook_service_identifier_prefix }}immich-database"
+immich_machine_learning_identifier: "{{ mash_playbook_service_identifier_prefix }}immich-machine-learning"
+
+immich_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}immich"
+
+immich_uid: "{{ mash_playbook_uid }}"
+immich_gid: "{{ mash_playbook_gid }}"
+
+immich_container_additional_networks_auto: |
+  {{
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+  }}
+
+immich_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+immich_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+
+immich_environment_variable_secret: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'secret.imoney', rounds=655555) | to_uuid }}"
+
+# # # role-specific:exim_relay
+immich_email_host: ''
+# #"{{ exim_relay_identifier if exim_relay_enabled else '' }}"
+# # immich_email_port: "{{ 8025 if exim_relay_enabled else '' }}"
+# # immich_default_from_email: "{{ exim_relay_sender_address if exim_relay_enabled else '' }}"
+# # # /role-specific:exim_relay
+
+# # role-specific:postgres (managed by immich role)
+# # immich_database_hostname: "{{ postgres_identifier if postgres_enabled else '' }}"
+# # immich_database_port: "{{ '5432' if postgres_enabled else '' }}"
+# #immich_database_hostname: ""
+# #immich_database_username: "immich"
+immich_database_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'db.immich', rounds=655555) | to_uuid }}"
+# # /role-specific:postgres
+
+# # role-specific:traefik
+# immich_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
+# immich_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
+# # /role-specific:traefik
+
+# ########################################################################
+# #                                                                      #
+# # /immich                                                              #
+# #                                                                      #
+# ########################################################################
+# # /role-specific:immich
 
 
 # role-specific:infisical

@@ -180,6 +180,10 @@
   version: v1.0.4-0
   name: ilmo
   activation_prefix: ilmo_
+- src: git+https://github.com/IUCCA/ansible-role-immich.git
+  version: v1.132.1-0
+  name: immich
+  activation_prefix: immich_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-infisical.git
   version: v0.43.19-0
   name: infisical
