@@ -46,9 +46,9 @@ To enable this service, add the following configuration to your `vars.yml` file 
 #                                                                      #
 ########################################################################
 
-findmydeviceserver_enabled: true
+fmd_server_enabled: true
 
-findmydeviceserver_hostname: fmd.example.com
+fmd_server_hostname: fmd.example.com
 
 ########################################################################
 #                                                                      #
@@ -57,7 +57,7 @@ findmydeviceserver_hostname: fmd.example.com
 ########################################################################
 ```
 
-**Note**: hosting FMD Server under a subpath (by configuring the `findmydeviceserver_path_prefix` variable) does not seem to be possible due to FMD Server's technical limitations.
+**Note**: hosting FMD Server under a subpath (by configuring the `fmd_server_path_prefix` variable) does not seem to be possible due to FMD Server's technical limitations.
 
 ### Set the path for storing a database file on the host
 
@@ -66,7 +66,7 @@ For a persistent storage for a database file, you need to add a Docker volume to
 To add the volume, prepare a directory on the host machine and add the following configuration to your `vars.yml` file:
 
 ```yaml
-findmydeviceserver_database_path: /path/on/the/host
+fmd_server_database_path: /path/on/the/host
 ```
 
 Make sure permissions of the directory specified to `/path/on/the/host`.
@@ -78,7 +78,7 @@ With the default setting, the instance will be public and open to registration b
 To make it private and have it require a token for registration, set it by adding the following configuration to your `vars.yml` file. Make sure to replace `YOUR_TOKEN_HERE` with your own value. Generating a strong token (e.g. `pwgen -s 64 1`) is recommended.
 
 ```yaml
-findmydeviceserver_config_registrationtoken: YOUR_TOKEN_HERE
+fmd_server_config_registrationtoken: YOUR_TOKEN_HERE
 ```
 
 ## Usage
