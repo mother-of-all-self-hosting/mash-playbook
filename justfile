@@ -84,7 +84,7 @@ update *flags: update-playbook-only
         ansible-galaxy install -r requirements.yml -p roles/galaxy/ --force
     fi
 
-    if [[ "{{ flags }}" == "-u" ]]; then
+    if [ "{{ flags }}" = "-u" ]; then
         {{ just_executable() }} --justfile {{ justfile() }} versions
         {{ just_executable() }} --justfile {{ justfile() }} opml
     fi

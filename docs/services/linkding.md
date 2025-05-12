@@ -1,6 +1,6 @@
-# Linkding
+# linkding
 
-[Linkding](https://github.com/sissbruecker/linkding) bookmark manager that is designed be to be minimal and fast.
+[linkding](https://github.com/sissbruecker/linkding) bookmark manager that is designed be to be minimal and fast.
 
 ## Dependencies
 

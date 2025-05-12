@@ -3,7 +3,7 @@
 * Anonymousoverflow: release
 * Apisix Dashboard: 3.0.1
 * Apisix Gateway: 3.8.0
-* Appsmith: v1.9.50
+* Appsmith: v1.53.1
 * Authelia: 4.37.5
 * Authentik: 2025.2.4
 * Borg: 1.4.1
@@ -21,11 +21,11 @@
 * Docker Registry Browser: 1.7.5
 * Docker Registry Proxy: v1.2.5
 * Docker Registry Purger: 1.0.0
-* Docmost: 0.20.3
+* Docmost: 0.20.4
 * Dokuwiki: 2024-02-06b
 * Echoip: latest
 * Endlessh: 2024.0119.1
-* Etcd: 3.5.11
+* Etcd: 3.5.21
 * Etherpad: 2.3.0
 * Excalidraw: latest
 * Exim Relay: 4.98.1-r0-2
@@ -37,13 +37,13 @@
 * Freescout: 1.17.113
 * Freshrss: 1.25.0
 * Funkwhale: 1.4.0
-* Ghostfolio: 2.156.0
+* Ghostfolio: 2.159.0
 * Gitea: 1.23.5
 * Gotosocial: 0.19.0
-* Grafana: 11.6.0-security-01
+* Grafana: 11.6.1
 * Headscale: v0.25.1
 * Healthchecks: v3.9
-* Homarr: v1.18.1
+* Homarr: v1.19.0
 * Hubsite Nginx: 1.27.4
 * Ihatemoney: 6.1.5
 * Ilmo: 1.0.4
@@ -54,14 +54,14 @@
 * Jitsi Ldap: 3
 * Jitsi Prosody Auth Matrix User Verification Repo: 2839499cb03894d8cfc3e5b2219441427cb133d8
 * Joplin Server: 3.3.13
-* Keycloak: 26.1.3
+* Keycloak: 26.2.2
 * Keydb: 6.3.4
 * Labelstudio: latest
 * Lago: v0.50.0-beta
 * Languagetool: 6.5-dockerupdate-1
 * Linkding: 1.39.1
 * Listmonk: 4.1.0
-* Loki: 2.9.4
+* Loki: 3.5.0
 * Matomo: 5.3.1
 * Matterbridge: 1.26.0
 * Miniflux: 2.2.8
@@ -83,7 +83,7 @@
 * Overseerr: 1.33.2
 * Owncast: 0.2.1
 * Oxitraffic: 0.10.1
-* Paperless: 2.15.2
+* Paperless: 2.15.3
 * Paperless Gotenberg: 8.20.1
 * Paperless Tika: 3.1.0.0
 * Peertube: v7.1.1
@@ -91,13 +91,13 @@
 * Plex: 1.41.6
 * Privatebin: 1.7.6
 * Privatebin Config Model S3: latest
-* Prometheus: v2.55.1
-* Prometheus Blackbox Exporter: v0.25.0
+* Prometheus: v3.3.1
+* Prometheus Blackbox Exporter: v0.26.0
 * Prometheus Node Exporter: v1.9.1
-* Prometheus Postgres Exporter: v0.14.0
+* Prometheus Postgres Exporter: v0.17.1
 * Prometheus Ssh Exporter: v1.5.0
-* Promtail: 2.9.5
-* Qbittorrent: 5.0.4
+* Promtail: 3.5.0
+* Qbittorrent: 5.1.0
 * Radarr: 5.19.3
 * Radicale: 3.5.2.0
 * Readeck: 0.18.0
@@ -108,7 +108,7 @@
 * Rumqttd: 0.21.0
 * Searxng: latest
 * Semaphore: 2.9.56
-* Send: latest
+* Send: v3.4.25
 * Soft Serve: v0.4.7
 * Sonarr: 4.0.14
 * Stirling Pdf: 0.45.5-fat
@@ -119,7 +119,7 @@
 * Traefik: v3.3.6
 * Tsdproxy: 1.4.7
 * Uptime Kuma: 1.23.16
-* Valkey: 8.0.1
+* Valkey: 8.1.1
 * Vaultwarden: 1.33.2
 * Versatiles: 0.15.3
 * Wetty: 2.5
