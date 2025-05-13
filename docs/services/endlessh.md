@@ -34,9 +34,9 @@ For details about configuring the [Ansible role for Endlessh-go](https://github.
 
 This service requires the following other services:
 
-- (optionally) [Traefik](traefik.md) — a reverse-proxy server for exposing endlessh publicly
+- (optionally) [Traefik](traefik.md) — a reverse-proxy server for exposing Endlessh publicly
 - (optionally) [Prometheus](./prometheus.md) — a database for storing metrics
-- (optionally) [Grafana](./grafana.md) — a web UI that can query the prometheus datasource (connection) and display the logs
+- (optionally) [Grafana](./grafana.md) — a web UI that can query the Prometheus datasource (connection) and display the logs
 
 ## Prerequisites
 
@@ -76,14 +76,14 @@ Endlessh can natively expose metrics to [Prometheus](./prometheus.md).
 
 ### Prerequesites
 
-The bare minimium is to ensure Prometheus can reach endlessh.
+The bare minimium is to ensure Prometheus can reach Endlessh.
 
 - If Endlessh is on a different host than Prometheus, refer to section [Expose metrics publicly](endlessh.md#)
-- If Endlessh is on the same host than prometheus, refer to section [Ensure Prometheus is on the same container network as endlessh.](endlessh.md#)
+- If Endlessh is on the same host than Prometheus, refer to section [Ensure Prometheus is on the same container network as Endlessh.](endlessh.md#)
 
-### Ensure Prometheus is on the same container network as endlessh.
+### Ensure Prometheus is on the same container network as Endlessh.
 
-If endlessh and prometheus do not share a network (like traefik), you will have to
+If Endlessh and Prometheus do not share a network (like traefik), you will have to
 
 - Either connect Prometheus container network to Endlessh by editing `prometheus_container_additional_networks_auto`
 - Either connect Endlessh container network to Prometheus by editing `endlessh_container_additional_networks_custom`
@@ -104,17 +104,17 @@ endlessh_container_extra_arguments_custom:
   - "-enable_prometheus"
 ```
 
-Default endlessh port for metrics is `2112`. It can be changed via container extra flag `-prometheus_port=8085`.
+Default Endlessh port for metrics is `2112`. It can be changed via container extra flag `-prometheus_port=8085`.
 
-Default endlessh listening for metrics adress is `0.0.0.0.` (so endlessh will listing on all adresses). This parrameter can be changed via container extra flag `-prometheus_host=10.10.10.10`.
+Default Endlessh listening for metrics adress is `0.0.0.0.` (so Endlessh will listing on all adresses). This parrameter can be changed via container extra flag `-prometheus_host=10.10.10.10`.
 
-Default endlessh entrypoint for metrics is `/metrics`. It can be changed via container extra flag `-prometheus_entry=/endlessh`.
+Default Endlessh entrypoint for metrics is `/metrics`. It can be changed via container extra flag `-prometheus_entry=/endlessh`.
 
-For more container extra flag, refer to the documentation of [endlessh-go](https://github.com/shizunge/endlessh-go).
+For more container extra flag, refer to the documentation of [Endlessh-go](https://github.com/shizunge/endlessh-go).
 
 ### Exposing metrics publicly
 
-Unless you're scraping the endlessh metrics from a local [Prometheus](prometheus.md) instance, as described in [Integrating with Prometheus](endlessh.md#), you will probably wish to expose the metrics publicly so that a remote Prometheus instance can fetch them. When exposing publicly, it's natural to set up [HTTP Basic Authentication](https://developer.mozilla.org/en-US/docs/Web/HTTP/Authentication) **or anyone would be able to read your metrics**.
+Unless you're scraping the Endlessh metrics from a local [Prometheus](prometheus.md) instance, as described in [Integrating with Prometheus](endlessh.md#), you will probably wish to expose the metrics publicly so that a remote Prometheus instance can fetch them. When exposing publicly, it's natural to set up [HTTP Basic Authentication](https://developer.mozilla.org/en-US/docs/Web/HTTP/Authentication) **or anyone would be able to read your metrics**.
 
 ```yaml
 # To expose the metrics publicly, enable and configure the lines below:
@@ -129,4 +129,4 @@ endlessh_container_labels_metrics_middleware_basic_auth_users: ""
 
 ## Usage
 
-After [installing](../installing.md), refer to the documentation of [endlessh-go](https://github.com/shizunge/endlessh-go).
+After [installing](../installing.md), refer to the documentation of [Endlessh-go](https://github.com/shizunge/endlessh-go).
