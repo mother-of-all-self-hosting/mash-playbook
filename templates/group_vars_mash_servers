@@ -7817,9 +7817,6 @@ wallabag_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_pri
 
 wallabag_database_hostname: "{{ postgres_connection_hostname if postgres_enabled else '' }}"
 
-# Intentionally not auto-generating wallabag_database_password.
-# It's meant to be explicitly defined, so that it can be used in the setup wizard after installation.
-
 # role-specific:exim_relay
 wallabag_config_mailer_enabled: "{{ exim_relay_enabled }}"
 wallabag_config_mailer_smtp_addr: "{{ exim_relay_identifier if exim_relay_enabled else '' }}"
