@@ -38,6 +38,9 @@ This service requires the following other services:
 - (optionally) [Prometheus](./prometheus.md) — a database for storing metrics
 - (optionally) [Grafana](./grafana.md) — a web UI that can query the Prometheus datasource (connection) and display the logs
 
+>[!NOTE]
+> None of them are required unless you will expose metrics to a Prometheus server.
+
 ## Prerequisites
 
 The role is configured to set up the Endlessh-go instance to listen to the port 22, the standard SSH port, therefore you need to move the port for the real SSH server to another port, so that an Endlessh-go instance can listen to the port 22 and trap attackers' clients into it.
@@ -70,63 +73,65 @@ By default, the Endlessh-go instance binds to port 22 on all network interfaces.
 endlessh_container_host_bind_port: YOUR_PORT_NUMBER_HERE
 ```
 
-## Integrating with Prometheus
+## Usage
 
-Endlessh can natively expose metrics to [Prometheus](./prometheus.md).
+After installation, the instance starts running on the server and listens to the specified port (port 22 by default).
 
-### Prerequesites
+You can customize how it works with the `endlessh_container_extra_arguments_custom` variable. See [this section](https://github.com/shizunge/endlessh-go/blob/main/README.md#usage) of the documentation for available arguments.
 
-The bare minimium is to ensure Prometheus can reach Endlessh.
+### Integrating with Prometheus (optional)
 
-- If Endlessh is on a different host than Prometheus, refer to section [Expose metrics publicly](endlessh.md#)
-- If Endlessh is on the same host than Prometheus, refer to section [Ensure Prometheus is on the same container network as Endlessh.](endlessh.md#)
+Endlessh can natively expose metrics to [Prometheus](prometheus.md).
 
-### Ensure Prometheus is on the same container network as Endlessh.
-
-If Endlessh and Prometheus do not share a network (like traefik), you will have to
-
-- Either connect Prometheus container network to Endlessh by editing `prometheus_container_additional_networks_auto`
-- Either connect Endlessh container network to Prometheus by editing `endlessh_container_additional_networks_custom`
-
-Exemple:
-
-```yaml
-prometheus_container_additional_networks:
-  - "{{ endlessh_container_network }}"
-```
-
-### Set container extra flag:
-
-The bare minimum is to set container extra flag `-enable_prometheus`
+As the metrics is off by default, you can turn it via the CLI argument `-enable_prometheus` as below:
 
 ```yaml
 endlessh_container_extra_arguments_custom:
   - "-enable_prometheus"
 ```
 
-Default Endlessh port for metrics is `2112`. It can be changed via container extra flag `-prometheus_port=8085`.
+You can set other arguments to customize how metrics are exposed, such as `-prometheus_port`, `-prometheus_host`, `-prometheus_entry`, etc. See [this section](https://github.com/shizunge/endlessh-go/blob/main/README.md#usage) of the documentation for details.
 
-Default Endlessh listening for metrics adress is `0.0.0.0.` (so Endlessh will listing on all adresses). This parrameter can be changed via container extra flag `-prometheus_host=10.10.10.10`.
+After settings arguments, you need to expose metrics internally or externally.
 
-Default Endlessh entrypoint for metrics is `/metrics`. It can be changed via container extra flag `-prometheus_entry=/endlessh`.
+- If Endlessh is on the same host as Prometheus, refer to this section: [Expose metrics internally](#expose-metrics-internally)
+- If Endlessh is on a different host than Prometheus, refer to this section: [Expose metrics publicly](#expose-metrics-publicly)
 
-For more container extra flag, refer to the documentation of [Endlessh-go](https://github.com/shizunge/endlessh-go).
+#### Expose metrics internally
 
-### Exposing metrics publicly
+If Endlessh and Prometheus do not share a network (like Traefik), you will have to either:
 
-Unless you're scraping the Endlessh metrics from a local [Prometheus](prometheus.md) instance, as described in [Integrating with Prometheus](endlessh.md#), you will probably wish to expose the metrics publicly so that a remote Prometheus instance can fetch them. When exposing publicly, it's natural to set up [HTTP Basic Authentication](https://developer.mozilla.org/en-US/docs/Web/HTTP/Authentication) **or anyone would be able to read your metrics**.
+- Connect the Prometheus container network to Endlessh by adjusting `prometheus_container_additional_networks_auto`
+- Connect the Endlessh container network to Prometheus by adjusting `endlessh_container_additional_networks_custom`
+
+Here is an example configuration to be added to your `vars.yml` file:
 
 ```yaml
-# To expose the metrics publicly, enable and configure the lines below:
-endlessh_hostname: mash.example.com
-endlessh_path_prefix: /metrics/mash-endlessh
-
-# To protect the metrics with HTTP Basic Auth, enable and configure the lines below.
-# See: https://doc.traefik.io/traefik/middlewares/http/basicauth/#users
-endlessh_container_labels_metrics_middleware_basic_auth_enabled: true
-endlessh_container_labels_metrics_middleware_basic_auth_users: ""
+prometheus_container_additional_networks:
+  - "{{ endlessh_container_network }}"
 ```
 
-## Usage
+#### Expose metrics publicly
 
-After [installing](../installing.md), refer to the documentation of [Endlessh-go](https://github.com/shizunge/endlessh-go).
+If Endlessh metrics are not scraped from a local Prometheus instance, you can expose the metrics publicly so that a remote instance can fetch them.
+
+When exposing metrics publicly, you should consider to set up [HTTP Basic Authentication](https://developer.mozilla.org/en-US/docs/Web/HTTP/Authentication) **or anyone would be able to read your metrics**.
+
+To expose the metrics publicly, add the following configuration to your `vars.yml` file (adapt to your needs):
+
+```yaml
+# The hostname at which Endlessh is served.
+endlessh_hostname: ''
+
+# The path at which Endlessh is exposed.
+endlessh_path_prefix: /metrics/mash-endlessh
+```
+
+To enable HTTP Basic Auth, add the following configuration to your `vars.yml` file (adapt to your needs):
+
+```yaml
+endlessh_container_labels_metrics_middleware_basic_auth_enabled: true
+
+# See https://doc.traefik.io/traefik/middlewares/http/basicauth/#users for details.
+endlessh_container_labels_metrics_middleware_basic_auth_users: ""
+```
