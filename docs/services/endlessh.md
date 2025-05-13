@@ -1,3 +1,9 @@
+<!--
+SPDX-FileCopyrightText: 2024 Tiz
+
+SPDX-License-Identifier: AGPL-3.0-or-later
+-->
+
 # Endlessh
 
 [Endlessh-go](https://github.com/shizunge/endlessh-go) is a Golang implementation of [endlessh](https://github.com/skeeto/endlessh), an [SSH tarpit](https://nullprogram.com/blog/2019/03/22). Installing it is powered by the [mother-of-all-self-hosting/ansible-role-endlessh](https://github.com/mother-of-all-self-hosting/ansible-role-endlessh) Ansible role.
