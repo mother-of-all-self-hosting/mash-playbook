@@ -36,7 +36,7 @@
 * Focalboard: 7.10.4
 * Forgejo: 11.0.0
 * Forgejo Runner: 6.3.1
-* Freescout: php8.3-1.17.116
+* Freescout: php8.3-1.17.117
 * Freshrss: 1.25.0
 * Funkwhale: 1.4.0
 * Ghostfolio: 2.161.0
