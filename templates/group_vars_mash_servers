@@ -2698,8 +2698,9 @@ fmd_server_identifier: "{{ mash_playbook_service_identifier_prefix }}findmydevic
 
 fmd_server_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}findmydeviceserver"
 
-fmd_server_uid: "{{ mash_playbook_uid }}"
-fmd_server_gid: "{{ mash_playbook_gid }}"
+# Running with mash_playbook_uid and mash_playbook_gid returns permission errors.
+fmd_server_uid: 1000
+fmd_server_gid: 1000
 
 fmd_server_container_additional_networks_auto: |
   {{
