@@ -54,7 +54,7 @@ When prompted to add your media libraries keep in mind that it will be the path 
 
 By default your Jellyfin instance cannot be connected to directly, and must be routed through Traefik (usually with HTTPS). This works fine for the web-app, phone, and TV apps. However, depending on your setup, you may want to connect directly to your server on the LAN with no HTTPS.
 
-Keep in mind that doing so will send your Jellyfin password across the network in plain-text. This is not a reccomended configuration. That said, here is how:
+Keep in mind that doing so will send your Jellyfin password across the network in plain-text. This is not a recommended configuration. That said, here is how:
 
 ```yaml
 # The main Jellyfin webserver port, setting this variable will expose that port and allow you to connect directly to it (without Traefik). 
