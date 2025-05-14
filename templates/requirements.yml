@@ -216,6 +216,10 @@
   version: v0.22.1891-0
   name: jackett
   activation_prefix: jackett_
+- src: git+https://github.com/spatterIight/ansible-role-jellyfin.git
+  version: v10.10.7-0 
+  name: jellyfin
+  activation_prefix: jellyfin_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-jitsi.git
   version: v10184-0
   name: jitsi
