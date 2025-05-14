@@ -65,7 +65,7 @@
   name: container_socket_proxy
   activation_prefix: mash_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-convertx.git
-  version: v0.12.1-2
+  version: v0.13.0-0
   name: convertx
   activation_prefix: convertx_
 - src: git+https://github.com/Bergruebe/ansible-role-couchdb.git
@@ -217,7 +217,7 @@
   name: jackett
   activation_prefix: jackett_
 - src: git+https://github.com/spatterIight/ansible-role-jellyfin.git
-  version: v10.10.7-0 
+  version: v10.10.7-0
   name: jellyfin
   activation_prefix: jellyfin_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-jitsi.git
