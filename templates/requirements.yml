@@ -145,7 +145,7 @@
   name: focalboard
   activation_prefix: focalboard_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-forgejo.git
-  version: v11.0.0-0
+  version: v11.0.0-1
   name: forgejo
   activation_prefix: forgejo_
 - src: git+https://git.sergiodj.net/sergiodj/ansible-role-forgejo-runner.git
