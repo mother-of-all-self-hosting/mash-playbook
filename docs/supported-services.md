@@ -47,8 +47,8 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 | [Etherpad](https://etherpad.org) | Open source collaborative text editor | [Link](services/etherpad.md) |
 | [Excalidraw](https://excalidraw.com/) | Virtual whiteboard for sketching hand-drawn like diagrams | [Link](services/excalidraw.md) |
 | [exim-relay](https://github.com/devture/exim-relay) | A lightweight [Exim](https://www.exim.org/) SMTP mail relay server | [Link](services/exim-relay.md) |
-| [FindMyDeviceServer](https://gitlab.com/Nulide/findmydeviceserver) | Official server for FindMyDevice | [Link](services/findmydeviceserver.md) |
 | [Firezone](https://www.firezone.dev/) | A self-hosted VPN server (based on [WireGuard](https://www.wireguard.com/)) with a Web UI | [Link](services/firezone.md) |
+| [FMD Server](https://gitlab.com/fmd-foss/fmd-server) | Official server for FMD (FindMyDevice) | [Link](services/fmd-server.md) |
 | [Focalboard](https://www.focalboard.com/) | An open source, self-hosted alternative to [Trello](https://trello.com/), [Notion](https://www.notion.so/), and [Asana](https://asana.com/). | [Link](services/focalboard.md) |
 | [Forgejo](https://forgejo.org/) | A self-hosted lightweight software forge (Git hosting service, etc). An alternative to [Gitea](./services/gitea.md). | [Link](services/forgejo.md) |
 | [Forgejo Runner](https://code.forgejo.org/forgejo/runner) | A runner to use with Forgejo Actions | [Link](services/forgejo-runner.md) |
@@ -69,6 +69,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 | [Infisical](https://infisical.com/) | An open-source end-to-end encrypted platform for securely managing secrets and configs across your team, devices, and infrastructure. | [Link](services/infisical.md) |
 | [InfluxDB](https://www.influxdata.com/) | A self-hosted time-series database. | [Link](services/influxdb.md) |
 | [Jackett](https://github.com/Jackett/Jackett) | An API for your favorite torrent trackers | [Link](services/jackett.md) |
+| [Jellyfin](https://github.com/jellyfin/jellyfin) | An open-source personal media server | [Link](services/jellyfin.md) |
 | [Jitsi](https://jitsi.org/) | A fully encrypted, 100% Open Source video conferencing solution | [Link](services/jitsi.md) |
 | [Joplin Server](https://joplinapp.org/help/dev/spec/architecture#joplin-server) | Self-hosted server component for [Joplin](https://joplinapp.org/) | [Link](services/joplin-server.md) |
 | [Keycloak](https://www.keycloak.org/) | An open source identity and access management solution. | [Link](services/keycloak.md) |
@@ -89,7 +90,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 | [Mosquitto](https://mosquitto.org/) | An open-source MQTT broker | [Link](services/mosquitto.md) |
 | [n8n](https://n8n.io/) | Workflow automation for technical people. | [Link](services/n8n.md) |
 | [Navidrome](https://www.navidrome.org/) | [Subsonic-API](http://www.subsonic.org/pages/api.jsp) compatible music server | [Link](services/navidrome.md)
-| [n.eko](https://neko.m1k1o.net/) | A self-hosted virtual browser or even desktop environment | [Link](services/neko.md) |
+| [Neko](https://neko.m1k1o.net/) | A self-hosted virtual browser or even desktop environment | [Link](services/neko.md) |
 | [NetBox](https://docs.netbox.dev/en/stable/) | Web application that provides [IP address management (IPAM)](https://en.wikipedia.org/wiki/IP_address_management) and [data center infrastructure management (DCIM)](https://en.wikipedia.org/wiki/Data_center_management#Data_center_infrastructure_management) functionality | [Link](services/netbox.md) |
 | [Nextcloud](https://nextcloud.com/) | The most popular self-hosted collaboration solution for tens of millions of users at thousands of organizations across the globe. | [Link](services/nextcloud.md) |
 | [Notfellchen](https://codeberg.org/moanos/notfellchen) | Self-hosted tool to list animals available for adoption to increase their chance of finding a forever-home | [Link](services/notfellchen.md) |

@@ -1,24 +1,49 @@
+<!--
+SPDX-FileCopyrightText: 2020 - 2024 MDAD project contributors
+SPDX-FileCopyrightText: 2020 - 2024 Slavi Pantaleev
+SPDX-FileCopyrightText: 2020 Aaron Raimist
+SPDX-FileCopyrightText: 2020 Chris van Dijk
+SPDX-FileCopyrightText: 2020 Dominik Zajac
+SPDX-FileCopyrightText: 2020 Mickaël Cornière
+SPDX-FileCopyrightText: 2022 François Darveau
+SPDX-FileCopyrightText: 2022 Julian Foad
+SPDX-FileCopyrightText: 2022 Warren Bailey
+SPDX-FileCopyrightText: 2023 Antonis Christofides
+SPDX-FileCopyrightText: 2023 Felix Stupp
+SPDX-FileCopyrightText: 2023 Julian-Samuel Gebühr
+SPDX-FileCopyrightText: 2023 Pierre 'McFly' Marty
+SPDX-FileCopyrightText: 2024 Tiz
+SPDX-FileCopyrightText: 2024 - 2025 Suguru Hirahara
+
+SPDX-License-Identifier: AGPL-3.0-or-later
+-->
+
 # Endlessh
 
-[Endlessh-go](https://github.com/shizunge/endlessh-go) is a Golang implementation of [endlessh](https://github.com/skeeto/endlessh), an [SSH tarpit](https://nullprogram.com/blog/2019/03/22). Installing it is powered by the [mother-of-all-self-hosting/ansible-role-endlessh](https://github.com/mother-of-all-self-hosting/ansible-role-endlessh) Ansible role.
+The playbook can install and configure [Endlessh-go](https://github.com/shizunge/endlessh-go) for you.
+
+Endlessh-go is a Golang implementation of [Endlessh](https://github.com/skeeto/endlessh). Endlessh is an [SSH tarpit](https://nullprogram.com/blog/2019/03/22), one of the methods to guard an SSH server from attackers. The program opens a socket and pretends to be an SSH server, but it just ties up SSH clients with false promises indefinitely until the client eventually gives up. It not only blocks blute force attacks to the server but also aims to waste attacker's time and resources.
+
+See the project's [documentation](https://github.com/shizunge/endlessh-go/blob/main/README.md) to learn what Endlessh-go does and why it might be useful to you.
+
+For details about configuring the [Ansible role for Endlessh-go](https://github.com/mother-of-all-self-hosting/ansible-role-endlessh), you can check them via:
+- 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-endlessh/blob/main/docs/configuring-endlessh.md) online
+- 📁 `roles/galaxy/endlessh/docs/configuring-endlessh.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 ## Dependencies
 
 This service requires the following other services:
 
-- (optionally) [Traefik](traefik.md) — a reverse-proxy server for exposing endlessh publicly
+- (optionally) [Traefik](traefik.md) — a reverse-proxy server for exposing Endlessh publicly
 - (optionally) [Prometheus](./prometheus.md) — a database for storing metrics
-- (optionally) [Grafana](./grafana.md) — a web UI that can query the prometheus datasource (connection) and display the logs
+- (optionally) [Grafana](./grafana.md) — a web UI that can query the Prometheus datasource (connection) and display the logs
+
+>[!NOTE]
+> None of them are required unless you will expose metrics to a Prometheus server.
 
 ## Prerequisites
 
-An SSH tarpit server needs a port to mimic the SSH server. Port 22 is therefore a good choice.
-If you already have your SSH server on this port, you'll have to relocate it.
-I recommend using a random port for the ssh server (eg: 14567) and port 22 for the tarpit.
-
-## Installing
-
-To configure and install endlessh on your own server(s), you should use a playbook like [Mother of all self-hosting](https://github.com/mother-of-all-self-hosting/mash-playbook) or write your own.
+The role is configured to set up the Endlessh-go instance to listen to the port 22, the standard SSH port, therefore you need to move the port for the real SSH server to another port, so that an Endlessh-go instance can listen to the port 22 and trap attackers' clients into it.
 
 ## Configuration
 
@@ -40,72 +65,73 @@ endlessh_enabled: true
 ########################################################################
 ```
 
-By default, endlessh will try to bind to port 22 on all network interfaces.
-You could change this behavior by setting `endlessh_container_host_bind_port`:
+### Change the port to listen (optional)
+
+By default, the Endlessh-go instance binds to port 22 on all network interfaces. You can change the port by adding the following configuration to your `vars.yml` file:
 
 ```yaml
-endlessh_container_host_bind_port: 22
+endlessh_container_host_bind_port: YOUR_PORT_NUMBER_HERE
 ```
 
-See the full list of options in the [default/main.yml](default/main.yml) file
+## Usage
 
-## Integrating with Prometheus
+After installation, the instance starts running on the server and listens to the specified port (port 22 by default).
 
-Endlessh can natively expose metrics to [Prometheus](./prometheus.md).
+You can customize how it works with the `endlessh_container_extra_arguments_custom` variable. See [this section](https://github.com/shizunge/endlessh-go/blob/main/README.md#usage) of the documentation for available arguments.
 
-### Prerequesites
+### Integrating with Prometheus (optional)
 
-The bare minimium is to ensure Prometheus can reach endlessh.
+Endlessh can natively expose metrics to [Prometheus](prometheus.md).
 
-- If Endlessh is on a different host than Prometheus, refer to section [Expose metrics publicly](endlessh.md#)
-- If Endlessh is on the same host than prometheus, refer to section [Ensure Prometheus is on the same container network as endlessh.](endlessh.md#)
-
-### Ensure Prometheus is on the same container network as endlessh.
-
-If endlessh and prometheus do not share a network (like traefik), you will have to
-
-- Either connect Prometheus container network to Endlessh by editing `prometheus_container_additional_networks_auto`
-- Either connect Endlessh container network to Prometheus by editing `endlessh_container_additional_networks_custom`
-
-Exemple:
-
-```yaml
-prometheus_container_additional_networks:
-  - "{{ endlessh_container_network }}"
-```
-
-### Set container extra flag:
-
-The bare minimum is to set container extra flag `-enable_prometheus`
+As the metrics is off by default, you can turn it via the CLI argument `-enable_prometheus` as below:
 
 ```yaml
 endlessh_container_extra_arguments_custom:
   - "-enable_prometheus"
 ```
 
-Default endlessh port for metrics is `2112`. It can be changed via container extra flag `-prometheus_port=8085`.
+You can set other arguments to customize how metrics are exposed, such as `-prometheus_port`, `-prometheus_host`, `-prometheus_entry`, etc. See [this section](https://github.com/shizunge/endlessh-go/blob/main/README.md#usage) of the documentation for details.
 
-Default endlessh listening for metrics adress is `0.0.0.0.` (so endlessh will listing on all adresses). This parrameter can be changed via container extra flag `-prometheus_host=10.10.10.10`.
+After settings arguments, you need to expose metrics internally or externally.
 
-Default endlessh entrypoint for metrics is `/metrics`. It can be changed via container extra flag `-prometheus_entry=/endlessh`.
+- If Endlessh is on the same host as Prometheus, refer to this section: [Expose metrics internally](#expose-metrics-internally)
+- If Endlessh is on a different host than Prometheus, refer to this section: [Expose metrics publicly](#expose-metrics-publicly)
 
-For more container extra flag, refer to the documentation of [endlessh-go](https://github.com/shizunge/endlessh-go).
+#### Expose metrics internally
 
-### Exposing metrics publicly
+If Endlessh and Prometheus do not share a network (like Traefik), you will have to either:
 
-Unless you're scraping the endlessh metrics from a local [Prometheus](prometheus.md) instance, as described in [Integrating with Prometheus](endlessh.md#), you will probably wish to expose the metrics publicly so that a remote Prometheus instance can fetch them. When exposing publicly, it's natural to set up [HTTP Basic Authentication](https://developer.mozilla.org/en-US/docs/Web/HTTP/Authentication) **or anyone would be able to read your metrics**.
+- Connect the Prometheus container network to Endlessh by adjusting `prometheus_container_additional_networks_auto`
+- Connect the Endlessh container network to Prometheus by adjusting `endlessh_container_additional_networks_custom`
+
+Here is an example configuration to be added to your `vars.yml` file:
 
 ```yaml
-# To expose the metrics publicly, enable and configure the lines below:
-endlessh_hostname: mash.example.com
-endlessh_path_prefix: /metrics/mash-endlessh
-
-# To protect the metrics with HTTP Basic Auth, enable and configure the lines below.
-# See: https://doc.traefik.io/traefik/middlewares/http/basicauth/#users
-endlessh_container_labels_metrics_middleware_basic_auth_enabled: true
-endlessh_container_labels_metrics_middleware_basic_auth_users: ""
+prometheus_container_additional_networks:
+  - "{{ endlessh_container_network }}"
 ```
 
-## Usage
+#### Expose metrics publicly
 
-After [installing](../installing.md), refer to the documentation of [endlessh-go](https://github.com/shizunge/endlessh-go).
+If Endlessh metrics are not scraped from a local Prometheus instance, you can expose the metrics publicly so that a remote instance can fetch them.
+
+When exposing metrics publicly, you should consider to set up [HTTP Basic Authentication](https://developer.mozilla.org/en-US/docs/Web/HTTP/Authentication) **or anyone would be able to read your metrics**.
+
+To expose the metrics publicly, add the following configuration to your `vars.yml` file (adapt to your needs):
+
+```yaml
+# The hostname at which Endlessh is served.
+endlessh_hostname: ''
+
+# The path at which Endlessh is exposed.
+endlessh_path_prefix: /metrics/mash-endlessh
+```
+
+To enable HTTP Basic Auth, add the following configuration to your `vars.yml` file (adapt to your needs):
+
+```yaml
+endlessh_container_labels_metrics_middleware_basic_auth_enabled: true
+
+# See https://doc.traefik.io/traefik/middlewares/http/basicauth/#users for details.
+endlessh_container_labels_metrics_middleware_basic_auth_users: ""
+```

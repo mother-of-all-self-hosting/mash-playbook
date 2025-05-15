@@ -209,13 +209,13 @@
     - role: galaxy/exim_relay
     # /role-specific:exim_relay
 
-    # role-specific:findmydeviceserver
-    - role: galaxy/findmydeviceserver
-    # /role-specific:findmydeviceserver
-
     # role-specific:firezone
     - role: galaxy/firezone
     # /role-specific:firezone
+
+    # role-specific:fmd_server
+    - role: galaxy/fmd_server
+    # /role-specific:fmd_server
 
     # role-specific:focalboard
     - role: galaxy/focalboard
@@ -304,6 +304,10 @@
     # role-specific:jackett
     - role: galaxy/jackett
     # /role-specific:jackett
+
+    # role-specific:jellyfin
+    - role: galaxy/jellyfin
+    # /role-specific:jellyfin
 
     # role-specific:jitsi
     - role: galaxy/jitsi
