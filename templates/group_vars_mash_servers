@@ -7796,8 +7796,6 @@ wallabag_gid: "0"
 
 wallabag_systemd_required_services_list: |
   {{
-    ([devture_systemd_docker_base_docker_service_name] if devture_systemd_docker_base_docker_service_name else [])
-    +
     ([postgres_identifier ~ '.service'] if postgres_enabled and wallabag_database_hostname == postgres_identifier else [])
   }}
 
@@ -7806,7 +7804,7 @@ wallabag_container_additional_networks: |
     ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
     +
     ([postgres_container_network] if postgres_enabled and wallabag_database_hostname == postgres_identifier and wallabag_container_network != postgres_container_network else [])
-    	+
+    +
     ([exim_relay_container_network | default('mash-exim-relay')] if (exim_relay_enabled | default(false) and wallabag_config_mailer_smtp_addr == exim_relay_identifier | default('mash-exim-relay') and wallabag_container_network != exim_relay_container_network) else [])
   }}
 
