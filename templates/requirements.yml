@@ -445,7 +445,7 @@
   name: roundcube
   activation_prefix: roundcube_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-rumqttd.git
-  version: v0.21.0-0
+  version: v0.19.0-2
   name: rumqttd
   activation_prefix: rumqttd_
 - src: git+https://git.sergiodj.net/sergiodj/ansible-role-searxng.git
