@@ -2793,7 +2793,7 @@ forgejo_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_
 forgejo_uid: "{{ mash_playbook_uid }}"
 forgejo_gid: "{{ mash_playbook_gid }}"
 
-forgejo_systemd_required_systemd_services_list_auto: |
+forgejo_systemd_required_services_list_auto: |
   {{
     ([postgres_identifier ~ '.service'] if postgres_enabled and forgejo_config_database_hostname == postgres_identifier else [])
   }}

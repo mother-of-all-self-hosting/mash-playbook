@@ -1,3 +1,12 @@
+<!--
+SPDX-FileCopyrightText: 2023 MASH project contributors
+SPDX-FileCopyrightText: 2023 - 2025 Slavi Pantaleev
+SPDX-FileCopyrightText: 2024 Sergio Durigan Junior
+SPDX-FileCopyrightText: 2025 Suguru Hirahara
+
+SPDX-License-Identifier: AGPL-3.0-or-later
+-->
+
 # Forgejo
 
 [Forgejo](https://forgejo.org/) is a self-hosted lightweight software forge (Git hosting service, etc.), an alternative to [Gitea](https://gitea.io/) (that this playbook also [supports](gitea.md)).
@@ -70,7 +79,7 @@ forgejo_container_add_host_domain_ip_address: "{{ ansible_host }}"
 # If ansible_host points to an internal IP address, you may need to allow Forgejo to make requests to it.
 # By default, requests are only allowed to external IP addresses for security reasons.
 # See: https://forgejo.org/docs/latest/admin/config-cheat-sheet/#webhook-webhook
-forgejo_container_additional_environment_variables: |
+forgejo_environment_variables_additional_variables: |
   FORGEJO__webhook__ALLOWED_HOST_LIST=external,{{ ansible_host }}
 ```
 
