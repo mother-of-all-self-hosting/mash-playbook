@@ -249,7 +249,7 @@
   name: languagetool
   activation_prefix: languagetool_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-linkding.git
-  version: v1.39.1-1
+  version: v1.40.0-0
   name: linkding
   activation_prefix: linkding_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-listmonk.git
