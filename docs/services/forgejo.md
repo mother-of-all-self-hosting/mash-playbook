@@ -33,14 +33,6 @@ To enable this service, add the following configuration to your `vars.yml` file 
 
 forgejo_enabled: true
 
-# Forgejo uses port 22 by default.
-# We recommend that you move your regular SSH server to another port,
-# and stick to this default.
-#
-# If you wish to use another port, uncomment the variable below
-# and adjust the port as you see fit.
-# forgejo_ssh_port: 222
-
 forgejo_hostname: mash.example.com
 forgejo_path_prefix: /forgejo
 
@@ -55,6 +47,17 @@ In the example configuration above, we configure the service to be hosted at `ht
 
 You can remove the `forgejo_path_prefix` variable definition, to make it default to `/`, so that the service is served at `https://mash.example.com/`.
 
+### Configure SSH port for Forgejo (optional)
+
+Forgejo uses port 22 for its SSH feature by default.
+
+We recommend you to move your regular SSH server to another port, and stick to this default for your Forgejo instace.
+
+If you wish to have the instance listen to another port, add the following configuration to your `vars.yml` file and adjust the port as you see fit.
+
+```yaml
+forgejo_ssh_port: 222
+```
 
 ## Usage
 
