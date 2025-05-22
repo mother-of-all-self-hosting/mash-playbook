@@ -43,9 +43,7 @@ forgejo_path_prefix: /forgejo
 ########################################################################
 ```
 
-In the example configuration above, we configure the service to be hosted at `https://mash.example.com/forgejo`.
-
-You can remove the `forgejo_path_prefix` variable definition, to make it default to `/`, so that the service is served at `https://mash.example.com/`.
+You can remove the `forgejo_path_prefix` variable definition, to make it default to `/`, so that the service is served at https://mash.example.com/.
 
 ### Configure SSH port for Forgejo (optional)
 
@@ -61,17 +59,15 @@ forgejo_ssh_port: 222
 
 ## Usage
 
-After installation, you should be able to access your new Forgejo instance at the configured URL (see above).
+After installation, you should be able to access your new Forgejo instance at the configured URL, specified as https://mash.example.com/forgejo in the example configuration above.
 
 Going there, you'll be taken to the initial setup wizard, which will let you assign some paswords and other configuration.
-
 
 ## Recommended other services
 
 You may also wish to look into [Woodpecker CI](woodpecker-ci.md) and [Forgejo Runner](forgejo-runner.md), which can integrate nicely with Forgejo.
 
-
-## Integration with Woodpecker CI
+### Integration with Woodpecker CI
 
 If you want to integrate Forgejo with [Woodpecker CI](woodpecker-ci.md), and if you plan to serve Woodpecker CI under a subpath on the same host as Forgejo (e.g., Forgejo lives at `https://mash.example.com` and Woodpecker CI lives at `https://mash.example.com/ci`), then you need to configure Forgejo to use the host's external IP when invoking webhooks from Woodpecker CI. You can do it by setting the following variables:
 
