@@ -56,7 +56,7 @@ For additional configuration options, refer to [ansible-role-radarr](https://git
 
 ## Recommended other services
 
-Consider these other supported services that are also in the [*Arr stack](https://wiki.servarr.com/) of media automation tools:
+Consider these other related services:
 
 - [Sonarr](sonarr.md)
 - [Jackett](jackett.md)
@@ -65,3 +65,4 @@ Consider these other supported services that are also in the [*Arr stack](https:
   - For qBittorrent integration instructions, see the [setup guide](qbittorrent.md#intergration-with-sonarrradarr)
 - [Overseerr](overseerr.md)
 - [Plex](plex.md)
+- [Jellyfin](jellyfin.md)

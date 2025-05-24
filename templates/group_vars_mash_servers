@@ -349,6 +349,11 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
     {{ ({'name': (jackett_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'jackett']} if jackett_enabled else omit) }}
   # /role-specific:jackett
 
+  # role-specific:jellyfin
+  - |-
+    {{ ({'name': (jellyfin_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'jellyfin']} if jellyfin_enabled else omit) }}
+  # /role-specific:jellyfin
+
   # role-specific:jitsi
   - |-
     {{ ({'name': (jitsi_identifier + '-web.service'), 'priority': 4200, 'groups': ['mash', 'jitsi', 'jitsi-web']} if jitsi_enabled else omit) }}
@@ -2693,8 +2698,9 @@ fmd_server_identifier: "{{ mash_playbook_service_identifier_prefix }}findmydevic
 
 fmd_server_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}findmydeviceserver"
 
-fmd_server_uid: "{{ mash_playbook_uid }}"
-fmd_server_gid: "{{ mash_playbook_gid }}"
+# Running with mash_playbook_uid and mash_playbook_gid returns permission errors.
+fmd_server_uid: 1000
+fmd_server_gid: 1000
 
 fmd_server_container_additional_networks_auto: |
   {{
@@ -2787,7 +2793,7 @@ forgejo_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_
 forgejo_uid: "{{ mash_playbook_uid }}"
 forgejo_gid: "{{ mash_playbook_gid }}"
 
-forgejo_systemd_required_systemd_services_list_auto: |
+forgejo_systemd_required_services_list_auto: |
   {{
     ([postgres_identifier ~ '.service'] if postgres_enabled and forgejo_config_database_hostname == postgres_identifier else [])
   }}
@@ -4701,6 +4707,44 @@ jackett_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_prim
 #                                                                      #
 ########################################################################
 # /role-specific:jackett
+
+
+
+# role-specific:jellyfin
+########################################################################
+#                                                                      #
+# jellyfin                                                             #
+#                                                                      #
+########################################################################
+
+jellyfin_enabled: false
+
+jellyfin_identifier: "{{ mash_playbook_service_identifier_prefix }}jellyfin"
+
+jellyfin_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}jellyfin"
+
+jellyfin_uid: "0"
+jellyfin_gid: "0"
+
+jellyfin_container_additional_networks_auto: |
+  {{
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+  }}
+
+jellyfin_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+jellyfin_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+
+# role-specific:traefik
+jellyfin_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
+jellyfin_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
+# /role-specific:traefik
+
+########################################################################
+#                                                                      #
+# /jellyfin                                                            #
+#                                                                      #
+########################################################################
+# /role-specific:jellyfin
 
 
 
