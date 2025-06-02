@@ -30,7 +30,6 @@
     <outline text="etherpad" title="etherpad" type="rss" htmlUrl="https://github.com/ether/etherpad-lite" xmlUrl="https://github.com/ether/etherpad-lite/releases.atom" />
     <outline text="excalidraw" title="excalidraw" type="rss" htmlUrl="https://github.com/excalidraw/excalidraw" xmlUrl="https://github.com/excalidraw/excalidraw/releases.atom" />
     <outline text="exim_relay" title="exim_relay" type="rss" htmlUrl="https://github.com/devture/exim-relay" xmlUrl="https://github.com/devture/exim-relay/releases.atom" />
-    <outline text="findmydeviceserver" title="findmydeviceserver" type="rss" htmlUrl="https://gitlab.com/Nulide/findmydeviceserver" xmlUrl="https://gitlab.com/Nulide/findmydeviceserver/-/tags?format=atom" />
     <outline text="firezone" title="firezone" type="rss" htmlUrl="https://github.com/firezone/firezone" xmlUrl="https://github.com/firezone/firezone/releases.atom" />
     <outline text="fmd_server" title="fmd_server" type="rss" htmlUrl="https://gitlab.com/fmd-foss/fmd-server" xmlUrl="https://gitlab.com/fmd-foss/fmd-server/-/tags?format=atom" />
     <outline text="focalboard" title="focalboard" type="rss" htmlUrl="https://github.com/mattermost/focalboard" xmlUrl="https://github.com/mattermost/focalboard/releases.atom" />
@@ -40,6 +39,7 @@
     <outline text="freshrss" title="freshrss" type="rss" htmlUrl="https://github.com/freshrss/freshrss" xmlUrl="https://github.com/freshrss/freshrss/releases.atom" />
     <outline text="funkwhale" title="funkwhale" type="rss" htmlUrl="https://dev.funkwhale.audio/funkwhale/funkwhale" xmlUrl="https://dev.funkwhale.audio/funkwhale/funkwhale/-/tags?format=atom" />
     <outline text="ghostfolio" title="ghostfolio" type="rss" htmlUrl="https://github.com/ghostfolio/ghostfolio" xmlUrl="https://github.com/ghostfolio/ghostfolio/releases.atom" />
+    <outline text="gitea" title="gitea" type="rss" htmlUrl="https://github.com/go-gitea/gitea" xmlUrl="https://github.com/go-gitea/gitea/releases.atom" />
     <outline text="gotosocial" title="gotosocial" type="rss" htmlUrl="https://github.com/superseriousbusiness/gotosocial" xmlUrl="https://github.com/superseriousbusiness/gotosocial/releases.atom" />
     <outline text="grafana" title="grafana" type="rss" htmlUrl="https://github.com/grafana/grafana" xmlUrl="https://github.com/grafana/grafana/releases.atom" />
     <outline text="headscale" title="headscale" type="rss" htmlUrl="https://github.com/juanfont/headscale" xmlUrl="https://github.com/juanfont/headscale/releases.atom" />
@@ -102,6 +102,7 @@
     <outline text="redlib" title="redlib" type="rss" htmlUrl="https://github.com/redlib-org/redlib" xmlUrl="https://github.com/redlib-org/redlib/releases.atom" />
     <outline text="redmine" title="redmine" type="rss" htmlUrl="https://github.com/redmine/redmine" xmlUrl="https://github.com/redmine/redmine/releases.atom" />
     <outline text="roundcube" title="roundcube" type="rss" htmlUrl="https://github.com/roundcube/roundcubemail" xmlUrl="https://github.com/roundcube/roundcubemail/releases.atom" />
+    <outline text="rumqttd" title="rumqttd" type="rss" htmlUrl="https://github.com/bytebeamio/rumqtt" xmlUrl="https://github.com/bytebeamio/rumqtt/releases.atom" />
     <outline text="searxng" title="searxng" type="rss" htmlUrl="https://github.com/searxng/searxng" xmlUrl="https://github.com/searxng/searxng/releases.atom" />
     <outline text="semaphore" title="semaphore" type="rss" htmlUrl="https://github.com/ansible-semaphore/semaphore" xmlUrl="https://github.com/ansible-semaphore/semaphore/releases.atom" />
     <outline text="send" title="send" type="rss" htmlUrl="https://github.com/timvisee/send" xmlUrl="https://github.com/timvisee/send/releases.atom" />
