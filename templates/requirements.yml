@@ -101,7 +101,7 @@
   name: docmost
   activation_prefix: docmost_
 - src: git+https://github.com/shukon/ansible-role-dokuwiki.git
-  version: v2024-02-06b-2
+  version: v2025-05-14a-1
   name: dokuwiki
   activation_prefix: dokuwiki_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-echoip.git
