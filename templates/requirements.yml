@@ -424,6 +424,10 @@
   version: v3.5.4.0-0
   name: radicale
   activation_prefix: radicale_
+- src: git+https://github.com/mother-of-all-self-hosting/ansible-role-reactflux
+  version: v2025.06.02-0
+  name: reactflux
+  activation_prefix: reactflux_
 - src: git+https://github.com/lingawakad/ansible-role-readeck.git
   version: v0.19.2-0
   name: readeck

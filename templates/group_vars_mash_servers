@@ -626,6 +626,11 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
     {{ ({'name': (radicale_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'radicale']} if radicale_enabled else omit) }}
   # /role-specific:radicale
 
+  # role-specific:reactflux
+  - |-
+    {{ ({'name': (reactflux_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'reactflux']} if reactflux_enabled else omit) }}
+  # /role-specific:reactflux
+
   # role-specific:readeck
   - |-
     {{ ({'name': (readeck_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'readeck']} if readeck_enabled else omit) }}
@@ -6993,6 +6998,49 @@ radicale_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_pri
 #                                                                      #
 ########################################################################
 # /role-specific:radicale
+
+
+
+# role-specific:reactflux
+########################################################################
+#                                                                      #
+# reactflux                                                            #
+#                                                                      #
+########################################################################
+
+reactflux_enabled: false
+
+reactflux_identifier: "{{ mash_playbook_service_identifier_prefix }}reactflux"
+
+reactflux_uid: "{{ mash_playbook_uid }}"
+reactflux_gid: "{{ mash_playbook_gid }}"
+
+reactflux_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}reactflux"
+
+reactflux_container_additional_networks: |
+  {{
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+  }}
+
+reactflux_systemd_required_services_list_auto: |
+  {{
+    ([miniflux_identifier ~ '.service'] if miniflux_enabled else [])
+  }}
+
+reactflux_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+reactflux_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+
+# role-specific:traefik
+reactflux_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
+reactflux_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
+# /role-specific:traefik
+
+########################################################################
+#                                                                      #
+# /reactflux                                                           #
+#                                                                      #
+########################################################################
+# /role-specific:reactflux
 
 
 
