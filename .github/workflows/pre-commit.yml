@@ -1,0 +1,15 @@
+---
+name: pre-commit
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    name: Run pre-commit
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Run pre-commit
+        uses: pre-commit/action@v3.0.1
