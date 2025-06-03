@@ -15,5 +15,8 @@
         "https://github.com/mother-of-all-self-hosting{/,}**"
       ]
     }
-  ]
+  ],
+  "pre-commit": {
+    "enabled": true
+  }
 }
