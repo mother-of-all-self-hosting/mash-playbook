@@ -49,7 +49,7 @@ plex_claim_token: ""
 Due to an [upstream bug](https://github.com/linuxserver/docker-plex/issues/422) there is a bit of a dance you must do when setting up Plex for the first time. The dance is as follows:
 
 1. Run [installation](../installing.md) with `plex_claim_token` set to `""`
-2. Obtain a `plex_claim_token` from https://plex.tv/claim. 
+2. Obtain a `plex_claim_token` from https://plex.tv/claim.
 3. Run [installation](../installing.md) again with `plex_claim_token` set to the token you obtained
 
 If you do not follow these steps you will get an error like: `s6-applyuidgid: fatal: unable to set supplementary group list: Operation not permitted`. If this happens simply follow the steps above.
@@ -60,7 +60,7 @@ Once the server has been successfully claimed you can remove the `plex_claim_tok
 
 Once you have completed [first-time setup](#first-time-setup) you should access your new Plex instance at the URL you've chosen. Follow the prompts to finish setup. When prompted to add your media libraries keep in mind that it will be the path **inside** the container, most likely some variation of your `plex_media_bind_path` variable.
 
-### Exposing ports 
+### Exposing ports
 
 By default no ports are exposed, but you'll most likely want to adjust this. The below defines what these ports are and why you may want to expose them.
 
@@ -69,7 +69,7 @@ By default no ports are exposed, but you'll most likely want to adjust this. The
 # Or if you want to access Plex via TV and phone apps
 plex_container_http_bind_port: 32400
 
-# These are GDM network discovery ports, used by Plex clients on the same network 
+# These are GDM network discovery ports, used by Plex clients on the same network
 # to discover your server and connect to it locally, which is faster than reaching out to https://app.plex.tv
 # and connecting back to your server via its external IP address
 plex_container_gdm_bind_port_01: 32410
@@ -144,7 +144,7 @@ plex_container_additional_volumes:
   - type: bind
     src: /path/on/the/host/movies
     dst: /movies
-    
+
   - type: bind
     src: /another-path/on/the/host/anime
     dst: /anime
@@ -173,7 +173,7 @@ plex_container_read_only: false
 #
 # NOTE -> You cannot update to a PlexPass only (beta) version if you are not logged in with a PlexPass account
 plex_version_environment_variable: latest
-``` 
+```
 
 ## Recommended other services
 

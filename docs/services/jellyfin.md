@@ -25,7 +25,7 @@ jellyfin_container_additional_volumes:
   - type: bind
     src: /path/on/the/host/movies
     dst: /movies
-    
+
   - type: bind
     src: /another-path/on/the/host/anime
     dst: /anime
@@ -57,7 +57,7 @@ By default your Jellyfin instance cannot be connected to directly, and must be r
 Keep in mind that doing so will send your Jellyfin password across the network in plain-text. This is not a recommended configuration. That said, here is how:
 
 ```yaml
-# The main Jellyfin webserver port, setting this variable will expose that port and allow you to connect directly to it (without Traefik). 
+# The main Jellyfin webserver port, setting this variable will expose that port and allow you to connect directly to it (without Traefik).
 jellyfin_container_http_bind_port: 8096
 
 # The Jellyfin DLNA server, used for clients to discover Jellyfin on the LAN

@@ -40,7 +40,7 @@ Working as a **Push Server**, a ntfy server can forward messages to a **Distribu
 
 This role installs and manages a self-hosted ntfy server as the Push Server, which the Distributor (such as the ntfy Android app) on your device listens to.
 
-Your UnifiedPush-compatible applications (such as [DAVx⁵](https://www.davx5.com/), [FMD (FindMyDevice)](https://gitlab.com/fmd-foss/fmd-android/), and [Tusky](https://tusky.app/)) listen to the Distributor, and push notitications are "distributed" from it. This means that the UnifiedPush-compatible applications cannot receive push notifications from the Push Server without the Distributor.
+Your UnifiedPush-compatible applications (such as [DAVx⁵](https://www.davx5.com/), [FMD (FindMyDevice)](https://gitlab.com/fmd-foss/fmd-android/), and [Tusky](https://tusky.app/)) listen to the Distributor, and push notifications are "distributed" from it. This means that the UnifiedPush-compatible applications cannot receive push notifications from the Push Server without the Distributor.
 
 As the ntfy Android app functions as the Distributor too, you do not have to install something else on your device.
 

@@ -146,7 +146,7 @@ Having configured `vars.yml` for the dedicated instance, add the following confi
 # Point notfellchen to its dedicated Valkey instance
 notfellchen_config_redis_hostname: mash-notfellchen-valkey
 
-# Make sure the notfellchen ervice (mash-notfellchen.service) starts after its dedicated Valkey service
+# Make sure the notfellchen service (mash-notfellchen.service) starts after its dedicated Valkey service
 notfellchen_systemd_required_services_list_custom:
   - "mash-notfellchen-valkey.service"
 

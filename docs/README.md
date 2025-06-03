@@ -9,7 +9,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
 # Table of Contents
 
-## ⬇️ Installaton guide <!-- NOTE: the 🚀 emoji is used by "Getting started" on README.md -->
+## ⬇️ Installation guide <!-- NOTE: the 🚀 emoji is used by "Getting started" on README.md -->
 
 <!-- TODO: consider to add a quick start guide like the MDAD project has done. -->
 

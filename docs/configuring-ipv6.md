@@ -27,7 +27,7 @@ Enabling IPv6 consists of 2 steps:
 > [!WARNING]
 > Not all mash-playbook Ansible roles respect the `devture_systemd_docker_base_ipv6_enabled` setting yet.
 > Even if you enable this setting, you may still see that some container networks and services aren't IPv6-enabled.
-> **Consider sending pull requests** for the playbook roles that do not respect the `devture_systemd_docker_base_ipv6_enabled` seting yet.
+> **Consider sending pull requests** for the playbook roles that do not respect the `devture_systemd_docker_base_ipv6_enabled` setting yet.
 
 ## Enabling IPv6 support for the playbook
 
