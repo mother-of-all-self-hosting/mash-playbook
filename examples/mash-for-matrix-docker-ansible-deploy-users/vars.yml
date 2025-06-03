@@ -38,6 +38,10 @@ mash_playbook_generic_secret_key: ''
 #                                                                      #
 ########################################################################
 
+# To disable Docker installation (in case you'd be installing Docker in another way),
+# remove the line below.
+mash_playbook_docker_installation_enabled: true
+
 # To disable Docker SDK for Python installation (in case you'd be installing the SDK in another way),
 # remove the line below.
 devture_docker_sdk_for_python_installation_enabled: true
