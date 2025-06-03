@@ -20,7 +20,7 @@ Our new [Configuring IPv6](./docs/configuring-ipv6.md) documentation page has mo
 > [!WARNING]
 > Not all mash-playbook Ansible roles respect the `devture_systemd_docker_base_ipv6_enabled` setting yet.
 > Even if you enable this setting, you may still see that some container networks and services aren't IPv6-enabled.
-> **Consider sending pull requests** for the playbook roles that do not respect the `devture_systemd_docker_base_ipv6_enabled` seting yet.
+> **Consider sending pull requests** for the playbook roles that do not respect the `devture_systemd_docker_base_ipv6_enabled` setting yet.
 
 # 2025-02-21
 
@@ -129,7 +129,7 @@ Our [Tuning PostgreSQL](docs/maintenance-postgres.md#tuning-postgresql) document
 
 ## (Backward Compatibility Break) Authentik container variables renamed
 
-For the authentik role there wehre initially two containers: `authentic_worker_container` and `authentic_server_container`. To simnplifiy the setup this was reduced to one container.
+For the authentik role there where initially two containers: `authentic_worker_container` and `authentic_server_container`. To simnplifiy the setup this was reduced to one container.
 As the role is pretty young and to avoid confusion because of legacy and reverted design decisions all variables containing `authentik_server_container` will now start with authentik_container. This means you will have to renemae these variables in your `vars.yml` if you already use authentik. If you use a standard setup this only includes
 
 * `authentic_server_container_additional_networks_custom` -> `authentik_container_additional_networks_custom`

@@ -66,7 +66,7 @@ outline_container_additional_networks_custom: |
 
 Outline supports multiple [file storage](https://docs.getoutline.com/s/hosting/doc/file-storage-N4M0T6Ypu7) mechanisms.
 
-The default configuration stores files locally in a `data` directory, but you can also stores files on AWS S3 (or [compatible S3 altenative](https://docs.getoutline.com/s/hosting/doc/file-storage-N4M0T6Ypu7#h-s3-compatible-services)).
+The default configuration stores files locally in a `data` directory, but you can also stores files on AWS S3 (or [compatible S3 alternative](https://docs.getoutline.com/s/hosting/doc/file-storage-N4M0T6Ypu7#h-s3-compatible-services)).
 
 To enable S3 storage, add the following to your `vars.yml` configuration:
 
@@ -91,7 +91,7 @@ If you need to pass additional environment variables to Outline, for which dedic
 
 If you define SMTP settings (see the `outline_environment_variable_smtp_*` variables in `defaults/main.yml`), the [Email magic link](https://docs.getoutline.com/s/hosting/doc/email-magic-link-N2CPh5tmTS) authentication method will be enabled:
 
-Unfortunately, even with SMTP settings being defined, we haven't been able to get Outline to succesfully send emails just yet, hitting issues similar to [this one](https://github.com/outline/outline/discussions/2605).
+Unfortunately, even with SMTP settings being defined, we haven't been able to get Outline to successfully send emails just yet, hitting issues similar to [this one](https://github.com/outline/outline/discussions/2605).
 
 ### Configure Valkey
 
@@ -196,7 +196,7 @@ Having configured `vars.yml` for the dedicated instance, add the following confi
 # Point outline to its dedicated Valkey instance
 outline_config_redis_hostname: mash-outline-valkey
 
-# Make sure the outline ervice (mash-outline.service) starts after its dedicated Valkey service
+# Make sure the outline service (mash-outline.service) starts after its dedicated Valkey service
 outline_systemd_required_services_list_custom:
   - "mash-outline-valkey.service"
 

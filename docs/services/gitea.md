@@ -54,7 +54,7 @@ You can remove the `gitea_path_prefix` variable definition, to make it default t
 
 After installation, you should be able to access your new Gitea instance at the configured URL (see above).
 
-Going there, you'll be taken to the initial setup wizard, which will let you assign some paswords and other configuration.
+Going there, you'll be taken to the initial setup wizard, which will let you assign some passwords and other configuration.
 
 
 ## Recommended other services

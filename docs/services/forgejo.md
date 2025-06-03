@@ -49,7 +49,7 @@ You can remove the `forgejo_path_prefix` variable definition, to make it default
 
 Forgejo uses port 22 for its SSH feature by default.
 
-We recommend you to move your regular SSH server to another port, and stick to this default for your Forgejo instace.
+We recommend you to move your regular SSH server to another port, and stick to this default for your Forgejo instance.
 
 If you wish to have the instance listen to another port, add the following configuration to your `vars.yml` file and adjust the port as you see fit.
 
@@ -61,7 +61,7 @@ forgejo_ssh_port: 222
 
 After installation, you should be able to access your new Forgejo instance at the configured URL, specified as https://mash.example.com/forgejo in the example configuration above.
 
-Going there, you'll be taken to the initial setup wizard, which will let you assign some paswords and other configuration.
+Going there, you'll be taken to the initial setup wizard, which will let you assign some passwords and other configuration.
 
 ## Recommended other services
 

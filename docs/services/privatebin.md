@@ -107,7 +107,7 @@ YOURLS is available on the playbook. See [here](yourls.md) for details about how
 
 **Notes**
 - YOURLS requires a MariaDB instance (see [here](mariadb.md) for details about configuring it with the playbook); if PostgreSQL is going to be used for PrivateBin (or other services), you need to use both of them.
-- If you are going to install PrivateBin and YOURLS at the same time, **you need to complete installation of YOURLS at first** by visiting its admin UI available at the specified hostname with `/admin/` such as `yourls.example.com/admin/`. Otherwise the function to shorten a paste's URL does not work. See [here](yourls.md#usage) for the instruction to complete instalation.
+- If you are going to install PrivateBin and YOURLS at the same time, **you need to complete installation of YOURLS at first** by visiting its admin UI available at the specified hostname with `/admin/` such as `yourls.example.com/admin/`. Otherwise the function to shorten a paste's URL does not work. See [here](yourls.md#usage) for the instruction to complete installation.
 
 #### Use a private YOURLS instance with API access key
 

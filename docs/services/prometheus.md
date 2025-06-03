@@ -82,7 +82,7 @@ prometheus_hostname: prometheus.example.com
 
 # Uncommenting the following lines allows you to configure basic auth
 # prometheus_container_labels_metrics_middleware_basic_auth_enabled: true
-# Use `htpasswd -nb USERNAME PASSSWORD` to generate the users below.
+# Use `htpasswd -nb USERNAME PASSWORD` to generate the users below.
 # prometheus_container_labels_metrics_middleware_basic_auth_users: ''
 ```
 

@@ -10,7 +10,7 @@ Some of the services installed by this playbook require a Redis data store.
 > Because Redis is not as flexible as [Postgres](postgres.md) when it comes to authentication and data separation, it's **recommended that you run separate Redis instances** (one for each service). Redis supports multiple database and a [SELECT](https://redis.io/commands/select/) command for switching between them. However, **reusing the same Redis instance is not good enough** because:
 
 - if all services use the same Redis instance and database (id = 0), services may conflict with one another
-- the number of databases is limited to [16 by default](https://github.com/redis/redis/blob/aa2403ca98f6a39b6acd8373f8de1a7ba75162d5/redis.conf#L376-L379), which may or may not be enough. With configuration changes, this is solveable.
+- the number of databases is limited to [16 by default](https://github.com/redis/redis/blob/aa2403ca98f6a39b6acd8373f8de1a7ba75162d5/redis.conf#L376-L379), which may or may not be enough. With configuration changes, this is solvable.
 - some services do not support switching the Redis database and always insist on using the default one (id = 0)
 - Redis [does not support different authentication credentials for its different databases](https://stackoverflow.com/a/37262596), so each service can potentially read and modify other services' data
 

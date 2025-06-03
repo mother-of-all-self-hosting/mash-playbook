@@ -11,7 +11,7 @@ The playbook can install and configure [Mobilizon](https://joinmobilizon.org/en/
 
 Mobilizon is a ActivityPub/Fediverse server to create and share events. See the project's [documentation](https://docs.mobilizon.org/) to learn what it does and why it might be useful to you.
 
-## Depedencies
+## Dependencies
 
 This service requires the following other services:
 
