@@ -117,6 +117,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 | [qBittorrent](https://www.qbittorrent.org/) | A BitTorrent client written in native C++ | [Link](services/qbittorrent.md) |
 | [Radarr](https://radarr.video/) | A movie organizer/manager for usenet and torrent users | [Link](services/radarr.md) |
 | [Radicale](https://radicale.org/) | A Free and Open-Source CalDAV and CardDAV Server (solution for hosting contacts and calendars) | [Link](services/radicale.md) |
+| [ReactFlux](https://github.com/electh/ReactFlux) | Third-party web frontend for Miniflux | [Link](services/reactflux.md) |
 | [Readeck](https://readeck.org) | A bookmark manager and a read-later tool combined in one. | [Link](services/readeck.md) |
 | [Redis](https://redis.io/) | An in-memory data store used by millions of developers as a database, cache, streaming engine, and message broker. | [Link](services/redis.md) |
 | [Redlib](https://github.com/redlib-org/redlib) | Browse Reddit without exposing your IP address, browsing habits, and other browser fingerprinting data to the website. | [Link](services/redlib.md) |
