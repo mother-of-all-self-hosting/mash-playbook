@@ -120,11 +120,11 @@ If you're installing [Promtail](./promtail.md) on the same server as Loki, by de
 
 #### Alerts
 
-With alerts you can recieve notifications when specific conditions regarding your data are met. Since there is no `prune` option (like datasources) you must add your alert to `grafana_provisioning_alerts_deleteRules` when you want it removed.
+With alerts you can receive notifications when specific conditions regarding your data are met. Since there is no `prune` option (like datasources) you must add your alert to `grafana_provisioning_alerts_deleteRules` when you want it removed.
 
 The below alert example is truncated, for a full example see the [official example](https://github.com/grafana/provisioning-alerting-examples/blob/main/config-files/grafana/provisioning/alerting/alert_rules.yaml).
 
-As you can see in the official example these YAML alerts are not very human readable. It is reccomended you create your alert in the UI and then select the `Export rules` option to create the proper values.
+As you can see in the official example these YAML alerts are not very human readable. It is recommended you create your alert in the UI and then select the `Export rules` option to create the proper values.
 
 ```yaml
 grafana_provisioning_alerts_groups:
@@ -245,7 +245,7 @@ grafana_environment_variables_additional_variables: |
 
 After installation, you should be able to access your new Grafana instance at the configured URL (see above).
 
-Going there, you'll be taken to the initial setup wizard, which will let you assign some paswords and other configuration.
+Going there, you'll be taken to the initial setup wizard, which will let you assign some passwords and other configuration.
 
 
 ## Recommended other services

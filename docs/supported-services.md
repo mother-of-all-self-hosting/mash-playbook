@@ -106,7 +106,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 | [Plex](https://www.plex.tv/) | A personal media server | [Link](services/plex.md) |
 | [Postgis](https://postgis.net/) | A spatial database extender for PostgreSQL object-relational database | [Link](services/postgis.md) |
 | [Postgres](https://www.postgresql.org) | A powerful, open source object-relational database system | [Link](services/postgres.md) |
-| [Postgres Backup](https://github.com/prodrigestivill/docker-postgres-backup-local) | A solution for backing up PostgresSQL to local filesystem with periodic backups. | [Link](services/postgres-backup.md) |
+| [Postgres Backup](https://github.com/prodrigestivill/docker-postgres-backup-local) | A solution for backing up PostgreSQL to local filesystem with periodic backups. | [Link](services/postgres-backup.md) |
 | [PrivateBin](https://privatebin.info/) | Minimalist, open source online pastebin where the server has zero knowledge of pasted data. | [Link](services/privatebin.md) |
 | [Prometheus](https://prometheus.io/) | A metrics collection and alerting monitoring solution | [Link](services/prometheus.md) |
 | [Prometheus Blackbox Exporter](https://github.com/prometheus/blackbox_exporter) | Blackbox probing of HTTP/HTTPS/DNS/TCP/ICMP and gRPC endpoints | [Link](services/prometheus-blackbox-exporter.md) |
@@ -117,6 +117,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 | [qBittorrent](https://www.qbittorrent.org/) | A BitTorrent client written in native C++ | [Link](services/qbittorrent.md) |
 | [Radarr](https://radarr.video/) | A movie organizer/manager for usenet and torrent users | [Link](services/radarr.md) |
 | [Radicale](https://radicale.org/) | A Free and Open-Source CalDAV and CardDAV Server (solution for hosting contacts and calendars) | [Link](services/radicale.md) |
+| [ReactFlux](https://github.com/electh/ReactFlux) | Third-party web frontend for Miniflux | [Link](services/reactflux.md) |
 | [Readeck](https://readeck.org) | A bookmark manager and a read-later tool combined in one. | [Link](services/readeck.md) |
 | [Redis](https://redis.io/) | An in-memory data store used by millions of developers as a database, cache, streaming engine, and message broker. | [Link](services/redis.md) |
 | [Redlib](https://github.com/redlib-org/redlib) | Browse Reddit without exposing your IP address, browsing habits, and other browser fingerprinting data to the website. | [Link](services/redlib.md) |

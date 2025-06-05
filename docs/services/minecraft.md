@@ -73,7 +73,7 @@ See the full set of available [Environment Variables](https://docker-minecraft-s
 
 ## Usage
 
-After installation, you can use your Minecraft client to log into the game. 
+After installation, you can use your Minecraft client to log into the game.
 
 If you need to access the server console, you can do so via RCON:
 

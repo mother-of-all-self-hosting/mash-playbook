@@ -46,7 +46,7 @@ If you don't want to have your website accessible to everyone (e.g. you first wa
 
 ```yaml
 wordpress_container_labels_middleware_basic_auth_enabled: true
-# Use `htpasswd -nb USERNAME PASSSWORD` to generate the users below.
+# Use `htpasswd -nb USERNAME PASSWORD` to generate the users below.
 # See: https://doc.traefik.io/traefik/middlewares/http/basicauth/#users
 wordpress_container_labels_middleware_basic_auth_users: ''
 ```
