@@ -1,3 +1,9 @@
+<!--
+SPDX-FileCopyrightText: 2024 Nikita Chernyi
+
+SPDX-License-Identifier: AGPL-3.0-or-later
+-->
+
 # Docker Registry Proxy
 
 [Docker Registry Proxy](https://gitlab.com/etke.cc/docker-registry-proxy/) is a pass-through docker registry (distribution) proxy with metadata caching, docker-compatible errors, prometheus metrics, etc.
