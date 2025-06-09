@@ -226,7 +226,7 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
 
   # role-specific:excalidraw
   - |-
-    {{ ({'name': (excalidraw_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'exim-relay']} if excalidraw_enabled else omit) }}
+    {{ ({'name': (excalidraw_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'excalidraw']} if excalidraw_enabled else omit) }}
   # /role-specific:excalidraw
 
   # role-specific:exim_relay
@@ -284,7 +284,7 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
 
   # role-specific:ghostfolio
   - |-
-    {{ ({'name': (ghostfolio_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'ghostfolio', 'ghostfolio-server']} if ghostfolio_enabled else omit) }}
+    {{ ({'name': (ghostfolio_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'ghostfolio']} if ghostfolio_enabled else omit) }}
   # /role-specific:ghostfolio
 
   # role-specific:gitea

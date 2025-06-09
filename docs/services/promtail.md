@@ -1,6 +1,6 @@
 # Promtail
 
-[Promtail](https://grafana.com/oss/promtail/) agent is a log aggregation system designed to store and query logs from all your applications and infrastructure. It integrates nicely with [Grafana Loki](./grafana-loki.md).
+[Promtail](https://grafana.com/docs/loki/latest/send-data/promtail/) agent is a log aggregation system designed to store and query logs from all your applications and infrastructure. It integrates nicely with [Grafana Loki](./grafana-loki.md).
 
 
 ## Dependencies

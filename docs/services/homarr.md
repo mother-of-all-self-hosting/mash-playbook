@@ -74,13 +74,13 @@ homarr_environment_variables_secret_encryption_key: YOUR_SECRET_KEY_HERE
 
 The service requires a Docker volume to be mounted, so that the directory for storing files is shared with the host machine.
 
-To add the volume, prepare a directory on the host machine and add the following configuration to your `vars.yml` file, setting the directory path to `src`:
+To add the volume, prepare a directory on the host machine and add the following configuration to your `vars.yml` file, setting the directory path to `homarr_data_path`:
 
 ```yaml
 homarr_data_path: /path/on/the/host
 ```
 
-Make sure permissions of the directory specified to `src` (`/path/on/the/host`).
+Make sure permissions of the directory specified to `homarr_data_path` (`/path/on/the/host`).
 
 ## Usage
 
