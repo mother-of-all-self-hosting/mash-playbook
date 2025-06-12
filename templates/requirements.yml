@@ -521,7 +521,7 @@
   name: uptime_kuma
   activation_prefix: uptime_kuma_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-valkey.git
-  version: v8.1.1-3
+  version: v8.1.2-0
   name: valkey
   activation_prefix: valkey_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-vaultwarden.git
