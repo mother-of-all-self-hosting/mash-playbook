@@ -534,7 +534,7 @@
   activation_prefix: versatiles_
 - src: git+https://github.com/etiennecarichon/ansible-role-wallabag.git
   name: wallabag
-  version: v2.6.12-0
+  version: v2.6.13-0
   activation_prefix: wallabag_
 - src: git+https://github.com/spatterIight/ansible-role-wetty.git
   version: v2.5-0
