@@ -20,7 +20,7 @@ Our new [Configuring IPv6](./docs/configuring-ipv6.md) documentation page has mo
 > [!WARNING]
 > Not all mash-playbook Ansible roles respect the `devture_systemd_docker_base_ipv6_enabled` setting yet.
 > Even if you enable this setting, you may still see that some container networks and services aren't IPv6-enabled.
-> **Consider sending pull requests** for the playbook roles that do not respect the `devture_systemd_docker_base_ipv6_enabled` seting yet.
+> **Consider sending pull requests** for the playbook roles that do not respect the `devture_systemd_docker_base_ipv6_enabled` setting yet.
 
 # 2025-02-21
 
@@ -124,15 +124,15 @@ From now on, the [Postgres Ansible role](https://github.com/devture/com.devture.
 
 Our [Tuning PostgreSQL](docs/maintenance-postgres.md#tuning-postgresql) documentation page has details about how you can turn auto-tuning off or adjust the automatically-determined Postgres configuration parameters manually.
 
-
 # 2023-04-23
 
 ## (Backward Compatibility Break) Authentik container variables renamed
 
-For the authentik role there wehre initially two containers: `authentic_worker_container` and `authentic_server_container`. To simnplifiy the setup this was reduced to one container.
-As the role is pretty young and to avoid confusion because of legacy and reverted design decisions all variables containing `authentik_server_container` will now start with authentik_container. This means you will have to renemae these variables in your `vars.yml` if you already use authentik. If you use a standard setup this only includes
+For the authentik role there have been two containers: `authentic_worker_container` and `authentic_server_container`. To simplify the configuration, it was reduced to one container.
 
-* `authentic_server_container_additional_networks_custom` -> `authentik_container_additional_networks_custom`
+As the role is pretty young and to avoid confusion because of legacy and reverted design decisions all variables containing `authentik_server_container` will now start with authentik_container. This means you will have to rename these variables in your `vars.yml` if you already use authentik. If you use a standard setup this only includes the change below:
+
+- `authentik_server_container_additional_networks_custom` -> `authentik_container_additional_networks_custom`
 
 # 2023-03-29
 

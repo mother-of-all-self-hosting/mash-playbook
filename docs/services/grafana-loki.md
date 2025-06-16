@@ -70,7 +70,7 @@ See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-lo
 
 ## Usage
 
-Refer to the [official documentation](https://grafana.com/docs/loki/latest/reference/api/#post-lokiapiv1push) for details about how to send logs throught Loki's API without an agent.
+Refer to the [official documentation](https://grafana.com/docs/loki/latest/reference/api/#post-lokiapiv1push) for details about how to send logs through Loki's API without an agent.
 
 ## Troubleshooting
 

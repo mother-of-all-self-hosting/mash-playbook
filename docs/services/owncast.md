@@ -45,4 +45,4 @@ Docker automatically opens this port in the server's firewall, so you **likely d
 
 After installation, you can go to the owncast URL, as defined in `owncast_hostname`.
 
-To customize your installation visit `live.example.com/admin`. **You should immediatly change the stream key which is set to `abc123` by default**.
+To customize your installation visit `live.example.com/admin`. **You should immediately change the stream key which is set to `abc123` by default**.

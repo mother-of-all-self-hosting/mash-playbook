@@ -97,6 +97,7 @@
     <outline text="qbittorrent" title="qbittorrent" type="rss" htmlUrl="https://github.com/qBittorrent/qBittorrent" xmlUrl="https://github.com/qBittorrent/qBittorrent/releases.atom" />
     <outline text="radarr" title="radarr" type="rss" htmlUrl="https://github.com/Radarr/Radarr" xmlUrl="https://github.com/Radarr/Radarr/releases.atom" />
     <outline text="radicale" title="radicale" type="rss" htmlUrl="https://github.com/tomsquest/docker-radicale" xmlUrl="https://github.com/tomsquest/docker-radicale/releases.atom" />
+    <outline text="reactflux" title="reactflux" type="rss" htmlUrl="https://github.com/electh/ReactFlux" xmlUrl="https://github.com/electh/ReactFlux/releases.atom" />
     <outline text="readeck" title="readeck" type="rss" htmlUrl="https://codeberg.org/readeck/readeck" xmlUrl="https://codeberg.org/readeck/readeck/releases.atom" />
     <outline text="redis" title="redis" type="rss" htmlUrl="https://github.com/redis/redis" xmlUrl="https://github.com/redis/redis/releases.atom" />
     <outline text="redlib" title="redlib" type="rss" htmlUrl="https://github.com/redlib-org/redlib" xmlUrl="https://github.com/redlib-org/redlib/releases.atom" />

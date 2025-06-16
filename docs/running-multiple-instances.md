@@ -234,6 +234,6 @@ Finally, run the [installation](installing.md) command to create supplementary h
 
 > You may or you may not. See the [Valkey](services/valkey.md) documentation for why you shouldn't do this.
 
-**Can't I just create one host and a separate stack for each service** (e.g. Nextcloud + all dependencies on one inventory host; PeerTube + all dependencies on another inventory host; with both inventory hosts targetting the same server)?
+**Can't I just create one host and a separate stack for each service** (e.g. Nextcloud + all dependencies on one inventory host; PeerTube + all dependencies on another inventory host; with both inventory hosts targeting the same server)?
 
 > That's a possibility which is somewhat clean. The downside is that each "full stack" comes with its own Postgres database which needs to be maintained and upgraded separately.

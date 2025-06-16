@@ -1,10 +1,17 @@
+<!--
+SPDX-FileCopyrightText: 2023 Julian-Samuel Gebühr
+SPDX-FileCopyrightText: 2023 Slavi Pantaleev
+
+SPDX-License-Identifier: AGPL-3.0-or-later
+-->
+
 # Telegraf
 
 [Telegraf](https://www.influxdata.com/) is an open source server agent to help you collect metrics from your stacks, sensors, and systems.
 
 This playbook can install Telegraf, powered by the [mother-of-all-self-hosting/ansible-role-telegraf](https://github.com/mother-of-all-self-hosting/ansible-role-telegraf) Ansible role. It heavily depends on [InfluxDB](influxdb.md)
 
-## Prerequisits
+## Prerequisites
 
 * A functioning [InfluxDB](influxdb.md) instance.
 
@@ -25,4 +32,3 @@ telegraf_config_link: https://influxdb.example.org/api/v2/telegrafs/0123456789
 ## Usage
 
 In your InfluxDB instance, configure the Telegraf plugins as you like.
-

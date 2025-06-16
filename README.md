@@ -1,4 +1,4 @@
-[![Support room on Matrix](https://img.shields.io/matrix/mash-playbook:devture.com.svg?label=%23mash-playbook%3Adevture.com&logo=matrix&style=for-the-badge&server_fqdn=matrix.devture.com&fetchMode=summary)](https://matrix.to/#/#mash-playbook:devture.com) [![donate](https://liberapay.com/assets/widgets/donate.svg)](https://liberapay.com/mother-of-all-self-hosting/donate)
+[![Support room on Matrix](https://img.shields.io/matrix/mash-playbook:devture.com.svg?label=%23mash-playbook%3Adevture.com&logo=matrix&style=for-the-badge&server_fqdn=matrix.devture.com&fetchMode=summary)](https://matrixrooms.info/room/mash-playbook:devture.com) [![donate](https://liberapay.com/assets/widgets/donate.svg)](https://liberapay.com/mother-of-all-self-hosting/donate)
 
 # Mother-of-All-Self-Hosting Ansible playbook
 
@@ -30,7 +30,7 @@ When updating the playbook, refer to [the changelog](CHANGELOG.md) to catch up w
 
 ## Support
 
-- Matrix room: [#mash-playbook:devture.com](https://matrix.to/#/#mash-playbook:devture.com). To join Matrix, [use a public server](https://app.element.io) like `matrix.org` or self-host Matrix yourself using the related [matrix-docker-ansible-deploy](https://github.com/spantaleev/matrix-docker-ansible-deploy) Ansible playbook
+- Matrix room: [#mash-playbook:devture.com](https://matrixrooms.info/room/mash-playbook:devture.com). To join Matrix, [use a public server](https://app.element.io) like `matrix.org` or self-host Matrix yourself using the related [matrix-docker-ansible-deploy](https://github.com/spantaleev/matrix-docker-ansible-deploy) Ansible playbook
 
 - GitHub issues: [mother-of-all-self-hosting/mash-playbook/issues](https://github.com/mother-of-all-self-hosting/mash-playbook/issues)
 

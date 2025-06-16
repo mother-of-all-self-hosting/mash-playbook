@@ -30,7 +30,7 @@ For details about configuring the [Ansible role for Neko](https://github.com/mot
 - 📁 `roles/galaxy/neko/docs/configuring-neko.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 > [!WARNING]
-> The Neko service will run in a container with root privileges, no dropped capabilities and will be able to write inside the container. This seems to be a neccessary deviation from the usual security standards in this playbook.
+> The Neko service will run in a container with root privileges, no dropped capabilities and will be able to write inside the container. This seems to be a necessary deviation from the usual security standards in this playbook.
 
 ## Dependencies
 

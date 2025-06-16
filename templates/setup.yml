@@ -461,6 +461,10 @@
     - role: galaxy/radicale
     # /role-specific:radicale
 
+    # role-specific:reactflux
+    - role: galaxy/reactflux
+    # /role-specific:reactflux
+
     # role-specific:readeck
     - role: galaxy/readeck
     # /role-specific:readeck

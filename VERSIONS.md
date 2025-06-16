@@ -9,12 +9,12 @@
 * Borg: 1.4.1
 * Borgmatic: 1.9.14
 * Calibre Web: 0.6.24
-* Changedetection: 0.49.18
+* Changedetection: 0.50.2
 * Changedetection Playwright Driver: latest
 * Clickhouse: 25.5.1.2782
 * Collabora Online: 25.04.2.2.1
 * Container Socket Proxy: 0.3.0
-* Convertx: v0.13.0
+* Convertx: v0.14.1
 * Couchdb: 3.4.3
 * Docker Compose: v2.32.1
 * Docker Registry: 2.8.3
@@ -35,8 +35,8 @@
 * Focalboard: 7.10.4
 * Forgejo: 11.0.1
 * Forgejo Runner: 6.3.1
-* Freescout: php8.3-1.17.121
-* Freshrss: 1.25.0
+* Freescout: php8.3-1.17.122
+* Freshrss: 1.26.3
 * Funkwhale: 1.4.0
 * Ghostfolio: 2.165.0
 * Gitea: 1.23.8
@@ -103,6 +103,7 @@
 * Qbittorrent: 5.1.0
 * Radarr: 5.25.0
 * Radicale: 3.5.4.0
+* Reactflux: latest
 * Readeck: 0.19.2
 * Redis: 7.4.2
 * Redlib: latest

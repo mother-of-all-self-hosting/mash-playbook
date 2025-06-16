@@ -97,4 +97,3 @@ chown mash:mash /path-to-some-directory
 ```
 
 Restoring a backup made this way can be done by [importing it](#importing).
-
