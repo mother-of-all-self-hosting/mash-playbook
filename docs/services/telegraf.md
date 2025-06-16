@@ -1,3 +1,10 @@
+<!--
+SPDX-FileCopyrightText: 2023 Julian-Samuel Gebühr
+SPDX-FileCopyrightText: 2023 Slavi Pantaleev
+
+SPDX-License-Identifier: AGPL-3.0-or-later
+-->
+
 # Telegraf
 
 [Telegraf](https://www.influxdata.com/) is an open source server agent to help you collect metrics from your stacks, sensors, and systems.
