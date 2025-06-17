@@ -72,7 +72,7 @@ _optimize-for-var-paths +PATHS:
     --dst-group-vars-yml-path={{ justfile_directory() }}/group_vars/mash_servers
 
 # Updates the playbook and installs the necessary Ansible roles pinned in requirements.yml. If a -u flag is passed, also updates the requirements.yml file with new role versions (if available)
-update *flags: update-playbook-only
+update *flags: _requirements-yml update-playbook-only
     #!/usr/bin/env sh
     if [ -x "$(command -v agru)" ]; then
         echo {{ if flags == "" { "Installing roles pinned in requirements.yml..." } else if flags == "-u" { "Updating roles and pinning new versions in requirements.yml..." } else { "Unknown flags passed" } }}
