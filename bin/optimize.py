@@ -1,3 +1,6 @@
+#!/usr/bin/env python3
+# -* encoding: utf8 *-
+
 import argparse
 import regex
 import sys
