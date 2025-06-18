@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# -* encoding: utf8 *-
 
 import os
 import re
