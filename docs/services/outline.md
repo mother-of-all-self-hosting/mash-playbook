@@ -194,7 +194,7 @@ Having configured `vars.yml` for the dedicated instance, add the following confi
 # Add the base configuration as specified above
 
 # Point outline to its dedicated Valkey instance
-outline_config_redis_hostname: mash-outline-valkey
+outline_redis_hostname: mash-outline-valkey
 
 # Make sure the outline service (mash-outline.service) starts after its dedicated Valkey service
 outline_systemd_required_services_list_custom:
@@ -244,7 +244,7 @@ valkey_enabled: true
 # Add the base configuration as specified above
 
 # Point outline to the shared Valkey instance
-outline_config_redis_hostname: "{{ valkey_identifier }}"
+outline_redis_hostname: "{{ valkey_identifier }}"
 
 # Make sure the outline API service (mash-outline.service) starts after the shared Valkey service
 outline_api_systemd_required_services_list_custom:
