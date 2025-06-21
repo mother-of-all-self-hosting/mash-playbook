@@ -121,3 +121,4 @@ Consider these other related services:
 - [qBittorrent](qbittorrent.md)
 - [Overseerr](overseerr.md)
 - [Plex](plex.md)
+- [Autobrr](autobrr.md)

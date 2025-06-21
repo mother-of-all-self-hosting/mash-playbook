@@ -185,3 +185,4 @@ Consider these other related services:
 - [qBittorrent](qbittorrent.md)
 - [Overseerr](overseerr.md)
 - [Jellyfin](jellyfin.md)
+- [Autobrr](autobrr.md)
