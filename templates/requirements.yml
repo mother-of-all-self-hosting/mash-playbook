@@ -217,7 +217,7 @@
   name: influxdb
   activation_prefix: influxdb_
 - src: git+https://github.com/spatterIight/ansible-role-jackett.git
-  version: v0.22.1891-0
+  version: v0.22.2029-0
   name: jackett
   activation_prefix: jackett_
 - src: git+https://github.com/spatterIight/ansible-role-jellyfin.git
@@ -373,7 +373,7 @@
   name: playbook_state_preserver
   activation_prefix: devture_playbook_state_preserver_
 - src: git+https://github.com/spatterIight/ansible-role-plex.git
-  version: v1.41.7-0
+  version: v1.41.8-0
   name: plex
   activation_prefix: plex_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-postgis.git
@@ -421,7 +421,7 @@
   name: qbittorrent
   activation_prefix: qbittorrent_
 - src: git+https://github.com/spatterIight/ansible-role-radarr.git
-  version: v5.25.0-0
+  version: v5.26.2-0
   name: radarr
   activation_prefix: radarr_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-radicale.git
