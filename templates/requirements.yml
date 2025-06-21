@@ -45,7 +45,7 @@
   name: calibre-web
   activation_prefix: calibre-web_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-changedetection.git
-  version: v0.50.3-0
+  version: v0.50.4-0
   name: changedetection
   activation_prefix: changedetection_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-cleanup.git
