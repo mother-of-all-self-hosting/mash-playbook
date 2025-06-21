@@ -32,6 +32,10 @@
   version: v2025.4.1-1
   name: authentik
   activation_prefix: authentik_
+- src: git+https://github.com/spatterIight/ansible-role-autobrr.git
+  version: main
+  name: autobrr
+  activation_prefix: autobrr_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-aux.git
   version: v1.0.0-5
   name: auxiliary
