@@ -533,6 +533,10 @@
     - role: galaxy/stirling_pdf
     # /role-specific:stirling_pdf
 
+    # role-specific:syncstorage_rs_docker
+    - role: galaxy/syncstorage_rs_docker
+    # /role-specific:syncstorage_rs_docker
+
     # role-specific:syncthing
     - role: galaxy/syncthing
     # /role-specific:syncthing
