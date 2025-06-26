@@ -25,7 +25,7 @@
   name: appsmith
   activation_prefix: appsmith_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-authelia.git
-  version: v4.37.5-2
+  version: v4.37.5-5
   name: authelia
   activation_prefix: authelia_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-authentik.git
@@ -165,7 +165,7 @@
   name: funkwhale
   activation_prefix: funkwhale_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-ghostfolio.git
-  version: v2.173.0-0
+  version: v2.174.0-0
   name: ghostfolio
   activation_prefix: ghostfolio_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-gitea.git
@@ -221,7 +221,7 @@
   name: jellyfin
   activation_prefix: jellyfin_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-jitsi.git
-  version: v10314-0
+  version: v10314-1
   name: jitsi
   activation_prefix: jitsi_
 - src: git+https://codeberg.org/acioustick/ansible-role-joplin-server.git
