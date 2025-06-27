@@ -66,3 +66,4 @@ Consider these other related services:
 - [Overseerr](overseerr.md)
 - [Plex](plex.md)
 - [Jellyfin](jellyfin.md)
+- [Autobrr](autobrr.md)

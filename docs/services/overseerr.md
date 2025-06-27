@@ -68,3 +68,4 @@ Consider these other related services:
 - [qBittorrent](qbittorrent.md)
 - [Plex](plex.md)
 - [Jellyfin](jellyfin.md)
+- [Autobrr](autobrr.md)
