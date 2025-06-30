@@ -389,7 +389,7 @@
   name: postgres_backup
   activation_prefix: postgres_backup_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-privatebin.git
-  version: v1.7.7-0
+  version: v1.7.8-0
   name: privatebin
   activation_prefix: privatebin_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-prometheus.git
