@@ -7919,7 +7919,7 @@ wallabag_container_additional_networks: |
     +
     ([postgres_container_network] if postgres_enabled and wallabag_database_hostname == postgres_identifier and wallabag_container_network != postgres_container_network else [])
     +
-    ([exim_relay_container_network | default('mash-exim-relay')] if (exim_relay_enabled | default(false) and wallabag_config_mailer_smtp_addr == exim_relay_identifier | default('mash-exim-relay') and wallabag_container_network != exim_relay_container_network) else [])
+    ([exim_relay_container_network | default('mash-exim-relay')] if (exim_relay_enabled | default(false) and wallabag_config_smtp_addr == exim_relay_identifier | default('mash-exim-relay') and wallabag_container_network != exim_relay_container_network) else [])
   }}
 
 wallabag_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
@@ -7927,13 +7927,20 @@ wallabag_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_prox
 wallabag_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
 wallabag_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
 
+# role-specific:postgres
 wallabag_database_hostname: "{{ postgres_connection_hostname if postgres_enabled else '' }}"
+wallabag_database_port: "{{ '5432' if postgres_enabled else '' }}"
+wallabag_database_username: "wallabag"
+
+# Intentionally not auto-generating wallabag_database_password.
+# It's meant to be explicitly defined, so that it can be used in the setup wizard after installation.
+# /role-specific:postgres
 
 # role-specific:exim_relay
 wallabag_config_mailer_enabled: "{{ exim_relay_enabled }}"
-wallabag_config_mailer_smtp_addr: "{{ exim_relay_identifier if exim_relay_enabled else '' }}"
-wallabag_config_mailer_smtp_port: 8025
-wallabag_config_mailer_from: "{{ exim_relay_sender_address if exim_relay_enabled else '' }}"
+wallabag_config_smtp_addr: "{{ exim_relay_identifier if exim_relay_enabled else '' }}"
+wallabag_config_smtp_port: "{{ 8025 if exim_relay_enabled else '' }}"
+wallabag_config_smtp_from: "{{ exim_relay_sender_address if exim_relay_enabled else '' }}"
 wallabag_config_mailer_protocol: "{{ 'smtp' if exim_relay_enabled else '' }}"
 # /role-specific:exim_relay
 
