@@ -213,7 +213,7 @@
   name: infisical
   activation_prefix: infisical_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-influxdb.git
-  version: v2.7.6-1
+  version: v2.7.6-3
   name: influxdb
   activation_prefix: influxdb_
 - src: git+https://github.com/spatterIight/ansible-role-jackett.git
