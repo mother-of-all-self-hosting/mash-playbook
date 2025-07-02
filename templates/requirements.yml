@@ -273,7 +273,7 @@
   name: matomo
   activation_prefix: matomo_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-matterbridge.git
-  version: v1.26.0-4
+  version: v1.26.0-6
   name: matterbridge
   activation_prefix: matterbridge_
 - src: git+https://github.com/XHawk87/ansible-role-minecraft.git
