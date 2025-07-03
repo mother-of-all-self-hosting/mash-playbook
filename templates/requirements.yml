@@ -425,7 +425,7 @@
   name: radarr
   activation_prefix: radarr_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-radicale.git
-  version: v3.5.4.0-0
+  version: v3.5.4.0-1
   name: radicale
   activation_prefix: radicale_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-reactflux
