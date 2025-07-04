@@ -521,7 +521,7 @@
   name: tsdproxy
   activation_prefix: tsdproxy_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-uptime_kuma.git
-  version: v1.23.16-4
+  version: v1.23.16-6
   name: uptime_kuma
   activation_prefix: uptime_kuma_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-valkey.git
