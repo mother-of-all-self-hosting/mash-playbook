@@ -28,6 +28,9 @@ For details about configuring the [Ansible role for syncstorage-rs](https://gith
 - 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-syncstorage-rs-docker/blob/main/docs/configuring-syncstorage-rs-docker.md) online
 - 📁 `roles/galaxy/syncstorage_rs_docker/docs/configuring-syncstorage-rs-docker.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
+>[!NOTE]
+> The role is configured to build the Docker image by default, as it is not provided by the upstream project. Before proceeding, make sure that the machine which you are going to run the Ansible commands against has sufficient computing power to build it.
+
 ## Dependencies
 
 This service requires the following other services:
