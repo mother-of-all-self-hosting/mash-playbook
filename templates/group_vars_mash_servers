@@ -5616,14 +5616,23 @@ mongodb_gid: "{{ mash_playbook_gid }}"
 
 mongodb_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}mongodb"
 
-mongodb_managed_databases_auto: |
-  {{
-    ([{
-      'name': infisical_mongodb_db_name,
-      'username': infisical_mongodb_username,
-      'password': infisical_mongodb_password,
-    }] if infisical_enabled and infisical_mongodb_hostname == mongodb_identifier else [])
-  }}
+mash_playbook_mongodb_managed_databases_auto_itemized:
+  # Dummy entry, which is not role-specific.
+  # Ensures there's at least one entry defined in the list.
+  - "{{ omit }}"
+
+  # role-specific:infisical
+  - |-
+    {{
+      ({
+        'name': infisical_mongodb_db_name,
+        'username': infisical_mongodb_username,
+        'password': infisical_mongodb_password,
+      } if infisical_enabled and infisical_mongodb_hostname == mongodb_identifier else omit)
+    }}
+  # /role-specific:infisical
+
+mongodb_managed_databases_auto: "{{ mash_playbook_mongodb_managed_databases_auto_itemized | reject('equalto', omit) }}"
 
 ########################################################################
 #                                                                      #
