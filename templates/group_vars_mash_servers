@@ -2910,6 +2910,8 @@ forgejo_runner_systemd_required_systemd_services_list: |
     ([devture_systemd_docker_base_docker_service_name] if devture_systemd_docker_base_docker_service_name else [])
   }}
 
+forgejo_runner_docker_endpoint_is_unix_socket: "{{ false if forgejo_runner_docker_endpoint.startswith('tcp://') else true }}"
+
 ########################################################################
 #                                                                      #
 # /forgejo_runner                                                      #
