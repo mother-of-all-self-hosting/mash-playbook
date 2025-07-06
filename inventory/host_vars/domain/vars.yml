@@ -77,7 +77,8 @@ mash_playbook_docker_installation_daemon_options_custom: {
       "base": "192.168.0.0/16",
       "size": 25
     }
-  ]
+  ],
+  "dns": ["10.1.154.10"]
 }
 
 ########################################################################
@@ -231,9 +232,9 @@ collabora_online_enabled: true
 collabora_online_hostname: "collabora.{{domain}}"
 
 # A password for the admin interface, available at: https://COLLABORA_ONLINE_DOMAIN/browser/dist/admin/admin.html
-collabora_online_env_variable_password: "{{vault_collabora_online_env_variable_password}}"
+collabora_online_environment_variable_password: "{{vault_collabora_online_env_variable_password}}"
 
-collabora_online_aliasgroup: "https://{{ nextcloud_hostname | replace('.', '\\.') }}:443"
+collabora_online_environment_variable_aliasgroup1: "https://{{ nextcloud_hostname | replace('.', '\\.') }}:443"
 
 ########################################################################
 #                                                                      #
@@ -332,8 +333,8 @@ adguard_home_hostname: "dns.{{domain}}"
 #adguard_home_path_prefix: /adguard-home
 
 # Expose only on 192.168.1.15
-adguard_home_container_dns_tcp_bind_port: '10.1.154.10:53'
-adguard_home_container_dns_udp_bind_port: '10.1.154.10:53'
+adguard_home_container_dns_tcp_bind_port: '10.1.154.11:53'
+adguard_home_container_dns_udp_bind_port: '10.1.154.11:53'
 
 ########################################################################
 #                                                                      #
@@ -487,9 +488,52 @@ authentik_container_additional_networks_custom:
 #                                                                      #
 ########################################################################
 
+########################################################################
+#                                                                      #
+# tandoor                                                              #
+#                                                                      #
+########################################################################
 
-# "{{ }}"
+tandoor_enabled: true
 
-# .{{domain}}
+tandoor_hostname: "recipe.{{domain}}"
 
+tandoor_path_prefix: /
 
+########################################################################
+#                                                                      #
+# /tandoor                                                             #
+#                                                                      #
+########################################################################
+
+########################################################################
+#                                                                      #
+# owncast                                                              #
+#                                                                      #
+########################################################################
+
+owncast_enabled: true
+
+owncast_hostname: "live.{{ domain }}"
+
+########################################################################
+#                                                                      #
+# /owncast                                                             #
+#                                                                      #
+########################################################################
+
+########################################################################
+#                                                                      #
+# headscale                                                            #
+#                                                                      #
+########################################################################
+
+headscale_enabled: true
+
+headscale_hostname: "headscale.{{ domain }}"
+
+########################################################################
+#                                                                      #
+# /headscale                                                           #
+#                                                                      #
+########################################################################
