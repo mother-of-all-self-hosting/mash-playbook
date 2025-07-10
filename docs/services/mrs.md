@@ -1,6 +1,13 @@
+<!--
+SPDX-FileCopyrightText: 2023 Nikita Chernyi
+SPDX-FileCopyrightText: 2023 Slavi Pantaleev
+
+SPDX-License-Identifier: AGPL-3.0-or-later
+-->
+
 # Matrix Rooms Search API
 
-[Matrix Rooms Search](https://gitlab.com/etke.cc/mrs) is a fully-featured, standalone, [Matrix](https://matrix.org/) rooms search service.
+[Matrix Rooms Search](https://github.com/etkecc/mrs) is a fully-featured, standalone, [Matrix](https://matrix.org/) rooms search service.
 
 ## Dependencies
 
@@ -45,4 +52,4 @@ In the example configuration above, we configure the service to be hosted at `ht
 
 After installation, call the `https://mrs.example.com/-/full` endpoint using admin credentials (see the `mrs_admin_*` variables) to discover and parse content.
 
-To see the list of supported public and private APIs, see the [API documentation](https://gitlab.com/etke.cc/mrs/api/-/blob/main/openapi.yml).
+To see the list of supported public and private APIs, see the [API documentation](https://github.com/etkecc/mrs/blob/main/openapi.yml).
