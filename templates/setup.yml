@@ -76,22 +76,18 @@
 
     # /system
 
+    # role-specific:container_socket_proxy
+    - role: galaxy/container_socket_proxy
+    # /role-specific:container_socket_proxy
+
+    # role-specific:exim_relay
+    - role: galaxy/exim_relay
+    # /role-specific:exim_relay
+
     # role-specific:postgres
     # This role exposes various tags (setup-postgres, setup-all, upgrade-postgres, import-postgres, etc.), so we don't tag it here.
     - role: galaxy/postgres
     # /role-specific:postgres
-
-    # role-specific:postgres_backup
-    - role: galaxy/postgres_backup
-    # /role-specific:postgres_backup
-
-    # role-specific:mongodb
-    - role: galaxy/mongodb
-    # /role-specific:mongodb
-
-    # role-specific:container_socket_proxy
-    - role: galaxy/container_socket_proxy
-    # /role-specific:container_socket_proxy
 
     # role-specific:traefik
     - role: galaxy/traefik
@@ -109,10 +105,6 @@
     - role: galaxy/anonymousoverflow
     # /role-specific:anonymousoverflow
 
-    # role-specific:appsmith
-    - role: galaxy/appsmith
-    # /role-specific:appsmith
-
     # role-specific:apisix_dashboard
     - role: galaxy/apisix_dashboard
     # /role-specific:apisix_dashboard
@@ -120,6 +112,10 @@
     # role-specific:apisix_gateway
     - role: galaxy/apisix_gateway
     # /role-specific:apisix_gateway
+
+    # role-specific:appsmith
+    - role: galaxy/appsmith
+    # /role-specific:appsmith
 
     # role-specific:authelia
     - role: galaxy/authelia
@@ -133,21 +129,21 @@
     - role: galaxy/autobrr
     # /role-specific:autobrr
 
+    # role-specific:auxiliary
+    - role: galaxy/auxiliary
+    # /role-specific:auxiliary
+
     # role-specific:backup_borg
     - role: galaxy/backup_borg
     # /role-specific:backup_borg
 
-    # role-specific:changedetection
-    - role: galaxy/changedetection
-    # /role-specific:changedetection
-
-    # role-specific:wetty
-    - role: galaxy/wetty
-    # /role-specific:wetty
-
     # role-specific:calibre-web
     - role: galaxy/calibre-web
     # /role-specific:calibre-web
+
+    # role-specific:changedetection
+    - role: galaxy/changedetection
+    # /role-specific:changedetection
 
     # role-specific:clickhouse
     - role: galaxy/clickhouse
@@ -169,13 +165,13 @@
     - role: galaxy/docker_registry
     # /role-specific:docker_registry
 
-    # role-specific:docker_registry_proxy
-    - role: galaxy/docker_registry_proxy
-    # /role-specific:docker_registry_proxy
-
     # role-specific:docker_registry_browser
     - role: galaxy/docker_registry_browser
     # /role-specific:docker_registry_browser
+
+    # role-specific:docker_registry_proxy
+    - role: galaxy/docker_registry_proxy
+    # /role-specific:docker_registry_proxy
 
     # role-specific:docker_registry_purger
     - role: galaxy/docker_registry_purger
@@ -209,10 +205,6 @@
     - role: galaxy/excalidraw
     # /role-specific:excalidraw
 
-    # role-specific:exim_relay
-    - role: galaxy/exim_relay
-    # /role-specific:exim_relay
-
     # role-specific:firezone
     - role: galaxy/firezone
     # /role-specific:firezone
@@ -224,6 +216,18 @@
     # role-specific:focalboard
     - role: galaxy/focalboard
     # /role-specific:focalboard
+
+    # role-specific:forgejo
+    - role: galaxy/forgejo
+    # /role-specific:forgejo
+
+    # role-specific:forgejo_runner
+    - role: galaxy/forgejo_runner
+    # /role-specific:forgejo_runner
+
+    # role-specific:freescout
+    - role: galaxy/freescout
+    # /role-specific:freescout
 
     # role-specific:freshrss
     - role: galaxy/freshrss
@@ -249,41 +253,13 @@
     - role: galaxy/grafana
     # /role-specific:grafana
 
-    # role-specific:mariadb
-    - role: galaxy/mariadb
-    # /role-specific:mariadb
-
-    # role-specific:freescout
-    - role: galaxy/freescout
-    # /role-specific:freescout
-
-    # role-specific:minecraft
-    - role: galaxy/minecraft
-    # /role-specific:minecraft
-
-    # role-specific:miniflux
-    - role: galaxy/miniflux
-    # /role-specific:miniflux
-
-    # role-specific:mrs
-    - role: galaxy/mrs
-    # /role-specific:mrs
-
-    # role-specific:n8n
-    - role: galaxy/n8n
-    # /role-specific:n8n
+    # role-specific:headscale
+    - role: galaxy/headscale
+    # /role-specific:headscale
 
     # role-specific:healthchecks
     - role: galaxy/healthchecks
     # /role-specific:healthchecks
-
-    # role-specific:infisical
-    - role: galaxy/infisical
-    # /role-specific:infisical
-
-    # role-specific:headscale
-    - role: galaxy/headscale
-    # /role-specific:headscale
 
     # role-specific:homarr
     - role: galaxy/homarr
@@ -300,6 +276,10 @@
     # role-specific:ilmo
     - role: galaxy/ilmo
     # /role-specific:ilmo
+
+    # role-specific:infisical
+    - role: galaxy/infisical
+    # /role-specific:infisical
 
     # role-specific:influxdb
     - role: galaxy/influxdb
@@ -353,13 +333,45 @@
     - role: galaxy/loki
     # /role-specific:loki
 
+    # role-specific:mariadb
+    - role: galaxy/mariadb
+    # /role-specific:mariadb
+
+    # role-specific:matomo
+    - role: galaxy/matomo
+    # /role-specific:matomo
+
+    # role-specific:matterbridge
+    - role: galaxy/matterbridge
+    # /role-specific:matterbridge
+
+    # role-specific:minecraft
+    - role: galaxy/minecraft
+    # /role-specific:minecraft
+
+    # role-specific:miniflux
+    - role: galaxy/miniflux
+    # /role-specific:miniflux
+
     # role-specific:mobilizon
     - role: galaxy/mobilizon
     # /role-specific:mobilizon
 
+    # role-specific:mongodb
+    - role: galaxy/mongodb
+    # /role-specific:mongodb
+
     # role-specific:mosquitto
     - role: galaxy/mosquitto
     # /role-specific:mosquitto
+
+    # role-specific:mrs
+    - role: galaxy/mrs
+    # /role-specific:mrs
+
+    # role-specific:n8n
+    - role: galaxy/n8n
+    # /role-specific:n8n
 
     # role-specific:navidrome
     - role: galaxy/navidrome
@@ -389,6 +401,10 @@
     - role: galaxy/oauth2_proxy
     # /role-specific:oauth2_proxy
 
+    # role-specific:outline
+    - role: galaxy/outline
+    # /role-specific:outline
+
     # role-specific:overseerr
     - role: galaxy/overseerr
     # /role-specific:overseerr
@@ -396,10 +412,6 @@
     # role-specific:owncast
     - role: galaxy/owncast
     # /role-specific:owncast
-
-    # role-specific:outline
-    - role: galaxy/outline
-    # /role-specific:outline
 
     # role-specific:oxitraffic
     - role: galaxy/oxitraffic
@@ -425,6 +437,10 @@
     - role: galaxy/postgis
     # /role-specific:postgis
 
+    # role-specific:postgres_backup
+    - role: galaxy/postgres_backup
+    # /role-specific:postgres_backup
+
     # role-specific:privatebin
     - role: galaxy/privatebin
     # /role-specific:privatebin
@@ -433,13 +449,13 @@
     - role: galaxy/prometheus
     # /role-specific:prometheus
 
-    # role-specific:prometheus_node_exporter
-    - role: galaxy/prometheus_node_exporter
-    # /role-specific:prometheus_node_exporter
-
     # role-specific:prometheus_blackbox_exporter
     - role: galaxy/prometheus_blackbox_exporter
     # /role-specific:prometheus_blackbox_exporter
+
+    # role-specific:prometheus_node_exporter
+    - role: galaxy/prometheus_node_exporter
+    # /role-specific:prometheus_node_exporter
 
     # role-specific:prometheus_postgres_exporter
     - role: galaxy/prometheus_postgres_exporter
@@ -473,10 +489,6 @@
     - role: galaxy/readeck
     # /role-specific:readeck
 
-    # role-specific:redmine
-    - role: galaxy/redmine
-    # /role-specific:redmine
-
     # role-specific:redis
     - role: galaxy/redis
     # /role-specific:redis
@@ -484,6 +496,14 @@
     # role-specific:redlib
     - role: galaxy/redlib
     # /role-specific:redlib
+
+    # role-specific:redmine
+    - role: galaxy/redmine
+    # /role-specific:redmine
+
+    # role-specific:roundcube
+    - role: galaxy/roundcube
+    # /role-specific:roundcube
 
     # role-specific:rumqttd
     - role: galaxy/rumqttd
@@ -529,6 +549,10 @@
     - role: galaxy/tsdproxy
     # /role-specific:tsdproxy
 
+    # role-specific:uptime_kuma
+    - role: galaxy/uptime_kuma
+    # /role-specific:uptime_kuma
+
     # role-specific:valkey
     - role: galaxy/valkey
     # /role-specific:valkey
@@ -537,33 +561,25 @@
     - role: galaxy/vaultwarden
     # /role-specific:vaultwarden
 
-    # role-specific:uptime_kuma
-    - role: galaxy/uptime_kuma
-    # /role-specific:uptime_kuma
+    # role-specific:versatiles
+    - role: galaxy/versatiles
+    # /role-specific:versatiles
+
+    # role-specific:wetty
+    - role: galaxy/wetty
+    # /role-specific:wetty
 
     # role-specific:wg_easy
     - role: galaxy/wg_easy
     # /role-specific:wg_easy
 
-    # role-specific:forgejo
-    - role: galaxy/forgejo
-    # /role-specific:forgejo
-
-    # role-specific:forgejo_runner
-    - role: galaxy/forgejo_runner
-    # /role-specific:forgejo_runner
+    # role-specific:woodpecker_ci_agent
+    - role: galaxy/woodpecker_ci_agent
+    # /role-specific:woodpecker_ci_agent
 
     # role-specific:woodpecker_ci_server
     - role: galaxy/woodpecker_ci_server
     # /role-specific:woodpecker_ci_server
-
-    # role-specific:versatiles
-    - role: galaxy/versatiles
-    # /role-specific:versatiles
-
-    # role-specific:woodpecker_ci_agent
-    - role: galaxy/woodpecker_ci_agent
-    # /role-specific:woodpecker_ci_agent
 
     # role-specific:wordpress
     - role: galaxy/wordpress
@@ -576,22 +592,6 @@
     # role-specific:yourls
     - role: galaxy/yourls
     # /role-specific:yourls
-
-    # role-specific:roundcube
-    - role: galaxy/roundcube
-    # /role-specific:roundcube
-
-    # role-specific:auxiliary
-    - role: galaxy/auxiliary
-    # /role-specific:auxiliary
-
-    # role-specific:matomo
-    - role: galaxy/matomo
-    # /role-specific:matomo
-
-    # role-specific:matterbridge
-    - role: galaxy/matterbridge
-    # /role-specific:matterbridge
 
     # role-specific:systemd_service_manager
     - when: devture_systemd_service_manager_enabled | bool
