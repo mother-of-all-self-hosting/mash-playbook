@@ -52,7 +52,7 @@ We're finding the need for a playbook which combines all of this into one, so th
 
 - you don't need to juggle multiple Ansible playbooks
 - you can try out various services easily - a few lines of extra configuration and you're ready to go
-- small pieces of software (like [Miniflux](https://miniflux.app/), powered by the [miniflux](https://gitlab.com/etke.cc/roles/miniflux) Ansible role) which don't have their own playbook can finally find a home
+- small pieces of software (like [Miniflux](https://miniflux.app/), powered by the [miniflux](https://github.com/mother-of-all-self-hosting/ansible-role-miniflux) Ansible role) which don't have their own playbook can finally find a home
 - you can use a single playbook with the quality you know and trust
 - shared services (like Postgres) are maintained in one single place
 - backups are made easy, because everything lives together (same base data path, same Postgres instance)
