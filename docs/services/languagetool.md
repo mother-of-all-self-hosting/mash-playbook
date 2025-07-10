@@ -1,3 +1,9 @@
+<!--
+SPDX-FileCopyrightText: 2024 Tiz
+
+SPDX-License-Identifier: AGPL-3.0-or-later
+-->
+
 # LanguageTool
 
 [LanguageTool](https://languagetool.org/) is an open source online grammar, style and spell checker. Installing it is powered by the [etke.cc/roles/languagetool](https://gitlab.com/etke.cc/roles/languagetool) Ansible role and [Erikvl87/docker-languagetool](https://github.com/Erikvl87/docker-languagetool) docker image.
