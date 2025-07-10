@@ -51,6 +51,9 @@ LanguageTool can make use of large n-gram data sets to detect errors with words 
 >[!NOTE]
 > The n-gram data set is huge and thus not enabled by default.
 
+>[!WARNING]
+> [The official documentation](https://web.archive.org/web/20250702050600/https://dev.languagetool.org/finding-errors-using-n-gram-data.html) claims that `ngrams-xx-2024*` files should be used for LanguageTool >= 6.6, but they are not available at <https://languagetool.org/download/ngram-data/>. See [this issue on the GitHub](https://github.com/languagetool-org/languagetool/issues/11422) as well.
+
 To make use of it with your own LanguageTool server, you may enable n-gram data and choose which languages' n-gram data to download by adding the following configuration to your `vars.yml` file:
 
 ```yaml
