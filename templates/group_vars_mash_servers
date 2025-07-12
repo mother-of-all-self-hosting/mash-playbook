@@ -700,6 +700,11 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
     {{ ({'name': (stirling_pdf_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'stirling_pdf']} if stirling_pdf_enabled else omit) }}
   # /role-specific:stirling_pdf
 
+  # role-specific:syncstorage_rs_docker
+  - |-
+    {{ ({'name': (syncstorage_rs_docker_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'syncstorage-rs-docker']} if syncstorage_rs_docker_enabled else omit) }}
+  # /role-specific:syncstorage_rs_docker
+
   # role-specific:syncthing
   - |-
     {{ ({'name': (syncthing_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'syncthing']} if syncthing_enabled else omit) }}
@@ -5352,6 +5357,26 @@ mash_playbook_mariadb_managed_databases_auto_itemized:
     }}
   # /role-specific:privatebin
 
+  # role-specific:syncstorage_rs_docker
+  - |-
+    {{
+      ({
+        'name': syncstorage_rs_docker_environment_variable_database_name_syncstorage,
+        'username': syncstorage_rs_docker_environment_variable_database_username,
+        'password': syncstorage_rs_docker_environment_variable_mysql_password,
+      } if syncstorage_rs_docker_enabled and syncstorage_rs_docker_environment_variable_database_hostname == mariadb_identifier else omit)
+    }}
+
+  - |-
+    {{
+      ({
+        'name': syncstorage_rs_docker_environment_variable_database_name_tokenserver,
+        'username': syncstorage_rs_docker_environment_variable_database_username,
+        'password': syncstorage_rs_docker_environment_variable_mysql_password,
+      } if syncstorage_rs_docker_enabled and syncstorage_rs_docker_environment_variable_database_hostname == mariadb_identifier else omit)
+    }}
+  # /role-specific:syncstorage_rs_docker
+
   # role-specific:wordpress
   - |-
     {{
@@ -7570,6 +7595,60 @@ stirling_pdf_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver
 #                                                                      #
 ########################################################################
 # /role-specific:stirling_pdf
+
+
+
+# role-specific:syncstorage_rs_docker
+########################################################################
+#                                                                      #
+# syncstorage-rs-docker                                                #
+#                                                                      #
+########################################################################
+
+syncstorage_rs_docker_enabled: false
+
+syncstorage_rs_docker_identifier: "{{ mash_playbook_service_identifier_prefix }}syncstorage-rs-docker"
+
+syncstorage_rs_docker_uid: "{{ mash_playbook_uid }}"
+syncstorage_rs_docker_gid: "{{ mash_playbook_gid }}"
+
+syncstorage_rs_docker_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}syncstorage-rs-docker"
+
+syncstorage_rs_docker_systemd_required_services_list_auto: |
+  {{
+    ([mariadb_identifier ~ '.service'] if mariadb_enabled and syncstorage_rs_docker_environment_variable_database_hostname == mariadb_identifier else [])
+  }}
+
+syncstorage_rs_docker_container_additional_networks_auto: |
+  {{
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+    +
+    ([mariadb_container_network] if mariadb_enabled and syncstorage_rs_docker_environment_variable_database_hostname == mariadb_identifier and syncstorage_rs_docker_container_network != mariadb_container_network else [])
+  }}
+
+syncstorage_rs_docker_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+syncstorage_rs_docker_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+
+syncstorage_rs_docker_environment_variable_sync_master_secret: "{{ ('%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'syncmaster', rounds=655555)) | b64encode | truncate(length=64, killwords=True, end='', leeway=None) }}"
+syncstorage_rs_docker_environment_variable_metrics_hash_secret: "{{ ('%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'synchash', rounds=655555)) | b64encode | truncate(length=64, killwords=True, end='', leeway=None) }}"
+
+# role-specific:mariadb
+syncstorage_rs_docker_environment_variable_database_username: "{{ syncstorage_rs_docker_identifier }}"
+syncstorage_rs_docker_environment_variable_database_hostname: "{{ mariadb_identifier if mariadb_enabled else '' }}"
+syncstorage_rs_docker_environment_variable_mysql_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'db.syncstorage', rounds=655555) | to_uuid }}"
+# /role-specific:mariadb
+
+# role-specific:traefik
+syncstorage_rs_docker_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
+syncstorage_rs_docker_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
+# /role-specific:traefik
+
+########################################################################
+#                                                                      #
+# /syncstorage-rs-docker                                               #
+#                                                                      #
+########################################################################
+# /role-specific:syncstorage_rs_docker
 
 
 
