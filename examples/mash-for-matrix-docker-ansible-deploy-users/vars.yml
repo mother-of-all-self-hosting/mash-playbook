@@ -1,6 +1,6 @@
-# SPDX-License-Identifier: 2023 - 2025 Slavi Pantaleev
-# SPDX-License-Identifier: 2023 Julian-Samuel Gebühr
-# SPDX-License-Identifier: 2025 Suguru Hirahara
+# SPDX-FileCopyrightText: 2023 - 2025 Slavi Pantaleev
+# SPDX-FileCopyrightText: 2023 Julian-Samuel Gebühr
+# SPDX-FileCopyrightText: 2025 Suguru Hirahara
 #
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
@@ -37,6 +37,10 @@ mash_playbook_generic_secret_key: ''
 # Docker                                                               #
 #                                                                      #
 ########################################################################
+
+# To disable Docker installation (in case you'd be installing Docker in another way),
+# remove the line below.
+mash_playbook_docker_installation_enabled: true
 
 # To disable Docker SDK for Python installation (in case you'd be installing the SDK in another way),
 # remove the line below.

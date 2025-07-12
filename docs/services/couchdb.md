@@ -80,4 +80,3 @@ Currently, the [ansible-role-couchdb](https://github.com/Bergruebe/ansible-role-
 ## Contributing
 
 Contributions are welcome! Please feel free to review the [ansible-role-couchdb](https://github.com/Bergruebe/ansible-role-couchdb) repository and submit a Pull Request.
-

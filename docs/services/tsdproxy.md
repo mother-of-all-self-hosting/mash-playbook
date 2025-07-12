@@ -29,7 +29,7 @@ tsdproxy_tailscale_authkeyfile: '' # use this to load authkey from file. If this
 ```
 
 If [com.devture.ansible.role.container_socket_proxy](https://github.com/devture/com.devture.ansible.role.container_socket_proxy) is installed by the playbook (default), the container will use the proxy.
-If not, the container will mount the docker socket at `/var/run/docker.sock`, but you can change that by setting `tsdproxy_docker_socket` to something else. Don't forget to adjust the `tsdproxy_docker_endpoint_is_unix_socket` to false if you are using a tcp endpoint. 
+If not, the container will mount the docker socket at `/var/run/docker.sock`, but you can change that by setting `tsdproxy_docker_socket` to something else. Don't forget to adjust the `tsdproxy_docker_endpoint_is_unix_socket` to false if you are using a tcp endpoint.
 
 ## Usage
 
@@ -59,7 +59,7 @@ YOUR-SERVICE_container_labels_additional_labels: |
 
 The following labels are optional, please read the [official TSDProxy documentation](https://almeidapaulopt.github.io/tsdproxy/docs/docker/) for more information.
 
-```yaml	
+```yaml
   tsdproxy.name: "my-service"
   tsdproxy.autodetect: "false"
   tsdproxy.proxyprovider: "providername"
@@ -74,4 +74,4 @@ An alternative way to add a service to the proxy is to use Proxy files.
 Please read the [official TSDProxy documentation](https://almeidapaulopt.github.io/tsdproxy/docs/files/) for more information.
 
 You will need to use the `tsdproxy_config_files` variable and add your proxy list file into the config folder, most likely `/mash/tsdproxy/config/`.
-This is possible manually or by using [AUX-Files](https://github.com/mother-of-all-self-hosting/mash-playbook/blob/main/docs/services/auxiliary.md).
+This is possible manually or by using [AUX-Files](./auxiliary.md).

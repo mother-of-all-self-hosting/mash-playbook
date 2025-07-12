@@ -1,14 +1,19 @@
+<!--
+SPDX-FileCopyrightText: 2024 Nikita Chernyi
+SPDX-FileCopyrightText: 2025 Suguru Hirahara
+
+SPDX-License-Identifier: AGPL-3.0-or-later
+-->
+
 # Docker Registry Proxy
 
-[Docker Registry Proxy](https://gitlab.com/etke.cc/docker-registry-proxy/) is a pass-through docker registry (distribution) proxy with metadata caching, docker-compatible errors, prometheus metrics, etc.
-
+[Docker Registry Proxy](https://github.com/etkecc/docker-registry-proxy) is a pass-through Docker registry (distribution) proxy with metadata caching, Docker-compatible errors, Prometheus metrics, etc.
 
 ## Dependencies
 
 This service requires the following other services:
 
 - a [Traefik](traefik.md) reverse-proxy server
-
 
 ## Configuration
 
@@ -37,18 +42,16 @@ docker_registry_proxy_trusted_ips: []
 
 ########################################################################
 #                                                                      #
-# /docker-registry-proxy                                             #
+# /docker-registry-proxy                                               #
 #                                                                      #
 ########################################################################
 ```
 
-In the example configuration above, we configure the service to be hosted at `https://registry.example.com`.
-
 ## Usage
 
-After installation, you should be able to go to the URL as configured via `docker_registry_proxy_hostname`.
+After running the command for installation, Docker Registry Proxy becomes available at the specified hostname such as `https://registry.example.com`.
 
 ## Recommended other services
 
-- [Docker Registry](docker-registry.md) — a container image distribution registry developed by [Docker Inc](https://www.docker.com/), wired automatically to the proxy, just disable registry's traefik labels
-- [Grafana](grafana.md) — a multi-platform open source analytics and interactive visualization web application, Docker Registry Proxy comes with [pre-configured grafana dashboard](https://gitlab.com/etke.cc/docker-registry-proxy/-/blob/main/contrib/grafana-dashboard.json)
+- [Docker Registry](docker-registry.md) — a container image distribution registry developed by [Docker Inc](https://www.docker.com/), wired automatically to the proxy, just disable registry's Traefik labels
+- [Grafana](grafana.md) — a multi-platform open source analytics and interactive visualization web application, Docker Registry Proxy comes with [pre-configured grafana dashboard](https://github.com/etkecc/docker-registry-proxy/blob/main/contrib/grafana-dashboard.json)

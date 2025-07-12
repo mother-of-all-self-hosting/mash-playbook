@@ -59,11 +59,11 @@ Once you've got that, login as the `admin` user with the password and change it 
 
 For additional configuration options, refer to [ansible-role-qbittorrent](https://github.com/mother-of-all-self-hosting/ansible-role-qbittorrent)'s `defaults/main.yml` file.
 
-## Intergration with Sonarr/Radarr
+## Integration with Sonarr/Radarr
 
 To add qBittorrent to your [Sonarr](sonarr.md) or [Radarr](radarr.md) instance navigate to the form at `Settings > Download Clients > Add > qBittorrent`:
 
-Set the `host` field to your qBittorrent URL (without the protocol) and `port` as 443. Make sure to click `Use SSL`. Set the `username` and `password` fields as your qBittorrent credentials. 
+Set the `host` field to your qBittorrent URL (without the protocol) and `port` as 443. Make sure to click `Use SSL`. Set the `username` and `password` fields as your qBittorrent credentials.
 
 Fill in the rest of the form with your preferences, and you're done!
 
@@ -71,9 +71,12 @@ Fill in the rest of the form with your preferences, and you're done!
 
 ## Recommended other services
 
-Consider these other supported services that are also in the [*Arr stack](https://wiki.servarr.com/) of media automation tools:
+Consider these other related services:
 
 - [Radarr](radarr.md)
 - [Sonarr](sonarr.md)
 - [Jackett](jackett.md)
 - [Overseerr](overseerr.md)
+- [Plex](plex.md)
+- [Jellyfin](jellyfin.md)
+- [Autobrr](autobrr.md)

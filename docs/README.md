@@ -9,7 +9,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
 # Table of Contents
 
-## ⬇️ Installaton guide <!-- NOTE: the 🚀 emoji is used by "Getting started" on README.md -->
+## ⬇️ Installation guide <!-- NOTE: the 🚀 emoji is used by "Getting started" on README.md -->
 
 <!-- TODO: consider to add a quick start guide like the MDAD project has done. -->
 
@@ -31,7 +31,7 @@ You can check useful documentation for configuring components in [`services`](se
 
 ## 👨‍🔧 Maintenance
 
-If your server and services experience issues, feel free to come to [our support room](https://matrix.to/#/#mash-playbook:devture.com) on Matrix and ask for help.
+If your server and services experience issues, feel free to come to [our support room](https://matrixrooms.info/room/mash-playbook:devture.com) on Matrix and ask for help.
 
 <!-- NOTE: sort list items alphabetically -->
 

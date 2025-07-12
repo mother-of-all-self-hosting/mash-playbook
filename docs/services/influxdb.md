@@ -17,7 +17,7 @@ influxdb_enabled: true
 influxdb_hostname: 'example.org'
 
 # Advanced configuration
-# Configure the inital user, organization and bucket
+# Configure the initial user, organization and bucket
 #
 # This setting will only be used once upon initial installation of influxdb. Changing this values
 # after the first start of influxdb will have no effect.

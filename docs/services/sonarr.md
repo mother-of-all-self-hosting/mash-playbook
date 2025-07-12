@@ -50,13 +50,13 @@ A `sonarr_path_prefix` variable can be adjusted to host under a subpath (e.g. `s
 
 ## Usage
 
-After [installation](../installing.md), you should access your new Sonarr instance at the URL you've chosen and configure a username and password. The recommended authenticaton method is `Forms (Login Page)`.
+After [installation](../installing.md), you should access your new Sonarr instance at the URL you've chosen and configure a username and password. The recommended authentication method is `Forms (Login Page)`.
 
 For additional configuration options, refer to [ansible-role-sonarr](https://github.com/spatterIight/ansible-role-sonarr)'s `defaults/main.yml` file.
 
 ## Recommended other services
 
-Consider these other supported services that are also in the [*Arr stack](https://wiki.servarr.com/) of media automation tools:
+Consider these other related services:
 
 - [Radarr](radarr.md)
 - [Jackett](jackett.md)
@@ -64,3 +64,6 @@ Consider these other supported services that are also in the [*Arr stack](https:
 - [qBittorrent](qbittorrent.md)
   - For qBittorrent integration instructions, see the [setup guide](qbittorrent.md#intergration-with-sonarrradarr)
 - [Overseerr](overseerr.md)
+- [Plex](plex.md)
+- [Jellyfin](jellyfin.md)
+- [Autobrr](autobrr.md)

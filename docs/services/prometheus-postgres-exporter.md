@@ -37,4 +37,3 @@ Unless you're scraping the Postgres Exporter metrics from a local [Prometheus](p
 ## Usage
 
 After you installed the exporter, your stats will be available on `mash.example.com/metrics/mash-prometheus-postgres-exporter` with basic auth credentials you configured
-

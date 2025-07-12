@@ -14,5 +14,3 @@ To uninstall, run these commands (most are meant to be executed on the server it
 - uninstall Docker itself, if necessary
 
 - delete the `/mash` directory (`rm -rf /mash`)
-
-

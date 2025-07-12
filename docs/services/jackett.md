@@ -124,7 +124,7 @@ If its a semi-private or private tracker you will have to add some specific conf
 
 Once its added you can test it using the `Test ✓` button, if it returns successfully you're good to go!
 
-## Intergration with Sonarr/Radarr
+## Integration with Sonarr/Radarr
 
 To add Jackett to your [Sonarr](sonarr.md) or [Radarr](radarr.md) instance navigate to the form at `Settings > Indexers > Add > Torznab > Custom`:
 
@@ -142,9 +142,12 @@ Fill in the rest of the form with your preferences, and you're done!
 
 ## Recommended other services
 
-Consider these other supported services that are also in the [*Arr stack](https://wiki.servarr.com/) of media automation tools:
+Consider these other related services:
 
 - [Radarr](radarr.md)
 - [Sonarr](sonarr.md)
 - [qBittorrent](qbittorrent.md)
 - [Overseerr](overseerr.md)
+- [Plex](plex.md)
+- [Jellyfin](jellyfin.md)
+- [Autobrr](autobrr.md)

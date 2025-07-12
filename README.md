@@ -1,4 +1,4 @@
-[![Support room on Matrix](https://img.shields.io/matrix/mash-playbook:devture.com.svg?label=%23mash-playbook%3Adevture.com&logo=matrix&style=for-the-badge&server_fqdn=matrix.devture.com)](https://matrix.to/#/#mash-playbook:devture.com) [![donate](https://liberapay.com/assets/widgets/donate.svg)](https://liberapay.com/mother-of-all-self-hosting/donate)
+[![Support room on Matrix](https://img.shields.io/matrix/mash-playbook:devture.com.svg?label=%23mash-playbook%3Adevture.com&logo=matrix&style=for-the-badge&server_fqdn=matrix.devture.com&fetchMode=summary)](https://matrixrooms.info/room/mash-playbook:devture.com) [![donate](https://liberapay.com/assets/widgets/donate.svg)](https://liberapay.com/mother-of-all-self-hosting/donate)
 
 # Mother-of-All-Self-Hosting Ansible playbook
 
@@ -30,7 +30,7 @@ When updating the playbook, refer to [the changelog](CHANGELOG.md) to catch up w
 
 ## Support
 
-- Matrix room: [#mash-playbook:devture.com](https://matrix.to/#/#mash-playbook:devture.com). To join Matrix, [use a public server](https://app.element.io) like `matrix.org` or self-host Matrix yourself using the related [matrix-docker-ansible-deploy](https://github.com/spantaleev/matrix-docker-ansible-deploy) Ansible playbook
+- Matrix room: [#mash-playbook:devture.com](https://matrixrooms.info/room/mash-playbook:devture.com). To join Matrix, [use a public server](https://app.element.io) like `matrix.org` or self-host Matrix yourself using the related [matrix-docker-ansible-deploy](https://github.com/spantaleev/matrix-docker-ansible-deploy) Ansible playbook
 
 - GitHub issues: [mother-of-all-self-hosting/mash-playbook/issues](https://github.com/mother-of-all-self-hosting/mash-playbook/issues)
 
@@ -52,7 +52,7 @@ We're finding the need for a playbook which combines all of this into one, so th
 
 - you don't need to juggle multiple Ansible playbooks
 - you can try out various services easily - a few lines of extra configuration and you're ready to go
-- small pieces of software (like [Miniflux](https://miniflux.app/), powered by the [miniflux](https://gitlab.com/etke.cc/roles/miniflux) Ansible role) which don't have their own playbook can finally find a home
+- small pieces of software (like [Miniflux](https://miniflux.app/), powered by the [miniflux](https://github.com/mother-of-all-self-hosting/ansible-role-miniflux) Ansible role) which don't have their own playbook can finally find a home
 - you can use a single playbook with the quality you know and trust
 - shared services (like Postgres) are maintained in one single place
 - backups are made easy, because everything lives together (same base data path, same Postgres instance)

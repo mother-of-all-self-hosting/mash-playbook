@@ -47,3 +47,7 @@ You can remove the `miniflux_path_prefix` variable definition, to make it defaul
 After installation, you can log in with your administrator login (`miniflux_admin_login`) and password (`miniflux_admin_password`).
 
 You can create additional users (admin-privileged or not) after logging in.
+
+## Related services
+
+- [ReactFlux](reactflux.md) — Third-party web frontend for Miniflux, aimed at providing a more user-friendly reading experience

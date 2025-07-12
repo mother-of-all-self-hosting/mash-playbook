@@ -1,0 +1,23 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "config:recommended",
+    ":semanticCommitsDisabled"
+  ],
+  "labels": [
+    "dependencies"
+  ],
+  "packageRules": [
+    {
+      "ignoreUnstable": false,
+      "versioning": "loose",
+      "matchSourceUrls": [
+        "https://github.com/devture/com.devture.ansible.role{/,}**",
+        "https://github.com/mother-of-all-self-hosting{/,}**"
+      ]
+    }
+  ],
+  "pre-commit": {
+    "enabled": true
+  }
+}

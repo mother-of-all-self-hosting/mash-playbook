@@ -108,7 +108,7 @@ You can workaround this issue by editing `mash-adguard-home.service` and tempora
 	```
 
 2. Run `systemctl restart mash-adguard-home.service` to restart the service.
-3. Perform the first time setup as documented under [usage](https://github.com/mother-of-all-self-hosting/mash-playbook/blob/main/docs/services/adguard-home.md#usage).
+3. Perform the first time setup as documented under [usage](#usage).
 4. Run `systemctl stop mash-adguard-home.service` to stop the service.
 5. Run `chown -R mash:mash /mash/adguard-home/workdir` to change ownership of the files created during the first-time setup from `root` to `mash`. Optionally, use `ls -ll /mash/adguard-home/workdir` to check the file ownership before and after running `chown`.
 6. Run the playbook again to rebuild `/etc/systemd/system/mash-adguard-home.service` and start AdGuard Home again: `just install-service adguard-home.service`.

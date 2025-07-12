@@ -94,7 +94,7 @@ This merely configures OAuth2-Proxy to handle the `/oauth2/` paths for Hubsite's
 
 ### Hubsite configuration adjustments
 
-Now that OAuth2-Proxy is ready and handling the `/oauth2/` paths on the domain Hubsite is running, we need to set up Traefik's [ForwardAuth](https://doc.traefik.io/traefik/middlewares/http/forwardauth/) middlware, so that all Hubsite requests would consult OAuth2-Proxy.
+Now that OAuth2-Proxy is ready and handling the `/oauth2/` paths on the domain Hubsite is running, we need to set up Traefik's [ForwardAuth](https://doc.traefik.io/traefik/middlewares/http/forwardauth/) middleware, so that all Hubsite requests would consult OAuth2-Proxy.
 
 The configuration described below is based on the official [Configuring for use with the Traefik (v2) ForwardAuth middleware](https://oauth2-proxy.github.io/oauth2-proxy/configuration/overview#configuring-for-use-with-the-traefik-v2-forwardauth-middleware) documentation of OAuth2-Proxy.
 
@@ -114,7 +114,7 @@ hubsite_container_labels_additional_labels: |
   traefik.http.middlewares.{{ hubsite_identifier }}-oauth-errors.errors.service={{ oauth2_proxy_identifier }}
   traefik.http.middlewares.{{ hubsite_identifier }}-oauth-errors.errors.query=/oauth2/sign_in?rd={url}
 
-  # Create a middlware which passes each incoming request to OAuth2-Proxy,
+  # Create a middleware which passes each incoming request to OAuth2-Proxy,
   # so it can decide whether it should be let through (to Hubsite) or should blocked (serving the OAuth2-Proxy sign in page).
   traefik.http.middlewares.{{ hubsite_identifier }}-oauth-auth.forwardAuth.address=http://{{ oauth2_proxy_identifier }}:{{ oauth2_proxy_container_process_http_port }}/oauth2/auth
 

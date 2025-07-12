@@ -45,4 +45,4 @@ Internal OxiTraffic errors will not be logged to `stdout` and will therefore not
 
 *This is not legal advice, talk to a lawyer!*
 
-OxiTraffic does not collet IP Adresses, Browser Information etc.. Each visitor is assigned a anonymous ID upon visiting the site. This will only be used to store information on how long the visitor spends on this site. No cookies are set.
+OxiTraffic does not collect IP Addresses, Browser Information etc.. Each visitor is assigned a anonymous ID upon visiting the site. This will only be used to store information on how long the visitor spends on this site. No cookies are set.
