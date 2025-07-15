@@ -936,7 +936,7 @@ mash_playbook_postgres_managed_databases_auto_itemized:
         'name': ghostfolio_environment_variable_postgres_db,
         'username': ghostfolio_environment_variable_postgres_user,
         'password': ghostfolio_environment_variable_postgres_password,
-      } if ghostfolio_enabled else omit)
+      } if ghostfolio_enabled and ghostfolio_database_hostname == postgres_identifier else omit)
     }}
   # /role-specific:ghostfolio
 
@@ -3119,14 +3119,14 @@ ghostfolio_gid: 1000
 
 ghostfolio_systemd_required_services_list_auto: |
   {{
-    ([postgres_identifier ~ '.service'] if postgres_enabled and ghostfolio_database_host == postgres_identifier else [])
+    ([postgres_identifier ~ '.service'] if postgres_enabled and ghostfolio_database_hostname == postgres_identifier else [])
   }}
 
 ghostfolio_container_additional_networks_auto: |
   {{
     ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
     +
-    ([postgres_container_network] if postgres_enabled and ghostfolio_database_host == postgres_identifier and ghostfolio_container_network != postgres_container_network else [])
+    ([postgres_container_network] if postgres_enabled and ghostfolio_database_hostname == postgres_identifier and ghostfolio_container_network != postgres_container_network else [])
   }}
 
 ghostfolio_environment_variable_access_token_salt: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'at.ghostfolio', rounds=655555) | to_uuid }}"
@@ -3139,7 +3139,7 @@ ghostfolio_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_en
 ghostfolio_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
 
 # role-specific:postgres
-ghostfolio_database_host: "{{ postgres_identifier if postgres_enabled else '' }}"
+ghostfolio_database_hostname: "{{ postgres_identifier if postgres_enabled else '' }}"
 ghostfolio_database_port: "{{ '5432' if postgres_enabled else '' }}"
 ghostfolio_environment_variable_postgres_user: ghostfolio
 ghostfolio_environment_variable_postgres_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'db.ghostfolio', rounds=655555) | to_uuid }}"
