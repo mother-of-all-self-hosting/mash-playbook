@@ -2961,7 +2961,7 @@ freescout_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_ena
 freescout_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
 
 # role-specific:postgres
-freescout_database_hostname: "{{ postgres_connection_hostname if postgres_enabled else '' }}"
+freescout_database_hostname: "{{ postgres_identifier if postgres_enabled else '' }}"
 freescout_database_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'freescout.db', rounds=655555) | to_uuid }}"
 # /role-specific:postgres
 
@@ -3015,7 +3015,7 @@ freshrss_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enab
 freshrss_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
 
 # role-specific:postgres
-freshrss_database_hostname: "{{ postgres_connection_hostname if postgres_enabled else '' }}"
+freshrss_database_hostname: "{{ postgres_identifier if postgres_enabled else '' }}"
 #
 # Intentionally not auto-generating freshrss_database_password.
 # It's meant to be explicitly defined, so that it can be used in the setup wizard after installation.
@@ -3429,7 +3429,7 @@ healthchecks_environment_variable_email_use_verification: "{{ false if exim_rela
 # /role-specific:exim_relay
 
 # role-specific:postgres
-healthchecks_database_hostname: "{{ postgres_connection_hostname if postgres_enabled else '' }}"
+healthchecks_database_hostname: "{{ postgres_identifier if postgres_enabled else '' }}"
 healthchecks_database_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'healthchecks.db', rounds=655555) | to_uuid }}"
 # /role-specific:postgres
 
@@ -5201,9 +5201,9 @@ linkding_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enab
 linkding_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
 
 # role-specific:postgres
-linkding_database_hostname: "{{ postgres_connection_hostname if postgres_enabled else '' }}"
+linkding_database_hostname: "{{ postgres_identifier if postgres_enabled else '' }}"
 linkding_database_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'linkding.db', rounds=655555) | to_uuid }}"
-linkding_database_engine: "{{ 'postgres' if postgres_enabled and linkding_database_hostname == postgres_connection_hostname else 'sqlite' }}"
+linkding_database_engine: "{{ 'postgres' if postgres_enabled and linkding_database_hostname == postgres_identifier else 'sqlite' }}"
 # /role-specific:postgres
 
 # role-specific:traefik
@@ -5559,7 +5559,7 @@ miniflux_container_labels_traefik_compression_middleware_enabled: "{{ mash_playb
 miniflux_container_labels_traefik_compression_middleware_name: "{{ mash_playbook_reverse_proxy_traefik_middleware_compession_name if mash_playbook_reverse_proxy_traefik_middleware_compession_enabled else '' }}"
 
 # role-specific:postgres
-miniflux_database_hostname: "{{ postgres_connection_hostname if postgres_enabled else '' }}"
+miniflux_database_hostname: "{{ postgres_identifier if postgres_enabled else '' }}"
 miniflux_database_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'miniflux.db', rounds=655555) | to_uuid }}"
 # /role-specific:postgres
 
@@ -5777,7 +5777,7 @@ n8n_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }
 n8n_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
 
 # role-specific:postgres
-n8n_database_hostname: "{{ postgres_connection_hostname if postgres_enabled else '' }}"
+n8n_database_hostname: "{{ postgres_identifier if postgres_enabled else '' }}"
 n8n_database_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'n8n.db', rounds=655555) | to_uuid }}"
 # /role-specific:postgres
 
@@ -6513,7 +6513,7 @@ plausible_environment_variable_smtp_host_ssl_enabled: false
 # /role-specific:exim_relay
 
 # role-specific:postgres
-plausible_database_hostname: "{{ postgres_connection_hostname if postgres_enabled else '' }}"
+plausible_database_hostname: "{{ postgres_identifier if postgres_enabled else '' }}"
 plausible_database_password: "{{ ('%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'plausible.db', rounds=655555) | to_uuid) if postgres_enabled else '' }}"
 # /role-specific:postgres
 
@@ -6856,7 +6856,7 @@ prometheus_postgres_exporter_container_labels_traefik_enabled: "{{ mash_playbook
 prometheus_postgres_exporter_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
 
 # role-specific:postgres
-prometheus_postgres_exporter_database_hostname: "{{ postgres_connection_hostname if postgres_enabled else '' }}"
+prometheus_postgres_exporter_database_hostname: "{{ postgres_identifier if postgres_enabled else '' }}"
 prometheus_postgres_exporter_database_username: prometheus_postgres_exporter
 prometheus_postgres_exporter_database_password: "{{ postgres_connection_password if postgres_enabled else '' }}"
 prometheus_postgres_exporter_database_port: "{{ postgres_connection_port if postgres_enabled else 5432 }}"
@@ -7277,7 +7277,7 @@ redmine_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxy
 redmine_database_type: "{{ 'postgresql' if postgres_enabled else 'sqlite3' }}"
 
 # role-specific:postgres
-redmine_database_hostname: "{{ postgres_connection_hostname if postgres_enabled else '' }}"
+redmine_database_hostname: "{{ postgres_identifier if postgres_enabled else '' }}"
 redmine_database_username: "redmine"
 redmine_database_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'redmine.db', rounds=655555) | to_uuid }}"
 # /role-specific:postgres
