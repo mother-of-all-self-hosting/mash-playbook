@@ -1058,7 +1058,7 @@ mash_playbook_postgres_managed_databases_auto_itemized:
         'name': listmonk_database_name,
         'username': listmonk_database_username,
         'password': listmonk_database_password,
-      } if listmonk_enabled and listmonk_database_hostname == postgres_identifier else omit
+      } if listmonk_enabled and listmonk_database_hostname == postgres_identifier else omit)
     }}
   # /role-specific:listmonk
 
