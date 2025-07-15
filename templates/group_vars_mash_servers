@@ -848,7 +848,7 @@ mash_playbook_postgres_managed_databases_auto_itemized:
         'name': docmost_database_name,
         'username': docmost_database_username,
         'password': docmost_database_password,
-      } if docmost_enabled else omit)
+      } if docmost_enabled and docmost_database_hostname == postgres_identifier else omit)
     }}
   # /role-specific:docmost
 
@@ -859,7 +859,7 @@ mash_playbook_postgres_managed_databases_auto_itemized:
         'name': etherpad_database_name,
         'username': etherpad_database_username,
         'password': etherpad_database_password,
-      } if etherpad_enabled else omit)
+      } if etherpad_enabled and etherpad_database_hostname == postgres_identifier else omit)
     }}
   # /role-specific:etherpad
 
@@ -870,7 +870,7 @@ mash_playbook_postgres_managed_databases_auto_itemized:
         'name': firezone_database_name,
         'username': firezone_database_username,
         'password': firezone_database_password,
-      } if firezone_enabled else omit)
+      } if firezone_enabled and firezone_database_hostname == postgres_identifier else omit)
     }}
   # /role-specific:firezone
 
@@ -892,7 +892,7 @@ mash_playbook_postgres_managed_databases_auto_itemized:
         'name': forgejo_config_database_name,
         'username': forgejo_config_database_username,
         'password': forgejo_config_database_password,
-      } if forgejo_enabled else omit)
+      } if forgejo_enabled and forgejo_config_database_hostname == postgres_identifier else omit)
     }}
   # /role-specific:forgejo
 
@@ -947,7 +947,7 @@ mash_playbook_postgres_managed_databases_auto_itemized:
         'name': gitea_config_database_name,
         'username': gitea_config_database_username,
         'password': gitea_config_database_password,
-      } if gitea_enabled else omit)
+      } if gitea_enabled and gitea_config_database_hostname == postgres_identifier else omit)
     }}
   # /role-specific:gitea
 
@@ -980,7 +980,7 @@ mash_playbook_postgres_managed_databases_auto_itemized:
         'name': ihatemoney_database_name,
         'username': ihatemoney_database_username,
         'password': ihatemoney_database_password,
-      } if ihatemoney_enabled else omit)
+      } if ihatemoney_enabled and ihatemoney_database_hostname == postgres_identifier else omit)
     }}
   # /role-specific:ihatemoney
 
@@ -992,7 +992,7 @@ mash_playbook_postgres_managed_databases_auto_itemized:
         'name': ilmo_database_name,
         'username': ilmo_database_username,
         'password': ilmo_database_password,
-      } if ilmo_enabled else omit)
+      } if ilmo_enabled and ilmo_database_host == postgres_identifier else omit)
     }}
   # /role-specific:ilmo
 
@@ -1091,7 +1091,7 @@ mash_playbook_postgres_managed_databases_auto_itemized:
         'name': netbox_database_name,
         'username': netbox_database_username,
         'password': netbox_database_password,
-      } if netbox_enabled else omit)
+      } if netbox_enabled and netbox_database_hostname == postgres_identifier else omit)
     }}
   # /role-specific:netbox
 
@@ -1102,7 +1102,7 @@ mash_playbook_postgres_managed_databases_auto_itemized:
         'name': nextcloud_database_name,
         'username': nextcloud_database_username,
         'password': nextcloud_database_password,
-      } if nextcloud_enabled else omit)
+      } if nextcloud_enabled and nextcloud_database_hostname == postgres_identifier else omit)
     }}
   # /role-specific:nextcloud
 
@@ -1113,7 +1113,7 @@ mash_playbook_postgres_managed_databases_auto_itemized:
         'name': notfellchen_database_name,
         'username': notfellchen_database_username,
         'password': notfellchen_database_password,
-      } if notfellchen_enabled else omit)
+      } if notfellchen_enabled and notfellchen_database_host == postgres_identifier else omit)
     }}
   # /role-specific:notfellchen
 
@@ -1158,7 +1158,7 @@ mash_playbook_postgres_managed_databases_auto_itemized:
         'name': peertube_config_database_name,
         'username': peertube_config_database_username,
         'password': peertube_config_database_password,
-      } if peertube_enabled else omit)
+      } if peertube_enabled and peertube_config_database_hostname == postgres_identifier else omit)
     }}
   # /role-specific:peertube
 
@@ -1246,7 +1246,7 @@ mash_playbook_postgres_managed_databases_auto_itemized:
         'name': vaultwarden_database_name,
         'username': vaultwarden_database_username,
         'password': vaultwarden_database_password,
-      } if vaultwarden_enabled else omit)
+      } if vaultwarden_enabled and vaultwarden_database_hostname == postgres_identifier else omit)
     }}
   # /role-specific:vaultwarden
 
@@ -1257,7 +1257,7 @@ mash_playbook_postgres_managed_databases_auto_itemized:
         'name': woodpecker_ci_server_database_datasource_db_name,
         'username': woodpecker_ci_server_database_datasource_username,
         'password': woodpecker_ci_server_database_datasource_password,
-      } if woodpecker_ci_server_enabled else omit)
+      } if woodpecker_ci_server_enabled and woodpecker_ci_server_database_datasource_hostname == postgres_identifier else omit)
     }}
   # /role-specific:woodpecker_ci_server
 
