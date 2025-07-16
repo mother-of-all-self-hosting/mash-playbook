@@ -904,7 +904,7 @@ mash_playbook_postgres_managed_databases_auto_itemized:
         'name': freescout_database_name,
         'username': freescout_database_username,
         'password': freescout_database_password,
-      } if freescout_enabled else omit)
+      } if freescout_enabled and freescout_database_hostname == postgres_identifier else omit)
     }}
   # /role-specific:freescout
 
@@ -1047,7 +1047,7 @@ mash_playbook_postgres_managed_databases_auto_itemized:
         'name': linkding_database_name,
         'username': linkding_database_username,
         'password': linkding_database_password,
-      } if linkding_enabled and linkding_database_type == 'postgres' else omit)
+      } if linkding_enabled and linkding_database_hostname == postgres_identifier and linkding_database_type == 'postgres' else omit)
     }}
   # /role-specific:linkding
 
@@ -1069,7 +1069,7 @@ mash_playbook_postgres_managed_databases_auto_itemized:
         'name': miniflux_database_name,
         'username': miniflux_database_username,
         'password': miniflux_database_password,
-      } if miniflux_enabled else omit)
+      } if miniflux_enabled and miniflux_database_hostname == postgres_identifier else omit)
     }}
   # /role-specific:miniflux
 
@@ -1080,7 +1080,7 @@ mash_playbook_postgres_managed_databases_auto_itemized:
         'name': n8n_database_name,
         'username': n8n_database_username,
         'password': n8n_database_password,
-      } if n8n_enabled else omit)
+      } if n8n_enabled and n8n_database_hostname == postgres_identifier else omit)
     }}
   # /role-specific:n8n
 
@@ -1168,7 +1168,7 @@ mash_playbook_postgres_managed_databases_auto_itemized:
         'name': plausible_database_name,
         'username': plausible_database_username,
         'password': plausible_database_password,
-      } if plausible_enabled else omit)
+      } if plausible_enabled and plausible_database_hostname == postgres_identifier else omit)
     }}
   # /role-specific:plausible
 
@@ -1190,7 +1190,7 @@ mash_playbook_postgres_managed_databases_auto_itemized:
         'name': prometheus_postgres_exporter_database_name,
         'username': prometheus_postgres_exporter_database_username,
         'password': prometheus_postgres_exporter_database_password,
-      } if prometheus_postgres_exporter_enabled else omit)
+      } if prometheus_postgres_exporter_enabled and prometheus_postgres_exporter_database_hostname == postgres_identifier else omit)
     }}
   # /role-specific:prometheus_postgres_exporter
 
@@ -1201,7 +1201,7 @@ mash_playbook_postgres_managed_databases_auto_itemized:
         'name': redmine_database_name,
         'username': redmine_database_username,
         'password': redmine_database_password,
-      } if redmine_enabled else omit)
+      } if redmine_enabled and redmine_database_hostname == postgres_identifier else omit)
     }}
   # /role-specific:redmine
 
