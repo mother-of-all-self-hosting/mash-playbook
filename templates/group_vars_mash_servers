@@ -827,7 +827,7 @@ mash_playbook_postgres_managed_databases_auto_itemized:
         'name': authelia_config_storage_postgres_database,
         'username': authelia_config_storage_postgres_username,
         'password': authelia_config_storage_postgres_password,
-      } if authelia_enabled and authelia_config_storage_postgres_host == postgres_identifier else omit)
+      } if authelia_enabled and authelia_config_storage_postgres_hostname == postgres_identifier else omit)
     }}
   # /role-specific:authelia
 
@@ -1765,14 +1765,14 @@ authelia_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base
 
 authelia_systemd_required_services_list_auto: |
   {{
-    ([postgres_identifier ~ '.service'] if postgres_enabled and authelia_config_storage_postgres_host == postgres_identifier else [])
+    ([postgres_identifier ~ '.service'] if postgres_enabled and authelia_config_storage_postgres_hostname == postgres_identifier else [])
   }}
 
 authelia_container_additional_networks_auto: |
   {{
     ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
     +
-    ([postgres_container_network] if postgres_enabled and authelia_config_storage_postgres_host == postgres_identifier and authelia_container_network != postgres_container_network else [])
+    ([postgres_container_network] if postgres_enabled and authelia_config_storage_postgres_hostname == postgres_identifier and authelia_container_network != postgres_container_network else [])
   }}
 
 authelia_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
@@ -1787,13 +1787,13 @@ authelia_config_identity_providers_oidc_hmac_secret: "{{ '%s' | format(mash_play
 # role-specific:mariadb
 # If Postgres and MariaDB are not enabled, we favor Postgres.
 # We only enable MySQL if it's the only enabled component (that is, if Postgres is not enabled at the same time).
-authelia_config_storage_mysql_host: "{{ mariadb_identifier if mariadb_enabled and not postgres_enabled | default(false) else '' }}"
+authelia_config_storage_mysql_hostname: "{{ mariadb_identifier if mariadb_enabled and not postgres_enabled | default(false) else '' }}"
 authelia_config_storage_mysql_port: "{{ '3306' if mariadb_enabled else '' }}"
 authelia_config_storage_mysql_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'db.authelia', rounds=655555) | to_uuid }}"
 # /role-specific:mariadb
 
 # role-specific:postgres
-authelia_config_storage_postgres_host: "{{ postgres_identifier if postgres_enabled else '' }}"
+authelia_config_storage_postgres_hostname: "{{ postgres_identifier if postgres_enabled else '' }}"
 authelia_config_storage_postgres_port: "{{ '5432' if postgres_enabled else '' }}"
 authelia_config_storage_postgres_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'db.authelia', rounds=655555) | to_uuid }}"
 # /role-specific:postgres
@@ -5339,7 +5339,7 @@ mash_playbook_mariadb_managed_databases_auto_itemized:
         'name': authelia_config_storage_mysql_database,
         'username': authelia_config_storage_mysql_username,
         'password': authelia_config_storage_mysql_password,
-      } if authelia_enabled and authelia_config_storage_mysql_host == mariadb_identifier else omit)
+      } if authelia_enabled and authelia_config_storage_mysql_hostname == mariadb_identifier else omit)
     }}
   # /role-specific:authelia
 
