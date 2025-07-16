@@ -1047,7 +1047,7 @@ mash_playbook_postgres_managed_databases_auto_itemized:
         'name': linkding_database_name,
         'username': linkding_database_username,
         'password': linkding_database_password,
-      } if linkding_enabled and linkding_database_engine == 'postgres' else omit)
+      } if linkding_enabled and linkding_database_type == 'postgres' else omit)
     }}
   # /role-specific:linkding
 
@@ -5203,7 +5203,7 @@ linkding_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_prox
 # role-specific:postgres
 linkding_database_hostname: "{{ postgres_identifier if postgres_enabled else '' }}"
 linkding_database_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'linkding.db', rounds=655555) | to_uuid }}"
-linkding_database_engine: "{{ 'postgres' if postgres_enabled and linkding_database_hostname == postgres_identifier else 'sqlite' }}"
+linkding_database_type: "{{ 'postgres' if postgres_enabled and linkding_database_hostname == postgres_identifier else 'sqlite' }}"
 # /role-specific:postgres
 
 # role-specific:traefik
