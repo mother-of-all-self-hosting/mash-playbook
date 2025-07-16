@@ -882,7 +882,7 @@ mash_playbook_postgres_managed_databases_auto_itemized:
         'name': focalboard_database_name,
         'username': focalboard_database_username,
         'password': focalboard_database_password,
-      } if focalboard_enabled and focalboard_database_type == 'postgres' and focalboard_database_hostname == postgres_identifier else omit)
+      } if focalboard_enabled and focalboard_database_hostname == postgres_identifier and focalboard_database_type == 'postgres' else omit)
     }}
   # /role-specific:focalboard
 
@@ -1014,7 +1014,7 @@ mash_playbook_postgres_managed_databases_auto_itemized:
         'name': keycloak_database_name,
         'username': keycloak_database_username,
         'password': keycloak_database_password,
-      } if keycloak_enabled and keycloak_database_type == 'postgres' and keycloak_database_hostname == postgres_identifier else omit)
+      } if keycloak_enabled and keycloak_database_hostname == postgres_identifier and keycloak_database_type == 'postgres' else omit)
     }}
   # /role-specific:keycloak
 
@@ -6598,7 +6598,7 @@ postgis_managed_databases_auto: |
       'name': mobilizon_database_name,
       'username': mobilizon_database_username,
       'password': mobilizon_database_password,
-    }] if mobilizon_enabled and mobilizon_database_type == 'postgis' and mobilizon_database_hostname == postgis_identifier else [])
+    }] if mobilizon_enabled and mobilizon_database_hostname == postgis_identifier and mobilizon_database_type == 'postgis' else [])
   }}
 
 ########################################################################
