@@ -71,22 +71,6 @@ anki_environment_variables_password: YOUR_PASSWORD_HERE
 
 **Note**: if the username is changed after creating the user, a new user with the specified username will be created by running the installation command, instead of renaming the user.
 
-### Mount a directory for storing data
-
-The service requires a Docker volume to be mounted, so that the directory for storing files is shared with the host machine.
-
-To add the volume, prepare a directory on the host machine and add the following configuration to your `vars.yml` file, setting the directory path to `src`:
-
-```yaml
-anki_container_additional_volumes:
-  - type: bind
-    src: /path/on/the/host
-    dst: /data
-    options:
-```
-
-Make sure permissions of the directory specified to `src` (`/path/on/the/host`).
-
 ## Usage
 
 After installation, the synchronization server becomes available at the URL specified with `anki_hostname` and `anki_path_prefix`.
