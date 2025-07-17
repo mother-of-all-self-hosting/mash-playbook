@@ -79,3 +79,7 @@ See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-ya
 ## Troubleshooting
 
 See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-yacy/blob/main/docs/configuring-yacy.md#troubleshooting) on the role's documentation for details.
+
+## Related services
+
+- [SearXNG](searxng.md) — a privacy-respecting, hackable [metasearch engine](https://en.wikipedia.org/wiki/Metasearch_engine). See [this section](searxng.md#add-your-yacy-instance-optional) for the instruction to add your YaCy instance to the SearXNG instance.
