@@ -248,3 +248,34 @@ Note that running the `just` commands for installation (`just install-all` or `j
 After installation, your SearXNG instance becomes available at the URL specified with `searxng_hostname` and `searxng_path_prefix`. With the configuration above, the service is hosted at `https://mash.example.com/searxng`.
 
 If authentication is enabled, you can log in with the username and password specified with `searxng_basic_auth_username` and `searxng_basic_auth_password`.
+
+### Add your YaCy instance (optional)
+
+The playbook can install and configure [YaCy](https://yacy.net) for you. YaCy is a distributed web search engine, based on a peer-to-peer network.
+
+To add your YaCy instance as an available search engine to your SearXNG instance, enable YaCy by following [this documentation](yacy.md), before adding the following configuration to `vars.yml`:
+
+```yaml
+searxng_extra_configuration_snippets: |
+  engines:
+  - name: yacy
+    base_url:
+      - https://example.com
+    disabled: false
+  - name: yacy images
+    disabled: false
+```
+
+Replace `example.com` with the domain name of your YaCy instance.
+
+>[!NOTE]
+> The YaCy instance apparently cannot be added to SearXNG if it is hosted on a subpath specified with `yacy_path_prefix`.
+
+Adding `search_mode: local` sets the search mode to the "Stealth" mode, where search results are aggregated from your YaCy instance only.
+
+Refer to the pages below for details about configuration.
+
+- <https://docs.searxng.org/dev/engines/online/yacy.html>
+- <https://docs.searxng.org/admin/settings/settings.html#use-default-settings>
+
+The up-to-date default settings are available on [`settings.yml`](https://github.com/searxng/searxng/blob/master/searx/settings.yml).
