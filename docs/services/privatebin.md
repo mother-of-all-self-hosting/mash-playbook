@@ -71,19 +71,11 @@ See below for the instruction to use one of the others.
 
 #### Local filesystem
 
-To use local filesystem database for a storage, you need to add a Docker volume to mount in the container, so that the directory for storing files is shared with the host machine.
-
-To add the volume, prepare a directory on the host machine and add the following configuration to your `vars.yml` file, setting the directory path to `src`:
+To use local filesystem database for a storage, add the following configuration to your `vars.yml` file:
 
 ```yaml
-privatebin_container_additional_volumes:
-  - type: bind
-    src: /path/on/the/host
-    dst: /srv/data
-    options:
+privatebin_config_model: Filesystem
 ```
-
-Make sure permissions of the directory specified to `src`. If not correctly specified, the service returns a permission error while trying to put data to it.
 
 #### MySQL
 
