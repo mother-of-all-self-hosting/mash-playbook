@@ -64,26 +64,6 @@ send_hostname: send.example.com
 
 The service provides these storage backend options: local filesystem (default), Amazon S3 compatible object storage, and Google Cloud Storage.
 
-With the default configuration, the directory for storing files inside the Docker container is set to `/uploads`. You can change it by adding and adjusting the following configuration to your `vars.yml` file:
-
-```yaml
-send_environment_variable_file_dir: YOUR_DIRECTORY_HERE
-```
-
-**By default this role removes uploaded files when uninstalling the service**. In order to make those files persistent, you need to add a Docker volume to mount in the container, so that the directory for storing files is shared with the host machine.
-
-To add the volume, prepare a directory on the host machine and add the following configuration to your `vars.yml` file, setting the directory path to `src`:
-
-```yaml
-send_container_additional_volumes:
-  - type: bind
-    src: /path/on/the/host
-    dst: "{{ send_environment_variable_file_dir }}"
-    options:
-```
-
-Make sure permissions of the directory specified to `src` (`/path/on/the/host`).
-
 See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-send/blob/main/docs/configuring-send.md#configure-a-storage-backend) on the role's documentation for details about how to set up Amazon S3 compatible object storage and Google Cloud Storage.
 
 ### Configure upload and download limits (optional)
