@@ -205,6 +205,10 @@
     - role: galaxy/excalidraw
     # /role-specific:excalidraw
 
+    # role-specific:excalidraw_room
+    - role: galaxy/excalidraw_room
+    # /role-specific:excalidraw_room
+
     # role-specific:firezone
     - role: galaxy/firezone
     # /role-specific:firezone
