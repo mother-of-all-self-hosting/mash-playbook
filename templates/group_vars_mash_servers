@@ -777,6 +777,11 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
     {{ ({'name': (writefreely_identifier  + '.service'), 'priority': 2000, 'groups': ['mash', 'writefreely']} if writefreely_enabled else omit) }}
   # /role-specific:writefreely
 
+  # role-specific:yacy
+  - |-
+    {{ ({'name': (yacy_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'yacy']} if yacy_enabled else omit) }}
+  # /role-specific:yacy
+
   # role-specific:yourls
   - |-
     {{ ({'name': (yourls_identifier  + '.service'), 'priority': 2000, 'groups': ['mash', 'yourls']} if yourls_enabled else omit) }}
@@ -827,7 +832,7 @@ mash_playbook_postgres_managed_databases_auto_itemized:
         'name': authelia_config_storage_postgres_database,
         'username': authelia_config_storage_postgres_username,
         'password': authelia_config_storage_postgres_password,
-      } if authelia_enabled and authelia_config_storage_postgres_host == postgres_identifier else omit)
+      } if authelia_enabled and authelia_config_storage_postgres_hostname == postgres_identifier else omit)
     }}
   # /role-specific:authelia
 
@@ -882,7 +887,7 @@ mash_playbook_postgres_managed_databases_auto_itemized:
         'name': focalboard_database_name,
         'username': focalboard_database_username,
         'password': focalboard_database_password,
-      } if focalboard_enabled and focalboard_database_type == 'postgres' and focalboard_database_hostname == postgres_identifier else omit)
+      } if focalboard_enabled and focalboard_database_hostname == postgres_identifier and focalboard_database_type == 'postgres' else omit)
     }}
   # /role-specific:focalboard
 
@@ -904,7 +909,7 @@ mash_playbook_postgres_managed_databases_auto_itemized:
         'name': freescout_database_name,
         'username': freescout_database_username,
         'password': freescout_database_password,
-      } if freescout_enabled else omit)
+      } if freescout_enabled and freescout_database_hostname == postgres_identifier else omit)
     }}
   # /role-specific:freescout
 
@@ -1014,7 +1019,7 @@ mash_playbook_postgres_managed_databases_auto_itemized:
         'name': keycloak_database_name,
         'username': keycloak_database_username,
         'password': keycloak_database_password,
-      } if keycloak_enabled and keycloak_database_type == 'postgres' and keycloak_database_hostname == postgres_identifier else omit)
+      } if keycloak_enabled and keycloak_database_hostname == postgres_identifier and keycloak_database_type == 'postgres' else omit)
     }}
   # /role-specific:keycloak
 
@@ -1047,7 +1052,7 @@ mash_playbook_postgres_managed_databases_auto_itemized:
         'name': linkding_database_name,
         'username': linkding_database_username,
         'password': linkding_database_password,
-      } if linkding_enabled and linkding_database_engine == 'postgres' else omit)
+      } if linkding_enabled and linkding_database_hostname == postgres_identifier and linkding_database_type == 'postgres' else omit)
     }}
   # /role-specific:linkding
 
@@ -1069,7 +1074,7 @@ mash_playbook_postgres_managed_databases_auto_itemized:
         'name': miniflux_database_name,
         'username': miniflux_database_username,
         'password': miniflux_database_password,
-      } if miniflux_enabled else omit)
+      } if miniflux_enabled and miniflux_database_hostname == postgres_identifier else omit)
     }}
   # /role-specific:miniflux
 
@@ -1080,7 +1085,7 @@ mash_playbook_postgres_managed_databases_auto_itemized:
         'name': n8n_database_name,
         'username': n8n_database_username,
         'password': n8n_database_password,
-      } if n8n_enabled else omit)
+      } if n8n_enabled and n8n_database_hostname == postgres_identifier else omit)
     }}
   # /role-specific:n8n
 
@@ -1168,7 +1173,7 @@ mash_playbook_postgres_managed_databases_auto_itemized:
         'name': plausible_database_name,
         'username': plausible_database_username,
         'password': plausible_database_password,
-      } if plausible_enabled else omit)
+      } if plausible_enabled and plausible_database_hostname == postgres_identifier else omit)
     }}
   # /role-specific:plausible
 
@@ -1190,7 +1195,7 @@ mash_playbook_postgres_managed_databases_auto_itemized:
         'name': prometheus_postgres_exporter_database_name,
         'username': prometheus_postgres_exporter_database_username,
         'password': prometheus_postgres_exporter_database_password,
-      } if prometheus_postgres_exporter_enabled else omit)
+      } if prometheus_postgres_exporter_enabled and prometheus_postgres_exporter_database_hostname == postgres_identifier else omit)
     }}
   # /role-specific:prometheus_postgres_exporter
 
@@ -1201,7 +1206,7 @@ mash_playbook_postgres_managed_databases_auto_itemized:
         'name': redmine_database_name,
         'username': redmine_database_username,
         'password': redmine_database_password,
-      } if redmine_enabled else omit)
+      } if redmine_enabled and redmine_database_hostname == postgres_identifier else omit)
     }}
   # /role-specific:redmine
 
@@ -1765,14 +1770,14 @@ authelia_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base
 
 authelia_systemd_required_services_list_auto: |
   {{
-    ([postgres_identifier ~ '.service'] if postgres_enabled and authelia_config_storage_postgres_host == postgres_identifier else [])
+    ([postgres_identifier ~ '.service'] if postgres_enabled and authelia_config_storage_postgres_hostname == postgres_identifier else [])
   }}
 
 authelia_container_additional_networks_auto: |
   {{
     ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
     +
-    ([postgres_container_network] if postgres_enabled and authelia_config_storage_postgres_host == postgres_identifier and authelia_container_network != postgres_container_network else [])
+    ([postgres_container_network] if postgres_enabled and authelia_config_storage_postgres_hostname == postgres_identifier and authelia_container_network != postgres_container_network else [])
   }}
 
 authelia_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
@@ -1787,13 +1792,13 @@ authelia_config_identity_providers_oidc_hmac_secret: "{{ '%s' | format(mash_play
 # role-specific:mariadb
 # If Postgres and MariaDB are not enabled, we favor Postgres.
 # We only enable MySQL if it's the only enabled component (that is, if Postgres is not enabled at the same time).
-authelia_config_storage_mysql_host: "{{ mariadb_identifier if mariadb_enabled and not postgres_enabled | default(false) else '' }}"
+authelia_config_storage_mysql_hostname: "{{ mariadb_identifier if mariadb_enabled and not postgres_enabled | default(false) else '' }}"
 authelia_config_storage_mysql_port: "{{ '3306' if mariadb_enabled else '' }}"
 authelia_config_storage_mysql_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'db.authelia', rounds=655555) | to_uuid }}"
 # /role-specific:mariadb
 
 # role-specific:postgres
-authelia_config_storage_postgres_host: "{{ postgres_identifier if postgres_enabled else '' }}"
+authelia_config_storage_postgres_hostname: "{{ postgres_identifier if postgres_enabled else '' }}"
 authelia_config_storage_postgres_port: "{{ '5432' if postgres_enabled else '' }}"
 authelia_config_storage_postgres_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'db.authelia', rounds=655555) | to_uuid }}"
 # /role-specific:postgres
@@ -5203,7 +5208,7 @@ linkding_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_prox
 # role-specific:postgres
 linkding_database_hostname: "{{ postgres_identifier if postgres_enabled else '' }}"
 linkding_database_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'linkding.db', rounds=655555) | to_uuid }}"
-linkding_database_engine: "{{ 'postgres' if postgres_enabled and linkding_database_hostname == postgres_identifier else 'sqlite' }}"
+linkding_database_type: "{{ 'postgres' if postgres_enabled and linkding_database_hostname == postgres_identifier else 'sqlite' }}"
 # /role-specific:postgres
 
 # role-specific:traefik
@@ -5339,7 +5344,7 @@ mash_playbook_mariadb_managed_databases_auto_itemized:
         'name': authelia_config_storage_mysql_database,
         'username': authelia_config_storage_mysql_username,
         'password': authelia_config_storage_mysql_password,
-      } if authelia_enabled and authelia_config_storage_mysql_host == mariadb_identifier else omit)
+      } if authelia_enabled and authelia_config_storage_mysql_hostname == mariadb_identifier else omit)
     }}
   # /role-specific:authelia
 
@@ -6598,7 +6603,7 @@ postgis_managed_databases_auto: |
       'name': mobilizon_database_name,
       'username': mobilizon_database_username,
       'password': mobilizon_database_password,
-    }] if mobilizon_enabled and mobilizon_database_type == 'postgis' and mobilizon_database_hostname == postgis_identifier else [])
+    }] if mobilizon_enabled and mobilizon_database_hostname == postgis_identifier and mobilizon_database_type == 'postgis' else [])
   }}
 
 ########################################################################
@@ -8282,6 +8287,44 @@ writefreely_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_
 #                                                                      #
 ########################################################################
 # /role-specific:writefreely
+
+
+
+# role-specific:yacy
+########################################################################
+#                                                                      #
+# yacy                                                                 #
+#                                                                      #
+########################################################################
+
+yacy_enabled: false
+
+yacy_identifier: "{{ mash_playbook_service_identifier_prefix }}yacy"
+
+yacy_uid: "{{ mash_playbook_uid }}"
+yacy_gid: "{{ mash_playbook_gid }}"
+
+yacy_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}yacy"
+
+yacy_container_additional_networks_auto: |
+  {{
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+  }}
+
+yacy_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+yacy_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+
+# role-specific:traefik
+yacy_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
+yacy_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
+# /role-specific:traefik
+
+########################################################################
+#                                                                      #
+# /yacy                                                                #
+#                                                                      #
+########################################################################
+# /role-specific:yacy
 
 
 

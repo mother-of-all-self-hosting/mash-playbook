@@ -70,16 +70,6 @@ docmost_hostname: docmost.example.com
 
 The service provides these storage backend options: local filesystem (default) and Amazon S3 compatible object storage.
 
-If local filesystem is used, **this role by default removes uploaded files when uninstalling the service**. In order to make those files persistent, you need to add a Docker volume to mount in the container, so that the directory for storing files is shared with the host machine.
-
-To add the volume, prepare a directory on the host machine and add the following configuration to your `vars.yml` file, setting the directory path to `src`:
-
-```yaml
-docmost_data_path: /path/on/the/host
-```
-
-Make sure permissions of the directory specified to `src` (`/path/on/the/host`).
-
 See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-docmost/blob/main/docs/configuring-docmost.md#configure-a-storage-backend) on the role's documentation for details about how to set up Amazon S3 compatible object storage for Docmost.
 
 ### Configure the mailer
@@ -291,3 +281,7 @@ To get started, go to the URL on a web browser and create a first workspace by i
 ## Troubleshooting
 
 See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-docmost/blob/main/docs/configuring-docmost.md#troubleshooting) on the role's documentation for details.
+
+## Related services
+
+- [Excalidraw](excalidraw.md) — Free and open source virtual whiteboard for sketching hand-drawn like diagrams

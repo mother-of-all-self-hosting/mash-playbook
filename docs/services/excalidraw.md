@@ -69,3 +69,7 @@ After installation, the Excalidraw client becomes available at the URL specified
 ## Troubleshooting
 
 See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-excalidraw/blob/main/docs/configuring-excalidraw.md#troubleshooting) on the role's documentation for details.
+
+## Related services
+
+- [Docmost](docmost.md) — Open-source collaborative wiki and documentation software
