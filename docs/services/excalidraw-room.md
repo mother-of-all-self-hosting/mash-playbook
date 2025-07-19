@@ -17,17 +17,20 @@ SPDX-FileCopyrightText: 2024 - 2025 Suguru Hirahara
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 
-# Excalidraw
+# Excalidraw collaboration server
 
-The playbook can install and configure the [Excalidraw](https://excalidraw.com/) client for you.
+The playbook can install and configure an [example collaboration server](https://github.com/excalidraw/excalidraw-room) for [Excalidraw](https://excalidraw.com/) for you.
 
-Excalidraw is a free and open source virtual whiteboard for sketching hand-drawn like diagrams. It saves data locally on the browser, and the data is end-to-end encrypted.
+It enables to self-host the collaboration server for your Excalidraw's instance, which by default is configured to connect to the Excalidraw's server at `oss-collab.excalidraw.com`.
 
-See the project's [documentation](https://docs.excalidraw.com/) to learn what it does and why it might be useful to you.
+See the project's [documentation](https://github.com/excalidraw/excalidraw-room/blob/master/README.md) to learn what it does and why it might be useful to you.
 
-For details about configuring the [Ansible role for the server](https://github.com/mother-of-all-self-hosting/ansible-role-excalidraw), you can check them via:
-- 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-excalidraw/blob/main/docs/configuring-excalidraw.md) online
-- 📁 `roles/galaxy/excalidraw/docs/configuring-excalidraw.md` locally, if you have [fetched the Ansible roles](../installing.md)
+For details about configuring the [Ansible role for the server](https://github.com/mother-of-all-self-hosting/ansible-role-excalidraw-room), you can check them via:
+- 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-excalidraw-room/blob/main/docs/configuring-excalidraw-room.md) online
+- 📁 `roles/galaxy/excalidraw_room/docs/configuring-excalidraw-room.md` locally, if you have [fetched the Ansible roles](../installing.md)
+
+>[!NOTE]
+> The role is configured to build the Docker image by default, as it is not provided by the upstream project. Before proceeding, make sure that the machine which you are going to run the Ansible commands against has sufficient computing power to build it.
 
 ## Dependencies
 
@@ -42,30 +45,29 @@ To enable this service, add the following configuration to your `vars.yml` file 
 ```yaml
 ########################################################################
 #                                                                      #
-# excalidraw                                                           #
+# excalidraw_room                                                      #
 #                                                                      #
 ########################################################################
 
-excalidraw_enabled: true
+excalidraw_room_enabled: true
 
-excalidraw_hostname: excalidraw.example.com
+excalidraw_room_hostname: "excalidraw-room.example.com"
 
 ########################################################################
 #                                                                      #
-# /excalidraw                                                          #
+# /excalidraw_room                                                     #
 #                                                                      #
 ########################################################################
 ```
 
-**Note**: hosting Excalidraw client under a subpath (by configuring the `excalidraw_path_prefix` variable) does not seem to be possible due to Excalidraw's technical limitations.
+**Note**: hosting Excalidraw collaboration server client under a subpath (by configuring the `excalidraw_room_path_prefix` variable) does not seem to be possible due to Excalidraw collaboration server's technical limitations.
 
 ## Usage
 
-After installation, the Excalidraw client becomes available at the URL specified with `excalidraw_hostname`.
+After installation, the Excalidraw collaboration server becomes available at the URL specified with `excalidraw_room_hostname`.
 
->[!NOTE]
-> At the moment, self-hosting your own instance doesn't support sharing or collaboration features (see [here](https://docs.excalidraw.com/docs/introduction/development#self-hosting)).
+To use the collaboration server, you need to set up an Excalidraw instance built for the collaboration server. See [this page](excalidraw.md) for the instruction to set up the instance with this playbook.
 
 ## Troubleshooting
 
-See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-excalidraw/blob/main/docs/configuring-excalidraw.md#troubleshooting) on the role's documentation for details.
+See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-excalidraw-room/blob/main/docs/configuring-excalidraw-room.md#troubleshooting) on the role's documentation for details.
