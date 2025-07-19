@@ -281,3 +281,7 @@ To get started, go to the URL on a web browser and create a first workspace by i
 ## Troubleshooting
 
 See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-docmost/blob/main/docs/configuring-docmost.md#troubleshooting) on the role's documentation for details.
+
+## Related services
+
+- [Excalidraw](excalidraw.md) — Free and open source virtual whiteboard for sketching hand-drawn like diagrams
