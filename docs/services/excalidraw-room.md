@@ -71,3 +71,7 @@ To use the collaboration server, you need to set up an Excalidraw instance built
 ## Troubleshooting
 
 See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-excalidraw-room/blob/main/docs/configuring-excalidraw-room.md#troubleshooting) on the role's documentation for details.
+
+## Related services
+
+- [Excalidraw](excalidraw.md) — Free and open source virtual whiteboard for sketching hand-drawn like diagrams
