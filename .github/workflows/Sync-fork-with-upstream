@@ -1,0 +1,71 @@
+name: Sync fork with upstream via PR
+
+on:
+  schedule:
+    - cron: '0 1 * * *'   # Runs daily at 1 AM UTC
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+  pull-requests: write
+
+env:
+  UPSTREAM_REPO: mash-playbook/mash-playbook
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout fork default branch
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref_name }}
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Set up Git
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Get upstream default branch
+        id: upstream_branch
+        run: |
+          branch=$(gh api repos/${{ env.UPSTREAM_REPO }} --jq .default_branch)
+          echo "branch=$branch" >> $GITHUB_OUTPUT
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Add upstream remote
+        run: git remote add upstream https://github.com/${{ env.UPSTREAM_REPO }}.git
+
+      - name: Fetch upstream
+        run: git fetch upstream
+
+      - name: Create/Update sync branch
+        run: |
+          git checkout -B upstream-sync
+          git reset --hard upstream/${{ steps.upstream_branch.outputs.branch }}
+          git push -f origin upstream-sync
+
+      - name: Create or update PR
+        id: cpr
+        uses: peter-evans/create-pull-request@v6
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: "Sync with upstream"
+          branch: upstream-sync
+          base: ${{ steps.upstream_branch.outputs.branch }}
+          title: "Sync with upstream (${{ steps.upstream_branch.outputs.branch }})"
+          body: |
+            Automated PR to merge upstream changes from `${{ env.UPSTREAM_REPO }}` into this fork.
+          labels: upstream-sync
+          draft: false
+
+      - name: Auto-merge PR if possible
+        if: steps.cpr.outputs.pull-request-operation == 'created'
+        uses: ahmadnassri/action-auto-merge-dependabot@v3
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          pull-request-number: ${{ steps.cpr.outputs.pull-request-number }}
