@@ -58,7 +58,7 @@ jobs:
           echo "Finding intersection of branches..."
           upstream=$(echo '${{ steps.upstream.outputs.branches }}' | jq -r '.[]')
           fork=$(echo '${{ steps.fork.outputs.branches }}' | jq -r '.[]')
-          intersection=$(for u in $upstream; do for f in $fork; do [ "$u" = "$f" ] && echo "\"$u\""; done; done | jq -s .)
+          intersection=$(for u in $upstream; do for f in $fork; do [ "$u" = "$f" ] && echo "$u"; done; done | jq -Rc '[splits("\n") | .[] | select(length>0)]')
           echo "matrix={\"branch\":$intersection}" >> $GITHUB_OUTPUT
 
   sync:
