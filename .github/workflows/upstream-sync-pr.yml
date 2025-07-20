@@ -1,26 +1,31 @@
-name: Sync fork with upstream via PR
+name: Sync multiple branches with upstream via PR
 
 on:
   schedule:
-    - cron: '0 1 * * *'   # Runs daily at 1 AM UTC
+    - cron: '0 1 * * *'
   workflow_dispatch: {}
 
 permissions:
   contents: write
   pull-requests: write
 
-env:
-  UPSTREAM_REPO: mother-of-all-self-hosting/mash-playbook
-
 jobs:
   sync:
     runs-on: ubuntu-latest
-
+    strategy:
+      matrix:
+        branch:
+          - name: main
+            sync_branch: upstream-sync-main
+          - name: dev
+            sync_branch: upstream-sync-dev
+    env:
+      UPSTREAM_REPO: mother-of-all-self-hosting/mash-playbook
     steps:
-      - name: Checkout default branch
+      - name: Checkout fork branch
         uses: actions/checkout@v4
         with:
-          ref: ${{ github.ref_name }}
+          ref: ${{ matrix.branch.name }}
           fetch-depth: 0
 
       - name: Set up Git identity
@@ -28,30 +33,17 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
-      - name: Get upstream default branch
-        id: upstream_branch
-        uses: actions/github-script@v7
-        with:
-          script: |
-            const repo = process.env.UPSTREAM_REPO;
-            const [owner, repoName] = repo.split('/');
-            const { data } = await github.rest.repos.get({
-              owner,
-              repo: repoName
-            });
-            core.setOutput('branch', data.default_branch);
-
       - name: Add upstream remote
         run: git remote add upstream https://github.com/${{ env.UPSTREAM_REPO }}.git
 
-      - name: Fetch upstream
-        run: git fetch upstream
+      - name: Fetch upstream branch
+        run: git fetch upstream ${{ matrix.branch.name }}
 
       - name: Create or update sync branch
         run: |
-          git checkout -B upstream-sync
-          git reset --hard upstream/${{ steps.upstream_branch.outputs.branch }}
-          git push -f origin upstream-sync
+          git checkout -B ${{ matrix.branch.sync_branch }}
+          git reset --hard upstream/${{ matrix.branch.name }}
+          git push -f origin ${{ matrix.branch.sync_branch }}
 
       - name: Find existing PR number (if any)
         id: find_pr
@@ -61,8 +53,8 @@ jobs:
             const { data: pulls } = await github.rest.pulls.list({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              head: `${context.repo.owner}:upstream-sync`,
-              base: '${{ steps.upstream_branch.outputs.branch }}',
+              head: `${context.repo.owner}:${process.env.SYNC_BRANCH || '${{ matrix.branch.sync_branch }}'}`,
+              base: '${{ matrix.branch.name }}',
               state: 'open'
             });
             if (pulls.length > 0) {
@@ -79,10 +71,10 @@ jobs:
               const { data: pr } = await github.rest.pulls.create({
                 owner: context.repo.owner,
                 repo: context.repo.repo,
-                title: `Sync with upstream (${{ steps.upstream_branch.outputs.branch }})`,
-                head: "upstream-sync",
-                base: "${{ steps.upstream_branch.outputs.branch }}",
-                body: `Automated PR to merge upstream changes from \`${process.env.UPSTREAM_REPO}\` into this fork.`,
+                title: `Sync with upstream ${{ matrix.branch.name }}`,
+                head: '${{ matrix.branch.sync_branch }}',
+                base: '${{ matrix.branch.name }}',
+                body: `Automated PR to merge upstream changes from \`${process.env.UPSTREAM_REPO}@${{ matrix.branch.name }}\` into this fork's \`${{ matrix.branch.name }}\`.`,
               });
               pr_number = pr.number;
             }
@@ -94,9 +86,26 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
-            await github.rest.pulls.enableAutoMerge({
+            const pr_number = Number('${{ steps.create_pr.outputs.pr_number }}');
+            const { data: pr } = await github.rest.pulls.get({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              pull_number: Number('${{ steps.create_pr.outputs.pr_number }}'),
-              merge_method: "merge"
-            })
+              pull_number: pr_number
+            });
+            const prNodeId = pr.node_id;
+            await github.graphql(`
+              mutation($pullRequestId:ID!) {
+                enablePullRequestAutoMerge(input: {pullRequestId: $pullRequestId, mergeMethod: MERGE}) {
+                  pullRequest {
+                    autoMergeRequest {
+                      enabledAt
+                      enabledBy {
+                        login
+                      }
+                    }
+                  }
+                }
+              }
+            `, {
+              pullRequestId: prNodeId
+            });
