@@ -547,31 +547,11 @@ headscale_hostname: "headscale.{{ domain }}"
 #                                                                      #
 ########################################################################
 
-neko_enabled: true
+neko_enabled: false
 neko_hostname: "neko.{{ domain }}"
 
-# File-based authentication - specific named users
-neko_environment_variables_neko_member_provider: "file"
-neko_environment_variables_neko_member_file_path: "/data/members.json"
-neko_environment_variables_neko_member_file_hash: "false"
-
-# Additional environment variables to configure the users file and persistent profiles
-
-# Use native variable for persistent browser profiles
-neko_environment_variables_neko_browser_profile: "/data/profiles"
-
-# Additional volumes for persistent browser profiles
-neko_container_additional_volumes:
-  - type: bind
-    src: "{{ neko_base_path }}/profiles"
-    dst: /data/profiles
-    options: bind
-
-# The members.json file will be created with:
-# - admin: Administrator with full privileges
-# - user1: Regular user 
-# - user2: Regular user
-
+neko_environment_variables_neko_member_multiuser_admin_password: "{{ vault_neko_admin_pw }}"
+neko_environment_variables_neko_member_multiuser_user_password: "{{ vault_neko_user_pw }}"
 
 ########################################################################
 #                                                                      #
