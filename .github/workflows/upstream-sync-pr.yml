@@ -1,4 +1,4 @@
-name: Sync multiple branches with upstream via PR
+name: Sync all matching branches with upstream via PR
 
 on:
   schedule:
@@ -9,23 +9,70 @@ permissions:
   contents: write
   pull-requests: write
 
+env:
+  UPSTREAM_REPO: mother-of-all-self-hosting/mash-playbook
+
 jobs:
+  discover-branches:
+    runs-on: ubuntu-latest
+    outputs:
+      matrix: ${{ steps.set-matrix.outputs.matrix }}
+    steps:
+      - name: Get upstream branches
+        id: upstream
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const [owner, repo] = process.env.UPSTREAM_REPO.split('/');
+            let page = 1, upstream_branches = [];
+            while(true) {
+              const { data } = await github.rest.repos.listBranches({ owner, repo, per_page: 100, page });
+              if (data.length === 0) break;
+              upstream_branches = upstream_branches.concat(data.map(b => b.name));
+              page++;
+            }
+            core.setOutput('branches', JSON.stringify(upstream_branches));
+
+      - name: Get fork branches
+        id: fork
+        uses: actions/github-script@v7
+        with:
+          script: |
+            let page = 1, fork_branches = [];
+            while(true) {
+              const { data } = await github.rest.repos.listBranches({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                per_page: 100,
+                page
+              });
+              if (data.length === 0) break;
+              fork_branches = fork_branches.concat(data.map(b => b.name));
+              page++;
+            }
+            core.setOutput('branches', JSON.stringify(fork_branches));
+
+      - name: Set matrix
+        id: set-matrix
+        run: |
+          echo "Finding intersection of branches..."
+          upstream=$(echo '${{ steps.upstream.outputs.branches }}' | jq -r '.[]')
+          fork=$(echo '${{ steps.fork.outputs.branches }}' | jq -r '.[]')
+          intersection=$(comm -12 <(echo "$upstream" | sort) <(echo "$fork" | sort) | jq -R . | jq -s .)
+          echo "matrix={\"branch\":$intersection}" >> $GITHUB_OUTPUT
+
   sync:
+    needs: discover-branches
     runs-on: ubuntu-latest
     strategy:
-      matrix:
-        branch:
-          - name: main
-            sync_branch: upstream-sync-main
-          - name: dev
-            sync_branch: upstream-sync-dev
+      matrix: ${{fromJson(needs.discover-branches.outputs.matrix)}}
     env:
       UPSTREAM_REPO: mother-of-all-self-hosting/mash-playbook
     steps:
       - name: Checkout fork branch
         uses: actions/checkout@v4
         with:
-          ref: ${{ matrix.branch.name }}
+          ref: ${{ matrix.branch }}
           fetch-depth: 0
 
       - name: Set up Git identity
@@ -37,13 +84,13 @@ jobs:
         run: git remote add upstream https://github.com/${{ env.UPSTREAM_REPO }}.git
 
       - name: Fetch upstream branch
-        run: git fetch upstream ${{ matrix.branch.name }}
+        run: git fetch upstream ${{ matrix.branch }}
 
       - name: Create or update sync branch
         run: |
-          git checkout -B ${{ matrix.branch.sync_branch }}
-          git reset --hard upstream/${{ matrix.branch.name }}
-          git push -f origin ${{ matrix.branch.sync_branch }}
+          git checkout -B upstream-sync-${{ matrix.branch }}
+          git reset --hard upstream/${{ matrix.branch }}
+          git push -f origin upstream-sync-${{ matrix.branch }}
 
       - name: Find existing PR number (if any)
         id: find_pr
@@ -53,8 +100,8 @@ jobs:
             const { data: pulls } = await github.rest.pulls.list({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              head: `${context.repo.owner}:${process.env.SYNC_BRANCH || '${{ matrix.branch.sync_branch }}'}`,
-              base: '${{ matrix.branch.name }}',
+              head: `${context.repo.owner}:upstream-sync-${process.env.BRANCH || '${{ matrix.branch }}'}`,
+              base: '${{ matrix.branch }}',
               state: 'open'
             });
             if (pulls.length > 0) {
@@ -71,10 +118,10 @@ jobs:
               const { data: pr } = await github.rest.pulls.create({
                 owner: context.repo.owner,
                 repo: context.repo.repo,
-                title: `Sync with upstream ${{ matrix.branch.name }}`,
-                head: '${{ matrix.branch.sync_branch }}',
-                base: '${{ matrix.branch.name }}',
-                body: `Automated PR to merge upstream changes from \`${process.env.UPSTREAM_REPO}@${{ matrix.branch.name }}\` into this fork's \`${{ matrix.branch.name }}\`.`,
+                title: `Sync with upstream ${{ matrix.branch }}`,
+                head: 'upstream-sync-${{ matrix.branch }}',
+                base: '${{ matrix.branch }}',
+                body: `Automated PR to merge upstream changes from \`${process.env.UPSTREAM_REPO}@${{ matrix.branch }}\` into this fork's \`${{ matrix.branch }}\`.`,
               });
               pr_number = pr.number;
             }
