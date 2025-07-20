@@ -10,7 +10,7 @@ permissions:
   pull-requests: write
 
 env:
-  UPSTREAM_REPO: mash-playbook/mash-playbook
+  UPSTREAM_REPO: mother-of-all-self-hosting/mash-playbook
 
 jobs:
   sync:
