@@ -17,57 +17,87 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       matrix: ${{ steps.set-matrix.outputs.matrix }}
+      has-branches: ${{ steps.set-matrix.outputs.has-branches }}
     steps:
-      - name: Get upstream branches
-        id: upstream
-        uses: actions/github-script@v7
-        with:
-          script: |
-            const [owner, repo] = process.env.UPSTREAM_REPO.split('/');
-            let page = 1, upstream_branches = [];
-            while(true) {
-              const { data } = await github.rest.repos.listBranches({ owner, repo, per_page: 100, page });
-              if (data.length === 0) break;
-              upstream_branches = upstream_branches.concat(data.map(b => b.name));
-              page++;
-            }
-            core.setOutput('branches', JSON.stringify(upstream_branches));
-
-      - name: Get fork branches
-        id: fork
-        uses: actions/github-script@v7
-        with:
-          script: |
-            let page = 1, fork_branches = [];
-            while(true) {
-              const { data } = await github.rest.repos.listBranches({
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                per_page: 100,
-                page
-              });
-              if (data.length === 0) break;
-              fork_branches = fork_branches.concat(data.map(b => b.name));
-              page++;
-            }
-            core.setOutput('branches', JSON.stringify(fork_branches));
-
-      - name: Set matrix
+      - name: Discover matching branches
         id: set-matrix
-        run: |
-          echo "Finding intersection of branches..."
-          upstream=$(echo '${{ steps.upstream.outputs.branches }}' | jq -r '.[]')
-          fork=$(echo '${{ steps.fork.outputs.branches }}' | jq -r '.[]')
-          intersection=$(for u in $upstream; do for f in $fork; do [ "$u" = "$f" ] && echo "$u"; done; done | jq -Rc '[splits("\n") | .[] | select(length>0)]')
-          echo "matrix={\"branch\":$intersection}" >> $GITHUB_OUTPUT
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const [upstreamOwner, upstreamRepo] = process.env.UPSTREAM_REPO.split('/');
+            
+            console.log(`🔍 Discovering branches in upstream: ${upstreamOwner}/${upstreamRepo}`);
+            console.log(`🔍 Discovering branches in fork: ${context.repo.owner}/${context.repo.repo}`);
+            
+            // Get upstream branches
+            let upstreamBranches = [];
+            let page = 1;
+            
+            try {
+              while (true) {
+                const { data } = await github.rest.repos.listBranches({
+                  owner: upstreamOwner,
+                  repo: upstreamRepo,
+                  per_page: 100,
+                  page
+                });
+                
+                if (data.length === 0) break;
+                upstreamBranches = upstreamBranches.concat(data.map(b => b.name));
+                page++;
+              }
+              console.log(`📤 Found ${upstreamBranches.length} upstream branches: ${upstreamBranches.join(', ')}`);
+            } catch (error) {
+              console.error(`❌ Failed to fetch upstream branches: ${error.message}`);
+              throw error;
+            }
+            
+            // Get fork branches
+            let forkBranches = [];
+            page = 1;
+            
+            try {
+              while (true) {
+                const { data } = await github.rest.repos.listBranches({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  per_page: 100,
+                  page
+                });
+                
+                if (data.length === 0) break;
+                forkBranches = forkBranches.concat(data.map(b => b.name));
+                page++;
+              }
+              console.log(`📥 Found ${forkBranches.length} fork branches: ${forkBranches.join(', ')}`);
+            } catch (error) {
+              console.error(`❌ Failed to fetch fork branches: ${error.message}`);
+              throw error;
+            }
+            
+            // Find intersection
+            const matchingBranches = upstreamBranches.filter(branch => 
+              forkBranches.includes(branch)
+            );
+            
+            console.log(`🎯 Found ${matchingBranches.length} matching branches: ${matchingBranches.join(', ')}`);
+            
+            if (matchingBranches.length === 0) {
+              console.log('⚠️ No matching branches found between upstream and fork');
+              core.setOutput('matrix', JSON.stringify({ branch: [] }));
+              core.setOutput('has-branches', 'false');
+            } else {
+              core.setOutput('matrix', JSON.stringify({ branch: matchingBranches }));
+              core.setOutput('has-branches', 'true');
+            }
 
   sync:
     needs: discover-branches
+    if: needs.discover-branches.outputs.has-branches == 'true'
     runs-on: ubuntu-latest
     strategy:
-      matrix: ${{fromJson(needs.discover-branches.outputs.matrix)}}
-    env:
-      UPSTREAM_REPO: mother-of-all-self-hosting/mash-playbook
+      matrix: ${{ fromJson(needs.discover-branches.outputs.matrix) }}
+      fail-fast: false
     steps:
       - name: Checkout fork branch
         uses: actions/checkout@v4
@@ -81,82 +111,200 @@ jobs:
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
       - name: Add upstream remote
-        run: git remote add upstream https://github.com/${{ env.UPSTREAM_REPO }}.git
+        run: |
+          echo "🔗 Adding upstream remote..."
+          git remote add upstream https://github.com/${{ env.UPSTREAM_REPO }}.git
+          git remote -v
 
       - name: Fetch upstream branch
-        run: git fetch upstream ${{ matrix.branch }}
+        run: |
+          echo "⬇️ Fetching upstream branch: ${{ matrix.branch }}"
+          git fetch upstream ${{ matrix.branch }}
+
+      - name: Check for differences
+        id: check-diff
+        run: |
+          echo "🔍 Checking for differences between fork and upstream..."
+          
+          # Get the commit hashes
+          FORK_COMMIT=$(git rev-parse HEAD)
+          UPSTREAM_COMMIT=$(git rev-parse upstream/${{ matrix.branch }})
+          
+          echo "Fork commit: $FORK_COMMIT"
+          echo "Upstream commit: $UPSTREAM_COMMIT"
+          
+          if [ "$FORK_COMMIT" = "$UPSTREAM_COMMIT" ]; then
+            echo "✅ Fork is already up to date with upstream"
+            echo "needs-sync=false" >> $GITHUB_OUTPUT
+          else
+            echo "🔄 Fork needs to be synced with upstream"
+            echo "needs-sync=true" >> $GITHUB_OUTPUT
+          fi
 
       - name: Create or update sync branch
+        if: steps.check-diff.outputs.needs-sync == 'true'
         run: |
-          git checkout -B upstream-sync-${{ matrix.branch }}
+          SYNC_BRANCH="upstream-sync-${{ matrix.branch }}"
+          echo "🌿 Creating/updating sync branch: $SYNC_BRANCH"
+          
+          # Create sync branch and reset to upstream
+          git checkout -B $SYNC_BRANCH
           git reset --hard upstream/${{ matrix.branch }}
-          git push -f origin upstream-sync-${{ matrix.branch }}
+          
+          # Force push the sync branch
+          git push -f origin $SYNC_BRANCH
+          
+          echo "✅ Sync branch updated successfully"
 
-      - name: Find existing PR number (if any)
-        id: find_pr
+      - name: Find existing PR
+        if: steps.check-diff.outputs.needs-sync == 'true'
+        id: find-pr
         uses: actions/github-script@v7
         with:
           script: |
-            const branch = process.env.BRANCH || '${{ matrix.branch }}';
-            const syncBranch = `upstream-sync-${branch}`;
-            const { data: pulls } = await github.rest.pulls.list({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              head: `${context.repo.owner}:${syncBranch}`,
-              base: branch,
-              state: 'open'
-            });
-            if (pulls.length > 0) {
-              core.setOutput('pr_number', pulls[0].number);
-            }
-
-      - name: Create PR if needed
-        id: create_pr
-        uses: actions/github-script@v7
-        with:
-          script: |
-            const branch = process.env.BRANCH || '${{ matrix.branch }}';
-            const syncBranch = `upstream-sync-${branch}`;
-            let pr_number = "${{ steps.find_pr.outputs.pr_number }}";
-            if (!pr_number) {
-              const { data: pr } = await github.rest.pulls.create({
+            const syncBranch = `upstream-sync-${{ matrix.branch }}`;
+            
+            console.log(`🔍 Looking for existing PR from ${syncBranch} to ${{ matrix.branch }}`);
+            
+            try {
+              const { data: pulls } = await github.rest.pulls.list({
                 owner: context.repo.owner,
                 repo: context.repo.repo,
-                title: `Sync with upstream ${branch}`,
-                head: syncBranch,
-                base: branch,
-                body: `Automated PR to merge upstream changes from \`${process.env.UPSTREAM_REPO}@${branch}\` into this fork's \`${branch}\`.`,
+                head: `${context.repo.owner}:${syncBranch}`,
+                base: '${{ matrix.branch }}',
+                state: 'open'
               });
-              pr_number = pr.number;
+              
+              if (pulls.length > 0) {
+                console.log(`✅ Found existing PR #${pulls[0].number}`);
+                core.setOutput('pr-number', pulls[0].number.toString());
+                core.setOutput('pr-exists', 'true');
+              } else {
+                console.log('ℹ️ No existing PR found');
+                core.setOutput('pr-exists', 'false');
+              }
+            } catch (error) {
+              console.error(`❌ Error searching for existing PR: ${error.message}`);
+              core.setOutput('pr-exists', 'false');
             }
-            core.setOutput('pr_number', pr_number);
 
-      - name: Enable auto-merge on PR
-        if: steps.create_pr.outputs.pr_number != ''
+      - name: Create or update PR
+        if: steps.check-diff.outputs.needs-sync == 'true'
+        id: create-pr
         uses: actions/github-script@v7
         with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
-            const pr_number = Number('${{ steps.create_pr.outputs.pr_number }}');
-            const { data: pr } = await github.rest.pulls.get({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              pull_number: pr_number
-            });
-            const prNodeId = pr.node_id;
-            await github.graphql(`
-              mutation($pullRequestId:ID!) {
-                enablePullRequestAutoMerge(input: {pullRequestId: $pullRequestId, mergeMethod: MERGE}) {
-                  pullRequest {
-                    autoMergeRequest {
-                      enabledAt
-                      enabledBy {
-                        login
+            const syncBranch = `upstream-sync-${{ matrix.branch }}`;
+            const baseBranch = '${{ matrix.branch }}';
+            const prExists = '${{ steps.find-pr.outputs.pr-exists }}' === 'true';
+            let prNumber = '${{ steps.find-pr.outputs.pr-number }}';
+            
+            if (!prExists) {
+              console.log(`📝 Creating new PR from ${syncBranch} to ${baseBranch}`);
+              
+              try {
+                const { data: pr } = await github.rest.pulls.create({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  title: `Sync ${baseBranch} with upstream`,
+                  head: syncBranch,
+                  base: baseBranch,
+                  body: `🤖 **Automated Upstream Sync**
+            
+            This PR automatically syncs the \`${baseBranch}\` branch with upstream changes from [\`${process.env.UPSTREAM_REPO}\`](https://github.com/${process.env.UPSTREAM_REPO}).
+            
+            **What's included:**
+            - Latest changes from \`${process.env.UPSTREAM_REPO}@${baseBranch}\`
+            - Automatically created sync branch: \`${syncBranch}\`
+            
+            **Auto-merge:** This PR will auto-merge if there are no conflicts.
+            
+            ---
+            Generated on: ${new Date().toISOString()}
+            Workflow: \`${context.workflow}\`
+            Run: [#${context.runNumber}](${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId})`
+                });
+                
+                prNumber = pr.number.toString();
+                console.log(`✅ Created PR #${prNumber}`);
+              } catch (error) {
+                console.error(`❌ Failed to create PR: ${error.message}`);
+                throw error;
+              }
+            } else {
+              console.log(`✅ Updated existing PR #${prNumber}`);
+            }
+            
+            core.setOutput('pr-number', prNumber);
+
+      - name: Enable auto-merge
+        if: steps.check-diff.outputs.needs-sync == 'true' && steps.create-pr.outputs.pr-number != ''
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const prNumber = Number('${{ steps.create-pr.outputs.pr-number }}');
+            
+            try {
+              console.log(`🔄 Enabling auto-merge for PR #${prNumber}`);
+              
+              // Get PR details to get the node ID
+              const { data: pr } = await github.rest.pulls.get({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                pull_number: prNumber
+              });
+              
+              // Check if the PR is mergeable
+              if (pr.mergeable === false) {
+                console.log(`⚠️ PR #${prNumber} has conflicts and cannot be auto-merged`);
+                return;
+              }
+              
+              // Enable auto-merge using GraphQL
+              await github.graphql(`
+                mutation($pullRequestId: ID!) {
+                  enablePullRequestAutoMerge(input: {
+                    pullRequestId: $pullRequestId,
+                    mergeMethod: MERGE
+                  }) {
+                    pullRequest {
+                      autoMergeRequest {
+                        enabledAt
+                        enabledBy {
+                          login
+                        }
                       }
                     }
                   }
                 }
-              }
-            `, {
-              pullRequestId: prNodeId
-            });
+              `, {
+                pullRequestId: pr.node_id
+              });
+              
+              console.log(`✅ Auto-merge enabled for PR #${prNumber}`);
+              
+            } catch (error) {
+              console.error(`⚠️ Failed to enable auto-merge for PR #${prNumber}: ${error.message}`);
+              // Don't fail the workflow if auto-merge fails
+            }
+
+  summary:
+    needs: [discover-branches, sync]
+    if: always()
+    runs-on: ubuntu-latest
+    steps:
+      - name: Workflow Summary
+        run: |
+          echo "## 🔄 Upstream Sync Summary" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          
+          if [ "${{ needs.discover-branches.outputs.has-branches }}" = "true" ]; then
+            echo "✅ **Branch Discovery:** Found matching branches" >> $GITHUB_STEP_SUMMARY
+            echo "🎯 **Sync Jobs:** ${{ strategy.job-total }} branches processed" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "⚠️ **Branch Discovery:** No matching branches found between fork and upstream" >> $GITHUB_STEP_SUMMARY
+          fi
+          
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "**Upstream Repository:** \`${{ env.UPSTREAM_REPO }}\`" >> $GITHUB_STEP_SUMMARY
+          echo "**Workflow Run:** [#${{ github.run_number }}](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }})" >> $GITHUB_STEP_SUMMARY
