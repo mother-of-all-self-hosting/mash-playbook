@@ -161,6 +161,10 @@
     - role: galaxy/couchdb
     # /role-specific:couchdb
 
+    # role-specific:cryptpad
+    - role: galaxy/cryptpad
+    # /role-specific:cryptpad
+
     # role-specific:docker_registry
     - role: galaxy/docker_registry
     # /role-specific:docker_registry
