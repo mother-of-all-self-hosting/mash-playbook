@@ -185,6 +185,10 @@
     - role: galaxy/dokuwiki
     # /role-specific:dokuwiki
 
+    # role-specific:duplicati
+    - role: galaxy/duplicati
+    # /role-specific:duplicati
+
     # role-specific:echoip
     - role: galaxy/echoip
     # /role-specific:echoip
