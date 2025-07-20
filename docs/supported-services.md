@@ -47,6 +47,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 | [etcd](https://etcd.io/) | A distributed, reliable key-value store for the most critical data of a distributed system | [Link](services/etcd.md) |
 | [Etherpad](https://etherpad.org) | Open source collaborative text editor | [Link](services/etherpad.md) |
 | [Excalidraw](https://excalidraw.com/) | Virtual whiteboard for sketching hand-drawn like diagrams | [Link](services/excalidraw.md) |
+| [Excalidraw collaboration server](https://github.com/excalidraw/excalidraw-room) | Self-hosted collaboration server for Excalidraw instance | [Link](services/excalidraw-room.md) |
 | [exim-relay](https://github.com/devture/exim-relay) | A lightweight [Exim](https://www.exim.org/) SMTP mail relay server | [Link](services/exim-relay.md) |
 | [Firezone](https://www.firezone.dev/) | A self-hosted VPN server (based on [WireGuard](https://www.wireguard.com/)) with a Web UI | [Link](services/firezone.md) |
 | [FMD Server](https://gitlab.com/fmd-foss/fmd-server) | Official server for FMD (FindMyDevice) | [Link](services/fmd-server.md) |

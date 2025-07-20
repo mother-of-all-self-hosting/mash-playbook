@@ -63,8 +63,16 @@ excalidraw_hostname: excalidraw.example.com
 
 After installation, the Excalidraw client becomes available at the URL specified with `excalidraw_hostname`.
 
+### Enable a collaboration server (optional)
+
+It is optionally possible to self-host an [example collaboration server](https://github.com/excalidraw/excalidraw-room) for your instance, which by default is configured to connect to the Excalidraw's server at `oss-collab.excalidraw.com`.
+
+To set up the collaboration server with this playbook, see [this page](excalidraw-room.md) for the instruction.
+
 >[!NOTE]
-> At the moment, self-hosting your own instance doesn't support sharing or collaboration features (see [here](https://docs.excalidraw.com/docs/introduction/development#self-hosting)).
+> By enabling the collaboration server along with the Excalidraw instance, the Docker image for the instance will be built instead of downloading it — This case there will be two images to be built; one for the Excalidraw instance and the other for the collaboration server itself.
+>
+> Before enabling it, make sure that the machine which you are going to run the Ansible commands against has sufficient computing power to build it.
 
 ## Troubleshooting
 
@@ -73,3 +81,4 @@ See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-ex
 ## Related services
 
 - [Docmost](docmost.md) — Open-source collaborative wiki and documentation software
+- [Excalidraw collaboration server](excalidraw-room.md) — Self-hosted collaboration server for Excalidraw instance
