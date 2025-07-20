@@ -516,6 +516,9 @@ owncast_enabled: true
 
 owncast_hostname: "live.{{ domain }}"
 
+owncast_container_rtmp_host_bind_port: "10.1.154.10:1935"
+
+
 ########################################################################
 #                                                                      #
 # /owncast                                                             #
