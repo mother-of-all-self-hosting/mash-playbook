@@ -17,25 +17,29 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout fork default branch
+      - name: Checkout default branch
         uses: actions/checkout@v4
         with:
           ref: ${{ github.ref_name }}
           fetch-depth: 0
-          persist-credentials: false
 
-      - name: Set up Git
+      - name: Set up Git identity
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
       - name: Get upstream default branch
         id: upstream_branch
-        run: |
-          branch=$(gh api repos/${{ env.UPSTREAM_REPO }} --jq .default_branch)
-          echo "branch=$branch" >> $GITHUB_OUTPUT
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const repo = process.env.UPSTREAM_REPO;
+            const [owner, repoName] = repo.split('/');
+            const { data } = await github.rest.repos.get({
+              owner,
+              repo: repoName
+            });
+            core.setOutput('branch', data.default_branch);
 
       - name: Add upstream remote
         run: git remote add upstream https://github.com/${{ env.UPSTREAM_REPO }}.git
@@ -43,29 +47,56 @@ jobs:
       - name: Fetch upstream
         run: git fetch upstream
 
-      - name: Create/Update sync branch
+      - name: Create or update sync branch
         run: |
           git checkout -B upstream-sync
           git reset --hard upstream/${{ steps.upstream_branch.outputs.branch }}
           git push -f origin upstream-sync
 
-      - name: Create or update PR
-        id: cpr
-        uses: peter-evans/create-pull-request@v6
+      - name: Find existing PR number (if any)
+        id: find_pr
+        uses: actions/github-script@v7
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          commit-message: "Sync with upstream"
-          branch: upstream-sync
-          base: ${{ steps.upstream_branch.outputs.branch }}
-          title: "Sync with upstream (${{ steps.upstream_branch.outputs.branch }})"
-          body: |
-            Automated PR to merge upstream changes from `${{ env.UPSTREAM_REPO }}` into this fork.
-          labels: upstream-sync
-          draft: false
+          script: |
+            const { data: pulls } = await github.rest.pulls.list({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              head: `${context.repo.owner}:upstream-sync`,
+              base: '${{ steps.upstream_branch.outputs.branch }}',
+              state: 'open'
+            });
+            if (pulls.length > 0) {
+              core.setOutput('pr_number', pulls[0].number);
+            }
 
-      - name: Auto-merge PR if possible
-        if: steps.cpr.outputs.pull-request-operation == 'created'
-        uses: ahmadnassri/action-auto-merge-dependabot@v3
+      - name: Create PR if needed
+        id: create_pr
+        uses: actions/github-script@v7
+        with:
+          script: |
+            let pr_number = "${{ steps.find_pr.outputs.pr_number }}";
+            if (!pr_number) {
+              const { data: pr } = await github.rest.pulls.create({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                title: `Sync with upstream (${{ steps.upstream_branch.outputs.branch }})`,
+                head: "upstream-sync",
+                base: "${{ steps.upstream_branch.outputs.branch }}",
+                body: `Automated PR to merge upstream changes from \`${process.env.UPSTREAM_REPO}\` into this fork.`,
+              });
+              pr_number = pr.number;
+            }
+            core.setOutput('pr_number', pr_number);
+
+      - name: Enable auto-merge on PR
+        if: steps.create_pr.outputs.pr_number != ''
+        uses: actions/github-script@v7
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          pull-request-number: ${{ steps.cpr.outputs.pull-request-number }}
+          script: |
+            await github.rest.pulls.enableAutoMerge({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              pull_number: Number('${{ steps.create_pr.outputs.pr_number }}'),
+              merge_method: "merge"
+            })
