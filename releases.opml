@@ -12,6 +12,7 @@
     <outline text="appsmith" title="appsmith" type="rss" htmlUrl="https://github.com/appsmithorg/appsmith" xmlUrl="https://github.com/appsmithorg/appsmith/releases.atom" />
     <outline text="authelia" title="authelia" type="rss" htmlUrl="https://github.com/authelia/authelia" xmlUrl="https://github.com/authelia/authelia/releases.atom" />
     <outline text="authentik" title="authentik" type="rss" htmlUrl="https://github.com/goauthentik/authentik" xmlUrl="https://github.com/goauthentik/authentik/releases.atom" />
+    <outline text="autobrr" title="autobrr" type="rss" htmlUrl="https://github.com/autobrr/autobrr" xmlUrl="https://github.com/autobrr/autobrr/releases.atom" />
     <outline text="backup_borg" title="backup_borg" type="rss" htmlUrl="https://gitlab.com/etke.cc/borgmatic" xmlUrl="https://gitlab.com/etke.cc/borgmatic/-/tags?format=atom" />
     <outline text="calibre-web" title="calibre-web" type="rss" htmlUrl="https://github.com/calibre_web/calibre_web" xmlUrl="https://github.com/calibre_web/calibre_web/releases.atom" />
     <outline text="changedetection" title="changedetection" type="rss" htmlUrl="https://github.com/dgtlmoon/changedetection.io" xmlUrl="https://github.com/dgtlmoon/changedetection.io/releases.atom" />
@@ -29,6 +30,7 @@
     <outline text="etcd" title="etcd" type="rss" htmlUrl="https://github.com/etcd-io/etcd" xmlUrl="https://github.com/etcd-io/etcd/releases.atom" />
     <outline text="etherpad" title="etherpad" type="rss" htmlUrl="https://github.com/ether/etherpad-lite" xmlUrl="https://github.com/ether/etherpad-lite/releases.atom" />
     <outline text="excalidraw" title="excalidraw" type="rss" htmlUrl="https://github.com/excalidraw/excalidraw" xmlUrl="https://github.com/excalidraw/excalidraw/releases.atom" />
+    <outline text="excalidraw_room" title="excalidraw_room" type="rss" htmlUrl="https://github.com/excalidraw/excalidraw-room" xmlUrl="https://github.com/excalidraw/excalidraw-room/releases.atom" />
     <outline text="exim_relay" title="exim_relay" type="rss" htmlUrl="https://github.com/devture/exim-relay" xmlUrl="https://github.com/devture/exim-relay/releases.atom" />
     <outline text="firezone" title="firezone" type="rss" htmlUrl="https://github.com/firezone/firezone" xmlUrl="https://github.com/firezone/firezone/releases.atom" />
     <outline text="fmd_server" title="fmd_server" type="rss" htmlUrl="https://gitlab.com/fmd-foss/fmd-server" xmlUrl="https://gitlab.com/fmd-foss/fmd-server/-/tags?format=atom" />
@@ -110,6 +112,7 @@
     <outline text="soft_serve" title="soft_serve" type="rss" htmlUrl="https://github.com/charmbracelet/soft-serve" xmlUrl="https://github.com/charmbracelet/soft-serve/releases.atom" />
     <outline text="sonarr" title="sonarr" type="rss" htmlUrl="https://github.com/Sonarr/Sonarr" xmlUrl="https://github.com/Sonarr/Sonarr/releases.atom" />
     <outline text="stirling_pdf" title="stirling_pdf" type="rss" htmlUrl="https://github.com/Stirling-Tools/Stirling-PDF" xmlUrl="https://github.com/Stirling-Tools/Stirling-PDF/releases.atom" />
+    <outline text="syncstorage_rs_docker" title="syncstorage_rs_docker" type="rss" htmlUrl="https://codeberg.org/acioustick/syncstorage-rs-docker" xmlUrl="https://codeberg.org/acioustick/syncstorage-rs-docker/releases.atom" />
     <outline text="syncthing" title="syncthing" type="rss" htmlUrl="https://github.com/syncthing/syncthing/" xmlUrl="https://github.com/syncthing/syncthing//releases.atom" />
     <outline text="tandoor" title="tandoor" type="rss" htmlUrl="https://github.com/TandoorRecipes/recipes" xmlUrl="https://github.com/TandoorRecipes/recipes/releases.atom" />
     <outline text="traefik" title="traefik" type="rss" htmlUrl="https://github.com/traefik/traefik" xmlUrl="https://github.com/traefik/traefik/releases.atom" />
@@ -123,6 +126,7 @@
     <outline text="woodpecker_ci_server" title="woodpecker_ci_server" type="rss" htmlUrl="https://github.com/woodpecker-ci/woodpecker" xmlUrl="https://github.com/woodpecker-ci/woodpecker/releases.atom" />
     <outline text="wordpress" title="wordpress" type="rss" htmlUrl="https://github.com/WordPress/WordPress/" xmlUrl="https://github.com/WordPress/WordPress//releases.atom" />
     <outline text="writefreely" title="writefreely" type="rss" htmlUrl="https://github.com/writefreely/writefreely" xmlUrl="https://github.com/writefreely/writefreely/releases.atom" />
+    <outline text="yacy" title="yacy" type="rss" htmlUrl="https://github.com/yacy/yacy_search_server" xmlUrl="https://github.com/yacy/yacy_search_server/releases.atom" />
     <outline text="yourls" title="yourls" type="rss" htmlUrl="https://github.com/YOURLS/YOURLS" xmlUrl="https://github.com/YOURLS/YOURLS/releases.atom" />
   </body>
 </opml>
