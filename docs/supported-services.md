@@ -42,6 +42,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 | [Docker Registry Purger](https://github.com/devture/docker-registry-purger) | A small tool used for purging a private Docker Registry's old tags | [Link](services/docker-registry-purger.md) |
 | [Docmost](https://docmost.com/) | Open-source collaborative wiki and documentation software | [Link](services/docmost.md) |
 | [DokuWiki](https://dokuwiki.org/) | A lightweight, file-based wiki engine with intuitive syntax and no database requirements | [Link](services/dokuwiki.md) |
+| [Duplicati](https://duplicati.com) | Backup software that securely stores encrypted, incremental, compressed backups on local storage, cloud storage services and remote file servers | [Link](services/duplicati.md) |
 | [Echo IP](https://github.com/mpolden/echoip) | A simple service for looking up your IP address | [Link](services/echoip.md) |
 | [Endlessh-go](https://github.com/shizunge/endlessh-go) | A golang implementation of Endlessh, an SSH tarpit | [Link](services/endlessh.md) |
 | [etcd](https://etcd.io/) | A distributed, reliable key-value store for the most critical data of a distributed system | [Link](services/etcd.md) |
