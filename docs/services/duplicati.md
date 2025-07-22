@@ -120,3 +120,7 @@ Since the default report message is fairly verbose, you might probably want to c
 ## Troubleshooting
 
 See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-duplicati/blob/main/docs/configuring-duplicati.md#troubleshooting) on the role's documentation for details.
+
+## Related services
+
+- [BorgBackup](backup-borg.md) — Deduplicating backup program with optional compression and encryption
