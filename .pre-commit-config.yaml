@@ -1,7 +1,7 @@
 ---
 default_install_hook_types: [pre-push]
 
-exclude: "LICENSES/"
+exclude: ^LICENSES/|releases.opml|VERSIONS.md
 
 # See: https://pre-commit.com/hooks.html
 repos:
