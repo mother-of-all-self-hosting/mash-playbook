@@ -2504,6 +2504,8 @@ duplicati_gid: "{{ mash_playbook_gid }}"
 duplicati_container_additional_networks_auto: |
   {{
     ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+    +
+    ([exim_relay_container_network | default('mash-exim-relay')] if (exim_relay_enabled | default(false) and duplicati_container_network != exim_relay_container_network) else [])
   }}
 
 duplicati_environment_variable_settings_encryption_key: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'db.duplicati', rounds=655555) }}"
