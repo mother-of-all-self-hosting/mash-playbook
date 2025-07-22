@@ -19,15 +19,20 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
 # Duplicati
 
-The playbook can install and configure [Duplicati](https://github.com/httpjamesm/Duplicati) for you.
+The playbook can install and configure [Duplicati](https://duplicati.com) for you.
 
-Duplicati allows you to view StackOverflow threads without exposing your IP address, browsing habits, and other browser fingerprinting data to the website.
+Duplicati is a backup software that securely stores encrypted, incremental, compressed backups on local storage, cloud storage services and remote file servers. It works with standard protocols like FTP, SSH, WebDAV as well as popular services like Microsoft OneDrive, Amazon S3 (compatible) Object Storage, Google Drive, box.com, Mega, B2, and many others.
 
-See the project's [documentation](https://github.com/httpjamesm/Duplicati/blob/main/README.md) to learn what Duplicati does and why it might be useful to you.
+See the project's [documentation](https://docs.duplicati.com) to learn what Duplicati does and why it might be useful to you.
 
 For details about configuring the [Ansible role for Duplicati](https://github.com/mother-of-all-self-hosting/ansible-role-duplicati), you can check them via:
 - 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-duplicati/blob/main/docs/configuring-duplicati.md) online
 - 📁 `roles/galaxy/duplicati/docs/configuring-duplicati.md` locally, if you have [fetched the Ansible roles](../installing.md)
+
+>[!NOTE]
+> As the Duplicati instance runs as the Docker container, it is necessary to mount the directory which includes files to back up on the host machine. Note that it is not able for the container to access files **outside of the mounted directory**.
+>
+> If you wish to manage a backup of directories on the machine without such restriction, you might probably want to consider to install Duplicati directly on the host machine. See [this page on the official documentation](https://docs.duplicati.com/getting-started/installation) for details.
 
 ## Dependencies
 
@@ -59,13 +64,39 @@ duplicati_hostname: duplicati.example.com
 
 **Note**: hosting Duplicati under a subpath (by configuring the `duplicati_path_prefix` variable) does not seem to be possible due to Duplicati's technical limitations.
 
+### Mount a directory for files to backup
+
+You can mount the directory by adding the following configuration to your `vars.yml` file:
+
+```yaml
+duplicati_source_path: /path/on/the/host
+```
+
+Make sure permissions and owner of the directory specified to `duplicati_source_path`.
+
+For example, you can mount the default directory used by the playbook (`/mash`) by adding the following configuration:
+
+```yaml
+duplicati_source_path: /mash
+```
+
+### Set a password for the UI
+
+You also need to set a log in password on the web UI by adding the following configuration to your `vars.yml` file:
+
+```yaml
+duplicati_environment_variable_duplicati__webservice_password: YOUR_WEBUI_PASSWORD_HERE
+```
+
+Replace `YOUR_WEBUI_PASSWORD_HERE` with your own value.
+
 ## Usage
 
 After running the command for installation, Duplicati becomes available at the specified hostname like `https://duplicati.example.com`.
 
-[Libredirect](https://libredirect.github.io/), an extension for Firefox and Chromium-based desktop browsers, has support for redirections to Duplicati. See [this section](https://github.com/httpjamesm/Duplicati/blob/main/README.md#how-to-make-stack-overflow-links-take-you-to-duplicati-automatically) on the official documentation for more information.
+See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-duplicati/blob/main/docs/configuring-duplicati.md#usage) for details about setting up a backup task.
 
-If you would like to publish your instance so that it can be used by anyone including Libredirect, please consider to send a PR to the [upstream project](https://github.com/httpjamesm/Duplicati) to add yours to [`instances.json`](https://github.com/httpjamesm/Duplicati/blob/main/instances.json), which Libredirect automatically fetches using a script (see [this FAQ entry](https://libredirect.github.io/faq.html#where_the_hell_are_those_instances_coming_from)).
+⚠️ When setting the Source Data option, **choose `source` or directories inside it** as the backup source.
 
 ## Troubleshooting
 
