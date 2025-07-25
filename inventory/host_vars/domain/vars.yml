@@ -74,11 +74,30 @@ mash_playbook_docker_installation_daemon_options_custom: {
       "size": 25
     },
     {
-      "base": "192.168.0.0/16",
+      "base": "192.168.2.0/23",
+      "size": 25
+    },
+    {
+      "base": "192.168.4.0/22",
+      "size": 25
+    },
+    {
+      "base": "192.168.8.0/21",
+      "size": 25
+    },
+    {
+      "base": "192.168.16.0/20",
+      "size": 25
+    },
+    {
+      "base": "192.168.32.0/19",
+      "size": 25
+    },
+    {
+      "base": "192.168.64.0/18",
       "size": 25
     }
-  ],
-  "dns": ["10.1.154.10"]
+  ]
 }
 
 ########################################################################
@@ -467,7 +486,7 @@ authentik_enabled: true
 authentik_hostname: "authentik.{{domain}}"
 
 # Put a strong secret below, generated with `pwgen -s 64 1` or in another way
-authentik_secret_key:  "{{authentik_secret_key_vault}}"
+authentik_secret_key:  "{{ authentik_secret_key_vault }}"
 
 # KeyDB configuration, as described below
 
@@ -547,7 +566,7 @@ headscale_hostname: "headscale.{{ domain }}"
 #                                                                      #
 ########################################################################
 
-neko_enabled: false
+neko_enabled: true
 neko_hostname: "neko.{{ domain }}"
 
 neko_environment_variables_neko_member_multiuser_admin_password: "{{ vault_neko_admin_pw }}"
@@ -556,5 +575,22 @@ neko_environment_variables_neko_member_multiuser_user_password: "{{ vault_neko_u
 ########################################################################
 #                                                                      #
 # /neko                                                                #
+#                                                                      #
+########################################################################
+
+########################################################################
+#                                                                      #
+# convertx                                                             #
+#                                                                      #
+########################################################################
+
+convertx_enabled: true
+
+convertx_hostname: "convert.{{ domain }}"
+convertx_environment_variables_webroot: /
+
+########################################################################
+#                                                                      #
+# /convertx                                                            #
 #                                                                      #
 ########################################################################
