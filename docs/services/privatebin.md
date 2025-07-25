@@ -52,7 +52,7 @@ To enable this service, add the following configuration to your `vars.yml` file 
 privatebin_enabled: true
 
 privatebin_hostname: mash.example.com
-privatebin_path_prefix: bin
+privatebin_path_prefix: /bin
 
 ########################################################################
 #                                                                      #
