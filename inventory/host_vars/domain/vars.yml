@@ -1,3 +1,5 @@
+---
+
 # Below is an example which installs a few services on the host, in different configuration.
 # You should tweak this example as you see fit and enable the services that you need.
 
@@ -23,18 +25,18 @@ mash_playbook_generic_secret_key: "{{vault_mash_playbook_generic_secret_key}}"
 #                                                                      #
 ########################################################################
 
-#SSH 
+# SSH
 
 system_security_ssh_enabled: true
 
 system_security_ssh_port: "{{ansible_ssh_port}}"
 
-system_security_ssh_authorizedkeys_host: ["{{ ssh_key_1 }}","{{ ssh_key_2 }}"] # list of authorized public keys
-system_security_ssh_unauthorizedkeys_host: [] # list of unauthorized/revoked public keys
-#/SSH 
+system_security_ssh_authorizedkeys_host: ["{{ ssh_key_1 }}", "{{ ssh_key_2 }}"]  # list of authorized public keys
+system_security_ssh_unauthorizedkeys_host: []  # list of unauthorized/revoked public keys
+# /SSH
 
 
-#fail2ban 
+# fail2ban
 system_security_fail2ban_enabled: true
 
 system_security_fail2ban_sshd_port: "{{ system_security_ssh_port }}"
@@ -42,7 +44,7 @@ system_security_fail2ban_sshd_port: "{{ system_security_ssh_port }}"
 # you can replace the line above with the following:
 # system_security_fail2ban_sshd_port: "{{ system_security_ssh_port }}"
 
-#/fail2ban 
+# /fail2ban
 
 ########################################################################
 #                                                                      #
@@ -107,7 +109,6 @@ mash_playbook_docker_installation_daemon_options_custom: {
 ########################################################################
 
 
-
 ########################################################################
 #                                                                      #
 # com.devture.ansible.role.timesync                                    #
@@ -124,7 +125,6 @@ devture_timesync_installation_enabled: false
 # /com.devture.ansible.role.timesync                                   #
 #                                                                      #
 ########################################################################
-
 
 
 ########################################################################
@@ -153,7 +153,6 @@ mash_playbook_reverse_proxyable_services_additional_network: traefik
 # /devture-traefik                                                     #
 #                                                                      #
 ########################################################################
-
 
 
 ########################################################################
@@ -189,9 +188,9 @@ postgres_connection_password: "{{vault_devture_postgres_connection_password}}"
 # This service is only here as an example. If you don't wish to use the
 # Uptime-kuma service, remove the whole section.
 
-#uptime_kuma_enabled: true
+# uptime_kuma_enabled: true
 
-#uptime_kuma_hostname: uptime-kuma.example.com
+# uptime_kuma_hostname: uptime-kuma.example.com
 
 # For now, hosting uptime-kuma under a path is not supported.
 # See: https://github.com/louislam/uptime-kuma/issues/147
@@ -222,7 +221,7 @@ nextcloud_enabled: true
 nextcloud_hostname: "nextcloud.{{domain}}"
 nextcloud_path_prefix: /
 
-#nextcloud_config_additional_parameters:
+# nextcloud_config_additional_parameters:
 #  - key: mail_smtphost
 #    value: smtp.sendgrid.net
 #    type: string
@@ -278,7 +277,7 @@ gitea_enabled: true
 # gitea_ssh_port: 222
 
 gitea_hostname: "gitea.{{domain}}"
-#gitea_path_prefix: /gitea
+# gitea_path_prefix: /gitea
 
 ########################################################################
 #                                                                      #
@@ -324,7 +323,7 @@ firezone_database_encryption_key: "{{vault_firezone_database_encryption_key}}"
 miniflux_enabled: false
 
 miniflux_hostname: "rss.{{domain}}"
-#miniflux_path_prefix: /miniflux
+# miniflux_path_prefix: /miniflux
 
 miniflux_admin_login: Tray2941
 miniflux_admin_password: "{{vault_miniflux_admin_password}}"
@@ -349,7 +348,7 @@ adguard_home_hostname: "dns.{{domain}}"
 # (see the URL section below for details).
 # Consider using a dedicated hostname and removing the line below.
 
-#adguard_home_path_prefix: /adguard-home
+# adguard_home_path_prefix: /adguard-home
 
 # Expose only on 192.168.1.15
 adguard_home_container_dns_tcp_bind_port: '10.1.154.11:53'
@@ -371,7 +370,7 @@ adguard_home_container_dns_udp_bind_port: '10.1.154.11:53'
 netbox_enabled: false
 
 netbox_hostname: "ipam.{{domain}}"
-#netbox_path_prefix: /netbox
+# netbox_path_prefix: /netbox
 
 # Put a strong secret below, generated with `pwgen -s 64 1` or in another way
 netbox_environment_variable_secret_key: ''
@@ -400,7 +399,7 @@ netbox_environment_variable_superuser_password: ''
 freshrss_enabled: true
 
 freshrss_hostname: "rss.{{domain}}"
-#freshrss_path_prefix: /freshrss
+# freshrss_path_prefix: /freshrss
 
 # Put a strong password below, generated with `pwgen -s 64 1` or in another way.
 # You will need to use this password in the setup wizard after installation.
@@ -427,7 +426,7 @@ hubsite_hostname: "hub.{{domain}}"
 hubsite_title: "We bring you..."
 hubsite_subtitle: "These wonderful services!"
 
-# If you want to explicitly control which services you want to show on this page you can overwrite 
+# If you want to explicitly control which services you want to show on this page you can overwrite
 
 # hubsite_service_list_auto: |
 #   {{
@@ -436,7 +435,7 @@ hubsite_subtitle: "These wonderful services!"
 #     ([{'name': 'Uptime Kuma', 'url': hubsite_service_uptime_kuma_url, 'logo_location': '{{ role_path }}/assets/uptime-kuma.png', 'description': 'Check the status of the services', 'priority': hubsite_service_uptime_kuma_priority}] if hubsite_service_uptime_kuma_enabled else [])
 #     +
 #     ([{'name': 'Uptime Kuma', 'url': hubsite_service_uptime_kuma_url, 'logo_location': '{{ role_path }}/assets/uptime-kuma.png', 'description': 'Check the status of the services', 'priority': hubsite_service_uptime_kuma_priority}] if hubsite_service_uptime_kuma_enabled else [])
-#   
+#
 #   }}
 
 # Use the `hubsite_service_list_additional` variable to add services that are not provided by this playbook
@@ -486,7 +485,7 @@ authentik_enabled: true
 authentik_hostname: "authentik.{{domain}}"
 
 # Put a strong secret below, generated with `pwgen -s 64 1` or in another way
-authentik_secret_key:  "{{ authentik_secret_key_vault }}"
+authentik_secret_key: "{{ authentik_secret_key_vault }}"
 
 # KeyDB configuration, as described below
 
