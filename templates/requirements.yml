@@ -9,7 +9,7 @@
   name: anki
   activation_prefix: anki_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-anonymousoverflow.git
-  version: v2024.8.23-5
+  version: v2024.8.23-6
   name: anonymousoverflow
   activation_prefix: anonymousoverflow_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-apisix-dashboard.git
