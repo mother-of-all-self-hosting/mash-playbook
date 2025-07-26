@@ -245,7 +245,7 @@
   name: keycloak
   activation_prefix: keycloak_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-keydb.git
-  version: v6.3.4-8
+  version: v6.3.4-9
   name: keydb
   activation_prefix: keydb_
 - src: git+https://gitlab.com/horvathg.1988/ansible-role-labelstudio.git
