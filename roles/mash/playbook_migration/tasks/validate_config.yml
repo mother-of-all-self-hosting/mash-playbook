@@ -8,8 +8,8 @@
 
       Please change your configuration (vars.yml) to rename all `devture_postgres_backup_`-prefixed variables (`devture_postgres_backup_*` -> `postgres_backup_*`).
 
-      The following variables in your configuration need to be renamed: {{ vars | dict2items | selectattr('key', 'match', 'devture_postgres_backup_.*') | map (attribute='key') | join(', ') }}
-  when: "vars | dict2items | selectattr('key', 'match', 'devture_postgres_backup_.*') | list | items2dict"
+      The following variables in your configuration need to be renamed: {{ lookup('ansible.builtin.varnames', '^devture_postgres_backup_.+', wantlist=True) | join(', ') }}
+  when: "lookup('ansible.builtin.varnames', '^devture_postgres_backup_.+', wantlist=True) | length > 0"
 
 - name: (Deprecation) Catch and report devture_postgres variables
   ansible.builtin.fail:
@@ -19,8 +19,8 @@
 
       Please change your configuration (vars.yml) to rename all `devture_postgres_`-prefixed variables (`devture_postgres_*` -> `postgres_*`).
 
-      The following variables in your configuration need to be renamed: {{ vars | dict2items | selectattr('key', 'match', 'devture_postgres_.*') | map (attribute='key') | join(', ') }}
-  when: "vars | dict2items | selectattr('key', 'match', 'devture_postgres_.*') | list | items2dict"
+      The following variables in your configuration need to be renamed: {{ lookup('ansible.builtin.varnames', '^devture_postgres_.+', wantlist=True) | join(', ') }}
+  when: "lookup('ansible.builtin.varnames', '^devture_postgres_.+', wantlist=True) | length > 0"
 
 - name: (Deprecation) Catch and report traefik_certs_dumper variables
   ansible.builtin.fail:
@@ -30,8 +30,8 @@
 
       Please change your configuration (vars.yml) to rename all `devture_traefik_certs_dumper_`-prefixed variables (`devture_traefik_certs_dumper_*` -> `traefik_certs_dumper_*`).
 
-      The following variables in your configuration need to be renamed: {{ vars | dict2items | selectattr('key', 'match', 'devture_traefik_certs_dumper_.*') | map (attribute='key') | join(', ') }}
-  when: "vars | dict2items | selectattr('key', 'match', 'devture_traefik_certs_dumper_.*') | list | items2dict"
+      The following variables in your configuration need to be renamed: {{ lookup('ansible.builtin.varnames', '^devture_traefik_certs_dumper_.+', wantlist=True) | join(', ') }}
+  when: "lookup('ansible.builtin.varnames', '^devture_traefik_certs_dumper_.+', wantlist=True) | length > 0"
 
 - name: (Deprecation) Catch and report devture_traefik variables
   ansible.builtin.fail:
@@ -41,8 +41,8 @@
 
       Please change your configuration (vars.yml) to rename all `devture_traefik_`-prefixed variables (`devture_traefik_*` -> `traefik_*`).
 
-      The following variables in your configuration need to be renamed: {{ vars | dict2items | selectattr('key', 'match', 'devture_traefik_.*') | map (attribute='key') | join(', ') }}
-  when: "vars | dict2items | selectattr('key', 'match', 'devture_traefik_.*') | list | items2dict"
+      The following variables in your configuration need to be renamed: {{ lookup('ansible.builtin.varnames', '^devture_traefik_.+', wantlist=True) | join(', ') }}
+  when: "lookup('ansible.builtin.varnames', '^devture_traefik_.+', wantlist=True) | length > 0"
 
 - name: (Deprecation) Catch and report devture_container_socket_proxy variables
   ansible.builtin.fail:
@@ -52,8 +52,8 @@
 
       Please change your configuration (vars.yml) to rename all `devture_container_socket_proxy_`-prefixed variables (`devture_container_socket_proxy_*` -> `container_socket_proxy_*`).
 
-      The following variables in your configuration need to be renamed: {{ vars | dict2items | selectattr('key', 'match', 'devture_container_socket_proxy_.*') | map (attribute='key') | join(', ') }}
-  when: "vars | dict2items | selectattr('key', 'match', 'devture_container_socket_proxy_.*') | list | items2dict"
+      The following variables in your configuration need to be renamed: {{ lookup('ansible.builtin.varnames', '^devture_container_socket_proxy_.+', wantlist=True) | join(', ') }}
+  when: "lookup('ansible.builtin.varnames', '^devture_container_socket_proxy_.+', wantlist=True) | length > 0"
 
 - name: (Deprecation) Catch and report devture_woodpecker_server variables
   ansible.builtin.fail:
@@ -63,8 +63,8 @@
 
       Please change your configuration (vars.yml) to rename all `devture_woodpecker_ci_server_`-prefixed variables (`devture_woodpecker_ci_server_*` -> `woodpecker_ci_server_*`).
 
-      The following variables in your configuration need to be renamed: {{ vars | dict2items | selectattr('key', 'match', 'devture_woodpecker_ci_server_.*') | map (attribute='key') | join(', ') }}
-  when: "vars | dict2items | selectattr('key', 'match', 'devture_woodpecker_ci_server_.*') | list | items2dict"
+      The following variables in your configuration need to be renamed: {{ lookup('ansible.builtin.varnames', '^devture_woodpecker_ci_server_.+', wantlist=True) | join(', ') }}
+  when: "lookup('ansible.builtin.varnames', '^devture_woodpecker_ci_server_.+', wantlist=True) | length > 0"
 
 - name: (Deprecation) Catch and report devture_woodpecker_agent variables
   ansible.builtin.fail:
@@ -74,5 +74,5 @@
 
       Please change your configuration (vars.yml) to rename all `devture_woodpecker_ci_agent_`-prefixed variables (`devture_woodpecker_ci_agent_*` -> `woodpecker_ci_agent_*`).
 
-      The following variables in your configuration need to be renamed: {{ vars | dict2items | selectattr('key', 'match', 'devture_woodpecker_ci_agent_.*') | map (attribute='key') | join(', ') }}
-  when: "vars | dict2items | selectattr('key', 'match', 'devture_woodpecker_ci_agent_.*') | list | items2dict"
+      The following variables in your configuration need to be renamed: {{ lookup('ansible.builtin.varnames', '^devture_woodpecker_ci_agent_.+', wantlist=True) | join(', ') }}
+  when: "lookup('ansible.builtin.varnames', '^devture_woodpecker_ci_agent_.+', wantlist=True) | length > 0"
