@@ -137,9 +137,9 @@
     - role: galaxy/backup_borg
     # /role-specific:backup_borg
 
-    # role-specific:calibre-web
-    - role: galaxy/calibre-web
-    # /role-specific:calibre-web
+    # role-specific:calibre_web
+    - role: galaxy/calibre_web
+    # /role-specific:calibre_web
 
     # role-specific:changedetection
     - role: galaxy/changedetection
