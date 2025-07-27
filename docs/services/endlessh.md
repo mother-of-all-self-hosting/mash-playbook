@@ -30,6 +30,10 @@ For details about configuring the [Ansible role for Endlessh-go](https://github.
 - 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-endlessh/blob/main/docs/configuring-endlessh.md) online
 - 📁 `roles/galaxy/endlessh/docs/configuring-endlessh.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
+## Prerequisites
+
+The role is configured to set up the Endlessh-go instance to listen to the port 22, the standard SSH port, therefore you need to move the port for the real SSH server to another port, so that an Endlessh-go instance can listen to the port 22 and trap attackers' clients into it.
+
 ## Dependencies
 
 This service requires the following other services:
@@ -40,10 +44,6 @@ This service requires the following other services:
 
 >[!NOTE]
 > None of them are required unless you will expose metrics to a Prometheus server.
-
-## Prerequisites
-
-The role is configured to set up the Endlessh-go instance to listen to the port 22, the standard SSH port, therefore you need to move the port for the real SSH server to another port, so that an Endlessh-go instance can listen to the port 22 and trap attackers' clients into it.
 
 ## Configuration
 
