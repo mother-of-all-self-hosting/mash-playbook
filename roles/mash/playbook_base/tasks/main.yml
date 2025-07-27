@@ -6,6 +6,7 @@
     - ansible.builtin.include_tasks: "{{ role_path }}/tasks/setup_user.yml"
   tags:
     - always
+    - setup-system-user
 
 - block:
     - ansible.builtin.include_tasks: "{{ role_path }}/tasks/validate_config.yml"
