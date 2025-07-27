@@ -9,17 +9,24 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
 # Calibre-Web
 
-[Calibre-Web](https://github.com/janeczku/calibre-web) is a web app that offers a clean and intuitive interface for browsing, reading, and downloading eBooks using a valid [Calibre](https://calibre-ebook.com/) database.
+The playbook can install and configure [Calibre-Web](https://github.com/janeczku/calibre-web) for you.
+
+Calibre-Web is a web app that offers a clean and intuitive interface for browsing, reading, and downloading eBooks using a valid [Calibre](https://calibre-ebook.com/) database.
+
+See the project's [documentation](https://github.com/janeczku/calibre-web/wiki) to learn what Calibre-Web does and why it might be useful to you.
 
 > [!WARNING]
-> Calibre-Web currently does not support running the container rootless, therefore the role has not the usual security features of other services provided by this playbook. This put your system more at higher risk as vulnerabilities can have a higher impact.
+> Calibre-Web currently does not support running the container rootless. While the role is configured to run with the MASH user and group specified to PUID and PGID on its [`env`](https://github.com/mother-of-all-self-hosting/ansible-role-calibre-web/blob/master/templates/env.j2) file, the common security features provided with other services of the playbook are not available. This puts your system at higher risk as vulnerabilities can have a higher impact.
+
+## Prerequisites
+
+The service requires you to have an existing Calibre database on `/books`. If you do not have one, you can download a sample database from the URL which can be found at <https://github.com/janeczku/calibre-web/blob/master/README.md#quick-start>.
 
 ## Dependencies
 
 This service requires the following other services:
 
 - a [Traefik](traefik.md) reverse-proxy server
-
 
 ## Configuration
 
@@ -37,23 +44,6 @@ calibre_web_enabled: true
 calibre_web_hostname: mash.example.com
 calibre_web_path_prefix: /calibre-web
 
-# By default, calibre_web will look at the /books directory for your Calibre database.
-#
-# You'd need to mount some book directory into the calibre_web container, like shown below.
-# The "Syncthing integration" section below may be relevant.
-# calibre_web_container_additional_volumes:
-#   - type: bind
-#     src: /on-host/path/to/books
-#     dst: /books
-
-#
-#
-#
-# Enable this extension explicitly to add the Calibre ebook-convert binary (x64 only). Omit this variable for a lightweight image.
-# The path to the binary is /usr/bin/ebook-convert (has to be specified in the web interface — also specify the path to Calibre binaries as well; usr/bin)
-#calibre_web_environment_variables_extension: |
-#  DOCKER_MODS=linuxserver/mods:universal-calibre
-
 ########################################################################
 #                                                                      #
 # /calibre-web                                                         #
@@ -61,19 +51,25 @@ calibre_web_path_prefix: /calibre-web
 ########################################################################
 ```
 
-### URL
+By default, Calibre-Web will search `/books` directory for your Calibre database.
 
-In the example configuration above, we configure the service to be hosted at `https://mash.example.com/calibre-web`.
+You'd need to mount some book directory into the  container, like shown below. The "Syncthing integration" section below may be relevant.
 
-You can remove the `calibre_web_path_prefix` variable definition, to make it default to `/`, so that the service is served at `https://mash.example.com/`.
+```yaml
+calibre_web_container_additional_volumes:
+   - type: bind
+     src: /on-host/path/to/books
+     dst: /books
+```
 
-### Authentication
+Enable this extension explicitly to add the Calibre ebook-convert binary (x64 only). Omit this variable for a lightweight image.
 
-The default username is `admin` and the default password is `admin123`.
-You'll be able to change the username and password, and add additional users in the web UI.
+The path to the binary is /usr/bin/ebook-convert (has to be specified in the web interface — also specify the path to Calibre binaries as well; usr/bin)
 
-On the initial setup screen, enter /books as your calibre library location.
-If you haven't placed a Calibre database in that directory on the host yet, it will error as an invalid location.
+```yaml
+calibre_web_environment_variables_extension: |
+  DOCKER_MODS=linuxserver/mods:universal-calibre
+```
 
 ### Syncthing integration
 
@@ -147,7 +143,13 @@ calibre_web_container_additional_volumes:
 
 ## Usage
 
-After installation, you can go to the calibre-web URL, as defined in `calibre_web_hostname` and `calibre_web_path_prefix`.
+After running the command for installation, Calibre-Web becomes available at the specified hostname with `calibre_web_hostname` and `calibre_web_path_prefix` like `https://mash.example.com/calibre-web`.
+
+You can log in to the instance with the default login credential of the admin account (username: `admin`, password: `admin123`).
+
+On the initial configuration screen, enter `/books` as your Calibre library location.
+
+After setting up the database configuration, **make sure to change the login credential** at `https://mash.example.com/calibre-web/admin/view`.
 
 ### Configure the SMTP server (optional)
 
