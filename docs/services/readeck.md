@@ -1,3 +1,10 @@
+<!--
+SPDX-FileCopyrightText: 2024 Slavi Pantaleev
+SPDX-FileCopyrightText: 2024 noah
+
+SPDX-License-Identifier: AGPL-3.0-or-later
+-->
+
 # Readeck
 
 [Readeck](https://readeck.org) is a simple web application that lets you save the precious readable content of web pages you like and want to keep forever.
@@ -18,7 +25,7 @@ To enable this service, add the following configuration to your `vars.yml` file 
 ```yaml
 ########################################################################
 #                                                                      #
-# Readeck                                                              #
+# readeck                                                              #
 #                                                                      #
 ########################################################################
 
@@ -28,7 +35,7 @@ readeck_hostname: readeck.example.com
 
 ########################################################################
 #                                                                      #
-# /Readeck                                                             #
+# /readeck                                                             #
 #                                                                      #
 ########################################################################
 ```
