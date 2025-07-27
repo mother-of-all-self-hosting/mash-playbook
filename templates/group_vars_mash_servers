@@ -5301,6 +5301,7 @@ linkding_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_prox
 
 # role-specific:postgres
 linkding_database_hostname: "{{ postgres_identifier if postgres_enabled else '' }}"
+linkding_database_port: "{{ postgres_connection_port if postgres_enabled else '' }}"
 linkding_database_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'linkding.db', rounds=655555) | to_uuid }}"
 linkding_database_type: "{{ 'postgres' if postgres_enabled and linkding_database_hostname == postgres_identifier else 'sqlite' }}"
 # /role-specific:postgres
