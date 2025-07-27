@@ -46,7 +46,7 @@
   activation_prefix: backup_borg_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-calibre-web.git
   version: v0.6.24-3
-  name: calibre-web
+  name: calibre_web
   activation_prefix: calibre_web_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-changedetection.git
   version: v0.50.7-1
