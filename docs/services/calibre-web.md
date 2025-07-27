@@ -2,6 +2,7 @@
 SPDX-FileCopyrightText: 2024 Slavi Pantaleev
 SPDX-FileCopyrightText: 2024 noah
 SPDX-FileCopyrightText: 2024 - 2025 MASH project contributors
+SPDX-FileCopyrightText: 2025 Suguru Hirahara
 
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->
@@ -147,6 +148,24 @@ calibre_web_container_additional_volumes:
 ## Usage
 
 After installation, you can go to the calibre-web URL, as defined in `calibre_web_hostname` and `calibre_web_path_prefix`.
+
+### Configure the SMTP server (optional)
+
+On Calibre-Web you can set up the SMTP server to have the service send email to terminals like Kindle and Pocketbook. **You can use Exim-relay as the mailer, which is enabled on this playbook by default.** See [this page about Exim-relay configuration](exim-relay.md) for details about how to set it up.
+
+As the Calibre-Web instance does not support configuring the mailer with environment variables, you can add default options for it on its UI. Refer to [this page](https://github.com/janeczku/calibre-web/wiki/Setup-Mailserver) on the official documentation as well about how to configure it.
+
+To set up with the default Exim-relay settings, open `https://mash.example.com/calibre-web/admin/mailsettings` to add the following configuration:
+
+- **Email Account Type**: Standard Email Account
+- **SMTP Hostname**: `mash-exim-relay`
+- **SMTP Port**: 8025
+- **Encryption**: None
+- **SMTP Login**: (Empty)
+- **SMTP Password**: (Empty)
+- **From Email**: (Input the email address specified to `exim_relay_sender_address` on your `vars.yml`)
+
+After setting the configuration, you can have the Calibre-Web instance send a test mail to the mail address specified to your account.
 
 ## Recommended other services
 
