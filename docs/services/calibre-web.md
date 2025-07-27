@@ -51,31 +51,33 @@ calibre_web_path_prefix: /calibre-web
 ########################################################################
 ```
 
+### Mount a directory for loading Calibre database (optional)
+
 By default, Calibre-Web will search `/books` directory for your Calibre database.
 
-You'd need to mount some book directory into the  container, like shown below. The "Syncthing integration" section below may be relevant.
+You can mount a directory so that the instance loads the database. To mount it, prepare a local directory on the host machine and add the following configuration to your `vars.yml` file:
 
 ```yaml
-calibre_web_container_additional_volumes:
-   - type: bind
-     src: /on-host/path/to/books
-     dst: /books
+calibre_web_books_path: /path/on/the/host
 ```
 
-Enable this extension explicitly to add the Calibre ebook-convert binary (x64 only). Omit this variable for a lightweight image.
+Make sure permissions and owner of the directory specified to `calibre_web_books_path`.
 
-The path to the binary is /usr/bin/ebook-convert (has to be specified in the web interface — also specify the path to Calibre binaries as well; usr/bin)
+### Enable ebook conversion binary (optional)
+
+You can add the Calibre ebook-convert binary (x64 only) by adding the following configuration to your `vars.yml` file:
 
 ```yaml
-calibre_web_environment_variables_extension: |
-  DOCKER_MODS=linuxserver/mods:universal-calibre
+calibre_web_environment_variables_conversion_ability_enabled: true
 ```
 
-### Syncthing integration
+The path to the binary is `/usr/bin/ebook-convert`. It needs to be specified in the web interface — as well as the path to Calibre binaries (`usr/bin`).
 
-If you've got a [Syncthing](syncthing.md) service running, you can use it to synchronize your books directory onto the server and then mount it as read-only into the calibre_web container.
+### Syncthing integration (optional)
 
-We recommend that you make use of the [aux](auxiliary.md) role to create some shared directory like this:
+If you've got a [Syncthing](syncthing.md) service running, you can use it to synchronize your books directory with the server, and then mount it as read-only onto the Calibre-Web container.
+
+We recommend that you make use of the [aux](auxiliary.md) role to create some shared directories as below:
 
 ```yaml
 ########################################################################
@@ -95,7 +97,7 @@ aux_directory_definitions:
 ########################################################################
 ```
 
-You can then mount this `{{ mash_playbook_base_path }}/storage/books` directory into the Syncthing container and synchronize it with some other computer:
+You can then mount this `{{ mash_playbook_base_path }}/storage/books` directory on the Syncthing container and synchronize it with other computers:
 
 ```yaml
 ########################################################################
@@ -118,7 +120,7 @@ syncthing_container_additional_volumes:
 ########################################################################
 ```
 
-Finally, mount the `{{ mash_playbook_base_path }}/storage/books` directory into the calibre-web container as read-only:
+Finally, mount the `{{ mash_playbook_base_path }}/storage/books` directory on the Calibre-Web container as read-only:
 
 ```yaml
 ########################################################################
@@ -127,7 +129,7 @@ Finally, mount the `{{ mash_playbook_base_path }}/storage/books` directory into 
 #                                                                      #
 ########################################################################
 
-# Other calibre-web configuration..
+# Other Calibre-Web configuration..
 
 calibre_web_container_additional_volumes:
   - type: bind
