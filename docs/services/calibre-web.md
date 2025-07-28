@@ -15,6 +15,10 @@ Calibre-Web is a web app that offers a clean and intuitive interface for browsin
 
 See the project's [documentation](https://github.com/janeczku/calibre-web/wiki) to learn what Calibre-Web does and why it might be useful to you.
 
+For details about configuring the [Ansible role for Calibre-Web](https://github.com/mother-of-all-self-hosting/ansible-role-calibre-web), you can check them via:
+- 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-calibre-web/blob/master/docs/configuring-calibre-web.md) online
+- 📁 `roles/galaxy/calibre_web/docs/configuring-calibre-web.md` locally, if you have [fetched the Ansible roles](../installing.md)
+
 > [!WARNING]
 > Calibre-Web currently does not support running the container rootless. While the role is configured to run with the MASH user and group specified to PUID and PGID on its [`env`](https://github.com/mother-of-all-self-hosting/ansible-role-calibre-web/blob/master/templates/env.j2) file, the common security features provided with other services of the playbook are not available. This puts your system at higher risk as vulnerabilities can have a higher impact.
 
@@ -147,11 +151,7 @@ calibre_web_container_additional_volumes:
 
 After running the command for installation, Calibre-Web becomes available at the specified hostname with `calibre_web_hostname` and `calibre_web_path_prefix` like `https://mash.example.com/calibre-web`.
 
-You can log in to the instance with the default login credential of the admin account (username: `admin`, password: `admin123`).
-
-On the initial configuration screen, enter `/books` as your Calibre library location.
-
-After setting up the database configuration, **make sure to change the login credential** at `https://mash.example.com/calibre-web/admin/view`.
+See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-calibre-web/blob/master/docs/configuring-calibre-web.md#usage) for details about setting up the instance.
 
 ### Configure the SMTP server (optional)
 
