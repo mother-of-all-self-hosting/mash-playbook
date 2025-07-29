@@ -476,6 +476,10 @@
   version: v3.4.27-3
   name: send
   activation_prefix: send_
+- src: git+https://github.com/mother-of-all-self-hosting/ansible-role-sftpgo.git
+  version: v2.6.6-0
+  name: sftpgo
+  activation_prefix: sftpgo_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-soft_serve.git
   version: v0.4.7-8
   name: soft_serve
