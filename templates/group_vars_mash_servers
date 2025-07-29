@@ -695,6 +695,11 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
     {{ ({'name': (send_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'send']} if send_enabled else omit) }}
   # /role-specific:send
 
+  # role-specific:sftpgo
+  - |-
+    {{ ({'name': (sftpgo_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'sftpgo']} if sftpgo_enabled else omit) }}
+  # /role-specific:sftpgo
+
   # role-specific:soft_serve
   - |-
     {{ ({'name': (soft_serve_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'soft-serve']} if soft_serve_enabled else omit) }}
@@ -1241,6 +1246,17 @@ mash_playbook_postgres_managed_databases_auto_itemized:
       } if semaphore_enabled and semaphore_database_hostname == postgres_identifier else omit)
     }}
   # /role-specific:semaphore
+
+  # role-specific:sftpgo
+  - |-
+    {{
+      ({
+        'name': sftpgo_database_postgresql_name,
+        'username': sftpgo_database_postgresql_username,
+        'password': sftpgo_database_postgresql_password,
+      } if sftpgo_enabled and sftpgo_database_postgresql_hostname == postgres_identifier else omit)
+    }}
+  # /role-specific:sftpgo
 
   # role-specific:tandoor
   - |-
@@ -5467,6 +5483,17 @@ mash_playbook_mariadb_managed_databases_auto_itemized:
     }}
   # /role-specific:privatebin
 
+  # role-specific:sftpgo
+  - |-
+    {{
+      ({
+        'name': sftpgo_database_mysql_name,
+        'username': sftpgo_database_mysql_username,
+        'password': sftpgo_database_mysql_password,
+      } if sftpgo_enabled and sftpgo_database_mysql_hostname == mariadb_identifier else omit)
+    }}
+  # /role-specific:sftpgo
+
   # role-specific:syncstorage_rs_docker
   - |-
     {{
@@ -7611,6 +7638,73 @@ send_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary
 #                                                                      #
 ########################################################################
 # /role-specific:send
+
+
+
+# role-specific:sftpgo
+########################################################################
+#                                                                      #
+# sftpgo                                                               #
+#                                                                      #
+########################################################################
+
+sftpgo_enabled: false
+
+sftpgo_identifier: "{{ mash_playbook_service_identifier_prefix }}sftpgo"
+
+sftpgo_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}sftpgo"
+
+sftpgo_uid: "{{ mash_playbook_uid }}"
+sftpgo_gid: "{{ mash_playbook_gid }}"
+
+sftpgo_container_additional_networks_auto: |
+  {{
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+    +
+    ([exim_relay_container_network | default('mash-exim-relay')] if (exim_relay_enabled | default(false) and sftpgo_environment_variables_smtp_host == exim_relay_identifier | default('mash-exim-relay') and sftpgo_container_network != exim_relay_container_network) else [])
+    +
+    ([mariadb_container_network] if mariadb_enabled | default(false) and sftpgo_database_mysql_hostname == mariadb_identifier and sftpgo_container_network != mariadb_container_network and sftpgo_environment_variables_data_provider_driver == 'mysql' else [])
+    +
+    ([postgres_container_network] if postgres_enabled | default(false) and sftpgo_database_postgresql_hostname == postgres_identifier and sftpgo_container_network != postgres_container_network and sftpgo_environment_variables_data_provider_driver == 'postgresql' else [])
+  }}
+
+sftpgo_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+sftpgo_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+
+sftpgo_environment_variables_data_provider_driver: postgresql
+
+# role-specific:exim_relay
+sftpgo_environment_variables_smtp_enabled: "{{ exim_relay_enabled }}"
+sftpgo_environment_variables_smtp_host: "{{ exim_relay_identifier if exim_relay_enabled else '' }}"
+sftpgo_environment_variables_smtp_port: 8025
+sftpgo_environment_variables_smtp_from: "{{ exim_relay_sender_address if exim_relay_enabled else '' }}"
+# /role-specific:exim_relay
+
+# role-specific:mariadb
+sftpgo_database_mysql_hostname: "{{ mariadb_identifier if mariadb_enabled | default(false) and sftpgo_environment_variables_data_provider_driver == 'mysql' else '' }}"
+sftpgo_database_mysql_port: "{{ '3306' if mariadb_enabled and sftpgo_environment_variables_data_provider_driver == 'mysql' else '' }}"
+sftpgo_database_mysql_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'db.sftpgo', rounds=655555) | to_uuid }}"
+sftpgo_database_mysql_username: "{{ sftpgo_identifier }}"
+# /role-specific:mariadb
+
+# role-specific:postgres
+sftpgo_database_postgresql_hostname: "{{ postgres_identifier if postgres_enabled and sftpgo_environment_variables_data_provider_driver == 'postgresql' else '' }}"
+sftpgo_database_postgresql_port: "{{ '5432' if postgres_enabled and sftpgo_environment_variables_data_provider_driver == 'postgresql' else '' }}"
+sftpgo_database_postgresql_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'db.sftpgo', rounds=655555) | to_uuid }}"
+sftpgo_database_postgresql_username: "{{ sftpgo_identifier }}"
+# /role-specific:postgres
+
+# role-specific:traefik
+sftpgo_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
+sftpgo_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
+# /role-specific:traefik
+
+########################################################################
+#                                                                      #
+# /sftpgo                                                              #
+#                                                                      #
+########################################################################
+# /role-specific:sftpgo
 
 
 

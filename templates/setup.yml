@@ -529,6 +529,10 @@
     - role: galaxy/send
     # /role-specific:send
 
+    # role-specific:sftpgo
+    - role: galaxy/sftpgo
+    # /role-specific:sftpgo
+
     # role-specific:soft_serve
     - role: galaxy/soft_serve
     # /role-specific:soft_serve
