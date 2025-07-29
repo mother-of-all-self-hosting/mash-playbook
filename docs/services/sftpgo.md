@@ -19,15 +19,11 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
 # SFTPGo
 
-The playbook can install and configure [SFTPGo](https://sftpgo.net) for you.
+The playbook can install and configure [SFTPGo](https://github.com/drakkan/sftpgo/) for you.
 
-SFTPGo is a distributed web search engine, based on a peer-to-peer network. It provides three different modes;
+SFTPGo is a full-featured and highly configurable event-driven file transfer solution. It supports SFTP, HTTP/S, FTP/S and WebDAV, and can connect to storage backends including local filesystem, S3 (compatible) Object Storage, Google Cloud Storage, Azure Blob Storage, and other SFTP servers.
 
-- Searching a shared global index on the P2P network
-- Crawling web pages of domains you choose to create an individual index for searching
-- Setting up a search portal for your intranet behind the firewall to search pages or files on the shared file system, without sharing data with a third party
-
-See the project's [documentation](https://sftpgo.net/docs/) to learn what SFTPGo does and why it might be useful to you.
+See the project's [documentation](https://docs.sftpgo.com/latest/) to learn what SFTPGo does and why it might be useful to you.
 
 For details about configuring the [Ansible role for SFTPGo](https://github.com/mother-of-all-self-hosting/ansible-role-sftpgo), you can check them via:
 - 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-sftpgo/blob/main/docs/configuring-sftpgo.md) online
@@ -41,6 +37,7 @@ You may need to open some ports to your server, if you use another firewall in f
 
 This service requires the following other services:
 
+- [Postgres](postgres.md) / MySQL / [MariaDB](mariadb.md) database
 - [Traefik](traefik.md) reverse-proxy server
 
 ## Adjusting the playbook configuration
@@ -56,8 +53,7 @@ To enable this service, add the following configuration to your `vars.yml` file 
 
 sftpgo_enabled: true
 
-sftpgo_hostname: mash.example.com
-sftpgo_path_prefix: /sftpgo
+sftpgo_hostname: sftpgo.example.com
 
 ########################################################################
 #                                                                      #
@@ -66,20 +62,28 @@ sftpgo_path_prefix: /sftpgo
 ########################################################################
 ```
 
+**Note**: hosting SFTPGo under a subpath (by configuring the `sftpgo_path_prefix` variable) does not seem to be possible due to SFTPGo's technical limitations.
+
+### Select database to use (optional)
+
+By default SFTPGo is configured to use Postgres, but you can choose other database such as SQLite, MySQL (MariaDB), and CockroachDB.
+
+To use MariaDB, add the following configuration to your `vars.yml` file:
+
+```yaml
+sftpgo_environment_variables_data_provider_driver: mysql
+```
+
+Please note that it is necessary to add environment variables manually for database other than Postgres and MySQL (MariaDB).
+
+Refer to [this section](https://docs.sftpgo.com/latest/config-file/#data-provider) on the official documentation for options to be configured.
+
 ## Usage
 
-After running the command for installation, SFTPGo becomes available at the specified hostname like `https://mash.example.com/sftpgo`.
+After running the command for installation, SFTPGo becomes available at the specified hostname like `sftpgo.example.com`. By default you can connect to the SFTP server on the port `2022`.
 
-You can log in to the instance with the default login credential of the admin account (username: `admin`, password: `sftpgo`).
-
-To improve security regarding the default login credential, **the role configures the instance on the intranet search mode by default**, so that it does not broadcast its existence to peers before you change the login credential.
-
-See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-sftpgo/blob/main/docs/configuring-sftpgo.md#usage) on the role's documentation for details about changing the admin user password and search mode, including protecting the instance with the password.
+See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-sftpgo/blob/main/docs/configuring-sftpgo.md#adjusting-the-playbook-configuration) on the role's documentation for details about how to enable web interfaces and create the first admin account, including the configuration to enable WebDAV server.
 
 ## Troubleshooting
 
 See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-sftpgo/blob/main/docs/configuring-sftpgo.md#troubleshooting) on the role's documentation for details.
-
-## Related services
-
-- [SearXNG](searxng.md) — a privacy-respecting, hackable [metasearch engine](https://en.wikipedia.org/wiki/Metasearch_engine). See [this section](searxng.md#add-your-sftpgo-instance-optional) for the instruction to add your SFTPGo instance to the SearXNG instance.
