@@ -70,3 +70,8 @@ If you would like to publish your instance so that it can be used by anyone incl
 ## Troubleshooting
 
 See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-anonymousoverflow/blob/main/docs/configuring-anonymousoverflow.md#troubleshooting) on the role's documentation for details.
+
+## Related services
+
+- [Mozhi](mozhi.md) — Frontend for translation engines
+- [Redlib](redlib.md) — Frontend for Reddit

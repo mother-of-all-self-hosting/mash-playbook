@@ -74,3 +74,8 @@ If you would like to make your instance public so that it can be used by anyone 
 ## Troubleshooting
 
 See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-redlib/blob/main/docs/configuring-redlib.md#troubleshooting) on the role's documentation for details.
+
+## Related services
+
+- [AnonymousOverflow](anonymousoverflow.md) — Frontend for StackOverflow
+- [Mozhi](mozhi.md) — Frontend for translation engines
