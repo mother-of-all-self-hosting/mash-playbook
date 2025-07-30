@@ -473,6 +473,11 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
     {{ ({'name': (mosquitto_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'mosquitto']} if mosquitto_enabled else omit) }}
   # /role-specific:mosquitto
 
+  # role-specific:mozhi
+  - |-
+    {{ ({'name': (mozhi_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'mozhi']} if mozhi_enabled else omit) }}
+  # /role-specific:mozhi
+
   # role-specific:mrs
   - |-
     {{ ({'name': (mrs_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'mrs']} if mrs_enabled else omit) }}
@@ -5829,6 +5834,44 @@ mosquitto_gid: "{{ mash_playbook_gid }}"
 #                                                                      #
 ########################################################################
 # /role-specific:mosquitto
+
+
+
+# role-specific:mozhi
+########################################################################
+#                                                                      #
+# mozhi                                                                #
+#                                                                      #
+########################################################################
+
+mozhi_enabled: false
+
+mozhi_identifier: "{{ mash_playbook_service_identifier_prefix }}mozhi"
+
+mozhi_uid: "{{ mash_playbook_uid }}"
+mozhi_gid: "{{ mash_playbook_gid }}"
+
+mozhi_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}mozhi"
+
+mozhi_container_additional_networks_auto: |
+  {{
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+  }}
+
+mozhi_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+mozhi_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+
+# role-specific:traefik
+mozhi_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
+mozhi_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
+# /role-specific:traefik
+
+########################################################################
+#                                                                      #
+# /mozhi                                                               #
+#                                                                      #
+########################################################################
+# /role-specific:mozhi
 
 
 

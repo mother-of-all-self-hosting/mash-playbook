@@ -373,6 +373,10 @@
     - role: galaxy/mosquitto
     # /role-specific:mosquitto
 
+    # role-specific:mozhi
+    - role: galaxy/mozhi
+    # /role-specific:mozhi
+
     # role-specific:mrs
     - role: galaxy/mrs
     # /role-specific:mrs
