@@ -64,26 +64,9 @@ yourls_hostname: yourls.example.com
 
 ### Enable MariaDB
 
-You can enable a MariaDB instance by adding the following configuration:
+YOURLS requires a MySQL-compatible database to work. This playbook supports MariaDB, and you can set up a MariaDB instance by enabling it on `vars.yml`.
 
-```yaml
-########################################################################
-#                                                                      #
-# mariadb                                                              #
-#                                                                      #
-########################################################################
-
-mariadb_enabled: true
-
-# Put a strong password below, generated with `pwgen -s 64 1` or in another way
-mariadb_root_password: ''
-
-########################################################################
-#                                                                      #
-# /mariadb                                                             #
-#                                                                      #
-########################################################################
-```
+Refer to [this page](mariadb.md) for the instruction to enable it.
 
 ### Set the admin username and password
 
