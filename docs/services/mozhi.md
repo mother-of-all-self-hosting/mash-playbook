@@ -17,17 +17,17 @@ SPDX-FileCopyrightText: 2024 - 2025 Suguru Hirahara
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 
-# AnonymousOverflow
+# Mozhi
 
-The playbook can install and configure [AnonymousOverflow](https://github.com/httpjamesm/AnonymousOverflow) for you.
+The playbook can install and configure [Mozhi](https://github.com/httpjamesm/Mozhi) for you.
 
-AnonymousOverflow allows you to view StackOverflow threads without exposing your IP address, browsing habits, and other browser fingerprinting data to the website.
+Mozhi allows you to view StackOverflow threads without exposing your IP address, browsing habits, and other browser fingerprinting data to the website.
 
-See the project's [documentation](https://github.com/httpjamesm/AnonymousOverflow/blob/main/README.md) to learn what AnonymousOverflow does and why it might be useful to you.
+See the project's [documentation](https://github.com/httpjamesm/Mozhi/blob/main/README.md) to learn what Mozhi does and why it might be useful to you.
 
-For details about configuring the [Ansible role for AnonymousOverflow](https://github.com/mother-of-all-self-hosting/ansible-role-anonymousoverflow), you can check them via:
-- 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-anonymousoverflow/blob/main/docs/configuring-anonymousoverflow.md) online
-- 📁 `roles/galaxy/anonymousoverflow/docs/configuring-anonymousoverflow.md` locally, if you have [fetched the Ansible roles](../installing.md)
+For details about configuring the [Ansible role for Mozhi](https://github.com/mother-of-all-self-hosting/ansible-role-mozhi), you can check them via:
+- 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-mozhi/blob/main/docs/configuring-mozhi.md) online
+- 📁 `roles/galaxy/mozhi/docs/configuring-mozhi.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 ## Dependencies
 
@@ -42,31 +42,31 @@ To enable this service, add the following configuration to your `vars.yml` file 
 ```yaml
 ########################################################################
 #                                                                      #
-# anonymousoverflow                                                    #
+# mozhi                                                                #
 #                                                                      #
 ########################################################################
 
-anonymousoverflow_enabled: true
+mozhi_enabled: true
 
-anonymousoverflow_hostname: anonymousoverflow.example.com
+mozhi_hostname: mozhi.example.com
 
 ########################################################################
 #                                                                      #
-# /anonymousoverflow                                                   #
+# /mozhi                                                               #
 #                                                                      #
 ########################################################################
 ```
 
-**Note**: hosting AnonymousOverflow under a subpath (by configuring the `anonymousoverflow_path_prefix` variable) does not seem to be possible due to AnonymousOverflow's technical limitations.
+**Note**: hosting Mozhi under a subpath (by configuring the `mozhi_path_prefix` variable) does not seem to be possible due to Mozhi's technical limitations.
 
 ## Usage
 
-After running the command for installation, AnonymousOverflow becomes available at the specified hostname like `https://anonymousoverflow.example.com`.
+After running the command for installation, Mozhi becomes available at the specified hostname like `https://mozhi.example.com`.
 
-[Libredirect](https://libredirect.github.io/), an extension for Firefox and Chromium-based desktop browsers, has support for redirections to AnonymousOverflow. See [this section](https://github.com/httpjamesm/AnonymousOverflow/blob/main/README.md#how-to-make-stack-overflow-links-take-you-to-anonymousoverflow-automatically) on the official documentation for more information.
+[Libredirect](https://libredirect.github.io/), an extension for Firefox and Chromium-based desktop browsers, has support for redirections to Mozhi. See [this section](https://github.com/httpjamesm/Mozhi/blob/main/README.md#how-to-make-stack-overflow-links-take-you-to-mozhi-automatically) on the official documentation for more information.
 
-If you would like to publish your instance so that it can be used by anyone including Libredirect, please consider to send a PR to the [upstream project](https://github.com/httpjamesm/AnonymousOverflow) to add yours to [`instances.json`](https://github.com/httpjamesm/AnonymousOverflow/blob/main/instances.json), which Libredirect automatically fetches using a script (see [this FAQ entry](https://libredirect.github.io/faq.html#where_the_hell_are_those_instances_coming_from)).
+If you would like to publish your instance so that it can be used by anyone including Libredirect, please consider to send a PR to the [upstream project](https://github.com/httpjamesm/Mozhi) to add yours to [`instances.json`](https://github.com/httpjamesm/Mozhi/blob/main/instances.json), which Libredirect automatically fetches using a script (see [this FAQ entry](https://libredirect.github.io/faq.html#where_the_hell_are_those_instances_coming_from)).
 
 ## Troubleshooting
 
-See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-anonymousoverflow/blob/main/docs/configuring-anonymousoverflow.md#troubleshooting) on the role's documentation for details.
+See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-mozhi/blob/main/docs/configuring-mozhi.md#troubleshooting) on the role's documentation for details.
