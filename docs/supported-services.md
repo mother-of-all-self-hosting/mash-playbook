@@ -91,6 +91,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 | [Mobilizon](https://joinmobilizon.org/en/) | An ActivityPub/Fediverse server to create and share events. | [Link](services/mobilizon.md) |
 | [MongoDB](https://www.mongodb.com/) | A source-available cross-platform document-oriented (NoSQL) database program. | [Link](services/mongodb.md) |
 | [Mosquitto](https://mosquitto.org/) | An open-source MQTT broker | [Link](services/mosquitto.md) |
+| [Mozhi](https://codeberg.org/aryak/mozhi) | Frontend for translation engines | [Link](services/mozhi.md) |
 | [n8n](https://n8n.io/) | Workflow automation for technical people. | [Link](services/n8n.md) |
 | [Navidrome](https://www.navidrome.org/) | [Subsonic-API](http://www.subsonic.org/pages/api.jsp) compatible music server | [Link](services/navidrome.md)
 | [Neko](https://neko.m1k1o.net/) | A self-hosted virtual browser or even desktop environment | [Link](services/neko.md) |
