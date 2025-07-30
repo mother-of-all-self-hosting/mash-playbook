@@ -304,6 +304,10 @@
   version: v2.0.22-1
   name: mosquitto
   activation_prefix: mosquitto_
+- src: git+https://github.com/mother-of-all-self-hosting/ansible-role-mozhi.git
+  version: v2025.6.25-0
+  name: mozhi
+  activation_prefix: mozhi_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-mrs.git
   version: v0.1.0-11
   name: mrs
