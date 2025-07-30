@@ -369,7 +369,7 @@
   name: plausible
   activation_prefix: plausible_
 - src: git+https://github.com/devture/com.devture.ansible.role.playbook_help.git
-  version: 201c939eed363de269a83ba29784fc3244846048
+  version: 7663e3114513e56f28d3ed762059b445c678a71a
   name: playbook_help
   activation_prefix: ""
 - src: git+https://github.com/devture/com.devture.ansible.role.playbook_runtime_messages.git
