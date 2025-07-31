@@ -11,7 +11,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
 This Ansible playbook is meant to be executed on your own computer (not on the server).
 
-In special cases (if your computer cannot run Ansible, etc.) you may put the playbook on the server as well.
+In special cases (if your computer cannot run Ansible, etc.), you may put the playbook on the server as well.
 
 You can retrieve the playbook's source code by:
 - [Using git to get the playbook](#using-git-to-get-the-playbook) (recommended)
@@ -19,15 +19,15 @@ You can retrieve the playbook's source code by:
 
 ## Using git to get the playbook
 
-We recommend using the [git](https://git-scm.com/) tool to get the playbook's source code, because it lets you easily keep up to date in the future when [Maintaining services](maintenance-upgrading-services.md).
+We recommend using the [git](https://git-scm.com/) tool to get the playbook's source code, as it lets you easily keep up to date in the future when [maintaining services](maintenance-upgrading-services.md).
 
-Once you've installed git on your computer, you can go to any directory of your choosing and run the following command to retrieve the playbook's source code:
+Once you've installed git on your computer, go to any directory of your choosing and run the following command to retrieve the playbook's source code:
 
 ```sh
 git clone https://github.com/mother-of-all-self-hosting/mash-playbook.git
 ```
 
-This will create a new `mash-playbook` directory. You're supposed to execute all other installation commands inside that directory.
+This will create a new `mash-playbook` directory. You should execute all other installation commands inside that directory.
 
 ## Downloading the playbook as a ZIP archive
 
@@ -35,8 +35,8 @@ Alternatively, you can download the playbook as a ZIP archive. This is not recom
 
 The latest version is always at the following URL: https://github.com/mother-of-all-self-hosting/mash-playbook/archive/master.zip
 
-You can extract this archive anywhere. You'll get a directory called `mash-playbook-master`. You're supposed to execute all other installation commands inside that directory.
+You can extract this archive anywhere. You'll get a directory called `mash-playbook-master`. You should execute all other installation commands inside that directory.
 
----------------------------------------------
+---
 
 [▶️](configuring-playbook.md) No matter which method you've used to download the playbook, you can proceed by [Configuring the playbook](configuring-playbook.md).
