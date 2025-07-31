@@ -1,3 +1,9 @@
+<!--
+SPDX-FileCopyrightText: 2023 Julian-Samuel Gebühr
+
+SPDX-License-Identifier: AGPL-3.0-or-later
+-->
+
 # Semaphore
 
 [Semaphore](https://www.ansible-semaphore.com/) is a responsive web UI for running Ansible playbooks. Installing it is powered by the [mother-of-all-self-hosting/ansible-role-semaphore](https://github.com/mother-of-all-self-hosting/ansible-role-semaphore) Ansible role.
