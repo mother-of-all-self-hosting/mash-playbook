@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: 2023 - 2025 Slavi Pantaleev
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
 ---
 
 - when: not mash_playbook_uid and not mash_playbook_uid

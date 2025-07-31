@@ -137,9 +137,9 @@
     - role: galaxy/backup_borg
     # /role-specific:backup_borg
 
-    # role-specific:calibre-web
-    - role: galaxy/calibre-web
-    # /role-specific:calibre-web
+    # role-specific:calibre_web
+    - role: galaxy/calibre_web
+    # /role-specific:calibre_web
 
     # role-specific:changedetection
     - role: galaxy/changedetection
@@ -528,6 +528,10 @@
     # role-specific:send
     - role: galaxy/send
     # /role-specific:send
+
+    # role-specific:sftpgo
+    - role: galaxy/sftpgo
+    # /role-specific:sftpgo
 
     # role-specific:soft_serve
     - role: galaxy/soft_serve
