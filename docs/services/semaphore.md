@@ -95,8 +95,3 @@ You can open the page with a web browser to log in to the instance. See [this of
 ## Troubleshooting
 
 See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-semaphore/blob/main/docs/configuring-semaphore.md#troubleshooting) on the role's documentation for details.
-
-## Related services
-
-- [Mozhi](mozhi.md) — Frontend for translation engines
-- [Redlib](redlib.md) — Frontend for Reddit
