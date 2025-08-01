@@ -76,6 +76,16 @@ To use MariaDB, add the following configuration to your `vars.yml` file:
 semaphore_database_dialect: mysql
 ```
 
+### Extending the configuration
+
+There are some additional things you may wish to configure about the component.
+
+Take a look at:
+
+- [Semaphore UI](https://github.com/mother-of-all-self-hosting/ansible-role-semaphore)'s [`defaults/main.yml`](https://github.com/mother-of-all-self-hosting/ansible-role-semaphore/blob/main/defaults/main.yml) for some variables that you can customize via your `vars.yml` file.
+
+See the [documentation](https://docs.semaphoreui.com/administration-guide/configuration/) for a complete list of Semaphore UI's config options such as [two-factor authentication with TOTP](https://github.com/mother-of-all-self-hosting/ansible-role-semaphore/blob/main/docs/configuring-semaphore.md#enable-2fa-authentication-with-totp-optional).
+
 ## Usage
 
 After running the command for installation, Semaphore UI becomes available at the specified hostname like `https://semaphore.example.com`.
