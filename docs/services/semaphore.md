@@ -33,6 +33,7 @@ For details about configuring the [Ansible role for Semaphore UI](https://github
 
 This service requires the following other services:
 
+- [Postgres](postgres.md) / MySQL / [MariaDB](mariadb.md) database
 - [Traefik](traefik.md) reverse-proxy server
 
 ## Adjusting the playbook configuration
