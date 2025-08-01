@@ -90,9 +90,7 @@ See the [documentation](https://docs.semaphoreui.com/administration-guide/config
 
 After running the command for installation, Semaphore UI becomes available at the specified hostname like `https://semaphore.example.com`.
 
-[Libredirect](https://libredirect.github.io/), an extension for Firefox and Chromium-based desktop browsers, has support for redirections to Semaphore UI. See [this section](https://semaphoreui.com/blob/main/README.md#how-to-make-stack-overflow-links-take-you-to-semaphore-automatically) on the official documentation for more information.
-
-If you would like to publish your instance so that it can be used by anyone including Libredirect, please consider to send a PR to the [upstream project](https://semaphoreui.com) to add yours to [`instances.json`](https://semaphoreui.com/blob/main/instances.json), which Libredirect automatically fetches using a script (see [this FAQ entry](https://libredirect.github.io/faq.html#where_the_hell_are_those_instances_coming_from)).
+You can open the page with a web browser to log in to the instance. See [this official guide](https://docs.semaphoreui.com/user-guide/projects/) to get started.
 
 ## Troubleshooting
 
