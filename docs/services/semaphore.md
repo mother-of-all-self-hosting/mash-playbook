@@ -58,7 +58,13 @@ semaphore_hostname: semaphore.example.com
 ########################################################################
 ```
 
-**Note**: hosting Semaphore UI under a subpath (by configuring the `semaphore_path_prefix` variable) does not seem to be possible due to Semaphore UI's technical limitations.
+### Set details for the admin user
+
+You need to create an instance's admin user by setting values to the `semaphore_admin_*` variables. See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-semaphore/blob/main/docs/configuring-semaphore.md#set-details-for-the-admin-user) on the role's documentation for details.
+
+### Set a string for encrypting access keys
+
+You also have to set a string used for encrypting access keys in database to `semaphore_access_key_encryption`. Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-semaphore/blob/main/docs/configuring-semaphore.md#set-a-string-for-encrypting-access-keys) on the role's documentation for details.
 
 ### Select database to use (optional)
 
