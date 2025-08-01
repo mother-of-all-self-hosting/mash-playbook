@@ -60,6 +60,16 @@ semaphore_hostname: semaphore.example.com
 
 **Note**: hosting Semaphore UI under a subpath (by configuring the `semaphore_path_prefix` variable) does not seem to be possible due to Semaphore UI's technical limitations.
 
+### Select database to use (optional)
+
+By default Semaphore UI is configured to use Postgres, but you can choose other database such as MySQL (MariaDB) and BoltDB.
+
+To use MariaDB, add the following configuration to your `vars.yml` file:
+
+```yaml
+semaphore_database_dialect: mysql
+```
+
 ## Usage
 
 After running the command for installation, Semaphore UI becomes available at the specified hostname like `https://semaphore.example.com`.
