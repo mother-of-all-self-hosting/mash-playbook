@@ -1333,12 +1333,12 @@ postgres_backup_systemd_required_services_list_auto: |
     ([(postgres_identifier + '.service')] if (postgres_enabled and postgres_backup_connection_hostname == postgres_connection_hostname) else [])
   }}
 
-postgres_backup_container_network: "{{ (postgres_container_network if (postgres_enabled and postgres_backup_connection_hostname == postgres_connection_hostname) else postgres_backup_identifier) }}"
-
 postgres_backup_container_additional_networks_auto: |-
   {{
       ([postgres_container_network] if (postgres_enabled and postgres_backup_connection_hostname == postgres_connection_hostname and postgres_backup_container_network != postgres_container_network) else [])
   }}
+
+postgres_backup_container_network: "{{ (postgres_container_network if (postgres_enabled and postgres_backup_connection_hostname == postgres_connection_hostname) else postgres_backup_identifier) }}"
 
 postgres_backup_connection_hostname: "{{ postgres_connection_hostname if postgres_enabled else '' }}"
 postgres_backup_connection_port: "{{ postgres_connection_port if postgres_enabled else 5432 }}"
@@ -1444,16 +1444,16 @@ traefik_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_
 traefik_uid: "{{ mash_playbook_uid }}"
 traefik_gid: "{{ mash_playbook_gid }}"
 
-traefik_container_additional_networks_auto: |
-  {{
-    ([container_socket_proxy_container_network] if container_socket_proxy_enabled | default(false) else [])
-  }}
-
 traefik_systemd_required_services_list: |
   {{
     ([devture_systemd_docker_base_docker_service_name] if devture_systemd_docker_base_docker_service_name else [])
     +
     ([container_socket_proxy_identifier + '.service'] if container_socket_proxy_enabled | default(false) else [])
+  }}
+
+traefik_container_additional_networks_auto: |
+  {{
+    ([container_socket_proxy_container_network] if container_socket_proxy_enabled | default(false) else [])
   }}
 
 # role-specific:container_socket_proxy
@@ -6591,6 +6591,16 @@ peertube_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base
 peertube_uid: "{{ mash_playbook_uid }}"
 peertube_gid: "{{ mash_playbook_gid }}"
 
+peertube_systemd_required_services_list_auto: |
+  {{
+    ([postgres_identifier ~ '.service'] if postgres_enabled and peertube_config_database_hostname == postgres_identifier else [])
+  }}
+
+peertube_systemd_wanted_services_list_auto: |
+  {{
+    ([(exim_relay_identifier | default('mash-exim-relay')) ~ '.service'] if (exim_relay_enabled | default(false) and peertube_config_smtp_hostname == exim_relay_identifier | default('mash-exim-relay')) else [])
+  }}
+
 peertube_container_additional_networks_auto: |
   {{
     (
@@ -6600,16 +6610,6 @@ peertube_container_additional_networks_auto: |
       +
       ([exim_relay_container_network | default('mash-exim-relay')] if (exim_relay_enabled | default(false) and peertube_config_smtp_hostname == exim_relay_identifier | default('mash-exim-relay') and peertube_container_network != exim_relay_container_network) else [])
     ) | unique
-  }}
-
-peertube_systemd_required_services_list_auto: |
-  {{
-    ([postgres_identifier ~ '.service'] if postgres_enabled and peertube_config_database_hostname == postgres_identifier else [])
-  }}
-
-peertube_systemd_wanted_services_list_auto: |
-  {{
-    ([(exim_relay_identifier | default('mash-exim-relay')) ~ '.service'] if (exim_relay_enabled | default(false) and peertube_config_smtp_hostname == exim_relay_identifier | default('mash-exim-relay')) else [])
   }}
 
 peertube_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
@@ -7125,12 +7125,6 @@ promtail_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base
 promtail_uid: "{{ mash_playbook_uid }}"
 promtail_gid: "{{ mash_playbook_gid }}"
 
-promtail_container_labels_metrics_enabled: "{{ prometheus_enabled | default(false) or mash_playbook_metrics_exposure_enabled }}"
-promtail_container_labels_metrics_hostname: "{{ mash_playbook_metrics_exposure_hostname }}"
-promtail_container_labels_metrics_path_prefix: "{{ mash_playbook_metrics_exposure_path_prefix }}/{{ promtail_identifier }}"
-promtail_container_labels_metrics_traefik_middleware_basic_auth_enabled: "{{ mash_playbook_metrics_exposure_http_basic_auth_enabled }}"
-promtail_container_labels_metrics_traefik_middleware_basic_auth_users: "{{ mash_playbook_metrics_exposure_http_basic_auth_users }}"
-
 promtail_container_additional_networks_auto: |
   {{
     (
@@ -7139,6 +7133,12 @@ promtail_container_additional_networks_auto: |
       ([loki_container_network] if (loki_enabled | default(false) and loki_container_network | default('') != promtail_container_network) else [])
     ) | unique
   }}
+
+promtail_container_labels_metrics_enabled: "{{ prometheus_enabled | default(false) or mash_playbook_metrics_exposure_enabled }}"
+promtail_container_labels_metrics_hostname: "{{ mash_playbook_metrics_exposure_hostname }}"
+promtail_container_labels_metrics_path_prefix: "{{ mash_playbook_metrics_exposure_path_prefix }}/{{ promtail_identifier }}"
+promtail_container_labels_metrics_traefik_middleware_basic_auth_enabled: "{{ mash_playbook_metrics_exposure_http_basic_auth_enabled }}"
+promtail_container_labels_metrics_traefik_middleware_basic_auth_users: "{{ mash_playbook_metrics_exposure_http_basic_auth_users }}"
 
 # Only enable Traefik labels if a hostname is set (indicating that this will be exposed publicly)
 promtail_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
@@ -7298,14 +7298,14 @@ reactflux_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_bas
 reactflux_uid: "{{ mash_playbook_uid }}"
 reactflux_gid: "{{ mash_playbook_gid }}"
 
-reactflux_container_additional_networks: |
-  {{
-    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
-  }}
-
 reactflux_systemd_required_services_list_auto: |
   {{
     ([miniflux_identifier ~ '.service'] if miniflux_enabled else [])
+  }}
+
+reactflux_container_additional_networks: |
+  {{
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
   }}
 
 reactflux_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
@@ -8104,16 +8104,16 @@ tsdproxy_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base
 tsdproxy_uid: "{{ mash_playbook_uid }}"
 tsdproxy_gid: "{{ mash_playbook_gid }}"
 
-tsdproxy_container_additional_networks_auto: |
-  {{
-    ([container_socket_proxy_container_network] if container_socket_proxy_enabled | default(false) else [])
-  }}
-
 tsdproxy_systemd_required_services_list: |
   {{
     ([devture_systemd_docker_base_docker_service_name] if devture_systemd_docker_base_docker_service_name else [])
     +
     ([container_socket_proxy_identifier + '.service'] if container_socket_proxy_enabled | default(false) else [])
+  }}
+
+tsdproxy_container_additional_networks_auto: |
+  {{
+    ([container_socket_proxy_container_network] if container_socket_proxy_enabled | default(false) else [])
   }}
 
 # role-specific:container_socket_proxy
