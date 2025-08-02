@@ -2596,10 +2596,11 @@ echoip_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_prima
 ########################################################################
 
 endlessh_enabled: false
-endlessh_hostname: "{{ mash_playbook_metrics_exposure_hostname }}"
-endlessh_path_prefix: "{{ mash_playbook_metrics_exposure_path_prefix }}/{{ endlessh_identifier }}"
+
 endlessh_identifier: "{{ mash_playbook_service_identifier_prefix }}endlessh"
+
 endlessh_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}endlessh"
+
 endlessh_uid: "{{ mash_playbook_uid }}"
 endlessh_gid: "{{ mash_playbook_gid }}"
 
@@ -2607,6 +2608,9 @@ endlessh_container_additional_networks_auto: |
   {{
     ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
   }}
+
+endlessh_hostname: "{{ mash_playbook_metrics_exposure_hostname }}"
+endlessh_path_prefix: "{{ mash_playbook_metrics_exposure_path_prefix }}/{{ endlessh_identifier }}"
 
 endlessh_container_labels_metrics_middleware_basic_auth_enabled: "{{ mash_playbook_metrics_exposure_http_basic_auth_enabled }}"
 endlessh_container_labels_metrics_middleware_basic_auth_users: "{{ mash_playbook_metrics_exposure_http_basic_auth_users }}"
