@@ -239,3 +239,9 @@ After installation, you can set the admin password at `https://<authentik_hostna
 
 * [Grafana](./grafana.md#single-sign-on-authentik)
 * [Nextcloud](./nextcloud.md#single-sign-on-authentik)
+
+## Related services
+
+- [authelia](authelia.md) — Open-source authentication and authorization server that can work as a companion to common reverse proxies like Traefik
+- [Keycloak](keycloak.md) — Open source identity and access management solution
+- [OAuth2-Proxy](oauth2-proxy.md) — Reverse proxy and static file server that provides authentication using OpenID Connect providers (Google, GitHub, authentik, Keycloak, and others) to SSO-protect services which do not support SSO natively
