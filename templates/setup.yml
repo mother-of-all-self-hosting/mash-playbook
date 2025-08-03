@@ -565,6 +565,10 @@
     - role: galaxy/telegraf
     # /role-specific:telegraf
 
+    # role-specific:tinyauth
+    - role: galaxy/tinyauth
+    # /role-specific:tinyauth
+
     # role-specific:tsdproxy
     - role: galaxy/tsdproxy
     # /role-specific:tsdproxy

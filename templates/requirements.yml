@@ -532,6 +532,10 @@
   version: v1.1.0-0
   name: timesync
   activation_prefix: devture_timesync_
+- src: git+https://codeberg.org/acioustick/ansible-role-tinyauth.git
+  version: v3.6.2-0
+  name: tinyauth
+  activation_prefix: tinyauth_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-traefik.git
   version: v3.5.1-0
   name: traefik
