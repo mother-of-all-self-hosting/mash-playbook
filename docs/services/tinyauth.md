@@ -73,5 +73,6 @@ See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-an
 
 ## Related services
 
-- [Mozhi](mozhi.md) — Frontend for translation engines
-- [Redlib](redlib.md) — Frontend for Reddit
+- [Authelia](authelia.md) — Open-source authentication and authorization server that can work as a companion to common reverse proxies like Traefik
+- [authentik](authentik.md) — Open-source identity provider focused on flexibility and versatility
+- [Keycloak](keycloak.md) — Open source identity and access management solution
