@@ -17,17 +17,17 @@ SPDX-FileCopyrightText: 2024 - 2025 Suguru Hirahara
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 
-# AnonymousOverflow
+# Tinyauth
 
-The playbook can install and configure [AnonymousOverflow](https://github.com/httpjamesm/AnonymousOverflow) for you.
+The playbook can install and configure [Tinyauth](https://github.com/httpjamesm/Tinyauth) for you.
 
-AnonymousOverflow allows you to view StackOverflow threads without exposing your IP address, browsing habits, and other browser fingerprinting data to the website.
+Tinyauth allows you to view StackOverflow threads without exposing your IP address, browsing habits, and other browser fingerprinting data to the website.
 
-See the project's [documentation](https://github.com/httpjamesm/AnonymousOverflow/blob/main/README.md) to learn what AnonymousOverflow does and why it might be useful to you.
+See the project's [documentation](https://github.com/httpjamesm/Tinyauth/blob/main/README.md) to learn what Tinyauth does and why it might be useful to you.
 
-For details about configuring the [Ansible role for AnonymousOverflow](https://github.com/mother-of-all-self-hosting/ansible-role-anonymousoverflow), you can check them via:
-- 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-anonymousoverflow/blob/main/docs/configuring-anonymousoverflow.md) online
-- 📁 `roles/galaxy/anonymousoverflow/docs/configuring-anonymousoverflow.md` locally, if you have [fetched the Ansible roles](../installing.md)
+For details about configuring the [Ansible role for Tinyauth](https://github.com/mother-of-all-self-hosting/ansible-role-tinyauth), you can check them via:
+- 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-tinyauth/blob/main/docs/configuring-tinyauth.md) online
+- 📁 `roles/galaxy/tinyauth/docs/configuring-tinyauth.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 ## Dependencies
 
@@ -42,34 +42,34 @@ To enable this service, add the following configuration to your `vars.yml` file 
 ```yaml
 ########################################################################
 #                                                                      #
-# anonymousoverflow                                                    #
+# tinyauth                                                             #
 #                                                                      #
 ########################################################################
 
-anonymousoverflow_enabled: true
+tinyauth_enabled: true
 
-anonymousoverflow_hostname: anonymousoverflow.example.com
+tinyauth_hostname: tinyauth.example.com
 
 ########################################################################
 #                                                                      #
-# /anonymousoverflow                                                   #
+# /tinyauth                                                            #
 #                                                                      #
 ########################################################################
 ```
 
-**Note**: hosting AnonymousOverflow under a subpath (by configuring the `anonymousoverflow_path_prefix` variable) does not seem to be possible due to AnonymousOverflow's technical limitations.
+**Note**: hosting Tinyauth under a subpath (by configuring the `tinyauth_path_prefix` variable) does not seem to be possible due to Tinyauth's technical limitations.
 
 ## Usage
 
-After running the command for installation, AnonymousOverflow becomes available at the specified hostname like `https://anonymousoverflow.example.com`.
+After running the command for installation, Tinyauth becomes available at the specified hostname like `https://tinyauth.example.com`.
 
-[Libredirect](https://libredirect.github.io/), an extension for Firefox and Chromium-based desktop browsers, has support for redirections to AnonymousOverflow. See [this section](https://github.com/httpjamesm/AnonymousOverflow/blob/main/README.md#how-to-make-stack-overflow-links-take-you-to-anonymousoverflow-automatically) on the official documentation for more information.
+[Libredirect](https://libredirect.github.io/), an extension for Firefox and Chromium-based desktop browsers, has support for redirections to Tinyauth. See [this section](https://github.com/httpjamesm/Tinyauth/blob/main/README.md#how-to-make-stack-overflow-links-take-you-to-tinyauth-automatically) on the official documentation for more information.
 
-If you would like to publish your instance so that it can be used by anyone including Libredirect, please consider to send a PR to the [upstream project](https://github.com/httpjamesm/AnonymousOverflow) to add yours to [`instances.json`](https://github.com/httpjamesm/AnonymousOverflow/blob/main/instances.json), which Libredirect automatically fetches using a script (see [this FAQ entry](https://libredirect.github.io/faq.html#where_the_hell_are_those_instances_coming_from)).
+If you would like to publish your instance so that it can be used by anyone including Libredirect, please consider to send a PR to the [upstream project](https://github.com/httpjamesm/Tinyauth) to add yours to [`instances.json`](https://github.com/httpjamesm/Tinyauth/blob/main/instances.json), which Libredirect automatically fetches using a script (see [this FAQ entry](https://libredirect.github.io/faq.html#where_the_hell_are_those_instances_coming_from)).
 
 ## Troubleshooting
 
-See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-anonymousoverflow/blob/main/docs/configuring-anonymousoverflow.md#troubleshooting) on the role's documentation for details.
+See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-tinyauth/blob/main/docs/configuring-tinyauth.md#troubleshooting) on the role's documentation for details.
 
 ## Related services
 
