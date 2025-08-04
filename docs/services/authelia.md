@@ -195,6 +195,6 @@ If a dedicated variable is not available for you to use or if you wish to overri
 
 ## Related services
 
-- [authentik](authentik.md) — Open-source Identity Provider focused on flexibility and versatility
+- [authentik](authentik.md) — Open-source identity provider focused on flexibility and versatility
 - [Keycloak](keycloak.md) — Open source identity and access management solution
 - [OAuth2-Proxy](oauth2-proxy.md) — Reverse proxy and static file server that provides authentication using OpenID Connect providers (Google, GitHub, authentik, Keycloak, and others) to SSO-protect services which do not support SSO natively

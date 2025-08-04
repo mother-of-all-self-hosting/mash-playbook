@@ -8,7 +8,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
 # authentik
 
-[authentik](https://goauthentik.io/) is an open-source Identity Provider focused on flexibility and versatility.
+[authentik](https://goauthentik.io/) is an open-source identity provider focused on flexibility and versatility.
 
 > [!WARNING]
 > SSO is pretty complex and while this role will install authentik for you we only tested OIDC and OAUTH integration. There is a high probability that using outposts/LDAP would need further configuration efforts. Make sure you test before using this in production and feel free to provide feedback!
