@@ -1,3 +1,9 @@
+<!--
+SPDX-FileCopyrightText: 2024 Nikita Chernyi
+
+SPDX-License-Identifier: AGPL-3.0-or-later
+-->
+
 # Freescout
 
 [Freescout](https://freescout.net/) is a free open-source helpdesk and shared inbox solution.
