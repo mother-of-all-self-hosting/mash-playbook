@@ -6,7 +6,9 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
 # EchoIP
 
-[EchoIP](https://github.com/mpolden/echoip) is simple service for looking up your IP address, powering [ifconfig.co](https://ifconfig.co)
+The playbook can install and configure [EchoIP](https://github.com/mpolden/echoip) for you.
+
+EchoIP is simple service for looking up your IP address, which powers [ifconfig.co](https://ifconfig.co).
 
 ## Dependencies
 
@@ -14,8 +16,7 @@ This service requires the following other services:
 
 - a [Traefik](traefik.md) reverse-proxy server
 
-
-## Configuration
+## Adjusting the playbook configuration
 
 To enable this service, add the following configuration to your `vars.yml` file and re-run the [installation](../installing.md) process:
 
@@ -37,11 +38,12 @@ echoip_hostname: echoip.example.com
 ########################################################################
 ```
 
-In the example configuration above, we configure the service to be hosted at `https://echoip.example.com`.
-
-
 ## Usage
 
-```bash
+After running the command for installation, echoip becomes available at the specified hostname like `https://echoip.example.com`.
+
+You can use the echoip instance by running a command as below:
+
+```sh
 curl https://echoip.example.com
 ```
