@@ -6,9 +6,11 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
 # DokuWiki
 
-The playbook can install and configure [DokuWiki](https://dokuwiki.org/) for you.
+The playbook can install and configure [DokuWiki](https://www.dokuwiki.org/dokuwiki) for you.
 
 DokuWiki is a lightweight, file-based wiki engine with intuitive syntax and no database requirements.
+
+See the project's [documentation](https://www.dokuwiki.org/manual) to learn what DokuWiki does and why it might be useful to you.
 
 ## Dependencies
 
