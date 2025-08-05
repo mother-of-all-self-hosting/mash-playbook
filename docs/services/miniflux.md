@@ -1,3 +1,10 @@
+<!--
+SPDX-FileCopyrightText: 2023 Slavi Pantaleev
+SPDX-FileCopyrightText: 2025 Suguru Hirahara
+
+SPDX-License-Identifier: AGPL-3.0-or-later
+-->
+
 # Miniflux
 
 [Miniflux](https://miniflux.app/) is a minimalist and opinionated feed reader.
