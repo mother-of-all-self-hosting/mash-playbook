@@ -11,6 +11,8 @@ The playbook can install and configure [Changedetection.io](https://github.com/d
 
 Changedetection.io is a simple website change detection and restock monitoring solution.
 
+See the project's [documentation](https://github.com/dgtlmoon/changedetection.io/blob/master/README.md) to learn what Changedetection.io does and why it might be useful to you.
+
 ## Dependencies
 
 This service requires the following other services:
