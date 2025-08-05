@@ -1,3 +1,9 @@
+<!--
+SPDX-FileCopyrightText: 2023 Niels Bouma
+
+SPDX-License-Identifier: AGPL-3.0-or-later
+-->
+
 # Changedetection.io
 
 [Changedetection.io](https://github.com/dgtlmoon/changedetection.io) is a simple **website change detection and restock monitoring** solution.
