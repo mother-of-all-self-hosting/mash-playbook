@@ -8,7 +8,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
 # authentik
 
-[authentik](https://goauthentik.io/) is an open-source Identity Provider focused on flexibility and versatility.
+[authentik](https://goauthentik.io/) is an open-source identity provider focused on flexibility and versatility.
 
 > [!WARNING]
 > SSO is pretty complex and while this role will install authentik for you we only tested OIDC and OAUTH integration. There is a high probability that using outposts/LDAP would need further configuration efforts. Make sure you test before using this in production and feel free to provide feedback!
@@ -239,3 +239,9 @@ After installation, you can set the admin password at `https://<authentik_hostna
 
 * [Grafana](./grafana.md#single-sign-on-authentik)
 * [Nextcloud](./nextcloud.md#single-sign-on-authentik)
+
+## Related services
+
+- [Authelia](authelia.md) — Open-source authentication and authorization server that can work as a companion to common reverse proxies like Traefik
+- [Keycloak](keycloak.md) — Open source identity and access management solution
+- [OAuth2-Proxy](oauth2-proxy.md) — Reverse proxy and static file server that provides authentication using OpenID Connect providers (Google, GitHub, authentik, Keycloak, and others) to SSO-protect services which do not support SSO natively
