@@ -1,4 +1,5 @@
 <!--
+SPDX-FileCopyrightText: 2023 Alejandro AR
 SPDX-FileCopyrightText: 2023 Slavi Pantaleev
 SPDX-FileCopyrightText: 2025 Suguru Hirahara
 
@@ -57,4 +58,5 @@ You can create additional users (admin-privileged or not) after logging in.
 
 ## Related services
 
+- [FreshRSS](freshrss.md) — Lightweight and powerful self-hosted RSS and Atom feed aggregator
 - [ReactFlux](reactflux.md) — Third-party web frontend for Miniflux, aimed at providing a more user-friendly reading experience

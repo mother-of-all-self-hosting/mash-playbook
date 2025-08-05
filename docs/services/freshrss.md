@@ -1,5 +1,6 @@
 <!--
 SPDX-FileCopyrightText: 2023 Alejandro AR
+SPDX-FileCopyrightText: 2023 Slavi Pantaleev
 SPDX-FileCopyrightText: 2025 Suguru Hirahara
 
 SPDX-License-Identifier: AGPL-3.0-or-later
@@ -57,3 +58,7 @@ After running the command for installation, FreshRSS becomes available at the sp
 You can go to the URL with a web browser to complete installation on the server. During the installation, the database password specified to `freshrss_database_password` variable is required to be submitted.
 
 Refer to FreshRSS [official documentation](http://freshrss.github.io/FreshRSS/en/) for usage.
+
+## Related services
+
+- [Miniflux](miniflux.md) — Minimalist and opinionated feed reader
