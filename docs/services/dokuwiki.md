@@ -6,8 +6,9 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
 # DokuWiki
 
-[DokuWiki](https://dokuwiki.org/) is a lightweight, file-based wiki engine with intuitive syntax and no database requirements.
+The playbook can install and configure [DokuWiki](https://dokuwiki.org/) for you.
 
+DokuWiki is a lightweight, file-based wiki engine with intuitive syntax and no database requirements.
 
 ## Dependencies
 
@@ -15,8 +16,7 @@ This service requires the following other services:
 
 - a [Traefik](traefik.md) reverse-proxy server
 
-
-## Configuration
+## Adjusting the playbook configuration
 
 To enable this service, add the following configuration to your `vars.yml` file and re-run the [installation](../installing.md) process:
 
@@ -38,8 +38,8 @@ dokuwiki_hostname: dokuwiki.example.com
 ########################################################################
 ```
 
-In the example configuration above, we configure the service to be hosted at `https://dokuwiki.example.com/`.
-
 ## Usage
 
-You will have to open the URL `https://dokuwiki.example.com/install.php` to complete the setup, as described in the official [setup instructions](https://www.dokuwiki.org/installer).
+After running the command for installation, Dokuwiki becomes available at the specified hostname like `https://dokuwiki.example.com/`.
+
+You can go to the URL `https://dokuwiki.example.com/install.php` with a web browser to complete installation on the server. The instruction is available at <https://www.dokuwiki.org/installer>.
