@@ -4,11 +4,11 @@ SPDX-FileCopyrightText: 2023 Nikita Chernyi
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 
-# EchoIP
+# echoip
 
-The playbook can install and configure [EchoIP](https://github.com/mpolden/echoip) for you.
+The playbook can install and configure [echoip](https://github.com/mpolden/echoip) for you.
 
-EchoIP is simple service for looking up your IP address, which powers [ifconfig.co](https://ifconfig.co).
+echoip is simple service for looking up your IP address, which powers [ifconfig.co](https://ifconfig.co).
 
 ## Dependencies
 
