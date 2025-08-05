@@ -55,7 +55,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 | [Focalboard](https://www.focalboard.com/) | An open source, self-hosted alternative to [Trello](https://trello.com/), [Notion](https://www.notion.so/), and [Asana](https://asana.com/). | [Link](services/focalboard.md) |
 | [Forgejo](https://forgejo.org/) | A self-hosted lightweight software forge (Git hosting service, etc). An alternative to [Gitea](./services/gitea.md). | [Link](services/forgejo.md) |
 | [Forgejo Runner](https://code.forgejo.org/forgejo/runner) | A runner to use with Forgejo Actions | [Link](services/forgejo-runner.md) |
-| [Freescout](https://freescout.net/) | A free help desk software | [Link](services/freescout.md) |
+| [FreeScout](https://freescout.net/) | A free help desk software | [Link](services/freescout.md) |
 | [FreshRSS](https://freshrss.org/) | RSS and Atom feed aggregator. | [Link](services/freshrss.md) |
 | [Funkwhale](https://funkwhale.audio/) | Listen and share music with a selfhosted streaming server.| [Link](services/funkwhale.md) |
 | [Ghostfolio](https://ghostfol.io/) | Wealth management free software to keep track of assets such as stocks, bonds, ETFs, etc.| [Link](services/ghostfolio.md) |

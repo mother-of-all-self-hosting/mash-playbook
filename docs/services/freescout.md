@@ -4,11 +4,11 @@ SPDX-FileCopyrightText: 2024 Nikita Chernyi
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 
-# Freescout
+# FreeScout
 
-The playbook can install and configure [Freescout](https://freescout.net/) for you.
+The playbook can install and configure [FreeScout](https://freescout.net/) for you.
 
-Freescout is a free open-source helpdesk and shared inbox solution.
+FreeScout is a free open-source helpdesk and shared inbox solution.
 
 ## Dependencies
 
@@ -44,6 +44,6 @@ freescout_admin_password: a-strong-password-here
 
 ## Usage
 
-After running the command for installation, Freescout becomes available at the specified hostname like `https://freescout.example.com`.
+After running the command for installation, FreeScout becomes available at the specified hostname like `https://freescout.example.com`.
 
 You can log in to the instance with the administrator email address (`freescout_admin_email`) and password (`freescout_admin_password`).
