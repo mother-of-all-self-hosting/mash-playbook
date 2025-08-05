@@ -1,13 +1,15 @@
 <!--
 SPDX-FileCopyrightText: 2023 Niels Bouma
+SPDX-FileCopyrightText: 2025 Suguru Hirahara
 
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 
 # Changedetection.io
 
-[Changedetection.io](https://github.com/dgtlmoon/changedetection.io) is a simple **website change detection and restock monitoring** solution.
+The playbook can install and configure [Changedetection.io](https://github.com/dgtlmoon/changedetection.io) for you.
 
+Changedetection.io is a simple website change detection and restock monitoring solution.
 
 ## Dependencies
 
@@ -15,8 +17,7 @@ This service requires the following other services:
 
 - a [Traefik](traefik.md) reverse-proxy server
 
-
-## Configuration
+## Adjusting the playbook configuration
 
 To enable this service, add the following configuration to your `vars.yml` file and re-run the [installation](../installing.md) process:
 
@@ -40,21 +41,16 @@ changedetection_path_prefix: /changedetection
 ########################################################################
 ```
 
-### Playwright webdriver
+### Enable Playwright webdriver for advanced options (optional)
 
-Some advanced options like using javascript or using the Visual Selector tool use an additional playwright webdriver. To enable this driver, add the following **additional**  configuration to your `vars.yml` file and re-run the [installation](../installing.md) process:
+Some advanced options like using Javascript or the Visual Selector tool require an additional Playwright webdriver.
+
+You can enable it by adding the following configuration to your `vars.yml` file:
 
 ```yaml
 changedetection_playwright_driver_enabled: true
 ```
 
-
-### URL
-
-In the example configuration above, we configure the service to be hosted at `https://mash.example.com/changedetection`.
-
-You can remove the `changedetection_path_prefix` variable definition, to make it default to `/`, so that the service is served at `https://mash.example.com/`.
-
 ## Usage
 
-After installation, you can go to your given URL and start setting up Changedetection.io
+After running the command for installation, Changedetection.io becomes available at the specified hostname like `https://mash.example.com/changedetection`.
