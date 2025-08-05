@@ -1,3 +1,9 @@
+<!--
+SPDX-FileCopyrightText: 2023 Alejandro AR
+
+SPDX-License-Identifier: AGPL-3.0-or-later
+-->
+
 # FreshRSS
 
 [FreshRSS](https://freshrss.org) is a self-hosted RSS and Atom feed aggregator. It is lightweight, easy to work with, powerful, and customizable.
