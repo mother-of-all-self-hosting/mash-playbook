@@ -6,8 +6,9 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
 # Freescout
 
-[Freescout](https://freescout.net/) is a free open-source helpdesk and shared inbox solution.
+The playbook can install and configure [Freescout](https://freescout.net/) for you.
 
+Freescout is a free open-source helpdesk and shared inbox solution.
 
 ## Dependencies
 
@@ -16,8 +17,7 @@ This service requires the following other services:
 - a [Postgres](postgres.md) database
 - a [Traefik](traefik.md) reverse-proxy server
 
-
-## Configuration
+## Adjusting the playbook configuration
 
 To enable this service, add the following configuration to your `vars.yml` file and re-run the [installation](../installing.md) process:
 
@@ -42,9 +42,8 @@ freescout_admin_password: a-strong-password-here
 ########################################################################
 ```
 
-In the example configuration above, we configure the service to be hosted at `https://freescout.example.com`.
-
-
 ## Usage
 
-After installation, you can log in with your administrator login (`freescout_admin_email`) and password (`freescout_admin_password`).
+After running the command for installation, Freescout becomes available at the specified hostname like `https://freescout.example.com`.
+
+You can log in to the instance with the administrator email address (`freescout_admin_email`) and password (`freescout_admin_password`).
