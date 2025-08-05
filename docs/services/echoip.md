@@ -1,3 +1,9 @@
+<!--
+SPDX-FileCopyrightText: 2023 Nikita Chernyi
+
+SPDX-License-Identifier: AGPL-3.0-or-later
+-->
+
 # EchoIP
 
 [EchoIP](https://github.com/mpolden/echoip) is simple service for looking up your IP address, powering [ifconfig.co](https://ifconfig.co)
