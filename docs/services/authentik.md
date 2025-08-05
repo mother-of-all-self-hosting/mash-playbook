@@ -8,10 +8,12 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
 # authentik
 
-[authentik](https://goauthentik.io/) is an open-source identity provider focused on flexibility and versatility.
+The playbook can install and configure [authentik](https://goauthentik.io/) for you.
+
+authentik is an open-source identity provider focused on flexibility and versatility.
 
 > [!WARNING]
-> SSO is pretty complex and while this role will install authentik for you we only tested OIDC and OAUTH integration. There is a high probability that using outposts/LDAP would need further configuration efforts. Make sure you test before using this in production and feel free to provide feedback!
+> The SSO system of authentik is pretty complex, and we have only tested OIDC and OAuth integration. There is a high probability that using outposts/LDAP would need further configuration efforts. Make sure you test before using this in production, and feel free to provide feedback!
 
 ## Dependencies
 
@@ -21,8 +23,7 @@ This service requires the following other services:
 - a [Valkey](valkey.md) data-store; see [below](#configure-valkey) for details about installation
 - a [Traefik](traefik.md) reverse-proxy server
 
-
-## Configuration
+## Adjusting the playbook configuration
 
 To enable this service, add the following configuration to your `vars.yml` file:
 
@@ -235,10 +236,14 @@ Note that running the `just` commands for installation (`just install-all` or `j
 
 ## Usage
 
-After installation, you can set the admin password at `https://<authentik_hostname>/if/flow/initial-setup/`. Set the admin password there and start adding applications and users! Refer to the [official documentation](https://goauthentik.io/docs/) to learn how to integrate services. For this playbook tested examples are described in the respective service documentation. See
+After running the command for installation, authentik becomes available at the specified hostname like `https://authentik.example.com`.
 
-* [Grafana](./grafana.md#single-sign-on-authentik)
-* [Nextcloud](./nextcloud.md#single-sign-on-authentik)
+You can set the admin password at `https://authentik.example.com/if/flow/initial-setup/`, and start adding applications and users. Refer to the [official documentation](https://goauthentik.io/docs/) to learn how to integrate services.
+
+When it comes to this playbook, tested configuration examples are described on the respective service documentation. See below for details:
+
+- [Grafana](./grafana.md#single-sign-on-authentik)
+- [Nextcloud](./nextcloud.md#single-sign-on-authentik)
 
 ## Related services
 
