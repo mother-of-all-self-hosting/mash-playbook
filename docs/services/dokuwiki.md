@@ -1,3 +1,9 @@
+<!--
+SPDX-FileCopyrightText: 2024 shukon
+
+SPDX-License-Identifier: AGPL-3.0-or-later
+-->
+
 # DokuWiki
 
 [DokuWiki](https://dokuwiki.org/) is a lightweight, file-based wiki engine with intuitive syntax and no database requirements.
