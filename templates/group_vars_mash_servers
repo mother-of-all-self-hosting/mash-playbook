@@ -473,6 +473,11 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
     {{ ({'name': (mosquitto_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'mosquitto']} if mosquitto_enabled else omit) }}
   # /role-specific:mosquitto
 
+  # role-specific:mozhi
+  - |-
+    {{ ({'name': (mozhi_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'mozhi']} if mozhi_enabled else omit) }}
+  # /role-specific:mozhi
+
   # role-specific:mrs
   - |-
     {{ ({'name': (mrs_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'mrs']} if mrs_enabled else omit) }}
@@ -1241,9 +1246,9 @@ mash_playbook_postgres_managed_databases_auto_itemized:
     {{
       ({
         'name': semaphore_database_name,
-        'username': semaphore_database_username,
-        'password': semaphore_database_password,
-      } if semaphore_enabled and semaphore_database_hostname == postgres_identifier else omit)
+        'username': semaphore_database_postgres_username,
+        'password': semaphore_database_postgres_password,
+      } if semaphore_enabled and semaphore_database_postgres_hostname == postgres_identifier else omit)
     }}
   # /role-specific:semaphore
 
@@ -1328,12 +1333,12 @@ postgres_backup_systemd_required_services_list_auto: |
     ([(postgres_identifier + '.service')] if (postgres_enabled and postgres_backup_connection_hostname == postgres_connection_hostname) else [])
   }}
 
-postgres_backup_container_network: "{{ (postgres_container_network if (postgres_enabled and postgres_backup_connection_hostname == postgres_connection_hostname) else postgres_backup_identifier) }}"
-
 postgres_backup_container_additional_networks_auto: |-
   {{
       ([postgres_container_network] if (postgres_enabled and postgres_backup_connection_hostname == postgres_connection_hostname and postgres_backup_container_network != postgres_container_network) else [])
   }}
+
+postgres_backup_container_network: "{{ (postgres_container_network if (postgres_enabled and postgres_backup_connection_hostname == postgres_connection_hostname) else postgres_backup_identifier) }}"
 
 postgres_backup_connection_hostname: "{{ postgres_connection_hostname if postgres_enabled else '' }}"
 postgres_backup_connection_port: "{{ postgres_connection_port if postgres_enabled else 5432 }}"
@@ -1439,16 +1444,16 @@ traefik_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_
 traefik_uid: "{{ mash_playbook_uid }}"
 traefik_gid: "{{ mash_playbook_gid }}"
 
-traefik_container_additional_networks_auto: |
-  {{
-    ([container_socket_proxy_container_network] if container_socket_proxy_enabled | default(false) else [])
-  }}
-
 traefik_systemd_required_services_list: |
   {{
     ([devture_systemd_docker_base_docker_service_name] if devture_systemd_docker_base_docker_service_name else [])
     +
     ([container_socket_proxy_identifier + '.service'] if container_socket_proxy_enabled | default(false) else [])
+  }}
+
+traefik_container_additional_networks_auto: |
+  {{
+    ([container_socket_proxy_container_network] if container_socket_proxy_enabled | default(false) else [])
   }}
 
 # role-specific:container_socket_proxy
@@ -1513,10 +1518,10 @@ adguard_home_enabled: false
 
 adguard_home_identifier: "{{ mash_playbook_service_identifier_prefix }}adguard-home"
 
+adguard_home_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}adguard-home"
+
 adguard_home_uid: "{{ mash_playbook_uid }}"
 adguard_home_gid: "{{ mash_playbook_gid }}"
-
-adguard_home_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}adguard-home"
 
 adguard_home_container_additional_networks_auto: |
   {{
@@ -1551,10 +1556,10 @@ anki_enabled: false
 
 anki_identifier: "{{ mash_playbook_service_identifier_prefix }}anki"
 
+anki_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}anki"
+
 anki_uid: "{{ mash_playbook_uid }}"
 anki_gid: "{{ mash_playbook_gid }}"
-
-anki_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}anki"
 
 anki_container_additional_networks_auto: |
   {{
@@ -1589,10 +1594,10 @@ anonymousoverflow_enabled: false
 
 anonymousoverflow_identifier: "{{ mash_playbook_service_identifier_prefix }}anonymousoverflow"
 
+anonymousoverflow_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}anonymousoverflow"
+
 anonymousoverflow_uid: "{{ mash_playbook_uid }}"
 anonymousoverflow_gid: "{{ mash_playbook_gid }}"
-
-anonymousoverflow_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}anonymousoverflow"
 
 anonymousoverflow_container_additional_networks_auto: |
   {{
@@ -1629,10 +1634,10 @@ apisix_dashboard_enabled: false
 
 apisix_dashboard_identifier: "{{ mash_playbook_service_identifier_prefix }}apisix-dashboard"
 
+apisix_dashboard_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}apisix-dashboard"
+
 apisix_dashboard_uid: "{{ mash_playbook_uid }}"
 apisix_dashboard_gid: "{{ mash_playbook_gid }}"
-
-apisix_dashboard_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}apisix-dashboard"
 
 apisix_dashboard_container_additional_networks_auto: |
   {{
@@ -1687,10 +1692,10 @@ apisix_gateway_enabled: false
 
 apisix_gateway_identifier: "{{ mash_playbook_service_identifier_prefix }}apisix-gateway"
 
+apisix_gateway_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}apisix-gateway"
+
 apisix_gateway_uid: "{{ mash_playbook_uid }}"
 apisix_gateway_gid: "{{ mash_playbook_gid }}"
-
-apisix_gateway_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}apisix-gateway"
 
 apisix_gateway_container_additional_networks_auto: |
   {{
@@ -1751,10 +1756,10 @@ appsmith_enabled: false
 
 appsmith_identifier: "{{ mash_playbook_service_identifier_prefix }}appsmith"
 
+appsmith_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}appsmith"
+
 appsmith_uid: "{{ mash_playbook_uid }}"
 appsmith_gid: "{{ mash_playbook_gid }}"
-
-appsmith_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}appsmith"
 
 appsmith_container_additional_networks_auto: |
   {{
@@ -1789,10 +1794,10 @@ authelia_enabled: false
 
 authelia_identifier: "{{ mash_playbook_service_identifier_prefix }}authelia"
 
+authelia_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}authelia"
+
 authelia_uid: "{{ mash_playbook_uid }}"
 authelia_gid: "{{ mash_playbook_gid }}"
-
-authelia_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}authelia"
 
 authelia_systemd_required_services_list_auto: |
   {{
@@ -2022,10 +2027,10 @@ calibre_web_enabled: false
 
 calibre_web_identifier: "{{ mash_playbook_service_identifier_prefix }}calibre-web"
 
+calibre_web_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}calibre-web"
+
 calibre_web_uid: "{{ mash_playbook_uid }}"
 calibre_web_gid: "{{ mash_playbook_gid }}"
-
-calibre_web_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}calibre-web"
 
 calibre_web_container_additional_networks_auto: |
   {{
@@ -2182,10 +2187,10 @@ convertx_enabled: false
 
 convertx_identifier: "{{ mash_playbook_service_identifier_prefix }}convertx"
 
+convertx_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}convertx"
+
 convertx_uid: "{{ mash_playbook_uid }}"
 convertx_gid: "{{ mash_playbook_gid }}"
-
-convertx_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}convertx"
 
 convertx_container_additional_networks_auto: |
   {{
@@ -2396,14 +2401,14 @@ docmost_enabled: false
 
 docmost_identifier: "{{ mash_playbook_service_identifier_prefix }}docmost"
 
+docmost_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}docmost"
+
 # The role is based on Node.js docker image, and is currently expected to run with uid 1000.
 #
 # See: https://github.com/nodejs/docker-node/blob/main/docs/BestPractices.md#non-root-user
 # and https://github.com/docmost/docmost/blob/main/Dockerfile
 docmost_uid: 1000
 docmost_gid: 1000
-
-docmost_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}docmost"
 
 docmost_systemd_required_services_list_auto: |
   {{
@@ -2591,10 +2596,11 @@ echoip_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_prima
 ########################################################################
 
 endlessh_enabled: false
-endlessh_hostname: "{{ mash_playbook_metrics_exposure_hostname }}"
-endlessh_path_prefix: "{{ mash_playbook_metrics_exposure_path_prefix }}/{{ endlessh_identifier }}"
+
 endlessh_identifier: "{{ mash_playbook_service_identifier_prefix }}endlessh"
+
 endlessh_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}endlessh"
+
 endlessh_uid: "{{ mash_playbook_uid }}"
 endlessh_gid: "{{ mash_playbook_gid }}"
 
@@ -2602,6 +2608,9 @@ endlessh_container_additional_networks_auto: |
   {{
     ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
   }}
+
+endlessh_hostname: "{{ mash_playbook_metrics_exposure_hostname }}"
+endlessh_path_prefix: "{{ mash_playbook_metrics_exposure_path_prefix }}/{{ endlessh_identifier }}"
 
 endlessh_container_labels_metrics_middleware_basic_auth_enabled: "{{ mash_playbook_metrics_exposure_http_basic_auth_enabled }}"
 endlessh_container_labels_metrics_middleware_basic_auth_users: "{{ mash_playbook_metrics_exposure_http_basic_auth_users }}"
@@ -2662,10 +2671,10 @@ etherpad_enabled: false
 
 etherpad_identifier: "{{ mash_playbook_service_identifier_prefix }}etherpad"
 
+etherpad_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}etherpad"
+
 etherpad_uid: "{{ mash_playbook_uid }}"
 etherpad_gid: "{{ mash_playbook_gid }}"
-
-etherpad_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}etherpad"
 
 etherpad_systemd_required_services_list_auto: |
   {{
@@ -2714,10 +2723,10 @@ excalidraw_enabled: false
 
 excalidraw_identifier: "{{ mash_playbook_service_identifier_prefix }}excalidraw"
 
+excalidraw_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}excalidraw"
+
 excalidraw_uid: "{{ mash_playbook_uid }}"
 excalidraw_gid: "{{ mash_playbook_gid }}"
-
-excalidraw_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}excalidraw"
 
 excalidraw_container_additional_networks_auto: |
   {{
@@ -2756,10 +2765,10 @@ excalidraw_room_enabled: false
 
 excalidraw_room_identifier: "{{ mash_playbook_service_identifier_prefix }}excalidraw-room"
 
+excalidraw_room_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}excalidraw-room"
+
 excalidraw_room_uid: "{{ mash_playbook_uid }}"
 excalidraw_room_gid: "{{ mash_playbook_gid }}"
-
-excalidraw_room_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}excalidraw-room"
 
 excalidraw_room_container_additional_networks_auto: |
   {{
@@ -3026,12 +3035,12 @@ forgejo_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_prim
 
 forgejo_runner_enabled: false
 
-forgejo_runner_uid: "0"
-forgejo_runner_gid: "0"
-
 forgejo_runner_identifier: "{{ mash_playbook_service_identifier_prefix }}forgejo-runner"
 
 forgejo_runner_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}forgejo-runner"
+
+forgejo_runner_uid: "0"
+forgejo_runner_gid: "0"
 
 forgejo_runner_systemd_required_systemd_services_list: |
   {{
@@ -3669,7 +3678,7 @@ hubsite_service_appsmith_priority: 1000
 # role-specific:authentik
 # authentik
 hubsite_service_authentik_enabled: "{{ authentik_enabled }}"
-hubsite_service_authentik_name: Authentik
+hubsite_service_authentik_name: authentik
 hubsite_service_authentik_url: "https://{{ authentik_hostname }}"
 hubsite_service_authentik_logo_location: "{{ role_path }}/assets/authentik.png"
 hubsite_service_authentik_description: "An open source identity provider"
@@ -4995,10 +5004,10 @@ joplin_server_enabled: false
 
 joplin_server_identifier: "{{ mash_playbook_service_identifier_prefix }}joplin-server"
 
+joplin_server_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}joplin-server"
+
 joplin_server_uid: "{{ mash_playbook_uid }}"
 joplin_server_gid: "{{ mash_playbook_gid }}"
-
-joplin_server_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}joplin-server"
 
 joplin_server_systemd_required_services_list_auto: |
  {{
@@ -5057,10 +5066,10 @@ keycloak_enabled: false
 
 keycloak_identifier: "{{ mash_playbook_service_identifier_prefix }}keycloak"
 
+keycloak_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}keycloak"
+
 keycloak_uid: "{{ mash_playbook_uid }}"
 keycloak_gid: "{{ mash_playbook_gid }}"
-
-keycloak_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}keycloak"
 
 keycloak_systemd_required_services_list_auto: |
   {{
@@ -5115,10 +5124,10 @@ keydb_enabled: false
 
 keydb_identifier: "{{ mash_playbook_service_identifier_prefix }}keydb"
 
+keydb_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}keydb"
+
 keydb_uid: "{{ mash_playbook_uid }}"
 keydb_gid: "{{ mash_playbook_gid }}"
-
-keydb_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}keydb"
 
 keydb_arch: |-
   {{
@@ -5149,10 +5158,10 @@ labelstudio_enabled: false
 
 labelstudio_identifier: "{{ mash_playbook_service_identifier_prefix }}labelstudio"
 
+labelstudio_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}labelstudio"
+
 labelstudio_uid: "{{ mash_playbook_uid }}"
 labelstudio_gid: "{{ mash_playbook_gid }}"
-
-labelstudio_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}labelstudio"
 
 labelstudio_container_additional_networks_auto: |
   {{
@@ -5483,6 +5492,17 @@ mash_playbook_mariadb_managed_databases_auto_itemized:
     }}
   # /role-specific:privatebin
 
+  # role-specific:semaphore
+  - |-
+    {{
+      ({
+        'name': semaphore_database_name,
+        'username': semaphore_database_mysql_username,
+        'password': semaphore_database_mysql_password,
+      } if semaphore_enabled and semaphore_database_mysql_hostname == mariadb_identifier else omit)
+    }}
+  # /role-specific:semaphore
+
   # role-specific:sftpgo
   - |-
     {{
@@ -5775,10 +5795,10 @@ mongodb_enabled: false
 
 mongodb_identifier: "{{ mash_playbook_service_identifier_prefix }}mongodb"
 
+mongodb_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}mongodb"
+
 mongodb_uid: "{{ mash_playbook_uid }}"
 mongodb_gid: "{{ mash_playbook_gid }}"
-
-mongodb_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}mongodb"
 
 mash_playbook_mongodb_managed_databases_auto_itemized:
   # Dummy entry, which is not role-specific.
@@ -5829,6 +5849,44 @@ mosquitto_gid: "{{ mash_playbook_gid }}"
 #                                                                      #
 ########################################################################
 # /role-specific:mosquitto
+
+
+
+# role-specific:mozhi
+########################################################################
+#                                                                      #
+# mozhi                                                                #
+#                                                                      #
+########################################################################
+
+mozhi_enabled: false
+
+mozhi_identifier: "{{ mash_playbook_service_identifier_prefix }}mozhi"
+
+mozhi_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}mozhi"
+
+mozhi_uid: "{{ mash_playbook_uid }}"
+mozhi_gid: "{{ mash_playbook_gid }}"
+
+mozhi_container_additional_networks_auto: |
+  {{
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+  }}
+
+mozhi_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+mozhi_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+
+# role-specific:traefik
+mozhi_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
+mozhi_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
+# /role-specific:traefik
+
+########################################################################
+#                                                                      #
+# /mozhi                                                               #
+#                                                                      #
+########################################################################
+# /role-specific:mozhi
 
 
 
@@ -5935,10 +5993,10 @@ navidrome_enabled: false
 
 navidrome_identifier: "{{ mash_playbook_service_identifier_prefix }}navidrome"
 
+navidrome_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}navidrome"
+
 navidrome_uid: "{{ mash_playbook_uid }}"
 navidrome_gid: "{{ mash_playbook_gid }}"
-
-navidrome_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}navidrome"
 
 navidrome_container_additional_networks_auto: |
   {{
@@ -5975,10 +6033,10 @@ neko_enabled: false
 
 neko_identifier: "{{ mash_playbook_service_identifier_prefix }}neko"
 
+neko_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}neko"
+
 neko_uid: "{{ mash_playbook_uid }}"
 neko_gid: "{{ mash_playbook_gid }}"
-
-neko_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}neko"
 
 neko_container_additional_networks_auto: |
   {{
@@ -6013,10 +6071,10 @@ netbox_enabled: false
 
 netbox_identifier: "{{ mash_playbook_service_identifier_prefix }}netbox"
 
+netbox_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}netbox"
+
 netbox_uid: "{{ mash_playbook_uid }}"
 netbox_gid: "{{ mash_playbook_gid }}"
-
-netbox_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}netbox"
 
 netbox_systemd_required_services_list_auto: |
   {{
@@ -6198,10 +6256,10 @@ ntfy_enabled: false
 
 ntfy_identifier: "{{ mash_playbook_service_identifier_prefix }}ntfy"
 
+ntfy_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}ntfy"
+
 ntfy_uid: "{{ mash_playbook_uid }}"
 ntfy_gid: "{{ mash_playbook_gid }}"
-
-ntfy_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}ntfy"
 
 ntfy_container_additional_networks_auto: |
   {{
@@ -6250,10 +6308,10 @@ oauth2_proxy_enabled: false
 
 oauth2_proxy_identifier: "{{ mash_playbook_service_identifier_prefix }}oauth2-proxy"
 
+oauth2_proxy_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}oauth2-proxy"
+
 oauth2_proxy_uid: "{{ mash_playbook_uid }}"
 oauth2_proxy_gid: "{{ mash_playbook_gid }}"
-
-oauth2_proxy_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}oauth2-proxy"
 
 oauth2_proxy_container_network: "{{ (mash_playbook_reverse_proxyable_services_additional_network if mash_playbook_traefik_labels_enabled else '') | default(oauth2_proxy_identifier) }}"
 
@@ -6285,10 +6343,10 @@ outline_enabled: false
 
 outline_identifier: "{{ mash_playbook_service_identifier_prefix }}outline"
 
+outline_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}outline"
+
 outline_uid: "{{ mash_playbook_uid }}"
 outline_gid: "{{ mash_playbook_gid }}"
-
-outline_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}outline"
 
 outline_systemd_required_services_list_auto: |
   {{
@@ -6377,10 +6435,10 @@ owncast_enabled: false
 
 owncast_identifier: "{{ mash_playbook_service_identifier_prefix }}owncast"
 
+owncast_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}owncast"
+
 owncast_uid: "{{ mash_playbook_uid }}"
 owncast_gid: "{{ mash_playbook_gid }}"
-
-owncast_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}owncast"
 
 owncast_container_additional_networks: |
   {{
@@ -6533,6 +6591,16 @@ peertube_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base
 peertube_uid: "{{ mash_playbook_uid }}"
 peertube_gid: "{{ mash_playbook_gid }}"
 
+peertube_systemd_required_services_list_auto: |
+  {{
+    ([postgres_identifier ~ '.service'] if postgres_enabled and peertube_config_database_hostname == postgres_identifier else [])
+  }}
+
+peertube_systemd_wanted_services_list_auto: |
+  {{
+    ([(exim_relay_identifier | default('mash-exim-relay')) ~ '.service'] if (exim_relay_enabled | default(false) and peertube_config_smtp_hostname == exim_relay_identifier | default('mash-exim-relay')) else [])
+  }}
+
 peertube_container_additional_networks_auto: |
   {{
     (
@@ -6542,16 +6610,6 @@ peertube_container_additional_networks_auto: |
       +
       ([exim_relay_container_network | default('mash-exim-relay')] if (exim_relay_enabled | default(false) and peertube_config_smtp_hostname == exim_relay_identifier | default('mash-exim-relay') and peertube_container_network != exim_relay_container_network) else [])
     ) | unique
-  }}
-
-peertube_systemd_required_services_list_auto: |
-  {{
-    ([postgres_identifier ~ '.service'] if postgres_enabled and peertube_config_database_hostname == postgres_identifier else [])
-  }}
-
-peertube_systemd_wanted_services_list_auto: |
-  {{
-    ([(exim_relay_identifier | default('mash-exim-relay')) ~ '.service'] if (exim_relay_enabled | default(false) and peertube_config_smtp_hostname == exim_relay_identifier | default('mash-exim-relay')) else [])
   }}
 
 peertube_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
@@ -6707,9 +6765,9 @@ plex_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary
 
 postgis_enabled: false
 
-postgis_identifier: "{{ mash_playbook_service_identifier_prefix }}postgis"
-
 postgis_architecture: "{{ mash_playbook_architecture }}"
+
+postgis_identifier: "{{ mash_playbook_service_identifier_prefix }}postgis"
 
 postgis_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}postgis"
 
@@ -6750,10 +6808,10 @@ privatebin_enabled: false
 
 privatebin_identifier: "{{ mash_playbook_service_identifier_prefix }}privatebin"
 
+privatebin_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}privatebin"
+
 privatebin_uid: "{{ mash_playbook_uid }}"
 privatebin_gid: "{{ mash_playbook_gid }}"
-
-privatebin_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}privatebin"
 
 privatebin_systemd_required_services_list_auto: |
   {{
@@ -6855,9 +6913,6 @@ prometheus_blackbox_exporter_enabled: false
 
 prometheus_blackbox_exporter_identifier: "{{ mash_playbook_service_identifier_prefix }}prometheus-blackbox-exporter"
 
-prometheus_blackbox_exporter_hostname: "{{ mash_playbook_metrics_exposure_hostname }}"
-prometheus_blackbox_exporter_path_prefix: "{{ mash_playbook_metrics_exposure_path_prefix }}/{{ prometheus_blackbox_exporter_identifier }}"
-
 prometheus_blackbox_exporter_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}prometheus-blackbox-exporter"
 
 prometheus_blackbox_exporter_uid: "{{ mash_playbook_uid }}"
@@ -6867,6 +6922,9 @@ prometheus_blackbox_exporter_container_additional_networks: |
   {{
     ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
   }}
+
+prometheus_blackbox_exporter_hostname: "{{ mash_playbook_metrics_exposure_hostname }}"
+prometheus_blackbox_exporter_path_prefix: "{{ mash_playbook_metrics_exposure_path_prefix }}/{{ prometheus_blackbox_exporter_identifier }}"
 
 # Only enable Traefik labels if a hostname is set (indicating that this will be exposed publicly)
 prometheus_blackbox_exporter_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled and prometheus_blackbox_exporter_hostname }}"
@@ -6900,9 +6958,6 @@ prometheus_node_exporter_enabled: false
 
 prometheus_node_exporter_identifier: "{{ mash_playbook_service_identifier_prefix }}prometheus-node-exporter"
 
-prometheus_node_exporter_hostname: "{{ mash_playbook_metrics_exposure_hostname }}"
-prometheus_node_exporter_path_prefix: "{{ mash_playbook_metrics_exposure_path_prefix }}/{{ prometheus_node_exporter_identifier }}"
-
 prometheus_node_exporter_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}prometheus-node-exporter"
 
 prometheus_node_exporter_uid: "{{ mash_playbook_uid }}"
@@ -6912,6 +6967,9 @@ prometheus_node_exporter_container_additional_networks_auto: |
   {{
     ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
   }}
+
+prometheus_node_exporter_hostname: "{{ mash_playbook_metrics_exposure_hostname }}"
+prometheus_node_exporter_path_prefix: "{{ mash_playbook_metrics_exposure_path_prefix }}/{{ prometheus_node_exporter_identifier }}"
 
 # Only enable Traefik labels if a hostname is set (indicating that this will be exposed publicly)
 prometheus_node_exporter_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled and prometheus_node_exporter_hostname }}"
@@ -6957,9 +7015,6 @@ prometheus_postgres_exporter_enabled: false
 
 prometheus_postgres_exporter_identifier: "{{ mash_playbook_service_identifier_prefix }}prometheus-postgres-exporter"
 
-prometheus_postgres_exporter_hostname: "{{ mash_playbook_metrics_exposure_hostname }}"
-prometheus_postgres_exporter_path_prefix: "{{ mash_playbook_metrics_exposure_path_prefix }}/{{ prometheus_postgres_exporter_identifier }}"
-
 prometheus_postgres_exporter_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}prometheus-postgres-exporter"
 
 prometheus_postgres_exporter_uid: "{{ mash_playbook_uid }}"
@@ -6976,6 +7031,9 @@ prometheus_postgres_exporter_systemd_required_services_list_auto: |
   {{
     ([postgres_identifier ~ '.service'] if postgres_enabled else [])
   }}
+
+prometheus_postgres_exporter_hostname: "{{ mash_playbook_metrics_exposure_hostname }}"
+prometheus_postgres_exporter_path_prefix: "{{ mash_playbook_metrics_exposure_path_prefix }}/{{ prometheus_postgres_exporter_identifier }}"
 
 prometheus_postgres_exporter_container_labels_metrics_middleware_basic_auth_enabled: "{{ mash_playbook_metrics_exposure_http_basic_auth_enabled }}"
 prometheus_postgres_exporter_container_labels_metrics_middleware_basic_auth_users: "{{ mash_playbook_metrics_exposure_http_basic_auth_users }}"
@@ -7017,9 +7075,6 @@ prometheus_ssh_exporter_enabled: false
 
 prometheus_ssh_exporter_identifier: "{{ mash_playbook_service_identifier_prefix }}prometheus-ssh-exporter"
 
-prometheus_ssh_exporter_hostname: "{{ mash_playbook_metrics_exposure_hostname }}"
-prometheus_ssh_exporter_path_prefix: "{{ mash_playbook_metrics_exposure_path_prefix }}/{{ prometheus_ssh_exporter_identifier }}"
-
 prometheus_ssh_exporter_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}prometheus-ssh-exporter"
 
 prometheus_ssh_exporter_uid: "{{ mash_playbook_uid }}"
@@ -7029,6 +7084,9 @@ prometheus_ssh_exporter_container_additional_networks: |
   {{
     ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
   }}
+
+prometheus_ssh_exporter_hostname: "{{ mash_playbook_metrics_exposure_hostname }}"
+prometheus_ssh_exporter_path_prefix: "{{ mash_playbook_metrics_exposure_path_prefix }}/{{ prometheus_ssh_exporter_identifier }}"
 
 prometheus_ssh_exporter_container_labels_metrics_middleware_basic_auth_enabled: "{{ mash_playbook_metrics_exposure_http_basic_auth_enabled }}"
 prometheus_ssh_exporter_container_labels_metrics_middleware_basic_auth_users: "{{ mash_playbook_metrics_exposure_http_basic_auth_users }}"
@@ -7067,12 +7125,6 @@ promtail_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base
 promtail_uid: "{{ mash_playbook_uid }}"
 promtail_gid: "{{ mash_playbook_gid }}"
 
-promtail_container_labels_metrics_enabled: "{{ prometheus_enabled | default(false) or mash_playbook_metrics_exposure_enabled }}"
-promtail_container_labels_metrics_hostname: "{{ mash_playbook_metrics_exposure_hostname }}"
-promtail_container_labels_metrics_path_prefix: "{{ mash_playbook_metrics_exposure_path_prefix }}/{{ promtail_identifier }}"
-promtail_container_labels_metrics_traefik_middleware_basic_auth_enabled: "{{ mash_playbook_metrics_exposure_http_basic_auth_enabled }}"
-promtail_container_labels_metrics_traefik_middleware_basic_auth_users: "{{ mash_playbook_metrics_exposure_http_basic_auth_users }}"
-
 promtail_container_additional_networks_auto: |
   {{
     (
@@ -7081,6 +7133,12 @@ promtail_container_additional_networks_auto: |
       ([loki_container_network] if (loki_enabled | default(false) and loki_container_network | default('') != promtail_container_network) else [])
     ) | unique
   }}
+
+promtail_container_labels_metrics_enabled: "{{ prometheus_enabled | default(false) or mash_playbook_metrics_exposure_enabled }}"
+promtail_container_labels_metrics_hostname: "{{ mash_playbook_metrics_exposure_hostname }}"
+promtail_container_labels_metrics_path_prefix: "{{ mash_playbook_metrics_exposure_path_prefix }}/{{ promtail_identifier }}"
+promtail_container_labels_metrics_traefik_middleware_basic_auth_enabled: "{{ mash_playbook_metrics_exposure_http_basic_auth_enabled }}"
+promtail_container_labels_metrics_traefik_middleware_basic_auth_users: "{{ mash_playbook_metrics_exposure_http_basic_auth_users }}"
 
 # Only enable Traefik labels if a hostname is set (indicating that this will be exposed publicly)
 promtail_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
@@ -7235,19 +7293,19 @@ reactflux_enabled: false
 
 reactflux_identifier: "{{ mash_playbook_service_identifier_prefix }}reactflux"
 
-reactflux_uid: "{{ mash_playbook_uid }}"
-reactflux_gid: "{{ mash_playbook_gid }}"
-
 reactflux_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}reactflux"
 
-reactflux_container_additional_networks: |
-  {{
-    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
-  }}
+reactflux_uid: "{{ mash_playbook_uid }}"
+reactflux_gid: "{{ mash_playbook_gid }}"
 
 reactflux_systemd_required_services_list_auto: |
   {{
     ([miniflux_identifier ~ '.service'] if miniflux_enabled else [])
+  }}
+
+reactflux_container_additional_networks: |
+  {{
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
   }}
 
 reactflux_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
@@ -7278,10 +7336,10 @@ readeck_enabled: false
 
 readeck_identifier: "{{ mash_playbook_service_identifier_prefix }}readeck"
 
+readeck_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}readeck"
+
 readeck_uid: "{{ mash_playbook_uid }}"
 readeck_gid: "{{ mash_playbook_gid }}"
-
-readeck_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}readeck"
 
 readeck_container_additional_networks_auto: |
   {{
@@ -7341,10 +7399,10 @@ redlib_enabled: false
 
 redlib_identifier: "{{ mash_playbook_service_identifier_prefix }}redlib"
 
+redlib_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}redlib"
+
 redlib_uid: "{{ mash_playbook_uid }}"
 redlib_gid: "{{ mash_playbook_gid }}"
-
-redlib_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}redlib"
 
 redlib_container_additional_networks_auto: |
   {{
@@ -7516,10 +7574,10 @@ searxng_enabled: false
 
 searxng_identifier: "{{ mash_playbook_service_identifier_prefix }}searxng"
 
+searxng_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}searxng"
+
 searxng_uid: "{{ mash_playbook_uid }}"
 searxng_gid: "{{ mash_playbook_gid }}"
-
-searxng_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}searxng"
 
 searxng_systemd_required_systemd_services_list: |
   {{
@@ -7566,24 +7624,45 @@ semaphore_gid: "{{ mash_playbook_gid }}"
 
 semaphore_systemd_required_services_list_auto: |
   {{
-    ([postgres_identifier ~ '.service'] if postgres_enabled and semaphore_database_hostname == postgres_identifier else [])
+    ([mariadb_identifier ~ '.service'] if mariadb_enabled | default(false) and semaphore_database_mysql_hostname == mariadb_identifier else [])
+    +
+    ([postgres_identifier ~ '.service'] if postgres_enabled | default(false) and semaphore_database_postgres_hostname == postgres_identifier else [])
   }}
 
 semaphore_container_additional_networks: |
   {{
     ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
     +
-    ([postgres_container_network] if postgres_enabled and semaphore_database_hostname == postgres_identifier and semaphore_container_network != postgres_container_network else [])
+    ([exim_relay_container_network | default('mash-exim-relay')] if (exim_relay_enabled | default(false) and semaphore_environment_variables_email_host == exim_relay_identifier | default('mash-exim-relay') and semaphore_container_network != exim_relay_container_network) else [])
+    +
+    ([mariadb_container_network] if mariadb_enabled | default(false) and semaphore_database_mysql_hostname == mariadb_identifier and semaphore_container_network != mariadb_container_network and semaphore_database_dialect == 'mysql' else [])
+    +
+    ([postgres_container_network] if postgres_enabled | default(false) and semaphore_database_postgres_hostname == postgres_identifier and semaphore_container_network != postgres_container_network and semaphore_database_dialect == 'postgres'  else [])
   }}
+
+semaphore_database_dialect: postgres
 
 semaphore_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
 semaphore_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
 
+# role-specific:exim_relay
+semaphore_environment_variables_email_host: "{{ exim_relay_identifier if exim_relay_enabled else '' }}"
+semaphore_environment_variables_email_port: 8025
+semaphore_environment_variables_email_sender: "{{ exim_relay_sender_address if exim_relay_enabled else '' }}"
+# /role-specific:exim_relay
+
+# role-specific:mariadb
+semaphore_database_mysql_username: "{{ semaphore_identifier }}"
+semaphore_database_mysql_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'semaphore.m', rounds=655555) | to_uuid }}"
+semaphore_database_mysql_port: "{{ '3306' if mariadb_enabled else '' }}"
+semaphore_database_mysql_hostname: "{{ mariadb_identifier if mariadb_enabled else '' }}"
+# /role-specific:mariadb
+
 # role-specific:postgres
-semaphore_database_hostname: "{{ postgres_identifier if postgres_enabled else '' }}"
-semaphore_database_port: "{{ '5432' if postgres_enabled else '' }}"
-semaphore_database_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'db.semaphore', rounds=655555) | to_uuid }}"
-semaphore_database_username: "{{ semaphore_identifier }}"
+semaphore_database_postgres_username: "{{ semaphore_identifier }}"
+semaphore_database_postgres_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'semaphore.p', rounds=655555) | to_uuid }}"
+semaphore_database_postgres_port: "{{ '5432' if postgres_enabled else '' }}"
+semaphore_database_postgres_hostname: "{{ postgres_identifier if postgres_enabled else '' }}"
 # /role-specific:postgres
 
 # role-specific:traefik
@@ -7611,10 +7690,10 @@ send_enabled: false
 
 send_identifier: "{{ mash_playbook_service_identifier_prefix }}send"
 
+send_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}send"
+
 send_uid: "{{ mash_playbook_uid }}"
 send_gid: "{{ mash_playbook_gid }}"
-
-send_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}send"
 
 send_container_additional_networks_auto: |
   {{
@@ -7656,6 +7735,13 @@ sftpgo_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_d
 
 sftpgo_uid: "{{ mash_playbook_uid }}"
 sftpgo_gid: "{{ mash_playbook_gid }}"
+
+sftpgo_systemd_required_services_list_auto: |
+  {{
+    ([mariadb_identifier ~ '.service'] if mariadb_enabled | default(false) and sftpgo_database_mysql_hostname == mariadb_identifier else [])
+    +
+    ([postgres_identifier ~ '.service'] if postgres_enabled | default(false) and sftpgo_database_postgresql_hostname == postgres_identifier else [])
+  }}
 
 sftpgo_container_additional_networks_auto: |
   {{
@@ -7719,11 +7805,10 @@ soft_serve_enabled: false
 
 soft_serve_identifier: "{{ mash_playbook_service_identifier_prefix }}soft-serve"
 
-soft_serve_uid: "{{ mash_playbook_uid }}"
-soft_serve_gid: "{{ mash_playbook_gid }}"
-
 soft_serve_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}soft-serve"
 
+soft_serve_uid: "{{ mash_playbook_uid }}"
+soft_serve_gid: "{{ mash_playbook_gid }}"
 ########################################################################
 #                                                                      #
 # /soft-serve                                                          #
@@ -7782,10 +7867,10 @@ stirling_pdf_enabled: false
 
 stirling_pdf_identifier: "{{ mash_playbook_service_identifier_prefix }}stirling-pdf"
 
+stirling_pdf_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}stirling-pdf"
+
 stirling_pdf_uid: "{{ mash_playbook_uid }}"
 stirling_pdf_gid: "{{ mash_playbook_gid }}"
-
-stirling_pdf_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}stirling-pdf"
 
 stirling_pdf_container_additional_networks_auto: |
   {{
@@ -7820,10 +7905,10 @@ syncstorage_rs_docker_enabled: false
 
 syncstorage_rs_docker_identifier: "{{ mash_playbook_service_identifier_prefix }}syncstorage-rs-docker"
 
+syncstorage_rs_docker_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}syncstorage-rs-docker"
+
 syncstorage_rs_docker_uid: "{{ mash_playbook_uid }}"
 syncstorage_rs_docker_gid: "{{ mash_playbook_gid }}"
-
-syncstorage_rs_docker_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}syncstorage-rs-docker"
 
 syncstorage_rs_docker_systemd_required_services_list_auto: |
   {{
@@ -7874,10 +7959,10 @@ syncthing_enabled: false
 
 syncthing_identifier: "{{ mash_playbook_service_identifier_prefix }}syncthing"
 
+syncthing_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}syncthing"
+
 syncthing_uid: "{{ mash_playbook_uid }}"
 syncthing_gid: "{{ mash_playbook_gid }}"
-
-syncthing_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}syncthing"
 
 syncthing_container_additional_networks_auto: |
   {{
@@ -8019,16 +8104,16 @@ tsdproxy_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base
 tsdproxy_uid: "{{ mash_playbook_uid }}"
 tsdproxy_gid: "{{ mash_playbook_gid }}"
 
-tsdproxy_container_additional_networks_auto: |
-  {{
-    ([container_socket_proxy_container_network] if container_socket_proxy_enabled | default(false) else [])
-  }}
-
 tsdproxy_systemd_required_services_list: |
   {{
     ([devture_systemd_docker_base_docker_service_name] if devture_systemd_docker_base_docker_service_name else [])
     +
     ([container_socket_proxy_identifier + '.service'] if container_socket_proxy_enabled | default(false) else [])
+  }}
+
+tsdproxy_container_additional_networks_auto: |
+  {{
+    ([container_socket_proxy_container_network] if container_socket_proxy_enabled | default(false) else [])
   }}
 
 # role-specific:container_socket_proxy
@@ -8097,10 +8182,10 @@ valkey_enabled: false
 
 valkey_identifier: "{{ mash_playbook_service_identifier_prefix }}valkey"
 
+valkey_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}valkey"
+
 valkey_uid: "{{ mash_playbook_uid }}"
 valkey_gid: "{{ mash_playbook_gid }}"
-
-valkey_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}valkey"
 
 valkey_arch: "{{ mash_playbook_architecture }}"
 
@@ -8124,10 +8209,10 @@ vaultwarden_enabled: false
 
 vaultwarden_identifier: "{{ mash_playbook_service_identifier_prefix }}vaultwarden"
 
+vaultwarden_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}vaultwarden"
+
 vaultwarden_uid: "{{ mash_playbook_uid }}"
 vaultwarden_gid: "{{ mash_playbook_gid }}"
-
-vaultwarden_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}vaultwarden"
 
 vaultwarden_systemd_required_services_list_auto: |
   {{
@@ -8192,10 +8277,10 @@ versatiles_enabled: false
 
 versatiles_identifier: "{{ mash_playbook_service_identifier_prefix }}versatiles"
 
+versatiles_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}versatiles"
+
 versatiles_uid: "{{ mash_playbook_uid }}"
 versatiles_gid: "{{ mash_playbook_gid }}"
-
-versatiles_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}versatiles"
 
 versatiles_container_additional_networks_auto: |
   {{
@@ -8306,10 +8391,10 @@ woodpecker_ci_agent_enabled: false
 
 woodpecker_ci_agent_identifier: "{{ mash_playbook_service_identifier_prefix }}woodpecker-ci-agent"
 
+woodpecker_ci_agent_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}woodpecker-ci/agent"
+
 woodpecker_ci_agent_uid: "{{ mash_playbook_uid }}"
 woodpecker_ci_agent_gid: "{{ mash_playbook_gid }}"
-
-woodpecker_ci_agent_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}woodpecker-ci/agent"
 
 woodpecker_ci_agent_systemd_required_services_list_auto: |
   {{
@@ -8347,10 +8432,10 @@ woodpecker_ci_server_enabled: false
 
 woodpecker_ci_server_identifier: "{{ mash_playbook_service_identifier_prefix }}woodpecker-ci-server"
 
+woodpecker_ci_server_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}woodpecker-ci/server"
+
 woodpecker_ci_server_uid: "{{ mash_playbook_uid }}"
 woodpecker_ci_server_gid: "{{ mash_playbook_gid }}"
-
-woodpecker_ci_server_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}woodpecker-ci/server"
 
 woodpecker_ci_server_systemd_required_services_list_auto: |
   {{
@@ -8454,10 +8539,10 @@ writefreely_enabled: false
 
 writefreely_identifier: "{{ mash_playbook_service_identifier_prefix }}writefreely"
 
+writefreely_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}writefreely"
+
 writefreely_uid: "{{ mash_playbook_uid }}"
 writefreely_gid: "{{ mash_playbook_gid }}"
-
-writefreely_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}writefreely"
 
 writefreely_container_additional_networks_auto: |
   {{
@@ -8492,10 +8577,10 @@ yacy_enabled: false
 
 yacy_identifier: "{{ mash_playbook_service_identifier_prefix }}yacy"
 
+yacy_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}yacy"
+
 yacy_uid: "{{ mash_playbook_uid }}"
 yacy_gid: "{{ mash_playbook_gid }}"
-
-yacy_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}yacy"
 
 yacy_container_additional_networks_auto: |
   {{
@@ -8530,10 +8615,10 @@ yourls_enabled: false
 
 yourls_identifier: "{{ mash_playbook_service_identifier_prefix }}yourls"
 
+yourls_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}yourls"
+
 yourls_uid: "{{ mash_playbook_uid }}"
 yourls_gid: "{{ mash_playbook_gid }}"
-
-yourls_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}yourls"
 
 yourls_systemd_required_services_list_auto: |
   {{

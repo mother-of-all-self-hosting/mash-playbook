@@ -182,7 +182,7 @@ Grafana supports Single-Sign-On (SSO) via OAUTH. To make use of this you'll need
 Below, you can find some examples for Grafana configuration.
 
 
-#### Single-Sign-On / Authentik
+#### Single-Sign-On / authentik
 
 * Create a new OAUTH provider in authentik called `grafana`
 * Create an application also named `grafana` in authentik using this provider
