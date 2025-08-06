@@ -1,14 +1,19 @@
 <!--
 SPDX-FileCopyrightText: 2024 Slavi Pantaleev
+SPDX-FileCopyrightText: 2025 Suguru Hirahara
 
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 
 # Valkey
 
-[Valkey](https://valkey.io/) is a flexible distributed key-value datastore that is optimized for caching and other realtime workloads.
+The playbook can install and configure [Valkey](https://valkey.io/) for you.
 
-Some of the services installed by this playbook require a Valkey data store.
+Valkey is a fork of [Redis](redis.md), a flexible distributed key-value datastore that is optimized for caching and other realtime workloads.
+
+See the project's [documentation](https://valkey.io/docs/) to learn what Valkey does and why it might be useful to you.
+
+Some of the services installed by this playbook require a Valkey data store. As this playbook supports [Redis](redis.md) and [KeyDB](keydb.md) as well, we recommend using Valkey since 2024-11-23.
 
 > [!WARNING]
 > Because Valkey is not as flexible as [Postgres](postgres.md) when it comes to authentication and data separation, it's **recommended that you run separate Valkey instances** (one for each service). Valkey supports multiple database and a [SELECT](https://valkey.io/commands/select/) command for switching between them. However, **reusing the same Valkey instance is not good enough** because:
