@@ -1,16 +1,19 @@
 <!--
 SPDX-FileCopyrightText: 2024 Slavi Pantaleev
+SPDX-FileCopyrightText: 2025 Suguru Hirahara
 
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 
 # KeyDB
 
-[KeyDB](https://docs.keydb.dev/) is an open source, in-memory data store used by millions of developers as a database, cache, streaming engine, and message broker.
+The playbook can install and configure [KeyDB](https://docs.keydb.dev/) for you.
 
-⚠️ We used to advocate for using [Redis](redis.md), but since [Redis is now "source available"](https://redis.com/blog/redis-adopts-dual-source-available-licensing/) we started recommending that you use KeyDB instead. KeyDB is compatible with Redis, so switching should be straightforward. You can learn more about the switch from Redis to KeyDB in [this changelog entry](https://github.com/spantaleev/matrix-docker-ansible-deploy/blob/50813c600db1c47b1f3e76707b81fe05d6c46ef5/CHANGELOG.md#backward-compatibility-break-the-playbook-now-defaults-to-keydb-instead-of-redis) for [matrix-docker-ansible-deploy](https://github.com/spantaleev/matrix-docker-ansible-deploy). Since 2024-11-23, we recommend [Valkey](valkey.md) instead of [KeyDB](./keydb.md).
+KeyDB is a fork of [Redis](redis.md), an open source, in-memory data store used by millions of developers as a database, cache, streaming engine, and message broker.
 
-Some of the services installed by this playbook require a KeyDB data store.
+See the project's [documentation](https://docs.keydb.dev/) to learn what KeyDB does and why it might be useful to you.
+
+Some of the services installed by this playbook require a Redis or its compatible data store including KeyDB and [Valkey](valkey.md). As this playbook supports both as well, we recommend using Valkey since 2024-11-23.
 
 > [!WARNING]
 > Because KeyDB is not as flexible as [Postgres](postgres.md) when it comes to authentication and data separation, it's **recommended that you run separate KeyDB instances** (one for each service). KeyDB supports multiple database and a [SELECT](https://docs.keydb.dev/docs/commands/#select) command for switching between them. However, **reusing the same KeyDB instance is not good enough** because:
