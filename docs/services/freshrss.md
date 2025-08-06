@@ -12,6 +12,8 @@ The playbook can install and configure [FreshRSS](https://freshrss.org) for you.
 
 FreshRSS is a self-hosted RSS and Atom feed aggregator, which is lightweight, easy to work with, powerful, and customizable.
 
+See the project's [documentation](https://freshrss.github.io/FreshRSS/) to learn what FreshRSS does and why it might be useful to you.
+
 ## Dependencies
 
 This service requires the following other services:
