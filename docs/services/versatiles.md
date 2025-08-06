@@ -1,7 +1,5 @@
 # Versatiles
 
-![Versatiles Logo](../assets/versatiles/logo.png)
-
 [Versatiles](https://versatiles.org) is a a free stack for generating and serving vector tiles based on [OpenStreetMap](https://openstreetmap.com) data.
 
 
