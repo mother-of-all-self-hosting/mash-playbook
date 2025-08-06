@@ -1,3 +1,9 @@
+<!--
+SPDX-FileCopyrightText: 2023 Julian-Samuel Gebühr
+
+SPDX-License-Identifier: AGPL-3.0-or-later
+-->
+
 # OxiTraffic
 
 [OxiTraffic](https://codeberg.org/mo8it/oxitraffic) is a self-hosted, simple and privacy respecting website traffic tracker, that this playbook can install, powered by the [mother-of-all-self-hosting/ansible-role-oxitraffic](https://github.com/mother-of-all-self-hosting/ansible-role-oxitraffic) Ansible role.
