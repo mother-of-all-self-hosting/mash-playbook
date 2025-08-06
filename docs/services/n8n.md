@@ -1,3 +1,9 @@
+<!--
+SPDX-FileCopyrightText: 2023 kinduff
+
+SPDX-License-Identifier: AGPL-3.0-or-later
+-->
+
 # n8n
 
 [n8n](https://n8n.io/) is a workflow automation tool for technical people.
