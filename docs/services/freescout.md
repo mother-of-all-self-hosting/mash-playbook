@@ -10,6 +10,8 @@ The playbook can install and configure [FreeScout](https://freescout.net/) for y
 
 FreeScout is a free open-source helpdesk and shared inbox solution.
 
+See the project's [documentation](https://github.com/freescout-help-desk/freescout/wiki) to learn what FreeScout does and why it might be useful to you.
+
 ## Dependencies
 
 This service requires the following other services:
