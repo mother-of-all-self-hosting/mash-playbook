@@ -10,6 +10,8 @@ The playbook can install and configure [etcd](https://etcd.io/) for you.
 
 etcd is a strongly consistent, distributed key-value store that provides a reliable way to store data that needs to be accessed by a distributed system or cluster of machines. It gracefully handles leader elections during network partitions and can tolerate machine failure, even in the leader node.
 
+See the project's [documentation](https://etcd.io/docs/latest/) to learn what etcd does and why it might be useful to you.
+
 >[!NOTE]
 > Our current setup and documentation are **aiming at running etcd for internal purposes** (as a dependency for other [services](../supported-services.md) such as [APISIX Dashboard](apisix-dashboard.md) and [APISIX Gateway](apisix-gateway.md)). If you need a production deployment, you will need to install multiple etcd instances (on multiple machines) and connect them in a cluster. Please note that this is beyond the scope of our documentation here.
 
