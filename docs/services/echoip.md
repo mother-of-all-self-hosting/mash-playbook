@@ -10,6 +10,8 @@ The playbook can install and configure [echoip](https://github.com/mpolden/echoi
 
 echoip is simple service for looking up your IP address, which powers [ifconfig.co](https://ifconfig.co).
 
+See the project's [documentation](https://github.com/mpolden/echoip/blob/master/README.md) to learn what echoip does and why it might be useful to you.
+
 ## Dependencies
 
 This service requires the following other services:
