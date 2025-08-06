@@ -1,5 +1,6 @@
 <!--
 SPDX-FileCopyrightText: 2023 Julian-Samuel Gebühr
+SPDX-FileCopyrightText: 2024 Slavi Pantaleev
 SPDX-FileCopyrightText: 2025 Suguru Hirahara
 
 SPDX-License-Identifier: AGPL-3.0-or-later
@@ -64,3 +65,7 @@ To have your OxiTraffic instance count visits at `https://example.com`, you need
 ## Troubleshooting
 
 Internal OxiTraffic errors will not be logged to `stdout` and will therefore not be part of `journalctl -fu mash-oxitraffic`. Its log can be checked by running `tail -f logs/oxitraffic`.
+
+## Related services
+
+- [Plausible Analytics](plausible.md) — Intuitive, lightweight and open source web analytics

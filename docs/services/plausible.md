@@ -1,3 +1,10 @@
+<!--
+SPDX-FileCopyrightText: 2023 Julian-Samuel Gebühr
+SPDX-FileCopyrightText: 2024 Slavi Pantaleev
+
+SPDX-License-Identifier: AGPL-3.0-or-later
+-->
+
 # Plausible Analytics
 
 [Plausible Analytics](https://plausible.io/) is intuitive, lightweight and open source web analytics. No cookies and fully compliant with GDPR, CCPA and PECR.
@@ -62,3 +69,7 @@ After logging in with your user account you can create properties (websites) and
 By default, the system is configured to allow registrations that are coming from an explicit invitation, while public registrations are disabled. This can be controlled via the `plausible_environment_variable_disable_registration` variable.
 
 For additional configuration options, refer to [ansible-role-plausible](https://github.com/mother-of-all-self-hosting/ansible-role-plausible)'s `defaults/main.yml` file.
+
+## Related services
+
+- [OxiTraffic](oxitraffic.md) — Self-hosted, simple and privacy respecting website traffic tracker
