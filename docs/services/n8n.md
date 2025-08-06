@@ -6,7 +6,14 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
 # n8n
 
-[n8n](https://n8n.io/) is a workflow automation tool for technical people.
+The playbook can install and configure [n8n](https://n8n.io/) for you.
+
+n8n is a workflow automation tool for technical people.
+
+See the project's [documentation](https://docs.n8n.io/) to learn what n8n does and why it might be useful to you.
+
+>[!WARNING]
+> n8n is licensed under [Sustainable Use License](https://github.com/n8n-io/n8n/blob/master/LICENSE.md). Because we had discouraged using [Redis](redis.md) as it was provided under "source available" model (note: Redis has retracted its stance in the end and since version 8.0 it was started to be released under multiple licenses, one of which is AGPL-3.0), we do not encourage using n8n either on the same ground.
 
 ## Dependencies
 
