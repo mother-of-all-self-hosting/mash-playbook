@@ -1,3 +1,9 @@
+<!--
+SPDX-FileCopyrightText: 2024 Slavi Pantaleev
+
+SPDX-License-Identifier: AGPL-3.0-or-later
+-->
+
 # KeyDB
 
 [KeyDB](https://docs.keydb.dev/) is an open source, in-memory data store used by millions of developers as a database, cache, streaming engine, and message broker.
