@@ -1,3 +1,9 @@
+<!--
+SPDX-FileCopyrightText: 2024 Slavi Pantaleev
+
+SPDX-License-Identifier: AGPL-3.0-or-later
+-->
+
 # Valkey
 
 [Valkey](https://valkey.io/) is a flexible distributed key-value datastore that is optimized for caching and other realtime workloads.
