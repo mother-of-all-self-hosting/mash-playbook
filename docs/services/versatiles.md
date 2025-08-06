@@ -1,7 +1,29 @@
+<!--
+SPDX-FileCopyrightText: 2020 - 2024 MDAD project contributors
+SPDX-FileCopyrightText: 2020 - 2024 Slavi Pantaleev
+SPDX-FileCopyrightText: 2020 Aaron Raimist
+SPDX-FileCopyrightText: 2020 Chris van Dijk
+SPDX-FileCopyrightText: 2020 Dominik Zajac
+SPDX-FileCopyrightText: 2020 Mickaël Cornière
+SPDX-FileCopyrightText: 2022 François Darveau
+SPDX-FileCopyrightText: 2022 Julian Foad
+SPDX-FileCopyrightText: 2022 Warren Bailey
+SPDX-FileCopyrightText: 2023 Antonis Christofides
+SPDX-FileCopyrightText: 2023 Felix Stupp
+SPDX-FileCopyrightText: 2023 - 2024 Julian-Samuel Gebühr
+SPDX-FileCopyrightText: 2023 Pierre 'McFly' Marty
+SPDX-FileCopyrightText: 2024 - 2025 Suguru Hirahara
+
+SPDX-License-Identifier: AGPL-3.0-or-later
+-->
+
 # Versatiles
 
-[Versatiles](https://versatiles.org) is a a free stack for generating and serving vector tiles based on [OpenStreetMap](https://openstreetmap.com) data.
+The playbook can install and configure [Versatiles](https://versatiles.org) for you.
 
+Versatiles is a free stack for generating and serving vector tiles based on [OpenStreetMap](https://openstreetmap.com) data.
+
+See the project's [documentation](https://docs.versatiles.org/) to learn what Versatiles does and why it might be useful to you.
 
 ## Dependencies
 
@@ -9,8 +31,7 @@ This service requires the following other services:
 
 - a [Traefik](traefik.md) reverse-proxy server
 
-
-## Configuration
+## Adjusting the playbook configuration
 
 To enable this service, add the following configuration to your `vars.yml` file and re-run the [installation](../installing.md) process:
 
@@ -32,17 +53,13 @@ versatiles_hostname: tiles.example.com
 ########################################################################
 ```
 
-In the example configuration above, we configure the service to be hosted at `https://tiles.example.com/`.
-
-
 ## Usage
 
-After installation, you should be able to access your new Versatiles instance at: `https://tiles.example.com`.
+After running the command for installation, Versatiles becomes available at the specified hostname like `https://tiles.example.com`.
 
 ![Map of Dresden](../assets/versatiles/map-example.jpeg)
 
-
-To embed the map in a website Copy & Paste the following snippet and replace `tiles.example.com` with your `versatiles_hostname`.
+To embed the map on a website, add the following tags to the website:
 
 ```html
 <!-- add MapLibre JavaScript and CSS -->
@@ -61,4 +78,4 @@ To embed the map in a website Copy & Paste the following snippet and replace `ti
 </script>
 ```
 
-For adjustments, check out the amazing [examples from maplibre](https://maplibre.org/maplibre-gl-js/docs/examples/).
+Refer to [examples from MapLibre](https://maplibre.org/maplibre-gl-js/docs/examples/) for details about adjustments.
