@@ -27,7 +27,7 @@ Some of the services installed by this playbook require a Valkey data store. As 
 
 ## Configuration
 
-To enable this service, add the following configuration to your `vars.yml` file and re-run the [installation](../installing.md) process to **host a single instance of the KeyDB service**:
+To enable this service, add the following configuration to your `vars.yml` file and re-run the [installation](../installing.md) process to **host a single instance of the Valkey service**:
 
 ```yaml
 ########################################################################
