@@ -17,13 +17,13 @@ SPDX-FileCopyrightText: 2024 - 2025 Suguru Hirahara
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 
-# Versatiles
+# VersaTiles
 
-The playbook can install and configure [Versatiles](https://versatiles.org) for you.
+The playbook can install and configure [VersaTiles](https://versatiles.org) for you.
 
-Versatiles is a free stack for generating and serving vector tiles based on [OpenStreetMap](https://openstreetmap.com) data.
+VersaTiles is a free stack for generating and serving vector tiles based on [OpenStreetMap](https://openstreetmap.com) data.
 
-See the project's [documentation](https://docs.versatiles.org/) to learn what Versatiles does and why it might be useful to you.
+See the project's [documentation](https://docs.versatiles.org/) to learn what VersaTiles does and why it might be useful to you.
 
 ## Dependencies
 
@@ -55,7 +55,7 @@ versatiles_hostname: tiles.example.com
 
 ## Usage
 
-After running the command for installation, Versatiles becomes available at the specified hostname like `https://tiles.example.com`.
+After running the command for installation, VersaTiles becomes available at the specified hostname like `https://tiles.example.com`.
 
 ![Map of Dresden](../assets/versatiles/map-example.jpeg)
 
