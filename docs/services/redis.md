@@ -49,3 +49,14 @@ redis_enabled: true
 ```
 
 To **host multiple instances of the Redis service**, follow the [Running multiple instances of the same service on the same host](../running-multiple-instances.md) documentation or the **Redis** section (if available) of the service you're installing.
+
+## Usage
+
+After installation, your Redis instance becomes available.
+
+The purpose of the Redis component in this Ansible playbook is to serve as a dependency for other [services](../supported-services.md). For this use-case, you don't need to do anything special beyond enabling the component per your choice (whether hosting a single instance or multiple ones).
+
+## Related services
+
+- [KeyDB](keydb.md) — In-memory data store used by millions of developers as a database, cache, streaming engine, and message broker, forked from Redis
+- [Valkey](valkey.md) — Flexible distributed key-value datastore that is optimized for caching and other realtime workloads, forked from Redis
