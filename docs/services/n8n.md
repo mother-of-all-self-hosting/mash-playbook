@@ -1,5 +1,6 @@
 <!--
 SPDX-FileCopyrightText: 2023 kinduff
+SPDX-FileCopyrightText: 2025 Suguru Hirahara
 
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->
@@ -19,8 +20,8 @@ See the project's [documentation](https://docs.n8n.io/) to learn what n8n does a
 
 This service requires the following other services:
 
--   a [Postgres](postgres.md) database
--   a [Traefik](traefik.md) reverse-proxy server
+- a [Postgres](postgres.md) database
+- a [Traefik](traefik.md) reverse-proxy server
 
 ## Configuration
 
@@ -45,10 +46,8 @@ n8n_path_prefix: /n8n
 ########################################################################
 ```
 
-In the example configuration above, we configure the service to be hosted at `https://mash.example.com/n8n`.
-
-You can remove the `n8n_path_prefix` variable definition, to make it default to `/`, so that the service is served at `https://mash.example.com/`.
-
 ## Usage
+
+After running the command for installation, n8n becomes available at the specified hostname with the prefix (`mash.example.com/n8n`).
 
 You can create additional users (admin-privileged or not) after logging in.
