@@ -1,17 +1,32 @@
 <!--
+SPDX-FileCopyrightText: 2020 - 2024 MDAD project contributors
+SPDX-FileCopyrightText: 2020 - 2024 Slavi Pantaleev
+SPDX-FileCopyrightText: 2020 Aaron Raimist
+SPDX-FileCopyrightText: 2020 Chris van Dijk
+SPDX-FileCopyrightText: 2020 Dominik Zajac
+SPDX-FileCopyrightText: 2020 Mickaël Cornière
+SPDX-FileCopyrightText: 2022 François Darveau
+SPDX-FileCopyrightText: 2022 Julian Foad
+SPDX-FileCopyrightText: 2022 Warren Bailey
+SPDX-FileCopyrightText: 2023 Antonis Christofides
+SPDX-FileCopyrightText: 2023 Felix Stupp
 SPDX-FileCopyrightText: 2023 Julian-Samuel Gebühr
 SPDX-FileCopyrightText: 2023 MASH project contributors
 SPDX-FileCopyrightText: 2023 Niels Bouma
-SPDX-FileCopyrightText: 2023 - 2024 Slavi Pantaleev
+SPDX-FileCopyrightText: 2023 Pierre 'McFly' Marty
 SPDX-FileCopyrightText: 2024 Gergely Horváth
+SPDX-FileCopyrightText: 2024 - 2025 Suguru Hirahara
 
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 
 # Nextcloud
 
-[Nextcloud](https://nextcloud.com/) is the most popular self-hosted collaboration solution for tens of millions of users at thousands of organizations across the globe.
+The playbook can install and configure [Nextcloud](https://nextcloud.com/) for you.
 
+Nextcloud is the most popular self-hosted collaboration solution for tens of millions of users at thousands of organizations across the globe.
+
+See the project's [documentation](https://docs.nextcloud.com/) to learn what Nextcloud does and why it might be useful to you.
 
 ## Dependencies
 
@@ -22,8 +37,7 @@ This service requires the following other services:
 - (optional) a [Valkey](valkey.md) data-store; see [below](#configure-valkey) for details about installation
 - (optional) the [exim-relay](exim-relay.md) mailer
 
-
-## Configuration
+## Adjusting the playbook configuration
 
 To enable this service, add the following configuration to your `vars.yml` file:
 
@@ -47,10 +61,6 @@ nextcloud_path_prefix: /nextcloud
 #                                                                      #
 ########################################################################
 ```
-
-In the example configuration above, we configure the service to be hosted at `https://mash.example.com/nextcloud`.
-
-You can remove the `nextcloud_path_prefix` variable definition, to make it default to `/`, so that the service is served at `https://mash.example.com/`.
 
 ### Valkey
 
