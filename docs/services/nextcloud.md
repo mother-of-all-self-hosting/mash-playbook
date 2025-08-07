@@ -64,7 +64,7 @@ nextcloud_path_prefix: /nextcloud
 
 ### Valkey
 
-Valkey can **optionally** be enabled to improve Nextcloud performance.
+Valkey can **optionally** be enabled to improve Nextcloud performance. This playbook supports it, and you can set up a Valkey instance by enabling it on `vars.yml`.
 
 If Nextcloud is the sole service which requires Valkey on your server, it is fine to set up just a single Valkey instance. However, **it is not recommended if there are other services which require it, because sharing the Valkey instance has security concerns and possibly causes data conflicts**, as described on the [documentation for configuring Valkey](valkey.md). In this case, you should install a dedicated Valkey instance for each of them.
 
@@ -310,15 +310,15 @@ Refer to [this blogpost by a third party](https://blog.cubieserver.de/2022/compl
 
 ### Collabora Online Development Edition
 
-To integrate the [Collabora Online Development Edition (CODE)](collabora-online.md) office suite, first install it by following its documentation page.
+On Nextcloud it is possible to integrate the Collabora Online Development Edition (CODE) office suite. This playbook supports it, and you can set up a CODE instance by enabling it on `vars.yml`. You can follow the [documentation](collabora-online.md) to install it.
 
-Then, add the following configuration for Nextcloud to your `vars.yml` file:
+After installing it, add the following configuration for Nextcloud to your `vars.yml` file:
 
 ```yaml
 nextcloud_collabora_app_wopi_url: "{{ collabora_online_url }}"
 ```
 
-**Note**: by default, various private IPv4 networks are whitelited to connect to the WOPI API (document serving API). If your Collabora Online installation does not live on the same server as Nextcloud, you may need to adjust the list of networks. If necessary, redefine the `nextcloud_collabora_app_wopi_allowlist` environment variable on `vars.yml`.
+**Note**: by default, various private IPv4 networks are whitelisted to connect to the WOPI API (document serving API). If your CODE instance does not live on the same server as Nextcloud, you may need to adjust the list of networks. If necessary, redefine the `nextcloud_collabora_app_wopi_allowlist` environment variable on `vars.yml`.
 
 After adding the configuration, run this command to install and configure the [Office](https://apps.nextcloud.com/apps/richdocuments) app for Nextcloud:
 
