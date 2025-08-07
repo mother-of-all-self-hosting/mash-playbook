@@ -144,10 +144,10 @@ Fill in the rest of the form with your preferences, and you're done!
 
 Consider these other related services:
 
-- [Radarr](radarr.md)
-- [Sonarr](sonarr.md)
-- [qBittorrent](qbittorrent.md)
+- [Autobrr](autobrr.md)
+- [Jellyfin](jellyfin.md)
 - [Overseerr](overseerr.md)
 - [Plex](plex.md)
-- [Jellyfin](jellyfin.md)
-- [Autobrr](autobrr.md)
+- [qBittorrent](qbittorrent.md)
+- [Radarr](radarr.md)
+- [Sonarr](sonarr.md)
