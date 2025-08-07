@@ -49,7 +49,7 @@ To **host multiple instances of the Valkey service**, follow the [Running multip
 
 ## Usage
 
-After installation, your Valkey instance becomes available.
+After running the command for installation, the Valkey instance becomes available.
 
 The purpose of the Valkey component in this Ansible playbook is to serve as a dependency for other [services](../supported-services.md). For this use-case, you don't need to do anything special beyond enabling the component per your choice (whether hosting a single instance or multiple ones).
 

@@ -1,6 +1,7 @@
 <!--
 SPDX-FileCopyrightText: 2023 Nikita Chernyi
 SPDX-FileCopyrightText: 2023 Slavi Pantaleev
+SPDX-FileCopyrightText: 2025 Suguru Hirahara
 
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->
@@ -45,11 +46,10 @@ mrs_servers:
 ########################################################################
 ```
 
-In the example configuration above, we configure the service to be hosted at `https://mrs.example.com`.
-
-
 ## Usage
 
-After installation, call the `https://mrs.example.com/-/full` endpoint using admin credentials (see the `mrs_admin_*` variables) to discover and parse content.
+After running the command for installation, the Matrix Rooms Search instance becomes available at the URL specified with `mrs_hostname`. With the configuration above, the service is hosted at `https://mrs.example.com`.
+
+You can call the `https://mrs.example.com/-/full` endpoint using admin credentials (see the `mrs_admin_*` variables) to discover and parse content.
 
 To see the list of supported public and private APIs, see the [API documentation](https://github.com/etkecc/mrs/blob/main/openapi.yml).

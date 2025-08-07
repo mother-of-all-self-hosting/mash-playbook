@@ -55,7 +55,7 @@ versatiles_hostname: versatiles.example.com
 
 ## Usage
 
-After running the command for installation, VersaTiles becomes available at the specified hostname like `https://versatiles.example.com`.
+After running the command for installation, the VersaTiles instance becomes available at the URL specified with `versatiles_hostname`. With the configuration above, the service is hosted at `https://versatiles.example.com`.
 
 ![Map of Dresden](../assets/versatiles/map-example.jpeg)
 

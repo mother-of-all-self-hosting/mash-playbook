@@ -51,12 +51,8 @@ ihatemoney_path_prefix: /ihatemoney
 ########################################################################
 ```
 
-### URL
-
-In the example configuration above, we configure the service to be hosted at `https://mash.example.com/ihatemoney`.
-
 ## Usage
 
-After installation, you can go to the ihatemoney URL, as defined in `ihatemoney_hostname` and `ihatemoney_path_prefix`.
+After running the command for installation, the ihatemoney instance becomes available at the URL specified with `ihatemoney_hostname` and `ihatemoney_path_prefix`. With the configuration above, the service is hosted at `https://mash.example.com/ihatemoney`.
 
 If you'd like to enable the Admin dashboard, follow the comments for the `ihatemoney_admin_password` in the [Configuration](#configuration) section above.

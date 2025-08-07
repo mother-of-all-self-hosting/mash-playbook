@@ -1,5 +1,6 @@
 <!--
 SPDX-FileCopyrightText: 2025 Slavi Pantaleev
+SPDX-FileCopyrightText: 2025 Suguru Hirahara
 
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->
@@ -38,14 +39,9 @@ headscale_hostname: headscale.example.com
 ########################################################################
 ```
 
-### URL
-
-In the example configuration above, we configure the service to be hosted at `https://headscale.example.com`.
-
-The `headscale_path_prefix` variable can be adjusted to host Headscale under a subpath (e.g. `headscale_path_prefix: /headscale`) on the given hostname.
-
-
 ## Usage
+
+After running the command for installation, the Headscale instance becomes available at the URL specified with `headscale_hostname` and `headscale_path_prefix`. With the configuration above, the service is hosted at `https://headscale.example.com`.
 
 After installation, you would normally:
 

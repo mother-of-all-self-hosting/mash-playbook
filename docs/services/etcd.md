@@ -1,5 +1,6 @@
 <!--
 SPDX-FileCopyrightText: 2024 Slavi Pantaleev
+SPDX-FileCopyrightText: 2025 Suguru Hirahara
 
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->
@@ -48,6 +49,6 @@ Take a look at [its `default/main.yml` file](https://github.com/mother-of-all-se
 
 ## Usage
 
-After installation, your etcd instance becomes available.
+After running the command for installation, the etcd instance becomes available.
 
 As mentioned above, the purpose of the etcd component in this Ansible playbook is to serve as a dependency for other [services](../supported-services.md). For this use-case, you don't need to do anything special beyond enabling the component.

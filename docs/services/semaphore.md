@@ -88,7 +88,7 @@ See the [documentation](https://docs.semaphoreui.com/administration-guide/config
 
 ## Usage
 
-After running the command for installation, Semaphore UI becomes available at the specified hostname like `https://semaphore.example.com`.
+After running the command for installation, the Semaphore UI instance becomes available at the URL specified with `semaphore_hostname`. With the configuration above, the service is hosted at `https://semaphore.example.com`.
 
 You can open the page with a web browser to log in to the instance. See [this official guide](https://docs.semaphoreui.com/user-guide/projects/) for details about how to use it.
 

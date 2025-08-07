@@ -1,6 +1,7 @@
 <!--
 SPDX-FileCopyrightText: 2025 XHawk87
 SPDX-FileCopyrightText: 2025 Slavi Pantaleev
+SPDX-FileCopyrightText: 2025 Suguru Hirahara
 
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->
@@ -73,7 +74,9 @@ See the full set of available [Environment Variables](https://docker-minecraft-s
 
 ## Usage
 
-After installation, you can use your Minecraft client to log into the game.
+After running the command for installation, the Minecraft instance becomes available.
+
+You can use your Minecraft client to log into the game.
 
 If you need to access the server console, you can do so via RCON:
 

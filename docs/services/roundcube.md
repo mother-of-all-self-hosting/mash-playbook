@@ -49,13 +49,8 @@ roundcube_smtp_port: "587"
 ########################################################################
 ```
 
-In the example configuration above, we configure the service to be hosted at `https://mash.example.com/roundcube`.
-
-You can remove the `roundcube_path_prefix` variable definition, to make it default to `/`, so that the service is served at `https://mash.example.com/`.
-
-
 ## Usage
 
-After installation, you should be able to access your new Roundcube instance at the configured URL (see above).
+After running the command for installation, the Roundcube instance becomes available at the URL specified with `roundcube_hostname` and `roundcube_path_prefix`. With the configuration above, the service is hosted at `https://mash.example.com/roundcube`.
 
-The username/password you will use to login are the same ones used in your IMAP server.
+You can log in to the instance with the username/password, which are the same ones used in your IMAP server.

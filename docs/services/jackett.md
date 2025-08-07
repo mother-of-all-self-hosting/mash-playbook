@@ -1,5 +1,6 @@
 <!--
 SPDX-FileCopyrightText: 2025 MASH project contributors
+SPDX-FileCopyrightText: 2025 Suguru Hirahara
 
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->
@@ -46,15 +47,12 @@ jackett_hostname: jackett.example.com
 ########################################################################
 ```
 
-### URL
-
-In the example configuration above, we configure the service to be hosted at `https://jackett.example.com`.
-
-A `jackett_path_prefix` variable can be adjusted to host under a subpath (e.g. `jackett_path_prefix: /jackett`), but this hasn't been tested yet.
-
 ## Usage
 
-After [installation](../installing.md), you should access your new Jackett instance at the URL you've chosen and configure a Admin password.
+After running the command for installation, the Jackett instance becomes available at the URL specified with `jackett_hostname`. With the configuration above, the service is hosted at `https://jackett.example.com`.
+
+>[!NOTE]
+> The `jackett_path_prefix` variable can be adjusted to host under a subpath (e.g. `jackett_path_prefix: /jackett`), but this hasn't been tested yet.
 
 For additional configuration options, refer to [ansible-role-jackett](https://github.com/spatterIight/ansible-role-jackett)'s `defaults/main.yml` file.
 

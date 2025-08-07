@@ -79,9 +79,9 @@ yourls_environment_variable_pass: YOUR_ADMIN_PASSWORD_HERE
 
 ## Usage
 
-After running the command for installation, YOURLS's admin UI is available at the specified hostname with `/admin/` such as `yourls.example.com/admin/`.
+After running the command for installation, the YOURLS instance becomes available at the URL specified with `yourls_hostname` and `/admin/`. With the configuration above, the service is hosted at `https://yourls.example.com/admin/`.
 
-First, open the page with a web browser to complete installation on the server by clicking "Install YOURLS" button. After that, click the anchor link "YOURLS Administration Page" to log in with the username (`yourls_environment_variable_user`) and password (`yourls_environment_variable_pass`).
+First, open the URL with a web browser to complete installation on the server by clicking "Install YOURLS" button. After that, click the anchor link "YOURLS Administration Page" to log in with the username (`yourls_environment_variable_user`) and password (`yourls_environment_variable_pass`).
 
 The help file is available at `yourls.example.com/readme.html`.
 

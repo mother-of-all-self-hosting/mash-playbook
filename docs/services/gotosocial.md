@@ -73,6 +73,8 @@ By default, GoToSocial uses `gotosocial_hostname` that you provide for the serve
 
 ## Usage
 
+After installation, the GoToSocial instance becomes available at the URL specified with `gotosocial_hostname`. With the configuration above, the service is hosted at `https://gotosocial.example.com`.
+
 After running the command for installation, you can create user account(s).
 
 Run this command to create an **administrator** user account:

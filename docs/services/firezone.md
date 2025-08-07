@@ -1,6 +1,7 @@
 <!--
 SPDX-FileCopyrightText: 2023 Julian-Samuel Gebühr
 SPDX-FileCopyrightText: 2023 Slavi Pantaleev
+SPDX-FileCopyrightText: 2025 Suguru Hirahara
 
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->
@@ -62,6 +63,8 @@ Docker automatically opens these ports in the server's firewall, so you **likely
 
 ### Usage
 
-After [installing](../installing.md), you can login at the URL specified in `firezone_hostname`, with the credentials set in `firezone_default_admin_email` and `firezone_default_admin_password`.
+After running the command for installation, the Firezone instance becomes available at the URL specified with `firezone_hostname`. With the configuration above, the service is hosted at `https://firezone.example.com`.
+
+To get started, you can log in to the service with the credentials set in `firezone_default_admin_email` and `firezone_default_admin_password`.
 
 Refer to the [official documentation](https://www.firezone.dev/docs/user-guides/add-devices/) to figure out how to add devices, etc.

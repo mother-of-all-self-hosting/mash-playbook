@@ -54,4 +54,4 @@ changedetection_playwright_driver_enabled: true
 
 ## Usage
 
-After running the command for installation, Changedetection.io becomes available at the specified hostname like `https://mash.example.com/changedetection`.
+After running the command for installation, the Changedetection.io instance becomes available at the URL specified with `changedetection_hostname` and `changedetection_path_prefix`. With the configuration above, the service is hosted at `https://mash.example.com/changedetection`.

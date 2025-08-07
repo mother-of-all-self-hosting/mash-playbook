@@ -4,6 +4,7 @@ SPDX-FileCopyrightText: 2023 Borislav Pantaleev
 SPDX-FileCopyrightText: 2023 - 2024 Slavi Pantaleev
 SPDX-FileCopyrightText: 2024 Igor Goldenberg
 SPDX-FileCopyrightText: 2025 MASH project contributors
+SPDX-FileCopyrightText: 2025 Suguru Hirahara
 
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->
@@ -46,10 +47,6 @@ grafana_default_admin_password: ''
 #                                                                      #
 ########################################################################
 ```
-
-In the example configuration above, we configure the service to be hosted at `https://mash.example.com/grafana`.
-
-You can remove the `grafana_path_prefix` variable definition, to make it default to `/`, so that the service is served at `https://mash.example.com/`.
 
 ### File provisioning
 
@@ -253,10 +250,9 @@ grafana_environment_variables_additional_variables: |
 
 ## Usage
 
-After installation, you should be able to access your new Grafana instance at the configured URL (see above).
+After running the command for installation, the Grafana instance becomes available at the URL specified with `grafana_hostname` and `grafana_path_prefix`. With the configuration above, the service is hosted at `https://mash.example.com/grafana`.
 
-Going there, you'll be taken to the initial setup wizard, which will let you assign some passwords and other configuration.
-
+To get started, open the URL and follow Grafana's set up wizard.
 
 ## Recommended other services
 

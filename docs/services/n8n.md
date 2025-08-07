@@ -48,6 +48,6 @@ n8n_path_prefix: /n8n
 
 ## Usage
 
-After running the command for installation, n8n becomes available at the specified hostname with the prefix (`mash.example.com/n8n`).
+After running the command for installation, the Calibre-Web instance becomes available at the URL specified with `n8n_hostname` and `n8n_path_prefix`. With the configuration above, the service is hosted at `https://mash.example.com/n8n`.
 
 You can create additional users (admin-privileged or not) after logging in.

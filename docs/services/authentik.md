@@ -236,7 +236,7 @@ Note that running the `just` commands for installation (`just install-all` or `j
 
 ## Usage
 
-After running the command for installation, authentik becomes available at the specified hostname like `https://authentik.example.com`.
+After running the command for installation, the authentik instance becomes available at the URL specified with `authentik_hostname`. With the configuration above, the service is hosted at `https://authentik.example.com`.
 
 You can set the admin password at `https://authentik.example.com/if/flow/initial-setup/`, and start adding applications and users. Refer to the [official documentation](https://goauthentik.io/docs/) to learn how to integrate services.
 

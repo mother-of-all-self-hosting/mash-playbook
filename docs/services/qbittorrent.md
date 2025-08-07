@@ -1,5 +1,6 @@
 <!--
 SPDX-FileCopyrightText: 2025 MASH project contributors
+SPDX-FileCopyrightText: 2025 Suguru Hirahara
 
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->
@@ -49,15 +50,12 @@ qbittorrent_container_torrenting_bind_port: "{{ qbittorrent_container_torrenting
 ########################################################################
 ```
 
-### URL
-
-In the example configuration above, we configure the service to be hosted at `https://qbittorrent.example.com`.
-
-A `qbittorrent_path_prefix` variable can be adjusted to host under a subpath (e.g. `qbittorrent_path_prefix: /qbittorrent`), but this hasn't been tested yet.
-
 ## Usage
 
-After [installation](../installing.md), you should access your new qBittorrent instance at the URL you've chosen.
+After running the command for installation, the qBittorrent instance becomes available at the URL specified with `qbittorrent_hostname`. With the configuration above, the service is hosted at `https://qbittorrent.example.com`.
+
+>[!NOTE]
+> The `qbittorrent_path_prefix` variable can be adjusted to host under a subpath (e.g. `qbittorrent_path_prefix: /qbittorrent`), but this hasn't been tested yet.
 
 To login you'll need to obtain the **temporary** randomly generated password for your instance, to get this run `just run-tags print-qbittorrent-password`
 

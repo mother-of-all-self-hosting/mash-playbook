@@ -251,7 +251,9 @@ Note that running the `just` commands for installation (`just install-all` or `j
 
 ## Usage
 
-After installation, your Ghostfolio instance becomes available at the URL specified with `ghostfolio_hostname` like `https://ghostfolio.example.com`. As **registration is open to anyone by default**, you also would probably want to disable the signup form on "Admin Control" page after creating the account.
+After installation, the Ghostfolio instance becomes available at the URL specified with `ghostfolio_hostname`. With the configuration above, the service is hosted at `https://ghostfolio.example.com`.
+
+As **registration is open to anyone by default**, you also would probably want to disable the signup form on "Admin Control" page after creating the account.
 
 See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-ghostfolio/blob/main/docs/configuring-ghostfolio.md#usage) on the role's documentation for details.
 

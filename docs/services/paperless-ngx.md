@@ -237,6 +237,6 @@ Note that running the `just` commands for installation (`just install-all` or `j
 
 ## Usage
 
-After installation, your Paperless-ngx instance becomes available at the URL specified with `paperless_hostname`.
+After installation, the Paperless-ngx instance becomes available at the URL specified with `paperless_hostname`. With the configuration above, the service is hosted at `https://paperless.example.com`.
 
 Refer to the [official documentation](https://docs.paperless-ngx.com/) to learn how to use Paperless-ngx.

@@ -1,5 +1,6 @@
 <!--
 SPDX-FileCopyrightText: 2023 - 2024 Slavi Pantaleev
+SPDX-FileCopyrightText: 2025 Suguru Hirahara
 
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->
@@ -107,14 +108,7 @@ authelia_config_session_redis_host: "{{ valkey_identifier if valkey_enabled else
 ########################################################################
 ```
 
-### URL
-
-In the example configuration above, we configure the service to be hosted at `https://authelia.example.com`.
-
-While the Authelia Ansible role provides an `authelia_path_prefix` variable, Authelia does not support being hosted at a subpath right now.
-
-On the Authelia base URL, there's a portal website where you can log in and manage your user account.
-
+**Note**: hosting Authelia under a subpath (by configuring the `authelia_path_prefix` variable) does not seem to be possible due to Authelia's technical limitations.
 
 ### Session storage
 
@@ -198,6 +192,12 @@ You can get inspired by the [sample configuration](grafana.md#single-sign-on--au
 The Authelia Ansible role provides various variables for configuring Authelia. You can see their default values in the [`defaults/main.yml` file](https://github.com/mother-of-all-self-hosting/ansible-role-authelia/blob/main/defaults/main.yml) of the Authelia role.
 
 If a dedicated variable is not available for you to use or if you wish to override some hardcoded default, you can always use the `authelia_configuration_extension_yaml` Ansible variable for extending/overriding the default configuration.
+
+## Usage
+
+After running the command for installation, the Authelia instance becomes available at the URL specified with `authelia_hostname`. With the configuration above, the service is hosted at `https://authelia.example.com`.
+
+On the Authelia base URL, there's a portal website where you can log in and manage your user account.
 
 ## Related services
 

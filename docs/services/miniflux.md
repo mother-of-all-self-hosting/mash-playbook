@@ -45,16 +45,11 @@ miniflux_admin_password: a-strong-password-here
 ########################################################################
 ```
 
-In the example configuration above, we configure the service to be hosted at `https://mash.example.com/miniflux`.
-
-You can remove the `miniflux_path_prefix` variable definition, to make it default to `/`, so that the service is served at `https://mash.example.com/`.
-
-
 ## Usage
 
-After installation, you can log in with your administrator login (`miniflux_admin_login`) and password (`miniflux_admin_password`).
+After running the command for installation, the Miniflux instance becomes available at the URL specified with `miniflux_hostname` and `miniflux_path_prefix`. With the configuration above, the service is hosted at `https://mash.example.com/miniflux`.
 
-You can create additional users (admin-privileged or not) after logging in.
+You can create additional users (admin-privileged or not) after logging in with your administrator login (`miniflux_admin_login`) and password (`miniflux_admin_password`).
 
 ## Related services
 

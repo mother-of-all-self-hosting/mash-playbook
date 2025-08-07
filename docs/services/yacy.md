@@ -68,7 +68,7 @@ yacy_path_prefix: /yacy
 
 ## Usage
 
-After running the command for installation, YaCy becomes available at the specified hostname like `https://mash.example.com/yacy`.
+After running the command for installation, the YaCy instance becomes available at the URL specified with `yacy_hostname` and `yacy_path_prefix`. With the configuration above, the service is hosted at `https://mash.example.com/yacy`.
 
 You can log in to the instance with the default login credential of the admin account (username: `admin`, password: `yacy`).
 

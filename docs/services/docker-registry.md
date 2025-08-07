@@ -1,5 +1,6 @@
 <!--
 SPDX-FileCopyrightText: 2023 Slavi Pantaleev
+SPDX-FileCopyrightText: 2025 Suguru Hirahara
 
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->
@@ -54,12 +55,14 @@ docker_registry_private_services_whitelisted_ip_ranges:
 ########################################################################
 ```
 
-In the example configuration above, we configure the service to be hosted at `https://registry.example.com`.
-
-
 ## Usage
 
-After installation, you should be able to:
+After running the command for installation, the Docker Registry instance becomes available at the URL specified with `docker_registry_hostname`. With the configuration above, the service is hosted at `https://registry.example.com`.
+
+>[!NOTE]
+> The base URL (e.g. `https://registry.example.com`) serves an empty (blank) page. To browse your registry's images via a web interface, you may need another piece of software, like [Docker Registry Browser](docker-registry-browser.md).
+
+You should be able to:
 
 - pull images from your registry from any IP address
 - push images to your registry from the whitelisted IP addresses (`docker_registry_private_services_whitelisted_ip_ranges`)
@@ -82,9 +85,6 @@ docker rmi registry.example.com/alpine:3.17.2
 
 docker pull registry.example.com/alpine:3.17.2
 ```
-
-The base URL (e.g. `https://registry.example.com`) serves an empty (blank) page. To browse your registry's images via a web interface, you may need another piece of software, like [Docker Registry Browser](docker-registry-browser.md).
-
 
 ## Recommended other services
 
