@@ -268,13 +268,26 @@ Note that running the `just` commands for installation (`just install-all` or `j
 
 ## Usage
 
-After installation, your Nextcloud instance becomes available at the URL specified with `nextcloud_hostname` and `nextcloud_path_prefix`. With the configuration above, the service is hosted at `https://mash.example.com/nextcloud`.
+After running the command for installation, your Nextcloud instance becomes available at the URL specified with `nextcloud_hostname` and `nextcloud_path_prefix`. With the configuration above, the service is hosted at `https://mash.example.com/nextcloud`.
+
+### Complete setup wizard
 
 To get started, go to the URL and follow Nextcloud's set up wizard.
 
-In **Storage & database**, it is recommended to choose PostgreSQL (changing the default **SQLite** choice). To check credentials for it, run this command: `just run-tags print-nextcloud-db-credentials`
+In **Storage & database**, it is recommended to choose PostgreSQL (changing the default **SQLite** choice). To check credentials for the database, run this command:
 
-Once you have completed the set up wizard, update the configuration (URL paths, trusted reverse-proxies, etc.) by running this command: `just run-tags adjust-nextcloud-config`. **You should re-run the command every time the Nextcloud version is updated.**
+```sh
+just run-tags print-nextcloud-db-credentials
+```
+
+Once you have completed the set up wizard, update the configuration (URL paths, trusted reverse-proxies, etc.) by running the command below:
+
+```sh
+just run-tags adjust-nextcloud-config
+```
+
+>[!NOTE]
+> You should re-run the command every time the Nextcloud version is updated.
 
 ### Single-Sign-On (SSO) integration
 
@@ -293,13 +306,13 @@ Refer to [this blogpost by a third party](https://blog.cubieserver.de/2022/compl
 - The official documentation of authentik to connect nextcloud via SAML does not seem to work (as of August 2023).
 - If you cannot log in due to an error (the error message contains `SHA1 mismatch`), make sure that Nextcloud users and authentik users do not have the same name. If they do, check `Use unique user ID` in the OIDC App settings.
 
-## Recommended services
+## Related services
 
-### Collabora Online
+### Collabora Online Development Edition
 
-To integrate the [Collabora Online](collabora-online.md) office suite, first install it by following its documentation page.
+To integrate the [Collabora Online Development Edition (CODE)](collabora-online.md) office suite, first install it by following its documentation page.
 
-Then, add the following configuration for Nextcloud:
+Then, add the following configuration for Nextcloud to your `vars.yml` file:
 
 ```yaml
 nextcloud_collabora_app_wopi_url: "{{ collabora_online_url }}"
@@ -307,7 +320,11 @@ nextcloud_collabora_app_wopi_url: "{{ collabora_online_url }}"
 
 **Note**: by default, various private IPv4 networks are whitelited to connect to the WOPI API (document serving API). If your Collabora Online installation does not live on the same server as Nextcloud, you may need to adjust the list of networks. If necessary, redefine the `nextcloud_collabora_app_wopi_allowlist` environment variable on `vars.yml`.
 
-After adding the configuration, run this command to install and configure the [Office](https://apps.nextcloud.com/apps/richdocuments) app for Nextcloud: `just run-tags install-nextcloud-app-collabora`
+After adding the configuration, run this command to install and configure the [Office](https://apps.nextcloud.com/apps/richdocuments) app for Nextcloud:
+
+```sh
+just run-tags install-nextcloud-app-collabora
+```
 
 You should then be able to open any document (`.doc`, `.odt`, `.pdf`, etc.) and create new ones in Nextcloud Files with Collabora Online editor.
 
@@ -336,10 +353,14 @@ Check `defaults/main.yml` for Nextcloud for other options.
 
 Next, install the preview generator app (https://apps.nextcloud.com/apps/previewgenerator) from the Settings/Application menu in your Nextcloud instance.
 
-After it is installed, run the command `just run-tags adjust-nextcloud-config` against your server. It starts original preview-generation and enables periodic generation of new images on your server.
+After it is installed, run the command below against your server, so that initial preview-generation is started and periodic generation of new images on your server is enabled:
+
+```sh
+just run-tags adjust-nextcloud-config
+```
 
 **Notes**:
-- The original generation may take a long time, and a continuous prompt is presented by Ansible as some visual feedback (it is being run as an async task). Note it will timeout after approximately 27 hours. For reference, it should take about 10 minutes to finish generating previews of 60 GB data, most of which being image files.
+- The initial generation may take a long time, and a continuous prompt is presented by Ansible as some visual feedback (it is being run as an async task). Note it will timeout after approximately 27 hours. For reference, it should take about 10 minutes to finish generating previews of 60 GB data, most of which being image files.
 - If it takes more time to run than a day, you may want to start it by running the command on the host:
   ```sh
   /usr/bin/env docker exec mash-nextcloud-server php /var/www/html/occ preview:generate-all

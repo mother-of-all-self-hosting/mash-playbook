@@ -76,7 +76,7 @@ collabora_online_environment_variable_aliasgroup1: "https://{{ nextcloud_hostnam
 ```
 
 >[!NOTE]
-> For details, see the [Collabora Online section](nextcloud.md#collabora-online) on our Nextcloud documentation.
+> For details, see [this section about the integration](nextcloud.md#collabora-online-development-edition) on our Nextcloud documentation.
 
 ## Usage
 
