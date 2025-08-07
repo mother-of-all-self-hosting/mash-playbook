@@ -43,8 +43,6 @@ forgejo_path_prefix: /forgejo
 ########################################################################
 ```
 
-You can remove the `forgejo_path_prefix` variable definition, to make it default to `/`, so that the service is served at https://mash.example.com/.
-
 ### Configure SSH port for Forgejo (optional)
 
 Forgejo uses port 22 for its SSH feature by default.
@@ -59,9 +57,9 @@ forgejo_ssh_port: 222
 
 ## Usage
 
-After installation, you should be able to access your new Forgejo instance at the configured URL, specified as https://mash.example.com/forgejo in the example configuration above.
+After running the command for installation, the Forgejo instance becomes available at the URL specified with `forgejo_hostname` and `forgejo_path_prefix`. With the configuration above, the service is hosted at `https://mash.example.com/forgejo`.
 
-Going there, you'll be taken to the initial setup wizard, which will let you assign some passwords and other configuration.
+To get started, open the URL and follow Forgejo's set up wizard.
 
 ## Recommended other services
 
