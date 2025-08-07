@@ -1,3 +1,9 @@
+<!--
+SPDX-FileCopyrightText: 2023 Slavi Pantaleev
+
+SPDX-License-Identifier: AGPL-3.0-or-later
+-->
+
 # Docker Registry Purger
 
 [Docker Registry Purger](https://github.com/devture/docker-registry-purger) is a small tool used for purging a private Docker registry's old tags.

@@ -1,3 +1,10 @@
+<!--
+SPDX-FileCopyrightText: 2023 Nikita Chernyi
+SPDX-FileCopyrightText: 2023 - 2024 Slavi Pantaleev
+
+SPDX-License-Identifier: AGPL-3.0-or-later
+-->
+
 # Prometheus Blackbox Exporter
 
 This playbook can configure [Prometheus Blackbox Exporter](https://github.com/prometheus/blackbox_exporter).

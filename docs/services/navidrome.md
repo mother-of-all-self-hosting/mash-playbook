@@ -1,3 +1,9 @@
+<!--
+SPDX-FileCopyrightText: 2023 Slavi Pantaleev
+
+SPDX-License-Identifier: AGPL-3.0-or-later
+-->
+
 # Navidrome
 
 [Navidrome](https://www.navidrome.org/) is a [Subsonic-API](http://www.subsonic.org/pages/api.jsp) compatible music server.

@@ -1,3 +1,9 @@
+<!--
+SPDX-FileCopyrightText: 2024 Slavi Pantaleev
+
+SPDX-License-Identifier: AGPL-3.0-or-later
+-->
+
 # APISIX Gateway
 
 [APISIX Gateway](https://apisix.apache.org/docs/apisix/getting-started/README/) is an [API Gateway](https://apisix.apache.org/docs/apisix/terminology/api-gateway/) and Ingress Controller.

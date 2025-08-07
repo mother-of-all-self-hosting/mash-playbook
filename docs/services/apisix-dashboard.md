@@ -1,3 +1,9 @@
+<!--
+SPDX-FileCopyrightText: 2024 Slavi Pantaleev
+
+SPDX-License-Identifier: AGPL-3.0-or-later
+-->
+
 # APISIX Dashboard
 
 [APISIX Dashboard](https://apisix.apache.org/docs/dashboard/USER_GUIDE/) is a web UI for [APISIX Gateway](./apisix-gateway.md).

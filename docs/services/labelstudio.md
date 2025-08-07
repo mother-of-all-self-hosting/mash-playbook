@@ -1,3 +1,9 @@
+<!--
+SPDX-FileCopyrightText: 2025 Gergely Horváth
+
+SPDX-License-Identifier: AGPL-3.0-or-later
+-->
+
 # LabelStudio
 
 [LabelStudio](https://labelstud.io/) is an open source data labeling tool that supports multiple projects.

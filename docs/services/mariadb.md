@@ -1,3 +1,9 @@
+<!--
+SPDX-FileCopyrightText: 2023 - 2024 Slavi Pantaleev
+
+SPDX-License-Identifier: AGPL-3.0-or-later
+-->
+
 # MariaDB
 
 [MariaDB](https://mariadb.org/) is a powerful, open source object-relational database system.
