@@ -1,8 +1,19 @@
+<!--
+SPDX-FileCopyrightText: 2023 Julian-Samuel Gebühr
+SPDX-FileCopyrightText: 2025 Suguru Hirahara
+
+SPDX-License-Identifier: AGPL-3.0-or-later
+-->
+
 # InfluxDB
 
-[InfluxDB](https://www.influxdata.com/) is a self-hosted time-series database, that this playbook can install, powered by the [mother-of-all-self-hosting/ansible-role-influxdb](https://github.com/mother-of-all-self-hosting/ansible-role-influxdb) Ansible role.
+The playbook can install and configure [InfluxDB](https://www.influxdata.com/) for you.
 
-## Configuration
+InfluxDB is a self-hosted time-series database.
+
+See the project's [documentation](https://github.com/docker-library/docs/blob/master/influxdb/README.md) to learn what InfluxDB does and why it might be useful to you.
+
+## Adjusting the playbook configuration
 
 To enable this service, add the following configuration to your `vars.yml` file and re-run the [installation](../installing.md) process:
 
@@ -14,26 +25,7 @@ To enable this service, add the following configuration to your `vars.yml` file 
 ########################################################################
 
 influxdb_enabled: true
-influxdb_hostname: 'example.org'
-
-# Advanced configuration
-# Configure the initial user, organization and bucket
-#
-# This setting will only be used once upon initial installation of influxdb. Changing this values
-# after the first start of influxdb will have no effect.
-# Not setting this will allow you to manually set these by visiting the domain you set in influxdb_hostname
-# after installation.
-#influxdb_init: true
-#influxdb_init_username: "USERNAME"
-#influxdb_init_password: "SUPERSECRETPASSWORD"
-#influxdb_init_org: "EXAMPLE_ORG"
-#influxdb_init_bucket: "SOMEBUCKET"
-#
-# In order to let external services (like Proxmox or Grafana) access the http API of influxdb,
-# you need to specifically expose the corresponding port:
-#
-# Takes an "<ip>:<port>" (e.g. "127.0.0.1:8086") or "<port>" value (e.g. "8086"), or empty string to not expose.
-#influxdb_container_http_host_bind_port: ""
+influxdb_hostname: influxdb.example.com
 
 ########################################################################
 #                                                                      #
@@ -42,8 +34,33 @@ influxdb_hostname: 'example.org'
 ########################################################################
 ```
 
-After installation, visit the domain you set in `influxdb_hostname` to get started.
+### Configure the initial user (optional)
+
+You can set up the initial user by adding the following configuration to your `vars.yml` file:
+
+```yaml
+influxdb_init: true
+influxdb_init_username: YOUR_USERNAME_HERE
+influxdb_init_password: YOUR_PASSWORD_HERE
+influxdb_init_org: YOUR_EXAMPLE_ORG_HERE
+influxdb_init_bucket: YOUR_BUCKET_HERE
+```
+
+>[!NOTE]
+> The settings will only be used once upon initial installation of InfluxDB. Changing these values after the first start of it will have no effect.
+
+Not setting them allows you to create the user manually after installation by visiting the hostname set to `influxdb_hostname`.
+
+### Expose the port for external services (optional)
+
+In order to let external services (like Proxmox or Grafana) access the InfluxDB's HTTP API, the corresponding port needs to be exposed.
+
+```yaml
+influxdb_container_http_host_bind_port: PORT_NUMBER_HERE
+```
 
 ## Usage
 
-After [installing](../installing.md), you can visit at the URL specified in `influxdb_hostname` and configure your first user (or login if you set `influxdb_init`)
+After running the command for installation, InfluxDB becomes available at the specified hostname like `https://influxdb.example.com`.
+
+You can go to the URL with a web browser to log in if `influxdb_init` is set to `true` (or configure the first user if it is not).

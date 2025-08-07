@@ -160,7 +160,7 @@ Our [Tuning PostgreSQL](docs/maintenance-postgres.md#tuning-postgresql) document
 
 # 2023-04-23
 
-## (Backward Compatibility Break) Authentik container variables renamed
+## (Backward Compatibility Break) authentik container variables renamed
 
 For the authentik role there have been two containers: `authentic_worker_container` and `authentic_server_container`. To simplify the configuration, it was reduced to one container.
 

@@ -1,3 +1,13 @@
+<!--
+SPDX-FileCopyrightText: 2023 Julian-Samuel Gebühr
+SPDX-FileCopyrightText: 2023 Borislav Pantaleev
+SPDX-FileCopyrightText: 2023 - 2024 Slavi Pantaleev
+SPDX-FileCopyrightText: 2024 Igor Goldenberg
+SPDX-FileCopyrightText: 2025 MASH project contributors
+
+SPDX-License-Identifier: AGPL-3.0-or-later
+-->
+
 # Grafana
 
 [Grafana](https://grafana.com/) is an open and composable observability and data visualization platform, often used with [Prometheus](prometheus.md).
@@ -177,12 +187,12 @@ grafana_dashboard_download_urls: |
 
 ### Single-Sign-On
 
-Grafana supports Single-Sign-On (SSO) via OAUTH. To make use of this you'll need a Identity Provider like [authentik](./authentik.md), [Keycloak](./keycloak.md) or [Authelia](./authelia.md).
+Grafana supports Single-Sign-On (SSO) via OAUTH. To make use of this you'll need an identity provider like [authentik](./authentik.md), [Keycloak](./keycloak.md) or [Authelia](./authelia.md).
 
 Below, you can find some examples for Grafana configuration.
 
 
-#### Single-Sign-On / Authentik
+#### Single-Sign-On / authentik
 
 * Create a new OAUTH provider in authentik called `grafana`
 * Create an application also named `grafana` in authentik using this provider

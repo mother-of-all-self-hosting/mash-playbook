@@ -1,3 +1,9 @@
+<!--
+SPDX-FileCopyrightText: 2024 Sergio Durigan Junior
+
+SPDX-License-Identifier: AGPL-3.0-or-later
+-->
+
 # Forgejo Runner
 
 [Forgejo Runner](https://code.forgejo.org/forgejo/runner) is a runner to use with [Forgejo Actions](https://forgejo.org/docs/latest/admin/actions/). It provides a way to perform CI using Forgejo. You might also be interested in [Woodpecker CI](https://woodpecker-ci.org/) (that this playbook also [supports](woodpecker-ci.md)).

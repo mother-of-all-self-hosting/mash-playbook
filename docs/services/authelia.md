@@ -1,3 +1,9 @@
+<!--
+SPDX-FileCopyrightText: 2023 - 2024 Slavi Pantaleev
+
+SPDX-License-Identifier: AGPL-3.0-or-later
+-->
+
 # Authelia
 
 [Authelia](https://www.authelia.com/) is an open-source [authentication](https://www.authelia.com/overview/authentication/introduction/) and [authorization](https://www.authelia.com/overview/authorization/access-control/) server and portal fulfilling the identity and access management (IAM) role of information security in providing [multi-factor authentication](https://www.authelia.com/overview/authentication/introduction/) and single sign-on (SSO) for your applications via a web portal.
@@ -195,6 +201,6 @@ If a dedicated variable is not available for you to use or if you wish to overri
 
 ## Related services
 
-- [authentik](authentik.md) — An open-source Identity Provider focused on flexibility and versatility.
-- [Keycloak](keycloak.md) — An open source identity and access management solution
-- [OAuth2-Proxy](oauth2-proxy.md) — A reverse proxy and static file server that provides authentication using OpenID Connect Providers (Google, GitHub, [Authentik](authentik.md), [Keycloak](keycloak.md), and others) to SSO-protect services which do not support SSO natively
+- [authentik](authentik.md) — Open-source identity provider focused on flexibility and versatility
+- [Keycloak](keycloak.md) — Open source identity and access management solution
+- [OAuth2-Proxy](oauth2-proxy.md) — Reverse proxy and static file server that provides authentication using OpenID Connect providers (Google, GitHub, authentik, Keycloak, and others) to SSO-protect services which do not support SSO natively

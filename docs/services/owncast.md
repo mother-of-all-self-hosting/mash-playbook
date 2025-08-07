@@ -1,3 +1,9 @@
+<!--
+SPDX-FileCopyrightText: 2023 Julian-Samuel Gebühr
+
+SPDX-License-Identifier: AGPL-3.0-or-later
+-->
+
 # Owncast
 
 [Owncast](https://owncast.online/) is a free and open source live video and web chat server for use with existing popular broadcasting software. This playbook can install owncast, powered by the [mother-of-all-self-hosting/ansible-role-owncast](https://github.com/mother-of-all-self-hosting/ansible-role-owncast) Ansible role.
@@ -17,7 +23,7 @@ To enable this service, add the following configuration to your `vars.yml` file 
 ```yaml
 ########################################################################
 #                                                                      #
-# owncast                                                            #
+# owncast                                                              #
 #                                                                      #
 ########################################################################
 
@@ -27,7 +33,7 @@ owncast_hostname: live.example.com
 
 ########################################################################
 #                                                                      #
-# /owncast                                                           #
+# /owncast                                                             #
 #                                                                      #
 ########################################################################
 ```

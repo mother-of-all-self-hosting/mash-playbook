@@ -1,17 +1,32 @@
 <!--
+SPDX-FileCopyrightText: 2020 - 2024 MDAD project contributors
+SPDX-FileCopyrightText: 2020 - 2024 Slavi Pantaleev
+SPDX-FileCopyrightText: 2020 Aaron Raimist
+SPDX-FileCopyrightText: 2020 Chris van Dijk
+SPDX-FileCopyrightText: 2020 Dominik Zajac
+SPDX-FileCopyrightText: 2020 Mickaël Cornière
+SPDX-FileCopyrightText: 2022 François Darveau
+SPDX-FileCopyrightText: 2022 Julian Foad
+SPDX-FileCopyrightText: 2022 Warren Bailey
+SPDX-FileCopyrightText: 2023 Antonis Christofides
+SPDX-FileCopyrightText: 2023 Felix Stupp
 SPDX-FileCopyrightText: 2023 Julian-Samuel Gebühr
 SPDX-FileCopyrightText: 2023 MASH project contributors
 SPDX-FileCopyrightText: 2023 Niels Bouma
-SPDX-FileCopyrightText: 2023 - 2024 Slavi Pantaleev
+SPDX-FileCopyrightText: 2023 Pierre 'McFly' Marty
 SPDX-FileCopyrightText: 2024 Gergely Horváth
+SPDX-FileCopyrightText: 2024 - 2025 Suguru Hirahara
 
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 
 # Nextcloud
 
-[Nextcloud](https://nextcloud.com/) is the most popular self-hosted collaboration solution for tens of millions of users at thousands of organizations across the globe.
+The playbook can install and configure [Nextcloud](https://nextcloud.com/) for you.
 
+Nextcloud is the most popular self-hosted collaboration solution for tens of millions of users at thousands of organizations across the globe.
+
+See the project's [documentation](https://docs.nextcloud.com/) to learn what Nextcloud does and why it might be useful to you.
 
 ## Dependencies
 
@@ -22,8 +37,7 @@ This service requires the following other services:
 - (optional) a [Valkey](valkey.md) data-store; see [below](#configure-valkey) for details about installation
 - (optional) the [exim-relay](exim-relay.md) mailer
 
-
-## Configuration
+## Adjusting the playbook configuration
 
 To enable this service, add the following configuration to your `vars.yml` file:
 
@@ -48,13 +62,9 @@ nextcloud_path_prefix: /nextcloud
 ########################################################################
 ```
 
-In the example configuration above, we configure the service to be hosted at `https://mash.example.com/nextcloud`.
-
-You can remove the `nextcloud_path_prefix` variable definition, to make it default to `/`, so that the service is served at `https://mash.example.com/`.
-
 ### Valkey
 
-Valkey can **optionally** be enabled to improve Nextcloud performance.
+Valkey can **optionally** be enabled to improve Nextcloud performance. This playbook supports it, and you can set up a Valkey instance by enabling it on `vars.yml`.
 
 If Nextcloud is the sole service which requires Valkey on your server, it is fine to set up just a single Valkey instance. However, **it is not recommended if there are other services which require it, because sharing the Valkey instance has security concerns and possibly causes data conflicts**, as described on the [documentation for configuring Valkey](valkey.md). In this case, you should install a dedicated Valkey instance for each of them.
 
@@ -258,17 +268,30 @@ Note that running the `just` commands for installation (`just install-all` or `j
 
 ## Usage
 
-After installation, your Nextcloud instance becomes available at the URL specified with `nextcloud_hostname` and `nextcloud_path_prefix`. With the configuration above, the service is hosted at `https://mash.example.com/nextcloud`.
+After running the command for installation, your Nextcloud instance becomes available at the URL specified with `nextcloud_hostname` and `nextcloud_path_prefix`. With the configuration above, the service is hosted at `https://mash.example.com/nextcloud`.
+
+### Complete setup wizard
 
 To get started, go to the URL and follow Nextcloud's set up wizard.
 
-In **Storage & database**, it is recommended to choose PostgreSQL (changing the default **SQLite** choice). To check credentials for it, run this command: `just run-tags print-nextcloud-db-credentials`
+In **Storage & database**, it is recommended to choose PostgreSQL (changing the default **SQLite** choice). To check credentials for the database, run this command:
 
-Once you have completed the set up wizard, update the configuration (URL paths, trusted reverse-proxies, etc.) by running this command: `just run-tags adjust-nextcloud-config`. **You should re-run the command every time the Nextcloud version is updated.**
+```sh
+just run-tags print-nextcloud-db-credentials
+```
+
+Once you have completed the set up wizard, update the configuration (URL paths, trusted reverse-proxies, etc.) by running the command below:
+
+```sh
+just run-tags adjust-nextcloud-config
+```
+
+>[!NOTE]
+> You should re-run the command every time the Nextcloud version is updated.
 
 ### Single-Sign-On (SSO) integration
 
-Nextcloud supports Single-Sign-On (SSO) via LDAP, SAML, and OIDC. To make use of it, an Identity Provider like [authentik](./authentik.md) or [Keycloak](./keycloak.md) needs to be set up.
+Nextcloud supports Single-Sign-On (SSO) via LDAP, SAML, and OIDC. To make use of it, an identity provider like [authentik](./authentik.md) or [Keycloak](./keycloak.md) needs to be set up.
 
 For example, you can enable SSO with authentik via OIDC by following the steps below:
 
@@ -283,21 +306,25 @@ Refer to [this blogpost by a third party](https://blog.cubieserver.de/2022/compl
 - The official documentation of authentik to connect nextcloud via SAML does not seem to work (as of August 2023).
 - If you cannot log in due to an error (the error message contains `SHA1 mismatch`), make sure that Nextcloud users and authentik users do not have the same name. If they do, check `Use unique user ID` in the OIDC App settings.
 
-## Recommended services
+## Related services
 
-### Collabora Online
+### Collabora Online Development Edition
 
-To integrate the [Collabora Online](collabora-online.md) office suite, first install it by following its documentation page.
+On Nextcloud it is possible to integrate the Collabora Online Development Edition (CODE) office suite. This playbook supports it, and you can set up a CODE instance by enabling it on `vars.yml`. You can follow the [documentation](collabora-online.md) to install it.
 
-Then, add the following configuration for Nextcloud:
+After installing it, add the following configuration for Nextcloud to your `vars.yml` file:
 
 ```yaml
 nextcloud_collabora_app_wopi_url: "{{ collabora_online_url }}"
 ```
 
-**Note**: by default, various private IPv4 networks are whitelited to connect to the WOPI API (document serving API). If your Collabora Online installation does not live on the same server as Nextcloud, you may need to adjust the list of networks. If necessary, redefine the `nextcloud_collabora_app_wopi_allowlist` environment variable on `vars.yml`.
+**Note**: by default, various private IPv4 networks are whitelisted to connect to the WOPI API (document serving API). If your CODE instance does not live on the same server as Nextcloud, you may need to adjust the list of networks. If necessary, redefine the `nextcloud_collabora_app_wopi_allowlist` environment variable on `vars.yml`.
 
-After adding the configuration, run this command to install and configure the [Office](https://apps.nextcloud.com/apps/richdocuments) app for Nextcloud: `just run-tags install-nextcloud-app-collabora`
+After adding the configuration, run this command to install and configure the [Office](https://apps.nextcloud.com/apps/richdocuments) app for Nextcloud:
+
+```sh
+just run-tags install-nextcloud-app-collabora
+```
 
 You should then be able to open any document (`.doc`, `.odt`, `.pdf`, etc.) and create new ones in Nextcloud Files with Collabora Online editor.
 
@@ -326,10 +353,14 @@ Check `defaults/main.yml` for Nextcloud for other options.
 
 Next, install the preview generator app (https://apps.nextcloud.com/apps/previewgenerator) from the Settings/Application menu in your Nextcloud instance.
 
-After it is installed, run the command `just run-tags adjust-nextcloud-config` against your server. It starts original preview-generation and enables periodic generation of new images on your server.
+After it is installed, run the command below against your server, so that initial preview-generation is started and periodic generation of new images on your server is enabled:
+
+```sh
+just run-tags adjust-nextcloud-config
+```
 
 **Notes**:
-- The original generation may take a long time, and a continuous prompt is presented by Ansible as some visual feedback (it is being run as an async task). Note it will timeout after approximately 27 hours. For reference, it should take about 10 minutes to finish generating previews of 60 GB data, most of which being image files.
+- The initial generation may take a long time, and a continuous prompt is presented by Ansible as some visual feedback (it is being run as an async task). Note it will timeout after approximately 27 hours. For reference, it should take about 10 minutes to finish generating previews of 60 GB data, most of which being image files.
 - If it takes more time to run than a day, you may want to start it by running the command on the host:
   ```sh
   /usr/bin/env docker exec mash-nextcloud-server php /var/www/html/occ preview:generate-all

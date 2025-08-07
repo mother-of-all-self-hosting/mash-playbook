@@ -1,6 +1,12 @@
+<!--
+SPDX-FileCopyrightText: 2024 Slavi Pantaleev
+
+SPDX-License-Identifier: AGPL-3.0-or-later
+-->
+
 # OAuth2-Proxy
 
-[OAuth2-Proxy](https://oauth2-proxy.github.io/oauth2-proxy/) is a reverse proxy and static file server that provides authentication using OpenID Connect Providers (Google, GitHub, [Authentik](authentik.md), [Keycloak](keycloak.md), and others) to SSO-protect services which do not support SSO natively.
+[OAuth2-Proxy](https://oauth2-proxy.github.io/oauth2-proxy/) is a reverse proxy and static file server that provides authentication using OpenID Connect Providers (Google, GitHub, [authentik](authentik.md), [Keycloak](keycloak.md), and others) to SSO-protect services which do not support SSO natively.
 
 
 ## Modes of operation
@@ -153,6 +159,6 @@ Take a look at [its `default/main.yml` file](https://github.com/mother-of-all-se
 
 ## Related services
 
-- [authentik](authentik.md) — An open-source Identity Provider focused on flexibility and versatility.
+- [authentik](authentik.md) — An open-source identity provider focused on flexibility and versatility.
 - [Keycloak](keycloak.md) — An open source identity and access management solution
 - [Authelia](authelia.md) — An open-source authentication and authorization server that can work as a companion to [common reverse proxies](https://www.authelia.com/overview/prologue/supported-proxies/) (like [Traefik](traefik.md) frequently used by this playbook)
