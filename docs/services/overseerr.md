@@ -62,10 +62,10 @@ For additional configuration options, refer to [ansible-role-overseerr](https://
 
 Consider these other related services:
 
+- [Autobrr](autobrr.md)
+- [Jackett](jackett.md)
+- [Jellyfin](jellyfin.md)
+- [Plex](plex.md)
+- [qBittorrent](qbittorrent.md)
 - [Radarr](radarr.md)
 - [Sonarr](sonarr.md)
-- [Jackett](jackett.md)
-- [qBittorrent](qbittorrent.md)
-- [Plex](plex.md)
-- [Jellyfin](jellyfin.md)
-- [Autobrr](autobrr.md)

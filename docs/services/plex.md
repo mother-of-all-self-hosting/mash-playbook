@@ -179,10 +179,10 @@ plex_version_environment_variable: latest
 
 Consider these other related services:
 
+- [Autobrr](autobrr.md)
+- [Jackett](jackett.md)
+- [Jellyfin](jellyfin.md)
+- [Overseerr](overseerr.md)
+- [qBittorrent](qbittorrent.md)
 - [Radarr](radarr.md)
 - [Sonarr](sonarr.md)
-- [Jackett](jackett.md)
-- [qBittorrent](qbittorrent.md)
-- [Overseerr](overseerr.md)
-- [Jellyfin](jellyfin.md)
-- [Autobrr](autobrr.md)

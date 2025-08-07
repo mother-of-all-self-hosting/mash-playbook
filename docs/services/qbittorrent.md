@@ -73,10 +73,10 @@ Fill in the rest of the form with your preferences, and you're done!
 
 Consider these other related services:
 
-- [Radarr](radarr.md)
-- [Sonarr](sonarr.md)
+- [Autobrr](autobrr.md)
 - [Jackett](jackett.md)
+- [Jellyfin](jellyfin.md)
 - [Overseerr](overseerr.md)
 - [Plex](plex.md)
-- [Jellyfin](jellyfin.md)
-- [Autobrr](autobrr.md)
+- [Radarr](radarr.md)
+- [Sonarr](sonarr.md)

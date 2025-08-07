@@ -115,10 +115,10 @@ Upstream documentation: https://github.com/linuxserver/docker-jellyfin#nvidia
 
 Consider these other related services:
 
-- [Radarr](radarr.md)
-- [Sonarr](sonarr.md)
+- [Autobrr](autobrr.md)
 - [Jackett](jackett.md)
-- [qBittorrent](qbittorrent.md)
 - [Overseerr](overseerr.md)
 - [Plex](plex.md)
-- [Autobrr](autobrr.md)
+- [qBittorrent](qbittorrent.md)
+- [Radarr](radarr.md)
+- [Sonarr](sonarr.md)

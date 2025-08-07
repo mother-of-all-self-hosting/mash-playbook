@@ -46,10 +46,10 @@ After [installation](../installing.md), you should access your new Autobrr insta
 
 Consider these other related services:
 
-- [Radarr](radarr.md)
-- [Sonarr](sonarr.md)
 - [Jackett](jackett.md)
-- [qBittorrent](qbittorrent.md)
-- [Plex](plex.md)
 - [Jellyfin](jellyfin.md)
 - [Overseerr](overseerr.md)
+- [Plex](plex.md)
+- [qBittorrent](qbittorrent.md)
+- [Radarr](radarr.md)
+- [Sonarr](sonarr.md)

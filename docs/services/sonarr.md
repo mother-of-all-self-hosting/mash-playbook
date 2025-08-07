@@ -58,12 +58,12 @@ For additional configuration options, refer to [ansible-role-sonarr](https://git
 
 Consider these other related services:
 
-- [Radarr](radarr.md)
+- [Autobrr](autobrr.md)
 - [Jackett](jackett.md)
   - For Jackett integration instructions, see the [setup guide](jackett.md#intergration-with-sonarrradarr)
-- [qBittorrent](qbittorrent.md)
-  - For qBittorrent integration instructions, see the [setup guide](qbittorrent.md#intergration-with-sonarrradarr)
+- [Jellyfin](jellyfin.md)
 - [Overseerr](overseerr.md)
 - [Plex](plex.md)
-- [Jellyfin](jellyfin.md)
-- [Autobrr](autobrr.md)
+- [qBittorrent](qbittorrent.md)
+  - For qBittorrent integration instructions, see the [setup guide](qbittorrent.md#intergration-with-sonarrradarr)
+- [Radarr](radarr.md)
