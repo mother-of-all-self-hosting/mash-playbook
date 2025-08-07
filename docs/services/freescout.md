@@ -1,5 +1,6 @@
 <!--
 SPDX-FileCopyrightText: 2024 Nikita Chernyi
+SPDX-FileCopyrightText: 2025 Suguru Hirahara
 
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->
@@ -46,6 +47,6 @@ freescout_admin_password: a-strong-password-here
 
 ## Usage
 
-After running the command for installation, FreeScout becomes available at the specified hostname like `https://freescout.example.com`.
+After running the command for installation, the FreeScout instance becomes available at the URL specified with `freescout_hostname`. With the configuration above, the service is hosted at `https://freescout.example.com`.
 
 You can log in to the instance with the administrator email address (`freescout_admin_email`) and password (`freescout_admin_password`).

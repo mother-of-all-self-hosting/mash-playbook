@@ -62,7 +62,7 @@ reactflux_hostname: reactflux.example.com
 
 ## Usage
 
-After running the command for installation, ReactFlux becomes available at the specified hostname like `https://reactflux.example.com`.
+After running the command for installation, the ReactFlux instance becomes available at the URL specified with `reactflux_hostname`. With the configuration above, the service is hosted at `https://reactflux.example.com`.
 
 ## Troubleshooting
 

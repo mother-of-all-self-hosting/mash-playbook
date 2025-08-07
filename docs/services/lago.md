@@ -243,7 +243,7 @@ Note that running the `just` commands for installation (`just install-all` or `j
 
 ## Usage
 
-After installation, your Lago instance becomes available at the URL specified with `lago_hostname`.
+After installation, the Lago instance becomes available at the URL specified with `lago_hostname`. With the configuration above, the service is hosted at `https://lago.example.com`.
 
 To log in to the service and get started, you need to create a user from the web interface.
 

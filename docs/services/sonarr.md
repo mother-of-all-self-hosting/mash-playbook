@@ -1,5 +1,6 @@
 <!--
 SPDX-FileCopyrightText: 2025 MASH project contributors
+SPDX-FileCopyrightText: 2025 Suguru Hirahara
 
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->
@@ -48,13 +49,12 @@ sonarr_hostname: sonarr.example.com
 ########################################################################
 ```
 
-### URL
-
-In the example configuration above, we configure the service to be hosted at `https://sonarr.example.com`.
-
-A `sonarr_path_prefix` variable can be adjusted to host under a subpath (e.g. `sonarr_path_prefix: /sonarr`), but this hasn't been tested yet.
-
 ## Usage
+
+After running the command for installation, the Sonarr instance becomes available at the URL specified with `sonarr_hostname`. With the configuration above, the service is hosted at `https://sonarr.example.com`.
+
+>[!NOTE]
+> The `sonarr_path_prefix` variable can be adjusted to host under a subpath (e.g. `sonarr_path_prefix: /sonarr`), but this hasn't been tested yet.
 
 After [installation](../installing.md), you should access your new Sonarr instance at the URL you've chosen and configure a username and password. The recommended authentication method is `Forms (Login Page)`.
 

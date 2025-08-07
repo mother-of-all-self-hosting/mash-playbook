@@ -45,6 +45,6 @@ readeck_hostname: readeck.example.com
 
 ## Usage
 
-After running the command for installation, Readeck becomes available at the specified hostname like `https://readeck.example.com`.
+After running the command for installation, the Readeck instance becomes available at the URL specified with `readeck_hostname`. With the configuration above, the service is hosted at `https://readeck.example.com`.
 
-To get started, go to the URL on a web browser and create a user.
+To get started, open the URL with a web browser, and create a user.

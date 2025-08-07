@@ -61,7 +61,7 @@ excalidraw_hostname: excalidraw.example.com
 
 ## Usage
 
-After installation, the Excalidraw client becomes available at the URL specified with `excalidraw_hostname`.
+After running the command for installation, the Excalidraw client becomes available at the URL specified with `excalidraw_hostname`. With the configuration above, the service is hosted at `https://excalidraw.example.com`.
 
 ### Enable a collaboration server (optional)
 

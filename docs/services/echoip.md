@@ -42,7 +42,7 @@ echoip_hostname: echoip.example.com
 
 ## Usage
 
-After running the command for installation, echoip becomes available at the specified hostname like `https://echoip.example.com`.
+After running the command for installation, the echoip instance becomes available at the URL specified with `echoip_hostname`. With the configuration above, the service is hosted at `https://echoip.example.com`.
 
 You can use the echoip instance by running a command as below:
 

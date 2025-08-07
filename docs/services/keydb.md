@@ -50,7 +50,7 @@ To **host multiple instances of the KeyDB service**, follow the [Running multipl
 
 ## Usage
 
-After installation, your KeyDB instance becomes available.
+After running the command for installation, the KeyDB instance becomes available.
 
 The purpose of the KeyDB component in this Ansible playbook is to serve as a dependency for other [services](../supported-services.md). For this use-case, you don't need to do anything special beyond enabling the component per your choice (whether hosting a single instance or multiple ones).
 

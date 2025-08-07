@@ -1,5 +1,6 @@
 <!--
 SPDX-FileCopyrightText: 2023 Julian-Samuel Gebühr
+SPDX-FileCopyrightText: 2025 Suguru Hirahara
 
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->
@@ -54,7 +55,9 @@ just run-tags ilmo-add-superuser --extra-vars=username=USERNAME --extra-vars=pas
 
 ## Usage
 
-After installation, you can go to the ILMO URL, as defined in `ilmo_hostname`. Log in with the user credentials from above.
+After running the command for installation, the ILMO instance becomes available at the URL specified with `ilmo_hostname`. With the configuration above, the service is hosted at `https://ilmo.example.com`.
+
+To get started, log in with the user credentials from above.
 
 Follow the [ILMO documentation](https://ilmo2.readthedocs.io/en/latest/index.html) to learn how to use ILMO.
 

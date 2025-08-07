@@ -55,9 +55,9 @@ freshrss_database_password: DATABASE_PASSWORD_HERE
 
 ## Usage
 
-After running the command for installation, FreshRSS becomes available at the specified hostname like `https://freshrss.example.com`.
+After running the command for installation, the FreshRSS instance becomes available at the URL specified with `freshrss_hostname`. With the configuration above, the service is hosted at `https://freshrss.example.com`.
 
-You can go to the URL with a web browser to complete installation on the server. During the installation, the database password specified to `freshrss_database_password` variable is required to be submitted.
+You can open the URL with a web browser to complete installation on the server. During the installation, the database password specified to `freshrss_database_password` variable is required to be submitted.
 
 Refer to FreshRSS [official documentation](http://freshrss.github.io/FreshRSS/en/) for usage.
 

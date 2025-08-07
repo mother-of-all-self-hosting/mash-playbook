@@ -55,7 +55,7 @@ Replace `https://example.com` with the hostname of your website.
 
 ## Usage
 
-After running the command for installation, OxiTraffic becomes available at the specified hostname like `https://oxitraffic.example.com`.
+After running the command for installation, the OxiTraffic instance becomes available at the URL specified with `oxitraffic_hostname`. With the configuration above, the service is hosted at `https://oxitraffic.example.com`.
 
 To have your OxiTraffic instance count visits at `https://example.com`, you need to add the following script tag to the website:
 

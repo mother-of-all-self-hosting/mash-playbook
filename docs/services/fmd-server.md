@@ -71,7 +71,7 @@ fmd_server_config_registrationtoken: YOUR_TOKEN_HERE
 
 ## Usage
 
-After running the command for installation, FMD Server becomes available at the specified hostname like `https://fmd.example.com`.
+After running the command for installation, the FMD Server instance becomes available at the URL specified with `fmd_hostname`. With the configuration above, the service is hosted at `https://fmd.example.com`.
 
 See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-fmd-server/blob/main/docs/configuring-fmd-server.md#usage) on the role's documentation for details about how to set up the client (FMD).
 

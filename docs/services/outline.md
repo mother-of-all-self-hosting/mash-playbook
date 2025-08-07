@@ -271,4 +271,4 @@ Note that running the `just` commands for installation (`just install-all` or `j
 
 ## Usage
 
-After installation, your Outline instance becomes available at the URL specified with `outline_hostname`.
+After installation, the Outline instance becomes available at the URL specified with `outline_hostname`. With the configuration above, the service is hosted at `https://outline.example.com`.

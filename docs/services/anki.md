@@ -73,7 +73,7 @@ anki_environment_variables_password: YOUR_PASSWORD_HERE
 
 ## Usage
 
-After installation, the synchronization server becomes available at the URL specified with `anki_hostname` and `anki_path_prefix`.
+After running the command for installation, the Anki synchronization server becomes available at the URL specified with `anki_hostname` and `anki_path_prefix`. With the configuration above, the service is hosted at `https://mash.example.com/anki`.
 
 If the instance is served under the subpath, make sure to include a trailing slash when configuring Anki (`mash.example.com/anki/`). See [here](https://docs.ankiweb.net/sync-server.html#reverse-proxies) for more information.
 

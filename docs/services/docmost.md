@@ -274,9 +274,9 @@ Note that running the `just` commands for installation (`just install-all` or `j
 
 ## Usage
 
-After installation, your Docmost instance becomes available at the URL specified with `docmost_hostname`.
+After installation, the Docmost instance becomes available at the URL specified with `docmost_hostname`. With the configuration above, the service is hosted at `https://docmost.example.com`.
 
-To get started, go to the URL on a web browser and create a first workspace by inputting required information. For an email address, make sure to input your own email address, not the one of the mailer.
+To get started, open the URL with a web browser and create a first workspace by inputting required information. For an email address, make sure to input your own email address, not the one of the mailer.
 
 ## Troubleshooting
 

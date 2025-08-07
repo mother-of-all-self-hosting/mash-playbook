@@ -80,7 +80,7 @@ Refer to [this section](https://docs.sftpgo.com/latest/config-file/#data-provide
 
 ## Usage
 
-After running the command for installation, SFTPGo becomes available at the specified hostname like `sftpgo.example.com`. By default you can connect to the SFTP server on the port `2022`.
+After running the command for installation, the SFTPGo instance becomes available at the URL specified with `sftpgo_hostname`. With the configuration above, the service is hosted at `https://sftpgo.example.com`. By default you can connect to the SFTP server on the port `2022`.
 
 See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-sftpgo/blob/main/docs/configuring-sftpgo.md#adjusting-the-playbook-configuration) on the role's documentation for details about how to enable web interfaces and create the first admin account, including the configuration to enable WebDAV server.
 

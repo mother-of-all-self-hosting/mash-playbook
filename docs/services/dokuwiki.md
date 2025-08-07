@@ -1,5 +1,6 @@
 <!--
 SPDX-FileCopyrightText: 2024 shukon
+SPDX-FileCopyrightText: 2025 Suguru Hirahara
 
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->
@@ -42,6 +43,6 @@ dokuwiki_hostname: dokuwiki.example.com
 
 ## Usage
 
-After running the command for installation, Dokuwiki becomes available at the specified hostname like `https://dokuwiki.example.com/`.
+After running the command for installation, the Dokuwiki instance becomes available at the URL specified with `dokuwiki_hostname`. With the configuration above, the service is hosted at `https://dokuwiki.example.com`.
 
-You can go to the URL `https://dokuwiki.example.com/install.php` with a web browser to complete installation on the server. The instruction is available at <https://www.dokuwiki.org/installer>.
+To get started, open the URL `https://dokuwiki.example.com/install.php` with a web browser to complete installation on the server. The instruction is available at <https://www.dokuwiki.org/installer>.

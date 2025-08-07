@@ -75,7 +75,7 @@ endlessh_container_host_bind_port: YOUR_PORT_NUMBER_HERE
 
 ## Usage
 
-After installation, the instance starts running on the server and listens to the specified port (port 22 by default).
+After running the command for installation, the Endlessh instance becomes available and starts running on the server, listening to the specified port (port 22 by default).
 
 You can customize how it works with the `endlessh_container_extra_arguments_custom` variable. See [this section](https://github.com/shizunge/endlessh-go/blob/main/README.md#usage) of the documentation for available arguments.
 

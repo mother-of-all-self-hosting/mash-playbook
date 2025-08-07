@@ -70,7 +70,7 @@ plausible_environment_variable_totp_vault_key: ''
 
 ## Usage
 
-After running the command for installation, Plausible Analytics becomes available at the specified hostname like `https://plausible.example.com`.
+After running the command for installation, the Plausible Analytics instance becomes available at the URL specified with `plausible_hostname`. With the configuration above, the service is hosted at `https://plausible.example.com`.
 
 First, create your first user account, which will be created as an admin (see the details about `plausible_environment_variable_admin_user_ids` above).
 

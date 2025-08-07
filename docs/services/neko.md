@@ -78,7 +78,7 @@ neko_environment_variables_neko_member_multiuser_user_password: USER_PASSWORD_HE
 
 ## Usage
 
-After installation, your Neko instance becomes available at the URL specified with `neko_hostname`.
+After running the command for installation, the Neko instance becomes available at the URL specified with `neko_hostname`. With the configuration above, the service is hosted at `https://neko.example.com`.
 
 If you cannot log in to the instance, make sure that the ports are open on the server and WebRTC is enabled on the browser.
 

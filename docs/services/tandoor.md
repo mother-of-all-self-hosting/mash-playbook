@@ -1,5 +1,6 @@
 <!--
 SPDX-FileCopyrightText: 2024 MASH project contributors
+SPDX-FileCopyrightText: 2025 Suguru Hirahara
 
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->
@@ -39,19 +40,8 @@ tandoor_path_prefix: /tandoor
 ########################################################################
 ```
 
-### URL
-
-In the example configuration above, we configure the service to be hosted at `https://mash.example.com/tandoor`.
-
-### Authentication
-
-On first use (see [Usage](#usage) below), you'll be asked to create the first administrator user.
-
-You can create additional users from the web UI after that.
-
-
 ## Usage
 
-After installation, you can go to the Tandoor URL, as defined in `tandoor_hostname` and `tandoor_path_prefix`.
+After running the command for installation, the Tandoor instance becomes available at the URL specified with `tandoor_hostname` and `tandoor_path_prefix`. With the configuration above, the service is hosted at `https://mash.example.com/tandoor`.
 
 As mentioned in [Authentication](#authentication) above, you'll be asked to create the first administrator user the first time you open the web UI.

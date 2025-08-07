@@ -80,7 +80,7 @@ collabora_online_environment_variable_aliasgroup1: "https://{{ nextcloud_hostnam
 
 ## Usage
 
-After installation, your CODE instance becomes available at the URL specified with `collabora_online_hostname`.
+After running the command for installation, the CODE instance becomes available at the URL specified with `collabora_hostname`. With the configuration above, the service is hosted at `https://collabora.example.com`.
 
 ### Admin Interface
 

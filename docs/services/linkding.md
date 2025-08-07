@@ -1,6 +1,7 @@
 <!--
 SPDX-FileCopyrightText: 2023 - 2025 MASH project contributors
 SPDX-FileCopyrightText: 2023 Slavi Pantaleev
+SPDX-FileCopyrightText: 2025 Suguru Hirahara
 
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->
@@ -52,4 +53,6 @@ Please note the use of [`linkding_superuser_username`](https://github.com/sissbr
 
 ## Usage
 
-After installation, you can log in with your superuser login (`linkding_superuser_username`) and password (`linkding_superuser_password`).
+After running the command for installation, the listmonk instance becomes available at the URL specified with `listmonk_hostname` and `listmonk_path_prefix`. With the configuration above, the service is hosted at `https://mash.example.com/listmonk`.
+
+To get started, open the URL and log in with your superuser's username (`linkding_superuser_username`) and password (`linkding_superuser_password`).

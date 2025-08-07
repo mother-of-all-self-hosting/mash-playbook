@@ -245,7 +245,7 @@ Note that running the `just` commands for installation (`just install-all` or `j
 
 ## Usage
 
-After installation, your SearXNG instance becomes available at the URL specified with `searxng_hostname` and `searxng_path_prefix`. With the configuration above, the service is hosted at `https://mash.example.com/searxng`.
+After installation, the SearXNG instance becomes available at the URL specified with `searxng_hostname` and `searxng_path_prefix`. With the configuration above, the service is hosted at `https://mash.example.com/searxng`.
 
 If authentication is enabled, you can log in with the username and password specified with `searxng_basic_auth_username` and `searxng_basic_auth_password`.
 

@@ -1,5 +1,6 @@
 <!--
 SPDX-FileCopyrightText: 2025 Gergely Horváth
+SPDX-FileCopyrightText: 2025 Suguru Hirahara
 
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->
@@ -41,9 +42,9 @@ In the example configuration above, we configure the service to be hosted at `la
 
 ## Usage
 
-After installation, you should be able to access your new LabelStudio instance at the configured URL (see above).
+After running the command for installation, the LabelStudio instance becomes available at the URL specified with `labelstudio_hostname`. With the configuration above, the service is hosted at `https://labelstudio.example.com`.
 
-Going there, you can register new accounts, log in with them and start working.
+To get started, open the URL to register new accounts, log in with them, and start working.
 
 Keep in mind that every user will see every project.
 It may be more secure to disable user registration and use an admin use (created during setup) to send out sign-up emails to additional users later on.

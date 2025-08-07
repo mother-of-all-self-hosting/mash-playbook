@@ -1,5 +1,6 @@
 <!--
 SPDX-FileCopyrightText: 2023 Slavi Pantaleev
+SPDX-FileCopyrightText: 2025 Suguru Hirahara
 
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->
@@ -49,18 +50,6 @@ navidrome_path_prefix: /navidrome
 #                                                                      #
 ########################################################################
 ```
-
-### URL
-
-In the example configuration above, we configure the service to be hosted at `https://mash.example.com/navidrome`.
-
-You can remove the `navidrome_path_prefix` variable definition, to make it default to `/`, so that the service is served at `https://mash.example.com/`.
-
-### Authentication
-
-On first use (see [Usage](#usage) below), you'll be asked to create the first administrator user.
-
-You can create additional users from the web UI after that.
 
 ### Syncthing integration
 
@@ -135,9 +124,9 @@ navidrome_container_additional_volumes:
 
 ## Usage
 
-After installation, you can go to the Navidrome URL, as defined in `navidrome_hostname` and `navidrome_path_prefix`.
+After running the command for installation, the Navidrome instance becomes available at the URL specified with `navidrome_hostname` and `navidrome_path_prefix`. With the configuration above, the service is hosted at `https://mash.example.com/navidrome`.
 
-As mentioned in [Authentication](#authentication) above, you'll be asked to create the first administrator user the first time you open the web UI.
+To get started, open the URL with a web browser, and register the administrator account. You can create additional users (admin-privileged or not) after that.
 
 You can also connect various Subsonic-API-compatible [apps](https://www.navidrome.org/docs/overview/#apps) (desktop, web, mobile) to your Navidrome instance.
 

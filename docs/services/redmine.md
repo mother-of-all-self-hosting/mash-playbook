@@ -45,11 +45,8 @@ redmine_hostname: redmine.example.com
 ########################################################################
 ```
 
-In the example configuration above, we configure the service to be hosted at `https://redmine.example.com`.
-
-
 ## Usage
 
-After installation, you can register your administrator account
+After running the command for installation, the Redmine instance becomes available at the URL specified with `redmine_hostname`. With the configuration above, the service is hosted at `https://redmine.example.com`.
 
-You can create additional users (admin-privileged or not) after that.
+To get started, open the URL with a web browser, and register the administrator account. You can create additional users (admin-privileged or not) after that.

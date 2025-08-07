@@ -72,7 +72,7 @@ homarr_environment_variables_secret_encryption_key: YOUR_SECRET_KEY_HERE
 
 ## Usage
 
-After running the command for installation, Homarr becomes available at the specified hostname like `https://homarr.example.com`.
+After running the command for installation, the Homarr instance becomes available at the URL specified with `homarr_hostname`. With the configuration above, the service is hosted at `https://homarr.example.com`.
 
 You can open the page with a web browser to start the onboarding process. See [this official guide](https://homarr.dev/docs/getting-started/after-the-installation/) for details.
 

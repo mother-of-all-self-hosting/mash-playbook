@@ -73,4 +73,4 @@ just install-service appsmith
 
 ## Usage
 
-After installation, your Appsmith instance becomes available at the URL specified with `appsmith_hostname` (`https://appsmith.example.com` per the setting above). You can create the first user from the web interface.
+After running the command for installation, the Appsmith instance becomes available at the URL specified with `appsmith_hostname`. With the configuration above, the service is hosted at `https://appsmith.example.com`. You can create the first user from the web interface.
