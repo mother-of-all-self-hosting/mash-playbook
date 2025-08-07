@@ -1,3 +1,10 @@
+<!--
+SPDX-FileCopyrightText: 2023 Nikita Chernyi
+SPDX-FileCopyrightText: 2024 Slavi Pantaleev
+
+SPDX-License-Identifier: AGPL-3.0-or-later
+-->
+
 # Prometheus SSH Exporter
 
 This playbook can configure [Prometheus SSH Exporter](https://github.com/treydock/ssh_exporter).

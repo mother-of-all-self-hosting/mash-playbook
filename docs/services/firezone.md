@@ -1,3 +1,10 @@
+<!--
+SPDX-FileCopyrightText: 2023 Julian-Samuel Gebühr
+SPDX-FileCopyrightText: 2023 Slavi Pantaleev
+
+SPDX-License-Identifier: AGPL-3.0-or-later
+-->
+
 # Firezone
 
 [Firezone](https://www.firezone.dev/) is a self-hosted VPN server (based on [WireGuard](https://www.wireguard.com/)) with Web UI that this playbook can install, powered by the [mother-of-all-self-hosting/ansible-role-firezone](https://github.com/mother-of-all-self-hosting/ansible-role-firezone) Ansible role.

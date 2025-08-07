@@ -1,3 +1,9 @@
+<!--
+SPDX-FileCopyrightText: 2023 Slavi Pantaleev
+
+SPDX-License-Identifier: AGPL-3.0-or-later
+-->
+
 # Gitea
 
 [Gitea](https://gitea.io/) is a painless self-hosted Git service. You may also wish to look into [Forgejo](https://forgejo.org/) — a fork of Gitea that this playbook also [supports](forgejo.md).

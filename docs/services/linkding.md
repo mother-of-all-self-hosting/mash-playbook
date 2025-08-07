@@ -1,3 +1,10 @@
+<!--
+SPDX-FileCopyrightText: 2023 - 2025 MASH project contributors
+SPDX-FileCopyrightText: 2023 Slavi Pantaleev
+
+SPDX-License-Identifier: AGPL-3.0-or-later
+-->
+
 # linkding
 
 [linkding](https://github.com/sissbruecker/linkding) bookmark manager that is designed be to be minimal and fast.

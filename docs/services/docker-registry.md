@@ -1,3 +1,9 @@
+<!--
+SPDX-FileCopyrightText: 2023 Slavi Pantaleev
+
+SPDX-License-Identifier: AGPL-3.0-or-later
+-->
+
 # Docker Registry
 
 [Docker Registry](https://docs.docker.com/registry/) is a container image distribution registry developed by [Docker Inc](https://www.docker.com/).

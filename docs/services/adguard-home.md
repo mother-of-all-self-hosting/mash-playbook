@@ -1,3 +1,11 @@
+<!--
+SPDX-FileCopyrightText: 2023 Slavi Pantaleev
+SPDX-FileCopyrightText: 2024 Sergio Durigan Junior
+SPDX-FileCopyrightText: 2024 MASH project contributors
+
+SPDX-License-Identifier: AGPL-3.0-or-later
+-->
+
 # AdGuard Home
 
 [AdGuard Home](https://adguard.com/en/adguard-home/overview.html/) is a network-wide DNS software for blocking ads & tracking.

@@ -1,3 +1,9 @@
+<!--
+SPDX-FileCopyrightText: 2023 Slavi Pantaleev
+
+SPDX-License-Identifier: AGPL-3.0-or-later
+-->
+
 # Keycloak
 
 [Keycloak](https://www.keycloak.org/) is an open source identity and access management solution.

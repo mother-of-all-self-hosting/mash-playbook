@@ -1,3 +1,9 @@
+<!--
+SPDX-FileCopyrightText: 2025 Slavi Pantaleev
+
+SPDX-License-Identifier: AGPL-3.0-or-later
+-->
+
 # Headscale
 
 [Headscale](https://headscale.net/) is an open source, self-hosted implementation of the [Tailscale](https://tailscale.com/) control server.

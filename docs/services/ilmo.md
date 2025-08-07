@@ -1,3 +1,9 @@
+<!--
+SPDX-FileCopyrightText: 2023 Julian-Samuel Gebühr
+
+SPDX-License-Identifier: AGPL-3.0-or-later
+-->
+
 # ILMO
 
 [Ilmo](https://github.com/moan0s/ILMO2) is an open source library management tool.
