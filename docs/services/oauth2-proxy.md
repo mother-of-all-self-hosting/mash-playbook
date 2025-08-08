@@ -42,7 +42,7 @@ This can be any of the supported providers. If hosting your own (via this playbo
 
 ## Sample configuration
 
-The configuration is [provider](https://oauth2-proxy.github.io/oauth2-proxy/configuration/providers/)-specific and also depends on the the service you're SSO-protecting, on which server it runs (in relation to OAuth-Proxy), etc.
+The configuration is [provider](https://oauth2-proxy.github.io/oauth2-proxy/configuration/providers/)-specific and also depends on the service you're SSO-protecting, on which server it runs (in relation to OAuth-Proxy), etc.
 
 Below is a **sample** configuration for protecting a static website (in this case powered by the [Hubsite](hubsite.md)) service via [Keycloak](keycloak.md).
 
