@@ -33,9 +33,9 @@ To enable this service, add the following configuration to your `vars.yml` file 
 
 firezone_enabled: true
 
-firezone_hostname: vpn.example.org
+firezone_hostname: firezone.example.com
 
-firezone_default_admin_email: "user@invalid.org"
+firezone_default_admin_email: "user@example.com"
 firezone_default_admin_password: "<securepassword>"
 
 # Generate this with `openssl rand -base64 32`

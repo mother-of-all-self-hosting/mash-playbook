@@ -44,7 +44,7 @@ To enable this service, add the following configuration to your `vars.yml` file 
 
 versatiles_enabled: true
 
-versatiles_hostname: tiles.example.com
+versatiles_hostname: versatiles.example.com
 
 ########################################################################
 #                                                                      #
@@ -55,7 +55,7 @@ versatiles_hostname: tiles.example.com
 
 ## Usage
 
-After running the command for installation, VersaTiles becomes available at the specified hostname like `https://tiles.example.com`.
+After running the command for installation, VersaTiles becomes available at the specified hostname like `https://versatiles.example.com`.
 
 ![Map of Dresden](../assets/versatiles/map-example.jpeg)
 

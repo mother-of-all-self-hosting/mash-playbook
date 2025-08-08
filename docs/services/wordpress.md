@@ -20,7 +20,7 @@ This service requires the following other services:
 
 wordpress_enabled: true
 
-wordpress_hostname: example.org
+wordpress_hostname: wordpress.example.com
 
 ########################################################################
 #                                                                      #

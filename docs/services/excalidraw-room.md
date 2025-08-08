@@ -51,7 +51,7 @@ To enable this service, add the following configuration to your `vars.yml` file 
 
 excalidraw_room_enabled: true
 
-excalidraw_room_hostname: "excalidraw-room.example.com"
+excalidraw_room_hostname: excalidraw-room.example.com
 
 ########################################################################
 #                                                                      #

@@ -37,7 +37,6 @@ To enable this service, add the following configuration to your `vars.yml` file 
 woodpecker_ci_server_enabled: true
 
 woodpecker_ci_server_hostname: mash.example.com
-
 woodpecker_ci_server_path_prefix: /ci
 
 # Generate this secret with `openssl rand -hex 32`
