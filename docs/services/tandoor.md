@@ -1,3 +1,9 @@
+<!--
+SPDX-FileCopyrightText: 2024 MASH project contributors
+
+SPDX-License-Identifier: AGPL-3.0-or-later
+-->
+
 # Tandoor
 
 [Tandoor](https://docs.tandoor.dev/) is a self-hosted recipe manager, that this playbook can install, powered by the [ansible-role-tandoor](https://github.com/IUCCA/ansible-role-tandoor) Ansible role.

@@ -1,3 +1,9 @@
+<!--
+SPDX-FileCopyrightText: 2025 MASH project contributors
+
+SPDX-License-Identifier: AGPL-3.0-or-later
+-->
+
 # Plex
 
 [Plex](https://www.plex.tv/) is a personal media server that allows you to organize and stream your collection of movies, TV shows, music, and photos.

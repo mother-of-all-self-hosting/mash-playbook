@@ -1,3 +1,10 @@
+<!--
+SPDX-FileCopyrightText: 2023 Slavi Pantaleev
+SPDX-FileCopyrightText: 2024 Sergio Durigan Junior
+
+SPDX-License-Identifier: AGPL-3.0-or-later
+-->
+
 # Woodpecker CI
 
 This playbook can install and configure [Woodpecker CI](https://woodpecker-ci.org/) for you.

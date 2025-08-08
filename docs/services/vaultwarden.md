@@ -1,3 +1,9 @@
+<!--
+SPDX-FileCopyrightText: 2023 Slavi Pantaleev
+
+SPDX-License-Identifier: AGPL-3.0-or-later
+-->
+
 # Vaultwarden
 
 [Vaultwarden](https://github.com/dani-garcia/vaultwarden) (unofficial [Bitwarden](https://bitwarden.com/) compatible server) is a password manager server that you can use with the official **Bitwarden** apps and browser addons.

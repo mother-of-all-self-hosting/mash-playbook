@@ -1,3 +1,10 @@
+<!--
+SPDX-FileCopyrightText: 2025 MASH project contributors
+SPDX-FileCopyrightText: 2025 Slavi Pantaleev
+
+SPDX-License-Identifier: AGPL-3.0-or-later
+-->
+
 # TSDProxy
 
 [TSDProxy](https://almeidapaulopt.github.io/tsdproxy/) is an application that automatically creates a proxy to virtual addresses in your [Tailscale](https://tailscale.com/) network.

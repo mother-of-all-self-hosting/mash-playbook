@@ -1,3 +1,9 @@
+<!--
+SPDX-FileCopyrightText: 2023 Slavi Pantaleev
+
+SPDX-License-Identifier: AGPL-3.0-or-later
+-->
+
 # Self-building
 
 **Caution: self-building does not have to be used on its own. See the [Alternative Architectures](alternative-architectures.md) page.**

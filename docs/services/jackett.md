@@ -1,3 +1,9 @@
+<!--
+SPDX-FileCopyrightText: 2025 MASH project contributors
+
+SPDX-License-Identifier: AGPL-3.0-or-later
+-->
+
 # Jackett
 
 [Jackett](https://github.com/Jackett/Jackett) is an API for your favorite torrent trackers.
