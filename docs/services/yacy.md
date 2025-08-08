@@ -72,7 +72,7 @@ After running the command for installation, YaCy becomes available at the specif
 
 You can log in to the instance with the default login credential of the admin account (username: `admin`, password: `yacy`).
 
-To improve security regarding the default login credential, **the role configures the instance on the intranet search mode by default**, so that it does not broadcast its existence to peers before you change the login credential.
+To improve security regarding the admin account, **the role configures the instance on the intranet search mode by default**, so that it does not broadcast its existence to peers before you change the login credential.
 
 See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-yacy/blob/main/docs/configuring-yacy.md#usage) on the role's documentation for details about changing the admin user password and search mode, including protecting the instance with the password.
 
