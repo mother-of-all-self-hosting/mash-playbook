@@ -29,7 +29,7 @@ To enable this service, add the following configuration to your `vars.yml` file 
 
 owncast_enabled: true
 
-owncast_hostname: live.example.com
+owncast_hostname: owncast.example.com
 
 ########################################################################
 #                                                                      #
@@ -51,4 +51,4 @@ Docker automatically opens this port in the server's firewall, so you **likely d
 
 After installation, you can go to the owncast URL, as defined in `owncast_hostname`.
 
-To customize your installation visit `live.example.com/admin`. **You should immediately change the stream key which is set to `abc123` by default**.
+To customize your installation visit `owncast.example.com/admin`. **You should immediately change the stream key which is set to `abc123` by default**.

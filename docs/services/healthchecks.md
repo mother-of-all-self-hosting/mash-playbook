@@ -32,7 +32,6 @@ To enable this service, add the following configuration to your `vars.yml` file 
 healthchecks_enabled: true
 
 healthchecks_hostname: mash.example.com
-
 healthchecks_path_prefix: /healthchecks
 
 ########################################################################

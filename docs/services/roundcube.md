@@ -23,8 +23,7 @@ To enable this service, add the following configuration to your `vars.yml` file 
 roundcube_enabled: true
 
 roundcube_hostname: mash.example.com
-
-roundcube_path_prefix: "/roundcube"
+roundcube_path_prefix: /roundcube
 
 # The default IMAP server to connect to.
 roundcube_default_imap_host: "imap.example.com"

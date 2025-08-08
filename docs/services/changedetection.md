@@ -33,7 +33,6 @@ To enable this service, add the following configuration to your `vars.yml` file 
 changedetection_enabled: true
 
 changedetection_hostname: mash.example.com
-
 changedetection_path_prefix: /changedetection
 
 ########################################################################

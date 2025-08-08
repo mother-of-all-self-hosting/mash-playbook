@@ -33,7 +33,8 @@ To enable this service, add the following configuration to your `vars.yml` file 
 ########################################################################
 
 oxitraffic_enabled: true
-oxitraffic_hostname: traffic.example.com
+
+oxitraffic_hostname: oxitraffic.example.com
 
 ########################################################################
 #                                                                      #
@@ -54,7 +55,7 @@ Replace `https://example.com` with the hostname of your website.
 
 ## Usage
 
-After running the command for installation, OxiTraffic becomes available at the specified hostname like `https://traffic.example.com`.
+After running the command for installation, OxiTraffic becomes available at the specified hostname like `https://oxitraffic.example.com`.
 
 To have your OxiTraffic instance count visits at `https://example.com`, you need to add the following script tag to the website:
 

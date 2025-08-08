@@ -31,7 +31,7 @@ To enable this service, add the following configuration to your `vars.yml` file 
 
 mobilizon_enabled: true
 
-mobilizon_hostname: 'events.example.org'
+mobilizon_hostname: mobilizon.example.com
 
 ########################################################################
 #                                                                      #
