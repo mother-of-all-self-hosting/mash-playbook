@@ -90,7 +90,7 @@ See the [documentation](https://docs.semaphoreui.com/administration-guide/config
 
 After running the command for installation, Semaphore UI becomes available at the specified hostname like `https://semaphore.example.com`.
 
-You can open the page with a web browser to log in to the instance. See [this official guide](https://docs.semaphoreui.com/user-guide/projects/) to get started.
+You can open the page with a web browser to log in to the instance. See [this official guide](https://docs.semaphoreui.com/user-guide/projects/) for details about how to use it.
 
 ## Troubleshooting
 
