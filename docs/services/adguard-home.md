@@ -81,7 +81,9 @@ After running the command for installation, the AdGuard instance becomes availab
 
 As mentioned in the [URL](#url) section above, you may hit some annoyances when hosting under a subpath.
 
-The first time you visit the AdGuard Home pages, you'll go through a setup wizard **make sure to set the HTTP port under "Admin Web Interface" to `3000`**. This is the in-container port that our Traefik setup expects and uses for serving the install wizard to begin with. If you go with the default (`80`), the web UI will stop working after the installation wizard completes.
+To get started, open the URL with a web browser, and follow the set up wizard.
+
+On the set up wizard, **make sure to set the HTTP port under "Admin Web Interface" to `3000`**. This is the in-container port that our Traefik setup expects and uses for serving the install wizard to begin with. If you go with the default (`80`), the web UI will stop working after the installation wizard completes.
 
 Things you should consider doing later:
 

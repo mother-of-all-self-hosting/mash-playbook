@@ -56,7 +56,7 @@ After running the command for installation, the Sonarr instance becomes availabl
 >[!NOTE]
 > The `sonarr_path_prefix` variable can be adjusted to host under a subpath (e.g. `sonarr_path_prefix: /sonarr`), but this hasn't been tested yet.
 
-After [installation](../installing.md), you should access your new Sonarr instance at the URL you've chosen and configure a username and password. The recommended authentication method is `Forms (Login Page)`.
+To get started, open the URL with a web browser, and configure a username and password. The recommended authentication method is `Forms (Login Page)`.
 
 For additional configuration options, refer to [ansible-role-sonarr](https://github.com/spatterIight/ansible-role-sonarr)'s `defaults/main.yml` file.
 

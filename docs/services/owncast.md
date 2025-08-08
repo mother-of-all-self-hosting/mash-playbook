@@ -51,4 +51,4 @@ Docker automatically opens this port in the server's firewall, so you **likely d
 
 After running the command for installation, the Owncast instance becomes available at the URL specified with `owncast_hostname`. With the configuration above, the service is hosted at `https://owncast.example.com`.
 
-To customize your installation visit `owncast.example.com/admin`. **You should immediately change the stream key which is set to `abc123` by default**.
+To get started, open the URL `https://owncast.example.com/admin` with a web browser. **You should immediately change the stream key which is set to `abc123` by default**.

@@ -44,7 +44,7 @@ After running the command for installation, the Autobrr instance becomes availab
 >[!NOTE]
 > The `autobrr_path_prefix` variable can be adjusted to host under a subpath (e.g. `autobrr_path_prefix: /autobrr`), but this hasn't been tested yet.
 
-You should access your new Autobrr instance at the URL you've chosen. Follow the prompts to finish setup:
+To get started, open the URL with a web browser, and follow the prompts to finish setup:
 
 ![Autobrr Create Account](../assets/autobrr/setup-1.png)
 

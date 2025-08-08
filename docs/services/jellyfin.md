@@ -53,6 +53,8 @@ Unlike most MASH services, this service **runs with root privileges** and requir
 
 After running the command for installation, the Jellyfin instance becomes available at the URL specified with `jellyfin_hostname`. With the configuration above, the service is hosted at `https://jellyfin.example.com`.
 
+To get started, open the URL with a web browser, and configure a username and password:
+
 ![Jellyfin Configure User](../assets/jellyfin/setup-1.png)
 
 When prompted to add your media libraries keep in mind that it will be the path **inside** the container, most likely the `dst` parameter of your `jellyfin_container_additional_volumes` variable.

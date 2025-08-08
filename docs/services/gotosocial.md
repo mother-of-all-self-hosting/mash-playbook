@@ -75,7 +75,7 @@ By default, GoToSocial uses `gotosocial_hostname` that you provide for the serve
 
 After installation, the GoToSocial instance becomes available at the URL specified with `gotosocial_hostname`. With the configuration above, the service is hosted at `https://gotosocial.example.com`.
 
-After running the command for installation, you can create user account(s).
+To get started, create user account(s) by running the command below to create an **administrator** user account:
 
 Run this command to create an **administrator** user account:
 
@@ -83,13 +83,13 @@ Run this command to create an **administrator** user account:
 just run-tags gotosocial-add-admin --extra-vars=username=USERNAME_HERE --extra-vars=password=PASSWORD_HERE --extra-vars=email=EMAIL_ADDRESS_HERE
 ```
 
-Run this command to create a **regular** (non-administrator) user account:
+To create a **regular** (non-administrator) user account, run the command below:
 
 ```sh
 just run-tags gotosocial-add-user --extra-vars=username=USERNAME_HERE --extra-vars=password=PASSWORD_HERE --extra-vars=email=EMAIL_ADDRESS_HERE
 ```
 
-Now you should be able to visit the URL at the specified hostname like `https://social.example.com` and check your instance.
+After creating user accounts, open the URL and check your instance.
 
 See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-gotosocial/blob/main/docs/configuring-gotosocial.md#usage) on the role's documentation for details about how to use a CLI tool, etc.
 

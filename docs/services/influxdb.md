@@ -63,4 +63,4 @@ influxdb_container_http_host_bind_port: PORT_NUMBER_HERE
 
 After running the command for installation, the InfluxDB instance becomes available at the URL specified with `influxdb_hostname`. With the configuration above, the service is hosted at `https://influxdb.example.com`.
 
-You can go to the URL with a web browser to log in if `influxdb_init` is set to `true` (or configure the first user if it is not).
+To get started, open the URL with a web browser, and log in to the service if `influxdb_init` is set to `true` (or configure the first user if it is not).

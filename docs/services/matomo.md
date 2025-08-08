@@ -42,7 +42,7 @@ matomo_hostname: matomo.example.com
 
 After running the command for installation, the Matomo instance becomes available at the URL specified with `matomo_hostname`. With the configuration above, the service is hosted at `https://matomo.example.com`.
 
-To get started, open the URL with a web browser, and follow Matomo's set up wizard where you can:
+To get started, open the URL with a web browser, and follow the set up wizard where you can:
 
 1. Create your administrator account
 2. Configure your first website to track

@@ -70,7 +70,7 @@ healthchecks_environment_variables_additional_variables: |
 
 After running the command for installation, the Healthchecks instance becomes available at the URL specified with `healthchecks_hostname` and `healthchecks_path_prefix`. With the configuration above, the service is hosted at `https://mash.example.com/healthchecks`.
 
-To get started, you need to create a superuser account by **SSH-ing into into the server** and running a command like this:
+To get started, create a superuser account by **SSH-ing into into the server** and running a command as below:
 
 ```sh
 docker exec -it mash-healthchecks /opt/healthchecks/manage.py createsuperuser

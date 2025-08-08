@@ -44,7 +44,7 @@ After running the command for installation, the Overseerr instance becomes avail
 >[!NOTE]
 > The `overseerr_path_prefix` variable can be adjusted to host under a subpath (e.g. `overseerr_path_prefix: /overseerr`), but this hasn't been tested yet.
 
-Follow the prompts to finish setup. The below guide may be useful:
+To get started, open the URL with a web browser, and follow the prompts to finish setup. The below guide may be useful:
 
 1. Sign in to Overseerr via Plex. You should get a browser pop-up window.
 

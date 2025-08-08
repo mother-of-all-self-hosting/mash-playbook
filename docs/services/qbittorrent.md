@@ -57,9 +57,13 @@ After running the command for installation, the qBittorrent instance becomes ava
 >[!NOTE]
 > The `qbittorrent_path_prefix` variable can be adjusted to host under a subpath (e.g. `qbittorrent_path_prefix: /qbittorrent`), but this hasn't been tested yet.
 
-To login you'll need to obtain the **temporary** randomly generated password for your instance, to get this run `just run-tags print-qbittorrent-password`
+To get started, open the URL with a web browser, and log in with the **temporary** randomly generated password for your instance, which can be obtained by running the command below:
 
-Once you've got that, login as the `admin` user with the password and change it under `Tools -> Options -> WebUI` in the `Authentication` section. Make sure you change the password, since the default one is temporary and will change with each start-up.
+```sh
+just run-tags print-qbittorrent-password
+```
+
+Once you've got that, log in as the `admin` user with the password and change it under `Tools -> Options -> WebUI` in the `Authentication` section. Make sure you change the password, since the default one is temporary and will change with each start-up.
 
 For additional configuration options, refer to [ansible-role-qbittorrent](https://github.com/mother-of-all-self-hosting/ansible-role-qbittorrent)'s `defaults/main.yml` file.
 

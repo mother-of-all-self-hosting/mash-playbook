@@ -64,4 +64,4 @@ APISIX Dashboard also supports OpenID Connect providers. It can be enabled and c
 
 After running the command for installation, the APISIX Dashboard instance becomes available at the URL specified with `apisix_dashboard_hostname`. With the configuration above, the service is hosted at `https://dashboard.api.example.com`.
 
-After installation, you can visit the APISIX Dashboard URL and authenticate with a credential as specified in `apisix_dashboard_config_authentication_users`. If you've enabled OpenID Connect, you may also be able to authenticate with that.
+You can open the APISIX Dashboard URL and authenticate with a credential as specified in `apisix_dashboard_config_authentication_users`. If you've enabled OpenID Connect, you may also be able to authenticate with that.

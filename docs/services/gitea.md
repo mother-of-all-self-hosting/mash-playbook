@@ -56,7 +56,7 @@ gitea_path_prefix: /gitea
 
 After running the command for installation, the Gitea instance becomes available at the URL specified with `gitea_hostname` and `gitea_path_prefix`. With the configuration above, the service is hosted at `https://mash.example.com/gitea`.
 
-Going there, you'll be taken to the initial setup wizard, which will let you assign some passwords and other configuration.
+To get started, open the URL with a web browser, and follow the set up wizard where you can create your admin user and configure the service.
 
 ## Recommended other services
 
