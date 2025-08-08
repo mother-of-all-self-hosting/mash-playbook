@@ -1,3 +1,9 @@
+<!--
+SPDX-FileCopyrightText: 2025 MASH project contributors
+
+SPDX-License-Identifier: AGPL-3.0-or-later
+-->
+
 # Matomo
 
 [Matomo](https://matomo.org/) (formerly Piwik) is a free and open source web analytics platform.

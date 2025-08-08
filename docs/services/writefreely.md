@@ -1,3 +1,9 @@
+<!--
+SPDX-FileCopyrightText: 2024 MASH project contributors
+
+SPDX-License-Identifier: AGPL-3.0-or-later
+-->
+
 # WriteFreely
 
 [WriteFreely](https://github.com/writefreely/writefreely) is a clean, minimalist publishing platform made for writers, federated via ActivityPub.

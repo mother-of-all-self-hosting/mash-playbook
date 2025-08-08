@@ -1,3 +1,10 @@
+<!--
+SPDX-FileCopyrightText: 2023 Sergio Durigan Junior
+SPDX-FileCopyrightText: 2025 Suguru Hirahara
+
+SPDX-License-Identifier: AGPL-3.0-or-later
+-->
+
 # Roundcube
 
 [Roundcube](https://roundcube.net/) is a browser-based multilingual IMAP client with an application-like user interface. It provides full functionality you expect from an email client, including MIME support, address book, folder manipulation, message searching and spell checking.

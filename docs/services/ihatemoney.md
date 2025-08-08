@@ -1,3 +1,9 @@
+<!--
+SPDX-FileCopyrightText: 2025 MASH project contributors
+
+SPDX-License-Identifier: AGPL-3.0-or-later
+-->
+
 # ihatemoney
 
 [ihatemoney](https://github.com/spiral-project/ihatemoney) is a self-hosted shared budget manager, that this playbook can install, powered by the [ansible-role-ihatemoney](https://github.com/IUCCA/ansible-role-ihatemoney) Ansible role.

@@ -1,3 +1,9 @@
+<!--
+SPDX-FileCopyrightText: 2025 MASH project contributors
+
+SPDX-License-Identifier: AGPL-3.0-or-later
+-->
+
 # Sonarr
 
 [Sonarr](https://sonarr.tv/) is a smart PVR for newsgroup and bittorrent users.

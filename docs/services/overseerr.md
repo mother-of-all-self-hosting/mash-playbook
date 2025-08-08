@@ -1,3 +1,9 @@
+<!--
+SPDX-FileCopyrightText: 2025 MASH project contributors
+
+SPDX-License-Identifier: AGPL-3.0-or-later
+-->
+
 # Overseerr
 
 [Overseerr](https://www.overseerr.org/) is a request management and media discovery tool for the Plex ecosystem.

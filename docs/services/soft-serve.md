@@ -1,3 +1,10 @@
+<!--
+SPDX-FileCopyrightText: 2023 Nikita Chernyi
+SPDX-FileCopyrightText: 2023 Slavi Pantaleev
+
+SPDX-License-Identifier: AGPL-3.0-or-later
+-->
+
 # Soft Serve
 
 [Soft Serve](https://github.com/charmbracelet/soft-serve) is a tasty, self-hostable [Git](https://git-scm.com/) server for the command line.

@@ -1,3 +1,9 @@
+<!--
+SPDX-FileCopyrightText: 2025 MASH project contributors
+
+SPDX-License-Identifier: AGPL-3.0-or-later
+-->
+
 # Stirling PDF
 
 Stirling PDF is an online PDF converter and editor with many functionalities. Visit the [official website](https://www.stirlingpdf.com) or [demo](https://stirlingpdf.io) to learn more.

@@ -1,3 +1,9 @@
+<!--
+SPDX-FileCopyrightText: 2025 MASH project contributors
+
+SPDX-License-Identifier: AGPL-3.0-or-later
+-->
+
 # Autobrr
 
 [Autobrr](https://autobrr.com/) is a modern autodl-irssi replacement, an easy to use download automator for torrents and usenet.
