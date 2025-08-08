@@ -76,7 +76,7 @@ vaultwarden_config_smtp_password: ''
 
 After running the command for installation, the Vaultwarden instance becomes available at the URL specified with `vaultwarden_hostname` and `vaultwarden_path_prefix`. With the configuration above, the service is hosted at `https://mash.example.com/vaultwarden-secret-custom-prefix`.
 
-To set up your first user account, you should use the `/admin` page, available at `https://VAULTWARDEN_DOMAIN/PATH_PREFIX/admin` and accessible with an admin token, as specified in `vaultwarden_config_admin_token` in your `vars.yml` file.
+To get started, open the URL `https://mash.example.com/vaultwarden-secret-custom-prefix/admin` with a web browser, and create a first user account. Note the URL is accessible with an admin token, as specified with `vaultwarden_config_admin_token` on your `vars.yml` file.
 
 If you hadn't enabled the `/admin` feature (by defining `vaultwarden_config_admin_token`), you would:
 

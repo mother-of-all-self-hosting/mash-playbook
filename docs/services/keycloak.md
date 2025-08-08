@@ -9,6 +9,8 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
 [Keycloak](https://www.keycloak.org/) is an open source identity and access management solution.
 
+Follow the [Keycloak documentation](https://www.keycloak.org/documentation) or other guides for learning how to use Keycloak.
+
 > [!WARNING]
 > This service is a new addition to the playbook. It may not fully work or be configured in a suboptimal manner.
 
@@ -52,8 +54,12 @@ keycloak_environment_variable_keycloak_admin_password: ''
 
 After running the command for installation, the Keycloak instance becomes available at the URL specified with `keycloak_hostname` and `keycloak_path_prefix`. With the configuration above, the service is hosted at `https://mash.example.com/keycloak`.
 
-Follow the [Keycloak documentation](https://www.keycloak.org/documentation) or other guides for learning how to use Keycloak.
+To get started, open the URL with a web browser, and log in with the admin user account. The account is created on the first start, as defined with the `keycloak_environment_variable_keycloak_admin` and `keycloak_environment_variable_keycloak_admin_password` variables.
 
+On each start after that, Keycloak will attempt to create the user again and report a non-fatal error (Keycloak will continue running).
+
+>[!NOTE]
+> Subsequent changes to the password will not affect an existing user's password.
 
 ## Related services
 

@@ -268,11 +268,11 @@ Note that running the `just` commands for installation (`just install-all` or `j
 
 ## Usage
 
-After running the command for installation, your Nextcloud instance becomes available at the URL specified with `nextcloud_hostname` and `nextcloud_path_prefix`. With the configuration above, the service is hosted at `https://mash.example.com/nextcloud`.
+After running the command for installation, the Nextcloud instance becomes available at the URL specified with `nextcloud_hostname` and `nextcloud_path_prefix`. With the configuration above, the service is hosted at `https://mash.example.com/nextcloud`.
 
 ### Complete setup wizard
 
-To get started, go to the URL and follow Nextcloud's set up wizard.
+To get started, open the URL with a web browser, and follow the set up wizard.
 
 In **Storage & database**, it is recommended to choose PostgreSQL (changing the default **SQLite** choice). To check credentials for the database, run this command:
 

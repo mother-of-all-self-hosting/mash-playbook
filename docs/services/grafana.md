@@ -252,7 +252,7 @@ grafana_environment_variables_additional_variables: |
 
 After running the command for installation, the Grafana instance becomes available at the URL specified with `grafana_hostname` and `grafana_path_prefix`. With the configuration above, the service is hosted at `https://mash.example.com/grafana`.
 
-To get started, open the URL and follow Grafana's set up wizard.
+To get started, open the URL with a web browser, and follow the set up wizard.
 
 ## Recommended other services
 

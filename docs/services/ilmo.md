@@ -57,7 +57,7 @@ just run-tags ilmo-add-superuser --extra-vars=username=USERNAME --extra-vars=pas
 
 After running the command for installation, the ILMO instance becomes available at the URL specified with `ilmo_hostname`. With the configuration above, the service is hosted at `https://ilmo.example.com`.
 
-To get started, log in with the user credentials from above.
+To get started, open the URL with a web browser, and log in with the user credentials from above.
 
 Follow the [ILMO documentation](https://ilmo2.readthedocs.io/en/latest/index.html) to learn how to use ILMO.
 

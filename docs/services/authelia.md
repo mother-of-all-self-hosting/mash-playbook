@@ -197,7 +197,7 @@ If a dedicated variable is not available for you to use or if you wish to overri
 
 After running the command for installation, the Authelia instance becomes available at the URL specified with `authelia_hostname`. With the configuration above, the service is hosted at `https://authelia.example.com`.
 
-On the Authelia base URL, there's a portal website where you can log in and manage your user account.
+To get started, open the URL with a web browser, and log in to the portal website where you can and manage your user account.
 
 ## Related services
 

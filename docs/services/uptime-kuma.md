@@ -63,7 +63,7 @@ uptime_kuma_hostname: uptime-kuma.example.com
 
 After running the command for installation, the Uptime Kuma instance becomes available at the URL specified with `uptime_kuma_hostname`. With the configuration above, the service is hosted at `https://uptime-kuma.example.com`.
 
-When you open the Uptime Kuma's web UI for the first time, it starts a setup wizard where you'll create your admin credentials. You can then add monitors for web services as many as you like.
+To get started, open the URL with a web browser, and follow the set up wizard where you can create your admin user and configure the service. You can add monitors for web services as many as you like.
 
 If you have enabled a self-hosted [ntfy](ntfy.md) server, it is possible to set up the Uptime Kuma instance to have it send notifications to a ntfy's "topic" (channel) when the monitored web service is down, without relaying them through servers owned and controlled by third parties.
 

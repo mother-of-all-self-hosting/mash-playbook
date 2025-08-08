@@ -59,7 +59,7 @@ forgejo_ssh_port: 222
 
 After running the command for installation, the Forgejo instance becomes available at the URL specified with `forgejo_hostname` and `forgejo_path_prefix`. With the configuration above, the service is hosted at `https://mash.example.com/forgejo`.
 
-To get started, open the URL and follow Forgejo's set up wizard.
+To get started, open the URL with a web browser, and follow the set up wizard.
 
 ## Recommended other services
 
