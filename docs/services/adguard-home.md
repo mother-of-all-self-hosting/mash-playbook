@@ -52,7 +52,7 @@ adguard_home_enabled: true
 adguard_home_hostname: mash.example.com
 
 # Hosting under a subpath sort of works, but is not ideal
-# (see the URL section below for details).
+# (see the usage section below for details).
 # Consider using a dedicated hostname and removing the line below.
 adguard_home_path_prefix: /adguard-home
 
@@ -62,15 +62,6 @@ adguard_home_path_prefix: /adguard-home
 #                                                                      #
 ########################################################################
 ```
-
-### URL
-
-When **hosting under a subpath**, you may hit [this bug](https://github.com/AdguardTeam/AdGuardHome/issues/5478), which causes these **annoyances**:
-
-- upon initial usage, you will be redirected to `/install.html` and would need to manually adjust this URL to something like `/adguard-home/install.html` (depending on your `adguard_home_path_prefix`). After the installation wizard completes, you'd be redirected to `/index.html` incorrectly as well.
-
-- every time you hit the homepage and you're not logged in, you will be redirected to `/login.html` and would need to manually adjust this URL to something like `/adguard-home/login.html` (depending on your `adguard_home_path_prefix`)
-
 
 ### Networking
 
@@ -93,7 +84,12 @@ adguard_home_container_dns_udp_bind_port: '192.168.1.15:53'
 
 After running the command for installation, the AdGuard instance becomes available at the URL specified with `adguard_home_hostname` and `adguard_home_path_prefix`. With the configuration above, the service is hosted at `https://mash.example.com/adguard-home`.
 
-As mentioned in the [URL](#url) section above, you may hit some annoyances when hosting under a subpath.
+>[!WARNING]
+> When hosting under a subpath, there are quirks caused by [this bug](https://github.com/AdguardTeam/AdGuardHome/issues/5478), such as:
+>
+> - upon initial usage, you will be redirected to `/install.html` and would need to manually adjust this URL to something like `/adguard-home/install.html` (depending on your `adguard_home_path_prefix`). After the installation wizard completes, you'd be redirected to `/index.html` incorrectly as well.
+>
+> - every time you hit the homepage and you're not logged in, you will be redirected to `/login.html` and would need to manually adjust this URL to something like `/adguard-home/login.html` (depending on your `adguard_home_path_prefix`)
 
 To get started, open the URL with a web browser, and follow the set up wizard.
 
