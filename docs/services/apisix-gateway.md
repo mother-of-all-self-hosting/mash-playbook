@@ -82,7 +82,7 @@ After installation, you can send API requests to your API gateway (as specified 
 
 Example: `curl https://api.example.com/api`
 
-Since no routes are configured by default, you'd receive 404 requests. To configure routes, either use the Admin API (described below) or install [APISIX dashboard](./apisix-dashboard.md) to administrate APISIX using a web UI.
+Since no routes are configured by default, you'd receive 404 requests. To configure routes, either use the Admin API (described below) or install [APISIX dashboard](apisix-dashboard.md) to administrate APISIX using a web UI.
 
 If you've enabled the [Admin API](https://apisix.apache.org/docs/apisix/admin-api/) (`apisix_gateway_container_labels_admin_enabled: true`), you will also be able to manage the APISIX configuration (managing routes, upstreams, etc.) by sending API requests to the Admin API URL (as specified in `apisix_gateway_container_labels_admin_hostname` and `apisix_gateway_container_labels_admin_path_prefix`).
 

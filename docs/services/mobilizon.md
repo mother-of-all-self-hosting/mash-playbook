@@ -45,7 +45,7 @@ mobilizon_hostname: mobilizon.example.com
 
 ### Enable Postgis
 
-You also need to enable [Postgis](./postgis.md) for a database server by adding the following configuration:
+You also need to enable [Postgis](postgis.md) for a database server by adding the following configuration:
 
 ```yaml
 ########################################################################

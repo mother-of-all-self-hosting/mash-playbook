@@ -15,7 +15,7 @@ This service requires the following other services:
 
 - a [Traefik](traefik.md) reverse-proxy server
 
-WriteFreely supports using a [MariaDB](./mariadb.md) database, but this Ansible role and playbook are not configured to make use of it.
+WriteFreely supports using a [MariaDB](mariadb.md) database, but this Ansible role and playbook are not configured to make use of it.
 
 
 ## Configuration
