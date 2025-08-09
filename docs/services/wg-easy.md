@@ -8,9 +8,6 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
 [WireGuard Easy](https://github.com/wg-easy/wg-easy) is the easiest way to run [WireGuard](https://www.wireguard.com/) VPN + Web-based Admin UI.
 
-Another more powerful alternative for a self-hosted WireGuard VPN server is [Firezone](firezone.md). WireGuard Easy is easier, lighter and more compatible with various ARM devices.
-
-
 ## Dependencies
 
 This service requires the following other services:
