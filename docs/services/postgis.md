@@ -8,7 +8,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
 [Postgis](https://postgis.net/) is a spatial database extender for PostgreSQL object-relational database. It adds support for geographic objects allowing location queries to be run in SQL.
 
-Services like [Mobilizon](./mobilizon.md) depend on the ability to store gespatial data.
+Services like [Mobilizon](mobilizon.md) depend on the ability to store gespatial data.
 Enabling the PPostgisostgres database service will automatically wire these services to use it.
 
 

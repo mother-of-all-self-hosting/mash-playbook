@@ -123,7 +123,7 @@ grafana_container_additional_networks_custom:
 
 For connecting to a **remote** Loki instance, you may need to adjust this configuration.
 
-If you're installing [Promtail](./promtail.md) on the same server as Loki, by default it's configured to send `mash` as the tenant ID.
+If you're installing [Promtail](promtail.md) on the same server as Loki, by default it's configured to send `mash` as the tenant ID.
 
 #### Alerts
 
@@ -184,7 +184,7 @@ grafana_dashboard_download_urls: |
 
 ### Single-Sign-On
 
-Grafana supports Single-Sign-On (SSO) via OAUTH. To make use of this you'll need an identity provider like [authentik](./authentik.md), [Keycloak](./keycloak.md) or [Authelia](./authelia.md).
+Grafana supports Single-Sign-On (SSO) via OAUTH. To make use of this you'll need an identity provider like [authentik](authentik.md), [Keycloak](keycloak.md) or [Authelia](authelia.md).
 
 Below, you can find some examples for Grafana configuration.
 

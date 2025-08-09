@@ -147,7 +147,7 @@ After adding this to your `vars.yml` file, [re-run the playbook](../installing.m
 
 Some [services](../supported-services.md) already define their own `middlewares` in their Traefik `labels` file, so you may not be able to inject new ones the same way as done for Hubsite above.
 
-Specific services (e.g. [Nextcloud](./nextcloud.md)) provide Ansible variables (`nextcloud_container_labels_traefik_http_middlewares_custom`) for injecting new middlewares at a specific position (priority) in the list. Others services (Ansible roles) do not support this yet, which would prevent you from using them this way. Consider submitting an issue or better yet opening a PR to improve these services.
+Specific services (e.g. [Nextcloud](nextcloud.md)) provide Ansible variables (`nextcloud_container_labels_traefik_http_middlewares_custom`) for injecting new middlewares at a specific position (priority) in the list. Others services (Ansible roles) do not support this yet, which would prevent you from using them this way. Consider submitting an issue or better yet opening a PR to improve these services.
 
 
 ## Further reading

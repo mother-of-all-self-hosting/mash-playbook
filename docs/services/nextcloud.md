@@ -291,7 +291,7 @@ just run-tags adjust-nextcloud-config
 
 ### Single-Sign-On (SSO) integration
 
-Nextcloud supports Single-Sign-On (SSO) via LDAP, SAML, and OIDC. To make use of it, an identity provider like [authentik](./authentik.md) or [Keycloak](./keycloak.md) needs to be set up.
+Nextcloud supports Single-Sign-On (SSO) via LDAP, SAML, and OIDC. To make use of it, an identity provider like [authentik](authentik.md) or [Keycloak](keycloak.md) needs to be set up.
 
 For example, you can enable SSO with authentik via OIDC by following the steps below:
 

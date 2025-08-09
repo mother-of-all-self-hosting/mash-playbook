@@ -81,4 +81,4 @@ An alternative way to add a service to the proxy is to use Proxy files.
 Please read the [official TSDProxy documentation](https://almeidapaulopt.github.io/tsdproxy/docs/files/) for more information.
 
 You will need to use the `tsdproxy_config_files` variable and add your proxy list file into the config folder, most likely `/mash/tsdproxy/config/`.
-This is possible manually or by using [AUX-Files](./auxiliary.md).
+This is possible manually or by using [AUX-Files](auxiliary.md).

@@ -242,8 +242,8 @@ You can set the admin password at `https://authentik.example.com/if/flow/initial
 
 When it comes to this playbook, tested configuration examples are described on the respective service documentation. See below for details:
 
-- [Grafana](./grafana.md#single-sign-on-authentik)
-- [Nextcloud](./nextcloud.md#single-sign-on-authentik)
+- [Grafana](grafana.md#single-sign-on-authentik)
+- [Nextcloud](nextcloud.md#single-sign-on-authentik)
 
 ## Related services
 

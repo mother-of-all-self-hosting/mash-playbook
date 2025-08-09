@@ -82,7 +82,7 @@ forgejo_environment_variables_additional_variables: |
 
 ## Migrating from Gitea
 
-Forgejo is a fork of [Gitea](./gitea.md). Migrating Gitea (versions up to and including v1.22.0) to Forgejo was relatively easy, but [Gitea versions after v1.22.0 do not allow such transparent upgrades anymore](https://forgejo.org/2024-12-gitea-compatibility/).
+Forgejo is a fork of [Gitea](gitea.md). Migrating Gitea (versions up to and including v1.22.0) to Forgejo was relatively easy, but [Gitea versions after v1.22.0 do not allow such transparent upgrades anymore](https://forgejo.org/2024-12-gitea-compatibility/).
 
 Nevertheless, upgrades may be possible with some manual work.
 
