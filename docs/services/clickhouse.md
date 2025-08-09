@@ -1,19 +1,35 @@
 <!--
-SPDX-FileCopyrightText: 2023 Slavi Pantaleev
+SPDX-FileCopyrightText: 2020 - 2024 MDAD project contributors
+SPDX-FileCopyrightText: 2020 - 2024 Slavi Pantaleev
+SPDX-FileCopyrightText: 2020 Aaron Raimist
+SPDX-FileCopyrightText: 2020 Chris van Dijk
+SPDX-FileCopyrightText: 2020 Dominik Zajac
+SPDX-FileCopyrightText: 2020 Mickaël Cornière
+SPDX-FileCopyrightText: 2022 François Darveau
+SPDX-FileCopyrightText: 2022 Julian Foad
+SPDX-FileCopyrightText: 2022 Warren Bailey
+SPDX-FileCopyrightText: 2023 Antonis Christofides
+SPDX-FileCopyrightText: 2023 Felix Stupp
+SPDX-FileCopyrightText: 2023 Julian-Samuel Gebühr
+SPDX-FileCopyrightText: 2023 Pierre 'McFly' Marty
+SPDX-FileCopyrightText: 2024 - 2025 Suguru Hirahara
 
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 
 # ClickHouse
 
-[ClickHouse](https://clickhouse.com/) is an open-source column-oriented DBMS for online analytical processing (OLAP) that allows users to generate analytical reports using SQL queries in real-time.
+The playbook can install and configure [ClickHouse](https://clickhouse.com/) for you.
 
-Some of the services installed by this playbook require a ClickHouse database.
+ClickHouse is an open-source column-oriented DBMS for online analytical processing (OLAP) that allows users to generate analytical reports using SQL queries in real-time.
 
-Enabling the ClickHouse database service will automatically wire all other services which require such a database to use it.
+See the project's [documentation](https://clickhouse.com/docs) to learn what ClickHouse does and why it might be useful to you.
 
+For details about configuring the [Ansible role for ClickHouse](https://github.com/mother-of-all-self-hosting/ansible-role-clickhouse), you can check them via:
+- 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-clickhouse/blob/main/docs/configuring-clickhouse.md) online
+- 📁 `roles/galaxy/clickhouse/docs/configuring-clickhouse.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
-## Configuration
+## Adjusting the playbook configuration
 
 To enable this service, add the following configuration to your `vars.yml` file and re-run the [installation](../installing.md) process:
 
@@ -36,24 +52,14 @@ clickhouse_root_password: ''
 ########################################################################
 ```
 
-### Getting a database terminal
+## Usage
 
-You can use the `/mash/clickhouse/bin/cli` tool to get interactive terminal access to the ClickHouse server.
+After running the command for installation, the Clickhouse instance becomes available.
 
-## Upgrading ClickHouse
+Some of the services installed by this playbook like [Plausible Analytics](plausible.md) require a ClickHouse database. Enabling the ClickHouse database service will automatically wire all other services which require such a database to use it.
 
-ClickHouse is supposed to auto-upgrade its data as you upgrade to a newer version. There's nothing special that needs to be done.
+See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-clickhouse/blob/main/docs/configuring-clickhouse.md#usage) for details about how to use it (backing up the database, etc).
 
-## Backing up ClickHouse
+## Troubleshooting
 
-The `/mash/clickhouse/backups` directory is mounted as `/backups` into the container and is an allowed disk for backups called `backups`.
-
-You can export a single database table by using [the CLI](#getting-a-database-terminal) and running a command like this:
-
-```sql
-BACKUP TABLE test TO Disk('backups', 'test.zip');
-```
-
-Read the [Backup and Restore](https://clickhouse.com/docs/en/operations/backup) article in the official documentation to learn more.
-
-For better (more en-masse) exporting, it may be beneficial to use the 3rd party [clickhouse-backup](https://github.com/AlexAkulov/clickhouse-backup) tool, but this is not supported by the playbook yet.
+See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-clickhouse/blob/main/docs/configuring-clickhouse.md#troubleshooting) on the role's documentation for details.
