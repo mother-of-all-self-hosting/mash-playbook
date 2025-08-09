@@ -521,7 +521,7 @@
   name: systemd_service_manager
   activation_prefix: ""
 - src: git+https://github.com/IUCCA/ansible-role-tandoor.git
-  version: v2.0.1-0
+  version: v2.0.1-2
   name: tandoor
   activation_prefix: tandoor_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-telegraf.git
