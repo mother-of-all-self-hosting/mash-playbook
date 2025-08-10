@@ -516,7 +516,7 @@ tandoor_enabled: true
 
 tandoor_hostname: "recipe.{{domain}}"
 
-tandoor_path_prefix: /
+# tandoor_path_prefix: /
 
 ########################################################################
 #                                                                      #
