@@ -122,5 +122,5 @@ After running the command for installation, the Forgejo Runner instance becomes 
 
 ## Related services
 
-- [Forgejo](forgejo.md)
-- [Woodpecker CI](woodpecker-ci.md)
+- [Forgejo](forgejo.md) — Self-hosted lightweight software forge (Git hosting service, etc.)
+- [Woodpecker CI](woodpecker-ci.md) — Simple Continuous Integration (CI) engine with great extensibility
