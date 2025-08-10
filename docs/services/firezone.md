@@ -1,6 +1,6 @@
 <!--
 SPDX-FileCopyrightText: 2020 - 2024 MDAD project contributors
-SPDX-FileCopyrightText: 2020 - 2024 Slavi Pantaleev
+SPDX-FileCopyrightText: 2020 - 2025 Slavi Pantaleev
 SPDX-FileCopyrightText: 2020 Aaron Raimist
 SPDX-FileCopyrightText: 2020 Chris van Dijk
 SPDX-FileCopyrightText: 2020 Dominik Zajac
@@ -68,7 +68,7 @@ firezone_hostname: firezone.example.com
 ########################################################################
 ```
 
-To use Firezone, you also need to add other confurations for creating an admin account and setting a string for a secret key. See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-firezone/blob/main/docs/configuring-firezone.md#adjusting-the-playbook-configuration) on the role's documentation for details.
+To use Firezone, you also need to add other configurations for creating an admin account and setting a string for a secret key. See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-firezone/blob/main/docs/configuring-firezone.md#adjusting-the-playbook-configuration) on the role's documentation for details.
 
 ### Usage
 
