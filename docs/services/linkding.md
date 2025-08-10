@@ -53,6 +53,6 @@ Please note the use of [`linkding_superuser_username`](https://github.com/sissbr
 
 ## Usage
 
-After running the command for installation, the listmonk instance becomes available at the URL specified with `listmonk_hostname` and `listmonk_path_prefix`. With the configuration above, the service is hosted at `https://mash.example.com/listmonk`.
+After running the command for installation, the linkding instance becomes available at the URL specified with `linkding_hostname` and `linkding_path_prefix`. With the configuration above, the service is hosted at `https://mash.example.com/linkding`.
 
 To get started, open the URL with a web browser, and log in with your superuser's username (`linkding_superuser_username`) and password (`linkding_superuser_password`).
