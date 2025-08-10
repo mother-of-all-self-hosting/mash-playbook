@@ -1,4 +1,19 @@
 <!--
+SPDX-FileCopyrightText: 2020 - 2024 MDAD project contributors
+SPDX-FileCopyrightText: 2020 - 2025 Slavi Pantaleev
+SPDX-FileCopyrightText: 2020 Aaron Raimist
+SPDX-FileCopyrightText: 2020 Chris van Dijk
+SPDX-FileCopyrightText: 2020 Dominik Zajac
+SPDX-FileCopyrightText: 2020 Mickaël Cornière
+SPDX-FileCopyrightText: 2022 François Darveau
+SPDX-FileCopyrightText: 2022 Julian Foad
+SPDX-FileCopyrightText: 2022 Warren Bailey
+SPDX-FileCopyrightText: 2023 Antonis Christofides
+SPDX-FileCopyrightText: 2023 Felix Stupp
+SPDX-FileCopyrightText: 2023 Julian-Samuel Gebühr
+SPDX-FileCopyrightText: 2023 MASH project contributors
+SPDX-FileCopyrightText: 2023 Pierre 'McFly' Marty
+SPDX-FileCopyrightText: 2024 - 2025 Suguru Hirahara
 SPDX-FileCopyrightText: 2024 Sergio Durigan Junior
 
 SPDX-License-Identifier: AGPL-3.0-or-later
@@ -6,13 +21,16 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
 # Forgejo Runner
 
-[Forgejo Runner](https://code.forgejo.org/forgejo/runner) is a runner to use with [Forgejo Actions](https://forgejo.org/docs/latest/admin/actions/). It provides a way to perform CI using Forgejo. You might also be interested in [Woodpecker CI](https://woodpecker-ci.org/) (that this playbook also [supports](woodpecker-ci.md)).
+The playbook can install and configure [Forgejo Runner](https://code.forgejo.org/forgejo/runner) for you.
+
+Forgejo Runner is a runner to use with [Forgejo Actions](https://forgejo.org/docs/latest/admin/actions/). It provides a way to perform CI using Forgejo.
+
+See the project's [documentation](https://forgejo.org/docs/latest/admin/actions/runner-installation/) to learn what Forgejo Runner does and why it might be useful to you.
 
 > [!WARNING]
 > Upstream considers this software as being an **alpha release**, and says it should **not** be considered secure enough to deploy in production. Use at your own risk.
 
-
-## Configuration
+## Adjusting the playbook configuration
 
 To enable this service, add the following configuration to your `vars.yml` file and re-run the [installation](../installing.md) process:
 
@@ -55,9 +73,15 @@ As mentioned in the example above, the registration token should be obtained via
 
 Labels are an important aspect of the runner, and as such should be carefully chosen. Read [the official documentation](https://forgejo.org/docs/latest/admin/actions/#labels-and-runs-on) for more information.
 
-
 ## Usage
 
-After the installation, the runner will register with the Forgejo instance (provided via the `forgejo_runner_instance_url` variable) and generate a `.runner` file inside its configuration path. This file should not be modified manually. If for some reason you wish to force the registration to run again, you can delete the `.runner` file and restart the service.
+After running the command for installation, the Forgejo Runner instance becomes available.
+
+The runner will register with the Forgejo instance (provided via the `forgejo_runner_instance_url` variable) and generate a `.runner` file inside its configuration path. This file should not be modified manually. If for some reason you wish to force the registration to run again, you can delete the `.runner` file and restart the service.
 
 If you wish to change the labels associated with the runner, you can simply modify the `forgejo_runner_labels` variable and run the playbook again. There is no need to delete the `.runner` file and run the registration again.
+
+## Related services
+
+- [Forgejo](forgejo.md)
+- [Woodpecker CI](woodpecker-ci.md)
