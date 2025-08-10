@@ -466,7 +466,7 @@ stirling_pdf_hostname: "pdf.{{domain}}"
 stirling_pdf_path_prefix: /
 
 # Set to true to download calibre onto stirling-pdf enabling pdf to/from book and advanced html conversion | default false
-stirling_pdf_install_calibre: true
+stirling_pdf_install_calibre: false
 
 ########################################################################
 #                                                                      #
@@ -591,5 +591,79 @@ convertx_environment_variables_webroot: /
 ########################################################################
 #                                                                      #
 # /convertx                                                            #
+#                                                                      #
+########################################################################
+
+########################################################################
+#                                                                      #
+# jellyfin                                                             #
+#                                                                      #
+########################################################################
+
+jellyfin_enabled: true
+jellyfin_hostname: "jellyfin.{{ domain }}"
+jellyfin_container_additional_volumes:
+  - type: bind
+    src: /path/on/the/host/movies
+    dst: /movies
+
+  - type: bind
+    src: /another-path/on/the/host/anime
+    dst: /anime
+    options: readonly
+
+########################################################################
+#                                                                      #
+# /jellyfin                                                            #
+#                                                                      #
+########################################################################
+
+########################################################################
+#                                                                      #
+# qbittorrent                                                          #
+#                                                                      #
+########################################################################
+
+qbittorrent_enabled: true
+
+qbittorrent_hostname: "bittorrent.{{ domain }}"
+
+# The path where downloaded files will be stored on the host system
+qbittorrent_download_path: "{{ qbittorrent_base_path }}/downloads"
+
+# The path at which qbittorrent_download_path is mounted to inside the container
+qbittorrent_download_bind_path: "/downloads"
+
+# The port qBittorrent is listening for torrents on inside the container
+qbittorrent_container_torrenting_port: 6881
+
+# Controls whether the container exposes its torrenting port
+# To become an "active node" you'll want to set this and configure port-forwarding in your router
+qbittorrent_container_torrenting_bind_port: "{{ qbittorrent_container_torrenting_port }}"
+
+########################################################################
+#                                                                      #
+# /qbittorrent                                                         #
+#                                                                      #
+########################################################################
+
+########################################################################
+#                                                                      #
+# promtail                                                             #
+#                                                                      #
+########################################################################
+
+promtail_enabled: false
+
+# See "Configuring scrapers" below.
+# You need to enable at least one scraper to have Promtail do anything.
+
+# If you haven't enabled Grafana Loki on the same server, you will need
+# to define some clients to push logs to.
+# See "Configuring clients" below.
+
+########################################################################
+#                                                                      #
+# /promtail                                                            #
 #                                                                      #
 ########################################################################
