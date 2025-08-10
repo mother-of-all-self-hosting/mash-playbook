@@ -3049,6 +3049,10 @@ forgejo_runner_systemd_required_systemd_services_list: |
 
 forgejo_runner_docker_endpoint_is_unix_socket: "{{ false if forgejo_runner_docker_endpoint.startswith('tcp://') else true }}"
 
+forgejo_runner_runner_name: "forgejo-runner-by-mash-playbook"
+
+forgejo_runner_capacity: 1
+
 ########################################################################
 #                                                                      #
 # /forgejo_runner                                                      #
