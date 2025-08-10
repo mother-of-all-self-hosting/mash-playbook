@@ -31,6 +31,9 @@ For details about configuring the [Ansible role for Gitea](https://github.com/mo
 - 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-gitea/blob/main/docs/configuring-gitea.md) online
 - 📁 `roles/galaxy/gitea/docs/configuring-gitea.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
+> [!WARNING]
+> [Gitea is Open Core](https://codeberg.org/forgejo/discussions/issues/102) and your interests may be better served by using and supporting [Forgejo](forgejo.md) instead. See the [Comparison with Gitea](https://forgejo.org/compare-to-gitea/) page for more information. You may also wish to see our [Migrating from Gitea](forgejo.md#migrating-from-gitea) guide.
+
 ## Dependencies
 
 This service requires the following other services:
