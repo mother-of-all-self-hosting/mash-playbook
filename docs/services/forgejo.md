@@ -79,9 +79,9 @@ Nevertheless, upgrades may be possible with some manual work. See [this section]
 
 ## Related services
 
-- [Forgejo Runner](forgejo-runner.md)
-- [Gitea](gitea.md)
-- [Woodpecker CI](woodpecker-ci.md)
+- [Forgejo Runner](forgejo-runner.md) — Runner to use with Forgejo Actions
+- [Gitea](gitea.md) — Painless self-hosted [Git](https://git-scm.com/) service
+- [Woodpecker CI](woodpecker-ci.md) — Simple Continuous Integration (CI) engine with great extensibility
 
 ### Integration with Woodpecker CI
 
