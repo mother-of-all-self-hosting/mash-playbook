@@ -71,7 +71,7 @@ forgejo_runner_labels:
 
 As mentioned in the example above, the registration token should be obtained via Forgejo's web interface, by going to `Site Administration -> Actions -> Runners -> Create new runner`.
 
-Labels are an important aspect of the runner, and as such should be carefully chosen. Read [the official documentation](https://forgejo.org/docs/latest/admin/actions/#labels-and-runs-on) for more information.
+Labels are an important aspect of the runner, and as such should be carefully chosen. Read [the official documentation](https://forgejo.org/docs/latest/admin/actions/#choosing-labels) for more information.
 
 ## Usage
 
