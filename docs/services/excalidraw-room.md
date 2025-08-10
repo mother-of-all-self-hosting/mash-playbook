@@ -51,7 +51,7 @@ To enable this service, add the following configuration to your `vars.yml` file 
 
 excalidraw_room_enabled: true
 
-excalidraw_room_hostname: "excalidraw-room.example.com"
+excalidraw_room_hostname: excalidraw-room.example.com
 
 ########################################################################
 #                                                                      #
@@ -64,7 +64,7 @@ excalidraw_room_hostname: "excalidraw-room.example.com"
 
 ## Usage
 
-After installation, the Excalidraw collaboration server becomes available at the URL specified with `excalidraw_room_hostname`.
+After running the command for installation, the Excalidraw collaboration server becomes available at the URL specified with `excalidraw_room_hostname`. With the configuration above, the service is hosted at `https://excalidraw-room.example.com`.
 
 To use the collaboration server, you need to set up an Excalidraw instance built for the collaboration server. See [this page](excalidraw.md) for the instruction to set up the instance with this playbook.
 

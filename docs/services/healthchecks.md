@@ -1,3 +1,10 @@
+<!--
+SPDX-FileCopyrightText: 2023 - 2024 Slavi Pantaleev
+SPDX-FileCopyrightText: 2025 Suguru Hirahara
+
+SPDX-License-Identifier: AGPL-3.0-or-later
+-->
+
 # Healthchecks
 
 [Healthchecks](https://healthchecks.io/) is simple and Effective **Cron Job Monitoring** solution.
@@ -26,7 +33,6 @@ To enable this service, add the following configuration to your `vars.yml` file 
 healthchecks_enabled: true
 
 healthchecks_hostname: mash.example.com
-
 healthchecks_path_prefix: /healthchecks
 
 ########################################################################
@@ -35,12 +41,6 @@ healthchecks_path_prefix: /healthchecks
 #                                                                      #
 ########################################################################
 ```
-
-### URL
-
-In the example configuration above, we configure the service to be hosted at `https://mash.example.com/healthchecks`.
-
-You can remove the `healthchecks_path_prefix` variable definition, to make it default to `/`, so that the service is served at `https://mash.example.com/`.
 
 ### Authentication
 
@@ -68,14 +68,15 @@ healthchecks_environment_variables_additional_variables: |
 
 ## Usage
 
-After installation, you need to **create a superuser account**.
-This is an interactive process which can be initiated by **SSH-ing into into the server** and **running a command** like this:
+After running the command for installation, the Healthchecks instance becomes available at the URL specified with `healthchecks_hostname` and `healthchecks_path_prefix`. With the configuration above, the service is hosted at `https://mash.example.com/healthchecks`.
+
+To get started, create a superuser account by **SSH-ing into into the server** and running a command as below:
 
 ```sh
 docker exec -it mash-healthchecks /opt/healthchecks/manage.py createsuperuser
 ```
 
-After creating the superuser account, you can go to the [Healthchecks URL](#url) to log in and start setting up healthchecks.
+After creating the superuser account, you can open the URL to log in and start setting up healthchecks.
 
 
 ## Recommended other services

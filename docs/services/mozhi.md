@@ -61,7 +61,7 @@ mozhi_hostname: mozhi.example.com
 
 ## Usage
 
-After running the command for installation, Mozhi becomes available at the specified hostname like `https://mozhi.example.com`.
+After running the command for installation, the Mozhi instance becomes available at the URL specified with `mozhi_hostname`. With the configuration above, the service is hosted at `https://mozhi.example.com`.
 
 ## Troubleshooting
 

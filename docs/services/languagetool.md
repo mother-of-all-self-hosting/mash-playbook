@@ -42,8 +42,6 @@ languagetool_path_prefix: /languagetool
 ########################################################################
 ```
 
-You can remove the `languagetool_path_prefix` variable definition, to make it default to `/`, so that the service is served at `https://mash.example.com/`.
-
 ### Enable n-gram data (optional)
 
 LanguageTool can make use of large n-gram data sets to detect errors with words that are often confused, like "their" and "there". See [*Finding errors using n-gram data*](https://dev.languagetool.org/finding-errors-using-n-gram-data) to learn more.
@@ -68,7 +66,7 @@ Additional languages which are not defined on the role may be available. You can
 
 ## Usage
 
-After installation, your LanguageTool instance becomes available at the URL specified with `languagetool_hostname`.
+After running the command for installation, the LanguageTool instance becomes available at the URL specified with `languagetool_hostname` and `languagetool_path_prefix`. With the configuration above, the service is hosted at `https://mash.example.com/languagetool`.
 
 You can test the instance by making a request to [LanguageTool's HTTP API](https://dev.languagetool.org/public-http-api) by running a *curl* command as follows: `curl --data "language=en-US&text=a simple test" https://mash.example.com/languagetool/v2/check`
 

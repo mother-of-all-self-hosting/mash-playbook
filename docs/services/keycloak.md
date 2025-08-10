@@ -1,6 +1,15 @@
+<!--
+SPDX-FileCopyrightText: 2023 Slavi Pantaleev
+SPDX-FileCopyrightText: 2025 Suguru Hirahara
+
+SPDX-License-Identifier: AGPL-3.0-or-later
+-->
+
 # Keycloak
 
 [Keycloak](https://www.keycloak.org/) is an open source identity and access management solution.
+
+Follow the [Keycloak documentation](https://www.keycloak.org/documentation) or other guides for learning how to use Keycloak.
 
 > [!WARNING]
 > This service is a new addition to the playbook. It may not fully work or be configured in a suboptimal manner.
@@ -41,27 +50,16 @@ keycloak_environment_variable_keycloak_admin_password: ''
 ########################################################################
 ```
 
-### URL
+## Usage
 
-In the example configuration above, we configure the service to be hosted at `https://mash.example.com/keycloak`.
+After running the command for installation, the Keycloak instance becomes available at the URL specified with `keycloak_hostname` and `keycloak_path_prefix`. With the configuration above, the service is hosted at `https://mash.example.com/keycloak`.
 
-You can remove the `keycloak_path_prefix` variable definition, to make it default to `/`, so that the service is served at `https://mash.example.com/`.
-
-### Authentication
-
-On first start, the admin user account will be created as defined with the `keycloak_environment_variable_keycloak_admin` and `keycloak_environment_variable_keycloak_admin_password` variables.
+To get started, open the URL with a web browser, and log in with the admin user account. The account is created on the first start, as defined with the `keycloak_environment_variable_keycloak_admin` and `keycloak_environment_variable_keycloak_admin_password` variables.
 
 On each start after that, Keycloak will attempt to create the user again and report a non-fatal error (Keycloak will continue running).
 
-Subsequent changes to the password will not affect an existing user's password.
-
-
-## Usage
-
-After installation, you can go to the Keycloak URL, as defined in `keycloak_hostname` and `keycloak_path_prefix` and log in as described in [Authentication](#authentication).
-
-Follow the [Keycloak documentation](https://www.keycloak.org/documentation) or other guides for learning how to use Keycloak.
-
+>[!NOTE]
+> Subsequent changes to the password will not affect an existing user's password.
 
 ## Related services
 

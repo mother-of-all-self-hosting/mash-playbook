@@ -33,7 +33,7 @@ To enable this service, add the following configuration to your `vars.yml` file:
 
 funkwhale_enabled: true
 
-funkwhale_hostname: mash.example.com
+funkwhale_hostname: funkwhale.example.com
 
 # Put a strong secret below, generated with `pwgen -s 64 1` or in another way
 funkwhale_django_secret_key: ''
@@ -223,7 +223,7 @@ Note that running the `just` commands for installation (`just install-all` or `j
 
 ## Usage
 
-After installation, your Funkwhale instance becomes available at the URL specified with `funkwhale_hostname`.
+After installation, the Funkwhale instance becomes available at the URL specified with `funkwhale_hostname`. With the configuration above, the service is hosted at `https://funkwhale.example.com`.
 
 To log in to the service and get started, you have to create a user ("superuser") at first. To do so, run the command below after replacing `USERNAME`, `PASSWORD`, and `EMAIL_ADDRESS`:
 

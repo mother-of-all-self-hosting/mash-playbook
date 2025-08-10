@@ -92,7 +92,7 @@ Replace `YOUR_WEBUI_PASSWORD_HERE` with your own value.
 
 ## Usage
 
-After running the command for installation, Duplicati becomes available at the specified hostname like `https://duplicati.example.com`.
+After running the command for installation, the Duplicati instance becomes available at the URL specified with `duplicati_hostname`. With the configuration above, the service is hosted at `https://duplicati.example.com`.
 
 See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-duplicati/blob/main/docs/configuring-duplicati.md#usage) for details about setting up a backup task.
 

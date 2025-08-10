@@ -1,3 +1,9 @@
+<!--
+SPDX-FileCopyrightText: 2024 Julian-Samuel Gebühr
+
+SPDX-License-Identifier: AGPL-3.0-or-later
+-->
+
 # Wordpress
 
 [WordPress](https://wordpress.org/) is a widley used open source web content management system that this playbook can install, powered by the [mother-of-all-self-hosting/ansible-role-wordpress](https://github.com/mother-of-all-self-hosting/ansible-role-wordpress) Ansible role.
@@ -20,7 +26,7 @@ This service requires the following other services:
 
 wordpress_enabled: true
 
-wordpress_hostname: example.org
+wordpress_hostname: wordpress.example.com
 
 ########################################################################
 #                                                                      #

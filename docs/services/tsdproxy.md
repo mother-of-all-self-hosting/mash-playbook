@@ -1,3 +1,10 @@
+<!--
+SPDX-FileCopyrightText: 2025 MASH project contributors
+SPDX-FileCopyrightText: 2025 Slavi Pantaleev
+
+SPDX-License-Identifier: AGPL-3.0-or-later
+-->
+
 # TSDProxy
 
 [TSDProxy](https://almeidapaulopt.github.io/tsdproxy/) is an application that automatically creates a proxy to virtual addresses in your [Tailscale](https://tailscale.com/) network.
@@ -74,4 +81,4 @@ An alternative way to add a service to the proxy is to use Proxy files.
 Please read the [official TSDProxy documentation](https://almeidapaulopt.github.io/tsdproxy/docs/files/) for more information.
 
 You will need to use the `tsdproxy_config_files` variable and add your proxy list file into the config folder, most likely `/mash/tsdproxy/config/`.
-This is possible manually or by using [AUX-Files](./auxiliary.md).
+This is possible manually or by using [AUX-Files](auxiliary.md).

@@ -1,3 +1,9 @@
+<!--
+SPDX-FileCopyrightText: 2023 Slavi Pantaleev
+
+SPDX-License-Identifier: AGPL-3.0-or-later
+-->
+
 # Syncthing
 
 [Syncthing](https://syncthing.net/) is a **continuous file synchronization** program which synchronizes files between two or more computers in real time, safely protected from prying eyes.
@@ -53,12 +59,6 @@ syncthing_basicauth_credentials:
 ########################################################################
 ```
 
-### URL
-
-In the example configuration above, we configure the service to be hosted at `https://mash.example.com/syncthing`.
-
-You can remove the `syncthing_path_prefix` variable definition, to make it default to `/`, so that the service is served at `https://mash.example.com/`.
-
 ### Authentication
 
 You can log in with **any** of the Basic Auth credentials defined in `syncthing_basicauth_credentials`. Syncthing is **not a multi-user system**, so whichever user you authenticate with, you'd ultimately end up looking at the same shared system.
@@ -107,7 +107,7 @@ If you'd like to **mount additional directories** into the container, look into 
 
 ## Usage
 
-After installation, you can go to the Syncthing URL, as defined in `syncthing_hostname` and `syncthing_path_prefix`.
+After running the command for installation, the Syncthing instance becomes available at the URL specified with `syncthing_hostname` and `syncthing_path_prefix`. With the configuration above, the service is hosted at `https://mash.example.com/syncthing`.
 
 As mentioned in [Configuration & Data](#configuration--data) above, you should:
 

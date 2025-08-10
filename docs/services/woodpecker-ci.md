@@ -1,9 +1,16 @@
+<!--
+SPDX-FileCopyrightText: 2023 Slavi Pantaleev
+SPDX-FileCopyrightText: 2024 Sergio Durigan Junior
+
+SPDX-License-Identifier: AGPL-3.0-or-later
+-->
+
 # Woodpecker CI
 
 This playbook can install and configure [Woodpecker CI](https://woodpecker-ci.org/) for you.
 
-Woodpecker CI is a [Continuous Integration](https://en.wikipedia.org/wiki/Continuous_integration) engine which can build and deploy your code automatically after pushing to a [Gitea](./gitea.md) or [Forgejo](./forgejo.md) repository.
-If you are using [Forgejo](./forgejo.md), you might also be interested in [Forgejo Runner](https://code.forgejo.org/forgejo/runner) (that this playbook also [supports](forgejo-runner.md)).
+Woodpecker CI is a [Continuous Integration](https://en.wikipedia.org/wiki/Continuous_integration) engine which can build and deploy your code automatically after pushing to a [Gitea](gitea.md) or [Forgejo](forgejo.md) repository.
+If you are using [Forgejo](forgejo.md), you might also be interested in [Forgejo Runner](https://code.forgejo.org/forgejo/runner) (that this playbook also [supports](forgejo-runner.md)).
 
 A Woodpecker CI installation contains 2 components:
 
@@ -37,7 +44,6 @@ To enable this service, add the following configuration to your `vars.yml` file 
 woodpecker_ci_server_enabled: true
 
 woodpecker_ci_server_hostname: mash.example.com
-
 woodpecker_ci_server_path_prefix: /ci
 
 # Generate this secret with `openssl rand -hex 32`
@@ -68,10 +74,6 @@ woodpecker_ci_server_config_admins:
 #                                                                      #
 ########################################################################
 ```
-
-In the example configuration above, we configure the service to be hosted at `https://mash.example.com/ci`.
-
-If you want to host the service at the root path, remove the `woodpecker_ci_server_path_prefix` variable override.
 
 #### Gitea Integration
 
@@ -113,9 +115,9 @@ woodpecker_ci_server_container_add_host_ip_address: "{{ ansible_host }}"
 
 ### Usage
 
-After installation, you should be able to access the Woodpecker CI server instance at `https://mash.DOMAIN/ci` (matching the `woodpecker_ci_server_hostname` and `woodpecker_ci_server_path_prefix` values configured in `vars.yml`).
+After running the command for installation, the Woodpecker CI server becomes available at the URL specified with `woodpecker_ci_server_hostname` and `woodpecker_ci_server_path_prefix`. With the configuration above, the service is hosted at `https://mash.example.com/ci`.
 
-The **Log in** button should take you to Gitea, where you can authorize Woodpecker CI with the OAuth 2 application.
+To get started, open the URL with a web browser, and click the **Log in** button. It takes you to Gitea or Forgejo per your configuration, and you can authorize Woodpecker CI with the OAuth 2 application.
 
 Follow the official Woodpecker CI [Getting started](https://woodpecker-ci.org/docs/usage/intro) documentation for additional usage details.
 

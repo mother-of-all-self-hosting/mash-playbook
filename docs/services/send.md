@@ -265,7 +265,7 @@ Note that running the `just` commands for installation (`just install-all` or `j
 
 ## Usage
 
-After installation, your Send instance becomes available at the URL specified with `send_hostname` and `send_path_prefix`.
+After installation, the Send instance becomes available at the URL specified with `send_hostname`. With the configuration above, the service is hosted at `https://send.example.com`.
 
 See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-send/blob/main/docs/configuring-send.md#usage) on the role's documentation for details about its [CLI client](https://github.com/timvisee/ffsend). The instruction to takedown illegal materials is also available [here](https://github.com/mother-of-all-self-hosting/ansible-role-send/blob/main/docs/configuring-send.md#takedown-illegal-materials).
 

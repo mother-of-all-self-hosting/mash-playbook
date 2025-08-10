@@ -1,3 +1,10 @@
+<!--
+SPDX-FileCopyrightText: 2023 Sergio Durigan Junior
+SPDX-FileCopyrightText: 2025 Suguru Hirahara
+
+SPDX-License-Identifier: AGPL-3.0-or-later
+-->
+
 # Roundcube
 
 [Roundcube](https://roundcube.net/) is a browser-based multilingual IMAP client with an application-like user interface. It provides full functionality you expect from an email client, including MIME support, address book, folder manipulation, message searching and spell checking.
@@ -23,8 +30,7 @@ To enable this service, add the following configuration to your `vars.yml` file 
 roundcube_enabled: true
 
 roundcube_hostname: mash.example.com
-
-roundcube_path_prefix: "/roundcube"
+roundcube_path_prefix: /roundcube
 
 # The default IMAP server to connect to.
 roundcube_default_imap_host: "imap.example.com"
@@ -43,13 +49,8 @@ roundcube_smtp_port: "587"
 ########################################################################
 ```
 
-In the example configuration above, we configure the service to be hosted at `https://mash.example.com/roundcube`.
-
-You can remove the `roundcube_path_prefix` variable definition, to make it default to `/`, so that the service is served at `https://mash.example.com/`.
-
-
 ## Usage
 
-After installation, you should be able to access your new Roundcube instance at the configured URL (see above).
+After running the command for installation, the Roundcube instance becomes available at the URL specified with `roundcube_hostname` and `roundcube_path_prefix`. With the configuration above, the service is hosted at `https://mash.example.com/roundcube`.
 
-The username/password you will use to login are the same ones used in your IMAP server.
+You can log in to the instance with the username/password, which are the same ones used in your IMAP server.

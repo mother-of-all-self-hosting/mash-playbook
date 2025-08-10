@@ -1,3 +1,11 @@
+<!--
+SPDX-FileCopyrightText: 2023 Alejandro AR
+SPDX-FileCopyrightText: 2023 Slavi Pantaleev
+SPDX-FileCopyrightText: 2025 Suguru Hirahara
+
+SPDX-License-Identifier: AGPL-3.0-or-later
+-->
+
 # Miniflux
 
 [Miniflux](https://miniflux.app/) is a minimalist and opinionated feed reader.
@@ -37,17 +45,13 @@ miniflux_admin_password: a-strong-password-here
 ########################################################################
 ```
 
-In the example configuration above, we configure the service to be hosted at `https://mash.example.com/miniflux`.
-
-You can remove the `miniflux_path_prefix` variable definition, to make it default to `/`, so that the service is served at `https://mash.example.com/`.
-
-
 ## Usage
 
-After installation, you can log in with your administrator login (`miniflux_admin_login`) and password (`miniflux_admin_password`).
+After running the command for installation, the Miniflux instance becomes available at the URL specified with `miniflux_hostname` and `miniflux_path_prefix`. With the configuration above, the service is hosted at `https://mash.example.com/miniflux`.
 
-You can create additional users (admin-privileged or not) after logging in.
+To get started, open the URL with a web browser to log in. You can create additional users (admin-privileged or not) after logging in with your administrator login (`miniflux_admin_login`) and password (`miniflux_admin_password`).
 
 ## Related services
 
+- [FreshRSS](freshrss.md) — Lightweight and powerful self-hosted RSS and Atom feed aggregator
 - [ReactFlux](reactflux.md) — Third-party web frontend for Miniflux, aimed at providing a more user-friendly reading experience

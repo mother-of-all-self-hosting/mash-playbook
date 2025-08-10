@@ -39,8 +39,8 @@ The role is configured to set up the Endlessh-go instance to listen to the port 
 This service requires the following other services:
 
 - (optionally) [Traefik](traefik.md) — a reverse-proxy server for exposing Endlessh publicly
-- (optionally) [Prometheus](./prometheus.md) — a database for storing metrics
-- (optionally) [Grafana](./grafana.md) — a web UI that can query the Prometheus datasource (connection) and display the logs
+- (optionally) [Prometheus](prometheus.md) — a database for storing metrics
+- (optionally) [Grafana](grafana.md) — a web UI that can query the Prometheus datasource (connection) and display the logs
 
 >[!NOTE]
 > None of them are required unless you will expose metrics to a Prometheus server.
@@ -75,7 +75,7 @@ endlessh_container_host_bind_port: YOUR_PORT_NUMBER_HERE
 
 ## Usage
 
-After installation, the instance starts running on the server and listens to the specified port (port 22 by default).
+After running the command for installation, the Endlessh instance becomes available and starts running on the server, listening to the specified port (port 22 by default).
 
 You can customize how it works with the `endlessh_container_extra_arguments_custom` variable. See [this section](https://github.com/shizunge/endlessh-go/blob/main/README.md#usage) of the documentation for available arguments.
 

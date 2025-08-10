@@ -1,5 +1,6 @@
 <!--
 SPDX-FileCopyrightText: 2023 Slavi Pantaleev
+SPDX-FileCopyrightText: 2025 Suguru Hirahara
 
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->
@@ -70,7 +71,7 @@ If you make the registry browser live on the same container network as the [Dock
 
 ## Usage
 
-After installation, you should be able to go to the URL as configured via `docker_registry_browser_hostname` and `docker_registry_browser_path_prefix`.
+After running the command for installation, the Docker Registry Browser instance becomes available at the URL specified with `docker_registry_browser_hostname` and `docker_registry_browser_path_prefix`.
 
 You should be able to browse the images and possibly delete them (if enabled via `docker_registry_browser_enabled_delete_images`).
 

@@ -294,6 +294,6 @@ Note that running the `just` commands for installation (`just install-all` or `j
 
 ## Usage
 
-After installation, your Netbox instance becomes available at the URL specified with `netbox_hostname` and `netbox_path_prefix`. With the configuration above, the service is hosted at `https://mash.example.com/netbox`.
+After running the command for installation, the Netbox instance becomes available at the URL specified with `netbox_hostname` and `netbox_path_prefix`. With the configuration above, the service is hosted at `https://mash.example.com/netbox`.
 
 You can log in with the **username** (**not** email) and password specified in the `netbox_environment_variable_superuser*` variables.

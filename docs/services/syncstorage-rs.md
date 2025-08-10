@@ -51,7 +51,7 @@ To enable this service, add the following configuration to your `vars.yml` file 
 
 syncstorage_rs_docker_enabled: true
 
-syncstorage_rs_docker_hostname: syncstorage.example.com
+syncstorage_rs_docker_hostname: syncstorage-rs-docker.example.com
 
 ########################################################################
 #                                                                      #
@@ -66,7 +66,7 @@ syncstorage_rs_docker_hostname: syncstorage.example.com
 
 ## Usage
 
-After running the command for installation, syncstorage-rs becomes available at the specified hostname such as `syncstorage.example.com`.
+After running the command for installation, the syncstorage-rs instance becomes available at the URL specified with `syncstorage_rs_docker_hostname`. With the configuration above, the service is hosted at `https://syncstorage-rs-docker.example.com`.
 
 See [this section](https://codeberg.org/acioustick/syncstorage-rs-docker/src/branch/main#adjusting-firefox-setting) on the documentation for details about how to configure Firefox to have it use your server for data synchronization.
 

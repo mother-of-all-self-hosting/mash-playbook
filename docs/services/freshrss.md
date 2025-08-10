@@ -1,16 +1,27 @@
+<!--
+SPDX-FileCopyrightText: 2023 Alejandro AR
+SPDX-FileCopyrightText: 2023 Slavi Pantaleev
+SPDX-FileCopyrightText: 2025 Suguru Hirahara
+
+SPDX-License-Identifier: AGPL-3.0-or-later
+-->
+
 # FreshRSS
 
-[FreshRSS](https://freshrss.org) is a self-hosted RSS and Atom feed aggregator. It is lightweight, easy to work with, powerful, and customizable.
+The playbook can install and configure [FreshRSS](https://freshrss.org) for you.
+
+FreshRSS is a self-hosted RSS and Atom feed aggregator, which is lightweight, easy to work with, powerful, and customizable.
+
+See the project's [documentation](https://freshrss.github.io/FreshRSS/) to learn what FreshRSS does and why it might be useful to you.
 
 ## Dependencies
 
 This service requires the following other services:
 
-- a [Traefik](traefik.md) reverse-proxy server
-- an optional [Postgres](postgres.md) database, but FreshRSS will default to [SQLite](https://www.sqlite.org/) if you don't have Postgres enabled.
+- [Traefik](traefik.md) reverse-proxy server
+- (optional) [Postgres](postgres.md) database — FreshRSS will default to [SQLite](https://www.sqlite.org/) if Postgres is not enabled
 
-
-## Configuration
+## Adjusting the playbook configuration
 
 To enable this service, add the following configuration to your `vars.yml` file and re-run the [installation](../installing.md) process:
 
@@ -25,10 +36,6 @@ freshrss_enabled: true
 
 freshrss_hostname: freshrss.example.com
 
-# Put a strong password below, generated with `pwgen -s 64 1` or in another way.
-# You will need to use this password in the setup wizard after installation.
-freshrss_database_password: ''
-
 ########################################################################
 #                                                                      #
 # /freshrss                                                            #
@@ -36,11 +43,24 @@ freshrss_database_password: ''
 ########################################################################
 ```
 
-**NOTE**: while FreshRSS can potentially be installed under a subpath (using the `freshrss_path_prefix` variable), this [doesn't currently work](https://github.com/mother-of-all-self-hosting/mash-playbook/issues/116) and will be fixed in the future. For now, you'd need to install it on its own dedicated hostname.
+**Note**: hosting FreshRSS under a subpath (by configuring the `freshrss_path_prefix` variable) does not seem to be possible due to FreshRSS's technical limitations. See [this issue](https://github.com/mother-of-all-self-hosting/mash-playbook/issues/116) for details.
 
+### Set a database password
+
+You also need to set a password for the database by adding the following configuration to your `vars.yml` file. Make sure to replace `DATABASE_PASSWORD_HERE` with your own value. Generating a strong token (e.g. `pwgen -s 64 1`) is recommended.
+
+```yaml
+freshrss_database_password: DATABASE_PASSWORD_HERE
+```
 
 ## Usage
 
-After installation, visit the configured path and complete the setup through the wizard. To do this you will need the database password from your `vars.yml` file (in the `freshrss_database_password` variable).
+After running the command for installation, the FreshRSS instance becomes available at the URL specified with `freshrss_hostname`. With the configuration above, the service is hosted at `https://freshrss.example.com`.
 
-Feel free to follow FreshRSS [official documentation](http://freshrss.github.io/FreshRSS/en/).
+You can open the URL with a web browser to complete installation on the server. During the installation, the database password specified to `freshrss_database_password` variable is required to be submitted.
+
+Refer to FreshRSS [official documentation](http://freshrss.github.io/FreshRSS/en/) for usage.
+
+## Related services
+
+- [Miniflux](miniflux.md) — Minimalist and opinionated feed reader

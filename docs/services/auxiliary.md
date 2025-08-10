@@ -1,3 +1,9 @@
+<!--
+SPDX-FileCopyrightText: 2023 Slavi Pantaleev
+
+SPDX-License-Identifier: AGPL-3.0-or-later
+-->
+
 # AUX
 
 The [AUX](https://github.com/mother-of-all-self-hosting/ansible-role-aux) Ansible role can help you manage auxiliary files and directories on your server.

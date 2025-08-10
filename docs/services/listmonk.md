@@ -62,7 +62,7 @@ listmonk_hostname: listmonk.example.com
 
 ## Usage
 
-After running the command for installation, listmonk becomes available at the specified hostname like `https://listmonk.example.com`.
+After running the command for installation, the listmonk instance becomes available at the URL specified with `listmonk_hostname`. With the configuration above, the service is hosted at `https://listmonk.example.com`.
 
 ## Troubleshooting
 

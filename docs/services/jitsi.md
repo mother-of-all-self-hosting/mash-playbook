@@ -61,17 +61,6 @@ jitsi_path_prefix: /jitsi
 
 See the role's documentation for details about configuring Jitsi per your preference (such as setting [a custom hostname](https://github.com/mother-of-all-self-hosting/ansible-role-jitsi/blob/main/docs/configuring-jitsi.md#set-the-hostname) and [the environment variable for running Jitsi in a LAN](https://github.com/mother-of-all-self-hosting/ansible-role-jitsi/blob/main/docs/configuring-jitsi.md#configure-jvb_advertise_ips-for-running-behind-nat-or-on-a-lan-environment-optional)).
 
-### Adjusting the Jitsi URL
-
-In the example configuration above, we configure the service to be hosted at `https://mash.example.com/jitsi`.
-
-You can remove the `jitsi_path_prefix` variable definition, to make it default to `/`, so that the service is served at `https://mash.example.com/`.
-
-**Note**: there are minor quirks when hosting under a subpath, such as:
-
-- [When hosting under a subpath, pwa-worker.js is attempted to be loaded from the base domain without a subpath](https://github.com/jitsi/docker-jitsi-meet/issues/1515)
-- [When hosting under a subpath, ending the meeting redirects to the base domain without subpath](https://github.com/jitsi/docker-jitsi-meet/issues/1514)
-
 ### Enable authentication and guests mode (optional)
 
 By default the Jitsi Meet instance **does not require for anyone to log in, and is open to use without an account**.
@@ -82,7 +71,15 @@ See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-ji
 
 ## Usage
 
-After installation, open the specified URL such as `https://mash.example.com/jitsi`, and you can start a videoconference. Note that you'll need to log in to your Jitsi's account if you have configured authentication with `internal` auth.
+After running the command for installation, the Jitsi instance becomes available at the URL specified with `jitsi_hostname` and `jitsi_path_prefix`. With the configuration above, the service is hosted at `https://mash.example.com/jitsi`.
+
+>[!NOTE]
+> There are minor quirks when hosting under a subpath, such as:
+>
+> - [When hosting under a subpath, pwa-worker.js is attempted to be loaded from the base domain without a subpath](https://github.com/jitsi/docker-jitsi-meet/issues/1515)
+> - [When hosting under a subpath, ending the meeting redirects to the base domain without subpath](https://github.com/jitsi/docker-jitsi-meet/issues/1514)
+
+You can start a videoconference on a web browser or application. Note that you'll need to log in to your Jitsi's account if you have configured authentication with `internal` auth.
 
 Check [the official user guide](https://jitsi.github.io/handbook/docs/category/user-guide) for details about how to use Jitsi Meet.
 

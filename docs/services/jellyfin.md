@@ -1,3 +1,10 @@
+<!--
+SPDX-FileCopyrightText: 2025 MASH project contributors
+SPDX-FileCopyrightText: 2025 Suguru Hirahara
+
+SPDX-License-Identifier: AGPL-3.0-or-later
+-->
+
 # Jellyfin
 
 [Jellyfin](https://jellyfin.org/) is an open-source personal media server that allows you to organize and stream your collection of movies, TV shows, and music.
@@ -44,7 +51,9 @@ Unlike most MASH services, this service **runs with root privileges** and requir
 
 ## Usage
 
-After [installation](../installing.md), you should access your new Jellyfin instance at the URL you've chosen and create a username and password:
+After running the command for installation, the Jellyfin instance becomes available at the URL specified with `jellyfin_hostname`. With the configuration above, the service is hosted at `https://jellyfin.example.com`.
+
+To get started, open the URL with a web browser, and configure a username and password:
 
 ![Jellyfin Configure User](../assets/jellyfin/setup-1.png)
 
@@ -115,10 +124,10 @@ Upstream documentation: https://github.com/linuxserver/docker-jellyfin#nvidia
 
 Consider these other related services:
 
-- [Radarr](radarr.md)
-- [Sonarr](sonarr.md)
+- [Autobrr](autobrr.md)
 - [Jackett](jackett.md)
-- [qBittorrent](qbittorrent.md)
 - [Overseerr](overseerr.md)
 - [Plex](plex.md)
-- [Autobrr](autobrr.md)
+- [qBittorrent](qbittorrent.md)
+- [Radarr](radarr.md)
+- [Sonarr](sonarr.md)

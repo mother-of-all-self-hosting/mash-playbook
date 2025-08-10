@@ -57,7 +57,7 @@
   name: cleanup
   activation_prefix: system_cleanup_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-clickhouse.git
-  version: v25.7.1.3997-0
+  version: v25.7.2.54-0
   name: clickhouse
   activation_prefix: clickhouse_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-collabora-online.git
@@ -125,7 +125,7 @@
   name: etcd
   activation_prefix: etcd_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-etherpad.git
-  version: v2.3.2-5
+  version: v2.4.2-0
   name: etherpad
   activation_prefix: etherpad_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-excalidraw.git
@@ -161,11 +161,11 @@
   name: forgejo
   activation_prefix: forgejo_
 - src: git+https://git.sergiodj.net/sergiodj/ansible-role-forgejo-runner.git
-  version: v6.4.0-3
+  version: v9.0.3-0
   name: forgejo_runner
   activation_prefix: forgejo_runner_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-freescout.git
-  version: v1.17.128-0
+  version: v1.17.129-0
   name: freescout
   activation_prefix: freescout_
 - src: git+https://github.com/kinduff/ansible-docker-freshrss.git
@@ -177,11 +177,11 @@
   name: funkwhale
   activation_prefix: funkwhale_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-ghostfolio.git
-  version: v2.188.0-0
+  version: v2.189.0-0
   name: ghostfolio
   activation_prefix: ghostfolio_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-gitea.git
-  version: v1.24.3-2
+  version: v1.24.4-0
   name: gitea
   activation_prefix: gitea_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-gotosocial.git
@@ -273,7 +273,7 @@
   name: loki
   activation_prefix: loki_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-mariadb.git
-  version: v11.8.2-2
+  version: v11.8.2-3
   name: mariadb
   activation_prefix: mariadb_
 - src: git+https://github.com/acterglobal/ansible-role-matomo.git
@@ -337,7 +337,7 @@
   name: notfellchen
   activation_prefix: notfellchen_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-ntfy.git
-  version: v2.13.0-1
+  version: v2.14.0-0
   name: ntfy
   activation_prefix: ntfy_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-oauth2-proxy.git
@@ -473,7 +473,7 @@
   name: searxng
   activation_prefix: searxng_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-semaphore.git
-  version: v2.15.4-1
+  version: v2.15.5-0
   name: semaphore
   activation_prefix: semaphore_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-send.git
@@ -521,7 +521,7 @@
   name: systemd_service_manager
   activation_prefix: ""
 - src: git+https://github.com/IUCCA/ansible-role-tandoor.git
-  version: v1.5.34-1
+  version: v2.0.1-0
   name: tandoor
   activation_prefix: tandoor_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-telegraf.git

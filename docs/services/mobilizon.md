@@ -31,7 +31,7 @@ To enable this service, add the following configuration to your `vars.yml` file 
 
 mobilizon_enabled: true
 
-mobilizon_hostname: 'events.example.org'
+mobilizon_hostname: mobilizon.example.com
 
 ########################################################################
 #                                                                      #
@@ -45,7 +45,7 @@ mobilizon_hostname: 'events.example.org'
 
 ### Enable Postgis
 
-You also need to enable [Postgis](./postgis.md) for a database server by adding the following configuration:
+You also need to enable [Postgis](postgis.md) for a database server by adding the following configuration:
 
 ```yaml
 ########################################################################
@@ -76,7 +76,7 @@ mobilizon_registrations_open: true
 
 ### Usage
 
-After [installing](../installing.md), you can visit at the URL specified in `mobilizon_hostname` and should see your instance.
+After running the command for installation, the Focalboard instance becomes available at the URL specified with `mobilizon_hostname`. With the configuration above, the service is hosted at `https://mobilizon.example.com`.
 
 To create an admin account, run the following command:
 

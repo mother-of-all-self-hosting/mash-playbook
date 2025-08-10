@@ -76,11 +76,11 @@ collabora_online_environment_variable_aliasgroup1: "https://{{ nextcloud_hostnam
 ```
 
 >[!NOTE]
-> For details, see the [Collabora Online section](nextcloud.md#collabora-online) on our Nextcloud documentation.
+> For details, see [this section about the integration](nextcloud.md#collabora-online-development-edition) on our Nextcloud documentation.
 
 ## Usage
 
-After installation, your CODE instance becomes available at the URL specified with `collabora_online_hostname`.
+After running the command for installation, the CODE instance becomes available at the URL specified with `collabora_hostname`. With the configuration above, the service is hosted at `https://collabora.example.com`.
 
 ### Admin Interface
 
@@ -94,3 +94,7 @@ Use your admin credentials for logging in:
 ## Troubleshooting
 
 See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-collabora-online/blob/main/docs/configuring-collabora-online.md#troubleshooting) on the role's documentation for details.
+
+## Related services
+
+- [Nextcloud](nextcloud.md) — Self-hosted collaboration solution for tens of millions of users at thousands of organizations across the globe

@@ -1,3 +1,9 @@
+<!--
+SPDX-FileCopyrightText: 2023 Slavi Pantaleev
+
+SPDX-License-Identifier: AGPL-3.0-or-later
+-->
+
 # MongoDB
 
 [MongoDB](https://www.mongodb.com/) is a source-available cross-platform document-oriented (NoSQL) database program.

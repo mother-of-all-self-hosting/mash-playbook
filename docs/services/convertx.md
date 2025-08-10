@@ -64,7 +64,9 @@ See the role's documentation for details about configuring ConvertX per your pre
 
 ## Usage
 
-After running the command for installation, ConvertX becomes available at the specified hostname with the subpath like `https://mash.example.com/convertx`. To use it, open the URL on the browser and create an account.
+After running the command for installation, the ConvertX instance becomes available at the URL specified with `convertx_hostname` and `convertx_path_prefix`. With the configuration above, the service is hosted at `https://mash.example.com/convertx`.
+
+To use it, open the URL on the browser and create an account.
 
 ## Troubleshooting
 
