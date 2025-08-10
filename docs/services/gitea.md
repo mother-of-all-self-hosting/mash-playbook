@@ -21,11 +21,11 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
 # Gitea
 
-The playbook can install and configure [Gitea](https://gitea.org) for you.
+The playbook can install and configure [Gitea](https://gitea.io) for you.
 
-Gitea is a self-hosted lightweight software forge (Git hosting service, etc.), an alternative to [Gitea](https://gitea.io/).
+Gitea is a self-hosted lightweight software forge (Git hosting service, etc).
 
-See the project's [documentation](https://gitea.org/docs/latest/) to learn what Gitea does and why it might be useful to you.
+See the project's [documentation](https://docs.gitea.com/) to learn what Gitea does and why it might be useful to you.
 
 For details about configuring the [Ansible role for Gitea](https://github.com/mother-of-all-self-hosting/ansible-role-gitea), you can check them via:
 - 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-gitea/blob/main/docs/configuring-gitea.md) online
@@ -74,29 +74,7 @@ After running the command for installation, the Gitea instance becomes available
 
 To get started, open the URL with a web browser, and follow the set up wizard.
 
-## Migrating from Gitea
-
-Gitea is a fork of [Gitea](gitea.md). Migrating Gitea (versions up to and including v1.22.0) to Gitea was relatively easy, but [Gitea versions after v1.22.0 do not allow such transparent upgrades anymore](https://gitea.org/2024-12-gitea-compatibility/).
-
-Nevertheless, upgrades may be possible with some manual work. See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-gitea/blob/main/docs/configuring-gitea.md#migrating-from-gitea) on the role's documentation for details.
-
 ## Related services
 
-- [Gitea Runner](gitea-runner.md) — Runner to use with Gitea Actions
-- [Gitea](gitea.md) — Painless self-hosted [Git](https://git-scm.com/) service
+- [Forgejo](forgejo.md) — Self-hosted lightweight software forge (Git hosting service, etc.)
 - [Woodpecker CI](woodpecker-ci.md) — Simple Continuous Integration (CI) engine with great extensibility
-
-### Integration with Woodpecker CI
-
-If you want to integrate Gitea with Woodpecker CI, and if you plan to serve Woodpecker CI under a subpath on the same host as Gitea (e.g., Gitea lives at `https://mash.example.com` and Woodpecker CI lives at `https://mash.example.com/ci`), then you need to configure Gitea to use the host's external IP when invoking webhooks from Woodpecker CI. You can do it by setting the following variables:
-
-```yaml
-gitea_container_add_host_domain_name: "{{ woodpecker_ci_server_hostname }}"
-gitea_container_add_host_domain_ip_address: "{{ ansible_host }}"
-
-# If ansible_host points to an internal IP address, you may need to allow Gitea to make requests to it.
-# By default, requests are only allowed to external IP addresses for security reasons.
-# See: https://gitea.org/docs/latest/admin/config-cheat-sheet/#webhook-webhook
-gitea_environment_variables_additional_variables: |
-  FORGEJO__webhook__ALLOWED_HOST_LIST=external,{{ ansible_host }}
-```
