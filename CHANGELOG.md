@@ -1,4 +1,5 @@
-# 2025-08-03
+# 2025-08-11
+
 ## Tandoor 2.0 Update: Path Prefix & API Changes
 
 ### (BC Break) Tandoor can no longer be installed under a path prefix
@@ -7,13 +8,13 @@ Right now, installing Tandoor under a path prefix like `/tandoor/` isn’t suppo
 
 So please make sure in your setup that:
 
-- you **don’t set** the `tandoor_path_prefix` variable  
+- you **don’t set** the `tandoor_path_prefix` variable
 - you **don’t override** the `tandoor_container_labels_traefik_path_prefix` variable
 
 > [!NOTE]
 > If you want to keep using a path prefix, you’ll need to:
 >
-> - comment out the last `fail` task (lines 36–39) in the `validate-config.yml` of the Tandoor Ansible role  
+> - comment out the last `fail` task (lines 36–39) in the `validate-config.yml` of the Tandoor Ansible role
 > - tweak the nginx template to properly handle a prefixed path (like fixing location blocks, headers, and static/media file serving)
 >
 > This isn’t officially supported right now — but **we’d be happy if you contribute a pull request to bring back smooth path prefix support!**
@@ -29,7 +30,7 @@ Here’s what that means:
 - **Untare** was built for the old API — it no longer works with Tandoor 2.0 and is **no longer maintained**
 - **Kitshn** is being actively developed, but only a **beta version** supports Tandoor 2.0
 
-You can find more details in the official release notes:  
+You can find more details in the official release notes:
 https://github.com/TandoorRecipes/recipes/releases/tag/2.0.0
 
 
