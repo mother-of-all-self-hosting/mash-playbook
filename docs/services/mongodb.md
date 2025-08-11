@@ -1,19 +1,37 @@
 <!--
-SPDX-FileCopyrightText: 2023 Slavi Pantaleev
+SPDX-FileCopyrightText: 2020 - 2024 MDAD project contributors
+SPDX-FileCopyrightText: 2020 - 2024 Slavi Pantaleev
+SPDX-FileCopyrightText: 2020 Aaron Raimist
+SPDX-FileCopyrightText: 2020 Chris van Dijk
+SPDX-FileCopyrightText: 2020 Dominik Zajac
+SPDX-FileCopyrightText: 2020 Mickaël Cornière
+SPDX-FileCopyrightText: 2022 François Darveau
+SPDX-FileCopyrightText: 2022 Julian Foad
+SPDX-FileCopyrightText: 2022 Warren Bailey
+SPDX-FileCopyrightText: 2023 Antonis Christofides
+SPDX-FileCopyrightText: 2023 Felix Stupp
+SPDX-FileCopyrightText: 2023 Julian-Samuel Gebühr
+SPDX-FileCopyrightText: 2023 Pierre 'McFly' Marty
+SPDX-FileCopyrightText: 2024 - 2025 Suguru Hirahara
 
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 
 # MongoDB
 
-[MongoDB](https://www.mongodb.com/) is a source-available cross-platform document-oriented (NoSQL) database program.
+The playbook can install and configure [MongoDB](https://mongodb.com) for you.
 
-Some of the services installed by this playbook require a MongoDB database.
+MongoDB is a source-available cross-platform document-oriented (NoSQL) database program.
 
-Enabling the MongoDB database service will automatically wire all other services which require such a database to use it.
+See the project's [documentation](https://www.mongodb.com/docs/) to learn what MongoDB does and why it might be useful to you.
 
+Some of the services installed by this playbook require a MongoDB database. Enabling the MongoDB database service will automatically wire all other services which require such a database to use it.
 
-## Configuration
+For details about configuring the [Ansible role for MongoDB](https://github.com/mother-of-all-self-hosting/ansible-role-mongodb), you can check them via:
+- 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-mongodb/blob/main/docs/configuring-mongodb.md) online
+- 📁 `roles/galaxy/mongodb/docs/configuring-mongodb.md` locally, if you have [fetched the Ansible roles](../installing.md)
+
+## Adjusting the playbook configuration
 
 To enable this service, add the following configuration to your `vars.yml` file and re-run the [installation](../installing.md) process:
 
@@ -36,70 +54,12 @@ mongodb_root_password: ''
 ########################################################################
 ```
 
-## Importing
+## Usage
 
-### Importing an existing MongoDB database from another installation (optional)
+After running the command for installation, the MongoDB instance becomes available.
 
-Follow this section if you'd like to import your database from a previous installation.
+See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-mongodb/blob/main/docs/configuring-mongodb.md#maintenance) on the role's documentation for details about how to conduct maintenance tasks, such backing up its database and importing it.
 
-### Prerequisites
+## Troubleshooting
 
-The playbook supports importing **gzipped** MongoDB database dumps (created with `mongodump --gzip -o /directory`).
-
-Before doing the actual import, **you need to upload your MongoDB dump file to the server** (any path is okay).
-
-
-### Importing a dump
-
-To import, run this command (make sure to replace `SERVER_PATH_TO_MONGODB_DUMP_DIRECTORY` with a file path on your server):
-
-```sh
-just run-tags import-mongodb \
---extra-vars=mongodb_server_path_dump=SERVER_PATH_TO_MONGODB_DUMP_DIRECTORY
-```
-
-**Note** that `SERVER_PATH_TO_MONGODB_DUMP_DIRECTORY` must be a path to a **gzipped** MongoDB dump directory on the server (not on your local machine!)
-
-
-## Maintenance
-
-This section shows you how to perform various maintenance tasks related to the MongoDB database server used by various components of this playbook.
-
-Table of contents:
-
-- [Getting a database terminal](#getting-a-database-terminal), for when you wish to execute queries
-
-- [Backing up MongoDB](#backing-up-mongodb), for when you wish to make a backup
-
-### Getting a database terminal
-
-You can use the `/mash/mongodb/bin/cli` tool to get interactive terminal access using the MongoDB Shell [mongosh](https://www.mongodb.com/docs/mongodb-shell/).
-
-By default, this tool puts you in the `admin` database, which contains nothing.
-
-To see the available databases, run `show dbs`.
-
-To change to another database (for example `infisical`), run `use infisical`.
-
-To see the available tables in the current database, run `show tables`.
-
-You can then proceed to write queries. Example: `db.users.find()`
-
-**Be careful**. Modifying the database directly (especially as services are running) is dangerous and may lead to irreversible database corruption.
-When in doubt, consider [making a backup](#backing-up-mongodb).
-
-
-### Backing up MongoDB
-
-To make a one-off back up of the current MongoDB database, make sure it's running and then execute a command like this on the server:
-
-```bash
-# Prepare the backup directory
-mkdir /path-to-some-directory
-chown mash:mash /path-to-some-directory
-
-# Back up
-/mash/mongodb/bin/dump-all /path-to-some-directory
-```
-
-Restoring a backup made this way can be done by [importing it](#importing).
+See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-mongodb/blob/main/docs/configuring-mongodb.md#troubleshooting) on the role's documentation for details.
