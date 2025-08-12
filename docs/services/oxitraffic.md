@@ -60,7 +60,7 @@ After running the command for installation, the OxiTraffic instance becomes avai
 To have your OxiTraffic instance count visits at `https://example.com`, you need to add the following script tag to the website:
 
 ```html
-<script type="module" src="https://traffic.example.com/count.js"></script>
+<script type="module" src="https://oxitraffic.example.com/count.js"></script>
 ```
 
 ## Troubleshooting
