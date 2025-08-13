@@ -1,6 +1,6 @@
 /inventory
 
-# ignore
+# ignore ansible internals
 /.ansible
 
 # ignore roles pulled by ansible-galaxy
