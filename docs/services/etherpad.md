@@ -14,9 +14,10 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
 The playbook can install and configure [Etherpad](https://etherpad.org), an open source collaborative text editor, for you.
 
-The [Ansible role for Etherpad](https://github.com/mother-of-all-self-hosting/ansible-role-etherpad) is developed and maintained by the MASH project. For details about configuring Etherpad, you can check them via:
+See the project's [documentation](https://docs.etherpad.org/) to learn what it does and why it might be useful to you.
 
-- 🌐 [the role's documentation at the MASH project](https://github.com/mother-of-all-self-hosting/ansible-role-etherpad/blob/main/docs/configuring-etherpad.md) online
+For details about configuring the [Ansible role for the server](https://github.com/mother-of-all-self-hosting/ansible-role-etherpad), you can check them via:
+- 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-etherpad/blob/main/docs/configuring-etherpad.md) online
 - 📁 `roles/galaxy/etherpad/docs/configuring-etherpad.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 ## Dependencies
@@ -68,9 +69,9 @@ See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-ji
 
 ## Usage
 
-By default, the Etherpad UI should be available at `https://etherpad.example.com`, while the admin UI (if enabled) should then be available at `https://etherpad.example.com/admin`.
+After running the command for installation, the Etherpad instance becomes available at the URL specified with `etherpad_hostname`. With the configuration above, the service is hosted at `https://etherpad.example.com`. The admin UI (if enabled) becomes available at `https://etherpad.example.com/admin`.
 
-💡 For more information about usage, take a look at [this section](https://github.com/mother-of-all-self-hosting/ansible-role-etherpad/blob/main/docs/configuring-etherpad.md#usage) on the role's documentation.
+💡 See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-etherpad/blob/main/docs/configuring-etherpad.md#usage) on the role's documentation for more information about usage.
 
 ## Troubleshooting
 
