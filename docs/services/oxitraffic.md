@@ -1,7 +1,18 @@
 <!--
+SPDX-FileCopyrightText: 2020 - 2024 MDAD project contributors
+SPDX-FileCopyrightText: 2020 - 2024 Slavi Pantaleev
+SPDX-FileCopyrightText: 2020 Aaron Raimist
+SPDX-FileCopyrightText: 2020 Chris van Dijk
+SPDX-FileCopyrightText: 2020 Dominik Zajac
+SPDX-FileCopyrightText: 2020 Mickaël Cornière
+SPDX-FileCopyrightText: 2022 François Darveau
+SPDX-FileCopyrightText: 2022 Julian Foad
+SPDX-FileCopyrightText: 2022 Warren Bailey
+SPDX-FileCopyrightText: 2023 Antonis Christofides
+SPDX-FileCopyrightText: 2023 Felix Stupp
 SPDX-FileCopyrightText: 2023 Julian-Samuel Gebühr
-SPDX-FileCopyrightText: 2024 Slavi Pantaleev
-SPDX-FileCopyrightText: 2025 Suguru Hirahara
+SPDX-FileCopyrightText: 2023 Pierre 'McFly' Marty
+SPDX-FileCopyrightText: 2024 - 2025 Suguru Hirahara
 
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->
@@ -10,9 +21,13 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
 The playbook can install and configure [OxiTraffic](https://codeberg.org/mo8it/oxitraffic) for you.
 
-OxiTraffic is a self-hosted, simple and privacy respecting website traffic tracker. It does not collect IP addresses or browser information. Each visitor is assigned an anonymous ID upon visiting the website, which is used to store information on how long the visitor stays there, without setting cookies.
+OxiTraffic is a self-hosted, simple and privacy respecting website traffic tracker.
 
 See the project's [documentation](https://codeberg.org/mo8it/oxitraffic/src/branch/main/README.md) to learn what OxiTraffic does and why it might be useful to you.
+
+For details about configuring the [Ansible role for OxiTraffic](https://github.com/mother-of-all-self-hosting/ansible-role-oxitraffic), you can check them via:
+- 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-oxitraffic/blob/main/docs/configuring-oxitraffic.md) online
+- 📁 `roles/galaxy/oxitraffic/docs/configuring-oxitraffic.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 ## Dependencies
 
@@ -57,15 +72,11 @@ Replace `https://example.com` with the hostname of your website.
 
 After running the command for installation, the OxiTraffic instance becomes available at the URL specified with `oxitraffic_hostname`. With the configuration above, the service is hosted at `https://oxitraffic.example.com`.
 
-To have your OxiTraffic instance count visits at `https://example.com`, you need to add the following script tag to the website:
-
-```html
-<script type="module" src="https://oxitraffic.example.com/count.js"></script>
-```
+See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-oxitraffic/blob/main/docs/configuring-oxitraffic.md#usage) on the role's documentation for details about how to use the service.
 
 ## Troubleshooting
 
-Internal OxiTraffic errors will not be logged to `stdout` and will therefore not be part of `journalctl -fu mash-oxitraffic`. Its log can be checked by running `tail -f logs/oxitraffic`.
+See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-oxitraffic/blob/main/docs/configuring-oxitraffic.md#troubleshooting) on the role's documentation for details.
 
 ## Related services
 
