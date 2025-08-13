@@ -63,3 +63,7 @@ To get started, open the URL with a web browser, and log in to the service if `i
 ## Troubleshooting
 
 See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-influxdb/blob/main/docs/configuring-influxdb.md#troubleshooting) on the role's documentation for details.
+
+## Related services
+
+- [Telegraf](telegraf.md) — Open source server agent to collect metrics from your stacks, sensors, and systems
