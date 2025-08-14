@@ -49,7 +49,7 @@
 * Healthchecks: v3.10
 * Homarr: v1.31.0
 * Hubsite Nginx: 1.29.0
-* Ihatemoney: 6.1.5
+* I hate money: 6.1.5
 * Ilmo: 1.0.4
 * Infisical: v0.43.19
 * Influxdb: 2.7.6
