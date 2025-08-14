@@ -4,9 +4,9 @@ SPDX-FileCopyrightText: 2025 MASH project contributors
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 
-# ihatemoney
+# I hate money
 
-[ihatemoney](https://github.com/spiral-project/ihatemoney) is a self-hosted shared budget manager, that this playbook can install, powered by the [ansible-role-ihatemoney](https://github.com/IUCCA/ansible-role-ihatemoney) Ansible role.
+[I hate money](https://github.com/spiral-project/ihatemoney) is a self-hosted shared budget manager, that this playbook can install, powered by the [ansible-role-ihatemoney](https://github.com/IUCCA/ansible-role-ihatemoney) Ansible role.
 
 
 ## Dependencies
@@ -31,7 +31,7 @@ ihatemoney_enabled: true
 
 # To enable the Admin dashboard:
 # - go through an installation without specifying this variable
-# - once ihatemoney is running, run this command to generate a hashed password: `docker exec -it mash-ihatemoney ihatemoney generate_password_hash`
+# - once I hate money is running, run this command to generate a hashed password: `docker exec -it mash-ihatemoney ihatemoney generate_password_hash`
 # - populate this variable with the hashed password and run the installation process again
 # ihatemoney_admin_password:
 
@@ -53,6 +53,6 @@ ihatemoney_path_prefix: /ihatemoney
 
 ## Usage
 
-After running the command for installation, the ihatemoney instance becomes available at the URL specified with `ihatemoney_hostname` and `ihatemoney_path_prefix`. With the configuration above, the service is hosted at `https://mash.example.com/ihatemoney`.
+After running the command for installation, the I hate money instance becomes available at the URL specified with `ihatemoney_hostname` and `ihatemoney_path_prefix`. With the configuration above, the service is hosted at `https://mash.example.com/ihatemoney`.
 
 If you'd like to enable the Admin dashboard, follow the comments for the `ihatemoney_admin_password` in the [Configuration](#configuration) section above.
