@@ -2220,6 +2220,7 @@ convertx_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_pri
 # couchdb                                                              #
 #                                                                      #
 ########################################################################
+
 couchdb_enabled: false
 
 couchdb_identifier: "{{ mash_playbook_service_identifier_prefix }}couchdb"
