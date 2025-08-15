@@ -2830,7 +2830,6 @@ firezone_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base
 
 firezone_uid: "{{ mash_playbook_uid }}"
 firezone_gid: "{{ mash_playbook_gid }}"
-firezone_generic_secret: "{{ mash_playbook_generic_secret_key }}"
 
 firezone_systemd_required_services_list_auto: |
   {{
@@ -2843,6 +2842,8 @@ firezone_container_additional_networks_auto: |
     +
     ([postgres_container_network] if postgres_enabled | default(false) and firezone_database_hostname == postgres_identifier and firezone_container_network != postgres_container_network else [])
   }}
+
+firezone_generic_secret: "{{ mash_playbook_generic_secret_key }}"
 
 firezone_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
 firezone_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
