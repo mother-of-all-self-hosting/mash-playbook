@@ -326,7 +326,7 @@ After adding the configuration, run this command to install and configure the [O
 just run-tags install-nextcloud-app-collabora
 ```
 
-You should then be able to open any document (`.doc`, `.odt`, `.pdf`, etc.) and create new ones in Nextcloud Files with Collabora Online editor.
+You should then be able to open any document (`.doc`, `.odt`, `.pdf`, etc.) and create new ones in Nextcloud Files with Collabora Online Development Edition's editor.
 
 ### Preview Generator
 
