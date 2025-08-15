@@ -25,11 +25,15 @@ Focalboard is an open source, self-hosted alternative to [Trello](https://trello
 
 See the project's [documentation](https://github.com/mattermost-community/focalboard/blob/main/README.md) to learn what Focalboard does and why it might be useful to you.
 
+For details about configuring the [Ansible role for Focalboard](https://github.com/mother-of-all-self-hosting/ansible-role-focalboard), you can check them via:
+- 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-focalboard/blob/main/docs/configuring-focalboard.md) online
+- 📁 `roles/galaxy/focalboard/docs/configuring-focalboard.md` locally, if you have [fetched the Ansible roles](../installing.md)
+
 ## Dependencies
 
 This service requires the following other services:
 
-- a [Postgres](postgres.md) database
+- (optional) a [Postgres](postgres.md) database — Focalboard will default to [SQLite](https://www.sqlite.org/) if Postgres is not enabled
 - a [Traefik](traefik.md) reverse-proxy server
 
 ## Adjusting the playbook configuration
@@ -60,3 +64,7 @@ focalboard_path_prefix: /focalboard
 After running the command for installation, the Focalboard instance becomes available at the URL specified with `focalboard_hostname` and `focalboard_path_prefix`. With the configuration above, the service is hosted at `https://mash.example.com/focalboard`.
 
 You can open the page with a web browser to register the first (administrator) user. After the first user is created, an invitation link is required to sign up.
+
+## Troubleshooting
+
+See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-focalboard/blob/main/docs/configuring-focalboard.md#troubleshooting) on the role's documentation for details.
