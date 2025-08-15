@@ -23,6 +23,12 @@ The playbook can install and configure [Appsmith](https://www.appsmith.com/) for
 
 Appsmith is an open-source platform that enables developers to build and deploy custom internal tools and applications without writing code.
 
+See the project's [documentation](https://docs.appsmith.com/) to learn what Appsmith does and why it might be useful to you.
+
+For details about configuring the [Ansible role for Appsmith](https://github.com/mother-of-all-self-hosting/ansible-role-appsmith), you can check them via:
+- 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-appsmith/blob/main/docs/configuring-appsmith.md) online
+- 📁 `roles/galaxy/appsmith/docs/configuring-appsmith.md` locally, if you have [fetched the Ansible roles](../installing.md)
+
 ## Dependencies
 
 This service requires the following other services:
@@ -57,22 +63,14 @@ appsmith_hostname: appsmith.example.com
 
 After configuring the playbook, run the [installation](../installing.md) command.
 
-It is recommended to install Appsmith with public registration enabled at first, create your user account, and disable public registration unless you need it.
-
-By default, public registration on the instance is disabled. You can enable it by adding the following configuration to your `vars.yml` file:
-
-```yaml
-appsmith_environment_variable_appsmith_signup_disabled: false
-```
-
-To disable public registration, remove the configuration and run the command below:
-
-```sh
-just install-service appsmith
-```
+It is recommended to install Appsmith with public registration enabled at first, create your user account, and disable public registration unless you need it. See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-appsmith/blob/main/docs/configuring-appsmith.md#installing) on the role's documentation for details.
 
 ## Usage
 
 After running the command for installation, the Appsmith instance becomes available at the URL specified with `appsmith_hostname`. With the configuration above, the service is hosted at `https://appsmith.example.com`.
 
 To get started, open the URL with a web browser, and create the first user from the web interface.
+
+## Troubleshooting
+
+See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-appsmith/blob/main/docs/configuring-appsmith.md#troubleshooting) on the role's documentation for details.
