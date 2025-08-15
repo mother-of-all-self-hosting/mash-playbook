@@ -13,7 +13,7 @@
 * Changedetection: 0.50.7
 * Changedetection Playwright Driver: latest
 * Clickhouse: 25.7.1.3997
-* Collabora Online: 25.04.3.1.1
+* Collabora Online Development Edition: 25.04.3.1.1
 * Container Socket Proxy: 0.3.0
 * Convertx: v0.14.1
 * Couchdb: 3.4.3
