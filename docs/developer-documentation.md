@@ -164,14 +164,14 @@ mash_playbook_postgres_managed_databases_auto_itemized:
 
 YOUR-SERVICE_systemd_required_services_list_auto: |
   {{
-    ([postgres_identifier ~ '.service'] if postgres_enabled and YOUR-SERVICE_database_hostname == postgres_identifier else [])
+    ([postgres_identifier ~ '.service'] if postgres_enabled and YOUR-SERVICE_database_hostname == postgres_connection_hostname else [])
   }}
 
 YOUR-SERVICE_container_additional_networks_auto: |
   {{
     [...]
     +
-    ([postgres_container_network] if postgres_enabled and YOUR-SERVICE_database_hostname == postgres_identifier and YOUR-SERVICE_container_network != postgres_container_network else [])
+    ([postgres_container_network] if postgres_enabled and YOUR-SERVICE_database_hostname == postgres_connection_hostname and YOUR-SERVICE_container_network != postgres_container_network else [])
   }}
 
 [...]
