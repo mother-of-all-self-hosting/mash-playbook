@@ -1,0 +1,28 @@
+{
+	"name": "mash-playbook",
+	"image": "mcr.microsoft.com/devcontainers/base:ubuntu",
+	"runArgs": [
+		"--privileged",
+		"--device",
+		"/dev/fuse",
+		"--hostname=mash-playbook"
+	],
+	"mounts": [
+		"type=bind,source=/home/${localEnv:USER}/.ssh,target=/home/vscode/.ssh,readonly"
+	],
+	"customizations": {
+		"vscode": {
+			"extensions": ["redhat.ansible"]
+		}
+	},
+	"features": {
+		"ghcr.io/schlich/devcontainer-features/just:0": {},
+		"ghcr.io/devcontainers-extra/features/ansible:2": {},
+		"ghcr.io/devcontainers-extra/features/apt-packages:1": {
+			"packages": ["pwgen"]
+		},
+		"ghcr.io/devcontainers-extra/features/pre-commit:2": {},
+		"ghcr.io/hspaans/devcontainer-features/ansible-lint:2": {}
+	},
+	"postCreateCommand": "pre-commit install && just roles"
+}
