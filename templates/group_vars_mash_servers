@@ -8641,7 +8641,8 @@ yourls_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxya
 # role-specific:mariadb
 yourls_environment_variable_db_user: "yourls"
 yourls_environment_variable_db_pass: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'db.yourls', rounds=655555) | to_uuid }}"
-yourls_environment_variable_db_host_name: "{{ mariadb_identifier if mariadb_enabled else '' }}"
+yourls_environment_variable_db_hostname: "{{ mariadb_identifier if mariadb_enabled else '' }}"
+yourls_environment_variable_db_port: 3306
 # /role-specific:mariadb
 
 # role-specific:traefik
