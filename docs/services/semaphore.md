@@ -33,7 +33,7 @@ For details about configuring the [Ansible role for Semaphore UI](https://github
 
 This service requires the following other services:
 
-- [Postgres](postgres.md) / MySQL / [MariaDB](mariadb.md) database
+- (optional) [Postgres](postgres.md) / MySQL / [MariaDB](mariadb.md) database — Semaphore UI will default to [SQLite](https://www.sqlite.org/) if Postgres is not enabled
 - [Traefik](traefik.md) reverse-proxy server
 
 ## Adjusting the playbook configuration
@@ -68,13 +68,7 @@ You also have to set a string used for encrypting access keys in database to `se
 
 ### Select database to use (optional)
 
-By default Semaphore UI is configured to use Postgres, but you can choose other database such as MySQL (MariaDB) and BoltDB.
-
-To use MariaDB, add the following configuration to your `vars.yml` file:
-
-```yaml
-semaphore_database_dialect: mysql
-```
+By default Semaphore UI is configured to use Postgres, but you can choose other databases such as MySQL (MariaDB) and SQLite. See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-semaphore/blob/main/docs/configuring-semaphore.md#configure-database) on the role's documentation for details.
 
 ### Extending the configuration
 

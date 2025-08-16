@@ -1822,7 +1822,7 @@ authelia_config_identity_providers_oidc_hmac_secret: "{{ '%s' | format(mash_play
 # If Postgres and MariaDB are not enabled, we favor Postgres.
 # We only enable MySQL if it's the only enabled component (that is, if Postgres is not enabled at the same time).
 authelia_config_storage_mysql_hostname: "{{ mariadb_identifier if mariadb_enabled and not postgres_enabled | default(false) else '' }}"
-authelia_config_storage_mysql_port: "{{ '3306' if mariadb_enabled else '' }}"
+authelia_config_storage_mysql_port: "{{ mariadb_connection_port if mariadb_enabled | default(false) else '3306' }}"
 authelia_config_storage_mysql_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'db.authelia', rounds=655555) | to_uuid }}"
 # /role-specific:mariadb
 
@@ -1993,7 +1993,7 @@ backup_borg_postgresql_enabled: "{{ postgres_enabled }}"
 backup_borg_mysql_databases_hostname: "{{ mariadb_identifier if mariadb_enabled else '' }}"
 backup_borg_mysql_databases_username: "root"
 backup_borg_mysql_databases_password: "{{ mariadb_root_password if mariadb_enabled else '' }}"
-backup_borg_mysql_databases_port: 3306
+backup_borg_mysql_databases_port: "{{ mariadb_connection_port if mariadb_enabled | default(false) else '3306' }}"
 backup_borg_mysql_databases: "{{ mariadb_managed_databases | map(attribute='name') if mariadb_enabled else [] }}"
 # /role-specific:mariadb
 
@@ -2220,6 +2220,7 @@ convertx_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_pri
 # couchdb                                                              #
 #                                                                      #
 ########################################################################
+
 couchdb_enabled: false
 
 couchdb_identifier: "{{ mash_playbook_service_identifier_prefix }}couchdb"
@@ -2830,7 +2831,6 @@ firezone_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base
 
 firezone_uid: "{{ mash_playbook_uid }}"
 firezone_gid: "{{ mash_playbook_gid }}"
-firezone_generic_secret: "{{ mash_playbook_generic_secret_key }}"
 
 firezone_systemd_required_services_list_auto: |
   {{
@@ -2843,6 +2843,8 @@ firezone_container_additional_networks_auto: |
     +
     ([postgres_container_network] if postgres_enabled | default(false) and firezone_database_hostname == postgres_identifier and firezone_container_network != postgres_container_network else [])
   }}
+
+firezone_generic_secret: "{{ mash_playbook_generic_secret_key }}"
 
 firezone_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
 firezone_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
@@ -2938,7 +2940,7 @@ focalboard_container_additional_networks_auto: |
 focalboard_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
 focalboard_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
 
-focalboard_database_type: "{{ 'postgres' if postgres_enabled else '' }}"
+focalboard_database_type: "{{ 'postgres' if postgres_enabled else 'sqlite' }}"
 
 # role-specific:postgres
 focalboard_database_hostname: "{{ postgres_identifier if postgres_enabled else '' }}"
@@ -5604,7 +5606,7 @@ matomo_container_labels_traefik_compression_middleware_name: "{{ mash_playbook_r
 
 # role-specific:mariadb
 matomo_config_database_hostname: "{{ mariadb_identifier if mariadb_enabled else '' }}"
-matomo_config_database_port: "{{ '3306' if mariadb_enabled else '' }}"
+matomo_config_database_port: "{{ mariadb_connection_port if mariadb_enabled | default(false) else '3306' }}"
 matomo_config_database_username: "matomo"
 matomo_config_database_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'db.matomo', rounds=655555) | to_uuid }}"
 matomo_config_database_name: "matomo"
@@ -7642,7 +7644,7 @@ semaphore_container_additional_networks: |
     ([postgres_container_network] if postgres_enabled | default(false) and semaphore_database_postgres_hostname == postgres_identifier and semaphore_container_network != postgres_container_network and semaphore_database_dialect == 'postgres'  else [])
   }}
 
-semaphore_database_dialect: postgres
+semaphore_database_dialect: "{{ 'postgres' if postgres_enabled else 'sqlite' }}"
 
 semaphore_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
 semaphore_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
@@ -7656,7 +7658,7 @@ semaphore_environment_variables_email_sender: "{{ exim_relay_sender_address if e
 # role-specific:mariadb
 semaphore_database_mysql_username: "{{ semaphore_identifier }}"
 semaphore_database_mysql_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'semaphore.m', rounds=655555) | to_uuid }}"
-semaphore_database_mysql_port: "{{ '3306' if mariadb_enabled else '' }}"
+semaphore_database_mysql_port: "{{ mariadb_connection_port if mariadb_enabled | default(false) else '3306' }}"
 semaphore_database_mysql_hostname: "{{ mariadb_identifier if mariadb_enabled else '' }}"
 # /role-specific:mariadb
 
@@ -7770,7 +7772,7 @@ sftpgo_environment_variables_smtp_from: "{{ exim_relay_sender_address if exim_re
 
 # role-specific:mariadb
 sftpgo_database_mysql_hostname: "{{ mariadb_identifier if mariadb_enabled | default(false) and sftpgo_environment_variables_data_provider_driver == 'mysql' else '' }}"
-sftpgo_database_mysql_port: "{{ '3306' if mariadb_enabled and sftpgo_environment_variables_data_provider_driver == 'mysql' else '' }}"
+sftpgo_database_mysql_port: "{{ mariadb_connection_port if mariadb_enabled | default(false) and sftpgo_environment_variables_data_provider_driver == 'mysql' else '3306' }}"
 sftpgo_database_mysql_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'db.sftpgo', rounds=655555) | to_uuid }}"
 sftpgo_database_mysql_username: "{{ sftpgo_identifier }}"
 # /role-specific:mariadb
@@ -7933,6 +7935,7 @@ syncstorage_rs_docker_environment_variable_metrics_hash_secret: "{{ ('%s' | form
 # role-specific:mariadb
 syncstorage_rs_docker_environment_variable_database_username: "{{ syncstorage_rs_docker_identifier }}"
 syncstorage_rs_docker_environment_variable_database_hostname: "{{ mariadb_identifier if mariadb_enabled else '' }}"
+syncstorage_rs_docker_environment_variable_database_port: "{{ mariadb_connection_port if mariadb_enabled | default(false) else '3306' }}"
 syncstorage_rs_docker_environment_variable_mysql_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'db.syncstorage', rounds=655555) | to_uuid }}"
 # /role-specific:mariadb
 
@@ -8024,7 +8027,6 @@ tandoor_container_additional_networks_auto: |
       ([exim_relay_container_network | default('mash-exim-relay')] if (exim_relay_enabled | default(false) and tandoor_email_host == exim_relay_identifier | default('mash-exim-relay') and tandoor_container_network != exim_relay_container_network) else [])
     ) | unique
   }}
-
 
 tandoor_environment_variable_secret: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'secret.tandoor', rounds=655555) | to_uuid }}"
 
@@ -8510,7 +8512,7 @@ wordpress_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_pro
 
 # role-specific:mariadb
 wordpress_database_hostname: "{{ mariadb_identifier if mariadb_enabled | default(false) else '' }}"
-wordpress_mysql_port: "{{ '3306' if mariadb_enabled | default(false) else '' }}"
+wordpress_mysql_port: "{{ mariadb_connection_port if mariadb_enabled | default(false) else '3306' }}"
 wordpress_database_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'db.mariadb', rounds=655555) | to_uuid }}"
 # /role-specific:mariadb
 
@@ -8640,7 +8642,8 @@ yourls_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxya
 # role-specific:mariadb
 yourls_environment_variable_db_user: "yourls"
 yourls_environment_variable_db_pass: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'db.yourls', rounds=655555) | to_uuid }}"
-yourls_environment_variable_db_host_name: "{{ mariadb_identifier if mariadb_enabled else '' }}"
+yourls_environment_variable_db_hostname: "{{ mariadb_identifier if mariadb_enabled else '' }}"
+yourls_environment_variable_db_port: "{{ mariadb_connection_port if mariadb_enabled | default(false) else '3306' }}"
 # /role-specific:mariadb
 
 # role-specific:traefik

@@ -13,7 +13,7 @@
 * Changedetection: 0.50.7
 * Changedetection Playwright Driver: latest
 * Clickhouse: 25.7.1.3997
-* Collabora Online: 25.04.3.1.1
+* Collabora Online Development Edition: 25.04.3.1.1
 * Container Socket Proxy: 0.3.0
 * Convertx: v0.14.1
 * Couchdb: 3.4.3
@@ -49,7 +49,7 @@
 * Healthchecks: v3.10
 * Homarr: v1.31.0
 * Hubsite Nginx: 1.29.0
-* Ihatemoney: 6.1.5
+* I hate money: 6.1.5
 * Ilmo: 1.0.4
 * Infisical: v0.43.19
 * Influxdb: 2.7.6

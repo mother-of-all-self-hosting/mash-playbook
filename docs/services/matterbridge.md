@@ -1,54 +1,20 @@
 <!--
+SPDX-FileCopyrightText: 2022 - 2025 Nikita Chernyi
+SPDX-FileCopyrightText: 2022 - 2024 Slavi Pantaleev
+SPDX-FileCopyrightText: 2022 MDAD project contributors
+SPDX-FileCopyrightText: 2022 Julian-Samuel Gebühr
 SPDX-FileCopyrightText: 2024 Oliver Lorenz
+SPDX-FileCopyrightText: 2024 - 2025 Suguru Hirahara
 
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 
 # Matterbridge
 
-[Matterbridge](https://github.com/42wim/matterbridge)
+The playbook can install and configure [Matterbridge](https://github.com/42wim/matterbridge) for you.
 
-## Configuration
+Matterbridge is the bridge which enables you to talk over various protocols, including IRC, Discord, Slack, etc.
 
-To enable this service, add the following configuration to your `vars.yml` file and re-run the [installation](../installing.md) process:
-
-The configuration itself is documented [here](https://github.com/42wim/matterbridge/wiki/How-to-create-your-config)
-
-```yaml
-########################################################################
-#                                                                      #
-# matterbridge                                                         #
-#                                                                      #
-########################################################################
-
-matterbridge_enabled: true
-matterbridge_configuration_toml:
-  accounts:
-    - protocol: matrix
-      identifier: someidentifier
-      configuration:
-        Server: "https://matrix.example.com"
-        Login: "{{ matterbridge_matrix_user }}"
-        Password: "{{ matterbridge_matrix_password }}"
-        RemoteNickFormat: "{NICK}: "
-        NoHomeServerSuffix: "false"
-
-  gateways:
-    - name: "A Gateway"
-      enable: "true"
-      channels:
-
-        - type: inout
-          account: matrix.someidentifier
-          channel: "!roomA:matrix.example.com"
-
-        - type: inout
-          account: matrix.freifunk
-          channel: "!roomB:matrix.example.com"
-
-########################################################################
-#                                                                      #
-# /matterbridge                                                        #
-#                                                                      #
-########################################################################
-```
+The [Ansible role for Matterbridge](https://github.com/mother-of-all-self-hosting/ansible-role-matterbridge) is developed and maintained by the MASH project. For details about configuring Matterbridge, you can check them via:
+- 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-matterbridge/blob/main/docs/configuring-matterbridge.md) online
+- 📁 `roles/galaxy/matterbridge/docs/configuring-matterbridge.md` locally, if you have [fetched the Ansible roles](../installing.md)
