@@ -26,7 +26,7 @@ CODE is the development version of [Collabora Online](https://www.collaboraonlin
 See the project's [documentation](https://www.collaboraonline.com/code/) to learn what CODE does and why it might be useful to you.
 
 For details about configuring the [Ansible role for CODE](https://github.com/mother-of-all-self-hosting/ansible-role-collabora-online), you can check them via:
-- 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-collabora-online/blob/main/docs/configuring-collabora-online.md) online
+- 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-collabora-online/blob/main/docs/configuring-code.md) online
 - 📁 `roles/galaxy/collabora_online/docs/configuring-online.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 ## Dependencies
@@ -93,7 +93,7 @@ Use your admin credentials for logging in:
 
 ## Troubleshooting
 
-See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-collabora-online/blob/main/docs/configuring-collabora-online.md#troubleshooting) on the role's documentation for details.
+See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-collabora-online/blob/main/docs/configuring-code.md#troubleshooting) on the role's documentation for details.
 
 ## Related services
 
