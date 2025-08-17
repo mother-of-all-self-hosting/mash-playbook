@@ -37,7 +37,7 @@ You may need to open some ports to your server, if you use another firewall in f
 
 This service requires the following other services:
 
-- [Postgres](postgres.md) / MySQL / [MariaDB](mariadb.md) database
+- [Postgres](postgres.md) / MySQL / [MariaDB](mariadb.md) / [CockroachDB](https://www.cockroachlabs.com/) database — SFTPGo will default to [SQLite](https://www.sqlite.org/) if none of them is enabled
 - [Traefik](traefik.md) reverse-proxy server
 
 ## Adjusting the playbook configuration
