@@ -291,7 +291,7 @@ gitea_hostname: "gitea.{{domain}}"
 #                                                                      #
 ########################################################################
 
-firezone_enabled: true
+firezone_enabled: false
 
 firezone_hostname: "vpn.{{domain}}"
 
