@@ -100,6 +100,8 @@ mash_playbook_docker_installation_daemon_options_custom: {
       "size": 25
     }
   ]
+  ,
+  "dns": ["10.1.154.10"]
 }
 
 ########################################################################
