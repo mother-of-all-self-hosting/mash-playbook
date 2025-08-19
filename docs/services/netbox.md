@@ -146,8 +146,8 @@ Having configured `vars.yml` for the dedicated instance, add the following confi
 # Add the base configuration as specified above
 
 # Point NetBox to its dedicated Valkey instance
-netbox_environment_variable_redis_host: mash-netbox-valkey
-netbox_environment_variable_redis_cache_host: mash-netbox-valkey
+netbox_environment_variable_redis_hostname: mash-netbox-valkey
+netbox_environment_variable_redis_cache_hostname: mash-netbox-valkey
 
 # Make sure the NetBox service (mash-netbox.service) starts after its dedicated Valkey service (mash-netbox-valkey.service)
 netbox_systemd_required_services_list_custom:
@@ -197,8 +197,8 @@ valkey_enabled: true
 # Add the base configuration as specified above
 
 # Point NetBox to the shared Valkey instance
-netbox_environment_variable_redis_host: "{{ valkey_identifier }}"
-netbox_environment_variable_redis_cache_host: "{{ valkey_identifier }}"
+netbox_environment_variable_redis_hostname: "{{ valkey_identifier }}"
+netbox_environment_variable_redis_cache_hostname: "{{ valkey_identifier }}"
 
 # Make sure the NetBox service (mash-netbox.service) starts after the shared Valkey service (mash-valkey.service)
 netbox_systemd_required_services_list_custom:
