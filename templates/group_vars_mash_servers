@@ -1703,7 +1703,7 @@ apisix_gateway_container_additional_networks_auto: |
 apisix_gateway_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
 apisix_gateway_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
 
-apisix_gateway_container_labels_metrics_enabled: "{{ prometheus_enabled | default(false) or mash_playbook_metrics_exposure_enabled }}"
+apisix_gateway_container_labels_metrics_enabled: "{{ mash_playbook_metrics_exposure_enabled }}"
 apisix_gateway_container_labels_metrics_hostname: "{{ mash_playbook_metrics_exposure_hostname }}"
 apisix_gateway_container_labels_metrics_path_prefix: "{{ mash_playbook_metrics_exposure_path_prefix }}/{{ apisix_gateway_identifier }}"
 apisix_gateway_container_labels_metrics_middleware_basic_auth_enabled: "{{ mash_playbook_metrics_exposure_http_basic_auth_enabled }}"
@@ -2429,8 +2429,7 @@ docmost_environment_variable_app_secret: "{{ '%s' | format(mash_playbook_generic
 docmost_environment_variable_disable_telemetry: true
 
 # Required for a Redis / KeyDB / Valkey instance
-docmost_redis_host: "{{ docmost_config_redis_hostname }}"
-docmost_environment_variable_redis_url: "redis://{{ docmost_redis_host }}:{{ docmost_redis_port }}"
+docmost_environment_variable_redis_url: "redis://{{ docmost_redis_hostname }}:{{ docmost_redis_port }}"
 
 docmost_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
 docmost_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
@@ -3270,7 +3269,7 @@ ghostfolio_environment_variable_access_token_salt: "{{ '%s' | format(mash_playbo
 ghostfolio_environment_variable_jwt_secret_key: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'jsk.ghostfolio', rounds=655555) | to_uuid }}"
 
 # Required for a Redis / KeyDB / Valkey instance
-ghostfolio_environment_variable_redis_host: "{{ ghostfolio_config_redis_hostname }}"
+ghostfolio_environment_variable_redis_hostname: "{{ ghostfolio_redis_hostname }}"
 
 ghostfolio_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
 ghostfolio_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
@@ -7138,7 +7137,7 @@ promtail_container_additional_networks_auto: |
     ) | unique
   }}
 
-promtail_container_labels_metrics_enabled: "{{ prometheus_enabled | default(false) or mash_playbook_metrics_exposure_enabled }}"
+promtail_container_labels_metrics_enabled: "{{ mash_playbook_metrics_exposure_enabled }}"
 promtail_container_labels_metrics_hostname: "{{ mash_playbook_metrics_exposure_hostname }}"
 promtail_container_labels_metrics_path_prefix: "{{ mash_playbook_metrics_exposure_path_prefix }}/{{ promtail_identifier }}"
 promtail_container_labels_metrics_traefik_middleware_basic_auth_enabled: "{{ mash_playbook_metrics_exposure_http_basic_auth_enabled }}"
@@ -7705,7 +7704,7 @@ send_container_additional_networks_auto: |
   }}
 
 # Required for a Redis / KeyDB / Valkey instance
-send_environment_variable_redis_host: "{{ send_config_redis_hostname }}"
+send_environment_variable_redis_hostname: "{{ send_redis_hostname }}"
 
 send_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
 send_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"

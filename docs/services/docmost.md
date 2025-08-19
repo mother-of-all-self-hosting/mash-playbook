@@ -187,7 +187,7 @@ Having configured `vars.yml` for the dedicated instance, add the following confi
 # Add the base configuration as specified above
 
 # Point Docmost to its dedicated Valkey instance
-docmost_config_redis_hostname: mash-docmost-valkey
+docmost_redis_hostname: mash-docmost-valkey
 
 # Make sure the Docmost service (mash-docmost.service) starts after its dedicated Valkey service (mash-docmost-valkey.service)
 docmost_systemd_required_services_list_custom:
@@ -237,7 +237,7 @@ valkey_enabled: true
 # Add the base configuration as specified above
 
 # Point Docmost to the shared Valkey instance
-docmost_config_redis_hostname: "{{ valkey_identifier }}"
+docmost_redis_hostname: "{{ valkey_identifier }}"
 
 # Make sure the Docmost service (mash-docmost.service) starts after its dedicated Valkey service (mash-docmost-valkey.service)
 docmost_systemd_required_services_list_custom:

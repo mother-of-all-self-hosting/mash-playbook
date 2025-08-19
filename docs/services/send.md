@@ -188,7 +188,7 @@ Having configured `vars.yml` for the dedicated instance, add the following confi
 # Add the base configuration as specified above
 
 # Point Send to its dedicated Valkey instance
-send_config_redis_hostname: mash-send-valkey
+send_redis_hostname: mash-send-valkey
 
 # Make sure the Send service (mash-send.service) starts after its dedicated Valkey service (mash-send-valkey.service)
 send_systemd_required_services_list_custom:
@@ -238,7 +238,7 @@ valkey_enabled: true
 # Add the base configuration as specified above
 
 # Point Send to the shared Valkey instance
-send_config_redis_hostname: "{{ valkey_identifier }}"
+send_redis_hostname: "{{ valkey_identifier }}"
 
 # Make sure the Send service (mash-send.service) starts after its dedicated Valkey service (mash-send-valkey.service)
 send_systemd_required_services_list_custom:
