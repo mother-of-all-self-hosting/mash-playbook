@@ -11,6 +11,7 @@
   when: "lookup('ansible.builtin.varnames', ('^' + item.old + '$'), wantlist=True) | length > 0"
   with_items:
     - { "old": "docmost_config_redis_hostname", "new": "docmost_redis_hostname" }
+    - { "old": "ghostfolio_config_redis_hostname", "new": "ghostfolio_redis_hostname" }
 
 - name: (Deprecation) Catch and report devture_postgres_backup variables
   ansible.builtin.fail:
