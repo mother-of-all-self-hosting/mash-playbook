@@ -151,7 +151,7 @@ Having configured `vars.yml` for the dedicated instance, add the following confi
 # Add the base configuration as specified above
 
 # Point authentik to its dedicated Valkey instance
-authentik_config_redis_hostname: mash-authentik-valkey
+authentik_redis_hostname: mash-authentik-valkey
 
 # Make sure the authentik service (mash-authentik.service) starts after its dedicated Valkey service (mash-authentik-valkey.service)
 authentik_systemd_required_services_list_custom:
@@ -201,7 +201,7 @@ valkey_enabled: true
 # Add the base configuration as specified above
 
 # Point authentik to the shared Valkey instance
-authentik_config_redis_hostname: "{{ valkey_identifier }}"
+authentik_redis_hostname: "{{ valkey_identifier }}"
 
 # Make sure the authentik service (mash-authentik.service) starts after the shared Valkey service (mash-valkey.service)
 authentik_systemd_required_services_list_custom:
