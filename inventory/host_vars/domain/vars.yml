@@ -492,7 +492,7 @@ authentik_secret_key: "{{ authentik_secret_key_vault }}"
 # KeyDB configuration, as described below
 
 # Point authentik to its dedicated KeyDB instance
-authentik_config_redis_hostname: authentik-keydb
+authentik_redis_hostname: authentik-keydb
 
 # Make sure the authentik service (mash-authentik.service) starts after its dedicated KeyDB service (mash-authentik-keydb.service)
 authentik_systemd_required_services_list_custom:
