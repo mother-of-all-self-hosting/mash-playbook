@@ -99,7 +99,7 @@ authelia_config_access_control_rules:
 # You may wish to run a separate Valkey instance for Authelia, because Valkey is not multi-tenant.
 # Read more in docs/services/redis.md.
 # If Valkey is not available, session data will be stored in memory and will be lost on container restart.
-authelia_config_session_redis_host: "{{ valkey_identifier if valkey_enabled else '' }}"
+authelia_config_session_redis_hostname: "{{ valkey_identifier if valkey_enabled else '' }}"
 
 ########################################################################
 #                                                                      #
@@ -112,7 +112,7 @@ authelia_config_session_redis_host: "{{ valkey_identifier if valkey_enabled else
 
 ### Session storage
 
-As mentioned in the default configuration above (see `authelia_config_session_redis_host`), you may wish to run [Valkey](valkey.md) for storing session data.
+As mentioned in the default configuration above (see `authelia_config_session_redis_hostname`), you may wish to run [Valkey](valkey.md) for storing session data.
 
 You may wish to run a separate Valkey instance for Authelia, because Valkey is not multi-tenant. See [our Valkey documentation page](valkey.md) for additional details. When running a separate instance of Valkey, you may need to connect Authelia to the Valkey instance's container network via the `authelia_container_additional_networks_custom` variable.
 
