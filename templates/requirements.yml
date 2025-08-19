@@ -25,7 +25,7 @@
   name: appsmith
   activation_prefix: appsmith_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-authelia.git
-  version: v4.37.5-8
+  version: v4.37.5-9
   name: authelia
   activation_prefix: authelia_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-authentik.git
