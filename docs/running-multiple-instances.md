@@ -176,8 +176,8 @@ Having configured `vars.yml` for Valkey instances for PeerTube and NetBox, add t
 # Other NetBox configuration here
 
 # Point NetBox to its dedicated Valkey instance
-netbox_environment_variable_redis_host: mash-netbox-valkey
-netbox_environment_variable_redis_cache_host: mash-netbox-valkey
+netbox_environment_variable_redis_hostname: mash-netbox-valkey
+netbox_environment_variable_redis_cache_hostname: mash-netbox-valkey
 
 # Make sure the NetBox service (mash-netbox.service) starts after its dedicated Valkey service (mash-netbox-valkey.service)
 netbox_systemd_required_services_list_custom:
