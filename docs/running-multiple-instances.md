@@ -204,7 +204,7 @@ netbox_container_additional_networks_custom:
 # Other PeerTube configuration here
 
 # Point PeerTube to its dedicated Valkey instance
-peertube_config_redis_hostname: mash-peertube-valkey
+peertube_redis_hostname: mash-peertube-valkey
 
 # Make sure the PeerTube service (mash-peertube.service) starts after its dedicated Valkey service (mash-peertube-valkey.service)
 peertube_systemd_required_services_list_custom:
