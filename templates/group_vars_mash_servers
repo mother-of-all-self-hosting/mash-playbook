@@ -5555,7 +5555,7 @@ mash_playbook_mariadb_managed_databases_auto_itemized:
         'name': yourls_environment_variable_db_name,
         'username': yourls_environment_variable_db_user,
         'password': yourls_environment_variable_db_pass,
-      } if yourls_enabled and yourls_environment_variable_db_host_name == mariadb_identifier | default('mash-mariadb') else omit)
+      } if yourls_enabled and yourls_environment_variable_db_hostname == mariadb_identifier | default('mash-mariadb') else omit)
     }}
   # /role-specific:yourls
 
@@ -8623,14 +8623,14 @@ yourls_gid: "{{ mash_playbook_gid }}"
 
 yourls_systemd_required_services_list_auto: |
   {{
-    ([mariadb_identifier ~ '.service'] if mariadb_enabled and yourls_environment_variable_db_host_name == mariadb_identifier else [])
+    ([mariadb_identifier ~ '.service'] if mariadb_enabled and yourls_environment_variable_db_hostname == mariadb_identifier else [])
   }}
 
 yourls_container_additional_networks_auto: |
   {{
     ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
     +
-    ([mariadb_container_network] if mariadb_enabled | default(false) and yourls_environment_variable_db_host_name == mariadb_identifier and yourls_container_network != mariadb_container_network else [])
+    ([mariadb_container_network] if mariadb_enabled | default(false) and yourls_environment_variable_db_hostname == mariadb_identifier and yourls_container_network != mariadb_container_network else [])
   }}
 
 yourls_environment_variable_cookiekey: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'secret.yourls', rounds=655555) | to_uuid }}"
