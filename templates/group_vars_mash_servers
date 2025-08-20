@@ -5523,7 +5523,7 @@ mash_playbook_mariadb_managed_databases_auto_itemized:
       ({
         'name': syncstorage_rs_docker_environment_variable_database_name_syncstorage,
         'username': syncstorage_rs_docker_environment_variable_database_username,
-        'password': syncstorage_rs_docker_environment_variable_mysql_password,
+        'password': syncstorage_rs_docker_environment_variable_database_password,
       } if syncstorage_rs_docker_enabled and syncstorage_rs_docker_environment_variable_database_hostname == mariadb_identifier else omit)
     }}
 
@@ -5532,7 +5532,7 @@ mash_playbook_mariadb_managed_databases_auto_itemized:
       ({
         'name': syncstorage_rs_docker_environment_variable_database_name_tokenserver,
         'username': syncstorage_rs_docker_environment_variable_database_username,
-        'password': syncstorage_rs_docker_environment_variable_mysql_password,
+        'password': syncstorage_rs_docker_environment_variable_database_password,
       } if syncstorage_rs_docker_enabled and syncstorage_rs_docker_environment_variable_database_hostname == mariadb_identifier else omit)
     }}
   # /role-specific:syncstorage_rs_docker
@@ -7935,7 +7935,7 @@ syncstorage_rs_docker_environment_variable_metrics_hash_secret: "{{ ('%s' | form
 syncstorage_rs_docker_environment_variable_database_hostname: "{{ mariadb_identifier if mariadb_enabled else '' }}"
 syncstorage_rs_docker_environment_variable_database_port: "{{ mariadb_connection_port if mariadb_enabled | default(false) else '3306' }}"
 syncstorage_rs_docker_environment_variable_database_username: "{{ syncstorage_rs_docker_identifier }}"
-syncstorage_rs_docker_environment_variable_mysql_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'db.syncstorage', rounds=655555) | to_uuid }}"
+syncstorage_rs_docker_environment_variable_database_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'db.syncstorage', rounds=655555) | to_uuid }}"
 # /role-specific:mariadb
 
 # role-specific:traefik
