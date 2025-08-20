@@ -5469,7 +5469,7 @@ mash_playbook_mariadb_managed_databases_auto_itemized:
         'name': authelia_config_storage_mysql_database,
         'username': authelia_config_storage_mysql_username,
         'password': authelia_config_storage_mysql_password,
-      } if authelia_enabled and authelia_config_storage_mysql_hostname == mariadb_identifier else omit)
+      } if authelia_enabled and authelia_config_storage_mysql_hostname == mariadb_connection_hostname else omit)
     }}
   # /role-specific:authelia
 
@@ -5480,7 +5480,7 @@ mash_playbook_mariadb_managed_databases_auto_itemized:
         'name': matomo_config_database_name,
         'username': matomo_config_database_username,
         'password': matomo_config_database_password,
-      } if matomo_enabled and matomo_config_database_hostname == mariadb_identifier else omit)
+      } if matomo_enabled and matomo_config_database_hostname == mariadb_connection_hostname else omit)
     }}
   # /role-specific:matomo
 
@@ -5491,7 +5491,7 @@ mash_playbook_mariadb_managed_databases_auto_itemized:
         'name': privatebin_database_mysql_name,
         'username': privatebin_database_mysql_username,
         'password': privatebin_database_mysql_password,
-      } if privatebin_enabled and privatebin_database_mysql_hostname == mariadb_identifier else omit)
+      } if privatebin_enabled and privatebin_database_mysql_hostname == mariadb_connection_hostname else omit)
     }}
   # /role-specific:privatebin
 
@@ -5502,7 +5502,7 @@ mash_playbook_mariadb_managed_databases_auto_itemized:
         'name': semaphore_database_name,
         'username': semaphore_database_mysql_username,
         'password': semaphore_database_mysql_password,
-      } if semaphore_enabled and semaphore_database_mysql_hostname == mariadb_identifier else omit)
+      } if semaphore_enabled and semaphore_database_mysql_hostname == mariadb_connection_hostname else omit)
     }}
   # /role-specific:semaphore
 
@@ -5513,7 +5513,7 @@ mash_playbook_mariadb_managed_databases_auto_itemized:
         'name': sftpgo_database_mysql_name,
         'username': sftpgo_database_mysql_username,
         'password': sftpgo_database_mysql_password,
-      } if sftpgo_enabled and sftpgo_database_mysql_hostname == mariadb_identifier else omit)
+      } if sftpgo_enabled and sftpgo_database_mysql_hostname == mariadb_connection_hostname else omit)
     }}
   # /role-specific:sftpgo
 
@@ -5524,7 +5524,7 @@ mash_playbook_mariadb_managed_databases_auto_itemized:
         'name': syncstorage_rs_docker_environment_variable_database_name_syncstorage,
         'username': syncstorage_rs_docker_environment_variable_database_username,
         'password': syncstorage_rs_docker_environment_variable_database_password,
-      } if syncstorage_rs_docker_enabled and syncstorage_rs_docker_environment_variable_database_hostname == mariadb_identifier else omit)
+      } if syncstorage_rs_docker_enabled and syncstorage_rs_docker_environment_variable_database_hostname == mariadb_connection_hostname else omit)
     }}
 
   - |-
@@ -5533,7 +5533,7 @@ mash_playbook_mariadb_managed_databases_auto_itemized:
         'name': syncstorage_rs_docker_environment_variable_database_name_tokenserver,
         'username': syncstorage_rs_docker_environment_variable_database_username,
         'password': syncstorage_rs_docker_environment_variable_database_password,
-      } if syncstorage_rs_docker_enabled and syncstorage_rs_docker_environment_variable_database_hostname == mariadb_identifier else omit)
+      } if syncstorage_rs_docker_enabled and syncstorage_rs_docker_environment_variable_database_hostname == mariadb_connection_hostname else omit)
     }}
   # /role-specific:syncstorage_rs_docker
 
@@ -5544,7 +5544,7 @@ mash_playbook_mariadb_managed_databases_auto_itemized:
         'name': wordpress_database_name,
         'username': wordpress_database_username,
         'password': wordpress_database_password,
-      } if wordpress_enabled and wordpress_database_hostname == mariadb_identifier | default('mash-mariadb') else omit)
+      } if wordpress_enabled and wordpress_database_hostname == mariadb_connection_hostname | default('mash-mariadb') else omit)
     }}
   # /role-specific:wordpress
 
@@ -5555,7 +5555,7 @@ mash_playbook_mariadb_managed_databases_auto_itemized:
         'name': yourls_environment_variable_db_name,
         'username': yourls_environment_variable_db_user,
         'password': yourls_environment_variable_db_pass,
-      } if yourls_enabled and yourls_environment_variable_db_hostname == mariadb_identifier | default('mash-mariadb') else omit)
+      } if yourls_enabled and yourls_environment_variable_db_hostname == mariadb_connection_hostname | default('mash-mariadb') else omit)
     }}
   # /role-specific:yourls
 
@@ -5588,14 +5588,14 @@ matomo_gid: "{{ mash_playbook_gid }}"
 
 matomo_systemd_required_systemd_services_list_auto: |
   {{
-    ([mariadb_identifier ~ '.service'] if mariadb_enabled and matomo_config_database_hostname == mariadb_identifier else [])
+    ([mariadb_identifier ~ '.service'] if mariadb_enabled and matomo_config_database_hostname == mariadb_connection_hostname else [])
   }}
 
 matomo_container_additional_networks_auto: |
   {{
     ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
     +
-    ([mariadb_container_network] if mariadb_enabled and matomo_config_database_hostname == mariadb_identifier and matomo_container_network != mariadb_container_network else [])
+    ([mariadb_container_network] if mariadb_enabled and matomo_config_database_hostname == mariadb_connection_hostname and matomo_container_network != mariadb_container_network else [])
   }}
 
 matomo_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
@@ -6818,7 +6818,7 @@ privatebin_gid: "{{ mash_playbook_gid }}"
 
 privatebin_systemd_required_services_list_auto: |
   {{
-    ([mariadb_identifier ~ '.service'] if mariadb_enabled | default(false) and privatebin_database_mysql_hostname == mariadb_identifier else [])
+    ([mariadb_identifier ~ '.service'] if mariadb_enabled | default(false) and privatebin_database_mysql_hostname == mariadb_connection_hostname else [])
     +
     ([postgres_identifier ~ '.service'] if postgres_enabled | default(false) and privatebin_database_postgres_hostname == postgres_identifier else [])
   }}
@@ -6827,7 +6827,7 @@ privatebin_container_additional_networks_auto: |
   {{
     ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
     +
-    ([mariadb_container_network] if mariadb_enabled | default(false) and privatebin_database_mysql_hostname == mariadb_identifier and privatebin_container_network != mariadb_container_network else [])
+    ([mariadb_container_network] if mariadb_enabled | default(false) and privatebin_database_mysql_hostname == mariadb_connection_hostname and privatebin_container_network != mariadb_container_network else [])
     +
     ([postgres_container_network] if postgres_enabled | default(false) and privatebin_database_postgres_hostname == postgres_identifier and privatebin_container_network != postgres_container_network else [])
   }}
@@ -7627,7 +7627,7 @@ semaphore_gid: "{{ mash_playbook_gid }}"
 
 semaphore_systemd_required_services_list_auto: |
   {{
-    ([mariadb_identifier ~ '.service'] if mariadb_enabled | default(false) and semaphore_database_mysql_hostname == mariadb_identifier else [])
+    ([mariadb_identifier ~ '.service'] if mariadb_enabled | default(false) and semaphore_database_mysql_hostname == mariadb_connection_hostname else [])
     +
     ([postgres_identifier ~ '.service'] if postgres_enabled | default(false) and semaphore_database_postgres_hostname == postgres_identifier else [])
   }}
@@ -7638,7 +7638,7 @@ semaphore_container_additional_networks: |
     +
     ([exim_relay_container_network | default('mash-exim-relay')] if (exim_relay_enabled | default(false) and semaphore_environment_variables_email_host == exim_relay_identifier | default('mash-exim-relay') and semaphore_container_network != exim_relay_container_network) else [])
     +
-    ([mariadb_container_network] if mariadb_enabled | default(false) and semaphore_database_mysql_hostname == mariadb_identifier and semaphore_container_network != mariadb_container_network and semaphore_database_dialect == 'mysql' else [])
+    ([mariadb_container_network] if mariadb_enabled | default(false) and semaphore_database_mysql_hostname == mariadb_connection_hostname and semaphore_container_network != mariadb_container_network and semaphore_database_dialect == 'mysql' else [])
     +
     ([postgres_container_network] if postgres_enabled | default(false) and semaphore_database_postgres_hostname == postgres_identifier and semaphore_container_network != postgres_container_network and semaphore_database_dialect == 'postgres'  else [])
   }}
@@ -7741,7 +7741,7 @@ sftpgo_gid: "{{ mash_playbook_gid }}"
 
 sftpgo_systemd_required_services_list_auto: |
   {{
-    ([mariadb_identifier ~ '.service'] if mariadb_enabled | default(false) and sftpgo_database_mysql_hostname == mariadb_identifier else [])
+    ([mariadb_identifier ~ '.service'] if mariadb_enabled | default(false) and sftpgo_database_mysql_hostname == mariadb_connection_hostname else [])
     +
     ([postgres_identifier ~ '.service'] if postgres_enabled | default(false) and sftpgo_database_postgresql_hostname == postgres_identifier else [])
   }}
@@ -7752,7 +7752,7 @@ sftpgo_container_additional_networks_auto: |
     +
     ([exim_relay_container_network | default('mash-exim-relay')] if (exim_relay_enabled | default(false) and sftpgo_environment_variables_smtp_host == exim_relay_identifier | default('mash-exim-relay') and sftpgo_container_network != exim_relay_container_network) else [])
     +
-    ([mariadb_container_network] if mariadb_enabled | default(false) and sftpgo_database_mysql_hostname == mariadb_identifier and sftpgo_container_network != mariadb_container_network and sftpgo_environment_variables_data_provider_driver == 'mysql' else [])
+    ([mariadb_container_network] if mariadb_enabled | default(false) and sftpgo_database_mysql_hostname == mariadb_connection_hostname and sftpgo_container_network != mariadb_container_network and sftpgo_environment_variables_data_provider_driver == 'mysql' else [])
     +
     ([postgres_container_network] if postgres_enabled | default(false) and sftpgo_database_postgresql_hostname == postgres_identifier and sftpgo_container_network != postgres_container_network and sftpgo_environment_variables_data_provider_driver == 'postgresql' else [])
   }}
@@ -7915,14 +7915,14 @@ syncstorage_rs_docker_gid: "{{ mash_playbook_gid }}"
 
 syncstorage_rs_docker_systemd_required_services_list_auto: |
   {{
-    ([mariadb_identifier ~ '.service'] if mariadb_enabled and syncstorage_rs_docker_environment_variable_database_hostname == mariadb_identifier else [])
+    ([mariadb_identifier ~ '.service'] if mariadb_enabled and syncstorage_rs_docker_environment_variable_database_hostname == mariadb_connection_hostname else [])
   }}
 
 syncstorage_rs_docker_container_additional_networks_auto: |
   {{
     ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
     +
-    ([mariadb_container_network] if mariadb_enabled and syncstorage_rs_docker_environment_variable_database_hostname == mariadb_identifier and syncstorage_rs_docker_container_network != mariadb_container_network else [])
+    ([mariadb_container_network] if mariadb_enabled and syncstorage_rs_docker_environment_variable_database_hostname == mariadb_connection_hostname and syncstorage_rs_docker_container_network != mariadb_container_network else [])
   }}
 
 syncstorage_rs_docker_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
@@ -8496,14 +8496,14 @@ wordpress_gid: "{{ mash_playbook_gid }}"
 
 wordpress_systemd_required_systemd_services_list_auto: |
   {{
-    ([(mariadb_identifier | default('mash-mariadb')) ~ '.service'] if mariadb_enabled | default(false) and wordpress_database_hostname == mariadb_identifier | default('mash-mariadb') else [])
+    ([(mariadb_identifier | default('mash-mariadb')) ~ '.service'] if mariadb_enabled | default(false) and wordpress_database_hostname == mariadb_connection_hostname | default('mash-mariadb') else [])
   }}
 
 wordpress_container_additional_networks_auto: |
   {{
     ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
     +
-    ([mariadb_identifier | default('mash-mariadb')] if mariadb_enabled | default(false) and wordpress_database_hostname == mariadb_identifier | default('mash-mariadb') and wordpress_container_network != mariadb_identifier | default('mash-mariadb') else [])
+    ([mariadb_identifier | default('mash-mariadb')] if mariadb_enabled | default(false) and wordpress_database_hostname == mariadb_connection_hostname | default('mash-mariadb') and wordpress_container_network != mariadb_identifier | default('mash-mariadb') else [])
   }}
 
 wordpress_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
@@ -8623,14 +8623,14 @@ yourls_gid: "{{ mash_playbook_gid }}"
 
 yourls_systemd_required_services_list_auto: |
   {{
-    ([mariadb_identifier ~ '.service'] if mariadb_enabled and yourls_environment_variable_db_hostname == mariadb_identifier else [])
+    ([mariadb_identifier ~ '.service'] if mariadb_enabled and yourls_environment_variable_db_hostname == mariadb_connection_hostname else [])
   }}
 
 yourls_container_additional_networks_auto: |
   {{
     ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
     +
-    ([mariadb_container_network] if mariadb_enabled | default(false) and yourls_environment_variable_db_hostname == mariadb_identifier and yourls_container_network != mariadb_container_network else [])
+    ([mariadb_container_network] if mariadb_enabled | default(false) and yourls_environment_variable_db_hostname == mariadb_connection_hostname and yourls_container_network != mariadb_container_network else [])
   }}
 
 yourls_environment_variable_cookiekey: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'secret.yourls', rounds=655555) | to_uuid }}"
