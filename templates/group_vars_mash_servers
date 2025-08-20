@@ -913,10 +913,10 @@ mash_playbook_postgres_managed_databases_auto_itemized:
   - |-
     {{
       ({
-        'name': forgejo_config_database_name,
-        'username': forgejo_config_database_username,
-        'password': forgejo_config_database_password,
-      } if forgejo_enabled and forgejo_config_database_hostname == postgres_identifier else omit)
+        'name': forgejo_database_name,
+        'username': forgejo_database_username,
+        'password': forgejo_database_password,
+      } if forgejo_enabled and forgejo_database_hostname == postgres_identifier else omit)
     }}
   # /role-specific:forgejo
 
@@ -2979,14 +2979,14 @@ forgejo_gid: "{{ mash_playbook_gid }}"
 
 forgejo_systemd_required_services_list_auto: |
   {{
-    ([postgres_identifier ~ '.service'] if postgres_enabled and forgejo_config_database_hostname == postgres_identifier else [])
+    ([postgres_identifier ~ '.service'] if postgres_enabled and forgejo_database_hostname == postgres_identifier else [])
   }}
 
 forgejo_container_additional_networks_auto: |
   {{
     ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
     +
-    ([postgres_container_network] if postgres_enabled and forgejo_config_database_hostname == postgres_identifier and forgejo_container_network != postgres_container_network else [])
+    ([postgres_container_network] if postgres_enabled and forgejo_database_hostname == postgres_identifier and forgejo_container_network != postgres_container_network else [])
     +
     ([exim_relay_container_network | default('mash-exim-relay')] if (exim_relay_enabled | default(false) and forgejo_config_mailer_smtp_addr == exim_relay_identifier | default('mash-exim-relay') and forgejo_container_network != exim_relay_container_network) else [])
   }}
@@ -3005,10 +3005,10 @@ forgejo_config_mailer_protocol: "{{ 'smtp' if exim_relay_enabled else '' }}"
 # /role-specific:exim_relay
 
 # role-specific:postgres
-forgejo_config_database_hostname: "{{ postgres_identifier if postgres_enabled else '' }}"
-forgejo_config_database_port: "{{ postgres_connection_port if postgres_enabled else '5432' }}"
-forgejo_config_database_username: "forgejo"
-forgejo_config_database_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'db.forgejo', rounds=655555) | to_uuid }}"
+forgejo_database_hostname: "{{ postgres_identifier if postgres_enabled else '' }}"
+forgejo_database_port: "{{ postgres_connection_port if postgres_enabled else '5432' }}"
+forgejo_database_username: "forgejo"
+forgejo_database_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'db.forgejo', rounds=655555) | to_uuid }}"
 # /role-specific:postgres
 
 # role-specific:traefik
