@@ -146,7 +146,7 @@ Having configured `vars.yml` for the dedicated instance, add the following confi
 # Add the base configuration as specified above
 
 # Point Funkwhale to its dedicated Valkey instance
-funkwhale_config_redis_hostname: mash-funkwhale-valkey
+funkwhale_redis_hostname: mash-funkwhale-valkey
 
 # Make sure the Funkwhale API service (mash-funkwhale-api.service) starts after its dedicated Valkey service
 funkwhale_api_systemd_required_services_list_custom:
@@ -196,7 +196,7 @@ valkey_enabled: true
 # Add the base configuration as specified above
 
 # Point Funkwhale to the shared Valkey instance
-funkwhale_config_redis_hostname: "{{ valkey_identifier }}"
+funkwhale_redis_hostname: "{{ valkey_identifier }}"
 
 # Make sure the Funkwhale API service (mash-funkwhale-api.service) starts after the shared Valkey service
 funkwhale_api_systemd_required_services_list_custom:
