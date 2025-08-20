@@ -7656,7 +7656,7 @@ semaphore_environment_variables_email_sender: "{{ exim_relay_sender_address if e
 
 # role-specific:mariadb
 semaphore_database_mysql_hostname: "{{ mariadb_identifier if mariadb_enabled else '' }}"
-semaphore_database_mysql_port: "{{ '3306' if mariadb_enabled else '' }}"
+semaphore_database_mysql_port: "{{ mariadb_connection_port if mariadb_enabled | default(false) else '3306' }}"
 semaphore_database_mysql_username: "{{ semaphore_identifier }}"
 semaphore_database_mysql_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'semaphore.m', rounds=655555) | to_uuid }}"
 # /role-specific:mariadb
