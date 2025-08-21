@@ -3007,7 +3007,6 @@ forgejo_config_mailer_protocol: "{{ 'smtp' if exim_relay_enabled else '' }}"
 # role-specific:postgres
 forgejo_database_hostname: "{{ postgres_connection_hostname if postgres_enabled else '' }}"
 forgejo_database_port: "{{ postgres_connection_port if postgres_enabled else '5432' }}"
-forgejo_database_username: "forgejo"
 forgejo_database_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'db.forgejo', rounds=655555) | to_uuid }}"
 # /role-specific:postgres
 
@@ -5612,7 +5611,6 @@ matomo_config_database_hostname: "{{ mariadb_connection_hostname if mariadb_enab
 matomo_config_database_port: "{{ mariadb_connection_port if mariadb_enabled | default(false) else '3306' }}"
 matomo_config_database_username: "matomo"
 matomo_config_database_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'db.matomo', rounds=655555) | to_uuid }}"
-matomo_config_database_name: "matomo"
 matomo_config_database_adapter: "mysql"
 matomo_config_database_tables_prefix: "matomo_"
 # /role-specific:mariadb
@@ -5772,7 +5770,6 @@ mobilizon_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_pro
 
 # role-specific:postgis
 mobilizon_database_hostname: "{{ postgis_identifier if postgis_enabled else '' }}"
-mobilizon_database_name: "mobilizon"
 mobilizon_database_port: "{{ '5432' if postgis_enabled else '' }}"
 mobilizon_database_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'db.mobilizon', rounds=655555) | to_uuid }}"
 mobilizon_database_username: "mobilizon"
@@ -7532,7 +7529,6 @@ roundcube_database_hostname: "{{ postgres_connection_hostname if postgres_enable
 roundcube_database_port: "{{ postgres_connection_port if postgres_enabled else '5432' }}"
 roundcube_database_username: "{{ 'roundcube' if postgres_enabled else '' }}"
 roundcube_database_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'db.roundcube', rounds=655555) | to_uuid }}"
-roundcube_database_name: "{{ 'roundcube' if postgres_enabled else '' }}"
 # /role-specific:postgres
 
 # role-specific:traefik
