@@ -5548,7 +5548,7 @@ mash_playbook_mariadb_managed_databases_auto_itemized:
         'name': wordpress_database_name,
         'username': wordpress_database_username,
         'password': wordpress_database_password,
-      } if wordpress_enabled and wordpress_database_hostname == mariadb_connection_hostname | default('mash-mariadb') else omit)
+      } if wordpress_enabled and wordpress_database_hostname == mariadb_connection_hostname else omit)
     }}
   # /role-specific:wordpress
 
@@ -5559,7 +5559,7 @@ mash_playbook_mariadb_managed_databases_auto_itemized:
         'name': yourls_environment_variable_db_name,
         'username': yourls_environment_variable_db_user,
         'password': yourls_environment_variable_db_pass,
-      } if yourls_enabled and yourls_environment_variable_db_hostname == mariadb_connection_hostname | default('mash-mariadb') else omit)
+      } if yourls_enabled and yourls_environment_variable_db_hostname == mariadb_connection_hostname else omit)
     }}
   # /role-specific:yourls
 
@@ -8504,14 +8504,14 @@ wordpress_gid: "{{ mash_playbook_gid }}"
 
 wordpress_systemd_required_systemd_services_list_auto: |
   {{
-    ([(mariadb_identifier | default('mash-mariadb')) ~ '.service'] if mariadb_enabled | default(false) and wordpress_database_hostname == mariadb_connection_hostname | default('mash-mariadb') else [])
+    ([mariadb_identifier ~ '.service'] if mariadb_enabled | default(false) and wordpress_database_hostname == mariadb_connection_hostname else [])
   }}
 
 wordpress_container_additional_networks_auto: |
   {{
     ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
     +
-    ([mariadb_container_network] if mariadb_enabled | default(false) and wordpress_database_hostname == mariadb_connection_hostname | default('mash-mariadb') and wordpress_container_network != mariadb_identifier | default('mash-mariadb') else [])
+    ([mariadb_container_network] if mariadb_enabled | default(false) and wordpress_database_hostname == mariadb_connection_hostname and wordpress_container_network != mariadb_identifier else [])
   }}
 
 wordpress_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
