@@ -177,10 +177,10 @@ YOUR-SERVICE_container_additional_networks_auto: |
 [...]
 
 # role-specific:postgres
-YOUR-SERVICE_database_hostname: "{{ postgres_identifier if postgres_enabled else '' }}"
-YOUR-SERVICE_database_port: "{{ '5432' if postgres_enabled else '' }}"
-YOUR-SERVICE_database_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'db.yourservice', rounds=655555) | to_uuid }}"
+YOUR-SERVICE_database_hostname: "{{ postgres_connection_hostname if postgres_enabled else '' }}"
+YOUR-SERVICE_database_port: "{{ postgres_connection_port if postgres_enabled else '5432' }}"
 YOUR-SERVICE_database_username: "{{ YOUR-SERVICE_identifier }}"
+YOUR-SERVICE_database_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'db.yourservice', rounds=655555) | to_uuid }}"
 # /role-specific:postgres
 
 ########################################################################
