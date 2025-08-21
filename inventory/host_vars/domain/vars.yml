@@ -235,6 +235,9 @@ nextcloud_collabora_app_wopi_url: "{{ collabora_online_url }}"
 # you may need to adjust the list of networks.
 # If necessary, redefined the `nextcloud_collabora_app_wopi_allowlist` environment variable here.
 
+nextcloud_environment_variables_additional_variables: |
+  PHP_MEMORY_LIMIT=1024M
+
 ########################################################################
 #                                                                      #
 # /nextcloud                                                           #
