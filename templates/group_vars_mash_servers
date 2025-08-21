@@ -883,7 +883,7 @@ mash_playbook_postgres_managed_databases_auto_itemized:
         'name': etherpad_database_name,
         'username': etherpad_database_username,
         'password': etherpad_database_password,
-      } if etherpad_enabled and etherpad_database_hostname == postgres_identifier else omit)
+      } if etherpad_enabled and etherpad_database_hostname == postgres_identifier and etherpad_database_type == 'postgres' else omit)
     }}
   # /role-specific:etherpad
 
@@ -916,7 +916,7 @@ mash_playbook_postgres_managed_databases_auto_itemized:
         'name': forgejo_database_name,
         'username': forgejo_database_postgres_username,
         'password': forgejo_database_postgres_password,
-      } if forgejo_enabled and forgejo_database_postgres_hostname == postgres_identifier else omit)
+      } if forgejo_enabled and forgejo_database_postgres_hostname == postgres_identifier and forgejo_database_type == 'postgres' else omit)
     }}
   # /role-specific:forgejo
 
@@ -927,7 +927,7 @@ mash_playbook_postgres_managed_databases_auto_itemized:
         'name': freescout_database_name,
         'username': freescout_database_username,
         'password': freescout_database_password,
-      } if freescout_enabled and freescout_database_hostname == postgres_identifier else omit)
+      } if freescout_enabled and freescout_database_hostname == postgres_identifier and freescout_database_type == 'pgsql' else omit)
     }}
   # /role-specific:freescout
 
@@ -971,7 +971,7 @@ mash_playbook_postgres_managed_databases_auto_itemized:
         'name': gitea_database_name,
         'username': gitea_database_username,
         'password': gitea_database_password,
-      } if gitea_enabled and gitea_database_hostname == postgres_identifier else omit)
+      } if gitea_enabled and gitea_database_hostname == postgres_identifier and gitea_database_type == 'postgres' else omit)
     }}
   # /role-specific:gitea
 
@@ -1004,7 +1004,7 @@ mash_playbook_postgres_managed_databases_auto_itemized:
         'name': ihatemoney_database_name,
         'username': ihatemoney_database_username,
         'password': ihatemoney_database_password,
-      } if ihatemoney_enabled and ihatemoney_database_hostname == postgres_identifier else omit)
+      } if ihatemoney_enabled and ihatemoney_database_hostname == postgres_identifier and ihatemoney_database_type == 'postgres' else omit)
     }}
   # /role-specific:ihatemoney
 
@@ -1015,7 +1015,7 @@ mash_playbook_postgres_managed_databases_auto_itemized:
         'name': ilmo_database_name,
         'username': ilmo_database_username,
         'password': ilmo_database_password,
-      } if ilmo_enabled and ilmo_database_host == postgres_identifier else omit)
+      } if ilmo_enabled and ilmo_database_host == postgres_identifier and ilmo_database_type == 'postgresql' else omit)
     }}
   # /role-specific:ilmo
 
@@ -1125,7 +1125,7 @@ mash_playbook_postgres_managed_databases_auto_itemized:
         'name': nextcloud_database_name,
         'username': nextcloud_database_username,
         'password': nextcloud_database_password,
-      } if nextcloud_enabled and nextcloud_database_hostname == postgres_identifier else omit)
+      } if nextcloud_enabled and nextcloud_database_hostname == postgres_identifier and nextcloud_database_type == 'postgres' else omit)
     }}
   # /role-specific:nextcloud
 
@@ -1136,7 +1136,7 @@ mash_playbook_postgres_managed_databases_auto_itemized:
         'name': notfellchen_database_name,
         'username': notfellchen_database_username,
         'password': notfellchen_database_password,
-      } if notfellchen_enabled and notfellchen_database_host == postgres_identifier else omit)
+      } if notfellchen_enabled and notfellchen_database_host == postgres_identifier and notfellchen_database_type == 'postgresql' else omit)
     }}
   # /role-specific:notfellchen
 
@@ -1202,7 +1202,7 @@ mash_playbook_postgres_managed_databases_auto_itemized:
         'name': privatebin_database_postgres_name,
         'username': privatebin_database_postgres_username,
         'password': privatebin_database_postgres_password,
-      } if privatebin_enabled and privatebin_database_postgres_hostname == postgres_identifier else omit)
+      } if privatebin_enabled and privatebin_database_postgres_hostname == postgres_identifier and privatebin_config_model == 'PostgreSQL' else omit)
     }}
   # /role-specific:privatebin
 
@@ -1224,7 +1224,7 @@ mash_playbook_postgres_managed_databases_auto_itemized:
         'name': redmine_database_name,
         'username': redmine_database_username,
         'password': redmine_database_password,
-      } if redmine_enabled and redmine_database_hostname == postgres_identifier else omit)
+      } if redmine_enabled and redmine_database_hostname == postgres_identifier and redmine_database_type == 'postgresql' else omit)
     }}
   # /role-specific:redmine
 
@@ -1235,7 +1235,7 @@ mash_playbook_postgres_managed_databases_auto_itemized:
         'name': roundcube_database_name,
         'username': roundcube_database_username,
         'password': roundcube_database_password,
-      } if roundcube_enabled and roundcube_database_hostname == postgres_identifier else omit)
+      } if roundcube_enabled and roundcube_database_hostname == postgres_identifier and roundcube_database_type == 'postgresql' else omit)
     }}
   # /role-specific:roundcube
 
@@ -1246,7 +1246,7 @@ mash_playbook_postgres_managed_databases_auto_itemized:
         'name': semaphore_database_name,
         'username': semaphore_database_postgres_username,
         'password': semaphore_database_postgres_password,
-      } if semaphore_enabled and semaphore_database_postgres_hostname == postgres_identifier else omit)
+      } if semaphore_enabled and semaphore_database_postgres_hostname == postgres_identifier and semaphore_database_type == 'postgres' else omit)
     }}
   # /role-specific:semaphore
 
@@ -1257,7 +1257,7 @@ mash_playbook_postgres_managed_databases_auto_itemized:
         'name': sftpgo_database_postgresql_name,
         'username': sftpgo_database_postgresql_username,
         'password': sftpgo_database_postgresql_password,
-      } if sftpgo_enabled and sftpgo_database_postgresql_hostname == postgres_identifier else omit)
+      } if sftpgo_enabled and sftpgo_database_postgresql_hostname == postgres_identifier and sftpgo_environment_variables_data_provider_driver == 'postgresql' else omit)
     }}
   # /role-specific:sftpgo
 
@@ -1268,7 +1268,7 @@ mash_playbook_postgres_managed_databases_auto_itemized:
         'name': tandoor_database_name,
         'username': tandoor_database_username,
         'password': tandoor_database_password,
-      } if tandoor_enabled and tandoor_database_hostname == postgres_identifier else omit)
+      } if tandoor_enabled and tandoor_database_hostname == postgres_identifier and tandoor_database_type == 'postgres' else omit)
     }}
   # /role-specific:tandoor
 
@@ -1290,7 +1290,7 @@ mash_playbook_postgres_managed_databases_auto_itemized:
         'name': woodpecker_ci_server_database_datasource_db_name,
         'username': woodpecker_ci_server_database_datasource_username,
         'password': woodpecker_ci_server_database_datasource_password,
-      } if woodpecker_ci_server_enabled and woodpecker_ci_server_database_datasource_hostname == postgres_identifier else omit)
+      } if woodpecker_ci_server_enabled and woodpecker_ci_server_database_datasource_hostname == postgres_identifier and woodpecker_ci_server_environment_variables_database_driver == 'postgres' else omit)
     }}
   # /role-specific:woodpecker_ci_server
 
@@ -8542,7 +8542,7 @@ woodpecker_ci_server_container_labels_traefik_docker_network: "{{ mash_playbook_
 woodpecker_ci_server_container_labels_traefik_compression_middleware_enabled: "{{ mash_playbook_reverse_proxy_traefik_middleware_compession_enabled }}"
 woodpecker_ci_server_container_labels_traefik_compression_middleware_name: "{{ mash_playbook_reverse_proxy_traefik_middleware_compession_name if mash_playbook_reverse_proxy_traefik_middleware_compession_enabled else '' }}"
 
-woodpecker_ci_server_database_driver: postgres
+woodpecker_ci_server_environment_variables_database_driver: postgres
 woodpecker_ci_server_database_datasource: "postgres://{{ woodpecker_ci_server_database_datasource_username }}:{{ woodpecker_ci_server_database_datasource_password }}@{{ woodpecker_ci_server_database_datasource_hostname }}:{{ woodpecker_ci_server_database_datasource_port }}/{{ woodpecker_ci_server_database_datasource_db_name }}?sslmode=disable"
 
 # role-specific:postgres
