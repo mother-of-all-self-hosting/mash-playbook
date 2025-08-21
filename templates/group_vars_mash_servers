@@ -7648,7 +7648,7 @@ semaphore_container_additional_networks: |
     +
     ([mariadb_container_network] if mariadb_enabled | default(false) and semaphore_database_mysql_hostname == mariadb_connection_hostname and semaphore_container_network != mariadb_container_network and semaphore_database_type == 'mysql' else [])
     +
-    ([postgres_container_network] if postgres_enabled | default(false) and semaphore_database_postgres_hostname == postgres_identifier and semaphore_container_network != postgres_container_network and semaphore_database_type == 'postgres'  else [])
+    ([postgres_container_network] if postgres_enabled | default(false) and semaphore_database_postgres_hostname == postgres_identifier and semaphore_container_network != postgres_container_network and semaphore_database_type == 'postgres' else [])
   }}
 
 semaphore_database_type: "{{ 'postgres' if postgres_enabled else 'sqlite' }}"
