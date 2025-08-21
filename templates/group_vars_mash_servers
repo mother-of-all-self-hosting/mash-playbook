@@ -3342,7 +3342,6 @@ gitea_config_mailer_protocol: "{{ 'smtp' if exim_relay_enabled else '' }}"
 # role-specific:postgres
 gitea_database_hostname: "{{ postgres_connection_hostname if postgres_enabled else '' }}"
 gitea_database_port: "{{ postgres_connection_port if postgres_enabled else '5432' }}"
-gitea_database_username: "gitea"
 gitea_database_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'db.gitea', rounds=655555) | to_uuid }}"
 # /role-specific:postgres
 
