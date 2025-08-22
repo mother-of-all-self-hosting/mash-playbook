@@ -3312,7 +3312,7 @@ gitea_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_di
 gitea_uid: "{{ mash_playbook_uid }}"
 gitea_gid: "{{ mash_playbook_gid }}"
 
-gitea_systemd_required_systemd_services_list_auto: |
+gitea_systemd_required_services_list_auto: |
   {{
     ([postgres_identifier ~ '.service'] if postgres_enabled and gitea_database_hostname == postgres_identifier else [])
   }}
