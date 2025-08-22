@@ -3312,7 +3312,7 @@ gitea_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_di
 gitea_uid: "{{ mash_playbook_uid }}"
 gitea_gid: "{{ mash_playbook_gid }}"
 
-gitea_systemd_required_systemd_services_list_auto: |
+gitea_systemd_required_services_list_auto: |
   {{
     ([postgres_identifier ~ '.service'] if postgres_enabled and gitea_database_hostname == postgres_identifier else [])
   }}
@@ -3342,7 +3342,6 @@ gitea_config_mailer_protocol: "{{ 'smtp' if exim_relay_enabled else '' }}"
 # role-specific:postgres
 gitea_database_hostname: "{{ postgres_connection_hostname if postgres_enabled else '' }}"
 gitea_database_port: "{{ postgres_connection_port if postgres_enabled else '5432' }}"
-gitea_database_username: "gitea"
 gitea_database_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'db.gitea', rounds=655555) | to_uuid }}"
 # /role-specific:postgres
 
