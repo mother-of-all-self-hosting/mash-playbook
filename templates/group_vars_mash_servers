@@ -2676,7 +2676,7 @@ etherpad_gid: "{{ mash_playbook_gid }}"
 
 etherpad_systemd_required_services_list_auto: |
   {{
-    ([postgres_identifier ~ '.service'] if postgres_enabled | default(false) and etherpad_database_hostname == postgres_identifier else [])
+    ([postgres_identifier ~ '.service'] if postgres_enabled and etherpad_database_hostname == postgres_identifier else [])
   }}
 
 etherpad_container_additional_networks_auto: |
@@ -2833,7 +2833,7 @@ firezone_gid: "{{ mash_playbook_gid }}"
 
 firezone_systemd_required_services_list_auto: |
   {{
-    ([postgres_identifier ~ '.service'] if postgres_enabled | default(false) and firezone_database_hostname == postgres_identifier else [])
+    ([postgres_identifier ~ '.service'] if postgres_enabled and firezone_database_hostname == postgres_identifier else [])
   }}
 
 firezone_container_additional_networks_auto: |
