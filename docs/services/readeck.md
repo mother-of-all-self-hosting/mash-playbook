@@ -13,7 +13,7 @@ The playbook can install and configure [Readeck](https://readeck.org) for you.
 
 Readeck is a simple web application that lets you save the precious readable content of web pages you like and want to keep forever.
 
-See the project's [documentation](https://readeck.org/en/docs/) to learn what Calibre-Web does and why it might be useful to you.
+See the project's [documentation](https://readeck.org/en/docs/) to learn what Readeck does and why it might be useful to you.
 
 ## Dependencies
 
