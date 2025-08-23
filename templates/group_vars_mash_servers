@@ -8497,7 +8497,7 @@ wordpress_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_bas
 wordpress_uid: "{{ mash_playbook_uid }}"
 wordpress_gid: "{{ mash_playbook_gid }}"
 
-wordpress_systemd_required_systemd_services_list_auto: |
+wordpress_systemd_required_services_list_auto: |
   {{
     ([mariadb_identifier ~ '.service'] if mariadb_enabled and wordpress_database_hostname == mariadb_connection_hostname else [])
   }}
