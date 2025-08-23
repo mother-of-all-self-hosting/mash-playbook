@@ -29,7 +29,7 @@ InfluxDB is a self-hosted time-series database.
 
 See the project's [documentation](https://github.com/docker-library/docs/blob/master/influxdb/README.md) to learn what InfluxDB does and why it might be useful to you.
 
-For details about configuring the [Ansible role for Firezone](https://github.com/mother-of-all-self-hosting/ansible-role-influxdb), you can check them via:
+For details about configuring the [Ansible role for InfluxDB](https://github.com/mother-of-all-self-hosting/ansible-role-influxdb), you can check them via:
 - 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-influxdb/blob/main/docs/configuring-influxdb.md) online
 - 📁 `roles/galaxy/influxdb/docs/configuring-influxdb.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
