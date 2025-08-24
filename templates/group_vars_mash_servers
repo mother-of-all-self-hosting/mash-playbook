@@ -2439,8 +2439,9 @@ docmost_environment_variable_redis_url: "redis://{{ docmost_redis_hostname }}:{{
 docmost_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
 docmost_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
 
+docmost_mailer_enabled: "{{ exim_relay_enabled | default(false) }}"
+
 # role-specific:exim_relay
-docmost_mailer_enabled: "{{ exim_relay_enabled }}"
 docmost_environment_variable_smtp_host: "{{ exim_relay_identifier if exim_relay_enabled else '' }}"
 docmost_environment_variable_smtp_port: "{{ 8025 if exim_relay_enabled else '587' }}"
 docmost_environment_variable_mail_from_address: "{{ exim_relay_sender_address if exim_relay_enabled else '' }}"
