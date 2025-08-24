@@ -4760,7 +4760,6 @@ ilmo_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyabl
 # role-specific:postgres
 ilmo_database_host: "{{ postgres_connection_hostname if postgres_enabled else '' }}"
 ilmo_database_port: "{{ postgres_connection_port if postgres_enabled else '5432' }}"
-ilmo_database_username: "ilmo"
 ilmo_database_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'db.ilmo', rounds=655555) | to_uuid }}"
 # /role-specific:postgres
 
@@ -6198,7 +6197,6 @@ nextcloud_config_parameter_mail_domain: "{{ (exim_relay_sender_address | split('
 # role-specific:postgres
 nextcloud_database_hostname: "{{ postgres_connection_hostname if postgres_enabled else '' }}"
 nextcloud_database_port: "{{ postgres_connection_port if postgres_enabled else '5432' }}"
-nextcloud_database_username: "nextcloud"
 nextcloud_database_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'db.nextcloud', rounds=655555) | to_uuid }}"
 # /role-specific:postgres
 
@@ -6258,7 +6256,6 @@ notfellchen_sws_container_labels_traefik_tls_certResolver: "{{ notfellchen_conta
 # role-specific:postgres
 notfellchen_database_host: "{{ postgres_connection_hostname if postgres_enabled else '' }}"
 notfellchen_database_port: "{{ postgres_connection_port if postgres_enabled else '5432' }}"
-notfellchen_database_username: "notfellchen"
 notfellchen_database_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'db.nf', rounds=655555) | to_uuid }}"
 # /role-specific:postgres
 
