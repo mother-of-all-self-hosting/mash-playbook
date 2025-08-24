@@ -7684,7 +7684,7 @@ semaphore_container_additional_networks: |
     ([postgres_container_network] if postgres_enabled | default(false) and semaphore_database_postgres_hostname == postgres_identifier and semaphore_container_network != postgres_container_network and semaphore_database_type == 'postgres' else [])
   }}
 
-semaphore_database_type: "{{ 'postgres' if postgres_enabled else 'sqlite' }}"
+semaphore_database_type: "{{ 'postgres' if postgres_enabled | default(false) else 'sqlite' }}"
 
 semaphore_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
 semaphore_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
