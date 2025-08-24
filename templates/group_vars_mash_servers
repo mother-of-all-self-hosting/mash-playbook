@@ -2689,7 +2689,7 @@ etherpad_container_additional_networks_auto: |
   {{
     ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
     +
-    ([postgres_container_network] if postgres_enabled | default(false) and etherpad_database_hostname == postgres_identifier and etherpad_container_network != postgres_container_network else [])
+    ([postgres_container_network] if postgres_enabled and etherpad_database_hostname == postgres_identifier and etherpad_container_network != postgres_container_network else [])
   }}
 
 etherpad_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
@@ -2846,7 +2846,7 @@ firezone_container_additional_networks_auto: |
   {{
     ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
     +
-    ([postgres_container_network] if postgres_enabled | default(false) and firezone_database_hostname == postgres_identifier and firezone_container_network != postgres_container_network else [])
+    ([postgres_container_network] if postgres_enabled and firezone_database_hostname == postgres_identifier and firezone_container_network != postgres_container_network else [])
   }}
 
 firezone_generic_secret: "{{ mash_playbook_generic_secret_key }}"
@@ -5048,7 +5048,7 @@ joplin_server_container_additional_networks_auto: |
   {{
     ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
     +
-    ([postgres_container_network] if postgres_enabled | default(false) and joplin_server_environment_variable_database_hostname == postgres_identifier and joplin_server_container_network != postgres_container_network else [])
+    ([postgres_container_network] if postgres_enabled and joplin_server_environment_variable_database_hostname == postgres_identifier and joplin_server_container_network != postgres_container_network else [])
     +
     ([exim_relay_container_network | default('mash-exim-relay')] if (exim_relay_enabled | default(false) and joplin_server_environment_variable_mailer_host == exim_relay_identifier | default('mash-exim-relay') and joplin_server_container_network != exim_relay_container_network) else [])
   }}
