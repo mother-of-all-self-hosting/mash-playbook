@@ -5519,7 +5519,7 @@ mash_playbook_mariadb_managed_databases_auto_itemized:
         'name': forgejo_database_name,
         'username': forgejo_database_mysql_username,
         'password': forgejo_database_mysql_password,
-      } if forgejo_enabled and forgejo_database_mysql_hostname == mariadb_connection_hostname else omit)
+      } if forgejo_enabled and forgejo_database_mysql_hostname == mariadb_connection_hostname and forgejo_database_type == 'mysql' else omit)
     }}
   # /role-specific:forgejo
 
@@ -5541,7 +5541,7 @@ mash_playbook_mariadb_managed_databases_auto_itemized:
         'name': privatebin_database_mysql_name,
         'username': privatebin_database_mysql_username,
         'password': privatebin_database_mysql_password,
-      } if privatebin_enabled and privatebin_database_mysql_hostname == mariadb_connection_hostname else omit)
+      } if privatebin_enabled and privatebin_database_mysql_hostname == mariadb_connection_hostname and privatebin_config_model == 'MySQL' else omit)
     }}
   # /role-specific:privatebin
 
@@ -5552,7 +5552,7 @@ mash_playbook_mariadb_managed_databases_auto_itemized:
         'name': semaphore_database_name,
         'username': semaphore_database_mysql_username,
         'password': semaphore_database_mysql_password,
-      } if semaphore_enabled and semaphore_database_mysql_hostname == mariadb_connection_hostname else omit)
+      } if semaphore_enabled and semaphore_database_mysql_hostname == mariadb_connection_hostname and semaphore_database_type == 'mysql' else omit)
     }}
   # /role-specific:semaphore
 
@@ -5563,7 +5563,7 @@ mash_playbook_mariadb_managed_databases_auto_itemized:
         'name': sftpgo_database_mysql_name,
         'username': sftpgo_database_mysql_username,
         'password': sftpgo_database_mysql_password,
-      } if sftpgo_enabled and sftpgo_database_mysql_hostname == mariadb_connection_hostname else omit)
+      } if sftpgo_enabled and sftpgo_database_mysql_hostname == mariadb_connection_hostname and sftpgo_environment_variables_data_provider_driver == 'mysql' else omit)
     }}
   # /role-specific:sftpgo
 
