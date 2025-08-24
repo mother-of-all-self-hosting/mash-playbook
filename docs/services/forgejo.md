@@ -35,7 +35,7 @@ For details about configuring the [Ansible role for Forgejo](https://github.com/
 
 This service requires the following other services:
 
-- a [Postgres](postgres.md) database
+- (optional) [Postgres](postgres.md) / MySQL / [MariaDB](mariadb.md) database — Forgejo will default to [SQLite](https://www.sqlite.org/) if Postgres is not enabled
 - a [Traefik](traefik.md) reverse-proxy server
 
 ## Adjusting the playbook configuration
@@ -60,6 +60,18 @@ forgejo_path_prefix: /forgejo
 #                                                                      #
 ########################################################################
 ```
+
+### Select database to use (optional)
+
+By default Forgejo is configured to use Postgres, but you can choose other database such as SQLite and MySQL (MariaDB).
+
+To use MariaDB, add the following configuration to your `vars.yml` file:
+
+```yaml
+forgejo_database_type: mysql
+```
+
+See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-forgejo/blob/main/docs/configuring-forgejo.md#specify-database-optional) on the role's documentation for details.
 
 ### Configure SSH port for Forgejo (optional)
 
