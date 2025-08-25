@@ -8319,7 +8319,6 @@ vaultwarden_config_smtp_security: "{{ 'off' if exim_relay_enabled else 'starttls
 # role-specific:postgres
 vaultwarden_database_hostname: "{{ postgres_connection_hostname if postgres_enabled else '' }}"
 vaultwarden_database_port: "{{ postgres_connection_port if postgres_enabled else '5432' }}"
-vaultwarden_database_username: "vaultwarden"
 vaultwarden_database_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'db.vaultwarden', rounds=655555) | to_uuid }}"
 # /role-specific:postgres
 
