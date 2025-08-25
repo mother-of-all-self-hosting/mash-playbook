@@ -5819,7 +5819,6 @@ mobilizon_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_pro
 mobilizon_database_hostname: "{{ postgis_identifier if postgis_enabled else '' }}"
 mobilizon_database_port: "{{ '5432' if postgis_enabled else '' }}"
 mobilizon_database_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'db.mobilizon', rounds=655555) | to_uuid }}"
-mobilizon_database_username: "mobilizon"
 # /role-specific:postgis
 
 # role-specific:traefik
