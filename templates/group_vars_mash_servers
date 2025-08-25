@@ -7577,7 +7577,6 @@ roundcube_database_type: "{{ 'postgresql' if postgres_enabled else 'sqlite' }}"
 # role-specific:postgres
 roundcube_database_hostname: "{{ postgres_connection_hostname if postgres_enabled else '' }}"
 roundcube_database_port: "{{ postgres_connection_port if postgres_enabled else '5432' }}"
-roundcube_database_username: "{{ 'roundcube' if postgres_enabled else '' }}"
 roundcube_database_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'db.roundcube', rounds=655555) | to_uuid }}"
 # /role-specific:postgres
 
