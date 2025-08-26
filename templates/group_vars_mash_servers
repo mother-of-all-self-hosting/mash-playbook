@@ -5071,7 +5071,7 @@ joplin_server_container_labels_traefik_docker_network: "{{ mash_playbook_reverse
 joplin_server_environment_variable_mailer_enabled: "{{ exim_relay_enabled }}"
 joplin_server_environment_variable_mailer_host: "{{ exim_relay_identifier if exim_relay_enabled else '' }}"
 joplin_server_environment_variable_mailer_port: 8025
-joplin_server_environment_variable_mailer_noreply_email: "{{ exim_relay_sender_address if exim_relay_enabled else '' }}"
+joplin_server_environment_variable_mailer_from: "{{ exim_relay_sender_address if exim_relay_enabled else '' }}"
 joplin_server_environment_variable_mailer_security: MailerSecurity.None
 # /role-specific:exim_relay
 
