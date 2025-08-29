@@ -33,7 +33,6 @@ For details about configuring the [Ansible role for CODE](https://github.com/mot
 
 This service requires the following other services:
 
-- a [Postgres](postgres.md) database
 - a [Traefik](traefik.md) reverse-proxy server
 
 >[!NOTE]
