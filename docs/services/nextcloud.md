@@ -62,7 +62,7 @@ nextcloud_path_prefix: /nextcloud
 ########################################################################
 ```
 
-### Valkey
+### Valkey (optional)
 
 Valkey can **optionally** be enabled to improve Nextcloud performance and to prevent file locking problems. This playbook supports it, and you can set up a Valkey instance by enabling it on `vars.yml`.
 
