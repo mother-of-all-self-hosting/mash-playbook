@@ -310,7 +310,7 @@ Refer to [this blogpost by a third party](https://blog.cubieserver.de/2022/compl
 
 ### Collabora Online Development Edition
 
-On Nextcloud it is possible to integrate the Collabora Online Development Edition (CODE) office suite. This playbook supports it, and you can set up a CODE instance by enabling it on `vars.yml`. You can follow the [documentation](collabora-online.md) to install it.
+On Nextcloud it is possible to integrate the Collabora Online Development Edition (CODE) office suite. This playbook supports it, and you can set up a CODE instance by enabling it on `vars.yml`. You can follow the [documentation](code.md) to install it.
 
 After installing it, add the following configuration for Nextcloud to your `vars.yml` file:
 
