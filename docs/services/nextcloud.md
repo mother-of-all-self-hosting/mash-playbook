@@ -64,7 +64,7 @@ nextcloud_path_prefix: /nextcloud
 
 ### Valkey
 
-Valkey can **optionally** be enabled to improve Nextcloud performance. This playbook supports it, and you can set up a Valkey instance by enabling it on `vars.yml`.
+Valkey can **optionally** be enabled to improve Nextcloud performance and to prevent file locking problems. This playbook supports it, and you can set up a Valkey instance by enabling it on `vars.yml`.
 
 If Nextcloud is the sole service which requires Valkey on your server, it is fine to set up just a single Valkey instance. However, **it is not recommended if there are other services which require it, because sharing the Valkey instance has security concerns and possibly causes data conflicts**, as described on the [documentation for configuring Valkey](valkey.md). In this case, you should install a dedicated Valkey instance for each of them.
 
@@ -72,7 +72,7 @@ If you are unsure whether you will install other services along with Nextcloud o
 
 *See [below](#setting-up-a-shared-valkey-instance) for an instruction to install a shared instance.*
 
-💡 It is dubious whether using Valkey helps much, so we recommend that you **start without** it for a simpler deployment. To learn more, read the [Memory caching](https://docs.nextcloud.com/server/latest/admin_manual/configuration_server/caching_configuration.html) section of the Nextcloud documentation.
+💡 Though running Valkey is recommended, you can **start without** it for a simpler deployment. To learn more, read [this section](https://docs.nextcloud.com/server/latest/admin_manual/configuration_server/caching_configuration.html#id2) of the Nextcloud documentation about memory caching.
 
 #### Setting up a dedicated Valkey instance
 
