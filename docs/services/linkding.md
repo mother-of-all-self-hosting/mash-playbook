@@ -76,3 +76,7 @@ To get started, open the URL with a web browser, and log in with the superuser's
 ## Troubleshooting
 
 See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-linkding/blob/main/docs/configuring-linkding.md#troubleshooting) on the role's documentation for details.
+
+## Related services
+
+- [Readeck](readeck.md) — Bookmark manager and a read-later tool combined in one

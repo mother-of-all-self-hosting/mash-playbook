@@ -68,3 +68,7 @@ To get started, open the URL with a web browser, and create a user.
 ## Troubleshooting
 
 See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-readeck/blob/main/docs/configuring-readeck.md#troubleshooting) on the role's documentation for details.
+
+## Related services
+
+- [linkding](services/linkding.md) — Bookmark manager designed to be minimal and fast
