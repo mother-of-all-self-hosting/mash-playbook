@@ -28,7 +28,7 @@ Forgejo Runner is a runner to use with [Forgejo Actions](https://forgejo.org/doc
 See the project's [documentation](https://forgejo.org/docs/latest/admin/actions/runner-installation/) to learn what Forgejo Runner does and why it might be useful to you.
 
 > [!WARNING]
-> Upstream considers this software as being an **alpha release**, and [claims](https://code.forgejo.org/forgejo/runner#forgejo-runner) it should **not** be considered secure enough to deploy in production. Use at your own risk. Also note that the documentation does **not recommend** running Forgejo Runner on the same machine as the Forgejo instance for security reasons.
+> The projects' documentation does **not recommend** running Forgejo Runner on the same machine as the Forgejo instance for security reasons.
 
 ## Prerequisites
 

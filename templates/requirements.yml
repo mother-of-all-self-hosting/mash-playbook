@@ -1,7 +1,7 @@
 ---
 
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-adguard-home.git
-  version: v0.107.65-0
+  version: v0.107.65-1
   name: adguard_home
   activation_prefix: adguard_home_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-anki.git
@@ -9,7 +9,7 @@
   name: anki
   activation_prefix: anki_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-anonymousoverflow.git
-  version: v2024.8.23-6
+  version: v2024.8.23-7
   name: anonymousoverflow
   activation_prefix: anonymousoverflow_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-apisix-dashboard.git
@@ -21,7 +21,7 @@
   name: apisix_gateway
   activation_prefix: apisix_gateway_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-appsmith.git
-  version: v1.53.1-9
+  version: v1.73.1-0
   name: appsmith
   activation_prefix: appsmith_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-authelia.git
@@ -49,7 +49,7 @@
   name: calibre_web
   activation_prefix: calibre_web_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-changedetection.git
-  version: v0.50.8-0
+  version: v0.50.10-0
   name: changedetection
   activation_prefix: changedetection_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-cleanup.git
@@ -61,15 +61,15 @@
   name: clickhouse
   activation_prefix: clickhouse_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-collabora-online.git
-  version: v25.04.3.1.1-1
+  version: v25.04.5.1.1-1
   name: collabora_online
   activation_prefix: collabora_online_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-container-socket-proxy.git
-  version: v0.3.0-7
+  version: v0.4.0-0
   name: container_socket_proxy
   activation_prefix: mash_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-convertx.git
-  version: v0.14.1-4
+  version: v0.14.1-5
   name: convertx
   activation_prefix: convertx_
 - src: git+https://github.com/Bergruebe/ansible-role-couchdb.git
@@ -77,7 +77,7 @@
   name: couchdb
   activation_prefix: couchdb_
 - src: git+https://github.com/geerlingguy/ansible-role-docker
-  version: 7.5.0
+  version: 7.5.1
   name: docker
   activation_prefix: mash_playbook_docker_installation_enabled
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-docker-registry.git
@@ -85,7 +85,7 @@
   name: docker_registry
   activation_prefix: docker_registry_enabled
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-docker-registry-browser.git
-  version: v1.8.4-0
+  version: v1.8.5-0
   name: docker_registry_browser
   activation_prefix: docker_registry_browser_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-docker-registry-proxy.git
@@ -101,7 +101,7 @@
   name: docker_sdk_for_python
   activation_prefix: devture_docker_sdk_for_python_installation_enabled
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-docmost.git
-  version: v0.22.2-1
+  version: v0.22.2-2
   name: docmost
   activation_prefix: docmost_
 - src: git+https://github.com/shukon/ansible-role-dokuwiki.git
@@ -149,7 +149,7 @@
   name: firezone
   activation_prefix: firezone_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-fmd-server.git
-  version: v0.11.0-7
+  version: v0.11.0-8
   name: fmd_server
   activation_prefix: fmd_server_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-focalboard.git
@@ -157,7 +157,7 @@
   name: focalboard
   activation_prefix: focalboard_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-forgejo.git
-  version: v12.0.1-5
+  version: v12.0.1-7
   name: forgejo
   activation_prefix: forgejo_
 - src: git+https://git.sergiodj.net/sergiodj/ansible-role-forgejo-runner.git
@@ -177,11 +177,11 @@
   name: funkwhale
   activation_prefix: funkwhale_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-ghostfolio.git
-  version: v2.192.0-0
+  version: v2.193.0-0
   name: ghostfolio
   activation_prefix: ghostfolio_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-gitea.git
-  version: v1.24.5-3
+  version: v1.24.5-4
   name: gitea
   activation_prefix: gitea_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-gotosocial.git
@@ -189,7 +189,7 @@
   name: gotosocial
   activation_prefix: gotosocial_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-grafana.git
-  version: v11.6.5-0
+  version: v11.6.5-1
   name: grafana
   activation_prefix: grafana_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-headscale.git
@@ -197,11 +197,11 @@
   name: headscale
   activation_prefix: headscale_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-healthchecks.git
-  version: v3.10-3
+  version: v3.11-0
   name: healthchecks
   activation_prefix: healthchecks_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-homarr.git
-  version: v1.31.0-0
+  version: v1.34.0-0
   name: homarr
   activation_prefix: homarr_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-hubsite.git
@@ -221,7 +221,7 @@
   name: infisical
   activation_prefix: infisical_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-influxdb.git
-  version: v2.7.6-5
+  version: v2.7.12-0
   name: influxdb
   activation_prefix: influxdb_
 - src: git+https://github.com/spatterIight/ansible-role-jackett.git
@@ -237,7 +237,7 @@
   name: jitsi
   activation_prefix: jitsi_
 - src: git+https://codeberg.org/acioustick/ansible-role-joplin-server.git
-  version: v3.4.1-0
+  version: v3.4.2-0
   name: joplin_server
   activation_prefix: joplin_server_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-keycloak.git
@@ -281,7 +281,7 @@
   name: matomo
   activation_prefix: matomo_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-matterbridge.git
-  version: v1.26.0-8
+  version: v1.26.0-9
   name: matterbridge
   activation_prefix: matterbridge_
 - src: git+https://github.com/XHawk87/ansible-role-minecraft.git
@@ -293,7 +293,7 @@
   name: miniflux
   activation_prefix: miniflux_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-mobilizon.git
-  version: v4.1.0-0
+  version: v4.1.0-1
   name: mobilizon
   activation_prefix: mobilizon_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-mongodb.git
@@ -301,11 +301,11 @@
   name: mongodb
   activation_prefix: mongodb_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-mosquitto.git
-  version: v2.0.22-1
+  version: v2.0.22-2
   name: mosquitto
   activation_prefix: mosquitto_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-mozhi.git
-  version: v2025.6.25-0
+  version: v2025.6.25-1
   name: mozhi
   activation_prefix: mozhi_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-mrs.git
@@ -337,11 +337,11 @@
   name: notfellchen
   activation_prefix: notfellchen_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-ntfy.git
-  version: v2.14.0-0
+  version: v2.14.0-1
   name: ntfy
   activation_prefix: ntfy_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-oauth2-proxy.git
-  version: v7.12.0-0
+  version: v7.12.0-1
   name: oauth2_proxy
   activation_prefix: oauth2_proxy_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-outline.git
@@ -361,11 +361,11 @@
   name: oxitraffic
   activation_prefix: oxitraffic_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-paperless.git
-  version: v2.15.3-6
+  version: v2.15.3-8
   name: paperless
   activation_prefix: paperless_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-peertube.git
-  version: v7.2.3-4
+  version: v7.2.3-5
   name: peertube
   activation_prefix: peertube_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-plausible.git
@@ -425,7 +425,7 @@
   name: prometheus_ssh_exporter
   activation_prefix: prometheus_ssh_exporter_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-promtail.git
-  version: v3.5.3-1
+  version: v3.5.3-2
   name: promtail
   activation_prefix: promtail_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-qbittorrent.git
@@ -445,15 +445,15 @@
   name: reactflux
   activation_prefix: reactflux_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-readeck
-  version: v0.19.2-2
+  version: v0.19.2-3
   name: readeck
   activation_prefix: readeck_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-redis.git
-  version: v8-1
+  version: v8.2.1-0
   name: redis
   activation_prefix: redis_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-redlib.git
-  version: v2025.4.9-6
+  version: v2025.4.9-7
   name: redlib
   activation_prefix: redlib_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-redmine.git
@@ -461,11 +461,11 @@
   name: redmine
   activation_prefix: redmine_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-roundcube.git
-  version: v1.6.11-2
+  version: v1.6.11-3
   name: roundcube
   activation_prefix: roundcube_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-rumqttd.git
-  version: v0.19.0-6
+  version: v0.19.0-7
   name: rumqttd
   activation_prefix: rumqttd_
 - src: git+https://git.sergiodj.net/sergiodj/ansible-role-searxng.git
@@ -473,19 +473,19 @@
   name: searxng
   activation_prefix: searxng_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-semaphore.git
-  version: v2.16.18-1
+  version: v2.16.18-2
   name: semaphore
   activation_prefix: semaphore_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-send.git
-  version: v3.4.27-4
+  version: v3.4.27-5
   name: send
   activation_prefix: send_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-sftpgo.git
-  version: v2.6.6-1
+  version: v2.6.6-2
   name: sftpgo
   activation_prefix: sftpgo_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-soft_serve.git
-  version: v0.4.7-8
+  version: v0.10.0-0
   name: soft_serve
   activation_prefix: soft_serve_
 - src: git+https://github.com/spatterIight/ansible-role-sonarr.git
@@ -505,7 +505,7 @@
   name: swap
   activation_prefix: system_swap_
 - src: https://github.com/mother-of-all-self-hosting/ansible-role-syncstorage-rs-docker.git
-  version: v0.18.3-3
+  version: v0.18.3-4
   name: syncstorage_rs_docker
   activation_prefix: syncstorage_rs_docker_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-syncthing.git
@@ -525,7 +525,7 @@
   name: tandoor
   activation_prefix: tandoor_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-telegraf.git
-  version: v1.35.4-0
+  version: v1.35.4-1
   name: telegraf
   activation_prefix: telegraf_
 - src: git+https://github.com/devture/com.devture.ansible.role.timesync.git
@@ -533,7 +533,7 @@
   name: timesync
   activation_prefix: devture_timesync_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-traefik.git
-  version: v3.5.0-2
+  version: v3.5.1-0
   name: traefik
   activation_prefix: mash_
 - src: git+https://github.com/Bergruebe/ansible-role-tsdproxy.git
@@ -541,7 +541,7 @@
   name: tsdproxy
   activation_prefix: tsdproxy_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-uptime_kuma.git
-  version: v1.23.16-7
+  version: v1.23.16-8
   name: uptime_kuma
   activation_prefix: uptime_kuma_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-valkey.git
@@ -549,7 +549,7 @@
   name: valkey
   activation_prefix: valkey_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-vaultwarden.git
-  version: v1.34.3-0
+  version: v1.34.3-2
   name: vaultwarden
   activation_prefix: vaultwarden_
 - src: git+https://github.com/moan0s/ansible-role-versatiles.git
@@ -569,11 +569,11 @@
   name: woodpecker_ci_agent
   activation_prefix: woodpecker_ci_agent_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-woodpecker-ci-server.git
-  version: v3.9.0-0
+  version: v3.9.0-1
   name: woodpecker_ci_server
   activation_prefix: woodpecker_ci_server_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-wordpress
-  version: v6.8.2-2
+  version: v6.8.2-3
   name: wordpress
   activation_prefix: wordpress_
 - src: git+https://github.com/ZenKyma/ansible-role-writefreely.git
@@ -581,10 +581,10 @@
   name: writefreely
   activation_prefix: writefreely_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-yacy.git
-  version: v1.93-2
+  version: v1.93.2-1
   name: yacy
   activation_prefix: yacy_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-yourls.git
-  version: v1.10.2-2
+  version: v1.10.2-3
   name: yourls
   activation_prefix: yourls_

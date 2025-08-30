@@ -62,9 +62,9 @@ nextcloud_path_prefix: /nextcloud
 ########################################################################
 ```
 
-### Valkey
+### Valkey (optional)
 
-Valkey can **optionally** be enabled to improve Nextcloud performance. This playbook supports it, and you can set up a Valkey instance by enabling it on `vars.yml`.
+Valkey can **optionally** be enabled to improve Nextcloud performance and to prevent file locking problems. This playbook supports it, and you can set up a Valkey instance by enabling it on `vars.yml`.
 
 If Nextcloud is the sole service which requires Valkey on your server, it is fine to set up just a single Valkey instance. However, **it is not recommended if there are other services which require it, because sharing the Valkey instance has security concerns and possibly causes data conflicts**, as described on the [documentation for configuring Valkey](valkey.md). In this case, you should install a dedicated Valkey instance for each of them.
 
@@ -72,7 +72,7 @@ If you are unsure whether you will install other services along with Nextcloud o
 
 *See [below](#setting-up-a-shared-valkey-instance) for an instruction to install a shared instance.*
 
-💡 It is dubious whether using Valkey helps much, so we recommend that you **start without** it for a simpler deployment. To learn more, read the [Memory caching](https://docs.nextcloud.com/server/latest/admin_manual/configuration_server/caching_configuration.html) section of the Nextcloud documentation.
+💡 Though running Valkey is recommended, you can **start without** it for a simpler deployment. To learn more, read [this section](https://docs.nextcloud.com/server/latest/admin_manual/configuration_server/caching_configuration.html#id2) of the Nextcloud documentation about memory caching.
 
 #### Setting up a dedicated Valkey instance
 
@@ -252,13 +252,9 @@ Where `VALKEY_HOSTNAME_HERE` is to be replaced with:
 - `mash-nextcloud-valkey` if the dedicated Valkey instance is used
 - `mash-valkey` if the single Valkey instance is used
 
-### Samba
+### Samba (optional)
 
-To enable [Samba](https://www.samba.org/) external Windows fileshares using [smbclient](https://www.samba.org/samba/docs/current/man-html/smbclient.1.html), add the following configuration to your `vars.yml` file:
-
-```yaml
-nextcloud_container_image_customizations_samba_enabled: true
-```
+You can enable [Samba](https://www.samba.org/) external Windows fileshares using [smbclient](https://www.samba.org/samba/docs/current/man-html/smbclient.1.html). See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-nextcloud/blob/main/docs/configuring-nextcloud.md#enable-samba-optional) on the role's documentation for details.
 
 ## Installation
 
@@ -310,7 +306,7 @@ Refer to [this blogpost by a third party](https://blog.cubieserver.de/2022/compl
 
 ### Collabora Online Development Edition
 
-On Nextcloud it is possible to integrate the Collabora Online Development Edition (CODE) office suite. This playbook supports it, and you can set up a CODE instance by enabling it on `vars.yml`. You can follow the [documentation](collabora-online.md) to install it.
+On Nextcloud it is possible to integrate the Collabora Online Development Edition (CODE) office suite. This playbook supports it, and you can set up a CODE instance by enabling it on `vars.yml`. You can follow the [documentation](code.md) to install it.
 
 After installing it, add the following configuration for Nextcloud to your `vars.yml` file:
 
@@ -330,38 +326,8 @@ You should then be able to open any document (`.doc`, `.odt`, `.pdf`, etc.) and 
 
 ### Preview Generator
 
-It is also possible to set up preview generation by following the steps below.
+It is also possible to set up preview generation by following the steps below. See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-nextcloud/blob/main/docs/configuring-nextcloud.md#preview-generator) on the role's documentation for details.
 
-#### Enable preview on `vars.yml`
+## Troubleshooting
 
-First, add the following configuration to `vars.yml` and run the playbook.
-
-```yaml
-nextcloud_preview_enabled: true
-```
-
-Other supported variables:
-
-- `nextcloud_preview_preview_max_x` and `nextcloud_preview_preview_max_y`
-  - Set the maximum size of the preview in pixels. The default value on this playbook is `null`. Setting a numeric value configures the corresponding nextcloud variable and the size of the preview images. See the [documentation](https://docs.nextcloud.com/server/latest/admin_manual/configuration_files/previews_configuration.html) for details.
-- `nextcloud_preview_app_jpeg_quality`
-  - JPEG quality for preview images. The default value is 80, based on the value by the upstream project.
-
-Check `defaults/main.yml` for Nextcloud for other options.
-
-#### Install the app on Nextcloud and run the command for config adjustment
-
-Next, install the preview generator app (https://apps.nextcloud.com/apps/previewgenerator) from the Settings/Application menu in your Nextcloud instance.
-
-After it is installed, run the command below against your server, so that initial preview-generation is started and periodic generation of new images on your server is enabled:
-
-```sh
-just run-tags adjust-nextcloud-config
-```
-
-**Notes**:
-- The initial generation may take a long time, and a continuous prompt is presented by Ansible as some visual feedback (it is being run as an async task). Note it will timeout after approximately 27 hours. For reference, it should take about 10 minutes to finish generating previews of 60 GB data, most of which being image files.
-- If it takes more time to run than a day, you may want to start it by running the command on the host:
-  ```sh
-  /usr/bin/env docker exec mash-nextcloud-server php /var/www/html/occ preview:generate-all
-  ```
+See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-nextcloud/blob/main/docs/configuring-nextcloud.md#troubleshooting) on the role's documentation for details.

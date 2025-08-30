@@ -883,7 +883,7 @@ mash_playbook_postgres_managed_databases_auto_itemized:
         'name': etherpad_database_name,
         'username': etherpad_database_username,
         'password': etherpad_database_password,
-      } if etherpad_enabled and etherpad_database_hostname == postgres_identifier else omit)
+      } if etherpad_enabled and etherpad_database_hostname == postgres_identifier and etherpad_database_type == 'postgres' else omit)
     }}
   # /role-specific:etherpad
 
@@ -914,9 +914,9 @@ mash_playbook_postgres_managed_databases_auto_itemized:
     {{
       ({
         'name': forgejo_database_name,
-        'username': forgejo_database_username,
-        'password': forgejo_database_password,
-      } if forgejo_enabled and forgejo_database_hostname == postgres_identifier else omit)
+        'username': forgejo_database_postgres_username,
+        'password': forgejo_database_postgres_password,
+      } if forgejo_enabled and forgejo_database_postgres_hostname == postgres_identifier and forgejo_database_type == 'postgres' else omit)
     }}
   # /role-specific:forgejo
 
@@ -927,7 +927,7 @@ mash_playbook_postgres_managed_databases_auto_itemized:
         'name': freescout_database_name,
         'username': freescout_database_username,
         'password': freescout_database_password,
-      } if freescout_enabled and freescout_database_hostname == postgres_identifier else omit)
+      } if freescout_enabled and freescout_database_hostname == postgres_identifier and freescout_database_type == 'pgsql' else omit)
     }}
   # /role-specific:freescout
 
@@ -971,7 +971,7 @@ mash_playbook_postgres_managed_databases_auto_itemized:
         'name': gitea_database_name,
         'username': gitea_database_username,
         'password': gitea_database_password,
-      } if gitea_enabled and gitea_database_hostname == postgres_identifier else omit)
+      } if gitea_enabled and gitea_database_hostname == postgres_identifier and gitea_database_type == 'postgres' else omit)
     }}
   # /role-specific:gitea
 
@@ -1004,7 +1004,7 @@ mash_playbook_postgres_managed_databases_auto_itemized:
         'name': ihatemoney_database_name,
         'username': ihatemoney_database_username,
         'password': ihatemoney_database_password,
-      } if ihatemoney_enabled and ihatemoney_database_hostname == postgres_identifier else omit)
+      } if ihatemoney_enabled and ihatemoney_database_hostname == postgres_identifier and ihatemoney_database_type == 'postgres' else omit)
     }}
   # /role-specific:ihatemoney
 
@@ -1015,7 +1015,7 @@ mash_playbook_postgres_managed_databases_auto_itemized:
         'name': ilmo_database_name,
         'username': ilmo_database_username,
         'password': ilmo_database_password,
-      } if ilmo_enabled and ilmo_database_host == postgres_identifier else omit)
+      } if ilmo_enabled and ilmo_database_host == postgres_identifier and ilmo_database_type == 'postgresql' else omit)
     }}
   # /role-specific:ilmo
 
@@ -1125,7 +1125,7 @@ mash_playbook_postgres_managed_databases_auto_itemized:
         'name': nextcloud_database_name,
         'username': nextcloud_database_username,
         'password': nextcloud_database_password,
-      } if nextcloud_enabled and nextcloud_database_hostname == postgres_identifier else omit)
+      } if nextcloud_enabled and nextcloud_database_hostname == postgres_identifier and nextcloud_database_type == 'postgres' else omit)
     }}
   # /role-specific:nextcloud
 
@@ -1136,7 +1136,7 @@ mash_playbook_postgres_managed_databases_auto_itemized:
         'name': notfellchen_database_name,
         'username': notfellchen_database_username,
         'password': notfellchen_database_password,
-      } if notfellchen_enabled and notfellchen_database_host == postgres_identifier else omit)
+      } if notfellchen_enabled and notfellchen_database_host == postgres_identifier and notfellchen_database_type == 'postgresql' else omit)
     }}
   # /role-specific:notfellchen
 
@@ -1202,7 +1202,7 @@ mash_playbook_postgres_managed_databases_auto_itemized:
         'name': privatebin_database_postgres_name,
         'username': privatebin_database_postgres_username,
         'password': privatebin_database_postgres_password,
-      } if privatebin_enabled and privatebin_database_postgres_hostname == postgres_identifier else omit)
+      } if privatebin_enabled and privatebin_database_postgres_hostname == postgres_identifier and privatebin_config_model == 'PostgreSQL' else omit)
     }}
   # /role-specific:privatebin
 
@@ -1224,7 +1224,7 @@ mash_playbook_postgres_managed_databases_auto_itemized:
         'name': redmine_database_name,
         'username': redmine_database_username,
         'password': redmine_database_password,
-      } if redmine_enabled and redmine_database_hostname == postgres_identifier else omit)
+      } if redmine_enabled and redmine_database_hostname == postgres_identifier and redmine_database_type == 'postgresql' else omit)
     }}
   # /role-specific:redmine
 
@@ -1235,7 +1235,7 @@ mash_playbook_postgres_managed_databases_auto_itemized:
         'name': roundcube_database_name,
         'username': roundcube_database_username,
         'password': roundcube_database_password,
-      } if roundcube_enabled and roundcube_database_hostname == postgres_identifier else omit)
+      } if roundcube_enabled and roundcube_database_hostname == postgres_identifier and roundcube_database_type == 'postgresql' else omit)
     }}
   # /role-specific:roundcube
 
@@ -1246,7 +1246,7 @@ mash_playbook_postgres_managed_databases_auto_itemized:
         'name': semaphore_database_name,
         'username': semaphore_database_postgres_username,
         'password': semaphore_database_postgres_password,
-      } if semaphore_enabled and semaphore_database_postgres_hostname == postgres_identifier else omit)
+      } if semaphore_enabled and semaphore_database_postgres_hostname == postgres_identifier and semaphore_database_type == 'postgres' else omit)
     }}
   # /role-specific:semaphore
 
@@ -1257,7 +1257,7 @@ mash_playbook_postgres_managed_databases_auto_itemized:
         'name': sftpgo_database_postgresql_name,
         'username': sftpgo_database_postgresql_username,
         'password': sftpgo_database_postgresql_password,
-      } if sftpgo_enabled and sftpgo_database_postgresql_hostname == postgres_identifier else omit)
+      } if sftpgo_enabled and sftpgo_database_postgresql_hostname == postgres_identifier and sftpgo_environment_variables_data_provider_driver == 'postgresql' else omit)
     }}
   # /role-specific:sftpgo
 
@@ -1268,7 +1268,7 @@ mash_playbook_postgres_managed_databases_auto_itemized:
         'name': tandoor_database_name,
         'username': tandoor_database_username,
         'password': tandoor_database_password,
-      } if tandoor_enabled and tandoor_database_hostname == postgres_identifier else omit)
+      } if tandoor_enabled and tandoor_database_hostname == postgres_identifier and tandoor_database_type == 'postgres' else omit)
     }}
   # /role-specific:tandoor
 
@@ -1279,7 +1279,7 @@ mash_playbook_postgres_managed_databases_auto_itemized:
         'name': vaultwarden_database_name,
         'username': vaultwarden_database_username,
         'password': vaultwarden_database_password,
-      } if vaultwarden_enabled and vaultwarden_database_hostname == postgres_identifier else omit)
+      } if vaultwarden_enabled and vaultwarden_database_hostname == postgres_identifier and vaultwarden_database_type == 'postgres' else omit)
     }}
   # /role-specific:vaultwarden
 
@@ -1290,7 +1290,7 @@ mash_playbook_postgres_managed_databases_auto_itemized:
         'name': woodpecker_ci_server_database_datasource_db_name,
         'username': woodpecker_ci_server_database_datasource_username,
         'password': woodpecker_ci_server_database_datasource_password,
-      } if woodpecker_ci_server_enabled and woodpecker_ci_server_database_datasource_hostname == postgres_identifier else omit)
+      } if woodpecker_ci_server_enabled and woodpecker_ci_server_database_datasource_hostname == postgres_identifier and woodpecker_ci_server_environment_variables_database_driver == 'postgres' else omit)
     }}
   # /role-specific:woodpecker_ci_server
 
@@ -1333,7 +1333,7 @@ postgres_backup_systemd_required_services_list_auto: |
 
 postgres_backup_container_additional_networks_auto: |-
   {{
-      ([postgres_container_network] if (postgres_enabled and postgres_backup_connection_hostname == postgres_connection_hostname and postgres_backup_container_network != postgres_container_network) else [])
+    ([postgres_container_network] if (postgres_enabled and postgres_backup_connection_hostname == postgres_connection_hostname and postgres_backup_container_network != postgres_container_network) else [])
   }}
 
 postgres_backup_container_network: "{{ (postgres_container_network if (postgres_enabled and postgres_backup_connection_hostname == postgres_connection_hostname) else postgres_backup_identifier) }}"
@@ -1624,7 +1624,7 @@ anonymousoverflow_container_labels_traefik_tls_certResolver: "{{ traefik_certRes
 # role-specific:apisix_dashboard
 ########################################################################
 #                                                                      #
-# apisix_dashboard                                                       #
+# apisix_dashboard                                                     #
 #                                                                      #
 ########################################################################
 
@@ -2414,6 +2414,11 @@ docmost_systemd_required_services_list_auto: |
     ([postgres_identifier ~ '.service'] if postgres_enabled and docmost_database_hostname == postgres_identifier else [])
   }}
 
+docmost_systemd_wanted_services_list_auto: |
+  {{
+    ([(exim_relay_identifier | default('mash-exim-relay')) ~ '.service'] if (exim_relay_enabled | default(false) and docmost_environment_variable_smtp_host == exim_relay_identifier | default('mash-exim-relay')) else [])
+  }}
+
 docmost_container_additional_networks_auto: |
   {{
     ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
@@ -2434,8 +2439,9 @@ docmost_environment_variable_redis_url: "redis://{{ docmost_redis_hostname }}:{{
 docmost_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
 docmost_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
 
+docmost_mailer_enabled: "{{ exim_relay_enabled | default(false) }}"
+
 # role-specific:exim_relay
-docmost_mailer_enabled: "{{ exim_relay_enabled }}"
 docmost_environment_variable_smtp_host: "{{ exim_relay_identifier if exim_relay_enabled else '' }}"
 docmost_environment_variable_smtp_port: "{{ 8025 if exim_relay_enabled else '587' }}"
 docmost_environment_variable_mail_from_address: "{{ exim_relay_sender_address if exim_relay_enabled else '' }}"
@@ -2676,14 +2682,14 @@ etherpad_gid: "{{ mash_playbook_gid }}"
 
 etherpad_systemd_required_services_list_auto: |
   {{
-    ([postgres_identifier ~ '.service'] if postgres_enabled | default(false) and etherpad_database_hostname == postgres_identifier else [])
+    ([postgres_identifier ~ '.service'] if postgres_enabled and etherpad_database_hostname == postgres_identifier else [])
   }}
 
 etherpad_container_additional_networks_auto: |
   {{
     ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
     +
-    ([postgres_container_network] if postgres_enabled | default(false) and etherpad_database_hostname == postgres_identifier and etherpad_container_network != postgres_container_network else [])
+    ([postgres_container_network] if postgres_enabled and etherpad_database_hostname == postgres_identifier and etherpad_container_network != postgres_container_network else [])
   }}
 
 etherpad_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
@@ -2833,14 +2839,14 @@ firezone_gid: "{{ mash_playbook_gid }}"
 
 firezone_systemd_required_services_list_auto: |
   {{
-    ([postgres_identifier ~ '.service'] if postgres_enabled | default(false) and firezone_database_hostname == postgres_identifier else [])
+    ([postgres_identifier ~ '.service'] if postgres_enabled and firezone_database_hostname == postgres_identifier else [])
   }}
 
 firezone_container_additional_networks_auto: |
   {{
     ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
     +
-    ([postgres_container_network] if postgres_enabled | default(false) and firezone_database_hostname == postgres_identifier and firezone_container_network != postgres_container_network else [])
+    ([postgres_container_network] if postgres_enabled and firezone_database_hostname == postgres_identifier and firezone_container_network != postgres_container_network else [])
   }}
 
 firezone_generic_secret: "{{ mash_playbook_generic_secret_key }}"
@@ -2926,7 +2932,7 @@ focalboard_gid: "{{ mash_playbook_gid }}"
 
 focalboard_systemd_required_services_list_auto: |
   {{
-    ([postgres_identifier ~ '.service'] if postgres_enabled and focalboard_database_hostname == postgres_identifier else [])
+    ([postgres_identifier ~ '.service'] if postgres_enabled | default(false) and focalboard_database_hostname == postgres_identifier else [])
   }}
 
 focalboard_container_additional_networks_auto: |
@@ -2979,22 +2985,33 @@ forgejo_gid: "{{ mash_playbook_gid }}"
 
 forgejo_systemd_required_services_list_auto: |
   {{
-    ([postgres_identifier ~ '.service'] if postgres_enabled and forgejo_database_hostname == postgres_identifier else [])
+    ([mariadb_identifier ~ '.service'] if mariadb_enabled | default(false) and forgejo_database_mysql_hostname == mariadb_connection_hostname else [])
+    +
+    ([postgres_identifier ~ '.service'] if postgres_enabled | default(false) and forgejo_database_postgres_hostname == postgres_identifier else [])
+  }}
+
+forgejo_systemd_wanted_services_list_auto: |
+  {{
+    ([(exim_relay_identifier | default('mash-exim-relay')) ~ '.service'] if (exim_relay_enabled | default(false) and forgejo_config_mailer_smtp_addr == exim_relay_identifier | default('mash-exim-relay')) else [])
   }}
 
 forgejo_container_additional_networks_auto: |
   {{
     ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
     +
-    ([postgres_container_network] if postgres_enabled and forgejo_database_hostname == postgres_identifier and forgejo_container_network != postgres_container_network else [])
+    ([postgres_container_network] if postgres_enabled | default(false) and forgejo_database_postgres_hostname == postgres_identifier and forgejo_container_network != postgres_container_network else [])
     +
     ([exim_relay_container_network | default('mash-exim-relay')] if (exim_relay_enabled | default(false) and forgejo_config_mailer_smtp_addr == exim_relay_identifier | default('mash-exim-relay') and forgejo_container_network != exim_relay_container_network) else [])
+    +
+    ([mariadb_container_network] if mariadb_enabled | default(false) and forgejo_database_mysql_hostname == mariadb_connection_hostname and forgejo_container_network != mariadb_container_network and forgejo_database_type == 'mysql' else [])
   }}
 
 forgejo_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
 forgejo_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
 forgejo_container_labels_traefik_compression_middleware_enabled: "{{ mash_playbook_reverse_proxy_traefik_middleware_compession_enabled }}"
 forgejo_container_labels_traefik_compression_middleware_name: "{{ mash_playbook_reverse_proxy_traefik_middleware_compession_name if mash_playbook_reverse_proxy_traefik_middleware_compession_enabled else '' }}"
+
+forgejo_database_type: "{{ 'postgres' if postgres_enabled | default(false) else 'sqlite' }}"
 
 # role-specific:exim_relay
 forgejo_config_mailer_enabled: "{{ exim_relay_enabled }}"
@@ -3004,10 +3021,16 @@ forgejo_config_mailer_from: "{{ exim_relay_sender_address if exim_relay_enabled 
 forgejo_config_mailer_protocol: "{{ 'smtp' if exim_relay_enabled else '' }}"
 # /role-specific:exim_relay
 
+# role-specific:mariadb
+forgejo_database_mysql_hostname: "{{ mariadb_connection_hostname if mariadb_enabled else '' }}"
+forgejo_database_mysql_port: "{{ mariadb_connection_port if mariadb_enabled else '3306' }}"
+forgejo_database_mysql_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'db.forgejo', rounds=655555) | to_uuid }}"
+# /role-specific:mariadb
+
 # role-specific:postgres
-forgejo_database_hostname: "{{ postgres_connection_hostname if postgres_enabled else '' }}"
-forgejo_database_port: "{{ postgres_connection_port if postgres_enabled else '5432' }}"
-forgejo_database_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'db.forgejo', rounds=655555) | to_uuid }}"
+forgejo_database_postgres_hostname: "{{ postgres_connection_hostname if postgres_enabled else '' }}"
+forgejo_database_postgres_port: "{{ postgres_connection_port if postgres_enabled else '5432' }}"
+forgejo_database_postgres_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'db.forgejo', rounds=655555) | to_uuid }}"
 # /role-specific:postgres
 
 # role-specific:traefik
@@ -3317,6 +3340,11 @@ gitea_systemd_required_services_list_auto: |
     ([postgres_identifier ~ '.service'] if postgres_enabled and gitea_database_hostname == postgres_identifier else [])
   }}
 
+gitea_systemd_wanted_services_list_auto: |
+  {{
+    ([(exim_relay_identifier | default('mash-exim-relay')) ~ '.service'] if (exim_relay_enabled | default(false) and gitea_config_mailer_smtp_addr == exim_relay_identifier | default('mash-exim-relay')) else [])
+  }}
+
 gitea_container_additional_networks_auto: |
   {{
     ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
@@ -3439,6 +3467,11 @@ grafana_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_
 
 grafana_uid: "{{ mash_playbook_uid }}"
 grafana_gid: "{{ mash_playbook_gid }}"
+
+grafana_systemd_wanted_services_list_auto: |
+  {{
+    ([(exim_relay_identifier | default('mash-exim-relay')) ~ '.service'] if (exim_relay_enabled | default(false) and grafana_smtp_host == exim_relay_identifier | default('mash-exim-relay')) else [])
+  }}
 
 grafana_container_additional_networks_auto: |
   {{
@@ -4739,7 +4772,6 @@ ilmo_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyabl
 # role-specific:postgres
 ilmo_database_host: "{{ postgres_connection_hostname if postgres_enabled else '' }}"
 ilmo_database_port: "{{ postgres_connection_port if postgres_enabled else '5432' }}"
-ilmo_database_username: "ilmo"
 ilmo_database_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'db.ilmo', rounds=655555) | to_uuid }}"
 # /role-specific:postgres
 
@@ -5013,6 +5045,11 @@ joplin_server_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service
 joplin_server_uid: "{{ mash_playbook_uid }}"
 joplin_server_gid: "{{ mash_playbook_gid }}"
 
+joplin_server_systemd_wanted_services_list_auto: |
+  {{
+    ([(exim_relay_identifier | default('mash-exim-relay')) ~ '.service'] if (exim_relay_enabled | default(false) and joplin_server_environment_variable_mailer_host == exim_relay_identifier | default('mash-exim-relay')) else [])
+  }}
+
 joplin_server_systemd_required_services_list_auto: |
  {{
     ([postgres_identifier ~ '.service'] if postgres_enabled and joplin_server_environment_variable_database_hostname == postgres_identifier else [])
@@ -5022,7 +5059,7 @@ joplin_server_container_additional_networks_auto: |
   {{
     ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
     +
-    ([postgres_container_network] if postgres_enabled | default(false) and joplin_server_environment_variable_database_hostname == postgres_identifier and joplin_server_container_network != postgres_container_network else [])
+    ([postgres_container_network] if postgres_enabled and joplin_server_environment_variable_database_hostname == postgres_identifier and joplin_server_container_network != postgres_container_network else [])
     +
     ([exim_relay_container_network | default('mash-exim-relay')] if (exim_relay_enabled | default(false) and joplin_server_environment_variable_mailer_host == exim_relay_identifier | default('mash-exim-relay') and joplin_server_container_network != exim_relay_container_network) else [])
   }}
@@ -5034,7 +5071,7 @@ joplin_server_container_labels_traefik_docker_network: "{{ mash_playbook_reverse
 joplin_server_environment_variable_mailer_enabled: "{{ exim_relay_enabled }}"
 joplin_server_environment_variable_mailer_host: "{{ exim_relay_identifier if exim_relay_enabled else '' }}"
 joplin_server_environment_variable_mailer_port: 8025
-joplin_server_environment_variable_mailer_noreply_email: "{{ exim_relay_sender_address if exim_relay_enabled else '' }}"
+joplin_server_environment_variable_mailer_from: "{{ exim_relay_sender_address if exim_relay_enabled else '' }}"
 joplin_server_environment_variable_mailer_security: MailerSecurity.None
 # /role-specific:exim_relay
 
@@ -5475,6 +5512,17 @@ mash_playbook_mariadb_managed_databases_auto_itemized:
     }}
   # /role-specific:authelia
 
+  # role-specific:forgejo
+  - |-
+    {{
+      ({
+        'name': forgejo_database_name,
+        'username': forgejo_database_mysql_username,
+        'password': forgejo_database_mysql_password,
+      } if forgejo_enabled and forgejo_database_mysql_hostname == mariadb_connection_hostname and forgejo_database_type == 'mysql' else omit)
+    }}
+  # /role-specific:forgejo
+
   # role-specific:matomo
   - |-
     {{
@@ -5493,7 +5541,7 @@ mash_playbook_mariadb_managed_databases_auto_itemized:
         'name': privatebin_database_mysql_name,
         'username': privatebin_database_mysql_username,
         'password': privatebin_database_mysql_password,
-      } if privatebin_enabled and privatebin_database_mysql_hostname == mariadb_connection_hostname else omit)
+      } if privatebin_enabled and privatebin_database_mysql_hostname == mariadb_connection_hostname and privatebin_config_model == 'MySQL' else omit)
     }}
   # /role-specific:privatebin
 
@@ -5504,7 +5552,7 @@ mash_playbook_mariadb_managed_databases_auto_itemized:
         'name': semaphore_database_name,
         'username': semaphore_database_mysql_username,
         'password': semaphore_database_mysql_password,
-      } if semaphore_enabled and semaphore_database_mysql_hostname == mariadb_connection_hostname else omit)
+      } if semaphore_enabled and semaphore_database_mysql_hostname == mariadb_connection_hostname and semaphore_database_type == 'mysql' else omit)
     }}
   # /role-specific:semaphore
 
@@ -5515,7 +5563,7 @@ mash_playbook_mariadb_managed_databases_auto_itemized:
         'name': sftpgo_database_mysql_name,
         'username': sftpgo_database_mysql_username,
         'password': sftpgo_database_mysql_password,
-      } if sftpgo_enabled and sftpgo_database_mysql_hostname == mariadb_connection_hostname else omit)
+      } if sftpgo_enabled and sftpgo_database_mysql_hostname == mariadb_connection_hostname and sftpgo_environment_variables_data_provider_driver == 'mysql' else omit)
     }}
   # /role-specific:sftpgo
 
@@ -5538,6 +5586,17 @@ mash_playbook_mariadb_managed_databases_auto_itemized:
       } if syncstorage_rs_docker_enabled and syncstorage_rs_docker_environment_variable_database_hostname == mariadb_connection_hostname else omit)
     }}
   # /role-specific:syncstorage_rs_docker
+
+  # role-specific:vaultwarden
+  - |-
+    {{
+      ({
+        'name': vaultwarden_database_name,
+        'username': vaultwarden_database_mysql_username,
+        'password': vaultwarden_database_mysql_password,
+      } if vaultwarden_enabled and vaultwarden_database_mysql_hostname == mariadb_connection_hostname and vaultwarden_database_type == 'mysql' else omit)
+    }}
+  # /role-specific:vaultwarden
 
   # role-specific:wordpress
   - |-
@@ -5771,7 +5830,6 @@ mobilizon_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_pro
 mobilizon_database_hostname: "{{ postgis_identifier if postgis_enabled else '' }}"
 mobilizon_database_port: "{{ '5432' if postgis_enabled else '' }}"
 mobilizon_database_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'db.mobilizon', rounds=655555) | to_uuid }}"
-mobilizon_database_username: "mobilizon"
 # /role-specific:postgis
 
 # role-specific:traefik
@@ -6150,8 +6208,8 @@ nextcloud_container_additional_networks_auto: |
       ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
       +
       ([postgres_container_network] if postgres_enabled and nextcloud_database_hostname == postgres_identifier and nextcloud_container_network != postgres_container_network else [])
-    +
-    ([exim_relay_container_network | default('mash-exim-relay')] if (exim_relay_enabled | default(false) and nextcloud_config_parameter_mail_smtphost == exim_relay_identifier | default('mash-exim-relay') and nextcloud_container_network != exim_relay_container_network) else [])
+      +
+      ([exim_relay_container_network | default('mash-exim-relay')] if (exim_relay_enabled | default(false) and nextcloud_config_parameter_mail_smtphost == exim_relay_identifier | default('mash-exim-relay') and nextcloud_container_network != exim_relay_container_network) else [])
     ) | unique
   }}
 
@@ -6172,7 +6230,6 @@ nextcloud_config_parameter_mail_domain: "{{ (exim_relay_sender_address | split('
 # role-specific:postgres
 nextcloud_database_hostname: "{{ postgres_connection_hostname if postgres_enabled else '' }}"
 nextcloud_database_port: "{{ postgres_connection_port if postgres_enabled else '5432' }}"
-nextcloud_database_username: "nextcloud"
 nextcloud_database_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'db.nextcloud', rounds=655555) | to_uuid }}"
 # /role-specific:postgres
 
@@ -6232,7 +6289,6 @@ notfellchen_sws_container_labels_traefik_tls_certResolver: "{{ notfellchen_conta
 # role-specific:postgres
 notfellchen_database_host: "{{ postgres_connection_hostname if postgres_enabled else '' }}"
 notfellchen_database_port: "{{ postgres_connection_port if postgres_enabled else '5432' }}"
-notfellchen_database_username: "notfellchen"
 notfellchen_database_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'db.nf', rounds=655555) | to_uuid }}"
 # /role-specific:postgres
 
@@ -6265,6 +6321,11 @@ ntfy_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_dir
 
 ntfy_uid: "{{ mash_playbook_uid }}"
 ntfy_gid: "{{ mash_playbook_gid }}"
+
+ntfy_systemd_wanted_services_list_auto: |
+  {{
+    ([(exim_relay_identifier | default('mash-exim-relay')) ~ '.service'] if (exim_relay_enabled | default(false) and ntfy_smtp_sender_addr_host == exim_relay_identifier | default('mash-exim-relay')) else [])
+  }}
 
 ntfy_container_additional_networks_auto: |
   {{
@@ -6541,6 +6602,11 @@ paperless_systemd_required_services_list_auto: |
     ([postgres_identifier ~ '.service'] if postgres_enabled and paperless_database_hostname == postgres_identifier else [])
   }}
 
+paperless_systemd_wanted_services_list_auto: |
+  {{
+    ([(exim_relay_identifier | default('mash-exim-relay')) ~ '.service'] if (exim_relay_enabled | default(false) and paperless_email_host == exim_relay_identifier | default('mash-exim-relay')) else [])
+  }}
+
 paperless_container_additional_networks_auto: |
   {{
     ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
@@ -6562,7 +6628,6 @@ paperless_email_from: "{{ exim_relay_sender_address if exim_relay_enabled else '
 # role-specific:postgres
 paperless_database_hostname: "{{ postgres_connection_hostname if postgres_enabled else '' }}"
 paperless_database_port: "{{ postgres_connection_port if postgres_enabled else '5432' }}"
-paperless_database_username: "paperless"
 paperless_database_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'db.paperless', rounds=655555) | to_uuid }}"
 # /role-specific:postgres
 
@@ -6629,7 +6694,6 @@ peertube_config_smtp_from: "{{ exim_relay_sender_address if exim_relay_enabled e
 # role-specific:postgres
 peertube_database_hostname: "{{ postgres_connection_hostname if postgres_enabled else '' }}"
 peertube_database_port: "{{ postgres_connection_port if postgres_enabled else '5432' }}"
-peertube_database_username: peertube
 peertube_database_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'db.peertube', rounds=655555) | to_uuid }}"
 # /role-specific:postgres
 
@@ -7051,7 +7115,6 @@ prometheus_postgres_exporter_container_labels_traefik_docker_network: "{{ mash_p
 # role-specific:postgres
 prometheus_postgres_exporter_database_hostname: "{{ postgres_connection_hostname if postgres_enabled else '' }}"
 prometheus_postgres_exporter_database_port: "{{ postgres_connection_port if postgres_enabled else '5432' }}"
-prometheus_postgres_exporter_database_username: prometheus_postgres_exporter
 prometheus_postgres_exporter_database_password: "{{ postgres_connection_password if postgres_enabled else '' }}"
 prometheus_postgres_exporter_database_ssl: false
 # /role-specific:postgres
@@ -7472,7 +7535,6 @@ redmine_database_type: "{{ 'postgresql' if postgres_enabled else 'sqlite3' }}"
 # role-specific:postgres
 redmine_database_hostname: "{{ postgres_connection_hostname if postgres_enabled else '' }}"
 redmine_database_port: "{{ postgres_connection_port if postgres_enabled else '5432' }}"
-redmine_database_username: "redmine"
 redmine_database_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'redmine.db', rounds=655555) | to_uuid }}"
 # /role-specific:postgres
 
@@ -7526,7 +7588,6 @@ roundcube_database_type: "{{ 'postgresql' if postgres_enabled else 'sqlite' }}"
 # role-specific:postgres
 roundcube_database_hostname: "{{ postgres_connection_hostname if postgres_enabled else '' }}"
 roundcube_database_port: "{{ postgres_connection_port if postgres_enabled else '5432' }}"
-roundcube_database_username: "{{ 'roundcube' if postgres_enabled else '' }}"
 roundcube_database_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'db.roundcube', rounds=655555) | to_uuid }}"
 # /role-specific:postgres
 
@@ -7635,6 +7696,11 @@ semaphore_systemd_required_services_list_auto: |
     ([postgres_identifier ~ '.service'] if postgres_enabled | default(false) and semaphore_database_postgres_hostname == postgres_identifier else [])
   }}
 
+semaphore_systemd_wanted_services_list_auto: |
+  {{
+    ([(exim_relay_identifier | default('mash-exim-relay')) ~ '.service'] if (exim_relay_enabled | default(false) and semaphore_environment_variables_email_host == exim_relay_identifier | default('mash-exim-relay')) else [])
+  }}
+
 semaphore_container_additional_networks: |
   {{
     ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
@@ -7646,10 +7712,10 @@ semaphore_container_additional_networks: |
     ([postgres_container_network] if postgres_enabled | default(false) and semaphore_database_postgres_hostname == postgres_identifier and semaphore_container_network != postgres_container_network and semaphore_database_type == 'postgres' else [])
   }}
 
-semaphore_database_type: "{{ 'postgres' if postgres_enabled else 'sqlite' }}"
-
 semaphore_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
 semaphore_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+
+semaphore_database_type: "{{ 'postgres' if postgres_enabled | default(false) else 'sqlite' }}"
 
 # role-specific:exim_relay
 semaphore_environment_variables_email_host: "{{ exim_relay_identifier if exim_relay_enabled else '' }}"
@@ -7749,6 +7815,11 @@ sftpgo_systemd_required_services_list_auto: |
     ([postgres_identifier ~ '.service'] if postgres_enabled | default(false) and sftpgo_database_postgresql_hostname == postgres_identifier else [])
   }}
 
+sftpgo_systemd_wanted_services_list_auto: |
+  {{
+    ([(exim_relay_identifier | default('mash-exim-relay')) ~ '.service'] if (exim_relay_enabled | default(false) and sftpgo_environment_variables_smtp_host == exim_relay_identifier | default('mash-exim-relay')) else [])
+  }}
+
 sftpgo_container_additional_networks_auto: |
   {{
     ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
@@ -7815,6 +7886,7 @@ soft_serve_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_ba
 
 soft_serve_uid: "{{ mash_playbook_uid }}"
 soft_serve_gid: "{{ mash_playbook_gid }}"
+
 ########################################################################
 #                                                                      #
 # /soft-serve                                                          #
@@ -8220,7 +8292,9 @@ vaultwarden_gid: "{{ mash_playbook_gid }}"
 
 vaultwarden_systemd_required_services_list_auto: |
   {{
-    ([postgres_identifier ~ '.service'] if postgres_enabled and vaultwarden_database_hostname == postgres_identifier else [])
+    ([mariadb_identifier ~ '.service'] if mariadb_enabled | default(false) and vaultwarden_database_mysql_hostname == mariadb_connection_hostname else [])
+    +
+    ([postgres_identifier ~ '.service'] if postgres_enabled | default(false) and vaultwarden_database_hostname == postgres_identifier else [])
   }}
 
 vaultwarden_systemd_wanted_services_list_auto: |
@@ -8232,9 +8306,11 @@ vaultwarden_container_additional_networks_auto: |
   {{
     ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
     +
-    ([postgres_container_network] if postgres_enabled and vaultwarden_database_hostname == postgres_identifier and vaultwarden_container_network != postgres_container_network else [])
+    ([postgres_container_network] if postgres_enabled | default(false) and vaultwarden_database_hostname == postgres_identifier and vaultwarden_container_network != postgres_container_network and vaultwarden_database_type == 'postgres' else [])
     +
     ([exim_relay_container_network | default('mash-exim-relay')] if (exim_relay_enabled | default(false) and vaultwarden_config_smtp_host == exim_relay_identifier | default('mash-exim-relay') and vaultwarden_container_network != exim_relay_container_network) else [])
+    +
+    ([mariadb_container_network] if mariadb_enabled | default(false) and vaultwarden_database_mysql_hostname == mariadb_connection_hostname and vaultwarden_container_network != mariadb_container_network and vaultwarden_database_type == 'mysql' else [])
   }}
 
 vaultwarden_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
@@ -8249,10 +8325,15 @@ vaultwarden_config_smtp_port: "{{ 8025 if exim_relay_enabled else '587' }}"
 vaultwarden_config_smtp_security: "{{ 'off' if exim_relay_enabled else 'starttls' }}"
 # /role-specific:exim_relay
 
+# role-specific:mariadb
+vaultwarden_database_mysql_hostname: "{{ mariadb_connection_hostname if mariadb_enabled | default(false) else '' }}"
+vaultwarden_database_mysql_port: "{{ mariadb_connection_port if mariadb_enabled | default(false) else '3306' }}"
+vaultwarden_database_mysql_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'db.vaultwarden', rounds=655555) | to_uuid }}"
+# /role-specific:mariadb
+
 # role-specific:postgres
 vaultwarden_database_hostname: "{{ postgres_connection_hostname if postgres_enabled else '' }}"
 vaultwarden_database_port: "{{ postgres_connection_port if postgres_enabled else '5432' }}"
-vaultwarden_database_username: "vaultwarden"
 vaultwarden_database_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'db.vaultwarden', rounds=655555) | to_uuid }}"
 # /role-specific:postgres
 
@@ -8461,7 +8542,7 @@ woodpecker_ci_server_container_labels_traefik_docker_network: "{{ mash_playbook_
 woodpecker_ci_server_container_labels_traefik_compression_middleware_enabled: "{{ mash_playbook_reverse_proxy_traefik_middleware_compession_enabled }}"
 woodpecker_ci_server_container_labels_traefik_compression_middleware_name: "{{ mash_playbook_reverse_proxy_traefik_middleware_compession_name if mash_playbook_reverse_proxy_traefik_middleware_compession_enabled else '' }}"
 
-woodpecker_ci_server_database_driver: postgres
+woodpecker_ci_server_environment_variables_database_driver: postgres
 woodpecker_ci_server_database_datasource: "postgres://{{ woodpecker_ci_server_database_datasource_username }}:{{ woodpecker_ci_server_database_datasource_password }}@{{ woodpecker_ci_server_database_datasource_hostname }}:{{ woodpecker_ci_server_database_datasource_port }}/{{ woodpecker_ci_server_database_datasource_db_name }}?sslmode=disable"
 
 # role-specific:postgres
@@ -8497,7 +8578,7 @@ wordpress_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_bas
 wordpress_uid: "{{ mash_playbook_uid }}"
 wordpress_gid: "{{ mash_playbook_gid }}"
 
-wordpress_systemd_required_systemd_services_list_auto: |
+wordpress_systemd_required_services_list_auto: |
   {{
     ([mariadb_identifier ~ '.service'] if mariadb_enabled and wordpress_database_hostname == mariadb_connection_hostname else [])
   }}

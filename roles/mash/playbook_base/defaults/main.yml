@@ -42,7 +42,7 @@ mash_playbook_base_path_mode: "750"
 # The architecture that your server runs.
 # Recognized values by us are 'amd64', 'arm32' and 'arm64'.
 # Not all architectures support all services, so your experience (on non-amd64) may vary.
-mash_playbook_architecture: "{{ 'amd64' if ansible_architecture == 'x86_64' else ('arm64' if ansible_architecture == 'aarch64' else ('arm32' if ansible_architecture.startswith('armv') else '')) }}"
+mash_playbook_architecture: "{{ 'amd64' if ansible_facts.architecture == 'x86_64' else ('arm64' if ansible_facts.architecture == 'aarch64' else ('arm32' if ansible_facts.architecture.startswith('armv') else '')) }}"
 
 # Specifies the type of reverse-proxy used by the playbook.
 #

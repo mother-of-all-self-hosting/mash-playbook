@@ -17,7 +17,7 @@ SPDX-FileCopyrightText: 2024 - 2025 Suguru Hirahara
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 
-# Collabora Online Development Edition
+# Collabora Online Development Edition (CODE)
 
 The playbook can install and configure [Collabora Online Development Edition (CODE)](https://www.collaboraonline.com/code/) for you.
 
@@ -33,7 +33,6 @@ For details about configuring the [Ansible role for CODE](https://github.com/mot
 
 This service requires the following other services:
 
-- a [Postgres](postgres.md) database
 - a [Traefik](traefik.md) reverse-proxy server
 
 >[!NOTE]

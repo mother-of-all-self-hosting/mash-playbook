@@ -18,18 +18,18 @@ SPDX-FileCopyrightText: 2025 Nicola Murino
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 
-# InfluxDB
+# InfluxDB OSS v2
 
 >[!NOTE]
 > On this playbook, InfluxDB is implemented with [ansible-role-influxdb](https://github.com/mother-of-all-self-hosting/ansible-role-influxdb). The role is configured to install [InfluxDB OSS v2](https://docs.influxdata.com/influxdb/v2/). Though [InfluxDB 3 Core](https://docs.influxdata.com/influxdb3/core/) is open source, it is **not** a replacement for OSS v2. [InfluxDB 3 Enterprise](https://docs.influxdata.com/influxdb3/enterprise/) can replace OSS v2, but it is proprietary and we will not support it.
 
-The playbook can install and configure [InfluxDB](https://www.influxdata.com/) for you.
+The playbook can install and configure [InfluxDB OSS v2](https://docs.influxdata.com/influxdb/v2/) for you.
 
-InfluxDB is a self-hosted time-series database.
+InfluxDB OSS v2 is a self-hosted time-series database.
 
-See the project's [documentation](https://github.com/docker-library/docs/blob/master/influxdb/README.md) to learn what InfluxDB does and why it might be useful to you.
+See the project's [documentation](https://docs.influxdata.com/influxdb/v2/get-started/) to learn what InfluxDB OSS v2 does and why it might be useful to you.
 
-For details about configuring the [Ansible role for Firezone](https://github.com/mother-of-all-self-hosting/ansible-role-influxdb), you can check them via:
+For details about configuring the [Ansible role for InfluxDB OSS v2](https://github.com/mother-of-all-self-hosting/ansible-role-influxdb), you can check them via:
 - 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-influxdb/blob/main/docs/configuring-influxdb.md) online
 - 📁 `roles/galaxy/influxdb/docs/configuring-influxdb.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
@@ -59,7 +59,7 @@ See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-in
 
 ## Usage
 
-After running the command for installation, the InfluxDB instance becomes available at the URL specified with `influxdb_hostname`. With the configuration above, the service is hosted at `https://influxdb.example.com`.
+After running the command for installation, the InfluxDB OSS v2 instance becomes available at the URL specified with `influxdb_hostname`. With the configuration above, the service is hosted at `https://influxdb.example.com`.
 
 To get started, open the URL with a web browser, and log in to the service if `influxdb_init` is set to `true` (or configure the first user if it is not).
 
