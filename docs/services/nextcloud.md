@@ -326,7 +326,7 @@ You should then be able to open any document (`.doc`, `.odt`, `.pdf`, etc.) and 
 
 ### Preview Generator
 
-It is also possible to set up preview generation by following the steps below. See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-nextcloud/blob/main/docs/configuring-nextcloud.md#preview-generator) on the role's documentation for details.
+It is also possible to set up preview generation by following the steps below. See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-nextcloud/blob/main/docs/configuring-nextcloud.md#enable-preview-generator-app-optional) on the role's documentation for details.
 
 ## Troubleshooting
 
