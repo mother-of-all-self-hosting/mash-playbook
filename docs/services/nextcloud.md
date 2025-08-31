@@ -322,6 +322,8 @@ After adding the configuration, run this command to install and configure the [O
 just run-tags install-nextcloud-app-collabora
 ```
 
+Open the URL `https://mash.example.com/nextcloud/settings/admin/richdocuments` to have the instance set up the connection with the CODE instance.
+
 You should then be able to open any document (`.doc`, `.odt`, `.pdf`, etc.) and create new ones in Nextcloud Files with Collabora Online Development Edition's editor.
 
 ### Preview Generator
