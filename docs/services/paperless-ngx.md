@@ -221,6 +221,21 @@ paperless_container_additional_networks_custom:
 
 Running the installation command will create the shared Valkey instance named `mash-valkey`.
 
+### Enabling additional languages for OCR
+
+If you're dealing with languages other than the ones for which [OCR support is installed by default (English, German, French, Italian, Spanish)](https://docs.paperless-ngx.com/configuration/#PAPERLESS_OCR_LANGUAGES), you may wish to adjust `paperless_ocr_languages_custom`. This variable takes a list of 3-letter language codes (as seen [here](https://tesseract-ocr.github.io/tessdoc/Data-Files-in-different-versions.html)).
+
+Doing this will instruct the container image to install additional `tesseract-ocr-{LANGUAGE}` packages on startup.
+
+Example:
+
+```yml
+# Add OCR support for Bulgarian and Japanese
+paperless_ocr_languages_custom:
+  - bul
+  - jpn
+```
+
 ### Extending the configuration
 
 There are some additional things you may wish to configure about the service.
