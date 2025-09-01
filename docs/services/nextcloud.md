@@ -308,7 +308,7 @@ Open the URL `https://mash.example.com/nextcloud/settings/admin/richdocuments` t
 You should then be able to open any document (`.doc`, `.odt`, `.pdf`, etc.) and create new ones in Nextcloud Files with Collabora Online Development Edition's editor.
 
 >[!NOTE]
-> By default, various private IPv4 networks are whitelisted to connect to the WOPI API (document serving API). If your CODE instance does not live on the same server as Nextcloud, you may need to adjust the list of networks. If necessary, redefine the `nextcloud_collabora_app_wopi_allowlist` environment variable on `vars.yml`.
+> By default, various private IPv4 networks are whitelisted to connect to the WOPI API (document serving API). If your CODE instance does not live on the same server as Nextcloud, you may need to adjust the list of networks. If necessary, redefine the `nextcloud_app_collabora_wopi_allowlist` environment variable on `vars.yml`.
 
 ### Preview Generator
 
