@@ -20,8 +20,8 @@ authentik is an open-source identity provider focused on flexibility and versati
 This service requires the following other services:
 
 - a [Postgres](postgres.md) database
-- a [Valkey](valkey.md) data-store; see [below](#configure-valkey) for details about installation
 - a [Traefik](traefik.md) reverse-proxy server
+- a [Valkey](valkey.md) data-store; see [below](#configure-valkey) for details about installation
 
 ## Adjusting the playbook configuration
 

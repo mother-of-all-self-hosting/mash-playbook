@@ -33,8 +33,8 @@ For details about configuring the [Ansible role for Semaphore UI](https://github
 
 This service requires the following other services:
 
-- (optional) [Postgres](postgres.md) / MySQL / [MariaDB](mariadb.md) database — Semaphore UI will default to [SQLite](https://www.sqlite.org/) if Postgres is not enabled
 - [Traefik](traefik.md) reverse-proxy server
+- (optional) [Postgres](postgres.md) / MySQL / [MariaDB](mariadb.md) database — Semaphore UI will default to [SQLite](https://www.sqlite.org/) if Postgres is not enabled
 
 ## Adjusting the playbook configuration
 
