@@ -2160,6 +2160,16 @@ collabora_online_container_additional_networks: |
 collabora_online_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
 collabora_online_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
 
+# role-specific:nextcloud
+#
+# Because a CODE instance requires a backend which works as File Sync
+# and Share (FSS) tool and the playbook currently integrates only one
+# FSS, which is Nextcloud, the Nextcloud and CODE instances are
+# connected by default, if both of them are enabled.
+#
+collabora_online_environment_variable_aliasgroup1: "https://{{ nextcloud_hostname | replace('.', '\\.') }}:443"
+# /role-specific:nextcloud
+
 # role-specific:traefik
 collabora_online_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
 collabora_online_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
@@ -6234,6 +6244,16 @@ nextcloud_container_labels_traefik_compression_middleware_enabled: "{{ mash_play
 nextcloud_container_labels_traefik_compression_middleware_name: "{{ mash_playbook_reverse_proxy_traefik_middleware_compession_name if mash_playbook_reverse_proxy_traefik_middleware_compession_enabled else '' }}"
 
 nextcloud_database_type: "{{ 'postgres' if postgres_enabled | default(false) else 'sqlite' }}"
+
+# role-specific:collabora_online
+#
+# Because a CODE instance requires a backend which works as File Sync
+# and Share (FSS) tool and the playbook currently integrates only one
+# FSS, which is Nextcloud, the Nextcloud and CODE instances are
+# connected by default, if both of them are enabled.
+#
+nextcloud_collabora_app_wopi_url: "{{ collabora_online_url if collabora_online_enabled }}"
+# /role-specific:collabora_online
 
 # role-specific:exim_relay
 nextcloud_environment_variables_smtp_host: "{{ exim_relay_identifier if exim_relay_enabled else '' }}"
