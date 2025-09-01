@@ -35,8 +35,8 @@ For details about configuring the [Ansible role for syncstorage-rs](https://gith
 
 This service requires the following other services:
 
-- [Traefik](traefik.md) reverse-proxy server
 - MySQL / [MariaDB](mariadb.md) database
+- [Traefik](traefik.md) reverse-proxy server
 
 ## Adjusting the playbook configuration
 
