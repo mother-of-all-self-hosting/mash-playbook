@@ -291,15 +291,9 @@ Refer to [this blogpost by a third party](https://blog.cubieserver.de/2022/compl
 
 On Nextcloud it is possible to integrate the Collabora Online Development Edition (CODE) office suite. This playbook supports it, and you can set up a CODE instance by enabling it on `vars.yml`. You can follow the [documentation](code.md) to install it.
 
-After installing it, add the following configuration for Nextcloud to your `vars.yml` file:
+By default, this playbook is configured to automatically integrate the CODE instance with the Nextcloud instance which this playbook manages, if both of them are enabled.
 
-```yaml
-nextcloud_collabora_app_wopi_url: "{{ collabora_online_url }}"
-```
-
-**Note**: by default, various private IPv4 networks are whitelisted to connect to the WOPI API (document serving API). If your CODE instance does not live on the same server as Nextcloud, you may need to adjust the list of networks. If necessary, redefine the `nextcloud_collabora_app_wopi_allowlist` environment variable on `vars.yml`.
-
-After adding the configuration, run this command to install and configure the [Office](https://apps.nextcloud.com/apps/richdocuments) app for Nextcloud:
+After installing both CODE and Nextcloud, run this command to install and configure the [Office](https://apps.nextcloud.com/apps/richdocuments) app for Nextcloud:
 
 ```sh
 just run-tags install-nextcloud-app-collabora
@@ -308,6 +302,9 @@ just run-tags install-nextcloud-app-collabora
 Open the URL `https://mash.example.com/nextcloud/settings/admin/richdocuments` to have the instance set up the connection with the CODE instance.
 
 You should then be able to open any document (`.doc`, `.odt`, `.pdf`, etc.) and create new ones in Nextcloud Files with Collabora Online Development Edition's editor.
+
+>[!NOTE]
+> By default, various private IPv4 networks are whitelisted to connect to the WOPI API (document serving API). If your CODE instance does not live on the same server as Nextcloud, you may need to adjust the list of networks. If necessary, redefine the `nextcloud_collabora_app_wopi_allowlist` environment variable on `vars.yml`.
 
 ### Preview Generator
 

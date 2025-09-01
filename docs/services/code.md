@@ -68,11 +68,7 @@ collabora_online_environment_variable_password: ''
 
 To use a CODE instance to edit office documents, you need to integrate it with a File Sync and Share solution that implements the WOPI (*Web Application Open Platform Interface*) protocol, such as Nextcloud.
 
-For example, if you want to integrate the instance with the Nextcloud instance which this playbook manages, add the following configuration to your `vars.yml` file.
-
-```yaml
-collabora_online_environment_variable_aliasgroup1: "https://{{ nextcloud_hostname | replace('.', '\\.') }}:443"
-```
+By default, this playbook is configured to automatically integrate the CODE instance with the Nextcloud instance which this playbook manages, if both of them are enabled.
 
 >[!NOTE]
 > For details, see [this section about the integration](nextcloud.md#collabora-online-development-edition) on our Nextcloud documentation.
