@@ -239,24 +239,6 @@ nextcloud_container_additional_networks_custom:
 
 Running the installation command will create the shared Valkey instance named `mash-valkey`.
 
-#### Adjust Nextcloud configuration file
-
-If a Valkey instance is enabled for Nextcloud in either way, adjust your Nextcloud configuration file (e.g. `/mash/nextcloud/data/config/config.php`) to **add** this:
-
-```php
-  'memcache.distributed' => '\OC\Memcache\Redis',
-  'memcache.locking' => '\OC\Memcache\Redis',
-  'redis' => [
-     'host' => 'VALKEY_HOSTNAME_HERE',
-     'port' => 6379,
-  ],
-```
-
-Where `VALKEY_HOSTNAME_HERE` is to be replaced with:
-
-- `mash-nextcloud-valkey` if the dedicated Valkey instance is used
-- `mash-valkey` if the single Valkey instance is used
-
 ### Samba (optional)
 
 You can enable [Samba](https://www.samba.org/) external Windows fileshares using [smbclient](https://www.samba.org/samba/docs/current/man-html/smbclient.1.html). See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-nextcloud/blob/main/docs/configuring-nextcloud.md#enable-samba-optional) on the role's documentation for details.
