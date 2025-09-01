@@ -67,6 +67,10 @@ nextcloud_path_prefix: /nextcloud
 
 By default Nextcloud is configured to use Postgres, but you can choose other databases such as MySQL (MariaDB) and SQLite. See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-nextcloud/blob/main/docs/configuring-nextcloud.md#configure-database) on the role's documentation for details.
 
+### Editing default configuration parameters (optional)
+
+Some configuration parameters for Nextcloud can be specified with variables starting with `nextcloud_config_parameter_default_*`. See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-nextcloud/blob/main/docs/configuring-nextcloud.md#editing-default-configuration-parameters-optional) on the role's documentation for details. Refer to [this page](https://docs.nextcloud.com/server/latest/admin_manual/configuration_server/config_sample_php_parameters.html) of the Nextcloud documentation as well.
+
 ### Valkey (optional)
 
 Valkey can **optionally** be enabled to improve Nextcloud performance and to prevent file locking problems. This playbook supports it, and you can set up a Valkey instance by enabling it on `vars.yml`.
