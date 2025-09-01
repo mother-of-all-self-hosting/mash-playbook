@@ -5534,6 +5534,17 @@ mash_playbook_mariadb_managed_databases_auto_itemized:
     }}
   # /role-specific:matomo
 
+  # role-specific:nextcloud
+  - |-
+    {{
+      ({
+        'name': nextcloud_database_name,
+        'username': nextcloud_database_mysql_username,
+        'password': nextcloud_database_mysql_password,
+      } if nextcloud_enabled and nextcloud_database_mysql_hostname == mariadb_connection_hostname and nextcloud_database_type == 'mysql' else omit)
+    }}
+  # /role-specific:nextcloud
+
   # role-specific:privatebin
   - |-
     {{
@@ -6194,7 +6205,9 @@ nextcloud_gid: "{{ mash_playbook_gid }}"
 
 nextcloud_systemd_required_services_list_auto: |
   {{
-    ([postgres_identifier ~ '.service'] if postgres_enabled and nextcloud_database_hostname == postgres_identifier else [])
+    ([mariadb_identifier ~ '.service'] if mariadb_enabled | default(false) and nextcloud_database_mysql_hostname == mariadb_connection_hostname and nextcloud_database_type == 'mysql' else [])
+    +
+    ([postgres_identifier ~ '.service'] if postgres_enabled | default(false) and nextcloud_database_hostname == postgres_identifier and nextcloud_database_type == 'postgres' else [])
   }}
 
 nextcloud_systemd_wanted_services_list_auto: |
@@ -6207,7 +6220,9 @@ nextcloud_container_additional_networks_auto: |
     (
       ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
       +
-      ([postgres_container_network] if postgres_enabled and nextcloud_database_hostname == postgres_identifier and nextcloud_container_network != postgres_container_network else [])
+      ([mariadb_container_network] if mariadb_enabled | default(false) and nextcloud_database_mysql_hostname == mariadb_connection_hostname and nextcloud_container_network != mariadb_container_network and nextcloud_database_type == 'mysql' else [])
+      +
+      ([postgres_container_network] if postgres_enabled | default(false) and nextcloud_database_hostname == postgres_identifier and nextcloud_container_network != postgres_container_network and nextcloud_database_type == 'postgres' else [])
       +
       ([exim_relay_container_network | default('mash-exim-relay')] if (exim_relay_enabled | default(false) and nextcloud_config_parameter_mail_smtphost == exim_relay_identifier | default('mash-exim-relay') and nextcloud_container_network != exim_relay_container_network) else [])
     ) | unique
@@ -6218,6 +6233,8 @@ nextcloud_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_pro
 nextcloud_container_labels_traefik_compression_middleware_enabled: "{{ mash_playbook_reverse_proxy_traefik_middleware_compession_enabled }}"
 nextcloud_container_labels_traefik_compression_middleware_name: "{{ mash_playbook_reverse_proxy_traefik_middleware_compession_name if mash_playbook_reverse_proxy_traefik_middleware_compession_enabled else '' }}"
 
+nextcloud_database_type: "{{ 'postgres' if postgres_enabled | default(false) else 'sqlite' }}"
+
 # role-specific:exim_relay
 nextcloud_config_parameter_mail_smtphost: "{{ exim_relay_identifier if exim_relay_enabled else '' }}"
 nextcloud_config_parameter_mail_smtpport: "{{ 8025 if exim_relay_enabled else '' }}"
@@ -6226,6 +6243,12 @@ nextcloud_config_parameter_mail_smtpauth: false
 nextcloud_config_parameter_mail_from_address: "{{ (exim_relay_sender_address | split('@'))[0] if exim_relay_enabled else '' }}"
 nextcloud_config_parameter_mail_domain: "{{ (exim_relay_sender_address | split('@'))[1] if exim_relay_enabled else '' }}"
 # /role-specific:exim_relay
+
+# role-specific:mariadb
+nextcloud_database_mysql_hostname: "{{ mariadb_connection_hostname if mariadb_enabled else '' }}"
+nextcloud_database_mysql_port: "{{ mariadb_connection_port if mariadb_enabled | default(false) else '3306' }}"
+nextcloud_database_mysql_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'db.nextcloud', rounds=655555) | to_uuid }}"
+# /role-specific:mariadb
 
 # role-specific:postgres
 nextcloud_database_hostname: "{{ postgres_connection_hostname if postgres_enabled else '' }}"

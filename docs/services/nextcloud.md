@@ -32,7 +32,8 @@ See the project's [documentation](https://docs.nextcloud.com/) to learn what Nex
 
 This service requires the following other services:
 
-- a [Postgres](postgres.md) database
+- (optional) [Postgres](postgres.md) / MySQL / [MariaDB](mariadb.md) database — Nextcloud will default to [SQLite](https://www.sqlite.org/) if Postgres is not enabled
+    - [This page](https://docs.nextcloud.com/server/latest/admin_manual/configuration_database/linux_database_configuration.html) of the Nextcloud documentation recommends MySQL or MariaDB database
 - a [Traefik](traefik.md) reverse-proxy server
 - (optional) a [Valkey](valkey.md) data-store; see [below](#configure-valkey) for details about installation
 - (optional) the [exim-relay](exim-relay.md) mailer
@@ -61,6 +62,10 @@ nextcloud_path_prefix: /nextcloud
 #                                                                      #
 ########################################################################
 ```
+
+### Select database to use (optional)
+
+By default Nextcloud is configured to use Postgres, but you can choose other databases such as MySQL (MariaDB) and SQLite. See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-nextcloud/blob/main/docs/configuring-nextcloud.md#configure-database) on the role's documentation for details.
 
 ### Valkey (optional)
 
@@ -266,17 +271,7 @@ Note that running the `just` commands for installation (`just install-all` or `j
 
 After running the command for installation, the Nextcloud instance becomes available at the URL specified with `nextcloud_hostname` and `nextcloud_path_prefix`. With the configuration above, the service is hosted at `https://mash.example.com/nextcloud`.
 
-### Complete setup wizard
-
-To get started, open the URL with a web browser, and follow the set up wizard.
-
-In **Storage & database**, it is recommended to choose PostgreSQL (changing the default **SQLite** choice). To check credentials for the database, run this command:
-
-```sh
-just run-tags print-nextcloud-db-credentials
-```
-
-Once you have completed the set up wizard, update the configuration (URL paths, trusted reverse-proxies, etc.) by running the command below:
+Before logging in to the instance, update the configuration (URL paths, trusted reverse-proxies, etc.) by running the command below:
 
 ```sh
 just run-tags adjust-nextcloud-config
