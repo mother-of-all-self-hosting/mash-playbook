@@ -280,6 +280,12 @@ just run-tags adjust-nextcloud-config
 >[!NOTE]
 > You should re-run the command every time the Nextcloud version is updated.
 
+### Checking SMTP server configuration
+
+The playbook automatically configures a SMTP server (Exim-relay), to which the Nextcloud instance connects to send emails. After logging in as the admin user, you can check the configuration at `https://mash.example.com/nextcloud/settings/admin` for basic administration settings.
+
+Before sending a test mail, **make sure to set the email address of the admin user** at `https://mash.example.com/nextcloud/settings/user`. Otherwise hitting the "Send email" button on the page returns the 400 error, as the instance does not know where to send the mail. See the browser's console for details.
+
 ### Single-Sign-On (SSO) integration
 
 Nextcloud supports Single-Sign-On (SSO) via LDAP, SAML, and OIDC. To make use of it, an identity provider like [authentik](authentik.md) or [Keycloak](keycloak.md) needs to be set up.
