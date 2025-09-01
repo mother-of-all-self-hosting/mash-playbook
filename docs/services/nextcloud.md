@@ -36,10 +36,10 @@ For details about configuring the [Ansible role for Nextcloud](https://github.co
 
 This service requires the following other services:
 
+- a [Traefik](traefik.md) reverse-proxy server
 - (optional) [Postgres](postgres.md) / MySQL / [MariaDB](mariadb.md) database — Nextcloud will default to [SQLite](https://www.sqlite.org/) if Postgres is not enabled
     - [This page](https://docs.nextcloud.com/server/latest/admin_manual/configuration_database/linux_database_configuration.html) of the Nextcloud documentation recommends MySQL or MariaDB database
-- a [Traefik](traefik.md) reverse-proxy server
-- (optional) a [Valkey](valkey.md) data-store; see [below](#configure-valkey) for details about installation
+- (optional) a [Valkey](valkey.md) data-store; see [below](#configuring-valkey-optional) for details about installation
 - (optional) the [exim-relay](exim-relay.md) mailer
 
 ## Adjusting the playbook configuration
@@ -75,9 +75,9 @@ By default Nextcloud is configured to use Postgres, but you can choose other dat
 
 Some configuration parameters for Nextcloud can be specified with variables starting with `nextcloud_config_parameter_default_*`. See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-nextcloud/blob/main/docs/configuring-nextcloud.md#editing-default-configuration-parameters-optional) on the role's documentation for details. Refer to [this page](https://docs.nextcloud.com/server/latest/admin_manual/configuration_server/config_sample_php_parameters.html) of the Nextcloud documentation as well.
 
-### Valkey (optional)
+### Configuring Valkey (optional)
 
-Valkey can **optionally** be enabled to improve Nextcloud performance and to prevent file locking problems. This playbook supports it, and you can set up a Valkey instance by enabling it on `vars.yml`.
+Valkey can optionally be enabled to improve Nextcloud performance and to prevent file locking problems. This playbook supports it, and you can set up a Valkey instance by enabling it on `vars.yml`.
 
 If Nextcloud is the sole service which requires Valkey on your server, it is fine to set up just a single Valkey instance. However, **it is not recommended if there are other services which require it, because sharing the Valkey instance has security concerns and possibly causes data conflicts**, as described on the [documentation for configuring Valkey](valkey.md). In this case, you should install a dedicated Valkey instance for each of them.
 
