@@ -6212,7 +6212,7 @@ nextcloud_systemd_required_services_list_auto: |
 
 nextcloud_systemd_wanted_services_list_auto: |
   {{
-    ([(exim_relay_identifier | default('mash-exim-relay')) ~ '.service'] if (exim_relay_enabled | default(false) and nextcloud_config_parameter_mail_smtphost == exim_relay_identifier | default('mash-exim-relay')) else [])
+    ([(exim_relay_identifier | default('mash-exim-relay')) ~ '.service'] if (exim_relay_enabled | default(false) and nextcloud_environment_variables_smtp_host == exim_relay_identifier | default('mash-exim-relay')) else [])
   }}
 
 nextcloud_container_additional_networks_auto: |
@@ -6224,7 +6224,7 @@ nextcloud_container_additional_networks_auto: |
       +
       ([postgres_container_network] if postgres_enabled | default(false) and nextcloud_database_hostname == postgres_identifier and nextcloud_container_network != postgres_container_network and nextcloud_database_type == 'postgres' else [])
       +
-      ([exim_relay_container_network | default('mash-exim-relay')] if (exim_relay_enabled | default(false) and nextcloud_config_parameter_mail_smtphost == exim_relay_identifier | default('mash-exim-relay') and nextcloud_container_network != exim_relay_container_network) else [])
+      ([exim_relay_container_network | default('mash-exim-relay')] if (exim_relay_enabled | default(false) and nextcloud_environment_variables_smtp_host == exim_relay_identifier | default('mash-exim-relay') and nextcloud_container_network != exim_relay_container_network) else [])
     ) | unique
   }}
 
@@ -6236,12 +6236,11 @@ nextcloud_container_labels_traefik_compression_middleware_name: "{{ mash_playboo
 nextcloud_database_type: "{{ 'postgres' if postgres_enabled | default(false) else 'sqlite' }}"
 
 # role-specific:exim_relay
-nextcloud_config_parameter_mail_smtphost: "{{ exim_relay_identifier if exim_relay_enabled else '' }}"
-nextcloud_config_parameter_mail_smtpport: "{{ 8025 if exim_relay_enabled else '' }}"
-nextcloud_config_parameter_mail_smtpsecure: ''
-nextcloud_config_parameter_mail_smtpauth: false
-nextcloud_config_parameter_mail_from_address: "{{ (exim_relay_sender_address | split('@'))[0] if exim_relay_enabled else '' }}"
-nextcloud_config_parameter_mail_domain: "{{ (exim_relay_sender_address | split('@'))[1] if exim_relay_enabled else '' }}"
+nextcloud_environment_variables_smtp_host: "{{ exim_relay_identifier if exim_relay_enabled else '' }}"
+nextcloud_environment_variables_smtp_port: "{{ 8025 if exim_relay_enabled else '' }}"
+nextcloud_environment_variables_mail_from_address: "{{ (exim_relay_sender_address | split('@'))[0] if exim_relay_enabled else '' }}"
+nextcloud_environment_variables_mail_domain: "{{ (exim_relay_sender_address | split('@'))[1] if exim_relay_enabled else '' }}"
+nextcloud_environment_variables_smtp_authtype: PLAIN
 # /role-specific:exim_relay
 
 # role-specific:mariadb
