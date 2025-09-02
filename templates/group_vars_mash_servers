@@ -6773,7 +6773,7 @@ plausible_systemd_required_services_list_auto: |
   {{
     ([postgres_identifier ~ '.service'] if postgres_enabled and plausible_database_hostname == postgres_identifier else [])
     +
-    ([clickhouse_identifier ~ '.service'] if clickhouse_enabled | default(false) and plausible_clickhouse_database_hostname == clickhouse_identifier| default('mash-clickhouse') else [])
+    ([clickhouse_identifier ~ '.service'] if clickhouse_enabled and plausible_clickhouse_database_hostname == clickhouse_identifier| default('mash-clickhouse') else [])
   }}
 
 plausible_systemd_wanted_services_list_auto: |
@@ -6783,7 +6783,7 @@ plausible_systemd_wanted_services_list_auto: |
 
 plausible_container_additional_networks_auto: |
   {{
-    ([clickhouse_container_network | default('mash-clickhouse')] if (clickhouse_enabled | default(false) and plausible_clickhouse_database_hostname == clickhouse_identifier | default('mash-clickhouse') and plausible_container_network != clickhouse_container_network | default('mash-clickhouse')) else [])
+    ([clickhouse_container_network | default('mash-clickhouse')] if (clickhouse_enabled and plausible_clickhouse_database_hostname == clickhouse_identifier | default('mash-clickhouse') and plausible_container_network != clickhouse_container_network | default('mash-clickhouse')) else [])
     +
     ([exim_relay_container_network | default('mash-exim-relay')] if (exim_relay_enabled | default(false) and plausible_environment_variable_smtp_host_addr == exim_relay_identifier | default('mash-exim-relay') and plausible_container_network != exim_relay_container_network) else [])
     +
