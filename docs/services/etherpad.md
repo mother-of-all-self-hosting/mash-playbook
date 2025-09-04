@@ -24,7 +24,7 @@ For details about configuring the [Ansible role for the server](https://github.c
 
 This service requires the following other services:
 
-- a [Postgres](postgres.md) database
+- a datapase supported by [ueberdb2](https://www.npmjs.com/package/ueberdb2) such as [Postgres](postgres.md) / MySQL / [MariaDB](mariadb.md) database — Etherpad will default to [SQLite](https://www.sqlite.org/) if Postgres is not enabled
 - a [Traefik](traefik.md) reverse-proxy server
 
 ## Adjusting the playbook configuration
@@ -51,7 +51,7 @@ etherpad_hostname: etherpad.example.com
 
 As the most of the necessary settings for the role have been taken care of by the playbook, you can enable Etherpad on your server with this minimum configuration.
 
-See the role's documentation for details about configuring Etherpad per your preference (such as [the name of the instance](https://github.com/mother-of-all-self-hosting/ansible-role-etherpad/blob/main/docs/configuring-etherpad.md#set-the-name-of-the-instance-optional) and [the default pad text](https://github.com/mother-of-all-self-hosting/ansible-role-etherpad/blob/main/docs/configuring-etherpad.md#set-the-default-text-optional)).
+See the role's documentation for details about configuring Etherpad per your preference (such as [database type](https://github.com/mother-of-all-self-hosting/ansible-role-etherpad/blob/main/docs/configuring-etherpad.md#configure-database), [the name of the instance](https://github.com/mother-of-all-self-hosting/ansible-role-etherpad/blob/main/docs/configuring-etherpad.md#set-the-name-of-the-instance-optional) and [the default pad text](https://github.com/mother-of-all-self-hosting/ansible-role-etherpad/blob/main/docs/configuring-etherpad.md#set-the-default-text-optional)).
 
 ### Create admin user (optional)
 
