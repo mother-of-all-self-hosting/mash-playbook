@@ -2692,18 +2692,31 @@ etherpad_gid: "{{ mash_playbook_gid }}"
 
 etherpad_systemd_required_services_list_auto: |
   {{
-    ([postgres_identifier ~ '.service'] if postgres_enabled and etherpad_database_hostname == postgres_identifier else [])
+    ([mariadb_identifier ~ '.service'] if mariadb_enabled | default(false) and etherpad_database_mysql_hostname == mariadb_connection_hostname and etherpad_database_type == 'mysql' else [])
+    +
+    ([postgres_identifier ~ '.service'] if postgres_enabled | default(false) and etherpad_database_hostname == postgres_identifier and etherpad_database_type == 'postgres' else [])
   }}
 
 etherpad_container_additional_networks_auto: |
   {{
     ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
     +
-    ([postgres_container_network] if postgres_enabled and etherpad_database_hostname == postgres_identifier and etherpad_container_network != postgres_container_network else [])
+    ([mariadb_container_network] if mariadb_enabled | default(false) and etherpad_database_mysql_hostname == mariadb_connection_hostname and etherpad_container_network != mariadb_container_network and etherpad_database_type == 'mysql' else [])
+    +
+    ([postgres_container_network] if postgres_enabled | default(false) and etherpad_database_hostname == postgres_identifier and etherpad_container_network != postgres_container_network and etherpad_database_type == 'postgres' else [])
   }}
 
 etherpad_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
 etherpad_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+
+etherpad_database_type: "{{ 'postgres' if postgres_enabled | default(false) else 'sqlite' }}"
+
+# role-specific:mariadb
+etherpad_database_mysql_hostname: "{{ mariadb_connection_hostname if mariadb_enabled else '' }}"
+etherpad_database_mysql_port: "{{ mariadb_connection_port if mariadb_enabled else '3306' }}"
+etherpad_database_mysql_username: "{{ etherpad_identifier }}"
+etherpad_database_mysql_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'db.etherpad.ma', rounds=655555) | to_uuid }}"
+# /role-specific:mariadb
 
 # role-specific:postgres
 etherpad_database_hostname: "{{ postgres_connection_hostname if postgres_enabled else '' }}"
@@ -5521,6 +5534,17 @@ mash_playbook_mariadb_managed_databases_auto_itemized:
       } if authelia_enabled and authelia_config_storage_mysql_hostname == mariadb_connection_hostname else omit)
     }}
   # /role-specific:authelia
+
+  # role-specific:etherpad
+  - |-
+    {{
+      ({
+        'name': etherpad_database_name,
+        'username': etherpad_database_mysql_username,
+        'password': etherpad_database_mysql_password,
+      } if etherpad_enabled and etherpad_database_mysql_hostname == mariadb_connection_hostname and etherpad_database_type == 'mysql' else omit)
+    }}
+  # /role-specific:etherpad
 
   # role-specific:forgejo
   - |-
