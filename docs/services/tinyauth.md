@@ -19,14 +19,14 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
 # Tinyauth
 
-The playbook can install and configure [Tinyauth](https://github.com/httpjamesm/Tinyauth) for you.
+The playbook can install and configure [Tinyauth](https://tinyauth.app) for you.
 
-Tinyauth allows you to view StackOverflow threads without exposing your IP address, browsing habits, and other browser fingerprinting data to the website.
+Tinyauth is a simple authentication middleware that adds a login screen or OAuth with Google, Github, and any provider to your Docker services. It also supports Lightweight Directory Access Protocol (LDAP).
 
-See the project's [documentation](https://github.com/httpjamesm/Tinyauth/blob/main/README.md) to learn what Tinyauth does and why it might be useful to you.
+See the project's [documentation](https://tinyauth.app/docs/about) to learn what Tinyauth does and why it might be useful to you.
 
-For details about configuring the [Ansible role for Tinyauth](https://github.com/mother-of-all-self-hosting/ansible-role-tinyauth), you can check them via:
-- 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-tinyauth/blob/main/docs/configuring-tinyauth.md) online
+For details about configuring the [Ansible role for Tinyauth](https://codeberg.org/acioustick/ansible-role-tinyauth), you can check them via:
+- 🌐 [the role's documentation](https://codeberg.org/acioustick/ansible-role-tinyauth/src/branch/master/docs/configuring-tinyauth.md) online
 - 📁 `roles/galaxy/tinyauth/docs/configuring-tinyauth.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 ## Dependencies
@@ -34,6 +34,9 @@ For details about configuring the [Ansible role for Tinyauth](https://github.com
 This service requires the following other services:
 
 - [Traefik](traefik.md) reverse-proxy server
+
+>[!NOTE]
+> Tinyauth is available for other proxies like nginx and Caddy. See the documentation for details: <https://tinyauth.app/docs/guides/nginx-proxy-manager> and <https://tinyauth.app/docs/community/caddy>
 
 ## Adjusting the playbook configuration
 
@@ -57,19 +60,63 @@ tinyauth_hostname: tinyauth.example.com
 ########################################################################
 ```
 
+With this configuration, Tinyauth will set a cookie for `.example.com` for authentication. This means that all your services to be authenticated will need to be under this domain. See [this section](https://tinyauth.app/docs/getting-started/#set-up-the-domains) on the official documentation for details.
+
 **Note**: hosting Tinyauth under a subpath (by configuring the `tinyauth_path_prefix` variable) does not seem to be possible due to Tinyauth's technical limitations.
 
 ## Usage
 
-After running the command for installation, Tinyauth becomes available at the specified hostname like `https://tinyauth.example.com`.
+After running the command for installation, the Tinyauth instance becomes available at the URL specified with `tinyauth_hostname`. With the configuration above, the service is hosted at `https://tinyauth.example.com`.
 
-[Libredirect](https://libredirect.github.io/), an extension for Firefox and Chromium-based desktop browsers, has support for redirections to Tinyauth. See [this section](https://github.com/httpjamesm/Tinyauth/blob/main/README.md#how-to-make-stack-overflow-links-take-you-to-tinyauth-automatically) on the official documentation for more information.
+Both default username and password are set to `mash`. Note that you will get a warning after finishing the installation command about the credential specified by default until setting yours, unless logging in via OAuth only is enabled.
 
-If you would like to publish your instance so that it can be used by anyone including Libredirect, please consider to send a PR to the [upstream project](https://github.com/httpjamesm/Tinyauth) to add yours to [`instances.json`](https://github.com/httpjamesm/Tinyauth/blob/main/instances.json), which Libredirect automatically fetches using a script (see [this FAQ entry](https://libredirect.github.io/faq.html#where_the_hell_are_those_instances_coming_from)).
+See [this section](https://codeberg.org/acioustick/ansible-role-tinyauth/src/branch/master/docs/configuring-tinyauth.md#creating-a-user) on the role's documentation for details about how to create a user. Note that by default generating a time-based one-time password (TOTP) is enabled.
+
+### OAuth
+
+Tinyauth supports OAuth with Google, GitHub, and other generic OAuth providers. See [this section](https://codeberg.org/acioustick/ansible-role-tinyauth/src/branch/master/docs/configuring-tinyauth.md#oauth) on the role's documentation for details.
+
+>[!NOTE]
+> When setting OAuth configuration, make sure to set the `OAUTH_WHITELIST` environment variable to limit who is allowed to log in with OAuth.
+
+### Configuring Traefik
+
+After creating the user, you can enable Tinyauth for a service by simply adding a Traefik label as below:
+
+```txt
+traefik.http.routers.YOUR_ROUTER_HERE.middlewares={{ tinyauth_identifier }}
+```
+
+Replace `YOUR_ROUTER_HERE` with a proper value. On this playbook, the value has the common format: `{{ *_identifier }}`.
+
+For example, you can enable Tinyauth for [echoip](echoip.md) by adding the following configuration to your `vars.yml` file:
+
+```yaml
+########################################################################
+#                                                                      #
+# echoip                                                               #
+#                                                                      #
+########################################################################
+
+echoip_enabled: true
+
+echoip_hostname: echoip.example.com
+
+echoip_container_labels_additional_labels: |
+  traefik.http.routers.{{ echoip_identifier }}.middlewares={{ tinyauth_identifier }}
+
+########################################################################
+#                                                                      #
+# /echoip                                                              #
+#                                                                      #
+########################################################################
+```
+
+After re-running the playbook, accessing to `https://echoip.example.com` redirects to the Tinyauth log in page at `https://tinyauth.example.com`.
 
 ## Troubleshooting
 
-See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-tinyauth/blob/main/docs/configuring-tinyauth.md#troubleshooting) on the role's documentation for details.
+See [this section](https://codeberg.org/acioustick/ansible-role-tinyauth/src/branch/master/docs/configuring-tinyauth.md#troubleshooting) on the role's documentation for details.
 
 ## Related services
 
