@@ -204,3 +204,4 @@ To get started, open the URL with a web browser, and log in to the portal websit
 - [authentik](authentik.md) — Open-source identity provider focused on flexibility and versatility
 - [Keycloak](keycloak.md) — Open source identity and access management solution
 - [OAuth2-Proxy](oauth2-proxy.md) — Reverse proxy and static file server that provides authentication using OpenID Connect providers (Google, GitHub, authentik, Keycloak, and others) to SSO-protect services which do not support SSO natively
+- [Tinyauth](tinyauth.md) — Simple authentication middleware that adds a login screen or OAuth with Google, Github, and any provider to your Docker services
