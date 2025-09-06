@@ -29,6 +29,22 @@ For details about configuring the [Ansible role for Tinyauth](https://codeberg.o
 - 🌐 [the role's documentation](https://codeberg.org/acioustick/ansible-role-tinyauth/src/branch/master/docs/configuring-tinyauth.md) online
 - 📁 `roles/galaxy/tinyauth/docs/configuring-tinyauth.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
+## Prerequisites
+
+💡 *If you intend to enable logging in via OAuth only, you can skip this step.*
+
+The Tinyauth service requires at least one user to have been created and specified for a successful launch, unless logging in with a user is disabled in favor of OAuth.
+
+You can generate a first user with its TOTP secret by running the command below:
+
+```sh
+ansible-playbook -i inventory/hosts setup.yml --tags=create-user-tinyauth -e username=USERNAME_HERE -e password=RAW_PASSWORD_HERE
+```
+
+Then, specify the output to the `tinyauth_environment_variables_users` environment variable on your `vars.yml` file.
+
+Refer to [this section](https://codeberg.org/acioustick/ansible-role-tinyauth/src/branch/master/docs/configuring-tinyauth.md#prerequisites) on the role's documentation for details.
+
 ## Dependencies
 
 This service requires the following other services:
@@ -60,28 +76,26 @@ tinyauth_hostname: tinyauth.example.com
 ########################################################################
 ```
 
-With this configuration, Tinyauth will set a cookie for `.example.com` for authentication. This means that all your services to be authenticated will need to be under this domain. See [this section](https://tinyauth.app/docs/getting-started/#set-up-the-domains) on the official documentation for details.
+With this configuration, Tinyauth will set a cookie for `.example.com` for authentication. Note that all your services to be authenticated will need to be under this domain. See [this section](https://tinyauth.app/docs/getting-started/#set-up-the-domains) on the official documentation for details.
 
 **Note**: hosting Tinyauth under a subpath (by configuring the `tinyauth_path_prefix` variable) does not seem to be possible due to Tinyauth's technical limitations.
+
+### Configuring OAuth (optional)
+
+If you skipped creating a user to use OAuth authentication only, you can configure authentication with your OAuth provider by following the instruction available on [this section](https://codeberg.org/acioustick/ansible-role-tinyauth/src/branch/master/docs/configuring-tinyauth.md#oauth) of the role's documentation.
+
+>[!NOTE]
+> When setting OAuth configuration, make sure to set the `OAUTH_WHITELIST` environment variable to limit who is allowed to log in with OAuth. Enabling OAuth solely will not activate authorization!
 
 ## Usage
 
 After running the command for installation, the Tinyauth instance becomes available at the URL specified with `tinyauth_hostname`. With the configuration above, the service is hosted at `https://tinyauth.example.com`.
 
-Both default username and password are set to `mash`. Note that you will get a warning after finishing the installation command about the credential specified by default until setting yours, unless logging in via OAuth only is enabled.
+Open the URL `https://tinyauth.example.com` and confirm that you can log in to Tinyauth with the generated credentials or via your OAuth provider if it is enabled.
 
-See [this section](https://codeberg.org/acioustick/ansible-role-tinyauth/src/branch/master/docs/configuring-tinyauth.md#creating-a-user) on the role's documentation for details about how to create a user. Note that by default generating a time-based one-time password (TOTP) is enabled.
+### Add Traefik's labels
 
-### OAuth
-
-Tinyauth supports OAuth with Google, GitHub, and other generic OAuth providers. See [this section](https://codeberg.org/acioustick/ansible-role-tinyauth/src/branch/master/docs/configuring-tinyauth.md#oauth) on the role's documentation for details.
-
->[!NOTE]
-> When setting OAuth configuration, make sure to set the `OAUTH_WHITELIST` environment variable to limit who is allowed to log in with OAuth.
-
-### Configuring Traefik
-
-After creating the user, you can enable Tinyauth for a service by simply adding a Traefik label as below:
+You can enable Tinyauth for a service by simply adding a Traefik label as below:
 
 ```txt
 traefik.http.routers.YOUR_ROUTER_HERE.middlewares={{ tinyauth_identifier }}
