@@ -248,6 +248,10 @@ grafana_environment_variables_additional_variables: |
   GF_AUTH_GENERIC_OAUTH_USE_PKCE=true
 ```
 
+#### Single-Sign-On / Pocket ID
+
+Refer to [this page](https://pocket-id.org/docs/client-examples/grafana) on Pocket ID's documentation for the instruction.
+
 ## Usage
 
 After running the command for installation, the Grafana instance becomes available at the URL specified with `grafana_hostname` and `grafana_path_prefix`. With the configuration above, the service is hosted at `https://mash.example.com/grafana`.
