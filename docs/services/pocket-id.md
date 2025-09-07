@@ -89,3 +89,10 @@ See [this section](https://codeberg.org/acioustick/ansible-role-pocket-id/src/br
 ## Troubleshooting
 
 See [this section](https://codeberg.org/acioustick/ansible-role-pocket-id/src/branch/master/docs/configuring-pocket-id.md#troubleshooting) on the role's documentation for details.
+
+## Related services
+
+- [authentik](authentik.md) — Open-source Identity Provider (IdP) focused on flexibility and versatility
+- [Authelia](authelia.md) — Open-source authentication and authorization server that can work as a companion to common reverse proxies like Traefik
+- [Keycloak](keycloak.md) — Open source identity and access management solution
+- [Tinyauth](tinyauth.md) — Simple authentication middleware that adds a login screen or OAuth with Google, Github, and any provider to your Docker services
