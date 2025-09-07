@@ -25,9 +25,9 @@ Pocket ID is a highly customizable dashboard for management of your favorite app
 
 See the project's [documentation](https://pocket-id.org/docs/getting-started) to learn what Pocket ID does and why it might be useful to you.
 
-For details about configuring the [Ansible role for Pocket ID](https://github.com/mother-of-all-self-hosting/ansible-role-pocket_id), you can check them via:
-- 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-pocket_id/blob/main/docs/configuring-pocket_id.md) online
-- 📁 `roles/galaxy/pocket_id/docs/configuring-pocket_id.md` locally, if you have [fetched the Ansible roles](../installing.md)
+For details about configuring the [Ansible role for Pocket ID](https://github.com/mother-of-all-self-hosting/ansible-role-pocket-id), you can check them via:
+- 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-pocket-id/blob/main/docs/configuring-pocket-id.md) online
+- 📁 `roles/galaxy/pocket_id/docs/configuring-pocket-id.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 ## Dependencies
 
@@ -84,7 +84,7 @@ To use SQLite, add the following configuration to your `vars.yml` file:
 forgejo_database_type: better-sqlite3
 ```
 
-See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-pocket_id/blob/main/docs/configuring-pocket_id.md#specify-database-optional) on the role's documentation for details.
+See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-pocket-id/blob/main/docs/configuring-pocket-id.md#specify-database-optional) on the role's documentation for details.
 
 ## Usage
 
@@ -108,4 +108,4 @@ See [this page](https://pocket-id.org/docs/category/integrations) on the officia
 
 ## Troubleshooting
 
-See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-pocket_id/blob/main/docs/configuring-pocket_id.md#troubleshooting) on the role's documentation for details.
+See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-pocket-id/blob/main/docs/configuring-pocket-id.md#troubleshooting) on the role's documentation for details.
