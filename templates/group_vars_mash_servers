@@ -576,6 +576,11 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
     {{ ({'name': (plausible_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'plausible']} if plausible_enabled else omit) }}
   # /role-specific:plausible
 
+  # role-specific:plex
+  - |-
+    {{ ({'name': (plex_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'plex']} if plex_enabled else omit) }}
+  # /role-specific:plex
+
   # role-specific:postgis
   - |-
     {{ ({'name': (postgis_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'metrics', 'postgis']} if postgis_enabled else omit) }}
@@ -595,11 +600,6 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
   - |-
     {{ ({'name': (privatebin_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'privatebin']} if privatebin_enabled else omit) }}
   # /role-specific:privatebin
-
-  # role-specific:plex
-  - |-
-    {{ ({'name': (plex_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'plex']} if plex_enabled else omit) }}
-  # /role-specific:plex
 
   # role-specific:prometheus
   - |-
