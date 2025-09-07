@@ -19,11 +19,11 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
 # Pocket ID
 
-The playbook can install and configure [Pocket ID](https://pocket_id.dev) for you.
+The playbook can install and configure [Pocket ID](https://pocket-id.org) for you.
 
 Pocket ID is a highly customizable dashboard for management of your favorite applications and services with a drag-and-drop grid system, which integrates with various self-hosted applications.
 
-See the project's [documentation](https://pocket_id.dev/docs/getting-started) to learn what Pocket ID does and why it might be useful to you.
+See the project's [documentation](https://pocket-id.org/docs/getting-started) to learn what Pocket ID does and why it might be useful to you.
 
 For details about configuring the [Ansible role for Pocket ID](https://github.com/mother-of-all-self-hosting/ansible-role-pocket_id), you can check them via:
 - 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-pocket_id/blob/main/docs/configuring-pocket_id.md) online
@@ -90,7 +90,7 @@ See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-po
 
 After running the command for installation, the Pocket ID instance becomes available at the URL specified with `pocket_id_hostname`. With the configuration above, the service is hosted at `https://pocket_id.example.com`.
 
-You can open the page with a web browser to start the onboarding process. See [this official guide](https://pocket_id.dev/docs/getting-started/after-the-installation/) for details.
+You can open the page with a web browser to start the onboarding process. See [this official guide](https://pocket-id.org/docs/getting-started/after-the-installation/) for details.
 
 ### Playbook's services on Pocket ID
 
@@ -104,7 +104,7 @@ Pocket ID also integrates with various software, to which you can connect your a
 - **Media request manager**: [Overseerr](overseerr.md)
 - **DNS ad-blocker**: [AdGuard Home](adguard-home.md)
 
-See [this page](https://pocket_id.dev/docs/category/integrations) on the official documentation for the latest information about integrations.
+See [this page](https://pocket-id.org/docs/category/integrations) on the official documentation for the latest information about integrations.
 
 ## Troubleshooting
 
