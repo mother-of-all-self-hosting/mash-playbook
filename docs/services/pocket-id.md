@@ -34,10 +34,10 @@ For details about configuring the [Ansible role for Pocket ID](https://codeberg.
 This service requires the following other services:
 
 - [Traefik](traefik.md) reverse-proxy server
-- (optional) [Postgres](postgres.md) / MySQL database — Pocket ID will default to [SQLite](https://www.sqlite.org/) if Postgres is not enabled
+- (optional) [Postgres](postgres.md) — Pocket ID will default to [SQLite](https://www.sqlite.org/) if Postgres is not enabled
 
 >[!NOTE]
-> Currently (as of v1.35.0) MariaDB is not supported but planned. See [this issue at GitHub](https://github.com/pocket_id-labs/pocket_id/issues/2305) for the latest information.
+> It is not recommended to store a SQLite database inside a networked filesystem, such as a NFS or SMB share. See [this section](https://pocket-id.org/docs/configuration/environment-variables#database-connection-string) on the official documentation for details.
 
 ## Adjusting the playbook configuration
 
