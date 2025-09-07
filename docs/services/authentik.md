@@ -10,7 +10,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
 The playbook can install and configure [authentik](https://goauthentik.io/) for you.
 
-authentik is an open-source identity provider focused on flexibility and versatility.
+authentik is an open-source Identity Provider (IdP) focused on flexibility and versatility.
 
 > [!WARNING]
 > The SSO system of authentik is pretty complex, and we have only tested OIDC and OAuth integration. There is a high probability that using outposts/LDAP would need further configuration efforts. Make sure you test before using this in production, and feel free to provide feedback!
