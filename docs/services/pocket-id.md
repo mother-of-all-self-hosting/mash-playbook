@@ -82,21 +82,9 @@ See [this section](https://codeberg.org/acioustick/ansible-role-pocket-id/src/br
 
 After running the command for installation, the Pocket ID instance becomes available at the URL specified with `pocket_id_hostname`. With the configuration above, the service is hosted at `https://pocketid.example.com`.
 
-You can open the page with a web browser to start the onboarding process. See [this official guide](https://pocket-id.org/docs/getting-started/after-the-installation/) for details.
+To get started, open the URL `https://example.com/setup` on a web browser to create and sign in with an admin account.
 
-### Playbook's services on Pocket ID
-
-On Pocket ID's board it is possible to create and add icons of many services, including the ones which can be installed with this playbook such as [Nextcloud](nextcloud.md), [PeerTube](peertube.md), [PrivateBin](privatebin.md), [Syncthing](syncthing.md), etc.
-
-Pocket ID also integrates with various software, to which you can connect your applications to interact via widgets. Here is a list of integrations which are also available on this playbook:
-
-- **Torrent client**: [qBittorent](qbittorrent.md)
-- **Media server**: [Plex](plex.md)
-- **Media collection managers**: [Sonarr](sonarr.md) and [Radarr](radarr.md)
-- **Media request manager**: [Overseerr](overseerr.md)
-- **DNS ad-blocker**: [AdGuard Home](adguard-home.md)
-
-See [this page](https://pocket-id.org/docs/category/integrations) on the official documentation for the latest information about integrations.
+See [this section](https://codeberg.org/acioustick/ansible-role-pocket-id/src/branch/master/docs/configuring-pocket-id.md#usage) on the role's documentation for details about how to use Pocket ID.
 
 ## Troubleshooting
 
