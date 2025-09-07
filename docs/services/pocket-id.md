@@ -67,6 +67,17 @@ pocket_id_hostname: pocketid.example.com
 
 By default Pocket ID is configured to use Postgres, but you can choose SQLite. See [this section](https://codeberg.org/acioustick/ansible-role-pocket-id/src/branch/master/docs/configuring-pocket-id.md#specify-database-optional) on the role's documentation for details.
 
+### Configuring additional settings with environment variables (optional)
+
+The Pocket ID instance's additional settings can be specified with *either its UI or environment variables*.
+
+By default, this playbook enables configuring them on the UI, which therefore disables doing so with environment variables.
+
+>[!NOTE]
+> Basic settings can still be configured with environment variables.
+
+See [this section](https://codeberg.org/acioustick/ansible-role-pocket-id/src/branch/master/docs/configuring-pocket-id.md#enable-or-disable-overriding-ui-configuration-with-environment-variables) on the role's documentation for details about what needs specifying.
+
 ## Usage
 
 After running the command for installation, the Pocket ID instance becomes available at the URL specified with `pocket_id_hostname`. With the configuration above, the service is hosted at `https://pocketid.example.com`.
