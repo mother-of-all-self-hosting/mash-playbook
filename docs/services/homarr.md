@@ -81,7 +81,7 @@ By default Homarr is configured to use Postgres, but you can choose other databa
 To use SQLite, add the following configuration to your `vars.yml` file:
 
 ```yaml
-forgejo_database_type: better-sqlite3
+homarr_database_type: better-sqlite3
 ```
 
 See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-homarr/blob/main/docs/configuring-homarr.md#specify-database-optional) on the role's documentation for details.
