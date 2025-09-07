@@ -65,7 +65,7 @@
   name: collabora_online
   activation_prefix: collabora_online_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-container-socket-proxy.git
-  version: v0.4.0-0
+  version: v0.4.1-0
   name: container_socket_proxy
   activation_prefix: mash_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-convertx.git
