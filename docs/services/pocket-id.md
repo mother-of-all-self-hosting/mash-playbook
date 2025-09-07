@@ -52,7 +52,7 @@ To enable this service, add the following configuration to your `vars.yml` file 
 
 pocket_id_enabled: true
 
-pocket_id_hostname: pocket_id.example.com
+pocket_id_hostname: pocketid.example.com
 
 ########################################################################
 #                                                                      #
@@ -88,7 +88,7 @@ See [this section](https://codeberg.org/acioustick/ansible-role-pocket-id/src/br
 
 ## Usage
 
-After running the command for installation, the Pocket ID instance becomes available at the URL specified with `pocket_id_hostname`. With the configuration above, the service is hosted at `https://pocket_id.example.com`.
+After running the command for installation, the Pocket ID instance becomes available at the URL specified with `pocket_id_hostname`. With the configuration above, the service is hosted at `https://pocketid.example.com`.
 
 You can open the page with a web browser to start the onboarding process. See [this official guide](https://pocket-id.org/docs/getting-started/after-the-installation/) for details.
 
