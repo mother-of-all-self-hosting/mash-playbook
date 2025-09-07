@@ -21,9 +21,9 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
 The playbook can install and configure [Pocket ID](https://pocket-id.org) for you.
 
-Pocket ID is a highly customizable dashboard for management of your favorite applications and services with a drag-and-drop grid system, which integrates with various self-hosted applications.
+Pocket ID is a simple OpenID Connect (OIDC) provider (Identity Provider, IdP) that allows users to authenticate with their passkeys to your services.
 
-See the project's [documentation](https://pocket-id.org/docs/getting-started) to learn what Pocket ID does and why it might be useful to you.
+See the project's [documentation](https://pocket-id.org/docs/) to learn what Pocket ID does and why it might be useful to you.
 
 For details about configuring the [Ansible role for Pocket ID](https://codeberg.org/acioustick/ansible-role-pocket-id), you can check them via:
 - 🌐 [the role's documentation](https://codeberg.org/acioustick/ansible-role-pocket-id/src/branch/master/docs/configuring-pocket-id.md) online
