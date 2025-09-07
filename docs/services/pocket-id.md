@@ -63,28 +63,9 @@ pocket_id_hostname: pocketid.example.com
 
 **Note**: hosting Pocket ID under a subpath (by configuring the `pocket_id_path_prefix` variable) does not seem to be possible due to Pocket ID's technical limitations.
 
-### Set 32-byte hex digits for secret key
-
-You also need to specify **32-byte hex digits** to encrypt integration secrets on the database. To do so, add the following configuration to your `vars.yml` file. The value can be generated with `openssl rand -hex 32` or in another way.
-
-```yaml
-pocket_id_environment_variables_secret_encryption_key: YOUR_SECRET_KEY_HERE
-```
-
->[!NOTE]
-> Other type of values such as one generated with `pwgen -s 64 1` does not work.
-
 ### Select database to use (optional)
 
-By default Pocket ID is configured to use Postgres, but you can choose other database such as SQLite and MySQL.
-
-To use SQLite, add the following configuration to your `vars.yml` file:
-
-```yaml
-forgejo_database_type: better-sqlite3
-```
-
-See [this section](https://codeberg.org/acioustick/ansible-role-pocket-id/src/branch/master/docs/configuring-pocket-id.md#specify-database-optional) on the role's documentation for details.
+By default Pocket ID is configured to use Postgres, but you can choose SQLite. See [this section](https://codeberg.org/acioustick/ansible-role-pocket-id/src/branch/master/docs/configuring-pocket-id.md#specify-database-optional) on the role's documentation for details.
 
 ## Usage
 
