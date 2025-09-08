@@ -45,7 +45,7 @@ To enable this service, add the following configuration to your `vars.yml` file 
 ```yaml
 ########################################################################
 #                                                                      #
-# collabora-online                                                     #
+# collabora_online                                                     #
 #                                                                      #
 ########################################################################
 
@@ -59,7 +59,7 @@ collabora_online_environment_variable_password: ''
 
 ########################################################################
 #                                                                      #
-# /collabora-online                                                    #
+# /collabora_online                                                    #
 #                                                                      #
 ########################################################################
 ```

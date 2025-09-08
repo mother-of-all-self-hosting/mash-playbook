@@ -22,7 +22,7 @@ To enable this service, add the following configuration to your `vars.yml` file 
 ```yaml
 ########################################################################
 #                                                                      #
-# docker-registry-proxy                                                #
+# docker_registry_proxy                                                #
 #                                                                      #
 ########################################################################
 
@@ -42,7 +42,7 @@ docker_registry_proxy_trusted_ips: []
 
 ########################################################################
 #                                                                      #
-# /docker-registry-proxy                                               #
+# /docker_registry_proxy                                               #
 #                                                                      #
 ########################################################################
 ```

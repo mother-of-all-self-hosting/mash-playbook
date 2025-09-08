@@ -1524,7 +1524,7 @@ devture_timesync_installation_enabled: false
 # role-specific:adguard_home
 ########################################################################
 #                                                                      #
-# adguard-home                                                         #
+# adguard_home                                                         #
 #                                                                      #
 ########################################################################
 
@@ -1552,7 +1552,7 @@ adguard_home_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver
 
 ########################################################################
 #                                                                      #
-# /adguard-home                                                        #
+# /adguard_home                                                        #
 #                                                                      #
 ########################################################################
 # /role-specific:adguard_home
@@ -1963,7 +1963,7 @@ autobrr_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_prim
 # role-specific:backup_borg
 ########################################################################
 #                                                                      #
-# backup-borg                                                          #
+# backup_borg                                                          #
 #                                                                      #
 ########################################################################
 
@@ -2023,7 +2023,7 @@ backup_borg_postgresql_databases_auto: "{{ postgres_managed_databases | map(attr
 
 ########################################################################
 #                                                                      #
-# /backup-borg                                                         #
+# /backup_borg                                                         #
 #                                                                      #
 ########################################################################
 # /role-specific:backup_borg
@@ -2033,7 +2033,7 @@ backup_borg_postgresql_databases_auto: "{{ postgres_managed_databases | map(attr
 # role-specific:calibre_web
 ########################################################################
 #                                                                      #
-# calibre-web                                                          #
+# calibre_web                                                          #
 #                                                                      #
 ########################################################################
 
@@ -2063,7 +2063,7 @@ calibre_web_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_
 
 ########################################################################
 #                                                                      #
-# /calibre-web                                                         #
+# /calibre_web                                                         #
 #                                                                      #
 ########################################################################
 # /role-specific:calibre_web
@@ -2155,7 +2155,7 @@ clickhouse_managed_databases_auto: "{{ clickhouse_managed_databases_auto_itemize
 # role-specific:collabora_online
 ########################################################################
 #                                                                      #
-# collabora-online                                                     #
+# collabora_online                                                     #
 #                                                                      #
 ########################################################################
 
@@ -2193,7 +2193,7 @@ collabora_online_container_labels_traefik_tls_certResolver: "{{ traefik_certReso
 
 ########################################################################
 #                                                                      #
-# /collabora-online                                                    #
+# /collabora_online                                                    #
 #                                                                      #
 ########################################################################
 # /role-specific:collabora_online
@@ -2274,7 +2274,7 @@ couchdb_config_couch_chttpd_auth_secret: "{{ '%s' | format(mash_playbook_generic
 # role-specific:docker_registry
 ########################################################################
 #                                                                      #
-# docker-registry                                                      #
+# docker_registry                                                      #
 #                                                                      #
 ########################################################################
 
@@ -2302,7 +2302,7 @@ docker_registry_container_labels_traefik_tls_certResolver: "{{ traefik_certResol
 
 ########################################################################
 #                                                                      #
-# /docker-registry                                                     #
+# /docker_registry                                                     #
 #                                                                      #
 ########################################################################
 # /role-specific:docker_registry
@@ -2312,7 +2312,7 @@ docker_registry_container_labels_traefik_tls_certResolver: "{{ traefik_certResol
 # role-specific:docker_registry_browser
 ########################################################################
 #                                                                      #
-# docker-registry-browser                                              #
+# docker_registry_browser                                              #
 #                                                                      #
 ########################################################################
 
@@ -2342,7 +2342,7 @@ docker_registry_browser_container_labels_traefik_tls_certResolver: "{{ traefik_c
 
 ########################################################################
 #                                                                      #
-# /docker-registry-browser                                             #
+# /docker_registry_browser                                             #
 #                                                                      #
 ########################################################################
 # /role-specific:docker_registry_browser
@@ -2352,7 +2352,7 @@ docker_registry_browser_container_labels_traefik_tls_certResolver: "{{ traefik_c
 # role-specific:docker_registry_proxy
 ########################################################################
 #                                                                      #
-# docker-registry-proxy                                                #
+# docker_registry_proxy                                                #
 #                                                                      #
 ########################################################################
 
@@ -2383,7 +2383,7 @@ docker_registry_proxy_container_labels_traefik_tls_certResolver: "{{ traefik_cer
 
 ########################################################################
 #                                                                      #
-# /docker-registry-proxy                                               #
+# /docker_registry_proxy                                               #
 #                                                                      #
 ########################################################################
 # /role-specific:docker_registry_proxy
@@ -2393,7 +2393,7 @@ docker_registry_proxy_container_labels_traefik_tls_certResolver: "{{ traefik_cer
 # role-specific:docker_registry_purger
 ########################################################################
 #                                                                      #
-# docker-registry-purger                                               #
+# docker_registry_purger                                               #
 #                                                                      #
 ########################################################################
 
@@ -2408,7 +2408,7 @@ docker_registry_purger_gid: "{{ mash_playbook_gid }}"
 
 ########################################################################
 #                                                                      #
-# /docker-registry-purger                                              #
+# /docker_registry_purger                                              #
 #                                                                      #
 ########################################################################
 # /role-specific:docker_registry_purger
@@ -8004,7 +8004,7 @@ sftpgo_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_prima
 # role-specific:soft_serve
 ########################################################################
 #                                                                      #
-# soft-serve                                                           #
+# soft_serve                                                           #
 #                                                                      #
 ########################################################################
 
@@ -8019,7 +8019,7 @@ soft_serve_gid: "{{ mash_playbook_gid }}"
 
 ########################################################################
 #                                                                      #
-# /soft-serve                                                          #
+# /soft_serve                                                          #
 #                                                                      #
 ########################################################################
 # /role-specific:soft_serve
@@ -8105,7 +8105,7 @@ stirling_pdf_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver
 # role-specific:syncstorage_rs_docker
 ########################################################################
 #                                                                      #
-# syncstorage-rs-docker                                                #
+# syncstorage_rs_docker                                                #
 #                                                                      #
 ########################################################################
 
@@ -8150,7 +8150,7 @@ syncstorage_rs_docker_container_labels_traefik_tls_certResolver: "{{ traefik_cer
 
 ########################################################################
 #                                                                      #
-# /syncstorage-rs-docker                                               #
+# /syncstorage_rs_docker                                               #
 #                                                                      #
 ########################################################################
 # /role-specific:syncstorage_rs_docker
@@ -8638,7 +8638,7 @@ wg_easy_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_prim
 # role-specific:woodpecker_ci_agent
 ########################################################################
 #                                                                      #
-# woodpecker-ci-agent                                                  #
+# woodpecker_ci_agent                                                  #
 #                                                                      #
 ########################################################################
 
@@ -8669,7 +8669,7 @@ woodpecker_ci_agent_config_agent_secret: "{{ woodpecker_ci_server_config_agent_s
 
 ########################################################################
 #                                                                      #
-# /woodpecker-ci-agent                                                 #
+# /woodpecker_ci_agent                                                 #
 #                                                                      #
 ########################################################################
 # /role-specific:woodpecker_ci_agent
@@ -8679,7 +8679,7 @@ woodpecker_ci_agent_config_agent_secret: "{{ woodpecker_ci_server_config_agent_s
 # role-specific:woodpecker_ci_server
 ########################################################################
 #                                                                      #
-# woodpecker-ci-server                                                 #
+# woodpecker_ci_server                                                 #
 #                                                                      #
 ########################################################################
 
@@ -8725,7 +8725,7 @@ woodpecker_ci_server_database_datasource_db_name: woodpecker_ci_server
 
 ########################################################################
 #                                                                      #
-# /woodpecker-ci-server                                                #
+# /woodpecker_ci_server                                                #
 #                                                                      #
 ########################################################################
 # /role-specific:woodpecker_ci_server

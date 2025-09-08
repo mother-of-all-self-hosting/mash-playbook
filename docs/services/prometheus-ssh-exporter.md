@@ -16,7 +16,7 @@ To enable this service, add the following configuration to your `vars.yml` file 
 ```yaml
 ########################################################################
 #                                                                      #
-# prometheus-ssh-exporter                                              #
+# prometheus_ssh_exporter                                              #
 #                                                                      #
 ########################################################################
 
@@ -33,7 +33,7 @@ prometheus_ssh_exporter_enabled: true
 
 ########################################################################
 #                                                                      #
-# /prometheus-ssh-exporter                                             #
+# /prometheus_ssh_exporter                                             #
 #                                                                      #
 ########################################################################
 ```
