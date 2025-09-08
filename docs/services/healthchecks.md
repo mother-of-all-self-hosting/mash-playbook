@@ -97,7 +97,7 @@ After running the command for installation, the Healthchecks instance becomes av
 To get started, create a superuser account by running the command as below:
 
 ```sh
-ansible-playbook -i inventory/hosts setup.yml --tags=createsuperuser-healthchecks -e email=EMAIL_ADDRESS_HERE -e password=PASSWORD_HERE`
+ansible-playbook -i inventory/hosts setup.yml --tags=createsuperuser-healthchecks -e email=EMAIL_ADDRESS_HERE -e password=PASSWORD_HERE
 ```
 
 After creating the superuser account, you can open the URL to log in and start setting up monitoring tasks.
