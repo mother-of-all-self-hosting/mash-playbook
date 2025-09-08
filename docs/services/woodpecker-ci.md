@@ -37,7 +37,7 @@ To enable this service, add the following configuration to your `vars.yml` file 
 ```yaml
 ########################################################################
 #                                                                      #
-# woodpecker-ci-server                                                 #
+# woodpecker_ci_server                                                 #
 #                                                                      #
 ########################################################################
 
@@ -70,7 +70,7 @@ woodpecker_ci_server_config_admins:
 
 ########################################################################
 #                                                                      #
-# /woodpecker-ci-server                                                #
+# /woodpecker_ci_server                                                #
 #                                                                      #
 ########################################################################
 ```
@@ -137,7 +137,7 @@ This service requires the following other services:
 ```yaml
 ########################################################################
 #                                                                      #
-# woodpecker-ci-agent                                                  #
+# woodpecker_ci_server                                                 #
 #                                                                      #
 ########################################################################
 
@@ -173,7 +173,7 @@ woodpecker_ci_agent_config_server: ''
 
 ########################################################################
 #                                                                      #
-# /woodpecker-ci-agent                                                 #
+# /woodpecker_ci_server                                                #
 #                                                                      #
 ########################################################################
 ```

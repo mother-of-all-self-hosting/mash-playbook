@@ -22,7 +22,7 @@ To enable this service, add the following configuration to your `vars.yml` file 
 ```yaml
 ########################################################################
 #                                                                      #
-# docker-registry-purger                                               #
+# docker_registry_purger                                               #
 #                                                                      #
 ########################################################################
 
@@ -40,7 +40,7 @@ docker_registry_purger_container_network: "{{ docker_registry_container_network 
 
 ########################################################################
 #                                                                      #
-# /docker-registry-purger                                              #
+# /docker_registry_purger                                              #
 #                                                                      #
 ########################################################################
 ```

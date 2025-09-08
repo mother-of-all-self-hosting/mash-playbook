@@ -45,7 +45,7 @@ To enable this service, add the following configuration to your `vars.yml` file 
 ```yaml
 ########################################################################
 #                                                                      #
-# syncstorage-rs-docker                                                #
+# syncstorage_rs_docker                                                #
 #                                                                      #
 ########################################################################
 
@@ -55,7 +55,7 @@ syncstorage_rs_docker_hostname: syncstorage-rs-docker.example.com
 
 ########################################################################
 #                                                                      #
-# /syncstorage-rs-docker                                               #
+# /syncstorage_rs_docker                                               #
 #                                                                      #
 ########################################################################
 ```

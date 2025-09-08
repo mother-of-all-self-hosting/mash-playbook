@@ -31,7 +31,7 @@ To enable this service, add the following configuration to your `vars.yml` file 
 ```yaml
 ########################################################################
 #                                                                      #
-# docker-registry                                                      #
+# docker_registry                                                      #
 #                                                                      #
 ########################################################################
 
@@ -50,7 +50,7 @@ docker_registry_private_services_whitelisted_ip_ranges:
 
 ########################################################################
 #                                                                      #
-# /docker-registry                                                     #
+# /docker_registry                                                     #
 #                                                                      #
 ########################################################################
 ```
