@@ -38,9 +38,9 @@ The role is configured to set up the Endlessh-go instance to listen to the port 
 
 This service requires the following other services:
 
-- (optionally) [Traefik](traefik.md) — a reverse-proxy server for exposing Endlessh publicly
-- (optionally) [Prometheus](prometheus.md) — a database for storing metrics
-- (optionally) [Grafana](grafana.md) — a web UI that can query the Prometheus datasource (connection) and display the logs
+- (optional) [Grafana](grafana.md) — a web UI that can query the Prometheus datasource (connection) and display the logs
+- (optional) [Prometheus](prometheus.md) — a database for storing metrics
+- (optional) [Traefik](traefik.md) — a reverse-proxy server for exposing Endlessh publicly
 
 >[!NOTE]
 > None of them are required unless you will expose metrics to a Prometheus server.

@@ -17,7 +17,7 @@ To enable this service, add the following configuration to your `vars.yml` file 
 ```yaml
 ########################################################################
 #                                                                      #
-# prometheus-node-exporter                                             #
+# prometheus_node_exporter                                             #
 #                                                                      #
 ########################################################################
 
@@ -34,7 +34,7 @@ prometheus_node_exporter_enabled: true
 
 ########################################################################
 #                                                                      #
-# /prometheus-node-exporter                                            #
+# /prometheus_node_exporter                                            #
 #                                                                      #
 ########################################################################
 ```

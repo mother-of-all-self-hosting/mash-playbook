@@ -1,5 +1,19 @@
 <!--
-SPDX-FileCopyrightText: 2023 Slavi Pantaleev
+SPDX-FileCopyrightText: 2020 - 2024 MDAD project contributors
+SPDX-FileCopyrightText: 2020 - 2025 Slavi Pantaleev
+SPDX-FileCopyrightText: 2020 Aaron Raimist
+SPDX-FileCopyrightText: 2020 Chris van Dijk
+SPDX-FileCopyrightText: 2020 Dominik Zajac
+SPDX-FileCopyrightText: 2020 Mickaël Cornière
+SPDX-FileCopyrightText: 2022 François Darveau
+SPDX-FileCopyrightText: 2022 Julian Foad
+SPDX-FileCopyrightText: 2022 Warren Bailey
+SPDX-FileCopyrightText: 2023 Antonis Christofides
+SPDX-FileCopyrightText: 2023 Felix Stupp
+SPDX-FileCopyrightText: 2023 Julian-Samuel Gebühr
+SPDX-FileCopyrightText: 2023 MASH project contributors
+SPDX-FileCopyrightText: 2023 Pierre 'McFly' Marty
+SPDX-FileCopyrightText: 2024 - 2025 Suguru Hirahara
 SPDX-FileCopyrightText: 2024 Sergio Durigan Junior
 
 SPDX-License-Identifier: AGPL-3.0-or-later
@@ -10,7 +24,9 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 This playbook can install and configure [Woodpecker CI](https://woodpecker-ci.org/) for you.
 
 Woodpecker CI is a [Continuous Integration](https://en.wikipedia.org/wiki/Continuous_integration) engine which can build and deploy your code automatically after pushing to a [Gitea](gitea.md) or [Forgejo](forgejo.md) repository.
-If you are using [Forgejo](forgejo.md), you might also be interested in [Forgejo Runner](https://code.forgejo.org/forgejo/runner) (that this playbook also [supports](forgejo-runner.md)).
+
+>[!NOTE]
+> If you are looking for an CI engine for Forgejo, you might also be interested in [Forgejo Runner](https://code.forgejo.org/forgejo/runner) that this playbook [supports](forgejo-runner.md) too.
 
 A Woodpecker CI installation contains 2 components:
 
@@ -21,14 +37,14 @@ It's better to run the **agent** instances elsewhere (not on the source-control 
 
 Small installations which only run trusted CI jobs can afford to run an agent instance on the source-control server itself.
 
-## Woodpecker CI Server
+## Woodpecker CI server
 
 ### Dependencies
 
 This service requires the following other services:
 
-- a [Postgres](postgres.md) database
 - a [Traefik](traefik.md) reverse-proxy server
+- (optional) [Postgres](postgres.md) / MySQL / [MariaDB](mariadb.md) database — Woodpecker CI server will default to [SQLite](https://www.sqlite.org/) if Postgres is not enabled
 
 ### Configuration
 
@@ -37,7 +53,7 @@ To enable this service, add the following configuration to your `vars.yml` file 
 ```yaml
 ########################################################################
 #                                                                      #
-# woodpecker-ci-server                                                 #
+# woodpecker_ci_server                                                 #
 #                                                                      #
 ########################################################################
 
@@ -70,10 +86,22 @@ woodpecker_ci_server_config_admins:
 
 ########################################################################
 #                                                                      #
-# /woodpecker-ci-server                                                #
+# /woodpecker_ci_server                                                #
 #                                                                      #
 ########################################################################
 ```
+
+#### Select database to use (optional)
+
+By default Woodpecker CI server is configured to use Postgres, but you can choose other database such as SQLite and MySQL (MariaDB).
+
+To use MariaDB, add the following configuration to your `vars.yml` file:
+
+```yaml
+woodpecker_ci_server_database_type: mysql
+```
+
+Set `sqlite3` for a SQLite database.
 
 #### Gitea Integration
 
@@ -96,7 +124,11 @@ woodpecker_ci_server_container_add_host_ip_address: "{{ ansible_host }}"
 
 #### Forgejo Integration
 
-The Woodpecker CI server can integrate with [Forgejo](forgejo.md) using the following **additional** `vars.yml` configuration:
+The Woodpecker CI server comes with built-in support for Forgejo.
+
+To integrate it, you need to create an OAuth 2 application on a Forgejo instance at `https://FORGEJO_INSTANCE_URL_HERE/user/settings/applications` for Woodpecker CI server authorization. When creating one, set `https://FORGEJO_INSTANCE_URL_HERE/authorize` to the "Redirect URIs" text input area. See [this section](https://woodpecker-ci.org/docs/administration/configuration/forges/forgejo#registration) on the Woodpecker CI's documentation for details.
+
+After creating the application, add the following configuration to your `vars.yml` file:
 
 ```yaml
 woodpecker_ci_server_provider: forgejo
@@ -104,8 +136,7 @@ woodpecker_ci_server_provider: forgejo
 # We must use the public URL here, because it's also used for login redirects
 woodpecker_ci_server_config_forgejo_url: "{{ forgejo_config_root_url }}"
 
-# Populate these with the OAuth 2 application information
-# (see the Forgejo configuration section above)
+# Populate these with the OAuth 2 client ID and client secret
 woodpecker_ci_server_config_forgejo_client: FORGEJO_OAUTH_CLIENT_ID_HERE
 woodpecker_ci_server_config_forgejo_secret: FORGEJO_OAUTH_CLIENT_SECRET_HERE
 
@@ -122,22 +153,22 @@ To get started, open the URL with a web browser, and click the **Log in** button
 Follow the official Woodpecker CI [Getting started](https://woodpecker-ci.org/docs/usage/intro) documentation for additional usage details.
 
 
-## Woodpecker CI Agent
+## Woodpecker CI agent
 
-As mentioned above, unless you completely trust your CI workloads, it's best to run the Woodpecker CI Agent on another machine.
+As mentioned above, unless you completely trust your CI workloads, it's best to run the Woodpecker CI agent on another machine.
 
 ### Dependencies
 
 This service requires the following other services:
 
-- a Woodpecker CI Server — installed via this playbook or otherwise
+- a Woodpecker CI server — installed via this playbook or otherwise
 
 ### Configuration
 
 ```yaml
 ########################################################################
 #                                                                      #
-# woodpecker-ci-agent                                                  #
+# woodpecker_ci_server                                                 #
 #                                                                      #
 ########################################################################
 
@@ -149,12 +180,12 @@ woodpecker_ci_agent_enabled: true
 # Otherwise, you'll need to configure the variables below:
 
 # This needs to point to the server's gRPC host:port.
-# If your Woodpecker CI Server is deployed using this playbook, its
+# If your Woodpecker CI server is deployed using this playbook, its
 # gRPC port will likely be 443. E.g., ci.example.com:443.
 woodpecker_ci_agent_config_server: ''
 
 # This playbook only supports agent-specific secrets, i.e., it is not recommended to use
-# a shared secret between Woodpecker CI Server and all of its agents. Please refer to
+# a shared secret between Woodpecker CI server and all of its agents. Please refer to
 # the following upstream documentation in order to learn how to register an agent and
 # obtain a secret for it:
 #
@@ -173,7 +204,7 @@ woodpecker_ci_agent_config_server: ''
 
 ########################################################################
 #                                                                      #
-# /woodpecker-ci-agent                                                 #
+# /woodpecker_ci_server                                                #
 #                                                                      #
 ########################################################################
 ```
@@ -181,3 +212,7 @@ woodpecker_ci_agent_config_server: ''
 ### Usage
 
 The agent should automatically register with the [Woodpecker CI server](#woodpecker-ci-server) and take jobs from it.
+
+## Related services
+
+- [Forgejo Runner](forgejo-runner.md) — Runner to use with Forgejo Actions

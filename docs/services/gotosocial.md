@@ -19,11 +19,11 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
 # GoToSocial
 
-The playbook can install and configure [GotoSocial](https://gotosocial.org/) for you.
+The playbook can install and configure [GoToSocial](https://gotosocial.org/) for you.
 
 GoToSocial is a self-hosted [ActivityPub](https://activitypub.rocks/) social network server. With GoToSocial, you can keep in touch with your friends, post, read, and share images and articles.
 
-See the project's [documentation](https://docs.gotosocial.org/) to learn what GotoSocial does and why it might be useful to you.
+See the project's [documentation](https://docs.gotosocial.org/) to learn what GoToSocial does and why it might be useful to you.
 
 For details about configuring the [Ansible role for GoToSocial](https://github.com/mother-of-all-self-hosting/ansible-role-gotosocial), you can check them via:
 - 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-gotosocial/blob/main/docs/configuring-gotosocial.md) online
@@ -33,8 +33,8 @@ For details about configuring the [Ansible role for GoToSocial](https://github.c
 
 This service requires the following other services:
 
-- a [Postgres](postgres.md) database
 - a [Traefik](traefik.md) reverse-proxy server
+- (optional) [Postgres](postgres.md) database — GoToSocial will default to [SQLite](https://www.sqlite.org/) if Postgres is not enabled
 - (optional) the [exim-relay](exim-relay.md) mailer
 
 ## Configuration
@@ -71,6 +71,12 @@ By default, GoToSocial uses `gotosocial_hostname` that you provide for the serve
 > [!WARNING]
 > Configuring it must be done before starting GoToSocial for the first time. Once you have federated with someone, you cannot change your domain layout.
 
+### Select database to use (optional)
+
+By default GoToSocial is configured to use Postgres, but you can choose SQLite.
+
+See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-gotosocial/blob/main/docs/configuring-gotosocial.md#specify-database-optional) on the role's documentation for details.
+
 ## Usage
 
 After installation, the GoToSocial instance becomes available at the URL specified with `gotosocial_hostname`. With the configuration above, the service is hosted at `https://gotosocial.example.com`.
@@ -80,13 +86,13 @@ To get started, create user account(s) by running the command below to create an
 Run this command to create an **administrator** user account:
 
 ```sh
-just run-tags gotosocial-add-admin --extra-vars=username=USERNAME_HERE --extra-vars=password=PASSWORD_HERE --extra-vars=email=EMAIL_ADDRESS_HERE
+just run-tags gotosocial-add-admin -e username=USERNAME_HERE -e password=PASSWORD_HERE -e email=EMAIL_ADDRESS_HERE
 ```
 
 To create a **regular** (non-administrator) user account, run the command below:
 
 ```sh
-just run-tags gotosocial-add-user --extra-vars=username=USERNAME_HERE --extra-vars=password=PASSWORD_HERE --extra-vars=email=EMAIL_ADDRESS_HERE
+just run-tags gotosocial-add-user -e username=USERNAME_HERE -e password=PASSWORD_HERE -e email=EMAIL_ADDRESS_HERE
 ```
 
 After creating user accounts, open the URL and check your instance.

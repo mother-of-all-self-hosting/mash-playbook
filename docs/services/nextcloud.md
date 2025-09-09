@@ -28,13 +28,18 @@ Nextcloud is the most popular self-hosted collaboration solution for tens of mil
 
 See the project's [documentation](https://docs.nextcloud.com/) to learn what Nextcloud does and why it might be useful to you.
 
+For details about configuring the [Ansible role for Nextcloud](https://github.com/mother-of-all-self-hosting/ansible-role-nextcloud), you can check them via:
+- 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-nextcloud/blob/main/docs/configuring-nextcloud.md) online
+- 📁 `roles/galaxy/nextcloud/docs/configuring-nextcloud.md` locally, if you have [fetched the Ansible roles](../installing.md)
+
 ## Dependencies
 
 This service requires the following other services:
 
-- a [Postgres](postgres.md) database
 - a [Traefik](traefik.md) reverse-proxy server
-- (optional) a [Valkey](valkey.md) data-store; see [below](#configure-valkey) for details about installation
+- (optional) [Postgres](postgres.md) / MySQL / [MariaDB](mariadb.md) database — Nextcloud will default to [SQLite](https://www.sqlite.org/) if Postgres is not enabled
+    - [This page](https://docs.nextcloud.com/server/latest/admin_manual/configuration_database/linux_database_configuration.html) of the Nextcloud documentation recommends MySQL or MariaDB database
+- (optional) a [Valkey](valkey.md) data-store; see [below](#configuring-valkey-optional) for details about installation
 - (optional) the [exim-relay](exim-relay.md) mailer
 
 ## Adjusting the playbook configuration
@@ -62,9 +67,17 @@ nextcloud_path_prefix: /nextcloud
 ########################################################################
 ```
 
-### Valkey (optional)
+### Select database to use (optional)
 
-Valkey can **optionally** be enabled to improve Nextcloud performance and to prevent file locking problems. This playbook supports it, and you can set up a Valkey instance by enabling it on `vars.yml`.
+By default Nextcloud is configured to use Postgres, but you can choose other databases such as MySQL (MariaDB) and SQLite. See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-nextcloud/blob/main/docs/configuring-nextcloud.md#configure-database) on the role's documentation for details.
+
+### Editing default configuration parameters (optional)
+
+Some configuration parameters for Nextcloud can be specified with variables starting with `nextcloud_config_parameter_default_*`. See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-nextcloud/blob/main/docs/configuring-nextcloud.md#editing-default-configuration-parameters-optional) on the role's documentation for details. Refer to [this page](https://docs.nextcloud.com/server/latest/admin_manual/configuration_server/config_sample_php_parameters.html) of the Nextcloud documentation as well.
+
+### Configuring Valkey (optional)
+
+Valkey can optionally be enabled to improve Nextcloud performance and to prevent file locking problems. This playbook supports it, and you can set up a Valkey instance by enabling it on `vars.yml`.
 
 If Nextcloud is the sole service which requires Valkey on your server, it is fine to set up just a single Valkey instance. However, **it is not recommended if there are other services which require it, because sharing the Valkey instance has security concerns and possibly causes data conflicts**, as described on the [documentation for configuring Valkey](valkey.md). In this case, you should install a dedicated Valkey instance for each of them.
 
@@ -234,24 +247,6 @@ nextcloud_container_additional_networks_custom:
 
 Running the installation command will create the shared Valkey instance named `mash-valkey`.
 
-#### Adjust Nextcloud configuration file
-
-If a Valkey instance is enabled for Nextcloud in either way, adjust your Nextcloud configuration file (e.g. `/mash/nextcloud/data/config/config.php`) to **add** this:
-
-```php
-  'memcache.distributed' => '\OC\Memcache\Redis',
-  'memcache.locking' => '\OC\Memcache\Redis',
-  'redis' => [
-     'host' => 'VALKEY_HOSTNAME_HERE',
-     'port' => 6379,
-  ],
-```
-
-Where `VALKEY_HOSTNAME_HERE` is to be replaced with:
-
-- `mash-nextcloud-valkey` if the dedicated Valkey instance is used
-- `mash-valkey` if the single Valkey instance is used
-
 ### Samba (optional)
 
 You can enable [Samba](https://www.samba.org/) external Windows fileshares using [smbclient](https://www.samba.org/samba/docs/current/man-html/smbclient.1.html). See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-nextcloud/blob/main/docs/configuring-nextcloud.md#enable-samba-optional) on the role's documentation for details.
@@ -266,17 +261,7 @@ Note that running the `just` commands for installation (`just install-all` or `j
 
 After running the command for installation, the Nextcloud instance becomes available at the URL specified with `nextcloud_hostname` and `nextcloud_path_prefix`. With the configuration above, the service is hosted at `https://mash.example.com/nextcloud`.
 
-### Complete setup wizard
-
-To get started, open the URL with a web browser, and follow the set up wizard.
-
-In **Storage & database**, it is recommended to choose PostgreSQL (changing the default **SQLite** choice). To check credentials for the database, run this command:
-
-```sh
-just run-tags print-nextcloud-db-credentials
-```
-
-Once you have completed the set up wizard, update the configuration (URL paths, trusted reverse-proxies, etc.) by running the command below:
+Before logging in to the instance, update the configuration (URL paths, trusted reverse-proxies, etc.) by running the command below:
 
 ```sh
 just run-tags adjust-nextcloud-config
@@ -285,9 +270,15 @@ just run-tags adjust-nextcloud-config
 >[!NOTE]
 > You should re-run the command every time the Nextcloud version is updated.
 
+### Checking SMTP server configuration
+
+The playbook automatically configures a SMTP server (Exim-relay), to which the Nextcloud instance connects to send emails. After logging in as the admin user, you can check the configuration at `https://mash.example.com/nextcloud/settings/admin` for basic administration settings.
+
+Before sending a test mail, **make sure to set the email address of the admin user** at `https://mash.example.com/nextcloud/settings/user`. Otherwise hitting the "Send email" button on the page returns the 400 error, as the instance does not know where to send the mail. See the browser's console for details.
+
 ### Single-Sign-On (SSO) integration
 
-Nextcloud supports Single-Sign-On (SSO) via LDAP, SAML, and OIDC. To make use of it, an identity provider like [authentik](authentik.md) or [Keycloak](keycloak.md) needs to be set up.
+Nextcloud supports Single-Sign-On (SSO) via LDAP, SAML, and OIDC. To make use of it, an Identity Provider (IdP) like [authentik](authentik.md) or [Keycloak](keycloak.md) needs to be set up.
 
 For example, you can enable SSO with authentik via OIDC by following the steps below:
 
@@ -308,15 +299,9 @@ Refer to [this blogpost by a third party](https://blog.cubieserver.de/2022/compl
 
 On Nextcloud it is possible to integrate the Collabora Online Development Edition (CODE) office suite. This playbook supports it, and you can set up a CODE instance by enabling it on `vars.yml`. You can follow the [documentation](code.md) to install it.
 
-After installing it, add the following configuration for Nextcloud to your `vars.yml` file:
+By default, this playbook is configured to automatically integrate the CODE instance with the Nextcloud instance which this playbook manages, if both of them are enabled.
 
-```yaml
-nextcloud_collabora_app_wopi_url: "{{ collabora_online_url }}"
-```
-
-**Note**: by default, various private IPv4 networks are whitelisted to connect to the WOPI API (document serving API). If your CODE instance does not live on the same server as Nextcloud, you may need to adjust the list of networks. If necessary, redefine the `nextcloud_collabora_app_wopi_allowlist` environment variable on `vars.yml`.
-
-After adding the configuration, run this command to install and configure the [Office](https://apps.nextcloud.com/apps/richdocuments) app for Nextcloud:
+After installing both CODE and Nextcloud, run this command to install and configure the [Office](https://apps.nextcloud.com/apps/richdocuments) app for Nextcloud:
 
 ```sh
 just run-tags install-nextcloud-app-collabora
@@ -325,6 +310,9 @@ just run-tags install-nextcloud-app-collabora
 Open the URL `https://mash.example.com/nextcloud/settings/admin/richdocuments` to have the instance set up the connection with the CODE instance.
 
 You should then be able to open any document (`.doc`, `.odt`, `.pdf`, etc.) and create new ones in Nextcloud Files with Collabora Online Development Edition's editor.
+
+>[!NOTE]
+> By default, various private IPv4 networks are whitelisted to connect to the WOPI API (document serving API). If your CODE instance does not live on the same server as Nextcloud, you may need to adjust the list of networks. If necessary, redefine the `nextcloud_app_collabora_wopi_allowlist` environment variable on `vars.yml`.
 
 ### Preview Generator
 

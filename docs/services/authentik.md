@@ -10,7 +10,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
 The playbook can install and configure [authentik](https://goauthentik.io/) for you.
 
-authentik is an open-source identity provider focused on flexibility and versatility.
+authentik is an open-source Identity Provider (IdP) focused on flexibility and versatility.
 
 > [!WARNING]
 > The SSO system of authentik is pretty complex, and we have only tested OIDC and OAuth integration. There is a high probability that using outposts/LDAP would need further configuration efforts. Make sure you test before using this in production, and feel free to provide feedback!
@@ -20,8 +20,8 @@ authentik is an open-source identity provider focused on flexibility and versati
 This service requires the following other services:
 
 - a [Postgres](postgres.md) database
-- a [Valkey](valkey.md) data-store; see [below](#configure-valkey) for details about installation
 - a [Traefik](traefik.md) reverse-proxy server
+- a [Valkey](valkey.md) data-store; see [below](#configure-valkey) for details about installation
 
 ## Adjusting the playbook configuration
 
@@ -250,3 +250,4 @@ When it comes to this playbook, tested configuration examples are described on t
 - [Authelia](authelia.md) — Open-source authentication and authorization server that can work as a companion to common reverse proxies like Traefik
 - [Keycloak](keycloak.md) — Open source identity and access management solution
 - [OAuth2-Proxy](oauth2-proxy.md) — Reverse proxy and static file server that provides authentication using OpenID Connect providers (Google, GitHub, authentik, Keycloak, and others) to SSO-protect services which do not support SSO natively
+- [Tinyauth](tinyauth.md) — Simple authentication middleware that adds a login screen or OAuth with Google, Github, and any provider to your Docker services

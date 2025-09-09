@@ -16,7 +16,7 @@ To enable this service, add the following configuration to your `vars.yml` file 
 ```yaml
 ########################################################################
 #                                                                      #
-# prometheus-blackbox-exporter                                         #
+# prometheus_blackbox_exporter                                         #
 #                                                                      #
 ########################################################################
 
@@ -33,7 +33,7 @@ prometheus_blackbox_exporter_enabled: true
 
 ########################################################################
 #                                                                      #
-# /prometheus-blackbox-exporter                                        #
+# /prometheus_blackbox_exporter                                        #
 #                                                                      #
 ########################################################################
 ```

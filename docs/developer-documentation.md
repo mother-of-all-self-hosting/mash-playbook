@@ -158,20 +158,20 @@ mash_playbook_postgres_managed_databases_auto_itemized:
 # role-specific:YOUR-SERVICE
 ########################################################################
 #                                                                      #
-# YOUR-SERVICE                                                         #
+# YOUR_SERVICE                                                         #
 #                                                                      #
 ########################################################################
 
 YOUR-SERVICE_systemd_required_services_list_auto: |
   {{
-    ([postgres_identifier ~ '.service'] if postgres_enabled and YOUR-SERVICE_database_hostname == postgres_identifier else [])
+    ([postgres_identifier ~ '.service'] if postgres_enabled and YOUR-SERVICE_database_hostname == postgres_connection_hostname else [])
   }}
 
 YOUR-SERVICE_container_additional_networks_auto: |
   {{
     [...]
     +
-    ([postgres_container_network] if postgres_enabled and YOUR-SERVICE_database_hostname == postgres_identifier and YOUR-SERVICE_container_network != postgres_container_network else [])
+    ([postgres_container_network] if postgres_enabled and YOUR-SERVICE_database_hostname == postgres_connection_hostname and YOUR-SERVICE_container_network != postgres_container_network else [])
   }}
 
 [...]
@@ -185,7 +185,7 @@ YOUR-SERVICE_database_password: "{{ '%s' | format(mash_playbook_generic_secret_k
 
 ########################################################################
 #                                                                      #
-# /YOUR-SERVICE                                                        #
+# /YOUR_SERVICE                                                        #
 #                                                                      #
 ########################################################################
 # /role-specific:YOUR-SERVICE
@@ -210,7 +210,7 @@ To wire the role to exim-relay, add the configuration for it as below:
 # role-specific:YOUR-SERVICE
 ########################################################################
 #                                                                      #
-# YOUR-SERVICE                                                         #
+# YOUR_SERVICE                                                         #
 #                                                                      #
 ########################################################################
 
@@ -240,7 +240,7 @@ YOUR-SERVICE_config_mailer_protocol: "{{ 'smtp' if exim_relay_enabled else '' }}
 
 ########################################################################
 #                                                                      #
-# /YOUR-SERVICE                                                        #
+# /YOUR_SERVICE                                                        #
 #                                                                      #
 ########################################################################
 # /role-specific:YOUR-SERVICE
