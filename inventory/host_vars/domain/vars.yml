@@ -228,7 +228,7 @@ nextcloud_path_prefix: /
 #    value: smtp.sendgrid.net
 #    type: string
 
-nextcloud_collabora_app_wopi_url: "{{ collabora_online_url }}"
+nextcloud_app_collabora_wopi_url: "{{ collabora_online_url }}"
 
 # By default, various private IPv4 networks are whitelited to connect to the WOPI API (document serving API).
 # If your Collabora Online installation does not live on the same server as Nextcloud,
