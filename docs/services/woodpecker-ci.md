@@ -24,7 +24,9 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 This playbook can install and configure [Woodpecker CI](https://woodpecker-ci.org/) for you.
 
 Woodpecker CI is a [Continuous Integration](https://en.wikipedia.org/wiki/Continuous_integration) engine which can build and deploy your code automatically after pushing to a [Gitea](gitea.md) or [Forgejo](forgejo.md) repository.
-If you are using [Forgejo](forgejo.md), you might also be interested in [Forgejo Runner](https://code.forgejo.org/forgejo/runner) (that this playbook also [supports](forgejo-runner.md)).
+
+>[!NOTE]
+> If you are looking for an CI engine for Forgejo, you might also be interested in [Forgejo Runner](https://code.forgejo.org/forgejo/runner) that this playbook [supports](forgejo-runner.md) too.
 
 A Woodpecker CI installation contains 2 components:
 
@@ -210,3 +212,7 @@ woodpecker_ci_agent_config_server: ''
 ### Usage
 
 The agent should automatically register with the [Woodpecker CI server](#woodpecker-ci-server) and take jobs from it.
+
+## Related services
+
+- [Forgejo Runner](forgejo-runner.md) — Runner to use with Forgejo Actions
