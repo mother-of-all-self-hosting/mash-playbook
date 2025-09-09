@@ -37,14 +37,14 @@ It's better to run the **agent** instances elsewhere (not on the source-control 
 
 Small installations which only run trusted CI jobs can afford to run an agent instance on the source-control server itself.
 
-## Woodpecker CI Server
+## Woodpecker CI server
 
 ### Dependencies
 
 This service requires the following other services:
 
 - a [Traefik](traefik.md) reverse-proxy server
-- (optional) [Postgres](postgres.md) / MySQL / [MariaDB](mariadb.md) database — Woodpecker CI Server will default to [SQLite](https://www.sqlite.org/) if Postgres is not enabled
+- (optional) [Postgres](postgres.md) / MySQL / [MariaDB](mariadb.md) database — Woodpecker CI server will default to [SQLite](https://www.sqlite.org/) if Postgres is not enabled
 
 ### Configuration
 
@@ -93,7 +93,7 @@ woodpecker_ci_server_config_admins:
 
 #### Select database to use (optional)
 
-By default Woodpecker CI Server is configured to use Postgres, but you can choose other database such as SQLite and MySQL (MariaDB).
+By default Woodpecker CI server is configured to use Postgres, but you can choose other database such as SQLite and MySQL (MariaDB).
 
 To use MariaDB, add the following configuration to your `vars.yml` file:
 
@@ -161,7 +161,7 @@ As mentioned above, unless you completely trust your CI workloads, it's best to 
 
 This service requires the following other services:
 
-- a Woodpecker CI Server — installed via this playbook or otherwise
+- a Woodpecker CI server — installed via this playbook or otherwise
 
 ### Configuration
 
@@ -180,12 +180,12 @@ woodpecker_ci_agent_enabled: true
 # Otherwise, you'll need to configure the variables below:
 
 # This needs to point to the server's gRPC host:port.
-# If your Woodpecker CI Server is deployed using this playbook, its
+# If your Woodpecker CI server is deployed using this playbook, its
 # gRPC port will likely be 443. E.g., ci.example.com:443.
 woodpecker_ci_agent_config_server: ''
 
 # This playbook only supports agent-specific secrets, i.e., it is not recommended to use
-# a shared secret between Woodpecker CI Server and all of its agents. Please refer to
+# a shared secret between Woodpecker CI server and all of its agents. Please refer to
 # the following upstream documentation in order to learn how to register an agent and
 # obtain a secret for it:
 #
