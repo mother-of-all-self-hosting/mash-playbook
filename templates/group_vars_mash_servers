@@ -987,7 +987,7 @@ mash_playbook_postgres_managed_databases_auto_itemized:
         'name': gotosocial_database_name,
         'username': gotosocial_database_username,
         'password': gotosocial_database_password,
-      } if gotosocial_enabled and gotosocial_database_hostname == postgres_connection_hostname else omit)
+      } if gotosocial_enabled and gotosocial_database_hostname == postgres_connection_hostname and gotosocial_database_type == 'postgres' else omit)
     }}
   # /role-specific:gotosocial
 
@@ -3444,7 +3444,7 @@ gotosocial_gid: "{{ mash_playbook_gid }}"
 
 gotosocial_systemd_required_services_list_auto: |
   {{
-    ([postgres_identifier ~ '.service'] if postgres_enabled and gotosocial_database_hostname == postgres_connection_hostname else [])
+    ([postgres_identifier ~ '.service'] if postgres_enabled | default(false) and gotosocial_database_hostname == postgres_connection_hostname and gotosocial_database_type == 'postgres' else [])
   }}
 
 gotosocial_systemd_wanted_services_list_auto: |
@@ -3458,7 +3458,7 @@ gotosocial_container_additional_networks_auto: |
     +
     ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
     +
-    ([postgres_container_network] if postgres_enabled and gotosocial_database_hostname == postgres_connection_hostname and gotosocial_container_network != postgres_container_network else [])
+    ([postgres_container_network] if postgres_enabled | default(false) and gotosocial_database_hostname == postgres_connection_hostname and gotosocial_container_network != postgres_container_network and gotosocial_database_type == 'postgres' else [])
   }}
 
 gotosocial_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
