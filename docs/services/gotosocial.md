@@ -19,11 +19,11 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
 # GoToSocial
 
-The playbook can install and configure [GotoSocial](https://gotosocial.org/) for you.
+The playbook can install and configure [GoToSocial](https://gotosocial.org/) for you.
 
 GoToSocial is a self-hosted [ActivityPub](https://activitypub.rocks/) social network server. With GoToSocial, you can keep in touch with your friends, post, read, and share images and articles.
 
-See the project's [documentation](https://docs.gotosocial.org/) to learn what GotoSocial does and why it might be useful to you.
+See the project's [documentation](https://docs.gotosocial.org/) to learn what GoToSocial does and why it might be useful to you.
 
 For details about configuring the [Ansible role for GoToSocial](https://github.com/mother-of-all-self-hosting/ansible-role-gotosocial), you can check them via:
 - 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-gotosocial/blob/main/docs/configuring-gotosocial.md) online
