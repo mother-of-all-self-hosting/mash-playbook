@@ -80,13 +80,13 @@ To get started, create user account(s) by running the command below to create an
 Run this command to create an **administrator** user account:
 
 ```sh
-just run-tags gotosocial-add-admin --extra-vars=username=USERNAME_HERE --extra-vars=password=PASSWORD_HERE --extra-vars=email=EMAIL_ADDRESS_HERE
+just run-tags gotosocial-add-admin -e username=USERNAME_HERE -e password=PASSWORD_HERE -e email=EMAIL_ADDRESS_HERE
 ```
 
 To create a **regular** (non-administrator) user account, run the command below:
 
 ```sh
-just run-tags gotosocial-add-user --extra-vars=username=USERNAME_HERE --extra-vars=password=PASSWORD_HERE --extra-vars=email=EMAIL_ADDRESS_HERE
+just run-tags gotosocial-add-user -e username=USERNAME_HERE -e password=PASSWORD_HERE -e email=EMAIL_ADDRESS_HERE
 ```
 
 After creating user accounts, open the URL and check your instance.
