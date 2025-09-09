@@ -742,7 +742,7 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
 
   # role-specific:tinyauth
   - |-
-    {{ ({'name': (tinyauth_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'tinyauth']} if tinyauth_enabled else omit) }}
+    {{ ({'name': (tinyauth_identifier + '.service'), 'priority': 1900, 'groups': ['mash', 'tinyauth']} if tinyauth_enabled else omit) }}
   # /role-specific:tinyauth
 
   # role-specific:traefik
