@@ -33,8 +33,8 @@ For details about configuring the [Ansible role for GoToSocial](https://github.c
 
 This service requires the following other services:
 
-- a [Postgres](postgres.md) database
 - a [Traefik](traefik.md) reverse-proxy server
+- (optional) [Postgres](postgres.md) database — GoToSocial will default to [SQLite](https://www.sqlite.org/) if Postgres is not enabled
 - (optional) the [exim-relay](exim-relay.md) mailer
 
 ## Configuration
@@ -70,6 +70,12 @@ By default, GoToSocial uses `gotosocial_hostname` that you provide for the serve
 
 > [!WARNING]
 > Configuring it must be done before starting GoToSocial for the first time. Once you have federated with someone, you cannot change your domain layout.
+
+### Select database to use (optional)
+
+By default GoToSocial is configured to use Postgres, but you can choose SQLite.
+
+See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-gotosocial/blob/main/docs/configuring-gotosocial.md#specify-database-optional) on the role's documentation for details.
 
 ## Usage
 
