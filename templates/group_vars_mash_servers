@@ -3464,6 +3464,8 @@ gotosocial_container_additional_networks_auto: |
 gotosocial_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
 gotosocial_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
 
+gotosocial_database_type: "{{ 'postgres' if postgres_enabled | default(false) else 'sqlite' }}"
+
 # role-specific:exim_relay
 gotosocial_smtp_host: "{{ exim_relay_identifier if exim_relay_enabled else '' }}"
 gotosocial_smtp_port: 8025
