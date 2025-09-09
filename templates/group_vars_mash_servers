@@ -1303,10 +1303,10 @@ mash_playbook_postgres_managed_databases_auto_itemized:
   - |-
     {{
       ({
-        'name': woodpecker_ci_server_database_datasource_db_name,
-        'username': woodpecker_ci_server_database_datasource_username,
-        'password': woodpecker_ci_server_database_datasource_password,
-      } if woodpecker_ci_server_enabled and woodpecker_ci_server_database_datasource_hostname == postgres_identifier and woodpecker_ci_server_environment_variables_database_driver == 'postgres' else omit)
+        'name': woodpecker_ci_server_database_name,
+        'username': woodpecker_ci_server_database_postgres_username,
+        'password': woodpecker_ci_server_database_postgres_password,
+      } if woodpecker_ci_server_enabled and woodpecker_ci_server_database_postgres_hostname == postgres_identifier and woodpecker_ci_server_database_type == 'postgres' else omit)
     }}
   # /role-specific:woodpecker_ci_server
 
@@ -5707,6 +5707,17 @@ mash_playbook_mariadb_managed_databases_auto_itemized:
     }}
   # /role-specific:vaultwarden
 
+  # role-specific:woodpecker_ci_server
+  - |-
+    {{
+      ({
+        'name': woodpecker_ci_server_database_name,
+        'username': woodpecker_ci_server_database_mysql_username,
+        'password': woodpecker_ci_server_database_mysql_password,
+      } if woodpecker_ci_server_enabled and woodpecker_ci_server_database_mysql_hostname == mariadb_connection_hostname and woodpecker_ci_server_database_type == 'mysql' else omit)
+    }}
+  # /role-specific:woodpecker_ci_server
+
   # role-specific:wordpress
   - |-
     {{
@@ -8694,7 +8705,9 @@ woodpecker_ci_server_gid: "{{ mash_playbook_gid }}"
 
 woodpecker_ci_server_systemd_required_services_list_auto: |
   {{
-    ([postgres_identifier ~ '.service'] if postgres_enabled and woodpecker_ci_server_database_datasource_hostname == postgres_identifier else [])
+    ([mariadb_identifier ~ '.service'] if mariadb_enabled | default(false) and woodpecker_ci_server_database_mysql_hostname == mariadb_connection_hostname and woodpecker_ci_server_database_type == 'mysql' else [])
+    +
+    ([postgres_identifier ~ '.service'] if postgres_enabled | default(false) and woodpecker_ci_server_database_postgres_hostname == postgres_identifier and woodpecker_ci_server_database_type == 'postgres' else [])
   }}
 
 woodpecker_ci_server_container_additional_networks: |
@@ -8702,7 +8715,9 @@ woodpecker_ci_server_container_additional_networks: |
     (
       ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
       +
-      ([postgres_container_network] if postgres_enabled and woodpecker_ci_server_database_datasource_hostname == postgres_identifier and woodpecker_ci_server_container_network != postgres_container_network else [])
+      ([mariadb_container_network] if mariadb_enabled | default(false) and woodpecker_ci_server_database_mysql_hostname == mariadb_connection_hostname and woodpecker_ci_server_container_network != mariadb_container_network and woodpecker_ci_server_database_type == 'mysql' else [])
+      +
+      ([postgres_container_network] if postgres_enabled | default(false) and woodpecker_ci_server_database_postgres_hostname == postgres_identifier and woodpecker_ci_server_container_network != postgres_container_network and woodpecker_ci_server_database_type == 'postgres' else [])
     ) | unique
   }}
 
@@ -8712,15 +8727,18 @@ woodpecker_ci_server_container_labels_traefik_docker_network: "{{ mash_playbook_
 woodpecker_ci_server_container_labels_traefik_compression_middleware_enabled: "{{ mash_playbook_reverse_proxy_traefik_middleware_compession_enabled }}"
 woodpecker_ci_server_container_labels_traefik_compression_middleware_name: "{{ mash_playbook_reverse_proxy_traefik_middleware_compession_name if mash_playbook_reverse_proxy_traefik_middleware_compession_enabled else '' }}"
 
-woodpecker_ci_server_environment_variables_database_driver: postgres
-woodpecker_ci_server_database_datasource: "postgres://{{ woodpecker_ci_server_database_datasource_username }}:{{ woodpecker_ci_server_database_datasource_password }}@{{ woodpecker_ci_server_database_datasource_hostname }}:{{ woodpecker_ci_server_database_datasource_port }}/{{ woodpecker_ci_server_database_datasource_db_name }}?sslmode=disable"
+woodpecker_ci_server_database_type: "{{ 'postgres' if postgres_enabled | default(false) else 'sqlite3' }}"
+
+# role-specific:mariadb
+woodpecker_ci_server_database_mysql_hostname: "{{ mariadb_connection_hostname if mariadb_enabled else '' }}"
+woodpecker_ci_server_database_mysql_port: "{{ mariadb_connection_port if mariadb_enabled else '3306' }}"
+woodpecker_ci_server_database_mysql_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'woodpecker.ci', rounds=655555) | to_uuid }}"
+# /role-specific:mariadb
 
 # role-specific:postgres
-woodpecker_ci_server_database_datasource_hostname: "{{ postgres_connection_hostname if postgres_enabled else '' }}"
-woodpecker_ci_server_database_datasource_port: "{{ postgres_connection_port if postgres_enabled else '5432' }}"
-woodpecker_ci_server_database_datasource_username: woodpecker_ci_server
-woodpecker_ci_server_database_datasource_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'woodpecker.ci', rounds=655555) | to_uuid }}"
-woodpecker_ci_server_database_datasource_db_name: woodpecker_ci_server
+woodpecker_ci_server_database_postgres_hostname: "{{ postgres_connection_hostname if postgres_enabled else '' }}"
+woodpecker_ci_server_database_postgres_port: "{{ postgres_connection_port if postgres_enabled else '5432' }}"
+woodpecker_ci_server_database_postgres_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'woodpecker.ci', rounds=655555) | to_uuid }}"
 # /role-specific:postgres
 
 ########################################################################
