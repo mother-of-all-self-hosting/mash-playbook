@@ -61,28 +61,9 @@ kutt_hostname: kutt.example.com
 
 **Note**: hosting Kutt under a subpath (by configuring the `kutt_path_prefix` variable) does not seem to be possible due to Kutt's technical limitations.
 
-### Set 32-byte hex digits for secret key
-
-You also need to specify **32-byte hex digits** to encrypt integration secrets on the database. To do so, add the following configuration to your `vars.yml` file. The value can be generated with `openssl rand -hex 32` or in another way.
-
-```yaml
-kutt_environment_variables_secret_encryption_key: YOUR_SECRET_KEY_HERE
-```
-
->[!NOTE]
-> Other type of values such as one generated with `pwgen -s 64 1` does not work.
-
 ### Select database to use (optional)
 
-By default Kutt is configured to use Postgres, but you can choose other database such as SQLite and MySQL.
-
-To use SQLite, add the following configuration to your `vars.yml` file:
-
-```yaml
-kutt_database_type: better-sqlite3
-```
-
-See [this section](https://codeberg.org/acioustick/ansible-role-kutt/src/branch/master/docs/configuring-kutt.md#specify-database-optional) on the role's documentation for details.
+By default Kutt is configured to use Postgres, but you can choose other databases such as MySQL (MariaDB) and SQLite. See [this section](https://codeberg.org/acioustick/ansible-role-kutt/src/branch/master/docs/configuring-kutt.md#specify-database-optional) on the role's documentation for details.
 
 ## Usage
 
