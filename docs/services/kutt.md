@@ -257,3 +257,7 @@ To get started, open the URL with a web browser, and register the administrator 
 ## Troubleshooting
 
 See [this section](https://codeberg.org/acioustick/ansible-role-kutt/src/branch/master/docs/configuring-kutt.md#troubleshooting) on the role's documentation for details.
+
+## Related services
+
+- [YOURLS](yourls.md) — Your Own URL Shortener, on your server
