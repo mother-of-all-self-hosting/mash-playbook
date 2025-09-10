@@ -74,19 +74,17 @@ On Kutt you can set up a mailer for functions such as sending a password reset m
 
 ### Configuring Valkey (optional)
 
-Valkey can optionally be enabled to improve Nextcloud performance and to prevent file locking problems. This playbook supports it, and you can set up a Valkey instance by enabling it on `vars.yml`.
+Valkey can optionally be enabled for caching data. This playbook supports it, and you can set up a Valkey instance by enabling it on `vars.yml`.
 
-If Nextcloud is the sole service which requires Valkey on your server, it is fine to set up just a single Valkey instance. However, **it is not recommended if there are other services which require it, because sharing the Valkey instance has security concerns and possibly causes data conflicts**, as described on the [documentation for configuring Valkey](valkey.md). In this case, you should install a dedicated Valkey instance for each of them.
+If Kutt is the sole service which requires Valkey on your server, it is fine to set up just a single Valkey instance. However, **it is not recommended if there are other services which require it, because sharing the Valkey instance has security concerns and possibly causes data conflicts**, as described on the [documentation for configuring Valkey](valkey.md). In this case, you should install a dedicated Valkey instance for each of them.
 
-If you are unsure whether you will install other services along with Nextcloud or you have already set up services which need Valkey (such as [PeerTube](peertube.md), [Funkwhale](funkwhale.md), and [Docmost](docmost.md)), it is recommended to install a Valkey instance dedicated to Nextcloud.
+If you are unsure whether you will install other services along with Kutt or you have already set up services which need Valkey (such as [PeerTube](peertube.md), [Funkwhale](funkwhale.md), and [Docmost](docmost.md)), it is recommended to install a Valkey instance dedicated to Kutt.
 
 *See [below](#setting-up-a-shared-valkey-instance) for an instruction to install a shared instance.*
 
-💡 Though running Valkey is recommended, you can **start without** it for a simpler deployment. To learn more, read [this section](https://docs.nextcloud.com/server/latest/admin_manual/configuration_server/caching_configuration.html#id2) of the Nextcloud documentation about memory caching.
-
 #### Setting up a dedicated Valkey instance
 
-To create a dedicated instance for Nextcloud, you can follow the steps below:
+To create a dedicated instance for Kutt, you can follow the steps below:
 
 1. Adjust the `hosts` file
 2. Create a new `vars.yml` file for the dedicated instance
@@ -96,7 +94,7 @@ To create a dedicated instance for Nextcloud, you can follow the steps below:
 
 ##### Adjust `hosts`
 
-At first, you need to adjust `inventory/hosts` file to add a supplementary host for Nextcloud.
+At first, you need to adjust `inventory/hosts` file to add a supplementary host for Kutt.
 
 The content should be something like below. Make sure to replace `mash.example.com` with your hostname and `YOUR_SERVER_IP_ADDRESS_HERE` with the IP address of the host, respectively. The same IP address should be set to both, unless the Valkey instance will be served from a different machine.
 
@@ -107,7 +105,7 @@ mash_example_com
 
 [mash_example_com]
 mash.example.com ansible_host=YOUR_SERVER_IP_ADDRESS_HERE
-mash.example.com-nextcloud-deps ansible_host=YOUR_SERVER_IP_ADDRESS_HERE
+mash.example.com-kutt-deps ansible_host=YOUR_SERVER_IP_ADDRESS_HERE
 …
 ```
 
@@ -117,12 +115,12 @@ You can just add an entry for the supplementary host to `[mash_example_com]` if 
 
 ##### Create `vars.yml` for the dedicated instance
 
-Then, create a new directory where `vars.yml` for the supplementary host is stored. If `mash.example.com` is your main host, name the directory as `mash.example.com-nextcloud-deps`. Its path therefore will be `inventory/host_vars/mash.example.com-nextcloud-deps`.
+Then, create a new directory where `vars.yml` for the supplementary host is stored. If `mash.example.com` is your main host, name the directory as `mash.example.com-kutt-deps`. Its path therefore will be `inventory/host_vars/mash.example.com-kutt-deps`.
 
-After creating the directory, add a new `vars.yml` file inside it with a content below. It will have running the playbook create a `mash-nextcloud-valkey` instance on the new host, setting `/mash/nextcloud-valkey` to the base directory of the dedicated Valkey instance.
+After creating the directory, add a new `vars.yml` file inside it with a content below. It will have running the playbook create a `mash-kutt-valkey` instance on the new host, setting `/mash/kutt-valkey` to the base directory of the dedicated Valkey instance.
 
 ```yaml
-# This is vars.yml for the supplementary host of Nextcloud.
+# This is vars.yml for the supplementary host of Kutt.
 
 ---
 
@@ -136,8 +134,8 @@ After creating the directory, add a new `vars.yml` file inside it with a content
 mash_playbook_generic_secret_key: ''
 
 # Override service names and directory path prefixes
-mash_playbook_service_identifier_prefix: 'mash-nextcloud-'
-mash_playbook_service_base_directory_name_prefix: 'nextcloud-'
+mash_playbook_service_identifier_prefix: 'mash-kutt-'
+mash_playbook_service_base_directory_name_prefix: 'kutt-'
 
 ########################################################################
 #                                                                      #
@@ -168,37 +166,37 @@ Having configured `vars.yml` for the dedicated instance, add the following confi
 ```yaml
 ########################################################################
 #                                                                      #
-# nextcloud                                                            #
+# kutt                                                                 #
 #                                                                      #
 ########################################################################
 
 # Add the base configuration as specified above
 
-# Point Nextcloud to its dedicated Valkey instance
-nextcloud_redis_hostname: mash-nextcloud-valkey
+# Point Kutt to its dedicated Valkey instance
+kutt_redis_hostname: mash-kutt-valkey
 
-# Make sure the Nextcloud service (mash-nextcloud.service) starts after its dedicated Valkey service (mash-nextcloud-valkey.service)
-nextcloud_systemd_required_services_list_custom:
-  - "mash-nextcloud-valkey.service"
+# Make sure the Kutt service (mash-kutt.service) starts after its dedicated Valkey service (mash-kutt-valkey.service)
+kutt_systemd_required_services_list_custom:
+  - "mash-kutt-valkey.service"
 
-# Make sure the Nextcloud container is connected to the container network of its dedicated Valkey service (mash-nextcloud-valkey)
-nextcloud_container_additional_networks_custom:
-  - "mash-nextcloud-valkey"
+# Make sure the Kutt container is connected to the container network of its dedicated Valkey service (mash-kutt-valkey)
+kutt_container_additional_networks_custom:
+  - "mash-kutt-valkey"
 
 ########################################################################
 #                                                                      #
-# /nextcloud                                                           #
+# /kutt                                                                #
 #                                                                      #
 ########################################################################
 ```
 
-Running the installation command will create the dedicated Valkey instance named `mash-nextcloud-valkey`.
+Running the installation command will create the dedicated Valkey instance named `mash-kutt-valkey`.
 
 #### Setting up a shared Valkey instance
 
-If you host only Nextcloud on this server, it is fine to set up a single shared Valkey instance.
+If you host only Kutt on this server, it is fine to set up a single shared Valkey instance.
 
-To install the single instance and hook Nextcloud to it, add the following configuration to `inventory/host_vars/mash.example.com/vars.yml`:
+To install the single instance and hook Kutt to it, add the following configuration to `inventory/host_vars/mash.example.com/vars.yml`:
 
 ```yaml
 ########################################################################
@@ -218,26 +216,26 @@ valkey_enabled: true
 
 ########################################################################
 #                                                                      #
-# nextcloud                                                            #
+# kutt                                                                 #
 #                                                                      #
 ########################################################################
 
 # Add the base configuration as specified above
 
-# Point Nextcloud to the shared Valkey instance
-nextcloud_redis_hostname: "{{ valkey_identifier }}"
+# Point Kutt to the shared Valkey instance
+kutt_redis_hostname: "{{ valkey_identifier }}"
 
-# Make sure the Nextcloud service (mash-nextcloud.service) starts after the shared Valkey service (mash-valkey.service)
-nextcloud_systemd_required_services_list_custom:
+# Make sure the Kutt service (mash-kutt.service) starts after the shared Valkey service (mash-valkey.service)
+kutt_systemd_required_services_list_custom:
   - "{{ valkey_identifier }}.service"
 
-# Make sure the Nextcloud container is connected to the container network of the shared Valkey service (mash-valkey)
-nextcloud_container_additional_networks_custom:
+# Make sure the Kutt container is connected to the container network of the shared Valkey service (mash-valkey)
+kutt_container_additional_networks_custom:
   - "{{ valkey_identifier }}"
 
 ########################################################################
 #                                                                      #
-# /nextcloud                                                           #
+# /kutt                                                                #
 #                                                                      #
 ########################################################################
 ```
