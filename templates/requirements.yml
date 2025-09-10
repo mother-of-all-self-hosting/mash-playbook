@@ -248,6 +248,10 @@
   version: v6.3.4-9
   name: keydb
   activation_prefix: keydb_
+- src: git+https://codeberg.org/acioustick/ansible-role-kutt.git
+  version: v3.2.3-0
+  name: kutt
+  activation_prefix: kutt_
 - src: git+https://gitlab.com/horvathg.1988/ansible-role-labelstudio.git
   version: v1.0.0-4
   name: labelstudio
