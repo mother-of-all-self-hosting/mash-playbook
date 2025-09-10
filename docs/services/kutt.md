@@ -34,10 +34,8 @@ For details about configuring the [Ansible role for Kutt](https://codeberg.org/a
 This service requires the following other services:
 
 - [Traefik](traefik.md) reverse-proxy server
-- (optional) [Postgres](postgres.md) / MySQL database — Kutt will default to [SQLite](https://www.sqlite.org/) if Postgres is not enabled
-
->[!NOTE]
-> Currently (as of v1.35.0) MariaDB is not supported but planned. See [this issue at GitHub](https://github.com/kutt-labs/kutt/issues/2305) for the latest information.
+- (optional) [Postgres](postgres.md) / MySQL / [MariaDB](mariadb.md) database — Kutt will default to [SQLite](https://www.sqlite.org/) if Postgres is not enabled
+- (optional) [Valkey](valkey.md) data-store; see [below](#configuring-valkey-optional) for details about installation
 
 ## Adjusting the playbook configuration
 
