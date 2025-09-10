@@ -19,11 +19,11 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
 # Kutt
 
-The playbook can install and configure [Kutt](https://kutt.dev) for you.
+The playbook can install and configure [Kutt](https://kutt.it) for you.
 
-Kutt is a highly customizable dashboard for management of your favorite applications and services with a drag-and-drop grid system, which integrates with various self-hosted applications.
+Kutt is a modern URL shortener with support for custom domains with functions like statistics and user management.
 
-See the project's [documentation](https://kutt.dev/docs/getting-started) to learn what Kutt does and why it might be useful to you.
+See the project's [documentation](https://github.com/thedevs-network/kutt/blob/main/README.md) to learn what Kutt does and why it might be useful to you.
 
 For details about configuring the [Ansible role for Kutt](https://codeberg.org/acioustick/ansible-role-kutt), you can check them via:
 - 🌐 [the role's documentation](https://codeberg.org/acioustick/ansible-role-kutt/src/branch/master/docs/configuring-kutt.md) online
