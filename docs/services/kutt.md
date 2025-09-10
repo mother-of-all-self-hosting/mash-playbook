@@ -39,7 +39,7 @@ This service requires the following other services:
 
 ## Adjusting the playbook configuration
 
-To enable this service, add the following configuration to your `vars.yml` file and re-run the [installation](../installing.md) process:
+To enable this service, add the following configuration to your `vars.yml` file:
 
 ```yaml
 ########################################################################
@@ -241,6 +241,12 @@ kutt_container_additional_networks_custom:
 ```
 
 Running the installation command will create the shared Valkey instance named `mash-valkey`.
+
+## Installation
+
+If you have decided to install the dedicated Valkey instance for Kutt, make sure to run the [installing](../installing.md) command for the supplementary host (`mash.example.com-kutt-deps`) first, before running it for the main host (`mash.example.com`).
+
+Note that running the `just` commands for installation (`just install-all` or `just setup-all`) automatically takes care of the order. See [here](../running-multiple-instances.md#1-adjust-hosts) for more details about it.
 
 ## Usage
 
