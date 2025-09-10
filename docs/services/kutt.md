@@ -254,20 +254,6 @@ After running the command for installation, the Kutt instance becomes available 
 
 To get started, open the URL with a web browser, and register the administrator account. You can create additional users (admin-privileged or not) after that.
 
-### Playbook's services on Kutt
-
-On Kutt's board it is possible to create and add icons of many services, including the ones which can be installed with this playbook such as [Nextcloud](nextcloud.md), [PeerTube](peertube.md), [PrivateBin](privatebin.md), [Syncthing](syncthing.md), etc.
-
-Kutt also integrates with various software, to which you can connect your applications to interact via widgets. Here is a list of integrations which are also available on this playbook:
-
-- **Torrent client**: [qBittorent](qbittorrent.md)
-- **Media server**: [Plex](plex.md)
-- **Media collection managers**: [Sonarr](sonarr.md) and [Radarr](radarr.md)
-- **Media request manager**: [Overseerr](overseerr.md)
-- **DNS ad-blocker**: [AdGuard Home](adguard-home.md)
-
-See [this page](https://kutt.dev/docs/category/integrations) on the official documentation for the latest information about integrations.
-
 ## Troubleshooting
 
 See [this section](https://codeberg.org/acioustick/ansible-role-kutt/src/branch/master/docs/configuring-kutt.md#troubleshooting) on the role's documentation for details.
