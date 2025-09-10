@@ -252,7 +252,7 @@ Note that running the `just` commands for installation (`just install-all` or `j
 
 After running the command for installation, the Kutt instance becomes available at the URL specified with `kutt_hostname`. With the configuration above, the service is hosted at `https://kutt.example.com`.
 
-You can open the page with a web browser to start the onboarding process. See [this official guide](https://kutt.dev/docs/getting-started/after-the-installation/) for details.
+To get started, open the URL with a web browser, and register the administrator account. You can create additional users (admin-privileged or not) after that.
 
 ### Playbook's services on Kutt
 
