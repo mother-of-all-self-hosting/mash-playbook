@@ -19,15 +19,15 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
 # Kutt
 
-The playbook can install and configure [Kutt](https://homarr.dev) for you.
+The playbook can install and configure [Kutt](https://kutt.dev) for you.
 
 Kutt is a highly customizable dashboard for management of your favorite applications and services with a drag-and-drop grid system, which integrates with various self-hosted applications.
 
-See the project's [documentation](https://homarr.dev/docs/getting-started) to learn what Kutt does and why it might be useful to you.
+See the project's [documentation](https://kutt.dev/docs/getting-started) to learn what Kutt does and why it might be useful to you.
 
-For details about configuring the [Ansible role for Kutt](https://github.com/mother-of-all-self-hosting/ansible-role-homarr), you can check them via:
-- 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-homarr/blob/main/docs/configuring-homarr.md) online
-- 📁 `roles/galaxy/homarr/docs/configuring-homarr.md` locally, if you have [fetched the Ansible roles](../installing.md)
+For details about configuring the [Ansible role for Kutt](https://github.com/mother-of-all-self-hosting/ansible-role-kutt), you can check them via:
+- 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-kutt/blob/main/docs/configuring-kutt.md) online
+- 📁 `roles/galaxy/kutt/docs/configuring-kutt.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 ## Dependencies
 
@@ -37,7 +37,7 @@ This service requires the following other services:
 - (optional) [Postgres](postgres.md) / MySQL database — Kutt will default to [SQLite](https://www.sqlite.org/) if Postgres is not enabled
 
 >[!NOTE]
-> Currently (as of v1.35.0) MariaDB is not supported but planned. See [this issue at GitHub](https://github.com/homarr-labs/homarr/issues/2305) for the latest information.
+> Currently (as of v1.35.0) MariaDB is not supported but planned. See [this issue at GitHub](https://github.com/kutt-labs/kutt/issues/2305) for the latest information.
 
 ## Adjusting the playbook configuration
 
@@ -46,29 +46,29 @@ To enable this service, add the following configuration to your `vars.yml` file 
 ```yaml
 ########################################################################
 #                                                                      #
-# homarr                                                               #
+# kutt                                                                 #
 #                                                                      #
 ########################################################################
 
-homarr_enabled: true
+kutt_enabled: true
 
-homarr_hostname: homarr.example.com
+kutt_hostname: kutt.example.com
 
 ########################################################################
 #                                                                      #
-# /homarr                                                              #
+# /kutt                                                                #
 #                                                                      #
 ########################################################################
 ```
 
-**Note**: hosting Kutt under a subpath (by configuring the `homarr_path_prefix` variable) does not seem to be possible due to Kutt's technical limitations.
+**Note**: hosting Kutt under a subpath (by configuring the `kutt_path_prefix` variable) does not seem to be possible due to Kutt's technical limitations.
 
 ### Set 32-byte hex digits for secret key
 
 You also need to specify **32-byte hex digits** to encrypt integration secrets on the database. To do so, add the following configuration to your `vars.yml` file. The value can be generated with `openssl rand -hex 32` or in another way.
 
 ```yaml
-homarr_environment_variables_secret_encryption_key: YOUR_SECRET_KEY_HERE
+kutt_environment_variables_secret_encryption_key: YOUR_SECRET_KEY_HERE
 ```
 
 >[!NOTE]
@@ -81,16 +81,16 @@ By default Kutt is configured to use Postgres, but you can choose other database
 To use SQLite, add the following configuration to your `vars.yml` file:
 
 ```yaml
-homarr_database_type: better-sqlite3
+kutt_database_type: better-sqlite3
 ```
 
-See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-homarr/blob/main/docs/configuring-homarr.md#specify-database-optional) on the role's documentation for details.
+See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-kutt/blob/main/docs/configuring-kutt.md#specify-database-optional) on the role's documentation for details.
 
 ## Usage
 
-After running the command for installation, the Kutt instance becomes available at the URL specified with `homarr_hostname`. With the configuration above, the service is hosted at `https://homarr.example.com`.
+After running the command for installation, the Kutt instance becomes available at the URL specified with `kutt_hostname`. With the configuration above, the service is hosted at `https://kutt.example.com`.
 
-You can open the page with a web browser to start the onboarding process. See [this official guide](https://homarr.dev/docs/getting-started/after-the-installation/) for details.
+You can open the page with a web browser to start the onboarding process. See [this official guide](https://kutt.dev/docs/getting-started/after-the-installation/) for details.
 
 ### Playbook's services on Kutt
 
@@ -104,8 +104,8 @@ Kutt also integrates with various software, to which you can connect your applic
 - **Media request manager**: [Overseerr](overseerr.md)
 - **DNS ad-blocker**: [AdGuard Home](adguard-home.md)
 
-See [this page](https://homarr.dev/docs/category/integrations) on the official documentation for the latest information about integrations.
+See [this page](https://kutt.dev/docs/category/integrations) on the official documentation for the latest information about integrations.
 
 ## Troubleshooting
 
-See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-homarr/blob/main/docs/configuring-homarr.md#troubleshooting) on the role's documentation for details.
+See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-kutt/blob/main/docs/configuring-kutt.md#troubleshooting) on the role's documentation for details.
