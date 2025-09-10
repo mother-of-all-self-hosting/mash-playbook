@@ -1185,7 +1185,7 @@ mash_playbook_postgres_managed_databases_auto_itemized:
         'name': paperless_database_name,
         'username': paperless_database_username,
         'password': paperless_database_password,
-      } if paperless_enabled and paperless_database_hostname == postgres_connection_hostname else omit)
+      } if paperless_enabled and paperless_database_hostname == postgres_connection_hostname and paperless_database_type == 'postgres' else omit)
     }}
   # /role-specific:paperless
 
@@ -5645,6 +5645,17 @@ mash_playbook_mariadb_managed_databases_auto_itemized:
     }}
   # /role-specific:nextcloud
 
+  # role-specific:paperless
+  - |-
+    {{
+      ({
+        'name': paperless_database_name,
+        'username': paperless_database_mariadb_username,
+        'password': paperless_database_mariadb_password,
+      } if paperless_enabled and paperless_database_mariadb_hostname == mariadb_connection_hostname and paperless_database_type == 'mariadb' else omit)
+    }}
+  # /role-specific:paperless
+
   # role-specific:privatebin
   - |-
     {{
@@ -6738,11 +6749,11 @@ paperless_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_bas
 paperless_uid: "{{ mash_playbook_uid }}"
 paperless_gid: "{{ mash_playbook_gid }}"
 
-paperless_secret_key: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'paperless.secret', rounds=655555) | to_uuid }}"
-
 paperless_systemd_required_services_list_auto: |
   {{
-    ([postgres_identifier ~ '.service'] if postgres_enabled and paperless_database_hostname == postgres_connection_hostname else [])
+    ([mariadb_identifier ~ '.service'] if mariadb_enabled | default(false) and paperless_database_mariadb_hostname == mariadb_connection_hostname and paperless_database_type == 'mariadb' else [])
+    +
+    ([postgres_identifier ~ '.service'] if postgres_enabled | default(false) and paperless_database_hostname == postgres_connection_hostname and paperless_database_type == 'postgres' else [])
   }}
 
 paperless_systemd_wanted_services_list_auto: |
@@ -6756,17 +6767,29 @@ paperless_container_additional_networks_auto: |
     +
     ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
     +
-    ([postgres_container_network] if postgres_enabled and paperless_database_hostname == postgres_connection_hostname and paperless_container_network != postgres_container_network else [])
+    ([mariadb_container_network] if mariadb_enabled | default(false) and paperless_database_mariadb_hostname == mariadb_connection_hostname and paperless_container_network != mariadb_container_network and paperless_database_type == 'mariadb' else [])
+    +
+    ([postgres_container_network] if postgres_enabled | default(false) and paperless_database_hostname == postgres_connection_hostname and paperless_container_network != postgres_container_network and paperless_database_type == 'postgres' else [])
   }}
 
 paperless_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
 paperless_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+
+paperless_database_type: "{{ 'postgres' if postgres_enabled | default(false) else 'sqlite' }}"
+
+paperless_secret_key: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'paperless.secret', rounds=655555) | to_uuid }}"
 
 # role-specific:exim_relay
 paperless_email_host: "{{ exim_relay_identifier if exim_relay_enabled else '' }}"
 paperless_email_port: "{{ 8025 if exim_relay_enabled else '' }}"
 paperless_email_from: "{{ exim_relay_sender_address if exim_relay_enabled else '' }}"
 # /role-specific:exim_relay
+
+# role-specific:mariadb
+paperless_database_mariadb_hostname: "{{ mariadb_connection_hostname if mariadb_enabled else '' }}"
+paperless_database_mariadb_port: "{{ mariadb_connection_port if mariadb_enabled else '3306' }}"
+paperless_database_mariadb_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'db.paperlesm', rounds=655555) | to_uuid }}"
+# /role-specific:mariadb
 
 # role-specific:postgres
 paperless_database_hostname: "{{ postgres_connection_hostname if postgres_enabled else '' }}"

@@ -1,7 +1,20 @@
 <!--
+SPDX-FileCopyrightText: 2020 - 2024 MDAD project contributors
+SPDX-FileCopyrightText: 2020 - 2025 Slavi Pantaleev
+SPDX-FileCopyrightText: 2020 Aaron Raimist
+SPDX-FileCopyrightText: 2020 Chris van Dijk
+SPDX-FileCopyrightText: 2020 Dominik Zajac
+SPDX-FileCopyrightText: 2020 Mickaël Cornière
+SPDX-FileCopyrightText: 2022 François Darveau
+SPDX-FileCopyrightText: 2022 Julian Foad
+SPDX-FileCopyrightText: 2022 Warren Bailey
+SPDX-FileCopyrightText: 2023 Antonis Christofides
+SPDX-FileCopyrightText: 2023 Felix Stupp
 SPDX-FileCopyrightText: 2023 Julian-Samuel Gebühr
-SPDX-FileCopyrightText: 2023 - 2024 Slavi Pantaleev
-SPDX-FileCopyrightText: 2025 Suguru Hirahara
+SPDX-FileCopyrightText: 2023 MASH project contributors
+SPDX-FileCopyrightText: 2023 Pierre 'McFly' Marty
+SPDX-FileCopyrightText: 2024 - 2025 Suguru Hirahara
+SPDX-FileCopyrightText: 2024 Sergio Durigan Junior
 
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->
@@ -17,10 +30,9 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
 This service requires the following other services:
 
-- a [Postgres](postgres.md) database
 - a [Traefik](traefik.md) reverse-proxy server
 - a [Valkey](valkey.md) data-store; see [below](#configure-valkey) for details about installation
-
+- (optional) [Postgres](postgres.md) / [MariaDB](mariadb.md) database — Paperless-ngx will default to [SQLite](https://www.sqlite.org/) if Postgres is not enabled
 
 ## Configuration
 
@@ -49,6 +61,16 @@ paperless_hostname: paperless.example.com
 # /paperless                                                           #
 #                                                                      #
 ########################################################################
+```
+
+### Select database to use (optional)
+
+By default Paperless-ngx is configured to use Postgres, but you can choose other database such as SQLite and MariaDB.
+
+To use MariaDB, add the following configuration to your `vars.yml` file:
+
+```yaml
+paperless_database_type: mariadb
 ```
 
 ### Configure Valkey
