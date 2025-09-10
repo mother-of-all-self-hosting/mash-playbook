@@ -25,8 +25,8 @@ Kutt is a highly customizable dashboard for management of your favorite applicat
 
 See the project's [documentation](https://kutt.dev/docs/getting-started) to learn what Kutt does and why it might be useful to you.
 
-For details about configuring the [Ansible role for Kutt](https://github.com/mother-of-all-self-hosting/ansible-role-kutt), you can check them via:
-- 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-kutt/blob/main/docs/configuring-kutt.md) online
+For details about configuring the [Ansible role for Kutt](https://codeberg.org/acioustick/ansible-role-kutt), you can check them via:
+- 🌐 [the role's documentation](https://codeberg.org/acioustick/ansible-role-kutt/src/branch/master/docs/configuring-kutt.md) online
 - 📁 `roles/galaxy/kutt/docs/configuring-kutt.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 ## Dependencies
@@ -84,7 +84,7 @@ To use SQLite, add the following configuration to your `vars.yml` file:
 kutt_database_type: better-sqlite3
 ```
 
-See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-kutt/blob/main/docs/configuring-kutt.md#specify-database-optional) on the role's documentation for details.
+See [this section](https://codeberg.org/acioustick/ansible-role-kutt/src/branch/master/docs/configuring-kutt.md#specify-database-optional) on the role's documentation for details.
 
 ## Usage
 
@@ -108,4 +108,4 @@ See [this page](https://kutt.dev/docs/category/integrations) on the official doc
 
 ## Troubleshooting
 
-See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-kutt/blob/main/docs/configuring-kutt.md#troubleshooting) on the role's documentation for details.
+See [this section](https://codeberg.org/acioustick/ansible-role-kutt/src/branch/master/docs/configuring-kutt.md#troubleshooting) on the role's documentation for details.
