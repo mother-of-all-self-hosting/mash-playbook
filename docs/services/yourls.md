@@ -88,3 +88,7 @@ The help file is available at `yourls.example.com/readme.html`.
 ## Troubleshooting
 
 See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-yourls/blob/main/docs/configuring-yourls.md#troubleshooting) on the role's documentation for details.
+
+## Related services
+
+- [Kutt](kutt.md) — Modern URL shortener with support for custom domains

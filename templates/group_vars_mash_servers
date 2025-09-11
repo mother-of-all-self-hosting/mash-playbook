@@ -395,6 +395,11 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
     {{ ({'name': (keydb_identifier + '.service'), 'priority': 750, 'groups': ['mash', 'keydb']} if keydb_enabled else omit) }}
   # /role-specific:keydb
 
+  # role-specific:kutt
+  - |-
+    {{ ({'name': (kutt_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'kutt']} if kutt_enabled else omit) }}
+  # /role-specific:kutt
+
   # role-specific:labelstudio
   - |-
     {{ ({'name': (labelstudio_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'labelstudio']} if labelstudio_enabled else omit) }}
@@ -1057,6 +1062,17 @@ mash_playbook_postgres_managed_databases_auto_itemized:
     }}
   # /role-specific:keycloak
 
+  # role-specific:kutt
+  - |-
+    {{
+      ({
+        'name': kutt_database_name,
+        'username': kutt_database_postgres_username,
+        'password': kutt_database_postgres_password,
+      } if kutt_enabled and kutt_database_postgres_hostname == postgres_connection_hostname and kutt_database_type == 'pg' else omit)
+    }}
+  # /role-specific:kutt
+
   # role-specific:labelstudio
   - |-
     {{
@@ -1185,7 +1201,7 @@ mash_playbook_postgres_managed_databases_auto_itemized:
         'name': paperless_database_name,
         'username': paperless_database_username,
         'password': paperless_database_password,
-      } if paperless_enabled and paperless_database_hostname == postgres_connection_hostname else omit)
+      } if paperless_enabled and paperless_database_hostname == postgres_connection_hostname and paperless_database_type == 'postgres' else omit)
     }}
   # /role-specific:paperless
 
@@ -3331,9 +3347,6 @@ ghostfolio_container_additional_networks_auto: |
 ghostfolio_environment_variable_access_token_salt: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'at.ghostfolio', rounds=655555) | to_uuid }}"
 ghostfolio_environment_variable_jwt_secret_key: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'jsk.ghostfolio', rounds=655555) | to_uuid }}"
 
-# Required for a Redis / KeyDB / Valkey instance
-ghostfolio_environment_variable_redis_hostname: "{{ ghostfolio_redis_hostname }}"
-
 ghostfolio_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
 ghostfolio_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
 
@@ -5265,6 +5278,84 @@ keydb_arch: |-
 # /role-specific:keydb
 
 
+# role-specific:kutt
+########################################################################
+#                                                                      #
+# kutt                                                                 #
+#                                                                      #
+########################################################################
+
+kutt_enabled: false
+
+kutt_identifier: "{{ mash_playbook_service_identifier_prefix }}kutt"
+
+kutt_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}kutt"
+
+kutt_uid: "{{ mash_playbook_uid }}"
+kutt_gid: "{{ mash_playbook_gid }}"
+
+kutt_systemd_required_services_list_auto: |
+  {{
+    ([mariadb_identifier ~ '.service'] if mariadb_enabled | default(false) and kutt_database_mysql_hostname == mariadb_connection_hostname and kutt_database_type == 'mysql2' else [])
+    +
+    ([postgres_identifier ~ '.service'] if postgres_enabled | default(false) and kutt_database_postgres_hostname == postgres_connection_hostname and kutt_database_type == 'pg' else [])
+  }}
+
+kutt_systemd_wanted_services_list_auto: |
+  {{
+    ([(exim_relay_identifier | default('mash-exim-relay')) ~ '.service'] if (exim_relay_enabled | default(false) and kutt_environment_variables_smtp_host == exim_relay_identifier | default('mash-exim-relay')) else [])
+  }}
+
+kutt_container_additional_networks_auto: |
+  {{
+    ([exim_relay_container_network | default('mash-exim-relay')] if (exim_relay_enabled | default(false) and kutt_environment_variables_smtp_host == exim_relay_identifier | default('mash-exim-relay') and kutt_container_network != exim_relay_container_network) else [])
+    +
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+    +
+    ([mariadb_container_network] if mariadb_enabled | default(false) and kutt_database_mysql_hostname == mariadb_connection_hostname and kutt_container_network != mariadb_container_network and kutt_database_type == 'mysql2' else [])
+    +
+    ([postgres_container_network] if postgres_enabled | default(false) and kutt_database_postgres_hostname == postgres_connection_hostname and kutt_container_network != postgres_container_network and kutt_database_type == 'pg' else [])
+  }}
+
+kutt_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+kutt_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+
+kutt_database_type: "{{ 'pg' if postgres_enabled | default(false) else 'better-sqlite3' }}"
+
+kutt_environment_variables_jwt_secret: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'kutt', rounds=655555) | to_uuid }}"
+
+# role-specific:exim_relay
+kutt_environment_variables_smtp_enabled: "{{ exim_relay_enabled }}"
+kutt_environment_variables_smtp_from: "{{ exim_relay_sender_address if exim_relay_enabled else '' }}"
+kutt_environment_variables_smtp_host: "{{ exim_relay_identifier if exim_relay_enabled else '' }}"
+kutt_environment_variables_smtp_port: "{{ 8025 if exim_relay_enabled else '587' }}"
+# /role-specific:exim_relay
+
+# role-specific:mariadb
+kutt_database_mysql_hostname: "{{ mariadb_connection_hostname if mariadb_enabled else '' }}"
+kutt_database_mysql_port: "{{ mariadb_connection_port if mariadb_enabled else '3306' }}"
+kutt_database_mysql_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'kutt.db', rounds=655555) | to_uuid }}"
+# /role-specific:mariadb
+
+# role-specific:postgres
+kutt_database_postgres_hostname: "{{ postgres_connection_hostname if postgres_enabled else '' }}"
+kutt_database_postgres_port: "{{ postgres_connection_port if postgres_enabled else '5432' }}"
+kutt_database_postgres_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'kutt.db', rounds=655555) | to_uuid }}"
+# /role-specific:postgres
+
+# role-specific:traefik
+kutt_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
+kutt_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
+# /role-specific:traefik
+
+########################################################################
+#                                                                      #
+# /kutt                                                                #
+#                                                                      #
+########################################################################
+# /role-specific:kutt
+
+
 
 # role-specific:labelstudio
 ########################################################################
@@ -5623,6 +5714,17 @@ mash_playbook_mariadb_managed_databases_auto_itemized:
     }}
   # /role-specific:healthchecks
 
+  # role-specific:kutt
+  - |-
+    {{
+      ({
+        'name': kutt_database_name,
+        'username': kutt_database_mysql_username,
+        'password': kutt_database_mysql_password,
+      } if kutt_enabled and kutt_database_mysql_hostname == mariadb_connection_hostname and kutt_database_type == 'mysql2' else omit)
+    }}
+  # /role-specific:kutt
+
   # role-specific:matomo
   - |-
     {{
@@ -5644,6 +5746,17 @@ mash_playbook_mariadb_managed_databases_auto_itemized:
       } if nextcloud_enabled and nextcloud_database_mysql_hostname == mariadb_connection_hostname and nextcloud_database_type == 'mysql' else omit)
     }}
   # /role-specific:nextcloud
+
+  # role-specific:paperless
+  - |-
+    {{
+      ({
+        'name': paperless_database_name,
+        'username': paperless_database_mariadb_username,
+        'password': paperless_database_mariadb_password,
+      } if paperless_enabled and paperless_database_mariadb_hostname == mariadb_connection_hostname and paperless_database_type == 'mariadb' else omit)
+    }}
+  # /role-specific:paperless
 
   # role-specific:privatebin
   - |-
@@ -6738,11 +6851,11 @@ paperless_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_bas
 paperless_uid: "{{ mash_playbook_uid }}"
 paperless_gid: "{{ mash_playbook_gid }}"
 
-paperless_secret_key: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'paperless.secret', rounds=655555) | to_uuid }}"
-
 paperless_systemd_required_services_list_auto: |
   {{
-    ([postgres_identifier ~ '.service'] if postgres_enabled and paperless_database_hostname == postgres_connection_hostname else [])
+    ([mariadb_identifier ~ '.service'] if mariadb_enabled | default(false) and paperless_database_mariadb_hostname == mariadb_connection_hostname and paperless_database_type == 'mariadb' else [])
+    +
+    ([postgres_identifier ~ '.service'] if postgres_enabled | default(false) and paperless_database_hostname == postgres_connection_hostname and paperless_database_type == 'postgres' else [])
   }}
 
 paperless_systemd_wanted_services_list_auto: |
@@ -6756,17 +6869,29 @@ paperless_container_additional_networks_auto: |
     +
     ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
     +
-    ([postgres_container_network] if postgres_enabled and paperless_database_hostname == postgres_connection_hostname and paperless_container_network != postgres_container_network else [])
+    ([mariadb_container_network] if mariadb_enabled | default(false) and paperless_database_mariadb_hostname == mariadb_connection_hostname and paperless_container_network != mariadb_container_network and paperless_database_type == 'mariadb' else [])
+    +
+    ([postgres_container_network] if postgres_enabled | default(false) and paperless_database_hostname == postgres_connection_hostname and paperless_container_network != postgres_container_network and paperless_database_type == 'postgres' else [])
   }}
 
 paperless_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
 paperless_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+
+paperless_database_type: "{{ 'postgres' if postgres_enabled | default(false) else 'sqlite' }}"
+
+paperless_secret_key: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'paperless.secret', rounds=655555) | to_uuid }}"
 
 # role-specific:exim_relay
 paperless_email_host: "{{ exim_relay_identifier if exim_relay_enabled else '' }}"
 paperless_email_port: "{{ 8025 if exim_relay_enabled else '' }}"
 paperless_email_from: "{{ exim_relay_sender_address if exim_relay_enabled else '' }}"
 # /role-specific:exim_relay
+
+# role-specific:mariadb
+paperless_database_mariadb_hostname: "{{ mariadb_connection_hostname if mariadb_enabled else '' }}"
+paperless_database_mariadb_port: "{{ mariadb_connection_port if mariadb_enabled else '3306' }}"
+paperless_database_mariadb_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'db.paperlesm', rounds=655555) | to_uuid }}"
+# /role-specific:mariadb
 
 # role-specific:postgres
 paperless_database_hostname: "{{ postgres_connection_hostname if postgres_enabled else '' }}"
