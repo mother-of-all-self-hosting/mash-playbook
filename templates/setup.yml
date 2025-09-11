@@ -317,6 +317,10 @@
     - role: galaxy/keydb
     # /role-specific:keydb
 
+    # role-specific:kutt
+    - role: galaxy/kutt
+    # /role-specific:kutt
+
     # role-specific:labelstudio
     - role: galaxy/labelstudio
     # /role-specific:labelstudio
