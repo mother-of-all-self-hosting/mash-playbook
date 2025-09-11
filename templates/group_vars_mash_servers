@@ -5370,6 +5370,11 @@ labelstudio_identifier: "{{ mash_playbook_service_identifier_prefix }}labelstudi
 
 labelstudio_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}labelstudio"
 
+labelstudio_systemd_required_services_list_auto: |
+  {{
+    ([postgres_identifier ~ '.service'] if postgres_enabled and labelstudio_database_hostname == postgres_identifier else [])
+  }}
+
 labelstudio_uid: "{{ mash_playbook_uid }}"
 labelstudio_gid: "{{ mash_playbook_gid }}"
 
