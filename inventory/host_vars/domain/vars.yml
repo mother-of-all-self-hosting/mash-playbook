@@ -558,6 +558,13 @@ headscale_enabled: true
 
 headscale_hostname: "headscale.{{ domain }}"
 
+headscale_config_dns_nameservers_split:
+   int.thewrt.com:
+     - 10.1.10.2
+
+headscale_config_dns_search_domains: 
+     - int.thewrt.com
+
 ########################################################################
 #                                                                      #
 # /headscale                                                           #
