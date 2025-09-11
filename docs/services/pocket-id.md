@@ -86,6 +86,8 @@ To get started, open the URL `https://example.com/setup` on a web browser to cre
 
 See [this section](https://codeberg.org/acioustick/ansible-role-pocket-id/src/branch/master/docs/configuring-pocket-id.md#usage) on the role's documentation for details about how to use Pocket ID.
 
+If you are interested in integrating Pocket ID with [Tinyauth](https://tinyauth.app), you might also be interested in having a look at [this section](tinyauth.md#integrating-with-pocket-id).
+
 ## Troubleshooting
 
 See [this section](https://codeberg.org/acioustick/ansible-role-pocket-id/src/branch/master/docs/configuring-pocket-id.md#troubleshooting) on the role's documentation for details.
