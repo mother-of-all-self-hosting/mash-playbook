@@ -449,6 +449,10 @@
     - role: galaxy/plex
     # /role-specific:plex
 
+    # role-specific:pocket_id
+    - role: galaxy/pocket_id
+    # /role-specific:pocket_id
+
     # role-specific:postgis
     - role: galaxy/postgis
     # /role-specific:postgis

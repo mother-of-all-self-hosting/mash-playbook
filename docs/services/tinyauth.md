@@ -128,6 +128,107 @@ echoip_container_labels_additional_labels: |
 
 After re-running the playbook, accessing to `https://echoip.example.com` redirects to the Tinyauth log in page at `https://tinyauth.example.com`.
 
+### Integrating with Pocket ID
+
+Pocket ID is a simple OpenID Connect (OIDC) provider (Identity Provider, IdP) that accepts exclusively passkeys for authentication. This playbook supports it, and it is possible to set up the Tinyauth instance as a proxy service for it.
+
+See [this page](pocket-id.md) for the instruction to install Pocket ID with this playbook.
+
+After installing it and adding Tinyauth as an OIDC client on the Pocket ID's UI (see [this section](https://tinyauth.app/docs/guides/pocket-id/#configuring-pocket-id) for details), add Pocket ID as a generic OAuth provider by adding the configuration as below:
+
+```yaml
+tinyauth_environment_variables_additional_variables: |
+  GENERIC_CLIENT_ID=YOUR_POCKET_ID_CLIENT_ID_HERE
+  GENERIC_CLIENT_SECRET=YOUR_POCKET_ID_CLIENT_SECRET_HERE
+  GENERIC_AUTH_URL=https://{{ pocket_id_hostname }}/authorize
+  GENERIC_TOKEN_URL=https://{{ pocket_id_hostname }}/api/oidc/token
+  GENERIC_USER_URL=https://{{ pocket_id_hostname }}/api/oidc/userinfo
+  GENERIC_SCOPES=openid email profile groups
+  GENERIC_NAME=Pocket ID
+  OAUTH_WHITELIST=YOUR_POCKET_ID_EMAIL_ADDRESS_HERE
+```
+
+Replace `YOUR_POCKET_ID_CLIENT_ID_HERE`, `YOUR_POCKET_ID_CLIENT_SECRET_HERE`, and `YOUR_POCKET_ID_EMAIL_ADDRESS_HERE` with your own values.
+
+Instead of using `OAUTH_WHITELIST`, it is able to manage access control by using Pocket ID's user group function. See [this section](https://tinyauth.app/docs/guides/pocket-id/#access-controls-with-pocket-id-groups) on the Tinyauth's documentation for details.
+
+#### Example: passkey-only authentication with access control for echoip
+
+Here is an example of the whole stack of the configuration for:
+
+- Enabling passkey-only authentication for echoip (`echoip.example.com`)
+- Setting up access control by Pocket ID (`pocketid.example.com`) to limit accessing the echoip instance to users who belong to the `admins` group managed on the Pocket ID instance
+
+```yaml
+########################################################################
+#                                                                      #
+# echoip                                                               #
+#                                                                      #
+########################################################################
+
+echoip_enabled: true
+
+echoip_hostname: echoip.example.com
+
+# Access control by Pocket ID with the `tinyauth.oauth.groups` label
+echoip_container_labels_additional_labels: |
+  traefik.http.routers.{{ echoip_identifier }}.middlewares={{ tinyauth_identifier }}
+  tinyauth.oauth.groups=admins
+
+########################################################################
+#                                                                      #
+# /echoip                                                              #
+#                                                                      #
+########################################################################
+
+########################################################################
+#                                                                      #
+# pocket_id                                                            #
+#                                                                      #
+########################################################################
+
+pocket_id_enabled: true
+
+pocket_id_hostname: pocketid.example.com
+
+########################################################################
+#                                                                      #
+# /pocket_id                                                           #
+#                                                                      #
+########################################################################
+
+########################################################################
+#                                                                      #
+# tinyauth                                                             #
+#                                                                      #
+########################################################################
+
+tinyauth_enabled: true
+
+tinyauth_hostname: tinyauth.example.com
+
+# Obtain the ODIC client ID and secret for Tinyauth at pocketid.example.com first
+tinyauth_environment_variables_additional_variables: |
+  GENERIC_CLIENT_ID=YOUR_POCKET_ID_CLIENT_ID_HERE
+  GENERIC_CLIENT_SECRET=YOUR_POCKET_ID_CLIENT_SECRET_HERE
+  GENERIC_AUTH_URL=https://{{ pocket_id_hostname }}/authorize
+  GENERIC_TOKEN_URL=https://{{ pocket_id_hostname }}/api/oidc/token
+  GENERIC_USER_URL=https://{{ pocket_id_hostname }}/api/oidc/userinfo
+  GENERIC_SCOPES=openid email profile groups
+  GENERIC_NAME=Pocket ID
+
+# Disable logging in with a password
+tinyauth_environment_variables_users_enabled: false
+
+########################################################################
+#                                                                      #
+# /tinyauth                                                            #
+#                                                                      #
+########################################################################
+```
+
+After configuring the Pocket ID instance and restarting the services, accessing `echoip.example.com` automatically redirects you to `tinyauth.example.com`, where you can then proceed to log in only via `pocketid.example.com` with your registered passkey.
+
 ## Troubleshooting
 
 See [this section](https://codeberg.org/acioustick/ansible-role-tinyauth/src/branch/master/docs/configuring-tinyauth.md#troubleshooting) on the role's documentation for details.
