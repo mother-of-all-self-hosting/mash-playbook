@@ -553,6 +553,7 @@ owncast_container_rtmp_host_bind_port: "10.1.154.10:1935"
 # headscale                                                            #
 #                                                                      #
 ########################################################################
+# https://github.com/mother-of-all-self-hosting/ansible-role-headscale/blob/main/defaults/main.yml
 
 headscale_enabled: true
 
@@ -563,7 +564,21 @@ headscale_config_dns_nameservers_split:
      - 10.1.10.2
 
 headscale_config_dns_search_domains: 
-     - int.thewrt.com
+     - int.{{ domain }}
+
+headscale_config_prefixes_v4: 100.100.0.0/20
+
+# https://headscale.net/stable/ref/oidc/?h=oidc
+headscale_configuration_extension_yaml: |
+  oidc:
+    only_start_if_oidc_is_available: true
+    issuer: "https://authentik.{{ domain }}/application/o/headscale/"
+    client_id: "{{ vault_headscale_oidc_client_id }}"
+    client_secret: "{{ vault_headscale_oidc_client_secret }}"
+    scope: ["openid", "profile", "email"]
+    pkce:
+      enabled: true
+      method: S256
 
 ########################################################################
 #                                                                      #
