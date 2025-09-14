@@ -631,14 +631,18 @@ jellyfin_enabled: true
 jellyfin_hostname: "jellyfin.{{ domain }}"
 jellyfin_container_additional_volumes:
   - type: bind
-    src: /path/on/the/host/movies
+    src: /mash/media/movies
     dst: /movies
 
   - type: bind
-    src: /another-path/on/the/host/anime
+    src: /mash/media/anime
     dst: /anime
     options: readonly
 
+  - type: bind
+    src: /mash/media/series
+    dst: /series
+    options: readonly
 ########################################################################
 #                                                                      #
 # /jellyfin                                                            #
