@@ -586,6 +586,11 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
     {{ ({'name': (plex_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'plex']} if plex_enabled else omit) }}
   # /role-specific:plex
 
+  # role-specific:pocket_id
+  - |-
+    {{ ({'name': (pocket_id_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'pocket-id']} if pocket_id_enabled else omit) }}
+  # /role-specific:pocket_id
+
   # role-specific:postgis
   - |-
     {{ ({'name': (postgis_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'metrics', 'postgis']} if postgis_enabled else omit) }}
@@ -1226,6 +1231,17 @@ mash_playbook_postgres_managed_databases_auto_itemized:
       } if plausible_enabled and plausible_database_hostname == postgres_connection_hostname else omit)
     }}
   # /role-specific:plausible
+
+  # role-specific:pocket_id
+  - |-
+    {{
+      ({
+        'name': pocket_id_database_name,
+        'username': pocket_id_database_username,
+        'password': pocket_id_database_password,
+      } if pocket_id_enabled and pocket_id_database_hostname == postgres_connection_hostname and pocket_id_database_type == 'postgres' else omit)
+    }}
+  # /role-specific:pocket_id
 
   # role-specific:privatebin
   - |-
@@ -5370,6 +5386,11 @@ labelstudio_identifier: "{{ mash_playbook_service_identifier_prefix }}labelstudi
 
 labelstudio_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}labelstudio"
 
+labelstudio_systemd_required_services_list_auto: |
+  {{
+    ([postgres_identifier ~ '.service'] if postgres_enabled and labelstudio_database_hostname == postgres_identifier else [])
+  }}
+
 labelstudio_uid: "{{ mash_playbook_uid }}"
 labelstudio_gid: "{{ mash_playbook_gid }}"
 
@@ -5392,7 +5413,6 @@ labelstudio_database_hostname: "{{ postgres_connection_hostname if postgres_enab
 labelstudio_database_port: "{{ postgres_connection_port if postgres_enabled else '5432' }}"
 labelstudio_database_username: "labelstudio"
 labelstudio_database_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'db.labelstudio', rounds=655555) | to_uuid }}"
-labelstudio_database_name: "labelstudio"
 # /role-specific:postgres
 
 # role-specific:traefik
@@ -7091,6 +7111,83 @@ plex_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary
 #                                                                      #
 ########################################################################
 # /role-specific:plex
+
+
+
+# role-specific:pocket_id
+########################################################################
+#                                                                      #
+# pocket_id                                                            #
+#                                                                      #
+########################################################################
+
+pocket_id_enabled: false
+
+pocket_id_identifier: "{{ mash_playbook_service_identifier_prefix }}pocket-id"
+
+pocket_id_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}pocket-id"
+
+pocket_id_uid: "{{ mash_playbook_uid }}"
+pocket_id_gid: "{{ mash_playbook_gid }}"
+
+pocket_id_systemd_required_services_list: |
+  {{
+    ([postgres_identifier ~ '.service'] if postgres_enabled | default(false) and pocket_id_database_hostname == postgres_connection_hostname and pocket_id_database_type == 'postgres' else [])
+  }}
+
+pocket_id_systemd_wanted_services_list_auto: |
+  {{
+    ([(exim_relay_identifier | default('mash-exim-relay')) ~ '.service'] if (exim_relay_enabled | default(false) and pocket_id_environment_variable_smtp_host == exim_relay_identifier | default('mash-exim-relay')) else [])
+  }}
+
+pocket_id_container_additional_networks_auto: |
+  {{
+    ([exim_relay_container_network | default('mash-exim-relay')] if (exim_relay_enabled | default(false) and pocket_id_environment_variable_smtp_host == exim_relay_identifier | default('mash-exim-relay') and pocket_id_container_network != exim_relay_container_network) else [])
+    +
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+    +
+    ([postgres_container_network] if postgres_enabled | default(false) and pocket_id_database_hostname == postgres_connection_hostname and pocket_id_container_network != postgres_container_network and pocket_id_database_type == 'postgres' else [])
+  }}
+
+pocket_id_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+pocket_id_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+
+pocket_id_database_type: "{{ 'postgres' if postgres_enabled | default(false) else 'sqlite' }}"
+
+# Set `false` to enable telemetry for analytics
+pocket_id_environment_variable_analytics_disabled: true
+
+pocket_id_environment_variable_encryption_key: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'd.pocketid', rounds=655555) | to_uuid }}"
+
+# Set `true` to disable additional configuration on Pocket ID's UI and allow it with environment variables only.
+pocket_id_environment_variable_ui_config_disabled: false
+
+# role-specific:exim_relay
+pocket_id_mailer_enabled: "{{ exim_relay_enabled }}"
+# Note these settings are automatically applied only if `pocket_id_environment_variable_ui_config_disabled` is set to `true`.
+# Otherwise, it is still possible to configure SMTP mailer on the Pocket ID's UI.
+pocket_id_environment_variable_smtp_host: "{{ exim_relay_identifier if exim_relay_enabled else '' }}"
+pocket_id_environment_variable_smtp_port: 8025
+pocket_id_environment_variable_smtp_from: "{{ exim_relay_sender_address if exim_relay_enabled else '' }}"
+# /role-specific:exim_relay
+
+# role-specific:postgres
+pocket_id_database_hostname: "{{ postgres_connection_hostname if postgres_enabled else '' }}"
+pocket_id_database_port: "{{ postgres_connection_port if postgres_enabled else '5432' }}"
+pocket_id_database_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'db.pocketid', rounds=655555) | to_uuid }}"
+# /role-specific:postgres
+
+# role-specific:traefik
+pocket_id_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
+pocket_id_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
+# /role-specific:traefik
+
+########################################################################
+#                                                                      #
+# pocket_id                                                            #
+#                                                                      #
+########################################################################
+# /role-specific:pocket_id
 
 
 
