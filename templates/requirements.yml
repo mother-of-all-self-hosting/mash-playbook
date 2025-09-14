@@ -517,7 +517,7 @@
   name: syncstorage_rs_docker
   activation_prefix: syncstorage_rs_docker_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-syncthing.git
-  version: v2.0.8-0
+  version: v2.0.9-0
   name: syncthing
   activation_prefix: syncthing_
 - src: git+https://github.com/devture/com.devture.ansible.role.systemd_docker_base.git
