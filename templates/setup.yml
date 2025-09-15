@@ -341,6 +341,10 @@
     - role: galaxy/listmonk
     # /role-specific:listmonk
 
+    # role-specific:lldap
+    - role: galaxy/lldap
+    # /role-specific:lldap
+
     # role-specific:loki
     - role: galaxy/loki
     # /role-specific:loki
