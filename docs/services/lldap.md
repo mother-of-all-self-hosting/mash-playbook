@@ -38,7 +38,6 @@ This service requires the following other services:
 
 - [Traefik](traefik.md) reverse-proxy server
 - (optional) [Postgres](postgres.md) / MySQL / [MariaDB](mariadb.md) database — LLDAP will default to [SQLite](https://www.sqlite.org/) if Postgres is not enabled
-- (optional) [Valkey](valkey.md) data-store; see [below](#configuring-valkey-optional) for details about installation
 
 ## Adjusting the playbook configuration
 
