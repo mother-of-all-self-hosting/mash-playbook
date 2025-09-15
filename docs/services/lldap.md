@@ -98,4 +98,5 @@ See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-ll
 
 ## Related services
 
-- [YOURLS](yourls.md) — Your Own URL Shortener, on your server
+- [Pocket ID](pocket-id.md) — Simple OIDC provider for passkey-only authentication
+- [Tinyauth](tinyauth.md) — Simple authentication middleware that adds a login screen or OAuth with Google, Github, and any provider to your Docker services
