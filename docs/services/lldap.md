@@ -90,7 +90,7 @@ On LLDAP you can set up a mailer for functions such as sending a password reset 
 
 After running the command for installation, the LLDAP instance becomes available at the URL specified with `lldap_hostname`. With the configuration above, the service is hosted at `https://lldap.example.com`.
 
-To get started, open the URL with a web browser, and register the administrator account. You can create additional users (admin-privileged or not) after that.
+To get started, open the URL with a web browser, and log in to the instance with the administrator account. You can create additional users (admin-privileged or not) after that via the web frontend. See [this section](https://github.com/lldap/lldap/blob/main/README.md#usage) on the documentation for details about usage, including a recommended architecture.
 
 ## Troubleshooting
 
