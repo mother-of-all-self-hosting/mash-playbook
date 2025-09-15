@@ -63,6 +63,18 @@ lldap_hostname: lldap.example.com
 
 **Note**: hosting LLDAP under a subpath (by configuring the `lldap_path_prefix` variable) does not seem to be possible due to LLDAP's technical limitations.
 
+### Specify the username and password for the initial admin user
+
+It is necessary to create an initial user with admin privileges by adding the following configuration to your `vars.yml` file:
+
+```yaml
+lldap_environment_variables_lldap_ldap_user_dn: ADMIN_USER_USERNAME_HERE
+
+lldap_environment_variables_lldap_ldap_user_pass: ADMIN_USER_PASSWORD_HERE
+```
+
+See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-lldap/blob/main/docs/configuring-lldap.md#specify-the-username-and-password-for-the-initial-admin-user) on the role's documentation for details.
+
 ### Select database to use (optional)
 
 By default LLDAP is configured to use Postgres, but you can choose other databases such as MySQL (MariaDB) and SQLite. See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-lldap/blob/main/docs/configuring-lldap.md#specify-database-optional) on the role's documentation for details.
