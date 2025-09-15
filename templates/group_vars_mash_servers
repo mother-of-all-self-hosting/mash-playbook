@@ -3659,9 +3659,9 @@ healthchecks_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_
 healthchecks_database_type: "{{ 'postgres' if postgres_enabled | default(false) else 'sqlite' }}"
 
 # role-specific:exim_relay
-healthchecks_environment_variable_default_from_email: "{{ exim_relay_sender_address if exim_relay_enabled else '' }}"
 healthchecks_environment_variable_email_host: "{{ exim_relay_identifier if exim_relay_enabled else '' }}"
 healthchecks_environment_variable_email_port: "{{ 8025 if exim_relay_enabled else '587' }}"
+healthchecks_environment_variable_default_from_email: "{{ exim_relay_sender_address if exim_relay_enabled else '' }}"
 healthchecks_environment_variable_email_use_tls: "{{ false if exim_relay_enabled else true }}"
 healthchecks_environment_variable_email_use_verification: "{{ false if exim_relay_enabled else true }}"
 # /role-specific:exim_relay
@@ -7050,9 +7050,9 @@ plausible_clickhouse_database_password: "{{ ('%s' | format(mash_playbook_generic
 # As of 2024-06-28, only `Bamboo.SMTPAdapter` behaves well when no SMTP username/password AUTH is required (as is the case for exim-relay).
 # The Bamboo.Mua SMTP adapter is more modern, but always sends authentication, even when the SMTP user is empty.
 plausible_environment_variable_mailer_adapter: "{{ 'Bamboo.SMTPAdapter' if exim_relay_enabled else 'Bamboo.LocalAdapter' }}"
-plausible_environment_variable_mailer_email: "{{ exim_relay_sender_address if exim_relay_enabled else '' }}"
 plausible_environment_variable_smtp_host_addr: "{{ exim_relay_identifier if exim_relay_enabled else '' }}"
 plausible_environment_variable_smtp_host_port: "{{ 8025 if exim_relay_enabled else '587' }}"
+plausible_environment_variable_mailer_email: "{{ exim_relay_sender_address if exim_relay_enabled else '' }}"
 plausible_environment_variable_smtp_host_ssl_enabled: false
 # /role-specific:exim_relay
 
@@ -8724,9 +8724,9 @@ vaultwarden_container_labels_traefik_compression_middleware_enabled: "{{ mash_pl
 vaultwarden_container_labels_traefik_compression_middleware_name: "{{ mash_playbook_reverse_proxy_traefik_middleware_compession_name if mash_playbook_reverse_proxy_traefik_middleware_compession_enabled else '' }}"
 
 # role-specific:exim_relay
-vaultwarden_config_smtp_from: "{{ exim_relay_sender_address if exim_relay_enabled else '' }}"
 vaultwarden_config_smtp_host: "{{ exim_relay_identifier if exim_relay_enabled else '' }}"
 vaultwarden_config_smtp_port: "{{ 8025 if exim_relay_enabled else '587' }}"
+vaultwarden_config_smtp_from: "{{ exim_relay_sender_address if exim_relay_enabled else '' }}"
 vaultwarden_config_smtp_security: "{{ 'off' if exim_relay_enabled else 'starttls' }}"
 # /role-specific:exim_relay
 
