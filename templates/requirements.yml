@@ -513,7 +513,7 @@
   name: swap
   activation_prefix: system_swap_
 - src: https://github.com/mother-of-all-self-hosting/ansible-role-syncstorage-rs-docker.git
-  version: v0.18.3-4
+  version: v0.21.0-0
   name: syncstorage_rs_docker
   activation_prefix: syncstorage_rs_docker_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-syncthing.git
