@@ -1,6 +1,6 @@
 <!--
 SPDX-FileCopyrightText: 2020 - 2024 MDAD project contributors
-SPDX-FileCopyrightText: 2020 - 2024 Slavi Pantaleev
+SPDX-FileCopyrightText: 2020 - 2025 Slavi Pantaleev
 SPDX-FileCopyrightText: 2020 Aaron Raimist
 SPDX-FileCopyrightText: 2020 Chris van Dijk
 SPDX-FileCopyrightText: 2020 Dominik Zajac
@@ -8,22 +8,25 @@ SPDX-FileCopyrightText: 2020 Mickaël Cornière
 SPDX-FileCopyrightText: 2022 François Darveau
 SPDX-FileCopyrightText: 2022 Julian Foad
 SPDX-FileCopyrightText: 2022 Warren Bailey
+SPDX-FileCopyrightText: 2023 - 2024 MASH project contributors
 SPDX-FileCopyrightText: 2023 Antonis Christofides
 SPDX-FileCopyrightText: 2023 Felix Stupp
+SPDX-FileCopyrightText: 2023 Gergely Horváth
 SPDX-FileCopyrightText: 2023 Julian-Samuel Gebühr
 SPDX-FileCopyrightText: 2023 Pierre 'McFly' Marty
 SPDX-FileCopyrightText: 2024 - 2025 Suguru Hirahara
+SPDX-FileCopyrightText: 2024 Philipp Homann
 
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 
 # LLDAP
 
-The playbook can install and configure [LLDAP](https://lldap.it) for you.
+The playbook can install and configure [LLDAP](https://github.com/lldap/lldap/) for you.
 
-LLDAP is a modern URL shortener with support for custom domains with functions like statistics and user management.
+LLDAP is a lightweight authentication server that provides an opinionated, simplified LDAP interface for authentication.
 
-See the project's [documentation](https://github.com/thedevs-network/lldap/blob/main/README.md) to learn what LLDAP does and why it might be useful to you.
+See the project's [documentation](https://github.com/lldap/lldap/blob/main/README.md) to learn what LLDAP does and why it might be useful to you.
 
 For details about configuring the [Ansible role for LLDAP](https://github.com/mother-of-all-self-hosting/ansible-role-lldap), you can check them via:
 - 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-lldap/blob/main/docs/configuring-lldap.md) online
