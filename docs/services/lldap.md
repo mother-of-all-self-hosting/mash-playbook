@@ -41,7 +41,7 @@ This service requires the following other services:
 
 ## Adjusting the playbook configuration
 
-To enable this service, add the following configuration to your `vars.yml` file:
+To enable this service, add the following configuration to your `vars.yml` file and re-run the [installation](../installing.md) process:
 
 ```yaml
 ########################################################################
@@ -85,12 +85,6 @@ On LLDAP you can set up a mailer for functions such as sending a password reset 
 
 >[!NOTE]
 > Without setting an authentication method such as DKIM, SPF, and DMARC for your hostname, emails are most likely to be quarantined as spam at recipient's mail servers. If you have set up a mail server with the [exim-relay Ansible role](https://github.com/mother-of-all-self-hosting/ansible-role-exim-relay), you can enable DKIM signing with it. Refer [its documentation](https://github.com/mother-of-all-self-hosting/ansible-role-exim-relay/blob/main/docs/configuring-exim-relay.md#enable-dkim-support-optional) for details.
-
-## Installation
-
-If you have decided to install the dedicated Valkey instance for LLDAP, make sure to run the [installing](../installing.md) command for the supplementary host (`mash.example.com-lldap-deps`) first, before running it for the main host (`mash.example.com`).
-
-Note that running the `just` commands for installation (`just install-all` or `just setup-all`) automatically takes care of the order. See [here](../running-multiple-instances.md#1-adjust-hosts) for more details about it.
 
 ## Usage
 
