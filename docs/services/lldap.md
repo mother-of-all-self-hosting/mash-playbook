@@ -25,8 +25,8 @@ LLDAP is a modern URL shortener with support for custom domains with functions l
 
 See the project's [documentation](https://github.com/thedevs-network/lldap/blob/main/README.md) to learn what LLDAP does and why it might be useful to you.
 
-For details about configuring the [Ansible role for LLDAP](https://codeberg.org/acioustick/ansible-role-lldap), you can check them via:
-- 🌐 [the role's documentation](https://codeberg.org/acioustick/ansible-role-lldap/src/branch/master/docs/configuring-lldap.md) online
+For details about configuring the [Ansible role for LLDAP](https://github.com/mother-of-all-self-hosting/ansible-role-lldap), you can check them via:
+- 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-lldap/blob/main/docs/configuring-lldap.md) online
 - 📁 `roles/galaxy/lldap/docs/configuring-lldap.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 ## Dependencies
@@ -63,7 +63,7 @@ lldap_hostname: lldap.example.com
 
 ### Select database to use (optional)
 
-By default LLDAP is configured to use Postgres, but you can choose other databases such as MySQL (MariaDB) and SQLite. See [this section](https://codeberg.org/acioustick/ansible-role-lldap/src/branch/master/docs/configuring-lldap.md#specify-database-optional) on the role's documentation for details.
+By default LLDAP is configured to use Postgres, but you can choose other databases such as MySQL (MariaDB) and SQLite. See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-lldap/blob/main/docs/configuring-lldap.md#specify-database-optional) on the role's documentation for details.
 
 ### Configure the mailer (optional)
 
@@ -256,7 +256,7 @@ To get started, open the URL with a web browser, and register the administrator 
 
 ## Troubleshooting
 
-See [this section](https://codeberg.org/acioustick/ansible-role-lldap/src/branch/master/docs/configuring-lldap.md#troubleshooting) on the role's documentation for details.
+See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-lldap/blob/main/docs/configuring-lldap.md#troubleshooting) on the role's documentation for details.
 
 ## Related services
 
