@@ -36,8 +36,8 @@ For details about configuring the [Ansible role for Ghostfolio](https://github.c
 
 This service requires the following other services:
 
-- [Traefik](traefik.md) reverse-proxy server
 - [Postgres](postgres.md) database
+- [Traefik](traefik.md) reverse-proxy server
 - [Valkey](valkey.md) data-store; see [below](#configure-valkey) for details about installation
 
 ## Adjusting the playbook configuration
@@ -165,7 +165,7 @@ Having configured `vars.yml` for the dedicated instance, add the following confi
 # Add the base configuration as specified above
 
 # Point Ghostfolio to its dedicated Valkey instance
-ghostfolio_config_redis_hostname: mash-ghostfolio-valkey
+ghostfolio_redis_hostname: mash-ghostfolio-valkey
 
 # Make sure the Ghostfolio service (mash-ghostfolio.service) starts after its dedicated Valkey service (mash-ghostfolio-valkey.service)
 ghostfolio_systemd_required_services_list_custom:
@@ -215,7 +215,7 @@ valkey_enabled: true
 # Add the base configuration as specified above
 
 # Point Ghostfolio to the shared Valkey instance
-ghostfolio_config_redis_hostname: "{{ valkey_identifier }}"
+ghostfolio_redis_hostname: "{{ valkey_identifier }}"
 
 # Make sure the Ghostfolio service (mash-ghostfolio.service) starts after its dedicated Valkey service (mash-ghostfolio-valkey.service)
 ghostfolio_systemd_required_services_list_custom:
@@ -251,7 +251,9 @@ Note that running the `just` commands for installation (`just install-all` or `j
 
 ## Usage
 
-After installation, your Ghostfolio instance becomes available at the URL specified with `ghostfolio_hostname` like `https://ghostfolio.example.com`. As **registration is open to anyone by default**, you also would probably want to disable the signup form on "Admin Control" page after creating the account.
+After installation, the Ghostfolio instance becomes available at the URL specified with `ghostfolio_hostname`. With the configuration above, the service is hosted at `https://ghostfolio.example.com`.
+
+As **registration is open to anyone by default**, you also would probably want to disable the signup form on "Admin Control" page after creating the account.
 
 See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-ghostfolio/blob/main/docs/configuring-ghostfolio.md#usage) on the role's documentation for details.
 

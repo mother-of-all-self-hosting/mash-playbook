@@ -17,7 +17,7 @@ SPDX-FileCopyrightText: 2024 - 2025 Suguru Hirahara
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 
-# Collabora Online
+# Collabora Online Development Edition (CODE)
 
 The playbook can install and configure [Collabora Online Development Edition (CODE)](https://www.collaboraonline.com/code/) for you.
 
@@ -26,14 +26,13 @@ CODE is the development version of [Collabora Online](https://www.collaboraonlin
 See the project's [documentation](https://www.collaboraonline.com/code/) to learn what CODE does and why it might be useful to you.
 
 For details about configuring the [Ansible role for CODE](https://github.com/mother-of-all-self-hosting/ansible-role-collabora-online), you can check them via:
-- 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-collabora-online/blob/main/docs/configuring-collabora-online.md) online
+- 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-collabora-online/blob/main/docs/configuring-code.md) online
 - 📁 `roles/galaxy/collabora_online/docs/configuring-online.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 ## Dependencies
 
 This service requires the following other services:
 
-- a [Postgres](postgres.md) database
 - a [Traefik](traefik.md) reverse-proxy server
 
 >[!NOTE]
@@ -46,7 +45,7 @@ To enable this service, add the following configuration to your `vars.yml` file 
 ```yaml
 ########################################################################
 #                                                                      #
-# collabora-online                                                     #
+# collabora_online                                                     #
 #                                                                      #
 ########################################################################
 
@@ -60,7 +59,7 @@ collabora_online_environment_variable_password: ''
 
 ########################################################################
 #                                                                      #
-# /collabora-online                                                    #
+# /collabora_online                                                    #
 #                                                                      #
 ########################################################################
 ```
@@ -69,18 +68,14 @@ collabora_online_environment_variable_password: ''
 
 To use a CODE instance to edit office documents, you need to integrate it with a File Sync and Share solution that implements the WOPI (*Web Application Open Platform Interface*) protocol, such as Nextcloud.
 
-For example, if you want to integrate the instance with the Nextcloud instance which this playbook manages, add the following configuration to your `vars.yml` file.
-
-```yaml
-collabora_online_environment_variable_aliasgroup1: "https://{{ nextcloud_hostname | replace('.', '\\.') }}:443"
-```
+By default, this playbook is configured to automatically integrate the CODE instance with the Nextcloud instance which this playbook manages, if both of them are enabled.
 
 >[!NOTE]
-> For details, see the [Collabora Online section](nextcloud.md#collabora-online) on our Nextcloud documentation.
+> For details, see [this section about the integration](nextcloud.md#collabora-online-development-edition) on our Nextcloud documentation.
 
 ## Usage
 
-After installation, your CODE instance becomes available at the URL specified with `collabora_online_hostname`.
+After running the command for installation, the CODE instance becomes available at the URL specified with `collabora_hostname`. With the configuration above, the service is hosted at `https://collabora.example.com`.
 
 ### Admin Interface
 
@@ -93,4 +88,8 @@ Use your admin credentials for logging in:
 
 ## Troubleshooting
 
-See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-collabora-online/blob/main/docs/configuring-collabora-online.md#troubleshooting) on the role's documentation for details.
+See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-collabora-online/blob/main/docs/configuring-code.md#troubleshooting) on the role's documentation for details.
+
+## Related services
+
+- [Nextcloud](nextcloud.md) — Self-hosted collaboration solution for tens of millions of users at thousands of organizations across the globe

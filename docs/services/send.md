@@ -64,26 +64,6 @@ send_hostname: send.example.com
 
 The service provides these storage backend options: local filesystem (default), Amazon S3 compatible object storage, and Google Cloud Storage.
 
-With the default configuration, the directory for storing files inside the Docker container is set to `/uploads`. You can change it by adding and adjusting the following configuration to your `vars.yml` file:
-
-```yaml
-send_environment_variable_file_dir: YOUR_DIRECTORY_HERE
-```
-
-**By default this role removes uploaded files when uninstalling the service**. In order to make those files persistent, you need to add a Docker volume to mount in the container, so that the directory for storing files is shared with the host machine.
-
-To add the volume, prepare a directory on the host machine and add the following configuration to your `vars.yml` file, setting the directory path to `src`:
-
-```yaml
-send_container_additional_volumes:
-  - type: bind
-    src: /path/on/the/host
-    dst: "{{ send_environment_variable_file_dir }}"
-    options:
-```
-
-Make sure permissions of the directory specified to `src` (`/path/on/the/host`).
-
 See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-send/blob/main/docs/configuring-send.md#configure-a-storage-backend) on the role's documentation for details about how to set up Amazon S3 compatible object storage and Google Cloud Storage.
 
 ### Configure upload and download limits (optional)
@@ -208,7 +188,7 @@ Having configured `vars.yml` for the dedicated instance, add the following confi
 # Add the base configuration as specified above
 
 # Point Send to its dedicated Valkey instance
-send_config_redis_hostname: mash-send-valkey
+send_redis_hostname: mash-send-valkey
 
 # Make sure the Send service (mash-send.service) starts after its dedicated Valkey service (mash-send-valkey.service)
 send_systemd_required_services_list_custom:
@@ -258,7 +238,7 @@ valkey_enabled: true
 # Add the base configuration as specified above
 
 # Point Send to the shared Valkey instance
-send_config_redis_hostname: "{{ valkey_identifier }}"
+send_redis_hostname: "{{ valkey_identifier }}"
 
 # Make sure the Send service (mash-send.service) starts after its dedicated Valkey service (mash-send-valkey.service)
 send_systemd_required_services_list_custom:
@@ -285,7 +265,7 @@ Note that running the `just` commands for installation (`just install-all` or `j
 
 ## Usage
 
-After installation, your Send instance becomes available at the URL specified with `send_hostname` and `send_path_prefix`.
+After installation, the Send instance becomes available at the URL specified with `send_hostname`. With the configuration above, the service is hosted at `https://send.example.com`.
 
 See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-send/blob/main/docs/configuring-send.md#usage) on the role's documentation for details about its [CLI client](https://github.com/timvisee/ffsend). The instruction to takedown illegal materials is also available [here](https://github.com/mother-of-all-self-hosting/ansible-role-send/blob/main/docs/configuring-send.md#takedown-illegal-materials).
 

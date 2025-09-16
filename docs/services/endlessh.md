@@ -30,20 +30,20 @@ For details about configuring the [Ansible role for Endlessh-go](https://github.
 - 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-endlessh/blob/main/docs/configuring-endlessh.md) online
 - 📁 `roles/galaxy/endlessh/docs/configuring-endlessh.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
+## Prerequisites
+
+The role is configured to set up the Endlessh-go instance to listen to the port 22, the standard SSH port, therefore you need to move the port for the real SSH server to another port, so that an Endlessh-go instance can listen to the port 22 and trap attackers' clients into it.
+
 ## Dependencies
 
 This service requires the following other services:
 
-- (optionally) [Traefik](traefik.md) — a reverse-proxy server for exposing Endlessh publicly
-- (optionally) [Prometheus](./prometheus.md) — a database for storing metrics
-- (optionally) [Grafana](./grafana.md) — a web UI that can query the Prometheus datasource (connection) and display the logs
+- (optional) [Grafana](grafana.md) — a web UI that can query the Prometheus datasource (connection) and display the logs
+- (optional) [Prometheus](prometheus.md) — a database for storing metrics
+- (optional) [Traefik](traefik.md) — a reverse-proxy server for exposing Endlessh publicly
 
 >[!NOTE]
 > None of them are required unless you will expose metrics to a Prometheus server.
-
-## Prerequisites
-
-The role is configured to set up the Endlessh-go instance to listen to the port 22, the standard SSH port, therefore you need to move the port for the real SSH server to another port, so that an Endlessh-go instance can listen to the port 22 and trap attackers' clients into it.
 
 ## Configuration
 
@@ -75,7 +75,7 @@ endlessh_container_host_bind_port: YOUR_PORT_NUMBER_HERE
 
 ## Usage
 
-After installation, the instance starts running on the server and listens to the specified port (port 22 by default).
+After running the command for installation, the Endlessh instance becomes available and starts running on the server, listening to the specified port (port 22 by default).
 
 You can customize how it works with the `endlessh_container_extra_arguments_custom` variable. See [this section](https://github.com/shizunge/endlessh-go/blob/main/README.md#usage) of the documentation for available arguments.
 

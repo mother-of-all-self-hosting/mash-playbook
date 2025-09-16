@@ -152,7 +152,7 @@ Having configured `vars.yml` for the dedicated instance, add the following confi
 # Add the base configuration as specified above
 
 # Point Infisical to its dedicated Valkey instance
-infisical_environment_variable_redis_host: mash-infisical-valkey
+infisical_environment_variable_redis_hostname: mash-infisical-valkey
 infisical_environment_variable_redis_cache_host: mash-infisical-valkey
 
 # Make sure the Infisical service (mash-infisical.service) starts after its dedicated Valkey service (mash-infisical-valkey.service)
@@ -203,7 +203,7 @@ valkey_enabled: true
 # Add the base configuration as specified above
 
 # Point Infisical to the shared Valkey instance
-infisical_environment_variable_redis_host: "{{ valkey_identifier }}"
+infisical_environment_variable_redis_hostname: "{{ valkey_identifier }}"
 infisical_environment_variable_redis_cache_host: "{{ valkey_identifier }}"
 
 # Make sure the Infisical service (mash-infisical.service) starts after the shared Valkey service (mash-valkey.service)
@@ -267,7 +267,7 @@ Note that running the `just` commands for installation (`just install-all` or `j
 
 ## Usage
 
-After installation, your Infisical instance becomes available at the URL specified with `infisical_hostname`.
+After installation, the Infisical instance becomes available at the URL specified with `infisical_hostname`. With the configuration above, the service is hosted at `https://infisical.example.com`.
 
 To log in to the service and get started, you need to create a user from the web interface.
 

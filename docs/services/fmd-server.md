@@ -59,18 +59,6 @@ fmd_server_hostname: fmd.example.com
 
 **Note**: hosting FMD Server under a subpath (by configuring the `fmd_server_path_prefix` variable) does not seem to be possible due to FMD Server's technical limitations.
 
-### Set the path for storing a database file on the host
-
-For a persistent storage for a database file, you need to add a Docker volume to mount in the container to share it with the host machine.
-
-To add the volume, prepare a directory on the host machine and add the following configuration to your `vars.yml` file:
-
-```yaml
-fmd_server_database_path: /path/on/the/host
-```
-
-Make sure permissions of the directory specified to `/path/on/the/host`.
-
 ### Set a registration token (optional)
 
 With the default setting, the instance will be public and open to registration by anyone.
@@ -83,7 +71,7 @@ fmd_server_config_registrationtoken: YOUR_TOKEN_HERE
 
 ## Usage
 
-After running the command for installation, FMD Server becomes available at the specified hostname like `https://fmd.example.com`.
+After running the command for installation, the FMD Server instance becomes available at the URL specified with `fmd_hostname`. With the configuration above, the service is hosted at `https://fmd.example.com`.
 
 See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-fmd-server/blob/main/docs/configuring-fmd-server.md#usage) on the role's documentation for details about how to set up the client (FMD).
 

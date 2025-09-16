@@ -1,3 +1,11 @@
+<!--
+SPDX-FileCopyrightText: 2023 Nikita Chernyi
+SPDX-FileCopyrightText: 2024 Slavi Pantaleev
+SPDX-FileCopyrightText: 2025 Suguru Hirahara
+
+SPDX-License-Identifier: AGPL-3.0-or-later
+-->
+
 # Redmine
 
 [Redmine](https://redmine.org/) is a flexible project management web application. Written using the Ruby on Rails framework, it is cross-platform and cross-database.
@@ -37,11 +45,8 @@ redmine_hostname: redmine.example.com
 ########################################################################
 ```
 
-In the example configuration above, we configure the service to be hosted at `https://redmine.example.com`.
-
-
 ## Usage
 
-After installation, you can register your administrator account
+After running the command for installation, the Redmine instance becomes available at the URL specified with `redmine_hostname`. With the configuration above, the service is hosted at `https://redmine.example.com`.
 
-You can create additional users (admin-privileged or not) after that.
+To get started, open the URL with a web browser, and register the administrator account. You can create additional users (admin-privileged or not) after that.

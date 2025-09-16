@@ -1,3 +1,9 @@
+<!--
+SPDX-FileCopyrightText: 2025 MASH project contributors
+
+SPDX-License-Identifier: AGPL-3.0-or-later
+-->
+
 # Matomo
 
 [Matomo](https://matomo.org/) (formerly Piwik) is a free and open source web analytics platform.
@@ -34,7 +40,9 @@ matomo_hostname: matomo.example.com
 
 ## Usage
 
-After installation, visit your Matomo instance at the configured URL. You'll be guided through a setup wizard where you can:
+After running the command for installation, the Matomo instance becomes available at the URL specified with `matomo_hostname`. With the configuration above, the service is hosted at `https://matomo.example.com`.
+
+To get started, open the URL with a web browser, and follow the set up wizard where you can:
 
 1. Create your administrator account
 2. Configure your first website to track

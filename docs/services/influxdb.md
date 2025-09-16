@@ -1,8 +1,39 @@
-# InfluxDB
+<!--
+SPDX-FileCopyrightText: 2020 - 2024 MDAD project contributors
+SPDX-FileCopyrightText: 2020 - 2025 Slavi Pantaleev
+SPDX-FileCopyrightText: 2020 Aaron Raimist
+SPDX-FileCopyrightText: 2020 Chris van Dijk
+SPDX-FileCopyrightText: 2020 Dominik Zajac
+SPDX-FileCopyrightText: 2020 Mickaël Cornière
+SPDX-FileCopyrightText: 2022 François Darveau
+SPDX-FileCopyrightText: 2022 Julian Foad
+SPDX-FileCopyrightText: 2022 Warren Bailey
+SPDX-FileCopyrightText: 2023 Antonis Christofides
+SPDX-FileCopyrightText: 2023 Felix Stupp
+SPDX-FileCopyrightText: 2023 Julian-Samuel Gebühr
+SPDX-FileCopyrightText: 2023 Pierre 'McFly' Marty
+SPDX-FileCopyrightText: 2024 - 2025 Suguru Hirahara
+SPDX-FileCopyrightText: 2025 Nicola Murino
 
-[InfluxDB](https://www.influxdata.com/) is a self-hosted time-series database, that this playbook can install, powered by the [mother-of-all-self-hosting/ansible-role-influxdb](https://github.com/mother-of-all-self-hosting/ansible-role-influxdb) Ansible role.
+SPDX-License-Identifier: AGPL-3.0-or-later
+-->
 
-## Configuration
+# InfluxDB OSS v2
+
+>[!NOTE]
+> On this playbook, InfluxDB is implemented with [ansible-role-influxdb](https://github.com/mother-of-all-self-hosting/ansible-role-influxdb). The role is configured to install [InfluxDB OSS v2](https://docs.influxdata.com/influxdb/v2/). Though [InfluxDB 3 Core](https://docs.influxdata.com/influxdb3/core/) is open source, it is **not** a replacement for OSS v2. [InfluxDB 3 Enterprise](https://docs.influxdata.com/influxdb3/enterprise/) can replace OSS v2, but it is proprietary and we will not support it.
+
+The playbook can install and configure [InfluxDB OSS v2](https://docs.influxdata.com/influxdb/v2/) for you.
+
+InfluxDB OSS v2 is a self-hosted time-series database.
+
+See the project's [documentation](https://docs.influxdata.com/influxdb/v2/get-started/) to learn what InfluxDB OSS v2 does and why it might be useful to you.
+
+For details about configuring the [Ansible role for InfluxDB OSS v2](https://github.com/mother-of-all-self-hosting/ansible-role-influxdb), you can check them via:
+- 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-influxdb/blob/main/docs/configuring-influxdb.md) online
+- 📁 `roles/galaxy/influxdb/docs/configuring-influxdb.md` locally, if you have [fetched the Ansible roles](../installing.md)
+
+## Adjusting the playbook configuration
 
 To enable this service, add the following configuration to your `vars.yml` file and re-run the [installation](../installing.md) process:
 
@@ -14,26 +45,8 @@ To enable this service, add the following configuration to your `vars.yml` file 
 ########################################################################
 
 influxdb_enabled: true
-influxdb_hostname: 'example.org'
 
-# Advanced configuration
-# Configure the initial user, organization and bucket
-#
-# This setting will only be used once upon initial installation of influxdb. Changing this values
-# after the first start of influxdb will have no effect.
-# Not setting this will allow you to manually set these by visiting the domain you set in influxdb_hostname
-# after installation.
-#influxdb_init: true
-#influxdb_init_username: "USERNAME"
-#influxdb_init_password: "SUPERSECRETPASSWORD"
-#influxdb_init_org: "EXAMPLE_ORG"
-#influxdb_init_bucket: "SOMEBUCKET"
-#
-# In order to let external services (like Proxmox or Grafana) access the http API of influxdb,
-# you need to specifically expose the corresponding port:
-#
-# Takes an "<ip>:<port>" (e.g. "127.0.0.1:8086") or "<port>" value (e.g. "8086"), or empty string to not expose.
-#influxdb_container_http_host_bind_port: ""
+influxdb_hostname: influxdb.example.com
 
 ########################################################################
 #                                                                      #
@@ -42,8 +55,18 @@ influxdb_hostname: 'example.org'
 ########################################################################
 ```
 
-After installation, visit the domain you set in `influxdb_hostname` to get started.
+See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-influxdb/blob/main/docs/configuring-influxdb.md#adjusting-the-playbook-configuration) on the role's documentation for other optional settings such as configuring the initial user with the playbook.
 
 ## Usage
 
-After [installing](../installing.md), you can visit at the URL specified in `influxdb_hostname` and configure your first user (or login if you set `influxdb_init`)
+After running the command for installation, the InfluxDB OSS v2 instance becomes available at the URL specified with `influxdb_hostname`. With the configuration above, the service is hosted at `https://influxdb.example.com`.
+
+To get started, open the URL with a web browser, and log in to the service if `influxdb_init` is set to `true` (or configure the first user if it is not).
+
+## Troubleshooting
+
+See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-influxdb/blob/main/docs/configuring-influxdb.md#troubleshooting) on the role's documentation for details.
+
+## Related services
+
+- [Telegraf](telegraf.md) — Open source server agent to collect metrics from your stacks, sensors, and systems

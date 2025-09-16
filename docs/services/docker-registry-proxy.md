@@ -22,7 +22,7 @@ To enable this service, add the following configuration to your `vars.yml` file 
 ```yaml
 ########################################################################
 #                                                                      #
-# docker-registry-proxy                                                #
+# docker_registry_proxy                                                #
 #                                                                      #
 ########################################################################
 
@@ -42,14 +42,14 @@ docker_registry_proxy_trusted_ips: []
 
 ########################################################################
 #                                                                      #
-# /docker-registry-proxy                                               #
+# /docker_registry_proxy                                               #
 #                                                                      #
 ########################################################################
 ```
 
 ## Usage
 
-After running the command for installation, Docker Registry Proxy becomes available at the specified hostname such as `https://registry.example.com`.
+After running the command for installation, the Docker Registry Proxy instance becomes available at the URL specified with `registry_hostname`. With the configuration above, the service is hosted at `https://registry.example.com`.
 
 ## Recommended other services
 

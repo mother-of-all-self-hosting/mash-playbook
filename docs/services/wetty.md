@@ -1,3 +1,12 @@
+<!--
+SPDX-FileCopyrightText: 2023 - 2025 MASH project contributors
+SPDX-FileCopyrightText: 2023 - 2025 Slavi Pantaleev
+SPDX-FileCopyrightText: 2024 Sergio Durigan Junior
+SPDX-FileCopyrightText: 2025 Suguru Hirahara
+
+SPDX-License-Identifier: AGPL-3.0-or-later
+-->
+
 # Wetty
 
 [Wetty](https://github.com/butlerx/wetty/tree/main) is an SSH terminal over HTTP/HTTPS, useful for when on a strict network which disallows outbound SSH traffic, or when only a browser can be used (like a managed chromebook).
@@ -32,15 +41,21 @@ wetty_ssh_port: 22
 ########################################################################
 ```
 
-In the example configuration above, we configure the service to be hosted at `https://mash.example.com/wetty` and connect to `example.com` on port `22`.
+### Configure SSH port for Wetty (optional)
 
-You can remove the `wetty_path_prefix` variable definition, to make it default to `/`, so that the service is served at `https://mash.example.com/`.
+Wetty uses port 22 for its SSH feature by default.
+
+If you wish to have the instance listen to another port, add the following configuration to your `vars.yml` file and adjust the port as you see fit.
+
+```yaml
+wetty_ssh_port: 222
+```
 
 ## Usage
 
-After installation, you should be able to access your new Wetty instance at: `https://WETTY_DOMAIN/PATH_PREFIX`, where:
+After running the command for installation, the Wetty instance becomes available at the URL specified with `wetty_hostname` and `wetty_path_prefix`. With the configuration above, the service is hosted at `https://mash.example.com/wetty` and connects to `example.com` on port `22`.
 
-- `WETTY_DOMAIN` matches your domain, as specified in `wetty_hostname` in your `vars.yml` file
-- `PATH_PREFIX` matches your path prefix, as specified in `wetty_path_prefix` in your `vars.yml` file
+Once connected, you can log in with SSH with the username and password.
 
-Once connected, simply input the username and password to use. Keep in mind that Wetty only supports password authentication, so if the SSH daemon at `wetty_ssh_host` only allows pubkey authentication you will not be able to connect.
+>[!NOTE]
+> Wetty only supports password authentication, so if the SSH daemon at `wetty_ssh_host` only allows pubkey authentication you will not be able to connect.

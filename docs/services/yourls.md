@@ -33,8 +33,8 @@ For details about configuring the [Ansible role for YOURLS](https://github.com/m
 
 This service requires the following other services:
 
-- [Traefik](traefik.md) reverse-proxy server
 - MySQL / [MariaDB](mariadb.md) database
+- [Traefik](traefik.md) reverse-proxy server
 
 ## Adjusting the playbook configuration
 
@@ -64,26 +64,9 @@ yourls_hostname: yourls.example.com
 
 ### Enable MariaDB
 
-You can enable a MariaDB instance by adding the following configuration:
+YOURLS requires a MySQL-compatible database to work. This playbook supports MariaDB, and you can set up a MariaDB instance by enabling it on `vars.yml`.
 
-```yaml
-########################################################################
-#                                                                      #
-# mariadb                                                              #
-#                                                                      #
-########################################################################
-
-mariadb_enabled: true
-
-# Put a strong password below, generated with `pwgen -s 64 1` or in another way
-mariadb_root_password: ''
-
-########################################################################
-#                                                                      #
-# /mariadb                                                             #
-#                                                                      #
-########################################################################
-```
+Refer to [this page](mariadb.md) for the instruction to enable it.
 
 ### Set the admin username and password
 
@@ -96,12 +79,16 @@ yourls_environment_variable_pass: YOUR_ADMIN_PASSWORD_HERE
 
 ## Usage
 
-After running the command for installation, YOURLS's admin UI is available at the specified hostname with `/admin/` such as `yourls.example.com/admin/`.
+After running the command for installation, the YOURLS instance becomes available at the URL specified with `yourls_hostname` and `/admin/`. With the configuration above, the service is hosted at `https://yourls.example.com/admin/`.
 
-First, open the page with a web browser to complete installation on the server by clicking "Install YOURLS" button. After that, click the anchor link "YOURLS Administration Page" to log in with the username (`yourls_environment_variable_user`) and password (`yourls_environment_variable_pass`).
+First, open the URL with a web browser to complete installation on the server by clicking "Install YOURLS" button. After that, click the anchor link "YOURLS Administration Page" to log in with the username (`yourls_environment_variable_user`) and password (`yourls_environment_variable_pass`).
 
 The help file is available at `yourls.example.com/readme.html`.
 
 ## Troubleshooting
 
 See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-yourls/blob/main/docs/configuring-yourls.md#troubleshooting) on the role's documentation for details.
+
+## Related services
+
+- [Kutt](kutt.md) — Modern URL shortener with support for custom domains

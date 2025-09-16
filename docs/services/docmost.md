@@ -37,8 +37,8 @@ For details about configuring the [Ansible role for Docmost](https://github.com/
 
 This service requires the following other services:
 
-- [Traefik](traefik.md) reverse-proxy server
 - [Postgres](postgres.md) database
+- [Traefik](traefik.md) reverse-proxy server
 - [Valkey](valkey.md) data-store; see [below](#configure-valkey) for details about installation
 - (optional) [exim-relay](exim-relay.md) mailer — required on the default configuration
 
@@ -69,16 +69,6 @@ docmost_hostname: docmost.example.com
 ### Configure a storage backend
 
 The service provides these storage backend options: local filesystem (default) and Amazon S3 compatible object storage.
-
-If local filesystem is used, **this role by default removes uploaded files when uninstalling the service**. In order to make those files persistent, you need to add a Docker volume to mount in the container, so that the directory for storing files is shared with the host machine.
-
-To add the volume, prepare a directory on the host machine and add the following configuration to your `vars.yml` file, setting the directory path to `src`:
-
-```yaml
-docmost_data_path: /path/on/the/host
-```
-
-Make sure permissions of the directory specified to `src` (`/path/on/the/host`).
 
 See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-docmost/blob/main/docs/configuring-docmost.md#configure-a-storage-backend) on the role's documentation for details about how to set up Amazon S3 compatible object storage for Docmost.
 
@@ -197,7 +187,7 @@ Having configured `vars.yml` for the dedicated instance, add the following confi
 # Add the base configuration as specified above
 
 # Point Docmost to its dedicated Valkey instance
-docmost_config_redis_hostname: mash-docmost-valkey
+docmost_redis_hostname: mash-docmost-valkey
 
 # Make sure the Docmost service (mash-docmost.service) starts after its dedicated Valkey service (mash-docmost-valkey.service)
 docmost_systemd_required_services_list_custom:
@@ -247,7 +237,7 @@ valkey_enabled: true
 # Add the base configuration as specified above
 
 # Point Docmost to the shared Valkey instance
-docmost_config_redis_hostname: "{{ valkey_identifier }}"
+docmost_redis_hostname: "{{ valkey_identifier }}"
 
 # Make sure the Docmost service (mash-docmost.service) starts after its dedicated Valkey service (mash-docmost-valkey.service)
 docmost_systemd_required_services_list_custom:
@@ -284,10 +274,14 @@ Note that running the `just` commands for installation (`just install-all` or `j
 
 ## Usage
 
-After installation, your Docmost instance becomes available at the URL specified with `docmost_hostname`.
+After installation, the Docmost instance becomes available at the URL specified with `docmost_hostname`. With the configuration above, the service is hosted at `https://docmost.example.com`.
 
-To get started, go to the URL on a web browser and create a first workspace by inputting required information. For an email address, make sure to input your own email address, not the one of the mailer.
+To get started, open the URL with a web browser, and create a first workspace by inputting required information. For an email address, make sure to input your own email address, not the one of the mailer.
 
 ## Troubleshooting
 
 See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-docmost/blob/main/docs/configuring-docmost.md#troubleshooting) on the role's documentation for details.
+
+## Related services
+
+- [Excalidraw](excalidraw.md) — Free and open source virtual whiteboard for sketching hand-drawn like diagrams

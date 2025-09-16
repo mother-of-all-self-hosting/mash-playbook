@@ -32,15 +32,15 @@ For details about configuring the [Ansible role for Neko](https://github.com/mot
 > [!WARNING]
 > The Neko service will run in a container with root privileges, no dropped capabilities and will be able to write inside the container. This seems to be a necessary deviation from the usual security standards in this playbook.
 
+## Prerequisites
+
+To use the service, by default you need to open ports `56000-56100/udp` of the host. See [here](https://neko.m1k1o.net/docs/v3/configuration/webrtc#epr) for details.
+
 ## Dependencies
 
 This service requires the following other services:
 
 - a [Traefik](traefik.md) reverse-proxy server
-
-## Prerequisites
-
-To use the service, by default you need to open ports `56000-56100/udp` of the host. See [here](https://neko.m1k1o.net/docs/v3/configuration/webrtc#epr) for details.
 
 ## Adjusting the playbook configuration
 
@@ -78,7 +78,7 @@ neko_environment_variables_neko_member_multiuser_user_password: USER_PASSWORD_HE
 
 ## Usage
 
-After installation, your Neko instance becomes available at the URL specified with `neko_hostname`.
+After running the command for installation, the Neko instance becomes available at the URL specified with `neko_hostname`. With the configuration above, the service is hosted at `https://neko.example.com`.
 
 If you cannot log in to the instance, make sure that the ports are open on the server and WebRTC is enabled on the browser.
 

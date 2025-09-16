@@ -1,3 +1,10 @@
+<!--
+SPDX-FileCopyrightText: 2025 MASH project contributors
+SPDX-FileCopyrightText: 2025 Suguru Hirahara
+
+SPDX-License-Identifier: AGPL-3.0-or-later
+-->
+
 # qBittorrent
 
 [qBittorrent](https://www.qbittorrent.org/) is a bittorrent client programmed in C++ / Qt that uses libtorrent.
@@ -43,19 +50,20 @@ qbittorrent_container_torrenting_bind_port: "{{ qbittorrent_container_torrenting
 ########################################################################
 ```
 
-### URL
-
-In the example configuration above, we configure the service to be hosted at `https://qbittorrent.example.com`.
-
-A `qbittorrent_path_prefix` variable can be adjusted to host under a subpath (e.g. `qbittorrent_path_prefix: /qbittorrent`), but this hasn't been tested yet.
-
 ## Usage
 
-After [installation](../installing.md), you should access your new qBittorrent instance at the URL you've chosen.
+After running the command for installation, the qBittorrent instance becomes available at the URL specified with `qbittorrent_hostname`. With the configuration above, the service is hosted at `https://qbittorrent.example.com`.
 
-To login you'll need to obtain the **temporary** randomly generated password for your instance, to get this run `just run-tags print-qbittorrent-password`
+>[!NOTE]
+> The `qbittorrent_path_prefix` variable can be adjusted to host under a subpath (e.g. `qbittorrent_path_prefix: /qbittorrent`), but this hasn't been tested yet.
 
-Once you've got that, login as the `admin` user with the password and change it under `Tools -> Options -> WebUI` in the `Authentication` section. Make sure you change the password, since the default one is temporary and will change with each start-up.
+To get started, open the URL with a web browser, and log in with the **temporary** randomly generated password for your instance, which can be obtained by running the command below:
+
+```sh
+just run-tags print-qbittorrent-password
+```
+
+Once you've got that, log in as the `admin` user with the password and change it under `Tools -> Options -> WebUI` in the `Authentication` section. Make sure you change the password, since the default one is temporary and will change with each start-up.
 
 For additional configuration options, refer to [ansible-role-qbittorrent](https://github.com/mother-of-all-self-hosting/ansible-role-qbittorrent)'s `defaults/main.yml` file.
 
@@ -73,10 +81,10 @@ Fill in the rest of the form with your preferences, and you're done!
 
 Consider these other related services:
 
-- [Radarr](radarr.md)
-- [Sonarr](sonarr.md)
+- [Autobrr](autobrr.md)
 - [Jackett](jackett.md)
+- [Jellyfin](jellyfin.md)
 - [Overseerr](overseerr.md)
 - [Plex](plex.md)
-- [Jellyfin](jellyfin.md)
-- [Autobrr](autobrr.md)
+- [Radarr](radarr.md)
+- [Sonarr](sonarr.md)

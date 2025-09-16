@@ -1,3 +1,10 @@
+<!--
+SPDX-FileCopyrightText: 2023 Nikita Chernyi
+SPDX-FileCopyrightText: 2024 Slavi Pantaleev
+
+SPDX-License-Identifier: AGPL-3.0-or-later
+-->
+
 # Prometheus SSH Exporter
 
 This playbook can configure [Prometheus SSH Exporter](https://github.com/treydock/ssh_exporter).
@@ -9,7 +16,7 @@ To enable this service, add the following configuration to your `vars.yml` file 
 ```yaml
 ########################################################################
 #                                                                      #
-# prometheus-ssh-exporter                                              #
+# prometheus_ssh_exporter                                              #
 #                                                                      #
 ########################################################################
 
@@ -26,7 +33,7 @@ prometheus_ssh_exporter_enabled: true
 
 ########################################################################
 #                                                                      #
-# /prometheus-ssh-exporter                                             #
+# /prometheus_ssh_exporter                                             #
 #                                                                      #
 ########################################################################
 ```

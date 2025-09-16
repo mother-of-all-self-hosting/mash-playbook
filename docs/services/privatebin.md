@@ -52,7 +52,7 @@ To enable this service, add the following configuration to your `vars.yml` file 
 privatebin_enabled: true
 
 privatebin_hostname: mash.example.com
-privatebin_path_prefix: bin
+privatebin_path_prefix: /bin
 
 ########################################################################
 #                                                                      #
@@ -71,19 +71,11 @@ See below for the instruction to use one of the others.
 
 #### Local filesystem
 
-To use local filesystem database for a storage, you need to add a Docker volume to mount in the container, so that the directory for storing files is shared with the host machine.
-
-To add the volume, prepare a directory on the host machine and add the following configuration to your `vars.yml` file, setting the directory path to `src`:
+To use local filesystem database for a storage, add the following configuration to your `vars.yml` file:
 
 ```yaml
-privatebin_container_additional_volumes:
-  - type: bind
-    src: /path/on/the/host
-    dst: /srv/data
-    options:
+privatebin_config_model: Filesystem
 ```
-
-Make sure permissions of the directory specified to `src`. If not correctly specified, the service returns a permission error while trying to put data to it.
 
 #### MySQL
 
@@ -107,7 +99,7 @@ YOURLS is available on the playbook. See [here](yourls.md) for details about how
 
 **Notes**
 - YOURLS requires a MariaDB instance (see [here](mariadb.md) for details about configuring it with the playbook); if PostgreSQL is going to be used for PrivateBin (or other services), you need to use both of them.
-- If you are going to install PrivateBin and YOURLS at the same time, **you need to complete installation of YOURLS at first** by visiting its admin UI available at the specified hostname with `/admin/` such as `yourls.example.com/admin/`. Otherwise the function to shorten a paste's URL does not work. See [here](yourls.md#usage) for the instruction to complete installation.
+- If you are going to install PrivateBin and YOURLS at the same time, **you need to complete installation of YOURLS at first** by visiting its admin UI available at the specified hostname with `/admin/` such as `https://yourls.example.com/admin/`. Otherwise the function to shorten a paste's URL does not work. See [here](yourls.md#usage) for the instruction to complete installation.
 
 #### Use a private YOURLS instance with API access key
 
@@ -137,7 +129,7 @@ See its [configuration sample file](https://github.com/PrivateBin/PrivateBin/blo
 
 ## Usage
 
-After running the command for installation, PrivateBin becomes available at the specified hostname with the prefix (`mash.example.com/bin`).
+After running the command for installation, the PrivateBin instance becomes available at the URL specified with `privatebin_hostname` and `privatebin_path_prefix`. With the configuration above, the service is hosted at `https://mash.example.com/bin`.
 
 ## Troubleshooting
 

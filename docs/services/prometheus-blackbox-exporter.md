@@ -1,3 +1,10 @@
+<!--
+SPDX-FileCopyrightText: 2023 Nikita Chernyi
+SPDX-FileCopyrightText: 2023 - 2024 Slavi Pantaleev
+
+SPDX-License-Identifier: AGPL-3.0-or-later
+-->
+
 # Prometheus Blackbox Exporter
 
 This playbook can configure [Prometheus Blackbox Exporter](https://github.com/prometheus/blackbox_exporter).
@@ -9,7 +16,7 @@ To enable this service, add the following configuration to your `vars.yml` file 
 ```yaml
 ########################################################################
 #                                                                      #
-# prometheus-blackbox-exporter                                         #
+# prometheus_blackbox_exporter                                         #
 #                                                                      #
 ########################################################################
 
@@ -26,7 +33,7 @@ prometheus_blackbox_exporter_enabled: true
 
 ########################################################################
 #                                                                      #
-# /prometheus-blackbox-exporter                                        #
+# /prometheus_blackbox_exporter                                        #
 #                                                                      #
 ########################################################################
 ```

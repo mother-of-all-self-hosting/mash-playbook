@@ -1,3 +1,9 @@
+<!--
+SPDX-FileCopyrightText: 2025 MASH project contributors
+
+SPDX-License-Identifier: AGPL-3.0-or-later
+-->
+
 # Stirling PDF
 
 Stirling PDF is an online PDF converter and editor with many functionalities. Visit the [official website](https://www.stirlingpdf.com) or [demo](https://stirlingpdf.io) to learn more.
@@ -19,7 +25,7 @@ To enable this service, add the following configuration to your `vars.yml` file 
 
 stirling_pdf_enabled: true
 
-stirling_pdf_hostname: stirlingpdf.example.com
+stirling_pdf_hostname: stirling-pdf.example.com
 
 # The path at which stirling_pdf is served.
 # This value must either be `/` or not end with a slash (e.g. `/pdf`).

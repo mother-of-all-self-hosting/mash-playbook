@@ -1,3 +1,10 @@
+<!--
+SPDX-FileCopyrightText: 2023 - 2024 Slavi Pantaleev
+SPDX-FileCopyrightText: 2025 Suguru Hirahara
+
+SPDX-License-Identifier: AGPL-3.0-or-later
+-->
+
 # Authelia
 
 [Authelia](https://www.authelia.com/) is an open-source [authentication](https://www.authelia.com/overview/authentication/introduction/) and [authorization](https://www.authelia.com/overview/authorization/access-control/) server and portal fulfilling the identity and access management (IAM) role of information security in providing [multi-factor authentication](https://www.authelia.com/overview/authentication/introduction/) and single sign-on (SSO) for your applications via a web portal.
@@ -92,7 +99,7 @@ authelia_config_access_control_rules:
 # You may wish to run a separate Valkey instance for Authelia, because Valkey is not multi-tenant.
 # Read more in docs/services/redis.md.
 # If Valkey is not available, session data will be stored in memory and will be lost on container restart.
-authelia_config_session_redis_host: "{{ valkey_identifier if valkey_enabled else '' }}"
+authelia_config_session_redis_hostname: "{{ valkey_identifier if valkey_enabled else '' }}"
 
 ########################################################################
 #                                                                      #
@@ -101,18 +108,11 @@ authelia_config_session_redis_host: "{{ valkey_identifier if valkey_enabled else
 ########################################################################
 ```
 
-### URL
-
-In the example configuration above, we configure the service to be hosted at `https://authelia.example.com`.
-
-While the Authelia Ansible role provides an `authelia_path_prefix` variable, Authelia does not support being hosted at a subpath right now.
-
-On the Authelia base URL, there's a portal website where you can log in and manage your user account.
-
+**Note**: hosting Authelia under a subpath (by configuring the `authelia_path_prefix` variable) does not seem to be possible due to Authelia's technical limitations.
 
 ### Session storage
 
-As mentioned in the default configuration above (see `authelia_config_session_redis_host`), you may wish to run [Valkey](valkey.md) for storing session data.
+As mentioned in the default configuration above (see `authelia_config_session_redis_hostname`), you may wish to run [Valkey](valkey.md) for storing session data.
 
 You may wish to run a separate Valkey instance for Authelia, because Valkey is not multi-tenant. See [our Valkey documentation page](valkey.md) for additional details. When running a separate instance of Valkey, you may need to connect Authelia to the Valkey instance's container network via the `authelia_container_additional_networks_custom` variable.
 
@@ -193,8 +193,16 @@ The Authelia Ansible role provides various variables for configuring Authelia. Y
 
 If a dedicated variable is not available for you to use or if you wish to override some hardcoded default, you can always use the `authelia_configuration_extension_yaml` Ansible variable for extending/overriding the default configuration.
 
+## Usage
+
+After running the command for installation, the Authelia instance becomes available at the URL specified with `authelia_hostname`. With the configuration above, the service is hosted at `https://authelia.example.com`.
+
+To get started, open the URL with a web browser, and log in to the portal website where you can and manage your user account.
+
 ## Related services
 
-- [authentik](authentik.md) — An open-source Identity Provider focused on flexibility and versatility.
-- [Keycloak](keycloak.md) — An open source identity and access management solution
-- [OAuth2-Proxy](oauth2-proxy.md) — A reverse proxy and static file server that provides authentication using OpenID Connect Providers (Google, GitHub, [Authentik](authentik.md), [Keycloak](keycloak.md), and others) to SSO-protect services which do not support SSO natively
+- [authentik](authentik.md) — Open-source Identity Provider (IdP) focused on flexibility and versatility
+- [Keycloak](keycloak.md) — Open source identity and access management solution
+- [OAuth2-Proxy](oauth2-proxy.md) — Reverse proxy and static file server that provides authentication using OpenID Connect providers (Google, GitHub, authentik, Keycloak, and others) to SSO-protect services which do not support SSO natively
+- [Pocket ID](pocket-id.md) — Simple OIDC provider for passkey-only authentication
+- [Tinyauth](tinyauth.md) — Simple authentication middleware that adds a login screen or OAuth with Google, Github, and any provider to your Docker services

@@ -8,21 +8,22 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
 # authentik
 
-[authentik](https://goauthentik.io/) is an open-source Identity Provider focused on flexibility and versatility.
+The playbook can install and configure [authentik](https://goauthentik.io/) for you.
+
+authentik is an open-source Identity Provider (IdP) focused on flexibility and versatility.
 
 > [!WARNING]
-> SSO is pretty complex and while this role will install authentik for you we only tested OIDC and OAUTH integration. There is a high probability that using outposts/LDAP would need further configuration efforts. Make sure you test before using this in production and feel free to provide feedback!
+> The SSO system of authentik is pretty complex, and we have only tested OIDC and OAuth integration. There is a high probability that using outposts/LDAP would need further configuration efforts. Make sure you test before using this in production, and feel free to provide feedback!
 
 ## Dependencies
 
 This service requires the following other services:
 
 - a [Postgres](postgres.md) database
-- a [Valkey](valkey.md) data-store; see [below](#configure-valkey) for details about installation
 - a [Traefik](traefik.md) reverse-proxy server
+- a [Valkey](valkey.md) data-store; see [below](#configure-valkey) for details about installation
 
-
-## Configuration
+## Adjusting the playbook configuration
 
 To enable this service, add the following configuration to your `vars.yml` file:
 
@@ -150,7 +151,7 @@ Having configured `vars.yml` for the dedicated instance, add the following confi
 # Add the base configuration as specified above
 
 # Point authentik to its dedicated Valkey instance
-authentik_config_redis_hostname: mash-authentik-valkey
+authentik_redis_hostname: mash-authentik-valkey
 
 # Make sure the authentik service (mash-authentik.service) starts after its dedicated Valkey service (mash-authentik-valkey.service)
 authentik_systemd_required_services_list_custom:
@@ -200,7 +201,7 @@ valkey_enabled: true
 # Add the base configuration as specified above
 
 # Point authentik to the shared Valkey instance
-authentik_config_redis_hostname: "{{ valkey_identifier }}"
+authentik_redis_hostname: "{{ valkey_identifier }}"
 
 # Make sure the authentik service (mash-authentik.service) starts after the shared Valkey service (mash-valkey.service)
 authentik_systemd_required_services_list_custom:
@@ -235,7 +236,19 @@ Note that running the `just` commands for installation (`just install-all` or `j
 
 ## Usage
 
-After installation, you can set the admin password at `https://<authentik_hostname>/if/flow/initial-setup/`. Set the admin password there and start adding applications and users! Refer to the [official documentation](https://goauthentik.io/docs/) to learn how to integrate services. For this playbook tested examples are described in the respective service documentation. See
+After running the command for installation, the authentik instance becomes available at the URL specified with `authentik_hostname`. With the configuration above, the service is hosted at `https://authentik.example.com`.
 
-* [Grafana](./grafana.md#single-sign-on-authentik)
-* [Nextcloud](./nextcloud.md#single-sign-on-authentik)
+You can set the admin password at `https://authentik.example.com/if/flow/initial-setup/`, and start adding applications and users. Refer to the [official documentation](https://goauthentik.io/docs/) to learn how to integrate services.
+
+When it comes to this playbook, tested configuration examples are described on the respective service documentation. See below for details:
+
+- [Grafana](grafana.md#single-sign-on-authentik)
+- [Nextcloud](nextcloud.md#single-sign-on-authentik)
+
+## Related services
+
+- [Authelia](authelia.md) — Open-source authentication and authorization server that can work as a companion to common reverse proxies like Traefik
+- [Keycloak](keycloak.md) — Open source identity and access management solution
+- [OAuth2-Proxy](oauth2-proxy.md) — Reverse proxy and static file server that provides authentication using OpenID Connect providers (Google, GitHub, authentik, Keycloak, and others) to SSO-protect services which do not support SSO natively
+- [Pocket ID](pocket-id.md) — Simple OIDC provider for passkey-only authentication
+- [Tinyauth](tinyauth.md) — Simple authentication middleware that adds a login screen or OAuth with Google, Github, and any provider to your Docker services

@@ -1,6 +1,12 @@
+<!--
+SPDX-FileCopyrightText: 2024 Slavi Pantaleev
+
+SPDX-License-Identifier: AGPL-3.0-or-later
+-->
+
 # OAuth2-Proxy
 
-[OAuth2-Proxy](https://oauth2-proxy.github.io/oauth2-proxy/) is a reverse proxy and static file server that provides authentication using OpenID Connect Providers (Google, GitHub, [Authentik](authentik.md), [Keycloak](keycloak.md), and others) to SSO-protect services which do not support SSO natively.
+[OAuth2-Proxy](https://oauth2-proxy.github.io/oauth2-proxy/) is a reverse proxy and static file server that provides authentication using OpenID Connect Providers (Google, GitHub, [authentik](authentik.md), [Keycloak](keycloak.md), and others) to SSO-protect services which do not support SSO natively.
 
 
 ## Modes of operation
@@ -36,7 +42,7 @@ This can be any of the supported providers. If hosting your own (via this playbo
 
 ## Sample configuration
 
-The configuration is [provider](https://oauth2-proxy.github.io/oauth2-proxy/configuration/providers/)-specific and also depends on the the service you're SSO-protecting, on which server it runs (in relation to OAuth-Proxy), etc.
+The configuration is [provider](https://oauth2-proxy.github.io/oauth2-proxy/configuration/providers/)-specific and also depends on the service you're SSO-protecting, on which server it runs (in relation to OAuth-Proxy), etc.
 
 Below is a **sample** configuration for protecting a static website (in this case powered by the [Hubsite](hubsite.md)) service via [Keycloak](keycloak.md).
 
@@ -141,7 +147,7 @@ After adding this to your `vars.yml` file, [re-run the playbook](../installing.m
 
 Some [services](../supported-services.md) already define their own `middlewares` in their Traefik `labels` file, so you may not be able to inject new ones the same way as done for Hubsite above.
 
-Specific services (e.g. [Nextcloud](./nextcloud.md)) provide Ansible variables (`nextcloud_container_labels_traefik_http_middlewares_custom`) for injecting new middlewares at a specific position (priority) in the list. Others services (Ansible roles) do not support this yet, which would prevent you from using them this way. Consider submitting an issue or better yet opening a PR to improve these services.
+Specific services (e.g. [Nextcloud](nextcloud.md)) provide Ansible variables (`nextcloud_container_labels_traefik_http_middlewares_custom`) for injecting new middlewares at a specific position (priority) in the list. Others services (Ansible roles) do not support this yet, which would prevent you from using them this way. Consider submitting an issue or better yet opening a PR to improve these services.
 
 
 ## Further reading
@@ -153,6 +159,7 @@ Take a look at [its `default/main.yml` file](https://github.com/mother-of-all-se
 
 ## Related services
 
-- [authentik](authentik.md) — An open-source Identity Provider focused on flexibility and versatility.
+- [authentik](authentik.md) — An open-source Identity Provider (IdP) focused on flexibility and versatility.
 - [Keycloak](keycloak.md) — An open source identity and access management solution
 - [Authelia](authelia.md) — An open-source authentication and authorization server that can work as a companion to [common reverse proxies](https://www.authelia.com/overview/prologue/supported-proxies/) (like [Traefik](traefik.md) frequently used by this playbook)
+- [Pocket ID](pocket-id.md) — Simple OIDC provider for passkey-only authentication

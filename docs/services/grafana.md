@@ -1,3 +1,14 @@
+<!--
+SPDX-FileCopyrightText: 2023 Julian-Samuel Gebühr
+SPDX-FileCopyrightText: 2023 Borislav Pantaleev
+SPDX-FileCopyrightText: 2023 - 2024 Slavi Pantaleev
+SPDX-FileCopyrightText: 2024 Igor Goldenberg
+SPDX-FileCopyrightText: 2025 MASH project contributors
+SPDX-FileCopyrightText: 2025 Suguru Hirahara
+
+SPDX-License-Identifier: AGPL-3.0-or-later
+-->
+
 # Grafana
 
 [Grafana](https://grafana.com/) is an open and composable observability and data visualization platform, often used with [Prometheus](prometheus.md).
@@ -36,10 +47,6 @@ grafana_default_admin_password: ''
 #                                                                      #
 ########################################################################
 ```
-
-In the example configuration above, we configure the service to be hosted at `https://mash.example.com/grafana`.
-
-You can remove the `grafana_path_prefix` variable definition, to make it default to `/`, so that the service is served at `https://mash.example.com/`.
 
 ### File provisioning
 
@@ -116,7 +123,7 @@ grafana_container_additional_networks_custom:
 
 For connecting to a **remote** Loki instance, you may need to adjust this configuration.
 
-If you're installing [Promtail](./promtail.md) on the same server as Loki, by default it's configured to send `mash` as the tenant ID.
+If you're installing [Promtail](promtail.md) on the same server as Loki, by default it's configured to send `mash` as the tenant ID.
 
 #### Alerts
 
@@ -177,12 +184,12 @@ grafana_dashboard_download_urls: |
 
 ### Single-Sign-On
 
-Grafana supports Single-Sign-On (SSO) via OAUTH. To make use of this you'll need a Identity Provider like [authentik](./authentik.md), [Keycloak](./keycloak.md) or [Authelia](./authelia.md).
+Grafana supports Single-Sign-On (SSO) via OAUTH. To make use of this you'll need an Identity Provider (IdP) like [authentik](authentik.md), [Authelia](authelia.md), [Keycloak](keycloak.md) or [Pocket ID](pocket-id.md).
 
 Below, you can find some examples for Grafana configuration.
 
 
-#### Single-Sign-On / Authentik
+#### Single-Sign-On / authentik
 
 * Create a new OAUTH provider in authentik called `grafana`
 * Create an application also named `grafana` in authentik using this provider
@@ -241,12 +248,15 @@ grafana_environment_variables_additional_variables: |
   GF_AUTH_GENERIC_OAUTH_USE_PKCE=true
 ```
 
+#### Single-Sign-On / Pocket ID
+
+Refer to [this page](https://pocket-id.org/docs/client-examples/grafana) on Pocket ID's documentation for the instruction.
+
 ## Usage
 
-After installation, you should be able to access your new Grafana instance at the configured URL (see above).
+After running the command for installation, the Grafana instance becomes available at the URL specified with `grafana_hostname` and `grafana_path_prefix`. With the configuration above, the service is hosted at `https://mash.example.com/grafana`.
 
-Going there, you'll be taken to the initial setup wizard, which will let you assign some passwords and other configuration.
-
+To get started, open the URL with a web browser, and follow the set up wizard.
 
 ## Recommended other services
 

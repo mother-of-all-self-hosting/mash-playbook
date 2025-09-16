@@ -1,6 +1,15 @@
+<!--
+SPDX-FileCopyrightText: 2023 Slavi Pantaleev
+SPDX-FileCopyrightText: 2025 Suguru Hirahara
+
+SPDX-License-Identifier: AGPL-3.0-or-later
+-->
+
 # Keycloak
 
 [Keycloak](https://www.keycloak.org/) is an open source identity and access management solution.
+
+Follow the [Keycloak documentation](https://www.keycloak.org/documentation) or other guides for learning how to use Keycloak.
 
 > [!WARNING]
 > This service is a new addition to the playbook. It may not fully work or be configured in a suboptimal manner.
@@ -30,9 +39,9 @@ keycloak_enabled: true
 keycloak_hostname: mash.example.com
 keycloak_path_prefix: /keycloak
 
-keycloak_environment_variable_keycloak_admin: your_username_here
+keycloak_environment_variable_kc_bootstrap_admin_username: your_username_here
 # Generating a strong password (e.g. `pwgen -s 64 1`) is recommended
-keycloak_environment_variable_keycloak_admin_password: ''
+keycloak_environment_variable_kc_bootstrap_admin_password: ''
 
 ########################################################################
 #                                                                      #
@@ -41,28 +50,21 @@ keycloak_environment_variable_keycloak_admin_password: ''
 ########################################################################
 ```
 
-### URL
+## Usage
 
-In the example configuration above, we configure the service to be hosted at `https://mash.example.com/keycloak`.
+After running the command for installation, the Keycloak instance becomes available at the URL specified with `keycloak_hostname` and `keycloak_path_prefix`. With the configuration above, the service is hosted at `https://mash.example.com/keycloak`.
 
-You can remove the `keycloak_path_prefix` variable definition, to make it default to `/`, so that the service is served at `https://mash.example.com/`.
-
-### Authentication
-
-On first start, the admin user account will be created as defined with the `keycloak_environment_variable_keycloak_admin` and `keycloak_environment_variable_keycloak_admin_password` variables.
+To get started, open the URL with a web browser, and log in with the admin user account. The account is created on the first start, as defined with the `keycloak_environment_variable_kc_bootstrap_admin_username` and `keycloak_environment_variable_kc_bootstrap_admin_password` variables.
 
 On each start after that, Keycloak will attempt to create the user again and report a non-fatal error (Keycloak will continue running).
 
-Subsequent changes to the password will not affect an existing user's password.
-
-
-## Usage
-
-After installation, you can go to the Keycloak URL, as defined in `keycloak_hostname` and `keycloak_path_prefix` and log in as described in [Authentication](#authentication).
-
-Follow the [Keycloak documentation](https://www.keycloak.org/documentation) or other guides for learning how to use Keycloak.
-
+>[!NOTE]
+> Subsequent changes to the password will not affect an existing user's password.
 
 ## Related services
 
-- [OAuth2-Proxy](oauth2-proxy.md) — A reverse proxy and static file server that provides authentication using OpenID Connect Providers (Google, GitHub, [Authentik](authentik.md), [Keycloak](keycloak.md), and others) to SSO-protect services which do not support SSO natively
+- [authentik](authentik.md) — Open-source Identity Provider (IdP) focused on flexibility and versatility
+- [Authelia](authelia.md) — Open-source authentication and authorization server that can work as a companion to common reverse proxies like Traefik
+- [OAuth2-Proxy](oauth2-proxy.md) — Reverse proxy and static file server that provides authentication using OpenID Connect providers (Google, GitHub, authentik, Keycloak, and others) to SSO-protect services which do not support SSO natively
+- [Pocket ID](pocket-id.md) — Simple OIDC provider for passkey-only authentication
+- [Tinyauth](tinyauth.md) — Simple authentication middleware that adds a login screen or OAuth with Google, Github, and any provider to your Docker services

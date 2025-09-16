@@ -1,3 +1,9 @@
+<!--
+SPDX-FileCopyrightText: 2024 MASH project contributors
+
+SPDX-License-Identifier: AGPL-3.0-or-later
+-->
+
 # WriteFreely
 
 [WriteFreely](https://github.com/writefreely/writefreely) is a clean, minimalist publishing platform made for writers, federated via ActivityPub.
@@ -9,7 +15,7 @@ This service requires the following other services:
 
 - a [Traefik](traefik.md) reverse-proxy server
 
-WriteFreely supports using a [MariaDB](./mariadb.md) database, but this Ansible role and playbook are not configured to make use of it.
+WriteFreely supports using a [MariaDB](mariadb.md) database, but this Ansible role and playbook are not configured to make use of it.
 
 
 ## Configuration

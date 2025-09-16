@@ -65,7 +65,7 @@ There are various options for the instance and user settings. See [this section]
 
 ## Usage
 
-After running the command for installation, Redlib becomes available at the specified hostname like `https://redlib.example.com`.
+After running the command for installation, the Redlib instance becomes available at the URL specified with `redlib_hostname`. With the configuration above, the service is hosted at `https://redlib.example.com`.
 
 [Libredirect](https://libredirect.github.io/), an extension for Firefox and Chromium-based desktop browsers, has support for redirections to Redlib.
 
@@ -74,3 +74,8 @@ If you would like to make your instance public so that it can be used by anyone 
 ## Troubleshooting
 
 See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-redlib/blob/main/docs/configuring-redlib.md#troubleshooting) on the role's documentation for details.
+
+## Related services
+
+- [AnonymousOverflow](anonymousoverflow.md) — Frontend for StackOverflow
+- [Mozhi](mozhi.md) — Frontend for translation engines

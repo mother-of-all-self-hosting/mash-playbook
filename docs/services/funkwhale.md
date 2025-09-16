@@ -16,8 +16,8 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 This service requires the following other services:
 
 - a [Postgres](postgres.md) database
-- a [Valkey](valkey.md) data-store; see [below](#configure-valkey) for details about installation
 - a [Traefik](traefik.md) reverse-proxy server
+- a [Valkey](valkey.md) data-store; see [below](#configure-valkey) for details about installation
 
 
 ## Configuration
@@ -33,7 +33,7 @@ To enable this service, add the following configuration to your `vars.yml` file:
 
 funkwhale_enabled: true
 
-funkwhale_hostname: mash.example.com
+funkwhale_hostname: funkwhale.example.com
 
 # Put a strong secret below, generated with `pwgen -s 64 1` or in another way
 funkwhale_django_secret_key: ''
@@ -146,7 +146,7 @@ Having configured `vars.yml` for the dedicated instance, add the following confi
 # Add the base configuration as specified above
 
 # Point Funkwhale to its dedicated Valkey instance
-funkwhale_config_redis_hostname: mash-funkwhale-valkey
+funkwhale_redis_hostname: mash-funkwhale-valkey
 
 # Make sure the Funkwhale API service (mash-funkwhale-api.service) starts after its dedicated Valkey service
 funkwhale_api_systemd_required_services_list_custom:
@@ -196,7 +196,7 @@ valkey_enabled: true
 # Add the base configuration as specified above
 
 # Point Funkwhale to the shared Valkey instance
-funkwhale_config_redis_hostname: "{{ valkey_identifier }}"
+funkwhale_redis_hostname: "{{ valkey_identifier }}"
 
 # Make sure the Funkwhale API service (mash-funkwhale-api.service) starts after the shared Valkey service
 funkwhale_api_systemd_required_services_list_custom:
@@ -223,7 +223,7 @@ Note that running the `just` commands for installation (`just install-all` or `j
 
 ## Usage
 
-After installation, your Funkwhale instance becomes available at the URL specified with `funkwhale_hostname`.
+After installation, the Funkwhale instance becomes available at the URL specified with `funkwhale_hostname`. With the configuration above, the service is hosted at `https://funkwhale.example.com`.
 
 To log in to the service and get started, you have to create a user ("superuser") at first. To do so, run the command below after replacing `USERNAME`, `PASSWORD`, and `EMAIL_ADDRESS`:
 

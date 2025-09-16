@@ -137,9 +137,9 @@
     - role: galaxy/backup_borg
     # /role-specific:backup_borg
 
-    # role-specific:calibre-web
-    - role: galaxy/calibre-web
-    # /role-specific:calibre-web
+    # role-specific:calibre_web
+    - role: galaxy/calibre_web
+    # /role-specific:calibre_web
 
     # role-specific:changedetection
     - role: galaxy/changedetection
@@ -189,6 +189,10 @@
     - role: galaxy/dokuwiki
     # /role-specific:dokuwiki
 
+    # role-specific:duplicati
+    - role: galaxy/duplicati
+    # /role-specific:duplicati
+
     # role-specific:echoip
     - role: galaxy/echoip
     # /role-specific:echoip
@@ -208,6 +212,10 @@
     # role-specific:excalidraw
     - role: galaxy/excalidraw
     # /role-specific:excalidraw
+
+    # role-specific:excalidraw_room
+    - role: galaxy/excalidraw_room
+    # /role-specific:excalidraw_room
 
     # role-specific:firezone
     - role: galaxy/firezone
@@ -313,6 +321,10 @@
     - role: galaxy/keydb
     # /role-specific:keydb
 
+    # role-specific:kutt
+    - role: galaxy/kutt
+    # /role-specific:kutt
+
     # role-specific:labelstudio
     - role: galaxy/labelstudio
     # /role-specific:labelstudio
@@ -368,6 +380,10 @@
     # role-specific:mosquitto
     - role: galaxy/mosquitto
     # /role-specific:mosquitto
+
+    # role-specific:mozhi
+    - role: galaxy/mozhi
+    # /role-specific:mozhi
 
     # role-specific:mrs
     - role: galaxy/mrs
@@ -436,6 +452,10 @@
     # role-specific:plex
     - role: galaxy/plex
     # /role-specific:plex
+
+    # role-specific:pocket_id
+    - role: galaxy/pocket_id
+    # /role-specific:pocket_id
 
     # role-specific:postgis
     - role: galaxy/postgis
@@ -525,6 +545,10 @@
     - role: galaxy/send
     # /role-specific:send
 
+    # role-specific:sftpgo
+    - role: galaxy/sftpgo
+    # /role-specific:sftpgo
+
     # role-specific:soft_serve
     - role: galaxy/soft_serve
     # /role-specific:soft_serve
@@ -537,6 +561,10 @@
     - role: galaxy/stirling_pdf
     # /role-specific:stirling_pdf
 
+    # role-specific:syncstorage_rs_docker
+    - role: galaxy/syncstorage_rs_docker
+    # /role-specific:syncstorage_rs_docker
+
     # role-specific:syncthing
     - role: galaxy/syncthing
     # /role-specific:syncthing
@@ -548,6 +576,10 @@
     # role-specific:telegraf
     - role: galaxy/telegraf
     # /role-specific:telegraf
+
+    # role-specific:tinyauth
+    - role: galaxy/tinyauth
+    # /role-specific:tinyauth
 
     # role-specific:tsdproxy
     - role: galaxy/tsdproxy
@@ -592,6 +624,10 @@
     # role-specific:writefreely
     - role: galaxy/writefreely
     # /role-specific:writefreely
+
+    # role-specific:yacy
+    - role: galaxy/yacy
+    # /role-specific:yacy
 
     # role-specific:yourls
     - role: galaxy/yourls

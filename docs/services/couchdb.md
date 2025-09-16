@@ -1,3 +1,9 @@
+<!--
+SPDX-FileCopyrightText: 2024 MASH project contributors
+
+SPDX-License-Identifier: AGPL-3.0-or-later
+-->
+
 # CouchDB
 
 [CouchDB](https://couchdb.apache.org/) is a NoSQL database that uses JSON for documents.

@@ -1,3 +1,10 @@
+<!--
+SPDX-FileCopyrightText: 2023 Slavi Pantaleev
+SPDX-FileCopyrightText: 2025 Suguru Hirahara
+
+SPDX-License-Identifier: AGPL-3.0-or-later
+-->
+
 # Vaultwarden
 
 [Vaultwarden](https://github.com/dani-garcia/vaultwarden) (unofficial [Bitwarden](https://bitwarden.com/) compatible server) is a password manager server that you can use with the official **Bitwarden** apps and browser addons.
@@ -65,19 +72,11 @@ vaultwarden_config_smtp_password: ''
 ########################################################################
 ```
 
-In the example configuration above, we configure the service to be hosted at `https://mash.example.com/vaultwarden-secret-custom-prefix`.
-
-You can remove the `vaultwarden_path_prefix` variable definition, to make it default to `/`, so that the service is served at `https://mash.example.com/`.
-
-
 ## Usage
 
-After installation, you should be able to access your new Vaultwarden instance at: `https://VAULTWARDEN_DOMAIN/PATH_PREFIX`, where:
+After running the command for installation, the Vaultwarden instance becomes available at the URL specified with `vaultwarden_hostname` and `vaultwarden_path_prefix`. With the configuration above, the service is hosted at `https://mash.example.com/vaultwarden-secret-custom-prefix`.
 
-- `VAULTWARDEN_DOMAIN` matches your domain, as specified in `vaultwarden_hostname` in your `vars.yml` file
-- `PATH_PREFIX` matches your path prefix, as specified in `vaultwarden_path_prefix` in your `vars.yml` file
-
-To set up your first user account, you should use the `/admin` page, available at `https://VAULTWARDEN_DOMAIN/PATH_PREFIX/admin` and accessible with an admin token, as specified in `vaultwarden_config_admin_token` in your `vars.yml` file.
+To get started, open the URL `https://mash.example.com/vaultwarden-secret-custom-prefix/admin` with a web browser, and create a first user account. Note the URL is accessible with an admin token, as specified with `vaultwarden_config_admin_token` on your `vars.yml` file.
 
 If you hadn't enabled the `/admin` feature (by defining `vaultwarden_config_admin_token`), you would:
 

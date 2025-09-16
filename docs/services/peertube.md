@@ -15,8 +15,8 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 This service requires the following other services:
 
 - a [Postgres](postgres.md) database
-- a [Valkey](valkey.md) data-store; see [below](#configure-valkey) for details about installation
 - a [Traefik](traefik.md) reverse-proxy server
+- a [Valkey](valkey.md) data-store; see [below](#configure-valkey) for details about installation
 
 
 ## Configuration
@@ -154,7 +154,7 @@ Having configured `vars.yml` for the dedicated instance, add the following confi
 # Add the base configuration as specified above
 
 # Point PeerTube to its dedicated Valkey instance
-peertube_config_redis_hostname: mash-peertube-valkey
+peertube_redis_hostname: mash-peertube-valkey
 
 # Make sure the PeerTube service (mash-peertube.service) starts after its dedicated Valkey service (mash-peertube-valkey.service)
 peertube_systemd_required_services_list_custom:
@@ -204,7 +204,7 @@ valkey_enabled: true
 # Add the base configuration as specified above
 
 # Point PeerTube to the shared Valkey instance
-peertube_config_redis_hostname: "{{ valkey_identifier }}"
+peertube_redis_hostname: "{{ valkey_identifier }}"
 
 # Make sure the PeerTube service (mash-peertube.service) starts after the shared Valkey service (mash-valkey.service)
 peertube_systemd_required_services_list_custom:
@@ -243,7 +243,7 @@ peertube_trusted_proxies_values_custom: ["172.21.0.0/16"]
 
 ## Usage
 
-After installation, your PeerTube instance becomes available at the URL specified with `peertube_hostname` and `peertube_path_prefix`.
+After installation, the PeerTube instance becomes available at the URL specified with `peertube_hostname`. With the configuration above, the service is hosted at `https://peertube.example.com`.
 
 You should then be able to log in with:
 

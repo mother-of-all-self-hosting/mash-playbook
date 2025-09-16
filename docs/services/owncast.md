@@ -1,7 +1,41 @@
+<!--
+SPDX-FileCopyrightText: 2020 - 2024 MDAD project contributors
+SPDX-FileCopyrightText: 2020 - 2024 Slavi Pantaleev
+SPDX-FileCopyrightText: 2020 Aaron Raimist
+SPDX-FileCopyrightText: 2020 Chris van Dijk
+SPDX-FileCopyrightText: 2020 Dominik Zajac
+SPDX-FileCopyrightText: 2020 Mickaël Cornière
+SPDX-FileCopyrightText: 2022 François Darveau
+SPDX-FileCopyrightText: 2022 Julian Foad
+SPDX-FileCopyrightText: 2022 Warren Bailey
+SPDX-FileCopyrightText: 2023 Antonis Christofides
+SPDX-FileCopyrightText: 2023 Felix Stupp
+SPDX-FileCopyrightText: 2023 Julian-Samuel Gebühr
+SPDX-FileCopyrightText: 2023 Pierre 'McFly' Marty
+SPDX-FileCopyrightText: 2024 - 2025 Suguru Hirahara
+SPDX-FileCopyrightText: 2024 MASH project contributors
+SPDX-FileCopyrightText: 2024 Sergio Durigan Junior
+
+SPDX-License-Identifier: AGPL-3.0-or-later
+-->
+
 # Owncast
 
-[Owncast](https://owncast.online/) is a free and open source live video and web chat server for use with existing popular broadcasting software. This playbook can install owncast, powered by the [mother-of-all-self-hosting/ansible-role-owncast](https://github.com/mother-of-all-self-hosting/ansible-role-owncast) Ansible role.
+The playbook can install and configure [Owncast](https://owncast.online) for you.
 
+Owncast is a free and open source live video and web chat server for use with existing popular broadcasting software.
+
+See the project's [documentation](https://owncast.online/docs/) to learn what Owncast does and why it might be useful to you.
+
+For details about configuring the [Ansible role for Owncast](https://github.com/mother-of-all-self-hosting/ansible-role-owncast), you can check them via:
+- 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-owncast/blob/main/docs/configuring-owncast.md) online
+- 📁 `roles/galaxy/owncast/docs/configuring-owncast.md` locally, if you have [fetched the Ansible roles](../installing.md)
+
+## Prerequisites
+
+### Open a port
+
+You may need to open a port for TCP based [RTMP](https://en.wikipedia.org/wiki/Real-Time_Messaging_Protocol) on your server. See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-owncast/blob/main/docs/configuring-owncast.md#open-a-port) on the role's documentation for details.
 
 ## Dependencies
 
@@ -9,40 +43,37 @@ This service requires the following other services:
 
 - a [Traefik](traefik.md) reverse-proxy server
 
-
-## Configuration
+## Adjusting the playbook configuration
 
 To enable this service, add the following configuration to your `vars.yml` file and re-run the [installation](../installing.md) process:
 
 ```yaml
 ########################################################################
 #                                                                      #
-# owncast                                                            #
+# owncast                                                              #
 #                                                                      #
 ########################################################################
 
 owncast_enabled: true
 
-owncast_hostname: live.example.com
+owncast_hostname: owncast.example.com
 
 ########################################################################
 #                                                                      #
-# /owncast                                                           #
+# /owncast                                                             #
 #                                                                      #
 ########################################################################
 ```
 
-
-### Networking
-
-By default, the following ports will be exposed by the container on **all network interfaces**:
-
-- `1935` over **TCP**, controlled by `owncast_container_rtmp_bind_port` — used for TCP based [RTMP](https://en.wikipedia.org/wiki/Real-Time_Messaging_Protocol)
-
-Docker automatically opens this port in the server's firewall, so you **likely don't need to do anything**. If you use another firewall in front of the server, you may need to adjust it.
-
 ## Usage
 
-After installation, you can go to the owncast URL, as defined in `owncast_hostname`.
+After running the command for installation, the Owncast instance becomes available at the URL specified with `owncast_hostname`. With the configuration above, the service is hosted at `https://owncast.example.com`.
 
-To customize your installation visit `live.example.com/admin`. **You should immediately change the stream key which is set to `abc123` by default**.
+To get started, open the URL `https://owncast.example.com/admin` with a web browser.
+
+>[!NOTE]
+> Change the default stream key set to `abc123` as soon as possible.
+
+## Troubleshooting
+
+See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-owncast/blob/main/docs/configuring-owncast.md#troubleshooting) on the role's documentation for details.

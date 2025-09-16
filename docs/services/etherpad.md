@@ -14,16 +14,17 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
 The playbook can install and configure [Etherpad](https://etherpad.org), an open source collaborative text editor, for you.
 
-The [Ansible role for Etherpad](https://github.com/mother-of-all-self-hosting/ansible-role-etherpad) is developed and maintained by the MASH project. For details about configuring Etherpad, you can check them via:
+See the project's [documentation](https://docs.etherpad.org/) to learn what it does and why it might be useful to you.
 
-- 🌐 [the role's documentation at the MASH project](https://github.com/mother-of-all-self-hosting/ansible-role-etherpad/blob/main/docs/configuring-etherpad.md) online
+For details about configuring the [Ansible role for the server](https://github.com/mother-of-all-self-hosting/ansible-role-etherpad), you can check them via:
+- 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-etherpad/blob/main/docs/configuring-etherpad.md) online
 - 📁 `roles/galaxy/etherpad/docs/configuring-etherpad.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 ## Dependencies
 
 This service requires the following other services:
 
-- a [Postgres](postgres.md) database
+- a datapase supported by [ueberdb2](https://www.npmjs.com/package/ueberdb2) such as [Postgres](postgres.md) / MySQL / [MariaDB](mariadb.md) database — Etherpad will default to [SQLite](https://www.sqlite.org/) if Postgres is not enabled
 - a [Traefik](traefik.md) reverse-proxy server
 
 ## Adjusting the playbook configuration
@@ -50,7 +51,7 @@ etherpad_hostname: etherpad.example.com
 
 As the most of the necessary settings for the role have been taken care of by the playbook, you can enable Etherpad on your server with this minimum configuration.
 
-See the role's documentation for details about configuring Etherpad per your preference (such as [the name of the instance](https://github.com/mother-of-all-self-hosting/ansible-role-etherpad/blob/main/docs/configuring-etherpad.md#set-the-name-of-the-instance-optional) and [the default pad text](https://github.com/mother-of-all-self-hosting/ansible-role-etherpad/blob/main/docs/configuring-etherpad.md#set-the-default-text-optional)).
+See the role's documentation for details about configuring Etherpad per your preference (such as [database type](https://github.com/mother-of-all-self-hosting/ansible-role-etherpad/blob/main/docs/configuring-etherpad.md#configure-database), [the name of the instance](https://github.com/mother-of-all-self-hosting/ansible-role-etherpad/blob/main/docs/configuring-etherpad.md#set-the-name-of-the-instance-optional) and [the default pad text](https://github.com/mother-of-all-self-hosting/ansible-role-etherpad/blob/main/docs/configuring-etherpad.md#set-the-default-text-optional)).
 
 ### Create admin user (optional)
 
@@ -68,9 +69,9 @@ See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-ji
 
 ## Usage
 
-By default, the Etherpad UI should be available at `https://etherpad.example.com`, while the admin UI (if enabled) should then be available at `https://etherpad.example.com/admin`.
+After running the command for installation, the Etherpad instance becomes available at the URL specified with `etherpad_hostname`. With the configuration above, the service is hosted at `https://etherpad.example.com`. The admin UI (if enabled) becomes available at `https://etherpad.example.com/admin`.
 
-💡 For more information about usage, take a look at [this section](https://github.com/mother-of-all-self-hosting/ansible-role-etherpad/blob/main/docs/configuring-etherpad.md#usage) on the role's documentation.
+💡 See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-etherpad/blob/main/docs/configuring-etherpad.md#usage) on the role's documentation for more information about usage.
 
 ## Troubleshooting
 

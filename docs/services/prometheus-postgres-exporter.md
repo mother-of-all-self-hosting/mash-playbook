@@ -1,3 +1,10 @@
+<!--
+SPDX-FileCopyrightText: 2023 Julian-Samuel Gebühr
+SPDX-FileCopyrightText: 2024 Slavi Pantaleev
+
+SPDX-License-Identifier: AGPL-3.0-or-later
+-->
+
 # Postgres Exporter
 
 This playbook can configure [Postgres Exporter](https://github.com/prometheus-community/postgres_exporter) by utilizing [mother-of-all-self-hosting/ansible-role-postgres-exporter](https://github.com/mother-of-all-self-hosting/ansible-role-prometheus-postgres-exporter.git).

@@ -1,3 +1,9 @@
+<!--
+SPDX-FileCopyrightText: 2023 - 2024 Slavi Pantaleev
+
+SPDX-License-Identifier: AGPL-3.0-or-later
+-->
+
 # Traefik
 
 [Traefik](https://doc.traefik.io/traefik/) is a container-aware reverse-proxy server.
@@ -29,7 +35,7 @@ mash_playbook_reverse_proxy_type: playbook-managed-traefik
 ########################################################################
 ```
 
-Enabling the Traefik service, as shown above, automatically installs a [tecnativa/docker-socket-proxy](https://github.com/Tecnativa/docker-socket-proxy) service/container (powered by the [com.devture.ansible.role.container_socket_proxy](https://github.com/devture/com.devture.ansible.role.container_socket_proxy) Ansible role) to improve security by not mounting a Docker socket into the Traefik container.
+Enabling the Traefik service, as shown above, automatically installs a [tecnativa/docker-socket-proxy](https://github.com/Tecnativa/docker-socket-proxy) service/container (powered by the [ansible-role-container-socket-proxy](https://github.com/mother-of-all-self-hosting/ansible-role-container-socket-proxy) Ansible role) to improve security by not mounting a Docker socket into the Traefik container.
 
 This [Ansible role we use for Traefik](https://github.com/mother-of-all-self-hosting/ansible-role-traefik) supports various configuration options. Feel free to consult [its `default/main.yml` variables file](https://github.com/mother-of-all-self-hosting/ansible-role-traefik/blob/main/defaults/main.yml).
 

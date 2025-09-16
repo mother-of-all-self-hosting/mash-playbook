@@ -1,3 +1,10 @@
+<!--
+SPDX-FileCopyrightText: 2025 MASH project contributors
+SPDX-FileCopyrightText: 2025 Suguru Hirahara
+
+SPDX-License-Identifier: AGPL-3.0-or-later
+-->
+
 # Radarr
 
 [Radarr](https://radarr.video/) is a movie organizer/manager for usenet and torrent users.
@@ -42,15 +49,14 @@ radarr_hostname: radarr.example.com
 ########################################################################
 ```
 
-### URL
-
-In the example configuration above, we configure the service to be hosted at `https://radarr.example.com`.
-
-A `radarr_path_prefix` variable can be adjusted to host under a subpath (e.g. `radarr_path_prefix: /radarr`), but this hasn't been tested yet.
-
 ## Usage
 
-After [installation](../installing.md), you should access your new Radarr instance at the URL you've chosen and configure a username and password. The recommended authentication method is `Forms (Login Page)`.
+After running the command for installation, the Autobrr instance becomes available at the URL specified with `radarr_hostname`. With the configuration above, the service is hosted at `https://radarr.example.com`.
+
+>[!NOTE]
+> The `radarr_path_prefix` variable can be adjusted to host under a subpath (e.g. `radarr_path_prefix: /radarr`), but this hasn't been tested yet.
+
+To get started, open the URL with a web browser, and configure a username and password. The recommended authentication method is `Forms (Login Page)`.
 
 For additional configuration options, refer to [ansible-role-radarr](https://github.com/spatterIight/ansible-role-radarr)'s `defaults/main.yml` file.
 
@@ -58,12 +64,12 @@ For additional configuration options, refer to [ansible-role-radarr](https://git
 
 Consider these other related services:
 
-- [Sonarr](sonarr.md)
+- [Autobrr](autobrr.md)
 - [Jackett](jackett.md)
   - For Jackett integration instructions, see the [setup guide](jackett.md#intergration-with-sonarrradarr)
-- [qBittorrent](qbittorrent.md)
-  - For qBittorrent integration instructions, see the [setup guide](qbittorrent.md#intergration-with-sonarrradarr)
+- [Jellyfin](jellyfin.md)
 - [Overseerr](overseerr.md)
 - [Plex](plex.md)
-- [Jellyfin](jellyfin.md)
-- [Autobrr](autobrr.md)
+- [qBittorrent](qbittorrent.md)
+  - For qBittorrent integration instructions, see the [setup guide](qbittorrent.md#intergration-with-sonarrradarr)
+- [Sonarr](sonarr.md)

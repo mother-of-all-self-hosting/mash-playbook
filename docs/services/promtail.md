@@ -1,6 +1,12 @@
+<!--
+SPDX-FileCopyrightText: 2024 Slavi Pantaleev
+
+SPDX-License-Identifier: AGPL-3.0-or-later
+-->
+
 # Promtail
 
-[Promtail](https://grafana.com/docs/loki/latest/send-data/promtail/) agent is a log aggregation system designed to store and query logs from all your applications and infrastructure. It integrates nicely with [Grafana Loki](./grafana-loki.md).
+[Promtail](https://grafana.com/docs/loki/latest/send-data/promtail/) agent is a log aggregation system designed to store and query logs from all your applications and infrastructure. It integrates nicely with [Grafana Loki](grafana-loki.md).
 
 
 ## Dependencies
@@ -144,7 +150,7 @@ promtail_container_extra_arguments_custom:
 
 ### Configuring clients
 
-If you've also enabled [Grafana Loki](./grafana-loki.md) on the same server, Promtail will automatically be configured to push logs to it.
+If you've also enabled [Grafana Loki](grafana-loki.md) on the same server, Promtail will automatically be configured to push logs to it.
 
 Otherwise, you will need to extend the Promtail configuration by specifying clients to push to. Add something like this to your `vars.yml` configuration:
 
