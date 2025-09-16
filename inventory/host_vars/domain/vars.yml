@@ -290,29 +290,6 @@ gitea_hostname: "gitea.{{domain}}"
 #                                                                      #
 ########################################################################
 
-########################################################################
-#                                                                      #
-# firezone                                                             #
-#                                                                      #
-########################################################################
-
-firezone_enabled: false
-
-firezone_hostname: "vpn.{{domain}}"
-
-firezone_default_admin_email: "{{admin_user_email}}"
-
-firezone_default_admin_password: "{{vault_firezone_default_admin_password}}"
-
-# Generate this with `openssl rand -base64 32`
-firezone_database_encryption_key: "{{vault_firezone_database_encryption_key}}"
-
-########################################################################
-#                                                                      #
-# /firezone                                                            #
-#                                                                      #
-########################################################################
-
 
 ########################################################################
 #                                                                      #
@@ -568,13 +545,16 @@ headscale_config_dns_search_domains:
 
 headscale_config_prefixes_v4: 100.100.0.0/20
 
-headscale_config_oidc:
-   only_start_if_oidc_is_available: true
-   issuer: "https://authentik.{{ domain }}/application/o/headscale/"
-   client_id: "{{ vault_headscale_oidc_client_id }}"
-   client_secret: "{{ vault_headscale_oidc_client_secret }}"
-   scope: ["openid", "profile", "email"]
-   pkce: { enabled: true, method: S256 }
+headscale_configuration_extension:
+  oidc:
+    only_start_if_oidc_is_available: true
+    issuer: "https://authentik.{{ domain }}/application/o/headscale/"
+    client_id: "{{ vault_headscale_client_id }}"
+    client_secret: "{{ vault_headscale_client_secret }}"
+    scope: ["openid", "profile", "email"]
+    pkce:
+      enabled: true
+      method: S256
 # https://headscale.net/stable/ref/oidc/?h=oidc
 
 ########################################################################
