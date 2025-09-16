@@ -62,6 +62,11 @@ headscale_config_oidc:
 You can find more details reading about configuring OIDC by referring to the documentation at both [Headscale](https://headscale.net/stable/ref/oidc/?h=oidc) and [Authentik](https://integrations.goauthentik.io/networking/headscale/ ).
 Note that Headscale's documentation don't explicitly cover Authentik. 
 
+## Role
+Take a look at:
+
+- [authentik](https://github.com/mother-of-all-self-hosting/ansible-role-headscale/)'s [`defaults/main.yml`](https://github.com/mother-of-all-self-hosting/ansible-role-headscale/blob/main/defaults/main.yml) for additional variables that you can customize via your `vars.yml` file.
+
 ## Usage
 
 After running the command for installation, the Headscale instance becomes available at the URL specified with `headscale_hostname` and `headscale_path_prefix`. With the configuration above, the service is hosted at `https://headscale.example.com`.
