@@ -29,13 +29,13 @@ The Lounge is a distributed web search engine, based on a peer-to-peer network. 
 
 See the project's [documentation](https://thelounge.net/docs/) to learn what The Lounge does and why it might be useful to you.
 
-For details about configuring the [Ansible role for The Lounge](https://github.com/mother-of-all-self-hosting/ansible-role-thelounge), you can check them via:
-- 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-thelounge/blob/main/docs/configuring-thelounge.md) online
+For details about configuring the [Ansible role for The Lounge](https://codeberg.org/acioustick/ansible-role-thelounge), you can check them via:
+- 🌐 [the role's documentation](https://codeberg.org/acioustick/ansible-role-thelounge/src/branch/master/docs/configuring-thelounge.md) online
 - 📁 `roles/galaxy/thelounge/docs/configuring-thelounge.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 ## Prerequisites
 
-You may need to open some ports to your server, if you use another firewall in front of the server. Refer to [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-thelounge/blob/main/docs/configuring-thelounge.md#prerequisites) to check which ones to be configured.
+You may need to open some ports to your server, if you use another firewall in front of the server. Refer to [the role's documentation](https://codeberg.org/acioustick/ansible-role-thelounge/src/branch/master/docs/configuring-thelounge.md#prerequisites) to check which ones to be configured.
 
 ## Dependencies
 
@@ -74,11 +74,11 @@ You can log in to the instance with the default login credential of the admin ac
 
 To improve security regarding the admin account, **the role configures the instance on the intranet search mode by default**, so that it does not broadcast its existence to peers before you change the login credential.
 
-See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-thelounge/blob/main/docs/configuring-thelounge.md#usage) on the role's documentation for details about changing the admin user password and search mode, including protecting the instance with the password.
+See [this section](https://codeberg.org/acioustick/ansible-role-thelounge/src/branch/master/docs/configuring-thelounge.md#usage) on the role's documentation for details about changing the admin user password and search mode, including protecting the instance with the password.
 
 ## Troubleshooting
 
-See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-thelounge/blob/main/docs/configuring-thelounge.md#troubleshooting) on the role's documentation for details.
+See [this section](https://codeberg.org/acioustick/ansible-role-thelounge/src/branch/master/docs/configuring-thelounge.md#troubleshooting) on the role's documentation for details.
 
 ## Related services
 
