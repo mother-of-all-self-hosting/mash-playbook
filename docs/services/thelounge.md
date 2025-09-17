@@ -17,19 +17,19 @@ SPDX-FileCopyrightText: 2024 - 2025 Suguru Hirahara
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 
-# YaCy
+# The Lounge
 
-The playbook can install and configure [YaCy](https://yacy.net) for you.
+The playbook can install and configure [The Lounge](https://yacy.net) for you.
 
-YaCy is a distributed web search engine, based on a peer-to-peer network. It provides three different modes;
+The Lounge is a distributed web search engine, based on a peer-to-peer network. It provides three different modes;
 
 - Searching a shared global index on the P2P network
 - Crawling web pages of domains you choose to create an individual index for searching
 - Setting up a search portal for your intranet behind the firewall to search pages or files on the shared file system, without sharing data with a third party
 
-See the project's [documentation](https://yacy.net/docs/) to learn what YaCy does and why it might be useful to you.
+See the project's [documentation](https://yacy.net/docs/) to learn what The Lounge does and why it might be useful to you.
 
-For details about configuring the [Ansible role for YaCy](https://github.com/mother-of-all-self-hosting/ansible-role-yacy), you can check them via:
+For details about configuring the [Ansible role for The Lounge](https://github.com/mother-of-all-self-hosting/ansible-role-yacy), you can check them via:
 - 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-yacy/blob/main/docs/configuring-yacy.md) online
 - 📁 `roles/galaxy/yacy/docs/configuring-yacy.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
@@ -68,7 +68,7 @@ yacy_path_prefix: /yacy
 
 ## Usage
 
-After running the command for installation, the YaCy instance becomes available at the URL specified with `yacy_hostname` and `yacy_path_prefix`. With the configuration above, the service is hosted at `https://mash.example.com/yacy`.
+After running the command for installation, the The Lounge instance becomes available at the URL specified with `yacy_hostname` and `yacy_path_prefix`. With the configuration above, the service is hosted at `https://mash.example.com/yacy`.
 
 You can log in to the instance with the default login credential of the admin account (username: `admin`, password: `yacy`).
 
@@ -82,4 +82,4 @@ See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-ya
 
 ## Related services
 
-- [SearXNG](searxng.md) — a privacy-respecting, hackable [metasearch engine](https://en.wikipedia.org/wiki/Metasearch_engine). See [this section](searxng.md#add-your-yacy-instance-optional) for the instruction to add your YaCy instance to the SearXNG instance.
+- [SearXNG](searxng.md) — a privacy-respecting, hackable [metasearch engine](https://en.wikipedia.org/wiki/Metasearch_engine). See [this section](searxng.md#add-your-yacy-instance-optional) for the instruction to add your The Lounge instance to the SearXNG instance.
