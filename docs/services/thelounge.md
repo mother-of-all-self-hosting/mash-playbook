@@ -19,7 +19,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
 # The Lounge
 
-The playbook can install and configure [The Lounge](https://yacy.net) for you.
+The playbook can install and configure [The Lounge](https://thelounge.net) for you.
 
 The Lounge is a distributed web search engine, based on a peer-to-peer network. It provides three different modes;
 
@@ -27,15 +27,15 @@ The Lounge is a distributed web search engine, based on a peer-to-peer network. 
 - Crawling web pages of domains you choose to create an individual index for searching
 - Setting up a search portal for your intranet behind the firewall to search pages or files on the shared file system, without sharing data with a third party
 
-See the project's [documentation](https://yacy.net/docs/) to learn what The Lounge does and why it might be useful to you.
+See the project's [documentation](https://thelounge.net/docs/) to learn what The Lounge does and why it might be useful to you.
 
-For details about configuring the [Ansible role for The Lounge](https://github.com/mother-of-all-self-hosting/ansible-role-yacy), you can check them via:
-- 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-yacy/blob/main/docs/configuring-yacy.md) online
-- 📁 `roles/galaxy/yacy/docs/configuring-yacy.md` locally, if you have [fetched the Ansible roles](../installing.md)
+For details about configuring the [Ansible role for The Lounge](https://github.com/mother-of-all-self-hosting/ansible-role-thelounge), you can check them via:
+- 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-thelounge/blob/main/docs/configuring-thelounge.md) online
+- 📁 `roles/galaxy/thelounge/docs/configuring-thelounge.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 ## Prerequisites
 
-You may need to open some ports to your server, if you use another firewall in front of the server. Refer to [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-yacy/blob/main/docs/configuring-yacy.md#prerequisites) to check which ones to be configured.
+You may need to open some ports to your server, if you use another firewall in front of the server. Refer to [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-thelounge/blob/main/docs/configuring-thelounge.md#prerequisites) to check which ones to be configured.
 
 ## Dependencies
 
@@ -50,36 +50,36 @@ To enable this service, add the following configuration to your `vars.yml` file 
 ```yaml
 ########################################################################
 #                                                                      #
-# yacy                                                                 #
+# thelounge                                                            #
 #                                                                      #
 ########################################################################
 
-yacy_enabled: true
+thelounge_enabled: true
 
-yacy_hostname: mash.example.com
-yacy_path_prefix: /yacy
+thelounge_hostname: mash.example.com
+thelounge_path_prefix: /thelounge
 
 ########################################################################
 #                                                                      #
-# /yacy                                                                #
+# /thelounge                                                           #
 #                                                                      #
 ########################################################################
 ```
 
 ## Usage
 
-After running the command for installation, the The Lounge instance becomes available at the URL specified with `yacy_hostname` and `yacy_path_prefix`. With the configuration above, the service is hosted at `https://mash.example.com/yacy`.
+After running the command for installation, the The Lounge instance becomes available at the URL specified with `thelounge_hostname` and `thelounge_path_prefix`. With the configuration above, the service is hosted at `https://mash.example.com/thelounge`.
 
-You can log in to the instance with the default login credential of the admin account (username: `admin`, password: `yacy`).
+You can log in to the instance with the default login credential of the admin account (username: `admin`, password: `thelounge`).
 
 To improve security regarding the admin account, **the role configures the instance on the intranet search mode by default**, so that it does not broadcast its existence to peers before you change the login credential.
 
-See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-yacy/blob/main/docs/configuring-yacy.md#usage) on the role's documentation for details about changing the admin user password and search mode, including protecting the instance with the password.
+See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-thelounge/blob/main/docs/configuring-thelounge.md#usage) on the role's documentation for details about changing the admin user password and search mode, including protecting the instance with the password.
 
 ## Troubleshooting
 
-See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-yacy/blob/main/docs/configuring-yacy.md#troubleshooting) on the role's documentation for details.
+See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-thelounge/blob/main/docs/configuring-thelounge.md#troubleshooting) on the role's documentation for details.
 
 ## Related services
 
-- [SearXNG](searxng.md) — a privacy-respecting, hackable [metasearch engine](https://en.wikipedia.org/wiki/Metasearch_engine). See [this section](searxng.md#add-your-yacy-instance-optional) for the instruction to add your The Lounge instance to the SearXNG instance.
+- [SearXNG](searxng.md) — a privacy-respecting, hackable [metasearch engine](https://en.wikipedia.org/wiki/Metasearch_engine). See [this section](searxng.md#add-your-thelounge-instance-optional) for the instruction to add your The Lounge instance to the SearXNG instance.
