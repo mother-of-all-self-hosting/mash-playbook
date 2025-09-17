@@ -750,6 +750,11 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
     {{ ({'name': (telegraf_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'telegraf']} if telegraf_enabled else omit) }}
   # /role-specific:telegraf
 
+  # role-specific:thelounge
+  - |-
+    {{ ({'name': (thelounge_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'thelounge']} if thelounge_enabled else omit) }}
+  # /role-specific:thelounge
+
   # role-specific:tinyauth
   - |-
     {{ ({'name': (tinyauth_identifier + '.service'), 'priority': 1900, 'groups': ['mash', 'tinyauth']} if tinyauth_enabled else omit) }}
@@ -8526,6 +8531,44 @@ telegraf_systemd_required_services_list_auto: |
 #                                                                      #
 ########################################################################
 # /role-specific:telegraf
+
+
+
+# role-specific:thelounge
+########################################################################
+#                                                                      #
+# thelounge                                                            #
+#                                                                      #
+########################################################################
+
+thelounge_enabled: false
+
+thelounge_identifier: "{{ mash_playbook_service_identifier_prefix }}thelounge"
+
+thelounge_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}thelounge"
+
+thelounge_uid: "{{ mash_playbook_uid }}"
+thelounge_gid: "{{ mash_playbook_gid }}"
+
+thelounge_container_additional_networks_auto: |
+  {{
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+  }}
+
+thelounge_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+thelounge_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+
+# role-specific:traefik
+thelounge_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
+thelounge_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
+# /role-specific:traefik
+
+########################################################################
+#                                                                      #
+# /thelounge                                                           #
+#                                                                      #
+########################################################################
+# /role-specific:thelounge
 
 
 

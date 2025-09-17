@@ -536,6 +536,10 @@
   version: v1.35.4-1
   name: telegraf
   activation_prefix: telegraf_
+- src: git+https://codeberg.org/acioustick/ansible-role-thelounge.git
+  version: v4.4.3-0
+  name: thelounge
+  activation_prefix: thelounge_
 - src: git+https://github.com/devture/com.devture.ansible.role.timesync.git
   version: v1.1.0-0
   name: timesync
