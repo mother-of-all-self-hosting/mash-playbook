@@ -21,11 +21,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
 The playbook can install and configure [The Lounge](https://thelounge.chat) for you.
 
-The Lounge is a distributed web search engine, based on a peer-to-peer network. It provides three different modes;
-
-- Searching a shared global index on the P2P network
-- Crawling web pages of domains you choose to create an individual index for searching
-- Setting up a search portal for your intranet behind the firewall to search pages or files on the shared file system, without sharing data with a third party
+The Lounge is a modern web IRC client designed for self-hosting. It implements features such as push notification, link previews, and file uploading, and keeps a persistent connection to the IRC server while you are offline (meaning you do not need a bouncer). It is a progressiv web app (PWA), and can be accessed via a browser.
 
 See the project's [documentation](https://thelounge.chat/docs) to learn what The Lounge does and why it might be useful to you.
 
