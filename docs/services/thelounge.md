@@ -19,7 +19,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
 # The Lounge
 
-The playbook can install and configure [The Lounge](https://thelounge.net) for you.
+The playbook can install and configure [The Lounge](https://thelounge.chat) for you.
 
 The Lounge is a distributed web search engine, based on a peer-to-peer network. It provides three different modes;
 
@@ -27,7 +27,7 @@ The Lounge is a distributed web search engine, based on a peer-to-peer network. 
 - Crawling web pages of domains you choose to create an individual index for searching
 - Setting up a search portal for your intranet behind the firewall to search pages or files on the shared file system, without sharing data with a third party
 
-See the project's [documentation](https://thelounge.net/docs/) to learn what The Lounge does and why it might be useful to you.
+See the project's [documentation](https://thelounge.chat/docs) to learn what The Lounge does and why it might be useful to you.
 
 For details about configuring the [Ansible role for The Lounge](https://codeberg.org/acioustick/ansible-role-thelounge), you can check them via:
 - 🌐 [the role's documentation](https://codeberg.org/acioustick/ansible-role-thelounge/src/branch/master/docs/configuring-thelounge.md) online
