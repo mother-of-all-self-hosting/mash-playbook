@@ -62,7 +62,7 @@ headscale_configuration_extension:
       method: S256
 ```
 You can find more details reading about configuring OIDC by referring to the documentation at both [Headscale](https://headscale.net/stable/ref/oidc/?h=oidc) and [Authentik](https://integrations.goauthentik.io/networking/headscale/ ).
-Note that Headscale's documentation don't explicitly cover Authentik. 
+Note that Headscale's documentation doesn't explicitly cover Authentik. 
 
 ## Role
 Take a look at:
