@@ -19,6 +19,3 @@
 
 /group_vars/*
 !/group_vars/.gitkeep
-
-# Local Python virtual env
-.venv/
