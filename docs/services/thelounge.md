@@ -31,7 +31,9 @@ For details about configuring the [Ansible role for The Lounge](https://codeberg
 
 ## Prerequisites
 
-You may need to open some ports to your server, if you use another firewall in front of the server. Refer to [the role's documentation](https://codeberg.org/acioustick/ansible-role-thelounge/src/branch/master/docs/configuring-thelounge.md#prerequisites) to check which ones to be configured.
+You may need to open some ports to your server, if `identd` (built-in server for ident) is enabled and another firewall is used in front of the server. Refer to [the role's documentation](https://codeberg.org/acioustick/ansible-role-thelounge/src/branch/master/docs/configuring-thelounge.md#prerequisites) to check which ones to be configured.
+
+See [this page](https://thelounge.chat/docs/guides/identd-and-oidentd) on the official documentation for details about `identd`.
 
 ## Dependencies
 
