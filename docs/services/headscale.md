@@ -41,7 +41,7 @@ headscale_hostname: headscale.example.com
 
 ### Single-Sign-On (SSO) integration
 
-Nextcloud supports Single-Sign-On (SSO) via OIDC. To make use of it, an Identity Provider (IdP) like [authentik](authentik.md), [authelia](authelia.md) or [tinyauth](tinyauth.md) needs to be set up.
+Headscale supports Single-Sign-On (SSO) via OIDC. To make use of it, an Identity Provider (IdP) like [authentik](authentik.md), [authelia](authelia.md) or [tinyauth](tinyauth.md) needs to be set up.
 As Headscale's built in authentication is somewhat manual, setting up ODIC can provide a smoother user experience.
 
 For example, you can enable SSO with authentik via OIDC by following the steps below:
