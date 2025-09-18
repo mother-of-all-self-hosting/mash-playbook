@@ -41,13 +41,13 @@ headscale_hostname: headscale.example.com
 
 ### Single-Sign-On (SSO) integration
 
-Headscale supports Single-Sign-On (SSO) via OIDC. To make use of it, an Identity Provider (IdP) like [authentik](authentik.md), [authelia](authelia.md) or [tinyauth](tinyauth.md) needs to be set up.
-As Headscale's built in authentication is somewhat manual, setting up ODIC can provide a smoother user experience.
+Headscale supports Single-Sign-On (SSO) via OIDC. To make use of it, an Identity Provider (IdP) like [authentik](authentik.md), [Authelia](authelia.md) or [Tinyauth](tinyauth.md) needs to be set up.
 
-For example, you can enable SSO with authentik via OIDC by following the steps below:
+As Headscale's built-in authentication is somewhat manual, setting up OIDC can provide a smoother user experience.
 
-Here, we are using ansible vault to supply both our `domain` as well as `client_id` and `client_secret`, you would add the following configuration to your vars.yml.
-This assume that you pick the slug `headscale` in authentik when adding headscale as an application in authentik. If not, replace `headscale` in `issuer: "https://authentik.{{ domain }}/application/o/headscale/"`
+For example, you can enable SSO with authentik via OIDC by following the steps below.
+
+Here, we are using Ansible Vault to supply both our `domain` as well as `client_id` and `client_secret`. Add the following configuration to your `vars.yml` file. This assumes that you picked the slug `headscale` in authentik when adding Headscale as an application. If not, replace `headscale` in `issuer: "https://authentik.{{ domain }}/application/o/headscale/"`.
 
 ```yaml
 headscale_configuration_extension:
@@ -61,13 +61,14 @@ headscale_configuration_extension:
       enabled: true
       method: S256
 ```
-You can find more details reading about configuring OIDC by referring to the documentation at both [Headscale](https://headscale.net/stable/ref/oidc/?h=oidc) and [authentik](https://integrations.goauthentik.io/networking/headscale/ ).
-Note that Headscale's documentation doesn't explicitly cover authentik.
+
+You can find more details about configuring OIDC by referring to the documentation at both [Headscale](https://headscale.net/stable/ref/oidc/?h=oidc) and [authentik](https://integrations.goauthentik.io/networking/headscale/). Note that Headscale's documentation doesn't explicitly cover authentik.
 
 ## Role
+
 Take a look at:
 
-- [authentik](https://github.com/mother-of-all-self-hosting/ansible-role-headscale/)'s [`defaults/main.yml`](https://github.com/mother-of-all-self-hosting/ansible-role-headscale/blob/main/defaults/main.yml) for additional variables that you can customize via your `vars.yml` file.
+- The [Headscale role](https://github.com/mother-of-all-self-hosting/ansible-role-headscale/)'s [`defaults/main.yml`](https://github.com/mother-of-all-self-hosting/ansible-role-headscale/blob/main/defaults/main.yml) for additional variables that you can customize via your `vars.yml` file.
 
 ## Usage
 
