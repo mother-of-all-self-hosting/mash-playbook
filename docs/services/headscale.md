@@ -46,7 +46,7 @@ As Headscale's built in authentication is somewhat manual, setting up ODIC can p
 
 For example, you can enable SSO with authentik via OIDC by following the steps below:
 
-Here, we are using ansible vault to supply both our `domain` as well as `client_id` and `client_secret`, you would add the following configuration to your vars.yml. 
+Here, we are using ansible vault to supply both our `domain` as well as `client_id` and `client_secret`, you would add the following configuration to your vars.yml.
 This assume that you pick the slug `headscale` in Authentik when adding headscale as an application in Authentik. If not, replace `headscale` in `issuer: "https://authentik.{{ domain }}/application/o/headscale/"`
 
 ```yaml
@@ -62,7 +62,7 @@ headscale_configuration_extension:
       method: S256
 ```
 You can find more details reading about configuring OIDC by referring to the documentation at both [Headscale](https://headscale.net/stable/ref/oidc/?h=oidc) and [Authentik](https://integrations.goauthentik.io/networking/headscale/ ).
-Note that Headscale's documentation doesn't explicitly cover Authentik. 
+Note that Headscale's documentation doesn't explicitly cover Authentik.
 
 ## Role
 Take a look at:
