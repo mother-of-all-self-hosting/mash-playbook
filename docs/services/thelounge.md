@@ -54,8 +54,7 @@ To enable this service, add the following configuration to your `vars.yml` file 
 
 thelounge_enabled: true
 
-thelounge_hostname: mash.example.com
-thelounge_path_prefix: /thelounge
+thelounge_hostname: thelounge.example.com
 
 ########################################################################
 #                                                                      #
@@ -63,6 +62,10 @@ thelounge_path_prefix: /thelounge
 #                                                                      #
 ########################################################################
 ```
+
+**Note**: hosting The Lounge under a subpath (by configuring the `thelounge_path_prefix` variable) does not seem to be possible due to The Lounge's technical limitations.
+
+See [this section](https://codeberg.org/acioustick/ansible-role-thelounge/src/branch/master/docs/configuring-thelounge.md#adjusting-the-playbook-configuration) on the role's documentation for necessary configurations to enable functions like file upload and link previews.
 
 ## Usage
 
