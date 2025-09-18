@@ -69,13 +69,15 @@ See [this section](https://codeberg.org/acioustick/ansible-role-thelounge/src/br
 
 ## Usage
 
-After running the command for installation, the The Lounge instance becomes available at the URL specified with `thelounge_hostname` and `thelounge_path_prefix`. With the configuration above, the service is hosted at `https://mash.example.com/thelounge`.
+After running the command for installation, the The Lounge instance becomes available at the URL specified with `thelounge_hostname`. With the configuration above, the service is hosted at `https://thelounge.example.com/`.
 
-You can log in to the instance with the default login credential of the admin account (username: `admin`, password: `thelounge`).
+To get started, run the command below to create a first user:
 
-To improve security regarding the admin account, **the role configures the instance on the intranet search mode by default**, so that it does not broadcast its existence to peers before you change the login credential.
+```sh
+ansible-playbook -i inventory/hosts setup.yml --tags=add-thelounge -e username=USERNAME_HERE password=PASSWORD_HERE
+```
 
-See [this section](https://codeberg.org/acioustick/ansible-role-thelounge/src/branch/master/docs/configuring-thelounge.md#usage) on the role's documentation for details about changing the admin user password and search mode, including protecting the instance with the password.
+After the user is configured, it will be possible to log in to the instance.
 
 ## Troubleshooting
 
