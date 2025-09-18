@@ -64,7 +64,9 @@ headscale_configuration_extension:
 
 You can find more details about configuring OIDC by referring to the documentation at both [Headscale](https://headscale.net/stable/ref/oidc/?h=oidc) and [authentik](https://integrations.goauthentik.io/networking/headscale/). Note that Headscale's documentation doesn't explicitly cover authentik.
 
-## Role
+### Extending the configuration
+
+There are some additional things you may wish to configure about the component.
 
 Take a look at:
 
