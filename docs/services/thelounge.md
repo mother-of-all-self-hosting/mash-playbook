@@ -82,7 +82,3 @@ After the user is configured, it will be possible to log in to the instance.
 ## Troubleshooting
 
 See [this section](https://codeberg.org/acioustick/ansible-role-thelounge/src/branch/master/docs/configuring-thelounge.md#troubleshooting) on the role's documentation for details.
-
-## Related services
-
-- [SearXNG](searxng.md) — a privacy-respecting, hackable [metasearch engine](https://en.wikipedia.org/wiki/Metasearch_engine). See [this section](searxng.md#add-your-thelounge-instance-optional) for the instruction to add your The Lounge instance to the SearXNG instance.
