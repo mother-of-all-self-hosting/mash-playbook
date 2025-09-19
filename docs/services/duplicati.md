@@ -100,7 +100,7 @@ See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-du
 
 ### Configure the SMTP mailer (optional)
 
-On Duplicati you can set up the mailer to have it send reports about backup status. **You can use Exim-relay as the mailer, which is enabled on this playbook by default.** See [this page about Exim-relay configuration](exim-relay.md) for details about how to set it up.
+On Duplicati you can set up the mailer to have it send reports about backup status. If you enable the [exim-relay](exim-relay.md) service in your inventory configuration, the playbook will automatically configure it as a mailer for the service.
 
 As the Duplicati instance does not support configuring the mailer with environment variables, you can add default options for it on its UI (and override them with options for each job). Refer to [this page](https://docs.duplicati.com/detailed-descriptions/sending-reports-via-email/sending-reports-with-email) on the official documentation as well about how to configure it.
 

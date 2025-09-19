@@ -71,9 +71,7 @@ asciinema_server_environment_variable_secret_key_base: YOUR_SECRET_KEY_HERE
 
 ### Configure the mailer
 
-You can configure a SMTP mailer for functions such as sending links for logging in.
-
-**You can use exim-relay as the mailer, which is enabled on this playbook by default.** If you enable exim-relay on the playbook and will use it for asciinema server, you do not have to add settings for them, as asciinema server is wired to the mailer automatically. See [here](exim-relay.md) for details about how to set it up.
+You can configure a SMTP mailer for functions such as sending links for logging in. If you enable the [exim-relay](exim-relay.md) service in your inventory configuration, the playbook will automatically configure it as a mailer for the service.
 
 If you do not want to enable a mailer for asciinema server altogether, add the following configuration to your `vars.yml` file:
 
