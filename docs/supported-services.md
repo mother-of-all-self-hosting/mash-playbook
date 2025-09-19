@@ -142,6 +142,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 | [Syncthing](https://syncthing.net/) | A continuous file synchronization program which synchronizes files between two or more computers in real time | [Link](services/syncthing.md) |
 | [Tandoor](https://docs.tandoor.dev/) | The recipe manager that allows you to manage your ever growing collection of digital recipes.| [Link](services/tandoor.md)
 | [Telegraf](https://www.influxdata.com/time-series-platform/telegraf/) | An open source server agent to help you collect metrics from your stacks, sensors, and systems. | [Link](services/telegraf.md) |
+| [The Lounge](https://thelounge.chat/) | Web IRC client with modern features, which keeps a persistent connection to IRC servers | [Link](services/thelounge.md) |
 | [Tinyauth](https://tinyauth.app/) | Simple authentication middleware that adds a login screen or OAuth with providers to your Docker services | [Link](services/tinyauth.md) |
 | [Traefik](https://doc.traefik.io/traefik/) | A container-aware reverse-proxy server | [Link](services/traefik.md) |
 | [TSDProxy](https://almeidapaulopt.github.io/tsdproxy/) | A proxy for virtual services in Tailscale | [Link](services/tsdproxy.md) |

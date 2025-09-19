@@ -577,6 +577,10 @@
     - role: galaxy/telegraf
     # /role-specific:telegraf
 
+    # role-specific:thelounge
+    - role: galaxy/thelounge
+    # /role-specific:thelounge
+
     # role-specific:tinyauth
     - role: galaxy/tinyauth
     # /role-specific:tinyauth
