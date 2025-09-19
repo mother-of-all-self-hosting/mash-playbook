@@ -71,7 +71,7 @@ With this recommended approach, the only services that are split out (out of the
 For example, you may prepare a dedicated inventory host (e.g. `mash.example.com-immich` or `immich.example.com`) for Immich, which:
 
 - targets the same server (e.g. same IP address as `mash.example.com`)
-- re-uses the existing [Traefik](traefik.md) installation from `mash.example.com` (as described in the [Traefik managed by you](traefik.md#traefik-managed-by-you) guide)
+- reuses the existing [Traefik](traefik.md) installation from `mash.example.com` (as described in the [Traefik managed by you](traefik.md#traefik-managed-by-you) guide)
 - installs all Immich dependencies (e.g. [Valkey](valkey.md); **custom** (Immich-specific) [Postgres](postgres.md); optionally [exim-relay](exim-relay.md))
 - installs Immich itself
 
@@ -401,7 +401,7 @@ Immich [does not currently support being hosted at a subpath](https://github.com
 
 ##### Other configuration
 
-Unfortunately, most of Immich's configuration cannot be managed via Ansible and needs to be done from the UI, after it's installed. After instalation, check the [Usage](#usage) section below for some recommendations for things you may wish to change.
+Unfortunately, most of Immich's configuration cannot be managed via Ansible and needs to be done from the UI, after it's installed. After installation, check the [Usage](#usage) section below for some recommendations for things you may wish to change.
 
 
 ## Installation
@@ -516,7 +516,7 @@ You probably wish to adjust a few different things here.
 
 3. **Hardware Acceleration**
 
-  - **Acceleration API** = chooose the one that matches your hardware and configuration preset in [Enabling Hardware Acceleration for video transcoding](#enabling-hardware-acceleration-for-video-transcoding).
+  - **Acceleration API** = choose the one that matches your hardware and configuration preset in [Enabling Hardware Acceleration for video transcoding](#enabling-hardware-acceleration-for-video-transcoding).
 
   - **Hardware decoding** = enabled (but consider disabling if it doesn't work well for you)
 
