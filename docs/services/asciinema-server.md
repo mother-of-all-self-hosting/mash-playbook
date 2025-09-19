@@ -113,7 +113,3 @@ Adding an authentication proxy service like [Keycloak](keycloak.md) and [Tinyaut
 ## Troubleshooting
 
 See [this section](https://codeberg.org/acioustick/ansible-role-asciinema-server/src/branch/master/docs/configuring-asciinema-server.md#troubleshooting) on the role's documentation for details.
-
-## Related services
-
-- [Excalidraw](excalidraw.md) — Free and open source virtual whiteboard for sketching hand-drawn like diagrams
