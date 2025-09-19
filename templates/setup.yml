@@ -117,6 +117,10 @@
     - role: galaxy/appsmith
     # /role-specific:appsmith
 
+    # role-specific:asciinema_server
+    - role: galaxy/asciinema_server
+    # /role-specific:asciinema_server
+
     # role-specific:authelia
     - role: galaxy/authelia
     # /role-specific:authelia
