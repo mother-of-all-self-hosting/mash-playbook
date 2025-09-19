@@ -24,6 +24,10 @@
   version: v1.73.1-0
   name: appsmith
   activation_prefix: appsmith_
+- src: git+https://codeberg.org/acioustick/ansible-role-asciinema-server.git
+  version: v20250915-0
+  name: asciinema_server
+  activation_prefix: asciinema_server_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-authelia.git
   version: v4.37.5-9
   name: authelia
