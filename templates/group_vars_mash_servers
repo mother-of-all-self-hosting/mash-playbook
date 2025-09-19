@@ -347,6 +347,13 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
     {{ ({'name': (ilmo_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'ilmo']} if ilmo_enabled else omit) }}
   # /role-specific:ilmo
 
+  # role-specific:immich
+  - |-
+    {{ ({'name': (immich_server_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'immich']} if immich_enabled and immich_server_enabled else omit) }}
+  - |-
+    {{ ({'name': (immich_machine_learning_identifier + '.service'), 'priority': 200, 'groups': ['mash', 'immich']} if immich_enabled and immich_machine_learning_enabled else omit) }}
+  # /role-specific:immich
+
   # role-specific:infisical
   - |-
     {{ ({'name': (infisical_identifier + '-backend.service'), 'priority': 2000, 'groups': ['mash', 'infisical', 'infisical-backend']} if infisical_enabled else omit) }}
@@ -1044,6 +1051,19 @@ mash_playbook_postgres_managed_databases_auto_itemized:
       } if ilmo_enabled and ilmo_database_host == postgres_connection_hostname and ilmo_database_type == 'postgresql' else omit)
     }}
   # /role-specific:ilmo
+
+  # role-specific:immich
+  # Ref: https://immich.app/docs/administration/postgres-standalone/#without-superuser-permission
+  - |-
+    {{
+      ({
+        'name': immich_database_name,
+        'username': immich_database_username,
+        'password': immich_database_password,
+        'additional_sql_queries': immich_database_preparation_sql_queries,
+      } if immich_enabled and immich_server_enabled and immich_database_hostname == postgres_identifier else omit)
+    }}
+  # /role-specific:immich
 
   # role-specific:joplin_server
   - |-
@@ -4894,6 +4914,71 @@ ilmo_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary
 ########################################################################
 # /role-specific:ilmo
 
+
+# role-specific:immich
+########################################################################
+#                                                                      #
+# immich                                                               #
+#                                                                      #
+########################################################################
+
+immich_enabled: false
+
+immich_identifier: "{{ mash_playbook_service_identifier_prefix }}immich"
+
+immich_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}immich"
+
+immich_uid: "{{ mash_playbook_uid }}"
+immich_gid: "{{ mash_playbook_gid }}"
+
+immich_server_systemd_required_services_list_auto: |
+ {{
+    ([postgres_identifier ~ '.service'] if postgres_enabled and immich_database_hostname == postgres_connection_hostname | default('mash-postgres') else [])
+  }}
+
+immich_server_systemd_wanted_services_list_auto: |
+  {{
+    ([(exim_relay_identifier | default('mash-exim-relay')) ~ '.service'] if (exim_relay_enabled | default(false) and immich_smtp_host == exim_relay_identifier | default('mash-exim-relay')) else [])
+  }}
+
+immich_server_container_additional_networks_auto: |
+  {{
+    (
+      ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+      +
+      ([exim_relay_container_network | default('mash-exim-relay')] if (exim_relay_enabled | default(false) and immich_smtp_host == exim_relay_identifier | default('mash-exim-relay') and immich_server_container_network != exim_relay_container_network | default('mash-exim-relay')) else [])
+      +
+      ([postgres_container_network] if postgres_enabled and immich_database_hostname == postgres_connection_hostname | default('mash-postgres') and immich_server_container_network != postgres_container_network | default('mash-postgres') else [])
+    ) | unique
+  }}
+
+immich_server_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+immich_server_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+immich_server_container_labels_traefik_compression_middleware_enabled: "{{ mash_playbook_reverse_proxy_traefik_middleware_compession_enabled }}"
+immich_server_container_labels_traefik_compression_middleware_name: "{{ mash_playbook_reverse_proxy_traefik_middleware_compession_name if mash_playbook_reverse_proxy_traefik_middleware_compession_enabled else '' }}"
+
+# role-specific:traefik
+immich_server_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
+immich_server_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
+# /role-specific:traefik
+
+# role-specific:exim_relay
+immich_smtp_host: "{{ exim_relay_identifier if exim_relay_enabled else '' }}"
+# /role-specific:exim_relay
+
+# role-specific:postgres
+immich_database_hostname: "{{ postgres_connection_hostname if postgres_enabled else '' }}"
+immich_database_port: "{{ postgres_connection_port if postgres_enabled else '5432' }}"
+immich_database_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'db.immich', rounds=655555) | to_uuid }}"
+immich_database_sslmode: "{{ 'disable' if (immich_database_hostname == postgres_connection_hostname | default('mash-postgres')) else 'require' }}"
+# /role-specific:postgres
+
+########################################################################
+#                                                                      #
+# /immich                                                              #
+#                                                                      #
+########################################################################
+# /role-specific:immich
 
 
 # role-specific:infisical

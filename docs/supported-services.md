@@ -69,6 +69,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 | [Hubsite](https://github.com/moan0s/hubsite) | A simple, static site that shows an overview of the available services | [Link](services/hubsite.md) |
 | [I hate money](https://github.com/spiral-project/ihatemoney) | An open source shared budget manager. | [Link](services/ihatemoney.md) |
 | [ILMO](https://github.com/moan0s/ILMO2) | An open source library management tool. | [Link](services/ilmo.md) |
+| [Immich](https://github.com/immich-app/immich) | High performance self-hosted photo and video management solution | [Link](services/immich.md) |
 | [Infisical](https://infisical.com/) | An open-source end-to-end encrypted platform for securely managing secrets and configs across your team, devices, and infrastructure. | [Link](services/infisical.md) |
 | [InfluxDB](https://www.influxdata.com/) | A self-hosted time-series database. | [Link](services/influxdb.md) |
 | [Jackett](https://github.com/Jackett/Jackett) | An API for your favorite torrent trackers | [Link](services/jackett.md) |
