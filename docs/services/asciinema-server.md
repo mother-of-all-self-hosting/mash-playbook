@@ -21,17 +21,13 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
 The playbook can install and configure [asciinema server](https://github.com/asciinema/asciinema-server/) for you.
 
-asciinema server is an free and open-source collaborative wiki and documentation software, designed for seamless real-time collaboration. It can be used to manage a wiki, a knowledge base, project documentation, etc. It has various functions such as granular permissions management system, page history to track changes of articles, etc. It also supports diagramming tools like Draw.io, Excalidraw and Mermaid.
+asciinema server is a server-side component of the asciinema system, a suite of tools for recording, streaming, and sharing terminal sessions. The [asciinema CLI](https://docs.asciinema.org/manual/cli/) can be configured to upload recordings to the server this role sets up, so that users can host and share them on it, instead of the default asciinema server (<https://asciinema.org>).
 
-See the project's [documentation](https://docs.asciinema.org/) to learn what asciinema server does and why it might be useful to you.
+See the project's [documentation](https://docs.asciinema.org/) to learn what asciinema does and why it might be useful to you.
 
 For details about configuring the [Ansible role for asciinema server](https://codeberg.org/acioustick/ansible-role-asciinema-server), you can check them via:
 - 🌐 [the role's documentation](https://codeberg.org/acioustick/ansible-role-asciinema-server/src/branch/master/docs/configuring-asciinema-server.md) online
 - 📁 `roles/galaxy/asciinema_server/docs/configuring-asciinema-server.md` locally, if you have [fetched the Ansible roles](../installing.md)
-
->[!NOTE]
-> - The role is based on Node.js docker image, and is currently expected to run with uid 1000.
-> - Excalidraw is available on the playbook. See [here](excalidraw.md) for details about how to install it.
 
 ## Dependencies
 
