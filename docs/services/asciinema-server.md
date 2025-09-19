@@ -25,8 +25,8 @@ asciinema server is an free and open-source collaborative wiki and documentation
 
 See the project's [documentation](https://asciinema_server.com/docs/) to learn what asciinema server does and why it might be useful to you.
 
-For details about configuring the [Ansible role for asciinema server](https://github.com/mother-of-all-self-hosting/ansible-role-asciinema-server), you can check them via:
-- 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-asciinema-server/blob/main/docs/configuring-asciinema-server.md) online
+For details about configuring the [Ansible role for asciinema server](https://codeberg.org/acioustick/ansible-role-asciinema-server), you can check them via:
+- 🌐 [the role's documentation](https://codeberg.org/acioustick/ansible-role-asciinema-server/src/branch/master/docs/configuring-asciinema-server.md) online
 - 📁 `roles/galaxy/asciinema_server/docs/configuring-asciinema-server.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 >[!NOTE]
@@ -70,7 +70,7 @@ asciinema_server_hostname: asciinema_server.example.com
 
 The service provides these storage backend options: local filesystem (default) and Amazon S3 compatible object storage.
 
-See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-asciinema-server/blob/main/docs/configuring-asciinema-server.md#configure-a-storage-backend) on the role's documentation for details about how to set up Amazon S3 compatible object storage for asciinema server.
+See [this section](https://codeberg.org/acioustick/ansible-role-asciinema-server/src/branch/master/docs/configuring-asciinema-server.md#configure-a-storage-backend) on the role's documentation for details about how to set up Amazon S3 compatible object storage for asciinema server.
 
 ### Configure the mailer
 
@@ -78,7 +78,7 @@ You can configure a mailer for functions such as user invitation. asciinema serv
 
 **You can use exim-relay as the mailer, which is enabled on this playbook by default.** If you enable exim-relay on the playbook and will use it for asciinema server, you do not have to add settings for them, as asciinema server is wired to the mailer automatically. See [here](exim-relay.md) for details about how to set it up.
 
-If you will use another SMTP server or Postmark, see [this section](https://github.com/mother-of-all-self-hosting/ansible-role-asciinema-server/blob/main/docs/configuring-asciinema-server.md#configure-the-mailer) on the role's documentation for details about configuring the mailer.
+If you will use another SMTP server or Postmark, see [this section](https://codeberg.org/acioustick/ansible-role-asciinema-server/src/branch/master/docs/configuring-asciinema-server.md#configure-the-mailer) on the role's documentation for details about configuring the mailer.
 
 If you do not want to enable a mailer for asciinema server altogether, add the following configuration to your `vars.yml` file:
 
@@ -280,7 +280,7 @@ To get started, open the URL with a web browser, and create a first workspace by
 
 ## Troubleshooting
 
-See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-asciinema-server/blob/main/docs/configuring-asciinema-server.md#troubleshooting) on the role's documentation for details.
+See [this section](https://codeberg.org/acioustick/ansible-role-asciinema-server/src/branch/master/docs/configuring-asciinema-server.md#troubleshooting) on the role's documentation for details.
 
 ## Related services
 
