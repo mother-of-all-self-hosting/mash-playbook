@@ -351,7 +351,7 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
   - |-
     {{ ({'name': (immich_server_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'immich']} if immich_enabled and immich_server_enabled else omit) }}
   - |-
-    {{ ({'name': (immich_machine_learning_identifier + '.service'), 'priority': 200, 'groups': ['mash', 'immich']} if immich_enabled and immich_machine_learning_enabled else omit) }}
+    {{ ({'name': (immich_machine_learning_identifier + '.service'), 'priority': 1500, 'groups': ['mash', 'immich']} if immich_enabled and immich_machine_learning_enabled else omit) }}
   # /role-specific:immich
 
   # role-specific:infisical
