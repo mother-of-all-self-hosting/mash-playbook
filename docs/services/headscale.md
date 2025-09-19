@@ -41,7 +41,7 @@ headscale_hostname: headscale.example.com
 
 ### Single-Sign-On (SSO) integration
 
-Headscale supports Single-Sign-On (SSO) via OIDC. To make use of it, an Identity Provider (IdP) like [authentik](authentik.md), [Authelia](authelia.md) or [Tinyauth](tinyauth.md) needs to be set up.
+Headscale supports Single-Sign-On (SSO) via OIDC. To make use of it, an Identity Provider (IdP) like [authentik](authentik.md), [Authelia](authelia.md), [Keycloak](keycloak.md) or [Tinyauth](tinyauth.md) needs to be set up.
 
 As Headscale's built-in authentication is somewhat manual, setting up OIDC can provide a smoother user experience.
 
