@@ -118,6 +118,11 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
     {{ ({'name': (appsmith_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'appsmith']} if appsmith_enabled else omit) }}
   # /role-specific:appsmith
 
+  # role-specific:asciinema_server
+  - |-
+    {{ ({'name': (asciinema_server_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'asciinema-server']} if asciinema_server_enabled else omit) }}
+  # /role-specific:asciinema_server
+
   # role-specific:authelia
   - |-
     {{ ({'name': (authelia_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'authelia']} if authelia_enabled else omit) }}
@@ -864,6 +869,17 @@ mash_playbook_postgres_managed_databases_auto_itemized:
   # Dummy entry, which is not role-specific.
   # Ensures there's at least one entry defined in the list.
   - "{{ omit }}"
+
+  # role-specific:asciinema_server
+  - |-
+    {{
+      ({
+        'name': asciinema_server_database_name,
+        'username': asciinema_server_database_username,
+        'password': asciinema_server_database_password,
+      } if asciinema_server_enabled and asciinema_server_database_hostname == postgres_connection_hostname else omit)
+    }}
+  # /role-specific:asciinema_server
 
   # role-specific:authelia
   - |-
@@ -1846,6 +1862,72 @@ appsmith_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_pri
 #                                                                      #
 ########################################################################
 # /role-specific:appsmith
+
+
+
+# role-specific:asciinema_server
+########################################################################
+#                                                                      #
+# asciinema_server                                                     #
+#                                                                      #
+########################################################################
+
+asciinema_server_enabled: false
+
+asciinema_server_identifier: "{{ mash_playbook_service_identifier_prefix }}asciinema-server"
+
+asciinema_server_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}asciinema-server"
+
+asciinema_server_uid: "{{ mash_playbook_uid }}"
+asciinema_server_gid: "{{ mash_playbook_gid }}"
+
+asciinema_server_systemd_wanted_services_list_auto: |
+  {{
+    ([(exim_relay_identifier | default('mash-exim-relay')) ~ '.service'] if (exim_relay_enabled | default(false) and asciinema_server_environment_variable_smtp_host == exim_relay_identifier | default('mash-exim-relay')) else [])
+  }}
+
+asciinema_server_systemd_required_services_list_auto: |
+ {{
+    ([postgres_identifier ~ '.service'] if postgres_enabled and asciinema_server_database_hostname == postgres_connection_hostname else [])
+  }}
+
+asciinema_server_container_additional_networks_auto: |
+  {{
+    ([exim_relay_container_network | default('mash-exim-relay')] if (exim_relay_enabled | default(false) and asciinema_server_environment_variable_smtp_host == exim_relay_identifier | default('mash-exim-relay') and asciinema_server_container_network != exim_relay_container_network) else [])
+    +
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+    +
+    ([postgres_container_network] if postgres_enabled and asciinema_server_database_hostname == postgres_connection_hostname and asciinema_server_container_network != postgres_container_network else [])
+  }}
+
+asciinema_server_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+asciinema_server_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+
+# role-specific:exim_relay
+asciinema_server_mailer_enabled: "{{ exim_relay_enabled }}"
+asciinema_server_environment_variable_smtp_host: "{{ exim_relay_identifier if exim_relay_enabled else '' }}"
+asciinema_server_environment_variable_smtp_port: "{{ 8025 if exim_relay_enabled else '587' }}"
+asciinema_server_environment_variable_mail_from_address: "{{ exim_relay_sender_address if exim_relay_enabled else '' }}"
+# /role-specific:exim_relay
+
+# role-specific:postgres
+asciinema_server_database_hostname: "{{ postgres_connection_hostname if postgres_enabled else '' }}"
+asciinema_server_database_port: "{{ postgres_connection_port if postgres_enabled else '5432' }}"
+asciinema_server_database_user: "{{ asciinema_server_identifier }}"
+asciinema_server_database_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'db.asciinema', rounds=655555) | to_uuid }}"
+# /role-specific:postgres
+
+# role-specific:traefik
+asciinema_server_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
+asciinema_server_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
+# /role-specific:traefik
+
+########################################################################
+#                                                                      #
+# /asciinema_server                                                    #
+#                                                                      #
+########################################################################
+# /role-specific:asciinema_server
 
 
 
