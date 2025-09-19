@@ -88,6 +88,47 @@ See [this section](https://codeberg.org/acioustick/ansible-role-pocket-id/src/br
 
 If you are interested in integrating Pocket ID with [Tinyauth](https://tinyauth.app), you might also be interested in having a look at [this section](tinyauth.md#integrating-with-pocket-id).
 
+### Integrating with a LDAP server
+
+Pocket ID supports LDAP for user management. This playbook supports [LLDAP](lldap.md), and it is possible to set up the LLDAP instance as a source for users.
+
+After installing it and creating an admin user (and optionally another user with less privileges), you can configure LDAP client settings and the attribute mapping on the Pocket ID's UI.
+
+If you enabled configuring additional settings with environment variables (by setting `pocket_id_environment_variable_ui_config_disabled` to `true`), you can follow [this example](https://codeberg.org/acioustick/ansible-role-pocket-id/src/branch/develop/docs/configuring-pocket-id.md#configure-ldap-server-settings-with-environment-variables-optional) on the role's documentation to override the default values on the playbook per your needs.
+
+If you are looking for a less complicated example to get started, you can refer to the one below to get an idea about how it works. Note **it is not recommended to use a user with admin privileges for binding**, as search privileges are sufficient. On LLDAP it is recommended to use instead a user in the `lldap_strict_readonly` or `lldap_password_manager` group.
+
+```yaml
+lldap_environment_variables_lldap_ldap_user_dn: admin
+lldap_environment_variables_lldap_ldap_user_pass: PASSWORD_FOR_ADMIN
+lldap_environment_variables_lldap_ldap_base_dn: dc=domain,dc=com
+
+…
+
+# Specify LDAP bind Distinguished Name (dn) for the user
+pocket_id_environment_variable_ldap_bind_dn: uid={{ lldap_environment_variables_lldap_ldap_user_dn }},ou=people,{{ lldap_environment_variables_lldap_ldap_base_dn }}
+
+# Specify the password for the bind DN account
+pocket_id_environment_variable_ldap_bind_password: "{{ lldap_environment_variables_lldap_ldap_user_pass }}"
+
+# Specify the top-level path to search for users and groups
+pocket_id_environment_variable_ldap_base: "{{ lldap_environment_variables_lldap_ldap_base_dn }}"
+
+# Specify LDAP user search filter
+pocket_id_environment_variable_ldap_user_search_filter: "(objectClass=person)"
+
+# Specify the search filter to use to search/sync groups
+pocket_id_environment_variable_ldap_user_group_search_filter: "(objectClass=groupOfNames)"
+```
+
+>[!NOTE]
+> You can manually configure these settings for the LDAP server on the UI, if configuring additional settings with environment variable is disabled. This case, make sure to set `ldap://mash-lldap:3890` to "LDAP URL" and enable "skip certificate verification".
+
+Refer to these guides as well:
+
+- <https://pocket-id.org/docs/configuration/ldap>
+- <https://github.com/lldap/lldap/blob/main/README.md#general-configuration-guide>
+
 ## Troubleshooting
 
 See [this section](https://codeberg.org/acioustick/ansible-role-pocket-id/src/branch/master/docs/configuring-pocket-id.md#troubleshooting) on the role's documentation for details.
