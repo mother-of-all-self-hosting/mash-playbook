@@ -280,6 +280,10 @@
   version: v4.1.0-6
   name: listmonk
   activation_prefix: listmonk_
+- src: git+https://github.com/mother-of-all-self-hosting/ansible-role-lldap.git
+  version: v0.6.2-0
+  name: lldap
+  activation_prefix: lldap_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-loki.git
   version: v3.5.5-0
   name: loki
