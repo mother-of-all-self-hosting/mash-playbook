@@ -8862,8 +8862,15 @@ tinyauth_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base
 tinyauth_uid: "{{ mash_playbook_uid }}"
 tinyauth_gid: "{{ mash_playbook_gid }}"
 
+tinyauth_systemd_wanted_services_list_auto: |
+  {{
+    ([lldap_identifier ~ '.service'] if lldap_enabled | default(false) and tinyauth_ldap_enabled else [])
+  }}
+
 tinyauth_container_additional_networks_auto: |
   {{
+    ([lldap_container_network] if lldap_enabled | default(false) and pocket_id_container_network != lldap_container_network and tinyauth_ldap_enabled else [])
+    +
     ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
   }}
 
@@ -8871,6 +8878,12 @@ tinyauth_environment_variables_secret: "{{ ('%s' | format(mash_playbook_generic_
 
 tinyauth_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
 tinyauth_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+
+# role-specific:lldap
+tinyauth_ldap_enabled: "{{ lldap_enabled }}"
+tinyauth_environment_variable_ldap_address: ldap://{{ lldap_identifier }}:{{ lldap_container_ldap_port }}
+tinyauth_environment_variable_ldap_insecure: true
+# /role-specific:lldap
 
 # role-specific:traefik
 tinyauth_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"

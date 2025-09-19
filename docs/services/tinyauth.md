@@ -229,6 +229,34 @@ tinyauth_environment_variables_users_enabled: false
 
 After configuring the Pocket ID instance and restarting the services, accessing `echoip.example.com` automatically redirects you to `tinyauth.example.com`, where you can then proceed to log in only via `pocketid.example.com` with your registered passkey.
 
+### Integrating with a LDAP server
+
+Tinyauth supports not only OAuth but also LDAP for user management. This playbook supports [LLDAP](lldap.md), and it is possible to set up the LLDAP instance as a source for users.
+
+When setting up, make sure to adjust these configurations by replacing the bind DN and base DN with the values of your own configuration:
+
+```yaml
+# Specify LDAP bind Distinguished Name (dn) for the user with the search privilege
+tinyauth_environment_variable_ldap_bind_dn: "uid=your-observer-user,ou=people,dc=example,dc=com"
+
+# Specify the password for the bind DN account
+tinyauth_environment_variable_ldap_bind_password: "your-observer-user-password"
+
+# Specify the top-level path to search for users
+tinyauth_environment_variable_ldap_base_dn: "dc=example,dc=com"
+
+# Specify LDAP user search filter
+tinyauth_environment_variable_ldap_user_search_filter: "(uid=%s)"
+```
+
+See [this section](https://codeberg.org/acioustick/ansible-role-tinyauth/src/commit/64390731a1f205e929328f24cf393c5e46a4f047/docs/configuring-tinyauth.md#ldap) on the role's documentation for details.
+
+To disable the integration altogether, add the following configuration to your `vars.yml` file:
+
+```yaml
+tinyauth_ldap_enabled: false
+```
+
 ## Troubleshooting
 
 See [this section](https://codeberg.org/acioustick/ansible-role-tinyauth/src/branch/master/docs/configuring-tinyauth.md#troubleshooting) on the role's documentation for details.
