@@ -19,11 +19,11 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
 # asciinema server
 
-The playbook can install and configure [asciinema server](https://asciinema_server.com/) for you.
+The playbook can install and configure [asciinema server](https://github.com/asciinema/asciinema-server/) for you.
 
 asciinema server is an free and open-source collaborative wiki and documentation software, designed for seamless real-time collaboration. It can be used to manage a wiki, a knowledge base, project documentation, etc. It has various functions such as granular permissions management system, page history to track changes of articles, etc. It also supports diagramming tools like Draw.io, Excalidraw and Mermaid.
 
-See the project's [documentation](https://asciinema_server.com/docs/) to learn what asciinema server does and why it might be useful to you.
+See the project's [documentation](https://docs.asciinema.org/) to learn what asciinema server does and why it might be useful to you.
 
 For details about configuring the [Ansible role for asciinema server](https://codeberg.org/acioustick/ansible-role-asciinema-server), you can check them via:
 - 🌐 [the role's documentation](https://codeberg.org/acioustick/ansible-role-asciinema-server/src/branch/master/docs/configuring-asciinema-server.md) online
@@ -258,7 +258,7 @@ Running the installation command will create the shared Valkey instance named `m
 
 ### Enable Telemetry (optional)
 
-By default this playbook disables asciinema server's [telemetry](https://asciinema_server.com/docs/self-hosting/environment-variables#telemetry) which collects information about the active version, user count, page count, space and workspace count, and sends to the asciinema server server (see [here](https://github.com/asciinema_server/asciinema_server/blob/main/apps/server/src/integrations/telemetry/telemetry.service.ts)).
+By default this playbook disables asciinema server's [telemetry](https://github.com/asciinema/asciinema-server/docs/self-hosting/environment-variables#telemetry) which collects information about the active version, user count, page count, space and workspace count, and sends to the asciinema server server (see [here](https://github.com/asciinema_server/asciinema_server/blob/main/apps/server/src/integrations/telemetry/telemetry.service.ts)).
 
 If you are fine with sending such information and want to help developers, add the following configuration to your `vars.yml` file:
 
