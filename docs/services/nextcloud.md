@@ -297,6 +297,40 @@ Refer to [this blogpost by a third party](https://blog.cubieserver.de/2022/compl
 - The official documentation of authentik to connect nextcloud via SAML does not seem to work (as of August 2023).
 - If you cannot log in due to an error (the error message contains `SHA1 mismatch`), make sure that Nextcloud users and authentik users do not have the same name. If they do, check `Use unique user ID` in the OIDC App settings.
 
+### LDAP integration with LLDAP
+
+Nextcloud ships with an LDAP application to allow LDAP (including Active Directory) users to log in to the Nextcloud instance with their LDAP credentials. See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-nextcloud/blob/main/docs/configuring-nextcloud.md#connecting-to-ldap-server) on the role's documentation for details about how to configure Nextcloud.
+
+This playbook supports [LLDAP](https://github.com/lldap/lldap), and it is possible to set up the LLDAP instance as a source for users.
+
+First, the LLDAP instance needs to be installed. See [this page](lldap.md) for the instruction.
+
+Then, proceed to configure the LDAP application on the Nextcloud to have it connect to the LLDAP instance. By default the playbook is configured to use the user specified with `lldap_environment_variables_lldap_ldap_user_dn` for binding. To use another user (with search privileges), add the following configuration to your `vars.yml` file:
+
+```yaml
+nextcloud_ldap_agent_name_uid: USERNAME_FOR_BINDING_HERE
+```
+
+Run the command below to configure the LDAP application on the Nextcloud instance, so that the instance connects to the LLDAP server:
+
+```sh
+just run-tags set-ldap-config-nextcloud -e agent_password=PASSWORD_OF_BIND_USER_HERE
+```
+
+After running the command successfully, the application's server tab should look like below (note: `uid` is set to `admin`):
+
+[<img src="../assets/nextcloud/ldap.webp" title="Server tab on the application's configuration" width="600" alt="Server tab on the application's configuration">](../assets/nextcloud/ldap.webp)
+
+If "Configuration OK 🟢" is displayed at the bottom of the tab, the application is configured successfully, and now users on the LLDAP instance can log in to the instance with their LDAP credentials.
+
+Refer to [this page](https://docs.nextcloud.com/server/latest/admin_manual/configuration_user/user_auth_ldap.html) on the Nextcloud admin manual for details about other configurations.
+
+To disable the integration altogether (in case of using another LDAP server for Nextcloud while using LLDAP for other services, etc.), add the following configuration to your `vars.yml` file:
+
+```yaml
+nextcloud_lldap_enabled: false
+```
+
 ## Related services
 
 ### Collabora Online Development Edition
