@@ -276,6 +276,10 @@ The playbook automatically configures a SMTP server (Exim-relay), to which the N
 
 Before sending a test mail, **make sure to set the email address of the admin user** at `https://mash.example.com/nextcloud/settings/user`. Otherwise hitting the "Send email" button on the page returns the 400 error, as the instance does not know where to send the mail. See the browser's console for details.
 
+### Preview Generator
+
+It is possible to set up preview generation. See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-nextcloud/blob/main/docs/configuring-nextcloud.md#enable-preview-generator-app-optional) on the role's documentation for details about necessary steps to enable it.
+
 ### Single-Sign-On (SSO) integration
 
 Nextcloud supports Single-Sign-On (SSO) via LDAP, SAML, and OIDC. To make use of it, an Identity Provider (IdP) like [authentik](authentik.md) or [Keycloak](keycloak.md) needs to be set up.
@@ -313,10 +317,6 @@ You should then be able to open any document (`.doc`, `.odt`, `.pdf`, etc.) and 
 
 >[!NOTE]
 > By default, various private IPv4 networks are whitelisted to connect to the WOPI API (document serving API). If your CODE instance does not live on the same server as Nextcloud, you may need to adjust the list of networks. If necessary, redefine the `nextcloud_app_collabora_wopi_allowlist` environment variable on `vars.yml`.
-
-### Preview Generator
-
-It is also possible to set up preview generation by following the steps below. See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-nextcloud/blob/main/docs/configuring-nextcloud.md#enable-preview-generator-app-optional) on the role's documentation for details.
 
 ## Troubleshooting
 
