@@ -6736,12 +6736,16 @@ nextcloud_systemd_required_services_list_auto: |
 nextcloud_systemd_wanted_services_list_auto: |
   {{
     ([(exim_relay_identifier | default('mash-exim-relay')) ~ '.service'] if (exim_relay_enabled | default(false) and nextcloud_environment_variables_smtp_host == exim_relay_identifier | default('mash-exim-relay')) else [])
+    +
+    ([lldap_identifier ~ '.service'] if lldap_enabled | default(false) and nextcloud_lldap_enabled else [])
   }}
 
 nextcloud_container_additional_networks_auto: |
   {{
     (
       ([exim_relay_container_network | default('mash-exim-relay')] if (exim_relay_enabled | default(false) and nextcloud_environment_variables_smtp_host == exim_relay_identifier | default('mash-exim-relay') and nextcloud_container_network != exim_relay_container_network) else [])
+      +
+      ([lldap_container_network] if lldap_enabled | default(false) and nextcloud_container_network != lldap_container_network and nextcloud_lldap_enabled else [])
       +
       ([mariadb_container_network] if mariadb_enabled | default(false) and nextcloud_database_mysql_hostname == mariadb_connection_hostname and nextcloud_container_network != mariadb_container_network and nextcloud_database_type == 'mysql' else [])
       +
@@ -6775,6 +6779,22 @@ nextcloud_environment_variables_mail_from_address: "{{ (exim_relay_sender_addres
 nextcloud_environment_variables_mail_domain: "{{ (exim_relay_sender_address | split('@'))[1] if exim_relay_enabled else '' }}"
 nextcloud_environment_variables_smtp_authtype: PLAIN
 # /role-specific:exim_relay
+
+# role-specific:lldap
+#
+# These values are based on documentation at Nextcloud All-in-One repository
+# available at https://github.com/nextcloud/all-in-one/tree/main/community-containers/lldap
+# and https://github.com/lldap/lldap/blob/main/README.md#general-configuration-guide
+#
+nextcloud_lldap_enabled: "{{ lldap_enabled }}"
+nextcloud_ldap_admin_group: lldap_admin
+nextcloud_ldap_agent_name_uid: "{{ lldap_environment_variables_lldap_ldap_user_dn }}"
+nextcloud_ldap_agent_name: uid={{ nextcloud_ldap_agent_name_uid }},ou=people,{{ nextcloud_ldap_base }}
+nextcloud_ldap_base: "{{ lldap_environment_variables_lldap_ldap_base_dn }}"
+nextcloud_ldap_host: ldap://{{ lldap_identifier }}
+nextcloud_ldap_base_users: "ou=people,{{ nextcloud_ldap_base }}"
+nextcloud_ldap_base_groups: "ou=groups,{{ nextcloud_ldap_base }}"
+# /role-specific:lldap
 
 # role-specific:mariadb
 nextcloud_database_mysql_hostname: "{{ mariadb_connection_hostname if mariadb_enabled else '' }}"
