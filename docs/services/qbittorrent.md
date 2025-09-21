@@ -75,7 +75,7 @@ Set the `host` field to your qBittorrent URL (without the protocol) and `port` a
 
 Fill in the rest of the form with your preferences, and you're done!
 
-![Sonarr Add Download Client](../assets/sonarr/add-download-client.png)
+![Sonarr Add Download Client](../assets/sonarr/add-download-client.webp)
 
 ## Recommended other services
 

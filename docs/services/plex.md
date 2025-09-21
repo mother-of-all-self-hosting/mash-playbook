@@ -139,7 +139,7 @@ Upstream documentation: https://docs.linuxserver.io/images/docker-plex/#nvidia
 
 To verify Plex is detecting your GPU navigate to `Settings -> Transcoder -> Hardware transcoding device` and select your GPU. If you do not see the `Hardware transcoding device` drop-down make sure you have ticked the `Use hardware acceleration when available` checkbox. If everything is working right you should see something like this:
 
-![Plex Configure Transcoding](../assets/plex/transcoder.png)
+![Plex Configure Transcoding](../assets/plex/transcoder.webp)
 
 ### Mounting additional media directories
 
