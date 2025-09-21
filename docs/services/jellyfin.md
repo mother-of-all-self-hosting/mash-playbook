@@ -55,7 +55,7 @@ After running the command for installation, the Jellyfin instance becomes availa
 
 To get started, open the URL with a web browser, and configure a username and password:
 
-![Jellyfin Configure User](../assets/jellyfin/setup-1.png)
+![Jellyfin Configure User](../assets/jellyfin/setup-1.webp)
 
 When prompted to add your media libraries keep in mind that it will be the path **inside** the container, most likely the `dst` parameter of your `jellyfin_container_additional_volumes` variable.
 

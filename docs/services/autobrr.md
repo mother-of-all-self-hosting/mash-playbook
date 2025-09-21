@@ -46,7 +46,7 @@ After running the command for installation, the Autobrr instance becomes availab
 
 To get started, open the URL with a web browser, and follow the prompts to finish setup:
 
-![Autobrr Create Account](../assets/autobrr/setup-1.png)
+![Autobrr Create Account](../assets/autobrr/setup-1.webp)
 
 ## Recommended other services
 
