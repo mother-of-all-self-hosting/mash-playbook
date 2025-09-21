@@ -164,7 +164,7 @@
   version: v12.0.4-0
   name: forgejo
   activation_prefix: forgejo_
-- src: git+https://github.com/mother-of-all-self-hosting/ansible-role-forgejo-runner.git
+- src: git+https://git.sergiodj.net/sergiodj/ansible-role-forgejo-runner.git
   version: v11.0.0-0
   name: forgejo_runner
   activation_prefix: forgejo_runner_
@@ -517,7 +517,7 @@
   name: ssh
   activation_prefix: system_security_ssh_
 - src: git+https://github.com/Bergruebe/ansible-role-stirling-pdf.git
-  version: v1.1.0-0
+  version: v1.3.2-1
   name: stirling_pdf
   activation_prefix: stirling_pdf_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-swap.git
