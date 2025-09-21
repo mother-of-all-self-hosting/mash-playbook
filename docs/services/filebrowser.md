@@ -1,6 +1,6 @@
 <!--
 SPDX-FileCopyrightText: 2020 - 2024 MDAD project contributors
-SPDX-FileCopyrightText: 2020 - 2024 Slavi Pantaleev
+SPDX-FileCopyrightText: 2020 - 2025 Slavi Pantaleev
 SPDX-FileCopyrightText: 2020 Aaron Raimist
 SPDX-FileCopyrightText: 2020 Chris van Dijk
 SPDX-FileCopyrightText: 2020 Dominik Zajac
@@ -8,25 +8,28 @@ SPDX-FileCopyrightText: 2020 Mickaël Cornière
 SPDX-FileCopyrightText: 2022 François Darveau
 SPDX-FileCopyrightText: 2022 Julian Foad
 SPDX-FileCopyrightText: 2022 Warren Bailey
+SPDX-FileCopyrightText: 2023 - 2024 MASH project contributors
 SPDX-FileCopyrightText: 2023 Antonis Christofides
 SPDX-FileCopyrightText: 2023 Felix Stupp
 SPDX-FileCopyrightText: 2023 Julian-Samuel Gebühr
+SPDX-FileCopyrightText: 2023 Gergely Horváth
 SPDX-FileCopyrightText: 2023 Pierre 'McFly' Marty
 SPDX-FileCopyrightText: 2024 - 2025 Suguru Hirahara
+SPDX-FileCopyrightText: 2024 Philipp Homann
 
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 
 # File Browser
 
-The playbook can install and configure [File Browser](https://github.com/httpjamesm/File Browser) for you.
+The playbook can install and configure [File Browser](https://filebrowser.org/) for you.
 
-File Browser allows you to view StackOverflow threads without exposing your IP address, browsing habits, and other browser fingerprinting data to the website.
+File Browser provides a file managing interface within a specified directory and it can be used to upload, delete, preview and edit your files.
 
-See the project's [documentation](https://github.com/httpjamesm/File Browser/blob/main/README.md) to learn what File Browser does and why it might be useful to you.
+See the project's [documentation](https://filebrowser.org/) to learn what File Browser does and why it might be useful to you.
 
-For details about configuring the [Ansible role for File Browser](https://github.com/mother-of-all-self-hosting/ansible-role-filebrowser), you can check them via:
-- 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-filebrowser/blob/main/docs/configuring-filebrowser.md) online
+For details about configuring the [Ansible role for File Browser](https://codeberg.org/acioustick/ansible-role-filebrowser), you can check them via:
+- 🌐 [the role's documentation](https://codeberg.org/acioustick/ansible-role-filebrowser/src/branch/master/docs/configuring-filebrowser.md) online
 - 📁 `roles/galaxy/filebrowser/docs/configuring-filebrowser.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 ## Dependencies
@@ -63,15 +66,18 @@ filebrowser_hostname: filebrowser.example.com
 
 After running the command for installation, the File Browser instance becomes available at the URL specified with `filebrowser_hostname`. With the configuration above, the service is hosted at `https://filebrowser.example.com`.
 
-[Libredirect](https://libredirect.github.io/), an extension for Firefox and Chromium-based desktop browsers, has support for redirections to File Browser. See [this section](https://github.com/httpjamesm/File Browser/blob/main/README.md#how-to-make-stack-overflow-links-take-you-to-filebrowser-automatically) on the official documentation for more information.
+To get started, open the URL with a web browser, and log in to the instance with the administrator account (`admin`).
 
-If you would like to publish your instance so that it can be used by anyone including Libredirect, please consider to send a PR to the [upstream project](https://github.com/httpjamesm/File Browser) to add yours to [`instances.json`](https://github.com/httpjamesm/File Browser/blob/main/instances.json), which Libredirect automatically fetches using a script (see [this FAQ entry](https://libredirect.github.io/faq.html#where_the_hell_are_those_instances_coming_from)).
+The initial password of the administrator has been logged to the console logs during the first run.
+
+You can check it directly by logging in to the server with SSH and running `journalctl -fu filebrowser` (or how you/your playbook named the service, e.g. `mash-filebrowser`). You also can use the command below to check the line on the log to find the initial password:
+
+```sh
+ansible-playbook -i inventory/hosts setup.yml --tags=check-initial-password-filebrowser
+```
+
+You can create additional users (admin-privileged or not) after logging in via the web frontend.
 
 ## Troubleshooting
 
-See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-filebrowser/blob/main/docs/configuring-filebrowser.md#troubleshooting) on the role's documentation for details.
-
-## Related services
-
-- [Mozhi](mozhi.md) — Frontend for translation engines
-- [Redlib](redlib.md) — Frontend for Reddit
+See [this section](https://codeberg.org/acioustick/ansible-role-filebrowser/src/branch/master/docs/configuring-filebrowser.md#troubleshooting) on the role's documentation for details.
