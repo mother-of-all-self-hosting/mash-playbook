@@ -148,6 +148,10 @@
   version: e25d0d9b5282dbb5a1ec4cd23d26c16998e4334f
   name: fail2ban
   activation_prefix: system_security_fail2ban_
+- src: git+https://codeberg.org/acioustick/ansible-role-filebrowser.git
+  version: v2.43.0-0
+  name: filebrowser
+  activation_prefix: filebrowser_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-firezone.git
   version: v0.7.36-6
   name: firezone
