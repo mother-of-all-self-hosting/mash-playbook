@@ -345,6 +345,10 @@
     - role: galaxy/languagetool
     # /role-specific:languagetool
 
+    # role-specific:limesurvey
+    - role: galaxy/limesurvey
+    # /role-specific:limesurvey
+
     # role-specific:linkding
     - role: galaxy/linkding
     # /role-specific:linkding
