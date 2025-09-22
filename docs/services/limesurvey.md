@@ -17,17 +17,17 @@ SPDX-FileCopyrightText: 2024 - 2025 Suguru Hirahara
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 
-# YOURLS
+# LimeSurvey
 
-The playbook can install and configure [YOURLS](https://yourls.org) for you.
+The playbook can install and configure [LimeSurvey](https://limesurvey.org) for you.
 
-YOURLS is a set of PHP scripts that will allow you to run Your Own URL Shortener, on your server.
+LimeSurvey is a set of PHP scripts that will allow you to run Your Own URL Shortener, on your server.
 
-See the project's [documentation](https://yourls.org/docs) to learn what YOURLS does and why it might be useful to you.
+See the project's [documentation](https://limesurvey.org/docs) to learn what LimeSurvey does and why it might be useful to you.
 
-For details about configuring the [Ansible role for YOURLS](https://github.com/mother-of-all-self-hosting/ansible-role-yourls), you can check them via:
-- 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-yourls/blob/main/docs/configuring-yourls.md) online
-- 📁 `roles/galaxy/yourls/docs/configuring-yourls.md` locally, if you have [fetched the Ansible roles](../installing.md)
+For details about configuring the [Ansible role for LimeSurvey](https://github.com/mother-of-all-self-hosting/ansible-role-limesurvey), you can check them via:
+- 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-limesurvey/blob/main/docs/configuring-limesurvey.md) online
+- 📁 `roles/galaxy/limesurvey/docs/configuring-limesurvey.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 ## Dependencies
 
@@ -43,28 +43,28 @@ To enable this service, add the following configuration to your `vars.yml` file 
 ```yaml
 ########################################################################
 #                                                                      #
-# yourls                                                               #
+# limesurvey                                                           #
 #                                                                      #
 ########################################################################
 
-yourls_enabled: true
+limesurvey_enabled: true
 
-yourls_hostname: yourls.example.com
+limesurvey_hostname: limesurvey.example.com
 
 ########################################################################
 #                                                                      #
-# /yourls                                                              #
+# /limesurvey                                                          #
 #                                                                      #
 ########################################################################
 ```
 
 **Notes**:
-- It is optionally possible to use a shorter hostname different from the main one. If doing so, make sure to point a DNS record for the domain to the server where the YOURLS instance is going to be hosted.
-- Hosting YOURLS under a subpath (by configuring the `yourls_path_prefix` variable) does not seem to be possible due to YOURLS's technical limitations.
+- It is optionally possible to use a shorter hostname different from the main one. If doing so, make sure to point a DNS record for the domain to the server where the LimeSurvey instance is going to be hosted.
+- Hosting LimeSurvey under a subpath (by configuring the `limesurvey_path_prefix` variable) does not seem to be possible due to LimeSurvey's technical limitations.
 
 ### Enable MariaDB
 
-YOURLS requires a MySQL-compatible database to work. This playbook supports MariaDB, and you can set up a MariaDB instance by enabling it on `vars.yml`.
+LimeSurvey requires a MySQL-compatible database to work. This playbook supports MariaDB, and you can set up a MariaDB instance by enabling it on `vars.yml`.
 
 Refer to [this page](mariadb.md) for the instruction to enable it.
 
@@ -73,21 +73,21 @@ Refer to [this page](mariadb.md) for the instruction to enable it.
 You also need to create an instance's user to access to the admin UI after installation. To create one, add the following configuration to your `vars.yml` file. Make sure to replace `YOUR_ADMIN_USERNAME_HERE` and `YOUR_ADMIN_PASSWORD_HERE`.
 
 ```yaml
-yourls_environment_variable_user: YOUR_ADMIN_USERNAME_HERE
-yourls_environment_variable_pass: YOUR_ADMIN_PASSWORD_HERE
+limesurvey_environment_variable_user: YOUR_ADMIN_USERNAME_HERE
+limesurvey_environment_variable_pass: YOUR_ADMIN_PASSWORD_HERE
 ```
 
 ## Usage
 
-After running the command for installation, the YOURLS instance becomes available at the URL specified with `yourls_hostname` and `/admin/`. With the configuration above, the service is hosted at `https://yourls.example.com/admin/`.
+After running the command for installation, the LimeSurvey instance becomes available at the URL specified with `limesurvey_hostname` and `/admin/`. With the configuration above, the service is hosted at `https://limesurvey.example.com/admin/`.
 
-First, open the URL with a web browser to complete installation on the server by clicking "Install YOURLS" button. After that, click the anchor link "YOURLS Administration Page" to log in with the username (`yourls_environment_variable_user`) and password (`yourls_environment_variable_pass`).
+First, open the URL with a web browser to complete installation on the server by clicking "Install LimeSurvey" button. After that, click the anchor link "LimeSurvey Administration Page" to log in with the username (`limesurvey_environment_variable_user`) and password (`limesurvey_environment_variable_pass`).
 
-The help file is available at `yourls.example.com/readme.html`.
+The help file is available at `limesurvey.example.com/readme.html`.
 
 ## Troubleshooting
 
-See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-yourls/blob/main/docs/configuring-yourls.md#troubleshooting) on the role's documentation for details.
+See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-limesurvey/blob/main/docs/configuring-limesurvey.md#troubleshooting) on the role's documentation for details.
 
 ## Related services
 
