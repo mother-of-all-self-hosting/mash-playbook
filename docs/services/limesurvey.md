@@ -19,11 +19,11 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
 # LimeSurvey
 
-The playbook can install and configure [LimeSurvey](https://limesurvey.org) for you.
+The playbook can install and configure [LimeSurvey](https://www.limesurvey.org) for you.
 
-LimeSurvey is a set of PHP scripts that will allow you to run Your Own URL Shortener, on your server.
+LimeSurvey is a feature-rich free software for web based forms and surveys, which supports extensive survey logic.
 
-See the project's [documentation](https://limesurvey.org/docs) to learn what LimeSurvey does and why it might be useful to you.
+See the project's [documentation](https://www.limesurvey.org/manual/LimeSurvey_Manual) to learn what LimeSurvey does and why it might be useful to you.
 
 For details about configuring the [Ansible role for LimeSurvey](https://github.com/mother-of-all-self-hosting/ansible-role-limesurvey), you can check them via:
 - 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-limesurvey/blob/main/docs/configuring-limesurvey.md) online
@@ -58,9 +58,7 @@ limesurvey_hostname: limesurvey.example.com
 ########################################################################
 ```
 
-**Notes**:
-- It is optionally possible to use a shorter hostname different from the main one. If doing so, make sure to point a DNS record for the domain to the server where the LimeSurvey instance is going to be hosted.
-- Hosting LimeSurvey under a subpath (by configuring the `limesurvey_path_prefix` variable) does not seem to be possible due to LimeSurvey's technical limitations.
+**Note**: hosting LimeSurvey under a subpath (by configuring the `limesurvey_path_prefix` variable) does not seem to be possible due to LimeSurvey's technical limitations.
 
 ### Enable MariaDB
 
@@ -68,27 +66,25 @@ LimeSurvey requires a MySQL-compatible database to work. This playbook supports 
 
 Refer to [this page](mariadb.md) for the instruction to enable it.
 
-### Set the admin username and password
+### Set administrator's account details
 
-You also need to create an instance's user to access to the admin UI after installation. To create one, add the following configuration to your `vars.yml` file. Make sure to replace `YOUR_ADMIN_USERNAME_HERE` and `YOUR_ADMIN_PASSWORD_HERE`.
+You also need to create an instance's user to access to the admin UI after installation. To create one, add the following configuration to your `vars.yml` file.
 
 ```yaml
-limesurvey_environment_variable_user: YOUR_ADMIN_USERNAME_HERE
-limesurvey_environment_variable_pass: YOUR_ADMIN_PASSWORD_HERE
+limesurvey_environment_variables_admin_user: LIMESURVEY_ADMIN_USERNAME_HERE
+limesurvey_environment_variables_admin_password: LIMESURVEY_ADMIN_PASSWORD_HERE
+limesurvey_environment_variables_admin_name: LIMESURVEY_ADMIN_NAME_HERE
+limesurvey_environment_variables_admin_email: LIMESURVEY_ADMIN_EMAIL_ADDRESS_HERE
 ```
+
+Make sure to replace the values with your own ones.
 
 ## Usage
 
-After running the command for installation, the LimeSurvey instance becomes available at the URL specified with `limesurvey_hostname` and `/admin/`. With the configuration above, the service is hosted at `https://limesurvey.example.com/admin/`.
+After running the command for installation, the LimeSurvey instance becomes available at the URL specified with `limesurvey_hostname`. With the configuration above, the service is hosted at `https://limesurvey.example.com`.
 
-First, open the URL with a web browser to complete installation on the server by clicking "Install LimeSurvey" button. After that, click the anchor link "LimeSurvey Administration Page" to log in with the username (`limesurvey_environment_variable_user`) and password (`limesurvey_environment_variable_pass`).
-
-The help file is available at `limesurvey.example.com/readme.html`.
+To get started, open the URL `https://limesurvey.example.com/index.php/admin` with a web browser, and log in to the instance with the administrator account credentials.
 
 ## Troubleshooting
 
 See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-limesurvey/blob/main/docs/configuring-limesurvey.md#troubleshooting) on the role's documentation for details.
-
-## Related services
-
-- [Kutt](kutt.md) — Modern URL shortener with support for custom domains
