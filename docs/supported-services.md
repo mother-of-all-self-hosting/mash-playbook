@@ -84,6 +84,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 | [LabelStudio](https://labelstud.io/) | Label Studio is an open source data labeling tool that supports multiple projects, users, and data types in one platform | [Link](services/labelstudio.md) |
 | [Lago](https://www.getlago.com/) | Open-source metering and usage-based billing | [Link](services/lago.md) |
 | [languageTool](https://languagetool.org/) | An open source online grammar, style and spell checker | [Link](services/languagetool.md) |
+| [LimeSurvey](https://www.limesurvey.org) | Feature-rich free software for web based forms and surveys | [Link](services/limesurvey.md) |
 | [linkding](https://github.com/sissbruecker/linkding/) | Bookmark manager designed to be minimal and fast. | [Link](services/linkding.md) |
 | [listmonk](https://listmonk.app) | Self-hosted newsletter and mailing list manager. | [Link](services/listmonk.md) |
 | [LLDAP](https://github.com/lldap/lldap/) | Lightweight authentication server that provides an opinionated, simplified LDAP interface for authentication | [Link](services/lldap.md) |
