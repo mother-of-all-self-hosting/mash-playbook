@@ -6264,10 +6264,10 @@ mash_playbook_mariadb_managed_databases_auto_itemized:
   - |-
     {{
       ({
-        'name': yourls_environment_variable_db_name,
-        'username': yourls_environment_variable_db_user,
-        'password': yourls_environment_variable_db_pass,
-      } if yourls_enabled and yourls_environment_variable_db_hostname == mariadb_connection_hostname else omit)
+        'name': yourls_database_name,
+        'username': yourls_database_username,
+        'password': yourls_database_password,
+      } if yourls_enabled and yourls_database_hostname == mariadb_connection_hostname else omit)
     }}
   # /role-specific:yourls
 
@@ -9598,12 +9598,12 @@ yourls_gid: "{{ mash_playbook_gid }}"
 
 yourls_systemd_required_services_list_auto: |
   {{
-    ([mariadb_identifier ~ '.service'] if mariadb_enabled and yourls_environment_variable_db_hostname == mariadb_connection_hostname else [])
+    ([mariadb_identifier ~ '.service'] if mariadb_enabled and yourls_database_hostname == mariadb_connection_hostname else [])
   }}
 
 yourls_container_additional_networks_auto: |
   {{
-    ([mariadb_container_network] if mariadb_enabled and yourls_environment_variable_db_hostname == mariadb_connection_hostname and yourls_container_network != mariadb_container_network else [])
+    ([mariadb_container_network] if mariadb_enabled and yourls_database_hostname == mariadb_connection_hostname and yourls_container_network != mariadb_container_network else [])
     +
     ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
   }}
@@ -9614,10 +9614,10 @@ yourls_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enable
 yourls_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
 
 # role-specific:mariadb
-yourls_environment_variable_db_hostname: "{{ mariadb_connection_hostname if mariadb_enabled else '' }}"
-yourls_environment_variable_db_port: "{{ mariadb_connection_port if mariadb_enabled | default(false) else '3306' }}"
-yourls_environment_variable_db_user: "yourls"
-yourls_environment_variable_db_pass: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'db.yourls', rounds=655555) | to_uuid }}"
+yourls_database_hostname: "{{ mariadb_connection_hostname if mariadb_enabled else '' }}"
+yourls_database_port: "{{ mariadb_connection_port if mariadb_enabled | default(false) else '3306' }}"
+yourls_database_username: "yourls"
+yourls_database_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'db.yourls', rounds=655555) | to_uuid }}"
 # /role-specific:mariadb
 
 # role-specific:traefik
