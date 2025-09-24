@@ -76,7 +76,7 @@ See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-do
 
 You can configure a mailer for functions such as user invitation. Docmost supports a SMTP server and Postmark.
 
-**You can use exim-relay as the mailer, which is enabled on this playbook by default.** If you enable exim-relay on the playbook and will use it for Docmost, you do not have to add settings for them, as Docmost is wired to the mailer automatically. See [here](exim-relay.md) for details about how to set it up.
+If you enable the [exim-relay](exim-relay.md) service in your inventory configuration, the playbook will automatically configure it as a mailer for the service. If it is fine for you, you do not have to add settings for it.
 
 If you will use another SMTP server or Postmark, see [this section](https://github.com/mother-of-all-self-hosting/ansible-role-docmost/blob/main/docs/configuring-docmost.md#configure-the-mailer) on the role's documentation for details about configuring the mailer.
 

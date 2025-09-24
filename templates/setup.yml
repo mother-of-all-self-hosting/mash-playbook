@@ -117,6 +117,10 @@
     - role: galaxy/appsmith
     # /role-specific:appsmith
 
+    # role-specific:asciinema_server
+    - role: galaxy/asciinema_server
+    # /role-specific:asciinema_server
+
     # role-specific:authelia
     - role: galaxy/authelia
     # /role-specific:authelia
@@ -213,6 +217,10 @@
     - role: galaxy/excalidraw_room
     # /role-specific:excalidraw_room
 
+    # role-specific:filebrowser
+    - role: galaxy/filebrowser
+    # /role-specific:filebrowser
+
     # role-specific:firezone
     - role: galaxy/firezone
     # /role-specific:firezone
@@ -289,6 +297,10 @@
     - role: galaxy/infisical
     # /role-specific:infisical
 
+    # role-specific:immich
+    - role: galaxy/immich
+    # /role-specific:immich
+
     # role-specific:influxdb
     - role: galaxy/influxdb
     # /role-specific:influxdb
@@ -333,6 +345,10 @@
     - role: galaxy/languagetool
     # /role-specific:languagetool
 
+    # role-specific:limesurvey
+    - role: galaxy/limesurvey
+    # /role-specific:limesurvey
+
     # role-specific:linkding
     - role: galaxy/linkding
     # /role-specific:linkding
@@ -340,6 +356,10 @@
     # role-specific:listmonk
     - role: galaxy/listmonk
     # /role-specific:listmonk
+
+    # role-specific:lldap
+    - role: galaxy/lldap
+    # /role-specific:lldap
 
     # role-specific:loki
     - role: galaxy/loki
@@ -572,6 +592,10 @@
     # role-specific:telegraf
     - role: galaxy/telegraf
     # /role-specific:telegraf
+
+    # role-specific:thelounge
+    - role: galaxy/thelounge
+    # /role-specific:thelounge
 
     # role-specific:tinyauth
     - role: galaxy/tinyauth

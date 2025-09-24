@@ -276,6 +276,10 @@ The playbook automatically configures a SMTP server (Exim-relay), to which the N
 
 Before sending a test mail, **make sure to set the email address of the admin user** at `https://mash.example.com/nextcloud/settings/user`. Otherwise hitting the "Send email" button on the page returns the 400 error, as the instance does not know where to send the mail. See the browser's console for details.
 
+### Preview Generator
+
+It is possible to set up preview generation. See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-nextcloud/blob/main/docs/configuring-nextcloud.md#enable-preview-generator-app-optional) on the role's documentation for details about necessary steps to enable it.
+
 ### Single-Sign-On (SSO) integration
 
 Nextcloud supports Single-Sign-On (SSO) via LDAP, SAML, and OIDC. To make use of it, an Identity Provider (IdP) like [authentik](authentik.md) or [Keycloak](keycloak.md) needs to be set up.
@@ -292,6 +296,40 @@ Refer to [this blogpost by a third party](https://blog.cubieserver.de/2022/compl
 **Notes**:
 - The official documentation of authentik to connect nextcloud via SAML does not seem to work (as of August 2023).
 - If you cannot log in due to an error (the error message contains `SHA1 mismatch`), make sure that Nextcloud users and authentik users do not have the same name. If they do, check `Use unique user ID` in the OIDC App settings.
+
+### LDAP integration with LLDAP
+
+Nextcloud ships with an LDAP application to allow LDAP (including Active Directory) users to log in to the Nextcloud instance with their LDAP credentials. See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-nextcloud/blob/main/docs/configuring-nextcloud.md#connecting-to-ldap-server) on the role's documentation for details about how to configure Nextcloud.
+
+This playbook supports [LLDAP](https://github.com/lldap/lldap), and it is possible to set up the LLDAP instance as a source for users.
+
+First, the LLDAP instance needs to be installed. See [this page](lldap.md) for the instruction.
+
+Then, proceed to configure the LDAP application on the Nextcloud to have it connect to the LLDAP instance. By default the playbook is configured to use the user specified with `lldap_environment_variables_lldap_ldap_user_dn` for binding. To use another user (with search privileges), add the following configuration to your `vars.yml` file:
+
+```yaml
+nextcloud_ldap_agent_name_uid: USERNAME_FOR_BINDING_HERE
+```
+
+Run the command below to configure the LDAP application on the Nextcloud instance, so that the instance connects to the LLDAP server:
+
+```sh
+just run-tags set-ldap-config-nextcloud -e agent_password=PASSWORD_OF_BIND_USER_HERE
+```
+
+After running the command successfully, the application's server tab should look like below (note: `uid` is set to `admin`):
+
+[<img src="../assets/nextcloud/ldap.webp" title="Server tab on the application's configuration" width="600" alt="Server tab on the application's configuration">](../assets/nextcloud/ldap.webp)
+
+If "Configuration OK 🟢" is displayed at the bottom of the tab, the application is configured successfully, and now users on the LLDAP instance can log in to the instance with their LDAP credentials.
+
+Refer to [this page](https://docs.nextcloud.com/server/latest/admin_manual/configuration_user/user_auth_ldap.html) on the Nextcloud admin manual for details about other configurations.
+
+To disable the integration altogether (in case of using another LDAP server for Nextcloud while using LLDAP for other services, etc.), add the following configuration to your `vars.yml` file:
+
+```yaml
+nextcloud_lldap_enabled: false
+```
 
 ## Related services
 
@@ -313,10 +351,6 @@ You should then be able to open any document (`.doc`, `.odt`, `.pdf`, etc.) and 
 
 >[!NOTE]
 > By default, various private IPv4 networks are whitelisted to connect to the WOPI API (document serving API). If your CODE instance does not live on the same server as Nextcloud, you may need to adjust the list of networks. If necessary, redefine the `nextcloud_app_collabora_wopi_allowlist` environment variable on `vars.yml`.
-
-### Preview Generator
-
-It is also possible to set up preview generation by following the steps below. See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-nextcloud/blob/main/docs/configuring-nextcloud.md#enable-preview-generator-app-optional) on the role's documentation for details.
 
 ## Troubleshooting
 
