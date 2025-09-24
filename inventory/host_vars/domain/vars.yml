@@ -540,7 +540,7 @@ headscale_config_dns_nameservers_split:
    int.thewrt.com:
      - 10.1.10.2
 
-headscale_config_dns_search_domains: 
+headscale_config_dns_search_domains:
      - int.{{ domain }}
 
 headscale_config_prefixes_v4: 100.100.0.0/20
