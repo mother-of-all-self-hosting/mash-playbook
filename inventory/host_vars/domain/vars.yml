@@ -498,6 +498,25 @@ tandoor_enabled: true
 
 tandoor_hostname: "recipe.{{domain}}"
 
+tandoor_authentik_application_slug: tandoor
+
+tandoor_socialaccount_providers:
+  openid_connect:
+    APPS:
+      - provider_id: authentik
+        name: Authentik
+        client_id: "{{ vault_tandoor_oidc_client_id }}"
+        secret: "{{ vault_tandoor_oidc_client_secret }}"
+        settings:
+          server_url: "https://authentik.{{ domain }}/application/o/{{ tandoor_authentik_application_slug }}/.well-known/openid-configuration"
+
+tandoor_container_additional_environment_variables: >
+  {{ [
+    'SOCIAL_PROVIDERS=allauth.socialaccount.providers.openid_connect',
+    'SOCIALACCOUNT_PROVIDERS=' ~ (tandoor_socialaccount_providers | to_json),
+    'PROXY_HEADER=X-Forwarded-Proto'
+  ] | join('\n') }}
+
 # tandoor_path_prefix: /
 
 
