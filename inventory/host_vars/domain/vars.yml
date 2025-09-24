@@ -500,6 +500,7 @@ tandoor_hostname: "recipe.{{domain}}"
 
 # tandoor_path_prefix: /
 
+
 ########################################################################
 #                                                                      #
 # /tandoor                                                             #
@@ -545,10 +546,6 @@ headscale_config_dns_search_domains:
 
 headscale_config_prefixes_v4: 100.100.0.0/20
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 34cbb06 (hopefully final change to headscale variables - again)
 headscale_configuration_extension:
   oidc:
     only_start_if_oidc_is_available: true
@@ -559,18 +556,6 @@ headscale_configuration_extension:
     pkce:
       enabled: true
       method: S256
-<<<<<<< HEAD
-=======
-headscale_config_oidc:
-   only_start_if_oidc_is_available: true
-   issuer: "https://authentik.{{ domain }}/application/o/headscale/"
-   client_id: "{{ vault_headscale_oidc_client_id }}"
-   client_secret: "{{ vault_headscale_oidc_client_secret }}"
-   scope: ["openid", "profile", "email"]
-   pkce: { enabled: true, method: S256 }
->>>>>>> 9ee361a (hopefully final change to headscale variables)
-=======
->>>>>>> 34cbb06 (hopefully final change to headscale variables - again)
 # https://headscale.net/stable/ref/oidc/?h=oidc
 
 ########################################################################
