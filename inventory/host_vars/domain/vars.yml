@@ -509,6 +509,7 @@ tandoor_socialaccount_providers:
         secret: "{{ vault_tandoor_oidc_client_secret }}"
         settings:
           server_url: "https://authentik.{{ domain }}/application/o/{{ tandoor_authentik_application_slug }}/.well-known/openid-configuration"
+          oauth_pkce_enabled: true
 
 tandoor_container_additional_environment_variables: >
   {{ [
