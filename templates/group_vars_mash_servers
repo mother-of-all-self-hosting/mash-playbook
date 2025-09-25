@@ -1105,10 +1105,10 @@ mash_playbook_postgres_managed_databases_auto_itemized:
   - |-
     {{
       ({
-        'name': joplin_server_environment_variable_database_name,
-        'username': joplin_server_environment_variable_database_user,
-        'password': joplin_server_environment_variable_database_password,
-      } if joplin_server_enabled and joplin_server_environment_variable_database_hostname == postgres_connection_hostname else omit)
+        'name': joplin_server_database_name,
+        'username': joplin_server_database_username,
+        'password': joplin_server_database_password,
+      } if joplin_server_enabled and joplin_server_database_hostname == postgres_connection_hostname else omit)
     }}
   # /role-specific:joplin_server
 
@@ -5395,7 +5395,7 @@ joplin_server_systemd_wanted_services_list_auto: |
 
 joplin_server_systemd_required_services_list_auto: |
  {{
-    ([postgres_identifier ~ '.service'] if postgres_enabled and joplin_server_environment_variable_database_hostname == postgres_connection_hostname else [])
+    ([postgres_identifier ~ '.service'] if postgres_enabled and joplin_server_database_hostname == postgres_connection_hostname else [])
   }}
 
 joplin_server_container_additional_networks_auto: |
@@ -5404,7 +5404,7 @@ joplin_server_container_additional_networks_auto: |
     +
     ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
     +
-    ([postgres_container_network] if postgres_enabled and joplin_server_environment_variable_database_hostname == postgres_connection_hostname and joplin_server_container_network != postgres_container_network else [])
+    ([postgres_container_network] if postgres_enabled and joplin_server_database_hostname == postgres_connection_hostname and joplin_server_container_network != postgres_container_network else [])
   }}
 
 joplin_server_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
@@ -5419,10 +5419,10 @@ joplin_server_environment_variable_mailer_security: MailerSecurity.None
 # /role-specific:exim_relay
 
 # role-specific:postgres
-joplin_server_environment_variable_database_hostname: "{{ postgres_connection_hostname if postgres_enabled else '' }}"
-joplin_server_environment_variable_database_port: "{{ postgres_connection_port if postgres_enabled else '5432' }}"
-joplin_server_environment_variable_database_user: "{{ joplin_server_identifier }}"
-joplin_server_environment_variable_database_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'db.joplinserver', rounds=655555) | to_uuid }}"
+joplin_server_database_hostname: "{{ postgres_connection_hostname if postgres_enabled else '' }}"
+joplin_server_database_port: "{{ postgres_connection_port if postgres_enabled else '5432' }}"
+joplin_server_database_username: "{{ joplin_server_identifier }}"
+joplin_server_database_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'db.joplinserver', rounds=655555) | to_uuid }}"
 # /role-specific:postgres
 
 # role-specific:traefik
