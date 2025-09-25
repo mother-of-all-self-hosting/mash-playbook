@@ -511,12 +511,15 @@ tandoor_socialaccount_providers:
           server_url: "https://authentik.{{ domain }}/application/o/{{ tandoor_authentik_application_slug }}/.well-known/openid-configuration"
           oauth_pkce_enabled: true
 
-tandoor_container_additional_environment_variables: >
-  {{ [
+tandoor_container_additional_environment_variables: |
+  {% set env_lines = [
     'SOCIAL_PROVIDERS=allauth.socialaccount.providers.openid_connect',
     'SOCIALACCOUNT_PROVIDERS=' ~ (tandoor_socialaccount_providers | to_json),
     'PROXY_HEADER=X-Forwarded-Proto'
-  ] | join('\n') }}
+  ] %}
+  {%- for line in env_lines %}
+  {{ line }}
+  {% endfor %}
 
 # tandoor_path_prefix: /
 
