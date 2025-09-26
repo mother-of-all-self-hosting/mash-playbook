@@ -59,6 +59,8 @@ gothub_hostname: gothub.example.com
 
 **Note**: hosting GotHub under a subpath (by configuring the `gothub_path_prefix` variable) does not seem to be possible due to GotHub's technical limitations.
 
+There are other settings which need configuring such as ones about instance's management and its transparency. See [this section](https://codeberg.org/acioustick/ansible-role-gothub/src/branch/master/docs/configuring-gothub.md#enable-disable-proxying-non-essential-data) on the role's documentation for details.
+
 ## Usage
 
 After running the command for installation, the GotHub instance becomes available at the URL specified with `gothub_hostname`. With the configuration above, the service is hosted at `https://gothub.example.com`.
