@@ -19,14 +19,14 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
 # GotHub
 
-The playbook can install and configure [GotHub](https://github.com/httpjamesm/GotHub) for you.
+The playbook can install and configure [GotHub](https://codeberg.org/gothub/gothub) for you.
 
-GotHub allows you to view StackOverflow threads without exposing your IP address, browsing habits, and other browser fingerprinting data to the website.
+GotHub allows you to view GitHub repositories without exposing your IP address, browsing habits, and other browser fingerprinting data to the website.
 
-See the project's [documentation](https://github.com/httpjamesm/GotHub/blob/main/README.md) to learn what GotHub does and why it might be useful to you.
+See the project's [documentation](https://codeberg.org/gothub/gothub/src/branch/dev/README.md) to learn what GotHub does and why it might be useful to you.
 
-For details about configuring the [Ansible role for GotHub](https://github.com/mother-of-all-self-hosting/ansible-role-gothub), you can check them via:
-- 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-gothub/blob/main/docs/configuring-gothub.md) online
+For details about configuring the [Ansible role for GotHub](https://codeberg.org/acioustick/ansible-role-gothub), you can check them via:
+- 🌐 [the role's documentation](https://codeberg.org/acioustick/ansible-role-gothub/src/branch/master/docs/configuring-gothub.md) online
 - 📁 `roles/galaxy/gothub/docs/configuring-gothub.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 ## Dependencies
@@ -63,13 +63,13 @@ gothub_hostname: gothub.example.com
 
 After running the command for installation, the GotHub instance becomes available at the URL specified with `gothub_hostname`. With the configuration above, the service is hosted at `https://gothub.example.com`.
 
-[Libredirect](https://libredirect.github.io/), an extension for Firefox and Chromium-based desktop browsers, has support for redirections to GotHub. See [this section](https://github.com/httpjamesm/GotHub/blob/main/README.md#how-to-make-stack-overflow-links-take-you-to-gothub-automatically) on the official documentation for more information.
+[Libredirect](https://libredirect.github.io/), an extension for Firefox and Chromium-based desktop browsers, has support for redirections to GotHub.
 
-If you would like to publish your instance so that it can be used by anyone including Libredirect, please consider to send a PR to the [upstream project](https://github.com/httpjamesm/GotHub) to add yours to [`instances.json`](https://github.com/httpjamesm/GotHub/blob/main/instances.json), which Libredirect automatically fetches using a script (see [this FAQ entry](https://libredirect.github.io/faq.html#where_the_hell_are_those_instances_coming_from)).
+If you would like to make your instance public so that it can be used by anyone including Libredirect, please consider to send a PR to the [upstream project](https://codeberg.org/gothub/gothub-instances) to add yours to [`instances.json`](https://codeberg.org/gothub/gothub-instances/src/branch/master/instances.json), which Libredirect automatically fetches using a script (see [this FAQ entry](https://libredirect.github.io/faq.html#where_the_hell_are_those_instances_coming_from)).
 
 ## Troubleshooting
 
-See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-gothub/blob/main/docs/configuring-gothub.md#troubleshooting) on the role's documentation for details.
+See [this section](https://codeberg.org/acioustick/ansible-role-gothub/src/branch/master/docs/configuring-gothub.md#troubleshooting) on the role's documentation for details.
 
 ## Related services
 
