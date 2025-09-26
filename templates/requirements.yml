@@ -61,7 +61,7 @@
   name: cleanup
   activation_prefix: system_cleanup_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-clickhouse.git
-  version: v25.8.6.11-0
+  version: v25.8.7.3-0
   name: clickhouse
   activation_prefix: clickhouse_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-collabora-online.git
@@ -185,7 +185,7 @@
   name: funkwhale
   activation_prefix: funkwhale_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-ghostfolio.git
-  version: v2.200.0-0
+  version: v2.201.0-0
   name: ghostfolio
   activation_prefix: ghostfolio_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-gitea.git
@@ -249,11 +249,11 @@
   name: jitsi
   activation_prefix: jitsi_
 - src: git+https://codeberg.org/acioustick/ansible-role-joplin-server.git
-  version: v3.4.3-0
+  version: v3.4.3-1
   name: joplin_server
   activation_prefix: joplin_server_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-keycloak.git
-  version: v26.3.4-0
+  version: v26.3.5-0
   name: keycloak
   activation_prefix: keycloak_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-keydb.git
@@ -445,7 +445,7 @@
   name: prometheus_node_exporter
   activation_prefix: prometheus_node_exporter_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-prometheus-postgres-exporter.git
-  version: v0.17.1-8
+  version: v0.18.0-0
   name: prometheus_postgres_exporter
   activation_prefix: prometheus_postgres_exporter_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-prometheus-ssh-exporter.git
@@ -485,7 +485,7 @@
   name: redlib
   activation_prefix: redlib_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-redmine.git
-  version: v6.0.7-0
+  version: v6.1.0-0
   name: redmine
   activation_prefix: redmine_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-roundcube.git
