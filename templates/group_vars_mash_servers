@@ -317,6 +317,11 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
     {{ ({'name': (gitea_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'gitea', 'gitea-server']} if gitea_enabled else omit) }}
   # /role-specific:gitea
 
+  # role-specific:gothub
+  - |-
+    {{ ({'name': (gothub_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'gothub']} if gothub_enabled else omit) }}
+  # /role-specific:gothub
+
   # role-specific:gotosocial
   - |-
     {{ ({'name': (gotosocial_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'gotosocial']} if gotosocial_enabled else omit) }}
@@ -3623,6 +3628,44 @@ gitea_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primar
 #                                                                      #
 ########################################################################
 # /role-specific:gitea
+
+
+
+# role-specific:gothub
+########################################################################
+#                                                                      #
+# gothub                                                               #
+#                                                                      #
+########################################################################
+
+gothub_enabled: false
+
+gothub_identifier: "{{ mash_playbook_service_identifier_prefix }}gothub"
+
+gothub_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}gothub"
+
+gothub_uid: "{{ mash_playbook_uid }}"
+gothub_gid: "{{ mash_playbook_gid }}"
+
+gothub_container_additional_networks_auto: |
+  {{
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+  }}
+
+gothub_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+gothub_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+
+# role-specific:traefik
+gothub_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
+gothub_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
+# /role-specific:traefik
+
+########################################################################
+#                                                                      #
+# /gothub                                                              #
+#                                                                      #
+########################################################################
+# /role-specific:gothub
 
 
 

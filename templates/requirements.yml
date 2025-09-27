@@ -192,6 +192,10 @@
   version: v1.24.6-0
   name: gitea
   activation_prefix: gitea_
+- src: git+https://codeberg.org/acioustick/ansible-role-gothub.git
+  version: v2025.3.9-0
+  name: gothub
+  activation_prefix: gothub_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-gotosocial.git
   version: v0.19.2-1
   name: gotosocial
