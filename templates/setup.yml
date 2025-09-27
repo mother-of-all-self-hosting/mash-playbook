@@ -165,6 +165,10 @@
     - role: galaxy/couchdb
     # /role-specific:couchdb
 
+    # role-specific:cyberchef
+    - role: galaxy/cyberchef
+    # /role-specific:cyberchef
+
     # role-specific:docker_registry
     - role: galaxy/docker_registry
     # /role-specific:docker_registry

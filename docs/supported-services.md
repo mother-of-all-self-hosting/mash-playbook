@@ -36,6 +36,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 | [Collabora Online Development Edition](https://www.collaboraonline.com/code/) | Development version of Collabora Online, which enables you to edit office documents with integrations such as Nextcloud | [Link](services/code.md) |
 | [ConvertX](https://github.com/C4illin/ConvertX) | Self-hosted online file converter for pictures, video, images, document files, etc. | [Link](services/convertx.md) |
 | [CouchDB](https://couchdb.apache.org/) | An open-source document-oriented NoSQL database, implemented in Erlang. | [Link](services/couchdb.md) |
+| [CyberChef](https://github.com/gchq/CyberChef) | Intuitive web application for encryption, encoding, compression, and data analysis within a browser | [Link](services/cyberchef.md) |
 | [Docker](https://www.docker.com/) | Open-source software for deploying containerized applications | [Link](services/docker.md) |
 | [Docker Registry](https://docs.docker.com/registry/) | A container image distribution registry | [Link](services/docker-registry.md) |
 | [Docker Registry Browser](https://github.com/klausmeyer/docker-registry-browser) | Web Interface for the Docker Registry HTTP API V2 written in Ruby on Rails | [Link](services/docker-registry-browser.md) |
