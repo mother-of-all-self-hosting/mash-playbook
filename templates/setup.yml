@@ -313,6 +313,10 @@
     - role: galaxy/jellyfin
     # /role-specific:jellyfin
 
+    # role-specific:jellyseerr
+    - role: galaxy/jellyseerr
+    # /role-specific:jellyseerr
+
     # role-specific:jitsi
     - role: galaxy/jitsi
     # /role-specific:jitsi
