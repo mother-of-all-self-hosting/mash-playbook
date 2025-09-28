@@ -5353,7 +5353,7 @@ jellyseerr_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_p
 
 ########################################################################
 #                                                                      #
-# /jellyseerr                                                            #
+# /jellyseerr                                                          #
 #                                                                      #
 ########################################################################
 # /role-specific:jellyseerr
