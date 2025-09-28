@@ -19,19 +19,15 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
 # Misskey
 
-The playbook can install and configure [Misskey](https://misskey.com/) for you.
+The playbook can install and configure [Misskey](https://misskey-hub.net/en/) for you.
 
-Misskey is an free and open-source collaborative wiki and documentation software, designed for seamless real-time collaboration. It can be used to manage a wiki, a knowledge base, project documentation, etc. It has various functions such as granular permissions management system, page history to track changes of articles, etc. It also supports diagramming tools like Draw.io, Excalidraw and Mermaid.
+Misskey is a free decentralized microblogging platform based on the ActivityPub protocol, which can connect to other Fediverse platforms such as Mastodon and PeerTube.
 
-See the project's [documentation](https://misskey.com/docs/) to learn what Misskey does and why it might be useful to you.
+See the project's [documentation](https://misskey-hub.net/en/docs/) to learn what Misskey does and why it might be useful to you.
 
 For details about configuring the [Ansible role for Misskey](https://github.com/mother-of-all-self-hosting/ansible-role-misskey), you can check them via:
 - 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-misskey/blob/main/docs/configuring-misskey.md) online
 - 📁 `roles/galaxy/misskey/docs/configuring-misskey.md` locally, if you have [fetched the Ansible roles](../installing.md)
-
->[!NOTE]
-> - The role is based on Node.js docker image, and is currently expected to run with uid 1000.
-> - Excalidraw is available on the playbook. See [here](excalidraw.md) for details about how to install it.
 
 ## Dependencies
 
@@ -40,7 +36,6 @@ This service requires the following other services:
 - [Postgres](postgres.md) database
 - [Traefik](traefik.md) reverse-proxy server
 - [Valkey](valkey.md) data-store; see [below](#configure-valkey) for details about installation
-- (optional) [exim-relay](exim-relay.md) mailer — required on the default configuration
 
 ## Adjusting the playbook configuration
 
@@ -64,27 +59,10 @@ misskey_hostname: misskey.example.com
 ########################################################################
 ```
 
+>[!WARNING]
+> Once the instance has started, changing the hostname will break the instance!
+
 **Note**: hosting Misskey under a subpath (by configuring the `misskey_path_prefix` variable) does not seem to be possible due to Misskey's technical limitations.
-
-### Configure a storage backend
-
-The service provides these storage backend options: local filesystem (default) and Amazon S3 compatible object storage.
-
-See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-misskey/blob/main/docs/configuring-misskey.md#configure-a-storage-backend) on the role's documentation for details about how to set up Amazon S3 compatible object storage for Misskey.
-
-### Configure the mailer
-
-You can configure a mailer for functions such as user invitation. Misskey supports a SMTP server and Postmark.
-
-If you enable the [exim-relay](exim-relay.md) service in your inventory configuration, the playbook will automatically configure it as a mailer for the service. If it is fine for you, you do not have to add settings for it.
-
-If you will use another SMTP server or Postmark, see [this section](https://github.com/mother-of-all-self-hosting/ansible-role-misskey/blob/main/docs/configuring-misskey.md#configure-the-mailer) on the role's documentation for details about configuring the mailer.
-
-If you do not want to enable a mailer for Misskey altogether, add the following configuration to your `vars.yml` file:
-
-```yaml
-misskey_mailer_enabled: false
-```
 
 ### Configure Valkey
 
@@ -256,16 +234,6 @@ misskey_container_additional_networks_custom:
 
 Running the installation command will create the shared Valkey instance named `mash-valkey`.
 
-### Enable Telemetry (optional)
-
-By default this playbook disables Misskey's [telemetry](https://misskey.com/docs/self-hosting/environment-variables#telemetry) which collects information about the active version, user count, page count, space and workspace count, and sends to the Misskey server (see [here](https://github.com/misskey/misskey/blob/main/apps/server/src/integrations/telemetry/telemetry.service.ts)).
-
-If you are fine with sending such information and want to help developers, add the following configuration to your `vars.yml` file:
-
-```yaml
-misskey_environment_variable_disable_telemetry: false
-```
-
 ## Installation
 
 If you have decided to install the dedicated Valkey instance for Misskey, make sure to run the [installing](../installing.md) command for the supplementary host (`mash.example.com-misskey-deps`) first, before running it for the main host (`mash.example.com`).
@@ -276,7 +244,7 @@ Note that running the `just` commands for installation (`just install-all` or `j
 
 After installation, the Misskey instance becomes available at the URL specified with `misskey_hostname`. With the configuration above, the service is hosted at `https://misskey.example.com`.
 
-To get started, open the URL with a web browser, and create a first workspace by inputting required information. For an email address, make sure to input your own email address, not the one of the mailer.
+To get started, open the URL with a web browser, and follow the set up wizard.
 
 ## Troubleshooting
 
