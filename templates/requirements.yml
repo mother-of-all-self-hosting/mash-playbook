@@ -1,5 +1,4 @@
 ---
-
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-adguard-home.git
   version: v0.107.66-0
   name: adguard_home
@@ -185,7 +184,7 @@
   name: funkwhale
   activation_prefix: funkwhale_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-ghostfolio.git
-  version: v2.203.0-0
+  version: v2.201.0-0
   name: ghostfolio
   activation_prefix: ghostfolio_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-gitea.git
@@ -209,7 +208,7 @@
   name: healthchecks
   activation_prefix: healthchecks_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-homarr.git
-  version: v1.39.0-0
+  version: v1.38.0-0
   name: homarr
   activation_prefix: homarr_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-hubsite.git
@@ -244,6 +243,10 @@
   version: v10.10.7-0
   name: jellyfin
   activation_prefix: jellyfin_
+- src: git+https://github.com/sudo-Tiz/ansible-role-jellyseerr.git
+  version: v2.7.3-0
+  name: jellyseerr
+  activation_prefix: jellyseerr_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-jitsi.git
   version: v10431-2
   name: jitsi
@@ -569,7 +572,7 @@
   name: tinyauth
   activation_prefix: tinyauth_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-traefik.git
-  version: v3.5.3-0
+  version: v3.5.2-0
   name: traefik
   activation_prefix: mash_
 - src: git+https://github.com/Bergruebe/ansible-role-tsdproxy.git
