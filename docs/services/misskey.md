@@ -252,4 +252,6 @@ See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-mi
 
 ## Related services
 
-- [Excalidraw](excalidraw.md) — Free and open source virtual whiteboard for sketching hand-drawn like diagrams
+- [Funkwhale](funkwhale.md) — Community-driven project that lets you listen and share music and audio in the Fediverse
+- [GoToSocial](gotosocial.md) — Self-hosted ActivityPub social network server
+- [PeerTube](peertube.md) — Tool for sharing online videos
