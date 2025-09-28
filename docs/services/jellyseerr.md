@@ -1,3 +1,11 @@
+<!--
+SPDX-FileCopyrightText: 2025 MASH project contributors
+SPDX-FileCopyrightText: 2025 sudo-Tiz
+SPDX-FileCopyrightText: 2025 Suguru Hirahara
+
+SPDX-License-Identifier: AGPL-3.0-or-later
+-->
+
 # Jellyseerr
 
 [Jellyseerr](https://www.jellyseerr.org/) is an open-source media request and discovery manager for Jellyfin, Plex, and Emby.
