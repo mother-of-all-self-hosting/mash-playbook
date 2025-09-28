@@ -261,6 +261,10 @@
     - role: galaxy/gitea
     # /role-specific:gitea
 
+    # role-specific:gothub
+    - role: galaxy/gothub
+    # /role-specific:gothub
+
     # role-specific:gotosocial
     - role: galaxy/gotosocial
     # /role-specific:gotosocial
