@@ -44,7 +44,7 @@ After running the command for installation, the Jellyseerr instance becomes avai
 > [!NOTE]
 > The `jellyseerr_path_prefix` variable can be adjusted to host under a subpath (e.g. `jellyseerr_path_prefix: /jellyseerr`), but this hasn't been tested yet.
 
-For additional configuration options, refer to [ansible-role-jellyseerr](https://github.com/spatterIight/ansible-role-jellyseerr)'s `defaults/main.yml` file.
+For additional configuration options, refer to [ansible-role-jellyseerr](https://github.com/sudo-Tiz/ansible-role-jellyseerr)'s `defaults/main.yml` file.
 
 ## Recommended other services
 
