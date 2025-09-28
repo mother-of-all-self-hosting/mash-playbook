@@ -32,7 +32,7 @@ jellyseerr_enabled: true
 jellyseerr_hostname: jellyseerr.example.com
 ########################################################################
 #                                                                      #
-# /jellyseerr                                                           #
+# /jellyseerr                                                          #
 #                                                                      #
 ########################################################################
 ```
