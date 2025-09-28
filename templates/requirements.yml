@@ -80,7 +80,7 @@
   version: v3.4.3-0
   name: couchdb
   activation_prefix: couchdb_
-- src: https://codeberg.org/acioustick/ansible-role-cyberchef.git
+- src: git+https://codeberg.org/acioustick/ansible-role-cyberchef.git
   version: v10.19.4-0
   name: cyberchef
   activation_prefix: cyberchef_
