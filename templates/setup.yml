@@ -377,6 +377,10 @@
     - role: galaxy/mariadb
     # /role-specific:mariadb
 
+    # role-specific:misskey
+    - role: galaxy/misskey
+    # /role-specific:misskey
+
     # role-specific:matomo
     - role: galaxy/matomo
     # /role-specific:matomo
