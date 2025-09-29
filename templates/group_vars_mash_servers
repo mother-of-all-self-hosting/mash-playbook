@@ -1318,9 +1318,9 @@ mash_playbook_postgres_managed_databases_auto_itemized:
     {{
       ({
         'name': paperless_database_name,
-        'username': paperless_database_username,
-        'password': paperless_database_password,
-      } if paperless_enabled and paperless_database_hostname == postgres_connection_hostname and paperless_database_type == 'postgres' else omit)
+        'username': paperless_database_postgres_username,
+        'password': paperless_database_postgres_password,
+      } if paperless_enabled and paperless_database_postgres_hostname == postgres_connection_hostname and paperless_database_type == 'postgres' else omit)
     }}
   # /role-specific:paperless
 
@@ -7585,7 +7585,7 @@ paperless_systemd_required_services_list_auto: |
   {{
     ([mariadb_identifier ~ '.service'] if mariadb_enabled | default(false) and paperless_database_mariadb_hostname == mariadb_connection_hostname and paperless_database_type == 'mariadb' else [])
     +
-    ([postgres_identifier ~ '.service'] if postgres_enabled | default(false) and paperless_database_hostname == postgres_connection_hostname and paperless_database_type == 'postgres' else [])
+    ([postgres_identifier ~ '.service'] if postgres_enabled | default(false) and paperless_database_postgres_hostname == postgres_connection_hostname and paperless_database_type == 'postgres' else [])
   }}
 
 paperless_systemd_wanted_services_list_auto: |
@@ -7601,7 +7601,7 @@ paperless_container_additional_networks_auto: |
     +
     ([mariadb_container_network] if mariadb_enabled | default(false) and paperless_database_mariadb_hostname == mariadb_connection_hostname and paperless_container_network != mariadb_container_network and paperless_database_type == 'mariadb' else [])
     +
-    ([postgres_container_network] if postgres_enabled | default(false) and paperless_database_hostname == postgres_connection_hostname and paperless_container_network != postgres_container_network and paperless_database_type == 'postgres' else [])
+    ([postgres_container_network] if postgres_enabled | default(false) and paperless_database_postgres_hostname == postgres_connection_hostname and paperless_container_network != postgres_container_network and paperless_database_type == 'postgres' else [])
   }}
 
 paperless_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
@@ -7624,9 +7624,9 @@ paperless_database_mariadb_password: "{{ '%s' | format(mash_playbook_generic_sec
 # /role-specific:mariadb
 
 # role-specific:postgres
-paperless_database_hostname: "{{ postgres_connection_hostname if postgres_enabled else '' }}"
-paperless_database_port: "{{ postgres_connection_port if postgres_enabled else '5432' }}"
-paperless_database_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'db.paperless', rounds=655555) | to_uuid }}"
+paperless_database_postgres_hostname: "{{ postgres_connection_hostname if postgres_enabled else '' }}"
+paperless_database_postgres_port: "{{ postgres_connection_port if postgres_enabled else '5432' }}"
+paperless_database_postgres_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'db.paperless', rounds=655555) | to_uuid }}"
 # /role-specific:postgres
 
 # role-specific:traefik
