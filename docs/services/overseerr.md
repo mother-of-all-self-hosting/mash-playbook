@@ -7,7 +7,9 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
 # Overseerr
 
-[Overseerr](https://www.overseerr.org/) is a request management and media discovery tool for the Plex ecosystem.
+[Overseerr](https://www.overseerr.org/) is a request management and media discovery tool for the [Plex](plex.md) ecosystem.
+
+💡 You may also be interested in the [Jellyseerr](jellyseerr.md) alternative (a fork of Overseerr which also has support for [Jellyfin](jellyfin.md) and Emby).
 
 ## Dependencies
 
@@ -71,6 +73,7 @@ Consider these other related services:
 - [Autobrr](autobrr.md)
 - [Jackett](jackett.md)
 - [Jellyfin](jellyfin.md)
+- [Jellyseerr](jellyseerr.md)
 - [Plex](plex.md)
 - [qBittorrent](qbittorrent.md)
 - [Radarr](radarr.md)
