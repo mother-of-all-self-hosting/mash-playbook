@@ -1040,9 +1040,9 @@ mash_playbook_postgres_managed_databases_auto_itemized:
   - |-
     {{
       ({
-        'name': ghostfolio_environment_variable_postgres_db,
-        'username': ghostfolio_environment_variable_postgres_user,
-        'password': ghostfolio_environment_variable_postgres_password,
+        'name': ghostfolio_database_name,
+        'username': ghostfolio_database_username,
+        'password': ghostfolio_database_password,
       } if ghostfolio_enabled and ghostfolio_database_hostname == postgres_connection_hostname else omit)
     }}
   # /role-specific:ghostfolio
@@ -3625,8 +3625,8 @@ ghostfolio_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_pr
 # role-specific:postgres
 ghostfolio_database_hostname: "{{ postgres_connection_hostname if postgres_enabled else '' }}"
 ghostfolio_database_port: "{{ postgres_connection_port if postgres_enabled else '5432' }}"
-ghostfolio_environment_variable_postgres_user: ghostfolio
-ghostfolio_environment_variable_postgres_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'db.ghostfolio', rounds=655555) | to_uuid }}"
+ghostfolio_database_username: ghostfolio
+ghostfolio_database_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'db.ghostfolio', rounds=655555) | to_uuid }}"
 # /role-specific:postgres
 
 # role-specific:traefik
