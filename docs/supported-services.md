@@ -78,6 +78,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 | [InfluxDB](https://www.influxdata.com/) | A self-hosted time-series database. | [Link](services/influxdb.md) |
 | [Jackett](https://github.com/Jackett/Jackett) | An API for your favorite torrent trackers | [Link](services/jackett.md) |
 | [Jellyfin](https://github.com/jellyfin/jellyfin) | An open-source personal media server | [Link](services/jellyfin.md) |
+| [Jellyseerr](https://github.com/Fallenbagel/jellyseerr)| An open-source media request and discovery manager for Jellyfin, Plex, and Emby | [Link](services/jellyseerr.md) |
 | [Jitsi](https://jitsi.org/) | A fully encrypted, 100% Open Source video conferencing solution | [Link](services/jitsi.md) |
 | [Joplin Server](https://joplinapp.org/help/dev/spec/architecture#joplin-server) | Self-hosted server component for [Joplin](https://joplinapp.org/) | [Link](services/joplin-server.md) |
 | [Keycloak](https://www.keycloak.org/) | An open source identity and access management solution. | [Link](services/keycloak.md) |
