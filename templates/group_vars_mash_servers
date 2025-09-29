@@ -6384,19 +6384,19 @@ mash_playbook_mariadb_managed_databases_auto_itemized:
   - |-
     {{
       ({
-        'name': syncstorage_rs_docker_environment_variable_database_name_syncstorage,
-        'username': syncstorage_rs_docker_environment_variable_database_username,
-        'password': syncstorage_rs_docker_environment_variable_database_password,
-      } if syncstorage_rs_docker_enabled and syncstorage_rs_docker_environment_variable_database_hostname == mariadb_connection_hostname else omit)
+        'name': syncstorage_rs_docker_database_name_syncstorage,
+        'username': syncstorage_rs_docker_database_mysql_username,
+        'password': syncstorage_rs_docker_database_mysql_password,
+      } if syncstorage_rs_docker_enabled and syncstorage_rs_docker_database_mysql_hostname == mariadb_connection_hostname else omit)
     }}
 
   - |-
     {{
       ({
-        'name': syncstorage_rs_docker_environment_variable_database_name_tokenserver,
-        'username': syncstorage_rs_docker_environment_variable_database_username,
-        'password': syncstorage_rs_docker_environment_variable_database_password,
-      } if syncstorage_rs_docker_enabled and syncstorage_rs_docker_environment_variable_database_hostname == mariadb_connection_hostname else omit)
+        'name': syncstorage_rs_docker_database_name_tokenserver,
+        'username': syncstorage_rs_docker_database_mysql_username,
+        'password': syncstorage_rs_docker_database_mysql_password,
+      } if syncstorage_rs_docker_enabled and syncstorage_rs_docker_database_mysql_hostname == mariadb_connection_hostname else omit)
     }}
   # /role-specific:syncstorage_rs_docker
 
@@ -9077,12 +9077,12 @@ syncstorage_rs_docker_gid: "{{ mash_playbook_gid }}"
 
 syncstorage_rs_docker_systemd_required_services_list_auto: |
   {{
-    ([mariadb_identifier ~ '.service'] if mariadb_enabled and syncstorage_rs_docker_environment_variable_database_hostname == mariadb_connection_hostname else [])
+    ([mariadb_identifier ~ '.service'] if mariadb_enabled and syncstorage_rs_docker_database_mysql_hostname == mariadb_connection_hostname else [])
   }}
 
 syncstorage_rs_docker_container_additional_networks_auto: |
   {{
-    ([mariadb_container_network] if mariadb_enabled and syncstorage_rs_docker_environment_variable_database_hostname == mariadb_connection_hostname and syncstorage_rs_docker_container_network != mariadb_container_network else [])
+    ([mariadb_container_network] if mariadb_enabled and syncstorage_rs_docker_database_mysql_hostname == mariadb_connection_hostname and syncstorage_rs_docker_container_network != mariadb_container_network else [])
     +
     ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
   }}
@@ -9094,10 +9094,10 @@ syncstorage_rs_docker_environment_variable_sync_master_secret: "{{ ('%s' | forma
 syncstorage_rs_docker_environment_variable_metrics_hash_secret: "{{ ('%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'synchash', rounds=655555)) | b64encode | truncate(length=64, killwords=True, end='', leeway=None) }}"
 
 # role-specific:mariadb
-syncstorage_rs_docker_environment_variable_database_hostname: "{{ mariadb_connection_hostname if mariadb_enabled else '' }}"
-syncstorage_rs_docker_environment_variable_database_port: "{{ mariadb_connection_port if mariadb_enabled | default(false) else '3306' }}"
-syncstorage_rs_docker_environment_variable_database_username: "{{ syncstorage_rs_docker_identifier }}"
-syncstorage_rs_docker_environment_variable_database_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'db.syncstorage', rounds=655555) | to_uuid }}"
+syncstorage_rs_docker_database_mysql_hostname: "{{ mariadb_connection_hostname if mariadb_enabled else '' }}"
+syncstorage_rs_docker_database_mysql_port: "{{ mariadb_connection_port if mariadb_enabled | default(false) else '3306' }}"
+syncstorage_rs_docker_database_mysql_username: "{{ syncstorage_rs_docker_identifier }}"
+syncstorage_rs_docker_database_mysql_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'db.syncstorage', rounds=655555) | to_uuid }}"
 # /role-specific:mariadb
 
 # role-specific:traefik
