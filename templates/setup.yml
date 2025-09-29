@@ -453,6 +453,10 @@
     - role: galaxy/oauth2_proxy
     # /role-specific:oauth2_proxy
 
+    # role-specific:opengist
+    - role: galaxy/opengist
+    # /role-specific:opengist
+
     # role-specific:outline
     - role: galaxy/outline
     # /role-specific:outline
