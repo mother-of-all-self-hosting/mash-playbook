@@ -85,3 +85,7 @@ To get started, open the URL with a web browser, and register the account. **Not
 ## Troubleshooting
 
 See [this section](https://codeberg.org/acioustick/ansible-role-opengist/src/branch/master/docs/configuring-opengist.md#troubleshooting) on the role's documentation for details.
+
+## Related services
+
+- [PrivateBin](privatebin.md) — Minimalist, open source online pastebin where the server has zero knowledge of pasted data
