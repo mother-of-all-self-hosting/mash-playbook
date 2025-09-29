@@ -252,6 +252,10 @@
   version: v10.10.7-2
   name: jellyfin
   activation_prefix: jellyfin_
+- src: git+https://github.com/sudo-Tiz/ansible-role-jellyseerr.git
+  version: v2.7.3-0
+  name: jellyseerr
+  activation_prefix: jellyseerr_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-jitsi.git
   version: v10431-2
   name: jitsi
