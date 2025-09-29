@@ -257,7 +257,7 @@
   name: jellyseerr
   activation_prefix: jellyseerr_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-jitsi.git
-  version: v10431-2
+  version: v10532-0
   name: jitsi
   activation_prefix: jitsi_
 - src: git+https://codeberg.org/acioustick/ansible-role-joplin-server.git
