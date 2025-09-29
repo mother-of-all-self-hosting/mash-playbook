@@ -1,4 +1,5 @@
 ---
+
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-adguard-home.git
   version: v0.107.66-0
   name: adguard_home
