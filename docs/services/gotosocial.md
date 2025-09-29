@@ -104,3 +104,9 @@ See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-go
 You can migrate your existing GoToSocial instance to the server which you manage with the MASH playbook. It is also possible to migrate on the same server (from an existing GoToSocial instance to the new one to start managing it with the MASH playbook, for example).
 
 See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-gotosocial/blob/main/docs/configuring-gotosocial.md#migrate-an-existing-instance) on the role's documentation for details.
+
+## Related services
+
+- [Funkwhale](funkwhale.md) — Community-driven project that lets you listen and share music and audio in the Fediverse
+- [Misskey](misskey.md) — Free decentralized microblogging platform based on the ActivityPub protocol
+- [PeerTube](peertube.md) — Tool for sharing online videos

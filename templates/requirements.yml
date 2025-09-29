@@ -308,6 +308,10 @@
   version: v12.0.2-3
   name: mariadb
   activation_prefix: mariadb_
+- src: git+https://github.com/mother-of-all-self-hosting/ansible-role-misskey.git
+  version: v2025.9.0-0
+  name: misskey
+  activation_prefix: misskey_
 - src: git+https://github.com/acterglobal/ansible-role-matomo.git
   version: v5.3.1-1
   name: matomo
