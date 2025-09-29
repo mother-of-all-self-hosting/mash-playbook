@@ -134,3 +134,7 @@ After running the command for installation, the PrivateBin instance becomes avai
 ## Troubleshooting
 
 See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-privatebin/blob/main/docs/configuring-privatebin.md#troubleshooting) on the role's documentation for details.
+
+## Related services
+
+- [Opengist](opengist.md) — Self-hosted pastebin powered by Git

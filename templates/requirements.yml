@@ -384,6 +384,10 @@
   version: v7.12.0-1
   name: oauth2_proxy
   activation_prefix: oauth2_proxy_
+- src: git+https://codeberg.org/acioustick/ansible-role-opengist.git
+  version: v1.11.0-0
+  name: opengist
+  activation_prefix: opengist_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-outline.git
   version: v0.84.0-5
   name: outline
