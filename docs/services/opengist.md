@@ -17,27 +17,27 @@ SPDX-FileCopyrightText: 2024 - 2025 Suguru Hirahara
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 
-# Homarr
+# Opengist
 
-The playbook can install and configure [Homarr](https://homarr.dev) for you.
+The playbook can install and configure [Opengist](https://opengist.dev) for you.
 
-Homarr is a highly customizable dashboard for management of your favorite applications and services with a drag-and-drop grid system, which integrates with various self-hosted applications.
+Opengist is a highly customizable dashboard for management of your favorite applications and services with a drag-and-drop grid system, which integrates with various self-hosted applications.
 
-See the project's [documentation](https://homarr.dev/docs/getting-started) to learn what Homarr does and why it might be useful to you.
+See the project's [documentation](https://opengist.dev/docs/getting-started) to learn what Opengist does and why it might be useful to you.
 
-For details about configuring the [Ansible role for Homarr](https://github.com/mother-of-all-self-hosting/ansible-role-homarr), you can check them via:
-- 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-homarr/blob/main/docs/configuring-homarr.md) online
-- 📁 `roles/galaxy/homarr/docs/configuring-homarr.md` locally, if you have [fetched the Ansible roles](../installing.md)
+For details about configuring the [Ansible role for Opengist](https://github.com/mother-of-all-self-hosting/ansible-role-opengist), you can check them via:
+- 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-opengist/blob/main/docs/configuring-opengist.md) online
+- 📁 `roles/galaxy/opengist/docs/configuring-opengist.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 ## Dependencies
 
 This service requires the following other services:
 
 - [Traefik](traefik.md) reverse-proxy server
-- (optional) [Postgres](postgres.md) / MySQL database — Homarr will default to [SQLite](https://www.sqlite.org/) if Postgres is not enabled
+- (optional) [Postgres](postgres.md) / MySQL database — Opengist will default to [SQLite](https://www.sqlite.org/) if Postgres is not enabled
 
 >[!NOTE]
-> Currently (as of v1.35.0) MariaDB is not supported but planned. See [this issue at GitHub](https://github.com/homarr-labs/homarr/issues/2305) for the latest information.
+> Currently (as of v1.35.0) MariaDB is not supported but planned. See [this issue at GitHub](https://github.com/opengist-labs/opengist/issues/2305) for the latest information.
 
 ## Adjusting the playbook configuration
 
@@ -46,29 +46,29 @@ To enable this service, add the following configuration to your `vars.yml` file 
 ```yaml
 ########################################################################
 #                                                                      #
-# homarr                                                               #
+# opengist                                                             #
 #                                                                      #
 ########################################################################
 
-homarr_enabled: true
+opengist_enabled: true
 
-homarr_hostname: homarr.example.com
+opengist_hostname: opengist.example.com
 
 ########################################################################
 #                                                                      #
-# /homarr                                                              #
+# /opengist                                                            #
 #                                                                      #
 ########################################################################
 ```
 
-**Note**: hosting Homarr under a subpath (by configuring the `homarr_path_prefix` variable) does not seem to be possible due to Homarr's technical limitations.
+**Note**: hosting Opengist under a subpath (by configuring the `opengist_path_prefix` variable) does not seem to be possible due to Opengist's technical limitations.
 
 ### Set 32-byte hex digits for secret key
 
 You also need to specify **32-byte hex digits** to encrypt integration secrets on the database. To do so, add the following configuration to your `vars.yml` file. The value can be generated with `openssl rand -hex 32` or in another way.
 
 ```yaml
-homarr_environment_variables_secret_encryption_key: YOUR_SECRET_KEY_HERE
+opengist_environment_variables_secret_encryption_key: YOUR_SECRET_KEY_HERE
 ```
 
 >[!NOTE]
@@ -76,27 +76,27 @@ homarr_environment_variables_secret_encryption_key: YOUR_SECRET_KEY_HERE
 
 ### Select database to use (optional)
 
-By default Homarr is configured to use Postgres, but you can choose other database such as SQLite and MySQL.
+By default Opengist is configured to use Postgres, but you can choose other database such as SQLite and MySQL.
 
 To use SQLite, add the following configuration to your `vars.yml` file:
 
 ```yaml
-homarr_database_type: better-sqlite3
+opengist_database_type: better-sqlite3
 ```
 
-See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-homarr/blob/main/docs/configuring-homarr.md#specify-database-optional) on the role's documentation for details.
+See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-opengist/blob/main/docs/configuring-opengist.md#specify-database-optional) on the role's documentation for details.
 
 ## Usage
 
-After running the command for installation, the Homarr instance becomes available at the URL specified with `homarr_hostname`. With the configuration above, the service is hosted at `https://homarr.example.com`.
+After running the command for installation, the Opengist instance becomes available at the URL specified with `opengist_hostname`. With the configuration above, the service is hosted at `https://opengist.example.com`.
 
-You can open the page with a web browser to start the onboarding process. See [this official guide](https://homarr.dev/docs/getting-started/after-the-installation/) for details.
+You can open the page with a web browser to start the onboarding process. See [this official guide](https://opengist.dev/docs/getting-started/after-the-installation/) for details.
 
-### Playbook's services on Homarr
+### Playbook's services on Opengist
 
-On Homarr's board it is possible to create and add icons of many services, including the ones which can be installed with this playbook such as [Nextcloud](nextcloud.md), [PeerTube](peertube.md), [PrivateBin](privatebin.md), [Syncthing](syncthing.md), etc.
+On Opengist's board it is possible to create and add icons of many services, including the ones which can be installed with this playbook such as [Nextcloud](nextcloud.md), [PeerTube](peertube.md), [PrivateBin](privatebin.md), [Syncthing](syncthing.md), etc.
 
-Homarr also integrates with various software, to which you can connect your applications to interact via widgets. Here is a list of integrations which are also available on this playbook:
+Opengist also integrates with various software, to which you can connect your applications to interact via widgets. Here is a list of integrations which are also available on this playbook:
 
 - **Torrent client**: [qBittorent](qbittorrent.md)
 - **Media server**: [Plex](plex.md)
@@ -104,8 +104,8 @@ Homarr also integrates with various software, to which you can connect your appl
 - **Media request manager**: [Overseerr](overseerr.md)
 - **DNS ad-blocker**: [AdGuard Home](adguard-home.md)
 
-See [this page](https://homarr.dev/docs/category/integrations) on the official documentation for the latest information about integrations.
+See [this page](https://opengist.dev/docs/category/integrations) on the official documentation for the latest information about integrations.
 
 ## Troubleshooting
 
-See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-homarr/blob/main/docs/configuring-homarr.md#troubleshooting) on the role's documentation for details.
+See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-opengist/blob/main/docs/configuring-opengist.md#troubleshooting) on the role's documentation for details.
