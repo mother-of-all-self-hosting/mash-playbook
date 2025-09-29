@@ -1263,9 +1263,9 @@ mash_playbook_postgres_managed_databases_auto_itemized:
     {{
       ({
         'name': nextcloud_database_name,
-        'username': nextcloud_database_username,
-        'password': nextcloud_database_password,
-      } if nextcloud_enabled and nextcloud_database_hostname == postgres_connection_hostname and nextcloud_database_type == 'postgres' else omit)
+        'username': nextcloud_database_postgres_username,
+        'password': nextcloud_database_postgres_password,
+      } if nextcloud_enabled and nextcloud_database_postgres_hostname == postgres_connection_hostname and nextcloud_database_type == 'postgres' else omit)
     }}
   # /role-specific:nextcloud
 
@@ -7078,7 +7078,7 @@ nextcloud_systemd_required_services_list_auto: |
   {{
     ([mariadb_identifier ~ '.service'] if mariadb_enabled | default(false) and nextcloud_database_mysql_hostname == mariadb_connection_hostname and nextcloud_database_type == 'mysql' else [])
     +
-    ([postgres_identifier ~ '.service'] if postgres_enabled | default(false) and nextcloud_database_hostname == postgres_connection_hostname and nextcloud_database_type == 'postgres' else [])
+    ([postgres_identifier ~ '.service'] if postgres_enabled | default(false) and nextcloud_database_postgres_hostname == postgres_connection_hostname and nextcloud_database_type == 'postgres' else [])
   }}
 
 nextcloud_systemd_wanted_services_list_auto: |
@@ -7099,7 +7099,7 @@ nextcloud_container_additional_networks_auto: |
       +
       ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
       +
-      ([postgres_container_network] if postgres_enabled | default(false) and nextcloud_database_hostname == postgres_connection_hostname and nextcloud_container_network != postgres_container_network and nextcloud_database_type == 'postgres' else [])
+      ([postgres_container_network] if postgres_enabled | default(false) and nextcloud_database_postgres_hostname == postgres_connection_hostname and nextcloud_container_network != postgres_container_network and nextcloud_database_type == 'postgres' else [])
     ) | unique
   }}
 
@@ -7151,9 +7151,9 @@ nextcloud_database_mysql_password: "{{ '%s' | format(mash_playbook_generic_secre
 # /role-specific:mariadb
 
 # role-specific:postgres
-nextcloud_database_hostname: "{{ postgres_connection_hostname if postgres_enabled else '' }}"
-nextcloud_database_port: "{{ postgres_connection_port if postgres_enabled else '5432' }}"
-nextcloud_database_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'db.nextcloud', rounds=655555) | to_uuid }}"
+nextcloud_database_postgres_hostname: "{{ postgres_connection_hostname if postgres_enabled else '' }}"
+nextcloud_database_postgres_port: "{{ postgres_connection_port if postgres_enabled else '5432' }}"
+nextcloud_database_postgres_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'db.nextcloud', rounds=655555) | to_uuid }}"
 # /role-specific:postgres
 
 # role-specific:traefik
