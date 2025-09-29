@@ -8,7 +8,9 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
 # Jellyseerr
 
-[Jellyseerr](https://www.jellyseerr.org/) is an open-source media request and discovery manager for Jellyfin, Plex, and Emby.
+[Jellyseerr](https://www.jellyseerr.org/) is an open-source media request and discovery manager for [Jellyfin](jellyfin.md), [Plex](plex.md), and Emby.
+
+💡 You may also be interested in the [Overseerr](overseerr.md) alternative (the predecessor to Jellyseerr).
 
 ## Dependencies
 
