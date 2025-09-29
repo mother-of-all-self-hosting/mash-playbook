@@ -9910,7 +9910,6 @@ yourls_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxya
 # role-specific:mariadb
 yourls_database_hostname: "{{ mariadb_connection_hostname if mariadb_enabled else '' }}"
 yourls_database_port: "{{ mariadb_connection_port if mariadb_enabled | default(false) else '3306' }}"
-yourls_database_username: "yourls"
 yourls_database_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'db.yourls', rounds=655555) | to_uuid }}"
 # /role-specific:mariadb
 
