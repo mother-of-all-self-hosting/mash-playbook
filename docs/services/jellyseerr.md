@@ -30,6 +30,7 @@ To enable this service, add the following configuration to your `vars.yml` file 
 jellyseerr_enabled: true
 
 jellyseerr_hostname: jellyseerr.example.com
+
 ########################################################################
 #                                                                      #
 # /jellyseerr                                                          #
