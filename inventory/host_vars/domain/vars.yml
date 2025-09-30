@@ -521,6 +521,10 @@ tandoor_container_additional_environment_variables: |
   {{ line }}
   {% endfor %}
 
+tandoor_systemd_required_services_list_custom:
+  - mash-authentik-server.service
+  - mash-authentik-worker.service
+
 # tandoor_path_prefix: /
 
 
@@ -579,6 +583,10 @@ headscale_configuration_extension:
     pkce:
       enabled: true
       method: S256
+
+headscale_systemd_required_services_list_custom:
+  - mash-authentik-server.service
+  - mash-authentik-worker.service
 # https://headscale.net/stable/ref/oidc/?h=oidc
 
 ########################################################################
