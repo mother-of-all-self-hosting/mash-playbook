@@ -36,8 +36,8 @@ For details about configuring the [Ansible role for Ghostfolio](https://github.c
 
 This service requires the following other services:
 
-- [Traefik](traefik.md) reverse-proxy server
 - [Postgres](postgres.md) database
+- [Traefik](traefik.md) reverse-proxy server
 - [Valkey](valkey.md) data-store; see [below](#configure-valkey) for details about installation
 
 ## Adjusting the playbook configuration
@@ -165,7 +165,7 @@ Having configured `vars.yml` for the dedicated instance, add the following confi
 # Add the base configuration as specified above
 
 # Point Ghostfolio to its dedicated Valkey instance
-ghostfolio_config_redis_hostname: mash-ghostfolio-valkey
+ghostfolio_redis_hostname: mash-ghostfolio-valkey
 
 # Make sure the Ghostfolio service (mash-ghostfolio.service) starts after its dedicated Valkey service (mash-ghostfolio-valkey.service)
 ghostfolio_systemd_required_services_list_custom:
@@ -215,7 +215,7 @@ valkey_enabled: true
 # Add the base configuration as specified above
 
 # Point Ghostfolio to the shared Valkey instance
-ghostfolio_config_redis_hostname: "{{ valkey_identifier }}"
+ghostfolio_redis_hostname: "{{ valkey_identifier }}"
 
 # Make sure the Ghostfolio service (mash-ghostfolio.service) starts after its dedicated Valkey service (mash-ghostfolio-valkey.service)
 ghostfolio_systemd_required_services_list_custom:

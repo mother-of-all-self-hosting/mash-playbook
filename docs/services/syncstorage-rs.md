@@ -35,8 +35,8 @@ For details about configuring the [Ansible role for syncstorage-rs](https://gith
 
 This service requires the following other services:
 
-- [Traefik](traefik.md) reverse-proxy server
 - MySQL / [MariaDB](mariadb.md) database
+- [Traefik](traefik.md) reverse-proxy server
 
 ## Adjusting the playbook configuration
 
@@ -45,7 +45,7 @@ To enable this service, add the following configuration to your `vars.yml` file 
 ```yaml
 ########################################################################
 #                                                                      #
-# syncstorage-rs-docker                                                #
+# syncstorage_rs_docker                                                #
 #                                                                      #
 ########################################################################
 
@@ -55,7 +55,7 @@ syncstorage_rs_docker_hostname: syncstorage-rs-docker.example.com
 
 ########################################################################
 #                                                                      #
-# /syncstorage-rs-docker                                               #
+# /syncstorage_rs_docker                                               #
 #                                                                      #
 ########################################################################
 ```

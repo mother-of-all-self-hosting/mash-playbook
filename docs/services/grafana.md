@@ -184,7 +184,7 @@ grafana_dashboard_download_urls: |
 
 ### Single-Sign-On
 
-Grafana supports Single-Sign-On (SSO) via OAUTH. To make use of this you'll need an identity provider like [authentik](authentik.md), [Keycloak](keycloak.md) or [Authelia](authelia.md).
+Grafana supports Single-Sign-On (SSO) via OAUTH. To make use of this you'll need an Identity Provider (IdP) like [authentik](authentik.md), [Authelia](authelia.md), [Keycloak](keycloak.md) or [Pocket ID](pocket-id.md).
 
 Below, you can find some examples for Grafana configuration.
 
@@ -247,6 +247,10 @@ grafana_environment_variables_additional_variables: |
   GF_AUTH_GENERIC_OAUTH_NAME_ATTRIBUTE_PATH=name
   GF_AUTH_GENERIC_OAUTH_USE_PKCE=true
 ```
+
+#### Single-Sign-On / Pocket ID
+
+Refer to [this page](https://pocket-id.org/docs/client-examples/grafana) on Pocket ID's documentation for the instruction.
 
 ## Usage
 

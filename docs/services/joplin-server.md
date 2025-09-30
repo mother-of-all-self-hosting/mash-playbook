@@ -72,12 +72,12 @@ Though the mailer is technically not requisite, it is highly recommended to set 
 See [this section](https://codeberg.org/acioustick/ansible-role-joplin-server/src/branch/master/docs/configuring-joplin-server.md#configure-the-mailer) on the role's documentation for details about configuring the mailer.
 
 **Notes**:
-- **You can use exim-relay as the mailer, which is enabled on this playbook by default.** See [here](exim-relay.md) for details about how to set it up.
+- If you enable the [exim-relay](exim-relay.md) service in your inventory configuration, the playbook will automatically configure it as a mailer for the service.
 - Without setting an authentication method such as DKIM, SPF, and DMARC for your hostname, emails are most likely to be quarantined as spam at recipient's mail servers. If you have set up a mail server with the [exim-relay Ansible role](https://github.com/mother-of-all-self-hosting/ansible-role-exim-relay), you can enable DKIM signing with it. Refer [its documentation](https://github.com/mother-of-all-self-hosting/ansible-role-exim-relay/blob/main/docs/configuring-exim-relay.md#enable-dkim-support-optional) for details.
 
 ## Usage
 
-To configure and manage the Joplin Server, go to `mash.example.com/joplin/login` specified with `joplin_server_hostname` and `joplin_server_path_prefix`, enter the admin credentials (email address: `admin@localhost`, password: `admin`) to log in. **After logging in, make sure to change the credentials.**
+To configure and manage the Joplin Server, open the URL `mash.example.com/joplin/login` specified with `joplin_server_hostname` and `joplin_server_path_prefix`, enter the admin credentials (email address: `admin@localhost`, password: `admin`) to log in. **After logging in, make sure to change the credentials.**
 
 For security reason, the developer recommends to create a non-admin user for synchronization. You can create one on the "Users" page. After creating, you can use the email and password you specified for the user to synchronize data with your Joplin clients.
 

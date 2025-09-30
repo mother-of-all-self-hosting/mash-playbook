@@ -37,8 +37,8 @@ For details about configuring the [Ansible role for Docmost](https://github.com/
 
 This service requires the following other services:
 
-- [Traefik](traefik.md) reverse-proxy server
 - [Postgres](postgres.md) database
+- [Traefik](traefik.md) reverse-proxy server
 - [Valkey](valkey.md) data-store; see [below](#configure-valkey) for details about installation
 - (optional) [exim-relay](exim-relay.md) mailer — required on the default configuration
 
@@ -76,7 +76,7 @@ See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-do
 
 You can configure a mailer for functions such as user invitation. Docmost supports a SMTP server and Postmark.
 
-**You can use exim-relay as the mailer, which is enabled on this playbook by default.** If you enable exim-relay on the playbook and will use it for Docmost, you do not have to add settings for them, as Docmost is wired to the mailer automatically. See [here](exim-relay.md) for details about how to set it up.
+If you enable the [exim-relay](exim-relay.md) service in your inventory configuration, the playbook will automatically configure it as a mailer for the service. If it is fine for you, you do not have to add settings for it.
 
 If you will use another SMTP server or Postmark, see [this section](https://github.com/mother-of-all-self-hosting/ansible-role-docmost/blob/main/docs/configuring-docmost.md#configure-the-mailer) on the role's documentation for details about configuring the mailer.
 
@@ -187,7 +187,7 @@ Having configured `vars.yml` for the dedicated instance, add the following confi
 # Add the base configuration as specified above
 
 # Point Docmost to its dedicated Valkey instance
-docmost_config_redis_hostname: mash-docmost-valkey
+docmost_redis_hostname: mash-docmost-valkey
 
 # Make sure the Docmost service (mash-docmost.service) starts after its dedicated Valkey service (mash-docmost-valkey.service)
 docmost_systemd_required_services_list_custom:
@@ -237,7 +237,7 @@ valkey_enabled: true
 # Add the base configuration as specified above
 
 # Point Docmost to the shared Valkey instance
-docmost_config_redis_hostname: "{{ valkey_identifier }}"
+docmost_redis_hostname: "{{ valkey_identifier }}"
 
 # Make sure the Docmost service (mash-docmost.service) starts after its dedicated Valkey service (mash-docmost-valkey.service)
 docmost_systemd_required_services_list_custom:

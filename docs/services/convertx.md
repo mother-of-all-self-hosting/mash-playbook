@@ -62,6 +62,8 @@ As the most of the necessary settings for the role have been taken care of by th
 
 See the role's documentation for details about configuring ConvertX per your preference (such as [enabling account registration](https://github.com/mother-of-all-self-hosting/ansible-role-convertx/blob/main/docs/configuring-convertx.md#enable-account-registration-optional)).
 
+By deploying an authentication service like [Tinyauth](tinyauth.md), you can disable the authentication function provided by ConvertX in favor of it.
+
 ## Usage
 
 After running the command for installation, the ConvertX instance becomes available at the URL specified with `convertx_hostname` and `convertx_path_prefix`. With the configuration above, the service is hosted at `https://mash.example.com/convertx`.

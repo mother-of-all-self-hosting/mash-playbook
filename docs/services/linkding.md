@@ -34,8 +34,8 @@ For details about configuring the [Ansible role for linkding](https://github.com
 
 This service requires the following other services:
 
-- (optional) a [Postgres](postgres.md) database — linkding will default to [SQLite](https://www.sqlite.org/) if Postgres is not enabled
 - a [Traefik](traefik.md) reverse-proxy server
+- (optional) a [Postgres](postgres.md) database — linkding will default to [SQLite](https://www.sqlite.org/) if Postgres is not enabled
 
 ## Adjusting the playbook configuration
 
@@ -76,3 +76,7 @@ To get started, open the URL with a web browser, and log in with the superuser's
 ## Troubleshooting
 
 See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-linkding/blob/main/docs/configuring-linkding.md#troubleshooting) on the role's documentation for details.
+
+## Related services
+
+- [Readeck](readeck.md) — Bookmark manager and a read-later tool combined in one

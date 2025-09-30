@@ -158,34 +158,34 @@ mash_playbook_postgres_managed_databases_auto_itemized:
 # role-specific:YOUR-SERVICE
 ########################################################################
 #                                                                      #
-# YOUR-SERVICE                                                         #
+# YOUR_SERVICE                                                         #
 #                                                                      #
 ########################################################################
 
 YOUR-SERVICE_systemd_required_services_list_auto: |
   {{
-    ([postgres_identifier ~ '.service'] if postgres_enabled and YOUR-SERVICE_database_hostname == postgres_identifier else [])
+    ([postgres_identifier ~ '.service'] if postgres_enabled and YOUR-SERVICE_database_hostname == postgres_connection_hostname else [])
   }}
 
 YOUR-SERVICE_container_additional_networks_auto: |
   {{
     [...]
     +
-    ([postgres_container_network] if postgres_enabled and YOUR-SERVICE_database_hostname == postgres_identifier and YOUR-SERVICE_container_network != postgres_container_network else [])
+    ([postgres_container_network] if postgres_enabled and YOUR-SERVICE_database_hostname == postgres_connection_hostname and YOUR-SERVICE_container_network != postgres_container_network else [])
   }}
 
 [...]
 
 # role-specific:postgres
-YOUR-SERVICE_database_hostname: "{{ postgres_identifier if postgres_enabled else '' }}"
-YOUR-SERVICE_database_port: "{{ '5432' if postgres_enabled else '' }}"
-YOUR-SERVICE_database_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'db.yourservice', rounds=655555) | to_uuid }}"
+YOUR-SERVICE_database_hostname: "{{ postgres_connection_hostname if postgres_enabled else '' }}"
+YOUR-SERVICE_database_port: "{{ postgres_connection_port if postgres_enabled else '5432' }}"
 YOUR-SERVICE_database_username: "{{ YOUR-SERVICE_identifier }}"
+YOUR-SERVICE_database_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'db.yourservice', rounds=655555) | to_uuid }}"
 # /role-specific:postgres
 
 ########################################################################
 #                                                                      #
-# /YOUR-SERVICE                                                        #
+# /YOUR_SERVICE                                                        #
 #                                                                      #
 ########################################################################
 # /role-specific:YOUR-SERVICE
@@ -210,16 +210,23 @@ To wire the role to exim-relay, add the configuration for it as below:
 # role-specific:YOUR-SERVICE
 ########################################################################
 #                                                                      #
-# YOUR-SERVICE                                                         #
+# YOUR_SERVICE                                                         #
 #                                                                      #
 ########################################################################
 
 [...]
 
+YOUR-SERVICE_systemd_wanted_services_list_auto: |
+  {{
+    ([(exim_relay_identifier | default('mash-exim-relay')) ~ '.service'] if (exim_relay_enabled | default(false) and YOUR-SERVICE_config_mailer_smtp_addr == exim_relay_identifier | default('mash-exim-relay')) else [])
+  }}
+
+[...]
+
 YOUR-SERVICE_container_additional_networks_auto: |
   {{
-	[...]
-	+
+    [...]
+    +
     ([exim_relay_container_network | default('mash-exim-relay')] if (exim_relay_enabled | default(false) and YOUR-SERVICE_config_mailer_smtp_addr == exim_relay_identifier | default('mash-exim-relay') and YOUR-SERVICE_container_network != exim_relay_container_network) else [])
   }}
 
@@ -233,7 +240,7 @@ YOUR-SERVICE_config_mailer_protocol: "{{ 'smtp' if exim_relay_enabled else '' }}
 
 ########################################################################
 #                                                                      #
-# /YOUR-SERVICE                                                        #
+# /YOUR_SERVICE                                                        #
 #                                                                      #
 ########################################################################
 # /role-specific:YOUR-SERVICE

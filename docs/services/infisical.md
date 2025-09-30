@@ -152,7 +152,7 @@ Having configured `vars.yml` for the dedicated instance, add the following confi
 # Add the base configuration as specified above
 
 # Point Infisical to its dedicated Valkey instance
-infisical_environment_variable_redis_host: mash-infisical-valkey
+infisical_environment_variable_redis_hostname: mash-infisical-valkey
 infisical_environment_variable_redis_cache_host: mash-infisical-valkey
 
 # Make sure the Infisical service (mash-infisical.service) starts after its dedicated Valkey service (mash-infisical-valkey.service)
@@ -203,7 +203,7 @@ valkey_enabled: true
 # Add the base configuration as specified above
 
 # Point Infisical to the shared Valkey instance
-infisical_environment_variable_redis_host: "{{ valkey_identifier }}"
+infisical_environment_variable_redis_hostname: "{{ valkey_identifier }}"
 infisical_environment_variable_redis_cache_host: "{{ valkey_identifier }}"
 
 # Make sure the Infisical service (mash-infisical.service) starts after the shared Valkey service (mash-valkey.service)
@@ -256,7 +256,7 @@ infisical_backend_environment_variable_smtp_name: Infisical
 For additional SMTP-related variables, consult the [`defaults/main.yml` file](https://github.com/mother-of-all-self-hosting/ansible-role-infisical/blob/main/defaults/main.yml) in the [ansible-role-infisical](https://github.com/mother-of-all-self-hosting/ansible-role-infisical) Ansible role.
 
 **Notes**:
-- **You can use exim-relay as the mailer, which is enabled on this playbook by default.** See [here](exim-relay.md) for details about how to set it up.
+- If you enable the [exim-relay](exim-relay.md) service in your inventory configuration, the playbook will automatically configure it as a mailer for the service.
 - Without setting an authentication method such as DKIM, SPF, and DMARC for your hostname, emails are most likely to be quarantined as spam at recipient's mail servers. If you have set up a mail server with the [exim-relay Ansible role](https://github.com/mother-of-all-self-hosting/ansible-role-exim-relay), you can enable DKIM signing with it. Refer [its documentation](https://github.com/mother-of-all-self-hosting/ansible-role-exim-relay/blob/main/docs/configuring-exim-relay.md#enable-dkim-support-optional) for details.
 
 ## Installation

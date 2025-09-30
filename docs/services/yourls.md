@@ -33,8 +33,8 @@ For details about configuring the [Ansible role for YOURLS](https://github.com/m
 
 This service requires the following other services:
 
-- [Traefik](traefik.md) reverse-proxy server
 - MySQL / [MariaDB](mariadb.md) database
+- [Traefik](traefik.md) reverse-proxy server
 
 ## Adjusting the playbook configuration
 
@@ -88,3 +88,7 @@ The help file is available at `yourls.example.com/readme.html`.
 ## Troubleshooting
 
 See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-yourls/blob/main/docs/configuring-yourls.md#troubleshooting) on the role's documentation for details.
+
+## Related services
+
+- [Kutt](kutt.md) — Modern URL shortener with support for custom domains

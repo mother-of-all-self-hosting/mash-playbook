@@ -24,7 +24,7 @@ To enable this service, add the following configuration to your `vars.yml` file 
 ```yaml
 ########################################################################
 #                                                                      #
-# docker-registry-browser                                              #
+# docker_registry_browser                                              #
 #                                                                      #
 ########################################################################
 
@@ -59,7 +59,7 @@ docker_registry_browser_enabled_delete_images: true
 
 ########################################################################
 #                                                                      #
-# /docker-registry-browser                                             #
+# /docker_registry_browser                                             #
 #                                                                      #
 ########################################################################
 ```

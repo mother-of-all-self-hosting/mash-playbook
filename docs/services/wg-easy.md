@@ -201,7 +201,7 @@ Most users can log in with the credentials they provided before the first instal
 
 Depending on your configuration, you may need to go through a setup wizard first. Details are below.
 
-If you have provided a username (`wg_easy_environment_variables_additional_variable_init_username`) and password (`wg_easy_environment_variables_additional_variable_init_password`) before the first installation, the unattended setup process would have created these credentials for you, so you can log in with them. Otherwise, you'll see a setup wizard and can create your own credentials.
+If you have provided a username (`wg_easy_environment_variables_additional_variable_init_username`) and password (`wg_easy_environment_variables_additional_variable_init_password`) before the first installation, the unattended setup process would have created these credentials for you, so you can log in with them. Otherwise, you'll see a setup wizard and can create your own credentials. For creating additional users, see [Creating additional users](#creating-additional-users).
 
 Similarly, if you have provided a hostname (`wg_easy_hostname` and/or `wg_easy_environment_variables_additional_variable_init_host`) and port (`wg_easy_environment_variables_additional_variable_init_port`) before the first installation, the unattended setup process would have initialized the wg-easy service with these values. Otherwise, you'll see a setup wizard about this.
 
@@ -209,6 +209,43 @@ Similarly, if you have provided a hostname (`wg_easy_hostname` and/or `wg_easy_e
 
 You can then create various Clients and import the configuration for them onto your devices — either by downloading a file or by scanning a QR code.
 
+
+### Creating additional users
+
+**wg-easy does not yet allow managing users via the web UI**, but you can create additional users manually by editing its SQLite database (typically `/mash/wg-easy/data/wg-easy.db`).
+
+Before you create additional users, be aware of the following:
+
+- Two Factor Authentication for each user can be enabled later on via the web UI, after logging in
+- user passwords need to be sufficiently strong or wg-easy will reject them during login (even before trying to compare to the password-hash value stored in the database)
+- the `role` value for a user can be `1` (Administrator) or `2` (Client), but only `1` (Administrator) is a [permission](https://github.com/wg-easy/wg-easy/blob/2d9c75fd81094902b7b91bb4e699b4e4c991ff88/src/shared/utils/permissions.ts#L75-L106) that lets you do anything meaningful. The reason is that client-type users cannot create new clients. They can only manage clients associated with them, but not being able to create new ones means no clients are associated with them in the first place, so.. Administrator is the only user type that makes sense.
+- all Administrators (`role = 1`) users can see and managed all clients and settings
+- due to the above limitations, it's **not feasible to have a multi-user wg-easy installation where each user is independent of the others**. If you're OK with all your users being administrators and all data (client configs, etc.) being shared, then you may be OK with this.
+
+The steps for creating a new user are like this:
+
+1. Make sure the `sqlite3` tool is available on the server
+2. Generate a strong password (e.g. `pwgen -s 1 64`)
+3. Hash the password using [Argon2id](https://en.wikipedia.org/wiki/Argon2)
+  - Here's a one-liner to do it using [PHP](https://php.net/): `php -r 'echo password_hash("YOUR_PASSWORD_HERE", \PASSWORD_ARGON2ID);'
+`
+4. Open the database using `sqlite3 /mash/wg-easy/data/wg-easy.db`
+5. Run a query like this:
+
+  ```sql
+  INSERT INTO "users_table"
+  (username, password, email, name, role, totp_key, totp_verified, enabled)
+  VALUES (
+    'USERNAME_HERE',
+    'ARGON2ID_PASSWORD_HASH_HERE',
+    NULL,
+    'NAME_HERE',
+    1,
+    '',
+    0,
+    1
+  );
+  ```
 
 ## Note about the IPv6 CIDR and IPv6 connectivity
 

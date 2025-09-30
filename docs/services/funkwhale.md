@@ -1,7 +1,18 @@
 <!--
+SPDX-FileCopyrightText: 2020 - 2024 MDAD project contributors
+SPDX-FileCopyrightText: 2020 - 2024 Slavi Pantaleev
+SPDX-FileCopyrightText: 2020 Aaron Raimist
+SPDX-FileCopyrightText: 2020 Chris van Dijk
+SPDX-FileCopyrightText: 2020 Dominik Zajac
+SPDX-FileCopyrightText: 2020 Mickaël Cornière
+SPDX-FileCopyrightText: 2022 François Darveau
+SPDX-FileCopyrightText: 2022 Julian Foad
+SPDX-FileCopyrightText: 2022 Warren Bailey
+SPDX-FileCopyrightText: 2023 Antonis Christofides
+SPDX-FileCopyrightText: 2023 Felix Stupp
 SPDX-FileCopyrightText: 2023 Julian-Samuel Gebühr
-SPDX-FileCopyrightText: 2023-2024 Slavi Pantaleev
-SPDX-FileCopyrightText: 2025 Suguru Hirahara
+SPDX-FileCopyrightText: 2023 Pierre 'McFly' Marty
+SPDX-FileCopyrightText: 2024 - 2025 Suguru Hirahara
 
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->
@@ -16,8 +27,8 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 This service requires the following other services:
 
 - a [Postgres](postgres.md) database
-- a [Valkey](valkey.md) data-store; see [below](#configure-valkey) for details about installation
 - a [Traefik](traefik.md) reverse-proxy server
+- a [Valkey](valkey.md) data-store; see [below](#configure-valkey) for details about installation
 
 
 ## Configuration
@@ -146,7 +157,7 @@ Having configured `vars.yml` for the dedicated instance, add the following confi
 # Add the base configuration as specified above
 
 # Point Funkwhale to its dedicated Valkey instance
-funkwhale_config_redis_hostname: mash-funkwhale-valkey
+funkwhale_redis_hostname: mash-funkwhale-valkey
 
 # Make sure the Funkwhale API service (mash-funkwhale-api.service) starts after its dedicated Valkey service
 funkwhale_api_systemd_required_services_list_custom:
@@ -196,7 +207,7 @@ valkey_enabled: true
 # Add the base configuration as specified above
 
 # Point Funkwhale to the shared Valkey instance
-funkwhale_config_redis_hostname: "{{ valkey_identifier }}"
+funkwhale_redis_hostname: "{{ valkey_identifier }}"
 
 # Make sure the Funkwhale API service (mash-funkwhale-api.service) starts after the shared Valkey service
 funkwhale_api_systemd_required_services_list_custom:
@@ -232,3 +243,9 @@ just run-tags funkwhale-add-superuser --extra-vars=username=USERNAME --extra-var
 ```
 
 Log in to the web UI with the superuser to create other users.
+
+## Related services
+
+- [GoToSocial](gotosocial.md) — Self-hosted ActivityPub social network server
+- [Misskey](misskey.md) — Free decentralized microblogging platform based on the ActivityPub protocol
+- [PeerTube](peertube.md) — Tool for sharing online videos

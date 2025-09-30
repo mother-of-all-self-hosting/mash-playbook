@@ -28,13 +28,18 @@ Nextcloud is the most popular self-hosted collaboration solution for tens of mil
 
 See the project's [documentation](https://docs.nextcloud.com/) to learn what Nextcloud does and why it might be useful to you.
 
+For details about configuring the [Ansible role for Nextcloud](https://github.com/mother-of-all-self-hosting/ansible-role-nextcloud), you can check them via:
+- 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-nextcloud/blob/main/docs/configuring-nextcloud.md) online
+- 📁 `roles/galaxy/nextcloud/docs/configuring-nextcloud.md` locally, if you have [fetched the Ansible roles](../installing.md)
+
 ## Dependencies
 
 This service requires the following other services:
 
-- a [Postgres](postgres.md) database
 - a [Traefik](traefik.md) reverse-proxy server
-- (optional) a [Valkey](valkey.md) data-store; see [below](#configure-valkey) for details about installation
+- (optional) [Postgres](postgres.md) / MySQL / [MariaDB](mariadb.md) database — Nextcloud will default to [SQLite](https://www.sqlite.org/) if Postgres is not enabled
+    - [This page](https://docs.nextcloud.com/server/latest/admin_manual/configuration_database/linux_database_configuration.html) of the Nextcloud documentation recommends MySQL or MariaDB database
+- (optional) a [Valkey](valkey.md) data-store; see [below](#configuring-valkey-optional) for details about installation
 - (optional) the [exim-relay](exim-relay.md) mailer
 
 ## Adjusting the playbook configuration
@@ -62,9 +67,17 @@ nextcloud_path_prefix: /nextcloud
 ########################################################################
 ```
 
-### Valkey
+### Select database to use (optional)
 
-Valkey can **optionally** be enabled to improve Nextcloud performance. This playbook supports it, and you can set up a Valkey instance by enabling it on `vars.yml`.
+By default Nextcloud is configured to use Postgres, but you can choose other databases such as MySQL (MariaDB) and SQLite. See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-nextcloud/blob/main/docs/configuring-nextcloud.md#configure-database) on the role's documentation for details.
+
+### Editing default configuration parameters (optional)
+
+Some configuration parameters for Nextcloud can be specified with variables starting with `nextcloud_config_parameter_default_*`. See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-nextcloud/blob/main/docs/configuring-nextcloud.md#editing-default-configuration-parameters-optional) on the role's documentation for details. Refer to [this page](https://docs.nextcloud.com/server/latest/admin_manual/configuration_server/config_sample_php_parameters.html) of the Nextcloud documentation as well.
+
+### Configuring Valkey (optional)
+
+Valkey can optionally be enabled to improve Nextcloud performance and to prevent file locking problems. This playbook supports it, and you can set up a Valkey instance by enabling it on `vars.yml`.
 
 If Nextcloud is the sole service which requires Valkey on your server, it is fine to set up just a single Valkey instance. However, **it is not recommended if there are other services which require it, because sharing the Valkey instance has security concerns and possibly causes data conflicts**, as described on the [documentation for configuring Valkey](valkey.md). In this case, you should install a dedicated Valkey instance for each of them.
 
@@ -72,7 +85,7 @@ If you are unsure whether you will install other services along with Nextcloud o
 
 *See [below](#setting-up-a-shared-valkey-instance) for an instruction to install a shared instance.*
 
-💡 It is dubious whether using Valkey helps much, so we recommend that you **start without** it for a simpler deployment. To learn more, read the [Memory caching](https://docs.nextcloud.com/server/latest/admin_manual/configuration_server/caching_configuration.html) section of the Nextcloud documentation.
+💡 Though running Valkey is recommended, you can **start without** it for a simpler deployment. To learn more, read [this section](https://docs.nextcloud.com/server/latest/admin_manual/configuration_server/caching_configuration.html#id2) of the Nextcloud documentation about memory caching.
 
 #### Setting up a dedicated Valkey instance
 
@@ -234,31 +247,9 @@ nextcloud_container_additional_networks_custom:
 
 Running the installation command will create the shared Valkey instance named `mash-valkey`.
 
-#### Adjust Nextcloud configuration file
+### Samba (optional)
 
-If a Valkey instance is enabled for Nextcloud in either way, adjust your Nextcloud configuration file (e.g. `/mash/nextcloud/data/config/config.php`) to **add** this:
-
-```php
-  'memcache.distributed' => '\OC\Memcache\Redis',
-  'memcache.locking' => '\OC\Memcache\Redis',
-  'redis' => [
-     'host' => 'VALKEY_HOSTNAME_HERE',
-     'port' => 6379,
-  ],
-```
-
-Where `VALKEY_HOSTNAME_HERE` is to be replaced with:
-
-- `mash-nextcloud-valkey` if the dedicated Valkey instance is used
-- `mash-valkey` if the single Valkey instance is used
-
-### Samba
-
-To enable [Samba](https://www.samba.org/) external Windows fileshares using [smbclient](https://www.samba.org/samba/docs/current/man-html/smbclient.1.html), add the following configuration to your `vars.yml` file:
-
-```yaml
-nextcloud_container_image_customizations_samba_enabled: true
-```
+You can enable [Samba](https://www.samba.org/) external Windows fileshares using [smbclient](https://www.samba.org/samba/docs/current/man-html/smbclient.1.html). See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-nextcloud/blob/main/docs/configuring-nextcloud.md#enable-samba-optional) on the role's documentation for details.
 
 ## Installation
 
@@ -270,17 +261,7 @@ Note that running the `just` commands for installation (`just install-all` or `j
 
 After running the command for installation, the Nextcloud instance becomes available at the URL specified with `nextcloud_hostname` and `nextcloud_path_prefix`. With the configuration above, the service is hosted at `https://mash.example.com/nextcloud`.
 
-### Complete setup wizard
-
-To get started, open the URL with a web browser, and follow the set up wizard.
-
-In **Storage & database**, it is recommended to choose PostgreSQL (changing the default **SQLite** choice). To check credentials for the database, run this command:
-
-```sh
-just run-tags print-nextcloud-db-credentials
-```
-
-Once you have completed the set up wizard, update the configuration (URL paths, trusted reverse-proxies, etc.) by running the command below:
+Before logging in to the instance, update the configuration (URL paths, trusted reverse-proxies, etc.) by running the command below:
 
 ```sh
 just run-tags adjust-nextcloud-config
@@ -289,9 +270,19 @@ just run-tags adjust-nextcloud-config
 >[!NOTE]
 > You should re-run the command every time the Nextcloud version is updated.
 
+### Checking SMTP server configuration
+
+The playbook automatically configures a SMTP server (Exim-relay), to which the Nextcloud instance connects to send emails. After logging in as the admin user, you can check the configuration at `https://mash.example.com/nextcloud/settings/admin` for basic administration settings.
+
+Before sending a test mail, **make sure to set the email address of the admin user** at `https://mash.example.com/nextcloud/settings/user`. Otherwise hitting the "Send email" button on the page returns the 400 error, as the instance does not know where to send the mail. See the browser's console for details.
+
+### Preview Generator
+
+It is possible to set up preview generation. See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-nextcloud/blob/main/docs/configuring-nextcloud.md#enable-preview-generator-app-optional) on the role's documentation for details about necessary steps to enable it.
+
 ### Single-Sign-On (SSO) integration
 
-Nextcloud supports Single-Sign-On (SSO) via LDAP, SAML, and OIDC. To make use of it, an identity provider like [authentik](authentik.md) or [Keycloak](keycloak.md) needs to be set up.
+Nextcloud supports Single-Sign-On (SSO) via LDAP, SAML, and OIDC. To make use of it, an Identity Provider (IdP) like [authentik](authentik.md) or [Keycloak](keycloak.md) needs to be set up.
 
 For example, you can enable SSO with authentik via OIDC by following the steps below:
 
@@ -306,62 +297,61 @@ Refer to [this blogpost by a third party](https://blog.cubieserver.de/2022/compl
 - The official documentation of authentik to connect nextcloud via SAML does not seem to work (as of August 2023).
 - If you cannot log in due to an error (the error message contains `SHA1 mismatch`), make sure that Nextcloud users and authentik users do not have the same name. If they do, check `Use unique user ID` in the OIDC App settings.
 
+### LDAP integration with LLDAP
+
+Nextcloud ships with an LDAP application to allow LDAP (including Active Directory) users to log in to the Nextcloud instance with their LDAP credentials. See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-nextcloud/blob/main/docs/configuring-nextcloud.md#connecting-to-ldap-server) on the role's documentation for details about how to configure Nextcloud.
+
+This playbook supports [LLDAP](https://github.com/lldap/lldap), and it is possible to set up the LLDAP instance as a source for users.
+
+First, the LLDAP instance needs to be installed. See [this page](lldap.md) for the instruction.
+
+Then, proceed to configure the LDAP application on the Nextcloud to have it connect to the LLDAP instance. By default the playbook is configured to use the user specified with `lldap_environment_variables_lldap_ldap_user_dn` for binding. To use another user (with search privileges), add the following configuration to your `vars.yml` file:
+
+```yaml
+nextcloud_ldap_agent_name_uid: USERNAME_FOR_BINDING_HERE
+```
+
+Run the command below to configure the LDAP application on the Nextcloud instance, so that the instance connects to the LLDAP server:
+
+```sh
+just run-tags set-ldap-config-nextcloud -e agent_password=PASSWORD_OF_BIND_USER_HERE
+```
+
+After running the command successfully, the application's server tab should look like below (note: `uid` is set to `admin`):
+
+[<img src="../assets/nextcloud/ldap.webp" title="Server tab on the application's configuration" width="600" alt="Server tab on the application's configuration">](../assets/nextcloud/ldap.webp)
+
+If "Configuration OK 🟢" is displayed at the bottom of the tab, the application is configured successfully, and now users on the LLDAP instance can log in to the instance with their LDAP credentials.
+
+Refer to [this page](https://docs.nextcloud.com/server/latest/admin_manual/configuration_user/user_auth_ldap.html) on the Nextcloud admin manual for details about other configurations.
+
+To disable the integration altogether (in case of using another LDAP server for Nextcloud while using LLDAP for other services, etc.), add the following configuration to your `vars.yml` file:
+
+```yaml
+nextcloud_lldap_enabled: false
+```
+
 ## Related services
 
 ### Collabora Online Development Edition
 
-On Nextcloud it is possible to integrate the Collabora Online Development Edition (CODE) office suite. This playbook supports it, and you can set up a CODE instance by enabling it on `vars.yml`. You can follow the [documentation](collabora-online.md) to install it.
+On Nextcloud it is possible to integrate the Collabora Online Development Edition (CODE) office suite. This playbook supports it, and you can set up a CODE instance by enabling it on `vars.yml`. You can follow the [documentation](code.md) to install it.
 
-After installing it, add the following configuration for Nextcloud to your `vars.yml` file:
+By default, this playbook is configured to automatically integrate the CODE instance with the Nextcloud instance which this playbook manages, if both of them are enabled.
 
-```yaml
-nextcloud_collabora_app_wopi_url: "{{ collabora_online_url }}"
-```
-
-**Note**: by default, various private IPv4 networks are whitelisted to connect to the WOPI API (document serving API). If your CODE instance does not live on the same server as Nextcloud, you may need to adjust the list of networks. If necessary, redefine the `nextcloud_collabora_app_wopi_allowlist` environment variable on `vars.yml`.
-
-After adding the configuration, run this command to install and configure the [Office](https://apps.nextcloud.com/apps/richdocuments) app for Nextcloud:
+After installing both CODE and Nextcloud, run this command to install and configure the [Office](https://apps.nextcloud.com/apps/richdocuments) app for Nextcloud:
 
 ```sh
 just run-tags install-nextcloud-app-collabora
 ```
 
+Open the URL `https://mash.example.com/nextcloud/settings/admin/richdocuments` to have the instance set up the connection with the CODE instance.
+
 You should then be able to open any document (`.doc`, `.odt`, `.pdf`, etc.) and create new ones in Nextcloud Files with Collabora Online Development Edition's editor.
 
-### Preview Generator
+>[!NOTE]
+> By default, various private IPv4 networks are whitelisted to connect to the WOPI API (document serving API). If your CODE instance does not live on the same server as Nextcloud, you may need to adjust the list of networks. If necessary, redefine the `nextcloud_app_collabora_wopi_allowlist` environment variable on `vars.yml`.
 
-It is also possible to set up preview generation by following the steps below.
+## Troubleshooting
 
-#### Enable preview on `vars.yml`
-
-First, add the following configuration to `vars.yml` and run the playbook.
-
-```yaml
-nextcloud_preview_enabled: true
-```
-
-Other supported variables:
-
-- `nextcloud_preview_preview_max_x` and `nextcloud_preview_preview_max_y`
-  - Set the maximum size of the preview in pixels. The default value on this playbook is `null`. Setting a numeric value configures the corresponding nextcloud variable and the size of the preview images. See the [documentation](https://docs.nextcloud.com/server/latest/admin_manual/configuration_files/previews_configuration.html) for details.
-- `nextcloud_preview_app_jpeg_quality`
-  - JPEG quality for preview images. The default value is 80, based on the value by the upstream project.
-
-Check `defaults/main.yml` for Nextcloud for other options.
-
-#### Install the app on Nextcloud and run the command for config adjustment
-
-Next, install the preview generator app (https://apps.nextcloud.com/apps/previewgenerator) from the Settings/Application menu in your Nextcloud instance.
-
-After it is installed, run the command below against your server, so that initial preview-generation is started and periodic generation of new images on your server is enabled:
-
-```sh
-just run-tags adjust-nextcloud-config
-```
-
-**Notes**:
-- The initial generation may take a long time, and a continuous prompt is presented by Ansible as some visual feedback (it is being run as an async task). Note it will timeout after approximately 27 hours. For reference, it should take about 10 minutes to finish generating previews of 60 GB data, most of which being image files.
-- If it takes more time to run than a day, you may want to start it by running the command on the host:
-  ```sh
-  /usr/bin/env docker exec mash-nextcloud-server php /var/www/html/occ preview:generate-all
-  ```
+See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-nextcloud/blob/main/docs/configuring-nextcloud.md#troubleshooting) on the role's documentation for details.

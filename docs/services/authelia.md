@@ -99,7 +99,7 @@ authelia_config_access_control_rules:
 # You may wish to run a separate Valkey instance for Authelia, because Valkey is not multi-tenant.
 # Read more in docs/services/redis.md.
 # If Valkey is not available, session data will be stored in memory and will be lost on container restart.
-authelia_config_session_redis_host: "{{ valkey_identifier if valkey_enabled else '' }}"
+authelia_config_session_redis_hostname: "{{ valkey_identifier if valkey_enabled else '' }}"
 
 ########################################################################
 #                                                                      #
@@ -112,7 +112,7 @@ authelia_config_session_redis_host: "{{ valkey_identifier if valkey_enabled else
 
 ### Session storage
 
-As mentioned in the default configuration above (see `authelia_config_session_redis_host`), you may wish to run [Valkey](valkey.md) for storing session data.
+As mentioned in the default configuration above (see `authelia_config_session_redis_hostname`), you may wish to run [Valkey](valkey.md) for storing session data.
 
 You may wish to run a separate Valkey instance for Authelia, because Valkey is not multi-tenant. See [our Valkey documentation page](valkey.md) for additional details. When running a separate instance of Valkey, you may need to connect Authelia to the Valkey instance's container network via the `authelia_container_additional_networks_custom` variable.
 
@@ -201,6 +201,8 @@ To get started, open the URL with a web browser, and log in to the portal websit
 
 ## Related services
 
-- [authentik](authentik.md) — Open-source identity provider focused on flexibility and versatility
+- [authentik](authentik.md) — Open-source Identity Provider (IdP) focused on flexibility and versatility
 - [Keycloak](keycloak.md) — Open source identity and access management solution
 - [OAuth2-Proxy](oauth2-proxy.md) — Reverse proxy and static file server that provides authentication using OpenID Connect providers (Google, GitHub, authentik, Keycloak, and others) to SSO-protect services which do not support SSO natively
+- [Pocket ID](pocket-id.md) — Simple OIDC provider for passkey-only authentication
+- [Tinyauth](tinyauth.md) — Simple authentication middleware that adds a login screen or OAuth with Google, Github, and any provider to your Docker services
