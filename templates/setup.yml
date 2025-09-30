@@ -165,6 +165,10 @@
     - role: galaxy/couchdb
     # /role-specific:couchdb
 
+    # role-specific:cyberchef
+    - role: galaxy/cyberchef
+    # /role-specific:cyberchef
+
     # role-specific:docker_registry
     - role: galaxy/docker_registry
     # /role-specific:docker_registry
@@ -261,6 +265,10 @@
     - role: galaxy/gitea
     # /role-specific:gitea
 
+    # role-specific:gothub
+    - role: galaxy/gothub
+    # /role-specific:gothub
+
     # role-specific:gotosocial
     - role: galaxy/gotosocial
     # /role-specific:gotosocial
@@ -312,6 +320,10 @@
     # role-specific:jellyfin
     - role: galaxy/jellyfin
     # /role-specific:jellyfin
+
+    # role-specific:jellyseerr
+    - role: galaxy/jellyseerr
+    # /role-specific:jellyseerr
 
     # role-specific:jitsi
     - role: galaxy/jitsi
@@ -368,6 +380,10 @@
     # role-specific:mariadb
     - role: galaxy/mariadb
     # /role-specific:mariadb
+
+    # role-specific:misskey
+    - role: galaxy/misskey
+    # /role-specific:misskey
 
     # role-specific:matomo
     - role: galaxy/matomo
@@ -436,6 +452,10 @@
     # role-specific:oauth2_proxy
     - role: galaxy/oauth2_proxy
     # /role-specific:oauth2_proxy
+
+    # role-specific:opengist
+    - role: galaxy/opengist
+    # /role-specific:opengist
 
     # role-specific:outline
     - role: galaxy/outline
