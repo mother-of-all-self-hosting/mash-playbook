@@ -38,7 +38,7 @@ flaresolverr_enabled: true
 
 After running the installation command, the Flaresolverr instance becomes available internally at the `flaresolverr_container_http_port` value (default is **8191**) and is reachable from any other media service like [Jackett](jackett.md). If you need the container to be accessible from outside, you can use `flaresolverr_container_http_bind_port` or `flaresolverr_hostname`.
 
-> **Note:**  
+> **Note:**
 > The `flaresolverr_path_prefix` variable can be adjusted to host under a subpath (e.g., `flaresolverr_path_prefix: /flaresolverr`), but this configuration has not been tested yet.
 
 For additional configuration options, refer to the [ansible-role-flaresolverr](https://github.com/sudo-Tiz/ansible-role-flaresolverr)'s `defaults/main.yml` file.
