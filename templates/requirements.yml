@@ -573,7 +573,7 @@
   name: tandoor
   activation_prefix: tandoor_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-telegraf.git
-  version: v1.36.1-0
+  version: v1.36.2-0
   name: telegraf
   activation_prefix: telegraf_
 - src: git+https://codeberg.org/acioustick/ansible-role-thelounge.git
