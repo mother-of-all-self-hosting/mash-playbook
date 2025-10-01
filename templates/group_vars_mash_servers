@@ -264,6 +264,11 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
     {{ ({'name': (firezone_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'firezone']} if firezone_enabled else omit) }}
   # /role-specific:firezone
 
+  # role-specific:flaresolver
+  - |-
+    {{ ({'name': (flaresolverr_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'flaresolverr']} if flaresolverr_enabled else omit) }}
+  # /role-specific:flaresolverr
+
   # role-specific:fmd_server
   - |-
     {{ ({'name': (fmd_server_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'fmd-server']} if fmd_server_enabled else omit) }}
@@ -3114,6 +3119,45 @@ firezone_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_pri
 #                                                                      #
 ########################################################################
 # /role-specific:firezone
+
+
+
+# role-specific:flaresolverr
+########################################################################
+#                                                                      #
+# flaresolverr                                                             #
+#                                                                      #
+########################################################################
+
+flaresolverr_enabled: false
+
+flaresolverr_identifier: "{{ mash_playbook_service_identifier_prefix }}flaresolverr"
+
+flaresolverr_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}flaresolverr"
+
+flaresolverr_uid: "{{ mash_playbook_uid }}"
+flaresolverr_gid: "{{ mash_playbook_gid }}"
+
+
+flaresolverr_container_additional_networks_auto: |
+  {{
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+  }}
+
+flaresolverr_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+flaresolverr_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+
+# role-specific:traefik
+flaresolverr_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
+flaresolverr_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
+# /role-specific:traefik
+
+########################################################################
+#                                                                      #
+# /flaresolverr                                                            #
+#                                                                      #
+########################################################################
+# /role-specific:flaresolverr
 
 
 
