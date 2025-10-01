@@ -37,7 +37,7 @@
   name: authentik
   activation_prefix: authentik_
 - src: git+https://github.com/spatterIight/ansible-role-autobrr.git
-  version: v1.64.0-0
+  version: v1.66.1-0
   name: autobrr
   activation_prefix: autobrr_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-aux.git
@@ -312,10 +312,6 @@
   version: v12.0.2-3
   name: mariadb
   activation_prefix: mariadb_
-- src: git+https://github.com/mother-of-all-self-hosting/ansible-role-misskey.git
-  version: v2025.9.0-0
-  name: misskey
-  activation_prefix: misskey_
 - src: git+https://github.com/acterglobal/ansible-role-matomo.git
   version: v5.3.1-1
   name: matomo
@@ -332,6 +328,10 @@
   version: v2.2.13-0
   name: miniflux
   activation_prefix: miniflux_
+- src: git+https://github.com/mother-of-all-self-hosting/ansible-role-misskey.git
+  version: v2025.9.0-0
+  name: misskey
+  activation_prefix: misskey_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-mobilizon.git
   version: v4.1.0-1
   name: mobilizon
@@ -429,7 +429,7 @@
   name: playbook_state_preserver
   activation_prefix: devture_playbook_state_preserver_
 - src: git+https://github.com/spatterIight/ansible-role-plex.git
-  version: v1.41.9-0
+  version: v1.42.2-0
   name: plex
   activation_prefix: plex_
 - src: git+https://codeberg.org/acioustick/ansible-role-pocket-id.git
@@ -445,7 +445,7 @@
   name: postgres
   activation_prefix: postgres_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-postgres-backup.git
-  version: v17-8
+  version: v18-0
   name: postgres_backup
   activation_prefix: postgres_backup_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-privatebin.git
@@ -481,7 +481,7 @@
   name: qbittorrent
   activation_prefix: qbittorrent_
 - src: git+https://github.com/spatterIight/ansible-role-radarr.git
-  version: v5.26.2-0
+  version: v5.27.5-1
   name: radarr
   activation_prefix: radarr_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-radicale.git
@@ -537,7 +537,7 @@
   name: soft_serve
   activation_prefix: soft_serve_
 - src: git+https://github.com/spatterIight/ansible-role-sonarr.git
-  version: v4.0.15-0
+  version: v4.0.15-1
   name: sonarr
   activation_prefix: sonarr_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-ssh.git
