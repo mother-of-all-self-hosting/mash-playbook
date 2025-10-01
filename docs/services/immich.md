@@ -584,3 +584,19 @@ You'll need to create an API key in your Immich account and then run a command s
 💡 Various import flags exist (see `./immich-go upload from-google-photos --help`), but the default invocation should generally yield a good result.
 
 💡 While the import is running and Immich is doing post-processing (a process which could take hours), Immich will likely show a "broken image" placeholder for many of the imported photos. You can observe the post-processing progress in **Administration** settings / **Jobs** (a URL of `/admin/jobs-status`).
+
+## Troubleshooting
+
+### Check the service's logs
+
+You can find the logs in [systemd-journald](https://www.freedesktop.org/software/systemd/man/systemd-journald.service.html) by logging in to the server with SSH and running `journalctl -fu mash-immich`.
+
+### Fix the password authentication error on Postgres
+
+If `immich_database_password` is not specified on your `vars.yml` file, you'll get the error related to the password authentication on Postgres as below:
+
+```txt
+PostgresError: password authentication failed for user "immich"
+```
+
+If you have copied and reuse the example configuration described above, make sure to set the same password to the variable on both of your `vars.yml` files (i.e. main one and the other for your dedicated Immich dependencies inventory host).
