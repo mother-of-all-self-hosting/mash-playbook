@@ -3210,7 +3210,7 @@ firezone_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_pri
 # role-specific:flaresolverr
 ########################################################################
 #                                                                      #
-# flaresolverr                                                             #
+# flaresolverr                                                         #
 #                                                                      #
 ########################################################################
 
@@ -3239,7 +3239,7 @@ flaresolverr_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver
 
 ########################################################################
 #                                                                      #
-# /flaresolverr                                                            #
+# /flaresolverr                                                        #
 #                                                                      #
 ########################################################################
 # /role-specific:flaresolverr
