@@ -117,7 +117,7 @@ def format_feeds_from_git_repos(git_repos):
     return feeds
 
 def dump_opml_file_from_feeds(feeds):
-    tree = ET.ElementTree('tree')
+    tree = ET.ElementTree()
 
     opml = ET.Element('opml', {'version': '1.0'})
     head = ET.SubElement(opml, 'head')
