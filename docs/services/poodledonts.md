@@ -59,15 +59,9 @@ poodledonts_hostname: poodledonts.example.com
 
 **Note**: hosting PoodleDonts under a subpath (by configuring the `poodledonts_path_prefix` variable) does not seem to be possible due to PoodleDonts's technical limitations.
 
-There are other settings which need configuring such as ones about instance's management and its transparency. See [this section](https://codeberg.org/acioustick/ansible-role-poodledonts/src/branch/master/docs/configuring-poodledonts.md#enable-disable-proxying-non-essential-data) on the role's documentation for details.
-
 ## Usage
 
 After running the command for installation, the PoodleDonts instance becomes available at the URL specified with `poodledonts_hostname`. With the configuration above, the service is hosted at `https://poodledonts.example.com`.
-
-[Libredirect](https://libredirect.github.io/), an extension for Firefox and Chromium-based desktop browsers, has support for redirections to PoodleDonts.
-
-If you would like to make your instance public so that it can be used by anyone including Libredirect, please consider to send a PR to the [upstream project](https://codeberg.org/poodledonts/poodledonts-instances) to add yours to [`instances.json`](https://codeberg.org/poodledonts/poodledonts-instances/src/branch/master/instances.json), which Libredirect automatically fetches using a script (see [this FAQ entry](https://libredirect.github.io/faq.html#where_the_hell_are_those_instances_coming_from)).
 
 ## Troubleshooting
 
