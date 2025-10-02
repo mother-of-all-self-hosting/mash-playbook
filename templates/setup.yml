@@ -229,6 +229,10 @@
     - role: galaxy/firezone
     # /role-specific:firezone
 
+    # role-specific:flaresolverr
+    - role: galaxy/flaresolverr
+    # /role-specific:flaresolverr
+
     # role-specific:fmd_server
     - role: galaxy/fmd_server
     # /role-specific:fmd_server
