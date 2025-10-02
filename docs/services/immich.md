@@ -600,3 +600,7 @@ PostgresError: password authentication failed for user "immich"
 ```
 
 If you have copied and reuse the example configuration described above, make sure to set the same password to the variable on both of your `vars.yml` files (i.e. main one and the other for your dedicated Immich dependencies inventory host).
+
+## Related services
+
+- [Immich Kiosk](immich-kiosk.md) — Highly configurable slideshow for displaying Immich pictures and videos on browsers and devices
