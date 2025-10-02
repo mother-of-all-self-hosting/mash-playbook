@@ -19,11 +19,11 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
 # PoodleDonts
 
-The playbook can install and configure [PoodleDonts](https://codeberg.org/poodledonts/poodledonts) for you.
+The playbook can install and configure [PoodleDonts](https://codeberg.org/acioustick/poodledonts) (a fork of the [original project](https://git.private.coffee/PrivateCoffee/poodledonts)) for you.
 
-PoodleDonts allows you to view GitHub repositories without exposing your IP address, browsing habits, and other browser fingerprinting data to the website.
+PoodleDonts allows you to use Google Fonts without exposing your IP address, browsing habits, and other browser fingerprinting data to the website.
 
-See the project's [documentation](https://codeberg.org/poodledonts/poodledonts/src/branch/dev/README.md) to learn what PoodleDonts does and why it might be useful to you.
+See the project's [documentation](https://codeberg.org/acioustick/poodledonts/src/branch/main/README.md) to learn what PoodleDonts does and why it might be useful to you.
 
 For details about configuring the [Ansible role for PoodleDonts](https://codeberg.org/acioustick/ansible-role-poodledonts), you can check them via:
 - 🌐 [the role's documentation](https://codeberg.org/acioustick/ansible-role-poodledonts/src/branch/master/docs/configuring-poodledonts.md) online
