@@ -17,17 +17,17 @@ SPDX-FileCopyrightText: 2024 - 2025 Suguru Hirahara
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 
-# CyberChef
+# Immich Kiosk
 
-The playbook can install and configure [CyberChef](https://github.com/gchq/CyberChef) for you.
+The playbook can install and configure [Immich Kiosk](https://immichkiosk.app) for you.
 
-CyberChef is an intuitive application for carrying out encryption, encoding, and data analysis operations inside a browser locally. These operations include simple encoding like XOR and Base64, more complex encryption like AES, DES and Blowfish, creating binary and hexdumps, and so on.
+Immich Kiosk is an intuitive application for carrying out encryption, encoding, and data analysis operations inside a browser locally. These operations include simple encoding like XOR and Base64, more complex encryption like AES, DES and Blowfish, creating binary and hexdumps, and so on.
 
-See the project's [documentation](https://github.com/gchq/CyberChef/blob/master/README.md) to learn what CyberChef does and why it might be useful to you.
+See the project's [documentation](https://docs.immichkiosk.app) to learn what Immich Kiosk does and why it might be useful to you.
 
-For details about configuring the [Ansible role for CyberChef](https://codeberg.org/acioustick/ansible-role-cyberchef), you can check them via:
-- 🌐 [the role's documentation](https://codeberg.org/acioustick/ansible-role-cyberchef/src/branch/master/docs/configuring-cyberchef.md) online
-- 📁 `roles/galaxy/cyberchef/docs/configuring-cyberchef.md` locally, if you have [fetched the Ansible roles](../installing.md)
+For details about configuring the [Ansible role for Immich Kiosk](https://github.com/mother-of-all-self-hosting/ansible-role-immich-kiosk), you can check them via:
+- 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-immich-kiosk/blob/main/docs/configuring-immich-kiosk.md) online
+- 📁 `roles/galaxy/immich_kiosk/docs/configuring-immich-kiosk.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 ## Dependencies
 
@@ -42,27 +42,27 @@ To enable this service, add the following configuration to your `vars.yml` file 
 ```yaml
 ########################################################################
 #                                                                      #
-# cyberchef                                                            #
+# immich_kiosk                                                         #
 #                                                                      #
 ########################################################################
 
-cyberchef_enabled: true
+immich_kiosk_enabled: true
 
-cyberchef_hostname: cyberchef.example.com
+immich_kiosk_hostname: cyberchef.example.com
 
 ########################################################################
 #                                                                      #
-# /cyberchef                                                           #
+# /immich_kiosk                                                        #
 #                                                                      #
 ########################################################################
 ```
 
-**Note**: hosting CyberChef under a subpath (by configuring the `cyberchef_path_prefix` variable) does not seem to be possible due to CyberChef's technical limitations.
+**Note**: hosting Immich Kiosk under a subpath (by configuring the `immich_kiosk_path_prefix` variable) does not seem to be possible due to Immich Kiosk's technical limitations.
 
 ## Usage
 
-After running the command for installation, the CyberChef instance becomes available at the URL specified with `cyberchef_hostname`. With the configuration above, the service is hosted at `https://cyberchef.example.com`.
+After running the command for installation, the Immich Kiosk instance becomes available at the URL specified with `immich_kiosk_hostname`. With the configuration above, the service is hosted at `https://cyberchef.example.com`.
 
 ## Troubleshooting
 
-See [this section](https://codeberg.org/acioustick/ansible-role-cyberchef/src/branch/master/docs/configuring-cyberchef.md#troubleshooting) on the role's documentation for details.
+See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-immich-kiosk/blob/main/docs/configuring-immich-kiosk.md#troubleshooting) on the role's documentation for details.
