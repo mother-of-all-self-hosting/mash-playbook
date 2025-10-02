@@ -658,6 +658,11 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
     {{ ({'name': (postgis_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'metrics', 'postgis']} if postgis_enabled else omit) }}
   # /role-specific:postgis
 
+  # role-specific:poodledonts
+  - |-
+    {{ ({'name': (poodledonts_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'poodledonts']} if poodledonts_enabled else omit) }}
+  # /role-specific:poodledonts
+
   # role-specific:postgres
   - |-
     {{ ({'name': (postgres_identifier + '.service'), 'priority': 500, 'groups': ['mash', 'postgres']} if postgres_enabled else omit) }}
@@ -8010,6 +8015,44 @@ pocket_id_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_pr
 #                                                                      #
 ########################################################################
 # /role-specific:pocket_id
+
+
+
+# role-specific:poodledonts
+########################################################################
+#                                                                      #
+# poodledonts                                                          #
+#                                                                      #
+########################################################################
+
+poodledonts_enabled: false
+
+poodledonts_identifier: "{{ mash_playbook_service_identifier_prefix }}poodledonts"
+
+poodledonts_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}poodledonts"
+
+poodledonts_uid: "{{ mash_playbook_uid }}"
+poodledonts_gid: "{{ mash_playbook_gid }}"
+
+poodledonts_container_additional_networks_auto: |
+  {{
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+  }}
+
+poodledonts_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+poodledonts_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+
+# role-specific:traefik
+poodledonts_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
+poodledonts_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
+# /role-specific:traefik
+
+########################################################################
+#                                                                      #
+# /poodledonts                                                         #
+#                                                                      #
+########################################################################
+# /role-specific:poodledonts
 
 
 

@@ -443,6 +443,10 @@
   version: v1.11.2-0
   name: pocket_id
   activation_prefix: pocket_id_
+- src: git+https://codeberg.org/acioustick/ansible-role-poodledonts.git
+  version: v2025.10.0-0
+  name: poodledonts
+  activation_prefix: poodledonts_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-postgis.git
   version: v15-3.3-0
   name: postgis
