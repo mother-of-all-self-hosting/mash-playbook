@@ -239,6 +239,10 @@
   version: v2.0.0-0
   name: immich
   activation_prefix: immich_
+- src: git+https://github.com/mother-of-all-self-hosting/ansible-role-immich-kiosk.git
+  version: v0.24.0-0
+  name: immich_kiosk
+  activation_prefix: immich_kiosk_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-infisical.git
   version: v0.43.19-2
   name: infisical

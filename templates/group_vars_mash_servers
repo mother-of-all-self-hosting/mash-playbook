@@ -379,6 +379,11 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
     {{ ({'name': (immich_machine_learning_identifier + '.service'), 'priority': 1500, 'groups': ['mash', 'immich']} if immich_enabled and immich_machine_learning_enabled else omit) }}
   # /role-specific:immich
 
+  # role-specific:immich_kiosk
+  - |-
+    {{ ({'name': (immich_kiosk_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'immich-kiosk']} if immich_kiosk_enabled else omit) }}
+  # /role-specific:immich_kiosk
+
   # role-specific:infisical
   - |-
     {{ ({'name': (infisical_identifier + '-backend.service'), 'priority': 2000, 'groups': ['mash', 'infisical', 'infisical-backend']} if infisical_enabled else omit) }}
@@ -5297,6 +5302,57 @@ immich_database_sslmode: "{{ 'disable' if (immich_database_hostname == postgres_
 #                                                                      #
 ########################################################################
 # /role-specific:immich
+
+
+
+# role-specific:immich_kiosk
+########################################################################
+#                                                                      #
+# immich_kiosk                                                         #
+#                                                                      #
+########################################################################
+
+immich_kiosk_enabled: false
+
+immich_kiosk_identifier: "{{ mash_playbook_service_identifier_prefix }}immich-kiosk"
+
+immich_kiosk_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}immich-kiosk"
+
+immich_kiosk_uid: "{{ mash_playbook_uid }}"
+immich_kiosk_gid: "{{ mash_playbook_gid }}"
+
+immich_kiosk_systemd_wanted_services_list_auto: |
+  {{
+    ([immich_identifier ~ '.service'] if immich_enabled | default(false) else [])
+  }}
+
+immich_kiosk_container_additional_networks_auto: |
+  {{
+    ([immich_server_container_network] if immich_enabled | default(false) and immich_kiosk_container_network != immich_server_container_network else [])
+    +
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+  }}
+
+immich_kiosk_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+immich_kiosk_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+
+# role-specific:immich
+immich_kiosk_environment_variables_kiosk_immich_url: "http://{{ immich_server_identifier }}:{{ immich_server_http_port }}"
+immich_kiosk_environment_variables_kiosk_immich_external_url: "{{ immich_scheme }}://{{ immich_hostname }}"
+# /role-specific:immich
+
+# role-specific:traefik
+immich_kiosk_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
+immich_kiosk_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
+# /role-specific:traefik
+
+########################################################################
+#                                                                      #
+# /immich_kiosk                                                        #
+#                                                                      #
+########################################################################
+# /role-specific:immich_kiosk
+
 
 
 # role-specific:infisical
