@@ -27,6 +27,7 @@ To enable this service, add the following configuration to your `vars.yml` file 
 ########################################################################
 
 flaresolverr_enabled: true
+
 ########################################################################
 #                                                                      #
 # /flaresolverr                                                        #
