@@ -21,7 +21,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
 The playbook can install and configure [Immich Kiosk](https://immichkiosk.app) for you.
 
-Immich Kiosk is an intuitive application for carrying out encryption, encoding, and data analysis operations inside a browser locally. These operations include simple encoding like XOR and Base64, more complex encryption like AES, DES and Blowfish, creating binary and hexdumps, and so on.
+Immich Kiosk is a software for displaying photos and videos on your [Immich](https://immich.app) server in highly customizable slideshows that run in browsers and other devices.
 
 See the project's [documentation](https://docs.immichkiosk.app) to learn what Immich Kiosk does and why it might be useful to you.
 
@@ -58,6 +58,10 @@ immich_kiosk_hostname: cyberchef.example.com
 ```
 
 **Note**: hosting Immich Kiosk under a subpath (by configuring the `immich_kiosk_path_prefix` variable) does not seem to be possible due to Immich Kiosk's technical limitations.
+
+### Set the Immich's API key and URLs
+
+It is also necessary to specify the API key and URLs of the Immich's instance. See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-immich-kiosk/blob/main/docs/configuring-immich-kiosk.md#set-the-immich-instances-api-key) on the role's documentation for details.
 
 ## Usage
 
