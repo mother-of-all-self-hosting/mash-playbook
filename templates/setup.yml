@@ -653,6 +653,10 @@
     - role: galaxy/versatiles
     # /role-specific:versatiles
 
+    # role-specific:vikunja
+    - role: galaxy/vikunja
+    # /role-specific:vikunja
+
     # role-specific:wetty
     - role: galaxy/wetty
     # /role-specific:wetty

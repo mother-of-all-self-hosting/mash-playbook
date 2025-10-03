@@ -623,6 +623,10 @@
   version: v0.15.3-0
   name: versatiles
   activation_prefix: versatiles_
+- src: git+https://github.com/mother-of-all-self-hosting/ansible-role-vikunja.git
+  version: v1.0.0-0
+  name: vikunja
+  activation_prefix: vikunja_
 - src: git+https://github.com/spatterIight/ansible-role-wetty.git
   version: v2.5-0
   name: wetty
