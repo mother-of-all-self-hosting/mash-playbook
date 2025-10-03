@@ -19,14 +19,14 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
 # Vikunja
 
-The playbook can install and configure [Vikunja](https://vikunja.it) for you.
+The playbook can install and configure [Vikunja](https://vikunja.io) for you.
 
-Vikunja is a modern URL shortener with support for custom domains with functions like statistics and user management.
+Vikunja is a self-hosted to-do application.
 
-See the project's [documentation](https://github.com/thedevs-network/vikunja/blob/main/README.md) to learn what Vikunja does and why it might be useful to you.
+See the project's [documentation](https://vikunja.io/docs) to learn what Vikunja does and why it might be useful to you.
 
-For details about configuring the [Ansible role for Vikunja](https://codeberg.org/acioustick/ansible-role-vikunja), you can check them via:
-- 🌐 [the role's documentation](https://codeberg.org/acioustick/ansible-role-vikunja/src/branch/master/docs/configuring-vikunja.md) online
+For details about configuring the [Ansible role for Vikunja](https://github.com/mother-of-all-self-hosting/ansible-role-vikunja/), you can check them via:
+- 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-vikunja/blob/main/docs/configuring-vikunja.md) online
 - 📁 `roles/galaxy/vikunja/docs/configuring-vikunja.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 ## Dependencies
@@ -63,11 +63,11 @@ vikunja_hostname: vikunja.example.com
 
 ### Select database to use (optional)
 
-By default Vikunja is configured to use Postgres, but you can choose other databases such as MySQL (MariaDB) and SQLite. See [this section](https://codeberg.org/acioustick/ansible-role-vikunja/src/branch/master/docs/configuring-vikunja.md#specify-database-optional) on the role's documentation for details.
+By default Vikunja is configured to use Postgres, but you can choose other databases such as MySQL (MariaDB) and SQLite. See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-vikunja/blob/main/docs/configuring-vikunja.md#specify-database-optional) on the role's documentation for details.
 
 ### Configure the mailer (optional)
 
-On Vikunja you can set up a mailer for functions such as sending a password reset mail. If you enable the [exim-relay](exim-relay.md) service in your inventory configuration, the playbook will automatically configure it as a mailer for the service.
+On Vikunja you can set up a mailer for functions such as sending task reminders and a password reset mail. If you enable the [exim-relay](exim-relay.md) service in your inventory configuration, the playbook will automatically configure it as a mailer for the service.
 
 >[!NOTE]
 > Without setting an authentication method such as DKIM, SPF, and DMARC for your hostname, emails are most likely to be quarantined as spam at recipient's mail servers. If you have set up a mail server with the [exim-relay Ansible role](https://github.com/mother-of-all-self-hosting/ansible-role-exim-relay), you can enable DKIM signing with it. Refer [its documentation](https://github.com/mother-of-all-self-hosting/ansible-role-exim-relay/blob/main/docs/configuring-exim-relay.md#enable-dkim-support-optional) for details.
@@ -252,12 +252,8 @@ Note that running the `just` commands for installation (`just install-all` or `j
 
 After running the command for installation, the Vikunja instance becomes available at the URL specified with `vikunja_hostname`. With the configuration above, the service is hosted at `https://vikunja.example.com`.
 
-To get started, open the URL with a web browser, and register the administrator account. You can create additional users (admin-privileged or not) after that.
+To get started, create a user first and open the URL with a web browser to log in to the instance. You can create one on the web UI if `vikunja_environment_variables_service_enableregistration` is set to `true`. Alternatively, you can run the playbook with the `user-create-vikunja` tag to create users. See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-vikunja/blob/main/docs/configuring-vikunja.md#creating-users) on the role's documentation for details.
 
 ## Troubleshooting
 
-See [this section](https://codeberg.org/acioustick/ansible-role-vikunja/src/branch/master/docs/configuring-vikunja.md#troubleshooting) on the role's documentation for details.
-
-## Related services
-
-- [YOURLS](yourls.md) — Your Own URL Shortener, on your server
+See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-vikunja/blob/main/docs/configuring-vikunja.md#troubleshooting) on the role's documentation for details.
