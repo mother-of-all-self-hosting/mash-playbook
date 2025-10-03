@@ -444,7 +444,7 @@
   name: pocket_id
   activation_prefix: pocket_id_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-postgis.git
-  version: v15-3.3-0
+  version: v15-3.3-1
   name: postgis
   activation_prefix: postgis_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-postgres.git
