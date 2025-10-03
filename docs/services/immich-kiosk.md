@@ -70,8 +70,6 @@ To expose it publicly, add the following configuration to your `vars.yml` file (
 ```yaml
 # The hostname at which Immich Kiosk is served.
 immich_kiosk_hostname: "immichkiosk.example.com"
-
-immich_kiosk_container_labels_traefik_enabled: true
 ```
 
 >[!NOTE]
