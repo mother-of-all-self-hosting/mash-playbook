@@ -501,6 +501,10 @@
     - role: galaxy/pocket_id
     # /role-specific:pocket_id
 
+    # role-specific:poodledonts
+    - role: galaxy/poodledonts
+    # /role-specific:poodledonts
+
     # role-specific:postgis
     - role: galaxy/postgis
     # /role-specific:postgis
