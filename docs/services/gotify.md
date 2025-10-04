@@ -18,24 +18,24 @@ SPDX-FileCopyrightText: 2024 - 2025 Suguru Hirahara
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 
-# Opengist
+# Gotify
 
-The playbook can install and configure [Opengist](https://opengist.io) for you.
+The playbook can install and configure [Gotify](https://gotify.io) for you.
 
-Opengist is a self-hosted pastebin powered by Git. All snippets are stored in a Git repository and can be read and/or modified using standard Git commands, or with the web interface.
+Gotify is a self-hosted pastebin powered by Git. All snippets are stored in a Git repository and can be read and/or modified using standard Git commands, or with the web interface.
 
-See the project's [documentation](https://opengist.io/docs/) to learn what Opengist does and why it might be useful to you.
+See the project's [documentation](https://gotify.io/docs/) to learn what Gotify does and why it might be useful to you.
 
-For details about configuring the [Ansible role for Opengist](https://codeberg.org/acioustick/ansible-role-opengist), you can check them via:
-- 🌐 [the role's documentation](https://codeberg.org/acioustick/ansible-role-opengist/src/branch/master/docs/configuring-opengist.md) online
-- 📁 `roles/galaxy/opengist/docs/configuring-opengist.md` locally, if you have [fetched the Ansible roles](../installing.md)
+For details about configuring the [Ansible role for Gotify](https://codeberg.org/acioustick/ansible-role-gotify), you can check them via:
+- 🌐 [the role's documentation](https://codeberg.org/acioustick/ansible-role-gotify/src/branch/master/docs/configuring-gotify.md) online
+- 📁 `roles/galaxy/gotify/docs/configuring-gotify.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 ## Dependencies
 
 This service requires the following other services:
 
 - [Traefik](traefik.md) reverse-proxy server
-- (optional) [Postgres](postgres.md) / MySQL / [MariaDB](mariadb.md) database — Opengist will default to [SQLite](https://www.sqlite.org/) if Postgres is not enabled
+- (optional) [Postgres](postgres.md) / MySQL / [MariaDB](mariadb.md) database — Gotify will default to [SQLite](https://www.sqlite.org/) if Postgres is not enabled
 
 ## Adjusting the playbook configuration
 
@@ -44,29 +44,29 @@ To enable this service, add the following configuration to your `vars.yml` file 
 ```yaml
 ########################################################################
 #                                                                      #
-# opengist                                                             #
+# gotify                                                               #
 #                                                                      #
 ########################################################################
 
-opengist_enabled: true
+gotify_enabled: true
 
-opengist_hostname: opengist.example.com
+gotify_hostname: gotify.example.com
 
 ########################################################################
 #                                                                      #
-# /opengist                                                            #
+# /gotify                                                              #
 #                                                                      #
 ########################################################################
 ```
 
-**Note**: hosting Opengist under a subpath (by configuring the `opengist_path_prefix` variable) does not seem to be possible due to Opengist's technical limitations.
+**Note**: hosting Gotify under a subpath (by configuring the `gotify_path_prefix` variable) does not seem to be possible due to Gotify's technical limitations.
 
 ### Set 32-byte hex digits for secret key
 
 You also need to specify **32-byte hex digits** for session store and encrypting MFA data on the database. To do so, add the following configuration to your `vars.yml` file. The value can be generated with `openssl rand -hex 32` or in another way.
 
 ```yaml
-opengist_environment_variables_secret_key: YOUR_SECRET_KEY_HERE
+gotify_environment_variables_secret_key: YOUR_SECRET_KEY_HERE
 ```
 
 >[!NOTE]
@@ -74,17 +74,17 @@ opengist_environment_variables_secret_key: YOUR_SECRET_KEY_HERE
 
 ### Select database to use (optional)
 
-By default Opengist is configured to use Postgres, but you can choose other database such as SQLite and MySQL. See [this section](https://codeberg.org/acioustick/ansible-role-opengist/src/branch/master/docs/configuring-opengist.md#specify-database-optional) on the role's documentation for details.
+By default Gotify is configured to use Postgres, but you can choose other database such as SQLite and MySQL. See [this section](https://codeberg.org/acioustick/ansible-role-gotify/src/branch/master/docs/configuring-gotify.md#specify-database-optional) on the role's documentation for details.
 
 ## Usage
 
-After running the command for installation, the Opengist instance becomes available at the URL specified with `opengist_hostname`. With the configuration above, the service is hosted at `https://opengist.example.com`.
+After running the command for installation, the Gotify instance becomes available at the URL specified with `gotify_hostname`. With the configuration above, the service is hosted at `https://gotify.example.com`.
 
 To get started, open the URL with a web browser, and register the account. **Note that the first registered user becomes an administrator automatically.**
 
 ## Troubleshooting
 
-See [this section](https://codeberg.org/acioustick/ansible-role-opengist/src/branch/master/docs/configuring-opengist.md#troubleshooting) on the role's documentation for details.
+See [this section](https://codeberg.org/acioustick/ansible-role-gotify/src/branch/master/docs/configuring-gotify.md#troubleshooting) on the role's documentation for details.
 
 ## Related services
 
