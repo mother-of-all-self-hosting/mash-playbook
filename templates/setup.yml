@@ -637,6 +637,10 @@
     - role: galaxy/tsdproxy
     # /role-specific:tsdproxy
 
+    # role-specific:typesense
+    - role: galaxy/typesense
+    # /role-specific:typesense
+
     # role-specific:uptime_kuma
     - role: galaxy/uptime_kuma
     # /role-specific:uptime_kuma
