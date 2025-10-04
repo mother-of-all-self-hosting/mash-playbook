@@ -18,24 +18,24 @@ SPDX-FileCopyrightText: 2024 - 2025 Suguru Hirahara
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 
-# Immich Kiosk
+# Typesense
 
-The playbook can install and configure [Immich Kiosk](https://immichkiosk.app) for you.
+The playbook can install and configure [Typesense](https://typesense.app) for you.
 
-Immich Kiosk is a software for displaying photos and videos on your [Immich](https://immich.app) server in highly customizable slideshows that run in browsers and other devices.
+Typesense is a software for displaying photos and videos on your [Immich](https://immich.app) server in highly customizable slideshows that run in browsers and other devices.
 
-See the project's [documentation](https://docs.immichkiosk.app) to learn what Immich Kiosk does and why it might be useful to you.
+See the project's [documentation](https://docs.typesense.app) to learn what Typesense does and why it might be useful to you.
 
-For details about configuring the [Ansible role for Immich Kiosk](https://github.com/mother-of-all-self-hosting/ansible-role-immich-kiosk), you can check them via:
-- 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-immich-kiosk/blob/main/docs/configuring-immich-kiosk.md) online
-- 📁 `roles/galaxy/immich_kiosk/docs/configuring-immich-kiosk.md` locally, if you have [fetched the Ansible roles](../installing.md)
+For details about configuring the [Ansible role for Typesense](https://github.com/mother-of-all-self-hosting/ansible-role-typesense), you can check them via:
+- 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-typesense/blob/main/docs/configuring-typesense.md) online
+- 📁 `roles/galaxy/typesense/docs/configuring-typesense.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 ## Dependencies
 
 This service requires the following other services:
 
 - [Immich](immich.md)
-- (optional) [Traefik](traefik.md) — a reverse-proxy server for exposing Immich Kiosk publicly
+- (optional) [Traefik](traefik.md) — a reverse-proxy server for exposing Typesense publicly
 
 ## Adjusting the playbook configuration
 
@@ -44,45 +44,45 @@ To enable this service, add the following configuration to your `vars.yml` file 
 ```yaml
 ########################################################################
 #                                                                      #
-# immich_kiosk                                                         #
+# typesense                                                            #
 #                                                                      #
 ########################################################################
 
-immich_kiosk_enabled: true
+typesense_enabled: true
 
 ########################################################################
 #                                                                      #
-# /immich_kiosk                                                        #
+# /typesense                                                           #
 #                                                                      #
 ########################################################################
 ```
 
 ### Set the Immich's API key and URLs
 
-It is also necessary to specify the API key and URLs of the Immich's instance. See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-immich-kiosk/blob/main/docs/configuring-immich-kiosk.md#set-the-immich-instances-api-key) on the role's documentation for details.
+It is also necessary to specify the API key and URLs of the Immich's instance. See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-typesense/blob/main/docs/configuring-typesense.md#set-the-immich-instances-api-key) on the role's documentation for details.
 
 ### Expose the instance publicly (optional)
 
-By default, the Immich Kiosk is not exposed externally, as it is mainly intended to be used in the internal network, connected to the Immich server.
+By default, the Typesense is not exposed externally, as it is mainly intended to be used in the internal network, connected to the Immich server.
 
 To expose it publicly, add the following configuration to your `vars.yml` file (adapt to your needs):
 
 ```yaml
-# The hostname at which Immich Kiosk is served.
-immich_kiosk_hostname: "immichkiosk.example.com"
+# The hostname at which Typesense is served.
+typesense_hostname: "typesense.example.com"
 ```
 
 >[!NOTE]
 >
-> - Hosting Immich Kiosk under a subpath (by configuring the `immich_kiosk_path_prefix` variable) does not seem to be possible due to Immich Kiosk's technical limitations.
-> - When exposing the instance, it is recommended to consider to set a password (see [this section](https://docs.immichkiosk.app/configuration/additional-options/#password) for the necessary configuration) as well as enable a service for authentication such as [authentik](authentik.md) and [Tinyauth](tinyauth.md) based on your use-case.
+> - Hosting Typesense under a subpath (by configuring the `typesense_path_prefix` variable) does not seem to be possible due to Typesense's technical limitations.
+> - When exposing the instance, it is recommended to consider to set a password (see [this section](https://docs.typesense.app/configuration/additional-options/#password) for the necessary configuration) as well as enable a service for authentication such as [authentik](authentik.md) and [Tinyauth](tinyauth.md) based on your use-case.
 
 ## Usage
 
-After running the command for installation, Immich Kiosk becomes available internally to other services on the same network. If the service is exposed to the internet, it becomes available at the URL specified with `immich_kiosk_hostname`. With the configuration above, the service is hosted at `https://immichkiosk.example.com`.
+After running the command for installation, Typesense becomes available internally to other services on the same network. If the service is exposed to the internet, it becomes available at the URL specified with `typesense_hostname`. With the configuration above, the service is hosted at `https://typesense.example.com`.
 
-To get started, refer to [the documentation](https://docs.immichkiosk.app/guides/digital-picture-frame-immich-kiosk-old-tablet/) and other pages for guides about how to display pictures on devices.
+To get started, refer to [the documentation](https://docs.typesense.app/guides/digital-picture-frame-typesense-old-tablet/) and other pages for guides about how to display pictures on devices.
 
 ## Troubleshooting
 
-See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-immich-kiosk/blob/main/docs/configuring-immich-kiosk.md#troubleshooting) on the role's documentation for details.
+See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-typesense/blob/main/docs/configuring-typesense.md#troubleshooting) on the role's documentation for details.
