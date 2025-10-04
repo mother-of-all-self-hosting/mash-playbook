@@ -48,7 +48,7 @@
   name: backup_borg
   activation_prefix: backup_borg_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-calibre-web.git
-  version: v0.6.25-1
+  version: v0.6.25-2
   name: calibre_web
   activation_prefix: calibre_web_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-changedetection.git
@@ -164,7 +164,7 @@
   name: flaresolverr
   activation_prefix: flaresolverr_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-fmd-server.git
-  version: v0.11.0-8
+  version: v0.12.0-0
   name: fmd_server
   activation_prefix: fmd_server_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-focalboard.git
@@ -208,7 +208,7 @@
   name: gotosocial
   activation_prefix: gotosocial_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-grafana.git
-  version: v11.6.5-1
+  version: v11.6.5-3
   name: grafana
   activation_prefix: grafana_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-headscale.git
@@ -220,7 +220,7 @@
   name: healthchecks
   activation_prefix: healthchecks_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-homarr.git
-  version: v1.39.0-0
+  version: v1.40.0-0
   name: homarr
   activation_prefix: homarr_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-hubsite.git
@@ -236,7 +236,7 @@
   name: ilmo
   activation_prefix: ilmo_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-immich.git
-  version: v2.0.0-0
+  version: v2.0.1-0
   name: immich
   activation_prefix: immich_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-immich-kiosk.git
@@ -392,7 +392,7 @@
   name: oauth2_proxy
   activation_prefix: oauth2_proxy_
 - src: git+https://codeberg.org/acioustick/ansible-role-opengist.git
-  version: v1.11.0-0
+  version: v1.11.1-0
   name: opengist
   activation_prefix: opengist_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-outline.git
@@ -440,7 +440,7 @@
   name: plex
   activation_prefix: plex_
 - src: git+https://codeberg.org/acioustick/ansible-role-pocket-id.git
-  version: v1.11.2-0
+  version: v1.12.0-0
   name: pocket_id
   activation_prefix: pocket_id_
 - src: git+https://codeberg.org/acioustick/ansible-role-poodledonts.git
@@ -508,7 +508,7 @@
   name: readeck
   activation_prefix: readeck_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-redis.git
-  version: v8.2.1-0
+  version: v8.2.2-0
   name: redis
   activation_prefix: redis_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-redlib.git
@@ -607,12 +607,16 @@
   version: v1.4.7-0
   name: tsdproxy
   activation_prefix: tsdproxy_
+- src: git+https://github.com/mother-of-all-self-hosting/ansible-role-typesense.git
+  version: v29.0-0
+  name: typesense
+  activation_prefix: typesense_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-uptime_kuma.git
   version: v1.23.16-8
   name: uptime_kuma
   activation_prefix: uptime_kuma_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-valkey.git
-  version: v8.1.3-1
+  version: v8.1.4-0
   name: valkey
   activation_prefix: valkey_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-vaultwarden.git
