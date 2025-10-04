@@ -440,7 +440,7 @@
   name: plex
   activation_prefix: plex_
 - src: git+https://codeberg.org/acioustick/ansible-role-pocket-id.git
-  version: v1.11.2-0
+  version: v1.12.0-0
   name: pocket_id
   activation_prefix: pocket_id_
 - src: git+https://codeberg.org/acioustick/ansible-role-poodledonts.git
