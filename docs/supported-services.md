@@ -163,6 +163,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 | [Valkey](https://valkey.io/) | A flexible distributed key-value datastore that is optimized for caching and other realtime workloads. | [Link](services/valkey.md) |
 | [Vaultwarden](https://github.com/dani-garcia/vaultwarden) | A lightweight unofficial and compatible implementation of the [Bitwarden](https://bitwarden.com/) password manager | [Link](services/vaultwarden.md) |
 | [VersaTiles](https://versatiles.org) | A free stack for generating and serving vector tiles from OpenStreetMap. | [Link](services/versatiles.md) |
+| [Vikunja](https://vikunja.io/) | Self-hostable to-do app | [Link](services/vikunja.md) |
 | [Wetty](https://github.com/butlerx/wetty) | An SSH terminal over HTTP/HTTPS | [Link](services/wetty.md) |
 | [WireGuard Easy](https://github.com/wg-easy/wg-easy) | The easiest way to run [WireGuard](https://www.wireguard.com/) VPN + Web-based Admin UI. | [Link](services/wg-easy.md) |
 | [Woodpecker CI](https://woodpecker-ci.org/) | A simple Continuous Integration (CI) engine with great extensibility. | [Link](services/woodpecker-ci.md) |
