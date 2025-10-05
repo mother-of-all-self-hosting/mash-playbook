@@ -109,3 +109,7 @@ If you are configuring UnifiedPush on a [Matrix](https://matrix.org) client, you
 ## Troubleshooting
 
 See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-ntfy/blob/main/docs/configuring-ntfy.md#troubleshooting) on the role's documentation for details.
+
+## Related services
+
+- [Gotify](gotify.md) — Simple server for sending and receiving messages

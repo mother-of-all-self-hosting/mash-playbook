@@ -269,6 +269,11 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
     {{ ({'name': (firezone_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'firezone']} if firezone_enabled else omit) }}
   # /role-specific:firezone
 
+  # role-specific:flaresolverr
+  - |-
+    {{ ({'name': (flaresolverr_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'flaresolverr']} if flaresolverr_enabled else omit) }}
+  # /role-specific:flaresolverr
+
   # role-specific:fmd_server
   - |-
     {{ ({'name': (fmd_server_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'fmd-server']} if fmd_server_enabled else omit) }}
@@ -327,6 +332,11 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
     {{ ({'name': (gothub_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'gothub']} if gothub_enabled else omit) }}
   # /role-specific:gothub
 
+  # role-specific:gotify
+  - |-
+    {{ ({'name': (gotify_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'gotify']} if gotify_enabled else omit) }}
+  # /role-specific:gotify
+
   # role-specific:gotosocial
   - |-
     {{ ({'name': (gotosocial_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'gotosocial']} if gotosocial_enabled else omit) }}
@@ -373,6 +383,11 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
   - |-
     {{ ({'name': (immich_machine_learning_identifier + '.service'), 'priority': 1500, 'groups': ['mash', 'immich']} if immich_enabled and immich_machine_learning_enabled else omit) }}
   # /role-specific:immich
+
+  # role-specific:immich_kiosk
+  - |-
+    {{ ({'name': (immich_kiosk_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'immich-kiosk']} if immich_kiosk_enabled else omit) }}
+  # /role-specific:immich_kiosk
 
   # role-specific:infisical
   - |-
@@ -648,6 +663,11 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
     {{ ({'name': (postgis_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'metrics', 'postgis']} if postgis_enabled else omit) }}
   # /role-specific:postgis
 
+  # role-specific:poodledonts
+  - |-
+    {{ ({'name': (poodledonts_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'poodledonts']} if poodledonts_enabled else omit) }}
+  # /role-specific:poodledonts
+
   # role-specific:postgres
   - |-
     {{ ({'name': (postgres_identifier + '.service'), 'priority': 500, 'groups': ['mash', 'postgres']} if postgres_enabled else omit) }}
@@ -822,6 +842,11 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
     {{ ({'name': (tsdproxy_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'tsdproxy']} if tsdproxy_enabled else omit) }}
   # /role-specific:tsdproxy
 
+  # role-specific:typesense
+  - |-
+    {{ ({'name': (typesense_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'typesense']} if typesense_enabled else omit) }}
+  # /role-specific:typesense
+
   # role-specific:uptime_kuma
   - |-
     {{ ({'name': (uptime_kuma_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'uptime-kuma']} if uptime_kuma_enabled else omit) }}
@@ -836,6 +861,11 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
   - |-
     {{ ({'name': (vaultwarden_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'vaultwarden', 'vaultwarden-server']} if vaultwarden_enabled else omit) }}
   # /role-specific:vaultwarden
+
+  # role-specific:vikunja
+  - |-
+    {{ ({'name': (vikunja_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'vikunja']} if vikunja_enabled else omit) }}
+  # /role-specific:vikunja
 
   # role-specific:wetty
   - |-
@@ -1057,6 +1087,17 @@ mash_playbook_postgres_managed_databases_auto_itemized:
       } if gitea_enabled and gitea_database_hostname == postgres_connection_hostname and gitea_database_type == 'postgres' else omit)
     }}
   # /role-specific:gitea
+
+  # role-specific:gotify
+  - |-
+    {{
+      ({
+        'name': gotify_database_name,
+        'username': gotify_database_postgres_username,
+        'password': gotify_database_postgres_password,
+      } if gotify_enabled and gotify_database_postgres_hostname == postgres_connection_hostname and gotify_database_type == 'postgres' else omit)
+    }}
+  # /role-specific:gotify
 
   # role-specific:gotosocial
   - |-
@@ -1384,9 +1425,9 @@ mash_playbook_postgres_managed_databases_auto_itemized:
     {{
       ({
         'name': redmine_database_name,
-        'username': redmine_database_username,
-        'password': redmine_database_password,
-      } if redmine_enabled and redmine_database_hostname == postgres_connection_hostname and redmine_database_type == 'postgresql' else omit)
+        'username': redmine_database_postgres_username,
+        'password': redmine_database_postgres_password,
+      } if redmine_enabled and redmine_database_postgres_hostname == postgres_connection_hostname and redmine_database_type == 'postgresql' else omit)
     }}
   # /role-specific:redmine
 
@@ -1444,6 +1485,17 @@ mash_playbook_postgres_managed_databases_auto_itemized:
       } if vaultwarden_enabled and vaultwarden_database_postgres_hostname == postgres_connection_hostname and vaultwarden_database_type == 'postgres' else omit)
     }}
   # /role-specific:vaultwarden
+
+  # role-specific:vikunja
+  - |-
+    {{
+      ({
+        'name': vikunja_database_name,
+        'username': vikunja_database_postgres_username,
+        'password': vikunja_database_postgres_password,
+      } if vikunja_enabled and vikunja_database_postgres_hostname == postgres_connection_hostname and vikunja_database_type == 'postgres' else omit)
+    }}
+  # /role-specific:vikunja
 
   # role-specific:woodpecker_ci_server
   - |-
@@ -3202,6 +3254,45 @@ firezone_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_pri
 
 
 
+# role-specific:flaresolverr
+########################################################################
+#                                                                      #
+# flaresolverr                                                         #
+#                                                                      #
+########################################################################
+
+flaresolverr_enabled: false
+
+flaresolverr_identifier: "{{ mash_playbook_service_identifier_prefix }}flaresolverr"
+
+flaresolverr_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}flaresolverr"
+
+flaresolverr_uid: "{{ mash_playbook_uid }}"
+flaresolverr_gid: "{{ mash_playbook_gid }}"
+
+
+flaresolverr_container_additional_networks_auto: |
+  {{
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+  }}
+
+flaresolverr_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+flaresolverr_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+
+# role-specific:traefik
+flaresolverr_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
+flaresolverr_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
+# /role-specific:traefik
+
+########################################################################
+#                                                                      #
+# /flaresolverr                                                        #
+#                                                                      #
+########################################################################
+# /role-specific:flaresolverr
+
+
+
 # role-specific:fmd_server
 ########################################################################
 #                                                                      #
@@ -3746,6 +3837,67 @@ gothub_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_prima
 #                                                                      #
 ########################################################################
 # /role-specific:gothub
+
+
+
+# role-specific:gotify
+########################################################################
+#                                                                      #
+# gotify                                                               #
+#                                                                      #
+########################################################################
+
+gotify_enabled: false
+
+gotify_identifier: "{{ mash_playbook_service_identifier_prefix }}gotify"
+
+gotify_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}gotify"
+
+gotify_uid: "{{ mash_playbook_uid }}"
+gotify_gid: "{{ mash_playbook_gid }}"
+
+gotify_systemd_required_services_list_auto: |
+  {{
+    ([mariadb_identifier ~ '.service'] if mariadb_enabled | default(false) and gotify_database_mysql_hostname == mariadb_connection_hostname and gotify_database_type == 'mysql' else [])
+    +
+    ([postgres_identifier ~ '.service'] if postgres_enabled | default(false) and gotify_database_postgres_hostname == postgres_connection_hostname and gotify_database_type == 'postgres' else [])
+  }}
+
+gotify_container_additional_networks_auto: |
+  {{
+    ([mariadb_container_network] if mariadb_enabled | default(false) and gotify_database_mysql_hostname == mariadb_connection_hostname and gotify_container_network != mariadb_container_network and gotify_database_type == 'mysql' else [])
+    +
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+    +
+    ([postgres_container_network] if postgres_enabled | default(false) and gotify_database_postgres_hostname == postgres_connection_hostname and gotify_container_network != postgres_container_network and gotify_database_type == 'postgres' else [])
+  }}
+
+gotify_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+gotify_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+
+# role-specific:mariadb
+gotify_database_mysql_hostname: "{{ mariadb_connection_hostname if mariadb_enabled else '' }}"
+gotify_database_mysql_port: "{{ mariadb_connection_port if mariadb_enabled else '3306' }}"
+gotify_database_mysql_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'm.gotify', rounds=655555) | to_uuid }}"
+# /role-specific:mariadb
+
+# role-specific:postgres
+gotify_database_postgres_hostname: "{{ postgres_connection_hostname if postgres_enabled else '' }}"
+gotify_database_postgres_port: "{{ postgres_connection_port if postgres_enabled else '5432' }}"
+gotify_database_postgres_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'p.gotify', rounds=655555) | to_uuid }}"
+# /role-specific:postgres
+
+# role-specific:traefik
+gotify_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
+gotify_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
+# /role-specific:traefik
+
+########################################################################
+#                                                                      #
+# /gotify                                                              #
+#                                                                      #
+########################################################################
+# /role-specific:gotify
 
 
 
@@ -5255,6 +5407,58 @@ immich_database_sslmode: "{{ 'disable' if (immich_database_hostname == postgres_
 # /role-specific:immich
 
 
+
+# role-specific:immich_kiosk
+########################################################################
+#                                                                      #
+# immich_kiosk                                                         #
+#                                                                      #
+########################################################################
+
+immich_kiosk_enabled: false
+
+immich_kiosk_identifier: "{{ mash_playbook_service_identifier_prefix }}immich-kiosk"
+
+immich_kiosk_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}immich-kiosk"
+
+immich_kiosk_uid: "{{ mash_playbook_uid }}"
+immich_kiosk_gid: "{{ mash_playbook_gid }}"
+
+immich_kiosk_systemd_wanted_services_list_auto: |
+  {{
+    ([immich_identifier ~ '.service'] if immich_enabled | default(false) else [])
+  }}
+
+immich_kiosk_container_additional_networks_auto: |
+  {{
+    ([immich_server_container_network] if immich_enabled | default(false) and immich_kiosk_container_network != immich_server_container_network else [])
+    +
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+  }}
+
+# Only enable Traefik labels if a hostname is set (indicating that this will be exposed publicly)
+immich_kiosk_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled and immich_kiosk_hostname }}"
+immich_kiosk_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+
+# role-specific:immich
+immich_kiosk_environment_variables_kiosk_immich_url: "http://{{ immich_server_identifier }}:{{ immich_server_http_port }}"
+immich_kiosk_environment_variables_kiosk_immich_external_url: "{{ immich_scheme }}://{{ immich_hostname }}"
+# /role-specific:immich
+
+# role-specific:traefik
+immich_kiosk_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
+immich_kiosk_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
+# /role-specific:traefik
+
+########################################################################
+#                                                                      #
+# /immich_kiosk                                                        #
+#                                                                      #
+########################################################################
+# /role-specific:immich_kiosk
+
+
+
 # role-specific:infisical
 ########################################################################
 #                                                                      #
@@ -6259,6 +6463,17 @@ mash_playbook_mariadb_managed_databases_auto_itemized:
     }}
   # /role-specific:forgejo
 
+  # role-specific:gotify
+  - |-
+    {{
+      ({
+        'name': gotify_database_name,
+        'username': gotify_database_mysql_username,
+        'password': gotify_database_mysql_password,
+      } if gotify_enabled and gotify_database_mysql_hostname == mariadb_connection_hostname and gotify_database_type == 'mysql' else omit)
+    }}
+  # /role-specific:gotify
+
   # role-specific:healthchecks
   - |-
     {{
@@ -6410,6 +6625,17 @@ mash_playbook_mariadb_managed_databases_auto_itemized:
       } if vaultwarden_enabled and vaultwarden_database_mysql_hostname == mariadb_connection_hostname and vaultwarden_database_type == 'mysql' else omit)
     }}
   # /role-specific:vaultwarden
+
+  # role-specific:vikunja
+  - |-
+    {{
+      ({
+        'name': vikunja_database_name,
+        'username': vikunja_database_mysql_username,
+        'password': vikunja_database_mysql_password,
+      } if vikunja_enabled and vikunja_database_mysql_hostname == mariadb_connection_hostname and vikunja_database_type == 'mysql' else omit)
+    }}
+  # /role-specific:vikunja
 
   # role-specific:woodpecker_ci_server
   - |-
@@ -7913,6 +8139,44 @@ pocket_id_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_pr
 
 
 
+# role-specific:poodledonts
+########################################################################
+#                                                                      #
+# poodledonts                                                          #
+#                                                                      #
+########################################################################
+
+poodledonts_enabled: false
+
+poodledonts_identifier: "{{ mash_playbook_service_identifier_prefix }}poodledonts"
+
+poodledonts_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}poodledonts"
+
+poodledonts_uid: "{{ mash_playbook_uid }}"
+poodledonts_gid: "{{ mash_playbook_gid }}"
+
+poodledonts_container_additional_networks_auto: |
+  {{
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+  }}
+
+poodledonts_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+poodledonts_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+
+# role-specific:traefik
+poodledonts_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
+poodledonts_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
+# /role-specific:traefik
+
+########################################################################
+#                                                                      #
+# /poodledonts                                                         #
+#                                                                      #
+########################################################################
+# /role-specific:poodledonts
+
+
+
 # role-specific:postgis
 ########################################################################
 #                                                                      #
@@ -8604,14 +8868,14 @@ redmine_database_cipher_key: "{{ '%s' | format(mash_playbook_generic_secret_key)
 
 redmine_systemd_required_services_list_auto: |
   {{
-    ([postgres_identifier ~ '.service'] if postgres_enabled and redmine_database_hostname == postgres_connection_hostname else [])
+    ([postgres_identifier ~ '.service'] if postgres_enabled and redmine_database_postgres_hostname == postgres_connection_hostname and redmine_database_type == 'postgresql' else [])
   }}
 
 redmine_container_additional_networks_auto: |
   {{
     ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
     +
-    ([postgres_container_network] if postgres_enabled and redmine_database_hostname == postgres_connection_hostname and redmine_container_network != postgres_container_network else [])
+    ([postgres_container_network] if postgres_enabled and redmine_database_postgres_hostname == postgres_connection_hostname and redmine_container_network != postgres_container_network and redmine_database_type == 'postgresql' else [])
   }}
 
 redmine_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
@@ -8620,9 +8884,9 @@ redmine_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxy
 redmine_database_type: "{{ 'postgresql' if postgres_enabled else 'sqlite3' }}"
 
 # role-specific:postgres
-redmine_database_hostname: "{{ postgres_connection_hostname if postgres_enabled else '' }}"
-redmine_database_port: "{{ postgres_connection_port if postgres_enabled else '5432' }}"
-redmine_database_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'redmine.db', rounds=655555) | to_uuid }}"
+redmine_database_postgres_hostname: "{{ postgres_connection_hostname if postgres_enabled else '' }}"
+redmine_database_postgres_port: "{{ postgres_connection_port if postgres_enabled else '5432' }}"
+redmine_database_postgres_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'redmine.db', rounds=655555) | to_uuid }}"
 # /role-specific:postgres
 
 # role-specific:traefik
@@ -9387,6 +9651,47 @@ container_socket_proxy_api_images_enabled: "{{ true if tsdproxy_docker_endpoint 
 
 
 
+# role-specific:typesense
+########################################################################
+#                                                                      #
+# typesense                                                            #
+#                                                                      #
+########################################################################
+
+typesense_enabled: false
+
+typesense_identifier: "{{ mash_playbook_service_identifier_prefix }}typesense"
+
+typesense_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}typesense"
+
+typesense_uid: "{{ mash_playbook_uid }}"
+typesense_gid: "{{ mash_playbook_gid }}"
+
+typesense_container_additional_networks_auto: |
+  {{
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+  }}
+
+# Only enable Traefik labels if a hostname is set (indicating that this will be exposed publicly)
+typesense_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled and typesense_hostname | length > 0 }}"
+typesense_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+
+typesense_environment_variables_api_key: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'a.typesense', rounds=655555) | to_uuid }}"
+
+# role-specific:traefik
+typesense_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
+typesense_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
+# /role-specific:traefik
+
+########################################################################
+#                                                                      #
+# /typesense                                                           #
+#                                                                      #
+########################################################################
+# /role-specific:typesense
+
+
+
 # role-specific:uptime_kuma
 ########################################################################
 #                                                                      #
@@ -9406,6 +9711,10 @@ uptime_kuma_gid: "{{ mash_playbook_gid }}"
 uptime_kuma_container_additional_networks_auto: |
   {{
     ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+    +
+    ([ntfy_container_network] if ntfy_enabled | default(false) and uptime_kuma_container_network != ntfy_container_network else [])
+    +
+    ([gotify_container_network] if gotify_enabled | default(false) and uptime_kuma_container_network != gotify_container_network else [])
   }}
 
 uptime_kuma_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
@@ -9564,6 +9873,100 @@ versatiles_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_p
 #                                                                      #
 ########################################################################
 # /role-specific:versatiles
+
+
+
+# role-specific:vikunja
+########################################################################
+#                                                                      #
+# vikunja                                                              #
+#                                                                      #
+########################################################################
+
+vikunja_enabled: false
+
+vikunja_identifier: "{{ mash_playbook_service_identifier_prefix }}vikunja"
+
+vikunja_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}vikunja"
+
+vikunja_uid: "{{ mash_playbook_uid }}"
+vikunja_gid: "{{ mash_playbook_gid }}"
+
+vikunja_systemd_required_services_list_auto: |
+  {{
+    ([mariadb_identifier ~ '.service'] if mariadb_enabled | default(false) and vikunja_database_mysql_hostname == mariadb_connection_hostname and vikunja_database_type == 'mysql' else [])
+    +
+    ([postgres_identifier ~ '.service'] if postgres_enabled | default(false) and vikunja_database_postgres_hostname == postgres_connection_hostname and vikunja_database_type == 'postgres' else [])
+  }}
+
+vikunja_systemd_wanted_services_list_auto: |
+  {{
+    ([(exim_relay_identifier | default('mash-exim-relay')) ~ '.service'] if (exim_relay_enabled | default(false) and vikunja_environment_variables_smtp_host == exim_relay_identifier | default('mash-exim-relay')) else [])
+    +
+    ([lldap_identifier ~ '.service'] if lldap_enabled | default(false) else [])
+    +
+    ([typesense_identifier ~ '.service'] if typesense_enabled | default(false) else [])
+  }}
+
+vikunja_container_additional_networks_auto: |
+  {{
+    ([exim_relay_container_network | default('mash-exim-relay')] if (exim_relay_enabled | default(false) and vikunja_environment_variables_smtp_host == exim_relay_identifier | default('mash-exim-relay') and vikunja_container_network != exim_relay_container_network) else [])
+    +
+    ([lldap_container_network] if lldap_enabled | default(false) and vikunja_container_network != lldap_container_network else [])
+    +
+    ([mariadb_container_network] if mariadb_enabled | default(false) and vikunja_database_mysql_hostname == mariadb_connection_hostname and vikunja_container_network != mariadb_container_network and vikunja_database_type == 'mysql' else [])
+    +
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+    +
+    ([postgres_container_network] if postgres_enabled | default(false) and vikunja_database_postgres_hostname == postgres_connection_hostname and vikunja_container_network != postgres_container_network and vikunja_database_type == 'postgres' else [])
+    +
+    ([typesense_container_network] if typesense_enabled | default(false) and vikunja_container_network != typesense_container_network else [])
+  }}
+
+vikunja_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+vikunja_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+
+vikunja_database_type: "{{ 'postgres' if postgres_enabled | default(false) else 'sqlite' }}"
+
+vikunja_environment_variables_service_jwtsecret: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 's.vikunja', rounds=655555) | to_uuid }}"
+
+# role-specific:exim_relay
+vikunja_environment_variables_smtp_enabled: "{{ exim_relay_enabled }}"
+vikunja_environment_variables_smtp_from: "{{ exim_relay_sender_address if exim_relay_enabled else '' }}"
+vikunja_environment_variables_smtp_host: "{{ exim_relay_identifier if exim_relay_enabled else '' }}"
+vikunja_environment_variables_smtp_port: "{{ 8025 if exim_relay_enabled else '587' }}"
+# /role-specific:exim_relay
+
+# role-specific:mariadb
+vikunja_database_mysql_hostname: "{{ mariadb_connection_hostname if mariadb_enabled else '' }}"
+vikunja_database_mysql_port: "{{ mariadb_connection_port if mariadb_enabled else '3306' }}"
+vikunja_database_mysql_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'vikunja.db', rounds=655555) | to_uuid }}"
+# /role-specific:mariadb
+
+# role-specific:postgres
+vikunja_database_postgres_hostname: "{{ postgres_connection_hostname if postgres_enabled else '' }}"
+vikunja_database_postgres_port: "{{ postgres_connection_port if postgres_enabled else '5432' }}"
+vikunja_database_postgres_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'vikunja.db', rounds=655555) | to_uuid }}"
+vikunja_database_postgres_sslmode: "{{ 'disable' if (vikunja_database_postgres_hostname == postgres_connection_hostname | default('mash-postgres')) else 'require' }}"
+# /role-specific:postgres
+
+# role-specific:traefik
+vikunja_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
+vikunja_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
+# /role-specific:traefik
+
+# role-specific:typesense
+vikunja_environment_variables_typesense_enabled: true
+vikunja_environment_variables_typesense_url: http://{{ typesense_identifier }}:{{ typesense_container_http_port }}
+vikunja_environment_variables_typesense_apikey: "{{ typesense_environment_variables_api_key }}"
+# /role-specific:typesense
+
+########################################################################
+#                                                                      #
+# /vikunja                                                             #
+#                                                                      #
+########################################################################
+# /role-specific:vikunja
 
 
 

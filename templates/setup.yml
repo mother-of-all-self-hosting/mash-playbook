@@ -229,6 +229,10 @@
     - role: galaxy/firezone
     # /role-specific:firezone
 
+    # role-specific:flaresolverr
+    - role: galaxy/flaresolverr
+    # /role-specific:flaresolverr
+
     # role-specific:fmd_server
     - role: galaxy/fmd_server
     # /role-specific:fmd_server
@@ -269,6 +273,10 @@
     - role: galaxy/gothub
     # /role-specific:gothub
 
+    # role-specific:gotify
+    - role: galaxy/gotify
+    # /role-specific:gotify
+
     # role-specific:gotosocial
     - role: galaxy/gotosocial
     # /role-specific:gotosocial
@@ -308,6 +316,10 @@
     # role-specific:immich
     - role: galaxy/immich
     # /role-specific:immich
+
+    # role-specific:immich_kiosk
+    - role: galaxy/immich_kiosk
+    # /role-specific:immich_kiosk
 
     # role-specific:influxdb
     - role: galaxy/influxdb
@@ -493,6 +505,10 @@
     - role: galaxy/pocket_id
     # /role-specific:pocket_id
 
+    # role-specific:poodledonts
+    - role: galaxy/poodledonts
+    # /role-specific:poodledonts
+
     # role-specific:postgis
     - role: galaxy/postgis
     # /role-specific:postgis
@@ -625,6 +641,10 @@
     - role: galaxy/tsdproxy
     # /role-specific:tsdproxy
 
+    # role-specific:typesense
+    - role: galaxy/typesense
+    # /role-specific:typesense
+
     # role-specific:uptime_kuma
     - role: galaxy/uptime_kuma
     # /role-specific:uptime_kuma
@@ -640,6 +660,10 @@
     # role-specific:versatiles
     - role: galaxy/versatiles
     # /role-specific:versatiles
+
+    # role-specific:vikunja
+    - role: galaxy/vikunja
+    # /role-specific:vikunja
 
     # role-specific:wetty
     - role: galaxy/wetty

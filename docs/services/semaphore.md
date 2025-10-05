@@ -68,7 +68,7 @@ You also have to set a string used for encrypting access keys in database to `se
 
 ### Select database to use (optional)
 
-By default Semaphore UI is configured to use Postgres, but you can choose other databases such as MySQL (MariaDB) and SQLite. See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-semaphore/blob/main/docs/configuring-semaphore.md#configure-database) on the role's documentation for details.
+By default Semaphore UI is configured to use [Postgres](postgres.md) (if enabled), but you can choose other databases such as MySQL (MariaDB) and SQLite. If Postgres is not enabled, SQLite will be used. See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-semaphore/blob/main/docs/configuring-semaphore.md#configure-database) on the role's documentation for details.
 
 ### Extending the configuration
 
