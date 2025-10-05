@@ -203,6 +203,10 @@
   version: v2025.3.9-0
   name: gothub
   activation_prefix: gothub_
+- src: git+https://codeberg.org/acioustick/ansible-role-gotify.git
+  version: v2.7.3-0
+  name: gotify
+  activation_prefix: gotify_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-gotosocial.git
   version: v0.19.2-1
   name: gotosocial

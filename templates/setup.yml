@@ -273,6 +273,10 @@
     - role: galaxy/gothub
     # /role-specific:gothub
 
+    # role-specific:gotify
+    - role: galaxy/gotify
+    # /role-specific:gotify
+
     # role-specific:gotosocial
     - role: galaxy/gotosocial
     # /role-specific:gotosocial
