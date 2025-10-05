@@ -133,10 +133,6 @@
     - role: galaxy/autobrr
     # /role-specific:autobrr
 
-    # role-specific:auxiliary
-    - role: galaxy/auxiliary
-    # /role-specific:auxiliary
-
     # role-specific:backup_borg
     - role: galaxy/backup_borg
     # /role-specific:backup_borg
@@ -696,6 +692,11 @@
     # role-specific:yourls
     - role: galaxy/yourls
     # /role-specific:yourls
+
+    # role-specific:auxiliary
+    # Run here to ensure that paths to upload files have been created
+    - role: galaxy/auxiliary
+    # /role-specific:auxiliary
 
     # role-specific:systemd_service_manager
     # This role needs to run after setting up roles for individual services as it restarts them.
