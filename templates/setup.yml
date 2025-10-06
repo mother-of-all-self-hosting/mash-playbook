@@ -694,7 +694,8 @@
     # /role-specific:yourls
 
     # role-specific:auxiliary
-    # Run here to ensure that paths to upload files have been created
+    # Run last to to ensure that all other roles have created their paths, etc.,
+    # and this role can build on top of all that.
     - role: galaxy/auxiliary
     # /role-specific:auxiliary
 
