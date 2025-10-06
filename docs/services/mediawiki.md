@@ -20,11 +20,11 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
 # MediaWiki
 
-The playbook can install and configure [MediaWiki](https://mediawiki.net) for you.
+The playbook can install and configure [MediaWiki](https://www.mediawiki.org/) for you.
 
-MediaWiki is a simple server for sending and receiving messages.
+MediaWiki is a popular free and open-source wiki software.
 
-See the project's [documentation](https://mediawiki.net/docs/) to learn what MediaWiki does and why it might be useful to you.
+See the project's [documentation](https://www.mediawiki.org/wiki/MediaWiki) to learn what MediaWiki does and why it might be useful to you.
 
 For details about configuring the [Ansible role for MediaWiki](https://github.com/mother-of-all-self-hosting/ansible-role-mediawiki), you can check them via:
 - 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-mediawiki/blob/main/docs/configuring-mediawiki.md) online
@@ -39,7 +39,7 @@ This service requires the following other services:
 
 ## Adjusting the playbook configuration
 
-To enable this service, add the following configuration to your `vars.yml` file and re-run the [installation](../installing.md) process:
+To enable this service, add the following configuration to your `vars.yml` file:
 
 ```yaml
 ########################################################################
@@ -61,24 +61,43 @@ mediawiki_hostname: mediawiki.example.com
 
 **Note**: hosting MediaWiki under a subpath (by configuring the `mediawiki_path_prefix` variable) does not seem to be possible due to MediaWiki's technical limitations.
 
+### Set wiki's name
+
+You also need to specify wiki's name by adding the following configuration to your `vars.yml` file:
+
+```yaml
+mediawiki_config_sitename: YOUR_WIKI_NAME_HERE
+```
+
 ### Select database to use
 
 It is necessary to select a database used by MediaWiki from a MySQL compatible database, Postgres, and SQLite. See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-mediawiki/blob/main/docs/configuring-mediawiki.md#specify-database) on the role's documentation for details.
 
-### Set the username and password for the first user
+>[!NOTE]
+> It is [not recommended](https://www.mediawiki.org/wiki/Compatibility#Database) to use Postgres, as [this page](https://www.mediawiki.org/wiki/Postgres) on the manual describes that the Postgres support is "second-class" and you may run into some bugs.
 
-You also need to set an initial username and password for the first user. Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-mediawiki/blob/main/docs/configuring-mediawiki.md#specify-username-and-password-for-the-first-user) on the role's documentation.
+### Set wiki's logos (recommended)
+
+The default installation sets the placeholder icons for your wiki. Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-mediawiki/blob/main/docs/configuring-mediawiki.md#set-wikis-logos-recommended) on the role's documentation about how to replace them with yours.
+
+### Extending the configuration
+
+As the configuration settings specified on that file are basic despite being sufficient for starting up the instance, you would probably want to add other standard settings listed on [this section](https://www.mediawiki.org/wiki/Manual:LocalSettings.php#Standard_settings) on the manual to `mediawiki_config_additional_configurations` such as disabling user registration and enabling email functions, for example. See [this setcion](https://github.com/mother-of-all-self-hosting/ansible-role-mediawiki/blob/main/docs/configuring-mediawiki.md#extending-the-configuration) for details.
+
+## Installation
+
+Because installing a MediaWiki instance requires to invoke [`run.php install`](https://www.mediawiki.org/wiki/Manual:Install.php) and load the generated `LocalSettings.php` file on the container, installation process consists of multiple steps. **Running the [installing](../installing.md) command solely does not start up the MediaWiki instance.** Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-mediawiki/blob/main/docs/configuring-mediawiki.md#installing) for the instruction.
 
 ## Usage
 
-After running the command for installation, the MediaWiki instance becomes available at the URL specified with `mediawiki_hostname`. With the configuration above, the service is hosted at `https://mediawiki.example.com`.
+After completing the steps for installation, the MediaWiki instance becomes available at the URL specified with `mediawiki_hostname`. With the configuration above, the service is hosted at `https://mediawiki.example.com`.
 
 To get started, open the URL with a web browser to log in to the instance. **Note that the first registered user becomes an administrator automatically.**
+
+## Maintenance
+
+Some specific operations such as updating MediaWiki's configurations on [`LocalSettings.php`](https://www.mediawiki.org/wiki/Manual:LocalSettings.php) and upgrading the MediaWiki instance requires invoking specific commands with [`run.php`](https://www.mediawiki.org/wiki/Manual:Run.php) inside the container, which can be executed by running the playbook with special tags. Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-mediawiki/blob/main/docs/configuring-mediawiki.md#maintenance) for details.
 
 ## Troubleshooting
 
 See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-mediawiki/blob/main/docs/configuring-mediawiki.md#troubleshooting) on the role's documentation for details.
-
-## Related services
-
-- [ntfy](ntfy.md) — Simple HTTP-based pub-sub notification service to send you push notifications from any computer
