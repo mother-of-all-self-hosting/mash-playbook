@@ -76,6 +76,169 @@ It is necessary to select a database used by MediaWiki from a MySQL compatible d
 >[!NOTE]
 > It is [not recommended](https://www.mediawiki.org/wiki/Compatibility#Database) to use Postgres, as [this page](https://www.mediawiki.org/wiki/Postgres) on the manual describes that the Postgres support is "second-class" and you may run into some bugs.
 
+#### Setting up a dedicated MariaDB instance
+
+If you are going to use MariaDB, it is recommended to set up a dedicated MariaDB instance for MediaWiki to pin the MariaDB version for it, letting another instance on the latest version used by other services, as MariaDB 12.0.0+ is not supported by MediaWiki 1.44 due to [this bug](https://phabricator.wikimedia.org/T401570).
+
+To create a dedicated instance for MediaWiki, you can follow the steps below:
+
+1. Adjust the `hosts` file
+2. Create a new `vars.yml` file for the dedicated instance
+3. Edit the existing `vars.yml` file for the main host
+
+##### Adjust `hosts`
+
+At first, you need to adjust `inventory/hosts` file to add a supplementary host for MediaWiki.
+
+The content should be something like below. Make sure to replace `mash.example.com` with your hostname and `YOUR_SERVER_IP_ADDRESS_HERE` with the IP address of the host, respectively. The same IP address should be set to both, unless the MariaDB instance will be served from a different machine.
+
+```ini
+[mash_servers]
+[mash_servers:children]
+mash_example_com
+
+[mash_example_com]
+mash.example.com ansible_host=YOUR_SERVER_IP_ADDRESS_HERE
+mash.example.com-mediawiki-deps ansible_host=YOUR_SERVER_IP_ADDRESS_HERE
+…
+```
+
+`mash_example_com` can be any string and does not have to match with the hostname.
+
+You can just add an entry for the supplementary host to `[mash_example_com]` if there are other entries there already.
+
+##### Create `vars.yml` for the dedicated instance
+
+Then, create a new directory where `vars.yml` for the supplementary host is stored. If `mash.example.com` is your main host, name the directory as `mash.example.com-mediawiki-deps`. Its path therefore will be `inventory/host_vars/mash.example.com-mediawiki-deps`.
+
+After creating the directory, add a new `vars.yml` file inside it with a content below. It will have running the playbook create a `mash-mediawiki-mariadb` instance on the new host, setting `/mash/mediawiki-mariadb` to the base directory of the dedicated MariaDB instance.
+
+```yaml
+# This is vars.yml for the supplementary host of MediaWiki.
+
+---
+
+########################################################################
+#                                                                      #
+# Playbook                                                             #
+#                                                                      #
+########################################################################
+
+# Put a strong secret below, generated with `pwgen -s 64 1` or in another way
+mash_playbook_generic_secret_key: RANDOM_STRING_HERE
+
+# Override service names and directory path prefixes
+mash_playbook_service_identifier_prefix: "mash-mediawiki-"
+mash_playbook_service_base_directory_name_prefix: "mediawiki-"
+
+########################################################################
+#                                                                      #
+# /Playbook                                                            #
+#                                                                      #
+########################################################################
+
+
+########################################################################
+#                                                                      #
+# Various other overrides                                              #
+#                                                                      #
+########################################################################
+
+# See: docs/configuring-ipv6.md
+devture_systemd_docker_base_ipv6_enabled: true
+
+########################################################################
+#                                                                      #
+# /Various other overrides                                             #
+#                                                                      #
+########################################################################
+
+
+########################################################################
+#                                                                      #
+# mariadb                                                              #
+#                                                                      #
+########################################################################
+
+mariadb_enabled: true
+
+# Put a strong secret below, generated with `pwgen -s 64 1` or in another way
+mariadb_root_password: RANDOM_STRING_FOR_MARIADB_HERE
+
+# Pin the version because MariaDB 12.0.0+ is not supported by MediaWiki 1.44.
+# See: https://phabricator.wikimedia.org/T401570
+mariadb_container_image_latest: "{{ mariadb_container_image_v11_8 }}"
+
+# Create a database for the MediaWiki instance
+mariadb_managed_databases_custom:
+  - name: "{{ mediawiki_database_name }}"
+    username: "{{ mediawiki_database_mysql_username }}"
+    password: "{{ mediawiki_database_mysql_password }}"
+
+########################################################################
+#                                                                      #
+# /mariadb                                                             #
+#                                                                      #
+########################################################################
+
+
+########################################################################
+#                                                                      #
+# mediawiki                                                            #
+#                                                                      #
+########################################################################
+
+mediawiki_database_mysql_hostname: "{{ mariadb_connection_hostname }}"
+mediawiki_database_mysql_port: "{{ mariadb_connection_port }}"
+
+# Put a strong secret below, generated with `pwgen -s 64 1` or in another way
+mediawiki_database_mysql_password: MARIADB_FOR_MEDIAWIKI_PASSWORD_HERE
+
+########################################################################
+#                                                                      #
+# /mediawiki                                                           #
+#                                                                      #
+########################################################################
+```
+
+##### Edit the main `vars.yml` file
+
+Having configured `vars.yml` for the dedicated instance, add the following configuration to `vars.yml` for the main host, whose path should be `inventory/host_vars/mash.example.com/vars.yml` (replace `mash.example.com` with yours).
+
+```yaml
+########################################################################
+#                                                                      #
+# mediawiki                                                            #
+#                                                                      #
+########################################################################
+
+# Add the base configuration as specified above
+
+mediawiki_database_type: mysql
+
+# Point MediaWiki to its dedicated MariaDB instance
+mediawiki_database_mysql_hostname: mash-mediawiki-mariadb
+
+# Set the same value specified on vars.yml for the supplementary host
+mediawiki_database_mysql_password: MARIADB_FOR_MEDIAWIKI_PASSWORD_HERE
+
+# Make sure the MediaWiki service (mash-mediawiki.service) starts after its dedicated MariaDB service (mash-mediawiki-mariadb.service)
+mediawiki_systemd_required_services_list_custom:
+  - "mash-mediawiki-mariadb.service"
+
+# Make sure the MediaWiki container is connected to the container network of its dedicated MariaDB service (mash-mediawiki-mariadb)
+mediawiki_container_additional_networks_custom:
+  - "mash-mediawiki-mariadb"
+
+########################################################################
+#                                                                      #
+# /mediawiki                                                           #
+#                                                                      #
+########################################################################
+```
+
+After replacing strings with your values, running the installation command will create the dedicated MariaDB instance named `mash-mediawiki-mariadb`, and the MediaWiki instance will keep using the pinned MariaDB version.
+
 ### Set wiki's logos (recommended)
 
 The default installation sets the placeholder icons for your wiki. Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-mediawiki/blob/main/docs/configuring-mediawiki.md#set-wikis-logos-recommended) on the role's documentation about how to replace them with yours.
