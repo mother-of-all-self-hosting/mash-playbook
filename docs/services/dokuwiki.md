@@ -46,3 +46,7 @@ dokuwiki_hostname: dokuwiki.example.com
 After running the command for installation, the Dokuwiki instance becomes available at the URL specified with `dokuwiki_hostname`. With the configuration above, the service is hosted at `https://dokuwiki.example.com`.
 
 To get started, open the URL `https://dokuwiki.example.com/install.php` with a web browser to complete installation on the server. The instruction is available at <https://www.dokuwiki.org/installer>.
+
+## Related services
+
+- [MediaWiki](mediawiki.md) — Popular free and open-source wiki software

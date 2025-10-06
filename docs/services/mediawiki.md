@@ -264,3 +264,7 @@ Some specific operations such as updating MediaWiki's configurations on [`LocalS
 ## Troubleshooting
 
 See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-mediawiki/blob/main/docs/configuring-mediawiki.md#troubleshooting) on the role's documentation for details.
+
+## Related services
+
+- [DokuWiki](dokuwiki.md) — Lightweight, file-based wiki engine
