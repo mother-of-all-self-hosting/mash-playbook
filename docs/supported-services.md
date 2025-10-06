@@ -65,7 +65,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 | [Ghostfolio](https://ghostfol.io/) | Wealth management free software to keep track of assets such as stocks, bonds, ETFs, etc.| [Link](services/ghostfolio.md) |
 | [Gitea](https://gitea.io/) | A painless self-hosted [Git](https://git-scm.com/) service. | [Link](services/gitea.md) |
 | [GotHub](https://codeberg.org/gothub/gothub) | View GitHub repositories without exposing your IP address, browsing habits, and other browser fingerprinting data to the website | [Link](services/gothub.md) |
-| [Gotify](https://gotosocial.org/) | Simple server for sending and receiving messages | [Link](services/gotify.md) |
+| [Gotify](https://gotify.net/) | Simple server for sending and receiving messages | [Link](services/gotify.md) |
 | [GoToSocial](https://gotosocial.org/) | A self-hosted [ActivityPub](https://activitypub.rocks/) social network server | [Link](services/gotosocial.md) |
 | [Grafana](https://grafana.com/) | An open and composable observability and data visualization platform, often used with [Prometheus](services/prometheus.md) | [Link](services/grafana.md) |
 | [Grafana Loki](https://grafana.com/docs/loki/latest/) | Open-source log aggregation system that helps collect, store, and analyze logs in a scalable and efficient manner | [Link](services/grafana-loki.md) |
