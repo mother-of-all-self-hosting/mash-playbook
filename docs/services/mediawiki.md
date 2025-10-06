@@ -18,17 +18,17 @@ SPDX-FileCopyrightText: 2024 - 2025 Suguru Hirahara
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 
-# Gotify
+# MediaWiki
 
-The playbook can install and configure [Gotify](https://gotify.net) for you.
+The playbook can install and configure [MediaWiki](https://mediawiki.net) for you.
 
-Gotify is a simple server for sending and receiving messages.
+MediaWiki is a simple server for sending and receiving messages.
 
-See the project's [documentation](https://gotify.net/docs/) to learn what Gotify does and why it might be useful to you.
+See the project's [documentation](https://mediawiki.net/docs/) to learn what MediaWiki does and why it might be useful to you.
 
-For details about configuring the [Ansible role for Gotify](https://codeberg.org/acioustick/ansible-role-gotify), you can check them via:
-- 🌐 [the role's documentation](https://codeberg.org/acioustick/ansible-role-gotify/src/branch/master/docs/configuring-gotify.md) online
-- 📁 `roles/galaxy/gotify/docs/configuring-gotify.md` locally, if you have [fetched the Ansible roles](../installing.md)
+For details about configuring the [Ansible role for MediaWiki](https://codeberg.org/acioustick/ansible-role-mediawiki), you can check them via:
+- 🌐 [the role's documentation](https://codeberg.org/acioustick/ansible-role-mediawiki/src/branch/master/docs/configuring-mediawiki.md) online
+- 📁 `roles/galaxy/mediawiki/docs/configuring-mediawiki.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 ## Dependencies
 
@@ -44,40 +44,40 @@ To enable this service, add the following configuration to your `vars.yml` file 
 ```yaml
 ########################################################################
 #                                                                      #
-# gotify                                                               #
+# mediawiki                                                            #
 #                                                                      #
 ########################################################################
 
-gotify_enabled: true
+mediawiki_enabled: true
 
-gotify_hostname: gotify.example.com
+mediawiki_hostname: mediawiki.example.com
 
 ########################################################################
 #                                                                      #
-# /gotify                                                              #
+# /mediawiki                                                           #
 #                                                                      #
 ########################################################################
 ```
 
-**Note**: hosting Gotify under a subpath (by configuring the `gotify_path_prefix` variable) does not seem to be possible due to Gotify's technical limitations.
+**Note**: hosting MediaWiki under a subpath (by configuring the `mediawiki_path_prefix` variable) does not seem to be possible due to MediaWiki's technical limitations.
 
 ### Select database to use
 
-It is necessary to select a database used by Gotify from a MySQL compatible database, Postgres, and SQLite. See [this section](https://codeberg.org/acioustick/ansible-role-gotify/src/branch/master/docs/configuring-gotify.md#specify-database) on the role's documentation for details.
+It is necessary to select a database used by MediaWiki from a MySQL compatible database, Postgres, and SQLite. See [this section](https://codeberg.org/acioustick/ansible-role-mediawiki/src/branch/master/docs/configuring-mediawiki.md#specify-database) on the role's documentation for details.
 
 ### Set the username and password for the first user
 
-You also need to set an initial username and password for the first user. Refer to [this section](https://codeberg.org/acioustick/ansible-role-gotify/src/branch/master/docs/configuring-gotify.md#specify-username-and-password-for-the-first-user) on the role's documentation.
+You also need to set an initial username and password for the first user. Refer to [this section](https://codeberg.org/acioustick/ansible-role-mediawiki/src/branch/master/docs/configuring-mediawiki.md#specify-username-and-password-for-the-first-user) on the role's documentation.
 
 ## Usage
 
-After running the command for installation, the Gotify instance becomes available at the URL specified with `gotify_hostname`. With the configuration above, the service is hosted at `https://gotify.example.com`.
+After running the command for installation, the MediaWiki instance becomes available at the URL specified with `mediawiki_hostname`. With the configuration above, the service is hosted at `https://mediawiki.example.com`.
 
 To get started, open the URL with a web browser to log in to the instance. **Note that the first registered user becomes an administrator automatically.**
 
 ## Troubleshooting
 
-See [this section](https://codeberg.org/acioustick/ansible-role-gotify/src/branch/master/docs/configuring-gotify.md#troubleshooting) on the role's documentation for details.
+See [this section](https://codeberg.org/acioustick/ansible-role-mediawiki/src/branch/master/docs/configuring-mediawiki.md#troubleshooting) on the role's documentation for details.
 
 ## Related services
 
