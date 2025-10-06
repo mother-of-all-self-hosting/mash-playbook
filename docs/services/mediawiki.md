@@ -26,8 +26,8 @@ MediaWiki is a simple server for sending and receiving messages.
 
 See the project's [documentation](https://mediawiki.net/docs/) to learn what MediaWiki does and why it might be useful to you.
 
-For details about configuring the [Ansible role for MediaWiki](https://codeberg.org/acioustick/ansible-role-mediawiki), you can check them via:
-- 🌐 [the role's documentation](https://codeberg.org/acioustick/ansible-role-mediawiki/src/branch/master/docs/configuring-mediawiki.md) online
+For details about configuring the [Ansible role for MediaWiki](https://github.com/mother-of-all-self-hosting/ansible-role-mediawiki), you can check them via:
+- 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-mediawiki/blob/main/docs/configuring-mediawiki.md) online
 - 📁 `roles/galaxy/mediawiki/docs/configuring-mediawiki.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 ## Dependencies
@@ -63,11 +63,11 @@ mediawiki_hostname: mediawiki.example.com
 
 ### Select database to use
 
-It is necessary to select a database used by MediaWiki from a MySQL compatible database, Postgres, and SQLite. See [this section](https://codeberg.org/acioustick/ansible-role-mediawiki/src/branch/master/docs/configuring-mediawiki.md#specify-database) on the role's documentation for details.
+It is necessary to select a database used by MediaWiki from a MySQL compatible database, Postgres, and SQLite. See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-mediawiki/blob/main/docs/configuring-mediawiki.md#specify-database) on the role's documentation for details.
 
 ### Set the username and password for the first user
 
-You also need to set an initial username and password for the first user. Refer to [this section](https://codeberg.org/acioustick/ansible-role-mediawiki/src/branch/master/docs/configuring-mediawiki.md#specify-username-and-password-for-the-first-user) on the role's documentation.
+You also need to set an initial username and password for the first user. Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-mediawiki/blob/main/docs/configuring-mediawiki.md#specify-username-and-password-for-the-first-user) on the role's documentation.
 
 ## Usage
 
@@ -77,7 +77,7 @@ To get started, open the URL with a web browser to log in to the instance. **Not
 
 ## Troubleshooting
 
-See [this section](https://codeberg.org/acioustick/ansible-role-mediawiki/src/branch/master/docs/configuring-mediawiki.md#troubleshooting) on the role's documentation for details.
+See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-mediawiki/blob/main/docs/configuring-mediawiki.md#troubleshooting) on the role's documentation for details.
 
 ## Related services
 
