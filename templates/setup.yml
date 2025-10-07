@@ -389,10 +389,6 @@
     - role: galaxy/mariadb
     # /role-specific:mariadb
 
-    # role-specific:misskey
-    - role: galaxy/misskey
-    # /role-specific:misskey
-
     # role-specific:matomo
     - role: galaxy/matomo
     # /role-specific:matomo
@@ -408,6 +404,10 @@
     # role-specific:miniflux
     - role: galaxy/miniflux
     # /role-specific:miniflux
+
+    # role-specific:misskey
+    - role: galaxy/misskey
+    # /role-specific:misskey
 
     # role-specific:mobilizon
     - role: galaxy/mobilizon
