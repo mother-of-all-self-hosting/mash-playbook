@@ -144,6 +144,24 @@ See [this page](https://www.audiobookshelf.org/docs/) on the documentation about
 
 If you are looking for free public domain audiobooks which can be uploaded to your audiobookshelf instance, you might be interested in websites such as <https://librivox.org/>.
 
+### Configure the SMTP server (optional)
+
+On audiobookshelf you can add configuration settings of a SMTP server to let the service send email to e-reader devices. If you enable the [exim-relay](exim-relay.md) service in your inventory configuration, the playbook will automatically configure it as a mailer for the service.
+
+As the audiobookshelf instance does not support configuring the mailer with environment variables, you can add default options for it on its UI. Refer to [this page](https://www.audiobookshelf.org/guides/send_to_ereader/) on the official documentation as well about how to configure it.
+
+To set up with the default exim-relay settings, open `https://audiobookshelf.example.com/audiobookshelf/config/email` to add the following configuration:
+
+- **Host**: `mash-exim-relay`
+- **Port**: 8025
+- **Secure**: (off)
+- **Reject unauthorized certificates**: (off)
+- **Username**: (Empty)
+- **Password**: (Empty)
+- **From Address**: (Input the email address specified to `exim_relay_sender_address` on your `vars.yml`)
+
+After setting the configuration, you can have the audiobookshelf instance send a test mail.
+
 ## Troubleshooting
 
 See [this section](https://codeberg.org/acioustick/ansible-role-audiobookshelf/src/branch/master/docs/configuring-audiobookshelf.md#troubleshooting) on the role's documentation for details.
