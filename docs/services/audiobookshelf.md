@@ -17,17 +17,17 @@ SPDX-FileCopyrightText: 2024 - 2025 Suguru Hirahara
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 
-# GotHub
+# audiobookshelf
 
-The playbook can install and configure [GotHub](https://codeberg.org/gothub/gothub) for you.
+The playbook can install and configure [audiobookshelf](https://codeberg.org/audiobookshelf/audiobookshelf) for you.
 
-GotHub allows you to view GitHub repositories without exposing your IP address, browsing habits, and other browser fingerprinting data to the website.
+audiobookshelf allows you to view GitHub repositories without exposing your IP address, browsing habits, and other browser fingerprinting data to the website.
 
-See the project's [documentation](https://codeberg.org/gothub/gothub/src/branch/dev/README.md) to learn what GotHub does and why it might be useful to you.
+See the project's [documentation](https://codeberg.org/audiobookshelf/audiobookshelf/src/branch/dev/README.md) to learn what audiobookshelf does and why it might be useful to you.
 
-For details about configuring the [Ansible role for GotHub](https://codeberg.org/acioustick/ansible-role-gothub), you can check them via:
-- 🌐 [the role's documentation](https://codeberg.org/acioustick/ansible-role-gothub/src/branch/master/docs/configuring-gothub.md) online
-- 📁 `roles/galaxy/gothub/docs/configuring-gothub.md` locally, if you have [fetched the Ansible roles](../installing.md)
+For details about configuring the [Ansible role for audiobookshelf](https://codeberg.org/acioustick/ansible-role-audiobookshelf), you can check them via:
+- 🌐 [the role's documentation](https://codeberg.org/acioustick/ansible-role-audiobookshelf/src/branch/master/docs/configuring-audiobookshelf.md) online
+- 📁 `roles/galaxy/audiobookshelf/docs/configuring-audiobookshelf.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 ## Dependencies
 
@@ -42,36 +42,36 @@ To enable this service, add the following configuration to your `vars.yml` file 
 ```yaml
 ########################################################################
 #                                                                      #
-# gothub                                                               #
+# audiobookshelf                                                       #
 #                                                                      #
 ########################################################################
 
-gothub_enabled: true
+audiobookshelf_enabled: true
 
-gothub_hostname: gothub.example.com
+audiobookshelf_hostname: audiobookshelf.example.com
 
 ########################################################################
 #                                                                      #
-# /gothub                                                              #
+# /audiobookshelf                                                      #
 #                                                                      #
 ########################################################################
 ```
 
-**Note**: hosting GotHub under a subpath (by configuring the `gothub_path_prefix` variable) does not seem to be possible due to GotHub's technical limitations.
+**Note**: hosting audiobookshelf under a subpath (by configuring the `audiobookshelf_path_prefix` variable) does not seem to be possible due to audiobookshelf's technical limitations.
 
-There are other settings which need configuring such as ones about instance's management and its transparency. See [this section](https://codeberg.org/acioustick/ansible-role-gothub/src/branch/master/docs/configuring-gothub.md#enable-disable-proxying-non-essential-data) on the role's documentation for details.
+There are other settings which need configuring such as ones about instance's management and its transparency. See [this section](https://codeberg.org/acioustick/ansible-role-audiobookshelf/src/branch/master/docs/configuring-audiobookshelf.md#enable-disable-proxying-non-essential-data) on the role's documentation for details.
 
 ## Usage
 
-After running the command for installation, the GotHub instance becomes available at the URL specified with `gothub_hostname`. With the configuration above, the service is hosted at `https://gothub.example.com`.
+After running the command for installation, the audiobookshelf instance becomes available at the URL specified with `audiobookshelf_hostname`. With the configuration above, the service is hosted at `https://audiobookshelf.example.com`.
 
-[Libredirect](https://libredirect.github.io/), an extension for Firefox and Chromium-based desktop browsers, has support for redirections to GotHub.
+[Libredirect](https://libredirect.github.io/), an extension for Firefox and Chromium-based desktop browsers, has support for redirections to audiobookshelf.
 
-If you would like to make your instance public so that it can be used by anyone including Libredirect, please consider to send a PR to the [upstream project](https://codeberg.org/gothub/gothub-instances) to add yours to [`instances.json`](https://codeberg.org/gothub/gothub-instances/src/branch/master/instances.json), which Libredirect automatically fetches using a script (see [this FAQ entry](https://libredirect.github.io/faq.html#where_the_hell_are_those_instances_coming_from)).
+If you would like to make your instance public so that it can be used by anyone including Libredirect, please consider to send a PR to the [upstream project](https://codeberg.org/audiobookshelf/audiobookshelf-instances) to add yours to [`instances.json`](https://codeberg.org/audiobookshelf/audiobookshelf-instances/src/branch/master/instances.json), which Libredirect automatically fetches using a script (see [this FAQ entry](https://libredirect.github.io/faq.html#where_the_hell_are_those_instances_coming_from)).
 
 ## Troubleshooting
 
-See [this section](https://codeberg.org/acioustick/ansible-role-gothub/src/branch/master/docs/configuring-gothub.md#troubleshooting) on the role's documentation for details.
+See [this section](https://codeberg.org/acioustick/ansible-role-audiobookshelf/src/branch/master/docs/configuring-audiobookshelf.md#troubleshooting) on the role's documentation for details.
 
 ## Related services
 
