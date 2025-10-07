@@ -147,3 +147,8 @@ If you are looking for free public domain audiobooks which can be uploaded to yo
 ## Troubleshooting
 
 See [this section](https://codeberg.org/acioustick/ansible-role-audiobookshelf/src/branch/master/docs/configuring-audiobookshelf.md#troubleshooting) on the role's documentation for details.
+
+## Recommended other services
+
+- [Calibre-Web](calibre-web.md) — Web app for browsing, reading and downloading eBooks stored in a [Calibre](https://calibre-ebook.com/) database
+- [Syncthing](syncthing.md) — a continuous file synchronization program which synchronizes files between two or more computers in real time. See [Syncthing integration](#syncthing-integration)

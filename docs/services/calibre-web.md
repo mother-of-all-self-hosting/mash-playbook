@@ -173,4 +173,5 @@ After setting the configuration, you can have the Calibre-Web instance send a te
 
 ## Recommended other services
 
+- [audiobookshelf](audiobookshelf.md) — Self-hosted audiobook and podcast server
 - [Syncthing](syncthing.md) — a continuous file synchronization program which synchronizes files between two or more computers in real time. See [Syncthing integration](#syncthing-integration)
