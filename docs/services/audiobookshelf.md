@@ -19,11 +19,11 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
 # audiobookshelf
 
-The playbook can install and configure [audiobookshelf](https://codeberg.org/audiobookshelf/audiobookshelf) for you.
+The playbook can install and configure [audiobookshelf](https://www.audiobookshelf.org) for you.
 
-audiobookshelf allows you to view GitHub repositories without exposing your IP address, browsing habits, and other browser fingerprinting data to the website.
+audiobookshelf is a self-hosted audiobook and podcast server.
 
-See the project's [documentation](https://codeberg.org/audiobookshelf/audiobookshelf/src/branch/dev/README.md) to learn what audiobookshelf does and why it might be useful to you.
+See the project's [documentation](https://www.audiobookshelf.org/docs/) to learn what audiobookshelf does and why it might be useful to you.
 
 For details about configuring the [Ansible role for audiobookshelf](https://codeberg.org/acioustick/ansible-role-audiobookshelf), you can check them via:
 - 🌐 [the role's documentation](https://codeberg.org/acioustick/ansible-role-audiobookshelf/src/branch/master/docs/configuring-audiobookshelf.md) online
@@ -59,21 +59,16 @@ audiobookshelf_hostname: audiobookshelf.example.com
 
 **Note**: hosting audiobookshelf under a subpath (by configuring the `audiobookshelf_path_prefix` variable) does not seem to be possible due to audiobookshelf's technical limitations.
 
-There are other settings which need configuring such as ones about instance's management and its transparency. See [this section](https://codeberg.org/acioustick/ansible-role-audiobookshelf/src/branch/master/docs/configuring-audiobookshelf.md#enable-disable-proxying-non-essential-data) on the role's documentation for details.
-
 ## Usage
 
 After running the command for installation, the audiobookshelf instance becomes available at the URL specified with `audiobookshelf_hostname`. With the configuration above, the service is hosted at `https://audiobookshelf.example.com`.
 
-[Libredirect](https://libredirect.github.io/), an extension for Firefox and Chromium-based desktop browsers, has support for redirections to audiobookshelf.
+To get started, open the URL with a web browser, and register the account. **Note that the first registered user becomes an administrator automatically.**
 
-If you would like to make your instance public so that it can be used by anyone including Libredirect, please consider to send a PR to the [upstream project](https://codeberg.org/audiobookshelf/audiobookshelf-instances) to add yours to [`instances.json`](https://codeberg.org/audiobookshelf/audiobookshelf-instances/src/branch/master/instances.json), which Libredirect automatically fetches using a script (see [this FAQ entry](https://libredirect.github.io/faq.html#where_the_hell_are_those_instances_coming_from)).
+See [this page](https://www.audiobookshelf.org/docs/) on the documentation about its usage.
+
+If you are looking for free public domain audiobooks which can be uploaded to your audiobookshelf instance, you might be interested in websites such as <https://librivox.org/>.
 
 ## Troubleshooting
 
 See [this section](https://codeberg.org/acioustick/ansible-role-audiobookshelf/src/branch/master/docs/configuring-audiobookshelf.md#troubleshooting) on the role's documentation for details.
-
-## Related services
-
-- [Mozhi](mozhi.md) — Frontend for translation engines
-- [Redlib](redlib.md) — Frontend for Reddit
