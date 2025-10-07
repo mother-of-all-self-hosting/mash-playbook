@@ -59,6 +59,81 @@ audiobookshelf_hostname: audiobookshelf.example.com
 
 **Note**: hosting audiobookshelf under a subpath (by configuring the `audiobookshelf_path_prefix` variable) does not seem to be possible due to audiobookshelf's technical limitations.
 
+### Syncthing integration (optional)
+
+If you've got a [Syncthing](syncthing.md) service running, you can use it to synchronize your audiobookshelf directory onto the server and then mount it as read-only into the audiobookshelf container.
+
+We recommend that you make use of the [aux](auxiliary.md) role to create some shared directory like this:
+
+```yaml
+########################################################################
+#                                                                      #
+# aux                                                                  #
+#                                                                      #
+########################################################################
+
+aux_directory_definitions:
+  - dest: "{{ mash_playbook_base_path }}/storage"
+  - dest: "{{ mash_playbook_base_path }}/storage/audiobookshelf"
+
+########################################################################
+#                                                                      #
+# /aux                                                                 #
+#                                                                      #
+########################################################################
+```
+
+You can then mount this `{{ mash_playbook_base_path }}/storage/audiobookshelf` directory into the Syncthing container and synchronize it with some other computer:
+
+```yaml
+########################################################################
+#                                                                      #
+# syncthing                                                            #
+#                                                                      #
+########################################################################
+
+# Other Syncthing configuration..
+
+syncthing_container_additional_volumes:
+  - type: bind
+    src: "{{ mash_playbook_base_path }}/storage/audiobookshelf"
+    dst: /audiobookshelf
+
+########################################################################
+#                                                                      #
+# /syncthing                                                           #
+#                                                                      #
+########################################################################
+```
+
+Finally, mount the `{{ mash_playbook_base_path }}/storage/audiobookshelf` directory into the audiobookshelf container as read-only:
+
+```yaml
+########################################################################
+#                                                                      #
+# audiobookshelf                                                       #
+#                                                                      #
+########################################################################
+
+# Other audiobookshelf configuration..
+
+audiobookshelf_container_additional_volumes:
+  - type: bind
+    src: "{{ mash_playbook_base_path }}/storage/audiobookshelf"
+    dst: /audiobookshelf
+    options: readonly
+
+########################################################################
+#                                                                      #
+# /audiobookshelf                                                      #
+#                                                                      #
+########################################################################
+```
+
+After restarting the services, you can add the directory `/audiobookshelf` to Syncthing for file synchronization between the server and your local machine, and specify the same path to the library on audiobookshelf as below, so that the audiobooks on your local machine will be synchronized and available on the audiobookshelf instance automatically:
+
+[<img src="../assets/audiobookshelf/library.webp" title="Details tab on the library's configuration" width="600" alt="Details tab on the library's configuration">](../assets/audiobookshelf/library.webp)
+
 ## Usage
 
 After running the command for installation, the audiobookshelf instance becomes available at the URL specified with `audiobookshelf_hostname`. With the configuration above, the service is hosted at `https://audiobookshelf.example.com`.
