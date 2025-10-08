@@ -20,11 +20,11 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
 # Meilisearch
 
-The playbook can install and configure [Meilisearch](https://meilisearch.org) for you.
+The playbook can install and configure [Meilisearch](https://www.meilisearch.com) for you.
 
-Meilisearch is a fast and typo-tolerant fulltext search engine like ElasticSearch.
+Meilisearch is a typo-tolerant fulltext search engine like ElasticSearch with a RESTful search API.
 
-See the project's [documentation](https://meilisearch.org/docs/) to learn what Meilisearch does and why it might be useful to you.
+See the project's [documentation](https://www.meilisearch.com/docs/learn/self_hosted/getting_started_with_self_hosted_meilisearch) to learn what Meilisearch does and why it might be useful to you.
 
 For details about configuring the [Ansible role for Meilisearch](https://github.com/mother-of-all-self-hosting/ansible-role-meilisearch), you can check them via:
 - 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-meilisearch/blob/main/docs/configuring-meilisearch.md) online
@@ -73,7 +73,11 @@ meilisearch_hostname: "meilisearch.example.com"
 
 After running the command for installation, Meilisearch becomes available internally to other services on the same network. If the service is exposed to the internet, it becomes available at the URL specified with `meilisearch_hostname`. With the configuration above, the service is hosted at `https://meilisearch.example.com`.
 
-To get started, refer to [the documentation](https://meilisearch.org/docs/guide/) for guides about how to integrate Meilisearch.
+To get started, refer to [the documentation](https://www.meilisearch.com/docs/learn/getting_started/what_is_meilisearch) for guides about how to integrate Meilisearch.
+
+### Obtaining API keys
+
+**It is [not recommended](https://www.meilisearch.com/docs/learn/security/basic_security) to use the master key for operations anything but managing other API keys.** See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-meilisearch/blob/main/docs/configuring-meilisearch.md#obtaining-api-keys) about the instruction to obtain those API keys.
 
 ## Troubleshooting
 
