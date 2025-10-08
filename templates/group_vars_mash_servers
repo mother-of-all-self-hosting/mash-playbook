@@ -1276,17 +1276,6 @@ mash_playbook_postgres_managed_databases_auto_itemized:
     }}
   # /role-specific:mediawiki
 
-  # role-specific:misskey
-  - |-
-    {{
-      ({
-        'name': misskey_database_name,
-        'username': misskey_database_username,
-        'password': misskey_database_password,
-      } if misskey_enabled and misskey_database_hostname == postgres_connection_hostname else omit)
-    }}
-  # /role-specific:misskey
-
   # role-specific:miniflux
   - |-
     {{
