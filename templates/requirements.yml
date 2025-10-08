@@ -28,6 +28,10 @@
   version: v20250915-0
   name: asciinema_server
   activation_prefix: asciinema_server_
+- src: git+https://codeberg.org/acioustick/ansible-role-audiobookshelf.git
+  version: v2.29.0-0
+  name: audiobookshelf
+  activation_prefix: audiobookshelf_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-authelia.git
   version: v4.37.5-9
   name: authelia
@@ -53,7 +57,7 @@
   name: calibre_web
   activation_prefix: calibre_web_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-changedetection.git
-  version: v0.50.14-1
+  version: v0.50.16-0
   name: changedetection
   activation_prefix: changedetection_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-cleanup.git
@@ -61,7 +65,7 @@
   name: cleanup
   activation_prefix: system_cleanup_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-clickhouse.git
-  version: v25.8.7.3-0
+  version: v25.9.3.48-0
   name: clickhouse
   activation_prefix: clickhouse_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-collabora-online.git
@@ -301,7 +305,7 @@
   name: languagetool
   activation_prefix: languagetool_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-limesurvey.git
-  version: v6.15.15-0
+  version: v6.15.16-0
   name: limesurvey
   activation_prefix: limesurvey_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-linkding.git
@@ -473,7 +477,7 @@
   name: privatebin
   activation_prefix: privatebin_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-prometheus.git
-  version: v3.5.0-1
+  version: v3.6.0-0
   name: prometheus
   activation_prefix: prometheus_enabled
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-prometheus-blackbox-exporter.git

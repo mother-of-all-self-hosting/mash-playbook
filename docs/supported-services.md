@@ -26,6 +26,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 | [APISIX Gateway](https://apisix.apache.org/docs/apisix/getting-started/README/) | An API Gateway, Ingress Controller, etc | [Link](services/apisix-gateway.md) |
 | [Appsmith](https://www.appsmith.com/) | Platform for building and deploying custom internal tools and applications without writing code | [Link](services/appsmith.md) |
 | [asciinema server](https://github.com/asciinema/asciinema-server) | Server-side component of the [asciinema](https://docs.asciinema.org/) system, a suite of tools for recording, streaming, and sharing terminal sessions) | [Link](services/asciinema-server.md) |
+| [audiobookshelf](https://www.audiobookshelf.org/) | Self-hosted audiobook and podcast server | [Link](services/audiobookshelf.md) |
 | [Authelia](https://www.authelia.com/) | An open-source authentication and authorization server that can work as a companion to [common reverse proxies](https://www.authelia.com/overview/prologue/supported-proxies/) (like [Traefik](services/traefik.md) frequently used by this playbook) | [Link](services/authelia.md) |
 | [authentik](https://goauthentik.io/) | An open-source Identity Provider (IdP) focused on flexibility and versatility. | [Link](services/authentik.md) |
 | [Autobrr](https://autobrr.com/) | Modern, easy to use download automation for torrents and usenet. | [Link](services/autobrr.md) |
@@ -65,7 +66,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 | [Ghostfolio](https://ghostfol.io/) | Wealth management free software to keep track of assets such as stocks, bonds, ETFs, etc.| [Link](services/ghostfolio.md) |
 | [Gitea](https://gitea.io/) | A painless self-hosted [Git](https://git-scm.com/) service. | [Link](services/gitea.md) |
 | [GotHub](https://codeberg.org/gothub/gothub) | View GitHub repositories without exposing your IP address, browsing habits, and other browser fingerprinting data to the website | [Link](services/gothub.md) |
-| [Gotify](https://gotosocial.org/) | Simple server for sending and receiving messages | [Link](services/gotify.md) |
+| [Gotify](https://gotify.net/) | Simple server for sending and receiving messages | [Link](services/gotify.md) |
 | [GoToSocial](https://gotosocial.org/) | A self-hosted [ActivityPub](https://activitypub.rocks/) social network server | [Link](services/gotosocial.md) |
 | [Grafana](https://grafana.com/) | An open and composable observability and data visualization platform, often used with [Prometheus](services/prometheus.md) | [Link](services/grafana.md) |
 | [Grafana Loki](https://grafana.com/docs/loki/latest/) | Open-source log aggregation system that helps collect, store, and analyze logs in a scalable and efficient manner | [Link](services/grafana-loki.md) |
