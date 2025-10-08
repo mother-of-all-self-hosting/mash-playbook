@@ -55,7 +55,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 | [exim-relay](https://github.com/devture/exim-relay) | A lightweight [Exim](https://www.exim.org/) SMTP mail relay server | [Link](services/exim-relay.md) |
 | [File Browser](https://filebrowser.org/) | File managing interface within a specified directory, which can be used to upload, delete, preview and edit your files | [Link](services/filebrowser.md) |
 | [Firezone](https://www.firezone.dev/) | A self-hosted VPN server (based on [WireGuard](https://www.wireguard.com/)) with a Web UI | [Link](services/firezone.md) |
-| [Flaresolverr](https://github.com/FlareSolverr/FlareSolverr) | An open-source proxy server to bypass Cloudflare protection | [Link](services/flaresolverr.md) |
+| [FlareSolverr](https://github.com/FlareSolverr/FlareSolverr) | An open-source proxy server to bypass Cloudflare protection | [Link](services/flaresolverr.md) |
 | [FMD Server](https://gitlab.com/fmd-foss/fmd-server) | Official server for FMD (FindMyDevice) | [Link](services/fmd-server.md) |
 | [Focalboard](https://www.focalboard.com/) | An open source, self-hosted alternative to [Trello](https://trello.com/), [Notion](https://www.notion.so/), and [Asana](https://asana.com/). | [Link](services/focalboard.md) |
 | [Forgejo](https://forgejo.org/) | A self-hosted lightweight software forge (Git hosting service, etc). An alternative to [Gitea](./services/gitea.md). | [Link](services/forgejo.md) |
@@ -90,7 +90,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 | [Kutt](https://kutt.it/) | Modern URL shortener with support for custom domains | [Link](services/kutt.md) |
 | [LabelStudio](https://labelstud.io/) | Label Studio is an open source data labeling tool that supports multiple projects, users, and data types in one platform | [Link](services/labelstudio.md) |
 | [Lago](https://www.getlago.com/) | Open-source metering and usage-based billing | [Link](services/lago.md) |
-| [languageTool](https://languagetool.org/) | An open source online grammar, style and spell checker | [Link](services/languagetool.md) |
+| [LanguageTool](https://languagetool.org/) | An open source online grammar, style and spell checker | [Link](services/languagetool.md) |
 | [LimeSurvey](https://www.limesurvey.org) | Feature-rich free software for web based forms and surveys | [Link](services/limesurvey.md) |
 | [linkding](https://github.com/sissbruecker/linkding/) | Bookmark manager designed to be minimal and fast. | [Link](services/linkding.md) |
 | [listmonk](https://listmonk.app) | Self-hosted newsletter and mailing list manager. | [Link](services/listmonk.md) |
