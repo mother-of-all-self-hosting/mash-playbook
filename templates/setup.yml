@@ -121,6 +121,10 @@
     - role: galaxy/asciinema_server
     # /role-specific:asciinema_server
 
+    # role-specific:audiobookshelf
+    - role: galaxy/audiobookshelf
+    # /role-specific:audiobookshelf
+
     # role-specific:authelia
     - role: galaxy/authelia
     # /role-specific:authelia
