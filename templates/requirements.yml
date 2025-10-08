@@ -336,6 +336,10 @@
   version: v1.26.0-9
   name: matterbridge
   activation_prefix: matterbridge_
+- src: git+https://github.com/mother-of-all-self-hosting/ansible-role-mediawiki.git
+  version: v1.43.3-0
+  name: mediawiki
+  activation_prefix: mediawiki_
 - src: git+https://github.com/XHawk87/ansible-role-minecraft.git
   version: v2025.4.2-0
   name: minecraft

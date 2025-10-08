@@ -401,6 +401,10 @@
     - role: galaxy/matterbridge
     # /role-specific:matterbridge
 
+    # role-specific:mediawiki
+    - role: galaxy/mediawiki
+    # /role-specific:mediawiki
+
     # role-specific:minecraft
     - role: galaxy/minecraft
     # /role-specific:minecraft
