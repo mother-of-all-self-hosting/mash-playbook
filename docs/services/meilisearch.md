@@ -82,3 +82,7 @@ To get started, refer to [the documentation](https://www.meilisearch.com/docs/le
 ## Troubleshooting
 
 See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-meilisearch/blob/main/docs/configuring-meilisearch.md#troubleshooting) on the role's documentation for details.
+
+## Related services
+
+- [Typesense](typesense.md) — Fast and typo-tolerant fulltext search engine
