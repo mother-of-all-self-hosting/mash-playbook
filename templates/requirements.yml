@@ -20,6 +20,10 @@
   version: v3.8.0-10
   name: apisix_gateway
   activation_prefix: apisix_gateway_
+- src: git+https://codeberg.org/acioustick/ansible-role-apprise.git
+  version: v1.2.2-0
+  name: apprise
+  activation_prefix: apprise_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-appsmith.git
   version: v1.73.1-1
   name: appsmith
