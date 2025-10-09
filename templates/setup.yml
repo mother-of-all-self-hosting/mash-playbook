@@ -121,6 +121,10 @@
     - role: galaxy/asciinema_server
     # /role-specific:asciinema_server
 
+    # role-specific:audiobookshelf
+    - role: galaxy/audiobookshelf
+    # /role-specific:audiobookshelf
+
     # role-specific:authelia
     - role: galaxy/authelia
     # /role-specific:authelia
@@ -132,10 +136,6 @@
     # role-specific:autobrr
     - role: galaxy/autobrr
     # /role-specific:autobrr
-
-    # role-specific:auxiliary
-    - role: galaxy/auxiliary
-    # /role-specific:auxiliary
 
     # role-specific:backup_borg
     - role: galaxy/backup_borg
@@ -229,6 +229,10 @@
     - role: galaxy/firezone
     # /role-specific:firezone
 
+    # role-specific:flaresolverr
+    - role: galaxy/flaresolverr
+    # /role-specific:flaresolverr
+
     # role-specific:fmd_server
     - role: galaxy/fmd_server
     # /role-specific:fmd_server
@@ -269,6 +273,10 @@
     - role: galaxy/gothub
     # /role-specific:gothub
 
+    # role-specific:gotify
+    - role: galaxy/gotify
+    # /role-specific:gotify
+
     # role-specific:gotosocial
     - role: galaxy/gotosocial
     # /role-specific:gotosocial
@@ -308,6 +316,10 @@
     # role-specific:immich
     - role: galaxy/immich
     # /role-specific:immich
+
+    # role-specific:immich_kiosk
+    - role: galaxy/immich_kiosk
+    # /role-specific:immich_kiosk
 
     # role-specific:influxdb
     - role: galaxy/influxdb
@@ -381,10 +393,6 @@
     - role: galaxy/mariadb
     # /role-specific:mariadb
 
-    # role-specific:misskey
-    - role: galaxy/misskey
-    # /role-specific:misskey
-
     # role-specific:matomo
     - role: galaxy/matomo
     # /role-specific:matomo
@@ -393,6 +401,10 @@
     - role: galaxy/matterbridge
     # /role-specific:matterbridge
 
+    # role-specific:mediawiki
+    - role: galaxy/mediawiki
+    # /role-specific:mediawiki
+
     # role-specific:minecraft
     - role: galaxy/minecraft
     # /role-specific:minecraft
@@ -400,6 +412,10 @@
     # role-specific:miniflux
     - role: galaxy/miniflux
     # /role-specific:miniflux
+
+    # role-specific:misskey
+    - role: galaxy/misskey
+    # /role-specific:misskey
 
     # role-specific:mobilizon
     - role: galaxy/mobilizon
@@ -492,6 +508,10 @@
     # role-specific:pocket_id
     - role: galaxy/pocket_id
     # /role-specific:pocket_id
+
+    # role-specific:poodledonts
+    - role: galaxy/poodledonts
+    # /role-specific:poodledonts
 
     # role-specific:postgis
     - role: galaxy/postgis
@@ -625,6 +645,10 @@
     - role: galaxy/tsdproxy
     # /role-specific:tsdproxy
 
+    # role-specific:typesense
+    - role: galaxy/typesense
+    # /role-specific:typesense
+
     # role-specific:uptime_kuma
     - role: galaxy/uptime_kuma
     # /role-specific:uptime_kuma
@@ -640,6 +664,10 @@
     # role-specific:versatiles
     - role: galaxy/versatiles
     # /role-specific:versatiles
+
+    # role-specific:vikunja
+    - role: galaxy/vikunja
+    # /role-specific:vikunja
 
     # role-specific:wetty
     - role: galaxy/wetty
@@ -672,6 +700,12 @@
     # role-specific:yourls
     - role: galaxy/yourls
     # /role-specific:yourls
+
+    # role-specific:auxiliary
+    # Run last to to ensure that all other roles have created their paths, etc.,
+    # and this role can build on top of all that.
+    - role: galaxy/auxiliary
+    # /role-specific:auxiliary
 
     # role-specific:systemd_service_manager
     # This role needs to run after setting up roles for individual services as it restarts them.

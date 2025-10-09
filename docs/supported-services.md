@@ -26,6 +26,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 | [APISIX Gateway](https://apisix.apache.org/docs/apisix/getting-started/README/) | An API Gateway, Ingress Controller, etc | [Link](services/apisix-gateway.md) |
 | [Appsmith](https://www.appsmith.com/) | Platform for building and deploying custom internal tools and applications without writing code | [Link](services/appsmith.md) |
 | [asciinema server](https://github.com/asciinema/asciinema-server) | Server-side component of the [asciinema](https://docs.asciinema.org/) system, a suite of tools for recording, streaming, and sharing terminal sessions) | [Link](services/asciinema-server.md) |
+| [audiobookshelf](https://www.audiobookshelf.org/) | Self-hosted audiobook and podcast server | [Link](services/audiobookshelf.md) |
 | [Authelia](https://www.authelia.com/) | An open-source authentication and authorization server that can work as a companion to [common reverse proxies](https://www.authelia.com/overview/prologue/supported-proxies/) (like [Traefik](services/traefik.md) frequently used by this playbook) | [Link](services/authelia.md) |
 | [authentik](https://goauthentik.io/) | An open-source Identity Provider (IdP) focused on flexibility and versatility. | [Link](services/authentik.md) |
 | [Autobrr](https://autobrr.com/) | Modern, easy to use download automation for torrents and usenet. | [Link](services/autobrr.md) |
@@ -54,6 +55,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 | [exim-relay](https://github.com/devture/exim-relay) | A lightweight [Exim](https://www.exim.org/) SMTP mail relay server | [Link](services/exim-relay.md) |
 | [File Browser](https://filebrowser.org/) | File managing interface within a specified directory, which can be used to upload, delete, preview and edit your files | [Link](services/filebrowser.md) |
 | [Firezone](https://www.firezone.dev/) | A self-hosted VPN server (based on [WireGuard](https://www.wireguard.com/)) with a Web UI | [Link](services/firezone.md) |
+| [FlareSolverr](https://github.com/FlareSolverr/FlareSolverr) | An open-source proxy server to bypass Cloudflare protection | [Link](services/flaresolverr.md) |
 | [FMD Server](https://gitlab.com/fmd-foss/fmd-server) | Official server for FMD (FindMyDevice) | [Link](services/fmd-server.md) |
 | [Focalboard](https://www.focalboard.com/) | An open source, self-hosted alternative to [Trello](https://trello.com/), [Notion](https://www.notion.so/), and [Asana](https://asana.com/). | [Link](services/focalboard.md) |
 | [Forgejo](https://forgejo.org/) | A self-hosted lightweight software forge (Git hosting service, etc). An alternative to [Gitea](./services/gitea.md). | [Link](services/forgejo.md) |
@@ -64,6 +66,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 | [Ghostfolio](https://ghostfol.io/) | Wealth management free software to keep track of assets such as stocks, bonds, ETFs, etc.| [Link](services/ghostfolio.md) |
 | [Gitea](https://gitea.io/) | A painless self-hosted [Git](https://git-scm.com/) service. | [Link](services/gitea.md) |
 | [GotHub](https://codeberg.org/gothub/gothub) | View GitHub repositories without exposing your IP address, browsing habits, and other browser fingerprinting data to the website | [Link](services/gothub.md) |
+| [Gotify](https://gotify.net/) | Simple server for sending and receiving messages | [Link](services/gotify.md) |
 | [GoToSocial](https://gotosocial.org/) | A self-hosted [ActivityPub](https://activitypub.rocks/) social network server | [Link](services/gotosocial.md) |
 | [Grafana](https://grafana.com/) | An open and composable observability and data visualization platform, often used with [Prometheus](services/prometheus.md) | [Link](services/grafana.md) |
 | [Grafana Loki](https://grafana.com/docs/loki/latest/) | Open-source log aggregation system that helps collect, store, and analyze logs in a scalable and efficient manner | [Link](services/grafana-loki.md) |
@@ -74,6 +77,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 | [I hate money](https://github.com/spiral-project/ihatemoney) | An open source shared budget manager. | [Link](services/ihatemoney.md) |
 | [ILMO](https://github.com/moan0s/ILMO2) | An open source library management tool. | [Link](services/ilmo.md) |
 | [Immich](https://github.com/immich-app/immich) | High performance self-hosted photo and video management solution | [Link](services/immich.md) |
+| [Immich Kiosk](https://immichkiosk.app/) | Highly configurable slideshow for displaying [Immich](https://immich.app/) pictures and videos on browsers and devices | [Link](services/immich-kiosk.md) |
 | [Infisical](https://infisical.com/) | An open-source end-to-end encrypted platform for securely managing secrets and configs across your team, devices, and infrastructure. | [Link](services/infisical.md) |
 | [InfluxDB](https://www.influxdata.com/) | A self-hosted time-series database. | [Link](services/influxdb.md) |
 | [Jackett](https://github.com/Jackett/Jackett) | An API for your favorite torrent trackers | [Link](services/jackett.md) |
@@ -86,7 +90,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 | [Kutt](https://kutt.it/) | Modern URL shortener with support for custom domains | [Link](services/kutt.md) |
 | [LabelStudio](https://labelstud.io/) | Label Studio is an open source data labeling tool that supports multiple projects, users, and data types in one platform | [Link](services/labelstudio.md) |
 | [Lago](https://www.getlago.com/) | Open-source metering and usage-based billing | [Link](services/lago.md) |
-| [languageTool](https://languagetool.org/) | An open source online grammar, style and spell checker | [Link](services/languagetool.md) |
+| [LanguageTool](https://languagetool.org/) | An open source online grammar, style and spell checker | [Link](services/languagetool.md) |
 | [LimeSurvey](https://www.limesurvey.org) | Feature-rich free software for web based forms and surveys | [Link](services/limesurvey.md) |
 | [linkding](https://github.com/sissbruecker/linkding/) | Bookmark manager designed to be minimal and fast. | [Link](services/linkding.md) |
 | [listmonk](https://listmonk.app) | Self-hosted newsletter and mailing list manager. | [Link](services/listmonk.md) |
@@ -95,6 +99,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 | [Matomo](https://matomo.org/) | Free and open source web analytics platform | [Link](services/matomo.md) |
 | [Matrix Rooms Search API](https://github.com/etkecc/mrs) | A fully-featured, standalone, matrix rooms search service. | [Link](services/mrs.md) |
 | [Matterbridge](https://github.com/42wim/matterbridge) | Bridges Messenger Chatrooms | [Link](services/matterbridge.md) |
+| [MediaWiki](https://www.mediawiki.org) | Popular free and open-source wiki software | [Link](services/mediawiki.md) |
 | [Minecraft](https://docker-minecraft-server.readthedocs.io) | The popular voxel-based sandbox game | [Link](services/minecraft.md) |
 | [Miniflux](https://miniflux.app/) | Minimalist and opinionated feed reader. | [Link](services/miniflux.md) |
 | [Misskey](https://misskey-hub.net/en/) | Free decentralized microblogging platform based on the ActivityPub protocol | [Link](services/misskey.md) |
@@ -120,6 +125,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 | [Plausible Analytics](https://plausible.io/) | Intuitive, lightweight and open source web analytics | [Link](services/plausible.md) |
 | [Plex](https://www.plex.tv/) | A personal media server | [Link](services/plex.md) |
 | [Pocket ID](https://pocket-id.org/) | Simple OIDC provider for passkey-only authentication | [Link](services/pocket-id.md) |
+| [PoodleDonts](https://codeberg.org/acioustick/poodledonts) | Use Google Fonts without exposing your IP address, browsing habits, and other browser fingerprinting data to the website | [Link](services/poodledonts.md) |
 | [Postgis](https://postgis.net/) | A spatial database extender for PostgreSQL object-relational database | [Link](services/postgis.md) |
 | [Postgres](https://www.postgresql.org) | A powerful, open source object-relational database system | [Link](services/postgres.md) |
 | [Postgres Backup](https://github.com/prodrigestivill/docker-postgres-backup-local) | A solution for backing up PostgreSQL to local filesystem with periodic backups. | [Link](services/postgres-backup.md) |
@@ -155,10 +161,12 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 | [Tinyauth](https://tinyauth.app/) | Simple authentication middleware that adds a login screen or OAuth with providers to your Docker services | [Link](services/tinyauth.md) |
 | [Traefik](https://doc.traefik.io/traefik/) | A container-aware reverse-proxy server | [Link](services/traefik.md) |
 | [TSDProxy](https://almeidapaulopt.github.io/tsdproxy/) | A proxy for virtual services in Tailscale | [Link](services/tsdproxy.md) |
+| [Typesense](https://typesense.org) | Fast and typo-tolerant fulltext search engine | [Link](services/typesense.md) |
 | [Uptime Kuma](https://uptime.kuma.pet/) | A fancy self-hosted monitoring tool | [Link](services/uptime-kuma.md) |
 | [Valkey](https://valkey.io/) | A flexible distributed key-value datastore that is optimized for caching and other realtime workloads. | [Link](services/valkey.md) |
 | [Vaultwarden](https://github.com/dani-garcia/vaultwarden) | A lightweight unofficial and compatible implementation of the [Bitwarden](https://bitwarden.com/) password manager | [Link](services/vaultwarden.md) |
 | [VersaTiles](https://versatiles.org) | A free stack for generating and serving vector tiles from OpenStreetMap. | [Link](services/versatiles.md) |
+| [Vikunja](https://vikunja.io/) | Self-hostable to-do app | [Link](services/vikunja.md) |
 | [Wetty](https://github.com/butlerx/wetty) | An SSH terminal over HTTP/HTTPS | [Link](services/wetty.md) |
 | [WireGuard Easy](https://github.com/wg-easy/wg-easy) | The easiest way to run [WireGuard](https://www.wireguard.com/) VPN + Web-based Admin UI. | [Link](services/wg-easy.md) |
 | [Woodpecker CI](https://woodpecker-ci.org/) | A simple Continuous Integration (CI) engine with great extensibility. | [Link](services/woodpecker-ci.md) |

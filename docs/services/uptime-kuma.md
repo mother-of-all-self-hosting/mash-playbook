@@ -70,3 +70,8 @@ If you have enabled a self-hosted [ntfy](ntfy.md) server, it is possible to set 
 ## Troubleshooting
 
 See [this section](https://github.com/mother-of-all-self-hosting//ansible-role-uptime_kuma/blob/main/docs/configuring-uptime-kuma.md#troubleshooting) on the role's documentation for details.
+
+## Related services
+
+- [Gotify](gotify.md) — Simple server for sending and receiving messages
+- [ntfy](ntfy.md) — Simple HTTP-based pub-sub notification service to send you push notifications from any computer

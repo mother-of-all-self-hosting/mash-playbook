@@ -155,11 +155,11 @@ See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-ca
 
 ### Configure the SMTP server (optional)
 
-On Calibre-Web you can set up the SMTP server to have the service send email to terminals like Kindle and Pocketbook. If you enable the [exim-relay](exim-relay.md) service in your inventory configuration, the playbook will automatically configure it as a mailer for the service.
+On Calibre-Web you can add configuration settings of a SMTP server to let the service send email to terminals like Kindle and Pocketbook. If you enable the [exim-relay](exim-relay.md) service in your inventory configuration, the playbook will automatically configure it as a mailer for the service.
 
 As the Calibre-Web instance does not support configuring the mailer with environment variables, you can add default options for it on its UI. Refer to [this page](https://github.com/janeczku/calibre-web/wiki/Setup-Mailserver) on the official documentation as well about how to configure it.
 
-To set up with the default Exim-relay settings, open `https://mash.example.com/calibre-web/admin/mailsettings` to add the following configuration:
+To set up with the default exim-relay settings, open `https://mash.example.com/calibre-web/admin/mailsettings` to add the following configuration:
 
 - **Email Account Type**: Standard Email Account
 - **SMTP Hostname**: `mash-exim-relay`
@@ -173,4 +173,5 @@ After setting the configuration, you can have the Calibre-Web instance send a te
 
 ## Recommended other services
 
+- [audiobookshelf](audiobookshelf.md) — Self-hosted audiobook and podcast server
 - [Syncthing](syncthing.md) — a continuous file synchronization program which synchronizes files between two or more computers in real time. See [Syncthing integration](#syncthing-integration)
