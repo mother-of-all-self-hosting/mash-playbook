@@ -81,4 +81,5 @@ See [this section](https://codeberg.org/acioustick/ansible-role-apprise/src/bran
 
 ## Related services
 
-- [Meilisearch](meilisearch.md) — Typo-tolerant fulltext search engine with a RESTful search API
+- [Gotify](gotify.md) — Simple server for sending and receiving messages
+- [ntfy](ntfy.md) — Simple HTTP-based pub-sub notification service to send you push notifications from any computer

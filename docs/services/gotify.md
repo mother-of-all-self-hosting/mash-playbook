@@ -81,4 +81,5 @@ See [this section](https://codeberg.org/acioustick/ansible-role-gotify/src/branc
 
 ## Related services
 
+- [Apprise API](apprise.md) — Lightweight REST framework that wraps the [Apprise](https://github.com/caronc/apprise) Notification Library
 - [ntfy](ntfy.md) — Simple HTTP-based pub-sub notification service to send you push notifications from any computer
