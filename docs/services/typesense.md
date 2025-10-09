@@ -78,3 +78,7 @@ To get started, refer to [the documentation](https://typesense.org/docs/guide/) 
 ## Troubleshooting
 
 See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-typesense/blob/main/docs/configuring-typesense.md#troubleshooting) on the role's documentation for details.
+
+## Related services
+
+- [Meilisearch](meilisearch.md) — Typo-tolerant fulltext search engine with a RESTful search API
