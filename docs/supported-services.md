@@ -24,6 +24,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 | [AnonymousOverflow](https://github.com/httpjamesm/AnonymousOverflow) | View StackOverflow threads without exposing your IP address, browsing habits, and other browser fingerprinting data to the website | [Link](services/anonymousoverflow.md) |
 | [APISIX Dashboard](https://apisix.apache.org/docs/dashboard/USER_GUIDE/) | A web UI for [APISIX Gateway](services/apisix-gateway.md) | [Link](services/apisix-dashboard.md) |
 | [APISIX Gateway](https://apisix.apache.org/docs/apisix/getting-started/README/) | An API Gateway, Ingress Controller, etc | [Link](services/apisix-gateway.md) |
+| [Apprise API](https://github.com/caronc/apprise-api) | Lightweight REST framework that wraps the [Apprise](https://github.com/caronc/apprise) Notification Library | [Link](services/apprise.md) |
 | [Appsmith](https://www.appsmith.com/) | Platform for building and deploying custom internal tools and applications without writing code | [Link](services/appsmith.md) |
 | [asciinema server](https://github.com/asciinema/asciinema-server) | Server-side component of the [asciinema](https://docs.asciinema.org/) system, a suite of tools for recording, streaming, and sharing terminal sessions) | [Link](services/asciinema-server.md) |
 | [audiobookshelf](https://www.audiobookshelf.org/) | Self-hosted audiobook and podcast server | [Link](services/audiobookshelf.md) |
