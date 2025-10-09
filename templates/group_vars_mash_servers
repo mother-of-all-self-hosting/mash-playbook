@@ -520,6 +520,11 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
     {{ ({'name': (mediawiki_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'mediawiki']} if mediawiki_enabled else omit) }}
   # /role-specific:mediawiki
 
+  # role-specific:meilisearch
+  - |-
+    {{ ({'name': (meilisearch_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'meilisearch']} if meilisearch_enabled else omit) }}
+  # /role-specific:meilisearch
+
   # role-specific:minecraft
   - |-
     {{ ({'name': (minecraft_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'minecraft']} if minecraft_enabled else omit) }}
@@ -6912,6 +6917,47 @@ mediawiki_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_pr
 #                                                                      #
 ########################################################################
 # /role-specific:mediawiki
+
+
+
+# role-specific:meilisearch
+########################################################################
+#                                                                      #
+# meilisearch                                                          #
+#                                                                      #
+########################################################################
+
+meilisearch_enabled: false
+
+meilisearch_identifier: "{{ mash_playbook_service_identifier_prefix }}meilisearch"
+
+meilisearch_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}meilisearch"
+
+meilisearch_uid: "{{ mash_playbook_uid }}"
+meilisearch_gid: "{{ mash_playbook_gid }}"
+
+meilisearch_container_additional_networks_auto: |
+  {{
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+  }}
+
+# Only enable Traefik labels if a hostname is set (indicating that this will be exposed publicly)
+meilisearch_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled and meilisearch_hostname | length > 0 }}"
+meilisearch_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+
+meilisearch_environment_variables_master_key: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'meilisearch.k', rounds=655555) | to_uuid }}"
+
+# role-specific:traefik
+meilisearch_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
+meilisearch_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
+# /role-specific:traefik
+
+########################################################################
+#                                                                      #
+# /meilisearch                                                         #
+#                                                                      #
+########################################################################
+# /role-specific:meilisearch
 
 
 

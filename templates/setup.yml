@@ -405,6 +405,10 @@
     - role: galaxy/mediawiki
     # /role-specific:mediawiki
 
+    # role-specific:meilisearch
+    - role: galaxy/meilisearch
+    # /role-specific:meilisearch
+
     # role-specific:minecraft
     - role: galaxy/minecraft
     # /role-specific:minecraft
