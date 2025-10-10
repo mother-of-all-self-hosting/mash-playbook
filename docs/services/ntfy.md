@@ -112,4 +112,5 @@ See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-nt
 
 ## Related services
 
+- [Apprise API](apprise.md) — Lightweight REST framework that wraps the [Apprise](https://github.com/caronc/apprise) Notification Library
 - [Gotify](gotify.md) — Simple server for sending and receiving messages

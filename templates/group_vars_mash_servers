@@ -113,6 +113,11 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
     {{ ({'name': (apisix_gateway_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'apisix-gateway']} if apisix_gateway_enabled else omit) }}
   # /role-specific:apisix_gateway
 
+  # role-specific:apprise
+  - |-
+    {{ ({'name': (apprise_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'apprise']} if apprise_enabled else omit) }}
+  # /role-specific:apprise
+
   # role-specific:appsmith
   - |-
     {{ ({'name': (appsmith_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'appsmith']} if appsmith_enabled else omit) }}
@@ -1996,6 +2001,45 @@ apisix_gateway_container_labels_traefik_tls_certResolver: "{{ traefik_certResolv
 #                                                                      #
 ########################################################################
 # /role-specific:apisix_gateway
+
+
+
+# role-specific:apprise
+########################################################################
+#                                                                      #
+# apprise                                                              #
+#                                                                      #
+########################################################################
+
+apprise_enabled: false
+
+apprise_identifier: "{{ mash_playbook_service_identifier_prefix }}apprise"
+
+apprise_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}apprise"
+
+apprise_uid: "{{ mash_playbook_uid }}"
+apprise_gid: "{{ mash_playbook_gid }}"
+
+apprise_container_additional_networks_auto: |
+  {{
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+  }}
+
+# Only enable Traefik labels if a hostname is set (indicating that this will be exposed publicly)
+apprise_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled and apprise_hostname | length > 0 }}"
+apprise_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+
+# role-specific:traefik
+apprise_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
+apprise_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
+# /role-specific:traefik
+
+########################################################################
+#                                                                      #
+# /apprise                                                             #
+#                                                                      #
+########################################################################
+# /role-specific:apprise
 
 
 
