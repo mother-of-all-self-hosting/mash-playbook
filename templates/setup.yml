@@ -113,6 +113,10 @@
     - role: galaxy/apisix_gateway
     # /role-specific:apisix_gateway
 
+    # role-specific:apprise
+    - role: galaxy/apprise
+    # /role-specific:apprise
+
     # role-specific:appsmith
     - role: galaxy/appsmith
     # /role-specific:appsmith
