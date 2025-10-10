@@ -204,8 +204,8 @@
   version: v1.17.131-1
   name: freescout
   activation_prefix: freescout_
-- src: git+https://github.com/kinduff/ansible-docker-freshrss.git
-  version: v2.7.0
+- src: git+https://github.com/mother-of-all-self-hosting/ansible-role-freshrss.git
+  version: v1.27.1-0
   name: freshrss
   activation_prefix: freshrss_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-funkwhale.git
