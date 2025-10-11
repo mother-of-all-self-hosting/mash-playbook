@@ -29,6 +29,9 @@ For details about configuring the [Ansible role for Tinyauth](https://codeberg.o
 - 🌐 [the role's documentation](https://codeberg.org/acioustick/ansible-role-tinyauth/src/branch/master/docs/configuring-tinyauth.md) online
 - 📁 `roles/galaxy/tinyauth/docs/configuring-tinyauth.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
+>[!WARNING]
+> The version 4 contains breaking changes. When updating the playbook, please follow the migration guide in the [documentation](https://tinyauth.app/docs/breaking-updates/3-to-4).
+
 ## Prerequisites
 
 💡 *If you intend to enable logging in via OAuth only, you can skip this step.*
@@ -138,13 +141,13 @@ After installing it and adding Tinyauth as an OIDC client on the Pocket ID's UI 
 
 ```yaml
 tinyauth_environment_variables_additional_variables: |
-  GENERIC_CLIENT_ID=YOUR_POCKET_ID_CLIENT_ID_HERE
-  GENERIC_CLIENT_SECRET=YOUR_POCKET_ID_CLIENT_SECRET_HERE
-  GENERIC_AUTH_URL=https://{{ pocket_id_hostname }}/authorize
-  GENERIC_TOKEN_URL=https://{{ pocket_id_hostname }}/api/oidc/token
-  GENERIC_USER_URL=https://{{ pocket_id_hostname }}/api/oidc/userinfo
-  GENERIC_SCOPES=openid email profile groups
-  GENERIC_NAME=Pocket ID
+  PROVIDERS_POCKETID_CLIENT_ID=YOUR_POCKET_ID_CLIENT_ID_HERE
+  PROVIDERS_POCKETID_CLIENT_SECRET=YOUR_POCKET_ID_CLIENT_SECRET_HERE
+  PROVIDERS_POCKETID_AUTH_URL=https://{{ pocket_id_hostname }}/authorize
+  PROVIDERS_POCKETID_TOKEN_URL=https://{{ pocket_id_hostname }}/api/oidc/token
+  PROVIDERS_POCKETID_USER_INFO_URL=https://{{ pocket_id_hostname }}/api/oidc/userinfo
+  PROVIDERS_POCKETID_SCOPES=openid email profile groups
+  PROVIDERS_POCKETID_NAME=Pocket ID
   OAUTH_WHITELIST=YOUR_POCKET_ID_EMAIL_ADDRESS_HERE
 ```
 
@@ -170,10 +173,12 @@ echoip_enabled: true
 
 echoip_hostname: echoip.example.com
 
-# Access control by Pocket ID with the `tinyauth.oauth.groups` label
+# Access control by Pocket ID with the `tinyauth.apps.{{ echoip_hostname }}.oauth.groups` label
+# By default, Tinyauth uses the subdomain name of the request to find a matching container for labels.
+# For example, a request to `myapp.example.com` checks for labels that have the subdomain as the app ID.
 echoip_container_labels_additional_labels: |
   traefik.http.routers.{{ echoip_identifier }}.middlewares={{ tinyauth_identifier }}
-  tinyauth.oauth.groups=admins
+  tinyauth.apps.{{ echoip_hostname }}.oauth.groups=admins
 
 ########################################################################
 #                                                                      #
@@ -209,13 +214,13 @@ tinyauth_hostname: tinyauth.example.com
 
 # Obtain the ODIC client ID and secret for Tinyauth at pocketid.example.com first
 tinyauth_environment_variables_additional_variables: |
-  GENERIC_CLIENT_ID=YOUR_POCKET_ID_CLIENT_ID_HERE
-  GENERIC_CLIENT_SECRET=YOUR_POCKET_ID_CLIENT_SECRET_HERE
-  GENERIC_AUTH_URL=https://{{ pocket_id_hostname }}/authorize
-  GENERIC_TOKEN_URL=https://{{ pocket_id_hostname }}/api/oidc/token
-  GENERIC_USER_URL=https://{{ pocket_id_hostname }}/api/oidc/userinfo
-  GENERIC_SCOPES=openid email profile groups
-  GENERIC_NAME=Pocket ID
+  PROVIDERS_POCKETID_CLIENT_ID=YOUR_POCKET_ID_CLIENT_ID_HERE
+  PROVIDERS_POCKETID_CLIENT_SECRET=YOUR_POCKET_ID_CLIENT_SECRET_HERE
+  PROVIDERS_POCKETID_AUTH_URL=https://{{ pocket_id_hostname }}/authorize
+  PROVIDERS_POCKETID_TOKEN_URL=https://{{ pocket_id_hostname }}/api/oidc/token
+  PROVIDERS_POCKETID_USER_INFO_URL=https://{{ pocket_id_hostname }}/api/oidc/userinfo
+  PROVIDERS_POCKETID_SCOPES=openid email profile groups
+  PROVIDERS_POCKETID_NAME=Pocket ID
 
 # Disable logging in with a password
 tinyauth_environment_variables_users_enabled: false
