@@ -4293,7 +4293,7 @@ homarr_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_d
 homarr_uid: "{{ mash_playbook_uid }}"
 homarr_gid: "{{ mash_playbook_gid }}"
 
-homarr_systemd_required_services_list: |
+homarr_systemd_required_services_list_auto: |
   {{
     ([container_socket_proxy_identifier + '.service'] if container_socket_proxy_enabled | default(false) else [])
     +
@@ -8325,7 +8325,7 @@ pocket_id_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_bas
 pocket_id_uid: "{{ mash_playbook_uid }}"
 pocket_id_gid: "{{ mash_playbook_gid }}"
 
-pocket_id_systemd_required_services_list: |
+pocket_id_systemd_required_services_list_auto: |
   {{
     ([postgres_identifier ~ '.service'] if postgres_enabled | default(false) and pocket_id_database_hostname == postgres_connection_hostname and pocket_id_database_type == 'postgres' else [])
   }}
