@@ -212,7 +212,7 @@ tinyauth_enabled: true
 
 tinyauth_hostname: tinyauth.example.com
 
-# Obtain the ODIC client ID and secret for Tinyauth at pocketid.example.com first
+# Obtain the OIDC client ID and secret for Tinyauth at pocketid.example.com first
 tinyauth_environment_variables_additional_variables: |
   PROVIDERS_POCKETID_CLIENT_ID=YOUR_POCKET_ID_CLIENT_ID_HERE
   PROVIDERS_POCKETID_CLIENT_SECRET=YOUR_POCKET_ID_CLIENT_SECRET_HERE
