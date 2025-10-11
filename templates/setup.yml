@@ -381,6 +381,10 @@
     - role: galaxy/linkding
     # /role-specific:linkding
 
+    # role-specific:linkwarden
+    - role: galaxy/linkwarden
+    # /role-specific:linkwarden
+
     # role-specific:listmonk
     - role: galaxy/listmonk
     # /role-specific:listmonk

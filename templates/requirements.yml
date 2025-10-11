@@ -316,6 +316,10 @@
   version: v1.44.0-0
   name: linkding
   activation_prefix: linkding_
+- src: git+https://codeberg.org/acioustick/ansible-role-linkwarden.git
+  version: v2.13.0-0
+  name: linkwarden
+  activation_prefix: linkwarden_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-listmonk.git
   version: v4.1.0-6
   name: listmonk

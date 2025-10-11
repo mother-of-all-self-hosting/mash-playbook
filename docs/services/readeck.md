@@ -72,3 +72,4 @@ See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-re
 ## Related services
 
 - [linkding](linkding.md) — Bookmark manager designed to be minimal and fast
+- [Linkwarden](linkwarden.md) — Self-hosted, open-source collaborative bookmark manager to collect, organize and archive webpages

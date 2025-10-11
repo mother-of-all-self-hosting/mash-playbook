@@ -79,4 +79,5 @@ See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-li
 
 ## Related services
 
+- [Linkwarden](linkwarden.md) — Self-hosted, open-source collaborative bookmark manager to collect, organize and archive webpages
 - [Readeck](readeck.md) — Bookmark manager and a read-later tool combined in one
