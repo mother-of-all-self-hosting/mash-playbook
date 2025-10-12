@@ -188,15 +188,15 @@ Having configured `vars.yml` for the dedicated instance, add the following confi
 
 # Add the base configuration as specified above
 
-# Point Bar Assistant to its dedicated Valkey instance
+# Point Bar Assistant server to its dedicated Valkey instance
 barassistant_redis_hostname: mash-barassistant-valkey
 
-# Make sure the Bar Assistant service (mash-barassistant.service) starts after its dedicated Valkey service (mash-barassistant-valkey.service)
-barassistant_systemd_required_services_list_custom:
+# Make sure the Bar Assistant server service (mash-barassistant-server.service) starts after its dedicated Valkey service (mash-barassistant-valkey.service)
+barassistant_server_systemd_required_services_list_custom:
   - "mash-barassistant-valkey.service"
 
-# Make sure the Bar Assistant container is connected to the container network of its dedicated Valkey service (mash-barassistant-valkey)
-barassistant_container_additional_networks_custom:
+# Make sure the Bar Assistant server container is connected to the container network of its dedicated Valkey service (mash-barassistant-valkey)
+barassistant_server_container_additional_networks_custom:
   - "mash-barassistant-valkey"
 
 ########################################################################
@@ -238,15 +238,15 @@ valkey_enabled: true
 
 # Add the base configuration as specified above
 
-# Point Bar Assistant to the shared Valkey instance
+# Point Bar Assistant server to the shared Valkey instance
 barassistant_redis_hostname: "{{ valkey_identifier }}"
 
-# Make sure the Bar Assistant service (mash-barassistant.service) starts after the shared Valkey service (mash-valkey.service)
-barassistant_systemd_required_services_list_custom:
+# Make sure the Bar Assistant server service (mash-barassistant-server.service) starts after the shared Valkey service (mash-valkey.service)
+barassistant_server_systemd_required_services_list_custom:
   - "{{ valkey_identifier }}.service"
 
-# Make sure the Bar Assistant container is connected to the container network of the shared Valkey service (mash-valkey)
-barassistant_container_additional_networks_custom:
+# Make sure the Bar Assistant server container is connected to the container network of the shared Valkey service (mash-valkey)
+barassistant_server_container_additional_networks_custom:
   - "{{ valkey_identifier }}"
 
 ########################################################################
