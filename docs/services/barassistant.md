@@ -94,7 +94,7 @@ Valkey can optionally be enabled for caching data. This playbook supports it, an
 
 If Bar Assistant is the sole service which requires Valkey on your server, it is fine to set up just a single Valkey instance. However, **it is not recommended if there are other services which require it, because sharing the Valkey instance has security concerns and possibly causes data conflicts**, as described on the [documentation for configuring Valkey](valkey.md). In this case, you should install a dedicated Valkey instance for each of them.
 
-If you are unsure whether you will install other services along with Bar Assistant or you have already set up services which need Valkey (such as [PeerTube](peertube.md), [Funkwhale](funkwhale.md), and [Docmost](docmost.md)), it is recommended to install a Valkey instance dedicated to Bar Assistant.
+If you are unsure whether you will install other services along with Bar Assistant or you have already set up services which need Valkey (such as [Nextcloud](nextcloud.md), [Vikunja](vikunja.md), and [Docmost](docmost.md)), it is recommended to install a Valkey instance dedicated to Bar Assistant.
 
 *See [below](#setting-up-a-shared-valkey-instance) for an instruction to install a shared instance.*
 
