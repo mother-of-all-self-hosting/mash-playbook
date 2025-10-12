@@ -6434,6 +6434,7 @@ linkwarden_environment_variables_nextauth_secret: "{{ '%s' | format(mash_playboo
 
 # role-specific:meilisearch
 linkwarden_environment_variables_meili_host: "http://{{ meilisearch_identifier }}:{{ meilisearch_container_http_port }}"
+linkwarden_environment_variables_meili_key: "{{ meilisearch_default_admin_api_key }}"
 # /role-specific:meilisearch
 
 # role-specific:postgres
