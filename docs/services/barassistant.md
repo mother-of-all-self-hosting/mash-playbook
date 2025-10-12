@@ -19,11 +19,11 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
 # Bar Assistant
 
-The playbook can install and configure [Bar Assistant](https://github.com/barassistant/barassistant/) for you.
+The playbook can install and configure [Bar Assistant](https://github.com/karlomikus/bar-assistant/) for you.
 
-Bar Assistant is a self-hosted, open-source collaborative bookmark manager to collect, organize and archive webpages.
+Bar Assistant is a service for managing cocktail recipes at your home bar with a lot of cocktail-oriented features like ingredient substitutes. The playbook is configured to set up the Bar Assistant's API server and its web client software [Salt Rim](https://github.com/karlomikus/vue-salt-rim).
 
-See the project's [documentation](https://docs.barassistant.app) to learn what Bar Assistant does and why it might be useful to you.
+See the project's [documentation](https://docs.barassistant.app/) to learn what Bar Assistant does and why it might be useful to you.
 
 For details about configuring the [Ansible role for Bar Assistant](https://codeberg.org/acioustick/ansible-role-barassistant), you can check them via:
 - 🌐 [the role's documentation](https://codeberg.org/acioustick/ansible-role-barassistant/src/branch/master/docs/configuring-barassistant.md) online
@@ -33,7 +33,6 @@ For details about configuring the [Ansible role for Bar Assistant](https://codeb
 
 This service requires the following other services:
 
-- [Postgres](postgres.md) database
 - [Traefik](traefik.md) reverse-proxy server
 - (optional) [Meilisearch](meilisearch.md)
 
@@ -66,35 +65,25 @@ barassistant_hostname: barassistant.example.com
 By default account registration for the service is disabled. To enable it, add the following configuration to your `vars.yml` file:
 
 ```yaml
-barassistant_environment_variables_next_public_disable_registration: false
+barassistant_server_environment_variables_allow_registration: false
 ```
 
 ### Connecting to a Meilisearch instance (optional)
 
-To enable the [advanced search options](https://docs.barassistant.app/Usage/advanced-search), you can optionally have the Bar Assistant instance connect to a Meilisearch instance by adding the following configuration to your `vars.yml` file:
+To enable the search and filtering functions, you can optionally have the Bar Assistant instance connect to a Meilisearch instance.
 
-```yaml
-barassistant_environment_variables_meili_key: YOUR_MEILISEARCH_KEY_HERE
-```
+Meilisearch is available on the playbook. Enabling it and setting the default admin API key automatically configures the Bar Assistant instance to connect to it.
 
-Meilisearch is available on the playbook. See [this page](meilisearch.md) for details about how to install it.
-
->[!NOTE]
-> The default Admin API Key is sufficient for using Meilisearch on a Bar Assistant instance. It is [not recommended](https://www.meilisearch.com/docs/learn/security/basic_security) to use the master key for operations anything but managing other API keys.
+See [this page](meilisearch.md) for details about how to install it and setting the key for the Meilisearch instance.
 
 ## Usage
 
-After installation, the Bar Assistant instance becomes available at the URL specified with `barassistant_hostname`. With the configuration above, the service is hosted at `https://barassistant.example.com`.
+After installation, the Bar Assistant's API server becomes available at the URL specified with `barassistant_hostname` and `barassistant_server_path_prefix`, and the Salt Rim instance becomes available at the URL specified with `barassistant_hostname`, respectively. With the configuration above, the Salt Rim instance is hosted at `https://barassistant.example.com`.
 
-To get started, open the URL with a web browser, and register the account. **Note that the first registered user becomes an administrator automatically.**
+To get started, open the URL with a web browser, and register the account to use the web UI. **Note that the first registered user becomes an administrator automatically.**
 
-Since account registration is disabled by default, you need to enable it first by setting `barassistant_environment_variables_next_public_disable_registration` to `false` temporarily in order to create your own account.
+Since account registration is disabled by default, you need to enable it first by setting `barassistant_server_environment_variables_allow_registration` to `false` temporarily in order to create your own account.
 
 ## Troubleshooting
 
 See [this section](https://codeberg.org/acioustick/ansible-role-barassistant/src/branch/master/docs/configuring-barassistant.md#troubleshooting) on the role's documentation for details.
-
-## Related services
-
-- [linkding](linkding.md) — Bookmark manager designed to be minimal and fast
-- [Readeck](readeck.md) — Bookmark manager and a read-later tool combined in one
