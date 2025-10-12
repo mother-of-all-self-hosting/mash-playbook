@@ -76,6 +76,9 @@ Meilisearch is available on the playbook. Enabling it and setting the default ad
 
 See [this page](meilisearch.md) for details about how to install it and setting the key for the Meilisearch instance.
 
+>[!NOTE]
+> The Meilisearch instance needs to be exposed to the internet. Setting a hostname of the instance to `meilisearch_hostname` automatically exposes it.
+
 ## Usage
 
 After installation, the Bar Assistant's API server becomes available at the URL specified with `barassistant_hostname` and `barassistant_server_path_prefix`, and the Salt Rim instance becomes available at the URL specified with `barassistant_hostname`, respectively. With the configuration above, the Salt Rim instance is hosted at `https://barassistant.example.com`.
