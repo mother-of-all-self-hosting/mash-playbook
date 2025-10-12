@@ -79,6 +79,17 @@ To get started, refer to [the documentation](https://www.meilisearch.com/docs/le
 
 **It is [not recommended](https://www.meilisearch.com/docs/learn/security/basic_security) to use the master key for operations anything but managing other API keys.** See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-meilisearch/blob/main/docs/configuring-meilisearch.md#obtaining-api-keys) about the instruction to obtain those API keys.
 
+### Setting default API admin key
+
+To let other services on the playbook use the Meilisearch instance, you can set the obtained default API admin key by adding the following configuration to your `vars.yml` file:
+
+```yaml
+meilisearch_default_admin_api_key: YOUR_DEFAULT_ADMIN_API_KEY_HERE
+```
+
+>[!NOTE]
+> In most cases, the default Admin API Key is sufficient for services to use Meilisearch (reading and writing data). It is [not recommended](https://www.meilisearch.com/docs/learn/security/basic_security) to use the master key for operations anything but managing other API keys.
+
 ## Troubleshooting
 
 See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-meilisearch/blob/main/docs/configuring-meilisearch.md#troubleshooting) on the role's documentation for details.
