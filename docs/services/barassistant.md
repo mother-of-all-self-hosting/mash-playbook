@@ -17,17 +17,17 @@ SPDX-FileCopyrightText: 2024 - 2025 Suguru Hirahara
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 
-# Linkwarden
+# Bar Assistant
 
-The playbook can install and configure [Linkwarden](https://github.com/linkwarden/linkwarden/) for you.
+The playbook can install and configure [Bar Assistant](https://github.com/barassistant/barassistant/) for you.
 
-Linkwarden is a self-hosted, open-source collaborative bookmark manager to collect, organize and archive webpages.
+Bar Assistant is a self-hosted, open-source collaborative bookmark manager to collect, organize and archive webpages.
 
-See the project's [documentation](https://docs.linkwarden.app) to learn what Linkwarden does and why it might be useful to you.
+See the project's [documentation](https://docs.barassistant.app) to learn what Bar Assistant does and why it might be useful to you.
 
-For details about configuring the [Ansible role for Linkwarden](https://codeberg.org/acioustick/ansible-role-linkwarden), you can check them via:
-- 🌐 [the role's documentation](https://codeberg.org/acioustick/ansible-role-linkwarden/src/branch/master/docs/configuring-linkwarden.md) online
-- 📁 `roles/galaxy/linkwarden/docs/configuring-linkwarden.md` locally, if you have [fetched the Ansible roles](../installing.md)
+For details about configuring the [Ansible role for Bar Assistant](https://codeberg.org/acioustick/ansible-role-barassistant), you can check them via:
+- 🌐 [the role's documentation](https://codeberg.org/acioustick/ansible-role-barassistant/src/branch/master/docs/configuring-barassistant.md) online
+- 📁 `roles/galaxy/barassistant/docs/configuring-barassistant.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 ## Dependencies
 
@@ -44,55 +44,55 @@ To enable this service, add the following configuration to your `vars.yml` file 
 ```yaml
 ########################################################################
 #                                                                      #
-# linkwarden                                                           #
+# barassistant                                                         #
 #                                                                      #
 ########################################################################
 
-linkwarden_enabled: true
+barassistant_enabled: true
 
-linkwarden_hostname: linkwarden.example.com
+barassistant_hostname: barassistant.example.com
 
 ########################################################################
 #                                                                      #
-# /linkwarden                                                          #
+# /barassistant                                                        #
 #                                                                      #
 ########################################################################
 ```
 
-**Note**: hosting Linkwarden under a subpath (by configuring the `linkwarden_path_prefix` variable) does not seem to be possible due to Linkwarden's technical limitations.
+**Note**: hosting Bar Assistant under a subpath (by configuring the `barassistant_path_prefix` variable) does not seem to be possible due to Bar Assistant's technical limitations.
 
 ### Enabling signing up
 
 By default account registration for the service is disabled. To enable it, add the following configuration to your `vars.yml` file:
 
 ```yaml
-linkwarden_environment_variables_next_public_disable_registration: false
+barassistant_environment_variables_next_public_disable_registration: false
 ```
 
 ### Connecting to a Meilisearch instance (optional)
 
-To enable the [advanced search options](https://docs.linkwarden.app/Usage/advanced-search), you can optionally have the Linkwarden instance connect to a Meilisearch instance by adding the following configuration to your `vars.yml` file:
+To enable the [advanced search options](https://docs.barassistant.app/Usage/advanced-search), you can optionally have the Bar Assistant instance connect to a Meilisearch instance by adding the following configuration to your `vars.yml` file:
 
 ```yaml
-linkwarden_environment_variables_meili_key: YOUR_MEILISEARCH_KEY_HERE
+barassistant_environment_variables_meili_key: YOUR_MEILISEARCH_KEY_HERE
 ```
 
 Meilisearch is available on the playbook. See [this page](meilisearch.md) for details about how to install it.
 
 >[!NOTE]
-> The default Admin API Key is sufficient for using Meilisearch on a Linkwarden instance. It is [not recommended](https://www.meilisearch.com/docs/learn/security/basic_security) to use the master key for operations anything but managing other API keys.
+> The default Admin API Key is sufficient for using Meilisearch on a Bar Assistant instance. It is [not recommended](https://www.meilisearch.com/docs/learn/security/basic_security) to use the master key for operations anything but managing other API keys.
 
 ## Usage
 
-After installation, the Linkwarden instance becomes available at the URL specified with `linkwarden_hostname`. With the configuration above, the service is hosted at `https://linkwarden.example.com`.
+After installation, the Bar Assistant instance becomes available at the URL specified with `barassistant_hostname`. With the configuration above, the service is hosted at `https://barassistant.example.com`.
 
 To get started, open the URL with a web browser, and register the account. **Note that the first registered user becomes an administrator automatically.**
 
-Since account registration is disabled by default, you need to enable it first by setting `linkwarden_environment_variables_next_public_disable_registration` to `false` temporarily in order to create your own account.
+Since account registration is disabled by default, you need to enable it first by setting `barassistant_environment_variables_next_public_disable_registration` to `false` temporarily in order to create your own account.
 
 ## Troubleshooting
 
-See [this section](https://codeberg.org/acioustick/ansible-role-linkwarden/src/branch/master/docs/configuring-linkwarden.md#troubleshooting) on the role's documentation for details.
+See [this section](https://codeberg.org/acioustick/ansible-role-barassistant/src/branch/master/docs/configuring-barassistant.md#troubleshooting) on the role's documentation for details.
 
 ## Related services
 
