@@ -72,7 +72,7 @@ barassistant_server_environment_variables_allow_registration: false
 
 ### Configuring the mailer (optional)
 
-On Kutt you can set up a mailer for functions such as password recovery. If you enable the [exim-relay](exim-relay.md) service in your inventory configuration, the playbook will automatically configure it as a mailer for the service.
+On Bar Assistant you can set up a mailer for functions such as password recovery. If you enable the [exim-relay](exim-relay.md) service in your inventory configuration, the playbook will automatically configure it as a mailer for the service.
 
 >[!NOTE]
 > Without setting an authentication method such as DKIM, SPF, and DMARC for your hostname, emails are most likely to be quarantined as spam at recipient's mail servers. If you have set up a mail server with the [exim-relay Ansible role](https://github.com/mother-of-all-self-hosting/ansible-role-exim-relay), you can enable DKIM signing with it. Refer [its documentation](https://github.com/mother-of-all-self-hosting/ansible-role-exim-relay/blob/main/docs/configuring-exim-relay.md#enable-dkim-support-optional) for details.
@@ -92,15 +92,15 @@ See [this page](meilisearch.md) for details about how to install it and setting 
 
 Valkey can optionally be enabled for caching data. This playbook supports it, and you can set up a Valkey instance by enabling it on `vars.yml`.
 
-If Kutt is the sole service which requires Valkey on your server, it is fine to set up just a single Valkey instance. However, **it is not recommended if there are other services which require it, because sharing the Valkey instance has security concerns and possibly causes data conflicts**, as described on the [documentation for configuring Valkey](valkey.md). In this case, you should install a dedicated Valkey instance for each of them.
+If Bar Assistant is the sole service which requires Valkey on your server, it is fine to set up just a single Valkey instance. However, **it is not recommended if there are other services which require it, because sharing the Valkey instance has security concerns and possibly causes data conflicts**, as described on the [documentation for configuring Valkey](valkey.md). In this case, you should install a dedicated Valkey instance for each of them.
 
-If you are unsure whether you will install other services along with Kutt or you have already set up services which need Valkey (such as [PeerTube](peertube.md), [Funkwhale](funkwhale.md), and [Docmost](docmost.md)), it is recommended to install a Valkey instance dedicated to Kutt.
+If you are unsure whether you will install other services along with Bar Assistant or you have already set up services which need Valkey (such as [PeerTube](peertube.md), [Funkwhale](funkwhale.md), and [Docmost](docmost.md)), it is recommended to install a Valkey instance dedicated to Bar Assistant.
 
 *See [below](#setting-up-a-shared-valkey-instance) for an instruction to install a shared instance.*
 
 #### Setting up a dedicated Valkey instance
 
-To create a dedicated instance for Kutt, you can follow the steps below:
+To create a dedicated instance for Bar Assistant, you can follow the steps below:
 
 1. Adjust the `hosts` file
 2. Create a new `vars.yml` file for the dedicated instance
@@ -110,7 +110,7 @@ To create a dedicated instance for Kutt, you can follow the steps below:
 
 ##### Adjust `hosts`
 
-At first, you need to adjust `inventory/hosts` file to add a supplementary host for Kutt.
+At first, you need to adjust `inventory/hosts` file to add a supplementary host for Bar Assistant.
 
 The content should be something like below. Make sure to replace `mash.example.com` with your hostname and `YOUR_SERVER_IP_ADDRESS_HERE` with the IP address of the host, respectively. The same IP address should be set to both, unless the Valkey instance will be served from a different machine.
 
@@ -121,7 +121,7 @@ mash_example_com
 
 [mash_example_com]
 mash.example.com ansible_host=YOUR_SERVER_IP_ADDRESS_HERE
-mash.example.com-kutt-deps ansible_host=YOUR_SERVER_IP_ADDRESS_HERE
+mash.example.com-barassistant-deps ansible_host=YOUR_SERVER_IP_ADDRESS_HERE
 …
 ```
 
@@ -131,12 +131,12 @@ You can just add an entry for the supplementary host to `[mash_example_com]` if 
 
 ##### Create `vars.yml` for the dedicated instance
 
-Then, create a new directory where `vars.yml` for the supplementary host is stored. If `mash.example.com` is your main host, name the directory as `mash.example.com-kutt-deps`. Its path therefore will be `inventory/host_vars/mash.example.com-kutt-deps`.
+Then, create a new directory where `vars.yml` for the supplementary host is stored. If `mash.example.com` is your main host, name the directory as `mash.example.com-barassistant-deps`. Its path therefore will be `inventory/host_vars/mash.example.com-barassistant-deps`.
 
-After creating the directory, add a new `vars.yml` file inside it with a content below. It will have running the playbook create a `mash-kutt-valkey` instance on the new host, setting `/mash/kutt-valkey` to the base directory of the dedicated Valkey instance.
+After creating the directory, add a new `vars.yml` file inside it with a content below. It will have running the playbook create a `mash-barassistant-valkey` instance on the new host, setting `/mash/barassistant-valkey` to the base directory of the dedicated Valkey instance.
 
 ```yaml
-# This is vars.yml for the supplementary host of Kutt.
+# This is vars.yml for the supplementary host of Bar Assistant.
 
 ---
 
@@ -150,8 +150,8 @@ After creating the directory, add a new `vars.yml` file inside it with a content
 mash_playbook_generic_secret_key: ''
 
 # Override service names and directory path prefixes
-mash_playbook_service_identifier_prefix: 'mash-kutt-'
-mash_playbook_service_base_directory_name_prefix: 'kutt-'
+mash_playbook_service_identifier_prefix: 'mash-barassistant-'
+mash_playbook_service_base_directory_name_prefix: 'barassistant-'
 
 ########################################################################
 #                                                                      #
@@ -182,37 +182,37 @@ Having configured `vars.yml` for the dedicated instance, add the following confi
 ```yaml
 ########################################################################
 #                                                                      #
-# kutt                                                                 #
+# barassistant                                                         #
 #                                                                      #
 ########################################################################
 
 # Add the base configuration as specified above
 
-# Point Kutt to its dedicated Valkey instance
-kutt_redis_hostname: mash-kutt-valkey
+# Point Bar Assistant to its dedicated Valkey instance
+barassistant_redis_hostname: mash-barassistant-valkey
 
-# Make sure the Kutt service (mash-kutt.service) starts after its dedicated Valkey service (mash-kutt-valkey.service)
-kutt_systemd_required_services_list_custom:
-  - "mash-kutt-valkey.service"
+# Make sure the Bar Assistant service (mash-barassistant.service) starts after its dedicated Valkey service (mash-barassistant-valkey.service)
+barassistant_systemd_required_services_list_custom:
+  - "mash-barassistant-valkey.service"
 
-# Make sure the Kutt container is connected to the container network of its dedicated Valkey service (mash-kutt-valkey)
-kutt_container_additional_networks_custom:
-  - "mash-kutt-valkey"
+# Make sure the Bar Assistant container is connected to the container network of its dedicated Valkey service (mash-barassistant-valkey)
+barassistant_container_additional_networks_custom:
+  - "mash-barassistant-valkey"
 
 ########################################################################
 #                                                                      #
-# /kutt                                                                #
+# /barassistant                                                        #
 #                                                                      #
 ########################################################################
 ```
 
-Running the installation command will create the dedicated Valkey instance named `mash-kutt-valkey`.
+Running the installation command will create the dedicated Valkey instance named `mash-barassistant-valkey`.
 
 #### Setting up a shared Valkey instance
 
-If you host only Kutt on this server, it is fine to set up a single shared Valkey instance.
+If you host only Bar Assistant on this server, it is fine to set up a single shared Valkey instance.
 
-To install the single instance and hook Kutt to it, add the following configuration to `inventory/host_vars/mash.example.com/vars.yml`:
+To install the single instance and hook Bar Assistant to it, add the following configuration to `inventory/host_vars/mash.example.com/vars.yml`:
 
 ```yaml
 ########################################################################
@@ -232,26 +232,26 @@ valkey_enabled: true
 
 ########################################################################
 #                                                                      #
-# kutt                                                                 #
+# barassistant                                                         #
 #                                                                      #
 ########################################################################
 
 # Add the base configuration as specified above
 
-# Point Kutt to the shared Valkey instance
-kutt_redis_hostname: "{{ valkey_identifier }}"
+# Point Bar Assistant to the shared Valkey instance
+barassistant_redis_hostname: "{{ valkey_identifier }}"
 
-# Make sure the Kutt service (mash-kutt.service) starts after the shared Valkey service (mash-valkey.service)
-kutt_systemd_required_services_list_custom:
+# Make sure the Bar Assistant service (mash-barassistant.service) starts after the shared Valkey service (mash-valkey.service)
+barassistant_systemd_required_services_list_custom:
   - "{{ valkey_identifier }}.service"
 
-# Make sure the Kutt container is connected to the container network of the shared Valkey service (mash-valkey)
-kutt_container_additional_networks_custom:
+# Make sure the Bar Assistant container is connected to the container network of the shared Valkey service (mash-valkey)
+barassistant_container_additional_networks_custom:
   - "{{ valkey_identifier }}"
 
 ########################################################################
 #                                                                      #
-# /kutt                                                                #
+# /barassistant                                                        #
 #                                                                      #
 ########################################################################
 ```
@@ -260,7 +260,7 @@ Running the installation command will create the shared Valkey instance named `m
 
 ## Installation
 
-If you have decided to install the dedicated Valkey instance for Kutt, make sure to run the [installing](../installing.md) command for the supplementary host (`mash.example.com-kutt-deps`) first, before running it for the main host (`mash.example.com`).
+If you have decided to install the dedicated Valkey instance for Bar Assistant, make sure to run the [installing](../installing.md) command for the supplementary host (`mash.example.com-barassistant-deps`) first, before running it for the main host (`mash.example.com`).
 
 Note that running the `just` commands for installation (`just install-all` or `just setup-all`) automatically takes care of the order. See [here](../running-multiple-instances.md#1-adjust-hosts) for more details about it.
 
