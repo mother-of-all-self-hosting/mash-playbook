@@ -490,6 +490,11 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
     {{ ({'name': (linkding_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'linkding']} if linkding_enabled else omit) }}
   # /role-specific:linkding
 
+  # role-specific:linkwarden
+  - |-
+    {{ ({'name': (linkwarden_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'linkwarden']} if linkwarden_enabled else omit) }}
+  # /role-specific:linkwarden
+
   # role-specific:listmonk
   - |-
     {{ ({'name': (listmonk_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'listmonk']} if listmonk_enabled else omit) }}
@@ -1257,6 +1262,17 @@ mash_playbook_postgres_managed_databases_auto_itemized:
       } if linkding_enabled and linkding_database_hostname == postgres_connection_hostname and linkding_database_type == 'postgres' else omit)
     }}
   # /role-specific:linkding
+
+  # role-specific:linkwarden
+  - |-
+    {{
+      ({
+        'name': linkwarden_database_name,
+        'username': linkwarden_database_username,
+        'password': linkwarden_database_password,
+      } if linkwarden_enabled and linkwarden_database_hostname == postgres_connection_hostname else omit)
+    }}
+  # /role-specific:linkwarden
 
   # role-specific:listmonk
   - |-
@@ -6374,6 +6390,69 @@ linkding_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_pri
 #                                                                      #
 ########################################################################
 # /role-specific:linkding
+
+
+
+# role-specific:linkwarden
+########################################################################
+#                                                                      #
+# linkwarden                                                           #
+#                                                                      #
+########################################################################
+
+linkwarden_enabled: false
+
+linkwarden_identifier: "{{ mash_playbook_service_identifier_prefix }}linkwarden"
+
+linkwarden_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}linkwarden"
+
+# Currently root access without read-only option is necessary for Linkwarden to work properly.
+# See: https://github.com/linkwarden/linkwarden/issues/799
+linkwarden_uid: "0"
+linkwarden_gid: "0"
+
+linkwarden_systemd_required_services_list_auto: |
+  {{
+    ([meilisearch_identifier ~ '.service'] if meilisearch_enabled | default(false) else [])
+    +
+    ([postgres_identifier ~ '.service'] if postgres_enabled and linkwarden_database_hostname == postgres_connection_hostname else [])
+  }}
+
+linkwarden_container_additional_networks_auto: |
+  {{
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+    +
+    ([meilisearch_container_network] if meilisearch_enabled | default(false) and linkwarden_container_network != meilisearch_container_network else [])
+    +
+    ([postgres_container_network] if postgres_enabled and linkwarden_database_hostname == postgres_connection_hostname and linkwarden_container_network != postgres_container_network else [])
+  }}
+
+linkwarden_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+linkwarden_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+
+linkwarden_environment_variables_nextauth_secret: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'linkwarden.na', rounds=655555) | to_uuid }}"
+
+# role-specific:meilisearch
+linkwarden_environment_variables_meili_host: "http://{{ meilisearch_identifier }}:{{ meilisearch_container_http_port }}"
+# /role-specific:meilisearch
+
+# role-specific:postgres
+linkwarden_database_hostname: "{{ postgres_connection_hostname if postgres_enabled else '' }}"
+linkwarden_database_port: "{{ postgres_connection_port if postgres_enabled else '5432' }}"
+linkwarden_database_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'linkwarden.db', rounds=655555) | to_uuid }}"
+# /role-specific:postgres
+
+# role-specific:traefik
+linkwarden_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
+linkwarden_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
+# /role-specific:traefik
+
+########################################################################
+#                                                                      #
+# /linkwarden                                                          #
+#                                                                      #
+########################################################################
+# /role-specific:linkwarden
 
 
 
