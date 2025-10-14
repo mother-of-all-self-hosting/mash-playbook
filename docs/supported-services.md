@@ -31,6 +31,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 | [Authelia](https://www.authelia.com/) | An open-source authentication and authorization server that can work as a companion to [common reverse proxies](https://www.authelia.com/overview/prologue/supported-proxies/) (like [Traefik](services/traefik.md) frequently used by this playbook) | [Link](services/authelia.md) |
 | [authentik](https://goauthentik.io/) | An open-source Identity Provider (IdP) focused on flexibility and versatility. | [Link](services/authentik.md) |
 | [Autobrr](https://autobrr.com/) | Modern, easy to use download automation for torrents and usenet. | [Link](services/autobrr.md) |
+| [Bar Assistant](https://github.com/karlomikus/bar-assistant/) | Managing cocktail recipes at your home bar with cocktail-oriented features | [Link](services/barassistant.md) |
 | [BorgBackup](https://www.borgbackup.org/) (via [borgmatic](https://torsion.org/borgmatic/)) | A deduplicating backup program with optional compression and encryption| [Link](services/backup-borg.md) |
 | [Calibre-Web](https://github.com/janeczku/calibre-web) | Web app for browsing, reading and downloading eBooks stored in a [Calibre](https://calibre-ebook.com/) database | [Link](services/calibre-web.md) |
 | [Changedetection.io](https://github.com/dgtlmoon/changedetection.io) | A simple website change detection and restock monitoring solution. | [Link](services/changedetection.md) |
