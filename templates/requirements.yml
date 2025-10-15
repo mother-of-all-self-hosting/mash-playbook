@@ -664,6 +664,9 @@
   version: v1.0.0-1
   name: vikunja
   activation_prefix: vikunja_
+- src: git+https://github.com/etiennecarichon/ansible-role-wallabag.git
+  name: wallabag
+  activation_prefix: wallabag_
 - src: git+https://github.com/spatterIight/ansible-role-wetty.git
   version: v2.5-0
   name: wetty
