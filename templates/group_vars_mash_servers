@@ -128,6 +128,11 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
     {{ ({'name': (asciinema_server_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'asciinema-server']} if asciinema_server_enabled else omit) }}
   # /role-specific:asciinema_server
 
+  # role-specific:atuin
+  - |-
+    {{ ({'name': (atuin_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'atuin']} if atuin_enabled else omit) }}
+  # /role-specific:atuin
+
   # role-specific:audiobookshelf
   - |-
     {{ ({'name': (audiobookshelf_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'audiobookshelf']} if audiobookshelf_enabled else omit) }}
@@ -987,6 +992,17 @@ mash_playbook_postgres_managed_databases_auto_itemized:
       } if asciinema_server_enabled and asciinema_server_database_hostname == postgres_connection_hostname else omit)
     }}
   # /role-specific:asciinema_server
+
+  # role-specific:atuin
+  - |-
+    {{
+      ({
+        'name': atuin_database_name,
+        'username': atuin_database_username,
+        'password': atuin_database_password,
+      } if atuin_enabled and atuin_database_hostname == postgres_connection_hostname and atuin_database_type == 'postgres' else omit)
+    }}
+  # /role-specific:atuin
 
   # role-specific:authelia
   - |-
@@ -2151,6 +2167,57 @@ asciinema_server_container_labels_traefik_tls_certResolver: "{{ traefik_certReso
 #                                                                      #
 ########################################################################
 # /role-specific:asciinema_server
+
+
+
+# role-specific:atuin
+########################################################################
+#                                                                      #
+# atuin                                                                #
+#                                                                      #
+########################################################################
+
+atuin_enabled: false
+
+atuin_identifier: "{{ mash_playbook_service_identifier_prefix }}atuin"
+
+atuin_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}atuin"
+
+atuin_uid: "{{ mash_playbook_uid }}"
+atuin_gid: "{{ mash_playbook_gid }}"
+
+atuin_systemd_required_services_list_auto: |
+ {{
+    ([postgres_identifier ~ '.service'] if postgres_enabled and atuin_database_hostname == postgres_connection_hostname else [])
+  }}
+
+atuin_container_additional_networks_auto: |
+  {{
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+    +
+    ([postgres_container_network] if postgres_enabled and atuin_database_hostname == postgres_connection_hostname and atuin_container_network != postgres_container_network else [])
+  }}
+
+atuin_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+atuin_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+
+# role-specific:postgres
+atuin_database_hostname: "{{ postgres_connection_hostname if postgres_enabled else '' }}"
+atuin_database_port: "{{ postgres_connection_port if postgres_enabled else '5432' }}"
+atuin_database_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'db.atuin', rounds=655555) | to_uuid }}"
+# /role-specific:postgres
+
+# role-specific:traefik
+atuin_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
+atuin_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
+# /role-specific:traefik
+
+########################################################################
+#                                                                      #
+# /atuin                                                               #
+#                                                                      #
+########################################################################
+# /role-specific:atuin
 
 
 
