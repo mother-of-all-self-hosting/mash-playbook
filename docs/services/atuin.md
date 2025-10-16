@@ -17,17 +17,17 @@ SPDX-FileCopyrightText: 2024 - 2025 Suguru Hirahara
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 
-# Linkwarden
+# Atuin server
 
-The playbook can install and configure [Linkwarden](https://github.com/linkwarden/linkwarden/) for you.
+The playbook can install and configure [Atuin server](https://github.com/atuin/atuin/) for you.
 
-Linkwarden is a self-hosted, open-source collaborative bookmark manager to collect, organize and archive webpages.
+Atuin server is a self-hosted, open-source collaborative bookmark manager to collect, organize and archive webpages.
 
-See the project's [documentation](https://docs.linkwarden.app) to learn what Linkwarden does and why it might be useful to you.
+See the project's [documentation](https://docs.atuin.app) to learn what Atuin server does and why it might be useful to you.
 
-For details about configuring the [Ansible role for Linkwarden](https://codeberg.org/acioustick/ansible-role-linkwarden), you can check them via:
-- 🌐 [the role's documentation](https://codeberg.org/acioustick/ansible-role-linkwarden/src/branch/master/docs/configuring-linkwarden.md) online
-- 📁 `roles/galaxy/linkwarden/docs/configuring-linkwarden.md` locally, if you have [fetched the Ansible roles](../installing.md)
+For details about configuring the [Ansible role for Atuin server](https://codeberg.org/acioustick/ansible-role-atuin), you can check them via:
+- 🌐 [the role's documentation](https://codeberg.org/acioustick/ansible-role-atuin/src/branch/master/docs/configuring-atuin.md) online
+- 📁 `roles/galaxy/atuin/docs/configuring-atuin.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 ## Dependencies
 
@@ -44,50 +44,50 @@ To enable this service, add the following configuration to your `vars.yml` file 
 ```yaml
 ########################################################################
 #                                                                      #
-# linkwarden                                                           #
+# atuin                                                                #
 #                                                                      #
 ########################################################################
 
-linkwarden_enabled: true
+atuin_enabled: true
 
-linkwarden_hostname: linkwarden.example.com
+atuin_hostname: atuin.example.com
 
 ########################################################################
 #                                                                      #
-# /linkwarden                                                          #
+# /atuin                                                               #
 #                                                                      #
 ########################################################################
 ```
 
-**Note**: hosting Linkwarden under a subpath (by configuring the `linkwarden_path_prefix` variable) does not seem to be possible due to Linkwarden's technical limitations.
+**Note**: hosting Atuin server under a subpath (by configuring the `atuin_path_prefix` variable) does not seem to be possible due to Atuin server's technical limitations.
 
 ### Enabling signing up
 
 By default account registration for the service is disabled. To enable it, add the following configuration to your `vars.yml` file:
 
 ```yaml
-linkwarden_environment_variables_next_public_disable_registration: false
+atuin_environment_variables_next_public_disable_registration: false
 ```
 
 ### Connecting to a Meilisearch instance (optional)
 
-To enable the [advanced search options](https://docs.linkwarden.app/Usage/advanced-search), you can optionally have the Linkwarden instance connect to a Meilisearch instance.
+To enable the [advanced search options](https://docs.atuin.app/Usage/advanced-search), you can optionally have the Atuin server instance connect to a Meilisearch instance.
 
-Meilisearch is available on the playbook. Enabling it and setting its default admin API key automatically configures the Linkwarden instance to connect to it.
+Meilisearch is available on the playbook. Enabling it and setting its default admin API key automatically configures the Atuin server instance to connect to it.
 
 See [this page](meilisearch.md) for details about how to install it and setting the key for the Meilisearch instance.
 
 ## Usage
 
-After installation, the Linkwarden instance becomes available at the URL specified with `linkwarden_hostname`. With the configuration above, the service is hosted at `https://linkwarden.example.com`.
+After installation, the Atuin server instance becomes available at the URL specified with `atuin_hostname`. With the configuration above, the service is hosted at `https://atuin.example.com`.
 
 To get started, open the URL with a web browser, and register the account. **Note that the first registered user becomes an administrator automatically.**
 
-Since account registration is disabled by default, you need to enable it first by setting `linkwarden_environment_variables_next_public_disable_registration` to `false` temporarily in order to create your own account.
+Since account registration is disabled by default, you need to enable it first by setting `atuin_environment_variables_next_public_disable_registration` to `false` temporarily in order to create your own account.
 
 ## Troubleshooting
 
-See [this section](https://codeberg.org/acioustick/ansible-role-linkwarden/src/branch/master/docs/configuring-linkwarden.md#troubleshooting) on the role's documentation for details.
+See [this section](https://codeberg.org/acioustick/ansible-role-atuin/src/branch/master/docs/configuring-atuin.md#troubleshooting) on the role's documentation for details.
 
 ## Related services
 
