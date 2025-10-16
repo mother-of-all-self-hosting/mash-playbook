@@ -29,11 +29,11 @@
   name: appsmith
   activation_prefix: appsmith_
 - src: git+https://codeberg.org/acioustick/ansible-role-asciinema-server.git
-  version: v20250915-0
+  version: v20251013-0
   name: asciinema_server
   activation_prefix: asciinema_server_
 - src: git+https://codeberg.org/acioustick/ansible-role-audiobookshelf.git
-  version: v2.29.0-0
+  version: v2.30.0-0
   name: audiobookshelf
   activation_prefix: audiobookshelf_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-authelia.git
@@ -57,7 +57,7 @@
   name: backup_borg
   activation_prefix: backup_borg_
 - src: git+https://codeberg.org/acioustick/ansible-role-barassistant.git
-  version: v5.8.1-0
+  version: v5.9.0-0
   name: barassistant
   activation_prefix: barassistant_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-calibre-web.git
@@ -165,7 +165,7 @@
   name: fail2ban
   activation_prefix: system_security_fail2ban_
 - src: git+https://codeberg.org/acioustick/ansible-role-filebrowser.git
-  version: v2.43.0-0
+  version: v2.44.0-0
   name: filebrowser
   activation_prefix: filebrowser_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-firezone.git
@@ -217,7 +217,7 @@
   name: gothub
   activation_prefix: gothub_
 - src: git+https://codeberg.org/acioustick/ansible-role-gotify.git
-  version: v2.7.3-0
+  version: v2.7.3-1
   name: gotify
   activation_prefix: gotify_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-gotosocial.git
@@ -321,7 +321,7 @@
   name: linkding
   activation_prefix: linkding_
 - src: git+https://codeberg.org/acioustick/ansible-role-linkwarden.git
-  version: v2.13.0-0
+  version: v2.13.1-0
   name: linkwarden
   activation_prefix: linkwarden_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-listmonk.git
@@ -625,7 +625,7 @@
   name: timesync
   activation_prefix: devture_timesync_
 - src: git+https://codeberg.org/acioustick/ansible-role-tinyauth.git
-  version: v4.0.0-0
+  version: v4.0.1-0
   name: tinyauth
   activation_prefix: tinyauth_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-traefik.git
