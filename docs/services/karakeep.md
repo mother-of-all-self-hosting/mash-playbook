@@ -19,9 +19,9 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
 # Karakeep
 
-The playbook can install and configure [Karakeep](https://github.com/karakeep/karakeep/) for you.
+The playbook can install and configure [Karakeep](https://karakeep.app/) for you.
 
-Karakeep is a self-hosted, open-source collaborative bookmark manager to collect, organize and archive webpages.
+Karakeep is a self-hosted, open-source bookmark manager to collect, organize and archive webpages, enabling LLM providers to add tags to them automatically.
 
 See the project's [documentation](https://docs.karakeep.app) to learn what Karakeep does and why it might be useful to you.
 
@@ -33,9 +33,9 @@ For details about configuring the [Ansible role for Karakeep](https://codeberg.o
 
 This service requires the following other services:
 
-- [Postgres](postgres.md) database
 - [Traefik](traefik.md) reverse-proxy server
-- (optional) [Meilisearch](meilisearch.md)
+- (optional) [Browserless](browserless.md) — required for the screenshot function
+- (optional) [Meilisearch](meilisearch.md) — required for the search function
 
 ## Adjusting the playbook configuration
 
@@ -66,16 +66,31 @@ karakeep_hostname: karakeep.example.com
 By default account registration for the service is disabled. To enable it, add the following configuration to your `vars.yml` file:
 
 ```yaml
-karakeep_environment_variables_next_public_disable_registration: false
+karakeep_environment_variables_disable_signups: false
 ```
+
+### Connecting to a Browserless instance (optional)
+
+To enable the screenshot function with JavaScript execution allowed, you can optionally have the Karakeep instance connect to a Browserless instance.
+
+Browserless is available on the playbook. Enabling it automatically configures the Karakeep instance to connect to it.
+
+See [this page](browserless.md) for details about how to install it.
 
 ### Connecting to a Meilisearch instance (optional)
 
-To enable the [advanced search options](https://docs.karakeep.app/Usage/advanced-search), you can optionally have the Karakeep instance connect to a Meilisearch instance.
+To enable the search function, you can optionally have the Karakeep instance connect to a Meilisearch instance.
 
 Meilisearch is available on the playbook. Enabling it and setting its default admin API key automatically configures the Karakeep instance to connect to it.
 
 See [this page](meilisearch.md) for details about how to install it and setting the key for the Meilisearch instance.
+
+### Extending the configuration
+
+See [this page](https://docs.karakeep.app/configuration/) for a complete list of Karakeep's config options that you could put in `karakeep_environment_variables_additional_variables`.
+
+>[!NOTE]
+> Enabling automatic tagging with LLM providers requires environment variables to be specified manually. See [this section](https://docs.karakeep.app/configuration/#inference-configs-for-automatic-tagging) on the documentation for details.
 
 ## Usage
 
@@ -83,7 +98,7 @@ After installation, the Karakeep instance becomes available at the URL specified
 
 To get started, open the URL with a web browser, and register the account. **Note that the first registered user becomes an administrator automatically.**
 
-Since account registration is disabled by default, you need to enable it first by setting `karakeep_environment_variables_next_public_disable_registration` to `false` temporarily in order to create your own account.
+Since account registration is disabled by default, you need to enable it first by setting `karakeep_environment_variables_disable_signups` to `false` temporarily in order to create your own account.
 
 ## Troubleshooting
 
@@ -92,4 +107,5 @@ See [this section](https://codeberg.org/acioustick/ansible-role-karakeep/src/bra
 ## Related services
 
 - [linkding](linkding.md) — Bookmark manager designed to be minimal and fast
+- [Linkwarden](linkwarden.md) — Self-hosted, open-source collaborative bookmark manager to collect, organize and archive webpages
 - [Readeck](readeck.md) — Bookmark manager and a read-later tool combined in one
