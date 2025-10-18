@@ -32,7 +32,7 @@
   version: v20251013-0
   name: asciinema_server
   activation_prefix: asciinema_server_
-- src: https://codeberg.org/acioustick/ansible-role-atuin.git
+- src: git+https://codeberg.org/acioustick/ansible-role-atuin.git
   version: v18.8.0-0
   name: atuin
   activation_prefix: atuin_
