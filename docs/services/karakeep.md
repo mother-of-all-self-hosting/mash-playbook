@@ -85,6 +85,13 @@ Meilisearch is available on the playbook. Enabling it and setting its default ad
 
 See [this page](meilisearch.md) for details about how to install it and setting the key for the Meilisearch instance.
 
+### Configure the mailer (optional)
+
+On Karakeep you can set up a mailer for functions such as sending a password reset mail. If you enable the [exim-relay](exim-relay.md) service in your inventory configuration, the playbook will automatically configure it as a mailer for the service.
+
+>[!NOTE]
+> Without setting an authentication method such as DKIM, SPF, and DMARC for your hostname, emails are most likely to be quarantined as spam at recipient's mail servers. If you have set up a mail server with the [exim-relay Ansible role](https://github.com/mother-of-all-self-hosting/ansible-role-exim-relay), you can enable DKIM signing with it. Refer [its documentation](https://github.com/mother-of-all-self-hosting/ansible-role-exim-relay/blob/main/docs/configuring-exim-relay.md#enable-dkim-support-optional) for details.
+
 ### Extending the configuration
 
 See [this page](https://docs.karakeep.app/configuration/) for a complete list of Karakeep's config options that you could put in `karakeep_environment_variables_additional_variables`.
