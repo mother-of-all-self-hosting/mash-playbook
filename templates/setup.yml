@@ -361,6 +361,10 @@
     - role: galaxy/joplin_server
     # /role-specific:joplin_server
 
+    # role-specific:karakeep
+    - role: galaxy/karakeep
+    # /role-specific:karakeep
+
     # role-specific:keycloak
     - role: galaxy/keycloak
     # /role-specific:keycloak
