@@ -2462,7 +2462,7 @@ backup_borg_storage_archive_name_format: "{{ mash_playbook_service_identifier_pr
 
 backup_borg_container_image_self_build: "{{ mash_playbook_architecture not in ['amd64', 'arm32', 'arm64'] }}"
 
-backup_borg_location_source_directories:
+backup_borg_location_source_directories_auto:
   - "{{ mash_playbook_base_path }}"
 
 backup_borg_location_exclude_patterns: |
