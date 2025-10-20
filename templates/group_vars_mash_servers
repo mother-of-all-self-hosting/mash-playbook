@@ -988,6 +988,8 @@ postgres_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base
 postgres_uid: "{{ mash_playbook_uid }}"
 postgres_gid: "{{ mash_playbook_gid }}"
 
+postgres_allowed_versions_auto: "{{ backup_borg_supported_postgres_versions | map('int') if backup_borg_enabled | default(false) and backup_borg_postgresql_enabled | default(false) else [] }}"
+
 # This includes everything for maximum safety.
 # It may not be optimal though, because some services may not be dependent on Postgres at all, etc.
 postgres_systemd_services_to_stop_for_maintenance_list_auto: "{{ devture_systemd_service_manager_services_list_auto | map(attribute='name') | reject('equalto', (postgres_identifier + '.service')) }}"
