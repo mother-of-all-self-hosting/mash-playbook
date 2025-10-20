@@ -34,8 +34,8 @@ For details about configuring the [Ansible role for Gotify](https://codeberg.org
 
 This service requires the following other services:
 
-- [Traefik](traefik.md) reverse-proxy server
 - [Postgres](postgres.md) / MySQL / [MariaDB](mariadb.md) / [SQLite](https://www.sqlite.org/) database
+- [Traefik](traefik.md) reverse-proxy server
 
 ## Adjusting the playbook configuration
 
@@ -81,4 +81,5 @@ See [this section](https://codeberg.org/acioustick/ansible-role-gotify/src/branc
 
 ## Related services
 
+- [Apprise API](apprise.md) — Lightweight REST framework that wraps the [Apprise](https://github.com/caronc/apprise) Notification Library
 - [ntfy](ntfy.md) — Simple HTTP-based pub-sub notification service to send you push notifications from any computer

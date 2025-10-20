@@ -113,6 +113,10 @@
     - role: galaxy/apisix_gateway
     # /role-specific:apisix_gateway
 
+    # role-specific:apprise
+    - role: galaxy/apprise
+    # /role-specific:apprise
+
     # role-specific:appsmith
     - role: galaxy/appsmith
     # /role-specific:appsmith
@@ -120,6 +124,10 @@
     # role-specific:asciinema_server
     - role: galaxy/asciinema_server
     # /role-specific:asciinema_server
+
+    # role-specific:atuin
+    - role: galaxy/atuin
+    # /role-specific:atuin
 
     # role-specific:audiobookshelf
     - role: galaxy/audiobookshelf
@@ -140,6 +148,14 @@
     # role-specific:backup_borg
     - role: galaxy/backup_borg
     # /role-specific:backup_borg
+
+    # role-specific:barassistant
+    - role: galaxy/barassistant
+    # /role-specific:barassistant
+
+    # role-specific:browserless
+    - role: galaxy/browserless
+    # /role-specific:browserless
 
     # role-specific:calibre_web
     - role: galaxy/calibre_web
@@ -345,6 +361,10 @@
     - role: galaxy/joplin_server
     # /role-specific:joplin_server
 
+    # role-specific:karakeep
+    - role: galaxy/karakeep
+    # /role-specific:karakeep
+
     # role-specific:keycloak
     - role: galaxy/keycloak
     # /role-specific:keycloak
@@ -377,6 +397,10 @@
     - role: galaxy/linkding
     # /role-specific:linkding
 
+    # role-specific:linkwarden
+    - role: galaxy/linkwarden
+    # /role-specific:linkwarden
+
     # role-specific:listmonk
     - role: galaxy/listmonk
     # /role-specific:listmonk
@@ -404,6 +428,10 @@
     # role-specific:mediawiki
     - role: galaxy/mediawiki
     # /role-specific:mediawiki
+
+    # role-specific:meilisearch
+    - role: galaxy/meilisearch
+    # /role-specific:meilisearch
 
     # role-specific:minecraft
     - role: galaxy/minecraft
@@ -456,6 +484,10 @@
     # role-specific:nextcloud
     - role: galaxy/nextcloud
     # /role-specific:nextcloud
+
+    # role-specific:nodebb
+    - role: galaxy/nodebb
+    # /role-specific:nodebb
 
     # role-specific:notfellchen
     - role: galaxy/notfellchen

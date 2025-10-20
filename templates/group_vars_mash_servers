@@ -113,6 +113,11 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
     {{ ({'name': (apisix_gateway_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'apisix-gateway']} if apisix_gateway_enabled else omit) }}
   # /role-specific:apisix_gateway
 
+  # role-specific:apprise
+  - |-
+    {{ ({'name': (apprise_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'apprise']} if apprise_enabled else omit) }}
+  # /role-specific:apprise
+
   # role-specific:appsmith
   - |-
     {{ ({'name': (appsmith_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'appsmith']} if appsmith_enabled else omit) }}
@@ -122,6 +127,11 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
   - |-
     {{ ({'name': (asciinema_server_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'asciinema-server']} if asciinema_server_enabled else omit) }}
   # /role-specific:asciinema_server
+
+  # role-specific:atuin
+  - |-
+    {{ ({'name': (atuin_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'atuin']} if atuin_enabled else omit) }}
+  # /role-specific:atuin
 
   # role-specific:audiobookshelf
   - |-
@@ -149,6 +159,18 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
   - |-
     {{ ({'name': (backup_borg_identifier + '.timer'), 'priority': 5000, 'groups': ['mash', 'backup', 'borg']} if backup_borg_enabled else omit) }}
   # /role-specific:backup_borg
+
+  # role-specific:barassistant
+  - |-
+    {{ ({'name': (barassistant_saltrim_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'barassistant']} if barassistant_enabled else omit) }}
+  - |-
+    {{ ({'name': (barassistant_server_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'barassistant']} if barassistant_enabled else omit) }}
+  # /role-specific:barassistant
+
+  # role-specific:browserless
+  - |-
+    {{ ({'name': (browserless_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'browserless']} if browserless_enabled else omit) }}
+  # /role-specific:browserless
 
   # role-specific:calibre_web
   - |-
@@ -418,7 +440,7 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
 
   # role-specific:jellyseerr
   - |-
-    {{ ({'name': (jellyseerr_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'jellyseerr']} if jellyfin_enabled else omit) }}
+    {{ ({'name': (jellyseerr_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'jellyseerr']} if jellyseerr_enabled else omit) }}
   # /role-specific:jellyseerr
 
   # role-specific:jitsi
@@ -436,6 +458,11 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
   - |-
     {{ ({'name': (joplin_server_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'joplin-server']} if joplin_server_enabled else omit) }}
   # /role-specific:joplin_server
+
+  # role-specific:karakeep
+  - |-
+    {{ ({'name': (karakeep_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'karakeep']} if karakeep_enabled else omit) }}
+  # /role-specific:karakeep
 
   # role-specific:keycloak
   - |-
@@ -485,6 +512,11 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
     {{ ({'name': (linkding_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'linkding']} if linkding_enabled else omit) }}
   # /role-specific:linkding
 
+  # role-specific:linkwarden
+  - |-
+    {{ ({'name': (linkwarden_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'linkwarden']} if linkwarden_enabled else omit) }}
+  # /role-specific:linkwarden
+
   # role-specific:listmonk
   - |-
     {{ ({'name': (listmonk_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'listmonk']} if listmonk_enabled else omit) }}
@@ -519,6 +551,11 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
   - |-
     {{ ({'name': (mediawiki_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'mediawiki']} if mediawiki_enabled else omit) }}
   # /role-specific:mediawiki
+
+  # role-specific:meilisearch
+  - |-
+    {{ ({'name': (meilisearch_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'meilisearch']} if meilisearch_enabled else omit) }}
+  # /role-specific:meilisearch
 
   # role-specific:minecraft
   - |-
@@ -592,6 +629,11 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
   - |-
     {{ ({'name': (nextcloud_identifier + '-app-update.timer'), 'priority': 2500, 'groups': ['mash', 'nextcloud', 'nextcloud-app-update']} if nextcloud_enabled and nextcloud_app_autoupdate_enabled else omit) }}
   # /role-specific:nextcloud
+
+  # role-specific:nodebb
+  - |-
+    {{ ({'name': (nodebb_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'nodebb']} if nodebb_enabled else omit) }}
+  # /role-specific:nodebb
 
   # role-specific:notfellchen
   - |-
@@ -946,6 +988,8 @@ postgres_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base
 postgres_uid: "{{ mash_playbook_uid }}"
 postgres_gid: "{{ mash_playbook_gid }}"
 
+postgres_allowed_versions_auto: "{{ backup_borg_supported_postgres_versions | map('int') if backup_borg_enabled | default(false) and backup_borg_postgresql_enabled | default(false) else [] }}"
+
 # This includes everything for maximum safety.
 # It may not be optimal though, because some services may not be dependent on Postgres at all, etc.
 postgres_systemd_services_to_stop_for_maintenance_list_auto: "{{ devture_systemd_service_manager_services_list_auto | map(attribute='name') | reject('equalto', (postgres_identifier + '.service')) }}"
@@ -965,6 +1009,17 @@ mash_playbook_postgres_managed_databases_auto_itemized:
       } if asciinema_server_enabled and asciinema_server_database_hostname == postgres_connection_hostname else omit)
     }}
   # /role-specific:asciinema_server
+
+  # role-specific:atuin
+  - |-
+    {{
+      ({
+        'name': atuin_database_name,
+        'username': atuin_database_username,
+        'password': atuin_database_password,
+      } if atuin_enabled and atuin_database_hostname == postgres_connection_hostname and atuin_database_type == 'postgres' else omit)
+    }}
+  # /role-specific:atuin
 
   # role-specific:authelia
   - |-
@@ -1061,7 +1116,7 @@ mash_playbook_postgres_managed_databases_auto_itemized:
         'name': freshrss_database_name,
         'username': freshrss_database_username,
         'password': freshrss_database_password,
-      } if freshrss_enabled and freshrss_database_hostname == postgres_connection_hostname else omit)
+      } if freshrss_enabled and freshrss_database_hostname == postgres_connection_hostname and freshrss_database_type == 'postgres' else omit)
     }}
   # /role-specific:freshrss
 
@@ -1242,6 +1297,17 @@ mash_playbook_postgres_managed_databases_auto_itemized:
       } if linkding_enabled and linkding_database_hostname == postgres_connection_hostname and linkding_database_type == 'postgres' else omit)
     }}
   # /role-specific:linkding
+
+  # role-specific:linkwarden
+  - |-
+    {{
+      ({
+        'name': linkwarden_database_name,
+        'username': linkwarden_database_username,
+        'password': linkwarden_database_password,
+      } if linkwarden_enabled and linkwarden_database_hostname == postgres_connection_hostname else omit)
+    }}
+  # /role-specific:linkwarden
 
   # role-specific:listmonk
   - |-
@@ -1978,6 +2044,45 @@ apisix_gateway_container_labels_traefik_tls_certResolver: "{{ traefik_certResolv
 
 
 
+# role-specific:apprise
+########################################################################
+#                                                                      #
+# apprise                                                              #
+#                                                                      #
+########################################################################
+
+apprise_enabled: false
+
+apprise_identifier: "{{ mash_playbook_service_identifier_prefix }}apprise"
+
+apprise_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}apprise"
+
+apprise_uid: "{{ mash_playbook_uid }}"
+apprise_gid: "{{ mash_playbook_gid }}"
+
+apprise_container_additional_networks_auto: |
+  {{
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+  }}
+
+# Only enable Traefik labels if a hostname is set (indicating that this will be exposed publicly)
+apprise_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled and apprise_hostname | length > 0 }}"
+apprise_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+
+# role-specific:traefik
+apprise_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
+apprise_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
+# /role-specific:traefik
+
+########################################################################
+#                                                                      #
+# /apprise                                                             #
+#                                                                      #
+########################################################################
+# /role-specific:apprise
+
+
+
 # role-specific:appsmith
 ########################################################################
 #                                                                      #
@@ -2079,6 +2184,57 @@ asciinema_server_container_labels_traefik_tls_certResolver: "{{ traefik_certReso
 #                                                                      #
 ########################################################################
 # /role-specific:asciinema_server
+
+
+
+# role-specific:atuin
+########################################################################
+#                                                                      #
+# atuin                                                                #
+#                                                                      #
+########################################################################
+
+atuin_enabled: false
+
+atuin_identifier: "{{ mash_playbook_service_identifier_prefix }}atuin"
+
+atuin_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}atuin"
+
+atuin_uid: "{{ mash_playbook_uid }}"
+atuin_gid: "{{ mash_playbook_gid }}"
+
+atuin_systemd_required_services_list_auto: |
+ {{
+    ([postgres_identifier ~ '.service'] if postgres_enabled and atuin_database_hostname == postgres_connection_hostname else [])
+  }}
+
+atuin_container_additional_networks_auto: |
+  {{
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+    +
+    ([postgres_container_network] if postgres_enabled and atuin_database_hostname == postgres_connection_hostname and atuin_container_network != postgres_container_network else [])
+  }}
+
+atuin_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+atuin_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+
+# role-specific:postgres
+atuin_database_hostname: "{{ postgres_connection_hostname if postgres_enabled else '' }}"
+atuin_database_port: "{{ postgres_connection_port if postgres_enabled else '5432' }}"
+atuin_database_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'db.atuin', rounds=655555) | to_uuid }}"
+# /role-specific:postgres
+
+# role-specific:traefik
+atuin_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
+atuin_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
+# /role-specific:traefik
+
+########################################################################
+#                                                                      #
+# /atuin                                                               #
+#                                                                      #
+########################################################################
+# /role-specific:atuin
 
 
 
@@ -2313,7 +2469,7 @@ backup_borg_storage_archive_name_format: "{{ mash_playbook_service_identifier_pr
 
 backup_borg_container_image_self_build: "{{ mash_playbook_architecture not in ['amd64', 'arm32', 'arm64'] }}"
 
-backup_borg_location_source_directories:
+backup_borg_location_source_directories_auto:
   - "{{ mash_playbook_base_path }}"
 
 backup_borg_location_exclude_patterns: |
@@ -2332,23 +2488,23 @@ backup_borg_systemd_required_services_list: |
     ([mariadb_identifier ~ '.service'] if mariadb_enabled | default(false) else [])
   }}
 
-backup_borg_mysql_enabled: "{{ mariadb_enabled }}"
-backup_borg_postgresql_enabled: "{{ postgres_enabled }}"
+backup_borg_mysql_enabled: "{{ mariadb_enabled | default(false) }}"
+backup_borg_postgresql_enabled: "{{ postgres_enabled | default(false) }}"
 
 # role-specific:mariadb
-backup_borg_mysql_databases_hostname: "{{ mariadb_connection_hostname if mariadb_enabled else '' }}"
+backup_borg_mysql_databases_hostname: "{{ mariadb_connection_hostname if mariadb_enabled | default(false) else '' }}"
 backup_borg_mysql_databases_port: "{{ mariadb_connection_port if mariadb_enabled | default(false) else '3306' }}"
-backup_borg_mysql_databases_password: "{{ mariadb_root_password if mariadb_enabled else '' }}"
+backup_borg_mysql_databases_password: "{{ mariadb_root_password if mariadb_enabled | default(false) else '' }}"
 backup_borg_mysql_databases_username: "root"
-backup_borg_mysql_databases_auto: "{{ mariadb_managed_databases | map(attribute='name') if mariadb_enabled else [] }}"
+backup_borg_mysql_databases_auto: "{{ mariadb_managed_databases | map(attribute='name') if mariadb_enabled | default(false) else [] }}"
 # /role-specific:mariadb
 
 # role-specific:postgres
-backup_borg_postgresql_databases_hostname: "{{ postgres_connection_hostname if postgres_enabled else '' }}"
-backup_borg_postgresql_databases_port: "{{ postgres_connection_port if postgres_enabled else '5432' }}"
-backup_borg_postgresql_databases_username: "{{ postgres_connection_username if postgres_enabled else '' }}"
-backup_borg_postgresql_databases_password: "{{ postgres_connection_password if postgres_enabled else '' }}"
-backup_borg_postgresql_databases_auto: "{{ postgres_managed_databases | map(attribute='name') if postgres_enabled else [] }}"
+backup_borg_postgresql_databases_hostname: "{{ postgres_connection_hostname if postgres_enabled | default(false) else '' }}"
+backup_borg_postgresql_databases_port: "{{ postgres_connection_port if postgres_enabled | default(false) else '5432' }}"
+backup_borg_postgresql_databases_username: "{{ postgres_connection_username if postgres_enabled | default(false) else '' }}"
+backup_borg_postgresql_databases_password: "{{ postgres_connection_password if postgres_enabled | default(false) else '' }}"
+backup_borg_postgresql_databases_auto: "{{ postgres_managed_databases | map(attribute='name') if postgres_enabled | default(false) else [] }}"
 # /role-specific:postgres
 
 ########################################################################
@@ -2357,6 +2513,129 @@ backup_borg_postgresql_databases_auto: "{{ postgres_managed_databases | map(attr
 #                                                                      #
 ########################################################################
 # /role-specific:backup_borg
+
+
+
+# role-specific:barassistant
+########################################################################
+#                                                                      #
+# barassistant                                                         #
+#                                                                      #
+########################################################################
+
+barassistant_enabled: false
+
+barassistant_identifier: "{{ mash_playbook_service_identifier_prefix }}barassistant"
+
+barassistant_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}barassistant"
+
+barassistant_uid: "{{ mash_playbook_uid }}"
+barassistant_gid: "{{ mash_playbook_gid }}"
+
+barassistant_server_systemd_wanted_services_list_auto: |
+  {{
+    ([(exim_relay_identifier | default('mash-exim-relay')) ~ '.service'] if (exim_relay_enabled | default(false) and barassistant_server_environment_variables_mail_host == exim_relay_identifier | default('mash-exim-relay')) else [])
+    +
+    ([meilisearch_identifier ~ '.service'] if meilisearch_identifier | default(false) else [])
+  }}
+
+barassistant_saltrim_systemd_wanted_services_list_auto: |
+  {{
+    ([(exim_relay_identifier | default('mash-exim-relay')) ~ '.service'] if (exim_relay_enabled | default(false) and barassistant_server_environment_variables_mail_host == exim_relay_identifier | default('mash-exim-relay')) else [])
+    +
+    ([meilisearch_identifier ~ '.service'] if meilisearch_identifier | default(false) else [])
+  }}
+
+barassistant_server_container_additional_networks_auto: |
+  {{
+    ([exim_relay_container_network | default('mash-exim-relay')] if (exim_relay_enabled | default(false) and barassistant_server_environment_variables_mail_host == exim_relay_identifier | default('mash-exim-relay') and barassistant_container_network != exim_relay_container_network) else [])
+    +
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+    +
+    ([meilisearch_container_network] if meilisearch_enabled | default(false) and barassistant_container_network != meilisearch_container_network else [])
+  }}
+
+barassistant_saltrim_container_additional_networks_auto: |
+  {{
+    ([exim_relay_container_network | default('mash-exim-relay')] if (exim_relay_enabled | default(false) and barassistant_server_environment_variables_mail_host == exim_relay_identifier | default('mash-exim-relay') and barassistant_container_network != exim_relay_container_network) else [])
+    +
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+    +
+    ([meilisearch_container_network] if meilisearch_enabled | default(false) and barassistant_container_network != meilisearch_container_network else [])
+  }}
+
+barassistant_saltrim_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+barassistant_saltrim_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+barassistant_server_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+barassistant_server_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+
+# role-specific:exim_relay
+barassistant_mailer_enabled: "{{ exim_relay_enabled }}"
+barassistant_server_environment_variables_mail_mailer: smtp
+barassistant_server_environment_variables_mail_host: "{{ exim_relay_identifier if exim_relay_enabled else '' }}"
+barassistant_server_environment_variables_mail_port: 8025
+barassistant_server_environment_variables_mail_from_address: "{{ exim_relay_sender_address if exim_relay_enabled else '' }}"
+# /role-specific:exim_relay
+
+# role-specific:meilisearch
+barassistant_saltrim_environment_variables_meilisearch_url: "{{ barassistant_server_environment_variables_meilisearch_host }}"
+barassistant_server_environment_variables_meilisearch_host: "{{ meilisearch_scheme }}://{{ meilisearch_hostname }}"
+barassistant_server_environment_variables_meilisearch_key: "{{ meilisearch_default_admin_api_key }}"
+# /role-specific:meilisearch
+
+# role-specific:traefik
+barassistant_saltrim_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
+barassistant_saltrim_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
+barassistant_server_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
+barassistant_server_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
+# /role-specific:traefik
+
+########################################################################
+#                                                                      #
+# /barassistant                                                        #
+#                                                                      #
+########################################################################
+# /role-specific:barassistant
+
+
+
+# role-specific:browserless
+########################################################################
+#                                                                      #
+# browserless                                                          #
+#                                                                      #
+########################################################################
+
+browserless_enabled: false
+
+browserless_identifier: "{{ mash_playbook_service_identifier_prefix }}browserless"
+
+browserless_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}browserless"
+
+# Currently Browserless can only run as root user
+browserless_uid: "0"
+browserless_gid: "0"
+
+browserless_container_additional_networks_auto: |
+  {{
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+  }}
+
+# Only enable Traefik labels if a hostname is set (indicating that this will be exposed publicly)
+browserless_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled and browserless_hostname | length > 0 }}"
+browserless_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+
+# role-specific:traefik
+browserless_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
+browserless_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
+# /role-specific:traefik
+
+########################################################################
+#                                                                      #
+# /browserless                                                         #
+#                                                                      #
+########################################################################
+# /role-specific:browserless
 
 
 
@@ -3633,30 +3912,35 @@ freshrss_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base
 freshrss_uid: "0"
 freshrss_gid: "33"
 
-freshrss_systemd_required_services_list: |
+freshrss_systemd_required_services_list_auto: |
   {{
-    ([devture_systemd_docker_base_docker_service_name] if devture_systemd_docker_base_docker_service_name else [])
+    ([mariadb_identifier ~ '.service'] if mariadb_enabled | default(false) and freshrss_database_mysql_hostname == mariadb_connection_hostname and freshrss_database_type == 'mysql' else [])
     +
-    ([postgres_identifier ~ '.service'] if postgres_enabled and freshrss_database_hostname == postgres_connection_hostname else [])
+    ([postgres_identifier ~ '.service'] if postgres_enabled | default(false) and freshrss_database_hostname == postgres_connection_hostname and freshrss_database_type == 'postgres' else [])
   }}
 
 freshrss_container_additional_networks_auto: |
   {{
+    ([mariadb_container_network] if mariadb_enabled | default(false) and freshrss_database_mysql_hostname == mariadb_connection_hostname and freshrss_container_network != mariadb_container_network and freshrss_database_type == 'mysql' else [])
+    +
     ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
     +
-    ([postgres_container_network] if postgres_enabled and freshrss_database_hostname == postgres_connection_hostname and freshrss_container_network != postgres_container_network else [])
+    ([postgres_container_network] if postgres_enabled | default(false) and freshrss_database_hostname == postgres_connection_hostname and freshrss_container_network != postgres_container_network and freshrss_database_type == 'postgres' else [])
   }}
 
 freshrss_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
 freshrss_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
 
+# role-specific:mariadb
+freshrss_database_mysql_hostname: "{{ mariadb_connection_hostname if mariadb_enabled else '' }}"
+freshrss_database_mysql_port: "{{ mariadb_connection_port if mariadb_enabled else '3306' }}"
+freshrss_database_mysql_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'm.freshrss', rounds=655555) | to_uuid }}"
+# /role-specific:mariadb
+
 # role-specific:postgres
 freshrss_database_hostname: "{{ postgres_connection_hostname if postgres_enabled else '' }}"
 freshrss_database_port: "{{ postgres_connection_port if postgres_enabled else '5432' }}"
-#
-# Intentionally not auto-generating freshrss_database_password.
-# It's meant to be explicitly defined, so that it can be used in the setup wizard after installation.
-#
+freshrss_database_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'p.freshrss', rounds=655555) | to_uuid }}"
 # /role-specific:postgres
 
 # role-specific:traefik
@@ -4005,7 +4289,7 @@ gotosocial_container_additional_networks_auto: |
 gotosocial_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
 gotosocial_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
 
-gotosocial_container_labels_metrics_enabled: "{{ mash_playbook_metrics_exposure_enabled }}"
+gotosocial_container_labels_metrics_enabled: "{{ gotosocial_metrics_enabled and mash_playbook_metrics_exposure_enabled }}"
 gotosocial_container_labels_metrics_hostname: "{{ mash_playbook_metrics_exposure_hostname }}"
 gotosocial_container_labels_metrics_path_prefix: "{{ mash_playbook_metrics_exposure_path_prefix }}/{{ gotosocial_identifier }}"
 gotosocial_container_labels_metrics_middleware_basic_auth_enabled: "{{ mash_playbook_metrics_exposure_http_basic_auth_enabled }}"
@@ -4228,7 +4512,7 @@ homarr_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_d
 homarr_uid: "{{ mash_playbook_uid }}"
 homarr_gid: "{{ mash_playbook_gid }}"
 
-homarr_systemd_required_services_list: |
+homarr_systemd_required_services_list_auto: |
   {{
     ([container_socket_proxy_identifier + '.service'] if container_socket_proxy_enabled | default(false) else [])
     +
@@ -5879,6 +6163,79 @@ joplin_server_container_labels_traefik_tls_certResolver: "{{ traefik_certResolve
 
 
 
+# role-specific:karakeep
+########################################################################
+#                                                                      #
+# karakeep                                                             #
+#                                                                      #
+########################################################################
+
+karakeep_enabled: false
+
+karakeep_identifier: "{{ mash_playbook_service_identifier_prefix }}karakeep"
+
+karakeep_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}karakeep"
+
+# Currently root access without read-only option is necessary for Karakeep to work properly.
+# See: https://github.com/karakeep-app/karakeep/issues/865
+karakeep_uid: "0"
+karakeep_gid: "0"
+
+karakeep_systemd_wanted_services_list_auto: |
+  {{
+    ([browserless_identifier ~ '.service'] if browserless_enabled else [])
+    +
+    ([(exim_relay_identifier | default('mash-exim-relay')) ~ '.service'] if (exim_relay_enabled | default(false) and karakeep_environment_variables_smtp_host == exim_relay_identifier | default('mash-exim-relay')) else [])
+    +
+    ([meilisearch_identifier ~ '.service'] if meilisearch_enabled | default(false) else [])
+  }}
+
+karakeep_container_additional_networks_auto: |
+  {{
+    ([browserless_container_network] if browserless_enabled | default(false) and karakeep_container_network != browserless_container_network else [])
+    +
+    ([exim_relay_container_network | default('mash-exim-relay')] if (exim_relay_enabled | default(false) and karakeep_environment_variables_smtp_host == exim_relay_identifier | default('mash-exim-relay') and karakeep_container_network != exim_relay_container_network) else [])
+    +
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+    +
+    ([meilisearch_container_network] if meilisearch_enabled | default(false) and karakeep_container_network != meilisearch_container_network else [])
+  }}
+
+karakeep_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+karakeep_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+
+karakeep_environment_variables_nextauth_secret: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'karakeep.ns', rounds=655555) | to_uuid }}"
+
+# role-specific:browserless
+karakeep_environment_variables_browser_websocket_url: "ws://{{ browserless_identifier }}:{{ browserless_container_http_port }}/chromium/playwright"
+# /role-specific:browserless
+
+# role-specific:exim_relay
+karakeep_mailer_enabled: "{{ exim_relay_enabled }}"
+karakeep_environment_variables_smtp_host: "{{ exim_relay_identifier if exim_relay_enabled else '' }}"
+karakeep_environment_variables_smtp_port: 8025
+karakeep_environment_variables_smtp_from: "{{ exim_relay_sender_address if exim_relay_enabled else '' }}"
+# /role-specific:exim_relay
+
+# role-specific:meilisearch
+karakeep_environment_variables_meili_addr: "http://{{ meilisearch_identifier }}:{{ meilisearch_container_http_port }}"
+karakeep_environment_variables_meili_key: "{{ meilisearch_default_admin_api_key }}"
+# /role-specific:meilisearch
+
+# role-specific:traefik
+karakeep_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
+karakeep_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
+# /role-specific:traefik
+
+########################################################################
+#                                                                      #
+# /karakeep                                                            #
+#                                                                      #
+########################################################################
+# /role-specific:karakeep
+
+
+
 # role-specific:keycloak
 ########################################################################
 #                                                                      #
@@ -6312,6 +6669,70 @@ linkding_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_pri
 
 
 
+# role-specific:linkwarden
+########################################################################
+#                                                                      #
+# linkwarden                                                           #
+#                                                                      #
+########################################################################
+
+linkwarden_enabled: false
+
+linkwarden_identifier: "{{ mash_playbook_service_identifier_prefix }}linkwarden"
+
+linkwarden_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}linkwarden"
+
+# Currently root access without read-only option is necessary for Linkwarden to work properly.
+# See: https://github.com/linkwarden/linkwarden/issues/799
+linkwarden_uid: "0"
+linkwarden_gid: "0"
+
+linkwarden_systemd_required_services_list_auto: |
+  {{
+    ([meilisearch_identifier ~ '.service'] if meilisearch_enabled | default(false) else [])
+    +
+    ([postgres_identifier ~ '.service'] if postgres_enabled and linkwarden_database_hostname == postgres_connection_hostname else [])
+  }}
+
+linkwarden_container_additional_networks_auto: |
+  {{
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+    +
+    ([meilisearch_container_network] if meilisearch_enabled | default(false) and linkwarden_container_network != meilisearch_container_network else [])
+    +
+    ([postgres_container_network] if postgres_enabled and linkwarden_database_hostname == postgres_connection_hostname and linkwarden_container_network != postgres_container_network else [])
+  }}
+
+linkwarden_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+linkwarden_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+
+linkwarden_environment_variables_nextauth_secret: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'linkwarden.na', rounds=655555) | to_uuid }}"
+
+# role-specific:meilisearch
+linkwarden_environment_variables_meili_host: "http://{{ meilisearch_identifier }}:{{ meilisearch_container_http_port }}"
+linkwarden_environment_variables_meili_key: "{{ meilisearch_default_admin_api_key }}"
+# /role-specific:meilisearch
+
+# role-specific:postgres
+linkwarden_database_hostname: "{{ postgres_connection_hostname if postgres_enabled else '' }}"
+linkwarden_database_port: "{{ postgres_connection_port if postgres_enabled else '5432' }}"
+linkwarden_database_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'linkwarden.db', rounds=655555) | to_uuid }}"
+# /role-specific:postgres
+
+# role-specific:traefik
+linkwarden_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
+linkwarden_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
+# /role-specific:traefik
+
+########################################################################
+#                                                                      #
+# /linkwarden                                                          #
+#                                                                      #
+########################################################################
+# /role-specific:linkwarden
+
+
+
 # role-specific:listmonk
 ########################################################################
 #                                                                      #
@@ -6536,6 +6957,17 @@ mash_playbook_mariadb_managed_databases_auto_itemized:
       } if forgejo_enabled and forgejo_database_mysql_hostname == mariadb_connection_hostname and forgejo_database_type == 'mysql' else omit)
     }}
   # /role-specific:forgejo
+
+  # role-specific:freshrss
+  - |-
+    {{
+      ({
+        'name': freshrss_database_name,
+        'username': freshrss_database_mysql_username,
+        'password': freshrss_database_mysql_password,
+      } if freshrss_enabled and freshrss_database_mysql_hostname == mariadb_connection_hostname and freshrss_database_type == 'mysql' else omit)
+    }}
+  # /role-specific:freshrss
 
   # role-specific:gotify
   - |-
@@ -6912,6 +7344,47 @@ mediawiki_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_pr
 #                                                                      #
 ########################################################################
 # /role-specific:mediawiki
+
+
+
+# role-specific:meilisearch
+########################################################################
+#                                                                      #
+# meilisearch                                                          #
+#                                                                      #
+########################################################################
+
+meilisearch_enabled: false
+
+meilisearch_identifier: "{{ mash_playbook_service_identifier_prefix }}meilisearch"
+
+meilisearch_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}meilisearch"
+
+meilisearch_uid: "{{ mash_playbook_uid }}"
+meilisearch_gid: "{{ mash_playbook_gid }}"
+
+meilisearch_container_additional_networks_auto: |
+  {{
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+  }}
+
+# Only enable Traefik labels if a hostname is set (indicating that this will be exposed publicly)
+meilisearch_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled and meilisearch_hostname | length > 0 }}"
+meilisearch_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+
+meilisearch_environment_variables_master_key: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'meilisearch.k', rounds=655555) | to_uuid }}"
+
+# role-specific:traefik
+meilisearch_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
+meilisearch_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
+# /role-specific:traefik
+
+########################################################################
+#                                                                      #
+# /meilisearch                                                         #
+#                                                                      #
+########################################################################
+# /role-specific:meilisearch
 
 
 
@@ -7546,6 +8019,45 @@ nextcloud_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_pr
 #                                                                      #
 ########################################################################
 # /role-specific:nextcloud
+
+
+
+# role-specific:nodebb
+########################################################################
+#                                                                      #
+# nodebb                                                               #
+#                                                                      #
+########################################################################
+
+nodebb_enabled: false
+
+nodebb_identifier: "{{ mash_playbook_service_identifier_prefix }}nodebb"
+
+nodebb_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}nodebb"
+
+# Currently NodeBB can only run as root user
+nodebb_uid: "0"
+nodebb_gid: "0"
+
+nodebb_container_additional_networks_auto: |
+  {{
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+  }}
+
+nodebb_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+nodebb_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+
+# role-specific:traefik
+nodebb_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
+nodebb_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
+# /role-specific:traefik
+
+########################################################################
+#                                                                      #
+# /nodebb                                                              #
+#                                                                      #
+########################################################################
+# /role-specific:nodebb
 
 
 
@@ -8219,7 +8731,7 @@ pocket_id_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_bas
 pocket_id_uid: "{{ mash_playbook_uid }}"
 pocket_id_gid: "{{ mash_playbook_gid }}"
 
-pocket_id_systemd_required_services_list: |
+pocket_id_systemd_required_services_list_auto: |
   {{
     ([postgres_identifier ~ '.service'] if postgres_enabled | default(false) and pocket_id_database_hostname == postgres_connection_hostname and pocket_id_database_type == 'postgres' else [])
   }}
@@ -9733,8 +10245,6 @@ tinyauth_container_additional_networks_auto: |
     +
     ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
   }}
-
-tinyauth_environment_variables_secret: "{{ ('%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'tinyauth.s', rounds=655555)) | b64encode | truncate(length=32, killwords=True, end='', leeway=None) }}"
 
 tinyauth_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
 tinyauth_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"

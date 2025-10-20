@@ -24,13 +24,17 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 | [AnonymousOverflow](https://github.com/httpjamesm/AnonymousOverflow) | View StackOverflow threads without exposing your IP address, browsing habits, and other browser fingerprinting data to the website | [Link](services/anonymousoverflow.md) |
 | [APISIX Dashboard](https://apisix.apache.org/docs/dashboard/USER_GUIDE/) | A web UI for [APISIX Gateway](services/apisix-gateway.md) | [Link](services/apisix-dashboard.md) |
 | [APISIX Gateway](https://apisix.apache.org/docs/apisix/getting-started/README/) | An API Gateway, Ingress Controller, etc | [Link](services/apisix-gateway.md) |
+| [Apprise API](https://github.com/caronc/apprise-api) | Lightweight REST framework that wraps the [Apprise](https://github.com/caronc/apprise) Notification Library | [Link](services/apprise.md) |
 | [Appsmith](https://www.appsmith.com/) | Platform for building and deploying custom internal tools and applications without writing code | [Link](services/appsmith.md) |
 | [asciinema server](https://github.com/asciinema/asciinema-server) | Server-side component of the [asciinema](https://docs.asciinema.org/) system, a suite of tools for recording, streaming, and sharing terminal sessions) | [Link](services/asciinema-server.md) |
+| [Atuin server](https://docs.atuin.sh/self-hosting/server-setup/) | Data synchronization server for [Atuin](https://atuin.sh/) | [Link](services/atuin.md) |
 | [audiobookshelf](https://www.audiobookshelf.org/) | Self-hosted audiobook and podcast server | [Link](services/audiobookshelf.md) |
 | [Authelia](https://www.authelia.com/) | An open-source authentication and authorization server that can work as a companion to [common reverse proxies](https://www.authelia.com/overview/prologue/supported-proxies/) (like [Traefik](services/traefik.md) frequently used by this playbook) | [Link](services/authelia.md) |
 | [authentik](https://goauthentik.io/) | An open-source Identity Provider (IdP) focused on flexibility and versatility. | [Link](services/authentik.md) |
 | [Autobrr](https://autobrr.com/) | Modern, easy to use download automation for torrents and usenet. | [Link](services/autobrr.md) |
+| [Bar Assistant](https://github.com/karlomikus/bar-assistant/) | Managing cocktail recipes at your home bar with cocktail-oriented features | [Link](services/barassistant.md) |
 | [BorgBackup](https://www.borgbackup.org/) (via [borgmatic](https://torsion.org/borgmatic/)) | A deduplicating backup program with optional compression and encryption| [Link](services/backup-borg.md) |
+| [Browserless](https://docs.browserless.io) | Deploy headless browsers in Docker | [Link](services/browserless.md) |
 | [Calibre-Web](https://github.com/janeczku/calibre-web) | Web app for browsing, reading and downloading eBooks stored in a [Calibre](https://calibre-ebook.com/) database | [Link](services/calibre-web.md) |
 | [Changedetection.io](https://github.com/dgtlmoon/changedetection.io) | A simple website change detection and restock monitoring solution. | [Link](services/changedetection.md) |
 | [ClickHouse](https://clickhouse.com/) | An open-source column-oriented DBMS for online analytical processing (OLAP) that allows users to generate analytical reports using SQL queries in real-time. | [Link](services/clickhouse.md) |
@@ -85,6 +89,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 | [Jellyseerr](https://github.com/Fallenbagel/jellyseerr)| An open-source media request and discovery manager for Jellyfin, Plex, and Emby | [Link](services/jellyseerr.md) |
 | [Jitsi](https://jitsi.org/) | A fully encrypted, 100% Open Source video conferencing solution | [Link](services/jitsi.md) |
 | [Joplin Server](https://joplinapp.org/help/dev/spec/architecture#joplin-server) | Self-hosted server component for [Joplin](https://joplinapp.org/) | [Link](services/joplin-server.md) |
+| [Karakeep](https://karakeep.app/) | Self-hosted, open-source bookmark manager to collect, organize and archive webpages | [Link](services/karakeep.md) |
 | [Keycloak](https://www.keycloak.org/) | An open source identity and access management solution. | [Link](services/keycloak.md) |
 | [KeyDB](https://docs.keydb.dev/) | An in-memory data store used by millions of developers as a database, cache, streaming engine, and message broker. | [Link](services/keydb.md) |
 | [Kutt](https://kutt.it/) | Modern URL shortener with support for custom domains | [Link](services/kutt.md) |
@@ -93,6 +98,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 | [LanguageTool](https://languagetool.org/) | An open source online grammar, style and spell checker | [Link](services/languagetool.md) |
 | [LimeSurvey](https://www.limesurvey.org) | Feature-rich free software for web based forms and surveys | [Link](services/limesurvey.md) |
 | [linkding](https://github.com/sissbruecker/linkding/) | Bookmark manager designed to be minimal and fast. | [Link](services/linkding.md) |
+| [Linkwarden](https://github.com/linkwarden/linkwarden) | Self-hosted, open-source collaborative bookmark manager to collect, organize and archive webpages | [Link](services/linkwarden.md) |
 | [listmonk](https://listmonk.app) | Self-hosted newsletter and mailing list manager. | [Link](services/listmonk.md) |
 | [LLDAP](https://github.com/lldap/lldap/) | Lightweight authentication server that provides an opinionated, simplified LDAP interface for authentication | [Link](services/lldap.md) |
 | [MariaDB](https://mariadb.org/) | A powerful, open source object-relational database system | [Link](services/mariadb.md) |
@@ -100,6 +106,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 | [Matrix Rooms Search API](https://github.com/etkecc/mrs) | A fully-featured, standalone, matrix rooms search service. | [Link](services/mrs.md) |
 | [Matterbridge](https://github.com/42wim/matterbridge) | Bridges Messenger Chatrooms | [Link](services/matterbridge.md) |
 | [MediaWiki](https://www.mediawiki.org) | Popular free and open-source wiki software | [Link](services/mediawiki.md) |
+| [Meilisearch](https://www.meilisearch.com) | Typo-tolerant fulltext search engine with a RESTful search API | [Link](services/meilisearch.md) |
 | [Minecraft](https://docker-minecraft-server.readthedocs.io) | The popular voxel-based sandbox game | [Link](services/minecraft.md) |
 | [Miniflux](https://miniflux.app/) | Minimalist and opinionated feed reader. | [Link](services/miniflux.md) |
 | [Misskey](https://misskey-hub.net/en/) | Free decentralized microblogging platform based on the ActivityPub protocol | [Link](services/misskey.md) |
@@ -112,6 +119,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 | [Neko](https://neko.m1k1o.net/) | A self-hosted virtual browser or even desktop environment | [Link](services/neko.md) |
 | [NetBox](https://docs.netbox.dev/en/stable/) | Web application that provides [IP address management (IPAM)](https://en.wikipedia.org/wiki/IP_address_management) and [data center infrastructure management (DCIM)](https://en.wikipedia.org/wiki/Data_center_management#Data_center_infrastructure_management) functionality | [Link](services/netbox.md) |
 | [Nextcloud](https://nextcloud.com/) | The most popular self-hosted collaboration solution for tens of millions of users at thousands of organizations across the globe. | [Link](services/nextcloud.md) |
+| [NodeBB](https://github.com/NodeBB/NodeBB) | Node.js based free forum software | [Link](services/nodebb.md) |
 | [Notfellchen](https://codeberg.org/moanos/notfellchen) | Self-hosted tool to list animals available for adoption to increase their chance of finding a forever-home | [Link](services/notfellchen.md) |
 | [ntfy](https://ntfy.sh/) | Simple HTTP-based pub-sub notification service to send you push notifications from any computer, using simple HTTP PUT or POST requests. | [Link](services/ntfy.md) |
 | [OAuth2-Proxy](https://oauth2-proxy.github.io/oauth2-proxy/) | A reverse proxy and static file server that provides authentication using OpenID Connect Providers (Google, GitHub, [Keycloak](services/keycloak.md), and others) to SSO-protect services which do not support SSO natively. | [Link](services/oauth2-proxy.md) |
