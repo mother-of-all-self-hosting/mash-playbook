@@ -386,7 +386,7 @@ freshrss_hostname: "rss.{{domain}}"
 # Put a strong password below, generated with `pwgen -s 64 1` or in another way.
 # You will need to use this password in the setup wizard after installation.
 freshrss_database_password: "{{vault_freshrss_database_password}}"
-
+freshrss_database_type: postgres
 
 ########################################################################
 #                                                                      #
