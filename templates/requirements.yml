@@ -420,6 +420,10 @@
   version: v32-0
   name: nextcloud
   activation_prefix: nextcloud_
+- src: git+https://codeberg.org/acioustick/ansible-role-nodebb.git
+  version: v4.6.1-0
+  name: nodebb
+  activation_prefix: nodebb_
 - src: git+https://codeberg.org/moanos/ansible-role-notfellchen.git
   version: v1.3.0-0
   name: notfellchen
