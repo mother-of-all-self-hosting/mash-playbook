@@ -440,7 +440,7 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
 
   # role-specific:jellyseerr
   - |-
-    {{ ({'name': (jellyseerr_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'jellyseerr']} if jellyfin_enabled else omit) }}
+    {{ ({'name': (jellyseerr_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'jellyseerr']} if jellyseerr_enabled else omit) }}
   # /role-specific:jellyseerr
 
   # role-specific:jitsi
