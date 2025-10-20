@@ -485,6 +485,10 @@
     - role: galaxy/nextcloud
     # /role-specific:nextcloud
 
+    # role-specific:nodebb
+    - role: galaxy/nodebb
+    # /role-specific:nodebb
+
     # role-specific:notfellchen
     - role: galaxy/notfellchen
     # /role-specific:notfellchen

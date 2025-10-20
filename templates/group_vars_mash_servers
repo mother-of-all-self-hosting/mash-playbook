@@ -630,6 +630,11 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
     {{ ({'name': (nextcloud_identifier + '-app-update.timer'), 'priority': 2500, 'groups': ['mash', 'nextcloud', 'nextcloud-app-update']} if nextcloud_enabled and nextcloud_app_autoupdate_enabled else omit) }}
   # /role-specific:nextcloud
 
+  # role-specific:nodebb
+  - |-
+    {{ ({'name': (nodebb_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'nodebb']} if nodebb_enabled else omit) }}
+  # /role-specific:nodebb
+
   # role-specific:notfellchen
   - |-
     {{ ({'name': (notfellchen_identifier  + '.service'), 'priority': 2000, 'groups': ['mash', 'notfellchen']} if notfellchen_enabled else omit) }}
@@ -8012,6 +8017,45 @@ nextcloud_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_pr
 #                                                                      #
 ########################################################################
 # /role-specific:nextcloud
+
+
+
+# role-specific:nodebb
+########################################################################
+#                                                                      #
+# nodebb                                                               #
+#                                                                      #
+########################################################################
+
+nodebb_enabled: false
+
+nodebb_identifier: "{{ mash_playbook_service_identifier_prefix }}nodebb"
+
+nodebb_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}nodebb"
+
+# Currently NodeBB can only run as root user
+nodebb_uid: "0"
+nodebb_gid: "0"
+
+nodebb_container_additional_networks_auto: |
+  {{
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+  }}
+
+nodebb_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+nodebb_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+
+# role-specific:traefik
+nodebb_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
+nodebb_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
+# /role-specific:traefik
+
+########################################################################
+#                                                                      #
+# /nodebb                                                              #
+#                                                                      #
+########################################################################
+# /role-specific:nodebb
 
 
 
