@@ -12,6 +12,7 @@ SPDX-FileCopyrightText: 2023 Antonis Christofides
 SPDX-FileCopyrightText: 2023 Felix Stupp
 SPDX-FileCopyrightText: 2023 Julian-Samuel Gebühr
 SPDX-FileCopyrightText: 2023 Pierre 'McFly' Marty
+SPDX-FileCopyrightText: 2024 Thomas Miceli
 SPDX-FileCopyrightText: 2024 - 2025 Suguru Hirahara
 
 SPDX-License-Identifier: AGPL-3.0-or-later
@@ -19,21 +20,20 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
 # NodeBB
 
-The playbook can install and configure [NodeBB](https://nodebb-hub.net/en/) for you.
+The playbook can install and configure [NodeBB](https://github.com/NodeBB/NodeBB/) for you.
 
-NodeBB is a free decentralized microblogging platform based on the ActivityPub protocol, which can connect to other Fediverse platforms such as Mastodon and PeerTube.
+NodeBB is a Node.js based free forum software.
 
-See the project's [documentation](https://nodebb-hub.net/en/docs/) to learn what NodeBB does and why it might be useful to you.
+See the project's [documentation](https://docs.nodebb.org/) to learn what NodeBB does and why it might be useful to you.
 
-For details about configuring the [Ansible role for NodeBB](https://github.com/mother-of-all-self-hosting/ansible-role-nodebb), you can check them via:
-- 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-nodebb/blob/main/docs/configuring-nodebb.md) online
+For details about configuring the [Ansible role for NodeBB](https://codeberg.org/acioustick/ansible-role-nodebb), you can check them via:
+- 🌐 [the role's documentation](https://codeberg.org/acioustick/ansible-role-nodebb/src/branch/master/docs/configuring-nodebb.md) online
 - 📁 `roles/galaxy/nodebb/docs/configuring-nodebb.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 ## Dependencies
 
 This service requires the following other services:
 
-- [Postgres](postgres.md) database
 - [Traefik](traefik.md) reverse-proxy server
 - [Valkey](valkey.md) data-store; see [below](#configure-valkey) for details about installation
 
@@ -58,9 +58,6 @@ nodebb_hostname: nodebb.example.com
 #                                                                      #
 ########################################################################
 ```
-
->[!WARNING]
-> Once the instance has started, changing the hostname will break the instance!
 
 **Note**: hosting NodeBB under a subpath (by configuring the `nodebb_path_prefix` variable) does not seem to be possible due to NodeBB's technical limitations.
 
@@ -244,14 +241,10 @@ Note that running the `just` commands for installation (`just install-all` or `j
 
 After installation, the NodeBB instance becomes available at the URL specified with `nodebb_hostname`. With the configuration above, the service is hosted at `https://nodebb.example.com`.
 
-To get started, open the URL with a web browser, and follow the set up wizard.
+To get started, open the URL with a web browser, and follow the set up wizard. Make sure that the scheme (`HTTPS` or `HTTP`) for the public facing URL is detected properly, and fix it if not.
+
+Refer to [this section](https://codeberg.org/acioustick/ansible-role-nodebb/src/branch/master/docs/configuring-nodebb.md#usage) on the role's documentation for more information.
 
 ## Troubleshooting
 
-See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-nodebb/blob/main/docs/configuring-nodebb.md#troubleshooting) on the role's documentation for details.
-
-## Related services
-
-- [Funkwhale](funkwhale.md) — Community-driven project that lets you listen and share music and audio in the Fediverse
-- [GoToSocial](gotosocial.md) — Self-hosted ActivityPub social network server
-- [PeerTube](peertube.md) — Tool for sharing online videos
+See [this section](https://codeberg.org/acioustick/ansible-role-nodebb/src/branch/master/docs/configuring-nodebb.md#troubleshooting) on the role's documentation for details.
