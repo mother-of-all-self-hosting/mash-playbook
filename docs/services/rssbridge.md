@@ -17,17 +17,17 @@ SPDX-FileCopyrightText: 2024 - 2025 Suguru Hirahara
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 
-# ConvertX
+# RSS-Bridge
 
-The playbook can install and configure [ConvertX](https://github.com/C4illin/ConvertX) for you.
+The playbook can install and configure [RSS-Bridge](https://github.com/C4illin/RSS-Bridge) for you.
 
-ConvertX is a self-hosted online file converter which supports a lot of different formats for pictures, video, images, document files, etc.
+RSS-Bridge is a self-hosted online file converter which supports a lot of different formats for pictures, video, images, document files, etc.
 
-See the project's [documentation](https://github.com/C4illin/ConvertX/blob/main/README.md) to learn what ConvertX does and why it might be useful to you.
+See the project's [documentation](https://github.com/C4illin/RSS-Bridge/blob/main/README.md) to learn what RSS-Bridge does and why it might be useful to you.
 
-For details about configuring the [Ansible role for ConvertX](https://github.com/mother-of-all-self-hosting/ansible-role-convertx), you can check them via:
-- 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-convertx/blob/main/docs/configuring-convertx.md) online
-- 📁 `roles/galaxy/convertx/docs/configuring-convertx.md` locally, if you have [fetched the Ansible roles](../installing.md)
+For details about configuring the [Ansible role for RSS-Bridge](https://github.com/mother-of-all-self-hosting/ansible-role-rssbridge), you can check them via:
+- 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-rssbridge/blob/main/docs/configuring-rssbridge.md) online
+- 📁 `roles/galaxy/rssbridge/docs/configuring-rssbridge.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 ## Dependencies
 
@@ -42,34 +42,34 @@ To enable this service, add the following configuration to your `vars.yml` file 
 ```yaml
 ########################################################################
 #                                                                      #
-# convertx                                                             #
+# rssbridge                                                            #
 #                                                                      #
 ########################################################################
 
-convertx_enabled: true
+rssbridge_enabled: true
 
-convertx_hostname: mash.example.com
-convertx_environment_variables_webroot: /convertx
+rssbridge_hostname: mash.example.com
+rssbridge_environment_variables_webroot: /rssbridge
 
 ########################################################################
 #                                                                      #
-# /convertx                                                            #
+# /rssbridge                                                           #
 #                                                                      #
 ########################################################################
 ```
 
-As the most of the necessary settings for the role have been taken care of by the playbook, you can enable ConvertX on your server with this minimum configuration.
+As the most of the necessary settings for the role have been taken care of by the playbook, you can enable RSS-Bridge on your server with this minimum configuration.
 
-See the role's documentation for details about configuring ConvertX per your preference (such as [enabling account registration](https://github.com/mother-of-all-self-hosting/ansible-role-convertx/blob/main/docs/configuring-convertx.md#enable-account-registration-optional)).
+See the role's documentation for details about configuring RSS-Bridge per your preference (such as [enabling account registration](https://github.com/mother-of-all-self-hosting/ansible-role-rssbridge/blob/main/docs/configuring-rssbridge.md#enable-account-registration-optional)).
 
-By deploying an authentication service like [Tinyauth](tinyauth.md), you can disable the authentication function provided by ConvertX in favor of it.
+By deploying an authentication service like [Tinyauth](tinyauth.md), you can disable the authentication function provided by RSS-Bridge in favor of it.
 
 ## Usage
 
-After running the command for installation, the ConvertX instance becomes available at the URL specified with `convertx_hostname` and `convertx_path_prefix`. With the configuration above, the service is hosted at `https://mash.example.com/convertx`.
+After running the command for installation, the RSS-Bridge instance becomes available at the URL specified with `rssbridge_hostname` and `rssbridge_path_prefix`. With the configuration above, the service is hosted at `https://mash.example.com/rssbridge`.
 
 To use it, open the URL on the browser and create an account.
 
 ## Troubleshooting
 
-See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-convertx/blob/main/docs/configuring-convertx.md#troubleshooting) on the role's documentation for details.
+See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-rssbridge/blob/main/docs/configuring-rssbridge.md#troubleshooting) on the role's documentation for details.
