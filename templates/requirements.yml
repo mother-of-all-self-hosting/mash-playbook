@@ -568,6 +568,10 @@
   version: v1.6.11-3
   name: roundcube
   activation_prefix: roundcube_
+- src: git+https://github.com/mother-of-all-self-hosting/ansible-role-rssbridge.git
+  version: v2025.10.7-0
+  name: rssbridge
+  activation_prefix: rssbridge_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-rumqttd.git
   version: v0.19.0-7
   name: rumqttd
