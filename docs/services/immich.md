@@ -589,6 +589,8 @@ You'll need to create an API key in your Immich account and then run a command s
 /path/to/google-takeout/*.zip
 ```
 
+💡 If the user you're importing to is not an admin, also consider passing `--admin-api-key=ADMIN_API_KEY_HERE` or you'll get an error saying that an underprivileged API key cannot pause background jobs.
+
 💡 Various import flags exist (see `./immich-go upload from-google-photos --help`), but the default invocation should generally yield a good result.
 
 💡 While the import is running and Immich is doing post-processing (a process which could take hours), Immich will likely show a "broken image" placeholder for many of the imported photos. You can observe the post-processing progress in **Administration** settings / **Jobs** (a URL of `/admin/jobs-status`).
