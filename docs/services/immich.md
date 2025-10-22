@@ -169,9 +169,9 @@ postgres_container_image_suffix: ""
 # - clean up:
 #   - remove the variable override for the old Postgres version (e.g. `postgres_container_image_vXX_version`)
 #   -adjust `postgres_allowed_versions_custom` to only contain the new Postgres version
-postgres_allowed_versions_custom: [17]
+postgres_allowed_versions_custom: [18]
 
-postgres_container_image_v17_version: "17-vectorchord0.4.3-pgvector0.8.0-pgvectors0.3.0@sha256:e5cd9fa99b742c89589c688332028d46b5616586112bfdc03217955980f326eb"
+postgres_container_image_v18_version: 18-vectorchord0.5.3-pgvector0.8.1
 
 postgres_initdb_args_list_custom:
   - "--data-checksums"
