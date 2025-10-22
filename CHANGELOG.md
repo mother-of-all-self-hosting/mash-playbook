@@ -1,3 +1,16 @@
+# 2025-10-22
+
+## Adapting Immich/Postgres to changes in the Postgres role
+
+The [Postgres](./docs/services/postgres.md) role was recently updated (see [this commit](https://github.com/mother-of-all-self-hosting/ansible-role-postgres/commit/b39dcdf3421a4b3d7c4a758c9b533399ede4547b)) to add support for restricting the versions that it's allowed to install.
+
+These changes have landed into MASH playbook and we're making use of them to make [Postgres](./docs/services/postgres.md) play better with [Borg Backup](./docs/services/backup-borg.md) and avoid the risk of suffering from issues like this: [Unable to use borg backup after postgresql 18 upgrade](https://github.com/spantaleev/matrix-docker-ansible-deploy/issues/4632).
+
+Due to these changes, **users who install Immich/Postgres** for the [Immich](./docs/services/immich.md) service now **need to update their `vars.yml` file** [like this](https://github.com/mother-of-all-self-hosting/mash-playbook/commit/297c414bddb37f82e066d14b66b4ae2cf4b78318), or the playbook will encourage them to upgrade to *vanilla* Postgres v18 (which is not what Immich needs).
+
+While at it, Immich users can **consider upgrading to Immich/Postgres v18** as described in the comments seen in [the same commit](https://github.com/mother-of-all-self-hosting/mash-playbook/commit/297c414bddb37f82e066d14b66b4ae2cf4b78318) and using a new variable override of `postgres_container_image_v18_version: 18-vectorchord0.5.3-pgvector0.8.1`. After all the upgrade steps and final cleanup are done, your `vars.yml` would only contain Postgres v18 references, as seen [here](https://github.com/mother-of-all-self-hosting/mash-playbook/commit/f4dff6927e12eda413e768ab5a58ab09a434c1ba).
+
+
 # 2025-08-11
 
 ## Tandoor 2.0 Update: Path Prefix & API Changes
