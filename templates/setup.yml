@@ -617,6 +617,10 @@
     - role: galaxy/roundcube
     # /role-specific:roundcube
 
+    # role-specific:rssbridge
+    - role: galaxy/rssbridge
+    # /role-specific:rssbridge
+
     # role-specific:rumqttd
     - role: galaxy/rumqttd
     # /role-specific:rumqttd

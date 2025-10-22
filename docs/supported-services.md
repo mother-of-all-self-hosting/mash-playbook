@@ -153,6 +153,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 | [Redlib](https://github.com/redlib-org/redlib) | Browse Reddit without exposing your IP address, browsing habits, and other browser fingerprinting data to the website. | [Link](services/redlib.md) |
 | [Redmine](https://redmine.org/) | A flexible project management web application. | [Link](services/redmine.md) |
 | [Roundcube](https://roundcube.net/) | A browser-based multilingual IMAP client with an application-like user interface | [Link](services/roundcube.md) |
+| [RSS-Bridge](https://rss-bridge.github.io/rss-bridge/) | Generates web feeds for websites that do not have one | [Link](services/rssbridge.md) |
 | [rumqttd](https://github.com/bytebeamio/rumqtt) | A high performance, embeddable [MQTT](https://en.wikipedia.org/wiki/MQTT) broker | [Link](services/rumqttd.md) |
 | [SearXNG](https://github.com/searxng/searxng) | A privacy-respecting, hackable [metasearch engine](https://en.wikipedia.org/wiki/Metasearch_engine) | [Link](services/searxng.md) |
 | [Semaphore UI](https://semaphoreui.com/) | Modern UI for Ansible, Terraform/OpenTofu/Terragrunt, PowerShell and other DevOps tools | [Link](services/semaphore.md) |
