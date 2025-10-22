@@ -158,12 +158,20 @@ postgres_container_image_registry_prefix_upstream_default: ghcr.io/
 postgres_container_image_name: immich-app/postgres
 postgres_container_image_suffix: ""
 
-# The Postgres role (regular upstream Postgres) is at v17 at the time of this writing (2025-09-09),
-# and we're using Immich's Postgres which is also based on Postgres v17.
-postgres_container_image_v17_version: "17-vectorchord0.4.3-pgvector0.8.0-pgvectors0.3.0@sha256:e5cd9fa99b742c89589c688332028d46b5616586112bfdc03217955980f326eb"
+# We pin Postgres to a specific major version or versions.
+# The version/versions defined here have corresponding `postgres_container_image_vXX_version` overrides below,
+# so that the Postgres role would install Immich/Postgres (see https://github.com/immich-app/base-images), instead of vanilla Postgres.
+#
+# When a new Immich/Postgres version becomes available and the same major version is supported by the Postgres role, you can:
+# - override the variable (e.g. `postgres_container_image_vXX_version`) for it by defining it below and pointing to an Immich/Postgres container image
+# - adjust `postgres_allowed_versions_custom` to allow upgrading to the new major version
+# - run `--tags=upgrade-postgres`
+# - clean up:
+#   - remove the variable override for the old Postgres version (e.g. `postgres_container_image_vXX_version`)
+#   -adjust `postgres_allowed_versions_custom` to only contain the new Postgres version
+postgres_allowed_versions_custom: [17]
 
-# We pin `postgres_container_image_latest` to v17 avoid being prompted to upgrade to a newer vanilla-Postgres version (e.g. v18) when it comes out.
-postgres_container_image_latest: "{{ postgres_container_image_v17 }}"
+postgres_container_image_v17_version: "17-vectorchord0.4.3-pgvector0.8.0-pgvectors0.3.0@sha256:e5cd9fa99b742c89589c688332028d46b5616586112bfdc03217955980f326eb"
 
 postgres_initdb_args_list_custom:
   - "--data-checksums"
