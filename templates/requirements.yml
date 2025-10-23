@@ -61,7 +61,7 @@
   name: backup_borg
   activation_prefix: backup_borg_
 - src: git+https://codeberg.org/acioustick/ansible-role-barassistant.git
-  version: v5.9.0-0
+  version: v5.9.0-1
   name: barassistant
   activation_prefix: barassistant_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-browserless.git
@@ -489,7 +489,7 @@
   name: pocket_id
   activation_prefix: pocket_id_
 - src: git+https://codeberg.org/acioustick/ansible-role-poodledonts.git
-  version: v2025.10.0-0
+  version: v2025.10.0-1
   name: poodledonts
   activation_prefix: poodledonts_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-postgis.git
