@@ -420,7 +420,7 @@
   version: v32-0
   name: nextcloud
   activation_prefix: nextcloud_
-- src: https://seed.radicle.garden/z8vyzN3a8DmwhcUq3949SihKd1Wh.git
+- src: git+https://seed.radicle.garden/z8vyzN3a8DmwhcUq3949SihKd1Wh.git
   version: v2025.10.0-0
   name: nocdnbs
   activation_prefix: nocdnbs_
