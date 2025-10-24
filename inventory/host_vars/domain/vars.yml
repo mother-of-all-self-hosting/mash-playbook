@@ -223,11 +223,6 @@ nextcloud_enabled: true
 nextcloud_hostname: "nextcloud.{{domain}}"
 nextcloud_path_prefix: /
 
-# nextcloud_config_additional_parameters:
-#  - key: mail_smtphost
-#    value: smtp.sendgrid.net
-#    type: string
-
 nextcloud_app_collabora_wopi_url: "{{ collabora_online_url }}"
 
 # By default, various private IPv4 networks are whitelited to connect to the WOPI API (document serving API).
@@ -235,8 +230,32 @@ nextcloud_app_collabora_wopi_url: "{{ collabora_online_url }}"
 # you may need to adjust the list of networks.
 # If necessary, redefined the `nextcloud_collabora_app_wopi_allowlist` environment variable here.
 
+# https://docs.nextcloud.com/server/stable/admin_manual/configuration_server/config_sample_php_parameters.html
+# https://github.com/mother-of-all-self-hosting/ansible-role-nextcloud/blob/main/defaults/main.yml
+
 nextcloud_environment_variables_additional_variables: |
   PHP_MEMORY_LIMIT=1024M
+
+nextcloud_config_parameter_default_phone_region: DK
+nextcloud_config_parameter_default_timezone: Europe/Copenhagen
+nextcloud_config_parameter_maintenance_window_start: 3
+
+# nextcloud_config_parameters_custom:
+#   - key: mail_smtphost
+#     value: smtp.example.com
+#     type: string
+
+### raw example values from the config - not to be used literally
+###  'mail_smtpmode' => 'smtp',
+###  'mail_sendmailmode' => 'smtp',
+###  'mail_from_address' => 'nextcloud',
+###  'mail_domain' => 'thewrt.com',
+###  'mail_smtphost' => 'smtp.sendgrid.net',
+###  'mail_smtpport' => '465',
+###  'mail_smtpsecure' => 'ssl',
+###  'mail_smtpauth' => 1,
+###  'mail_smtpname' => 'apikey',
+###  'mail_smtppassword' => 'asdfasdf',
 
 ########################################################################
 #                                                                      #
