@@ -420,6 +420,10 @@
   version: v32-0
   name: nextcloud
   activation_prefix: nextcloud_
+- src: https://seed.radicle.garden/z8vyzN3a8DmwhcUq3949SihKd1Wh.git
+  version: v2025.10.0-0
+  name: nocdnbs
+  activation_prefix: nocdnbs_
 - src: git+https://codeberg.org/acioustick/ansible-role-nodebb.git
   version: v4.6.1-0
   name: nodebb
