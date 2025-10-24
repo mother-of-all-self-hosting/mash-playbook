@@ -69,5 +69,4 @@ See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az8vyz
 
 ## Related services
 
-- [Mozhi](mozhi.md) — Frontend for translation engines
-- [Redlib](redlib.md) — Frontend for Reddit
+- [PoodleDonts](poodledonts.md) — Privacy-friendly Google Fonts proxy
