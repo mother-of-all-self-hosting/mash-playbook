@@ -576,7 +576,7 @@
   version: v0.19.0-7
   name: rumqttd
   activation_prefix: rumqttd_
-- src: git+https://git.sergiodj.net/sergiodj/ansible-role-searxng.git
+- src: git+https://github.com/mother-of-all-self-hosting/ansible-role-searxng.git
   version: v1.0-0
   name: searxng
   activation_prefix: searxng_
