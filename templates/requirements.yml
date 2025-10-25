@@ -296,8 +296,8 @@
   version: v10590-0
   name: jitsi
   activation_prefix: jitsi_
-- src: git+https://codeberg.org/acioustick/ansible-role-joplin-server.git
-  version: v3.4.4-0
+- src: git+https://iris.radicle.xyz/zttNpUS7xCeDnn2e4No2dUvZv7L7.git
+  version: v3.4.3-2
   name: joplin_server
   activation_prefix: joplin_server_
 - src: git+https://codeberg.org/acioustick/ansible-role-karakeep.git
