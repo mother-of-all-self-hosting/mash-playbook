@@ -20,15 +20,15 @@ SPDX-FileCopyrightText: 2024 Philipp Homann
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 
-# File Browser
+# FileBrowser Quantum
 
-The playbook can install and configure [File Browser](https://filebrowser.org/) for you.
+The playbook can install and configure [FileBrowser Quantum](https://filebrowser.org/) for you.
 
-File Browser provides a file managing interface within a specified directory and it can be used to upload, delete, preview and edit your files.
+FileBrowser Quantum provides a file managing interface within a specified directory and it can be used to upload, delete, preview and edit your files.
 
-See the project's [documentation](https://filebrowser.org/) to learn what File Browser does and why it might be useful to you.
+See the project's [documentation](https://filebrowser.org/) to learn what FileBrowser Quantum does and why it might be useful to you.
 
-For details about configuring the [Ansible role for File Browser](https://codeberg.org/acioustick/ansible-role-filebrowser), you can check them via:
+For details about configuring the [Ansible role for FileBrowser Quantum](https://codeberg.org/acioustick/ansible-role-filebrowser), you can check them via:
 - 🌐 [the role's documentation](https://codeberg.org/acioustick/ansible-role-filebrowser/src/branch/master/docs/configuring-filebrowser.md) online
 - 📁 `roles/galaxy/filebrowser/docs/configuring-filebrowser.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
@@ -45,26 +45,26 @@ To enable this service, add the following configuration to your `vars.yml` file 
 ```yaml
 ########################################################################
 #                                                                      #
-# filebrowser                                                          #
+# filebrowser_quantum                                                  #
 #                                                                      #
 ########################################################################
 
-filebrowser_enabled: true
+filebrowser_quantum_enabled: true
 
-filebrowser_hostname: filebrowser.example.com
+filebrowser_quantum_hostname: filebrowser.example.com
 
 ########################################################################
 #                                                                      #
-# /filebrowser                                                         #
+# /filebrowser_quantum                                                 #
 #                                                                      #
 ########################################################################
 ```
 
-**Note**: hosting File Browser under a subpath (by configuring the `filebrowser_path_prefix` variable) does not seem to be possible due to File Browser's technical limitations.
+**Note**: hosting FileBrowser Quantum under a subpath (by configuring the `filebrowser_quantum_path_prefix` variable) does not seem to be possible due to FileBrowser Quantum's technical limitations.
 
 ## Usage
 
-After running the command for installation, the File Browser instance becomes available at the URL specified with `filebrowser_hostname`. With the configuration above, the service is hosted at `https://filebrowser.example.com`.
+After running the command for installation, the FileBrowser Quantum instance becomes available at the URL specified with `filebrowser_quantum_hostname`. With the configuration above, the service is hosted at `https://filebrowser.example.com`.
 
 To get started, open the URL with a web browser, and log in to the instance with the administrator account (`admin`).
 
