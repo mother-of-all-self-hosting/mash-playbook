@@ -221,7 +221,7 @@
   name: ghostfolio
   activation_prefix: ghostfolio_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-gitea.git
-  version: v1.24.6-0
+  version: v1.24.7-0
   name: gitea
   activation_prefix: gitea_
 - src: git+https://codeberg.org/acioustick/ansible-role-gothub.git
