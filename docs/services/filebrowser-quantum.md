@@ -22,15 +22,15 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
 # FileBrowser Quantum
 
-The playbook can install and configure [FileBrowser Quantum](https://filebrowser.org/) for you.
+The playbook can install and configure [FileBrowser Quantum](https://filebrowserquantum.com/) for you.
 
-FileBrowser Quantum provides a file managing interface within a specified directory and it can be used to upload, delete, preview and edit your files.
+FileBrowser Quantum is a free self-hosted web-based file manager.
 
-See the project's [documentation](https://filebrowser.org/) to learn what FileBrowser Quantum does and why it might be useful to you.
+See the project's [documentation](https://filebrowserquantum.com/en/docs/) to learn what FileBrowser Quantum does and why it might be useful to you.
 
-For details about configuring the [Ansible role for FileBrowser Quantum](https://codeberg.org/acioustick/ansible-role-filebrowser), you can check them via:
-- 🌐 [the role's documentation](https://codeberg.org/acioustick/ansible-role-filebrowser/src/branch/master/docs/configuring-filebrowser.md) online
-- 📁 `roles/galaxy/filebrowser/docs/configuring-filebrowser.md` locally, if you have [fetched the Ansible roles](../installing.md)
+For details about configuring the [Ansible role for FileBrowser Quantum](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3ALGSKDhVLeMnR49YPXk5yv2yTge), you can check them via:
+- 🌐 [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3ALGSKDhVLeMnR49YPXk5yv2yTge/tree/docs/configuring-filebrowser-quantum.md) online
+- 📁 `roles/galaxy/filebrowser_quantum/docs/configuring-filebrowser-quantum.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 ## Dependencies
 
@@ -60,24 +60,30 @@ filebrowser_quantum_hostname: filebrowser.example.com
 ########################################################################
 ```
 
-**Note**: hosting FileBrowser Quantum under a subpath (by configuring the `filebrowser_quantum_path_prefix` variable) does not seem to be possible due to FileBrowser Quantum's technical limitations.
+### Set an administrator's password
+
+By default the password authentication is enabled, and you need to set a log in password for the administrator by adding the following configuration to your `vars.yml` file:
+
+```yaml
+filebrowser_quantum_environment_variables_filebrowser_admin_password: YOUR_ADMIN_PASSWORD_HERE
+```
+
+Replace `YOUR_ADMIN_PASSWORD_HERE` with your own value.
+
+### Configuring OIDC authentication (optional)
+
+Alternatively, you can enable OIDC authentication for FileBrowser Quantum. See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3ALGSKDhVLeMnR49YPXk5yv2yTge/tree/docs/configuring-filebrowser-quantum.md#configuring-oidc-authentication-optional) on the role's documentation for necessary settings.
 
 ## Usage
 
 After running the command for installation, the FileBrowser Quantum instance becomes available at the URL specified with `filebrowser_quantum_hostname`. With the configuration above, the service is hosted at `https://filebrowser.example.com`.
 
-To get started, open the URL with a web browser, and log in to the instance with the administrator account (`admin`).
-
-The initial password of the administrator has been logged to the console logs during the first run.
-
-You can check it directly by logging in to the server with SSH and running `journalctl -fu filebrowser` (or how you/your playbook named the service, e.g. `mash-filebrowser`). You also can use the command below to check the line on the log to find the initial password:
-
-```sh
-ansible-playbook -i inventory/hosts setup.yml --tags=check-initial-password-filebrowser
-```
-
-You can create additional users (admin-privileged or not) after logging in via the web frontend.
+To get started, open the URL with a web browser, and log in to the instance with the administrator account. The default username of the administrator account is `admin`.
 
 ## Troubleshooting
 
-See [this section](https://codeberg.org/acioustick/ansible-role-filebrowser/src/branch/master/docs/configuring-filebrowser.md#troubleshooting) on the role's documentation for details.
+See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3ALGSKDhVLeMnR49YPXk5yv2yTge/tree/docs/configuring-filebrowser-quantum.md#troubleshooting) on the role's documentation for details.
+
+## Related services
+
+- [File Browser](filebrowser.md) — File managing interface within a specified directory, which can be used to upload, delete, preview and edit your files
