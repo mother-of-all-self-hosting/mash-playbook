@@ -73,7 +73,7 @@
   name: calibre_web
   activation_prefix: calibre_web_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-changedetection.git
-  version: v0.50.30-0
+  version: v0.50.31-0
   name: changedetection
   activation_prefix: changedetection_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-cleanup.git
@@ -465,7 +465,7 @@
   name: oxitraffic
   activation_prefix: oxitraffic_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-paperless.git
-  version: v2.18.2-5
+  version: v2.19.2-0
   name: paperless
   activation_prefix: paperless_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-peertube.git
