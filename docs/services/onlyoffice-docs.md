@@ -25,9 +25,9 @@ ONLYOFFICE Docs is the development version of [Collabora Online](https://www.col
 
 See the project's [documentation](https://www.collaboraonline.com/code/) to learn what ONLYOFFICE Docs does and why it might be useful to you.
 
-For details about configuring the [Ansible role for ONLYOFFICE Docs](https://github.com/mother-of-all-self-hosting/ansible-role-collabora-online), you can check them via:
-- 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-collabora-online/blob/main/docs/configuring-code.md) online
-- 📁 `roles/galaxy/onlyoffice_docs/docs/configuring-online.md` locally, if you have [fetched the Ansible roles](../installing.md)
+For details about configuring the [Ansible role for ONLYOFFICE Docs](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3kozTn4Kn5eJtgJQj1aCFUpqxW5Y), you can check them via:
+- 🌐 [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3kozTn4Kn5eJtgJQj1aCFUpqxW5Y/tree/docs/configuring-onlyoffice-docs.md) online
+- 📁 `roles/galaxy/onlyoffice_docs/docs/configuring-onlyoffice-docs.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 ## Dependencies
 
@@ -88,7 +88,7 @@ Use your admin credentials for logging in:
 
 ## Troubleshooting
 
-See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-collabora-online/blob/main/docs/configuring-code.md#troubleshooting) on the role's documentation for details.
+See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3kozTn4Kn5eJtgJQj1aCFUpqxW5Y/tree/docs/configuring-onlyoffice-docs.md#troubleshooting) on the role's documentation for details.
 
 ## Related services
 
