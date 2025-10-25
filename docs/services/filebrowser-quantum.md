@@ -86,4 +86,6 @@ See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3ALG
 
 ## Related services
 
+- [authentik](authentik.md) — Open-source Identity Provider (IdP) focused on flexibility and versatility
 - [File Browser](filebrowser.md) — File managing interface within a specified directory, which can be used to upload, delete, preview and edit your files
+- [Pocket ID](pocket-id.md) — Simple OIDC provider for passkey-only authentication
