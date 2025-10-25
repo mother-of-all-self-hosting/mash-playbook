@@ -19,11 +19,11 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
 # ONLYOFFICE Docs
 
-The playbook can install and configure [ONLYOFFICE Docs](https://www.collaboraonline.com/code/) for you.
+The playbook can install and configure [ONLYOFFICE Docs](https://github.com/ONLYOFFICE/DocumentServer) for you.
 
-ONLYOFFICE Docs is the development version of [Collabora Online](https://www.collaboraonline.com/), which enables you to edit office documents online with integrations such as [Nextcloud](https://nextcloud.com/office/), [OwnCloud](https://owncloud.com/), and [XWiki](https://xwiki.com/en/Blog/Collabora-Connector-Application/).
+ONLYOFFICE Docs is an online office suite comprising viewers and editors for texts, spreadsheets and presentations, compatible with Office Open XML formats: .docx, .xlsx, .pptx and enabling collaborative editing in real time.
 
-See the project's [documentation](https://www.collaboraonline.com/code/) to learn what ONLYOFFICE Docs does and why it might be useful to you.
+See the project's [documentation](https://helpcenter.onlyoffice.com/docs) to learn what ONLYOFFICE Docs does and why it might be useful to you.
 
 For details about configuring the [Ansible role for ONLYOFFICE Docs](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3kozTn4Kn5eJtgJQj1aCFUpqxW5Y), you can check them via:
 - 🌐 [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3kozTn4Kn5eJtgJQj1aCFUpqxW5Y/tree/docs/configuring-onlyoffice-docs.md) online
@@ -36,7 +36,7 @@ This service requires the following other services:
 - a [Traefik](traefik.md) reverse-proxy server
 
 >[!NOTE]
-> To use an ONLYOFFICE Docs instance to edit office documents, it is necessary to integrate it with another software which functions as a data storage and manages access control for users. **You cannot edit the documents without such integrations.** This playbook supports installing Nextcloud. See [this page](nextcloud.md) for details about configuring it.
+> To use an ONLYOFFICE Docs instance to edit office documents, it is necessary to integrate it with another software which functions as a data storage and manages access control for users. **You cannot edit the documents without such integrations.**
 
 ## Configuration
 
@@ -53,10 +53,6 @@ onlyoffice_docs_enabled: true
 
 onlyoffice_docs_hostname: onlyoffice.example.com
 
-# A password for the admin interface, available at: https://collabora.example.com/browser/dist/admin/admin.html
-# Use only alphanumeric characters
-onlyoffice_docs_environment_variable_password: ''
-
 ########################################################################
 #                                                                      #
 # /onlyoffice_docs                                                     #
@@ -64,27 +60,15 @@ onlyoffice_docs_environment_variable_password: ''
 ########################################################################
 ```
 
-### Integrate ONLYOFFICE Docs with Nextcloud (optional)
+### Integrating ONLYOFFICE Docs with FileBrowser Quantum (optional)
 
-To use an ONLYOFFICE Docs instance to edit office documents, you need to integrate it with a File Sync and Share solution that implements the WOPI (*Web Application Open Platform Interface*) protocol, such as Nextcloud.
+You can integrate ONLYOFFICE Docs with [FileBrowser Quantum](https://filebrowserquantum.com/) to edit office documents on the service.
 
-By default, this playbook is configured to automatically integrate the ONLYOFFICE Docs with the Nextcloud instance which this playbook manages, if both of them are enabled.
-
->[!NOTE]
-> For details, see [this section about the integration](nextcloud.md#collabora-online-development-edition) on our Nextcloud documentation.
+By default, this playbook is configured to automatically integrate ONLYOFFICE Docs with the FileBrowser Quantum instance which this playbook manages, if both of them are enabled. See [this page](filebrowser-quantum.md) for details about how to install FileBrowser Quantum.
 
 ## Usage
 
-After running the command for installation, the ONLYOFFICE Docs becomes available at the URL specified with `onlyoffice_docs_hostname`. With the configuration above, the service is hosted at `https://onlyoffice.example.com`.
-
-### Admin Interface
-
-There's an admin interface with various statistics and information at: `https://collabora.example.com/browser/dist/admin/admin.html`
-
-Use your admin credentials for logging in:
-
-- the default username is `admin`, as specified with `onlyoffice_docs_environment_variable_username`
-- the password is the one you've specified with `onlyoffice_docs_environment_variable_password`
+After running the command for installation, the ONLYOFFICE Docs instance becomes available at the URL specified with `onlyoffice_docs_hostname`. With the configuration above, the service is hosted at `https://onlyoffice.example.com`.
 
 ## Troubleshooting
 
@@ -92,4 +76,5 @@ See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3koz
 
 ## Related services
 
-- [Nextcloud](nextcloud.md) — Self-hosted collaboration solution for tens of millions of users at thousands of organizations across the globe
+- [Collabora Online Development Edition (CODE)](code.md) — Development version of Collabora Online, which enables you to edit office documents with integrations
+- [FileBrowser Quantum](filebrowser-quantum.md) — Free self-hosted web-based file manager
