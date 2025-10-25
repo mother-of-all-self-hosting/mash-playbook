@@ -69,5 +69,4 @@ See [this section](https://codeberg.org/acioustick/ansible-role-poodledonts/src/
 
 ## Related services
 
-- [Mozhi](mozhi.md) — Frontend for translation engines
-- [Redlib](redlib.md) — Frontend for Reddit
+- [noCDNbs](nocdnbs.md) — Privacy-friendly cdnjs proxy
