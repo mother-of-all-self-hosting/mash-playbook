@@ -3592,6 +3592,11 @@ filebrowser_quantum_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_s
 filebrowser_quantum_uid: "{{ mash_playbook_uid }}"
 filebrowser_quantum_gid: "{{ mash_playbook_gid }}"
 
+filebrowser_quantum_systemd_wanted_services_list_auto: |
+  {{
+    ([onlyoffice_docs_identifier ~ '.service'] if onlyoffice_docs_enabled and filebrowser_quantum_config_integrations_office else [])
+  }}
+
 filebrowser_quantum_container_additional_networks_auto: |
   {{
     ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
@@ -3599,6 +3604,12 @@ filebrowser_quantum_container_additional_networks_auto: |
 
 filebrowser_quantum_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
 filebrowser_quantum_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+
+# role-specific:onlyoffice_docs
+filebrowser_quantum_config_integrations_office: true
+filebrowser_quantum_config_integrations_office_url: "{{ onlyoffice_docs_scheme }}://{{ onlyoffice_docs_hostname }}"
+filebrowser_quantum_config_integrations_office_secret: "{{ onlyoffice_docs_environment_variables_jwt_secret }}"
+# /role-specific:onlyoffice_docs
 
 # role-specific:traefik
 filebrowser_quantum_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
