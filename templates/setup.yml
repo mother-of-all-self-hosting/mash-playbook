@@ -509,6 +509,10 @@
     - role: galaxy/oauth2_proxy
     # /role-specific:oauth2_proxy
 
+    # role-specific:onlyoffice_docs
+    - role: galaxy/onlyoffice_docs
+    # /role-specific:onlyoffice_docs
+
     # role-specific:opengist
     - role: galaxy/opengist
     # /role-specific:opengist
