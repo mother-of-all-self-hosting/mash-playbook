@@ -241,6 +241,10 @@
     - role: galaxy/filebrowser
     # /role-specific:filebrowser
 
+    # role-specific:filebrowser_quantum
+    - role: galaxy/filebrowser_quantum
+    # /role-specific:filebrowser_quantum
+
     # role-specific:firezone
     - role: galaxy/firezone
     # /role-specific:firezone
