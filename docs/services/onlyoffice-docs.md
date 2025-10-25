@@ -17,17 +17,17 @@ SPDX-FileCopyrightText: 2024 - 2025 Suguru Hirahara
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 
-# Collabora Online Development Edition (CODE)
+# ONLYOFFICE Docs
 
-The playbook can install and configure [Collabora Online Development Edition (CODE)](https://www.collaboraonline.com/code/) for you.
+The playbook can install and configure [ONLYOFFICE Docs](https://www.collaboraonline.com/code/) for you.
 
-CODE is the development version of [Collabora Online](https://www.collaboraonline.com/), which enables you to edit office documents online with integrations such as [Nextcloud](https://nextcloud.com/office/), [OwnCloud](https://owncloud.com/), and [XWiki](https://xwiki.com/en/Blog/Collabora-Connector-Application/).
+ONLYOFFICE Docs is the development version of [Collabora Online](https://www.collaboraonline.com/), which enables you to edit office documents online with integrations such as [Nextcloud](https://nextcloud.com/office/), [OwnCloud](https://owncloud.com/), and [XWiki](https://xwiki.com/en/Blog/Collabora-Connector-Application/).
 
-See the project's [documentation](https://www.collaboraonline.com/code/) to learn what CODE does and why it might be useful to you.
+See the project's [documentation](https://www.collaboraonline.com/code/) to learn what ONLYOFFICE Docs does and why it might be useful to you.
 
-For details about configuring the [Ansible role for CODE](https://github.com/mother-of-all-self-hosting/ansible-role-collabora-online), you can check them via:
+For details about configuring the [Ansible role for ONLYOFFICE Docs](https://github.com/mother-of-all-self-hosting/ansible-role-collabora-online), you can check them via:
 - 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-collabora-online/blob/main/docs/configuring-code.md) online
-- 📁 `roles/galaxy/collabora_online/docs/configuring-online.md` locally, if you have [fetched the Ansible roles](../installing.md)
+- 📁 `roles/galaxy/onlyoffice_docs/docs/configuring-online.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 ## Dependencies
 
@@ -36,7 +36,7 @@ This service requires the following other services:
 - a [Traefik](traefik.md) reverse-proxy server
 
 >[!NOTE]
-> To use a CODE instance to edit office documents, it is necessary to integrate it with another software which functions as a data storage and manages access control for users. **You cannot edit the documents without such integrations.** This playbook supports installing Nextcloud. See [this page](nextcloud.md) for details about configuring it.
+> To use an ONLYOFFICE Docs instance to edit office documents, it is necessary to integrate it with another software which functions as a data storage and manages access control for users. **You cannot edit the documents without such integrations.** This playbook supports installing Nextcloud. See [this page](nextcloud.md) for details about configuring it.
 
 ## Configuration
 
@@ -45,37 +45,37 @@ To enable this service, add the following configuration to your `vars.yml` file 
 ```yaml
 ########################################################################
 #                                                                      #
-# collabora_online                                                     #
+# onlyoffice_docs                                                      #
 #                                                                      #
 ########################################################################
 
-collabora_online_enabled: true
+onlyoffice_docs_enabled: true
 
-collabora_online_hostname: collabora.example.com
+onlyoffice_docs_hostname: onlyoffice.example.com
 
 # A password for the admin interface, available at: https://collabora.example.com/browser/dist/admin/admin.html
 # Use only alphanumeric characters
-collabora_online_environment_variable_password: ''
+onlyoffice_docs_environment_variable_password: ''
 
 ########################################################################
 #                                                                      #
-# /collabora_online                                                    #
+# /onlyoffice_docs                                                     #
 #                                                                      #
 ########################################################################
 ```
 
-### Integrate CODE instance with Nextcloud (optional)
+### Integrate ONLYOFFICE Docs with Nextcloud (optional)
 
-To use a CODE instance to edit office documents, you need to integrate it with a File Sync and Share solution that implements the WOPI (*Web Application Open Platform Interface*) protocol, such as Nextcloud.
+To use an ONLYOFFICE Docs instance to edit office documents, you need to integrate it with a File Sync and Share solution that implements the WOPI (*Web Application Open Platform Interface*) protocol, such as Nextcloud.
 
-By default, this playbook is configured to automatically integrate the CODE instance with the Nextcloud instance which this playbook manages, if both of them are enabled.
+By default, this playbook is configured to automatically integrate the ONLYOFFICE Docs with the Nextcloud instance which this playbook manages, if both of them are enabled.
 
 >[!NOTE]
 > For details, see [this section about the integration](nextcloud.md#collabora-online-development-edition) on our Nextcloud documentation.
 
 ## Usage
 
-After running the command for installation, the CODE instance becomes available at the URL specified with `collabora_hostname`. With the configuration above, the service is hosted at `https://collabora.example.com`.
+After running the command for installation, the ONLYOFFICE Docs becomes available at the URL specified with `onlyoffice_docs_hostname`. With the configuration above, the service is hosted at `https://onlyoffice.example.com`.
 
 ### Admin Interface
 
@@ -83,8 +83,8 @@ There's an admin interface with various statistics and information at: `https://
 
 Use your admin credentials for logging in:
 
-- the default username is `admin`, as specified with `collabora_online_environment_variable_username`
-- the password is the one you've specified with `collabora_online_environment_variable_password`
+- the default username is `admin`, as specified with `onlyoffice_docs_environment_variable_username`
+- the password is the one you've specified with `onlyoffice_docs_environment_variable_password`
 
 ## Troubleshooting
 
