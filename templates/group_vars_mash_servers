@@ -291,6 +291,11 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
     {{ ({'name': (filebrowser_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'filebrowser']} if filebrowser_enabled else omit) }}
   # /role-specific:filebrowser
 
+  # role-specific:filebrowser_quantum
+  - |-
+    {{ ({'name': (filebrowser_quantum_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'filebrowser-quantum']} if filebrowser_quantum_enabled else omit) }}
+  # /role-specific:filebrowser_quantum
+
   # role-specific:firezone
   - |-
     {{ ({'name': (firezone_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'firezone']} if firezone_enabled else omit) }}
@@ -629,6 +634,11 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
   - |-
     {{ ({'name': (nextcloud_identifier + '-app-update.timer'), 'priority': 2500, 'groups': ['mash', 'nextcloud', 'nextcloud-app-update']} if nextcloud_enabled and nextcloud_app_autoupdate_enabled else omit) }}
   # /role-specific:nextcloud
+
+  # role-specific:nocdnbs
+  - |-
+    {{ ({'name': (nocdnbs_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'nocdnbs']} if nocdnbs_enabled else omit) }}
+  # /role-specific:nocdnbs
 
   # role-specific:nodebb
   - |-
@@ -3547,6 +3557,44 @@ filebrowser_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_
 #                                                                      #
 ########################################################################
 # /role-specific:filebrowser
+
+
+
+# role-specific:filebrowser_quantum
+########################################################################
+#                                                                      #
+# filebrowser_quantum                                                  #
+#                                                                      #
+########################################################################
+
+filebrowser_quantum_enabled: false
+
+filebrowser_quantum_identifier: "{{ mash_playbook_service_identifier_prefix }}filebrowser-quantum"
+
+filebrowser_quantum_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}filebrowser-quantum"
+
+filebrowser_quantum_uid: "{{ mash_playbook_uid }}"
+filebrowser_quantum_gid: "{{ mash_playbook_gid }}"
+
+filebrowser_quantum_container_additional_networks_auto: |
+  {{
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+  }}
+
+filebrowser_quantum_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+filebrowser_quantum_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+
+# role-specific:traefik
+filebrowser_quantum_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
+filebrowser_quantum_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
+# /role-specific:traefik
+
+########################################################################
+#                                                                      #
+# /filebrowser_quantum                                                 #
+#                                                                      #
+########################################################################
+# /role-specific:filebrowser_quantum
 
 
 
@@ -8024,6 +8072,44 @@ nextcloud_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_pr
 #                                                                      #
 ########################################################################
 # /role-specific:nextcloud
+
+
+
+# role-specific:nocdnbs
+########################################################################
+#                                                                      #
+# nocdnbs                                                              #
+#                                                                      #
+########################################################################
+
+nocdnbs_enabled: false
+
+nocdnbs_identifier: "{{ mash_playbook_service_identifier_prefix }}nocdnbs"
+
+nocdnbs_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}nocdnbs"
+
+nocdnbs_uid: "{{ mash_playbook_uid }}"
+nocdnbs_gid: "{{ mash_playbook_gid }}"
+
+nocdnbs_container_additional_networks_auto: |
+  {{
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+  }}
+
+nocdnbs_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+nocdnbs_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+
+# role-specific:traefik
+nocdnbs_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
+nocdnbs_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
+# /role-specific:traefik
+
+########################################################################
+#                                                                      #
+# /nocdnbs                                                             #
+#                                                                      #
+########################################################################
+# /role-specific:nocdnbs
 
 
 
