@@ -229,7 +229,7 @@ nextcloud_app_collabora_wopi_url: "{{ collabora_online_url }}"
 # https://docs.nextcloud.com/server/stable/admin_manual/configuration_server/config_sample_php_parameters.html
 # https://github.com/mother-of-all-self-hosting/ansible-role-nextcloud/blob/main/defaults/main.yml
 
-nextcloud_preview_enabled: true
+nextcloud_preview_enabled: false
 
 nextcloud_environment_variables_additional_variables: |
   PHP_MEMORY_LIMIT=1024M
