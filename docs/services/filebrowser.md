@@ -81,3 +81,7 @@ You can create additional users (admin-privileged or not) after logging in via t
 ## Troubleshooting
 
 See [this section](https://codeberg.org/acioustick/ansible-role-filebrowser/src/branch/master/docs/configuring-filebrowser.md#troubleshooting) on the role's documentation for details.
+
+## Related services
+
+- [FileBrowser Quantum](filebrowser-quantum.md) — Free self-hosted web-based file manager
