@@ -500,7 +500,7 @@
   version: v1.13.1-0
   name: pocket_id
   activation_prefix: pocket_id_
-- src: git+https://codeberg.org/acioustick/ansible-role-poodledonts.git
+- src: git+https://seed.radicle.garden/z4MgJseWRZ9FL3Mh6ASufmi1RJoVh.git
   version: v2025.10.0-1
   name: poodledonts
   activation_prefix: poodledonts_
