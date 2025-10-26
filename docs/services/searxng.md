@@ -1,15 +1,35 @@
 <!--
+SPDX-FileCopyrightText: 2020 Aaron Raimist
+SPDX-FileCopyrightText: 2020 Chris van Dijk
+SPDX-FileCopyrightText: 2020 Dominik Zajac
+SPDX-FileCopyrightText: 2020 Mickaël Cornière
+SPDX-FileCopyrightText: 2020-2024 MDAD project contributors
+SPDX-FileCopyrightText: 2020-2024 Slavi Pantaleev
+SPDX-FileCopyrightText: 2022 François Darveau
+SPDX-FileCopyrightText: 2022 Julian Foad
+SPDX-FileCopyrightText: 2022 Warren Bailey
+SPDX-FileCopyrightText: 2023 Antonis Christofides
+SPDX-FileCopyrightText: 2023 Felix Stupp
 SPDX-FileCopyrightText: 2023 Julian-Samuel Gebühr
-SPDX-FileCopyrightText: 2023 - 2024 Slavi Pantaleev
+SPDX-FileCopyrightText: 2023 Pierre 'McFly' Marty
 SPDX-FileCopyrightText: 2024 Sergio Durigan Junior
-SPDX-FileCopyrightText: 2025 Suguru Hirahara
+SPDX-FileCopyrightText: 2024 Thomas Miceli
+SPDX-FileCopyrightText: 2024, 2025 Suguru Hirahara
 
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 
 # SearXNG
 
-[SearXNG](https://github.com/searxng/searxng/) is a privacy-respecting, hackable [metasearch engine](https://en.wikipedia.org/wiki/Metasearch_engine).
+The playbook can install and configure [SearXNG](https://github.com/searxng/searxng/) for you.
+
+SearXNG is a privacy-respecting, hackable [metasearch engine](https://en.wikipedia.org/wiki/Metasearch_engine).
+
+See the project's [documentation](https://docs.searxng.org/) to learn what SearXNG does and why it might be useful to you.
+
+For details about configuring the [Ansible role for SearXNG](https://github.com/mother-of-all-self-hosting/ansible-role-searxng), you can check them via:
+- 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-searxng/blob/main/docs/configuring-searxng.md) online
+- 📁 `roles/galaxy/searxng/docs/configuring-searxng.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 ## Dependencies
 
@@ -19,7 +39,7 @@ This service requires the following other services:
 
 If rate-limiting is enabled, then it also requires:
 
-- a [Valkey](valkey.md) data-store; see [below](#configuring-rate-limiting) for details about installation
+- a [Valkey](valkey.md) data-store; see [below](#configuring-rate-limiting-optional) for details about installation
 
 ## Configuration
 
@@ -34,13 +54,8 @@ To enable this service, add the following configuration to your `vars.yml` file:
 
 searxng_enabled: true
 
-searxng_instance_name: My Example Instance Name'
-
 searxng_hostname: mash.example.com
 searxng_path_prefix: /searxng
-
-# Generate the secret key with "openssl rand -hex 32".
-searxng_secret_key: 'MY_SECRET_KEY'
 
 ########################################################################
 #                                                                      #
@@ -49,15 +64,9 @@ searxng_secret_key: 'MY_SECRET_KEY'
 ########################################################################
 ```
 
-### Configuring rate-limiting
+### Configuring rate-limiting (optional)
 
-If you want to enable rate-limiting, add the following configuration to `vars.yml`:
-
-```yaml
-searxng_enable_rate_limiter: true
-```
-
-Rate-limiting also requires a Valkey data-store to work. This playbook supports it, and you can set up a Valkey instance by enabling it on `vars.yml`.
+You can enable [rate-limiting](https://docs.searxng.org/admin/searx.limiter.html) by configuring a Valkey data-store to work. This playbook supports it, and you can set up a Valkey instance by enabling it on `vars.yml`.
 
 If SearXNG is the sole service which requires Valkey on your server, it is fine to set up just a single Valkey instance. However, **it is not recommended if there are other services which require it, because sharing the Valkey instance has security concerns and possibly causes data conflicts**, as described on the [documentation for configuring Valkey](valkey.md). In this case, you should install a dedicated Valkey instance for each of them.
 
@@ -156,7 +165,7 @@ Having configured `vars.yml` for the dedicated instance, add the following confi
 # Add the base configuration as specified above
 
 # Point SearXNG to its dedicated Valkey instance
-searxng_rate_limiter_config_valkey_hostname: mash-searxng-valkey
+searxng_redis_hostname: mash-searxng-valkey
 
 # Make sure the SearXNG service (mash-searxng.service) starts after its dedicated Valkey service (mash-searxng-valkey.service)
 searxng_systemd_required_services_list_custom:
@@ -206,7 +215,7 @@ valkey_enabled: true
 # Add the base configuration as specified above
 
 # Point SearXNG to the shared Valkey instance
-searxng_rate_limiter_config_valkey_hostname: "{{ valkey_identifier }}"
+searxng_redis_hostname: "{{ valkey_identifier }}"
 
 # Make sure the SearXNG service (mash-searxng.service) starts after the shared Valkey service (mash-valkey.service)
 searxng_systemd_required_services_list_custom:
@@ -227,15 +236,10 @@ Running the installation command will create the shared Valkey instance named `m
 
 ### Configuring basic authentication
 
-If you are running a private instance, you might want to protect it with so that only authorized people can use it. An easy option is to choose a non-trivial subpath by modifying the `searxng_path_prefix`. Another, more complete option is to enable basic authentication for the instance.
+If you will host a private instance, you might want to protect it so that only authorized people can use it. An easy option is to set a non-trivial subpath by modifying the `searxng_path_prefix`. Another, more proper method is to set up an authentication service like Keycloak and Tinyauth. Both are available on this playbook. Open the URLs below for details:
 
-To do the latter, add the following configuration to `vars.yml`:
-
-```yaml
-searxng_basic_auth_enabled: true
-searxng_basic_auth_username: 'my_username'
-searxng_basic_auth_password: 'my_password'
-```
+- [Keycloak](keycloak.md)
+- [Tinyauth](tinyauth.md)
 
 ## Installation
 
@@ -247,8 +251,6 @@ Note that running the `just` commands for installation (`just install-all` or `j
 
 After installation, the SearXNG instance becomes available at the URL specified with `searxng_hostname` and `searxng_path_prefix`. With the configuration above, the service is hosted at `https://mash.example.com/searxng`.
 
-If authentication is enabled, you can log in with the username and password specified with `searxng_basic_auth_username` and `searxng_basic_auth_password`.
-
 ### Add your YaCy instance (optional)
 
 The playbook can install and configure [YaCy](https://yacy.net) for you. YaCy is a distributed web search engine, based on a peer-to-peer network.
@@ -256,7 +258,7 @@ The playbook can install and configure [YaCy](https://yacy.net) for you. YaCy is
 To add your YaCy instance as an available search engine to your SearXNG instance, enable YaCy by following [this documentation](yacy.md), before adding the following configuration to `vars.yml`:
 
 ```yaml
-searxng_extra_configuration_snippets: |
+searxng_config_additional_configurations: |
   engines:
   - name: yacy
     base_url:
