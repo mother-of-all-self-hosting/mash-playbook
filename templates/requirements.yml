@@ -224,7 +224,7 @@
   version: v1.24.7-0
   name: gitea
   activation_prefix: gitea_
-- src: git+https://codeberg.org/acioustick/ansible-role-gothub.git
+- src: git+https://seed.radicle.garden/zFVv3koKtheJTTwPSjF3J6DajePK.git
   version: v2025.3.9-0
   name: gothub
   activation_prefix: gothub_
