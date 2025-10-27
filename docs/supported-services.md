@@ -148,6 +148,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 | [Prometheus SSH Exporter](https://github.com/treydock/ssh_exporter) | SSH probes | [Link](services/prometheus-ssh-exporter.md) |
 | [Promtail](https://grafana.com/docs/loki/latest/send-data/promtail/) | An agent which ships the contents of local logs to a private [Grafana Loki](services/grafana-loki.md) instance | [Link](services/promtail.md) |
 | [qBittorrent](https://www.qbittorrent.org/) | A BitTorrent client written in native C++ | [Link](services/qbittorrent.md) |
+| [RabbitMQ](https://www.rabbitmq.com/) | Message-broker which supports AMQP, STOMP, MQTT, etc. | [Link](services/rabbitmq.md) |
 | [Radarr](https://radarr.video/) | A movie organizer/manager for usenet and torrent users | [Link](services/radarr.md) |
 | [Radicale](https://radicale.org/) | A Free and Open-Source CalDAV and CardDAV Server (solution for hosting contacts and calendars) | [Link](services/radicale.md) |
 | [ReactFlux](https://github.com/electh/ReactFlux) | Third-party web frontend for Miniflux | [Link](services/reactflux.md) |
