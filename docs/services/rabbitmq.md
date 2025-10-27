@@ -7,15 +7,15 @@ SPDX-FileCopyrightText: 2024 - 2025 Suguru Hirahara
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 
-# rumqttd
+# RabbitMQ
 
-The playbook can install and configure [rumqttd](https://github.com/bytebeamio/rumqtt) for you.
+The playbook can install and configure [RabbitMQ](https://www.rabbitmq.com/) for you.
 
-rumqttd is a high performance, embeddable [MQTT](https://en.wikipedia.org/wiki/MQTT) broker.
+RabbitMQ is an open-source message-broker software which supports Advanced Message Queuing Protocol (AMQP), and Streaming Text Oriented Messaging Protocol (STOMP), MQ Telemetry Transport (MQTT) and other protocols with plug-ins.
 
-The [Ansible role for rumqttd](https://github.com/mother-of-all-self-hosting/ansible-role-rumqttd) is developed and maintained by the MASH project. For details about configuring rumqttd, you can check them via:
-- 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-rumqttd/blob/main/docs/configuring-rumqttd.md) online
-- 📁 `roles/galaxy/rumqttd/docs/configuring-rumqttd.md` locally, if you have [fetched the Ansible roles](../installing.md)
+The [Ansible role for RabbitMQ](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3PCtuwyz2HdHeKnHCefR253rpYwp) is developed and maintained by the MASH project. For details about configuring RabbitMQ, you can check them via:
+- 🌐 [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3PCtuwyz2HdHeKnHCefR253rpYwp/tree/docs/configuring-rabbitmq.md) online
+- 📁 `roles/galaxy/rabbitmq/docs/configuring-rabbitmq.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 ## Alternatives
 
