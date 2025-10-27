@@ -17,6 +17,7 @@ The [Ansible role for RabbitMQ](https://app.radicle.xyz/nodes/seed.radicle.garde
 - 🌐 [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3PCtuwyz2HdHeKnHCefR253rpYwp/tree/docs/configuring-rabbitmq.md) online
 - 📁 `roles/galaxy/rabbitmq/docs/configuring-rabbitmq.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
-## Alternatives
+## Related services
 
-[Mosquitto](mosquitto.md) is another, more feature-complete MQTT broker.
+- [Mosquitto](mosquitto.md) — Open-source MQTT broker
+- [rumqttd](rumqttd.md) — High performance, embeddable MQTT broker
