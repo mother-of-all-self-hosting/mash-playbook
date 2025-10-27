@@ -17,17 +17,17 @@ SPDX-FileCopyrightText: 2024 - 2025 Suguru Hirahara
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 
-# AnonymousOverflow
+# Wikimore
 
-The playbook can install and configure [AnonymousOverflow](https://github.com/httpjamesm/AnonymousOverflow) for you.
+The playbook can install and configure [Wikimore](https://github.com/httpjamesm/Wikimore) for you.
 
-AnonymousOverflow allows you to view StackOverflow threads without exposing your IP address, browsing habits, and other browser fingerprinting data to the website.
+Wikimore allows you to view StackOverflow threads without exposing your IP address, browsing habits, and other browser fingerprinting data to the website.
 
-See the project's [documentation](https://github.com/httpjamesm/AnonymousOverflow/blob/main/README.md) to learn what AnonymousOverflow does and why it might be useful to you.
+See the project's [documentation](https://github.com/httpjamesm/Wikimore/blob/main/README.md) to learn what Wikimore does and why it might be useful to you.
 
-For details about configuring the [Ansible role for AnonymousOverflow](https://github.com/mother-of-all-self-hosting/ansible-role-anonymousoverflow), you can check them via:
-- 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-anonymousoverflow/blob/main/docs/configuring-anonymousoverflow.md) online
-- 📁 `roles/galaxy/anonymousoverflow/docs/configuring-anonymousoverflow.md` locally, if you have [fetched the Ansible roles](../installing.md)
+For details about configuring the [Ansible role for Wikimore](https://github.com/mother-of-all-self-hosting/ansible-role-wikimore), you can check them via:
+- 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-wikimore/blob/main/docs/configuring-wikimore.md) online
+- 📁 `roles/galaxy/wikimore/docs/configuring-wikimore.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 ## Dependencies
 
@@ -42,34 +42,34 @@ To enable this service, add the following configuration to your `vars.yml` file 
 ```yaml
 ########################################################################
 #                                                                      #
-# anonymousoverflow                                                    #
+# wikimore                                                             #
 #                                                                      #
 ########################################################################
 
-anonymousoverflow_enabled: true
+wikimore_enabled: true
 
-anonymousoverflow_hostname: anonymousoverflow.example.com
+wikimore_hostname: wikimore.example.com
 
 ########################################################################
 #                                                                      #
-# /anonymousoverflow                                                   #
+# /wikimore                                                            #
 #                                                                      #
 ########################################################################
 ```
 
-**Note**: hosting AnonymousOverflow under a subpath (by configuring the `anonymousoverflow_path_prefix` variable) does not seem to be possible due to AnonymousOverflow's technical limitations.
+**Note**: hosting Wikimore under a subpath (by configuring the `wikimore_path_prefix` variable) does not seem to be possible due to Wikimore's technical limitations.
 
 ## Usage
 
-After running the command for installation, the AnonymousOverflow instance becomes available at the URL specified with `anonymousoverflow_hostname`. With the configuration above, the service is hosted at `https://anonymousoverflow.example.com`.
+After running the command for installation, the Wikimore instance becomes available at the URL specified with `wikimore_hostname`. With the configuration above, the service is hosted at `https://wikimore.example.com`.
 
-[Libredirect](https://libredirect.github.io/), an extension for Firefox and Chromium-based desktop browsers, has support for redirections to AnonymousOverflow. See [this section](https://github.com/httpjamesm/AnonymousOverflow/blob/main/README.md#how-to-make-stack-overflow-links-take-you-to-anonymousoverflow-automatically) on the official documentation for more information.
+[Libredirect](https://libredirect.github.io/), an extension for Firefox and Chromium-based desktop browsers, has support for redirections to Wikimore. See [this section](https://github.com/httpjamesm/Wikimore/blob/main/README.md#how-to-make-stack-overflow-links-take-you-to-wikimore-automatically) on the official documentation for more information.
 
-If you would like to publish your instance so that it can be used by anyone including Libredirect, please consider to send a PR to the [upstream project](https://github.com/httpjamesm/AnonymousOverflow) to add yours to [`instances.json`](https://github.com/httpjamesm/AnonymousOverflow/blob/main/instances.json), which Libredirect automatically fetches using a script (see [this FAQ entry](https://libredirect.github.io/faq.html#where_the_hell_are_those_instances_coming_from)).
+If you would like to publish your instance so that it can be used by anyone including Libredirect, please consider to send a PR to the [upstream project](https://github.com/httpjamesm/Wikimore) to add yours to [`instances.json`](https://github.com/httpjamesm/Wikimore/blob/main/instances.json), which Libredirect automatically fetches using a script (see [this FAQ entry](https://libredirect.github.io/faq.html#where_the_hell_are_those_instances_coming_from)).
 
 ## Troubleshooting
 
-See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-anonymousoverflow/blob/main/docs/configuring-anonymousoverflow.md#troubleshooting) on the role's documentation for details.
+See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-wikimore/blob/main/docs/configuring-wikimore.md#troubleshooting) on the role's documentation for details.
 
 ## Related services
 
