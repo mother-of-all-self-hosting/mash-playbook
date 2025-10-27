@@ -74,7 +74,7 @@
 * Jitsi: stable-10532-1
 * Jitsi Ldap: 3
 * Jitsi Prosody Auth Matrix User Verification Repo: 2839499cb03894d8cfc3e5b2219441427cb133d8
-* Joplin Server: 3.4.4
+* Joplin Server: 3.4.3
 * Karakeep: 0.27.1
 * Keycloak: 26.4.1
 * Keydb: 6.3.4
