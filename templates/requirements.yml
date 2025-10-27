@@ -445,7 +445,7 @@
   name: oauth2_proxy
   activation_prefix: oauth2_proxy_
 - src: git+https://seed.radicle.garden/z3kozTn4Kn5eJtgJQj1aCFUpqxW5Y.git
-  version: v9.1.0-0
+  version: v9.1.0-1
   name: onlyoffice_docs
   activation_prefix: onlyoffice_docs_
 - src: git+https://codeberg.org/acioustick/ansible-role-opengist.git
