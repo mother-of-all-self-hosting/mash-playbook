@@ -19,14 +19,14 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
 # Wikimore
 
-The playbook can install and configure [Wikimore](https://github.com/httpjamesm/Wikimore) for you.
+The playbook can install and configure [Wikimore](https://git.private.coffee/PrivateCoffee/wikimore/) for you.
 
-Wikimore allows you to view StackOverflow threads without exposing your IP address, browsing habits, and other browser fingerprinting data to the website.
+Wikimore allows you to browse Wikipedia projects without exposing your IP address, browsing habits, and other browser fingerprinting data to them.
 
-See the project's [documentation](https://github.com/httpjamesm/Wikimore/blob/main/README.md) to learn what Wikimore does and why it might be useful to you.
+See the project's [documentation](https://git.private.coffee/PrivateCoffee/wikimore/src/branch/main/README.md) to learn what Wikimore does and why it might be useful to you.
 
-For details about configuring the [Ansible role for Wikimore](https://github.com/mother-of-all-self-hosting/ansible-role-wikimore), you can check them via:
-- 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-wikimore/blob/main/docs/configuring-wikimore.md) online
+For details about configuring the [Ansible role for Wikimore](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az54oV5qKRrLSArZqdisrD9s7h9BQ), you can check them via:
+- 🌐 [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az54oV5qKRrLSArZqdisrD9s7h9BQ/tree/docs/configuring-wikimore.md) online
 - 📁 `roles/galaxy/wikimore/docs/configuring-wikimore.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 ## Dependencies
@@ -63,13 +63,13 @@ wikimore_hostname: wikimore.example.com
 
 After running the command for installation, the Wikimore instance becomes available at the URL specified with `wikimore_hostname`. With the configuration above, the service is hosted at `https://wikimore.example.com`.
 
-[Libredirect](https://libredirect.github.io/), an extension for Firefox and Chromium-based desktop browsers, has support for redirections to Wikimore. See [this section](https://github.com/httpjamesm/Wikimore/blob/main/README.md#how-to-make-stack-overflow-links-take-you-to-wikimore-automatically) on the official documentation for more information.
+[Libredirect](https://libredirect.github.io/), an extension for Firefox and Chromium-based desktop browsers, has support for redirections to Wikimore.
 
-If you would like to publish your instance so that it can be used by anyone including Libredirect, please consider to send a PR to the [upstream project](https://github.com/httpjamesm/Wikimore) to add yours to [`instances.json`](https://github.com/httpjamesm/Wikimore/blob/main/instances.json), which Libredirect automatically fetches using a script (see [this FAQ entry](https://libredirect.github.io/faq.html#where_the_hell_are_those_instances_coming_from)).
+If you would like to publish your instance so that it can be used by anyone including Libredirect, please consider to send a PR to the [upstream project](https://git.private.coffee/PrivateCoffee/wikimore/) to add yours to [`instances.json`](https://git.private.coffee/PrivateCoffee/wikimore/src/branch/main/instances.json), which Libredirect automatically fetches using a script (see [this FAQ entry](https://libredirect.github.io/faq.html#where_the_hell_are_those_instances_coming_from)).
 
 ## Troubleshooting
 
-See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-wikimore/blob/main/docs/configuring-wikimore.md#troubleshooting) on the role's documentation for details.
+See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az54oV5qKRrLSArZqdisrD9s7h9BQ/tree/docs/configuring-wikimore.md#troubleshooting) on the role's documentation for details.
 
 ## Related services
 
