@@ -548,6 +548,10 @@
   version: v5.1.2-0
   name: qbittorrent
   activation_prefix: qbittorrent_
+- src: git+https://seed.radicle.garden/z3PCtuwyz2HdHeKnHCefR253rpYwp.git
+  version: v4.1.4-0
+  name: rabbitmq
+  activation_prefix: rabbitmq_
 - src: git+https://github.com/spatterIight/ansible-role-radarr.git
   version: v5.27.5-2
   name: radarr

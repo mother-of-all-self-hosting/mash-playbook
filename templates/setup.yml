@@ -597,6 +597,10 @@
     - role: galaxy/qbittorrent
     # /role-specific:qbittorrent
 
+    # role-specific:rabbitmq
+    - role: galaxy/rabbitmq
+    # /role-specific:rabbitmq
+
     # role-specific:radarr
     - role: galaxy/radarr
     # /role-specific:radarr
