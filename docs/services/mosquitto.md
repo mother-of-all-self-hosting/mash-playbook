@@ -17,6 +17,7 @@ The [Ansible role for Mosquitto](https://github.com/mother-of-all-self-hosting/a
 - 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-mosquitto/blob/main/docs/configuring-mosquitto.md) online
 - 📁 `roles/galaxy/mosquitto/docs/configuring-mosquitto.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
-## Alternatives
+## Related services
 
-[rumqttd](rumqttd.md) is another high performance, embeddable MQTT broker.
+- [RabbitMQ](rabbitmq.md) — Message-broker which supports AMQP, STOMP, MQTT, etc.
+- [rumqttd](rumqttd.md) — High performance, embeddable MQTT broker
