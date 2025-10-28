@@ -4498,6 +4498,7 @@ headplane_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_pro
 headplane_headscale_hostname: "{{ headscale_identifier if headscale_enabled else '' }}"
 headplane_headscale_port: "{{ headscale_container_http_api_port if headscale_enabled else '' }}"
 headplane_headscale_config_path: "{{ headscale_config_path if headscale_enabled else '' }}"
+headplane_headscale_container_name: "{{ headscale_identifier if headscale_enabled else '' }}"
 # /role-specific:headscale
 
 # role-specific:traefik
