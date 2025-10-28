@@ -729,6 +729,10 @@
     - role: galaxy/wg_easy
     # /role-specific:wg_easy
 
+    # role-specific:wikimore
+    - role: galaxy/wikimore
+    # /role-specific:wikimore
+
     # role-specific:woodpecker_ci_agent
     - role: galaxy/woodpecker_ci_agent
     # /role-specific:woodpecker_ci_agent

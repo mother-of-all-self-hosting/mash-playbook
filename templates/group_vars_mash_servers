@@ -954,6 +954,11 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
     {{ ({'name': (wg_easy_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'wg-easy']} if wg_easy_enabled else omit) }}
   # /role-specific:wg_easy
 
+  # role-specific:wikimore
+  - |-
+    {{ ({'name': (wikimore_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'wikimore']} if wikimore_enabled else omit) }}
+  # /role-specific:wikimore
+
   # role-specific:woodpecker_ci_agent
   - |-
     {{ ({'name': (woodpecker_ci_agent_identifier + '.service'), 'priority': 4100, 'groups': ['mash', 'woodpecker', 'ci', 'woodpecker-ci-agent']} if woodpecker_ci_agent_enabled else omit) }}
@@ -11003,6 +11008,44 @@ wg_easy_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_prim
 #                                                                      #
 ########################################################################
 # /role-specific:wg_easy
+
+
+
+# role-specific:wikimore
+########################################################################
+#                                                                      #
+# wikimore                                                             #
+#                                                                      #
+########################################################################
+
+wikimore_enabled: false
+
+wikimore_identifier: "{{ mash_playbook_service_identifier_prefix }}wikimore"
+
+wikimore_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}wikimore"
+
+wikimore_uid: "{{ mash_playbook_uid }}"
+wikimore_gid: "{{ mash_playbook_gid }}"
+
+wikimore_container_additional_networks_auto: |
+  {{
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+  }}
+
+wikimore_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+wikimore_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+
+# role-specific:traefik
+wikimore_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
+wikimore_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
+# /role-specific:traefik
+
+########################################################################
+#                                                                      #
+# /wikimore                                                            #
+#                                                                      #
+########################################################################
+# /role-specific:wikimore
 
 
 
