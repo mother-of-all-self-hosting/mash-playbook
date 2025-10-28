@@ -1,3 +1,12 @@
+# 2025-10-28
+
+## authentik no longer requires a Redis-compatible datastore
+
+Since authentik [2025.10.0](https://docs.goauthentik.io/releases/2025.10), a Redis-compatible datastore (we used to recommend [Valkey](docs/services/valkey.md)) is no longer necessary. authentik no longer uses a Redis-compatible datastore at all (moving all that into Postgres).
+
+If you have an existing authentik installation, you may now wish to remove all Valkey-related integration settings.
+
+
 # 2025-10-22
 
 ## Adapting Immich/Postgres to changes in the Postgres role
