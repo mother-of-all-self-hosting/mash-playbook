@@ -1,3 +1,19 @@
+# 2025-10-29
+
+## Miniflux upgrade to v2.2.14 may require manual work
+
+Due to a migration in Miniflux v2.2.14, you may find that your Miniflux service fails to start with an error:
+
+> [Migration v119] pq: must be owner of extension hstore
+
+[This issue](https://github.com/miniflux/v2/issues/3849) affects older Miniflux installations which made use of an `hstore` Postgres extension. If the `hstore` extension is owned by a user other than `miniflux`, the migration trying to drop it will hit an error. Newer Miniflux versions never installed that extension and the migration does not need to drop it.
+
+You can fix this issue before upgrading to Miniflux v2.2.14 or after an unsuccessful upgrade by:
+
+1. Running this one-liner on your MASH server: `/mash/postgres/bin/cli-non-interactive -d miniflux -c "DROP EXTENSION IF EXISTS hstore;"`
+2. Restarting the Miniflux service
+
+
 # 2025-10-28
 
 ## authentik no longer requires a Redis-compatible datastore
