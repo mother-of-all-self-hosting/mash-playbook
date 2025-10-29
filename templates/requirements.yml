@@ -28,7 +28,7 @@
   version: v1.73.1-1
   name: appsmith
   activation_prefix: appsmith_
-- src: git+https://seed.radicle.garden/z8sG73WVo2TAKjoqh3vBvhfRqPsw.git
+- src: git+https://seed.radicle.garden/zcSq6tnVLBUQ88zSRLThc7A7RDZb.git
   version: v20251013-1
   name: asciinema_server
   activation_prefix: asciinema_server_
