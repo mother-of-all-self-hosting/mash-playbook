@@ -380,6 +380,10 @@
   version: v1.24.0-0
   name: meilisearch
   activation_prefix: meilisearch_
+- src: git+https://seed.radicle.garden/z2arPcue4GZ6G6FY3gZexsJXqHyDs.git
+  version: v1.6.39-0
+  name: memcached
+  activation_prefix: memcached_
 - src: git+https://github.com/XHawk87/ansible-role-minecraft.git
   version: v2025.4.2-0
   name: minecraft

@@ -445,6 +445,10 @@
     - role: galaxy/meilisearch
     # /role-specific:meilisearch
 
+    # role-specific:memcached
+    - role: galaxy/memcached
+    # /role-specific:memcached
+
     # role-specific:minecraft
     - role: galaxy/minecraft
     # /role-specific:minecraft
