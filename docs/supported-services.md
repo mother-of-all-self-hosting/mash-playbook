@@ -110,6 +110,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 | [Matterbridge](https://github.com/42wim/matterbridge) | Bridges Messenger Chatrooms | [Link](services/matterbridge.md) |
 | [MediaWiki](https://www.mediawiki.org) | Popular free and open-source wiki software | [Link](services/mediawiki.md) |
 | [Meilisearch](https://www.meilisearch.com) | Typo-tolerant fulltext search engine with a RESTful search API | [Link](services/meilisearch.md) |
+| [Memcached](https://memcached.org) | In-memory key-value store | [Link](services/memcached.md) |
 | [Minecraft](https://docker-minecraft-server.readthedocs.io) | The popular voxel-based sandbox game | [Link](services/minecraft.md) |
 | [Miniflux](https://miniflux.app/) | Minimalist and opinionated feed reader. | [Link](services/miniflux.md) |
 | [Misskey](https://misskey-hub.net/en/) | Free decentralized microblogging platform based on the ActivityPub protocol | [Link](services/misskey.md) |
