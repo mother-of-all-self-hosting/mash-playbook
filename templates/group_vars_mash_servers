@@ -177,6 +177,11 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
     {{ ({'name': (calibre_web_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'calibre-web']} if calibre_web_enabled else omit) }}
   # /role-specific:calibre_web
 
+  # role-specific:cap
+  - |-
+    {{ ({'name': (cap_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'cap']} if cap_enabled else omit) }}
+  # /role-specific:cap
+
   # role-specific:changedetection
   - |-
     {{ ({'name': (changedetection_identifier + '.service'), 'priority': 2100, 'groups': ['mash', 'changedetection']} if changedetection_enabled else omit) }}
@@ -2717,6 +2722,44 @@ calibre_web_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_
 #                                                                      #
 ########################################################################
 # /role-specific:calibre_web
+
+
+
+# role-specific:cap
+########################################################################
+#                                                                      #
+# cap                                                                  #
+#                                                                      #
+########################################################################
+
+cap_enabled: false
+
+cap_identifier: "{{ mash_playbook_service_identifier_prefix }}cap"
+
+cap_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}cap"
+
+cap_uid: "{{ mash_playbook_uid }}"
+cap_gid: "{{ mash_playbook_gid }}"
+
+cap_container_additional_networks_auto: |
+  {{
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+  }}
+
+cap_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+cap_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+
+# role-specific:traefik
+cap_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
+cap_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
+# /role-specific:traefik
+
+########################################################################
+#                                                                      #
+# /cap                                                                 #
+#                                                                      #
+########################################################################
+# /role-specific:cap
 
 
 

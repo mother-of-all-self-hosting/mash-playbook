@@ -72,6 +72,10 @@
   version: v0.6.25-2
   name: calibre_web
   activation_prefix: calibre_web_
+- src: git+https://seed.radicle.garden/zSj65STd1FuR22pm4vLCSmFQ1rt5.git
+  version: v2.0.16-0
+  name: cap
+  activation_prefix: cap_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-changedetection.git
   version: v0.50.34-0
   name: changedetection

@@ -161,6 +161,10 @@
     - role: galaxy/calibre_web
     # /role-specific:calibre_web
 
+    # role-specific:cap
+    - role: galaxy/cap
+    # /role-specific:cap
+
     # role-specific:changedetection
     - role: galaxy/changedetection
     # /role-specific:changedetection
