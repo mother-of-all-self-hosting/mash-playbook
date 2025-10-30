@@ -36,6 +36,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 | [BorgBackup](https://www.borgbackup.org/) (via [borgmatic](https://torsion.org/borgmatic/)) | A deduplicating backup program with optional compression and encryption| [Link](services/backup-borg.md) |
 | [Browserless](https://docs.browserless.io) | Deploy headless browsers in Docker | [Link](services/browserless.md) |
 | [Calibre-Web](https://github.com/janeczku/calibre-web) | Web app for browsing, reading and downloading eBooks stored in a [Calibre](https://calibre-ebook.com/) database | [Link](services/calibre-web.md) |
+| [Cap Standalone](https://capjs.js.org/guide/standalone/) | Backend of self-hosted Cap, a POW Captcha | [Link](services/cap.md) |
 | [Changedetection.io](https://github.com/dgtlmoon/changedetection.io) | A simple website change detection and restock monitoring solution. | [Link](services/changedetection.md) |
 | [ClickHouse](https://clickhouse.com/) | An open-source column-oriented DBMS for online analytical processing (OLAP) that allows users to generate analytical reports using SQL queries in real-time. | [Link](services/clickhouse.md) |
 | [Collabora Online Development Edition](https://www.collaboraonline.com/code/) | Development version of Collabora Online, which enables you to edit office documents with integrations such as Nextcloud | [Link](services/code.md) |
