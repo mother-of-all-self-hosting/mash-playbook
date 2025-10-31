@@ -309,6 +309,10 @@
     - role: galaxy/grafana
     # /role-specific:grafana
 
+    # role-specific:headplane
+    - role: galaxy/headplane
+    # /role-specific:headplane
+
     # role-specific:headscale
     - role: galaxy/headscale
     # /role-specific:headscale

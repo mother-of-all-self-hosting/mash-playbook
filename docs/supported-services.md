@@ -76,6 +76,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 | [GoToSocial](https://gotosocial.org/) | A self-hosted [ActivityPub](https://activitypub.rocks/) social network server | [Link](services/gotosocial.md) |
 | [Grafana](https://grafana.com/) | An open and composable observability and data visualization platform, often used with [Prometheus](services/prometheus.md) | [Link](services/grafana.md) |
 | [Grafana Loki](https://grafana.com/docs/loki/latest/) | Open-source log aggregation system that helps collect, store, and analyze logs in a scalable and efficient manner | [Link](services/grafana-loki.md) |
+| [Headplane](https://headplane.net/) | A feature-complete Web UI for Headscale | [Link](services/headplane.md) |
 | [Headscale](https://headscale.net/) | A Tailscale-compatible control server for managing Tailscale devices | [Link](services/headscale.md) |
 | [Healthchecks](https://healthchecks.io/) | A simple and Effective Cron Job Monitoring solution | [Link](services/healthchecks.md) |
 | [Homarr](https://homarr.dev/) | Highly customizable dashboard for management of your favorite applications and services with a drag-and-drop grid system | [Link](services/homarr.md) |

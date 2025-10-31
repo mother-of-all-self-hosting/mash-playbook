@@ -384,6 +384,11 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
     {{ ({'name': (grafana_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'grafana']} if grafana_enabled else omit) }}
   # /role-specific:grafana
 
+  # role-specific:headplane
+  - |-
+    {{ ({'name': (headplane_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'headplane']} if headplane_enabled else omit) }}
+  # /role-specific:headplane
+
   # role-specific:headscale
   - |-
     {{ ({'name': (headscale_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'headscale']} if headscale_enabled else omit) }}
@@ -4508,6 +4513,69 @@ grafana_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_prim
 #                                                                      #
 ########################################################################
 # /role-specific:grafana
+
+
+
+# role-specific:headplane
+########################################################################
+#                                                                      #
+# headplane                                                            #
+#                                                                      #
+########################################################################
+
+headplane_enabled: false
+
+headplane_identifier: "{{ mash_playbook_service_identifier_prefix }}headplane"
+
+headplane_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}headplane"
+
+headplane_uid: "{{ mash_playbook_uid }}"
+headplane_gid: "{{ mash_playbook_gid }}"
+
+headplane_systemd_required_services_list_auto: |
+  {{
+    ([headscale_identifier ~ '.service'] if headscale_enabled | default(false) and headplane_headscale_hostname == headscale_identifier and headplane_container_network != headscale_container_network else [])
+    +
+    ([container_socket_proxy_identifier + '.service'] if container_socket_proxy_enabled | default(false) else [])
+  }}
+
+headplane_container_additional_networks_auto: |
+  {{
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+    +
+    ([headscale_container_network] if headscale_enabled | default(false) and headplane_headscale_hostname == headscale_identifier and headplane_container_network != headscale_container_network else [])
+    +
+    ([container_socket_proxy_container_network] if container_socket_proxy_enabled | default(false) else [])
+  }}
+
+headplane_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+headplane_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+
+# role-specific:headscale
+headplane_headscale_hostname: "{{ headscale_identifier if headscale_enabled | default(false) else '' }}"
+headplane_headscale_port: "{{ headscale_container_http_api_port if headscale_enabled | default(false) else '' }}"
+headplane_headscale_config_path: "{{ headscale_config_path if headscale_enabled | default(false) else '' }}"
+headplane_headscale_container_name: "{{ headscale_identifier if headscale_enabled | default(false) else '' }}"
+headplane_headscale_extra_records_enabled: "{{ true if headscale_enabled | default(false) and headscale_extra_records_path_enabled else false }}"
+headplane_headscale_public_url: "{{ (headscale_scheme + '://' + headscale_hostname + headscale_path_prefix) if headscale_enabled | default(false) else '' }}"
+# /role-specific:headscale
+
+# role-specific:traefik
+headplane_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
+headplane_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
+# /role-specific:traefik
+
+# role-specific:container_socket_proxy
+headplane_docker_endpoint_is_unix_socket: "{{ false if headplane_config_integration_docker_endpoint.startswith('tcp://') else true }}"
+headplane_config_integration_docker_endpoint: "{{ container_socket_proxy_endpoint if container_socket_proxy_enabled else 'unix:///var/run/docker.sock' }}"
+# /role-specific:container_socket_proxy
+
+########################################################################
+#                                                                      #
+# /headplane                                                           #
+#                                                                      #
+########################################################################
+# /role-specific:headplane
 
 
 
