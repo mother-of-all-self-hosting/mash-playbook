@@ -44,6 +44,7 @@ There are some additional things you may wish to configure about the component.
 Take a look at:
 
 - The [Headplane role](https://github.com/spatterIight/ansible-role-headplane/)'s [`defaults/main.yml`](https://github.com/spatterIight/ansible-role-headplane/blob/main/defaults/main.yml) for additional variables that you can customize via your `vars.yml` file.
+- The [Headplane example configuration](https://github.com/tale/headplane/blob/main/config.example.yaml) for all the possible configuration options (like OIDC).
 
 ## Usage
 
@@ -63,3 +64,26 @@ To [access headplane](https://headplane.net/install/docker#accessing-headplane),
 ```
 
 Then login to `https://headplane.example.com/admin` by entering the generated API key.
+
+### Modifying DNS 
+
+To modify Headscale DNS in Headplane some variables should be adjusted:
+
+```yaml
+headscale_extra_records_path_enabled: true
+headplane_headscale_config_path_mount_options: readwrite
+```
+
+Otherwise you'll see an error like: "The Headscale configuration is read-only. You cannot make changes to the configuration"
+
+Be careful making changes outside of the `DNS Records` section, since many of other configuration options will directly modify the Headscale configuration file managed by Ansible -- this is likely to lead to conflicts. The `DNS Records` section does not have this issue since it uses a seperate file (`extra_records.json`).
+
+### Modifying Access Control Lists
+
+To modify Headscale ACL's you'll need to adjust the Headscale configuration:
+
+```yaml
+headscale_config_policy_mode: database
+```
+
+Otherwise you'll see an error like: "The ACL policy mode is set to `file` in your Headscale configuration. This means that the ACL file cannot be edited through the web interface."
