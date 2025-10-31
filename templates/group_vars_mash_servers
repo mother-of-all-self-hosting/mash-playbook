@@ -4495,11 +4495,12 @@ headplane_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_ena
 headplane_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
 
 # role-specific:headscale
-headplane_headscale_hostname: "{{ headscale_identifier if headscale_enabled else '' }}"
-headplane_headscale_port: "{{ headscale_container_http_api_port if headscale_enabled else '' }}"
-headplane_headscale_config_path: "{{ headscale_config_path if headscale_enabled else '' }}"
-headplane_headscale_container_name: "{{ headscale_identifier if headscale_enabled else '' }}"
+headplane_headscale_hostname: "{{ headscale_identifier if headscale_enabled | default(false) else '' }}"
+headplane_headscale_port: "{{ headscale_container_http_api_port if headscale_enabled | default(false) else '' }}"
+headplane_headscale_config_path: "{{ headscale_config_path if headscale_enabled | default(false) else '' }}"
+headplane_headscale_container_name: "{{ headscale_identifier if headscale_enabled | default(false) else '' }}"
 headplane_headscale_extra_records_enabled: "{{ true if headscale_enabled | default(false) and headscale_extra_records_path_enabled else false }}"
+headplane_headscale_public_url: "{{ 'https://' if headscale_container_labels_api_tls else 'http://' }}{{ headscale_hostname }}"
 # /role-specific:headscale
 
 # role-specific:traefik
