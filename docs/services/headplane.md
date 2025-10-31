@@ -57,7 +57,7 @@ The application being hosted at `/admin` is [not easily configurable](https://gi
 
 ### Logging in
 
-To [access headplane](https://headplane.net/install/docker#accessing-headplane), run a command using the [Headscale convenience script](headscale.md#convenience-script-to-call-the-binary) like this:
+To [login to headplane](https://headplane.net/install/docker#accessing-headplane), run a command using the [Headscale convenience script](headscale.md#convenience-script-to-call-the-binary) like this:
 
 ```sh
 /mash/headscale/bin/headscale apikeys create
