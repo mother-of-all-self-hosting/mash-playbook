@@ -65,7 +65,7 @@ To [login to headplane](https://headplane.net/install/docker#accessing-headplane
 
 Then login to `https://headplane.example.com/admin` by entering the generated API key.
 
-### Modifying DNS 
+### Modifying DNS
 
 To modify Headscale DNS in Headplane some variables should be adjusted:
 
@@ -76,7 +76,7 @@ headplane_headscale_config_path_mount_options: readwrite
 
 Otherwise you'll see an error like: "The Headscale configuration is read-only. You cannot make changes to the configuration"
 
-Be careful making changes outside of the `DNS Records` section, since many of other configuration options will directly modify the Headscale configuration file managed by Ansible -- this is likely to lead to conflicts. The `DNS Records` section does not have this issue since it uses a seperate file (`extra_records.json`).
+Be careful making changes outside of the `DNS Records` section, since many of other configuration options will directly modify the Headscale configuration file managed by Ansible -- this is likely to lead to conflicts. The `DNS Records` section does not have this issue since it uses a separate file (`extra_records.json`).
 
 ### Modifying Access Control Lists
 
