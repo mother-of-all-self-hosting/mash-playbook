@@ -241,7 +241,7 @@
   name: grafana
   activation_prefix: grafana_
 - src: git+https://github.com/spatterIight/ansible-role-headplane.git
-  version: dev
+  version: v0.6.1-0 
   name: headplane
   activation_prefix: headplane_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-headscale.git
