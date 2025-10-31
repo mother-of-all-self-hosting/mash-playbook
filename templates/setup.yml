@@ -161,6 +161,10 @@
     - role: galaxy/calibre_web
     # /role-specific:calibre_web
 
+    # role-specific:cap
+    - role: galaxy/cap
+    # /role-specific:cap
+
     # role-specific:changedetection
     - role: galaxy/changedetection
     # /role-specific:changedetection
@@ -601,6 +605,10 @@
     - role: galaxy/qbittorrent
     # /role-specific:qbittorrent
 
+    # role-specific:rabbitmq
+    - role: galaxy/rabbitmq
+    # /role-specific:rabbitmq
+
     # role-specific:radarr
     - role: galaxy/radarr
     # /role-specific:radarr
@@ -728,6 +736,10 @@
     # role-specific:wg_easy
     - role: galaxy/wg_easy
     # /role-specific:wg_easy
+
+    # role-specific:wikimore
+    - role: galaxy/wikimore
+    # /role-specific:wikimore
 
     # role-specific:woodpecker_ci_agent
     - role: galaxy/woodpecker_ci_agent

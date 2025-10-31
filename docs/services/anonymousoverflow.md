@@ -75,3 +75,4 @@ See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-an
 
 - [Mozhi](mozhi.md) — Frontend for translation engines
 - [Redlib](redlib.md) — Frontend for Reddit
+- [Wikimore](wikimore.md) — Frontend for Wikipedia projects
