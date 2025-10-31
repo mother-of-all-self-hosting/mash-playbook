@@ -12,8 +12,11 @@
       "ignoreUnstable": false,
       "versioning": "loose",
       "matchSourceUrls": [
-        "https://github.com/devture/com.devture.ansible.role{/,}**",
-        "https://github.com/mother-of-all-self-hosting{/,}**"
+        "https://codeberg.org{/,}**",
+        "https://github.com{/,}**",
+        "https://gitlab.com{/,}**",
+        "https://iris.radicle.xyz{/,}**",
+        "https://seed.radicle.garden{/,}**"
       ]
     }
   ],
