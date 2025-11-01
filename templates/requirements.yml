@@ -460,7 +460,7 @@
   version: v9.1.0-1
   name: onlyoffice_docs
   activation_prefix: onlyoffice_docs_
-- src: git+https://codeberg.org/acioustick/ansible-role-opengist.git
+- src: git+https://seed.radicle.garden/z48WEbcYK3E6uDmfP1Qbb9AGdz1L3.git
   version: v1.11.1-0
   name: opengist
   activation_prefix: opengist_
