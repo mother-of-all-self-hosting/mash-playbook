@@ -21,6 +21,7 @@
     <outline text="barassistant" title="barassistant" type="rss" htmlUrl="https://github.com/karlomikus/bar-assistant/" xmlUrl="https://github.com/karlomikus/bar-assistant//releases.atom" />
     <outline text="browserless" title="browserless" type="rss" htmlUrl="https://github.com/browserless/browserless" xmlUrl="https://github.com/browserless/browserless/releases.atom" />
     <outline text="calibre_web" title="calibre_web" type="rss" htmlUrl="https://github.com/calibre_web/calibre_web" xmlUrl="https://github.com/calibre_web/calibre_web/releases.atom" />
+    <outline text="cap" title="cap" type="rss" htmlUrl="https://github.com/tiagozip/cap" xmlUrl="https://github.com/tiagozip/cap/releases.atom" />
     <outline text="changedetection" title="changedetection" type="rss" htmlUrl="https://github.com/dgtlmoon/changedetection.io" xmlUrl="https://github.com/dgtlmoon/changedetection.io/releases.atom" />
     <outline text="clickhouse" title="clickhouse" type="rss" htmlUrl="https://github.com/ClickHouse/ClickHouse" xmlUrl="https://github.com/ClickHouse/ClickHouse/releases.atom" />
     <outline text="container_socket_proxy" title="container_socket_proxy" type="rss" htmlUrl="https://github.com/Tecnativa/docker-socket-proxy" xmlUrl="https://github.com/Tecnativa/docker-socket-proxy/releases.atom" />
@@ -55,6 +56,7 @@
     <outline text="gotify" title="gotify" type="rss" htmlUrl="https://github.com/gotify/server" xmlUrl="https://github.com/gotify/server/releases.atom" />
     <outline text="gotosocial" title="gotosocial" type="rss" htmlUrl="https://codeberg.org/superseriousbusiness/gotosocial" xmlUrl="https://codeberg.org/superseriousbusiness/gotosocial/releases.atom" />
     <outline text="grafana" title="grafana" type="rss" htmlUrl="https://github.com/grafana/grafana" xmlUrl="https://github.com/grafana/grafana/releases.atom" />
+    <outline text="headplane" title="headplane" type="rss" htmlUrl="https://github.com/tale/headplane" xmlUrl="https://github.com/tale/headplane/releases.atom" />
     <outline text="headscale" title="headscale" type="rss" htmlUrl="https://github.com/juanfont/headscale" xmlUrl="https://github.com/juanfont/headscale/releases.atom" />
     <outline text="healthchecks" title="healthchecks" type="rss" htmlUrl="https://github.com/healthchecks/healthchecks" xmlUrl="https://github.com/healthchecks/healthchecks/releases.atom" />
     <outline text="homarr" title="homarr" type="rss" htmlUrl="https://github.com/homarr-labs/homarr" xmlUrl="https://github.com/homarr-labs/homarr/releases.atom" />
@@ -83,6 +85,7 @@
     <outline text="matomo" title="matomo" type="rss" htmlUrl="https://github.com/matomo-org/matomo" xmlUrl="https://github.com/matomo-org/matomo/releases.atom" />
     <outline text="matterbridge" title="matterbridge" type="rss" htmlUrl="https://github.com/42wim/matterbridge" xmlUrl="https://github.com/42wim/matterbridge/releases.atom" />
     <outline text="meilisearch" title="meilisearch" type="rss" htmlUrl="https://github.com/meilisearch/meilisearch" xmlUrl="https://github.com/meilisearch/meilisearch/releases.atom" />
+    <outline text="memcached" title="memcached" type="rss" htmlUrl="https://github.com/memcached/memcached/" xmlUrl="https://github.com/memcached/memcached//releases.atom" />
     <outline text="minecraft" title="minecraft" type="rss" htmlUrl="https://github.com/itzg/docker-minecraft-server" xmlUrl="https://github.com/itzg/docker-minecraft-server/releases.atom" />
     <outline text="miniflux" title="miniflux" type="rss" htmlUrl="https://github.com/miniflux/v2" xmlUrl="https://github.com/miniflux/v2/releases.atom" />
     <outline text="misskey" title="misskey" type="rss" htmlUrl="https://github.com/misskey-dev/misskey" xmlUrl="https://github.com/misskey-dev/misskey/releases.atom" />
