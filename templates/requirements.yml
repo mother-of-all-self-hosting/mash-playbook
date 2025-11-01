@@ -669,7 +669,7 @@
   name: telegraf
   activation_prefix: telegraf_
 - src: git+https://seed.radicle.garden/z3vaa8VAuz3pxqB3FyciNKQRSHqyt.git
-  version: v4.4.3-0
+  version: v4.4.3-1
   name: thelounge
   activation_prefix: thelounge_
 - src: git+https://github.com/devture/com.devture.ansible.role.timesync.git
