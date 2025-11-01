@@ -889,6 +889,11 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
     {{ ({'name': (sonarr_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'sonarr']} if sonarr_enabled else omit) }}
   # /role-specific:sonarr
 
+  # role-specific:statusnook
+  - |-
+    {{ ({'name': (statusnook_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'statusnook']} if statusnook_enabled else omit) }}
+  # /role-specific:statusnook
+
   # role-specific:stirling_pdf
   - |-
     {{ ({'name': (stirling_pdf_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'stirling_pdf']} if stirling_pdf_enabled else omit) }}
@@ -10404,6 +10409,46 @@ sonarr_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_prima
 #                                                                      #
 ########################################################################
 # /role-specific:sonarr
+
+
+
+# role-specific:statusnook
+########################################################################
+#                                                                      #
+# statusnook                                                           #
+#                                                                      #
+########################################################################
+
+statusnook_enabled: false
+
+statusnook_identifier: "{{ mash_playbook_service_identifier_prefix }}statusnook"
+
+statusnook_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}statusnook"
+
+statusnook_uid: "{{ mash_playbook_uid }}"
+statusnook_gid: "{{ mash_playbook_gid }}"
+
+statusnook_container_additional_networks_auto: |
+  {{
+    ([exim_relay_container_network | default('mash-exim-relay')] if (exim_relay_enabled | default(false) and statusnook_container_network != exim_relay_container_network) else [])
+    +
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+  }}
+
+statusnook_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+statusnook_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+
+# role-specific:traefik
+statusnook_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
+statusnook_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
+# /role-specific:traefik
+
+########################################################################
+#                                                                      #
+# /statusnook                                                          #
+#                                                                      #
+########################################################################
+# /role-specific:statusnook
 
 
 
