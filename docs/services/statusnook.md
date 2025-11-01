@@ -19,14 +19,14 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
 # Statusnook
 
-The playbook can install and configure [Statusnook](https://uptime.kuma.pet/) for you.
+The playbook can install and configure [Statusnook](https://statusnook.com/) for you.
 
-Statusnook is a fancy self-hosted monitoring tool similar to [Uptime Robot](https://uptimerobot.com/). It has functions such as monitoring uptime for HTTP(s), TCP, DNS Record, Steam Game Server, and Docker Containers, etc.
+Statusnook is a self-hosted status page deployment service.
 
-See the project's [documentation](https://github.com/louislam/statusnook/wiki) to learn what Statusnook does and why it might be useful to you.
+See the project's [documentation](https://statusnook.com/) to learn what Statusnook does and why it might be useful to you.
 
-For details about configuring the [Ansible role for Statusnook](https://github.com/mother-of-all-self-hosting/ansible-role-statusnook), you can check them via:
-- 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-statusnook/blob/main/docs/configuring-statusnook.md) online
+For details about configuring the [Ansible role for Statusnook](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az4Ki52caKbH1y9jFNdKzQnc8WH1Jd), you can check them via:
+- 🌐 [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az4Ki52caKbH1y9jFNdKzQnc8WH1Jd/tree/docs/configuring-statusnook.md) online
 - 📁 `roles/galaxy/statusnook/docs/configuring-statusnook.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 ## Dependencies
@@ -63,15 +63,12 @@ statusnook_hostname: statusnook.example.com
 
 After running the command for installation, the Statusnook instance becomes available at the URL specified with `statusnook_hostname`. With the configuration above, the service is hosted at `https://statusnook.example.com`.
 
-To get started, open the URL with a web browser, and follow the set up wizard where you can create your admin user and configure the service. You can add monitors for web services as many as you like.
-
-If you have enabled a self-hosted [ntfy](ntfy.md) server, it is possible to set up the Statusnook instance to have it send notifications to a ntfy's "topic" (channel) when the monitored web service is down, without relaying them through servers owned and controlled by third parties.
+To get started, open the URL with a web browser, and follow the set up wizard.
 
 ## Troubleshooting
 
-See [this section](https://github.com/mother-of-all-self-hosting//ansible-role-statusnook/blob/main/docs/configuring-statusnook.md#troubleshooting) on the role's documentation for details.
+See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az4Ki52caKbH1y9jFNdKzQnc8WH1Jd/tree/docs/configuring-statusnook.md#troubleshooting) on the role's documentation for details.
 
 ## Related services
 
-- [Gotify](gotify.md) — Simple server for sending and receiving messages
-- [ntfy](ntfy.md) — Simple HTTP-based pub-sub notification service to send you push notifications from any computer
+- [Uptime Kuma](uptime-kuma.md) — Fancy self-hosted monitoring tool
