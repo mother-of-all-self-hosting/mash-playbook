@@ -632,6 +632,10 @@
   version: 13440992374e0fef8f6360a0856b78b37a1fd831
   name: ssh
   activation_prefix: system_security_ssh_
+- src: git+https://seed.radicle.garden/z4Ki52caKbH1y9jFNdKzQnc8WH1Jd.git
+  version: v0.3.0-0
+  name: statusnook
+  activation_prefix: statusnook_
 - src: git+https://github.com/Bergruebe/ansible-role-stirling-pdf.git
   version: v1.5.0-0
   name: stirling_pdf

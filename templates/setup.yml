@@ -677,6 +677,10 @@
     - role: galaxy/sonarr
     # /role-specific:sonarr
 
+    # role-specific:statusnook
+    - role: galaxy/statusnook
+    # /role-specific:statusnook
+
     # role-specific:stirling_pdf
     - role: galaxy/stirling_pdf
     # /role-specific:stirling_pdf
