@@ -75,3 +75,4 @@ See [this section](https://github.com/mother-of-all-self-hosting//ansible-role-u
 
 - [Gotify](gotify.md) — Simple server for sending and receiving messages
 - [ntfy](ntfy.md) — Simple HTTP-based pub-sub notification service to send you push notifications from any computer
+- [Statusnook](statusnook.md) — Self-hosted status page deployment service
