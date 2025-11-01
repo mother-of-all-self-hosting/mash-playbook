@@ -36,7 +36,7 @@
   version: v18.10.0-0
   name: atuin
   activation_prefix: atuin_
-- src: git+https://codeberg.org/acioustick/ansible-role-audiobookshelf.git
+- src: git+https://seed.radicle.garden/z3rwhJ9rQ82H6GXg7ZCt3UNpStbaW.git
   version: v2.30.0-0
   name: audiobookshelf
   activation_prefix: audiobookshelf_
