@@ -60,7 +60,7 @@
   version: v1.4.1-2.0.10-0
   name: backup_borg
   activation_prefix: backup_borg_
-- src: git+https://codeberg.org/acioustick/ansible-role-barassistant.git
+- src: git+https://seed.radicle.garden/z3JDUHjeHMqbZ3YLxquSUbCmAJLi.git
   version: v5.9.0-2
   name: barassistant
   activation_prefix: barassistant_
