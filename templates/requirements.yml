@@ -17,7 +17,7 @@
   name: apisix_dashboard
   activation_prefix: apisix_dashboard_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-apisix-gateway.git
-  version: v3.8.0-10
+  version: v3.8.0-11
   name: apisix_gateway
   activation_prefix: apisix_gateway_
 - src: git+https://seed.radicle.garden/z292aD8q3r8xqhJvLe2zv1b24gu7a.git
