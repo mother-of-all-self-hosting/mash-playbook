@@ -308,7 +308,7 @@
   version: v3.4.3-3
   name: joplin_server
   activation_prefix: joplin_server_
-- src: git+https://codeberg.org/acioustick/ansible-role-karakeep.git
+- src: git+https://seed.radicle.garden/z4W1oeRiFKEikhj4Mk3HbVJM7er6S.git
   version: v0.27.1-0
   name: karakeep
   activation_prefix: karakeep_
