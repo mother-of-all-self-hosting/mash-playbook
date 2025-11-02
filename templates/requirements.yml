@@ -344,7 +344,7 @@
   version: v1.44.1-1
   name: linkding
   activation_prefix: linkding_
-- src: git+https://codeberg.org/acioustick/ansible-role-linkwarden.git
+- src: git+https://seed.radicle.garden/zCF75tYyujYQ3T4L3BkBDrPzXree.git
   version: v2.13.1-0
   name: linkwarden
   activation_prefix: linkwarden_
