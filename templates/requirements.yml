@@ -676,7 +676,7 @@
   version: v1.1.0-0
   name: timesync
   activation_prefix: devture_timesync_
-- src: git+https://codeberg.org/acioustick/ansible-role-tinyauth.git
+- src: git+https://seed.radicle.garden/zLMiPKSyMcb5m85H2brZd4GHCDTF.git
   version: v4.0.1-0
   name: tinyauth
   activation_prefix: tinyauth_
