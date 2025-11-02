@@ -176,7 +176,7 @@
   version: e25d0d9b5282dbb5a1ec4cd23d26c16998e4334f
   name: fail2ban
   activation_prefix: system_security_fail2ban_
-- src: git+https://codeberg.org/acioustick/ansible-role-filebrowser.git
+- src: git+https://seed.radicle.garden/z318zbpe2RNjFqVzXqPoDDJvvohbw.git
   version: v2.44.1-0
   name: filebrowser
   activation_prefix: filebrowser_
