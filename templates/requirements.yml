@@ -321,7 +321,7 @@
   name: keydb
   activation_prefix: keydb_
 - src: git+https://seed.radicle.garden/z36dPzLyvPA52m845g1MMqHgoiaEz.git
-  version: v3.2.3-1
+  version: v3.2.3-3
   name: kutt
   activation_prefix: kutt_
 - src: git+https://gitlab.com/horvathg.1988/ansible-role-labelstudio.git
