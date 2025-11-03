@@ -26,8 +26,8 @@ NodeBB is a Node.js based free forum software.
 
 See the project's [documentation](https://docs.nodebb.org/) to learn what NodeBB does and why it might be useful to you.
 
-For details about configuring the [Ansible role for NodeBB](https://codeberg.org/acioustick/ansible-role-nodebb), you can check them via:
-- 🌐 [the role's documentation](https://codeberg.org/acioustick/ansible-role-nodebb/src/branch/master/docs/configuring-nodebb.md) online
+For details about configuring the [Ansible role for NodeBB](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az2K9dPANyrXJY7juE9XecXyernA6h), you can check them via:
+- 🌐 [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az2K9dPANyrXJY7juE9XecXyernA6h/tree/docs/configuring-nodebb.md) online
 - 📁 `roles/galaxy/nodebb/docs/configuring-nodebb.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 ## Dependencies
@@ -243,8 +243,8 @@ After installation, the NodeBB instance becomes available at the URL specified w
 
 To get started, open the URL with a web browser, and follow the set up wizard. Make sure that the scheme (`HTTPS` or `HTTP`) for the public facing URL is detected properly, and fix it if not.
 
-Refer to [this section](https://codeberg.org/acioustick/ansible-role-nodebb/src/branch/master/docs/configuring-nodebb.md#usage) on the role's documentation for more information.
+Refer to [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az2K9dPANyrXJY7juE9XecXyernA6h/tree/docs/configuring-nodebb.md#usage) on the role's documentation for more information.
 
 ## Troubleshooting
 
-See [this section](https://codeberg.org/acioustick/ansible-role-nodebb/src/branch/master/docs/configuring-nodebb.md#troubleshooting) on the role's documentation for details.
+See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az2K9dPANyrXJY7juE9XecXyernA6h/tree/docs/configuring-nodebb.md#troubleshooting) on the role's documentation for details.

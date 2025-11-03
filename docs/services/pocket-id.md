@@ -25,8 +25,8 @@ Pocket ID is a simple OpenID Connect (OIDC) provider (Identity Provider, IdP) th
 
 See the project's [documentation](https://pocket-id.org/docs/) to learn what Pocket ID does and why it might be useful to you.
 
-For details about configuring the [Ansible role for Pocket ID](https://codeberg.org/acioustick/ansible-role-pocket-id), you can check them via:
-- 🌐 [the role's documentation](https://codeberg.org/acioustick/ansible-role-pocket-id/src/branch/master/docs/configuring-pocket-id.md) online
+For details about configuring the [Ansible role for Pocket ID](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az2vTmc3fLqxvpuT9EoZvkErWNZM1K), you can check them via:
+- 🌐 [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az2vTmc3fLqxvpuT9EoZvkErWNZM1K/tree/docs/configuring-pocket-id.md) online
 - 📁 `roles/galaxy/pocket_id/docs/configuring-pocket-id.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 ## Dependencies
@@ -65,7 +65,7 @@ pocket_id_hostname: pocketid.example.com
 
 ### Select database to use (optional)
 
-By default Pocket ID is configured to use Postgres, but you can choose SQLite. See [this section](https://codeberg.org/acioustick/ansible-role-pocket-id/src/branch/master/docs/configuring-pocket-id.md#specify-database-optional) on the role's documentation for details.
+By default Pocket ID is configured to use Postgres, but you can choose SQLite. See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az2vTmc3fLqxvpuT9EoZvkErWNZM1K/tree/docs/configuring-pocket-id.md#specify-database-optional) on the role's documentation for details.
 
 ### Configuring additional settings with environment variables (optional)
 
@@ -76,7 +76,7 @@ By default, this playbook enables configuring them on the UI, which therefore di
 >[!NOTE]
 > Basic settings can still be configured with environment variables.
 
-See [this section](https://codeberg.org/acioustick/ansible-role-pocket-id/src/branch/master/docs/configuring-pocket-id.md#enable-or-disable-overriding-ui-configuration-with-environment-variables) on the role's documentation for details about what needs specifying.
+See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az2vTmc3fLqxvpuT9EoZvkErWNZM1K/tree/docs/configuring-pocket-id.md#enable-or-disable-overriding-ui-configuration-with-environment-variables) on the role's documentation for details about what needs specifying.
 
 ## Usage
 
@@ -84,7 +84,7 @@ After running the command for installation, the Pocket ID instance becomes avail
 
 To get started, open the URL `https://example.com/setup` on a web browser to create and sign in with an admin account.
 
-See [this section](https://codeberg.org/acioustick/ansible-role-pocket-id/src/branch/master/docs/configuring-pocket-id.md#usage) on the role's documentation for details about how to use Pocket ID.
+See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az2vTmc3fLqxvpuT9EoZvkErWNZM1K/tree/docs/configuring-pocket-id.md#usage) on the role's documentation for details about how to use Pocket ID.
 
 If you are interested in integrating Pocket ID with [Tinyauth](https://tinyauth.app), you might also be interested in having a look at [this section](tinyauth.md#integrating-with-pocket-id).
 
@@ -94,7 +94,7 @@ Pocket ID supports LDAP for user management. This playbook supports [LLDAP](llda
 
 After installing it and creating an admin user (and optionally another user with less privileges), you can configure LDAP client settings and the attribute mapping on the Pocket ID's UI.
 
-If you enabled configuring additional settings with environment variables (by setting `pocket_id_environment_variable_ui_config_disabled` to `true`), you can follow [this example](https://codeberg.org/acioustick/ansible-role-pocket-id/src/branch/develop/docs/configuring-pocket-id.md#configure-ldap-server-settings-with-environment-variables-optional) on the role's documentation to override the default values on the playbook per your needs.
+If you enabled configuring additional settings with environment variables (by setting `pocket_id_environment_variable_ui_config_disabled` to `true`), you can follow [this example](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az2vTmc3fLqxvpuT9EoZvkErWNZM1K/tree/docs/configuring-pocket-id.md#configure-ldap-server-settings-with-environment-variables-optional) on the role's documentation to override the default values on the playbook per your needs.
 
 If you are looking for a less complicated example to get started, you can refer to the one below to get an idea about how it works. Note **it is not recommended to use a user with admin privileges for binding**, as search privileges are sufficient. On LLDAP it is recommended to use instead a user in the `lldap_strict_readonly` or `lldap_password_manager` group.
 
@@ -131,7 +131,7 @@ Refer to these guides as well:
 
 ## Troubleshooting
 
-See [this section](https://codeberg.org/acioustick/ansible-role-pocket-id/src/branch/master/docs/configuring-pocket-id.md#troubleshooting) on the role's documentation for details.
+See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az2vTmc3fLqxvpuT9EoZvkErWNZM1K/tree/docs/configuring-pocket-id.md#troubleshooting) on the role's documentation for details.
 
 ## Related services
 

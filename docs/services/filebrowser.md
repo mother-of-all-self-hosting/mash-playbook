@@ -28,8 +28,8 @@ File Browser provides a file managing interface within a specified directory and
 
 See the project's [documentation](https://filebrowser.org/) to learn what File Browser does and why it might be useful to you.
 
-For details about configuring the [Ansible role for File Browser](https://codeberg.org/acioustick/ansible-role-filebrowser), you can check them via:
-- 🌐 [the role's documentation](https://codeberg.org/acioustick/ansible-role-filebrowser/src/branch/master/docs/configuring-filebrowser.md) online
+For details about configuring the [Ansible role for File Browser](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az318zbpe2RNjFqVzXqPoDDJvvohbw), you can check them via:
+- 🌐 [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az318zbpe2RNjFqVzXqPoDDJvvohbw/tree/docs/configuring-filebrowser.md) online
 - 📁 `roles/galaxy/filebrowser/docs/configuring-filebrowser.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 ## Dependencies
@@ -80,7 +80,7 @@ You can create additional users (admin-privileged or not) after logging in via t
 
 ## Troubleshooting
 
-See [this section](https://codeberg.org/acioustick/ansible-role-filebrowser/src/branch/master/docs/configuring-filebrowser.md#troubleshooting) on the role's documentation for details.
+See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az318zbpe2RNjFqVzXqPoDDJvvohbw/tree/docs/configuring-filebrowser.md#troubleshooting) on the role's documentation for details.
 
 ## Related services
 

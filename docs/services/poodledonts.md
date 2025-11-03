@@ -25,8 +25,8 @@ PoodleDonts allows you to use Google Fonts without exposing your IP address, bro
 
 See the project's [documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az4JAZNsXXS8yVoW8NuvAgNEHfbgTc/src/branch/main/README.md) to learn what PoodleDonts does and why it might be useful to you.
 
-For details about configuring the [Ansible role for PoodleDonts](https://codeberg.org/acioustick/ansible-role-poodledonts), you can check them via:
-- 🌐 [the role's documentation](https://codeberg.org/acioustick/ansible-role-poodledonts/src/branch/master/docs/configuring-poodledonts.md) online
+For details about configuring the [Ansible role for PoodleDonts](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az4MgJseWRZ9FL3Mh6ASufmi1RJoVh), you can check them via:
+- 🌐 [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az4MgJseWRZ9FL3Mh6ASufmi1RJoVh/tree/docs/configuring-poodledonts.md) online
 - 📁 `roles/galaxy/poodledonts/docs/configuring-poodledonts.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 ## Dependencies
@@ -65,7 +65,7 @@ After running the command for installation, the PoodleDonts instance becomes ava
 
 ## Troubleshooting
 
-See [this section](https://codeberg.org/acioustick/ansible-role-poodledonts/src/branch/master/docs/configuring-poodledonts.md#troubleshooting) on the role's documentation for details.
+See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az4MgJseWRZ9FL3Mh6ASufmi1RJoVh/tree/docs/configuring-poodledonts.md#troubleshooting) on the role's documentation for details.
 
 ## Related services
 
