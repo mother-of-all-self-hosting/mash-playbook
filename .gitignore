@@ -27,3 +27,5 @@ inventory/host_vars/
 
 /group_vars/*
 !/group_vars/.gitkeep
+
+/docs/services/nextcloud-previews-audit.md
