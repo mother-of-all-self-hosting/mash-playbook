@@ -26,8 +26,8 @@ Opengist is a self-hosted pastebin powered by Git. All snippets are stored in a 
 
 See the project's [documentation](https://opengist.io/docs/) to learn what Opengist does and why it might be useful to you.
 
-For details about configuring the [Ansible role for Opengist](https://codeberg.org/acioustick/ansible-role-opengist), you can check them via:
-- 🌐 [the role's documentation](https://codeberg.org/acioustick/ansible-role-opengist/src/branch/master/docs/configuring-opengist.md) online
+For details about configuring the [Ansible role for Opengist](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az48WEbcYK3E6uDmfP1Qbb9AGdz1L3), you can check them via:
+- 🌐 [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az48WEbcYK3E6uDmfP1Qbb9AGdz1L3/tree/docs/configuring-opengist.md) online
 - 📁 `roles/galaxy/opengist/docs/configuring-opengist.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 ## Dependencies
@@ -74,7 +74,7 @@ opengist_environment_variables_secret_key: YOUR_SECRET_KEY_HERE
 
 ### Select database to use (optional)
 
-By default Opengist is configured to use Postgres, but you can choose other database such as SQLite and MySQL. See [this section](https://codeberg.org/acioustick/ansible-role-opengist/src/branch/master/docs/configuring-opengist.md#specify-database-optional) on the role's documentation for details.
+By default Opengist is configured to use Postgres, but you can choose other database such as SQLite and MySQL. See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az48WEbcYK3E6uDmfP1Qbb9AGdz1L3/tree/docs/configuring-opengist.md#specify-database-optional) on the role's documentation for details.
 
 ## Usage
 
@@ -84,7 +84,7 @@ To get started, open the URL with a web browser, and register the account. **Not
 
 ## Troubleshooting
 
-See [this section](https://codeberg.org/acioustick/ansible-role-opengist/src/branch/master/docs/configuring-opengist.md#troubleshooting) on the role's documentation for details.
+See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az48WEbcYK3E6uDmfP1Qbb9AGdz1L3/tree/docs/configuring-opengist.md#troubleshooting) on the role's documentation for details.
 
 ## Related services
 

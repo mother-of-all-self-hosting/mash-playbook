@@ -25,8 +25,8 @@ CyberChef is an intuitive application for carrying out encryption, encoding, and
 
 See the project's [documentation](https://github.com/gchq/CyberChef/blob/master/README.md) to learn what CyberChef does and why it might be useful to you.
 
-For details about configuring the [Ansible role for CyberChef](https://codeberg.org/acioustick/ansible-role-cyberchef), you can check them via:
-- 🌐 [the role's documentation](https://codeberg.org/acioustick/ansible-role-cyberchef/src/branch/master/docs/configuring-cyberchef.md) online
+For details about configuring the [Ansible role for CyberChef](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az2zgHMDh4Pb8yr4DH8BVkMcdboBXd), you can check them via:
+- 🌐 [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az2zgHMDh4Pb8yr4DH8BVkMcdboBXd/tree/docs/configuring-cyberchef.md) online
 - 📁 `roles/galaxy/cyberchef/docs/configuring-cyberchef.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 ## Dependencies
@@ -65,4 +65,4 @@ After running the command for installation, the CyberChef instance becomes avail
 
 ## Troubleshooting
 
-See [this section](https://codeberg.org/acioustick/ansible-role-cyberchef/src/branch/master/docs/configuring-cyberchef.md#troubleshooting) on the role's documentation for details.
+See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az2zgHMDh4Pb8yr4DH8BVkMcdboBXd/tree/docs/configuring-cyberchef.md#troubleshooting) on the role's documentation for details.

@@ -79,3 +79,4 @@ See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-re
 
 - [AnonymousOverflow](anonymousoverflow.md) — Frontend for StackOverflow
 - [Mozhi](mozhi.md) — Frontend for translation engines
+- [Wikimore](wikimore.md) — Frontend for Wikipedia projects

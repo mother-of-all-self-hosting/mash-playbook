@@ -26,8 +26,8 @@ While Joplin is architectured to be "offline first", with a Joplin Server it is 
 
 See the project's [documentation](https://joplinapp.org/help/) to learn what Joplin and Joplin Server do and why they might be useful to you.
 
-For details about configuring the [Ansible role for Joplin Server](https://codeberg.org/acioustick/ansible-role-joplin-server), you can check them via:
-- 🌐 [the role's documentation](https://codeberg.org/acioustick/ansible-role-joplin-server/src/branch/master/docs/configuring-joplin-server.md) online
+For details about configuring the [Ansible role for Joplin Server](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3AzttNpUS7xCeDnn2e4No2dUvZv7L7), you can check them via:
+- 🌐 [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3AzttNpUS7xCeDnn2e4No2dUvZv7L7/tree/docs/configuring-joplin-server.md) online
 - 📁 `roles/galaxy/joplin_server/docs/configuring-joplin-server.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 ## Dependencies
@@ -69,7 +69,7 @@ During installation, the Joplin Server by default creates its admin user with `a
 
 Though the mailer is technically not requisite, it is highly recommended to set it up for the log in credentials update function to work.
 
-See [this section](https://codeberg.org/acioustick/ansible-role-joplin-server/src/branch/master/docs/configuring-joplin-server.md#configure-the-mailer) on the role's documentation for details about configuring the mailer.
+See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3AzttNpUS7xCeDnn2e4No2dUvZv7L7/tree/docs/configuring-joplin-server.md#configure-the-mailer) on the role's documentation for details about configuring the mailer.
 
 **Notes**:
 - If you enable the [exim-relay](exim-relay.md) service in your inventory configuration, the playbook will automatically configure it as a mailer for the service.
@@ -81,8 +81,8 @@ To configure and manage the Joplin Server, open the URL `mash.example.com/joplin
 
 For security reason, the developer recommends to create a non-admin user for synchronization. You can create one on the "Users" page. After creating, you can use the email and password you specified for the user to synchronize data with your Joplin clients.
 
-See [this section](https://codeberg.org/acioustick/ansible-role-joplin-server/src/branch/master/docs/configuring-joplin-server.md#usage) on the role's documentation for details about configuring the Joplin Server and the client application.
+See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3AzttNpUS7xCeDnn2e4No2dUvZv7L7/tree/docs/configuring-joplin-server.md#usage) on the role's documentation for details about configuring the Joplin Server and the client application.
 
 ## Troubleshooting
 
-See [this section](https://codeberg.org/acioustick/ansible-role-joplin-server/src/branch/master/docs/configuring-joplin-server.md#troubleshooting) on the role's documentation for details.
+See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3AzttNpUS7xCeDnn2e4No2dUvZv7L7/tree/docs/configuring-joplin-server.md#troubleshooting) on the role's documentation for details.

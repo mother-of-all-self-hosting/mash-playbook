@@ -177,6 +177,11 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
     {{ ({'name': (calibre_web_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'calibre-web']} if calibre_web_enabled else omit) }}
   # /role-specific:calibre_web
 
+  # role-specific:cap
+  - |-
+    {{ ({'name': (cap_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'cap']} if cap_enabled else omit) }}
+  # /role-specific:cap
+
   # role-specific:changedetection
   - |-
     {{ ({'name': (changedetection_identifier + '.service'), 'priority': 2100, 'groups': ['mash', 'changedetection']} if changedetection_enabled else omit) }}
@@ -379,6 +384,11 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
     {{ ({'name': (grafana_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'grafana']} if grafana_enabled else omit) }}
   # /role-specific:grafana
 
+  # role-specific:headplane
+  - |-
+    {{ ({'name': (headplane_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'headplane']} if headplane_enabled else omit) }}
+  # /role-specific:headplane
+
   # role-specific:headscale
   - |-
     {{ ({'name': (headscale_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'headscale']} if headscale_enabled else omit) }}
@@ -562,6 +572,11 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
     {{ ({'name': (meilisearch_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'meilisearch']} if meilisearch_enabled else omit) }}
   # /role-specific:meilisearch
 
+  # role-specific:memcached
+  - |-
+    {{ ({'name': (memcached_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'memcached']} if memcached_enabled else omit) }}
+  # /role-specific:memcached
+
   # role-specific:minecraft
   - |-
     {{ ({'name': (minecraft_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'minecraft']} if minecraft_enabled else omit) }}
@@ -665,6 +680,11 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
   - |-
     {{ ({'name': (oauth2_proxy_identifier + '.service'), 'priority': 1900, 'groups': ['mash', 'oauth2-proxy']} if oauth2_proxy_enabled else omit) }}
   # /role-specific:oauth2_proxy
+
+  # role-specific:onlyoffice_docs
+  - |-
+    {{ ({'name': (onlyoffice_docs_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'onlyoffice-docs']} if onlyoffice_docs_enabled else omit) }}
+  # /role-specific:onlyoffice_docs
 
   # role-specific:opengist
   - |-
@@ -780,6 +800,11 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
     {{ ({'name': (qbittorrent_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'qbittorrent']} if qbittorrent_enabled else omit) }}
   # /role-specific:qbittorrent
 
+  # role-specific:rabbitmq
+  - |-
+    {{ ({'name': (rabbitmq_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'rabbitmq']} if rabbitmq_enabled else omit) }}
+  # /role-specific:rabbitmq
+
   # role-specific:radarr
   - |-
     {{ ({'name': (radarr_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'radarr']} if radarr_enabled else omit) }}
@@ -864,6 +889,11 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
     {{ ({'name': (sonarr_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'sonarr']} if sonarr_enabled else omit) }}
   # /role-specific:sonarr
 
+  # role-specific:statusnook
+  - |-
+    {{ ({'name': (statusnook_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'statusnook']} if statusnook_enabled else omit) }}
+  # /role-specific:statusnook
+
   # role-specific:stirling_pdf
   - |-
     {{ ({'name': (stirling_pdf_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'stirling_pdf']} if stirling_pdf_enabled else omit) }}
@@ -943,6 +973,11 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
   - |-
     {{ ({'name': (wg_easy_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'wg-easy']} if wg_easy_enabled else omit) }}
   # /role-specific:wg_easy
+
+  # role-specific:wikimore
+  - |-
+    {{ ({'name': (wikimore_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'wikimore']} if wikimore_enabled else omit) }}
+  # /role-specific:wikimore
 
   # role-specific:woodpecker_ci_agent
   - |-
@@ -1422,6 +1457,17 @@ mash_playbook_postgres_managed_databases_auto_itemized:
       } if notfellchen_enabled and notfellchen_database_host == postgres_connection_hostname and notfellchen_database_type == 'postgresql' else omit)
     }}
   # /role-specific:notfellchen
+
+  # role-specific:onlyoffice_docs
+  - |-
+    {{
+      ({
+        'name': onlyoffice_docs_database_name,
+        'username': onlyoffice_docs_database_postgres_username,
+        'password': onlyoffice_docs_database_postgres_password,
+      } if onlyoffice_docs_enabled and onlyoffice_docs_database_postgres_hostname == postgres_connection_hostname and onlyoffice_docs_database_type == 'postgres' else omit)
+    }}
+  # /role-specific:onlyoffice_docs
 
   # role-specific:opengist
   - |-
@@ -2694,6 +2740,44 @@ calibre_web_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_
 
 
 
+# role-specific:cap
+########################################################################
+#                                                                      #
+# cap                                                                  #
+#                                                                      #
+########################################################################
+
+cap_enabled: false
+
+cap_identifier: "{{ mash_playbook_service_identifier_prefix }}cap"
+
+cap_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}cap"
+
+cap_uid: "{{ mash_playbook_uid }}"
+cap_gid: "{{ mash_playbook_gid }}"
+
+cap_container_additional_networks_auto: |
+  {{
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+  }}
+
+cap_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+cap_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+
+# role-specific:traefik
+cap_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
+cap_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
+# /role-specific:traefik
+
+########################################################################
+#                                                                      #
+# /cap                                                                 #
+#                                                                      #
+########################################################################
+# /role-specific:cap
+
+
+
 # role-specific:changedetection
 ########################################################################
 #                                                                      #
@@ -3576,6 +3660,11 @@ filebrowser_quantum_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_s
 filebrowser_quantum_uid: "{{ mash_playbook_uid }}"
 filebrowser_quantum_gid: "{{ mash_playbook_gid }}"
 
+filebrowser_quantum_systemd_wanted_services_list_auto: |
+  {{
+    ([onlyoffice_docs_identifier ~ '.service'] if onlyoffice_docs_enabled and filebrowser_quantum_config_integrations_office else [])
+  }}
+
 filebrowser_quantum_container_additional_networks_auto: |
   {{
     ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
@@ -3583,6 +3672,12 @@ filebrowser_quantum_container_additional_networks_auto: |
 
 filebrowser_quantum_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
 filebrowser_quantum_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+
+# role-specific:onlyoffice_docs
+filebrowser_quantum_config_integrations_office: true
+filebrowser_quantum_config_integrations_office_url: "{{ onlyoffice_docs_scheme }}://{{ onlyoffice_docs_hostname }}"
+filebrowser_quantum_config_integrations_office_secret: "{{ onlyoffice_docs_environment_variables_jwt_secret }}"
+# /role-specific:onlyoffice_docs
 
 # role-specific:traefik
 filebrowser_quantum_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
@@ -4428,6 +4523,69 @@ grafana_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_prim
 #                                                                      #
 ########################################################################
 # /role-specific:grafana
+
+
+
+# role-specific:headplane
+########################################################################
+#                                                                      #
+# headplane                                                            #
+#                                                                      #
+########################################################################
+
+headplane_enabled: false
+
+headplane_identifier: "{{ mash_playbook_service_identifier_prefix }}headplane"
+
+headplane_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}headplane"
+
+headplane_uid: "{{ mash_playbook_uid }}"
+headplane_gid: "{{ mash_playbook_gid }}"
+
+headplane_systemd_required_services_list_auto: |
+  {{
+    ([headscale_identifier ~ '.service'] if headscale_enabled | default(false) and headplane_headscale_hostname == headscale_identifier and headplane_container_network != headscale_container_network else [])
+    +
+    ([container_socket_proxy_identifier + '.service'] if container_socket_proxy_enabled | default(false) else [])
+  }}
+
+headplane_container_additional_networks_auto: |
+  {{
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+    +
+    ([headscale_container_network] if headscale_enabled | default(false) and headplane_headscale_hostname == headscale_identifier and headplane_container_network != headscale_container_network else [])
+    +
+    ([container_socket_proxy_container_network] if container_socket_proxy_enabled | default(false) else [])
+  }}
+
+headplane_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+headplane_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+
+# role-specific:headscale
+headplane_headscale_hostname: "{{ headscale_identifier if headscale_enabled | default(false) else '' }}"
+headplane_headscale_port: "{{ headscale_container_http_api_port if headscale_enabled | default(false) else '' }}"
+headplane_headscale_config_path: "{{ headscale_config_path if headscale_enabled | default(false) else '' }}"
+headplane_headscale_container_name: "{{ headscale_identifier if headscale_enabled | default(false) else '' }}"
+headplane_headscale_extra_records_enabled: "{{ true if headscale_enabled | default(false) and headscale_extra_records_path_enabled else false }}"
+headplane_headscale_public_url: "{{ (headscale_scheme + '://' + headscale_hostname + headscale_path_prefix) if headscale_enabled | default(false) else '' }}"
+# /role-specific:headscale
+
+# role-specific:traefik
+headplane_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
+headplane_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
+# /role-specific:traefik
+
+# role-specific:container_socket_proxy
+headplane_docker_endpoint_is_unix_socket: "{{ false if headplane_config_integration_docker_endpoint.startswith('tcp://') else true }}"
+headplane_config_integration_docker_endpoint: "{{ container_socket_proxy_endpoint if container_socket_proxy_enabled else 'unix:///var/run/docker.sock' }}"
+# /role-specific:container_socket_proxy
+
+########################################################################
+#                                                                      #
+# /headplane                                                           #
+#                                                                      #
+########################################################################
+# /role-specific:headplane
 
 
 
@@ -7110,6 +7268,17 @@ mash_playbook_mariadb_managed_databases_auto_itemized:
     }}
   # /role-specific:nextcloud
 
+  # role-specific:onlyoffice_docs
+  - |-
+    {{
+      ({
+        'name': onlyoffice_docs_database_name,
+        'username': onlyoffice_docs_database_mariadb_username,
+        'password': onlyoffice_docs_database_mariadb_password,
+      } if onlyoffice_docs_enabled and onlyoffice_docs_database_mariadb_hostname == mariadb_connection_hostname and onlyoffice_docs_database_type == 'mariadb' else omit)
+    }}
+  # /role-specific:onlyoffice_docs
+
   # role-specific:opengist
   - |-
     {{
@@ -7438,6 +7607,45 @@ meilisearch_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_
 #                                                                      #
 ########################################################################
 # /role-specific:meilisearch
+
+
+
+# role-specific:memcached
+########################################################################
+#                                                                      #
+# memcached                                                            #
+#                                                                      #
+########################################################################
+
+memcached_enabled: false
+
+memcached_identifier: "{{ mash_playbook_service_identifier_prefix }}memcached"
+
+memcached_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}memcached"
+
+memcached_uid: "{{ mash_playbook_uid }}"
+memcached_gid: "{{ mash_playbook_gid }}"
+
+memcached_container_additional_networks_auto: |
+  {{
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+  }}
+
+# Only enable Traefik labels if a hostname is set (indicating that this will be exposed publicly)
+memcached_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled and memcached_hostname | length > 0 }}"
+memcached_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+
+# role-specific:traefik
+memcached_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
+memcached_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
+# /role-specific:traefik
+
+########################################################################
+#                                                                      #
+# /memcached                                                           #
+#                                                                      #
+########################################################################
+# /role-specific:memcached
 
 
 
@@ -8300,6 +8508,82 @@ oauth2_proxy_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver
 #                                                                      #
 ########################################################################
 # /role-specific:oauth2_proxy
+
+
+
+# role-specific:onlyoffice_docs
+########################################################################
+#                                                                      #
+# onlyoffice_docs                                                      #
+#                                                                      #
+########################################################################
+
+onlyoffice_docs_enabled: false
+
+onlyoffice_docs_identifier: "{{ mash_playbook_service_identifier_prefix }}onlyoffice-docs"
+
+onlyoffice_docs_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}onlyoffice-docs"
+
+# ONLYOFFICE Docs can only work with a root user
+onlyoffice_docs_uid: "0"
+onlyoffice_docs_gid: "0"
+
+onlyoffice_docs_systemd_required_services_list_auto: |
+  {{
+    ([mariadb_identifier ~ '.service'] if mariadb_enabled | default(false) and onlyoffice_docs_database_mariadb_hostname == mariadb_connection_hostname and onlyoffice_docs_database_type == 'mariadb' else [])
+    +
+    ([postgres_identifier ~ '.service'] if postgres_enabled | default(false) and onlyoffice_docs_database_postgres_hostname == postgres_connection_hostname and onlyoffice_docs_database_type == 'postgres' else [])
+  }}
+
+onlyoffice_docs_systemd_wanted_services_list_auto: |
+  {{
+    ([rabbitmq_identifier ~ '.service'] if rabbitmq_enabled else [])
+  }}
+
+onlyoffice_docs_container_additional_networks_auto: |
+  {{
+    ([mariadb_container_network] if mariadb_enabled | default(false) and onlyoffice_docs_database_mariadb_hostname == mariadb_connection_hostname and onlyoffice_docs_container_network != mariadb_container_network and onlyoffice_docs_database_type == 'mariadb' else [])
+    +
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+    +
+    ([postgres_container_network] if postgres_enabled | default(false) and onlyoffice_docs_database_postgres_hostname == postgres_connection_hostname and onlyoffice_docs_container_network != postgres_container_network and onlyoffice_docs_database_type == 'postgres' else [])
+    +
+    ([rabbitmq_container_network] if rabbitmq_enabled | default(false) and onlyoffice_docs_container_network != rabbitmq_container_network else [])
+  }}
+
+onlyoffice_docs_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+onlyoffice_docs_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+
+onlyoffice_docs_environment_variables_secure_link_secret: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'onlyoffice.s', rounds=655555) | to_uuid }}"
+onlyoffice_docs_environment_variables_jwt_secret: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'onlyoffice.dj', rounds=655555) | to_uuid }}"
+
+# role-specific:mariadb
+onlyoffice_docs_database_mariadb_hostname: "{{ mariadb_connection_hostname if mariadb_enabled else '' }}"
+onlyoffice_docs_database_mariadb_port: "{{ mariadb_connection_port if mariadb_enabled else '3306' }}"
+onlyoffice_docs_database_mariadb_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'onlyoffice.d', rounds=655555) | to_uuid }}"
+# /role-specific:mariadb
+
+# role-specific:postgres
+onlyoffice_docs_database_postgres_hostname: "{{ postgres_connection_hostname if postgres_enabled else '' }}"
+onlyoffice_docs_database_postgres_port: "{{ postgres_connection_port if postgres_enabled else '5432' }}"
+onlyoffice_docs_database_postgres_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'onlyoffice.d', rounds=655555) | to_uuid }}"
+# /role-specific:postgres
+
+# role-specific:rabbitmq
+onlyoffice_docs_environment_variables_amqp_uri: "amqp://{{ rabbitmq_environment_variables_rabbitmq_default_user }}:{{ rabbitmq_environment_variables_rabbitmq_default_pass }}@{{ rabbitmq_identifier }}:{{ rabbitmq_container_http_port }}"
+# /role-specific:rabbitmq
+
+# role-specific:traefik
+onlyoffice_docs_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
+onlyoffice_docs_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
+# /role-specific:traefik
+
+########################################################################
+#                                                                      #
+# /onlyoffice_docs                                                     #
+#                                                                      #
+########################################################################
+# /role-specific:onlyoffice_docs
 
 
 
@@ -9382,6 +9666,45 @@ qbittorrent_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_
 
 
 
+# role-specific:rabbitmq
+########################################################################
+#                                                                      #
+# rabbitmq                                                             #
+#                                                                      #
+########################################################################
+
+rabbitmq_enabled: false
+
+rabbitmq_identifier: "{{ mash_playbook_service_identifier_prefix }}rabbitmq"
+
+rabbitmq_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}rabbitmq"
+
+rabbitmq_uid: "{{ mash_playbook_uid }}"
+rabbitmq_gid: "{{ mash_playbook_gid }}"
+
+rabbitmq_container_additional_networks_auto: |
+  {{
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+  }}
+
+# Only enable Traefik labels if a hostname is set (indicating that this will be exposed publicly)
+rabbitmq_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled and rabbitmq_hostname | length > 0 }}"
+rabbitmq_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+
+# role-specific:traefik
+rabbitmq_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
+rabbitmq_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
+# /role-specific:traefik
+
+########################################################################
+#                                                                      #
+# /rabbitmq                                                            #
+#                                                                      #
+########################################################################
+# /role-specific:rabbitmq
+
+
+
 # role-specific:radarr
 ########################################################################
 #                                                                      #
@@ -9804,15 +10127,12 @@ searxng_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_
 searxng_uid: "{{ mash_playbook_uid }}"
 searxng_gid: "{{ mash_playbook_gid }}"
 
-searxng_systemd_required_systemd_services_list: |
-  {{
-    ([devture_systemd_docker_base_docker_service_name] if devture_systemd_docker_base_docker_service_name else [])
-  }}
-
 searxng_container_additional_networks_auto: |
   {{
     ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
   }}
+
+searxng_config_server_secret_key: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'searxng.s', rounds=655555) | to_uuid }}"
 
 searxng_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
 searxng_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
@@ -10089,6 +10409,46 @@ sonarr_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_prima
 #                                                                      #
 ########################################################################
 # /role-specific:sonarr
+
+
+
+# role-specific:statusnook
+########################################################################
+#                                                                      #
+# statusnook                                                           #
+#                                                                      #
+########################################################################
+
+statusnook_enabled: false
+
+statusnook_identifier: "{{ mash_playbook_service_identifier_prefix }}statusnook"
+
+statusnook_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}statusnook"
+
+statusnook_uid: "{{ mash_playbook_uid }}"
+statusnook_gid: "{{ mash_playbook_gid }}"
+
+statusnook_container_additional_networks_auto: |
+  {{
+    ([exim_relay_container_network | default('mash-exim-relay')] if (exim_relay_enabled | default(false) and statusnook_container_network != exim_relay_container_network) else [])
+    +
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+  }}
+
+statusnook_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+statusnook_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+
+# role-specific:traefik
+statusnook_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
+statusnook_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
+# /role-specific:traefik
+
+########################################################################
+#                                                                      #
+# /statusnook                                                          #
+#                                                                      #
+########################################################################
+# /role-specific:statusnook
 
 
 
@@ -10848,6 +11208,44 @@ wg_easy_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_prim
 #                                                                      #
 ########################################################################
 # /role-specific:wg_easy
+
+
+
+# role-specific:wikimore
+########################################################################
+#                                                                      #
+# wikimore                                                             #
+#                                                                      #
+########################################################################
+
+wikimore_enabled: false
+
+wikimore_identifier: "{{ mash_playbook_service_identifier_prefix }}wikimore"
+
+wikimore_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}wikimore"
+
+wikimore_uid: "{{ mash_playbook_uid }}"
+wikimore_gid: "{{ mash_playbook_gid }}"
+
+wikimore_container_additional_networks_auto: |
+  {{
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+  }}
+
+wikimore_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+wikimore_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+
+# role-specific:traefik
+wikimore_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
+wikimore_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
+# /role-specific:traefik
+
+########################################################################
+#                                                                      #
+# /wikimore                                                            #
+#                                                                      #
+########################################################################
+# /role-specific:wikimore
 
 
 

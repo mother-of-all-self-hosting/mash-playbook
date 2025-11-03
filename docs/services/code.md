@@ -27,7 +27,7 @@ See the project's [documentation](https://www.collaboraonline.com/code/) to lear
 
 For details about configuring the [Ansible role for CODE](https://github.com/mother-of-all-self-hosting/ansible-role-collabora-online), you can check them via:
 - 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-collabora-online/blob/main/docs/configuring-code.md) online
-- 📁 `roles/galaxy/collabora_online/docs/configuring-online.md` locally, if you have [fetched the Ansible roles](../installing.md)
+- 📁 `roles/galaxy/collabora_online/docs/configuring-code.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 ## Dependencies
 

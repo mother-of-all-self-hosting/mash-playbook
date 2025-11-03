@@ -74,6 +74,12 @@ Replace `YOUR_ADMIN_PASSWORD_HERE` with your own value.
 
 Alternatively, you can enable OIDC authentication for FileBrowser Quantum. See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3ALGSKDhVLeMnR49YPXk5yv2yTge/tree/docs/configuring-filebrowser-quantum.md#configuring-oidc-authentication-optional) on the role's documentation for necessary settings.
 
+### Integrating ONLYOFFICE Docs (optional)
+
+You can integrate [ONLYOFFICE Docs](https://github.com/ONLYOFFICE/DocumentServer) with the service to edit office documents on the service.
+
+By default, this playbook is configured to automatically enable integration, if both of them are enabled. See [this page](onlyoffice-docs.md) for details about how to install ONLYOFFICE Docs.
+
 ## Usage
 
 After running the command for installation, the FileBrowser Quantum instance becomes available at the URL specified with `filebrowser_quantum_hostname`. With the configuration above, the service is hosted at `https://filebrowser.example.com`.
@@ -88,4 +94,5 @@ See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3ALG
 
 - [authentik](authentik.md) — Open-source Identity Provider (IdP) focused on flexibility and versatility
 - [File Browser](filebrowser.md) — File managing interface within a specified directory, which can be used to upload, delete, preview and edit your files
+- [ONLYOFFICE Docs](onlyoffice-docs.md) — Online office suite comprising viewers and editors
 - [Pocket ID](pocket-id.md) — Simple OIDC provider for passkey-only authentication

@@ -161,6 +161,10 @@
     - role: galaxy/calibre_web
     # /role-specific:calibre_web
 
+    # role-specific:cap
+    - role: galaxy/cap
+    # /role-specific:cap
+
     # role-specific:changedetection
     - role: galaxy/changedetection
     # /role-specific:changedetection
@@ -305,6 +309,10 @@
     - role: galaxy/grafana
     # /role-specific:grafana
 
+    # role-specific:headplane
+    - role: galaxy/headplane
+    # /role-specific:headplane
+
     # role-specific:headscale
     - role: galaxy/headscale
     # /role-specific:headscale
@@ -437,6 +445,10 @@
     - role: galaxy/meilisearch
     # /role-specific:meilisearch
 
+    # role-specific:memcached
+    - role: galaxy/memcached
+    # /role-specific:memcached
+
     # role-specific:minecraft
     - role: galaxy/minecraft
     # /role-specific:minecraft
@@ -508,6 +520,10 @@
     # role-specific:oauth2_proxy
     - role: galaxy/oauth2_proxy
     # /role-specific:oauth2_proxy
+
+    # role-specific:onlyoffice_docs
+    - role: galaxy/onlyoffice_docs
+    # /role-specific:onlyoffice_docs
 
     # role-specific:opengist
     - role: galaxy/opengist
@@ -593,6 +609,10 @@
     - role: galaxy/qbittorrent
     # /role-specific:qbittorrent
 
+    # role-specific:rabbitmq
+    - role: galaxy/rabbitmq
+    # /role-specific:rabbitmq
+
     # role-specific:radarr
     - role: galaxy/radarr
     # /role-specific:radarr
@@ -657,6 +677,10 @@
     - role: galaxy/sonarr
     # /role-specific:sonarr
 
+    # role-specific:statusnook
+    - role: galaxy/statusnook
+    # /role-specific:statusnook
+
     # role-specific:stirling_pdf
     - role: galaxy/stirling_pdf
     # /role-specific:stirling_pdf
@@ -720,6 +744,10 @@
     # role-specific:wg_easy
     - role: galaxy/wg_easy
     # /role-specific:wg_easy
+
+    # role-specific:wikimore
+    - role: galaxy/wikimore
+    # /role-specific:wikimore
 
     # role-specific:woodpecker_ci_agent
     - role: galaxy/woodpecker_ci_agent
