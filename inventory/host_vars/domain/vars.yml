@@ -238,22 +238,19 @@ nextcloud_config_parameter_default_phone_region: DK
 nextcloud_config_parameter_default_timezone: Europe/Copenhagen
 nextcloud_config_parameter_maintenance_window_start: 3
 
-# nextcloud_config_parameters_custom:
-#   - key: mail_smtphost
-#     value: smtp.example.com
-#     type: string
 
-### raw example values from the config - not to be used literally
-###  'mail_smtpmode' => 'smtp',
-###  'mail_sendmailmode' => 'smtp',
-###  'mail_from_address' => 'nextcloud',
-###  'mail_domain' => 'thewrt.com',
-###  'mail_smtphost' => 'smtp.sendgrid.net',
-###  'mail_smtpport' => '465',
-###  'mail_smtpsecure' => 'ssl',
-###  'mail_smtpauth' => 1,
-###  'mail_smtpname' => 'apikey',
-###  'mail_smtppassword' => 'asdfasdf',
+nextcloud_config_parameters_custom:
+  - { key: 'mail_smtpmode', value: '{{ vault_mail_smtp_mode }}', type: 'string' }
+  - { key: 'mail_sendmailmode', value: '{{ vault_mail_smtp_mode }}', type: 'string' }
+  - { key: 'mail_from_address', value: '{{ vault_mail_from_address }}', type: 'string' }
+  - { key: 'mail_domain', value: '{{ domain }}', type: 'string' }
+  - { key: 'mail_smtphost', value: '{{ vault_mail_smtp_host }}', type: 'string' }
+  - { key: 'mail_smtpport', value: '{{ vault_mail_smtp_port }}', type: 'integer' }
+  - { key: 'mail_smtpsecure', value: '{{ vault_mail_smtp_secure }}', type: 'string' }
+  - { key: 'mail_smtpauth', value: '{{ vault_mail_smtp_auth | int }}', type: 'integer' }
+  - { key: 'mail_smtpname', value: '{{ vault_mail_from_adress }}@{{ domain }}', type: 'string' }
+  - { key: 'mail_smtppassword', value: '{{ vault_mail_smtp_password }}', type: 'string' }
+
 
 ########################################################################
 #                                                                      #
@@ -498,6 +495,16 @@ authentik_systemd_required_services_list_custom:
 # Make sure the authentik container is connected to the container network of its dedicated KeyDB service (mash-authentik-keydb)
 authentik_container_additional_networks_custom:
   - "authentik-keydb"
+
+## Mailing
+authentik_environment_variables_custom:
+  AUTHENTIK_EMAIL__HOST: "{{ vault_mail_smtp_host }}"
+  AUTHENTIK_EMAIL__PORT: "{{ vault_mail_smtp_port }}"
+  AUTHENTIK_EMAIL__USERNAME: "{{ vault_mail_smtp_user }}"
+  AUTHENTIK_EMAIL__PASSWORD: "{{ vault_mail_smtp_password }}"
+  AUTHENTIK_EMAIL__USE_TLS: "{{ vault_mail_smtp_secure == 'tls' }}"
+  AUTHENTIK_EMAIL__USE_SSL: "{{ vault_mail_smtp_secure == 'ssl' }}"
+  AUTHENTIK_EMAIL__FROM: "{{ vault_mail_from_address }}@{{ domain }}"
 
 ########################################################################
 #                                                                      #
