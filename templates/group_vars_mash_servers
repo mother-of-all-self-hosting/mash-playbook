@@ -691,6 +691,11 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
     {{ ({'name': (opengist_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'opengist']} if opengist_enabled else omit) }}
   # /role-specific:opengist
 
+  # role-specific:openregex
+  - |-
+    {{ ({'name': (openregex_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'openregex']} if openregex_enabled else omit) }}
+  # /role-specific:openregex
+
   # role-specific:outline
   - |-
     {{ ({'name': (outline_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'outline']} if outline_enabled else omit) }}
@@ -8647,6 +8652,44 @@ opengist_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_pri
 #                                                                      #
 ########################################################################
 # /role-specific:opengist
+
+
+
+# role-specific:openregex
+########################################################################
+#                                                                      #
+# openregex                                                            #
+#                                                                      #
+########################################################################
+
+openregex_enabled: false
+
+openregex_identifier: "{{ mash_playbook_service_identifier_prefix }}openregex"
+
+openregex_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}openregex"
+
+openregex_uid: "{{ mash_playbook_uid }}"
+openregex_gid: "{{ mash_playbook_gid }}"
+
+openregex_container_additional_networks_auto: |
+  {{
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+  }}
+
+openregex_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+openregex_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+
+# role-specific:traefik
+openregex_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
+openregex_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
+# /role-specific:traefik
+
+########################################################################
+#                                                                      #
+# /openregex                                                           #
+#                                                                      #
+########################################################################
+# /role-specific:openregex
 
 
 
