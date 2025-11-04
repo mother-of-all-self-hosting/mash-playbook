@@ -3662,7 +3662,7 @@ filebrowser_quantum_gid: "{{ mash_playbook_gid }}"
 
 filebrowser_quantum_systemd_wanted_services_list_auto: |
   {{
-    ([onlyoffice_docs_identifier ~ '.service'] if onlyoffice_docs_enabled and filebrowser_quantum_config_integrations_office else [])
+    ([onlyoffice_docs_identifier ~ '.service'] if onlyoffice_docs_enabled | default(false) and filebrowser_quantum_config_integrations_office else [])
   }}
 
 filebrowser_quantum_container_additional_networks_auto: |
