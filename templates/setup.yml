@@ -529,6 +529,10 @@
     - role: galaxy/opengist
     # /role-specific:opengist
 
+    # role-specific:openregex
+    - role: galaxy/openregex
+    # /role-specific:openregex
+
     # role-specific:outline
     - role: galaxy/outline
     # /role-specific:outline
