@@ -61,7 +61,7 @@
   name: backup_borg
   activation_prefix: backup_borg_
 - src: git+https://seed.radicle.garden/z3JDUHjeHMqbZ3YLxquSUbCmAJLi.git
-  version: v5.9.0-3
+  version: v5.9.1-0
   name: barassistant
   activation_prefix: barassistant_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-browserless.git
