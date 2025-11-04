@@ -653,6 +653,10 @@
     - role: galaxy/rssbridge
     # /role-specific:rssbridge
 
+    # role-specific:rsshub
+    - role: galaxy/rsshub
+    # /role-specific:rsshub
+
     # role-specific:rumqttd
     - role: galaxy/rumqttd
     # /role-specific:rumqttd

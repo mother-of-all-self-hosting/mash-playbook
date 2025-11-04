@@ -859,6 +859,11 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
     {{ ({'name': (rssbridge_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'rssbridge']} if rssbridge_enabled else omit) }}
   # /role-specific:rssbridge
 
+  # role-specific:rsshub
+  - |-
+    {{ ({'name': (rsshub_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'rsshub']} if rsshub_enabled else omit) }}
+  # /role-specific:rsshub
+
   # role-specific:rumqttd
   - |-
     {{ ({'name': (rumqttd_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'rumqttd']} if rumqttd_enabled else omit) }}
@@ -10126,6 +10131,55 @@ rssbridge_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_pr
 #                                                                      #
 ########################################################################
 # /role-specific:rssbridge
+
+
+
+# role-specific:rsshub
+########################################################################
+#                                                                      #
+# rsshub                                                               #
+#                                                                      #
+########################################################################
+
+rsshub_enabled: false
+
+rsshub_identifier: "{{ mash_playbook_service_identifier_prefix }}rsshub"
+
+rsshub_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}rsshub"
+
+rsshub_uid: "{{ mash_playbook_uid }}"
+rsshub_gid: "{{ mash_playbook_gid }}"
+
+rsshub_systemd_wanted_services_list_auto: |
+  {{
+    ([browserless_identifier ~ '.service'] if browserless_enabled | default(false) else [])
+  }}
+
+rsshub_container_additional_networks_auto: |
+  {{
+    ([browserless_container_network] if browserless_enabled | default(false) and rsshub_container_network != browserless_container_network else [])
+    +
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+  }}
+
+rsshub_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+rsshub_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+
+# role-specific:browserless
+rsshub_environment_variables_puppeteer_ws_endpoint: "ws://{{ browserless_identifier }}:{{ browserless_container_http_port }}"
+# /role-specific:browserless
+
+# role-specific:traefik
+rsshub_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
+rsshub_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
+# /role-specific:traefik
+
+########################################################################
+#                                                                      #
+# /rsshub                                                              #
+#                                                                      #
+########################################################################
+# /role-specific:rsshub
 
 
 
