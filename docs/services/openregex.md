@@ -17,17 +17,17 @@ SPDX-FileCopyrightText: 2024 - 2025 Suguru Hirahara
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 
-# CyberChef
+# OpenRegex
 
-The playbook can install and configure [CyberChef](https://github.com/gchq/CyberChef) for you.
+The playbook can install and configure [OpenRegex](https://github.com/SunneV/OpenRegex) for you.
 
-CyberChef is an intuitive application for carrying out encryption, encoding, and data analysis operations inside a browser locally. These operations include simple encoding like XOR and Base64, more complex encryption like AES, DES and Blowfish, creating binary and hexdumps, and so on.
+OpenRegex is a self-hosted, web-based regular expression (regex) tester and debugger.
 
-See the project's [documentation](https://github.com/gchq/CyberChef/blob/master/README.md) to learn what CyberChef does and why it might be useful to you.
+See the project's [documentation](https://github.com/SunneV/OpenRegex/blob/main/README.md) to learn what OpenRegex does and why it might be useful to you.
 
-For details about configuring the [Ansible role for CyberChef](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az2zgHMDh4Pb8yr4DH8BVkMcdboBXd), you can check them via:
-- 🌐 [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az2zgHMDh4Pb8yr4DH8BVkMcdboBXd/tree/docs/configuring-cyberchef.md) online
-- 📁 `roles/galaxy/cyberchef/docs/configuring-cyberchef.md` locally, if you have [fetched the Ansible roles](../installing.md)
+For details about configuring the [Ansible role for OpenRegex](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az2kcNwMys48Wy3SLPnLU7oBnkkQyj), you can check them via:
+- 🌐 [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az2kcNwMys48Wy3SLPnLU7oBnkkQyj/tree/docs/configuring-openregex.md) online
+- 📁 `roles/galaxy/openregex/docs/configuring-openregex.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 ## Dependencies
 
@@ -42,27 +42,27 @@ To enable this service, add the following configuration to your `vars.yml` file 
 ```yaml
 ########################################################################
 #                                                                      #
-# cyberchef                                                            #
+# openregex                                                            #
 #                                                                      #
 ########################################################################
 
-cyberchef_enabled: true
+openregex_enabled: true
 
-cyberchef_hostname: cyberchef.example.com
+openregex_hostname: openregex.example.com
 
 ########################################################################
 #                                                                      #
-# /cyberchef                                                           #
+# /openregex                                                           #
 #                                                                      #
 ########################################################################
 ```
 
-**Note**: hosting CyberChef under a subpath (by configuring the `cyberchef_path_prefix` variable) does not seem to be possible due to CyberChef's technical limitations.
+**Note**: hosting OpenRegex under a subpath (by configuring the `openregex_path_prefix` variable) does not seem to be possible due to OpenRegex's technical limitations.
 
 ## Usage
 
-After running the command for installation, the CyberChef instance becomes available at the URL specified with `cyberchef_hostname`. With the configuration above, the service is hosted at `https://cyberchef.example.com`.
+After running the command for installation, the OpenRegex instance becomes available at the URL specified with `openregex_hostname`. With the configuration above, the service is hosted at `https://openregex.example.com`.
 
 ## Troubleshooting
 
-See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az2zgHMDh4Pb8yr4DH8BVkMcdboBXd/tree/docs/configuring-cyberchef.md#troubleshooting) on the role's documentation for details.
+See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az2kcNwMys48Wy3SLPnLU7oBnkkQyj/tree/docs/configuring-openregex.md#troubleshooting) on the role's documentation for details.
