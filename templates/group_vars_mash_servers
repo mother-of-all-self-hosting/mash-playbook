@@ -8542,7 +8542,7 @@ onlyoffice_docs_systemd_required_services_list_auto: |
 
 onlyoffice_docs_systemd_wanted_services_list_auto: |
   {{
-    ([rabbitmq_identifier ~ '.service'] if rabbitmq_enabled else [])
+    ([rabbitmq_identifier ~ '.service'] if rabbitmq_enabled | default(false) else [])
   }}
 
 onlyoffice_docs_container_additional_networks_auto: |
