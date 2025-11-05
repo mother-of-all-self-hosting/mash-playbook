@@ -19,14 +19,14 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
 # RSSHub
 
-The playbook can install and configure [RSSHub](https://github.com/karlomikus/bar-assistant/) for you.
+The playbook can install and configure [RSSHub](https://docs.rsshub.app/) for you.
 
-RSSHub is a service for managing cocktail recipes at your home bar with a lot of cocktail-oriented features like ingredient substitutes. The playbook is configured to set up the RSSHub's API server and its web client software [Salt Rim](https://github.com/karlomikus/vue-salt-rim).
+RSSHub is a self-hosted service to create RSS feeds from web pages via various "routes".
 
-See the project's [documentation](https://docs.rsshub.app/) to learn what RSSHub does and why it might be useful to you.
+See the project's [documentation](https://docs.rsshub.app/guide/) to learn what RSSHub does and why it might be useful to you.
 
-For details about configuring the [Ansible role for RSSHub](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3JDUHjeHMqbZ3YLxquSUbCmAJLi), you can check them via:
-- 🌐 [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3JDUHjeHMqbZ3YLxquSUbCmAJLi/tree/docs/configuring-rsshub.md) online
+For details about configuring the [Ansible role for RSSHub](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3yKvCwcEfxn41ozRTcNR8ad6kpUm), you can check them via:
+- 🌐 [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3yKvCwcEfxn41ozRTcNR8ad6kpUm/tree/docs/configuring-rsshub.md) online
 - 📁 `roles/galaxy/rsshub/docs/configuring-rsshub.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 ## Dependencies
@@ -34,8 +34,7 @@ For details about configuring the [Ansible role for RSSHub](https://app.radicle.
 This service requires the following other services:
 
 - [Traefik](traefik.md) reverse-proxy server
-- (optional) [exim-relay](exim-relay.md) mailer
-- (optional) [Meilisearch](meilisearch.md)
+- (optional) [Browserless](browserless.md)
 - (optional) [Valkey](valkey.md) data-store; see [below](#configuring-valkey-optional) for details about installation
 
 ## Adjusting the playbook configuration
@@ -62,31 +61,13 @@ rsshub_hostname: rsshub.example.com
 
 **Note**: hosting RSSHub under a subpath (by configuring the `rsshub_path_prefix` variable) does not seem to be possible due to RSSHub's technical limitations.
 
-### Enabling signing up
+### Connecting to a Browserless instance (optional)
 
-By default account registration for the service is disabled. To enable it, add the following configuration to your `vars.yml` file:
+You can optionally have the RSSHub instance connect to a Browserless instance, in order to have it simulate browser behavior for obtaining websites' data.
 
-```yaml
-rsshub_server_environment_variables_allow_registration: false
-```
+Browserless is available on the playbook. Enabling it automatically configures the RSSHub instance to connect to it.
 
-### Configuring the mailer (optional)
-
-On RSSHub you can set up a mailer for functions such as password recovery. If you enable the [exim-relay](exim-relay.md) service in your inventory configuration, the playbook will automatically configure it as a mailer for the service.
-
->[!NOTE]
-> Without setting an authentication method such as DKIM, SPF, and DMARC for your hostname, emails are most likely to be quarantined as spam at recipient's mail servers. If you have set up a mail server with the [exim-relay Ansible role](https://github.com/mother-of-all-self-hosting/ansible-role-exim-relay), you can enable DKIM signing with it. Refer [its documentation](https://github.com/mother-of-all-self-hosting/ansible-role-exim-relay/blob/main/docs/configuring-exim-relay.md#enable-dkim-support-optional) for details.
-
-### Connecting to a Meilisearch instance (optional)
-
-To enable the search and filtering functions, you can optionally have the RSSHub instance connect to a Meilisearch instance.
-
-Meilisearch is available on the playbook. Enabling it and setting the default admin API key automatically configures the RSSHub instance to connect to it.
-
-See [this page](meilisearch.md) for details about how to install it and setting the key for the Meilisearch instance.
-
->[!NOTE]
-> The Meilisearch instance needs to be exposed to the internet. Setting a hostname of the instance to `meilisearch_hostname` automatically exposes it.
+See [this page](browserless.md) for details about how to install it.
 
 ### Configuring Valkey (optional)
 
@@ -266,12 +247,14 @@ Note that running the `just` commands for installation (`just install-all` or `j
 
 ## Usage
 
-After running the command for installation, the RSSHub's API server becomes available at the URL specified with `rsshub_hostname` and `rsshub_server_path_prefix`, and the Salt Rim instance becomes available at the URL specified with `rsshub_hostname`, respectively. With the configuration above, the Salt Rim instance is hosted at `https://rsshub.example.com`.
+After installation, the RSSHub instance becomes available at the URL specified with `rsshubp_hostname`. With the configuration above, the service is hosted at `https://rsshubp.example.com`.
 
-To get started, open the URL with a web browser, and register the account to use the web UI. **Note that the first registered user becomes an administrator automatically.**
-
-Since account registration is disabled by default, you need to enable it first by setting `rsshub_server_environment_variables_allow_registration` to `false` temporarily in order to create your own account.
+See the [official documentation](https://docs.rsshub.app/guide/) for usage.
 
 ## Troubleshooting
 
-See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3JDUHjeHMqbZ3YLxquSUbCmAJLi/tree/docs/configuring-rsshub.md#troubleshooting) on the role's documentation for details.
+See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3yKvCwcEfxn41ozRTcNR8ad6kpUm/tree/docs/configuring-rsshub.md#troubleshooting) on the role's documentation for details.
+
+## Related services
+
+- [RSS-Bridge](rssbridge.md) — Generates web feeds for websites that do not have one
