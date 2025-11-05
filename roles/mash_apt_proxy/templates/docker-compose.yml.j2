@@ -1,0 +1,10 @@
+version: "3.8"
+services:
+  aptcacher:
+    image: sameersbn/apt-cacher-ng
+    restart: unless-stopped
+    network_mode: host
+    environment:
+      ACNG_BIND_ADDRESS: "{{ mash_apt_proxy_bind_address }}"
+    volumes:
+      - {{ mash_apt_proxy_cache_dir }}:/var/cache/apt-cacher-ng

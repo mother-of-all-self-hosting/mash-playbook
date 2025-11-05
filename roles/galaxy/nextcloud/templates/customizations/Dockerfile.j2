@@ -1,0 +1,107 @@
+{#
+SPDX-FileCopyrightText: 2023 Slavi Pantaleev
+SPDX-License-Identifier: AGPL-3.0-or-later
+#}
+
+# syntax=docker/dockerfile:1.6
+ARG NC_IMAGE={{ nextcloud_container_image }}
+FROM ${NC_IMAGE}
+ARG APT_PROXY=""
+ENV DEBIAN_FRONTEND=noninteractive
+SHELL ["/bin/bash","-o","pipefail","-c"]
+ENV PHP_MEMORY_LIMIT={{ nextcloud_php_memory_limit }} \
+    PHP_UPLOAD_LIMIT={{ nextcloud_php_upload_limit }} \
+    PHP_MAX_EXECUTION_TIME={{ nextcloud_php_max_execution_time }}
+ENV PHP_INI_SCAN_DIR="/usr/local/etc/php/conf.d:/tmp/php-overrides"
+
+{% if nextcloud_container_image_customizations_packages_to_install | length > 0 %}
+RUN set -eux; \
+    proxy_file="/etc/apt/apt.conf.d/99ansible-proxy"; \
+    if [ -n "${APT_PROXY:-}" ]; then \
+      printf 'Acquire::http::Proxy "%s";\nAcquire::https::Proxy "%s";\n' "${APT_PROXY}" "${APT_PROXY}" >"${proxy_file}"; \
+    fi; \
+    apt-get -o Acquire::Retries=5 update 2>&1 | tee /tmp/apt-update.log; \
+    if grep -qiE 'Failed to fetch|Some index files failed' /tmp/apt-update.log; then \
+      echo 'APT proxy failed; retrying without proxy…'; \
+      rm -f "${proxy_file}"; \
+      apt-get clean; \
+      apt-get -o Acquire::Retries=5 update; \
+    fi; \
+    rm -f /tmp/apt-update.log; \
+    apt-get install -y --no-install-recommends {{ nextcloud_container_image_customizations_packages_to_install | join(' ') }}; \
+    rm -rf /var/lib/apt/lists/*; \
+    rm -f "${proxy_file}" || true
+{% endif %}
+
+# Relax ImageMagick policy for document previews (allow read access to document coders)
+RUN set -eux; \
+    for P in /etc/ImageMagick-6/policy.xml /etc/ImageMagick/policy.xml; do \
+      [ -f "$P" ] || continue; \
+      sed -ri 's/(pattern="PDF"[^>]*rights=)"none"/\1"read"/' "$P" || true; \
+      sed -ri 's/(pattern="PS"[^>]*rights=)"none"/\1"read"/'  "$P" || true; \
+      sed -ri 's/(pattern="EPS"[^>]*rights=)"none"/\1"read"/' "$P" || true; \
+      sed -ri 's/(pattern="XPS"[^>]*rights=)"none"/\1"read"/' "$P" || true; \
+    done
+
+# Ensure imagick extension is available; compile via PECL only if missing
+RUN set -eux; \
+    if php -r 'exit(extension_loaded("imagick")?0:1);'; then \
+      docker-php-ext-enable imagick || true; \
+    else \
+      proxy_file="/etc/apt/apt.conf.d/99ansible-proxy"; \
+      if [ -n "${APT_PROXY:-}" ]; then \
+        printf 'Acquire::http::Proxy "%s";\nAcquire::https::Proxy "%s";\n' "${APT_PROXY}" "${APT_PROXY}" >"${proxy_file}"; \
+      fi; \
+      update_success=0; \
+      for attempt in 1 2; do \
+        if apt-get -o Acquire::Retries=5 update; then \
+          update_success=1; \
+          break; \
+        fi; \
+        if [ "${attempt}" -eq 1 ] && [ -n "${APT_PROXY:-}" ]; then \
+          echo 'APT proxy failed while installing imagick; retrying without proxy…'; \
+          rm -f "${proxy_file}"; \
+          continue; \
+        fi; \
+      done; \
+      if [ "${update_success}" -ne 1 ]; then \
+        echo 'apt-get update failed'; \
+        exit 1; \
+      fi; \
+      apt-get install -y --no-install-recommends autoconf build-essential libmagickwand-dev pkg-config; \
+      pecl channel-update pecl.php.net; \
+      printf '\n' | pecl install -f imagick; \
+      docker-php-ext-enable imagick; \
+      apt-get purge -y --auto-remove autoconf build-essential libmagickwand-dev pkg-config; \
+      rm -rf /var/lib/apt/lists/* /tmp/pear ~/.pearrc; \
+      rm -f "${proxy_file}" || true; \
+    fi
+
+{% if nextcloud_use_mash_wrapper | default(false) %}
+# Install wrapper entrypoint that writes PHP overrides to /tmp (works with --read-only)
+RUN set -eux; mkdir -p /usr/local/bin
+RUN cat > /usr/local/bin/mash-entrypoint.sh <<'SH'
+#!/usr/bin/env bash
+set -Eeuo pipefail
+
+: "${PHP_MEMORY_LIMIT:=1024M}"
+: "${PHP_UPLOAD_LIMIT:=2048M}"
+: "${PHP_MAX_EXECUTION_TIME:=3600}"
+
+tmpdir=/tmp/php-overrides
+mkdir -p "$tmpdir"
+cat >"$tmpdir/zzz-mash-overrides.ini" <<INI
+memory_limit=${PHP_MEMORY_LIMIT}
+upload_max_filesize=${PHP_UPLOAD_LIMIT}
+post_max_size=${PHP_UPLOAD_LIMIT}
+max_execution_time=${PHP_MAX_EXECUTION_TIME}
+INI
+
+exec /entrypoint.sh "$@"
+SH
+RUN sed -i 's/\r$//' /usr/local/bin/mash-entrypoint.sh && chmod 0755 /usr/local/bin/mash-entrypoint.sh
+
+ENTRYPOINT ["/usr/local/bin/mash-entrypoint.sh"]
+{% endif %}
+
+{{ nextcloud_container_image_customizations_dockerfile_body_custom }}
