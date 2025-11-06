@@ -492,6 +492,10 @@
   version: v7.2.3-5
   name: peertube
   activation_prefix: peertube_
+- src: git+https://seed.radicle.garden/zby9EmMBhyNe8Nj4f66izwrmhk5g.git
+  version: v5.2.3-0
+  name: phpmyadmin
+  activation_prefix: phpmyadmin_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-plausible.git
   version: v3.0.1-7
   name: plausible
