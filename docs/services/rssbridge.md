@@ -73,3 +73,7 @@ To use it, open the URL on the browser and log in to the service if authenticati
 ## Troubleshooting
 
 See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-rssbridge/blob/main/docs/configuring-rssbridge.md#troubleshooting) on the role's documentation for details.
+
+## Related services
+
+- [RSSHub](rsshub.md) — Create RSS feeds from web pages

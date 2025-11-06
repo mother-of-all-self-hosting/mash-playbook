@@ -604,6 +604,10 @@
   version: v2025.10.7-1
   name: rssbridge
   activation_prefix: rssbridge_
+- src: git+https://seed.radicle.garden/z3yKvCwcEfxn41ozRTcNR8ad6kpUm.git
+  version: v2025.11.04-0
+  name: rsshub
+  activation_prefix: rsshub_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-rumqttd.git
   version: v0.19.0-8
   name: rumqttd
