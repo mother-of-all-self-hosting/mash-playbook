@@ -17,17 +17,17 @@ SPDX-FileCopyrightText: 2024 - 2025 Suguru Hirahara
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 
-# LimeSurvey
+# phpMyAdmin
 
-The playbook can install and configure [LimeSurvey](https://www.limesurvey.org) for you.
+The playbook can install and configure [phpMyAdmin](https://www.phpmyadmin.org) for you.
 
-LimeSurvey is a feature-rich free software for web based forms and surveys, which supports extensive survey logic.
+phpMyAdmin is a feature-rich free software for web based forms and surveys, which supports extensive survey logic.
 
-See the project's [documentation](https://www.limesurvey.org/manual/LimeSurvey_Manual) to learn what LimeSurvey does and why it might be useful to you.
+See the project's [documentation](https://www.phpmyadmin.org/manual/phpMyAdmin_Manual) to learn what phpMyAdmin does and why it might be useful to you.
 
-For details about configuring the [Ansible role for LimeSurvey](https://github.com/mother-of-all-self-hosting/ansible-role-limesurvey), you can check them via:
-- 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-limesurvey/blob/main/docs/configuring-limesurvey.md) online
-- 📁 `roles/galaxy/limesurvey/docs/configuring-limesurvey.md` locally, if you have [fetched the Ansible roles](../installing.md)
+For details about configuring the [Ansible role for phpMyAdmin](https://github.com/mother-of-all-self-hosting/ansible-role-phpmyadmin), you can check them via:
+- 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-phpmyadmin/blob/main/docs/configuring-phpmyadmin.md) online
+- 📁 `roles/galaxy/phpmyadmin/docs/configuring-phpmyadmin.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 ## Dependencies
 
@@ -43,26 +43,26 @@ To enable this service, add the following configuration to your `vars.yml` file 
 ```yaml
 ########################################################################
 #                                                                      #
-# limesurvey                                                           #
+# phpmyadmin                                                           #
 #                                                                      #
 ########################################################################
 
-limesurvey_enabled: true
+phpmyadmin_enabled: true
 
-limesurvey_hostname: limesurvey.example.com
+phpmyadmin_hostname: phpmyadmin.example.com
 
 ########################################################################
 #                                                                      #
-# /limesurvey                                                          #
+# /phpmyadmin                                                          #
 #                                                                      #
 ########################################################################
 ```
 
-**Note**: hosting LimeSurvey under a subpath (by configuring the `limesurvey_path_prefix` variable) does not seem to be possible due to LimeSurvey's technical limitations.
+**Note**: hosting phpMyAdmin under a subpath (by configuring the `phpmyadmin_path_prefix` variable) does not seem to be possible due to phpMyAdmin's technical limitations.
 
 ### Enable MariaDB
 
-LimeSurvey requires a MySQL-compatible database to work. This playbook supports MariaDB, and you can set up a MariaDB instance by enabling it on `vars.yml`.
+phpMyAdmin requires a MySQL-compatible database to work. This playbook supports MariaDB, and you can set up a MariaDB instance by enabling it on `vars.yml`.
 
 Refer to [this page](mariadb.md) for the instruction to enable it.
 
@@ -71,20 +71,20 @@ Refer to [this page](mariadb.md) for the instruction to enable it.
 You also need to create an instance's user to access to the admin UI after installation. To create one, add the following configuration to your `vars.yml` file.
 
 ```yaml
-limesurvey_environment_variables_admin_user: LIMESURVEY_ADMIN_USERNAME_HERE
-limesurvey_environment_variables_admin_password: LIMESURVEY_ADMIN_PASSWORD_HERE
-limesurvey_environment_variables_admin_name: LIMESURVEY_ADMIN_NAME_HERE
-limesurvey_environment_variables_admin_email: LIMESURVEY_ADMIN_EMAIL_ADDRESS_HERE
+phpmyadmin_environment_variables_admin_user: LIMESURVEY_ADMIN_USERNAME_HERE
+phpmyadmin_environment_variables_admin_password: LIMESURVEY_ADMIN_PASSWORD_HERE
+phpmyadmin_environment_variables_admin_name: LIMESURVEY_ADMIN_NAME_HERE
+phpmyadmin_environment_variables_admin_email: LIMESURVEY_ADMIN_EMAIL_ADDRESS_HERE
 ```
 
 Make sure to replace the values with your own ones.
 
 ## Usage
 
-After running the command for installation, the LimeSurvey instance becomes available at the URL specified with `limesurvey_hostname`. With the configuration above, the service is hosted at `https://limesurvey.example.com`.
+After running the command for installation, the phpMyAdmin instance becomes available at the URL specified with `phpmyadmin_hostname`. With the configuration above, the service is hosted at `https://phpmyadmin.example.com`.
 
-To get started, open the URL `https://limesurvey.example.com/index.php/admin` with a web browser, and log in to the instance with the administrator account credentials.
+To get started, open the URL `https://phpmyadmin.example.com/index.php/admin` with a web browser, and log in to the instance with the administrator account credentials.
 
 ## Troubleshooting
 
-See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-limesurvey/blob/main/docs/configuring-limesurvey.md#troubleshooting) on the role's documentation for details.
+See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-phpmyadmin/blob/main/docs/configuring-phpmyadmin.md#troubleshooting) on the role's documentation for details.
