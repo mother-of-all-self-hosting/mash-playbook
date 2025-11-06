@@ -63,3 +63,7 @@ See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-ma
 ## Troubleshooting
 
 See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-mariadb/blob/main/docs/configuring-mariadb.md#troubleshooting) on the role's documentation for details.
+
+## Related services
+
+- [phpMyAdmin](phpmyadmin.md) — Free software written in PHP to handle the administration of a MySQL or MariaDB database server over the web

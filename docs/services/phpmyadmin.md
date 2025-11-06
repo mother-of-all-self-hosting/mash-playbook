@@ -82,3 +82,7 @@ To get started, open the URL `https://phpmyadmin.example.com` with a web browser
 ## Troubleshooting
 
 See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Azby9EmMBhyNe8Nj4f66izwrmhk5g/tree/docs/configuring-phpmyadmin.md#troubleshooting) on the role's documentation for details.
+
+## Related services
+
+- [MariaDB](mariadb.md) — Powerful, open source object-relational database system
