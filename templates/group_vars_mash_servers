@@ -2555,10 +2555,8 @@ backup_borg_location_exclude_patterns: |
     ([mariadb_data_path] if mariadb_enabled | default(false) else [])
   }}
 
-backup_borg_systemd_required_services_list: |
+backup_borg_systemd_required_services_list_auto: |
   {{
-    ([devture_systemd_docker_base_docker_service_name] if devture_systemd_docker_base_docker_service_name else [])
-    +
     ([postgres_identifier ~ '.service'] if postgres_enabled | default(false) else [])
     +
     ([mariadb_identifier ~ '.service'] if mariadb_enabled | default(false) else [])
