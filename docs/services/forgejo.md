@@ -77,6 +77,10 @@ See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-fo
 
 Forgejo uses port 22 for its SSH feature by default. We recommend you to move your regular SSH server to another port and stick to this default for your Forgejo instance, but you can have the instance listen to another port. See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-forgejo/blob/main/docs/configuring-forgejo.md#configure-ssh-port-for-forgejo-optional) on the role's documentation for details.
 
+### Configuring cache (optional)
+
+Forgejo uses caching to avoid repeating expensive operations. By default the internal memory (`memory`) is enabled for it, but you can use a specific cache adapter like [Redis](redis.md) and [Memcached](memcached.md). See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-forgejo/blob/main/docs/configuring-forgejo.md#configuring-cache-optional) on the role's documentation for details.
+
 ## Usage
 
 After running the command for installation, the Forgejo instance becomes available at the URL specified with `forgejo_hostname` and `forgejo_path_prefix`. With the configuration above, the service is hosted at `https://mash.example.com/forgejo`.
