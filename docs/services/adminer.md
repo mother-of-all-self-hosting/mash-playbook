@@ -20,11 +20,11 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
 # Adminer
 
-The playbook can install and configure [Adminer](https://www.adminer.net/) for you.
+The playbook can install and configure [Adminer](https://www.adminer.org/) for you.
 
-Adminer is a free software tool written in PHP that is intended to handle the administration of a MySQL or MariaDB database server.
+Adminer is a full-featured database management tool written in PHP. It supports MySQL, MariaDB, PostgreSQL, CockroachDB, SQLite, MS SQL, and Oracle out of the box. Elasticsearch, SimpleDB, MongoDB, Firebird, and Clickhouse can be supported via plugins.
 
-See the project's [documentation](https://docs.adminer.net/en/latest/) to learn what Adminer does and why it might be useful to you.
+See the project's [documentation](https://github.com/vrana/adminer/blob/master/README.md) to learn what Adminer does and why it might be useful to you.
 
 For details about configuring the [Ansible role for Adminer](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3px8gLDo2opjQZW7qFiLoNuk4eSu), you can check them via:
 - 🌐 [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3px8gLDo2opjQZW7qFiLoNuk4eSu/tree/docs/configuring-adminer.md) online
@@ -58,26 +58,18 @@ adminer_hostname: adminer.example.com
 ########################################################################
 ```
 
-**Note**: hosting Adminer under a subpath (by configuring the `adminer_path_prefix` variable) does not seem to be possible due to Adminer's technical limitations.
-
-### Enabling to specify the database server to connect (optional)
-
-The default setting is that the Adminer can connect to the [MariaDB](mariadb.md) instance managed with this playbook only. To allow the Adminer instance to connect to any MySQL / MariaDB server, add the following configuration to your `vars.yml` file:
-
-```yaml
-adminer_environment_variables_pma_arbitrary: "1"
-```
+It is optionally possible to edit settings about the default server to connect, plugins to load (ones for loading databases), etc. See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3px8gLDo2opjQZW7qFiLoNuk4eSu/tree/docs/configuring-adminer.md#adjusting-the-playbook-configuration) for details.
 
 ## Usage
 
 After running the command for installation, the Adminer instance becomes available at the URL specified with `adminer_hostname`. With the configuration above, the service is hosted at `https://adminer.example.com`.
 
-To get started, open the URL `https://adminer.example.com` with a web browser, and log in to the instance with the database's credentials. By default its username is `root`, and the password is the one specified to `mariadb_root_password` on your `vars.yml` file.
+To get started, open the URL `https://adminer.example.com` with a web browser, and log in to the instance with the database's credentials specified on your `vars.yml` file.
+
+To log in to database servers which this playbook manages, you need to specify its `*_identifier` to the `server` input area. For example, the default value for the MariaDB server is `mash-mariadb` and the one for the Postgres server is `mash-postgres`, respectively.
 
 >[!NOTE]
->
-> - As some commands are destructive and cannot be undone, it is **highly recommended** to have a look at the [documentation](https://docs.adminer.net/en/latest/) to learn its usage before running them against the actual database.
-> - Since enabling Adminer with this playbook exposes the instance (thus practically the MariaDB database as well) to the internet, it is important to set a proper method to restrict who can access to it, such as [two-factor authentication](https://docs.adminer.net/en/latest/two_factor.html). Protecting it with an Identity Provider (IdP) like [authentik](authentik.md) is also worth considering.
+> Since enabling Adminer with this playbook exposes the instance (thus practically the databases as well) to the internet, it is important to set a proper method to restrict who can access to it. See [this section](https://www.adminer.org/en/#requirements) on the project website for security recommendations.
 
 ## Troubleshooting
 
