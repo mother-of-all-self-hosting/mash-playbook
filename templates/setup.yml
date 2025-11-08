@@ -97,6 +97,10 @@
     - role: galaxy/adguard_home
     # /role-specific:adguard_home
 
+    # role-specific:adminer
+    - role: galaxy/adminer
+    # /role-specific:adminer
+
     # role-specific:anki
     - role: galaxy/anki
     # /role-specific:anki
