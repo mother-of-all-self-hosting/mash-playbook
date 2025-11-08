@@ -93,6 +93,11 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
     {{ ({'name': (adguard_home_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'adguard-home']} if adguard_home_enabled else omit) }}
   # /role-specific:adguard_home
 
+  # role-specific:adminer
+  - |-
+    {{ ({'name': (adminer_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'adminer']} if adminer_enabled else omit) }}
+  # /role-specific:adminer
+
   # role-specific:anki
   - |-
     {{ ({'name': (anki_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'anki']} if anki_enabled else omit) }}
@@ -1917,6 +1922,63 @@ adguard_home_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver
 #                                                                      #
 ########################################################################
 # /role-specific:adguard_home
+
+
+
+# role-specific:adminer
+########################################################################
+#                                                                      #
+# adminer                                                              #
+#                                                                      #
+########################################################################
+
+adminer_enabled: false
+
+adminer_identifier: "{{ mash_playbook_service_identifier_prefix }}adminer"
+
+adminer_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}adminer"
+
+adminer_uid: "{{ mash_playbook_uid }}"
+adminer_gid: "{{ mash_playbook_gid }}"
+
+adminer_systemd_required_services_list_auto: |
+  {{
+    ([clickhouse_identifier ~ '.service'] if clickhouse_enabled | default(false) else [])
+    +
+    ([mariadb_identifier ~ '.service'] if mariadb_enabled | default(false) else [])
+    +
+    ([mongodb_identifier ~ '.service'] if mongodb_enabled | default(false) else [])
+    +
+    ([postgres_identifier ~ '.service'] if postgres_enabled | default(false) else [])
+  }}
+
+adminer_container_additional_networks_auto: |
+  {{
+    ([clickhouse_container_network] if clickhouse_enabled | default(false) and adminer_container_network != clickhouse_container_network else [])
+    +
+    ([mariadb_container_network] if mariadb_enabled | default(false) and adminer_container_network != mariadb_container_network else [])
+    +
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+    +
+    ([mongodb_container_network] if mongodb_enabled | default(false) and adminer_container_network != mongodb_container_network else [])
+    +
+    ([postgres_container_network] if postgres_enabled | default(false) and adminer_container_network != postgres_container_network else [])
+  }}
+
+adminer_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+adminer_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+
+# role-specific:traefik
+adminer_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
+adminer_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
+# /role-specific:traefik
+
+########################################################################
+#                                                                      #
+# /adminer                                                             #
+#                                                                      #
+########################################################################
+# /role-specific:adminer
 
 
 

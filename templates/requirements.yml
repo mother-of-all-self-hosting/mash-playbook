@@ -4,6 +4,10 @@
   version: v0.107.69-1
   name: adguard_home
   activation_prefix: adguard_home_
+- src: git+https://seed.radicle.garden/z3px8gLDo2opjQZW7qFiLoNuk4eSu.git
+  version: v5.4.1-0
+  name: adminer
+  activation_prefix: adminer_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-anki.git
   version: v25.09.2-2
   name: anki
