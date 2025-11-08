@@ -137,7 +137,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 | [OxiTraffic](https://codeberg.org/mo8it/oxitraffic) | Self-hosted, simple and privacy respecting website traffic tracker | [Link](services/oxitraffic.md) |
 | [Paperless-ngx](https://paperless-ngx.com) | [Paperless-ngx](https://paperless-ngx.com) is a community-supported open-source document management system that transforms your physical documents into a searchable online archive so you can keep, well, less paper. | [Link](services/paperless-ngx.md) |
 | [PeerTube](https://joinpeertube.org/) | A tool for sharing online videos | [Link](services/peertube.md) |
-| [phpMyAdmin](https://joinpeertube.org/) | Free software written in PHP to handle the administration of a MySQL or MariaDB database server over the web | [Link](services/phpmyadmin.md) |
+| [phpMyAdmin](https://www.phpmyadmin.net/) | Free software written in PHP to handle the administration of a MySQL or MariaDB database server over the web | [Link](services/phpmyadmin.md) |
 | [Plausible Analytics](https://plausible.io/) | Intuitive, lightweight and open source web analytics | [Link](services/plausible.md) |
 | [Plex](https://www.plex.tv/) | A personal media server | [Link](services/plex.md) |
 | [Pocket ID](https://pocket-id.org/) | Simple OIDC provider for passkey-only authentication | [Link](services/pocket-id.md) |
