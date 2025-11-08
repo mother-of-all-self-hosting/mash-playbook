@@ -26,8 +26,8 @@ Adminer is a free software tool written in PHP that is intended to handle the ad
 
 See the project's [documentation](https://docs.adminer.net/en/latest/) to learn what Adminer does and why it might be useful to you.
 
-For details about configuring the [Ansible role for Adminer](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Azby9EmMBhyNe8Nj4f66izwrmhk5g), you can check them via:
-- 🌐 [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Azby9EmMBhyNe8Nj4f66izwrmhk5g/tree/docs/configuring-adminer.md) online
+For details about configuring the [Ansible role for Adminer](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3px8gLDo2opjQZW7qFiLoNuk4eSu), you can check them via:
+- 🌐 [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3px8gLDo2opjQZW7qFiLoNuk4eSu/tree/docs/configuring-adminer.md) online
 - 📁 `roles/galaxy/adminer/docs/configuring-adminer.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 ## Dependencies
@@ -81,7 +81,7 @@ To get started, open the URL `https://adminer.example.com` with a web browser, a
 
 ## Troubleshooting
 
-See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Azby9EmMBhyNe8Nj4f66izwrmhk5g/tree/docs/configuring-adminer.md#troubleshooting) on the role's documentation for details.
+See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3px8gLDo2opjQZW7qFiLoNuk4eSu/tree/docs/configuring-adminer.md#troubleshooting) on the role's documentation for details.
 
 ## Related services
 
