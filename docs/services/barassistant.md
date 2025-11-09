@@ -25,8 +25,8 @@ Bar Assistant is a service for managing cocktail recipes at your home bar with a
 
 See the project's [documentation](https://docs.barassistant.app/) to learn what Bar Assistant does and why it might be useful to you.
 
-For details about configuring the [Ansible role for Bar Assistant](https://codeberg.org/acioustick/ansible-role-barassistant), you can check them via:
-- 🌐 [the role's documentation](https://codeberg.org/acioustick/ansible-role-barassistant/src/branch/master/docs/configuring-barassistant.md) online
+For details about configuring the [Ansible role for Bar Assistant](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3JDUHjeHMqbZ3YLxquSUbCmAJLi), you can check them via:
+- 🌐 [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3JDUHjeHMqbZ3YLxquSUbCmAJLi/tree/docs/configuring-barassistant.md) online
 - 📁 `roles/galaxy/barassistant/docs/configuring-barassistant.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 ## Dependencies
@@ -274,4 +274,4 @@ Since account registration is disabled by default, you need to enable it first b
 
 ## Troubleshooting
 
-See [this section](https://codeberg.org/acioustick/ansible-role-barassistant/src/branch/master/docs/configuring-barassistant.md#troubleshooting) on the role's documentation for details.
+See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3JDUHjeHMqbZ3YLxquSUbCmAJLi/tree/docs/configuring-barassistant.md#troubleshooting) on the role's documentation for details.

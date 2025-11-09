@@ -254,7 +254,7 @@ tinyauth_environment_variable_ldap_base_dn: "dc=example,dc=com"
 tinyauth_environment_variable_ldap_user_search_filter: "(uid=%s)"
 ```
 
-See [this section](https://codeberg.org/acioustick/ansible-role-tinyauth/src/commit/64390731a1f205e929328f24cf393c5e46a4f047/docs/configuring-tinyauth.md#ldap) on the role's documentation for details.
+See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3AzLMiPKSyMcb5m85H2brZd4GHCDTF/tree/docs/configuring-tinyauth.md#ldap) on the role's documentation for details.
 
 To disable the integration altogether, add the following configuration to your `vars.yml` file:
 
