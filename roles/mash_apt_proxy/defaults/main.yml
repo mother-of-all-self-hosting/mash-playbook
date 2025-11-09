@@ -1,8 +1,0 @@
----
-
-mash_apt_proxy_enabled: false
-mash_apt_proxy_bind_address: "{{ ansible_default_ipv4.address | default('0.0.0.0') }}"
-mash_apt_proxy_port: 3142
-mash_apt_proxy_state: started
-mash_apt_proxy_compose_dir: /opt/mash/aptcacher
-mash_apt_proxy_cache_dir: /srv/apt-cacher-ng
