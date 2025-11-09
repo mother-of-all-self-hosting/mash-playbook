@@ -561,13 +561,13 @@
     - role: galaxy/peertube
     # /role-specific:peertube
 
-    # role-specific:plausible
-    - role: galaxy/plausible
-    # /role-specific:plausible
-
     # role-specific:phpmyadmin
     - role: galaxy/phpmyadmin
     # /role-specific:phpmyadmin
+
+    # role-specific:plausible
+    - role: galaxy/plausible
+    # /role-specific:plausible
 
     # role-specific:plex
     - role: galaxy/plex
