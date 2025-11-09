@@ -238,7 +238,7 @@ nextcloud_environment_variables_additional_variables: |
 nextcloud_container_image_customizations_packages_to_install_custom:
   - imagemagick
   - libmagickcore-7.q16-10-extra
-  - libmagickwand-dev
+  - php-imagick
   - ghostscript
   - libreoffice
   - ffmpeg
@@ -262,9 +262,6 @@ nextcloud_container_image_customizations_dockerfile_body_custom: |
           sed -ri 's/(<policy[^>]*domain="coder"[^>]*pattern="XPS"[^>]*rights=)"none"/\1"read"/' "$P" || true; \
         fi; \
       done
-  RUN set -eux; \
-      printf '\n' | pecl install imagick; \
-      docker-php-ext-enable imagick
 
 nextcloud_config_parameters_custom:
   - key: enabledPreviewProviders
