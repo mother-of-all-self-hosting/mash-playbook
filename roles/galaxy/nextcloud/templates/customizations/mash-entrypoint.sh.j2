@@ -15,4 +15,10 @@ max_execution_time=${PHP_MAX_EXECUTION_TIME}
 INI
 
 # Hand off to upstream entrypoint
+
+# Add default CMD if none supplied (docker-php-entrypoint expects $1)
+if [ "$#" -eq 0 ]; then
+  set -- apache2-foreground
+fi
+
 exec /entrypoint.sh "$@"

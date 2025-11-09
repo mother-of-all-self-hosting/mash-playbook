@@ -647,6 +647,10 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
   - |-
     {{ ({'name': (nextcloud_identifier + '-cron.timer'), 'priority': 2500, 'groups': ['mash', 'nextcloud', 'nextcloud-cron']} if nextcloud_enabled else omit) }}
   - |-
+    {{ ({'name': (nextcloud_identifier + '-preview.service'), 'priority': 2550, 'groups': ['mash', 'nextcloud', 'nextcloud-preview']} if nextcloud_enabled and nextcloud_preview_enabled else omit) }}
+  - |-
+    {{ ({'name': (nextcloud_identifier + '-preview.timer'), 'priority': 2560, 'groups': ['mash', 'nextcloud', 'nextcloud-preview']} if nextcloud_enabled and nextcloud_preview_enabled else omit) }}
+  - |-
     {{ ({'name': (nextcloud_identifier + '-app-update.timer'), 'priority': 2500, 'groups': ['mash', 'nextcloud', 'nextcloud-app-update']} if nextcloud_enabled and nextcloud_app_autoupdate_enabled else omit) }}
   # /role-specific:nextcloud
 

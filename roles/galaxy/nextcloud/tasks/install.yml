@@ -26,9 +26,6 @@
     - path: "{{ nextcloud_redis_session_ini_path }}"
       state: "{{ 'touch' if nextcloud_redis_is_configured else 'absent' }}"
       when: true
-    - path: "{{ nextcloud_preview_host_folder }}"
-      state: "{{ 'directory' if nextcloud_preview_enabled else 'absent' }}"
-      when: true
   when: item.when | bool
 
 - name: Ensure Nextcloud support files installed
@@ -40,16 +37,29 @@
     - env
     - labels
 
-- name: Ensure Nextcloud Preview Generator files are present
-  when: "nextcloud_preview_enabled | bool"
-  ansible.builtin.template:
-    src: "{{ role_path }}/templates/preview-generator/{{ item }}.j2"
-    dest: "{{ nextcloud_preview_host_folder }}/{{ item }}"
+- name: Ensure preview host folder exists
+  when: nextcloud_preview_enabled | bool
+  ansible.builtin.file:
+    path: "{{ nextcloud_preview_host_folder }}"
+    state: directory
+    owner: "{{ nextcloud_uid }}"
+    group: "{{ nextcloud_gid }}"
     mode: "0755"
-    owner: root
-    group: root
-  loop:
-    - preview-generator-cron.sh
+
+- name: Ensure preview oneshot script is installed
+  when: nextcloud_preview_enabled | bool
+  ansible.builtin.template:
+    src: "{{ role_path }}/templates/preview-generator/preview-generator-cron.sh.j2"
+    dest: "{{ nextcloud_preview_host_folder }}/preview-generator-cron.sh"
+    owner: "{{ nextcloud_uid }}"
+    group: "{{ nextcloud_gid }}"
+    mode: "0755"
+
+- name: Ensure preview host folder is absent when previews disabled
+  when: not nextcloud_preview_enabled | bool
+  ansible.builtin.file:
+    path: "{{ nextcloud_preview_host_folder }}"
+    state: absent
 
 - name: Ensure Nextcloud container image is pulled via community.docker.docker_image
   when: devture_systemd_docker_base_container_image_pull_method == 'ansible-module'
@@ -91,6 +101,14 @@
         group: "{{ nextcloud_gid }}"
         mode: "0640"
       register: nextcloud_container_image_customizations_dockerfile_result
+
+    - name: Ensure wrapper script is present in build context
+      ansible.builtin.template:
+        src: "{{ role_path }}/templates/customizations/mash-entrypoint.sh.j2"
+        dest: "{{ nextcloud_customized_build_context }}/mash-entrypoint.sh"
+        owner: "{{ nextcloud_uid }}"
+        group: "{{ nextcloud_gid }}"
+        mode: "0644"
 
     - name: Ensure customized container image for Nextcloud is built via community.docker.docker_image
       when: devture_systemd_docker_base_container_image_pull_method == 'ansible-module'
@@ -163,6 +181,7 @@
     src: "{{ role_path }}/templates/systemd/{{ item }}.j2"
     dest: "{{ devture_systemd_docker_base_systemd_path }}/{{ nextcloud_identifier }}-{{ item }}"
     mode: "0644"
+  notify: Reload systemd
   with_items:
     - server.service
     - cron.service
@@ -174,6 +193,7 @@
     src: "{{ role_path }}/templates/systemd/{{ item }}.j2"
     dest: "{{ devture_systemd_docker_base_systemd_path }}/{{ nextcloud_identifier }}-{{ item }}"
     mode: "0644"
+  notify: Reload systemd
   loop:
     - preview.service
     - preview.timer
@@ -195,6 +215,7 @@
         src: "{{ role_path }}/templates/systemd/{{ item }}.j2"
         dest: "{{ devture_systemd_docker_base_systemd_path }}/{{ nextcloud_identifier }}-{{ item }}"
         mode: "0640"
+      notify: Reload systemd
       with_items:
         - app-update.service
         - app-update.timer
