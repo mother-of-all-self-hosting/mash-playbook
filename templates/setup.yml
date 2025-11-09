@@ -97,6 +97,10 @@
     - role: galaxy/adguard_home
     # /role-specific:adguard_home
 
+    # role-specific:adminer
+    - role: galaxy/adminer
+    # /role-specific:adminer
+
     # role-specific:anki
     - role: galaxy/anki
     # /role-specific:anki
@@ -529,6 +533,10 @@
     - role: galaxy/opengist
     # /role-specific:opengist
 
+    # role-specific:openregex
+    - role: galaxy/openregex
+    # /role-specific:openregex
+
     # role-specific:outline
     - role: galaxy/outline
     # /role-specific:outline
@@ -552,6 +560,10 @@
     # role-specific:peertube
     - role: galaxy/peertube
     # /role-specific:peertube
+
+    # role-specific:phpmyadmin
+    - role: galaxy/phpmyadmin
+    # /role-specific:phpmyadmin
 
     # role-specific:plausible
     - role: galaxy/plausible
@@ -649,6 +661,10 @@
     - role: galaxy/rssbridge
     # /role-specific:rssbridge
 
+    # role-specific:rsshub
+    - role: galaxy/rsshub
+    # /role-specific:rsshub
+
     # role-specific:rumqttd
     - role: galaxy/rumqttd
     # /role-specific:rumqttd
@@ -668,6 +684,10 @@
     # role-specific:sftpgo
     - role: galaxy/sftpgo
     # /role-specific:sftpgo
+
+    # role-specific:snowflake
+    - role: galaxy/snowflake
+    # /role-specific:snowflake
 
     # role-specific:soft_serve
     - role: galaxy/soft_serve

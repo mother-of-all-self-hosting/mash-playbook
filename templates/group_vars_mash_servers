@@ -93,6 +93,11 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
     {{ ({'name': (adguard_home_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'adguard-home']} if adguard_home_enabled else omit) }}
   # /role-specific:adguard_home
 
+  # role-specific:adminer
+  - |-
+    {{ ({'name': (adminer_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'adminer']} if adminer_enabled else omit) }}
+  # /role-specific:adminer
+
   # role-specific:anki
   - |-
     {{ ({'name': (anki_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'anki']} if anki_enabled else omit) }}
@@ -691,6 +696,11 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
     {{ ({'name': (opengist_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'opengist']} if opengist_enabled else omit) }}
   # /role-specific:opengist
 
+  # role-specific:openregex
+  - |-
+    {{ ({'name': (openregex_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'openregex']} if openregex_enabled else omit) }}
+  # /role-specific:openregex
+
   # role-specific:outline
   - |-
     {{ ({'name': (outline_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'outline']} if outline_enabled else omit) }}
@@ -724,6 +734,11 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
   - |-
     {{ ({'name': (peertube_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'peertube']} if peertube_enabled else omit) }}
   # /role-specific:peertube
+
+  # role-specific:phpmyadmin
+  - |-
+    {{ ({'name': (phpmyadmin_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'phpmyadmin']} if phpmyadmin_enabled else omit) }}
+  # /role-specific:phpmyadmin
 
   # role-specific:plausible
   - |-
@@ -854,6 +869,11 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
     {{ ({'name': (rssbridge_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'rssbridge']} if rssbridge_enabled else omit) }}
   # /role-specific:rssbridge
 
+  # role-specific:rsshub
+  - |-
+    {{ ({'name': (rsshub_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'rsshub']} if rsshub_enabled else omit) }}
+  # /role-specific:rsshub
+
   # role-specific:rumqttd
   - |-
     {{ ({'name': (rumqttd_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'rumqttd']} if rumqttd_enabled else omit) }}
@@ -878,6 +898,11 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
   - |-
     {{ ({'name': (sftpgo_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'sftpgo']} if sftpgo_enabled else omit) }}
   # /role-specific:sftpgo
+
+  # role-specific:snowflake
+  - |-
+    {{ ({'name': (snowflake_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'snowflake']} if snowflake_enabled else omit) }}
+  # /role-specific:snowflake
 
   # role-specific:soft_serve
   - |-
@@ -1905,6 +1930,63 @@ adguard_home_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver
 
 
 
+# role-specific:adminer
+########################################################################
+#                                                                      #
+# adminer                                                              #
+#                                                                      #
+########################################################################
+
+adminer_enabled: false
+
+adminer_identifier: "{{ mash_playbook_service_identifier_prefix }}adminer"
+
+adminer_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}adminer"
+
+adminer_uid: "{{ mash_playbook_uid }}"
+adminer_gid: "{{ mash_playbook_gid }}"
+
+adminer_systemd_required_services_list_auto: |
+  {{
+    ([clickhouse_identifier ~ '.service'] if clickhouse_enabled | default(false) else [])
+    +
+    ([mariadb_identifier ~ '.service'] if mariadb_enabled | default(false) else [])
+    +
+    ([mongodb_identifier ~ '.service'] if mongodb_enabled | default(false) else [])
+    +
+    ([postgres_identifier ~ '.service'] if postgres_enabled | default(false) else [])
+  }}
+
+adminer_container_additional_networks_auto: |
+  {{
+    ([clickhouse_container_network] if clickhouse_enabled | default(false) and adminer_container_network != clickhouse_container_network else [])
+    +
+    ([mariadb_container_network] if mariadb_enabled | default(false) and adminer_container_network != mariadb_container_network else [])
+    +
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+    +
+    ([mongodb_container_network] if mongodb_enabled | default(false) and adminer_container_network != mongodb_container_network else [])
+    +
+    ([postgres_container_network] if postgres_enabled | default(false) and adminer_container_network != postgres_container_network else [])
+  }}
+
+adminer_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+adminer_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+
+# role-specific:traefik
+adminer_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
+adminer_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
+# /role-specific:traefik
+
+########################################################################
+#                                                                      #
+# /adminer                                                             #
+#                                                                      #
+########################################################################
+# /role-specific:adminer
+
+
+
 # role-specific:anki
 ########################################################################
 #                                                                      #
@@ -2540,10 +2622,8 @@ backup_borg_location_exclude_patterns: |
     ([mariadb_data_path] if mariadb_enabled | default(false) else [])
   }}
 
-backup_borg_systemd_required_services_list: |
+backup_borg_systemd_required_services_list_auto: |
   {{
-    ([devture_systemd_docker_base_docker_service_name] if devture_systemd_docker_base_docker_service_name else [])
-    +
     ([postgres_identifier ~ '.service'] if postgres_enabled | default(false) else [])
     +
     ([mariadb_identifier ~ '.service'] if mariadb_enabled | default(false) else [])
@@ -3662,7 +3742,7 @@ filebrowser_quantum_gid: "{{ mash_playbook_gid }}"
 
 filebrowser_quantum_systemd_wanted_services_list_auto: |
   {{
-    ([onlyoffice_docs_identifier ~ '.service'] if onlyoffice_docs_enabled and filebrowser_quantum_config_integrations_office else [])
+    ([onlyoffice_docs_identifier ~ '.service'] if onlyoffice_docs_enabled | default(false) and filebrowser_quantum_config_integrations_office else [])
   }}
 
 filebrowser_quantum_container_additional_networks_auto: |
@@ -3898,6 +3978,8 @@ forgejo_systemd_required_services_list_auto: |
   {{
     ([mariadb_identifier ~ '.service'] if mariadb_enabled | default(false) and forgejo_database_mysql_hostname == mariadb_connection_hostname and forgejo_database_type == 'mysql' else [])
     +
+    ([memcached_identifier ~ '.service'] if memcached_enabled | default(false) and forgejo_config_cache_adapter == 'memcache' else [])
+    +
     ([postgres_identifier ~ '.service'] if postgres_enabled | default(false) and forgejo_database_postgres_hostname == postgres_connection_hostname and forgejo_database_type == 'postgres' else [])
   }}
 
@@ -3913,6 +3995,8 @@ forgejo_container_additional_networks_auto: |
     ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
     +
     ([mariadb_container_network] if mariadb_enabled | default(false) and forgejo_database_mysql_hostname == mariadb_connection_hostname and forgejo_container_network != mariadb_container_network and forgejo_database_type == 'mysql' else [])
+    +
+    ([memcached_container_network] if memcached_enabled | default(false) and forgejo_container_network != memcached_container_network and forgejo_config_cache_adapter == 'memcache' else [])
     +
     ([postgres_container_network] if postgres_enabled | default(false) and forgejo_database_postgres_hostname == postgres_connection_hostname and forgejo_container_network != postgres_container_network and forgejo_database_type == 'postgres' else [])
   }}
@@ -3937,6 +4021,10 @@ forgejo_database_mysql_hostname: "{{ mariadb_connection_hostname if mariadb_enab
 forgejo_database_mysql_port: "{{ mariadb_connection_port if mariadb_enabled else '3306' }}"
 forgejo_database_mysql_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'db.forgejo', rounds=655555) | to_uuid }}"
 # /role-specific:mariadb
+
+# role-specific:memcached
+forgejo_config_cache_host: "{{ memcached_identifier }}:{{ memcached_container_http_port }}"
+# /role-specific:memcached
 
 # role-specific:postgres
 forgejo_database_postgres_hostname: "{{ postgres_connection_hostname if postgres_enabled else '' }}"
@@ -3973,11 +4061,6 @@ forgejo_runner_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_servic
 
 forgejo_runner_uid: "0"
 forgejo_runner_gid: "0"
-
-forgejo_runner_systemd_required_systemd_services_list: |
-  {{
-    ([devture_systemd_docker_base_docker_service_name] if devture_systemd_docker_base_docker_service_name else [])
-  }}
 
 forgejo_runner_docker_endpoint_is_unix_socket: "{{ false if forgejo_runner_docker_endpoint.startswith('tcp://') else true }}"
 
@@ -6394,7 +6477,7 @@ karakeep_gid: "0"
 
 karakeep_systemd_wanted_services_list_auto: |
   {{
-    ([browserless_identifier ~ '.service'] if browserless_enabled else [])
+    ([browserless_identifier ~ '.service'] if browserless_enabled | default(false) else [])
     +
     ([(exim_relay_identifier | default('mash-exim-relay')) ~ '.service'] if (exim_relay_enabled | default(false) and karakeep_environment_variables_smtp_host == exim_relay_identifier | default('mash-exim-relay')) else [])
     +
@@ -8537,7 +8620,7 @@ onlyoffice_docs_systemd_required_services_list_auto: |
 
 onlyoffice_docs_systemd_wanted_services_list_auto: |
   {{
-    ([rabbitmq_identifier ~ '.service'] if rabbitmq_enabled else [])
+    ([rabbitmq_identifier ~ '.service'] if rabbitmq_enabled | default(false) else [])
   }}
 
 onlyoffice_docs_container_additional_networks_auto: |
@@ -8647,6 +8730,44 @@ opengist_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_pri
 #                                                                      #
 ########################################################################
 # /role-specific:opengist
+
+
+
+# role-specific:openregex
+########################################################################
+#                                                                      #
+# openregex                                                            #
+#                                                                      #
+########################################################################
+
+openregex_enabled: false
+
+openregex_identifier: "{{ mash_playbook_service_identifier_prefix }}openregex"
+
+openregex_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}openregex"
+
+openregex_uid: "{{ mash_playbook_uid }}"
+openregex_gid: "{{ mash_playbook_gid }}"
+
+openregex_container_additional_networks_auto: |
+  {{
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+  }}
+
+openregex_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+openregex_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+
+# role-specific:traefik
+openregex_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
+openregex_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
+# /role-specific:traefik
+
+########################################################################
+#                                                                      #
+# /openregex                                                           #
+#                                                                      #
+########################################################################
+# /role-specific:openregex
 
 
 
@@ -8972,6 +9093,58 @@ peertube_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_pri
 #                                                                      #
 ########################################################################
 # /role-specific:peertube
+
+
+
+# role-specific:phpmyadmin
+########################################################################
+#                                                                      #
+# phpmyadmin                                                           #
+#                                                                      #
+########################################################################
+
+phpmyadmin_enabled: false
+
+phpmyadmin_identifier: "{{ mash_playbook_service_identifier_prefix }}phpmyadmin"
+
+phpmyadmin_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}phpmyadmin"
+
+# phpMyAdmin requires www-data:www-data to be set
+phpmyadmin_uid: "33"
+phpmyadmin_gid: "33"
+
+phpmyadmin_systemd_required_services_list_auto: |
+  {{
+    ([mariadb_identifier ~ '.service'] if mariadb_enabled | default(false) else [])
+  }}
+
+phpmyadmin_container_additional_networks_auto: |
+  {{
+    ([mariadb_container_network] if mariadb_enabled | default(false) and phpmyadmin_container_network != mariadb_container_network else [])
+    +
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+  }}
+
+phpmyadmin_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+phpmyadmin_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+
+# role-specific:mariadb
+phpmyadmin_environment_variables_pma_arbitrary: "0"
+phpmyadmin_environment_variables_pma_host: "{{ mariadb_connection_hostname if mariadb_enabled else '' }}"
+phpmyadmin_environment_variables_pma_port: "{{ mariadb_connection_port if mariadb_enabled else '3306' }}"
+# /role-specific:mariadb
+
+# role-specific:traefik
+phpmyadmin_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
+phpmyadmin_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
+# /role-specific:traefik
+
+########################################################################
+#                                                                      #
+# /phpmyadmin                                                          #
+#                                                                      #
+########################################################################
+# /role-specific:phpmyadmin
 
 
 
@@ -10054,7 +10227,7 @@ rssbridge_gid: "33"
 
 rssbridge_systemd_wanted_services_list_auto: |
   {{
-    ([browserless_identifier ~ '.service'] if browserless_enabled else [])
+    ([browserless_identifier ~ '.service'] if browserless_enabled | default(false) else [])
   }}
 
 rssbridge_container_additional_networks_auto: |
@@ -10083,6 +10256,55 @@ rssbridge_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_pr
 #                                                                      #
 ########################################################################
 # /role-specific:rssbridge
+
+
+
+# role-specific:rsshub
+########################################################################
+#                                                                      #
+# rsshub                                                               #
+#                                                                      #
+########################################################################
+
+rsshub_enabled: false
+
+rsshub_identifier: "{{ mash_playbook_service_identifier_prefix }}rsshub"
+
+rsshub_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}rsshub"
+
+rsshub_uid: "{{ mash_playbook_uid }}"
+rsshub_gid: "{{ mash_playbook_gid }}"
+
+rsshub_systemd_wanted_services_list_auto: |
+  {{
+    ([browserless_identifier ~ '.service'] if browserless_enabled | default(false) else [])
+  }}
+
+rsshub_container_additional_networks_auto: |
+  {{
+    ([browserless_container_network] if browserless_enabled | default(false) and rsshub_container_network != browserless_container_network else [])
+    +
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+  }}
+
+rsshub_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+rsshub_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+
+# role-specific:browserless
+rsshub_environment_variables_puppeteer_ws_endpoint: "ws://{{ browserless_identifier }}:{{ browserless_container_http_port }}"
+# /role-specific:browserless
+
+# role-specific:traefik
+rsshub_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
+rsshub_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
+# /role-specific:traefik
+
+########################################################################
+#                                                                      #
+# /rsshub                                                              #
+#                                                                      #
+########################################################################
+# /role-specific:rsshub
 
 
 
@@ -10346,6 +10568,36 @@ sftpgo_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_prima
 #                                                                      #
 ########################################################################
 # /role-specific:sftpgo
+
+
+
+# role-specific:snowflake
+########################################################################
+#                                                                      #
+# snowflake                                                            #
+#                                                                      #
+########################################################################
+
+snowflake_enabled: false
+
+snowflake_identifier: "{{ mash_playbook_service_identifier_prefix }}snowflake"
+
+snowflake_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}snowflake"
+
+snowflake_uid: "{{ mash_playbook_uid }}"
+snowflake_gid: "{{ mash_playbook_gid }}"
+
+snowflake_container_additional_networks_auto: |
+  {{
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+  }}
+
+########################################################################
+#                                                                      #
+# /snowflake                                                           #
+#                                                                      #
+########################################################################
+# /role-specific:snowflake
 
 
 
