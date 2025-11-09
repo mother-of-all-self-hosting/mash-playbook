@@ -239,17 +239,62 @@ nextcloud_config_parameter_default_timezone: Europe/Copenhagen
 nextcloud_config_parameter_maintenance_window_start: 3
 
 
-nextcloud_config_parameters_custom:
-  - { key: 'mail_smtpmode', value: '{{ vault_mail_smtp_mode }}', type: 'string' }
-  - { key: 'mail_sendmailmode', value: '{{ vault_mail_smtp_mode }}', type: 'string' }
-  - { key: 'mail_from_address', value: '{{ vault_mail_from_address }}', type: 'string' }
-  - { key: 'mail_domain', value: '{{ domain }}', type: 'string' }
-  - { key: 'mail_smtphost', value: '{{ vault_mail_smtp_host }}', type: 'string' }
-  - { key: 'mail_smtpport', value: '{{ vault_mail_smtp_port }}', type: 'integer' }
-  - { key: 'mail_smtpsecure', value: '{{ vault_mail_smtp_secure }}', type: 'string' }
-  - { key: 'mail_smtpauth', value: '{{ vault_mail_smtp_auth | int }}', type: 'integer' }
-  - { key: 'mail_smtpname', value: '{{ vault_mail_from_adress }}@{{ domain }}', type: 'string' }
-  - { key: 'mail_smtppassword', value: '{{ vault_mail_smtp_password }}', type: 'string' }
+nextcloud_config_parameters_custom: [
+  {{
+    ([
+      {
+        'key': 'mail_smtpmode',
+        'value': '{{ vault_mail_smtp_mode }}',
+        'type': 'string' 
+      },
+      {
+        'key': 'mail_sendmailmode',
+        'value': '{{ vault_mail_smtp_mode }}',
+        'type': 'string'
+      },
+      {
+        'key': 'mail_from_address',
+        'value': '{{ vault_mail_from_address }}',
+        'type': 'string'
+      },
+      {
+        'key': 'mail_domain',
+        'value': '{{ domain }}',
+        'type': 'string'
+      },
+      {
+        'key': 'mail_smtphost',
+        'value': '{{ vault_mail_smtp_host }}',
+        'type': 'string'
+      },
+      {
+        'key': 'mail_smtpport',
+        'value': '{{ vault_mail_smtp_port }}',
+        'type': 'integer'
+      },
+      {
+        'key': 'mail_smtpsecure',
+        'value': '{{ vault_mail_smtp_secure }}',
+        'type': 'string'
+      },
+      {
+        'key': 'mail_smtpauth',
+        'value': '{{ vault_mail_smtp_auth }}',
+        'type': 'integer'
+      },
+      {
+        'key': 'mail_smtpname',
+        'value': '{{ vault_mail_from_adress }}@{{ domain }}',
+        'type': 'string'
+      },
+      {
+        'key': 'mail_smtppassword',
+        'value': '{{ vault_mail_smtp_password }}',
+        'type': 'string'
+      },
+    ])
+  }}
+]
 
 
 ########################################################################
