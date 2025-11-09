@@ -685,6 +685,10 @@
     - role: galaxy/sftpgo
     # /role-specific:sftpgo
 
+    # role-specific:snowflake
+    - role: galaxy/snowflake
+    # /role-specific:snowflake
+
     # role-specific:soft_serve
     - role: galaxy/soft_serve
     # /role-specific:soft_serve

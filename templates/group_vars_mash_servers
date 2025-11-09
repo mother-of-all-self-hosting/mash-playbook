@@ -899,6 +899,11 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
     {{ ({'name': (sftpgo_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'sftpgo']} if sftpgo_enabled else omit) }}
   # /role-specific:sftpgo
 
+  # role-specific:snowflake
+  - |-
+    {{ ({'name': (snowflake_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'snowflake']} if snowflake_enabled else omit) }}
+  # /role-specific:snowflake
+
   # role-specific:soft_serve
   - |-
     {{ ({'name': (soft_serve_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'soft-serve']} if soft_serve_enabled else omit) }}
@@ -10563,6 +10568,36 @@ sftpgo_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_prima
 #                                                                      #
 ########################################################################
 # /role-specific:sftpgo
+
+
+
+# role-specific:snowflake
+########################################################################
+#                                                                      #
+# snowflake                                                            #
+#                                                                      #
+########################################################################
+
+snowflake_enabled: false
+
+snowflake_identifier: "{{ mash_playbook_service_identifier_prefix }}snowflake"
+
+snowflake_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}snowflake"
+
+snowflake_uid: "{{ mash_playbook_uid }}"
+snowflake_gid: "{{ mash_playbook_gid }}"
+
+snowflake_container_additional_networks_auto: |
+  {{
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+  }}
+
+########################################################################
+#                                                                      #
+# /snowflake                                                           #
+#                                                                      #
+########################################################################
+# /role-specific:snowflake
 
 
 

@@ -636,6 +636,10 @@
   version: v2.7.0-1
   name: sftpgo
   activation_prefix: sftpgo_
+- src: git+https://seed.radicle.garden/znvd313jEb23f9AUNmtsweE7YHCK.git
+  version: v2.11.0-0
+  name: snowflake
+  activation_prefix: snowflake_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-soft_serve.git
   version: v0.10.0-1
   name: soft_serve
