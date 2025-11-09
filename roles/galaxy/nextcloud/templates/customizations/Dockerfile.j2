@@ -80,7 +80,7 @@ RUN set -eux; \
 {% if nextcloud_use_mash_wrapper | default(false) %}
 # Install wrapper entrypoint that writes PHP overrides to /tmp (works with --read-only)
 RUN set -eux; mkdir -p /usr/local/bin
-RUN set -eux; install -m 0644 /dev/stdin /usr/local/bin/mash-entrypoint.sh <<'SH'
+RUN cat > /usr/local/bin/mash-entrypoint.sh <<'SH'
 #!/usr/bin/env bash
 set -Eeuo pipefail
 

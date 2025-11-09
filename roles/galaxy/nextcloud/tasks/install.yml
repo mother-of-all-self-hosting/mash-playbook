@@ -123,12 +123,12 @@
     - name: Validate wrapper presence when enabled
       when: nextcloud_use_mash_wrapper | bool
       ansible.builtin.command: >-
-        {{ devture_systemd_docker_base_host_command_docker }} run --rm --entrypoint /bin/sh {{ nextcloud_container_image_customized }} -c 'test -x /usr/local/bin/mash-entrypoint.sh && test $(wc -c < /usr/local/bin/mash-entrypoint.sh) -gt 0'
+        {{ devture_systemd_docker_base_host_command_docker }} run --rm --entrypoint /bin/sh {{ nextcloud_container_image_customized }} -lc 'test -x /usr/local/bin/mash-entrypoint.sh && test $(wc -c < /usr/local/bin/mash-entrypoint.sh) -gt 0'
       changed_when: false
 
     - name: Validate PHP scan dir overrides
       ansible.builtin.command: >-
-        {{ devture_systemd_docker_base_host_command_docker }} run --rm --entrypoint /bin/sh {{ nextcloud_container_image_customized }} -c 'PHP_INI_SCAN_DIR=/usr/local/etc/php/conf.d:/tmp/php-overrides php -i'
+        {{ devture_systemd_docker_base_host_command_docker }} run --rm --entrypoint /bin/sh {{ nextcloud_container_image_customized }} -lc 'PHP_INI_SCAN_DIR=/usr/local/etc/php/conf.d:/tmp/php-overrides php -i'
       register: nextcloud_php_info
       changed_when: false
 
