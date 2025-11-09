@@ -82,7 +82,6 @@ RUN set -eux; \
 COPY mash-entrypoint.sh /usr/local/bin/mash-entrypoint.sh
 RUN set -eux; sed -i 's/\r$//' /usr/local/bin/mash-entrypoint.sh && chmod 0755 /usr/local/bin/mash-entrypoint.sh
 ENTRYPOINT ["/usr/local/bin/mash-entrypoint.sh"]
-CMD ["apache2-foreground"]
 {% endif %}
 
 {{ nextcloud_container_image_customizations_dockerfile_body_custom }}

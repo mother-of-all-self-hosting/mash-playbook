@@ -11,7 +11,7 @@
 
 # Put a strong secret below, generated with `pwgen -s 64 1` or in another way
 # Various other secrets will be derived from this secret automatically.
-mash_playbook_generic_secret_key: "{{ vault_mash_playbook_generic_secret_key }}"
+mash_playbook_generic_secret_key: "{{vault_mash_playbook_generic_secret_key}}"
 
 ########################################################################
 #                                                                      #
@@ -29,7 +29,7 @@ mash_playbook_generic_secret_key: "{{ vault_mash_playbook_generic_secret_key }}"
 
 system_security_ssh_enabled: true
 
-system_security_ssh_port: "{{ ansible_ssh_port }}"
+system_security_ssh_port: "{{ansible_ssh_port}}"
 
 system_security_ssh_authorizedkeys_host: ["{{ ssh_key_1 }}", "{{ ssh_key_2 }}"]  # list of authorized public keys
 system_security_ssh_unauthorizedkeys_host: []  # list of unauthorized/revoked public keys
@@ -99,7 +99,8 @@ mash_playbook_docker_installation_daemon_options_custom: {
       "base": "192.168.64.0/18",
       "size": 25
     }
-  ],
+  ]
+  ,
   "dns": ["10.1.154.10"]
 }
 
@@ -169,7 +170,7 @@ mash_playbook_reverse_proxyable_services_additional_network: traefik
 postgres_enabled: true
 
 # Put a strong password below, generated with `pwgen -s 64 1` or in another way
-postgres_connection_password: "{{ vault_devture_postgres_connection_password }}"
+postgres_connection_password: "{{vault_devture_postgres_connection_password}}"
 
 ########################################################################
 #                                                                      #
@@ -215,28 +216,30 @@ postgres_connection_password: "{{ vault_devture_postgres_connection_password }}"
 
 nextcloud_enabled: true
 
-nextcloud_hostname: "nextcloud.{{ domain }}"
+nextcloud_hostname: "nextcloud.{{domain}}"
 nextcloud_path_prefix: /
 
 # Collabora / WOPI integration
 nextcloud_app_collabora_wopi_url: "{{ collabora_online_url }}"
+# If Collabora is on the same host / Docker network, allow private ranges explicitly.
+# Adjust or trim as needed.
 nextcloud_app_collabora_wopi_allowlist: "127.0.0.1/8, 10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16"
 
 # Previews (enable and tune)
 nextcloud_preview_enabled: true
 
-# PHP/runtime knobs for heavy preview/office conversions
+# PHP/runtime knobs helpful for heavy preview/office conversions
 nextcloud_environment_variables_additional_variables: |
   PHP_MEMORY_LIMIT=1024M
   PHP_UPLOAD_LIMIT=2048M
   PHP_MAX_EXECUTION_TIME=3600
 
-# Locale/region/time
+# Locale/region/time settings
 nextcloud_config_parameter_default_phone_region: DK
 nextcloud_config_parameter_default_timezone: Europe/Copenhagen
 nextcloud_config_parameter_maintenance_window_start: 3
 
-# Runtime tools for previews/OCR (no dev headers)
+# Add tools required for high-coverage previews (PDF/Office/Video/HEIC/SVG) and for imagick build
 nextcloud_container_image_customizations_packages_to_install_custom:
   - ca-certificates
   - curl
@@ -261,20 +264,16 @@ nextcloud_container_image_customizations_packages_to_install_custom:
   - tesseract-ocr-dan
   - hunspell-da
 
-# APT proxy reachable from build containers (host-mode apt-cacher-ng)
-mash_apt_proxy_url: "http://10.1.154.10:3142"
-
-# (Optional) speed up rebuilds on the docker-host
-nextcloud_container_image_build_cache_dir: "/var/lib/mash/.buildx-cache"
-
-# Let the role’s Dockerfile template drive the build logic
 nextcloud_container_image_customizations_dockerfile_body_custom: ""
 
 # Nextcloud config.php parameters
 nextcloud_config_parameters_custom:
+  # Allow callbacks to RFC1918/localhost (useful for on-box Collabora and some apps)
   - key: allow_local_remote_servers
     type: "boolean"
     value: true
+
+  # Keep/extend preview providers and add a few commonly useful ones
   - key: enabledPreviewProviders
     type: "json"
     value: >
@@ -284,6 +283,8 @@ nextcloud_config_parameters_custom:
        "OC\\Preview\\MSOffice2003","OC\\Preview\\MSOffice2007","OC\\Preview\\MSOffice",
        "OC\\Preview\\TXT","OC\\Preview\\MarkDown","OC\\Preview\\Movie",
        "OC\\Preview\\MP3","OC\\Preview\\Font","OC\\Preview\\Krita"]
+
+  # Preview sizing/quality (tune to taste)
   - key: preview_max_x
     type: "integer"
     value: 4096
@@ -292,10 +293,12 @@ nextcloud_config_parameters_custom:
     value: 4096
   - key: preview_max_filesize_image
     type: "integer"
-    value: 100   # MB
+    value: 100         # MB; images larger than this skip preview to avoid thrash
   - key: jpeg_quality
     type: "integer"
     value: 80
+
+  # Give converters a stable temp dir (helps with large PDF/office conversions)
   - key: tempdirectory
     type: "string"
     value: "/var/www/html/data/tmp"
@@ -326,10 +329,10 @@ nextcloud_config_parameters_custom:
 
 collabora_online_enabled: true
 
-collabora_online_hostname: "collabora.{{ domain }}"
+collabora_online_hostname: "collabora.{{domain}}"
 
 # A password for the admin interface, available at: https://COLLABORA_ONLINE_DOMAIN/browser/dist/admin/admin.html
-collabora_online_environment_variable_password: "{{ vault_collabora_online_env_variable_password }}"
+collabora_online_environment_variable_password: "{{vault_collabora_online_env_variable_password}}"
 
 collabora_online_environment_variable_aliasgroup1: "https://{{ nextcloud_hostname | replace('.', '\\.') }}:443"
 
@@ -355,7 +358,7 @@ gitea_enabled: true
 # and adjust the port as you see fit.
 # gitea_ssh_port: 222
 
-gitea_hostname: "gitea.{{ domain }}"
+gitea_hostname: "gitea.{{domain}}"
 # gitea_path_prefix: /gitea
 
 ########################################################################
@@ -378,11 +381,11 @@ gitea_hostname: "gitea.{{ domain }}"
 
 miniflux_enabled: false
 
-miniflux_hostname: "rss.{{ domain }}"
+miniflux_hostname: "rss.{{domain}}"
 # miniflux_path_prefix: /miniflux
 
 miniflux_admin_login: Tray2941
-miniflux_admin_password: "{{ vault_miniflux_admin_password }}"
+miniflux_admin_password: "{{vault_miniflux_admin_password}}"
 
 ########################################################################
 #                                                                      #
@@ -398,7 +401,7 @@ miniflux_admin_password: "{{ vault_miniflux_admin_password }}"
 
 adguard_home_enabled: true
 
-adguard_home_hostname: "dns.{{ domain }}"
+adguard_home_hostname: "dns.{{domain}}"
 
 # Hosting under a subpath sort of works, but is not ideal
 # (see the URL section below for details).
@@ -425,7 +428,7 @@ adguard_home_container_dns_udp_bind_port: '10.1.154.11:53'
 
 netbox_enabled: false
 
-netbox_hostname: "ipam.{{ domain }}"
+netbox_hostname: "ipam.{{domain}}"
 # netbox_path_prefix: /netbox
 
 # Put a strong secret below, generated with `pwgen -s 64 1` or in another way
@@ -454,12 +457,12 @@ netbox_environment_variable_superuser_password: ''
 
 freshrss_enabled: true
 
-freshrss_hostname: "rss.{{ domain }}"
+freshrss_hostname: "rss.{{domain}}"
 # freshrss_path_prefix: /freshrss
 
 # Put a strong password below, generated with `pwgen -s 64 1` or in another way.
 # You will need to use this password in the setup wizard after installation.
-freshrss_database_password: "{{ vault_freshrss_database_password }}"
+freshrss_database_password: "{{vault_freshrss_database_password}}"
 freshrss_database_type: postgres
 
 ########################################################################
@@ -477,7 +480,7 @@ freshrss_database_type: postgres
 
 hubsite_enabled: true
 
-hubsite_hostname: "hub.{{ domain }}"
+hubsite_hostname: "hub.{{domain}}"
 
 hubsite_title: "We bring you..."
 hubsite_subtitle: "These wonderful services!"
@@ -515,7 +518,7 @@ hubsite_subtitle: "These wonderful services!"
 
 stirling_pdf_enabled: true
 
-stirling_pdf_hostname: "pdf.{{ domain }}"
+stirling_pdf_hostname: "pdf.{{domain}}"
 
 # The path at which stirling_pdf is served.
 # This value must either be `/` or not end with a slash (e.g. `/pdf`).
@@ -538,7 +541,7 @@ stirling_pdf_install_calibre: false
 
 authentik_enabled: true
 
-authentik_hostname: "authentik.{{ domain }}"
+authentik_hostname: "authentik.{{domain}}"
 
 # Put a strong secret below, generated with `pwgen -s 64 1` or in another way
 authentik_secret_key: "{{ authentik_secret_key_vault }}"
@@ -570,7 +573,7 @@ authentik_container_additional_networks_custom:
 
 tandoor_enabled: true
 
-tandoor_hostname: "recipe.{{ domain }}"
+tandoor_hostname: "recipe.{{domain}}"
 
 tandoor_authentik_application_slug: tandoor
 
@@ -639,11 +642,11 @@ headscale_enabled: true
 headscale_hostname: "headscale.{{ domain }}"
 
 headscale_config_dns_nameservers_split:
-  int.thewrt.com:
-    - 10.1.10.2
+   int.thewrt.com:
+     - 10.1.10.2
 
 headscale_config_dns_search_domains:
-  - int.{{ domain }}
+     - int.{{ domain }}
 
 headscale_config_prefixes_v4: 100.100.0.0/20
 

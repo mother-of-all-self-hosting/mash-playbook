@@ -253,7 +253,7 @@ When testing with a plain Debian container you may see the `_apt` sandbox warnin
 
 ```sh
 docker run --rm --network=host debian:trixie bash -lc \
-  'cd /tmp && su -s /bin/sh -c "apt-get -o Acquire::http::Proxy=http://<host-ip>:3142 update && \\
+  'cd /tmp && su -s /bin/sh -c "apt-get -o Acquire::http::Proxy=http://<host-ip>:3142 update && \\ 
     apt-get -y -o Acquire::http::Proxy=http://<host-ip>:3142 download curl" _apt'
 ```
 

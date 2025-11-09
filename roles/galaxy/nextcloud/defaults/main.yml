@@ -34,21 +34,12 @@ nextcloud_hostname: ""
 # The path at which Nextcloud is exposed.
 nextcloud_path_prefix: /
 
-# Upstream image reference (used when no customizations are required)
+nextcloud_container_image: "{{ nextcloud_container_image_registry_prefix }}nextcloud:{{ nextcloud_container_image_tag }}"
+nextcloud_container_image_tag: "{{ nextcloud_version }}-apache"
+nextcloud_container_image_force_pull: "{{ nextcloud_container_image.endswith(':latest') }}"
 nextcloud_container_image_registry_prefix: "{{ nextcloud_container_image_registry_prefix_upstream }}"
 nextcloud_container_image_registry_prefix_upstream: "{{ nextcloud_container_image_registry_prefix_upstream_default }}"
 nextcloud_container_image_registry_prefix_upstream_default: docker.io/
-nextcloud_container_image_tag_upstream: "{{ nextcloud_version }}-apache"
-nextcloud_container_image: "{{ nextcloud_container_image_registry_prefix }}nextcloud:{{ nextcloud_container_image_tag_upstream }}"
-nextcloud_container_image_force_pull: "{{ nextcloud_container_image.endswith(':latest') }}"
-
-# Canonical repository/tag for the customized image that this role manages.
-nextcloud_container_image_repo: "localhost/nextcloud"
-nextcloud_container_image_tag_customized: "{{ nextcloud_version }}-apache-customized"
-nextcloud_container_image_customized: "{{ nextcloud_container_image_repo }}:{{ nextcloud_container_image_tag_customized }}"
-
-# Whether to wrap the upstream entrypoint with additional logic.
-nextcloud_use_mash_wrapper: true
 
 # nextcloud_container_image_customizations_enabled controls whether a customized Nextcloud image will be built.
 #
@@ -68,8 +59,6 @@ nextcloud_container_image_customizations_enabled: |
       nextcloud_container_image_customizations_samba_enabled
       or
       nextcloud_container_image_customizations_packages_to_install | length > 0
-      or
-      nextcloud_use_mash_wrapper
     )
   }}
 
@@ -116,11 +105,15 @@ nextcloud_container_image_build_cache_dir: ""
 #  RUN echo 'You do NOT need to include a FROM clause yourself.'
 nextcloud_container_image_customizations_dockerfile_body_custom: ""
 
+# nextcloud_container_image_customized is the name of the locally built Nextcloud image
+# which adds various customizations on top of the original (upstream) Nextcloud image.
+# This image will be based on the upstream `nextcloud_container_image` image, only if `nextcloud_container_image_customizations_enabled: true`.
+nextcloud_container_image_customized: "localhost/nextcloud:{{ nextcloud_container_image_tag }}-customized"
+
 # nextcloud_container_image_final holds the name of the Nextcloud image to run depending on whether or not customizations are enabled.
 nextcloud_container_image_final: "{{ nextcloud_container_image_customized if nextcloud_container_image_customizations_enabled | bool else nextcloud_container_image }}"
 
 nextcloud_customized_container_src_path: "{{ nextcloud_base_path }}/customized-container-src"
-nextcloud_customized_build_context: "{{ nextcloud_customized_container_src_path }}"
 
 # Controls whether the nextcloud-apache container exposes its HTTP port (tcp/80 in the container).
 #
@@ -163,7 +156,7 @@ nextcloud_container_labels_traefik_rule: "Host(`{{ nextcloud_container_labels_tr
 nextcloud_container_labels_traefik_priority: 0
 nextcloud_container_labels_traefik_entrypoints: web-secure
 nextcloud_container_labels_traefik_tls: "{{ nextcloud_container_labels_traefik_entrypoints != 'web' }}"
-nextcloud_container_labels_traefik_tls_certResolver: default  # noqa var-naming
+nextcloud_container_labels_traefik_tls_certResolver: default # noqa var-naming
 
 # Controls whether a compression middleware will be injected into the middlewares list.
 # This compression middleware is supposed to be defined elsewhere (using labels or a File provider, etc.) and is merely referenced by this router.
@@ -615,7 +608,3 @@ nextcloud_environment_variables_nextcloud_trusted_domains: "{{ nextcloud_hostnam
 #   VAR=1
 #   ANOTHER=value
 nextcloud_environment_variables_additional_variables: ""
-# Default PHP overrides applied via the wrapper (when enabled).
-nextcloud_php_memory_limit: 1024M
-nextcloud_php_upload_limit: 2048M
-nextcloud_php_max_execution_time: 3600
