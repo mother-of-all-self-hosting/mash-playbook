@@ -79,8 +79,28 @@ RUN set -eux; \
 
 {% if nextcloud_use_mash_wrapper | default(false) %}
 # Install wrapper entrypoint that writes PHP overrides to /tmp (works with --read-only)
-COPY mash-entrypoint.sh /usr/local/bin/mash-entrypoint.sh
-RUN set -eux; sed -i 's/\r$//' /usr/local/bin/mash-entrypoint.sh && chmod 0755 /usr/local/bin/mash-entrypoint.sh
+RUN set -eux; mkdir -p /usr/local/bin
+RUN set -eux; install -m 0644 /dev/stdin /usr/local/bin/mash-entrypoint.sh <<'SH'
+#!/usr/bin/env bash
+set -Eeuo pipefail
+
+: "${PHP_MEMORY_LIMIT:=1024M}"
+: "${PHP_UPLOAD_LIMIT:=2048M}"
+: "${PHP_MAX_EXECUTION_TIME:=3600}"
+
+tmpdir=/tmp/php-overrides
+mkdir -p "$tmpdir"
+cat >"$tmpdir/zzz-mash-overrides.ini" <<INI
+memory_limit=${PHP_MEMORY_LIMIT}
+upload_max_filesize=${PHP_UPLOAD_LIMIT}
+post_max_size=${PHP_UPLOAD_LIMIT}
+max_execution_time=${PHP_MAX_EXECUTION_TIME}
+INI
+
+exec /entrypoint.sh "$@"
+SH
+RUN sed -i 's/\r$//' /usr/local/bin/mash-entrypoint.sh && chmod 0755 /usr/local/bin/mash-entrypoint.sh
+
 ENTRYPOINT ["/usr/local/bin/mash-entrypoint.sh"]
 {% endif %}
 
