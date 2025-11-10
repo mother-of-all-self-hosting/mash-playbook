@@ -158,7 +158,7 @@ To save disk space in `/tmp`, the dump file is gzipped on the fly at the expense
 
 **All databases, roles, etc. on the Postgres server are migrated**.
 
-## Tuning PostgreSQL
+### Tuning PostgreSQL
 
 PostgreSQL can be [tuned](https://wiki.postgresql.org/wiki/Tuning_Your_PostgreSQL_Server) to make it run faster. This is done by passing extra arguments to the Postgres process.
 
