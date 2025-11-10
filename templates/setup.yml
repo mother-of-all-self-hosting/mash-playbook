@@ -561,6 +561,10 @@
     - role: galaxy/peertube
     # /role-specific:peertube
 
+    # role-specific:pgadmin
+    - role: galaxy/pgadmin
+    # /role-specific:pgadmin
+
     # role-specific:phpmyadmin
     - role: galaxy/phpmyadmin
     # /role-specific:phpmyadmin

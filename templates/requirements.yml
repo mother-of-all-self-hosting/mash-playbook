@@ -496,6 +496,10 @@
   version: v7.2.3-5
   name: peertube
   activation_prefix: peertube_
+- src: git+https://seed.radicle.garden/ztixjo2qUzCBLADieR3hKkYEk4eE.git
+  version: v9.9.0-0
+  name: pgadmin
+  activation_prefix: pgadmin_
 - src: git+https://seed.radicle.garden/zby9EmMBhyNe8Nj4f66izwrmhk5g.git
   version: v5.2.3-0
   name: phpmyadmin
