@@ -172,6 +172,11 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
     {{ ({'name': (barassistant_server_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'barassistant']} if barassistant_enabled else omit) }}
   # /role-specific:barassistant
 
+  # role-specific:bind
+  - |-
+    {{ ({'name': (bind_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'bind']} if bind_enabled else omit) }}
+  # /role-specific:bind
+
   # role-specific:browserless
   - |-
     {{ ({'name': (browserless_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'browserless']} if browserless_enabled else omit) }}
@@ -2737,6 +2742,39 @@ barassistant_server_container_labels_traefik_tls_certResolver: "{{ traefik_certR
 #                                                                      #
 ########################################################################
 # /role-specific:barassistant
+
+
+
+# role-specific:bind
+########################################################################
+#                                                                      #
+# bind                                                                 #
+#                                                                      #
+########################################################################
+
+bind_enabled: false
+
+bind_identifier: "{{ mash_playbook_service_identifier_prefix }}bind"
+
+bind_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}bind"
+
+# Intentionally not messing around with `bind_uid` and `bind_gid` here.
+# Using custom values doesn't work.
+
+bind_config_key_default_rndc_enabled: true
+bind_config_key_default_rndc_secret_raw: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'bind.rndc', rounds=655555) | to_uuid }}"
+
+bind_systemd_required_services_list_auto: |
+  {{
+    ([devture_systemd_docker_base_docker_service_name] if devture_systemd_docker_base_docker_service_name else [])
+  }}
+
+########################################################################
+#                                                                      #
+# /bind                                                                #
+#                                                                      #
+########################################################################
+# /role-specific:bind
 
 
 

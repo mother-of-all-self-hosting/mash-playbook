@@ -68,6 +68,10 @@
   version: v5.9.1-0
   name: barassistant
   activation_prefix: barassistant_
+- src: git+https://github.com/mother-of-all-self-hosting/ansible-role-bind.git
+  version: v9.20-0
+  name: bind
+  activation_prefix: bind_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-browserless.git
   version: v2.38.2-1
   name: browserless
