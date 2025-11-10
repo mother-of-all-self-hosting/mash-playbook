@@ -20,14 +20,14 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
 # pgAdmin
 
-The playbook can install and configure [pgAdmin](https://www.pgadmin.net/) for you.
+The playbook can install and configure [pgAdmin](https://www.pgadmin.org/) for you.
 
-pgAdmin is a free software tool written in PHP that is intended to handle the administration of a MySQL or MariaDB database server.
+pgAdmin is a management tool for Postgres with a graphical interface which simplifies the creation, maintenance and use of database objects.
 
-See the project's [documentation](https://docs.pgadmin.net/en/latest/) to learn what pgAdmin does and why it might be useful to you.
+See the project's [documentation](https://www.pgadmin.org/docs/pgadmin4/latest/) to learn what pgAdmin does and why it might be useful to you.
 
-For details about configuring the [Ansible role for pgAdmin](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Azby9EmMBhyNe8Nj4f66izwrmhk5g), you can check them via:
-- 🌐 [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Azby9EmMBhyNe8Nj4f66izwrmhk5g/tree/docs/configuring-pgadmin.md) online
+For details about configuring the [Ansible role for pgAdmin](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Aztixjo2qUzCBLADieR3hKkYEk4eE), you can check them via:
+- 🌐 [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Aztixjo2qUzCBLADieR3hKkYEk4eE/tree/docs/configuring-pgadmin.md) online
 - 📁 `roles/galaxy/pgadmin/docs/configuring-pgadmin.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 ## Dependencies
@@ -58,30 +58,22 @@ pgadmin_hostname: pgadmin.example.com
 ########################################################################
 ```
 
-**Note**: hosting pgAdmin under a subpath (by configuring the `pgadmin_path_prefix` variable) does not seem to be possible due to pgAdmin's technical limitations.
-
-### Enabling to specify the database server to connect (optional)
-
-The default setting is that the pgAdmin can connect to the [MariaDB](mariadb.md) instance managed with this playbook only. To allow the pgAdmin instance to connect to any MySQL / MariaDB server, add the following configuration to your `vars.yml` file:
-
-```yaml
-pgadmin_environment_variables_pma_arbitrary: "1"
-```
+You also need to specify an email address and password for the initial administrator of the pgAdmin instance. See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Aztixjo2qUzCBLADieR3hKkYEk4eE/tree/docs/configuring-pgadmin.md#set-email-address-and-password-for-initial-administrator) on the role's documentation for details.
 
 ## Usage
 
 After running the command for installation, the pgAdmin instance becomes available at the URL specified with `pgadmin_hostname`. With the configuration above, the service is hosted at `https://pgadmin.example.com`.
 
-To get started, open the URL `https://pgadmin.example.com` with a web browser, and log in to the instance with the database's credentials. By default its username is `root`, and the password is the one specified to `mariadb_root_password` on your `vars.yml` file.
+To get started, open the URL `https://pgadmin.example.com` with a web browser, and log in to the instance with the administrator's credentials.
 
 >[!NOTE]
 >
-> - As some commands are destructive and cannot be undone, it is **highly recommended** to have a look at the [documentation](https://docs.pgadmin.net/en/latest/) to learn its usage before running them against the actual database.
-> - Since enabling pgAdmin with this playbook exposes the instance (thus practically the MariaDB database as well) to the internet, it is important to set a proper method to restrict who can access to it, such as [two-factor authentication](https://docs.pgadmin.net/en/latest/two_factor.html). Protecting it with an Identity Provider (IdP) like [authentik](authentik.md) is also worth considering.
+> - As some commands are destructive and cannot be undone, it is **highly recommended** to have a look at the [documentation](https://www.pgadmin.org/docs/pgadmin4/latest/index.html) to learn its usage before running them against the actual database. The documentation is also available on the instance at `https://pgadmin.example.com/help/help/index.html`.
+> - Since enabling pgAdmin with this playbook exposes the instance (thus practically the Postgres database as well) to the internet, it is important to set a proper method to restrict who can access to it, such as [two-factor authentication](https://www.pgadmin.org/docs/pgadmin4/latest/mfa.html). Enabling [OAuth2 authentication](https://4f.progressiv.dev/help/help/oauth2.html) is also worth considering.
 
 ## Troubleshooting
 
-See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Azby9EmMBhyNe8Nj4f66izwrmhk5g/tree/docs/configuring-pgadmin.md#troubleshooting) on the role's documentation for details.
+See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Aztixjo2qUzCBLADieR3hKkYEk4eE/tree/docs/configuring-pgadmin.md#troubleshooting) on the role's documentation for details.
 
 ## Related services
 
