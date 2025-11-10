@@ -87,3 +87,4 @@ See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Azby9E
 
 - [Adminer](adminer.md) — Full-featured database management tool written in PHP
 - [MariaDB](mariadb.md) — Powerful, open source object-relational database system
+- [pgAdmin](pgadmin.md) — Management tool for Postgres with a graphical interface
