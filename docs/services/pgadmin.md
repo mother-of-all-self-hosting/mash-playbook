@@ -69,7 +69,15 @@ To get started, open the URL `https://pgadmin.example.com` with a web browser, a
 >[!NOTE]
 >
 > - As some commands are destructive and cannot be undone, it is **highly recommended** to have a look at the [documentation](https://www.pgadmin.org/docs/pgadmin4/latest/index.html) to learn its usage before running them against the actual database. The documentation is also available on the instance at `https://pgadmin.example.com/help/help/index.html`.
-> - Since enabling pgAdmin with this playbook exposes the instance (thus practically the Postgres database as well) to the internet, it is important to set a proper method to restrict who can access to it, such as [two-factor authentication](https://www.pgadmin.org/docs/pgadmin4/latest/mfa.html). Enabling [OAuth2 authentication](https://4f.progressiv.dev/help/help/oauth2.html) is also worth considering.
+> - Since enabling pgAdmin with this playbook exposes the instance (thus practically the Postgres database as well) to the internet, it is important to set a proper method to restrict who can access to it, such as [two-factor authentication](https://www.pgadmin.org/docs/pgadmin4/latest/mfa.html). Enabling [OAuth2 authentication](https://www.pgadmin.org/docs/pgadmin4/latest/oauth2.html) is also worth considering.
+
+### Connecting to the Postgres server managed by the MASH playbook
+
+To connect to the Postgres server which you manage with this playbook, you need to register it on the UI. Refer to [this page](https://www.pgadmin.org/docs/pgadmin4/latest/connecting.html) on the documentation for details.
+
+To register it, set `mash-postgres` to the `Host name/address` input field on the modal window for the registration. The default username is `root`, and its password is the one specified to `postgres_connection_password` on your `vars.yml` file.
+
+[<img src="../assets/pgadmin/register.webp" title="Modal window for database server registration" width="600" alt="Modal window for database server registration">](../assets/pgadmin/register.webp)
 
 ## Troubleshooting
 
