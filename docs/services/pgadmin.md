@@ -86,4 +86,4 @@ See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Aztixj
 ## Related services
 
 - [Adminer](adminer.md) — Full-featured database management tool written in PHP
-- [MariaDB](mariadb.md) — Powerful, open source object-relational database system
+- [phpMyAdmin](phpmyadmin.md) — Free software written in PHP to handle the administration of a MySQL or MariaDB database server over the web
