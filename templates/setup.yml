@@ -733,6 +733,10 @@
     - role: galaxy/thelounge
     # /role-specific:thelounge
 
+    # role-specific:tika
+    - role: galaxy/tika
+    # /role-specific:tika
+
     # role-specific:tinyauth
     - role: galaxy/tinyauth
     # /role-specific:tinyauth
