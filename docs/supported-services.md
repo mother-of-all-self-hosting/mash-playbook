@@ -131,6 +131,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 | [ntfy](https://ntfy.sh/) | Simple HTTP-based pub-sub notification service to send you push notifications from any computer, using simple HTTP PUT or POST requests. | [Link](services/ntfy.md) |
 | [OAuth2-Proxy](https://oauth2-proxy.github.io/oauth2-proxy/) | A reverse proxy and static file server that provides authentication using OpenID Connect Providers (Google, GitHub, [Keycloak](services/keycloak.md), and others) to SSO-protect services which do not support SSO natively. | [Link](services/oauth2-proxy.md) |
 | [ONLYOFFICE Docs](https://helpcenter.onlyoffice.com/docs) | Online office suite comprising viewers and editors | [Link](services/onlyoffice-docs.md) |
+| [Open Archiver](https://github.com/LogicLabs-OU/OpenArchiver) | Archive, store, index, and search emails from various platforms, including generic IMAP-enabled email inboxes | [Link](services/openarchiver.md) |
 | [Opengist](https://opengist.io/) | Self-hosted pastebin powered by Git | [Link](services/opengist.md) |
 | [OpenRegex](https://github.com/SunneV/OpenRegex) | Web-based regular expression (regex) tester and debugger | [Link](services/openregex.md) |
 | [Outline](https://www.getoutline.com/) | An open-source knowledge base for growing teams. | [Link](services/outline.md) |
