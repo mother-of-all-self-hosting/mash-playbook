@@ -533,6 +533,10 @@
     - role: galaxy/onlyoffice_docs
     # /role-specific:onlyoffice_docs
 
+    # role-specific:openarchiver
+    - role: galaxy/openarchiver
+    # /role-specific:openarchiver
+
     # role-specific:opengist
     - role: galaxy/opengist
     # /role-specific:opengist
