@@ -61,6 +61,19 @@ openarchiver_hostname: openarchiver.example.com
 
 **Note**: hosting Open Archiver under a subpath (by configuring the `openarchiver_path_prefix` variable) does not seem to be possible due to Open Archiver's technical limitations.
 
+### Set 32-byte hex digits for secret key
+
+You also need to specify **32-byte hex digits** for keys to be used for encryption. To do so, add the following configuration to your `vars.yml` file. The value can be generated with `openssl rand -hex 32` or in another way.
+
+```yaml
+openarchiver_environment_variables_storage_encryption_key: RANDOM_32_BYTE_HEX_STRING_HERE
+
+openarchiver_environment_variables_encryption_key: RANDOM_32_BYTE_HEX_STRING_HERE
+```
+
+>[!NOTE]
+> Other type of values such as one generated with `pwgen -s 64 1` does not work.
+
 ### Connecting to a Meilisearch instance (optional)
 
 To enable the search and filtering functions, you can optionally have the Open Archiver instance connect to a Meilisearch instance.
