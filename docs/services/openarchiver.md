@@ -13,18 +13,22 @@ SPDX-FileCopyrightText: 2023 Felix Stupp
 SPDX-FileCopyrightText: 2023 Julian-Samuel Gebühr
 SPDX-FileCopyrightText: 2023 Pierre 'McFly' Marty
 SPDX-FileCopyrightText: 2024 - 2025 Suguru Hirahara
+SPDX-FileCopyrightText: 2024 Thomas Miceli
+SPDX-FileCopyrightText: 2025 Wei S.
 
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 
 # Open Archiver
 
-The playbook can install and configure [Open Archiver](https://github.com/karlomikus/bar-assistant/) for you.
+The playbook can install and configure [Open Archiver](https://github.com/LogicLabs-OU/OpenArchiver) for you.
 
-See the project's [documentation](https://docs.openarchiver.app/) to learn what Open Archiver does and why it might be useful to you.
+Open Archiver is free software for archiving, storing, indexing, and searching emails from various platforms, including Google Workspace (Gmail), Microsoft 365, PST files, as well as generic IMAP-enabled email inboxes.
 
-For details about configuring the [Ansible role for Open Archiver](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3JDUHjeHMqbZ3YLxquSUbCmAJLi), you can check them via:
-- 🌐 [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3JDUHjeHMqbZ3YLxquSUbCmAJLi/tree/docs/configuring-openarchiver.md) online
+See the project's [documentation](https://docs.openarchiver.com/) to learn what Open Archiver does and why it might be useful to you.
+
+For details about configuring the [Ansible role for Open Archiver](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az2Q7Pka6bCT5D6Ng54kT8UcYAcVTC), you can check them via:
+- 🌐 [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az2Q7Pka6bCT5D6Ng54kT8UcYAcVTC/tree/docs/configuring-openarchiver.md) online
 - 📁 `roles/galaxy/openarchiver/docs/configuring-openarchiver.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 ## Dependencies
@@ -74,20 +78,17 @@ openarchiver_environment_variables_encryption_key: RANDOM_32_BYTE_HEX_STRING_HER
 >[!NOTE]
 > Other type of values such as one generated with `pwgen -s 64 1` does not work.
 
-### Connecting to a Meilisearch instance (optional)
+### Configure Meilisearch
 
-To enable the search and filtering functions, you can optionally have the Open Archiver instance connect to a Meilisearch instance.
+To enable the search function, you need to have the Open Archiver instance connect to a Meilisearch instance.
 
 Meilisearch is available on the playbook. Enabling it and setting the default admin API key automatically configures the Open Archiver instance to connect to it.
 
 See [this page](meilisearch.md) for details about how to install it and setting the key for the Meilisearch instance.
 
->[!NOTE]
-> The Meilisearch instance needs to be exposed to the internet. Setting a hostname of the instance to `meilisearch_hostname` automatically exposes it.
+### Configure Valkey
 
-### Configuring Valkey (optional)
-
-Valkey can optionally be enabled for caching data. This playbook supports it, and you can set up a Valkey instance by enabling it on `vars.yml`.
+Open Archiver requires a Valkey data-store to work. This playbook supports it, and you can set up a Valkey instance by enabling it on `vars.yml`.
 
 If Open Archiver is the sole service which requires Valkey on your server, it is fine to set up just a single Valkey instance. However, **it is not recommended if there are other services which require it, because sharing the Valkey instance has security concerns and possibly causes data conflicts**, as described on the [documentation for configuring Valkey](valkey.md). In this case, you should install a dedicated Valkey instance for each of them.
 
@@ -255,6 +256,14 @@ openarchiver_container_additional_networks_custom:
 
 Running the installation command will create the shared Valkey instance named `mash-valkey`.
 
+### Configuring Apache Tika server integration (optional)
+
+You can optionally enable an [Apache Tika Server](http://tika.apache.org/) for extracting and indexing text data on attachment files. If not enabled, the application falls back to built-in parsers for PDF, Word, and Excel files.
+
+Apache Tika Server is available on the playbook. Enabling it configures the Open Archiver instance to connect to it.
+
+See [this page](tika.md) for details about how to install it.
+
 ## Installation
 
 If you have decided to install the dedicated Valkey instance for Open Archiver, make sure to run the [installing](../installing.md) command for the supplementary host (`mash.example.com-openarchiver-deps`) first, before running it for the main host (`mash.example.com`).
@@ -263,10 +272,10 @@ Note that running the `just` commands for installation (`just install-all` or `j
 
 ## Usage
 
-After running the command for installation, the Open Archiver's API server becomes available at the URL specified with `openarchiver_hostname` and `openarchiver_path_prefix`, and the Salt Rim instance becomes available at the URL specified with `openarchiver_hostname`, respectively. With the configuration above, the Salt Rim instance is hosted at `https://openarchiver.example.com`.
+After running the command for installation, the Open Archiver becomes available at the URL specified with `openarchiver_hostname`. With the configuration above, the service is hosted at `https://openarchiver.example.com`.
 
-To get started, open the URL with a web browser, and register the account to use the web UI. **Note that the first registered user becomes an administrator automatically.**
+To get started, open the URL with a web browser to log in to the instance. **Note that the first registered user becomes an administrator automatically.**
 
 ## Troubleshooting
 
-See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3JDUHjeHMqbZ3YLxquSUbCmAJLi/tree/docs/configuring-openarchiver.md#troubleshooting) on the role's documentation for details.
+See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az2Q7Pka6bCT5D6Ng54kT8UcYAcVTC/tree/docs/configuring-openarchiver.md#troubleshooting) on the role's documentation for details.
