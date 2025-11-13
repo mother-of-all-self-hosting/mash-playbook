@@ -321,7 +321,7 @@
   name: karakeep
   activation_prefix: karakeep_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-keycloak.git
-  version: v26.4.4-0
+  version: v26.4.5-0
   name: keycloak
   activation_prefix: keycloak_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-keydb.git
