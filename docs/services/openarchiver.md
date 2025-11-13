@@ -67,7 +67,7 @@ openarchiver_hostname: openarchiver.example.com
 By default account registration for the service is disabled. To enable it, add the following configuration to your `vars.yml` file:
 
 ```yaml
-openarchiver_server_environment_variables_allow_registration: false
+openarchiver_environment_variables_allow_registration: false
 ```
 
 ### Configuring the mailer (optional)
@@ -192,11 +192,11 @@ Having configured `vars.yml` for the dedicated instance, add the following confi
 openarchiver_redis_hostname: mash-openarchiver-valkey
 
 # Make sure the Open Archiver server service (mash-openarchiver-server.service) starts after its dedicated Valkey service (mash-openarchiver-valkey.service)
-openarchiver_server_systemd_required_services_list_custom:
+openarchiver_systemd_required_services_list_custom:
   - "mash-openarchiver-valkey.service"
 
 # Make sure the Open Archiver server container is connected to the container network of its dedicated Valkey service (mash-openarchiver-valkey)
-openarchiver_server_container_additional_networks_custom:
+openarchiver_container_additional_networks_custom:
   - "mash-openarchiver-valkey"
 
 ########################################################################
@@ -242,11 +242,11 @@ valkey_enabled: true
 openarchiver_redis_hostname: "{{ valkey_identifier }}"
 
 # Make sure the Open Archiver server service (mash-openarchiver-server.service) starts after the shared Valkey service (mash-valkey.service)
-openarchiver_server_systemd_required_services_list_custom:
+openarchiver_systemd_required_services_list_custom:
   - "{{ valkey_identifier }}.service"
 
 # Make sure the Open Archiver server container is connected to the container network of the shared Valkey service (mash-valkey)
-openarchiver_server_container_additional_networks_custom:
+openarchiver_container_additional_networks_custom:
   - "{{ valkey_identifier }}"
 
 ########################################################################
@@ -266,11 +266,11 @@ Note that running the `just` commands for installation (`just install-all` or `j
 
 ## Usage
 
-After running the command for installation, the Open Archiver's API server becomes available at the URL specified with `openarchiver_hostname` and `openarchiver_server_path_prefix`, and the Salt Rim instance becomes available at the URL specified with `openarchiver_hostname`, respectively. With the configuration above, the Salt Rim instance is hosted at `https://openarchiver.example.com`.
+After running the command for installation, the Open Archiver's API server becomes available at the URL specified with `openarchiver_hostname` and `openarchiver_path_prefix`, and the Salt Rim instance becomes available at the URL specified with `openarchiver_hostname`, respectively. With the configuration above, the Salt Rim instance is hosted at `https://openarchiver.example.com`.
 
 To get started, open the URL with a web browser, and register the account to use the web UI. **Note that the first registered user becomes an administrator automatically.**
 
-Since account registration is disabled by default, you need to enable it first by setting `openarchiver_server_environment_variables_allow_registration` to `false` temporarily in order to create your own account.
+Since account registration is disabled by default, you need to enable it first by setting `openarchiver_environment_variables_allow_registration` to `false` temporarily in order to create your own account.
 
 ## Troubleshooting
 
