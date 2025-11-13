@@ -21,8 +21,6 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
 The playbook can install and configure [Open Archiver](https://github.com/karlomikus/bar-assistant/) for you.
 
-Open Archiver is a service for managing cocktail recipes at your home bar with a lot of cocktail-oriented features like ingredient substitutes. The playbook is configured to set up the Open Archiver's API server and its web client software [Salt Rim](https://github.com/karlomikus/vue-salt-rim).
-
 See the project's [documentation](https://docs.openarchiver.app/) to learn what Open Archiver does and why it might be useful to you.
 
 For details about configuring the [Ansible role for Open Archiver](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3JDUHjeHMqbZ3YLxquSUbCmAJLi), you can check them via:
@@ -62,21 +60,6 @@ openarchiver_hostname: openarchiver.example.com
 ```
 
 **Note**: hosting Open Archiver under a subpath (by configuring the `openarchiver_path_prefix` variable) does not seem to be possible due to Open Archiver's technical limitations.
-
-### Enabling signing up
-
-By default account registration for the service is disabled. To enable it, add the following configuration to your `vars.yml` file:
-
-```yaml
-openarchiver_environment_variables_allow_registration: false
-```
-
-### Configuring the mailer (optional)
-
-On Open Archiver you can set up a mailer for functions such as password recovery. If you enable the [exim-relay](exim-relay.md) service in your inventory configuration, the playbook will automatically configure it as a mailer for the service.
-
->[!NOTE]
-> Without setting an authentication method such as DKIM, SPF, and DMARC for your hostname, emails are most likely to be quarantined as spam at recipient's mail servers. If you have set up a mail server with the [exim-relay Ansible role](https://github.com/mother-of-all-self-hosting/ansible-role-exim-relay), you can enable DKIM signing with it. Refer [its documentation](https://github.com/mother-of-all-self-hosting/ansible-role-exim-relay/blob/main/docs/configuring-exim-relay.md#enable-dkim-support-optional) for details.
 
 ### Connecting to a Meilisearch instance (optional)
 
@@ -270,8 +253,6 @@ Note that running the `just` commands for installation (`just install-all` or `j
 After running the command for installation, the Open Archiver's API server becomes available at the URL specified with `openarchiver_hostname` and `openarchiver_path_prefix`, and the Salt Rim instance becomes available at the URL specified with `openarchiver_hostname`, respectively. With the configuration above, the Salt Rim instance is hosted at `https://openarchiver.example.com`.
 
 To get started, open the URL with a web browser, and register the account to use the web UI. **Note that the first registered user becomes an administrator automatically.**
-
-Since account registration is disabled by default, you need to enable it first by setting `openarchiver_environment_variables_allow_registration` to `false` temporarily in order to create your own account.
 
 ## Troubleshooting
 
