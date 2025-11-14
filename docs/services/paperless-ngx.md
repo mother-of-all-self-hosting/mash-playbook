@@ -23,9 +23,6 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
 [Paperless-ngx](https://paperless-ngx.com) is a community-supported open-source document management system that transforms your physical documents into a searchable online archive to organize them paperless.
 
-> [!WARNING]
-> Paperless-ngx currently [does not support](https://github.com/paperless-ngx/paperless-ngx/issues/6352) running the container rootless, therefore the role has not the usual security features of other services provided by this playbook. This put your system more at higher risk as vulnerabilities can have a higher impact.
-
 ## Dependencies
 
 This service requires the following other services:
