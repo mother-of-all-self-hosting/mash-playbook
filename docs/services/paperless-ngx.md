@@ -32,6 +32,7 @@ This service requires the following other services:
 
 - a [Traefik](traefik.md) reverse-proxy server
 - a [Valkey](valkey.md) data-store; see [below](#configure-valkey) for details about installation
+- (optional) [Apache Tika Server](tika.md)
 - (optional) [Postgres](postgres.md) / [MariaDB](mariadb.md) database — Paperless-ngx will default to [SQLite](https://www.sqlite.org/) if Postgres is not enabled
 
 ## Configuration
@@ -256,6 +257,18 @@ Example:
 paperless_ocr_languages_custom:
   - bul
   - jpn
+```
+
+### Configuring Apache Tika Server integration (optional)
+
+You can optionally have the Paperless-ngx instance connect to [Apache Tika Server](http://tika.apache.org/) for parsing and converting document files (such as ".doc", ".xlsx" and ".odt"). It is required for parsing emails (".eml") as well.
+
+Apache Tika Server is available on the playbook. See [this page](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Azbk3MzAN6SX6d8pa9DT2kHDscyr6/tree/docs/configuring-tika.md) for details about how to install it.
+
+To enable integration, add the following configuration to your `vars.yml` file:
+
+```yaml
+paperless_tika_enabled: true
 ```
 
 ### Extending the configuration
