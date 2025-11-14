@@ -518,14 +518,13 @@ authentik_container_additional_networks_custom:
   - "authentik-keydb"
 
 ## Mailing
-authentik_environment_variables_custom:
-  AUTHENTIK_EMAIL__HOST: "{{ vault_mail_smtp_host }}"
-  AUTHENTIK_EMAIL__PORT: "{{ vault_mail_smtp_port }}"
-  AUTHENTIK_EMAIL__USERNAME: "{{ vault_mail_smtp_user }}"
-  AUTHENTIK_EMAIL__PASSWORD: "{{ vault_mail_smtp_password }}"
-  AUTHENTIK_EMAIL__USE_TLS: "{{ vault_mail_smtp_secure == 'tls' }}"
-  AUTHENTIK_EMAIL__USE_SSL: "{{ vault_mail_smtp_secure == 'ssl' }}"
-  AUTHENTIK_EMAIL__FROM: "{{ vault_mail_from_address }}@{{ domain }}"
+authentik_email_host: "{{ vault_mail_smtp_host }}"
+authentik_email_port: "{{ vault_mail_smtp_port }}"
+authentik_email_username: "{{ vault_mail_smtp_address }}@{{ domain }}"
+authentik_email_password: "{{ vault_mail_smtp_password }}"
+authentik_email_use_tls: "{{ vault_mail_smtp_tls }}"
+authentik_email_use_ssl: "{{ vault_mail_smtp_ssl }}"
+authentik_email_from: "{{ vault_mail_smtp_address }}@{{ domain }}"
 
 ########################################################################
 #                                                                      #
@@ -557,10 +556,7 @@ tandoor_socialaccount_providers:
           oauth_pkce_enabled: true
 
 tandoor_container_additional_environment_variables: |
-  {% set env_lines = [
-    'SOCIAL_PROVIDERS=allauth.socialaccount.providers.openid_connect',
-    'SOCIALACCOUNT_PROVIDERS=' ~ (tandoor_socialaccount_providers | to_json),
-    'PROXY_HEADER=X-Forwarded-Proto'
+
   ] %}
   {%- for line in env_lines %}
   {{ line }}
