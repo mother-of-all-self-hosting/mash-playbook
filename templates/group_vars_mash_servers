@@ -696,6 +696,11 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
     {{ ({'name': (onlyoffice_docs_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'onlyoffice-docs']} if onlyoffice_docs_enabled else omit) }}
   # /role-specific:onlyoffice_docs
 
+  # role-specific:openarchiver
+  - |-
+    {{ ({'name': (openarchiver_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'openarchiver']} if openarchiver_enabled else omit) }}
+  # /role-specific:openarchiver
+
   # role-specific:opengist
   - |-
     {{ ({'name': (opengist_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'opengist']} if opengist_enabled else omit) }}
@@ -1503,6 +1508,17 @@ mash_playbook_postgres_managed_databases_auto_itemized:
       } if onlyoffice_docs_enabled and onlyoffice_docs_database_postgres_hostname == postgres_connection_hostname and onlyoffice_docs_database_type == 'postgres' else omit)
     }}
   # /role-specific:onlyoffice_docs
+
+  # role-specific:openarchiver
+  - |-
+    {{
+      ({
+        'name': openarchiver_database_name,
+        'username': openarchiver_database_username,
+        'password': openarchiver_database_password,
+      } if openarchiver_enabled and openarchiver_database_hostname == postgres_connection_hostname else omit)
+    }}
+  # /role-specific:openarchiver
 
   # role-specific:opengist
   - |-
@@ -8721,6 +8737,80 @@ onlyoffice_docs_container_labels_traefik_tls_certResolver: "{{ traefik_certResol
 #                                                                      #
 ########################################################################
 # /role-specific:onlyoffice_docs
+
+
+
+# role-specific:openarchiver
+########################################################################
+#                                                                      #
+# openarchiver                                                         #
+#                                                                      #
+########################################################################
+
+openarchiver_enabled: false
+
+openarchiver_identifier: "{{ mash_playbook_service_identifier_prefix }}openarchiver"
+
+openarchiver_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}openarchiver"
+
+# Open Archiver runs only as root user
+openarchiver_uid: "0"
+openarchiver_gid: "0"
+
+openarchiver_systemd_required_services_list_auto: |
+  {{
+    ([postgres_identifier ~ '.service'] if postgres_enabled and openarchiver_database_hostname == postgres_connection_hostname else [])
+    +
+    ([meilisearch_identifier ~ '.service'] if meilisearch_enabled else [])
+  }}
+
+openarchiver_systemd_wanted_services_list_auto: |
+  {{
+    ([tika_identifier ~ '.service'] if tika_enabled | default(false) else [])
+  }}
+
+openarchiver_container_additional_networks_auto: |
+  {{
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+    +
+    ([meilisearch_container_network] if meilisearch_enabled and openarchiver_container_network != meilisearch_container_network else [])
+    +
+    ([postgres_container_network] if postgres_enabled and openarchiver_database_hostname == postgres_connection_hostname and openarchiver_container_network != postgres_container_network else [])
+    +
+    ([tika_container_network] if tika_enabled and openarchiver_container_network != tika_container_network else [])
+  }}
+
+openarchiver_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+openarchiver_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+
+openarchiver_environment_variables_jwt_secret: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'openarchiver.j', rounds=655555) | to_uuid }}"
+
+# role-specific:meilisearch
+openarchiver_environment_variables_meili_host: "http://{{ meilisearch_identifier }}:{{ meilisearch_container_http_port }}"
+openarchiver_environment_variables_meili_key: "{{ meilisearch_default_admin_api_key }}"
+# /role-specific:meilisearch
+
+# role-specific:postgres
+openarchiver_database_hostname: "{{ postgres_connection_hostname if postgres_enabled else '' }}"
+openarchiver_database_port: "{{ postgres_connection_port if postgres_enabled else '5432' }}"
+openarchiver_database_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'openarchiver.db', rounds=655555) | to_uuid }}"
+# /role-specific:postgres
+
+# role-specific:tika
+openarchiver_environment_variables_tika_url: "http://{{ tika_identifier }}:{{ tika_container_http_port }}"
+# /role-specific:tika
+
+# role-specific:traefik
+openarchiver_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
+openarchiver_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
+# /role-specific:traefik
+
+########################################################################
+#                                                                      #
+# /openarchiver                                                        #
+#                                                                      #
+########################################################################
+# /role-specific:openarchiver
 
 
 
