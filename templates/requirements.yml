@@ -704,6 +704,10 @@
   version: v4.4.3-2
   name: thelounge
   activation_prefix: thelounge_
+- src: git+https://seed.radicle.garden/zbk3MzAN6SX6d8pa9DT2kHDscyr6.git
+  version: v3.2.3.0-0
+  name: tika
+  activation_prefix: tika_
 - src: git+https://github.com/devture/com.devture.ansible.role.timesync.git
   version: v1.1.0-0
   name: timesync

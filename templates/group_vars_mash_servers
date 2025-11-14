@@ -964,6 +964,11 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
     {{ ({'name': (thelounge_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'thelounge']} if thelounge_enabled else omit) }}
   # /role-specific:thelounge
 
+  # role-specific:tika
+  - |-
+    {{ ({'name': (tika_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'tika']} if tika_enabled else omit) }}
+  # /role-specific:tika
+
   # role-specific:tinyauth
   - |-
     {{ ({'name': (tinyauth_identifier + '.service'), 'priority': 1900, 'groups': ['mash', 'tinyauth']} if tinyauth_enabled else omit) }}
@@ -11180,6 +11185,45 @@ thelounge_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_pr
 #                                                                      #
 ########################################################################
 # /role-specific:thelounge
+
+
+
+# role-specific:tika
+########################################################################
+#                                                                      #
+# tika                                                                 #
+#                                                                      #
+########################################################################
+
+tika_enabled: false
+
+tika_identifier: "{{ mash_playbook_service_identifier_prefix }}tika"
+
+tika_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}tika"
+
+tika_uid: "{{ mash_playbook_uid }}"
+tika_gid: "{{ mash_playbook_gid }}"
+
+tika_container_additional_networks_auto: |
+  {{
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+  }}
+
+# Only enable Traefik labels if a hostname is set (indicating that this will be exposed publicly)
+tika_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled and tika_hostname | length > 0 }}"
+tika_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+
+# role-specific:traefik
+tika_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
+tika_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
+# /role-specific:traefik
+
+########################################################################
+#                                                                      #
+# /tika                                                                #
+#                                                                      #
+########################################################################
+# /role-specific:tika
 
 
 
