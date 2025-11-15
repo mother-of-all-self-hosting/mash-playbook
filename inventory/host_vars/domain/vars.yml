@@ -11,7 +11,7 @@
 
 # Put a strong secret below, generated with `pwgen -s 64 1` or in another way
 # Various other secrets will be derived from this secret automatically.
-mash_playbook_generic_secret_key: "{{vault_mash_playbook_generic_secret_key}}"
+mash_playbook_generic_secret_key: "{{ vault_mash_playbook_generic_secret_key }}"
 
 ########################################################################
 #                                                                      #
@@ -29,7 +29,7 @@ mash_playbook_generic_secret_key: "{{vault_mash_playbook_generic_secret_key}}"
 
 system_security_ssh_enabled: true
 
-system_security_ssh_port: "{{ansible_ssh_port}}"
+system_security_ssh_port: "{{ ansible_ssh_port }}"
 
 system_security_ssh_authorizedkeys_host: ["{{ ssh_key_1 }}", "{{ ssh_key_2 }}"]  # list of authorized public keys
 system_security_ssh_unauthorizedkeys_host: []  # list of unauthorized/revoked public keys
@@ -69,40 +69,24 @@ devture_docker_sdk_for_python_installation_enabled: true
 
 devture_systemd_docker_base_ipv6_enabled: true
 
-mash_playbook_docker_installation_daemon_options_custom: {
-  "default-address-pools": [
-    {
-      "base": "172.16.0.0/16",
-      "size": 25
-    },
-    {
-      "base": "192.168.2.0/23",
-      "size": 25
-    },
-    {
-      "base": "192.168.4.0/22",
-      "size": 25
-    },
-    {
-      "base": "192.168.8.0/21",
-      "size": 25
-    },
-    {
-      "base": "192.168.16.0/20",
-      "size": 25
-    },
-    {
-      "base": "192.168.32.0/19",
-      "size": 25
-    },
-    {
-      "base": "192.168.64.0/18",
-      "size": 25
-    }
-  ]
-  ,
-  "dns": ["10.1.154.10"]
-}
+mash_playbook_docker_installation_daemon_options_custom:
+  default-address-pools:
+    - base: "172.16.0.0/16"
+      size: 25
+    - base: "192.168.2.0/23"
+      size: 25
+    - base: "192.168.4.0/22"
+      size: 25
+    - base: "192.168.8.0/21"
+      size: 25
+    - base: "192.168.16.0/20"
+      size: 25
+    - base: "192.168.32.0/19"
+      size: 25
+    - base: "192.168.64.0/18"
+      size: 25
+  dns:
+    - "10.1.154.10"
 
 ########################################################################
 #                                                                      #
@@ -170,7 +154,7 @@ mash_playbook_reverse_proxyable_services_additional_network: traefik
 postgres_enabled: true
 
 # Put a strong password below, generated with `pwgen -s 64 1` or in another way
-postgres_connection_password: "{{vault_devture_postgres_connection_password}}"
+postgres_connection_password: "{{ vault_devture_postgres_connection_password }}"
 
 ########################################################################
 #                                                                      #
@@ -216,7 +200,7 @@ postgres_connection_password: "{{vault_devture_postgres_connection_password}}"
 
 nextcloud_enabled: true
 
-nextcloud_hostname: "nextcloud.{{domain}}"
+nextcloud_hostname: "nextcloud.{{ domain }}"
 nextcloud_path_prefix: /
 
 nextcloud_app_collabora_wopi_url: "{{ collabora_online_url }}"
@@ -269,10 +253,10 @@ nextcloud_config_parameter_maintenance_window_start: 3
 
 collabora_online_enabled: true
 
-collabora_online_hostname: "collabora.{{domain}}"
+collabora_online_hostname: "collabora.{{ domain }}"
 
 # A password for the admin interface, available at: https://COLLABORA_ONLINE_DOMAIN/browser/dist/admin/admin.html
-collabora_online_environment_variable_password: "{{vault_collabora_online_env_variable_password}}"
+collabora_online_environment_variable_password: "{{ vault_collabora_online_env_variable_password }}"
 
 collabora_online_environment_variable_aliasgroup1: "https://{{ nextcloud_hostname | replace('.', '\\.') }}:443"
 
@@ -298,7 +282,7 @@ gitea_enabled: true
 # and adjust the port as you see fit.
 # gitea_ssh_port: 222
 
-gitea_hostname: "gitea.{{domain}}"
+gitea_hostname: "gitea.{{ domain }}"
 # gitea_path_prefix: /gitea
 
 ########################################################################
@@ -321,11 +305,11 @@ gitea_hostname: "gitea.{{domain}}"
 
 miniflux_enabled: false
 
-miniflux_hostname: "rss.{{domain}}"
+miniflux_hostname: "rss.{{ domain }}"
 # miniflux_path_prefix: /miniflux
 
 miniflux_admin_login: Tray2941
-miniflux_admin_password: "{{vault_miniflux_admin_password}}"
+miniflux_admin_password: "{{ vault_miniflux_admin_password }}"
 
 ########################################################################
 #                                                                      #
@@ -341,7 +325,7 @@ miniflux_admin_password: "{{vault_miniflux_admin_password}}"
 
 adguard_home_enabled: true
 
-adguard_home_hostname: "dns.{{domain}}"
+adguard_home_hostname: "dns.{{ domain }}"
 
 # Hosting under a subpath sort of works, but is not ideal
 # (see the URL section below for details).
@@ -368,7 +352,7 @@ adguard_home_container_dns_udp_bind_port: '10.1.154.11:53'
 
 netbox_enabled: false
 
-netbox_hostname: "ipam.{{domain}}"
+netbox_hostname: "ipam.{{ domain }}"
 # netbox_path_prefix: /netbox
 
 # Put a strong secret below, generated with `pwgen -s 64 1` or in another way
@@ -397,12 +381,12 @@ netbox_environment_variable_superuser_password: ''
 
 freshrss_enabled: true
 
-freshrss_hostname: "rss.{{domain}}"
+freshrss_hostname: "rss.{{ domain }}"
 # freshrss_path_prefix: /freshrss
 
 # Put a strong password below, generated with `pwgen -s 64 1` or in another way.
 # You will need to use this password in the setup wizard after installation.
-freshrss_database_password: "{{vault_freshrss_database_password}}"
+freshrss_database_password: "{{ vault_freshrss_database_password }}"
 freshrss_database_type: postgres
 
 ########################################################################
@@ -420,7 +404,7 @@ freshrss_database_type: postgres
 
 hubsite_enabled: true
 
-hubsite_hostname: "hub.{{domain}}"
+hubsite_hostname: "hub.{{ domain }}"
 
 hubsite_title: "We bring you..."
 hubsite_subtitle: "These wonderful services!"
@@ -458,7 +442,7 @@ hubsite_subtitle: "These wonderful services!"
 
 stirling_pdf_enabled: true
 
-stirling_pdf_hostname: "pdf.{{domain}}"
+stirling_pdf_hostname: "pdf.{{ domain }}"
 
 # The path at which stirling_pdf is served.
 # This value must either be `/` or not end with a slash (e.g. `/pdf`).
@@ -481,7 +465,7 @@ stirling_pdf_install_calibre: false
 
 authentik_enabled: true
 
-authentik_hostname: "authentik.{{domain}}"
+authentik_hostname: "authentik.{{ domain }}"
 
 # Put a strong secret below, generated with `pwgen -s 64 1` or in another way
 authentik_secret_key: "{{ authentik_secret_key_vault }}"
@@ -513,7 +497,7 @@ authentik_container_additional_networks_custom:
 
 tandoor_enabled: true
 
-tandoor_hostname: "recipe.{{domain}}"
+tandoor_hostname: "recipe.{{ domain }}"
 
 tandoor_authentik_application_slug: tandoor
 
@@ -582,11 +566,11 @@ headscale_enabled: true
 headscale_hostname: "headscale.{{ domain }}"
 
 headscale_config_dns_nameservers_split:
-   int.thewrt.com:
-     - 10.1.10.2
+  int.thewrt.com:
+    - 10.1.10.2
 
 headscale_config_dns_search_domains:
-     - int.{{ domain }}
+  - int.{{ domain }}
 
 headscale_config_prefixes_v4: 100.100.0.0/20
 

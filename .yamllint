@@ -2,4 +2,12 @@
 extends: default
 
 rules:
+  braces:
+    max-spaces-inside: 1
+  comments:
+    min-spaces-from-content: 1
+  comments-indentation: false
   line-length: disable
+  octal-values:
+    forbid-explicit-octal: true
+    forbid-implicit-octal: true
