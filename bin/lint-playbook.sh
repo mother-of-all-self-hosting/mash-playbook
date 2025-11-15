@@ -51,7 +51,7 @@ else
   log "virtualenv already exists, reusing current installation."
 fi
 
-# shellcheck disable=SC1090
+# shellcheck disable=SC1090,SC1091
 source "${venv_path}/bin/activate"
 log "virtualenv activated: ${venv_path}"
 
