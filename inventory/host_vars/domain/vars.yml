@@ -556,7 +556,10 @@ tandoor_socialaccount_providers:
           oauth_pkce_enabled: true
 
 tandoor_container_additional_environment_variables: |
-
+  {% set env_lines = [
+    'SOCIAL_PROVIDERS=allauth.socialaccount.providers.openid_connect',
+    'SOCIALACCOUNT_PROVIDERS=' ~ (tandoor_socialaccount_providers | to_json),
+    'PROXY_HEADER=X-Forwarded-Proto'
   ] %}
   {%- for line in env_lines %}
   {{ line }}
