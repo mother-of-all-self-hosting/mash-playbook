@@ -19,14 +19,14 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
 # Weblate
 
-The playbook can install and configure [Weblate](https://weblate-hub.net/en/) for you.
+The playbook can install and configure [Weblate](https://weblate.org/) for you.
 
-Weblate is a free decentralized microblogging platform based on the ActivityPub protocol, which can connect to other Fediverse platforms such as Mastodon and PeerTube.
+Weblate is a web-based translation tool with tight version control integration.
 
-See the project's [documentation](https://weblate-hub.net/en/docs/) to learn what Weblate does and why it might be useful to you.
+See the project's [documentation](https://docs.weblate.org/) to learn what Weblate does and why it might be useful to you.
 
-For details about configuring the [Ansible role for Weblate](https://github.com/mother-of-all-self-hosting/ansible-role-weblate), you can check them via:
-- 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-weblate/blob/main/docs/configuring-weblate.md) online
+For details about configuring the [Ansible role for Weblate](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3NoFEkNtQQjSGjLvweqwCFPbC59R), you can check them via:
+- 🌐 [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3NoFEkNtQQjSGjLvweqwCFPbC59R/tree/docs/configuring-weblate.md) online
 - 📁 `roles/galaxy/weblate/docs/configuring-weblate.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 ## Dependencies
@@ -36,6 +36,7 @@ This service requires the following other services:
 - [Postgres](postgres.md) database
 - [Traefik](traefik.md) reverse-proxy server
 - [Valkey](valkey.md) data-store; see [below](#configure-valkey) for details about installation
+- (optional) [exim-relay](exim-relay.md) mailer — required on the default configuration
 
 ## Adjusting the playbook configuration
 
@@ -58,9 +59,6 @@ weblate_hostname: weblate.example.com
 #                                                                      #
 ########################################################################
 ```
-
->[!WARNING]
-> Once the instance has started, changing the hostname will break the instance!
 
 **Note**: hosting Weblate under a subpath (by configuring the `weblate_path_prefix` variable) does not seem to be possible due to Weblate's technical limitations.
 
@@ -234,6 +232,37 @@ weblate_container_additional_networks_custom:
 
 Running the installation command will create the shared Valkey instance named `mash-valkey`.
 
+### Configure the mailer
+
+You can configure a SMTP mailer for functions such as signing up, verifying or changing email address, resetting password, etc. If you enable the [exim-relay](exim-relay.md) service in your inventory configuration, the playbook will automatically configure it as a mailer for the service.
+
+To disable the mailer function altogether, add the following configuration to your `vars.yml` file as below:
+
+```yaml
+weblate_environment_variables_weblate_email_backend: django.core.mail.backends.dummy.EmailBackend
+```
+
+### Enabling signing up
+
+By default account registration for the service is disabled. To enable it, add the following configuration to your `vars.yml` file:
+
+```yaml
+weblate_environment_variables_weblate_registration_open: "1"
+```
+
+### Configuring initial admin email address and password (optional)
+
+You can set the email address and password for the initial administrator by adding the following configuration to your `vars.yml` file:
+
+```yaml
+weblate_environment_variables_weblate_admin_email: ADMIN_EMAIL_ADDRESS_HERE
+
+weblate_environment_variables_weblate_admin_password: ADMIN_PASSWORD_HERE
+```
+
+>[!NOTE]
+> If you skip setting them, the Weblate instance creates an administrator user on the initial start with `admin@example.com` and a random password which can be checked on the service's log.
+
 ## Installation
 
 If you have decided to install the dedicated Valkey instance for Weblate, make sure to run the [installing](../installing.md) command for the supplementary host (`mash.example.com-weblate-deps`) first, before running it for the main host (`mash.example.com`).
@@ -244,14 +273,8 @@ Note that running the `just` commands for installation (`just install-all` or `j
 
 After installation, the Weblate instance becomes available at the URL specified with `weblate_hostname`. With the configuration above, the service is hosted at `https://weblate.example.com`.
 
-To get started, open the URL with a web browser, and follow the set up wizard.
+To get started, open the URL with a web browser, and log in with the admin's email address and password.
 
 ## Troubleshooting
 
-See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-weblate/blob/main/docs/configuring-weblate.md#troubleshooting) on the role's documentation for details.
-
-## Related services
-
-- [Funkwhale](funkwhale.md) — Community-driven project that lets you listen and share music and audio in the Fediverse
-- [GoToSocial](gotosocial.md) — Self-hosted ActivityPub social network server
-- [PeerTube](peertube.md) — Tool for sharing online videos
+See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3NoFEkNtQQjSGjLvweqwCFPbC59R/tree/docs/configuring-weblate.md#troubleshooting) on the role's documentation for details.
