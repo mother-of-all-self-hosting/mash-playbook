@@ -157,6 +157,10 @@
     - role: galaxy/barassistant
     # /role-specific:barassistant
 
+    # role-specific:bind
+    - role: galaxy/bind
+    # /role-specific:bind
+
     # role-specific:browserless
     - role: galaxy/browserless
     # /role-specific:browserless
@@ -529,6 +533,10 @@
     - role: galaxy/onlyoffice_docs
     # /role-specific:onlyoffice_docs
 
+    # role-specific:openarchiver
+    - role: galaxy/openarchiver
+    # /role-specific:openarchiver
+
     # role-specific:opengist
     - role: galaxy/opengist
     # /role-specific:opengist
@@ -560,6 +568,10 @@
     # role-specific:peertube
     - role: galaxy/peertube
     # /role-specific:peertube
+
+    # role-specific:pgadmin
+    - role: galaxy/pgadmin
+    # /role-specific:pgadmin
 
     # role-specific:phpmyadmin
     - role: galaxy/phpmyadmin
@@ -724,6 +736,10 @@
     # role-specific:thelounge
     - role: galaxy/thelounge
     # /role-specific:thelounge
+
+    # role-specific:tika
+    - role: galaxy/tika
+    # /role-specific:tika
 
     # role-specific:tinyauth
     - role: galaxy/tinyauth

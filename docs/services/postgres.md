@@ -158,7 +158,7 @@ To save disk space in `/tmp`, the dump file is gzipped on the fly at the expense
 
 **All databases, roles, etc. on the Postgres server are migrated**.
 
-## Tuning PostgreSQL
+### Tuning PostgreSQL
 
 PostgreSQL can be [tuned](https://wiki.postgresql.org/wiki/Tuning_Your_PostgreSQL_Server) to make it run faster. This is done by passing extra arguments to the Postgres process.
 
@@ -172,10 +172,9 @@ Most users should be fine with the automatically-done tuning. However, you may w
 
 - **add additional tuning parameters**: define your additional Postgres configuration parameters in `postgres_postgres_process_extra_arguments_custom`. See `postgres_postgres_process_extra_arguments_auto` defined in the Postgres role's [default configuration file](https://github.com/mother-of-all-self-hosting/ansible-role-postgres/blob/main/defaults/main.yml) for inspiration
 
-## Recommended other services
+## Related services
 
-You may also wish to look into:
-
+- [Adminer](adminer.md) — Full-featured database management tool written in PHP
+- [pgAdmin](pgadmin.md) — Management tool for Postgres with a graphical interface
 - [Postgres Backup](postgres-backup.md) for backing up your Postgres database
-
 - [Prometheus](prometheus.md), [prometheus-postgres-exporter](prometheus-postgres-exporter.md) and [Grafana](grafana.md) for monitoring your Postgres database

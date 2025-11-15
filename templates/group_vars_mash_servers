@@ -172,6 +172,11 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
     {{ ({'name': (barassistant_server_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'barassistant']} if barassistant_enabled else omit) }}
   # /role-specific:barassistant
 
+  # role-specific:bind
+  - |-
+    {{ ({'name': (bind_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'bind']} if bind_enabled else omit) }}
+  # /role-specific:bind
+
   # role-specific:browserless
   - |-
     {{ ({'name': (browserless_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'browserless']} if browserless_enabled else omit) }}
@@ -691,6 +696,11 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
     {{ ({'name': (onlyoffice_docs_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'onlyoffice-docs']} if onlyoffice_docs_enabled else omit) }}
   # /role-specific:onlyoffice_docs
 
+  # role-specific:openarchiver
+  - |-
+    {{ ({'name': (openarchiver_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'openarchiver']} if openarchiver_enabled else omit) }}
+  # /role-specific:openarchiver
+
   # role-specific:opengist
   - |-
     {{ ({'name': (opengist_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'opengist']} if opengist_enabled else omit) }}
@@ -734,6 +744,11 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
   - |-
     {{ ({'name': (peertube_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'peertube']} if peertube_enabled else omit) }}
   # /role-specific:peertube
+
+  # role-specific:pgadmin
+  - |-
+    {{ ({'name': (pgadmin_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'pgadmin']} if pgadmin_enabled else omit) }}
+  # /role-specific:pgadmin
 
   # role-specific:phpmyadmin
   - |-
@@ -948,6 +963,11 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
   - |-
     {{ ({'name': (thelounge_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'thelounge']} if thelounge_enabled else omit) }}
   # /role-specific:thelounge
+
+  # role-specific:tika
+  - |-
+    {{ ({'name': (tika_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'tika']} if tika_enabled else omit) }}
+  # /role-specific:tika
 
   # role-specific:tinyauth
   - |-
@@ -1494,6 +1514,17 @@ mash_playbook_postgres_managed_databases_auto_itemized:
     }}
   # /role-specific:onlyoffice_docs
 
+  # role-specific:openarchiver
+  - |-
+    {{
+      ({
+        'name': openarchiver_database_name,
+        'username': openarchiver_database_username,
+        'password': openarchiver_database_password,
+      } if openarchiver_enabled and openarchiver_database_hostname == postgres_connection_hostname else omit)
+    }}
+  # /role-specific:openarchiver
+
   # role-specific:opengist
   - |-
     {{
@@ -1548,6 +1579,17 @@ mash_playbook_postgres_managed_databases_auto_itemized:
       } if peertube_enabled and peertube_database_hostname == postgres_connection_hostname else omit)
     }}
   # /role-specific:peertube
+
+  # role-specific:pgadmin
+  - |-
+    {{
+      ({
+        'name': pgadmin_database_name,
+        'username': pgadmin_database_username,
+        'password': pgadmin_database_password,
+      } if pgadmin_enabled and pgadmin_database_hostname == postgres_connection_hostname else omit)
+    }}
+  # /role-specific:pgadmin
 
   # role-specific:plausible
   - |-
@@ -2737,6 +2779,39 @@ barassistant_server_container_labels_traefik_tls_certResolver: "{{ traefik_certR
 #                                                                      #
 ########################################################################
 # /role-specific:barassistant
+
+
+
+# role-specific:bind
+########################################################################
+#                                                                      #
+# bind                                                                 #
+#                                                                      #
+########################################################################
+
+bind_enabled: false
+
+bind_identifier: "{{ mash_playbook_service_identifier_prefix }}bind"
+
+bind_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}bind"
+
+# Intentionally not messing around with `bind_uid` and `bind_gid` here.
+# Using custom values doesn't work.
+
+bind_config_key_default_rndc_enabled: true
+bind_config_key_default_rndc_secret_raw: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'bind.rndc', rounds=655555) | to_uuid }}"
+
+bind_systemd_required_services_list_auto: |
+  {{
+    ([devture_systemd_docker_base_docker_service_name] if devture_systemd_docker_base_docker_service_name else [])
+  }}
+
+########################################################################
+#                                                                      #
+# /bind                                                                #
+#                                                                      #
+########################################################################
+# /role-specific:bind
 
 
 
@@ -8670,6 +8745,80 @@ onlyoffice_docs_container_labels_traefik_tls_certResolver: "{{ traefik_certResol
 
 
 
+# role-specific:openarchiver
+########################################################################
+#                                                                      #
+# openarchiver                                                         #
+#                                                                      #
+########################################################################
+
+openarchiver_enabled: false
+
+openarchiver_identifier: "{{ mash_playbook_service_identifier_prefix }}openarchiver"
+
+openarchiver_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}openarchiver"
+
+# Open Archiver runs only as root user
+openarchiver_uid: "0"
+openarchiver_gid: "0"
+
+openarchiver_systemd_required_services_list_auto: |
+  {{
+    ([postgres_identifier ~ '.service'] if postgres_enabled and openarchiver_database_hostname == postgres_connection_hostname else [])
+    +
+    ([meilisearch_identifier ~ '.service'] if meilisearch_enabled else [])
+  }}
+
+openarchiver_systemd_wanted_services_list_auto: |
+  {{
+    ([tika_identifier ~ '.service'] if tika_enabled | default(false) else [])
+  }}
+
+openarchiver_container_additional_networks_auto: |
+  {{
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+    +
+    ([meilisearch_container_network] if meilisearch_enabled and openarchiver_container_network != meilisearch_container_network else [])
+    +
+    ([postgres_container_network] if postgres_enabled and openarchiver_database_hostname == postgres_connection_hostname and openarchiver_container_network != postgres_container_network else [])
+    +
+    ([tika_container_network] if tika_enabled and openarchiver_container_network != tika_container_network else [])
+  }}
+
+openarchiver_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+openarchiver_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+
+openarchiver_environment_variables_jwt_secret: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'openarchiver.j', rounds=655555) | to_uuid }}"
+
+# role-specific:meilisearch
+openarchiver_environment_variables_meili_host: "http://{{ meilisearch_identifier }}:{{ meilisearch_container_http_port }}"
+openarchiver_environment_variables_meili_key: "{{ meilisearch_default_admin_api_key }}"
+# /role-specific:meilisearch
+
+# role-specific:postgres
+openarchiver_database_hostname: "{{ postgres_connection_hostname if postgres_enabled else '' }}"
+openarchiver_database_port: "{{ postgres_connection_port if postgres_enabled else '5432' }}"
+openarchiver_database_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'openarchiver.db', rounds=655555) | to_uuid }}"
+# /role-specific:postgres
+
+# role-specific:tika
+openarchiver_environment_variables_tika_url: "http://{{ tika_identifier }}:{{ tika_container_http_port }}"
+# /role-specific:tika
+
+# role-specific:traefik
+openarchiver_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
+openarchiver_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
+# /role-specific:traefik
+
+########################################################################
+#                                                                      #
+# /openarchiver                                                        #
+#                                                                      #
+########################################################################
+# /role-specific:openarchiver
+
+
+
 # role-specific:opengist
 ########################################################################
 #                                                                      #
@@ -8978,6 +9127,8 @@ paperless_systemd_required_services_list_auto: |
 paperless_systemd_wanted_services_list_auto: |
   {{
     ([(exim_relay_identifier | default('mash-exim-relay')) ~ '.service'] if (exim_relay_enabled | default(false) and paperless_email_host == exim_relay_identifier | default('mash-exim-relay')) else [])
+    +
+    ([tika_identifier ~ '.service'] if tika_enabled | default(false) and paperless_tika_enabled else [])
   }}
 
 paperless_container_additional_networks_auto: |
@@ -8989,6 +9140,8 @@ paperless_container_additional_networks_auto: |
     ([mariadb_container_network] if mariadb_enabled | default(false) and paperless_database_mariadb_hostname == mariadb_connection_hostname and paperless_container_network != mariadb_container_network and paperless_database_type == 'mariadb' else [])
     +
     ([postgres_container_network] if postgres_enabled | default(false) and paperless_database_postgres_hostname == postgres_connection_hostname and paperless_container_network != postgres_container_network and paperless_database_type == 'postgres' else [])
+    +
+    ([tika_container_network] if tika_enabled | default(false) and paperless_container_network != tika_container_network and paperless_tika_enabled else [])
   }}
 
 paperless_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
@@ -9015,6 +9168,11 @@ paperless_database_postgres_hostname: "{{ postgres_connection_hostname if postgr
 paperless_database_postgres_port: "{{ postgres_connection_port if postgres_enabled else '5432' }}"
 paperless_database_postgres_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'db.paperless', rounds=655555) | to_uuid }}"
 # /role-specific:postgres
+
+# role-specific:tika
+paperless_gotenberg_enabled: "{{ paperless_tika_enabled }}"
+paperless_tika_endpoint: "http://{{ tika_identifier }}:{{ tika_container_http_port }}"
+# /role-specific:tika
 
 # role-specific:traefik
 paperless_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
@@ -9093,6 +9251,73 @@ peertube_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_pri
 #                                                                      #
 ########################################################################
 # /role-specific:peertube
+
+
+
+# role-specific:pgadmin
+########################################################################
+#                                                                      #
+# pgadmin                                                              #
+#                                                                      #
+########################################################################
+
+pgadmin_enabled: false
+
+pgadmin_identifier: "{{ mash_playbook_service_identifier_prefix }}pgadmin"
+
+pgadmin_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}pgadmin"
+
+# pgAdmin runs as the pgadmin user (UID: 5050) in the pgadmin group (GID: 5050) in the container
+# See: https://www.pgadmin.org/docs/pgadmin4/latest/container_deployment.html#mapped-files-and-directories
+pgadmin_uid: 5050
+pgadmin_gid: 5050
+
+pgadmin_systemd_required_services_list_auto: |
+  {{
+    ([postgres_identifier ~ '.service'] if postgres_enabled else [])
+  }}
+
+pgadmin_systemd_wanted_services_list_auto: |
+  {{
+    ([(exim_relay_identifier | default('mash-exim-relay')) ~ '.service'] if (exim_relay_enabled | default(false) and pgadmin_environment_variables_pgadmin_config_mail_server == exim_relay_identifier | default('mash-exim-relay')) else [])
+  }}
+
+pgadmin_container_additional_networks_auto: |
+  {{
+    ([exim_relay_container_network | default('mash-exim-relay')] if (exim_relay_enabled | default(false) and pgadmin_environment_variables_pgadmin_config_mail_server == exim_relay_identifier | default('mash-exim-relay') and pgadmin_container_network != exim_relay_container_network) else [])
+    +
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+    +
+    ([postgres_container_network] if postgres_enabled and pgadmin_container_network != postgres_container_network else [])
+  }}
+
+pgadmin_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+pgadmin_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+
+# role-specific:exim_relay
+pgadmin_environment_variables_pgadmin_disable_postfix: true
+pgadmin_environment_variables_pgadmin_config_mail_server: "{{ exim_relay_identifier if exim_relay_enabled else '' }}"
+pgadmin_environment_variables_pgadmin_config_mail_port: "{{ 8025 if exim_relay_enabled else '' }}"
+pgadmin_environment_variables_pgadmin_config_security_email_sender: "{{ exim_relay_sender_address if exim_relay_enabled else '' }}"
+# /role-specific:exim_relay
+
+# role-specific:postgres
+pgadmin_database_hostname: "{{ postgres_connection_hostname if postgres_enabled else '' }}"
+pgadmin_database_port: "{{ postgres_connection_port if postgres_enabled else '5432' }}"
+pgadmin_database_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'pgadmin.db', rounds=655555) | to_uuid }}"
+# /role-specific:postgres
+
+# role-specific:traefik
+pgadmin_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
+pgadmin_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
+# /role-specific:traefik
+
+########################################################################
+#                                                                      #
+# /pgadmin                                                             #
+#                                                                      #
+########################################################################
+# /role-specific:pgadmin
 
 
 
@@ -10969,6 +11194,45 @@ thelounge_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_pr
 #                                                                      #
 ########################################################################
 # /role-specific:thelounge
+
+
+
+# role-specific:tika
+########################################################################
+#                                                                      #
+# tika                                                                 #
+#                                                                      #
+########################################################################
+
+tika_enabled: false
+
+tika_identifier: "{{ mash_playbook_service_identifier_prefix }}tika"
+
+tika_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}tika"
+
+tika_uid: "{{ mash_playbook_uid }}"
+tika_gid: "{{ mash_playbook_gid }}"
+
+tika_container_additional_networks_auto: |
+  {{
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+  }}
+
+# Only enable Traefik labels if a hostname is set (indicating that this will be exposed publicly)
+tika_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled and tika_hostname | length > 0 }}"
+tika_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+
+# role-specific:traefik
+tika_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
+tika_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
+# /role-specific:traefik
+
+########################################################################
+#                                                                      #
+# /tika                                                                #
+#                                                                      #
+########################################################################
+# /role-specific:tika
 
 
 
