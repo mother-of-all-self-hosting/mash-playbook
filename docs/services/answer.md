@@ -20,14 +20,14 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
 # Apache Answer
 
-The playbook can install and configure [Apache Answer](https://answer.net) for you.
+The playbook can install and configure [Apache Answer](https://answer.apache.org/) for you.
 
-Apache Answer is a simple server for sending and receiving messages.
+Apache Answer is a Q&A community platform software for teams.
 
-See the project's [documentation](https://answer.net/docs/) to learn what Apache Answer does and why it might be useful to you.
+See the project's [documentation](https://answer.apache.org/docs/) to learn what Apache Answer does and why it might be useful to you.
 
-For details about configuring the [Ansible role for Apache Answer](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3dQNNLitS9sByxZ83ivu5qg6qR4N), you can check them via:
-- 🌐 [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3dQNNLitS9sByxZ83ivu5qg6qR4N/tree/docs/configuring-answer.md) online
+For details about configuring the [Ansible role for Apache Answer](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az4Cd3nL74nNap51RBB6mtC1jipeH9), you can check them via:
+- 🌐 [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az4Cd3nL74nNap51RBB6mtC1jipeH9/tree/docs/configuring-answer.md) online
 - 📁 `roles/galaxy/answer/docs/configuring-answer.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 ## Dependencies
@@ -63,23 +63,33 @@ answer_hostname: answer.example.com
 
 ### Select database to use
 
-It is necessary to select a database used by Apache Answer from a MySQL compatible database, Postgres, and SQLite. See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3dQNNLitS9sByxZ83ivu5qg6qR4N/tree/docs/configuring-answer.md#specify-database) on the role's documentation for details.
+It is necessary to select a database used by Apache Answer from a MySQL compatible database, Postgres, and SQLite. See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az4Cd3nL74nNap51RBB6mtC1jipeH9/tree/docs/configuring-answer.md#specify-database) on the role's documentation for details.
 
-### Set the username and password for the first user
+### Automatic installation with environment variables
 
-You also need to set an initial username and password for the first user. Refer to [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3dQNNLitS9sByxZ83ivu5qg6qR4N/tree/docs/configuring-answer.md#specify-username-and-password-for-the-first-user) on the role's documentation.
+By default the role is configured to install the service with environment variables automatically when running the installation command.
+
+For automatic installation, you need to set the name, email address, password for the administrator, and the email address for the contact who is responsible for the instance as well.
+
+To do so, add the following configuration to your `vars.yml` file:
+
+```yaml
+answer_environment_variables_admin_name: ADMIN_NAME_HERE
+answer_environment_variables_admin_email: ADMIN_EMAIL_ADDRESS_HERE
+answer_environment_variables_admin_password: ADMIN_PASSWORD_HERE
+answer_environment_variables_contact_email: CONTACT_EMAIL_ADDRESS_HERE
+```
 
 ## Usage
 
 After running the command for installation, the Apache Answer instance becomes available at the URL specified with `answer_hostname`. With the configuration above, the service is hosted at `https://answer.example.com`.
 
-To get started, open the URL with a web browser to log in to the instance. **Note that the first registered user becomes an administrator automatically.**
+To get started, open the URL with a web browser to log in to the instance.
 
 ## Troubleshooting
 
-See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3dQNNLitS9sByxZ83ivu5qg6qR4N/tree/docs/configuring-answer.md#troubleshooting) on the role's documentation for details.
+See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az4Cd3nL74nNap51RBB6mtC1jipeH9/tree/docs/configuring-answer.md#troubleshooting) on the role's documentation for details.
 
 ## Related services
 
-- [Apprise API](apprise.md) — Lightweight REST framework that wraps the [Apprise](https://github.com/caronc/apprise) Notification Library
-- [ntfy](ntfy.md) — Simple HTTP-based pub-sub notification service to send you push notifications from any computer
+- [NodeBB](nodebb.md) — Node.js based free forum software
