@@ -773,6 +773,10 @@
     - role: galaxy/vikunja
     # /role-specific:vikunja
 
+    # role-specific:weblate
+    - role: galaxy/weblate
+    # /role-specific:weblate
+
     # role-specific:wetty
     - role: galaxy/wetty
     # /role-specific:wetty
