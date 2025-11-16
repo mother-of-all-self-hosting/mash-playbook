@@ -109,6 +109,10 @@
     - role: galaxy/anonymousoverflow
     # /role-specific:anonymousoverflow
 
+    # role-specific:answer
+    - role: galaxy/answer
+    # /role-specific:answer
+
     # role-specific:apisix_dashboard
     - role: galaxy/apisix_dashboard
     # /role-specific:apisix_dashboard
