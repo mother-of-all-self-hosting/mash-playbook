@@ -193,6 +193,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 | [Vaultwarden](https://github.com/dani-garcia/vaultwarden) | A lightweight unofficial and compatible implementation of the [Bitwarden](https://bitwarden.com/) password manager | [Link](services/vaultwarden.md) |
 | [VersaTiles](https://versatiles.org) | A free stack for generating and serving vector tiles from OpenStreetMap. | [Link](services/versatiles.md) |
 | [Vikunja](https://vikunja.io/) | Self-hostable to-do app | [Link](services/vikunja.md) |
+| [Weblate](https://weblate.org/) | Web-based translation tool with version control integration | [Link](services/weblate.md) |
 | [Wetty](https://github.com/butlerx/wetty) | An SSH terminal over HTTP/HTTPS | [Link](services/wetty.md) |
 | [Wikimore](https://git.private.coffee/PrivateCoffee/wikimore) | View Wikipedia projects without exposing your IP address, browsing habits, and other browser fingerprinting data to them | [Link](services/wikimore.md) |
 | [WireGuard Easy](https://github.com/wg-easy/wg-easy) | The easiest way to run [WireGuard](https://www.wireguard.com/) VPN + Web-based Admin UI. | [Link](services/wg-easy.md) |
