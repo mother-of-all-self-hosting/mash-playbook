@@ -17,17 +17,17 @@ SPDX-FileCopyrightText: 2024 - 2025 Suguru Hirahara
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 
-# Linkwarden
+# An Otter Wiki
 
-The playbook can install and configure [Linkwarden](https://github.com/linkwarden/linkwarden/) for you.
+The playbook can install and configure [An Otter Wiki](https://github.com/otterwiki/otterwiki/) for you.
 
-Linkwarden is a self-hosted, open-source collaborative bookmark manager to collect, organize and archive webpages.
+An Otter Wiki is a self-hosted, open-source collaborative bookmark manager to collect, organize and archive webpages.
 
-See the project's [documentation](https://docs.linkwarden.app) to learn what Linkwarden does and why it might be useful to you.
+See the project's [documentation](https://docs.otterwiki.app) to learn what An Otter Wiki does and why it might be useful to you.
 
-For details about configuring the [Ansible role for Linkwarden](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3AzCF75tYyujYQ3T4L3BkBDrPzXree), you can check them via:
-- 🌐 [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3AzCF75tYyujYQ3T4L3BkBDrPzXree/tree/docs/configuring-linkwarden.md) online
-- 📁 `roles/galaxy/linkwarden/docs/configuring-linkwarden.md` locally, if you have [fetched the Ansible roles](../installing.md)
+For details about configuring the [Ansible role for An Otter Wiki](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3AzCF75tYyujYQ3T4L3BkBDrPzXree), you can check them via:
+- 🌐 [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3AzCF75tYyujYQ3T4L3BkBDrPzXree/tree/docs/configuring-otterwiki.md) online
+- 📁 `roles/galaxy/otterwiki/docs/configuring-otterwiki.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 ## Dependencies
 
@@ -44,50 +44,50 @@ To enable this service, add the following configuration to your `vars.yml` file 
 ```yaml
 ########################################################################
 #                                                                      #
-# linkwarden                                                           #
+# otterwiki                                                            #
 #                                                                      #
 ########################################################################
 
-linkwarden_enabled: true
+otterwiki_enabled: true
 
-linkwarden_hostname: linkwarden.example.com
+otterwiki_hostname: otterwiki.example.com
 
 ########################################################################
 #                                                                      #
-# /linkwarden                                                          #
+# /otterwiki                                                           #
 #                                                                      #
 ########################################################################
 ```
 
-**Note**: hosting Linkwarden under a subpath (by configuring the `linkwarden_path_prefix` variable) does not seem to be possible due to Linkwarden's technical limitations.
+**Note**: hosting An Otter Wiki under a subpath (by configuring the `otterwiki_path_prefix` variable) does not seem to be possible due to An Otter Wiki's technical limitations.
 
 ### Enabling signing up
 
 By default account registration for the service is disabled. To enable it, add the following configuration to your `vars.yml` file:
 
 ```yaml
-linkwarden_environment_variables_next_public_disable_registration: false
+otterwiki_environment_variables_next_public_disable_registration: false
 ```
 
 ### Connecting to a Meilisearch instance (optional)
 
-To enable the [advanced search options](https://docs.linkwarden.app/Usage/advanced-search), you can optionally have the Linkwarden instance connect to a Meilisearch instance.
+To enable the [advanced search options](https://docs.otterwiki.app/Usage/advanced-search), you can optionally have the An Otter Wiki instance connect to a Meilisearch instance.
 
-Meilisearch is available on the playbook. Enabling it and setting its default admin API key automatically configures the Linkwarden instance to connect to it.
+Meilisearch is available on the playbook. Enabling it and setting its default admin API key automatically configures the An Otter Wiki instance to connect to it.
 
 See [this page](meilisearch.md) for details about how to install it and setting the key for the Meilisearch instance.
 
 ## Usage
 
-After installation, the Linkwarden instance becomes available at the URL specified with `linkwarden_hostname`. With the configuration above, the service is hosted at `https://linkwarden.example.com`.
+After installation, the An Otter Wiki instance becomes available at the URL specified with `otterwiki_hostname`. With the configuration above, the service is hosted at `https://otterwiki.example.com`.
 
 To get started, open the URL with a web browser, and register the account. **Note that the first registered user becomes an administrator automatically.**
 
-Since account registration is disabled by default, you need to enable it first by setting `linkwarden_environment_variables_next_public_disable_registration` to `false` temporarily in order to create your own account.
+Since account registration is disabled by default, you need to enable it first by setting `otterwiki_environment_variables_next_public_disable_registration` to `false` temporarily in order to create your own account.
 
 ## Troubleshooting
 
-See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3AzCF75tYyujYQ3T4L3BkBDrPzXree/tree/docs/configuring-linkwarden.md#troubleshooting) on the role's documentation for details.
+See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3AzCF75tYyujYQ3T4L3BkBDrPzXree/tree/docs/configuring-otterwiki.md#troubleshooting) on the role's documentation for details.
 
 ## Related services
 
