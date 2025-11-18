@@ -89,6 +89,5 @@ See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3AzvzJe
 
 ## Related services
 
-- [Karakeep](karakeep.md) — Self-hosted, open-source bookmark manager to collect, organize and archive webpages
-- [linkding](linkding.md) — Bookmark manager designed to be minimal and fast
-- [Readeck](readeck.md) — Bookmark manager and a read-later tool combined in one
+- [DokuWiki](dokuwiki.md) — Lightweight, file-based wiki engine
+- [MediaWiki](mediawiki.md) — Popular free and open-source wiki software
