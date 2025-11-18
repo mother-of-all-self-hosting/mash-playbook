@@ -34,6 +34,7 @@ For details about configuring the [Ansible role for An Otter Wiki](https://app.r
 This service requires the following other services:
 
 - [Traefik](traefik.md) reverse-proxy server
+- (optional) [exim-relay](exim-relay.md) mailer
 
 ## Adjusting the playbook configuration
 
@@ -66,6 +67,13 @@ By default account registration for the service is disabled. To enable it, add t
 ```yaml
 otterwiki_environment_variables_disable_registration: false
 ```
+
+### Configuring the mailer (optional)
+
+On An Otter Wiki you can set up a mailer for functions such as password recovery. If you enable the [exim-relay](exim-relay.md) service in your inventory configuration, the playbook will automatically configure it as a mailer for the service.
+
+>[!NOTE]
+> Without setting an authentication method such as DKIM, SPF, and DMARC for your hostname, emails are most likely to be quarantined as spam at recipient's mail servers. If you have set up a mail server with the [exim-relay Ansible role](https://github.com/mother-of-all-self-hosting/ansible-role-exim-relay), you can enable DKIM signing with it. Refer [its documentation](https://github.com/mother-of-all-self-hosting/ansible-role-exim-relay/blob/main/docs/configuring-exim-relay.md#enable-dkim-support-optional) for details.
 
 ## Usage
 
