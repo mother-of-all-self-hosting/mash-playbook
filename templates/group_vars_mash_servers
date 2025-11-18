@@ -306,6 +306,11 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
     {{ ({'name': (exim_relay_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'exim-relay']} if exim_relay_enabled else omit) }}
   # /role-specific:exim_relay
 
+  # role-specific:farmos
+  - |-
+    {{ ({'name': (farmos_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'farmos']} if farmos_enabled else omit) }}
+  # /role-specific:farmos
+
   # role-specific:filebrowser
   - |-
     {{ ({'name': (filebrowser_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'filebrowser']} if filebrowser_enabled else omit) }}
@@ -1180,6 +1185,17 @@ mash_playbook_postgres_managed_databases_auto_itemized:
       } if etherpad_enabled and etherpad_database_postgres_hostname == postgres_connection_hostname and etherpad_database_type == 'postgres' else omit)
     }}
   # /role-specific:etherpad
+
+  # role-specific:farmos
+  - |-
+    {{
+      ({
+        'name': farmos_database_name,
+        'username': farmos_database_postgres_username,
+        'password': farmos_database_postgres_password,
+      } if farmos_enabled and farmos_database_postgres_hostname == postgres_connection_hostname and farmos_database_type == 'postgres' else omit)
+    }}
+  # /role-specific:farmos
 
   # role-specific:firezone
   - |-
@@ -3858,6 +3874,75 @@ exim_relay_gid: "{{ mash_playbook_gid }}"
 #                                                                      #
 ########################################################################
 # /role-specific:exim_relay
+
+
+
+# role-specific:farmos
+########################################################################
+#                                                                      #
+# farmos                                                               #
+#                                                                      #
+########################################################################
+
+farmos_enabled: false
+
+farmos_identifier: "{{ mash_playbook_service_identifier_prefix }}farmos"
+
+farmos_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}farmos"
+
+# farmOS runs as www-data:www-data
+farmos_uid: "33"
+farmos_gid: "33"
+
+farmos_systemd_required_services_list_auto: |
+  {{
+    ([mariadb_identifier ~ '.service'] if mariadb_enabled | default(false) and farmos_database_mysql_hostname == mariadb_connection_hostname and farmos_database_type == 'mysql' else [])
+    +
+    ([postgres_identifier ~ '.service'] if postgres_enabled | default(false) and farmos_database_postgres_hostname == postgres_connection_hostname and farmos_database_type == 'postgres' else [])
+  }}
+
+farmos_systemd_wanted_services_list_auto: |
+  {{
+    ([(exim_relay_identifier | default('mash-exim-relay')) ~ '.service'] if exim_relay_enabled | default(false) else [])
+  }}
+
+farmos_container_additional_networks_auto: |
+  {{
+    ([exim_relay_container_network | default('mash-exim-relay')] if (exim_relay_enabled | default(false) and farmos_container_network != exim_relay_container_network) else [])
+    +
+    ([mariadb_container_network] if mariadb_enabled | default(false) and farmos_database_mysql_hostname == mariadb_connection_hostname and farmos_container_network != mariadb_container_network and farmos_database_type == 'mysql' else [])
+    +
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+    +
+    ([postgres_container_network] if postgres_enabled | default(false) and farmos_database_postgres_hostname == postgres_connection_hostname and farmos_container_network != postgres_container_network and farmos_database_type == 'postgres' else [])
+  }}
+
+farmos_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+farmos_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+
+# role-specific:mariadb
+farmos_database_mysql_hostname: "{{ mariadb_connection_hostname if mariadb_enabled else '' }}"
+farmos_database_mysql_port: "{{ mariadb_connection_port if mariadb_enabled else '3306' }}"
+farmos_database_mysql_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'db.farmos.ma', rounds=655555) | to_uuid }}"
+# /role-specific:mariadb
+
+# role-specific:postgres
+farmos_database_postgres_hostname: "{{ postgres_connection_hostname if postgres_enabled else '' }}"
+farmos_database_postgres_port: "{{ postgres_connection_port if postgres_enabled else '5432' }}"
+farmos_database_postgres_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'db.farmos.p', rounds=655555) | to_uuid }}"
+# /role-specific:postgres
+
+# role-specific:traefik
+farmos_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
+farmos_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
+# /role-specific:traefik
+
+########################################################################
+#                                                                      #
+# /farmos                                                              #
+#                                                                      #
+########################################################################
+# /role-specific:farmos
 
 
 
@@ -7426,6 +7511,17 @@ mash_playbook_mariadb_managed_databases_auto_itemized:
       } if etherpad_enabled and etherpad_database_mysql_hostname == mariadb_connection_hostname and etherpad_database_type == 'mysql' else omit)
     }}
   # /role-specific:etherpad
+
+  # role-specific:farmos
+  - |-
+    {{
+      ({
+        'name': farmos_database_name,
+        'username': farmos_database_mysql_username,
+        'password': farmos_database_mysql_password,
+      } if farmos_enabled and farmos_database_mysql_hostname == mariadb_connection_hostname and farmos_database_type == 'mysql' else omit)
+    }}
+  # /role-specific:farmos
 
   # role-specific:forgejo
   - |-
