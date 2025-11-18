@@ -109,6 +109,10 @@
     - role: galaxy/anonymousoverflow
     # /role-specific:anonymousoverflow
 
+    # role-specific:answer
+    - role: galaxy/answer
+    # /role-specific:answer
+
     # role-specific:apisix_dashboard
     - role: galaxy/apisix_dashboard
     # /role-specific:apisix_dashboard
@@ -248,6 +252,10 @@
     # role-specific:excalidraw_room
     - role: galaxy/excalidraw_room
     # /role-specific:excalidraw_room
+
+    # role-specific:farmos
+    - role: galaxy/farmos
+    # /role-specific:farmos
 
     # role-specific:filebrowser
     - role: galaxy/filebrowser

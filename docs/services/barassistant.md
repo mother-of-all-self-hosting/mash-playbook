@@ -67,7 +67,7 @@ barassistant_hostname: barassistant.example.com
 By default account registration for the service is disabled. To enable it, add the following configuration to your `vars.yml` file:
 
 ```yaml
-barassistant_server_environment_variables_allow_registration: false
+barassistant_server_environment_variables_allow_registration: true
 ```
 
 ### Configuring the mailer (optional)
@@ -270,7 +270,7 @@ After running the command for installation, the Bar Assistant's API server becom
 
 To get started, open the URL with a web browser, and register the account to use the web UI. **Note that the first registered user becomes an administrator automatically.**
 
-Since account registration is disabled by default, you need to enable it first by setting `barassistant_server_environment_variables_allow_registration` to `false` temporarily in order to create your own account.
+Since account registration is disabled by default, you need to enable it first by setting `barassistant_server_environment_variables_allow_registration` to `true` temporarily in order to create your own account.
 
 ## Troubleshooting
 

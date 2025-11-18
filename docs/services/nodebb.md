@@ -248,3 +248,7 @@ Refer to [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3A
 ## Troubleshooting
 
 See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az2K9dPANyrXJY7juE9XecXyernA6h/tree/docs/configuring-nodebb.md#troubleshooting) on the role's documentation for details.
+
+## Related services
+
+- [Apache Answer](answer.md) — Q&A community platform software for teams

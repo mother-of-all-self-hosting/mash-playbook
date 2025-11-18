@@ -23,6 +23,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 | [Adminer](https://www.adminer.org/) | Full-featured database management tool written in PHP | [Link](services/adminer.md) |
 | [Anki](https://docs.ankiweb.net/sync-server.html) | Self-hosted synchronization server for Anki, a flashcard program that helps you spend more time on challenging material, and less on what you already know | [Link](services/anki.md) |
 | [AnonymousOverflow](https://github.com/httpjamesm/AnonymousOverflow) | View StackOverflow threads without exposing your IP address, browsing habits, and other browser fingerprinting data to the website | [Link](services/anonymousoverflow.md) |
+| [Apache Answer](https://answer.apache.org/) | Q&A community platform software for teams | [Link](services/answer.md) |
 | [Apache Tika Server](https://github.com/apache/tika-docker) | Detect and extract metadata and text from different file types (such as PPT, XLS, and PDF) | [Link](services/tika.md) |
 | [APISIX Dashboard](https://apisix.apache.org/docs/dashboard/USER_GUIDE/) | A web UI for [APISIX Gateway](services/apisix-gateway.md) | [Link](services/apisix-dashboard.md) |
 | [APISIX Gateway](https://apisix.apache.org/docs/apisix/getting-started/README/) | An API Gateway, Ingress Controller, etc | [Link](services/apisix-gateway.md) |
@@ -61,6 +62,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 | [Excalidraw](https://excalidraw.com/) | Virtual whiteboard for sketching hand-drawn like diagrams | [Link](services/excalidraw.md) |
 | [Excalidraw collaboration server](https://github.com/excalidraw/excalidraw-room) | Self-hosted collaboration server for Excalidraw instance | [Link](services/excalidraw-room.md) |
 | [exim-relay](https://github.com/devture/exim-relay) | A lightweight [Exim](https://www.exim.org/) SMTP mail relay server | [Link](services/exim-relay.md) |
+| [farmOS](https://farmos.org/) | Farm management, planning, and record keeping | [Link](services/farmos.md) |
 | [File Browser](https://filebrowser.org/) | File managing interface within a specified directory, which can be used to upload, delete, preview and edit your files | [Link](services/filebrowser.md) |
 | [FileBrowser Quantum](https://filebrowserquantum.com/) | Free self-hosted web-based file manager | [Link](services/filebrowser-quantum.md) |
 | [Firezone](https://www.firezone.dev/) | A self-hosted VPN server (based on [WireGuard](https://www.wireguard.com/)) with a Web UI | [Link](services/firezone.md) |

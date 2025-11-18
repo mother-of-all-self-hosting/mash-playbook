@@ -36,6 +36,7 @@ This service requires the following other services:
 - [Postgres](postgres.md) database
 - [Traefik](traefik.md) reverse-proxy server
 - [Valkey](valkey.md) data-store; see [below](#configure-valkey) for details about installation
+- (optional) [Meilisearch](meilisearch.md)
 
 ## Adjusting the playbook configuration
 
@@ -233,6 +234,18 @@ misskey_container_additional_networks_custom:
 ```
 
 Running the installation command will create the shared Valkey instance named `mash-valkey`.
+
+### Connecting to a Meilisearch instance (optional)
+
+For fulltext search function, you can optionally have the instance connect to a Meilisearch instance.
+
+Meilisearch is available on the playbook. To have the Misskey instance connect to it, add the following configuration to your `vars.yml` file, after enabling it and setting the default admin API key:
+
+```yaml
+misskey_config_fulltext_search_provider: meilisearch
+```
+
+See [this page](meilisearch.md) for details about how to install it and setting the key for the Meilisearch instance.
 
 ## Installation
 
