@@ -213,7 +213,7 @@ nextcloud_app_collabora_wopi_url: "{{ collabora_online_url }}"
 # https://docs.nextcloud.com/server/stable/admin_manual/configuration_server/config_sample_php_parameters.html
 # https://github.com/mother-of-all-self-hosting/ansible-role-nextcloud/blob/main/defaults/main.yml
 
-nextcloud_preview_enabled: true
+nextcloud_preview_enabled: false
 
 nextcloud_environment_variables_additional_variables: |
   PHP_MEMORY_LIMIT=1024M
@@ -222,22 +222,40 @@ nextcloud_config_parameter_default_phone_region: DK
 nextcloud_config_parameter_default_timezone: Europe/Copenhagen
 nextcloud_config_parameter_maintenance_window_start: 3
 
-# nextcloud_config_parameters_custom:
-#   - key: mail_smtphost
-#     value: smtp.example.com
-#     type: string
-
-### raw example values from the config - not to be used literally
-###  'mail_smtpmode' => 'smtp',
-###  'mail_sendmailmode' => 'smtp',
-###  'mail_from_address' => 'nextcloud',
-###  'mail_domain' => 'thewrt.com',
-###  'mail_smtphost' => 'smtp.sendgrid.net',
-###  'mail_smtpport' => '465',
-###  'mail_smtpsecure' => 'ssl',
-###  'mail_smtpauth' => 1,
-###  'mail_smtpname' => 'apikey',
-###  'mail_smtppassword' => 'asdfasdf',
+nextcloud_config_parameters_custom:
+  - key: mail_smtpmode
+    value: "{{ vault_mail_smtp_mode }}"
+    type: string
+  - key: mail_sendmailmode
+    value: "{{ vault_mail_smtp_mode }}"
+    type: string
+  - key: mail_from_address
+    value: "{{ vault_mail_smtp_address }}"
+    type: string
+  - key: mail_domain
+    value: "{{ domain }}"
+    type: string
+  - key: mail_smtphost
+    value: "{{ vault_mail_smtp_host }}"
+    type: string
+  - key: mail_smtpport
+    value: "{{ vault_mail_smtp_port | int }}"
+    type: integer
+  - key: mail_smtpsecure
+    value: "{{ vault_mail_smtp_secure }}"
+    type: string
+  - key: mail_smtpauth
+    value: 1
+    type: integer
+  - key: mail_smtpname
+    value: "{{ vault_mail_smtp_address }}@{{ domain }}"
+    type: string
+  - key: mail_smtppassword
+    value: "{{ vault_mail_smtp_password }}"
+    type: string
+  - key: mail_smtpauthtype
+    value: "LOGIN"
+    type: string
 
 ########################################################################
 #                                                                      #
@@ -482,6 +500,15 @@ authentik_systemd_required_services_list_custom:
 # Make sure the authentik container is connected to the container network of its dedicated KeyDB service (mash-authentik-keydb)
 authentik_container_additional_networks_custom:
   - "authentik-keydb"
+
+## Mailing
+authentik_email_host: "{{ vault_mail_smtp_host }}"
+authentik_email_port: "{{ vault_mail_smtp_port }}"
+authentik_email_username: "{{ vault_mail_smtp_address }}@{{ domain }}"
+authentik_email_password: "{{ vault_mail_smtp_password }}"
+authentik_email_use_tls: "{{ vault_mail_smtp_tls }}"
+authentik_email_use_ssl: "{{ vault_mail_smtp_ssl }}"
+authentik_email_from: "{{ vault_mail_smtp_address }}@{{ domain }}"
 
 ########################################################################
 #                                                                      #
