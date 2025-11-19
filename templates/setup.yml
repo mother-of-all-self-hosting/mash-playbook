@@ -553,6 +553,10 @@
     - role: galaxy/openregex
     # /role-specific:openregex
 
+    # role-specific:otterwiki
+    - role: galaxy/otterwiki
+    # /role-specific:otterwiki
+
     # role-specific:outline
     - role: galaxy/outline
     # /role-specific:outline
