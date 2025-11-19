@@ -8677,8 +8677,10 @@ nifi_identifier: "{{ mash_playbook_service_identifier_prefix }}nifi"
 
 nifi_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}nifi"
 
-nifi_uid: "{{ mash_playbook_uid }}"
-nifi_gid: "{{ mash_playbook_gid }}"
+# Currently the Apache NiFi container does not support being run as non-root user per error:
+# `sed: couldn't open temporary file /opt/nifi/nifi-current/conf/sed1wX1os: Permission denied`
+nifi_uid: "0"
+nifi_gid: "0"
 
 nifi_container_additional_networks_auto: |
   {{
