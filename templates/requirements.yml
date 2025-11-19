@@ -533,7 +533,7 @@
   name: playbook_runtime_messages
   activation_prefix: ""
 - src: git+https://github.com/devture/com.devture.ansible.role.playbook_state_preserver.git
-  version: ff2fd42e1c1a9e28e3312bbd725395f9c2fc7f16
+  version: dd6e15246b7a9a2d921e0b3f9cd8a4a917a1bb2f
   name: playbook_state_preserver
   activation_prefix: devture_playbook_state_preserver_
 - src: git+https://github.com/spatterIight/ansible-role-plex.git
@@ -725,7 +725,7 @@
   name: tinyauth
   activation_prefix: tinyauth_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-traefik.git
-  version: v3.6.1-0
+  version: v3.6.2-0
   name: traefik
   activation_prefix: mash_
 - src: git+https://github.com/Bergruebe/ansible-role-tsdproxy.git
@@ -773,11 +773,11 @@
   name: wikimore
   activation_prefix: wikimore_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-woodpecker-ci-agent.git
-  version: v3.11.0-1
+  version: v3.12.0-0
   name: woodpecker_ci_agent
   activation_prefix: woodpecker_ci_agent_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-woodpecker-ci-server.git
-  version: v3.11.0-1
+  version: v3.12.0-0
   name: woodpecker_ci_server
   activation_prefix: woodpecker_ci_server_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-wordpress
