@@ -533,7 +533,7 @@
   name: playbook_runtime_messages
   activation_prefix: ""
 - src: git+https://github.com/devture/com.devture.ansible.role.playbook_state_preserver.git
-  version: ff2fd42e1c1a9e28e3312bbd725395f9c2fc7f16
+  version: dd6e15246b7a9a2d921e0b3f9cd8a4a917a1bb2f
   name: playbook_state_preserver
   activation_prefix: devture_playbook_state_preserver_
 - src: git+https://github.com/spatterIight/ansible-role-plex.git
