@@ -22,12 +22,12 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
 The playbook can install and configure [Kanboard](https://kanboard.org/) for you.
 
-Kanboard is web-based free software for farm management, planning, and record keeping. It is developed by a community of farmers, developers, researchers, and organizations.
+Kanboard is a free and open source Kanban project management software.
 
-See the project's [documentation](https://kanboard.org/guide/) to learn what Kanboard does and why it might be useful to you.
+See the project's [documentation](https://docs.kanboard.org/) to learn what Kanboard does and why it might be useful to you.
 
-For details about configuring the [Ansible role for Kanboard](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az2H8vYeXaYHLzV3jXH1YjVwhuzTsk), you can check them via:
-- 🌐 [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az2H8vYeXaYHLzV3jXH1YjVwhuzTsk/tree/docs/configuring-kanboard.md) online
+For details about configuring the [Ansible role for Kanboard](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az2LZH9TGMxYbGBaGoMHNFX5HymEL3), you can check them via:
+- 🌐 [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az2LZH9TGMxYbGBaGoMHNFX5HymEL3/tree/docs/configuring-kanboard.md) online
 - 📁 `roles/galaxy/kanboard/docs/configuring-kanboard.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 ## Dependencies
@@ -61,21 +61,18 @@ kanboard_hostname: kanboard.example.com
 
 **Note**: hosting Kanboard under a subpath (by configuring the `kanboard_path_prefix` variable) does not seem to be possible due to Kanboard's technical limitations.
 
->[!WARNING]
-> Once the hostname is set, it cannot be changed easily as it involves adjusting configuration files.
-
 ### Select database to use
 
-It is necessary to select a database used by Kanboard from a MySQL compatible database, Postgres, and SQLite. See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az2H8vYeXaYHLzV3jXH1YjVwhuzTsk/tree/docs/configuring-kanboard.md#specify-database) on the role's documentation for details.
+It is necessary to select a database used by Kanboard from a MySQL compatible database, Postgres, and SQLite. See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az2LZH9TGMxYbGBaGoMHNFX5HymEL3/tree/docs/configuring-kanboard.md#specify-database) on the role's documentation for details.
 
 ## Usage
 
 After running the command for installation, the Kanboard instance becomes available at the URL specified with `kanboard_hostname`. With the configuration above, the service is hosted at `https://kanboard.example.com`.
 
-To get started, open the URL with a web browser, and follow the set up wizard.
+To get started, open the URL with a web browser to log in to the instance.
 
-On the set up wizard, it is required to input database credentials to use a MySQL compatible database or Postgres. See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az2H8vYeXaYHLzV3jXH1YjVwhuzTsk/tree/docs/configuring-kanboard.md#outputting-database-credentials) on the role's documentation for details about how to check them.
+The initial username and password of the administrator is both `admin` (refer to [this page](https://docs.kanboard.org/v1/admin/installation/) on the documentation). Make sure to change them at `https://kanboard.example.com/user/show/1`.
 
 ## Troubleshooting
 
-See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az2H8vYeXaYHLzV3jXH1YjVwhuzTsk/tree/docs/configuring-kanboard.md#troubleshooting) on the role's documentation for details.
+See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az2LZH9TGMxYbGBaGoMHNFX5HymEL3/tree/docs/configuring-kanboard.md#troubleshooting) on the role's documentation for details.
