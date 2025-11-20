@@ -389,6 +389,10 @@
     - role: galaxy/joplin_server
     # /role-specific:joplin_server
 
+    # role-specific:kanboard
+    - role: galaxy/kanboard
+    # /role-specific:kanboard
+
     # role-specific:karakeep
     - role: galaxy/karakeep
     # /role-specific:karakeep
