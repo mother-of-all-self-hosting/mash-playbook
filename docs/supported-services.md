@@ -98,6 +98,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 | [Jellyseerr](https://github.com/Fallenbagel/jellyseerr)| An open-source media request and discovery manager for Jellyfin, Plex, and Emby | [Link](services/jellyseerr.md) |
 | [Jitsi](https://jitsi.org/) | A fully encrypted, 100% Open Source video conferencing solution | [Link](services/jitsi.md) |
 | [Joplin Server](https://joplinapp.org/help/dev/spec/architecture#joplin-server) | Self-hosted server component for [Joplin](https://joplinapp.org/) | [Link](services/joplin-server.md) |
+| [Kanboard](https://kanboard.org/) | Free and open source Kanban project management software | [Link](services/kanboard.md) |
 | [Karakeep](https://karakeep.app/) | Self-hosted, open-source bookmark manager to collect, organize and archive webpages | [Link](services/karakeep.md) |
 | [Keycloak](https://www.keycloak.org/) | An open source identity and access management solution. | [Link](services/keycloak.md) |
 | [KeyDB](https://docs.keydb.dev/) | An in-memory data store used by millions of developers as a database, cache, streaming engine, and message broker. | [Link](services/keydb.md) |
