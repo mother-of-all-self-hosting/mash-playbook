@@ -18,17 +18,17 @@ SPDX-FileCopyrightText: 2024 - 2025 Suguru Hirahara
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 
-# farmOS
+# Kanboard
 
-The playbook can install and configure [farmOS](https://farmos.org/) for you.
+The playbook can install and configure [Kanboard](https://kanboard.org/) for you.
 
-farmOS is web-based free software for farm management, planning, and record keeping. It is developed by a community of farmers, developers, researchers, and organizations.
+Kanboard is web-based free software for farm management, planning, and record keeping. It is developed by a community of farmers, developers, researchers, and organizations.
 
-See the project's [documentation](https://farmos.org/guide/) to learn what farmOS does and why it might be useful to you.
+See the project's [documentation](https://kanboard.org/guide/) to learn what Kanboard does and why it might be useful to you.
 
-For details about configuring the [Ansible role for farmOS](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az2H8vYeXaYHLzV3jXH1YjVwhuzTsk), you can check them via:
-- 🌐 [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az2H8vYeXaYHLzV3jXH1YjVwhuzTsk/tree/docs/configuring-farmos.md) online
-- 📁 `roles/galaxy/farmos/docs/configuring-farmos.md` locally, if you have [fetched the Ansible roles](../installing.md)
+For details about configuring the [Ansible role for Kanboard](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az2H8vYeXaYHLzV3jXH1YjVwhuzTsk), you can check them via:
+- 🌐 [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az2H8vYeXaYHLzV3jXH1YjVwhuzTsk/tree/docs/configuring-kanboard.md) online
+- 📁 `roles/galaxy/kanboard/docs/configuring-kanboard.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 ## Dependencies
 
@@ -44,38 +44,38 @@ To enable this service, add the following configuration to your `vars.yml` file 
 ```yaml
 ########################################################################
 #                                                                      #
-# farmos                                                               #
+# kanboard                                                             #
 #                                                                      #
 ########################################################################
 
-farmos_enabled: true
+kanboard_enabled: true
 
-farmos_hostname: farmos.example.com
+kanboard_hostname: kanboard.example.com
 
 ########################################################################
 #                                                                      #
-# /farmos                                                              #
+# /kanboard                                                            #
 #                                                                      #
 ########################################################################
 ```
 
-**Note**: hosting farmOS under a subpath (by configuring the `farmos_path_prefix` variable) does not seem to be possible due to farmOS's technical limitations.
+**Note**: hosting Kanboard under a subpath (by configuring the `kanboard_path_prefix` variable) does not seem to be possible due to Kanboard's technical limitations.
 
 >[!WARNING]
 > Once the hostname is set, it cannot be changed easily as it involves adjusting configuration files.
 
 ### Select database to use
 
-It is necessary to select a database used by farmOS from a MySQL compatible database, Postgres, and SQLite. See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az2H8vYeXaYHLzV3jXH1YjVwhuzTsk/tree/docs/configuring-farmos.md#specify-database) on the role's documentation for details.
+It is necessary to select a database used by Kanboard from a MySQL compatible database, Postgres, and SQLite. See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az2H8vYeXaYHLzV3jXH1YjVwhuzTsk/tree/docs/configuring-kanboard.md#specify-database) on the role's documentation for details.
 
 ## Usage
 
-After running the command for installation, the farmOS instance becomes available at the URL specified with `farmos_hostname`. With the configuration above, the service is hosted at `https://farmos.example.com`.
+After running the command for installation, the Kanboard instance becomes available at the URL specified with `kanboard_hostname`. With the configuration above, the service is hosted at `https://kanboard.example.com`.
 
 To get started, open the URL with a web browser, and follow the set up wizard.
 
-On the set up wizard, it is required to input database credentials to use a MySQL compatible database or Postgres. See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az2H8vYeXaYHLzV3jXH1YjVwhuzTsk/tree/docs/configuring-farmos.md#outputting-database-credentials) on the role's documentation for details about how to check them.
+On the set up wizard, it is required to input database credentials to use a MySQL compatible database or Postgres. See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az2H8vYeXaYHLzV3jXH1YjVwhuzTsk/tree/docs/configuring-kanboard.md#outputting-database-credentials) on the role's documentation for details about how to check them.
 
 ## Troubleshooting
 
-See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az2H8vYeXaYHLzV3jXH1YjVwhuzTsk/tree/docs/configuring-farmos.md#troubleshooting) on the role's documentation for details.
+See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az2H8vYeXaYHLzV3jXH1YjVwhuzTsk/tree/docs/configuring-kanboard.md#troubleshooting) on the role's documentation for details.
