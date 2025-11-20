@@ -267,4 +267,5 @@ See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-me
 
 ## Related services
 
+- [An Otter Wiki](otterwiki.md) — Minimalistic wiki powered by Python, Markdown and Git
 - [DokuWiki](dokuwiki.md) — Lightweight, file-based wiki engine

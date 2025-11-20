@@ -49,4 +49,5 @@ To get started, open the URL `https://dokuwiki.example.com/install.php` with a w
 
 ## Related services
 
+- [An Otter Wiki](otterwiki.md) — Minimalistic wiki powered by Python, Markdown and Git
 - [MediaWiki](mediawiki.md) — Popular free and open-source wiki software
