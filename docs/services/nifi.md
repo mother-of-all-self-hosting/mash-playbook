@@ -47,7 +47,7 @@ nifi_environment_variables_single_user_credentials_password: "my-secure-admin-pa
 
 traefik_configuration_extension_yaml: |
   serversTransports:
-    {{ nifi_container_labels_traefik_serverstransport }}:
+    insecure-nifi-transport:
       insecureSkipVerify: true
       
 ########################################################################
