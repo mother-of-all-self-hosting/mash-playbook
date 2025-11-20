@@ -45,10 +45,11 @@ nifi_environment_variables_single_user_credentials_password: "my-secure-admin-pa
 #                                                                      #
 ########################################################################
 
-traefik_configuration_extension_yaml: |
-  serversTransports:
-    insecure-nifi-transport:
-      insecureSkipVerify: true
+traefik_provider_configuration_extension_yaml: |
+  http:
+    serversTransports:
+      insecure-nifi-transport:
+        insecureSkipVerify: true
       
 ########################################################################
 #                                                                      #
