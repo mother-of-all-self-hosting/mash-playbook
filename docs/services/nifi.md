@@ -29,9 +29,17 @@ nifi_enabled: true
 
 nifi_hostname: nifi.example.com
 
-nifi_environment_variables_single_user_credentials_username: "my-admin-username"
+nifi_environment_variables_single_user_credentials_username: "admin"
 
-nifi_environment_variables_single_user_credentials_password: "my-secure-admin-password"
+# Put a strong password below, generated with `pwgen -s 64 1` or in another way
+nifi_environment_variables_single_user_credentials_password: ""
+
+# Put a strong password in the value field, generated with `pwgen -s 64 1` or in another way
+# For more information see:
+#   - https://nifi.apache.org/docs/nifi-docs/html/administration-guide.html#security_properties
+nifi_conf_nifi_properties:
+  - key: nifi.sensitive.props.key
+    value: ''
 
 ########################################################################
 #                                                                      #
