@@ -65,6 +65,13 @@ kanboard_hostname: kanboard.example.com
 
 It is necessary to select a database used by Kanboard from a MySQL compatible database, Postgres, and SQLite. See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az2LZH9TGMxYbGBaGoMHNFX5HymEL3/tree/docs/configuring-kanboard.md#specify-database) on the role's documentation for details.
 
+### Configuring the mailer (optional)
+
+On Kanboard you can set up a mailer for functions such as password recovery. If you enable the [exim-relay](exim-relay.md) service in your inventory configuration, the playbook will automatically configure it as a mailer for the service.
+
+>[!NOTE]
+> Without setting an authentication method such as DKIM, SPF, and DMARC for your hostname, emails are most likely to be quarantined as spam at recipient's mail servers. If you have set up a mail server with the [exim-relay Ansible role](https://github.com/mother-of-all-self-hosting/ansible-role-exim-relay), you can enable DKIM signing with it. Refer [its documentation](https://github.com/mother-of-all-self-hosting/ansible-role-exim-relay/blob/main/docs/configuring-exim-relay.md#enable-dkim-support-optional) for details.
+
 ## Usage
 
 After running the command for installation, the Kanboard instance becomes available at the URL specified with `kanboard_hostname`. With the configuration above, the service is hosted at `https://kanboard.example.com`.
