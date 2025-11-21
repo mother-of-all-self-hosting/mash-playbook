@@ -97,4 +97,3 @@ Take a look at:
 After running the command for installation, Apache NiFi becomes available at the specified hostname like `https://nifi.example.com`.
 
 To get started, open the URL with a web browser to log in to the instance using your configured credentials.
-
