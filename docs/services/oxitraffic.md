@@ -80,4 +80,5 @@ See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-ox
 
 ## Related services
 
+- [Matomo](matomo.md) — Free and open source web analytics platform
 - [Plausible Analytics](plausible.md) — Intuitive, lightweight and open source web analytics

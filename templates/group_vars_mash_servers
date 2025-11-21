@@ -7712,10 +7712,10 @@ mash_playbook_mariadb_managed_databases_auto_itemized:
   - |-
     {{
       ({
-        'name': matomo_config_database_name,
-        'username': matomo_config_database_username,
-        'password': matomo_config_database_password,
-      } if matomo_enabled and matomo_config_database_hostname == mariadb_connection_hostname else omit)
+        'name': matomo_database_name,
+        'username': matomo_database_username,
+        'password': matomo_database_password,
+      } if matomo_enabled and matomo_database_hostname == mariadb_connection_hostname else omit)
     }}
   # /role-specific:matomo
 
@@ -7909,14 +7909,14 @@ matomo_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_d
 matomo_uid: "{{ mash_playbook_uid }}"
 matomo_gid: "{{ mash_playbook_gid }}"
 
-matomo_systemd_required_systemd_services_list_auto: |
+matomo_systemd_required_services_list_auto: |
   {{
-    ([mariadb_identifier ~ '.service'] if mariadb_enabled and matomo_config_database_hostname == mariadb_connection_hostname else [])
+    ([mariadb_identifier ~ '.service'] if mariadb_enabled and matomo_database_hostname == mariadb_connection_hostname else [])
   }}
 
 matomo_container_additional_networks_auto: |
   {{
-    ([mariadb_container_network] if mariadb_enabled and matomo_config_database_hostname == mariadb_connection_hostname and matomo_container_network != mariadb_container_network else [])
+    ([mariadb_container_network] if mariadb_enabled and matomo_database_hostname == mariadb_connection_hostname and matomo_container_network != mariadb_container_network else [])
     +
     ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
   }}
@@ -7927,12 +7927,9 @@ matomo_container_labels_traefik_compression_middleware_enabled: "{{ mash_playboo
 matomo_container_labels_traefik_compression_middleware_name: "{{ mash_playbook_reverse_proxy_traefik_middleware_compession_name if mash_playbook_reverse_proxy_traefik_middleware_compession_enabled else '' }}"
 
 # role-specific:mariadb
-matomo_config_database_hostname: "{{ mariadb_connection_hostname if mariadb_enabled else '' }}"
-matomo_config_database_port: "{{ mariadb_connection_port if mariadb_enabled | default(false) else '3306' }}"
-matomo_config_database_username: "matomo"
-matomo_config_database_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'db.matomo', rounds=655555) | to_uuid }}"
-matomo_config_database_adapter: "mysql"
-matomo_config_database_tables_prefix: "matomo_"
+matomo_database_hostname: "{{ mariadb_connection_hostname if mariadb_enabled else '' }}"
+matomo_database_port: "{{ mariadb_connection_port if mariadb_enabled else '3306' }}"
+matomo_database_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'db.matomo', rounds=655555) | to_uuid }}"
 # /role-specific:mariadb
 
 # role-specific:traefik
