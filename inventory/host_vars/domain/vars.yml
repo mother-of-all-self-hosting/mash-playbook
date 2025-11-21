@@ -29,6 +29,8 @@ mash_playbook_generic_secret_key: "{{ vault_mash_playbook_generic_secret_key }}"
 
 system_security_ssh_enabled: true
 
+system_security_ssh_service: ssh
+
 system_security_ssh_port: "{{ ansible_ssh_port }}"
 
 system_security_ssh_authorizedkeys_host: ["{{ ssh_key_1 }}", "{{ ssh_key_2 }}"]  # list of authorized public keys
