@@ -261,7 +261,7 @@ nextcloud_config_parameters_custom:
 
 # Specify the maximum size of the preview in pixels
 nextcloud_preview_preview_max_x: "2048"
-nextcloud_preview_preview_max_y: "2048" 
+nextcloud_preview_preview_max_y: "2048"
 
 # Specify JPEG quality for preview images
 nextcloud_preview_app_jpeg_quality: 85
