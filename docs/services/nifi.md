@@ -14,6 +14,15 @@ This service requires the following other services:
 
 - a [Traefik](traefik.md) reverse-proxy server
 
+## Prerequisites
+
+To deploy Apache NiFi using this role it is necessary that:
+
+1. The [community.general](https://github.com/ansible-collections/community.general) collection be installed. This is needed to support modifying XML configuration files.
+2. The [community.crypto](https://github.com/ansible-collections/community.crypto) collection be installed. This is needed to create the self-signed HTTPS certificate for Apache NiFi.
+3. The `keytool` program be available on the target host. This can be installed via `apt install default-jre` on Debian systems.
+
+
 ## Configuration
 
 To enable this service, add the following configuration to your `vars.yml` file and re-run the [installation](../installing.md) process:
@@ -29,17 +38,23 @@ nifi_enabled: true
 
 nifi_hostname: nifi.example.com
 
-nifi_environment_variables_single_user_credentials_username: "admin"
+# A passphrase used to generate a self-signed certificate
+# which is used to serve Apache NiFi via HTTPS internally
+# Generate one using `pwgen -s 64 1`, or some other way
+nifi_self_signed_cert_passphrase: ""
 
-# Put a strong password below, generated with `pwgen -s 64 1` or in another way
-nifi_environment_variables_single_user_credentials_password: ""
+# A passphrase used to encrypt sensitive values inputted into NiFi
+# Generate one using `pwgen -s 64 1`, or some other way
+nifi_sensitive_props_key: ""
 
-# Put a strong password in the value field, generated with `pwgen -s 64 1` or in another way
-# For more information see:
-#   - https://nifi.apache.org/docs/nifi-docs/html/administration-guide.html#security_properties
-nifi_conf_nifi_properties:
-  - key: nifi.sensitive.props.key
-    value: ''
+# The admin username and password. The password must be 12 characters. The salt must be exactly 22 characters, and does not necessarily need to be changed from the example below.
+# Generate a password using `pwgen -s 32 1`, or some other way
+nifi_conf_login_identity_providers_xml:
+  - xpath: /loginIdentityProviders/provider/property[@name='Username']
+    value: admin
+
+  - xpath: /loginIdentityProviders/provider/property[@name='Password']
+    value: "{{ 'my-secure-password' | password_hash(hashtype='bcrypt', salt='0tfETQ5kFWhcT4oPwdbHbL') }}"
 
 ########################################################################
 #                                                                      #
