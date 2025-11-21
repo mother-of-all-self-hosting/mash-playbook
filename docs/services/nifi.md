@@ -73,7 +73,7 @@ traefik_provider_configuration_extension_yaml: |
     serversTransports:
       insecure-nifi-transport:
         insecureSkipVerify: true
-      
+
 ########################################################################
 #                                                                      #
 # /traefik                                                             #
