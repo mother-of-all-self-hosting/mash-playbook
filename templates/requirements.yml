@@ -453,7 +453,7 @@
   name: nextcloud
   activation_prefix: nextcloud_
 - src: git+https://github.com/spatterIight/ansible-role-nifi.git
-  version: v2.6.0-3 
+  version: v2.6.0-3
   name: nifi
   activation_prefix: nifi_
 - src: git+https://seed.radicle.garden/z8vyzN3a8DmwhcUq3949SihKd1Wh.git
