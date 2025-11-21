@@ -324,6 +324,10 @@
   version: v3.4.3-3
   name: joplin_server
   activation_prefix: joplin_server_
+- src: git+https://seed.radicle.garden/z2LZH9TGMxYbGBaGoMHNFX5HymEL3.git
+  version: v1.2.48-0
+  name: kanboard
+  activation_prefix: kanboard_
 - src: git+https://seed.radicle.garden/z4W1oeRiFKEikhj4Mk3HbVJM7er6S.git
   version: v0.28.0-0
   name: karakeep

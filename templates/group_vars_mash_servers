@@ -494,6 +494,11 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
     {{ ({'name': (joplin_server_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'joplin-server']} if joplin_server_enabled else omit) }}
   # /role-specific:joplin_server
 
+  # role-specific:kanboard
+  - |-
+    {{ ({'name': (kanboard_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'kanboard']} if kanboard_enabled else omit) }}
+  # /role-specific:kanboard
+
   # role-specific:karakeep
   - |-
     {{ ({'name': (karakeep_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'karakeep']} if karakeep_enabled else omit) }}
@@ -1379,6 +1384,17 @@ mash_playbook_postgres_managed_databases_auto_itemized:
       } if joplin_server_enabled and joplin_server_database_hostname == postgres_connection_hostname else omit)
     }}
   # /role-specific:joplin_server
+
+  # role-specific:kanboard
+  - |-
+    {{
+      ({
+        'name': kanboard_database_name,
+        'username': kanboard_database_postgres_username,
+        'password': kanboard_database_postgres_password,
+      } if kanboard_enabled and kanboard_database_postgres_hostname == postgres_connection_hostname and kanboard_database_type == 'postgres' else omit)
+    }}
+  # /role-specific:kanboard
 
   # role-specific:keycloak
   - |-
@@ -6723,6 +6739,81 @@ joplin_server_container_labels_traefik_tls_certResolver: "{{ traefik_certResolve
 
 
 
+# role-specific:kanboard
+########################################################################
+#                                                                      #
+# kanboard                                                             #
+#                                                                      #
+########################################################################
+
+kanboard_enabled: false
+
+kanboard_identifier: "{{ mash_playbook_service_identifier_prefix }}kanboard"
+
+kanboard_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}kanboard"
+
+# Kanboard runs as root user
+kanboard_uid: "0"
+kanboard_gid: "0"
+
+kanboard_systemd_required_services_list_auto: |
+  {{
+    ([mariadb_identifier ~ '.service'] if mariadb_enabled | default(false) and kanboard_database_mysql_hostname == mariadb_connection_hostname and kanboard_database_type == 'mysql' else [])
+    +
+    ([postgres_identifier ~ '.service'] if postgres_enabled | default(false) and kanboard_database_postgres_hostname == postgres_connection_hostname and kanboard_database_type == 'postgres' else [])
+  }}
+
+kanboard_systemd_wanted_services_list_auto: |
+  {{
+    ([(exim_relay_identifier | default('mash-exim-relay')) ~ '.service'] if (exim_relay_enabled | default(false) and kanboard_environment_variables_mail_smtp_hostname == exim_relay_identifier | default('mash-exim-relay')) else [])
+  }}
+
+kanboard_container_additional_networks_auto: |
+  {{
+    ([exim_relay_container_network | default('mash-exim-relay')] if (exim_relay_enabled | default(false) and kanboard_environment_variables_mail_smtp_hostname == exim_relay_identifier | default('mash-exim-relay') and kanboard_container_network != exim_relay_container_network) else [])
+    +
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+    +
+    ([mariadb_container_network] if mariadb_enabled | default(false) and kanboard_database_mysql_hostname == mariadb_connection_hostname and kanboard_container_network != mariadb_container_network and kanboard_database_type == 'mysql' else [])
+    +
+    ([postgres_container_network] if postgres_enabled | default(false) and kanboard_database_postgres_hostname == postgres_connection_hostname and kanboard_container_network != postgres_container_network and kanboard_database_type == 'postgres' else [])
+  }}
+
+kanboard_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+kanboard_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+
+# role-specific:exim_relay
+kanboard_environment_variables_mail_smtp_hostname: "{{ exim_relay_identifier if exim_relay_enabled else '' }}"
+kanboard_environment_variables_mail_smtp_port: "{{ 8025 if exim_relay_enabled else '587' }}"
+kanboard_environment_variables_mail_from: "{{ exim_relay_sender_address if exim_relay_enabled else '' }}"
+# /role-specific:exim_relay
+
+# role-specific:mariadb
+kanboard_database_mysql_hostname: "{{ mariadb_connection_hostname if mariadb_enabled else '' }}"
+kanboard_database_mysql_port: "{{ mariadb_connection_port if mariadb_enabled else '3306' }}"
+kanboard_database_mysql_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'kanboard.db.m', rounds=655555) | to_uuid }}"
+# /role-specific:mariadb
+
+# role-specific:postgres
+kanboard_database_postgres_hostname: "{{ postgres_connection_hostname if postgres_enabled else '' }}"
+kanboard_database_postgres_port: "{{ postgres_connection_port if postgres_enabled else '5432' }}"
+kanboard_database_postgres_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'kanboard.db.p', rounds=655555) | to_uuid }}"
+# /role-specific:postgres
+
+# role-specific:traefik
+kanboard_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
+kanboard_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
+# /role-specific:traefik
+
+########################################################################
+#                                                                      #
+# /kanboard                                                            #
+#                                                                      #
+########################################################################
+# /role-specific:kanboard
+
+
+
 # role-specific:karakeep
 ########################################################################
 #                                                                      #
@@ -7572,6 +7663,17 @@ mash_playbook_mariadb_managed_databases_auto_itemized:
       } if healthchecks_enabled and healthchecks_database_mysql_hostname == mariadb_connection_hostname and healthchecks_database_type == 'mysql' else omit)
     }}
   # /role-specific:healthchecks
+
+  # role-specific:kanboard
+  - |-
+    {{
+      ({
+        'name': kanboard_database_name,
+        'username': kanboard_database_mysql_username,
+        'password': kanboard_database_mysql_password,
+      } if kanboard_enabled and kanboard_database_mysql_hostname == mariadb_connection_hostname and kanboard_database_type == 'mysql' else omit)
+    }}
+  # /role-specific:kanboard
 
   # role-specific:kutt
   - |-
