@@ -101,7 +101,7 @@
   name: clickhouse
   activation_prefix: clickhouse_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-collabora-online.git
-  version: v25.04.6.2.1-0
+  version: v25.04.7.2.1-0
   name: collabora_online
   activation_prefix: collabora_online_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-container-socket-proxy.git
@@ -237,7 +237,7 @@
   name: funkwhale
   activation_prefix: funkwhale_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-ghostfolio.git
-  version: v2.217.0-0
+  version: v2.218.0-0
   name: ghostfolio
   activation_prefix: ghostfolio_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-gitea.git
@@ -293,7 +293,7 @@
   name: immich
   activation_prefix: immich_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-immich-kiosk.git
-  version: v0.27.0-0
+  version: v0.28.0-1
   name: immich_kiosk
   activation_prefix: immich_kiosk_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-infisical.git
@@ -324,6 +324,10 @@
   version: v3.4.3-3
   name: joplin_server
   activation_prefix: joplin_server_
+- src: git+https://seed.radicle.garden/z2LZH9TGMxYbGBaGoMHNFX5HymEL3.git
+  version: v1.2.48-0
+  name: kanboard
+  activation_prefix: kanboard_
 - src: git+https://seed.radicle.garden/z4W1oeRiFKEikhj4Mk3HbVJM7er6S.git
   version: v0.28.0-0
   name: karakeep
@@ -353,7 +357,7 @@
   name: languagetool
   activation_prefix: languagetool_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-limesurvey.git
-  version: v6.15.23-0
+  version: v6.16.0-0
   name: limesurvey
   activation_prefix: limesurvey_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-linkding.git
@@ -380,8 +384,8 @@
   version: v12.0.2-6
   name: mariadb
   activation_prefix: mariadb_
-- src: git+https://github.com/acterglobal/ansible-role-matomo.git
-  version: v5.3.1-1
+- src: git+https://github.com/mother-of-all-self-hosting/ansible-role-matomo.git
+  version: v5.5.2-0
   name: matomo
   activation_prefix: matomo_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-matterbridge.git
@@ -449,7 +453,7 @@
   name: netbox
   activation_prefix: netbox_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-nextcloud.git
-  version: v32.0.1-2
+  version: v32.0.2-0
   name: nextcloud
   activation_prefix: nextcloud_
 - src: git+https://seed.radicle.garden/z8vyzN3a8DmwhcUq3949SihKd1Wh.git
@@ -605,7 +609,7 @@
   name: radarr
   activation_prefix: radarr_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-radicale.git
-  version: v3.5.8.1-0
+  version: v3.5.8.2-0
   name: radicale
   activation_prefix: radicale_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-reactflux
@@ -613,7 +617,7 @@
   name: reactflux
   activation_prefix: reactflux_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-readeck
-  version: v0.20.4-1
+  version: v0.21.0-0
   name: readeck
   activation_prefix: readeck_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-redis.git
