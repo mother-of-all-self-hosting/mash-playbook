@@ -646,6 +646,9 @@ headplane_enabled: true
 
 headplane_hostname: "headplane.{{ domain }}"
 
+# 32-character secret used for Headplane session cookies
+headplane_cookie_secret: "{{ vault_headplane_cookie_secret }}"
+
 ########################################################################
 #                                                                      #
 # /headplane                                                           #

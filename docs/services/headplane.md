@@ -29,6 +29,7 @@ To enable this service, add the following configuration to your `vars.yml` file 
 headplane_enabled: true
 
 headplane_hostname: headplane.example.com
+headplane_cookie_secret: "{{ vault_headplane_cookie_secret }}"
 
 ########################################################################
 #                                                                      #
@@ -36,6 +37,8 @@ headplane_hostname: headplane.example.com
 #                                                                      #
 ########################################################################
 ```
+
+`headplane_cookie_secret` is required and must be a 32-character secret used to encrypt Headplane session cookies. Generate one (for example `pwgen -s 32 1`) and store it in your vault (`inventory/host_vars/<your-domain>/vault.yml`) as `vault_headplane_cookie_secret`.
 
 ### Extending the configuration
 
