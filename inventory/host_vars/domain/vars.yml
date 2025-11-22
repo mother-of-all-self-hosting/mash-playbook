@@ -295,11 +295,28 @@ collabora_online_environment_variable_aliasgroup1: "https://{{ nextcloud_hostnam
 
 ########################################################################
 #                                                                      #
+# forgejo                                                              #
+#                                                                      #
+########################################################################
+
+forgejo_enabled: true
+
+forgejo_hostname: "git.{{ domain }}"
+# forgejo_path_prefix: /forgejo
+
+########################################################################
+#                                                                      #
+# /forgejo                                                             #
+#                                                                      #
+########################################################################
+
+########################################################################
+#                                                                      #
 # gitea                                                                #
 #                                                                      #
 ########################################################################
 
-gitea_enabled: true
+gitea_enabled: false
 
 # Gitea uses port 22 by default.
 # We recommend that you move your regular SSH server to another port,
