@@ -645,9 +645,12 @@ headscale_systemd_required_services_list_custom:
 headplane_enabled: true
 
 headplane_hostname: "headplane.{{ domain }}"
+vault_headplane_cookie_secret: "{{ vault_headplane_cookie_secret }}"
+vault_headplane_config_integration_agent_pre_authkey: "{{ vault_headplane_agent_pre_authkey }}"
 
-# 32-character secret used for Headplane session cookies
-headplane_cookie_secret: "{{ vault_headplane_cookie_secret }}"
+headscale_extra_records_path_enabled: true
+headplane_headscale_config_path_mount_options: readwrite
+headscale_config_policy_mode: database
 
 ########################################################################
 #                                                                      #
