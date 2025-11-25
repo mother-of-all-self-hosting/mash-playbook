@@ -661,6 +661,10 @@
     - role: galaxy/radicale
     # /role-specific:radicale
 
+    # role-specific:radicle_node
+    - role: galaxy/radicle_node
+    # /role-specific:radicle_node
+
     # role-specific:reactflux
     - role: galaxy/reactflux
     # /role-specific:reactflux
