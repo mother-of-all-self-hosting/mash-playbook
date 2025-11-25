@@ -19,29 +19,21 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
 # Radicle node
 
-The playbook can install and configure [Radicle node](https://radicle-node.net) for you.
+The playbook can install and configure the Radicle node (`radicle-node`) for you.
 
-Radicle node is a distributed web search engine, based on a peer-to-peer network. It provides three different modes;
+The Radicle node is the network daemon based on [Heartwood](https://app.radicle.xyz/nodes/seed.radicle.xyz/rad%3Az3gqcJUoA1n9HaHKufZs5FCSGazv5), the third iteration of the Radicle Protocol, which powers the [Radicle](https://radicle.xyz/) network, a peer-to-peer code collaboration stack built on Git.
 
-- Searching a shared global index on the P2P network
-- Crawling web pages of domains you choose to create an individual index for searching
-- Setting up a search portal for your intranet behind the firewall to search pages or files on the shared file system, without sharing data with a third party
+In Radicle, while all nodes contribute to the network by seeding data to others, running `radicle-node` as the *seed node* on a highly available server can help to keep the peer-to-peer network resilient and healthy.
 
-See the project's [documentation](https://radicle-node.net/docs/) to learn what Radicle node does and why it might be useful to you.
+See the project's [documentation](https://radicle.xyz/guides/seeder#introduction) to learn what `radicle-node` does and why it might be useful to you.
 
-For details about configuring the [Ansible role for Radicle node](https://github.com/mother-of-all-self-hosting/ansible-role-radicle-node), you can check them via:
-- 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-radicle-node/blob/main/docs/configuring-radicle-node.md) online
+For details about configuring the [Ansible role for Radicle node](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az28JTUhepmbS3hLZyUeEvXeqk9QW5), you can check them via:
+- 🌐 [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az28JTUhepmbS3hLZyUeEvXeqk9QW5/tree/docs/configuring-radicle-node.md) online
 - 📁 `roles/galaxy/radicle_node/docs/configuring-radicle-node.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 ## Prerequisites
 
-You may need to open some ports to your server, if you use another firewall in front of the server. Refer to [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-radicle-node/blob/main/docs/configuring-radicle-node.md#prerequisites) to check which ones to be configured.
-
-## Dependencies
-
-This service requires the following other services:
-
-- [Traefik](traefik.md) reverse-proxy server
+You may need to open some ports to your server, if you use another firewall in front of the server. Refer to [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az28JTUhepmbS3hLZyUeEvXeqk9QW5/tree/docs/configuring-radicle-node.md#prerequisites) to check which ones to be configured.
 
 ## Adjusting the playbook configuration
 
@@ -56,8 +48,7 @@ To enable this service, add the following configuration to your `vars.yml` file 
 
 radicle_node_enabled: true
 
-radicle_node_hostname: mash.example.com
-radicle_node_path_prefix: /radicle-node
+radicle_node_hostname: seed.example.com
 
 ########################################################################
 #                                                                      #
@@ -68,18 +59,23 @@ radicle_node_path_prefix: /radicle-node
 
 ## Usage
 
-After running the command for installation, the Radicle node instance becomes available at the URL specified with `radicle_node_hostname` and `radicle_node_path_prefix`. With the configuration above, the service is hosted at `https://mash.example.com/radicle-node`.
+### Updating configuration
 
-You can log in to the instance with the default login credential of the admin account (username: `admin`, password: `radicle-node`).
+After running the command for installation, run the command below to update basic settings like `externalAddresses`, so that nodes outside of the internal network can connect to the seed node:
 
-To improve security regarding the admin account, **the role configures the instance on the intranet search mode by default**, so that it does not broadcast its existence to peers before you change the login credential.
+```sh
+ansible-playbook -i inventory/hosts setup.yml --tags=adjust-config-radicle-node
+```
 
-See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-radicle-node/blob/main/docs/configuring-radicle-node.md#usage) on the role's documentation for details about changing the admin user password and search mode, including protecting the instance with the password.
+The Radicle node instance then becomes available at the hostname specified with `radicle_node_hostname` and `radicle_node_container_node_port`. With the configuration above, it is hosted at `seed.example.com:8776`.
+
+>[!NOTE]
+> `radicle-node` cannot be accessed via HTTP. For browsing repositories on a web browser, it is necessary to set up the HTTP Daemon (`radicle-httpd`). See [this section](https://radicle.xyz/guides/seeder#running-the-http-daemon) on the documentation for details.
+
+Please note that the default seeding policy is *selective* one, meaning that the node will ignore all repositories, except the ones which the node's operator explicitly allows to be seeded.
+
+See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az28JTUhepmbS3hLZyUeEvXeqk9QW5/tree/docs/configuring-radicle-node.md#usage) on the role's documentation for details about updating settings including the seeding policy.
 
 ## Troubleshooting
 
-See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-radicle-node/blob/main/docs/configuring-radicle-node.md#troubleshooting) on the role's documentation for details.
-
-## Related services
-
-- [SearXNG](searxng.md) — a privacy-respecting, hackable [metasearch engine](https://en.wikipedia.org/wiki/Metasearch_engine). See [this section](searxng.md#add-your-radicle-node-instance-optional) for the instruction to add your Radicle node instance to the SearXNG instance.
+See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az28JTUhepmbS3hLZyUeEvXeqk9QW5/tree/docs/configuring-radicle-node.md#troubleshooting) on the role's documentation for details.
