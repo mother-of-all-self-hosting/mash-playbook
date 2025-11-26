@@ -17,23 +17,23 @@ SPDX-FileCopyrightText: 2024 - 2025 Suguru Hirahara
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 
-# Radicle node
+# Radicle HTTP Daemon
 
-The playbook can install and configure the Radicle node (`radicle-node`) for you.
+The playbook can install and configure the Radicle HTTP Daemon (`radicle-httpd`) for you.
 
-The Radicle node is the network daemon based on [Heartwood](https://app.radicle.xyz/nodes/seed.radicle.xyz/rad%3Az3gqcJUoA1n9HaHKufZs5FCSGazv5), the third iteration of the Radicle Protocol, which powers the [Radicle](https://radicle.xyz/) network, a peer-to-peer code collaboration stack built on Git.
+The Radicle HTTP Daemon is the network daemon based on [Heartwood](https://app.radicle.xyz/nodes/seed.radicle.xyz/rad%3Az3gqcJUoA1n9HaHKufZs5FCSGazv5), the third iteration of the Radicle Protocol, which powers the [Radicle](https://radicle.xyz/) network, a peer-to-peer code collaboration stack built on Git.
 
-In Radicle, while all nodes contribute to the network by seeding data to others, running `radicle-node` as the *seed node* on a highly available server can help to keep the peer-to-peer network resilient and healthy.
+In Radicle, while all nodes contribute to the network by seeding data to others, running `radicle-httpd` as the *seed node* on a highly available server can help to keep the peer-to-peer network resilient and healthy.
 
-See the project's [documentation](https://radicle.xyz/guides/seeder#introduction) to learn what `radicle-node` does and why it might be useful to you.
+See the project's [documentation](https://radicle.xyz/guides/seeder#introduction) to learn what `radicle-httpd` does and why it might be useful to you.
 
-For details about configuring the [Ansible role for Radicle node](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az28JTUhepmbS3hLZyUeEvXeqk9QW5), you can check them via:
-- 🌐 [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az28JTUhepmbS3hLZyUeEvXeqk9QW5/tree/docs/configuring-radicle-node.md) online
-- 📁 `roles/galaxy/radicle_node/docs/configuring-radicle-node.md` locally, if you have [fetched the Ansible roles](../installing.md)
+For details about configuring the [Ansible role for Radicle HTTP Daemon](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az28JTUhepmbS3hLZyUeEvXeqk9QW5), you can check them via:
+- 🌐 [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az28JTUhepmbS3hLZyUeEvXeqk9QW5/tree/docs/configuring-radicle-httpd.md) online
+- 📁 `roles/galaxy/radicle_httpd/docs/configuring-radicle-httpd.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 ## Prerequisites
 
-You may need to open some ports to your server, if you use another firewall in front of the server. Refer to [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az28JTUhepmbS3hLZyUeEvXeqk9QW5/tree/docs/configuring-radicle-node.md#prerequisites) to check which ones to be configured.
+You may need to open some ports to your server, if you use another firewall in front of the server. Refer to [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az28JTUhepmbS3hLZyUeEvXeqk9QW5/tree/docs/configuring-radicle-httpd.md#prerequisites) to check which ones to be configured.
 
 ## Adjusting the playbook configuration
 
@@ -42,17 +42,17 @@ To enable this service, add the following configuration to your `vars.yml` file 
 ```yaml
 ########################################################################
 #                                                                      #
-# radicle_node                                                         #
+# radicle_httpd                                                        #
 #                                                                      #
 ########################################################################
 
-radicle_node_enabled: true
+radicle_httpd_enabled: true
 
-radicle_node_hostname: seed.example.com
+radicle_httpd_hostname: seed.example.com
 
 ########################################################################
 #                                                                      #
-# /radicle_node                                                        #
+# /radicle_httpd                                                       #
 #                                                                      #
 ########################################################################
 ```
@@ -64,18 +64,18 @@ radicle_node_hostname: seed.example.com
 After running the command for installation, run the command below to update basic settings like `externalAddresses`, so that nodes outside of the internal network can connect to the seed node:
 
 ```sh
-ansible-playbook -i inventory/hosts setup.yml --tags=adjust-config-radicle-node
+ansible-playbook -i inventory/hosts setup.yml --tags=adjust-config-radicle-httpd
 ```
 
-The Radicle node instance then becomes available at the hostname specified with `radicle_node_hostname` and `radicle_node_container_node_port`. With the configuration above, it is hosted at `seed.example.com:8776`.
+The Radicle HTTP Daemon instance then becomes available at the hostname specified with `radicle_httpd_hostname` and `radicle_httpd_container_node_port`. With the configuration above, it is hosted at `seed.example.com:8776`.
 
 >[!NOTE]
-> `radicle-node` cannot be accessed via HTTP. For browsing repositories on a web browser, it is necessary to set up the HTTP Daemon (`radicle-httpd`). See [this section](https://radicle.xyz/guides/seeder#running-the-http-daemon) on the documentation for details.
+> `radicle-httpd` cannot be accessed via HTTP. For browsing repositories on a web browser, it is necessary to set up the HTTP Daemon (`radicle-httpd`). See [this section](https://radicle.xyz/guides/seeder#running-the-http-daemon) on the documentation for details.
 
 Please note that the default seeding policy is *selective* one, meaning that the node will ignore all repositories, except the ones which the node's operator explicitly allows to be seeded.
 
-See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az28JTUhepmbS3hLZyUeEvXeqk9QW5/tree/docs/configuring-radicle-node.md#usage) on the role's documentation for details about updating settings including the seeding policy.
+See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az28JTUhepmbS3hLZyUeEvXeqk9QW5/tree/docs/configuring-radicle-httpd.md#usage) on the role's documentation for details about updating settings including the seeding policy.
 
 ## Troubleshooting
 
-See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az28JTUhepmbS3hLZyUeEvXeqk9QW5/tree/docs/configuring-radicle-node.md#troubleshooting) on the role's documentation for details.
+See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az28JTUhepmbS3hLZyUeEvXeqk9QW5/tree/docs/configuring-radicle-httpd.md#troubleshooting) on the role's documentation for details.
