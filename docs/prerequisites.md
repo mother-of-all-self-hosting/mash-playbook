@@ -24,13 +24,13 @@ We will be using `example.com` as the domain in the following instruction. Pleas
 
 - [passlib](https://passlib.readthedocs.io/en/stable/index.html) Python library. See [this official documentation](https://passlib.readthedocs.io/en/stable/install.html#installation-instructions) for an instruction to install it. On most distros, you need to install some `python-passlib` or `py3-passlib` package, etc.
 
-- [regex](https://github.com/mrabarnett/mrab-regex) Python library for [running `just` commands](just.md). On most distros, you need to install some `python-regex` or `py3-regex` package, etc.
-
 - [`git`](https://git-scm.com/) as the recommended way to download the playbook. `git` may also be required on the server if you will be [self-building](self-building.md) components.
 
 - [`just`](https://github.com/casey/just) for running `just roles`, `just update`, etc. (see [`justfile`](../justfile)), although you can also run these commands manually. Take a look at this documentation for more information: [Running `just` commands](just.md).
 
 - Strong password (random strings) generator. The playbook often requires you to create a strong password and use it for settings on `vars.yml`, components, etc. As any tools should be fine, this playbook has adopted [`pwgen`](https://linux.die.net/man/1/pwgen) (running `pwgen -s 64 1`). [Password Tech](https://pwgen-win.sourceforge.io/), formerly known as "PWGen for Windows", is available as free and open source password generator for Windows. Generally, using a random generator available on the internet is not recommended.
+
+- (Optional) [regex](https://github.com/mrabarnett/mrab-regex) Python library for running `just optimize`. On most distros, you need to install some `python-regex` or `py3-regex` package, etc.
 
 ## Server
 
