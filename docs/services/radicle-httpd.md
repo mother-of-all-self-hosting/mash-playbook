@@ -65,3 +65,7 @@ See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3roZ
 ## Troubleshooting
 
 See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3roZFCprFZhmK8BvkrsKwkLZXr56/tree/docs/configuring-radicle-httpd.md#troubleshooting) on the role's documentation for details.
+
+## Related services
+
+- [Radicle node](radicle-node.md) — Network daemon for the Radicle network
