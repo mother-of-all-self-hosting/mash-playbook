@@ -6,7 +6,7 @@
 * Answer: 1.7.0
 * Apisix Dashboard: 3.0.1
 * Apisix Gateway: 3.8.0
-* Apprise: 1.2.2
+* Apprise: 1.2.6
 * Appsmith: v1.73.1
 * Asciinema Server: 20251114
 * Atuin: v18.10.0
@@ -14,14 +14,14 @@
 * Authelia: 4.37.5
 * Authentik: 2025.10.2
 * Autobrr: v1.68.0
-* Barassistant Saltrim: 4.10.0
+* Barassistant Saltrim: 4.11.1
 * Barassistant Server: 5.9.2
 * Bind: 9.20
 * Borg: 1.4.2
 * Borgmatic: 2.0.11
 * Browserless: v2.38.2
 * Calibre Web: 0.6.25
-* Cap: 2.0.17
+* Cap: 2.0.18
 * Changedetection: 0.51.1
 * Changedetection Playwright Driver: latest
 * Clickhouse: 25.10.2.65
@@ -47,19 +47,19 @@
 * Excalidraw Basic Auth Apache: 2.4.57-alpine3.17
 * Exim Relay: 4.98.1-r0-2
 * Farmos: 3.4.5
-* Filebrowser: v2.48.1
+* Filebrowser: v2.49.0
 * Filebrowser Quantum: 1.0.1
 * Firezone: 0.7.36
 * Flaresolverr: v3.4.1
 * Fmd Server: v0.12.0
 * Focalboard: 7.11.4
-* Forgejo: 13.0.2
+* Forgejo: 13.0.3
 * Forgejo Runner: 11.3.1
-* Freescout: php8.3-1.17.134
+* Freescout: php8.3-1.17.135
 * Freshrss: 1.27.1
 * Funkwhale: 1.4.1
-* Ghostfolio: 2.218.0
-* Gitea: 1.25.1
+* Ghostfolio: 2.219.0
+* Gitea: 1.25.2
 * Gothub: latest
 * Gotify: 2.7.3
 * Gotosocial: 0.20.2
@@ -67,7 +67,7 @@
 * Headplane: 0.6.1
 * Headscale: v0.27.1
 * Healthchecks: v3.11.2
-* Homarr: v1.43.3
+* Homarr: v1.44.0
 * Hubsite Nginx: 1.29.3
 * Ihatemoney: 6.1.5
 * Ilmo: 1.0.4
@@ -78,24 +78,24 @@
 * Jackett: 0.23.43
 * Jellyfin: 10.11.3
 * Jellyseerr: 2.7.3
-* Jitsi: stable-10590
+* Jitsi: stable-10655
 * Jitsi Ldap: 3
 * Jitsi Prosody Auth Matrix User Verification Repo: 2839499cb03894d8cfc3e5b2219441427cb133d8
 * Joplin Server: 3.4.3
 * Kanboard: v1.2.48
 * Karakeep: 0.28.0
-* Keycloak: 26.4.5
+* Keycloak: 26.4.6
 * Keydb: 6.3.4
 * Kutt: v3.2.3
 * Labelstudio: latest
 * Lago: v0.50.0-beta
 * Languagetool: 6.6-dockerupdate-2
-* Limesurvey: 6.16.0
+* Limesurvey: 6.16.1
 * Linkding: 1.44.1
 * Linkwarden: v2.13.1
 * Listmonk: 4.1.0
 * Lldap: v0.6.2
-* Loki: 3.6.0
+* Loki: 3.6.1
 * Matomo: 5.5.2
 * Matterbridge: 1.26.0
 * Mediawiki: lts
@@ -116,7 +116,7 @@
 * Netbox Container Image Customizations Keycloak Sso Expiration Middleware: a2ac39b1c73a50742c6e834e89162f87528c7f73
 * Nextcloud: 32.0.2
 * Nocdnbs: v2025.10.0
-* Nodebb: 4.6.2
+* Nodebb: 4.6.3
 * Notfellchen: 1.1.0
 * Notfellchen Sws: 2
 * Ntfy: v2.15.0
@@ -130,8 +130,8 @@
 * Overseerr: 1.34.0
 * Owncast: 0.2.3
 * Oxitraffic: v0.10.4
-* Paperless: 2.19.6
-* Paperless Gotenberg: 8.24.0
+* Paperless: 2.20.0
+* Paperless Gotenberg: 8.25.0
 * Paperless Tika: 3.1.0.0
 * Peertube: v7.2.3
 * Pgadmin: 9.10.0
@@ -157,14 +157,15 @@
 * Prometheus Node Exporter: v1.10.2
 * Prometheus Postgres Exporter: v0.18.1
 * Prometheus Ssh Exporter: v1.5.0
-* Promtail: 3.6.0
+* Promtail: 3.6.2
 * Qbittorrent: 5.1.2
 * Rabbitmq: 4.2.0
 * Radarr: 6.0.4
 * Radicale: 3.5.8.2
+* Radicle Node: 1.5.0
 * Reactflux: latest
-* Readeck: 0.21.0
-* Redis: 8.2.3
+* Readeck: 0.21.1
+* Redis: 8.4.0
 * Redlib: latest
 * Redmine: 6.1.0
 * Roundcube: 1.6.11
@@ -182,11 +183,11 @@
 * Stirling Pdf: 1.5.0-fat
 * Syncstorage Rs Docker: 0.21.0
 * Syncthing: 2.0.11
-* Tandoor: 2.3.3
+* Tandoor: 2.3.6
 * Telegraf: 1.36.4
 * Thelounge: 4.4.3
 * Tika: 3.2.3.0
-* Tinyauth: v4.0.1
+* Tinyauth: v4.1.0
 * Traefik: v3.6.2
 * Tsdproxy: 1.4.7
 * Typesense: 29.0
