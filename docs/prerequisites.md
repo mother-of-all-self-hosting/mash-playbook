@@ -24,6 +24,8 @@ We will be using `example.com` as the domain in the following instruction. Pleas
 
 - [passlib](https://passlib.readthedocs.io/en/stable/index.html) Python library. See [this official documentation](https://passlib.readthedocs.io/en/stable/install.html#installation-instructions) for an instruction to install it. On most distros, you need to install some `python-passlib` or `py3-passlib` package, etc.
 
+- [regex](https://github.com/mrabarnett/mrab-regex) Python library for [running `just` commands](just.md). On most distros, you need to install some `python-regex` or `py3-regex` package, etc.
+
 - [`git`](https://git-scm.com/) as the recommended way to download the playbook. `git` may also be required on the server if you will be [self-building](self-building.md) components.
 
 - [`just`](https://github.com/casey/just) for running `just roles`, `just update`, etc. (see [`justfile`](../justfile)), although you can also run these commands manually. Take a look at this documentation for more information: [Running `just` commands](just.md).
