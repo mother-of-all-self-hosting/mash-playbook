@@ -62,10 +62,13 @@ After running the command for installation, the Radicle HTTP Daemon instance bec
 
 See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3roZFCprFZhmK8BvkrsKwkLZXr56/tree/docs/configuring-radicle-httpd.md#usage) on the role's documentation for details about how to browse a repository on your seed node via a web client like [Radicle Explorer](https://app.radicle.xyz/nodes/seed.radicle.xyz/rad%3Az4V1sjrXqjvFdnCUbxPFqd5p4DtH5).
 
+This playbook supports Radicle Explorer, and you can set up the instance by enabling it on `vars.yml`. See [this page](radicle-explorer.md) for details.
+
 ## Troubleshooting
 
 See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3roZFCprFZhmK8BvkrsKwkLZXr56/tree/docs/configuring-radicle-httpd.md#troubleshooting) on the role's documentation for details.
 
 ## Related services
 
+- [Radicle Explorer](radicle-explorer.md) — Radicle user interface for the web browser
 - [Radicle node](radicle-node.md) — Network daemon for the Radicle network
