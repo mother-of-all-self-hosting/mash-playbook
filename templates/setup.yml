@@ -661,6 +661,10 @@
     - role: galaxy/radicale
     # /role-specific:radicale
 
+    # role-specific:radicle_explorer
+    - role: galaxy/radicle_explorer
+    # /role-specific:radicle_explorer
+
     # role-specific:radicle_httpd
     - role: galaxy/radicle_httpd
     # /role-specific:radicle_httpd
