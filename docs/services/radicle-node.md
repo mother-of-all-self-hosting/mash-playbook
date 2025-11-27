@@ -84,4 +84,5 @@ See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az28JT
 
 ## Related services
 
+- [Radicle Explorer](radicle-explorer.md) — Radicle user interface for the web browser
 - [Radicle HTTP Daemon](radicle-httpd.md) — Gateway between the Radicle protocol and the HTTP protocol

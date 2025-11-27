@@ -71,4 +71,5 @@ See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Azopwj
 
 ## Related services
 
+- [Radicle HTTP Daemon](radicle-httpd.md) — Gateway between the Radicle protocol and the HTTP protocol
 - [Radicle node](radicle-node.md) — Network daemon for the Radicle network
