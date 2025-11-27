@@ -19,21 +19,20 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
 # Radicle Explorer
 
-The playbook can install and configure [Radicle Explorer](https://app.radicle.xyz/nodes/seed.radicle.xyz/rad%3Az4V1sjrXqjvFdnCUbxPFqd5p4DtH5/tree/radicle-explorer/) for you.
+The playbook can install and configure [Radicle Explorer](https://app.radicle.xyz/nodes/seed.radicle.xyz/rad%3Az4V1sjrXqjvFdnCUbxPFqd5p4DtH5) for you.
 
-Radicle Explorer is a background process which makes it possible to browse the content of your [seed node](https://radicle.xyz/guides/seeder#configuring-your-node) (`radicle-node`) on the [Radicle](https://radicle.xyz/) network, a peer-to-peer code collaboration stack built on Git. It is configured to have direct read-only access to the node’s storage and database, and expose this data via an HTTP JSON API.
+Radicle Explorer allows you to interact with [Radicle](https://radicle.xyz/), a peer-to-peer code collaboration and publishing stack, directly from your web browser.
 
-See the project's [documentation](https://radicle.xyz/guides/seeder#running-the-http-daemon) to learn what Radicle Explorer does and why it might be useful to you.
+See the project's [documentation](https://app.radicle.xyz/nodes/seed.radicle.xyz/rad%3Az4V1sjrXqjvFdnCUbxPFqd5p4DtH5/tree/README.md) to learn what Radicle Explorer does and why it might be useful to you.
 
-For details about configuring the [Ansible role for Radicle Explorer](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3roZFCprFZhmK8BvkrsKwkLZXr56), you can check them via:
-- 🌐 [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3roZFCprFZhmK8BvkrsKwkLZXr56/tree/docs/configuring-radicle-explorer.md) online
+For details about configuring the [Ansible role for Radicle Explorer](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Azopwjin5Vh5dMgdHWiifJ2cg3bQW), you can check them via:
+- 🌐 [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Azopwjin5Vh5dMgdHWiifJ2cg3bQW/tree/docs/configuring-radicle-explorer.md) online
 - 📁 `roles/galaxy/radicle_explorer/docs/configuring-radicle-explorer.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 ## Prerequisites
 
 This service requires the following other services:
 
-- [Radicle node](radicle-node.md)
 - [Traefik](traefik.md) reverse-proxy server
 
 ## Adjusting the playbook configuration
@@ -49,6 +48,8 @@ To enable this service, add the following configuration to your `vars.yml` file 
 
 radicle_explorer_enabled: true
 
+radicle_explorer_hostname: explorer.example.com
+
 ########################################################################
 #                                                                      #
 # /radicle_explorer                                                    #
@@ -56,15 +57,17 @@ radicle_explorer_enabled: true
 ########################################################################
 ```
 
+**Note**: hosting Radicle Explorer under a subpath (by configuring the `radicle_explorer_path_prefix` variable) does not seem to be possible due to Radicle Explorer's technical limitations.
+
 ## Usage
 
-After running the command for installation, the Radicle Explorer instance becomes available at the same URL as specified to the Radicle node with `radicle_node_hostname`.
+After running the command for installation, the Radicle Explorer instance becomes available at the URL specified with `radicle_node_hostname`. With the configuration above, the service is hosted at `https://explorer.example.com`.
 
-See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3roZFCprFZhmK8BvkrsKwkLZXr56/tree/docs/configuring-radicle-explorer.md#usage) on the role's documentation for details about how to browse a repository on your seed node via a web client like [Radicle Explorer](https://app.radicle.xyz/nodes/seed.radicle.xyz/rad%3Az4V1sjrXqjvFdnCUbxPFqd5p4DtH5).
+See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Azopwjin5Vh5dMgdHWiifJ2cg3bQW/tree/docs/configuring-radicle-explorer.md#usage) on the role's documentation for details about how to browse a repository with the web client.
 
 ## Troubleshooting
 
-See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3roZFCprFZhmK8BvkrsKwkLZXr56/tree/docs/configuring-radicle-explorer.md#troubleshooting) on the role's documentation for details.
+See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Azopwjin5Vh5dMgdHWiifJ2cg3bQW/tree/docs/configuring-radicle-explorer.md#troubleshooting) on the role's documentation for details.
 
 ## Related services
 
