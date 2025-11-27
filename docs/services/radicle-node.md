@@ -70,7 +70,9 @@ ansible-playbook -i inventory/hosts setup.yml --tags=adjust-config-radicle-node
 The Radicle node instance then becomes available at the hostname specified with `radicle_node_hostname` and `radicle_node_container_node_port`. With the configuration above, it is hosted at `seed.example.com:8776`.
 
 >[!NOTE]
-> `radicle-node` cannot be accessed via HTTP. For browsing repositories on a web browser, it is necessary to set up the HTTP Daemon (`radicle-httpd`). See [this section](https://radicle.xyz/guides/seeder#running-the-http-daemon) on the documentation for details.
+> `radicle-node` cannot be accessed via HTTP. It is necessary to set up the HTTP Daemon (`radicle-httpd`) for browsing repositories on a web browser, retrieving details about them with `curl`, etc.
+>
+> This playbook supports Radicle HTTP Daemon, and you can set up the instance by enabling it on `vars.yml`. See [this page](radicle-httpd.md) for details.
 
 Please note that the default seeding policy is *selective* one, meaning that the node will ignore all repositories, except the ones which the node's operator explicitly allows to be seeded.
 
@@ -79,3 +81,7 @@ See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az28JT
 ## Troubleshooting
 
 See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az28JTUhepmbS3hLZyUeEvXeqk9QW5/tree/docs/configuring-radicle-node.md#troubleshooting) on the role's documentation for details.
+
+## Related services
+
+- [Radicle HTTP Daemon](radicle-httpd.md) — Gateway between the Radicle protocol and the HTTP protocol

@@ -865,6 +865,11 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
     {{ ({'name': (radicale_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'radicale']} if radicale_enabled else omit) }}
   # /role-specific:radicale
 
+  # role-specific:radicle_httpd
+  - |-
+    {{ ({'name': (radicle_httpd_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'radicle-httpd']} if radicle_httpd_enabled else omit) }}
+  # /role-specific:radicle_httpd
+
   # role-specific:radicle_node
   - |-
     {{ ({'name': (radicle_node_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'radicle-node']} if radicle_node_enabled else omit) }}
@@ -10556,6 +10561,59 @@ radicale_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_pri
 #                                                                      #
 ########################################################################
 # /role-specific:radicale
+
+
+
+# role-specific:radicle_httpd
+########################################################################
+#                                                                      #
+# radicle_httpd                                                        #
+#                                                                      #
+########################################################################
+
+radicle_httpd_enabled: false
+
+radicle_httpd_identifier: "{{ mash_playbook_service_identifier_prefix }}radicle-httpd"
+
+radicle_httpd_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}radicle-httpd"
+
+# Run as the same user as radicle_node does
+radicle_httpd_uid: "{{ radicle_node_uid }}"
+radicle_httpd_gid: "{{ radicle_node_gid }}"
+
+radicle_httpd_systemd_required_services_list_auto: |
+  {{
+    ([radicle_node_identifier ~ '.service'] if radicle_node_enabled else [])
+  }}
+
+radicle_httpd_container_additional_networks_auto: |
+  {{
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+    +
+    ([radicle_node_container_network] if radicle_node_enabled and radicle_httpd_container_network != radicle_node_container_network else [])
+  }}
+
+radicle_httpd_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+radicle_httpd_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+
+# role-specific:radicle_node
+radicle_httpd_config_rad_passphrase: "{{ radicle_node_config_rad_passphrase }}"
+radicle_httpd_data_path: "{{ radicle_node_data_path }}" # The Docker volume is shared with `radicle_node`
+radicle_httpd_environment_variables_rad_home: "{{ radicle_node_environment_variables_rad_home }}" # This sets the same value to RAD_HOME as `radicle_node` does
+radicle_httpd_hostname: "{{ radicle_node_hostname }}" # The service is hosted with the same hostname as `radicle_node` is
+# /role-specific:radicle_node
+
+# role-specific:traefik
+radicle_httpd_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
+radicle_httpd_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
+# /role-specific:traefik
+
+########################################################################
+#                                                                      #
+# /radicle_httpd                                                       #
+#                                                                      #
+########################################################################
+# /role-specific:radicle_httpd
 
 
 
