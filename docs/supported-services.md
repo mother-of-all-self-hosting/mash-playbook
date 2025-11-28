@@ -10,6 +10,7 @@ SPDX-FileCopyrightText: 2024 Oliver Lorenz
 SPDX-FileCopyrightText: 2025 Gergely Horváth
 SPDX-FileCopyrightText: 2025 Suguru Hirahara
 SPDX-FileCopyrightText: 2025 XHawk87
+SPDX-FileCopyrightText: 2025 spatterlight
 
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->
@@ -25,6 +26,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 | [Anki](https://docs.ankiweb.net/sync-server.html) | Self-hosted synchronization server for Anki, a flashcard program that helps you spend more time on challenging material, and less on what you already know | [Link](services/anki.md) |
 | [AnonymousOverflow](https://github.com/httpjamesm/AnonymousOverflow) | View StackOverflow threads without exposing your IP address, browsing habits, and other browser fingerprinting data to the website | [Link](services/anonymousoverflow.md) |
 | [Apache Answer](https://answer.apache.org/) | Q&A community platform software for teams | [Link](services/answer.md) |
+| [Apache NiFi](https://nifi.apache.org/) | An easy to use, powerful, and reliable system to process and distribute data. | [Link](services/nifi.md) |
 | [Apache Tika Server](https://github.com/apache/tika-docker) | Detect and extract metadata and text from different file types (such as PPT, XLS, and PDF) | [Link](services/tika.md) |
 | [APISIX Dashboard](https://apisix.apache.org/docs/dashboard/USER_GUIDE/) | A web UI for [APISIX Gateway](services/apisix-gateway.md) | [Link](services/apisix-dashboard.md) |
 | [APISIX Gateway](https://apisix.apache.org/docs/apisix/getting-started/README/) | An API Gateway, Ingress Controller, etc | [Link](services/apisix-gateway.md) |
