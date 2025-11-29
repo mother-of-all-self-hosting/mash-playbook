@@ -72,6 +72,10 @@
   version: v5.9.3-0
   name: barassistant
   activation_prefix: barassistant_
+- src: git+https://seed.radicle.garden/z2bgVhWju6shYSwtdKb7v3eoSL1Pt.git
+  version: v1.9.0-0
+  name: bentopdf
+  activation_prefix: bentopdf_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-bind.git
   version: v9.20-1
   name: bind

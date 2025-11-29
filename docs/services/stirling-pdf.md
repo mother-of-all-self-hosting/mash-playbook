@@ -58,3 +58,7 @@ stirling_pdf_environment_variables_extensions: |
 Find all possible arguments in the [official documentation](https://docs.stirlingpdf.com/Advanced%20Configuration/How%20to%20add%20configurations).
 
 All possible variables to configure the ansible-role can be found in its [defaults/main.yml](https://github.com/Bergruebe/ansible-role-stirling-pdf/blob/main/defaults/main.yml) file.
+
+## Related services
+
+- [BentoPDF](bentopdf.md) — client-side PDF editor and converter
