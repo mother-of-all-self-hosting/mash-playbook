@@ -489,6 +489,10 @@
     - role: galaxy/mongodb
     # /role-specific:mongodb
 
+    # role-specific:moodist
+    - role: galaxy/moodist
+    # /role-specific:moodist
+
     # role-specific:mosquitto
     - role: galaxy/mosquitto
     # /role-specific:mosquitto
