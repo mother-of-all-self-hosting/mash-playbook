@@ -17,17 +17,17 @@ SPDX-FileCopyrightText: 2024 - 2025 Suguru Hirahara
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 
-# Moodist
+# BentoPDF
 
-The playbook can install and configure [Moodist](https://moodist.mvze.net) for you.
+The playbook can install and configure [BentoPDF](https://bentopdf.mvze.net) for you.
 
-Moodist is a free web application to mix and play ambient soundtracks (river, rain, cafe, airport, etc).
+BentoPDF is a free web application to mix and play ambient soundtracks (river, rain, cafe, airport, etc).
 
-See the project's [documentation](https://github.com/remvze/moodist/blob/main/README.md) to learn what Moodist does and why it might be useful to you.
+See the project's [documentation](https://github.com/remvze/bentopdf/blob/main/README.md) to learn what BentoPDF does and why it might be useful to you.
 
-For details about configuring the [Ansible role for Moodist](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az4Ez9aU119yFMs59cnA3KUnExFAeN), you can check them via:
-- 🌐 [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az4Ez9aU119yFMs59cnA3KUnExFAeN/tree/docs/configuring-moodist.md) online
-- 📁 `roles/galaxy/moodist/docs/configuring-moodist.md` locally, if you have [fetched the Ansible roles](../installing.md)
+For details about configuring the [Ansible role for BentoPDF](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az4Ez9aU119yFMs59cnA3KUnExFAeN), you can check them via:
+- 🌐 [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az4Ez9aU119yFMs59cnA3KUnExFAeN/tree/docs/configuring-bentopdf.md) online
+- 📁 `roles/galaxy/bentopdf/docs/configuring-bentopdf.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 ## Dependencies
 
@@ -42,31 +42,31 @@ To enable this service, add the following configuration to your `vars.yml` file 
 ```yaml
 ########################################################################
 #                                                                      #
-# moodist                                                              #
+# bentopdf                                                             #
 #                                                                      #
 ########################################################################
 
-moodist_enabled: true
+bentopdf_enabled: true
 
-moodist_hostname: moodist.example.com
+bentopdf_hostname: bentopdf.example.com
 
 ########################################################################
 #                                                                      #
-# /moodist                                                             #
+# /bentopdf                                                            #
 #                                                                      #
 ########################################################################
 ```
 
-**Note**: hosting Moodist under a subpath (by configuring the `moodist_path_prefix` variable) does not seem to be possible due to Moodist's technical limitations.
+**Note**: hosting BentoPDF under a subpath (by configuring the `bentopdf_path_prefix` variable) does not seem to be possible due to BentoPDF's technical limitations.
 
 ### Using the default Docker image (optional)
 
 To have the service run as the playbook's default user instead of root user, this service is by default configured to use the Docker image locally built on [this own Dockerfile](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az4Ez9aU119yFMs59cnA3KUnExFAeN/tree/51bdebb3210e646fb7e83666b8208d5a820ae0c5/templates/Dockerfile.j2).
 
-If you prefer simply pulling and using [the official Docker image](https://github.com/users/remvze/packages/container/package/moodist) instead, add the following configuration to your `vars.yml` file:
+If you prefer simply pulling and using [the official Docker image](https://github.com/users/remvze/packages/container/package/bentopdf) instead, add the following configuration to your `vars.yml` file:
 
 ```yaml
-moodist_container_image_self_build: false
+bentopdf_container_image_self_build: false
 ```
 
 >[!NOTE]
@@ -74,8 +74,8 @@ moodist_container_image_self_build: false
 
 ## Usage
 
-After running the command for installation, the Moodist instance becomes available at the URL specified with `moodist_hostname`. With the configuration above, the service is hosted at `https://moodist.example.com`.
+After running the command for installation, the BentoPDF instance becomes available at the URL specified with `bentopdf_hostname`. With the configuration above, the service is hosted at `https://bentopdf.example.com`.
 
 ## Troubleshooting
 
-See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az4Ez9aU119yFMs59cnA3KUnExFAeN/tree/docs/configuring-moodist.md#troubleshooting) on the role's documentation for details.
+See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az4Ez9aU119yFMs59cnA3KUnExFAeN/tree/docs/configuring-bentopdf.md#troubleshooting) on the role's documentation for details.
