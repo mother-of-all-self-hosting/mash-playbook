@@ -19,15 +19,15 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
 # Moodist
 
-The playbook can install and configure [Moodist](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3HEG7KePQVAbZXSdn7tGNb7FVDqL) (a fork of the [original project](https://git.private.coffee/PrivateCoffee/nocdnbs)) for you.
+The playbook can install and configure [Moodist](https://moodist.mvze.net) for you.
 
-Moodist allows you to use cdnjs without exposing your IP address, browsing habits, and other browser fingerprinting data to Cloudflare.
+Moodist is a free web application to mix and play ambient soundtracks (river, rain, cafe, airport, etc).
 
-See the project's [documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3HEG7KePQVAbZXSdn7tGNb7FVDqL/tree/README.md) to learn what Moodist does and why it might be useful to you.
+See the project's [documentation](https://github.com/remvze/moodist/blob/main/README.md) to learn what Moodist does and why it might be useful to you.
 
-For details about configuring the [Ansible role for Moodist](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az8vyzN3a8DmwhcUq3949SihKd1Wh), you can check them via:
-- 🌐 [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az8vyzN3a8DmwhcUq3949SihKd1Wh/tree/docs/configuring-nocdnbs.md) online
-- 📁 `roles/galaxy/nocdnbs/docs/configuring-nocdnbs.md` locally, if you have [fetched the Ansible roles](../installing.md)
+For details about configuring the [Ansible role for Moodist](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az4Ez9aU119yFMs59cnA3KUnExFAeN), you can check them via:
+- 🌐 [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az4Ez9aU119yFMs59cnA3KUnExFAeN/tree/docs/configuring-moodist.md) online
+- 📁 `roles/galaxy/moodist/docs/configuring-moodist.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 ## Dependencies
 
@@ -42,31 +42,27 @@ To enable this service, add the following configuration to your `vars.yml` file 
 ```yaml
 ########################################################################
 #                                                                      #
-# nocdnbs                                                              #
+# moodist                                                              #
 #                                                                      #
 ########################################################################
 
-nocdnbs_enabled: true
+moodist_enabled: true
 
-nocdnbs_hostname: nocdnbs.example.com
+moodist_hostname: moodist.example.com
 
 ########################################################################
 #                                                                      #
-# /nocdnbs                                                             #
+# /moodist                                                             #
 #                                                                      #
 ########################################################################
 ```
 
-**Note**: hosting Moodist under a subpath (by configuring the `nocdnbs_path_prefix` variable) does not seem to be possible due to Moodist's technical limitations.
+**Note**: hosting Moodist under a subpath (by configuring the `moodist_path_prefix` variable) does not seem to be possible due to Moodist's technical limitations.
 
 ## Usage
 
-After running the command for installation, the Moodist instance becomes available at the URL specified with `nocdnbs_hostname`. With the configuration above, the service is hosted at `https://nocdnbs.example.com`.
+After running the command for installation, the Moodist instance becomes available at the URL specified with `moodist_hostname`. With the configuration above, the service is hosted at `https://moodist.example.com`.
 
 ## Troubleshooting
 
-See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az8vyzN3a8DmwhcUq3949SihKd1Wh/tree/docs/configuring-nocdnbs.md#troubleshooting) on the role's documentation for details.
-
-## Related services
-
-- [PoodleDonts](poodledonts.md) — Privacy-friendly Google Fonts proxy
+See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az4Ez9aU119yFMs59cnA3KUnExFAeN/tree/docs/configuring-moodist.md#troubleshooting) on the role's documentation for details.
