@@ -17,15 +17,15 @@ SPDX-FileCopyrightText: 2024 - 2025 Suguru Hirahara
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 
-# noCDNbs
+# Moodist
 
-The playbook can install and configure [noCDNbs](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3HEG7KePQVAbZXSdn7tGNb7FVDqL) (a fork of the [original project](https://git.private.coffee/PrivateCoffee/nocdnbs)) for you.
+The playbook can install and configure [Moodist](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3HEG7KePQVAbZXSdn7tGNb7FVDqL) (a fork of the [original project](https://git.private.coffee/PrivateCoffee/nocdnbs)) for you.
 
-noCDNbs allows you to use cdnjs without exposing your IP address, browsing habits, and other browser fingerprinting data to Cloudflare.
+Moodist allows you to use cdnjs without exposing your IP address, browsing habits, and other browser fingerprinting data to Cloudflare.
 
-See the project's [documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3HEG7KePQVAbZXSdn7tGNb7FVDqL/tree/README.md) to learn what noCDNbs does and why it might be useful to you.
+See the project's [documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3HEG7KePQVAbZXSdn7tGNb7FVDqL/tree/README.md) to learn what Moodist does and why it might be useful to you.
 
-For details about configuring the [Ansible role for noCDNbs](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az8vyzN3a8DmwhcUq3949SihKd1Wh), you can check them via:
+For details about configuring the [Ansible role for Moodist](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az8vyzN3a8DmwhcUq3949SihKd1Wh), you can check them via:
 - 🌐 [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az8vyzN3a8DmwhcUq3949SihKd1Wh/tree/docs/configuring-nocdnbs.md) online
 - 📁 `roles/galaxy/nocdnbs/docs/configuring-nocdnbs.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
@@ -57,11 +57,11 @@ nocdnbs_hostname: nocdnbs.example.com
 ########################################################################
 ```
 
-**Note**: hosting noCDNbs under a subpath (by configuring the `nocdnbs_path_prefix` variable) does not seem to be possible due to noCDNbs's technical limitations.
+**Note**: hosting Moodist under a subpath (by configuring the `nocdnbs_path_prefix` variable) does not seem to be possible due to Moodist's technical limitations.
 
 ## Usage
 
-After running the command for installation, the noCDNbs instance becomes available at the URL specified with `nocdnbs_hostname`. With the configuration above, the service is hosted at `https://nocdnbs.example.com`.
+After running the command for installation, the Moodist instance becomes available at the URL specified with `nocdnbs_hostname`. With the configuration above, the service is hosted at `https://nocdnbs.example.com`.
 
 ## Troubleshooting
 
