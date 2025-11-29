@@ -19,14 +19,14 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
 # BentoPDF
 
-The playbook can install and configure [BentoPDF](https://bentopdf.mvze.net) for you.
+The playbook can install and configure [BentoPDF](https://github.com/alam00000/bentopdf) for you.
 
-BentoPDF is a free web application to mix and play ambient soundtracks (river, rain, cafe, airport, etc).
+BentoPDF is a client-side PDF editor to manipulate PDF files (merge, cut, split …), convert files into the PDF format, etc.
 
-See the project's [documentation](https://github.com/remvze/bentopdf/blob/main/README.md) to learn what BentoPDF does and why it might be useful to you.
+See the project's [documentation](https://github.com/alam00000/bentopdf/blob/main/README.md) to learn what BentoPDF does and why it might be useful to you.
 
-For details about configuring the [Ansible role for BentoPDF](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az4Ez9aU119yFMs59cnA3KUnExFAeN), you can check them via:
-- 🌐 [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az4Ez9aU119yFMs59cnA3KUnExFAeN/tree/docs/configuring-bentopdf.md) online
+For details about configuring the [Ansible role for BentoPDF](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az2bgVhWju6shYSwtdKb7v3eoSL1Pt), you can check them via:
+- 🌐 [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az2bgVhWju6shYSwtdKb7v3eoSL1Pt/tree/docs/configuring-bentopdf.md) online
 - 📁 `roles/galaxy/bentopdf/docs/configuring-bentopdf.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 ## Dependencies
@@ -61,9 +61,9 @@ bentopdf_hostname: bentopdf.example.com
 
 ### Using the default Docker image (optional)
 
-To have the service run as the playbook's default user instead of root user, this service is by default configured to use the Docker image locally built on [this own Dockerfile](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az4Ez9aU119yFMs59cnA3KUnExFAeN/tree/51bdebb3210e646fb7e83666b8208d5a820ae0c5/templates/Dockerfile.j2).
+To have the service run as the playbook's default user instead of root user, this service is by default configured to use the Docker image locally built on [this own Dockerfile](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az2bgVhWju6shYSwtdKb7v3eoSL1Pt/tree/templates/Dockerfile.j2).
 
-If you prefer simply pulling and using [the official Docker image](https://github.com/users/remvze/packages/container/package/bentopdf) instead, add the following configuration to your `vars.yml` file:
+If you prefer simply pulling and using [the official Docker image](https://github.com/alam00000/bentopdf/pkgs/container/bentopdf) instead, add the following configuration to your `vars.yml` file:
 
 ```yaml
 bentopdf_container_image_self_build: false
@@ -78,4 +78,4 @@ After running the command for installation, the BentoPDF instance becomes availa
 
 ## Troubleshooting
 
-See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az4Ez9aU119yFMs59cnA3KUnExFAeN/tree/docs/configuring-bentopdf.md#troubleshooting) on the role's documentation for details.
+See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az2bgVhWju6shYSwtdKb7v3eoSL1Pt/tree/docs/configuring-bentopdf.md#troubleshooting) on the role's documentation for details.
