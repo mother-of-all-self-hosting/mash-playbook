@@ -589,6 +589,10 @@
     - role: galaxy/paperless
     # /role-specific:paperless
 
+    # role-specific:pdfding
+    - role: galaxy/pdfding
+    # /role-specific:pdfding
+
     # role-specific:peertube
     - role: galaxy/peertube
     # /role-specific:peertube
