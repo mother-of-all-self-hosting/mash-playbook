@@ -13,6 +13,7 @@ SPDX-FileCopyrightText: 2023 Felix Stupp
 SPDX-FileCopyrightText: 2023 Julian-Samuel Gebühr
 SPDX-FileCopyrightText: 2023 Pierre 'McFly' Marty
 SPDX-FileCopyrightText: 2024 - 2025 Suguru Hirahara
+SPDX-FileCopyrightText: 2024 Thomas Miceli
 
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->
@@ -33,6 +34,7 @@ For details about configuring the [Ansible role for PdfDing](https://app.radicle
 
 This service requires the following other services:
 
+- [Postgres](postgres.md) / [SQLite](https://www.sqlite.org/) database
 - [Traefik](traefik.md) reverse-proxy server
 - (optional) [exim-relay](exim-relay.md) mailer
 
@@ -59,6 +61,10 @@ pdfding_hostname: pdfding.example.com
 ```
 
 **Note**: hosting PdfDing under a subpath (by configuring the `pdfding_path_prefix` variable) does not seem to be possible due to PdfDing's technical limitations.
+
+### Select database to use
+
+It is necessary to select a database used by the service from Postgres and SQLite. See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az2cZCZP8Mu4LYMbHKaTdnP1otc46L/tree/docs/configuring-pdfding.md#specify-database) on the role's documentation for details.
 
 ### Enabling signing up
 
