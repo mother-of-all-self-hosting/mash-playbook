@@ -22,12 +22,12 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
 The playbook can install and configure [PdfDing](https://pdfding.com/) for you.
 
-PdfDing is a minimalistic wiki powered by Python, Markdown and Git.
+PdfDing is a self-hosted PDF manager, viewer and editor, which offers a seamless user experience on multiple devices.
 
-See the project's [documentation](https://pdfding.com/-/help) to learn what PdfDing does and why it might be useful to you.
+See the project's [documentation](https://docs.pdfding.com/) to learn what PdfDing does and why it might be useful to you.
 
-For details about configuring the [Ansible role for PdfDing](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3AzvzJe15VMBkGd2CMBctvpVZgmQG5), you can check them via:
-- 🌐 [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3AzvzJe15VMBkGd2CMBctvpVZgmQG5/tree/docs/configuring-pdfding.md) online
+For details about configuring the [Ansible role for PdfDing](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az2cZCZP8Mu4LYMbHKaTdnP1otc46L), you can check them via:
+- 🌐 [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az2cZCZP8Mu4LYMbHKaTdnP1otc46L/tree/docs/configuring-pdfding.md) online
 - 📁 `roles/galaxy/pdfding/docs/configuring-pdfding.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 ## Dependencies
@@ -71,7 +71,7 @@ It is necessary to select a database used by the service from Postgres and SQLit
 By default account registration for the service is disabled. To enable it, add the following configuration to your `vars.yml` file:
 
 ```yaml
-pdfding_environment_variables_disable_registration: false
+pdfding_environment_variables_disable_user_signup: false
 ```
 
 ### Configuring the mailer (optional)
@@ -85,15 +85,10 @@ On PdfDing you can set up a mailer for functions such as password recovery. If y
 
 After installation, the PdfDing instance becomes available at the URL specified with `pdfding_hostname`. With the configuration above, the service is hosted at `https://pdfding.example.com`.
 
-To get started, open the URL with a web browser, and register the account. **Note that the first registered user becomes an administrator automatically.**
+To get started, open the URL with a web browser, and register the account.
 
-Since account registration is disabled by default, you need to enable it first by setting `pdfding_environment_variables_disable_registration` to `false` temporarily in order to create your own account.
+Since account registration is disabled by default, you need to enable it first by setting `pdfding_environment_variables_disable_user_signup` to `false` temporarily in order to create your own account.
 
 ## Troubleshooting
 
-See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3AzvzJe15VMBkGd2CMBctvpVZgmQG5/tree/docs/configuring-pdfding.md#troubleshooting) on the role's documentation for details.
-
-## Related services
-
-- [DokuWiki](dokuwiki.md) — Lightweight, file-based wiki engine
-- [MediaWiki](mediawiki.md) — Popular free and open-source wiki software
+See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az2cZCZP8Mu4LYMbHKaTdnP1otc46L/tree/docs/configuring-pdfding.md#troubleshooting) on the role's documentation for details.
