@@ -177,6 +177,11 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
     {{ ({'name': (barassistant_server_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'barassistant']} if barassistant_enabled else omit) }}
   # /role-specific:barassistant
 
+  # role-specific:bentopdf
+  - |-
+    {{ ({'name': (bentopdf_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'bentopdf']} if bentopdf_enabled else omit) }}
+  # /role-specific:bentopdf
+
   # role-specific:bind
   - |-
     {{ ({'name': (bind_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'bind']} if bind_enabled else omit) }}
@@ -627,6 +632,11 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
     {{ ({'name': (mongodb_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'mongodb']} if mongodb_enabled else omit) }}
   # /role-specific:mongodb
 
+  # role-specific:moodist
+  - |-
+    {{ ({'name': (moodist_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'moodist']} if moodist_enabled else omit) }}
+  # /role-specific:moodist
+
   # role-specific:mosquitto
   - |-
     {{ ({'name': (mosquitto_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'mosquitto']} if mosquitto_enabled else omit) }}
@@ -864,6 +874,21 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
   - |-
     {{ ({'name': (radicale_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'radicale']} if radicale_enabled else omit) }}
   # /role-specific:radicale
+
+  # role-specific:radicle_explorer
+  - |-
+    {{ ({'name': (radicle_explorer_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'radicle-explorer']} if radicle_explorer_enabled else omit) }}
+  # /role-specific:radicle_explorer
+
+  # role-specific:radicle_httpd
+  - |-
+    {{ ({'name': (radicle_httpd_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'radicle-httpd']} if radicle_httpd_enabled else omit) }}
+  # /role-specific:radicle_httpd
+
+  # role-specific:radicle_node
+  - |-
+    {{ ({'name': (radicle_node_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'radicle-node']} if radicle_node_enabled else omit) }}
+  # /role-specific:radicle_node
 
   # role-specific:reactflux
   - |-
@@ -2916,6 +2941,45 @@ barassistant_server_container_labels_traefik_tls_certResolver: "{{ traefik_certR
 #                                                                      #
 ########################################################################
 # /role-specific:barassistant
+
+
+
+# role-specific:bentopdf
+########################################################################
+#                                                                      #
+# bentopdf                                                             #
+#                                                                      #
+########################################################################
+
+bentopdf_enabled: false
+
+bentopdf_identifier: "{{ mash_playbook_service_identifier_prefix }}bentopdf"
+
+bentopdf_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}bentopdf"
+
+# The default Docker image requires root user
+bentopdf_uid: "{{ mash_playbook_uid if bentopdf_container_image_self_build else '0' }}"
+bentopdf_gid: "{{ mash_playbook_gid if bentopdf_container_image_self_build else '0' }}"
+
+bentopdf_container_additional_networks_auto: |
+  {{
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+  }}
+
+bentopdf_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+bentopdf_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+
+# role-specific:traefik
+bentopdf_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
+bentopdf_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
+# /role-specific:traefik
+
+########################################################################
+#                                                                      #
+# /bentopdf                                                            #
+#                                                                      #
+########################################################################
+# /role-specific:bentopdf
 
 
 
@@ -8365,6 +8429,45 @@ mongodb_managed_databases_auto: "{{ mash_playbook_mongodb_managed_databases_auto
 
 
 
+# role-specific:moodist
+########################################################################
+#                                                                      #
+# moodist                                                              #
+#                                                                      #
+########################################################################
+
+moodist_enabled: false
+
+moodist_identifier: "{{ mash_playbook_service_identifier_prefix }}moodist"
+
+moodist_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}moodist"
+
+# The default Docker image requires root user
+moodist_uid: "{{ mash_playbook_uid if moodist_container_image_self_build else '0' }}"
+moodist_gid: "{{ mash_playbook_gid if moodist_container_image_self_build else '0' }}"
+
+moodist_container_additional_networks_auto: |
+  {{
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+  }}
+
+moodist_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+moodist_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+
+# role-specific:traefik
+moodist_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
+moodist_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
+# /role-specific:traefik
+
+########################################################################
+#                                                                      #
+# /moodist                                                             #
+#                                                                      #
+########################################################################
+# /role-specific:moodist
+
+
+
 # role-specific:mosquitto
 ########################################################################
 #                                                                      #
@@ -10551,6 +10654,131 @@ radicale_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_pri
 #                                                                      #
 ########################################################################
 # /role-specific:radicale
+
+
+
+# role-specific:radicle_explorer
+########################################################################
+#                                                                      #
+# radicle_explorer                                                     #
+#                                                                      #
+########################################################################
+
+radicle_explorer_enabled: false
+
+radicle_explorer_identifier: "{{ mash_playbook_service_identifier_prefix }}radicle-explorer"
+
+radicle_explorer_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}radicle-explorer"
+
+radicle_explorer_uid: "{{ mash_playbook_uid }}"
+radicle_explorer_gid: "{{ mash_playbook_gid }}"
+
+radicle_explorer_container_additional_networks_auto: |
+  {{
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+  }}
+
+radicle_explorer_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+radicle_explorer_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+
+# role-specific:traefik
+radicle_explorer_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
+radicle_explorer_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
+# /role-specific:traefik
+
+########################################################################
+#                                                                      #
+# /radicle_explorer                                                    #
+#                                                                      #
+########################################################################
+# /role-specific:radicle_explorer
+
+
+
+# role-specific:radicle_httpd
+########################################################################
+#                                                                      #
+# radicle_httpd                                                        #
+#                                                                      #
+########################################################################
+
+radicle_httpd_enabled: false
+
+radicle_httpd_identifier: "{{ mash_playbook_service_identifier_prefix }}radicle-httpd"
+
+radicle_httpd_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}radicle-httpd"
+
+# Run as the same user as radicle_node does
+radicle_httpd_uid: "{{ radicle_node_uid }}"
+radicle_httpd_gid: "{{ radicle_node_gid }}"
+
+radicle_httpd_systemd_required_services_list_auto: |
+  {{
+    ([radicle_node_identifier ~ '.service'] if radicle_node_enabled else [])
+  }}
+
+radicle_httpd_container_additional_networks_auto: |
+  {{
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+    +
+    ([radicle_node_container_network] if radicle_node_enabled and radicle_httpd_container_network != radicle_node_container_network else [])
+  }}
+
+radicle_httpd_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+radicle_httpd_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+
+# role-specific:radicle_node
+radicle_httpd_config_rad_passphrase: "{{ radicle_node_config_rad_passphrase }}"
+radicle_httpd_data_path: "{{ radicle_node_data_path }}" # The Docker volume is shared with `radicle_node`
+radicle_httpd_environment_variables_rad_home: "{{ radicle_node_environment_variables_rad_home }}" # This sets the same value to RAD_HOME as `radicle_node` does
+radicle_httpd_hostname: "{{ radicle_node_hostname }}" # The service is hosted with the same hostname as `radicle_node` is
+# /role-specific:radicle_node
+
+# role-specific:traefik
+radicle_httpd_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
+radicle_httpd_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
+# /role-specific:traefik
+
+########################################################################
+#                                                                      #
+# /radicle_httpd                                                       #
+#                                                                      #
+########################################################################
+# /role-specific:radicle_httpd
+
+
+
+# role-specific:radicle_node
+########################################################################
+#                                                                      #
+# radicle_node                                                         #
+#                                                                      #
+########################################################################
+
+radicle_node_enabled: false
+
+radicle_node_identifier: "{{ mash_playbook_service_identifier_prefix }}radicle-node"
+
+radicle_node_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}radicle-node"
+
+# Apparently the UID and GID are fixed
+# Also see: https://app.radicle.xyz/nodes/iris.radicle.xyz/rad%3Az26FDgNVVRUfPpLiUvUksoFPFkwdw/commits/5a095b1816ec75522d59ede8e258844763e1f1ae
+radicle_node_uid: "11011"
+radicle_node_gid: "11011"
+
+radicle_node_container_additional_networks_auto: |
+  {{
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+  }}
+
+radicle_node_config_rad_passphrase: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'radicle.node', rounds=655555) | to_uuid }}"
+
+########################################################################
+#                                                                      #
+# /radicle_node                                                        #
+#                                                                      #
+########################################################################
+# /role-specific:radicle_node
 
 
 

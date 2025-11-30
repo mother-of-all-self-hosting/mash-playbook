@@ -161,6 +161,10 @@
     - role: galaxy/barassistant
     # /role-specific:barassistant
 
+    # role-specific:bentopdf
+    - role: galaxy/bentopdf
+    # /role-specific:bentopdf
+
     # role-specific:bind
     - role: galaxy/bind
     # /role-specific:bind
@@ -489,6 +493,10 @@
     - role: galaxy/mongodb
     # /role-specific:mongodb
 
+    # role-specific:moodist
+    - role: galaxy/moodist
+    # /role-specific:moodist
+
     # role-specific:mosquitto
     - role: galaxy/mosquitto
     # /role-specific:mosquitto
@@ -660,6 +668,18 @@
     # role-specific:radicale
     - role: galaxy/radicale
     # /role-specific:radicale
+
+    # role-specific:radicle_explorer
+    - role: galaxy/radicle_explorer
+    # /role-specific:radicle_explorer
+
+    # role-specific:radicle_httpd
+    - role: galaxy/radicle_httpd
+    # /role-specific:radicle_httpd
+
+    # role-specific:radicle_node
+    - role: galaxy/radicle_node
+    # /role-specific:radicle_node
 
     # role-specific:reactflux
     - role: galaxy/reactflux
