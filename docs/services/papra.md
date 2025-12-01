@@ -91,5 +91,4 @@ See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az2LGS
 
 ## Related services
 
-- [DokuWiki](dokuwiki.md) — Lightweight, file-based wiki engine
-- [MediaWiki](mediawiki.md) — Popular free and open-source wiki software
+- [Paperless-ngx](paperless-ngx.md) — Document management system that transforms your physical documents into a searchable online archive
