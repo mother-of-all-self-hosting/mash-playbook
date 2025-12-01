@@ -524,6 +524,10 @@
   version: v2.20.0-0
   name: paperless
   activation_prefix: paperless_
+- src: git+https://seed.radicle.garden/z2LGSfc7ziSKvErzZAQdTyTQ4sJcs.git
+  version: v25.11.0-0
+  name: papra
+  activation_prefix: papra_
 - src: git+https://seed.radicle.garden/z2cZCZP8Mu4LYMbHKaTdnP1otc46L.git
   version: v1.4.1-0
   name: pdfding
