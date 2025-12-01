@@ -741,7 +741,7 @@
   name: telegraf
   activation_prefix: telegraf_
 - src: git+https://seed.radicle.garden/z3vaa8VAuz3pxqB3FyciNKQRSHqyt.git
-  version: v4.4.3-2
+  version: v4.4.3-3
   name: thelounge
   activation_prefix: thelounge_
 - src: git+https://seed.radicle.garden/zbk3MzAN6SX6d8pa9DT2kHDscyr6.git
