@@ -589,6 +589,10 @@
     - role: galaxy/paperless
     # /role-specific:paperless
 
+    # role-specific:papra
+    - role: galaxy/papra
+    # /role-specific:papra
+
     # role-specific:pdfding
     - role: galaxy/pdfding
     # /role-specific:pdfding
