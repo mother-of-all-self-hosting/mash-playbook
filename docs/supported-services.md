@@ -146,6 +146,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 | [Owncast](https://owncast.online/) | Owncast is a free and open source live video and web chat server for use with existing popular broadcasting software. | [Link](services/owncast.md) |
 | [OxiTraffic](https://codeberg.org/mo8it/oxitraffic) | Self-hosted, simple and privacy respecting website traffic tracker | [Link](services/oxitraffic.md) |
 | [Paperless-ngx](https://paperless-ngx.com) | [Paperless-ngx](https://paperless-ngx.com) is a community-supported open-source document management system that transforms your physical documents into a searchable online archive so you can keep, well, less paper. | [Link](services/paperless-ngx.md) |
+| [Papra](https://github.com/papra-hq/papra) | Document management and archiving platform | [Link](services/papra.md) |
 | [PdfDing](https://www.pdfding.com/) | Self-hosted PDF manager, viewer and editor | [Link](services/pdfding.md) |
 | [PeerTube](https://joinpeertube.org/) | A tool for sharing online videos | [Link](services/peertube.md) |
 | [pgAdmin](https://www.pgadmin.org/) | Management tool for Postgres with a graphical interface | [Link](services/pgadmin.md) |
