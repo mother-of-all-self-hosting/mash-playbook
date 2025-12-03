@@ -177,6 +177,11 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
     {{ ({'name': (barassistant_server_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'barassistant']} if barassistant_enabled else omit) }}
   # /role-specific:barassistant
 
+  # role-specific:bentopdf
+  - |-
+    {{ ({'name': (bentopdf_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'bentopdf']} if bentopdf_enabled else omit) }}
+  # /role-specific:bentopdf
+
   # role-specific:bind
   - |-
     {{ ({'name': (bind_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'bind']} if bind_enabled else omit) }}
@@ -494,6 +499,11 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
     {{ ({'name': (joplin_server_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'joplin-server']} if joplin_server_enabled else omit) }}
   # /role-specific:joplin_server
 
+  # role-specific:kanboard
+  - |-
+    {{ ({'name': (kanboard_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'kanboard']} if kanboard_enabled else omit) }}
+  # /role-specific:kanboard
+
   # role-specific:karakeep
   - |-
     {{ ({'name': (karakeep_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'karakeep']} if karakeep_enabled else omit) }}
@@ -622,6 +632,11 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
     {{ ({'name': (mongodb_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'mongodb']} if mongodb_enabled else omit) }}
   # /role-specific:mongodb
 
+  # role-specific:moodist
+  - |-
+    {{ ({'name': (moodist_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'moodist']} if moodist_enabled else omit) }}
+  # /role-specific:moodist
+
   # role-specific:mosquitto
   - |-
     {{ ({'name': (mosquitto_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'mosquitto']} if mosquitto_enabled else omit) }}
@@ -726,6 +741,11 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
     {{ ({'name': (openregex_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'openregex']} if openregex_enabled else omit) }}
   # /role-specific:openregex
 
+  # role-specific:otterwiki
+  - |-
+    {{ ({'name': (otterwiki_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'otterwiki']} if otterwiki_enabled else omit) }}
+  # /role-specific:otterwiki
+
   # role-specific:outline
   - |-
     {{ ({'name': (outline_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'outline']} if outline_enabled else omit) }}
@@ -746,6 +766,11 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
     {{ ({'name': (oxitraffic_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'oxitraffic']} if oxitraffic_enabled else omit) }}
   # /role-specific:oxitraffic
 
+  # role-specific:papra
+  - |-
+    {{ ({'name': (papra_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'papra']} if papra_enabled else omit) }}
+  # /role-specific:papra
+
   # role-specific:paperless
   - |-
     {{ ({'name': (paperless_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'paperless']} if paperless_enabled else omit) }}
@@ -754,6 +779,11 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
   - |-
     {{ ({'name': (paperless_gotenberg_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'paperless']} if paperless_enabled and paperless_gotenberg_enabled else omit) }}
   # /role-specific:paperless
+
+  # role-specific:pdfding
+  - |-
+    {{ ({'name': (pdfding_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'pdfding']} if pdfding_enabled else omit) }}
+  # /role-specific:pdfding
 
   # role-specific:peertube
   - |-
@@ -859,6 +889,21 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
   - |-
     {{ ({'name': (radicale_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'radicale']} if radicale_enabled else omit) }}
   # /role-specific:radicale
+
+  # role-specific:radicle_explorer
+  - |-
+    {{ ({'name': (radicle_explorer_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'radicle-explorer']} if radicle_explorer_enabled else omit) }}
+  # /role-specific:radicle_explorer
+
+  # role-specific:radicle_httpd
+  - |-
+    {{ ({'name': (radicle_httpd_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'radicle-httpd']} if radicle_httpd_enabled else omit) }}
+  # /role-specific:radicle_httpd
+
+  # role-specific:radicle_node
+  - |-
+    {{ ({'name': (radicle_node_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'radicle-node']} if radicle_node_enabled else omit) }}
+  # /role-specific:radicle_node
 
   # role-specific:reactflux
   - |-
@@ -1380,6 +1425,17 @@ mash_playbook_postgres_managed_databases_auto_itemized:
     }}
   # /role-specific:joplin_server
 
+  # role-specific:kanboard
+  - |-
+    {{
+      ({
+        'name': kanboard_database_name,
+        'username': kanboard_database_postgres_username,
+        'password': kanboard_database_postgres_password,
+      } if kanboard_enabled and kanboard_database_postgres_hostname == postgres_connection_hostname and kanboard_database_type == 'postgres' else omit)
+    }}
+  # /role-specific:kanboard
+
   # role-specific:keycloak
   - |-
     {{
@@ -1610,6 +1666,17 @@ mash_playbook_postgres_managed_databases_auto_itemized:
       } if paperless_enabled and paperless_database_postgres_hostname == postgres_connection_hostname and paperless_database_type == 'postgres' else omit)
     }}
   # /role-specific:paperless
+
+  # role-specific:pdfding
+  - |-
+    {{
+      ({
+        'name': pdfding_database_name,
+        'username': pdfding_database_username,
+        'password': pdfding_database_password,
+      } if pdfding_enabled and pdfding_database_hostname == postgres_connection_hostname and pdfding_database_type == 'postgres' else omit)
+    }}
+  # /role-specific:pdfding
 
   # role-specific:peertube
   - |-
@@ -2900,6 +2967,45 @@ barassistant_server_container_labels_traefik_tls_certResolver: "{{ traefik_certR
 #                                                                      #
 ########################################################################
 # /role-specific:barassistant
+
+
+
+# role-specific:bentopdf
+########################################################################
+#                                                                      #
+# bentopdf                                                             #
+#                                                                      #
+########################################################################
+
+bentopdf_enabled: false
+
+bentopdf_identifier: "{{ mash_playbook_service_identifier_prefix }}bentopdf"
+
+bentopdf_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}bentopdf"
+
+# The default Docker image requires root user
+bentopdf_uid: "{{ mash_playbook_uid if bentopdf_container_image_self_build else '0' }}"
+bentopdf_gid: "{{ mash_playbook_gid if bentopdf_container_image_self_build else '0' }}"
+
+bentopdf_container_additional_networks_auto: |
+  {{
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+  }}
+
+bentopdf_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+bentopdf_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+
+# role-specific:traefik
+bentopdf_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
+bentopdf_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
+# /role-specific:traefik
+
+########################################################################
+#                                                                      #
+# /bentopdf                                                            #
+#                                                                      #
+########################################################################
+# /role-specific:bentopdf
 
 
 
@@ -6358,6 +6464,7 @@ immich_kiosk_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_
 immich_kiosk_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
 
 # role-specific:immich
+immich_kiosk_environment_variables_kiosk_behind_proxy: "{{ mash_playbook_reverse_proxy_type != 'none' }}"
 immich_kiosk_environment_variables_kiosk_immich_url: "http://{{ immich_server_identifier }}:{{ immich_server_http_port }}"
 immich_kiosk_environment_variables_kiosk_immich_external_url: "{{ immich_scheme }}://{{ immich_hostname }}"
 # /role-specific:immich
@@ -6719,6 +6826,81 @@ joplin_server_container_labels_traefik_tls_certResolver: "{{ traefik_certResolve
 #                                                                      #
 ########################################################################
 # /role-specific:joplin_server
+
+
+
+# role-specific:kanboard
+########################################################################
+#                                                                      #
+# kanboard                                                             #
+#                                                                      #
+########################################################################
+
+kanboard_enabled: false
+
+kanboard_identifier: "{{ mash_playbook_service_identifier_prefix }}kanboard"
+
+kanboard_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}kanboard"
+
+# Kanboard runs as root user
+kanboard_uid: "0"
+kanboard_gid: "0"
+
+kanboard_systemd_required_services_list_auto: |
+  {{
+    ([mariadb_identifier ~ '.service'] if mariadb_enabled | default(false) and kanboard_database_mysql_hostname == mariadb_connection_hostname and kanboard_database_type == 'mysql' else [])
+    +
+    ([postgres_identifier ~ '.service'] if postgres_enabled | default(false) and kanboard_database_postgres_hostname == postgres_connection_hostname and kanboard_database_type == 'postgres' else [])
+  }}
+
+kanboard_systemd_wanted_services_list_auto: |
+  {{
+    ([(exim_relay_identifier | default('mash-exim-relay')) ~ '.service'] if (exim_relay_enabled | default(false) and kanboard_environment_variables_mail_smtp_hostname == exim_relay_identifier | default('mash-exim-relay')) else [])
+  }}
+
+kanboard_container_additional_networks_auto: |
+  {{
+    ([exim_relay_container_network | default('mash-exim-relay')] if (exim_relay_enabled | default(false) and kanboard_environment_variables_mail_smtp_hostname == exim_relay_identifier | default('mash-exim-relay') and kanboard_container_network != exim_relay_container_network) else [])
+    +
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+    +
+    ([mariadb_container_network] if mariadb_enabled | default(false) and kanboard_database_mysql_hostname == mariadb_connection_hostname and kanboard_container_network != mariadb_container_network and kanboard_database_type == 'mysql' else [])
+    +
+    ([postgres_container_network] if postgres_enabled | default(false) and kanboard_database_postgres_hostname == postgres_connection_hostname and kanboard_container_network != postgres_container_network and kanboard_database_type == 'postgres' else [])
+  }}
+
+kanboard_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+kanboard_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+
+# role-specific:exim_relay
+kanboard_environment_variables_mail_smtp_hostname: "{{ exim_relay_identifier if exim_relay_enabled else '' }}"
+kanboard_environment_variables_mail_smtp_port: "{{ 8025 if exim_relay_enabled else '587' }}"
+kanboard_environment_variables_mail_from: "{{ exim_relay_sender_address if exim_relay_enabled else '' }}"
+# /role-specific:exim_relay
+
+# role-specific:mariadb
+kanboard_database_mysql_hostname: "{{ mariadb_connection_hostname if mariadb_enabled else '' }}"
+kanboard_database_mysql_port: "{{ mariadb_connection_port if mariadb_enabled else '3306' }}"
+kanboard_database_mysql_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'kanboard.db.m', rounds=655555) | to_uuid }}"
+# /role-specific:mariadb
+
+# role-specific:postgres
+kanboard_database_postgres_hostname: "{{ postgres_connection_hostname if postgres_enabled else '' }}"
+kanboard_database_postgres_port: "{{ postgres_connection_port if postgres_enabled else '5432' }}"
+kanboard_database_postgres_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'kanboard.db.p', rounds=655555) | to_uuid }}"
+# /role-specific:postgres
+
+# role-specific:traefik
+kanboard_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
+kanboard_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
+# /role-specific:traefik
+
+########################################################################
+#                                                                      #
+# /kanboard                                                            #
+#                                                                      #
+########################################################################
+# /role-specific:kanboard
 
 
 
@@ -7572,6 +7754,17 @@ mash_playbook_mariadb_managed_databases_auto_itemized:
     }}
   # /role-specific:healthchecks
 
+  # role-specific:kanboard
+  - |-
+    {{
+      ({
+        'name': kanboard_database_name,
+        'username': kanboard_database_mysql_username,
+        'password': kanboard_database_mysql_password,
+      } if kanboard_enabled and kanboard_database_mysql_hostname == mariadb_connection_hostname and kanboard_database_type == 'mysql' else omit)
+    }}
+  # /role-specific:kanboard
+
   # role-specific:kutt
   - |-
     {{
@@ -7609,10 +7802,10 @@ mash_playbook_mariadb_managed_databases_auto_itemized:
   - |-
     {{
       ({
-        'name': matomo_config_database_name,
-        'username': matomo_config_database_username,
-        'password': matomo_config_database_password,
-      } if matomo_enabled and matomo_config_database_hostname == mariadb_connection_hostname else omit)
+        'name': matomo_database_name,
+        'username': matomo_database_username,
+        'password': matomo_database_password,
+      } if matomo_enabled and matomo_database_hostname == mariadb_connection_hostname else omit)
     }}
   # /role-specific:matomo
 
@@ -7768,6 +7961,17 @@ mash_playbook_mariadb_managed_databases_auto_itemized:
     }}
   # /role-specific:wordpress
 
+  # role-specific:writefreely
+  - |-
+    {{
+      ({
+        'name': writefreely_database_name,
+        'username': writefreely_database_username,
+        'password': writefreely_database_password,
+      } if writefreely_enabled and writefreely_database_hostname == mariadb_connection_hostname and writefreely_database_type == 'mysql' else omit)
+    }}
+  # /role-specific:writefreely
+
   # role-specific:yourls
   - |-
     {{
@@ -7806,14 +8010,14 @@ matomo_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_d
 matomo_uid: "{{ mash_playbook_uid }}"
 matomo_gid: "{{ mash_playbook_gid }}"
 
-matomo_systemd_required_systemd_services_list_auto: |
+matomo_systemd_required_services_list_auto: |
   {{
-    ([mariadb_identifier ~ '.service'] if mariadb_enabled and matomo_config_database_hostname == mariadb_connection_hostname else [])
+    ([mariadb_identifier ~ '.service'] if mariadb_enabled and matomo_database_hostname == mariadb_connection_hostname else [])
   }}
 
 matomo_container_additional_networks_auto: |
   {{
-    ([mariadb_container_network] if mariadb_enabled and matomo_config_database_hostname == mariadb_connection_hostname and matomo_container_network != mariadb_container_network else [])
+    ([mariadb_container_network] if mariadb_enabled and matomo_database_hostname == mariadb_connection_hostname and matomo_container_network != mariadb_container_network else [])
     +
     ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
   }}
@@ -7824,12 +8028,9 @@ matomo_container_labels_traefik_compression_middleware_enabled: "{{ mash_playboo
 matomo_container_labels_traefik_compression_middleware_name: "{{ mash_playbook_reverse_proxy_traefik_middleware_compession_name if mash_playbook_reverse_proxy_traefik_middleware_compession_enabled else '' }}"
 
 # role-specific:mariadb
-matomo_config_database_hostname: "{{ mariadb_connection_hostname if mariadb_enabled else '' }}"
-matomo_config_database_port: "{{ mariadb_connection_port if mariadb_enabled | default(false) else '3306' }}"
-matomo_config_database_username: "matomo"
-matomo_config_database_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'db.matomo', rounds=655555) | to_uuid }}"
-matomo_config_database_adapter: "mysql"
-matomo_config_database_tables_prefix: "matomo_"
+matomo_database_hostname: "{{ mariadb_connection_hostname if mariadb_enabled else '' }}"
+matomo_database_port: "{{ mariadb_connection_port if mariadb_enabled else '3306' }}"
+matomo_database_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'db.matomo', rounds=655555) | to_uuid }}"
 # /role-specific:mariadb
 
 # role-specific:traefik
@@ -8262,6 +8463,45 @@ mongodb_managed_databases_auto: "{{ mash_playbook_mongodb_managed_databases_auto
 #                                                                      #
 ########################################################################
 # /role-specific:mongodb
+
+
+
+# role-specific:moodist
+########################################################################
+#                                                                      #
+# moodist                                                              #
+#                                                                      #
+########################################################################
+
+moodist_enabled: false
+
+moodist_identifier: "{{ mash_playbook_service_identifier_prefix }}moodist"
+
+moodist_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}moodist"
+
+# The default Docker image requires root user
+moodist_uid: "{{ mash_playbook_uid if moodist_container_image_self_build else '0' }}"
+moodist_gid: "{{ mash_playbook_gid if moodist_container_image_self_build else '0' }}"
+
+moodist_container_additional_networks_auto: |
+  {{
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+  }}
+
+moodist_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+moodist_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+
+# role-specific:traefik
+moodist_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
+moodist_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
+# /role-specific:traefik
+
+########################################################################
+#                                                                      #
+# /moodist                                                             #
+#                                                                      #
+########################################################################
+# /role-specific:moodist
 
 
 
@@ -9183,6 +9423,58 @@ openregex_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_pr
 
 
 
+# role-specific:otterwiki
+########################################################################
+#                                                                      #
+# otterwiki                                                            #
+#                                                                      #
+########################################################################
+
+otterwiki_enabled: false
+
+otterwiki_identifier: "{{ mash_playbook_service_identifier_prefix }}otterwiki"
+
+otterwiki_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}otterwiki"
+
+otterwiki_uid: "{{ mash_playbook_uid }}"
+otterwiki_gid: "{{ mash_playbook_gid }}"
+
+otterwiki_systemd_wanted_services_list_auto: |
+  {{
+    ([(exim_relay_identifier | default('mash-exim-relay')) ~ '.service'] if (exim_relay_enabled | default(false) and otterwiki_environment_variables_mail_server == exim_relay_identifier | default('mash-exim-relay')) else [])
+  }}
+
+otterwiki_container_additional_networks_auto: |
+  {{
+    ([exim_relay_container_network | default('mash-exim-relay')] if (exim_relay_enabled | default(false) and otterwiki_environment_variables_mail_server == exim_relay_identifier | default('mash-exim-relay') and otterwiki_container_network != exim_relay_container_network) else [])
+    +
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+  }}
+
+otterwiki_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+otterwiki_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+
+# role-specific:exim_relay
+otterwiki_environment_variables_mail_server: "{{ exim_relay_identifier if exim_relay_enabled else '' }}"
+otterwiki_environment_variables_mail_port: "{{ 8025 if exim_relay_enabled else '587' }}"
+otterwiki_environment_variables_mail_use_tls: "{{ false if exim_relay_enabled else true }}"
+otterwiki_environment_variables_mail_default_sender: "{{ exim_relay_sender_address if exim_relay_enabled else '' }}"
+# /role-specific:exim_relay
+
+# role-specific:traefik
+otterwiki_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
+otterwiki_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
+# /role-specific:traefik
+
+########################################################################
+#                                                                      #
+# /otterwiki                                                           #
+#                                                                      #
+########################################################################
+# /role-specific:otterwiki
+
+
+
 # role-specific:outline
 ########################################################################
 #                                                                      #
@@ -9448,6 +9740,131 @@ paperless_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_pr
 #                                                                      #
 ########################################################################
 # /role-specific:paperless
+
+
+
+# role-specific:papra
+########################################################################
+#                                                                      #
+# papra                                                                #
+#                                                                      #
+########################################################################
+
+papra_enabled: false
+
+papra_identifier: "{{ mash_playbook_service_identifier_prefix }}papra"
+
+papra_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}papra"
+
+papra_uid: "{{ mash_playbook_uid }}"
+papra_gid: "{{ mash_playbook_gid }}"
+
+papra_systemd_wanted_services_list_auto: |
+  {{
+    ([(exim_relay_identifier | default('mash-exim-relay')) ~ '.service'] if (exim_relay_enabled | default(false) and papra_environment_variables_smtp_host == exim_relay_identifier | default('mash-exim-relay')) else [])
+  }}
+
+papra_container_additional_networks_auto: |
+  {{
+    ([exim_relay_container_network | default('mash-exim-relay')] if (exim_relay_enabled | default(false) and papra_environment_variables_smtp_host == exim_relay_identifier | default('mash-exim-relay') and papra_container_network != exim_relay_container_network) else [])
+    +
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+  }}
+
+papra_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+papra_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+
+papra_environment_variables_auth_secret: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'papra.s', rounds=655555) | to_uuid }}"
+
+# role-specific:exim_relay
+papra_environment_variables_emails_driver: "{{ 'smtp' if exim_relay_enabled }}"
+papra_environment_variables_smtp_host: "{{ exim_relay_identifier if exim_relay_enabled else '' }}"
+papra_environment_variables_smtp_port: "{{ 8025 if exim_relay_enabled else '' }}"
+papra_environment_variables_smtp_secure: "{{ false if exim_relay_enabled }}"
+papra_environment_variables_emails_from_address: "Papra <{{ exim_relay_sender_address if exim_relay_enabled else '' }}>"
+# /role-specific:exim_relay
+
+# role-specific:traefik
+papra_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
+papra_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
+# /role-specific:traefik
+
+########################################################################
+#                                                                      #
+# /papra                                                               #
+#                                                                      #
+########################################################################
+# /role-specific:papra
+
+
+
+# role-specific:pdfding
+########################################################################
+#                                                                      #
+# pdfding                                                              #
+#                                                                      #
+########################################################################
+
+pdfding_enabled: false
+
+pdfding_identifier: "{{ mash_playbook_service_identifier_prefix }}pdfding"
+
+pdfding_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}pdfding"
+
+pdfding_uid: "{{ mash_playbook_uid }}"
+pdfding_gid: "{{ mash_playbook_gid }}"
+
+pdfding_systemd_required_services_list_auto: |
+  {{
+    ([postgres_identifier ~ '.service'] if postgres_enabled | default(false) and pdfding_database_hostname == postgres_connection_hostname and pdfding_database_type == 'postgres' else [])
+  }}
+
+pdfding_systemd_wanted_services_list_auto: |
+  {{
+    ([(exim_relay_identifier | default('mash-exim-relay')) ~ '.service'] if (exim_relay_enabled | default(false) and pdfding_environment_variables_smtp_host == exim_relay_identifier | default('mash-exim-relay')) else [])
+  }}
+
+pdfding_container_additional_networks_auto: |
+  {{
+    ([exim_relay_container_network | default('mash-exim-relay')] if (exim_relay_enabled | default(false) and pdfding_environment_variables_smtp_host == exim_relay_identifier | default('mash-exim-relay') and pdfding_container_network != exim_relay_container_network) else [])
+    +
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+    +
+    ([postgres_container_network] if postgres_enabled | default(false) and pdfding_database_hostname == postgres_connection_hostname and pdfding_container_network != postgres_container_network and pdfding_database_type == 'postgres' else [])
+  }}
+
+pdfding_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+pdfding_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+
+pdfding_database_type: "{{ 'postgres' if postgres_enabled | default(false) else 'sqlite' }}"
+
+pdfding_environment_variables_secret_key: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'pdfding.s', rounds=655555) | to_uuid }}"
+
+# role-specific:exim_relay
+pdfding_environment_variables_email_backend: "{{ 'smtp' if exim_relay_enabled }}"
+pdfding_environment_variables_smtp_host: "{{ exim_relay_identifier if exim_relay_enabled else '' }}"
+pdfding_environment_variables_smtp_port: "{{ 8025 if exim_relay_enabled else '' }}"
+pdfding_environment_variables_email_address: "{{ exim_relay_sender_address if exim_relay_enabled else '' }}"
+pdfding_environment_variables_smtp_use_tls: "{{ false if exim_relay_enabled }}"
+# /role-specific:exim_relay
+
+# role-specific:postgres
+pdfding_database_hostname: "{{ postgres_connection_hostname if postgres_enabled else '' }}"
+pdfding_database_port: "{{ postgres_connection_port if postgres_enabled else '5432' }}"
+pdfding_database_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'db.pdfding', rounds=655555) | to_uuid }}"
+# /role-specific:postgres
+
+# role-specific:traefik
+pdfding_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
+pdfding_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
+# /role-specific:traefik
+
+########################################################################
+#                                                                      #
+# /pdfding                                                             #
+#                                                                      #
+########################################################################
+# /role-specific:pdfding
 
 
 
@@ -10439,6 +10856,131 @@ radicale_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_pri
 #                                                                      #
 ########################################################################
 # /role-specific:radicale
+
+
+
+# role-specific:radicle_explorer
+########################################################################
+#                                                                      #
+# radicle_explorer                                                     #
+#                                                                      #
+########################################################################
+
+radicle_explorer_enabled: false
+
+radicle_explorer_identifier: "{{ mash_playbook_service_identifier_prefix }}radicle-explorer"
+
+radicle_explorer_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}radicle-explorer"
+
+radicle_explorer_uid: "{{ mash_playbook_uid }}"
+radicle_explorer_gid: "{{ mash_playbook_gid }}"
+
+radicle_explorer_container_additional_networks_auto: |
+  {{
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+  }}
+
+radicle_explorer_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+radicle_explorer_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+
+# role-specific:traefik
+radicle_explorer_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
+radicle_explorer_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
+# /role-specific:traefik
+
+########################################################################
+#                                                                      #
+# /radicle_explorer                                                    #
+#                                                                      #
+########################################################################
+# /role-specific:radicle_explorer
+
+
+
+# role-specific:radicle_httpd
+########################################################################
+#                                                                      #
+# radicle_httpd                                                        #
+#                                                                      #
+########################################################################
+
+radicle_httpd_enabled: false
+
+radicle_httpd_identifier: "{{ mash_playbook_service_identifier_prefix }}radicle-httpd"
+
+radicle_httpd_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}radicle-httpd"
+
+# Run as the same user as radicle_node does
+radicle_httpd_uid: "{{ radicle_node_uid }}"
+radicle_httpd_gid: "{{ radicle_node_gid }}"
+
+radicle_httpd_systemd_required_services_list_auto: |
+  {{
+    ([radicle_node_identifier ~ '.service'] if radicle_node_enabled else [])
+  }}
+
+radicle_httpd_container_additional_networks_auto: |
+  {{
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+    +
+    ([radicle_node_container_network] if radicle_node_enabled and radicle_httpd_container_network != radicle_node_container_network else [])
+  }}
+
+radicle_httpd_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+radicle_httpd_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+
+# role-specific:radicle_node
+radicle_httpd_config_rad_passphrase: "{{ radicle_node_config_rad_passphrase }}"
+radicle_httpd_data_path: "{{ radicle_node_data_path }}" # The Docker volume is shared with `radicle_node`
+radicle_httpd_environment_variables_rad_home: "{{ radicle_node_environment_variables_rad_home }}" # This sets the same value to RAD_HOME as `radicle_node` does
+radicle_httpd_hostname: "{{ radicle_node_hostname }}" # The service is hosted with the same hostname as `radicle_node` is
+# /role-specific:radicle_node
+
+# role-specific:traefik
+radicle_httpd_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
+radicle_httpd_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
+# /role-specific:traefik
+
+########################################################################
+#                                                                      #
+# /radicle_httpd                                                       #
+#                                                                      #
+########################################################################
+# /role-specific:radicle_httpd
+
+
+
+# role-specific:radicle_node
+########################################################################
+#                                                                      #
+# radicle_node                                                         #
+#                                                                      #
+########################################################################
+
+radicle_node_enabled: false
+
+radicle_node_identifier: "{{ mash_playbook_service_identifier_prefix }}radicle-node"
+
+radicle_node_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}radicle-node"
+
+# Apparently the UID and GID are fixed
+# Also see: https://app.radicle.xyz/nodes/iris.radicle.xyz/rad%3Az26FDgNVVRUfPpLiUvUksoFPFkwdw/commits/5a095b1816ec75522d59ede8e258844763e1f1ae
+radicle_node_uid: "11011"
+radicle_node_gid: "11011"
+
+radicle_node_container_additional_networks_auto: |
+  {{
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+  }}
+
+radicle_node_config_rad_passphrase: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'radicle.node', rounds=655555) | to_uuid }}"
+
+########################################################################
+#                                                                      #
+# /radicle_node                                                        #
+#                                                                      #
+########################################################################
+# /role-specific:radicle_node
 
 
 
@@ -12265,13 +12807,42 @@ writefreely_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_b
 writefreely_uid: "{{ mash_playbook_uid }}"
 writefreely_gid: "{{ mash_playbook_gid }}"
 
+writefreely_systemd_required_services_list_auto: |
+  {{
+    ([mariadb_identifier ~ '.service'] if mariadb_enabled | default(false) and writefreely_database_hostname == mariadb_connection_hostname and writefreely_database_type == 'mysql' else [])
+  }}
+
+writefreely_systemd_wanted_services_list_auto: |
+  {{
+    ([(exim_relay_identifier | default('mash-exim-relay')) ~ '.service'] if (exim_relay_enabled | default(false) and writefreely_environment_variables_smtp_host == exim_relay_identifier | default('mash-exim-relay')) else [])
+  }}
+
 writefreely_container_additional_networks_auto: |
   {{
+    ([exim_relay_container_network | default('mash-exim-relay')] if (exim_relay_enabled | default(false) and writefreely_environment_variables_smtp_host == exim_relay_identifier | default('mash-exim-relay') and writefreely_container_network != exim_relay_container_network) else [])
+    +
+    ([mariadb_container_network] if mariadb_enabled | default(false) and writefreely_database_hostname == mariadb_connection_hostname and writefreely_container_network != mariadb_container_network and writefreely_database_type == 'mysql' else [])
+    +
     ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
   }}
 
 writefreely_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
 writefreely_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+
+# role-specific:exim_relay
+writefreely_environment_variables_domain: "{{ exim_relay_hostname }}"
+writefreely_environment_variables_smtp_host: "{{ exim_relay_identifier if exim_relay_enabled else '' }}"
+writefreely_environment_variables_smtp_port: "{{ 8025 if exim_relay_enabled else '587' }}"
+writefreely_environment_variables_smtp_enable_start_tls: "{{ false if exim_relay_enabled else '' }}"
+writefreely_environment_variables_smtp_username: mash # dummy random username — without a value specified the SMTP mailer is not enabled
+writefreely_environment_variables_smtp_password: mash # dummy random password — without a value specified the SMTP mailer is not enabled
+# /role-specific:exim_relay
+
+# role-specific:mariadb
+writefreely_database_hostname: "{{ mariadb_connection_hostname if mariadb_enabled else '' }}"
+writefreely_database_port: "{{ mariadb_connection_port if mariadb_enabled else '3306' }}"
+writefreely_database_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'writefreely.db', rounds=655555) | to_uuid }}"
+# /role-specific:mariadb
 
 # role-specific:traefik
 writefreely_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"

@@ -161,6 +161,10 @@
     - role: galaxy/barassistant
     # /role-specific:barassistant
 
+    # role-specific:bentopdf
+    - role: galaxy/bentopdf
+    # /role-specific:bentopdf
+
     # role-specific:bind
     - role: galaxy/bind
     # /role-specific:bind
@@ -389,6 +393,10 @@
     - role: galaxy/joplin_server
     # /role-specific:joplin_server
 
+    # role-specific:kanboard
+    - role: galaxy/kanboard
+    # /role-specific:kanboard
+
     # role-specific:karakeep
     - role: galaxy/karakeep
     # /role-specific:karakeep
@@ -485,6 +493,10 @@
     - role: galaxy/mongodb
     # /role-specific:mongodb
 
+    # role-specific:moodist
+    - role: galaxy/moodist
+    # /role-specific:moodist
+
     # role-specific:mosquitto
     - role: galaxy/mosquitto
     # /role-specific:mosquitto
@@ -557,6 +569,10 @@
     - role: galaxy/openregex
     # /role-specific:openregex
 
+    # role-specific:otterwiki
+    - role: galaxy/otterwiki
+    # /role-specific:otterwiki
+
     # role-specific:outline
     - role: galaxy/outline
     # /role-specific:outline
@@ -576,6 +592,14 @@
     # role-specific:paperless
     - role: galaxy/paperless
     # /role-specific:paperless
+
+    # role-specific:papra
+    - role: galaxy/papra
+    # /role-specific:papra
+
+    # role-specific:pdfding
+    - role: galaxy/pdfding
+    # /role-specific:pdfding
 
     # role-specific:peertube
     - role: galaxy/peertube
@@ -656,6 +680,18 @@
     # role-specific:radicale
     - role: galaxy/radicale
     # /role-specific:radicale
+
+    # role-specific:radicle_explorer
+    - role: galaxy/radicle_explorer
+    # /role-specific:radicle_explorer
+
+    # role-specific:radicle_httpd
+    - role: galaxy/radicle_httpd
+    # /role-specific:radicle_httpd
+
+    # role-specific:radicle_node
+    - role: galaxy/radicle_node
+    # /role-specific:radicle_node
 
     # role-specific:reactflux
     - role: galaxy/reactflux
