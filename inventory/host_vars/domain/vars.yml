@@ -646,7 +646,6 @@ headplane_enabled: true
 
 headplane_hostname: "headplane.{{ domain }}"
 headplane_cookie_secret: "{{ vault_headplane_cookie_secret }}"
-headplane_config_integration_agent_pre_authkey: "{{ vault_headplane_agent_pre_authkey }}"
 
 headscale_extra_records_path_enabled: true
 headplane_headscale_config_path_mount_options: readwrite
