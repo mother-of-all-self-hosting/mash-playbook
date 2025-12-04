@@ -30,6 +30,12 @@ headplane_enabled: true
 
 headplane_hostname: headplane.example.com
 
+# The secret used to encode and decode web sessions
+# Ensure that this is exactly 32 characters long
+#
+# Generate with `pwgen -s 32 1` or in another way
+headplane_cookie_secret: ''
+
 ########################################################################
 #                                                                      #
 # /headplane                                                           #
