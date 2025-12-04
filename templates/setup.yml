@@ -749,6 +749,10 @@
     - role: galaxy/soft_serve
     # /role-specific:soft_serve
 
+    # role-specific:solidinvoice
+    - role: galaxy/solidinvoice
+    # /role-specific:solidinvoice
+
     # role-specific:sonarr
     - role: galaxy/sonarr
     # /role-specific:sonarr
