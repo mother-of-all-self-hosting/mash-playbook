@@ -979,6 +979,11 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
     {{ ({'name': (soft_serve_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'soft-serve']} if soft_serve_enabled else omit) }}
   # /role-specific:soft_serve
 
+  # role-specific:solidinvoice
+  - |-
+    {{ ({'name': (solidinvoice_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'solidinvoice']} if solidinvoice_enabled else omit) }}
+  # /role-specific:solidinvoice
+
   # role-specific:sonarr
   - |-
     {{ ({'name': (sonarr_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'sonarr']} if sonarr_enabled else omit) }}
@@ -1782,6 +1787,17 @@ mash_playbook_postgres_managed_databases_auto_itemized:
       } if sftpgo_enabled and sftpgo_database_postgresql_hostname == postgres_connection_hostname and sftpgo_environment_variables_data_provider_driver == 'postgresql' else omit)
     }}
   # /role-specific:sftpgo
+
+  # role-specific:solidinvoice
+  - |-
+    {{
+      ({
+        'name': solidinvoice_database_name,
+        'username': solidinvoice_database_postgres_username,
+        'password': solidinvoice_database_postgres_password,
+      } if solidinvoice_enabled and solidinvoice_database_postgres_hostname == postgres_connection_hostname and solidinvoice_database_type == 'postgres' else omit)
+    }}
+  # /role-specific:solidinvoice
 
   # role-specific:tandoor
   - |-
@@ -7881,6 +7897,17 @@ mash_playbook_mariadb_managed_databases_auto_itemized:
     }}
   # /role-specific:semaphore
 
+  # role-specific:solidinvoice
+  - |-
+    {{
+      ({
+        'name': solidinvoice_database_name,
+        'username': solidinvoice_database_mysql_username,
+        'password': solidinvoice_database_mysql_password,
+      } if solidinvoice_enabled and solidinvoice_database_mysql_hostname == mariadb_connection_hostname and solidinvoice_database_type == 'mysql' else omit)
+    }}
+  # /role-specific:solidinvoice
+
   # role-specific:sftpgo
   - |-
     {{
@@ -11608,6 +11635,74 @@ soft_serve_gid: "{{ mash_playbook_gid }}"
 #                                                                      #
 ########################################################################
 # /role-specific:soft_serve
+
+
+
+# role-specific:solidinvoice
+########################################################################
+#                                                                      #
+# solidinvoice                                                         #
+#                                                                      #
+########################################################################
+
+solidinvoice_enabled: false
+
+solidinvoice_identifier: "{{ mash_playbook_service_identifier_prefix }}solidinvoice"
+
+solidinvoice_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}solidinvoice"
+
+solidinvoice_uid: "{{ mash_playbook_uid }}"
+solidinvoice_gid: "{{ mash_playbook_gid }}"
+
+solidinvoice_systemd_required_services_list_auto: |
+  {{
+    ([mariadb_identifier ~ '.service'] if mariadb_enabled | default(false) and solidinvoice_database_mysql_hostname == mariadb_connection_hostname and solidinvoice_database_type == 'mysql' else [])
+    +
+    ([postgres_identifier ~ '.service'] if postgres_enabled | default(false) and solidinvoice_database_postgres_hostname == postgres_connection_hostname and solidinvoice_database_type == 'postgres' else [])
+  }}
+
+solidinvoice_systemd_wanted_services_list_auto: |
+  {{
+    ([(exim_relay_identifier | default('mash-exim-relay')) ~ '.service'] if exim_relay_enabled | default(false) else [])
+  }}
+
+solidinvoice_container_additional_networks_auto: |
+  {{
+    ([exim_relay_container_network | default('mash-exim-relay')] if (exim_relay_enabled | default(false) and solidinvoice_container_network != exim_relay_container_network) else [])
+    +
+    ([mariadb_container_network] if mariadb_enabled | default(false) and solidinvoice_database_mysql_hostname == mariadb_connection_hostname and solidinvoice_container_network != mariadb_container_network and solidinvoice_database_type == 'mysql' else [])
+    +
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+    +
+    ([postgres_container_network] if postgres_enabled | default(false) and solidinvoice_database_postgres_hostname == postgres_connection_hostname and solidinvoice_container_network != postgres_container_network and solidinvoice_database_type == 'postgres' else [])
+  }}
+
+solidinvoice_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+solidinvoice_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+
+# role-specific:mariadb
+solidinvoice_database_mysql_hostname: "{{ mariadb_connection_hostname if mariadb_enabled else '' }}"
+solidinvoice_database_mysql_port: "{{ mariadb_connection_port if mariadb_enabled else '3306' }}"
+solidinvoice_database_mysql_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'db.si.m', rounds=655555) | to_uuid }}"
+# /role-specific:mariadb
+
+# role-specific:postgres
+solidinvoice_database_postgres_hostname: "{{ postgres_connection_hostname if postgres_enabled else '' }}"
+solidinvoice_database_postgres_port: "{{ postgres_connection_port if postgres_enabled else '5432' }}"
+solidinvoice_database_postgres_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'db.si.p', rounds=655555) | to_uuid }}"
+# /role-specific:postgres
+
+# role-specific:traefik
+solidinvoice_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
+solidinvoice_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
+# /role-specific:traefik
+
+########################################################################
+#                                                                      #
+# /solidinvoice                                                        #
+#                                                                      #
+########################################################################
+# /role-specific:solidinvoice
 
 
 
