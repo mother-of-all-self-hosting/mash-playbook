@@ -20,14 +20,14 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
 # SolidInvoice
 
-The playbook can install and configure [SolidInvoice](https://solidinvoice.org/) for you.
+The playbook can install and configure [SolidInvoice](https://github.com/SolidInvoice/SolidInvoice) for you.
 
-SolidInvoice is web-based free software for farm management, planning, and record keeping. It is developed by a community of farmers, developers, researchers, and organizations.
+SolidInvoice is a web-based free software for invoicing.
 
-See the project's [documentation](https://solidinvoice.org/guide/) to learn what SolidInvoice does and why it might be useful to you.
+See the project's [documentation](https://docs.solidinvoice.co/en/latest/) to learn what SolidInvoice does and why it might be useful to you.
 
-For details about configuring the [Ansible role for SolidInvoice](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az2H8vYeXaYHLzV3jXH1YjVwhuzTsk), you can check them via:
-- 🌐 [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az2H8vYeXaYHLzV3jXH1YjVwhuzTsk/tree/docs/configuring-solidinvoice.md) online
+For details about configuring the [Ansible role for SolidInvoice](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3AzeEwXM9Fp4C8NU4oQfNg474Vivwu), you can check them via:
+- 🌐 [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3AzeEwXM9Fp4C8NU4oQfNg474Vivwu/tree/docs/configuring-solidinvoice.md) online
 - 📁 `roles/galaxy/solidinvoice/docs/configuring-solidinvoice.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 ## Dependencies
@@ -36,6 +36,7 @@ This service requires the following other services:
 
 - [Postgres](postgres.md) / MySQL / [MariaDB](mariadb.md) / [SQLite](https://www.sqlite.org/) database
 - [Traefik](traefik.md) reverse-proxy server
+- (optional) [exim-relay](exim-relay.md) mailer — SolidInvoice are compatible with other email delivery services
 
 ## Adjusting the playbook configuration
 
@@ -61,12 +62,9 @@ solidinvoice_hostname: solidinvoice.example.com
 
 **Note**: hosting SolidInvoice under a subpath (by configuring the `solidinvoice_path_prefix` variable) does not seem to be possible due to SolidInvoice's technical limitations.
 
->[!WARNING]
-> Once the hostname is set, it cannot be changed easily as it involves adjusting configuration files.
-
 ### Select database to use
 
-It is necessary to select a database used by SolidInvoice from a MySQL compatible database, Postgres, and SQLite. See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az2H8vYeXaYHLzV3jXH1YjVwhuzTsk/tree/docs/configuring-solidinvoice.md#specify-database) on the role's documentation for details.
+It is necessary to select a database used by SolidInvoice from a MySQL compatible database, Postgres, and SQLite. See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3AzeEwXM9Fp4C8NU4oQfNg474Vivwu/tree/docs/configuring-solidinvoice.md#specify-database) on the role's documentation for details.
 
 ## Usage
 
@@ -74,8 +72,8 @@ After running the command for installation, the SolidInvoice instance becomes av
 
 To get started, open the URL with a web browser, and follow the set up wizard.
 
-On the set up wizard, it is required to input database credentials to use a MySQL compatible database or Postgres. See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az2H8vYeXaYHLzV3jXH1YjVwhuzTsk/tree/docs/configuring-solidinvoice.md#outputting-database-credentials) on the role's documentation for details about how to check them.
+On the set up wizard, it is required to input database credentials to use a MySQL compatible database or Postgres. See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3AzeEwXM9Fp4C8NU4oQfNg474Vivwu/tree/docs/configuring-solidinvoice.md#outputting-database-credentials) on the role's documentation for details about how to check them.
 
 ## Troubleshooting
 
-See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az2H8vYeXaYHLzV3jXH1YjVwhuzTsk/tree/docs/configuring-solidinvoice.md#troubleshooting) on the role's documentation for details.
+See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3AzeEwXM9Fp4C8NU4oQfNg474Vivwu/tree/docs/configuring-solidinvoice.md#troubleshooting) on the role's documentation for details.
