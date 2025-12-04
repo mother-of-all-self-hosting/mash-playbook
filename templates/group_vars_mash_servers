@@ -761,6 +761,11 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
     {{ ({'name': (oxitraffic_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'oxitraffic']} if oxitraffic_enabled else omit) }}
   # /role-specific:oxitraffic
 
+  # role-specific:papra
+  - |-
+    {{ ({'name': (papra_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'papra']} if papra_enabled else omit) }}
+  # /role-specific:papra
+
   # role-specific:paperless
   - |-
     {{ ({'name': (paperless_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'paperless']} if paperless_enabled else omit) }}
@@ -769,6 +774,11 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
   - |-
     {{ ({'name': (paperless_gotenberg_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'paperless']} if paperless_enabled and paperless_gotenberg_enabled else omit) }}
   # /role-specific:paperless
+
+  # role-specific:pdfding
+  - |-
+    {{ ({'name': (pdfding_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'pdfding']} if pdfding_enabled else omit) }}
+  # /role-specific:pdfding
 
   # role-specific:peertube
   - |-
@@ -1651,6 +1661,17 @@ mash_playbook_postgres_managed_databases_auto_itemized:
       } if paperless_enabled and paperless_database_postgres_hostname == postgres_connection_hostname and paperless_database_type == 'postgres' else omit)
     }}
   # /role-specific:paperless
+
+  # role-specific:pdfding
+  - |-
+    {{
+      ({
+        'name': pdfding_database_name,
+        'username': pdfding_database_username,
+        'password': pdfding_database_password,
+      } if pdfding_enabled and pdfding_database_hostname == postgres_connection_hostname and pdfding_database_type == 'postgres' else omit)
+    }}
+  # /role-specific:pdfding
 
   # role-specific:peertube
   - |-
@@ -7935,6 +7956,17 @@ mash_playbook_mariadb_managed_databases_auto_itemized:
     }}
   # /role-specific:wordpress
 
+  # role-specific:writefreely
+  - |-
+    {{
+      ({
+        'name': writefreely_database_name,
+        'username': writefreely_database_username,
+        'password': writefreely_database_password,
+      } if writefreely_enabled and writefreely_database_hostname == mariadb_connection_hostname and writefreely_database_type == 'mysql' else omit)
+    }}
+  # /role-specific:writefreely
+
   # role-specific:yourls
   - |-
     {{
@@ -9663,6 +9695,131 @@ paperless_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_pr
 #                                                                      #
 ########################################################################
 # /role-specific:paperless
+
+
+
+# role-specific:papra
+########################################################################
+#                                                                      #
+# papra                                                                #
+#                                                                      #
+########################################################################
+
+papra_enabled: false
+
+papra_identifier: "{{ mash_playbook_service_identifier_prefix }}papra"
+
+papra_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}papra"
+
+papra_uid: "{{ mash_playbook_uid }}"
+papra_gid: "{{ mash_playbook_gid }}"
+
+papra_systemd_wanted_services_list_auto: |
+  {{
+    ([(exim_relay_identifier | default('mash-exim-relay')) ~ '.service'] if (exim_relay_enabled | default(false) and papra_environment_variables_smtp_host == exim_relay_identifier | default('mash-exim-relay')) else [])
+  }}
+
+papra_container_additional_networks_auto: |
+  {{
+    ([exim_relay_container_network | default('mash-exim-relay')] if (exim_relay_enabled | default(false) and papra_environment_variables_smtp_host == exim_relay_identifier | default('mash-exim-relay') and papra_container_network != exim_relay_container_network) else [])
+    +
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+  }}
+
+papra_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+papra_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+
+papra_environment_variables_auth_secret: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'papra.s', rounds=655555) | to_uuid }}"
+
+# role-specific:exim_relay
+papra_environment_variables_emails_driver: "{{ 'smtp' if exim_relay_enabled }}"
+papra_environment_variables_smtp_host: "{{ exim_relay_identifier if exim_relay_enabled else '' }}"
+papra_environment_variables_smtp_port: "{{ 8025 if exim_relay_enabled else '' }}"
+papra_environment_variables_smtp_secure: "{{ false if exim_relay_enabled }}"
+papra_environment_variables_emails_from_address: "Papra <{{ exim_relay_sender_address if exim_relay_enabled else '' }}>"
+# /role-specific:exim_relay
+
+# role-specific:traefik
+papra_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
+papra_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
+# /role-specific:traefik
+
+########################################################################
+#                                                                      #
+# /papra                                                               #
+#                                                                      #
+########################################################################
+# /role-specific:papra
+
+
+
+# role-specific:pdfding
+########################################################################
+#                                                                      #
+# pdfding                                                              #
+#                                                                      #
+########################################################################
+
+pdfding_enabled: false
+
+pdfding_identifier: "{{ mash_playbook_service_identifier_prefix }}pdfding"
+
+pdfding_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}pdfding"
+
+pdfding_uid: "{{ mash_playbook_uid }}"
+pdfding_gid: "{{ mash_playbook_gid }}"
+
+pdfding_systemd_required_services_list_auto: |
+  {{
+    ([postgres_identifier ~ '.service'] if postgres_enabled | default(false) and pdfding_database_hostname == postgres_connection_hostname and pdfding_database_type == 'postgres' else [])
+  }}
+
+pdfding_systemd_wanted_services_list_auto: |
+  {{
+    ([(exim_relay_identifier | default('mash-exim-relay')) ~ '.service'] if (exim_relay_enabled | default(false) and pdfding_environment_variables_smtp_host == exim_relay_identifier | default('mash-exim-relay')) else [])
+  }}
+
+pdfding_container_additional_networks_auto: |
+  {{
+    ([exim_relay_container_network | default('mash-exim-relay')] if (exim_relay_enabled | default(false) and pdfding_environment_variables_smtp_host == exim_relay_identifier | default('mash-exim-relay') and pdfding_container_network != exim_relay_container_network) else [])
+    +
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+    +
+    ([postgres_container_network] if postgres_enabled | default(false) and pdfding_database_hostname == postgres_connection_hostname and pdfding_container_network != postgres_container_network and pdfding_database_type == 'postgres' else [])
+  }}
+
+pdfding_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+pdfding_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+
+pdfding_database_type: "{{ 'postgres' if postgres_enabled | default(false) else 'sqlite' }}"
+
+pdfding_environment_variables_secret_key: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'pdfding.s', rounds=655555) | to_uuid }}"
+
+# role-specific:exim_relay
+pdfding_environment_variables_email_backend: "{{ 'smtp' if exim_relay_enabled }}"
+pdfding_environment_variables_smtp_host: "{{ exim_relay_identifier if exim_relay_enabled else '' }}"
+pdfding_environment_variables_smtp_port: "{{ 8025 if exim_relay_enabled else '' }}"
+pdfding_environment_variables_email_address: "{{ exim_relay_sender_address if exim_relay_enabled else '' }}"
+pdfding_environment_variables_smtp_use_tls: "{{ false if exim_relay_enabled }}"
+# /role-specific:exim_relay
+
+# role-specific:postgres
+pdfding_database_hostname: "{{ postgres_connection_hostname if postgres_enabled else '' }}"
+pdfding_database_port: "{{ postgres_connection_port if postgres_enabled else '5432' }}"
+pdfding_database_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'db.pdfding', rounds=655555) | to_uuid }}"
+# /role-specific:postgres
+
+# role-specific:traefik
+pdfding_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
+pdfding_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
+# /role-specific:traefik
+
+########################################################################
+#                                                                      #
+# /pdfding                                                             #
+#                                                                      #
+########################################################################
+# /role-specific:pdfding
 
 
 
@@ -12605,13 +12762,42 @@ writefreely_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_b
 writefreely_uid: "{{ mash_playbook_uid }}"
 writefreely_gid: "{{ mash_playbook_gid }}"
 
+writefreely_systemd_required_services_list_auto: |
+  {{
+    ([mariadb_identifier ~ '.service'] if mariadb_enabled | default(false) and writefreely_database_hostname == mariadb_connection_hostname and writefreely_database_type == 'mysql' else [])
+  }}
+
+writefreely_systemd_wanted_services_list_auto: |
+  {{
+    ([(exim_relay_identifier | default('mash-exim-relay')) ~ '.service'] if (exim_relay_enabled | default(false) and writefreely_environment_variables_smtp_host == exim_relay_identifier | default('mash-exim-relay')) else [])
+  }}
+
 writefreely_container_additional_networks_auto: |
   {{
+    ([exim_relay_container_network | default('mash-exim-relay')] if (exim_relay_enabled | default(false) and writefreely_environment_variables_smtp_host == exim_relay_identifier | default('mash-exim-relay') and writefreely_container_network != exim_relay_container_network) else [])
+    +
+    ([mariadb_container_network] if mariadb_enabled | default(false) and writefreely_database_hostname == mariadb_connection_hostname and writefreely_container_network != mariadb_container_network and writefreely_database_type == 'mysql' else [])
+    +
     ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
   }}
 
 writefreely_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
 writefreely_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+
+# role-specific:exim_relay
+writefreely_environment_variables_domain: "{{ exim_relay_hostname }}"
+writefreely_environment_variables_smtp_host: "{{ exim_relay_identifier if exim_relay_enabled else '' }}"
+writefreely_environment_variables_smtp_port: "{{ 8025 if exim_relay_enabled else '587' }}"
+writefreely_environment_variables_smtp_enable_start_tls: "{{ false if exim_relay_enabled else '' }}"
+writefreely_environment_variables_smtp_username: mash # dummy random username — without a value specified the SMTP mailer is not enabled
+writefreely_environment_variables_smtp_password: mash # dummy random password — without a value specified the SMTP mailer is not enabled
+# /role-specific:exim_relay
+
+# role-specific:mariadb
+writefreely_database_hostname: "{{ mariadb_connection_hostname if mariadb_enabled else '' }}"
+writefreely_database_port: "{{ mariadb_connection_port if mariadb_enabled else '3306' }}"
+writefreely_database_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'writefreely.db', rounds=655555) | to_uuid }}"
+# /role-specific:mariadb
 
 # role-specific:traefik
 writefreely_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"

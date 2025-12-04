@@ -19,7 +19,7 @@ jobs:
     if: github.repository == 'mother-of-all-self-hosting/mash-playbook'
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/stale@v10.1.0
+      - uses: actions/stale@v10.1.1
         with:
           ######################################################################
           # Issues/PRs
