@@ -313,7 +313,7 @@
   name: jackett
   activation_prefix: jackett_
 - src: git+https://github.com/spatterIight/ansible-role-jellyfin.git
-  version: v10.11.3-0
+  version: v10.11.4-0
   name: jellyfin
   activation_prefix: jellyfin_
 - src: git+https://github.com/sudo-Tiz/ansible-role-jellyseerr.git
