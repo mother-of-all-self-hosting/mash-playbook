@@ -121,7 +121,7 @@
   name: couchdb
   activation_prefix: couchdb_
 - src: git+https://seed.radicle.garden/z2zgHMDh4Pb8yr4DH8BVkMcdboBXd.git
-  version: v10.19.4-2
+  version: v10.19.4-3
   name: cyberchef
   activation_prefix: cyberchef_
 - src: git+https://github.com/geerlingguy/ansible-role-docker
