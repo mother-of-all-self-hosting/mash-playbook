@@ -19,14 +19,14 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
 # MailCrab
 
-The playbook can install and configure [MailCrab](https://mailcrab.me) for you.
+The playbook can install and configure [MailCrab](https://github.com/tweedegolf/mailcrab) for you.
 
-MailCrab is the SMTP server which catches any message sent to it and displays in a web interface instead of sending it to the outside of the internal network, making it possible to check messages without using an actual email address.
+MailCrab is the SMTP server written in Rust, which catches any message sent to it and displays in a web interface instead of sending it to the outside of the internal network, making it possible to check messages without using an actual email address.
 
-See the project's [documentation](https://mailcrab.me) to learn what MailCrab does and why it might be useful to you.
+See the project's [documentation](https://github.com/tweedegolf/mailcrab/blob/main/README.md) to learn what MailCrab does and why it might be useful to you.
 
-For details about configuring the [Ansible role for MailCrab](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3QmarrgiC7ZGmd7UCTW2EZTheCZb), you can check them via:
-- 🌐 [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3QmarrgiC7ZGmd7UCTW2EZTheCZb/tree/docs/configuring-mailcrab.md) online
+For details about configuring the [Ansible role for MailCrab](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3rh69mtu7bBk5K1WmAkVEBTy6NpW), you can check them via:
+- 🌐 [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3rh69mtu7bBk5K1WmAkVEBTy6NpW/tree/docs/configuring-mailcrab.md) online
 - 📁 `roles/galaxy/mailcrab/docs/configuring-mailcrab.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 ## Dependencies
@@ -42,7 +42,7 @@ To enable this service, add the following configuration to your `vars.yml` file 
 ```yaml
 ########################################################################
 #                                                                      #
-# mailcrab                                                          #
+# mailcrab                                                             #
 #                                                                      #
 ########################################################################
 
@@ -52,7 +52,7 @@ mailcrab_hostname: mailcrab.example.com
 
 ########################################################################
 #                                                                      #
-# /mailcrab                                                         #
+# /mailcrab                                                            #
 #                                                                      #
 ########################################################################
 ```
@@ -61,7 +61,7 @@ mailcrab_hostname: mailcrab.example.com
 
 ### Configuring HTTP Basic authentication
 
-Since there does not exist an authentication system on the web interface, the HTTP Basic authentication on Traefik is enabled for the web interface by default, considering the nature of the service. See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3QmarrgiC7ZGmd7UCTW2EZTheCZb/tree/docs/configuring-mailcrab.md#configuring-http-basic-authentication) on the role's documentation for details about how to set it up.
+Since there does not exist an authentication system on the web interface, the HTTP Basic authentication on Traefik is enabled for the web interface by default, considering the nature of the service. See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3rh69mtu7bBk5K1WmAkVEBTy6NpW/tree/docs/configuring-mailcrab.md#configuring-http-basic-authentication) on the role's documentation for details about how to set it up.
 
 ## Usage
 
@@ -89,4 +89,4 @@ You can check the message sent by the asciinema server at `https://mailcrab.exam
 
 ## Troubleshooting
 
-See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3QmarrgiC7ZGmd7UCTW2EZTheCZb/tree/docs/configuring-mailcrab.md#troubleshooting) on the role's documentation for details.
+See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3rh69mtu7bBk5K1WmAkVEBTy6NpW/tree/docs/configuring-mailcrab.md#troubleshooting) on the role's documentation for details.
