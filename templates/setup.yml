@@ -449,6 +449,10 @@
     - role: galaxy/loki
     # /role-specific:loki
 
+    # role-specific:mailcatcher
+    - role: galaxy/mailcatcher
+    # /role-specific:mailcatcher
+
     # role-specific:mariadb
     - role: galaxy/mariadb
     # /role-specific:mariadb

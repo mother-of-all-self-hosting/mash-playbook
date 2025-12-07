@@ -577,6 +577,11 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
     {{ ({'name': (loki_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'loki']} if loki_enabled else omit) }}
   # /role-specific:loki
 
+  # role-specific:mailcatcher
+  - |-
+    {{ ({'name': (mailcatcher_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'mailcatcher']} if mailcatcher_enabled else omit) }}
+  # /role-specific:mailcatcher
+
   # role-specific:mariadb
   - |-
     {{ ({'name': (mariadb_identifier + '.service'), 'priority': 500, 'groups': ['mash', 'mariadb']} if mariadb_enabled else omit) }}
@@ -7637,6 +7642,44 @@ loki_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary
 #                                                                      #
 ########################################################################
 # /role-specific:loki
+
+
+
+# role-specific:mailcatcher
+########################################################################
+#                                                                      #
+# mailcatcher                                                          #
+#                                                                      #
+########################################################################
+
+mailcatcher_enabled: false
+
+mailcatcher_identifier: "{{ mash_playbook_service_identifier_prefix }}mailcatcher"
+
+mailcatcher_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}mailcatcher"
+
+mailcatcher_uid: "{{ mash_playbook_uid }}"
+mailcatcher_gid: "{{ mash_playbook_gid }}"
+
+mailcatcher_container_additional_networks_auto: |
+  {{
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+  }}
+
+mailcatcher_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+mailcatcher_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+
+# role-specific:traefik
+mailcatcher_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
+mailcatcher_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
+# /role-specific:traefik
+
+########################################################################
+#                                                                      #
+# /mailcatcher                                                         #
+#                                                                      #
+########################################################################
+# /role-specific:mailcatcher
 
 
 
