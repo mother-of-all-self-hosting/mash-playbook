@@ -90,3 +90,7 @@ You can check the message sent by the asciinema server at `https://mailcrab.exam
 ## Troubleshooting
 
 See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3rh69mtu7bBk5K1WmAkVEBTy6NpW/tree/docs/configuring-mailcrab.md#troubleshooting) on the role's documentation for details.
+
+## Related services
+
+- [MailCatcher](mailcatcher.md) — SMTP server which catches any message sent to it and displays in a web interface; drop-in replacement of MailCrab
