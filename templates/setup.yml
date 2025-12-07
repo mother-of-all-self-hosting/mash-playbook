@@ -453,6 +453,10 @@
     - role: galaxy/mailcatcher
     # /role-specific:mailcatcher
 
+    # role-specific:mailcrab
+    - role: galaxy/mailcrab
+    # /role-specific:mailcrab
+
     # role-specific:mariadb
     - role: galaxy/mariadb
     # /role-specific:mariadb
