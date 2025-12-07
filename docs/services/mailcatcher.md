@@ -19,14 +19,14 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
 # MailCatcher
 
-The playbook can install and configure [MailCatcher](https://codeberg.org/mailcatcher/mailcatcher) for you.
+The playbook can install and configure [MailCatcher](https://mailcatcher.me) for you.
 
-MailCatcher allows you to view GitHub repositories without exposing your IP address, browsing habits, and other browser fingerprinting data to the website.
+MailCatcher is the SMTP server which catches any message sent to it and displays in a web interface instead of sending it to the outside of the internal network, making it possible to check messages without using an actual email address.
 
-See the project's [documentation](https://codeberg.org/mailcatcher/mailcatcher/src/branch/dev/README.md) to learn what MailCatcher does and why it might be useful to you.
+See the project's [documentation](https://mailcatcher.me) to learn what MailCatcher does and why it might be useful to you.
 
-For details about configuring the [Ansible role for MailCatcher](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3AzFVv3koKtheJTTwPSjF3J6DajePK), you can check them via:
-- 🌐 [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3AzFVv3koKtheJTTwPSjF3J6DajePK/tree/docs/configuring-mailcatcher.md) online
+For details about configuring the [Ansible role for MailCatcher](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3QmarrgiC7ZGmd7UCTW2EZTheCZb), you can check them via:
+- 🌐 [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3QmarrgiC7ZGmd7UCTW2EZTheCZb/tree/docs/configuring-mailcatcher.md) online
 - 📁 `roles/galaxy/mailcatcher/docs/configuring-mailcatcher.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 ## Dependencies
@@ -57,23 +57,36 @@ mailcatcher_hostname: mailcatcher.example.com
 ########################################################################
 ```
 
-**Note**: hosting MailCatcher under a subpath (by configuring the `mailcatcher_path_prefix` variable) does not seem to be possible due to MailCatcher's technical limitations.
+**Note**: hosting MailCatcher's web interface under a subpath (by configuring the `mailcatcher_path_prefix` variable) does not seem to be possible due to MailCatcher's technical limitations.
 
-There are other settings which need configuring such as ones about instance's management and its transparency. See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3AzFVv3koKtheJTTwPSjF3J6DajePK/tree/docs/configuring-mailcatcher.md#enable-disable-proxying-non-essential-data) on the role's documentation for details.
+### Configuring HTTP Basic authentication
+
+Since there does not exist an authentication system on the web interface, the HTTP Basic authentication on Traefik is enabled for the web interface by default, considering the nature of the service. See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3QmarrgiC7ZGmd7UCTW2EZTheCZb/tree/docs/configuring-mailcatcher.md#configuring-http-basic-authentication) on the role's documentation for details about how to set it up.
 
 ## Usage
 
-After running the command for installation, the MailCatcher instance becomes available at the URL specified with `mailcatcher_hostname`. With the configuration above, the service is hosted at `https://mailcatcher.example.com`.
+After running the command for installation, the MailCatcher instance becomes available at the hostname `mash-mailcatcher`. Its web interface is hosted at `https://mailcatcher.example.com`, with the configuration above.
 
-[Libredirect](https://libredirect.github.io/), an extension for Firefox and Chromium-based desktop browsers, has support for redirections to MailCatcher.
+### Configuring SMTP server settings
 
-If you would like to make your instance public so that it can be used by anyone including Libredirect, please consider to send a PR to the [upstream project](https://codeberg.org/mailcatcher/mailcatcher-instances) to add yours to [`instances.json`](https://codeberg.org/mailcatcher/mailcatcher-instances/src/branch/master/instances.json), which Libredirect automatically fetches using a script (see [this FAQ entry](https://libredirect.github.io/faq.html#where_the_hell_are_those_instances_coming_from)).
+To use MailCatcher with other services of this playbook, you can configure the setting about the SMTP server to point it to `mash-mailcatcher` with the port number `1025`. As MailCatcher just works on the same network as those services do, you can set any random email address (even nonexistent one like `example@example.com` or `a@a.com`) to the service.
+
+For example, you can get the [asciinema server](asciinema-server.md) send logging in or user registration messages to MailCatcher by adding the following configuration to your `vars.yml` file, so that the service will use the SMTP server instead of the default [exim-relay](exim-relay.md) mailer:
+
+```yaml
+asciinema_server_mailer_enabled: true
+asciinema_server_environment_variable_smtp_host: "{{ mailcatcher_identifier }}"
+asciinema_server_environment_variable_smtp_port: 1025
+asciinema_server_environment_variable_mail_from_address: SET_ANY_EMAIL_ADDRESS_HERE
+```
+
+You can check the message sent by the asciinema server at `https://mailcatcher.example.com`.
+
+💡 Since the message is not sent to the outside of the internal Docker network, the chance of man-in-the-middle attacks is drastically reduced.
+
+>[!NOTE]
+> Messages are not stored in the persistent storage. They will disappear after the container was stopped or removed.
 
 ## Troubleshooting
 
-See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3AzFVv3koKtheJTTwPSjF3J6DajePK/tree/docs/configuring-mailcatcher.md#troubleshooting) on the role's documentation for details.
-
-## Related services
-
-- [Mozhi](mozhi.md) — Frontend for translation engines
-- [Redlib](redlib.md) — Frontend for Reddit
+See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3QmarrgiC7ZGmd7UCTW2EZTheCZb/tree/docs/configuring-mailcatcher.md#troubleshooting) on the role's documentation for details.
