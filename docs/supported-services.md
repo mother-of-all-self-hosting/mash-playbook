@@ -187,6 +187,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 | [Send](https://github.com/timvisee/send) | Fork of Mozilla's [Firefox Send](https://github.com/mozilla/send) which allows you to send encrypted files to other users | [Link](services/send.md) |
 | [SFTPGo](https://github.com/drakkan/sftpgo/) | File transfer software which supports SFTP, HTTP/S, FTP/S and WebDAV and can connect to various storage backends including S3 (compatible) Object Storage and Google Cloud Storage | [Link](services/sftpgo.md) |
 | [Soft Serve](https://github.com/charmbracelet/soft-serve) | A tasty, self-hostable [Git](https://git-scm.com/) server for the command line | [Link](services/soft-serve.md) |
+| [SolidInvoice](https://github.com/SolidInvoice/SolidInvoice) | Web-based free software for invoicing | [Link](services/solidinvoice.md) |
 | [Sonarr](https://sonarr.tv/) | A smart PVR for newsgroup and bittorrent users | [Link](services/sonarr.md) |
 | [Standalone Snowflake proxy](https://community.torproject.org/relay/setup/snowflake/standalone/) | Help users connect to the [Tor](https://torproject.org/) network in places where Tor is blocked | [Link](services/snowflake.md) |
 | [Statusnook](https://statusnook.com/) | Self-hosted status page deployment service | [Link](services/statusnook.md) |

@@ -704,6 +704,10 @@
   version: v0.10.0-1
   name: soft_serve
   activation_prefix: soft_serve_
+- src: https://seed.radicle.garden/zeEwXM9Fp4C8NU4oQfNg474Vivwu.git
+  version: v2.3.10-0
+  name: solidinvoice
+  activation_prefix: solidinvoice_
 - src: git+https://github.com/spatterIight/ansible-role-sonarr.git
   version: v4.0.15-2
   name: sonarr
