@@ -384,6 +384,10 @@
   version: v3.6.1-0
   name: loki
   activation_prefix: loki_
+- src: https://seed.radicle.garden/z3QmarrgiC7ZGmd7UCTW2EZTheCZb.git
+  version: v0.10.0-0
+  name: mailcatcher
+  activation_prefix: mailcatcher_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-mariadb.git
   version: v12.1.2-0
   name: mariadb
