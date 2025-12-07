@@ -17,17 +17,17 @@ SPDX-FileCopyrightText: 2024 - 2025 Suguru Hirahara
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 
-# MailCatcher
+# MailCrab
 
-The playbook can install and configure [MailCatcher](https://mailcatcher.me) for you.
+The playbook can install and configure [MailCrab](https://mailcrab.me) for you.
 
-MailCatcher is the SMTP server which catches any message sent to it and displays in a web interface instead of sending it to the outside of the internal network, making it possible to check messages without using an actual email address.
+MailCrab is the SMTP server which catches any message sent to it and displays in a web interface instead of sending it to the outside of the internal network, making it possible to check messages without using an actual email address.
 
-See the project's [documentation](https://mailcatcher.me) to learn what MailCatcher does and why it might be useful to you.
+See the project's [documentation](https://mailcrab.me) to learn what MailCrab does and why it might be useful to you.
 
-For details about configuring the [Ansible role for MailCatcher](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3QmarrgiC7ZGmd7UCTW2EZTheCZb), you can check them via:
-- 🌐 [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3QmarrgiC7ZGmd7UCTW2EZTheCZb/tree/docs/configuring-mailcatcher.md) online
-- 📁 `roles/galaxy/mailcatcher/docs/configuring-mailcatcher.md` locally, if you have [fetched the Ansible roles](../installing.md)
+For details about configuring the [Ansible role for MailCrab](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3QmarrgiC7ZGmd7UCTW2EZTheCZb), you can check them via:
+- 🌐 [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3QmarrgiC7ZGmd7UCTW2EZTheCZb/tree/docs/configuring-mailcrab.md) online
+- 📁 `roles/galaxy/mailcrab/docs/configuring-mailcrab.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 ## Dependencies
 
@@ -42,45 +42,45 @@ To enable this service, add the following configuration to your `vars.yml` file 
 ```yaml
 ########################################################################
 #                                                                      #
-# mailcatcher                                                          #
+# mailcrab                                                          #
 #                                                                      #
 ########################################################################
 
-mailcatcher_enabled: true
+mailcrab_enabled: true
 
-mailcatcher_hostname: mailcatcher.example.com
+mailcrab_hostname: mailcrab.example.com
 
 ########################################################################
 #                                                                      #
-# /mailcatcher                                                         #
+# /mailcrab                                                         #
 #                                                                      #
 ########################################################################
 ```
 
-**Note**: hosting MailCatcher's web interface under a subpath (by configuring the `mailcatcher_path_prefix` variable) does not seem to be possible due to MailCatcher's technical limitations.
+**Note**: hosting MailCrab's web interface under a subpath (by configuring the `mailcrab_path_prefix` variable) does not seem to be possible due to MailCrab's technical limitations.
 
 ### Configuring HTTP Basic authentication
 
-Since there does not exist an authentication system on the web interface, the HTTP Basic authentication on Traefik is enabled for the web interface by default, considering the nature of the service. See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3QmarrgiC7ZGmd7UCTW2EZTheCZb/tree/docs/configuring-mailcatcher.md#configuring-http-basic-authentication) on the role's documentation for details about how to set it up.
+Since there does not exist an authentication system on the web interface, the HTTP Basic authentication on Traefik is enabled for the web interface by default, considering the nature of the service. See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3QmarrgiC7ZGmd7UCTW2EZTheCZb/tree/docs/configuring-mailcrab.md#configuring-http-basic-authentication) on the role's documentation for details about how to set it up.
 
 ## Usage
 
-After running the command for installation, the MailCatcher instance becomes available at the hostname `mash-mailcatcher`. Its web interface is hosted at `https://mailcatcher.example.com`, with the configuration above.
+After running the command for installation, the MailCrab instance becomes available at the hostname `mash-mailcrab`. Its web interface is hosted at `https://mailcrab.example.com`, with the configuration above.
 
 ### Configuring SMTP server settings
 
-To use MailCatcher with other services of this playbook, you can configure the setting about the SMTP server to point it to `mash-mailcatcher` with the port number `1025`. As MailCatcher just works on the same network as those services do, you can set any random email address (even nonexistent one like `example@example.com` or `a@a.com`) to the service.
+To use MailCrab with other services of this playbook, you can configure the setting about the SMTP server to point it to `mash-mailcrab` with the port number `1025`. As MailCrab just works on the same network as those services do, you can set any random email address (even nonexistent one like `example@example.com` or `a@a.com`) to the service.
 
-For example, you can get the [asciinema server](asciinema-server.md) send logging in or user registration messages to MailCatcher by adding the following configuration to your `vars.yml` file, so that the service will use the SMTP server instead of the default [exim-relay](exim-relay.md) mailer:
+For example, you can get the [asciinema server](asciinema-server.md) send logging in or user registration messages to MailCrab by adding the following configuration to your `vars.yml` file, so that the service will use the SMTP server instead of the default [exim-relay](exim-relay.md) mailer:
 
 ```yaml
 asciinema_server_mailer_enabled: true
-asciinema_server_environment_variable_smtp_host: "{{ mailcatcher_identifier }}"
+asciinema_server_environment_variable_smtp_host: "{{ mailcrab_identifier }}"
 asciinema_server_environment_variable_smtp_port: 1025
 asciinema_server_environment_variable_mail_from_address: SET_ANY_EMAIL_ADDRESS_HERE
 ```
 
-You can check the message sent by the asciinema server at `https://mailcatcher.example.com`.
+You can check the message sent by the asciinema server at `https://mailcrab.example.com`.
 
 💡 Since the message is not sent to the outside of the internal Docker network, the chance of man-in-the-middle attacks is drastically reduced.
 
@@ -89,4 +89,4 @@ You can check the message sent by the asciinema server at `https://mailcatcher.e
 
 ## Troubleshooting
 
-See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3QmarrgiC7ZGmd7UCTW2EZTheCZb/tree/docs/configuring-mailcatcher.md#troubleshooting) on the role's documentation for details.
+See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3QmarrgiC7ZGmd7UCTW2EZTheCZb/tree/docs/configuring-mailcrab.md#troubleshooting) on the role's documentation for details.
