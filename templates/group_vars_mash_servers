@@ -11608,7 +11608,7 @@ sftpgo_gid: "{{ mash_playbook_gid }}"
 
 sftpgo_systemd_required_services_list_auto: |
   {{
-    ([mariadb_identifier ~ '.service'] if mariadb_enabled | default(false) and sftpgo_database_mysql_hostname == mariadb_connection_hostname and sftpgo_environment_variables_data_provider_driver == 'mysql else [])
+    ([mariadb_identifier ~ '.service'] if mariadb_enabled | default(false) and sftpgo_database_mysql_hostname == mariadb_connection_hostname and sftpgo_environment_variables_data_provider_driver == 'mysql' else [])
     +
     ([postgres_identifier ~ '.service'] if postgres_enabled | default(false) and sftpgo_database_postgresql_hostname == postgres_connection_hostname and sftpgo_environment_variables_data_provider_driver == 'postgresql' else [])
   }}
