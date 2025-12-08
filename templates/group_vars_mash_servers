@@ -582,6 +582,11 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
     {{ ({'name': (mailcatcher_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'mailcatcher']} if mailcatcher_enabled else omit) }}
   # /role-specific:mailcatcher
 
+  # role-specific:mailcrab
+  - |-
+    {{ ({'name': (mailcrab_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'mailcrab']} if mailcrab_enabled else omit) }}
+  # /role-specific:mailcrab
+
   # role-specific:mariadb
   - |-
     {{ ({'name': (mariadb_identifier + '.service'), 'priority': 500, 'groups': ['mash', 'mariadb']} if mariadb_enabled else omit) }}
@@ -7696,6 +7701,44 @@ mailcatcher_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_
 #                                                                      #
 ########################################################################
 # /role-specific:mailcatcher
+
+
+
+# role-specific:mailcrab
+########################################################################
+#                                                                      #
+# mailcrab                                                             #
+#                                                                      #
+########################################################################
+
+mailcrab_enabled: false
+
+mailcrab_identifier: "{{ mash_playbook_service_identifier_prefix }}mailcrab"
+
+mailcrab_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}mailcrab"
+
+mailcrab_uid: "{{ mash_playbook_uid }}"
+mailcrab_gid: "{{ mash_playbook_gid }}"
+
+mailcrab_container_additional_networks_auto: |
+  {{
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+  }}
+
+mailcrab_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+mailcrab_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+
+# role-specific:traefik
+mailcrab_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
+mailcrab_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
+# /role-specific:traefik
+
+########################################################################
+#                                                                      #
+# /mailcrab                                                            #
+#                                                                      #
+########################################################################
+# /role-specific:mailcrab
 
 
 

@@ -113,6 +113,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 | [listmonk](https://listmonk.app) | Self-hosted newsletter and mailing list manager. | [Link](services/listmonk.md) |
 | [LLDAP](https://github.com/lldap/lldap/) | Lightweight authentication server that provides an opinionated, simplified LDAP interface for authentication | [Link](services/lldap.md) |
 | [MailCatcher](http://mailcatcher.me/) | SMTP server which catches messages sent to it and displays in a web interface | [Link](services/mailcatcher.md) |
+| [MailCrab](https://github.com/tweedegolf/mailcrab) | SMTP test server for development, written in Rust | [Link](services/mailcrab.md) |
 | [MariaDB](https://mariadb.org/) | A powerful, open source object-relational database system | [Link](services/mariadb.md) |
 | [Matomo](https://matomo.org/) | Free and open source web analytics platform | [Link](services/matomo.md) |
 | [Matrix Rooms Search API](https://github.com/etkecc/mrs) | A fully-featured, standalone, matrix rooms search service. | [Link](services/mrs.md) |
