@@ -11616,6 +11616,8 @@ sftpgo_systemd_required_services_list_auto: |
     ([mariadb_identifier ~ '.service'] if mariadb_enabled | default(false) and sftpgo_database_mysql_hostname == mariadb_connection_hostname and sftpgo_environment_variables_data_provider_driver == 'mysql' else [])
     +
     ([postgres_identifier ~ '.service'] if postgres_enabled | default(false) and sftpgo_database_postgresql_hostname == postgres_connection_hostname and sftpgo_environment_variables_data_provider_driver == 'postgresql' else [])
+    +
+    ([traefik_certs_dumper_identifier + '-wait-for-domain@' + sftpgo_hostname + '.service'] if traefik_enabled and traefik_certs_dumper_enabled | default(false) else [])
   }}
 
 sftpgo_systemd_wanted_services_list_auto: |
@@ -11632,6 +11634,24 @@ sftpgo_container_additional_networks_auto: |
     ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
     +
     ([postgres_container_network] if postgres_enabled | default(false) and sftpgo_database_postgresql_hostname == postgres_connection_hostname and sftpgo_container_network != postgres_container_network and sftpgo_environment_variables_data_provider_driver == 'postgresql' else [])
+  }}
+
+sftpgo_container_additional_volumes_auto: |
+  {{
+    (
+      [
+       {
+         'src': (traefik_certs_dumper_dumped_certificates_path +  '/' + sftpgo_hostname + '/certificate.crt'),
+         'dst': sftpgo_environment_variables_webdavd_certificate_file,
+         'options': 'ro',
+       },
+       {
+         'src': (traefik_certs_dumper_dumped_certificates_path +  '/' + sftpgo_hostname + '/privatekey.key'),
+         'dst': sftpgo_environment_variables_webdavd_certificate_key_file,
+         'options': 'ro',
+       },
+      ] if traefik_enabled and traefik_certs_dumper_enabled | default(false) and sftpgo_environment_variables_webdavd_enable_https else []
+    )
   }}
 
 sftpgo_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
@@ -11664,6 +11684,12 @@ sftpgo_database_postgresql_password: "{{ '%s' | format(mash_playbook_generic_sec
 sftpgo_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
 sftpgo_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
 # /role-specific:traefik
+
+# role-specific:traefik_certs_dumper
+sftpgo_environment_variables_webdavd_enable_https: "{{ traefik_certs_dumper_enabled }}"
+sftpgo_environment_variables_webdavd_certificate_file: /certificate.crt
+sftpgo_environment_variables_webdavd_certificate_key_file: /privatekey.crt
+# /role-specific:traefik_certs_dumper
 
 ########################################################################
 #                                                                      #

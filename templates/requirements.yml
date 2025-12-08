@@ -697,7 +697,7 @@
   name: send
   activation_prefix: send_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-sftpgo.git
-  version: v2.7.0-1
+  version: v2.7.0-2
   name: sftpgo
   activation_prefix: sftpgo_
 - src: git+https://seed.radicle.garden/znvd313jEb23f9AUNmtsweE7YHCK.git
