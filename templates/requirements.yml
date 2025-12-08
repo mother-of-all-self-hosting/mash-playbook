@@ -776,6 +776,10 @@
   version: v3.6.4-0
   name: traefik
   activation_prefix: mash_
+- src: git+https://github.com/mother-of-all-self-hosting/ansible-role-traefik-certs-dumper.git
+  version: v2.10.0-3
+  name: traefik_certs_dumper
+  activation_prefix: traefik_certs_dumper_
 - src: git+https://github.com/Bergruebe/ansible-role-tsdproxy.git
   version: v1.4.7-0
   name: tsdproxy
