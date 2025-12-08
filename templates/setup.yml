@@ -801,6 +801,10 @@
     - role: galaxy/tinyauth
     # /role-specific:tinyauth
 
+    # role-specific:traefik_certs_dumper
+    - role: galaxy/traefik_certs_dumper
+    # /role-specific:traefik_certs_dumper
+
     # role-specific:tsdproxy
     - role: galaxy/tsdproxy
     # /role-specific:tsdproxy
