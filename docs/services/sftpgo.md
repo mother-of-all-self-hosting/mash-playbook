@@ -39,6 +39,7 @@ This service requires the following other services:
 
 - [Postgres](postgres.md) / MySQL / [MariaDB](mariadb.md) / [CockroachDB](https://www.cockroachlabs.com/) database — SFTPGo will default to [SQLite](https://www.sqlite.org/) if none of them is enabled
 - [Traefik](traefik.md) reverse-proxy server
+- (optional) [traefik-certs-dumper](traefik-certs-dumper.md) — for enabling HTTPS connection between the WebDAV server
 
 ## Adjusting the playbook configuration
 
@@ -83,6 +84,12 @@ Refer to [this section](https://docs.sftpgo.com/latest/config-file/#data-provide
 After running the command for installation, the SFTPGo instance becomes available at the URL specified with `sftpgo_hostname`. With the configuration above, the service is hosted at `https://sftpgo.example.com`. By default you can connect to the SFTP server on the port `2022`.
 
 See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-sftpgo/blob/main/docs/configuring-sftpgo.md#adjusting-the-playbook-configuration) on the role's documentation for details about how to enable web interfaces and create the first admin account, including the configuration to enable WebDAV server.
+
+### Enabling HTTPS connection between WebDAV server
+
+You can automatically enable HTTPS connection between the SFTPGo's WebDAV server by using [traefik-certs-dumper](https://github.com/ldez/traefik-certs-dumper). This playbook supports it, and you can set it up by adding `traefik_certs_dumper_enabled: true` to your `vars.yml` file.
+
+See [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-traefik-certs-dumper/blob/main/docs/configuring-traefik-certs-dumper.md) for details.
 
 ### Configure the mailer (optional)
 
