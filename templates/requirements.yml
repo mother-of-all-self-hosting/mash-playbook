@@ -384,7 +384,7 @@
   version: v3.6.1-0
   name: loki
   activation_prefix: loki_
-- src: https://seed.radicle.garden/z3QmarrgiC7ZGmd7UCTW2EZTheCZb.git
+- src: git+https://seed.radicle.garden/z3QmarrgiC7ZGmd7UCTW2EZTheCZb.git
   version: v0.10.0-0
   name: mailcatcher
   activation_prefix: mailcatcher_
