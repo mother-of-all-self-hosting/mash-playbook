@@ -82,3 +82,7 @@ After the user is configured, it will be possible to log in to the instance.
 ## Troubleshooting
 
 See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3vaa8VAuz3pxqB3FyciNKQRSHqyt/tree/docs/configuring-thelounge.md#troubleshooting) on the role's documentation for details.
+
+## Related services
+
+- [Ergo](ergo.md) — Modern IRCd (IRC server software) written in Go

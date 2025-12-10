@@ -88,3 +88,7 @@ Before logging in to the server with your IRC client, you might want to have a l
 ## Troubleshooting
 
 See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az2CSxS3YLtJYM87TyGZkZCan3uoSJ/tree/docs/configuring-ergo.md#troubleshooting) on the role's documentation for details.
+
+## Related services
+
+- [The Lounge](thelounge.md) — Web IRC client with modern features, which keeps a persistent connection to IRC servers
