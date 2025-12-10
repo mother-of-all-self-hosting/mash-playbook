@@ -241,6 +241,10 @@
     - role: galaxy/endlessh
     # /role-specific:endlessh
 
+    # role-specific:ergo
+    - role: galaxy/ergo
+    # /role-specific:ergo
+
     # role-specific:etcd
     - role: galaxy/etcd
     # /role-specific:etcd
