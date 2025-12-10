@@ -11,6 +11,10 @@ The playbook can install and configure [Mobilizon](https://joinmobilizon.org/en/
 
 Mobilizon is a ActivityPub/Fediverse server to create and share events. See the project's [documentation](https://docs.mobilizon.org/) to learn what it does and why it might be useful to you.
 
+The [Ansible role for Mobilizon](https://github.com/mother-of-all-self-hosting/ansible-role-mobilizon) does not have a dedicated documentation yet, but you can check the default configuration via:
+- 🌐 [the role's defaults](https://github.com/mother-of-all-self-hosting/ansible-role-mobilizon/blob/main/defaults/main.yml) online
+- 📁 `roles/galaxy/mobilizon/defaults/main.yml` locally, if you have [fetched the Ansible roles](../installing.md)
+
 ## Dependencies
 
 This service requires the following other services:
