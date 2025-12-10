@@ -2034,6 +2034,35 @@ traefik_container_additional_networks_auto: |
     ([container_socket_proxy_container_network] if container_socket_proxy_enabled | default(false) else [])
   }}
 
+mash_playbook_traefix_managed_additional_entrypoints_auto_itemized:
+  # Dummy entry, which is not role-specific.
+  # Ensures there's at least one entry defined in the list.
+  - "{{ omit }}"
+
+  # role-specific:ergo
+  # Since this is the sole service which uses TCP routers on this playbook, the variables for the 'web' entrypoint are reused for now.
+  # TODO: integrate the variables to traefik.yml on ansible-role-traefik at https://github.com/mother-of-all-self-hosting/ansible-role-traefik
+  - |-
+    {{
+      ({
+        'name': ergo_container_labels_traefik_entrypoints,
+        'port': ergo_container_tcp_tls_port,
+        'host_bind_port': ergo_container_tcp_tls_port,
+        'config': {
+          'transport': {
+            'respondingTimeouts': {
+              'readTimeout': traefik_config_entrypoint_web_transport_respondingTimeouts_readTimeout,
+              'writeTimeout': traefik_config_entrypoint_web_transport_respondingTimeouts_writeTimeout,
+              'idleTimeout': traefik_config_entrypoint_web_transport_respondingTimeouts_idleTimeout
+            }
+          }
+        }
+      } if ergo_enabled and ergo_container_labels_traefik_enabled else omit)
+    }}
+  # /role-specific:ergo
+
+traefik_additional_entrypoints_auto: "{{ mash_playbook_traefix_managed_additional_entrypoints_auto_itemized | reject('equalto', omit) }}"
+
 # role-specific:container_socket_proxy
 traefik_config_providers_docker_endpoint: "{{ container_socket_proxy_endpoint if container_socket_proxy_enabled else 'unix:///var/run/docker.sock' }}"
 # /role-specific:container_socket_proxy
@@ -3861,11 +3890,6 @@ ergo_database_mysql_password: "{{ '%s' | format(mash_playbook_generic_secret_key
 # /role-specific:mariadb
 
 # role-specific:traefik
-traefik_additional_entrypoints_auto:
-  - name: "{{ ergo_container_labels_traefik_entrypoints }}" # Since the IRC's protocol is not HTTP, we cannot use the default `traefik_entrypoint_primary` entrypoint here
-    port: "{{ ergo_container_tcp_tls_port }}" # Let Traefik handle ports and binding; traffic is forwarded from Ergo's container via the load balancer at port 6667
-    host_bind_port: "{{ ergo_container_tcp_tls_port }}"
-    config: {}
 ergo_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
 # /role-specific:traefik
 
