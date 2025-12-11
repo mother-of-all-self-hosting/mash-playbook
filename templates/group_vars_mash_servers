@@ -2039,9 +2039,9 @@ mash_playbook_traefix_managed_additional_entrypoints_auto_itemized:
   # Ensures there's at least one entry defined in the list.
   - "{{ omit }}"
 
+  # TODO: integrate the variables for `config` to traefik.yml on ansible-role-traefik at https://github.com/mother-of-all-self-hosting/ansible-role-traefik
+
   # role-specific:ergo
-  # Since this is the sole service which uses TCP routers on this playbook, the variables for the 'web' entrypoint are reused for now.
-  # TODO: integrate the variables to traefik.yml on ansible-role-traefik at https://github.com/mother-of-all-self-hosting/ansible-role-traefik
   - |-
     {{
       ({
@@ -2060,6 +2060,26 @@ mash_playbook_traefix_managed_additional_entrypoints_auto_itemized:
       } if ergo_enabled and ergo_container_labels_traefik_enabled else omit)
     }}
   # /role-specific:ergo
+
+  # role-specific:opengist
+  - |-
+    {{
+      ({
+        'name': opengist_container_labels_traefik_tcp_entrypoints,
+        'port': opengist_container_ssh_port,
+        'host_bind_port': opengist_container_ssh_host_bind_port,
+        'config': {
+          'transport': {
+            'respondingTimeouts': {
+              'readTimeout': traefik_config_entrypoint_web_transport_respondingTimeouts_readTimeout,
+              'writeTimeout': traefik_config_entrypoint_web_transport_respondingTimeouts_writeTimeout,
+              'idleTimeout': traefik_config_entrypoint_web_transport_respondingTimeouts_idleTimeout
+            }
+          }
+        }
+      } if opengist_enabled and opengist_container_labels_traefik_tcp_enabled and opengist_container_ssh_host_bind_port else omit)
+    }}
+  # /role-specific:opengist
 
 traefik_additional_entrypoints_auto: "{{ mash_playbook_traefix_managed_additional_entrypoints_auto_itemized | reject('equalto', omit) }}"
 
