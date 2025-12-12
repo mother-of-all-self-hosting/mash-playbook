@@ -19,22 +19,21 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
 # SMP server
 
-The playbook can install and configure [SMP server](https://smp-server.chat) for you.
+The playbook can install and configure [SMP server](https://simplex.chat/docs/server.html) for you.
 
-SMP server is a modern IRCd (IRC server software) written in Go.
+SMP server is the relay server used to pass messages in [SimpleX](https://simplex.chat/) network.
 
-See the project's [documentation](https://smp-server.chat/about) to learn what SMP server does and why it might be useful to you.
+See the project's [documentation](https://simplex.chat/docs/server.html#overview) to learn what SMP server does and why it might be useful to you.
 
-For details about configuring the [Ansible role for SMP server](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az2CSxS3YLtJYM87TyGZkZCan3uoSJ), you can check them via:
-- 🌐 [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az2CSxS3YLtJYM87TyGZkZCan3uoSJ/tree/docs/configuring-smp-server.md) online
-- 📁 `roles/galaxy/smp_server/docs/configuring-smp-server.md` locally, if you have [fetched the Ansible roles](../installing.md)
+For details about configuring the [Ansible role for SMP server](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3AzXf3qnvPwC2UsBpfTYmPesL5KSZc), you can check them via:
+- 🌐 [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3AzXf3qnvPwC2UsBpfTYmPesL5KSZc/tree/docs/configuring-smp-server.md) online
+- 📁 `roles/galaxy/smp-server/docs/configuring-smp-server.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 ## Dependencies
 
 This service requires the following other services:
 
-- [Traefik](traefik.md) reverse-proxy server
-- (optional) MySQL / [MariaDB](mariadb.md) database — for persistent message history
+- (optional) [Traefik](traefik.md) reverse-proxy server — required on the default configuration
 
 ## Adjusting the playbook configuration
 
@@ -49,7 +48,7 @@ To enable this service, add the following configuration to your `vars.yml` file 
 
 smp_server_enabled: true
 
-smp_server_hostname: smp-server.example.com
+smp_server_hostname: smpserver.example.com
 
 ########################################################################
 #                                                                      #
@@ -58,37 +57,12 @@ smp_server_hostname: smp-server.example.com
 ########################################################################
 ```
 
-### Set the network's name
-
-It is also necessary to specify to the `smp_server_config_network_name` variable the name of the network in a human-readable name that identifies your network.
-
-### Setting passwords for the server and operators (optional)
-
-By default the server is not protected with a shared "server password" (`PASS`), and anyone can use it. For the IRC operators ("oper", "ircop") the role specifies the random password which should be replaced with yours.
-
-See [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az2CSxS3YLtJYM87TyGZkZCan3uoSJ/tree/docs/configuring-smp-server.md#setting-server-39-s-password) for details about how to configure those passwords.
-
-### Enabling message storage on MariaDB database (optional)
-
-SMP server supports storing messages in a persistent storage. Currently a MySQL-compatible database is supported for it. This playbook supports MariaDB, and you can set up a MariaDB instance by enabling it on `vars.yml`. Refer to [this page](mariadb.md) for the instruction to enable it.
-
-After installing it, add the following configuration to your `vars.yml` file:
-
-```yaml
-# Enable storing messages in a persistent database for later playback
-smp_server_config_history_persistent_enabled: true
-```
-
 ## Usage
 
-After running the command for installation, the SMP server instance becomes available at the URL specified with `smp_server_hostname`. With the configuration above, the service is hosted at `ircs://smp-server.example.com:6697`.
+After running the command for installation, the SMP server instance becomes available at the hostname specified with `smp_server_hostname`. With the configuration above, the service is hosted at `smpserver.example.com`.
 
-Before logging in to the server with your IRC client, you might want to have a look at [`USERGUIDE.md`](https://github.com/smp-serverchat/smp-server/blob/stable/docs/USERGUIDE.md#introduction) for general information (what IRC is, how you can use the server with an IRC client, etc.)
+See [this section](https://app.radicle.xyz/nodes/seed.progressiv.dev/rad:zXf3qnvPwC2UsBpfTYmPesL5KSZc/tree/docs/configuring-smp-server.md#usage) on the role's documentation for details about how to use the server. Also refer to [the official documentation](https://simplex.chat/docs/server.html#configuring-the-app-to-use-the-server) about how to configure the client to get it connect to your SMP server.
 
 ## Troubleshooting
 
-See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az2CSxS3YLtJYM87TyGZkZCan3uoSJ/tree/docs/configuring-smp-server.md#troubleshooting) on the role's documentation for details.
-
-## Related services
-
-- [The Lounge](thelounge.md) — Web IRC client with modern features, which keeps a persistent connection to IRC servers
+See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3AzXf3qnvPwC2UsBpfTYmPesL5KSZc/tree/docs/configuring-smp-server.md#troubleshooting) on the role's documentation for details.
