@@ -23,7 +23,7 @@ jobs:
     if: github.repository == 'mother-of-all-self-hosting/mash-playbook'
     runs-on: ubuntu-latest
     steps:
-      - uses: dessant/lock-threads@v5.0.1
+      - uses: dessant/lock-threads@v6.0.0
         with:
           add-issue-labels: 'outdated'
           process-only: 'issues, prs'
