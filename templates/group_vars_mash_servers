@@ -2106,6 +2106,26 @@ mash_playbook_traefix_managed_additional_entrypoints_auto_itemized:
     }}
   # /role-specific:opengist
 
+  # role-specific:smp_server
+  - |-
+    {{
+      ({
+        'name': smp_server_container_labels_traefik_tcp_entrypoints,
+        'port': smp_server_container_tcp_port,
+        'host_bind_port': smp_server_container_tcp_host_bind_port,
+        'config': {
+          'transport': {
+            'respondingTimeouts': {
+              'readTimeout': traefik_config_entrypoint_web_transport_respondingTimeouts_readTimeout,
+              'writeTimeout': traefik_config_entrypoint_web_transport_respondingTimeouts_writeTimeout,
+              'idleTimeout': traefik_config_entrypoint_web_transport_respondingTimeouts_idleTimeout
+            }
+          }
+        }
+      } if smp_server_enabled and smp_server_container_labels_traefik_tcp_enabled else omit)
+    }}
+  # /role-specific:smp_server
+
 traefik_additional_entrypoints_auto: "{{ mash_playbook_traefix_managed_additional_entrypoints_auto_itemized | reject('equalto', omit) }}"
 
 # role-specific:container_socket_proxy
@@ -11862,8 +11882,13 @@ smp_server_container_additional_networks_auto: |
     ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
   }}
 
-smp_server_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+# Disabled by default; this could be set to `true` for serving "Server information page".
+# See: https://simplex.chat/docs/server.html#server-information-page
+smp_server_container_labels_traefik_enabled: false
 smp_server_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+
+smp_server_container_labels_traefik_tcp_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+smp_server_container_labels_traefik_tcp_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
 
 # role-specific:traefik
 smp_server_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
