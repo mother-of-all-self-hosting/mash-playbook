@@ -753,6 +753,10 @@
     - role: galaxy/sftpgo
     # /role-specific:sftpgo
 
+    # role-specific:smp_server
+    - role: galaxy/smp_server
+    # /role-specific:smp_server
+
     # role-specific:snowflake
     - role: galaxy/snowflake
     # /role-specific:snowflake

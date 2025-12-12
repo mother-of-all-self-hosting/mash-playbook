@@ -984,6 +984,11 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
     {{ ({'name': (sftpgo_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'sftpgo']} if sftpgo_enabled else omit) }}
   # /role-specific:sftpgo
 
+  # role-specific:smp_server
+  - |-
+    {{ ({'name': (smp_server_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'smp-server']} if smp_server_enabled else omit) }}
+  # /role-specific:smp_server
+
   # role-specific:snowflake
   - |-
     {{ ({'name': (snowflake_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'snowflake']} if snowflake_enabled else omit) }}
@@ -11833,6 +11838,44 @@ sftpgo_environment_variables_webdavd_certificate_key_file: /privatekey.crt
 #                                                                      #
 ########################################################################
 # /role-specific:sftpgo
+
+
+
+# role-specific:smp_server
+########################################################################
+#                                                                      #
+# smp_server                                                           #
+#                                                                      #
+########################################################################
+
+smp_server_enabled: false
+
+smp_server_identifier: "{{ mash_playbook_service_identifier_prefix }}smp-server"
+
+smp_server_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}smp-server"
+
+smp_server_uid: "{{ mash_playbook_uid }}"
+smp_server_gid: "{{ mash_playbook_gid }}"
+
+smp_server_container_additional_networks_auto: |
+  {{
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+  }}
+
+smp_server_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+smp_server_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+
+# role-specific:traefik
+smp_server_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
+smp_server_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
+# /role-specific:traefik
+
+########################################################################
+#                                                                      #
+# /smp_server                                                          #
+#                                                                      #
+########################################################################
+# /role-specific:smp_server
 
 
 
