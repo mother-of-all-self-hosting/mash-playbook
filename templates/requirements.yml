@@ -373,7 +373,7 @@
   name: limesurvey
   activation_prefix: limesurvey_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-linkding.git
-  version: v1.44.1-1
+  version: v1.44.2-0
   name: linkding
   activation_prefix: linkding_
 - src: git+https://seed.radicle.garden/zCF75tYyujYQ3T4L3BkBDrPzXree.git
