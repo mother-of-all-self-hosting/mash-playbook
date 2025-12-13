@@ -286,6 +286,11 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
     {{ ({'name': (endlessh_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'endlessh']} if endlessh_enabled else omit) }}
   # /role-specific:endlessh
 
+  # role-specific:ergo
+  - |-
+    {{ ({'name': (ergo_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'ergo']} if ergo_enabled else omit) }}
+  # /role-specific:ergo
+
   # role-specific:etcd
   - |-
     {{ ({'name': (etcd_identifier + '.service'), 'priority': 500, 'groups': ['mash', 'etcd']} if etcd_enabled else omit) }}
@@ -576,6 +581,16 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
   - |-
     {{ ({'name': (loki_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'loki']} if loki_enabled else omit) }}
   # /role-specific:loki
+
+  # role-specific:mailcatcher
+  - |-
+    {{ ({'name': (mailcatcher_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'mailcatcher']} if mailcatcher_enabled else omit) }}
+  # /role-specific:mailcatcher
+
+  # role-specific:mailcrab
+  - |-
+    {{ ({'name': (mailcrab_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'mailcrab']} if mailcrab_enabled else omit) }}
+  # /role-specific:mailcrab
 
   # role-specific:mariadb
   - |-
@@ -969,6 +984,11 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
     {{ ({'name': (sftpgo_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'sftpgo']} if sftpgo_enabled else omit) }}
   # /role-specific:sftpgo
 
+  # role-specific:smp_server
+  - |-
+    {{ ({'name': (smp_server_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'smp-server']} if smp_server_enabled else omit) }}
+  # /role-specific:smp_server
+
   # role-specific:snowflake
   - |-
     {{ ({'name': (snowflake_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'snowflake']} if snowflake_enabled else omit) }}
@@ -978,6 +998,11 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
   - |-
     {{ ({'name': (soft_serve_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'soft-serve']} if soft_serve_enabled else omit) }}
   # /role-specific:soft_serve
+
+  # role-specific:solidinvoice
+  - |-
+    {{ ({'name': (solidinvoice_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'solidinvoice']} if solidinvoice_enabled else omit) }}
+  # /role-specific:solidinvoice
 
   # role-specific:sonarr
   - |-
@@ -1033,6 +1058,11 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
   - |-
     {{ ({'name': (traefik_identifier + '.service'), 'priority': 250, 'groups': ['mash', 'traefik', 'reverse-proxies']} if traefik_enabled else omit) }}
   # /role-specific:traefik
+
+  # role-specific:traefik_certs_dumper
+  - |-
+    {{ ({'name': (traefik_certs_dumper_identifier + '.service'), 'priority': 300, 'groups': ['mash', 'traefik-certs-dumper']} if traefik_certs_dumper_enabled else omit) }}
+  # /role-specific:traefik_certs_dumper
 
   # role-specific:tsdproxy
   - |-
@@ -1783,6 +1813,17 @@ mash_playbook_postgres_managed_databases_auto_itemized:
     }}
   # /role-specific:sftpgo
 
+  # role-specific:solidinvoice
+  - |-
+    {{
+      ({
+        'name': solidinvoice_database_name,
+        'username': solidinvoice_database_postgres_username,
+        'password': solidinvoice_database_postgres_password,
+      } if solidinvoice_enabled and solidinvoice_database_postgres_hostname == postgres_connection_hostname and solidinvoice_database_type == 'postgres' else omit)
+    }}
+  # /role-specific:solidinvoice
+
   # role-specific:tandoor
   - |-
     {{
@@ -1997,6 +2038,95 @@ traefik_container_additional_networks_auto: |
   {{
     ([container_socket_proxy_container_network] if container_socket_proxy_enabled | default(false) else [])
   }}
+
+mash_playbook_traefix_managed_additional_entrypoints_auto_itemized:
+  # Dummy entry, which is not role-specific.
+  # Ensures there's at least one entry defined in the list.
+  - "{{ omit }}"
+
+  # TODO: integrate the variables for `config` to traefik.yml on ansible-role-traefik at https://github.com/mother-of-all-self-hosting/ansible-role-traefik
+
+  # role-specific:ergo
+  - |-
+    {{
+      ({
+        'name': ergo_container_labels_traefik_entrypoints,
+        'port': ergo_container_tcp_tls_port,
+        'host_bind_port': ergo_container_tcp_tls_port,
+        'config': {
+          'transport': {
+            'respondingTimeouts': {
+              'readTimeout': traefik_config_entrypoint_web_transport_respondingTimeouts_readTimeout,
+              'writeTimeout': traefik_config_entrypoint_web_transport_respondingTimeouts_writeTimeout,
+              'idleTimeout': traefik_config_entrypoint_web_transport_respondingTimeouts_idleTimeout
+            }
+          }
+        }
+      } if ergo_enabled and ergo_container_labels_traefik_enabled else omit)
+    }}
+  # /role-specific:ergo
+
+  # role-specific:gitea
+  - |-
+    {{
+      ({
+        'name': gitea_container_labels_traefik_tcp_entrypoints,
+        'port': gitea_config_server_ssh_listen_port,
+        'host_bind_port': gitea_ssh_bind_port,
+        'config': {
+          'transport': {
+            'respondingTimeouts': {
+              'readTimeout': traefik_config_entrypoint_web_transport_respondingTimeouts_readTimeout,
+              'writeTimeout': traefik_config_entrypoint_web_transport_respondingTimeouts_writeTimeout,
+              'idleTimeout': traefik_config_entrypoint_web_transport_respondingTimeouts_idleTimeout
+            }
+          }
+        }
+      } if gitea_enabled and gitea_container_labels_traefik_tcp_enabled and gitea_ssh_bind_port else omit)
+    }}
+  # /role-specific:gitea
+
+  # role-specific:opengist
+  - |-
+    {{
+      ({
+        'name': opengist_container_labels_traefik_tcp_entrypoints,
+        'port': opengist_container_ssh_port,
+        'host_bind_port': opengist_container_ssh_host_bind_port,
+        'config': {
+          'transport': {
+            'respondingTimeouts': {
+              'readTimeout': traefik_config_entrypoint_web_transport_respondingTimeouts_readTimeout,
+              'writeTimeout': traefik_config_entrypoint_web_transport_respondingTimeouts_writeTimeout,
+              'idleTimeout': traefik_config_entrypoint_web_transport_respondingTimeouts_idleTimeout
+            }
+          }
+        }
+      } if opengist_enabled and opengist_container_labels_traefik_tcp_enabled and opengist_container_ssh_host_bind_port else omit)
+    }}
+  # /role-specific:opengist
+
+  # role-specific:smp_server
+  - |-
+    {{
+      ({
+        'name': smp_server_container_labels_traefik_tcp_entrypoints,
+        'port': smp_server_container_tcp_port,
+        'host_bind_port': smp_server_container_tcp_host_bind_port,
+        'config': {
+          'transport': {
+            'respondingTimeouts': {
+              'readTimeout': traefik_config_entrypoint_web_transport_respondingTimeouts_readTimeout,
+              'writeTimeout': traefik_config_entrypoint_web_transport_respondingTimeouts_writeTimeout,
+              'idleTimeout': traefik_config_entrypoint_web_transport_respondingTimeouts_idleTimeout
+            }
+          }
+        }
+      } if smp_server_enabled and smp_server_container_labels_traefik_tcp_enabled else omit)
+    }}
+  # /role-specific:smp_server
+
+traefik_additional_entrypoints_auto: "{{ mash_playbook_traefix_managed_additional_entrypoints_auto_itemized | reject('equalto', omit) }}"
 
 # role-specific:container_socket_proxy
 traefik_config_providers_docker_endpoint: "{{ container_socket_proxy_endpoint if container_socket_proxy_enabled else 'unix:///var/run/docker.sock' }}"
@@ -3783,6 +3913,57 @@ endlessh_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_pri
 #                                                                      #
 ########################################################################
 # /role-specific:endlessh
+
+
+
+# role-specific:ergo
+########################################################################
+#                                                                      #
+# ergo                                                                 #
+#                                                                      #
+########################################################################
+
+ergo_enabled: false
+
+ergo_identifier: "{{ mash_playbook_service_identifier_prefix }}ergo"
+
+ergo_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}ergo"
+
+ergo_uid: "{{ mash_playbook_uid }}"
+ergo_gid: "{{ mash_playbook_gid }}"
+
+ergo_systemd_required_services_list_auto: |
+  {{
+    ([mariadb_identifier ~ '.service'] if mariadb_enabled | default(false) and ergo_database_mysql_hostname == mariadb_connection_hostname and ergo_config_datastore_mysql_enabled else [])
+  }}
+
+ergo_container_additional_networks_auto: |
+  {{
+    ([mariadb_container_network] if mariadb_enabled | default(false) and ergo_database_mysql_hostname == mariadb_connection_hostname and ergo_container_network != mariadb_container_network and ergo_config_datastore_mysql_enabled else [])
+    +
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+  }}
+
+ergo_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+ergo_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+
+# role-specific:mariadb
+ergo_config_datastore_mysql_enabled: "{{ mariadb_enabled }}"
+ergo_database_mysql_hostname: "{{ mariadb_connection_hostname if mariadb_enabled else '' }}"
+ergo_database_mysql_port: "{{ mariadb_connection_port if mariadb_enabled else '3306' }}"
+ergo_database_mysql_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'db.ergo', rounds=655555) | to_uuid }}"
+# /role-specific:mariadb
+
+# role-specific:traefik
+ergo_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
+# /role-specific:traefik
+
+########################################################################
+#                                                                      #
+# /ergo                                                                #
+#                                                                      #
+########################################################################
+# /role-specific:ergo
 
 
 
@@ -7640,6 +7821,82 @@ loki_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary
 
 
 
+# role-specific:mailcatcher
+########################################################################
+#                                                                      #
+# mailcatcher                                                          #
+#                                                                      #
+########################################################################
+
+mailcatcher_enabled: false
+
+mailcatcher_identifier: "{{ mash_playbook_service_identifier_prefix }}mailcatcher"
+
+mailcatcher_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}mailcatcher"
+
+mailcatcher_uid: "{{ mash_playbook_uid }}"
+mailcatcher_gid: "{{ mash_playbook_gid }}"
+
+mailcatcher_container_additional_networks_auto: |
+  {{
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+  }}
+
+mailcatcher_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+mailcatcher_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+
+# role-specific:traefik
+mailcatcher_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
+mailcatcher_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
+# /role-specific:traefik
+
+########################################################################
+#                                                                      #
+# /mailcatcher                                                         #
+#                                                                      #
+########################################################################
+# /role-specific:mailcatcher
+
+
+
+# role-specific:mailcrab
+########################################################################
+#                                                                      #
+# mailcrab                                                             #
+#                                                                      #
+########################################################################
+
+mailcrab_enabled: false
+
+mailcrab_identifier: "{{ mash_playbook_service_identifier_prefix }}mailcrab"
+
+mailcrab_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}mailcrab"
+
+mailcrab_uid: "{{ mash_playbook_uid }}"
+mailcrab_gid: "{{ mash_playbook_gid }}"
+
+mailcrab_container_additional_networks_auto: |
+  {{
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+  }}
+
+mailcrab_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+mailcrab_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+
+# role-specific:traefik
+mailcrab_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
+mailcrab_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
+# /role-specific:traefik
+
+########################################################################
+#                                                                      #
+# /mailcrab                                                            #
+#                                                                      #
+########################################################################
+# /role-specific:mailcrab
+
+
+
 # role-specific:mariadb
 ########################################################################
 #                                                                      #
@@ -7693,6 +7950,17 @@ mash_playbook_mariadb_managed_databases_auto_itemized:
       } if etherpad_enabled and etherpad_database_mysql_hostname == mariadb_connection_hostname and etherpad_database_type == 'mysql' else omit)
     }}
   # /role-specific:etherpad
+
+  # role-specific:ergo
+  - |-
+    {{
+      ({
+        'name': ergo_database_name_history,
+        'username': ergo_database_mysql_username,
+        'password': ergo_database_mysql_password,
+      } if ergo_enabled and ergo_database_mysql_hostname == mariadb_connection_hostname and ergo_config_datastore_mysql_enabled else omit)
+    }}
+  # /role-specific:ergo
 
   # role-specific:farmos
   - |-
@@ -7880,6 +8148,17 @@ mash_playbook_mariadb_managed_databases_auto_itemized:
       } if semaphore_enabled and semaphore_database_mysql_hostname == mariadb_connection_hostname and semaphore_database_type == 'mysql' else omit)
     }}
   # /role-specific:semaphore
+
+  # role-specific:solidinvoice
+  - |-
+    {{
+      ({
+        'name': solidinvoice_database_name,
+        'username': solidinvoice_database_mysql_username,
+        'password': solidinvoice_database_mysql_password,
+      } if solidinvoice_enabled and solidinvoice_database_mysql_hostname == mariadb_connection_hostname and solidinvoice_database_type == 'mysql' else omit)
+    }}
+  # /role-specific:solidinvoice
 
   # role-specific:sftpgo
   - |-
@@ -11495,9 +11774,11 @@ sftpgo_gid: "{{ mash_playbook_gid }}"
 
 sftpgo_systemd_required_services_list_auto: |
   {{
-    ([mariadb_identifier ~ '.service'] if mariadb_enabled | default(false) and sftpgo_database_mysql_hostname == mariadb_connection_hostname and sftpgo_environment_variables_data_provider_driver == 'mysql else [])
+    ([mariadb_identifier ~ '.service'] if mariadb_enabled | default(false) and sftpgo_database_mysql_hostname == mariadb_connection_hostname and sftpgo_environment_variables_data_provider_driver == 'mysql' else [])
     +
     ([postgres_identifier ~ '.service'] if postgres_enabled | default(false) and sftpgo_database_postgresql_hostname == postgres_connection_hostname and sftpgo_environment_variables_data_provider_driver == 'postgresql' else [])
+    +
+    ([traefik_certs_dumper_identifier + '-wait-for-domain@' + sftpgo_hostname + '.service'] if traefik_enabled and traefik_certs_dumper_enabled | default(false) else [])
   }}
 
 sftpgo_systemd_wanted_services_list_auto: |
@@ -11514,6 +11795,24 @@ sftpgo_container_additional_networks_auto: |
     ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
     +
     ([postgres_container_network] if postgres_enabled | default(false) and sftpgo_database_postgresql_hostname == postgres_connection_hostname and sftpgo_container_network != postgres_container_network and sftpgo_environment_variables_data_provider_driver == 'postgresql' else [])
+  }}
+
+sftpgo_container_additional_volumes_auto: |
+  {{
+    (
+      [
+       {
+         'src': (traefik_certs_dumper_dumped_certificates_path +  '/' + sftpgo_hostname + '/certificate.crt'),
+         'dst': sftpgo_environment_variables_webdavd_certificate_file,
+         'options': 'ro',
+       },
+       {
+         'src': (traefik_certs_dumper_dumped_certificates_path +  '/' + sftpgo_hostname + '/privatekey.key'),
+         'dst': sftpgo_environment_variables_webdavd_certificate_key_file,
+         'options': 'ro',
+       },
+      ] if traefik_enabled and traefik_certs_dumper_enabled | default(false) and sftpgo_environment_variables_webdavd_enable_https else []
+    )
   }}
 
 sftpgo_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
@@ -11547,12 +11846,61 @@ sftpgo_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
 sftpgo_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
 # /role-specific:traefik
 
+# role-specific:traefik_certs_dumper
+sftpgo_environment_variables_webdavd_enable_https: "{{ traefik_certs_dumper_enabled }}"
+sftpgo_environment_variables_webdavd_certificate_file: /certificate.crt
+sftpgo_environment_variables_webdavd_certificate_key_file: /privatekey.crt
+# /role-specific:traefik_certs_dumper
+
 ########################################################################
 #                                                                      #
 # /sftpgo                                                              #
 #                                                                      #
 ########################################################################
 # /role-specific:sftpgo
+
+
+
+# role-specific:smp_server
+########################################################################
+#                                                                      #
+# smp_server                                                           #
+#                                                                      #
+########################################################################
+
+smp_server_enabled: false
+
+smp_server_identifier: "{{ mash_playbook_service_identifier_prefix }}smp-server"
+
+smp_server_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}smp-server"
+
+smp_server_uid: "{{ mash_playbook_uid }}"
+smp_server_gid: "{{ mash_playbook_gid }}"
+
+smp_server_container_additional_networks_auto: |
+  {{
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+  }}
+
+# Disabled by default; this could be set to `true` for serving "Server information page".
+# See: https://simplex.chat/docs/server.html#server-information-page
+smp_server_container_labels_traefik_enabled: false
+smp_server_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+
+smp_server_container_labels_traefik_tcp_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+smp_server_container_labels_traefik_tcp_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+
+# role-specific:traefik
+smp_server_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
+smp_server_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
+# /role-specific:traefik
+
+########################################################################
+#                                                                      #
+# /smp_server                                                          #
+#                                                                      #
+########################################################################
+# /role-specific:smp_server
 
 
 
@@ -11608,6 +11956,74 @@ soft_serve_gid: "{{ mash_playbook_gid }}"
 #                                                                      #
 ########################################################################
 # /role-specific:soft_serve
+
+
+
+# role-specific:solidinvoice
+########################################################################
+#                                                                      #
+# solidinvoice                                                         #
+#                                                                      #
+########################################################################
+
+solidinvoice_enabled: false
+
+solidinvoice_identifier: "{{ mash_playbook_service_identifier_prefix }}solidinvoice"
+
+solidinvoice_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}solidinvoice"
+
+solidinvoice_uid: "{{ mash_playbook_uid }}"
+solidinvoice_gid: "{{ mash_playbook_gid }}"
+
+solidinvoice_systemd_required_services_list_auto: |
+  {{
+    ([mariadb_identifier ~ '.service'] if mariadb_enabled | default(false) and solidinvoice_database_mysql_hostname == mariadb_connection_hostname and solidinvoice_database_type == 'mysql' else [])
+    +
+    ([postgres_identifier ~ '.service'] if postgres_enabled | default(false) and solidinvoice_database_postgres_hostname == postgres_connection_hostname and solidinvoice_database_type == 'postgres' else [])
+  }}
+
+solidinvoice_systemd_wanted_services_list_auto: |
+  {{
+    ([(exim_relay_identifier | default('mash-exim-relay')) ~ '.service'] if exim_relay_enabled | default(false) else [])
+  }}
+
+solidinvoice_container_additional_networks_auto: |
+  {{
+    ([exim_relay_container_network | default('mash-exim-relay')] if (exim_relay_enabled | default(false) and solidinvoice_container_network != exim_relay_container_network) else [])
+    +
+    ([mariadb_container_network] if mariadb_enabled | default(false) and solidinvoice_database_mysql_hostname == mariadb_connection_hostname and solidinvoice_container_network != mariadb_container_network and solidinvoice_database_type == 'mysql' else [])
+    +
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+    +
+    ([postgres_container_network] if postgres_enabled | default(false) and solidinvoice_database_postgres_hostname == postgres_connection_hostname and solidinvoice_container_network != postgres_container_network and solidinvoice_database_type == 'postgres' else [])
+  }}
+
+solidinvoice_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+solidinvoice_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+
+# role-specific:mariadb
+solidinvoice_database_mysql_hostname: "{{ mariadb_connection_hostname if mariadb_enabled else '' }}"
+solidinvoice_database_mysql_port: "{{ mariadb_connection_port if mariadb_enabled else '3306' }}"
+solidinvoice_database_mysql_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'db.si.m', rounds=655555) | to_uuid }}"
+# /role-specific:mariadb
+
+# role-specific:postgres
+solidinvoice_database_postgres_hostname: "{{ postgres_connection_hostname if postgres_enabled else '' }}"
+solidinvoice_database_postgres_port: "{{ postgres_connection_port if postgres_enabled else '5432' }}"
+solidinvoice_database_postgres_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'db.si.p', rounds=655555) | to_uuid }}"
+# /role-specific:postgres
+
+# role-specific:traefik
+solidinvoice_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
+solidinvoice_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
+# /role-specific:traefik
+
+########################################################################
+#                                                                      #
+# /solidinvoice                                                        #
+#                                                                      #
+########################################################################
+# /role-specific:solidinvoice
 
 
 
@@ -12044,6 +12460,38 @@ tinyauth_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_pri
 #                                                                      #
 ########################################################################
 # /role-specific:tinyauth
+
+
+
+# role-specific:traefik_certs_dumper
+########################################################################
+#                                                                      #
+# traefik_certs_dumper                                                 #
+#                                                                      #
+########################################################################
+
+traefik_certs_dumper_enabled: false
+
+traefik_certs_dumper_identifier: "{{ mash_playbook_service_identifier_prefix }}traefik-certs-dumper"
+
+traefik_certs_dumper_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}traefik-certs-dumper"
+
+traefik_certs_dumper_uid: "{{ mash_playbook_uid }}"
+traefik_certs_dumper_gid: "{{ mash_playbook_gid }}"
+
+traefik_certs_dumper_container_additional_networks_auto: |
+  {{
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+  }}
+
+traefik_certs_dumper_ssl_path: "{{ traefik_ssl_dir_path }}"
+
+########################################################################
+#                                                                      #
+# /traefik_certs_dumper                                                #
+#                                                                      #
+########################################################################
+# /role-specific:traefik_certs_dumper
 
 
 

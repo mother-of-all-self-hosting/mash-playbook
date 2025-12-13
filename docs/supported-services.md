@@ -59,6 +59,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 | [Duplicati](https://duplicati.com) | Backup software that securely stores encrypted, incremental, compressed backups on local storage, cloud storage services and remote file servers | [Link](services/duplicati.md) |
 | [echoip](https://github.com/mpolden/echoip) | A simple service for looking up your IP address | [Link](services/echoip.md) |
 | [Endlessh-go](https://github.com/shizunge/endlessh-go) | A golang implementation of Endlessh, an SSH tarpit | [Link](services/endlessh.md) |
+| [Ergo](https://ergo.chat/) | Modern IRCd (IRC server software) written in Go | [Link](services/ergo.md) |
 | [etcd](https://etcd.io/) | A distributed, reliable key-value store for the most critical data of a distributed system | [Link](services/etcd.md) |
 | [Etherpad](https://etherpad.org) | Open source collaborative text editor | [Link](services/etherpad.md) |
 | [Excalidraw](https://excalidraw.com/) | Virtual whiteboard for sketching hand-drawn like diagrams | [Link](services/excalidraw.md) |
@@ -112,6 +113,8 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 | [Linkwarden](https://github.com/linkwarden/linkwarden) | Self-hosted, open-source collaborative bookmark manager to collect, organize and archive webpages | [Link](services/linkwarden.md) |
 | [listmonk](https://listmonk.app) | Self-hosted newsletter and mailing list manager. | [Link](services/listmonk.md) |
 | [LLDAP](https://github.com/lldap/lldap/) | Lightweight authentication server that provides an opinionated, simplified LDAP interface for authentication | [Link](services/lldap.md) |
+| [MailCatcher](http://mailcatcher.me/) | SMTP server which catches messages sent to it and displays in a web interface | [Link](services/mailcatcher.md) |
+| [MailCrab](https://github.com/tweedegolf/mailcrab) | SMTP test server for development, written in Rust | [Link](services/mailcrab.md) |
 | [MariaDB](https://mariadb.org/) | A powerful, open source object-relational database system | [Link](services/mariadb.md) |
 | [Matomo](https://matomo.org/) | Free and open source web analytics platform | [Link](services/matomo.md) |
 | [Matrix Rooms Search API](https://github.com/etkecc/mrs) | A fully-featured, standalone, matrix rooms search service. | [Link](services/mrs.md) |
@@ -185,7 +188,9 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 | [Semaphore UI](https://semaphoreui.com/) | Modern UI for Ansible, Terraform/OpenTofu/Terragrunt, PowerShell and other DevOps tools | [Link](services/semaphore.md) |
 | [Send](https://github.com/timvisee/send) | Fork of Mozilla's [Firefox Send](https://github.com/mozilla/send) which allows you to send encrypted files to other users | [Link](services/send.md) |
 | [SFTPGo](https://github.com/drakkan/sftpgo/) | File transfer software which supports SFTP, HTTP/S, FTP/S and WebDAV and can connect to various storage backends including S3 (compatible) Object Storage and Google Cloud Storage | [Link](services/sftpgo.md) |
+| [SMP server](https://simplex.chat/docs/server.html) | Relay server used to pass messages in [SimpleX](https://simplex.chat/) network | [Link](services/smp-server.md) |
 | [Soft Serve](https://github.com/charmbracelet/soft-serve) | A tasty, self-hostable [Git](https://git-scm.com/) server for the command line | [Link](services/soft-serve.md) |
+| [SolidInvoice](https://github.com/SolidInvoice/SolidInvoice) | Web-based free software for invoicing | [Link](services/solidinvoice.md) |
 | [Sonarr](https://sonarr.tv/) | A smart PVR for newsgroup and bittorrent users | [Link](services/sonarr.md) |
 | [Standalone Snowflake proxy](https://community.torproject.org/relay/setup/snowflake/standalone/) | Help users connect to the [Tor](https://torproject.org/) network in places where Tor is blocked | [Link](services/snowflake.md) |
 | [Statusnook](https://statusnook.com/) | Self-hosted status page deployment service | [Link](services/statusnook.md) |
@@ -197,6 +202,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 | [The Lounge](https://thelounge.chat/) | Web IRC client with modern features, which keeps a persistent connection to IRC servers | [Link](services/thelounge.md) |
 | [Tinyauth](https://tinyauth.app/) | Simple authentication middleware that adds a login screen or OAuth with providers to your Docker services | [Link](services/tinyauth.md) |
 | [Traefik](https://doc.traefik.io/traefik/) | A container-aware reverse-proxy server | [Link](services/traefik.md) |
+| [traefik-certs-dumper](https://github.com/ldez/traefik-certs-dumper) | Dump ACME data from Traefik to certificates | [Link](services/traefik-certs-dumper.md) |
 | [TSDProxy](https://almeidapaulopt.github.io/tsdproxy/) | A proxy for virtual services in Tailscale | [Link](services/tsdproxy.md) |
 | [Typesense](https://typesense.org) | Fast and typo-tolerant fulltext search engine | [Link](services/typesense.md) |
 | [Uptime Kuma](https://uptime.kuma.pet/) | A fancy self-hosted monitoring tool | [Link](services/uptime-kuma.md) |

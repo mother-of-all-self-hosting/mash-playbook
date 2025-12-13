@@ -59,6 +59,16 @@ excalidraw_hostname: excalidraw.example.com
 
 **Note**: hosting Excalidraw client under a subpath (by configuring the `excalidraw_path_prefix` variable) does not seem to be possible due to Excalidraw's technical limitations.
 
+### Using the default Docker image (optional)
+
+Since the service requires the root user by default, it is configured to use the image built locally on the source code in order to serve the application with [`static-web-server`](https://static-web-server.net/), which runs as non-root user without any additional capabilities.
+
+If you prefer simply using [the official Docker image](https://hub.docker.com/r/excalidraw/excalidraw) instead, add the following configuration to your `vars.yml` file:
+
+```yaml
+excalidraw_container_image_self_build: false
+```
+
 ## Usage
 
 After running the command for installation, the Excalidraw client becomes available at the URL specified with `excalidraw_hostname`. With the configuration above, the service is hosted at `https://excalidraw.example.com`.

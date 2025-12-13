@@ -82,6 +82,8 @@ After running the command for installation, the Opengist instance becomes availa
 
 To get started, open the URL with a web browser, and register the account. **Note that the first registered user becomes an administrator automatically.**
 
+See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az48WEbcYK3E6uDmfP1Qbb9AGdz1L3/tree/docs/configuring-opengist.md#configuring-ssh-feature-for-opengist-optional) on the role's documentation for details about how to set up the SSH feature.
+
 ## Troubleshooting
 
 See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az48WEbcYK3E6uDmfP1Qbb9AGdz1L3/tree/docs/configuring-opengist.md#troubleshooting) on the role's documentation for details.
