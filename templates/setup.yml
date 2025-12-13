@@ -241,6 +241,10 @@
     - role: galaxy/endlessh
     # /role-specific:endlessh
 
+    # role-specific:ergo
+    - role: galaxy/ergo
+    # /role-specific:ergo
+
     # role-specific:etcd
     - role: galaxy/etcd
     # /role-specific:etcd
@@ -448,6 +452,14 @@
     # role-specific:loki
     - role: galaxy/loki
     # /role-specific:loki
+
+    # role-specific:mailcatcher
+    - role: galaxy/mailcatcher
+    # /role-specific:mailcatcher
+
+    # role-specific:mailcrab
+    - role: galaxy/mailcrab
+    # /role-specific:mailcrab
 
     # role-specific:mariadb
     - role: galaxy/mariadb
@@ -745,6 +757,10 @@
     - role: galaxy/sftpgo
     # /role-specific:sftpgo
 
+    # role-specific:smp_server
+    - role: galaxy/smp_server
+    # /role-specific:smp_server
+
     # role-specific:snowflake
     - role: galaxy/snowflake
     # /role-specific:snowflake
@@ -752,6 +768,10 @@
     # role-specific:soft_serve
     - role: galaxy/soft_serve
     # /role-specific:soft_serve
+
+    # role-specific:solidinvoice
+    - role: galaxy/solidinvoice
+    # /role-specific:solidinvoice
 
     # role-specific:sonarr
     - role: galaxy/sonarr
@@ -792,6 +812,10 @@
     # role-specific:tinyauth
     - role: galaxy/tinyauth
     # /role-specific:tinyauth
+
+    # role-specific:traefik_certs_dumper
+    - role: galaxy/traefik_certs_dumper
+    # /role-specific:traefik_certs_dumper
 
     # role-specific:tsdproxy
     - role: galaxy/tsdproxy

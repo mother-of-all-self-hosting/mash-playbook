@@ -21,6 +21,7 @@
     <outline text="autobrr" title="autobrr" type="rss" htmlUrl="https://github.com/autobrr/autobrr" xmlUrl="https://github.com/autobrr/autobrr/releases.atom" />
     <outline text="backup_borg" title="backup_borg" type="rss" htmlUrl="https://github.com/etkecc/borgmatic" xmlUrl="https://github.com/etkecc/borgmatic/releases.atom" />
     <outline text="barassistant" title="barassistant" type="rss" htmlUrl="https://github.com/karlomikus/bar-assistant/" xmlUrl="https://github.com/karlomikus/bar-assistant//releases.atom" />
+    <outline text="bentopdf" title="bentopdf" type="rss" htmlUrl="https://github.com/alam00000/bentopdf" xmlUrl="https://github.com/alam00000/bentopdf/releases.atom" />
     <outline text="bind" title="bind" type="rss" htmlUrl="https://gitlab.isc.org/isc-projects/bind9" xmlUrl="https://gitlab.isc.org/isc-projects/bind9/-/tags?format=atom" />
     <outline text="browserless" title="browserless" type="rss" htmlUrl="https://github.com/browserless/browserless" xmlUrl="https://github.com/browserless/browserless/releases.atom" />
     <outline text="calibre_web" title="calibre_web" type="rss" htmlUrl="https://github.com/calibre_web/calibre_web" xmlUrl="https://github.com/calibre_web/calibre_web/releases.atom" />
@@ -39,6 +40,7 @@
     <outline text="duplicati" title="duplicati" type="rss" htmlUrl="https://github.com/duplicati/duplicati" xmlUrl="https://github.com/duplicati/duplicati/releases.atom" />
     <outline text="echoip" title="echoip" type="rss" htmlUrl="https://github.com/mpolden/echoip" xmlUrl="https://github.com/mpolden/echoip/releases.atom" />
     <outline text="endlessh" title="endlessh" type="rss" htmlUrl="https://github.com/shizunge/endlessh-go" xmlUrl="https://github.com/shizunge/endlessh-go/releases.atom" />
+    <outline text="ergo" title="ergo" type="rss" htmlUrl="https://github.com/ergochat/ergo" xmlUrl="https://github.com/ergochat/ergo/releases.atom" />
     <outline text="etcd" title="etcd" type="rss" htmlUrl="https://github.com/etcd-io/etcd" xmlUrl="https://github.com/etcd-io/etcd/releases.atom" />
     <outline text="etherpad" title="etherpad" type="rss" htmlUrl="https://github.com/ether/etherpad-lite" xmlUrl="https://github.com/ether/etherpad-lite/releases.atom" />
     <outline text="excalidraw" title="excalidraw" type="rss" htmlUrl="https://github.com/excalidraw/excalidraw" xmlUrl="https://github.com/excalidraw/excalidraw/releases.atom" />
@@ -87,6 +89,8 @@
     <outline text="listmonk" title="listmonk" type="rss" htmlUrl="https://github.com/knadh/listmonk" xmlUrl="https://github.com/knadh/listmonk/releases.atom" />
     <outline text="lldap" title="lldap" type="rss" htmlUrl="https://github.com/thedevs-network/lldap" xmlUrl="https://github.com/thedevs-network/lldap/releases.atom" />
     <outline text="loki" title="loki" type="rss" htmlUrl="https://github.com/grafana/loki" xmlUrl="https://github.com/grafana/loki/releases.atom" />
+    <outline text="mailcatcher" title="mailcatcher" type="rss" htmlUrl="https://github.com/sj26/mailcatcher" xmlUrl="https://github.com/sj26/mailcatcher/releases.atom" />
+    <outline text="mailcrab" title="mailcrab" type="rss" htmlUrl="https://github.com/tweedegolf/mailcrab" xmlUrl="https://github.com/tweedegolf/mailcrab/releases.atom" />
     <outline text="matomo" title="matomo" type="rss" htmlUrl="https://github.com/matomo-org/matomo" xmlUrl="https://github.com/matomo-org/matomo/releases.atom" />
     <outline text="matterbridge" title="matterbridge" type="rss" htmlUrl="https://github.com/42wim/matterbridge" xmlUrl="https://github.com/42wim/matterbridge/releases.atom" />
     <outline text="meilisearch" title="meilisearch" type="rss" htmlUrl="https://github.com/meilisearch/meilisearch" xmlUrl="https://github.com/meilisearch/meilisearch/releases.atom" />
@@ -96,6 +100,7 @@
     <outline text="misskey" title="misskey" type="rss" htmlUrl="https://github.com/misskey-dev/misskey" xmlUrl="https://github.com/misskey-dev/misskey/releases.atom" />
     <outline text="mobilizon" title="mobilizon" type="rss" htmlUrl="https://framagit.org/kaihuri/mobilizon/" xmlUrl="https://framagit.org/kaihuri/mobilizon//-/tags?format=atom" />
     <outline text="mongodb" title="mongodb" type="rss" htmlUrl="https://github.com/mongodb/mongo" xmlUrl="https://github.com/mongodb/mongo/releases.atom" />
+    <outline text="moodist" title="moodist" type="rss" htmlUrl="https://github.com/remvze/moodist" xmlUrl="https://github.com/remvze/moodist/releases.atom" />
     <outline text="mosquitto" title="mosquitto" type="rss" htmlUrl="https://github.com/eclipse-mosquitto/mosquitto" xmlUrl="https://github.com/eclipse-mosquitto/mosquitto/releases.atom" />
     <outline text="mozhi" title="mozhi" type="rss" htmlUrl="https://codeberg.org/aryak/mozhi" xmlUrl="https://codeberg.org/aryak/mozhi/releases.atom" />
     <outline text="n8n" title="n8n" type="rss" htmlUrl="https://github.com/n8n-io/n8n" xmlUrl="https://github.com/n8n-io/n8n/releases.atom" />
@@ -118,6 +123,8 @@
     <outline text="paperless" title="paperless" type="rss" htmlUrl="https://github.com/paperless-ngx/paperless-ngx" xmlUrl="https://github.com/paperless-ngx/paperless-ngx/releases.atom" />
     <outline text="paperless-2" title="paperless-2" type="rss" htmlUrl="https://github.com/apache/tika" xmlUrl="https://github.com/apache/tika/releases.atom" />
     <outline text="paperless-3" title="paperless-3" type="rss" htmlUrl="https://github.com/gotenberg/gotenberg" xmlUrl="https://github.com/gotenberg/gotenberg/releases.atom" />
+    <outline text="papra" title="papra" type="rss" htmlUrl="https://github.com/papra-hq/papra" xmlUrl="https://github.com/papra-hq/papra/releases.atom" />
+    <outline text="pdfding" title="pdfding" type="rss" htmlUrl="https://github.com/mrmn2/PdfDing" xmlUrl="https://github.com/mrmn2/PdfDing/releases.atom" />
     <outline text="peertube" title="peertube" type="rss" htmlUrl="https://github.com/Chocobozzz/PeerTube" xmlUrl="https://github.com/Chocobozzz/PeerTube/releases.atom" />
     <outline text="pgadmin" title="pgadmin" type="rss" htmlUrl="https://github.com/pgadmin-org/pgadmin4" xmlUrl="https://github.com/pgadmin-org/pgadmin4/releases.atom" />
     <outline text="phpmyadmin" title="phpmyadmin" type="rss" htmlUrl="https://github.com/phpmyadmin/docker" xmlUrl="https://github.com/phpmyadmin/docker/releases.atom" />
@@ -153,6 +160,7 @@
     <outline text="sftpgo" title="sftpgo" type="rss" htmlUrl="https://github.com/drakkan/sftpgo" xmlUrl="https://github.com/drakkan/sftpgo/releases.atom" />
     <outline text="snowflake" title="snowflake" type="rss" htmlUrl="https://gitlab.torproject.org/tpo/anti-censorship/pluggable-transports/snowflake/" xmlUrl="https://gitlab.torproject.org/tpo/anti-censorship/pluggable-transports/snowflake//-/tags?format=atom" />
     <outline text="soft_serve" title="soft_serve" type="rss" htmlUrl="https://github.com/charmbracelet/soft-serve" xmlUrl="https://github.com/charmbracelet/soft-serve/releases.atom" />
+    <outline text="solidinvoice" title="solidinvoice" type="rss" htmlUrl="https://github.com/solidinvoice/solidinvoice" xmlUrl="https://github.com/solidinvoice/solidinvoice/releases.atom" />
     <outline text="sonarr" title="sonarr" type="rss" htmlUrl="https://github.com/Sonarr/Sonarr" xmlUrl="https://github.com/Sonarr/Sonarr/releases.atom" />
     <outline text="statusnook" title="statusnook" type="rss" htmlUrl="https://github.com/tiagozip/statusnook" xmlUrl="https://github.com/tiagozip/statusnook/releases.atom" />
     <outline text="stirling_pdf" title="stirling_pdf" type="rss" htmlUrl="https://github.com/Stirling-Tools/Stirling-PDF" xmlUrl="https://github.com/Stirling-Tools/Stirling-PDF/releases.atom" />
@@ -162,6 +170,7 @@
     <outline text="tika" title="tika" type="rss" htmlUrl="https://github.com/apache/tika-docker" xmlUrl="https://github.com/apache/tika-docker/releases.atom" />
     <outline text="tinyauth" title="tinyauth" type="rss" htmlUrl="https://github.com/steveiliop56/tinyauth" xmlUrl="https://github.com/steveiliop56/tinyauth/releases.atom" />
     <outline text="traefik" title="traefik" type="rss" htmlUrl="https://github.com/traefik/traefik" xmlUrl="https://github.com/traefik/traefik/releases.atom" />
+    <outline text="traefik_certs_dumper" title="traefik_certs_dumper" type="rss" htmlUrl="https://github.com/ldez/traefik-certs-dumper" xmlUrl="https://github.com/ldez/traefik-certs-dumper/releases.atom" />
     <outline text="tsdproxy" title="tsdproxy" type="rss" htmlUrl="https://github.com/almeidapaulopt/tsdproxy" xmlUrl="https://github.com/almeidapaulopt/tsdproxy/releases.atom" />
     <outline text="typesense" title="typesense" type="rss" htmlUrl="https://github.com/typesense/typesense" xmlUrl="https://github.com/typesense/typesense/releases.atom" />
     <outline text="uptime_kuma" title="uptime_kuma" type="rss" htmlUrl="https://github.com/louislam/uptime-kuma" xmlUrl="https://github.com/louislam/uptime-kuma/releases.atom" />

@@ -59,6 +59,19 @@ cyberchef_hostname: cyberchef.example.com
 
 **Note**: hosting CyberChef under a subpath (by configuring the `cyberchef_path_prefix` variable) does not seem to be possible due to CyberChef's technical limitations.
 
+### Using the default Docker image (optional)
+
+To have the service run as the playbook's default user instead of root user, this service is by default configured to use the Docker image locally built on [this own Dockerfile](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az2zgHMDh4Pb8yr4DH8BVkMcdboBXd/tree/templates/Dockerfile.j2).
+
+If you prefer simply using [the official Docker image](https://github.com/gchq/CyberChef/pkgs/container/cyberchef) instead, add the following configuration to your `vars.yml` file:
+
+```yaml
+cyberchef_container_image_self_build: false
+```
+
+>[!NOTE]
+> Adding the variable configures the playbook to run the service as a root user.
+
 ## Usage
 
 After running the command for installation, the CyberChef instance becomes available at the URL specified with `cyberchef_hostname`. With the configuration above, the service is hosted at `https://cyberchef.example.com`.
