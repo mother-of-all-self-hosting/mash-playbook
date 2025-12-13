@@ -47,14 +47,11 @@ nifi_self_signed_cert_passphrase: ""
 # Generate one using `pwgen -s 64 1`, or some other way
 nifi_sensitive_props_key: ""
 
-# The admin username and password. The password must be 12 characters. The salt must be exactly 22 characters, and does not necessarily need to be changed from the example below.
-# Generate a password using `pwgen -s 32 1`, or some other way
-nifi_conf_login_identity_providers_xml:
-  - xpath: /loginIdentityProviders/provider/property[@name='Username']
-    value: admin
-
-  - xpath: /loginIdentityProviders/provider/property[@name='Password']
-    value: "{{ 'my-secure-password' | password_hash(hashtype='bcrypt', salt='0tfETQ5kFWhcT4oPwdbHbL') }}"
+# The default login credentials to configure
+# The password must be at least 12 characters, generate one using `pwgen -s 32 1`, or some other way
+# The salt must be exactly 22 characters, and does not necessarily need to be changed from default value
+nifi_login_username: admin
+nifi_login_password: my-secure-password
 
 ########################################################################
 #                                                                      #
@@ -71,7 +68,7 @@ nifi_conf_login_identity_providers_xml:
 traefik_provider_configuration_extension_yaml: |
   http:
     serversTransports:
-      insecure-nifi-transport:
+      {{ nifi_traefik_serverstransport }}:
         insecureSkipVerify: true
 
 ########################################################################
