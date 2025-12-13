@@ -377,6 +377,9 @@ immich_machine_learning_hardware_acceleration: openvino
 
 💡 For Intel-based CPUs with an integrated GPU, set this to `openvino`.
 
+> [!WARNING]
+> Hardware-acceleration-enabled machine-learning images appear to be missing for some platforms (like `rocm`), so you may not have much luck with this setting. See: [Missing hardware-accelerated container image tags for machine-learning for some platforms #24533](https://github.com/immich-app/immich/issues/24533).
+
 💡 Defaults are generally fine, but you may also wish to tweak [Machine Learning settings](#adjusting-machine-learning-settings) after installation.
 
 ##### Enabling Hardware Acceleration for video transcoding
