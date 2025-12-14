@@ -29,7 +29,7 @@
   name: apisix_gateway
   activation_prefix: apisix_gateway_
 - src: git+https://seed.radicle.garden/z292aD8q3r8xqhJvLe2zv1b24gu7a.git
-  version: v1.2.6-0
+  version: v1.3.0-0
   name: apprise
   activation_prefix: apprise_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-appsmith.git
