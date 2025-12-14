@@ -2052,7 +2052,7 @@ mash_playbook_traefix_managed_additional_entrypoints_auto_itemized:
       ({
         'name': ergo_container_labels_traefik_entrypoints,
         'port': ergo_container_tcp_tls_port,
-        'host_bind_port': ergo_container_tcp_tls_port,
+        'host_bind_port': ergo_container_tcp_tls_host_bind_port,
         'config': {
           'transport': {
             'respondingTimeouts': {
