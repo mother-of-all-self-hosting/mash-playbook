@@ -33,8 +33,8 @@ For details about configuring the [Ansible role for Ergo](https://app.radicle.xy
 
 This service requires the following other services:
 
-- [Traefik](traefik.md) reverse-proxy server
 - (optional) MySQL / [MariaDB](mariadb.md) database — for persistent message history
+- (optional) [Traefik](traefik.md) reverse-proxy server — required on the default configuration
 
 ## Adjusting the playbook configuration
 
