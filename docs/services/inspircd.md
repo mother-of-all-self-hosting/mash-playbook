@@ -77,4 +77,5 @@ See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3AzA2Ec
 
 ## Related services
 
+- [Ergo](ergo.md) — Modern IRCd (IRC server software) written in Go
 - [The Lounge](thelounge.md) — Web IRC client with modern features, which keeps a persistent connection to IRC servers
