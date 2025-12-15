@@ -29,7 +29,6 @@ mash_playbook_generic_secret_key: "{{ vault_mash_playbook_generic_secret_key }}"
 
 system_security_ssh_enabled: true
 
-system_security_ssh_service: ssh
 system_security_ssh_services: ['ssh']
 
 system_security_ssh_port: "{{ ansible_ssh_port }}"
