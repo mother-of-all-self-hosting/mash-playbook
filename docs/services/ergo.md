@@ -91,4 +91,5 @@ See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az2CSx
 
 ## Related services
 
+- [InspIRCd](inspircd.md) —  Modular IRC server written in C++
 - [The Lounge](thelounge.md) — Web IRC client with modern features, which keeps a persistent connection to IRC servers

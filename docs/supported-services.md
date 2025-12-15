@@ -95,6 +95,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 | [Immich Kiosk](https://immichkiosk.app/) | Highly configurable slideshow for displaying [Immich](https://immich.app/) pictures and videos on browsers and devices | [Link](services/immich-kiosk.md) |
 | [Infisical](https://infisical.com/) | An open-source end-to-end encrypted platform for securely managing secrets and configs across your team, devices, and infrastructure. | [Link](services/infisical.md) |
 | [InfluxDB](https://www.influxdata.com/) | A self-hosted time-series database. | [Link](services/influxdb.md) |
+| [InspIRCd](https://www.inspircd.org/) | Modular IRC server written in C++ | [Link](services/inspircd.md) |
 | [Jackett](https://github.com/Jackett/Jackett) | An API for your favorite torrent trackers | [Link](services/jackett.md) |
 | [Jellyfin](https://github.com/jellyfin/jellyfin) | An open-source personal media server | [Link](services/jellyfin.md) |
 | [Jellyseerr](https://github.com/Fallenbagel/jellyseerr)| An open-source media request and discovery manager for Jellyfin, Plex, and Emby | [Link](services/jellyseerr.md) |

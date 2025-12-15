@@ -86,3 +86,4 @@ See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3vaa
 ## Related services
 
 - [Ergo](ergo.md) — Modern IRCd (IRC server software) written in Go
+- [InspIRCd](inspircd.md) —  Modular IRC server written in C++
