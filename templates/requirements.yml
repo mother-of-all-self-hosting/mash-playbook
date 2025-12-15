@@ -725,7 +725,7 @@
   name: sonarr
   activation_prefix: sonarr_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-ssh.git
-  version: 13440992374e0fef8f6360a0856b78b37a1fd831
+  version: v1.0.0-0
   name: ssh
   activation_prefix: system_security_ssh_
 - src: git+https://seed.radicle.garden/z4Ki52caKbH1y9jFNdKzQnc8WH1Jd.git
