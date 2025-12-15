@@ -312,6 +312,10 @@
   version: v2.8.0-0
   name: influxdb
   activation_prefix: influxdb_
+- src: git+https://seed.radicle.garden/zA2EcZYaHBzoc3XudvDhVDBjT42a.git
+  version: v4.9.0-0
+  name: inspircd
+  activation_prefix: inspircd_
 - src: git+https://github.com/spatterIight/ansible-role-jackett.git
   version: v0.23.43-1
   name: jackett
