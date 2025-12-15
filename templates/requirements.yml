@@ -453,7 +453,7 @@
   name: mozhi
   activation_prefix: mozhi_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-mrs.git
-  version: v0.1.0-12
+  version: v0.1.0-13
   name: mrs
   activation_prefix: mrs_
 - src: git+https://github.com/kinduff/ansible-docker-n8n.git
