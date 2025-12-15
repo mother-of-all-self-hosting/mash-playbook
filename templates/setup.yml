@@ -377,6 +377,10 @@
     - role: galaxy/influxdb
     # /role-specific:influxdb
 
+    # role-specific:inspircd
+    - role: galaxy/inspircd
+    # /role-specific:inspircd
+
     # role-specific:jackett
     - role: galaxy/jackett
     # /role-specific:jackett

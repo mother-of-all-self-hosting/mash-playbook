@@ -33,8 +33,8 @@ For details about configuring the [Ansible role for Ergo](https://app.radicle.xy
 
 This service requires the following other services:
 
-- [Traefik](traefik.md) reverse-proxy server
 - (optional) MySQL / [MariaDB](mariadb.md) database — for persistent message history
+- (optional) [Traefik](traefik.md) reverse-proxy server — required on the default configuration
 
 ## Adjusting the playbook configuration
 
@@ -91,4 +91,5 @@ See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az2CSx
 
 ## Related services
 
+- [InspIRCd](inspircd.md) —  Modular IRC server written in C++
 - [The Lounge](thelounge.md) — Web IRC client with modern features, which keeps a persistent connection to IRC servers
