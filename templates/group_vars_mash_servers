@@ -3981,6 +3981,7 @@ ergo_database_mysql_password: "{{ '%s' | format(mash_playbook_generic_secret_key
 
 # role-specific:traefik
 ergo_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
+ergo_container_labels_traefik_loadbalancer_serverstransport: "{{ traefik_config_tcp_servertransports_default_proxyprotocol_name }}@file"
 # /role-specific:traefik
 
 ########################################################################
