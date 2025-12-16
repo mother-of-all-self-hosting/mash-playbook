@@ -18,17 +18,17 @@ SPDX-FileCopyrightText: 2024 - 2025 Suguru Hirahara
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 
-# Adminer
+# OrigamiVault
 
-The playbook can install and configure [Adminer](https://www.adminer.org/) for you.
+The playbook can install and configure [OrigamiVault](https://github.com/origamivault/origamivault) for you.
 
-Adminer is a full-featured database management tool written in PHP. It supports MySQL, MariaDB, PostgreSQL, CockroachDB, SQLite, MS SQL, and Oracle out of the box. Elasticsearch, SimpleDB, MongoDB, Firebird, and Clickhouse can be supported via plugins.
+OrigamiVault is a web application encrypting or splitting secrets for printing them as QR codes on sheets of paper for later recovery with JavaScript. The application can also work offline on a web browser.
 
-See the project's [documentation](https://github.com/vrana/adminer/blob/master/README.md) to learn what Adminer does and why it might be useful to you.
+See the project's [documentation](https://github.com/origamivault/origamivault/blob/main/README.md) to learn what OrigamiVault does and why it might be useful to you.
 
-For details about configuring the [Ansible role for Adminer](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3px8gLDo2opjQZW7qFiLoNuk4eSu), you can check them via:
-- 🌐 [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3px8gLDo2opjQZW7qFiLoNuk4eSu/tree/docs/configuring-adminer.md) online
-- 📁 `roles/galaxy/adminer/docs/configuring-adminer.md` locally, if you have [fetched the Ansible roles](../installing.md)
+For details about configuring the [Ansible role for OrigamiVault](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3aGv2oUAxqmoGddtk1VwRioUTKbs), you can check them via:
+- 🌐 [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3aGv2oUAxqmoGddtk1VwRioUTKbs/tree/docs/configuring-origamivault.md) online
+- 📁 `roles/galaxy/origamivault/docs/configuring-origamivault.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 ## Dependencies
 
@@ -43,39 +43,26 @@ To enable this service, add the following configuration to your `vars.yml` file 
 ```yaml
 ########################################################################
 #                                                                      #
-# adminer                                                              #
+# origamivault                                                         #
 #                                                                      #
 ########################################################################
 
-adminer_enabled: true
+origamivault_enabled: true
 
-adminer_hostname: adminer.example.com
+origamivault_hostname: mash.example.com
+origamivault_path_prefix: /origamivault
 
 ########################################################################
 #                                                                      #
-# /adminer                                                             #
+# /origamivault                                                        #
 #                                                                      #
 ########################################################################
 ```
 
-It is optionally possible to edit settings about the default server to connect, plugins to load (ones for loading databases), etc. See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3px8gLDo2opjQZW7qFiLoNuk4eSu/tree/docs/configuring-adminer.md#adjusting-the-playbook-configuration) for details.
-
 ## Usage
 
-After running the command for installation, the Adminer instance becomes available at the URL specified with `adminer_hostname`. With the configuration above, the service is hosted at `https://adminer.example.com`.
-
-To get started, open the URL `https://adminer.example.com` with a web browser, and log in to the instance with the database's credentials specified on your `vars.yml` file.
-
-To log in to database servers which this playbook manages, you need to specify its `*_identifier` to the `server` input area. For example, the default value for the MariaDB server is `mash-mariadb` and the one for the Postgres server is `mash-postgres`, respectively.
-
->[!NOTE]
-> Since enabling Adminer with this playbook exposes the instance (thus practically the databases as well) to the internet, it is important to set a proper method to restrict who can access to it. See [this section](https://www.adminer.org/en/#requirements) on the project website for security recommendations.
+After running the command for installation, the OrigamiVault instance becomes available at the URL specified with `origamivault_hostname`. With the configuration above, the service is hosted at `https://mash.example.com/origamivault`.
 
 ## Troubleshooting
 
-See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3px8gLDo2opjQZW7qFiLoNuk4eSu/tree/docs/configuring-adminer.md#troubleshooting) on the role's documentation for details.
-
-## Related services
-
-- [pgAdmin](pgadmin.md) — Management tool for Postgres with a graphical interface
-- [phpMyAdmin](phpmyadmin.md) — Free software written in PHP to handle the administration of a MySQL or MariaDB database server over the web
+See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3aGv2oUAxqmoGddtk1VwRioUTKbs/tree/docs/configuring-origamivault.md#troubleshooting) on the role's documentation for details.
