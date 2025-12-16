@@ -520,6 +520,10 @@
   version: v1.3.0-0
   name: openregex
   activation_prefix: openregex_
+- src: git+https://seed.radicle.garden/z3aGv2oUAxqmoGddtk1VwRioUTKbs.git
+  version: v0.0.0-0
+  name: origamivault
+  activation_prefix: origamivault_
 - src: git+https://seed.radicle.garden/zvzJe15VMBkGd2CMBctvpVZgmQG5.git
   version: v2.14.2-0
   name: otterwiki
