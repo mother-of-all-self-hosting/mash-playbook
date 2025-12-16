@@ -545,6 +545,10 @@
     - role: galaxy/nextcloud
     # /role-specific:nextcloud
 
+    # role-specific:nifi
+    - role: galaxy/nifi
+    # /role-specific:nifi
+
     # role-specific:nocdnbs
     - role: galaxy/nocdnbs
     # /role-specific:nocdnbs
