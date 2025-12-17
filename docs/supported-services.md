@@ -147,6 +147,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 | [Open Archiver](https://github.com/LogicLabs-OU/OpenArchiver) | Archive, store, index, and search emails from various platforms, including generic IMAP-enabled email inboxes | [Link](services/openarchiver.md) |
 | [Opengist](https://opengist.io/) | Self-hosted pastebin powered by Git | [Link](services/opengist.md) |
 | [OpenRegex](https://github.com/SunneV/OpenRegex) | Web-based regular expression (regex) tester and debugger | [Link](services/openregex.md) |
+| [OrigamiVault](https://github.com/origamivault/origamivault) | Encrypted paper storage | [Link](services/origamivault.md) |
 | [Outline](https://www.getoutline.com/) | An open-source knowledge base for growing teams. | [Link](services/outline.md) |
 | [Overseerr](https://overseerr.dev/) | A request management and media discovery tool for the Plex ecosystem | [Link](services/overseerr.md) |
 | [Owncast](https://owncast.online/) | Owncast is a free and open source live video and web chat server for use with existing popular broadcasting software. | [Link](services/owncast.md) |

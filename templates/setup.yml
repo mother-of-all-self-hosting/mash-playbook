@@ -585,6 +585,10 @@
     - role: galaxy/openregex
     # /role-specific:openregex
 
+    # role-specific:origamivault
+    - role: galaxy/origamivault
+    # /role-specific:origamivault
+
     # role-specific:otterwiki
     - role: galaxy/otterwiki
     # /role-specific:otterwiki
