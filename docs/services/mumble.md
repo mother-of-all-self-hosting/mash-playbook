@@ -19,22 +19,27 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
 # Mumble
 
-The playbook can install and configure [Mumble](https://mumble.chat) for you.
+The playbook can install and configure [Mumble](https://www.mumble.info) for you.
 
-Mumble is a modern IRCd (IRC server software) written in Go.
+Mumble is a free and open source voice chat application known for its low latency and high voice quality.
 
-See the project's [documentation](https://mumble.chat/about) to learn what Mumble does and why it might be useful to you.
+See the project's [documentation](https://www.mumble.info/documentation/) to learn what Mumble does and why it might be useful to you.
 
-For details about configuring the [Ansible role for Mumble](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az2CSxS3YLtJYM87TyGZkZCan3uoSJ), you can check them via:
-- 🌐 [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az2CSxS3YLtJYM87TyGZkZCan3uoSJ/tree/docs/configuring-mumble.md) online
+For details about configuring the [Ansible role for Mumble](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az4VBCibmQHyfHKEWTAJmQKBAAjtsv), you can check them via:
+- 🌐 [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az4VBCibmQHyfHKEWTAJmQKBAAjtsv/tree/docs/configuring-mumble.md) online
 - 📁 `roles/galaxy/mumble/docs/configuring-mumble.md` locally, if you have [fetched the Ansible roles](../installing.md)
+
+## Prerequisites
+
+You may need to open some ports to your server if another firewall is used in front of the server. Refer to [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad:z4VBCibmQHyfHKEWTAJmQKBAAjtsv/tree/docs/configuring-mumble.md#prerequisites) to check which ones to be configured.
 
 ## Dependencies
 
 This service requires the following other services:
 
-- (optional) MySQL / [MariaDB](mariadb.md) database — for persistent message history
-- (optional) [Traefik](traefik.md) reverse-proxy server — required on the default configuration
+- [Postgres](postgres.md) / MySQL / [MariaDB](mariadb.md) / [SQLite](https://www.sqlite.org/) database
+- (optional) [Traefik](traefik.md) reverse-proxy server — required on the default configuration for retrieving a TLS certificate
+- (optional) [traefik-certs-dumper](traefik-certs-dumper.md) — required on the default configuration for setting up the TLS certificate
 
 ## Adjusting the playbook configuration
 
@@ -58,38 +63,22 @@ mumble_hostname: mumble.example.com
 ########################################################################
 ```
 
-### Set the network's name
+### Select database to use
 
-It is also necessary to specify to the `mumble_config_network_name` variable the name of the network in a human-readable name that identifies your network.
+It is necessary to select a database used by Mumble from a MySQL compatible database, Postgres, and SQLite. See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az4VBCibmQHyfHKEWTAJmQKBAAjtsv/tree/docs/configuring-mumble.md#specify-database) on the role's documentation for details.
 
-### Setting passwords for the server and operators (optional)
+### Setting admin's password (optional)
 
-By default the server is not protected with a shared "server password" (`PASS`), and anyone can use it. For the IRC operators ("oper", "ircop") the role specifies the random password which should be replaced with yours.
-
-See [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az2CSxS3YLtJYM87TyGZkZCan3uoSJ/tree/docs/configuring-mumble.md#setting-server-39-s-password) for details about how to configure those passwords.
-
-### Enabling message storage on MariaDB database (optional)
-
-Mumble supports storing messages in a persistent storage. Currently a MySQL-compatible database is supported for it. This playbook supports MariaDB, and you can set up a MariaDB instance by enabling it on `vars.yml`. Refer to [this page](mariadb.md) for the instruction to enable it.
-
-After installing it, add the following configuration to your `vars.yml` file:
-
-```yaml
-# Enable storing messages in a persistent database for later playback
-mumble_config_history_persistent_enabled: true
-```
+It is possible to specify the admin (`SuperUser`) password by configuring a variable for it. See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az4VBCibmQHyfHKEWTAJmQKBAAjtsv/tree/docs/configuring-mumble.md#setting-admin-39-s-password) on the role's documentation for details. **If not specified, a random password will be generated upon the first startup.**
 
 ## Usage
 
-After running the command for installation, the Mumble instance becomes available at the URL specified with `mumble_hostname`. With the configuration above, the service is hosted at `ircs://mumble.example.com:6697`.
+After running the command for installation, the Mumble instance becomes available at the URL specified with `mumble_hostname`. With the configuration above, the service is hosted at `mumble.example.com:64738`.
 
-Before logging in to the server with your IRC client, you might want to have a look at [`USERGUIDE.md`](https://github.com/mumblechat/mumble/blob/stable/docs/USERGUIDE.md#introduction) for general information (what IRC is, how you can use the server with an IRC client, etc.)
+To get started, open the URL on a client for Mumble to log in to the server.
+
+As anyone can use the server without a password by default, you might also want to set one for the server to the `mumble_environment_variables_mumble_config_serverpassword` variable to authenticate who can log in to it.
 
 ## Troubleshooting
 
-See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az2CSxS3YLtJYM87TyGZkZCan3uoSJ/tree/docs/configuring-mumble.md#troubleshooting) on the role's documentation for details.
-
-## Related services
-
-- [InspIRCd](inspircd.md) —  Modular IRC server written in C++
-- [The Lounge](thelounge.md) — Web IRC client with modern features, which keeps a persistent connection to IRC servers
+See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az4VBCibmQHyfHKEWTAJmQKBAAjtsv/tree/docs/configuring-mumble.md#troubleshooting) on the role's documentation for details.
