@@ -525,6 +525,10 @@
     - role: galaxy/mrs
     # /role-specific:mrs
 
+    # role-specific:mumble
+    - role: galaxy/mumble
+    # /role-specific:mumble
+
     # role-specific:n8n
     - role: galaxy/n8n
     # /role-specific:n8n

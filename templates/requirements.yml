@@ -460,6 +460,10 @@
   version: v0.1.0-13
   name: mrs
   activation_prefix: mrs_
+- src: git+https://seed.radicle.garden/z4VBCibmQHyfHKEWTAJmQKBAAjtsv.git
+  version: v1.5.857-0
+  name: mumble
+  activation_prefix: mumble_
 - src: git+https://github.com/kinduff/ansible-docker-n8n.git
   version: v1.4.2
   name: n8n
