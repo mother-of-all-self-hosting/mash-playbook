@@ -61,7 +61,7 @@ moodist_hostname: moodist.example.com
 
 ### Using the default Docker image (optional)
 
-To have the service run as the playbook's default user instead of root user, this service is by default configured to use the Docker image locally built on [this own Dockerfile](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az4Ez9aU119yFMs59cnA3KUnExFAeN/tree/51bdebb3210e646fb7e83666b8208d5a820ae0c5/templates/Dockerfile.j2).
+To have the service run as the playbook's default user instead of root user, this service is by default configured to use the Docker image locally built on [this own Dockerfile](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az4Ez9aU119yFMs59cnA3KUnExFAeN/tree/templates/Dockerfile.j2).
 
 If you prefer simply pulling and using [the official Docker image](https://github.com/users/remvze/packages/container/package/moodist) instead, add the following configuration to your `vars.yml` file:
 
