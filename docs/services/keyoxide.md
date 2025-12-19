@@ -19,15 +19,15 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
 # keyoxide-web
 
-The playbook can install and configure [keyoxide-web](https://app.radicle.xyz/nodes/seed.radicle.xyz/rad%3Az4V1sjrXqjvFdnCUbxPFqd5p4DtH5) for you.
+The playbook can install and configure [keyoxide-web](https://codeberg.org/keyoxide/keyoxide-web) for you.
 
-keyoxide-web allows you to interact with [Radicle](https://radicle.xyz/), a peer-to-peer code collaboration and publishing stack, directly from your web browser.
+keyoxide-web is a web client for [Keyoxide](https://keyoxide.org/), a decentralized tool to create and verify decentralized online identities.
 
-See the project's [documentation](https://app.radicle.xyz/nodes/seed.radicle.xyz/rad%3Az4V1sjrXqjvFdnCUbxPFqd5p4DtH5/tree/README.md) to learn what keyoxide-web does and why it might be useful to you.
+See the project's [documentation](https://docs.keyoxide.org/) to learn what keyoxide-web does and why it might be useful to you.
 
-For details about configuring the [Ansible role for keyoxide-web](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Azopwjin5Vh5dMgdHWiifJ2cg3bQW), you can check them via:
-- 🌐 [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Azopwjin5Vh5dMgdHWiifJ2cg3bQW/tree/docs/configuring-radicle-explorer.md) online
-- 📁 `roles/galaxy/keyoxide/docs/configuring-radicle-explorer.md` locally, if you have [fetched the Ansible roles](../installing.md)
+For details about configuring the [Ansible role for keyoxide-web](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3m9zZgMmAQX5aVtj5Y9KYRnhjVrt), you can check them via:
+- 🌐 [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3m9zZgMmAQX5aVtj5Y9KYRnhjVrt/tree/docs/configuring-keyoxide.md) online
+- 📁 `roles/galaxy/keyoxide/docs/configuring-keyoxide.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 ## Prerequisites
 
@@ -61,15 +61,10 @@ keyoxide_hostname: keyoxide.example.com
 
 ## Usage
 
-After running the command for installation, the keyoxide-web instance becomes available at the URL specified with `radicle_node_hostname`. With the configuration above, the service is hosted at `https://explorer.example.com`.
+After running the command for installation, the keyoxide-web instance becomes available at the URL specified with `keyoxide_hostname`. With the configuration above, the service is hosted at `https://keyoxide.example.com`.
 
-See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Azopwjin5Vh5dMgdHWiifJ2cg3bQW/tree/docs/configuring-radicle-explorer.md#usage) on the role's documentation for details about how to browse a repository with the web client.
+See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3m9zZgMmAQX5aVtj5Y9KYRnhjVrt/tree/docs/configuring-keyoxide.md#usage) on the role's documentation for details about the usage.
 
 ## Troubleshooting
 
-See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Azopwjin5Vh5dMgdHWiifJ2cg3bQW/tree/docs/configuring-radicle-explorer.md#troubleshooting) on the role's documentation for details.
-
-## Related services
-
-- [Radicle HTTP Daemon](radicle-httpd.md) — Gateway between the Radicle protocol and the HTTP protocol
-- [Radicle node](radicle-node.md) — Network daemon for the Radicle network
+See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3m9zZgMmAQX5aVtj5Y9KYRnhjVrt/tree/docs/configuring-keyoxide.md#troubleshooting) on the role's documentation for details.
