@@ -107,6 +107,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 | [Karakeep](https://karakeep.app/) | Self-hosted, open-source bookmark manager to collect, organize and archive webpages | [Link](services/karakeep.md) |
 | [Keycloak](https://www.keycloak.org/) | An open source identity and access management solution. | [Link](services/keycloak.md) |
 | [KeyDB](https://docs.keydb.dev/) | An in-memory data store used by millions of developers as a database, cache, streaming engine, and message broker. | [Link](services/keydb.md) |
+| [keyoxide-web](https://codeberg.org/keyoxide/keyoxide-web) | Web client for [Keyoxide](https://keyoxide.org/), a decentralized tool to create and verify decentralized online identities | [Link](services/keyoxide.md) |
 | [Kutt](https://kutt.it/) | Modern URL shortener with support for custom domains | [Link](services/kutt.md) |
 | [LabelStudio](https://labelstud.io/) | Label Studio is an open source data labeling tool that supports multiple projects, users, and data types in one platform | [Link](services/labelstudio.md) |
 | [Lago](https://www.getlago.com/) | Open-source metering and usage-based billing | [Link](services/lago.md) |
