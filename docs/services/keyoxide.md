@@ -17,17 +17,17 @@ SPDX-FileCopyrightText: 2024 - 2025 Suguru Hirahara
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 
-# Radicle Explorer
+# keyoxide-web
 
-The playbook can install and configure [Radicle Explorer](https://app.radicle.xyz/nodes/seed.radicle.xyz/rad%3Az4V1sjrXqjvFdnCUbxPFqd5p4DtH5) for you.
+The playbook can install and configure [keyoxide-web](https://app.radicle.xyz/nodes/seed.radicle.xyz/rad%3Az4V1sjrXqjvFdnCUbxPFqd5p4DtH5) for you.
 
-Radicle Explorer allows you to interact with [Radicle](https://radicle.xyz/), a peer-to-peer code collaboration and publishing stack, directly from your web browser.
+keyoxide-web allows you to interact with [Radicle](https://radicle.xyz/), a peer-to-peer code collaboration and publishing stack, directly from your web browser.
 
-See the project's [documentation](https://app.radicle.xyz/nodes/seed.radicle.xyz/rad%3Az4V1sjrXqjvFdnCUbxPFqd5p4DtH5/tree/README.md) to learn what Radicle Explorer does and why it might be useful to you.
+See the project's [documentation](https://app.radicle.xyz/nodes/seed.radicle.xyz/rad%3Az4V1sjrXqjvFdnCUbxPFqd5p4DtH5/tree/README.md) to learn what keyoxide-web does and why it might be useful to you.
 
-For details about configuring the [Ansible role for Radicle Explorer](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Azopwjin5Vh5dMgdHWiifJ2cg3bQW), you can check them via:
+For details about configuring the [Ansible role for keyoxide-web](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Azopwjin5Vh5dMgdHWiifJ2cg3bQW), you can check them via:
 - 🌐 [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Azopwjin5Vh5dMgdHWiifJ2cg3bQW/tree/docs/configuring-radicle-explorer.md) online
-- 📁 `roles/galaxy/radicle_explorer/docs/configuring-radicle-explorer.md` locally, if you have [fetched the Ansible roles](../installing.md)
+- 📁 `roles/galaxy/keyoxide/docs/configuring-radicle-explorer.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 ## Prerequisites
 
@@ -42,26 +42,26 @@ To enable this service, add the following configuration to your `vars.yml` file 
 ```yaml
 ########################################################################
 #                                                                      #
-# radicle_explorer                                                     #
+# keyoxide                                                             #
 #                                                                      #
 ########################################################################
 
-radicle_explorer_enabled: true
+keyoxide_enabled: true
 
-radicle_explorer_hostname: explorer.example.com
+keyoxide_hostname: keyoxide.example.com
 
 ########################################################################
 #                                                                      #
-# /radicle_explorer                                                    #
+# /keyoxide                                                            #
 #                                                                      #
 ########################################################################
 ```
 
-**Note**: hosting Radicle Explorer under a subpath (by configuring the `radicle_explorer_path_prefix` variable) does not seem to be possible due to Radicle Explorer's technical limitations.
+**Note**: hosting keyoxide-web under a subpath (by configuring the `keyoxide_path_prefix` variable) does not seem to be possible due to keyoxide-web's technical limitations.
 
 ## Usage
 
-After running the command for installation, the Radicle Explorer instance becomes available at the URL specified with `radicle_node_hostname`. With the configuration above, the service is hosted at `https://explorer.example.com`.
+After running the command for installation, the keyoxide-web instance becomes available at the URL specified with `radicle_node_hostname`. With the configuration above, the service is hosted at `https://explorer.example.com`.
 
 See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Azopwjin5Vh5dMgdHWiifJ2cg3bQW/tree/docs/configuring-radicle-explorer.md#usage) on the role's documentation for details about how to browse a repository with the web client.
 
