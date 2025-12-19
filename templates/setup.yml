@@ -417,6 +417,10 @@
     - role: galaxy/keydb
     # /role-specific:keydb
 
+    # role-specific:keyoxide
+    - role: galaxy/keyoxide
+    # /role-specific:keyoxide
+
     # role-specific:kutt
     - role: galaxy/kutt
     # /role-specific:kutt

@@ -352,6 +352,10 @@
   version: v6.3.4-10
   name: keydb
   activation_prefix: keydb_
+- src: git+https://seed.radicle.garden/z3m9zZgMmAQX5aVtj5Y9KYRnhjVrt.git
+  version: v5.1.0-0
+  name: keyoxide
+  activation_prefix: keyoxide_
 - src: git+https://seed.radicle.garden/z36dPzLyvPA52m845g1MMqHgoiaEz.git
   version: v3.2.3-3
   name: kutt
