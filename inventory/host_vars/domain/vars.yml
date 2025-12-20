@@ -35,8 +35,7 @@ system_security_ssh_port: "{{ ansible_ssh_port }}"
 
 system_security_ssh_authorizedkeys_host: ["{{ ssh_key_1 }}", "{{ ssh_key_2 }}"]  # list of authorized public keys
 system_security_ssh_unauthorizedkeys_host: []  # list of unauthorized/revoked public keys
-system_security_ssh_extension: |
-  AllowTcpForwarding yes
+system_security_ssh_allow_tcp_forwarding: true
 # /SSH
 
 
