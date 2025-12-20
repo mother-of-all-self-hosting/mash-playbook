@@ -48,6 +48,8 @@ To enable this service, add the following configuration to your `vars.yml` file 
 
 keyoxide_enabled: true
 
+keyoxide_proxy_enabled: true
+
 keyoxide_hostname: keyoxide.example.com
 
 ########################################################################
