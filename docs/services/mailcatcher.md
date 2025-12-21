@@ -94,3 +94,4 @@ See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3Qma
 ## Related services
 
 - [MailCrab](mailcrab.md) — SMTP server written in Rust, which catches any message sent to it and displays in a web interface; drop-in replacement of MailCatcher
+- [Mailpit](mailpit.md) — Email testing tool & API

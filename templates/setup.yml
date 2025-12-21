@@ -469,6 +469,10 @@
     - role: galaxy/mailcrab
     # /role-specific:mailcrab
 
+    # role-specific:mailpit
+    - role: galaxy/mailpit
+    # /role-specific:mailpit
+
     # role-specific:mariadb
     - role: galaxy/mariadb
     # /role-specific:mariadb

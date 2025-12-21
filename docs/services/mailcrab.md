@@ -94,3 +94,4 @@ See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3rh6
 ## Related services
 
 - [MailCatcher](mailcatcher.md) — SMTP server which catches any message sent to it and displays in a web interface; drop-in replacement of MailCrab
+- [Mailpit](mailpit.md) — Email testing tool & API
