@@ -2109,6 +2109,26 @@ mash_playbook_traefix_managed_additional_entrypoints_auto_itemized:
     }}
   # /role-specific:ergo
 
+  # role-specific:forgejo
+  - |-
+    {{
+      ({
+        'name': forgejo_container_labels_traefik_tcp_entrypoints,
+        'port': forgejo_config_server_ssh_listen_port,
+        'host_bind_port': forgejo_container_ssh_host_bind_port,
+        'config': {
+          'transport': {
+            'respondingTimeouts': {
+              'readTimeout': traefik_config_entrypoint_web_transport_respondingTimeouts_readTimeout,
+              'writeTimeout': traefik_config_entrypoint_web_transport_respondingTimeouts_writeTimeout,
+              'idleTimeout': traefik_config_entrypoint_web_transport_respondingTimeouts_idleTimeout
+            }
+          }
+        }
+      } if forgejo_enabled and forgejo_container_labels_traefik_tcp_enabled and forgejo_container_ssh_host_bind_port else omit)
+    }}
+  # /role-specific:forgejo
+
   # role-specific:gitea
   - |-
     {{
