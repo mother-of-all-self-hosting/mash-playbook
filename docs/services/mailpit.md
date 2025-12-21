@@ -17,17 +17,17 @@ SPDX-FileCopyrightText: 2024 - 2025 Suguru Hirahara
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 
-# MailCrab
+# Mailpit
 
-The playbook can install and configure [MailCrab](https://github.com/tweedegolf/mailcrab) for you.
+The playbook can install and configure [Mailpit](https://github.com/tweedegolf/mailpit) for you.
 
-MailCrab is the SMTP server written in Rust, which catches any message sent to it and displays in a web interface instead of sending it to the outside of the internal network, making it possible to check messages without using an actual email address.
+Mailpit is the SMTP server written in Rust, which catches any message sent to it and displays in a web interface instead of sending it to the outside of the internal network, making it possible to check messages without using an actual email address.
 
-See the project's [documentation](https://github.com/tweedegolf/mailcrab/blob/main/README.md) to learn what MailCrab does and why it might be useful to you.
+See the project's [documentation](https://github.com/tweedegolf/mailpit/blob/main/README.md) to learn what Mailpit does and why it might be useful to you.
 
-For details about configuring the [Ansible role for MailCrab](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3rh69mtu7bBk5K1WmAkVEBTy6NpW), you can check them via:
-- 🌐 [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3rh69mtu7bBk5K1WmAkVEBTy6NpW/tree/docs/configuring-mailcrab.md) online
-- 📁 `roles/galaxy/mailcrab/docs/configuring-mailcrab.md` locally, if you have [fetched the Ansible roles](../installing.md)
+For details about configuring the [Ansible role for Mailpit](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3rh69mtu7bBk5K1WmAkVEBTy6NpW), you can check them via:
+- 🌐 [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3rh69mtu7bBk5K1WmAkVEBTy6NpW/tree/docs/configuring-mailpit.md) online
+- 📁 `roles/galaxy/mailpit/docs/configuring-mailpit.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 ## Dependencies
 
@@ -42,45 +42,45 @@ To enable this service, add the following configuration to your `vars.yml` file 
 ```yaml
 ########################################################################
 #                                                                      #
-# mailcrab                                                             #
+# mailpit                                                              #
 #                                                                      #
 ########################################################################
 
-mailcrab_enabled: true
+mailpit_enabled: true
 
-mailcrab_hostname: mailcrab.example.com
+mailpit_hostname: mailpit.example.com
 
 ########################################################################
 #                                                                      #
-# /mailcrab                                                            #
+# /mailpit                                                             #
 #                                                                      #
 ########################################################################
 ```
 
-**Note**: hosting MailCrab's web interface under a subpath (by configuring the `mailcrab_path_prefix` variable) does not seem to be possible due to MailCrab's technical limitations.
+**Note**: hosting Mailpit's web interface under a subpath (by configuring the `mailpit_path_prefix` variable) does not seem to be possible due to Mailpit's technical limitations.
 
 ### Configuring HTTP Basic authentication
 
-Since there does not exist an authentication system on the web interface, the HTTP Basic authentication on Traefik is enabled for the web interface by default, considering the nature of the service. See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3rh69mtu7bBk5K1WmAkVEBTy6NpW/tree/docs/configuring-mailcrab.md#configuring-http-basic-authentication) on the role's documentation for details about how to set it up.
+Since there does not exist an authentication system on the web interface, the HTTP Basic authentication on Traefik is enabled for the web interface by default, considering the nature of the service. See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3rh69mtu7bBk5K1WmAkVEBTy6NpW/tree/docs/configuring-mailpit.md#configuring-http-basic-authentication) on the role's documentation for details about how to set it up.
 
 ## Usage
 
-After running the command for installation, the MailCrab instance becomes available at the hostname `mash-mailcrab`. Its web interface is hosted at `https://mailcrab.example.com`, with the configuration above.
+After running the command for installation, the Mailpit instance becomes available at the hostname `mash-mailpit`. Its web interface is hosted at `https://mailpit.example.com`, with the configuration above.
 
 ### Configuring SMTP server settings
 
-To use MailCrab with other services of this playbook, you can configure the setting about the SMTP server to point it to `mash-mailcrab` with the port number `1025`. As MailCrab just works on the same network as those services do, you can set any random email address (even nonexistent one like `example@example.com` or `a@a.com`) to the service.
+To use Mailpit with other services of this playbook, you can configure the setting about the SMTP server to point it to `mash-mailpit` with the port number `1025`. As Mailpit just works on the same network as those services do, you can set any random email address (even nonexistent one like `example@example.com` or `a@a.com`) to the service.
 
-For example, you can get the [asciinema server](asciinema-server.md) send logging in or user registration messages to MailCrab by adding the following configuration to your `vars.yml` file, so that the service will use the SMTP server instead of the default [exim-relay](exim-relay.md) mailer:
+For example, you can get the [asciinema server](asciinema-server.md) send logging in or user registration messages to Mailpit by adding the following configuration to your `vars.yml` file, so that the service will use the SMTP server instead of the default [exim-relay](exim-relay.md) mailer:
 
 ```yaml
 asciinema_server_mailer_enabled: true
-asciinema_server_environment_variable_smtp_host: "{{ mailcrab_identifier }}"
+asciinema_server_environment_variable_smtp_host: "{{ mailpit_identifier }}"
 asciinema_server_environment_variable_smtp_port: 1025
 asciinema_server_environment_variable_mail_from_address: SET_ANY_EMAIL_ADDRESS_HERE
 ```
 
-You can check the message sent by the asciinema server at `https://mailcrab.example.com`.
+You can check the message sent by the asciinema server at `https://mailpit.example.com`.
 
 💡 Since the message is not sent to the outside of the internal Docker network, the chance of man-in-the-middle attacks is drastically reduced.
 
@@ -89,8 +89,8 @@ You can check the message sent by the asciinema server at `https://mailcrab.exam
 
 ## Troubleshooting
 
-See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3rh69mtu7bBk5K1WmAkVEBTy6NpW/tree/docs/configuring-mailcrab.md#troubleshooting) on the role's documentation for details.
+See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3rh69mtu7bBk5K1WmAkVEBTy6NpW/tree/docs/configuring-mailpit.md#troubleshooting) on the role's documentation for details.
 
 ## Related services
 
-- [MailCatcher](mailcatcher.md) — SMTP server which catches any message sent to it and displays in a web interface; drop-in replacement of MailCrab
+- [MailCatcher](mailcatcher.md) — SMTP server which catches any message sent to it and displays in a web interface; drop-in replacement of Mailpit
