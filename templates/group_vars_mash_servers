@@ -604,6 +604,11 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
     {{ ({'name': (mailcrab_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'mailcrab']} if mailcrab_enabled else omit) }}
   # /role-specific:mailcrab
 
+  # role-specific:mailpit
+  - |-
+    {{ ({'name': (mailpit_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'mailpit']} if mailpit_enabled else omit) }}
+  # /role-specific:mailpit
+
   # role-specific:mariadb
   - |-
     {{ ({'name': (mariadb_identifier + '.service'), 'priority': 500, 'groups': ['mash', 'mariadb']} if mariadb_enabled else omit) }}
@@ -2143,6 +2148,44 @@ mash_playbook_traefix_managed_additional_entrypoints_auto_itemized:
       } if inspircd_enabled and inspircd_container_labels_traefik_enabled else omit)
     }}
   # /role-specific:inspircd
+
+  # role-specific:mailpit
+  - |-
+    {{
+      ({
+        'name': mailpit_container_labels_traefik_pop3_entrypoints,
+        'port': mailpit_container_pop3_port,
+        'host_bind_port': mailpit_container_pop3_host_bind_port,
+        'config': {
+          'transport': {
+            'respondingTimeouts': {
+              'readTimeout': traefik_config_entrypoint_web_transport_respondingTimeouts_readTimeout,
+              'writeTimeout': traefik_config_entrypoint_web_transport_respondingTimeouts_writeTimeout,
+              'idleTimeout': traefik_config_entrypoint_web_transport_respondingTimeouts_idleTimeout
+            }
+          }
+        }
+      } if mailpit_enabled and mailpit_container_labels_traefik_pop3_enabled else omit)
+    }}
+
+  - |-
+    {{
+      ({
+        'name': mailpit_container_labels_traefik_smtp_entrypoints,
+        'port': mailpit_container_smtp_port,
+        'host_bind_port': mailpit_container_smtp_host_bind_port,
+        'config': {
+          'transport': {
+            'respondingTimeouts': {
+              'readTimeout': traefik_config_entrypoint_web_transport_respondingTimeouts_readTimeout,
+              'writeTimeout': traefik_config_entrypoint_web_transport_respondingTimeouts_writeTimeout,
+              'idleTimeout': traefik_config_entrypoint_web_transport_respondingTimeouts_idleTimeout
+            }
+          }
+        }
+      } if mailpit_enabled and mailpit_container_labels_traefik_smtp_enabled else omit)
+    }}
+  # /role-specific:mailpit
 
   # role-specific:opengist
   - |-
@@ -8047,6 +8090,44 @@ mailcrab_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_pri
 #                                                                      #
 ########################################################################
 # /role-specific:mailcrab
+
+
+
+# role-specific:mailpit
+########################################################################
+#                                                                      #
+# mailpit                                                              #
+#                                                                      #
+########################################################################
+
+mailpit_enabled: false
+
+mailpit_identifier: "{{ mash_playbook_service_identifier_prefix }}mailpit"
+
+mailpit_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}mailpit"
+
+mailpit_uid: "{{ mash_playbook_uid }}"
+mailpit_gid: "{{ mash_playbook_gid }}"
+
+mailpit_container_additional_networks_auto: |
+  {{
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+  }}
+
+mailpit_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+mailpit_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+
+# role-specific:traefik
+mailpit_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
+mailpit_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
+# /role-specific:traefik
+
+########################################################################
+#                                                                      #
+# /mailpit                                                             #
+#                                                                      #
+########################################################################
+# /role-specific:mailpit
 
 
 

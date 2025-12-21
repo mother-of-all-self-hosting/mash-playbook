@@ -404,6 +404,10 @@
   version: v0.10.0-0
   name: mailcrab
   activation_prefix: mailcrab_
+- src: git+https://seed.radicle.garden/z3BKJz8wwtQHfXm8MPX81h4izT2QS.git
+  version: v1.28.0-0
+  name: mailpit
+  activation_prefix: mailpit_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-mariadb.git
   version: v12.1.2-0
   name: mariadb
