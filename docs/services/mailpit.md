@@ -99,3 +99,4 @@ See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3BKJ
 ## Related services
 
 - [MailCatcher](mailcatcher.md) — SMTP server which catches any message sent to it and displays in a web interface
+- [MailCrab](mailcrab.md) — SMTP server written in Rust, which catches any message sent to it and displays in a web interface; drop-in replacement of MailCatcher
