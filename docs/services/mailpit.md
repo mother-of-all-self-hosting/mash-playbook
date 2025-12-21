@@ -19,14 +19,16 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
 # Mailpit
 
-The playbook can install and configure [Mailpit](https://github.com/tweedegolf/mailpit) for you.
+The playbook can install and configure [Mailpit](https://mailpit.axllent.org/) for you.
 
-Mailpit is the SMTP server written in Rust, which catches any message sent to it and displays in a web interface instead of sending it to the outside of the internal network, making it possible to check messages without using an actual email address.
+Mailpit is the SMTP server which catches any messages sent to it and displays in a web interface instead of sending it to the outside of the internal network, making it possible to check messages without using an actual email address. It also implements [POP3 server](https://mailpit.axllent.org/docs/configuration/pop3/) to download captured messages directly to your email client, [spam checker](https://mailpit.axllent.org/docs/usage/spamassassin/) to check how much possible messages will be detected as spam, etc.
 
-See the project's [documentation](https://github.com/tweedegolf/mailpit/blob/main/README.md) to learn what Mailpit does and why it might be useful to you.
+While the service is primarily intended to be used for testing (bulk mail sending simulation, etc), it can also be used to receive messages from other services of this playbook directly, improving the security related to sensitive information such as a temporary password.
 
-For details about configuring the [Ansible role for Mailpit](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3rh69mtu7bBk5K1WmAkVEBTy6NpW), you can check them via:
-- 🌐 [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3rh69mtu7bBk5K1WmAkVEBTy6NpW/tree/docs/configuring-mailpit.md) online
+See the project's [documentation](https://mailpit.axllent.org/docs/) to learn what Mailpit does and why it might be useful to you.
+
+For details about configuring the [Ansible role for Mailpit](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3BKJz8wwtQHfXm8MPX81h4izT2QS), you can check them via:
+- 🌐 [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3BKJz8wwtQHfXm8MPX81h4izT2QS/tree/docs/configuring-mailpit.md) online
 - 📁 `roles/galaxy/mailpit/docs/configuring-mailpit.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 ## Dependencies
@@ -57,11 +59,13 @@ mailpit_hostname: mailpit.example.com
 ########################################################################
 ```
 
-**Note**: hosting Mailpit's web interface under a subpath (by configuring the `mailpit_path_prefix` variable) does not seem to be possible due to Mailpit's technical limitations.
-
 ### Configuring HTTP Basic authentication
 
-Since there does not exist an authentication system on the web interface, the HTTP Basic authentication on Traefik is enabled for the web interface by default, considering the nature of the service. See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3rh69mtu7bBk5K1WmAkVEBTy6NpW/tree/docs/configuring-mailpit.md#configuring-http-basic-authentication) on the role's documentation for details about how to set it up.
+The HTTP Basic authentication on Traefik is enabled for the web interface by default, considering the nature of the service. See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3BKJz8wwtQHfXm8MPX81h4izT2QS/tree/docs/configuring-mailpit.md#web-ui) on the role's documentation for details about how to set it up or disable it.
+
+### Configuring POP3 server (optional)
+
+While the SMTP server can be used without setting credentials, **the POP3 server requires you to specify a pair of username and password**. See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3BKJz8wwtQHfXm8MPX81h4izT2QS/tree/docs/configuring-mailpit.md#pop3-server) on the role's documentation for details.
 
 ## Usage
 
@@ -84,13 +88,14 @@ You can check the message sent by the asciinema server at `https://mailpit.examp
 
 💡 Since the message is not sent to the outside of the internal Docker network, the chance of man-in-the-middle attacks is drastically reduced.
 
->[!NOTE]
-> Messages are not stored in the persistent storage. They will disappear after the container was stopped or removed.
+### Using POP3 server
+
+To download messages from the POP3 server, you can configure your email client so that it connects to `mailpit.example.com` via the port **1110**. Make sure to set the username and password for authentication.
 
 ## Troubleshooting
 
-See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3rh69mtu7bBk5K1WmAkVEBTy6NpW/tree/docs/configuring-mailpit.md#troubleshooting) on the role's documentation for details.
+See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3BKJz8wwtQHfXm8MPX81h4izT2QS/tree/docs/configuring-mailpit.md#troubleshooting) on the role's documentation for details.
 
 ## Related services
 
-- [MailCatcher](mailcatcher.md) — SMTP server which catches any message sent to it and displays in a web interface; drop-in replacement of Mailpit
+- [MailCatcher](mailcatcher.md) — SMTP server which catches any message sent to it and displays in a web interface
