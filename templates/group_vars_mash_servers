@@ -2115,7 +2115,7 @@ mash_playbook_traefix_managed_additional_entrypoints_auto_itemized:
       ({
         'name': gitea_container_labels_traefik_tcp_entrypoints,
         'port': gitea_config_server_ssh_listen_port,
-        'host_bind_port': gitea_ssh_bind_port,
+        'host_bind_port': gitea_container_ssh_host_bind_port,
         'config': {
           'transport': {
             'respondingTimeouts': {
@@ -2125,7 +2125,7 @@ mash_playbook_traefix_managed_additional_entrypoints_auto_itemized:
             }
           }
         }
-      } if gitea_enabled and gitea_container_labels_traefik_tcp_enabled and gitea_ssh_bind_port else omit)
+      } if gitea_enabled and gitea_container_labels_traefik_tcp_enabled and gitea_container_ssh_host_bind_port else omit)
     }}
   # /role-specific:gitea
 
