@@ -2258,7 +2258,7 @@ mash_playbook_traefik_additional_domains_to_obtain_certificates_for_itemized:
   - "{{ mumble_hostname if mumble_enabled else omit }}"
   # /role-specific:mumble
 
-traefik_additional_domains_to_obtain_certificates_for: "{{ mash_playbook_traefik_additional_domains_to_obtain_certificates_for_itemized | reject('equalto', omit) }}"
+traefik_additional_domains_to_obtain_certificates_for_auto: "{{ mash_playbook_traefik_additional_domains_to_obtain_certificates_for_itemized | reject('equalto', omit) }}"
 
 # role-specific:container_socket_proxy
 traefik_config_providers_docker_endpoint: "{{ container_socket_proxy_endpoint if container_socket_proxy_enabled else 'unix:///var/run/docker.sock' }}"
