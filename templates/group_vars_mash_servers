@@ -857,15 +857,15 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
     {{ ({'name': (pocket_id_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'pocket-id']} if pocket_id_enabled else omit) }}
   # /role-specific:pocket_id
 
-  # role-specific:postgis
-  - |-
-    {{ ({'name': (postgis_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'metrics', 'postgis']} if postgis_enabled else omit) }}
-  # /role-specific:postgis
-
   # role-specific:poodledonts
   - |-
     {{ ({'name': (poodledonts_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'poodledonts']} if poodledonts_enabled else omit) }}
   # /role-specific:poodledonts
+
+  # role-specific:postgis
+  - |-
+    {{ ({'name': (postgis_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'metrics', 'postgis']} if postgis_enabled else omit) }}
+  # /role-specific:postgis
 
   # role-specific:postgres
   - |-
