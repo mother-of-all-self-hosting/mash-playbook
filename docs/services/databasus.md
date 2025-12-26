@@ -20,14 +20,14 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
 # Databasus
 
-The playbook can install and configure [Databasus](https://www.databasus.org/) for you.
+The playbook can install and configure [Databasus](https://databasus.com/) for you.
 
-Databasus is a full-featured database management tool written in PHP. It supports MySQL, MariaDB, PostgreSQL, CockroachDB, SQLite, MS SQL, and Oracle out of the box. Elasticsearch, SimpleDB, MongoDB, Firebird, and Clickhouse can be supported via plugins.
+Databasus is free software for backing up database of PostgreSQL, MySQL, MariaDB, and MongoDB.
 
-See the project's [documentation](https://github.com/vrana/databasus/blob/master/README.md) to learn what Databasus does and why it might be useful to you.
+See the project's [documentation](https://databasus.com/installation) to learn what Databasus does and why it might be useful to you.
 
-For details about configuring the [Ansible role for Databasus](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3px8gLDo2opjQZW7qFiLoNuk4eSu), you can check them via:
-- 🌐 [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3px8gLDo2opjQZW7qFiLoNuk4eSu/tree/docs/configuring-databasus.md) online
+For details about configuring the [Ansible role for Databasus](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3AzeQ4hXq2LkbADcndSsjesgq9kDPf), you can check them via:
+- 🌐 [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3AzeQ4hXq2LkbADcndSsjesgq9kDPf/tree/docs/configuring-databasus.md) online
 - 📁 `roles/galaxy/databasus/docs/configuring-databasus.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 ## Dependencies
@@ -58,22 +58,17 @@ databasus_hostname: databasus.example.com
 ########################################################################
 ```
 
-It is optionally possible to edit settings about the default server to connect, plugins to load (ones for loading databases), etc. See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3px8gLDo2opjQZW7qFiLoNuk4eSu/tree/docs/configuring-databasus.md#adjusting-the-playbook-configuration) for details.
-
 ## Usage
 
 After running the command for installation, the Databasus instance becomes available at the URL specified with `databasus_hostname`. With the configuration above, the service is hosted at `https://databasus.example.com`.
 
-To get started, open the URL with a web browser to log in to the instance with the database's credentials specified on your `vars.yml` file.
+To get started, open the URL with a web browser to create an account. **Note that the first registered user becomes an administrator automatically.**
 
-To log in to database servers which this playbook manages, you need to specify its `*_identifier` to the `server` input area. For example, the default value for the MariaDB server is `mash-mariadb` and the one for the Postgres server is `mash-postgres`, respectively.
-
->[!NOTE]
-> Since enabling Databasus with this playbook exposes the instance (thus practically the databases as well) to the internet, it is important to set a proper method to restrict who can access to it. See [this section](https://www.databasus.org/en/#requirements) on the project website for security recommendations.
+Since MariaDB, PostgreSQL, and MongoDB are wired to the service, it is possible to set `mash-mariadb`, `mash-postgres`, or `mash-mongodb` to the input area for the host when adding a database to back up.
 
 ## Troubleshooting
 
-See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3px8gLDo2opjQZW7qFiLoNuk4eSu/tree/docs/configuring-databasus.md#troubleshooting) on the role's documentation for details.
+See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3AzeQ4hXq2LkbADcndSsjesgq9kDPf/tree/docs/configuring-databasus.md#troubleshooting) on the role's documentation for details.
 
 ## Related services
 
