@@ -205,6 +205,10 @@
     - role: galaxy/cyberchef
     # /role-specific:cyberchef
 
+    # role-specific:databasus
+    - role: galaxy/databasus
+    # /role-specific:databasus
+
     # role-specific:docker_registry
     - role: galaxy/docker_registry
     # /role-specific:docker_registry
