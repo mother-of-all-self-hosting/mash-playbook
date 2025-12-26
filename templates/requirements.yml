@@ -729,7 +729,7 @@
   name: sftpgo
   activation_prefix: sftpgo_
 - src: git+https://seed.radicle.garden/zXf3qnvPwC2UsBpfTYmPesL5KSZc.git
-  version: v6.4.5-0
+  version: v6.4.5-1
   name: smp_server
   activation_prefix: smp_server_
 - src: git+https://seed.radicle.garden/znvd313jEb23f9AUNmtsweE7YHCK.git
