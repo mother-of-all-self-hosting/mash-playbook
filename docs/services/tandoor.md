@@ -61,4 +61,4 @@ tandoor_path_prefix: /tandoor
 
 After running the command for installation, the Tandoor instance becomes available at the URL specified with `tandoor_hostname` and `tandoor_path_prefix`. With the configuration above, the service is hosted at `https://mash.example.com/tandoor`.
 
-To get started, open the URL with a web browser, and create the first administrator user.
+To get started, open the URL with a web browser to create an administrator account.

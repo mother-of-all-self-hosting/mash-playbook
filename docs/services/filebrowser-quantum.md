@@ -84,7 +84,7 @@ By default, this playbook is configured to automatically enable integration, if 
 
 After running the command for installation, the FileBrowser Quantum instance becomes available at the URL specified with `filebrowser_quantum_hostname`. With the configuration above, the service is hosted at `https://filebrowser.example.com`.
 
-To get started, open the URL with a web browser, and log in to the instance with the administrator account. The default username of the administrator account is `admin`.
+To get started, open the URL with a web browser to log in to the instance with the administrator account. The default username of the administrator account is `admin`.
 
 ## Troubleshooting
 

@@ -83,7 +83,7 @@ Make sure to replace the values with your own ones.
 
 After running the command for installation, the LimeSurvey instance becomes available at the URL specified with `limesurvey_hostname`. With the configuration above, the service is hosted at `https://limesurvey.example.com`.
 
-To get started, open the URL `https://limesurvey.example.com/index.php/admin` with a web browser, and log in to the instance with the administrator account credentials.
+To get started, open the URL `https://limesurvey.example.com/index.php/admin` with a web browser to log in to the instance with the administrator account.
 
 ## Troubleshooting
 

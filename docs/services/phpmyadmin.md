@@ -72,7 +72,7 @@ phpmyadmin_environment_variables_pma_arbitrary: "1"
 
 After running the command for installation, the phpMyAdmin instance becomes available at the URL specified with `phpmyadmin_hostname`. With the configuration above, the service is hosted at `https://phpmyadmin.example.com`.
 
-To get started, open the URL `https://phpmyadmin.example.com` with a web browser, and log in to the instance with the database's credentials. By default its username is `root`, and the password is the one specified to `mariadb_root_password` on your `vars.yml` file.
+To get started, open the URL with a web browser to log in to the instance with the database's credentials. By default its username is `root`, and the password is the one specified to `mariadb_root_password` on your `vars.yml` file.
 
 >[!NOTE]
 >

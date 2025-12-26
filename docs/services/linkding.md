@@ -71,7 +71,7 @@ You can optionally create an initial "superuser". See [this section](https://git
 
 After running the command for installation, the linkding instance becomes available at the URL specified with `linkding_hostname` and `linkding_path_prefix`. With the configuration above, the service is hosted at `https://mash.example.com/linkding`.
 
-To get started, open the URL with a web browser, and log in with the superuser's login credential.
+To get started, open the URL with a web browser to log in to the instance with the administrator account, defined with the `linkding_superuser_username` and `linkding_superuser_password` variables.
 
 ## Troubleshooting
 

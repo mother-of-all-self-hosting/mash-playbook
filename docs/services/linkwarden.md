@@ -81,7 +81,7 @@ See [this page](meilisearch.md) for details about how to install it and setting 
 
 After installation, the Linkwarden instance becomes available at the URL specified with `linkwarden_hostname`. With the configuration above, the service is hosted at `https://linkwarden.example.com`.
 
-To get started, open the URL with a web browser, and register the account. **Note that the first registered user becomes an administrator automatically.**
+To get started, open the URL with a web browser to create an account. **Note that the first registered user becomes an administrator automatically.**
 
 Since account registration is disabled by default, you need to enable it first by setting `linkwarden_environment_variables_next_public_disable_registration` to `false` temporarily in order to create your own account.
 

@@ -49,4 +49,4 @@ redmine_hostname: redmine.example.com
 
 After running the command for installation, the Redmine instance becomes available at the URL specified with `redmine_hostname`. With the configuration above, the service is hosted at `https://redmine.example.com`.
 
-To get started, open the URL with a web browser, log in with the admin account created automatically on the initial run. Its credentials can be found at <https://hub.docker.com/_/redmine#accessing-the-application>. When logging in, you are required to reset the default password.
+To get started, open the URL with a web browser to log in to the instance with the administrator account, registered automatically on the initial run. Its credentials can be found at <https://hub.docker.com/_/redmine#accessing-the-application>. When logging in, you are required to reset the default password.

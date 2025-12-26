@@ -85,7 +85,7 @@ On PdfDing you can set up a mailer for functions such as password recovery. If y
 
 After installation, the PdfDing instance becomes available at the URL specified with `pdfding_hostname`. With the configuration above, the service is hosted at `https://pdfding.example.com`.
 
-To get started, open the URL with a web browser, and register the account.
+To get started, open the URL with a web browser to create an account.
 
 Since account registration is disabled by default, you need to enable it first by setting `pdfding_environment_variables_disable_user_signup` to `false` temporarily in order to create your own account.
 

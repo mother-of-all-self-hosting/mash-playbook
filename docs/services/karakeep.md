@@ -103,7 +103,7 @@ See [this page](https://docs.karakeep.app/configuration/) for a complete list of
 
 After installation, the Karakeep instance becomes available at the URL specified with `karakeep_hostname`. With the configuration above, the service is hosted at `https://karakeep.example.com`.
 
-To get started, open the URL with a web browser, and register the account. **Note that the first registered user becomes an administrator automatically.**
+To get started, open the URL with a web browser to create an account. **Note that the first registered user becomes an administrator automatically.**
 
 Since account registration is disabled by default, you need to enable it first by setting `karakeep_environment_variables_disable_signups` to `false` temporarily in order to create your own account.
 
