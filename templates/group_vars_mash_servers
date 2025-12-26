@@ -308,7 +308,7 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
 
   # role-specific:excalidraw_room
   - |-
-    {{ ({'name': (excalidraw_room_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'excalidraw_room']} if excalidraw_room_enabled else omit) }}
+    {{ ({'name': (excalidraw_room_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'excalidraw-room']} if excalidraw_room_enabled else omit) }}
   # /role-specific:excalidraw_room
 
   # role-specific:exim_relay
@@ -353,7 +353,7 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
 
   # role-specific:forgejo
   - |-
-    {{ ({'name': (forgejo_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'forgejo', 'forgejo-server']} if forgejo_enabled else omit) }}
+    {{ ({'name': (forgejo_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'forgejo']} if forgejo_enabled else omit) }}
   # /role-specific:forgejo
 
   # role-specific:forgejo_runner
@@ -391,7 +391,7 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
 
   # role-specific:gitea
   - |-
-    {{ ({'name': (gitea_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'gitea', 'gitea-server']} if gitea_enabled else omit) }}
+    {{ ({'name': (gitea_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'gitea']} if gitea_enabled else omit) }}
   # /role-specific:gitea
 
   # role-specific:gothub
@@ -864,7 +864,7 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
 
   # role-specific:postgis
   - |-
-    {{ ({'name': (postgis_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'metrics', 'postgis']} if postgis_enabled else omit) }}
+    {{ ({'name': (postgis_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'postgis']} if postgis_enabled else omit) }}
   # /role-specific:postgis
 
   # role-specific:postgres
@@ -1048,7 +1048,7 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
 
   # role-specific:stirling_pdf
   - |-
-    {{ ({'name': (stirling_pdf_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'stirling_pdf']} if stirling_pdf_enabled else omit) }}
+    {{ ({'name': (stirling_pdf_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'stirling-pdf']} if stirling_pdf_enabled else omit) }}
   # /role-specific:stirling_pdf
 
   # role-specific:syncstorage_rs_docker
@@ -1118,7 +1118,7 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
 
   # role-specific:vaultwarden
   - |-
-    {{ ({'name': (vaultwarden_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'vaultwarden', 'vaultwarden-server']} if vaultwarden_enabled else omit) }}
+    {{ ({'name': (vaultwarden_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'vaultwarden']} if vaultwarden_enabled else omit) }}
   # /role-specific:vaultwarden
 
   # role-specific:vikunja
