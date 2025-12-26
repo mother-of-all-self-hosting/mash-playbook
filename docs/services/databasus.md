@@ -72,5 +72,4 @@ See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3AzeQ4h
 
 ## Related services
 
-- [pgAdmin](pgadmin.md) — Management tool for Postgres with a graphical interface
-- [phpMyAdmin](phpmyadmin.md) — Free software written in PHP to handle the administration of a MySQL or MariaDB database server over the web
+- [Postgres Backup](postgres-backup.md) — A solution for backing up PostgreSQL to local filesystem with periodic backups
