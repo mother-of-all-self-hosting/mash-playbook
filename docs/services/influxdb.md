@@ -61,7 +61,7 @@ See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-in
 
 After running the command for installation, the InfluxDB OSS v2 instance becomes available at the URL specified with `influxdb_hostname`. With the configuration above, the service is hosted at `https://influxdb.example.com`.
 
-To get started, open the URL with a web browser, and log in to the service if `influxdb_init` is set to `true` (or configure the first user if it is not).
+To get started, open the URL with a web browser to log in to the service if `influxdb_init` is set to `true` (or configure the first user if it is not).
 
 ## Troubleshooting
 

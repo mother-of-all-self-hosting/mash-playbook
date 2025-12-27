@@ -239,6 +239,11 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
     {{ ({'name': (cyberchef_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'cyberchef']} if cyberchef_enabled else omit) }}
   # /role-specific:cyberchef
 
+  # role-specific:databasus
+  - |-
+    {{ ({'name': (databasus_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'databasus']} if databasus_enabled else omit) }}
+  # /role-specific:databasus
+
   # role-specific:docker_registry
   - |-
     {{ ({'name': (docker_registry_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'docker-registry']} if docker_registry_enabled else omit) }}
@@ -308,7 +313,7 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
 
   # role-specific:excalidraw_room
   - |-
-    {{ ({'name': (excalidraw_room_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'excalidraw_room']} if excalidraw_room_enabled else omit) }}
+    {{ ({'name': (excalidraw_room_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'excalidraw-room']} if excalidraw_room_enabled else omit) }}
   # /role-specific:excalidraw_room
 
   # role-specific:exim_relay
@@ -353,7 +358,7 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
 
   # role-specific:forgejo
   - |-
-    {{ ({'name': (forgejo_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'forgejo', 'forgejo-server']} if forgejo_enabled else omit) }}
+    {{ ({'name': (forgejo_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'forgejo']} if forgejo_enabled else omit) }}
   # /role-specific:forgejo
 
   # role-specific:forgejo_runner
@@ -391,7 +396,7 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
 
   # role-specific:gitea
   - |-
-    {{ ({'name': (gitea_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'gitea', 'gitea-server']} if gitea_enabled else omit) }}
+    {{ ({'name': (gitea_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'gitea']} if gitea_enabled else omit) }}
   # /role-specific:gitea
 
   # role-specific:gothub
@@ -529,6 +534,13 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
     {{ ({'name': (keydb_identifier + '.service'), 'priority': 750, 'groups': ['mash', 'keydb']} if keydb_enabled else omit) }}
   # /role-specific:keydb
 
+  # role-specific:keyoxide
+  - |-
+    {{ ({'name': (keyoxide_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'keyoxide']} if keyoxide_enabled else omit) }}
+  - |-
+    {{ ({'name': (keyoxide_proxy_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'keyoxide']} if keyoxide_proxy_enabled else omit) }}
+  # /role-specific:keyoxide
+
   # role-specific:kutt
   - |-
     {{ ({'name': (kutt_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'kutt']} if kutt_enabled else omit) }}
@@ -596,6 +608,11 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
   - |-
     {{ ({'name': (mailcrab_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'mailcrab']} if mailcrab_enabled else omit) }}
   # /role-specific:mailcrab
+
+  # role-specific:mailpit
+  - |-
+    {{ ({'name': (mailpit_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'mailpit']} if mailpit_enabled else omit) }}
+  # /role-specific:mailpit
 
   # role-specific:mariadb
   - |-
@@ -845,15 +862,15 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
     {{ ({'name': (pocket_id_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'pocket-id']} if pocket_id_enabled else omit) }}
   # /role-specific:pocket_id
 
-  # role-specific:postgis
-  - |-
-    {{ ({'name': (postgis_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'metrics', 'postgis']} if postgis_enabled else omit) }}
-  # /role-specific:postgis
-
   # role-specific:poodledonts
   - |-
     {{ ({'name': (poodledonts_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'poodledonts']} if poodledonts_enabled else omit) }}
   # /role-specific:poodledonts
+
+  # role-specific:postgis
+  - |-
+    {{ ({'name': (postgis_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'postgis']} if postgis_enabled else omit) }}
+  # /role-specific:postgis
 
   # role-specific:postgres
   - |-
@@ -1036,7 +1053,7 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
 
   # role-specific:stirling_pdf
   - |-
-    {{ ({'name': (stirling_pdf_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'stirling_pdf']} if stirling_pdf_enabled else omit) }}
+    {{ ({'name': (stirling_pdf_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'stirling-pdf']} if stirling_pdf_enabled else omit) }}
   # /role-specific:stirling_pdf
 
   # role-specific:syncstorage_rs_docker
@@ -1106,7 +1123,7 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
 
   # role-specific:vaultwarden
   - |-
-    {{ ({'name': (vaultwarden_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'vaultwarden', 'vaultwarden-server']} if vaultwarden_enabled else omit) }}
+    {{ ({'name': (vaultwarden_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'vaultwarden']} if vaultwarden_enabled else omit) }}
   # /role-specific:vaultwarden
 
   # role-specific:vikunja
@@ -2097,13 +2114,13 @@ mash_playbook_traefix_managed_additional_entrypoints_auto_itemized:
     }}
   # /role-specific:ergo
 
-  # role-specific:gitea
+  # role-specific:forgejo
   - |-
     {{
       ({
-        'name': gitea_container_labels_traefik_tcp_entrypoints,
-        'port': gitea_config_server_ssh_listen_port,
-        'host_bind_port': gitea_ssh_bind_port,
+        'name': forgejo_container_labels_traefik_tcp_entrypoints,
+        'port': forgejo_config_server_ssh_listen_port,
+        'host_bind_port': forgejo_container_ssh_host_bind_port,
         'config': {
           'transport': {
             'respondingTimeouts': {
@@ -2113,7 +2130,27 @@ mash_playbook_traefix_managed_additional_entrypoints_auto_itemized:
             }
           }
         }
-      } if gitea_enabled and gitea_container_labels_traefik_tcp_enabled and gitea_ssh_bind_port else omit)
+      } if forgejo_enabled and forgejo_container_labels_traefik_tcp_enabled and forgejo_container_ssh_host_bind_port else omit)
+    }}
+  # /role-specific:forgejo
+
+  # role-specific:gitea
+  - |-
+    {{
+      ({
+        'name': gitea_container_labels_traefik_tcp_entrypoints,
+        'port': gitea_config_server_ssh_listen_port,
+        'host_bind_port': gitea_container_ssh_host_bind_port,
+        'config': {
+          'transport': {
+            'respondingTimeouts': {
+              'readTimeout': traefik_config_entrypoint_web_transport_respondingTimeouts_readTimeout,
+              'writeTimeout': traefik_config_entrypoint_web_transport_respondingTimeouts_writeTimeout,
+              'idleTimeout': traefik_config_entrypoint_web_transport_respondingTimeouts_idleTimeout
+            }
+          }
+        }
+      } if gitea_enabled and gitea_container_labels_traefik_tcp_enabled and gitea_container_ssh_host_bind_port else omit)
     }}
   # /role-specific:gitea
 
@@ -2136,6 +2173,44 @@ mash_playbook_traefix_managed_additional_entrypoints_auto_itemized:
       } if inspircd_enabled and inspircd_container_labels_traefik_enabled else omit)
     }}
   # /role-specific:inspircd
+
+  # role-specific:mailpit
+  - |-
+    {{
+      ({
+        'name': mailpit_container_labels_traefik_pop3_entrypoints,
+        'port': mailpit_container_pop3_port,
+        'host_bind_port': mailpit_container_pop3_host_bind_port,
+        'config': {
+          'transport': {
+            'respondingTimeouts': {
+              'readTimeout': traefik_config_entrypoint_web_transport_respondingTimeouts_readTimeout,
+              'writeTimeout': traefik_config_entrypoint_web_transport_respondingTimeouts_writeTimeout,
+              'idleTimeout': traefik_config_entrypoint_web_transport_respondingTimeouts_idleTimeout
+            }
+          }
+        }
+      } if mailpit_enabled and mailpit_container_labels_traefik_pop3_enabled else omit)
+    }}
+
+  - |-
+    {{
+      ({
+        'name': mailpit_container_labels_traefik_smtp_entrypoints,
+        'port': mailpit_container_smtp_port,
+        'host_bind_port': mailpit_container_smtp_host_bind_port,
+        'config': {
+          'transport': {
+            'respondingTimeouts': {
+              'readTimeout': traefik_config_entrypoint_web_transport_respondingTimeouts_readTimeout,
+              'writeTimeout': traefik_config_entrypoint_web_transport_respondingTimeouts_writeTimeout,
+              'idleTimeout': traefik_config_entrypoint_web_transport_respondingTimeouts_idleTimeout
+            }
+          }
+        }
+      } if mailpit_enabled and mailpit_container_labels_traefik_smtp_enabled else omit)
+    }}
+  # /role-specific:mailpit
 
   # role-specific:opengist
   - |-
@@ -2188,7 +2263,7 @@ mash_playbook_traefik_additional_domains_to_obtain_certificates_for_itemized:
   - "{{ mumble_hostname if mumble_enabled else omit }}"
   # /role-specific:mumble
 
-traefik_additional_domains_to_obtain_certificates_for: "{{ mash_playbook_traefik_additional_domains_to_obtain_certificates_for_itemized | reject('equalto', omit) }}"
+traefik_additional_domains_to_obtain_certificates_for_auto: "{{ mash_playbook_traefik_additional_domains_to_obtain_certificates_for_itemized | reject('equalto', omit) }}"
 
 # role-specific:container_socket_proxy
 traefik_config_providers_docker_endpoint: "{{ container_socket_proxy_endpoint if container_socket_proxy_enabled else 'unix:///var/run/docker.sock' }}"
@@ -3583,6 +3658,60 @@ cyberchef_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_pr
 #                                                                      #
 ########################################################################
 # /role-specific:cyberchef
+
+
+
+# role-specific:databasus
+########################################################################
+#                                                                      #
+# databasus                                                            #
+#                                                                      #
+########################################################################
+
+databasus_enabled: false
+
+databasus_identifier: "{{ mash_playbook_service_identifier_prefix }}databasus"
+
+databasus_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}databasus"
+
+# databasus runs only as root user
+databasus_uid: 0
+databasus_gid: 0
+
+databasus_systemd_required_services_list_auto: |
+  {{
+    ([mariadb_identifier ~ '.service'] if mariadb_enabled | default(false) else [])
+    +
+    ([mongodb_identifier ~ '.service'] if mongodb_enabled | default(false) else [])
+    +
+    ([postgres_identifier ~ '.service'] if postgres_enabled | default(false) else [])
+  }}
+
+databasus_container_additional_networks_auto: |
+  {{
+    ([mariadb_container_network] if mariadb_enabled | default(false) and databasus_container_network != mariadb_container_network else [])
+    +
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+    +
+    ([mongodb_container_network] if mongodb_enabled | default(false) and databasus_container_network != mongodb_container_network else [])
+    +
+    ([postgres_container_network] if postgres_enabled | default(false) and databasus_container_network != postgres_container_network else [])
+  }}
+
+databasus_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+databasus_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+
+# role-specific:traefik
+databasus_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
+databasus_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
+# /role-specific:traefik
+
+########################################################################
+#                                                                      #
+# /databasus                                                           #
+#                                                                      #
+########################################################################
+# /role-specific:databasus
 
 
 
@@ -7344,6 +7473,52 @@ keydb_arch: |-
 # /role-specific:keydb
 
 
+
+# role-specific:keyoxide
+########################################################################
+#                                                                      #
+# keyoxide                                                             #
+#                                                                      #
+########################################################################
+
+keyoxide_enabled: false
+
+keyoxide_proxy_enabled: false
+
+keyoxide_identifier: "{{ mash_playbook_service_identifier_prefix }}keyoxide"
+
+keyoxide_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}keyoxide"
+
+keyoxide_uid: "{{ mash_playbook_uid }}"
+keyoxide_gid: "{{ mash_playbook_gid }}"
+
+keyoxide_container_additional_networks_auto: |
+  {{
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+  }}
+
+keyoxide_proxy_container_additional_networks_auto: |
+  {{
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+  }}
+
+keyoxide_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+keyoxide_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+
+# role-specific:traefik
+keyoxide_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
+keyoxide_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
+# /role-specific:traefik
+
+########################################################################
+#                                                                      #
+# /keyoxide                                                            #
+#                                                                      #
+########################################################################
+# /role-specific:keyoxide
+
+
+
 # role-specific:kutt
 ########################################################################
 #                                                                      #
@@ -7994,6 +8169,44 @@ mailcrab_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_pri
 #                                                                      #
 ########################################################################
 # /role-specific:mailcrab
+
+
+
+# role-specific:mailpit
+########################################################################
+#                                                                      #
+# mailpit                                                              #
+#                                                                      #
+########################################################################
+
+mailpit_enabled: false
+
+mailpit_identifier: "{{ mash_playbook_service_identifier_prefix }}mailpit"
+
+mailpit_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}mailpit"
+
+mailpit_uid: "{{ mash_playbook_uid }}"
+mailpit_gid: "{{ mash_playbook_gid }}"
+
+mailpit_container_additional_networks_auto: |
+  {{
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+  }}
+
+mailpit_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+mailpit_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+
+# role-specific:traefik
+mailpit_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
+mailpit_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
+# /role-specific:traefik
+
+########################################################################
+#                                                                      #
+# /mailpit                                                             #
+#                                                                      #
+########################################################################
+# /role-specific:mailpit
 
 
 

@@ -82,7 +82,7 @@ See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az2vTm
 
 After running the command for installation, the Pocket ID instance becomes available at the URL specified with `pocket_id_hostname`. With the configuration above, the service is hosted at `https://pocketid.example.com`.
 
-To get started, open the URL `https://example.com/setup` on a web browser to create and sign in with an admin account.
+To get started, open the URL `https://pocketid.example.com/setup` with a web browser to create an administrator account.
 
 See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az2vTmc3fLqxvpuT9EoZvkErWNZM1K/tree/docs/configuring-pocket-id.md#usage) on the role's documentation for details about how to use Pocket ID.
 

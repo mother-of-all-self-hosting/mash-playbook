@@ -80,7 +80,7 @@ By default Opengist is configured to use Postgres, but you can choose other data
 
 After running the command for installation, the Opengist instance becomes available at the URL specified with `opengist_hostname`. With the configuration above, the service is hosted at `https://opengist.example.com`.
 
-To get started, open the URL with a web browser, and register the account. **Note that the first registered user becomes an administrator automatically.**
+To get started, open the URL with a web browser to create an account. **Note that the first registered user becomes an administrator automatically.**
 
 See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az48WEbcYK3E6uDmfP1Qbb9AGdz1L3/tree/docs/configuring-opengist.md#configuring-ssh-feature-for-opengist-optional) on the role's documentation for details about how to set up the SSH feature.
 

@@ -54,7 +54,7 @@ After running the command for installation, the Jackett instance becomes availab
 >[!NOTE]
 > The `jackett_path_prefix` variable can be adjusted to host under a subpath (e.g. `jackett_path_prefix: /jackett`), but this hasn't been tested yet.
 
-To get started, open the URL with a web browser, and configure an admin password.
+To get started, open the URL with a web browser to create an administrator account.
 
 For additional configuration options, refer to [ansible-role-jackett](https://github.com/spatterIight/ansible-role-jackett)'s `defaults/main.yml` file.
 

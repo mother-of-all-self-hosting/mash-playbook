@@ -74,7 +74,7 @@ To use Firezone, you also need to add other configurations for creating an admin
 
 After running the command for installation, the Firezone instance becomes available at the URL specified with `firezone_hostname`. With the configuration above, the service is hosted at `https://firezone.example.com`.
 
-To get started, open the URL with a web browser, and log in to the service with the credentials set to `firezone_default_admin_email` and `firezone_default_admin_password`.
+To get started, open the URL with a web browser to log in to the instance with the administrator account, as defined with the `firezone_default_admin_email` and `firezone_default_admin_password` variables.
 
 ## Related services
 

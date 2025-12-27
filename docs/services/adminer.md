@@ -64,7 +64,7 @@ It is optionally possible to edit settings about the default server to connect, 
 
 After running the command for installation, the Adminer instance becomes available at the URL specified with `adminer_hostname`. With the configuration above, the service is hosted at `https://adminer.example.com`.
 
-To get started, open the URL `https://adminer.example.com` with a web browser, and log in to the instance with the database's credentials specified on your `vars.yml` file.
+To get started, open the URL with a web browser to log in to the instance with the database's credentials specified on your `vars.yml` file.
 
 To log in to database servers which this playbook manages, you need to specify its `*_identifier` to the `server` input area. For example, the default value for the MariaDB server is `mash-mariadb` and the one for the Postgres server is `mash-postgres`, respectively.
 

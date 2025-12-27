@@ -90,7 +90,7 @@ See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-ho
 
 After running the command for installation, the Homarr instance becomes available at the URL specified with `homarr_hostname`. With the configuration above, the service is hosted at `https://homarr.example.com`.
 
-You can open the page with a web browser to start the onboarding process. See [this official guide](https://homarr.dev/docs/getting-started/after-the-installation/) for details.
+To get started, open the URL with a web browser, and follow the set up wizard. See [this official guide](https://homarr.dev/docs/getting-started/after-the-installation/) for details.
 
 ### Playbook's services on Homarr
 

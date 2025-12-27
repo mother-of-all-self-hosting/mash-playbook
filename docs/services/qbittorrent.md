@@ -57,7 +57,7 @@ After running the command for installation, the qBittorrent instance becomes ava
 >[!NOTE]
 > The `qbittorrent_path_prefix` variable can be adjusted to host under a subpath (e.g. `qbittorrent_path_prefix: /qbittorrent`), but this hasn't been tested yet.
 
-To get started, open the URL with a web browser, and log in with the **temporary** randomly generated password for your instance, which can be obtained by running the command below:
+To get started, open the URL with a web browser to log in to the instance with the **temporary** randomly generated password for your instance. The password can be obtained by running the command below:
 
 ```sh
 just run-tags print-qbittorrent-password

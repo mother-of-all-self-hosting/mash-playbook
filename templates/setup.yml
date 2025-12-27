@@ -205,6 +205,10 @@
     - role: galaxy/cyberchef
     # /role-specific:cyberchef
 
+    # role-specific:databasus
+    - role: galaxy/databasus
+    # /role-specific:databasus
+
     # role-specific:docker_registry
     - role: galaxy/docker_registry
     # /role-specific:docker_registry
@@ -417,6 +421,10 @@
     - role: galaxy/keydb
     # /role-specific:keydb
 
+    # role-specific:keyoxide
+    - role: galaxy/keyoxide
+    # /role-specific:keyoxide
+
     # role-specific:kutt
     - role: galaxy/kutt
     # /role-specific:kutt
@@ -464,6 +472,10 @@
     # role-specific:mailcrab
     - role: galaxy/mailcrab
     # /role-specific:mailcrab
+
+    # role-specific:mailpit
+    - role: galaxy/mailpit
+    # /role-specific:mailpit
 
     # role-specific:mariadb
     - role: galaxy/mariadb

@@ -126,7 +126,7 @@ navidrome_container_additional_volumes:
 
 After running the command for installation, the Navidrome instance becomes available at the URL specified with `navidrome_hostname` and `navidrome_path_prefix`. With the configuration above, the service is hosted at `https://mash.example.com/navidrome`.
 
-To get started, open the URL with a web browser, and register the administrator account. You can create additional users (admin-privileged or not) after that.
+To get started, open the URL with a web browser to create an administrator account. You can create additional users (admin-privileged or not) after that.
 
 You can also connect various Subsonic-API-compatible [apps](https://www.navidrome.org/docs/overview/#apps) (desktop, web, mobile) to your Navidrome instance.
 

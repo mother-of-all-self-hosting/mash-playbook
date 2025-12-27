@@ -85,7 +85,7 @@ As the official Docker image is not available, the role to install the service s
 
 After running the command for installation, the WriteFreely instance becomes available at the URL specified with `writefreely_hostname`. With the configuration above, the service is hosted at `https://writefreely.example.com`.
 
-To get started, you need to register an account on the instance. See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az2i8BkHXzRvK1ZtGwHuvLACRswXgA/tree/docs/configuring-writefreely.md#creating-a-user) on the role's documentation for details about how to create an account.
+To get started, you need to create an account on the instance. See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az2i8BkHXzRvK1ZtGwHuvLACRswXgA/tree/docs/configuring-writefreely.md#creating-a-user) on the role's documentation for details about how to create an account.
 
 After creating one, open the URL with a web browser to log in to the instance with the account.
 

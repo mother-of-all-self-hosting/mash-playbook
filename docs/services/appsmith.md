@@ -69,7 +69,7 @@ It is recommended to install Appsmith with public registration enabled at first,
 
 After running the command for installation, the Appsmith instance becomes available at the URL specified with `appsmith_hostname`. With the configuration above, the service is hosted at `https://appsmith.example.com`.
 
-To get started, open the URL with a web browser, and create the first user from the web interface.
+To get started, open the URL with a web browser to create an account.
 
 ## Troubleshooting
 

@@ -274,7 +274,7 @@ Note that running the `just` commands for installation (`just install-all` or `j
 
 After running the command for installation, the Open Archiver becomes available at the URL specified with `openarchiver_hostname`. With the configuration above, the service is hosted at `https://openarchiver.example.com`.
 
-To get started, open the URL with a web browser to log in to the instance. **Note that the first registered user becomes an administrator automatically.**
+To get started, open the URL with a web browser to create an account. **Note that the first registered user becomes an administrator automatically.**
 
 ## Troubleshooting
 

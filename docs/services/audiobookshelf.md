@@ -138,7 +138,7 @@ After restarting the services, you can add the directory `/audiobookshelf` to Sy
 
 After running the command for installation, the audiobookshelf instance becomes available at the URL specified with `audiobookshelf_hostname`. With the configuration above, the service is hosted at `https://audiobookshelf.example.com`.
 
-To get started, open the URL with a web browser, and register the account. **Note that the first registered user becomes an administrator automatically.**
+To get started, open the URL with a web browser to create an account. **Note that the first registered user becomes an administrator automatically.**
 
 See [this page](https://www.audiobookshelf.org/docs/) on the documentation about its usage.
 

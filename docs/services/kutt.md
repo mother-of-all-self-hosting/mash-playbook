@@ -252,7 +252,7 @@ Note that running the `just` commands for installation (`just install-all` or `j
 
 After running the command for installation, the Kutt instance becomes available at the URL specified with `kutt_hostname`. With the configuration above, the service is hosted at `https://kutt.example.com`.
 
-To get started, open the URL with a web browser, and register the administrator account. You can create additional users (admin-privileged or not) after that.
+To get started, open the URL with a web browser to create an administrator account. You can create additional users (admin-privileged or not) after that.
 
 ## Troubleshooting
 

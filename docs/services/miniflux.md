@@ -73,7 +73,7 @@ miniflux_admin_password: ADMIN_PASSWORD_HERE
 
 After running the command for installation, the Miniflux instance becomes available at the URL specified with `miniflux_hostname` and `miniflux_path_prefix`. With the configuration above, the service is hosted at `https://mash.example.com/miniflux`.
 
-To get started, open the URL with a web browser to log in. You can create additional users (admin-privileged or not) after logging in with your administrator username (`miniflux_admin_login`) and password (`miniflux_admin_password`).
+To get started, open the URL with a web browser to log in to the instance. You can create additional users (admin-privileged or not) after logging in with your administrator username (`miniflux_admin_login`) and password (`miniflux_admin_password`).
 
 ## Troubleshooting
 

@@ -79,7 +79,7 @@ On An Otter Wiki you can set up a mailer for functions such as password recovery
 
 After installation, the An Otter Wiki instance becomes available at the URL specified with `otterwiki_hostname`. With the configuration above, the service is hosted at `https://otterwiki.example.com`.
 
-To get started, open the URL with a web browser, and register the account. **Note that the first registered user becomes an administrator automatically.**
+To get started, open the URL with a web browser to create an account. **Note that the first registered user becomes an administrator automatically.**
 
 Since account registration is disabled by default, you need to enable it first by setting `otterwiki_environment_variables_disable_registration` to `false` temporarily in order to create your own account.
 

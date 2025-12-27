@@ -66,7 +66,7 @@ filebrowser_hostname: filebrowser.example.com
 
 After running the command for installation, the File Browser instance becomes available at the URL specified with `filebrowser_hostname`. With the configuration above, the service is hosted at `https://filebrowser.example.com`.
 
-To get started, open the URL with a web browser, and log in to the instance with the administrator account (`admin`).
+To get started, open the URL with a web browser to log in to the instance with the administrator account (`admin`).
 
 The initial password of the administrator has been logged to the console logs during the first run.
 

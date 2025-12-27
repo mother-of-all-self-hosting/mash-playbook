@@ -81,7 +81,7 @@ If you enable the [exim-relay](exim-relay.md) service in your inventory configur
 
 After installation, the Papra instance becomes available at the URL specified with `papra_hostname`. With the configuration above, the service is hosted at `https://papra.example.com`.
 
-To get started, open the URL with a web browser, and register the account.
+To get started, open the URL with a web browser to create an account.
 
 Since account registration is disabled by default, you need to enable it first by setting `papra_environment_variables_auth_is_registration_enabled` to `true` temporarily in order to create your own account.
 

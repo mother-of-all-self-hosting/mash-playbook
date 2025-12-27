@@ -64,7 +64,7 @@ You also need to specify an email address and password for the initial administr
 
 After running the command for installation, the pgAdmin instance becomes available at the URL specified with `pgadmin_hostname`. With the configuration above, the service is hosted at `https://pgadmin.example.com`.
 
-To get started, open the URL `https://pgadmin.example.com` with a web browser, and log in to the instance with the administrator's credentials.
+To get started, open the URL with a web browser to log in to the instance with the administrator account.
 
 >[!NOTE]
 >

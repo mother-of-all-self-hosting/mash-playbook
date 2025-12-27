@@ -54,7 +54,7 @@ keycloak_environment_variable_kc_bootstrap_admin_password: ''
 
 After running the command for installation, the Keycloak instance becomes available at the URL specified with `keycloak_hostname` and `keycloak_path_prefix`. With the configuration above, the service is hosted at `https://mash.example.com/keycloak`.
 
-To get started, open the URL with a web browser, and log in with the admin user account. The account is created on the first start, as defined with the `keycloak_environment_variable_kc_bootstrap_admin_username` and `keycloak_environment_variable_kc_bootstrap_admin_password` variables.
+To get started, open the URL with a web browser to log in to the instance with the administrator account. The account is created on the first start, as defined with the `keycloak_environment_variable_kc_bootstrap_admin_username` and `keycloak_environment_variable_kc_bootstrap_admin_password` variables.
 
 On each start after that, Keycloak will attempt to create the user again and report a non-fatal error (Keycloak will continue running).
 

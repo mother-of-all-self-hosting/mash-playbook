@@ -63,7 +63,7 @@ focalboard_path_prefix: /focalboard
 
 After running the command for installation, the Focalboard instance becomes available at the URL specified with `focalboard_hostname` and `focalboard_path_prefix`. With the configuration above, the service is hosted at `https://mash.example.com/focalboard`.
 
-You can open the page with a web browser to register the first (administrator) user. After the first user is created, an invitation link is required to sign up.
+To get started, open the URL with a web browser to create an account. **Note that the first registered user becomes an administrator automatically.** After the first user is created, an invitation link is required to sign up.
 
 ## Troubleshooting
 
