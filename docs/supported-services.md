@@ -17,6 +17,8 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
 # Supported services
 
+## Free and open-source software
+
 Below is an exhaustive list of the free and open-source software for self-hosting which this playbook supports.
 
 |              Name              |              Description              | Documentation |
@@ -134,12 +136,10 @@ Below is an exhaustive list of the free and open-source software for self-hostin
 | [Miniflux](https://miniflux.app/) | Minimalist and opinionated feed reader | [Link](services/miniflux.md) |
 | [Misskey](https://misskey-hub.net/en/) | Decentralized microblogging platform based on the ActivityPub protocol | [Link](services/misskey.md) |
 | [Mobilizon](https://joinmobilizon.org/en/) | An ActivityPub/Fediverse server to create and share events | [Link](services/mobilizon.md) |
-| [MongoDB](https://www.mongodb.com/) | A source-available cross-platform document-oriented (NoSQL) database program | [Link](services/mongodb.md) |
 | [Moodist](https://moodist.mvze.net/) | Web application to mix and play ambient soundtracks | [Link](services/moodist.md) |
 | [Mosquitto](https://mosquitto.org/) | A MQTT broker | [Link](services/mosquitto.md) |
 | [Mozhi](https://codeberg.org/aryak/mozhi) | Frontend for translation engines | [Link](services/mozhi.md) |
 | [Mumble](https://www.mumble.info/) | Voice chat application known for its low latency and high voice quality | [Link](services/mumble.md) |
-| [n8n](https://n8n.io/) | Workflow automation for technical people | [Link](services/n8n.md) |
 | [Navidrome](https://www.navidrome.org/) | [Subsonic-API](http://www.subsonic.org/pages/api.jsp) compatible music server | [Link](services/navidrome.md)
 | [Neko](https://neko.m1k1o.net/) | A virtual browser or even desktop environment | [Link](services/neko.md) |
 | [NetBox](https://docs.netbox.dev/en/stable/) | Web application that provides [IP address management (IPAM)](https://en.wikipedia.org/wiki/IP_address_management) and [data center infrastructure management (DCIM)](https://en.wikipedia.org/wiki/Data_center_management#Data_center_infrastructure_management) functionality | [Link](services/netbox.md) |
@@ -231,6 +231,14 @@ Below is an exhaustive list of the free and open-source software for self-hostin
 | [YOURLS](https://yourls.org) | Your Own URL Shortener, on your server | [Link](services/yourls.md) |
 | System-related | A collection of various system-related components | [Link](services/system.md) |
 
+### Non-free software
+
+Below is a list of non-free (i.e. licensed under a non-free license) software which this playbook supports.
+
+|              Name              |              Description              | Documentation |
+| ------------------------------ | ------------------------------------- | ------------- |
+| [MongoDB](https://www.mongodb.com/) | A source-available cross-platform document-oriented (NoSQL) database program | [Link](services/mongodb.md) |
+| [n8n](https://n8n.io/) | Workflow automation for technical people | [Link](services/n8n.md) |
 
 ## Related playbooks
 
