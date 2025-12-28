@@ -99,7 +99,7 @@ Below is an exhaustive list of the free and open-source software for self-hostin
 | [Immich](https://github.com/immich-app/immich) | High performance photo and video management solution | [Link](services/immich.md) |
 | [Immich Kiosk](https://immichkiosk.app/) | Highly configurable slideshow for displaying [Immich](https://immich.app/) pictures and videos on browsers and devices | [Link](services/immich-kiosk.md) |
 | [Infisical](https://infisical.com/) | An end-to-end encrypted platform for securely managing secrets and configs across your team, devices, and infrastructure | [Link](services/infisical.md) |
-| [InfluxDB](https://www.influxdata.com/) | A time-series database | [Link](services/influxdb.md) |
+| [InfluxDB OSS v2](https://docs.influxdata.com/influxdb/v2/) | A time-series database | [Link](services/influxdb.md) |
 | [InspIRCd](https://www.inspircd.org/) | Modular IRC server written in C++ | [Link](services/inspircd.md) |
 | [Jackett](https://github.com/Jackett/Jackett) | An API for your favorite torrent trackers | [Link](services/jackett.md) |
 | [Jellyfin](https://github.com/jellyfin/jellyfin) | A personal media server | [Link](services/jellyfin.md) |
