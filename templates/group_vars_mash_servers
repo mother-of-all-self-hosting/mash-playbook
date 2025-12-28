@@ -2274,7 +2274,7 @@ traefik_config_entrypoint_web_http_encodedCharacters_enabled: "{{ collabora_onli
 traefik_config_entrypoint_web_http_encodedCharacters_allowEncodedQuestionMark: "{{ collabora_online_enabled }}"
 traefik_config_entrypoint_web_http_encodedCharacters_allowEncodedSlash: "{{ collabora_online_enabled }}"
 
-traefik_config_entrypoint_web_secure_http_encodedCharacters_enabled: "{{ collabora_online_enabled and }}"
+traefik_config_entrypoint_web_secure_http_encodedCharacters_enabled: "{{ collabora_online_enabled }}"
 traefik_config_entrypoint_web_secure_http_encodedCharacters_allowEncodedQuestionMark: "{{ collabora_online_enabled }}"
 traefik_config_entrypoint_web_secure_http_encodedCharacters_allowEncodedSlash: "{{ collabora_online_enabled }}"
 # /role-specific:collabora_online
