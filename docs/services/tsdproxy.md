@@ -62,9 +62,9 @@ See [this page](https://almeidapaulopt.github.io/tsdproxy/docs/advanced/tailscal
 
 After running the command for installation, the TSDProxy instance becomes available.
 
-If [ansible-role-container-socket-proxy](https://github.com/mother-of-all-self-hosting/ansible-role-container-socket-proxy) is installed by the playbook (default), the container will use the proxy. If not, the container will mount the docker socket at `/var/run/docker.sock`. You can change it by configuring `tsdproxy_docker_socket`.
+If [ansible-role-container-socket-proxy](https://github.com/mother-of-all-self-hosting/ansible-role-container-socket-proxy) is installed by the playbook (default), the container will use the proxy. If not, the container will mount the Docker socket at `/var/run/docker.sock`. You can change the path by configuring `tsdproxy_docker_socket`.
 
-Do not forget to adjust the `tsdproxy_docker_endpoint_is_unix_socket` to `false` if a TCP endpoint is enabled.
+Do not forget to adjust the `tsdproxy_docker_endpoint_is_unix_socket` variable to `false` if a TCP endpoint is enabled.
 
 ### Adding a new service
 
