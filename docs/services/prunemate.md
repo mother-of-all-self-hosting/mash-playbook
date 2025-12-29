@@ -30,6 +30,9 @@ For details about configuring the [Ansible role for PruneMate](https://app.radic
 - 🌐 [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3AzTsddBnXnhE3i4xhzsEX12deb4fx/tree/docs/configuring-prunemate.md) online
 - 📁 `roles/galaxy/prunemate/docs/configuring-prunemate.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
+>[!NOTE]
+> Before enabling schedules for automated pruning, please make sure that you understand what will be pruned. Once resources are pruned, it is not possible to recover them except some cases where they can be restored with backups.
+
 ## Dependencies
 
 This service requires the following other services:
