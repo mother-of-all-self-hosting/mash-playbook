@@ -231,7 +231,7 @@ Below is an exhaustive list of the free and open-source software for self-hostin
 | [YOURLS](https://yourls.org) | Your Own URL Shortener, on your server | [Link](services/yourls.md) |
 | System-related | A collection of various system-related components | [Link](services/system.md) |
 
-### Non-free software
+## Non-free software
 
 Below is a list of non-free (i.e. licensed under a non-free license) software which this playbook supports.
 
