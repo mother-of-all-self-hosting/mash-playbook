@@ -75,13 +75,19 @@ After running the command for installation, the PruneMate instance becomes avail
 
 To get started, open the URL with a web browser, and edit settings to enable a scheduled job.
 
+### Creating a user
+
+To enable authentication, see [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3AzTsddBnXnhE3i4xhzsEX12deb4fx/tree/docs/configuring-prunemate.md#creating-a-user) on the role's documentation about how to create a user. Make sure to start the service first, before creating the user.
+
+### Configuring the Docker host URL
+
 Because the service is configured to use docker-socket-proxy which this playbook installs, you can set `tcp://mash-container-socket-proxy:2375` to the input area of the URL to add a new Docker host, unless the Docker socket at `/var/run/docker.sock` would be used instead of the proxy.
+
+### Configuring notification providers
 
 As a notification provider, it is possible to use Gotify and ntfy, both of which are supported by this playbook, along with Discord and Telegram. To use ntfy, make sure to create a topic at first, so that the PruneMate instance will send notifications to it. The URL of the ntfy instance should be set to `http://mash-ntfy:8080`. Gotify could be configured in a similar way.
 
 💡 You can enable the web app of ntfy to configure and receive notifications on a web browser. Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-ntfy/blob/main/docs/configuring-ntfy.md#enable-web-app-optional) on the role's documentation for details about how to enable it.
-
-To enable authentication, see [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3AzTsddBnXnhE3i4xhzsEX12deb4fx/tree/docs/configuring-prunemate.md#creating-a-user) on the role's documentation about how to create a user. Make sure to start the service first, before creating the user.
 
 ## Troubleshooting
 
