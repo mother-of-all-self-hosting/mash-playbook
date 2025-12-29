@@ -11469,7 +11469,7 @@ container_socket_proxy_api_containers_enabled: true
 container_socket_proxy_api_images_enabled: true
 container_socket_proxy_api_network_enabled: true
 container_socket_proxy_api_volumes_enabled: true
-container_socket_proxy_api_system_enabled: true
+container_socket_proxy_api_system_enabled: true # without this setting the docker-socket-proxy instance returns a 403 error.
 # /role-specific:container_socket_proxy
 
 # role-specific:traefik
