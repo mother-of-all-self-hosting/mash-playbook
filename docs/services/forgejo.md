@@ -97,6 +97,7 @@ Nevertheless, upgrades may be possible with some manual work. See [this section]
 
 - [Forgejo Runner](forgejo-runner.md) — Runner to use with Forgejo Actions
 - [Gitea](gitea.md) — Painless self-hosted [Git](https://git-scm.com/) service
+- [Radicle node](radicle-node.md) — Network daemon for the [Radicle](https://radicle.xyz/) network, a peer-to-peer code collaboration stack built on Git
 - [Woodpecker CI](woodpecker-ci.md) — Simple Continuous Integration (CI) engine with great extensibility
 
 ### Integration with Woodpecker CI

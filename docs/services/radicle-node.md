@@ -84,5 +84,8 @@ See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az28JT
 
 ## Related services
 
+- [Forgejo](forgejo.md) — Self-hosted lightweight software forge (Git hosting service, etc.)
+- [Gitea](gitea.md) — Painless self-hosted [Git](https://git-scm.com/) service
 - [Radicle Explorer](radicle-explorer.md) — Radicle user interface for the web browser
 - [Radicle HTTP Daemon](radicle-httpd.md) — Gateway between the Radicle protocol and the HTTP protocol
+- [Woodpecker CI](woodpecker-ci.md) — Simple Continuous Integration (CI) engine with great extensibility
