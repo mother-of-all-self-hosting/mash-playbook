@@ -701,6 +701,10 @@
     - role: galaxy/promtail
     # /role-specific:promtail
 
+    # role-specific:prunemate
+    - role: galaxy/prunemate
+    # /role-specific:prunemate
+
     # role-specific:qbittorrent
     - role: galaxy/qbittorrent
     # /role-specific:qbittorrent

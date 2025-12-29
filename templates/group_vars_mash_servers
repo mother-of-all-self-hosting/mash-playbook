@@ -917,6 +917,11 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
     {{ ({'name': (promtail_identifier + '.service'), 'priority': 500, 'groups': ['mash', 'logs', 'promtail']} if promtail_enabled else omit) }}
   # /role-specific:promtail
 
+  # role-specific:prunemate
+  - |-
+    {{ ({'name': (prunemate_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'prunemate']} if prunemate_enabled else omit) }}
+  # /role-specific:prunemate
+
   # role-specific:qbittorrent
   - |-
     {{ ({'name': (qbittorrent_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'qbittorrent']} if qbittorrent_enabled else omit) }}
@@ -11417,6 +11422,67 @@ promtail_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_pri
 #                                                                      #
 ########################################################################
 # /role-specific:promtail
+
+
+
+# role-specific:prunemate
+########################################################################
+#                                                                      #
+# prunemate                                                            #
+#                                                                      #
+########################################################################
+
+prunemate_enabled: false
+
+prunemate_identifier: "{{ mash_playbook_service_identifier_prefix }}prunemate"
+
+prunemate_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}prunemate"
+
+prunemate_uid: "{{ mash_playbook_uid }}"
+prunemate_gid: "{{ mash_playbook_gid }}"
+
+prunemate_systemd_required_services_list_auto: |
+  {{
+    ([container_socket_proxy_identifier + '.service'] if container_socket_proxy_enabled | default(false) else [])
+  }}
+
+prunemate_container_additional_networks_auto: |
+  {{
+    ([container_socket_proxy_container_network] if container_socket_proxy_enabled | default(false) else [])
+    +
+    ([gotify_container_network] if gotify_enabled | default(false) and prunemate_container_network != gotify_container_network else [])
+    +
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+    +
+    ([ntfy_container_network] if ntfy_enabled | default(false) and prunemate_container_network != ntfy_container_network else [])
+  }}
+
+prunemate_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+prunemate_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+
+# role-specific:container_socket_proxy
+prunemate_docker_endpoint_is_unix_socket: "{{ false if prunemate_docker_endpoint.startswith('tcp://') else true }}"
+prunemate_docker_endpoint: "{{ container_socket_proxy_endpoint if container_socket_proxy_enabled else 'unix:///var/run/docker.sock' }}"
+container_socket_proxy_write_access_enabled: true # required for prune operations
+container_socket_proxy_api_build_enabled: true # required for pruning build cache
+container_socket_proxy_api_containers_enabled: true
+container_socket_proxy_api_images_enabled: true
+container_socket_proxy_api_network_enabled: true
+container_socket_proxy_api_volumes_enabled: true
+container_socket_proxy_api_system_enabled: true # without this setting the docker-socket-proxy instance returns a 403 error.
+# /role-specific:container_socket_proxy
+
+# role-specific:traefik
+prunemate_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
+prunemate_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
+# /role-specific:traefik
+
+########################################################################
+#                                                                      #
+# /prunemate                                                           #
+#                                                                      #
+########################################################################
+# /role-specific:prunemate
 
 
 
