@@ -2269,15 +2269,35 @@ traefik_additional_domains_to_obtain_certificates_for_auto: "{{ mash_playbook_tr
 traefik_config_providers_docker_endpoint: "{{ container_socket_proxy_endpoint if container_socket_proxy_enabled else 'unix:///var/run/docker.sock' }}"
 # /role-specific:container_socket_proxy
 
-# role-specific:collabora_online
-traefik_config_entrypoint_web_http_encodedCharacters_enabled: "{{ collabora_online_enabled }}"
-traefik_config_entrypoint_web_http_encodedCharacters_allowEncodedQuestionMark: "{{ collabora_online_enabled }}"
-traefik_config_entrypoint_web_http_encodedCharacters_allowEncodedSlash: "{{ collabora_online_enabled }}"
+traefik_config_entrypoint_web_http_encodedCharacters_enabled: |
+  {{
+    collabora_online_enabled | default(false)
+  }}
 
-traefik_config_entrypoint_web_secure_http_encodedCharacters_enabled: "{{ collabora_online_enabled }}"
-traefik_config_entrypoint_web_secure_http_encodedCharacters_allowEncodedQuestionMark: "{{ collabora_online_enabled }}"
-traefik_config_entrypoint_web_secure_http_encodedCharacters_allowEncodedSlash: "{{ collabora_online_enabled }}"
-# /role-specific:collabora_online
+traefik_config_entrypoint_web_http_encodedCharacters_allowEncodedQuestionMark: |
+  {{
+    collabora_online_enabled | default(false)
+  }}
+
+traefik_config_entrypoint_web_http_encodedCharacters_allowEncodedSlash: |
+  {{
+    collabora_online_enabled | default(false)
+  }}
+
+traefik_config_entrypoint_web_secure_http_encodedCharacters_enabled: |
+  {{
+    collabora_online_enabled | default(false)
+  }}
+
+traefik_config_entrypoint_web_secure_http_encodedCharacters_allowEncodedQuestionMark: |
+  {{
+    collabora_online_enabled | default(false)
+  }}
+
+traefik_config_entrypoint_web_secure_http_encodedCharacters_allowEncodedSlash: |
+  {{
+    collabora_online_enabled | default(false)
+  }}
 
 ########################################################################
 #                                                                      #
