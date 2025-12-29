@@ -20,14 +20,14 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
 # PruneMate
 
-The playbook can install and configure [PruneMate](https://www.prunemate.org/) for you.
+The playbook can install and configure [PruneMate](https://github.com/anoniemerd/PruneMate) for you.
 
-PruneMate is a full-featured database management tool written in PHP. It supports MySQL, MariaDB, PostgreSQL, CockroachDB, SQLite, MS SQL, and Oracle out of the box. Elasticsearch, SimpleDB, MongoDB, Firebird, and Clickhouse can be supported via plugins.
+PruneMate is a web interface to automatically clean up Docker resources on a schedule by making use of Docker's native `prune` commands.
 
-See the project's [documentation](https://github.com/vrana/prunemate/blob/master/README.md) to learn what PruneMate does and why it might be useful to you.
+See the project's [documentation](https://github.com/anoniemerd/PruneMate/blob/main/README.md) to learn what PruneMate does and why it might be useful to you.
 
-For details about configuring the [Ansible role for PruneMate](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3px8gLDo2opjQZW7qFiLoNuk4eSu), you can check them via:
-- 🌐 [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3px8gLDo2opjQZW7qFiLoNuk4eSu/tree/docs/configuring-prunemate.md) online
+For details about configuring the [Ansible role for PruneMate](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3AzTsddBnXnhE3i4xhzsEX12deb4fx), you can check them via:
+- 🌐 [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3AzTsddBnXnhE3i4xhzsEX12deb4fx/tree/docs/configuring-prunemate.md) online
 - 📁 `roles/galaxy/prunemate/docs/configuring-prunemate.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 ## Dependencies
@@ -35,6 +35,9 @@ For details about configuring the [Ansible role for PruneMate](https://app.radic
 This service requires the following other services:
 
 - [Traefik](traefik.md) reverse-proxy server
+- (optional) docker-socket-proxy — required on the default configuration
+- (optional) [Gotify](gotify.md)
+- (optional) [ntfy](ntfy.md)
 
 ## Adjusting the playbook configuration
 
@@ -58,24 +61,31 @@ prunemate_hostname: prunemate.example.com
 ########################################################################
 ```
 
-It is optionally possible to edit settings about the default server to connect, plugins to load (ones for loading databases), etc. See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3px8gLDo2opjQZW7qFiLoNuk4eSu/tree/docs/configuring-prunemate.md#adjusting-the-playbook-configuration) for details.
+### Setting up authentication
+
+The playbook by default enables authentication implemented by the service. It supports the HTTP Basic authentication with Traefik as well. Though it is optional and can be disabled, **it is strongly encouraged to enable a certain authentication mechanism**, considering the nature of the service. See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad:zTsddBnXnhE3i4xhzsEX12deb4fx/tree/docs/configuring-prunemate.md#setting-up-authentication) on the role's documentation for details about how to set up authentication.
+
+### Configuring Docker socket (optional)
+
+By default the service is configured to use [docker-socket-proxy](https://github.com/Tecnativa/docker-socket-proxy). If you wish to use the Docker socket at `/var/run/docker.sock` directly for some reason, make sure to adjust the `prunemate_docker_endpoint_is_unix_socket` variable to `true`.
 
 ## Usage
 
 After running the command for installation, the PruneMate instance becomes available at the URL specified with `prunemate_hostname`. With the configuration above, the service is hosted at `https://prunemate.example.com`.
 
-To get started, open the URL with a web browser to log in to the instance with the database's credentials specified on your `vars.yml` file.
+To get started, open the URL with a web browser, and edit settings to enable a scheduled job.
 
-To log in to database servers which this playbook manages, you need to specify its `*_identifier` to the `server` input area. For example, the default value for the MariaDB server is `mash-mariadb` and the one for the Postgres server is `mash-postgres`, respectively.
+Because the service is configured to use docker-socket-proxy which this playbook installs, you can set `tcp://mash-container-socket-proxy:2375` to the input area of the URL to add a new Docker host, unless the Docker socket at `/var/run/docker.sock` would be used instead of the proxy.
 
->[!NOTE]
-> Since enabling PruneMate with this playbook exposes the instance (thus practically the databases as well) to the internet, it is important to set a proper method to restrict who can access to it. See [this section](https://www.prunemate.org/en/#requirements) on the project website for security recommendations.
+As a notification provider, it is possible to use Gotify and ntfy, both of which are supported by this playbook, along with Discord and Telegram. To use ntfy, make sure to create a topic at first, so that the PruneMate instance will send notifications to it. The URL of the ntfy instance should be set to `http://mash-ntfy:8080`. Gotify could be configured in a similar way.
+
+To enable authentication, see [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3AzTsddBnXnhE3i4xhzsEX12deb4fx/tree/docs/configuring-prunemate.md#creating-a-user) on the role's documentation about how to create a user. Make sure to start the service first, before creating the user.
 
 ## Troubleshooting
 
-See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3px8gLDo2opjQZW7qFiLoNuk4eSu/tree/docs/configuring-prunemate.md#troubleshooting) on the role's documentation for details.
+See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3AzTsddBnXnhE3i4xhzsEX12deb4fx/tree/docs/configuring-prunemate.md#troubleshooting) on the role's documentation for details.
 
 ## Related services
 
-- [pgAdmin](pgadmin.md) — Management tool for Postgres with a graphical interface
-- [phpMyAdmin](phpmyadmin.md) — Free software written in PHP to handle the administration of a MySQL or MariaDB database server over the web
+- [Gotify](gotify.md) — Simple server for sending and receiving messages
+- [ntfy](ntfy.md) — Simple HTTP-based pub-sub notification service
