@@ -52,8 +52,12 @@ If you remove components from `vars.yml`, or if we switch some component from be
 just setup-all
 ```
 
+## MariaDB major version upgrade
+
+Major version upgrades to the internal MariaDB database are not done automatically. Upgrades must be performed manually.
+
+For details about upgrading it, refer to the [upgrading MariaDB guide](https://github.com/mother-of-all-self-hosting/ansible-role-mariadb/blob/main/docs/configuring-mariadb.md#upgrading-mariadb).
+
 ## PostgreSQL major version upgrade
 
-Major version upgrades to the internal PostgreSQL database are not done automatically. Upgrades must be performed manually.
-
-For details about upgrading it, refer to the [upgrading PostgreSQL guide](services/postgres.md#upgrading-postgresql).
+Major version upgrades to the PostgreSQL database also need to be performed manually. Refer to the [upgrading PostgreSQL guide](services/postgres.md#upgrading-postgresql) for details.

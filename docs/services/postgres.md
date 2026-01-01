@@ -87,6 +87,9 @@ Table of contents:
 
 ### Getting a database terminal
 
+> [!WARNING]
+> **Modifying the database directly (especially as services are running) is dangerous and may lead to irreversible database corruption.** When in doubt, consider [making a backup](#backing-up-postgresql). You might also want to use a web user interface software like [Adminer](adminer.md) and [pgAdmin](pgadmin.md).
+
 You can use the `/mash/postgres/bin/cli` tool to get interactive terminal access ([psql](https://www.postgresql.org/docs/current/app-psql.html)) to the PostgreSQL server.
 
 By default, this tool puts you in the `main` database, which contains nothing.
@@ -96,9 +99,6 @@ To see the available databases, run `\list` (or just `\l`).
 To change to another database (for example `miniflux`), run `\connect miniflux` (or just `\c miniflux`).
 
 You can then proceed to write queries. Example: `SELECT COUNT(*) FROM users;`
-
-> [!WARNING]
-> **Modifying the database directly (especially as services are running) is dangerous and may lead to irreversible database corruption.** When in doubt, consider [making a backup](#backing-up-postgresql).
 
 ### Vacuuming PostgreSQL
 
@@ -121,7 +121,7 @@ Example playbook invocations:
 
 ### Backing up PostgreSQL
 
-To automatically make Postgres database backups on a fixed schedule, consider enabling the [Postgres Backup](postgres-backup.md) service.
+To automatically make Postgres database backups on a fixed schedule, consider enabling dedicated services such as [Postgres Backup](postgres-backup.md) and [Databasus](databasus.md).
 
 To make a one-off back up of the current PostgreSQL database, make sure it's running and then execute a command like this on the server:
 
