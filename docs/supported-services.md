@@ -52,6 +52,7 @@ Below is an exhaustive list of the free and open-source software for self-hostin
 | [Changedetection.io](https://github.com/dgtlmoon/changedetection.io) | A simple website change detection and restock monitoring solution | [Link](services/changedetection.md) |
 | [ClickHouse](https://clickhouse.com/) | A column-oriented DBMS for online analytical processing (OLAP) that allows users to generate analytical reports using SQL queries in real-time | [Link](services/clickhouse.md) |
 | [Collabora Online Development Edition](https://www.collaboraonline.com/code/) | Development version of Collabora Online, which enables you to edit office documents with integrations such as Nextcloud | [Link](services/code.md) |
+| [Converse](https://conversejs.org/) | Browser based XMPP chat client | [Link](services/converse.md) |
 | [ConvertX](https://github.com/C4illin/ConvertX) | Online file converter for pictures, video, images, document files, etc. | [Link](services/convertx.md) |
 | [CouchDB](https://couchdb.apache.org/) | A document-oriented NoSQL database, implemented in Erlang | [Link](services/couchdb.md) |
 | [CyberChef](https://github.com/gchq/CyberChef) | Intuitive web application for encryption, encoding, compression, and data analysis within a browser | [Link](services/cyberchef.md) |

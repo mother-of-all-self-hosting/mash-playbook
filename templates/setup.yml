@@ -193,6 +193,10 @@
     - role: galaxy/collabora_online
     # /role-specific:collabora_online
 
+    # role-specific:converse
+    - role: galaxy/converse
+    # /role-specific:converse
+
     # role-specific:convertx
     - role: galaxy/convertx
     # /role-specific:convertx
