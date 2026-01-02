@@ -1,8 +1,8 @@
 <!--
-SPDX-FileCopyrightText: 2023 - 2025 MASH project contributors
-SPDX-FileCopyrightText: 2023 - 2025 Slavi Pantaleev
+SPDX-FileCopyrightText: 2023-2025 MASH project contributors
+SPDX-FileCopyrightText: 2023-2025 Slavi Pantaleev
 SPDX-FileCopyrightText: 2024 Sergio Durigan Junior
-SPDX-FileCopyrightText: 2025 Suguru Hirahara
+SPDX-FileCopyrightText: 2025, 2026 Suguru Hirahara
 
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->
@@ -59,3 +59,7 @@ Once connected, you can log in with SSH with the username and password.
 
 >[!NOTE]
 > Wetty only supports password authentication, so if the SSH daemon at `wetty_ssh_host` only allows pubkey authentication you will not be able to connect.
+
+## Related services
+
+- [Termix](termix.md) — Server management platform with SSH terminal

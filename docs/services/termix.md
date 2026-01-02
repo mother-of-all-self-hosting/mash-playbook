@@ -70,4 +70,4 @@ See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az4TiZ
 
 ## Related services
 
-- [Postgres Backup](postgres-backup.md) — A solution for backing up PostgreSQL to local filesystem with periodic backups
+- [Wetty](wetty.md) — SSH terminal over HTTP/HTTPS
