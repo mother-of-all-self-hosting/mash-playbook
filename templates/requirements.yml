@@ -800,6 +800,10 @@
   version: v1.37.0-0
   name: telegraf
   activation_prefix: telegraf_
+- src: git+https://seed.radicle.garden/z4TiZiqkm6MBmkPL2NTPMavni6LV.git
+  version: v1.10.0-0
+  name: termix
+  activation_prefix: termix_
 - src: git+https://seed.radicle.garden/z3vaa8VAuz3pxqB3FyciNKQRSHqyt.git
   version: v4.4.3-3
   name: thelounge
