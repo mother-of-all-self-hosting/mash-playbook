@@ -833,6 +833,10 @@
     - role: galaxy/telegraf
     # /role-specific:telegraf
 
+    # role-specific:termix
+    - role: galaxy/termix
+    # /role-specific:termix
+
     # role-specific:thelounge
     - role: galaxy/thelounge
     # /role-specific:thelounge
