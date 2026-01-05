@@ -541,7 +541,7 @@
   name: openregex
   activation_prefix: openregex_
 - src: git+https://seed.radicle.garden/z3aGv2oUAxqmoGddtk1VwRioUTKbs.git
-  version: v0.0.0-1
+  version: v0.0.0-2
   name: origamivault
   activation_prefix: origamivault_
 - src: git+https://seed.radicle.garden/zvzJe15VMBkGd2CMBctvpVZgmQG5.git
