@@ -56,7 +56,8 @@ To enable this service, add the following configuration to your `vars.yml` file 
 
 converse_enabled: true
 
-converse_hostname: converse.example.com
+converse_hostname: mash.example.com
+converse_path_prefix: /converse
 
 ########################################################################
 #                                                                      #
@@ -73,7 +74,7 @@ To use XMPP via HTTP with the client, it is necessary to use a BOSH connection m
 
 ## Usage
 
-After running the command for installation, the Converse instance becomes available at the URL specified with `converse_hostname`. With the configuration above, the service is hosted at `https://converse.example.com`.
+After running the command for installation, the Converse instance becomes available at the URL specified with `converse_hostname` and `converse_path_prefix`. With the configuration above, the service is hosted at `https://mash.example.com/converse`.
 
 To get started, open the URL with a web browser to log in to your XMPP server.
 
