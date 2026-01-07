@@ -81,7 +81,7 @@
   name: bind
   activation_prefix: bind_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-browserless.git
-  version: v2.38.2-1
+  version: v2.38.2-2
   name: browserless
   activation_prefix: browserless_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-calibre-web.git
