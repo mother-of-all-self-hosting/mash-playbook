@@ -26,6 +26,10 @@
 # Ignore temp files
 .gitignore.swp
 *.bak
+.venv/
+**/.venv/
+venv/
+**/venv/
 
 # ignores vscode file
 .vscode
