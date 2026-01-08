@@ -118,13 +118,13 @@ To expose the metrics publicly, add the following configuration to your `vars.ym
 
 ```yaml
 # The hostname at which Endlessh is served.
-endlessh_hostname: ''
+endlessh_hostname: ""
 
 # The path at which Endlessh is exposed.
 endlessh_path_prefix: /metrics/mash-endlessh
 ```
 
-To enable HTTP Basic Auth, add the following configuration to your `vars.yml` file (adapt to your needs):
+To enable the HTTP Basic authentication, add the following configuration to your `vars.yml` file (adapt to your needs):
 
 ```yaml
 endlessh_container_labels_metrics_middleware_basic_auth_enabled: true
