@@ -2109,6 +2109,18 @@ mash_playbook_traefix_managed_additional_entrypoints_auto_itemized:
 
   # TODO: integrate the variables for `config` to traefik.yml on ansible-role-traefik at https://github.com/mother-of-all-self-hosting/ansible-role-traefik
 
+  # role-specific:endlessh
+  - |-
+    {{
+      ({
+        'name': endlessh_container_labels_traefik_tcp_entrypoints,
+        'port': endlessh_container_ssh_port,
+        'host_bind_port': endlessh_container_ssh_host_bind_port,
+        'config': {}
+      } if endlessh_enabled and endlessh_container_labels_traefik_tcp_enabled else omit)
+    }}
+  # /role-specific:endlessh
+
   # role-specific:ergo
   - |-
     {{
@@ -4172,13 +4184,14 @@ endlessh_path_prefix: "{{ mash_playbook_metrics_exposure_path_prefix }}/{{ endle
 endlessh_container_labels_metrics_middleware_basic_auth_enabled: "{{ mash_playbook_metrics_exposure_http_basic_auth_enabled }}"
 endlessh_container_labels_metrics_middleware_basic_auth_users: "{{ mash_playbook_metrics_exposure_http_basic_auth_users }}"
 
-# Only enable Traefik labels if a hostname is set (indicating that this will be exposed publicly)
+# Only enable Traefik labels for metrics if a hostname is set (indicating that this will be exposed publicly)
 endlessh_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled and endlessh_hostname }}"
 endlessh_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
 
 # role-specific:traefik
 endlessh_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
 endlessh_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
+endlessh_container_labels_traefik_loadbalancer_serverstransport: "{{ traefik_config_tcp_servertransports_default_proxyprotocol_name }}@file"
 # /role-specific:traefik
 
 ########################################################################
