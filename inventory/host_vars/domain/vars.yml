@@ -218,6 +218,19 @@ nextcloud_app_collabora_wopi_url: "{{ collabora_online_url }}"
 # https://docs.nextcloud.com/server/stable/admin_manual/configuration_server/config_sample_php_parameters.html
 # https://github.com/mother-of-all-self-hosting/ansible-role-nextcloud/blob/main/defaults/main.yml
 
+# Nextcloud dedicated valkey
+# Point Nextcloud to its dedicated Valkey instance
+nextcloud_redis_hostname: mash-nextcloud-valkey
+
+# Ensure Nextcloud starts after Valkey
+nextcloud_systemd_required_services_list_custom:
+  - "mash-nextcloud-valkey.service"
+
+# Connect Nextcloud to Valkey's container network
+nextcloud_container_additional_networks_custom:
+  - "mash-nextcloud-valkey"
+# /Nextcloud dedicated valkey
+
 nextcloud_preview_enabled: true
 
 nextcloud_environment_variables_additional_variables: |

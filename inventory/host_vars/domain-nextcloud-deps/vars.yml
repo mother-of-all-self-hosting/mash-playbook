@@ -1,0 +1,37 @@
+---
+
+# This is vars.yml for the supplementary host of Nextcloud.
+
+########################################################################
+#                                                                      #
+# Playbook                                                             #
+#                                                                      #
+########################################################################
+
+# Put a strong secret below, generated with `pwgen -s 64 1` or in another way
+mash_playbook_generic_secret_key: "{{ vault_mash_playbook_generic_secret_key }}"
+
+# Override service names and directory path prefixes
+mash_playbook_service_identifier_prefix: 'mash-nextcloud-'
+mash_playbook_service_base_directory_name_prefix: 'nextcloud-'
+
+########################################################################
+#                                                                      #
+# /Playbook                                                            #
+#                                                                      #
+########################################################################
+
+
+########################################################################
+#                                                                      #
+# valkey                                                               #
+#                                                                      #
+########################################################################
+
+valkey_enabled: true
+
+########################################################################
+#                                                                      #
+# /valkey                                                              #
+#                                                                      #
+########################################################################

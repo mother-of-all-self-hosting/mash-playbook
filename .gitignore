@@ -4,6 +4,8 @@
 /inventory/host_vars/**
 !/inventory/host_vars/domain/
 !/inventory/host_vars/domain/**
+!/inventory/host_vars/domain-nextcloud-deps/
+!/inventory/host_vars/domain-nextcloud-deps/**
 /inventory/host_vars/domain/*.bak
 /inventory/host_vars/domain/**/*.bak
 
