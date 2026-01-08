@@ -1,10 +1,10 @@
 <!--
-SPDX-FileCopyrightText: 2020 - 2024 MDAD project contributors
-SPDX-FileCopyrightText: 2020 - 2024 Slavi Pantaleev
 SPDX-FileCopyrightText: 2020 Aaron Raimist
 SPDX-FileCopyrightText: 2020 Chris van Dijk
 SPDX-FileCopyrightText: 2020 Dominik Zajac
 SPDX-FileCopyrightText: 2020 Mickaël Cornière
+SPDX-FileCopyrightText: 2020-2024 MDAD project contributors
+SPDX-FileCopyrightText: 2020-2024 Slavi Pantaleev
 SPDX-FileCopyrightText: 2022 François Darveau
 SPDX-FileCopyrightText: 2022 Julian Foad
 SPDX-FileCopyrightText: 2022 Warren Bailey
@@ -13,7 +13,7 @@ SPDX-FileCopyrightText: 2023 Felix Stupp
 SPDX-FileCopyrightText: 2023 Julian-Samuel Gebühr
 SPDX-FileCopyrightText: 2023 Pierre 'McFly' Marty
 SPDX-FileCopyrightText: 2024 Tiz
-SPDX-FileCopyrightText: 2024 - 2025 Suguru Hirahara
+SPDX-FileCopyrightText: 2024-2026 Suguru Hirahara
 
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->
@@ -38,12 +38,9 @@ The role is configured to set up the Endlessh-go instance to listen to the port 
 
 This service requires the following other services:
 
+- [Traefik](traefik.md)
 - (optional) [Grafana](grafana.md) — a web UI that can query the Prometheus datasource (connection) and display the logs
 - (optional) [Prometheus](prometheus.md) — a database for storing metrics
-- (optional) [Traefik](traefik.md) — a reverse-proxy server for exposing Endlessh publicly
-
->[!NOTE]
-> None of them are required unless you will expose metrics to a Prometheus server.
 
 ## Configuration
 
@@ -70,7 +67,7 @@ endlessh_enabled: true
 By default, the Endlessh-go instance binds to port 22 on all network interfaces. You can change the port by adding the following configuration to your `vars.yml` file:
 
 ```yaml
-endlessh_container_host_bind_port: YOUR_PORT_NUMBER_HERE
+endlessh_container_ssh_host_bind_port: YOUR_PORT_NUMBER_HERE
 ```
 
 ## Usage
@@ -121,13 +118,13 @@ To expose the metrics publicly, add the following configuration to your `vars.ym
 
 ```yaml
 # The hostname at which Endlessh is served.
-endlessh_hostname: ''
+endlessh_hostname: ""
 
 # The path at which Endlessh is exposed.
 endlessh_path_prefix: /metrics/mash-endlessh
 ```
 
-To enable HTTP Basic Auth, add the following configuration to your `vars.yml` file (adapt to your needs):
+To enable the HTTP Basic authentication, add the following configuration to your `vars.yml` file (adapt to your needs):
 
 ```yaml
 endlessh_container_labels_metrics_middleware_basic_auth_enabled: true
