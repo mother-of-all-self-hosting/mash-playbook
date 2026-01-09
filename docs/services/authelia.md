@@ -144,8 +144,8 @@ If you're using [Traefik](traefik.md), you can easily protect services running o
 Here's an example configuration for [Hubsite](hubsite.md) (a service which does not support authentication at all):
 
 ```yaml
-hubsite_container_labels_additional_labels: |
-  traefik.http.routers.{{ hubsite_identifier }}.middlewares={{ authelia_identifier }}@docker
+hubsite_container_labels_additional_labels_custom:
+  - traefik.http.routers.{{ hubsite_identifier }}.middlewares={{ authelia_identifier }}@docker
 ```
 
 The Hubsite component does not use any Traefik middlewares, so defining a `.middlewares` configuration key and pointing it to the Authelia middleware works well.
