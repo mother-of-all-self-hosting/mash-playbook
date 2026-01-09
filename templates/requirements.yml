@@ -129,7 +129,7 @@
   name: cyberchef
   activation_prefix: cyberchef_
 - src: git+https://seed.progressiv.dev/zeQ4hXq2LkbADcndSsjesgq9kDPf.git
-  version: v2.16.3-0
+  version: v2.16.3-1
   name: databasus
   activation_prefix: databasus_
 - src: git+https://github.com/geerlingguy/ansible-role-docker
@@ -365,7 +365,7 @@
   name: keyoxide
   activation_prefix: keyoxide_
 - src: git+https://seed.radicle.garden/z36dPzLyvPA52m845g1MMqHgoiaEz.git
-  version: v3.2.3-3
+  version: v3.2.3-4
   name: kutt
   activation_prefix: kutt_
 - src: git+https://gitlab.com/horvathg.1988/ansible-role-labelstudio.git
@@ -405,7 +405,7 @@
   name: loki
   activation_prefix: loki_
 - src: git+https://seed.radicle.garden/z3QmarrgiC7ZGmd7UCTW2EZTheCZb.git
-  version: v0.10.0-0
+  version: v0.10.0-1
   name: mailcatcher
   activation_prefix: mailcatcher_
 - src: git+https://seed.radicle.garden/z3rh69mtu7bBk5K1WmAkVEBTy6NpW.git
@@ -477,7 +477,7 @@
   name: mrs
   activation_prefix: mrs_
 - src: git+https://seed.radicle.garden/z4VBCibmQHyfHKEWTAJmQKBAAjtsv.git
-  version: v1.5.857-0
+  version: v1.5.857-1
   name: mumble
   activation_prefix: mumble_
 - src: git+https://github.com/kinduff/ansible-docker-n8n.git
@@ -505,7 +505,7 @@
   name: nifi
   activation_prefix: nifi_
 - src: git+https://seed.radicle.garden/z8vyzN3a8DmwhcUq3949SihKd1Wh.git
-  version: v2025.10.0-1
+  version: v2025.10.0-2
   name: nocdnbs
   activation_prefix: nocdnbs_
 - src: git+https://seed.radicle.garden/z2K9dPANyrXJY7juE9XecXyernA6h.git
@@ -529,11 +529,11 @@
   name: onlyoffice_docs
   activation_prefix: onlyoffice_docs_
 - src: git+https://seed.radicle.garden/z2Q7Pka6bCT5D6Ng54kT8UcYAcVTC.git
-  version: v0.4.0-0
+  version: v0.4.0-1
   name: openarchiver
   activation_prefix: openarchiver_
 - src: git+https://seed.radicle.garden/z48WEbcYK3E6uDmfP1Qbb9AGdz1L3.git
-  version: v1.11.1-2
+  version: v1.11.1-3
   name: opengist
   activation_prefix: opengist_
 - src: git+https://seed.radicle.garden/z2kcNwMys48Wy3SLPnLU7oBnkkQyj.git
@@ -569,7 +569,7 @@
   name: paperless
   activation_prefix: paperless_
 - src: git+https://seed.radicle.garden/z2LGSfc7ziSKvErzZAQdTyTQ4sJcs.git
-  version: v25.12.0-0
+  version: v25.12.0-1
   name: papra
   activation_prefix: papra_
 - src: git+https://seed.radicle.garden/z2cZCZP8Mu4LYMbHKaTdnP1otc46L.git
@@ -717,7 +717,7 @@
   name: rssbridge
   activation_prefix: rssbridge_
 - src: git+https://seed.radicle.garden/z3yKvCwcEfxn41ozRTcNR8ad6kpUm.git
-  version: v2025.11.04-0
+  version: v2025.11.04-1
   name: rsshub
   activation_prefix: rsshub_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-rumqttd.git
@@ -801,11 +801,11 @@
   name: telegraf
   activation_prefix: telegraf_
 - src: git+https://seed.radicle.garden/z4TiZiqkm6MBmkPL2NTPMavni6LV.git
-  version: v1.10.0-0
+  version: v1.10.0-1
   name: termix
   activation_prefix: termix_
 - src: git+https://seed.radicle.garden/z3vaa8VAuz3pxqB3FyciNKQRSHqyt.git
-  version: v4.4.3-3
+  version: v4.4.3-4
   name: thelounge
   activation_prefix: thelounge_
 - src: git+https://seed.radicle.garden/zbk3MzAN6SX6d8pa9DT2kHDscyr6.git
@@ -885,7 +885,7 @@
   name: wordpress
   activation_prefix: wordpress_
 - src: git+https://seed.radicle.garden/z2i8BkHXzRvK1ZtGwHuvLACRswXgA.git
-  version: v0.16.0-1
+  version: v0.16.0-2
   name: writefreely
   activation_prefix: writefreely_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-yacy.git
