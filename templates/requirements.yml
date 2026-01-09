@@ -261,7 +261,7 @@
   name: gitea
   activation_prefix: gitea_
 - src: git+https://seed.radicle.garden/zFVv3koKtheJTTwPSjF3J6DajePK.git
-  version: v2025.3.9-2
+  version: v2025.3.9-3
   name: gothub
   activation_prefix: gothub_
 - src: git+https://seed.radicle.garden/z3dQNNLitS9sByxZ83ivu5qg6qR4N.git
