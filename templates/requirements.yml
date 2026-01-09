@@ -113,7 +113,7 @@
   name: container_socket_proxy
   activation_prefix: mash_
 - src: git+https://seed.radicle.garden/z22bUmhZzA5VWtmKERFkEjGzdPuke.git
-  version: v12.0.0-1
+  version: v12.0.0-2
   name: converse
   activation_prefix: converse_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-convertx.git
