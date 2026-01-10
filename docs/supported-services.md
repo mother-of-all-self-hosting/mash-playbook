@@ -155,6 +155,7 @@ Below is an exhaustive list of the free and open-source software for self-hostin
 | [Opengist](https://opengist.io/) | Pastebin powered by Git | [Link](services/opengist.md) |
 | [OpenRegex](https://github.com/SunneV/OpenRegex) | Web-based regular expression (regex) tester and debugger | [Link](services/openregex.md) |
 | [OrigamiVault](https://github.com/origamivault/origamivault) | Encrypted paper storage | [Link](services/origamivault.md) |
+| [OTS](https://ots.fyi/) | One-Time-Secret sharing platform | [Link](services/ots.md) |
 | [Outline](https://www.getoutline.com/) | A knowledge base for growing teams | [Link](services/outline.md) |
 | [Overseerr](https://overseerr.dev/) | A request management and media discovery tool for the Plex ecosystem | [Link](services/overseerr.md) |
 | [Owncast](https://owncast.online/) | Live video and web chat server for use with existing popular broadcasting software | [Link](services/owncast.md) |
