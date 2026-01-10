@@ -20,14 +20,14 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
 # OTS
 
-The playbook can install and configure [OTS](https://github.com/ots/ots) for you.
+The playbook can install and configure [OTS](https://ots.fyi/) for you.
 
-OTS is a web application encrypting or splitting secrets for printing them as QR codes on sheets of paper for later recovery with JavaScript. The application can also work offline on a web browser.
+OTS is a one-time-secret sharing platform.
 
-See the project's [documentation](https://github.com/ots/ots/blob/main/README.md) to learn what OTS does and why it might be useful to you.
+See the project's [documentation](https://github.com/Luzifer/ots/blob/master/README.md) to learn what OTS does and why it might be useful to you.
 
-For details about configuring the [Ansible role for OTS](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3aGv2oUAxqmoGddtk1VwRioUTKbs), you can check them via:
-- 🌐 [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3aGv2oUAxqmoGddtk1VwRioUTKbs/tree/docs/configuring-ots.md) online
+For details about configuring the [Ansible role for OTS](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3cspgyZXPNcnzNXCYKsEGJK7dKKA), you can check them via:
+- 🌐 [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3cspgyZXPNcnzNXCYKsEGJK7dKKA/tree/docs/configuring-ots.md) online
 - 📁 `roles/galaxy/ots/docs/configuring-ots.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 ## Dependencies
@@ -65,4 +65,4 @@ After running the command for installation, the OTS instance becomes available a
 
 ## Troubleshooting
 
-See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3aGv2oUAxqmoGddtk1VwRioUTKbs/tree/docs/configuring-ots.md#troubleshooting) on the role's documentation for details.
+See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3cspgyZXPNcnzNXCYKsEGJK7dKKA/tree/docs/configuring-ots.md#troubleshooting) on the role's documentation for details.
