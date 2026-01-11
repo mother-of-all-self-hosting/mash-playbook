@@ -17,17 +17,17 @@ SPDX-FileCopyrightText: 2024 - 2025 Suguru Hirahara
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 
-# Statusnook
+# CryptPad
 
-The playbook can install and configure [Statusnook](https://statusnook.com/) for you.
+The playbook can install and configure [CryptPad](https://cryptpad.com/) for you.
 
-Statusnook is a self-hosted status page deployment service.
+CryptPad is a self-hosted status page deployment service.
 
-See the project's [documentation](https://statusnook.com/) to learn what Statusnook does and why it might be useful to you.
+See the project's [documentation](https://cryptpad.com/) to learn what CryptPad does and why it might be useful to you.
 
-For details about configuring the [Ansible role for Statusnook](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az4Ki52caKbH1y9jFNdKzQnc8WH1Jd), you can check them via:
-- 🌐 [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az4Ki52caKbH1y9jFNdKzQnc8WH1Jd/tree/docs/configuring-statusnook.md) online
-- 📁 `roles/galaxy/statusnook/docs/configuring-statusnook.md` locally, if you have [fetched the Ansible roles](../installing.md)
+For details about configuring the [Ansible role for CryptPad](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az4Ki52caKbH1y9jFNdKzQnc8WH1Jd), you can check them via:
+- 🌐 [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az4Ki52caKbH1y9jFNdKzQnc8WH1Jd/tree/docs/configuring-cryptpad.md) online
+- 📁 `roles/galaxy/cryptpad/docs/configuring-cryptpad.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 ## Dependencies
 
@@ -42,32 +42,32 @@ To enable this service, add the following configuration to your `vars.yml` file 
 ```yaml
 ########################################################################
 #                                                                      #
-# statusnook                                                           #
+# cryptpad                                                             #
 #                                                                      #
 ########################################################################
 
-statusnook_enabled: true
+cryptpad_enabled: true
 
-statusnook_hostname: statusnook.example.com
+cryptpad_hostname: cryptpad.example.com
 
 ########################################################################
 #                                                                      #
-# /statusnook                                                          #
+# /cryptpad                                                            #
 #                                                                      #
 ########################################################################
 ```
 
-**Note**: hosting Statusnook under a subpath (by configuring the `statusnook_path_prefix` variable) does not seem to be possible due to Statusnook's technical limitations.
+**Note**: hosting CryptPad under a subpath (by configuring the `cryptpad_path_prefix` variable) does not seem to be possible due to CryptPad's technical limitations.
 
 ## Usage
 
-After running the command for installation, the Statusnook instance becomes available at the URL specified with `statusnook_hostname`. With the configuration above, the service is hosted at `https://statusnook.example.com`.
+After running the command for installation, the CryptPad instance becomes available at the URL specified with `cryptpad_hostname`. With the configuration above, the service is hosted at `https://cryptpad.example.com`.
 
 To get started, open the URL with a web browser, and follow the set up wizard.
 
 ## Troubleshooting
 
-See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az4Ki52caKbH1y9jFNdKzQnc8WH1Jd/tree/docs/configuring-statusnook.md#troubleshooting) on the role's documentation for details.
+See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az4Ki52caKbH1y9jFNdKzQnc8WH1Jd/tree/docs/configuring-cryptpad.md#troubleshooting) on the role's documentation for details.
 
 ## Related services
 
