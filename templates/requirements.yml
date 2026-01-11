@@ -509,7 +509,7 @@
   name: nifi
   activation_prefix: nifi_
 - src: git+https://seed.radicle.garden/z8vyzN3a8DmwhcUq3949SihKd1Wh.git
-  version: v2025.10.0-2
+  version: v2025.10.0-3
   name: nocdnbs
   activation_prefix: nocdnbs_
 - src: git+https://seed.radicle.garden/z2K9dPANyrXJY7juE9XecXyernA6h.git
