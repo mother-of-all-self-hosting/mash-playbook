@@ -613,6 +613,10 @@
     - role: galaxy/origamivault
     # /role-specific:origamivault
 
+    # role-specific:ots
+    - role: galaxy/ots
+    # /role-specific:ots
+
     # role-specific:otterwiki
     - role: galaxy/otterwiki
     # /role-specific:otterwiki
