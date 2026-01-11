@@ -19,14 +19,14 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
 # CryptPad
 
-The playbook can install and configure [CryptPad](https://cryptpad.com/) for you.
+The playbook can install and configure [CryptPad](https://cryptpad.org) for you.
 
-CryptPad is a self-hosted status page deployment service.
+CryptPad is a free and open-source collaboration suite that is end-to-end encrypted.
 
-See the project's [documentation](https://cryptpad.com/) to learn what CryptPad does and why it might be useful to you.
+See the project's [documentation](https://docs.cryptpad.org) to learn what CryptPad does and why it might be useful to you.
 
-For details about configuring the [Ansible role for CryptPad](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az4Ki52caKbH1y9jFNdKzQnc8WH1Jd), you can check them via:
-- 🌐 [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az4Ki52caKbH1y9jFNdKzQnc8WH1Jd/tree/docs/configuring-cryptpad.md) online
+For details about configuring the [Ansible role for CryptPad](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az38Yp2e9yFouswvrnX5MdgZYaViLb), you can check them via:
+- 🌐 [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az38Yp2e9yFouswvrnX5MdgZYaViLb/tree/docs/configuring-cryptpad.md) online
 - 📁 `roles/galaxy/cryptpad/docs/configuring-cryptpad.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 ## Dependencies
@@ -48,7 +48,9 @@ To enable this service, add the following configuration to your `vars.yml` file 
 
 cryptpad_enabled: true
 
-cryptpad_hostname: cryptpad.example.com
+cryptpad_main_hostname: cryptpad.example.com
+
+cryptpad_sandbox_hostname: sandbox.example.com
 
 ########################################################################
 #                                                                      #
@@ -57,18 +59,18 @@ cryptpad_hostname: cryptpad.example.com
 ########################################################################
 ```
 
-**Note**: hosting CryptPad under a subpath (by configuring the `cryptpad_path_prefix` variable) does not seem to be possible due to CryptPad's technical limitations.
-
 ## Usage
 
-After running the command for installation, the CryptPad instance becomes available at the URL specified with `cryptpad_hostname`. With the configuration above, the service is hosted at `https://cryptpad.example.com`.
+After running the command for installation, the CryptPad instance becomes available at the URL specified with `cryptpad_main_hostname`. With the configuration above, the service is hosted at `https://cryptpad.example.com`.
 
-To get started, open the URL with a web browser, and follow the set up wizard.
+To get started, run the command below to output the URL for creating a first administrator account:
+
+```sh
+ansible-playbook -i inventory/hosts setup.yml --tags=get-installation-url-cryptpad
+```
+
+After running the command, open the URL with a web browser, and follow the set up wizard.
 
 ## Troubleshooting
 
-See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az4Ki52caKbH1y9jFNdKzQnc8WH1Jd/tree/docs/configuring-cryptpad.md#troubleshooting) on the role's documentation for details.
-
-## Related services
-
-- [Uptime Kuma](uptime-kuma.md) — Fancy self-hosted monitoring tool
+See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az38Yp2e9yFouswvrnX5MdgZYaViLb/tree/docs/configuring-cryptpad.md#troubleshooting) on the role's documentation for details.
