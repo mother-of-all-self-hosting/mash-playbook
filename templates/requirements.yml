@@ -124,6 +124,10 @@
   version: v3.4.3-0
   name: couchdb
   activation_prefix: couchdb_
+- src: git+https://seed.radicle.garden/z38Yp2e9yFouswvrnX5MdgZYaViLb.git
+  version: v2025.9.0-0
+  name: cryptpad
+  activation_prefix: cryptpad_
 - src: git+https://seed.radicle.garden/z2zgHMDh4Pb8yr4DH8BVkMcdboBXd.git
   version: v10.19.4-4
   name: cyberchef
