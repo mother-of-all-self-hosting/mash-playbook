@@ -45,4 +45,3 @@ As the most of the necessary settings for the role have been taken care of by th
 ## Usage
 
 By default, the Cryptpad UI should be available at `cryptpad_main_hostname`.
-
