@@ -205,6 +205,10 @@
     - role: galaxy/couchdb
     # /role-specific:couchdb
 
+    # role-specific:cryptpad
+    - role: galaxy/cryptpad
+    # /role-specific:cryptpad
+
     # role-specific:cyberchef
     - role: galaxy/cyberchef
     # /role-specific:cyberchef

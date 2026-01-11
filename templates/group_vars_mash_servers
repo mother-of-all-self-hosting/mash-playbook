@@ -239,6 +239,11 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
     {{ ({'name': (container_socket_proxy_identifier + '.service'), 'priority': 200, 'groups': ['mash', 'reverse-proxies', 'container-socket-proxy']} if container_socket_proxy_enabled else omit) }}
   # /role-specific:container_socket_proxy
 
+  # role-specific:cryptpad
+  - |-
+    {{ ({'name': (cryptpad_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'cryptpad']} if cryptpad_enabled else omit) }}
+  # /role-specific:cryptpad
+
   # role-specific:cyberchef
   - |-
     {{ ({'name': (cyberchef_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'cyberchef']} if cyberchef_enabled else omit) }}
@@ -3715,6 +3720,44 @@ couchdb_config_couch_chttpd_auth_secret: "{{ '%s' | format(mash_playbook_generic
 #                                                                      #
 ########################################################################
 # /role-specific:couchdb
+
+
+
+# role-specific:cryptpad
+########################################################################
+#                                                                      #
+# cryptpad                                                             #
+#                                                                      #
+########################################################################
+
+cryptpad_enabled: false
+
+cryptpad_identifier: "{{ mash_playbook_service_identifier_prefix }}cryptpad"
+
+cryptpad_uid: "{{ mash_playbook_uid }}"
+cryptpad_gid: "{{ mash_playbook_gid }}"
+
+cryptpad_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}cryptpad"
+
+cryptpad_container_additional_networks: |
+  {{
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+  }}
+
+cryptpad_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+cryptpad_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+
+# role-specific:traefik
+cryptpad_main_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
+cryptpad_main_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
+# /role-specific:traefik
+
+########################################################################
+#                                                                      #
+# /cryptpad                                                            #
+#                                                                      #
+########################################################################
+# /role-specific:cryptpad
 
 
 
