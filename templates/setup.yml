@@ -169,6 +169,10 @@
     - role: galaxy/bind
     # /role-specific:bind
 
+    # role-specific:bitmagnet
+    - role: galaxy/bitmagnet
+    # /role-specific:bitmagnet
+
     # role-specific:browserless
     - role: galaxy/browserless
     # /role-specific:browserless
