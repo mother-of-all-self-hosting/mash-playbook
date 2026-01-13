@@ -41,7 +41,7 @@ Below is an exhaustive list of the free and open-source software for self-hostin
 | [audiobookshelf](https://www.audiobookshelf.org/) | Audiobook and podcast server | [Link](services/audiobookshelf.md) |
 | [Authelia](https://www.authelia.com/) | An authentication and authorization server that can work as a companion to [common reverse proxies](https://www.authelia.com/overview/prologue/supported-proxies/) (like [Traefik](services/traefik.md) frequently used by this playbook) | [Link](services/authelia.md) |
 | [authentik](https://goauthentik.io/) | An Identity Provider (IdP) focused on flexibility and versatility | [Link](services/authentik.md) |
-| [Autobrr](https://autobrr.com/) | Modern, easy to use download automation for torrents and usenet | [Link](services/autobrr.md) |
+| [Autobrr](https://autobrr.com/) | Modern, easy to use download automation for torrents and Usenet | [Link](services/autobrr.md) |
 | [Bar Assistant](https://github.com/karlomikus/bar-assistant/) | Managing cocktail recipes at your home bar with cocktail-oriented features | [Link](services/barassistant.md) |
 | [BentoPDF](https://github.com/alam00000/bentopdf) | Client-side PDF editor and converter | [Link](services/bentopdf.md) |
 | [BIND](https://www.isc.org/bind/) | A full-featured DNS server | [Link](services/bind.md) |
@@ -184,7 +184,7 @@ Below is an exhaustive list of the free and open-source software for self-hostin
 | [PruneMate](https://github.com/anoniemerd/PruneMate) | Automatically clean up Docker resources on a schedule | [Link](services/prunemate.md) |
 | [qBittorrent](https://www.qbittorrent.org/) | A BitTorrent client written in native C++ | [Link](services/qbittorrent.md) |
 | [RabbitMQ](https://www.rabbitmq.com/) | Message-broker which supports AMQP, STOMP, MQTT, etc. | [Link](services/rabbitmq.md) |
-| [Radarr](https://radarr.video/) | A movie organizer/manager for usenet and torrent users | [Link](services/radarr.md) |
+| [Radarr](https://radarr.video/) | A movie organizer/manager for Usenet and torrent users | [Link](services/radarr.md) |
 | [Radicale](https://radicale.org/) | A CalDAV and CardDAV Server (solution for hosting contacts and calendars) | [Link](services/radicale.md) |
 | [Radicle Explorer](https://app.radicle.xyz/nodes/seed.radicle.xyz/rad%3Az4V1sjrXqjvFdnCUbxPFqd5p4DtH5) | [Radicle](https://radicle.xyz/) user interface for the web browser | [Link](services/radicle-explorer.md) |
 | [Radicle HTTP Daemon](https://app.radicle.xyz/nodes/seed.radicle.xyz/rad%3Az4V1sjrXqjvFdnCUbxPFqd5p4DtH5/tree/radicle-httpd/radicle-httpd.1.adoc) | Gateway between the [Radicle](https://radicle.xyz/) protocol and the HTTP protocol | [Link](services/radicle-httpd.md) |
