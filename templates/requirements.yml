@@ -80,6 +80,10 @@
   version: v9.20-1
   name: bind
   activation_prefix: bind_
+- src: git+https://seed.radicle.garden/zs18Rifa7437q7hTFhsx11nYeGhD.git
+  version: v0.10.0-0
+  name: bitmagnet
+  activation_prefix: bitmagnet_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-browserless.git
   version: v2.38.2-3
   name: browserless

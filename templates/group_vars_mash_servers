@@ -187,6 +187,11 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
     {{ ({'name': (bind_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'bind']} if bind_enabled else omit) }}
   # /role-specific:bind
 
+  # role-specific:bitmagnet
+  - |-
+    {{ ({'name': (bitmagnet_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'bitmagnet']} if bitmagnet_enabled else omit) }}
+  # /role-specific:bitmagnet
+
   # role-specific:browserless
   - |-
     {{ ({'name': (browserless_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'browserless']} if browserless_enabled else omit) }}
@@ -1301,6 +1306,17 @@ mash_playbook_postgres_managed_databases_auto_itemized:
     }}
   # /role-specific:authentik
 
+  # role-specific:bitmagnet
+  - |-
+    {{
+      ({
+        'name': bitmagnet_database_name,
+        'username': bitmagnet_database_username,
+        'password': bitmagnet_database_password,
+      } if bitmagnet_enabled and bitmagnet_database_hostname == postgres_connection_hostname else omit)
+    }}
+  # /role-specific:bitmagnet
+
   # role-specific:docmost
   - |-
     {{
@@ -2118,6 +2134,36 @@ mash_playbook_traefix_managed_additional_entrypoints_auto_itemized:
   - "{{ omit }}"
 
   # TODO: integrate the variables for `config` to traefik.yml on ansible-role-traefik at https://github.com/mother-of-all-self-hosting/ansible-role-traefik
+
+  # role-specific:bitmagnet
+  - |-
+    {{
+      ({
+        'name': bitmagnet_container_labels_traefik_tcp_entrypoints,
+        'port': bitmagnet_container_tcp_port,
+        'host_bind_port': bitmagnet_container_tcp_host_bind_port,
+        'config': {
+          'transport': {
+            'respondingTimeouts': {
+              'readTimeout': traefik_config_entrypoint_web_transport_respondingTimeouts_readTimeout,
+              'writeTimeout': traefik_config_entrypoint_web_transport_respondingTimeouts_writeTimeout,
+              'idleTimeout': traefik_config_entrypoint_web_transport_respondingTimeouts_idleTimeout
+            }
+          }
+        }
+      } if bitmagnet_enabled and bitmagnet_container_labels_traefik_tcp_enabled else omit)
+    }}
+
+  - |-
+    {{
+      ({
+        'name': bitmagnet_container_labels_traefik_udp_entrypoints,
+        'port': bitmagnet_container_udp_port | string + '/udp',
+        'host_bind_port': bitmagnet_container_udp_host_bind_port,
+        'config': {}
+      } if bitmagnet_enabled and bitmagnet_container_labels_traefik_udp_enabled else omit)
+    }}
+  # /role-specific:bitmagnet
 
   # role-specific:endlessh
   - |-
@@ -3368,6 +3414,56 @@ bind_systemd_required_services_list_auto: |
 #                                                                      #
 ########################################################################
 # /role-specific:bind
+
+
+
+# role-specific:bitmagnet
+########################################################################
+#                                                                      #
+# bitmagnet                                                            #
+#                                                                      #
+########################################################################
+
+bitmagnet_enabled: false
+
+bitmagnet_identifier: "{{ mash_playbook_service_identifier_prefix }}bitmagnet"
+
+bitmagnet_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}bitmagnet"
+
+bitmagnet_uid: "{{ mash_playbook_uid }}"
+bitmagnet_gid: "{{ mash_playbook_gid }}"
+
+bitmagnet_systemd_required_services_list_auto: |
+  {{
+    ([postgres_identifier ~ '.service'] if postgres_enabled and bitmagnet_database_hostname == postgres_connection_hostname else [])
+  }}
+
+bitmagnet_container_additional_networks_auto: |
+  {{
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+    +
+    ([postgres_container_network] if postgres_enabled and bitmagnet_database_hostname == postgres_connection_hostname and bitmagnet_container_network != postgres_container_network else [])
+  }}
+
+bitmagnet_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+bitmagnet_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+
+# role-specific:postgres
+bitmagnet_database_hostname: "{{ postgres_connection_hostname if postgres_enabled else '' }}"
+bitmagnet_database_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'bitmagnet.db', rounds=655555) | to_uuid }}"
+# /role-specific:postgres
+
+# role-specific:traefik
+bitmagnet_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
+bitmagnet_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
+# /role-specific:traefik
+
+########################################################################
+#                                                                      #
+# /bitmagnet                                                           #
+#                                                                      #
+########################################################################
+# /role-specific:bitmagnet
 
 
 
