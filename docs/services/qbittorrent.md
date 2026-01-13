@@ -1,6 +1,16 @@
 <!--
-SPDX-FileCopyrightText: 2025 MASH project contributors
-SPDX-FileCopyrightText: 2025 Suguru Hirahara
+SPDX-FileCopyrightText: 2023 Alejandro AR
+SPDX-FileCopyrightText: 2023 Nikita Chernyi
+SPDX-FileCopyrightText: 2023, 2024 Julian-Samuel Gebühr
+SPDX-FileCopyrightText: 2023, 2024 Sergio Durigan Junior
+SPDX-FileCopyrightText: 2023-2025 MASH project contributors
+SPDX-FileCopyrightText: 2023-2025 Slavi Pantaleev
+SPDX-FileCopyrightText: 2024 Katherine Door
+SPDX-FileCopyrightText: 2024 Oliver Lorenz
+SPDX-FileCopyrightText: 2025 Gergely Horváth
+SPDX-FileCopyrightText: 2025 XHawk87
+SPDX-FileCopyrightText: 2025 spatterlight
+SPDX-FileCopyrightText: 2025, 2026 Suguru Hirahara
 
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->
@@ -77,14 +87,13 @@ Fill in the rest of the form with your preferences, and you're done!
 
 ![Sonarr Add Download Client](../assets/sonarr/add-download-client.webp)
 
-## Recommended other services
+## Related services
 
-Consider these other related services:
-
-- [Autobrr](autobrr.md)
-- [Jackett](jackett.md)
-- [Jellyfin](jellyfin.md)
-- [Overseerr](overseerr.md)
-- [Plex](plex.md)
-- [Radarr](radarr.md)
-- [Sonarr](sonarr.md)
+- [Autobrr](autobrr.md) — Download automation for torrents and Usenet
+- [bitmagnet](bitmagnet.md) — BitTorrent indexer, DHT crawler, content classifier and search engine
+- [Jackett](jackett.md) — API for torrent trackers
+- [Jellyfin](jellyfin.md) — Personal media server
+- [Overseerr](overseerr.md) — Request management and media discovery tool for the Plex ecosystem
+- [Plex](plex.md) — Personal media server
+- [Radarr](radarr.md) — Movie organizer/manager for Usenet and BitTorrent users
+- [Sonarr](sonarr.md) — PVR for newsgroup and BitTorrent users

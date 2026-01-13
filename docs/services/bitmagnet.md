@@ -77,4 +77,4 @@ See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Azs18R
 
 ## Related services
 
-- [RSSHub](rsshub.md) — Create RSS feeds from web pages
+- [qBittorrent](qbittorrent.md) — BitTorrent client written in native C++
