@@ -184,7 +184,7 @@ Below is an exhaustive list of the free and open-source software for self-hostin
 | [PruneMate](https://github.com/anoniemerd/PruneMate) | Automatically clean up Docker resources on a schedule | [Link](services/prunemate.md) |
 | [qBittorrent](https://www.qbittorrent.org/) | A BitTorrent client written in native C++ | [Link](services/qbittorrent.md) |
 | [RabbitMQ](https://www.rabbitmq.com/) | Message-broker which supports AMQP, STOMP, MQTT, etc. | [Link](services/rabbitmq.md) |
-| [Radarr](https://radarr.video/) | A movie organizer/manager for Usenet and torrent users | [Link](services/radarr.md) |
+| [Radarr](https://radarr.video/) | A movie organizer/manager for Usenet and BitTorrent users | [Link](services/radarr.md) |
 | [Radicale](https://radicale.org/) | A CalDAV and CardDAV Server (solution for hosting contacts and calendars) | [Link](services/radicale.md) |
 | [Radicle Explorer](https://app.radicle.xyz/nodes/seed.radicle.xyz/rad%3Az4V1sjrXqjvFdnCUbxPFqd5p4DtH5) | [Radicle](https://radicle.xyz/) user interface for the web browser | [Link](services/radicle-explorer.md) |
 | [Radicle HTTP Daemon](https://app.radicle.xyz/nodes/seed.radicle.xyz/rad%3Az4V1sjrXqjvFdnCUbxPFqd5p4DtH5/tree/radicle-httpd/radicle-httpd.1.adoc) | Gateway between the [Radicle](https://radicle.xyz/) protocol and the HTTP protocol | [Link](services/radicle-httpd.md) |
@@ -205,7 +205,7 @@ Below is an exhaustive list of the free and open-source software for self-hostin
 | [SMP server](https://simplex.chat/docs/server.html) | Relay server used to pass messages in [SimpleX](https://simplex.chat/) network | [Link](services/smp-server.md) |
 | [Soft Serve](https://github.com/charmbracelet/soft-serve) | A tasty [Git](https://git-scm.com/) server for the command line | [Link](services/soft-serve.md) |
 | [SolidInvoice](https://github.com/SolidInvoice/SolidInvoice) | Web-based software for invoicing | [Link](services/solidinvoice.md) |
-| [Sonarr](https://sonarr.tv/) | A smart PVR for newsgroup and bittorrent users | [Link](services/sonarr.md) |
+| [Sonarr](https://sonarr.tv/) | A smart PVR for newsgroup and BitTorrent users | [Link](services/sonarr.md) |
 | [Standalone Snowflake proxy](https://community.torproject.org/relay/setup/snowflake/standalone/) | Help users connect to the [Tor](https://torproject.org/) network in places where Tor is blocked | [Link](services/snowflake.md) |
 | [Statusnook](https://statusnook.com/) | Status page deployment service | [Link](services/statusnook.md) |
 | [Stirling PDF](https://github.com/Stirling-Tools/Stirling-PDF) | A PDF converter | [Link](services/stirling-pdf.md) |

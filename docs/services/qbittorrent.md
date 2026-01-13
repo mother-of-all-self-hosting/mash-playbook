@@ -7,7 +7,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
 # qBittorrent
 
-[qBittorrent](https://www.qbittorrent.org/) is a bittorrent client programmed in C++ / Qt that uses libtorrent.
+[qBittorrent](https://www.qbittorrent.org/) is a BitTorrent client programmed in C++ / Qt that uses libtorrent.
 
 ## Dependencies
 
