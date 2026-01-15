@@ -121,7 +121,7 @@
   name: converse
   activation_prefix: converse_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-convertx.git
-  version: v0.16.1-1
+  version: v0.17.0-0
   name: convertx
   activation_prefix: convertx_
 - src: git+https://github.com/Bergruebe/ansible-role-couchdb.git
