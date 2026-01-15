@@ -234,7 +234,7 @@ nextcloud_container_additional_networks_custom:
 nextcloud_preview_enabled: true
 
 nextcloud_environment_variables_additional_variables: |
-  PHP_MEMORY_LIMIT=1024M
+  PHP_MEMORY_LIMIT=2048M
 
 nextcloud_config_parameter_default_phone_region: DK
 nextcloud_config_parameter_default_timezone: Europe/Copenhagen
