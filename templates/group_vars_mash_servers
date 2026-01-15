@@ -187,6 +187,11 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
     {{ ({'name': (bind_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'bind']} if bind_enabled else omit) }}
   # /role-specific:bind
 
+  # role-specific:bitmagnet
+  - |-
+    {{ ({'name': (bitmagnet_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'bitmagnet']} if bitmagnet_enabled else omit) }}
+  # /role-specific:bitmagnet
+
   # role-specific:browserless
   - |-
     {{ ({'name': (browserless_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'browserless']} if browserless_enabled else omit) }}
@@ -238,6 +243,11 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
   - |-
     {{ ({'name': (container_socket_proxy_identifier + '.service'), 'priority': 200, 'groups': ['mash', 'reverse-proxies', 'container-socket-proxy']} if container_socket_proxy_enabled else omit) }}
   # /role-specific:container_socket_proxy
+
+  # role-specific:cryptpad
+  - |-
+    {{ ({'name': (cryptpad_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'cryptpad']} if cryptpad_enabled else omit) }}
+  # /role-specific:cryptpad
 
   # role-specific:cyberchef
   - |-
@@ -793,6 +803,11 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
     {{ ({'name': (origamivault_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'origamivault']} if origamivault_enabled else omit) }}
   # /role-specific:origamivault
 
+  # role-specific:ots
+  - |-
+    {{ ({'name': (ots_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'ots']} if ots_enabled else omit) }}
+  # /role-specific:ots
+
   # role-specific:otterwiki
   - |-
     {{ ({'name': (otterwiki_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'otterwiki']} if otterwiki_enabled else omit) }}
@@ -1290,6 +1305,17 @@ mash_playbook_postgres_managed_databases_auto_itemized:
       } if authentik_enabled and authentik_database_hostname == postgres_connection_hostname else omit)
     }}
   # /role-specific:authentik
+
+  # role-specific:bitmagnet
+  - |-
+    {{
+      ({
+        'name': bitmagnet_database_name,
+        'username': bitmagnet_database_username,
+        'password': bitmagnet_database_password,
+      } if bitmagnet_enabled and bitmagnet_database_hostname == postgres_connection_hostname else omit)
+    }}
+  # /role-specific:bitmagnet
 
   # role-specific:docmost
   - |-
@@ -2109,6 +2135,36 @@ mash_playbook_traefix_managed_additional_entrypoints_auto_itemized:
 
   # TODO: integrate the variables for `config` to traefik.yml on ansible-role-traefik at https://github.com/mother-of-all-self-hosting/ansible-role-traefik
 
+  # role-specific:bitmagnet
+  - |-
+    {{
+      ({
+        'name': bitmagnet_container_labels_traefik_tcp_entrypoints,
+        'port': bitmagnet_container_tcp_port,
+        'host_bind_port': bitmagnet_container_tcp_host_bind_port,
+        'config': {
+          'transport': {
+            'respondingTimeouts': {
+              'readTimeout': traefik_config_entrypoint_web_transport_respondingTimeouts_readTimeout,
+              'writeTimeout': traefik_config_entrypoint_web_transport_respondingTimeouts_writeTimeout,
+              'idleTimeout': traefik_config_entrypoint_web_transport_respondingTimeouts_idleTimeout
+            }
+          }
+        }
+      } if bitmagnet_enabled and bitmagnet_container_labels_traefik_tcp_enabled else omit)
+    }}
+
+  - |-
+    {{
+      ({
+        'name': bitmagnet_container_labels_traefik_udp_entrypoints,
+        'port': bitmagnet_container_udp_port | string + '/udp',
+        'host_bind_port': bitmagnet_container_udp_host_bind_port,
+        'config': {}
+      } if bitmagnet_enabled and bitmagnet_container_labels_traefik_udp_enabled else omit)
+    }}
+  # /role-specific:bitmagnet
+
   # role-specific:endlessh
   - |-
     {{
@@ -2295,36 +2351,6 @@ traefik_additional_domains_to_obtain_certificates_for_auto: "{{ mash_playbook_tr
 # role-specific:container_socket_proxy
 traefik_config_providers_docker_endpoint: "{{ container_socket_proxy_endpoint if container_socket_proxy_enabled else 'unix:///var/run/docker.sock' }}"
 # /role-specific:container_socket_proxy
-
-traefik_config_entrypoint_web_http_encodedCharacters_enabled: |
-  {{
-    collabora_online_enabled | default(false)
-  }}
-
-traefik_config_entrypoint_web_http_encodedCharacters_allowEncodedQuestionMark: |
-  {{
-    collabora_online_enabled | default(false)
-  }}
-
-traefik_config_entrypoint_web_http_encodedCharacters_allowEncodedSlash: |
-  {{
-    collabora_online_enabled | default(false)
-  }}
-
-traefik_config_entrypoint_web_secure_http_encodedCharacters_enabled: |
-  {{
-    collabora_online_enabled | default(false)
-  }}
-
-traefik_config_entrypoint_web_secure_http_encodedCharacters_allowEncodedQuestionMark: |
-  {{
-    collabora_online_enabled | default(false)
-  }}
-
-traefik_config_entrypoint_web_secure_http_encodedCharacters_allowEncodedSlash: |
-  {{
-    collabora_online_enabled | default(false)
-  }}
 
 ########################################################################
 #                                                                      #
@@ -3361,6 +3387,56 @@ bind_systemd_required_services_list_auto: |
 
 
 
+# role-specific:bitmagnet
+########################################################################
+#                                                                      #
+# bitmagnet                                                            #
+#                                                                      #
+########################################################################
+
+bitmagnet_enabled: false
+
+bitmagnet_identifier: "{{ mash_playbook_service_identifier_prefix }}bitmagnet"
+
+bitmagnet_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}bitmagnet"
+
+bitmagnet_uid: "{{ mash_playbook_uid }}"
+bitmagnet_gid: "{{ mash_playbook_gid }}"
+
+bitmagnet_systemd_required_services_list_auto: |
+  {{
+    ([postgres_identifier ~ '.service'] if postgres_enabled and bitmagnet_database_hostname == postgres_connection_hostname else [])
+  }}
+
+bitmagnet_container_additional_networks_auto: |
+  {{
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+    +
+    ([postgres_container_network] if postgres_enabled and bitmagnet_database_hostname == postgres_connection_hostname and bitmagnet_container_network != postgres_container_network else [])
+  }}
+
+bitmagnet_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+bitmagnet_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+
+# role-specific:postgres
+bitmagnet_database_hostname: "{{ postgres_connection_hostname if postgres_enabled else '' }}"
+bitmagnet_database_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'bitmagnet.db', rounds=655555) | to_uuid }}"
+# /role-specific:postgres
+
+# role-specific:traefik
+bitmagnet_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
+bitmagnet_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
+# /role-specific:traefik
+
+########################################################################
+#                                                                      #
+# /bitmagnet                                                           #
+#                                                                      #
+########################################################################
+# /role-specific:bitmagnet
+
+
+
 # role-specific:browserless
 ########################################################################
 #                                                                      #
@@ -3715,6 +3791,44 @@ couchdb_config_couch_chttpd_auth_secret: "{{ '%s' | format(mash_playbook_generic
 #                                                                      #
 ########################################################################
 # /role-specific:couchdb
+
+
+
+# role-specific:cryptpad
+########################################################################
+#                                                                      #
+# cryptpad                                                             #
+#                                                                      #
+########################################################################
+
+cryptpad_enabled: false
+
+cryptpad_identifier: "{{ mash_playbook_service_identifier_prefix }}cryptpad"
+
+cryptpad_uid: "{{ mash_playbook_uid }}"
+cryptpad_gid: "{{ mash_playbook_gid }}"
+
+cryptpad_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}cryptpad"
+
+cryptpad_container_additional_networks: |
+  {{
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+  }}
+
+cryptpad_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+cryptpad_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+
+# role-specific:traefik
+cryptpad_main_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
+cryptpad_main_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
+# /role-specific:traefik
+
+########################################################################
+#                                                                      #
+# /cryptpad                                                            #
+#                                                                      #
+########################################################################
+# /role-specific:cryptpad
 
 
 
@@ -10230,6 +10344,44 @@ origamivault_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver
 #                                                                      #
 ########################################################################
 # /role-specific:origamivault
+
+
+
+# role-specific:ots
+########################################################################
+#                                                                      #
+# ots                                                                  #
+#                                                                      #
+########################################################################
+
+ots_enabled: false
+
+ots_identifier: "{{ mash_playbook_service_identifier_prefix }}ots"
+
+ots_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}ots"
+
+ots_uid: "{{ mash_playbook_uid }}"
+ots_gid: "{{ mash_playbook_gid }}"
+
+ots_container_additional_networks_auto: |
+  {{
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+  }}
+
+ots_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+ots_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+
+# role-specific:traefik
+ots_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
+ots_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
+# /role-specific:traefik
+
+########################################################################
+#                                                                      #
+# /ots                                                                 #
+#                                                                      #
+########################################################################
+# /role-specific:ots
 
 
 

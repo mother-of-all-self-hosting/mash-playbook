@@ -119,8 +119,8 @@ echoip_enabled: true
 
 echoip_hostname: echoip.example.com
 
-echoip_container_labels_additional_labels: |
-  traefik.http.routers.{{ echoip_identifier }}.middlewares={{ tinyauth_identifier }}
+echoip_container_labels_additional_labels_custom:
+  - traefik.http.routers.{{ echoip_identifier }}.middlewares={{ tinyauth_identifier }}
 
 ########################################################################
 #                                                                      #
@@ -176,9 +176,9 @@ echoip_hostname: echoip.example.com
 # Access control by Pocket ID with the `tinyauth.apps.{{ echoip_hostname }}.oauth.groups` label
 # By default, Tinyauth uses the subdomain name of the request to find a matching container for labels.
 # For example, a request to `myapp.example.com` checks for labels that have the subdomain as the app ID.
-echoip_container_labels_additional_labels: |
-  traefik.http.routers.{{ echoip_identifier }}.middlewares={{ tinyauth_identifier }}
-  tinyauth.apps.{{ echoip_hostname }}.oauth.groups=admins
+echoip_container_labels_additional_labels_custom:
+  - traefik.http.routers.{{ echoip_identifier }}.middlewares={{ tinyauth_identifier }}
+  - tinyauth.apps.{{ echoip_hostname }}.oauth.groups=admins
 
 ########################################################################
 #                                                                      #

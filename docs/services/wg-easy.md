@@ -50,7 +50,7 @@ wg_easy_environment_variables_additional_variable_init_password: ''
 ```
 
 > [!WARNING]
-> There are a few other **variables that you may wish to adjust before doing the initial [unattended setup](https://github.com/wg-easy/wg-easy/blob/c133446f9ced12942d8a6d5b06388301a46b55e7/docs/content/advanced/config/unattended-setup.md)**. See the sections below for details.
+> There are a few other **variables that you may wish to adjust before doing the initial [unattended setup](https://github.com/wg-easy/wg-easy/blob/v15.2.0/docs/content/advanced/config/unattended-setup.md)**. See the sections below for details.
 > The reason it's important to do this early on, is because certain variables (`wg_easy_environment_variables_additional_variable_init_*`)
 > only take effect during the initial setup phase.
 
@@ -119,6 +119,17 @@ wg_easy_environment_variables_additional_variable_init_ipv6_cidr: "2001:db8::/32
 
 > [!WARNING]
 > If you need to change the IPv4/IPv6 CIDRs after the initial setup, you need to do so from the Admin Panel -> Interface page of the web UI, via the Change CIDR button. After changing the CIDR in wg-easy's settings, you must restart the wg-easy service for the changes to take effect.
+
+### Adjusting the default Allowed IPs
+
+If you'd like to set global [Allowed IPs](https://techoverflow.net/2021/07/09/what-does-wireguard-allowedips-actually-do/) for all WireGuard clients during the initial setup, you can do so with the following **initial unattended setup** variable:
+
+```yml
+wg_easy_environment_variables_additional_variable_init_allowed_ips: "10.8.0.0/24,2001:0DB8::/32"
+```
+
+> [!WARNING]
+> Changing this variable after the initial setup will not have any effect. If you need to adjust Allowed IPs after the initial setup, you need to do so on a per-client basis from the web UI.
 
 ### Adjusting your firewall
 

@@ -169,6 +169,10 @@
     - role: galaxy/bind
     # /role-specific:bind
 
+    # role-specific:bitmagnet
+    - role: galaxy/bitmagnet
+    # /role-specific:bitmagnet
+
     # role-specific:browserless
     - role: galaxy/browserless
     # /role-specific:browserless
@@ -204,6 +208,10 @@
     # role-specific:couchdb
     - role: galaxy/couchdb
     # /role-specific:couchdb
+
+    # role-specific:cryptpad
+    - role: galaxy/cryptpad
+    # /role-specific:cryptpad
 
     # role-specific:cyberchef
     - role: galaxy/cyberchef
@@ -608,6 +616,10 @@
     # role-specific:origamivault
     - role: galaxy/origamivault
     # /role-specific:origamivault
+
+    # role-specific:ots
+    - role: galaxy/ots
+    # /role-specific:ots
 
     # role-specific:otterwiki
     - role: galaxy/otterwiki
