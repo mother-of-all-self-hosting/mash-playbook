@@ -28,3 +28,7 @@ The standalone [Snowflake](https://snowflake.torproject.org/) proxy helps users 
 The [Ansible role for the standalone Snowflake proxy](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Aznvd313jEb23f9AUNmtsweE7YHCK) is developed and maintained by the MASH project. For details about configuring the proxy, you can check them via:
 - 🌐 [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Aznvd313jEb23f9AUNmtsweE7YHCK/tree/docs/configuring-snowflake.md) online
 - 📁 `roles/galaxy/snowflake/docs/configuring-snowflake.md` locally, if you have [fetched the Ansible roles](../installing.md)
+
+## Related services
+
+- [Onion Service with C Tor](onion-service-tor.md) — Run Onion Service with [C Tor](https://gitlab.torproject.org/tpo/core/tor)
