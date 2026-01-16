@@ -532,6 +532,10 @@
   version: v7.13.0-1
   name: oauth2_proxy
   activation_prefix: oauth2_proxy_
+- src: git+https://seed.radicle.garden/znw3BPXrSbPWcARpYbk3yGy4iGQ4.git
+  version: v0.0.0-0
+  name: onion_service_tor
+  activation_prefix: onion_service_tor_
 - src: git+https://seed.radicle.garden/z3kozTn4Kn5eJtgJQj1aCFUpqxW5Y.git
   version: v9.1.0-3
   name: onlyoffice_docs
