@@ -18,17 +18,17 @@ SPDX-FileCopyrightText: 2024 - 2025 Suguru Hirahara
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 
-# echoip
+# Onion Service with C Tor
 
-The playbook can install and configure [echoip](https://github.com/mpolden/echoip) for you.
+The playbook can install and configure [Onion Service with C Tor](https://github.com/mpolden/onion-service-tor) for you.
 
-echoip is simple service for looking up your IP address, which powers [ifconfig.co](https://ifconfig.co).
+Onion Service with C Tor is simple service for looking up your IP address, which powers [ifconfig.co](https://ifconfig.co).
 
-See the project's [documentation](https://github.com/mpolden/echoip/blob/master/README.md) to learn what echoip does and why it might be useful to you.
+See the project's [documentation](https://github.com/mpolden/onion-service-tor/blob/master/README.md) to learn what Onion Service with C Tor does and why it might be useful to you.
 
-For details about configuring the [Ansible role for echoip](https://github.com/mother-of-all-self-hosting/ansible-role-echoip), you can check them via:
-- 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-echoip/blob/main/docs/configuring-echoip.md) online
-- 📁 `roles/galaxy/echoip/docs/configuring-echoip.md` locally, if you have [fetched the Ansible roles](../installing.md)
+For details about configuring the [Ansible role for Onion Service with C Tor](https://github.com/mother-of-all-self-hosting/ansible-role-onion-service-tor), you can check them via:
+- 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-onion-service-tor/blob/main/docs/configuring-onion-service-tor.md) online
+- 📁 `roles/galaxy/onion_service_tor/docs/configuring-onion-service-tor.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 ## Dependencies
 
@@ -43,31 +43,31 @@ To enable this service, add the following configuration to your `vars.yml` file 
 ```yaml
 ########################################################################
 #                                                                      #
-# echoip                                                               #
+# onion_service_tor                                                    #
 #                                                                      #
 ########################################################################
 
-echoip_enabled: true
+onion_service_tor_enabled: true
 
-echoip_hostname: echoip.example.com
+onion_service_tor_hostname: onion-service-tor.example.com
 
 ########################################################################
 #                                                                      #
-# /echoip                                                              #
+# /onion_service_tor                                                   #
 #                                                                      #
 ########################################################################
 ```
 
 ## Usage
 
-After running the command for installation, the echoip instance becomes available at the URL specified with `echoip_hostname`. With the configuration above, the service is hosted at `https://echoip.example.com`.
+After running the command for installation, the Onion Service with C Tor instance becomes available at the URL specified with `onion_service_tor_hostname`. With the configuration above, the service is hosted at `https://onion_service_tor.example.com`.
 
-You can use the echoip instance by running a command as below:
+You can use the Onion Service with C Tor instance by running a command as below:
 
 ```sh
-curl https://echoip.example.com
+curl https://onion-service-tor.example.com
 ```
 
 ## Troubleshooting
 
-See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-echoip/blob/main/docs/configuring-echoip.md#troubleshooting) on the role's documentation for details.
+See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-onion-service-tor/blob/main/docs/configuring-onion-service-tor.md#troubleshooting) on the role's documentation for details.
