@@ -19,14 +19,14 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
 # Moner.ooo
 
-The playbook can install and configure [Moner.ooo](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3HEG7KePQVAbZXSdn7tGNb7FVDqL) (a fork of the [original project](https://git.private.coffee/PrivateCoffee/monerooo)) for you.
+The playbook can install and configure [Moner.ooo](https://github.com/nice42q/moner.ooo) for you.
 
-Moner.ooo allows you to use cdnjs without exposing your IP address, browsing habits, and other browser fingerprinting data to Cloudflare.
+Moner.ooo is a service for checking Monero / fiat exchange rates in various currencies.
 
-See the project's [documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3HEG7KePQVAbZXSdn7tGNb7FVDqL/tree/README.md) to learn what Moner.ooo does and why it might be useful to you.
+See the project's [documentation](https://github.com/nice42q/moner.ooo/blob/main/README.md) to learn what Moner.ooo does and why it might be useful to you.
 
-For details about configuring the [Ansible role for Moner.ooo](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az8vyzN3a8DmwhcUq3949SihKd1Wh), you can check them via:
-- 🌐 [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az8vyzN3a8DmwhcUq3949SihKd1Wh/tree/docs/configuring-monerooo.md) online
+For details about configuring the [Ansible role for Moner.ooo](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3i2ogEXxuSzVAxVaRuoydAiDCBKi), you can check them via:
+- 🌐 [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3i2ogEXxuSzVAxVaRuoydAiDCBKi/tree/docs/configuring-monerooo.md) online
 - 📁 `roles/galaxy/monerooo/docs/configuring-monerooo.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 ## Dependencies
@@ -65,8 +65,4 @@ After running the command for installation, the Moner.ooo instance becomes avail
 
 ## Troubleshooting
 
-See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az8vyzN3a8DmwhcUq3949SihKd1Wh/tree/docs/configuring-monerooo.md#troubleshooting) on the role's documentation for details.
-
-## Related services
-
-- [PoodleDonts](poodledonts.md) — Privacy-friendly Google Fonts proxy
+See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3i2ogEXxuSzVAxVaRuoydAiDCBKi/tree/docs/configuring-monerooo.md#troubleshooting) on the role's documentation for details.
