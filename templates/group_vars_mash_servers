@@ -679,6 +679,11 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
     {{ ({'name': (mobilizon_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'mobilizon']} if mobilizon_enabled else omit) }}
   # /role-specific:mobilizon
 
+  # role-specific:monerooo
+  - |-
+    {{ ({'name': (monerooo_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'monerooo']} if monerooo_enabled else omit) }}
+  # /role-specific:monerooo
+
   # role-specific:mongodb
   - |-
     {{ ({'name': (mongodb_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'mongodb']} if mongodb_enabled else omit) }}
@@ -9231,6 +9236,44 @@ mobilizon_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_pr
 #                                                                      #
 ########################################################################
 # /role-specific:mobilizon
+
+
+
+# role-specific:monerooo
+########################################################################
+#                                                                      #
+# moner.ooo                                                            #
+#                                                                      #
+########################################################################
+
+monerooo_enabled: false
+
+monerooo_identifier: "{{ mash_playbook_service_identifier_prefix }}monerooo"
+
+monerooo_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}monerooo"
+
+monerooo_uid: "{{ mash_playbook_uid }}"
+monerooo_gid: "{{ mash_playbook_gid }}"
+
+monerooo_container_additional_networks_auto: |
+  {{
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+  }}
+
+monerooo_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+monerooo_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+
+# role-specific:traefik
+monerooo_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
+monerooo_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
+# /role-specific:traefik
+
+########################################################################
+#                                                                      #
+# /moner.ooo                                                           #
+#                                                                      #
+########################################################################
+# /role-specific:monerooo
 
 
 

@@ -529,6 +529,10 @@
     - role: galaxy/mobilizon
     # /role-specific:mobilizon
 
+    # role-specific:monerooo
+    - role: galaxy/monerooo
+    # /role-specific:monerooo
+
     # role-specific:mongodb
     - role: galaxy/mongodb
     # /role-specific:mongodb
