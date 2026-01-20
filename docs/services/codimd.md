@@ -18,17 +18,17 @@ SPDX-FileCopyrightText: 2024 - 2025 Suguru Hirahara
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 
-# farmOS
+# CodiMD
 
-The playbook can install and configure [farmOS](https://farmos.org/) for you.
+The playbook can install and configure [CodiMD](https://codimd.org/) for you.
 
-farmOS is web-based free software for farm management, planning, and record keeping. It is developed by a community of farmers, developers, researchers, and organizations.
+CodiMD is web-based free software for farm management, planning, and record keeping. It is developed by a community of farmers, developers, researchers, and organizations.
 
-See the project's [documentation](https://farmos.org/guide/) to learn what farmOS does and why it might be useful to you.
+See the project's [documentation](https://codimd.org/guide/) to learn what CodiMD does and why it might be useful to you.
 
-For details about configuring the [Ansible role for farmOS](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az2H8vYeXaYHLzV3jXH1YjVwhuzTsk), you can check them via:
-- 🌐 [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az2H8vYeXaYHLzV3jXH1YjVwhuzTsk/tree/docs/configuring-farmos.md) online
-- 📁 `roles/galaxy/farmos/docs/configuring-farmos.md` locally, if you have [fetched the Ansible roles](../installing.md)
+For details about configuring the [Ansible role for CodiMD](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az2H8vYeXaYHLzV3jXH1YjVwhuzTsk), you can check them via:
+- 🌐 [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az2H8vYeXaYHLzV3jXH1YjVwhuzTsk/tree/docs/configuring-codimd.md) online
+- 📁 `roles/galaxy/codimd/docs/configuring-codimd.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 ## Dependencies
 
@@ -44,38 +44,38 @@ To enable this service, add the following configuration to your `vars.yml` file 
 ```yaml
 ########################################################################
 #                                                                      #
-# farmos                                                               #
+# codimd                                                               #
 #                                                                      #
 ########################################################################
 
-farmos_enabled: true
+codimd_enabled: true
 
-farmos_hostname: farmos.example.com
+codimd_hostname: codimd.example.com
 
 ########################################################################
 #                                                                      #
-# /farmos                                                              #
+# /codimd                                                              #
 #                                                                      #
 ########################################################################
 ```
 
-**Note**: hosting farmOS under a subpath (by configuring the `farmos_path_prefix` variable) does not seem to be possible due to farmOS's technical limitations.
+**Note**: hosting CodiMD under a subpath (by configuring the `codimd_path_prefix` variable) does not seem to be possible due to CodiMD's technical limitations.
 
 >[!WARNING]
 > Once the hostname is set, it cannot be changed easily as it involves adjusting configuration files.
 
 ### Select database to use
 
-It is necessary to select a database used by farmOS from a MySQL compatible database, Postgres, and SQLite. See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az2H8vYeXaYHLzV3jXH1YjVwhuzTsk/tree/docs/configuring-farmos.md#specify-database) on the role's documentation for details.
+It is necessary to select a database used by CodiMD from a MySQL compatible database, Postgres, and SQLite. See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az2H8vYeXaYHLzV3jXH1YjVwhuzTsk/tree/docs/configuring-codimd.md#specify-database) on the role's documentation for details.
 
 ## Usage
 
-After running the command for installation, the farmOS instance becomes available at the URL specified with `farmos_hostname`. With the configuration above, the service is hosted at `https://farmos.example.com`.
+After running the command for installation, the CodiMD instance becomes available at the URL specified with `codimd_hostname`. With the configuration above, the service is hosted at `https://codimd.example.com`.
 
 To get started, open the URL with a web browser, and follow the set up wizard.
 
-On the set up wizard, it is required to input database credentials to use a MySQL compatible database or Postgres. See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az2H8vYeXaYHLzV3jXH1YjVwhuzTsk/tree/docs/configuring-farmos.md#outputting-database-credentials) on the role's documentation for details about how to check them.
+On the set up wizard, it is required to input database credentials to use a MySQL compatible database or Postgres. See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az2H8vYeXaYHLzV3jXH1YjVwhuzTsk/tree/docs/configuring-codimd.md#outputting-database-credentials) on the role's documentation for details about how to check them.
 
 ## Troubleshooting
 
-See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az2H8vYeXaYHLzV3jXH1YjVwhuzTsk/tree/docs/configuring-farmos.md#troubleshooting) on the role's documentation for details.
+See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az2H8vYeXaYHLzV3jXH1YjVwhuzTsk/tree/docs/configuring-codimd.md#troubleshooting) on the role's documentation for details.
