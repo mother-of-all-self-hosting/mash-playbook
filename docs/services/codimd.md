@@ -88,3 +88,7 @@ To get started, open the URL with a web browser to create an account.
 ## Troubleshooting
 
 See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Azp12kTQqmgqnFpUU6gPyVq19HNMD/tree/docs/configuring-codimd.md#troubleshooting) on the role's documentation for details.
+
+## Related services
+
+- [Etherpad](etherpad.md) — Collaborative text editor
