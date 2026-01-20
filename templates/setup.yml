@@ -597,6 +597,10 @@
     - role: galaxy/oauth2_proxy
     # /role-specific:oauth2_proxy
 
+    # role-specific:omnitools
+    - role: galaxy/omnitools
+    # /role-specific:omnitools
+
     # role-specific:onion_service_tor
     - role: galaxy/onion_service_tor
     # /role-specific:onion_service_tor
