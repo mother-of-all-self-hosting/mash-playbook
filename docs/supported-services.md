@@ -147,11 +147,12 @@ Below is an exhaustive list of the free and open-source software for self-hostin
 | [Neko](https://neko.m1k1o.net/) | A virtual browser or even desktop environment | [Link](services/neko.md) |
 | [NetBox](https://docs.netbox.dev/en/stable/) | Web application that provides [IP address management (IPAM)](https://en.wikipedia.org/wiki/IP_address_management) and [data center infrastructure management (DCIM)](https://en.wikipedia.org/wiki/Data_center_management#Data_center_infrastructure_management) functionality | [Link](services/netbox.md) |
 | [Nextcloud](https://nextcloud.com/) | The most popular collaboration solution for tens of millions of users at thousands of organizations across the globe | [Link](services/nextcloud.md) |
-| [noCDNbs](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3HEG7KePQVAbZXSdn7tGNb7FVDqL) | Privacy-friendly cdnjs proxy | [Link](services/nocdnbs.md) |
+| [noCDNbs](https://git.private.coffee/PrivateCoffee/nocdnbs) | Privacy-friendly cdnjs proxy | [Link](services/nocdnbs.md) |
 | [NodeBB](https://github.com/NodeBB/NodeBB) | Node.js based forum software | [Link](services/nodebb.md) |
 | [Notfellchen](https://codeberg.org/moanos/notfellchen) | List animals available for adoption to increase their chance of finding a forever-home | [Link](services/notfellchen.md) |
 | [ntfy](https://ntfy.sh/) | Simple HTTP-based pub-sub notification service to send you push notifications from any computer, using simple HTTP PUT or POST requests | [Link](services/ntfy.md) |
 | [OAuth2-Proxy](https://oauth2-proxy.github.io/oauth2-proxy/) | A reverse proxy and static file server that provides authentication using OpenID Connect Providers (Google, GitHub, [Keycloak](services/keycloak.md), and others) to SSO-protect services which do not support SSO natively | [Link](services/oauth2-proxy.md) |
+| [Onion Service with C Tor](https://community.torproject.org/onion-services/) | Run Onion Service with [C Tor](https://gitlab.torproject.org/tpo/core/tor) | [Link](services/onion-service-tor.md) |
 | [ONLYOFFICE Docs](https://helpcenter.onlyoffice.com/docs) | Online office suite comprising viewers and editors | [Link](services/onlyoffice-docs.md) |
 | [Open Archiver](https://github.com/LogicLabs-OU/OpenArchiver) | Archive, store, index, and search emails from various platforms, including generic IMAP-enabled email inboxes | [Link](services/openarchiver.md) |
 | [Opengist](https://opengist.io/) | Pastebin powered by Git | [Link](services/opengist.md) |
@@ -171,7 +172,7 @@ Below is an exhaustive list of the free and open-source software for self-hostin
 | [Plausible Analytics](https://plausible.io/) | Intuitive and lightweight web analytics | [Link](services/plausible.md) |
 | [Plex](https://www.plex.tv/) | A personal media server | [Link](services/plex.md) |
 | [Pocket ID](https://pocket-id.org/) | Simple OIDC provider for passkey-only authentication | [Link](services/pocket-id.md) |
-| [PoodleDonts](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az4JAZNsXXS8yVoW8NuvAgNEHfbgTc) | Privacy-friendly Google Fonts proxy | [Link](services/poodledonts.md) |
+| [PoodleDonts](https://git.private.coffee/PrivateCoffee/poodledonts) | Privacy-friendly Google Fonts proxy | [Link](services/poodledonts.md) |
 | [Postgis](https://postgis.net/) | A spatial database extender for PostgreSQL object-relational database | [Link](services/postgis.md) |
 | [Postgres](https://www.postgresql.org) | A powerful object-relational database system | [Link](services/postgres.md) |
 | [Postgres Backup](https://github.com/prodrigestivill/docker-postgres-backup-local) | A solution for backing up PostgreSQL to local filesystem with periodic backups | [Link](services/postgres-backup.md) |
