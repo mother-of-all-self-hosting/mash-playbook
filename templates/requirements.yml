@@ -532,6 +532,10 @@
   version: v7.13.0-1
   name: oauth2_proxy
   activation_prefix: oauth2_proxy_
+- src: git+https://codeberg.org/daguwar/ansible-role-omnitools.git
+  version: 011585155281cf3d8e662ff0b687ab36810b8631
+  name: omnitools
+  activation_prefix: omnitools_
 - src: git+https://seed.radicle.garden/znw3BPXrSbPWcARpYbk3yGy4iGQ4.git
   version: v0.0.0-0
   name: onion_service_tor
