@@ -169,6 +169,10 @@
     - role: galaxy/bind
     # /role-specific:bind
 
+    # role-specific:bitmagnet
+    - role: galaxy/bitmagnet
+    # /role-specific:bitmagnet
+
     # role-specific:browserless
     - role: galaxy/browserless
     # /role-specific:browserless
@@ -592,6 +596,10 @@
     # role-specific:oauth2_proxy
     - role: galaxy/oauth2_proxy
     # /role-specific:oauth2_proxy
+
+    # role-specific:onion_service_tor
+    - role: galaxy/onion_service_tor
+    # /role-specific:onion_service_tor
 
     # role-specific:onlyoffice_docs
     - role: galaxy/onlyoffice_docs

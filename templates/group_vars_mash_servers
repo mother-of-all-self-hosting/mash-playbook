@@ -187,6 +187,11 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
     {{ ({'name': (bind_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'bind']} if bind_enabled else omit) }}
   # /role-specific:bind
 
+  # role-specific:bitmagnet
+  - |-
+    {{ ({'name': (bitmagnet_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'bitmagnet']} if bitmagnet_enabled else omit) }}
+  # /role-specific:bitmagnet
+
   # role-specific:browserless
   - |-
     {{ ({'name': (browserless_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'browserless']} if browserless_enabled else omit) }}
@@ -773,6 +778,11 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
     {{ ({'name': (oauth2_proxy_identifier + '.service'), 'priority': 1900, 'groups': ['mash', 'oauth2-proxy']} if oauth2_proxy_enabled else omit) }}
   # /role-specific:oauth2_proxy
 
+  # role-specific:onion_service_tor
+  - |-
+    {{ ({'name': (onion_service_tor_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'onion-service-tor']} if onion_service_tor_enabled else omit) }}
+  # /role-specific:onion_service_tor
+
   # role-specific:onlyoffice_docs
   - |-
     {{ ({'name': (onlyoffice_docs_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'onlyoffice-docs']} if onlyoffice_docs_enabled else omit) }}
@@ -836,8 +846,6 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
   # role-specific:paperless
   - |-
     {{ ({'name': (paperless_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'paperless']} if paperless_enabled else omit) }}
-  - |-
-    {{ ({'name': (paperless_tika_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'paperless']} if paperless_enabled and paperless_tika_enabled else omit) }}
   - |-
     {{ ({'name': (paperless_gotenberg_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'paperless']} if paperless_enabled and paperless_gotenberg_enabled else omit) }}
   # /role-specific:paperless
@@ -1300,6 +1308,17 @@ mash_playbook_postgres_managed_databases_auto_itemized:
       } if authentik_enabled and authentik_database_hostname == postgres_connection_hostname else omit)
     }}
   # /role-specific:authentik
+
+  # role-specific:bitmagnet
+  - |-
+    {{
+      ({
+        'name': bitmagnet_database_name,
+        'username': bitmagnet_database_username,
+        'password': bitmagnet_database_password,
+      } if bitmagnet_enabled and bitmagnet_database_hostname == postgres_connection_hostname else omit)
+    }}
+  # /role-specific:bitmagnet
 
   # role-specific:docmost
   - |-
@@ -2119,6 +2138,36 @@ mash_playbook_traefix_managed_additional_entrypoints_auto_itemized:
 
   # TODO: integrate the variables for `config` to traefik.yml on ansible-role-traefik at https://github.com/mother-of-all-self-hosting/ansible-role-traefik
 
+  # role-specific:bitmagnet
+  - |-
+    {{
+      ({
+        'name': bitmagnet_container_labels_traefik_tcp_entrypoints,
+        'port': bitmagnet_container_tcp_port,
+        'host_bind_port': bitmagnet_container_tcp_host_bind_port,
+        'config': {
+          'transport': {
+            'respondingTimeouts': {
+              'readTimeout': traefik_config_entrypoint_web_transport_respondingTimeouts_readTimeout,
+              'writeTimeout': traefik_config_entrypoint_web_transport_respondingTimeouts_writeTimeout,
+              'idleTimeout': traefik_config_entrypoint_web_transport_respondingTimeouts_idleTimeout
+            }
+          }
+        }
+      } if bitmagnet_enabled and bitmagnet_container_labels_traefik_tcp_enabled else omit)
+    }}
+
+  - |-
+    {{
+      ({
+        'name': bitmagnet_container_labels_traefik_udp_entrypoints,
+        'port': bitmagnet_container_udp_port | string + '/udp',
+        'host_bind_port': bitmagnet_container_udp_host_bind_port,
+        'config': {}
+      } if bitmagnet_enabled and bitmagnet_container_labels_traefik_udp_enabled else omit)
+    }}
+  # /role-specific:bitmagnet
+
   # role-specific:endlessh
   - |-
     {{
@@ -2305,36 +2354,6 @@ traefik_additional_domains_to_obtain_certificates_for_auto: "{{ mash_playbook_tr
 # role-specific:container_socket_proxy
 traefik_config_providers_docker_endpoint: "{{ container_socket_proxy_endpoint if container_socket_proxy_enabled else 'unix:///var/run/docker.sock' }}"
 # /role-specific:container_socket_proxy
-
-traefik_config_entrypoint_web_http_encodedCharacters_enabled: |
-  {{
-    collabora_online_enabled | default(false)
-  }}
-
-traefik_config_entrypoint_web_http_encodedCharacters_allowEncodedQuestionMark: |
-  {{
-    collabora_online_enabled | default(false)
-  }}
-
-traefik_config_entrypoint_web_http_encodedCharacters_allowEncodedSlash: |
-  {{
-    collabora_online_enabled | default(false)
-  }}
-
-traefik_config_entrypoint_web_secure_http_encodedCharacters_enabled: |
-  {{
-    collabora_online_enabled | default(false)
-  }}
-
-traefik_config_entrypoint_web_secure_http_encodedCharacters_allowEncodedQuestionMark: |
-  {{
-    collabora_online_enabled | default(false)
-  }}
-
-traefik_config_entrypoint_web_secure_http_encodedCharacters_allowEncodedSlash: |
-  {{
-    collabora_online_enabled | default(false)
-  }}
 
 ########################################################################
 #                                                                      #
@@ -3368,6 +3387,56 @@ bind_systemd_required_services_list_auto: |
 #                                                                      #
 ########################################################################
 # /role-specific:bind
+
+
+
+# role-specific:bitmagnet
+########################################################################
+#                                                                      #
+# bitmagnet                                                            #
+#                                                                      #
+########################################################################
+
+bitmagnet_enabled: false
+
+bitmagnet_identifier: "{{ mash_playbook_service_identifier_prefix }}bitmagnet"
+
+bitmagnet_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}bitmagnet"
+
+bitmagnet_uid: "{{ mash_playbook_uid }}"
+bitmagnet_gid: "{{ mash_playbook_gid }}"
+
+bitmagnet_systemd_required_services_list_auto: |
+  {{
+    ([postgres_identifier ~ '.service'] if postgres_enabled and bitmagnet_database_hostname == postgres_connection_hostname else [])
+  }}
+
+bitmagnet_container_additional_networks_auto: |
+  {{
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+    +
+    ([postgres_container_network] if postgres_enabled and bitmagnet_database_hostname == postgres_connection_hostname and bitmagnet_container_network != postgres_container_network else [])
+  }}
+
+bitmagnet_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+bitmagnet_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+
+# role-specific:postgres
+bitmagnet_database_hostname: "{{ postgres_connection_hostname if postgres_enabled else '' }}"
+bitmagnet_database_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'bitmagnet.db', rounds=655555) | to_uuid }}"
+# /role-specific:postgres
+
+# role-specific:traefik
+bitmagnet_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
+bitmagnet_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
+# /role-specific:traefik
+
+########################################################################
+#                                                                      #
+# /bitmagnet                                                           #
+#                                                                      #
+########################################################################
+# /role-specific:bitmagnet
 
 
 
@@ -9992,6 +10061,44 @@ oauth2_proxy_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver
 
 
 
+# role-specific:onion_service_tor
+########################################################################
+#                                                                      #
+# onion_service_tor                                                    #
+#                                                                      #
+########################################################################
+
+onion_service_tor_enabled: false
+
+onion_service_tor_identifier: "{{ mash_playbook_service_identifier_prefix }}onion-service-tor"
+
+onion_service_tor_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}onion-service-tor"
+
+# Runs as root
+onion_service_tor_uid: "0"
+onion_service_tor_gid: "0"
+
+onion_service_tor_container_additional_networks_auto: |
+  {{
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+  }}
+
+onion_service_tor_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+onion_service_tor_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+
+# role-specific:traefik
+onion_service_tor_container_labels_traefik_entrypoints: "{{ traefik_config_entrypoint_web_name }}"
+# /role-specific:traefik
+
+########################################################################
+#                                                                      #
+# /onion_service_tor                                                   #
+#                                                                      #
+########################################################################
+# /role-specific:onion_service_tor
+
+
+
 # role-specific:onlyoffice_docs
 ########################################################################
 #                                                                      #
@@ -10579,7 +10686,7 @@ paperless_systemd_wanted_services_list_auto: |
   {{
     ([(exim_relay_identifier | default('mash-exim-relay')) ~ '.service'] if (exim_relay_enabled | default(false) and paperless_email_host == exim_relay_identifier | default('mash-exim-relay')) else [])
     +
-    ([tika_identifier ~ '.service'] if tika_enabled | default(false) and paperless_tika_enabled else [])
+    ([tika_identifier ~ '.service'] if tika_enabled | default(false) else [])
   }}
 
 paperless_container_additional_networks_auto: |
@@ -10592,7 +10699,7 @@ paperless_container_additional_networks_auto: |
     +
     ([postgres_container_network] if postgres_enabled | default(false) and paperless_database_postgres_hostname == postgres_connection_hostname and paperless_container_network != postgres_container_network and paperless_database_type == 'postgres' else [])
     +
-    ([tika_container_network] if tika_enabled | default(false) and paperless_container_network != tika_container_network and paperless_tika_enabled else [])
+    ([tika_container_network] if tika_enabled | default(false) and paperless_container_network != tika_container_network else [])
   }}
 
 paperless_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
@@ -10621,7 +10728,8 @@ paperless_database_postgres_password: "{{ '%s' | format(mash_playbook_generic_se
 # /role-specific:postgres
 
 # role-specific:tika
-paperless_gotenberg_enabled: "{{ paperless_tika_enabled }}"
+paperless_gotenberg_enabled: "{{ tika_enabled }}"
+paperless_tika_enabled: "{{ tika_enabled }}"
 paperless_tika_endpoint: "http://{{ tika_identifier }}:{{ tika_container_http_port }}"
 # /role-specific:tika
 
