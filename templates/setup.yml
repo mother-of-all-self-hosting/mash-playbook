@@ -193,6 +193,10 @@
     - role: galaxy/clickhouse
     # /role-specific:clickhouse
 
+    # role-specific:codimd
+    - role: galaxy/codimd
+    # /role-specific:codimd
+
     # role-specific:collabora_online
     - role: galaxy/collabora_online
     # /role-specific:collabora_online
