@@ -22,4 +22,4 @@
 
 # custom ignores
 .ansible
-
+.env

@@ -1,0 +1,55 @@
+
+default:
+    @{{ just_executable() }} --list --justfile {{ justfile() }}
+
+upstream_url := "git@github.com:mother-of-all-self-hosting/mash-playbook.git"
+upstream_remote_name := "upstream"
+
+_ensure_upstream_remote:
+    #!/usr/bin/env sh
+    ORIGIN_URL=$(git remote get-url origin 2>/dev/null)
+    if [ "$ORIGIN_URL" = "{{ upstream_url }}" ]; then
+        echo "'origin' and 'upstream' are the same url."
+        exit 1
+    fi
+
+    # Check, whether the remote 'upstream' already exists
+    if git remote | grep -q "^{{ upstream_remote_name }}$"; then
+        echo -n ""
+    else
+        echo "Add remote '{{ upstream_remote_name }}'"
+        git remote add "{{ upstream_remote_name }}" "{{ upstream_url }}"
+        
+        if [ $? -eq 0 ]; then
+            echo "Successfully added: {{ upstream_url }} as {{ upstream_remote_name }}"
+        else
+            echo "Error while adding {{ upstream_remote_name }} remote."
+            exit 1
+        fi
+    fi
+
+_merge_from_upstream:
+    #!/usr/bin/env sh
+    
+    CURRENT_BRANCH=$(git rev-parse --abbrev-ref HEAD)
+
+    if [ "$CURRENT_BRANCH" != "main" ]; then
+        echo "merge from {{ upstream_remote_name }}/main can only run if you are on the local main branch"
+        exit 1
+    fi
+
+    # if ! git diff-index --quiet HEAD --; then
+    #     echo "Error: You have local not saved changes. Please stash or commit."
+    #     exit 1
+    # fi
+
+    echo "Start sync: {{ upstream_remote_name}}/main to local main branch"
+    git fetch upstream
+
+    echo "Merge from {{ upstream_remote_name}}/main"
+    git merge upstream/main --no-edit
+
+    echo "merge done. Changes are local. You have to push it to origin/main by yourself"
+
+update: _ensure_upstream_remote _merge_from_upstream
+    @echo "Update from upstream done."

@@ -1,0 +1,18 @@
+
+default:
+    @{{ just_executable() }} --list --justfile {{ justfile() }}
+
+receive_secrets foldername:
+    #!/usr/bin/env sh
+
+    ./bin/receive_secrets.sh {{ foldername }} > inventory/host_vars/{{ foldername }}/secrets.yml
+
+setup-all foldername:
+    just optimize-for-host mash.oliverlorenz.com
+    just setup-all -e target={{ foldername }} --extra-vars "@inventory/host_vars/{{ foldername }}/secrets.yml"
+
+setup-service service foldername:
+    just setup-service {{ service }} -e target={{ foldername }} --extra-vars "@inventory/host_vars/{{ foldername }}/secrets.yml"
+
+install-service service foldername:
+    just install-service {{ service }} -e target={{ foldername }} --extra-vars "@inventory/host_vars/{{ foldername }}/secrets.yml"

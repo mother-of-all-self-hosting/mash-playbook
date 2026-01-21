@@ -1,28 +1,16 @@
 {
 	"name": "mash-playbook",
-	"image": "mcr.microsoft.com/devcontainers/base:ubuntu",
-	"runArgs": [
-		"--privileged",
-		"--device",
-		"/dev/fuse",
-		"--hostname=mash-playbook"
-	],
+	"build": {
+		"context": ".",
+		"dockerfile": "Dockerfile"
+	},
 	"mounts": [
 		"type=bind,source=/home/${localEnv:USER}/.ssh,target=/home/vscode/.ssh,readonly"
 	],
 	"customizations": {
 		"vscode": {
-			"extensions": ["redhat.ansible"]
+			"extensions": ["redhat.ansible", "nefrob.vscode-just-syntax"]
 		}
-	},
-	"features": {
-		"ghcr.io/devcontainers-extra/features/apt-packages:1": {
-			"packages": ["pwgen", "python3", "python-is-python3", "python3-regex", "python3-yaml", "python3-passlib"],
-		},
-		"ghcr.io/schlich/devcontainer-features/just:0": {},
-		"ghcr.io/devcontainers-extra/features/ansible:2": {},
-		"ghcr.io/devcontainers-extra/features/pre-commit:2": {},
-		"ghcr.io/hspaans/devcontainer-features/ansible-lint:2": {}
 	},
 	"postCreateCommand": "pre-commit install && just roles"
 }
