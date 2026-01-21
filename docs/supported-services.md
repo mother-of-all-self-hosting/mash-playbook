@@ -140,6 +140,7 @@ Below is an exhaustive list of the free and open-source software for self-hostin
 | [Miniflux](https://miniflux.app/) | Minimalist and opinionated feed reader | [Link](services/miniflux.md) |
 | [Misskey](https://misskey-hub.net/en/) | Decentralized microblogging platform based on the ActivityPub protocol | [Link](services/misskey.md) |
 | [Mobilizon](https://joinmobilizon.org/en/) | An ActivityPub/Fediverse server to create and share events | [Link](services/mobilizon.md) |
+| [Moner.ooo](https://github.com/nice42q/moner.ooo) | Monero / fiat exchange rates in various currencies | [Link](services/monerooo.md) |
 | [Moodist](https://moodist.mvze.net/) | Web application to mix and play ambient soundtracks | [Link](services/moodist.md) |
 | [Mosquitto](https://mosquitto.org/) | A MQTT broker | [Link](services/mosquitto.md) |
 | [Mozhi](https://codeberg.org/aryak/mozhi) | Frontend for translation engines | [Link](services/mozhi.md) |
