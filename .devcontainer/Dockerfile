@@ -16,7 +16,7 @@ RUN apk add --update --no-cache \
     py3-passlib \
     just \
     pre-commit \
-    ansible-lint \ 
+    ansible-lint \
     pwgen \
     jq \
     nodejs npm && \

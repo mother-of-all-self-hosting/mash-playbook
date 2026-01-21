@@ -9,7 +9,7 @@ fi
 
 FOLDER_ID=$(bw get folder ${1} | jq -r .id)
 
-JSONATA_FILTER='$map($, function($v) { 
+JSONATA_FILTER='$map($, function($v) {
     $lowercase($v.name) & ": " & $v.login.password
 })'
 
