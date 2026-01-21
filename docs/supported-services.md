@@ -52,6 +52,7 @@ Below is an exhaustive list of the free and open-source software for self-hostin
 | [Cap Standalone](https://capjs.js.org/guide/standalone/) | Backend of Cap, a POW Captcha | [Link](services/cap.md) |
 | [Changedetection.io](https://github.com/dgtlmoon/changedetection.io) | A simple website change detection and restock monitoring solution | [Link](services/changedetection.md) |
 | [ClickHouse](https://clickhouse.com/) | A column-oriented DBMS for online analytical processing (OLAP) that allows users to generate analytical reports using SQL queries in real-time | [Link](services/clickhouse.md) |
+| [CodiMD](https://github.com/hackmdio/codimd) | Realtime collaborative markdown notes on all platforms | [Link](services/codimd.md) |
 | [Collabora Online Development Edition](https://www.collaboraonline.com/code/) | Development version of Collabora Online, which enables you to edit office documents with integrations such as Nextcloud | [Link](services/code.md) |
 | [Converse](https://conversejs.org/) | Browser based XMPP chat client | [Link](services/converse.md) |
 | [ConvertX](https://github.com/C4illin/ConvertX) | Online file converter for pictures, video, images, document files, etc. | [Link](services/convertx.md) |
