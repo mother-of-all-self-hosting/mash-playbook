@@ -833,6 +833,10 @@
     - role: galaxy/sonarr
     # /role-specific:sonarr
 
+    # role-specific:soundcloak
+    - role: galaxy/soundcloak
+    # /role-specific:soundcloak
+
     # role-specific:statusnook
     - role: galaxy/statusnook
     # /role-specific:statusnook
