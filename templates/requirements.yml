@@ -784,6 +784,10 @@
   version: v4.0.15-2
   name: sonarr
   activation_prefix: sonarr_
+- src: git+https://seed.radicle.garden/z381JyLARWwSiZnYotVXehYcQEw7u.git
+  version: v0.0.0-0
+  name: soundcloak
+  activation_prefix: soundcloak_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-ssh.git
   version: v1.0.0-0
   name: ssh
