@@ -9,6 +9,7 @@ RUN go build .
 FROM ghcr.io/willhallonline/docker-ansible:2.17-alpine-3.22
 RUN apk add --update --no-cache \
     libc6-compat \
+    grep \
     python3 \
     py3-pip \
     py3-regex \
