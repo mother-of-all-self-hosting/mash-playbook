@@ -285,6 +285,10 @@
     - role: galaxy/farmos
     # /role-specific:farmos
 
+    # role-specific:fider
+    - role: galaxy/fider
+    # /role-specific:fider
+
     # role-specific:filebrowser
     - role: galaxy/filebrowser
     # /role-specific:filebrowser
