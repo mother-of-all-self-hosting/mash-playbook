@@ -21,6 +21,21 @@ mash_playbook_generic_secret_key: "{{ vault_mash_playbook_generic_secret_key }}"
 
 ########################################################################
 #                                                                      #
+# systemd_service_manager                                              #
+#                                                                      #
+########################################################################
+
+# Allow extra time for slow services to start before verification.
+devture_systemd_service_manager_up_verification_delay_seconds: 25
+
+########################################################################
+#                                                                      #
+# /systemd_service_manager                                             #
+#                                                                      #
+########################################################################
+
+########################################################################
+#                                                                      #
 # system                                                               #
 #                                                                      #
 ########################################################################
@@ -701,6 +716,8 @@ convertx_enabled: true
 
 convertx_hostname: "convert.{{ domain }}"
 convertx_environment_variables_webroot: /
+convertx_container_labels_additional_labels_custom:
+  - "traefik.http.routers.{{ convertx_identifier }}.middlewares={{ (['authentik-forwardauth@file'] + ([convertx_identifier + '-slashless-redirect', convertx_identifier + '-strip-prefix'] if convertx_container_labels_traefik_path_prefix != '/' else []) + ([convertx_identifier + '-add-request-headers'] if convertx_container_labels_traefik_additional_request_headers.keys() | length > 0 else []) + ([convertx_identifier + '-add-response-headers'] if convertx_container_labels_traefik_additional_response_headers.keys() | length > 0 else [])) | unique | join(',') }}"
 
 ########################################################################
 #                                                                      #
