@@ -219,6 +219,11 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
     {{ ({'name': (clickhouse_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'clickhouse']} if clickhouse_enabled else omit) }}
   # /role-specific:clickhouse
 
+  # role-specific:codimd
+  - |-
+    {{ ({'name': (codimd_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'codimd']} if codimd_enabled else omit) }}
+  # /role-specific:codimd
+
   # role-specific:collabora_online
   - |-
     {{ ({'name': (collabora_online_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'collabora-online']} if collabora_online_enabled else omit) }}
@@ -340,6 +345,11 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
   - |-
     {{ ({'name': (farmos_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'farmos']} if farmos_enabled else omit) }}
   # /role-specific:farmos
+
+  # role-specific:fider
+  - |-
+    {{ ({'name': (fider_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'fider']} if fider_enabled else omit) }}
+  # /role-specific:fider
 
   # role-specific:filebrowser
   - |-
@@ -678,6 +688,11 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
   - |-
     {{ ({'name': (mobilizon_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'mobilizon']} if mobilizon_enabled else omit) }}
   # /role-specific:mobilizon
+
+  # role-specific:monerooo
+  - |-
+    {{ ({'name': (monerooo_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'monerooo']} if monerooo_enabled else omit) }}
+  # /role-specific:monerooo
 
   # role-specific:mongodb
   - |-
@@ -1074,6 +1089,11 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
     {{ ({'name': (sonarr_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'sonarr']} if sonarr_enabled else omit) }}
   # /role-specific:sonarr
 
+  # role-specific:soundcloak
+  - |-
+    {{ ({'name': (soundcloak_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'soundcloak']} if soundcloak_enabled else omit) }}
+  # /role-specific:soundcloak
+
   # role-specific:statusnook
   - |-
     {{ ({'name': (statusnook_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'statusnook']} if statusnook_enabled else omit) }}
@@ -1320,6 +1340,17 @@ mash_playbook_postgres_managed_databases_auto_itemized:
     }}
   # /role-specific:bitmagnet
 
+  # role-specific:codimd
+  - |-
+    {{
+      ({
+        'name': codimd_database_name,
+        'username': codimd_database_postgres_username,
+        'password': codimd_database_postgres_password,
+      } if codimd_enabled and codimd_database_postgres_hostname == postgres_connection_hostname and codimd_database_type == 'postgres' else omit)
+    }}
+  # /role-specific:codimd
+
   # role-specific:docmost
   - |-
     {{
@@ -1352,6 +1383,17 @@ mash_playbook_postgres_managed_databases_auto_itemized:
       } if farmos_enabled and farmos_database_postgres_hostname == postgres_connection_hostname and farmos_database_type == 'postgres' else omit)
     }}
   # /role-specific:farmos
+
+  # role-specific:fider
+  - |-
+    {{
+      ({
+        'name': fider_database_name,
+        'username': fider_database_username,
+        'password': fider_database_password,
+      } if fider_enabled and fider_database_hostname == postgres_connection_hostname else omit)
+    }}
+  # /role-specific:fider
 
   # role-specific:firezone
   - |-
@@ -3639,6 +3681,76 @@ clickhouse_managed_databases_auto: "{{ clickhouse_managed_databases_auto_itemize
 # /role-specific:clickhouse
 
 
+# role-specific:codimd
+########################################################################
+#                                                                      #
+# codimd                                                               #
+#                                                                      #
+########################################################################
+
+codimd_enabled: false
+
+codimd_identifier: "{{ mash_playbook_service_identifier_prefix }}codimd"
+
+codimd_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}codimd"
+
+# Runs as 1500:1500
+codimd_uid: "1500"
+codimd_gid: "1500"
+
+codimd_systemd_required_services_list_auto: |
+  {{
+    ([mariadb_identifier ~ '.service'] if mariadb_enabled | default(false) and codimd_database_mysql_hostname == mariadb_connection_hostname and codimd_database_type == 'mysql' else [])
+    +
+    ([postgres_identifier ~ '.service'] if postgres_enabled | default(false) and codimd_database_postgres_hostname == postgres_connection_hostname and codimd_database_type == 'postgres' else [])
+  }}
+
+codimd_systemd_wanted_services_list_auto: |
+  {{
+    ([(exim_relay_identifier | default('mash-exim-relay')) ~ '.service'] if exim_relay_enabled | default(false) else [])
+  }}
+
+codimd_container_additional_networks_auto: |
+  {{
+    ([exim_relay_container_network | default('mash-exim-relay')] if (exim_relay_enabled | default(false) and codimd_container_network != exim_relay_container_network) else [])
+    +
+    ([mariadb_container_network] if mariadb_enabled | default(false) and codimd_database_mysql_hostname == mariadb_connection_hostname and codimd_container_network != mariadb_container_network and codimd_database_type == 'mysql' else [])
+    +
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+    +
+    ([postgres_container_network] if postgres_enabled | default(false) and codimd_database_postgres_hostname == postgres_connection_hostname and codimd_container_network != postgres_container_network and codimd_database_type == 'postgres' else [])
+  }}
+
+codimd_environment_variables_cmd_session_secret: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'codimd.s', rounds=655555) | to_uuid }}"
+
+codimd_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+codimd_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+
+# role-specific:mariadb
+codimd_database_mysql_hostname: "{{ mariadb_connection_hostname if mariadb_enabled else '' }}"
+codimd_database_mysql_port: "{{ mariadb_connection_port if mariadb_enabled else '3306' }}"
+codimd_database_mysql_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'db.codimd.ma', rounds=655555) | to_uuid }}"
+# /role-specific:mariadb
+
+# role-specific:postgres
+codimd_database_postgres_hostname: "{{ postgres_connection_hostname if postgres_enabled else '' }}"
+codimd_database_postgres_port: "{{ postgres_connection_port if postgres_enabled else '5432' }}"
+codimd_database_postgres_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'db.codimd.p', rounds=655555) | to_uuid }}"
+# /role-specific:postgres
+
+# role-specific:traefik
+codimd_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
+codimd_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
+# /role-specific:traefik
+
+########################################################################
+#                                                                      #
+# /codimd                                                              #
+#                                                                      #
+########################################################################
+# /role-specific:codimd
+
+
 
 # role-specific:collabora_online
 ########################################################################
@@ -4635,6 +4747,73 @@ farmos_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_prima
 #                                                                      #
 ########################################################################
 # /role-specific:farmos
+
+
+
+# role-specific:fider
+########################################################################
+#                                                                      #
+# fider                                                                #
+#                                                                      #
+########################################################################
+
+fider_enabled: false
+
+fider_identifier: "{{ mash_playbook_service_identifier_prefix }}fider"
+
+fider_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}fider"
+
+fider_uid: "{{ mash_playbook_uid }}"
+fider_gid: "{{ mash_playbook_gid }}"
+
+fider_systemd_wanted_services_list_auto: |
+  {{
+    ([(exim_relay_identifier | default('mash-exim-relay')) ~ '.service'] if (exim_relay_enabled | default(false) and fider_environment_variables_email_smtp_host == exim_relay_identifier | default('mash-exim-relay')) else [])
+  }}
+
+fider_systemd_required_services_list_auto: |
+ {{
+    ([postgres_identifier ~ '.service'] if postgres_enabled and fider_database_hostname == postgres_connection_hostname else [])
+  }}
+
+fider_container_additional_networks_auto: |
+  {{
+    ([exim_relay_container_network | default('mash-exim-relay')] if (exim_relay_enabled | default(false) and fider_environment_variables_email_smtp_host == exim_relay_identifier | default('mash-exim-relay') and fider_container_network != exim_relay_container_network) else [])
+    +
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+    +
+    ([postgres_container_network] if postgres_enabled and fider_database_hostname == postgres_connection_hostname and fider_container_network != postgres_container_network else [])
+  }}
+
+fider_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+fider_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+
+fider_environment_variables_jwt_secret: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 's.fider', rounds=655555) | to_uuid }}"
+
+# role-specific:exim_relay
+fider_email_smtp_enabled: "{{ exim_relay_enabled }}"
+fider_environment_variables_email_smtp_host: "{{ exim_relay_identifier if exim_relay_enabled else '' }}"
+fider_environment_variables_email_smtp_port: 8025
+fider_environment_variables_email_noreply: "{{ exim_relay_sender_address if exim_relay_enabled else '' }}"
+# /role-specific:exim_relay
+
+# role-specific:postgres
+fider_database_hostname: "{{ postgres_connection_hostname if postgres_enabled else '' }}"
+fider_database_port: "{{ postgres_connection_port if postgres_enabled else '5432' }}"
+fider_database_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'db.fider', rounds=655555) | to_uuid }}"
+# /role-specific:postgres
+
+# role-specific:traefik
+fider_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
+fider_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
+# /role-specific:traefik
+
+########################################################################
+#                                                                      #
+# /fider                                                               #
+#                                                                      #
+########################################################################
+# /role-specific:fider
 
 
 
@@ -8466,6 +8645,17 @@ mash_playbook_mariadb_managed_databases_auto_itemized:
     }}
   # /role-specific:authelia
 
+  # role-specific:codimd
+  - |-
+    {{
+      ({
+        'name': codimd_database_name,
+        'username': codimd_database_mysql_username,
+        'password': codimd_database_mysql_password,
+      } if codimd_enabled and codimd_database_mysql_hostname == mariadb_connection_hostname and codimd_database_type == 'mysql' else omit)
+    }}
+  # /role-specific:codimd
+
   # role-specific:etherpad
   - |-
     {{
@@ -9231,6 +9421,44 @@ mobilizon_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_pr
 #                                                                      #
 ########################################################################
 # /role-specific:mobilizon
+
+
+
+# role-specific:monerooo
+########################################################################
+#                                                                      #
+# moner.ooo                                                            #
+#                                                                      #
+########################################################################
+
+monerooo_enabled: false
+
+monerooo_identifier: "{{ mash_playbook_service_identifier_prefix }}monerooo"
+
+monerooo_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}monerooo"
+
+monerooo_uid: "{{ mash_playbook_uid }}"
+monerooo_gid: "{{ mash_playbook_gid }}"
+
+monerooo_container_additional_networks_auto: |
+  {{
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+  }}
+
+monerooo_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+monerooo_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+
+# role-specific:traefik
+monerooo_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
+monerooo_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
+# /role-specific:traefik
+
+########################################################################
+#                                                                      #
+# /moner.ooo                                                           #
+#                                                                      #
+########################################################################
+# /role-specific:monerooo
 
 
 
@@ -12893,6 +13121,44 @@ sonarr_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_prima
 #                                                                      #
 ########################################################################
 # /role-specific:sonarr
+
+
+
+# role-specific:soundcloak
+########################################################################
+#                                                                      #
+# soundcloak                                                           #
+#                                                                      #
+########################################################################
+
+soundcloak_enabled: false
+
+soundcloak_identifier: "{{ mash_playbook_service_identifier_prefix }}soundcloak"
+
+soundcloak_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}soundcloak"
+
+soundcloak_uid: "{{ mash_playbook_uid }}"
+soundcloak_gid: "{{ mash_playbook_gid }}"
+
+soundcloak_container_additional_networks_auto: |
+  {{
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+  }}
+
+soundcloak_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+soundcloak_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+
+# role-specific:traefik
+soundcloak_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
+soundcloak_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
+# /role-specific:traefik
+
+########################################################################
+#                                                                      #
+# /soundcloak                                                          #
+#                                                                      #
+########################################################################
+# /role-specific:soundcloak
 
 
 

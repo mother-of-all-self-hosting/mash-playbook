@@ -193,6 +193,10 @@
     - role: galaxy/clickhouse
     # /role-specific:clickhouse
 
+    # role-specific:codimd
+    - role: galaxy/codimd
+    # /role-specific:codimd
+
     # role-specific:collabora_online
     - role: galaxy/collabora_online
     # /role-specific:collabora_online
@@ -280,6 +284,10 @@
     # role-specific:farmos
     - role: galaxy/farmos
     # /role-specific:farmos
+
+    # role-specific:fider
+    - role: galaxy/fider
+    # /role-specific:fider
 
     # role-specific:filebrowser
     - role: galaxy/filebrowser
@@ -528,6 +536,10 @@
     # role-specific:mobilizon
     - role: galaxy/mobilizon
     # /role-specific:mobilizon
+
+    # role-specific:monerooo
+    - role: galaxy/monerooo
+    # /role-specific:monerooo
 
     # role-specific:mongodb
     - role: galaxy/mongodb
@@ -824,6 +836,10 @@
     # role-specific:sonarr
     - role: galaxy/sonarr
     # /role-specific:sonarr
+
+    # role-specific:soundcloak
+    - role: galaxy/soundcloak
+    # /role-specific:soundcloak
 
     # role-specific:statusnook
     - role: galaxy/statusnook

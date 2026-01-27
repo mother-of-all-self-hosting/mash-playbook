@@ -23,15 +23,18 @@
     <outline text="barassistant" title="barassistant" type="rss" htmlUrl="https://github.com/karlomikus/bar-assistant/" xmlUrl="https://github.com/karlomikus/bar-assistant//releases.atom" />
     <outline text="bentopdf" title="bentopdf" type="rss" htmlUrl="https://github.com/alam00000/bentopdf" xmlUrl="https://github.com/alam00000/bentopdf/releases.atom" />
     <outline text="bind" title="bind" type="rss" htmlUrl="https://gitlab.isc.org/isc-projects/bind9" xmlUrl="https://gitlab.isc.org/isc-projects/bind9/-/tags?format=atom" />
+    <outline text="bitmagnet" title="bitmagnet" type="rss" htmlUrl="https://github.com/bitmagnet-io/bitmagnet" xmlUrl="https://github.com/bitmagnet-io/bitmagnet/releases.atom" />
     <outline text="browserless" title="browserless" type="rss" htmlUrl="https://github.com/browserless/browserless" xmlUrl="https://github.com/browserless/browserless/releases.atom" />
     <outline text="calibre_web" title="calibre_web" type="rss" htmlUrl="https://github.com/calibre_web/calibre_web" xmlUrl="https://github.com/calibre_web/calibre_web/releases.atom" />
     <outline text="cap" title="cap" type="rss" htmlUrl="https://github.com/tiagozip/cap" xmlUrl="https://github.com/tiagozip/cap/releases.atom" />
     <outline text="changedetection" title="changedetection" type="rss" htmlUrl="https://github.com/dgtlmoon/changedetection.io" xmlUrl="https://github.com/dgtlmoon/changedetection.io/releases.atom" />
     <outline text="clickhouse" title="clickhouse" type="rss" htmlUrl="https://github.com/ClickHouse/ClickHouse" xmlUrl="https://github.com/ClickHouse/ClickHouse/releases.atom" />
+    <outline text="codimd" title="codimd" type="rss" htmlUrl="https://github.com/hackmdio/codimd" xmlUrl="https://github.com/hackmdio/codimd/releases.atom" />
     <outline text="container_socket_proxy" title="container_socket_proxy" type="rss" htmlUrl="https://github.com/Tecnativa/docker-socket-proxy" xmlUrl="https://github.com/Tecnativa/docker-socket-proxy/releases.atom" />
     <outline text="converse" title="converse" type="rss" htmlUrl="https://github.com/conversejs/converse.js" xmlUrl="https://github.com/conversejs/converse.js/releases.atom" />
     <outline text="convertx" title="convertx" type="rss" htmlUrl="https://github.com/C4illin/ConvertX" xmlUrl="https://github.com/C4illin/ConvertX/releases.atom" />
     <outline text="couchdb" title="couchdb" type="rss" htmlUrl="https://github.com/apache/couchdb" xmlUrl="https://github.com/apache/couchdb/releases.atom" />
+    <outline text="cryptpad" title="cryptpad" type="rss" htmlUrl="https://github.com/cryptpad/cryptpad" xmlUrl="https://github.com/cryptpad/cryptpad/releases.atom" />
     <outline text="cyberchef" title="cyberchef" type="rss" htmlUrl="https://github.com/gchq/CyberChef" xmlUrl="https://github.com/gchq/CyberChef/releases.atom" />
     <outline text="databasus" title="databasus" type="rss" htmlUrl="https://github.com/databasus/databasus" xmlUrl="https://github.com/databasus/databasus/releases.atom" />
     <outline text="docker_registry" title="docker_registry" type="rss" htmlUrl="https://github.com/distribution/distribution/" xmlUrl="https://github.com/distribution/distribution//releases.atom" />
@@ -105,6 +108,7 @@
     <outline text="miniflux" title="miniflux" type="rss" htmlUrl="https://github.com/miniflux/v2" xmlUrl="https://github.com/miniflux/v2/releases.atom" />
     <outline text="misskey" title="misskey" type="rss" htmlUrl="https://github.com/misskey-dev/misskey" xmlUrl="https://github.com/misskey-dev/misskey/releases.atom" />
     <outline text="mobilizon" title="mobilizon" type="rss" htmlUrl="https://framagit.org/kaihuri/mobilizon/" xmlUrl="https://framagit.org/kaihuri/mobilizon//-/tags?format=atom" />
+    <outline text="monerooo" title="monerooo" type="rss" htmlUrl="https://github.com/nice42q/moner.ooo" xmlUrl="https://github.com/nice42q/moner.ooo/releases.atom" />
     <outline text="mongodb" title="mongodb" type="rss" htmlUrl="https://github.com/mongodb/mongo" xmlUrl="https://github.com/mongodb/mongo/releases.atom" />
     <outline text="moodist" title="moodist" type="rss" htmlUrl="https://github.com/remvze/moodist" xmlUrl="https://github.com/remvze/moodist/releases.atom" />
     <outline text="mosquitto" title="mosquitto" type="rss" htmlUrl="https://github.com/eclipse-mosquitto/mosquitto" xmlUrl="https://github.com/eclipse-mosquitto/mosquitto/releases.atom" />
@@ -119,6 +123,7 @@
     <outline text="nodebb" title="nodebb" type="rss" htmlUrl="https://github.com/NodeBB/NodeBB" xmlUrl="https://github.com/NodeBB/NodeBB/releases.atom" />
     <outline text="ntfy" title="ntfy" type="rss" htmlUrl="https://github.com/binwiederhier/ntfy" xmlUrl="https://github.com/binwiederhier/ntfy/releases.atom" />
     <outline text="oauth2_proxy" title="oauth2_proxy" type="rss" htmlUrl="https://github.com/oauth2-proxy/oauth2-proxy" xmlUrl="https://github.com/oauth2-proxy/oauth2-proxy/releases.atom" />
+    <outline text="onion_service_tor" title="onion_service_tor" type="rss" htmlUrl="https://gitlab.torproject.org/tpo/onion-services/onimages" xmlUrl="https://gitlab.torproject.org/tpo/onion-services/onimages/-/tags?format=atom" />
     <outline text="onlyoffice_docs" title="onlyoffice_docs" type="rss" htmlUrl="https://github.com/ONLYOFFICE/DocumentServer" xmlUrl="https://github.com/ONLYOFFICE/DocumentServer/releases.atom" />
     <outline text="openarchiver" title="openarchiver" type="rss" htmlUrl="https://github.com/LogicLabs-OU/OpenArchiver" xmlUrl="https://github.com/LogicLabs-OU/OpenArchiver/releases.atom" />
     <outline text="opengist" title="opengist" type="rss" htmlUrl="https://github.com/thomiceli/opengist" xmlUrl="https://github.com/thomiceli/opengist/releases.atom" />

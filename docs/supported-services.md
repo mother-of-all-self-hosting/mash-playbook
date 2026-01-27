@@ -52,6 +52,7 @@ Below is an exhaustive list of the free and open-source software for self-hostin
 | [Cap Standalone](https://capjs.js.org/guide/standalone/) | Backend of Cap, a POW Captcha | [Link](services/cap.md) |
 | [Changedetection.io](https://github.com/dgtlmoon/changedetection.io) | A simple website change detection and restock monitoring solution | [Link](services/changedetection.md) |
 | [ClickHouse](https://clickhouse.com/) | A column-oriented DBMS for online analytical processing (OLAP) that allows users to generate analytical reports using SQL queries in real-time | [Link](services/clickhouse.md) |
+| [CodiMD](https://github.com/hackmdio/codimd) | Realtime collaborative markdown notes on all platforms | [Link](services/codimd.md) |
 | [Collabora Online Development Edition](https://www.collaboraonline.com/code/) | Development version of Collabora Online, which enables you to edit office documents with integrations such as Nextcloud | [Link](services/code.md) |
 | [Converse](https://conversejs.org/) | Browser based XMPP chat client | [Link](services/converse.md) |
 | [ConvertX](https://github.com/C4illin/ConvertX) | Online file converter for pictures, video, images, document files, etc. | [Link](services/convertx.md) |
@@ -76,6 +77,7 @@ Below is an exhaustive list of the free and open-source software for self-hostin
 | [Excalidraw collaboration server](https://github.com/excalidraw/excalidraw-room) | Collaboration server for Excalidraw instance | [Link](services/excalidraw-room.md) |
 | [exim-relay](https://github.com/devture/exim-relay) | A lightweight [Exim](https://www.exim.org/) SMTP mail relay server | [Link](services/exim-relay.md) |
 | [farmOS](https://farmos.org/) | Farm management, planning, and record keeping | [Link](services/farmos.md) |
+| [Fider](https://github.com/getfider/fider) | Feedback portal for feature requests and suggestions | [Link](services/fider.md) |
 | [File Browser](https://filebrowser.org/) | File managing interface within a specified directory, which can be used to upload, delete, preview and edit your files | [Link](services/filebrowser.md) |
 | [FileBrowser Quantum](https://filebrowserquantum.com/) | Web-based file manager | [Link](services/filebrowser-quantum.md) |
 | [Firezone](https://www.firezone.dev/) | A VPN server (based on [WireGuard](https://www.wireguard.com/)) with a Web UI | [Link](services/firezone.md) |
@@ -139,6 +141,7 @@ Below is an exhaustive list of the free and open-source software for self-hostin
 | [Miniflux](https://miniflux.app/) | Minimalist and opinionated feed reader | [Link](services/miniflux.md) |
 | [Misskey](https://misskey-hub.net/en/) | Decentralized microblogging platform based on the ActivityPub protocol | [Link](services/misskey.md) |
 | [Mobilizon](https://joinmobilizon.org/en/) | An ActivityPub/Fediverse server to create and share events | [Link](services/mobilizon.md) |
+| [Moner.ooo](https://github.com/nice42q/moner.ooo) | Monero / fiat exchange rates in various currencies | [Link](services/monerooo.md) |
 | [Moodist](https://moodist.mvze.net/) | Web application to mix and play ambient soundtracks | [Link](services/moodist.md) |
 | [Mosquitto](https://mosquitto.org/) | A MQTT broker | [Link](services/mosquitto.md) |
 | [Mozhi](https://codeberg.org/aryak/mozhi) | Frontend for translation engines | [Link](services/mozhi.md) |
@@ -208,6 +211,7 @@ Below is an exhaustive list of the free and open-source software for self-hostin
 | [Soft Serve](https://github.com/charmbracelet/soft-serve) | A tasty [Git](https://git-scm.com/) server for the command line | [Link](services/soft-serve.md) |
 | [SolidInvoice](https://github.com/SolidInvoice/SolidInvoice) | Web-based software for invoicing | [Link](services/solidinvoice.md) |
 | [Sonarr](https://sonarr.tv/) | A smart PVR for newsgroup and BitTorrent users | [Link](services/sonarr.md) |
+| [soundcloak](https://git.maid.zone/stuff/soundcloak) | Browse SoundCloud without exposing your IP address, browsing habits, and other browser fingerprinting data to the website | [Link](services/soundcloak.md) |
 | [Standalone Snowflake proxy](https://community.torproject.org/relay/setup/snowflake/standalone/) | Help users connect to the [Tor](https://torproject.org/) network in places where Tor is blocked | [Link](services/snowflake.md) |
 | [Statusnook](https://statusnook.com/) | Status page deployment service | [Link](services/statusnook.md) |
 | [Stirling PDF](https://github.com/Stirling-Tools/Stirling-PDF) | A PDF converter | [Link](services/stirling-pdf.md) |
