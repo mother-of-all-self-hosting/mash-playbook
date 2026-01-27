@@ -717,7 +717,7 @@ convertx_enabled: true
 convertx_hostname: "convert.{{ domain }}"
 convertx_environment_variables_webroot: /
 convertx_container_labels_additional_labels_custom:
-  - "traefik.http.routers.{{ convertx_identifier }}.middlewares={{ (['authentik-forwardauth@file'] + ([convertx_identifier + '-slashless-redirect', convertx_identifier + '-strip-prefix'] if convertx_container_labels_traefik_path_prefix != '/' else []) + ([convertx_identifier + '-add-request-headers'] if convertx_container_labels_traefik_additional_request_headers.keys() | length > 0 else []) + ([convertx_identifier + '-add-response-headers'] if convertx_container_labels_traefik_additional_response_headers.keys() | length > 0 else [])) | unique | join(',') }}"
+  - "traefik.http.routers.mash-convertx.middlewares={{ (['authentik-forwardauth@file'] + (['mash-convertx-slashless-redirect', 'mash-convertx-strip-prefix'] if convertx_container_labels_traefik_path_prefix != '/' else []) + (['mash-convertx-add-request-headers'] if ((convertx_container_labels_traefik_additional_request_headers | default({}) | length) > 0) else []) + (['mash-convertx-add-response-headers'] if ((convertx_container_labels_traefik_additional_response_headers | default({}) | length) > 0) else [])) | unique | join(',') }}"
 
 ########################################################################
 #                                                                      #
