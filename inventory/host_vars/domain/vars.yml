@@ -716,6 +716,7 @@ convertx_enabled: true
 
 convertx_hostname: "convert.{{ domain }}"
 convertx_environment_variables_webroot: /
+convertx_environment_variables_account_registration: true
 convertx_container_labels_additional_labels_custom:
   - "traefik.http.routers.mash-convertx.middlewares={{ (['authentik-forwardauth@file'] + (['mash-convertx-slashless-redirect', 'mash-convertx-strip-prefix'] if convertx_container_labels_traefik_path_prefix != '/' else []) + (['mash-convertx-add-request-headers'] if ((convertx_container_labels_traefik_additional_request_headers | default({}) | length) > 0) else []) + (['mash-convertx-add-response-headers'] if ((convertx_container_labels_traefik_additional_response_headers | default({}) | length) > 0) else [])) | unique | join(',') }}"
 
