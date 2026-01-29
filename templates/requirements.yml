@@ -533,7 +533,7 @@
   name: oauth2_proxy
   activation_prefix: oauth2_proxy_
 - src: git+https://codeberg.org/daguwar/ansible-role-omnitools.git
-  version: c1e4214bf4a8acdca9259f9c4321f6cd91d401f3
+  version: v1.0
   name: omnitools
   activation_prefix: omnitools_
 - src: git+https://seed.radicle.garden/znw3BPXrSbPWcARpYbk3yGy4iGQ4.git
