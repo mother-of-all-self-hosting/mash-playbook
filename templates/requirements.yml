@@ -105,7 +105,7 @@
   name: cleanup
   activation_prefix: system_cleanup_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-clickhouse.git
-  version: v25.12.4.35-0
+  version: v26-0
   name: clickhouse
   activation_prefix: clickhouse_
 - src: git+https://iris.radicle.xyz/zp12kTQqmgqnFpUU6gPyVq19HNMD.git
