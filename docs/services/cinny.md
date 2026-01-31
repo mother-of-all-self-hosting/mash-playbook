@@ -76,3 +76,7 @@ To get started, open the URL with a web browser, and log in to your homeserver w
 ## Troubleshooting
 
 See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3P5L5p1gs7TGCpmhaXKUYmTJNKpi/tree/docs/configuring-cinny.md#troubleshooting) on the role's documentation for details.
+
+## Related services
+
+- [Matrix Rooms Search API](mrs.md) — Fully-featured, standalone, Matrix rooms search service
