@@ -189,6 +189,10 @@
     - role: galaxy/changedetection
     # /role-specific:changedetection
 
+    # role-specific:cinny
+    - role: galaxy/cinny
+    # /role-specific:cinny
+
     # role-specific:clickhouse
     - role: galaxy/clickhouse
     # /role-specific:clickhouse
