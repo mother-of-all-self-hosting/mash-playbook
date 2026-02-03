@@ -78,11 +78,11 @@ oauth2_proxy_environment_variable_code_challenge_method: S256
 oauth2_proxy_environment_variable_cookie_secret: ''
 
 oauth2_proxy_container_labels_additional_labels_custom:
-  traefik.http.routers.{{ oauth2_proxy_identifier }}-hubsite.rule=Host(`{{ hubsite_hostname }}`) && PathPrefix(`/oauth2/`)
-  traefik.http.routers.{{ oauth2_proxy_identifier }}-hubsite.service={{ oauth2_proxy_identifier }}
-  traefik.http.routers.{{ oauth2_proxy_identifier }}-hubsite.entrypoints={{ oauth2_proxy_container_labels_traefik_entrypoints }}
-  traefik.http.routers.{{ oauth2_proxy_identifier }}-hubsite.tls={{ oauth2_proxy_container_labels_traefik_tls }}
-  traefik.http.routers.{{ oauth2_proxy_identifier }}-hubsite.tls.certResolver={{ oauth2_proxy_container_labels_traefik_tls_certResolver }}
+  - traefik.http.routers.{{ oauth2_proxy_identifier }}-hubsite.rule=Host(`{{ hubsite_hostname }}`) && PathPrefix(`/oauth2/`)
+  - traefik.http.routers.{{ oauth2_proxy_identifier }}-hubsite.service={{ oauth2_proxy_identifier }}
+  - traefik.http.routers.{{ oauth2_proxy_identifier }}-hubsite.entrypoints={{ oauth2_proxy_container_labels_traefik_entrypoints }}
+  - traefik.http.routers.{{ oauth2_proxy_identifier }}-hubsite.tls={{ oauth2_proxy_container_labels_traefik_tls }}
+  - traefik.http.routers.{{ oauth2_proxy_identifier }}-hubsite.tls.certResolver={{ oauth2_proxy_container_labels_traefik_tls_certResolver }}
 
 ########################################################################
 #                                                                      #
