@@ -74,7 +74,7 @@ oauth2_proxy_environment_variable_redirect_url: "https://{{ hubsite_hostname }}/
 
 oauth2_proxy_environment_variable_code_challenge_method: S256
 
-# Generate this with: `python -c 'import os,base64; print(base64.urlsafe_b64encode(os.urandom(32)).decode())'`
+# Generate this with: `python3 -c 'import os,base64; print(base64.urlsafe_b64encode(os.urandom(32)).decode())'`
 oauth2_proxy_environment_variable_cookie_secret: ''
 
 oauth2_proxy_container_labels_additional_labels_custom:
