@@ -545,7 +545,7 @@
   name: ntfy
   activation_prefix: ntfy_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-oauth2-proxy.git
-  version: v7.13.0-1
+  version: v7.14.2-0
   name: oauth2_proxy
   activation_prefix: oauth2_proxy_
 - src: git+https://seed.radicle.garden/znw3BPXrSbPWcARpYbk3yGy4iGQ4.git
