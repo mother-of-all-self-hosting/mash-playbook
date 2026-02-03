@@ -15,7 +15,7 @@ OAuth2-Proxy can be used in 2 different modes:
 
 1. Capturing incoming traffic for the app (e.g. https://app.example.com/), and then proxying it to the application container if the user is authenticated
 
-2. Letting the application itself capture incoming traffic for itself (on https://app.example.com/) and use Traefik's [ForwardAuth](https://doc.traefik.io/traefik/middlewares/http/forwardauth/) middleware to authenticate the request via OAuth2-Proxy. In this case, OAuth2-Proxy will only handle the `/oauth2/` prefix on the application domain (e.g. https://app.example.com/oauth/).
+2. Letting the application itself capture incoming traffic for itself (on https://app.example.com/) and use Traefik's [ForwardAuth](https://doc.traefik.io/traefik/middlewares/http/forwardauth/) middleware to authenticate the request via OAuth2-Proxy. In this case, OAuth2-Proxy will only handle the `/oauth2/` prefix on the application domain (e.g. https://app.example.com/oauth2/).
 
 The 1st one is a bit invasive, as it requires moving all custom reverse-proxying configuration for the handled domain to the OAuth2-Proxy side.
 
@@ -91,7 +91,7 @@ oauth2_proxy_container_labels_additional_labels_custom:
 ########################################################################
 ```
 
-After adding this to your `vars.yml` file, [re-run the playbook](../installing.md): `just install-service oauth-2proxy`.
+After adding this to your `vars.yml` file, [re-run the playbook](../installing.md): `just install-service oauth2-proxy`.
 
 This merely configures OAuth2-Proxy to handle the `/oauth2/` paths for Hubsite's domain.
 
