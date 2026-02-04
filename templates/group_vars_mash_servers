@@ -214,6 +214,11 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
     {{ ({'name': (changedetection_playwright_driver_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'changedetection']} if changedetection_playwright_driver_enabled else omit) }}
   # /role-specific:changedetection
 
+  # role-specific:cinny
+  - |-
+    {{ ({'name': (cinny_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'cinny']} if cinny_enabled else omit) }}
+  # /role-specific:cinny
+
   # role-specific:clickhouse
   - |-
     {{ ({'name': (clickhouse_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'clickhouse']} if clickhouse_enabled else omit) }}
@@ -3635,6 +3640,44 @@ changedetection_container_labels_traefik_tls_certResolver: "{{ traefik_certResol
 #                                                                      #
 ########################################################################
 # /role-specific:changedetection
+
+
+
+# role-specific:cinny
+########################################################################
+#                                                                      #
+# cinny                                                                #
+#                                                                      #
+########################################################################
+
+cinny_enabled: false
+
+cinny_identifier: "{{ mash_playbook_service_identifier_prefix }}cinny"
+
+cinny_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}cinny"
+
+cinny_uid: "{{ mash_playbook_uid }}"
+cinny_gid: "{{ mash_playbook_gid }}"
+
+cinny_container_additional_networks_auto: |
+  {{
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+  }}
+
+cinny_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+cinny_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+
+# role-specific:traefik
+cinny_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
+cinny_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
+# /role-specific:traefik
+
+########################################################################
+#                                                                      #
+# /cinny                                                               #
+#                                                                      #
+########################################################################
+# /role-specific:cinny
 
 
 
