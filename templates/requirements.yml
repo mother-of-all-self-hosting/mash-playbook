@@ -85,7 +85,7 @@
   name: bitmagnet
   activation_prefix: bitmagnet_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-browserless.git
-  version: v2.38.4-0
+  version: v2.39.0-0
   name: browserless
   activation_prefix: browserless_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-calibre-web.git
