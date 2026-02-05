@@ -146,20 +146,16 @@ Take this command and:
 
 Instead of following the manual back-and-forth flow as specified in [Connecting Linux devices with manual confirmation](#connecting-linux-devices-with-manual-confirmation), you can also use a preshared key to connect your device.
 
-**First**, find the numeric user ID of the user you'd like to use:
+**First**, generate a preshared key:
 
 ```sh
-# You may remove the `--name` filter to get a list of all users and their IDs.
-/mash/headscale/bin/headscale users list --name=john.doe
+/mash/headscale/bin/headscale preauthkeys create
 ```
 
-**Then**, generate a preshared key:
+> [!TIP]
+> You may optionally associate the key with a user by passing `--user=NUMERIC_USER_ID` (e.g. `--user=1`). To find a user's numeric ID, run: `/mash/headscale/bin/headscale users list --name=john.doe`
 
-```sh
-/mash/headscale/bin/headscale preauthkeys create --user=NUMERIC_ID_OF_JOHN_DOE
-```
-
-**Finally**, you can connect your device with the preshared key:
+**Then**, connect your device with the preshared key:
 
 ```sh
 tailscale up --login-server=https://headscale.example.com --auth-key=...
