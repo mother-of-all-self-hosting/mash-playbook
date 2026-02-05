@@ -62,6 +62,9 @@ headscale_configuration_extension:
       method: S256
 ```
 
+> [!NOTE]
+> Since Headscale v0.28.0, the `oidc.email_verified_required` option defaults to `true`, meaning only verified email addresses can authenticate via OIDC. If your Identity Provider does not send the `email_verified: true` claim, you may need to add `email_verified_required: false` to the `oidc` section above.
+
 You can find more details about configuring OIDC by referring to the documentation at both [Headscale](https://headscale.net/stable/ref/oidc/?h=oidc) and [authentik](https://integrations.goauthentik.io/networking/headscale/). Note that Headscale's documentation doesn't explicitly cover authentik.
 
 ### Extending the configuration
