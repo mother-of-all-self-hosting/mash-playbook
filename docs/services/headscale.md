@@ -47,23 +47,23 @@ As Headscale's built-in authentication is somewhat manual, setting up OIDC can p
 
 For example, you can enable SSO with authentik via OIDC by following the steps below.
 
-Here, we are using Ansible Vault to supply both our `domain` as well as `client_id` and `client_secret`. Add the following configuration to your `vars.yml` file. This assumes that you picked the slug `headscale` in authentik when adding Headscale as an application. If not, replace `headscale` in `issuer: "https://authentik.{{ domain }}/application/o/headscale/"`.
+Here, we are using Ansible Vault to supply both our `domain` as well as `client_id` and `client_secret`. Add the following configuration to your `vars.yml` file. This assumes that you picked the slug `headscale` in authentik when adding Headscale as an application. If not, replace `headscale` in the `headscale_config_oidc_issuer` value.
 
 ```yaml
-headscale_configuration_extension:
-  oidc:
-    only_start_if_oidc_is_available: true
-    issuer: "https://authentik.{{ domain }}/application/o/headscale/"
-    client_id: "{{ vault_headscale_client_id }}"
-    client_secret: "{{ vault_headscale_client_secret }}"
-    scope: ["openid", "profile", "email"]
-    pkce:
-      enabled: true
-      method: S256
+headscale_config_oidc_enabled: true
+headscale_config_oidc_issuer: "https://authentik.{{ domain }}/application/o/headscale/"
+headscale_config_oidc_client_id: "{{ vault_headscale_client_id }}"
+headscale_config_oidc_client_secret: "{{ vault_headscale_client_secret }}"
+headscale_config_oidc_pkce_enabled: true
+
+# To add custom scopes on top of the defaults (openid, profile, email),
+# use headscale_config_oidc_scope_custom. For example:
+# headscale_config_oidc_scope_custom:
+#   - groups
 ```
 
 > [!NOTE]
-> Since Headscale v0.28.0, the `oidc.email_verified_required` option defaults to `true`, meaning only verified email addresses can authenticate via OIDC. If your Identity Provider does not send the `email_verified: true` claim, you may need to add `email_verified_required: false` to the `oidc` section above.
+> The `headscale_config_oidc_email_verified_required` variable defaults to `true`, meaning only verified email addresses can authenticate via OIDC. If your Identity Provider does not send the `email_verified: true` claim, you may need to set `headscale_config_oidc_email_verified_required: false`.
 
 You can find more details about configuring OIDC by referring to the documentation at both [Headscale](https://headscale.net/stable/ref/oidc/?h=oidc) and [authentik](https://integrations.goauthentik.io/networking/headscale/). Note that Headscale's documentation doesn't explicitly cover authentik.
 
