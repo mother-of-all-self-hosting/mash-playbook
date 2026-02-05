@@ -110,6 +110,8 @@ john.doe \
 
 💡 You can [list the existing users](https://headscale.net/stable/usage/getting-started/#list-existing-users) with a command like this: `/mash/headscale/bin/headscale users list`
 
+💡 Creating users is not strictly required. You can also connect devices using [pre-auth keys](#connecting-linux-devices-with-a-preshared-key) without creating users first.
+
 ### Connecting devices
 
 Here are some quick guides for the various platforms:
