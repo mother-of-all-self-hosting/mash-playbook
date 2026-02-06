@@ -613,7 +613,7 @@
   name: peertube
   activation_prefix: peertube_
 - src: git+https://seed.radicle.garden/ztixjo2qUzCBLADieR3hKkYEk4eE.git
-  version: v9.11.0-1
+  version: v9.12.0-0
   name: pgadmin
   activation_prefix: pgadmin_
 - src: git+https://seed.radicle.garden/zby9EmMBhyNe8Nj4f66izwrmhk5g.git
