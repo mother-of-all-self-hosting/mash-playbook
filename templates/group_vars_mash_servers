@@ -269,6 +269,11 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
     {{ ({'name': (databasus_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'databasus']} if databasus_enabled else omit) }}
   # /role-specific:databasus
 
+  # role-specific:ddclient
+  - |-
+    {{ ({'name': (ddclient_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'ddclient']} if ddclient_enabled else omit) }}
+  # /role-specific:ddclient
+
   # role-specific:docker_registry
   - |-
     {{ ({'name': (docker_registry_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'docker-registry']} if docker_registry_enabled else omit) }}
@@ -4079,6 +4084,31 @@ databasus_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_pr
 #                                                                      #
 ########################################################################
 # /role-specific:databasus
+
+
+
+# role-specific:ddclient
+########################################################################
+#                                                                      #
+# ddclient                                                             #
+#                                                                      #
+########################################################################
+
+ddclient_enabled: false
+
+ddclient_identifier: "{{ mash_playbook_service_identifier_prefix }}ddclient"
+
+ddclient_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}ddclient"
+
+ddclient_uid: "{{ mash_playbook_uid }}"
+ddclient_gid: "{{ mash_playbook_gid }}"
+
+########################################################################
+#                                                                      #
+# /ddclient                                                            #
+#                                                                      #
+########################################################################
+# /role-specific:ddclient
 
 
 

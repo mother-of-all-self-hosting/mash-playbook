@@ -229,6 +229,10 @@
     - role: galaxy/databasus
     # /role-specific:databasus
 
+    # role-specific:ddclient
+    - role: galaxy/ddclient
+    # /role-specific:ddclient
+
     # role-specific:docker_registry
     - role: galaxy/docker_registry
     # /role-specific:docker_registry
