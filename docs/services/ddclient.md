@@ -3,6 +3,7 @@ SPDX-FileCopyrightText: 2020 Aaron Raimist
 SPDX-FileCopyrightText: 2020 Chris van Dijk
 SPDX-FileCopyrightText: 2020 Dominik Zajac
 SPDX-FileCopyrightText: 2020 Mickaël Cornière
+SPDX-FileCopyrightText: 2020 Scott Crossen
 SPDX-FileCopyrightText: 2020-2024 MDAD project contributors
 SPDX-FileCopyrightText: 2020-2024 Slavi Pantaleev
 SPDX-FileCopyrightText: 2022 François Darveau
@@ -20,21 +21,15 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
 # ddclient
 
-The playbook can install and configure [ddclient](https://docs.ddclient.io) for you.
+The playbook can install and configure [ddclient](https://ddclient.net/) for you.
 
-ddclient allows to deploy headless browsers in Docker.
+ddclient is a Perl client to update dynamic DNS entries for accounts on a wide range of dynamic DNS services.
 
-See the project's [documentation](https://docs.ddclient.io/enterprise/quick-start) to learn what ddclient does and why it might be useful to you.
+See the project's [documentation](https://ddclient.net/) to learn what ddclient does and why it might be useful to you.
 
 For details about configuring the [Ansible role for ddclient](https://github.com/mother-of-all-self-hosting/ansible-role-ddclient), you can check them via:
 - 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-ddclient/blob/main/docs/configuring-ddclient.md) online
 - 📁 `roles/galaxy/ddclient/docs/configuring-ddclient.md` locally, if you have [fetched the Ansible roles](../installing.md)
-
-## Dependencies
-
-This service requires the following other services:
-
-- (optional) [Traefik](traefik.md) — a reverse-proxy server for exposing ddclient publicly
 
 ## Adjusting the playbook configuration
 
@@ -56,22 +51,15 @@ ddclient_enabled: true
 ########################################################################
 ```
 
-### Expose the instance publicly (optional)
+### Add configurations for dynamic DNS provider
 
-By default, the ddclient instance is not exposed externally, as it is mainly intended to be used in the internal network.
+To enable the service it is also required to add configurations for your dynamic DNS provider. See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-ddclient/blob/main/docs/configuring-ddclient.md#add-configurations-for-dynamic-dns-provider) on the role's documentation for details about what to be added. Keep in mind that certain providers may require a different configuration.
 
-To expose it publicly, add the following configuration to your `vars.yml` file (adapt to your needs):
-
-```yaml
-# The hostname at which ddclient is served.
-ddclient_hostname: "ddclient.example.com"
-```
-
-**Note**: hosting ddclient under a subpath (by configuring the `ddclient_path_prefix` variable) does not seem to be possible due to ddclient's technical limitations.
+You might need to specify the endpoint to obtain IP address as well. Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-ddclient/blob/main/docs/configuring-ddclient.md#setting-the-endpoint-to-obtain-ip-address-optional) for more information.
 
 ## Usage
 
-After running the command for installation, ddclient becomes available internally to other services on the same network. If the service is exposed to the internet, it becomes available at the URL specified with `ddclient_hostname`. With the configuration above, the service is hosted at `https://ddclient.example.com`.
+After running the command for installation, ddclient becomes available. Your DNS entry will be automatically updated per seconds specified to `ddclient_daemon_interval` (300 seconds by default).
 
 ## Troubleshooting
 
