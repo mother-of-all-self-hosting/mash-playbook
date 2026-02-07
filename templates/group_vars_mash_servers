@@ -3964,10 +3964,10 @@ cryptpad_enabled: false
 
 cryptpad_identifier: "{{ mash_playbook_service_identifier_prefix }}cryptpad"
 
+cryptpad_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}cryptpad"
+
 cryptpad_uid: "{{ mash_playbook_uid }}"
 cryptpad_gid: "{{ mash_playbook_gid }}"
-
-cryptpad_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}cryptpad"
 
 cryptpad_container_additional_networks: |
   {{
@@ -8046,13 +8046,13 @@ labelstudio_identifier: "{{ mash_playbook_service_identifier_prefix }}labelstudi
 
 labelstudio_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}labelstudio"
 
+labelstudio_uid: "{{ mash_playbook_uid }}"
+labelstudio_gid: "{{ mash_playbook_gid }}"
+
 labelstudio_systemd_required_services_list_auto: |
   {{
     ([postgres_identifier ~ '.service'] if postgres_enabled and labelstudio_database_hostname == postgres_identifier else [])
   }}
-
-labelstudio_uid: "{{ mash_playbook_uid }}"
-labelstudio_gid: "{{ mash_playbook_gid }}"
 
 labelstudio_container_additional_networks_auto: |
   {{
