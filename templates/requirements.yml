@@ -100,7 +100,7 @@
   version: v0.52.8-0
   name: changedetection
   activation_prefix: changedetection_
-- src: git+https://iris.radicle.xyz/z3P5L5p1gs7TGCpmhaXKUYmTJNKpi.git
+- src: git+https://github.com/mother-of-all-self-hosting/ansible-role-cinny.git
   version: v4.10.2-1
   name: cinny
   activation_prefix: cinny_
