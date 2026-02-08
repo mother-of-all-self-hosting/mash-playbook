@@ -51,6 +51,7 @@ Below is an exhaustive list of the free and open-source software for self-hostin
 | [Calibre-Web](https://github.com/janeczku/calibre-web) | Web app for browsing, reading and downloading eBooks stored in a [Calibre](https://calibre-ebook.com/) database | [Link](services/calibre-web.md) |
 | [Cap Standalone](https://capjs.js.org/guide/standalone/) | Backend of Cap, a POW Captcha | [Link](services/cap.md) |
 | [Changedetection.io](https://github.com/dgtlmoon/changedetection.io) | A simple website change detection and restock monitoring solution | [Link](services/changedetection.md) |
+| [Cinny](https://github.com/ajbura/cinny) | Elegant web client for [Matrix](https://matrix.org/) | [Link](services/cinny.md) |
 | [ClickHouse](https://clickhouse.com/) | A column-oriented DBMS for online analytical processing (OLAP) that allows users to generate analytical reports using SQL queries in real-time | [Link](services/clickhouse.md) |
 | [CodiMD](https://github.com/hackmdio/codimd) | Realtime collaborative markdown notes on all platforms | [Link](services/codimd.md) |
 | [Collabora Online Development Edition](https://www.collaboraonline.com/code/) | Development version of Collabora Online, which enables you to edit office documents with integrations such as Nextcloud | [Link](services/code.md) |
@@ -60,10 +61,11 @@ Below is an exhaustive list of the free and open-source software for self-hostin
 | [CryptPad](https://cryptpad.org/) | End-to-end encrypted collaborative office suite | [Link](services/cryptpad.md) |
 | [CyberChef](https://github.com/gchq/CyberChef) | Intuitive web application for encryption, encoding, compression, and data analysis within a browser | [Link](services/cyberchef.md) |
 | [Databasus](https://databasus.com/) | PostgreSQL, MySQL, MariaDB, and MongoDB database backup | [Link](services/databasus.md) |
+| [ddclient](https://ddclient.net/) | Dynamic DNS entries updater | [Link](services/ddclient.md) |
 | [Docker](https://www.docker.com/) | Containerized applications deployment | [Link](services/docker.md) |
 | [Docker Registry](https://docs.docker.com/registry/) | A container image distribution registry | [Link](services/docker-registry.md) |
 | [Docker Registry Browser](https://github.com/klausmeyer/docker-registry-browser) | Web Interface for the Docker Registry HTTP API V2 written in Ruby on Rails | [Link](services/docker-registry-browser.md) |
-| [Docker Registry Proxy](https://github.com/etkecc/docker-registry-proxy) | Pass-through docker registry (distribution) proxy with metadata caching, docker-compatible errors, prometheus metrics, etc. | [Link](services/docker-registry-proxy.md) |
+| [Docker Registry Proxy](https://github.com/etkecc/docker-registry-proxy) | Pass-through Docker registry (distribution) proxy with metadata caching, Docker-compatible errors, Prometheus metrics, etc. | [Link](services/docker-registry-proxy.md) |
 | [Docker Registry Purger](https://github.com/devture/docker-registry-purger) | A small tool used for purging a private Docker Registry's old tags | [Link](services/docker-registry-purger.md) |
 | [Docmost](https://docmost.com/) | Collaborative wiki and documentation software | [Link](services/docmost.md) |
 | [DokuWiki](https://dokuwiki.org/) | A lightweight, file-based wiki engine with intuitive syntax and no database requirements | [Link](services/dokuwiki.md) |
@@ -132,7 +134,7 @@ Below is an exhaustive list of the free and open-source software for self-hostin
 | [Mailpit](https://mailpit.axllent.org/) | Email testing tool & API | [Link](services/mailpit.md) |
 | [MariaDB](https://mariadb.org/) | A powerful object-relational database system | [Link](services/mariadb.md) |
 | [Matomo](https://matomo.org/) | Web analytics platform | [Link](services/matomo.md) |
-| [Matrix Rooms Search API](https://github.com/etkecc/mrs) | A fully-featured, standalone, matrix rooms search service | [Link](services/mrs.md) |
+| [Matrix Rooms Search API](https://github.com/etkecc/mrs) | A fully-featured, standalone, Matrix rooms search service | [Link](services/mrs.md) |
 | [Matterbridge](https://github.com/42wim/matterbridge) | Bridges Messenger Chatrooms | [Link](services/matterbridge.md) |
 | [MediaWiki](https://www.mediawiki.org) | Popular wiki software | [Link](services/mediawiki.md) |
 | [Meilisearch](https://www.meilisearch.com) | Typo-tolerant fulltext search engine with a RESTful search API | [Link](services/meilisearch.md) |
