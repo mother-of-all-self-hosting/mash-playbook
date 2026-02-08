@@ -61,6 +61,7 @@ Below is an exhaustive list of the free and open-source software for self-hostin
 | [CryptPad](https://cryptpad.org/) | End-to-end encrypted collaborative office suite | [Link](services/cryptpad.md) |
 | [CyberChef](https://github.com/gchq/CyberChef) | Intuitive web application for encryption, encoding, compression, and data analysis within a browser | [Link](services/cyberchef.md) |
 | [Databasus](https://databasus.com/) | PostgreSQL, MySQL, MariaDB, and MongoDB database backup | [Link](services/databasus.md) |
+| [ddclient](https://ddclient.net/) | Dynamic DNS entries updater | [Link](services/ddclient.md) |
 | [Docker](https://www.docker.com/) | Containerized applications deployment | [Link](services/docker.md) |
 | [Docker Registry](https://docs.docker.com/registry/) | A container image distribution registry | [Link](services/docker-registry.md) |
 | [Docker Registry Browser](https://github.com/klausmeyer/docker-registry-browser) | Web Interface for the Docker Registry HTTP API V2 written in Ruby on Rails | [Link](services/docker-registry-browser.md) |
