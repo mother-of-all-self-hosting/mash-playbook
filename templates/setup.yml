@@ -189,6 +189,10 @@
     - role: galaxy/changedetection
     # /role-specific:changedetection
 
+    # role-specific:cinny
+    - role: galaxy/cinny
+    # /role-specific:cinny
+
     # role-specific:clickhouse
     - role: galaxy/clickhouse
     # /role-specific:clickhouse
@@ -224,6 +228,10 @@
     # role-specific:databasus
     - role: galaxy/databasus
     # /role-specific:databasus
+
+    # role-specific:ddclient
+    - role: galaxy/ddclient
+    # /role-specific:ddclient
 
     # role-specific:docker_registry
     - role: galaxy/docker_registry
