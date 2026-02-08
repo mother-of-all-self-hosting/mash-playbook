@@ -15,44 +15,70 @@ Default assumption:
 ## Modes
 ### Operator mode (default)
 - Goal: maintain a local deployment.
-- Editable paths:
-- `inventory/**`
-- Everything else is read-only unless explicitly requested by the user.
+- Default editable paths are defined in `Operator-owned local paths`.
 
 ### Contributor mode (explicit opt-in)
 - Goal: make upstream-facing playbook/docs/code changes.
 - Upstream-tracked files may be edited, but branch and safety rules below apply.
 
+### Contributor mode activation (explicit)
+Contributor mode is enabled only when the user:
+- explicitly asks for contributor mode, PR work, or upstream-facing changes
+- or explicitly requests edits to upstream-tracked files and confirms upstream intent
+
+If the user asks to edit a non-operator-owned path without this intent:
+- ask one clarification question
+- do not proceed with upstream-tracked edits until clarified
+
+## Operator-owned local paths (default editable without extra permission)
+Operator mode may edit these paths by default:
+- `inventory/**`
+- `docs/mash/**` (local operator documentation)
+- `docs/ai/**` (agent workflow docs)
+- `.codex/**` (Codex config/skills, if present)
+- `plans/**` (execution plans, if used)
+- `AGENTS.md`
+- Operator mode may create missing files/directories under operator-owned local paths as needed.
+
+All other paths are read-only in operator mode unless the user explicitly requests edits or opts into contributor mode.
+
 ## Planning protocol
-- Use a structured plan for:
-- multi-file or multi-repo changes
-- any managed-node-impacting change
-- any potentially destructive or retention-risk change
-- any request with multiple deliverables
-- Plan structure must explicitly separate:
-- `Project goal` (final desired end state)
-- `Milestones` (major outcomes required for the goal)
-- `Tasks` (concrete units within each milestone)
-- `Subtasks` (smallest actionable steps as needed)
-- For each milestone, define:
-- `Definition of done`
-- `Validation` command(s) or check(s)
-- key `Risks` / `Assumptions`
-- Execution discipline:
-- keep exactly one task/subtask `in_progress` at a time
-- update statuses after each completed task/subtask
-- if scope changes, publish a revised plan before continuing
-- Completion reporting must state:
-- whether the `Project goal` is complete
-- which milestones are complete vs pending
-- remaining tasks (if any)
-- Do not execute destructive or broad remote-impact actions before prerequisite planning milestones are marked complete.
+- Workflow contract: gather -> plan -> apply -> verify.
+- Use structured planning only when required by `Planning threshold`.
+- Planning templates and reporting format: `docs/ai/agent_workflows.md`.
+- Do not execute destructive or broad remote-impact actions before prerequisite planning items are complete.
+
+## Planning threshold
+Structured plan REQUIRED for:
+- managed-node-impacting actions (including proposed execution)
+- destructive/disruptive/retention-risk changes
+- edits outside operator-owned local paths
+- changes touching multiple subsystems/services
+- multi-deliverable requests
+
+Mini-plan (brief bullets) is sufficient for:
+- read-only analysis
+- edits confined to operator-owned local paths
+- small local edits with no managed-node impact or retention risk
 
 ## Upstream ownership model
 - MUST NOT use `origin` to decide whether a file is upstream-owned.
 - MUST use the `upstream` remote as the source of truth.
 - `upstream-tracked file` means a path that exists in `upstream/<default-branch>`.
 - If `upstream` is unavailable, treat files outside operator-owned paths as upstream-tracked.
+
+## Upstream detection procedure (deterministic, offline-first)
+- Prefer read-only discovery first; ask at most one clarification question only if blocked.
+
+1. Determine upstream default branch (offline):
+- `git symbolic-ref --quiet --short refs/remotes/upstream/HEAD` (derive `<upstream_default_branch>` by stripping `upstream/`)
+2. Check whether a path exists in upstream (offline):
+- `git cat-file -e "upstream/<upstream_default_branch>:<path>"`
+3. If `refs/remotes/upstream/HEAD` is missing:
+- if user confirms network operations, run `git fetch --prune upstream` and retry
+- otherwise treat paths outside operator-owned local paths as upstream-tracked
+4. For new paths:
+- treat new files outside operator-owned local paths as upstream-tracked unless contributor mode is active
 
 ## Branch policy
 - MUST NOT edit upstream-tracked files on the repository primary branch.
@@ -73,6 +99,8 @@ For contributor work that changes playbook wiring, edit source files under `temp
 
 ## Local filesystem impact policy
 - Default writable scope is this repository working tree plus `/tmp` for transient files.
+- `Writable scope` defines where the agent may write at all.
+- `Operator-owned local paths` defines what may be edited by default in operator mode.
 - MUST NOT write outside this repository or `/tmp` without explicit user confirmation in the same turn.
 - MUST NOT modify controller system state unless explicitly requested:
 - shell profiles
@@ -104,75 +132,36 @@ For contributor work that changes playbook wiring, edit source files under `temp
 - rollback command or path
 
 ## Data deletion, retention, and deactivation safety
-- Treat the following as potential data-loss triggers:
-- setting `*_enabled: false`
-- removing a service/component block from `inventory/**`
-- changing identifiers, base paths, database names/users, or storage paths
-- changing host/group targeting in ways that detach services from previous data locations
-- running `setup-all` / `setup-*` after disabling components (can run uninstallation tasks)
-- running cleanup commands on managed hosts (`docker system prune`, volume/network removal, manual data-path deletion)
-- If user intent is temporary deactivation, default to non-destructive stop/start workflows:
-- prefer stop/start commands for the specific service/group
-- do not propose uninstall-oriented apply paths unless user explicitly asks for uninstall behavior
-- MUST NOT run `setup-all` or `setup-*` for temporary deactivation unless the user explicitly confirms uninstall intent in the same turn.
-- Before proposing or executing any potentially destructive apply command:
-- inspect relevant role uninstall tasks and retention-related variables
-- if data-retention behavior is unclear, mark `UNKNOWN` and ask for explicit user decision before proceeding
-- MUST require explicit deletion consent before destructive execution (for example: permanent deletion of `<service>` data is approved).
-- MUST require backup and restore planning before destructive execution:
-- backup target(s): database + service data paths/volumes
-- restore path or command
-- verification steps for backup presence
-- After destructive or potentially destructive operations, verify and report data retention outcome explicitly.
+- Retention guard: Do not run `setup-all`/`setup-*` for temporary deactivation; treat as potentially uninstalling. Only run with explicit uninstall intent plus backup/rollback plan.
+- Treat disable/uninstall toggles, identifier/path changes, and cleanup/prune actions as retention-risky; consult `docs/mash/retention.md`.
+- Any destructive operation requires explicit deletion consent and a backup/rollback plan before execution.
+- If retention behavior is unclear, mark `UNKNOWN` and require explicit user decision before proceeding.
+- Service-specific retention guidance: `docs/mash/retention.md`.
 
 ## Command safety policy
 Safe without extra confirmation:
-- Local read/discovery commands (`rg`, `ls`, `cat`, `git status`, `git diff`, `just --list`)
-- Local lint/syntax checks
+- local read/discovery commands and local lint/syntax checks
 
 MUST require explicit user confirmation in the same turn for:
-- Any remote-impact Ansible run:
-- `ansible-playbook ...` (except pure syntax-check)
-- `just run*`
-- `just install*`
-- `just setup*`
-- `just start*`
-- `just stop*`
-- Update/mutation commands:
-- `just update`
-- `git pull`
-- `just roles`
+- any managed-node `state-changing`, `disruptive`, or `destructive` action
+- any remote-impact `ansible-playbook`/`just` execution (except pure syntax-check)
+- local update/mutation commands that change repository state (`git pull`, role updates)
 
-Before confirmed remote-impact commands, state:
-- target host/group
-- tag/group/service scope
-- expected service impact (start/stop/restart)
+Before confirmed remote-impact commands, state target host/group, scope, and expected service impact.
+- If unsure, treat as managed-node-impacting and do read-only discovery first.
+- Command catalogs and examples: `docs/ai/agent_workflows.md` and `docs/mash/service_enablement.md`.
 
 ## Interactive credentials and execution limits
 - Assume SSH authentication material, Vault password, and become password are user-supplied and unavailable to the agent by default.
-- MUST NOT attempt to bypass credential prompts by creating/storing plaintext password files, modifying SSH/sudo configuration, or weakening security controls.
-- For remote-impact commands that require user-supplied credentials, default to providing exact commands for the user to run instead of agent execution.
-- Before any remote-impact execution attempt, confirm and report credential mode:
-- SSH auth (`ssh-agent` key/passphrase, `--ask-pass`, or non-interactive configured method)
-- Vault unlock (`--ask-vault-pass` or configured `vault_password_file`)
-- Privilege escalation (`-K`/`--ask-become-pass`, passwordless sudo, or equivalent)
-- If any required credential path is interactive and the user has not explicitly asked the agent to execute anyway, do not execute and provide a user-run command block.
-- Suggested command defaults for this workspace:
-- include `--ask-vault-pass -K` for `ansible-playbook` and `just` remote-impact runs unless the user confirms non-interactive alternatives are configured
-- include `--ask-pass` when SSH password authentication (no key) is used
-- If asked for workarounds, offer safe options:
-- user runs commands interactively
-- user configures non-interactive auth and explicitly confirms readiness
+- MUST NOT bypass credential prompts by storing plaintext passwords, modifying SSH/sudo config, or weakening security controls.
+- For credential-interactive remote-impact commands, default to user-run command blocks instead of agent execution.
+- Before remote-impact execution, report credential mode for SSH auth, Vault unlock, and privilege escalation.
+- If required credential flow is interactive and the user has not explicitly asked for agent execution, do not execute.
+- Workarounds: user runs commands interactively, or user configures non-interactive auth and confirms readiness.
 
 ## Command suggestion safety
-- Even when not executing commands, annotate suggested command blocks with:
-- `Where` (controller vs managed node)
-- `Impact` (`read-only` / `state-changing` / `disruptive` / `destructive`)
-- `Data retention` (`keep` / `delete` / `unknown`)
-- `Disruption` (yes/no and expected scope)
-- `Verify` (how to confirm success)
-- `Rollback` (how to revert)
-- If commands are only suggestions and not executed, state that explicitly.
+- For suggested (non-executed) commands, include impact, data-retention expectation, verification, and rollback notes.
+- Detailed annotation template: `docs/ai/agent_workflows.md`.
 
 ## Evidence rule
 - MUST NOT guess variable names, tags, paths, identifiers, or service names.
@@ -182,6 +171,7 @@ Before confirmed remote-impact commands, state:
 ## Secrets handling
 Treat these as sensitive:
 - `inventory/host_vars/**`
+- `group_vars/**` (and `inventory/group_vars/**`, if present)
 - `inventory/hosts`
 - vault files and secret-bearing variables
 
@@ -189,10 +179,16 @@ Rules:
 - MUST NOT print raw secrets in output by default.
 - Redact tokens/passwords/keys in summaries and diffs unless user explicitly requests raw values.
 
+### Secret-safe output policy
+For secret-bearing files:
+- default output must be summary plus `git diff --stat`
+- MUST NOT print inline diff hunks by default
+- if the user requests details, redact values as `<REDACTED>` unless the user explicitly requests raw values
+
 ## Validation and linting
 - Always run at least one relevant local validation command before concluding work.
 - Primary lint command for this repository: `bash ./bin/lint-playbook.sh` (run from repository root).
-- If the script is unavailable, fall back to the most specific feasible check (for example `just lint`, or `ansible-playbook ... --syntax-check` when appropriate).
+- If unavailable, use the most specific feasible fallback (`just lint` or `ansible-playbook ... --syntax-check`).
 - If validation cannot be run, say so explicitly.
 
 ## Audit trail and commits
@@ -207,3 +203,10 @@ Rules:
 If multiple related repos are present in the workspace:
 - confirm target repo before edits or remote-impact commands.
 - do not perform cross-repo edits unless explicitly requested.
+
+## Pointers (may be created as needed)
+- `docs/mash/overview.md`
+- `docs/mash/service_enablement.md`
+- `docs/mash/authentik_patterns.md`
+- `docs/mash/retention.md`
+- `docs/ai/agent_workflows.md`
