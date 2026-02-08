@@ -515,7 +515,7 @@ hubsite_subtitle: "These wonderful services!"
 #                                                                      #
 ########################################################################
 
-stirling_pdf_enabled: true
+stirling_pdf_enabled: false
 
 stirling_pdf_hostname: "pdf.{{ domain }}"
 
@@ -529,6 +529,22 @@ stirling_pdf_install_calibre: false
 ########################################################################
 #                                                                      #
 # /stirling-pdf                                                        #
+#                                                                      #
+########################################################################
+
+########################################################################
+#                                                                      #
+# bentopdf                                                             #
+#                                                                      #
+########################################################################
+
+bentopdf_enabled: true
+
+bentopdf_hostname: "pdf.{{ domain }}"
+
+########################################################################
+#                                                                      #
+# /bentopdf                                                            #
 #                                                                      #
 ########################################################################
 
@@ -850,5 +866,57 @@ codimd_hostname: "codimd.{{ domain }}"
 ########################################################################
 #                                                                      #
 # /codimd                                                              #
+#                                                                      #
+########################################################################
+
+########################################################################
+#                                                                      #
+# cyberchef                                                            #
+#                                                                      #
+########################################################################
+
+cyberchef_enabled: true
+
+cyberchef_hostname: "cyberchef.{{ domain }}"
+
+########################################################################
+#                                                                      #
+# /cyberchef                                                           #
+#                                                                      #
+########################################################################
+
+########################################################################
+#                                                                      #
+# immich                                                               #
+#                                                                      #
+########################################################################
+
+immich_enabled: true
+
+immich_hostname: "immich.{{ domain }}"
+
+# Point to dedicated Immich dependencies host (`*-immich-deps`)
+immich_redis_hostname: mash-immich-valkey
+
+# Make Immich/Server start after dedicated Valkey/Postgres services
+immich_server_systemd_required_services_list_custom:
+  - "mash-immich-valkey.service"
+  - "mash-immich-postgres.service"
+
+# Connect Immich/Server container to dedicated dependency networks
+immich_server_container_additional_networks_custom:
+  - "mash-immich-valkey"
+  - "mash-immich-postgres"
+
+immich_database_hostname: mash-immich-postgres
+immich_database_port: 5432
+
+# Must match `inventory/host_vars/domain-immich-deps/vars.yml` before remote apply
+immich_database_password: "{{ vault_immich_database_password }}"
+immich_database_sslmode: disable
+
+########################################################################
+#                                                                      #
+# /immich                                                              #
 #                                                                      #
 ########################################################################
