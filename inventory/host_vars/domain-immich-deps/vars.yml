@@ -1,0 +1,118 @@
+---
+
+# This is vars.yml for the supplementary host of Immich dependencies.
+
+########################################################################
+#                                                                      #
+# Playbook                                                             #
+#                                                                      #
+########################################################################
+
+# Put a strong secret below, generated with `pwgen -s 64 1` or in another way
+mash_playbook_generic_secret_key: "{{ vault_mash_playbook_generic_secret_key }}"
+
+# Override service names and directory path prefixes
+mash_playbook_service_identifier_prefix: 'mash-immich-'
+mash_playbook_service_base_directory_name_prefix: 'immich-'
+
+########################################################################
+#                                                                      #
+# /Playbook                                                            #
+#                                                                      #
+########################################################################
+
+
+########################################################################
+#                                                                      #
+# valkey                                                               #
+#                                                                      #
+########################################################################
+
+valkey_enabled: true
+
+########################################################################
+#                                                                      #
+# /valkey                                                              #
+#                                                                      #
+########################################################################
+
+
+########################################################################
+#                                                                      #
+# postgres                                                             #
+#                                                                      #
+########################################################################
+
+postgres_enabled: true
+
+# Must be set in vault before running remote apply commands
+postgres_connection_password: "{{ vault_immich_deps_postgres_connection_password }}"
+
+postgres_container_image_registry_prefix_upstream_default: ghcr.io/
+postgres_container_image_name: immich-app/postgres
+postgres_container_image_suffix: ""
+
+postgres_allowed_versions_custom: [18]
+postgres_container_image_v18_version: 18-vectorchord0.5.3-pgvector0.8.1
+
+postgres_initdb_args_list_custom:
+  - "--data-checksums"
+
+postgres_uid: 999
+postgres_gid: 999
+
+postgres_container_uid: 0
+postgres_container_gid: 0
+postgres_container_read_only_enabled: false
+postgres_container_cap_drop_all_enabled: false
+postgres_container_mount_etc_passwd_enabled: false
+
+postgres_postgres_process_extra_arguments_custom:
+  - "-c"
+  - "config_file=/etc/postgresql/postgresql.conf"
+
+postgres_managed_databases_additional:
+  - name: "{{ immich_database_name }}"
+    username: "{{ immich_database_username }}"
+    password: "{{ immich_database_password }}"
+    additional_sql_queries: |-
+      {{
+        ["\\c " + immich_database_name]
+        +
+        immich_database_preparation_sql_queries
+      }}
+
+########################################################################
+#                                                                      #
+# /postgres                                                            #
+#                                                                      #
+########################################################################
+
+
+########################################################################
+#                                                                      #
+# immich                                                               #
+#                                                                      #
+########################################################################
+
+# Intentionally disabled on deps host; only dependencies are installed.
+immich_enabled: false
+
+# Keep extension-preparation SQL explicit on this host so Postgres setup can
+# initialize required extensions before Immich/Server starts with a non-superuser DB role.
+immich_database_preparation_sql_queries:
+  - "CREATE EXTENSION IF NOT EXISTS vchord CASCADE;"
+  - "CREATE EXTENSION IF NOT EXISTS earthdistance CASCADE;"
+
+immich_database_hostname: "{{ postgres_connection_hostname }}"
+immich_database_port: "{{ postgres_connection_port }}"
+
+# Must match main host's immich_database_password before remote apply.
+immich_database_password: "{{ vault_immich_database_password }}"
+immich_database_sslmode: disable
+
+########################################################################
+#                                                                      #
+# /immich                                                              #
+#                                                                      #
+########################################################################
