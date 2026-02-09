@@ -144,7 +144,7 @@
   version: v10.21.0-0
   name: cyberchef
   activation_prefix: cyberchef_
-- src: git+https://seed.progressiv.dev/zeQ4hXq2LkbADcndSsjesgq9kDPf.git
+- src: git+https://seed.radicle.garden/zeQ4hXq2LkbADcndSsjesgq9kDPf.git
   version: v2.16.3-1
   name: databasus
   activation_prefix: databasus_
