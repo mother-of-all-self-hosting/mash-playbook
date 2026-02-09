@@ -153,6 +153,11 @@ devture_timesync_installation_enabled: false
 mash_playbook_reverse_proxy_type: other-traefik-container
 mash_playbook_reverse_proxyable_services_additional_network: traefik
 
+# Recommended for Immich to allow long-running uploads over slow links.
+traefik_config_entrypoint_web_transport_respondingTimeouts_readTimeout: 1800s  # noqa var-naming
+traefik_config_entrypoint_web_transport_respondingTimeouts_writeTimeout: 1800s  # noqa var-naming
+traefik_config_entrypoint_web_transport_respondingTimeouts_idleTimeout: 1800s  # noqa var-naming
+
 
 ########################################################################
 #                                                                      #
@@ -830,6 +835,7 @@ yacy_enabled: true
 
 yacy_hostname: "yacy.{{ domain }}"
 # yacy_path_prefix: /yacy
+yacy_conf_password: "{{ vault_yacy_conf_password }}"
 
 ########################################################################
 #                                                                      #
@@ -846,6 +852,10 @@ yacy_hostname: "yacy.{{ domain }}"
 sftpgo_enabled: true
 
 sftpgo_hostname: "ftp.{{ domain }}"
+sftpgo_environment_variables_httpd_bindings_0_enable_web_admin: true
+sftpgo_environment_variables_data_provider_create_default_admin: true
+sftpgo_environment_variables_sftpgo_default_admin_username: "{{ vault_sftpgo_default_admin_username }}"
+sftpgo_environment_variables_sftpgo_default_admin_password: "{{ vault_sftpgo_default_admin_password }}"
 
 ########################################################################
 #                                                                      #
