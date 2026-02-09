@@ -11,6 +11,8 @@
 - Before suggesting `just` with flags, verify recipe interface in `justfile`.
 - Use `just --list` and inspect recipe definitions/arg forwarding.
 - Do not assume `--ask-vault-pass -K --limit` passthrough.
+- For this operator setup, treat vault + become prompts as required unless explicitly configured otherwise: use `-J -K` (or `--ask-vault-pass --ask-become-pass`) for remote-impact runs.
+- Use `--limit <host>` to constrain scope and avoid changing non-target inventory hosts.
 - If uncertain, suggest explicit `ansible-playbook` user-run command with required flags.
 
 ## Verification Grounding
@@ -25,6 +27,16 @@
 - `rg -n "<service>" justfile docs inventory roles templates`
 - `rg -n "<varname>" inventory/host_vars inventory/group_vars group_vars`
 - `rg -n "stop-group|start-group|status" justfile`
+
+## Service-Enablement Grounding
+
+- For each newly enabled service, review both documentation layers:
+- playbook service docs: `docs/services/<service>.md`
+- role-specific docs (if present): `roles/galaxy/<service>/docs/configuring-<service>.md`
+- Inspect role validation tasks before first remote run:
+- `roles/galaxy/<service>/tasks/validate_config.yml`
+- Use validation tasks to enumerate required variables and allowed values, and cross-check them against planned inventory edits.
+- If role docs or validation files are missing/unresolved, mark `UNKNOWN` and provide exact `rg` commands to locate them.
 
 ## Secrets and Vault Grounding
 
@@ -75,3 +87,16 @@
 - review with `git status --short` (and `git diff` as needed)
 - use targeted staging (for example, `git add <explicit-paths>`) instead of broad staging
 - use a scoped commit message that matches the actual change set
+
+## Safe Deployment Order
+
+- When upstream updates are pulled, run one `setup-all` pass on the current known-good inventory before introducing new service enablement or major inventory changes.
+- Avoid first-run partial deploys (`--limit`, service-scoped runs) immediately after pull if global defaults or derived-secret logic may have changed.
+- If a run fails after `setup-postgres` (or any shared dependency), prioritize reconciling dependent services in the same maintenance window.
+- Apply new service additions only after the baseline convergence run succeeds.
+
+### Derived-Secret Preflight Command
+
+- Use this quick check before remote-impact runs after pull:
+- `git log --oneline -n 5 -- templates/group_vars_mash_servers && git show --stat --oneline -n 1 -- templates/group_vars_mash_servers`
+- If the latest touching commit indicates broad password/secret derivation changes, prefer full-host `setup-all` convergence before scoped/limited deploys.

@@ -872,6 +872,7 @@ sftpgo_environment_variables_sftpgo_default_admin_password: "{{ vault_sftpgo_def
 codimd_enabled: true
 
 codimd_hostname: "codimd.{{ domain }}"
+codimd_database_type: postgres
 
 ########################################################################
 #                                                                      #
@@ -924,6 +925,8 @@ immich_database_port: 5432
 # Must match `inventory/host_vars/domain-immich-deps/vars.yml` before remote apply
 immich_database_password: "{{ vault_immich_database_password }}"
 immich_database_sslmode: disable
+
+immich_server_environment_variable_immich_allow_setup: false
 
 ########################################################################
 #                                                                      #
