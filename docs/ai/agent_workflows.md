@@ -64,3 +64,14 @@
 - Use the repository lint script: `bash ./bin/lint-playbook.sh`
 - To include markdown files explicitly, pass them via `EXTRA_LINT_PATHS`.
 - Example: `EXTRA_LINT_PATHS="docs/ai/agent_workflows.md" bash ./bin/lint-playbook.sh`
+
+## Pre-Flight and Finalization
+
+- Before suggesting remote-impact execution, run local pre-flight checks:
+- `bash ./bin/lint-playbook.sh`
+- `ansible-playbook -i inventory/hosts setup.yml --syntax-check`
+- Run `ansible-playbook -i inventory/hosts setup.yml --list-tags` as a sanity check after optimization/template regeneration and verify expected service tags are present.
+- For commit hygiene:
+- review with `git status --short` (and `git diff` as needed)
+- use targeted staging (for example, `git add <explicit-paths>`) instead of broad staging
+- use a scoped commit message that matches the actual change set
