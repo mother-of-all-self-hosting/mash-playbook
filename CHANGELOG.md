@@ -1,3 +1,24 @@
+# 2026-02-08
+
+## Switched to faster secret derivation for service passwords
+
+We've switched the method used for deriving service passwords (database passwords,
+appservice tokens, etc.) from the `mash_playbook_generic_secret_key` variable.
+
+The old method used `password_hash('sha512', rounds=655555)` (655,555 rounds of
+SHA-512 hashing), which was designed for protecting low-entropy human passwords
+against brute-force attacks. For deriving secrets from an already high-entropy
+secret key, this many rounds provide no additional security.
+
+The new method uses a single-round `hash('sha512')` with a unique salt per service.
+This is equally secure for this use case while being dramatically faster.
+
+**What this means for users**: all derived service passwords will change on the
+next playbook run. The main/superuser database password (`postgres_connection_password`)
+is not affected. All services will receive their new passwords as part of the same
+run, so this should be a seamless, non-user-impacting change.
+
+
 # 2025-10-29
 
 ## Miniflux upgrade to v2.2.14 may require manual work
