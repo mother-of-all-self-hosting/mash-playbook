@@ -28,6 +28,7 @@
     <outline text="calibre_web" title="calibre_web" type="rss" htmlUrl="https://github.com/calibre_web/calibre_web" xmlUrl="https://github.com/calibre_web/calibre_web/releases.atom" />
     <outline text="cap" title="cap" type="rss" htmlUrl="https://github.com/tiagozip/cap" xmlUrl="https://github.com/tiagozip/cap/releases.atom" />
     <outline text="changedetection" title="changedetection" type="rss" htmlUrl="https://github.com/dgtlmoon/changedetection.io" xmlUrl="https://github.com/dgtlmoon/changedetection.io/releases.atom" />
+    <outline text="cinny" title="cinny" type="rss" htmlUrl="https://github.com/ajbura/cinny" xmlUrl="https://github.com/ajbura/cinny/releases.atom" />
     <outline text="clickhouse" title="clickhouse" type="rss" htmlUrl="https://github.com/ClickHouse/ClickHouse" xmlUrl="https://github.com/ClickHouse/ClickHouse/releases.atom" />
     <outline text="codimd" title="codimd" type="rss" htmlUrl="https://github.com/hackmdio/codimd" xmlUrl="https://github.com/hackmdio/codimd/releases.atom" />
     <outline text="container_socket_proxy" title="container_socket_proxy" type="rss" htmlUrl="https://github.com/Tecnativa/docker-socket-proxy" xmlUrl="https://github.com/Tecnativa/docker-socket-proxy/releases.atom" />
@@ -37,6 +38,7 @@
     <outline text="cryptpad" title="cryptpad" type="rss" htmlUrl="https://github.com/cryptpad/cryptpad" xmlUrl="https://github.com/cryptpad/cryptpad/releases.atom" />
     <outline text="cyberchef" title="cyberchef" type="rss" htmlUrl="https://github.com/gchq/CyberChef" xmlUrl="https://github.com/gchq/CyberChef/releases.atom" />
     <outline text="databasus" title="databasus" type="rss" htmlUrl="https://github.com/databasus/databasus" xmlUrl="https://github.com/databasus/databasus/releases.atom" />
+    <outline text="ddclient" title="ddclient" type="rss" htmlUrl="https://github.com/linuxserver/docker-ddclient" xmlUrl="https://github.com/linuxserver/docker-ddclient/releases.atom" />
     <outline text="docker_registry" title="docker_registry" type="rss" htmlUrl="https://github.com/distribution/distribution/" xmlUrl="https://github.com/distribution/distribution//releases.atom" />
     <outline text="docker_registry_browser" title="docker_registry_browser" type="rss" htmlUrl="https://github.com/klausmeyer/docker-registry-browser" xmlUrl="https://github.com/klausmeyer/docker-registry-browser/releases.atom" />
     <outline text="docker_registry_proxy" title="docker_registry_proxy" type="rss" htmlUrl="https://github.com/etkecc/docker-registry-proxy" xmlUrl="https://github.com/etkecc/docker-registry-proxy/releases.atom" />
@@ -52,6 +54,7 @@
     <outline text="excalidraw_room" title="excalidraw_room" type="rss" htmlUrl="https://github.com/excalidraw/excalidraw-room" xmlUrl="https://github.com/excalidraw/excalidraw-room/releases.atom" />
     <outline text="exim_relay" title="exim_relay" type="rss" htmlUrl="https://github.com/devture/exim-relay" xmlUrl="https://github.com/devture/exim-relay/releases.atom" />
     <outline text="farmos" title="farmos" type="rss" htmlUrl="https://github.com/farmOS/farmOS" xmlUrl="https://github.com/farmOS/farmOS/releases.atom" />
+    <outline text="fider" title="fider" type="rss" htmlUrl="https://github.com/getfider/fider" xmlUrl="https://github.com/getfider/fider/releases.atom" />
     <outline text="filebrowser" title="filebrowser" type="rss" htmlUrl="https://github.com/filebrowser/filebrowser" xmlUrl="https://github.com/filebrowser/filebrowser/releases.atom" />
     <outline text="filebrowser_quantum" title="filebrowser_quantum" type="rss" htmlUrl="https://github.com/gtsteffaniak/filebrowser" xmlUrl="https://github.com/gtsteffaniak/filebrowser/releases.atom" />
     <outline text="firezone" title="firezone" type="rss" htmlUrl="https://github.com/firezone/firezone" xmlUrl="https://github.com/firezone/firezone/releases.atom" />
