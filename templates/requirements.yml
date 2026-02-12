@@ -749,7 +749,7 @@
   name: roundcube
   activation_prefix: roundcube_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-rssbridge.git
-  version: v2025.10.7-2
+  version: v2025.10.7-3
   name: rssbridge
   activation_prefix: rssbridge_
 - src: git+https://seed.radicle.garden/z3yKvCwcEfxn41ozRTcNR8ad6kpUm.git
