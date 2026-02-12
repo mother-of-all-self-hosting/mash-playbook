@@ -241,6 +241,7 @@ Below is an exhaustive list of the free and open-source software for self-hostin
 | [WordPress](https://wordpress.org/) | A widely used web content management system | [Link](services/wordpress.md) |
 | [Writefreely](https://writefreely.org) | A clean, minimalist publishing platform made for writers with optional federation via ActivityPub | [Link](services/writefreely.md) |
 | [YaCy](https://yacy.net) | Distributed web search engine on a P2P network | [Link](services/yacy.md) |
+| [Yggstack](https://github.com/yggdrasil-network/yggstack) | SOCKS5 proxy server and TCP port forwarder for [Yggdrasil Network](https://yggdrasil-network.github.io) | [Link](services/yggstack.md) |
 | [YOURLS](https://yourls.org) | Your Own URL Shortener, on your server | [Link](services/yourls.md) |
 | System-related | A collection of various system-related components | [Link](services/system.md) |
 
