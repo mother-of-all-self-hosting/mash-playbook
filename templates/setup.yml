@@ -957,6 +957,10 @@
     - role: galaxy/yacy
     # /role-specific:yacy
 
+    # role-specific:yggstack
+    - role: galaxy/yggstack
+    # /role-specific:yggstack
+
     # role-specific:yourls
     - role: galaxy/yourls
     # /role-specific:yourls
