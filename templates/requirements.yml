@@ -928,6 +928,10 @@
   version: v0.16.0-2
   name: writefreely
   activation_prefix: writefreely_
+- src: git+https://seed.radicle.garden/z2BzsfYJzpSCK4tC8kCR1uCooZYX5.git
+  version: v0.0.0-0
+  name: yggstack
+  activation_prefix: yggstack_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-yacy.git
   version: v1.93.2-5
   name: yacy
