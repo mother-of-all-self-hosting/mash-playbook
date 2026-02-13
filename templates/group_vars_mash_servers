@@ -1156,7 +1156,7 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
 
   # role-specific:traefik
   - |-
-    {{ ({'name': (traefik_identifier + '.service'), 'priority': 250, 'restart_necessary': true, 'groups': ['mash', 'traefik', 'reverse-proxies']} if traefik_enabled else omit) }}
+    {{ ({'name': (traefik_identifier + '.service'), 'priority': 250, 'restart_necessary': (traefik_restart_necessary | bool), 'groups': ['mash', 'traefik', 'reverse-proxies']} if traefik_enabled else omit) }}
   # /role-specific:traefik
 
   # role-specific:traefik_certs_dumper
