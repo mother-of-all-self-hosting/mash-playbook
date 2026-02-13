@@ -90,1163 +90,1163 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
 
   # role-specific:adguard_home
   - |-
-    {{ ({'name': (adguard_home_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'adguard-home']} if adguard_home_enabled else omit) }}
+    {{ ({'name': (adguard_home_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'adguard-home']} if adguard_home_enabled else omit) }}
   # /role-specific:adguard_home
 
   # role-specific:adminer
   - |-
-    {{ ({'name': (adminer_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'adminer']} if adminer_enabled else omit) }}
+    {{ ({'name': (adminer_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'adminer']} if adminer_enabled else omit) }}
   # /role-specific:adminer
 
   # role-specific:anki
   - |-
-    {{ ({'name': (anki_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'anki']} if anki_enabled else omit) }}
+    {{ ({'name': (anki_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'anki']} if anki_enabled else omit) }}
   # /role-specific:anki
 
   # role-specific:anonymousoverflow
   - |-
-    {{ ({'name': (anonymousoverflow_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'anonymousoverflow']} if anonymousoverflow_enabled else omit) }}
+    {{ ({'name': (anonymousoverflow_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'anonymousoverflow']} if anonymousoverflow_enabled else omit) }}
   # /role-specific:anonymousoverflow
 
   # role-specific:answer
   - |-
-    {{ ({'name': (answer_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'answer']} if answer_enabled else omit) }}
+    {{ ({'name': (answer_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'answer']} if answer_enabled else omit) }}
   # /role-specific:answer
 
   # role-specific:apisix_dashboard
   - |-
-    {{ ({'name': (apisix_dashboard_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'apisix-dashboard']} if apisix_dashboard_enabled else omit) }}
+    {{ ({'name': (apisix_dashboard_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'apisix-dashboard']} if apisix_dashboard_enabled else omit) }}
   # /role-specific:apisix_dashboard
 
   # role-specific:apisix_gateway
   - |-
-    {{ ({'name': (apisix_gateway_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'apisix-gateway']} if apisix_gateway_enabled else omit) }}
+    {{ ({'name': (apisix_gateway_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'apisix-gateway']} if apisix_gateway_enabled else omit) }}
   # /role-specific:apisix_gateway
 
   # role-specific:apprise
   - |-
-    {{ ({'name': (apprise_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'apprise']} if apprise_enabled else omit) }}
+    {{ ({'name': (apprise_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'apprise']} if apprise_enabled else omit) }}
   # /role-specific:apprise
 
   # role-specific:appsmith
   - |-
-    {{ ({'name': (appsmith_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'appsmith']} if appsmith_enabled else omit) }}
+    {{ ({'name': (appsmith_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'appsmith']} if appsmith_enabled else omit) }}
   # /role-specific:appsmith
 
   # role-specific:asciinema_server
   - |-
-    {{ ({'name': (asciinema_server_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'asciinema-server']} if asciinema_server_enabled else omit) }}
+    {{ ({'name': (asciinema_server_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'asciinema-server']} if asciinema_server_enabled else omit) }}
   # /role-specific:asciinema_server
 
   # role-specific:atuin
   - |-
-    {{ ({'name': (atuin_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'atuin']} if atuin_enabled else omit) }}
+    {{ ({'name': (atuin_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'atuin']} if atuin_enabled else omit) }}
   # /role-specific:atuin
 
   # role-specific:audiobookshelf
   - |-
-    {{ ({'name': (audiobookshelf_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'audiobookshelf']} if audiobookshelf_enabled else omit) }}
+    {{ ({'name': (audiobookshelf_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'audiobookshelf']} if audiobookshelf_enabled else omit) }}
   # /role-specific:audiobookshelf
 
   # role-specific:authelia
   - |-
-    {{ ({'name': (authelia_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'authelia']} if authelia_enabled else omit) }}
+    {{ ({'name': (authelia_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'authelia']} if authelia_enabled else omit) }}
   # /role-specific:authelia
 
   # role-specific:authentik
   - |-
-    {{ ({'name': (authentik_server_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'authentik']} if authentik_enabled else omit) }}
+    {{ ({'name': (authentik_server_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'authentik']} if authentik_enabled else omit) }}
   - |-
-    {{ ({'name': (authentik_worker_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'authentik']} if authentik_enabled else omit) }}
+    {{ ({'name': (authentik_worker_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'authentik']} if authentik_enabled else omit) }}
   # /role-specific:authentik
 
   # role-specific:autobrr
   - |-
-    {{ ({'name': (autobrr_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'autobrr']} if autobrr_enabled else omit) }}
+    {{ ({'name': (autobrr_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'autobrr']} if autobrr_enabled else omit) }}
   # /role-specific:autobrr
 
   # role-specific:backup_borg
   - |-
-    {{ ({'name': (backup_borg_identifier + '.timer'), 'priority': 5000, 'groups': ['mash', 'backup', 'borg']} if backup_borg_enabled else omit) }}
+    {{ ({'name': (backup_borg_identifier + '.timer'), 'priority': 5000, 'restart_necessary': true, 'groups': ['mash', 'backup', 'borg']} if backup_borg_enabled else omit) }}
   # /role-specific:backup_borg
 
   # role-specific:barassistant
   - |-
-    {{ ({'name': (barassistant_saltrim_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'barassistant']} if barassistant_enabled else omit) }}
+    {{ ({'name': (barassistant_saltrim_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'barassistant']} if barassistant_enabled else omit) }}
   - |-
-    {{ ({'name': (barassistant_server_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'barassistant']} if barassistant_enabled else omit) }}
+    {{ ({'name': (barassistant_server_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'barassistant']} if barassistant_enabled else omit) }}
   # /role-specific:barassistant
 
   # role-specific:bentopdf
   - |-
-    {{ ({'name': (bentopdf_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'bentopdf']} if bentopdf_enabled else omit) }}
+    {{ ({'name': (bentopdf_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'bentopdf']} if bentopdf_enabled else omit) }}
   # /role-specific:bentopdf
 
   # role-specific:bind
   - |-
-    {{ ({'name': (bind_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'bind']} if bind_enabled else omit) }}
+    {{ ({'name': (bind_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'bind']} if bind_enabled else omit) }}
   # /role-specific:bind
 
   # role-specific:bitmagnet
   - |-
-    {{ ({'name': (bitmagnet_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'bitmagnet']} if bitmagnet_enabled else omit) }}
+    {{ ({'name': (bitmagnet_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'bitmagnet']} if bitmagnet_enabled else omit) }}
   # /role-specific:bitmagnet
 
   # role-specific:browserless
   - |-
-    {{ ({'name': (browserless_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'browserless']} if browserless_enabled else omit) }}
+    {{ ({'name': (browserless_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'browserless']} if browserless_enabled else omit) }}
   # /role-specific:browserless
 
   # role-specific:calibre_web
   - |-
-    {{ ({'name': (calibre_web_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'calibre-web']} if calibre_web_enabled else omit) }}
+    {{ ({'name': (calibre_web_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'calibre-web']} if calibre_web_enabled else omit) }}
   # /role-specific:calibre_web
 
   # role-specific:cap
   - |-
-    {{ ({'name': (cap_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'cap']} if cap_enabled else omit) }}
+    {{ ({'name': (cap_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'cap']} if cap_enabled else omit) }}
   # /role-specific:cap
 
   # role-specific:changedetection
   - |-
-    {{ ({'name': (changedetection_identifier + '.service'), 'priority': 2100, 'groups': ['mash', 'changedetection']} if changedetection_enabled else omit) }}
+    {{ ({'name': (changedetection_identifier + '.service'), 'priority': 2100, 'restart_necessary': true, 'groups': ['mash', 'changedetection']} if changedetection_enabled else omit) }}
   - |-
-    {{ ({'name': (changedetection_playwright_driver_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'changedetection']} if changedetection_playwright_driver_enabled else omit) }}
+    {{ ({'name': (changedetection_playwright_driver_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'changedetection']} if changedetection_playwright_driver_enabled else omit) }}
   # /role-specific:changedetection
 
   # role-specific:cinny
   - |-
-    {{ ({'name': (cinny_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'cinny']} if cinny_enabled else omit) }}
+    {{ ({'name': (cinny_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'cinny']} if cinny_enabled else omit) }}
   # /role-specific:cinny
 
   # role-specific:clickhouse
   - |-
-    {{ ({'name': (clickhouse_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'clickhouse']} if clickhouse_enabled else omit) }}
+    {{ ({'name': (clickhouse_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'clickhouse']} if clickhouse_enabled else omit) }}
   # /role-specific:clickhouse
 
   # role-specific:codimd
   - |-
-    {{ ({'name': (codimd_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'codimd']} if codimd_enabled else omit) }}
+    {{ ({'name': (codimd_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'codimd']} if codimd_enabled else omit) }}
   # /role-specific:codimd
 
   # role-specific:collabora_online
   - |-
-    {{ ({'name': (collabora_online_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'collabora-online']} if collabora_online_enabled else omit) }}
+    {{ ({'name': (collabora_online_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'collabora-online']} if collabora_online_enabled else omit) }}
   # /role-specific:collabora_online
 
   # role-specific:converse
   - |-
-    {{ ({'name': (converse_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'converse']} if converse_enabled else omit) }}
+    {{ ({'name': (converse_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'converse']} if converse_enabled else omit) }}
   # /role-specific:converse
 
   # role-specific:convertx
   - |-
-    {{ ({'name': (convertx_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'convertx']} if convertx_enabled else omit) }}
+    {{ ({'name': (convertx_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'convertx']} if convertx_enabled else omit) }}
   # /role-specific:convertx
 
   # role-specific:couchdb
   - |-
-    {{ ({'name': (couchdb_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'couchdb']} if couchdb_enabled else omit) }}
+    {{ ({'name': (couchdb_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'couchdb']} if couchdb_enabled else omit) }}
   # /role-specific:couchdb
 
   # role-specific:container_socket_proxy
   - |-
-    {{ ({'name': (container_socket_proxy_identifier + '.service'), 'priority': 200, 'groups': ['mash', 'reverse-proxies', 'container-socket-proxy']} if container_socket_proxy_enabled else omit) }}
+    {{ ({'name': (container_socket_proxy_identifier + '.service'), 'priority': 200, 'restart_necessary': true, 'groups': ['mash', 'reverse-proxies', 'container-socket-proxy']} if container_socket_proxy_enabled else omit) }}
   # /role-specific:container_socket_proxy
 
   # role-specific:cryptpad
   - |-
-    {{ ({'name': (cryptpad_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'cryptpad']} if cryptpad_enabled else omit) }}
+    {{ ({'name': (cryptpad_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'cryptpad']} if cryptpad_enabled else omit) }}
   # /role-specific:cryptpad
 
   # role-specific:cyberchef
   - |-
-    {{ ({'name': (cyberchef_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'cyberchef']} if cyberchef_enabled else omit) }}
+    {{ ({'name': (cyberchef_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'cyberchef']} if cyberchef_enabled else omit) }}
   # /role-specific:cyberchef
 
   # role-specific:databasus
   - |-
-    {{ ({'name': (databasus_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'databasus']} if databasus_enabled else omit) }}
+    {{ ({'name': (databasus_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'databasus']} if databasus_enabled else omit) }}
   # /role-specific:databasus
 
   # role-specific:ddclient
   - |-
-    {{ ({'name': (ddclient_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'ddclient']} if ddclient_enabled else omit) }}
+    {{ ({'name': (ddclient_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'ddclient']} if ddclient_enabled else omit) }}
   # /role-specific:ddclient
 
   # role-specific:docker_registry
   - |-
-    {{ ({'name': (docker_registry_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'docker-registry']} if docker_registry_enabled else omit) }}
+    {{ ({'name': (docker_registry_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'docker-registry']} if docker_registry_enabled else omit) }}
   - |-
-    {{ ({'name': (docker_registry_identifier + '-garbage-collect.timer'), 'priority': 2500, 'groups': ['mash', 'docker-registry', 'docker-registry-gc']} if docker_registry_enabled else omit) }}
+    {{ ({'name': (docker_registry_identifier + '-garbage-collect.timer'), 'priority': 2500, 'restart_necessary': true, 'groups': ['mash', 'docker-registry', 'docker-registry-gc']} if docker_registry_enabled else omit) }}
   # /role-specific:docker_registry
 
   # role-specific:docker_registry_browser
   - |-
-    {{ ({'name': (docker_registry_browser_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'docker-registry-browser']} if docker_registry_browser_enabled else omit) }}
+    {{ ({'name': (docker_registry_browser_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'docker-registry-browser']} if docker_registry_browser_enabled else omit) }}
   # /role-specific:docker_registry_browser
 
   # role-specific:docker_registry_proxy
   - |-
-    {{ ({'name': (docker_registry_proxy_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'docker-registry-proxy']} if docker_registry_proxy_enabled else omit) }}
+    {{ ({'name': (docker_registry_proxy_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'docker-registry-proxy']} if docker_registry_proxy_enabled else omit) }}
   # /role-specific:docker_registry_proxy
 
   # role-specific:docker_registry_purger
   - |-
-    {{ ({'name': (docker_registry_purger_identifier + '.timer'), 'priority': 3000, 'groups': ['mash', 'docker-registry-purger']} if docker_registry_purger_enabled else omit) }}
+    {{ ({'name': (docker_registry_purger_identifier + '.timer'), 'priority': 3000, 'restart_necessary': true, 'groups': ['mash', 'docker-registry-purger']} if docker_registry_purger_enabled else omit) }}
   # /role-specific:docker_registry_purger
 
   # role-specific:docmost
   - |-
-    {{ ({'name': (docmost_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'docmost']} if docmost_enabled else omit) }}
+    {{ ({'name': (docmost_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'docmost']} if docmost_enabled else omit) }}
   # /role-specific:docmost
 
   # role-specific:dokuwiki
   - |-
-    {{ ({'name': (dokuwiki_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'dokuwiki']} if dokuwiki_enabled else omit) }}
+    {{ ({'name': (dokuwiki_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'dokuwiki']} if dokuwiki_enabled else omit) }}
   # /role-specific:dokuwiki
 
   # role-specific:duplicati
   - |-
-    {{ ({'name': (duplicati_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'duplicati']} if duplicati_enabled else omit) }}
+    {{ ({'name': (duplicati_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'duplicati']} if duplicati_enabled else omit) }}
   # /role-specific:duplicati
 
   # role-specific:echoip
   - |-
-    {{ ({'name': (echoip_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'echoip']} if echoip_enabled else omit) }}
+    {{ ({'name': (echoip_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'echoip']} if echoip_enabled else omit) }}
   # /role-specific:echoip
 
   # role-specific:endlessh
   - |-
-    {{ ({'name': (endlessh_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'endlessh']} if endlessh_enabled else omit) }}
+    {{ ({'name': (endlessh_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'endlessh']} if endlessh_enabled else omit) }}
   # /role-specific:endlessh
 
   # role-specific:ergo
   - |-
-    {{ ({'name': (ergo_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'ergo']} if ergo_enabled else omit) }}
+    {{ ({'name': (ergo_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'ergo']} if ergo_enabled else omit) }}
   # /role-specific:ergo
 
   # role-specific:etcd
   - |-
-    {{ ({'name': (etcd_identifier + '.service'), 'priority': 500, 'groups': ['mash', 'etcd']} if etcd_enabled else omit) }}
+    {{ ({'name': (etcd_identifier + '.service'), 'priority': 500, 'restart_necessary': true, 'groups': ['mash', 'etcd']} if etcd_enabled else omit) }}
   # /role-specific:etcd
 
   # role-specific:etherpad
   - |-
-    {{ ({'name': (etherpad_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'etherpad']} if etherpad_enabled else omit) }}
+    {{ ({'name': (etherpad_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'etherpad']} if etherpad_enabled else omit) }}
   # /role-specific:etherpad
 
   # role-specific:excalidraw
   - |-
-    {{ ({'name': (excalidraw_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'excalidraw']} if excalidraw_enabled else omit) }}
+    {{ ({'name': (excalidraw_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'excalidraw']} if excalidraw_enabled else omit) }}
   # /role-specific:excalidraw
 
   # role-specific:excalidraw_room
   - |-
-    {{ ({'name': (excalidraw_room_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'excalidraw-room']} if excalidraw_room_enabled else omit) }}
+    {{ ({'name': (excalidraw_room_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'excalidraw-room']} if excalidraw_room_enabled else omit) }}
   # /role-specific:excalidraw_room
 
   # role-specific:exim_relay
   - |-
-    {{ ({'name': (exim_relay_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'exim-relay']} if exim_relay_enabled else omit) }}
+    {{ ({'name': (exim_relay_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'exim-relay']} if exim_relay_enabled else omit) }}
   # /role-specific:exim_relay
 
   # role-specific:farmos
   - |-
-    {{ ({'name': (farmos_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'farmos']} if farmos_enabled else omit) }}
+    {{ ({'name': (farmos_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'farmos']} if farmos_enabled else omit) }}
   # /role-specific:farmos
 
   # role-specific:fider
   - |-
-    {{ ({'name': (fider_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'fider']} if fider_enabled else omit) }}
+    {{ ({'name': (fider_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'fider']} if fider_enabled else omit) }}
   # /role-specific:fider
 
   # role-specific:filebrowser
   - |-
-    {{ ({'name': (filebrowser_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'filebrowser']} if filebrowser_enabled else omit) }}
+    {{ ({'name': (filebrowser_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'filebrowser']} if filebrowser_enabled else omit) }}
   # /role-specific:filebrowser
 
   # role-specific:filebrowser_quantum
   - |-
-    {{ ({'name': (filebrowser_quantum_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'filebrowser-quantum']} if filebrowser_quantum_enabled else omit) }}
+    {{ ({'name': (filebrowser_quantum_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'filebrowser-quantum']} if filebrowser_quantum_enabled else omit) }}
   # /role-specific:filebrowser_quantum
 
   # role-specific:firezone
   - |-
-    {{ ({'name': (firezone_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'firezone']} if firezone_enabled else omit) }}
+    {{ ({'name': (firezone_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'firezone']} if firezone_enabled else omit) }}
   # /role-specific:firezone
 
   # role-specific:flaresolverr
   - |-
-    {{ ({'name': (flaresolverr_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'flaresolverr']} if flaresolverr_enabled else omit) }}
+    {{ ({'name': (flaresolverr_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'flaresolverr']} if flaresolverr_enabled else omit) }}
   # /role-specific:flaresolverr
 
   # role-specific:fmd_server
   - |-
-    {{ ({'name': (fmd_server_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'fmd-server']} if fmd_server_enabled else omit) }}
+    {{ ({'name': (fmd_server_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'fmd-server']} if fmd_server_enabled else omit) }}
   # /role-specific:fmd_server
 
   # role-specific:focalboard
   - |-
-    {{ ({'name': (focalboard_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'focalboard']} if focalboard_enabled else omit) }}
+    {{ ({'name': (focalboard_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'focalboard']} if focalboard_enabled else omit) }}
   # /role-specific:focalboard
 
   # role-specific:forgejo
   - |-
-    {{ ({'name': (forgejo_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'forgejo']} if forgejo_enabled else omit) }}
+    {{ ({'name': (forgejo_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'forgejo']} if forgejo_enabled else omit) }}
   # /role-specific:forgejo
 
   # role-specific:forgejo_runner
   - |-
-    {{ ({'name': (forgejo_runner_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'forgejo-runner']} if forgejo_runner_enabled else omit) }}
+    {{ ({'name': (forgejo_runner_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'forgejo-runner']} if forgejo_runner_enabled else omit) }}
   # /role-specific:forgejo_runner
 
   # role-specific:freescout
   - |-
-    {{ ({'name': (freescout_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'freescout']} if freescout_enabled else omit) }}
+    {{ ({'name': (freescout_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'freescout']} if freescout_enabled else omit) }}
   # /role-specific:freescout
 
   # role-specific:freshrss
   - |-
-    {{ ({'name': (freshrss_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'freshrss']} if freshrss_enabled else omit) }}
+    {{ ({'name': (freshrss_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'freshrss']} if freshrss_enabled else omit) }}
   # /role-specific:freshrss
 
   # role-specific:funkwhale
   - |-
-    {{ ({'name': (funkwhale_api_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'funkwhale']} if funkwhale_enabled else omit) }}
+    {{ ({'name': (funkwhale_api_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'funkwhale']} if funkwhale_enabled else omit) }}
   - |-
-    {{ ({'name': (funkwhale_frontend_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'funkwhale']} if funkwhale_enabled else omit) }}
+    {{ ({'name': (funkwhale_frontend_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'funkwhale']} if funkwhale_enabled else omit) }}
   - |-
-    {{ ({'name': (funkwhale_celery_beat_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'funkwhale']} if funkwhale_enabled else omit) }}
+    {{ ({'name': (funkwhale_celery_beat_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'funkwhale']} if funkwhale_enabled else omit) }}
   - |-
-    {{ ({'name': (funkwhale_celery_worker_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'funkwhale']} if funkwhale_enabled else omit) }}
+    {{ ({'name': (funkwhale_celery_worker_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'funkwhale']} if funkwhale_enabled else omit) }}
   - |-
-    {{ ({'name': (funkwhale_watch_imports_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'funkwhale']} if funkwhale_enabled and funkwhale_watch_imports_enabled else omit) }}
+    {{ ({'name': (funkwhale_watch_imports_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'funkwhale']} if funkwhale_enabled and funkwhale_watch_imports_enabled else omit) }}
   # /role-specific:funkwhale
 
   # role-specific:ghostfolio
   - |-
-    {{ ({'name': (ghostfolio_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'ghostfolio']} if ghostfolio_enabled else omit) }}
+    {{ ({'name': (ghostfolio_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'ghostfolio']} if ghostfolio_enabled else omit) }}
   # /role-specific:ghostfolio
 
   # role-specific:gitea
   - |-
-    {{ ({'name': (gitea_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'gitea']} if gitea_enabled else omit) }}
+    {{ ({'name': (gitea_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'gitea']} if gitea_enabled else omit) }}
   # /role-specific:gitea
 
   # role-specific:gothub
   - |-
-    {{ ({'name': (gothub_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'gothub']} if gothub_enabled else omit) }}
+    {{ ({'name': (gothub_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'gothub']} if gothub_enabled else omit) }}
   # /role-specific:gothub
 
   # role-specific:gotify
   - |-
-    {{ ({'name': (gotify_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'gotify']} if gotify_enabled else omit) }}
+    {{ ({'name': (gotify_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'gotify']} if gotify_enabled else omit) }}
   # /role-specific:gotify
 
   # role-specific:gotosocial
   - |-
-    {{ ({'name': (gotosocial_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'gotosocial']} if gotosocial_enabled else omit) }}
+    {{ ({'name': (gotosocial_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'gotosocial']} if gotosocial_enabled else omit) }}
   # /role-specific:gotosocial
 
   # role-specific:grafana
   - |-
-    {{ ({'name': (grafana_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'grafana']} if grafana_enabled else omit) }}
+    {{ ({'name': (grafana_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'grafana']} if grafana_enabled else omit) }}
   # /role-specific:grafana
 
   # role-specific:headplane
   - |-
-    {{ ({'name': (headplane_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'headplane']} if headplane_enabled else omit) }}
+    {{ ({'name': (headplane_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'headplane']} if headplane_enabled else omit) }}
   # /role-specific:headplane
 
   # role-specific:headscale
   - |-
-    {{ ({'name': (headscale_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'headscale']} if headscale_enabled else omit) }}
+    {{ ({'name': (headscale_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'headscale']} if headscale_enabled else omit) }}
   # /role-specific:headscale
 
   # role-specific:healthchecks
   - |-
-    {{ ({'name': (healthchecks_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'healthchecks']} if healthchecks_enabled else omit) }}
+    {{ ({'name': (healthchecks_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'healthchecks']} if healthchecks_enabled else omit) }}
   # /role-specific:healthchecks
 
   # role-specific:homarr
   - |-
-    {{ ({'name': (homarr_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'homarr']} if homarr_enabled else omit) }}
+    {{ ({'name': (homarr_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'homarr']} if homarr_enabled else omit) }}
   # /role-specific:homarr
 
   # role-specific:hubsite
   - |-
-    {{ ({'name': (hubsite_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'hubsite']} if hubsite_enabled else omit) }}
+    {{ ({'name': (hubsite_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'hubsite']} if hubsite_enabled else omit) }}
   # /role-specific:hubsite
 
   # role-specific:ihatemoney
   - |-
-    {{ ({'name': (ihatemoney_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'ihatemoney']} if ihatemoney_enabled else omit) }}
+    {{ ({'name': (ihatemoney_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'ihatemoney']} if ihatemoney_enabled else omit) }}
   # /role-specific:ihatemoney
 
   # role-specific:ilmo
   - |-
-    {{ ({'name': (ilmo_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'ilmo']} if ilmo_enabled else omit) }}
+    {{ ({'name': (ilmo_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'ilmo']} if ilmo_enabled else omit) }}
   # /role-specific:ilmo
 
   # role-specific:immich
   - |-
-    {{ ({'name': (immich_server_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'immich']} if immich_enabled and immich_server_enabled else omit) }}
+    {{ ({'name': (immich_server_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'immich']} if immich_enabled and immich_server_enabled else omit) }}
   - |-
-    {{ ({'name': (immich_machine_learning_identifier + '.service'), 'priority': 1500, 'groups': ['mash', 'immich']} if immich_enabled and immich_machine_learning_enabled else omit) }}
+    {{ ({'name': (immich_machine_learning_identifier + '.service'), 'priority': 1500, 'restart_necessary': true, 'groups': ['mash', 'immich']} if immich_enabled and immich_machine_learning_enabled else omit) }}
   # /role-specific:immich
 
   # role-specific:immich_kiosk
   - |-
-    {{ ({'name': (immich_kiosk_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'immich-kiosk']} if immich_kiosk_enabled else omit) }}
+    {{ ({'name': (immich_kiosk_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'immich-kiosk']} if immich_kiosk_enabled else omit) }}
   # /role-specific:immich_kiosk
 
   # role-specific:infisical
   - |-
-    {{ ({'name': (infisical_identifier + '-backend.service'), 'priority': 2000, 'groups': ['mash', 'infisical', 'infisical-backend']} if infisical_enabled else omit) }}
+    {{ ({'name': (infisical_identifier + '-backend.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'infisical', 'infisical-backend']} if infisical_enabled else omit) }}
   - |-
-    {{ ({'name': (infisical_identifier + '-frontend.service'), 'priority': 2000, 'groups': ['mash', 'infisical', 'infisical-frontend']} if infisical_enabled else omit) }}
+    {{ ({'name': (infisical_identifier + '-frontend.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'infisical', 'infisical-frontend']} if infisical_enabled else omit) }}
   # /role-specific:infisical
 
   # role-specific:influxdb
   - |-
-    {{ ({'name': (influxdb_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'influxdb']} if influxdb_enabled else omit) }}
+    {{ ({'name': (influxdb_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'influxdb']} if influxdb_enabled else omit) }}
   # /role-specific:influxdb
 
   # role-specific:inspircd
   - |-
-    {{ ({'name': (inspircd_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'inspircd']} if inspircd_enabled else omit) }}
+    {{ ({'name': (inspircd_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'inspircd']} if inspircd_enabled else omit) }}
   # /role-specific:inspircd
 
   # role-specific:jackett
   - |-
-    {{ ({'name': (jackett_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'jackett']} if jackett_enabled else omit) }}
+    {{ ({'name': (jackett_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'jackett']} if jackett_enabled else omit) }}
   # /role-specific:jackett
 
   # role-specific:jellyfin
   - |-
-    {{ ({'name': (jellyfin_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'jellyfin']} if jellyfin_enabled else omit) }}
+    {{ ({'name': (jellyfin_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'jellyfin']} if jellyfin_enabled else omit) }}
   # /role-specific:jellyfin
 
   # role-specific:jellyseerr
   - |-
-    {{ ({'name': (jellyseerr_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'jellyseerr']} if jellyseerr_enabled else omit) }}
+    {{ ({'name': (jellyseerr_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'jellyseerr']} if jellyseerr_enabled else omit) }}
   # /role-specific:jellyseerr
 
   # role-specific:jitsi
   - |-
-    {{ ({'name': (jitsi_identifier + '-web.service'), 'priority': 4200, 'groups': ['mash', 'jitsi', 'jitsi-web']} if jitsi_enabled else omit) }}
+    {{ ({'name': (jitsi_identifier + '-web.service'), 'priority': 4200, 'restart_necessary': true, 'groups': ['mash', 'jitsi', 'jitsi-web']} if jitsi_enabled else omit) }}
   - |-
-    {{ ({'name': (jitsi_identifier + '-prosody.service'), 'priority': 4000, 'groups': ['mash', 'jitsi', 'jitsi-prosody']} if jitsi_enabled else omit) }}
+    {{ ({'name': (jitsi_identifier + '-prosody.service'), 'priority': 4000, 'restart_necessary': true, 'groups': ['mash', 'jitsi', 'jitsi-prosody']} if jitsi_enabled else omit) }}
   - |-
-    {{ ({'name': (jitsi_identifier + '-jicofo.service'), 'priority': 4100, 'groups': ['mash', 'jitsi', 'jitsi-jicofo']} if jitsi_enabled else omit) }}
+    {{ ({'name': (jitsi_identifier + '-jicofo.service'), 'priority': 4100, 'restart_necessary': true, 'groups': ['mash', 'jitsi', 'jitsi-jicofo']} if jitsi_enabled else omit) }}
   - |-
-    {{ ({'name': (jitsi_identifier + '-jvb.service'), 'priority': 4100, 'groups': ['mash', 'jitsi', 'jitsi-jvb']} if jitsi_enabled else omit) }}
+    {{ ({'name': (jitsi_identifier + '-jvb.service'), 'priority': 4100, 'restart_necessary': true, 'groups': ['mash', 'jitsi', 'jitsi-jvb']} if jitsi_enabled else omit) }}
   # /role-specific:jitsi
 
   # role-specific:joplin_server
   - |-
-    {{ ({'name': (joplin_server_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'joplin-server']} if joplin_server_enabled else omit) }}
+    {{ ({'name': (joplin_server_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'joplin-server']} if joplin_server_enabled else omit) }}
   # /role-specific:joplin_server
 
   # role-specific:kanboard
   - |-
-    {{ ({'name': (kanboard_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'kanboard']} if kanboard_enabled else omit) }}
+    {{ ({'name': (kanboard_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'kanboard']} if kanboard_enabled else omit) }}
   # /role-specific:kanboard
 
   # role-specific:karakeep
   - |-
-    {{ ({'name': (karakeep_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'karakeep']} if karakeep_enabled else omit) }}
+    {{ ({'name': (karakeep_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'karakeep']} if karakeep_enabled else omit) }}
   # /role-specific:karakeep
 
   # role-specific:keycloak
   - |-
-    {{ ({'name': (keycloak_identifier + '.service'), 'priority': 1000, 'groups': ['mash', 'keycloak']} if keycloak_enabled else omit) }}
+    {{ ({'name': (keycloak_identifier + '.service'), 'priority': 1000, 'restart_necessary': true, 'groups': ['mash', 'keycloak']} if keycloak_enabled else omit) }}
   # /role-specific:keycloak
 
   # role-specific:keydb
   - |-
-    {{ ({'name': (keydb_identifier + '.service'), 'priority': 750, 'groups': ['mash', 'keydb']} if keydb_enabled else omit) }}
+    {{ ({'name': (keydb_identifier + '.service'), 'priority': 750, 'restart_necessary': true, 'groups': ['mash', 'keydb']} if keydb_enabled else omit) }}
   # /role-specific:keydb
 
   # role-specific:keyoxide
   - |-
-    {{ ({'name': (keyoxide_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'keyoxide']} if keyoxide_enabled else omit) }}
+    {{ ({'name': (keyoxide_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'keyoxide']} if keyoxide_enabled else omit) }}
   - |-
-    {{ ({'name': (keyoxide_proxy_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'keyoxide']} if keyoxide_proxy_enabled else omit) }}
+    {{ ({'name': (keyoxide_proxy_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'keyoxide']} if keyoxide_proxy_enabled else omit) }}
   # /role-specific:keyoxide
 
   # role-specific:kutt
   - |-
-    {{ ({'name': (kutt_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'kutt']} if kutt_enabled else omit) }}
+    {{ ({'name': (kutt_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'kutt']} if kutt_enabled else omit) }}
   # /role-specific:kutt
 
   # role-specific:labelstudio
   - |-
-    {{ ({'name': (labelstudio_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'labelstudio']} if labelstudio_enabled else omit) }}
+    {{ ({'name': (labelstudio_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'labelstudio']} if labelstudio_enabled else omit) }}
   # /role-specific:labelstudio
 
   # role-specific:lago
   - |-
-    {{ ({'name': (lago_identifier + '-api.service'), 'priority': 2000, 'groups': ['mash', 'lago', 'lago-api']} if lago_enabled else omit) }}
+    {{ ({'name': (lago_identifier + '-api.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'lago', 'lago-api']} if lago_enabled else omit) }}
   - |-
-    {{ ({'name': (lago_identifier + '-api-worker.service'), 'priority': 2500, 'groups': ['mash', 'lago', 'lago-api-worker']} if lago_enabled else omit) }}
+    {{ ({'name': (lago_identifier + '-api-worker.service'), 'priority': 2500, 'restart_necessary': true, 'groups': ['mash', 'lago', 'lago-api-worker']} if lago_enabled else omit) }}
   - |-
-    {{ ({'name': (lago_identifier + '-api-clock.service'), 'priority': 2500, 'groups': ['mash', 'lago', 'lago-api-clock']} if lago_enabled else omit) }}
+    {{ ({'name': (lago_identifier + '-api-clock.service'), 'priority': 2500, 'restart_necessary': true, 'groups': ['mash', 'lago', 'lago-api-clock']} if lago_enabled else omit) }}
   - |-
-    {{ ({'name': (lago_identifier + '-front.service'), 'priority': 2200, 'groups': ['mash', 'lago', 'lago-front']} if lago_enabled else omit) }}
+    {{ ({'name': (lago_identifier + '-front.service'), 'priority': 2200, 'restart_necessary': true, 'groups': ['mash', 'lago', 'lago-front']} if lago_enabled else omit) }}
   - |-
-    {{ ({'name': (lago_identifier + '-pdf.service'), 'priority': 1900, 'groups': ['mash', 'lago', 'lago-pdf']} if lago_enabled else omit) }}
+    {{ ({'name': (lago_identifier + '-pdf.service'), 'priority': 1900, 'restart_necessary': true, 'groups': ['mash', 'lago', 'lago-pdf']} if lago_enabled else omit) }}
   # /role-specific:lago
 
   # role-specific:languagetool
   - |-
-    {{ ({'name': (languagetool_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'languagetool']} if languagetool_enabled else omit) }}
+    {{ ({'name': (languagetool_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'languagetool']} if languagetool_enabled else omit) }}
   # /role-specific:languagetool
 
   # role-specific:limesurvey
   - |-
-    {{ ({'name': (limesurvey_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'limesurvey']} if limesurvey_enabled else omit) }}
+    {{ ({'name': (limesurvey_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'limesurvey']} if limesurvey_enabled else omit) }}
   # /role-specific:limesurvey
 
   # role-specific:linkding
   - |-
-    {{ ({'name': (linkding_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'linkding']} if linkding_enabled else omit) }}
+    {{ ({'name': (linkding_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'linkding']} if linkding_enabled else omit) }}
   # /role-specific:linkding
 
   # role-specific:linkwarden
   - |-
-    {{ ({'name': (linkwarden_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'linkwarden']} if linkwarden_enabled else omit) }}
+    {{ ({'name': (linkwarden_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'linkwarden']} if linkwarden_enabled else omit) }}
   # /role-specific:linkwarden
 
   # role-specific:listmonk
   - |-
-    {{ ({'name': (listmonk_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'listmonk']} if listmonk_enabled else omit) }}
+    {{ ({'name': (listmonk_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'listmonk']} if listmonk_enabled else omit) }}
   # /role-specific:listmonk
 
   # role-specific:lldap
   - |-
-    {{ ({'name': (lldap_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'lldap']} if lldap_enabled else omit) }}
+    {{ ({'name': (lldap_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'lldap']} if lldap_enabled else omit) }}
   # /role-specific:lldap
 
   # role-specific:loki
   - |-
-    {{ ({'name': (loki_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'loki']} if loki_enabled else omit) }}
+    {{ ({'name': (loki_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'loki']} if loki_enabled else omit) }}
   # /role-specific:loki
 
   # role-specific:mailcatcher
   - |-
-    {{ ({'name': (mailcatcher_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'mailcatcher']} if mailcatcher_enabled else omit) }}
+    {{ ({'name': (mailcatcher_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'mailcatcher']} if mailcatcher_enabled else omit) }}
   # /role-specific:mailcatcher
 
   # role-specific:mailcrab
   - |-
-    {{ ({'name': (mailcrab_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'mailcrab']} if mailcrab_enabled else omit) }}
+    {{ ({'name': (mailcrab_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'mailcrab']} if mailcrab_enabled else omit) }}
   # /role-specific:mailcrab
 
   # role-specific:mailpit
   - |-
-    {{ ({'name': (mailpit_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'mailpit']} if mailpit_enabled else omit) }}
+    {{ ({'name': (mailpit_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'mailpit']} if mailpit_enabled else omit) }}
   # /role-specific:mailpit
 
   # role-specific:mariadb
   - |-
-    {{ ({'name': (mariadb_identifier + '.service'), 'priority': 500, 'groups': ['mash', 'mariadb']} if mariadb_enabled else omit) }}
+    {{ ({'name': (mariadb_identifier + '.service'), 'priority': 500, 'restart_necessary': true, 'groups': ['mash', 'mariadb']} if mariadb_enabled else omit) }}
   # /role-specific:mariadb
 
   # role-specific:matomo
   - |-
-    {{ ({'name': (matomo_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'matomo']} if matomo_enabled else omit) }}
+    {{ ({'name': (matomo_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'matomo']} if matomo_enabled else omit) }}
   # /role-specific:matomo
 
   # role-specific:matterbridge
   - |-
-    {{ ({'name': (matterbridge_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'matterbridge']} if matterbridge_enabled else omit) }}
+    {{ ({'name': (matterbridge_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'matterbridge']} if matterbridge_enabled else omit) }}
   # /role-specific:matterbridge
 
   # role-specific:mediawiki
   - |-
-    {{ ({'name': (mediawiki_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'mediawiki']} if mediawiki_enabled else omit) }}
+    {{ ({'name': (mediawiki_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'mediawiki']} if mediawiki_enabled else omit) }}
   # /role-specific:mediawiki
 
   # role-specific:meilisearch
   - |-
-    {{ ({'name': (meilisearch_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'meilisearch']} if meilisearch_enabled else omit) }}
+    {{ ({'name': (meilisearch_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'meilisearch']} if meilisearch_enabled else omit) }}
   # /role-specific:meilisearch
 
   # role-specific:memcached
   - |-
-    {{ ({'name': (memcached_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'memcached']} if memcached_enabled else omit) }}
+    {{ ({'name': (memcached_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'memcached']} if memcached_enabled else omit) }}
   # /role-specific:memcached
 
   # role-specific:minecraft
   - |-
-    {{ ({'name': (minecraft_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'minecraft']} if minecraft_enabled else omit) }}
+    {{ ({'name': (minecraft_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'minecraft']} if minecraft_enabled else omit) }}
   # /role-specific:minecraft
 
   # role-specific:miniflux
   - |-
-    {{ ({'name': (miniflux_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'miniflux']} if miniflux_enabled else omit) }}
+    {{ ({'name': (miniflux_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'miniflux']} if miniflux_enabled else omit) }}
   # /role-specific:miniflux
 
   # role-specific:misskey
   - |-
-    {{ ({'name': (misskey_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'misskey']} if misskey_enabled else omit) }}
+    {{ ({'name': (misskey_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'misskey']} if misskey_enabled else omit) }}
   # /role-specific:misskey
 
   # role-specific:mobilizon
   - |-
-    {{ ({'name': (mobilizon_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'mobilizon']} if mobilizon_enabled else omit) }}
+    {{ ({'name': (mobilizon_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'mobilizon']} if mobilizon_enabled else omit) }}
   # /role-specific:mobilizon
 
   # role-specific:monerooo
   - |-
-    {{ ({'name': (monerooo_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'monerooo']} if monerooo_enabled else omit) }}
+    {{ ({'name': (monerooo_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'monerooo']} if monerooo_enabled else omit) }}
   # /role-specific:monerooo
 
   # role-specific:mongodb
   - |-
-    {{ ({'name': (mongodb_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'mongodb']} if mongodb_enabled else omit) }}
+    {{ ({'name': (mongodb_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'mongodb']} if mongodb_enabled else omit) }}
   # /role-specific:mongodb
 
   # role-specific:moodist
   - |-
-    {{ ({'name': (moodist_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'moodist']} if moodist_enabled else omit) }}
+    {{ ({'name': (moodist_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'moodist']} if moodist_enabled else omit) }}
   # /role-specific:moodist
 
   # role-specific:mosquitto
   - |-
-    {{ ({'name': (mosquitto_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'mosquitto']} if mosquitto_enabled else omit) }}
+    {{ ({'name': (mosquitto_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'mosquitto']} if mosquitto_enabled else omit) }}
   # /role-specific:mosquitto
 
   # role-specific:mozhi
   - |-
-    {{ ({'name': (mozhi_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'mozhi']} if mozhi_enabled else omit) }}
+    {{ ({'name': (mozhi_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'mozhi']} if mozhi_enabled else omit) }}
   # /role-specific:mozhi
 
   # role-specific:mrs
   - |-
-    {{ ({'name': (mrs_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'mrs']} if mrs_enabled else omit) }}
+    {{ ({'name': (mrs_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'mrs']} if mrs_enabled else omit) }}
   # /role-specific:mrs
 
   # role-specific:mumble
   - |-
-    {{ ({'name': (mumble_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'mumble']} if mumble_enabled else omit) }}
+    {{ ({'name': (mumble_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'mumble']} if mumble_enabled else omit) }}
   # /role-specific:mumble
 
   # role-specific:n8n
   - |-
-    {{ ({'name': (n8n_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'n8n']} if n8n_enabled else omit) }}
+    {{ ({'name': (n8n_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'n8n']} if n8n_enabled else omit) }}
   # /role-specific:n8n
 
   # role-specific:navidrome
   - |-
-    {{ ({'name': (navidrome_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'navidrome']} if navidrome_enabled else omit) }}
+    {{ ({'name': (navidrome_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'navidrome']} if navidrome_enabled else omit) }}
   # /role-specific:navidrome
 
   # role-specific:neko
   - |-
-    {{ ({'name': (neko_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'neko']} if neko_enabled else omit) }}
+    {{ ({'name': (neko_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'neko']} if neko_enabled else omit) }}
   # /role-specific:neko
 
   # role-specific:netbox
   - |-
-    {{ ({'name': (netbox_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'netbox', 'netbox-server']} if netbox_enabled else omit) }}
+    {{ ({'name': (netbox_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'netbox', 'netbox-server']} if netbox_enabled else omit) }}
   - |-
-    {{ ({'name': (netbox_identifier + '-worker.service'), 'priority': 2500, 'groups': ['mash', 'netbox', 'netbox-worker']} if netbox_enabled else omit) }}
+    {{ ({'name': (netbox_identifier + '-worker.service'), 'priority': 2500, 'restart_necessary': true, 'groups': ['mash', 'netbox', 'netbox-worker']} if netbox_enabled else omit) }}
   - |-
-    {{ ({'name': (netbox_identifier + '-housekeeping.service'), 'priority': 2500, 'groups': ['mash', 'netbox', 'netbox-housekeeping']} if netbox_enabled else omit) }}
+    {{ ({'name': (netbox_identifier + '-housekeeping.service'), 'priority': 2500, 'restart_necessary': true, 'groups': ['mash', 'netbox', 'netbox-housekeeping']} if netbox_enabled else omit) }}
   # /role-specific:netbox
 
   # role-specific:nextcloud
   - |-
-    {{ ({'name': (nextcloud_identifier + '-server.service'), 'priority': 2000, 'groups': ['mash', 'nextcloud', 'nextcloud-server']} if nextcloud_enabled else omit) }}
+    {{ ({'name': (nextcloud_identifier + '-server.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'nextcloud', 'nextcloud-server']} if nextcloud_enabled else omit) }}
   - |-
-    {{ ({'name': (nextcloud_identifier + '-cron.timer'), 'priority': 2500, 'groups': ['mash', 'nextcloud', 'nextcloud-cron']} if nextcloud_enabled else omit) }}
+    {{ ({'name': (nextcloud_identifier + '-cron.timer'), 'priority': 2500, 'restart_necessary': true, 'groups': ['mash', 'nextcloud', 'nextcloud-cron']} if nextcloud_enabled else omit) }}
   - |-
-    {{ ({'name': (nextcloud_identifier + '-app-update.timer'), 'priority': 2500, 'groups': ['mash', 'nextcloud', 'nextcloud-app-update']} if nextcloud_enabled and nextcloud_app_autoupdate_enabled else omit) }}
+    {{ ({'name': (nextcloud_identifier + '-app-update.timer'), 'priority': 2500, 'restart_necessary': true, 'groups': ['mash', 'nextcloud', 'nextcloud-app-update']} if nextcloud_enabled and nextcloud_app_autoupdate_enabled else omit) }}
   # /role-specific:nextcloud
 
   # role-specific:nifi
   - |-
-    {{ ({'name': (nifi_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'nifi']} if nifi_enabled else omit) }}
+    {{ ({'name': (nifi_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'nifi']} if nifi_enabled else omit) }}
   # /role-specific:nifi
 
   # role-specific:nocdnbs
   - |-
-    {{ ({'name': (nocdnbs_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'nocdnbs']} if nocdnbs_enabled else omit) }}
+    {{ ({'name': (nocdnbs_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'nocdnbs']} if nocdnbs_enabled else omit) }}
   # /role-specific:nocdnbs
 
   # role-specific:nodebb
   - |-
-    {{ ({'name': (nodebb_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'nodebb']} if nodebb_enabled else omit) }}
+    {{ ({'name': (nodebb_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'nodebb']} if nodebb_enabled else omit) }}
   # /role-specific:nodebb
 
   # role-specific:notfellchen
   - |-
-    {{ ({'name': (notfellchen_identifier  + '.service'), 'priority': 2000, 'groups': ['mash', 'notfellchen']} if notfellchen_enabled else omit) }}
+    {{ ({'name': (notfellchen_identifier  + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'notfellchen']} if notfellchen_enabled else omit) }}
   - |-
-    {{ ({'name': (notfellchen_sws_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'notfellchen', 'notfellchen-sws']} if notfellchen_enabled else omit) }}
+    {{ ({'name': (notfellchen_sws_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'notfellchen', 'notfellchen-sws']} if notfellchen_enabled else omit) }}
   - |-
-    {{ ({'name': (notfellchen_celery_beat_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'notfellchen']} if notfellchen_enabled else omit) }}
+    {{ ({'name': (notfellchen_celery_beat_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'notfellchen']} if notfellchen_enabled else omit) }}
   - |-
-    {{ ({'name': (notfellchen_celery_worker_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'notfellchen']} if notfellchen_enabled else omit) }}
+    {{ ({'name': (notfellchen_celery_worker_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'notfellchen']} if notfellchen_enabled else omit) }}
   # /role-specific:notfellchen
 
   # role-specific:ntfy
   - |-
-    {{ ({'name': (ntfy_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'ntfy']} if ntfy_enabled else omit) }}
+    {{ ({'name': (ntfy_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'ntfy']} if ntfy_enabled else omit) }}
   # /role-specific:ntfy
 
   # role-specific:oauth2_proxy
   - |-
-    {{ ({'name': (oauth2_proxy_identifier + '.service'), 'priority': 1900, 'groups': ['mash', 'oauth2-proxy']} if oauth2_proxy_enabled else omit) }}
+    {{ ({'name': (oauth2_proxy_identifier + '.service'), 'priority': 1900, 'restart_necessary': true, 'groups': ['mash', 'oauth2-proxy']} if oauth2_proxy_enabled else omit) }}
   # /role-specific:oauth2_proxy
 
   # role-specific:onion_service_tor
   - |-
-    {{ ({'name': (onion_service_tor_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'onion-service-tor']} if onion_service_tor_enabled else omit) }}
+    {{ ({'name': (onion_service_tor_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'onion-service-tor']} if onion_service_tor_enabled else omit) }}
   # /role-specific:onion_service_tor
 
   # role-specific:onlyoffice_docs
   - |-
-    {{ ({'name': (onlyoffice_docs_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'onlyoffice-docs']} if onlyoffice_docs_enabled else omit) }}
+    {{ ({'name': (onlyoffice_docs_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'onlyoffice-docs']} if onlyoffice_docs_enabled else omit) }}
   # /role-specific:onlyoffice_docs
 
   # role-specific:openarchiver
   - |-
-    {{ ({'name': (openarchiver_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'openarchiver']} if openarchiver_enabled else omit) }}
+    {{ ({'name': (openarchiver_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'openarchiver']} if openarchiver_enabled else omit) }}
   # /role-specific:openarchiver
 
   # role-specific:opengist
   - |-
-    {{ ({'name': (opengist_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'opengist']} if opengist_enabled else omit) }}
+    {{ ({'name': (opengist_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'opengist']} if opengist_enabled else omit) }}
   # /role-specific:opengist
 
   # role-specific:openregex
   - |-
-    {{ ({'name': (openregex_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'openregex']} if openregex_enabled else omit) }}
+    {{ ({'name': (openregex_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'openregex']} if openregex_enabled else omit) }}
   # /role-specific:openregex
 
   # role-specific:origamivault
   - |-
-    {{ ({'name': (origamivault_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'origamivault']} if origamivault_enabled else omit) }}
+    {{ ({'name': (origamivault_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'origamivault']} if origamivault_enabled else omit) }}
   # /role-specific:origamivault
 
   # role-specific:ots
   - |-
-    {{ ({'name': (ots_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'ots']} if ots_enabled else omit) }}
+    {{ ({'name': (ots_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'ots']} if ots_enabled else omit) }}
   # /role-specific:ots
 
   # role-specific:otterwiki
   - |-
-    {{ ({'name': (otterwiki_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'otterwiki']} if otterwiki_enabled else omit) }}
+    {{ ({'name': (otterwiki_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'otterwiki']} if otterwiki_enabled else omit) }}
   # /role-specific:otterwiki
 
   # role-specific:outline
   - |-
-    {{ ({'name': (outline_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'outline']} if outline_enabled else omit) }}
+    {{ ({'name': (outline_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'outline']} if outline_enabled else omit) }}
   # /role-specific:outline
 
   # role-specific:overseerr
   - |-
-    {{ ({'name': (overseerr_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'overseerr']} if overseerr_enabled else omit) }}
+    {{ ({'name': (overseerr_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'overseerr']} if overseerr_enabled else omit) }}
   # /role-specific:overseerr
 
   # role-specific:owncast
   - |-
-    {{ ({'name': (owncast_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'owncast']} if owncast_enabled else omit) }}
+    {{ ({'name': (owncast_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'owncast']} if owncast_enabled else omit) }}
   # /role-specific:owncast
 
   # role-specific:oxitraffic
   - |-
-    {{ ({'name': (oxitraffic_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'oxitraffic']} if oxitraffic_enabled else omit) }}
+    {{ ({'name': (oxitraffic_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'oxitraffic']} if oxitraffic_enabled else omit) }}
   # /role-specific:oxitraffic
 
   # role-specific:papra
   - |-
-    {{ ({'name': (papra_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'papra']} if papra_enabled else omit) }}
+    {{ ({'name': (papra_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'papra']} if papra_enabled else omit) }}
   # /role-specific:papra
 
   # role-specific:paperless
   - |-
-    {{ ({'name': (paperless_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'paperless']} if paperless_enabled else omit) }}
+    {{ ({'name': (paperless_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'paperless']} if paperless_enabled else omit) }}
   - |-
-    {{ ({'name': (paperless_gotenberg_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'paperless']} if paperless_enabled and paperless_gotenberg_enabled else omit) }}
+    {{ ({'name': (paperless_gotenberg_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'paperless']} if paperless_enabled and paperless_gotenberg_enabled else omit) }}
   # /role-specific:paperless
 
   # role-specific:pdfding
   - |-
-    {{ ({'name': (pdfding_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'pdfding']} if pdfding_enabled else omit) }}
+    {{ ({'name': (pdfding_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'pdfding']} if pdfding_enabled else omit) }}
   # /role-specific:pdfding
 
   # role-specific:peertube
   - |-
-    {{ ({'name': (peertube_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'peertube']} if peertube_enabled else omit) }}
+    {{ ({'name': (peertube_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'peertube']} if peertube_enabled else omit) }}
   # /role-specific:peertube
 
   # role-specific:pgadmin
   - |-
-    {{ ({'name': (pgadmin_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'pgadmin']} if pgadmin_enabled else omit) }}
+    {{ ({'name': (pgadmin_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'pgadmin']} if pgadmin_enabled else omit) }}
   # /role-specific:pgadmin
 
   # role-specific:phpmyadmin
   - |-
-    {{ ({'name': (phpmyadmin_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'phpmyadmin']} if phpmyadmin_enabled else omit) }}
+    {{ ({'name': (phpmyadmin_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'phpmyadmin']} if phpmyadmin_enabled else omit) }}
   # /role-specific:phpmyadmin
 
   # role-specific:plausible
   - |-
-    {{ ({'name': (plausible_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'plausible']} if plausible_enabled else omit) }}
+    {{ ({'name': (plausible_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'plausible']} if plausible_enabled else omit) }}
   # /role-specific:plausible
 
   # role-specific:plex
   - |-
-    {{ ({'name': (plex_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'plex']} if plex_enabled else omit) }}
+    {{ ({'name': (plex_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'plex']} if plex_enabled else omit) }}
   # /role-specific:plex
 
   # role-specific:pocket_id
   - |-
-    {{ ({'name': (pocket_id_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'pocket-id']} if pocket_id_enabled else omit) }}
+    {{ ({'name': (pocket_id_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'pocket-id']} if pocket_id_enabled else omit) }}
   # /role-specific:pocket_id
 
   # role-specific:poodledonts
   - |-
-    {{ ({'name': (poodledonts_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'poodledonts']} if poodledonts_enabled else omit) }}
+    {{ ({'name': (poodledonts_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'poodledonts']} if poodledonts_enabled else omit) }}
   # /role-specific:poodledonts
 
   # role-specific:postgis
   - |-
-    {{ ({'name': (postgis_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'postgis']} if postgis_enabled else omit) }}
+    {{ ({'name': (postgis_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'postgis']} if postgis_enabled else omit) }}
   # /role-specific:postgis
 
   # role-specific:postgres
   - |-
-    {{ ({'name': (postgres_identifier + '.service'), 'priority': 500, 'groups': ['mash', 'postgres']} if postgres_enabled else omit) }}
+    {{ ({'name': (postgres_identifier + '.service'), 'priority': 500, 'restart_necessary': true, 'groups': ['mash', 'postgres']} if postgres_enabled else omit) }}
   # /role-specific:postgres
 
   # role-specific:postgres_backup
   - |-
-    {{ ({'name': (postgres_backup_identifier + '.service'), 'priority': 5000, 'groups': ['mash', 'backup', 'postgres-backup']} if postgres_backup_enabled else omit) }}
+    {{ ({'name': (postgres_backup_identifier + '.service'), 'priority': 5000, 'restart_necessary': true, 'groups': ['mash', 'backup', 'postgres-backup']} if postgres_backup_enabled else omit) }}
   # /role-specific:postgres_backup
 
   # role-specific:privatebin
   - |-
-    {{ ({'name': (privatebin_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'privatebin']} if privatebin_enabled else omit) }}
+    {{ ({'name': (privatebin_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'privatebin']} if privatebin_enabled else omit) }}
   # /role-specific:privatebin
 
   # role-specific:prometheus
   - |-
-    {{ ({'name': (prometheus_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'metrics', 'prometheus']} if prometheus_enabled else omit) }}
+    {{ ({'name': (prometheus_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'metrics', 'prometheus']} if prometheus_enabled else omit) }}
   # /role-specific:prometheus
 
   # role-specific:prometheus_blackbox_exporter
   - |-
-    {{ ({'name': (prometheus_blackbox_exporter_identifier + '.service'), 'priority': 500, 'groups': ['mash', 'metrics', 'prometheus-blackbox-exporter']} if prometheus_blackbox_exporter_enabled else omit) }}
+    {{ ({'name': (prometheus_blackbox_exporter_identifier + '.service'), 'priority': 500, 'restart_necessary': true, 'groups': ['mash', 'metrics', 'prometheus-blackbox-exporter']} if prometheus_blackbox_exporter_enabled else omit) }}
   # /role-specific:prometheus_blackbox_exporter
 
   # role-specific:prometheus_node_exporter
   - |-
-    {{ ({'name': (prometheus_node_exporter_identifier + '.service'), 'priority': 500, 'groups': ['mash', 'metrics', 'prometheus-node-exporter']} if prometheus_node_exporter_enabled else omit) }}
+    {{ ({'name': (prometheus_node_exporter_identifier + '.service'), 'priority': 500, 'restart_necessary': true, 'groups': ['mash', 'metrics', 'prometheus-node-exporter']} if prometheus_node_exporter_enabled else omit) }}
   # /role-specific:prometheus_node_exporter
 
   # role-specific:prometheus_postgres_exporter
   - |-
-    {{ ({'name': (prometheus_postgres_exporter_identifier + '.service'), 'priority': 500, 'groups': ['mash', 'metrics', 'prometheus-postgres-exporter']} if prometheus_postgres_exporter_enabled else omit) }}
+    {{ ({'name': (prometheus_postgres_exporter_identifier + '.service'), 'priority': 500, 'restart_necessary': true, 'groups': ['mash', 'metrics', 'prometheus-postgres-exporter']} if prometheus_postgres_exporter_enabled else omit) }}
   # /role-specific:prometheus_postgres_exporter
 
   # role-specific:prometheus_ssh_exporter
   - |-
-    {{ ({'name': (prometheus_ssh_exporter_identifier + '.service'), 'priority': 500, 'groups': ['mash', 'metrics', 'prometheus-ssh-exporter']} if prometheus_ssh_exporter_enabled else omit) }}
+    {{ ({'name': (prometheus_ssh_exporter_identifier + '.service'), 'priority': 500, 'restart_necessary': true, 'groups': ['mash', 'metrics', 'prometheus-ssh-exporter']} if prometheus_ssh_exporter_enabled else omit) }}
   # /role-specific:prometheus_ssh_exporter
 
   # role-specific:promtail
   - |-
-    {{ ({'name': (promtail_identifier + '.service'), 'priority': 500, 'groups': ['mash', 'logs', 'promtail']} if promtail_enabled else omit) }}
+    {{ ({'name': (promtail_identifier + '.service'), 'priority': 500, 'restart_necessary': true, 'groups': ['mash', 'logs', 'promtail']} if promtail_enabled else omit) }}
   # /role-specific:promtail
 
   # role-specific:prunemate
   - |-
-    {{ ({'name': (prunemate_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'prunemate']} if prunemate_enabled else omit) }}
+    {{ ({'name': (prunemate_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'prunemate']} if prunemate_enabled else omit) }}
   # /role-specific:prunemate
 
   # role-specific:qbittorrent
   - |-
-    {{ ({'name': (qbittorrent_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'qbittorrent']} if qbittorrent_enabled else omit) }}
+    {{ ({'name': (qbittorrent_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'qbittorrent']} if qbittorrent_enabled else omit) }}
   # /role-specific:qbittorrent
 
   # role-specific:rabbitmq
   - |-
-    {{ ({'name': (rabbitmq_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'rabbitmq']} if rabbitmq_enabled else omit) }}
+    {{ ({'name': (rabbitmq_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'rabbitmq']} if rabbitmq_enabled else omit) }}
   # /role-specific:rabbitmq
 
   # role-specific:radarr
   - |-
-    {{ ({'name': (radarr_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'radarr']} if radarr_enabled else omit) }}
+    {{ ({'name': (radarr_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'radarr']} if radarr_enabled else omit) }}
   # /role-specific:radarr
 
   # role-specific:radicale
   - |-
-    {{ ({'name': (radicale_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'radicale']} if radicale_enabled else omit) }}
+    {{ ({'name': (radicale_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'radicale']} if radicale_enabled else omit) }}
   # /role-specific:radicale
 
   # role-specific:radicle_explorer
   - |-
-    {{ ({'name': (radicle_explorer_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'radicle-explorer']} if radicle_explorer_enabled else omit) }}
+    {{ ({'name': (radicle_explorer_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'radicle-explorer']} if radicle_explorer_enabled else omit) }}
   # /role-specific:radicle_explorer
 
   # role-specific:radicle_httpd
   - |-
-    {{ ({'name': (radicle_httpd_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'radicle-httpd']} if radicle_httpd_enabled else omit) }}
+    {{ ({'name': (radicle_httpd_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'radicle-httpd']} if radicle_httpd_enabled else omit) }}
   # /role-specific:radicle_httpd
 
   # role-specific:radicle_node
   - |-
-    {{ ({'name': (radicle_node_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'radicle-node']} if radicle_node_enabled else omit) }}
+    {{ ({'name': (radicle_node_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'radicle-node']} if radicle_node_enabled else omit) }}
   # /role-specific:radicle_node
 
   # role-specific:reactflux
   - |-
-    {{ ({'name': (reactflux_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'reactflux']} if reactflux_enabled else omit) }}
+    {{ ({'name': (reactflux_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'reactflux']} if reactflux_enabled else omit) }}
   # /role-specific:reactflux
 
   # role-specific:readeck
   - |-
-    {{ ({'name': (readeck_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'readeck']} if readeck_enabled else omit) }}
+    {{ ({'name': (readeck_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'readeck']} if readeck_enabled else omit) }}
   # /role-specific:readeck
 
   # role-specific:redis
   - |-
-    {{ ({'name': (redis_identifier + '.service'), 'priority': 750, 'groups': ['mash', 'redis']} if redis_enabled else omit) }}
+    {{ ({'name': (redis_identifier + '.service'), 'priority': 750, 'restart_necessary': true, 'groups': ['mash', 'redis']} if redis_enabled else omit) }}
   # /role-specific:redis
 
   # role-specific:redlib
   - |-
-    {{ ({'name': (redlib_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'redlib']} if redlib_enabled else omit) }}
+    {{ ({'name': (redlib_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'redlib']} if redlib_enabled else omit) }}
   # /role-specific:redlib
 
   # role-specific:redmine
   - |-
-    {{ ({'name': (redmine_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'redmine']} if redmine_enabled else omit) }}
+    {{ ({'name': (redmine_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'redmine']} if redmine_enabled else omit) }}
   - |-
-    {{ ({'name': (redmine_identifier + '-send-reminders.timer'), 'priority': 2000, 'groups': ['mash', 'redmine']} if redmine_enabled else omit) }}
+    {{ ({'name': (redmine_identifier + '-send-reminders.timer'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'redmine']} if redmine_enabled else omit) }}
   - |-
-    {{ ({'name': (redmine_identifier + '-recurring-tasks.timer'), 'priority': 2000, 'groups': ['mash', 'redmine']} if redmine_enabled and redmine_recurring_tasks_enabled else omit) }}
+    {{ ({'name': (redmine_identifier + '-recurring-tasks.timer'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'redmine']} if redmine_enabled and redmine_recurring_tasks_enabled else omit) }}
   # /role-specific:redmine
 
   # role-specific:roundcube
   - |-
-    {{ ({'name': (roundcube_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'roundcube']} if roundcube_enabled else omit) }}
+    {{ ({'name': (roundcube_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'roundcube']} if roundcube_enabled else omit) }}
   # /role-specific:roundcube
 
   # role-specific:rssbridge
   - |-
-    {{ ({'name': (rssbridge_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'rssbridge']} if rssbridge_enabled else omit) }}
+    {{ ({'name': (rssbridge_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'rssbridge']} if rssbridge_enabled else omit) }}
   # /role-specific:rssbridge
 
   # role-specific:rsshub
   - |-
-    {{ ({'name': (rsshub_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'rsshub']} if rsshub_enabled else omit) }}
+    {{ ({'name': (rsshub_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'rsshub']} if rsshub_enabled else omit) }}
   # /role-specific:rsshub
 
   # role-specific:rumqttd
   - |-
-    {{ ({'name': (rumqttd_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'rumqttd']} if rumqttd_enabled else omit) }}
+    {{ ({'name': (rumqttd_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'rumqttd']} if rumqttd_enabled else omit) }}
   # /role-specific:rumqttd
 
   # role-specific:searxng
   - |-
-    {{ ({'name': (searxng_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'searxng']} if searxng_enabled else omit) }}
+    {{ ({'name': (searxng_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'searxng']} if searxng_enabled else omit) }}
   # /role-specific:searxng
 
   # role-specific:semaphore
   - |-
-    {{ ({'name': (semaphore_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'semaphore']} if semaphore_enabled else omit) }}
+    {{ ({'name': (semaphore_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'semaphore']} if semaphore_enabled else omit) }}
   # /role-specific:semaphore
 
   # role-specific:send
   - |-
-    {{ ({'name': (send_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'send']} if send_enabled else omit) }}
+    {{ ({'name': (send_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'send']} if send_enabled else omit) }}
   # /role-specific:send
 
   # role-specific:sftpgo
   - |-
-    {{ ({'name': (sftpgo_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'sftpgo']} if sftpgo_enabled else omit) }}
+    {{ ({'name': (sftpgo_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'sftpgo']} if sftpgo_enabled else omit) }}
   # /role-specific:sftpgo
 
   # role-specific:smp_server
   - |-
-    {{ ({'name': (smp_server_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'smp-server']} if smp_server_enabled else omit) }}
+    {{ ({'name': (smp_server_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'smp-server']} if smp_server_enabled else omit) }}
   # /role-specific:smp_server
 
   # role-specific:snowflake
   - |-
-    {{ ({'name': (snowflake_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'snowflake']} if snowflake_enabled else omit) }}
+    {{ ({'name': (snowflake_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'snowflake']} if snowflake_enabled else omit) }}
   # /role-specific:snowflake
 
   # role-specific:soft_serve
   - |-
-    {{ ({'name': (soft_serve_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'soft-serve']} if soft_serve_enabled else omit) }}
+    {{ ({'name': (soft_serve_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'soft-serve']} if soft_serve_enabled else omit) }}
   # /role-specific:soft_serve
 
   # role-specific:solidinvoice
   - |-
-    {{ ({'name': (solidinvoice_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'solidinvoice']} if solidinvoice_enabled else omit) }}
+    {{ ({'name': (solidinvoice_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'solidinvoice']} if solidinvoice_enabled else omit) }}
   # /role-specific:solidinvoice
 
   # role-specific:sonarr
   - |-
-    {{ ({'name': (sonarr_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'sonarr']} if sonarr_enabled else omit) }}
+    {{ ({'name': (sonarr_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'sonarr']} if sonarr_enabled else omit) }}
   # /role-specific:sonarr
 
   # role-specific:soundcloak
   - |-
-    {{ ({'name': (soundcloak_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'soundcloak']} if soundcloak_enabled else omit) }}
+    {{ ({'name': (soundcloak_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'soundcloak']} if soundcloak_enabled else omit) }}
   # /role-specific:soundcloak
 
   # role-specific:statusnook
   - |-
-    {{ ({'name': (statusnook_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'statusnook']} if statusnook_enabled else omit) }}
+    {{ ({'name': (statusnook_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'statusnook']} if statusnook_enabled else omit) }}
   # /role-specific:statusnook
 
   # role-specific:stirling_pdf
   - |-
-    {{ ({'name': (stirling_pdf_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'stirling-pdf']} if stirling_pdf_enabled else omit) }}
+    {{ ({'name': (stirling_pdf_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'stirling-pdf']} if stirling_pdf_enabled else omit) }}
   # /role-specific:stirling_pdf
 
   # role-specific:syncstorage_rs_docker
   - |-
-    {{ ({'name': (syncstorage_rs_docker_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'syncstorage-rs-docker']} if syncstorage_rs_docker_enabled else omit) }}
+    {{ ({'name': (syncstorage_rs_docker_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'syncstorage-rs-docker']} if syncstorage_rs_docker_enabled else omit) }}
   # /role-specific:syncstorage_rs_docker
 
   # role-specific:syncthing
   - |-
-    {{ ({'name': (syncthing_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'syncthing']} if syncthing_enabled else omit) }}
+    {{ ({'name': (syncthing_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'syncthing']} if syncthing_enabled else omit) }}
   # /role-specific:syncthing
 
   # role-specific:tandoor
   - |-
-    {{ ({'name': (tandoor_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'tandoor']} if tandoor_enabled else omit) }}
+    {{ ({'name': (tandoor_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'tandoor']} if tandoor_enabled else omit) }}
   # /role-specific:tandoor
 
   # role-specific:telegraf
   - |-
-    {{ ({'name': (telegraf_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'telegraf']} if telegraf_enabled else omit) }}
+    {{ ({'name': (telegraf_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'telegraf']} if telegraf_enabled else omit) }}
   # /role-specific:telegraf
 
   # role-specific:termix
   - |-
-    {{ ({'name': (termix_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'termix']} if termix_enabled else omit) }}
+    {{ ({'name': (termix_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'termix']} if termix_enabled else omit) }}
   # /role-specific:termix
 
   # role-specific:thelounge
   - |-
-    {{ ({'name': (thelounge_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'thelounge']} if thelounge_enabled else omit) }}
+    {{ ({'name': (thelounge_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'thelounge']} if thelounge_enabled else omit) }}
   # /role-specific:thelounge
 
   # role-specific:tika
   - |-
-    {{ ({'name': (tika_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'tika']} if tika_enabled else omit) }}
+    {{ ({'name': (tika_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'tika']} if tika_enabled else omit) }}
   # /role-specific:tika
 
   # role-specific:tinyauth
   - |-
-    {{ ({'name': (tinyauth_identifier + '.service'), 'priority': 1900, 'groups': ['mash', 'tinyauth']} if tinyauth_enabled else omit) }}
+    {{ ({'name': (tinyauth_identifier + '.service'), 'priority': 1900, 'restart_necessary': true, 'groups': ['mash', 'tinyauth']} if tinyauth_enabled else omit) }}
   # /role-specific:tinyauth
 
   # role-specific:traefik
   - |-
-    {{ ({'name': (traefik_identifier + '.service'), 'priority': 250, 'groups': ['mash', 'traefik', 'reverse-proxies']} if traefik_enabled else omit) }}
+    {{ ({'name': (traefik_identifier + '.service'), 'priority': 250, 'restart_necessary': true, 'groups': ['mash', 'traefik', 'reverse-proxies']} if traefik_enabled else omit) }}
   # /role-specific:traefik
 
   # role-specific:traefik_certs_dumper
   - |-
-    {{ ({'name': (traefik_certs_dumper_identifier + '.service'), 'priority': 300, 'groups': ['mash', 'traefik-certs-dumper']} if traefik_certs_dumper_enabled else omit) }}
+    {{ ({'name': (traefik_certs_dumper_identifier + '.service'), 'priority': 300, 'restart_necessary': true, 'groups': ['mash', 'traefik-certs-dumper']} if traefik_certs_dumper_enabled else omit) }}
   # /role-specific:traefik_certs_dumper
 
   # role-specific:tsdproxy
   - |-
-    {{ ({'name': (tsdproxy_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'tsdproxy']} if tsdproxy_enabled else omit) }}
+    {{ ({'name': (tsdproxy_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'tsdproxy']} if tsdproxy_enabled else omit) }}
   # /role-specific:tsdproxy
 
   # role-specific:typesense
   - |-
-    {{ ({'name': (typesense_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'typesense']} if typesense_enabled else omit) }}
+    {{ ({'name': (typesense_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'typesense']} if typesense_enabled else omit) }}
   # /role-specific:typesense
 
   # role-specific:uptime_kuma
   - |-
-    {{ ({'name': (uptime_kuma_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'uptime-kuma']} if uptime_kuma_enabled else omit) }}
+    {{ ({'name': (uptime_kuma_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'uptime-kuma']} if uptime_kuma_enabled else omit) }}
   # /role-specific:uptime_kuma
 
   # role-specific:valkey
   - |-
-    {{ ({'name': (valkey_identifier + '.service'), 'priority': 750, 'groups': ['mash', 'valkey']} if valkey_enabled else omit) }}
+    {{ ({'name': (valkey_identifier + '.service'), 'priority': 750, 'restart_necessary': true, 'groups': ['mash', 'valkey']} if valkey_enabled else omit) }}
   # /role-specific:valkey
 
   # role-specific:vaultwarden
   - |-
-    {{ ({'name': (vaultwarden_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'vaultwarden']} if vaultwarden_enabled else omit) }}
+    {{ ({'name': (vaultwarden_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'vaultwarden']} if vaultwarden_enabled else omit) }}
   # /role-specific:vaultwarden
 
   # role-specific:vikunja
   - |-
-    {{ ({'name': (vikunja_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'vikunja']} if vikunja_enabled else omit) }}
+    {{ ({'name': (vikunja_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'vikunja']} if vikunja_enabled else omit) }}
   # /role-specific:vikunja
 
   # role-specific:weblate
   - |-
-    {{ ({'name': (weblate_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'weblate']} if weblate_enabled else omit) }}
+    {{ ({'name': (weblate_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'weblate']} if weblate_enabled else omit) }}
   # /role-specific:weblate
 
   # role-specific:wetty
   - |-
-    {{ ({'name': (wetty_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'wetty']} if wetty_enabled else omit) }}
+    {{ ({'name': (wetty_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'wetty']} if wetty_enabled else omit) }}
   # /role-specific:wetty
 
   # role-specific:wg_easy
   - |-
-    {{ ({'name': (wg_easy_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'wg-easy']} if wg_easy_enabled else omit) }}
+    {{ ({'name': (wg_easy_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'wg-easy']} if wg_easy_enabled else omit) }}
   # /role-specific:wg_easy
 
   # role-specific:wikimore
   - |-
-    {{ ({'name': (wikimore_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'wikimore']} if wikimore_enabled else omit) }}
+    {{ ({'name': (wikimore_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'wikimore']} if wikimore_enabled else omit) }}
   # /role-specific:wikimore
 
   # role-specific:woodpecker_ci_agent
   - |-
-    {{ ({'name': (woodpecker_ci_agent_identifier + '.service'), 'priority': 4100, 'groups': ['mash', 'woodpecker', 'ci', 'woodpecker-ci-agent']} if woodpecker_ci_agent_enabled else omit) }}
+    {{ ({'name': (woodpecker_ci_agent_identifier + '.service'), 'priority': 4100, 'restart_necessary': true, 'groups': ['mash', 'woodpecker', 'ci', 'woodpecker-ci-agent']} if woodpecker_ci_agent_enabled else omit) }}
   # /role-specific:woodpecker_ci_agent
 
   # role-specific:woodpecker_ci_server
   - |-
-    {{ ({'name': (woodpecker_ci_server_identifier + '.service'), 'priority': 4000, 'groups': ['mash', 'woodpecker', 'ci', 'woodpecker-ci-server']} if woodpecker_ci_server_enabled else omit) }}
+    {{ ({'name': (woodpecker_ci_server_identifier + '.service'), 'priority': 4000, 'restart_necessary': true, 'groups': ['mash', 'woodpecker', 'ci', 'woodpecker-ci-server']} if woodpecker_ci_server_enabled else omit) }}
   # /role-specific:woodpecker_ci_server
 
   # role-specific:wordpress
   - |-
-    {{ ({'name': (wordpress_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'wordpress']} if wordpress_enabled else omit) }}
+    {{ ({'name': (wordpress_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'wordpress']} if wordpress_enabled else omit) }}
   # /role-specific:wordpress
 
   # role-specific:writefreely
   - |-
-    {{ ({'name': (writefreely_identifier  + '.service'), 'priority': 2000, 'groups': ['mash', 'writefreely']} if writefreely_enabled else omit) }}
+    {{ ({'name': (writefreely_identifier  + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'writefreely']} if writefreely_enabled else omit) }}
   # /role-specific:writefreely
 
   # role-specific:yacy
   - |-
-    {{ ({'name': (yacy_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'yacy']} if yacy_enabled else omit) }}
+    {{ ({'name': (yacy_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'yacy']} if yacy_enabled else omit) }}
   # /role-specific:yacy
 
   # role-specific:yggstack
   - |-
-    {{ ({'name': (yggstack_identifier + '.service'), 'priority': 500, 'groups': ['mash', 'yggstack']} if yggstack_enabled else omit) }}
+    {{ ({'name': (yggstack_identifier + '.service'), 'priority': 500, 'restart_necessary': true, 'groups': ['mash', 'yggstack']} if yggstack_enabled else omit) }}
   # /role-specific:yggstack
 
   # role-specific:yourls
   - |-
-    {{ ({'name': (yourls_identifier  + '.service'), 'priority': 2000, 'groups': ['mash', 'yourls']} if yourls_enabled else omit) }}
+    {{ ({'name': (yourls_identifier  + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'yourls']} if yourls_enabled else omit) }}
   # /role-specific:yourls
 
 devture_systemd_service_manager_services_list_auto: "{{ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized | reject('equalto', omit) }}"
