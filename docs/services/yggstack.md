@@ -20,21 +20,15 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
 # Yggstack
 
-The playbook can install and configure [Yggstack](https://www.yggstack.org/) for you.
+The playbook can install and configure [Yggstack](https://github.com/yggdrasil-network/yggstack) for you.
 
-Yggstack is a full-featured database management tool written in PHP. It supports MySQL, MariaDB, PostgreSQL, CockroachDB, SQLite, MS SQL, and Oracle out of the box. Elasticsearch, SimpleDB, MongoDB, Firebird, and Clickhouse can be supported via plugins.
+Yggstack is a SOCKS5 proxy server and TCP port forwarder for [Yggdrasil](https://yggdrasil-network.github.io), an early-stage implementation of a fully end-to-end encrypted IPv6 network.
 
-See the project's [documentation](https://github.com/vrana/yggstack/blob/master/README.md) to learn what Yggstack does and why it might be useful to you.
+See the project's [documentation](https://github.com/yggdrasil-network/yggstack/blob/develop/README.md) to learn what Yggstack does and why it might be useful to you.
 
-For details about configuring the [Ansible role for Yggstack](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3px8gLDo2opjQZW7qFiLoNuk4eSu), you can check them via:
-- 🌐 [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3px8gLDo2opjQZW7qFiLoNuk4eSu/tree/docs/configuring-yggstack.md) online
+For details about configuring the [Ansible role for Yggstack](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az2BzsfYJzpSCK4tC8kCR1uCooZYX5), you can check them via:
+- 🌐 [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az2BzsfYJzpSCK4tC8kCR1uCooZYX5/tree/docs/configuring-yggstack.md) online
 - 📁 `roles/galaxy/yggstack/docs/configuring-yggstack.md` locally, if you have [fetched the Ansible roles](../installing.md)
-
-## Dependencies
-
-This service requires the following other services:
-
-- [Traefik](traefik.md) reverse-proxy server
 
 ## Adjusting the playbook configuration
 
@@ -49,8 +43,6 @@ To enable this service, add the following configuration to your `vars.yml` file 
 
 yggstack_enabled: true
 
-yggstack_hostname: yggstack.example.com
-
 ########################################################################
 #                                                                      #
 # /yggstack                                                            #
@@ -58,24 +50,17 @@ yggstack_hostname: yggstack.example.com
 ########################################################################
 ```
 
-It is optionally possible to edit settings about the default server to connect, plugins to load (ones for loading databases), etc. See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3px8gLDo2opjQZW7qFiLoNuk4eSu/tree/docs/configuring-yggstack.md#adjusting-the-playbook-configuration) for details.
-
 ## Usage
 
-After running the command for installation, the Yggstack instance becomes available at the URL specified with `yggstack_hostname`. With the configuration above, the service is hosted at `https://yggstack.example.com`.
+After running the command for installation, Yggstack becomes available at the IPv6 address which the service generates for you. The IPv6 address, its subnet, and your public key have been been logged to the console logs on the startup. The configuration file (`yggdrasil.conf`) can be found in `yggstack_data_path`.
 
-To get started, open the URL with a web browser to log in to the instance with the database's credentials specified on your `vars.yml` file.
-
-To log in to database servers which this playbook manages, you need to specify its `*_identifier` to the `server` input area. For example, the default value for the MariaDB server is `mash-mariadb` and the one for the Postgres server is `mash-postgres`, respectively.
-
->[!NOTE]
-> Since enabling Yggstack with this playbook exposes the instance (thus practically the databases as well) to the internet, it is important to set a proper method to restrict who can access to it. See [this section](https://www.yggstack.org/en/#requirements) on the project website for security recommendations.
+Refer to [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az2BzsfYJzpSCK4tC8kCR1uCooZYX5/tree/docs/configuring-yggstack.md#usage) for details about how to set up Yggstack.
 
 ## Troubleshooting
 
-See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3px8gLDo2opjQZW7qFiLoNuk4eSu/tree/docs/configuring-yggstack.md#troubleshooting) on the role's documentation for details.
+See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az2BzsfYJzpSCK4tC8kCR1uCooZYX5/tree/docs/configuring-yggstack.md#troubleshooting) on the role's documentation for details.
 
-## Related services
+## References
 
-- [pgAdmin](pgadmin.md) — Management tool for Postgres with a graphical interface
-- [phpMyAdmin](phpmyadmin.md) — Free software written in PHP to handle the administration of a MySQL or MariaDB database server over the web
+- <https://yggdrasil-network.github.io/about.html> — Basic concepts about Yggdrasil Network
+- <https://yggdrasil-network.github.io/services.html>
