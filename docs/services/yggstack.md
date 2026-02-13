@@ -56,6 +56,49 @@ After running the command for installation, Yggstack becomes available at the IP
 
 Refer to [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az2BzsfYJzpSCK4tC8kCR1uCooZYX5/tree/docs/configuring-yggstack.md#usage) for details about how to set up Yggstack.
 
+### Connecting with Traefik
+
+By placing Yggstack before Traefik, it will be possible to serve multiple services via Yggstack. Please follow the example below:
+
+```yaml
+# Expose Traefik to Yggdrasil at port 80 and 443
+yggstack_process_extra_arguments_custom:
+  - -remote-tcp 80:TRAEFIK_INTERNAL_IP_HERE:8080
+  - -remote-tcp 443:TRAEFIK_INTERNAL_IP_HERE:8443
+
+# Connect Yggstack with Traefik
+traefik_container_additional_networks_custom:
+  - "{{ yggstack_container_network }}"
+
+# Unset the port 80 which Traefik opens to the internet
+traefik_container_web_host_bind_port: null
+
+# Unset the port 443 which Traefik opens to the internet
+traefik_container_web_secure_host_bind_port: null
+
+# Disable the web entrypoint from being redirected to web-secure
+traefik_config_entrypoint_web_to_web_secure_redirection_enabled: false
+```
+
+To expose a service via Traefik, add the configuration like below to your `vars.yml` file:
+
+>[!NOTE]
+> This setup requires the connection to the internet to resolve the hostname, if you do not prepare another solution by yourself.
+
+```yaml
+YOUR-SERVICE_enabled: true
+
+YOUR-SERVICE_hostname: SET_HOSTNAME_HERE
+
+# Set the scheme to HTTP. Since Yggdrasil Network is end-to-end encrypted by default, you can ignore the message about insecure connection.
+YOUR-SERVICE_scheme: http
+
+# Override the default entrypoint (web-secure)
+YOUR-SERVICE_container_labels_traefik_entrypoints: web
+```
+
+If the service requires a TLS certificate for some reason, you can have Traefik obtain one for the hostname by setting it to `traefik_additional_domains_to_obtain_certificates_for_custom`. Note because by default it requires connection to the internet as it utilizes Let's Encrypt as the ACME certificate resolver, you might have to restart Traefik before enabling Yggstack.
+
 ## Troubleshooting
 
 See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az2BzsfYJzpSCK4tC8kCR1uCooZYX5/tree/docs/configuring-yggstack.md#troubleshooting) on the role's documentation for details.
