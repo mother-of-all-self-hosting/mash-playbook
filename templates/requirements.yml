@@ -217,7 +217,7 @@
   name: excalidraw_room
   activation_prefix: excalidraw_room_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-exim-relay.git
-  version: v4.98.1-r0-2-2
+  version: v4.98.1-r0-2-3
   name: exim_relay
   activation_prefix: exim_relay_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-fail2ban.git
