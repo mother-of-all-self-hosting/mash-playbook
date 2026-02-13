@@ -1,0 +1,12 @@
+---
+
+use_default_rules: true
+
+skip_list:
+  - unnamed-task
+  - no-handler
+  - command-instead-of-shell
+  - yaml[line-length]
+  - no-changed-when
+
+offline: true
