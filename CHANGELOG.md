@@ -1,3 +1,26 @@
+# 2026-02-13
+
+## Set service passwords on `vars.yml` manually
+
+After switching the algorithm of secret derivation for service passwords, it was found that some of the services which need secret strings have stopped working, as those strings were never meant to be auto-configured and should not be changed after initial configuration.
+
+Here are the list of known affected services:
+
+| Service name   | Command to retrieve value                                  | variable to be added on `vars.yml`                               |
+| -------------- | ---------------------------------------------------------- | ---------------------------------------------------------------- |
+| Duplicati      | grep 'SETTINGS_ENCRYPTION_KEY' /mash/duplicati/env         | `duplicati_environment_variable_settings_encryption_key`         |
+| Homarr         | grep 'AUTH_SECRET' /mash/homarr/env                        | `homarr_environment_variables_auth_secret`                       |
+| Meilisearch    | grep 'MEILI_MASTER_KEY' /mash/meilisearch/env              | `meilisearch_environment_variables_master_key`                   |
+| Papra          | grep 'AUTH_SECRET' /mash/papra/env                         | `papra_environment_variables_auth_secret`                        |
+| Pocket ID      | grep 'ENCRYPTION_KEY' /mash/pocket-id/env                  | `pocket_id_environment_variable_encryption_key`                  |
+| syncstorage-rs | grep 'SYNC_MASTER_SECRET' /mash/syncstorage-rs-docker/env  | `syncstorage_rs_docker_environment_variable_sync_master_secret`  |
+| syncstorage-rs | grep 'METRICS_HASH_SECRET' /mash/syncstorage-rs-docker/env | `syncstorage_rs_docker_environment_variable_metrics_hash_secret` |
+| Typesense      | grep 'ENCRYPTION_KEY' /mash/typesense/env                  | `typesense_environment_variables_api_key`                        |
+
+If you use a certain cervice on the list, please run the command on the server to retrieve the value, and specify the output value to the variable for it on your `vars.yml` file.
+
+If you are not sure how to retrieve the value, you can check diff available `a7386bb3f4fcae99229566cf81c127e590cda230` and set the previous value to generate it temporarily.
+
 # 2026-02-08
 
 ## Switched to faster secret derivation for service passwords
