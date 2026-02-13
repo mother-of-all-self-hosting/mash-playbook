@@ -120,7 +120,7 @@ install-service service *extra_args:
     --extra-vars=group={{ service }} {{ extra_args }}
 
 # Runs the playbook with --tags=setup-all,start and optional arguments
-setup-all *extra_args: (run-tags "setup-all,start" "--extra-vars=devture_systemd_service_manager_conditional_restart_enabled=false" extra_args)
+setup-all *extra_args: (run-tags "setup-all,start" extra_args)
 
 # Runs setup tasks for a single service
 setup-service service *extra_args:

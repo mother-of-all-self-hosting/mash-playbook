@@ -1,5 +1,26 @@
 # 2026-02-13
 
+## Conditional service restart for `install-*` commands
+
+When running `install-all` or `install-service` (whether via `just` or raw `ansible-playbook`), only services whose configuration or container image actually changed during the playbook run will now be restarted. Unchanged services are left running (or get started if they were stopped). This reduces unnecessary downtime — particularly for services like Traefik (the reverse proxy), which previously caused brief connectivity interruptions on every playbook run even when nothing changed.
+
+When running with `setup-*` tags (e.g. `setup-all`, `setup-miniflux`), all services continue to be unconditionally restarted as before.
+
+Currently, only Traefik tracks its own changes and benefits from conditional restart. All other services default to being restarted (the previous behavior). This is just the beginning — as more roles gain change-tracking support, playbook performance will improve and downtime will decrease dramatically, especially for `install-all` runs where most services haven't changed.
+
+Some benchmarks from [matrix-docker-ansible-deploy](https://github.com/spantaleev/matrix-docker-ansible-deploy) for `just install-service traefik` when Traefik settings did not change (results here may vary, but should be similar):
+
+- **Before**:
+  - total time: ~56 seconds 🐌
+  - Traefik restarted: yes (unnecessarily) ❌
+  - dependent services restarted: yes, all of them ❌
+- **After**:
+  - total time: ~27 seconds ⚡
+  - Traefik restarted: no ✅
+  - dependent services restarted: no ✅
+
+This behavior can be overridden via `--extra-vars='devture_systemd_service_manager_conditional_restart_enabled=false'` to force unconditional restarts. See [Conditional service restart](docs/just.md#conditional-service-restart) for details.
+
 ## Set service passwords on `vars.yml` manually
 
 After switching the algorithm of secret derivation for service passwords, it was found that some of the services which need secret strings have stopped working, as those strings were never meant to be auto-configured and should not be changed after initial configuration.
