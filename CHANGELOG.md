@@ -19,7 +19,7 @@ Here are the list of known affected services:
 
 If you use a certain cervice on the list, please run the command on the server to retrieve the value, and specify the output value to the variable for it on your `vars.yml` file.
 
-If you are not sure how to retrieve the value, you can check diff available `a7386bb3f4fcae99229566cf81c127e590cda230` and set the previous value to generate it temporarily.
+If you are not sure how to retrieve the value, you can check diff available [`a7386bb3f4fcae99229566cf81c127e590cda230`](https://github.com/mother-of-all-self-hosting/mash-playbook/commit/a7386bb3f4fcae99229566cf81c127e590cda230) and set the previous value to generate it temporarily.
 
 # 2026-02-08
 
