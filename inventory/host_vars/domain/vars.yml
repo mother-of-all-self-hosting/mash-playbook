@@ -489,6 +489,10 @@ hubsite_hostname: "hub.{{ domain }}"
 hubsite_title: "We bring you..."
 hubsite_subtitle: "These wonderful services!"
 
+# Protect Hubsite with Authentik forward-auth (configured in Traefik file provider).
+hubsite_container_labels_additional_labels_custom:
+  - "traefik.http.routers.{{ hubsite_identifier }}.middlewares=authentik-forwardauth@file"
+
 # If you want to explicitly control which services you want to show on this page you can overwrite
 
 # hubsite_service_list_auto: |
@@ -502,10 +506,149 @@ hubsite_subtitle: "These wonderful services!"
 #   }}
 
 # Use the `hubsite_service_list_additional` variable to add services that are not provided by this playbook
-# hubsite_service_list_additional: |
-#   {{
-#     ([{'name': 'My blog', 'url': 'https://example.com', 'logo_location': '', 'description': 'A link to a blog not hosted by this playbook', 'priority': 1000 }])
-#   }}
+hubsite_service_list_additional: |
+  {%- set mash_mdad_services =
+    ([{
+      'name': 'BentoPDF',
+      'url': 'https://' ~ bentopdf_hostname ~ bentopdf_path_prefix,
+      'logo_location': '{{ role_path }}/assets/stirling-pdf.png',
+      'description': 'Convert webpages into PDFs',
+      'priority': 1100,
+    }] if bentopdf_enabled else [])
+    +
+    ([{
+      'name': 'CodiMD',
+      'url': codimd_scheme ~ '://' ~ codimd_hostname ~ codimd_path_prefix,
+      'logo_location': '{{ role_path }}/assets/docs.png',
+      'description': 'Collaborative markdown notes',
+      'priority': 1100,
+    }] if codimd_enabled else [])
+    +
+    ([{
+      'name': 'Collabora Online',
+      'url': collabora_online_scheme ~ '://' ~ collabora_online_hostname ~ collabora_online_path_prefix,
+      'logo_location': '{{ role_path }}/assets/docs.png',
+      'description': 'Online office suite integration',
+      'priority': 1100,
+    }] if collabora_online_enabled else [])
+    +
+    ([{
+      'name': 'ConvertX',
+      'url': convertx_scheme ~ '://' ~ convertx_hostname ~ convertx_path_prefix,
+      'logo_location': '{{ role_path }}/assets/docs.png',
+      'description': 'Document and media conversion tools',
+      'priority': 1100,
+    }] if convertx_enabled else [])
+    +
+    ([{
+      'name': 'CyberChef',
+      'url': cyberchef_scheme ~ '://' ~ cyberchef_hostname ~ cyberchef_path_prefix,
+      'logo_location': '{{ role_path }}/assets/docs.png',
+      'description': 'Data transformation and encoding toolkit',
+      'priority': 1100,
+    }] if cyberchef_enabled else [])
+    +
+    ([{
+      'name': 'Headplane',
+      'url': 'https://' ~ headplane_hostname ~ headplane_path_prefix,
+      'logo_location': '{{ role_path }}/assets/wireguard_easy.png',
+      'description': 'Headscale administration UI',
+      'priority': 1100,
+    }] if headplane_enabled else [])
+    +
+    ([{
+      'name': 'Immich',
+      'url': immich_scheme ~ '://' ~ immich_hostname ~ immich_path_prefix,
+      'logo_location': '{{ role_path }}/assets/docs.png',
+      'description': 'Photo and video management',
+      'priority': 1100,
+    }] if immich_enabled else [])
+    +
+    ([{
+      'name': 'Jellyfin',
+      'url': 'https://' ~ jellyfin_hostname ~ jellyfin_path_prefix,
+      'logo_location': '{{ role_path }}/assets/docs.png',
+      'description': 'Media server and streaming',
+      'priority': 1100,
+    }] if jellyfin_enabled else [])
+    +
+    ([{
+      'name': 'Neko',
+      'url': 'https://' ~ neko_hostname ~ neko_path_prefix,
+      'logo_location': '{{ role_path }}/assets/docs.png',
+      'description': 'Shared browser and collaborative sessions',
+      'priority': 1100,
+    }] if neko_enabled else [])
+    +
+    ([{
+      'name': 'qBittorrent',
+      'url': 'https://' ~ qbittorrent_hostname ~ qbittorrent_path_prefix,
+      'logo_location': '{{ role_path }}/assets/docs.png',
+      'description': 'Torrent management web UI',
+      'priority': 1100,
+    }] if qbittorrent_enabled else [])
+    +
+    ([{
+      'name': 'SFTPGo',
+      'url': sftpgo_scheme ~ '://' ~ sftpgo_hostname ~ sftpgo_path_prefix,
+      'logo_location': '{{ role_path }}/assets/docs.png',
+      'description': 'Managed SFTP/FTP service',
+      'priority': 1100,
+    }] if sftpgo_enabled else [])
+    +
+    ([{
+      'name': 'YaCy',
+      'url': yacy_scheme ~ '://' ~ yacy_hostname ~ yacy_path_prefix,
+      'logo_location': '{{ role_path }}/assets/docs.png',
+      'description': 'Decentralized search engine',
+      'priority': 1100,
+    }] if yacy_enabled else [])
+    +
+    ([{
+      'name': 'Element Web',
+      'url': 'https://element.' ~ domain ~ '/',
+      'logo_location': '{{ role_path }}/assets/element.png',
+      'description': 'Matrix client web app',
+      'priority': 1200,
+    }])
+    +
+    ([{
+      'name': 'Matrix.to',
+      'url': 'https://mt.' ~ domain ~ '/',
+      'logo_location': '{{ role_path }}/assets/docs.png',
+      'description': 'Matrix permalink resolver',
+      'priority': 1200,
+    }])
+    +
+    ([{
+      'name': 'Synapse Admin',
+      'url': 'https://matrix.' ~ domain ~ '/synapse-admin',
+      'logo_location': '{{ role_path }}/assets/docs.png',
+      'description': 'Matrix homeserver administration',
+      'priority': 1200,
+    }])
+    +
+    ([{
+      'name': 'Grafana',
+      'url': 'https://stats.' ~ domain ~ '/',
+      'logo_location': '{{ role_path }}/assets/grafana.png',
+      'description': 'Metrics dashboards',
+      'priority': 1200,
+    }])
+    +
+    ([{
+      'name': 'Traefik Dashboard',
+      'url': 'https://matrix.' ~ domain ~ '/dashboard/',
+      'logo_location': '{{ role_path }}/assets/docs.png',
+      'description': 'Reverse proxy operational dashboard',
+      'priority': 1200,
+    }])
+  -%}
+  {{
+    mash_mdad_services
+    | rejectattr('name', 'in', (hubsite_service_list_auto | map(attribute='name') | list))
+    | list
+  }}
 
 
 ########################################################################
