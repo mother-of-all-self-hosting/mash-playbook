@@ -693,7 +693,7 @@
   name: promtail
   activation_prefix: promtail_
 - src: git+https://seed.radicle.garden/zTsddBnXnhE3i4xhzsEX12deb4fx.git
-  version: v1.3.2-0
+  version: v1.3.3-0
   name: prunemate
   activation_prefix: prunemate_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-qbittorrent.git
