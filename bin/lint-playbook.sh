@@ -32,6 +32,17 @@ else
   log "warning: unable to determine git branch/commit."
 fi
 
+lint_scope="${LINT_PLAYBOOK_SCOPE:-scoped}"
+case "${lint_scope}" in
+  scoped|full)
+    ;;
+  *)
+    log "error: invalid LINT_PLAYBOOK_SCOPE='${lint_scope}'. Use 'scoped' or 'full'."
+    exit 1
+    ;;
+esac
+log "lint scope: ${lint_scope}"
+
 python_bin="${PYTHON:-python3}"
 venv_path="${LINT_PLAYBOOK_VENV:-${repo_root}/.venv}"
 
@@ -120,8 +131,10 @@ gather_targets() {
     matrix)
       [[ -f inventory/hosts ]] && paths+=("inventory/hosts")
       [[ -f group_vars/matrix_servers ]] && paths+=("group_vars/matrix_servers")
-      [[ -f group_vars/jitsi_jvb_servers ]] && paths+=("group_vars/jitsi_jvb_servers")
-      [[ -f jitsi_jvb.yml ]] && paths+=("jitsi_jvb.yml")
+      if [[ "${lint_scope}" == "full" ]]; then
+        [[ -f group_vars/jitsi_jvb_servers ]] && paths+=("group_vars/jitsi_jvb_servers")
+        [[ -f jitsi_jvb.yml ]] && paths+=("jitsi_jvb.yml")
+      fi
       ;;
   esac
 
@@ -161,7 +174,7 @@ else
 fi
 
 role_targets=()
-if [[ -d roles/custom ]]; then
+if [[ "${lint_scope}" == "full" && -d roles/custom ]]; then
   role_targets+=("roles/custom")
 fi
 if [[ -n "${LINT_PLAYBOOK_ROLE_PATHS:-}" ]]; then

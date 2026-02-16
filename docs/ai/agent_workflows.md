@@ -73,9 +73,41 @@
 ## Markdown Linting
 
 - Markdown files should be linted locally after edits.
-- Use the repository lint script: `bash ./bin/lint-playbook.sh`
+- Use the repository lint script in scoped mode (default):
+- `bash ./bin/lint-playbook.sh`
 - To include markdown files explicitly, pass them via `EXTRA_LINT_PATHS`.
 - Example: `EXTRA_LINT_PATHS="docs/ai/agent_workflows.md" bash ./bin/lint-playbook.sh`
+
+## Lint Scope Modes
+
+- `bin/lint-playbook.sh` supports `LINT_PLAYBOOK_SCOPE=scoped|full`.
+- Default is `scoped`.
+- Scoped mode:
+- lints the repository's target inventory/group vars list
+- does not auto-lint `roles/custom`
+- use `LINT_PLAYBOOK_ROLE_PATHS` to include specific local role trees
+- Example: `LINT_PLAYBOOK_ROLE_PATHS="roles/custom/some-role" bash ./bin/lint-playbook.sh`
+- Full mode:
+- restores broad diagnostics for upstream debt discovery
+- includes repository-wide role lint target paths and matrix Jitsi targets
+- Example: `LINT_PLAYBOOK_SCOPE=full bash ./bin/lint-playbook.sh`
+- Treat full-mode output as diagnostic by default:
+- classify findings into local actionable changes, upstream baseline debt, and external/vendor findings
+- only broaden fixes when explicitly doing upstream contribution work
+
+## External Role Lint Policy
+
+- Treat lint findings in external/vendor role trees as informational by default
+  (for example, `roles/galaxy/**`).
+- Do not block local operator-owned changes on unrelated external-role lint
+  issues.
+- Default validation scope should be:
+- changed files
+- operator-owned local paths
+- service-specific syntax/lint checks relevant to the task
+- Only fix external-role lint when explicitly in contribution mode:
+- intentionally patching/forking that role
+- preparing a dedicated upstream PR for the role/playbook
 
 ## Pre-Flight and Finalization
 
