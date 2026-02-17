@@ -577,7 +577,7 @@
   name: origamivault
   activation_prefix: origamivault_
 - src: git+https://seed.radicle.garden/z3cspgyZXPNcnzNXCYKsEGJK7dKKA.git
-  version: v1.20.1-1
+  version: v1.21.1-0
   name: ots
   activation_prefix: ots_
 - src: git+https://seed.radicle.garden/zvzJe15VMBkGd2CMBctvpVZgmQG5.git
