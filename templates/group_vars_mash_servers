@@ -191,7 +191,7 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
 
   # role-specific:bentopdf
   - |-
-    {{ ({'name': (bentopdf_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'bentopdf']} if bentopdf_enabled else omit) }}
+    {{ ({'name': (bentopdf_identifier + '.service'), 'priority': 2000, 'restart_necessary': (bentopdf_restart_necessary | bool), 'groups': ['mash', 'bentopdf']} if bentopdf_enabled else omit) }}
   # /role-specific:bentopdf
 
   # role-specific:bind
@@ -228,7 +228,7 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
 
   # role-specific:cinny
   - |-
-    {{ ({'name': (cinny_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'cinny']} if cinny_enabled else omit) }}
+    {{ ({'name': (cinny_identifier + '.service'), 'priority': 2000, 'restart_necessary': (cinny_restart_necessary | bool), 'groups': ['mash', 'cinny']} if cinny_enabled else omit) }}
   # /role-specific:cinny
 
   # role-specific:clickhouse
@@ -263,7 +263,7 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
 
   # role-specific:container_socket_proxy
   - |-
-    {{ ({'name': (container_socket_proxy_identifier + '.service'), 'priority': 200, 'restart_necessary': true, 'groups': ['mash', 'reverse-proxies', 'container-socket-proxy']} if container_socket_proxy_enabled else omit) }}
+    {{ ({'name': (container_socket_proxy_identifier + '.service'), 'priority': 200, 'restart_necessary': (container_socket_proxy_restart_necessary | bool), 'groups': ['mash', 'reverse-proxies', 'container-socket-proxy']} if container_socket_proxy_enabled else omit) }}
   # /role-specific:container_socket_proxy
 
   # role-specific:cryptpad
@@ -360,7 +360,7 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
 
   # role-specific:exim_relay
   - |-
-    {{ ({'name': (exim_relay_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'exim-relay']} if exim_relay_enabled else omit) }}
+    {{ ({'name': (exim_relay_identifier + '.service'), 'priority': 2000, 'restart_necessary': (exim_relay_restart_necessary | bool), 'groups': ['mash', 'exim-relay']} if exim_relay_enabled else omit) }}
   # /role-specific:exim_relay
 
   # role-specific:farmos
@@ -375,7 +375,7 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
 
   # role-specific:filebrowser
   - |-
-    {{ ({'name': (filebrowser_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'filebrowser']} if filebrowser_enabled else omit) }}
+    {{ ({'name': (filebrowser_identifier + '.service'), 'priority': 2000, 'restart_necessary': (filebrowser_restart_necessary | bool), 'groups': ['mash', 'filebrowser']} if filebrowser_enabled else omit) }}
   # /role-specific:filebrowser
 
   # role-specific:filebrowser_quantum
@@ -438,7 +438,7 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
 
   # role-specific:ghostfolio
   - |-
-    {{ ({'name': (ghostfolio_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'ghostfolio']} if ghostfolio_enabled else omit) }}
+    {{ ({'name': (ghostfolio_identifier + '.service'), 'priority': 2000, 'restart_necessary': (ghostfolio_restart_necessary | bool), 'groups': ['mash', 'ghostfolio']} if ghostfolio_enabled else omit) }}
   # /role-specific:ghostfolio
 
   # role-specific:gitea
@@ -453,7 +453,7 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
 
   # role-specific:gotify
   - |-
-    {{ ({'name': (gotify_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'gotify']} if gotify_enabled else omit) }}
+    {{ ({'name': (gotify_identifier + '.service'), 'priority': 2000, 'restart_necessary': (gotify_restart_necessary | bool), 'groups': ['mash', 'gotify']} if gotify_enabled else omit) }}
   # /role-specific:gotify
 
   # role-specific:gotosocial
@@ -483,7 +483,7 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
 
   # role-specific:homarr
   - |-
-    {{ ({'name': (homarr_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'homarr']} if homarr_enabled else omit) }}
+    {{ ({'name': (homarr_identifier + '.service'), 'priority': 2000, 'restart_necessary': (homarr_restart_necessary | bool), 'groups': ['mash', 'homarr']} if homarr_enabled else omit) }}
   # /role-specific:homarr
 
   # role-specific:hubsite
@@ -658,7 +658,7 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
 
   # role-specific:mailpit
   - |-
-    {{ ({'name': (mailpit_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'mailpit']} if mailpit_enabled else omit) }}
+    {{ ({'name': (mailpit_identifier + '.service'), 'priority': 2000, 'restart_necessary': (mailpit_restart_necessary | bool), 'groups': ['mash', 'mailpit']} if mailpit_enabled else omit) }}
   # /role-specific:mailpit
 
   # role-specific:mariadb
@@ -683,7 +683,7 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
 
   # role-specific:meilisearch
   - |-
-    {{ ({'name': (meilisearch_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'meilisearch']} if meilisearch_enabled else omit) }}
+    {{ ({'name': (meilisearch_identifier + '.service'), 'priority': 2000, 'restart_necessary': (meilisearch_restart_necessary | bool), 'groups': ['mash', 'meilisearch']} if meilisearch_enabled else omit) }}
   # /role-specific:meilisearch
 
   # role-specific:memcached
@@ -758,7 +758,7 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
 
   # role-specific:neko
   - |-
-    {{ ({'name': (neko_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'neko']} if neko_enabled else omit) }}
+    {{ ({'name': (neko_identifier + '.service'), 'priority': 2000, 'restart_necessary': (neko_restart_necessary | bool), 'groups': ['mash', 'neko']} if neko_enabled else omit) }}
   # /role-specific:neko
 
   # role-specific:netbox
@@ -847,7 +847,7 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
 
   # role-specific:ots
   - |-
-    {{ ({'name': (ots_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'ots']} if ots_enabled else omit) }}
+    {{ ({'name': (ots_identifier + '.service'), 'priority': 2000, 'restart_necessary': (ots_restart_necessary | bool), 'groups': ['mash', 'ots']} if ots_enabled else omit) }}
   # /role-specific:ots
 
   # role-specific:otterwiki
@@ -934,7 +934,7 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
 
   # role-specific:postgres
   - |-
-    {{ ({'name': (postgres_identifier + '.service'), 'priority': 500, 'restart_necessary': true, 'groups': ['mash', 'postgres']} if postgres_enabled else omit) }}
+    {{ ({'name': (postgres_identifier + '.service'), 'priority': 500, 'restart_necessary': (postgres_restart_necessary | bool), 'groups': ['mash', 'postgres']} if postgres_enabled else omit) }}
   # /role-specific:postgres
 
   # role-specific:postgres_backup
@@ -979,7 +979,7 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
 
   # role-specific:prunemate
   - |-
-    {{ ({'name': (prunemate_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'prunemate']} if prunemate_enabled else omit) }}
+    {{ ({'name': (prunemate_identifier + '.service'), 'priority': 2000, 'restart_necessary': (prunemate_restart_necessary | bool), 'groups': ['mash', 'prunemate']} if prunemate_enabled else omit) }}
   # /role-specific:prunemate
 
   # role-specific:qbittorrent
@@ -989,7 +989,7 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
 
   # role-specific:rabbitmq
   - |-
-    {{ ({'name': (rabbitmq_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'rabbitmq']} if rabbitmq_enabled else omit) }}
+    {{ ({'name': (rabbitmq_identifier + '.service'), 'priority': 2000, 'restart_necessary': (rabbitmq_restart_necessary | bool), 'groups': ['mash', 'rabbitmq']} if rabbitmq_enabled else omit) }}
   # /role-specific:rabbitmq
 
   # role-specific:radarr
@@ -1073,7 +1073,7 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
 
   # role-specific:semaphore
   - |-
-    {{ ({'name': (semaphore_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'semaphore']} if semaphore_enabled else omit) }}
+    {{ ({'name': (semaphore_identifier + '.service'), 'priority': 2000, 'restart_necessary': (semaphore_restart_necessary | bool), 'groups': ['mash', 'semaphore']} if semaphore_enabled else omit) }}
   # /role-specific:semaphore
 
   # role-specific:send
@@ -1173,7 +1173,7 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
 
   # role-specific:traefik_certs_dumper
   - |-
-    {{ ({'name': (traefik_certs_dumper_identifier + '.service'), 'priority': 300, 'restart_necessary': true, 'groups': ['mash', 'traefik-certs-dumper']} if traefik_certs_dumper_enabled else omit) }}
+    {{ ({'name': (traefik_certs_dumper_identifier + '.service'), 'priority': 300, 'restart_necessary': (traefik_certs_dumper_restart_necessary | bool), 'groups': ['mash', 'traefik-certs-dumper']} if traefik_certs_dumper_enabled else omit) }}
   # /role-specific:traefik_certs_dumper
 
   # role-specific:tsdproxy
