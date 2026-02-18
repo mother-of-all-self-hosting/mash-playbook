@@ -1198,7 +1198,7 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
 
   # role-specific:valkey
   - |-
-    {{ ({'name': (valkey_identifier + '.service'), 'priority': 750, 'restart_necessary': true, 'groups': ['mash', 'valkey']} if valkey_enabled else omit) }}
+    {{ ({'name': (valkey_identifier + '.service'), 'priority': 750, 'restart_necessary': (valkey_restart_necessary | bool), 'groups': ['mash', 'valkey']} if valkey_enabled else omit) }}
   # /role-specific:valkey
 
   # role-specific:vaultwarden
