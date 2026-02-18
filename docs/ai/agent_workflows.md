@@ -11,9 +11,24 @@
 - Before suggesting `just` with flags, verify recipe interface in `justfile`.
 - Use `just --list` and inspect recipe definitions/arg forwarding.
 - Do not assume `--ask-vault-pass -K --limit` passthrough.
-- For this operator setup, treat vault + become prompts as required unless explicitly configured otherwise: use `-J -K` (or `--ask-vault-pass --ask-become-pass`) for remote-impact runs.
+- For this operator setup, treat vault + become prompts as required for
+  user-run remote-impact commands: use `-J -K` (or
+  `--ask-vault-pass --ask-become-pass`) in operator command blocks.
 - Use `--limit <host>` to constrain scope and avoid changing non-target inventory hosts.
 - If uncertain, suggest explicit `ansible-playbook` user-run command with required flags.
+
+## Human-Only Execution Boundaries
+
+- Do not run commands that require SSH/remote host access (for example `ssh`,
+  `scp`, `rsync`, remote-impact `ansible-playbook`, or `just run*`/`install*`/
+  `setup*`/`start*` against managed hosts).
+- Do not run commands that require sudo/become privileges.
+- Do not read, decrypt, diff, edit, or re-encrypt vault files (for example
+  `inventory/**/vault.yml`, `*vault*.yml`) and do not run `ansible-vault`.
+- For these tasks, provide user-run command blocks only.
+- Local-only `ansible-playbook` inspection commands are allowed only when they
+  do not require remote host connection, Vault unlock, or become/sudo
+  (for example `--syntax-check`, `--list-tags`, `--list-tasks`).
 
 ## Verification Grounding
 
@@ -43,6 +58,8 @@
 - Variables loaded from vault must be referenced with names prefixed by `vault_` (for example: `some_secret: "{{ vault_some_secret }}"`).
 - Before proposing vault-backed variables, verify existing naming patterns in `inventory/host_vars/**/vars.yml`.
 - For cross-host secrets (for example, service + dependency host), explicitly note when the same vault value must be reused.
+- Do not inspect or modify vault files directly; instruct the operator what to
+  add/update manually.
 
 ## Multi-Host Dependency Pattern Grounding
 
@@ -62,7 +79,7 @@
 
 ## Remote-Impact Command Annotation
 
-- For any suggested remote-impact command, mark it as `user-run only` unless the user explicitly asks the agent to execute it.
+- For any suggested remote-impact command, mark it as `user-run only`.
 - Always include:
 - target host/limit scope
 - expected impact (`state-changing` / `disruptive` / `destructive`)

@@ -190,6 +190,9 @@ For contributor work that changes playbook wiring, edit source files under
 Safe without extra confirmation:
 
 - local read/discovery commands and local lint/syntax checks
+- local-only `ansible-playbook` inspection commands (for example
+  `--syntax-check`, `--list-tags`, `--list-tasks`) only when they do not
+  require remote host connection, Vault unlock, or become/sudo
 
 MUST require explicit user confirmation in the same turn for:
 
@@ -202,9 +205,28 @@ MUST require explicit user confirmation in the same turn for:
 Before confirmed remote-impact commands, state target host/group, scope, and
 expected service impact.
 
+- Human-run-only operations (defined below) are never agent-executable, even if
+  confirmation is given.
 - If unsure, treat as managed-node-impacting and do read-only discovery first.
 - Command catalogs and examples: `docs/ai/agent_workflows.md` and
   `docs/mash/service_enablement.md`.
+
+## Human-run-only operations (non-overridable)
+
+- Agents MUST NOT read, decrypt, diff, edit, or re-encrypt vault files (for
+  example `inventory/**/vault.yml`, `*vault*.yml`) and MUST NOT run
+  `ansible-vault` commands.
+- Agents MUST NOT execute commands that rely on SSH or remote host access (for
+  example `ssh`, `scp`, `rsync`, `ansible-playbook` remote runs, `just run*` /
+  `just install*` / `just setup*` / `just start*` against managed hosts).
+- Agents MUST NOT execute commands that require sudo/become privileges.
+- For human-run-only operations, agents prepare command blocks with scope,
+  impact, verification, and rollback guidance; the human operator executes them
+  manually.
+- Local-only `ansible-playbook` commands remain allowed for the agent only if
+  they satisfy all of: no remote host connection, no Vault unlock, and no
+  become/sudo.
+- This section overrides less-restrictive guidance elsewhere in this repository.
 
 ## Interactive credentials and execution limits
 
@@ -212,12 +234,10 @@ expected service impact.
   user-supplied and unavailable to the agent by default.
 - MUST NOT bypass credential prompts by storing plaintext passwords, modifying
   SSH/sudo config, or weakening security controls.
-- For credential-interactive remote-impact commands, default to user-run command
-  blocks instead of agent execution.
+- Credential-interactive and human-run-only operations must always be provided
+  as user-run command blocks, never executed by the agent.
 - Before remote-impact execution, report credential mode for SSH auth, Vault
   unlock, and privilege escalation.
-- If required credential flow is interactive and the user has not explicitly
-  asked for agent execution, do not execute.
 - Workarounds: user runs commands interactively, or user configures
   non-interactive auth and confirms readiness.
 
