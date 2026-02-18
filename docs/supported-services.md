@@ -220,6 +220,7 @@ Below is an exhaustive list of the free and open-source software for self-hostin
 | [syncstorage-rs](https://github.com/mozilla-services/syncstorage-rs) | Mozilla Sync Storage server in Rust, used to power Firefox Sync | [Link](services/syncstorage-rs.md) |
 | [Syncthing](https://syncthing.net/) | A continuous file synchronization program which synchronizes files between two or more computers in real time | [Link](services/syncthing.md) |
 | [Tandoor](https://docs.tandoor.dev/) | The recipe manager that allows you to manage your ever growing collection of digital recipes | [Link](services/tandoor.md)
+| [Teable](https://github.com/teableio/teable) | No-code database management platform with spreadsheet-like interface | [Link](services/teable.md) |
 | [Telegraf](https://www.influxdata.com/time-series-platform/telegraf/) | A server agent to help you collect metrics from your stacks, sensors, and systems | [Link](services/telegraf.md) |
 | [Termix](https://docs.termix.site/) | Server management platform with SSH terminal | [Link](services/termix.md) |
 | [The Lounge](https://thelounge.chat/) | Web IRC client with modern features, which keeps a persistent connection to IRC servers | [Link](services/thelounge.md) |
