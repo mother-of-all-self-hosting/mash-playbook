@@ -836,6 +836,10 @@
   version: v2.3.6-0
   name: tandoor
   activation_prefix: tandoor_
+- src: git+https://seed.radicle.garden/z2bcU1U9yJfJE6t8quZ1BMnEpQLic.git
+  version: v1.10.0-0
+  name: teable
+  activation_prefix: teable_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-telegraf.git
   version: v1.37.2-0
   name: telegraf

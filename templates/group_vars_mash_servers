@@ -1141,6 +1141,11 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
     {{ ({'name': (tandoor_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'tandoor']} if tandoor_enabled else omit) }}
   # /role-specific:tandoor
 
+  # role-specific:teable
+  - |-
+    {{ ({'name': (teable_identifier + '.service'), 'priority': 2000, 'restart_necessary': (teable_restart_necessary | bool), 'groups': ['mash', 'teable']} if teable_enabled else omit) }}
+  # /role-specific:teable
+
   # role-specific:telegraf
   - |-
     {{ ({'name': (telegraf_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'telegraf']} if telegraf_enabled else omit) }}
@@ -1995,6 +2000,17 @@ mash_playbook_postgres_managed_databases_auto_itemized:
       } if tandoor_enabled and tandoor_database_hostname == postgres_connection_hostname and tandoor_database_type == 'postgres' else omit)
     }}
   # /role-specific:tandoor
+
+  # role-specific:teable
+  - |-
+    {{
+      ({
+        'name': teable_database_name,
+        'username': teable_database_username,
+        'password': teable_database_password,
+      } if teable_enabled and teable_database_hostname == postgres_connection_hostname else omit)
+    }}
+  # /role-specific:teable
 
   # role-specific:vaultwarden
   - |-
@@ -13474,6 +13490,67 @@ tandoor_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_prim
 #                                                                      #
 ########################################################################
 # /role-specific:tandoor
+
+
+
+# role-specific:teable
+########################################################################
+#                                                                      #
+# teable                                                               #
+#                                                                      #
+########################################################################
+
+teable_enabled: false
+
+teable_identifier: "{{ mash_playbook_service_identifier_prefix }}teable"
+
+teable_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}teable"
+
+# Teable runs only as root
+teable_uid: "0"
+teable_gid: "0"
+
+teable_systemd_required_services_list_auto: |
+  {{
+    ([postgres_identifier ~ '.service'] if postgres_enabled and teable_database_hostname == postgres_connection_hostname else [])
+  }}
+
+teable_systemd_wanted_services_list_auto: |
+  {{
+    ([(exim_relay_identifier | default('mash-exim-relay')) ~ '.service'] if exim_relay_enabled | default(false) else [])
+  }}
+
+teable_container_additional_networks_auto: |
+  {{
+    ([exim_relay_container_network | default('mash-exim-relay')] if exim_relay_enabled | default(false) and teable_container_network != exim_relay_container_network else [])
+    +
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+    +
+    ([postgres_container_network] if postgres_enabled and teable_database_hostname == postgres_connection_hostname and teable_container_network != postgres_container_network else [])
+  }}
+
+teable_environment_variables_secret_key: "{{ (mash_playbook_generic_secret_key + ':teable.secret') | hash('sha512') | to_uuid }}"
+
+teable_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+teable_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+
+# role-specific:postgres
+teable_database_hostname: "{{ postgres_connection_hostname if postgres_enabled else '' }}"
+teable_database_port: "{{ postgres_connection_port if postgres_enabled else '5432' }}"
+teable_database_password: "{{ (mash_playbook_generic_secret_key + ':teable.db') | hash('sha512') | to_uuid }}"
+# /role-specific:postgres
+
+# role-specific:traefik
+teable_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
+teable_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
+# /role-specific:traefik
+
+########################################################################
+#                                                                      #
+# /teable                                                              #
+#                                                                      #
+########################################################################
+# /role-specific:teable
 
 
 
