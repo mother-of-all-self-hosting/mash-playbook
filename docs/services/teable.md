@@ -1,10 +1,10 @@
 <!--
-SPDX-FileCopyrightText: 2020 - 2024 MDAD project contributors
-SPDX-FileCopyrightText: 2020 - 2024 Slavi Pantaleev
 SPDX-FileCopyrightText: 2020 Aaron Raimist
 SPDX-FileCopyrightText: 2020 Chris van Dijk
 SPDX-FileCopyrightText: 2020 Dominik Zajac
 SPDX-FileCopyrightText: 2020 Mickaël Cornière
+SPDX-FileCopyrightText: 2020-2024 MDAD project contributors
+SPDX-FileCopyrightText: 2020-2024 Slavi Pantaleev
 SPDX-FileCopyrightText: 2022 François Darveau
 SPDX-FileCopyrightText: 2022 Julian Foad
 SPDX-FileCopyrightText: 2022 Warren Bailey
@@ -12,21 +12,21 @@ SPDX-FileCopyrightText: 2023 Antonis Christofides
 SPDX-FileCopyrightText: 2023 Felix Stupp
 SPDX-FileCopyrightText: 2023 Julian-Samuel Gebühr
 SPDX-FileCopyrightText: 2023 Pierre 'McFly' Marty
-SPDX-FileCopyrightText: 2024 - 2025 Suguru Hirahara
+SPDX-FileCopyrightText: 2024-2026 Suguru Hirahara
 
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 
 # Teable
 
-The playbook can install and configure [Teable](https://teable.org/) for you.
+The playbook can install and configure [Teable](https://github.com/teableio/teable) for you.
 
-Teable is a web-based translation tool with tight version control integration.
+Teable is a no-code platform for managing databases using a spreadsheet-like interface.
 
-See the project's [documentation](https://docs.teable.org/) to learn what Teable does and why it might be useful to you.
+See the project's [documentation](https://help.teable.ai/en/about) to learn what Teable does and why it might be useful to you.
 
-For details about configuring the [Ansible role for Teable](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3NoFEkNtQQjSGjLvweqwCFPbC59R), you can check them via:
-- 🌐 [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3NoFEkNtQQjSGjLvweqwCFPbC59R/tree/docs/configuring-teable.md) online
+For details about configuring the [Ansible role for Teable](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az2bcU1U9yJfJE6t8quZ1BMnEpQLic), you can check them via:
+- 🌐 [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az2bcU1U9yJfJE6t8quZ1BMnEpQLic/tree/docs/configuring-teable.md) online
 - 📁 `roles/galaxy/teable/docs/configuring-teable.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 ## Dependencies
@@ -36,7 +36,7 @@ This service requires the following other services:
 - [Postgres](postgres.md) database
 - [Traefik](traefik.md) reverse-proxy server
 - [Valkey](valkey.md) data-store; see [below](#configure-valkey) for details about installation
-- (optional) [exim-relay](exim-relay.md) mailer — required on the default configuration
+- (optional) [exim-relay](exim-relay.md) mailer
 
 ## Adjusting the playbook configuration
 
@@ -236,32 +236,7 @@ Running the installation command will create the shared Valkey instance named `m
 
 You can configure a SMTP mailer for functions such as signing up, verifying or changing email address, resetting password, etc. If you enable the [exim-relay](exim-relay.md) service in your inventory configuration, the playbook will automatically configure it as a mailer for the service.
 
-To disable the mailer function altogether, add the following configuration to your `vars.yml` file as below:
-
-```yaml
-teable_environment_variables_teable_email_backend: django.core.mail.backends.dummy.EmailBackend
-```
-
-### Enabling signing up
-
-By default account registration for the service is disabled. To enable it, add the following configuration to your `vars.yml` file:
-
-```yaml
-teable_environment_variables_teable_registration_open: "1"
-```
-
-### Configuring initial admin email address and password (optional)
-
-You can set the email address and password for the initial administrator by adding the following configuration to your `vars.yml` file:
-
-```yaml
-teable_environment_variables_teable_admin_email: ADMIN_EMAIL_ADDRESS_HERE
-
-teable_environment_variables_teable_admin_password: ADMIN_PASSWORD_HERE
-```
-
->[!NOTE]
-> If you skip setting them, the Teable instance creates an administrator user on the initial start with `admin@example.com` and a random password which can be checked on the service's log.
+You can set up the mailer on the administration dashboard after installing the service.
 
 ## Installation
 
@@ -273,8 +248,8 @@ Note that running the `just` commands for installation (`just install-all` or `j
 
 After installation, the Teable instance becomes available at the URL specified with `teable_hostname`. With the configuration above, the service is hosted at `https://teable.example.com`.
 
-To get started, open the URL with a web browser to log in to the instance with the administrator account.
+To get started, open the URL with a web browser, and register the account. **Note that the first registered user becomes an administrator automatically.**
 
 ## Troubleshooting
 
-See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3NoFEkNtQQjSGjLvweqwCFPbC59R/tree/docs/configuring-teable.md#troubleshooting) on the role's documentation for details.
+See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az2bcU1U9yJfJE6t8quZ1BMnEpQLic/tree/docs/configuring-teable.md#troubleshooting) on the role's documentation for details.
