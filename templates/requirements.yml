@@ -37,7 +37,7 @@
   name: appsmith
   activation_prefix: appsmith_
 - src: git+https://seed.radicle.garden/zcSq6tnVLBUQ88zSRLThc7A7RDZb.git
-  version: v20251114-3
+  version: v20260207-1
   name: asciinema_server
   activation_prefix: asciinema_server_
 - src: git+https://seed.radicle.garden/z4ATDhf89CPqP7XCLNpNwobuJ9fBs.git
@@ -117,7 +117,7 @@
   name: codimd
   activation_prefix: codimd_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-collabora-online.git
-  version: v25.04.8.1.1-0
+  version: v25.04.9.1.1-0
   name: collabora_online
   activation_prefix: collabora_online_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-container-socket-proxy.git
@@ -185,7 +185,7 @@
   name: dokuwiki
   activation_prefix: dokuwiki_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-duplicati.git
-  version: v2.2.0-3
+  version: v2.2.0-5
   name: duplicati
   activation_prefix: duplicati_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-echoip.git
@@ -205,7 +205,7 @@
   name: etcd
   activation_prefix: etcd_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-etherpad.git
-  version: v2.6.1-0
+  version: v2.6.1-1
   name: etherpad
   activation_prefix: etherpad_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-excalidraw.git
@@ -389,7 +389,7 @@
   name: keyoxide
   activation_prefix: keyoxide_
 - src: git+https://seed.radicle.garden/z36dPzLyvPA52m845g1MMqHgoiaEz.git
-  version: v3.2.3-4
+  version: v3.2.3-5
   name: kutt
   activation_prefix: kutt_
 - src: git+https://gitlab.com/horvathg.1988/ansible-role-labelstudio.git
@@ -669,7 +669,7 @@
   name: privatebin
   activation_prefix: privatebin_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-prometheus.git
-  version: v3.9.1-0
+  version: v3.9.1-1
   name: prometheus
   activation_prefix: prometheus_enabled
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-prometheus-blackbox-exporter.git
@@ -713,19 +713,19 @@
   name: radicale
   activation_prefix: radicale_
 - src: git+https://seed.radicle.garden/zopwjin5Vh5dMgdHWiifJ2cg3bQW.git
-  version: v0.0.0-5
+  version: v0.0.0-6
   name: radicle_explorer
   activation_prefix: radicle_explorer_
 - src: git+https://seed.radicle.garden/z3roZFCprFZhmK8BvkrsKwkLZXr56.git
-  version: v0.23.0-0
+  version: v0.23.0-1
   name: radicle_httpd
   activation_prefix: radicle_httpd_
 - src: git+https://seed.radicle.garden/z28JTUhepmbS3hLZyUeEvXeqk9QW5.git
-  version: v1.6.1-0
+  version: v1.6.1-1
   name: radicle_node
   activation_prefix: radicle_node_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-reactflux
-  version: v2025.6.2-6
+  version: v2025.6.2-7
   name: reactflux
   activation_prefix: reactflux_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-readeck
@@ -769,7 +769,7 @@
   name: semaphore
   activation_prefix: semaphore_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-send.git
-  version: v3.4.27-8
+  version: v3.4.27-9
   name: send
   activation_prefix: send_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-sftpgo.git
@@ -861,7 +861,7 @@
   name: timesync
   activation_prefix: devture_timesync_
 - src: git+https://seed.radicle.garden/zLMiPKSyMcb5m85H2brZd4GHCDTF.git
-  version: v4.1.0-1
+  version: v4.1.0-2
   name: tinyauth
   activation_prefix: tinyauth_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-traefik.git
@@ -929,17 +929,17 @@
   name: wordpress
   activation_prefix: wordpress_
 - src: git+https://seed.radicle.garden/z2i8BkHXzRvK1ZtGwHuvLACRswXgA.git
-  version: v0.16.0-2
+  version: v0.16.0-3
   name: writefreely
   activation_prefix: writefreely_
-- src: git+https://seed.radicle.garden/z2BzsfYJzpSCK4tC8kCR1uCooZYX5.git
-  version: v0.0.0-1
-  name: yggstack
-  activation_prefix: yggstack_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-yacy.git
   version: v1.93.2-5
   name: yacy
   activation_prefix: yacy_
+- src: git+https://seed.radicle.garden/z2BzsfYJzpSCK4tC8kCR1uCooZYX5.git
+  version: v0.0.0-1
+  name: yggstack
+  activation_prefix: yggstack_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-yourls.git
   version: v1.10.3-0
   name: yourls
