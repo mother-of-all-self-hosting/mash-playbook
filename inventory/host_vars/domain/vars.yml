@@ -497,11 +497,11 @@ hubsite_container_labels_additional_labels_custom:
 
 # hubsite_service_list_auto: |
 #   {{
-#     ([{'name': 'Miniflux', 'url': hubsite_service_miniflux_url, 'logo_location': '{{ role_path }}/assets/miniflux.png', 'description': 'An opinionated feed reader', 'priority': hubsite_service_miniflux_priority}] if hubsite_service_miniflux_enabled else [])
+#     ([{'name': 'Miniflux', 'url': hubsite_service_miniflux_url, 'logo_location': 'assets/miniflux.png', 'description': 'An opinionated feed reader', 'priority': hubsite_service_miniflux_priority}] if hubsite_service_miniflux_enabled else [])
 #     +
-#     ([{'name': 'Uptime Kuma', 'url': hubsite_service_uptime_kuma_url, 'logo_location': '{{ role_path }}/assets/uptime-kuma.png', 'description': 'Check the status of the services', 'priority': hubsite_service_uptime_kuma_priority}] if hubsite_service_uptime_kuma_enabled else [])
+#     ([{'name': 'Uptime Kuma', 'url': hubsite_service_uptime_kuma_url, 'logo_location': 'assets/uptime-kuma.png', 'description': 'Check the status of the services', 'priority': hubsite_service_uptime_kuma_priority}] if hubsite_service_uptime_kuma_enabled else [])
 #     +
-#     ([{'name': 'Uptime Kuma', 'url': hubsite_service_uptime_kuma_url, 'logo_location': '{{ role_path }}/assets/uptime-kuma.png', 'description': 'Check the status of the services', 'priority': hubsite_service_uptime_kuma_priority}] if hubsite_service_uptime_kuma_enabled else [])
+#     ([{'name': 'Uptime Kuma', 'url': hubsite_service_uptime_kuma_url, 'logo_location': 'assets/uptime-kuma.png', 'description': 'Check the status of the services', 'priority': hubsite_service_uptime_kuma_priority}] if hubsite_service_uptime_kuma_enabled else [])
 #
 #   }}
 
@@ -511,7 +511,7 @@ hubsite_service_list_additional: |
     ([{
       'name': 'BentoPDF',
       'url': 'https://' ~ bentopdf_hostname ~ bentopdf_path_prefix,
-      'logo_location': '{{ role_path }}/assets/stirling-pdf.png',
+      'logo_location': 'assets/stirling-pdf.png',
       'description': 'Convert webpages into PDFs',
       'priority': 1100,
     }] if bentopdf_enabled else [])
@@ -519,7 +519,7 @@ hubsite_service_list_additional: |
     ([{
       'name': 'CodiMD',
       'url': codimd_scheme ~ '://' ~ codimd_hostname ~ codimd_path_prefix,
-      'logo_location': '{{ role_path }}/assets/docs.png',
+      'logo_location': 'assets/docs.png',
       'description': 'Collaborative markdown notes',
       'priority': 1100,
     }] if codimd_enabled else [])
@@ -527,7 +527,7 @@ hubsite_service_list_additional: |
     ([{
       'name': 'Collabora Online',
       'url': collabora_online_scheme ~ '://' ~ collabora_online_hostname ~ collabora_online_path_prefix,
-      'logo_location': '{{ role_path }}/assets/docs.png',
+      'logo_location': 'assets/docs.png',
       'description': 'Online office suite integration',
       'priority': 1100,
     }] if collabora_online_enabled else [])
@@ -535,7 +535,7 @@ hubsite_service_list_additional: |
     ([{
       'name': 'ConvertX',
       'url': convertx_scheme ~ '://' ~ convertx_hostname ~ convertx_path_prefix,
-      'logo_location': '{{ role_path }}/assets/docs.png',
+      'logo_location': 'assets/docs.png',
       'description': 'Document and media conversion tools',
       'priority': 1100,
     }] if convertx_enabled else [])
@@ -543,7 +543,7 @@ hubsite_service_list_additional: |
     ([{
       'name': 'CyberChef',
       'url': cyberchef_scheme ~ '://' ~ cyberchef_hostname ~ cyberchef_path_prefix,
-      'logo_location': '{{ role_path }}/assets/docs.png',
+      'logo_location': 'assets/docs.png',
       'description': 'Data transformation and encoding toolkit',
       'priority': 1100,
     }] if cyberchef_enabled else [])
@@ -551,7 +551,7 @@ hubsite_service_list_additional: |
     ([{
       'name': 'Headplane',
       'url': 'https://' ~ headplane_hostname ~ headplane_path_prefix,
-      'logo_location': '{{ role_path }}/assets/wireguard_easy.png',
+      'logo_location': 'assets/wireguard_easy.png',
       'description': 'Headscale administration UI',
       'priority': 1100,
     }] if headplane_enabled else [])
@@ -559,7 +559,7 @@ hubsite_service_list_additional: |
     ([{
       'name': 'Immich',
       'url': immich_scheme ~ '://' ~ immich_hostname ~ immich_path_prefix,
-      'logo_location': '{{ role_path }}/assets/docs.png',
+      'logo_location': 'assets/docs.png',
       'description': 'Photo and video management',
       'priority': 1100,
     }] if immich_enabled else [])
@@ -567,7 +567,7 @@ hubsite_service_list_additional: |
     ([{
       'name': 'Jellyfin',
       'url': 'https://' ~ jellyfin_hostname ~ jellyfin_path_prefix,
-      'logo_location': '{{ role_path }}/assets/docs.png',
+      'logo_location': 'assets/docs.png',
       'description': 'Media server and streaming',
       'priority': 1100,
     }] if jellyfin_enabled else [])
@@ -575,7 +575,7 @@ hubsite_service_list_additional: |
     ([{
       'name': 'Neko',
       'url': 'https://' ~ neko_hostname ~ neko_path_prefix,
-      'logo_location': '{{ role_path }}/assets/docs.png',
+      'logo_location': 'assets/docs.png',
       'description': 'Shared browser and collaborative sessions',
       'priority': 1100,
     }] if neko_enabled else [])
@@ -583,7 +583,7 @@ hubsite_service_list_additional: |
     ([{
       'name': 'qBittorrent',
       'url': 'https://' ~ qbittorrent_hostname ~ qbittorrent_path_prefix,
-      'logo_location': '{{ role_path }}/assets/docs.png',
+      'logo_location': 'assets/docs.png',
       'description': 'Torrent management web UI',
       'priority': 1100,
     }] if qbittorrent_enabled else [])
@@ -591,7 +591,7 @@ hubsite_service_list_additional: |
     ([{
       'name': 'SFTPGo',
       'url': sftpgo_scheme ~ '://' ~ sftpgo_hostname ~ sftpgo_path_prefix,
-      'logo_location': '{{ role_path }}/assets/docs.png',
+      'logo_location': 'assets/docs.png',
       'description': 'Managed SFTP/FTP service',
       'priority': 1100,
     }] if sftpgo_enabled else [])
@@ -599,7 +599,7 @@ hubsite_service_list_additional: |
     ([{
       'name': 'YaCy',
       'url': yacy_scheme ~ '://' ~ yacy_hostname ~ yacy_path_prefix,
-      'logo_location': '{{ role_path }}/assets/docs.png',
+      'logo_location': 'assets/docs.png',
       'description': 'Decentralized search engine',
       'priority': 1100,
     }] if yacy_enabled else [])
@@ -607,7 +607,7 @@ hubsite_service_list_additional: |
     ([{
       'name': 'Element Web',
       'url': 'https://element.' ~ domain ~ '/',
-      'logo_location': '{{ role_path }}/assets/element.png',
+      'logo_location': 'assets/element.png',
       'description': 'Matrix client web app',
       'priority': 1200,
     }])
@@ -615,7 +615,7 @@ hubsite_service_list_additional: |
     ([{
       'name': 'Matrix.to',
       'url': 'https://mt.' ~ domain ~ '/',
-      'logo_location': '{{ role_path }}/assets/docs.png',
+      'logo_location': 'assets/docs.png',
       'description': 'Matrix permalink resolver',
       'priority': 1200,
     }])
@@ -623,7 +623,7 @@ hubsite_service_list_additional: |
     ([{
       'name': 'Synapse Admin',
       'url': 'https://matrix.' ~ domain ~ '/synapse-admin',
-      'logo_location': '{{ role_path }}/assets/docs.png',
+      'logo_location': 'assets/docs.png',
       'description': 'Matrix homeserver administration',
       'priority': 1200,
     }])
@@ -631,7 +631,7 @@ hubsite_service_list_additional: |
     ([{
       'name': 'Grafana',
       'url': 'https://stats.' ~ domain ~ '/',
-      'logo_location': '{{ role_path }}/assets/grafana.png',
+      'logo_location': 'assets/grafana.png',
       'description': 'Metrics dashboards',
       'priority': 1200,
     }])
@@ -639,7 +639,7 @@ hubsite_service_list_additional: |
     ([{
       'name': 'Traefik Dashboard',
       'url': 'https://matrix.' ~ domain ~ '/dashboard/',
-      'logo_location': '{{ role_path }}/assets/docs.png',
+      'logo_location': 'assets/docs.png',
       'description': 'Reverse proxy operational dashboard',
       'priority': 1200,
     }])
