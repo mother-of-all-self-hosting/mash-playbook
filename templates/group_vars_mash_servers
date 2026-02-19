@@ -107,12 +107,12 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
 
   # role-specific:adminer
   - |-
-    {{ ({'name': (adminer_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'adminer']} if adminer_enabled else omit) }}
+    {{ ({'name': (adminer_identifier + '.service'), 'priority': 2000, 'restart_necessary': (adminer_restart_necessary | bool), 'groups': ['mash', 'adminer']} if adminer_enabled else omit) }}
   # /role-specific:adminer
 
   # role-specific:anki
   - |-
-    {{ ({'name': (anki_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'anki']} if anki_enabled else omit) }}
+    {{ ({'name': (anki_identifier + '.service'), 'priority': 2000, 'restart_necessary': (anki_restart_necessary | bool), 'groups': ['mash', 'anki']} if anki_enabled else omit) }}
   # /role-specific:anki
 
   # role-specific:anonymousoverflow
@@ -152,7 +152,7 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
 
   # role-specific:atuin
   - |-
-    {{ ({'name': (atuin_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'atuin']} if atuin_enabled else omit) }}
+    {{ ({'name': (atuin_identifier + '.service'), 'priority': 2000, 'restart_necessary': (atuin_restart_necessary | bool), 'groups': ['mash', 'atuin']} if atuin_enabled else omit) }}
   # /role-specific:atuin
 
   # role-specific:audiobookshelf
@@ -221,9 +221,9 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
 
   # role-specific:changedetection
   - |-
-    {{ ({'name': (changedetection_identifier + '.service'), 'priority': 2100, 'restart_necessary': true, 'groups': ['mash', 'changedetection']} if changedetection_enabled else omit) }}
+    {{ ({'name': (changedetection_identifier + '.service'), 'priority': 2100, (changedetection_restart_necessary | bool), 'groups': ['mash', 'changedetection']} if changedetection_enabled else omit) }}
   - |-
-    {{ ({'name': (changedetection_playwright_driver_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'changedetection']} if changedetection_playwright_driver_enabled else omit) }}
+    {{ ({'name': (changedetection_playwright_driver_identifier + '.service'), 'priority': 2000, (changedetection_restart_necessary | bool), 'groups': ['mash', 'changedetection']} if changedetection_playwright_driver_enabled else omit) }}
   # /role-specific:changedetection
 
   # role-specific:cinny
@@ -253,7 +253,7 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
 
   # role-specific:convertx
   - |-
-    {{ ({'name': (convertx_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'convertx']} if convertx_enabled else omit) }}
+    {{ ({'name': (convertx_identifier + '.service'), 'priority': 2000, 'restart_necessary': (convertx_restart_necessary | bool), 'groups': ['mash', 'convertx']} if convertx_enabled else omit) }}
   # /role-specific:convertx
 
   # role-specific:couchdb
@@ -320,7 +320,7 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
 
   # role-specific:duplicati
   - |-
-    {{ ({'name': (duplicati_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'duplicati']} if duplicati_enabled else omit) }}
+    {{ ({'name': (duplicati_identifier + '.service'), 'priority': 2000, 'restart_necessary': (duplicati_restart_necessary | bool), 'groups': ['mash', 'duplicati']} if duplicati_enabled else omit) }}
   # /role-specific:duplicati
 
   # role-specific:echoip
@@ -395,7 +395,7 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
 
   # role-specific:fmd_server
   - |-
-    {{ ({'name': (fmd_server_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'fmd-server']} if fmd_server_enabled else omit) }}
+    {{ ({'name': (fmd_server_identifier + '.service'), 'priority': 2000, 'restart_necessary': (fmd_server_restart_necessary | bool), 'groups': ['mash', 'fmd-server']} if fmd_server_enabled else omit) }}
   # /role-specific:fmd_server
 
   # role-specific:focalboard
@@ -590,7 +590,7 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
 
   # role-specific:kutt
   - |-
-    {{ ({'name': (kutt_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'kutt']} if kutt_enabled else omit) }}
+    {{ ({'name': (kutt_identifier + '.service'), 'priority': 2000, 'restart_necessary': (kutt_restart_necessary | bool), 'groups': ['mash', 'kutt']} if kutt_enabled else omit) }}
   # /role-specific:kutt
 
   # role-specific:labelstudio
@@ -723,7 +723,7 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
 
   # role-specific:moodist
   - |-
-    {{ ({'name': (moodist_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'moodist']} if moodist_enabled else omit) }}
+    {{ ({'name': (moodist_identifier + '.service'), 'priority': 2000, 'restart_necessary': (moodist_restart_necessary | bool), 'groups': ['mash', 'moodist']} if moodist_enabled else omit) }}
   # /role-specific:moodist
 
   # role-specific:mosquitto
@@ -1004,22 +1004,22 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
 
   # role-specific:radicle_explorer
   - |-
-    {{ ({'name': (radicle_explorer_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'radicle-explorer']} if radicle_explorer_enabled else omit) }}
+    {{ ({'name': (radicle_explorer_identifier + '.service'), 'priority': 2000, 'restart_necessary': (radicle_explorer_restart_necessary | bool), 'groups': ['mash', 'radicle-explorer']} if radicle_explorer_enabled else omit) }}
   # /role-specific:radicle_explorer
 
   # role-specific:radicle_httpd
   - |-
-    {{ ({'name': (radicle_httpd_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'radicle-httpd']} if radicle_httpd_enabled else omit) }}
+    {{ ({'name': (radicle_httpd_identifier + '.service'), 'priority': 2000, 'restart_necessary': (radicle_httpd_restart_necessary | bool), 'groups': ['mash', 'radicle-httpd']} if radicle_httpd_enabled else omit) }}
   # /role-specific:radicle_httpd
 
   # role-specific:radicle_node
   - |-
-    {{ ({'name': (radicle_node_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'radicle-node']} if radicle_node_enabled else omit) }}
+    {{ ({'name': (radicle_node_identifier + '.service'), 'priority': 2000, 'restart_necessary': (radicle_node_restart_necessary | bool), 'groups': ['mash', 'radicle-node']} if radicle_node_enabled else omit) }}
   # /role-specific:radicle_node
 
   # role-specific:reactflux
   - |-
-    {{ ({'name': (reactflux_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'reactflux']} if reactflux_enabled else omit) }}
+    {{ ({'name': (reactflux_identifier + '.service'), 'priority': 2000, 'restart_necessary': (reactflux_restart_necessary | bool), 'groups': ['mash', 'reactflux']} if reactflux_enabled else omit) }}
   # /role-specific:reactflux
 
   # role-specific:readeck
@@ -1078,7 +1078,7 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
 
   # role-specific:send
   - |-
-    {{ ({'name': (send_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'send']} if send_enabled else omit) }}
+    {{ ({'name': (send_identifier + '.service'), 'priority': 2000, 'restart_necessary': (send_restart_necessary | bool), 'groups': ['mash', 'send']} if send_enabled else omit) }}
   # /role-specific:send
 
   # role-specific:sftpgo
@@ -1168,7 +1168,7 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
 
   # role-specific:tinyauth
   - |-
-    {{ ({'name': (tinyauth_identifier + '.service'), 'priority': 1900, 'restart_necessary': true, 'groups': ['mash', 'tinyauth']} if tinyauth_enabled else omit) }}
+    {{ ({'name': (tinyauth_identifier + '.service'), 'priority': 1900, 'restart_necessary': (tinyauth_restart_necessary | bool), 'groups': ['mash', 'tinyauth']} if tinyauth_enabled else omit) }}
   # /role-specific:tinyauth
 
   # role-specific:traefik
@@ -1248,7 +1248,7 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
 
   # role-specific:writefreely
   - |-
-    {{ ({'name': (writefreely_identifier  + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'writefreely']} if writefreely_enabled else omit) }}
+    {{ ({'name': (writefreely_identifier  + '.service'), 'priority': 2000, 'restart_necessary': (writefreely_restart_necessary | bool), 'groups': ['mash', 'writefreely']} if writefreely_enabled else omit) }}
   # /role-specific:writefreely
 
   # role-specific:yacy
