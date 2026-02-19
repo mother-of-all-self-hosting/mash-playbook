@@ -221,9 +221,9 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
 
   # role-specific:changedetection
   - |-
-    {{ ({'name': (changedetection_identifier + '.service'), 'priority': 2100, (changedetection_restart_necessary | bool), 'groups': ['mash', 'changedetection']} if changedetection_enabled else omit) }}
+    {{ ({'name': (changedetection_identifier + '.service'), 'priority': 2100, 'restart_necessary': (changedetection_restart_necessary | bool), 'groups': ['mash', 'changedetection']} if changedetection_enabled else omit) }}
   - |-
-    {{ ({'name': (changedetection_playwright_driver_identifier + '.service'), 'priority': 2000, (changedetection_restart_necessary | bool), 'groups': ['mash', 'changedetection']} if changedetection_playwright_driver_enabled else omit) }}
+    {{ ({'name': (changedetection_playwright_driver_identifier + '.service'), 'priority': 2000, 'restart_necessary': (changedetection_restart_necessary | bool), 'groups': ['mash', 'changedetection']} if changedetection_playwright_driver_enabled else omit) }}
   # /role-specific:changedetection
 
   # role-specific:cinny
