@@ -249,7 +249,7 @@
   name: flaresolverr
   activation_prefix: flaresolverr_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-fmd-server.git
-  version: v0.14.0-0
+  version: v0.14.0-1
   name: fmd_server
   activation_prefix: fmd_server_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-focalboard.git
