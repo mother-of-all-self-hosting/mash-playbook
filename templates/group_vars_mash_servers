@@ -283,7 +283,7 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
 
   # role-specific:ddclient
   - |-
-    {{ ({'name': (ddclient_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'ddclient']} if ddclient_enabled else omit) }}
+    {{ ({'name': (ddclient_identifier + '.service'), 'priority': 2000, 'restart_necessary': (ddclient_restart_necessary | bool), 'groups': ['mash', 'ddclient']} if ddclient_enabled else omit) }}
   # /role-specific:ddclient
 
   # role-specific:docker_registry
@@ -463,7 +463,7 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
 
   # role-specific:grafana
   - |-
-    {{ ({'name': (grafana_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'grafana']} if grafana_enabled else omit) }}
+    {{ ({'name': (grafana_identifier + '.service'), 'priority': 2000, 'restart_necessary': (grafana_restart_necessary | bool), 'groups': ['mash', 'grafana']} if grafana_enabled else omit) }}
   # /role-specific:grafana
 
   # role-specific:headplane
@@ -618,7 +618,7 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
 
   # role-specific:limesurvey
   - |-
-    {{ ({'name': (limesurvey_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'limesurvey']} if limesurvey_enabled else omit) }}
+    {{ ({'name': (limesurvey_identifier + '.service'), 'priority': 2000, 'restart_necessary': (limesurvey_restart_necessary | bool), 'groups': ['mash', 'limesurvey']} if limesurvey_enabled else omit) }}
   # /role-specific:limesurvey
 
   # role-specific:linkding
@@ -807,7 +807,7 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
 
   # role-specific:ntfy
   - |-
-    {{ ({'name': (ntfy_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'ntfy']} if ntfy_enabled else omit) }}
+    {{ ({'name': (ntfy_identifier + '.service'), 'priority': 2000, 'restart_necessary': (ntfy_restart_necessary | bool), 'groups': ['mash', 'ntfy']} if ntfy_enabled else omit) }}
   # /role-specific:ntfy
 
   # role-specific:oauth2_proxy
@@ -964,7 +964,7 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
 
   # role-specific:prometheus_postgres_exporter
   - |-
-    {{ ({'name': (prometheus_postgres_exporter_identifier + '.service'), 'priority': 500, 'restart_necessary': true, 'groups': ['mash', 'metrics', 'prometheus-postgres-exporter']} if prometheus_postgres_exporter_enabled else omit) }}
+    {{ ({'name': (prometheus_postgres_exporter_identifier + '.service'), 'priority': 500, 'restart_necessary': (prometheus_postgres_exporter_restart_necessary | bool), 'groups': ['mash', 'metrics', 'prometheus-postgres-exporter']} if prometheus_postgres_exporter_enabled else omit) }}
   # /role-specific:prometheus_postgres_exporter
 
   # role-specific:prometheus_ssh_exporter
@@ -1258,7 +1258,7 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
 
   # role-specific:yggstack
   - |-
-    {{ ({'name': (yggstack_identifier + '.service'), 'priority': 500, 'restart_necessary': true, 'groups': ['mash', 'yggstack']} if yggstack_enabled else omit) }}
+    {{ ({'name': (yggstack_identifier + '.service'), 'priority': 500, 'restart_necessary': (yggstack_restart_necessary | bool), 'groups': ['mash', 'yggstack']} if yggstack_enabled else omit) }}
   # /role-specific:yggstack
 
   # role-specific:yourls
