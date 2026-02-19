@@ -489,7 +489,7 @@
   name: mongodb
   activation_prefix: mongodb_
 - src: git+https://seed.radicle.garden/z4Ez9aU119yFMs59cnA3KUnExFAeN.git
-  version: v2.4.0-4
+  version: v2.4.0-5
   name: moodist
   activation_prefix: moodist_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-mosquitto.git
