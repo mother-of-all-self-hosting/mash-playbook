@@ -869,6 +869,10 @@
     - role: galaxy/tandoor
     # /role-specific:tandoor
 
+    # role-specific:teable
+    - role: galaxy/teable
+    # /role-specific:teable
+
     # role-specific:telegraf
     - role: galaxy/telegraf
     # /role-specific:telegraf
