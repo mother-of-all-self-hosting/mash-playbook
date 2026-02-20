@@ -365,7 +365,7 @@
   name: jitsi
   activation_prefix: jitsi_
 - src: git+https://iris.radicle.xyz/zttNpUS7xCeDnn2e4No2dUvZv7L7.git
-  version: v3.5.2-1
+  version: v3.5.2-2
   name: joplin_server
   activation_prefix: joplin_server_
 - src: git+https://seed.radicle.garden/z2LZH9TGMxYbGBaGoMHNFX5HymEL3.git
