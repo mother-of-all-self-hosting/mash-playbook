@@ -853,7 +853,7 @@
   name: thelounge
   activation_prefix: thelounge_
 - src: git+https://seed.radicle.garden/zbk3MzAN6SX6d8pa9DT2kHDscyr6.git
-  version: v3.2.3.0-0
+  version: v3.2.3.0-1
   name: tika
   activation_prefix: tika_
 - src: git+https://github.com/devture/com.devture.ansible.role.timesync.git
