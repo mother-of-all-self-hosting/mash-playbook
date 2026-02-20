@@ -849,7 +849,7 @@
   name: termix
   activation_prefix: termix_
 - src: git+https://seed.radicle.garden/z3vaa8VAuz3pxqB3FyciNKQRSHqyt.git
-  version: v4.4.3-4
+  version: v4.4.3-5
   name: thelounge
   activation_prefix: thelounge_
 - src: git+https://seed.radicle.garden/zbk3MzAN6SX6d8pa9DT2kHDscyr6.git
