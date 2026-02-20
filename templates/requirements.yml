@@ -621,7 +621,7 @@
   name: pgadmin
   activation_prefix: pgadmin_
 - src: git+https://seed.radicle.garden/zby9EmMBhyNe8Nj4f66izwrmhk5g.git
-  version: v5.2.3-1
+  version: v5.2.3-2
   name: phpmyadmin
   activation_prefix: phpmyadmin_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-plausible.git
