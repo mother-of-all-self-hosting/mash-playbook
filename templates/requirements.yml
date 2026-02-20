@@ -481,7 +481,7 @@
   name: mobilizon
   activation_prefix: mobilizon_
 - src: git+https://iris.radicle.xyz/z3i2ogEXxuSzVAxVaRuoydAiDCBKi.git
-  version: v0.0.0-0
+  version: v0.0.0-1
   name: monerooo
   activation_prefix: monerooo_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-mongodb.git
