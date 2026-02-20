@@ -413,7 +413,7 @@
   name: linkding
   activation_prefix: linkding_
 - src: git+https://seed.radicle.garden/zCF75tYyujYQ3T4L3BkBDrPzXree.git
-  version: v2.13.5-1
+  version: v2.15.5-2
   name: linkwarden
   activation_prefix: linkwarden_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-listmonk.git
