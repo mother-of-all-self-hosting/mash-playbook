@@ -373,7 +373,7 @@
   name: kanboard
   activation_prefix: kanboard_
 - src: git+https://seed.radicle.garden/z4W1oeRiFKEikhj4Mk3HbVJM7er6S.git
-  version: v0.30.0-1
+  version: v0.30.0-2
   name: karakeep
   activation_prefix: karakeep_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-keycloak.git
