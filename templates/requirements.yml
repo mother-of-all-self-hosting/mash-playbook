@@ -573,7 +573,7 @@
   name: openregex
   activation_prefix: openregex_
 - src: git+https://seed.radicle.garden/z3aGv2oUAxqmoGddtk1VwRioUTKbs.git
-  version: v0.0.0-3
+  version: v0.0.0-4
   name: origamivault
   activation_prefix: origamivault_
 - src: git+https://seed.radicle.garden/z3cspgyZXPNcnzNXCYKsEGJK7dKKA.git
