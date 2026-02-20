@@ -569,7 +569,7 @@
   name: opengist
   activation_prefix: opengist_
 - src: git+https://seed.radicle.garden/z2kcNwMys48Wy3SLPnLU7oBnkkQyj.git
-  version: v1.3.0-1
+  version: v1.3.0-2
   name: openregex
   activation_prefix: openregex_
 - src: git+https://seed.radicle.garden/z3aGv2oUAxqmoGddtk1VwRioUTKbs.git
