@@ -781,7 +781,7 @@
   name: smp_server
   activation_prefix: smp_server_
 - src: git+https://seed.radicle.garden/znvd313jEb23f9AUNmtsweE7YHCK.git
-  version: v2.11.0-1
+  version: v2.11.0-2
   name: snowflake
   activation_prefix: snowflake_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-soft_serve.git
