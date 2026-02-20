@@ -581,7 +581,7 @@
   name: ots
   activation_prefix: ots_
 - src: git+https://seed.radicle.garden/zvzJe15VMBkGd2CMBctvpVZgmQG5.git
-  version: v2.17.2-0
+  version: v2.17.2-1
   name: otterwiki
   activation_prefix: otterwiki_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-outline.git
