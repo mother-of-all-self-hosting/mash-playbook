@@ -461,7 +461,7 @@
   name: meilisearch
   activation_prefix: meilisearch_
 - src: git+https://seed.radicle.garden/z2arPcue4GZ6G6FY3gZexsJXqHyDs.git
-  version: v1.6.39-2
+  version: v1.6.39-3
   name: memcached
   activation_prefix: memcached_
 - src: git+https://github.com/XHawk87/ansible-role-minecraft.git
