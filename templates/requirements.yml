@@ -941,6 +941,6 @@
   name: yggstack
   activation_prefix: yggstack_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-yourls.git
-  version: v1.10.3-0
+  version: v1.10.3-1
   name: yourls
   activation_prefix: yourls_
