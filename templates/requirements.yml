@@ -912,7 +912,7 @@
   version: v15.2.2-0
   name: wg_easy
   activation_prefix: wg_easy_
-- src: git+https://seed.radicle.garden/z54oV5qKRrLSArZqdisrD9s7h9BQ.git
+- src: git+https://seed.radicle.garden/z9wRjUKpo8iRJQ3c3GPN7Zkk12ei.git
   version: v0.1.16-2
   name: wikimore
   activation_prefix: wikimore_
