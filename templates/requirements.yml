@@ -501,7 +501,7 @@
   name: mozhi
   activation_prefix: mozhi_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-mrs.git
-  version: v0.1.0-14
+  version: v0.1.0-15
   name: mrs
   activation_prefix: mrs_
 - src: git+https://seed.radicle.garden/z4VBCibmQHyfHKEWTAJmQKBAAjtsv.git
