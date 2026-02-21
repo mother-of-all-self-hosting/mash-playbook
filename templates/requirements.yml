@@ -145,7 +145,7 @@
   name: cyberchef
   activation_prefix: cyberchef_
 - src: git+https://seed.radicle.garden/zeQ4hXq2LkbADcndSsjesgq9kDPf.git
-  version: v3.8.4-0
+  version: v3.8.4-1
   name: databasus
   activation_prefix: databasus_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-ddclient.git
