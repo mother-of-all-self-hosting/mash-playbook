@@ -17,17 +17,17 @@ SPDX-FileCopyrightText: 2024-2026 Suguru Hirahara
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 
-# soundcloak
+# SilverBullet
 
-The playbook can install and configure [soundcloak](https://git.maid.zone/stuff/soundcloak) for you.
+The playbook can install and configure [SilverBullet](https://git.maid.zone/stuff/SilverBullet) for you.
 
-soundcloak allows you to browse SoundCloud without exposing your IP address, browsing habits, and other browser fingerprinting data to the website.
+SilverBullet allows you to browse SoundCloud without exposing your IP address, browsing habits, and other browser fingerprinting data to the website.
 
-See the project's [documentation](https://git.maid.zone/stuff/soundcloak/src/branch/main/README.md) to learn what soundcloak does and why it might be useful to you.
+See the project's [documentation](https://git.maid.zone/stuff/SilverBullet/src/branch/main/README.md) to learn what SilverBullet does and why it might be useful to you.
 
-For details about configuring the [Ansible role for soundcloak](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az381JyLARWwSiZnYotVXehYcQEw7u), you can check them via:
-- 🌐 [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az381JyLARWwSiZnYotVXehYcQEw7u/tree/docs/configuring-soundcloak.md) online
-- 📁 `roles/galaxy/soundcloak/docs/configuring-soundcloak.md` locally, if you have [fetched the Ansible roles](../installing.md)
+For details about configuring the [Ansible role for SilverBullet](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az381JyLARWwSiZnYotVXehYcQEw7u), you can check them via:
+- 🌐 [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az381JyLARWwSiZnYotVXehYcQEw7u/tree/docs/configuring-SilverBullet.md) online
+- 📁 `roles/galaxy/SilverBullet/docs/configuring-SilverBullet.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 ## Dependencies
 
@@ -42,30 +42,30 @@ To enable this service, add the following configuration to your `vars.yml` file 
 ```yaml
 ########################################################################
 #                                                                      #
-# soundcloak                                                           #
+# SilverBullet                                                         #
 #                                                                      #
 ########################################################################
 
-soundcloak_enabled: true
+SilverBullet_enabled: true
 
-soundcloak_hostname: soundcloak.example.com
+SilverBullet_hostname: SilverBullet.example.com
 
 ########################################################################
 #                                                                      #
-# /soundcloak                                                          #
+# /SilverBullet                                                        #
 #                                                                      #
 ########################################################################
 ```
 
-**Note**: hosting soundcloak under a subpath (by configuring the `soundcloak_path_prefix` variable) does not seem to be possible due to soundcloak's technical limitations.
+**Note**: hosting SilverBullet under a subpath (by configuring the `SilverBullet_path_prefix` variable) does not seem to be possible due to SilverBullet's technical limitations.
 
 ## Usage
 
-After running the command for installation, the soundcloak instance becomes available at the URL specified with `soundcloak_hostname`. With the configuration above, the service is hosted at `https://soundcloak.example.com`.
+After running the command for installation, the SilverBullet instance becomes available at the URL specified with `SilverBullet_hostname`. With the configuration above, the service is hosted at `https://SilverBullet.example.com`.
 
 ## Troubleshooting
 
-See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az381JyLARWwSiZnYotVXehYcQEw7u/tree/docs/configuring-soundcloak.md#troubleshooting) on the role's documentation for details.
+See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az381JyLARWwSiZnYotVXehYcQEw7u/tree/docs/configuring-SilverBullet.md#troubleshooting) on the role's documentation for details.
 
 ## Related services
 
