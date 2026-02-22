@@ -46,8 +46,7 @@ If the user asks to edit a non-operator-owned path without this intent:
 Operator mode may edit these paths by default:
 
 - `inventory/**`
-- `docs/mash/**` (local operator documentation)
-- `docs/ai/**` (agent workflow docs)
+- `docs/ai/**` (support documentation for agents/operators)
 - `.codex/**` (Codex config/skills, if present)
 - `plans/**` (execution plans, if used)
 - `AGENTS.md`
@@ -178,12 +177,13 @@ For contributor work that changes playbook wiring, edit source files under
   treat as potentially uninstalling. Only run with explicit uninstall intent
   plus backup/rollback plan.
 - Treat disable/uninstall toggles, identifier/path changes, and cleanup/prune
-  actions as retention-risky; consult `docs/mash/retention.md`.
+  actions as retention-risky; consult `docs/uninstalling.md` and
+  `docs/playbook-tags.md`.
 - Any destructive operation requires explicit deletion consent and a
   backup/rollback plan before execution.
 - If retention behavior is unclear, mark `UNKNOWN` and require explicit user
   decision before proceeding.
-- Service-specific retention guidance: `docs/mash/retention.md`.
+- Service-specific retention guidance: `docs/uninstalling.md`.
 
 ## Command safety policy
 
@@ -208,8 +208,8 @@ expected service impact.
 - Human-run-only operations (defined below) are never agent-executable, even if
   confirmation is given.
 - If unsure, treat as managed-node-impacting and do read-only discovery first.
-- Command catalogs and examples: `docs/ai/agent_workflows.md` and
-  `docs/mash/service_enablement.md`.
+- Command catalogs and examples: `docs/ai/agent_workflows.md`, `docs/just.md`,
+  and `docs/playbook-tags.md`.
 
 ## Human-run-only operations (non-overridable)
 
@@ -285,6 +285,8 @@ For secret-bearing files:
   from repository root).
 - If unavailable, use the most specific feasible fallback (`just lint` or
   `ansible-playbook ... --syntax-check`).
+- Detailed scoped/full lint policy and external-role handling lives in
+  `docs/ai/agent_workflows.md`.
 - If validation cannot be run, say so explicitly.
 
 ## Audit trail and commits
@@ -305,8 +307,11 @@ If multiple related repos are present in the workspace:
 
 ## Pointers (may be created as needed)
 
-- `docs/mash/overview.md`
-- `docs/mash/service_enablement.md`
-- `docs/mash/authentik_patterns.md`
-- `docs/mash/retention.md`
+- `docs/README.md`
+- `docs/installing.md`
+- `docs/just.md`
+- `docs/playbook-tags.md`
+- `docs/uninstalling.md`
+- `docs/ai/README.md`
 - `docs/ai/agent_workflows.md`
+- `docs/ai/vault-operations.md`

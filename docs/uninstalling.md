@@ -10,11 +10,14 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 > [!WARNING]
 > If you have some trouble with your installation, you can just [re-run the playbook](installing.md) and it will try to set things up again. **Uninstalling and then installing anew rarely solves anything**.
 
-To uninstall, run these commands (most are meant to be executed on the server itself):
+## Uninstalling manually
 
-- ensure all services are stopped: `just stop-all` (if you can't get Ansible working to run this command, you can run `systemctl stop 'mash-*'` manually on the server)
+If you prefer to uninstall manually, run these commands (most are meant to be
+executed on the server itself):
 
-- delete the systemd `.service` and `.timer` files (`rm -f /etc/systemd/system/mash-*.{service,timer}`) and reload systemd (`systemctl daemon-reload`)
+- ensure all services are stopped: `just stop-all` (or `ansible-playbook -i inventory/hosts setup.yml --tags=stop`; if you can't get Ansible working to run this command, you can run `systemctl stop 'mash-*'` manually on the server)
+
+- delete the MASH-related systemd `.service` and `.timer` files (`rm -f /etc/systemd/system/mash-*.{service,timer}`) and reload systemd (`systemctl daemon-reload`)
 
 - delete some cached Docker images (`docker system prune -a`) or just delete them all (`docker rmi $(docker images -aq)`)
 

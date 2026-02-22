@@ -47,6 +47,11 @@ If you **don't** use SSH keys for authentication, but rather a regular password,
 
 If you **do** use SSH keys for authentication, **and** use a non-root user to *become* root (sudo), you may need to add `-K` (`--ask-become-pass`) to all Ansible commands.
 
+If your inventory uses encrypted vault files, you may need to add `-J`
+(`--ask-vault-pass`) to raw `ansible-playbook` commands. For `just` commands,
+append `--ask-vault-pass` (and usually `--ask-become-pass` when sudo is
+required).
+
 There 2 ways to start the installation process — depending on whether you're [Installing a brand new server (without importing data)](#installing-a-brand-new-server-without-importing-data) or [Installing a server into which you'll import old data](#installing-a-server-into-which-youll-import-old-data).
 
 ### Installing a brand new server (without importing data)
