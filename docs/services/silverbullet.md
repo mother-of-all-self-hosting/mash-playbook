@@ -69,6 +69,5 @@ See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3Pxy
 
 ## Related services
 
-- [AnonymousOverflow](anonymousoverflow.md) — Frontend for StackOverflow
-- [GotHub](gothub.md) — Frontend for GitHub
-- [Wikimore](wikimore.md) — Frontend for Wikipedia projects
+- [CodiMD](codimd.md) — Realtime collaborative markdown notes on all platforms
+- [Etherpad](etherpad.md) — Collaborative text editor
