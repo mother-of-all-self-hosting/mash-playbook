@@ -19,14 +19,14 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
 # SilverBullet
 
-The playbook can install and configure [SilverBullet](https://git.maid.zone/stuff/SilverBullet) for you.
+The playbook can install and configure [SilverBullet](https://silverbullet.md) for you.
 
-SilverBullet allows you to browse SoundCloud without exposing your IP address, browsing habits, and other browser fingerprinting data to the website.
+SilverBullet is a programmable, private, personal knowledge management platform.
 
-See the project's [documentation](https://git.maid.zone/stuff/SilverBullet/src/branch/main/README.md) to learn what SilverBullet does and why it might be useful to you.
+See the project's [documentation](https://silverbullet.md/Manual) to learn what SilverBullet does and why it might be useful to you.
 
-For details about configuring the [Ansible role for SilverBullet](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az381JyLARWwSiZnYotVXehYcQEw7u), you can check them via:
-- 🌐 [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az381JyLARWwSiZnYotVXehYcQEw7u/tree/docs/configuring-silverbullet.md) online
+For details about configuring the [Ansible role for SilverBullet](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3PxyXm3EXE4xCNKcaKVKmtdjVNog), you can check them via:
+- 🌐 [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3PxyXm3EXE4xCNKcaKVKmtdjVNog/tree/docs/configuring-silverbullet.md) online
 - 📁 `roles/galaxy/silverbullet/docs/configuring-silverbullet.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 ## Dependencies
@@ -65,7 +65,7 @@ After running the command for installation, the SilverBullet instance becomes av
 
 ## Troubleshooting
 
-See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az381JyLARWwSiZnYotVXehYcQEw7u/tree/docs/configuring-silverbullet.md#troubleshooting) on the role's documentation for details.
+See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3PxyXm3EXE4xCNKcaKVKmtdjVNog/tree/docs/configuring-silverbullet.md#troubleshooting) on the role's documentation for details.
 
 ## Related services
 
