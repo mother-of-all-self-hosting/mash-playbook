@@ -209,6 +209,7 @@ Below is an exhaustive list of the free and open-source software for self-hostin
 | [Semaphore UI](https://semaphoreui.com/) | Modern UI for Ansible, Terraform/OpenTofu/Terragrunt, PowerShell and other DevOps tools | [Link](services/semaphore.md) |
 | [Send](https://github.com/timvisee/send) | Fork of Mozilla's [Firefox Send](https://github.com/mozilla/send) which allows you to send encrypted files to other users | [Link](services/send.md) |
 | [SFTPGo](https://github.com/drakkan/sftpgo/) | File transfer software which supports SFTP, HTTP/S, FTP/S and WebDAV and can connect to various storage backends including S3 (compatible) Object Storage and Google Cloud Storage | [Link](services/sftpgo.md) |
+| [SilverBullet](https://silverbullet.md) | Programmable, private, personal knowledge management platform | [Link](services/silverbullet.md) |
 | [SMP server](https://simplex.chat/docs/server.html) | Relay server used to pass messages in [SimpleX](https://simplex.chat/) network | [Link](services/smp-server.md) |
 | [Soft Serve](https://github.com/charmbracelet/soft-serve) | A tasty [Git](https://git-scm.com/) server for the command line | [Link](services/soft-serve.md) |
 | [SolidInvoice](https://github.com/SolidInvoice/SolidInvoice) | Web-based software for invoicing | [Link](services/solidinvoice.md) |
