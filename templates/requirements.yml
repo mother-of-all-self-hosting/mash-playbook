@@ -776,6 +776,10 @@
   version: v2.7.0-4
   name: sftpgo
   activation_prefix: sftpgo_
+- src: git+https://seed.radicle.garden/z3PxyXm3EXE4xCNKcaKVKmtdjVNog.git
+  version: v2.4.1-0
+  name: silverbullet
+  activation_prefix: silverbullet_
 - src: git+https://seed.radicle.garden/zXf3qnvPwC2UsBpfTYmPesL5KSZc.git
   version: v6.4.5-3
   name: smp_server

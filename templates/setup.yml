@@ -825,6 +825,10 @@
     - role: galaxy/sftpgo
     # /role-specific:sftpgo
 
+    # role-specific:silverbullet
+    - role: galaxy/silverbullet
+    # /role-specific:silverbullet
+
     # role-specific:smp_server
     - role: galaxy/smp_server
     # /role-specific:smp_server
