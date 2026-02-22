@@ -871,6 +871,7 @@ headscale_systemd_required_services_list_custom:
 headplane_enabled: true
 
 headplane_hostname: "headplane.{{ domain }}"
+headplane_version: 0.6.2-beta.5
 headplane_cookie_secret: "{{ vault_headplane_cookie_secret }}"
 
 headscale_extra_records_path_enabled: true
