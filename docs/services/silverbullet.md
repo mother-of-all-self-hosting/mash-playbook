@@ -26,8 +26,8 @@ SilverBullet allows you to browse SoundCloud without exposing your IP address, b
 See the project's [documentation](https://git.maid.zone/stuff/SilverBullet/src/branch/main/README.md) to learn what SilverBullet does and why it might be useful to you.
 
 For details about configuring the [Ansible role for SilverBullet](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az381JyLARWwSiZnYotVXehYcQEw7u), you can check them via:
-- 🌐 [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az381JyLARWwSiZnYotVXehYcQEw7u/tree/docs/configuring-SilverBullet.md) online
-- 📁 `roles/galaxy/SilverBullet/docs/configuring-SilverBullet.md` locally, if you have [fetched the Ansible roles](../installing.md)
+- 🌐 [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az381JyLARWwSiZnYotVXehYcQEw7u/tree/docs/configuring-silverbullet.md) online
+- 📁 `roles/galaxy/silverbullet/docs/configuring-silverbullet.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 ## Dependencies
 
@@ -42,30 +42,30 @@ To enable this service, add the following configuration to your `vars.yml` file 
 ```yaml
 ########################################################################
 #                                                                      #
-# SilverBullet                                                         #
+# silverbullet                                                         #
 #                                                                      #
 ########################################################################
 
-SilverBullet_enabled: true
+silverbullet_enabled: true
 
-SilverBullet_hostname: SilverBullet.example.com
+silverbullet_hostname: silverbullet.example.com
 
 ########################################################################
 #                                                                      #
-# /SilverBullet                                                        #
+# /silverbullet                                                        #
 #                                                                      #
 ########################################################################
 ```
 
-**Note**: hosting SilverBullet under a subpath (by configuring the `SilverBullet_path_prefix` variable) does not seem to be possible due to SilverBullet's technical limitations.
+**Note**: hosting SilverBullet under a subpath (by configuring the `silverbullet_path_prefix` variable) does not seem to be possible due to SilverBullet's technical limitations.
 
 ## Usage
 
-After running the command for installation, the SilverBullet instance becomes available at the URL specified with `SilverBullet_hostname`. With the configuration above, the service is hosted at `https://SilverBullet.example.com`.
+After running the command for installation, the SilverBullet instance becomes available at the URL specified with `silverbullet_hostname`. With the configuration above, the service is hosted at `https://silverbullet.example.com`.
 
 ## Troubleshooting
 
-See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az381JyLARWwSiZnYotVXehYcQEw7u/tree/docs/configuring-SilverBullet.md#troubleshooting) on the role's documentation for details.
+See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az381JyLARWwSiZnYotVXehYcQEw7u/tree/docs/configuring-silverbullet.md#troubleshooting) on the role's documentation for details.
 
 ## Related services
 
