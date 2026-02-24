@@ -241,7 +241,7 @@
   name: filebrowser_quantum
   activation_prefix: filebrowser_quantum_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-firezone.git
-  version: v0.7.36-7
+  version: v0.7.36-9
   name: firezone
   activation_prefix: firezone_
 - src: git+https://github.com/sudo-Tiz/ansible-role-flaresolverr.git
