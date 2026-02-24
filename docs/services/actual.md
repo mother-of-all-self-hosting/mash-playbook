@@ -1,10 +1,10 @@
 <!--
-SPDX-FileCopyrightText: 2020 - 2024 MDAD project contributors
-SPDX-FileCopyrightText: 2020 - 2024 Slavi Pantaleev
 SPDX-FileCopyrightText: 2020 Aaron Raimist
 SPDX-FileCopyrightText: 2020 Chris van Dijk
 SPDX-FileCopyrightText: 2020 Dominik Zajac
 SPDX-FileCopyrightText: 2020 Mickaël Cornière
+SPDX-FileCopyrightText: 2020-2024 MDAD project contributors
+SPDX-FileCopyrightText: 2020-2024 Slavi Pantaleev
 SPDX-FileCopyrightText: 2022 François Darveau
 SPDX-FileCopyrightText: 2022 Julian Foad
 SPDX-FileCopyrightText: 2022 Warren Bailey
@@ -13,21 +13,21 @@ SPDX-FileCopyrightText: 2023 Felix Stupp
 SPDX-FileCopyrightText: 2023 Julian-Samuel Gebühr
 SPDX-FileCopyrightText: 2023 Pierre 'McFly' Marty
 SPDX-FileCopyrightText: 2024 Thomas Miceli
-SPDX-FileCopyrightText: 2024 - 2025 Suguru Hirahara
+SPDX-FileCopyrightText: 2024-2026 Suguru Hirahara
 
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 
 # Actual
 
-The playbook can install and configure [Actual](https://actual.com/) for you.
+The playbook can install and configure [Actual](https://actualbudget.org) for you.
 
-Actual is free software for backing up database of PostgreSQL, MySQL, MariaDB, and MongoDB.
+Actual is a local-first personal finance tool.
 
-See the project's [documentation](https://actual.com/installation) to learn what Actual does and why it might be useful to you.
+See the project's [documentation](https://actualbudget.org/docs/) to learn what Actual does and why it might be useful to you.
 
-For details about configuring the [Ansible role for Actual](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3AzeQ4hXq2LkbADcndSsjesgq9kDPf), you can check them via:
-- 🌐 [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3AzeQ4hXq2LkbADcndSsjesgq9kDPf/tree/docs/configuring-actual.md) online
+For details about configuring the [Ansible role for Actual](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az2chD7Kt74JwEMafxTooxN7MaeYtK), you can check them via:
+- 🌐 [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az2chD7Kt74JwEMafxTooxN7MaeYtK/tree/docs/configuring-actual.md) online
 - 📁 `roles/galaxy/actual/docs/configuring-actual.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 ## Dependencies
@@ -62,13 +62,11 @@ actual_hostname: actual.example.com
 
 After running the command for installation, the Actual instance becomes available at the URL specified with `actual_hostname`. With the configuration above, the service is hosted at `https://actual.example.com`.
 
-To get started, open the URL with a web browser to create an account. **Note that the first registered user becomes an administrator automatically.**
-
-Since MariaDB, PostgreSQL, and MongoDB are wired to the service, it is possible to set `mash-mariadb`, `mash-postgres`, or `mash-mongodb` to the input area for the host when adding a database to back up.
+To get started, open the URL with a web browser to create an account.
 
 ## Troubleshooting
 
-See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3AzeQ4hXq2LkbADcndSsjesgq9kDPf/tree/docs/configuring-actual.md#troubleshooting) on the role's documentation for details.
+See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az2chD7Kt74JwEMafxTooxN7MaeYtK/tree/docs/configuring-actual.md#troubleshooting) on the role's documentation for details.
 
 ## Related services
 
