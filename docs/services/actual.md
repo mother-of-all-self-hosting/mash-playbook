@@ -18,17 +18,17 @@ SPDX-FileCopyrightText: 2024 - 2025 Suguru Hirahara
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 
-# Databasus
+# Actual
 
-The playbook can install and configure [Databasus](https://databasus.com/) for you.
+The playbook can install and configure [Actual](https://actual.com/) for you.
 
-Databasus is free software for backing up database of PostgreSQL, MySQL, MariaDB, and MongoDB.
+Actual is free software for backing up database of PostgreSQL, MySQL, MariaDB, and MongoDB.
 
-See the project's [documentation](https://databasus.com/installation) to learn what Databasus does and why it might be useful to you.
+See the project's [documentation](https://actual.com/installation) to learn what Actual does and why it might be useful to you.
 
-For details about configuring the [Ansible role for Databasus](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3AzeQ4hXq2LkbADcndSsjesgq9kDPf), you can check them via:
-- 🌐 [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3AzeQ4hXq2LkbADcndSsjesgq9kDPf/tree/docs/configuring-databasus.md) online
-- 📁 `roles/galaxy/databasus/docs/configuring-databasus.md` locally, if you have [fetched the Ansible roles](../installing.md)
+For details about configuring the [Ansible role for Actual](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3AzeQ4hXq2LkbADcndSsjesgq9kDPf), you can check them via:
+- 🌐 [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3AzeQ4hXq2LkbADcndSsjesgq9kDPf/tree/docs/configuring-actual.md) online
+- 📁 `roles/galaxy/actual/docs/configuring-actual.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 ## Dependencies
 
@@ -43,24 +43,24 @@ To enable this service, add the following configuration to your `vars.yml` file 
 ```yaml
 ########################################################################
 #                                                                      #
-# databasus                                                            #
+# actual                                                               #
 #                                                                      #
 ########################################################################
 
-databasus_enabled: true
+actual_enabled: true
 
-databasus_hostname: databasus.example.com
+actual_hostname: actual.example.com
 
 ########################################################################
 #                                                                      #
-# /databasus                                                           #
+# /actual                                                              #
 #                                                                      #
 ########################################################################
 ```
 
 ## Usage
 
-After running the command for installation, the Databasus instance becomes available at the URL specified with `databasus_hostname`. With the configuration above, the service is hosted at `https://databasus.example.com`.
+After running the command for installation, the Actual instance becomes available at the URL specified with `actual_hostname`. With the configuration above, the service is hosted at `https://actual.example.com`.
 
 To get started, open the URL with a web browser to create an account. **Note that the first registered user becomes an administrator automatically.**
 
@@ -68,7 +68,7 @@ Since MariaDB, PostgreSQL, and MongoDB are wired to the service, it is possible 
 
 ## Troubleshooting
 
-See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3AzeQ4hXq2LkbADcndSsjesgq9kDPf/tree/docs/configuring-databasus.md#troubleshooting) on the role's documentation for details.
+See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3AzeQ4hXq2LkbADcndSsjesgq9kDPf/tree/docs/configuring-actual.md#troubleshooting) on the role's documentation for details.
 
 ## Related services
 
