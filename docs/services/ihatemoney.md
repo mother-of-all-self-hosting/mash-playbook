@@ -85,3 +85,7 @@ ihatemoney_public_project_creation: true
 ## Usage
 
 After running the command for installation, the "I hate money" instance becomes available at the URL specified with `ihatemoney_hostname` and `ihatemoney_path_prefix`. With the configuration above, the service is hosted at `https://mash.example.com/ihatemoney`.
+
+## Related services
+
+- [Actual](actual.md) — Local-first personal finance tool

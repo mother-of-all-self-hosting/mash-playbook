@@ -70,4 +70,4 @@ See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az2chD
 
 ## Related services
 
-- [Postgres Backup](postgres-backup.md) — A solution for backing up PostgreSQL to local filesystem with periodic backups
+- [I hate money](ihatemoney.md) — Shared budget manager
