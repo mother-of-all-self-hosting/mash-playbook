@@ -385,7 +385,7 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
 
   # role-specific:firezone
   - |-
-    {{ ({'name': (firezone_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'firezone']} if firezone_enabled else omit) }}
+    {{ ({'name': (firezone_identifier + '.service'), 'priority': 2000, 'restart_necessary': (firezone_restart_necessary | bool), 'groups': ['mash', 'firezone']} if firezone_enabled else omit) }}
   # /role-specific:firezone
 
   # role-specific:flaresolverr
@@ -510,7 +510,7 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
 
   # role-specific:immich_kiosk
   - |-
-    {{ ({'name': (immich_kiosk_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'immich-kiosk']} if immich_kiosk_enabled else omit) }}
+    {{ ({'name': (immich_kiosk_identifier + '.service'), 'priority': 2000, 'restart_necessary': (immich_kiosk_restart_necessary | bool), 'groups': ['mash', 'immich-kiosk']} if immich_kiosk_enabled else omit) }}
   # /role-specific:immich_kiosk
 
   # role-specific:infisical
@@ -613,7 +613,7 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
 
   # role-specific:languagetool
   - |-
-    {{ ({'name': (languagetool_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'languagetool']} if languagetool_enabled else omit) }}
+    {{ ({'name': (languagetool_identifier + '.service'), 'priority': 2000, 'restart_necessary': (languagetool_restart_necessary | bool), 'groups': ['mash', 'languagetool']} if languagetool_enabled else omit) }}
   # /role-specific:languagetool
 
   # role-specific:limesurvey
@@ -678,7 +678,7 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
 
   # role-specific:mediawiki
   - |-
-    {{ ({'name': (mediawiki_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'mediawiki']} if mediawiki_enabled else omit) }}
+    {{ ({'name': (mediawiki_identifier + '.service'), 'priority': 2000, 'restart_necessary': (mediawiki_restart_necessary | bool), 'groups': ['mash', 'mediawiki']} if mediawiki_enabled else omit) }}
   # /role-specific:mediawiki
 
   # role-specific:meilisearch
@@ -1048,7 +1048,7 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
 
   # role-specific:roundcube
   - |-
-    {{ ({'name': (roundcube_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'roundcube']} if roundcube_enabled else omit) }}
+    {{ ({'name': (roundcube_identifier + '.service'), 'priority': 2000, 'restart_necessary': (roundcube_restart_necessary | bool), 'groups': ['mash', 'roundcube']} if roundcube_enabled else omit) }}
   # /role-specific:roundcube
 
   # role-specific:rssbridge
@@ -1128,7 +1128,7 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
 
   # role-specific:syncstorage_rs_docker
   - |-
-    {{ ({'name': (syncstorage_rs_docker_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'syncstorage-rs-docker']} if syncstorage_rs_docker_enabled else omit) }}
+    {{ ({'name': (syncstorage_rs_docker_identifier + '.service'), 'priority': 2000, 'restart_necessary': (syncstorage_rs_docker_restart_necessary | bool), 'groups': ['mash', 'syncstorage-rs-docker']} if syncstorage_rs_docker_enabled else omit) }}
   # /role-specific:syncstorage_rs_docker
 
   # role-specific:syncthing
@@ -1243,7 +1243,7 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
 
   # role-specific:wordpress
   - |-
-    {{ ({'name': (wordpress_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'wordpress']} if wordpress_enabled else omit) }}
+    {{ ({'name': (wordpress_identifier + '.service'), 'priority': 2000, 'restart_necessary': (wordpress_restart_necessary | bool), 'groups': ['mash', 'wordpress']} if wordpress_enabled else omit) }}
   # /role-specific:wordpress
 
   # role-specific:writefreely
