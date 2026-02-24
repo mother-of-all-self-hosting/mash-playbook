@@ -1133,7 +1133,7 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
 
   # role-specific:syncthing
   - |-
-    {{ ({'name': (syncthing_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'syncthing']} if syncthing_enabled else omit) }}
+    {{ ({'name': (syncthing_identifier + '.service'), 'priority': 2000, 'restart_necessary': (syncthing_restart_necessary | bool), 'groups': ['mash', 'syncthing']} if syncthing_enabled else omit) }}
   # /role-specific:syncthing
 
   # role-specific:tandoor
@@ -2422,6 +2422,36 @@ mash_playbook_traefix_managed_additional_entrypoints_auto_itemized:
       } if smp_server_enabled and smp_server_container_labels_traefik_tcp_enabled else omit)
     }}
   # /role-specific:smp_server
+
+  # role-specific:syncthing
+  - |-
+    {{
+      ({
+        'name': syncthing_container_labels_traefik_tcp_entrypoints,
+        'port': syncthing_container_sync_tcp_port,
+        'host_bind_port': syncthing_container_sync_tcp_bind_port,
+        'config': {
+          'transport': {
+            'respondingTimeouts': {
+              'readTimeout': traefik_config_entrypoint_web_transport_respondingTimeouts_readTimeout,
+              'writeTimeout': traefik_config_entrypoint_web_transport_respondingTimeouts_writeTimeout,
+              'idleTimeout': traefik_config_entrypoint_web_transport_respondingTimeouts_idleTimeout
+            }
+          }
+        }
+      } if syncthing_enabled and syncthing_container_labels_traefik_tcp_enabled else omit)
+    }}
+
+  - |-
+    {{
+      ({
+        'name': syncthing_container_labels_traefik_udp_entrypoints,
+        'port': syncthing_container_sync_udp_port | string + '/udp',
+        'host_bind_port': syncthing_container_sync_udp_bind_port,
+        'config': {}
+      } if syncthing_enabled and syncthing_container_labels_traefik_udp_enabled else omit)
+    }}
+  # /role-specific:syncthing
 
 traefik_additional_entrypoints_auto: "{{ mash_playbook_traefix_managed_additional_entrypoints_auto_itemized | unique | reject('equalto', omit) }}"
 
@@ -13432,6 +13462,8 @@ syncthing_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_pro
 # role-specific:traefik
 syncthing_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
 syncthing_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
+syncthing_container_labels_traefik_tcp_enabled: true
+syncthing_container_labels_traefik_udp_enabled: true
 # /role-specific:traefik
 
 ########################################################################
