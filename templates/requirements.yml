@@ -509,7 +509,7 @@
   name: mumble
   activation_prefix: mumble_
 - src: git+https://github.com/kinduff/ansible-docker-n8n.git
-  version: v1.4.2
+  version: master
   name: n8n
   activation_prefix: n8n_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-navidrome.git
