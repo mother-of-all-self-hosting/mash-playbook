@@ -1091,6 +1091,11 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
     {{ ({'name': (sftpgo_identifier + '.service'), 'priority': 2000, 'restart_necessary': (sftpgo_restart_necessary | bool), 'groups': ['mash', 'sftpgo']} if sftpgo_enabled else omit) }}
   # /role-specific:sftpgo
 
+  # role-specific:silverbullet
+  - |-
+    {{ ({'name': (silverbullet_identifier + '.service'), 'priority': 2000, 'restart_necessary': (silverbullet_restart_necessary | bool), 'groups': ['mash', 'silverbullet']} if silverbullet_enabled else omit) }}
+  # /role-specific:silverbullet
+
   # role-specific:smp_server
   - |-
     {{ ({'name': (smp_server_identifier + '.service'), 'priority': 2000, 'restart_necessary': (smp_server_restart_necessary | bool), 'groups': ['mash', 'smp-server']} if smp_server_enabled else omit) }}
@@ -13103,6 +13108,44 @@ sftpgo_environment_variables_webdavd_certificate_key_file: /privatekey.crt
 #                                                                      #
 ########################################################################
 # /role-specific:sftpgo
+
+
+
+# role-specific:silverbullet
+########################################################################
+#                                                                      #
+# silverbullet                                                         #
+#                                                                      #
+########################################################################
+
+silverbullet_enabled: false
+
+silverbullet_identifier: "{{ mash_playbook_service_identifier_prefix }}silverbullet"
+
+silverbullet_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}silverbullet"
+
+silverbullet_uid: "{{ mash_playbook_uid }}"
+silverbullet_gid: "{{ mash_playbook_gid }}"
+
+silverbullet_container_additional_networks_auto: |
+  {{
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+  }}
+
+silverbullet_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+silverbullet_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+
+# role-specific:traefik
+silverbullet_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
+silverbullet_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
+# /role-specific:traefik
+
+########################################################################
+#                                                                      #
+# /silverbullet                                                        #
+#                                                                      #
+########################################################################
+# /role-specific:silverbullet
 
 
 

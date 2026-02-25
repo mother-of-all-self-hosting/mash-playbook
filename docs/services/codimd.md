@@ -92,3 +92,4 @@ See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Azp12k
 ## Related services
 
 - [Etherpad](etherpad.md) — Collaborative text editor
+- [SilverBullet](silverbullet.md) — Programmable, private, personal knowledge management platform

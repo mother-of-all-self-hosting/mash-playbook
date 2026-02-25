@@ -80,3 +80,4 @@ See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-et
 ## Related services
 
 - [CodiMD](codimd.md) — Realtime collaborative markdown notes on all platforms
+- [SilverBullet](silverbullet.md) — Programmable, private, personal knowledge management platform
