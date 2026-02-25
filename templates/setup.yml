@@ -93,6 +93,10 @@
     - role: galaxy/traefik
     # /role-specific:traefik
 
+    # role-specific:actual
+    - role: galaxy/actual
+    # /role-specific:actual
+
     # role-specific:adguard_home
     - role: galaxy/adguard_home
     # /role-specific:adguard_home

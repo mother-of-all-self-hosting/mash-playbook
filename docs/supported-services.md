@@ -24,6 +24,7 @@ Below is an exhaustive list of the free and open-source software for self-hostin
 |              Name              |              Description              | Documentation |
 | ------------------------------ | ------------------------------------- | ------------- |
 | [AUX](https://github.com/mother-of-all-self-hosting/ansible-role-aux) | Auxiliary file/directory management on your server via Ansible | [Link](services/auxiliary.md) |
+| [Actual](https://actualbudget.org) | Local-first personal finance tool | [Link](services/actual.md) |
 | [AdGuard Home](https://adguard.com/en/adguard-home/overview.html/) | A network-wide DNS software for blocking ads & tracking | [Link](services/adguard-home.md) |
 | [Adminer](https://www.adminer.org/) | Full-featured database management tool written in PHP | [Link](services/adminer.md) |
 | [An Otter Wiki](https://otterwiki.com/) | Minimalistic wiki powered by Python, Markdown and Git | [Link](services/otterwiki.md) |
