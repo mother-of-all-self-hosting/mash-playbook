@@ -20,14 +20,14 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
 # DocuSeal
 
-The playbook can install and configure [DocuSeal](https://github.com/DocuSeal/DocuSeal) for you.
+The playbook can install and configure [DocuSeal](https://github.com/docusealco/docuseal) for you.
 
-DocuSeal is a web-based free software for invoicing.
+DocuSeal is a web application for digital document signing and processing.
 
-See the project's [documentation](https://docs.docuseal.co/en/latest/) to learn what DocuSeal does and why it might be useful to you.
+See the project's [documentation](https://www.docuseal.com/docs/) to learn what DocuSeal does and why it might be useful to you.
 
-For details about configuring the [Ansible role for DocuSeal](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3AzeEwXM9Fp4C8NU4oQfNg474Vivwu), you can check them via:
-- 🌐 [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3AzeEwXM9Fp4C8NU4oQfNg474Vivwu/tree/docs/configuring-docuseal.md) online
+For details about configuring the [Ansible role for DocuSeal](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az2HG5jWufCQfA8cYAFkJ9GmZyRcCs), you can check them via:
+- 🌐 [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az2HG5jWufCQfA8cYAFkJ9GmZyRcCs/tree/docs/configuring-docuseal.md) online
 - 📁 `roles/galaxy/docuseal/docs/configuring-docuseal.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 ## Dependencies
@@ -64,7 +64,7 @@ docuseal_hostname: docuseal.example.com
 
 ### Select database to use
 
-It is necessary to select a database used by DocuSeal from a MySQL compatible database, Postgres, and SQLite. See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3AzeEwXM9Fp4C8NU4oQfNg474Vivwu/tree/docs/configuring-docuseal.md#specify-database) on the role's documentation for details.
+It is necessary to select a database used by DocuSeal from a MySQL compatible database, Postgres, and SQLite. See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az2HG5jWufCQfA8cYAFkJ9GmZyRcCs/tree/docs/configuring-docuseal.md#specify-database) on the role's documentation for details.
 
 ## Usage
 
