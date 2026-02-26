@@ -257,6 +257,10 @@
     - role: galaxy/docmost
     # /role-specific:docmost
 
+    # role-specific:docuseal
+    - role: galaxy/docuseal
+    # /role-specific:docuseal
+
     # role-specific:dokuwiki
     - role: galaxy/dokuwiki
     # /role-specific:dokuwiki

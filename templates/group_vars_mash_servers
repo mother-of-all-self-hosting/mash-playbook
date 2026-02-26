@@ -318,6 +318,11 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
     {{ ({'name': (docmost_identifier + '.service'), 'priority': 2000, 'restart_necessary': (docmost_restart_necessary | bool), 'groups': ['mash', 'docmost']} if docmost_enabled else omit) }}
   # /role-specific:docmost
 
+  # role-specific:docuseal
+  - |-
+    {{ ({'name': (docuseal_identifier + '.service'), 'priority': 2000, 'restart_necessary': (docuseal_restart_necessary | bool), 'groups': ['mash', 'docuseal']} if docuseal_enabled else omit) }}
+  # /role-specific:docuseal
+
   # role-specific:dokuwiki
   - |-
     {{ ({'name': (dokuwiki_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'dokuwiki']} if dokuwiki_enabled else omit) }}
@@ -1403,6 +1408,17 @@ mash_playbook_postgres_managed_databases_auto_itemized:
       } if docmost_enabled and docmost_database_hostname == postgres_connection_hostname else omit)
     }}
   # /role-specific:docmost
+
+  # role-specific:docuseal
+  - |-
+    {{
+      ({
+        'name': docuseal_database_name,
+        'username': docuseal_database_postgres_username,
+        'password': docuseal_database_postgres_password,
+      } if docuseal_enabled and docuseal_database_postgres_hostname == postgres_connection_hostname and docuseal_database_type == 'postgres' else omit)
+    }}
+  # /role-specific:docuseal
 
   # role-specific:etherpad
   - |-
@@ -4445,6 +4461,74 @@ docmost_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_prim
 #                                                                      #
 ########################################################################
 # /role-specific:docmost
+
+
+
+# role-specific:docuseal
+########################################################################
+#                                                                      #
+# docuseal                                                             #
+#                                                                      #
+########################################################################
+
+docuseal_enabled: false
+
+docuseal_identifier: "{{ mash_playbook_service_identifier_prefix }}docuseal"
+
+docuseal_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}docuseal"
+
+docuseal_uid: "{{ mash_playbook_uid }}"
+docuseal_gid: "{{ mash_playbook_gid }}"
+
+docuseal_systemd_required_services_list_auto: |
+  {{
+    ([mariadb_identifier ~ '.service'] if mariadb_enabled | default(false) and docuseal_database_mysql_hostname == mariadb_connection_hostname and docuseal_database_type == 'mysql' else [])
+    +
+    ([postgres_identifier ~ '.service'] if postgres_enabled | default(false) and docuseal_database_postgres_hostname == postgres_connection_hostname and docuseal_database_type == 'postgres' else [])
+  }}
+
+docuseal_systemd_wanted_services_list_auto: |
+  {{
+    ([(exim_relay_identifier | default('mash-exim-relay')) ~ '.service'] if exim_relay_enabled | default(false) else [])
+  }}
+
+docuseal_container_additional_networks_auto: |
+  {{
+    ([exim_relay_container_network | default('mash-exim-relay')] if (exim_relay_enabled | default(false) and docuseal_container_network != exim_relay_container_network) else [])
+    +
+    ([mariadb_container_network] if mariadb_enabled | default(false) and docuseal_database_mysql_hostname == mariadb_connection_hostname and docuseal_container_network != mariadb_container_network and docuseal_database_type == 'mysql' else [])
+    +
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+    +
+    ([postgres_container_network] if postgres_enabled | default(false) and docuseal_database_postgres_hostname == postgres_connection_hostname and docuseal_container_network != postgres_container_network and docuseal_database_type == 'postgres' else [])
+  }}
+
+docuseal_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+docuseal_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+
+# role-specific:mariadb
+docuseal_database_mysql_hostname: "{{ mariadb_connection_hostname if mariadb_enabled else '' }}"
+docuseal_database_mysql_port: "{{ mariadb_connection_port if mariadb_enabled else '3306' }}"
+docuseal_database_mysql_password: "{{ (mash_playbook_generic_secret_key + ':db.docuseal.ma') | hash('sha512') | to_uuid }}"
+# /role-specific:mariadb
+
+# role-specific:postgres
+docuseal_database_postgres_hostname: "{{ postgres_connection_hostname if postgres_enabled else '' }}"
+docuseal_database_postgres_port: "{{ postgres_connection_port if postgres_enabled else '5432' }}"
+docuseal_database_postgres_password: "{{ (mash_playbook_generic_secret_key + ':db.docuseal.p') | hash('sha512') | to_uuid }}"
+# /role-specific:postgres
+
+# role-specific:traefik
+docuseal_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
+docuseal_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
+# /role-specific:traefik
+
+########################################################################
+#                                                                      #
+# /docuseal                                                            #
+#                                                                      #
+########################################################################
+# /role-specific:docuseal
 
 
 
@@ -8835,6 +8919,17 @@ mash_playbook_mariadb_managed_databases_auto_itemized:
       } if codimd_enabled and codimd_database_mysql_hostname == mariadb_connection_hostname and codimd_database_type == 'mysql' else omit)
     }}
   # /role-specific:codimd
+
+  # role-specific:docuseal
+  - |-
+    {{
+      ({
+        'name': docuseal_database_name,
+        'username': docuseal_database_mysql_username,
+        'password': docuseal_database_mysql_password,
+      } if docuseal_enabled and docuseal_database_mysql_hostname == mariadb_connection_hostname and docuseal_database_type == 'mysql' else omit)
+    }}
+  # /role-specific:docuseal
 
   # role-specific:etherpad
   - |-
