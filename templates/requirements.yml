@@ -184,6 +184,10 @@
   version: v0.25.3-1
   name: docmost
   activation_prefix: docmost_
+- src: git+https://seed.radicle.garden/z2HG5jWufCQfA8cYAFkJ9GmZyRcCs.git
+  version: v2.3.5-0
+  name: docuseal
+  activation_prefix: docuseal_
 - src: git+https://github.com/shukon/ansible-role-dokuwiki.git
   version: v2025-05-14b-1
   name: dokuwiki
