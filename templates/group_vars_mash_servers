@@ -100,6 +100,11 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
   # Ensures there's at least one entry defined in the list.
   - "{{ omit }}"
 
+  # role-specific:actual
+  - |-
+    {{ ({'name': (actual_identifier + '.service'), 'priority': 2000, 'restart_necessary': (actual_restart_necessary | bool), 'groups': ['mash', 'actual']} if actual_enabled else omit) }}
+  # /role-specific:actual
+
   # role-specific:adguard_home
   - |-
     {{ ({'name': (adguard_home_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'adguard-home']} if adguard_home_enabled else omit) }}
@@ -313,6 +318,11 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
     {{ ({'name': (docmost_identifier + '.service'), 'priority': 2000, 'restart_necessary': (docmost_restart_necessary | bool), 'groups': ['mash', 'docmost']} if docmost_enabled else omit) }}
   # /role-specific:docmost
 
+  # role-specific:docuseal
+  - |-
+    {{ ({'name': (docuseal_identifier + '.service'), 'priority': 2000, 'restart_necessary': (docuseal_restart_necessary | bool), 'groups': ['mash', 'docuseal']} if docuseal_enabled else omit) }}
+  # /role-specific:docuseal
+
   # role-specific:dokuwiki
   - |-
     {{ ({'name': (dokuwiki_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'dokuwiki']} if dokuwiki_enabled else omit) }}
@@ -385,7 +395,7 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
 
   # role-specific:firezone
   - |-
-    {{ ({'name': (firezone_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'firezone']} if firezone_enabled else omit) }}
+    {{ ({'name': (firezone_identifier + '.service'), 'priority': 2000, 'restart_necessary': (firezone_restart_necessary | bool), 'groups': ['mash', 'firezone']} if firezone_enabled else omit) }}
   # /role-specific:firezone
 
   # role-specific:flaresolverr
@@ -510,7 +520,7 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
 
   # role-specific:immich_kiosk
   - |-
-    {{ ({'name': (immich_kiosk_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'immich-kiosk']} if immich_kiosk_enabled else omit) }}
+    {{ ({'name': (immich_kiosk_identifier + '.service'), 'priority': 2000, 'restart_necessary': (immich_kiosk_restart_necessary | bool), 'groups': ['mash', 'immich-kiosk']} if immich_kiosk_enabled else omit) }}
   # /role-specific:immich_kiosk
 
   # role-specific:infisical
@@ -613,7 +623,7 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
 
   # role-specific:languagetool
   - |-
-    {{ ({'name': (languagetool_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'languagetool']} if languagetool_enabled else omit) }}
+    {{ ({'name': (languagetool_identifier + '.service'), 'priority': 2000, 'restart_necessary': (languagetool_restart_necessary | bool), 'groups': ['mash', 'languagetool']} if languagetool_enabled else omit) }}
   # /role-specific:languagetool
 
   # role-specific:limesurvey
@@ -678,7 +688,7 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
 
   # role-specific:mediawiki
   - |-
-    {{ ({'name': (mediawiki_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'mediawiki']} if mediawiki_enabled else omit) }}
+    {{ ({'name': (mediawiki_identifier + '.service'), 'priority': 2000, 'restart_necessary': (mediawiki_restart_necessary | bool), 'groups': ['mash', 'mediawiki']} if mediawiki_enabled else omit) }}
   # /role-specific:mediawiki
 
   # role-specific:meilisearch
@@ -1048,7 +1058,7 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
 
   # role-specific:roundcube
   - |-
-    {{ ({'name': (roundcube_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'roundcube']} if roundcube_enabled else omit) }}
+    {{ ({'name': (roundcube_identifier + '.service'), 'priority': 2000, 'restart_necessary': (roundcube_restart_necessary | bool), 'groups': ['mash', 'roundcube']} if roundcube_enabled else omit) }}
   # /role-specific:roundcube
 
   # role-specific:rssbridge
@@ -1085,6 +1095,11 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
   - |-
     {{ ({'name': (sftpgo_identifier + '.service'), 'priority': 2000, 'restart_necessary': (sftpgo_restart_necessary | bool), 'groups': ['mash', 'sftpgo']} if sftpgo_enabled else omit) }}
   # /role-specific:sftpgo
+
+  # role-specific:silverbullet
+  - |-
+    {{ ({'name': (silverbullet_identifier + '.service'), 'priority': 2000, 'restart_necessary': (silverbullet_restart_necessary | bool), 'groups': ['mash', 'silverbullet']} if silverbullet_enabled else omit) }}
+  # /role-specific:silverbullet
 
   # role-specific:smp_server
   - |-
@@ -1128,12 +1143,12 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
 
   # role-specific:syncstorage_rs_docker
   - |-
-    {{ ({'name': (syncstorage_rs_docker_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'syncstorage-rs-docker']} if syncstorage_rs_docker_enabled else omit) }}
+    {{ ({'name': (syncstorage_rs_docker_identifier + '.service'), 'priority': 2000, 'restart_necessary': (syncstorage_rs_docker_restart_necessary | bool), 'groups': ['mash', 'syncstorage-rs-docker']} if syncstorage_rs_docker_enabled else omit) }}
   # /role-specific:syncstorage_rs_docker
 
   # role-specific:syncthing
   - |-
-    {{ ({'name': (syncthing_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'syncthing']} if syncthing_enabled else omit) }}
+    {{ ({'name': (syncthing_identifier + '.service'), 'priority': 2000, 'restart_necessary': (syncthing_restart_necessary | bool), 'groups': ['mash', 'syncthing']} if syncthing_enabled else omit) }}
   # /role-specific:syncthing
 
   # role-specific:tandoor
@@ -1243,7 +1258,7 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
 
   # role-specific:wordpress
   - |-
-    {{ ({'name': (wordpress_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'wordpress']} if wordpress_enabled else omit) }}
+    {{ ({'name': (wordpress_identifier + '.service'), 'priority': 2000, 'restart_necessary': (wordpress_restart_necessary | bool), 'groups': ['mash', 'wordpress']} if wordpress_enabled else omit) }}
   # /role-specific:wordpress
 
   # role-specific:writefreely
@@ -1393,6 +1408,17 @@ mash_playbook_postgres_managed_databases_auto_itemized:
       } if docmost_enabled and docmost_database_hostname == postgres_connection_hostname else omit)
     }}
   # /role-specific:docmost
+
+  # role-specific:docuseal
+  - |-
+    {{
+      ({
+        'name': docuseal_database_name,
+        'username': docuseal_database_postgres_username,
+        'password': docuseal_database_postgres_password,
+      } if docuseal_enabled and docuseal_database_postgres_hostname == postgres_connection_hostname and docuseal_database_type == 'postgres' else omit)
+    }}
+  # /role-specific:docuseal
 
   # role-specific:etherpad
   - |-
@@ -1951,9 +1977,9 @@ mash_playbook_postgres_managed_databases_auto_itemized:
     {{
       ({
         'name': roundcube_database_name,
-        'username': roundcube_database_username,
-        'password': roundcube_database_password,
-      } if roundcube_enabled and roundcube_database_hostname == postgres_connection_hostname and roundcube_database_type == 'postgresql' else omit)
+        'username': roundcube_database_postgres_username,
+        'password': roundcube_database_postgres_password,
+      } if roundcube_enabled and roundcube_database_postgres_hostname == postgres_connection_hostname and roundcube_database_type == 'postgres' else omit)
     }}
   # /role-specific:roundcube
 
@@ -2423,6 +2449,36 @@ mash_playbook_traefix_managed_additional_entrypoints_auto_itemized:
     }}
   # /role-specific:smp_server
 
+  # role-specific:syncthing
+  - |-
+    {{
+      ({
+        'name': syncthing_container_labels_traefik_tcp_entrypoints,
+        'port': syncthing_container_sync_tcp_port,
+        'host_bind_port': syncthing_container_sync_tcp_bind_port,
+        'config': {
+          'transport': {
+            'respondingTimeouts': {
+              'readTimeout': traefik_config_entrypoint_web_transport_respondingTimeouts_readTimeout,
+              'writeTimeout': traefik_config_entrypoint_web_transport_respondingTimeouts_writeTimeout,
+              'idleTimeout': traefik_config_entrypoint_web_transport_respondingTimeouts_idleTimeout
+            }
+          }
+        }
+      } if syncthing_enabled and syncthing_container_labels_traefik_tcp_enabled else omit)
+    }}
+
+  - |-
+    {{
+      ({
+        'name': syncthing_container_labels_traefik_udp_entrypoints,
+        'port': syncthing_container_sync_udp_port | string + '/udp',
+        'host_bind_port': syncthing_container_sync_udp_bind_port,
+        'config': {}
+      } if syncthing_enabled and syncthing_container_labels_traefik_udp_enabled else omit)
+    }}
+  # /role-specific:syncthing
+
 traefik_additional_entrypoints_auto: "{{ mash_playbook_traefix_managed_additional_entrypoints_auto_itemized | unique | reject('equalto', omit) }}"
 
 mash_playbook_traefik_additional_domains_to_obtain_certificates_for_itemized:
@@ -2484,6 +2540,44 @@ devture_timesync_installation_enabled: false
 #                                                                      #
 ########################################################################
 # /role-specific:timesync
+
+
+
+# role-specific:actual
+########################################################################
+#                                                                      #
+# actual                                                               #
+#                                                                      #
+########################################################################
+
+actual_enabled: false
+
+actual_identifier: "{{ mash_playbook_service_identifier_prefix }}actual"
+
+actual_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}actual"
+
+actual_uid: "{{ mash_playbook_uid }}"
+actual_gid: "{{ mash_playbook_gid }}"
+
+actual_container_additional_networks_auto: |
+  {{
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+  }}
+
+actual_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+actual_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+
+# role-specific:traefik
+actual_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
+actual_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
+# /role-specific:traefik
+
+########################################################################
+#                                                                      #
+# /actual                                                              #
+#                                                                      #
+########################################################################
+# /role-specific:actual
 
 
 
@@ -4367,6 +4461,74 @@ docmost_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_prim
 #                                                                      #
 ########################################################################
 # /role-specific:docmost
+
+
+
+# role-specific:docuseal
+########################################################################
+#                                                                      #
+# docuseal                                                             #
+#                                                                      #
+########################################################################
+
+docuseal_enabled: false
+
+docuseal_identifier: "{{ mash_playbook_service_identifier_prefix }}docuseal"
+
+docuseal_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}docuseal"
+
+docuseal_uid: "{{ mash_playbook_uid }}"
+docuseal_gid: "{{ mash_playbook_gid }}"
+
+docuseal_systemd_required_services_list_auto: |
+  {{
+    ([mariadb_identifier ~ '.service'] if mariadb_enabled | default(false) and docuseal_database_mysql_hostname == mariadb_connection_hostname and docuseal_database_type == 'mysql' else [])
+    +
+    ([postgres_identifier ~ '.service'] if postgres_enabled | default(false) and docuseal_database_postgres_hostname == postgres_connection_hostname and docuseal_database_type == 'postgres' else [])
+  }}
+
+docuseal_systemd_wanted_services_list_auto: |
+  {{
+    ([(exim_relay_identifier | default('mash-exim-relay')) ~ '.service'] if exim_relay_enabled | default(false) else [])
+  }}
+
+docuseal_container_additional_networks_auto: |
+  {{
+    ([exim_relay_container_network | default('mash-exim-relay')] if (exim_relay_enabled | default(false) and docuseal_container_network != exim_relay_container_network) else [])
+    +
+    ([mariadb_container_network] if mariadb_enabled | default(false) and docuseal_database_mysql_hostname == mariadb_connection_hostname and docuseal_container_network != mariadb_container_network and docuseal_database_type == 'mysql' else [])
+    +
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+    +
+    ([postgres_container_network] if postgres_enabled | default(false) and docuseal_database_postgres_hostname == postgres_connection_hostname and docuseal_container_network != postgres_container_network and docuseal_database_type == 'postgres' else [])
+  }}
+
+docuseal_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+docuseal_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+
+# role-specific:mariadb
+docuseal_database_mysql_hostname: "{{ mariadb_connection_hostname if mariadb_enabled else '' }}"
+docuseal_database_mysql_port: "{{ mariadb_connection_port if mariadb_enabled else '3306' }}"
+docuseal_database_mysql_password: "{{ (mash_playbook_generic_secret_key + ':db.docuseal.ma') | hash('sha512') | to_uuid }}"
+# /role-specific:mariadb
+
+# role-specific:postgres
+docuseal_database_postgres_hostname: "{{ postgres_connection_hostname if postgres_enabled else '' }}"
+docuseal_database_postgres_port: "{{ postgres_connection_port if postgres_enabled else '5432' }}"
+docuseal_database_postgres_password: "{{ (mash_playbook_generic_secret_key + ':db.docuseal.p') | hash('sha512') | to_uuid }}"
+# /role-specific:postgres
+
+# role-specific:traefik
+docuseal_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
+docuseal_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
+# /role-specific:traefik
+
+########################################################################
+#                                                                      #
+# /docuseal                                                            #
+#                                                                      #
+########################################################################
+# /role-specific:docuseal
 
 
 
@@ -8758,6 +8920,17 @@ mash_playbook_mariadb_managed_databases_auto_itemized:
     }}
   # /role-specific:codimd
 
+  # role-specific:docuseal
+  - |-
+    {{
+      ({
+        'name': docuseal_database_name,
+        'username': docuseal_database_mysql_username,
+        'password': docuseal_database_mysql_password,
+      } if docuseal_enabled and docuseal_database_mysql_hostname == mariadb_connection_hostname and docuseal_database_type == 'mysql' else omit)
+    }}
+  # /role-specific:docuseal
+
   # role-specific:etherpad
   - |-
     {{
@@ -8966,6 +9139,17 @@ mash_playbook_mariadb_managed_databases_auto_itemized:
       } if privatebin_enabled and privatebin_database_mysql_hostname == mariadb_connection_hostname and privatebin_config_model == 'MySQL' else omit)
     }}
   # /role-specific:privatebin
+
+  # role-specific:roundcube
+  - |-
+    {{
+      ({
+        'name': roundcube_database_name,
+        'username': roundcube_database_mysql_username,
+        'password': roundcube_database_mysql_password,
+      } if roundcube_enabled and roundcube_database_mysql_hostname == mariadb_connection_hostname and roundcube_database_type == 'mysql' else omit)
+    }}
+  # /role-specific:roundcube
 
   # role-specific:semaphore
   - |-
@@ -12590,25 +12774,33 @@ roundcube_gid: "0"
 
 roundcube_systemd_required_services_list_auto: |
   {{
-    ([postgres_identifier ~ '.service'] if postgres_enabled and roundcube_database_hostname == postgres_connection_hostname else [])
+    ([mariadb_identifier ~ '.service'] if mariadb_enabled | default(false) and roundcube_database_mysql_hostname == mariadb_connection_hostname and roundcube_database_type == 'mysql' else [])
+    +
+    ([postgres_identifier ~ '.service'] if postgres_enabled | default(false) and roundcube_database_postgres_hostname == postgres_connection_hostname and roundcube_database_type == 'postgres' else [])
   }}
 
 roundcube_container_additional_networks_auto: |
   {{
     ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
     +
-    ([postgres_container_network] if postgres_enabled and roundcube_database_hostname == postgres_connection_hostname and roundcube_container_network != postgres_container_network else [])
+    ([mariadb_container_network] if mariadb_enabled | default(false) and roundcube_database_mysql_hostname == mariadb_connection_hostname and roundcube_container_network != mariadb_container_network and roundcube_database_type == 'mysql' else [])
+    +
+    ([postgres_container_network] if postgres_enabled | default(false) and roundcube_database_postgres_hostname == postgres_connection_hostname and roundcube_container_network != postgres_container_network and roundcube_database_type == 'postgres' else [])
   }}
 
 roundcube_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
 roundcube_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
 
-roundcube_database_type: "{{ 'postgresql' if postgres_enabled else 'sqlite' }}"
+# role-specific:mariadb
+roundcube_database_mysql_hostname: "{{ mariadb_connection_hostname if mariadb_enabled else '' }}"
+roundcube_database_mysql_port: "{{ mariadb_connection_port if mariadb_enabled | default(false) else '3306' }}"
+roundcube_database_mysql_password: "{{ (mash_playbook_generic_secret_key + ':roundcube.m') | hash('sha512') | to_uuid }}"
+# /role-specific:mariadb
 
 # role-specific:postgres
-roundcube_database_hostname: "{{ postgres_connection_hostname if postgres_enabled else '' }}"
-roundcube_database_port: "{{ postgres_connection_port if postgres_enabled else '5432' }}"
-roundcube_database_password: "{{ (mash_playbook_generic_secret_key + ':db.roundcube') | hash('sha512') | to_uuid }}"
+roundcube_database_postgres_hostname: "{{ postgres_connection_hostname if postgres_enabled else '' }}"
+roundcube_database_postgres_port: "{{ postgres_connection_port if postgres_enabled | default(false) else '5432' }}"
+roundcube_database_postgres_password: "{{ (mash_playbook_generic_secret_key + ':db.roundcube') | hash('sha512') | to_uuid }}"
 # /role-specific:postgres
 
 # role-specific:traefik
@@ -13014,6 +13206,44 @@ sftpgo_environment_variables_webdavd_certificate_key_file: /privatekey.crt
 
 
 
+# role-specific:silverbullet
+########################################################################
+#                                                                      #
+# silverbullet                                                         #
+#                                                                      #
+########################################################################
+
+silverbullet_enabled: false
+
+silverbullet_identifier: "{{ mash_playbook_service_identifier_prefix }}silverbullet"
+
+silverbullet_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}silverbullet"
+
+silverbullet_uid: "{{ mash_playbook_uid }}"
+silverbullet_gid: "{{ mash_playbook_gid }}"
+
+silverbullet_container_additional_networks_auto: |
+  {{
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+  }}
+
+silverbullet_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+silverbullet_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+
+# role-specific:traefik
+silverbullet_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
+silverbullet_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
+# /role-specific:traefik
+
+########################################################################
+#                                                                      #
+# /silverbullet                                                        #
+#                                                                      #
+########################################################################
+# /role-specific:silverbullet
+
+
+
 # role-specific:smp_server
 ########################################################################
 #                                                                      #
@@ -13413,6 +13643,8 @@ syncthing_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_pro
 # role-specific:traefik
 syncthing_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
 syncthing_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
+syncthing_container_labels_traefik_tcp_enabled: true
+syncthing_container_labels_traefik_udp_enabled: true
 # /role-specific:traefik
 
 ########################################################################

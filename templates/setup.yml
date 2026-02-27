@@ -93,6 +93,10 @@
     - role: galaxy/traefik
     # /role-specific:traefik
 
+    # role-specific:actual
+    - role: galaxy/actual
+    # /role-specific:actual
+
     # role-specific:adguard_home
     - role: galaxy/adguard_home
     # /role-specific:adguard_home
@@ -252,6 +256,10 @@
     # role-specific:docmost
     - role: galaxy/docmost
     # /role-specific:docmost
+
+    # role-specific:docuseal
+    - role: galaxy/docuseal
+    # /role-specific:docuseal
 
     # role-specific:dokuwiki
     - role: galaxy/dokuwiki
@@ -824,6 +832,10 @@
     # role-specific:sftpgo
     - role: galaxy/sftpgo
     # /role-specific:sftpgo
+
+    # role-specific:silverbullet
+    - role: galaxy/silverbullet
+    # /role-specific:silverbullet
 
     # role-specific:smp_server
     - role: galaxy/smp_server

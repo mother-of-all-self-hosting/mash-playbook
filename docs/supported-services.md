@@ -24,6 +24,7 @@ Below is an exhaustive list of the free and open-source software for self-hostin
 |              Name              |              Description              | Documentation |
 | ------------------------------ | ------------------------------------- | ------------- |
 | [AUX](https://github.com/mother-of-all-self-hosting/ansible-role-aux) | Auxiliary file/directory management on your server via Ansible | [Link](services/auxiliary.md) |
+| [Actual](https://actualbudget.org) | Local-first personal finance tool | [Link](services/actual.md) |
 | [AdGuard Home](https://adguard.com/en/adguard-home/overview.html/) | A network-wide DNS software for blocking ads & tracking | [Link](services/adguard-home.md) |
 | [Adminer](https://www.adminer.org/) | Full-featured database management tool written in PHP | [Link](services/adminer.md) |
 | [An Otter Wiki](https://otterwiki.com/) | Minimalistic wiki powered by Python, Markdown and Git | [Link](services/otterwiki.md) |
@@ -68,6 +69,7 @@ Below is an exhaustive list of the free and open-source software for self-hostin
 | [Docker Registry Proxy](https://github.com/etkecc/docker-registry-proxy) | Pass-through Docker registry (distribution) proxy with metadata caching, Docker-compatible errors, Prometheus metrics, etc. | [Link](services/docker-registry-proxy.md) |
 | [Docker Registry Purger](https://github.com/devture/docker-registry-purger) | A small tool used for purging a private Docker Registry's old tags | [Link](services/docker-registry-purger.md) |
 | [Docmost](https://docmost.com/) | Collaborative wiki and documentation software | [Link](services/docmost.md) |
+| [DocuSeal](https://github.com/docusealco/docuseal) | Digital document signing and processing | [Link](services/docuseal.md) |
 | [DokuWiki](https://dokuwiki.org/) | A lightweight, file-based wiki engine with intuitive syntax and no database requirements | [Link](services/dokuwiki.md) |
 | [Duplicati](https://duplicati.com) | Backup software that securely stores encrypted, incremental, compressed backups on local storage, cloud storage services and remote file servers | [Link](services/duplicati.md) |
 | [echoip](https://github.com/mpolden/echoip) | A simple service for looking up your IP address | [Link](services/echoip.md) |
@@ -209,6 +211,7 @@ Below is an exhaustive list of the free and open-source software for self-hostin
 | [Semaphore UI](https://semaphoreui.com/) | Modern UI for Ansible, Terraform/OpenTofu/Terragrunt, PowerShell and other DevOps tools | [Link](services/semaphore.md) |
 | [Send](https://github.com/timvisee/send) | Fork of Mozilla's [Firefox Send](https://github.com/mozilla/send) which allows you to send encrypted files to other users | [Link](services/send.md) |
 | [SFTPGo](https://github.com/drakkan/sftpgo/) | File transfer software which supports SFTP, HTTP/S, FTP/S and WebDAV and can connect to various storage backends including S3 (compatible) Object Storage and Google Cloud Storage | [Link](services/sftpgo.md) |
+| [SilverBullet](https://silverbullet.md) | Programmable, private, personal knowledge management platform | [Link](services/silverbullet.md) |
 | [SMP server](https://simplex.chat/docs/server.html) | Relay server used to pass messages in [SimpleX](https://simplex.chat/) network | [Link](services/smp-server.md) |
 | [Soft Serve](https://github.com/charmbracelet/soft-serve) | A tasty [Git](https://git-scm.com/) server for the command line | [Link](services/soft-serve.md) |
 | [SolidInvoice](https://github.com/SolidInvoice/SolidInvoice) | Web-based software for invoicing | [Link](services/solidinvoice.md) |
