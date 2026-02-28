@@ -248,7 +248,7 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
 
   # role-specific:collabora_online
   - |-
-    {{ ({'name': (collabora_online_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'collabora-online']} if collabora_online_enabled else omit) }}
+    {{ ({'name': (collabora_online_identifier + '.service'), 'priority': 2000, 'restart_necessary': (collabora_online_restart_necessary | bool), 'groups': ['mash', 'collabora-online']} if collabora_online_enabled else omit) }}
   # /role-specific:collabora_online
 
   # role-specific:converse
@@ -877,7 +877,7 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
 
   # role-specific:owncast
   - |-
-    {{ ({'name': (owncast_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'owncast']} if owncast_enabled else omit) }}
+    {{ ({'name': (owncast_identifier + '.service'), 'priority': 2000, 'restart_necessary': (owncast_restart_necessary | bool), 'groups': ['mash', 'owncast']} if owncast_enabled else omit) }}
   # /role-specific:owncast
 
   # role-specific:oxitraffic
