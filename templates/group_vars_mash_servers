@@ -248,7 +248,7 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
 
   # role-specific:collabora_online
   - |-
-    {{ ({'name': (collabora_online_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'collabora-online']} if collabora_online_enabled else omit) }}
+    {{ ({'name': (collabora_online_identifier + '.service'), 'priority': 2000, 'restart_necessary': (collabora_online_restart_necessary | bool), 'groups': ['mash', 'collabora-online']} if collabora_online_enabled else omit) }}
   # /role-specific:collabora_online
 
   # role-specific:converse
@@ -435,15 +435,15 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
 
   # role-specific:funkwhale
   - |-
-    {{ ({'name': (funkwhale_api_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'funkwhale']} if funkwhale_enabled else omit) }}
+    {{ ({'name': (funkwhale_api_identifier + '.service'), 'priority': 2000, 'restart_necessary': (funkwhale_restart_necessary | bool), 'groups': ['mash', 'funkwhale']} if funkwhale_enabled else omit) }}
   - |-
-    {{ ({'name': (funkwhale_frontend_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'funkwhale']} if funkwhale_enabled else omit) }}
+    {{ ({'name': (funkwhale_frontend_identifier + '.service'), 'priority': 2000, 'restart_necessary': (funkwhale_restart_necessary | bool), 'groups': ['mash', 'funkwhale']} if funkwhale_enabled else omit) }}
   - |-
-    {{ ({'name': (funkwhale_celery_beat_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'funkwhale']} if funkwhale_enabled else omit) }}
+    {{ ({'name': (funkwhale_celery_beat_identifier + '.service'), 'priority': 2000, 'restart_necessary': (funkwhale_restart_necessary | bool), 'groups': ['mash', 'funkwhale']} if funkwhale_enabled else omit) }}
   - |-
-    {{ ({'name': (funkwhale_celery_worker_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'funkwhale']} if funkwhale_enabled else omit) }}
+    {{ ({'name': (funkwhale_celery_worker_identifier + '.service'), 'priority': 2000, 'restart_necessary': (funkwhale_restart_necessary | bool), 'groups': ['mash', 'funkwhale']} if funkwhale_enabled else omit) }}
   - |-
-    {{ ({'name': (funkwhale_watch_imports_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'funkwhale']} if funkwhale_enabled and funkwhale_watch_imports_enabled else omit) }}
+    {{ ({'name': (funkwhale_watch_imports_identifier + '.service'), 'priority': 2000, 'restart_necessary': (funkwhale_restart_necessary | bool), 'groups': ['mash', 'funkwhale']} if funkwhale_enabled and funkwhale_watch_imports_enabled else omit) }}
   # /role-specific:funkwhale
 
   # role-specific:ghostfolio
@@ -763,7 +763,7 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
 
   # role-specific:navidrome
   - |-
-    {{ ({'name': (navidrome_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'navidrome']} if navidrome_enabled else omit) }}
+    {{ ({'name': (navidrome_identifier + '.service'), 'priority': 2000, 'restart_necessary': (navidrome_restart_necessary | bool), 'groups': ['mash', 'navidrome']} if navidrome_enabled else omit) }}
   # /role-specific:navidrome
 
   # role-specific:neko
@@ -782,11 +782,11 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
 
   # role-specific:nextcloud
   - |-
-    {{ ({'name': (nextcloud_identifier + '-server.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'nextcloud', 'nextcloud-server']} if nextcloud_enabled else omit) }}
+    {{ ({'name': (nextcloud_identifier + '-server.service'), 'priority': 2000, 'restart_necessary': (nextcloud_restart_necessary | bool), 'groups': ['mash', 'nextcloud', 'nextcloud-server']} if nextcloud_enabled else omit) }}
   - |-
-    {{ ({'name': (nextcloud_identifier + '-cron.timer'), 'priority': 2500, 'restart_necessary': true, 'groups': ['mash', 'nextcloud', 'nextcloud-cron']} if nextcloud_enabled else omit) }}
+    {{ ({'name': (nextcloud_identifier + '-cron.timer'), 'priority': 2500, 'restart_necessary': (nextcloud_restart_necessary | bool), 'groups': ['mash', 'nextcloud', 'nextcloud-cron']} if nextcloud_enabled else omit) }}
   - |-
-    {{ ({'name': (nextcloud_identifier + '-app-update.timer'), 'priority': 2500, 'restart_necessary': true, 'groups': ['mash', 'nextcloud', 'nextcloud-app-update']} if nextcloud_enabled and nextcloud_app_autoupdate_enabled else omit) }}
+    {{ ({'name': (nextcloud_identifier + '-app-update.timer'), 'priority': 2500, 'restart_necessary': (nextcloud_restart_necessary | bool), 'groups': ['mash', 'nextcloud', 'nextcloud-app-update']} if nextcloud_enabled and nextcloud_app_autoupdate_enabled else omit) }}
   # /role-specific:nextcloud
 
   # role-specific:nifi
@@ -822,7 +822,7 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
 
   # role-specific:oauth2_proxy
   - |-
-    {{ ({'name': (oauth2_proxy_identifier + '.service'), 'priority': 1900, 'restart_necessary': true, 'groups': ['mash', 'oauth2-proxy']} if oauth2_proxy_enabled else omit) }}
+    {{ ({'name': (oauth2_proxy_identifier + '.service'), 'priority': 1900, 'restart_necessary': (oauth2_proxy_restart_necessary | bool), 'groups': ['mash', 'oauth2-proxy']} if oauth2_proxy_enabled else omit) }}
   # /role-specific:oauth2_proxy
 
   # role-specific:onion_service_tor
@@ -877,12 +877,12 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
 
   # role-specific:owncast
   - |-
-    {{ ({'name': (owncast_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'owncast']} if owncast_enabled else omit) }}
+    {{ ({'name': (owncast_identifier + '.service'), 'priority': 2000, 'restart_necessary': (owncast_restart_necessary | bool), 'groups': ['mash', 'owncast']} if owncast_enabled else omit) }}
   # /role-specific:owncast
 
   # role-specific:oxitraffic
   - |-
-    {{ ({'name': (oxitraffic_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'oxitraffic']} if oxitraffic_enabled else omit) }}
+    {{ ({'name': (oxitraffic_identifier + '.service'), 'priority': 2000, 'restart_necessary': (oxitraffic_restart_necessary | bool), 'groups': ['mash', 'oxitraffic']} if oxitraffic_enabled else omit) }}
   # /role-specific:oxitraffic
 
   # role-specific:papra
@@ -1034,7 +1034,7 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
 
   # role-specific:readeck
   - |-
-    {{ ({'name': (readeck_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'readeck']} if readeck_enabled else omit) }}
+    {{ ({'name': (readeck_identifier + '.service'), 'priority': 2000, 'restart_necessary': (readeck_restart_necessary | bool), 'groups': ['mash', 'readeck']} if readeck_enabled else omit) }}
   # /role-specific:readeck
 
   # role-specific:redis
@@ -1078,7 +1078,7 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
 
   # role-specific:searxng
   - |-
-    {{ ({'name': (searxng_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'searxng']} if searxng_enabled else omit) }}
+    {{ ({'name': (searxng_identifier + '.service'), 'priority': 2000, 'restart_necessary': (searxng_restart_necessary | bool), 'groups': ['mash', 'searxng']} if searxng_enabled else omit) }}
   # /role-specific:searxng
 
   # role-specific:semaphore
