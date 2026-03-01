@@ -201,7 +201,7 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
 
   # role-specific:bind
   - |-
-    {{ ({'name': (bind_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'bind']} if bind_enabled else omit) }}
+    {{ ({'name': (bind_identifier + '.service'), 'priority': 2000, 'restart_necessary': (bind_restart_necessary | bool), 'groups': ['mash', 'bind']} if bind_enabled else omit) }}
   # /role-specific:bind
 
   # role-specific:bitmagnet
@@ -238,7 +238,7 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
 
   # role-specific:clickhouse
   - |-
-    {{ ({'name': (clickhouse_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'clickhouse']} if clickhouse_enabled else omit) }}
+    {{ ({'name': (clickhouse_identifier + '.service'), 'priority': 2000, 'restart_necessary': (clickhouse_restart_necessary | bool), 'groups': ['mash', 'clickhouse']} if clickhouse_enabled else omit) }}
   # /role-specific:clickhouse
 
   # role-specific:codimd
@@ -335,7 +335,7 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
 
   # role-specific:echoip
   - |-
-    {{ ({'name': (echoip_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'echoip']} if echoip_enabled else omit) }}
+    {{ ({'name': (echoip_identifier + '.service'), 'priority': 2000, 'restart_necessary': (echoip_restart_necessary | bool), 'groups': ['mash', 'echoip']} if echoip_enabled else omit) }}
   # /role-specific:echoip
 
   # role-specific:endlessh
@@ -410,17 +410,17 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
 
   # role-specific:focalboard
   - |-
-    {{ ({'name': (focalboard_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'focalboard']} if focalboard_enabled else omit) }}
+    {{ ({'name': (focalboard_identifier + '.service'), 'priority': 2000, 'restart_necessary': (focalboard_restart_necessary | bool), 'groups': ['mash', 'focalboard']} if focalboard_enabled else omit) }}
   # /role-specific:focalboard
 
   # role-specific:forgejo
   - |-
-    {{ ({'name': (forgejo_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'forgejo']} if forgejo_enabled else omit) }}
+    {{ ({'name': (forgejo_identifier + '.service'), 'priority': 2000, 'restart_necessary': (forgejo_restart_necessary | bool), 'groups': ['mash', 'forgejo']} if forgejo_enabled else omit) }}
   # /role-specific:forgejo
 
   # role-specific:forgejo_runner
   - |-
-    {{ ({'name': (forgejo_runner_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'forgejo-runner']} if forgejo_runner_enabled else omit) }}
+    {{ ({'name': (forgejo_runner_identifier + '.service'), 'priority': 2000, 'restart_necessary': (forgejo_runner_restart_necessary | bool), 'groups': ['mash', 'forgejo-runner']} if forgejo_runner_enabled else omit) }}
   # /role-specific:forgejo_runner
 
   # role-specific:freescout
@@ -488,7 +488,7 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
 
   # role-specific:healthchecks
   - |-
-    {{ ({'name': (healthchecks_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'healthchecks']} if healthchecks_enabled else omit) }}
+    {{ ({'name': (healthchecks_identifier + '.service'), 'priority': 2000, 'restart_necessary': (healthchecks_restart_necessary | bool), 'groups': ['mash', 'healthchecks']} if healthchecks_enabled else omit) }}
   # /role-specific:healthchecks
 
   # role-specific:homarr
@@ -919,7 +919,7 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
 
   # role-specific:plausible
   - |-
-    {{ ({'name': (plausible_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'plausible']} if plausible_enabled else omit) }}
+    {{ ({'name': (plausible_identifier + '.service'), 'priority': 2000, 'restart_necessary': (plausible_restart_necessary | bool), 'groups': ['mash', 'plausible']} if plausible_enabled else omit) }}
   # /role-specific:plausible
 
   # role-specific:plex
