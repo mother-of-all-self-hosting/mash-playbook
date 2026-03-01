@@ -77,11 +77,11 @@
   name: barassistant
   activation_prefix: barassistant_
 - src: git+https://seed.radicle.garden/z2bgVhWju6shYSwtdKb7v3eoSL1Pt.git
-  version: v2.3.3-0
+  version: v2.4.0-0
   name: bentopdf
   activation_prefix: bentopdf_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-bind.git
-  version: v9.20-1
+  version: v9.20-2
   name: bind
   activation_prefix: bind_
 - src: git+https://seed.radicle.garden/zs18Rifa7437q7hTFhsx11nYeGhD.git
@@ -121,7 +121,7 @@
   name: codimd
   activation_prefix: codimd_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-collabora-online.git
-  version: v25.04.9.1.1-0
+  version: v25.04.9.2.1-0
   name: collabora_online
   activation_prefix: collabora_online_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-container-socket-proxy.git
@@ -261,15 +261,15 @@
   name: fmd_server
   activation_prefix: fmd_server_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-focalboard.git
-  version: v7.11.4-3
+  version: v7.11.4-4
   name: focalboard
   activation_prefix: focalboard_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-forgejo.git
-  version: v14.0.2-0
+  version: v14.0.2-1
   name: forgejo
   activation_prefix: forgejo_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-forgejo-runner.git
-  version: v12.7.1-0
+  version: v12.7.1-1
   name: forgejo_runner
   activation_prefix: forgejo_runner_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-freescout.git
@@ -317,7 +317,7 @@
   name: headscale
   activation_prefix: headscale_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-healthchecks.git
-  version: v4-1
+  version: v4-2
   name: healthchecks
   activation_prefix: healthchecks_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-homarr.git
