@@ -147,7 +147,7 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
 
   # role-specific:appsmith
   - |-
-    {{ ({'name': (appsmith_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'appsmith']} if appsmith_enabled else omit) }}
+    {{ ({'name': (appsmith_identifier + '.service'), 'priority': 2000, 'restart_necessary': (appsmith_restart_necessary | bool), 'groups': ['mash', 'appsmith']} if appsmith_enabled else omit) }}
   # /role-specific:appsmith
 
   # role-specific:asciinema_server
@@ -216,7 +216,7 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
 
   # role-specific:calibre_web
   - |-
-    {{ ({'name': (calibre_web_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'calibre-web']} if calibre_web_enabled else omit) }}
+    {{ ({'name': (calibre_web_identifier + '.service'), 'priority': 2000, 'restart_necessary': (calibre_web_restart_necessary | bool), 'groups': ['mash', 'calibre-web']} if calibre_web_enabled else omit) }}
   # /role-specific:calibre_web
 
   # role-specific:cap
@@ -532,7 +532,7 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
 
   # role-specific:influxdb
   - |-
-    {{ ({'name': (influxdb_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'influxdb']} if influxdb_enabled else omit) }}
+    {{ ({'name': (influxdb_identifier + '.service'), 'priority': 2000, 'restart_necessary': (influxdb_restart_necessary | bool), 'groups': ['mash', 'influxdb']} if influxdb_enabled else omit) }}
   # /role-specific:influxdb
 
   # role-specific:inspircd
@@ -653,7 +653,7 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
 
   # role-specific:loki
   - |-
-    {{ ({'name': (loki_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'loki']} if loki_enabled else omit) }}
+    {{ ({'name': (loki_identifier + '.service'), 'priority': 2000, 'restart_necessary': (loki_restart_necessary | bool), 'groups': ['mash', 'loki']} if loki_enabled else omit) }}
   # /role-specific:loki
 
   # role-specific:mailcatcher
@@ -678,12 +678,12 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
 
   # role-specific:matomo
   - |-
-    {{ ({'name': (matomo_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'matomo']} if matomo_enabled else omit) }}
+    {{ ({'name': (matomo_identifier + '.service'), 'priority': 2000, 'restart_necessary': (matomo_restart_necessary | bool), 'groups': ['mash', 'matomo']} if matomo_enabled else omit) }}
   # /role-specific:matomo
 
   # role-specific:matterbridge
   - |-
-    {{ ({'name': (matterbridge_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'matterbridge']} if matterbridge_enabled else omit) }}
+    {{ ({'name': (matterbridge_identifier + '.service'), 'priority': 2000, 'restart_necessary': (matterbridge_restart_necessary | bool), 'groups': ['mash', 'matterbridge']} if matterbridge_enabled else omit) }}
   # /role-specific:matterbridge
 
   # role-specific:mediawiki
@@ -738,7 +738,7 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
 
   # role-specific:mosquitto
   - |-
-    {{ ({'name': (mosquitto_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'mosquitto']} if mosquitto_enabled else omit) }}
+    {{ ({'name': (mosquitto_identifier + '.service'), 'priority': 2000, 'restart_necessary': (mosquitto_restart_necessary | bool), 'groups': ['mash', 'mosquitto']} if mosquitto_enabled else omit) }}
   # /role-specific:mosquitto
 
   # role-specific:mozhi
@@ -867,7 +867,7 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
 
   # role-specific:outline
   - |-
-    {{ ({'name': (outline_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'outline']} if outline_enabled else omit) }}
+    {{ ({'name': (outline_identifier + '.service'), 'priority': 2000, 'restart_necessary': (outline_restart_necessary | bool), 'groups': ['mash', 'outline']} if outline_enabled else omit) }}
   # /role-specific:outline
 
   # role-specific:overseerr
@@ -979,7 +979,7 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
 
   # role-specific:prometheus_ssh_exporter
   - |-
-    {{ ({'name': (prometheus_ssh_exporter_identifier + '.service'), 'priority': 500, 'restart_necessary': true, 'groups': ['mash', 'metrics', 'prometheus-ssh-exporter']} if prometheus_ssh_exporter_enabled else omit) }}
+    {{ ({'name': (prometheus_ssh_exporter_identifier + '.service'), 'priority': 500, 'restart_necessary': (prometheus_ssh_exporter_restart_necessary | bool), 'groups': ['mash', 'metrics', 'prometheus-ssh-exporter']} if prometheus_ssh_exporter_enabled else omit) }}
   # /role-specific:prometheus_ssh_exporter
 
   # role-specific:promtail
@@ -1039,7 +1039,7 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
 
   # role-specific:redis
   - |-
-    {{ ({'name': (redis_identifier + '.service'), 'priority': 750, 'restart_necessary': true, 'groups': ['mash', 'redis']} if redis_enabled else omit) }}
+    {{ ({'name': (redis_identifier + '.service'), 'priority': 750, 'restart_necessary': (redis_restart_necessary | bool), 'groups': ['mash', 'redis']} if redis_enabled else omit) }}
   # /role-specific:redis
 
   # role-specific:redlib
@@ -1073,7 +1073,7 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
 
   # role-specific:rumqttd
   - |-
-    {{ ({'name': (rumqttd_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'rumqttd']} if rumqttd_enabled else omit) }}
+    {{ ({'name': (rumqttd_identifier + '.service'), 'priority': 2000, 'restart_necessary': (rumqttd_restart_necessary | bool), 'groups': ['mash', 'rumqttd']} if rumqttd_enabled else omit) }}
   # /role-specific:rumqttd
 
   # role-specific:searxng
@@ -1163,7 +1163,7 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
 
   # role-specific:telegraf
   - |-
-    {{ ({'name': (telegraf_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'telegraf']} if telegraf_enabled else omit) }}
+    {{ ({'name': (telegraf_identifier + '.service'), 'priority': 2000, 'restart_necessary': (telegraf_restart_necessary | bool), 'groups': ['mash', 'telegraf']} if telegraf_enabled else omit) }}
   # /role-specific:telegraf
 
   # role-specific:termix
@@ -1248,12 +1248,12 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
 
   # role-specific:woodpecker_ci_agent
   - |-
-    {{ ({'name': (woodpecker_ci_agent_identifier + '.service'), 'priority': 4100, 'restart_necessary': true, 'groups': ['mash', 'woodpecker', 'ci', 'woodpecker-ci-agent']} if woodpecker_ci_agent_enabled else omit) }}
+    {{ ({'name': (woodpecker_ci_agent_identifier + '.service'), 'priority': 4100, 'restart_necessary': (woodpecker_ci_agent_restart_necessary | bool), 'groups': ['mash', 'woodpecker', 'ci', 'woodpecker-ci-agent']} if woodpecker_ci_agent_enabled else omit) }}
   # /role-specific:woodpecker_ci_agent
 
   # role-specific:woodpecker_ci_server
   - |-
-    {{ ({'name': (woodpecker_ci_server_identifier + '.service'), 'priority': 4000, 'restart_necessary': true, 'groups': ['mash', 'woodpecker', 'ci', 'woodpecker-ci-server']} if woodpecker_ci_server_enabled else omit) }}
+    {{ ({'name': (woodpecker_ci_server_identifier + '.service'), 'priority': 4000, 'restart_necessary': (woodpecker_ci_server_restart_necessary | bool), 'groups': ['mash', 'woodpecker', 'ci', 'woodpecker-ci-server']} if woodpecker_ci_server_enabled else omit) }}
   # /role-specific:woodpecker_ci_server
 
   # role-specific:wordpress
