@@ -107,7 +107,7 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
 
   # role-specific:adguard_home
   - |-
-    {{ ({'name': (adguard_home_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'adguard-home']} if adguard_home_enabled else omit) }}
+    {{ ({'name': (adguard_home_identifier + '.service'), 'priority': 2000, 'restart_necessary': (adguard_home_restart_necessary | bool), 'groups': ['mash', 'adguard-home']} if adguard_home_enabled else omit) }}
   # /role-specific:adguard_home
 
   # role-specific:adminer
@@ -167,14 +167,14 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
 
   # role-specific:authelia
   - |-
-    {{ ({'name': (authelia_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'authelia']} if authelia_enabled else omit) }}
+    {{ ({'name': (authelia_identifier + '.service'), 'priority': 2000, 'restart_necessary': (authelia_restart_necessary | bool), 'groups': ['mash', 'authelia']} if authelia_enabled else omit) }}
   # /role-specific:authelia
 
   # role-specific:authentik
   - |-
-    {{ ({'name': (authentik_server_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'authentik']} if authentik_enabled else omit) }}
+    {{ ({'name': (authentik_server_identifier + '.service'), 'priority': 2000, 'restart_necessary': (authentik_restart_necessary | bool), 'groups': ['mash', 'authentik']} if authentik_enabled else omit) }}
   - |-
-    {{ ({'name': (authentik_worker_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'authentik']} if authentik_enabled else omit) }}
+    {{ ({'name': (authentik_worker_identifier + '.service'), 'priority': 2000, 'restart_necessary': (authentik_restart_necessary | bool), 'groups': ['mash', 'authentik']} if authentik_enabled else omit) }}
   # /role-specific:authentik
 
   # role-specific:autobrr
@@ -300,12 +300,12 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
 
   # role-specific:docker_registry_browser
   - |-
-    {{ ({'name': (docker_registry_browser_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'docker-registry-browser']} if docker_registry_browser_enabled else omit) }}
+    {{ ({'name': (docker_registry_browser_identifier + '.service'), 'priority': 2000, 'restart_necessary': (docker_registry_browser_restart_necessary | bool), 'groups': ['mash', 'docker-registry-browser']} if docker_registry_browser_enabled else omit) }}
   # /role-specific:docker_registry_browser
 
   # role-specific:docker_registry_proxy
   - |-
-    {{ ({'name': (docker_registry_proxy_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'docker-registry-proxy']} if docker_registry_proxy_enabled else omit) }}
+    {{ ({'name': (docker_registry_proxy_identifier + '.service'), 'priority': 2000, 'restart_necessary': (docker_registry_proxy_restart_necessary | bool), 'groups': ['mash', 'docker-registry-proxy']} if docker_registry_proxy_enabled else omit) }}
   # /role-specific:docker_registry_proxy
 
   # role-specific:docker_registry_purger
@@ -588,7 +588,7 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
 
   # role-specific:keydb
   - |-
-    {{ ({'name': (keydb_identifier + '.service'), 'priority': 750, 'restart_necessary': true, 'groups': ['mash', 'keydb']} if keydb_enabled else omit) }}
+    {{ ({'name': (keydb_identifier + '.service'), 'priority': 750, 'restart_necessary': (keydb_restart_necessary | bool), 'groups': ['mash', 'keydb']} if keydb_enabled else omit) }}
   # /role-specific:keydb
 
   # role-specific:keyoxide
@@ -643,7 +643,7 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
 
   # role-specific:listmonk
   - |-
-    {{ ({'name': (listmonk_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'listmonk']} if listmonk_enabled else omit) }}
+    {{ ({'name': (listmonk_identifier + '.service'), 'priority': 2000, 'restart_necessary': (listmonk_restart_necessary | bool), 'groups': ['mash', 'listmonk']} if listmonk_enabled else omit) }}
   # /role-specific:listmonk
 
   # role-specific:lldap
@@ -728,7 +728,7 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
 
   # role-specific:mongodb
   - |-
-    {{ ({'name': (mongodb_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'mongodb']} if mongodb_enabled else omit) }}
+    {{ ({'name': (mongodb_identifier + '.service'), 'priority': 2000, 'restart_necessary': (mongodb_restart_necessary | bool), 'groups': ['mash', 'mongodb']} if mongodb_enabled else omit) }}
   # /role-specific:mongodb
 
   # role-specific:moodist
@@ -964,7 +964,7 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
 
   # role-specific:prometheus_blackbox_exporter
   - |-
-    {{ ({'name': (prometheus_blackbox_exporter_identifier + '.service'), 'priority': 500, 'restart_necessary': true, 'groups': ['mash', 'metrics', 'prometheus-blackbox-exporter']} if prometheus_blackbox_exporter_enabled else omit) }}
+    {{ ({'name': (prometheus_blackbox_exporter_identifier + '.service'), 'priority': 500, 'restart_necessary': (prometheus_blackbox_exporter_restart_necessary | bool), 'groups': ['mash', 'metrics', 'prometheus-blackbox-exporter']} if prometheus_blackbox_exporter_enabled else omit) }}
   # /role-specific:prometheus_blackbox_exporter
 
   # role-specific:prometheus_node_exporter
@@ -984,7 +984,7 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
 
   # role-specific:promtail
   - |-
-    {{ ({'name': (promtail_identifier + '.service'), 'priority': 500, 'restart_necessary': true, 'groups': ['mash', 'logs', 'promtail']} if promtail_enabled else omit) }}
+    {{ ({'name': (promtail_identifier + '.service'), 'priority': 500, 'restart_necessary': (promtail_restart_necessary | bool), 'groups': ['mash', 'logs', 'promtail']} if promtail_enabled else omit) }}
   # /role-specific:promtail
 
   # role-specific:prunemate
@@ -994,7 +994,7 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
 
   # role-specific:qbittorrent
   - |-
-    {{ ({'name': (qbittorrent_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'qbittorrent']} if qbittorrent_enabled else omit) }}
+    {{ ({'name': (qbittorrent_identifier + '.service'), 'priority': 2000, 'restart_necessary': (qbittorrent_restart_necessary | bool), 'groups': ['mash', 'qbittorrent']} if qbittorrent_enabled else omit) }}
   # /role-specific:qbittorrent
 
   # role-specific:rabbitmq
@@ -1049,11 +1049,11 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
 
   # role-specific:redmine
   - |-
-    {{ ({'name': (redmine_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'redmine']} if redmine_enabled else omit) }}
+    {{ ({'name': (redmine_identifier + '.service'), 'priority': 2000, 'restart_necessary': (redmine_restart_necessary | bool), 'groups': ['mash', 'redmine']} if redmine_enabled else omit) }}
   - |-
-    {{ ({'name': (redmine_identifier + '-send-reminders.timer'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'redmine']} if redmine_enabled else omit) }}
+    {{ ({'name': (redmine_identifier + '-send-reminders.timer'), 'priority': 2000, 'restart_necessary': (redmine_restart_necessary | bool), 'groups': ['mash', 'redmine']} if redmine_enabled else omit) }}
   - |-
-    {{ ({'name': (redmine_identifier + '-recurring-tasks.timer'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'redmine']} if redmine_enabled and redmine_recurring_tasks_enabled else omit) }}
+    {{ ({'name': (redmine_identifier + '-recurring-tasks.timer'), 'priority': 2000, 'restart_necessary': (redmine_restart_necessary | bool), 'groups': ['mash', 'redmine']} if redmine_enabled and redmine_recurring_tasks_enabled else omit) }}
   # /role-specific:redmine
 
   # role-specific:roundcube
