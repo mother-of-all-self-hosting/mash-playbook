@@ -310,7 +310,7 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
 
   # role-specific:docker_registry_purger
   - |-
-    {{ ({'name': (docker_registry_purger_identifier + '.timer'), 'priority': 3000, 'restart_necessary': true, 'groups': ['mash', 'docker-registry-purger']} if docker_registry_purger_enabled else omit) }}
+    {{ ({'name': (docker_registry_purger_identifier + '.timer'), 'priority': 3000, 'restart_necessary': (docker_registry_purger_restart_necessary | bool), 'groups': ['mash', 'docker-registry-purger']} if docker_registry_purger_enabled else omit) }}
   # /role-specific:docker_registry_purger
 
   # role-specific:docmost
@@ -350,7 +350,7 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
 
   # role-specific:etcd
   - |-
-    {{ ({'name': (etcd_identifier + '.service'), 'priority': 500, 'restart_necessary': true, 'groups': ['mash', 'etcd']} if etcd_enabled else omit) }}
+    {{ ({'name': (etcd_identifier + '.service'), 'priority': 500, 'restart_necessary': (etcd_restart_necessary | bool), 'groups': ['mash', 'etcd']} if etcd_enabled else omit) }}
   # /role-specific:etcd
 
   # role-specific:etherpad
@@ -453,7 +453,7 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
 
   # role-specific:gitea
   - |-
-    {{ ({'name': (gitea_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'gitea']} if gitea_enabled else omit) }}
+    {{ ({'name': (gitea_identifier + '.service'), 'priority': 2000, 'restart_necessary': (gitea_restart_necessary | bool), 'groups': ['mash', 'gitea']} if gitea_enabled else omit) }}
   # /role-specific:gitea
 
   # role-specific:gothub
@@ -483,7 +483,7 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
 
   # role-specific:headscale
   - |-
-    {{ ({'name': (headscale_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'headscale']} if headscale_enabled else omit) }}
+    {{ ({'name': (headscale_identifier + '.service'), 'priority': 2000, 'restart_necessary': (headscale_restart_necessary | bool), 'groups': ['mash', 'headscale']} if headscale_enabled else omit) }}
   # /role-specific:headscale
 
   # role-specific:healthchecks
@@ -673,7 +673,7 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
 
   # role-specific:mariadb
   - |-
-    {{ ({'name': (mariadb_identifier + '.service'), 'priority': 500, 'restart_necessary': true, 'groups': ['mash', 'mariadb']} if mariadb_enabled else omit) }}
+    {{ ({'name': (mariadb_identifier + '.service'), 'priority': 500, 'restart_necessary': (mariadb_restart_necessary | bool), 'groups': ['mash', 'mariadb']} if mariadb_enabled else omit) }}
   # /role-specific:mariadb
 
   # role-specific:matomo
@@ -1113,7 +1113,7 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
 
   # role-specific:soft_serve
   - |-
-    {{ ({'name': (soft_serve_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'soft-serve']} if soft_serve_enabled else omit) }}
+    {{ ({'name': (soft_serve_identifier + '.service'), 'priority': 2000, 'restart_necessary': (soft_serve_restart_necessary | bool), 'groups': ['mash', 'soft-serve']} if soft_serve_enabled else omit) }}
   # /role-specific:soft_serve
 
   # role-specific:solidinvoice
@@ -1238,7 +1238,7 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
 
   # role-specific:wg_easy
   - |-
-    {{ ({'name': (wg_easy_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'wg-easy']} if wg_easy_enabled else omit) }}
+    {{ ({'name': (wg_easy_identifier + '.service'), 'priority': 2000, 'restart_necessary': (wg_easy_restart_necessary | bool), 'groups': ['mash', 'wg-easy']} if wg_easy_enabled else omit) }}
   # /role-specific:wg_easy
 
   # role-specific:wikimore
