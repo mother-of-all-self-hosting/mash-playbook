@@ -321,6 +321,10 @@
     - role: galaxy/flaresolverr
     # /role-specific:flaresolverr
 
+    # role-specific:flatnotes
+    - role: galaxy/flatnotes
+    # /role-specific:flatnotes
+
     # role-specific:fmd_server
     - role: galaxy/fmd_server
     # /role-specific:fmd_server
