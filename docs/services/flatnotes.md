@@ -18,17 +18,17 @@ SPDX-FileCopyrightText: 2024-2026 Suguru Hirahara
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 
-# Actual
+# flatnotes
 
-The playbook can install and configure [Actual](https://actualbudget.org) for you.
+The playbook can install and configure [flatnotes](https://flatnotesbudget.org) for you.
 
-Actual is a local-first personal finance tool.
+flatnotes is a local-first personal finance tool.
 
-See the project's [documentation](https://actualbudget.org/docs/) to learn what Actual does and why it might be useful to you.
+See the project's [documentation](https://flatnotesbudget.org/docs/) to learn what flatnotes does and why it might be useful to you.
 
-For details about configuring the [Ansible role for Actual](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az2chD7Kt74JwEMafxTooxN7MaeYtK), you can check them via:
-- 🌐 [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az2chD7Kt74JwEMafxTooxN7MaeYtK/tree/docs/configuring-actual.md) online
-- 📁 `roles/galaxy/actual/docs/configuring-actual.md` locally, if you have [fetched the Ansible roles](../installing.md)
+For details about configuring the [Ansible role for flatnotes](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az2chD7Kt74JwEMafxTooxN7MaeYtK), you can check them via:
+- 🌐 [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az2chD7Kt74JwEMafxTooxN7MaeYtK/tree/docs/configuring-flatnotes.md) online
+- 📁 `roles/galaxy/flatnotes/docs/configuring-flatnotes.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 ## Dependencies
 
@@ -43,30 +43,30 @@ To enable this service, add the following configuration to your `vars.yml` file 
 ```yaml
 ########################################################################
 #                                                                      #
-# actual                                                               #
+# flatnotes                                                            #
 #                                                                      #
 ########################################################################
 
-actual_enabled: true
+flatnotes_enabled: true
 
-actual_hostname: actual.example.com
+flatnotes_hostname: flatnotes.example.com
 
 ########################################################################
 #                                                                      #
-# /actual                                                              #
+# /flatnotes                                                           #
 #                                                                      #
 ########################################################################
 ```
 
 ## Usage
 
-After running the command for installation, the Actual instance becomes available at the URL specified with `actual_hostname`. With the configuration above, the service is hosted at `https://actual.example.com`.
+After running the command for installation, the flatnotes instance becomes available at the URL specified with `flatnotes_hostname`. With the configuration above, the service is hosted at `https://flatnotes.example.com`.
 
 To get started, open the URL with a web browser to create an account.
 
 ## Troubleshooting
 
-See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az2chD7Kt74JwEMafxTooxN7MaeYtK/tree/docs/configuring-actual.md#troubleshooting) on the role's documentation for details.
+See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az2chD7Kt74JwEMafxTooxN7MaeYtK/tree/docs/configuring-flatnotes.md#troubleshooting) on the role's documentation for details.
 
 ## Related services
 
