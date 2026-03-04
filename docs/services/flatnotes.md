@@ -70,4 +70,4 @@ See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az49Lk
 
 ## Related services
 
-- [I hate money](ihatemoney.md) — Shared budget manager
+- [SilverBullet](silverbullet.md) — Programmable, private, personal knowledge management platform
