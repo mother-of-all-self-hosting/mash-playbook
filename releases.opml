@@ -186,6 +186,7 @@
     <outline text="stirling_pdf" title="stirling_pdf" type="rss" htmlUrl="https://github.com/Stirling-Tools/Stirling-PDF" xmlUrl="https://github.com/Stirling-Tools/Stirling-PDF/releases.atom" />
     <outline text="syncthing" title="syncthing" type="rss" htmlUrl="https://github.com/syncthing/syncthing/" xmlUrl="https://github.com/syncthing/syncthing//releases.atom" />
     <outline text="tandoor" title="tandoor" type="rss" htmlUrl="https://github.com/TandoorRecipes/recipes" xmlUrl="https://github.com/TandoorRecipes/recipes/releases.atom" />
+    <outline text="teable" title="teable" type="rss" htmlUrl="https://github.com/teableio/teable" xmlUrl="https://github.com/teableio/teable/releases.atom" />
     <outline text="termix" title="termix" type="rss" htmlUrl="https://github.com/Termix-SSH/Termix" xmlUrl="https://github.com/Termix-SSH/Termix/releases.atom" />
     <outline text="thelounge" title="thelounge" type="rss" htmlUrl="https://github.com/thelounge/thelounge-docker" xmlUrl="https://github.com/thelounge/thelounge-docker/releases.atom" />
     <outline text="tika" title="tika" type="rss" htmlUrl="https://github.com/apache/tika-docker" xmlUrl="https://github.com/apache/tika-docker/releases.atom" />
@@ -206,6 +207,7 @@
     <outline text="wordpress" title="wordpress" type="rss" htmlUrl="https://github.com/WordPress/WordPress/" xmlUrl="https://github.com/WordPress/WordPress//releases.atom" />
     <outline text="writefreely" title="writefreely" type="rss" htmlUrl="https://github.com/writefreely/writefreely" xmlUrl="https://github.com/writefreely/writefreely/releases.atom" />
     <outline text="yacy" title="yacy" type="rss" htmlUrl="https://github.com/yacy/yacy_search_server" xmlUrl="https://github.com/yacy/yacy_search_server/releases.atom" />
+    <outline text="yggstack" title="yggstack" type="rss" htmlUrl="https://github.com/yggdrasil-network/yggstack" xmlUrl="https://github.com/yggdrasil-network/yggstack/releases.atom" />
     <outline text="yourls" title="yourls" type="rss" htmlUrl="https://github.com/YOURLS/YOURLS" xmlUrl="https://github.com/YOURLS/YOURLS/releases.atom" />
   </body>
 </opml>

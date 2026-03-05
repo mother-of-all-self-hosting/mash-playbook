@@ -81,6 +81,29 @@ Forgejo uses port 22 for its SSH feature by default. We recommend you to move yo
 
 Forgejo uses caching to avoid repeating expensive operations. By default the internal memory (`memory`) is enabled for it, but you can use a specific cache adapter like [Redis](redis.md) and [Memcached](memcached.md). See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-forgejo/blob/main/docs/configuring-forgejo.md#configuring-cache-optional) on the role's documentation for details.
 
+### Configuring OAuth2/OpenID Connect login (optional)
+
+You can configure Forgejo to authenticate users through an OpenID Connect provider.
+
+Add variables like these to your `vars.yml` file:
+
+```yaml
+forgejo_oidc_client_enabled: true
+
+forgejo_oidc_provider_name: "authentik"
+forgejo_oidc_client_id: "FORGEJO_OIDC_CLIENT_ID_HERE"
+forgejo_oidc_client_secret: "FORGEJO_OIDC_CLIENT_SECRET_HERE"
+forgejo_oidc_auto_discover_url: "https://sso.example.com/application/o/forgejo/.well-known/openid-configuration"
+```
+
+To apply only OAuth configuration tasks, run:
+
+```sh
+just run-tags configure-oauth-forgejo
+```
+
+See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-forgejo/blob/main/docs/configuring-forgejo.md#configure-oauth2openid-connect-login-optional) on the role's documentation for additional options.
+
 ## Usage
 
 After running the command for installation, the Forgejo instance becomes available at the URL specified with `forgejo_hostname` and `forgejo_path_prefix`. With the configuration above, the service is hosted at `https://mash.example.com/forgejo`.
