@@ -71,6 +71,12 @@ docker exec -it mash-ihatemoney ihatemoney generate_password_hash
 ```
 
 After populating the variable with the hashed password, run the installation process again.
+Your variable should contain the whole output from above, including hashing prefix, salt and key:
+
+```yaml
+ihatemoney_admin_password: "scrypt:32768:8:1$....$......."
+```
+
 
 ### Control project creation access (optional)
 
