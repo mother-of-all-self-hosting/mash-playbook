@@ -256,6 +256,10 @@
   version: v3.4.1-0
   name: flaresolverr
   activation_prefix: flaresolverr_
+- src: git+https://seed.radicle.garden/z49LkutSMcaLA2DBazn1h4V6Pn6GK.git
+  version: v5.5.4-0
+  name: flatnotes
+  activation_prefix: flatnotes_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-fmd-server.git
   version: v0.14.0-1
   name: fmd_server

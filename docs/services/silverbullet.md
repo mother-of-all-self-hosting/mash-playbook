@@ -71,3 +71,4 @@ See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3Pxy
 
 - [CodiMD](codimd.md) — Realtime collaborative markdown notes on all platforms
 - [Etherpad](etherpad.md) — Collaborative text editor
+- [flatnotes](flatnotes.md) — Database-less note taking web app that utilises a flat folder of markdown files for storage
