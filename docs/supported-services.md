@@ -50,6 +50,7 @@ Below is an exhaustive list of the free and open-source software for self-hostin
 | [BorgBackup](https://www.borgbackup.org/) (via [borgmatic](https://torsion.org/borgmatic/)) | A deduplicating backup program with optional compression and encryption| [Link](services/backup-borg.md) |
 | [Browserless](https://docs.browserless.io) | Deploy headless browsers in Docker | [Link](services/browserless.md) |
 | [Calibre-Web](https://github.com/janeczku/calibre-web) | Web app for browsing, reading and downloading eBooks stored in a [Calibre](https://calibre-ebook.com/) database | [Link](services/calibre-web.md) |
+| [Calibre-Web Automated](https://github.com/crocodilestick/Calibre-Web-Automated) | Web application based on [Calibre-Web](https://github.com/janeczku/calibre-web) with additional features and automation | [Link](services/calibre-web-automated.md) |
 | [Cap Standalone](https://capjs.js.org/guide/standalone/) | Backend of Cap, a POW Captcha | [Link](services/cap.md) |
 | [Changedetection.io](https://github.com/dgtlmoon/changedetection.io) | A simple website change detection and restock monitoring solution | [Link](services/changedetection.md) |
 | [Cinny](https://github.com/ajbura/cinny) | Elegant web client for [Matrix](https://matrix.org/) | [Link](services/cinny.md) |
