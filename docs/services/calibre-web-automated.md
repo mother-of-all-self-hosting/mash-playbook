@@ -9,30 +9,23 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
 # Calibre-Web Automated
 
-The playbook can install and configure [Calibre-Web Automated](https://github.com/janeczku/calibre-web) for you.
+The playbook can install and configure [Calibre-Web Automated](https://github.com/crocodilestick/Calibre-Web-Automated) for you.
 
-Calibre-Web Automated is a web app that offers a clean and intuitive interface for browsing, reading, and downloading eBooks using a valid [Calibre](https://calibre-ebook.com/) database.
+Calibre-Web Automated is a web application based on [Calibre-Web](https://github.com/janeczku/calibre-web) with additional features and automation.
 
-See the project's [documentation](https://github.com/janeczku/calibre-web/wiki) to learn what Calibre-Web Automated does and why it might be useful to you.
+See the project's [documentation](https://github.com/crocodilestick/Calibre-Web-Automated/blob/main/README.md) to learn what Calibre-Web Automated does and why it might be useful to you.
 
-For details about configuring the [Ansible role for Calibre-Web Automated](https://github.com/mother-of-all-self-hosting/ansible-role-calibre-web), you can check them via:
-- 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-calibre-web/blob/master/docs/configuring-calibre-web.md) online
-- 📁 `roles/galaxy/calibre_web_automated/docs/configuring-calibre-web.md` locally, if you have [fetched the Ansible roles](../installing.md)
-
-> [!WARNING]
-> Calibre-Web Automated currently does not support running the container rootless. While the role is configured to run with the MASH user and group specified to PUID and PGID on its [`env`](https://github.com/mother-of-all-self-hosting/ansible-role-calibre-web/blob/master/templates/env.j2) file, the common security features provided with other services of the playbook are not available. This puts your system at higher risk as vulnerabilities can have a higher impact.
-
-## Prerequisites
-
-The service requires you to have an existing Calibre database on `/books`. If you do not have one, you can download a sample database from the URL which can be found at <https://github.com/janeczku/calibre-web/blob/master/README.md#quick-start>.
+For details about configuring the [Ansible role for Calibre-Web Automated](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3AzSfEaojv4NnFnivPm248Lx123CNe), you can check them via:
+- 🌐 [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3AzSfEaojv4NnFnivPm248Lx123CNe/tree/docs/configuring-calibre-web-automated.md) online
+- 📁 `roles/galaxy/calibre_web_automated/docs/configuring-calibre-web-automated.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 ## Dependencies
 
 This service requires the following other services:
 
-- a [Traefik](traefik.md) reverse-proxy server
+- [Traefik](traefik.md) reverse-proxy server
 
-## Configuration
+## Adjusting the playbook configuration
 
 To enable this service, add the following configuration to your `vars.yml` file and re-run the [installation](../installing.md) process:
 
@@ -45,8 +38,7 @@ To enable this service, add the following configuration to your `vars.yml` file 
 
 calibre_web_automated_enabled: true
 
-calibre_web_automated_hostname: mash.example.com
-calibre_web_automated_path_prefix: /calibre-web
+calibre_web_automated_hostname: cwa.example.com
 
 ########################################################################
 #                                                                      #
@@ -55,27 +47,9 @@ calibre_web_automated_path_prefix: /calibre-web
 ########################################################################
 ```
 
-### Mount a directory for loading Calibre database (optional)
+### Migration from Calibre-Web
 
-By default, Calibre-Web Automated will search `/books` directory for your Calibre database.
-
-You can mount a directory so that the instance loads the database. To mount it, prepare a local directory on the host machine and add the following configuration to your `vars.yml` file:
-
-```yaml
-calibre_web_automated_books_path: /path/on/the/host
-```
-
-Make sure permissions and owner of the directory specified to `calibre_web_automated_books_path`.
-
-### Enable ebook conversion binary (optional)
-
-You can add the Calibre ebook-convert binary (x64 only) by adding the following configuration to your `vars.yml` file:
-
-```yaml
-calibre_web_automated_environment_variables_conversion_ability_enabled: true
-```
-
-The path to the binary is `/usr/bin/ebook-convert`. It needs to be specified in the web interface — as well as the path to Calibre binaries (`usr/bin`).
+It is possible to migrate from Calibre-Web to Calibre-Web Automated. Refer to [this section](https://github.com/crocodilestick/Calibre-Web-Automated/blob/main/README.md#users-migrating-from-stock-calibre-web) on the documentation for details.
 
 ### Syncthing integration (optional)
 
@@ -115,7 +89,7 @@ You can then mount this `{{ mash_playbook_base_path }}/storage/books` directory 
 syncthing_container_additional_volumes:
   - type: bind
     src: "{{ mash_playbook_base_path }}/storage/books"
-    dst: /books
+    dst: /calibre-library
 
 ########################################################################
 #                                                                      #
@@ -138,7 +112,7 @@ Finally, mount the `{{ mash_playbook_base_path }}/storage/books` directory on th
 calibre_web_automated_container_additional_volumes:
   - type: bind
     src: "{{ mash_playbook_base_path }}/storage/books"
-    dst: /books
+    dst: /calibre-library
 
 ########################################################################
 #                                                                      #
@@ -149,17 +123,17 @@ calibre_web_automated_container_additional_volumes:
 
 ## Usage
 
-After running the command for installation, the Calibre-Web Automated instance becomes available at the URL specified with `calibre_web_automated_hostname` and `calibre_web_automated_path_prefix`. With the configuration above, the service is hosted at `https://mash.example.com/calibre-web`.
+After running the command for installation, the Calibre-Web Automated instance becomes available at the URL specified with `calibre_web_automated_hostname`. With the configuration above, the service is hosted at `https://cwa.example.com`.
 
-See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-calibre-web/blob/master/docs/configuring-calibre-web.md#usage) for details about setting up the instance.
+See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3AzSfEaojv4NnFnivPm248Lx123CNe/tree/docs/configuring-calibre-web-automated.md#usage) for details about setting up the instance.
 
 ### Configure the SMTP server (optional)
 
 On Calibre-Web Automated you can add configuration settings of a SMTP server to let the service send email to terminals like Kindle and Pocketbook. If you enable the [exim-relay](exim-relay.md) service in your inventory configuration, the playbook will automatically configure it as a mailer for the service.
 
-As the Calibre-Web Automated instance does not support configuring the mailer with environment variables, you can add default options for it on its UI. Refer to [this page](https://github.com/janeczku/calibre-web/wiki/Setup-Mailserver) on the official documentation as well about how to configure it.
+As the Calibre-Web Automated instance does not support configuring the mailer with environment variables, you can add default options for it on its UI.
 
-To set up with the default exim-relay settings, open `https://mash.example.com/calibre-web/admin/mailsettings` to add the following configuration:
+To set up with the default exim-relay settings, open `https://cwa.example.com/admin/mailsettings` to add the following configuration:
 
 - **Email Account Type**: Standard Email Account
 - **SMTP Hostname**: `mash-exim-relay`
@@ -171,7 +145,11 @@ To set up with the default exim-relay settings, open `https://mash.example.com/c
 
 After setting the configuration, you can have the Calibre-Web Automated instance send a test mail to the mail address specified to your account.
 
-## Recommended other services
+## Troubleshooting
+
+See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3AzSfEaojv4NnFnivPm248Lx123CNe/tree/docs/configuring-calibre-web-automated.md#troubleshooting) on the role's documentation for details.
+
+## Related services
 
 - [audiobookshelf](audiobookshelf.md) — Self-hosted audiobook and podcast server
 - [Syncthing](syncthing.md) — a continuous file synchronization program which synchronizes files between two or more computers in real time. See [Syncthing integration](#syncthing-integration)
