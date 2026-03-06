@@ -261,7 +261,7 @@
   name: flatnotes
   activation_prefix: flatnotes_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-fmd-server.git
-  version: v0.14.0-1
+  version: v0.14.1-0
   name: fmd_server
   activation_prefix: fmd_server_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-focalboard.git
