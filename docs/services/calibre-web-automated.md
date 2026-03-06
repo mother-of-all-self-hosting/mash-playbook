@@ -1,26 +1,26 @@
 <!--
 SPDX-FileCopyrightText: 2024 Slavi Pantaleev
 SPDX-FileCopyrightText: 2024 noah
-SPDX-FileCopyrightText: 2024 - 2025 MASH project contributors
-SPDX-FileCopyrightText: 2025 Suguru Hirahara
+SPDX-FileCopyrightText: 2024, 2025 MASH project contributors
+SPDX-FileCopyrightText: 2025, 2026 Suguru Hirahara
 
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 
-# Calibre-Web
+# Calibre-Web Automated
 
-The playbook can install and configure [Calibre-Web](https://github.com/janeczku/calibre-web) for you.
+The playbook can install and configure [Calibre-Web Automated](https://github.com/janeczku/calibre-web) for you.
 
-Calibre-Web is a web app that offers a clean and intuitive interface for browsing, reading, and downloading eBooks using a valid [Calibre](https://calibre-ebook.com/) database.
+Calibre-Web Automated is a web app that offers a clean and intuitive interface for browsing, reading, and downloading eBooks using a valid [Calibre](https://calibre-ebook.com/) database.
 
-See the project's [documentation](https://github.com/janeczku/calibre-web/wiki) to learn what Calibre-Web does and why it might be useful to you.
+See the project's [documentation](https://github.com/janeczku/calibre-web/wiki) to learn what Calibre-Web Automated does and why it might be useful to you.
 
-For details about configuring the [Ansible role for Calibre-Web](https://github.com/mother-of-all-self-hosting/ansible-role-calibre-web), you can check them via:
+For details about configuring the [Ansible role for Calibre-Web Automated](https://github.com/mother-of-all-self-hosting/ansible-role-calibre-web), you can check them via:
 - 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-calibre-web/blob/master/docs/configuring-calibre-web.md) online
-- 📁 `roles/galaxy/calibre_web/docs/configuring-calibre-web.md` locally, if you have [fetched the Ansible roles](../installing.md)
+- 📁 `roles/galaxy/calibre_web_automated/docs/configuring-calibre-web.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 > [!WARNING]
-> Calibre-Web currently does not support running the container rootless. While the role is configured to run with the MASH user and group specified to PUID and PGID on its [`env`](https://github.com/mother-of-all-self-hosting/ansible-role-calibre-web/blob/master/templates/env.j2) file, the common security features provided with other services of the playbook are not available. This puts your system at higher risk as vulnerabilities can have a higher impact.
+> Calibre-Web Automated currently does not support running the container rootless. While the role is configured to run with the MASH user and group specified to PUID and PGID on its [`env`](https://github.com/mother-of-all-self-hosting/ansible-role-calibre-web/blob/master/templates/env.j2) file, the common security features provided with other services of the playbook are not available. This puts your system at higher risk as vulnerabilities can have a higher impact.
 
 ## Prerequisites
 
@@ -39,47 +39,47 @@ To enable this service, add the following configuration to your `vars.yml` file 
 ```yaml
 ########################################################################
 #                                                                      #
-# calibre_web                                                          #
+# calibre_web_automated                                                #
 #                                                                      #
 ########################################################################
 
-calibre_web_enabled: true
+calibre_web_automated_enabled: true
 
-calibre_web_hostname: mash.example.com
-calibre_web_path_prefix: /calibre-web
+calibre_web_automated_hostname: mash.example.com
+calibre_web_automated_path_prefix: /calibre-web
 
 ########################################################################
 #                                                                      #
-# /calibre_web                                                         #
+# /calibre_web_automated                                               #
 #                                                                      #
 ########################################################################
 ```
 
 ### Mount a directory for loading Calibre database (optional)
 
-By default, Calibre-Web will search `/books` directory for your Calibre database.
+By default, Calibre-Web Automated will search `/books` directory for your Calibre database.
 
 You can mount a directory so that the instance loads the database. To mount it, prepare a local directory on the host machine and add the following configuration to your `vars.yml` file:
 
 ```yaml
-calibre_web_books_path: /path/on/the/host
+calibre_web_automated_books_path: /path/on/the/host
 ```
 
-Make sure permissions and owner of the directory specified to `calibre_web_books_path`.
+Make sure permissions and owner of the directory specified to `calibre_web_automated_books_path`.
 
 ### Enable ebook conversion binary (optional)
 
 You can add the Calibre ebook-convert binary (x64 only) by adding the following configuration to your `vars.yml` file:
 
 ```yaml
-calibre_web_environment_variables_conversion_ability_enabled: true
+calibre_web_automated_environment_variables_conversion_ability_enabled: true
 ```
 
 The path to the binary is `/usr/bin/ebook-convert`. It needs to be specified in the web interface — as well as the path to Calibre binaries (`usr/bin`).
 
 ### Syncthing integration (optional)
 
-If you've got a [Syncthing](syncthing.md) service running, you can use it to synchronize your books directory with the server, and then mount it as read-only onto the Calibre-Web container.
+If you've got a [Syncthing](syncthing.md) service running, you can use it to synchronize your books directory with the server, and then mount it as read-only onto the Calibre-Web Automated container.
 
 We recommend that you make use of the [aux](auxiliary.md) role to create some shared directories as below:
 
@@ -124,40 +124,40 @@ syncthing_container_additional_volumes:
 ########################################################################
 ```
 
-Finally, mount the `{{ mash_playbook_base_path }}/storage/books` directory on the Calibre-Web container as read-only:
+Finally, mount the `{{ mash_playbook_base_path }}/storage/books` directory on the Calibre-Web Automated container as read-only:
 
 ```yaml
 ########################################################################
 #                                                                      #
-# calibre_web                                                          #
+# calibre_web_automated                                                #
 #                                                                      #
 ########################################################################
 
-# Other Calibre-Web configuration..
+# Other Calibre-Web Automated configuration..
 
-calibre_web_container_additional_volumes:
+calibre_web_automated_container_additional_volumes:
   - type: bind
     src: "{{ mash_playbook_base_path }}/storage/books"
     dst: /books
 
 ########################################################################
 #                                                                      #
-# /calibre_web                                                         #
+# /calibre_web_automated                                               #
 #                                                                      #
 ########################################################################
 ```
 
 ## Usage
 
-After running the command for installation, the Calibre-Web instance becomes available at the URL specified with `calibre_web_hostname` and `calibre_web_path_prefix`. With the configuration above, the service is hosted at `https://mash.example.com/calibre-web`.
+After running the command for installation, the Calibre-Web Automated instance becomes available at the URL specified with `calibre_web_automated_hostname` and `calibre_web_automated_path_prefix`. With the configuration above, the service is hosted at `https://mash.example.com/calibre-web`.
 
 See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-calibre-web/blob/master/docs/configuring-calibre-web.md#usage) for details about setting up the instance.
 
 ### Configure the SMTP server (optional)
 
-On Calibre-Web you can add configuration settings of a SMTP server to let the service send email to terminals like Kindle and Pocketbook. If you enable the [exim-relay](exim-relay.md) service in your inventory configuration, the playbook will automatically configure it as a mailer for the service.
+On Calibre-Web Automated you can add configuration settings of a SMTP server to let the service send email to terminals like Kindle and Pocketbook. If you enable the [exim-relay](exim-relay.md) service in your inventory configuration, the playbook will automatically configure it as a mailer for the service.
 
-As the Calibre-Web instance does not support configuring the mailer with environment variables, you can add default options for it on its UI. Refer to [this page](https://github.com/janeczku/calibre-web/wiki/Setup-Mailserver) on the official documentation as well about how to configure it.
+As the Calibre-Web Automated instance does not support configuring the mailer with environment variables, you can add default options for it on its UI. Refer to [this page](https://github.com/janeczku/calibre-web/wiki/Setup-Mailserver) on the official documentation as well about how to configure it.
 
 To set up with the default exim-relay settings, open `https://mash.example.com/calibre-web/admin/mailsettings` to add the following configuration:
 
@@ -169,7 +169,7 @@ To set up with the default exim-relay settings, open `https://mash.example.com/c
 - **SMTP Password**: (Empty)
 - **From Email**: (Input the email address specified to `exim_relay_sender_address` on your `vars.yml`)
 
-After setting the configuration, you can have the Calibre-Web instance send a test mail to the mail address specified to your account.
+After setting the configuration, you can have the Calibre-Web Automated instance send a test mail to the mail address specified to your account.
 
 ## Recommended other services
 
