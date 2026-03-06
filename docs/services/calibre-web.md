@@ -171,7 +171,8 @@ To set up with the default exim-relay settings, open `https://mash.example.com/c
 
 After setting the configuration, you can have the Calibre-Web instance send a test mail to the mail address specified to your account.
 
-## Recommended other services
+## Related services
 
 - [audiobookshelf](audiobookshelf.md) — Self-hosted audiobook and podcast server
+- [Calibre-Web Automated](calibre-web-automated.md) — Web application based on Calibre-Web with additional features and automation
 - [Syncthing](syncthing.md) — a continuous file synchronization program which synchronizes files between two or more computers in real time. See [Syncthing integration](#syncthing-integration)
