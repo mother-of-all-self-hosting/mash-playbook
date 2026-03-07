@@ -231,7 +231,7 @@ oauth2_proxy_environment_variable_code_challenge_method: S256
 # Generate this with: `python -c 'import os,base64; print(base64.urlsafe_b64encode(os.urandom(32)).decode())'`
 oauth2_proxy_environment_variable_cookie_secret: ""
 
-#Serve the oauth2-proxy authentication page
+# Serve the oauth2-proxy authentication page
 oauth2_proxy_container_labels_additional_labels_custom:
   - traefik.http.routers.{{ oauth2_proxy_identifier }}-navidrome.rule=Host(`{{ navidrome_hostname }}`) && PathPrefix(`/oauth2/`)
   - traefik.http.routers.{{ oauth2_proxy_identifier }}-navidrome.service={{ oauth2_proxy_identifier }}
