@@ -123,7 +123,7 @@ navidrome_container_additional_volumes:
 ########################################################################
 ```
 
-## Securing Navidrome behind OAuth2-Proxy
+### Securing Navidrome behind OAuth2-Proxy
 
 Navidrome currently only supports [external authentication](https://www.navidrome.org/docs/usage/integration/authentication/) via a trusted reverse-proxy.
 
