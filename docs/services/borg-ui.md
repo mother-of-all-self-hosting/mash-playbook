@@ -264,4 +264,5 @@ See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3AzxNS7
 
 ## Related services
 
-- [Apache Answer](answer.md) — Q&A community platform software for teams
+- [BorgBackup with borgmatic](backup-borg.md) — Deduplicating backup program with optional compression and encryption
+- [Duplicati](duplicati.md) — Backup software that securely stores encrypted, incremental, compressed backups on local storage, cloud storage services and remote file servers
