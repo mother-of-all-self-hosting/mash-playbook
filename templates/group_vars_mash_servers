@@ -3367,32 +3367,33 @@ backup_borg_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_b
 backup_borg_uid: "{{ mash_playbook_uid }}"
 backup_borg_gid: "{{ mash_playbook_gid }}"
 
-backup_borg_container_network: "{{ postgres_container_network if postgres_enabled else backup_borg_identifier }}"
-
-backup_borg_retention_prefix: "{{ mash_playbook_service_identifier_prefix }}"
-backup_borg_storage_archive_name_format: "{{ mash_playbook_service_identifier_prefix }}-{now:%Y-%m-%d-%H%M%S}"
-
 backup_borg_container_image_self_build: "{{ mash_playbook_architecture not in ['amd64', 'arm32', 'arm64'] }}"
 
-backup_borg_location_source_directories_auto:
-  - "{{ mash_playbook_base_path }}"
-
-backup_borg_location_exclude_patterns: |
-  {{
-    ([postgres_data_path] if postgres_enabled | default(false) else [])
-    +
-    ([mariadb_data_path] if mariadb_enabled | default(false) else [])
-  }}
+backup_borg_container_network: "{{ postgres_container_network if postgres_enabled else backup_borg_identifier }}"
 
 backup_borg_systemd_required_services_list_auto: |
   {{
-    ([postgres_identifier ~ '.service'] if postgres_enabled | default(false) else [])
-    +
     ([mariadb_identifier ~ '.service'] if mariadb_enabled | default(false) else [])
+    +
+    ([postgres_identifier ~ '.service'] if postgres_enabled | default(false) else [])
+  }}
+
+backup_borg_location_exclude_patterns: |
+  {{
+    ([mariadb_data_path] if mariadb_enabled | default(false) else [])
+    +
+    ([postgres_data_path] if postgres_enabled | default(false) else [])
   }}
 
 backup_borg_mysql_enabled: "{{ mariadb_enabled | default(false) }}"
 backup_borg_postgresql_enabled: "{{ postgres_enabled | default(false) }}"
+
+backup_borg_retention_prefix: "{{ mash_playbook_service_identifier_prefix }}"
+
+backup_borg_storage_archive_name_format: "{{ mash_playbook_service_identifier_prefix }}-{now:%Y-%m-%d-%H%M%S}"
+
+backup_borg_location_source_directories_auto:
+  - "{{ mash_playbook_base_path }}"
 
 # role-specific:mariadb
 backup_borg_mysql_databases_hostname: "{{ mariadb_connection_hostname if mariadb_enabled | default(false) else '' }}"
