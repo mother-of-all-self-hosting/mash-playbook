@@ -127,9 +127,9 @@ navidrome_container_additional_volumes:
 
 Navidrome currently only supports [external authentication](https://www.navidrome.org/docs/usage/integration/authentication/) via a trusted reverse-proxy.
 
-Nevertheless, it is possible to configure the [OAuth2-Proxy](./oauth2-proxy.md) role to protect Navidrome via OAuth2/OIDC.
+Leveraging the [OAuth2-Proxy](./oauth2-proxy.md) role it is possible to protect Navidrome behind OAuth2/OIDC.
 
-Below you will find a sample configutaration that works with the [Nextcloud OIDC provider](https://github.com/mother-of-all-self-hosting/ansible-role-nextcloud/blob/main/docs/configuring-oidc-provider.md).
+Below you will find a sample configuration with the [Nextcloud OIDC provider](https://github.com/mother-of-all-self-hosting/ansible-role-nextcloud/blob/main/docs/configuring-oidc-provider.md).
 
 ```yml
 ########################################################################
