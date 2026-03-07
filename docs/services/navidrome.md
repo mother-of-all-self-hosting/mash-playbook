@@ -141,8 +141,7 @@ Below you will find a sample configuration with the [Nextcloud OIDC provider](ht
 # Your other Navidrome configuration goes here.
 # See the documentation in navidrome.md.
 
-# Enable external authentication by setting ND_EXTAUTH_TRUSTEDSOURCES
-# to include traefik's internal IP
+# Enable external authentication by setting ND_EXTAUTH_TRUSTEDSOURCES to include traefik's internal IP
 # Specify the HTTP header containing the username (expects Remote-User by default)
 navidrome_environment_variables_additional_variables: |
   ND_EXTAUTH_TRUSTEDSOURCES=172.16.0.0/12
