@@ -20,14 +20,14 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
 # Borg Web UI
 
-The playbook can install and configure [Borg Web UI](https://github.com/Borg Web UI/Borg Web UI/) for you.
+The playbook can install and configure [Borg Web UI](https://karanhudia.github.io/borg-ui/) for you.
 
-Borg Web UI is a Node.js based free forum software.
+Borg Web UI is an unofficial web interface for [BorgBackup](https://borgbackup.readthedocs.io/).
 
-See the project's [documentation](https://docs.nodebb.org/) to learn what Borg Web UI does and why it might be useful to you.
+See the project's [documentation](https://karanhudia.github.io/borg-ui/) to learn what Borg Web UI does and why it might be useful to you.
 
-For details about configuring the [Ansible role for Borg Web UI](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az2K9dPANyrXJY7juE9XecXyernA6h), you can check them via:
-- 🌐 [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az2K9dPANyrXJY7juE9XecXyernA6h/tree/docs/configuring-borg-ui.md) online
+For details about configuring the [Ansible role for Borg Web UI](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3AzxNS7XeayGimb4WFfvqmasiZZC3v), you can check them via:
+- 🌐 [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3AzxNS7XeayGimb4WFfvqmasiZZC3v/tree/docs/configuring-borg-ui.md) online
 - 📁 `roles/galaxy/borg_ui/docs/configuring-borg-ui.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 ## Dependencies
@@ -35,7 +35,7 @@ For details about configuring the [Ansible role for Borg Web UI](https://app.rad
 This service requires the following other services:
 
 - [Traefik](traefik.md) reverse-proxy server
-- [Valkey](valkey.md) data-store; see [below](#configure-valkey) for details about installation
+- (optional) [Valkey](valkey.md) data-store; see [below](#configure-valkey) for details about installation
 
 ## Adjusting the playbook configuration
 
@@ -61,9 +61,9 @@ borg_ui_hostname: borg-ui.example.com
 
 **Note**: hosting Borg Web UI under a subpath (by configuring the `borg_ui_path_prefix` variable) does not seem to be possible due to Borg Web UI's technical limitations.
 
-### Configure Valkey
+### Configure Valkey (optional)
 
-Borg Web UI requires a Valkey data-store to work. This playbook supports it, and you can set up a Valkey instance by enabling it on `vars.yml`.
+Valkey can optionally be enabled to improve Borg Web UI's performance on archive browsing. This playbook supports it, and you can set up a Valkey instance by enabling it on `vars.yml`.
 
 If Borg Web UI is the sole service which requires Valkey on your server, it is fine to set up just a single Valkey instance. However, **it is not recommended if there are other services which require it, because sharing the Valkey instance has security concerns and possibly causes data conflicts**, as described on the [documentation for configuring Valkey](valkey.md). In this case, you should install a dedicated Valkey instance for each of them.
 
@@ -241,13 +241,26 @@ Note that running the `just` commands for installation (`just install-all` or `j
 
 After installation, the Borg Web UI instance becomes available at the URL specified with `borg_ui_hostname`. With the configuration above, the service is hosted at `https://borg-ui.example.com`.
 
-To get started, open the URL with a web browser, and follow the set up wizard. Make sure that the scheme (`HTTPS` or `HTTP`) for the public facing URL is detected properly, and fix it if not.
+To get started, open the URL with a web browser to log in to the instance.
 
-Refer to [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az2K9dPANyrXJY7juE9XecXyernA6h/tree/docs/configuring-borg-ui.md#usage) on the role's documentation for more information.
+Refer to [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3AzxNS7XeayGimb4WFfvqmasiZZC3v/tree/docs/configuring-borg-ui.md#usage) on the role's documentation for more information.
+
+To load a source directory to be backed up inside the container, you can add one to `borg_ui_container_additional_volumes_custom` as below:
+
+```yaml
+borg_ui_container_additional_volumes_custom:
+  - type: "bind"
+    src: /mash
+    dst: /local
+    options: readonly
+```
+
+>[!NOTE]
+> The directory should be mounted with `readonly` to prevent accidental modification or ransomware attacks.
 
 ## Troubleshooting
 
-See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az2K9dPANyrXJY7juE9XecXyernA6h/tree/docs/configuring-borg-ui.md#troubleshooting) on the role's documentation for details.
+See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3AzxNS7XeayGimb4WFfvqmasiZZC3v/tree/docs/configuring-borg-ui.md#troubleshooting) on the role's documentation for details.
 
 ## Related services
 
