@@ -177,6 +177,10 @@
     - role: galaxy/bitmagnet
     # /role-specific:bitmagnet
 
+    # role-specific:borg_ui
+    - role: galaxy/borg_ui
+    # /role-specific:borg_ui
+
     # role-specific:browserless
     - role: galaxy/browserless
     # /role-specific:browserless
