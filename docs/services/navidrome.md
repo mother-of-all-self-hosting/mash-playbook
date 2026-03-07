@@ -143,8 +143,9 @@ navidrome_hostname: navidrome.hostname
 
 navidrome_oidc_client_enabled: true
 navidrome_oidc_redirect_uris: "https://{{ navidrome_hostname }}/oauth2/callback"
-navidrome_oidc_client_id: "" 	  # pwgen -s 64 1
-navidrome_oidc_client_secret: ""  # pwgen -s 64 1
+# Put your oauth2/oidc credentials below:
+navidrome_oidc_client_id: ""
+navidrome_oidc_client_secret: ""
 
 navidrome_environment_variables_additional_variables: |
   ND_EXTAUTH_TRUSTEDSOURCES=172.16.0.0/12
