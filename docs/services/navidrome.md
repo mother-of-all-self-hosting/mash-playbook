@@ -248,7 +248,7 @@ oauth2_proxy_container_labels_additional_labels_custom:
 ########################################################################
 ```
 
-The first account to login via OAuth2-Proxy will become an administrator, subsequent logins will be created as non-admin user.
+The first user to login via OAuth2-Proxy will become an administrator, subsequent logins will be created as non-admin user.
 
 ## Usage
 
