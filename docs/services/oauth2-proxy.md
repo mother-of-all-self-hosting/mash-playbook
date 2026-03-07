@@ -107,7 +107,7 @@ Now that OAuth2-Proxy is ready and handling the `/oauth2/` paths on the domain N
 The configuration described below is based on the official [Configuring for use with the Traefik (v2) ForwardAuth middleware](https://oauth2-proxy.github.io/oauth2-proxy/configuration/overview#configuring-for-use-with-the-traefik-v2-forwardauth-middleware) documentation of OAuth2-Proxy and the [Externalized Authentication Quick Start](https://www.navidrome.org/docs/getting-started/extauth-quickstart/) guide.
 
 > [!NOTE]
-> This example assumes that you serve Navidrome under a dedicated hostname. If you are serving Navidrome under a path prefix, edit the PathPrefix of the public rule to bypass authentication correctly.
+> This example assumes that you serve Navidrome under a dedicated hostname. If you are serving Navidrome under a path prefix, edit the `PathPrefix` of the public rule to bypass authentication correctly.
 
 ```yml
 ########################################################################
