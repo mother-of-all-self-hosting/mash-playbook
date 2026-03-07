@@ -138,19 +138,20 @@ Below you will find a sample configutaration that works with the [Nextcloud OIDC
 #                                                                      #
 ########################################################################
 
-navidrome_enabled: true
-navidrome_hostname: navidrome.hostname
+# Your other Navidrome configuration goes here.
+# See the documentation in navidrome.md.
 
-navidrome_oidc_client_enabled: true
-navidrome_oidc_redirect_uris: "https://{{ navidrome_hostname }}/oauth2/callback"
-# Put your oauth2/oidc credentials here
-navidrome_oidc_client_id: ""
-navidrome_oidc_client_secret: ""
-
+# Enable external authentication by setting ND_EXTAUTH_TRUSTEDSOURCES
+# Specify the header containing the username (defaults to Remote-User)
 navidrome_environment_variables_additional_variables: |
   ND_EXTAUTH_TRUSTEDSOURCES=172.16.0.0/12
   ND_EXTAUTH_USERHEADER=X-Auth-Request-Preferred-Username
 
+# Block potentially malicious forwarding of the username-header from external clients
+navidrome_container_labels_traefik_additional_request_headers_custom:
+  X-Auth-Request-Preferred-Username: ""
+
+# Recollect middlewares from templates/labels.j2
 navidrome_container_labels_middlewares:
   - "{{ navidrome_container_labels_traefik_compression_middleware_name if navidrome_container_labels_traefik_compression_middleware_enabled }}"
   - "{{ navidrome_identifier ~ '-slashless-redirect' if navidrome_container_labels_traefik_path_prefix != '/' }}"
