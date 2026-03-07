@@ -199,7 +199,7 @@ navidrome_container_labels_additional_labels_custom:
 > 
 > But navidrome will automatically create new users at first login passed on by the username header if the source is trusted.
 > 
-> In order to keep traefik from forwarding our trusted username header from external clients and granting them new accounts we need to strip this header from all external requests:
+> Therefore we need to strip this header from all external requests in order to avoid risking unauthorized user creation:
 > ```yml
 > navidrome_container_labels_traefik_additional_request_headers_custom:
 >   X-Auth-Request-Preferred-Username: ""
