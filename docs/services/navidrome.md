@@ -125,7 +125,7 @@ navidrome_container_additional_volumes:
 
 ## Securing Navidrome behind OAuth2-Proxy
 
-Navidrome currently only supports [external authentication](https://www.navidrome.org/docs/usage/integration/authentication/) via a trusted reverse-proxy.
+Navidrome currently only supports [external authentication]([https://www.navidrome.org/docs/usage/integration/authentication/](https://www.navidrome.org/docs/getting-started/extauth-quickstart/)) via a trusted reverse-proxy.
 
 It is possible to configure the OAuth2-Proxy role to protect Navidrome via OAuth2/OIDC.
 
