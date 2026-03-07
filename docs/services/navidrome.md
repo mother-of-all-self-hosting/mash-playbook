@@ -194,7 +194,7 @@ navidrome_container_labels_additional_labels_custom:
 
 
 > [!CAUTION]
-> As we use the less invasive 1. mode documented in [oauth2-proxy.md](./oauth2-proxy.md) navidrome will see requests as coming from traefik.
+> As we use the less invasive 2. mode documented in [oauth2-proxy.md](./oauth2-proxy.md) navidrome will see requests as coming from traefik.
 > Accordingly we tell navidrome to trust the username header coming from our traefik reverse-proxy.
 > 
 > But navidrome will automatically create new users at first login passed on by the username header if the source is trusted.
@@ -205,7 +205,7 @@ navidrome_container_labels_additional_labels_custom:
 >   X-Auth-Request-Preferred-Username: ""
 > ```
 >
-> Consider the more invasive 2. mode of oauth2-proxy if you want to exclude traefik from your trusted IPs altogether and only accept authorization requests from oauth2-proxy directly.
+> Consider the more invasive 1. mode of oauth2-proxy if you want to exclude traefik from your trusted IPs altogether and only accept authorization requests from oauth2-proxy directly.
 
 > [!NOTE]
 > Currently Navidrome user auto-creation from external sources is tightly coupled to serving the webpage index and may fail when the webpage is loaded from cache upon first login, e.g. when changing accounts within the same browser.
