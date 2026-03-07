@@ -204,6 +204,8 @@ navidrome_container_labels_additional_labels_custom:
 > navidrome_container_labels_traefik_additional_request_headers_custom:
 >   X-Auth-Request-Preferred-Username: ""
 > ```
+>
+> Consider the more invasive 2. mode of oauth2-proxy if you want to exclude traefik from your trusted IPs altogether and only accept authorization requests from oauth2-proxy directly.
 
 > [!NOTE]
 > Currently Navidrome user auto-creation from external sources is tightly coupled to serving the webpage index and may fail when the webpage is loaded from cache upon first login, e.g. when changing accounts within the same browser.
