@@ -194,7 +194,7 @@ navidrome_container_labels_additional_labels_custom:
 
 
 > [!CAUTION]
-> Above configuration uses the less invasive 1. mode documented in [oauth2-proxy.md](./oauth2-proxy.md) and navidrome will see requests as coming from traefik.
+> As we use the less invasive 1. mode documented in [oauth2-proxy.md](./oauth2-proxy.md) navidrome will see requests as coming from traefik.
 > Accordingly we tell navidrome to trust the username header coming from our traefik reverse-proxy.
 > 
 > But navidrome will automatically create new users at first login passed on by the username header if the source is trusted.
