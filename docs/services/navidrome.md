@@ -203,7 +203,7 @@ navidrome_container_labels_additional_labels_custom:
 > ```yml
 > navidrome_container_labels_traefik_additional_request_headers_custom:
 >   X-Auth-Request-Preferred-Username: ""
-> ```
+
 
 
 Configure OAuth2-Proxy as follows (e.g. with Nextcloud OIDC provider):
