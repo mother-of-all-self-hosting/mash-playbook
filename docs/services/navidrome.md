@@ -131,6 +131,9 @@ Leveraging the [OAuth2-Proxy](./oauth2-proxy.md) role it is possible to protect 
 
 Below you will find a sample configuration with the [Nextcloud OIDC provider](https://github.com/mother-of-all-self-hosting/ansible-role-nextcloud/blob/main/docs/configuring-oidc-provider.md).
 
+> [!NOTE]
+> This example assumes that you serve Navidrome under a dedicated hostname. If you are serving Navidrome under a path prefix, adjust the `PathPrefix` of the public rule to bypass authentication correctly.
+
 ```yml
 ########################################################################
 #                                                                      #
