@@ -169,7 +169,7 @@ navidrome_container_labels_additional_labels_custom:
   - traefik.http.middlewares.{{ navidrome_identifier }}-oauth-auth.forwardAuth.address=http://{{ oauth2_proxy_identifier }}:{{ oauth2_proxy_container_process_http_port }}/oauth2/auth
   - traefik.http.middlewares.{{ navidrome_identifier }}-oauth-auth.forwardAuth.trustForwardHeader=true
 
-  # Allow forwarding the HTTP header defined in ND_EXTAUTH_USERHEADER to Navidrome to identify users.
+  # Allow forwarding the HTTP header defined in ND_EXTAUTH_USERHEADER to identify users in Navidrome.
   # See more information about this in the comments for `oauth2_proxy_environment_variable_set_xauthrequest`.
   - traefik.http.middlewares.{{ navidrome_identifier }}-oauth-auth.forwardAuth.authResponseHeaders=X-Auth-Request-Preferred-Username
 
