@@ -208,7 +208,7 @@ navidrome_container_labels_additional_labels_custom:
 > [!NOTE]
 > Currently Navidrome user auto-creation from external sources is tightly coupled to serving the webpage index and may fail when the webpage is loaded from cache upon first login, e.g. when changing accounts within the same browser.
 
-Configure OAuth2-Proxy as follows (e.g. with Nextcloud OIDC provider):
+Configure OAuth2-Proxy as follows (e.g. with Keycloak):
 
 ```yml
 ########################################################################
