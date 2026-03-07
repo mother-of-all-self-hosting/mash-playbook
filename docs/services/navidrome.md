@@ -178,7 +178,7 @@ navidrome_container_labels_additional_labels_custom:
 
   # Authentication bypass for share and subsonic endpoints
   # Necessary if you want to stream music over the subsonic API and access shared content without authentication
-  - traefik.http.routers.{{ navidrome_identifier }}-public.rule=Host(`{{ navidrome_hostname }}`) && (PathPrefix(`{{ navidrome_path_prefix }}/share/`) || PathPrefix(`{{ navidrome_path_prefix }}/rest/`))
+  - traefik.http.routers.{{ navidrome_identifier }}-public.rule=Host(`{{ navidrome_hostname }}`) && (PathPrefix(`/share/`) || PathPrefix(`/rest/`))
   - traefik.http.routers.{{ navidrome_identifier }}-public.service={{ navidrome_identifier }}
   - traefik.http.routers.{{ navidrome_identifier }}-public.middlewares={{ navidrome_container_labels_middlewares | select() | join(',') }}
   - traefik.http.routers.{{ navidrome_identifier }}-public.entrypoints={{ navidrome_container_labels_traefik_entrypoints }}
