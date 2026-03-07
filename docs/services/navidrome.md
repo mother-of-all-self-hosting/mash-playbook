@@ -224,11 +224,11 @@ oauth2_proxy_enabled: true
 oauth2_proxy_environment_variable_provider: keycloak-oidc
 oauth2_proxy_environment_variable_provider_display_name: Keycloak
 
-oauth2_proxy_environment_variable_oidc_issuer_url: https://keycloak.example.com/realms/my-realm
-oauth2_proxy_environment_variable_redirect_url: "https://{{ navidrome_hostname }}/oauth2/callback"
 # Authorize oauth2-proxy with your oidc credentials
 oauth2_proxy_environment_variable_client_id: ""
 oauth2_proxy_environment_variable_client_secret: ""
+oauth2_proxy_environment_variable_oidc_issuer_url: https://keycloak.example.com/realms/my-realm
+oauth2_proxy_environment_variable_redirect_url: "https://{{ navidrome_hostname }}/oauth2/callback"
 
 oauth2_proxy_environment_variable_code_challenge_method: S256
 
