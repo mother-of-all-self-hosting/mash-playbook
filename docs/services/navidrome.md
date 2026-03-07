@@ -143,7 +143,7 @@ navidrome_hostname: navidrome.hostname
 
 navidrome_oidc_client_enabled: true
 navidrome_oidc_redirect_uris: "https://{{ navidrome_hostname }}/oauth2/callback"
-# Put your oauth2/oidc credentials below:
+# Put your oauth2/oidc credentials here
 navidrome_oidc_client_id: ""
 navidrome_oidc_client_secret: ""
 
