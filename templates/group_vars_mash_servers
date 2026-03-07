@@ -3373,16 +3373,16 @@ backup_borg_container_network: "{{ postgres_container_network if postgres_enable
 
 backup_borg_systemd_required_services_list_auto: |
   {{
-    ([mariadb_identifier ~ '.service'] if mariadb_enabled | default(false) else [])
+    ([mariadb_identifier ~ '.service'] if mariadb_enabled | default(false) and backup_borg_mysql_enabled else [])
     +
-    ([postgres_identifier ~ '.service'] if postgres_enabled | default(false) else [])
+    ([postgres_identifier ~ '.service'] if postgres_enabled | default(false) and backup_borg_postgresql_enabled else [])
   }}
 
 backup_borg_location_exclude_patterns: |
   {{
-    ([mariadb_data_path] if mariadb_enabled | default(false) else [])
+    ([mariadb_data_path] if mariadb_enabled | default(false) and backup_borg_mysql_enabled else [])
     +
-    ([postgres_data_path] if postgres_enabled | default(false) else [])
+    ([postgres_data_path] if postgres_enabled | default(false) and backup_borg_postgresql_enabled else [])
   }}
 
 backup_borg_mysql_enabled: "{{ mariadb_enabled | default(false) }}"
