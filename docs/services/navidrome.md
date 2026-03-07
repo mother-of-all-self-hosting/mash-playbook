@@ -142,7 +142,8 @@ Below you will find a sample configuration with the [Nextcloud OIDC provider](ht
 # See the documentation in navidrome.md.
 
 # Enable external authentication by setting ND_EXTAUTH_TRUSTEDSOURCES
-# Specify the HTTP header containing the username (defaults to Remote-User)
+# to include traefik's internal IP
+# Specify the HTTP header containing the username (expects Remote-User by default)
 navidrome_environment_variables_additional_variables: |
   ND_EXTAUTH_TRUSTEDSOURCES=172.16.0.0/12
   ND_EXTAUTH_USERHEADER=X-Auth-Request-Preferred-Username
@@ -193,6 +194,20 @@ navidrome_container_labels_additional_labels_custom:
 ########################################################################
 ```
 
+
+> [!CAUTION]
+> Above configuration uses the less invasive 1. mode documented in [oauth2-proxy.md](./oauth2-proxy.md) and navidrome will see requests as coming from traefik.
+> Accordingly we tell navidrome to trust the username header coming from our traefik reverse-proxy.
+> 
+> But navidrome will automatically create new users at first login passed on by the username header if the source is trusted.
+> 
+> In order to keep traefik from forwarding our trusted username header from external clients and granting them new accounts we need to strip this header from all external requests:
+> ```yml
+> navidrome_container_labels_traefik_additional_request_headers_custom:
+>   X-Auth-Request-Preferred-Username: ""
+> ```
+
+
 Configure OAuth2-Proxy as follows (e.g. with Nextcloud OIDC provider):
 
 ```yml
@@ -204,10 +219,10 @@ Configure OAuth2-Proxy as follows (e.g. with Nextcloud OIDC provider):
 
 oauth2_proxy_enabled: true
 
-oauth2_proxy_environment_variable_provider: oidc
-oauth2_proxy_environment_variable_provider_display_name: "Nextcloud"
+oauth2_proxy_environment_variable_provider: keycloak-oidc
+oauth2_proxy_environment_variable_provider_display_name: Keycloak
 
-oauth2_proxy_environment_variable_oidc_issuer_url: "https://{{ nextcloud_hostname }}"
+oauth2_proxy_environment_variable_oidc_issuer_url: https://keycloak.example.com/realms/my-realm
 oauth2_proxy_environment_variable_redirect_url: "https://{{ navidrome_hostname }}/oauth2/callback"
 # Authorize oauth2-proxy with your oidc credentials
 oauth2_proxy_environment_variable_client_id: ""
@@ -217,9 +232,6 @@ oauth2_proxy_environment_variable_code_challenge_method: S256
 
 # Generate this with: `python -c 'import os,base64; print(base64.urlsafe_b64encode(os.urandom(32)).decode())'`
 oauth2_proxy_environment_variable_cookie_secret: ""
-
-oauth2_proxy_environment_variables_additional_variables: |
-  OAUTH2_PROXY_WHITELIST_DOMAINS=.nextcloud.hostname:*
   
 oauth2_proxy_container_labels_additional_labels_custom:
   - traefik.http.routers.{{ oauth2_proxy_identifier }}-navidrome.rule=Host(`{{ navidrome_hostname }}`) && PathPrefix(`/oauth2/`)
