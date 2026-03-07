@@ -248,6 +248,8 @@ oauth2_proxy_container_labels_additional_labels_custom:
 ########################################################################
 ```
 
+The first account to login via OAuth2-Proxy will become an administrator, subsequent logins will be created as non-admin user.
+
 ## Usage
 
 After running the command for installation, the Navidrome instance becomes available at the URL specified with `navidrome_hostname` and `navidrome_path_prefix`. With the configuration above, the service is hosted at `https://mash.example.com/navidrome`.
