@@ -209,6 +209,11 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
     {{ ({'name': (bitmagnet_identifier + '.service'), 'priority': 2000, 'restart_necessary': (bitmagnet_restart_necessary | bool), 'groups': ['mash', 'bitmagnet']} if bitmagnet_enabled else omit) }}
   # /role-specific:bitmagnet
 
+  # role-specific:borg_ui
+  - |-
+    {{ ({'name': (borg_ui_identifier + '.service'), 'priority': 2000, 'restart_necessary': (borg_ui_restart_necessary | bool), 'groups': ['mash', 'borg-ui']} if borg_ui_enabled else omit) }}
+  # /role-specific:borg_ui
+
   # role-specific:browserless
   - |-
     {{ ({'name': (browserless_identifier + '.service'), 'priority': 2000, 'restart_necessary': (browserless_restart_necessary | bool), 'groups': ['mash', 'browserless']} if browserless_enabled else omit) }}
@@ -3627,6 +3632,46 @@ bitmagnet_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_pr
 #                                                                      #
 ########################################################################
 # /role-specific:bitmagnet
+
+
+
+# role-specific:borg_ui
+########################################################################
+#                                                                      #
+# borg_ui                                                              #
+#                                                                      #
+########################################################################
+
+borg_ui_enabled: false
+
+borg_ui_identifier: "{{ mash_playbook_service_identifier_prefix }}borg-ui"
+
+borg_ui_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}borg-ui"
+
+borg_ui_uid: "{{ mash_playbook_uid }}"
+borg_ui_gid: "{{ mash_playbook_gid }}"
+
+borg_ui_container_additional_networks_auto: |
+  {{
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+  }}
+
+borg_ui_environment_variables_secret_key: "{{ (mash_playbook_generic_secret_key + ':borg_ui') | hash('sha512') | to_uuid }}"
+
+borg_ui_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+borg_ui_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+
+# role-specific:traefik
+borg_ui_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
+borg_ui_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
+# /role-specific:traefik
+
+########################################################################
+#                                                                      #
+# /borg_ui                                                             #
+#                                                                      #
+########################################################################
+# /role-specific:borg_ui
 
 
 

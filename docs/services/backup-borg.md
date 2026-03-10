@@ -20,4 +20,5 @@ The [Ansible role for BorgBackup](https://github.com/mother-of-all-self-hosting/
 
 ## Related services
 
+- [Borg Web UI](borg-ui.md) — Unofficial web interface for BorgBackup
 - [Duplicati](duplicati.md) — Backup software that securely stores encrypted, incremental, compressed backups on local storage, cloud storage services and remote file servers

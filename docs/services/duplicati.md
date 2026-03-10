@@ -124,3 +124,4 @@ See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-du
 ## Related services
 
 - [BorgBackup](backup-borg.md) — Deduplicating backup program with optional compression and encryption
+- [Borg Web UI](borg-ui.md) — Unofficial web interface for BorgBackup
