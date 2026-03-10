@@ -3395,6 +3395,8 @@ backup_borg_location_exclude_patterns: |
     ([postgres_data_path] if postgres_enabled | default(false) and backup_borg_postgresql_enabled else [])
   }}
 
+backup_borg_mariadb_enabled: "{{ mariadb_enabled | default(false) }}"
+backup_borg_mongodb_enabled: "{{ mongodb_enabled | default(false) }}"
 backup_borg_mysql_enabled: "{{ mariadb_enabled | default(false) }}"
 backup_borg_postgresql_enabled: "{{ postgres_enabled | default(false) }}"
 
@@ -3406,6 +3408,7 @@ backup_borg_location_source_directories_auto:
   - "{{ mash_playbook_base_path }}"
 
 # role-specific:mariadb
+# TODO: Use `backup_borg_mariadb_*` variables; see https://torsion.org/borgmatic/reference/configuration/data-sources/mariadb/
 backup_borg_mysql_databases_hostname: "{{ mariadb_connection_hostname if mariadb_enabled | default(false) else '' }}"
 backup_borg_mysql_databases_port: "{{ mariadb_connection_port if mariadb_enabled | default(false) else '3306' }}"
 backup_borg_mysql_databases_password: "{{ mariadb_root_password if mariadb_enabled | default(false) else '' }}"
