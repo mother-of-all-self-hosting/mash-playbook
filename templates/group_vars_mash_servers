@@ -3385,6 +3385,8 @@ backup_borg_systemd_required_services_list_auto: |
   {{
     ([mariadb_identifier ~ '.service'] if mariadb_enabled | default(false) and backup_borg_mysql_enabled else [])
     +
+    ([mongodb_identifier ~ '.service'] if mongodb_enabled | default(false) and backup_borg_mongodb_enabled else [])
+    +
     ([postgres_identifier ~ '.service'] if postgres_enabled | default(false) and backup_borg_postgresql_enabled else [])
   }}
 
@@ -3415,6 +3417,14 @@ backup_borg_mysql_databases_password: "{{ mariadb_root_password if mariadb_enabl
 backup_borg_mysql_databases_username: "root"
 backup_borg_mysql_databases_auto: "{{ mariadb_managed_databases | map(attribute='name') if mariadb_enabled | default(false) else [] }}"
 # /role-specific:mariadb
+
+# role-specific:mongodb
+backup_borg_mongodb_databases_hostname: "{{ mongodb_connection_hostname if mongodb_enabled | default(false) else '' }}"
+backup_borg_mongodb_databases_port: "{{ mongodb_connection_port if mongodb_enabled | default(false) else '27017' }}"
+backup_borg_mongodb_databases_username: "root"
+backup_borg_mongodb_databases_password: "{{ mongodb_root_password if mongodb_enabled | default(false) else '' }}"
+backup_borg_mongodb_databases_auto: "{{ mongodb_managed_databases | map(attribute='name') if mongodb_enabled | default(false) else [] }}"
+# /role-specific:mongodb
 
 # role-specific:postgres
 backup_borg_postgresql_databases_hostname: "{{ postgres_connection_hostname if postgres_enabled | default(false) else '' }}"
