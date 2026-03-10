@@ -335,7 +335,7 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
 
   # role-specific:dokuwiki
   - |-
-    {{ ({'name': (dokuwiki_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'dokuwiki']} if dokuwiki_enabled else omit) }}
+    {{ ({'name': (dokuwiki_identifier + '.service'), 'priority': 2000, 'restart_necessary': (dokuwiki_restart_necessary | bool), 'groups': ['mash', 'dokuwiki']} if dokuwiki_enabled else omit) }}
   # /role-specific:dokuwiki
 
   # role-specific:duplicati
