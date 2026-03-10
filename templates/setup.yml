@@ -185,6 +185,10 @@
     - role: galaxy/calibre_web
     # /role-specific:calibre_web
 
+    # role-specific:calibre_web_automated
+    - role: galaxy/calibre_web_automated
+    # /role-specific:calibre_web_automated
+
     # role-specific:cap
     - role: galaxy/cap
     # /role-specific:cap
