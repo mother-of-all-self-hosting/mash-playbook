@@ -196,8 +196,8 @@
   version: v2.3.6-0
   name: docuseal
   activation_prefix: docuseal_
-- src: git+https://github.com/shukon/ansible-role-dokuwiki.git
-  version: v2025-05-14b-1
+- src: git+https://github.com/mother-of-all-self-hosting/ansible-role-dokuwiki.git
+  version: v2025-05-14b-2
   name: dokuwiki
   activation_prefix: dokuwiki_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-duplicati.git
