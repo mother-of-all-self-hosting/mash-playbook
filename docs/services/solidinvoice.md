@@ -36,7 +36,7 @@ This service requires the following other services:
 
 - [Postgres](postgres.md) / MySQL / [MariaDB](mariadb.md) / [SQLite](https://www.sqlite.org/) database
 - [Traefik](traefik.md) reverse-proxy server
-- (optional) [exim-relay](exim-relay.md) mailer — SolidInvoice are compatible with other email delivery services
+- (optional) [exim-relay](exim-relay.md) mailer — SolidInvoice is compatible with other email delivery services
 
 ## Adjusting the playbook configuration
 
