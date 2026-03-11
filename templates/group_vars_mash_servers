@@ -6369,14 +6369,14 @@ homarr_gid: "{{ mash_playbook_gid }}"
 
 homarr_systemd_required_services_list_auto: |
   {{
-    ([container_socket_proxy_identifier + '.service'] if container_socket_proxy_enabled | default(false) else [])
+    ([container_socket_proxy_identifier + '.service'] if container_socket_proxy_enabled else [])
     +
     ([postgres_identifier ~ '.service'] if postgres_enabled | default(false) and homarr_database_postgres_hostname == postgres_connection_hostname and homarr_database_type == 'node-postgres' else [])
   }}
 
 homarr_container_additional_networks_auto: |
   {{
-    ([container_socket_proxy_container_network] if container_socket_proxy_enabled | default(false) else [])
+    ([container_socket_proxy_container_network] if container_socket_proxy_enabled else [])
     +
     ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
     +
@@ -12411,12 +12411,12 @@ prunemate_gid: "{{ mash_playbook_gid }}"
 
 prunemate_systemd_required_services_list_auto: |
   {{
-    ([container_socket_proxy_identifier + '.service'] if container_socket_proxy_enabled | default(false) else [])
+    ([container_socket_proxy_identifier + '.service'] if container_socket_proxy_enabled else [])
   }}
 
 prunemate_container_additional_networks_auto: |
   {{
-    ([container_socket_proxy_container_network] if container_socket_proxy_enabled | default(false) else [])
+    ([container_socket_proxy_container_network] if container_socket_proxy_enabled else [])
     +
     ([gotify_container_network] if gotify_enabled | default(false) and prunemate_container_network != gotify_container_network else [])
     +
