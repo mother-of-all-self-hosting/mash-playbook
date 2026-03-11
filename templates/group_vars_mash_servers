@@ -4908,9 +4908,9 @@ etherpad_systemd_required_services_list_auto: |
 
 etherpad_container_additional_networks_auto: |
   {{
-    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
-    +
     ([mariadb_container_network] if mariadb_enabled | default(false) and etherpad_database_mysql_hostname == mariadb_connection_hostname and etherpad_container_network != mariadb_container_network and etherpad_database_type == 'mysql' else [])
+    +
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
     +
     ([postgres_container_network] if postgres_enabled | default(false) and etherpad_database_postgres_hostname == postgres_connection_hostname and etherpad_container_network != postgres_container_network and etherpad_database_type == 'postgres' else [])
   }}
@@ -5534,9 +5534,9 @@ forgejo_container_additional_networks_auto: |
   {{
     ([exim_relay_container_network | default('mash-exim-relay')] if (exim_relay_enabled | default(false) and forgejo_config_mailer_smtp_addr == exim_relay_identifier | default('mash-exim-relay') and forgejo_container_network != exim_relay_container_network) else [])
     +
-    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
-    +
     ([mariadb_container_network] if mariadb_enabled | default(false) and forgejo_database_mysql_hostname == mariadb_connection_hostname and forgejo_container_network != mariadb_container_network and forgejo_database_type == 'mysql' else [])
+    +
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
     +
     ([memcached_container_network] if memcached_enabled | default(false) and forgejo_container_network != memcached_container_network and forgejo_config_cache_adapter == 'memcache' else [])
     +
@@ -5891,9 +5891,9 @@ gitea_container_additional_networks_auto: |
   {{
     ([exim_relay_container_network | default('mash-exim-relay')] if (exim_relay_enabled | default(false) and gitea_config_mailer_smtp_addr == exim_relay_identifier | default('mash-exim-relay') and gitea_container_network != exim_relay_container_network) else [])
     +
-    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
-    +
     ([mariadb_container_network] if mariadb_enabled | default(false) and gitea_database_mysql_hostname == mariadb_connection_hostname and gitea_container_network != mariadb_container_network and gitea_database_type == 'mysql' else [])
+    +
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
     +
     ([memcached_container_network] if memcached_enabled | default(false) and gitea_container_network != memcached_container_network and gitea_config_cache_adapter == 'memcache' else [])
     +
@@ -6194,11 +6194,11 @@ headplane_systemd_required_services_list_auto: |
 
 headplane_container_additional_networks_auto: |
   {{
-    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+    ([container_socket_proxy_container_network] if container_socket_proxy_enabled | default(false) else [])
     +
     ([headscale_container_network] if headscale_enabled | default(false) and headplane_headscale_hostname == headscale_identifier and headplane_container_network != headscale_container_network else [])
     +
-    ([container_socket_proxy_container_network] if container_socket_proxy_enabled | default(false) else [])
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
   }}
 
 headplane_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
@@ -6302,9 +6302,9 @@ healthchecks_container_additional_networks_auto: |
   {{
     ([exim_relay_container_network | default('mash-exim-relay')] if (exim_relay_enabled | default(false) and healthchecks_environment_variable_email_host == exim_relay_identifier | default('mash-exim-relay') and healthchecks_container_network != exim_relay_container_network) else [])
     +
-    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
-    +
     ([mariadb_container_network] if mariadb_enabled | default(false) and healthchecks_database_mysql_hostname == mariadb_connection_hostname and healthchecks_container_network != mariadb_container_network and healthchecks_database_type == 'mysql' else [])
+    +
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
     +
     ([postgres_container_network] if postgres_enabled | default(false) and healthchecks_database_hostname == postgres_connection_hostname and healthchecks_container_network != postgres_container_network and healthchecks_database_type == 'postgres' else [])
   }}
@@ -7581,9 +7581,9 @@ immich_server_systemd_wanted_services_list_auto: |
 immich_server_container_additional_networks_auto: |
   {{
     (
-      ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
-      +
       ([exim_relay_container_network | default('mash-exim-relay')] if (exim_relay_enabled | default(false) and immich_smtp_host == exim_relay_identifier | default('mash-exim-relay') and immich_server_container_network != exim_relay_container_network | default('mash-exim-relay')) else [])
+      +
+      ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
       +
       ([postgres_container_network] if postgres_enabled and immich_database_hostname == postgres_connection_hostname | default('mash-postgres') and immich_server_container_network != postgres_container_network | default('mash-postgres') else [])
     ) | unique
@@ -8086,9 +8086,9 @@ kanboard_container_additional_networks_auto: |
   {{
     ([exim_relay_container_network | default('mash-exim-relay')] if (exim_relay_enabled | default(false) and kanboard_environment_variables_mail_smtp_hostname == exim_relay_identifier | default('mash-exim-relay') and kanboard_container_network != exim_relay_container_network) else [])
     +
-    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
-    +
     ([mariadb_container_network] if mariadb_enabled | default(false) and kanboard_database_mysql_hostname == mariadb_connection_hostname and kanboard_container_network != mariadb_container_network and kanboard_database_type == 'mysql' else [])
+    +
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
     +
     ([postgres_container_network] if postgres_enabled | default(false) and kanboard_database_postgres_hostname == postgres_connection_hostname and kanboard_container_network != postgres_container_network and kanboard_database_type == 'postgres' else [])
   }}
@@ -8370,9 +8370,9 @@ kutt_container_additional_networks_auto: |
   {{
     ([exim_relay_container_network | default('mash-exim-relay')] if (exim_relay_enabled | default(false) and kutt_environment_variables_smtp_host == exim_relay_identifier | default('mash-exim-relay') and kutt_container_network != exim_relay_container_network) else [])
     +
-    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
-    +
     ([mariadb_container_network] if mariadb_enabled | default(false) and kutt_database_mysql_hostname == mariadb_connection_hostname and kutt_container_network != mariadb_container_network and kutt_database_type == 'mysql2' else [])
+    +
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
     +
     ([postgres_container_network] if postgres_enabled | default(false) and kutt_database_postgres_hostname == postgres_connection_hostname and kutt_container_network != postgres_container_network and kutt_database_type == 'pg' else [])
   }}
@@ -8599,9 +8599,9 @@ limesurvey_container_additional_networks_auto: |
   {{
     ([exim_relay_container_network | default('mash-exim-relay')] if (exim_relay_enabled | default(false) and limesurvey_container_network != exim_relay_container_network) else [])
     +
-    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
-    +
     ([mariadb_container_network] if mariadb_enabled and limesurvey_database_hostname == mariadb_connection_hostname and limesurvey_container_network != mariadb_container_network else [])
+    +
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
   }}
 
 limesurvey_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
@@ -9565,9 +9565,9 @@ mediawiki_container_additional_networks_auto: |
   {{
     ([exim_relay_container_network | default('mash-exim-relay')] if (exim_relay_enabled | default(false) and mediawiki_container_network != exim_relay_container_network) else [])
     +
-    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
-    +
     ([mariadb_container_network] if mariadb_enabled | default(false) and mediawiki_database_mysql_hostname == mariadb_connection_hostname and mediawiki_container_network != mariadb_container_network and mediawiki_database_type == 'mysql' else [])
+    +
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
     +
     ([postgres_container_network] if postgres_enabled | default(false) and mediawiki_database_postgres_hostname == postgres_connection_hostname and mediawiki_container_network != postgres_container_network and mediawiki_database_type == 'postgres' else [])
   }}
@@ -11379,9 +11379,9 @@ paperless_container_additional_networks_auto: |
   {{
     ([exim_relay_container_network | default('mash-exim-relay')] if (exim_relay_enabled | default(false) and paperless_email_host == exim_relay_identifier | default('mash-exim-relay') and paperless_container_network != exim_relay_container_network) else [])
     +
-    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
-    +
     ([mariadb_container_network] if mariadb_enabled | default(false) and paperless_database_mariadb_hostname == mariadb_connection_hostname and paperless_container_network != mariadb_container_network and paperless_database_type == 'mariadb' else [])
+    +
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
     +
     ([postgres_container_network] if postgres_enabled | default(false) and paperless_database_postgres_hostname == postgres_connection_hostname and paperless_container_network != postgres_container_network and paperless_database_type == 'postgres' else [])
     +
@@ -12955,9 +12955,9 @@ roundcube_systemd_required_services_list_auto: |
 
 roundcube_container_additional_networks_auto: |
   {{
-    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
-    +
     ([mariadb_container_network] if mariadb_enabled | default(false) and roundcube_database_mysql_hostname == mariadb_connection_hostname and roundcube_container_network != mariadb_container_network and roundcube_database_type == 'mysql' else [])
+    +
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
     +
     ([postgres_container_network] if postgres_enabled | default(false) and roundcube_database_postgres_hostname == postgres_connection_hostname and roundcube_container_network != postgres_container_network and roundcube_database_type == 'postgres' else [])
   }}
@@ -13186,11 +13186,11 @@ semaphore_systemd_wanted_services_list_auto: |
 
 semaphore_container_additional_networks_auto: |
   {{
-    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
-    +
     ([exim_relay_container_network | default('mash-exim-relay')] if (exim_relay_enabled | default(false) and semaphore_environment_variables_email_host == exim_relay_identifier | default('mash-exim-relay') and semaphore_container_network != exim_relay_container_network) else [])
     +
     ([mariadb_container_network] if mariadb_enabled | default(false) and semaphore_database_mysql_hostname == mariadb_connection_hostname and semaphore_container_network != mariadb_container_network and semaphore_database_type == 'mysql' else [])
+    +
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
     +
     ([postgres_container_network] if postgres_enabled | default(false) and semaphore_database_postgres_hostname == postgres_connection_hostname and semaphore_container_network != postgres_container_network and semaphore_database_type == 'postgres' else [])
   }}
@@ -14301,11 +14301,11 @@ uptime_kuma_gid: "{{ mash_playbook_gid }}"
 
 uptime_kuma_container_additional_networks_auto: |
   {{
+    ([gotify_container_network] if gotify_enabled | default(false) and uptime_kuma_container_network != gotify_container_network else [])
+    +
     ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
     +
     ([ntfy_container_network] if ntfy_enabled | default(false) and uptime_kuma_container_network != ntfy_container_network else [])
-    +
-    ([gotify_container_network] if gotify_enabled | default(false) and uptime_kuma_container_network != gotify_container_network else [])
   }}
 
 uptime_kuma_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
@@ -14808,9 +14808,9 @@ woodpecker_ci_server_systemd_required_services_list_auto: |
 woodpecker_ci_server_container_additional_networks_auto: |
   {{
     (
-      ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
-      +
       ([mariadb_container_network] if mariadb_enabled | default(false) and woodpecker_ci_server_database_mysql_hostname == mariadb_connection_hostname and woodpecker_ci_server_container_network != mariadb_container_network and woodpecker_ci_server_database_type == 'mysql' else [])
+      +
+      ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
       +
       ([postgres_container_network] if postgres_enabled | default(false) and woodpecker_ci_server_database_postgres_hostname == postgres_connection_hostname and woodpecker_ci_server_container_network != postgres_container_network and woodpecker_ci_server_database_type == 'postgres' else [])
     ) | unique
