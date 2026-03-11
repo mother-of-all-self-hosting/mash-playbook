@@ -38,8 +38,8 @@ For details about configuring the [Ansible role for Gitea](https://github.com/mo
 
 This service requires the following other services:
 
-- a [Postgres](postgres.md) database
 - a [Traefik](traefik.md) reverse-proxy server
+- (optional) [Postgres](postgres.md) / MySQL / [MariaDB](mariadb.md) database
 
 ## Adjusting the playbook configuration
 
@@ -64,9 +64,17 @@ gitea_path_prefix: /gitea
 ########################################################################
 ```
 
+### Select database to use
+
+It is necessary to select a database used by Gitea from a MySQL compatible database, Postgres, and SQLite. See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-gitea/blob/main/docs/configuring-gitea.md#specify-database) on the role's documentation for details.
+
 ### Configure SSH port for Gitea (optional)
 
 Gitea uses port 22 for its SSH feature by default. We recommend you to move your regular SSH server to another port and stick to this default for your Gitea instance, but you can have the instance listen to another port. See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-gitea/blob/main/docs/configuring-gitea.md#configure-ssh-port-for-gitea-optional) on the role's documentation for details.
+
+### Configuring cache (optional)
+
+Gitea uses caching to avoid repeating expensive operations. By default the internal memory (`memory`) is enabled for it, but you can use a specific cache adapter like [Redis](redis.md) and [Memcached](memcached.md). See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-gitea/blob/main/docs/configuring-gitea.md#configuring-cache-optional) on the role's documentation for details.
 
 ## Usage
 

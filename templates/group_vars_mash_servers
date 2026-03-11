@@ -1550,9 +1550,9 @@ mash_playbook_postgres_managed_databases_auto_itemized:
     {{
       ({
         'name': gitea_database_name,
-        'username': gitea_database_username,
-        'password': gitea_database_password,
-      } if gitea_enabled and gitea_database_hostname == postgres_connection_hostname and gitea_database_type == 'postgres' else omit)
+        'username': gitea_database_postgres_username,
+        'password': gitea_database_postgres_password,
+      } if gitea_enabled and gitea_database_postgres_hostname == postgres_connection_hostname and gitea_database_type == 'postgres' else omit)
     }}
   # /role-specific:gitea
 
@@ -5876,7 +5876,11 @@ gitea_gid: "{{ mash_playbook_gid }}"
 
 gitea_systemd_required_services_list_auto: |
   {{
-    ([postgres_identifier ~ '.service'] if postgres_enabled and gitea_database_hostname == postgres_connection_hostname else [])
+    ([mariadb_identifier ~ '.service'] if mariadb_enabled | default(false) and gitea_database_mysql_hostname == mariadb_connection_hostname and gitea_database_type == 'mysql' else [])
+    +
+    ([memcached_identifier ~ '.service'] if memcached_enabled | default(false) and gitea_config_cache_adapter == 'memcache' else [])
+    +
+    ([postgres_identifier ~ '.service'] if postgres_enabled | default(false) and gitea_database_postgres_hostname == postgres_connection_hostname and gitea_database_type == 'postgres' else [])
   }}
 
 gitea_systemd_wanted_services_list_auto: |
@@ -5890,7 +5894,11 @@ gitea_container_additional_networks_auto: |
     +
     ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
     +
-    ([postgres_container_network] if postgres_enabled and gitea_database_hostname == postgres_connection_hostname and gitea_container_network != postgres_container_network else [])
+    ([mariadb_container_network] if mariadb_enabled | default(false) and gitea_database_mysql_hostname == mariadb_connection_hostname and gitea_container_network != mariadb_container_network and gitea_database_type == 'mysql' else [])
+    +
+    ([memcached_container_network] if memcached_enabled | default(false) and gitea_container_network != memcached_container_network and gitea_config_cache_adapter == 'memcache' else [])
+    +
+    ([postgres_container_network] if postgres_enabled | default(false) and gitea_database_postgres_hostname == postgres_connection_hostname and gitea_container_network != postgres_container_network and gitea_database_type == 'postgres' else [])
   }}
 
 gitea_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
@@ -5906,10 +5914,20 @@ gitea_config_mailer_from: "{{ exim_relay_sender_address if exim_relay_enabled el
 gitea_config_mailer_protocol: "{{ 'smtp' if exim_relay_enabled else '' }}"
 # /role-specific:exim_relay
 
+# role-specific:mariadb
+gitea_database_mysql_hostname: "{{ mariadb_connection_hostname if mariadb_enabled else '' }}"
+gitea_database_mysql_port: "{{ mariadb_connection_port if mariadb_enabled else '3306' }}"
+gitea_database_mysql_password: "{{ (mash_playbook_generic_secret_key + ':db.gitea') | hash('sha512') | to_uuid }}"
+# /role-specific:mariadb
+
+# role-specific:memcached
+gitea_config_cache_host: "{{ memcached_identifier }}:{{ memcached_container_http_port }}"
+# /role-specific:memcached
+
 # role-specific:postgres
-gitea_database_hostname: "{{ postgres_connection_hostname if postgres_enabled else '' }}"
-gitea_database_port: "{{ postgres_connection_port if postgres_enabled else '5432' }}"
-gitea_database_password: "{{ (mash_playbook_generic_secret_key + ':db.gitea') | hash('sha512') | to_uuid }}"
+gitea_database_postgres_hostname: "{{ postgres_connection_hostname if postgres_enabled else '' }}"
+gitea_database_postgres_port: "{{ postgres_connection_port if postgres_enabled else '5432' }}"
+gitea_database_postgres_password: "{{ (mash_playbook_generic_secret_key + ':db.gitea') | hash('sha512') | to_uuid }}"
 # /role-specific:postgres
 
 # role-specific:traefik
@@ -9131,6 +9149,17 @@ mash_playbook_mariadb_managed_databases_auto_itemized:
       } if freshrss_enabled and freshrss_database_mysql_hostname == mariadb_connection_hostname and freshrss_database_type == 'mysql' else omit)
     }}
   # /role-specific:freshrss
+
+  # role-specific:gitea
+  - |-
+    {{
+      ({
+        'name': gitea_database_name,
+        'username': gitea_database_mysql_username,
+        'password': gitea_database_mysql_password,
+      } if gitea_enabled and gitea_database_mysql_hostname == mariadb_connection_hostname and gitea_database_type == 'mysql' else omit)
+    }}
+  # /role-specific:gitea
 
   # role-specific:gotify
   - |-
