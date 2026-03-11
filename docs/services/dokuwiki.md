@@ -36,6 +36,7 @@ For details about configuring the [Ansible role for DokuWiki](https://github.com
 This service requires the following other services:
 
 - [Traefik](traefik.md) reverse-proxy server
+- (optional) [exim-relay](exim-relay.md) mailer — DokuWiki is compatible with other email delivery services
 
 ## Adjusting the playbook configuration
 
@@ -61,9 +62,23 @@ dokuwiki_hostname: dokuwiki.example.com
 
 ## Usage
 
-After running the command for installation, the Dokuwiki instance becomes available at the URL specified with `dokuwiki_hostname`. With the configuration above, the service is hosted at `https://dokuwiki.example.com`.
+After running the command for installation, the DokuWiki instance becomes available at the URL specified with `dokuwiki_hostname`. With the configuration above, the service is hosted at `https://dokuwiki.example.com`.
 
 To get started, open the URL `https://dokuwiki.example.com/install.php` with a web browser to complete installation on the server. The instruction is available at <https://www.dokuwiki.org/installer>.
+
+### Configuring the SMTP server (optional)
+
+On DokuWiki you can add a plugin to have the service connect to a SMTP server for password recovery function. If you enable the [exim-relay](exim-relay.md) service in your inventory configuration, the playbook will automatically configure it as a mailer for the service.
+
+As the DokuWiki instance does not support configuring the mailer with environment variables, you can add default options for it on its UI. Refer to [this page](https://www.dokuwiki.org/plugin:smtp) on the official documentation as well about how to configure it.
+
+To set up with the default exim-relay settings, install the plugin, navigate to "Configuration Manager", and add the following configuration:
+
+- **SMTP Server**: `mash-exim-relay`
+- **Port**: 8025
+- **SSL setting**: none
+
+After setting the configuration, you can have the DokuWiki instance send a test mail on the administration page.
 
 ## Troubleshooting
 
