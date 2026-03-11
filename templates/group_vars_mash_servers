@@ -2794,12 +2794,12 @@ answer_systemd_required_services_list_auto: |
 
 answer_systemd_wanted_services_list_auto: |
   {{
-    ([exim_relay_identifier ~ '.service'] if exim_relay_enabled else [])
+    ([exim_relay_identifier ~ '.service'] if exim_relay_enabled | default(false) else [])
   }}
 
 answer_container_additional_networks_auto: |
   {{
-    ([exim_relay_container_network] if exim_relay_enabled and answer_container_network != exim_relay_container_network else [])
+    ([exim_relay_container_network] if exim_relay_enabled | default(false) and answer_container_network != exim_relay_container_network else [])
     +
     ([mariadb_container_network] if mariadb_enabled | default(false) and answer_database_mysql_hostname == mariadb_connection_hostname and answer_container_network != mariadb_container_network and answer_database_type == 'mysql' else [])
     +
@@ -3054,7 +3054,7 @@ asciinema_server_gid: "{{ mash_playbook_gid }}"
 
 asciinema_server_systemd_wanted_services_list_auto: |
   {{
-    ([exim_relay_identifier ~ '.service'] if exim_relay_enabled and asciinema_server_environment_variable_smtp_host == exim_relay_identifier else [])
+    ([exim_relay_identifier ~ '.service'] if exim_relay_enabled | default(false) and asciinema_server_environment_variable_smtp_host == exim_relay_identifier else [])
   }}
 
 asciinema_server_systemd_required_services_list_auto: |
@@ -3064,7 +3064,7 @@ asciinema_server_systemd_required_services_list_auto: |
 
 asciinema_server_container_additional_networks_auto: |
   {{
-    ([exim_relay_container_network] if exim_relay_enabled and asciinema_server_environment_variable_smtp_host == exim_relay_identifier and asciinema_server_container_network != exim_relay_container_network else [])
+    ([exim_relay_container_network] if exim_relay_enabled | default(false) and asciinema_server_environment_variable_smtp_host == exim_relay_identifier and asciinema_server_container_network != exim_relay_container_network else [])
     +
     ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
     +
@@ -3171,12 +3171,12 @@ audiobookshelf_gid: "{{ mash_playbook_gid }}"
 
 audiobookshelf_systemd_wanted_services_list_auto: |
   {{
-    ([exim_relay_identifier ~ '.service'] if exim_relay_enabled else [])
+    ([exim_relay_identifier ~ '.service'] if exim_relay_enabled | default(false) else [])
   }}
 
 audiobookshelf_container_additional_networks_auto: |
   {{
-    ([exim_relay_container_network] if exim_relay_enabled and audiobookshelf_container_network != exim_relay_container_network else [])
+    ([exim_relay_container_network] if exim_relay_enabled | default(false) and audiobookshelf_container_network != exim_relay_container_network else [])
     +
     ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
   }}
@@ -3286,7 +3286,7 @@ authentik_server_systemd_required_services_list_auto: |
 
 authentik_container_additional_networks_auto: |
   {{
-    ([exim_relay_container_network] if exim_relay_enabled and authentik_email_host == exim_relay_identifier and authentik_container_network != exim_relay_container_network else [])
+    ([exim_relay_container_network] if exim_relay_enabled | default(false) and authentik_email_host == exim_relay_identifier and authentik_container_network != exim_relay_container_network else [])
     +
     ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
     +
@@ -3461,21 +3461,21 @@ barassistant_gid: "{{ mash_playbook_gid }}"
 
 barassistant_server_systemd_wanted_services_list_auto: |
   {{
-    ([exim_relay_identifier ~ '.service'] if exim_relay_enabled and barassistant_server_environment_variables_mail_host == exim_relay_identifier else [])
+    ([exim_relay_identifier ~ '.service'] if exim_relay_enabled | default(false) and barassistant_server_environment_variables_mail_host == exim_relay_identifier else [])
     +
     ([meilisearch_identifier ~ '.service'] if meilisearch_identifier | default(false) else [])
   }}
 
 barassistant_saltrim_systemd_wanted_services_list_auto: |
   {{
-    ([exim_relay_identifier ~ '.service'] if exim_relay_enabled and barassistant_server_environment_variables_mail_host == exim_relay_identifier else [])
+    ([exim_relay_identifier ~ '.service'] if exim_relay_enabled | default(false) and barassistant_server_environment_variables_mail_host == exim_relay_identifier else [])
     +
     ([meilisearch_identifier ~ '.service'] if meilisearch_identifier | default(false) else [])
   }}
 
 barassistant_server_container_additional_networks_auto: |
   {{
-    ([exim_relay_container_network] if exim_relay_enabled and barassistant_server_environment_variables_mail_host == exim_relay_identifier and barassistant_container_network != exim_relay_container_network else [])
+    ([exim_relay_container_network] if exim_relay_enabled | default(false) and barassistant_server_environment_variables_mail_host == exim_relay_identifier and barassistant_container_network != exim_relay_container_network else [])
     +
     ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
     +
@@ -3484,7 +3484,7 @@ barassistant_server_container_additional_networks_auto: |
 
 barassistant_saltrim_container_additional_networks_auto: |
   {{
-    ([exim_relay_container_network] if exim_relay_enabled and barassistant_server_environment_variables_mail_host == exim_relay_identifier and barassistant_container_network != exim_relay_container_network else [])
+    ([exim_relay_container_network] if exim_relay_enabled | default(false) and barassistant_server_environment_variables_mail_host == exim_relay_identifier and barassistant_container_network != exim_relay_container_network else [])
     +
     ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
     +
@@ -3746,7 +3746,7 @@ calibre_web_gid: "{{ mash_playbook_gid }}"
 
 calibre_web_container_additional_networks_auto: |
   {{
-    ([exim_relay_container_network] if exim_relay_enabled and calibre_web_container_network != exim_relay_container_network else [])
+    ([exim_relay_container_network] if exim_relay_enabled | default(false) and calibre_web_container_network != exim_relay_container_network else [])
     +
     ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
   }}
@@ -3786,7 +3786,7 @@ calibre_web_automated_gid: "{{ mash_playbook_gid }}"
 
 calibre_web_automated_container_additional_networks_auto: |
   {{
-    ([exim_relay_container_network] if exim_relay_enabled and calibre_web_automated_container_network != exim_relay_container_network else [])
+    ([exim_relay_container_network] if exim_relay_enabled | default(false) and calibre_web_automated_container_network != exim_relay_container_network else [])
     +
     ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
   }}
@@ -3992,12 +3992,12 @@ codimd_systemd_required_services_list_auto: |
 
 codimd_systemd_wanted_services_list_auto: |
   {{
-    ([exim_relay_identifier ~ '.service'] if exim_relay_enabled else [])
+    ([exim_relay_identifier ~ '.service'] if exim_relay_enabled | default(false) else [])
   }}
 
 codimd_container_additional_networks_auto: |
   {{
-    ([exim_relay_container_network] if exim_relay_enabled and codimd_container_network != exim_relay_container_network else [])
+    ([exim_relay_container_network] if exim_relay_enabled | default(false) and codimd_container_network != exim_relay_container_network else [])
     +
     ([mariadb_container_network] if mariadb_enabled | default(false) and codimd_database_mysql_hostname == mariadb_connection_hostname and codimd_container_network != mariadb_container_network and codimd_database_type == 'mysql' else [])
     +
@@ -4520,12 +4520,12 @@ docmost_systemd_required_services_list_auto: |
 
 docmost_systemd_wanted_services_list_auto: |
   {{
-    ([exim_relay_identifier ~ '.service'] if exim_relay_enabled and docmost_environment_variable_smtp_host == exim_relay_identifier else [])
+    ([exim_relay_identifier ~ '.service'] if exim_relay_enabled | default(false) and docmost_environment_variable_smtp_host == exim_relay_identifier else [])
   }}
 
 docmost_container_additional_networks_auto: |
   {{
-    ([exim_relay_container_network] if exim_relay_enabled and docmost_environment_variable_smtp_host == exim_relay_identifier and docmost_container_network != exim_relay_container_network else [])
+    ([exim_relay_container_network] if exim_relay_enabled | default(false) and docmost_environment_variable_smtp_host == exim_relay_identifier and docmost_container_network != exim_relay_container_network else [])
     +
     ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
     +
@@ -4543,7 +4543,7 @@ docmost_environment_variable_redis_url: "redis://{{ docmost_redis_hostname }}:{{
 docmost_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
 docmost_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
 
-docmost_mailer_enabled: "{{ exim_relay_enabled }}"
+docmost_mailer_enabled: "{{ exim_relay_enabled | default(false) }}"
 
 # role-specific:exim_relay
 docmost_environment_variable_smtp_host: "{{ exim_relay_identifier if exim_relay_enabled else '' }}"
@@ -4598,12 +4598,12 @@ docuseal_systemd_required_services_list_auto: |
 
 docuseal_systemd_wanted_services_list_auto: |
   {{
-    ([exim_relay_identifier ~ '.service'] if exim_relay_enabled else [])
+    ([exim_relay_identifier ~ '.service'] if exim_relay_enabled | default(false) else [])
   }}
 
 docuseal_container_additional_networks_auto: |
   {{
-    ([exim_relay_container_network] if exim_relay_enabled and docuseal_container_network != exim_relay_container_network else [])
+    ([exim_relay_container_network] if exim_relay_enabled | default(false) and docuseal_container_network != exim_relay_container_network else [])
     +
     ([mariadb_container_network] if mariadb_enabled | default(false) and docuseal_database_mysql_hostname == mariadb_connection_hostname and docuseal_container_network != mariadb_container_network and docuseal_database_type == 'mysql' else [])
     +
@@ -4659,7 +4659,7 @@ dokuwiki_gid: "{{ mash_playbook_gid }}"
 
 dokuwiki_container_additional_networks_auto: |
   {{
-    ([exim_relay_container_network] if exim_relay_enabled and dokuwiki_container_network != exim_relay_container_network else [])
+    ([exim_relay_container_network] if exim_relay_enabled | default(false) and dokuwiki_container_network != exim_relay_container_network else [])
     +
     ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
   }}
@@ -4699,7 +4699,7 @@ duplicati_gid: "{{ mash_playbook_gid }}"
 
 duplicati_container_additional_networks_auto: |
   {{
-    ([exim_relay_container_network] if exim_relay_enabled and duplicati_container_network != exim_relay_container_network else [])
+    ([exim_relay_container_network] if exim_relay_enabled | default(false) and duplicati_container_network != exim_relay_container_network else [])
     +
     ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
   }}
@@ -5080,12 +5080,12 @@ farmos_systemd_required_services_list_auto: |
 
 farmos_systemd_wanted_services_list_auto: |
   {{
-    ([exim_relay_identifier ~ '.service'] if exim_relay_enabled else [])
+    ([exim_relay_identifier ~ '.service'] if exim_relay_enabled | default(false) else [])
   }}
 
 farmos_container_additional_networks_auto: |
   {{
-    ([exim_relay_container_network] if exim_relay_enabled and farmos_container_network != exim_relay_container_network else [])
+    ([exim_relay_container_network] if exim_relay_enabled | default(false) and farmos_container_network != exim_relay_container_network else [])
     +
     ([mariadb_container_network] if mariadb_enabled | default(false) and farmos_database_mysql_hostname == mariadb_connection_hostname and farmos_container_network != mariadb_container_network and farmos_database_type == 'mysql' else [])
     +
@@ -5141,7 +5141,7 @@ fider_gid: "{{ mash_playbook_gid }}"
 
 fider_systemd_wanted_services_list_auto: |
   {{
-    ([exim_relay_identifier ~ '.service'] if exim_relay_enabled and fider_environment_variables_email_smtp_host == exim_relay_identifier else [])
+    ([exim_relay_identifier ~ '.service'] if exim_relay_enabled | default(false) and fider_environment_variables_email_smtp_host == exim_relay_identifier else [])
   }}
 
 fider_systemd_required_services_list_auto: |
@@ -5151,7 +5151,7 @@ fider_systemd_required_services_list_auto: |
 
 fider_container_additional_networks_auto: |
   {{
-    ([exim_relay_container_network] if exim_relay_enabled and fider_environment_variables_email_smtp_host == exim_relay_identifier and fider_container_network != exim_relay_container_network else [])
+    ([exim_relay_container_network] if exim_relay_enabled | default(false) and fider_environment_variables_email_smtp_host == exim_relay_identifier and fider_container_network != exim_relay_container_network else [])
     +
     ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
     +
@@ -5528,12 +5528,12 @@ forgejo_systemd_required_services_list_auto: |
 
 forgejo_systemd_wanted_services_list_auto: |
   {{
-    ([exim_relay_identifier ~ '.service'] if exim_relay_enabled and forgejo_config_mailer_smtp_addr == exim_relay_identifier else [])
+    ([exim_relay_identifier ~ '.service'] if exim_relay_enabled | default(false) and forgejo_config_mailer_smtp_addr == exim_relay_identifier else [])
   }}
 
 forgejo_container_additional_networks_auto: |
   {{
-    ([exim_relay_container_network] if exim_relay_enabled and forgejo_config_mailer_smtp_addr == exim_relay_identifier and forgejo_container_network != exim_relay_container_network else [])
+    ([exim_relay_container_network] if exim_relay_enabled | default(false) and forgejo_config_mailer_smtp_addr == exim_relay_identifier and forgejo_container_network != exim_relay_container_network else [])
     +
     ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
     +
@@ -5881,12 +5881,12 @@ gitea_systemd_required_services_list_auto: |
 
 gitea_systemd_wanted_services_list_auto: |
   {{
-    ([exim_relay_identifier ~ '.service'] if exim_relay_enabled and gitea_config_mailer_smtp_addr == exim_relay_identifier else [])
+    ([exim_relay_identifier ~ '.service'] if exim_relay_enabled | default(false) and gitea_config_mailer_smtp_addr == exim_relay_identifier else [])
   }}
 
 gitea_container_additional_networks_auto: |
   {{
-    ([exim_relay_container_network] if exim_relay_enabled and gitea_config_mailer_smtp_addr == exim_relay_identifier and gitea_container_network != exim_relay_container_network else [])
+    ([exim_relay_container_network] if exim_relay_enabled | default(false) and gitea_config_mailer_smtp_addr == exim_relay_identifier and gitea_container_network != exim_relay_container_network else [])
     +
     ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
     +
@@ -6048,12 +6048,12 @@ gotosocial_systemd_required_services_list_auto: |
 
 gotosocial_systemd_wanted_services_list_auto: |
   {{
-    ([exim_relay_identifier ~ '.service'] if exim_relay_enabled and gotosocial_smtp_host == exim_relay_identifier else [])
+    ([exim_relay_identifier ~ '.service'] if exim_relay_enabled | default(false) and gotosocial_smtp_host == exim_relay_identifier else [])
   }}
 
 gotosocial_container_additional_networks_auto: |
   {{
-    ([exim_relay_container_network] if exim_relay_enabled and gotosocial_smtp_host == exim_relay_identifier and gotosocial_container_network != exim_relay_container_network else [])
+    ([exim_relay_container_network] if exim_relay_enabled | default(false) and gotosocial_smtp_host == exim_relay_identifier and gotosocial_container_network != exim_relay_container_network else [])
     +
     ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
     +
@@ -6118,12 +6118,12 @@ grafana_gid: "{{ mash_playbook_gid }}"
 
 grafana_systemd_wanted_services_list_auto: |
   {{
-    ([exim_relay_identifier ~ '.service'] if exim_relay_enabled and grafana_smtp_host == exim_relay_identifier else [])
+    ([exim_relay_identifier ~ '.service'] if exim_relay_enabled | default(false) and grafana_smtp_host == exim_relay_identifier else [])
   }}
 
 grafana_container_additional_networks_auto: |
   {{
-    ([exim_relay_container_network] if exim_relay_enabled and grafana_smtp_host == exim_relay_identifier and grafana_container_network != exim_relay_container_network else [])
+    ([exim_relay_container_network] if exim_relay_enabled | default(false) and grafana_smtp_host == exim_relay_identifier and grafana_container_network != exim_relay_container_network else [])
     +
     ([mash_playbook_reverse_proxyable_services_additional_network] if (grafana_container_labels_traefik_enabled and mash_playbook_reverse_proxyable_services_additional_network) else [])
   }}
@@ -6278,12 +6278,12 @@ healthchecks_systemd_required_services_list_auto: |
 
 healthchecks_systemd_wanted_services_list_auto: |
   {{
-    ([exim_relay_identifier ~ '.service'] if exim_relay_enabled and healthchecks_environment_variable_email_host == exim_relay_identifier else [])
+    ([exim_relay_identifier ~ '.service'] if exim_relay_enabled | default(false) and healthchecks_environment_variable_email_host == exim_relay_identifier else [])
   }}
 
 healthchecks_container_additional_networks_auto: |
   {{
-    ([exim_relay_container_network] if exim_relay_enabled and healthchecks_environment_variable_email_host == exim_relay_identifier and healthchecks_container_network != exim_relay_container_network else [])
+    ([exim_relay_container_network] if exim_relay_enabled | default(false) and healthchecks_environment_variable_email_host == exim_relay_identifier and healthchecks_container_network != exim_relay_container_network else [])
     +
     ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
     +
@@ -7434,13 +7434,13 @@ ihatemoney_systemd_required_services_list_auto: |
 
 ihatemoney_systemd_wanted_services_list_auto: |
   {{
-    ([exim_relay_identifier ~ '.service'] if exim_relay_enabled and ihatemoney_email_host == exim_relay_identifier else [])
+    ([exim_relay_identifier ~ '.service'] if exim_relay_enabled | default(false) and ihatemoney_email_host == exim_relay_identifier else [])
   }}
 
 ihatemoney_container_additional_networks_auto: |
   {{
     (
-      ([exim_relay_container_network] if exim_relay_enabled and ihatemoney_email_host == exim_relay_identifier and ihatemoney_container_network != exim_relay_container_network else [])
+      ([exim_relay_container_network] if exim_relay_enabled | default(false) and ihatemoney_email_host == exim_relay_identifier and ihatemoney_container_network != exim_relay_container_network else [])
       +
       ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
       +
@@ -7558,7 +7558,7 @@ immich_server_systemd_required_services_list_auto: |
 
 immich_server_systemd_wanted_services_list_auto: |
   {{
-    ([exim_relay_identifier ~ '.service'] if exim_relay_enabled and immich_smtp_host == exim_relay_identifier else [])
+    ([exim_relay_identifier ~ '.service'] if exim_relay_enabled | default(false) and immich_smtp_host == exim_relay_identifier else [])
   }}
 
 immich_server_container_additional_networks_auto: |
@@ -7566,7 +7566,7 @@ immich_server_container_additional_networks_auto: |
     (
       ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
       +
-      ([exim_relay_container_network] if exim_relay_enabled and immich_smtp_host == exim_relay_identifier and immich_server_container_network != exim_relay_container_network else [])
+      ([exim_relay_container_network] if exim_relay_enabled | default(false) and immich_smtp_host == exim_relay_identifier and immich_server_container_network != exim_relay_container_network else [])
       +
       ([postgres_container_network] if postgres_enabled and immich_database_hostname == postgres_connection_hostname | default('mash-postgres') and immich_server_container_network != postgres_container_network | default('mash-postgres') else [])
     ) | unique
@@ -7987,7 +7987,7 @@ joplin_server_gid: "{{ mash_playbook_gid }}"
 
 joplin_server_systemd_wanted_services_list_auto: |
   {{
-    ([exim_relay_identifier ~ '.service'] if exim_relay_enabled and joplin_server_environment_variable_mailer_host == exim_relay_identifier else [])
+    ([exim_relay_identifier ~ '.service'] if exim_relay_enabled | default(false) and joplin_server_environment_variable_mailer_host == exim_relay_identifier else [])
   }}
 
 joplin_server_systemd_required_services_list_auto: |
@@ -7997,7 +7997,7 @@ joplin_server_systemd_required_services_list_auto: |
 
 joplin_server_container_additional_networks_auto: |
   {{
-    ([exim_relay_container_network] if exim_relay_enabled and joplin_server_environment_variable_mailer_host == exim_relay_identifier and joplin_server_container_network != exim_relay_container_network else [])
+    ([exim_relay_container_network] if exim_relay_enabled | default(false) and joplin_server_environment_variable_mailer_host == exim_relay_identifier and joplin_server_container_network != exim_relay_container_network else [])
     +
     ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
     +
@@ -8062,12 +8062,12 @@ kanboard_systemd_required_services_list_auto: |
 
 kanboard_systemd_wanted_services_list_auto: |
   {{
-    ([exim_relay_identifier ~ '.service'] if exim_relay_enabled and kanboard_environment_variables_mail_smtp_hostname == exim_relay_identifier else [])
+    ([exim_relay_identifier ~ '.service'] if exim_relay_enabled | default(false) and kanboard_environment_variables_mail_smtp_hostname == exim_relay_identifier else [])
   }}
 
 kanboard_container_additional_networks_auto: |
   {{
-    ([exim_relay_container_network] if exim_relay_enabled and kanboard_environment_variables_mail_smtp_hostname == exim_relay_identifier and kanboard_container_network != exim_relay_container_network else [])
+    ([exim_relay_container_network] if exim_relay_enabled | default(false) and kanboard_environment_variables_mail_smtp_hostname == exim_relay_identifier and kanboard_container_network != exim_relay_container_network else [])
     +
     ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
     +
@@ -8133,7 +8133,7 @@ karakeep_systemd_wanted_services_list_auto: |
   {{
     ([browserless_identifier ~ '.service'] if browserless_enabled | default(false) else [])
     +
-    ([exim_relay_identifier ~ '.service'] if exim_relay_enabled and karakeep_environment_variables_smtp_host == exim_relay_identifier else [])
+    ([exim_relay_identifier ~ '.service'] if exim_relay_enabled | default(false) and karakeep_environment_variables_smtp_host == exim_relay_identifier else [])
     +
     ([meilisearch_identifier ~ '.service'] if meilisearch_enabled | default(false) else [])
   }}
@@ -8142,7 +8142,7 @@ karakeep_container_additional_networks_auto: |
   {{
     ([browserless_container_network] if browserless_enabled | default(false) and karakeep_container_network != browserless_container_network else [])
     +
-    ([exim_relay_container_network] if exim_relay_enabled and karakeep_environment_variables_smtp_host == exim_relay_identifier and karakeep_container_network != exim_relay_container_network else [])
+    ([exim_relay_container_network] if exim_relay_enabled | default(false) and karakeep_environment_variables_smtp_host == exim_relay_identifier and karakeep_container_network != exim_relay_container_network else [])
     +
     ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
     +
@@ -8346,12 +8346,12 @@ kutt_systemd_required_services_list_auto: |
 
 kutt_systemd_wanted_services_list_auto: |
   {{
-    ([exim_relay_identifier ~ '.service'] if exim_relay_enabled and kutt_environment_variables_smtp_host == exim_relay_identifier else [])
+    ([exim_relay_identifier ~ '.service'] if exim_relay_enabled | default(false) and kutt_environment_variables_smtp_host == exim_relay_identifier else [])
   }}
 
 kutt_container_additional_networks_auto: |
   {{
-    ([exim_relay_container_network] if exim_relay_enabled and kutt_environment_variables_smtp_host == exim_relay_identifier and kutt_container_network != exim_relay_container_network else [])
+    ([exim_relay_container_network] if exim_relay_enabled | default(false) and kutt_environment_variables_smtp_host == exim_relay_identifier and kutt_container_network != exim_relay_container_network else [])
     +
     ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
     +
@@ -8575,12 +8575,12 @@ limesurvey_systemd_required_services_list_auto: |
 
 limesurvey_systemd_wanted_services_list_auto: |
   {{
-    ([exim_relay_identifier ~ '.service'] if exim_relay_enabled else [])
+    ([exim_relay_identifier ~ '.service'] if exim_relay_enabled | default(false) else [])
   }}
 
 limesurvey_container_additional_networks_auto: |
   {{
-    ([exim_relay_container_network] if exim_relay_enabled and limesurvey_container_network != exim_relay_container_network else [])
+    ([exim_relay_container_network] if exim_relay_enabled | default(false) and limesurvey_container_network != exim_relay_container_network else [])
     +
     ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
     +
@@ -8804,12 +8804,12 @@ lldap_systemd_required_services_list_auto: |
 
 lldap_systemd_wanted_services_list_auto: |
   {{
-    ([exim_relay_identifier ~ '.service'] if exim_relay_enabled and lldap_environment_variables_smtp_host == exim_relay_identifier else [])
+    ([exim_relay_identifier ~ '.service'] if exim_relay_enabled | default(false) and lldap_environment_variables_smtp_host == exim_relay_identifier else [])
   }}
 
 lldap_container_additional_networks_auto: |
   {{
-    ([exim_relay_container_network] if exim_relay_enabled and lldap_environment_variables_smtp_host == exim_relay_identifier and lldap_container_network != exim_relay_container_network else [])
+    ([exim_relay_container_network] if exim_relay_enabled | default(false) and lldap_environment_variables_smtp_host == exim_relay_identifier and lldap_container_network != exim_relay_container_network else [])
     +
     ([mariadb_container_network] if mariadb_enabled | default(false) and lldap_database_mysql_hostname == mariadb_connection_hostname and lldap_container_network != mariadb_container_network and lldap_database_type == 'mysql' else [])
     +
@@ -9530,12 +9530,12 @@ mediawiki_systemd_required_services_list_auto: |
 
 mediawiki_systemd_wanted_services_list_auto: |
   {{
-    ([exim_relay_identifier ~ '.service'] if exim_relay_enabled else [])
+    ([exim_relay_identifier ~ '.service'] if exim_relay_enabled | default(false) else [])
   }}
 
 mediawiki_container_additional_networks_auto: |
   {{
-    ([exim_relay_container_network] if exim_relay_enabled and mediawiki_container_network != exim_relay_container_network else [])
+    ([exim_relay_container_network] if exim_relay_enabled | default(false) and mediawiki_container_network != exim_relay_container_network else [])
     +
     ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
     +
@@ -9752,14 +9752,14 @@ misskey_systemd_required_services_list_auto: |
 
 misskey_systemd_wanted_services_list_auto: |
   {{
-    ([exim_relay_identifier ~ '.service'] if exim_relay_enabled else [])
+    ([exim_relay_identifier ~ '.service'] if exim_relay_enabled | default (false) else [])
     +
     ([meilisearch_identifier ~ '.service'] if meilisearch_enabled | default(false) and misskey_config_fulltext_search_provider == 'meilisearch' else [])
   }}
 
 misskey_container_additional_networks_auto: |
   {{
-    ([exim_relay_container_network] if exim_relay_enabled and misskey_container_network != exim_relay_container_network else [])
+    ([exim_relay_container_network] if exim_relay_enabled | default(false) and misskey_container_network != exim_relay_container_network else [])
     +
     ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
     +
@@ -10364,7 +10364,7 @@ nextcloud_systemd_required_services_list_auto: |
 
 nextcloud_systemd_wanted_services_list_auto: |
   {{
-    ([exim_relay_identifier ~ '.service'] if exim_relay_enabled and nextcloud_environment_variables_smtp_host == exim_relay_identifier else [])
+    ([exim_relay_identifier ~ '.service'] if exim_relay_enabled | default(false) and nextcloud_environment_variables_smtp_host == exim_relay_identifier else [])
     +
     ([lldap_identifier ~ '.service'] if lldap_enabled | default(false) and nextcloud_lldap_enabled else [])
   }}
@@ -10372,7 +10372,7 @@ nextcloud_systemd_wanted_services_list_auto: |
 nextcloud_container_additional_networks_auto: |
   {{
     (
-      ([exim_relay_container_network] if exim_relay_enabled and nextcloud_environment_variables_smtp_host == exim_relay_identifier and nextcloud_container_network != exim_relay_container_network else [])
+      ([exim_relay_container_network] if exim_relay_enabled | default(false) and nextcloud_environment_variables_smtp_host == exim_relay_identifier and nextcloud_container_network != exim_relay_container_network else [])
       +
       ([lldap_container_network] if lldap_enabled | default(false) and nextcloud_container_network != lldap_container_network and nextcloud_lldap_enabled else [])
       +
@@ -10645,12 +10645,12 @@ ntfy_gid: "{{ mash_playbook_gid }}"
 
 ntfy_systemd_wanted_services_list_auto: |
   {{
-    ([exim_relay_identifier ~ '.service'] if exim_relay_enabled and ntfy_smtp_sender_addr_host == exim_relay_identifier else [])
+    ([exim_relay_identifier ~ '.service'] if exim_relay_enabled | default(false) and ntfy_smtp_sender_addr_host == exim_relay_identifier else [])
   }}
 
 ntfy_container_additional_networks_auto: |
   {{
-    ([exim_relay_container_network] if exim_relay_enabled and ntfy_smtp_sender_addr_host == exim_relay_identifier and ntfy_container_network != exim_relay_container_network else [])
+    ([exim_relay_container_network] if exim_relay_enabled | default(false) and ntfy_smtp_sender_addr_host == exim_relay_identifier and ntfy_container_network != exim_relay_container_network else [])
     +
     ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
   }}
@@ -11102,12 +11102,12 @@ otterwiki_gid: "{{ mash_playbook_gid }}"
 
 otterwiki_systemd_wanted_services_list_auto: |
   {{
-    ([exim_relay_identifier ~ '.service'] if exim_relay_enabled and otterwiki_environment_variables_mail_server == exim_relay_identifier else [])
+    ([exim_relay_identifier ~ '.service'] if exim_relay_enabled | default(false) and otterwiki_environment_variables_mail_server == exim_relay_identifier else [])
   }}
 
 otterwiki_container_additional_networks_auto: |
   {{
-    ([exim_relay_container_network] if exim_relay_enabled and otterwiki_environment_variables_mail_server == exim_relay_identifier and otterwiki_container_network != exim_relay_container_network else [])
+    ([exim_relay_container_network] if exim_relay_enabled | default(false) and otterwiki_environment_variables_mail_server == exim_relay_identifier and otterwiki_container_network != exim_relay_container_network else [])
     +
     ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
   }}
@@ -11342,14 +11342,14 @@ paperless_systemd_required_services_list_auto: |
 
 paperless_systemd_wanted_services_list_auto: |
   {{
-    ([exim_relay_identifier ~ '.service'] if exim_relay_enabled and paperless_email_host == exim_relay_identifier else [])
+    ([exim_relay_identifier ~ '.service'] if exim_relay_enabled | default(false) and paperless_email_host == exim_relay_identifier else [])
     +
     ([tika_identifier ~ '.service'] if tika_enabled | default(false) else [])
   }}
 
 paperless_container_additional_networks_auto: |
   {{
-    ([exim_relay_container_network] if exim_relay_enabled and paperless_email_host == exim_relay_identifier and paperless_container_network != exim_relay_container_network else [])
+    ([exim_relay_container_network] if exim_relay_enabled | default(false) and paperless_email_host == exim_relay_identifier and paperless_container_network != exim_relay_container_network else [])
     +
     ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
     +
@@ -11423,12 +11423,12 @@ papra_gid: "{{ mash_playbook_gid }}"
 
 papra_systemd_wanted_services_list_auto: |
   {{
-    ([exim_relay_identifier ~ '.service'] if exim_relay_enabled and papra_environment_variables_smtp_host == exim_relay_identifier else [])
+    ([exim_relay_identifier ~ '.service'] if exim_relay_enabled | default(false) and papra_environment_variables_smtp_host == exim_relay_identifier else [])
   }}
 
 papra_container_additional_networks_auto: |
   {{
-    ([exim_relay_container_network] if exim_relay_enabled and papra_environment_variables_smtp_host == exim_relay_identifier and papra_container_network != exim_relay_container_network else [])
+    ([exim_relay_container_network] if exim_relay_enabled | default(false) and papra_environment_variables_smtp_host == exim_relay_identifier and papra_container_network != exim_relay_container_network else [])
     +
     ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
   }}
@@ -11481,12 +11481,12 @@ pdfding_systemd_required_services_list_auto: |
 
 pdfding_systemd_wanted_services_list_auto: |
   {{
-    ([exim_relay_identifier ~ '.service'] if exim_relay_enabled and pdfding_environment_variables_smtp_host == exim_relay_identifier else [])
+    ([exim_relay_identifier ~ '.service'] if exim_relay_enabled | default(false) and pdfding_environment_variables_smtp_host == exim_relay_identifier else [])
   }}
 
 pdfding_container_additional_networks_auto: |
   {{
-    ([exim_relay_container_network] if exim_relay_enabled and pdfding_environment_variables_smtp_host == exim_relay_identifier and pdfding_container_network != exim_relay_container_network else [])
+    ([exim_relay_container_network] if exim_relay_enabled | default(false) and pdfding_environment_variables_smtp_host == exim_relay_identifier and pdfding_container_network != exim_relay_container_network else [])
     +
     ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
     +
@@ -11551,13 +11551,13 @@ peertube_systemd_required_services_list_auto: |
 
 peertube_systemd_wanted_services_list_auto: |
   {{
-    ([exim_relay_identifier ~ '.service'] if exim_relay_enabled and peertube_config_smtp_hostname == exim_relay_identifier else [])
+    ([exim_relay_identifier ~ '.service'] if exim_relay_enabled | default(false) and peertube_config_smtp_hostname == exim_relay_identifier else [])
   }}
 
 peertube_container_additional_networks_auto: |
   {{
     (
-      ([exim_relay_container_network] if exim_relay_enabled and peertube_config_smtp_hostname == exim_relay_identifier and peertube_container_network != exim_relay_container_network else [])
+      ([exim_relay_container_network] if exim_relay_enabled | default(false) and peertube_config_smtp_hostname == exim_relay_identifier and peertube_container_network != exim_relay_container_network else [])
       +
       ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
       +
@@ -11619,12 +11619,12 @@ pgadmin_systemd_required_services_list_auto: |
 
 pgadmin_systemd_wanted_services_list_auto: |
   {{
-    ([exim_relay_identifier ~ '.service'] if exim_relay_enabled and pgadmin_environment_variables_pgadmin_config_mail_server == exim_relay_identifier else [])
+    ([exim_relay_identifier ~ '.service'] if exim_relay_enabled | default(false) and pgadmin_environment_variables_pgadmin_config_mail_server == exim_relay_identifier else [])
   }}
 
 pgadmin_container_additional_networks_auto: |
   {{
-    ([exim_relay_container_network] if exim_relay_enabled and pgadmin_environment_variables_pgadmin_config_mail_server == exim_relay_identifier and pgadmin_container_network != exim_relay_container_network else [])
+    ([exim_relay_container_network] if exim_relay_enabled | default(false) and pgadmin_environment_variables_pgadmin_config_mail_server == exim_relay_identifier and pgadmin_container_network != exim_relay_container_network else [])
     +
     ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
     +
@@ -11738,14 +11738,14 @@ plausible_systemd_required_services_list_auto: |
 
 plausible_systemd_wanted_services_list_auto: |
   {{
-    ([exim_relay_identifier ~ '.service'] if exim_relay_enabled and plausible_environment_variable_smtp_host_addr == exim_relay_identifier else [])
+    ([exim_relay_identifier ~ '.service'] if exim_relay_enabled | default(false) and plausible_environment_variable_smtp_host_addr == exim_relay_identifier else [])
   }}
 
 plausible_container_additional_networks_auto: |
   {{
     ([clickhouse_container_network | default('mash-clickhouse')] if (clickhouse_enabled and plausible_clickhouse_database_hostname == clickhouse_identifier | default('mash-clickhouse') and plausible_container_network != clickhouse_container_network | default('mash-clickhouse')) else [])
     +
-    ([exim_relay_container_network] if exim_relay_enabled and plausible_environment_variable_smtp_host_addr == exim_relay_identifier and plausible_container_network != exim_relay_container_network else [])
+    ([exim_relay_container_network] if exim_relay_enabled | default(false) and plausible_environment_variable_smtp_host_addr == exim_relay_identifier and plausible_container_network != exim_relay_container_network else [])
     +
     ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
     +
@@ -11851,14 +11851,14 @@ pocket_id_systemd_required_services_list_auto: |
 
 pocket_id_systemd_wanted_services_list_auto: |
   {{
-    ([exim_relay_identifier ~ '.service'] if exim_relay_enabled and pocket_id_environment_variable_smtp_host == exim_relay_identifier else [])
+    ([exim_relay_identifier ~ '.service'] if exim_relay_enabled | default(false) and pocket_id_environment_variable_smtp_host == exim_relay_identifier else [])
     +
     ([lldap_identifier ~ '.service'] if lldap_enabled | default(false) and pocket_id_ldap_enabled else [])
   }}
 
 pocket_id_container_additional_networks_auto: |
   {{
-    ([exim_relay_container_network] if exim_relay_enabled and pocket_id_environment_variable_smtp_host == exim_relay_identifier and pocket_id_container_network != exim_relay_container_network else [])
+    ([exim_relay_container_network] if exim_relay_enabled | default(false) and pocket_id_environment_variable_smtp_host == exim_relay_identifier and pocket_id_container_network != exim_relay_container_network else [])
     +
     ([lldap_container_network] if lldap_enabled | default(false) and pocket_id_container_network != lldap_container_network and pocket_id_ldap_enabled else [])
     +
@@ -13153,14 +13153,14 @@ semaphore_systemd_required_services_list_auto: |
 
 semaphore_systemd_wanted_services_list_auto: |
   {{
-    ([exim_relay_identifier ~ '.service'] if exim_relay_enabled and semaphore_environment_variables_email_host == exim_relay_identifier else [])
+    ([exim_relay_identifier ~ '.service'] if exim_relay_enabled | default(false) and semaphore_environment_variables_email_host == exim_relay_identifier else [])
   }}
 
 semaphore_container_additional_networks_auto: |
   {{
     ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
     +
-    ([exim_relay_container_network] if exim_relay_enabled and semaphore_environment_variables_email_host == exim_relay_identifier and semaphore_container_network != exim_relay_container_network else [])
+    ([exim_relay_container_network] if exim_relay_enabled | default(false) and semaphore_environment_variables_email_host == exim_relay_identifier and semaphore_container_network != exim_relay_container_network else [])
     +
     ([mariadb_container_network] if mariadb_enabled | default(false) and semaphore_database_mysql_hostname == mariadb_connection_hostname and semaphore_container_network != mariadb_container_network and semaphore_database_type == 'mysql' else [])
     +
@@ -13274,12 +13274,12 @@ sftpgo_systemd_required_services_list_auto: |
 
 sftpgo_systemd_wanted_services_list_auto: |
   {{
-    ([exim_relay_identifier ~ '.service'] if exim_relay_enabled and sftpgo_environment_variables_smtp_host == exim_relay_identifier else [])
+    ([exim_relay_identifier ~ '.service'] if exim_relay_enabled | default(false) and sftpgo_environment_variables_smtp_host == exim_relay_identifier else [])
   }}
 
 sftpgo_container_additional_networks_auto: |
   {{
-    ([exim_relay_container_network] if exim_relay_enabled and sftpgo_environment_variables_smtp_host == exim_relay_identifier and sftpgo_container_network != exim_relay_container_network else [])
+    ([exim_relay_container_network] if exim_relay_enabled | default(false) and sftpgo_environment_variables_smtp_host == exim_relay_identifier and sftpgo_container_network != exim_relay_container_network else [])
     +
     ([mariadb_container_network] if mariadb_enabled | default(false) and sftpgo_database_mysql_hostname == mariadb_connection_hostname and sftpgo_container_network != mariadb_container_network and sftpgo_environment_variables_data_provider_driver == 'mysql' else [])
     +
@@ -13513,12 +13513,12 @@ solidinvoice_systemd_required_services_list_auto: |
 
 solidinvoice_systemd_wanted_services_list_auto: |
   {{
-    ([exim_relay_identifier ~ '.service'] if exim_relay_enabled else [])
+    ([exim_relay_identifier ~ '.service'] if exim_relay_enabled | default(false) else [])
   }}
 
 solidinvoice_container_additional_networks_auto: |
   {{
-    ([exim_relay_container_network] if exim_relay_enabled and solidinvoice_container_network != exim_relay_container_network else [])
+    ([exim_relay_container_network] if exim_relay_enabled | default(false) and solidinvoice_container_network != exim_relay_container_network else [])
     +
     ([mariadb_container_network] if mariadb_enabled | default(false) and solidinvoice_database_mysql_hostname == mariadb_connection_hostname and solidinvoice_container_network != mariadb_container_network and solidinvoice_database_type == 'mysql' else [])
     +
@@ -13650,7 +13650,7 @@ statusnook_gid: "{{ mash_playbook_gid }}"
 
 statusnook_container_additional_networks_auto: |
   {{
-    ([exim_relay_container_network] if exim_relay_enabled and statusnook_container_network != exim_relay_container_network else [])
+    ([exim_relay_container_network] if exim_relay_enabled | default(false) and statusnook_container_network != exim_relay_container_network else [])
     +
     ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
   }}
@@ -13825,13 +13825,13 @@ tandoor_systemd_required_services_list_auto: |
 
 tandoor_systemd_wanted_services_list_auto: |
   {{
-    ([exim_relay_identifier ~ '.service'] if exim_relay_enabled and tandoor_email_host == exim_relay_identifier else [])
+    ([exim_relay_identifier ~ '.service'] if exim_relay_enabled | default(false) and tandoor_email_host == exim_relay_identifier else [])
   }}
 
 tandoor_container_additional_networks_auto: |
   {{
     (
-      ([exim_relay_container_network] if exim_relay_enabled and tandoor_email_host == exim_relay_identifier and tandoor_container_network != exim_relay_container_network else [])
+      ([exim_relay_container_network] if exim_relay_enabled | default(false) and tandoor_email_host == exim_relay_identifier and tandoor_container_network != exim_relay_container_network else [])
       +
       ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
       +
@@ -13895,12 +13895,12 @@ teable_systemd_required_services_list_auto: |
 
 teable_systemd_wanted_services_list_auto: |
   {{
-    ([exim_relay_identifier ~ '.service'] if exim_relay_enabled else [])
+    ([exim_relay_identifier ~ '.service'] if exim_relay_enabled | default(false) else [])
   }}
 
 teable_container_additional_networks_auto: |
   {{
-    ([exim_relay_container_network] if exim_relay_enabled and teable_container_network != exim_relay_container_network else [])
+    ([exim_relay_container_network] if exim_relay_enabled | default(false) and teable_container_network != exim_relay_container_network else [])
     +
     ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
     +
@@ -14349,12 +14349,12 @@ vaultwarden_systemd_required_services_list_auto: |
 
 vaultwarden_systemd_wanted_services_list_auto: |
   {{
-    ([exim_relay_identifier ~ '.service'] if exim_relay_enabled and vaultwarden_config_smtp_host == exim_relay_identifier else [])
+    ([exim_relay_identifier ~ '.service'] if exim_relay_enabled | default(false) and vaultwarden_config_smtp_host == exim_relay_identifier else [])
   }}
 
 vaultwarden_container_additional_networks_auto: |
   {{
-    ([exim_relay_container_network] if exim_relay_enabled and vaultwarden_config_smtp_host == exim_relay_identifier and vaultwarden_container_network != exim_relay_container_network else [])
+    ([exim_relay_container_network] if exim_relay_enabled | default(false) and vaultwarden_config_smtp_host == exim_relay_identifier and vaultwarden_container_network != exim_relay_container_network else [])
     +
     ([mariadb_container_network] if mariadb_enabled | default(false) and vaultwarden_database_mysql_hostname == mariadb_connection_hostname and vaultwarden_container_network != mariadb_container_network and vaultwarden_database_type == 'mysql' else [])
     +
@@ -14464,7 +14464,7 @@ vikunja_systemd_required_services_list_auto: |
 
 vikunja_systemd_wanted_services_list_auto: |
   {{
-    ([exim_relay_identifier ~ '.service'] if exim_relay_enabled and vikunja_environment_variables_smtp_host == exim_relay_identifier else [])
+    ([exim_relay_identifier ~ '.service'] if exim_relay_enabled | default(false) and vikunja_environment_variables_smtp_host == exim_relay_identifier else [])
     +
     ([lldap_identifier ~ '.service'] if lldap_enabled | default(false) else [])
     +
@@ -14473,7 +14473,7 @@ vikunja_systemd_wanted_services_list_auto: |
 
 vikunja_container_additional_networks_auto: |
   {{
-    ([exim_relay_container_network] if exim_relay_enabled and vikunja_environment_variables_smtp_host == exim_relay_identifier and vikunja_container_network != exim_relay_container_network else [])
+    ([exim_relay_container_network] if exim_relay_enabled | default(false) and vikunja_environment_variables_smtp_host == exim_relay_identifier and vikunja_container_network != exim_relay_container_network else [])
     +
     ([lldap_container_network] if lldap_enabled | default(false) and vikunja_container_network != lldap_container_network else [])
     +
@@ -14557,12 +14557,12 @@ weblate_systemd_required_services_list_auto: |
 
 weblate_systemd_wanted_services_list_auto: |
   {{
-    ([exim_relay_identifier ~ '.service'] if exim_relay_enabled and weblate_environment_variables_weblate_email_host == exim_relay_identifier else [])
+    ([exim_relay_identifier ~ '.service'] if exim_relay_enabled | default(false) and weblate_environment_variables_weblate_email_host == exim_relay_identifier else [])
   }}
 
 weblate_container_additional_networks_auto: |
   {{
-    ([exim_relay_container_network] if exim_relay_enabled and weblate_environment_variables_weblate_email_host == exim_relay_identifier and weblate_container_network != exim_relay_container_network else [])
+    ([exim_relay_container_network] if exim_relay_enabled | default(false) and weblate_environment_variables_weblate_email_host == exim_relay_identifier and weblate_container_network != exim_relay_container_network else [])
     +
     ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
     +
@@ -14891,12 +14891,12 @@ writefreely_systemd_required_services_list_auto: |
 
 writefreely_systemd_wanted_services_list_auto: |
   {{
-    ([exim_relay_identifier ~ '.service'] if exim_relay_enabled and writefreely_environment_variables_smtp_host == exim_relay_identifier else [])
+    ([exim_relay_identifier ~ '.service'] if exim_relay_enabled | default(false) and writefreely_environment_variables_smtp_host == exim_relay_identifier else [])
   }}
 
 writefreely_container_additional_networks_auto: |
   {{
-    ([exim_relay_container_network] if exim_relay_enabled and writefreely_environment_variables_smtp_host == exim_relay_identifier and writefreely_container_network != exim_relay_container_network else [])
+    ([exim_relay_container_network] if exim_relay_enabled | default(false) and writefreely_environment_variables_smtp_host == exim_relay_identifier and writefreely_container_network != exim_relay_container_network else [])
     +
     ([mariadb_container_network] if mariadb_enabled | default(false) and writefreely_database_hostname == mariadb_connection_hostname and writefreely_container_network != mariadb_container_network and writefreely_database_type == 'mysql' else [])
     +
