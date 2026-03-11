@@ -229,7 +229,7 @@ YOUR-SERVICE_container_additional_networks_auto: |
   {{
     [...]
     +
-    ([exim_relay_container_network] if (exim_relay_enabled and YOUR-SERVICE_config_mailer_smtp_addr == exim_relay_identifier and YOUR-SERVICE_container_network != exim_relay_container_network) else [])
+    ([exim_relay_container_network] if exim_relay_enabled and YOUR-SERVICE_config_mailer_smtp_addr == exim_relay_identifier and YOUR-SERVICE_container_network != exim_relay_container_network else [])
   }}
 
 # role-specific:exim_relay
