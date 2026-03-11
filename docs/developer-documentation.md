@@ -220,7 +220,7 @@ To wire the role to exim-relay, add the configuration for it as below:
 
 YOUR-SERVICE_systemd_wanted_services_list_auto: |
   {{
-    ([(exim_relay_identifier | default('mash-exim-relay')) ~ '.service'] if (exim_relay_enabled | default(false) and YOUR-SERVICE_config_mailer_smtp_addr == exim_relay_identifier | default('mash-exim-relay')) else [])
+    ([exim_relay_identifier ~ '.service'] if (exim_relay_enabled | default(false) and YOUR-SERVICE_config_mailer_smtp_addr == exim_relay_identifier | default('mash-exim-relay')) else [])
   }}
 
 [...]

@@ -2794,7 +2794,7 @@ answer_systemd_required_services_list_auto: |
 
 answer_systemd_wanted_services_list_auto: |
   {{
-    ([(exim_relay_identifier | default('mash-exim-relay')) ~ '.service'] if exim_relay_enabled | default(false) else [])
+    ([exim_relay_identifier ~ '.service'] if exim_relay_enabled | default(false) else [])
   }}
 
 answer_container_additional_networks_auto: |
@@ -3054,7 +3054,7 @@ asciinema_server_gid: "{{ mash_playbook_gid }}"
 
 asciinema_server_systemd_wanted_services_list_auto: |
   {{
-    ([(exim_relay_identifier | default('mash-exim-relay')) ~ '.service'] if (exim_relay_enabled | default(false) and asciinema_server_environment_variable_smtp_host == exim_relay_identifier | default('mash-exim-relay')) else [])
+    ([exim_relay_identifier ~ '.service'] if (exim_relay_enabled | default(false) and asciinema_server_environment_variable_smtp_host == exim_relay_identifier | default('mash-exim-relay')) else [])
   }}
 
 asciinema_server_systemd_required_services_list_auto: |
@@ -3171,7 +3171,7 @@ audiobookshelf_gid: "{{ mash_playbook_gid }}"
 
 audiobookshelf_systemd_wanted_services_list_auto: |
   {{
-    ([(exim_relay_identifier | default('mash-exim-relay')) ~ '.service'] if exim_relay_enabled | default(false) else [])
+    ([exim_relay_identifier ~ '.service'] if exim_relay_enabled | default(false) else [])
   }}
 
 audiobookshelf_container_additional_networks_auto: |
@@ -3461,14 +3461,14 @@ barassistant_gid: "{{ mash_playbook_gid }}"
 
 barassistant_server_systemd_wanted_services_list_auto: |
   {{
-    ([(exim_relay_identifier | default('mash-exim-relay')) ~ '.service'] if (exim_relay_enabled | default(false) and barassistant_server_environment_variables_mail_host == exim_relay_identifier | default('mash-exim-relay')) else [])
+    ([exim_relay_identifier ~ '.service'] if (exim_relay_enabled | default(false) and barassistant_server_environment_variables_mail_host == exim_relay_identifier | default('mash-exim-relay')) else [])
     +
     ([meilisearch_identifier ~ '.service'] if meilisearch_identifier | default(false) else [])
   }}
 
 barassistant_saltrim_systemd_wanted_services_list_auto: |
   {{
-    ([(exim_relay_identifier | default('mash-exim-relay')) ~ '.service'] if (exim_relay_enabled | default(false) and barassistant_server_environment_variables_mail_host == exim_relay_identifier | default('mash-exim-relay')) else [])
+    ([exim_relay_identifier ~ '.service'] if (exim_relay_enabled | default(false) and barassistant_server_environment_variables_mail_host == exim_relay_identifier | default('mash-exim-relay')) else [])
     +
     ([meilisearch_identifier ~ '.service'] if meilisearch_identifier | default(false) else [])
   }}
@@ -3992,7 +3992,7 @@ codimd_systemd_required_services_list_auto: |
 
 codimd_systemd_wanted_services_list_auto: |
   {{
-    ([(exim_relay_identifier | default('mash-exim-relay')) ~ '.service'] if exim_relay_enabled | default(false) else [])
+    ([exim_relay_identifier ~ '.service'] if exim_relay_enabled | default(false) else [])
   }}
 
 codimd_container_additional_networks_auto: |
@@ -4520,7 +4520,7 @@ docmost_systemd_required_services_list_auto: |
 
 docmost_systemd_wanted_services_list_auto: |
   {{
-    ([(exim_relay_identifier | default('mash-exim-relay')) ~ '.service'] if (exim_relay_enabled | default(false) and docmost_environment_variable_smtp_host == exim_relay_identifier | default('mash-exim-relay')) else [])
+    ([exim_relay_identifier ~ '.service'] if (exim_relay_enabled | default(false) and docmost_environment_variable_smtp_host == exim_relay_identifier | default('mash-exim-relay')) else [])
   }}
 
 docmost_container_additional_networks_auto: |
@@ -4598,7 +4598,7 @@ docuseal_systemd_required_services_list_auto: |
 
 docuseal_systemd_wanted_services_list_auto: |
   {{
-    ([(exim_relay_identifier | default('mash-exim-relay')) ~ '.service'] if exim_relay_enabled | default(false) else [])
+    ([exim_relay_identifier ~ '.service'] if exim_relay_enabled | default(false) else [])
   }}
 
 docuseal_container_additional_networks_auto: |
@@ -5080,7 +5080,7 @@ farmos_systemd_required_services_list_auto: |
 
 farmos_systemd_wanted_services_list_auto: |
   {{
-    ([(exim_relay_identifier | default('mash-exim-relay')) ~ '.service'] if exim_relay_enabled | default(false) else [])
+    ([exim_relay_identifier ~ '.service'] if exim_relay_enabled | default(false) else [])
   }}
 
 farmos_container_additional_networks_auto: |
@@ -5141,7 +5141,7 @@ fider_gid: "{{ mash_playbook_gid }}"
 
 fider_systemd_wanted_services_list_auto: |
   {{
-    ([(exim_relay_identifier | default('mash-exim-relay')) ~ '.service'] if (exim_relay_enabled | default(false) and fider_environment_variables_email_smtp_host == exim_relay_identifier | default('mash-exim-relay')) else [])
+    ([exim_relay_identifier ~ '.service'] if (exim_relay_enabled | default(false) and fider_environment_variables_email_smtp_host == exim_relay_identifier | default('mash-exim-relay')) else [])
   }}
 
 fider_systemd_required_services_list_auto: |
@@ -5528,7 +5528,7 @@ forgejo_systemd_required_services_list_auto: |
 
 forgejo_systemd_wanted_services_list_auto: |
   {{
-    ([(exim_relay_identifier | default('mash-exim-relay')) ~ '.service'] if (exim_relay_enabled | default(false) and forgejo_config_mailer_smtp_addr == exim_relay_identifier | default('mash-exim-relay')) else [])
+    ([exim_relay_identifier ~ '.service'] if (exim_relay_enabled | default(false) and forgejo_config_mailer_smtp_addr == exim_relay_identifier | default('mash-exim-relay')) else [])
   }}
 
 forgejo_container_additional_networks_auto: |
@@ -5881,7 +5881,7 @@ gitea_systemd_required_services_list_auto: |
 
 gitea_systemd_wanted_services_list_auto: |
   {{
-    ([(exim_relay_identifier | default('mash-exim-relay')) ~ '.service'] if (exim_relay_enabled | default(false) and gitea_config_mailer_smtp_addr == exim_relay_identifier | default('mash-exim-relay')) else [])
+    ([exim_relay_identifier ~ '.service'] if (exim_relay_enabled | default(false) and gitea_config_mailer_smtp_addr == exim_relay_identifier | default('mash-exim-relay')) else [])
   }}
 
 gitea_container_additional_networks_auto: |
@@ -6048,7 +6048,7 @@ gotosocial_systemd_required_services_list_auto: |
 
 gotosocial_systemd_wanted_services_list_auto: |
   {{
-    ([(exim_relay_identifier | default('mash-exim-relay')) ~ '.service'] if (exim_relay_enabled | default(false) and gotosocial_smtp_host == exim_relay_identifier | default('mash-exim-relay')) else [])
+    ([exim_relay_identifier ~ '.service'] if (exim_relay_enabled | default(false) and gotosocial_smtp_host == exim_relay_identifier | default('mash-exim-relay')) else [])
   }}
 
 gotosocial_container_additional_networks_auto: |
@@ -6118,7 +6118,7 @@ grafana_gid: "{{ mash_playbook_gid }}"
 
 grafana_systemd_wanted_services_list_auto: |
   {{
-    ([(exim_relay_identifier | default('mash-exim-relay')) ~ '.service'] if (exim_relay_enabled | default(false) and grafana_smtp_host == exim_relay_identifier | default('mash-exim-relay')) else [])
+    ([exim_relay_identifier ~ '.service'] if (exim_relay_enabled | default(false) and grafana_smtp_host == exim_relay_identifier | default('mash-exim-relay')) else [])
   }}
 
 grafana_container_additional_networks_auto: |
@@ -6278,7 +6278,7 @@ healthchecks_systemd_required_services_list_auto: |
 
 healthchecks_systemd_wanted_services_list_auto: |
   {{
-    ([(exim_relay_identifier | default('mash-exim-relay')) ~ '.service'] if (exim_relay_enabled | default(false) and healthchecks_environment_variable_email_host == exim_relay_identifier | default('mash-exim-relay')) else [])
+    ([exim_relay_identifier ~ '.service'] if (exim_relay_enabled | default(false) and healthchecks_environment_variable_email_host == exim_relay_identifier | default('mash-exim-relay')) else [])
   }}
 
 healthchecks_container_additional_networks_auto: |
@@ -7434,7 +7434,7 @@ ihatemoney_systemd_required_services_list_auto: |
 
 ihatemoney_systemd_wanted_services_list_auto: |
   {{
-    ([(exim_relay_identifier | default('mash-exim-relay')) ~ '.service'] if (exim_relay_enabled | default(false) and ihatemoney_email_host == exim_relay_identifier | default('mash-exim-relay')) else [])
+    ([exim_relay_identifier ~ '.service'] if (exim_relay_enabled | default(false) and ihatemoney_email_host == exim_relay_identifier | default('mash-exim-relay')) else [])
   }}
 
 ihatemoney_container_additional_networks_auto: |
@@ -7558,7 +7558,7 @@ immich_server_systemd_required_services_list_auto: |
 
 immich_server_systemd_wanted_services_list_auto: |
   {{
-    ([(exim_relay_identifier | default('mash-exim-relay')) ~ '.service'] if (exim_relay_enabled | default(false) and immich_smtp_host == exim_relay_identifier | default('mash-exim-relay')) else [])
+    ([exim_relay_identifier ~ '.service'] if (exim_relay_enabled | default(false) and immich_smtp_host == exim_relay_identifier | default('mash-exim-relay')) else [])
   }}
 
 immich_server_container_additional_networks_auto: |
@@ -7987,7 +7987,7 @@ joplin_server_gid: "{{ mash_playbook_gid }}"
 
 joplin_server_systemd_wanted_services_list_auto: |
   {{
-    ([(exim_relay_identifier | default('mash-exim-relay')) ~ '.service'] if (exim_relay_enabled | default(false) and joplin_server_environment_variable_mailer_host == exim_relay_identifier | default('mash-exim-relay')) else [])
+    ([exim_relay_identifier ~ '.service'] if (exim_relay_enabled | default(false) and joplin_server_environment_variable_mailer_host == exim_relay_identifier | default('mash-exim-relay')) else [])
   }}
 
 joplin_server_systemd_required_services_list_auto: |
@@ -8062,7 +8062,7 @@ kanboard_systemd_required_services_list_auto: |
 
 kanboard_systemd_wanted_services_list_auto: |
   {{
-    ([(exim_relay_identifier | default('mash-exim-relay')) ~ '.service'] if (exim_relay_enabled | default(false) and kanboard_environment_variables_mail_smtp_hostname == exim_relay_identifier | default('mash-exim-relay')) else [])
+    ([exim_relay_identifier ~ '.service'] if (exim_relay_enabled | default(false) and kanboard_environment_variables_mail_smtp_hostname == exim_relay_identifier | default('mash-exim-relay')) else [])
   }}
 
 kanboard_container_additional_networks_auto: |
@@ -8133,7 +8133,7 @@ karakeep_systemd_wanted_services_list_auto: |
   {{
     ([browserless_identifier ~ '.service'] if browserless_enabled | default(false) else [])
     +
-    ([(exim_relay_identifier | default('mash-exim-relay')) ~ '.service'] if (exim_relay_enabled | default(false) and karakeep_environment_variables_smtp_host == exim_relay_identifier | default('mash-exim-relay')) else [])
+    ([exim_relay_identifier ~ '.service'] if (exim_relay_enabled | default(false) and karakeep_environment_variables_smtp_host == exim_relay_identifier | default('mash-exim-relay')) else [])
     +
     ([meilisearch_identifier ~ '.service'] if meilisearch_enabled | default(false) else [])
   }}
@@ -8346,7 +8346,7 @@ kutt_systemd_required_services_list_auto: |
 
 kutt_systemd_wanted_services_list_auto: |
   {{
-    ([(exim_relay_identifier | default('mash-exim-relay')) ~ '.service'] if (exim_relay_enabled | default(false) and kutt_environment_variables_smtp_host == exim_relay_identifier | default('mash-exim-relay')) else [])
+    ([exim_relay_identifier ~ '.service'] if (exim_relay_enabled | default(false) and kutt_environment_variables_smtp_host == exim_relay_identifier | default('mash-exim-relay')) else [])
   }}
 
 kutt_container_additional_networks_auto: |
@@ -8575,7 +8575,7 @@ limesurvey_systemd_required_services_list_auto: |
 
 limesurvey_systemd_wanted_services_list_auto: |
   {{
-    ([(exim_relay_identifier | default('mash-exim-relay')) ~ '.service'] if exim_relay_enabled | default(false) else [])
+    ([exim_relay_identifier ~ '.service'] if exim_relay_enabled | default(false) else [])
   }}
 
 limesurvey_container_additional_networks_auto: |
@@ -8804,7 +8804,7 @@ lldap_systemd_required_services_list_auto: |
 
 lldap_systemd_wanted_services_list_auto: |
   {{
-    ([(exim_relay_identifier | default('mash-exim-relay')) ~ '.service'] if (exim_relay_enabled | default(false) and lldap_environment_variables_smtp_host == exim_relay_identifier | default('mash-exim-relay')) else [])
+    ([exim_relay_identifier ~ '.service'] if (exim_relay_enabled | default(false) and lldap_environment_variables_smtp_host == exim_relay_identifier | default('mash-exim-relay')) else [])
   }}
 
 lldap_container_additional_networks_auto: |
@@ -9530,7 +9530,7 @@ mediawiki_systemd_required_services_list_auto: |
 
 mediawiki_systemd_wanted_services_list_auto: |
   {{
-    ([(exim_relay_identifier | default('mash-exim-relay')) ~ '.service'] if exim_relay_enabled | default(false) else [])
+    ([exim_relay_identifier ~ '.service'] if exim_relay_enabled | default(false) else [])
   }}
 
 mediawiki_container_additional_networks_auto: |
@@ -9752,7 +9752,7 @@ misskey_systemd_required_services_list_auto: |
 
 misskey_systemd_wanted_services_list_auto: |
   {{
-    ([(exim_relay_identifier | default('mash-exim-relay')) ~ '.service'] if exim_relay_enabled | default(false) else [])
+    ([exim_relay_identifier ~ '.service'] if exim_relay_enabled | default(false) else [])
     +
     ([meilisearch_identifier ~ '.service'] if meilisearch_enabled | default(false) and misskey_config_fulltext_search_provider == 'meilisearch' else [])
   }}
@@ -10364,7 +10364,7 @@ nextcloud_systemd_required_services_list_auto: |
 
 nextcloud_systemd_wanted_services_list_auto: |
   {{
-    ([(exim_relay_identifier | default('mash-exim-relay')) ~ '.service'] if (exim_relay_enabled | default(false) and nextcloud_environment_variables_smtp_host == exim_relay_identifier | default('mash-exim-relay')) else [])
+    ([exim_relay_identifier ~ '.service'] if (exim_relay_enabled | default(false) and nextcloud_environment_variables_smtp_host == exim_relay_identifier | default('mash-exim-relay')) else [])
     +
     ([lldap_identifier ~ '.service'] if lldap_enabled | default(false) and nextcloud_lldap_enabled else [])
   }}
@@ -10645,7 +10645,7 @@ ntfy_gid: "{{ mash_playbook_gid }}"
 
 ntfy_systemd_wanted_services_list_auto: |
   {{
-    ([(exim_relay_identifier | default('mash-exim-relay')) ~ '.service'] if (exim_relay_enabled | default(false) and ntfy_smtp_sender_addr_host == exim_relay_identifier | default('mash-exim-relay')) else [])
+    ([exim_relay_identifier ~ '.service'] if (exim_relay_enabled | default(false) and ntfy_smtp_sender_addr_host == exim_relay_identifier | default('mash-exim-relay')) else [])
   }}
 
 ntfy_container_additional_networks_auto: |
@@ -11102,7 +11102,7 @@ otterwiki_gid: "{{ mash_playbook_gid }}"
 
 otterwiki_systemd_wanted_services_list_auto: |
   {{
-    ([(exim_relay_identifier | default('mash-exim-relay')) ~ '.service'] if (exim_relay_enabled | default(false) and otterwiki_environment_variables_mail_server == exim_relay_identifier | default('mash-exim-relay')) else [])
+    ([exim_relay_identifier ~ '.service'] if (exim_relay_enabled | default(false) and otterwiki_environment_variables_mail_server == exim_relay_identifier | default('mash-exim-relay')) else [])
   }}
 
 otterwiki_container_additional_networks_auto: |
@@ -11342,7 +11342,7 @@ paperless_systemd_required_services_list_auto: |
 
 paperless_systemd_wanted_services_list_auto: |
   {{
-    ([(exim_relay_identifier | default('mash-exim-relay')) ~ '.service'] if (exim_relay_enabled | default(false) and paperless_email_host == exim_relay_identifier | default('mash-exim-relay')) else [])
+    ([exim_relay_identifier ~ '.service'] if (exim_relay_enabled | default(false) and paperless_email_host == exim_relay_identifier | default('mash-exim-relay')) else [])
     +
     ([tika_identifier ~ '.service'] if tika_enabled | default(false) else [])
   }}
@@ -11423,7 +11423,7 @@ papra_gid: "{{ mash_playbook_gid }}"
 
 papra_systemd_wanted_services_list_auto: |
   {{
-    ([(exim_relay_identifier | default('mash-exim-relay')) ~ '.service'] if (exim_relay_enabled | default(false) and papra_environment_variables_smtp_host == exim_relay_identifier | default('mash-exim-relay')) else [])
+    ([exim_relay_identifier ~ '.service'] if (exim_relay_enabled | default(false) and papra_environment_variables_smtp_host == exim_relay_identifier | default('mash-exim-relay')) else [])
   }}
 
 papra_container_additional_networks_auto: |
@@ -11481,7 +11481,7 @@ pdfding_systemd_required_services_list_auto: |
 
 pdfding_systemd_wanted_services_list_auto: |
   {{
-    ([(exim_relay_identifier | default('mash-exim-relay')) ~ '.service'] if (exim_relay_enabled | default(false) and pdfding_environment_variables_smtp_host == exim_relay_identifier | default('mash-exim-relay')) else [])
+    ([exim_relay_identifier ~ '.service'] if (exim_relay_enabled | default(false) and pdfding_environment_variables_smtp_host == exim_relay_identifier | default('mash-exim-relay')) else [])
   }}
 
 pdfding_container_additional_networks_auto: |
@@ -11551,7 +11551,7 @@ peertube_systemd_required_services_list_auto: |
 
 peertube_systemd_wanted_services_list_auto: |
   {{
-    ([(exim_relay_identifier | default('mash-exim-relay')) ~ '.service'] if (exim_relay_enabled | default(false) and peertube_config_smtp_hostname == exim_relay_identifier | default('mash-exim-relay')) else [])
+    ([exim_relay_identifier ~ '.service'] if (exim_relay_enabled | default(false) and peertube_config_smtp_hostname == exim_relay_identifier | default('mash-exim-relay')) else [])
   }}
 
 peertube_container_additional_networks_auto: |
@@ -11619,7 +11619,7 @@ pgadmin_systemd_required_services_list_auto: |
 
 pgadmin_systemd_wanted_services_list_auto: |
   {{
-    ([(exim_relay_identifier | default('mash-exim-relay')) ~ '.service'] if (exim_relay_enabled | default(false) and pgadmin_environment_variables_pgadmin_config_mail_server == exim_relay_identifier | default('mash-exim-relay')) else [])
+    ([exim_relay_identifier ~ '.service'] if (exim_relay_enabled | default(false) and pgadmin_environment_variables_pgadmin_config_mail_server == exim_relay_identifier | default('mash-exim-relay')) else [])
   }}
 
 pgadmin_container_additional_networks_auto: |
@@ -11738,7 +11738,7 @@ plausible_systemd_required_services_list_auto: |
 
 plausible_systemd_wanted_services_list_auto: |
   {{
-    ([(exim_relay_identifier | default('mash-exim-relay')) ~ '.service'] if (exim_relay_enabled | default(false) and plausible_environment_variable_smtp_host_addr == exim_relay_identifier | default('mash-exim-relay')) else [])
+    ([exim_relay_identifier ~ '.service'] if (exim_relay_enabled | default(false) and plausible_environment_variable_smtp_host_addr == exim_relay_identifier | default('mash-exim-relay')) else [])
   }}
 
 plausible_container_additional_networks_auto: |
@@ -11851,7 +11851,7 @@ pocket_id_systemd_required_services_list_auto: |
 
 pocket_id_systemd_wanted_services_list_auto: |
   {{
-    ([(exim_relay_identifier | default('mash-exim-relay')) ~ '.service'] if (exim_relay_enabled | default(false) and pocket_id_environment_variable_smtp_host == exim_relay_identifier | default('mash-exim-relay')) else [])
+    ([exim_relay_identifier ~ '.service'] if (exim_relay_enabled | default(false) and pocket_id_environment_variable_smtp_host == exim_relay_identifier | default('mash-exim-relay')) else [])
     +
     ([lldap_identifier ~ '.service'] if lldap_enabled | default(false) and pocket_id_ldap_enabled else [])
   }}
@@ -13153,7 +13153,7 @@ semaphore_systemd_required_services_list_auto: |
 
 semaphore_systemd_wanted_services_list_auto: |
   {{
-    ([(exim_relay_identifier | default('mash-exim-relay')) ~ '.service'] if (exim_relay_enabled | default(false) and semaphore_environment_variables_email_host == exim_relay_identifier | default('mash-exim-relay')) else [])
+    ([exim_relay_identifier ~ '.service'] if (exim_relay_enabled | default(false) and semaphore_environment_variables_email_host == exim_relay_identifier | default('mash-exim-relay')) else [])
   }}
 
 semaphore_container_additional_networks_auto: |
@@ -13274,7 +13274,7 @@ sftpgo_systemd_required_services_list_auto: |
 
 sftpgo_systemd_wanted_services_list_auto: |
   {{
-    ([(exim_relay_identifier | default('mash-exim-relay')) ~ '.service'] if (exim_relay_enabled | default(false) and sftpgo_environment_variables_smtp_host == exim_relay_identifier | default('mash-exim-relay')) else [])
+    ([exim_relay_identifier ~ '.service'] if (exim_relay_enabled | default(false) and sftpgo_environment_variables_smtp_host == exim_relay_identifier | default('mash-exim-relay')) else [])
   }}
 
 sftpgo_container_additional_networks_auto: |
@@ -13513,7 +13513,7 @@ solidinvoice_systemd_required_services_list_auto: |
 
 solidinvoice_systemd_wanted_services_list_auto: |
   {{
-    ([(exim_relay_identifier | default('mash-exim-relay')) ~ '.service'] if exim_relay_enabled | default(false) else [])
+    ([exim_relay_identifier ~ '.service'] if exim_relay_enabled | default(false) else [])
   }}
 
 solidinvoice_container_additional_networks_auto: |
@@ -13825,7 +13825,7 @@ tandoor_systemd_required_services_list_auto: |
 
 tandoor_systemd_wanted_services_list_auto: |
   {{
-    ([(exim_relay_identifier | default('mash-exim-relay')) ~ '.service'] if (exim_relay_enabled | default(false) and tandoor_email_host == exim_relay_identifier | default('mash-exim-relay')) else [])
+    ([exim_relay_identifier ~ '.service'] if (exim_relay_enabled | default(false) and tandoor_email_host == exim_relay_identifier | default('mash-exim-relay')) else [])
   }}
 
 tandoor_container_additional_networks_auto: |
@@ -13895,7 +13895,7 @@ teable_systemd_required_services_list_auto: |
 
 teable_systemd_wanted_services_list_auto: |
   {{
-    ([(exim_relay_identifier | default('mash-exim-relay')) ~ '.service'] if exim_relay_enabled | default(false) else [])
+    ([exim_relay_identifier ~ '.service'] if exim_relay_enabled | default(false) else [])
   }}
 
 teable_container_additional_networks_auto: |
@@ -14349,7 +14349,7 @@ vaultwarden_systemd_required_services_list_auto: |
 
 vaultwarden_systemd_wanted_services_list_auto: |
   {{
-    ([(exim_relay_identifier | default('mash-exim-relay')) ~ '.service'] if (exim_relay_enabled | default(false) and vaultwarden_config_smtp_host == exim_relay_identifier | default('mash-exim-relay')) else [])
+    ([exim_relay_identifier ~ '.service'] if (exim_relay_enabled | default(false) and vaultwarden_config_smtp_host == exim_relay_identifier | default('mash-exim-relay')) else [])
   }}
 
 vaultwarden_container_additional_networks_auto: |
@@ -14464,7 +14464,7 @@ vikunja_systemd_required_services_list_auto: |
 
 vikunja_systemd_wanted_services_list_auto: |
   {{
-    ([(exim_relay_identifier | default('mash-exim-relay')) ~ '.service'] if (exim_relay_enabled | default(false) and vikunja_environment_variables_smtp_host == exim_relay_identifier | default('mash-exim-relay')) else [])
+    ([exim_relay_identifier ~ '.service'] if (exim_relay_enabled | default(false) and vikunja_environment_variables_smtp_host == exim_relay_identifier | default('mash-exim-relay')) else [])
     +
     ([lldap_identifier ~ '.service'] if lldap_enabled | default(false) else [])
     +
@@ -14557,7 +14557,7 @@ weblate_systemd_required_services_list_auto: |
 
 weblate_systemd_wanted_services_list_auto: |
   {{
-    ([(exim_relay_identifier | default('mash-exim-relay')) ~ '.service'] if (exim_relay_enabled | default(false) and weblate_environment_variables_weblate_email_host == exim_relay_identifier | default('mash-exim-relay')) else [])
+    ([exim_relay_identifier ~ '.service'] if (exim_relay_enabled | default(false) and weblate_environment_variables_weblate_email_host == exim_relay_identifier | default('mash-exim-relay')) else [])
   }}
 
 weblate_container_additional_networks_auto: |
@@ -14891,7 +14891,7 @@ writefreely_systemd_required_services_list_auto: |
 
 writefreely_systemd_wanted_services_list_auto: |
   {{
-    ([(exim_relay_identifier | default('mash-exim-relay')) ~ '.service'] if (exim_relay_enabled | default(false) and writefreely_environment_variables_smtp_host == exim_relay_identifier | default('mash-exim-relay')) else [])
+    ([exim_relay_identifier ~ '.service'] if (exim_relay_enabled | default(false) and writefreely_environment_variables_smtp_host == exim_relay_identifier | default('mash-exim-relay')) else [])
   }}
 
 writefreely_container_additional_networks_auto: |
