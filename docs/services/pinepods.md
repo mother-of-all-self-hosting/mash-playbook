@@ -283,4 +283,4 @@ See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3AzKNye
 
 ## Related services
 
-- [RSS-Bridge](rssbridge.md) — Generates web feeds for websites that do not have one
+- [audiobookshelf](audiobookshelf.md) — Self-hosted audiobook and podcast server
