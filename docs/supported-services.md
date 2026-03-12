@@ -179,6 +179,7 @@ Below is an exhaustive list of the free and open-source software for self-hostin
 | [PeerTube](https://joinpeertube.org/) | A tool for sharing online videos | [Link](services/peertube.md) |
 | [pgAdmin](https://www.pgadmin.org/) | Management tool for Postgres with a graphical interface | [Link](services/pgadmin.md) |
 | [phpMyAdmin](https://www.phpmyadmin.net/) | Web-based MySQL or MariaDB database server administration software | [Link](services/phpmyadmin.md) |
+| [PinePods](https://www.pinepods.online/) | Podcast management system that manages podcasts with multi-user support | [Link](services/pinepods.md) |
 | [Plausible Analytics](https://plausible.io/) | Intuitive and lightweight web analytics | [Link](services/plausible.md) |
 | [Plex](https://www.plex.tv/) | A personal media server | [Link](services/plex.md) |
 | [Pocket ID](https://pocket-id.org/) | Simple OIDC provider for passkey-only authentication | [Link](services/pocket-id.md) |
