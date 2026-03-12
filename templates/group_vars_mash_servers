@@ -3052,14 +3052,14 @@ asciinema_server_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_serv
 asciinema_server_uid: "{{ mash_playbook_uid }}"
 asciinema_server_gid: "{{ mash_playbook_gid }}"
 
-asciinema_server_systemd_wanted_services_list_auto: |
-  {{
-    ([exim_relay_identifier ~ '.service'] if exim_relay_enabled | default(false) and asciinema_server_environment_variable_smtp_host == exim_relay_identifier else [])
-  }}
-
 asciinema_server_systemd_required_services_list_auto: |
  {{
     ([postgres_identifier ~ '.service'] if postgres_enabled and asciinema_server_database_hostname == postgres_connection_hostname else [])
+  }}
+
+asciinema_server_systemd_wanted_services_list_auto: |
+  {{
+    ([exim_relay_identifier ~ '.service'] if exim_relay_enabled | default(false) and asciinema_server_environment_variable_smtp_host == exim_relay_identifier else [])
   }}
 
 asciinema_server_container_additional_networks_auto: |
@@ -3744,6 +3744,11 @@ calibre_web_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_b
 calibre_web_uid: "{{ mash_playbook_uid }}"
 calibre_web_gid: "{{ mash_playbook_gid }}"
 
+calibre_web_systemd_wanted_services_list_auto: |
+  {{
+    ([exim_relay_identifier ~ '.service'] if exim_relay_enabled | default(false) else [])
+  }}
+
 calibre_web_container_additional_networks_auto: |
   {{
     ([exim_relay_container_network] if exim_relay_enabled | default(false) and calibre_web_container_network != exim_relay_container_network else [])
@@ -3783,6 +3788,11 @@ calibre_web_automated_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook
 
 calibre_web_automated_uid: "{{ mash_playbook_uid }}"
 calibre_web_automated_gid: "{{ mash_playbook_gid }}"
+
+calibre_web_automated_systemd_wanted_services_list_auto: |
+  {{
+    ([exim_relay_identifier ~ '.service'] if exim_relay_enabled | default(false) else [])
+  }}
 
 calibre_web_automated_container_additional_networks_auto: |
   {{
@@ -4656,6 +4666,11 @@ dokuwiki_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base
 dokuwiki_uid: "{{ mash_playbook_uid }}"
 dokuwiki_gid: "{{ mash_playbook_gid }}"
 
+dokuwiki_systemd_wanted_services_list_auto: |
+  {{
+    ([exim_relay_identifier ~ '.service'] if exim_relay_enabled | default(false) else [])
+  }}
+
 dokuwiki_container_additional_networks_auto: |
   {{
     ([exim_relay_container_network] if exim_relay_enabled | default(false) and dokuwiki_container_network != exim_relay_container_network else [])
@@ -4695,6 +4710,11 @@ duplicati_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_bas
 
 duplicati_uid: "{{ mash_playbook_uid }}"
 duplicati_gid: "{{ mash_playbook_gid }}"
+
+duplicati_systemd_wanted_services_list_auto: |
+  {{
+    ([exim_relay_identifier ~ '.service'] if exim_relay_enabled | default(false) else [])
+  }}
 
 duplicati_container_additional_networks_auto: |
   {{
@@ -5138,14 +5158,14 @@ fider_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_di
 fider_uid: "{{ mash_playbook_uid }}"
 fider_gid: "{{ mash_playbook_gid }}"
 
-fider_systemd_wanted_services_list_auto: |
-  {{
-    ([exim_relay_identifier ~ '.service'] if exim_relay_enabled | default(false) and fider_environment_variables_email_smtp_host == exim_relay_identifier else [])
-  }}
-
 fider_systemd_required_services_list_auto: |
  {{
     ([postgres_identifier ~ '.service'] if postgres_enabled and fider_database_hostname == postgres_connection_hostname else [])
+  }}
+
+fider_systemd_wanted_services_list_auto: |
+  {{
+    ([exim_relay_identifier ~ '.service'] if exim_relay_enabled | default(false) and fider_environment_variables_email_smtp_host == exim_relay_identifier else [])
   }}
 
 fider_container_additional_networks_auto: |
@@ -8002,14 +8022,14 @@ joplin_server_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service
 joplin_server_uid: "{{ mash_playbook_uid }}"
 joplin_server_gid: "{{ mash_playbook_gid }}"
 
-joplin_server_systemd_wanted_services_list_auto: |
-  {{
-    ([exim_relay_identifier ~ '.service'] if exim_relay_enabled | default(false) and joplin_server_environment_variable_mailer_host == exim_relay_identifier else [])
-  }}
-
 joplin_server_systemd_required_services_list_auto: |
  {{
     ([postgres_identifier ~ '.service'] if postgres_enabled and joplin_server_database_hostname == postgres_connection_hostname else [])
+  }}
+
+joplin_server_systemd_wanted_services_list_auto: |
+  {{
+    ([exim_relay_identifier ~ '.service'] if exim_relay_enabled | default(false) and joplin_server_environment_variable_mailer_host == exim_relay_identifier else [])
   }}
 
 joplin_server_container_additional_networks_auto: |
@@ -13675,6 +13695,11 @@ statusnook_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_ba
 
 statusnook_uid: "{{ mash_playbook_uid }}"
 statusnook_gid: "{{ mash_playbook_gid }}"
+
+statusnook_systemd_wanted_services_list_auto: |
+  {{
+    ([exim_relay_identifier ~ '.service'] if exim_relay_enabled | default(false) else [])
+  }}
 
 statusnook_container_additional_networks_auto: |
   {{
