@@ -243,7 +243,7 @@ Note that running the `just` commands for installation (`just install-all` or `j
 
 After installation, the PinePods instance becomes available at the URL specified with `pinepods_hostname`. With the configuration above, the service is hosted at `https://pinepods.example.com`.
 
-### Configuring the SMTP server (optional)
+### Configuring the mailer (optional)
 
 On PinePods you can add configuration settings of a SMTP server for password recovery function. If you enable the [exim-relay](exim-relay.md) service in your inventory configuration, the playbook will automatically connect it to the PinePods service.
 
@@ -258,6 +258,9 @@ To set up with the default exim-relay settings, open `https://pinepods.example.c
 - **Authentication Required**: Disable
 
 After setting the configuration, you can have the PinePods instance send a test mail.
+
+>[!WARNING]
+> Without setting an authentication method such as DKIM, SPF, and DMARC for your hostname, emails are most likely to be quarantined as spam at recipient's mail servers. The worst scenario is that your server's IP address or hostname will be included in the spam list such as the one managed by [Spamhaus](https://www.spamhaus.org/), depending on the reputation. As the exim-relay service supports DKIM signing, refer to [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-exim-relay/blob/main/docs/configuring-exim-relay.md#enable-dkim-support-optional) for details about how to set it up.
 
 ### Configuring push notification services (optional)
 
