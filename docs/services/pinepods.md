@@ -35,6 +35,8 @@ This service requires the following other services:
 
 - [Traefik](traefik.md) reverse-proxy server
 - (optional) [exim-relay](exim-relay.md) mailer — PinePods is compatible with other email delivery services
+- (optional) [Gotify](gotify.md)
+- (optional) [ntfy](ntfy.md)
 - (optional) [Valkey](valkey.md) data-store; see [below](#configuring-valkey-optional) for details about installation
 
 ## Adjusting the playbook configuration
@@ -256,6 +258,24 @@ To set up with the default exim-relay settings, open `https://pinepods.example.c
 - **Authentication Required**: Disable
 
 After setting the configuration, you can have the PinePods instance send a test mail.
+
+### Configuring push notification services (optional)
+
+On PinePods you can add configuration settings of push notification services. If you enable [ntfy](ntfy.md) and/or [Gotify](gotify.md) services in your inventory configuration, the playbook will automatically connect them to the PinePods service.
+
+As the PinePods instance does not support configuring the notification services with environment variables, you can add default options for it on its UI. Refer to [this page](https://www.pinepods.online/docs/tutorial-extras/SettingUpNotifications) on the official documentation as well about how to configure them.
+
+To set up with the default ntfy settings, open `https://pinepods.example.com/settings`, select "User Settings", navigate to "Notification Settings" to add the following configuration:
+
+- **Enable Notifications**: Enable
+- **ntfy Topic**: (Input the topic to send notifications)
+- **ntfy Server URL**: `http://mash-ntfy:8080`
+
+You can optionally enable authentication with username and password, or access token.
+
+Gotify integration can be enabled in a similar way.
+
+After setting the configuration, you can have the PinePods instance send a test notification.
 
 ## Troubleshooting
 
