@@ -146,7 +146,7 @@ See [this page](https://www.audiobookshelf.org/docs/) on the documentation about
 
 If you are looking for free public domain audiobooks which can be uploaded to your audiobookshelf instance, you might be interested in websites such as <https://librivox.org/>.
 
-### Configure the SMTP server (optional)
+### Configuring the mailer (optional)
 
 On audiobookshelf you can add configuration settings of a SMTP server to let the service send email to e-reader devices. If you enable the [exim-relay](exim-relay.md) service in your inventory configuration, the playbook will automatically configure it as a mailer for the service.
 

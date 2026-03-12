@@ -167,7 +167,7 @@ After running the command for installation, the Calibre-Web instance becomes ava
 
 See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-calibre-web/blob/master/docs/configuring-calibre-web.md#usage) for details about setting up the instance.
 
-### Configure the SMTP server (optional)
+### Configuring the mailer (optional)
 
 On Calibre-Web you can add configuration settings of a SMTP server to let the service send email to terminals like Kindle and Pocketbook. If you enable the [exim-relay](exim-relay.md) service in your inventory configuration, the playbook will automatically configure it as a mailer for the service.
 
