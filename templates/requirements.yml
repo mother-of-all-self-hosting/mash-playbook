@@ -644,6 +644,10 @@
   version: v5.2.3-2
   name: phpmyadmin
   activation_prefix: phpmyadmin_
+- src: git+https://seed.progressiv.dev/zKNyeEtymCZc7yio6JnHxY2AteZu.git
+  version: v0.8.2-0
+  name: pinepods
+  activation_prefix: pinepods_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-plausible.git
   version: v3.2.0-1
   name: plausible

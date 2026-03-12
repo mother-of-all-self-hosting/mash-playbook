@@ -174,4 +174,5 @@ See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3rwh
 ## Recommended other services
 
 - [Calibre-Web](calibre-web.md) — Web app for browsing, reading and downloading eBooks stored in a [Calibre](https://calibre-ebook.com/) database
+- [PinePods](pinepods.md) — Podcast management system that manages podcasts with multi-user support
 - [Syncthing](syncthing.md) — a continuous file synchronization program which synchronizes files between two or more computers in real time. See [Syncthing integration](#syncthing-integration)
