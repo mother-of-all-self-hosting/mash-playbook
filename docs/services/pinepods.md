@@ -19,14 +19,14 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
 # PinePods
 
-The playbook can install and configure [PinePods](https://docs.pinepods.app/) for you.
+The playbook can install and configure [PinePods](https://www.pinepods.online/) for you.
 
-PinePods is a self-hosted service to create RSS feeds from web pages via various "routes".
+PinePods is a podcast management system that manages podcasts with multi-user support.
 
-See the project's [documentation](https://docs.pinepods.app/guide/) to learn what PinePods does and why it might be useful to you.
+See the project's [documentation](https://www.pinepods.online/docs/intro) to learn what PinePods does and why it might be useful to you.
 
-For details about configuring the [Ansible role for PinePods](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3yKvCwcEfxn41ozRTcNR8ad6kpUm), you can check them via:
-- 🌐 [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3yKvCwcEfxn41ozRTcNR8ad6kpUm/tree/docs/configuring-pinepods.md) online
+For details about configuring the [Ansible role for PinePods](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3AzKNyeEtymCZc7yio6JnHxY2AteZu), you can check them via:
+- 🌐 [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3AzKNyeEtymCZc7yio6JnHxY2AteZu/tree/docs/configuring-pinepods.md) online
 - 📁 `roles/galaxy/pinepods/docs/configuring-pinepods.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 ## Dependencies
@@ -34,7 +34,7 @@ For details about configuring the [Ansible role for PinePods](https://app.radicl
 This service requires the following other services:
 
 - [Traefik](traefik.md) reverse-proxy server
-- (optional) [Browserless](browserless.md)
+- (optional) [exim-relay](exim-relay.md) mailer — PinePods is compatible with other email delivery services
 - (optional) [Valkey](valkey.md) data-store; see [below](#configuring-valkey-optional) for details about installation
 
 ## Adjusting the playbook configuration
@@ -60,14 +60,6 @@ pinepods_hostname: pinepods.example.com
 ```
 
 **Note**: hosting PinePods under a subpath (by configuring the `pinepods_path_prefix` variable) does not seem to be possible due to PinePods's technical limitations.
-
-### Connecting to a Browserless instance (optional)
-
-You can optionally have the PinePods instance connect to a Browserless instance, in order to have it simulate browser behavior for obtaining websites' data.
-
-Browserless is available on the playbook. Enabling it automatically configures the PinePods instance to connect to it.
-
-See [this page](browserless.md) for details about how to install it.
 
 ### Configuring Valkey (optional)
 
@@ -249,11 +241,9 @@ Note that running the `just` commands for installation (`just install-all` or `j
 
 After installation, the PinePods instance becomes available at the URL specified with `pinepods_hostname`. With the configuration above, the service is hosted at `https://pinepods.example.com`.
 
-See the [official documentation](https://docs.pinepods.app/guide/) for usage.
-
 ## Troubleshooting
 
-See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3yKvCwcEfxn41ozRTcNR8ad6kpUm/tree/docs/configuring-pinepods.md#troubleshooting) on the role's documentation for details.
+See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3AzKNyeEtymCZc7yio6JnHxY2AteZu/tree/docs/configuring-pinepods.md#troubleshooting) on the role's documentation for details.
 
 ## Related services
 
