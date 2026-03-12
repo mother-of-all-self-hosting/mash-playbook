@@ -80,6 +80,9 @@ To set up with the default exim-relay settings, install the plugin, navigate to 
 
 After setting the configuration, you can have the DokuWiki instance send a test mail on the administration page.
 
+>[!WARNING]
+> Without setting an authentication method such as DKIM, SPF, and DMARC for your hostname, emails are most likely to be quarantined as spam at recipient's mail servers. The worst scenario is that your server's IP address or hostname will be included in the spam list such as the one managed by [Spamhaus](https://www.spamhaus.org/), depending on the reputation. As the exim-relay service supports DKIM signing, refer to [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-exim-relay/blob/main/docs/configuring-exim-relay.md#enable-dkim-support-optional) for details about how to set it up.
+
 ## Troubleshooting
 
 See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-dokuwiki/blob/main/docs/configuring-dokuwiki.md#troubleshooting) on the role's documentation for details.
