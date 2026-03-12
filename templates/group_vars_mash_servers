@@ -932,6 +932,11 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
     {{ ({'name': (phpmyadmin_identifier + '.service'), 'priority': 2000, 'restart_necessary': (phpmyadmin_restart_necessary | bool), 'groups': ['mash', 'phpmyadmin']} if phpmyadmin_enabled else omit) }}
   # /role-specific:phpmyadmin
 
+  # role-specific:pinepods
+  - |-
+    {{ ({'name': (pinepods_identifier + '.service'), 'priority': 2000, 'restart_necessary': (pinepods_restart_necessary | bool), 'groups': ['mash', 'pinepods']} if pinepods_enabled else omit) }}
+  # /role-specific:pinepods
+
   # role-specific:plausible
   - |-
     {{ ({'name': (plausible_identifier + '.service'), 'priority': 2000, 'restart_necessary': (plausible_restart_necessary | bool), 'groups': ['mash', 'plausible']} if plausible_enabled else omit) }}
@@ -1931,6 +1936,17 @@ mash_playbook_postgres_managed_databases_auto_itemized:
       } if pgadmin_enabled and pgadmin_database_hostname == postgres_connection_hostname else omit)
     }}
   # /role-specific:pgadmin
+
+  # role-specific:pinepods
+  - |-
+    {{
+      ({
+        'name': pinepods_database_name,
+        'username': pinepods_database_postgres_username,
+        'password': pinepods_database_postgres_password,
+      } if pinepods_enabled and pinepods_database_postgres_hostname == postgres_connection_hostname and pinepods_database_type == 'postgres' else omit)
+    }}
+  # /role-specific:pinepods
 
   # role-specific:plausible
   - |-
@@ -9303,6 +9319,17 @@ mash_playbook_mariadb_managed_databases_auto_itemized:
     }}
   # /role-specific:paperless
 
+  # role-specific:pinepods
+  - |-
+    {{
+      ({
+        'name': pinepods_database_name,
+        'username': pinepods_database_mariadb_username,
+        'password': pinepods_database_mariadb_password,
+      } if pinepods_enabled and pinepods_database_mariadb_hostname == mariadb_connection_hostname and pinepods_database_type == 'mariadb' else omit)
+    }}
+  # /role-specific:pinepods
+
   # role-specific:privatebin
   - |-
     {{
@@ -11738,6 +11765,82 @@ phpmyadmin_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_p
 #                                                                      #
 ########################################################################
 # /role-specific:phpmyadmin
+
+
+
+# role-specific:pinepods
+########################################################################
+#                                                                      #
+# pinepods                                                             #
+#                                                                      #
+########################################################################
+
+pinepods_enabled: false
+
+pinepods_identifier: "{{ mash_playbook_service_identifier_prefix }}pinepods"
+
+pinepods_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}pinepods"
+
+pinepods_uid: "{{ mash_playbook_uid }}"
+pinepods_gid: "{{ mash_playbook_gid }}"
+
+pinepods_systemd_required_services_list_auto: |
+  {{
+    ([mariadb_identifier ~ '.service'] if mariadb_enabled | default(false) and pinepods_database_mariadb_hostname == mariadb_connection_hostname and pinepods_database_type == 'mariadb' else [])
+    +
+    ([postgres_identifier ~ '.service'] if postgres_enabled | default(false) and pinepods_database_postgres_hostname == postgres_connection_hostname and pinepods_database_type == 'postgres' else [])
+  }}
+
+pinepods_systemd_wanted_services_list_auto: |
+  {{
+    ([exim_relay_identifier ~ '.service'] if exim_relay_enabled | default(false) else [])
+    +
+    ([gotify_identifier ~ '.service'] if gotify_enabled | default(false) else [])
+    +
+    ([ntfy_identifier ~ '.service'] if ntfy_enabled | default(false) else [])
+  }}
+
+pinepods_container_additional_networks_auto: |
+  {{
+    ([exim_relay_container_network] if exim_relay_enabled | default(false) and pinepods_container_network != exim_relay_container_network else [])
+    +
+    ([gotify_container_network] if gotify_enabled | default(false) and pinepods_container_network != gotify_container_network else [])
+    +
+    ([mariadb_container_network] if mariadb_enabled | default(false) and pinepods_database_mariadb_hostname == mariadb_connection_hostname and pinepods_container_network != mariadb_container_network and pinepods_database_type == 'mariadb' else [])
+    +
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+    +
+    ([ntfy_container_network] if ntfy_enabled | default(false) and pinepods_container_network != ntfy_container_network else [])
+    +
+    ([postgres_container_network] if postgres_enabled | default(false) and pinepods_database_postgres_hostname == postgres_connection_hostname and pinepods_container_network != postgres_container_network and pinepods_database_type == 'postgres' else [])
+  }}
+
+pinepods_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+pinepods_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+
+# role-specific:mariadb
+pinepods_database_mariadb_hostname: "{{ mariadb_connection_hostname if mariadb_enabled else '' }}"
+pinepods_database_mariadb_port: "{{ mariadb_connection_port if mariadb_enabled else '3306' }}"
+pinepods_database_mariadb_password: "{{ (mash_playbook_generic_secret_key + ':m.pinepods') | hash('sha512') | to_uuid }}"
+# /role-specific:mariadb
+
+# role-specific:postgres
+pinepods_database_postgres_hostname: "{{ postgres_connection_hostname if postgres_enabled else '' }}"
+pinepods_database_postgres_port: "{{ postgres_connection_port if postgres_enabled else '5432' }}"
+pinepods_database_postgres_password: "{{ (mash_playbook_generic_secret_key + ':p.pinepods') | hash('sha512') | to_uuid }}"
+# /role-specific:postgres
+
+# role-specific:traefik
+pinepods_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
+pinepods_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
+# /role-specific:traefik
+
+########################################################################
+#                                                                      #
+# /pinepods                                                            #
+#                                                                      #
+########################################################################
+# /role-specific:pinepods
 
 
 

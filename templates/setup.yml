@@ -709,6 +709,10 @@
     - role: galaxy/phpmyadmin
     # /role-specific:phpmyadmin
 
+    # role-specific:pinepods
+    - role: galaxy/pinepods
+    # /role-specific:pinepods
+
     # role-specific:plausible
     - role: galaxy/plausible
     # /role-specific:plausible
