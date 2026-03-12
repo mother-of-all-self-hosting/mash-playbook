@@ -1,5 +1,5 @@
 * Actual: 26.3.0
-* Adguard Home: v0.107.72
+* Adguard Home: v0.107.73
 * Adminer: 5.4.2
 * Alpine: edge
 * Anki: 25.09.2
@@ -7,7 +7,7 @@
 * Answer: 2.0.0
 * Apisix Dashboard: 3.0.1
 * Apisix Gateway: 3.8.0
-* Apprise: 1.3.1
+* Apprise: 1.3.2
 * Appsmith: v1.73.1
 * Asciinema Server: 20260207
 * Atuin: v18.12.0
@@ -16,19 +16,21 @@
 * Authentik: 2025.12.4
 * Autobrr: v1.71.0
 * Barassistant Saltrim: 4.14.1
-* Barassistant Server: 5.13.1
-* Bentopdf: v2.4.0
+* Barassistant Server: 5.13.2
+* Bentopdf: v2.5.0
 * Bind: 9.20
 * Bitmagnet: v0.10.0
 * Borg: 1.4.3
-* Borgmatic: 2.1.1
+* Borg Ui: 1.74.0
+* Borgmatic: 2.1.3
 * Browserless: v2.42.0
 * Calibre Web: 0.6.26
+* Calibre Web Automated: v4.0.6
 * Cap: 2.2.1
-* Changedetection: 0.54.3
+* Changedetection: 0.54.4
 * Changedetection Playwright Driver: latest
-* Cinny: v4.10.5
-* Clickhouse: 26.2.2.9
+* Cinny: v4.11.1
+* Clickhouse: 26.2.4.23
 * Codimd: 2.6.1
 * Collabora Online: 25.04.9.2.1
 * Container Socket Proxy: v0.4.2
@@ -45,8 +47,8 @@
 * Docker Registry Browser Basic Auth Apache: 2.4.57-alpine3.17
 * Docker Registry Proxy: v1.2.7
 * Docker Registry Purger: 1.0.0
-* Docmost: 0.25.3
-* Docuseal: 2.3.5
+* Docmost: 0.70.1
+* Docuseal: 2.3.7
 * Dokuwiki: 2025-05-14b
 * Duplicati: 2.2.0
 * Echoip: latest
@@ -58,33 +60,34 @@
 * Excalidraw Basic Auth Apache: 2.4.57-alpine3.17
 * Exim Relay: 4.98.1-r0-2
 * Farmos: 3.5.1
-* Fider: v0.32.0
-* Filebrowser: v2.61.0
-* Filebrowser Quantum: 1.2.1
+* Fider: v0.33.0
+* Filebrowser: v2.61.2
+* Filebrowser Quantum: 1.2.2
 * Firezone: 0.7.36
 * Flaresolverr: v3.4.1
-* Fmd Server: 0.14.0
+* Flatnotes: v5.5.4
+* Fmd Server: 0.14.1
 * Focalboard: 7.11.4
 * Forgejo: 14.0.2
 * Forgejo Runner: 12.7.1
-* Freescout: php8.3-1.17.147
+* Freescout: php8.3-1.17.148
 * Freshrss: 1.28.1
 * Funkwhale: 1.4.1
-* Ghostfolio: 2.245.0
+* Ghostfolio: 2.249.0
 * Gitea: 1.25.4
 * Gothub: latest
 * Gotify: 2.9.1
-* Gotosocial: 0.21.0
+* Gotosocial: 0.21.1
 * Grafana: 11.6.5
 * Headplane: 0.6.1
 * Headscale: v0.28.0
 * Healthchecks: v4.0
-* Homarr: v1.54.0
-* Hubsite Nginx: 1.29.5
-* Ihatemoney: 7.0
+* Homarr: v1.55.0
+* Hubsite Nginx: 1.29.6
+* Ihatemoney: 7.0.1
 * Ilmo: 1.0.4
 * Immich: v2.5.6
-* Immich Kiosk: 0.33.2
+* Immich Kiosk: 0.33.3
 * Infisical: v0.43.19
 * Influxdb: 2.8.0
 * Inspircd: 4.9.0
@@ -95,9 +98,9 @@
 * Jitsi Ldap: 3
 * Jitsi Prosody Auth Matrix User Verification Repo: 2839499cb03894d8cfc3e5b2219441427cb133d8
 * Joplin Server: 3.5.2
-* Kanboard: v1.2.50
+* Kanboard: v1.2.51
 * Karakeep: 0.31.0
-* Keycloak: 26.5.4
+* Keycloak: 26.5.5
 * Keydb: 6.3.4
 * Keyoxide: 5.1.0
 * Keyoxide Proxy: 5.1.0
@@ -105,7 +108,7 @@
 * Labelstudio: latest
 * Lago: v0.50.0-beta
 * Languagetool: 6.7-dockerupdate-1
-* Limesurvey: 6.16.10
+* Limesurvey: 6.16.12
 * Linkding: 1.45.0
 * Linkwarden: v2.13.5
 * Listmonk: 4.1.0
@@ -113,15 +116,15 @@
 * Loki: 3.6.7
 * Mailcatcher: v0.10.0
 * Mailcrab: v1.6.4
-* Mailpit: v1.29.2
-* Matomo: 5.7.1
+* Mailpit: v1.29.3
+* Matomo: 5.8.0
 * Matterbridge: 1.26.0
 * Mediawiki: lts
-* Meilisearch: v1.37.0
-* Memcached: 1.6.40
+* Meilisearch: v1.38.2
+* Memcached: 1.6.41
 * Minecraft Docker: 2025.4.2
 * Miniflux: 2.2.17
-* Misskey: 2025.12.2
+* Misskey: 2026.3.1
 * Mobilizon: 4.1.0
 * Monerooo: e0151bf14c603299fda99bad2f56530777306c28
 * Mongodb: 8.2.5
@@ -138,13 +141,13 @@
 * Nextcloud: 33.0.0
 * Nifi: 2.6.0
 * Nocdnbs: 2096249f93e591804b7188640858399a87fc4b49
-* Nodebb: 4.9.1
+* Nodebb: 4.9.2
 * Notfellchen: 1.1.0
 * Notfellchen Sws: 2
-* Ntfy: v2.17.0
+* Ntfy: v2.18.0
 * Oauth2 Proxy: v7.14.3
 * Onion Service Tor: stable
-* Onlyoffice Docs: 9.3.0
+* Onlyoffice Docs: 9.3.1
 * Openarchiver: v0.4.2
 * Opengist: 1.12.1
 * Openregex: 1.3.0
@@ -155,17 +158,18 @@
 * Overseerr: 1.34.0
 * Owncast: 0.2.4
 * Oxitraffic: v0.10.5
-* Paperless: 2.20.9
+* Paperless: 2.20.10
 * Paperless Gotenberg: 8.27.0
 * Paperless Tika: 3.1.0.0
 * Papra: 26.2.1
-* Pdfding: v1.6.1
+* Pdfding: v1.6.2
 * Peertube: v7.2.3
-* Pgadmin: 9.12.0
+* Pgadmin: 9.13.0
 * Phpmyadmin: 5.2.3
+* Pinepods: 0.8.2
 * Plausible: v3.2.0
 * Plex: 1.43.0
-* Pocket Id: v2.3.0
+* Pocket Id: v2.4.0
 * Poodledonts: 62283b9cddd54e91f46d78863d36e02c7b50ff6b
 * Postgres Container Image V10: 10.23
 * Postgres Container Image V11: 11.22
@@ -190,11 +194,11 @@
 * Rabbitmq: 4.2.4
 * Radarr: 6.0.4
 * Radicale: 3.6.1.0
-* Radicle Explorer: 29b952a3ffddbaf93989f93c5b6e11155432f6a6
+* Radicle Explorer: fa85596ba1821d7e8da1b16ab05e4b0fb9a59fd7
 * Radicle Httpd: 0.24.0
 * Radicle Node: 1.6.1
 * Reactflux: latest
-* Readeck: 0.21.6
+* Readeck: 0.22.1
 * Redis: 8.6.1
 * Redlib: latest
 * Redmine: 6.1.1
@@ -203,13 +207,13 @@
 * Rsshub: latest
 * Rumqttd: 0.19.0
 * Searxng: latest
-* Semaphore: 2.17.16
+* Semaphore: 2.17.18
 * Send: v3.4.27
 * Sftpgo: v2.7.0
 * Silverbullet: 2.4.1
 * Smp Server: v6.4.5
 * Snowflake: v2.11.0
-* Soft Serve: v0.11.3
+* Soft Serve: v0.11.5
 * Solidinvoice: 2.3.16
 * Sonarr: 4.0.15
 * Statusnook: latest
@@ -218,12 +222,12 @@
 * Syncthing: 2.0.15
 * Tandoor: 2.5.1
 * Teable: latest
-* Telegraf: 1.37.3
-* Termix: 1.11.1
+* Telegraf: 1.38.0
+* Termix: 1.11.2
 * Thelounge: 4.4.3
 * Tika: 3.2.3.0
-* Tinyauth: v5.0.0
-* Traefik: v3.6.9
+* Tinyauth: v5.0.3
+* Traefik: v3.6.10
 * Traefik Certs Dumper: v2.10.0
 * Traefik Config Tcp Servertransports Default Proxyprotocol: 1
 * Tsdproxy: 1.4.7
@@ -233,13 +237,13 @@
 * Vaultwarden: 1.35.4
 * Versatiles: 0.15.3
 * Vikunja: 2.1.0
-* Weblate: 5.16.1.0
+* Weblate: 5.16.2.0
 * Wetty: 2.5
 * Wg Easy: 15.2.2
 * Wikimore: v0.1.16
 * Woodpecker Ci Agent: v3.13.0
 * Woodpecker Ci Server: v3.13.0
-* Wordpress: 6.9.1
+* Wordpress: 6.9.4
 * Writefreely: v0.16.0
 * Yacy: latest
 * Yggstack: trunk
