@@ -241,6 +241,22 @@ Note that running the `just` commands for installation (`just install-all` or `j
 
 After installation, the PinePods instance becomes available at the URL specified with `pinepods_hostname`. With the configuration above, the service is hosted at `https://pinepods.example.com`.
 
+### Configuring the SMTP server (optional)
+
+On PinePods you can add configuration settings of a SMTP server for password recovery function. If you enable the [exim-relay](exim-relay.md) service in your inventory configuration, the playbook will automatically connect it to the PinePods service.
+
+As the PinePods instance does not support configuring the mailer with environment variables, you can add default options for it on its UI. Refer to [this page](https://www.pinepods.online/docs/tutorial-extras/PasswordResets) on the official documentation as well about how to configure it.
+
+To set up with the default exim-relay settings, open `https://pinepods.example.com/settings`, select "Admin Settings", navigate to "Email Settings" to add the following configuration:
+
+- **SMTP Server**: `mash-exim-relay`
+- **Port**: 8025
+- **From Email Address**: (Input the email address specified to `exim_relay_sender_address` on your `vars.yml`)
+- **Encryption Method**: None
+- **Authentication Required**: Disable
+
+After setting the configuration, you can have the PinePods instance send a test mail.
+
 ## Troubleshooting
 
 See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3AzKNyeEtymCZc7yio6JnHxY2AteZu/tree/docs/configuring-pinepods.md#troubleshooting) on the role's documentation for details.
