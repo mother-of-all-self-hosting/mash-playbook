@@ -66,11 +66,6 @@ To use MariaDB, add the following configuration to your `vars.yml` file:
 healthchecks_database_type: mysql
 ```
 
-### Authentication
-
-The first superuser account is created after installation. See [Usage](#usage).
-You can create as many accounts as you wish.
-
 ### Email integration
 
 If you've enabled the [exim-relay](exim-relay.md) mailer service, Healthchecks will automatically be configured to send through it.
@@ -100,7 +95,7 @@ To get started, create a superuser account by running the command as below:
 ansible-playbook -i inventory/hosts setup.yml --tags=createsuperuser-healthchecks -e email=EMAIL_ADDRESS_HERE -e password=PASSWORD_HERE
 ```
 
-After creating the superuser account, you can open the URL to log in and start setting up monitoring tasks.
+After creating the superuser account, you can open the URL to log in and start setting up monitoring tasks. You can create as many accounts as you wish.
 
 
 ## Recommended other services
