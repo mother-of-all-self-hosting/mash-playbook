@@ -1241,6 +1241,11 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
     {{ ({'name': (vaultwarden_identifier + '.service'), 'priority': 2000, 'restart_necessary': (vaultwarden_restart_necessary | bool), 'groups': ['mash', 'vaultwarden']} if vaultwarden_enabled else omit) }}
   # /role-specific:vaultwarden
 
+  # role-specific:versatiles
+  - |-
+    {{ ({'name': (versatiles_identifier + '.service'), 'priority': 2000, 'restart_necessary': (versatiles_restart_necessary | bool), 'groups': ['mash', 'versatiles']} if versatiles_enabled else omit) }}
+  # /role-specific:versatiles
+
   # role-specific:vikunja
   - |-
     {{ ({'name': (vikunja_identifier + '.service'), 'priority': 2000, 'restart_necessary': (vikunja_restart_necessary | bool), 'groups': ['mash', 'vikunja']} if vikunja_enabled else omit) }}
