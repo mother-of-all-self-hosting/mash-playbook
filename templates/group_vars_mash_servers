@@ -6372,16 +6372,24 @@ healthchecks_systemd_required_services_list_auto: |
 
 healthchecks_systemd_wanted_services_list_auto: |
   {{
-    ([exim_relay_identifier ~ '.service'] if exim_relay_enabled | default(false) and healthchecks_environment_variable_email_host == exim_relay_identifier else [])
+    ([exim_relay_identifier ~ '.service'] if exim_relay_enabled | default(false) else [])
+    +
+    ([gotify_identifier ~ '.service'] if gotify_enabled | default(false) else [])
+    +
+    ([ntfy_identifier ~ '.service'] if ntfy_enabled | default(false) else [])
   }}
 
 healthchecks_container_additional_networks_auto: |
   {{
-    ([exim_relay_container_network] if exim_relay_enabled | default(false) and healthchecks_environment_variable_email_host == exim_relay_identifier and healthchecks_container_network != exim_relay_container_network else [])
+    ([exim_relay_container_network] if exim_relay_enabled | default(false) and healthchecks_container_network != exim_relay_container_network else [])
+    +
+    ([gotify_container_network] if gotify_enabled | default(false) and healthchecks_container_network != gotify_container_network else [])
     +
     ([mariadb_container_network] if mariadb_enabled | default(false) and healthchecks_database_mysql_hostname == mariadb_connection_hostname and healthchecks_container_network != mariadb_container_network and healthchecks_database_type == 'mysql' else [])
     +
     ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+    +
+    ([ntfy_container_network] if ntfy_enabled | default(false) and healthchecks_container_network != ntfy_container_network else [])
     +
     ([postgres_container_network] if postgres_enabled | default(false) and healthchecks_database_hostname == postgres_connection_hostname and healthchecks_container_network != postgres_container_network and healthchecks_database_type == 'postgres' else [])
   }}

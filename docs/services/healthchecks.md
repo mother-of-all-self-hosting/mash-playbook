@@ -22,8 +22,11 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
 # Healthchecks
 
-[Healthchecks](https://healthchecks.io/) is simple and Effective **Cron Job Monitoring** solution.
+The playbook can install and configure [Healthchecks](https://healthchecks.io/) for you.
 
+Healthchecks is a cron job monitoring software.
+
+See the project's [documentation](https://healthchecks.io/docs/) to learn what Healthchecks does and why it might be useful to you.
 
 ## Dependencies
 
@@ -31,10 +34,11 @@ This service requires the following other services:
 
 - [Traefik](traefik.md) reverse-proxy server
 - (optional) [exim-relay](exim-relay.md) mailer
+- (optional) [Gotify](gotify.md)
+- (optional) [ntfy](ntfy.md)
 - (optional) [Postgres](postgres.md) / MySQL / [MariaDB](mariadb.md) database — Healthchecks will default to [SQLite](https://www.sqlite.org/) if Postgres is not enabled
 
-
-## Configuration
+## Adjusting the playbook configuration
 
 To enable this service, add the following configuration to your `vars.yml` file and re-run the [installation](../installing.md) process:
 
@@ -67,26 +71,24 @@ To use MariaDB, add the following configuration to your `vars.yml` file:
 healthchecks_database_type: mysql
 ```
 
-### Configuring the mailer (optional)
+### Configuring notification services (optional)
 
-On Healthchecks you can set up a mailer for functions such as password recovery. If you enable the [exim-relay](exim-relay.md) service in your inventory configuration, the playbook will automatically configure it as a mailer for the service.
+On Healthchecks you can add configuration settings of notification services. If you enable [exim-relay](exim-relay.md), [ntfy](ntfy.md), and/or [Gotify](gotify.md) services in your inventory configuration, the playbook will automatically connect them to the Healthchecks service.
 
-To actually have the service use (and get messages sent through the exim-relay service), you will need to adjust settings on the service's UI after the service is installed.
+As the Healthchecks instance does not support configuring the self-hosted ntfy or Gotify instances with environment variables, you can add default options for them on its UI. Refer to [this page](https://healthchecks.io/docs/configuring_notifications/) on the official documentation as well about how to configure them.
 
->[!WARNING]
-> Without setting an authentication method such as DKIM, SPF, and DMARC for your hostname, emails are most likely to be quarantined as spam at recipient's mail servers. The worst scenario is that your server's IP address or hostname will be included in the spam list such as the one managed by [Spamhaus](https://www.spamhaus.org/), depending on the reputation. As the exim-relay service supports DKIM signing, refer to [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-exim-relay/blob/main/docs/configuring-exim-relay.md#enable-dkim-support-optional) for details about how to set it up.
-
-### Integrating with other services
-
-Refer to the [upstream `.env.example` file](https://github.com/healthchecks/healthchecks/blob/master/docker/.env.example) for discovering additional environment variables.
-
-You can pass these to the Healthchecks container using the `healthchecks_environment_variables_additional_variables` variable. Example:
+To set up other supported services, refer to the [upstream `.env.example` file](https://github.com/healthchecks/healthchecks/blob/master/docker/.env.example) for environment variables. You can pass those variables to the Healthchecks container with the `healthchecks_environment_variables_additional_variables` variable as below:
 
 ```yml
 healthchecks_environment_variables_additional_variables: |
   DISCORD_CLIENT_ID=123
   DISCORD_CLIENT_SECRET=456
 ```
+
+To actually have the services use (and get messages sent through them), you will need to adjust settings on the service's UI after the service is installed.
+
+>[!WARNING]
+> Without setting an authentication method such as DKIM, SPF, and DMARC for your hostname, emails are most likely to be quarantined as spam at recipient's mail servers. The worst scenario is that your server's IP address or hostname will be included in the spam list such as the one managed by [Spamhaus](https://www.spamhaus.org/), depending on the reputation. As the exim-relay service supports DKIM signing, refer to [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-exim-relay/blob/main/docs/configuring-exim-relay.md#enable-dkim-support-optional) for details about how to set it up.
 
 ### Extending the configuration
 
@@ -107,7 +109,6 @@ ansible-playbook -i inventory/hosts setup.yml --tags=createsuperuser-healthcheck
 ```
 
 After creating the superuser account, you can open the URL to log in and start setting up monitoring tasks. You can create as many accounts as you wish.
-
 
 ## Recommended other services
 
