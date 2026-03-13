@@ -249,7 +249,7 @@ On PinePods you can add configuration settings of a SMTP server for password rec
 
 As the PinePods instance does not support configuring the mailer with environment variables, you can add default options for it on its UI. Refer to [this page](https://www.pinepods.online/docs/tutorial-extras/PasswordResets) on the official documentation as well about how to configure it.
 
-To set up with the default exim-relay settings, open `https://pinepods.example.com/settings`, select "Admin Settings", navigate to "Email Settings" to add the following configuration:
+To set up with the default exim-relay settings, open `https://pinepods.example.com/settings`, select "Admin Settings", and navigate to "Email Settings" to add the following configuration:
 
 - **SMTP Server**: `mash-exim-relay`
 - **Port**: 8025
