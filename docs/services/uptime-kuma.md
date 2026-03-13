@@ -33,7 +33,9 @@ For details about configuring the [Ansible role for Uptime Kuma](https://github.
 
 This service requires the following other services:
 
-- a [Traefik](traefik.md) reverse-proxy server
+- [Traefik](traefik.md) reverse-proxy server
+- (optional) [Gotify](gotify.md)
+- (optional) [ntfy](ntfy.md)
 
 ## Configuration
 

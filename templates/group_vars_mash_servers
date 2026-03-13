@@ -14521,6 +14521,13 @@ uptime_kuma_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_b
 uptime_kuma_uid: "{{ mash_playbook_uid }}"
 uptime_kuma_gid: "{{ mash_playbook_gid }}"
 
+uptime_kuma_systemd_wanted_services_list_auto: |
+  {{
+    ([gotify_identifier ~ '.service'] if gotify_enabled | default(false) else [])
+    +
+    ([ntfy_identifier ~ '.service'] if ntfy_enabled | default(false) else [])
+  }}
+
 uptime_kuma_container_additional_networks_auto: |
   {{
     ([gotify_container_network] if gotify_enabled | default(false) and uptime_kuma_container_network != gotify_container_network else [])
