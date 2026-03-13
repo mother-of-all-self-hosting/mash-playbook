@@ -36,6 +36,7 @@ This service requires the following other services:
 
 - [Traefik](traefik.md) reverse-proxy server
 - [Valkey](valkey.md) data-store; see [below](#configure-valkey) for details about installation
+- (optional) [exim-relay](exim-relay.md) mailer
 
 ## Adjusting the playbook configuration
 
@@ -244,6 +245,29 @@ After installation, the NodeBB instance becomes available at the URL specified w
 To get started, open the URL with a web browser, and follow the set up wizard. Make sure that the scheme (`HTTPS` or `HTTP`) for the public facing URL is detected properly, and fix it if not.
 
 Refer to [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az2K9dPANyrXJY7juE9XecXyernA6h/tree/docs/configuring-nodebb.md#usage) on the role's documentation for more information.
+
+### Configuring the mailer (optional)
+
+On NodeBB you can add configuration settings of a SMTP server for functions such as password recovery. If you enable the [exim-relay](exim-relay.md) service in your inventory configuration, the playbook will automatically connect it to the NodeBB service.
+
+As the NodeBB instance does not support configuring the mailer with environment variables, you can add default options for it on its UI.
+
+To set up with the default exim-relay settings, open `https://nodebb.example.com/admin/settings/email` to add the following configuration:
+
+- **Email Address**: (Input the email address specified to `exim_relay_sender_address` on your `vars.yml`)
+- **From Name**: (Input the name)
+- **Enable SMTP Transport**: Enable
+- **Select a service**: `Custom Service`
+- **SMTP Host**: `mash-exim-relay`
+- **SMTP Port**: 8025
+- **Connection security**: None
+- **Username**: (Empty)
+- **Password**: (Empty)
+
+After setting the configuration, you can have the NodeBB instance test SMTP settings and send a test mail.
+
+>[!WARNING]
+> Without setting an authentication method such as DKIM, SPF, and DMARC for your hostname, emails are most likely to be quarantined as spam at recipient's mail servers. The worst scenario is that your server's IP address or hostname will be included in the spam list such as the one managed by [Spamhaus](https://www.spamhaus.org/), depending on the reputation. As the exim-relay service supports DKIM signing, refer to [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-exim-relay/blob/main/docs/configuring-exim-relay.md#enable-dkim-support-optional) for details about how to set it up.
 
 ## Troubleshooting
 
