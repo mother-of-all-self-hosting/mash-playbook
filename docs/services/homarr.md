@@ -34,6 +34,7 @@ For details about configuring the [Ansible role for Homarr](https://github.com/m
 This service requires the following other services:
 
 - [Traefik](traefik.md) reverse-proxy server
+- (optional) [ntfy](ntfy.md)
 - (optional) [Postgres](postgres.md) / MySQL database — Homarr will default to [SQLite](https://www.sqlite.org/) if Postgres is not enabled
 
 >[!NOTE]
