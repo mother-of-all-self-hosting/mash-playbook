@@ -1,21 +1,28 @@
 <!--
 SPDX-FileCopyrightText: 2024 Julian-Samuel Gebühr
+SPDX-FileCopyrightText: 2026 Suguru Hirahara
 
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 
 # Wordpress
 
-[WordPress](https://wordpress.org/) is a widley used open source web content management system that this playbook can install, powered by the [mother-of-all-self-hosting/ansible-role-wordpress](https://github.com/mother-of-all-self-hosting/ansible-role-wordpress) Ansible role.
+The playbook can install and configure [WordPress](https://wordpress.org/) for you.
+
+Wordpress is a web content management system.
+
+See the project's [documentation](https://codex.wordpress.org/Main_Page/) to learn what Wordpress does and why it might be useful to you.
 
 ## Dependencies
 
 This service requires the following other services:
 
-- a [MariaDB](mariadb.md) database
-- a [Traefik](traefik.md) reverse-proxy server
+- [MariaDB](mariadb.md) database
+- [Traefik](traefik.md) reverse-proxy server
 
-## Configuration
+## Adjusting the playbook configuration
+
+To enable this service, add the following configuration to your `vars.yml` file and re-run the [installation](../installing.md) process:
 
 ```yaml
 ########################################################################
@@ -35,32 +42,20 @@ wordpress_hostname: wordpress.example.com
 ########################################################################
 ```
 
+### Adjusting upload size limit
+
+By default the size limit of uploaded files is set to `64M`. It is possible to adjust it by adding the following configuration to your `vars.yml` file:
+
+```yaml
+wordpress_max_upload_size: UPLOAD_SIZE_LIMIT_HERE
+```
+
 ## Usage
 
-Navigate to the domain you set as `wordpress_hostname`, select a language and create an admin user.
+After running the command for installation, the Wordpress instance becomes available at the URL specified with `wordpress_hostname`. With the configuration above, the service is hosted at `https://wordpress.example.com`.
 
-> **Make sure to create a user with a strong password**
+To get started, open the URL with a web browser, and follow the set up wizard.
 
-You can now log in and fill your website with content!
+## Troubleshooting
 
-
-## Advanced
-
-### Basic authentication
-
-If you don't want to have your website accessible to everyone (e.g. you first want to present it to a client) you can use
-
-```yaml
-wordpress_container_labels_middleware_basic_auth_enabled: true
-# Use `htpasswd -nb USERNAME PASSWORD` to generate the users below.
-# See: https://doc.traefik.io/traefik/middlewares/http/basicauth/#users
-wordpress_container_labels_middleware_basic_auth_users: ''
-```
-
-### Increase upload limit
-
-By default we set the upload limit to `64M`. Increasing or decreasing the upload limit can be done by adding the following to your `vars.yml`
-
-```yaml
-wordpress_max_upload_size: '64M'
-```
+FAQ is available on [this page](https://codex.wordpress.org/FAQ).
