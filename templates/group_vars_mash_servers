@@ -9828,11 +9828,42 @@ miniflux_systemd_required_services_list_auto: |
     ([postgres_identifier ~ '.service'] if postgres_enabled and miniflux_database_hostname == postgres_connection_hostname else [])
   }}
 
+miniflux_systemd_wanted_services_list_auto: |
+  {{
+    ([apprise_identifier ~ '.service'] if apprise_enabled | default(false) else [])
+    +
+    ([karakeep_identifier ~ '.service'] if karakeep_enabled | default(false) else [])
+    +
+    ([linkding_identifier ~ '.service'] if linkding_enabled | default(false) else [])
+    +
+    ([linkwarden_identifier ~ '.service'] if linkwarden_enabled | default(false) else [])
+    +
+    ([ntfy_identifier ~ '.service'] if ntfy_enabled | default(false) else [])
+    +
+    ([readeck_identifier ~ '.service'] if readeck_enabled | default(false) else [])
+    +
+    ([rssbridge_identifier ~ '.service'] if rssbridge_enabled | default(false) else [])
+  }}
+
 miniflux_container_additional_networks_auto: |
   {{
+    ([apprise_container_network] if apprise_enabled | default(false) and miniflux_container_network != apprise_container_network else [])
+    +
+    ([karakeep_container_network] if karakeep_enabled | default(false) and miniflux_container_network != karakeep_container_network else [])
+    +
+    ([linkding_container_network] if linkding_enabled | default(false) and miniflux_container_network != linkding_container_network else [])
+    +
+    ([linkwarden_container_network] if linkwarden_enabled | default(false) and miniflux_container_network != linkwarden_container_network else [])
+    +
     ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
     +
+    ([ntfy_container_network] if ntfy_enabled | default(false) and miniflux_container_network != ntfy_container_network else [])
+    +
     ([postgres_container_network] if postgres_enabled and miniflux_database_hostname == postgres_connection_hostname and miniflux_container_network != postgres_container_network else [])
+    +
+    ([readeck_container_network] if readeck_enabled | default(false) and miniflux_container_network != readeck_container_network else [])
+    +
+    ([rssbridge_container_network] if rssbridge_enabled | default(false) and miniflux_container_network != rssbridge_container_network else [])
   }}
 
 miniflux_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
