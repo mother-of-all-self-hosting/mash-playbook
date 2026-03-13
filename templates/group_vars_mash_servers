@@ -3888,9 +3888,36 @@ changedetection_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_servi
 changedetection_uid: "{{ mash_playbook_uid }}"
 changedetection_gid: "{{ mash_playbook_gid }}"
 
+changedetection_systemd_wanted_services_list_auto: |
+  {{
+    ([apprise_identifier ~ '.service'] if apprise_enabled | default(false) else [])
+    +
+    ([exim_relay_identifier ~ '.service'] if exim_relay_enabled | default(false) else [])
+    +
+    ([gotify_identifier ~ '.service'] if gotify_enabled | default(false) else [])
+    +
+    ([jellyfin_identifier ~ '.service'] if jellyfin_enabled | default(false) else [])
+    +
+    ([nextcloud_identifier ~ '.service'] if nextcloud_enabled | default(false) else [])
+    +
+    ([ntfy_identifier ~ '.service'] if ntfy_enabled | default(false) else [])
+  }}
+
 changedetection_container_additional_networks_auto: |
   {{
+    ([apprise_container_network] if apprise_enabled | default(false) and changedetection_container_network != apprise_container_network else [])
+    +
+    ([exim_relay_container_network] if exim_relay_enabled | default(false) and changedetection_container_network != exim_relay_container_network else [])
+    +
+    ([gotify_container_network] if gotify_enabled | default(false) and changedetection_container_network != gotify_container_network else [])
+    +
+    ([jellyfin_container_network] if jellyfin_enabled | default(false) and changedetection_container_network != jellyfin_container_network else [])
+    +
     ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+    +
+    ([nextcloud_container_network] if nextcloud_enabled | default(false) and changedetection_container_network != nextcloud_container_network else [])
+    +
+    ([ntfy_container_network] if ntfy_enabled | default(false) and changedetection_container_network != ntfy_container_network else [])
   }}
 
 changedetection_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
