@@ -9579,8 +9579,15 @@ matomo_systemd_required_services_list_auto: |
     ([mariadb_identifier ~ '.service'] if mariadb_enabled and matomo_database_hostname == mariadb_connection_hostname else [])
   }}
 
+matomo_systemd_wanted_services_list_auto: |
+  {{
+    ([exim_relay_identifier ~ '.service'] if exim_relay_enabled | default(false) else [])
+  }}
+
 matomo_container_additional_networks_auto: |
   {{
+    ([exim_relay_container_network] if exim_relay_enabled | default(false) and matomo_container_network != exim_relay_container_network else [])
+    +
     ([mariadb_container_network] if mariadb_enabled and matomo_database_hostname == mariadb_connection_hostname and matomo_container_network != mariadb_container_network else [])
     +
     ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
