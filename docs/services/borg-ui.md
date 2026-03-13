@@ -35,6 +35,7 @@ For details about configuring the [Ansible role for Borg Web UI](https://app.rad
 This service requires the following other services:
 
 - [Traefik](traefik.md) reverse-proxy server
+- (optional) [Apprise API](apprise.md)
 - (optional) [Valkey](valkey.md) data-store; see [below](#configure-valkey) for details about installation
 
 ## Adjusting the playbook configuration
@@ -257,6 +258,12 @@ borg_ui_container_additional_volumes_custom:
 
 >[!NOTE]
 > The directory should be mounted with `readonly` to prevent accidental modification or ransomware attacks.
+
+### Configuring notification services (optional)
+
+On Borg Web UI you can add configuration settings of notification services. If you enable [Apprise API](apprise.md) in your inventory configuration, the playbook will automatically connect it to the Borg Web UI service.
+
+As the Borg Web UI instance does not support configuring the notification services with environment variables, you can add default options for them on its UI. Refer to [this page](https://karanhudia.github.io/borg-ui/notifications.html) on the official documentation as well about how to configure them.
 
 ## Troubleshooting
 

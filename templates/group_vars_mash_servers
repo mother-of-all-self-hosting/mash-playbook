@@ -3680,8 +3680,15 @@ borg_ui_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_
 borg_ui_uid: "{{ mash_playbook_uid }}"
 borg_ui_gid: "{{ mash_playbook_gid }}"
 
+borg_ui_systemd_wanted_services_list_auto: |
+  {{
+    ([apprise_identifier ~ '.service'] if apprise_enabled | default(false) else [])
+  }}
+
 borg_ui_container_additional_networks_auto: |
   {{
+    ([apprise_container_network] if apprise_enabled | default(false) and borg_ui_container_network != apprise_container_network else [])
+    +
     ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
   }}
 
