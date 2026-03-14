@@ -172,11 +172,11 @@ Having configured `vars.yml` for the dedicated instance, add the following confi
 pinepods_redis_hostname: mash-pinepods-valkey
 
 # Make sure the PinePods server service (mash-pinepods-server.service) starts after its dedicated Valkey service (mash-pinepods-valkey.service)
-pinepods_server_systemd_required_services_list_custom:
+pinepods_systemd_required_services_list_custom:
   - "mash-pinepods-valkey.service"
 
 # Make sure the PinePods server container is connected to the container network of its dedicated Valkey service (mash-pinepods-valkey)
-pinepods_server_container_additional_networks_custom:
+pinepods_container_additional_networks_custom:
   - "mash-pinepods-valkey"
 
 ########################################################################
@@ -222,11 +222,11 @@ valkey_enabled: true
 pinepods_redis_hostname: "{{ valkey_identifier }}"
 
 # Make sure the PinePods server service (mash-pinepods-server.service) starts after the shared Valkey service (mash-valkey.service)
-pinepods_server_systemd_required_services_list_custom:
+pinepods_systemd_required_services_list_custom:
   - "{{ valkey_identifier }}.service"
 
 # Make sure the PinePods server container is connected to the container network of the shared Valkey service (mash-valkey)
-pinepods_server_container_additional_networks_custom:
+pinepods_container_additional_networks_custom:
   - "{{ valkey_identifier }}"
 
 ########################################################################
