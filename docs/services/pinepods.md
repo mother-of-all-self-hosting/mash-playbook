@@ -248,6 +248,8 @@ Note that running the `just` commands for installation (`just install-all` or `j
 
 After installation, the PinePods instance becomes available at the URL specified with `pinepods_hostname`. With the configuration above, the service is hosted at `https://pinepods.example.com`.
 
+To get started, open the URL with a web browser to create an account.
+
 ### Configuring the mailer (optional)
 
 On PinePods you can add configuration settings of a SMTP server for password recovery function. If you enable the [exim-relay](exim-relay.md) service in your inventory configuration, the playbook will automatically connect it to the PinePods service.
