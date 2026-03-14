@@ -14568,6 +14568,10 @@ uptime_kuma_gid: "{{ mash_playbook_gid }}"
 
 uptime_kuma_systemd_wanted_services_list_auto: |
   {{
+    ([apprise_identifier ~ '.service'] if apprise_enabled | default(false) else [])
+    +
+    ([exim_relay_identifier ~ '.service'] if exim_relay_enabled | default(false) else [])
+    +
     ([gotify_identifier ~ '.service'] if gotify_enabled | default(false) else [])
     +
     ([mariadb_identifier ~ '.service'] if mariadb_enabled | default(false) else [])
@@ -14581,6 +14585,10 @@ uptime_kuma_systemd_wanted_services_list_auto: |
 
 uptime_kuma_container_additional_networks_auto: |
   {{
+    ([apprise_container_network] if apprise_enabled | default(false) and uptime_kuma_container_network != apprise_container_network else [])
+    +
+    ([exim_relay_container_network] if exim_relay_enabled | default(false) and uptime_kuma_container_network != exim_relay_container_network else [])
+    +
     ([gotify_container_network] if gotify_enabled | default(false) and uptime_kuma_container_network != gotify_container_network else [])
     +
     ([mariadb_container_network] if mariadb_enabled | default(false) and uptime_kuma_container_network != mariadb_container_network else [])
