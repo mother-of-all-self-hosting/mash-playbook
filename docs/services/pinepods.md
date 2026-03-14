@@ -33,6 +33,7 @@ For details about configuring the [Ansible role for PinePods](https://app.radicl
 
 This service requires the following other services:
 
+- [Postgres](postgres.md) / [MariaDB](mariadb.md) database
 - [Traefik](traefik.md) reverse-proxy server
 - (optional) [exim-relay](exim-relay.md) mailer — PinePods is compatible with other email delivery services
 - (optional) [Gotify](gotify.md)
@@ -62,6 +63,10 @@ pinepods_hostname: pinepods.example.com
 ```
 
 **Note**: hosting PinePods under a subpath (by configuring the `pinepods_path_prefix` variable) does not seem to be possible due to PinePods's technical limitations.
+
+### Select database to use
+
+It is necessary to select a database used by PinePods from MariaDB and Postgres. See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3AzKNyeEtymCZc7yio6JnHxY2AteZu/tree/docs/configuring-pinepods.md#specify-database) on the role's documentation for details.
 
 ### Configuring Valkey (optional)
 
