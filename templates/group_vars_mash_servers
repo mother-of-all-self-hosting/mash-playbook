@@ -10750,6 +10750,8 @@ nodebb_gid: "0"
 nodebb_systemd_wanted_services_list_auto: |
   {{
     ([exim_relay_identifier ~ '.service'] if exim_relay_enabled | default(false) else [])
+    +
+    ([ntfy_identifier ~ '.service'] if ntfy_enabled | default(false) else [])
   }}
 
 nodebb_container_additional_networks_auto: |
@@ -10757,6 +10759,8 @@ nodebb_container_additional_networks_auto: |
     ([exim_relay_container_network] if exim_relay_enabled | default(false) and nodebb_container_network != exim_relay_container_network else [])
     +
     ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+    +
+    ([ntfy_container_network] if ntfy_enabled | default(false) and nodebb_container_network != ntfy_container_network else [])
   }}
 
 nodebb_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"

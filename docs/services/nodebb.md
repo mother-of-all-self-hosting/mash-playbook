@@ -37,6 +37,7 @@ This service requires the following other services:
 - [Traefik](traefik.md) reverse-proxy server
 - [Valkey](valkey.md) data-store; see [below](#configure-valkey) for details about installation
 - (optional) [exim-relay](exim-relay.md) mailer
+- (optional) [ntfy](ntfy.md) — supported by [the plugin](https://github.com/NodeBB/nodebb-plugin-ntfy)
 
 ## Adjusting the playbook configuration
 
@@ -268,6 +269,12 @@ After setting the configuration, you can have the NodeBB instance test SMTP sett
 
 >[!WARNING]
 > Without setting an authentication method such as DKIM, SPF, and DMARC for your hostname, emails are most likely to be quarantined as spam at recipient's mail servers. The worst scenario is that your server's IP address or hostname will be included in the spam list such as the one managed by [Spamhaus](https://www.spamhaus.org/), depending on the reputation. As the exim-relay service supports DKIM signing, refer to [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-exim-relay/blob/main/docs/configuring-exim-relay.md#enable-dkim-support-optional) for details about how to set it up.
+
+### Configuring ntfy (optional)
+
+On NodeBB you can set up a plugin for [ntfy](ntfy.md) integration. If you enable the service in your inventory configuration, the playbook will automatically connect the ntfy service to the NodeBB service.
+
+Refer to [the official documentation](https://github.com/NodeBB/nodebb-plugin-ntfy/blob/main/README.md) for details about how to configure the plugin on the NodeBB's UI.
 
 ## Troubleshooting
 
