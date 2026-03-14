@@ -256,7 +256,7 @@ Note that running the `just` commands for installation (`just install-all` or `j
 
 After running the command for installation, the Vikunja instance becomes available at the URL specified with `vikunja_hostname`. With the configuration above, the service is hosted at `https://vikunja.example.com`.
 
-To get started, create a user first and open the URL with a web browser to log in to the instance. You can create one on the web UI if `vikunja_environment_variables_service_enableregistration` is set to `true`. Alternatively, you can run the playbook with the `user-create-vikunja` tag to create users. See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-vikunja/blob/main/docs/configuring-vikunja.md#creating-users) on the role's documentation for details.
+To get started, create a user first and open the URL with a web browser to log in to the instance. You can create one on the web UI if `vikunja_environment_variables_service_enableregistration` is set to `true`. Alternatively, you can run the playbook with the `create-user-vikunja` tag to create users. See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-vikunja/blob/main/docs/configuring-vikunja.md#creating-users) on the role's documentation for details.
 
 ## Troubleshooting
 
