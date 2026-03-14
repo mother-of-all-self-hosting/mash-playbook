@@ -1,6 +1,20 @@
 <!--
+SPDX-FileCopyrightText: 2020 Aaron Raimist
+SPDX-FileCopyrightText: 2020 Chris van Dijk
+SPDX-FileCopyrightText: 2020 Dominik Zajac
+SPDX-FileCopyrightText: 2020 Mickaël Cornière
+SPDX-FileCopyrightText: 2020-2024 MDAD project contributors
+SPDX-FileCopyrightText: 2020-2024 Slavi Pantaleev
+SPDX-FileCopyrightText: 2022 François Darveau
+SPDX-FileCopyrightText: 2022 Julian Foad
+SPDX-FileCopyrightText: 2022 Warren Bailey
+SPDX-FileCopyrightText: 2023 Antonis Christofides
+SPDX-FileCopyrightText: 2023 Felix Stupp
+SPDX-FileCopyrightText: 2023 Julian-Samuel Gebühr
+SPDX-FileCopyrightText: 2023 Pierre 'McFly' Marty
 SPDX-FileCopyrightText: 2024 Nikita Chernyi
-SPDX-FileCopyrightText: 2025 Suguru Hirahara
+SPDX-FileCopyrightText: 2024 Thomas Miceli
+SPDX-FileCopyrightText: 2024-2026 Suguru Hirahara
 
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->
@@ -13,12 +27,16 @@ FreeScout is a free open-source helpdesk and shared inbox solution.
 
 See the project's [documentation](https://github.com/freescout-help-desk/freescout/wiki) to learn what FreeScout does and why it might be useful to you.
 
+For details about configuring the [Ansible role for FreeScout](https://github.com/mother-of-all-self-hosting/ansible-role-freescout), you can check them via:
+- 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-freescout/blob/main/docs/configuring-freescout.md) online
+- 📁 `roles/galaxy/freescout/docs/configuring-freescout.md` locally, if you have [fetched the Ansible roles](../installing.md)
+
 ## Dependencies
 
 This service requires the following other services:
 
-- a [Postgres](postgres.md) database
-- a [Traefik](traefik.md) reverse-proxy server
+- [Postgres](postgres.md) / MySQL / [MariaDB](mariadb.md) database
+- [Traefik](traefik.md) reverse-proxy server
 
 ## Adjusting the playbook configuration
 
@@ -45,8 +63,16 @@ freescout_admin_password: a-strong-password-here
 ########################################################################
 ```
 
+### Select database to use
+
+It is necessary to select a database used by FreeScout from a MySQL compatible database and Postgres. See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-freescout/blob/main/docs/configuring-freescout.md#specify-database) on the role's documentation for details.
+
 ## Usage
 
 After running the command for installation, the FreeScout instance becomes available at the URL specified with `freescout_hostname`. With the configuration above, the service is hosted at `https://freescout.example.com`.
 
-You can log in to the instance with the administrator email address (`freescout_admin_email`) and password (`freescout_admin_password`).
+To get started, open the URL with a web browser to log in to the instance. You can log in to the instance with the administrator email address (`freescout_admin_email`) and password (`freescout_admin_password`).
+
+## Troubleshooting
+
+See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-freescout/blob/main/docs/configuring-freescout.md#troubleshooting) on the role's documentation for details.
