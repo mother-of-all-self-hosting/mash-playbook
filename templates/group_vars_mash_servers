@@ -14570,16 +14570,28 @@ uptime_kuma_systemd_wanted_services_list_auto: |
   {{
     ([gotify_identifier ~ '.service'] if gotify_enabled | default(false) else [])
     +
+    ([mariadb_identifier ~ '.service'] if mariadb_enabled | default(false) else [])
+    +
+    ([mongodb_identifier ~ '.service'] if mongodb_enabled | default(false) else [])
+    +
     ([ntfy_identifier ~ '.service'] if ntfy_enabled | default(false) else [])
+    +
+    ([postgres_identifier ~ '.service'] if postgres_enabled | default(false) else [])
   }}
 
 uptime_kuma_container_additional_networks_auto: |
   {{
     ([gotify_container_network] if gotify_enabled | default(false) and uptime_kuma_container_network != gotify_container_network else [])
     +
+    ([mariadb_container_network] if mariadb_enabled | default(false) and uptime_kuma_container_network != mariadb_container_network else [])
+    +
     ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
     +
+    ([mongodb_container_network] if mongodb_enabled | default(false) and uptime_kuma_container_network != mongodb_container_network else [])
+    +
     ([ntfy_container_network] if ntfy_enabled | default(false) and uptime_kuma_container_network != ntfy_container_network else [])
+    +
+    ([postgres_container_network] if postgres_enabled | default(false) and uptime_kuma_container_network != postgres_container_network else [])
   }}
 
 uptime_kuma_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
