@@ -773,7 +773,7 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
 
   # role-specific:n8n
   - |-
-    {{ ({'name': (n8n_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'n8n']} if n8n_enabled else omit) }}
+    {{ ({'name': (n8n_identifier + '.service'), 'priority': 2000, 'restart_necessary': (n8n_restart_necessary | bool), 'groups': ['mash', 'n8n']} if n8n_enabled else omit) }}
   # /role-specific:n8n
 
   # role-specific:navidrome
@@ -10398,15 +10398,12 @@ n8n_identifier: "{{ mash_playbook_service_identifier_prefix }}n8n"
 
 n8n_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}n8n"
 
-# Please see the note attached to this comment on why we can't use mash's playbook uid and gid
-# https://github.com/kinduff/ansible-docker-n8n/blob/v1.4.2/defaults/main.yml
+# Runs as 1000:1000
 n8n_uid: "1000"
 n8n_gid: "1000"
 
 n8n_systemd_required_services_list: |
   {{
-    ([devture_systemd_docker_base_docker_service_name] if devture_systemd_docker_base_docker_service_name else [])
-    +
     ([postgres_identifier ~ '.service'] if postgres_enabled and n8n_database_hostname == postgres_connection_hostname else [])
   }}
 
