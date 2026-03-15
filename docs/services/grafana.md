@@ -23,8 +23,11 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
 # Grafana
 
-[Grafana](https://grafana.com/) is an open and composable observability and data visualization platform, often used with [Prometheus](prometheus.md).
+The playbook can install and configure [Grafana](https://grafana.com/) for you.
 
+Grafana is an open and composable observability and data visualization platform. It is often used with [Prometheus](prometheus.md).
+
+See the project's [documentation](https://grafana.com/docs/) to learn what Grafana does and why it might be useful to you.
 
 ## Dependencies
 
@@ -32,8 +35,11 @@ This service requires the following other services:
 
 - [Traefik](traefik.md) reverse-proxy server
 - (optional) [exim-relay](exim-relay.md) mailer
+- (optional) [ntfy](ntfy.md)
 
-## Configuration
+Note that Grafana is just a visualization tool and requires pulling data from a metrics (time-series) database.
+
+## Adjusting the playbook configuration
 
 To enable this service, add the following configuration to your `vars.yml` file and re-run the [installation](../installing.md) process:
 
@@ -62,17 +68,18 @@ grafana_default_admin_password: ''
 
 ### File provisioning
 
-A fully configured Grafana instance is a system of many components, such as dashboards, data sources, notification points, and other resources. All of these things can be configured via the UI, but many can also be configured directly via `File provisioning`.
-
-Below, we show a few examples of using file provisioning, keep in mind that **If you're enabling multiple of one component, you need to "merge" the configurations**. That is, don't define `grafana_provisioning_datasources_datasources` twice, but combine them.
+The fully configured Grafana instance is a system of multiple components, such as dashboards, data sources, notification points, other resources, and so on. All of these things can be configured via the UI, but many of them can also be configured directly via "File provisioning".
 
 To see all components with file provisioning support see the roles [defaults/main.yml](https://github.com/mother-of-all-self-hosting/ansible-role-grafana/blob/main/defaults/main.yml) file and search for `grafana_provisioning_`
 
+>[!NOTE]
+> If you're enabling multiple of one component, you need to "merge" the configurations. Do not define `grafana_provisioning_datasources_datasources` twice, but combine them.
+
 #### Datasources
 
-For Grafana to create graphs, charts, and alerts it needs to pull data from a metrics (time-series) database, like [Prometheus](prometheus.md), this can be done via the `grafana_provisioning_datasources_datasources` variable.
+For Grafana to create graphs, charts, and alerts it needs to pull data from a metrics (time-series) database like [Prometheus](prometheus.md). This can be set up with the `grafana_provisioning_datasources_datasources` variable.
 
-By default Grafana will automatically delete previously provisioned data sources when they’re removed from `grafana_provisioning_datasources_datasources` via the `grafana_provisioning_datasources_prune` variable. If you want to instead manually delete provisioned datasources the following configuration applies:
+By default Grafana will automatically delete previously provisioned data sources when they’re removed from `grafana_provisioning_datasources_datasources` via the `grafana_provisioning_datasources_prune` variable. If you want to manually delete provisioned datasources instead, add the following configuration:
 
 ```yaml
 grafana_provisioning_datasources_prune: false
@@ -86,7 +93,7 @@ grafana_provisioning_datasources_deleteDatasources:
 
 #### Integrating with a local Prometheus instance
 
-If you're installing [Prometheus](prometheus.md) on the same server, you can hook Grafana to it over the container network with the following **additional** configuration:
+If [Prometheus](prometheus.md) runs on the same server, you can hook Grafana to it over the container network with the following additional configuration:
 
 ```yaml
 grafana_provisioning_datasources_datasources:
@@ -101,17 +108,13 @@ grafana_provisioning_datasources_datasources:
     # basicAuthUser: loki
     # secureJsonData:
     #   basicAuthPassword: ""
-
-# Prometheus runs in another container network, so we need to connect to it.
-grafana_container_additional_networks_custom:
-  - "{{ prometheus_container_network }}"
 ```
 
-For connecting to a **remote** Prometheus instance, you may need to adjust this configuration.
+For connecting to a remote Prometheus instance, you may need to adjust this configuration.
 
 #### Integrating with a local Loki instance
 
-If you're installing [Grafana Loki](grafana-loki.md) on the same server, you can hook Grafana to it over the container network with the following **additional** configuration:
+If [Grafana Loki](grafana-loki.md) runs on the same server, you can hook Grafana to it over the container network with the following additional configuration:
 
 ```yaml
 grafana_provisioning_datasources_datasources:
@@ -127,23 +130,17 @@ grafana_provisioning_datasources_datasources:
     secureJsonData:
       httpHeaderValue1: "your-tenant-id"
       # basicAuthPassword: ""
-
-# Loki runs in another container network, so we need to connect to it.
-grafana_container_additional_networks_custom:
-  - "{{ loki_container_network }}"
 ```
 
-For connecting to a **remote** Loki instance, you may need to adjust this configuration.
+For connecting to a remote Loki instance, you may need to adjust this configuration.
 
-If you're installing [Promtail](promtail.md) on the same server as Loki, by default it's configured to send `mash` as the tenant ID.
+If [Promtail](promtail.md) runs on the same server as Loki, by default it is configured to send `mash` as the tenant ID.
 
 #### Alerts
 
-With alerts you can receive notifications when specific conditions regarding your data are met. Since there is no `prune` option (like datasources) you must add your alert to `grafana_provisioning_alerts_deleteRules` when you want it removed.
+With alerts you can receive notifications when specific conditions regarding your data are met. Since there is no "prune" option (like datasources) you need to add alerts to `grafana_provisioning_alerts_deleteRules` when you want it removed.
 
-The below alert example is truncated, for a full example see the [official example](https://github.com/grafana/provisioning-alerting-examples/blob/main/config-files/grafana/provisioning/alerting/alert_rules.yaml).
-
-As you can see in the official example these YAML alerts are not very human readable. It is recommended you create your alert in the UI and then select the `Export rules` option to create the proper values.
+The example below is truncated. Refer to the [official example](https://github.com/grafana/provisioning-alerting-examples/blob/main/config-files/grafana/provisioning/alerting/alert_rules.yaml) for a full example. As you can see in the official example, these YAML alerts are not very human readable. It is recommended you create your alert in the UI and then select the "Export rules" option to create the proper values.
 
 ```yaml
 grafana_provisioning_alerts_groups:
@@ -161,7 +158,7 @@ grafana_provisioning_alerts_deleteRules:
 
 #### Contact points
 
-To specify **where** a firing alert should be routed to (Slack, Discord, Webhook URL) you must configure a contact point. Similarly to alerts there is no prune support, so you must add your alert to `grafana_provisioning_contact_points_contactPoints` when you want it removed.
+To specify the place where a firing alert should be routed to (Slack, Discord, Webhook URL, etc.) you need to configure a contact point. The prune support does not exist for contact points either, so you need to add the alert to `grafana_provisioning_contact_points_contactPoints` when you want it removed.
 
 ```yaml
 grafana_provisioning_contact_points_contactPoints:
@@ -194,7 +191,7 @@ If you've installed [Prometheus Node Exporter](prometheus-node-exporter.md) on a
 
 The Prometheus Node Exporter role exposes a list of URLs containing dashboards (JSON files) in its `prometheus_node_exporter_dashboard_urls` variable.
 
-You can add this **additional** configuration to make the Grafana service pull these dashboards:
+You can add this additional configuration to make the Grafana service pull these dashboards:
 
 ```yaml
 grafana_dashboard_download_urls: |
@@ -205,14 +202,13 @@ grafana_dashboard_download_urls: |
 
 ### Single-Sign-On
 
-Grafana supports Single-Sign-On (SSO) via OAUTH. To make use of this you'll need an Identity Provider (IdP) like [authentik](authentik.md), [Authelia](authelia.md), [Keycloak](keycloak.md) or [Pocket ID](pocket-id.md).
+Grafana supports Single-Sign-On (SSO) via OAuth. To make use of this you'll need an Identity Provider (IdP) like [authentik](authentik.md), [Authelia](authelia.md), [Keycloak](keycloak.md) or [Pocket ID](pocket-id.md).
 
-Below, you can find some examples for Grafana configuration.
-
+Below are examples for Grafana configuration.
 
 #### Single-Sign-On / authentik
 
-* Create a new OAUTH provider in authentik called `grafana`
+* Create a new OAuth provider in authentik called `grafana`
 * Create an application also named `grafana` in authentik using this provider
 * Add the following configuration to your `vars.yml` file and re-run the [installation](../installing.md) process (make sure to adjust `authentik.example.com`)
 
@@ -238,7 +234,6 @@ grafana_environment_variables_additional_variables: |
 ```
 
 Make sure the user you want to login as has an email address in authentik, otherwise there will be an error.
-
 
 #### Single-Sign-On / Authelia
 
@@ -279,8 +274,7 @@ After running the command for installation, the Grafana instance becomes availab
 
 To get started, open the URL with a web browser, and follow the set up wizard.
 
-## Recommended other services
+## Related services
 
-Grafana is just a visualization tool which requires pulling data from a metrics (time-series) database like.
-
-You may be interested in combining it with [Prometheus](prometheus.md).
+- [Grafana Loki](grafana-loki.md) — Log aggregation system that helps collect, store, and analyze logs in a scalable and efficient manner
+- [Prometheus](prometheus.md) — Metrics collection and alerting monitoring solution
