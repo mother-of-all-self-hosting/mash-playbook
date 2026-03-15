@@ -5724,8 +5724,15 @@ freescout_systemd_required_services_list_auto: |
     ([postgres_identifier ~ '.service'] if postgres_enabled | default(false) and freescout_database_postgres_hostname == postgres_connection_hostname and freescout_database_type == 'postgres' else [])
   }}
 
+freescout_systemd_wanted_services_list_auto: |
+  {{
+    ([exim_relay_identifier ~ '.service'] if exim_relay_enabled | default(false) else [])
+  }}
+
 freescout_container_additional_networks_auto: |
   {{
+    ([exim_relay_container_network] if exim_relay_enabled | default(false) and freescout_container_network != exim_relay_container_network else [])
+    +
     ([mariadb_container_network] if mariadb_enabled | default(false) and freescout_database_mysql_hostname == mariadb_connection_hostname and freescout_container_network != mariadb_container_network and freescout_database_type == 'mysql' else [])
     +
     ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])

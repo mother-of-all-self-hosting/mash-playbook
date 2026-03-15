@@ -37,6 +37,7 @@ This service requires the following other services:
 
 - [Postgres](postgres.md) / MySQL / [MariaDB](mariadb.md) database
 - [Traefik](traefik.md) reverse-proxy server
+- (optional) [exim-relay](exim-relay.md) mailer — FreeScout is compatible with other email delivery services
 
 ## Adjusting the playbook configuration
 
@@ -66,6 +67,27 @@ freescout_admin_password: a-strong-password-here
 ### Select database to use
 
 It is necessary to select a database used by FreeScout from a MySQL compatible database and Postgres. See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-freescout/blob/main/docs/configuring-freescout.md#specify-database) on the role's documentation for details.
+
+### Configuring the mailer
+
+On FreeScout it is necessary to add configuration settings for sending and fetching emails.
+
+There are three methods available for sending emails: PHP's mail() function, Sendmail, and SMTP. If you enable the [exim-relay](exim-relay.md) service in your inventory configuration, the playbook will automatically connect it to the FreeScout service.
+
+As the FreeScout instance does not support configuring the mailer with environment variables, you can add default options for it on its UI. Refer to [this page](https://github.com/freescout-help-desk/freescout/wiki/Sending-emails) on the official documentation as well about how to configure it.
+
+To set up with the default exim-relay settings, navigate to "Connection Settings" to add the following configuration:
+
+- **Method**: SMTP
+- **SMTP Server**: `mash-exim-relay`
+- **Port**: 8025
+- **Username**: (Empty)
+- **Password**: (Empty)
+
+After setting the configuration, you can have the FreeScout instance send a test mail.
+
+>[!WARNING]
+> Without setting an authentication method such as DKIM, SPF, and DMARC for your hostname, emails are most likely to be quarantined as spam at recipient's mail servers. The worst scenario is that your server's IP address or hostname will be included in the spam list such as the one managed by [Spamhaus](https://www.spamhaus.org/), depending on the reputation. As the exim-relay service supports DKIM signing, refer to [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-exim-relay/blob/main/docs/configuring-exim-relay.md#enable-dkim-support-optional) for details about how to set it up.
 
 ## Usage
 
