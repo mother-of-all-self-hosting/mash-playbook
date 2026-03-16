@@ -1,53 +1,69 @@
 <!--
+SPDX-FileCopyrightText: 2020 Aaron Raimist
+SPDX-FileCopyrightText: 2020 Chris van Dijk
+SPDX-FileCopyrightText: 2020 Dominik Zajac
+SPDX-FileCopyrightText: 2020 Mickaël Cornière
+SPDX-FileCopyrightText: 2020-2024 MDAD project contributors
+SPDX-FileCopyrightText: 2020-2024 Slavi Pantaleev
+SPDX-FileCopyrightText: 2022 François Darveau
+SPDX-FileCopyrightText: 2022 Julian Foad
+SPDX-FileCopyrightText: 2022 Warren Bailey
+SPDX-FileCopyrightText: 2023 Antonis Christofides
+SPDX-FileCopyrightText: 2023 Felix Stupp
+SPDX-FileCopyrightText: 2023 Julian-Samuel Gebühr
 SPDX-FileCopyrightText: 2023 Nikita Chernyi
-SPDX-FileCopyrightText: 2023 - 2024 Slavi Pantaleev
+SPDX-FileCopyrightText: 2023 Pierre 'McFly' Marty
+SPDX-FileCopyrightText: 2024 Thomas Miceli
+SPDX-FileCopyrightText: 2024-2026 Suguru Hirahara
 
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 
-# Prometheus Node Exporter
+# Prometheus Alertmanager
 
-This playbook can configure [Prometheus Node Exporter](https://github.com/prometheus/node_exporter).
+The playbook can install and configure [Prometheus Alertmanager](https://github.com/prometheus/alertmanager) for you.
 
+Prometheus Alertmanager is the application which handles alerts sent by client applications such as the Prometheus server.
 
-## Configuration
+See the project's [documentation](https://prometheus.io/docs/alerting/latest/alertmanager/) to learn what Prometheus Alertmanager does and why it might be useful to you.
+
+## Dependencies
+
+This service requires the following other services:
+
+- [Prometheus](prometheus.md)
+- (optional) [exim-relay](exim-relay.md) mailer
+- (optional) [Traefik](traefik.md)
+
+## Adjusting the playbook configuration
 
 To enable this service, add the following configuration to your `vars.yml` file and re-run the [installation](../installing.md) process:
 
 ```yaml
 ########################################################################
 #                                                                      #
-# prometheus_node_exporter                                             #
+# prometheus_alertmanager                                              #
 #                                                                      #
 ########################################################################
 
-prometheus_node_exporter_enabled: true
+prometheus_alertmanager_enabled: true
 
 # To expose the metrics publicly, enable and configure the lines below:
-# prometheus_node_exporter_hostname: mash.example.com
-# prometheus_node_exporter_path_prefix: /metrics/mash-prometheus-node-exporter
+# prometheus_alertmanager_hostname: mash.example.com
+# prometheus_alertmanager_path_prefix: /metrics/mash-prometheus-alertmanager
 
 # To protect the metrics with HTTP Basic Auth, enable and configure the lines below.
 # See: https://doc.traefik.io/traefik/middlewares/http/basicauth/#users
-# prometheus_node_exporter_container_labels_metrics_middleware_basic_auth_enabled: true
-# prometheus_node_exporter_container_labels_metrics_middleware_basic_auth_users: ''
+# prometheus_alertmanager_container_labels_metrics_middleware_basic_auth_enabled: true
+# prometheus_alertmanager_container_labels_metrics_middleware_basic_auth_users: ""
 
 ########################################################################
 #                                                                      #
-# /prometheus_node_exporter                                            #
+# /prometheus_alertmanager                                             #
 #                                                                      #
 ########################################################################
 ```
 
-Unless you're scraping the Prometheus Node Exporter metrics from a local [Prometheus](prometheus.md) instance, as described in [Integrating with Prometheus Node Exporter](prometheus.md#integrating-with-prometheus-node-exporter), you will probably wish to expose the metrics publicly so that a remote Prometheus instance can fetch them.
-
 ## Usage
 
-After you installed the node exporter, your node stats will be available on `mash.example.com/metrics/mash-prometheus-node-exporter` with the basic auth credentials you configured.
-
-To integrate Prometheus Node Exporter with a [Prometheus](prometheus.md) instance, see the [Integrating with Prometheus Node Exporter](prometheus.md#integrating-with-prometheus-node-exporter) section of the documentation.
-
-
-## Recommended other services
-
-- [Promtail](promtail.md) — an agent which ships the contents of local logs to a private [Grafana Loki](grafana-loki.md) instance
+After running the command for installation, the Prometheus Alertmanager instance becomes available.
