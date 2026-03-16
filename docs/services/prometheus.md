@@ -97,6 +97,7 @@ prometheus_hostname: prometheus.example.com
 
 - [Grafana](grafana.md) — a web-based tool for visualizing your Prometheus metrics (time-series)
 - [Grafana Loki](grafana-loki.md) — a log aggregation system that helps collect, store, and analyze logs in a scalable and efficient manner (like Prometheus, but for logs)
+- [Prometheus Alertmanager](prometheus-alertmanager.md) — Handle alerts sent by client applications such as the Prometheus server
 - [prometheus-blackbox-exporter](prometheus-blackbox-exporter.md) — Blackbox probing of HTTP/HTTPS/DNS/TCP/ICMP and gRPC endpoints
 - [prometheus-node-exporter](prometheus-node-exporter.md) — an exporter for machine metrics
 - [prometheus-postgres-exporter](prometheus-postgres-exporter.md) — an exporter for monitoring a [Postgres](postgres.md) database server
