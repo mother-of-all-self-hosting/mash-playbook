@@ -1,10 +1,10 @@
 <!--
-SPDX-FileCopyrightText: 2020 - 2024 MDAD project contributors
-SPDX-FileCopyrightText: 2020 - 2024 Slavi Pantaleev
 SPDX-FileCopyrightText: 2020 Aaron Raimist
 SPDX-FileCopyrightText: 2020 Chris van Dijk
 SPDX-FileCopyrightText: 2020 Dominik Zajac
 SPDX-FileCopyrightText: 2020 Mickaël Cornière
+SPDX-FileCopyrightText: 2020-2024 MDAD project contributors
+SPDX-FileCopyrightText: 2020-2024 Slavi Pantaleev
 SPDX-FileCopyrightText: 2022 François Darveau
 SPDX-FileCopyrightText: 2022 Julian Foad
 SPDX-FileCopyrightText: 2022 Warren Bailey
@@ -12,26 +12,30 @@ SPDX-FileCopyrightText: 2023 Antonis Christofides
 SPDX-FileCopyrightText: 2023 Felix Stupp
 SPDX-FileCopyrightText: 2023 Julian-Samuel Gebühr
 SPDX-FileCopyrightText: 2023 Pierre 'McFly' Marty
-SPDX-FileCopyrightText: 2024 - 2025 Suguru Hirahara
+SPDX-FileCopyrightText: 2024 Thomas Miceli
+SPDX-FileCopyrightText: 2024-2026 Suguru Hirahara
 
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 
 # Funkwhale
 
-[Funkwhale](https://funkwhale.audio/) is a community-driven project that lets you listen and share music and audio within a decentralized, open network.
+The playbook can install and configure [Funkwhale](https://funkwhale.audio/) for you.
 
+Funkwhale is a community-driven project that lets you listen and share music and audio within a decentralized, open network.
+
+See the project's [documentation](https://docs.funkwhale.audio) to learn what Apache Answer does and why it might be useful to you.
 
 ## Dependencies
 
 This service requires the following other services:
 
-- a [Postgres](postgres.md) database
-- a [Traefik](traefik.md) reverse-proxy server
-- a [Valkey](valkey.md) data-store; see [below](#configure-valkey) for details about installation
+- [Postgres](postgres.md) database
+- [Traefik](traefik.md) reverse-proxy server
+- [Valkey](valkey.md) data-store; see [below](#configure-valkey) for details about installation
+- (optional) [exim-relay](exim-relay.md) mailer
 
-
-## Configuration
+## Adjusting the playbook configuration
 
 To enable this service, add the following configuration to your `vars.yml` file:
 
@@ -226,6 +230,13 @@ funkwhale_api_container_additional_networks_custom:
 
 Running the installation command will create the shared Valkey instance named `mash-valkey`.
 
+### Configuring the mailer (optional)
+
+On Funkwhale you can set up a mailer for functions such as password recovery. If you enable the [exim-relay](exim-relay.md) service in your inventory configuration, the playbook will automatically configure it as a mailer for the service.
+
+>[!WARNING]
+> Without setting an authentication method such as DKIM, SPF, and DMARC for your hostname, emails are most likely to be quarantined as spam at recipient's mail servers. The worst scenario is that your server's IP address or hostname will be included in the spam list such as the one managed by [Spamhaus](https://www.spamhaus.org/), depending on the reputation. As the exim-relay service supports DKIM signing, refer to [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-exim-relay/blob/main/docs/configuring-exim-relay.md#enable-dkim-support-optional) for details about how to set it up.
+
 ## Installation
 
 If you have decided to install the dedicated Valkey instance for Funkwhale, make sure to run the [installing](../installing.md) command for the supplementary host (`mash.example.com-funkwhale-deps`) first, before running it for the main host (`mash.example.com`).
@@ -236,13 +247,13 @@ Note that running the `just` commands for installation (`just install-all` or `j
 
 After installation, the Funkwhale instance becomes available at the URL specified with `funkwhale_hostname`. With the configuration above, the service is hosted at `https://funkwhale.example.com`.
 
-To log in to the service and get started, you have to create a user ("superuser") at first. To do so, run the command below after replacing `USERNAME`, `PASSWORD`, and `EMAIL_ADDRESS`:
+To get started, run the command below to create a first administrator account:
 
-```bash
-just run-tags funkwhale-add-superuser --extra-vars=username=USERNAME --extra-vars=password=PASSWORD --extra-vars=email=EMAIL_ADDRESS
+```sh
+ansible-playbook -i inventory/hosts setup.yml --tags=create-admin-funkwhale -e username=USERNAME_HERE -e password=PASSWORD_HERE -e email=EMAIL_ADDRESS_HERE
 ```
 
-Log in to the web UI with the superuser to create other users.
+After running the command, open the URL with a web browser, and log in to the instance with the administrator account.
 
 ## Related services
 

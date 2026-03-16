@@ -1,8 +1,8 @@
 <!--
-SPDX-FileCopyrightText: 2018 - 2024 Slavi Pantaleev
+SPDX-FileCopyrightText: 2018-2024 Slavi Pantaleev
 SPDX-FileCopyrightText: 2019 Eduardo Beltrame
-SPDX-FileCopyrightText: 2020 - 2025 MDAD project contributors
-SPDX-FileCopyrightText: 2024 - 2025 Suguru Hirahara
+SPDX-FileCopyrightText: 2020-2025 MDAD project contributors
+SPDX-FileCopyrightText: 2024-2026 Suguru Hirahara
 
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->
@@ -16,6 +16,9 @@ The default playbook configuration (`examples/vars.yml`) recommends that you ena
 The [Ansible role for exim-relay](https://github.com/mother-of-all-self-hosting/ansible-role-exim-relay) is developed and maintained by the MASH project. For details about configuring exim-relay, you can check them via:
 - 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-exim-relay/blob/main/docs/configuring-exim-relay.md) online
 - 📁 `roles/galaxy/exim_relay/docs/configuring-exim-relay.md` locally, if you have [fetched the Ansible roles](../installing.md)
+
+>[!NOTE]
+> Sending mails via the internet can often fail due to numerous factors such as spam filters and other unknown ones. If you do not need to have the services send messages out of your server, you probably might want to consider setting up SMTP servers which work as "mail catchers" like [Mailpit](mailpit.md) instead.
 
 ## Configuration
 
@@ -45,11 +48,12 @@ exim_relay_sender_address: "someone@{{ exim_relay_hostname }}"
 
 By default, exim-relay attempts to deliver emails directly. This may or may not work, depending on your domain configuration.
 
-To improve email deliverability, you can configure authentication methods such as DKIM (DomainKeys Identified Mail), SPF, and DMARC for your domain. Without setting any of these authentication methods, your outgoing email is most likely to be quarantined as spam at recipient's mail servers.
+To improve email deliverability, you can configure authentication methods such as DKIM (DomainKeys Identified Mail), SPF, and DMARC for your domain. Without setting any of these authentication methods, your outgoing email is most likely to be quarantined as spam at recipient's mail servers. The worst scenario is that your server's IP address or hostname will be included in the spam list such as the one managed by [Spamhaus](https://www.spamhaus.org/), depending on the reputation.
 
 For details about configuring DKIM, refer [this section](https://github.com/mother-of-all-self-hosting/ansible-role-exim-relay/blob/main/docs/configuring-exim-relay.md#enable-dkim-support-optional) on the role's documentation.
 
-💡 If you cannot enable DKIM, SPF, or DMARC on your domain for some reason, we recommend relaying email through another SMTP server.
+>[!NOTE]
+> If you cannot enable DKIM, SPF, or DMARC on your domain for some reason, relaying email through another SMTP server is recommended.
 
 ### Relaying email through another SMTP server (optional)
 

@@ -76,3 +76,8 @@ After running the command for installation, the Etherpad instance becomes availa
 ## Troubleshooting
 
 See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-etherpad/blob/main/docs/configuring-etherpad.md#troubleshooting) on the role's documentation for details.
+
+## Related services
+
+- [CodiMD](codimd.md) — Realtime collaborative markdown notes on all platforms
+- [SilverBullet](silverbullet.md) — Programmable, private, personal knowledge management platform

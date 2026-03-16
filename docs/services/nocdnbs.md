@@ -19,11 +19,11 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
 # noCDNbs
 
-The playbook can install and configure [noCDNbs](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3HEG7KePQVAbZXSdn7tGNb7FVDqL) (a fork of the [original project](https://git.private.coffee/PrivateCoffee/nocdnbs)) for you.
+The playbook can install and configure [noCDNbs](https://git.private.coffee/PrivateCoffee/nocdnbs) for you.
 
 noCDNbs allows you to use cdnjs without exposing your IP address, browsing habits, and other browser fingerprinting data to Cloudflare.
 
-See the project's [documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3HEG7KePQVAbZXSdn7tGNb7FVDqL/tree/README.md) to learn what noCDNbs does and why it might be useful to you.
+See the project's [documentation](https://git.private.coffee/PrivateCoffee/nocdnbs/src/branch/main/README.md) to learn what noCDNbs does and why it might be useful to you.
 
 For details about configuring the [Ansible role for noCDNbs](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az8vyzN3a8DmwhcUq3949SihKd1Wh), you can check them via:
 - 🌐 [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az8vyzN3a8DmwhcUq3949SihKd1Wh/tree/docs/configuring-nocdnbs.md) online

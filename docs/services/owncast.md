@@ -69,7 +69,7 @@ owncast_hostname: owncast.example.com
 
 After running the command for installation, the Owncast instance becomes available at the URL specified with `owncast_hostname`. With the configuration above, the service is hosted at `https://owncast.example.com`.
 
-To get started, open the URL `https://owncast.example.com/admin` with a web browser.
+To get started, open the URL `https://owncast.example.com/admin` with a web browser. The administration page is protected with the default username and password, which can be checked on [this page](https://owncast.online/docs/configuration/).
 
 >[!NOTE]
 > Change the default stream key set to `abc123` as soon as possible.

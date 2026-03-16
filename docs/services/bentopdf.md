@@ -29,6 +29,9 @@ For details about configuring the [Ansible role for BentoPDF](https://app.radicl
 - 🌐 [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az2bgVhWju6shYSwtdKb7v3eoSL1Pt/tree/docs/configuring-bentopdf.md) online
 - 📁 `roles/galaxy/bentopdf/docs/configuring-bentopdf.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
+>[!NOTE]
+> [This commit](https://github.com/alam00000/bentopdf/commit/2c85ca74e9476d2a2e1eb54e6f470d4a1312fd7a) on the upstream project has removed AGPL libraries due to "ensure clear legal boundaries". Note that BentoPDF itself is released under AGPL 3.0 (as of [2.0.0](https://github.com/alam00000/bentopdf/releases/tag/v2.0.0)).
+
 ## Dependencies
 
 This service requires the following other services:

@@ -15,7 +15,7 @@ OAuth2-Proxy can be used in 2 different modes:
 
 1. Capturing incoming traffic for the app (e.g. https://app.example.com/), and then proxying it to the application container if the user is authenticated
 
-2. Letting the application itself capture incoming traffic for itself (on https://app.example.com/) and use Traefik's [ForwardAuth](https://doc.traefik.io/traefik/middlewares/http/forwardauth/) middleware to authenticate the request via OAuth2-Proxy. In this case, OAuth2-Proxy will only handle the `/oauth2/` prefix on the application domain (e.g. https://app.example.com/oauth/).
+2. Letting the application itself capture incoming traffic for itself (on https://app.example.com/) and use Traefik's [ForwardAuth](https://doc.traefik.io/traefik/middlewares/http/forwardauth/) middleware to authenticate the request via OAuth2-Proxy. In this case, OAuth2-Proxy will only handle the `/oauth2/` prefix on the application domain (e.g. https://app.example.com/oauth2/).
 
 The 1st one is a bit invasive, as it requires moving all custom reverse-proxying configuration for the handled domain to the OAuth2-Proxy side.
 
@@ -74,15 +74,15 @@ oauth2_proxy_environment_variable_redirect_url: "https://{{ hubsite_hostname }}/
 
 oauth2_proxy_environment_variable_code_challenge_method: S256
 
-# Generate this with: `python -c 'import os,base64; print(base64.urlsafe_b64encode(os.urandom(32)).decode())'`
+# Generate this with: `python3 -c 'import os,base64; print(base64.urlsafe_b64encode(os.urandom(32)).decode())'`
 oauth2_proxy_environment_variable_cookie_secret: ''
 
-oauth2_proxy_container_labels_additional_labels: |
-  traefik.http.routers.{{ oauth2_proxy_identifier }}-hubsite.rule=Host(`{{ hubsite_hostname }}`) && PathPrefix(`/oauth2/`)
-  traefik.http.routers.{{ oauth2_proxy_identifier }}-hubsite.service={{ oauth2_proxy_identifier }}
-  traefik.http.routers.{{ oauth2_proxy_identifier }}-hubsite.entrypoints={{ oauth2_proxy_container_labels_traefik_entrypoints }}
-  traefik.http.routers.{{ oauth2_proxy_identifier }}-hubsite.tls={{ oauth2_proxy_container_labels_traefik_tls }}
-  traefik.http.routers.{{ oauth2_proxy_identifier }}-hubsite.tls.certResolver={{ oauth2_proxy_container_labels_traefik_tls_certResolver }}
+oauth2_proxy_container_labels_additional_labels_custom:
+  - traefik.http.routers.{{ oauth2_proxy_identifier }}-hubsite.rule=Host(`{{ hubsite_hostname }}`) && PathPrefix(`/oauth2/`)
+  - traefik.http.routers.{{ oauth2_proxy_identifier }}-hubsite.service={{ oauth2_proxy_identifier }}
+  - traefik.http.routers.{{ oauth2_proxy_identifier }}-hubsite.entrypoints={{ oauth2_proxy_container_labels_traefik_entrypoints }}
+  - traefik.http.routers.{{ oauth2_proxy_identifier }}-hubsite.tls={{ oauth2_proxy_container_labels_traefik_tls }}
+  - traefik.http.routers.{{ oauth2_proxy_identifier }}-hubsite.tls.certResolver={{ oauth2_proxy_container_labels_traefik_tls_certResolver }}
 
 ########################################################################
 #                                                                      #
@@ -91,7 +91,7 @@ oauth2_proxy_container_labels_additional_labels: |
 ########################################################################
 ```
 
-After adding this to your `vars.yml` file, [re-run the playbook](../installing.md): `just install-service oauth-2proxy`.
+After adding this to your `vars.yml` file, [re-run the playbook](../installing.md): `just install-service oauth2-proxy`.
 
 This merely configures OAuth2-Proxy to handle the `/oauth2/` paths for Hubsite's domain.
 
@@ -114,27 +114,27 @@ The configuration described below is based on the official [Configuring for use 
 # Your other Hubsite configuration goes here.
 # See the documentation in hubsite.md.
 
-hubsite_container_labels_additional_labels: |
+hubsite_container_labels_additional_labels_custom:
   # Create a middleware which catches "unauthenticated" errors and serves the OAuth-Proxy sign in page.
-  traefik.http.middlewares.{{ hubsite_identifier }}-oauth-errors.errors.status=401-403
-  traefik.http.middlewares.{{ hubsite_identifier }}-oauth-errors.errors.service={{ oauth2_proxy_identifier }}
-  traefik.http.middlewares.{{ hubsite_identifier }}-oauth-errors.errors.query=/oauth2/sign_in?rd={url}
+  - traefik.http.middlewares.{{ hubsite_identifier }}-oauth-errors.errors.status=401-403
+  - traefik.http.middlewares.{{ hubsite_identifier }}-oauth-errors.errors.service={{ oauth2_proxy_identifier }}
+  - traefik.http.middlewares.{{ hubsite_identifier }}-oauth-errors.errors.query=/oauth2/sign_in?rd={url}
 
   # Create a middleware which passes each incoming request to OAuth2-Proxy,
   # so it can decide whether it should be let through (to Hubsite) or should blocked (serving the OAuth2-Proxy sign in page).
-  traefik.http.middlewares.{{ hubsite_identifier }}-oauth-auth.forwardAuth.address=http://{{ oauth2_proxy_identifier }}:{{ oauth2_proxy_container_process_http_port }}/oauth2/auth
+  - traefik.http.middlewares.{{ hubsite_identifier }}-oauth-auth.forwardAuth.address=http://{{ oauth2_proxy_identifier }}:{{ oauth2_proxy_container_process_http_port }}/oauth2/auth
 
-  traefik.http.middlewares.{{ hubsite_identifier }}-oauth-auth.forwardAuth.trustForwardHeader=true
+  - traefik.http.middlewares.{{ hubsite_identifier }}-oauth-auth.forwardAuth.trustForwardHeader=true
 
   # Let a few HTTP headers set by OAuth2-Proxy get passed to Hubsite.
   # Hubsite is a static website, so it cannot make use of them.
   # Nevertheless, this is here as an example of how you can whitelist headers,
   # so that applications which can make use of these headers can benefit from it.
   # See more information about this in the comments for `oauth2_proxy_environment_variable_set_xauthrequest`.
-  traefik.http.middlewares.{{ hubsite_identifier }}-oauth-auth.forwardAuth.authResponseHeaders=X-Auth-Request-Preferred-Username, X-Auth-Request-Groups
+  - traefik.http.middlewares.{{ hubsite_identifier }}-oauth-auth.forwardAuth.authResponseHeaders=X-Auth-Request-Preferred-Username, X-Auth-Request-Groups
 
   # Inject the 2 middlewares defined above into the router of the Hubsite service
-  traefik.http.routers.{{ hubsite_identifier }}.middlewares={{ hubsite_identifier }}-oauth-errors,{{ hubsite_identifier }}-oauth-auth
+  - traefik.http.routers.{{ hubsite_identifier }}.middlewares={{ hubsite_identifier }}-oauth-errors,{{ hubsite_identifier }}-oauth-auth
 
 ########################################################################
 #                                                                      #

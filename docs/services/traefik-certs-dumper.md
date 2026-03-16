@@ -24,7 +24,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
 The playbook can install and configure [traefik-certs-dumper](https://github.com/ldez/traefik-certs-dumper) for you.
 
-traefik-certs-dumper is a tool which dumps [ACME](https://en.wikipedia.org/wiki/Automatic_Certificate_Management_Environment) certificates (like [Let's Encrypt](https://letsencrypt.org/)) from [Traefik](https://traefik.io/)'s `acme.json` file into some directory. It can be used to mount the ceritificate file and its private key to the container of services which need them.
+traefik-certs-dumper is a tool which dumps [ACME](https://en.wikipedia.org/wiki/Automatic_Certificate_Management_Environment) certificates (like [Let's Encrypt](https://letsencrypt.org/)) from [Traefik](https://traefik.io/)'s `acme.json` file into some directory. It can be used to mount the certificate file and its private key to the container of services which need them.
 
 The [Ansible role for traefik-certs-dumper](https://github.com/mother-of-all-self-hosting/ansible-role-traefik-certs-dumper) is developed and maintained by the MASH project. For details about configuring traefik-certs-dumper, you can check them via:
 - 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-traefik-certs-dumper/blob/main/docs/configuring-traefik-certs-dumper.md) online

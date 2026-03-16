@@ -16,3 +16,8 @@ Apache Tika Server is a toolkit which detects and extracts metadata and text fro
 The [Ansible role for Apache Tika Server](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Azbk3MzAN6SX6d8pa9DT2kHDscyr6) is developed and maintained by the MASH project. For details about configuring Apache Tika Server, you can check them via:
 - 🌐 [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Azbk3MzAN6SX6d8pa9DT2kHDscyr6/tree/docs/configuring-tika.md) online
 - 📁 `roles/galaxy/tika/docs/configuring-tika.md` locally, if you have [fetched the Ansible roles](../installing.md)
+
+## Related services
+
+- [Open Archiver](openarchiver.md) — Archive, store, index, and search emails from various platforms, including generic IMAP-enabled email inboxes
+- [Paperless-ngx](paperless-ngx.md) — Community-supported document management system that transforms your physical documents into a searchable online archive

@@ -19,11 +19,11 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
 # PoodleDonts
 
-The playbook can install and configure [PoodleDonts](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az4JAZNsXXS8yVoW8NuvAgNEHfbgTc) (a fork of the [original project](https://git.private.coffee/PrivateCoffee/poodledonts)) for you.
+The playbook can install and configure [PoodleDonts](https://git.private.coffee/PrivateCoffee/poodledonts) for you.
 
 PoodleDonts allows you to use Google Fonts without exposing your IP address, browsing habits, and other browser fingerprinting data to the website.
 
-See the project's [documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az4JAZNsXXS8yVoW8NuvAgNEHfbgTc/src/branch/main/README.md) to learn what PoodleDonts does and why it might be useful to you.
+See the project's [documentation](https://git.private.coffee/PrivateCoffee/poodledonts/src/branch/main/README.md) to learn what PoodleDonts does and why it might be useful to you.
 
 For details about configuring the [Ansible role for PoodleDonts](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az4MgJseWRZ9FL3Mh6ASufmi1RJoVh), you can check them via:
 - 🌐 [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az4MgJseWRZ9FL3Mh6ASufmi1RJoVh/tree/docs/configuring-poodledonts.md) online

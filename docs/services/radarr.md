@@ -7,7 +7,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
 # Radarr
 
-[Radarr](https://radarr.video/) is a movie organizer/manager for usenet and torrent users.
+[Radarr](https://radarr.video/) is a movie organizer/manager for Usenet and BitTorrent users.
 
 ## Dependencies
 

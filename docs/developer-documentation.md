@@ -1,7 +1,7 @@
 <!--
 SPDX-FileCopyrightText: 2024 Bergrübe
 SPDX-FileCopyrightText: 2024 Slavi Pantaleev
-SPDX-FileCopyrightText: 2025 Suguru Hirahara
+SPDX-FileCopyrightText: 2025, 2026 Suguru Hirahara
 
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->
@@ -62,13 +62,13 @@ There are a few files that you need to adapt:
 ```
 .
 ├── docs/
-│   ├── supported-services.md  -> Add your service
+│   ├── supported-services.md  ← Add your service
 │   └── services/
-│       └── YOUR-SERVICE.md  -> Add documentation about how to configure it
+│       └── YOUR-SERVICE.md  ← Add documentation about how to configure it
 ├── templates/
-│   ├── group_vars_mash_servers  -> Add default configuration
-│   └── requirements.yml  -> Add your Ansible role
-│   └── setup.yml  -> Add your Ansible role
+│   ├── group_vars_mash_servers  ← Add default configuration
+│   └── requirements.yml  ← Add your Ansible role
+│   └── setup.yml  ← Add your Ansible role
 ```
 
 💡 Make sure to edit configuration files inside `templates` — These are source files to be optimized and used when running [`just`](just.md) commands to install, configure, or uninstall services.
@@ -80,6 +80,8 @@ On `group_vars_mash_servers` you need to wire your role with the rest of the ser
 When adding the role, replace `YOUR-SERVICE` with yours, and also mind the place to add the role, as the roles are (mostly) sorted alphabetically for other developers' sanity.
 
 See below for details about what to configure. Note that not all roles require to be wired to anything other than `systemd_service_manager`.
+
+💡 If the role requires a fixed string for something like passwords, please try to avoid pre-setting it with `mash_playbook_generic_secret_key` for the sake of users. It is intended for secrets that are fine to be changed later.
 
 <details>
 <summary>Wire the role to systemd_service_manager</summary>
@@ -180,7 +182,7 @@ YOUR-SERVICE_container_additional_networks_auto: |
 YOUR-SERVICE_database_hostname: "{{ postgres_connection_hostname if postgres_enabled else '' }}"
 YOUR-SERVICE_database_port: "{{ postgres_connection_port if postgres_enabled else '5432' }}"
 YOUR-SERVICE_database_username: "{{ YOUR-SERVICE_identifier }}"
-YOUR-SERVICE_database_password: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'db.yourservice', rounds=655555) | to_uuid }}"
+YOUR-SERVICE_database_password: "{{ (mash_playbook_generic_secret_key + ':db.yourservice') | hash('sha512') | to_uuid }}"
 # /role-specific:postgres
 
 ########################################################################
@@ -218,7 +220,7 @@ To wire the role to exim-relay, add the configuration for it as below:
 
 YOUR-SERVICE_systemd_wanted_services_list_auto: |
   {{
-    ([(exim_relay_identifier | default('mash-exim-relay')) ~ '.service'] if (exim_relay_enabled | default(false) and YOUR-SERVICE_config_mailer_smtp_addr == exim_relay_identifier | default('mash-exim-relay')) else [])
+    ([exim_relay_identifier ~ '.service'] if exim_relay_enabled | default(false) and YOUR-SERVICE_config_mailer_smtp_addr == exim_relay_identifier else [])
   }}
 
 [...]
@@ -227,7 +229,7 @@ YOUR-SERVICE_container_additional_networks_auto: |
   {{
     [...]
     +
-    ([exim_relay_container_network | default('mash-exim-relay')] if (exim_relay_enabled | default(false) and YOUR-SERVICE_config_mailer_smtp_addr == exim_relay_identifier | default('mash-exim-relay') and YOUR-SERVICE_container_network != exim_relay_container_network) else [])
+    ([exim_relay_container_network] if exim_relay_enabled | default(false) and YOUR-SERVICE_config_mailer_smtp_addr == exim_relay_identifier and YOUR-SERVICE_container_network != exim_relay_container_network else [])
   }}
 
 # role-specific:exim_relay
@@ -245,63 +247,6 @@ YOUR-SERVICE_config_mailer_protocol: "{{ 'smtp' if exim_relay_enabled else '' }}
 ########################################################################
 # /role-specific:YOUR-SERVICE
 ```
-</details>
-
-<details>
-<summary>Wire the role to Hubsite (static site for services overview)</summary>
-
-[Hubsite](https://github.com/moan0s/hubsite) is a service which provides you with a simple static site that shows an overview of the available services.
-
-Adding the role to Hubsite is not a hard requirement to add the role to the playbook, but it is recommended to do so, so that you (and visitors of your services) can easily navigate to the services available on your server.
-
-To wire the role to Hubsite, add the configuration for it as below:
-
-```yaml
-[...]
-# role-specific:hubsite
-########################################################################
-#                                                                      #
-# hubsite                                                              #
-#                                                                      #
-########################################################################
-[...]
-
-# Services
-##########
-[...]
-
-# role-specific:YOUR-SERVICE
-# YOUR-SERVICE
-hubsite_service_YOUR-SERVICE_enabled: "{{ YOUR-SERVICE_enabled }}"
-hubsite_service_YOUR-SERVICE_name: "YOUR-SERVICE Name"
-hubsite_service_YOUR-SERVICE_url: "https://{{ YOUR-SERVICE_hostname }}{{ YOUR-SERVICE_path_prefix }}"
-hubsite_service_YOUR-SERVICE_logo_location: "{{ role_path }}/assets/YOUR-SERVICE.svg"
-hubsite_service_YOUR-SERVICE_description: "YOUR-SERVICE Description"
-hubsite_service_YOUR-SERVICE_priority: 1000
-# /role-specific:YOUR-SERVICE
-[...]
-
-mash_playbook_hubsite_service_list_auto_itemized:
-  [...]
-  # role-specific:YOUR-SERVICE
-  - |-
-    {{
-      ({
-        'name': hubsite_service_YOUR-SERVICE_name,
-        'url': hubsite_service_YOUR-SERVICE_url,
-        'logo_location': hubsite_service_YOUR-SERVICE_logo_location,
-        'description': hubsite_service_YOUR-SERVICE_description,
-        'priority': hubsite_service_YOUR-SERVICE_priority,
-      } if hubsite_service_YOUR-SERVICE_enabled else omit)
-    }}
-  # /role-specific:YOUR-SERVICE
-[...]
-```
-
-💡 **Notes**:
-- Setting a logo is optional.
-- If the service of your role distributes its logo under free licenses, you can add it to [`ansible-role-hubsite/assets`](https://github.com/mother-of-all-self-hosting/ansible-role-hubsite/tree/main/assets) via a pull request.
-
 </details>
 
 ### Additional hints

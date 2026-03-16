@@ -258,11 +258,9 @@ Running the installation command will create the shared Valkey instance named `m
 
 ### Configuring Apache Tika server integration (optional)
 
-You can optionally enable an [Apache Tika Server](http://tika.apache.org/) for extracting and indexing text data on attachment files. If not enabled, the application falls back to built-in parsers for PDF, Word, and Excel files.
+You can optionally have the instance connect to [Apache Tika Server](http://tika.apache.org/) for extracting and indexing text data on attachment files. If not enabled, the application falls back to built-in parsers for PDF, Word, and Excel files.
 
-Apache Tika Server is available on the playbook. Enabling it configures the Open Archiver instance to connect to it.
-
-See [this page](tika.md) for details about how to install it.
+Apache Tika Server is available on the playbook. Enabling it configures the instance to connect to it. See [this page](tika.md) for details about how to install it.
 
 ## Installation
 

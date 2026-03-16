@@ -93,6 +93,10 @@
     - role: galaxy/traefik
     # /role-specific:traefik
 
+    # role-specific:actual
+    - role: galaxy/actual
+    # /role-specific:actual
+
     # role-specific:adguard_home
     - role: galaxy/adguard_home
     # /role-specific:adguard_home
@@ -169,6 +173,14 @@
     - role: galaxy/bind
     # /role-specific:bind
 
+    # role-specific:bitmagnet
+    - role: galaxy/bitmagnet
+    # /role-specific:bitmagnet
+
+    # role-specific:borg_ui
+    - role: galaxy/borg_ui
+    # /role-specific:borg_ui
+
     # role-specific:browserless
     - role: galaxy/browserless
     # /role-specific:browserless
@@ -176,6 +188,10 @@
     # role-specific:calibre_web
     - role: galaxy/calibre_web
     # /role-specific:calibre_web
+
+    # role-specific:calibre_web_automated
+    - role: galaxy/calibre_web_automated
+    # /role-specific:calibre_web_automated
 
     # role-specific:cap
     - role: galaxy/cap
@@ -185,13 +201,25 @@
     - role: galaxy/changedetection
     # /role-specific:changedetection
 
+    # role-specific:cinny
+    - role: galaxy/cinny
+    # /role-specific:cinny
+
     # role-specific:clickhouse
     - role: galaxy/clickhouse
     # /role-specific:clickhouse
 
+    # role-specific:codimd
+    - role: galaxy/codimd
+    # /role-specific:codimd
+
     # role-specific:collabora_online
     - role: galaxy/collabora_online
     # /role-specific:collabora_online
+
+    # role-specific:converse
+    - role: galaxy/converse
+    # /role-specific:converse
 
     # role-specific:convertx
     - role: galaxy/convertx
@@ -201,6 +229,10 @@
     - role: galaxy/couchdb
     # /role-specific:couchdb
 
+    # role-specific:cryptpad
+    - role: galaxy/cryptpad
+    # /role-specific:cryptpad
+
     # role-specific:cyberchef
     - role: galaxy/cyberchef
     # /role-specific:cyberchef
@@ -208,6 +240,10 @@
     # role-specific:databasus
     - role: galaxy/databasus
     # /role-specific:databasus
+
+    # role-specific:ddclient
+    - role: galaxy/ddclient
+    # /role-specific:ddclient
 
     # role-specific:docker_registry
     - role: galaxy/docker_registry
@@ -228,6 +264,10 @@
     # role-specific:docmost
     - role: galaxy/docmost
     # /role-specific:docmost
+
+    # role-specific:docuseal
+    - role: galaxy/docuseal
+    # /role-specific:docuseal
 
     # role-specific:dokuwiki
     - role: galaxy/dokuwiki
@@ -269,6 +309,10 @@
     - role: galaxy/farmos
     # /role-specific:farmos
 
+    # role-specific:fider
+    - role: galaxy/fider
+    # /role-specific:fider
+
     # role-specific:filebrowser
     - role: galaxy/filebrowser
     # /role-specific:filebrowser
@@ -284,6 +328,10 @@
     # role-specific:flaresolverr
     - role: galaxy/flaresolverr
     # /role-specific:flaresolverr
+
+    # role-specific:flatnotes
+    - role: galaxy/flatnotes
+    # /role-specific:flatnotes
 
     # role-specific:fmd_server
     - role: galaxy/fmd_server
@@ -517,6 +565,10 @@
     - role: galaxy/mobilizon
     # /role-specific:mobilizon
 
+    # role-specific:monerooo
+    - role: galaxy/monerooo
+    # /role-specific:monerooo
+
     # role-specific:mongodb
     - role: galaxy/mongodb
     # /role-specific:mongodb
@@ -585,6 +637,10 @@
     - role: galaxy/oauth2_proxy
     # /role-specific:oauth2_proxy
 
+    # role-specific:onion_service_tor
+    - role: galaxy/onion_service_tor
+    # /role-specific:onion_service_tor
+
     # role-specific:onlyoffice_docs
     - role: galaxy/onlyoffice_docs
     # /role-specific:onlyoffice_docs
@@ -604,6 +660,10 @@
     # role-specific:origamivault
     - role: galaxy/origamivault
     # /role-specific:origamivault
+
+    # role-specific:ots
+    - role: galaxy/ots
+    # /role-specific:ots
 
     # role-specific:otterwiki
     - role: galaxy/otterwiki
@@ -648,6 +708,10 @@
     # role-specific:phpmyadmin
     - role: galaxy/phpmyadmin
     # /role-specific:phpmyadmin
+
+    # role-specific:pinepods
+    - role: galaxy/pinepods
+    # /role-specific:pinepods
 
     # role-specific:plausible
     - role: galaxy/plausible
@@ -785,6 +849,10 @@
     - role: galaxy/sftpgo
     # /role-specific:sftpgo
 
+    # role-specific:silverbullet
+    - role: galaxy/silverbullet
+    # /role-specific:silverbullet
+
     # role-specific:smp_server
     - role: galaxy/smp_server
     # /role-specific:smp_server
@@ -804,6 +872,10 @@
     # role-specific:sonarr
     - role: galaxy/sonarr
     # /role-specific:sonarr
+
+    # role-specific:soundcloak
+    - role: galaxy/soundcloak
+    # /role-specific:soundcloak
 
     # role-specific:statusnook
     - role: galaxy/statusnook
@@ -825,9 +897,17 @@
     - role: galaxy/tandoor
     # /role-specific:tandoor
 
+    # role-specific:teable
+    - role: galaxy/teable
+    # /role-specific:teable
+
     # role-specific:telegraf
     - role: galaxy/telegraf
     # /role-specific:telegraf
+
+    # role-specific:termix
+    - role: galaxy/termix
+    # /role-specific:termix
 
     # role-specific:thelounge
     - role: galaxy/thelounge
@@ -908,6 +988,10 @@
     # role-specific:yacy
     - role: galaxy/yacy
     # /role-specific:yacy
+
+    # role-specific:yggstack
+    - role: galaxy/yggstack
+    # /role-specific:yggstack
 
     # role-specific:yourls
     - role: galaxy/yourls

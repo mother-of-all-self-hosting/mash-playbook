@@ -77,3 +77,4 @@ See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3AzFVv3
 
 - [Mozhi](mozhi.md) — Frontend for translation engines
 - [Redlib](redlib.md) — Frontend for Reddit
+- [soundcloak](soundcloak.md) — Frontend for SoundCloud

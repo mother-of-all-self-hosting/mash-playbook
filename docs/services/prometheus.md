@@ -42,10 +42,6 @@ If you've installed [Prometheus Node Exporter](prometheus-node-exporter.md) on t
 ```yaml
 prometheus_self_node_scraper_enabled: true
 prometheus_self_node_scraper_static_configs_target: "{{ prometheus_node_exporter_identifier }}:9100"
-
-# node-exporter runs in another container network, so we need to connect to it.
-prometheus_container_additional_networks:
-  - "{{ prometheus_node_exporter_container_network }}"
 ```
 
 To scrape a **remote** Prometheus Node Exporter instance, do not use `prometheus_self_node_scraper_*`, but rather follow the [Scraping any other exporter service](#scraping-any-other-exporter-service) guide below.

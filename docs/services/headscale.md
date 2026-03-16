@@ -47,20 +47,23 @@ As Headscale's built-in authentication is somewhat manual, setting up OIDC can p
 
 For example, you can enable SSO with authentik via OIDC by following the steps below.
 
-Here, we are using Ansible Vault to supply both our `domain` as well as `client_id` and `client_secret`. Add the following configuration to your `vars.yml` file. This assumes that you picked the slug `headscale` in authentik when adding Headscale as an application. If not, replace `headscale` in `issuer: "https://authentik.{{ domain }}/application/o/headscale/"`.
+Here, we are using Ansible Vault to supply both our `domain` as well as `client_id` and `client_secret`. Add the following configuration to your `vars.yml` file. This assumes that you picked the slug `headscale` in authentik when adding Headscale as an application. If not, replace `headscale` in the `headscale_config_oidc_issuer` value.
 
 ```yaml
-headscale_configuration_extension:
-  oidc:
-    only_start_if_oidc_is_available: true
-    issuer: "https://authentik.{{ domain }}/application/o/headscale/"
-    client_id: "{{ vault_headscale_client_id }}"
-    client_secret: "{{ vault_headscale_client_secret }}"
-    scope: ["openid", "profile", "email"]
-    pkce:
-      enabled: true
-      method: S256
+headscale_config_oidc_enabled: true
+headscale_config_oidc_issuer: "https://authentik.{{ domain }}/application/o/headscale/"
+headscale_config_oidc_client_id: "{{ vault_headscale_client_id }}"
+headscale_config_oidc_client_secret: "{{ vault_headscale_client_secret }}"
+headscale_config_oidc_pkce_enabled: true
+
+# To add custom scopes on top of the defaults (openid, profile, email),
+# use headscale_config_oidc_scope_custom. For example:
+# headscale_config_oidc_scope_custom:
+#   - groups
 ```
+
+> [!NOTE]
+> The `headscale_config_oidc_email_verified_required` variable defaults to `true`, meaning only verified email addresses can authenticate via OIDC. If your Identity Provider does not send the `email_verified: true` claim, you may need to set `headscale_config_oidc_email_verified_required: false`.
 
 You can find more details about configuring OIDC by referring to the documentation at both [Headscale](https://headscale.net/stable/ref/oidc/?h=oidc) and [authentik](https://integrations.goauthentik.io/networking/headscale/). Note that Headscale's documentation doesn't explicitly cover authentik.
 
@@ -107,6 +110,8 @@ john.doe \
 
 💡 You can [list the existing users](https://headscale.net/stable/usage/getting-started/#list-existing-users) with a command like this: `/mash/headscale/bin/headscale users list`
 
+💡 Creating users is not strictly required. You can also connect devices using [pre-auth keys](#connecting-linux-devices-with-a-preshared-key) without creating users first.
+
 ### Connecting devices
 
 Here are some quick guides for the various platforms:
@@ -146,20 +151,16 @@ Take this command and:
 
 Instead of following the manual back-and-forth flow as specified in [Connecting Linux devices with manual confirmation](#connecting-linux-devices-with-manual-confirmation), you can also use a preshared key to connect your device.
 
-**First**, find the numeric user ID of the user you'd like to use:
+**First**, generate a preshared key:
 
 ```sh
-# You may remove the `--name` filter to get a list of all users and their IDs.
-/mash/headscale/bin/headscale users list --name=john.doe
+/mash/headscale/bin/headscale preauthkeys create
 ```
 
-**Then**, generate a preshared key:
+> [!TIP]
+> You may optionally associate the key with a user by passing `--user=NUMERIC_USER_ID` (e.g. `--user=1`). To find a user's numeric ID, run: `/mash/headscale/bin/headscale users list --name=john.doe`
 
-```sh
-/mash/headscale/bin/headscale preauthkeys create --user=NUMERIC_ID_OF_JOHN_DOE
-```
-
-**Finally**, you can connect your device with the preshared key:
+**Then**, connect your device with the preshared key:
 
 ```sh
 tailscale up --login-server=https://headscale.example.com --auth-key=...
