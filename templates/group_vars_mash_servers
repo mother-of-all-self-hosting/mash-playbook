@@ -982,6 +982,11 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
     {{ ({'name': (prometheus_identifier + '.service'), 'priority': 2000, 'restart_necessary': (prometheus_restart_necessary | bool), 'groups': ['mash', 'metrics', 'prometheus']} if prometheus_enabled else omit) }}
   # /role-specific:prometheus
 
+  # role-specific:prometheus_alertmanager
+  - |-
+    {{ ({'name': (prometheus_alertmanager_identifier + '.service'), 'priority': 500, 'restart_necessary': (prometheus_alertmanager_restart_necessary | bool), 'groups': ['mash', 'metrics', 'prometheus-alertmanager']} if prometheus_alertmanager_enabled else omit) }}
+  # /role-specific:prometheus_alertmanager
+
   # role-specific:prometheus_blackbox_exporter
   - |-
     {{ ({'name': (prometheus_blackbox_exporter_identifier + '.service'), 'priority': 500, 'restart_necessary': (prometheus_blackbox_exporter_restart_necessary | bool), 'groups': ['mash', 'metrics', 'prometheus-blackbox-exporter']} if prometheus_blackbox_exporter_enabled else omit) }}
@@ -12439,6 +12444,60 @@ prometheus_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_p
 #                                                                      #
 ########################################################################
 # /role-specific:prometheus
+
+
+
+# role-specific:prometheus_alertmanager
+########################################################################
+#                                                                      #
+# prometheus_alertmanager                                              #
+#                                                                      #
+########################################################################
+
+prometheus_alertmanager_enabled: false
+
+prometheus_alertmanager_identifier: "{{ mash_playbook_service_identifier_prefix }}prometheus-alertmanager"
+
+prometheus_alertmanager_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}prometheus-alertmanager"
+
+prometheus_alertmanager_uid: "{{ mash_playbook_uid }}"
+prometheus_alertmanager_gid: "{{ mash_playbook_gid }}"
+
+prometheus_systemd_wanted_services_list_auto: |
+  {{
+    ([exim_relay_identifier ~ '.service'] if exim_relay_enabled | default(false) else [])
+  }}
+
+prometheus_alertmanager_container_additional_networks_auto: |
+  {{
+    ([exim_relay_container_network] if exim_relay_enabled | default(false) and prometheus_alertmanager_container_network != exim_relay_container_network else [])
+    +
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+    +
+    ([prometheus_container_network] if prometheus_enabled | default(false) and prometheus_alertmanager_container_network != prometheus_container_network else [])
+  }}
+
+prometheus_alertmanager_hostname: "{{ mash_playbook_metrics_exposure_hostname }}"
+prometheus_alertmanager_path_prefix: "{{ mash_playbook_metrics_exposure_path_prefix }}/{{ prometheus_alertmanager_identifier }}"
+
+# Only enable Traefik labels if a hostname is set (indicating that this will be exposed publicly)
+prometheus_alertmanager_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled and prometheus_alertmanager_hostname }}"
+prometheus_alertmanager_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+
+prometheus_alertmanager_container_labels_metrics_middleware_basic_auth_enabled: "{{ mash_playbook_metrics_exposure_http_basic_auth_enabled }}"
+prometheus_alertmanager_container_labels_metrics_middleware_basic_auth_users: "{{ mash_playbook_metrics_exposure_http_basic_auth_users }}"
+
+# role-specific:traefik
+prometheus_alertmanager_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
+prometheus_alertmanager_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
+# /role-specific:traefik
+
+########################################################################
+#                                                                      #
+# /prometheus_alertmanager                                             #
+#                                                                      #
+########################################################################
+# /role-specific:prometheus_alertmanager
 
 
 
