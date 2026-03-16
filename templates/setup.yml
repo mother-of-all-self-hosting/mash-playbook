@@ -745,6 +745,10 @@
     - role: galaxy/prometheus
     # /role-specific:prometheus
 
+    # role-specific:prometheus_alertmanager
+    - role: galaxy/prometheus_alertmanager
+    # /role-specific:prometheus_alertmanager
+
     # role-specific:prometheus_blackbox_exporter
     - role: galaxy/prometheus_blackbox_exporter
     # /role-specific:prometheus_blackbox_exporter

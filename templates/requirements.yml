@@ -696,6 +696,10 @@
   version: v3.10.0-0
   name: prometheus
   activation_prefix: prometheus_enabled
+- src: git+https://github.com/mother-of-all-self-hosting/ansible-role-prometheus-alertmanager.git
+  version: v0.31.1-1
+  name: prometheus_alertmanager
+  activation_prefix: prometheus_alertmanager_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-prometheus-blackbox-exporter.git
   version: v0.28.0-2
   name: prometheus_blackbox_exporter
