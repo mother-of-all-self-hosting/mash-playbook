@@ -38,7 +38,7 @@ You may need to open some ports to your server, if you use another firewall in f
 
 This service requires the following other services:
 
-- [Postgres](postgres.md) / MySQL / [MariaDB](mariadb.md) / [CockroachDB](https://www.cockroachlabs.com/) database — SFTPGo will default to [SQLite](https://www.sqlite.org/) if none of them is enabled
+- [Postgres](postgres.md) / MySQL / [MariaDB](mariadb.md) / [CockroachDB](https://www.cockroachlabs.com/) / [SQLite](https://www.sqlite.org/) database — SFTPGo will default to Postgres
 - [Traefik](traefik.md) reverse-proxy server
 - (optional) [exim-relay](exim-relay.md) mailer
 - (optional) [traefik-certs-dumper](traefik-certs-dumper.md) — for enabling HTTPS connection between the WebDAV server
@@ -71,15 +71,7 @@ sftpgo_hostname: sftpgo.example.com
 
 By default SFTPGo is configured to use Postgres, but you can choose other database such as SQLite, MySQL (MariaDB), and CockroachDB.
 
-To use MariaDB, add the following configuration to your `vars.yml` file:
-
-```yaml
-sftpgo_environment_variables_data_provider_driver: mysql
-```
-
-Please note that it is necessary to add environment variables manually for database other than Postgres and MySQL (MariaDB).
-
-Refer to [this section](https://docs.sftpgo.com/latest/config-file/#data-provider) on the official documentation for options to be configured.
+Please note that it is necessary to add environment variables to `sftpgo_environment_variables_additional_variables` manually for database other than Postgres and MySQL (MariaDB). Refer to [this section](https://docs.sftpgo.com/latest/config-file/#data-provider) on the official documentation for options to be configured.
 
 ### Configuring the mailer (optional)
 

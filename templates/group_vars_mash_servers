@@ -2050,10 +2050,10 @@ mash_playbook_postgres_managed_databases_auto_itemized:
   - |-
     {{
       ({
-        'name': sftpgo_database_postgresql_name,
-        'username': sftpgo_database_postgresql_username,
-        'password': sftpgo_database_postgresql_password,
-      } if sftpgo_enabled and sftpgo_database_postgresql_hostname == postgres_connection_hostname and sftpgo_environment_variables_data_provider_driver == 'postgresql' else omit)
+        'name': sftpgo_database_name,
+        'username': sftpgo_database_postgres_username,
+        'password': sftpgo_database_postgres_password,
+      } if sftpgo_enabled and sftpgo_database_postgres_hostname == postgres_connection_hostname and sftpgo_environment_variables_data_provider_driver == 'postgres' else omit)
     }}
   # /role-specific:sftpgo
 
@@ -9549,7 +9549,7 @@ mash_playbook_mariadb_managed_databases_auto_itemized:
   - |-
     {{
       ({
-        'name': sftpgo_database_mysql_name,
+        'name': sftpgo_database_name,
         'username': sftpgo_database_mysql_username,
         'password': sftpgo_database_mysql_password,
       } if sftpgo_enabled and sftpgo_database_mysql_hostname == mariadb_connection_hostname and sftpgo_environment_variables_data_provider_driver == 'mysql' else omit)
@@ -13720,7 +13720,7 @@ sftpgo_systemd_required_services_list_auto: |
   {{
     ([mariadb_identifier ~ '.service'] if mariadb_enabled | default(false) and sftpgo_database_mysql_hostname == mariadb_connection_hostname and sftpgo_environment_variables_data_provider_driver == 'mysql' else [])
     +
-    ([postgres_identifier ~ '.service'] if postgres_enabled | default(false) and sftpgo_database_postgresql_hostname == postgres_connection_hostname and sftpgo_environment_variables_data_provider_driver == 'postgresql' else [])
+    ([postgres_identifier ~ '.service'] if postgres_enabled | default(false) and sftpgo_database_postgres_hostname == postgres_connection_hostname and sftpgo_environment_variables_data_provider_driver == 'postgres' else [])
     +
     ([traefik_certs_dumper_identifier + '-wait-for-domain@' + sftpgo_hostname + '.service'] if traefik_enabled and traefik_certs_dumper_enabled | default(false) else [])
   }}
@@ -13738,7 +13738,7 @@ sftpgo_container_additional_networks_auto: |
     +
     ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
     +
-    ([postgres_container_network] if postgres_enabled | default(false) and sftpgo_database_postgresql_hostname == postgres_connection_hostname and sftpgo_container_network != postgres_container_network and sftpgo_environment_variables_data_provider_driver == 'postgresql' else [])
+    ([postgres_container_network] if postgres_enabled | default(false) and sftpgo_database_postgres_hostname == postgres_connection_hostname and sftpgo_container_network != postgres_container_network and sftpgo_environment_variables_data_provider_driver == 'postgres' else [])
   }}
 
 sftpgo_container_additional_volumes_auto: |
@@ -13762,7 +13762,7 @@ sftpgo_container_additional_volumes_auto: |
 sftpgo_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
 sftpgo_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
 
-sftpgo_environment_variables_data_provider_driver: postgresql
+sftpgo_environment_variables_data_provider_driver: postgres
 
 # role-specific:exim_relay
 sftpgo_mailer_smtp_enabled: "{{ exim_relay_enabled }}"
@@ -13774,15 +13774,15 @@ sftpgo_environment_variables_smtp_from: "{{ exim_relay_sender_address if exim_re
 # role-specific:mariadb
 sftpgo_database_mysql_hostname: "{{ mariadb_connection_hostname if mariadb_enabled and sftpgo_environment_variables_data_provider_driver == 'mysql' else '' }}"
 sftpgo_database_mysql_port: "{{ mariadb_connection_port if mariadb_enabled and sftpgo_environment_variables_data_provider_driver == 'mysql' else '3306' }}"
-sftpgo_database_mysql_password: "{{ (mash_playbook_generic_secret_key + ':db.sftpgo') | hash('sha512') | to_uuid }}"
 sftpgo_database_mysql_username: "{{ sftpgo_identifier }}"
+sftpgo_database_mysql_password: "{{ (mash_playbook_generic_secret_key + ':db.sftpgo') | hash('sha512') | to_uuid }}"
 # /role-specific:mariadb
 
 # role-specific:postgres
-sftpgo_database_postgresql_hostname: "{{ postgres_connection_hostname if postgres_enabled and sftpgo_environment_variables_data_provider_driver == 'postgresql' else '' }}"
-sftpgo_database_postgresql_port: "{{ postgres_connection_port if postgres_enabled and sftpgo_environment_variables_data_provider_driver == 'postgresql' else '5432' }}"
-sftpgo_database_postgresql_username: "{{ sftpgo_identifier }}"
-sftpgo_database_postgresql_password: "{{ (mash_playbook_generic_secret_key + ':db.sftpgo') | hash('sha512') | to_uuid }}"
+sftpgo_database_postgres_hostname: "{{ postgres_connection_hostname if postgres_enabled and sftpgo_environment_variables_data_provider_driver == 'postgres' else '' }}"
+sftpgo_database_postgres_port: "{{ postgres_connection_port if postgres_enabled and sftpgo_environment_variables_data_provider_driver == 'postgres' else '5432' }}"
+sftpgo_database_postgres_username: "{{ sftpgo_identifier }}"
+sftpgo_database_postgres_password: "{{ (mash_playbook_generic_secret_key + ':db.sftpgo') | hash('sha512') | to_uuid }}"
 # /role-specific:postgres
 
 # role-specific:traefik
