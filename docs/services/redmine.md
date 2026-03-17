@@ -31,7 +31,7 @@ See the project's [documentation](https://www.redmine.org/projects/redmine/wiki)
 
 This service requires the following other services:
 
-- [Postgres](postgres.md) / MySQL / [MariaDB](mariadb.md) / [SQLite](https://www.sqlite.org/) / SQL Server database
+- [Postgres](postgres.md) / MySQL / [MariaDB](mariadb.md) / [SQLite](https://www.sqlite.org/) / SQL Server database — Redmine will default to Postgres
 - [Traefik](traefik.md) reverse-proxy server
 - (optional) [exim-relay](exim-relay.md) mailer
 
@@ -62,17 +62,17 @@ redmine_hostname: redmine.example.com
 ########################################################################
 ```
 
-### Specify database
+### Select database to use (optional)
 
-It is necessary to select database used by Redmine from a MySQL compatible database, Postgres, SQLite, and SQL Server.
+By default Redmine is configured to use Postgres, but you can choose other database such as a MySQL compatible database, SQLite, and SQL Server.
 
-To use Postgres, add the following configuration to your `vars.yml` file:
+To use MySQL, add the following configuration to your `vars.yml` file:
 
 ```yaml
-redmine_database_type: postgresql
+redmine_database_type: mysql
 ```
 
-Set `mysql2` to use a MySQL compatible database, and `sqlite3` to use SQLite.
+Set `sqlite` to use SQLite, and `sqlserver` to use SQL Server.
 
 ### Configuring the mailer (optional)
 
