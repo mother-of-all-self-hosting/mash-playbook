@@ -149,7 +149,7 @@ Finally, mount the `{{ mash_playbook_base_path }}/storage/books` directory on th
 
 # Other Calibre-Web configuration..
 
-calibre_web_container_additional_volumes:
+calibre_web_container_additional_volumes_custom:
   - type: bind
     src: "{{ mash_playbook_base_path }}/storage/books"
     dst: /books

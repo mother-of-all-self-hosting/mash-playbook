@@ -38,7 +38,7 @@ navidrome_path_prefix: /navidrome
 #
 # You'd need to mount some music directory into the Navidrome container, like shown below.
 # The "Syncthing integration" section below may be relevant.
-# navidrome_container_additional_volumes:
+# navidrome_container_additional_volumes_custom:
 #   - type: bind
 #     src: /on-host/path/to/music
 #     dst: /music
@@ -109,7 +109,7 @@ Finally, mount the `{{ mash_playbook_base_path }}/storage/music` directory into 
 
 # Other Navidrome configuration..
 
-navidrome_container_additional_volumes:
+navidrome_container_additional_volumes_custom:
   - type: bind
     src: "{{ mash_playbook_base_path }}/storage/music"
     dst: /music

@@ -119,7 +119,7 @@ Finally, mount the `{{ mash_playbook_base_path }}/storage/audiobookshelf` direct
 
 # Other audiobookshelf configuration..
 
-audiobookshelf_container_additional_volumes:
+audiobookshelf_container_additional_volumes_custom:
   - type: bind
     src: "{{ mash_playbook_base_path }}/storage/audiobookshelf"
     dst: /audiobookshelf
