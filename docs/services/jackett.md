@@ -152,7 +152,7 @@ Consider these other related services:
 
 - [Autobrr](autobrr.md)
 - [Jellyfin](jellyfin.md)
-- [Overseerr](overseerr.md)
+- [Seerr](seerr.md)
 - [Plex](plex.md)
 - [qBittorrent](qbittorrent.md)
 - [Radarr](radarr.md)
