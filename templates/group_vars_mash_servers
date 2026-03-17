@@ -3535,7 +3535,7 @@ barassistant_server_container_labels_traefik_docker_network: "{{ mash_playbook_r
 
 # role-specific:exim_relay
 barassistant_mailer_enabled: "{{ exim_relay_enabled }}"
-barassistant_server_environment_variables_mail_mailer: smtp
+barassistant_server_environment_variables_mail_mailer: "{{ 'smtp' if exim_relay_enabled else '' }}"
 barassistant_server_environment_variables_mail_host: "{{ exim_relay_identifier if exim_relay_enabled else '' }}"
 barassistant_server_environment_variables_mail_port: 8025
 barassistant_server_environment_variables_mail_from_address: "{{ exim_relay_sender_address if exim_relay_enabled else '' }}"
@@ -4633,10 +4633,10 @@ docmost_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxy
 
 # role-specific:exim_relay
 docmost_mailer_enabled: "{{ exim_relay_enabled }}"
+docmost_environment_variable_mail_driver: "{{ 'smtp' if exim_relay_enabled else '' }}"
 docmost_environment_variable_smtp_host: "{{ exim_relay_identifier if exim_relay_enabled else '' }}"
 docmost_environment_variable_smtp_port: "{{ 8025 if exim_relay_enabled else '587' }}"
 docmost_environment_variable_mail_from_address: "{{ exim_relay_sender_address if exim_relay_enabled else '' }}"
-docmost_environment_variable_mail_driver: "{{ 'smtp' if exim_relay_enabled else '' }}"
 # /role-specific:exim_relay
 
 # role-specific:postgres
@@ -5650,10 +5650,10 @@ forgejo_database_type: "{{ 'postgres' if postgres_enabled | default(false) else 
 
 # role-specific:exim_relay
 forgejo_config_mailer_enabled: "{{ exim_relay_enabled }}"
+forgejo_config_mailer_protocol: "{{ 'smtp' if exim_relay_enabled else '' }}"
 forgejo_config_mailer_smtp_addr: "{{ exim_relay_identifier if exim_relay_enabled else '' }}"
 forgejo_config_mailer_smtp_port: 8025
 forgejo_config_mailer_from: "{{ exim_relay_sender_address if exim_relay_enabled else '' }}"
-forgejo_config_mailer_protocol: "{{ 'smtp' if exim_relay_enabled else '' }}"
 # /role-specific:exim_relay
 
 # role-specific:mariadb
@@ -5903,7 +5903,7 @@ funkwhale_frontend_container_labels_traefik_docker_network: "{{ mash_playbook_re
 # role-specific:exim_relay
 # NOTE: Default value specified on the role's configuration requires both username and password to be specified
 funkwhale_api_environment_variables_email_config: "{{ funkwhale_api_environment_variables_email_config_protocol }}{{ funkwhale_api_environment_variables_email_config_host }}:{{ funkwhale_api_environment_variables_email_config_port }}"
-funkwhale_api_environment_variables_email_config_protocol: smtp://
+funkwhale_api_environment_variables_email_config_protocol: "{{ 'smtp://' if exim_relay_enabled else '' }}"
 funkwhale_api_environment_variables_email_config_host: "{{ exim_relay_identifier if exim_relay_enabled else '' }}"
 funkwhale_api_environment_variables_email_config_port: 8025
 funkwhale_api_environment_variables_email_config_from: "{{ exim_relay_sender_address if exim_relay_enabled else '' }}"
@@ -6041,10 +6041,10 @@ gitea_container_labels_traefik_compression_middleware_name: "{{ mash_playbook_re
 
 # role-specific:exim_relay
 gitea_config_mailer_enabled: "{{ exim_relay_enabled }}"
+gitea_config_mailer_protocol: "{{ 'smtp' if exim_relay_enabled else '' }}"
 gitea_config_mailer_smtp_addr: "{{ exim_relay_identifier if exim_relay_enabled else '' }}"
 gitea_config_mailer_smtp_port: 8025
 gitea_config_mailer_from: "{{ exim_relay_sender_address if exim_relay_enabled else '' }}"
-gitea_config_mailer_protocol: "{{ 'smtp' if exim_relay_enabled else '' }}"
 # /role-specific:exim_relay
 
 # role-specific:mariadb
