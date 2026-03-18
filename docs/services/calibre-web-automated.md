@@ -120,7 +120,7 @@ calibre_web_automated_container_additional_volumes_custom:
 ########################################################################
 ```
 
-#### Share the directory with other containers
+#### Sharing the directory with other containers
 
 You can then mount this `{{ mash_playbook_base_path }}/storage/books` directory on other service's container.
 

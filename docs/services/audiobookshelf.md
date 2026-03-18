@@ -116,7 +116,7 @@ audiobookshelf_container_additional_volumes_custom:
 ########################################################################
 ```
 
-#### Share the directory with other containers
+#### Sharing the directory with other containers
 
 You can then mount this `{{ mash_playbook_base_path }}/storage/audiobookshelf` directory on other service's container.
 
