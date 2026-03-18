@@ -241,6 +241,11 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
     {{ ({'name': (changedetection_playwright_driver_identifier + '.service'), 'priority': 2000, 'restart_necessary': (changedetection_restart_necessary | bool), 'groups': ['mash', 'changedetection']} if changedetection_playwright_driver_enabled else omit) }}
   # /role-specific:changedetection
 
+  # role-specific:chiefonboarding
+  - |-
+    {{ ({'name': (chiefonboarding_identifier + '.service'), 'priority': 2000, 'restart_necessary': (chiefonboarding_restart_necessary | bool), 'groups': ['mash', 'chiefonboarding']} if chiefonboarding_enabled else omit) }}
+  # /role-specific:chiefonboarding
+
   # role-specific:cinny
   - |-
     {{ ({'name': (cinny_identifier + '.service'), 'priority': 2000, 'restart_necessary': (cinny_restart_necessary | bool), 'groups': ['mash', 'cinny']} if cinny_enabled else omit) }}
@@ -1416,6 +1421,17 @@ mash_playbook_postgres_managed_databases_auto_itemized:
       } if bitmagnet_enabled and bitmagnet_database_hostname == postgres_connection_hostname else omit)
     }}
   # /role-specific:bitmagnet
+
+  # role-specific:chiefonboarding
+  - |-
+    {{
+      ({
+        'name': chiefonboarding_database_name,
+        'username': chiefonboarding_database_username,
+        'password': chiefonboarding_database_password,
+      } if chiefonboarding_enabled and chiefonboarding_database_hostname == postgres_connection_hostname else omit)
+    }}
+  # /role-specific:chiefonboarding
 
   # role-specific:codimd
   - |-
@@ -3962,6 +3978,72 @@ changedetection_container_labels_traefik_tls_certResolver: "{{ traefik_certResol
 #                                                                      #
 ########################################################################
 # /role-specific:changedetection
+
+
+
+# role-specific:chiefonboarding
+########################################################################
+#                                                                      #
+# chiefonboarding                                                      #
+#                                                                      #
+########################################################################
+
+chiefonboarding_enabled: false
+
+chiefonboarding_identifier: "{{ mash_playbook_service_identifier_prefix }}chiefonboarding"
+
+chiefonboarding_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}chiefonboarding"
+
+# Run as root only
+chiefonboarding_uid: "0"
+chiefonboarding_gid: "0"
+
+chiefonboarding_systemd_required_services_list_auto: |
+  {{
+    ([postgres_identifier ~ '.service'] if postgres_enabled and chiefonboarding_database_hostname == postgres_connection_hostname else [])
+  }}
+
+chiefonboarding_systemd_wanted_services_list_auto: |
+  {{
+    ([exim_relay_identifier ~ '.service'] if exim_relay_enabled | default(false) and chiefonboarding_mailer_smtp_enabled | default(false) and chiefonboarding_environment_variables_email_host == exim_relay_identifier else [])
+  }}
+
+chiefonboarding_container_additional_networks_auto: |
+  {{
+    ([exim_relay_container_network] if exim_relay_enabled | default(false) and chiefonboarding_mailer_smtp_enabled | default(false) and chiefonboarding_environment_variables_email_host == exim_relay_identifier and chiefonboarding_container_network != exim_relay_container_network else [])
+    +
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+    +
+    ([postgres_container_network] if postgres_enabled and chiefonboarding_database_hostname == postgres_connection_hostname and chiefonboarding_container_network != postgres_container_network else [])
+  }}
+
+chiefonboarding_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+chiefonboarding_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+
+# role-specific:exim_relay
+chiefonboarding_mailer_smtp_enabled: "{{ exim_relay_enabled }}"
+chiefonboarding_environment_variables_email_host: "{{ exim_relay_identifier if exim_relay_enabled else '' }}"
+chiefonboarding_environment_variables_email_port: 8025
+chiefonboarding_environment_variables_default_from_email: "{{ exim_relay_sender_address if exim_relay_enabled else '' }}"
+# /role-specific:exim_relay
+
+# role-specific:postgres
+chiefonboarding_database_hostname: "{{ postgres_connection_hostname if postgres_enabled else '' }}"
+chiefonboarding_database_port: "{{ postgres_connection_port if postgres_enabled else '5432' }}"
+chiefonboarding_database_password: "{{ (mash_playbook_generic_secret_key + ':db.chiefonboarding') | hash('sha512') | to_uuid }}"
+# /role-specific:postgres
+
+# role-specific:traefik
+chiefonboarding_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
+chiefonboarding_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
+# /role-specific:traefik
+
+########################################################################
+#                                                                      #
+# /chiefonboarding                                                     #
+#                                                                      #
+########################################################################
+# /role-specific:chiefonboarding
 
 
 
