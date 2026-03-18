@@ -65,11 +65,13 @@ calibre_web_automated_hostname: cwa.example.com
 
 It is possible to migrate from Calibre-Web to Calibre-Web Automated. Refer to [this section](https://github.com/crocodilestick/Calibre-Web-Automated/blob/main/README.md#users-migrating-from-stock-calibre-web) on the documentation for details.
 
-### Syncthing integration (optional)
+### File management
 
-If you've got a [Syncthing](syncthing.md) service running, you can use it to synchronize your books directory with the server, and then mount it as read-only onto the Calibre-Web Automated container.
+If your server runs a file management service along with Calibre-Web Automated such as [File Browser](filebrowser.md), [FileBrowser Quantum](filebrowser-quantum.md), and [Syncthing](syncthing.md), it is possible to upload files to the server or synchronize your books directory with it to make them accessible on Calibre-Web Automated.
 
-We recommend that you make use of the [aux](auxiliary.md) role to create some shared directories as below:
+#### Preparing directories
+
+First, let's create a directory to be shared with the services. You can make use of the [aux](auxiliary.md) role by adding the following configuration to your `vars.yml` file. We create two directories here; the directory to be shared among Calibre-Web Automated and other services, and its parent directory. If you are willing to have other services share directories, you can add another path by adding one to the list:
 
 ```yaml
 ########################################################################
@@ -81,6 +83,7 @@ We recommend that you make use of the [aux](auxiliary.md) role to create some sh
 aux_directory_definitions:
   - dest: "{{ mash_playbook_base_path }}/storage"
   - dest: "{{ mash_playbook_base_path }}/storage/books"
+# - dest: another shared directory path …
 
 ########################################################################
 #                                                                      #
@@ -89,30 +92,12 @@ aux_directory_definitions:
 ########################################################################
 ```
 
-You can then mount this `{{ mash_playbook_base_path }}/storage/books` directory on the Syncthing container and synchronize it with other computers:
+#### Mounting the directory into the Calibre-Web Automated container
 
-```yaml
-########################################################################
-#                                                                      #
-# syncthing                                                            #
-#                                                                      #
-########################################################################
+Next, mount the `{{ mash_playbook_base_path }}/storage/books` directory into the Calibre-Web Automated container.
 
-# Other Syncthing configuration..
-
-syncthing_container_additional_volumes:
-  - type: bind
-    src: "{{ mash_playbook_base_path }}/storage/books"
-    dst: /calibre-library
-
-########################################################################
-#                                                                      #
-# /syncthing                                                           #
-#                                                                      #
-########################################################################
-```
-
-Finally, mount the `{{ mash_playbook_base_path }}/storage/books` directory on the Calibre-Web Automated container as read-only:
+>[!NOTE]
+> The directory is mounted as writable to enable data modification and deletion by Calibre-Web Automated.
 
 ```yaml
 ########################################################################
@@ -121,7 +106,7 @@ Finally, mount the `{{ mash_playbook_base_path }}/storage/books` directory on th
 #                                                                      #
 ########################################################################
 
-# Other Calibre-Web Automated configuration..
+# Other Calibre-Web Automated configuration …
 
 calibre_web_automated_container_additional_volumes_custom:
   - type: bind
@@ -131,6 +116,56 @@ calibre_web_automated_container_additional_volumes_custom:
 ########################################################################
 #                                                                      #
 # /calibre_web_automated                                               #
+#                                                                      #
+########################################################################
+```
+
+#### Share the directory with other containers
+
+You can then mount this `{{ mash_playbook_base_path }}/storage/books` directory on other service's container.
+
+For example, adding the configuration below will let you to access to `/books` directory on the File Browser's UI, so that you can upload files to the server directly and make them accessible on Calibre-Web Automated:
+
+```yaml
+########################################################################
+#                                                                      #
+# filebrowser                                                          #
+#                                                                      #
+########################################################################
+
+# Other File Browser configuration …
+
+filebrowser_container_additional_volumes_custom:
+  - type: bind
+    src: "{{ mash_playbook_base_path }}/storage/books"
+    dst: "/srv/books"
+
+########################################################################
+#                                                                      #
+# /filebrowser                                                         #
+#                                                                      #
+########################################################################
+```
+
+Adding the configuration below makes it possible for the Syncthing service to synchronize the directory with other computers:
+
+```yaml
+########################################################################
+#                                                                      #
+# syncthing                                                            #
+#                                                                      #
+########################################################################
+
+# Other Syncthing configuration …
+
+syncthing_container_additional_volumes_custom:
+  - type: bind
+    src: "{{ mash_playbook_base_path }}/storage/books"
+    dst: /books
+
+########################################################################
+#                                                                      #
+# /syncthing                                                           #
 #                                                                      #
 ########################################################################
 ```
@@ -169,4 +204,3 @@ See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3AzSfEa
 ## Related services
 
 - [audiobookshelf](audiobookshelf.md) — Self-hosted audiobook and podcast server
-- [Syncthing](syncthing.md) — a continuous file synchronization program which synchronizes files between two or more computers in real time. See [Syncthing integration](#syncthing-integration)
