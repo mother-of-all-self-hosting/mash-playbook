@@ -201,6 +201,10 @@
     - role: galaxy/changedetection
     # /role-specific:changedetection
 
+    # role-specific:chiefonboarding
+    - role: galaxy/chiefonboarding
+    # /role-specific:chiefonboarding
+
     # role-specific:cinny
     - role: galaxy/cinny
     # /role-specific:cinny
