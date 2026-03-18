@@ -18,17 +18,17 @@ SPDX-FileCopyrightText: 2024-2026 Suguru Hirahara
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 
-# Fider
+# ChiefOnboarding
 
-The playbook can install and configure [Fider](https://github.com/getfider/fider) for you.
+The playbook can install and configure [ChiefOnboarding](https://github.com/getchiefonboarding/chiefonboarding) for you.
 
-Fider is a feedback portal for feature requests and suggestions.
+ChiefOnboarding is a feedback portal for feature requests and suggestions.
 
-See the project's [documentation](https://docs.fider.io/) to learn what Fider does and why it might be useful to you.
+See the project's [documentation](https://docs.chiefonboarding.io/) to learn what ChiefOnboarding does and why it might be useful to you.
 
-For details about configuring the [Ansible role for Fider](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3Fe49p3uVZpC43KdB5gDCTmr8u7Y), you can check them via:
-- 🌐 [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3Fe49p3uVZpC43KdB5gDCTmr8u7Y/tree/docs/configuring-fider.md) online
-- 📁 `roles/galaxy/fider/docs/configuring-fider.md` locally, if you have [fetched the Ansible roles](../installing.md)
+For details about configuring the [Ansible role for ChiefOnboarding](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3Fe49p3uVZpC43KdB5gDCTmr8u7Y), you can check them via:
+- 🌐 [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3Fe49p3uVZpC43KdB5gDCTmr8u7Y/tree/docs/configuring-chiefonboarding.md) online
+- 📁 `roles/galaxy/chiefonboarding/docs/configuring-chiefonboarding.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 ## Dependencies
 
@@ -45,26 +45,26 @@ To enable this service, add the following configuration to your `vars.yml` file 
 ```yaml
 ########################################################################
 #                                                                      #
-# fider                                                                #
+# chiefonboarding                                                      #
 #                                                                      #
 ########################################################################
 
-fider_enabled: true
+chiefonboarding_enabled: true
 
-fider_hostname: fider.example.com
+chiefonboarding_hostname: chiefonboarding.example.com
 
 ########################################################################
 #                                                                      #
-# /fider                                                               #
+# /chiefonboarding                                                     #
 #                                                                      #
 ########################################################################
 ```
 
-**Note**: hosting Fider under a subpath (by configuring the `fider_path_prefix` variable) does not seem to be possible due to Fider's technical limitations.
+**Note**: hosting ChiefOnboarding under a subpath (by configuring the `chiefonboarding_path_prefix` variable) does not seem to be possible due to ChiefOnboarding's technical limitations.
 
 ### Configuring the mailer (optional)
 
-On Fider you can set up a mailer for functions such as password recovery. If you enable the [exim-relay](exim-relay.md) service in your inventory configuration, the playbook will automatically configure it as a mailer for the service.
+On ChiefOnboarding you can set up a mailer for functions such as password recovery. If you enable the [exim-relay](exim-relay.md) service in your inventory configuration, the playbook will automatically configure it as a mailer for the service.
 
 To actually have the service use (and get messages sent through the exim-relay service), you will need to adjust settings on the service's UI after the service is installed.
 
@@ -73,10 +73,10 @@ To actually have the service use (and get messages sent through the exim-relay s
 
 ## Usage
 
-After installation, the Fider instance becomes available at the URL specified with `fider_hostname`. With the configuration above, the service is hosted at `https://fider.example.com`.
+After installation, the ChiefOnboarding instance becomes available at the URL specified with `chiefonboarding_hostname`. With the configuration above, the service is hosted at `https://chiefonboarding.example.com`.
 
 To get started, open the URL with a web browser, and follow the set up wizard.
 
 ## Troubleshooting
 
-See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3Fe49p3uVZpC43KdB5gDCTmr8u7Y/tree/docs/configuring-fider.md#troubleshooting) on the role's documentation for details.
+See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3Fe49p3uVZpC43KdB5gDCTmr8u7Y/tree/docs/configuring-chiefonboarding.md#troubleshooting) on the role's documentation for details.
