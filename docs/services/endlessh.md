@@ -117,12 +117,11 @@ When exposing metrics publicly, you should consider to set up [HTTP Basic Authen
 To expose the metrics publicly, add the following configuration to your `vars.yml` file (adapt to your needs):
 
 ```yaml
-# The hostname at which Endlessh is served.
-endlessh_hostname: ""
-
-# The path at which Endlessh is exposed.
-endlessh_path_prefix: /metrics/mash-endlessh
+mash_playbook_metrics_exposure_enabled: true
+mash_playbook_metrics_exposure_hostname: example.com
 ```
+
+It will expose the metrics at `https://example.com/metrics/mash-endlessh`.
 
 To enable the HTTP Basic authentication, add the following configuration to your `vars.yml` file (adapt to your needs):
 
