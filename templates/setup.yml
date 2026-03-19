@@ -325,10 +325,6 @@
     - role: galaxy/filebrowser_quantum
     # /role-specific:filebrowser_quantum
 
-    # role-specific:firezone
-    - role: galaxy/firezone
-    # /role-specific:firezone
-
     # role-specific:flaresolverr
     - role: galaxy/flaresolverr
     # /role-specific:flaresolverr
