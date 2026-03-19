@@ -1,3 +1,13 @@
+# 2026-03-19
+
+## Firezone has been removed from the playbook
+
+[Firezone](https://www.firezone.dev/) has been removed from the playbook, as the role to install it ([ansible-role-firezone](https://github.com/mother-of-all-self-hosting/ansible-role-firezone)) was deprecated in favor of [ansible-role-wg-easy](https://github.com/mother-of-all-self-hosting/ansible-role-wg-easy). The deprecated role was configured to install the legacy 0.7 version, which has reached end-of-life status and stopped receiving updates since January 31st, 2024.
+
+The playbook will let you know if you're using any `firezone_*` variables. You'll need to remove them from `vars.yml` and potentially [uninstall the service manually](./docs/services/firezone.md#uninstalling-the-service-manually).
+
+If you have deployed Firezone, you might be interested in having a look at [WireGuard Easy](./docs/services/wg-easy.md).
+
 # 2026-02-13
 
 ## Conditional service restart for `install-*` commands
