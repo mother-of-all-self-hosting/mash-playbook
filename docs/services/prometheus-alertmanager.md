@@ -49,15 +49,6 @@ To enable this service, add the following configuration to your `vars.yml` file 
 
 prometheus_alertmanager_enabled: true
 
-# To expose the metrics publicly, enable and configure the lines below:
-# prometheus_alertmanager_hostname: mash.example.com
-# prometheus_alertmanager_path_prefix: /metrics/mash-prometheus-alertmanager
-
-# To protect the metrics with HTTP Basic Auth, enable and configure the lines below.
-# See: https://doc.traefik.io/traefik/middlewares/http/basicauth/#users
-# prometheus_alertmanager_container_labels_metrics_middleware_basic_auth_enabled: true
-# prometheus_alertmanager_container_labels_metrics_middleware_basic_auth_users: ""
-
 ########################################################################
 #                                                                      #
 # /prometheus_alertmanager                                             #
@@ -68,3 +59,29 @@ prometheus_alertmanager_enabled: true
 ## Usage
 
 After running the command for installation, the Prometheus Alertmanager instance becomes available.
+
+The service's container is configured to connect to Prometheus internally by default, unless it is configured to expose metrics publicly.
+
+### Expose metrics publicly
+
+If Prometheus Alertmanager metrics are not scraped from a local Prometheus instance, you can expose the metrics publicly so that a remote instance can fetch them.
+
+When exposing metrics publicly, you should consider to set up [HTTP Basic Authentication](https://developer.mozilla.org/en-US/docs/Web/HTTP/Authentication) **or anyone would be able to read your metrics**.
+
+To expose the metrics publicly, add the following configuration to your `vars.yml` file (adapt to your needs):
+
+```yaml
+mash_playbook_metrics_exposure_enabled: true
+mash_playbook_metrics_exposure_hostname: mash.example.com
+```
+
+It will expose the metrics at `https://mash.example.com/metrics/mash-rometheus-alertmanager`.
+
+To enable the HTTP Basic authentication, add the following configuration to your `vars.yml` file (adapt to your needs):
+
+```yaml
+prometheus_blackbox_exporter_container_labels_metrics_middleware_basic_auth_enabled: true
+
+# See https://doc.traefik.io/traefik/middlewares/http/basicauth/#users for details.
+prometheus_blackbox_exporter_container_labels_metrics_middleware_basic_auth_users: ""
+```

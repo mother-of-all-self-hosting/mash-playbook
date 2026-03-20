@@ -12459,22 +12459,19 @@ prometheus_alertmanager_container_additional_networks_auto: |
     +
     ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
     +
-    ([prometheus_container_network] if prometheus_enabled | default(false) and prometheus_alertmanager_container_network != prometheus_container_network else [])
+    ([prometheus_container_network] if prometheus_enabled | default(false) and prometheus_alertmanager_container_network != prometheus_container_network and not prometheus_alertmanager_container_labels_metrics_enabled else [])
   }}
 
-prometheus_alertmanager_hostname: "{{ mash_playbook_metrics_exposure_hostname }}"
-prometheus_alertmanager_path_prefix: "{{ mash_playbook_metrics_exposure_path_prefix }}/{{ prometheus_alertmanager_identifier }}"
-
-# Only enable Traefik labels if a hostname is set (indicating that this will be exposed publicly)
-prometheus_alertmanager_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled and prometheus_alertmanager_hostname }}"
-prometheus_alertmanager_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
-
+prometheus_alertmanager_container_labels_metrics_enabled: "{{ mash_playbook_metrics_exposure_enabled }}"
+prometheus_alertmanager_container_labels_metrics_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+prometheus_alertmanager_container_labels_metrics_hostname: "{{ mash_playbook_metrics_exposure_hostname }}"
+prometheus_alertmanager_container_labels_metrics_path_prefix: "{{ mash_playbook_metrics_exposure_path_prefix }}/{{ prometheus_alertmanager_identifier }}"
 prometheus_alertmanager_container_labels_metrics_middleware_basic_auth_enabled: "{{ mash_playbook_metrics_exposure_http_basic_auth_enabled }}"
 prometheus_alertmanager_container_labels_metrics_middleware_basic_auth_users: "{{ mash_playbook_metrics_exposure_http_basic_auth_users }}"
 
 # role-specific:traefik
-prometheus_alertmanager_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
-prometheus_alertmanager_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
+prometheus_alertmanager_container_labels_metrics_entrypoints: "{{ traefik_entrypoint_primary }}"
+prometheus_alertmanager_container_labels_metrics_tls_certResolver: "{{ traefik_certResolver_primary }}"
 # /role-specific:traefik
 
 ########################################################################
