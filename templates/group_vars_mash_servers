@@ -11153,6 +11153,7 @@ openarchiver_environment_variables_meili_key: "{{ meilisearch_default_admin_api_
 openarchiver_database_hostname: "{{ postgres_connection_hostname if postgres_enabled else '' }}"
 openarchiver_database_port: "{{ postgres_connection_port if postgres_enabled else '5432' }}"
 openarchiver_database_password: "{{ (mash_playbook_generic_secret_key + ':openarchiver.db') | hash('sha512') | to_uuid }}"
+openarchiver_database_sslmode: "{{ 'disable' if postgres_enabled and openarchiver_database_hostname == postgres_connection_hostname else 'prefer' }}"
 # /role-specific:postgres
 
 # role-specific:tika
