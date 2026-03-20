@@ -46,11 +46,14 @@ syncthing_basicauth_enabled: true
 
 # Syncthing is NOT a multi-user system.
 # Whichever user you authenticate with later, you would get to the same shared system.
-syncthing_basicauth_credentials:
-  - username: someone
-    password: secret-password
-  - username: another
-    password: more-secret-password
+# Generate each entry with `htpasswd -nb USERNAME PASSWORD`
+# and paste the whole `USERNAME:HASH` line below.
+# Example:
+# htpasswd -nb someone 'secret-password'
+# htpasswd -nb another 'more-secret-password'
+syncthing_basicauth_htpasswds:
+  - 'someone:$apr1$Dz1QzvR9$TQj8rP2QfLz7dYkP6Y0K4/'
+  - 'another:$apr1$QfJ1mU7a$gR0d9D0dKfIDm0w3lN4hY0'
 
 ########################################################################
 #                                                                      #
@@ -61,7 +64,11 @@ syncthing_basicauth_credentials:
 
 ### Authentication
 
-You can log in with **any** of the Basic Auth credentials defined in `syncthing_basicauth_credentials`. Syncthing is **not a multi-user system**, so whichever user you authenticate with, you'd ultimately end up looking at the same shared system.
+You can log in with **any** of the Basic Auth credentials defined in `syncthing_basicauth_htpasswds`. Syncthing is **not a multi-user system**, so whichever user you authenticate with, you'd ultimately end up looking at the same shared system.
+
+Generate entries outside Ansible with `htpasswd -nb USERNAME PASSWORD` and put the resulting lines into `syncthing_basicauth_htpasswds`.
+
+The legacy `syncthing_basicauth_credentials` convenience variable is discouraged, because it depends on the `passlib` Python library, may be affected by passlib/bcrypt compatibility issues (see: https://foss.heptapod.net/python-libs/passlib/-/issues/196), and produces non-deterministic hashes which can trigger unnecessary Ansible changes.
 
 Authentication is **done at the reverse-proxy level** (Traefik), so upon logging in, Syncthing will show you scary warnings about **no GUI password being set**. You should ignore these warnings.
 
