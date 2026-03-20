@@ -31,9 +31,9 @@ See the project's [documentation](https://github.com/prometheus/blackbox_exporte
 
 This service requires the following other services:
 
-- [Traefik](traefik.md)
-- (optional) [Grafana](grafana.md) — a web UI that can query the Prometheus datasource (connection) and display the logs
-- (optional) [Prometheus](prometheus.md) — a database for storing metrics
+- (optional) [Grafana](grafana.md) — web UI that can query the Prometheus datasource (connection) and display the logs
+- (optional) [Prometheus](prometheus.md) — database for storing metrics
+- (optional) [Traefik](traefik.md) — reverse-proxy server for exposing Prometheus Blackbox Exporter
 
 ## Adjusting the playbook configuration
 
