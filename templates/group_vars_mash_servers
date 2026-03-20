@@ -4711,6 +4711,7 @@ docmost_database_hostname: "{{ postgres_connection_hostname if postgres_enabled 
 docmost_database_port: "{{ postgres_connection_port if postgres_enabled else '5432' }}"
 docmost_database_username: "{{ docmost_identifier }}"
 docmost_database_password: "{{ (mash_playbook_generic_secret_key + ':db.docmost') | hash('sha512') | to_uuid }}"
+docmost_database_sslmode: "{{ 'disable' if postgres_enabled and docmost_database_hostname == postgres_connection_hostname else 'prefer' }}"
 # /role-specific:postgres
 
 # role-specific:traefik
