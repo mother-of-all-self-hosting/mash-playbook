@@ -8194,6 +8194,7 @@ joplin_server_database_hostname: "{{ postgres_connection_hostname if postgres_en
 joplin_server_database_port: "{{ postgres_connection_port if postgres_enabled else '5432' }}"
 joplin_server_database_username: "{{ joplin_server_identifier }}"
 joplin_server_database_password: "{{ (mash_playbook_generic_secret_key + ':db.joplinserver') | hash('sha512') | to_uuid }}"
+joplin_server_database_sslmode: "{{ 'disable' if postgres_enabled and joplin_server_database_hostname == postgres_connection_hostname else 'prefer' }}"
 # /role-specific:postgres
 
 # role-specific:traefik
