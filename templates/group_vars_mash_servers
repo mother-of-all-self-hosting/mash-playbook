@@ -5136,7 +5136,7 @@ excalidraw_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_en
 excalidraw_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
 
 # role-specific:excalidraw_room
-excalidraw_container_image_self_build: true # Building the image is necessary for using the self-hosted collaboration server
+excalidraw_container_image_self_build: "{{ excalidraw_room_enabled }}" # Building the image is necessary for using the self-hosted collaboration server
 # /role-specific:excalidraw_room
 
 # role-specific:traefik
@@ -5420,7 +5420,7 @@ filebrowser_quantum_container_labels_traefik_enabled: "{{ mash_playbook_traefik_
 filebrowser_quantum_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
 
 # role-specific:onlyoffice_docs
-filebrowser_quantum_config_integrations_office: true
+filebrowser_quantum_config_integrations_office: "{{ onlyoffice_docs_enabled }}"
 filebrowser_quantum_config_integrations_office_url: "{{ onlyoffice_docs_scheme }}://{{ onlyoffice_docs_hostname }}"
 filebrowser_quantum_config_integrations_office_secret: "{{ onlyoffice_docs_environment_variables_jwt_secret }}"
 # /role-specific:onlyoffice_docs
@@ -11895,7 +11895,7 @@ pgadmin_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabl
 pgadmin_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
 
 # role-specific:exim_relay
-pgadmin_environment_variables_pgadmin_disable_postfix: true
+pgadmin_environment_variables_pgadmin_disable_postfix: "{{ exim_relay_enabled }}"
 pgadmin_environment_variables_pgadmin_config_mail_server: "{{ exim_relay_identifier if exim_relay_enabled else '' }}"
 pgadmin_environment_variables_pgadmin_config_mail_port: "{{ 8025 if exim_relay_enabled else '' }}"
 pgadmin_environment_variables_pgadmin_config_security_email_sender: "{{ exim_relay_sender_address if exim_relay_enabled else '' }}"
@@ -13421,7 +13421,7 @@ rssbridge_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_ena
 rssbridge_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
 
 # role-specific:browserless
-rssbridge_config_webdriver_headless: true
+rssbridge_config_webdriver_headless: "{{ browserless_enabled }}"
 rssbridge_config_webdriver_selenium_server_url: "http://{{ browserless_identifier }}:{{ browserless_container_http_port }}/chromium/playwright"
 # /role-specific:browserless
 
@@ -14542,7 +14542,7 @@ tinyauth_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_prox
 # role-specific:lldap
 tinyauth_ldap_enabled: "{{ lldap_enabled }}"
 tinyauth_environment_variable_ldap_address: ldap://{{ lldap_identifier }}:{{ lldap_container_ldap_port }}
-tinyauth_environment_variable_ldap_insecure: true
+tinyauth_environment_variable_ldap_insecure: "{{ lldap_enabled }}"
 # /role-specific:lldap
 
 # role-specific:traefik
@@ -14976,7 +14976,7 @@ vikunja_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_prim
 # /role-specific:traefik
 
 # role-specific:typesense
-vikunja_environment_variables_typesense_enabled: true
+vikunja_environment_variables_typesense_enabled: "{{ typesense_enabled }}"
 vikunja_environment_variables_typesense_url: http://{{ typesense_identifier }}:{{ typesense_container_http_port }}
 vikunja_environment_variables_typesense_apikey: "{{ typesense_environment_variables_api_key }}"
 # /role-specific:typesense
