@@ -21,7 +21,11 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
 # Prometheus SSH Exporter
 
-This playbook can configure [Prometheus SSH Exporter](https://github.com/treydock/ssh_exporter).
+The playbook can install and configure [Prometheus SSH Exporter](https://github.com/treydock/ssh_exporter) for you.
+
+Prometheus SSH Exporter is a Prometheus exporter which attempts to make an SSH connection to a remote system and optionally run a command and test output.
+
+See the project's [documentation](https://github.com/treydock/ssh_exporter/blob/master/README.md) to learn what Prometheus SSH Exporter does and why it might be useful to you.
 
 ## Dependencies
 

@@ -19,9 +19,13 @@ SPDX-FileCopyrightText: 2024-2026 Suguru Hirahara
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 
-# Postgres Exporter
+# Prometheus Postgres Exporter
 
-This playbook can configure [Postgres Exporter](https://github.com/prometheus-community/postgres_exporter) by utilizing [mother-of-all-self-hosting/ansible-role-postgres-exporter](https://github.com/mother-of-all-self-hosting/ansible-role-prometheus-postgres-exporter.git).
+The playbook can install and configure [Prometheus Postgres Exporter](https://github.com/prometheus-community/postgres_exporter) for you.
+
+Prometheus Postgres Exporter is a Prometheus exporter for PostgreSQL server metrics.
+
+See the project's [documentation](https://github.com/prometheus-community/postgres_exporter/blob/master/README.md) to learn what Prometheus Postgres Exporter does and why it might be useful to you.
 
 ## Dependencies
 

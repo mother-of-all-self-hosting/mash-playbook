@@ -21,7 +21,11 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
 # Prometheus Node Exporter
 
-This playbook can configure [Prometheus Node Exporter](https://github.com/prometheus/node_exporter).
+The playbook can install and configure [Prometheus Node Exporter](https://github.com/prometheus/node_exporter) for you.
+
+Prometheus Node Exporter is a Prometheus exporter for hardware and OS metrics exposed by *NIX kernels.
+
+See the project's [documentation](https://github.com/prometheus/node_exporter/blob/master/README.md) to learn what Prometheus Node Exporter does and why it might be useful to you.
 
 ## Dependencies
 
