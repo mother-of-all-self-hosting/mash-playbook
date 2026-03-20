@@ -4169,6 +4169,7 @@ codimd_database_mysql_password: "{{ (mash_playbook_generic_secret_key + ':db.cod
 codimd_database_postgres_hostname: "{{ postgres_connection_hostname if postgres_enabled else '' }}"
 codimd_database_postgres_port: "{{ postgres_connection_port if postgres_enabled else '5432' }}"
 codimd_database_postgres_password: "{{ (mash_playbook_generic_secret_key + ':db.codimd.p') | hash('sha512') | to_uuid }}"
+codimd_database_postgres_sslmode: "{{ 'disable' if postgres_enabled and codimd_database_postgres_hostname == postgres_connection_hostname else 'prefer' }}"
 # /role-specific:postgres
 
 # role-specific:traefik
