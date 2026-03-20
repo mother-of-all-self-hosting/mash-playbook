@@ -21,9 +21,21 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
 # Prometheus Blackbox Exporter
 
-This playbook can configure [Prometheus Blackbox Exporter](https://github.com/prometheus/blackbox_exporter).
+The playbook can install and configure [Prometheus Blackbox Exporter](https://github.com/prometheus/blackbox_exporter) for you.
 
-## Configuration
+Prometheus Blackbox Exporter allows blackbox probing of endpoints over HTTP, HTTPS, DNS, TCP, ICMP and gRPC.
+
+See the project's [documentation](https://github.com/prometheus/blackbox_exporter/blob/master/README.md) to learn what Prometheus Blackbox Exporter does and why it might be useful to you.
+
+## Dependencies
+
+This service requires the following other services:
+
+- [Traefik](traefik.md)
+- (optional) [Grafana](grafana.md) — a web UI that can query the Prometheus datasource (connection) and display the logs
+- (optional) [Prometheus](prometheus.md) — a database for storing metrics
+
+## Adjusting the playbook configuration
 
 To enable this service, add the following configuration to your `vars.yml` file and re-run the [installation](../installing.md) process:
 
