@@ -737,7 +737,7 @@
   name: radarr
   activation_prefix: radarr_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-radicale.git
-  version: v3.6.1.0-0
+  version: v3.6.1.0-1
   name: radicale
   activation_prefix: radicale_
 - src: git+https://seed.radicle.garden/zopwjin5Vh5dMgdHWiifJ2cg3bQW.git
@@ -853,7 +853,7 @@
   name: syncstorage_rs_docker
   activation_prefix: syncstorage_rs_docker_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-syncthing.git
-  version: v2.0.15-0
+  version: v2.0.15-1
   name: syncthing
   activation_prefix: syncthing_
 - src: git+https://github.com/devture/com.devture.ansible.role.systemd_docker_base.git
@@ -897,7 +897,7 @@
   name: tinyauth
   activation_prefix: tinyauth_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-traefik.git
-  version: v3.6.11-0
+  version: v3.6.11-1
   name: traefik
   activation_prefix: mash_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-traefik-certs-dumper.git
