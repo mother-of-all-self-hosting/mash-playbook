@@ -63,7 +63,6 @@
 * Fider: v0.33.0
 * Filebrowser: v2.61.2
 * Filebrowser Quantum: 1.2.2
-* Firezone: 0.7.36
 * Flaresolverr: v3.4.1
 * Flatnotes: v5.5.4
 * Fmd Server: 0.14.1

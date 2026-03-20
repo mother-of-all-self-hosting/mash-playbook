@@ -201,6 +201,10 @@
     - role: galaxy/changedetection
     # /role-specific:changedetection
 
+    # role-specific:chiefonboarding
+    - role: galaxy/chiefonboarding
+    # /role-specific:chiefonboarding
+
     # role-specific:cinny
     - role: galaxy/cinny
     # /role-specific:cinny
@@ -320,10 +324,6 @@
     # role-specific:filebrowser_quantum
     - role: galaxy/filebrowser_quantum
     # /role-specific:filebrowser_quantum
-
-    # role-specific:firezone
-    - role: galaxy/firezone
-    # /role-specific:firezone
 
     # role-specific:flaresolverr
     - role: galaxy/flaresolverr

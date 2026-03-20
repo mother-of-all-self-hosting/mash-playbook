@@ -74,7 +74,7 @@ See below for the instruction to use one of the others.
 To use local filesystem database for a storage, add the following configuration to your `vars.yml` file:
 
 ```yaml
-privatebin_config_model: Filesystem
+privatebin_config_model: filesystem
 ```
 
 #### MySQL
@@ -82,7 +82,7 @@ privatebin_config_model: Filesystem
 To use MySQL for a storage, add the following configuration to your `vars.yml` file:
 
 ```yaml
-privatebin_config_model: MySQL
+privatebin_config_model: mysql
 ```
 
 See [here](mariadb.md) on the role's documentation for details about how to configure a MariaDB instance with the playbook.
