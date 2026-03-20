@@ -757,7 +757,7 @@
   name: reactflux
   activation_prefix: reactflux_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-readeck
-  version: v0.22.2-1
+  version: v0.22.2-2
   name: readeck
   activation_prefix: readeck_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-redis.git

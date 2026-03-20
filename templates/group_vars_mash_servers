@@ -13172,6 +13172,7 @@ readeck_environment_variables_readeck_mail_fromnoreply: "{{ exim_relay_sender_ad
 readeck_database_hostname: "{{ postgres_connection_hostname if postgres_enabled else '' }}"
 readeck_database_port: "{{ postgres_connection_port if postgres_enabled else '5432' }}"
 readeck_database_password: "{{ (mash_playbook_generic_secret_key + ':readeck.db') | hash('sha512') | to_uuid }}"
+readeck_database_sslmode: "{{ 'disable' if postgres_enabled and readeck_database_hostname == postgres_connection_hostname else 'prefer' }}"
 # /role-specific:postgres
 
 # role-specific:traefik
