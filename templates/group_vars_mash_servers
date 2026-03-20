@@ -5675,6 +5675,7 @@ forgejo_config_mailer_from: "{{ exim_relay_sender_address if exim_relay_enabled 
 forgejo_database_mysql_hostname: "{{ mariadb_connection_hostname if mariadb_enabled else '' }}"
 forgejo_database_mysql_port: "{{ mariadb_connection_port if mariadb_enabled else '3306' }}"
 forgejo_database_mysql_password: "{{ (mash_playbook_generic_secret_key + ':db.forgejo') | hash('sha512') | to_uuid }}"
+forgejo_database_mysql_sslmode: "{{ 'false' if mariadb_enabled and forgejo_database_mysql_hostname == mariadb_connection_hostname else 'prefer' }}"
 # /role-specific:mariadb
 
 # role-specific:memcached
@@ -5685,6 +5686,7 @@ forgejo_config_cache_host: "{{ memcached_identifier }}:{{ memcached_container_ht
 forgejo_database_postgres_hostname: "{{ postgres_connection_hostname if postgres_enabled else '' }}"
 forgejo_database_postgres_port: "{{ postgres_connection_port if postgres_enabled else '5432' }}"
 forgejo_database_postgres_password: "{{ (mash_playbook_generic_secret_key + ':db.forgejo') | hash('sha512') | to_uuid }}"
+forgejo_database_postgres_sslmode: "{{ 'disable' if postgres_enabled and forgejo_database_postgres_hostname == postgres_connection_hostname else 'require' }}"
 # /role-specific:postgres
 
 # role-specific:traefik
