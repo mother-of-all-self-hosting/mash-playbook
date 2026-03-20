@@ -4015,6 +4015,7 @@ chiefonboarding_environment_variables_default_from_email: "{{ exim_relay_sender_
 chiefonboarding_database_hostname: "{{ postgres_connection_hostname if postgres_enabled else '' }}"
 chiefonboarding_database_port: "{{ postgres_connection_port if postgres_enabled else '5432' }}"
 chiefonboarding_database_password: "{{ (mash_playbook_generic_secret_key + ':db.chiefonboarding') | hash('sha512') | to_uuid }}"
+chiefonboarding_database_sslmode: "{{ 'disable' if postgres_enabled and chiefonboarding_database_hostname == postgres_connection_hostname else 'prefer' }}"
 # /role-specific:postgres
 
 # role-specific:traefik
@@ -5336,6 +5337,7 @@ fider_environment_variables_email_noreply: "{{ exim_relay_sender_address if exim
 fider_database_hostname: "{{ postgres_connection_hostname if postgres_enabled else '' }}"
 fider_database_port: "{{ postgres_connection_port if postgres_enabled else '5432' }}"
 fider_database_password: "{{ (mash_playbook_generic_secret_key + ':db.fider') | hash('sha512') | to_uuid }}"
+fider_database_sslmode: "{{ 'disable' if postgres_enabled and fider_database_hostname == postgres_connection_hostname else 'prefer' }}"
 # /role-specific:postgres
 
 # role-specific:traefik
@@ -5593,6 +5595,7 @@ focalboard_database_type: "{{ 'postgres' if postgres_enabled else 'sqlite' }}"
 focalboard_database_hostname: "{{ postgres_connection_hostname if postgres_enabled else '' }}"
 focalboard_database_port: "{{ postgres_connection_port if postgres_enabled else '5432' }}"
 focalboard_database_password: "{{ (mash_playbook_generic_secret_key + ':db.focalboard') | hash('sha512') | to_uuid }}"
+focalboard_database_sslmode: "{{ 'disable' if postgres_enabled and focalboard_database_hostname == postgres_connection_hostname else 'prefer' }}"
 # /role-specific:postgres
 
 # role-specific:traefik
@@ -14842,6 +14845,7 @@ vaultwarden_database_mysql_password: "{{ (mash_playbook_generic_secret_key + ':d
 vaultwarden_database_postgres_hostname: "{{ postgres_connection_hostname if postgres_enabled else '' }}"
 vaultwarden_database_postgres_port: "{{ postgres_connection_port if postgres_enabled else '5432' }}"
 vaultwarden_database_postgres_password: "{{ (mash_playbook_generic_secret_key + ':db.vaultwarden') | hash('sha512') | to_uuid }}"
+vaultwarden_database_postgres_sslmode: "{{ 'disable' if postgres_enabled and vaultwarden_database_postgres_hostname == postgres_connection_hostname else 'prefer' }}"
 # /role-specific:postgres
 
 # role-specific:traefik
