@@ -1,6 +1,20 @@
 <!--
+SPDX-FileCopyrightText: 2020 Aaron Raimist
+SPDX-FileCopyrightText: 2020 Chris van Dijk
+SPDX-FileCopyrightText: 2020 Dominik Zajac
+SPDX-FileCopyrightText: 2020 Mickaël Cornière
+SPDX-FileCopyrightText: 2020-2024 MDAD project contributors
+SPDX-FileCopyrightText: 2020-2024 Slavi Pantaleev
+SPDX-FileCopyrightText: 2022 François Darveau
+SPDX-FileCopyrightText: 2022 Julian Foad
+SPDX-FileCopyrightText: 2022 Warren Bailey
+SPDX-FileCopyrightText: 2023 Antonis Christofides
+SPDX-FileCopyrightText: 2023 Felix Stupp
+SPDX-FileCopyrightText: 2023 Julian-Samuel Gebühr
 SPDX-FileCopyrightText: 2023 Nikita Chernyi
-SPDX-FileCopyrightText: 2023 - 2024 Slavi Pantaleev
+SPDX-FileCopyrightText: 2023 Pierre 'McFly' Marty
+SPDX-FileCopyrightText: 2024 Tiz
+SPDX-FileCopyrightText: 2024-2026 Suguru Hirahara
 
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->
@@ -9,6 +23,13 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
 This playbook can configure [Prometheus Node Exporter](https://github.com/prometheus/node_exporter).
 
+## Dependencies
+
+This service requires the following other services:
+
+- [Prometheus](prometheus.md) — database for storing metrics
+- (optional) [Grafana](grafana.md) — web UI that can query the Prometheus datasource (connection) and display the logs
+- (optional) [Traefik](traefik.md) — reverse-proxy server for exposing Prometheus Node Exporter
 
 ## Configuration
 

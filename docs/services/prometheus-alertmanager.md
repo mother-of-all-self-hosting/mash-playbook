@@ -31,9 +31,10 @@ See the project's [documentation](https://prometheus.io/docs/alerting/latest/ale
 
 This service requires the following other services:
 
-- [Prometheus](prometheus.md)
+- [Prometheus](prometheus.md) — database for storing metrics
 - (optional) [exim-relay](exim-relay.md) mailer
-- (optional) [Traefik](traefik.md)
+- (optional) [Grafana](grafana.md) — web UI that can query the Prometheus datasource (connection) and display the logs
+- (optional) [Traefik](traefik.md) — reverse-proxy server for exposing Prometheus Alertmanager
 
 ## Adjusting the playbook configuration
 
