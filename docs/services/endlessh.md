@@ -110,12 +110,10 @@ To expose the metrics publicly, add the following configuration to your `vars.ym
 
 ```yaml
 mash_playbook_metrics_exposure_enabled: true
-mash_playbook_metrics_exposure_hostname: example.com
-
-endlessh_container_labels_metrics_enabled: true
+mash_playbook_metrics_exposure_hostname: mash.example.com
 ```
 
-It will expose the metrics at `https://example.com/metrics/mash-endlessh`.
+It will expose the metrics at `https://mash.example.com/metrics/mash-endlessh`.
 
 To enable the HTTP Basic authentication, add the following configuration to your `vars.yml` file (adapt to your needs):
 
