@@ -14350,6 +14350,7 @@ teable_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxya
 teable_database_hostname: "{{ postgres_connection_hostname if postgres_enabled else '' }}"
 teable_database_port: "{{ postgres_connection_port if postgres_enabled else '5432' }}"
 teable_database_password: "{{ (mash_playbook_generic_secret_key + ':teable.db') | hash('sha512') | to_uuid }}"
+teable_database_sslmode: "{{ 'disable' if postgres_enabled and teable_database_hostname == postgres_connection_hostname else 'prefer' }}"
 # /role-specific:postgres
 
 # role-specific:traefik
