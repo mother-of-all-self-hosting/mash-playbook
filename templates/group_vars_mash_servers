@@ -6182,6 +6182,7 @@ gotify_database_mysql_password: "{{ (mash_playbook_generic_secret_key + ':m.goti
 gotify_database_postgres_hostname: "{{ postgres_connection_hostname if postgres_enabled else '' }}"
 gotify_database_postgres_port: "{{ postgres_connection_port if postgres_enabled else '5432' }}"
 gotify_database_postgres_password: "{{ (mash_playbook_generic_secret_key + ':p.gotify') | hash('sha512') | to_uuid }}"
+gotify_database_postgres_sslmode: "{{ 'disable' if postgres_enabled and gotify_database_postgres_hostname == postgres_connection_hostname else 'prefer' }}"
 # /role-specific:postgres
 
 # role-specific:traefik
