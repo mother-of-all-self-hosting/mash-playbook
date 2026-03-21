@@ -5791,6 +5791,7 @@ freescout_database_mysql_password: "{{ (mash_playbook_generic_secret_key + ':fre
 freescout_database_postgres_hostname: "{{ postgres_connection_hostname if postgres_enabled else '' }}"
 freescout_database_postgres_port: "{{ postgres_connection_port if postgres_enabled else '5432' }}"
 freescout_database_postgres_password: "{{ (mash_playbook_generic_secret_key + ':freescout.db') | hash('sha512') | to_uuid }}"
+freescout_database_postgres_sslmode: "{{ 'disable' if postgres_enabled and freescout_database_postgres_hostname == postgres_connection_hostname else 'enable' }}"
 # /role-specific:postgres
 
 # role-specific:traefik
