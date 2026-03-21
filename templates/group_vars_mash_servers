@@ -15065,6 +15065,7 @@ weblate_environment_variables_weblate_default_from_email: "{{ exim_relay_sender_
 weblate_database_hostname: "{{ postgres_connection_hostname if postgres_enabled else '' }}"
 weblate_database_port: "{{ postgres_connection_port if postgres_enabled else '5432' }}"
 weblate_database_password: "{{ (mash_playbook_generic_secret_key + ':weblate.db') | hash('sha512') | to_uuid }}"
+weblate_database_sslmode: "{{ 'disable' if postgres_enabled and weblate_database_hostname == postgres_connection_hostname else 'prefer' }}"
 # /role-specific:postgres
 
 # role-specific:traefik
