@@ -83,7 +83,7 @@ See [this page](browserless.md) for details about how to install it.
 
 To enable the search function, you can optionally have the Karakeep instance connect to a Meilisearch instance.
 
-Meilisearch is available on the playbook. Enabling it and setting its default admin API key automatically configures the Karakeep instance to connect to it.
+Meilisearch is available on the playbook. Enabling it and setting its default admin API key (`meilisearch_default_admin_api_key`) automatically configures the Karakeep instance to connect to it.
 
 See [this page](meilisearch.md) for details about how to install it and setting the key for the Meilisearch instance.
 
