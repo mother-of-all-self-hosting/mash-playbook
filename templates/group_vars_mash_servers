@@ -11233,6 +11233,12 @@ opengist_database_mysql_port: "{{ mariadb_connection_port if mariadb_enabled els
 opengist_database_mysql_password: "{{ (mash_playbook_generic_secret_key + ':opengist.db') | hash('sha512') | to_uuid }}"
 # /role-specific:mariadb
 
+# role-specific:meilisearch
+opengist_environment_variables_index: "{{ 'meilisearch' if meilisearch_enabled }}"
+opengist_environment_variables_meili_host: "http://{{ meilisearch_identifier }}:{{ meilisearch_container_http_port }}"
+opengist_environment_variables_meili_api_key: "{{ meilisearch_default_admin_api_key }}"
+# /role-specific:meilisearch
+
 # role-specific:postgres
 opengist_database_postgres_hostname: "{{ postgres_connection_hostname if postgres_enabled else '' }}"
 opengist_database_postgres_port: "{{ postgres_connection_port if postgres_enabled else '5432' }}"
