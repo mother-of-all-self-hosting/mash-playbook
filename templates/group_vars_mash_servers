@@ -3344,6 +3344,7 @@ authentik_database_hostname: "{{ postgres_connection_hostname if postgres_enable
 authentik_database_port: "{{ postgres_connection_port if postgres_enabled else '5432' }}"
 authentik_database_username: "{{ authentik_identifier }}"
 authentik_database_password: "{{ (mash_playbook_generic_secret_key + ':db.authentik') | hash('sha512') | to_uuid }}"
+authentik_database_sslmode: "{{ 'disable' if postgres_enabled and authentik_database_hostname == postgres_connection_hostname else 'prefer' }}"
 # /role-specific:postgres
 
 # role-specific:traefik
