@@ -9983,6 +9983,7 @@ miniflux_container_labels_traefik_compression_middleware_name: "{{ mash_playbook
 miniflux_database_hostname: "{{ postgres_connection_hostname if postgres_enabled else '' }}"
 miniflux_database_port: "{{ postgres_connection_port if postgres_enabled else '5432' }}"
 miniflux_database_password: "{{ (mash_playbook_generic_secret_key + ':miniflux.db') | hash('sha512') | to_uuid }}"
+miniflux_database_sslmode: "{{ 'disable' if postgres_enabled and miniflux_database_hostname == postgres_connection_hostname else 'prefer' }}"
 # /role-specific:postgres
 
 # role-specific:traefik
