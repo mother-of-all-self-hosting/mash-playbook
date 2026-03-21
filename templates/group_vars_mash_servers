@@ -12132,6 +12132,7 @@ plausible_environment_variable_smtp_host_ssl_enabled: false
 plausible_database_hostname: "{{ postgres_connection_hostname if postgres_enabled else '' }}"
 plausible_database_port: "{{ postgres_connection_port if postgres_enabled else '5432' }}"
 plausible_database_password: "{{ ((mash_playbook_generic_secret_key + ':plausible.db') | hash('sha512') | to_uuid) if postgres_enabled else '' }}"
+plausible_database_sslmode: "{{ 'disable' if postgres_enabled and plausible_database_hostname == postgres_connection_hostname else 'prefer' }}"
 # /role-specific:postgres
 
 # role-specific:traefik
