@@ -11671,6 +11671,7 @@ paperless_database_postgres_password: "{{ (mash_playbook_generic_secret_key + ':
 
 # role-specific:tika
 paperless_gotenberg_enabled: "{{ tika_enabled }}"
+paperless_tika_bundled_enabled: "{{ false if tika_enabled }}" # Stop ansible-role-paperless from installing Apache Tika Server bundled with the role if it is managed by ansible-role-tika
 paperless_tika_enabled: "{{ tika_enabled }}"
 paperless_tika_endpoint: "http://{{ tika_identifier }}:{{ tika_container_http_port }}"
 # /role-specific:tika
