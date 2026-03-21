@@ -8950,6 +8950,7 @@ listmonk_database_hostname: "{{ postgres_connection_hostname if postgres_enabled
 listmonk_database_port: "{{ postgres_connection_port if postgres_enabled else '5432' }}"
 listmonk_database_username: "{{ listmonk_identifier }}"
 listmonk_database_password: "{{ (mash_playbook_generic_secret_key + ':db.listmonk') | hash('sha512') | to_uuid }}"
+listmonk_database_sslmode: "{{ 'disable' if postgres_enabled and listmonk_database_hostname == postgres_connection_hostname else 'prefer' }}"
 # /role-specific:postgres
 
 # role-specific:traefik
