@@ -11661,12 +11661,14 @@ paperless_email_from: "{{ exim_relay_sender_address if exim_relay_enabled else '
 paperless_database_mariadb_hostname: "{{ mariadb_connection_hostname if mariadb_enabled else '' }}"
 paperless_database_mariadb_port: "{{ mariadb_connection_port if mariadb_enabled else '3306' }}"
 paperless_database_mariadb_password: "{{ (mash_playbook_generic_secret_key + ':db.paperlesm') | hash('sha512') | to_uuid }}"
+paperless_database_mariadb_sslmode: "{{ 'DISABLED' if mariadb_enabled and paperless_database_mariadb_hostname == mariadb_connection_hostname else 'PREFERRED' }}"
 # /role-specific:mariadb
 
 # role-specific:postgres
 paperless_database_postgres_hostname: "{{ postgres_connection_hostname if postgres_enabled else '' }}"
 paperless_database_postgres_port: "{{ postgres_connection_port if postgres_enabled else '5432' }}"
 paperless_database_postgres_password: "{{ (mash_playbook_generic_secret_key + ':db.paperless') | hash('sha512') | to_uuid }}"
+paperless_database_postgres_sslmode: "{{ 'disable' if postgres_enabled and paperless_database_postgres_hostname == postgres_connection_hostname else 'prefer' }}"
 # /role-specific:postgres
 
 # role-specific:tika
