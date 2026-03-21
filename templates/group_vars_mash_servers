@@ -3174,6 +3174,7 @@ atuin_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyab
 atuin_database_hostname: "{{ postgres_connection_hostname if postgres_enabled else '' }}"
 atuin_database_port: "{{ postgres_connection_port if postgres_enabled else '5432' }}"
 atuin_database_password: "{{ (mash_playbook_generic_secret_key + ':db.atuin') | hash('sha512') | to_uuid }}"
+atuin_database_sslmode: "{{ 'disable' if postgres_enabled and atuin_database_hostname == postgres_connection_hostname else 'prefer' }}"
 # /role-specific:postgres
 
 # role-specific:traefik
