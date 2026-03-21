@@ -5646,6 +5646,8 @@ forgejo_systemd_required_services_list_auto: |
 forgejo_systemd_wanted_services_list_auto: |
   {{
     ([exim_relay_identifier ~ '.service'] if exim_relay_enabled | default(false) and forgejo_config_mailer_enabled | default(false) and forgejo_config_mailer_smtp_addr == exim_relay_identifier else [])
+    +
+    ([meilisearch_identifier ~ '.service'] if meilisearch_enabled | default(false) and forgejo_environment_variables_indexer_issue_indexer_type == 'meilisearch' else [])
   }}
 
 forgejo_container_additional_networks_auto: |
@@ -5655,6 +5657,8 @@ forgejo_container_additional_networks_auto: |
     ([mariadb_container_network] if mariadb_enabled | default(false) and forgejo_database_mysql_hostname == mariadb_connection_hostname and forgejo_container_network != mariadb_container_network and forgejo_database_type == 'mysql' else [])
     +
     ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+    +
+    ([meilisearch_container_network] if meilisearch_enabled | default(false) and forgejo_container_network != meilisearch_container_network and forgejo_environment_variables_indexer_issue_indexer_type == 'meilisearch' else [])
     +
     ([memcached_container_network] if memcached_enabled | default(false) and forgejo_container_network != memcached_container_network and forgejo_config_cache_adapter == 'memcache' else [])
     +
@@ -5682,6 +5686,10 @@ forgejo_database_mysql_port: "{{ mariadb_connection_port if mariadb_enabled else
 forgejo_database_mysql_password: "{{ (mash_playbook_generic_secret_key + ':db.forgejo') | hash('sha512') | to_uuid }}"
 forgejo_database_mysql_sslmode: "{{ 'false' if mariadb_enabled and forgejo_database_mysql_hostname == mariadb_connection_hostname else 'prefer' }}"
 # /role-specific:mariadb
+
+# role-specific:meilisearch
+forgejo_environment_variables_indexer_issue_indexer_conn_str: "http://:{{ meilisearch_default_admin_api_key }}@{{ meilisearch_identifier }}:{{ meilisearch_container_http_port }}"
+# /role-specific:meilisearch
 
 # role-specific:memcached
 forgejo_config_cache_host: "{{ memcached_identifier }}:{{ memcached_container_http_port }}"
@@ -6043,6 +6051,8 @@ gitea_systemd_required_services_list_auto: |
 gitea_systemd_wanted_services_list_auto: |
   {{
     ([exim_relay_identifier ~ '.service'] if exim_relay_enabled | default(false) and gitea_config_mailer_enabled | default(false) and gitea_config_mailer_smtp_addr == exim_relay_identifier else [])
+    +
+    ([meilisearch_identifier ~ '.service'] if meilisearch_enabled | default(false) and gitea_environment_variables_indexer_issue_indexer_type == 'meilisearch' else [])
   }}
 
 gitea_container_additional_networks_auto: |
@@ -6052,6 +6062,8 @@ gitea_container_additional_networks_auto: |
     ([mariadb_container_network] if mariadb_enabled | default(false) and gitea_database_mysql_hostname == mariadb_connection_hostname and gitea_container_network != mariadb_container_network and gitea_database_type == 'mysql' else [])
     +
     ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+    +
+    ([meilisearch_container_network] if meilisearch_enabled | default(false) and gitea_container_network != meilisearch_container_network and gitea_environment_variables_indexer_issue_indexer_type == 'meilisearch' else [])
     +
     ([memcached_container_network] if memcached_enabled | default(false) and gitea_container_network != memcached_container_network and gitea_config_cache_adapter == 'memcache' else [])
     +
@@ -6077,6 +6089,10 @@ gitea_database_mysql_port: "{{ mariadb_connection_port if mariadb_enabled else '
 gitea_database_mysql_password: "{{ (mash_playbook_generic_secret_key + ':db.gitea') | hash('sha512') | to_uuid }}"
 gitea_database_mysql_sslmode: "{{ 'false' if mariadb_enabled and gitea_database_mysql_hostname == mariadb_connection_hostname else 'prefer' }}"
 # /role-specific:mariadb
+
+# role-specific:meilisearch
+gitea_environment_variables_indexer_issue_indexer_conn_str: "http://:{{ meilisearch_default_admin_api_key }}@{{ meilisearch_identifier }}:{{ meilisearch_container_http_port }}"
+# /role-specific:meilisearch
 
 # role-specific:memcached
 gitea_config_cache_host: "{{ memcached_identifier }}:{{ memcached_container_http_port }}"

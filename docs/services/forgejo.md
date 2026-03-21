@@ -38,6 +38,7 @@ This service requires the following other services:
 
 - [Traefik](traefik.md) reverse-proxy server
 - (optional) [exim-relay](exim-relay.md) mailer — required on the default configuration
+- (optional) [Meilisearch](meilisearch.md)
 - (optional) [Postgres](postgres.md) / MySQL / [MariaDB](mariadb.md) database — Forgejo will default to [SQLite](https://www.sqlite.org/) if Postgres is not enabled
 
 ## Adjusting the playbook configuration
@@ -82,6 +83,18 @@ Forgejo uses port 22 for its SSH feature by default. We recommend you to move yo
 ### Configuring cache (optional)
 
 Forgejo uses caching to avoid repeating expensive operations. By default the internal memory (`memory`) is enabled for it, but you can use a specific cache adapter like [Redis](redis.md) and [Memcached](memcached.md). See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-forgejo/blob/main/docs/configuring-forgejo.md#configuring-cache-optional) on the role's documentation for details.
+
+### Configuring issue indexer (optional)
+
+By default Forgejo is configured to use `bleve` as an issue indexer, but you can use another indexer like Meilisearch.
+
+Meilisearch is available on the playbook. To have the Forgejo instance connect to it, add the following configuration to your `vars.yml` file, after enabling it and setting the default admin API key (`meilisearch_default_admin_api_key`):
+
+```yaml
+forgejo_environment_variables_indexer_issue_indexer_type: meilisearch
+```
+
+See [this page](meilisearch.md) for details about how to install it and setting the key for the Meilisearch instance.
 
 ### Configuring the mailer (optional)
 
