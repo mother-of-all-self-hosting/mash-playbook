@@ -54,7 +54,7 @@ Consider these other related services:
 
 - [Jackett](jackett.md)
 - [Jellyfin](jellyfin.md)
-- [Overseerr](overseerr.md)
+- [Seerr](seerr.md)
 - [Plex](plex.md)
 - [qBittorrent](qbittorrent.md)
 - [Radarr](radarr.md)

@@ -51,7 +51,7 @@ Consider these other related services:
 - [Autobrr](autobrr.md)
 - [Jackett](jackett.md)
 - [Jellyfin](jellyfin.md)
-- [Jellyseerr](jellyseerr.md)
+- [Seerr](seerr.md)
 - [qBittorrent](qbittorrent.md)
 - [Radarr](radarr.md)
 - [Sonarr](sonarr.md)

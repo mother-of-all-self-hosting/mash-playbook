@@ -126,8 +126,7 @@ Consider these other related services:
 
 - [Autobrr](autobrr.md)
 - [Jackett](jackett.md)
-- [Jellyseerr](jellyseerr.md)
-- [Overseerr](overseerr.md)
+- [Seerr](seerr.md)
 - [Plex](plex.md)
 - [qBittorrent](qbittorrent.md)
 - [Radarr](radarr.md)

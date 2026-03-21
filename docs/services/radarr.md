@@ -68,7 +68,7 @@ Consider these other related services:
 - [Jackett](jackett.md)
   - For Jackett integration instructions, see the [setup guide](jackett.md#intergration-with-sonarrradarr)
 - [Jellyfin](jellyfin.md)
-- [Overseerr](overseerr.md)
+- [Seerr](seerr.md)
 - [Plex](plex.md)
 - [qBittorrent](qbittorrent.md)
   - For qBittorrent integration instructions, see the [setup guide](qbittorrent.md#intergration-with-sonarrradarr)

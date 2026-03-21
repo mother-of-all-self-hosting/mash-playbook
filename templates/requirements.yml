@@ -376,10 +376,6 @@
   version: v10.11.5-1
   name: jellyfin
   activation_prefix: jellyfin_
-- src: git+https://github.com/sudo-Tiz/ansible-role-jellyseerr.git
-  version: v2.7.3-0
-  name: jellyseerr
-  activation_prefix: jellyseerr_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-jitsi.git
   version: v10741-1
   name: jitsi
@@ -608,10 +604,6 @@
   version: v1.6.1-1
   name: outline
   activation_prefix: outline_
-- src: git+https://github.com/spatterIight/ansible-role-overseerr.git
-  version: v1.34.0-2
-  name: overseerr
-  activation_prefix: overseerr_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-owncast.git
   version: v0.2.4-0
   name: owncast
@@ -792,6 +784,10 @@
   version: v1.0.0-5
   name: searxng
   activation_prefix: searxng_
+- src: git+https://github.com/spatterIight/ansible-role-seerr.git
+  version: v3.1.0-0
+  name: seerr
+  activation_prefix: seerr_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-semaphore.git
   version: v2.17.27-0
   name: semaphore

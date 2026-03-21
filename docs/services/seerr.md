@@ -1,16 +1,12 @@
 <!--
 SPDX-FileCopyrightText: 2025 MASH project contributors
-SPDX-FileCopyrightText: 2025 sudo-Tiz
-SPDX-FileCopyrightText: 2025 Suguru Hirahara
 
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 
-# Jellyseerr
+# Seerr
 
-[Jellyseerr](https://www.jellyseerr.org/) is an open-source media request and discovery manager for [Jellyfin](jellyfin.md), [Plex](plex.md), and Emby.
-
-💡 You may also be interested in the [Overseerr](overseerr.md) alternative (the predecessor to Jellyseerr).
+[Seerr](https://github.com/seerr-team/seerr) is a media request and discovery manager with support for [Jellyfin](jellyfin.md), [Plex](plex.md), and Emby.
 
 ## Dependencies
 
@@ -25,29 +21,29 @@ To enable this service, add the following configuration to your `vars.yml` file 
 ```yaml
 ########################################################################
 #                                                                      #
-# jellyseerr                                                           #
+# seerr                                                                #
 #                                                                      #
 ########################################################################
 
-jellyseerr_enabled: true
+seerr_enabled: true
 
-jellyseerr_hostname: jellyseerr.example.com
+seerr_hostname: seerr.example.com
 
 ########################################################################
 #                                                                      #
-# /jellyseerr                                                          #
+# /seerr                                                               #
 #                                                                      #
 ########################################################################
 ```
 
 ## Usage
 
-After running the command for installation, the Jellyseerr instance becomes available at the URL specified with `jellyseerr_hostname`. With the configuration above, the service is hosted at `https://jellyseerr.example.com`.
+After running the command for installation, the Seerr instance becomes available at the URL specified with `seerr_hostname`. With the configuration above, the service is hosted at `https://seerr.example.com`.
 
 > [!NOTE]
-> The `jellyseerr_path_prefix` variable can be adjusted to host under a subpath (e.g. `jellyseerr_path_prefix: /jellyseerr`), but this hasn't been tested yet.
+> The `seerr_path_prefix` variable can be adjusted to host under a subpath (e.g. `seerr_path_prefix: /seerr`), but this hasn't been tested yet.
 
-For additional configuration options, refer to [ansible-role-jellyseerr](https://github.com/sudo-Tiz/ansible-role-jellyseerr)'s `defaults/main.yml` file.
+For additional configuration options, refer to [ansible-role-seerr](https://github.com/spatterIight/ansible-role-seerr)'s `defaults/main.yml` file.
 
 ## Recommended other services
 
@@ -56,6 +52,7 @@ Consider these other related services:
 - [Autobrr](autobrr.md)
 - [Jackett](jackett.md)
 - [Jellyfin](jellyfin.md)
+- [Plex](plex.md)
 - [qBittorrent](qbittorrent.md)
 - [Radarr](radarr.md)
 - [Sonarr](sonarr.md)
