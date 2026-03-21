@@ -250,7 +250,7 @@ To actually have the service use (and get messages sent through the exim-relay s
 
 For fulltext search function, you can optionally have the instance connect to a Meilisearch instance.
 
-Meilisearch is available on the playbook. To have the Misskey instance connect to it, add the following configuration to your `vars.yml` file, after enabling it and setting the default admin API key:
+Meilisearch is available on the playbook. To have the Misskey instance connect to it, add the following configuration to your `vars.yml` file, after enabling it and setting the default admin API key (`meilisearch_default_admin_api_key`):
 
 ```yaml
 misskey_config_fulltext_search_provider: meilisearch
