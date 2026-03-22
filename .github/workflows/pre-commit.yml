@@ -22,6 +22,12 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v6.0.2
 
+      - name: Restore prek cache
+        uses: actions/cache@v5
+        with:
+          path: var/prek
+          key: arch-prek-v1-${{ hashFiles('.pre-commit-config.yaml') }}
+
       - name: Install dependencies
         run: pacman -S --noconfirm --needed just mise python
 
