@@ -170,3 +170,7 @@ After running the command for installation, the Navidrome instance becomes avail
 To get started, open the URL with a web browser to create an administrator account. You can create additional users (admin-privileged or not) after that.
 
 You can also connect various Subsonic-API-compatible [apps](https://www.navidrome.org/docs/overview/#apps) (desktop, web, mobile) to your Navidrome instance.
+
+## Related services
+
+- [Feishin](feishin.md) — Music player for Navidrome, Jellyfin, Funkwhale, etc.

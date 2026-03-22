@@ -257,6 +257,7 @@ After running the command, open the URL with a web browser, and log in to the in
 
 ## Related services
 
+- [Feishin](feishin.md) — Music player for Navidrome, Jellyfin, Funkwhale, etc.
 - [GoToSocial](gotosocial.md) — Self-hosted ActivityPub social network server
 - [Misskey](misskey.md) — Free decentralized microblogging platform based on the ActivityPub protocol
 - [PeerTube](peertube.md) — Tool for sharing online videos

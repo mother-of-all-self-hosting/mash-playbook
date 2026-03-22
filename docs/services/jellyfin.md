@@ -123,6 +123,7 @@ Upstream documentation: https://github.com/linuxserver/docker-jellyfin#nvidia
 ## Related services
 
 - "* Arr" applications — [Autobrr](autobrr.md) / [FlareSolverr](flaresolverr.md) / [Homarr](homarr.md) / [Jellyseerr](jellyseerr.md) / [Overseerr](overseerr.md) / [Radarr](radarr.md) / [Sonarr](sonarr.md)
+- [Feishin](feishin.md) — Music player for Navidrome, Jellyfin, Funkwhale, etc.
 - [Jackett](jackett.md)
 - [Plex](plex.md)
 - [qBittorrent](qbittorrent.md)
