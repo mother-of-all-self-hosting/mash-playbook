@@ -313,6 +313,10 @@
     - role: galaxy/farmos
     # /role-specific:farmos
 
+    # role-specific:feishin
+    - role: galaxy/feishin
+    # /role-specific:feishin
+
     # role-specific:fider
     - role: galaxy/fider
     # /role-specific:fider
