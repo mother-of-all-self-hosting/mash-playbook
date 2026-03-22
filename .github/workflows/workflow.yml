@@ -1,8 +1,9 @@
+---
 name: CI (main and tags)
-on:
+on:  # yamllint disable-line rule:truthy
   push:
-    branches: [ "main" ]
-    tags: [ "v*" ]
+    branches: ["main"]
+    tags: ["v*"]
 permissions:
   checks: write
   contents: write

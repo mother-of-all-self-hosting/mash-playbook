@@ -1,7 +1,7 @@
 ---
 name: pre-commit
 
-on: [push, pull_request]
+on: [push, pull_request]  # yamllint disable-line rule:truthy
 
 permissions:
   contents: read
