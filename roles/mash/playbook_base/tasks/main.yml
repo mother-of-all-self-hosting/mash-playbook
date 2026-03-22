@@ -6,16 +6,21 @@
 
 # This needs to always run, because it populates `mash_playbook_uid` and `mash_playbook_gid`,
 # which are required by many other roles.
-- block:
-    - ansible.builtin.include_tasks: "{{ role_path }}/tasks/setup_user.yml"
+- name: Set up the mash system user
   tags:
     - always
     - setup-system-user
+  block:
+    - name: Include user setup tasks
+      ansible.builtin.include_tasks: "{{ role_path }}/tasks/setup_user.yml"
 
-- block:
-    - ansible.builtin.include_tasks: "{{ role_path }}/tasks/validate_config.yml"
-
-    - ansible.builtin.include_tasks: "{{ role_path }}/tasks/setup_base_dir.yml"
+- name: Validate the base playbook configuration and directories
   tags:
     - setup-all
     - install-all
+  block:
+    - name: Include configuration validation tasks
+      ansible.builtin.include_tasks: "{{ role_path }}/tasks/validate_config.yml"
+
+    - name: Include base directory setup tasks
+      ansible.builtin.include_tasks: "{{ role_path }}/tasks/setup_base_dir.yml"

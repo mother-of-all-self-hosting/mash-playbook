@@ -4,26 +4,32 @@
 
 ---
 
-- tags:
+- name: Validate migration configuration
+  tags:
     - setup-all
     - install-all
   block:
-    - ansible.builtin.include_tasks: "{{ role_path }}/tasks/validate_config.yml"
+    - name: Include migration validation tasks
+      ansible.builtin.include_tasks: "{{ role_path }}/tasks/validate_config.yml"
 
-- when: ansible_facts.os_family == 'Debian' and mash_playbook_docker_installation_enabled | bool and mash_playbook_migration_docker_trusted_gpg_d_migration_enabled | bool
+- name: Run the Docker trusted.gpg.d migration on Debian
+  when: ansible_facts.os_family == 'Debian' and mash_playbook_docker_installation_enabled | bool and mash_playbook_migration_docker_trusted_gpg_d_migration_enabled | bool
   tags:
     - setup-all
     - install-all
     - setup-docker
     - install-docker
   block:
-    - ansible.builtin.include_tasks: "{{ role_path }}/tasks/debian_docker_trusted_gpg_d_migration_migration.yml"
+    - name: Include trusted.gpg.d migration tasks
+      ansible.builtin.include_tasks: "{{ role_path }}/tasks/debian_docker_trusted_gpg_d_migration_migration.yml"
 
-- when: mash_playbook_docker_installation_enabled | bool
+- name: Clean up deprecated Docker daemon options
+  when: mash_playbook_docker_installation_enabled | bool
   tags:
     - setup-all
     - install-all
     - setup-docker
     - install-docker
   block:
-    - ansible.builtin.include_tasks: "{{ role_path }}/tasks/docker_daemon_options_file_cleanup.yml"
+    - name: Include Docker daemon cleanup tasks
+      ansible.builtin.include_tasks: "{{ role_path }}/tasks/docker_daemon_options_file_cleanup.yml"
