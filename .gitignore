@@ -17,5 +17,7 @@
 /run/*
 !/run/.gitkeep
 
+/var/
+
 /group_vars/*
 !/group_vars/.gitkeep
