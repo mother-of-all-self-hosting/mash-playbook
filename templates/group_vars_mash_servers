@@ -13444,8 +13444,9 @@ roundcube_identifier: "{{ mash_playbook_service_identifier_prefix }}roundcube"
 
 roundcube_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}roundcube"
 
-roundcube_uid: "0"
-roundcube_gid: "0"
+# Use nonroot image; see: https://github.com/roundcube/roundcubemail-docker/blob/master/README.md#nonroot-image
+roundcube_uid: www-data
+roundcube_gid: www-data
 
 roundcube_systemd_required_services_list_auto: |
   {{
