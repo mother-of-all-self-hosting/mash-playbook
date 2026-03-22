@@ -20,14 +20,14 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
 # Feishin
 
-The playbook can install and configure [Feishin](https://feishinbudget.org) for you.
+The playbook can install and configure [Feishin](https://github.com/jeffvli/feishin) for you.
 
-Feishin is a local-first personal finance tool.
+Feishin is a music player for servers which implement a [Navidrome](https://www.navidrome.org/), [Jellyfin](https://jellyfin.org/), or OpenSubsonic compatible API such as [Funkwhale](https://www.funkwhale.audio/).
 
-See the project's [documentation](https://feishinbudget.org/docs/) to learn what Feishin does and why it might be useful to you.
+See the project's [documentation](https://github.com/jeffvli/feishin/blob/development/README.md) to learn what Feishin does and why it might be useful to you.
 
-For details about configuring the [Ansible role for Feishin](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az2chD7Kt74JwEMafxTooxN7MaeYtK), you can check them via:
-- 🌐 [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az2chD7Kt74JwEMafxTooxN7MaeYtK/tree/docs/configuring-feishin.md) online
+For details about configuring the [Ansible role for Feishin](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Azmszzm7ynZe8nt5ZwaLctssyJcNm), you can check them via:
+- 🌐 [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Azmszzm7ynZe8nt5ZwaLctssyJcNm/tree/docs/configuring-feishin.md) online
 - 📁 `roles/galaxy/feishin/docs/configuring-feishin.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 ## Dependencies
@@ -35,6 +35,7 @@ For details about configuring the [Ansible role for Feishin](https://app.radicle
 This service requires the following other services:
 
 - [Traefik](traefik.md) reverse-proxy server
+- [Navidrome](navidrome.md) / [Jellyfin](jellyfin.md) / [Funkwhale](funkwhale.md)
 
 ## Adjusting the playbook configuration
 
@@ -58,6 +59,10 @@ feishin_hostname: feishin.example.com
 ########################################################################
 ```
 
+### Enabling server lock (optional)
+
+By default one can have Feishin connect to any server as specified. Refer to [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Azmszzm7ynZe8nt5ZwaLctssyJcNm/tree/docs/configuring-feishin.md#enabling-server-lock-optional) on the role's documentation about how to activate "server lock".
+
 ## Usage
 
 After running the command for installation, the Feishin instance becomes available at the URL specified with `feishin_hostname`. With the configuration above, the service is hosted at `https://feishin.example.com`.
@@ -66,8 +71,4 @@ To get started, open the URL with a web browser to create an account.
 
 ## Troubleshooting
 
-See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az2chD7Kt74JwEMafxTooxN7MaeYtK/tree/docs/configuring-feishin.md#troubleshooting) on the role's documentation for details.
-
-## Related services
-
-- [I hate money](ihatemoney.md) — Shared budget manager
+See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Azmszzm7ynZe8nt5ZwaLctssyJcNm/tree/docs/configuring-feishin.md#troubleshooting) on the role's documentation for details.
