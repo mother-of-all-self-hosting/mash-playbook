@@ -55,6 +55,6 @@ After running the command for installation, the Docker Registry Purger instance 
 You should be able to browse the images and possibly delete them (if enabled via `docker_registry_browser_enabled_delete_images`).
 
 
-## Recommended other services
+## Related services
 
 - [Docker Registry](docker-registry.md) — a container image distribution registry developed by [Docker Inc](https://www.docker.com/)

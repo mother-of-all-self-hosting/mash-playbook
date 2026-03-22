@@ -110,6 +110,6 @@ ansible-playbook -i inventory/hosts setup.yml --tags=createsuperuser-healthcheck
 
 After creating the superuser account, you can open the URL to log in and start setting up monitoring tasks. You can create as many accounts as you wish.
 
-## Recommended other services
+## Related services
 
 - [Prometheus](prometheus.md) — a metrics collection and alerting monitoring solution

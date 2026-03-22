@@ -182,7 +182,7 @@ When exposing metrics, and especially the whole API, it's important to protected
 
 
 
-## Recommended other services
+## Related services
 
 - [Grafana Loki](grafana-loki.md) — a storage server for your logs compatible with Promtail
 - [Grafana](grafana.md) — a web-based tool for visualizing your Promtail logs (stored in [Grafana Loki](grafana-loki.md) or elsewhere)

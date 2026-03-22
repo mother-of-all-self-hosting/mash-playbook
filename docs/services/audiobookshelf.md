@@ -205,7 +205,7 @@ After setting the configuration, you can have the audiobookshelf instance send a
 
 See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3rwhJ9rQ82H6GXg7ZCt3UNpStbaW/tree/docs/configuring-audiobookshelf.md#troubleshooting) on the role's documentation for details.
 
-## Recommended other services
+## Related services
 
 - [Calibre-Web](calibre-web.md) — Web app for browsing, reading and downloading eBooks stored in a [Calibre](https://calibre-ebook.com/) database
 - [PinePods](pinepods.md) — Podcast management system that manages podcasts with multi-user support
