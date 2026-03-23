@@ -1583,7 +1583,7 @@ mash_playbook_postgres_managed_databases_auto_itemized:
         'name': gotify_database_name,
         'username': gotify_database_postgres_username,
         'password': gotify_database_postgres_password,
-      } if gotify_enabled and gotify_database_postgres_hostname == postgres_connection_hostname and gotify_database_type == 'postgres' else omit)
+      } if gotify_enabled and (gotify_database_postgres_hostname == postgres_connection_hostname or gotify_database_postgres_socket_enabled) and gotify_database_type == 'postgres' else omit)
     }}
   # /role-specific:gotify
 
@@ -6221,7 +6221,7 @@ gotify_systemd_required_services_list_auto: |
   {{
     ([mariadb_identifier ~ '.service'] if mariadb_enabled | default(false) and gotify_database_mysql_hostname == mariadb_connection_hostname and gotify_database_type == 'mysql' else [])
     +
-    ([postgres_identifier ~ '.service'] if postgres_enabled | default(false) and gotify_database_postgres_hostname == postgres_connection_hostname and gotify_database_type == 'postgres' else [])
+    ([postgres_identifier ~ '.service'] if postgres_enabled | default(false) and (gotify_database_postgres_hostname == postgres_connection_hostname or gotify_database_postgres_socket_enabled) and gotify_database_type == 'postgres' else [])
   }}
 
 gotify_container_additional_networks_auto: |
@@ -6230,7 +6230,7 @@ gotify_container_additional_networks_auto: |
     +
     ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
     +
-    ([postgres_container_network] if postgres_enabled | default(false) and gotify_database_postgres_hostname == postgres_connection_hostname and gotify_container_network != postgres_container_network and gotify_database_type == 'postgres' else [])
+    ([postgres_container_network] if postgres_enabled | default(false) and (gotify_database_postgres_hostname == postgres_connection_hostname and gotify_container_network != postgres_container_network and not gotify_database_postgres_socket_enabled) and gotify_database_type == 'postgres' else [])
   }}
 
 gotify_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
@@ -6243,10 +6243,11 @@ gotify_database_mysql_password: "{{ (mash_playbook_generic_secret_key + ':m.goti
 # /role-specific:mariadb
 
 # role-specific:postgres
-gotify_database_postgres_hostname: "{{ postgres_connection_hostname if postgres_enabled else '' }}"
+gotify_database_postgres_hostname: "{{ gotify_database_postgres_socket_path_container if gotify_database_postgres_socket_enabled else (postgres_connection_hostname if postgres_enabled else '') }}"
 gotify_database_postgres_port: "{{ postgres_connection_port if postgres_enabled else '5432' }}"
 gotify_database_postgres_password: "{{ (mash_playbook_generic_secret_key + ':p.gotify') | hash('sha512') | to_uuid }}"
-gotify_database_postgres_sslmode: "{{ 'disable' if postgres_enabled and gotify_database_postgres_hostname == postgres_connection_hostname else 'prefer' }}"
+gotify_database_postgres_sslmode: "{{ 'disable' if postgres_enabled and (gotify_database_postgres_hostname == postgres_connection_hostname or gotify_database_postgres_socket_enabled) else 'prefer' }}"
+gotify_database_postgres_socket_path_host: "{{ postgres_run_path }}"
 # /role-specific:postgres
 
 # role-specific:traefik
