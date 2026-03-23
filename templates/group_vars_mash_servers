@@ -1948,7 +1948,7 @@ mash_playbook_postgres_managed_databases_auto_itemized:
         'name': pgadmin_database_name,
         'username': pgadmin_database_username,
         'password': pgadmin_database_password,
-      } if pgadmin_enabled and pgadmin_database_hostname == postgres_connection_hostname else omit)
+      } if pgadmin_enabled and (pgadmin_database_hostname == postgres_connection_hostname or pgadmin_database_socket_enabled) else omit)
     }}
   # /role-specific:pgadmin
 
@@ -11992,7 +11992,7 @@ pgadmin_container_additional_networks_auto: |
     +
     ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
     +
-    ([postgres_container_network] if postgres_enabled and pgadmin_container_network != postgres_container_network else [])
+    ([postgres_container_network] if postgres_enabled and pgadmin_container_network != postgres_container_network and not pgadmin_database_socket_enabled else [])
   }}
 
 pgadmin_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
@@ -12009,7 +12009,8 @@ pgadmin_environment_variables_pgadmin_config_security_email_sender: "{{ exim_rel
 pgadmin_database_hostname: "{{ postgres_connection_hostname if postgres_enabled else '' }}"
 pgadmin_database_port: "{{ postgres_connection_port if postgres_enabled else '5432' }}"
 pgadmin_database_password: "{{ (mash_playbook_generic_secret_key + ':pgadmin.db') | hash('sha512') | to_uuid }}"
-pgadmin_database_sslmode: "{{ 'disable' if postgres_enabled and pgadmin_database_hostname == postgres_connection_hostname else 'prefer' }}"
+pgadmin_database_sslmode: "{{ 'disable' if postgres_enabled and pgadmin_database_hostname == postgres_connection_hostname or pgadmin_database_socket_enabled else 'prefer' }}"
+pgadmin_database_socket_path_host: "{{ postgres_run_path }}"
 # /role-specific:postgres
 
 # role-specific:traefik
