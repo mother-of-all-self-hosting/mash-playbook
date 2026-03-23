@@ -645,7 +645,7 @@
   name: pgadmin
   activation_prefix: pgadmin_
 - src: git+https://seed.radicle.garden/zby9EmMBhyNe8Nj4f66izwrmhk5g.git
-  version: v5.2.3-2
+  version: v5.2.3-3
   name: phpmyadmin
   activation_prefix: phpmyadmin_
 - src: git+https://seed.progressiv.dev/zKNyeEtymCZc7yio6JnHxY2AteZu.git
