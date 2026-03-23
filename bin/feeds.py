@@ -1,6 +1,12 @@
 #!/usr/bin/env python3
 # -* encoding: utf8 *-
 
+# SPDX-FileCopyrightText: 2023 - 2025 Aine
+# SPDX-FileCopyrightText: 2025 Javier Pais
+# SPDX-FileCopyrightText: 2025 Slavi Pantaleev
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
 import os
 import sys
 import argparse

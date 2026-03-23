@@ -1,6 +1,11 @@
 #!/usr/bin/env python3
 # -* encoding: utf8 *-
 
+# SPDX-FileCopyrightText: 2024 Aine
+# SPDX-FileCopyrightText: 2025 Javier Pais
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
 import os
 import re
 import yaml

@@ -1,3 +1,8 @@
+# SPDX-FileCopyrightText: 2024 Aine
+# SPDX-FileCopyrightText: 2026 Slavi Pantaleev
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
 ---
 name: CI (main and tags)
 on:  # yamllint disable-line rule:truthy

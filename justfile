@@ -1,3 +1,10 @@
+# SPDX-FileCopyrightText: 2023 - 2024 Aine
+# SPDX-FileCopyrightText: 2023 - 2026 Slavi Pantaleev
+# SPDX-FileCopyrightText: 2025 Guillaume MASSON
+# SPDX-FileCopyrightText: 2025 Suguru Hirahara
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
 # mise (dev tool version manager)
 mise_data_dir := env("MISE_DATA_DIR", justfile_directory() / "var/mise")
 mise_trusted_config_paths := justfile_directory() / "mise.toml"
