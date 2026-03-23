@@ -6133,7 +6133,6 @@ gitea_database_mysql_port: "{{ mariadb_connection_port if mariadb_enabled else '
 gitea_database_mysql_password: "{{ (mash_playbook_generic_secret_key + ':db.gitea') | hash('sha512') | to_uuid }}"
 gitea_database_mysql_sslmode: "{{ 'false' if mariadb_enabled and (gitea_database_mysql_hostname == mariadb_connection_hostname or gitea_database_mysql_socket_enabled) else 'prefer' }}"
 gitea_database_mysql_socket_path_host: "{{ mariadb_run_path }}"
-gitea_config_database_host_mysql: "{{ gitea_database_mysql_socket_path_container + '/mysqld.sock' if gitea_database_mysql_socket_enabled else gitea_database_mysql_hostname + ':' + gitea_database_mysql_port }}"
 # /role-specific:mariadb
 
 # role-specific:meilisearch
@@ -6150,7 +6149,6 @@ gitea_database_postgres_port: "{{ postgres_connection_port if postgres_enabled e
 gitea_database_postgres_password: "{{ (mash_playbook_generic_secret_key + ':db.gitea') | hash('sha512') | to_uuid }}"
 gitea_database_postgres_sslmode: "{{ 'disable' if postgres_enabled and (gitea_database_postgres_hostname == postgres_connection_hostname or gitea_database_postgres_socket_enabled) else 'require' }}"
 gitea_database_postgres_socket_path_host: "{{ postgres_run_path }}"
-gitea_config_database_host_postgres: "{{ gitea_database_postgres_socket_path_container if gitea_database_postgres_socket_enabled else gitea_database_postgres_hostname + ':' + gitea_database_postgres_port }}"
 # /role-specific:postgres
 
 # role-specific:traefik
