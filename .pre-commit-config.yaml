@@ -18,6 +18,10 @@ repos:
     rev: v2.4.2
     hooks:
       - id: codespell
+  - repo: https://github.com/fsfe/reuse-tool
+    rev: v6.2.0
+    hooks:
+      - id: reuse
   - repo: https://github.com/adrienverge/yamllint
     rev: v1.38.0
     hooks:
