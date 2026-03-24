@@ -1385,7 +1385,7 @@ mash_playbook_postgres_managed_databases_auto_itemized:
         'name': atuin_database_name,
         'username': atuin_database_username,
         'password': atuin_database_password,
-      } if atuin_enabled and atuin_database_hostname == postgres_connection_hostname and atuin_database_type == 'postgres' else omit)
+      } if atuin_enabled and (atuin_database_hostname == postgres_connection_hostname or atuin_database_socket_enabled) and atuin_database_type == 'postgres' else omit)
     }}
   # /role-specific:atuin
 
@@ -3163,15 +3163,15 @@ atuin_uid: "{{ mash_playbook_uid }}"
 atuin_gid: "{{ mash_playbook_gid }}"
 
 atuin_systemd_required_services_list_auto: |
- {{
-    ([postgres_identifier ~ '.service'] if postgres_enabled and atuin_database_hostname == postgres_connection_hostname else [])
+  {{
+    ([postgres_identifier ~ '.service'] if postgres_enabled | default(false) and (atuin_database_hostname == postgres_connection_hostname or atuin_database_socket_enabled) and atuin_database_type == 'postgres' else [])
   }}
 
 atuin_container_additional_networks_auto: |
   {{
     ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
     +
-    ([postgres_container_network] if postgres_enabled and atuin_database_hostname == postgres_connection_hostname and atuin_container_network != postgres_container_network else [])
+    ([postgres_container_network] if postgres_enabled | default(false) and (atuin_database_hostname == postgres_connection_hostname and atuin_container_network != postgres_container_network and not atuin_database_socket_enabled) and atuin_database_type == 'postgres' else [])
   }}
 
 atuin_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
@@ -3181,7 +3181,8 @@ atuin_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyab
 atuin_database_hostname: "{{ postgres_connection_hostname if postgres_enabled else '' }}"
 atuin_database_port: "{{ postgres_connection_port if postgres_enabled else '5432' }}"
 atuin_database_password: "{{ (mash_playbook_generic_secret_key + ':db.atuin') | hash('sha512') | to_uuid }}"
-atuin_database_sslmode: "{{ 'disable' if postgres_enabled and atuin_database_hostname == postgres_connection_hostname else 'prefer' }}"
+atuin_database_sslmode: "{{ 'disable' if postgres_enabled and (atuin_database_hostname == postgres_connection_hostname or atuin_database_socket_enabled) else 'prefer' }}"
+atuin_database_socket_path_host: "{{ postgres_run_path }}"
 # /role-specific:postgres
 
 # role-specific:traefik
