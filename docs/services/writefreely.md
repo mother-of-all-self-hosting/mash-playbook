@@ -108,3 +108,7 @@ For example, you can execute `user --help` by running the command below (mind qu
 ```sh
 ansible-playbook -i inventory/hosts setup.yml --tags=command-writefreely -e command="'user --help'"
 ```
+
+## Related services
+
+- [WordPress](wordpress.md) — Web content management system

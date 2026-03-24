@@ -78,3 +78,7 @@ To get started, open the URL with a web browser, and follow the set up wizard.
 ## Troubleshooting
 
 FAQ is available on [this page](https://codex.wordpress.org/FAQ).
+
+## Related services
+
+- [WriteFreely](writefreely.md) — Clean, minimalist publishing platform made for writers with optional federation via ActivityPub
