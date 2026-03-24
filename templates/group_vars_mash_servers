@@ -9694,7 +9694,7 @@ mash_playbook_mariadb_managed_databases_auto_itemized:
         'name': wordpress_database_name,
         'username': wordpress_database_username,
         'password': wordpress_database_password,
-      } if wordpress_enabled and wordpress_database_hostname == mariadb_connection_hostname else omit)
+      } if wordpress_enabled and (wordpress_database_hostname == mariadb_connection_hostname or wordpress_database_socket_enabled) else omit)
     }}
   # /role-specific:wordpress
 
@@ -15418,7 +15418,7 @@ wordpress_gid: "{{ mash_playbook_gid }}"
 
 wordpress_systemd_required_services_list_auto: |
   {{
-    ([mariadb_identifier ~ '.service'] if mariadb_enabled and wordpress_database_hostname == mariadb_connection_hostname else [])
+    ([mariadb_identifier ~ '.service'] if mariadb_enabled and (wordpress_database_hostname == mariadb_connection_hostname or wordpress_database_socket_enabled) else [])
   }}
 
 wordpress_systemd_wanted_services_list_auto: |
@@ -15430,7 +15430,7 @@ wordpress_container_additional_networks_auto: |
   {{
     ([exim_relay_container_network] if exim_relay_enabled | default(false) and wordpress_container_network != exim_relay_container_network else [])
     +
-    ([mariadb_container_network] if mariadb_enabled and wordpress_database_hostname == mariadb_connection_hostname and wordpress_container_network != mariadb_identifier else [])
+    ([mariadb_container_network] if mariadb_enabled and (wordpress_database_hostname == mariadb_connection_hostname and wordpress_container_network != mariadb_container_network and not wordpress_database_socket_enabled) else [])
     +
     ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
   }}
@@ -15442,6 +15442,7 @@ wordpress_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_pro
 wordpress_database_hostname: "{{ mariadb_connection_hostname if mariadb_enabled else '' }}"
 wordpress_mysql_port: "{{ mariadb_connection_port if mariadb_enabled else '3306' }}"
 wordpress_database_password: "{{ (mash_playbook_generic_secret_key + ':db.mariadb') | hash('sha512') | to_uuid }}"
+wordpress_database_socket_path_host: "{{ mariadb_run_path }}"
 # /role-specific:mariadb
 
 # role-specific:traefik
