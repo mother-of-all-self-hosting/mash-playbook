@@ -2014,7 +2014,7 @@ mash_playbook_postgres_managed_databases_auto_itemized:
         'name': readeck_database_name,
         'username': readeck_database_username,
         'password': readeck_database_password,
-      } if readeck_enabled and readeck_database_hostname == postgres_connection_hostname and readeck_database_type == 'postgres' else omit)
+      } if readeck_enabled and (readeck_database_hostname == postgres_connection_hostname or readeck_database_socket_enabled) and readeck_database_type == 'postgres' else omit)
     }}
   # /role-specific:readeck
 
@@ -13247,7 +13247,7 @@ readeck_gid: "{{ mash_playbook_gid }}"
 
 readeck_systemd_required_services_list_auto: |
   {{
-    ([postgres_identifier ~ '.service'] if postgres_enabled | default(false) and readeck_database_hostname == postgres_connection_hostname and readeck_database_type == 'postgres' else [])
+    ([postgres_identifier ~ '.service'] if postgres_enabled | default(false) and (readeck_database_hostname == postgres_connection_hostname or readeck_database_socket_enabled) and readeck_database_type == 'postgres' else [])
   }}
 
 readeck_systemd_wanted_services_list_auto: |
@@ -13261,7 +13261,7 @@ readeck_container_additional_networks_auto: |
     +
     ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
     +
-    ([postgres_container_network] if postgres_enabled | default(false) and readeck_database_hostname == postgres_connection_hostname and readeck_container_network != postgres_container_network and readeck_database_type == 'postgres' else [])
+    ([postgres_container_network] if postgres_enabled | default(false) and (readeck_database_hostname == postgres_connection_hostname and readeck_container_network != postgres_container_network and not readeck_database_socket_enabled) and readeck_database_type == 'postgres' else [])
   }}
 
 readeck_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
@@ -13279,6 +13279,7 @@ readeck_database_hostname: "{{ postgres_connection_hostname if postgres_enabled 
 readeck_database_port: "{{ postgres_connection_port if postgres_enabled else '5432' }}"
 readeck_database_password: "{{ (mash_playbook_generic_secret_key + ':readeck.db') | hash('sha512') | to_uuid }}"
 readeck_database_sslmode: "{{ 'disable' if postgres_enabled and readeck_database_hostname == postgres_connection_hostname else 'prefer' }}"
+readeck_database_socket_path_host: "{{ postgres_run_path }}"
 # /role-specific:postgres
 
 # role-specific:traefik
