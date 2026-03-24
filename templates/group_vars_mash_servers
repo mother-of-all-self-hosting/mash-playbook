@@ -12009,7 +12009,7 @@ pgadmin_environment_variables_pgadmin_config_security_email_sender: "{{ exim_rel
 pgadmin_database_hostname: "{{ postgres_connection_hostname if postgres_enabled else '' }}"
 pgadmin_database_port: "{{ postgres_connection_port if postgres_enabled else '5432' }}"
 pgadmin_database_password: "{{ (mash_playbook_generic_secret_key + ':pgadmin.db') | hash('sha512') | to_uuid }}"
-pgadmin_database_sslmode: "{{ 'disable' if postgres_enabled and pgadmin_database_hostname == postgres_connection_hostname or pgadmin_database_socket_enabled else 'prefer' }}"
+pgadmin_database_sslmode: "{{ 'disable' if postgres_enabled and (pgadmin_database_hostname == postgres_connection_hostname or pgadmin_database_socket_enabled) else 'prefer' }}"
 pgadmin_database_socket_path_host: "{{ postgres_run_path }}"
 # /role-specific:postgres
 
@@ -12343,7 +12343,7 @@ pocket_id_environment_variable_ldap_skip_cert_verify: true
 pocket_id_database_hostname: "{{ postgres_connection_hostname if postgres_enabled else '' }}"
 pocket_id_database_port: "{{ postgres_connection_port if postgres_enabled else '5432' }}"
 pocket_id_database_password: "{{ (mash_playbook_generic_secret_key + ':db.pocketid') | hash('sha512') | to_uuid }}"
-pocket_id_database_sslmode: "{{ 'disable' if postgres_enabled and pocket_id_database_hostname == postgres_connection_hostname else 'prefer' }}"
+pocket_id_database_sslmode: "{{ 'disable' if postgres_enabled and (pocket_id_database_hostname == postgres_connection_hostname or pocket_id_database_socket_enabled) else 'prefer' }}"
 pocket_id_database_socket_path_host: "{{ postgres_run_path }}"
 # /role-specific:postgres
 
@@ -13279,7 +13279,7 @@ readeck_environment_variables_readeck_mail_fromnoreply: "{{ exim_relay_sender_ad
 readeck_database_hostname: "{{ postgres_connection_hostname if postgres_enabled else '' }}"
 readeck_database_port: "{{ postgres_connection_port if postgres_enabled else '5432' }}"
 readeck_database_password: "{{ (mash_playbook_generic_secret_key + ':readeck.db') | hash('sha512') | to_uuid }}"
-readeck_database_sslmode: "{{ 'disable' if postgres_enabled and readeck_database_hostname == postgres_connection_hostname else 'prefer' }}"
+readeck_database_sslmode: "{{ 'disable' if postgres_enabled and (readeck_database_hostname == postgres_connection_hostname or readeck_database_socket_enabled) else 'prefer' }}"
 readeck_database_socket_path_host: "{{ postgres_run_path }}"
 # /role-specific:postgres
 
