@@ -1981,7 +1981,7 @@ mash_playbook_postgres_managed_databases_auto_itemized:
         'name': pocket_id_database_name,
         'username': pocket_id_database_username,
         'password': pocket_id_database_password,
-      } if pocket_id_enabled and pocket_id_database_hostname == postgres_connection_hostname and pocket_id_database_type == 'postgres' else omit)
+      } if pocket_id_enabled and (pocket_id_database_hostname == postgres_connection_hostname or pocket_id_database_socket_enabled) and pocket_id_database_type == 'postgres' else omit)
     }}
   # /role-specific:pocket_id
 
@@ -12290,7 +12290,7 @@ pocket_id_gid: "{{ mash_playbook_gid }}"
 
 pocket_id_systemd_required_services_list_auto: |
   {{
-    ([postgres_identifier ~ '.service'] if postgres_enabled | default(false) and pocket_id_database_hostname == postgres_connection_hostname and pocket_id_database_type == 'postgres' else [])
+    ([postgres_identifier ~ '.service'] if postgres_enabled | default(false) and (pocket_id_database_hostname == postgres_connection_hostname or pocket_id_database_socket_enabled) and pocket_id_database_type == 'postgres' else [])
   }}
 
 pocket_id_systemd_wanted_services_list_auto: |
@@ -12308,7 +12308,7 @@ pocket_id_container_additional_networks_auto: |
     +
     ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
     +
-    ([postgres_container_network] if postgres_enabled | default(false) and pocket_id_database_hostname == postgres_connection_hostname and pocket_id_container_network != postgres_container_network and pocket_id_database_type == 'postgres' else [])
+    ([postgres_container_network] if postgres_enabled | default(false) and (pocket_id_database_hostname == postgres_connection_hostname and pocket_id_container_network != postgres_container_network and not pocket_id_database_socket_enabled) and pocket_id_database_type == 'postgres' else [])
   }}
 
 pocket_id_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
@@ -12344,6 +12344,7 @@ pocket_id_database_hostname: "{{ postgres_connection_hostname if postgres_enable
 pocket_id_database_port: "{{ postgres_connection_port if postgres_enabled else '5432' }}"
 pocket_id_database_password: "{{ (mash_playbook_generic_secret_key + ':db.pocketid') | hash('sha512') | to_uuid }}"
 pocket_id_database_sslmode: "{{ 'disable' if postgres_enabled and pocket_id_database_hostname == postgres_connection_hostname else 'prefer' }}"
+pocket_id_database_socket_path_host: "{{ postgres_run_path }}"
 # /role-specific:postgres
 
 # role-specific:traefik
