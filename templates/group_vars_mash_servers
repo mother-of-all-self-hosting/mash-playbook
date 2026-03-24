@@ -9907,6 +9907,10 @@ meilisearch_container_additional_networks_auto: |
 meilisearch_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled and meilisearch_hostname | length > 0 }}"
 meilisearch_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
 
+# Specify the default API admin key for other services
+# NOTE: this variable is specific to this playbook; it does not exist on the role (ansible-role-meilisearch)
+meilisearch_default_admin_api_key: ""
+
 # role-specific:traefik
 meilisearch_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
 meilisearch_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
