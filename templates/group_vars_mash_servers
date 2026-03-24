@@ -1418,7 +1418,7 @@ mash_playbook_postgres_managed_databases_auto_itemized:
         'name': bitmagnet_database_name,
         'username': bitmagnet_database_username,
         'password': bitmagnet_database_password,
-      } if bitmagnet_enabled and bitmagnet_database_hostname == postgres_connection_hostname else omit)
+      } if bitmagnet_enabled and (bitmagnet_database_hostname == postgres_connection_hostname or bitmagnet_database_socket_enabled) else omit)
     }}
   # /role-specific:bitmagnet
 
@@ -3663,22 +3663,23 @@ bitmagnet_gid: "{{ mash_playbook_gid }}"
 
 bitmagnet_systemd_required_services_list_auto: |
   {{
-    ([postgres_identifier ~ '.service'] if postgres_enabled and bitmagnet_database_hostname == postgres_connection_hostname else [])
+    ([postgres_identifier ~ '.service'] if postgres_enabled and (bitmagnet_database_hostname == postgres_connection_hostname or bitmagnet_database_socket_enabled) else [])
   }}
 
 bitmagnet_container_additional_networks_auto: |
   {{
     ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
     +
-    ([postgres_container_network] if postgres_enabled and bitmagnet_database_hostname == postgres_connection_hostname and bitmagnet_container_network != postgres_container_network else [])
+    ([postgres_container_network] if postgres_enabled and (bitmagnet_database_hostname == postgres_connection_hostname and bitmagnet_container_network != postgres_container_network and not bitmagnet_database_socket_enabled) else [])
   }}
 
 bitmagnet_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
 bitmagnet_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
 
 # role-specific:postgres
-bitmagnet_database_hostname: "{{ postgres_connection_hostname if postgres_enabled else '' }}"
+bitmagnet_database_hostname: "{{ bitmagnet_database_socket_path_container + '/' if bitmagnet_database_socket_enabled else (postgres_connection_hostname if postgres_enabled else '') }}"
 bitmagnet_database_password: "{{ (mash_playbook_generic_secret_key + ':bitmagnet.db') | hash('sha512') | to_uuid }}"
+bitmagnet_database_socket_path_host: "{{ postgres_run_path }}"
 # /role-specific:postgres
 
 # role-specific:traefik
