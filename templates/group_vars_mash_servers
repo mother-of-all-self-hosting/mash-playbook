@@ -9487,7 +9487,7 @@ mash_playbook_mariadb_managed_databases_auto_itemized:
         'name': matomo_database_name,
         'username': matomo_database_username,
         'password': matomo_database_password,
-      } if matomo_enabled and matomo_database_hostname == mariadb_connection_hostname else omit)
+      } if matomo_enabled and (matomo_database_hostname == mariadb_connection_hostname or matomo_database_socket_enabled) else omit)
     }}
   # /role-specific:matomo
 
@@ -9749,7 +9749,7 @@ matomo_gid: "{{ mash_playbook_gid }}"
 
 matomo_systemd_required_services_list_auto: |
   {{
-    ([mariadb_identifier ~ '.service'] if mariadb_enabled and matomo_database_hostname == mariadb_connection_hostname else [])
+    ([mariadb_identifier ~ '.service'] if mariadb_enabled and (matomo_database_hostname == mariadb_connection_hostname or matomo_database_socket_enabled) else [])
   }}
 
 matomo_systemd_wanted_services_list_auto: |
@@ -9761,7 +9761,7 @@ matomo_container_additional_networks_auto: |
   {{
     ([exim_relay_container_network] if exim_relay_enabled | default(false) and matomo_container_network != exim_relay_container_network else [])
     +
-    ([mariadb_container_network] if mariadb_enabled and matomo_database_hostname == mariadb_connection_hostname and matomo_container_network != mariadb_container_network else [])
+    ([mariadb_container_network] if mariadb_enabled and (matomo_database_hostname == mariadb_connection_hostname and matomo_container_network != mariadb_container_network and not matomo_database_socket_enabled) else [])
     +
     ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
   }}
@@ -9775,6 +9775,7 @@ matomo_container_labels_traefik_compression_middleware_name: "{{ mash_playbook_r
 matomo_database_hostname: "{{ mariadb_connection_hostname if mariadb_enabled else '' }}"
 matomo_database_port: "{{ mariadb_connection_port if mariadb_enabled else '3306' }}"
 matomo_database_password: "{{ (mash_playbook_generic_secret_key + ':db.matomo') | hash('sha512') | to_uuid }}"
+matomo_database_socket_path_host: "{{ mariadb_run_path }}"
 # /role-specific:mariadb
 
 # role-specific:traefik
