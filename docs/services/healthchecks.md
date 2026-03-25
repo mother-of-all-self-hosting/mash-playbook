@@ -28,6 +28,10 @@ Healthchecks is a cron job monitoring software.
 
 See the project's [documentation](https://healthchecks.io/docs/) to learn what Healthchecks does and why it might be useful to you.
 
+For details about configuring the [Ansible role for Healthchecks](https://github.com/mother-of-all-self-hosting/ansible-role-healthchecks/), you can check them via:
+- 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-healthchecks/blob/main/docs/configuring-healthchecks.md) online
+- 📁 `roles/galaxy/healthchecks/docs/configuring-healthchecks.md` locally, if you have [fetched the Ansible roles](../installing.md)
+
 ## Dependencies
 
 This service requires the following other services:
@@ -77,26 +81,7 @@ On Healthchecks you can add configuration settings of notification services. If 
 
 As the Healthchecks instance does not support configuring the self-hosted ntfy or Gotify instances with environment variables, you can add default options for them on its UI. Refer to [this page](https://healthchecks.io/docs/configuring_notifications/) on the official documentation as well about how to configure them.
 
-To set up other supported services, refer to the [upstream `.env.example` file](https://github.com/healthchecks/healthchecks/blob/master/docker/.env.example) for environment variables. You can pass those variables to the Healthchecks container with the `healthchecks_environment_variables_additional_variables` variable as below:
-
-```yml
-healthchecks_environment_variables_additional_variables: |
-  DISCORD_CLIENT_ID=123
-  DISCORD_CLIENT_SECRET=456
-```
-
-To actually have the services use (and get messages sent through them), you will need to adjust settings on the service's UI after the service is installed.
-
->[!WARNING]
-> Without setting an authentication method such as DKIM, SPF, and DMARC for your hostname, emails are most likely to be quarantined as spam at recipient's mail servers. The worst scenario is that your server's IP address or hostname will be included in the spam list such as the one managed by [Spamhaus](https://www.spamhaus.org/), depending on the reputation. As the exim-relay service supports DKIM signing, refer to [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-exim-relay/blob/main/docs/configuring-exim-relay.md#enable-dkim-support-optional) for details about how to set it up.
-
-### Extending the configuration
-
-There are some additional things you may wish to configure about the component.
-
-Take a look at:
-
-- [Healthcheck's](https://github.com/mother-of-all-self-hosting/ansible-role-healthchecks) [`defaults/main.yml`](https://github.com/mother-of-all-self-hosting/ansible-role-healthchecks/blob/main/defaults/main.yml) for some variables that you can customize via your `vars.yml` file.
+See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-healthchecks/blob/main/docs/configuring-healthchecks.md#configuring-notification-services-optional) on the role's documentation for details about configuring other services.
 
 ## Usage
 
@@ -105,7 +90,7 @@ After running the command for installation, the Healthchecks instance becomes av
 To get started, create a superuser account by running the command as below:
 
 ```sh
-ansible-playbook -i inventory/hosts setup.yml --tags=createsuperuser-healthchecks -e email=EMAIL_ADDRESS_HERE -e password=PASSWORD_HERE
+ansible-playbook -i inventory/hosts setup.yml --tags=create-admin-healthchecks -e email=EMAIL_ADDRESS_HERE -e password=PASSWORD_HERE
 ```
 
 After creating the superuser account, you can open the URL to log in and start setting up monitoring tasks. You can create as many accounts as you wish.
