@@ -41,11 +41,11 @@
   name: appsmith
   activation_prefix: appsmith_
 - src: git+https://seed.radicle.garden/zcSq6tnVLBUQ88zSRLThc7A7RDZb.git
-  version: v20260207-3
+  version: v20260207-4
   name: asciinema_server
   activation_prefix: asciinema_server_
 - src: git+https://seed.radicle.garden/z4ATDhf89CPqP7XCLNpNwobuJ9fBs.git
-  version: v18.13.4-2
+  version: v18.13.4-4
   name: atuin
   activation_prefix: atuin_
 - src: git+https://seed.radicle.garden/z3rwhJ9rQ82H6GXg7ZCt3UNpStbaW.git
@@ -85,7 +85,7 @@
   name: bind
   activation_prefix: bind_
 - src: git+https://seed.radicle.garden/zs18Rifa7437q7hTFhsx11nYeGhD.git
-  version: v0.10.0-2
+  version: v0.10.0-3
   name: bitmagnet
   activation_prefix: bitmagnet_
 - src: git+https://seed.radicle.garden/zxNS7XeayGimb4WFfvqmasiZZC3v.git
@@ -313,7 +313,7 @@
   name: gothub
   activation_prefix: gothub_
 - src: git+https://seed.radicle.garden/z3dQNNLitS9sByxZ83ivu5qg6qR4N.git
-  version: v2.9.1-4
+  version: v2.9.1-5
   name: gotify
   activation_prefix: gotify_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-gotosocial.git
@@ -393,7 +393,7 @@
   name: joplin_server
   activation_prefix: joplin_server_
 - src: git+https://seed.radicle.garden/z2LZH9TGMxYbGBaGoMHNFX5HymEL3.git
-  version: v1.2.51-1
+  version: v1.2.51-2
   name: kanboard
   activation_prefix: kanboard_
 - src: git+https://seed.radicle.garden/z4W1oeRiFKEikhj4Mk3HbVJM7er6S.git
@@ -469,7 +469,7 @@
   name: mariadb
   activation_prefix: mariadb_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-matomo.git
-  version: v5.8.0-1
+  version: v5.8.0-2
   name: matomo
   activation_prefix: matomo_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-matterbridge.git
@@ -529,7 +529,7 @@
   name: mrs
   activation_prefix: mrs_
 - src: git+https://seed.radicle.garden/z4VBCibmQHyfHKEWTAJmQKBAAjtsv.git
-  version: v1.5.857-3
+  version: v1.5.857-4
   name: mumble
   activation_prefix: mumble_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-n8n.git
@@ -561,7 +561,7 @@
   name: nocdnbs
   activation_prefix: nocdnbs_
 - src: git+https://seed.radicle.garden/z2K9dPANyrXJY7juE9XecXyernA6h.git
-  version: v4.10.0-1
+  version: v4.10.0-2
   name: nodebb
   activation_prefix: nodebb_
 - src: git+https://codeberg.org/moanos/ansible-role-notfellchen.git
@@ -641,11 +641,11 @@
   name: peertube
   activation_prefix: peertube_
 - src: git+https://seed.radicle.garden/ztixjo2qUzCBLADieR3hKkYEk4eE.git
-  version: v9.13.0-2
+  version: v9.13.0-3
   name: pgadmin
   activation_prefix: pgadmin_
 - src: git+https://seed.radicle.garden/zby9EmMBhyNe8Nj4f66izwrmhk5g.git
-  version: v5.2.3-3
+  version: v5.2.3-4
   name: phpmyadmin
   activation_prefix: phpmyadmin_
 - src: git+https://seed.progressiv.dev/zKNyeEtymCZc7yio6JnHxY2AteZu.git
@@ -673,7 +673,7 @@
   name: plex
   activation_prefix: plex_
 - src: git+https://seed.radicle.garden/z2vTmc3fLqxvpuT9EoZvkErWNZM1K.git
-  version: v2.4.0-2
+  version: v2.4.0-3
   name: pocket_id
   activation_prefix: pocket_id_
 - src: git+https://seed.radicle.garden/z4MgJseWRZ9FL3Mh6ASufmi1RJoVh.git
@@ -693,7 +693,7 @@
   name: postgres_backup
   activation_prefix: postgres_backup_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-privatebin.git
-  version: v2.0.3-4
+  version: v2.0.3-5
   name: privatebin
   activation_prefix: privatebin_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-prometheus.git
@@ -761,7 +761,7 @@
   name: reactflux
   activation_prefix: reactflux_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-readeck
-  version: v0.22.2-3
+  version: v0.22.2-6
   name: readeck
   activation_prefix: readeck_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-redis.git
@@ -777,7 +777,7 @@
   name: redmine
   activation_prefix: redmine_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-roundcube.git
-  version: v1.6.14-2
+  version: v1.6.14-3
   name: roundcube
   activation_prefix: roundcube_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-rssbridge.git
@@ -805,7 +805,7 @@
   name: send
   activation_prefix: send_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-sftpgo.git
-  version: v2.7.1-3
+  version: v2.7.1-4
   name: sftpgo
   activation_prefix: sftpgo_
 - src: git+https://seed.radicle.garden/z3PxyXm3EXE4xCNKcaKVKmtdjVNog.git
@@ -933,7 +933,7 @@
   name: versatiles
   activation_prefix: versatiles_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-vikunja.git
-  version: v2.2.2-0
+  version: v2.2.2-2
   name: vikunja
   activation_prefix: vikunja_
 - src: git+https://seed.radicle.garden/z3NoFEkNtQQjSGjLvweqwCFPbC59R.git
@@ -961,7 +961,7 @@
   name: woodpecker_ci_server
   activation_prefix: woodpecker_ci_server_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-wordpress
-  version: v6.9.4-2
+  version: v6.9.4-3
   name: wordpress
   activation_prefix: wordpress_
 - src: git+https://seed.radicle.garden/z2i8BkHXzRvK1ZtGwHuvLACRswXgA.git
@@ -977,6 +977,6 @@
   name: yggstack
   activation_prefix: yggstack_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-yourls.git
-  version: v1.10.3-2
+  version: v1.10.3-3
   name: yourls
   activation_prefix: yourls_
