@@ -648,7 +648,7 @@
   version: v5.2.3-4
   name: phpmyadmin
   activation_prefix: phpmyadmin_
-- src: git+https://seed.progressiv.dev/zKNyeEtymCZc7yio6JnHxY2AteZu.git
+- src: git+https://seed.radicle.garden/zKNyeEtymCZc7yio6JnHxY2AteZu.git
   version: v0.8.2-0
   name: pinepods
   activation_prefix: pinepods_
