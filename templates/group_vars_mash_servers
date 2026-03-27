@@ -1739,7 +1739,7 @@ mash_playbook_postgres_managed_databases_auto_itemized:
         'name': linkwarden_database_name,
         'username': linkwarden_database_username,
         'password': linkwarden_database_password,
-      } if linkwarden_enabled and linkwarden_database_hostname == postgres_connection_hostname else omit)
+      } if linkwarden_enabled and (linkwarden_database_hostname == postgres_connection_hostname or linkwarden_database_socket_enabled) else omit)
     }}
   # /role-specific:linkwarden
 
@@ -8946,7 +8946,7 @@ linkwarden_systemd_required_services_list_auto: |
   {{
     ([meilisearch_identifier ~ '.service'] if meilisearch_enabled | default(false) else [])
     +
-    ([postgres_identifier ~ '.service'] if postgres_enabled and linkwarden_database_hostname == postgres_connection_hostname else [])
+    ([postgres_identifier ~ '.service'] if postgres_enabled and (linkwarden_database_hostname == postgres_connection_hostname or linkwarden_database_socket_enabled) else [])
   }}
 
 linkwarden_container_additional_networks_auto: |
@@ -8955,7 +8955,7 @@ linkwarden_container_additional_networks_auto: |
     +
     ([meilisearch_container_network] if meilisearch_enabled | default(false) and linkwarden_container_network != meilisearch_container_network else [])
     +
-    ([postgres_container_network] if postgres_enabled and linkwarden_database_hostname == postgres_connection_hostname and linkwarden_container_network != postgres_container_network else [])
+    ([postgres_container_network] if postgres_enabled and (linkwarden_database_hostname == postgres_connection_hostname and linkwarden_container_network != postgres_container_network and not linkwarden_database_socket_enabled) else [])
   }}
 
 linkwarden_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
@@ -8973,6 +8973,7 @@ linkwarden_database_hostname: "{{ postgres_connection_hostname if postgres_enabl
 linkwarden_database_port: "{{ postgres_connection_port if postgres_enabled else '5432' }}"
 linkwarden_database_password: "{{ (mash_playbook_generic_secret_key + ':linkwarden.db') | hash('sha512') | to_uuid }}"
 linkwarden_database_sslmode: "{{ 'disable' if postgres_enabled and linkwarden_database_hostname == postgres_connection_hostname else 'prefer' }}"
+linkwarden_database_socket_path_host: "{{ postgres_run_path }}"
 # /role-specific:postgres
 
 # role-specific:traefik
