@@ -1561,7 +1561,7 @@ mash_playbook_postgres_managed_databases_auto_itemized:
         'name': ghostfolio_database_name,
         'username': ghostfolio_database_username,
         'password': ghostfolio_database_password,
-      } if ghostfolio_enabled and ghostfolio_database_hostname == postgres_connection_hostname else omit)
+      } if ghostfolio_enabled and (ghostfolio_database_hostname == postgres_connection_hostname or ghostfolio_database_socket_enabled) else omit)
     }}
   # /role-specific:ghostfolio
 
@@ -6034,14 +6034,14 @@ ghostfolio_gid: 1000
 
 ghostfolio_systemd_required_services_list_auto: |
   {{
-    ([postgres_identifier ~ '.service'] if postgres_enabled and ghostfolio_database_hostname == postgres_connection_hostname else [])
+    ([postgres_identifier ~ '.service'] if postgres_enabled and (ghostfolio_database_hostname == postgres_connection_hostname or ghostfolio_database_socket_enabled) else [])
   }}
 
 ghostfolio_container_additional_networks_auto: |
   {{
     ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
     +
-    ([postgres_container_network] if postgres_enabled and ghostfolio_database_hostname == postgres_connection_hostname and ghostfolio_container_network != postgres_container_network else [])
+    ([postgres_container_network] if postgres_enabled and (ghostfolio_database_hostname == postgres_connection_hostname and ghostfolio_container_network != postgres_container_network and not ghostfolio_database_socket_enabled) else [])
   }}
 
 ghostfolio_environment_variable_access_token_salt: "{{ (mash_playbook_generic_secret_key + ':at.ghostfolio') | hash('sha512') | to_uuid }}"
@@ -6056,6 +6056,7 @@ ghostfolio_database_port: "{{ postgres_connection_port if postgres_enabled else 
 ghostfolio_database_username: ghostfolio
 ghostfolio_database_password: "{{ (mash_playbook_generic_secret_key + ':db.ghostfolio') | hash('sha512') | to_uuid }}"
 ghostfolio_database_sslmode: "{{ 'disable' if postgres_enabled and ghostfolio_database_hostname == postgres_connection_hostname else 'prefer' }}"
+ghostfolio_database_socket_path_host: "{{ postgres_run_path }}"
 # /role-specific:postgres
 
 # role-specific:traefik
