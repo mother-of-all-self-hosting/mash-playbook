@@ -1462,7 +1462,7 @@ mash_playbook_postgres_managed_databases_auto_itemized:
         'name': docuseal_database_name,
         'username': docuseal_database_postgres_username,
         'password': docuseal_database_postgres_password,
-      } if docuseal_enabled and docuseal_database_postgres_hostname == postgres_connection_hostname and docuseal_database_type == 'postgres' else omit)
+      } if docuseal_enabled and (docuseal_database_postgres_hostname == postgres_connection_hostname or docuseal_database_postgres_socket_enabled) and docuseal_database_type == 'postgres' else omit)
     }}
   # /role-specific:docuseal
 
@@ -4758,9 +4758,9 @@ docuseal_gid: "{{ mash_playbook_gid }}"
 
 docuseal_systemd_required_services_list_auto: |
   {{
-    ([mariadb_identifier ~ '.service'] if mariadb_enabled | default(false) and docuseal_database_mysql_hostname == mariadb_connection_hostname and docuseal_database_type == 'mysql' else [])
+    ([mariadb_identifier ~ '.service'] if mariadb_enabled | default(false) and (docuseal_database_mysql_hostname == mariadb_connection_hostname or docuseal_database_mysql_socket_enabled) and docuseal_database_type == 'mysql' else [])
     +
-    ([postgres_identifier ~ '.service'] if postgres_enabled | default(false) and docuseal_database_postgres_hostname == postgres_connection_hostname and docuseal_database_type == 'postgres' else [])
+    ([postgres_identifier ~ '.service'] if postgres_enabled | default(false) and (docuseal_database_postgres_hostname == postgres_connection_hostname or docuseal_database_postgres_socket_enabled) and docuseal_database_type == 'postgres' else [])
   }}
 
 docuseal_systemd_wanted_services_list_auto: |
@@ -4772,11 +4772,11 @@ docuseal_container_additional_networks_auto: |
   {{
     ([exim_relay_container_network] if exim_relay_enabled | default(false) and docuseal_container_network != exim_relay_container_network else [])
     +
-    ([mariadb_container_network] if mariadb_enabled | default(false) and docuseal_database_mysql_hostname == mariadb_connection_hostname and docuseal_container_network != mariadb_container_network and docuseal_database_type == 'mysql' else [])
+    ([mariadb_container_network] if mariadb_enabled | default(false) and (docuseal_database_mysql_hostname == mariadb_connection_hostname and docuseal_container_network != mariadb_container_network and not docuseal_database_mysql_socket_enabled) and docuseal_database_type == 'mysql' else [])
     +
     ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
     +
-    ([postgres_container_network] if postgres_enabled | default(false) and docuseal_database_postgres_hostname == postgres_connection_hostname and docuseal_container_network != postgres_container_network and docuseal_database_type == 'postgres' else [])
+    ([postgres_container_network] if postgres_enabled | default(false) and (docuseal_database_postgres_hostname == postgres_connection_hostname and docuseal_container_network != postgres_container_network and not docuseal_database_postgres_socket_enabled) and docuseal_database_type == 'postgres' else [])
   }}
 
 docuseal_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
@@ -4786,6 +4786,7 @@ docuseal_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_prox
 docuseal_database_mysql_hostname: "{{ mariadb_connection_hostname if mariadb_enabled else '' }}"
 docuseal_database_mysql_port: "{{ mariadb_connection_port if mariadb_enabled else '3306' }}"
 docuseal_database_mysql_password: "{{ (mash_playbook_generic_secret_key + ':db.docuseal.ma') | hash('sha512') | to_uuid }}"
+docuseal_database_mysql_socket_path_host: "{{ mariadb_run_path }}"
 # /role-specific:mariadb
 
 # role-specific:postgres
@@ -4793,6 +4794,7 @@ docuseal_database_postgres_hostname: "{{ postgres_connection_hostname if postgre
 docuseal_database_postgres_port: "{{ postgres_connection_port if postgres_enabled else '5432' }}"
 docuseal_database_postgres_password: "{{ (mash_playbook_generic_secret_key + ':db.docuseal.p') | hash('sha512') | to_uuid }}"
 docuseal_database_postgres_sslmode: "{{ 'disable' if postgres_enabled and docuseal_database_postgres_hostname == postgres_connection_hostname else 'prefer' }}"
+docuseal_database_postgres_socket_path_host: "{{ postgres_run_path }}"
 # /role-specific:postgres
 
 # role-specific:traefik
@@ -9339,7 +9341,7 @@ mash_playbook_mariadb_managed_databases_auto_itemized:
         'name': docuseal_database_name,
         'username': docuseal_database_mysql_username,
         'password': docuseal_database_mysql_password,
-      } if docuseal_enabled and docuseal_database_mysql_hostname == mariadb_connection_hostname and docuseal_database_type == 'mysql' else omit)
+      } if docuseal_enabled and (docuseal_database_mysql_hostname == mariadb_connection_hostname or docuseal_database_mysql_socket_enabled) and docuseal_database_type == 'mysql' else omit)
     }}
   # /role-specific:docuseal
 
