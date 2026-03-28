@@ -8605,7 +8605,7 @@ kutt_systemd_required_services_list_auto: |
   {{
     ([mariadb_identifier ~ '.service'] if mariadb_enabled | default(false) and kutt_database_mysql_hostname == mariadb_connection_hostname and kutt_database_type == 'mysql2' else [])
     +
-    ([postgres_identifier ~ '.service'] if postgres_enabled | default(false) and kutt_database_postgres_hostname == postgres_connection_hostname and kutt_database_type == 'pg' else [])
+    ([postgres_identifier ~ '.service'] if postgres_enabled | default(false) and (kutt_database_postgres_hostname == postgres_connection_hostname or kutt_database_postgres_socket_enabled) and kutt_database_type == 'pg' else [])
   }}
 
 kutt_systemd_wanted_services_list_auto: |
@@ -8621,7 +8621,7 @@ kutt_container_additional_networks_auto: |
     +
     ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
     +
-    ([postgres_container_network] if postgres_enabled | default(false) and kutt_database_postgres_hostname == postgres_connection_hostname and kutt_container_network != postgres_container_network and kutt_database_type == 'pg' else [])
+    ([postgres_container_network] if postgres_enabled | default(false) and (kutt_database_postgres_hostname == postgres_connection_hostname and kutt_container_network != postgres_container_network and not kutt_database_postgres_socket_enabled) and kutt_database_type == 'pg' else [])
   }}
 
 kutt_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
@@ -8648,6 +8648,7 @@ kutt_database_mysql_password: "{{ (mash_playbook_generic_secret_key + ':kutt.db'
 kutt_database_postgres_hostname: "{{ postgres_connection_hostname if postgres_enabled else '' }}"
 kutt_database_postgres_port: "{{ postgres_connection_port if postgres_enabled else '5432' }}"
 kutt_database_postgres_password: "{{ (mash_playbook_generic_secret_key + ':kutt.db') | hash('sha512') | to_uuid }}"
+kutt_database_postgres_socket_path_host: "{{ postgres_run_path }}"
 # /role-specific:postgres
 
 # role-specific:traefik
