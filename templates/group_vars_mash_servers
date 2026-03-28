@@ -1662,7 +1662,7 @@ mash_playbook_postgres_managed_databases_auto_itemized:
         'name': joplin_server_database_name,
         'username': joplin_server_database_username,
         'password': joplin_server_database_password,
-      } if joplin_server_enabled and (joplin_server_database_postgres_hostname == postgres_connection_hostname or joplin_server_database_postgres_socket_enabled) else omit)
+      } if joplin_server_enabled and (joplin_server_database_hostname == postgres_connection_hostname or joplin_server_database_socket_enabled) else omit)
     }}
   # /role-specific:joplin_server
 
