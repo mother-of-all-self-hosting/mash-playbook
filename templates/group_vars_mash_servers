@@ -1695,7 +1695,7 @@ mash_playbook_postgres_managed_databases_auto_itemized:
         'name': kutt_database_name,
         'username': kutt_database_postgres_username,
         'password': kutt_database_postgres_password,
-      } if kutt_enabled and kutt_database_postgres_hostname == postgres_connection_hostname and kutt_database_type == 'pg' else omit)
+      } if kutt_enabled and (kutt_database_postgres_hostname == postgres_connection_hostname or kutt_database_postgres_socket_enabled) and kutt_database_type == 'postgres' else omit)
     }}
   # /role-specific:kutt
 
@@ -8604,9 +8604,9 @@ kutt_gid: "{{ mash_playbook_gid }}"
 
 kutt_systemd_required_services_list_auto: |
   {{
-    ([mariadb_identifier ~ '.service'] if mariadb_enabled | default(false) and kutt_database_mysql_hostname == mariadb_connection_hostname and kutt_database_type == 'mysql2' else [])
+    ([mariadb_identifier ~ '.service'] if mariadb_enabled | default(false) and kutt_database_mysql_hostname == mariadb_connection_hostname and kutt_database_type == 'mysql' else [])
     +
-    ([postgres_identifier ~ '.service'] if postgres_enabled | default(false) and (kutt_database_postgres_hostname == postgres_connection_hostname or kutt_database_postgres_socket_enabled) and kutt_database_type == 'pg' else [])
+    ([postgres_identifier ~ '.service'] if postgres_enabled | default(false) and (kutt_database_postgres_hostname == postgres_connection_hostname or kutt_database_postgres_socket_enabled) and kutt_database_type == 'postgres' else [])
   }}
 
 kutt_systemd_wanted_services_list_auto: |
@@ -8618,17 +8618,17 @@ kutt_container_additional_networks_auto: |
   {{
     ([exim_relay_container_network] if exim_relay_enabled | default(false) and kutt_environment_variables_smtp_enabled | default(false) and kutt_environment_variables_smtp_host == exim_relay_identifier and kutt_container_network != exim_relay_container_network else [])
     +
-    ([mariadb_container_network] if mariadb_enabled | default(false) and kutt_database_mysql_hostname == mariadb_connection_hostname and kutt_container_network != mariadb_container_network and kutt_database_type == 'mysql2' else [])
+    ([mariadb_container_network] if mariadb_enabled | default(false) and kutt_database_mysql_hostname == mariadb_connection_hostname and kutt_container_network != mariadb_container_network and kutt_database_type == 'mysql' else [])
     +
     ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
     +
-    ([postgres_container_network] if postgres_enabled | default(false) and (kutt_database_postgres_hostname == postgres_connection_hostname and kutt_container_network != postgres_container_network and not kutt_database_postgres_socket_enabled) and kutt_database_type == 'pg' else [])
+    ([postgres_container_network] if postgres_enabled | default(false) and (kutt_database_postgres_hostname == postgres_connection_hostname and kutt_container_network != postgres_container_network and not kutt_database_postgres_socket_enabled) and kutt_database_type == 'postgres' else [])
   }}
 
 kutt_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
 kutt_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
 
-kutt_database_type: "{{ 'pg' if postgres_enabled | default(false) else 'better-sqlite3' }}"
+kutt_database_type: "{{ 'postgres' if postgres_enabled | default(false) else 'better-sqlite3' }}"
 
 kutt_environment_variables_jwt_secret: "{{ (mash_playbook_generic_secret_key + ':kutt') | hash('sha512') | to_uuid }}"
 
@@ -9464,7 +9464,7 @@ mash_playbook_mariadb_managed_databases_auto_itemized:
         'name': kutt_database_name,
         'username': kutt_database_mysql_username,
         'password': kutt_database_mysql_password,
-      } if kutt_enabled and kutt_database_mysql_hostname == mariadb_connection_hostname and kutt_database_type == 'mysql2' else omit)
+      } if kutt_enabled and kutt_database_mysql_hostname == mariadb_connection_hostname and kutt_database_type == 'mysql' else omit)
     }}
   # /role-specific:kutt
 
