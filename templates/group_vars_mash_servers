@@ -1616,7 +1616,7 @@ mash_playbook_postgres_managed_databases_auto_itemized:
         'name': homarr_database_name,
         'username': homarr_database_postgres_username,
         'password': homarr_database_postgres_password,
-      } if homarr_enabled and homarr_database_postgres_hostname == postgres_connection_hostname and homarr_database_type == 'node-postgres' else omit)
+      } if homarr_enabled and (homarr_database_postgres_hostname == postgres_connection_hostname or homarr_database_postgres_socket_enabled) and homarr_database_type == 'postgres' else omit)
     }}
   # /role-specific:homarr
 
@@ -6631,7 +6631,7 @@ homarr_systemd_required_services_list_auto: |
   {{
     ([container_socket_proxy_identifier + '.service'] if container_socket_proxy_enabled else [])
     +
-    ([postgres_identifier ~ '.service'] if postgres_enabled | default(false) and homarr_database_postgres_hostname == postgres_connection_hostname and homarr_database_type == 'node-postgres' else [])
+    ([postgres_identifier ~ '.service'] if postgres_enabled | default(false) and (homarr_database_postgres_hostname == postgres_connection_hostname or homarr_database_postgres_socket_enabled) and homarr_database_type == 'postgres' else [])
   }}
 
 homarr_systemd_wanted_services_list_auto: |
@@ -6647,10 +6647,10 @@ homarr_container_additional_networks_auto: |
     +
     ([ntfy_container_network] if ntfy_enabled | default(false) and homarr_container_network != ntfy_container_network else [])
     +
-    ([postgres_container_network] if postgres_enabled | default(false) and homarr_database_postgres_hostname == postgres_connection_hostname and homarr_container_network != postgres_container_network and homarr_database_type == 'node-postgres' else [])
+    ([postgres_container_network] if postgres_enabled | default(false) and (homarr_database_postgres_hostname == postgres_connection_hostname and homarr_container_network != postgres_container_network and not homarr_database_postgres_socket_enabled) and homarr_database_type == 'postgres' else [])
   }}
 
-homarr_database_type: "{{ 'node-postgres' if postgres_enabled | default(false) else 'better-sqlite3' }}"
+homarr_database_type: "{{ 'postgres' if postgres_enabled | default(false) else 'sqlite' }}"
 
 homarr_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
 homarr_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
@@ -6665,6 +6665,7 @@ homarr_environment_variables_docker_hostnames: "{{ container_socket_proxy_identi
 homarr_database_postgres_hostname: "{{ postgres_connection_hostname if postgres_enabled else '' }}"
 homarr_database_postgres_port: "{{ postgres_connection_port if postgres_enabled else '5432' }}"
 homarr_database_postgres_password: "{{ (mash_playbook_generic_secret_key + ':db.homarr') | hash('sha512') | to_uuid }}"
+homarr_database_postgres_socket_path_host: "{{ postgres_run_path }}"
 # /role-specific:postgres
 
 # role-specific:traefik
