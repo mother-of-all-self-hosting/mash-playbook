@@ -1816,7 +1816,7 @@ mash_playbook_postgres_managed_databases_auto_itemized:
         'name': n8n_database_name,
         'username': n8n_database_username,
         'password': n8n_database_password,
-      } if n8n_enabled and n8n_database_hostname == postgres_connection_hostname else omit)
+      } if n8n_enabled and (n8n_database_hostname == postgres_connection_hostname or n8n_database_socket_enabled) else omit)
     }}
   # /role-specific:n8n
 
@@ -10572,23 +10572,24 @@ n8n_gid: "1000"
 
 n8n_systemd_required_services_list: |
   {{
-    ([postgres_identifier ~ '.service'] if postgres_enabled and n8n_database_hostname == postgres_connection_hostname else [])
+    ([postgres_identifier ~ '.service'] if postgres_enabled and (n8n_database_hostname == postgres_connection_hostname or n8n_database_socket_enabled) else [])
   }}
 
 n8n_container_additional_networks: |
   {{
     ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
     +
-    ([postgres_container_network] if postgres_enabled and n8n_database_hostname == postgres_connection_hostname and n8n_container_network != postgres_container_network else [])
+    ([postgres_container_network] if postgres_enabled and (n8n_database_hostname == postgres_connection_hostname and n8n_container_network != postgres_container_network and not n8n_database_socket_enabled) else [])
   }}
 
 n8n_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
 n8n_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
 
 # role-specific:postgres
-n8n_database_hostname: "{{ postgres_connection_hostname if postgres_enabled else '' }}"
+n8n_database_hostname: "{{ postgres_connection_hostname if postgres_enabled and not n8n_database_socket_enabled else '' }}"
 n8n_database_port: "{{ postgres_connection_port if postgres_enabled else '5432' }}"
 n8n_database_password: "{{ (mash_playbook_generic_secret_key + ':n8n.db') | hash('sha512') | to_uuid }}"
+n8n_database_socket_path_host: "{{ postgres_run_path }}"
 # /role-specific:postgres
 
 # role-specific:traefik
