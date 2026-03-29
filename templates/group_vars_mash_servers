@@ -2124,7 +2124,7 @@ mash_playbook_postgres_managed_databases_auto_itemized:
         'name': weblate_database_name,
         'username': weblate_database_username,
         'password': weblate_database_password,
-      } if weblate_enabled and weblate_database_hostname == postgres_connection_hostname else omit)
+      } if weblate_enabled and (weblate_database_hostname == postgres_connection_hostname or weblate_database_socket_enabled) else omit)
     }}
   # /role-specific:weblate
 
@@ -15175,7 +15175,7 @@ weblate_gid: "0"
 
 weblate_systemd_required_services_list_auto: |
   {{
-    ([postgres_identifier ~ '.service'] if postgres_enabled and weblate_database_hostname == postgres_connection_hostname else [])
+    ([postgres_identifier ~ '.service'] if postgres_enabled and (weblate_database_hostname == postgres_connection_hostname or weblate_database_socket_enabled) else [])
   }}
 
 weblate_systemd_wanted_services_list_auto: |
@@ -15189,7 +15189,7 @@ weblate_container_additional_networks_auto: |
     +
     ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
     +
-    ([postgres_container_network] if postgres_enabled and weblate_database_hostname == postgres_connection_hostname and weblate_container_network != postgres_container_network else [])
+    ([postgres_container_network] if postgres_enabled and (weblate_database_hostname == postgres_connection_hostname and weblate_container_network != postgres_container_network and not weblate_database_socket_enabled) else [])
   }}
 
 weblate_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
@@ -15203,10 +15203,11 @@ weblate_environment_variables_weblate_default_from_email: "{{ exim_relay_sender_
 # /role-specific:exim_relay
 
 # role-specific:postgres
-weblate_database_hostname: "{{ postgres_connection_hostname if postgres_enabled else '' }}"
+weblate_database_hostname: "{{ postgres_connection_hostname if postgres_enabled and not weblate_database_socket_enabled else '' }}"
 weblate_database_port: "{{ postgres_connection_port if postgres_enabled else '5432' }}"
 weblate_database_password: "{{ (mash_playbook_generic_secret_key + ':weblate.db') | hash('sha512') | to_uuid }}"
 weblate_database_sslmode: "{{ 'disable' if postgres_enabled and weblate_database_hostname == postgres_connection_hostname else 'prefer' }}"
+weblate_database_socket_path_host: "{{ postgres_run_path }}"
 # /role-specific:postgres
 
 # role-specific:traefik
