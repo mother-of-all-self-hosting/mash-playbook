@@ -837,7 +837,7 @@
   name: soundcloak
   activation_prefix: soundcloak_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-ssh.git
-  version: v1.0.0-0
+  version: v1.0.1-0
   name: ssh
   activation_prefix: system_security_ssh_
 - src: git+https://seed.radicle.garden/z4Ki52caKbH1y9jFNdKzQnc8WH1Jd.git
