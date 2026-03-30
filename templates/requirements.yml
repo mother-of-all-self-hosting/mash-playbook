@@ -441,7 +441,7 @@
   name: linkwarden
   activation_prefix: linkwarden_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-listmonk.git
-  version: v4.1.0-9
+  version: v6-1
   name: listmonk
   activation_prefix: listmonk_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-lldap.git
