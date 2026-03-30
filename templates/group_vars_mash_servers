@@ -1517,7 +1517,7 @@ mash_playbook_postgres_managed_databases_auto_itemized:
         'name': forgejo_database_name,
         'username': forgejo_database_postgres_username,
         'password': forgejo_database_postgres_password,
-      } if forgejo_enabled and forgejo_database_postgres_hostname == postgres_connection_hostname and forgejo_database_type == 'postgres' else omit)
+      } if forgejo_enabled and (forgejo_database_postgres_hostname == postgres_connection_hostname or forgejo_database_postgres_socket_enabled) and forgejo_database_type == 'postgres' else omit)
     }}
   # /role-specific:forgejo
 
@@ -5723,11 +5723,11 @@ forgejo_gid: "{{ mash_playbook_gid }}"
 
 forgejo_systemd_required_services_list_auto: |
   {{
-    ([mariadb_identifier ~ '.service'] if mariadb_enabled | default(false) and forgejo_database_mysql_hostname == mariadb_connection_hostname and forgejo_database_type == 'mysql' else [])
+    ([mariadb_identifier ~ '.service'] if mariadb_enabled | default(false) and (forgejo_database_mysql_hostname == mariadb_connection_hostname or forgejo_database_mysql_socket_enabled) and forgejo_database_type == 'mysql' else [])
     +
     ([memcached_identifier ~ '.service'] if memcached_enabled | default(false) and forgejo_config_cache_adapter == 'memcache' else [])
     +
-    ([postgres_identifier ~ '.service'] if postgres_enabled | default(false) and forgejo_database_postgres_hostname == postgres_connection_hostname and forgejo_database_type == 'postgres' else [])
+    ([postgres_identifier ~ '.service'] if postgres_enabled | default(false) and (forgejo_database_postgres_hostname == postgres_connection_hostname or forgejo_database_postgres_socket_enabled) and forgejo_database_type == 'postgres' else [])
   }}
 
 forgejo_systemd_wanted_services_list_auto: |
@@ -5741,7 +5741,7 @@ forgejo_container_additional_networks_auto: |
   {{
     ([exim_relay_container_network] if exim_relay_enabled | default(false) and forgejo_config_mailer_enabled | default(false) and forgejo_config_mailer_smtp_addr == exim_relay_identifier and forgejo_container_network != exim_relay_container_network else [])
     +
-    ([mariadb_container_network] if mariadb_enabled | default(false) and forgejo_database_mysql_hostname == mariadb_connection_hostname and forgejo_container_network != mariadb_container_network and forgejo_database_type == 'mysql' else [])
+    ([mariadb_container_network] if mariadb_enabled | default(false) and (forgejo_database_mysql_hostname == mariadb_connection_hostname and forgejo_container_network != mariadb_container_network and not forgejo_database_mysql_socket_enabled) and forgejo_database_type == 'mysql' else [])
     +
     ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
     +
@@ -5749,7 +5749,7 @@ forgejo_container_additional_networks_auto: |
     +
     ([memcached_container_network] if memcached_enabled | default(false) and forgejo_container_network != memcached_container_network and forgejo_config_cache_adapter == 'memcache' else [])
     +
-    ([postgres_container_network] if postgres_enabled | default(false) and forgejo_database_postgres_hostname == postgres_connection_hostname and forgejo_container_network != postgres_container_network and forgejo_database_type == 'postgres' else [])
+    ([postgres_container_network] if postgres_enabled | default(false) and (forgejo_database_postgres_hostname == postgres_connection_hostname and forgejo_container_network != postgres_container_network and not forgejo_database_postgres_socket_enabled) and forgejo_database_type == 'postgres' else [])
   }}
 
 forgejo_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
@@ -5768,10 +5768,11 @@ forgejo_config_mailer_from: "{{ exim_relay_sender_address if exim_relay_enabled 
 # /role-specific:exim_relay
 
 # role-specific:mariadb
-forgejo_database_mysql_hostname: "{{ mariadb_connection_hostname if mariadb_enabled else '' }}"
+forgejo_database_mysql_hostname: "{{ mariadb_connection_hostname if mariadb_enabled and not forgejo_database_mysql_socket_enabled else '' }}"
 forgejo_database_mysql_port: "{{ mariadb_connection_port if mariadb_enabled else '3306' }}"
 forgejo_database_mysql_password: "{{ (mash_playbook_generic_secret_key + ':db.forgejo') | hash('sha512') | to_uuid }}"
-forgejo_database_mysql_sslmode: "{{ 'false' if mariadb_enabled and forgejo_database_mysql_hostname == mariadb_connection_hostname else 'prefer' }}"
+forgejo_database_mysql_sslmode: "{{ 'false' if mariadb_enabled and (forgejo_database_mysql_hostname == mariadb_connection_hostname or forgejo_database_mysql_socket_enabled) else 'prefer' }}"
+forgejo_database_mysql_socket_path_host: "{{ mariadb_run_path }}"
 # /role-specific:mariadb
 
 # role-specific:meilisearch
@@ -5783,10 +5784,11 @@ forgejo_config_cache_host: "{{ memcached_identifier }}:{{ memcached_container_ht
 # /role-specific:memcached
 
 # role-specific:postgres
-forgejo_database_postgres_hostname: "{{ postgres_connection_hostname if postgres_enabled else '' }}"
+forgejo_database_postgres_hostname: "{{ postgres_connection_hostname if postgres_enabled and not forgejo_database_postgres_socket_enabled else '' }}"
 forgejo_database_postgres_port: "{{ postgres_connection_port if postgres_enabled else '5432' }}"
 forgejo_database_postgres_password: "{{ (mash_playbook_generic_secret_key + ':db.forgejo') | hash('sha512') | to_uuid }}"
-forgejo_database_postgres_sslmode: "{{ 'disable' if postgres_enabled and forgejo_database_postgres_hostname == postgres_connection_hostname else 'require' }}"
+forgejo_database_postgres_sslmode: "{{ 'disable' if postgres_enabled and (forgejo_database_postgres_hostname == postgres_connection_hostname or forgejo_database_postgres_socket_enabled) else 'require' }}"
+forgejo_database_postgres_socket_path_host: "{{ postgres_run_path }}"
 # /role-specific:postgres
 
 # role-specific:traefik
@@ -9428,7 +9430,7 @@ mash_playbook_mariadb_managed_databases_auto_itemized:
         'name': forgejo_database_name,
         'username': forgejo_database_mysql_username,
         'password': forgejo_database_mysql_password,
-      } if forgejo_enabled and forgejo_database_mysql_hostname == mariadb_connection_hostname and forgejo_database_type == 'mysql' else omit)
+      } if forgejo_enabled and (forgejo_database_mysql_hostname == mariadb_connection_hostname or forgejo_database_mysql_socket_enabled) and forgejo_database_type == 'mysql' else omit)
     }}
   # /role-specific:forgejo
 
