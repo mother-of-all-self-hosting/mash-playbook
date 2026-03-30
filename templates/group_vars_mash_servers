@@ -2025,7 +2025,7 @@ mash_playbook_postgres_managed_databases_auto_itemized:
         'name': redmine_database_name,
         'username': redmine_database_postgres_username,
         'password': redmine_database_postgres_password,
-      } if redmine_enabled and redmine_database_postgres_hostname == postgres_connection_hostname and redmine_database_type == 'postgres' else omit)
+      } if redmine_enabled and (redmine_database_postgres_hostname == postgres_connection_hostname or redmine_database_postgres_socket_enabled) and redmine_database_type == 'postgres' else omit)
     }}
   # /role-specific:redmine
 
@@ -9639,7 +9639,7 @@ mash_playbook_mariadb_managed_databases_auto_itemized:
         'name': redmine_database_name,
         'username': redmine_database_mysql_username,
         'password': redmine_database_mysql_password,
-      } if redmine_enabled and redmine_database_mysql_hostname == mariadb_connection_hostname and redmine_database_type == 'mysql' else omit)
+      } if redmine_enabled and (redmine_database_mysql_hostname == mariadb_connection_hostname or redmine_database_mysql_socket_enabled) and redmine_database_type == 'mysql' else omit)
     }}
   # /role-specific:redmine
 
@@ -13450,9 +13450,9 @@ redmine_database_cipher_key: "{{ (mash_playbook_generic_secret_key + ':db.cipher
 
 redmine_systemd_required_services_list_auto: |
   {{
-    ([mariadb_identifier ~ '.service'] if mariadb_enabled | default(false) and redmine_database_mysql_hostname == mariadb_connection_hostname and redmine_database_type == 'mysql' else [])
+    ([mariadb_identifier ~ '.service'] if mariadb_enabled | default(false) and (redmine_database_mysql_hostname == mariadb_connection_hostname or redmine_database_mysql_socket_enabled) and redmine_database_type == 'mysql' else [])
     +
-    ([postgres_identifier ~ '.service'] if postgres_enabled and redmine_database_postgres_hostname == postgres_connection_hostname and redmine_database_type == 'postgres' else [])
+    ([postgres_identifier ~ '.service'] if postgres_enabled | default(false) and (redmine_database_postgres_hostname == postgres_connection_hostname or redmine_database_postgres_socket_enabled) and redmine_database_type == 'postgres' else [])
   }}
 
 redmine_systemd_wanted_services_list_auto: |
@@ -13464,11 +13464,11 @@ redmine_container_additional_networks_auto: |
   {{
     ([exim_relay_container_network] if exim_relay_enabled | default(false) and redmine_container_network != exim_relay_container_network else [])
     +
-    ([mariadb_container_network] if mariadb_enabled | default(false) and redmine_database_mysql_hostname == mariadb_connection_hostname and redmine_container_network != mariadb_container_network and redmine_database_type == 'mysql' else [])
+    ([mariadb_container_network] if mariadb_enabled | default(false) and (redmine_database_mysql_hostname == mariadb_connection_hostname and redmine_container_network != mariadb_container_network and not redmine_database_mysql_socket_enabled) and redmine_database_type == 'mysql' else [])
     +
     ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
     +
-    ([postgres_container_network] if postgres_enabled and redmine_database_postgres_hostname == postgres_connection_hostname and redmine_container_network != postgres_container_network and redmine_database_type == 'postgres' else [])
+    ([postgres_container_network] if postgres_enabled | default(false) and (redmine_database_postgres_hostname == postgres_connection_hostname and redmine_container_network != postgres_container_network and not redmine_database_postgres_socket_enabled) and redmine_database_type == 'postgres' else [])
   }}
 
 redmine_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
@@ -13482,15 +13482,17 @@ redmine_email_delivery_smtp_settings_port: 8025
 # /role-specific:exim_relay
 
 # role-specific:mariadb
-redmine_database_mysql_hostname: "{{ mariadb_connection_hostname if mariadb_enabled else '' }}"
+redmine_database_mysql_hostname: "{{ mariadb_connection_hostname if mariadb_enabled and not redmine_database_mysql_socket_enabled else '' }}"
 redmine_database_mysql_port: "{{ mariadb_connection_port if mariadb_enabled else '3306' }}"
 redmine_database_mysql_password: "{{ (mash_playbook_generic_secret_key + ':redmine.db.m') | hash('sha512') | to_uuid }}"
+redmine_database_mysql_socket_path_host: "{{ mariadb_run_path }}"
 # /role-specific:mariadb
 
 # role-specific:postgres
-redmine_database_postgres_hostname: "{{ postgres_connection_hostname if postgres_enabled else '' }}"
+redmine_database_postgres_hostname: "{{ postgres_connection_hostname if postgres_enabled and not redmine_database_postgres_socket_enabled else '' }}"
 redmine_database_postgres_port: "{{ postgres_connection_port if postgres_enabled else '5432' }}"
 redmine_database_postgres_password: "{{ (mash_playbook_generic_secret_key + ':redmine.db') | hash('sha512') | to_uuid }}"
+redmine_database_postgres_socket_path_host: "{{ postgres_run_path }}"
 # /role-specific:postgres
 
 # role-specific:traefik
