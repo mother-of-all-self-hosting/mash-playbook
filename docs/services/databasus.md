@@ -20,6 +20,9 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
 # Databasus
 
+>[!CAUTION]
+> The original author [declared](https://github.com/databasus/databasus/issues/199) that Databasus did not support running the service as non-root user because it is allegedly "very rare case needed for less than 1%< of users."
+
 The playbook can install and configure [Databasus](https://databasus.com/) for you.
 
 Databasus is free software for backing up database of PostgreSQL, MySQL, MariaDB, and MongoDB.
