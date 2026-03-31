@@ -163,15 +163,7 @@ Having configured `vars.yml` for the dedicated instance, add the following confi
 # Add the base configuration as specified above
 
 # Point Borg Web UI to its dedicated Valkey instance
-borg_ui_redis_hostname: mash-borg-ui-valkey
-
-# Make sure the Borg Web UI service (mash-borg-ui.service) starts after its dedicated Valkey service (mash-borg-ui-valkey.service)
-borg_ui_systemd_required_services_list_custom:
-  - "mash-borg-ui-valkey.service"
-
-# Make sure the Borg Web UI service (mash-borg-ui.service) is connected to the container network of its dedicated Valkey service (mash-borg-ui-valkey)
-borg_ui_container_additional_networks_custom:
-  - "mash-borg-ui-valkey"
+borg_ui_redis_socket_path_host: /mash/borg-ui-valkey/run
 
 ########################################################################
 #                                                                      #
@@ -213,15 +205,7 @@ valkey_enabled: true
 # Add the base configuration as specified above
 
 # Point Borg Web UI to the shared Valkey instance
-borg_ui_redis_hostname: "{{ valkey_identifier }}"
-
-# Make sure the Borg Web UI service (mash-borg-ui.service) starts after its dedicated Valkey service (mash-borg-ui-valkey.service)
-borg_ui_systemd_required_services_list_custom:
-  - "{{ valkey_identifier }}.service"
-
-# Make sure the Borg Web UI container is connected to the container network of its dedicated Valkey service (mash-borg-ui-valkey)
-borg_ui_container_additional_networks_custom:
-  - "{{ valkey_container_network }}"
+borg_ui_redis_socket_path_host: "{{ valkey_run_path }}"
 
 ########################################################################
 #                                                                      #
