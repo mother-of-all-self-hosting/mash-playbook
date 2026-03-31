@@ -1794,7 +1794,7 @@ mash_playbook_postgres_managed_databases_auto_itemized:
         'name': miniflux_database_name,
         'username': miniflux_database_username,
         'password': miniflux_database_password,
-      } if miniflux_enabled and miniflux_database_hostname == postgres_connection_hostname else omit)
+      } if miniflux_enabled and (miniflux_database_hostname == postgres_connection_hostname or miniflux_database_socket_enabled) else omit)
     }}
   # /role-specific:miniflux
 
@@ -10093,7 +10093,7 @@ miniflux_gid: "{{ mash_playbook_gid }}"
 
 miniflux_systemd_required_services_list_auto: |
   {{
-    ([postgres_identifier ~ '.service'] if postgres_enabled and miniflux_database_hostname == postgres_connection_hostname else [])
+    ([postgres_identifier ~ '.service'] if postgres_enabled and (miniflux_database_hostname == postgres_connection_hostname or miniflux_database_socket_enabled) else [])
   }}
 
 miniflux_systemd_wanted_services_list_auto: |
@@ -10127,7 +10127,7 @@ miniflux_container_additional_networks_auto: |
     +
     ([ntfy_container_network] if ntfy_enabled | default(false) and miniflux_container_network != ntfy_container_network else [])
     +
-    ([postgres_container_network] if postgres_enabled and miniflux_database_hostname == postgres_connection_hostname and miniflux_container_network != postgres_container_network else [])
+    ([postgres_container_network] if postgres_enabled and (miniflux_database_hostname == postgres_connection_hostname and miniflux_container_network != postgres_container_network and not miniflux_database_socket_enabled) else [])
     +
     ([readeck_container_network] if readeck_enabled | default(false) and miniflux_container_network != readeck_container_network else [])
     +
@@ -10140,10 +10140,11 @@ miniflux_container_labels_traefik_compression_middleware_enabled: "{{ mash_playb
 miniflux_container_labels_traefik_compression_middleware_name: "{{ mash_playbook_reverse_proxy_traefik_middleware_compession_name if mash_playbook_reverse_proxy_traefik_middleware_compession_enabled else '' }}"
 
 # role-specific:postgres
-miniflux_database_hostname: "{{ postgres_connection_hostname if postgres_enabled else '' }}"
+miniflux_database_hostname: "{{ postgres_connection_hostname if postgres_enabled and not miniflux_database_socket_enabled else '' }}"
 miniflux_database_port: "{{ postgres_connection_port if postgres_enabled else '5432' }}"
 miniflux_database_password: "{{ (mash_playbook_generic_secret_key + ':miniflux.db') | hash('sha512') | to_uuid }}"
-miniflux_database_sslmode: "{{ 'disable' if postgres_enabled and miniflux_database_hostname == postgres_connection_hostname else 'prefer' }}"
+miniflux_database_sslmode: "{{ 'disable' if postgres_enabled and (miniflux_database_hostname == postgres_connection_hostname or miniflux_database_socket_enabled) else 'prefer' }}"
+miniflux_database_socket_path_host: "{{ postgres_run_path }}"
 # /role-specific:postgres
 
 # role-specific:traefik
