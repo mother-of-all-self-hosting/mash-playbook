@@ -169,16 +169,10 @@ Having configured `vars.yml` for the dedicated instance, add the following confi
 
 # Add the base configuration as specified above
 
+rsshub_environment_variables_cache_type: redis
+
 # Point RSSHub server to its dedicated Valkey instance
-rsshub_redis_hostname: mash-rsshub-valkey
-
-# Make sure the RSSHub server service (mash-rsshub-server.service) starts after its dedicated Valkey service (mash-rsshub-valkey.service)
-rsshub_systemd_required_services_list_custom:
-  - "mash-rsshub-valkey.service"
-
-# Make sure the RSSHub server container is connected to the container network of its dedicated Valkey service (mash-rsshub-valkey)
-rsshub_container_additional_networks_custom:
-  - "mash-rsshub-valkey"
+rsshub_redis_socket_path_host: /mash/rsshub-valkey/run
 
 ########################################################################
 #                                                                      #
@@ -219,16 +213,10 @@ valkey_enabled: true
 
 # Add the base configuration as specified above
 
+rsshub_environment_variables_cache_type: redis
+
 # Point RSSHub server to the shared Valkey instance
-rsshub_redis_hostname: "{{ valkey_identifier }}"
-
-# Make sure the RSSHub server service (mash-rsshub-server.service) starts after the shared Valkey service (mash-valkey.service)
-rsshub_systemd_required_services_list_custom:
-  - "{{ valkey_identifier }}.service"
-
-# Make sure the RSSHub server container is connected to the container network of the shared Valkey service (mash-valkey)
-rsshub_container_additional_networks_custom:
-  - "{{ valkey_identifier }}"
+rsshub_redis_socket_path_host: "{{ valkey_run_path }}"
 
 ########################################################################
 #                                                                      #
