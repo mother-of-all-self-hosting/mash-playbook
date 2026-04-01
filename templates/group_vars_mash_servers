@@ -5772,7 +5772,7 @@ forgejo_systemd_required_services_list_auto: |
   {{
     ([mariadb_identifier ~ '.service'] if mariadb_enabled | default(false) and (forgejo_database_mysql_hostname == mariadb_connection_hostname or forgejo_database_mysql_socket_enabled) and forgejo_database_type == 'mysql' else [])
     +
-    ([memcached_identifier ~ '.service'] if memcached_enabled | default(false) and forgejo_config_cache_adapter == 'memcache' else [])
+    ([memcached_identifier ~ '.service'] if memcached_enabled | default(false) and (forgejo_config_cache_adapter == 'memcache' or forgejo_cache_memcache_socket_enabled) else [])
     +
     ([postgres_identifier ~ '.service'] if postgres_enabled | default(false) and (forgejo_database_postgres_hostname == postgres_connection_hostname or forgejo_database_postgres_socket_enabled) and forgejo_database_type == 'postgres' else [])
   }}
@@ -5794,7 +5794,7 @@ forgejo_container_additional_networks_auto: |
     +
     ([meilisearch_container_network] if meilisearch_enabled | default(false) and forgejo_container_network != meilisearch_container_network and forgejo_environment_variables_indexer_issue_indexer_type == 'meilisearch' else [])
     +
-    ([memcached_container_network] if memcached_enabled | default(false) and forgejo_container_network != memcached_container_network and forgejo_config_cache_adapter == 'memcache' else [])
+    ([memcached_container_network] if memcached_enabled | default(false) and (forgejo_container_network != memcached_container_network and not forgejo_cache_memcache_socket_enabled) and forgejo_config_cache_adapter == 'memcache' else [])
     +
     ([postgres_container_network] if postgres_enabled | default(false) and (forgejo_database_postgres_hostname == postgres_connection_hostname and forgejo_container_network != postgres_container_network and not forgejo_database_postgres_socket_enabled) and forgejo_database_type == 'postgres' else [])
   }}
@@ -5827,7 +5827,8 @@ forgejo_environment_variables_indexer_issue_indexer_conn_str: "http://:{{ meilis
 # /role-specific:meilisearch
 
 # role-specific:memcached
-forgejo_config_cache_host: "{{ memcached_identifier }}:{{ memcached_container_http_port }}"
+forgejo_config_cache_host: "{{ forgejo_cache_memcache_socket_path_container + '/memcached.sock' if forgejo_cache_memcache_socket_enabled else memcached_identifier + ':' + (memcached_container_http_port | string) }}"
+forgejo_cache_memcache_socket_path_host: "{{ memcached_run_path }}"
 # /role-specific:memcached
 
 # role-specific:postgres
@@ -6182,7 +6183,7 @@ gitea_systemd_required_services_list_auto: |
   {{
     ([mariadb_identifier ~ '.service'] if mariadb_enabled | default(false) and (gitea_database_mysql_hostname == mariadb_connection_hostname or gitea_database_mysql_socket_enabled) and gitea_database_type == 'mysql' else [])
     +
-    ([memcached_identifier ~ '.service'] if memcached_enabled | default(false) and gitea_config_cache_adapter == 'memcache' else [])
+    ([memcached_identifier ~ '.service'] if memcached_enabled | default(false) and (gitea_config_cache_adapter == 'memcache' or gitea_cache_memcache_socket_enabled) else [])
     +
     ([postgres_identifier ~ '.service'] if postgres_enabled | default(false) and (gitea_database_postgres_hostname == postgres_connection_hostname or gitea_database_postgres_socket_enabled) and gitea_database_type == 'postgres' else [])
   }}
@@ -6204,7 +6205,7 @@ gitea_container_additional_networks_auto: |
     +
     ([meilisearch_container_network] if meilisearch_enabled | default(false) and gitea_container_network != meilisearch_container_network and gitea_environment_variables_indexer_issue_indexer_type == 'meilisearch' else [])
     +
-    ([memcached_container_network] if memcached_enabled | default(false) and gitea_container_network != memcached_container_network and gitea_config_cache_adapter == 'memcache' else [])
+    ([memcached_container_network] if memcached_enabled | default(false) and (gitea_container_network != memcached_container_network and not gitea_cache_memcache_socket_enabled) and gitea_config_cache_adapter == 'memcache' else [])
     +
     ([postgres_container_network] if postgres_enabled | default(false) and (gitea_database_postgres_hostname == postgres_connection_hostname and gitea_container_network != postgres_container_network and not gitea_database_postgres_socket_enabled) and gitea_database_type == 'postgres' else [])
   }}
@@ -6235,7 +6236,8 @@ gitea_environment_variables_indexer_issue_indexer_conn_str: "http://:{{ meilisea
 # /role-specific:meilisearch
 
 # role-specific:memcached
-gitea_config_cache_host: "{{ memcached_identifier }}:{{ memcached_container_http_port }}"
+gitea_config_cache_host: "{{ gitea_cache_memcache_socket_path_container + '/memcached.sock' if gitea_cache_memcache_socket_enabled else memcached_identifier + ':' + (memcached_container_http_port | string) }}"
+gitea_cache_memcache_socket_path_host: "{{ memcached_run_path }}"
 # /role-specific:memcached
 
 # role-specific:postgres
