@@ -1,29 +1,45 @@
 <!--
+SPDX-FileCopyrightText: 2020 Aaron Raimist
+SPDX-FileCopyrightText: 2020 Chris van Dijk
+SPDX-FileCopyrightText: 2020 Dominik Zajac
+SPDX-FileCopyrightText: 2020 Mickaël Cornière
+SPDX-FileCopyrightText: 2020-2024 MDAD project contributors
+SPDX-FileCopyrightText: 2020-2024 Slavi Pantaleev
+SPDX-FileCopyrightText: 2022 François Darveau
+SPDX-FileCopyrightText: 2022 Julian Foad
+SPDX-FileCopyrightText: 2022 Warren Bailey
+SPDX-FileCopyrightText: 2023 Antonis Christofides
+SPDX-FileCopyrightText: 2023 Felix Stupp
+SPDX-FileCopyrightText: 2023 Julian-Samuel Gebühr
+SPDX-FileCopyrightText: 2023 Pierre 'McFly' Marty
 SPDX-FileCopyrightText: 2024 MASH project contributors
+SPDX-FileCopyrightText: 2024 Tiz
+SPDX-FileCopyrightText: 2024-2026 Suguru Hirahara
 
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 
 # CouchDB
 
-[CouchDB](https://couchdb.apache.org/) is a NoSQL database that uses JSON for documents.
-This Ansible role is designed to install and configure CouchDB for using the [official CouchDB Docker image](https://github.com/apache/couchdb-docker) via the [ansible-role-couchdb](https://github.com/Bergruebe/ansible-role-couchdb).
+The playbook can install and configure [CouchDB](https://couchdb.apache.org/) for you.
 
-> [!WARNING]
-> - This role will not delete or modify existing databases or users. It will only create new databases and users if they do not already exist.
-> - This role **does not automatically integrate with Traefik** yet (see details below). PRs are welcome!
+CouchDB is a document-oriented NoSQL database which uses JSON to store data.
 
-## Features
+See the project's [documentation](https://docs.couchdb.org/en/stable/) to learn what CouchDB does and why it might be useful to you.
 
-- Sets up CouchDB in a Docker container.
-- Creates necessary system tables, if `couchdb_config_single_node: true.
-- Adds users as specified in the playbook.
-- Sets database permissions.
-- Integrates with the MASH playbook for easy deployment.
+For details about configuring the [Ansible role for CouchDB](https://github.com/mother-of-all-self-hosting/ansible-role-couchdb), you can check them via:
+- 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-couchdb/blob/main/docs/configuring-couchdb.md) online
+- 📁 `roles/galaxy/couchdb/docs/configuring-couchdb.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
-## Usage
+## Dependencies
 
-To use this role with the MASH playbook, add following lines to your inventory file of your MASH playbook:
+This service requires the following other services:
+
+- (optional) [Traefik](traefik.md) — a reverse-proxy server for exposing CouchDB publicly
+
+## Adjusting the playbook configuration
+
+To enable this service, add the following configuration to your `vars.yml` file and re-run the [installation](../installing.md) process:
 
 ```yaml
 ########################################################################
@@ -34,32 +50,6 @@ To use this role with the MASH playbook, add following lines to your inventory f
 
 couchdb_enabled: true
 
-couchdb_hostname: couchdb.example.com
-
-# enable couchdb single node mode, to automatically create databases and users
-couchdb_config_single_node: true
-
-couchdb_admins_custom:
-  - name: admin
-    password: UseASecurePassword
-
-couchdb_users_custom:
-  - name: user1
-    password: UseASecurePassword
-    roles: []
-    type: user
-
-couchdb_tables_custom:
-    - name: my_custom_table
-      permission:
-        admin:
-          names:
-            - user1
-          roles: []
-        member:
-          names: []
-          roles: []
-
 ########################################################################
 #                                                                      #
 # /couchdb                                                             #
@@ -67,22 +57,34 @@ couchdb_tables_custom:
 ########################################################################
 ```
 
-You can customize the behavior of the role by setting the following variables in your playbook:
+### Specify server administrator's username and password
 
-- `couchdb_environment_variables_extension`: to add additional environment variables to the CouchDB container.
-- `couchdb_config_extension`: to add additional configuration to the CouchDB configuration
-- `couchdb_config_peruser_enabled`: to enable per-user configuration in CouchDB | default is `true`.
-- `couchdb_config_require_valid_user_except_for_up`: to require a valid user for all requests except for the `_up` endpoint | default is `true`.
-- `couchdb_container_additional_networks_custom`: to add additional networks to the CouchDB container.
-- `couchdb_version`: to specify the version of the CouchDB Docker image to use
+You also need to specify a server administrator's login credential. See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-couchdb/blob/main/docs/configuring-couchdb.md#specify-server-administrators-username-and-password) on the role's documentation for details.
 
-For more information on possible configuration, refer to the comments in the [`defaults/main.yml`](https://github.com/Bergruebe/ansible-role-couchdb/blob/master/defaults/main.yml) file.
+>[!NOTE]
+> CouchDB requires a server administrator account to start. If one has not been created, CouchDB will print an error message and terminate.
 
-By default, this role **will not expose the CouchDB port** to the host machine. If you want to access CouchDB from outside the Docker container, you will need to expose the port in your playbook via the `couchdb_container_http_host_bind_port` variable. Or you can just add the container to another docker network via the `couchdb_container_additional_networks_custom` variable.
-Please consider the use of a reverse proxy for secure access to CouchDB.
+### Expose the instance publicly (optional)
 
-Currently, the [ansible-role-couchdb](https://github.com/Bergruebe/ansible-role-couchdb) Ansible role **does not automatically integrate with Traefik**. PRs are welcome!
+By default, the CouchDB instance is not exposed externally, as it is mainly intended to be used in the internal network.
 
-## Contributing
+To expose it publicly, add the following configuration to your `vars.yml` file (adapt to your needs):
 
-Contributions are welcome! Please feel free to review the [ansible-role-couchdb](https://github.com/Bergruebe/ansible-role-couchdb) repository and submit a Pull Request.
+```yaml
+# The hostname at which CouchDB is served.
+couchdb_hostname: "couchdb.example.com"
+```
+
+**Note**: hosting CouchDB under a subpath (by configuring the `couchdb_path_prefix` variable) does not seem to be possible due to CouchDB's technical limitations.
+
+## Usage
+
+After running the command for installation, CouchDB becomes available internally to other services on the same network. If the service is exposed to the internet, it becomes available at the URL specified with `couchdb_hostname`. With the configuration above, the service is hosted at `https://couchdb.example.com`.
+
+### Creating users
+
+See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-couchdb/blob/main/docs/configuring-couchdb.md#creating-users) on the role's documentation about how to create users (administrators and normal users).
+
+## Troubleshooting
+
+See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-couchdb/blob/main/docs/configuring-couchdb.md#troubleshooting) on the role's documentation for details.

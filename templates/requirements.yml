@@ -148,8 +148,8 @@
   version: v0.17.0-1
   name: convertx
   activation_prefix: convertx_
-- src: git+https://github.com/Bergruebe/ansible-role-couchdb.git
-  version: v3.4.3-0
+- src: git+https://github.com/mother-of-all-self-hosting/ansible-role-couchdb.git
+  version: v3.5.1-0
   name: couchdb
   activation_prefix: couchdb_
 - src: git+https://seed.radicle.garden/z38Yp2e9yFouswvrnX5MdgZYaViLb.git

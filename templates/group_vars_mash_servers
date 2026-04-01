@@ -278,7 +278,7 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
 
   # role-specific:couchdb
   - |-
-    {{ ({'name': (couchdb_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'couchdb']} if couchdb_enabled else omit) }}
+    {{ ({'name': (couchdb_identifier + '.service'), 'priority': 2000, 'restart_necessary': (couchdb_restart_necessary | bool), 'groups': ['mash', 'couchdb']} if couchdb_enabled else omit) }}
   # /role-specific:couchdb
 
   # role-specific:container_socket_proxy
@@ -4385,14 +4385,24 @@ couchdb_identifier: "{{ mash_playbook_service_identifier_prefix }}couchdb"
 
 couchdb_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}couchdb"
 
-couchdb_uid: "5984"
-couchdb_gid: "5984"
+couchdb_uid: "{{ mash_playbook_uid }}"
+couchdb_gid: "{{ mash_playbook_gid }}"
 
-couchdb_admin_user: "{{ mash_playbook_service_identifier_prefix }}admin"
-couchdb_admin_passwd: "{{ (mash_playbook_generic_secret_key + ':db.couchdb') | hash('sha512') | to_uuid }}"
-couchdb_config_uuid: "{{ (mash_playbook_generic_secret_key + ':uuid.couchdb') | hash('sha512') | to_uuid }}"
+couchdb_container_additional_networks_auto: |
+  {{
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+  }}
 
 couchdb_config_couch_chttpd_auth_secret: "{{ (mash_playbook_generic_secret_key + ':secret.couchdb') | hash('sha512') | to_uuid }}"
+
+# Only enable Traefik labels if a hostname is set (indicating that this will be exposed publicly)
+couchdb_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled and couchdb_hostname | length > 0 }}"
+couchdb_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+
+# role-specific:traefik
+couchdb_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
+couchdb_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
+# /role-specific:traefik
 
 ########################################################################
 #                                                                      #
