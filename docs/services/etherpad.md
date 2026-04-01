@@ -24,7 +24,7 @@ For details about configuring the [Ansible role for the server](https://github.c
 
 This service requires the following other services:
 
-- a datapase supported by [ueberdb2](https://www.npmjs.com/package/ueberdb2) such as [Postgres](postgres.md) / MySQL / [MariaDB](mariadb.md) database — Etherpad will default to [SQLite](https://www.sqlite.org/) if Postgres is not enabled
+- a datapase supported by [ueberdb2](https://www.npmjs.com/package/ueberdb2) such as [CouchDB](couchdb.md) / [Postgres](postgres.md) / MySQL / [MariaDB](mariadb.md) database — Etherpad will default to [SQLite](https://www.sqlite.org/) if Postgres is not enabled
 - a [Traefik](traefik.md) reverse-proxy server
 
 ## Adjusting the playbook configuration
