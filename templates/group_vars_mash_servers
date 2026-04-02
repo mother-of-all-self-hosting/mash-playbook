@@ -9196,17 +9196,17 @@ lldap_environment_variables_smtp_from: "{{ exim_relay_sender_address if exim_rel
 # /role-specific:exim_relay
 
 # role-specific:mariadb
-lldap_database_mysql_hostname: "{{ mariadb_connection_hostname if mariadb_enabled else '' }}"
+lldap_database_mysql_hostname: "{{ mariadb_connection_hostname if mariadb_enabled and not lldap_database_mysql_socket_enabled else '' }}"
 lldap_database_mysql_port: "{{ mariadb_connection_port if mariadb_enabled else '3306' }}"
 lldap_database_mysql_password: "{{ (mash_playbook_generic_secret_key + ':lldap.db') | hash('sha512') | to_uuid }}"
 lldap_database_mysql_socket_path_host: "{{ mariadb_run_path }}"
 # /role-specific:mariadb
 
 # role-specific:postgres
-lldap_database_postgres_hostname: "{{ postgres_connection_hostname if postgres_enabled else '' }}"
+lldap_database_postgres_hostname: "{{ postgres_connection_hostname if postgres_enabled and not lldap_database_postgres_socket_enabled else '' }}"
 lldap_database_postgres_port: "{{ postgres_connection_port if postgres_enabled else '5432' }}"
 lldap_database_postgres_password: "{{ (mash_playbook_generic_secret_key + ':lldap.db') | hash('sha512') | to_uuid }}"
-lldap_database_postgres_sslmode: "{{ 'disable' if postgres_enabled and lldap_database_postgres_hostname == postgres_connection_hostname else 'prefer' }}"
+lldap_database_postgres_sslmode: "{{ 'disable' if postgres_enabled and (lldap_database_postgres_hostname == postgres_connection_hostname or lldap_database_postgres_socket_enabled) else 'prefer' }}"
 lldap_database_postgres_socket_path_host: "{{ postgres_run_path }}"
 # /role-specific:postgres
 
@@ -9581,7 +9581,7 @@ mash_playbook_mariadb_managed_databases_auto_itemized:
         'name': lldap_database_name,
         'username': lldap_database_mysql_username,
         'password': lldap_database_mysql_password,
-      } if lldap_enabled and lldap_database_mysql_hostname == mariadb_connection_hostname and lldap_database_type == 'mysql' else omit)
+      } if lldap_enabled and (lldap_database_mysql_hostname == mariadb_connection_hostname or lldap_database_mysql_socket_enabled) and lldap_database_type == 'mysql' else omit)
     }}
   # /role-specific:lldap
 
