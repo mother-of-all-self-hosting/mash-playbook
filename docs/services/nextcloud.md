@@ -190,6 +190,10 @@ Having configured `vars.yml` for the dedicated instance, add the following confi
 # Point Nextcloud to its dedicated Valkey instance
 nextcloud_redis_socket_path_host: /mash/nextcloud-valkey/run
 
+# Make sure the Nextcloud service (mash-nextcloud.service) starts after its dedicated Valkey service (mash-nextcloud-valkey.service)
+nextcloud_systemd_required_services_list_custom:
+  - "mash-nextcloud-valkey.service"
+
 ########################################################################
 #                                                                      #
 # /nextcloud                                                           #
@@ -231,6 +235,10 @@ valkey_enabled: true
 
 # Point Nextcloud to the shared Valkey instance
 nextcloud_redis_socket_path_host: "{{ valkey_run_path }}"
+
+# Make sure the Nextcloud service (mash-nextcloud.service) starts after the shared Valkey service (mash-valkey.service)
+nextcloud_systemd_required_services_list_custom:
+  - "{{ valkey_identifier }}.service"
 
 ########################################################################
 #                                                                      #

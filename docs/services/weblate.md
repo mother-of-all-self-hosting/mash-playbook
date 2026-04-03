@@ -216,11 +216,11 @@ valkey_enabled: true
 # Point Weblate to the shared Valkey instance
 weblate_redis_hostname: "{{ valkey_identifier }}"
 
-# Make sure the Weblate service (mash-weblate.service) starts after its dedicated Valkey service (mash-weblate-valkey.service)
+# Make sure the Weblate service (mash-weblate.service) starts after the shared Valkey service (mash-valkey.service)
 weblate_systemd_required_services_list_custom:
   - "{{ valkey_identifier }}.service"
 
-# Make sure the Weblate container is connected to the container network of its dedicated Valkey service (mash-weblate-valkey)
+# Make sure the Weblate container is connected to the container network of the shared Valkey service (mash-valkey)
 weblate_container_additional_networks_custom:
   - "{{ valkey_container_network }}"
 

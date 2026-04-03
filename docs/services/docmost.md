@@ -245,11 +245,11 @@ valkey_enabled: true
 # Point Docmost to the shared Valkey instance
 docmost_redis_hostname: "{{ valkey_identifier }}"
 
-# Make sure the Docmost service (mash-docmost.service) starts after its dedicated Valkey service (mash-docmost-valkey.service)
+# Make sure the Docmost service (mash-docmost.service) starts after the shared Valkey service (mash-valkey.service)
 docmost_systemd_required_services_list_custom:
   - "{{ valkey_identifier }}.service"
 
-# Make sure the Docmost container is connected to the container network of its dedicated Valkey service (mash-docmost-valkey)
+# Make sure the Docmost container is connected to the container network of the shared Valkey service (mash-valkey)
 docmost_container_additional_networks_custom:
   - "{{ valkey_container_network }}"
 

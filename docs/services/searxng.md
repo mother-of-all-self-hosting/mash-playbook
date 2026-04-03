@@ -167,6 +167,10 @@ Having configured `vars.yml` for the dedicated instance, add the following confi
 # Point SearXNG to its dedicated Valkey instance
 searxng_redis_socket_path_host: /mash/searxng-valkey/run
 
+# Make sure the SearXNG service (mash-searxng.service) starts after its dedicated Valkey service (mash-searxng-valkey.service)
+searxng_systemd_required_services_list_custom:
+  - "mash-searxng-valkey.service"
+
 ########################################################################
 #                                                                      #
 # /searxng                                                             #
@@ -208,6 +212,10 @@ valkey_enabled: true
 
 # Point SearXNG to the shared Valkey instance
 searxng_redis_socket_path_host: "{{ valkey_run_path }}"
+
+# Make sure the SearXNG service (mash-searxng.service) starts after the shared Valkey service (mash-valkey.service)
+searxng_systemd_required_services_list_custom:
+  - "{{ valkey_identifier }}.service"
 
 ########################################################################
 #                                                                      #
