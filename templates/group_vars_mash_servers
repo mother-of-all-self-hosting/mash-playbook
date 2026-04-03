@@ -9625,7 +9625,7 @@ mash_playbook_mariadb_managed_databases_auto_itemized:
         'name': nextcloud_database_name,
         'username': nextcloud_database_mysql_username,
         'password': nextcloud_database_mysql_password,
-      } if nextcloud_enabled and nextcloud_database_mysql_hostname == mariadb_connection_hostname and nextcloud_database_type == 'mysql' else omit)
+      } if nextcloud_enabled and (nextcloud_database_mysql_hostname == mariadb_connection_hostname or nextcloud_database_mysql_socket_enabled) and nextcloud_database_type == 'mysql' else omit)
     }}
   # /role-specific:nextcloud
 
@@ -10810,7 +10810,7 @@ nextcloud_gid: "{{ mash_playbook_gid }}"
 
 nextcloud_systemd_required_services_list_auto: |
   {{
-    ([mariadb_identifier ~ '.service'] if mariadb_enabled | default(false) and nextcloud_database_mysql_hostname == mariadb_connection_hostname and nextcloud_database_type == 'mysql' else [])
+    ([mariadb_identifier ~ '.service'] if mariadb_enabled | default(false) and (nextcloud_database_mysql_hostname == mariadb_connection_hostname or nextcloud_database_mysql_socket_enabled) and nextcloud_database_type == 'mysql' else [])
     +
     ([postgres_identifier ~ '.service'] if postgres_enabled | default(false) and (nextcloud_database_postgres_hostname == postgres_connection_hostname or nextcloud_database_postgres_socket_enabled) and nextcloud_database_type == 'postgres' else [])
   }}
@@ -10829,7 +10829,7 @@ nextcloud_container_additional_networks_auto: |
       +
       ([lldap_container_network] if lldap_enabled | default(false) and nextcloud_container_network != lldap_container_network and nextcloud_lldap_enabled else [])
       +
-      ([mariadb_container_network] if mariadb_enabled | default(false) and nextcloud_database_mysql_hostname == mariadb_connection_hostname and nextcloud_container_network != mariadb_container_network and nextcloud_database_type == 'mysql' else [])
+      ([mariadb_container_network] if mariadb_enabled | default(false) and (nextcloud_database_mysql_hostname == mariadb_connection_hostname and nextcloud_container_network != mariadb_container_network and not nextcloud_database_mysql_socket_enabled) and nextcloud_database_type == 'mysql' else [])
       +
       ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
       +
@@ -10879,9 +10879,10 @@ nextcloud_ldap_base_groups: "ou=groups,{{ nextcloud_ldap_base }}"
 # /role-specific:lldap
 
 # role-specific:mariadb
-nextcloud_database_mysql_hostname: "{{ mariadb_connection_hostname if mariadb_enabled else '' }}"
+nextcloud_database_mysql_hostname: "{{ mariadb_connection_hostname if mariadb_enabled and not nextcloud_database_mysql_socket_enabled else '' }}"
 nextcloud_database_mysql_port: "{{ mariadb_connection_port if mariadb_enabled else '3306' }}"
 nextcloud_database_mysql_password: "{{ (mash_playbook_generic_secret_key + ':db.nextcloud') | hash('sha512') | to_uuid }}"
+nextcloud_database_mysql_socket_path_host: "{{ mariadb_run_path }}"
 # /role-specific:mariadb
 
 # role-specific:postgres
