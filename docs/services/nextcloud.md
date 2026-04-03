@@ -37,9 +37,8 @@ For details about configuring the [Ansible role for Nextcloud](https://github.co
 
 This service requires the following other services:
 
-- a [Traefik](traefik.md) reverse-proxy server
-- (optional) [Postgres](postgres.md) / MySQL / [MariaDB](mariadb.md) database — Nextcloud will default to [SQLite](https://www.sqlite.org/) if Postgres is not enabled
-    - [This page](https://docs.nextcloud.com/server/latest/admin_manual/configuration_database/linux_database_configuration.html) of the Nextcloud documentation recommends MySQL or MariaDB database
+- [Postgres](postgres.md) / MySQL / [MariaDB](mariadb.md) / [SQLite](https://www.sqlite.org/) database — Nextcloud will default to SQLite if Postgres is not enabled
+- [Traefik](traefik.md) reverse-proxy server
 - (optional) a [Valkey](valkey.md) data-store; see [below](#configuring-valkey-optional) for details about installation
 - (optional) [exim-relay](exim-relay.md) mailer
 
