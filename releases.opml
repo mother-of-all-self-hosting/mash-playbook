@@ -31,6 +31,7 @@
     <outline text="calibre_web_automated" title="calibre_web_automated" type="rss" htmlUrl="https://github.com/crocodilestick/Calibre-Web-Automated" xmlUrl="https://github.com/crocodilestick/Calibre-Web-Automated/releases.atom" />
     <outline text="cap" title="cap" type="rss" htmlUrl="https://github.com/tiagozip/cap" xmlUrl="https://github.com/tiagozip/cap/releases.atom" />
     <outline text="changedetection" title="changedetection" type="rss" htmlUrl="https://github.com/dgtlmoon/changedetection.io" xmlUrl="https://github.com/dgtlmoon/changedetection.io/releases.atom" />
+    <outline text="chiefonboarding" title="chiefonboarding" type="rss" htmlUrl="https://github.com/chiefonboarding/ChiefOnboarding" xmlUrl="https://github.com/chiefonboarding/ChiefOnboarding/releases.atom" />
     <outline text="cinny" title="cinny" type="rss" htmlUrl="https://github.com/ajbura/cinny" xmlUrl="https://github.com/ajbura/cinny/releases.atom" />
     <outline text="clickhouse" title="clickhouse" type="rss" htmlUrl="https://github.com/ClickHouse/ClickHouse" xmlUrl="https://github.com/ClickHouse/ClickHouse/releases.atom" />
     <outline text="codimd" title="codimd" type="rss" htmlUrl="https://github.com/hackmdio/codimd" xmlUrl="https://github.com/hackmdio/codimd/releases.atom" />
@@ -58,6 +59,7 @@
     <outline text="excalidraw_room" title="excalidraw_room" type="rss" htmlUrl="https://github.com/excalidraw/excalidraw-room" xmlUrl="https://github.com/excalidraw/excalidraw-room/releases.atom" />
     <outline text="exim_relay" title="exim_relay" type="rss" htmlUrl="https://github.com/devture/exim-relay" xmlUrl="https://github.com/devture/exim-relay/releases.atom" />
     <outline text="farmos" title="farmos" type="rss" htmlUrl="https://github.com/farmOS/farmOS" xmlUrl="https://github.com/farmOS/farmOS/releases.atom" />
+    <outline text="feishin" title="feishin" type="rss" htmlUrl="https://github.com/jeffvli/feishin" xmlUrl="https://github.com/jeffvli/feishin/releases.atom" />
     <outline text="fider" title="fider" type="rss" htmlUrl="https://github.com/getfider/fider" xmlUrl="https://github.com/getfider/fider/releases.atom" />
     <outline text="filebrowser" title="filebrowser" type="rss" htmlUrl="https://github.com/filebrowser/filebrowser" xmlUrl="https://github.com/filebrowser/filebrowser/releases.atom" />
     <outline text="filebrowser_quantum" title="filebrowser_quantum" type="rss" htmlUrl="https://github.com/gtsteffaniak/filebrowser" xmlUrl="https://github.com/gtsteffaniak/filebrowser/releases.atom" />
@@ -159,6 +161,7 @@
     <outline text="postgres_backup" title="postgres_backup" type="rss" htmlUrl="https://github.com/prodrigestivill/docker-postgres-backup-local" xmlUrl="https://github.com/prodrigestivill/docker-postgres-backup-local/releases.atom" />
     <outline text="privatebin" title="privatebin" type="rss" htmlUrl="https://github.com/PrivateBin/PrivateBin" xmlUrl="https://github.com/PrivateBin/PrivateBin/releases.atom" />
     <outline text="prometheus" title="prometheus" type="rss" htmlUrl="https://github.com/prometheus/prometheus" xmlUrl="https://github.com/prometheus/prometheus/releases.atom" />
+    <outline text="prometheus_alertmanager" title="prometheus_alertmanager" type="rss" htmlUrl="https://github.com/prometheus/alertmanager" xmlUrl="https://github.com/prometheus/alertmanager/releases.atom" />
     <outline text="prometheus_blackbox_exporter" title="prometheus_blackbox_exporter" type="rss" htmlUrl="https://github.com/prometheus/blackbox_exporter" xmlUrl="https://github.com/prometheus/blackbox_exporter/releases.atom" />
     <outline text="prometheus_node_exporter" title="prometheus_node_exporter" type="rss" htmlUrl="https://github.com/prometheus/node_exporter" xmlUrl="https://github.com/prometheus/node_exporter/releases.atom" />
     <outline text="prometheus_postgres_exporter" title="prometheus_postgres_exporter" type="rss" htmlUrl="https://github.com/prometheus-community/postgres_exporter" xmlUrl="https://github.com/prometheus-community/postgres_exporter/releases.atom" />
@@ -204,6 +207,7 @@
     <outline text="uptime_kuma" title="uptime_kuma" type="rss" htmlUrl="https://github.com/louislam/uptime-kuma" xmlUrl="https://github.com/louislam/uptime-kuma/releases.atom" />
     <outline text="valkey" title="valkey" type="rss" htmlUrl="https://github.com/valkey-io/valkey" xmlUrl="https://github.com/valkey-io/valkey/releases.atom" />
     <outline text="vaultwarden" title="vaultwarden" type="rss" htmlUrl="https://github.com/dani-garcia/vaultwarden" xmlUrl="https://github.com/dani-garcia/vaultwarden/releases.atom" />
+    <outline text="versatiles" title="versatiles" type="rss" htmlUrl="https://github.com/versatiles-org/versatiles-rs" xmlUrl="https://github.com/versatiles-org/versatiles-rs/releases.atom" />
     <outline text="vikunja" title="vikunja" type="rss" htmlUrl="https://github.com/vikunja/vikunja" xmlUrl="https://github.com/vikunja/vikunja/releases.atom" />
     <outline text="weblate" title="weblate" type="rss" htmlUrl="https://github.com/WeblateOrg/docker" xmlUrl="https://github.com/WeblateOrg/docker/releases.atom" />
     <outline text="wetty" title="wetty" type="rss" htmlUrl="https://github.com/butlerx/wetty" xmlUrl="https://github.com/butlerx/wetty/releases.atom" />
