@@ -76,6 +76,10 @@
   version: v5.13.2-1
   name: barassistant
   activation_prefix: barassistant_
+- src: git+https://github.com/sudo-Tiz/ansible-role-bazarr.git
+  version: v1.5.6-ls342-1
+  name: bazarr
+  activation_prefix: bazarr_
 - src: git+https://seed.radicle.garden/z2bgVhWju6shYSwtdKb7v3eoSL1Pt.git
   version: v2.8.1-0
   name: bentopdf
