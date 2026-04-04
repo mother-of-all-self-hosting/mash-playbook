@@ -1363,7 +1363,7 @@ mash_playbook_postgres_managed_databases_auto_itemized:
         'name': answer_database_name,
         'username': answer_database_postgres_username,
         'password': answer_database_postgres_password,
-      } if answer_enabled and answer_database_postgres_hostname == postgres_connection_hostname and answer_database_type == 'postgres' else omit)
+      } if answer_enabled and (answer_database_postgres_hostname == postgres_connection_hostname or answer_database_postgres_socket_enabled) and answer_database_type == 'postgres' else omit)
     }}
   # /role-specific:answer
 
@@ -2878,9 +2878,9 @@ answer_gid: "{{ mash_playbook_gid }}"
 
 answer_systemd_required_services_list_auto: |
   {{
-    ([mariadb_identifier ~ '.service'] if mariadb_enabled | default(false) and answer_database_mysql_hostname == mariadb_connection_hostname and answer_database_type == 'mysql' else [])
+    ([mariadb_identifier ~ '.service'] if mariadb_enabled | default(false) and (answer_database_mysql_hostname == mariadb_connection_hostname or answer_database_mysql_socket_enabled) and answer_database_type == 'mysql' else [])
     +
-    ([postgres_identifier ~ '.service'] if postgres_enabled | default(false) and answer_database_postgres_hostname == postgres_connection_hostname and answer_database_type == 'postgres' else [])
+    ([postgres_identifier ~ '.service'] if postgres_enabled | default(false) and (answer_database_postgres_hostname == postgres_connection_hostname or answer_database_postgres_socket_enabled) and answer_database_type == 'postgres' else [])
   }}
 
 answer_systemd_wanted_services_list_auto: |
@@ -2892,26 +2892,28 @@ answer_container_additional_networks_auto: |
   {{
     ([exim_relay_container_network] if exim_relay_enabled | default(false) and answer_container_network != exim_relay_container_network else [])
     +
-    ([mariadb_container_network] if mariadb_enabled | default(false) and answer_database_mysql_hostname == mariadb_connection_hostname and answer_container_network != mariadb_container_network and answer_database_type == 'mysql' else [])
+    ([mariadb_container_network] if mariadb_enabled | default(false) and (answer_database_mysql_hostname == mariadb_connection_hostname and answer_container_network != mariadb_container_network and not answer_database_mysql_socket_enabled) and answer_database_type == 'mysql' else [])
     +
     ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
     +
-    ([postgres_container_network] if postgres_enabled | default(false) and answer_database_postgres_hostname == postgres_connection_hostname and answer_container_network != postgres_container_network and answer_database_type == 'postgres' else [])
+    ([postgres_container_network] if postgres_enabled | default(false) and (answer_database_postgres_hostname == postgres_connection_hostname and answer_container_network != postgres_container_network and not answer_database_postgres_socket_enabled) and answer_database_type == 'postgres' else [])
   }}
 
 answer_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
 answer_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
 
 # role-specific:mariadb
-answer_database_mysql_hostname: "{{ mariadb_connection_hostname if mariadb_enabled else '' }}"
+answer_database_mysql_hostname: "{{ mariadb_connection_hostname if mariadb_enabled and not answer_database_mysql_socket_enabled else '' }}"
 answer_database_mysql_port: "{{ mariadb_connection_port if mariadb_enabled else '3306' }}"
 answer_database_mysql_password: "{{ (mash_playbook_generic_secret_key + ':m.answer') | hash('sha512') | to_uuid }}"
+answer_database_mysql_socket_path_host: "{{ mariadb_run_path }}"
 # /role-specific:mariadb
 
 # role-specific:postgres
-answer_database_postgres_hostname: "{{ postgres_connection_hostname if postgres_enabled else '' }}"
+answer_database_postgres_hostname: "{{ postgres_connection_hostname if postgres_enabled and not answer_database_postgres_socket_enabled else '' }}"
 answer_database_postgres_port: "{{ postgres_connection_port if postgres_enabled else '5432' }}"
 answer_database_postgres_password: "{{ (mash_playbook_generic_secret_key + ':p.answer') | hash('sha512') | to_uuid }}"
+answer_database_postgres_socket_path_host: "{{ postgres_run_path }}"
 # /role-specific:postgres
 
 # role-specific:traefik
@@ -9407,7 +9409,7 @@ mash_playbook_mariadb_managed_databases_auto_itemized:
         'name': answer_database_name,
         'username': answer_database_mysql_username,
         'password': answer_database_mysql_password,
-      } if answer_enabled and answer_database_mysql_hostname == mariadb_connection_hostname and answer_database_type == 'mysql' else omit)
+      } if answer_enabled and (answer_database_mysql_hostname == mariadb_connection_hostname or answer_database_mysql_socket_enabled) and answer_database_type == 'mysql' else omit)
     }}
   # /role-specific:answer
 
