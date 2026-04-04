@@ -145,6 +145,7 @@ Below is an exhaustive list of the free and open-source software for self-hostin
 | [MediaWiki](https://www.mediawiki.org) | Popular wiki software | [Link](services/mediawiki.md) |
 | [Meilisearch](https://www.meilisearch.com) | Typo-tolerant fulltext search engine with a RESTful search API | [Link](services/meilisearch.md) |
 | [Memcached](https://memcached.org) | In-memory key-value store | [Link](services/memcached.md) |
+| [Memos](https://usememos.com/) | Markdown-native note-taking tool | [Link](services/memos.md) |
 | [Minecraft](https://docker-minecraft-server.readthedocs.io) | The popular voxel-based sandbox game | [Link](services/minecraft.md) |
 | [Miniflux](https://miniflux.app/) | Minimalist and opinionated feed reader | [Link](services/miniflux.md) |
 | [Misskey](https://misskey-hub.net/en/) | Decentralized microblogging platform based on the ActivityPub protocol | [Link](services/misskey.md) |
