@@ -18,17 +18,17 @@ SPDX-FileCopyrightText: 2024 - 2025 Suguru Hirahara
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 
-# Gotify
+# Memos
 
-The playbook can install and configure [Gotify](https://gotify.net) for you.
+The playbook can install and configure [Memos](https://memos.net) for you.
 
-Gotify is a simple server for sending and receiving messages.
+Memos is a simple server for sending and receiving messages.
 
-See the project's [documentation](https://gotify.net/docs/) to learn what Gotify does and why it might be useful to you.
+See the project's [documentation](https://memos.net/docs/) to learn what Memos does and why it might be useful to you.
 
-For details about configuring the [Ansible role for Gotify](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3dQNNLitS9sByxZ83ivu5qg6qR4N), you can check them via:
-- 🌐 [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3dQNNLitS9sByxZ83ivu5qg6qR4N/tree/docs/configuring-gotify.md) online
-- 📁 `roles/galaxy/gotify/docs/configuring-gotify.md` locally, if you have [fetched the Ansible roles](../installing.md)
+For details about configuring the [Ansible role for Memos](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3dQNNLitS9sByxZ83ivu5qg6qR4N), you can check them via:
+- 🌐 [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3dQNNLitS9sByxZ83ivu5qg6qR4N/tree/docs/configuring-memos.md) online
+- 📁 `roles/galaxy/memos/docs/configuring-memos.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 ## Dependencies
 
@@ -44,40 +44,40 @@ To enable this service, add the following configuration to your `vars.yml` file 
 ```yaml
 ########################################################################
 #                                                                      #
-# gotify                                                               #
+# memos                                                                #
 #                                                                      #
 ########################################################################
 
-gotify_enabled: true
+memos_enabled: true
 
-gotify_hostname: gotify.example.com
+memos_hostname: memos.example.com
 
 ########################################################################
 #                                                                      #
-# /gotify                                                              #
+# /memos                                                               #
 #                                                                      #
 ########################################################################
 ```
 
-**Note**: hosting Gotify under a subpath (by configuring the `gotify_path_prefix` variable) does not seem to be possible due to Gotify's technical limitations.
+**Note**: hosting Memos under a subpath (by configuring the `memos_path_prefix` variable) does not seem to be possible due to Memos's technical limitations.
 
 ### Select database to use
 
-It is necessary to select a database used by Gotify from a MySQL compatible database, Postgres, and SQLite. See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3dQNNLitS9sByxZ83ivu5qg6qR4N/tree/docs/configuring-gotify.md#specify-database) on the role's documentation for details.
+It is necessary to select a database used by Memos from a MySQL compatible database, Postgres, and SQLite. See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3dQNNLitS9sByxZ83ivu5qg6qR4N/tree/docs/configuring-memos.md#specify-database) on the role's documentation for details.
 
 ### Set the username and password for the first user
 
-You also need to set an initial username and password for the first user. Refer to [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3dQNNLitS9sByxZ83ivu5qg6qR4N/tree/docs/configuring-gotify.md#specify-username-and-password-for-the-first-user) on the role's documentation.
+You also need to set an initial username and password for the first user. Refer to [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3dQNNLitS9sByxZ83ivu5qg6qR4N/tree/docs/configuring-memos.md#specify-username-and-password-for-the-first-user) on the role's documentation.
 
 ## Usage
 
-After running the command for installation, the Gotify instance becomes available at the URL specified with `gotify_hostname`. With the configuration above, the service is hosted at `https://gotify.example.com`.
+After running the command for installation, the Memos instance becomes available at the URL specified with `memos_hostname`. With the configuration above, the service is hosted at `https://memos.example.com`.
 
 To get started, open the URL with a web browser to log in to the instance. **Note that the first registered user becomes an administrator automatically.**
 
 ## Troubleshooting
 
-See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3dQNNLitS9sByxZ83ivu5qg6qR4N/tree/docs/configuring-gotify.md#troubleshooting) on the role's documentation for details.
+See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3dQNNLitS9sByxZ83ivu5qg6qR4N/tree/docs/configuring-memos.md#troubleshooting) on the role's documentation for details.
 
 ## Related services
 
