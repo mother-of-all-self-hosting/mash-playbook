@@ -179,6 +179,10 @@ Having configured `vars.yml` for the dedicated instance, add the following confi
 # Point Vikunja to its dedicated Valkey instance
 vikunja_redis_socket_path_host: /mash/vikunja-valkey/run
 
+# Make sure the Vikunja service (mash-vikunja.service) starts after its dedicated Valkey service (mash-vikunja-valkey.service)
+vikunja_systemd_required_services_list_custom:
+  - "mash-vikunja-valkey.service"
+
 ########################################################################
 #                                                                      #
 # /vikunja                                                             #
@@ -220,6 +224,10 @@ valkey_enabled: true
 
 # Point Vikunja to the shared Valkey instance
 vikunja_redis_socket_path_host: "{{ valkey_run_path }}"
+
+# Make sure the Vikunja service (mash-vikunja.service) starts after the shared Valkey service (mash-valkey.service)
+vikunja_systemd_required_services_list_custom:
+  - "{{ valkey_identifier }}.service"
 
 ########################################################################
 #                                                                      #

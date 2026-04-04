@@ -37,9 +37,8 @@ For details about configuring the [Ansible role for Nextcloud](https://github.co
 
 This service requires the following other services:
 
-- a [Traefik](traefik.md) reverse-proxy server
-- (optional) [Postgres](postgres.md) / MySQL / [MariaDB](mariadb.md) database — Nextcloud will default to [SQLite](https://www.sqlite.org/) if Postgres is not enabled
-    - [This page](https://docs.nextcloud.com/server/latest/admin_manual/configuration_database/linux_database_configuration.html) of the Nextcloud documentation recommends MySQL or MariaDB database
+- [Postgres](postgres.md) / MySQL / [MariaDB](mariadb.md) / [SQLite](https://www.sqlite.org/) database — Nextcloud will default to SQLite if Postgres is not enabled
+- [Traefik](traefik.md) reverse-proxy server
 - (optional) a [Valkey](valkey.md) data-store; see [below](#configuring-valkey-optional) for details about installation
 - (optional) [exim-relay](exim-relay.md) mailer
 
@@ -188,15 +187,11 @@ Having configured `vars.yml` for the dedicated instance, add the following confi
 # Add the base configuration as specified above
 
 # Point Nextcloud to its dedicated Valkey instance
-nextcloud_redis_hostname: mash-nextcloud-valkey
+nextcloud_redis_socket_path_host: /mash/nextcloud-valkey/run
 
 # Make sure the Nextcloud service (mash-nextcloud.service) starts after its dedicated Valkey service (mash-nextcloud-valkey.service)
 nextcloud_systemd_required_services_list_custom:
   - "mash-nextcloud-valkey.service"
-
-# Make sure the Nextcloud container is connected to the container network of its dedicated Valkey service (mash-nextcloud-valkey)
-nextcloud_container_additional_networks_custom:
-  - "mash-nextcloud-valkey"
 
 ########################################################################
 #                                                                      #
@@ -238,15 +233,11 @@ valkey_enabled: true
 # Add the base configuration as specified above
 
 # Point Nextcloud to the shared Valkey instance
-nextcloud_redis_hostname: "{{ valkey_identifier }}"
+nextcloud_redis_socket_path_host: "{{ valkey_run_path }}"
 
 # Make sure the Nextcloud service (mash-nextcloud.service) starts after the shared Valkey service (mash-valkey.service)
 nextcloud_systemd_required_services_list_custom:
   - "{{ valkey_identifier }}.service"
-
-# Make sure the Nextcloud container is connected to the container network of the shared Valkey service (mash-valkey)
-nextcloud_container_additional_networks_custom:
-  - "{{ valkey_identifier }}"
 
 ########################################################################
 #                                                                      #

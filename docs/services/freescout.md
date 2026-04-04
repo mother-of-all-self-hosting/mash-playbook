@@ -54,8 +54,8 @@ freescout_enabled: true
 
 freescout_hostname: freescout.example.com
 
-freescout_admin_email: your-email-here
-freescout_admin_password: a-strong-password-here
+freescout_environment_variables_admin_email: your-email-here
+freescout_environment_variables_admin_password: a-strong-password-here
 
 ########################################################################
 #                                                                      #

@@ -220,11 +220,11 @@ valkey_enabled: true
 # Point Misskey to the shared Valkey instance
 misskey_redis_hostname: "{{ valkey_identifier }}"
 
-# Make sure the Misskey service (mash-misskey.service) starts after its dedicated Valkey service (mash-misskey-valkey.service)
+# Make sure the Misskey service (mash-misskey.service) starts after the shared Valkey service (mash-valkey.service)
 misskey_systemd_required_services_list_custom:
   - "{{ valkey_identifier }}.service"
 
-# Make sure the Misskey container is connected to the container network of its dedicated Valkey service (mash-misskey-valkey)
+# Make sure the Misskey container is connected to the container network of the shared Valkey service (mash-valkey)
 misskey_container_additional_networks_custom:
   - "{{ valkey_container_network }}"
 

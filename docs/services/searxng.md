@@ -165,15 +165,11 @@ Having configured `vars.yml` for the dedicated instance, add the following confi
 # Add the base configuration as specified above
 
 # Point SearXNG to its dedicated Valkey instance
-searxng_redis_hostname: mash-searxng-valkey
+searxng_redis_socket_path_host: /mash/searxng-valkey/run
 
 # Make sure the SearXNG service (mash-searxng.service) starts after its dedicated Valkey service (mash-searxng-valkey.service)
 searxng_systemd_required_services_list_custom:
   - "mash-searxng-valkey.service"
-
-# Make sure the SearXNG container is connected to the container network of its dedicated Valkey service (mash-searxng-valkey)
-searxng_container_additional_networks_custom:
-  - "mash-searxng-valkey"
 
 ########################################################################
 #                                                                      #
@@ -215,15 +211,11 @@ valkey_enabled: true
 # Add the base configuration as specified above
 
 # Point SearXNG to the shared Valkey instance
-searxng_redis_hostname: "{{ valkey_identifier }}"
+searxng_redis_socket_path_host: "{{ valkey_run_path }}"
 
 # Make sure the SearXNG service (mash-searxng.service) starts after the shared Valkey service (mash-valkey.service)
 searxng_systemd_required_services_list_custom:
   - "{{ valkey_identifier }}.service"
-
-# Make sure the SearXNG container is connected to the container network of the shared Valkey service (mash-valkey)
-searxng_container_additional_networks_custom:
-  - "{{ valkey_identifier }}"
 
 ########################################################################
 #                                                                      #
