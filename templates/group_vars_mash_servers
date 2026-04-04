@@ -4856,7 +4856,7 @@ docuseal_database_mysql_socket_path_host: "{{ mariadb_run_path }}"
 docuseal_database_postgres_hostname: "{{ postgres_connection_hostname if postgres_enabled else '' }}"
 docuseal_database_postgres_port: "{{ postgres_connection_port if postgres_enabled else '5432' }}"
 docuseal_database_postgres_password: "{{ (mash_playbook_generic_secret_key + ':db.docuseal.p') | hash('sha512') | to_uuid }}"
-docuseal_database_postgres_sslmode: "{{ 'disable' if postgres_enabled and docuseal_database_postgres_hostname == postgres_connection_hostname else 'prefer' }}"
+docuseal_database_postgres_sslmode: "{{ 'disable' if postgres_enabled and (docuseal_database_postgres_hostname == postgres_connection_hostname or docuseal_database_postgres_socket_enabled) else 'prefer' }}"
 docuseal_database_postgres_socket_path_host: "{{ postgres_run_path }}"
 # /role-specific:postgres
 
@@ -6145,7 +6145,7 @@ ghostfolio_database_hostname: "{{ postgres_connection_hostname if postgres_enabl
 ghostfolio_database_port: "{{ postgres_connection_port if postgres_enabled else '5432' }}"
 ghostfolio_database_username: ghostfolio
 ghostfolio_database_password: "{{ (mash_playbook_generic_secret_key + ':db.ghostfolio') | hash('sha512') | to_uuid }}"
-ghostfolio_database_sslmode: "{{ 'disable' if postgres_enabled and ghostfolio_database_hostname == postgres_connection_hostname else 'prefer' }}"
+ghostfolio_database_sslmode: "{{ 'disable' if postgres_enabled and (ghostfolio_database_hostname == postgres_connection_hostname or ghostfolio_database_socket_enabled) else 'prefer' }}"
 ghostfolio_database_socket_path_host: "{{ postgres_run_path }}"
 # /role-specific:postgres
 
@@ -8372,7 +8372,7 @@ joplin_server_database_hostname: "{{ postgres_connection_hostname if postgres_en
 joplin_server_database_port: "{{ postgres_connection_port if postgres_enabled else '5432' }}"
 joplin_server_database_username: "{{ joplin_server_identifier }}"
 joplin_server_database_password: "{{ (mash_playbook_generic_secret_key + ':db.joplinserver') | hash('sha512') | to_uuid }}"
-joplin_server_database_sslmode: "{{ 'disable' if postgres_enabled and joplin_server_database_hostname == postgres_connection_hostname else 'prefer' }}"
+joplin_server_database_sslmode: "{{ 'disable' if postgres_enabled and (joplin_server_database_hostname == postgres_connection_hostname or joplin_server_database_socket_enabled) else 'prefer' }}"
 joplin_server_database_socket_path_host: "{{ postgres_run_path }}"
 # /role-specific:postgres
 
@@ -9068,7 +9068,7 @@ linkwarden_environment_variables_meili_key: "{{ meilisearch_default_admin_api_ke
 linkwarden_database_hostname: "{{ postgres_connection_hostname if postgres_enabled else '' }}"
 linkwarden_database_port: "{{ postgres_connection_port if postgres_enabled else '5432' }}"
 linkwarden_database_password: "{{ (mash_playbook_generic_secret_key + ':linkwarden.db') | hash('sha512') | to_uuid }}"
-linkwarden_database_sslmode: "{{ 'disable' if postgres_enabled and linkwarden_database_hostname == postgres_connection_hostname else 'prefer' }}"
+linkwarden_database_sslmode: "{{ 'disable' if postgres_enabled and (linkwarden_database_hostname == postgres_connection_hostname or linkwarden_database_socket_enabled) else 'prefer' }}"
 linkwarden_database_socket_path_host: "{{ postgres_run_path }}"
 # /role-specific:postgres
 
@@ -15268,7 +15268,7 @@ weblate_environment_variables_weblate_default_from_email: "{{ exim_relay_sender_
 weblate_database_hostname: "{{ postgres_connection_hostname if postgres_enabled and not weblate_database_socket_enabled else '' }}"
 weblate_database_port: "{{ postgres_connection_port if postgres_enabled else '5432' }}"
 weblate_database_password: "{{ (mash_playbook_generic_secret_key + ':weblate.db') | hash('sha512') | to_uuid }}"
-weblate_database_sslmode: "{{ 'disable' if postgres_enabled and weblate_database_hostname == postgres_connection_hostname else 'prefer' }}"
+weblate_database_sslmode: "{{ 'disable' if postgres_enabled and (weblate_database_hostname == postgres_connection_hostname or weblate_database_socket_enabled) else 'prefer' }}"
 weblate_database_socket_path_host: "{{ postgres_run_path }}"
 # /role-specific:postgres
 
@@ -15494,7 +15494,7 @@ woodpecker_ci_server_database_mysql_socket_path_host: "{{ mariadb_run_path }}"
 woodpecker_ci_server_database_postgres_hostname: "{{ postgres_connection_hostname if postgres_enabled else '' }}"
 woodpecker_ci_server_database_postgres_port: "{{ postgres_connection_port if postgres_enabled else '5432' }}"
 woodpecker_ci_server_database_postgres_password: "{{ (mash_playbook_generic_secret_key + ':woodpecker.ci') | hash('sha512') | to_uuid }}"
-woodpecker_ci_server_database_postgres_sslmode: "{{ 'disable' if postgres_enabled and woodpecker_ci_server_database_postgres_hostname == postgres_connection_hostname else 'prefer' }}"
+woodpecker_ci_server_database_postgres_sslmode: "{{ 'disable' if postgres_enabled and (woodpecker_ci_server_database_postgres_hostname == postgres_connection_hostname or woodpecker_ci_server_database_postgres_socket_enabled) else 'prefer' }}"
 woodpecker_ci_server_database_postgres_socket_path_host: "{{ postgres_run_path }}"
 # /role-specific:postgres
 
