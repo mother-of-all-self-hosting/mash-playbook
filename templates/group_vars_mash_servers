@@ -8443,13 +8443,13 @@ kanboard_environment_variables_mail_from: "{{ exim_relay_sender_address if exim_
 kanboard_database_mysql_hostname: "{{ mariadb_connection_hostname if mariadb_enabled else '' }}"
 kanboard_database_mysql_port: "{{ mariadb_connection_port if mariadb_enabled else '3306' }}"
 kanboard_database_mysql_password: "{{ (mash_playbook_generic_secret_key + ':kanboard.db.m') | hash('sha512') | to_uuid }}"
-kanboard_database_postgres_socket_path_host: "{{ postgres_run_path }}"
 # /role-specific:mariadb
 
 # role-specific:postgres
-kanboard_database_postgres_hostname: "{{ postgres_connection_hostname if postgres_enabled else '' }}"
+kanboard_database_postgres_hostname: "{{ postgres_connection_hostname if postgres_enabled and not kanboard_database_postgres_socket_enabled else '' }}"
 kanboard_database_postgres_port: "{{ postgres_connection_port if postgres_enabled else '5432' }}"
 kanboard_database_postgres_password: "{{ (mash_playbook_generic_secret_key + ':kanboard.db.p') | hash('sha512') | to_uuid }}"
+kanboard_database_postgres_socket_path_host: "{{ postgres_run_path }}"
 # /role-specific:postgres
 
 # role-specific:traefik
