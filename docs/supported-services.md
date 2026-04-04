@@ -28,7 +28,7 @@ Below is an exhaustive list of the free and open-source software for self-hostin
 | [AdGuard Home](https://adguard.com/en/adguard-home/overview.html/) | A network-wide DNS software for blocking ads & tracking | [Link](services/adguard-home.md) |
 | [Adminer](https://www.adminer.org/) | Full-featured database management tool written in PHP | [Link](services/adminer.md) |
 | [An Otter Wiki](https://otterwiki.com/) | Minimalistic wiki powered by Python, Markdown and Git | [Link](services/otterwiki.md) |
-| [Anki](https://docs.ankiweb.net/sync-server.html) | Synchronization server for Anki, a flashcard program that helps you spend more time on challenging material, and less on what you already know | [Link](services/anki.md) |
+| [Anki](https://docs.ankiweb.net/sync-server.html) | Data synchronization server for [Anki](https://apps.ankiweb.net) | [Link](services/anki.md) |
 | [AnonymousOverflow](https://github.com/httpjamesm/AnonymousOverflow) | View StackOverflow threads without exposing your IP address, browsing habits, and other browser fingerprinting data to the website | [Link](services/anonymousoverflow.md) |
 | [Apache Answer](https://answer.apache.org/) | Q&A community platform software for teams | [Link](services/answer.md) |
 | [Apache NiFi](https://nifi.apache.org/) | An easy to use, powerful, and reliable system to process and distribute data | [Link](services/nifi.md) |
@@ -161,7 +161,7 @@ Below is an exhaustive list of the free and open-source software for self-hostin
 | [noCDNbs](https://git.private.coffee/PrivateCoffee/nocdnbs) | Privacy-friendly cdnjs proxy | [Link](services/nocdnbs.md) |
 | [NodeBB](https://github.com/NodeBB/NodeBB) | Node.js based forum software | [Link](services/nodebb.md) |
 | [Notfellchen](https://codeberg.org/moanos/notfellchen) | List animals available for adoption to increase their chance of finding a forever-home | [Link](services/notfellchen.md) |
-| [ntfy](https://ntfy.sh/) | Simple HTTP-based pub-sub notification service to send you push notifications from any computer, using simple HTTP PUT or POST requests | [Link](services/ntfy.md) |
+| [ntfy](https://ntfy.sh/) | Pub-sub notification service to send you push notifications from any computer, using simple HTTP PUT or POST requests | [Link](services/ntfy.md) |
 | [OAuth2-Proxy](https://oauth2-proxy.github.io/oauth2-proxy/) | A reverse proxy and static file server that provides authentication using OpenID Connect Providers (Google, GitHub, [Keycloak](services/keycloak.md), and others) to SSO-protect services which do not support SSO natively | [Link](services/oauth2-proxy.md) |
 | [Onion Service with C Tor](https://community.torproject.org/onion-services/) | Run Onion Service with [C Tor](https://gitlab.torproject.org/tpo/core/tor) | [Link](services/onion-service-tor.md) |
 | [ONLYOFFICE Docs](https://helpcenter.onlyoffice.com/docs) | Online office suite comprising viewers and editors | [Link](services/onlyoffice-docs.md) |
@@ -180,7 +180,7 @@ Below is an exhaustive list of the free and open-source software for self-hostin
 | [PeerTube](https://joinpeertube.org/) | A tool for sharing online videos | [Link](services/peertube.md) |
 | [pgAdmin](https://www.pgadmin.org/) | Management tool for Postgres with a graphical interface | [Link](services/pgadmin.md) |
 | [phpMyAdmin](https://www.phpmyadmin.net/) | Web-based MySQL or MariaDB database server administration software | [Link](services/phpmyadmin.md) |
-| [PinePods](https://www.pinepods.online/) | Podcast management system that manages podcasts with multi-user support | [Link](services/pinepods.md) |
+| [PinePods](https://www.pinepods.online/) | Podcast management system with multi-user support | [Link](services/pinepods.md) |
 | [Plausible Analytics](https://plausible.io/) | Intuitive and lightweight web analytics | [Link](services/plausible.md) |
 | [Plex](https://www.plex.tv/) | A personal media server | [Link](services/plex.md) |
 | [Pocket ID](https://pocket-id.org/) | Simple OIDC provider for passkey-only authentication | [Link](services/pocket-id.md) |

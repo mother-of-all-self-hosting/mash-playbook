@@ -21,7 +21,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
 The playbook can install and configure [PinePods](https://www.pinepods.online/) for you.
 
-PinePods is a podcast management system that manages podcasts with multi-user support.
+PinePods is a podcast management system with multi-user support.
 
 See the project's [documentation](https://www.pinepods.online/docs/intro) to learn what PinePods does and why it might be useful to you.
 
