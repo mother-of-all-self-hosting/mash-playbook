@@ -77,5 +77,4 @@ See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az2UFF
 
 ## Related services
 
-- [Apprise API](apprise.md) — Lightweight REST framework that wraps the [Apprise](https://github.com/caronc/apprise) Notification Library
-- [ntfy](ntfy.md) — Simple HTTP-based pub-sub notification service to send you push notifications from any computer
+- [flatnotes](flatnotes.md) — Database-less note taking web app that utilises a flat folder of markdown files for storage
