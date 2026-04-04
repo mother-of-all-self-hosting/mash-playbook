@@ -73,7 +73,7 @@ linkwarden_environment_variables_next_public_disable_registration: false
 
 To enable the [advanced search options](https://docs.linkwarden.app/Usage/advanced-search), you can optionally have the Linkwarden instance connect to a Meilisearch instance.
 
-Meilisearch is available on the playbook. Enabling it and setting its default admin API key automatically configures the Linkwarden instance to connect to it.
+Meilisearch is available on the playbook. Enabling it and setting its default admin API key (`meilisearch_default_admin_api_key`) automatically configures the Linkwarden instance to connect to it.
 
 See [this page](meilisearch.md) for details about how to install it and setting the key for the Meilisearch instance.
 

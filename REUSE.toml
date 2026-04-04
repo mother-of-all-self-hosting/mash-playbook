@@ -1,0 +1,29 @@
+# SPDX-FileCopyrightText: 2026 Slavi Pantaleev
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+version = 1
+
+# Computer-generated files and other files which cannot be copyrighted
+[[annotations]]
+path = [
+    ".codespellrc",
+    ".dockerignore",
+    ".editorconfig",
+    ".github/renovate.json",
+    ".gitignore",
+    ".pre-commit-config.yaml",
+    ".yamllint",
+    "VERSIONS.md",
+    "ansible.cfg",
+    "releases.opml",
+    "templates/requirements.yml"
+]
+SPDX-FileCopyrightText = "NONE"
+SPDX-License-Identifier = "CC0-1.0"
+
+[[annotations]]
+path = ["docs/assets/**/*.webp"]
+precedence = "aggregate"
+SPDX-FileCopyrightText = "2023 - 2026 MASH project contributors"
+SPDX-License-Identifier = "AGPL-3.0-or-later"

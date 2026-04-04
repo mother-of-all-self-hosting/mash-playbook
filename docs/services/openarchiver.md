@@ -82,7 +82,7 @@ openarchiver_environment_variables_encryption_key: RANDOM_32_BYTE_HEX_STRING_HER
 
 To enable the search function, you need to have the Open Archiver instance connect to a Meilisearch instance.
 
-Meilisearch is available on the playbook. Enabling it and setting the default admin API key automatically configures the Open Archiver instance to connect to it.
+Meilisearch is available on the playbook. Enabling it and setting the default admin API key (`meilisearch_default_admin_api_key`) automatically configures the Open Archiver instance to connect to it.
 
 See [this page](meilisearch.md) for details about how to install it and setting the key for the Meilisearch instance.
 

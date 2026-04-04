@@ -1,10 +1,10 @@
 <!--
-SPDX-FileCopyrightText: 2020 - 2024 MDAD project contributors
-SPDX-FileCopyrightText: 2020 - 2024 Slavi Pantaleev
 SPDX-FileCopyrightText: 2020 Aaron Raimist
 SPDX-FileCopyrightText: 2020 Chris van Dijk
 SPDX-FileCopyrightText: 2020 Dominik Zajac
 SPDX-FileCopyrightText: 2020 Mickaël Cornière
+SPDX-FileCopyrightText: 2020-2024 MDAD project contributors
+SPDX-FileCopyrightText: 2020-2024 Slavi Pantaleev
 SPDX-FileCopyrightText: 2022 François Darveau
 SPDX-FileCopyrightText: 2022 Julian Foad
 SPDX-FileCopyrightText: 2022 Warren Bailey
@@ -13,7 +13,7 @@ SPDX-FileCopyrightText: 2023 Felix Stupp
 SPDX-FileCopyrightText: 2023 Julian-Samuel Gebühr
 SPDX-FileCopyrightText: 2023 Pierre 'McFly' Marty
 SPDX-FileCopyrightText: 2024 Thomas Miceli
-SPDX-FileCopyrightText: 2024 - 2025 Suguru Hirahara
+SPDX-FileCopyrightText: 2024-2026 Suguru Hirahara
 
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->
@@ -35,6 +35,7 @@ For details about configuring the [Ansible role for Opengist](https://app.radicl
 This service requires the following other services:
 
 - [Traefik](traefik.md) reverse-proxy server
+- (optional) [Meilisearch](meilisearch.md)
 - (optional) [Postgres](postgres.md) / MySQL / [MariaDB](mariadb.md) database — Opengist will default to [SQLite](https://www.sqlite.org/) if Postgres is not enabled
 
 ## Adjusting the playbook configuration
@@ -75,6 +76,14 @@ opengist_environment_variables_secret_key: YOUR_SECRET_KEY_HERE
 ### Select database to use (optional)
 
 By default Opengist is configured to use Postgres, but you can choose other database such as SQLite and MySQL. See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az48WEbcYK3E6uDmfP1Qbb9AGdz1L3/tree/docs/configuring-opengist.md#specify-database-optional) on the role's documentation for details.
+
+### Connecting to a Meilisearch instance (optional)
+
+You can optionally have the Opengist instance connect to a Meilisearch instance as a code indexer.
+
+Meilisearch is available on the playbook. Enabling it and setting its default admin API key (`meilisearch_default_admin_api_key`) automatically configures the Opengist instance to connect to it.
+
+See [this page](meilisearch.md) for details about how to install it and setting the key for the Meilisearch instance.
 
 ## Usage
 

@@ -9,7 +9,8 @@
     path: "{{ mash_playbook_migration_docker_trusted_gpg_d_migration_repository_path }}"
   register: mash_playbook_migration_docker_trusted_gpg_d_migration_repository_path_status
 
-- when: mash_playbook_migration_docker_trusted_gpg_d_migration_repository_path_status.stat.exists | bool
+- name: Remove the legacy Docker apt repository file when present
+  when: mash_playbook_migration_docker_trusted_gpg_d_migration_repository_path_status.stat.exists | bool
   block:
     - name: Read repository file
       ansible.builtin.slurp:

@@ -26,6 +26,10 @@ Wordpress is a web content management system.
 
 See the project's [documentation](https://codex.wordpress.org/Main_Page/) to learn what Wordpress does and why it might be useful to you.
 
+For details about configuring the [Ansible role for Wordpress](https://github.com/mother-of-all-self-hosting/ansible-role-wordpress), you can check them via:
+- 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-wordpress/blob/main/docs/configuring-wordpress.md) online
+- 📁 `roles/galaxy/wordpress/docs/configuring-wordpress.md` locally, if you have [fetched the Ansible roles](../installing.md)
+
 ## Dependencies
 
 This service requires the following other services:
@@ -65,14 +69,6 @@ To actually have the service use (and get messages sent through the exim-relay s
 >[!WARNING]
 > Without setting an authentication method such as DKIM, SPF, and DMARC for your hostname, emails are most likely to be quarantined as spam at recipient's mail servers. The worst scenario is that your server's IP address or hostname will be included in the spam list such as the one managed by [Spamhaus](https://www.spamhaus.org/), depending on the reputation. As the exim-relay service supports DKIM signing, refer to [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-exim-relay/blob/main/docs/configuring-exim-relay.md#enable-dkim-support-optional) for details about how to set it up.
 
-### Adjusting upload size limit
-
-By default the size limit of uploaded files is set to `64M`. It is possible to adjust it by adding the following configuration to your `vars.yml` file:
-
-```yaml
-wordpress_max_upload_size: UPLOAD_SIZE_LIMIT_HERE
-```
-
 ## Usage
 
 After running the command for installation, the Wordpress instance becomes available at the URL specified with `wordpress_hostname`. With the configuration above, the service is hosted at `https://wordpress.example.com`.
@@ -82,3 +78,7 @@ To get started, open the URL with a web browser, and follow the set up wizard.
 ## Troubleshooting
 
 FAQ is available on [this page](https://codex.wordpress.org/FAQ).
+
+## Related services
+
+- [WriteFreely](writefreely.md) — Clean, minimalist publishing platform made for writers with optional federation via ActivityPub

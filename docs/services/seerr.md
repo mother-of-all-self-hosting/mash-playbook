@@ -45,14 +45,12 @@ After running the command for installation, the Seerr instance becomes available
 
 For additional configuration options, refer to [ansible-role-seerr](https://github.com/spatterIight/ansible-role-seerr)'s `defaults/main.yml` file.
 
-## Recommended other services
+## Related services
 
-Consider these other related services:
+## Related services
 
-- [Autobrr](autobrr.md)
+- "* Arr" applications — [Autobrr](autobrr.md) / [FlareSolverr](flaresolverr.md) / [Homarr](homarr.md) / [Overseerr](overseerr.md) / [Radarr](radarr.md) / [Sonarr](sonarr.md)
 - [Jackett](jackett.md)
 - [Jellyfin](jellyfin.md)
 - [Plex](plex.md)
 - [qBittorrent](qbittorrent.md)
-- [Radarr](radarr.md)
-- [Sonarr](sonarr.md)

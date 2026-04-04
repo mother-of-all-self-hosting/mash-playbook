@@ -60,11 +60,9 @@ To get started, open the URL with a web browser to create an account. The recomm
 
 For additional configuration options, refer to [ansible-role-sonarr](https://github.com/spatterIight/ansible-role-sonarr)'s `defaults/main.yml` file.
 
-## Recommended other services
+## Related services
 
-Consider these other related services:
-
-- [Autobrr](autobrr.md)
+- "* Arr" applications — [Autobrr](autobrr.md) / [Homarr](homarr.md) / [Radarr](radarr.md)
 - [Jackett](jackett.md)
   - For Jackett integration instructions, see the [setup guide](jackett.md#intergration-with-sonarrradarr)
 - [Jellyfin](jellyfin.md)
@@ -72,4 +70,3 @@ Consider these other related services:
 - [Plex](plex.md)
 - [qBittorrent](qbittorrent.md)
   - For qBittorrent integration instructions, see the [setup guide](qbittorrent.md#intergration-with-sonarrradarr)
-- [Radarr](radarr.md)

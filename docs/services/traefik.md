@@ -91,6 +91,8 @@ traefik_dashboard_basicauth_user: YOUR_USERNAME_HERE
 traefik_dashboard_basicauth_password: YOUR_PASSWORD_HERE
 ```
 
+This Basic Auth setup is a convenience method. It depends on the `passlib` Python library, may be affected by passlib/bcrypt compatibility issues (see: https://foss.heptapod.net/python-libs/passlib/-/issues/196), and produces non-deterministic hashes which can trigger unnecessary Ansible changes.
+
 > [!WARNING]
 > Enabling the dashboard on a hostname you use for something else (like `mash.example.com` in the configuration above) may cause conflicts. Enabling the Traefik Dashboard makes Traefik capture all `/dashboard` and `/api` requests and forward them to itself. If any of the services hosted on the same hostname requires any of these 2 URL prefixes, you will experience problems.
 

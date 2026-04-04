@@ -84,7 +84,7 @@ To actually have the service use (and get messages sent through the exim-relay s
 
 To enable the search and filtering functions, you can optionally have the Bar Assistant instance connect to a Meilisearch instance.
 
-Meilisearch is available on the playbook. Enabling it and setting the default admin API key automatically configures the Bar Assistant instance to connect to it.
+Meilisearch is available on the playbook. Enabling it and setting the default admin API key (`meilisearch_default_admin_api_key`) automatically configures the Bar Assistant instance to connect to it.
 
 See [this page](meilisearch.md) for details about how to install it and setting the key for the Meilisearch instance.
 

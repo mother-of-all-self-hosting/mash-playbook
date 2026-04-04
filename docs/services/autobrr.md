@@ -48,14 +48,11 @@ To get started, open the URL with a web browser, and follow the prompts to finis
 
 ![Autobrr Create Account](../assets/autobrr/setup-1.webp)
 
-## Recommended other services
+## Related services
 
-Consider these other related services:
-
+- "* Arr" applications — [Homarr](homarr.md) / [Radarr](radarr.md) / [Sonarr](sonarr.md)
 - [Jackett](jackett.md)
 - [Jellyfin](jellyfin.md)
 - [Seerr](seerr.md)
 - [Plex](plex.md)
 - [qBittorrent](qbittorrent.md)
-- [Radarr](radarr.md)
-- [Sonarr](sonarr.md)

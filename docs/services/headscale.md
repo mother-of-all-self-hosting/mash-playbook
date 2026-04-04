@@ -169,6 +169,6 @@ tailscale up --login-server=https://headscale.example.com --auth-key=...
 The device will be automatically connected to the Headscale server, without any additional approval steps.
 
 
-## Recommended other services
+## Related services
 
 - [Headplane](headplane.md) — an open source, self-hosted implementation of the [Tailscale Web UI](https://tailscale.com/) for Headscale

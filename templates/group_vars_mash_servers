@@ -393,6 +393,11 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
     {{ ({'name': (farmos_identifier + '.service'), 'priority': 2000, 'restart_necessary': (farmos_restart_necessary | bool), 'groups': ['mash', 'farmos']} if farmos_enabled else omit) }}
   # /role-specific:farmos
 
+  # role-specific:feishin
+  - |-
+    {{ ({'name': (feishin_identifier + '.service'), 'priority': 2000, 'restart_necessary': (feishin_restart_necessary | bool), 'groups': ['mash', 'feishin']} if feishin_enabled else omit) }}
+  # /role-specific:feishin
+
   # role-specific:fider
   - |-
     {{ ({'name': (fider_identifier + '.service'), 'priority': 2000, 'restart_necessary': (fider_restart_necessary | bool), 'groups': ['mash', 'fider']} if fider_enabled else omit) }}
@@ -1364,7 +1369,7 @@ mash_playbook_postgres_managed_databases_auto_itemized:
         'name': asciinema_server_database_name,
         'username': asciinema_server_database_username,
         'password': asciinema_server_database_password,
-      } if asciinema_server_enabled and asciinema_server_database_hostname == postgres_connection_hostname else omit)
+      } if asciinema_server_enabled and (asciinema_server_database_hostname == postgres_connection_hostname or asciinema_server_database_socket_enabled) else omit)
     }}
   # /role-specific:asciinema_server
 
@@ -1375,7 +1380,7 @@ mash_playbook_postgres_managed_databases_auto_itemized:
         'name': atuin_database_name,
         'username': atuin_database_username,
         'password': atuin_database_password,
-      } if atuin_enabled and atuin_database_hostname == postgres_connection_hostname and atuin_database_type == 'postgres' else omit)
+      } if atuin_enabled and (atuin_database_hostname == postgres_connection_hostname or atuin_database_socket_enabled) and atuin_database_type == 'postgres' else omit)
     }}
   # /role-specific:atuin
 
@@ -1408,7 +1413,7 @@ mash_playbook_postgres_managed_databases_auto_itemized:
         'name': bitmagnet_database_name,
         'username': bitmagnet_database_username,
         'password': bitmagnet_database_password,
-      } if bitmagnet_enabled and bitmagnet_database_hostname == postgres_connection_hostname else omit)
+      } if bitmagnet_enabled and (bitmagnet_database_hostname == postgres_connection_hostname or bitmagnet_database_socket_enabled) else omit)
     }}
   # /role-specific:bitmagnet
 
@@ -1527,9 +1532,9 @@ mash_playbook_postgres_managed_databases_auto_itemized:
     {{
       ({
         'name': freshrss_database_name,
-        'username': freshrss_database_username,
-        'password': freshrss_database_password,
-      } if freshrss_enabled and freshrss_database_hostname == postgres_connection_hostname and freshrss_database_type == 'postgres' else omit)
+        'username': freshrss_database_postgres_username,
+        'password': freshrss_database_postgres_password,
+      } if freshrss_enabled and (freshrss_database_postgres_hostname == postgres_connection_hostname or freshrss_database_postgres_socket_enabled) and freshrss_database_type == 'postgres' else omit)
     }}
   # /role-specific:freshrss
 
@@ -1562,7 +1567,7 @@ mash_playbook_postgres_managed_databases_auto_itemized:
         'name': gitea_database_name,
         'username': gitea_database_postgres_username,
         'password': gitea_database_postgres_password,
-      } if gitea_enabled and gitea_database_postgres_hostname == postgres_connection_hostname and gitea_database_type == 'postgres' else omit)
+      } if gitea_enabled and (gitea_database_postgres_hostname == postgres_connection_hostname or gitea_database_postgres_socket_enabled) and gitea_database_type == 'postgres' else omit)
     }}
   # /role-specific:gitea
 
@@ -1573,7 +1578,7 @@ mash_playbook_postgres_managed_databases_auto_itemized:
         'name': gotify_database_name,
         'username': gotify_database_postgres_username,
         'password': gotify_database_postgres_password,
-      } if gotify_enabled and gotify_database_postgres_hostname == postgres_connection_hostname and gotify_database_type == 'postgres' else omit)
+      } if gotify_enabled and (gotify_database_postgres_hostname == postgres_connection_hostname or gotify_database_postgres_socket_enabled) and gotify_database_type == 'postgres' else omit)
     }}
   # /role-specific:gotify
 
@@ -1938,7 +1943,7 @@ mash_playbook_postgres_managed_databases_auto_itemized:
         'name': pgadmin_database_name,
         'username': pgadmin_database_username,
         'password': pgadmin_database_password,
-      } if pgadmin_enabled and pgadmin_database_hostname == postgres_connection_hostname else omit)
+      } if pgadmin_enabled and (pgadmin_database_hostname == postgres_connection_hostname or pgadmin_database_socket_enabled) else omit)
     }}
   # /role-specific:pgadmin
 
@@ -1971,7 +1976,7 @@ mash_playbook_postgres_managed_databases_auto_itemized:
         'name': pocket_id_database_name,
         'username': pocket_id_database_username,
         'password': pocket_id_database_password,
-      } if pocket_id_enabled and pocket_id_database_hostname == postgres_connection_hostname and pocket_id_database_type == 'postgres' else omit)
+      } if pocket_id_enabled and (pocket_id_database_hostname == postgres_connection_hostname or pocket_id_database_socket_enabled) and pocket_id_database_type == 'postgres' else omit)
     }}
   # /role-specific:pocket_id
 
@@ -2004,7 +2009,7 @@ mash_playbook_postgres_managed_databases_auto_itemized:
         'name': readeck_database_name,
         'username': readeck_database_username,
         'password': readeck_database_password,
-      } if readeck_enabled and readeck_database_hostname == postgres_connection_hostname and readeck_database_type == 'postgres' else omit)
+      } if readeck_enabled and (readeck_database_hostname == postgres_connection_hostname or readeck_database_socket_enabled) and readeck_database_type == 'postgres' else omit)
     }}
   # /role-specific:readeck
 
@@ -2103,7 +2108,7 @@ mash_playbook_postgres_managed_databases_auto_itemized:
         'name': vikunja_database_name,
         'username': vikunja_database_postgres_username,
         'password': vikunja_database_postgres_password,
-      } if vikunja_enabled and vikunja_database_postgres_hostname == postgres_connection_hostname and vikunja_database_type == 'postgres' else omit)
+      } if vikunja_enabled and (vikunja_database_postgres_hostname == postgres_connection_hostname or vikunja_database_postgres_socket_enabled) and vikunja_database_type == 'postgres' else omit)
     }}
   # /role-specific:vikunja
 
@@ -3086,7 +3091,7 @@ asciinema_server_gid: "{{ mash_playbook_gid }}"
 
 asciinema_server_systemd_required_services_list_auto: |
  {{
-    ([postgres_identifier ~ '.service'] if postgres_enabled and asciinema_server_database_hostname == postgres_connection_hostname else [])
+    ([postgres_identifier ~ '.service'] if postgres_enabled and (asciinema_server_database_hostname == postgres_connection_hostname or asciinema_server_database_socket_enabled) else [])
   }}
 
 asciinema_server_systemd_wanted_services_list_auto: |
@@ -3100,7 +3105,7 @@ asciinema_server_container_additional_networks_auto: |
     +
     ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
     +
-    ([postgres_container_network] if postgres_enabled and asciinema_server_database_hostname == postgres_connection_hostname and asciinema_server_container_network != postgres_container_network else [])
+    ([postgres_container_network] if postgres_enabled and (asciinema_server_database_hostname == postgres_connection_hostname and asciinema_server_container_network != postgres_container_network and not asciinema_server_database_socket_enabled) else [])
   }}
 
 asciinema_server_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
@@ -3118,6 +3123,8 @@ asciinema_server_database_hostname: "{{ postgres_connection_hostname if postgres
 asciinema_server_database_port: "{{ postgres_connection_port if postgres_enabled else '5432' }}"
 asciinema_server_database_user: "{{ asciinema_server_identifier }}"
 asciinema_server_database_password: "{{ (mash_playbook_generic_secret_key + ':db.asciinema') | hash('sha512') | to_uuid }}"
+asciinema_server_database_sslmode: "{{ 'disable' if postgres_enabled and (asciinema_server_database_hostname == postgres_connection_hostname or asciinema_server_database_socket_enabled) else 'prefer' }}"
+asciinema_server_database_socket_path_host: "{{ postgres_run_path }}"
 # /role-specific:postgres
 
 # role-specific:traefik
@@ -3151,15 +3158,15 @@ atuin_uid: "{{ mash_playbook_uid }}"
 atuin_gid: "{{ mash_playbook_gid }}"
 
 atuin_systemd_required_services_list_auto: |
- {{
-    ([postgres_identifier ~ '.service'] if postgres_enabled and atuin_database_hostname == postgres_connection_hostname else [])
+  {{
+    ([postgres_identifier ~ '.service'] if postgres_enabled | default(false) and (atuin_database_hostname == postgres_connection_hostname or atuin_database_socket_enabled) and atuin_database_type == 'postgres' else [])
   }}
 
 atuin_container_additional_networks_auto: |
   {{
     ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
     +
-    ([postgres_container_network] if postgres_enabled and atuin_database_hostname == postgres_connection_hostname and atuin_container_network != postgres_container_network else [])
+    ([postgres_container_network] if postgres_enabled | default(false) and (atuin_database_hostname == postgres_connection_hostname and atuin_container_network != postgres_container_network and not atuin_database_socket_enabled) and atuin_database_type == 'postgres' else [])
   }}
 
 atuin_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
@@ -3169,6 +3176,8 @@ atuin_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyab
 atuin_database_hostname: "{{ postgres_connection_hostname if postgres_enabled else '' }}"
 atuin_database_port: "{{ postgres_connection_port if postgres_enabled else '5432' }}"
 atuin_database_password: "{{ (mash_playbook_generic_secret_key + ':db.atuin') | hash('sha512') | to_uuid }}"
+atuin_database_sslmode: "{{ 'disable' if postgres_enabled and (atuin_database_hostname == postgres_connection_hostname or atuin_database_socket_enabled) else 'prefer' }}"
+atuin_database_socket_path_host: "{{ postgres_run_path }}"
 # /role-specific:postgres
 
 # role-specific:traefik
@@ -3339,6 +3348,7 @@ authentik_database_hostname: "{{ postgres_connection_hostname if postgres_enable
 authentik_database_port: "{{ postgres_connection_port if postgres_enabled else '5432' }}"
 authentik_database_username: "{{ authentik_identifier }}"
 authentik_database_password: "{{ (mash_playbook_generic_secret_key + ':db.authentik') | hash('sha512') | to_uuid }}"
+authentik_database_sslmode: "{{ 'disable' if postgres_enabled and authentik_database_hostname == postgres_connection_hostname else 'prefer' }}"
 # /role-specific:postgres
 
 # role-specific:traefik
@@ -3648,22 +3658,23 @@ bitmagnet_gid: "{{ mash_playbook_gid }}"
 
 bitmagnet_systemd_required_services_list_auto: |
   {{
-    ([postgres_identifier ~ '.service'] if postgres_enabled and bitmagnet_database_hostname == postgres_connection_hostname else [])
+    ([postgres_identifier ~ '.service'] if postgres_enabled and (bitmagnet_database_hostname == postgres_connection_hostname or bitmagnet_database_socket_enabled) else [])
   }}
 
 bitmagnet_container_additional_networks_auto: |
   {{
     ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
     +
-    ([postgres_container_network] if postgres_enabled and bitmagnet_database_hostname == postgres_connection_hostname and bitmagnet_container_network != postgres_container_network else [])
+    ([postgres_container_network] if postgres_enabled and (bitmagnet_database_hostname == postgres_connection_hostname and bitmagnet_container_network != postgres_container_network and not bitmagnet_database_socket_enabled) else [])
   }}
 
 bitmagnet_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
 bitmagnet_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
 
 # role-specific:postgres
-bitmagnet_database_hostname: "{{ postgres_connection_hostname if postgres_enabled else '' }}"
+bitmagnet_database_hostname: "{{ bitmagnet_database_socket_path_container + '/' if bitmagnet_database_socket_enabled else (postgres_connection_hostname if postgres_enabled else '') }}"
 bitmagnet_database_password: "{{ (mash_playbook_generic_secret_key + ':bitmagnet.db') | hash('sha512') | to_uuid }}"
+bitmagnet_database_socket_path_host: "{{ postgres_run_path }}"
 # /role-specific:postgres
 
 # role-specific:traefik
@@ -4010,6 +4021,7 @@ chiefonboarding_environment_variables_default_from_email: "{{ exim_relay_sender_
 chiefonboarding_database_hostname: "{{ postgres_connection_hostname if postgres_enabled else '' }}"
 chiefonboarding_database_port: "{{ postgres_connection_port if postgres_enabled else '5432' }}"
 chiefonboarding_database_password: "{{ (mash_playbook_generic_secret_key + ':db.chiefonboarding') | hash('sha512') | to_uuid }}"
+chiefonboarding_database_sslmode: "{{ 'disable' if postgres_enabled and chiefonboarding_database_hostname == postgres_connection_hostname else 'prefer' }}"
 # /role-specific:postgres
 
 # role-specific:traefik
@@ -4163,6 +4175,7 @@ codimd_database_mysql_password: "{{ (mash_playbook_generic_secret_key + ':db.cod
 codimd_database_postgres_hostname: "{{ postgres_connection_hostname if postgres_enabled else '' }}"
 codimd_database_postgres_port: "{{ postgres_connection_port if postgres_enabled else '5432' }}"
 codimd_database_postgres_password: "{{ (mash_playbook_generic_secret_key + ':db.codimd.p') | hash('sha512') | to_uuid }}"
+codimd_database_postgres_sslmode: "{{ 'disable' if postgres_enabled and codimd_database_postgres_hostname == postgres_connection_hostname else 'prefer' }}"
 # /role-specific:postgres
 
 # role-specific:traefik
@@ -4705,6 +4718,7 @@ docmost_database_hostname: "{{ postgres_connection_hostname if postgres_enabled 
 docmost_database_port: "{{ postgres_connection_port if postgres_enabled else '5432' }}"
 docmost_database_username: "{{ docmost_identifier }}"
 docmost_database_password: "{{ (mash_playbook_generic_secret_key + ':db.docmost') | hash('sha512') | to_uuid }}"
+docmost_database_sslmode: "{{ 'disable' if postgres_enabled and docmost_database_hostname == postgres_connection_hostname else 'prefer' }}"
 # /role-specific:postgres
 
 # role-specific:traefik
@@ -4773,6 +4787,7 @@ docuseal_database_mysql_password: "{{ (mash_playbook_generic_secret_key + ':db.d
 docuseal_database_postgres_hostname: "{{ postgres_connection_hostname if postgres_enabled else '' }}"
 docuseal_database_postgres_port: "{{ postgres_connection_port if postgres_enabled else '5432' }}"
 docuseal_database_postgres_password: "{{ (mash_playbook_generic_secret_key + ':db.docuseal.p') | hash('sha512') | to_uuid }}"
+docuseal_database_postgres_sslmode: "{{ 'disable' if postgres_enabled and docuseal_database_postgres_hostname == postgres_connection_hostname else 'prefer' }}"
 # /role-specific:postgres
 
 # role-specific:traefik
@@ -5131,7 +5146,7 @@ excalidraw_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_en
 excalidraw_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
 
 # role-specific:excalidraw_room
-excalidraw_container_image_self_build: true # Building the image is necessary for using the self-hosted collaboration server
+excalidraw_container_image_self_build: "{{ excalidraw_room_enabled }}" # Building the image is necessary for using the self-hosted collaboration server
 # /role-specific:excalidraw_room
 
 # role-specific:traefik
@@ -5280,6 +5295,45 @@ farmos_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_prima
 
 
 
+# role-specific:feishin
+########################################################################
+#                                                                      #
+# feishin                                                              #
+#                                                                      #
+########################################################################
+
+feishin_enabled: false
+
+feishin_identifier: "{{ mash_playbook_service_identifier_prefix }}feishin"
+
+feishin_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}feishin"
+
+# Run as nginx:nginx
+feishin_uid: "101"
+feishin_gid: "101"
+
+feishin_container_additional_networks_auto: |
+  {{
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+  }}
+
+feishin_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+feishin_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+
+# role-specific:traefik
+feishin_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
+feishin_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
+# /role-specific:traefik
+
+########################################################################
+#                                                                      #
+# /feishin                                                             #
+#                                                                      #
+########################################################################
+# /role-specific:feishin
+
+
+
 # role-specific:fider
 ########################################################################
 #                                                                      #
@@ -5331,6 +5385,7 @@ fider_environment_variables_email_noreply: "{{ exim_relay_sender_address if exim
 fider_database_hostname: "{{ postgres_connection_hostname if postgres_enabled else '' }}"
 fider_database_port: "{{ postgres_connection_port if postgres_enabled else '5432' }}"
 fider_database_password: "{{ (mash_playbook_generic_secret_key + ':db.fider') | hash('sha512') | to_uuid }}"
+fider_database_sslmode: "{{ 'disable' if postgres_enabled and fider_database_hostname == postgres_connection_hostname else 'prefer' }}"
 # /role-specific:postgres
 
 # role-specific:traefik
@@ -5415,7 +5470,7 @@ filebrowser_quantum_container_labels_traefik_enabled: "{{ mash_playbook_traefik_
 filebrowser_quantum_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
 
 # role-specific:onlyoffice_docs
-filebrowser_quantum_config_integrations_office: true
+filebrowser_quantum_config_integrations_office: "{{ onlyoffice_docs_enabled }}"
 filebrowser_quantum_config_integrations_office_url: "{{ onlyoffice_docs_scheme }}://{{ onlyoffice_docs_hostname }}"
 filebrowser_quantum_config_integrations_office_secret: "{{ onlyoffice_docs_environment_variables_jwt_secret }}"
 # /role-specific:onlyoffice_docs
@@ -5588,6 +5643,7 @@ focalboard_database_type: "{{ 'postgres' if postgres_enabled else 'sqlite' }}"
 focalboard_database_hostname: "{{ postgres_connection_hostname if postgres_enabled else '' }}"
 focalboard_database_port: "{{ postgres_connection_port if postgres_enabled else '5432' }}"
 focalboard_database_password: "{{ (mash_playbook_generic_secret_key + ':db.focalboard') | hash('sha512') | to_uuid }}"
+focalboard_database_sslmode: "{{ 'disable' if postgres_enabled and focalboard_database_hostname == postgres_connection_hostname else 'prefer' }}"
 # /role-specific:postgres
 
 # role-specific:traefik
@@ -5632,6 +5688,8 @@ forgejo_systemd_required_services_list_auto: |
 forgejo_systemd_wanted_services_list_auto: |
   {{
     ([exim_relay_identifier ~ '.service'] if exim_relay_enabled | default(false) and forgejo_config_mailer_enabled | default(false) and forgejo_config_mailer_smtp_addr == exim_relay_identifier else [])
+    +
+    ([meilisearch_identifier ~ '.service'] if meilisearch_enabled | default(false) and forgejo_environment_variables_indexer_issue_indexer_type == 'meilisearch' else [])
   }}
 
 forgejo_container_additional_networks_auto: |
@@ -5641,6 +5699,8 @@ forgejo_container_additional_networks_auto: |
     ([mariadb_container_network] if mariadb_enabled | default(false) and forgejo_database_mysql_hostname == mariadb_connection_hostname and forgejo_container_network != mariadb_container_network and forgejo_database_type == 'mysql' else [])
     +
     ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+    +
+    ([meilisearch_container_network] if meilisearch_enabled | default(false) and forgejo_container_network != meilisearch_container_network and forgejo_environment_variables_indexer_issue_indexer_type == 'meilisearch' else [])
     +
     ([memcached_container_network] if memcached_enabled | default(false) and forgejo_container_network != memcached_container_network and forgejo_config_cache_adapter == 'memcache' else [])
     +
@@ -5666,7 +5726,12 @@ forgejo_config_mailer_from: "{{ exim_relay_sender_address if exim_relay_enabled 
 forgejo_database_mysql_hostname: "{{ mariadb_connection_hostname if mariadb_enabled else '' }}"
 forgejo_database_mysql_port: "{{ mariadb_connection_port if mariadb_enabled else '3306' }}"
 forgejo_database_mysql_password: "{{ (mash_playbook_generic_secret_key + ':db.forgejo') | hash('sha512') | to_uuid }}"
+forgejo_database_mysql_sslmode: "{{ 'false' if mariadb_enabled and forgejo_database_mysql_hostname == mariadb_connection_hostname else 'prefer' }}"
 # /role-specific:mariadb
+
+# role-specific:meilisearch
+forgejo_environment_variables_indexer_issue_indexer_conn_str: "http://:{{ meilisearch_default_admin_api_key }}@{{ meilisearch_identifier }}:{{ meilisearch_container_http_port }}"
+# /role-specific:meilisearch
 
 # role-specific:memcached
 forgejo_config_cache_host: "{{ memcached_identifier }}:{{ memcached_container_http_port }}"
@@ -5676,6 +5741,7 @@ forgejo_config_cache_host: "{{ memcached_identifier }}:{{ memcached_container_ht
 forgejo_database_postgres_hostname: "{{ postgres_connection_hostname if postgres_enabled else '' }}"
 forgejo_database_postgres_port: "{{ postgres_connection_port if postgres_enabled else '5432' }}"
 forgejo_database_postgres_password: "{{ (mash_playbook_generic_secret_key + ':db.forgejo') | hash('sha512') | to_uuid }}"
+forgejo_database_postgres_sslmode: "{{ 'disable' if postgres_enabled and forgejo_database_postgres_hostname == postgres_connection_hostname else 'require' }}"
 # /role-specific:postgres
 
 # role-specific:traefik
@@ -5775,6 +5841,7 @@ freescout_database_mysql_password: "{{ (mash_playbook_generic_secret_key + ':fre
 freescout_database_postgres_hostname: "{{ postgres_connection_hostname if postgres_enabled else '' }}"
 freescout_database_postgres_port: "{{ postgres_connection_port if postgres_enabled else '5432' }}"
 freescout_database_postgres_password: "{{ (mash_playbook_generic_secret_key + ':freescout.db') | hash('sha512') | to_uuid }}"
+freescout_database_postgres_sslmode: "{{ 'disable' if postgres_enabled and freescout_database_postgres_hostname == postgres_connection_hostname else 'enable' }}"
 # /role-specific:postgres
 
 # role-specific:traefik
@@ -5811,33 +5878,35 @@ freshrss_gid: "33"
 
 freshrss_systemd_required_services_list_auto: |
   {{
-    ([mariadb_identifier ~ '.service'] if mariadb_enabled | default(false) and freshrss_database_mysql_hostname == mariadb_connection_hostname and freshrss_database_type == 'mysql' else [])
+    ([mariadb_identifier ~ '.service'] if mariadb_enabled | default(false) and (freshrss_database_mysql_hostname == mariadb_connection_hostname or freshrss_database_mysql_socket_enabled) and freshrss_database_type == 'mysql' else [])
     +
-    ([postgres_identifier ~ '.service'] if postgres_enabled | default(false) and freshrss_database_hostname == postgres_connection_hostname and freshrss_database_type == 'postgres' else [])
+    ([postgres_identifier ~ '.service'] if postgres_enabled | default(false) and (freshrss_database_postgres_hostname == postgres_connection_hostname or freshrss_database_postgres_socket_enabled) and freshrss_database_type == 'postgres' else [])
   }}
 
 freshrss_container_additional_networks_auto: |
   {{
-    ([mariadb_container_network] if mariadb_enabled | default(false) and freshrss_database_mysql_hostname == mariadb_connection_hostname and freshrss_container_network != mariadb_container_network and freshrss_database_type == 'mysql' else [])
+    ([mariadb_container_network] if mariadb_enabled | default(false) and (freshrss_database_mysql_hostname == mariadb_connection_hostname and freshrss_container_network != mariadb_container_network and not freshrss_database_mysql_socket_enabled) and freshrss_database_type == 'mysql' else [])
     +
     ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
     +
-    ([postgres_container_network] if postgres_enabled | default(false) and freshrss_database_hostname == postgres_connection_hostname and freshrss_container_network != postgres_container_network and freshrss_database_type == 'postgres' else [])
+    ([postgres_container_network] if postgres_enabled | default(false) and (freshrss_database_postgres_hostname == postgres_connection_hostname and freshrss_container_network != postgres_container_network and not freshrss_database_postgres_socket_enabled) and freshrss_database_type == 'postgres' else [])
   }}
 
 freshrss_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
 freshrss_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
 
 # role-specific:mariadb
-freshrss_database_mysql_hostname: "{{ mariadb_connection_hostname if mariadb_enabled else '' }}"
+freshrss_database_mysql_hostname: "{{ freshrss_database_mysql_socket_path_container if freshrss_database_mysql_socket_enabled else (mariadb_connection_hostname if mariadb_enabled else '') }}"
 freshrss_database_mysql_port: "{{ mariadb_connection_port if mariadb_enabled else '3306' }}"
 freshrss_database_mysql_password: "{{ (mash_playbook_generic_secret_key + ':m.freshrss') | hash('sha512') | to_uuid }}"
+freshrss_database_mysql_socket_path_host: "{{ mariadb_run_path }}"
 # /role-specific:mariadb
 
 # role-specific:postgres
-freshrss_database_hostname: "{{ postgres_connection_hostname if postgres_enabled else '' }}"
-freshrss_database_port: "{{ postgres_connection_port if postgres_enabled else '5432' }}"
-freshrss_database_password: "{{ (mash_playbook_generic_secret_key + ':p.freshrss') | hash('sha512') | to_uuid }}"
+freshrss_database_postgres_hostname: "{{ freshrss_database_postgres_socket_path_container if freshrss_database_postgres_socket_enabled else (postgres_connection_hostname if postgres_enabled else '') }}"
+freshrss_database_postgres_port: "{{ postgres_connection_port if postgres_enabled else '5432' }}"
+freshrss_database_postgres_password: "{{ (mash_playbook_generic_secret_key + ':p.freshrss') | hash('sha512') | to_uuid }}"
+freshrss_database_postgres_socket_path_host: "{{ postgres_run_path }}"
 # /role-specific:postgres
 
 # role-specific:traefik
@@ -5981,6 +6050,7 @@ ghostfolio_database_hostname: "{{ postgres_connection_hostname if postgres_enabl
 ghostfolio_database_port: "{{ postgres_connection_port if postgres_enabled else '5432' }}"
 ghostfolio_database_username: ghostfolio
 ghostfolio_database_password: "{{ (mash_playbook_generic_secret_key + ':db.ghostfolio') | hash('sha512') | to_uuid }}"
+ghostfolio_database_sslmode: "{{ 'disable' if postgres_enabled and ghostfolio_database_hostname == postgres_connection_hostname else 'prefer' }}"
 # /role-specific:postgres
 
 # role-specific:traefik
@@ -6015,29 +6085,33 @@ gitea_gid: "{{ mash_playbook_gid }}"
 
 gitea_systemd_required_services_list_auto: |
   {{
-    ([mariadb_identifier ~ '.service'] if mariadb_enabled | default(false) and gitea_database_mysql_hostname == mariadb_connection_hostname and gitea_database_type == 'mysql' else [])
+    ([mariadb_identifier ~ '.service'] if mariadb_enabled | default(false) and (gitea_database_mysql_hostname == mariadb_connection_hostname or gitea_database_mysql_socket_enabled) and gitea_database_type == 'mysql' else [])
     +
     ([memcached_identifier ~ '.service'] if memcached_enabled | default(false) and gitea_config_cache_adapter == 'memcache' else [])
     +
-    ([postgres_identifier ~ '.service'] if postgres_enabled | default(false) and gitea_database_postgres_hostname == postgres_connection_hostname and gitea_database_type == 'postgres' else [])
+    ([postgres_identifier ~ '.service'] if postgres_enabled | default(false) and (gitea_database_postgres_hostname == postgres_connection_hostname or gitea_database_postgres_socket_enabled) and gitea_database_type == 'postgres' else [])
   }}
 
 gitea_systemd_wanted_services_list_auto: |
   {{
     ([exim_relay_identifier ~ '.service'] if exim_relay_enabled | default(false) and gitea_config_mailer_enabled | default(false) and gitea_config_mailer_smtp_addr == exim_relay_identifier else [])
+    +
+    ([meilisearch_identifier ~ '.service'] if meilisearch_enabled | default(false) and gitea_environment_variables_indexer_issue_indexer_type == 'meilisearch' else [])
   }}
 
 gitea_container_additional_networks_auto: |
   {{
     ([exim_relay_container_network] if exim_relay_enabled | default(false) and gitea_config_mailer_enabled | default(false) and gitea_config_mailer_smtp_addr == exim_relay_identifier and gitea_container_network != exim_relay_container_network else [])
     +
-    ([mariadb_container_network] if mariadb_enabled | default(false) and gitea_database_mysql_hostname == mariadb_connection_hostname and gitea_container_network != mariadb_container_network and gitea_database_type == 'mysql' else [])
+    ([mariadb_container_network] if mariadb_enabled | default(false) and (gitea_database_mysql_hostname == mariadb_connection_hostname and gitea_container_network != mariadb_container_network and not gitea_database_mysql_socket_enabled) and gitea_database_type == 'mysql' else [])
     +
     ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
     +
+    ([meilisearch_container_network] if meilisearch_enabled | default(false) and gitea_container_network != meilisearch_container_network and gitea_environment_variables_indexer_issue_indexer_type == 'meilisearch' else [])
+    +
     ([memcached_container_network] if memcached_enabled | default(false) and gitea_container_network != memcached_container_network and gitea_config_cache_adapter == 'memcache' else [])
     +
-    ([postgres_container_network] if postgres_enabled | default(false) and gitea_database_postgres_hostname == postgres_connection_hostname and gitea_container_network != postgres_container_network and gitea_database_type == 'postgres' else [])
+    ([postgres_container_network] if postgres_enabled | default(false) and (gitea_database_postgres_hostname == postgres_connection_hostname and gitea_container_network != postgres_container_network and not gitea_database_postgres_socket_enabled) and gitea_database_type == 'postgres' else [])
   }}
 
 gitea_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
@@ -6057,7 +6131,13 @@ gitea_config_mailer_from: "{{ exim_relay_sender_address if exim_relay_enabled el
 gitea_database_mysql_hostname: "{{ mariadb_connection_hostname if mariadb_enabled else '' }}"
 gitea_database_mysql_port: "{{ mariadb_connection_port if mariadb_enabled else '3306' }}"
 gitea_database_mysql_password: "{{ (mash_playbook_generic_secret_key + ':db.gitea') | hash('sha512') | to_uuid }}"
+gitea_database_mysql_sslmode: "{{ 'false' if mariadb_enabled and (gitea_database_mysql_hostname == mariadb_connection_hostname or gitea_database_mysql_socket_enabled) else 'prefer' }}"
+gitea_database_mysql_socket_path_host: "{{ mariadb_run_path }}"
 # /role-specific:mariadb
+
+# role-specific:meilisearch
+gitea_environment_variables_indexer_issue_indexer_conn_str: "http://:{{ meilisearch_default_admin_api_key }}@{{ meilisearch_identifier }}:{{ meilisearch_container_http_port }}"
+# /role-specific:meilisearch
 
 # role-specific:memcached
 gitea_config_cache_host: "{{ memcached_identifier }}:{{ memcached_container_http_port }}"
@@ -6067,6 +6147,8 @@ gitea_config_cache_host: "{{ memcached_identifier }}:{{ memcached_container_http
 gitea_database_postgres_hostname: "{{ postgres_connection_hostname if postgres_enabled else '' }}"
 gitea_database_postgres_port: "{{ postgres_connection_port if postgres_enabled else '5432' }}"
 gitea_database_postgres_password: "{{ (mash_playbook_generic_secret_key + ':db.gitea') | hash('sha512') | to_uuid }}"
+gitea_database_postgres_sslmode: "{{ 'disable' if postgres_enabled and (gitea_database_postgres_hostname == postgres_connection_hostname or gitea_database_postgres_socket_enabled) else 'require' }}"
+gitea_database_postgres_socket_path_host: "{{ postgres_run_path }}"
 # /role-specific:postgres
 
 # role-specific:traefik
@@ -6139,33 +6221,36 @@ gotify_gid: "{{ mash_playbook_gid }}"
 
 gotify_systemd_required_services_list_auto: |
   {{
-    ([mariadb_identifier ~ '.service'] if mariadb_enabled | default(false) and gotify_database_mysql_hostname == mariadb_connection_hostname and gotify_database_type == 'mysql' else [])
+    ([mariadb_identifier ~ '.service'] if mariadb_enabled | default(false) and (gotify_database_mysql_hostname == mariadb_connection_hostname or gotify_database_mysql_socket_enabled) and gotify_database_type == 'mysql' else [])
     +
-    ([postgres_identifier ~ '.service'] if postgres_enabled | default(false) and gotify_database_postgres_hostname == postgres_connection_hostname and gotify_database_type == 'postgres' else [])
+    ([postgres_identifier ~ '.service'] if postgres_enabled | default(false) and (gotify_database_postgres_hostname == postgres_connection_hostname or gotify_database_postgres_socket_enabled) and gotify_database_type == 'postgres' else [])
   }}
 
 gotify_container_additional_networks_auto: |
   {{
-    ([mariadb_container_network] if mariadb_enabled | default(false) and gotify_database_mysql_hostname == mariadb_connection_hostname and gotify_container_network != mariadb_container_network and gotify_database_type == 'mysql' else [])
+    ([mariadb_container_network] if mariadb_enabled | default(false) and (gotify_database_mysql_hostname == mariadb_connection_hostname and gotify_container_network != mariadb_container_network and not gotify_database_mysql_socket_enabled) and gotify_database_type == 'mysql' else [])
     +
     ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
     +
-    ([postgres_container_network] if postgres_enabled | default(false) and gotify_database_postgres_hostname == postgres_connection_hostname and gotify_container_network != postgres_container_network and gotify_database_type == 'postgres' else [])
+    ([postgres_container_network] if postgres_enabled | default(false) and (gotify_database_postgres_hostname == postgres_connection_hostname and gotify_container_network != postgres_container_network and not gotify_database_postgres_socket_enabled) and gotify_database_type == 'postgres' else [])
   }}
 
 gotify_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
 gotify_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
 
 # role-specific:mariadb
-gotify_database_mysql_hostname: "{{ mariadb_connection_hostname if mariadb_enabled else '' }}"
+gotify_database_mysql_hostname: "{{ gotify_database_mysql_socket_path_container + '/mysqld.sock' if gotify_database_mysql_socket_enabled else (mariadb_connection_hostname if mariadb_enabled else '') }}"
 gotify_database_mysql_port: "{{ mariadb_connection_port if mariadb_enabled else '3306' }}"
 gotify_database_mysql_password: "{{ (mash_playbook_generic_secret_key + ':m.gotify') | hash('sha512') | to_uuid }}"
+gotify_database_mysql_socket_path_host: "{{ mariadb_run_path }}"
 # /role-specific:mariadb
 
 # role-specific:postgres
-gotify_database_postgres_hostname: "{{ postgres_connection_hostname if postgres_enabled else '' }}"
+gotify_database_postgres_hostname: "{{ gotify_database_postgres_socket_path_container if gotify_database_postgres_socket_enabled else (postgres_connection_hostname if postgres_enabled else '') }}"
 gotify_database_postgres_port: "{{ postgres_connection_port if postgres_enabled else '5432' }}"
 gotify_database_postgres_password: "{{ (mash_playbook_generic_secret_key + ':p.gotify') | hash('sha512') | to_uuid }}"
+gotify_database_postgres_sslmode: "{{ 'disable' if postgres_enabled and (gotify_database_postgres_hostname == postgres_connection_hostname or gotify_database_postgres_socket_enabled) else 'prefer' }}"
+gotify_database_postgres_socket_path_host: "{{ postgres_run_path }}"
 # /role-specific:postgres
 
 # role-specific:traefik
@@ -6241,6 +6326,7 @@ gotosocial_database_hostname: "{{ postgres_connection_hostname if postgres_enabl
 gotosocial_database_port: "{{ postgres_connection_port if postgres_enabled else '5432' }}"
 gotosocial_database_username: "{{ gotosocial_identifier }}"
 gotosocial_database_password: "{{ (mash_playbook_generic_secret_key + ':db.gotosocial') | hash('sha512') | to_uuid }}"
+gotosocial_database_sslmode: "{{ 'disable' if postgres_enabled and gotosocial_database_hostname == postgres_connection_hostname else 'enable' }}"
 # /role-specific:postgres
 
 # role-specific:traefik
@@ -8148,6 +8234,7 @@ joplin_server_database_hostname: "{{ postgres_connection_hostname if postgres_en
 joplin_server_database_port: "{{ postgres_connection_port if postgres_enabled else '5432' }}"
 joplin_server_database_username: "{{ joplin_server_identifier }}"
 joplin_server_database_password: "{{ (mash_playbook_generic_secret_key + ':db.joplinserver') | hash('sha512') | to_uuid }}"
+joplin_server_database_sslmode: "{{ 'disable' if postgres_enabled and joplin_server_database_hostname == postgres_connection_hostname else 'prefer' }}"
 # /role-specific:postgres
 
 # role-specific:traefik
@@ -8839,6 +8926,7 @@ linkwarden_environment_variables_meili_key: "{{ meilisearch_default_admin_api_ke
 linkwarden_database_hostname: "{{ postgres_connection_hostname if postgres_enabled else '' }}"
 linkwarden_database_port: "{{ postgres_connection_port if postgres_enabled else '5432' }}"
 linkwarden_database_password: "{{ (mash_playbook_generic_secret_key + ':linkwarden.db') | hash('sha512') | to_uuid }}"
+linkwarden_database_sslmode: "{{ 'disable' if postgres_enabled and linkwarden_database_hostname == postgres_connection_hostname else 'prefer' }}"
 # /role-specific:postgres
 
 # role-specific:traefik
@@ -8891,6 +8979,7 @@ listmonk_database_hostname: "{{ postgres_connection_hostname if postgres_enabled
 listmonk_database_port: "{{ postgres_connection_port if postgres_enabled else '5432' }}"
 listmonk_database_username: "{{ listmonk_identifier }}"
 listmonk_database_password: "{{ (mash_playbook_generic_secret_key + ':db.listmonk') | hash('sha512') | to_uuid }}"
+listmonk_database_sslmode: "{{ 'disable' if postgres_enabled and listmonk_database_hostname == postgres_connection_hostname else 'prefer' }}"
 # /role-specific:postgres
 
 # role-specific:traefik
@@ -8971,6 +9060,7 @@ lldap_database_mysql_password: "{{ (mash_playbook_generic_secret_key + ':lldap.d
 lldap_database_postgres_hostname: "{{ postgres_connection_hostname if postgres_enabled else '' }}"
 lldap_database_postgres_port: "{{ postgres_connection_port if postgres_enabled else '5432' }}"
 lldap_database_postgres_password: "{{ (mash_playbook_generic_secret_key + ':lldap.db') | hash('sha512') | to_uuid }}"
+lldap_database_postgres_sslmode: "{{ 'disable' if postgres_enabled and lldap_database_postgres_hostname == postgres_connection_hostname else 'prefer' }}"
 # /role-specific:postgres
 
 # role-specific:traefik
@@ -9267,7 +9357,7 @@ mash_playbook_mariadb_managed_databases_auto_itemized:
         'name': freshrss_database_name,
         'username': freshrss_database_mysql_username,
         'password': freshrss_database_mysql_password,
-      } if freshrss_enabled and freshrss_database_mysql_hostname == mariadb_connection_hostname and freshrss_database_type == 'mysql' else omit)
+      } if freshrss_enabled and (freshrss_database_mysql_hostname == mariadb_connection_hostname or freshrss_database_mysql_socket_enabled) and freshrss_database_type == 'mysql' else omit)
     }}
   # /role-specific:freshrss
 
@@ -9278,7 +9368,7 @@ mash_playbook_mariadb_managed_databases_auto_itemized:
         'name': gitea_database_name,
         'username': gitea_database_mysql_username,
         'password': gitea_database_mysql_password,
-      } if gitea_enabled and gitea_database_mysql_hostname == mariadb_connection_hostname and gitea_database_type == 'mysql' else omit)
+      } if gitea_enabled and (gitea_database_mysql_hostname == mariadb_connection_hostname or gitea_database_mysql_socket_enabled) and gitea_database_type == 'mysql' else omit)
     }}
   # /role-specific:gitea
 
@@ -9289,7 +9379,7 @@ mash_playbook_mariadb_managed_databases_auto_itemized:
         'name': gotify_database_name,
         'username': gotify_database_mysql_username,
         'password': gotify_database_mysql_password,
-      } if gotify_enabled and gotify_database_mysql_hostname == mariadb_connection_hostname and gotify_database_type == 'mysql' else omit)
+      } if gotify_enabled and (gotify_database_mysql_hostname == mariadb_connection_hostname or gotify_database_mysql_socket_enabled) and gotify_database_type == 'mysql' else omit)
     }}
   # /role-specific:gotify
 
@@ -9355,7 +9445,7 @@ mash_playbook_mariadb_managed_databases_auto_itemized:
         'name': matomo_database_name,
         'username': matomo_database_username,
         'password': matomo_database_password,
-      } if matomo_enabled and matomo_database_hostname == mariadb_connection_hostname else omit)
+      } if matomo_enabled and (matomo_database_hostname == mariadb_connection_hostname or matomo_database_socket_enabled) else omit)
     }}
   # /role-specific:matomo
 
@@ -9540,7 +9630,7 @@ mash_playbook_mariadb_managed_databases_auto_itemized:
         'name': vikunja_database_name,
         'username': vikunja_database_mysql_username,
         'password': vikunja_database_mysql_password,
-      } if vikunja_enabled and vikunja_database_mysql_hostname == mariadb_connection_hostname and vikunja_database_type == 'mysql' else omit)
+      } if vikunja_enabled and (vikunja_database_mysql_hostname == mariadb_connection_hostname or vikunja_database_mysql_socket_enabled) and vikunja_database_type == 'mysql' else omit)
     }}
   # /role-specific:vikunja
 
@@ -9562,7 +9652,7 @@ mash_playbook_mariadb_managed_databases_auto_itemized:
         'name': wordpress_database_name,
         'username': wordpress_database_username,
         'password': wordpress_database_password,
-      } if wordpress_enabled and wordpress_database_hostname == mariadb_connection_hostname else omit)
+      } if wordpress_enabled and (wordpress_database_hostname == mariadb_connection_hostname or wordpress_database_socket_enabled) else omit)
     }}
   # /role-specific:wordpress
 
@@ -9617,7 +9707,7 @@ matomo_gid: "{{ mash_playbook_gid }}"
 
 matomo_systemd_required_services_list_auto: |
   {{
-    ([mariadb_identifier ~ '.service'] if mariadb_enabled and matomo_database_hostname == mariadb_connection_hostname else [])
+    ([mariadb_identifier ~ '.service'] if mariadb_enabled and (matomo_database_hostname == mariadb_connection_hostname or matomo_database_socket_enabled) else [])
   }}
 
 matomo_systemd_wanted_services_list_auto: |
@@ -9629,7 +9719,7 @@ matomo_container_additional_networks_auto: |
   {{
     ([exim_relay_container_network] if exim_relay_enabled | default(false) and matomo_container_network != exim_relay_container_network else [])
     +
-    ([mariadb_container_network] if mariadb_enabled and matomo_database_hostname == mariadb_connection_hostname and matomo_container_network != mariadb_container_network else [])
+    ([mariadb_container_network] if mariadb_enabled and (matomo_database_hostname == mariadb_connection_hostname and matomo_container_network != mariadb_container_network and not matomo_database_socket_enabled) else [])
     +
     ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
   }}
@@ -9643,6 +9733,7 @@ matomo_container_labels_traefik_compression_middleware_name: "{{ mash_playbook_r
 matomo_database_hostname: "{{ mariadb_connection_hostname if mariadb_enabled else '' }}"
 matomo_database_port: "{{ mariadb_connection_port if mariadb_enabled else '3306' }}"
 matomo_database_password: "{{ (mash_playbook_generic_secret_key + ':db.matomo') | hash('sha512') | to_uuid }}"
+matomo_database_socket_path_host: "{{ mariadb_run_path }}"
 # /role-specific:mariadb
 
 # role-specific:traefik
@@ -9776,6 +9867,10 @@ meilisearch_container_additional_networks_auto: |
 # Only enable Traefik labels if a hostname is set (indicating that this will be exposed publicly)
 meilisearch_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled and meilisearch_hostname | length > 0 }}"
 meilisearch_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+
+# Specify the default API admin key for other services
+# NOTE: this variable is specific to this playbook; it does not exist on the role (ansible-role-meilisearch)
+meilisearch_default_admin_api_key: ""
 
 # role-specific:traefik
 meilisearch_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
@@ -9923,6 +10018,7 @@ miniflux_container_labels_traefik_compression_middleware_name: "{{ mash_playbook
 miniflux_database_hostname: "{{ postgres_connection_hostname if postgres_enabled else '' }}"
 miniflux_database_port: "{{ postgres_connection_port if postgres_enabled else '5432' }}"
 miniflux_database_password: "{{ (mash_playbook_generic_secret_key + ':miniflux.db') | hash('sha512') | to_uuid }}"
+miniflux_database_sslmode: "{{ 'disable' if postgres_enabled and miniflux_database_hostname == postgres_connection_hostname else 'prefer' }}"
 # /role-specific:postgres
 
 # role-specific:traefik
@@ -11105,6 +11201,7 @@ openarchiver_environment_variables_meili_key: "{{ meilisearch_default_admin_api_
 openarchiver_database_hostname: "{{ postgres_connection_hostname if postgres_enabled else '' }}"
 openarchiver_database_port: "{{ postgres_connection_port if postgres_enabled else '5432' }}"
 openarchiver_database_password: "{{ (mash_playbook_generic_secret_key + ':openarchiver.db') | hash('sha512') | to_uuid }}"
+openarchiver_database_sslmode: "{{ 'disable' if postgres_enabled and openarchiver_database_hostname == postgres_connection_hostname else 'prefer' }}"
 # /role-specific:postgres
 
 # role-specific:tika
@@ -11148,11 +11245,18 @@ opengist_systemd_required_services_list_auto: |
     ([postgres_identifier ~ '.service'] if postgres_enabled | default(false) and opengist_database_postgres_hostname == postgres_connection_hostname and opengist_database_type == 'postgres' else [])
   }}
 
+opengist_systemd_wanted_services_list_auto: |
+  {{
+    ([meilisearch_identifier ~ '.service'] if meilisearch_enabled | default(false) and opengist_environment_variables_index == 'meilisearch' else [])
+  }}
+
 opengist_container_additional_networks_auto: |
   {{
     ([mariadb_container_network] if mariadb_enabled | default(false) and opengist_database_mysql_hostname == mariadb_connection_hostname and opengist_container_network != mariadb_container_network and opengist_database_type == 'mysql' else [])
     +
     ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+    +
+    ([meilisearch_container_network] if meilisearch_enabled | default(false) and opengist_container_network != meilisearch_container_network and opengist_environment_variables_index == 'meilisearch' else [])
     +
     ([postgres_container_network] if postgres_enabled | default(false) and opengist_database_postgres_hostname == postgres_connection_hostname and opengist_container_network != postgres_container_network and opengist_database_type == 'postgres' else [])
   }}
@@ -11168,10 +11272,17 @@ opengist_database_mysql_port: "{{ mariadb_connection_port if mariadb_enabled els
 opengist_database_mysql_password: "{{ (mash_playbook_generic_secret_key + ':opengist.db') | hash('sha512') | to_uuid }}"
 # /role-specific:mariadb
 
+# role-specific:meilisearch
+opengist_environment_variables_index: "{{ 'meilisearch' if meilisearch_enabled }}"
+opengist_environment_variables_meili_host: "http://{{ meilisearch_identifier }}:{{ meilisearch_container_http_port }}"
+opengist_environment_variables_meili_api_key: "{{ meilisearch_default_admin_api_key }}"
+# /role-specific:meilisearch
+
 # role-specific:postgres
 opengist_database_postgres_hostname: "{{ postgres_connection_hostname if postgres_enabled else '' }}"
 opengist_database_postgres_port: "{{ postgres_connection_port if postgres_enabled else '5432' }}"
 opengist_database_postgres_password: "{{ (mash_playbook_generic_secret_key + ':opengist.db') | hash('sha512') | to_uuid }}"
+opengist_database_postgres_sslmode: "{{ 'disable' if postgres_enabled and opengist_database_postgres_hostname == postgres_connection_hostname else 'prefer' }}"
 # /role-specific:postgres
 
 # role-specific:traefik
@@ -11558,16 +11669,19 @@ paperless_email_from: "{{ exim_relay_sender_address if exim_relay_enabled else '
 paperless_database_mariadb_hostname: "{{ mariadb_connection_hostname if mariadb_enabled else '' }}"
 paperless_database_mariadb_port: "{{ mariadb_connection_port if mariadb_enabled else '3306' }}"
 paperless_database_mariadb_password: "{{ (mash_playbook_generic_secret_key + ':db.paperlesm') | hash('sha512') | to_uuid }}"
+paperless_database_mariadb_sslmode: "{{ 'DISABLED' if mariadb_enabled and paperless_database_mariadb_hostname == mariadb_connection_hostname else 'PREFERRED' }}"
 # /role-specific:mariadb
 
 # role-specific:postgres
 paperless_database_postgres_hostname: "{{ postgres_connection_hostname if postgres_enabled else '' }}"
 paperless_database_postgres_port: "{{ postgres_connection_port if postgres_enabled else '5432' }}"
 paperless_database_postgres_password: "{{ (mash_playbook_generic_secret_key + ':db.paperless') | hash('sha512') | to_uuid }}"
+paperless_database_postgres_sslmode: "{{ 'disable' if postgres_enabled and paperless_database_postgres_hostname == postgres_connection_hostname else 'prefer' }}"
 # /role-specific:postgres
 
 # role-specific:tika
 paperless_gotenberg_enabled: "{{ tika_enabled }}"
+paperless_tika_bundled_enabled: "{{ false if tika_enabled }}" # Stop ansible-role-paperless from installing Apache Tika Server bundled with the role if it is managed by ansible-role-tika
 paperless_tika_enabled: "{{ tika_enabled }}"
 paperless_tika_endpoint: "http://{{ tika_identifier }}:{{ tika_container_http_port }}"
 # /role-specific:tika
@@ -11809,14 +11923,14 @@ pgadmin_container_additional_networks_auto: |
     +
     ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
     +
-    ([postgres_container_network] if postgres_enabled and pgadmin_container_network != postgres_container_network else [])
+    ([postgres_container_network] if postgres_enabled and pgadmin_container_network != postgres_container_network and not pgadmin_database_socket_enabled else [])
   }}
 
 pgadmin_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
 pgadmin_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
 
 # role-specific:exim_relay
-pgadmin_environment_variables_pgadmin_disable_postfix: true
+pgadmin_environment_variables_pgadmin_disable_postfix: "{{ exim_relay_enabled }}"
 pgadmin_environment_variables_pgadmin_config_mail_server: "{{ exim_relay_identifier if exim_relay_enabled else '' }}"
 pgadmin_environment_variables_pgadmin_config_mail_port: "{{ 8025 if exim_relay_enabled else '' }}"
 pgadmin_environment_variables_pgadmin_config_security_email_sender: "{{ exim_relay_sender_address if exim_relay_enabled else '' }}"
@@ -11826,6 +11940,8 @@ pgadmin_environment_variables_pgadmin_config_security_email_sender: "{{ exim_rel
 pgadmin_database_hostname: "{{ postgres_connection_hostname if postgres_enabled else '' }}"
 pgadmin_database_port: "{{ postgres_connection_port if postgres_enabled else '5432' }}"
 pgadmin_database_password: "{{ (mash_playbook_generic_secret_key + ':pgadmin.db') | hash('sha512') | to_uuid }}"
+pgadmin_database_sslmode: "{{ 'disable' if postgres_enabled and (pgadmin_database_hostname == postgres_connection_hostname or pgadmin_database_socket_enabled) else 'prefer' }}"
+pgadmin_database_socket_path_host: "{{ postgres_run_path }}"
 # /role-specific:postgres
 
 # role-specific:traefik
@@ -11866,7 +11982,7 @@ phpmyadmin_systemd_required_services_list_auto: |
 
 phpmyadmin_container_additional_networks_auto: |
   {{
-    ([mariadb_container_network] if mariadb_enabled and phpmyadmin_container_network != mariadb_container_network else [])
+    ([mariadb_container_network] if mariadb_enabled and phpmyadmin_container_network != mariadb_container_network and not phpmyadmin_socket_enabled else [])
     +
     ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
   }}
@@ -11876,8 +11992,9 @@ phpmyadmin_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_pr
 
 # role-specific:mariadb
 phpmyadmin_environment_variables_pma_arbitrary: "0"
-phpmyadmin_environment_variables_pma_host: "{{ mariadb_connection_hostname if mariadb_enabled else '' }}"
+phpmyadmin_environment_variables_pma_host: "{{ mariadb_connection_hostname if mariadb_enabled and not phpmyadmin_socket_enabled else '' }}"
 phpmyadmin_environment_variables_pma_port: "{{ mariadb_connection_port if mariadb_enabled else '3306' }}"
+phpmyadmin_socket_path_host: "{{ mariadb_run_path }}"
 # /role-specific:mariadb
 
 # role-specific:traefik
@@ -12031,6 +12148,7 @@ plausible_environment_variable_smtp_host_ssl_enabled: false
 plausible_database_hostname: "{{ postgres_connection_hostname if postgres_enabled else '' }}"
 plausible_database_port: "{{ postgres_connection_port if postgres_enabled else '5432' }}"
 plausible_database_password: "{{ ((mash_playbook_generic_secret_key + ':plausible.db') | hash('sha512') | to_uuid) if postgres_enabled else '' }}"
+plausible_database_sslmode: "{{ 'disable' if postgres_enabled and plausible_database_hostname == postgres_connection_hostname else 'prefer' }}"
 # /role-specific:postgres
 
 # role-specific:traefik
@@ -12103,7 +12221,7 @@ pocket_id_gid: "{{ mash_playbook_gid }}"
 
 pocket_id_systemd_required_services_list_auto: |
   {{
-    ([postgres_identifier ~ '.service'] if postgres_enabled | default(false) and pocket_id_database_hostname == postgres_connection_hostname and pocket_id_database_type == 'postgres' else [])
+    ([postgres_identifier ~ '.service'] if postgres_enabled | default(false) and (pocket_id_database_hostname == postgres_connection_hostname or pocket_id_database_socket_enabled) and pocket_id_database_type == 'postgres' else [])
   }}
 
 pocket_id_systemd_wanted_services_list_auto: |
@@ -12121,7 +12239,7 @@ pocket_id_container_additional_networks_auto: |
     +
     ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
     +
-    ([postgres_container_network] if postgres_enabled | default(false) and pocket_id_database_hostname == postgres_connection_hostname and pocket_id_container_network != postgres_container_network and pocket_id_database_type == 'postgres' else [])
+    ([postgres_container_network] if postgres_enabled | default(false) and (pocket_id_database_hostname == postgres_connection_hostname and pocket_id_container_network != postgres_container_network and not pocket_id_database_socket_enabled) and pocket_id_database_type == 'postgres' else [])
   }}
 
 pocket_id_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
@@ -12156,6 +12274,8 @@ pocket_id_environment_variable_ldap_skip_cert_verify: true
 pocket_id_database_hostname: "{{ postgres_connection_hostname if postgres_enabled else '' }}"
 pocket_id_database_port: "{{ postgres_connection_port if postgres_enabled else '5432' }}"
 pocket_id_database_password: "{{ (mash_playbook_generic_secret_key + ':db.pocketid') | hash('sha512') | to_uuid }}"
+pocket_id_database_sslmode: "{{ 'disable' if postgres_enabled and (pocket_id_database_hostname == postgres_connection_hostname or pocket_id_database_socket_enabled) else 'prefer' }}"
+pocket_id_database_socket_path_host: "{{ postgres_run_path }}"
 # /role-specific:postgres
 
 # role-specific:traefik
@@ -12380,22 +12500,19 @@ prometheus_alertmanager_container_additional_networks_auto: |
     +
     ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
     +
-    ([prometheus_container_network] if prometheus_enabled | default(false) and prometheus_alertmanager_container_network != prometheus_container_network else [])
+    ([prometheus_container_network] if prometheus_enabled | default(false) and prometheus_alertmanager_container_network != prometheus_container_network and not prometheus_alertmanager_container_labels_metrics_enabled else [])
   }}
 
-prometheus_alertmanager_hostname: "{{ mash_playbook_metrics_exposure_hostname }}"
-prometheus_alertmanager_path_prefix: "{{ mash_playbook_metrics_exposure_path_prefix }}/{{ prometheus_alertmanager_identifier }}"
-
-# Only enable Traefik labels if a hostname is set (indicating that this will be exposed publicly)
-prometheus_alertmanager_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled and prometheus_alertmanager_hostname }}"
-prometheus_alertmanager_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
-
+prometheus_alertmanager_container_labels_metrics_enabled: "{{ mash_playbook_metrics_exposure_enabled }}"
+prometheus_alertmanager_container_labels_metrics_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+prometheus_alertmanager_container_labels_metrics_hostname: "{{ mash_playbook_metrics_exposure_hostname }}"
+prometheus_alertmanager_container_labels_metrics_path_prefix: "{{ mash_playbook_metrics_exposure_path_prefix }}/{{ prometheus_alertmanager_identifier }}"
 prometheus_alertmanager_container_labels_metrics_middleware_basic_auth_enabled: "{{ mash_playbook_metrics_exposure_http_basic_auth_enabled }}"
 prometheus_alertmanager_container_labels_metrics_middleware_basic_auth_users: "{{ mash_playbook_metrics_exposure_http_basic_auth_users }}"
 
 # role-specific:traefik
-prometheus_alertmanager_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
-prometheus_alertmanager_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
+prometheus_alertmanager_container_labels_metrics_entrypoints: "{{ traefik_entrypoint_primary }}"
+prometheus_alertmanager_container_labels_metrics_tls_certResolver: "{{ traefik_certResolver_primary }}"
 # /role-specific:traefik
 
 ########################################################################
@@ -12472,13 +12589,10 @@ prometheus_node_exporter_container_additional_networks_auto: |
     ([prometheus_container_network] if prometheus_enabled | default(false) and prometheus_self_node_scraper_enabled | default(false) else [])
   }}
 
-prometheus_node_exporter_hostname: "{{ mash_playbook_metrics_exposure_hostname }}"
-prometheus_node_exporter_path_prefix: "{{ mash_playbook_metrics_exposure_path_prefix }}/{{ prometheus_node_exporter_identifier }}"
-
-# Only enable Traefik labels if a hostname is set (indicating that this will be exposed publicly)
-prometheus_node_exporter_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled and prometheus_node_exporter_hostname }}"
-prometheus_node_exporter_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
-
+prometheus_node_exporter_container_labels_metrics_enabled: "{{ mash_playbook_metrics_exposure_enabled }}"
+prometheus_node_exporter_container_labels_metrics_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+prometheus_node_exporter_container_labels_metrics_hostname: "{{ mash_playbook_metrics_exposure_hostname }}"
+prometheus_node_exporter_container_labels_metrics_path_prefix: "{{ mash_playbook_metrics_exposure_path_prefix }}/{{ prometheus_node_exporter_identifier }}"
 prometheus_node_exporter_container_labels_metrics_middleware_basic_auth_enabled: "{{ mash_playbook_metrics_exposure_http_basic_auth_enabled }}"
 prometheus_node_exporter_container_labels_metrics_middleware_basic_auth_users: "{{ mash_playbook_metrics_exposure_http_basic_auth_users }}"
 
@@ -12495,8 +12609,8 @@ prometheus_node_exporter_container_extra_arguments:
   - "--mount type=bind,src=/var/run/dbus/system_bus_socket,dst=/var/run/dbus/system_bus_socket,ro,bind-propagation=rslave"
 
 # role-specific:traefik
-prometheus_node_exporter_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
-prometheus_node_exporter_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
+prometheus_node_exporter_container_labels_metrics_entrypoints: "{{ traefik_entrypoint_primary }}"
+prometheus_node_exporter_container_labels_metrics_tls_certResolver: "{{ traefik_certResolver_primary }}"
 # /role-specific:traefik
 
 ########################################################################
@@ -12536,26 +12650,23 @@ prometheus_postgres_exporter_systemd_required_services_list_auto: |
     ([postgres_identifier ~ '.service'] if postgres_enabled else [])
   }}
 
-prometheus_postgres_exporter_hostname: "{{ mash_playbook_metrics_exposure_hostname }}"
-prometheus_postgres_exporter_path_prefix: "{{ mash_playbook_metrics_exposure_path_prefix }}/{{ prometheus_postgres_exporter_identifier }}"
-
+prometheus_postgres_exporter_container_labels_metrics_enabled: "{{ mash_playbook_metrics_exposure_enabled }}"
+prometheus_postgres_exporter_container_labels_metrics_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+prometheus_postgres_exporter_container_labels_metrics_hostname: "{{ mash_playbook_metrics_exposure_hostname }}"
+prometheus_postgres_exporter_container_labels_metrics_path_prefix: "{{ mash_playbook_metrics_exposure_path_prefix }}/{{ prometheus_postgres_exporter_identifier }}"
 prometheus_postgres_exporter_container_labels_metrics_middleware_basic_auth_enabled: "{{ mash_playbook_metrics_exposure_http_basic_auth_enabled }}"
 prometheus_postgres_exporter_container_labels_metrics_middleware_basic_auth_users: "{{ mash_playbook_metrics_exposure_http_basic_auth_users }}"
-
-# Only enable Traefik labels if a hostname is set (indicating that this will be exposed publicly)
-prometheus_postgres_exporter_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled and prometheus_postgres_exporter_hostname | length > 0 }}"
-prometheus_postgres_exporter_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
 
 # role-specific:postgres
 prometheus_postgres_exporter_database_hostname: "{{ postgres_connection_hostname if postgres_enabled else '' }}"
 prometheus_postgres_exporter_database_port: "{{ postgres_connection_port if postgres_enabled else '5432' }}"
 prometheus_postgres_exporter_database_password: "{{ postgres_connection_password if postgres_enabled else '' }}"
-prometheus_postgres_exporter_database_ssl: false
+prometheus_postgres_exporter_database_sslmode: "{{ 'disable' if postgres_enabled and prometheus_postgres_exporter_database_hostname == postgres_connection_hostname else 'prefer' }}"
 # /role-specific:postgres
 
 # role-specific:traefik
-prometheus_postgres_exporter_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
-prometheus_postgres_exporter_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
+prometheus_postgres_exporter_container_labels_metrics_entrypoints: "{{ traefik_entrypoint_primary }}"
+prometheus_postgres_exporter_container_labels_metrics_tls_certResolver: "{{ traefik_certResolver_primary }}"
 # /role-specific:traefik
 
 ########################################################################
@@ -13068,7 +13179,7 @@ readeck_gid: "{{ mash_playbook_gid }}"
 
 readeck_systemd_required_services_list_auto: |
   {{
-    ([postgres_identifier ~ '.service'] if postgres_enabled | default(false) and readeck_database_hostname == postgres_connection_hostname and readeck_database_type == 'postgres' else [])
+    ([postgres_identifier ~ '.service'] if postgres_enabled | default(false) and (readeck_database_hostname == postgres_connection_hostname or readeck_database_socket_enabled) and readeck_database_type == 'postgres' else [])
   }}
 
 readeck_systemd_wanted_services_list_auto: |
@@ -13082,7 +13193,7 @@ readeck_container_additional_networks_auto: |
     +
     ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
     +
-    ([postgres_container_network] if postgres_enabled | default(false) and readeck_database_hostname == postgres_connection_hostname and readeck_container_network != postgres_container_network and readeck_database_type == 'postgres' else [])
+    ([postgres_container_network] if postgres_enabled | default(false) and (readeck_database_hostname == postgres_connection_hostname and readeck_container_network != postgres_container_network and not readeck_database_socket_enabled) and readeck_database_type == 'postgres' else [])
   }}
 
 readeck_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
@@ -13099,6 +13210,8 @@ readeck_environment_variables_readeck_mail_fromnoreply: "{{ exim_relay_sender_ad
 readeck_database_hostname: "{{ postgres_connection_hostname if postgres_enabled else '' }}"
 readeck_database_port: "{{ postgres_connection_port if postgres_enabled else '5432' }}"
 readeck_database_password: "{{ (mash_playbook_generic_secret_key + ':readeck.db') | hash('sha512') | to_uuid }}"
+readeck_database_sslmode: "{{ 'disable' if postgres_enabled and (readeck_database_hostname == postgres_connection_hostname or readeck_database_socket_enabled) else 'prefer' }}"
+readeck_database_socket_path_host: "{{ postgres_run_path }}"
 # /role-specific:postgres
 
 # role-specific:traefik
@@ -13270,8 +13383,9 @@ roundcube_identifier: "{{ mash_playbook_service_identifier_prefix }}roundcube"
 
 roundcube_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}roundcube"
 
-roundcube_uid: "0"
-roundcube_gid: "0"
+# Use nonroot image; see: https://github.com/roundcube/roundcubemail-docker/blob/master/README.md#nonroot-image
+roundcube_uid: www-data
+roundcube_gid: www-data
 
 roundcube_systemd_required_services_list_auto: |
   {{
@@ -13351,7 +13465,7 @@ rssbridge_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_ena
 rssbridge_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
 
 # role-specific:browserless
-rssbridge_config_webdriver_headless: true
+rssbridge_config_webdriver_headless: "{{ browserless_enabled }}"
 rssbridge_config_webdriver_selenium_server_url: "http://{{ browserless_identifier }}:{{ browserless_container_http_port }}/chromium/playwright"
 # /role-specific:browserless
 
@@ -13619,9 +13733,6 @@ send_container_additional_networks_auto: |
   {{
     ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
   }}
-
-# Required for a Redis / KeyDB / Valkey instance
-send_environment_variable_redis_hostname: "{{ send_redis_hostname }}"
 
 send_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
 send_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
@@ -14314,6 +14425,7 @@ teable_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxya
 teable_database_hostname: "{{ postgres_connection_hostname if postgres_enabled else '' }}"
 teable_database_port: "{{ postgres_connection_port if postgres_enabled else '5432' }}"
 teable_database_password: "{{ (mash_playbook_generic_secret_key + ':teable.db') | hash('sha512') | to_uuid }}"
+teable_database_sslmode: "{{ 'disable' if postgres_enabled and teable_database_hostname == postgres_connection_hostname else 'prefer' }}"
 # /role-specific:postgres
 
 # role-specific:traefik
@@ -14510,7 +14622,7 @@ tinyauth_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_prox
 # role-specific:lldap
 tinyauth_ldap_enabled: "{{ lldap_enabled }}"
 tinyauth_environment_variable_ldap_address: ldap://{{ lldap_identifier }}:{{ lldap_container_ldap_port }}
-tinyauth_environment_variable_ldap_insecure: true
+tinyauth_environment_variable_ldap_insecure: "{{ lldap_enabled }}"
 # /role-specific:lldap
 
 # role-specific:traefik
@@ -14810,6 +14922,7 @@ vaultwarden_database_mysql_password: "{{ (mash_playbook_generic_secret_key + ':d
 vaultwarden_database_postgres_hostname: "{{ postgres_connection_hostname if postgres_enabled else '' }}"
 vaultwarden_database_postgres_port: "{{ postgres_connection_port if postgres_enabled else '5432' }}"
 vaultwarden_database_postgres_password: "{{ (mash_playbook_generic_secret_key + ':db.vaultwarden') | hash('sha512') | to_uuid }}"
+vaultwarden_database_postgres_sslmode: "{{ 'disable' if postgres_enabled and vaultwarden_database_postgres_hostname == postgres_connection_hostname else 'prefer' }}"
 # /role-specific:postgres
 
 # role-specific:traefik
@@ -14882,9 +14995,9 @@ vikunja_gid: "{{ mash_playbook_gid }}"
 
 vikunja_systemd_required_services_list_auto: |
   {{
-    ([mariadb_identifier ~ '.service'] if mariadb_enabled | default(false) and vikunja_database_mysql_hostname == mariadb_connection_hostname and vikunja_database_type == 'mysql' else [])
+    ([mariadb_identifier ~ '.service'] if mariadb_enabled | default(false) and (vikunja_database_mysql_hostname == mariadb_connection_hostname or vikunja_database_mysql_socket_enabled) and vikunja_database_type == 'mysql' else [])
     +
-    ([postgres_identifier ~ '.service'] if postgres_enabled | default(false) and vikunja_database_postgres_hostname == postgres_connection_hostname and vikunja_database_type == 'postgres' else [])
+    ([postgres_identifier ~ '.service'] if postgres_enabled | default(false) and (vikunja_database_postgres_hostname == postgres_connection_hostname or vikunja_database_postgres_socket_enabled) and vikunja_database_type == 'postgres' else [])
   }}
 
 vikunja_systemd_wanted_services_list_auto: |
@@ -14902,11 +15015,11 @@ vikunja_container_additional_networks_auto: |
     +
     ([lldap_container_network] if lldap_enabled | default(false) and vikunja_container_network != lldap_container_network else [])
     +
-    ([mariadb_container_network] if mariadb_enabled | default(false) and vikunja_database_mysql_hostname == mariadb_connection_hostname and vikunja_container_network != mariadb_container_network and vikunja_database_type == 'mysql' else [])
+    ([mariadb_container_network] if mariadb_enabled | default(false) and (vikunja_database_mysql_hostname == mariadb_connection_hostname and vikunja_container_network != mariadb_container_network and not vikunja_database_mysql_socket_enabled) and vikunja_database_type == 'mysql' else [])
     +
     ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
     +
-    ([postgres_container_network] if postgres_enabled | default(false) and vikunja_database_postgres_hostname == postgres_connection_hostname and vikunja_container_network != postgres_container_network and vikunja_database_type == 'postgres' else [])
+    ([postgres_container_network] if postgres_enabled | default(false) and (vikunja_database_postgres_hostname == postgres_connection_hostname and vikunja_container_network != postgres_container_network and not vikunja_database_postgres_socket_enabled) and vikunja_database_type == 'postgres' else [])
     +
     ([typesense_container_network] if typesense_enabled | default(false) and vikunja_container_network != typesense_container_network else [])
   }}
@@ -14929,13 +15042,15 @@ vikunja_environment_variables_smtp_port: "{{ 8025 if exim_relay_enabled else '58
 vikunja_database_mysql_hostname: "{{ mariadb_connection_hostname if mariadb_enabled else '' }}"
 vikunja_database_mysql_port: "{{ mariadb_connection_port if mariadb_enabled else '3306' }}"
 vikunja_database_mysql_password: "{{ (mash_playbook_generic_secret_key + ':vikunja.db') | hash('sha512') | to_uuid }}"
+vikunja_database_mysql_socket_path_host: "{{ mariadb_run_path }}"
 # /role-specific:mariadb
 
 # role-specific:postgres
 vikunja_database_postgres_hostname: "{{ postgres_connection_hostname if postgres_enabled else '' }}"
 vikunja_database_postgres_port: "{{ postgres_connection_port if postgres_enabled else '5432' }}"
 vikunja_database_postgres_password: "{{ (mash_playbook_generic_secret_key + ':vikunja.db') | hash('sha512') | to_uuid }}"
-vikunja_database_postgres_sslmode: "{{ 'disable' if (vikunja_database_postgres_hostname == postgres_connection_hostname | default('mash-postgres')) else 'require' }}"
+vikunja_database_postgres_sslmode: "{{ 'disable' if postgres_enabled and (vikunja_database_postgres_hostname == postgres_connection_hostname or vikunja_database_postgres_socket_enabled) else 'require' }}"
+vikunja_database_postgres_socket_path_host: "{{ postgres_run_path }}"
 # /role-specific:postgres
 
 # role-specific:traefik
@@ -14944,7 +15059,7 @@ vikunja_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_prim
 # /role-specific:traefik
 
 # role-specific:typesense
-vikunja_environment_variables_typesense_enabled: true
+vikunja_environment_variables_typesense_enabled: "{{ typesense_enabled }}"
 vikunja_environment_variables_typesense_url: http://{{ typesense_identifier }}:{{ typesense_container_http_port }}
 vikunja_environment_variables_typesense_apikey: "{{ typesense_environment_variables_api_key }}"
 # /role-specific:typesense
@@ -15008,6 +15123,7 @@ weblate_environment_variables_weblate_default_from_email: "{{ exim_relay_sender_
 weblate_database_hostname: "{{ postgres_connection_hostname if postgres_enabled else '' }}"
 weblate_database_port: "{{ postgres_connection_port if postgres_enabled else '5432' }}"
 weblate_database_password: "{{ (mash_playbook_generic_secret_key + ':weblate.db') | hash('sha512') | to_uuid }}"
+weblate_database_sslmode: "{{ 'disable' if postgres_enabled and weblate_database_hostname == postgres_connection_hostname else 'prefer' }}"
 # /role-specific:postgres
 
 # role-specific:traefik
@@ -15231,6 +15347,7 @@ woodpecker_ci_server_database_mysql_password: "{{ (mash_playbook_generic_secret_
 woodpecker_ci_server_database_postgres_hostname: "{{ postgres_connection_hostname if postgres_enabled else '' }}"
 woodpecker_ci_server_database_postgres_port: "{{ postgres_connection_port if postgres_enabled else '5432' }}"
 woodpecker_ci_server_database_postgres_password: "{{ (mash_playbook_generic_secret_key + ':woodpecker.ci') | hash('sha512') | to_uuid }}"
+woodpecker_ci_server_database_postgres_sslmode: "{{ 'disable' if postgres_enabled and woodpecker_ci_server_database_postgres_hostname == postgres_connection_hostname else 'prefer' }}"
 # /role-specific:postgres
 
 ########################################################################
@@ -15260,7 +15377,7 @@ wordpress_gid: "{{ mash_playbook_gid }}"
 
 wordpress_systemd_required_services_list_auto: |
   {{
-    ([mariadb_identifier ~ '.service'] if mariadb_enabled and wordpress_database_hostname == mariadb_connection_hostname else [])
+    ([mariadb_identifier ~ '.service'] if mariadb_enabled and (wordpress_database_hostname == mariadb_connection_hostname or wordpress_database_socket_enabled) else [])
   }}
 
 wordpress_systemd_wanted_services_list_auto: |
@@ -15272,7 +15389,7 @@ wordpress_container_additional_networks_auto: |
   {{
     ([exim_relay_container_network] if exim_relay_enabled | default(false) and wordpress_container_network != exim_relay_container_network else [])
     +
-    ([mariadb_container_network] if mariadb_enabled and wordpress_database_hostname == mariadb_connection_hostname and wordpress_container_network != mariadb_identifier else [])
+    ([mariadb_container_network] if mariadb_enabled and (wordpress_database_hostname == mariadb_connection_hostname and wordpress_container_network != mariadb_container_network and not wordpress_database_socket_enabled) else [])
     +
     ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
   }}
@@ -15284,6 +15401,7 @@ wordpress_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_pro
 wordpress_database_hostname: "{{ mariadb_connection_hostname if mariadb_enabled else '' }}"
 wordpress_mysql_port: "{{ mariadb_connection_port if mariadb_enabled else '3306' }}"
 wordpress_database_password: "{{ (mash_playbook_generic_secret_key + ':db.mariadb') | hash('sha512') | to_uuid }}"
+wordpress_database_socket_path_host: "{{ mariadb_run_path }}"
 # /role-specific:mariadb
 
 # role-specific:traefik

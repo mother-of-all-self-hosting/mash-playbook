@@ -7,7 +7,6 @@
 
 # Below is an example which installs a few services on the host, in different configuration.
 # You should tweak this example as you see fit and enable the services that you need.
-
 ########################################################################
 #                                                                      #
 # Playbook                                                             #
@@ -17,14 +16,11 @@
 # Put a strong secret below, generated with `pwgen -s 64 1` or in another way
 # Various other secrets will be derived from this secret automatically.
 mash_playbook_generic_secret_key: ''
-
 ########################################################################
 #                                                                      #
 # /Playbook                                                            #
 #                                                                      #
 ########################################################################
-
-
 ########################################################################
 #                                                                      #
 # Docker                                                               #
@@ -55,14 +51,11 @@ devture_docker_sdk_for_python_installation_enabled: true
 #
 # Learn more in `docs/configuring-ipv6.md`.
 devture_systemd_docker_base_ipv6_enabled: true
-
 ########################################################################
 #                                                                      #
 # /Docker                                                              #
 #                                                                      #
 ########################################################################
-
-
 
 ########################################################################
 #                                                                      #
@@ -80,8 +73,6 @@ devture_timesync_installation_enabled: true
 # /com.devture.ansible.role.timesync                                   #
 #                                                                      #
 ########################################################################
-
-
 
 ########################################################################
 #                                                                      #
@@ -104,8 +95,6 @@ mash_playbook_reverse_proxy_type: playbook-managed-traefik
 #                                                                      #
 ########################################################################
 
-
-
 ########################################################################
 #                                                                      #
 # postgres                                                             #
@@ -126,8 +115,6 @@ postgres_connection_password: ''
 # /postgres                                                            #
 #                                                                      #
 ########################################################################
-
-
 
 ########################################################################
 #                                                                      #
@@ -167,8 +154,6 @@ exim_relay_sender_address: "someone@{{ exim_relay_hostname }}"
 #                                                                      #
 ########################################################################
 
-
-
 ########################################################################
 #                                                                      #
 # miniflux                                                             #
@@ -193,7 +178,6 @@ miniflux_admin_password: a-strong-password-here
 # /miniflux                                                            #
 #                                                                      #
 ########################################################################
-
 
 
 ########################################################################

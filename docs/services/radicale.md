@@ -32,11 +32,14 @@ radicale_enabled: true
 radicale_hostname: mash.example.com
 radicale_path_prefix: /radicale
 
-radicale_credentials:
-  - username: someone
-    password: secret-password
-  - username: another
-    password: more-secret-password
+# Generate each entry with `htpasswd -nb USERNAME PASSWORD`
+# and paste the whole `USERNAME:HASH` line below.
+# Example:
+# htpasswd -nb someone 'secret-password'
+# htpasswd -nb another 'more-secret-password'
+radicale_htpasswds:
+  - 'someone:$apr1$Dz1QzvR9$TQj8rP2QfLz7dYkP6Y0K4/'
+  - 'another:$apr1$QfJ1mU7a$gR0d9D0dKfIDm0w3lN4hY0'
 
 ########################################################################
 #                                                                      #
@@ -49,6 +52,10 @@ radicale_credentials:
 
 After running the command for installation, the Radicale instance becomes available at the URL specified with `radicale_hostname` and `radicale_path_prefix`. With the configuration above, the service is hosted at `https://mash.example.com/radicale`.
 
-You can log in with your credentials (see the `radicale_credentials` configuration variable).
+You can log in with your credentials (see the `radicale_htpasswds` configuration variable).
 
-Creating new users requires changing the `radicale_credentials` variable and [re-running the playbook](../installing.md). You can rebuild only this service quickly by running: `just install-service radicale`.
+Generate entries outside Ansible with `htpasswd -nb USERNAME PASSWORD` and put the resulting lines into `radicale_htpasswds`.
+
+The legacy `radicale_credentials` convenience variable is discouraged, because it depends on the `passlib` Python library, may be affected by passlib/bcrypt compatibility issues (see: https://foss.heptapod.net/python-libs/passlib/-/issues/196), and produces non-deterministic hashes which can trigger unnecessary Ansible changes.
+
+Creating new users requires changing the `radicale_htpasswds` variable and [re-running the playbook](../installing.md). You can rebuild only this service quickly by running: `just install-service radicale`.

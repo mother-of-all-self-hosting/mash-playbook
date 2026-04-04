@@ -27,6 +27,10 @@ Roundcube is a browser-based multilingual IMAP client with an application-like u
 
 See the project's [documentation](https://docs.roundcube.net/) to learn what Roundcube does and why it might be useful to you.
 
+For details about configuring the [Ansible role for Roundcube](https://github.com/mother-of-all-self-hosting/ansible-role-roundcube), you can check them via:
+- 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-roundcube/blob/main/docs/configuring-roundcube.md) online
+- 📁 `roles/galaxy/roundcube/docs/configuring-roundcube.md` locally, if you have [fetched the Ansible roles](../installing.md)
+
 ## Dependencies
 
 This service requires the following other services:
@@ -50,16 +54,6 @@ roundcube_enabled: true
 roundcube_hostname: mash.example.com
 roundcube_path_prefix: /roundcube
 
-# The default IMAP server to connect to.
-roundcube_default_imap_host: "imap.example.com"
-# If not specified, the default port is 143.
-roundcube_default_imap_port: "143"
-
-# The default SMTP server to use.
-roundcube_smtp_server: "smtp.example.com"
-# If not specified, the default port is 587.
-roundcube_smtp_port: "587"
-
 ########################################################################
 #                                                                      #
 # /roundcube                                                           #
@@ -70,6 +64,10 @@ roundcube_smtp_port: "587"
 ### Select database to use
 
 It is necessary to select a database used by Roundcube from a MySQL compatible database, Postgres, and SQLite. See [`defaults/main.yml`](https://github.com/mother-of-all-self-hosting/ansible-role-roundcube/blob/main/defaults/main.yml) of the role for details.
+
+### Specify IMAP and SMTP servers
+
+It is also necessary to specify the hostname of IMAP and SMTP servers for the Roundcube instance. Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-roundcube/blob/main/docs/configuring-roundcube.md#specify-imap-and-smtp-servers) on the role's documentation for details.
 
 ## Usage
 
