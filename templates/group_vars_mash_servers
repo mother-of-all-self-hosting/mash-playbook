@@ -12603,14 +12603,14 @@ privatebin_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_pr
 privatebin_config_model: postgres
 
 # role-specific:mariadb
-privatebin_database_mysql_hostname: "{{ mariadb_connection_hostname if mariadb_enabled else '' }}"
+privatebin_database_mysql_hostname: "{{ mariadb_connection_hostname if mariadb_enabled and not privatebin_database_mysql_socket_enabled else '' }}"
 privatebin_database_mysql_username: "{{ privatebin_identifier }}"
 privatebin_database_mysql_password: "{{ (mash_playbook_generic_secret_key + ':db.privatebinm') | hash('sha512') | to_uuid }}"
 privatebin_database_mysql_socket_path_host: "{{ mariadb_run_path }}"
 # /role-specific:mariadb
 
 # role-specific:postgres
-privatebin_database_postgres_hostname: "{{ postgres_connection_hostname if postgres_enabled else '' }}"
+privatebin_database_postgres_hostname: "{{ postgres_connection_hostname if postgres_enabled and not privatebin_database_postgres_socket_enabled else '' }}"
 privatebin_database_postgres_username: "{{ privatebin_identifier }}"
 privatebin_database_postgres_password: "{{ (mash_playbook_generic_secret_key + ':db.privatebinp') | hash('sha512') | to_uuid }}"
 privatebin_database_postgres_socket_path_host: "{{ postgres_run_path }}"
