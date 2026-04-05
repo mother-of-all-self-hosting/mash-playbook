@@ -8735,14 +8735,14 @@ kutt_environment_variables_smtp_port: "{{ 8025 if exim_relay_enabled else '587' 
 kutt_database_mysql_hostname: "{{ mariadb_connection_hostname if mariadb_enabled else '' }}"
 kutt_database_mysql_port: "{{ mariadb_connection_port if mariadb_enabled else '3306' }}"
 kutt_database_mysql_password: "{{ (mash_playbook_generic_secret_key + ':kutt.db') | hash('sha512') | to_uuid }}"
-kutt_database_mysql_sslmode: "{{ 'false' if mariadb_enabled and kutt_database_mysql_hostname == mariadb_connection_hostname else 'true' }}"
+kutt_database_mysql_sslmode: "{{ false if mariadb_enabled and kutt_database_mysql_hostname == mariadb_connection_hostname else true }}"
 # /role-specific:mariadb
 
 # role-specific:postgres
 kutt_database_postgres_hostname: "{{ postgres_connection_hostname if postgres_enabled else '' }}"
 kutt_database_postgres_port: "{{ postgres_connection_port if postgres_enabled else '5432' }}"
 kutt_database_postgres_password: "{{ (mash_playbook_generic_secret_key + ':kutt.db') | hash('sha512') | to_uuid }}"
-kutt_database_postgres_sslmode: "{{ 'false' if postgres_enabled and (kutt_database_postgres_hostname == postgres_connection_hostname or kutt_database_postgres_socket_enabled) else 'true' }}"
+kutt_database_postgres_sslmode: "{{ false if postgres_enabled and (kutt_database_postgres_hostname == postgres_connection_hostname or kutt_database_postgres_socket_enabled) else true }}"
 kutt_database_postgres_socket_path_host: "{{ postgres_run_path }}"
 # /role-specific:postgres
 
