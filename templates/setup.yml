@@ -554,6 +554,10 @@
     - role: galaxy/memcached
     # /role-specific:memcached
 
+    # role-specific:memos
+    - role: galaxy/memos
+    # /role-specific:memos
+
     # role-specific:minecraft
     - role: galaxy/minecraft
     # /role-specific:minecraft
