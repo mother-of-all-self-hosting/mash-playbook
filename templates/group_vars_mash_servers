@@ -1610,7 +1610,7 @@ mash_playbook_postgres_managed_databases_auto_itemized:
         'name': gotosocial_database_name,
         'username': gotosocial_database_username,
         'password': gotosocial_database_password,
-      } if gotosocial_enabled and gotosocial_database_hostname == postgres_connection_hostname and gotosocial_database_type == 'postgres' else omit)
+      } if gotosocial_enabled and (gotosocial_database_hostname == postgres_connection_hostname or gotosocial_database_socket_enabled) and gotosocial_database_type == 'postgres' else omit)
     }}
   # /role-specific:gotosocial
 
@@ -6401,7 +6401,7 @@ gotosocial_gid: "{{ mash_playbook_gid }}"
 
 gotosocial_systemd_required_services_list_auto: |
   {{
-    ([postgres_identifier ~ '.service'] if postgres_enabled | default(false) and gotosocial_database_hostname == postgres_connection_hostname and gotosocial_database_type == 'postgres' else [])
+    ([postgres_identifier ~ '.service'] if postgres_enabled | default(false) and (gotosocial_database_hostname == postgres_connection_hostname or gotosocial_database_socket_enabled) and gotosocial_database_type == 'postgres' else [])
   }}
 
 gotosocial_systemd_wanted_services_list_auto: |
@@ -6415,7 +6415,7 @@ gotosocial_container_additional_networks_auto: |
     +
     ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
     +
-    ([postgres_container_network] if postgres_enabled | default(false) and gotosocial_database_hostname == postgres_connection_hostname and gotosocial_container_network != postgres_container_network and gotosocial_database_type == 'postgres' else [])
+    ([postgres_container_network] if postgres_enabled | default(false) and (gotosocial_database_hostname == postgres_connection_hostname and gotosocial_container_network != postgres_container_network and not gotosocial_database_socket_enabled) and gotosocial_database_type == 'postgres' else [])
   }}
 
 gotosocial_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
@@ -6438,11 +6438,12 @@ gotosocial_smtp_from: "{{ exim_relay_sender_address if exim_relay_enabled else '
 # /role-specific:exim_relay
 
 # role-specific:postgres
-gotosocial_database_hostname: "{{ postgres_connection_hostname if postgres_enabled else '' }}"
+gotosocial_database_hostname: "{{ postgres_connection_hostname if postgres_enabled and not gotosocial_database_socket_enabled else '' }}"
 gotosocial_database_port: "{{ postgres_connection_port if postgres_enabled else '5432' }}"
 gotosocial_database_username: "{{ gotosocial_identifier }}"
 gotosocial_database_password: "{{ (mash_playbook_generic_secret_key + ':db.gotosocial') | hash('sha512') | to_uuid }}"
-gotosocial_database_sslmode: "{{ 'disable' if postgres_enabled and gotosocial_database_hostname == postgres_connection_hostname else 'enable' }}"
+gotosocial_database_sslmode: "{{ 'disable' if postgres_enabled and (gotosocial_database_hostname == postgres_connection_hostname or gotosocial_database_socket_enabled) else 'enable' }}"
+gotosocial_database_socket_path_host: "{{ postgres_run_path }}"
 # /role-specific:postgres
 
 # role-specific:traefik
