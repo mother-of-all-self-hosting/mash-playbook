@@ -1429,7 +1429,7 @@ mash_playbook_postgres_managed_databases_auto_itemized:
         'name': chiefonboarding_database_name,
         'username': chiefonboarding_database_username,
         'password': chiefonboarding_database_password,
-      } if chiefonboarding_enabled and chiefonboarding_database_hostname == postgres_connection_hostname else omit)
+      } if chiefonboarding_enabled and (chiefonboarding_database_hostname == postgres_connection_hostname or chiefonboarding_database_socket_enabled) else omit)
     }}
   # /role-specific:chiefonboarding
 
@@ -4046,7 +4046,7 @@ chiefonboarding_gid: "0"
 
 chiefonboarding_systemd_required_services_list_auto: |
   {{
-    ([postgres_identifier ~ '.service'] if postgres_enabled and chiefonboarding_database_hostname == postgres_connection_hostname else [])
+    ([postgres_identifier ~ '.service'] if postgres_enabled and (chiefonboarding_database_hostname == postgres_connection_hostname or chiefonboarding_database_socket_enabled) else [])
   }}
 
 chiefonboarding_systemd_wanted_services_list_auto: |
@@ -4060,7 +4060,7 @@ chiefonboarding_container_additional_networks_auto: |
     +
     ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
     +
-    ([postgres_container_network] if postgres_enabled and chiefonboarding_database_hostname == postgres_connection_hostname and chiefonboarding_container_network != postgres_container_network else [])
+    ([postgres_container_network] if postgres_enabled and (chiefonboarding_database_hostname == postgres_connection_hostname and chiefonboarding_container_network != postgres_container_network and not chiefonboarding_database_socket_enabled) else [])
   }}
 
 chiefonboarding_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
@@ -4074,10 +4074,11 @@ chiefonboarding_environment_variables_default_from_email: "{{ exim_relay_sender_
 # /role-specific:exim_relay
 
 # role-specific:postgres
-chiefonboarding_database_hostname: "{{ postgres_connection_hostname if postgres_enabled else '' }}"
+chiefonboarding_database_hostname: "{{ postgres_connection_hostname if postgres_enabled and not chiefonboarding_database_socket_enabled else '' }}"
 chiefonboarding_database_port: "{{ postgres_connection_port if postgres_enabled else '5432' }}"
 chiefonboarding_database_password: "{{ (mash_playbook_generic_secret_key + ':db.chiefonboarding') | hash('sha512') | to_uuid }}"
-chiefonboarding_database_sslmode: "{{ 'disable' if postgres_enabled and chiefonboarding_database_hostname == postgres_connection_hostname else 'prefer' }}"
+chiefonboarding_database_sslmode: "{{ 'disable' if postgres_enabled and (chiefonboarding_database_hostname == postgres_connection_hostname or chiefonboarding_database_socket_enabled) else 'prefer' }}"
+chiefonboarding_database_socket_path_host: "{{ postgres_run_path }}"
 # /role-specific:postgres
 
 # role-specific:traefik
