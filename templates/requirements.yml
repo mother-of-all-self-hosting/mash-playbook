@@ -641,7 +641,7 @@
   name: pdfding
   activation_prefix: pdfding_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-peertube.git
-  version: v7.2.3-6
+  version: v7.2.3-7
   name: peertube
   activation_prefix: peertube_
 - src: git+https://seed.radicle.garden/ztixjo2qUzCBLADieR3hKkYEk4eE.git
