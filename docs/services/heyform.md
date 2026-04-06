@@ -18,17 +18,17 @@ SPDX-FileCopyrightText: 2024-2026 Suguru Hirahara
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 
-# Docmost
+# HeyForm
 
-The playbook can install and configure [Docmost](https://docmost.com/) for you.
+The playbook can install and configure [HeyForm](https://heyform.com/) for you.
 
-Docmost is an free and open-source collaborative wiki and documentation software, designed for seamless real-time collaboration. It can be used to manage a wiki, a knowledge base, project documentation, etc. It has various functions such as granular permissions management system, page history to track changes of articles, etc. It also supports diagramming tools like Draw.io, Excalidraw and Mermaid.
+HeyForm is an free and open-source collaborative wiki and documentation software, designed for seamless real-time collaboration. It can be used to manage a wiki, a knowledge base, project documentation, etc. It has various functions such as granular permissions management system, page history to track changes of articles, etc. It also supports diagramming tools like Draw.io, Excalidraw and Mermaid.
 
-See the project's [documentation](https://docmost.com/docs/) to learn what Docmost does and why it might be useful to you.
+See the project's [documentation](https://heyform.com/docs/) to learn what HeyForm does and why it might be useful to you.
 
-For details about configuring the [Ansible role for Docmost](https://github.com/mother-of-all-self-hosting/ansible-role-docmost), you can check them via:
-- 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-docmost/blob/main/docs/configuring-docmost.md) online
-- 📁 `roles/galaxy/docmost/docs/configuring-docmost.md` locally, if you have [fetched the Ansible roles](../installing.md)
+For details about configuring the [Ansible role for HeyForm](https://github.com/mother-of-all-self-hosting/ansible-role-heyform), you can check them via:
+- 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-heyform/blob/main/docs/configuring-heyform.md) online
+- 📁 `roles/galaxy/heyform/docs/configuring-heyform.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 >[!NOTE]
 > - The role is based on Node.js docker image, and is currently expected to run with uid 1000.
@@ -50,32 +50,32 @@ To enable this service, add the following configuration to your `vars.yml` file:
 ```yaml
 ########################################################################
 #                                                                      #
-# docmost                                                              #
+# heyform                                                              #
 #                                                                      #
 ########################################################################
 
-docmost_enabled: true
+heyform_enabled: true
 
-docmost_hostname: docmost.example.com
+heyform_hostname: heyform.example.com
 
 ########################################################################
 #                                                                      #
-# /docmost                                                             #
+# /heyform                                                             #
 #                                                                      #
 ########################################################################
 ```
 
-**Note**: hosting Docmost under a subpath (by configuring the `docmost_path_prefix` variable) does not seem to be possible due to Docmost's technical limitations.
+**Note**: hosting HeyForm under a subpath (by configuring the `heyform_path_prefix` variable) does not seem to be possible due to HeyForm's technical limitations.
 
 ### Configure a storage backend
 
 The service provides these storage backend options: local filesystem (default) and Amazon S3 compatible object storage.
 
-See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-docmost/blob/main/docs/configuring-docmost.md#configure-a-storage-backend) on the role's documentation for details about how to set up Amazon S3 compatible object storage for Docmost.
+See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-heyform/blob/main/docs/configuring-heyform.md#configure-a-storage-backend) on the role's documentation for details about how to set up Amazon S3 compatible object storage for HeyForm.
 
 ### Configuring the mailer (optional)
 
-You can configure a mailer for functions such as user invitation. Docmost supports a SMTP server and Postmark.
+You can configure a mailer for functions such as user invitation. HeyForm supports a SMTP server and Postmark.
 
 If you enable the [exim-relay](exim-relay.md) service in your inventory configuration, the playbook will automatically configure it as a mailer for the service.
 
@@ -84,27 +84,27 @@ To actually have the service use (and get messages sent through the exim-relay s
 >[!WARNING]
 > Without setting an authentication method such as DKIM, SPF, and DMARC for your hostname, emails are most likely to be quarantined as spam at recipient's mail servers. The worst scenario is that your server's IP address or hostname will be included in the spam list such as the one managed by [Spamhaus](https://www.spamhaus.org/), depending on the reputation. As the exim-relay service supports DKIM signing, refer to [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-exim-relay/blob/main/docs/configuring-exim-relay.md#enable-dkim-support-optional) for details about how to set it up.
 
-If you will use another SMTP server or Postmark, see [this section](https://github.com/mother-of-all-self-hosting/ansible-role-docmost/blob/main/docs/configuring-docmost.md#configure-the-mailer) on the role's documentation for details about configuring the mailer.
+If you will use another SMTP server or Postmark, see [this section](https://github.com/mother-of-all-self-hosting/ansible-role-heyform/blob/main/docs/configuring-heyform.md#configure-the-mailer) on the role's documentation for details about configuring the mailer.
 
-If you do not want to enable a mailer for Docmost altogether, add the following configuration to your `vars.yml` file:
+If you do not want to enable a mailer for HeyForm altogether, add the following configuration to your `vars.yml` file:
 
 ```yaml
-docmost_mailer_enabled: false
+heyform_mailer_enabled: false
 ```
 
 ### Configure Valkey
 
-Docmost requires a Valkey data-store to work. This playbook supports it, and you can set up a Valkey instance by enabling it on `vars.yml`.
+HeyForm requires a Valkey data-store to work. This playbook supports it, and you can set up a Valkey instance by enabling it on `vars.yml`.
 
-If Docmost is the sole service which requires Valkey on your server, it is fine to set up just a single Valkey instance. However, **it is not recommended if there are other services which require it, because sharing the Valkey instance has security concerns and possibly causes data conflicts**, as described on the [documentation for configuring Valkey](valkey.md). In this case, you should install a dedicated Valkey instance for each of them.
+If HeyForm is the sole service which requires Valkey on your server, it is fine to set up just a single Valkey instance. However, **it is not recommended if there are other services which require it, because sharing the Valkey instance has security concerns and possibly causes data conflicts**, as described on the [documentation for configuring Valkey](valkey.md). In this case, you should install a dedicated Valkey instance for each of them.
 
-If you are unsure whether you will install other services along with Docmost or you have already set up services which need Valkey (such as [Nextcloud](nextcloud.md), [PeerTube](peertube.md), and [Funkwhale](funkwhale.md)), it is recommended to install a Valkey instance dedicated to Docmost.
+If you are unsure whether you will install other services along with HeyForm or you have already set up services which need Valkey (such as [Nextcloud](nextcloud.md), [PeerTube](peertube.md), and [Funkwhale](funkwhale.md)), it is recommended to install a Valkey instance dedicated to HeyForm.
 
 *See [below](#setting-up-a-shared-valkey-instance) for an instruction to install a shared instance.*
 
 #### Setting up a dedicated Valkey instance
 
-To create a dedicated instance for Docmost, you can follow the steps below:
+To create a dedicated instance for HeyForm, you can follow the steps below:
 
 1. Adjust the `hosts` file
 2. Create a new `vars.yml` file for the dedicated instance
@@ -114,7 +114,7 @@ To create a dedicated instance for Docmost, you can follow the steps below:
 
 ##### Adjust `hosts`
 
-At first, you need to adjust `inventory/hosts` file to add a supplementary host for Docmost.
+At first, you need to adjust `inventory/hosts` file to add a supplementary host for HeyForm.
 
 The content should be something like below. Make sure to replace `mash.example.com` with your hostname and `YOUR_SERVER_IP_ADDRESS_HERE` with the IP address of the host, respectively. The same IP address should be set to both, unless the Valkey instance will be served from a different machine.
 
@@ -125,7 +125,7 @@ mash_example_com
 
 [mash_example_com]
 mash.example.com ansible_host=YOUR_SERVER_IP_ADDRESS_HERE
-mash.example.com-docmost-deps ansible_host=YOUR_SERVER_IP_ADDRESS_HERE
+mash.example.com-heyform-deps ansible_host=YOUR_SERVER_IP_ADDRESS_HERE
 …
 ```
 
@@ -135,12 +135,12 @@ You can just add an entry for the supplementary host to `[mash_example_com]` if 
 
 ##### Create `vars.yml` for the dedicated instance
 
-Then, create a new directory where `vars.yml` for the supplementary host is stored. If `mash.example.com` is your main host, name the directory as `mash.example.com-docmost-deps`. Its path therefore will be `inventory/host_vars/mash.example.com-docmost-deps`.
+Then, create a new directory where `vars.yml` for the supplementary host is stored. If `mash.example.com` is your main host, name the directory as `mash.example.com-heyform-deps`. Its path therefore will be `inventory/host_vars/mash.example.com-heyform-deps`.
 
-After creating the directory, add a new `vars.yml` file inside it with a content below. It will have running the playbook create a `mash-docmost-valkey` instance on the new host, setting `/mash/docmost-valkey` to the base directory of the dedicated Valkey instance.
+After creating the directory, add a new `vars.yml` file inside it with a content below. It will have running the playbook create a `mash-heyform-valkey` instance on the new host, setting `/mash/heyform-valkey` to the base directory of the dedicated Valkey instance.
 
 ```yaml
-# This is vars.yml for the supplementary host of Docmost.
+# This is vars.yml for the supplementary host of HeyForm.
 
 ---
 
@@ -154,8 +154,8 @@ After creating the directory, add a new `vars.yml` file inside it with a content
 mash_playbook_generic_secret_key: ''
 
 # Override service names and directory path prefixes
-mash_playbook_service_identifier_prefix: 'mash-docmost-'
-mash_playbook_service_base_directory_name_prefix: 'docmost-'
+mash_playbook_service_identifier_prefix: 'mash-heyform-'
+mash_playbook_service_base_directory_name_prefix: 'heyform-'
 
 ########################################################################
 #                                                                      #
@@ -186,37 +186,37 @@ Having configured `vars.yml` for the dedicated instance, add the following confi
 ```yaml
 ########################################################################
 #                                                                      #
-# docmost                                                              #
+# heyform                                                              #
 #                                                                      #
 ########################################################################
 
 # Add the base configuration as specified above
 
-# Point Docmost to its dedicated Valkey instance
-docmost_redis_hostname: mash-docmost-valkey
+# Point HeyForm to its dedicated Valkey instance
+heyform_redis_hostname: mash-heyform-valkey
 
-# Make sure the Docmost service (mash-docmost.service) is connected to the container network of its dedicated Valkey service (mash-docmost-valkey)
-docmost_container_additional_networks_custom:
-  - "mash-docmost-valkey"
+# Make sure the HeyForm service (mash-heyform.service) is connected to the container network of its dedicated Valkey service (mash-heyform-valkey)
+heyform_container_additional_networks_custom:
+  - "mash-heyform-valkey"
 
-# Make sure the Docmost service (mash-docmost.service) starts after its dedicated Valkey service (mash-docmost-valkey.service)
-docmost_systemd_required_services_list_custom:
-  - "mash-docmost-valkey.service"
+# Make sure the HeyForm service (mash-heyform.service) starts after its dedicated Valkey service (mash-heyform-valkey.service)
+heyform_systemd_required_services_list_custom:
+  - "mash-heyform-valkey.service"
 
 ########################################################################
 #                                                                      #
-# /docmost                                                             #
+# /heyform                                                             #
 #                                                                      #
 ########################################################################
 ```
 
-Running the installation command will create the dedicated Valkey instance named `mash-docmost-valkey`.
+Running the installation command will create the dedicated Valkey instance named `mash-heyform-valkey`.
 
 #### Setting up a shared Valkey instance
 
-If you host only Docmost on this server, it is fine to set up a single shared Valkey instance.
+If you host only HeyForm on this server, it is fine to set up a single shared Valkey instance.
 
-To install the single instance and hook Docmost to it, add the following configuration to `inventory/host_vars/mash.example.com/vars.yml`:
+To install the single instance and hook HeyForm to it, add the following configuration to `inventory/host_vars/mash.example.com/vars.yml`:
 
 ```yaml
 ########################################################################
@@ -236,26 +236,26 @@ valkey_enabled: true
 
 ########################################################################
 #                                                                      #
-# docmost                                                              #
+# heyform                                                              #
 #                                                                      #
 ########################################################################
 
 # Add the base configuration as specified above
 
-# Point Docmost to the shared Valkey instance
-docmost_redis_hostname: "{{ valkey_identifier }}"
+# Point HeyForm to the shared Valkey instance
+heyform_redis_hostname: "{{ valkey_identifier }}"
 
-# Make sure the Docmost container is connected to the container network of the shared Valkey service (mash-valkey)
-docmost_container_additional_networks_custom:
+# Make sure the HeyForm container is connected to the container network of the shared Valkey service (mash-valkey)
+heyform_container_additional_networks_custom:
   - "{{ valkey_container_network }}"
 
-# Make sure the Docmost service (mash-docmost.service) starts after the shared Valkey service (mash-valkey.service)
-docmost_systemd_required_services_list_custom:
+# Make sure the HeyForm service (mash-heyform.service) starts after the shared Valkey service (mash-valkey.service)
+heyform_systemd_required_services_list_custom:
   - "{{ valkey_identifier }}.service"
 
 ########################################################################
 #                                                                      #
-# /docmost                                                             #
+# /heyform                                                             #
 #                                                                      #
 ########################################################################
 ```
@@ -264,29 +264,29 @@ Running the installation command will create the shared Valkey instance named `m
 
 ### Enable Telemetry (optional)
 
-By default this playbook disables Docmost's [telemetry](https://docmost.com/docs/self-hosting/environment-variables#telemetry) which collects information about the active version, user count, page count, space and workspace count, and sends to the Docmost server (see [here](https://github.com/docmost/docmost/blob/main/apps/server/src/integrations/telemetry/telemetry.service.ts)).
+By default this playbook disables HeyForm's [telemetry](https://heyform.com/docs/self-hosting/environment-variables#telemetry) which collects information about the active version, user count, page count, space and workspace count, and sends to the HeyForm server (see [here](https://github.com/heyform/heyform/blob/main/apps/server/src/integrations/telemetry/telemetry.service.ts)).
 
 If you are fine with sending such information and want to help developers, add the following configuration to your `vars.yml` file:
 
 ```yaml
-docmost_environment_variable_disable_telemetry: false
+heyform_environment_variable_disable_telemetry: false
 ```
 
 ## Installation
 
-If you have decided to install the dedicated Valkey instance for Docmost, make sure to run the [installing](../installing.md) command for the supplementary host (`mash.example.com-docmost-deps`) first, before running it for the main host (`mash.example.com`).
+If you have decided to install the dedicated Valkey instance for HeyForm, make sure to run the [installing](../installing.md) command for the supplementary host (`mash.example.com-heyform-deps`) first, before running it for the main host (`mash.example.com`).
 
 Note that running the `just` commands for installation (`just install-all` or `just setup-all`) automatically takes care of the order. See [here](../running-multiple-instances.md#1-adjust-hosts) for more details about it.
 
 ## Usage
 
-After installation, the Docmost instance becomes available at the URL specified with `docmost_hostname`. With the configuration above, the service is hosted at `https://docmost.example.com`.
+After installation, the HeyForm instance becomes available at the URL specified with `heyform_hostname`. With the configuration above, the service is hosted at `https://heyform.example.com`.
 
 To get started, open the URL with a web browser, and create a first workspace by inputting required information. For an email address, make sure to input your own email address, not the one of the mailer.
 
 ## Troubleshooting
 
-See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-docmost/blob/main/docs/configuring-docmost.md#troubleshooting) on the role's documentation for details.
+See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-heyform/blob/main/docs/configuring-heyform.md#troubleshooting) on the role's documentation for details.
 
 ## Related services
 
