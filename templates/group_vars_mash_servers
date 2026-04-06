@@ -511,6 +511,11 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
     {{ ({'name': (healthchecks_identifier + '.service'), 'priority': 2000, 'restart_necessary': (healthchecks_restart_necessary | bool), 'groups': ['mash', 'healthchecks']} if healthchecks_enabled else omit) }}
   # /role-specific:healthchecks
 
+  # role-specific:heyform
+  - |-
+    {{ ({'name': (heyform_identifier + '.service'), 'priority': 2000, 'restart_necessary': (heyform_restart_necessary | bool), 'groups': ['mash', 'heyform']} if heyform_enabled else omit) }}
+  # /role-specific:heyform
+
   # role-specific:homarr
   - |-
     {{ ({'name': (homarr_identifier + '.service'), 'priority': 2000, 'restart_necessary': (homarr_restart_necessary | bool), 'groups': ['mash', 'homarr']} if homarr_enabled else omit) }}
@@ -6722,6 +6727,73 @@ healthchecks_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver
 
 
 
+# role-specific:heyform
+########################################################################
+#                                                                      #
+# heyform                                                              #
+#                                                                      #
+########################################################################
+
+heyform_enabled: false
+
+heyform_identifier: "{{ mash_playbook_service_identifier_prefix }}heyform"
+
+heyform_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}heyform"
+
+heyform_uid: "{{ mash_playbook_uid }}"
+heyform_gid: "{{ mash_playbook_gid }}"
+
+heyform_systemd_required_services_list_auto: |
+  {{
+    ([mongodb_identifier ~ '.service'] if mongodb_enabled and heyform_database_hostname == mongodb_connection_hostname else [])
+  }}
+
+heyform_systemd_wanted_services_list_auto: |
+  {{
+    ([exim_relay_identifier ~ '.service'] if exim_relay_enabled | default(false) else [])
+  }}
+
+heyform_container_additional_networks_auto: |
+  {{
+    ([exim_relay_container_network] if exim_relay_enabled | default(false) and heyform_container_network != exim_relay_container_network else [])
+    +
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+    +
+    ([mongodb_container_network] if mongodb_enabled and heyform_database_hostname == mongodb_connection_hostname and heyform_container_network != mongodb_container_network else [])
+  }}
+
+heyform_environment_variables_session_key: "{{ (mash_playbook_generic_secret_key + ':heyform.s') | hash('sha512') | to_uuid }}"
+
+heyform_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+heyform_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+
+# role-specific:exim_relay
+heyform_environment_variables_smtp_host: "{{ exim_relay_identifier if exim_relay_enabled else '' }}"
+heyform_environment_variables_smtp_port: "{{ '8025' if exim_relay_enabled else '587' }}"
+heyform_environment_variables_smtp_from: "{{ exim_relay_sender_address if exim_relay_enabled else '' }}"
+heyform_environment_variables_smtp_secure: "{{ false if exim_relay_enabled else true }}"
+# /role-specific:exim_relay
+
+# role-specific:mongodb
+heyform_database_hostname: "{{ mongodb_connection_hostname if mongodb_enabled else '' }}"
+heyform_database_port: "{{ mongodb_connection_port if mongodb_enabled else '27017' }}"
+heyform_database_password: "{{ (mash_playbook_generic_secret_key + ':heyform.db') | hash('sha512') | to_uuid }}"
+# /role-specific:mongodb
+
+# role-specific:traefik
+heyform_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
+heyform_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
+# /role-specific:traefik
+
+########################################################################
+#                                                                      #
+# /heyform                                                             #
+#                                                                      #
+########################################################################
+# /role-specific:heyform
+
+
+
 # role-specific:homarr
 ########################################################################
 #                                                                      #
@@ -10464,6 +10536,17 @@ mash_playbook_mongodb_managed_databases_auto_itemized:
   # Dummy entry, which is not role-specific.
   # Ensures there's at least one entry defined in the list.
   - "{{ omit }}"
+
+  # role-specific:heyform
+  - |-
+    {{
+      ({
+        'name': heyform_database_name,
+        'username': heyform_database_username,
+        'password': heyform_database_password,
+      } if heyform_enabled and heyform_database_hostname == mongodb_connection_hostname else omit)
+    }}
+  # /role-specific:heyform
 
   # role-specific:infisical
   - |-
