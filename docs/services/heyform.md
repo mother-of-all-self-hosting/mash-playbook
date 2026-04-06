@@ -266,5 +266,4 @@ See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3AzsKzt
 
 ## Related services
 
-- [Excalidraw](excalidraw.md) — Free and open source virtual whiteboard for sketching hand-drawn like diagrams
-- [Outline](outline.md) — Knowledge base for growing teams
+- [LimeSurvey](limesurvey.md) — Web based forms and surveys
