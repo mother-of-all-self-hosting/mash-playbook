@@ -309,19 +309,19 @@ immich_server_environment_variable_tz: Europe/Sofia
 # configured in the other inventory host (e.g. `mash.example.com-immich-deps`).
 immich_redis_hostname: mash-immich-valkey
 
-# This wires the Immich/Server systemd service to:
-# - the dedicated (for Immich) Valkey installation (see `mash.example.com-immich-deps`)
-# - the dedicated (for Immich) custom PostgreSQL installation (see `mash.example.com-immich-deps`)
-immich_server_systemd_required_services_list_custom:
-  - "mash-immich-valkey.service"
-  - "mash-immich-postgres.service"
-
 # This wires the Immich/Server container to:
 # - the network of the dedicated (for Immich) Valkey installation (see `mash.example.com-immich-deps`)
 # - the network of the dedicated (for Immich) custom PostgreSQL installation (see `mash.example.com-immich-deps`)
 immich_server_container_additional_networks_custom:
   - "mash-immich-valkey"
   - "mash-immich-postgres"
+
+# This wires the Immich/Server systemd service to:
+# - the dedicated (for Immich) Valkey installation (see `mash.example.com-immich-deps`)
+# - the dedicated (for Immich) custom PostgreSQL installation (see `mash.example.com-immich-deps`)
+immich_server_systemd_required_services_list_custom:
+  - "mash-immich-valkey.service"
+  - "mash-immich-postgres.service"
 
 # This points to the dedicated (for Immich) custom PostgreSQL installation,
 # configured in the other inventory host (e.g. `mash.example.com-immich-deps`).

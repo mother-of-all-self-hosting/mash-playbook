@@ -189,13 +189,13 @@ Having configured `vars.yml` for the dedicated instance, add the following confi
 # Point Open Archiver server to its dedicated Valkey instance
 openarchiver_redis_hostname: mash-openarchiver-valkey
 
-# Make sure the Open Archiver server service (mash-openarchiver-server.service) starts after its dedicated Valkey service (mash-openarchiver-valkey.service)
-openarchiver_systemd_required_services_list_custom:
-  - "mash-openarchiver-valkey.service"
-
-# Make sure the Open Archiver server container is connected to the container network of its dedicated Valkey service (mash-openarchiver-valkey)
+# Make sure the Open Archiver container is connected to the container network of its dedicated Valkey service (mash-openarchiver-valkey)
 openarchiver_container_additional_networks_custom:
   - "mash-openarchiver-valkey"
+
+# Make sure the Open Archiver service (mash-openarchiver-server.service) starts after its dedicated Valkey service (mash-openarchiver-valkey.service)
+openarchiver_systemd_required_services_list_custom:
+  - "mash-openarchiver-valkey.service"
 
 ########################################################################
 #                                                                      #
@@ -239,13 +239,13 @@ valkey_enabled: true
 # Point Open Archiver server to the shared Valkey instance
 openarchiver_redis_hostname: "{{ valkey_identifier }}"
 
-# Make sure the Open Archiver server service (mash-openarchiver-server.service) starts after the shared Valkey service (mash-valkey.service)
-openarchiver_systemd_required_services_list_custom:
-  - "{{ valkey_identifier }}.service"
-
-# Make sure the Open Archiver server container is connected to the container network of the shared Valkey service (mash-valkey)
+# Make sure the Open Archiver container is connected to the container network of the shared Valkey service (mash-valkey)
 openarchiver_container_additional_networks_custom:
   - "{{ valkey_identifier }}"
+
+# Make sure the Open Archiver service (mash-openarchiver-server.service) starts after the shared Valkey service (mash-valkey.service)
+openarchiver_systemd_required_services_list_custom:
+  - "{{ valkey_identifier }}.service"
 
 ########################################################################
 #                                                                      #

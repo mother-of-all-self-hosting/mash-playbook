@@ -155,13 +155,13 @@ Having configured `vars.yml` for the dedicated instance, add the following confi
 infisical_environment_variable_redis_hostname: mash-infisical-valkey
 infisical_environment_variable_redis_cache_host: mash-infisical-valkey
 
-# Make sure the Infisical service (mash-infisical.service) starts after its dedicated Valkey service (mash-infisical-valkey.service)
-infisical_systemd_required_services_list_custom:
-  - "mash-infisical-valkey.service"
-
 # Make sure the Infisical container is connected to the container network of its dedicated Valkey service (mash-infisical-valkey)
 infisical_container_additional_networks_custom:
   - "mash-infisical-valkey"
+
+# Make sure the Infisical service (mash-infisical.service) starts after its dedicated Valkey service (mash-infisical-valkey.service)
+infisical_systemd_required_services_list_custom:
+  - "mash-infisical-valkey.service"
 
 ########################################################################
 #                                                                      #
@@ -206,13 +206,13 @@ valkey_enabled: true
 infisical_environment_variable_redis_hostname: "{{ valkey_identifier }}"
 infisical_environment_variable_redis_cache_host: "{{ valkey_identifier }}"
 
-# Make sure the Infisical service (mash-infisical.service) starts after the shared Valkey service (mash-valkey.service)
-infisical_systemd_required_services_list_custom:
-  - "{{ valkey_identifier }}.service"
-
 # Make sure the Infisical container is connected to the container network of the shared Valkey service (mash-valkey)
 infisical_container_additional_networks_custom:
   - "{{ valkey_identifier }}"
+
+# Make sure the Infisical service (mash-infisical.service) starts after the shared Valkey service (mash-valkey.service)
+infisical_systemd_required_services_list_custom:
+  - "{{ valkey_identifier }}.service"
 
 ########################################################################
 #                                                                      #

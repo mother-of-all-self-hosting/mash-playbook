@@ -171,13 +171,13 @@ Having configured `vars.yml` for the dedicated instance, add the following confi
 # Point PinePods server to its dedicated Valkey instance
 pinepods_redis_hostname: mash-pinepods-valkey
 
-# Make sure the PinePods server service (mash-pinepods-server.service) starts after its dedicated Valkey service (mash-pinepods-valkey.service)
-pinepods_systemd_required_services_list_custom:
-  - "mash-pinepods-valkey.service"
-
-# Make sure the PinePods server container is connected to the container network of its dedicated Valkey service (mash-pinepods-valkey)
+# Make sure the PinePods container is connected to the container network of its dedicated Valkey service (mash-pinepods-valkey)
 pinepods_container_additional_networks_custom:
   - "mash-pinepods-valkey"
+
+# Make sure the PinePods service (mash-pinepods-server.service) starts after its dedicated Valkey service (mash-pinepods-valkey.service)
+pinepods_systemd_required_services_list_custom:
+  - "mash-pinepods-valkey.service"
 
 ########################################################################
 #                                                                      #
@@ -221,13 +221,13 @@ valkey_enabled: true
 # Point PinePods server to the shared Valkey instance
 pinepods_redis_hostname: "{{ valkey_identifier }}"
 
-# Make sure the PinePods server service (mash-pinepods-server.service) starts after the shared Valkey service (mash-valkey.service)
-pinepods_systemd_required_services_list_custom:
-  - "{{ valkey_identifier }}.service"
-
-# Make sure the PinePods server container is connected to the container network of the shared Valkey service (mash-valkey)
+# Make sure the PinePods container is connected to the container network of the shared Valkey service (mash-valkey)
 pinepods_container_additional_networks_custom:
   - "{{ valkey_identifier }}"
+
+# Make sure the PinePods service (mash-pinepods-server.service) starts after the shared Valkey service (mash-valkey.service)
+pinepods_systemd_required_services_list_custom:
+  - "{{ valkey_identifier }}.service"
 
 ########################################################################
 #                                                                      #

@@ -166,13 +166,13 @@ Having configured `vars.yml` for the dedicated instance, add the following confi
 # Point Teable to its dedicated Valkey instance
 teable_redis_hostname: mash-teable-valkey
 
-# Make sure the Teable service (mash-teable.service) starts after its dedicated Valkey service (mash-teable-valkey.service)
-teable_systemd_required_services_list_custom:
-  - "mash-teable-valkey.service"
-
 # Make sure the Teable service (mash-teable.service) is connected to the container network of its dedicated Valkey service (mash-teable-valkey)
 teable_container_additional_networks_custom:
   - "mash-teable-valkey"
+
+# Make sure the Teable service (mash-teable.service) starts after its dedicated Valkey service (mash-teable-valkey.service)
+teable_systemd_required_services_list_custom:
+  - "mash-teable-valkey.service"
 
 ########################################################################
 #                                                                      #
@@ -216,13 +216,13 @@ valkey_enabled: true
 # Point Teable to the shared Valkey instance
 teable_redis_hostname: "{{ valkey_identifier }}"
 
-# Make sure the Teable service (mash-teable.service) starts after the shared Valkey service (mash-valkey.service)
-teable_systemd_required_services_list_custom:
-  - "{{ valkey_identifier }}.service"
-
 # Make sure the Teable container is connected to the container network of the shared Valkey service (mash-valkey)
 teable_container_additional_networks_custom:
   - "{{ valkey_container_network }}"
+
+# Make sure the Teable service (mash-teable.service) starts after the shared Valkey service (mash-valkey.service)
+teable_systemd_required_services_list_custom:
+  - "{{ valkey_identifier }}.service"
 
 ########################################################################
 #                                                                      #
