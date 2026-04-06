@@ -99,3 +99,7 @@ To get started, open the URL `https://limesurvey.example.com/index.php/admin` wi
 ## Troubleshooting
 
 See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-limesurvey/blob/main/docs/configuring-limesurvey.md#troubleshooting) on the role's documentation for details.
+
+## Related services
+
+- [HeyForm](heyform.md) — Form builder that lets you create, customize, and automate forms
