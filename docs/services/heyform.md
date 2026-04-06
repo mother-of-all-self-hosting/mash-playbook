@@ -20,25 +20,21 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
 # HeyForm
 
-The playbook can install and configure [HeyForm](https://heyform.com/) for you.
+The playbook can install and configure [HeyForm](https://github.com/heyform/heyform) for you.
 
-HeyForm is an free and open-source collaborative wiki and documentation software, designed for seamless real-time collaboration. It can be used to manage a wiki, a knowledge base, project documentation, etc. It has various functions such as granular permissions management system, page history to track changes of articles, etc. It also supports diagramming tools like Draw.io, Excalidraw and Mermaid.
+HeyForm is a form builder that lets you create, customize, and automate forms.
 
-See the project's [documentation](https://heyform.com/docs/) to learn what HeyForm does and why it might be useful to you.
+See the project's [documentation](https://docs.heyform.net/) to learn what HeyForm does and why it might be useful to you.
 
-For details about configuring the [Ansible role for HeyForm](https://github.com/mother-of-all-self-hosting/ansible-role-heyform), you can check them via:
-- 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-heyform/blob/main/docs/configuring-heyform.md) online
+For details about configuring the [Ansible role for HeyForm](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3AzsKztkwnLv9wVMRYbcpoFesx6L5j), you can check them via:
+- 🌐 [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3AzsKztkwnLv9wVMRYbcpoFesx6L5j/tree/docs/configuring-heyform.md) online
 - 📁 `roles/galaxy/heyform/docs/configuring-heyform.md` locally, if you have [fetched the Ansible roles](../installing.md)
-
->[!NOTE]
-> - The role is based on Node.js docker image, and is currently expected to run with uid 1000.
-> - Excalidraw is available on the playbook. See [here](excalidraw.md) for details about how to install it.
 
 ## Dependencies
 
 This service requires the following other services:
 
-- [Postgres](postgres.md) database
+- [MongoDB](mongodb.md) database
 - [Traefik](traefik.md) reverse-proxy server
 - [Valkey](valkey.md) data-store; see [below](#configure-valkey) for details about installation
 - (optional) [exim-relay](exim-relay.md) mailer — required on the default configuration
@@ -67,30 +63,20 @@ heyform_hostname: heyform.example.com
 
 **Note**: hosting HeyForm under a subpath (by configuring the `heyform_path_prefix` variable) does not seem to be possible due to HeyForm's technical limitations.
 
-### Configure a storage backend
+### Set a random string
 
-The service provides these storage backend options: local filesystem (default) and Amazon S3 compatible object storage.
+You also need to set a random string by adding the following configuration to your `vars.yml` file. The value can be generated with `pwgen -s 64 1` or in another way.
 
-See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-heyform/blob/main/docs/configuring-heyform.md#configure-a-storage-backend) on the role's documentation for details about how to set up Amazon S3 compatible object storage for HeyForm.
+```yaml
+heyform_environment_variables_form_encryption_key: YOUR_SECRET_KEY_HERE
+```
 
 ### Configuring the mailer (optional)
 
-You can configure a mailer for functions such as user invitation. HeyForm supports a SMTP server and Postmark.
-
-If you enable the [exim-relay](exim-relay.md) service in your inventory configuration, the playbook will automatically configure it as a mailer for the service.
-
-To actually have the service use (and get messages sent through the exim-relay service), you will need to adjust settings on the service's UI after the service is installed.
+On HeyForm you can set up a mailer for functions such as password recovery. If you enable the [exim-relay](exim-relay.md) service in your inventory configuration, the playbook will automatically configure it as a mailer for the service.
 
 >[!WARNING]
 > Without setting an authentication method such as DKIM, SPF, and DMARC for your hostname, emails are most likely to be quarantined as spam at recipient's mail servers. The worst scenario is that your server's IP address or hostname will be included in the spam list such as the one managed by [Spamhaus](https://www.spamhaus.org/), depending on the reputation. As the exim-relay service supports DKIM signing, refer to [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-exim-relay/blob/main/docs/configuring-exim-relay.md#enable-dkim-support-optional) for details about how to set it up.
-
-If you will use another SMTP server or Postmark, see [this section](https://github.com/mother-of-all-self-hosting/ansible-role-heyform/blob/main/docs/configuring-heyform.md#configure-the-mailer) on the role's documentation for details about configuring the mailer.
-
-If you do not want to enable a mailer for HeyForm altogether, add the following configuration to your `vars.yml` file:
-
-```yaml
-heyform_mailer_enabled: false
-```
 
 ### Configure Valkey
 
@@ -262,16 +248,6 @@ heyform_systemd_required_services_list_custom:
 
 Running the installation command will create the shared Valkey instance named `mash-valkey`.
 
-### Enable Telemetry (optional)
-
-By default this playbook disables HeyForm's [telemetry](https://heyform.com/docs/self-hosting/environment-variables#telemetry) which collects information about the active version, user count, page count, space and workspace count, and sends to the HeyForm server (see [here](https://github.com/heyform/heyform/blob/main/apps/server/src/integrations/telemetry/telemetry.service.ts)).
-
-If you are fine with sending such information and want to help developers, add the following configuration to your `vars.yml` file:
-
-```yaml
-heyform_environment_variable_disable_telemetry: false
-```
-
 ## Installation
 
 If you have decided to install the dedicated Valkey instance for HeyForm, make sure to run the [installing](../installing.md) command for the supplementary host (`mash.example.com-heyform-deps`) first, before running it for the main host (`mash.example.com`).
@@ -282,11 +258,11 @@ Note that running the `just` commands for installation (`just install-all` or `j
 
 After installation, the HeyForm instance becomes available at the URL specified with `heyform_hostname`. With the configuration above, the service is hosted at `https://heyform.example.com`.
 
-To get started, open the URL with a web browser, and create a first workspace by inputting required information. For an email address, make sure to input your own email address, not the one of the mailer.
+To get started, open the URL with a web browser to create an account.
 
 ## Troubleshooting
 
-See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-heyform/blob/main/docs/configuring-heyform.md#troubleshooting) on the role's documentation for details.
+See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3AzsKztkwnLv9wVMRYbcpoFesx6L5j/tree/docs/configuring-heyform.md#troubleshooting) on the role's documentation for details.
 
 ## Related services
 
