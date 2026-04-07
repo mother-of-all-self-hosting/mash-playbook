@@ -65,9 +65,9 @@ openarchiver_hostname: openarchiver.example.com
 
 **Note**: hosting Open Archiver under a subpath (by configuring the `openarchiver_path_prefix` variable) does not seem to be possible due to Open Archiver's technical limitations.
 
-### Set 32-byte hex digits for secret key
+### Set random 32-byte hex digits for secret key
 
-You also need to specify **32-byte hex digits** for keys to be used for encryption. To do so, add the following configuration to your `vars.yml` file. The value can be generated with `openssl rand -hex 32` or in another way.
+You also need to set random **32-byte hex digits** for keys to be used for encryption. To do so, add the following configuration to your `vars.yml` file. The value can be generated with `openssl rand -hex 32` or in another way.
 
 ```yaml
 openarchiver_environment_variables_storage_encryption_key: RANDOM_32_BYTE_HEX_STRING_HERE
