@@ -168,7 +168,7 @@ Having configured `vars.yml` for the dedicated instance, add the following confi
 
 # Add the base configuration as specified above
 
-# Point PinePods server to its dedicated Valkey instance
+# Point PinePods to its dedicated Valkey instance
 pinepods_redis_hostname: mash-pinepods-valkey
 
 # Make sure the PinePods container is connected to the container network of its dedicated Valkey service (mash-pinepods-valkey)
@@ -218,7 +218,7 @@ valkey_enabled: true
 
 # Add the base configuration as specified above
 
-# Point PinePods server to the shared Valkey instance
+# Point PinePods to the shared Valkey instance
 pinepods_redis_hostname: "{{ valkey_identifier }}"
 
 # Make sure the PinePods container is connected to the container network of the shared Valkey service (mash-valkey)

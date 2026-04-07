@@ -186,7 +186,7 @@ Having configured `vars.yml` for the dedicated instance, add the following confi
 
 # Add the base configuration as specified above
 
-# Point Open Archiver server to its dedicated Valkey instance
+# Point Open Archiver to its dedicated Valkey instance
 openarchiver_redis_hostname: mash-openarchiver-valkey
 
 # Make sure the Open Archiver container is connected to the container network of its dedicated Valkey service (mash-openarchiver-valkey)
@@ -236,7 +236,7 @@ valkey_enabled: true
 
 # Add the base configuration as specified above
 
-# Point Open Archiver server to the shared Valkey instance
+# Point Open Archiver to the shared Valkey instance
 openarchiver_redis_hostname: "{{ valkey_identifier }}"
 
 # Make sure the Open Archiver container is connected to the container network of the shared Valkey service (mash-valkey)
