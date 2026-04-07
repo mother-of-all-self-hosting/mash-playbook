@@ -60,9 +60,7 @@ syncstorage_rs_docker_hostname: syncstorage-rs-docker.example.com
 ########################################################################
 ```
 
-**Notes**:
-
-- Hosting syncstorage-rs under a subpath (by configuring the `syncstorage_rs_docker_path_prefix` variable) does not seem to be possible due to syncstorage-rs's technical limitations.
+**Note**: hosting syncstorage-rs under a subpath (by configuring the `syncstorage_rs_docker_path_prefix` variable) does not seem to be possible due to syncstorage-rs's technical limitations.
 
 ### Set random strings
 
