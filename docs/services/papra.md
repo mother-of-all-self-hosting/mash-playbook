@@ -61,6 +61,14 @@ papra_hostname: papra.example.com
 
 **Note**: hosting Papra under a subpath (by configuring the `papra_path_prefix` variable) does not seem to be possible due to Papra's technical limitations.
 
+### Set a random string
+
+You also need to set a random string to the variable as below by adding the following configuration to your `vars.yml` file. The value can be generated with `pwgen -s 64 1` or in another way.
+
+```yaml
+papra_environment_variables_auth_secret: YOUR_SECRET_KEY_HERE
+```
+
 ### Enabling signing up
 
 By default account registration for the service is disabled. To enable it, add the following configuration to your `vars.yml` file:

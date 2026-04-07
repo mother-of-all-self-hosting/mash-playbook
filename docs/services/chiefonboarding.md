@@ -64,7 +64,7 @@ chiefonboarding_hostname: chiefonboarding.example.com
 
 ### Set a random string
 
-You also need to set a random string by adding the following configuration to your `vars.yml` file. The value can be generated with `pwgen -s 64 1` or in another way.
+You also need to set a random string to the variable as below by adding the following configuration to your `vars.yml` file. The value can be generated with `pwgen -s 64 1` or in another way.
 
 ```yaml
 chiefonboarding_environment_variables_secret_key: YOUR_SECRET_KEY_HERE

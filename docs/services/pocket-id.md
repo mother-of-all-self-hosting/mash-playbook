@@ -65,6 +65,14 @@ pocket_id_hostname: pocketid.example.com
 
 **Note**: hosting Pocket ID under a subpath (by configuring the `pocket_id_path_prefix` variable) does not seem to be possible due to Pocket ID's technical limitations.
 
+### Set a random string
+
+You also need to set a random string to the variable as below by adding the following configuration to your `vars.yml` file. The value can be generated with `pwgen -s 64 1` or in another way.
+
+```yaml
+pocket_id_environment_variable_encryption_key: YOUR_SECRET_KEY_HERE
+```
+
 ### Select database to use (optional)
 
 By default Pocket ID is configured to use Postgres, but you can choose SQLite. See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az2vTmc3fLqxvpuT9EoZvkErWNZM1K/tree/docs/configuring-pocket-id.md#specify-database-optional) on the role's documentation for details.

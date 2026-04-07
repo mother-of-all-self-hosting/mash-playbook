@@ -66,6 +66,14 @@ duplicati_hostname: duplicati.example.com
 
 **Note**: hosting Duplicati under a subpath (by configuring the `duplicati_path_prefix` variable) does not seem to be possible due to Duplicati's technical limitations.
 
+### Set a random string
+
+You also need to set a random string to the variable as below by adding the following configuration to your `vars.yml` file. The value can be generated with `pwgen -s 64 1` or in another way.
+
+```yaml
+duplicati_environment_variable_settings_encryption_key: YOUR_SECRET_KEY_HERE
+```
+
 ### Mount a directory for files to backup
 
 You can mount the directory by adding the following configuration to your `vars.yml` file:

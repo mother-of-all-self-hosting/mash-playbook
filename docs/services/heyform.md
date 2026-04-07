@@ -65,7 +65,7 @@ heyform_hostname: heyform.example.com
 
 ### Set a random string
 
-You also need to set a random string by adding the following configuration to your `vars.yml` file. The value can be generated with `pwgen -s 64 1` or in another way.
+You also need to set a random string to the variable as below by adding the following configuration to your `vars.yml` file. The value can be generated with `pwgen -s 64 1` or in another way.
 
 ```yaml
 heyform_environment_variables_form_encryption_key: YOUR_SECRET_KEY_HERE
