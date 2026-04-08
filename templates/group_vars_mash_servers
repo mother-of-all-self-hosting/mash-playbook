@@ -9491,6 +9491,14 @@ mailpit_container_additional_networks_auto: |
 mailpit_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
 mailpit_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
 
+mailpit_container_labels_traefik_metrics_enabled: "{{ mash_playbook_metrics_exposure_enabled }}"
+mailpit_container_labels_traefik_metrics_hostname: "{{ mash_playbook_metrics_exposure_hostname }}"
+mailpit_container_labels_traefik_metrics_path_prefix: "{{ mash_playbook_metrics_exposure_path_prefix }}/{{ mailpit_identifier }}"
+mailpit_container_labels_traefik_metrics_middleware_basic_auth_enabled: "{{ mash_playbook_metrics_exposure_http_basic_auth_enabled }}"
+mailpit_container_labels_traefik_metrics_middleware_basic_auth_users: "{{ mash_playbook_metrics_exposure_http_basic_auth_users }}"
+
+mailpit_environment_variables_mp_enable_prometheus: "{{ prometheus_enabled | default(false) or mash_playbook_metrics_exposure_enabled }}"
+
 # role-specific:traefik
 mailpit_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
 mailpit_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
