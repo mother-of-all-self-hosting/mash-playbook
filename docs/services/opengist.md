@@ -117,10 +117,10 @@ It will expose the metrics at `https://mash.example.com/metrics/mash-opengist`.
 To enable the HTTP Basic authentication, add the following configuration to your `vars.yml` file (adapt to your needs):
 
 ```yaml
-opengist_container_labels_metrics_middleware_basic_auth_enabled: true
+opengist_container_labels_traefik_metrics_middleware_basic_auth_enabled: true
 
 # See https://doc.traefik.io/traefik/middlewares/http/basicauth/#users for details.
-opengist_container_labels_metrics_middleware_basic_auth_users: ""
+opengist_container_labels_traefik_metrics_middleware_basic_auth_users: ""
 ```
 
 ## Usage
