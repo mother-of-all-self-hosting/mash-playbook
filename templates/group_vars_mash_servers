@@ -3801,6 +3801,13 @@ borg_ui_environment_variables_secret_key: "{{ (mash_playbook_generic_secret_key 
 borg_ui_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
 borg_ui_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
 
+borg_ui_container_labels_traefik_metrics_enabled: "{{ mash_playbook_metrics_exposure_enabled }}"
+borg_ui_container_labels_traefik_metrics_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+borg_ui_container_labels_traefik_metrics_hostname: "{{ mash_playbook_metrics_exposure_hostname }}"
+borg_ui_container_labels_traefik_metrics_path_prefix: "{{ mash_playbook_metrics_exposure_path_prefix }}/{{ borg_ui_identifier }}"
+borg_ui_container_labels_traefik_metrics_middleware_basic_auth_enabled: "{{ mash_playbook_metrics_exposure_http_basic_auth_enabled }}"
+borg_ui_container_labels_traefik_metrics_middleware_basic_auth_users: "{{ mash_playbook_metrics_exposure_http_basic_auth_users }}"
+
 # role-specific:traefik
 borg_ui_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
 borg_ui_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
