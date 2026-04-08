@@ -186,7 +186,15 @@ Having configured `vars.yml` for the dedicated instance, add the following confi
 
 # Add the base configuration as specified above
 
-# Point Nextcloud to its dedicated Valkey instance
+# Make sure the connection via Unix domain socket is enabled
+# Set to `false` to enable TCP connection instead
+nextcloud_redis_socket_enabled: true
+
+# Connect Nextcloud to its dedicated Valkey instance via the Unix domain socket
+#
+# Alternatively, if you set `nextcloud_redis_socket_enabled` to `false`,
+# - Add the dedicated Valkey instance (mash-nextcloud-valkey) to `nextcloud_redis_hostname`
+# - Add its network (mash-nextcloud-valkey) to `nextcloud_container_additional_networks_custom`
 nextcloud_redis_socket_path_host: /mash/nextcloud-valkey/run
 
 # Make sure the Nextcloud service (mash-nextcloud.service) starts after its dedicated Valkey service (mash-nextcloud-valkey.service)
@@ -232,7 +240,15 @@ valkey_enabled: true
 
 # Add the base configuration as specified above
 
-# Point Nextcloud to the shared Valkey instance
+# Make sure the connection via Unix domain socket is enabled
+# Set to `false` to enable TCP connection instead
+nextcloud_redis_socket_enabled: true
+
+# Connect Nextcloud to the shared Valkey instance via the Unix domain socket
+#
+# Alternatively, if you set `nextcloud_redis_socket_enabled` to `false`,
+# - Add the shared Valkey instance (mash-valkey) to `nextcloud_redis_hostname`
+# - Add its network (mash-valkey) to `nextcloud_container_additional_networks_custom`
 nextcloud_redis_socket_path_host: "{{ valkey_run_path }}"
 
 # Make sure the Nextcloud service (mash-nextcloud.service) starts after the shared Valkey service (mash-valkey.service)

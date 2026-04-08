@@ -169,9 +169,18 @@ Having configured `vars.yml` for the dedicated instance, add the following confi
 
 # Add the base configuration as specified above
 
+# Enable caching with Redis
 rsshub_environment_variables_cache_type: redis
 
-# Point RSSHub to its dedicated Valkey instance
+# Make sure the connection via Unix domain socket is enabled
+# Set to `false` to enable TCP connection instead
+rsshub_redis_socket_enabled: true
+
+# Connect RSSHub to its dedicated Valkey instance via the Unix domain socket
+#
+# Alternatively, if you set `rsshub_redis_socket_enabled` to `false`,
+# - Add the dedicated Valkey instance (mash-rsshub-valkey) to `rsshub_redis_hostname`
+# - Add its network (mash-rsshub-valkey) to `rsshub_container_additional_networks_custom`
 rsshub_redis_socket_path_host: /mash/rsshub-valkey/run
 
 # Make sure the RSSHub service (mash-rsshub-server.service) starts after its dedicated Valkey service (mash-rsshub-valkey.service)
@@ -217,9 +226,18 @@ valkey_enabled: true
 
 # Add the base configuration as specified above
 
+# Enable caching with Redis
 rsshub_environment_variables_cache_type: redis
 
-# Point RSSHub to the shared Valkey instance
+# Make sure the connection via Unix domain socket is enabled
+# Set to `false` to enable TCP connection instead
+rsshub_redis_socket_enabled: true
+
+# Connect RSSHub to the shared Valkey instance via the Unix domain socket
+#
+# Alternatively, if you set `rsshub_redis_socket_enabled` to `false`,
+# - Add the shared Valkey instance (mash-valkey) to `rsshub_redis_hostname`
+# - Add its network (mash-valkey) to `rsshub_container_additional_networks_custom`
 rsshub_redis_socket_path_host: "{{ valkey_run_path }}"
 
 # Make sure the RSSHub service (mash-rsshub-server.service) starts after the shared Valkey service (mash-valkey.service)
