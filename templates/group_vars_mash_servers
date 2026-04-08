@@ -6267,6 +6267,12 @@ gitea_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyab
 gitea_container_labels_traefik_compression_middleware_enabled: "{{ mash_playbook_reverse_proxy_traefik_middleware_compession_enabled }}"
 gitea_container_labels_traefik_compression_middleware_name: "{{ mash_playbook_reverse_proxy_traefik_middleware_compession_name if mash_playbook_reverse_proxy_traefik_middleware_compession_enabled else '' }}"
 
+gitea_container_labels_traefik_metrics_enabled: "{{ mash_playbook_metrics_exposure_enabled }}"
+gitea_container_labels_traefik_metrics_hostname: "{{ mash_playbook_metrics_exposure_hostname }}"
+gitea_container_labels_traefik_metrics_path_prefix: "{{ mash_playbook_metrics_exposure_path_prefix }}/{{ gitea_identifier }}"
+gitea_container_labels_traefik_metrics_middleware_basic_auth_enabled: "{{ mash_playbook_metrics_exposure_http_basic_auth_enabled }}"
+gitea_container_labels_traefik_metrics_middleware_basic_auth_users: "{{ mash_playbook_metrics_exposure_http_basic_auth_users }}"
+
 # role-specific:exim_relay
 gitea_config_mailer_enabled: "{{ exim_relay_enabled }}"
 gitea_config_mailer_protocol: "{{ 'smtp' if exim_relay_enabled else '' }}"
