@@ -14270,6 +14270,12 @@ silverbullet_container_additional_networks_auto: |
 silverbullet_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
 silverbullet_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
 
+silverbullet_container_labels_traefik_metrics_enabled: "{{ mash_playbook_metrics_exposure_enabled }}"
+silverbullet_container_labels_traefik_metrics_hostname: "{{ mash_playbook_metrics_exposure_hostname }}"
+silverbullet_container_labels_traefik_metrics_path_prefix: "{{ mash_playbook_metrics_exposure_path_prefix }}/{{ silverbullet_identifier }}"
+silverbullet_container_labels_traefik_metrics_middleware_basic_auth_enabled: "{{ mash_playbook_metrics_exposure_http_basic_auth_enabled }}"
+silverbullet_container_labels_traefik_metrics_middleware_basic_auth_users: "{{ mash_playbook_metrics_exposure_http_basic_auth_users }}"
+
 # role-specific:traefik
 silverbullet_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
 silverbullet_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
