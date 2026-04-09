@@ -13,6 +13,7 @@ SPDX-FileCopyrightText: 2023 Felix Stupp
 SPDX-FileCopyrightText: 2023 Julian-Samuel Gebühr
 SPDX-FileCopyrightText: 2023 Pierre 'McFly' Marty
 SPDX-FileCopyrightText: 2024 Thomas Miceli
+SPDX-FileCopyrightText: 2024 Tiz
 SPDX-FileCopyrightText: 2024-2026 Suguru Hirahara
 
 SPDX-License-Identifier: AGPL-3.0-or-later
@@ -259,6 +260,43 @@ Running the installation command will create the shared Valkey instance named `m
 If you have decided to install the dedicated Valkey instance for Vikunja, make sure to run the [installing](../installing.md) command for the supplementary host (`mash.example.com-vikunja-deps`) first, before running it for the main host (`mash.example.com`).
 
 Note that running the `just` commands for installation (`just install-all` or `just setup-all`) automatically takes care of the order. See [here](../running-multiple-instances.md#1-adjust-hosts) for more details about it.
+
+### Integrating with Prometheus (optional)
+
+Vikunja can natively expose metrics to [Prometheus](prometheus.md).
+
+#### Expose metrics internally
+
+If Vikunja and Prometheus do not share a network (like Traefik), you can connect the Vikunja container network to Prometheus by adding the following configuration to your `vars.yml` file:
+
+```yaml
+prometheus_container_additional_networks_custom:
+  - "{{ vikunja_container_network }}"
+```
+
+#### Expose metrics publicly
+
+If Vikunja metrics are not scraped from a local Prometheus instance, you can expose the metrics publicly so that a remote instance can fetch them.
+
+When exposing metrics publicly, you should consider to set up [HTTP Basic Authentication](https://developer.mozilla.org/en-US/docs/Web/HTTP/Authentication) **or anyone would be able to read your metrics**.
+
+To expose the metrics publicly, add the following configuration to your `vars.yml` file (adapt to your needs):
+
+```yaml
+mash_playbook_metrics_exposure_enabled: true
+mash_playbook_metrics_exposure_hostname: mash.example.com
+```
+
+It will expose the metrics at `https://mash.example.com/metrics/mash-vikunja`.
+
+To enable the HTTP Basic authentication, add the following configuration to your `vars.yml` file (adapt to your needs):
+
+```yaml
+vikunja_container_labels_traefik_metrics_middleware_basic_auth_enabled: true
+
+# See https://doc.traefik.io/traefik/middlewares/http/basicauth/#users for details.
+vikunja_container_labels_traefik_metrics_middleware_basic_auth_users: ""
+```
 
 ## Usage
 

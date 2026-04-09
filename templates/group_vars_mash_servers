@@ -15425,9 +15425,17 @@ vikunja_container_additional_networks_auto: |
 vikunja_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
 vikunja_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
 
+vikunja_container_labels_traefik_metrics_enabled: "{{ mash_playbook_metrics_exposure_enabled }}"
+vikunja_container_labels_traefik_metrics_hostname: "{{ mash_playbook_metrics_exposure_hostname }}"
+vikunja_container_labels_traefik_metrics_path_prefix: "{{ mash_playbook_metrics_exposure_path_prefix }}/{{ vikunja_identifier }}"
+vikunja_container_labels_traefik_metrics_middleware_basic_auth_enabled: "{{ mash_playbook_metrics_exposure_http_basic_auth_enabled }}"
+vikunja_container_labels_traefik_metrics_middleware_basic_auth_users: "{{ mash_playbook_metrics_exposure_http_basic_auth_users }}"
+
+vikunja_environment_variables_metrics_enabled: "{{ prometheus_enabled | default(false) or mash_playbook_metrics_exposure_enabled }}"
+
 vikunja_database_type: "{{ 'postgres' if postgres_enabled | default(false) else 'sqlite' }}"
 
-vikunja_environment_variables_service_jwtsecret: "{{ (mash_playbook_generic_secret_key + ':s.vikunja') | hash('sha512') | to_uuid }}"
+vikunja_environment_variables_service_secret: "{{ (mash_playbook_generic_secret_key + ':s.vikunja') | hash('sha512') | to_uuid }}"
 
 # role-specific:exim_relay
 vikunja_mailer_enabled: "{{ exim_relay_enabled }}"
