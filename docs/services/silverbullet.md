@@ -59,6 +59,10 @@ silverbullet_hostname: silverbullet.example.com
 
 **Note**: hosting SilverBullet under a subpath (by configuring the `silverbullet_path_prefix` variable) does not seem to be possible due to SilverBullet's technical limitations.
 
+### Set the username and password
+
+You also need to create an instance's user to access to the UI after installation. See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3PxyXm3EXE4xCNKcaKVKmtdjVNog/tree/docs/configuring-silverbullet.md#set-the-username-and-password) on the role's documentation for details.
+
 ## Usage
 
 After running the command for installation, the SilverBullet instance becomes available at the URL specified with `silverbullet_hostname`. With the configuration above, the service is hosted at `https://silverbullet.example.com`.
