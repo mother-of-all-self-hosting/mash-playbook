@@ -813,7 +813,7 @@
   name: send
   activation_prefix: send_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-sftpgo.git
-  version: v2.7.1-5
+  version: v2.7.1-6
   name: sftpgo
   activation_prefix: sftpgo_
 - src: git+https://seed.radicle.garden/z3PxyXm3EXE4xCNKcaKVKmtdjVNog.git

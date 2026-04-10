@@ -14200,6 +14200,14 @@ sftpgo_container_additional_networks_auto: |
 sftpgo_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
 sftpgo_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
 
+sftpgo_container_labels_traefik_metrics_enabled: "{{ mash_playbook_metrics_exposure_enabled }}"
+sftpgo_container_labels_traefik_metrics_hostname: "{{ mash_playbook_metrics_exposure_hostname }}"
+sftpgo_container_labels_traefik_metrics_path_prefix: "{{ mash_playbook_metrics_exposure_path_prefix }}/{{ sftpgo_identifier }}"
+sftpgo_container_labels_traefik_metrics_middleware_basic_auth_enabled: "{{ mash_playbook_metrics_exposure_http_basic_auth_enabled }}"
+sftpgo_container_labels_traefik_metrics_middleware_basic_auth_users: "{{ mash_playbook_metrics_exposure_http_basic_auth_users }}"
+
+sftpgo_metrics_enabled: "{{ prometheus_enabled | default(false) or mash_playbook_metrics_exposure_enabled }}"
+
 sftpgo_environment_variables_data_provider_driver: postgres
 
 # role-specific:exim_relay
