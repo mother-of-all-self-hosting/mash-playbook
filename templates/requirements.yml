@@ -253,7 +253,7 @@
   name: feishin
   activation_prefix: feishin_
 - src: git+https://seed.radicle.garden/z3Fe49p3uVZpC43KdB5gDCTmr8u7Y.git
-  version: v0.33.0-2
+  version: v0.33.0-3
   name: fider
   activation_prefix: fider_
 - src: git+https://seed.radicle.garden/z318zbpe2RNjFqVzXqPoDDJvvohbw.git

@@ -5506,6 +5506,14 @@ fider_container_additional_networks_auto: |
 fider_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
 fider_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
 
+fider_container_labels_traefik_metrics_enabled: "{{ mash_playbook_metrics_exposure_enabled }}"
+fider_container_labels_traefik_metrics_hostname: "{{ mash_playbook_metrics_exposure_hostname }}"
+fider_container_labels_traefik_metrics_path_prefix: "{{ mash_playbook_metrics_exposure_path_prefix }}/{{ fider_identifier }}"
+fider_container_labels_traefik_metrics_middleware_basic_auth_enabled: "{{ mash_playbook_metrics_exposure_http_basic_auth_enabled }}"
+fider_container_labels_traefik_metrics_middleware_basic_auth_users: "{{ mash_playbook_metrics_exposure_http_basic_auth_users }}"
+
+fider_environment_variables_metrics_enabled: "{{ prometheus_enabled | default(false) or mash_playbook_metrics_exposure_enabled }}"
+
 fider_environment_variables_jwt_secret: "{{ (mash_playbook_generic_secret_key + ':s.fider') | hash('sha512') | to_uuid }}"
 
 # role-specific:exim_relay
