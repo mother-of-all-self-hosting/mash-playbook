@@ -13,6 +13,7 @@ SPDX-FileCopyrightText: 2023 Felix Stupp
 SPDX-FileCopyrightText: 2023 Julian-Samuel Gebühr
 SPDX-FileCopyrightText: 2023 Pierre 'McFly' Marty
 SPDX-FileCopyrightText: 2024 Thomas Miceli
+SPDX-FileCopyrightText: 2024 Tiz
 SPDX-FileCopyrightText: 2024-2026 Suguru Hirahara
 
 SPDX-License-Identifier: AGPL-3.0-or-later
@@ -162,7 +163,15 @@ Having configured `vars.yml` for the dedicated instance, add the following confi
 
 # Add the base configuration as specified above
 
-# Point Borg Web UI to its dedicated Valkey instance
+# Make sure the connection via Unix domain socket is enabled
+# Set to `false` to enable TCP connection instead
+borg_ui_redis_socket_enabled: true
+
+# Connect Borg Web UI to its dedicated Valkey instance via the Unix domain socket
+#
+# Alternatively, if you set `borg_ui_redis_socket_enabled` to `false`,
+# - Add the dedicated Valkey instance (mash-borg-ui-valkey) to `borg_ui_redis_hostname`
+# - Add its network (mash-borg-ui-valkey) to `borg_ui_container_additional_networks_custom`
 borg_ui_redis_socket_path_host: /mash/borg-ui-valkey/run
 
 # Make sure the Borg Web UI service (mash-borg-ui.service) starts after its dedicated Valkey service (mash-borg-ui-valkey.service)
@@ -208,7 +217,15 @@ valkey_enabled: true
 
 # Add the base configuration as specified above
 
-# Point Borg Web UI to the shared Valkey instance
+# Make sure the connection via Unix domain socket is enabled
+# Set to `false` to enable TCP connection instead
+borg_ui_redis_socket_enabled: true
+
+# Connect Borg Web UI to the shared Valkey instance via the Unix domain socket
+#
+# Alternatively, if you set `borg_ui_redis_socket_enabled` to `false`,
+# - Add the shared Valkey instance (mash-valkey) to `borg_ui_redis_hostname`
+# - Add its network (mash-valkey) to `borg_ui_container_additional_networks_custom`
 borg_ui_redis_socket_path_host: "{{ valkey_run_path }}"
 
 # Make sure the Borg Web UI service (mash-borg-ui.service) starts after the shared Valkey service (mash-valkey.service)
@@ -223,6 +240,43 @@ borg_ui_systemd_required_services_list_custom:
 ```
 
 Running the installation command will create the shared Valkey instance named `mash-valkey`.
+
+### Integrating with Prometheus (optional)
+
+Borg Web UI can natively expose metrics to [Prometheus](prometheus.md).
+
+#### Expose metrics internally
+
+If Borg Web UI and Prometheus do not share a network (like Traefik), you can connect the Borg Web UI container network to Prometheus by adding the following configuration to your `vars.yml` file:
+
+```yaml
+prometheus_container_additional_networks_custom:
+  - "{{ borg_ui_container_network }}"
+```
+
+#### Expose metrics publicly
+
+If Borg Web UI metrics are not scraped from a local Prometheus instance, you can expose the metrics publicly so that a remote instance can fetch them.
+
+When exposing metrics publicly, you should consider to set up [HTTP Basic Authentication](https://developer.mozilla.org/en-US/docs/Web/HTTP/Authentication) **or anyone would be able to read your metrics**.
+
+To expose the metrics publicly, add the following configuration to your `vars.yml` file (adapt to your needs):
+
+```yaml
+mash_playbook_metrics_exposure_enabled: true
+mash_playbook_metrics_exposure_hostname: mash.example.com
+```
+
+It will expose the metrics at `https://mash.example.com/metrics/mash-borg-ui`.
+
+To enable the HTTP Basic authentication, add the following configuration to your `vars.yml` file (adapt to your needs):
+
+```yaml
+borg_ui_container_labels_traefik_metrics_middleware_basic_auth_enabled: true
+
+# See https://doc.traefik.io/traefik/middlewares/http/basicauth/#users for details.
+borg_ui_container_labels_traefik_metrics_middleware_basic_auth_users: ""
+```
 
 ## Installation
 

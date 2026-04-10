@@ -60,9 +60,17 @@ syncstorage_rs_docker_hostname: syncstorage-rs-docker.example.com
 ########################################################################
 ```
 
-**Notes**:
+**Note**: hosting syncstorage-rs under a subpath (by configuring the `syncstorage_rs_docker_path_prefix` variable) does not seem to be possible due to syncstorage-rs's technical limitations.
 
-- Hosting syncstorage-rs under a subpath (by configuring the `syncstorage_rs_docker_path_prefix` variable) does not seem to be possible due to syncstorage-rs's technical limitations.
+### Set random strings
+
+You also need to set random strings to the variables as below by adding the following configuration to your `vars.yml` file. The values can be generated with `pwgen -s 64 1` or in another way.
+
+```yaml
+syncstorage_rs_docker_environment_variable_sync_master_secret: YOUR_SECRET_KEY_HERE
+
+syncstorage_rs_docker_environment_variable_metrics_hash_secret: YOUR_SECRET_KEY_HERE
+```
 
 ## Usage
 

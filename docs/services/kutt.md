@@ -179,13 +179,13 @@ Having configured `vars.yml` for the dedicated instance, add the following confi
 # Point Kutt to its dedicated Valkey instance
 kutt_redis_hostname: mash-kutt-valkey
 
-# Make sure the Kutt service (mash-kutt.service) starts after its dedicated Valkey service (mash-kutt-valkey.service)
-kutt_systemd_required_services_list_custom:
-  - "mash-kutt-valkey.service"
-
 # Make sure the Kutt container is connected to the container network of its dedicated Valkey service (mash-kutt-valkey)
 kutt_container_additional_networks_custom:
   - "mash-kutt-valkey"
+
+# Make sure the Kutt service (mash-kutt.service) starts after its dedicated Valkey service (mash-kutt-valkey.service)
+kutt_systemd_required_services_list_custom:
+  - "mash-kutt-valkey.service"
 
 ########################################################################
 #                                                                      #
@@ -229,13 +229,13 @@ valkey_enabled: true
 # Point Kutt to the shared Valkey instance
 kutt_redis_hostname: "{{ valkey_identifier }}"
 
-# Make sure the Kutt service (mash-kutt.service) starts after the shared Valkey service (mash-valkey.service)
-kutt_systemd_required_services_list_custom:
-  - "{{ valkey_identifier }}.service"
-
 # Make sure the Kutt container is connected to the container network of the shared Valkey service (mash-valkey)
 kutt_container_additional_networks_custom:
   - "{{ valkey_identifier }}"
+
+# Make sure the Kutt service (mash-kutt.service) starts after the shared Valkey service (mash-valkey.service)
+kutt_systemd_required_services_list_custom:
+  - "{{ valkey_identifier }}.service"
 
 ########################################################################
 #                                                                      #

@@ -64,9 +64,9 @@ homarr_hostname: homarr.example.com
 
 **Note**: hosting Homarr under a subpath (by configuring the `homarr_path_prefix` variable) does not seem to be possible due to Homarr's technical limitations.
 
-### Set 32-byte hex digits for secret key
+### Set random 32-byte hex digits for secret key
 
-You also need to specify **32-byte hex digits** to encrypt integration secrets on the database. To do so, add the following configuration to your `vars.yml` file. The value can be generated with `openssl rand -hex 32` or in another way.
+You also need to set random **32-byte hex digits** to encrypt integration secrets on the database. To do so, add the following configuration to your `vars.yml` file. The value can be generated with `openssl rand -hex 32` or in another way.
 
 ```yaml
 homarr_environment_variables_secret_encryption_key: YOUR_SECRET_KEY_HERE

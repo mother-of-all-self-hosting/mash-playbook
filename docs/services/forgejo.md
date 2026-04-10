@@ -15,6 +15,7 @@ SPDX-FileCopyrightText: 2023 MASH project contributors
 SPDX-FileCopyrightText: 2023 Pierre 'McFly' Marty
 SPDX-FileCopyrightText: 2024 Sergio Durigan Junior
 SPDX-FileCopyrightText: 2024 Thomas Miceli
+SPDX-FileCopyrightText: 2024 Tiz
 SPDX-FileCopyrightText: 2024-2026 Suguru Hirahara
 
 SPDX-License-Identifier: AGPL-3.0-or-later
@@ -127,6 +128,43 @@ just run-tags configure-oauth-forgejo
 ```
 
 See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-forgejo/blob/main/docs/configuring-forgejo.md#configure-oauth2openid-connect-login-optional) on the role's documentation for additional options.
+
+### Integrating with Prometheus (optional)
+
+Forgejo can natively expose metrics to [Prometheus](prometheus.md).
+
+#### Expose metrics internally
+
+If Forgejo and Prometheus do not share a network (like Traefik), you can connect the Forgejo container network to Prometheus by adding the following configuration to your `vars.yml` file:
+
+```yaml
+prometheus_container_additional_networks_custom:
+  - "{{ forgejo_container_network }}"
+```
+
+#### Expose metrics publicly
+
+If Forgejo metrics are not scraped from a local Prometheus instance, you can expose the metrics publicly so that a remote instance can fetch them.
+
+When exposing metrics publicly, you should consider to set up [HTTP Basic Authentication](https://developer.mozilla.org/en-US/docs/Web/HTTP/Authentication) **or anyone would be able to read your metrics**.
+
+To expose the metrics publicly, add the following configuration to your `vars.yml` file (adapt to your needs):
+
+```yaml
+mash_playbook_metrics_exposure_enabled: true
+mash_playbook_metrics_exposure_hostname: mash.example.com
+```
+
+It will expose the metrics at `https://mash.example.com/metrics/mash-forgejo`.
+
+To enable the HTTP Basic authentication, add the following configuration to your `vars.yml` file (adapt to your needs):
+
+```yaml
+forgejo_container_labels_traefik_metrics_middleware_basic_auth_enabled: true
+
+# See https://doc.traefik.io/traefik/middlewares/http/basicauth/#users for details.
+forgejo_container_labels_traefik_metrics_middleware_basic_auth_users: ""
+```
 
 ## Usage
 

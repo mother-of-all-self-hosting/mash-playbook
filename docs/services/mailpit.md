@@ -1,10 +1,10 @@
 <!--
-SPDX-FileCopyrightText: 2020 - 2024 MDAD project contributors
-SPDX-FileCopyrightText: 2020 - 2024 Slavi Pantaleev
 SPDX-FileCopyrightText: 2020 Aaron Raimist
 SPDX-FileCopyrightText: 2020 Chris van Dijk
 SPDX-FileCopyrightText: 2020 Dominik Zajac
 SPDX-FileCopyrightText: 2020 Mickaël Cornière
+SPDX-FileCopyrightText: 2020-2024 MDAD project contributors
+SPDX-FileCopyrightText: 2020-2024 Slavi Pantaleev
 SPDX-FileCopyrightText: 2022 François Darveau
 SPDX-FileCopyrightText: 2022 Julian Foad
 SPDX-FileCopyrightText: 2022 Warren Bailey
@@ -12,7 +12,9 @@ SPDX-FileCopyrightText: 2023 Antonis Christofides
 SPDX-FileCopyrightText: 2023 Felix Stupp
 SPDX-FileCopyrightText: 2023 Julian-Samuel Gebühr
 SPDX-FileCopyrightText: 2023 Pierre 'McFly' Marty
-SPDX-FileCopyrightText: 2024 - 2025 Suguru Hirahara
+SPDX-FileCopyrightText: 2024 Thomas Miceli
+SPDX-FileCopyrightText: 2024 Tiz
+SPDX-FileCopyrightText: 2024-2026 Suguru Hirahara
 
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->
@@ -66,6 +68,43 @@ The HTTP Basic authentication on Traefik is enabled for the web interface by def
 ### Configuring POP3 server (optional)
 
 While the SMTP server can be used without setting credentials, **the POP3 server requires you to specify a pair of username and password**. See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3BKJz8wwtQHfXm8MPX81h4izT2QS/tree/docs/configuring-mailpit.md#pop3-server) on the role's documentation for details.
+
+### Integrating with Prometheus (optional)
+
+Mailpit can natively expose metrics to [Prometheus](prometheus.md).
+
+#### Expose metrics internally
+
+If Mailpit and Prometheus do not share a network (like Traefik), you can connect the Mailpit container network to Prometheus by adding the following configuration to your `vars.yml` file:
+
+```yaml
+prometheus_container_additional_networks_custom:
+  - "{{ mailpit_container_network }}"
+```
+
+#### Expose metrics publicly
+
+If Mailpit metrics are not scraped from a local Prometheus instance, you can expose the metrics publicly so that a remote instance can fetch them.
+
+When exposing metrics publicly, you should consider to set up [HTTP Basic Authentication](https://developer.mozilla.org/en-US/docs/Web/HTTP/Authentication) **or anyone would be able to read your metrics**.
+
+To expose the metrics publicly, add the following configuration to your `vars.yml` file (adapt to your needs):
+
+```yaml
+mash_playbook_metrics_exposure_enabled: true
+mash_playbook_metrics_exposure_hostname: mash.example.com
+```
+
+It will expose the metrics at `https://mash.example.com/metrics/mash-mailpit`.
+
+To enable the HTTP Basic authentication, add the following configuration to your `vars.yml` file (adapt to your needs):
+
+```yaml
+mailpit_container_labels_traefik_metrics_middleware_basic_auth_enabled: true
+
+# See https://doc.traefik.io/traefik/middlewares/http/basicauth/#users for details.
+mailpit_container_labels_traefik_metrics_middleware_basic_auth_users: ""
+```
 
 ## Usage
 

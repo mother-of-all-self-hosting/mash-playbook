@@ -179,13 +179,13 @@ Having configured `vars.yml` for Valkey instances for PeerTube and NetBox, add t
 netbox_environment_variable_redis_hostname: mash-netbox-valkey
 netbox_environment_variable_redis_cache_hostname: mash-netbox-valkey
 
-# Make sure the NetBox service (mash-netbox.service) starts after its dedicated Valkey service (mash-netbox-valkey.service)
-netbox_systemd_required_services_list_custom:
-  - mash-netbox-valkey.service
-
 # Make sure the NetBox container is connected to the container network of its dedicated Valkey service (mash-netbox-valkey)
 netbox_container_additional_networks_custom:
   - mash-netbox-valkey
+
+# Make sure the NetBox service (mash-netbox.service) starts after its dedicated Valkey service (mash-netbox-valkey.service)
+netbox_systemd_required_services_list_custom:
+  - mash-netbox-valkey.service
 
 ########################################################################
 #                                                                      #
@@ -206,13 +206,13 @@ netbox_container_additional_networks_custom:
 # Point PeerTube to its dedicated Valkey instance
 peertube_redis_hostname: mash-peertube-valkey
 
-# Make sure the PeerTube service (mash-peertube.service) starts after its dedicated Valkey service (mash-peertube-valkey.service)
-peertube_systemd_required_services_list_custom:
-  - "mash-peertube-valkey.service"
-
 # Make sure the PeerTube container is connected to the container network of its dedicated Valkey service (mash-peertube-valkey)
 peertube_container_additional_networks_custom:
   - "mash-peertube-valkey"
+
+# Make sure the PeerTube service (mash-peertube.service) starts after its dedicated Valkey service (mash-peertube-valkey.service)
+peertube_systemd_required_services_list_custom:
+  - "mash-peertube-valkey.service"
 
 ########################################################################
 #                                                                      #

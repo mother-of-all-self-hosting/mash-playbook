@@ -61,9 +61,9 @@ outline_hostname: outline.example.com
 
 **Note**: hosting Outline under a subpath (by configuring the `outline_path_prefix` variable) does not seem to be possible due to Outline's technical limitations.
 
-### Set 32-byte hex digits for secret key
+### Set random 32-byte hex digits for secret key
 
-You also need to specify **32-byte hex digits** for the secret key. To do so, add the following configuration to your `vars.yml` file. The value can be generated with `openssl rand -hex 32` or in another way.
+You also need to set random **32-byte hex digits** for the secret key. To do so, add the following configuration to your `vars.yml` file. The value can be generated with `openssl rand -hex 32` or in another way.
 
 ```yaml
 outline_environment_variable_secret_key: YOUR_SECRET_KEY_HERE
@@ -200,7 +200,15 @@ Having configured `vars.yml` for the dedicated instance, add the following confi
 
 # Add the base configuration as specified above
 
-# Point Outline to its dedicated Valkey instance
+# Make sure the connection via Unix domain socket is enabled
+# Set to `false` to enable TCP connection instead
+outline_redis_socket_enabled: true
+
+# Connect Outline to its dedicated Valkey instance via the Unix domain socket
+#
+# Alternatively, if you set `outline_redis_socket_enabled` to `false`,
+# - Add the dedicated Valkey instance (mash-outline-valkey) to `outline_redis_hostname`
+# - Add its network (mash-outline-valkey) to `outline_container_additional_networks_custom`
 outline_redis_socket_path_host: /mash/outline-valkey/run
 
 # Make sure the outline service (mash-outline.service) starts after its dedicated Valkey service (mash-outline-valkey.service)
@@ -246,7 +254,15 @@ valkey_enabled: true
 
 # Add the base configuration as specified above
 
-# Point Outline to the shared Valkey instance
+# Make sure the connection via Unix domain socket is enabled
+# Set to `false` to enable TCP connection instead
+outline_redis_socket_enabled: true
+
+# Connect Outline to the shared Valkey instance via the Unix domain socket
+#
+# Alternatively, if you set `outline_redis_socket_enabled` to `false`,
+# - Add the shared Valkey instance (mash-valkey) to `outline_redis_hostname`
+# - Add its network (mash-valkey) to `outline_container_additional_networks_custom`
 outline_redis_socket_path_host: "{{ valkey_run_path }}"
 
 # Make sure the outline API service (mash-outline.service) starts after the shared Valkey service (mash-valkey.service)

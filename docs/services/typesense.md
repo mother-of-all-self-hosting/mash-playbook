@@ -56,6 +56,14 @@ typesense_enabled: true
 ########################################################################
 ```
 
+### Set a random string
+
+You also need to set a random string to the variable as below by adding the following configuration to your `vars.yml` file. The value can be generated with `pwgen -s 64 1` or in another way.
+
+```yaml
+typesense_environment_variables_api_key: YOUR_SECRET_KEY_HERE
+```
+
 ### Expose the instance publicly (optional)
 
 By default, the Typesense instance is not exposed externally, as it is mainly intended to be used in the internal network.

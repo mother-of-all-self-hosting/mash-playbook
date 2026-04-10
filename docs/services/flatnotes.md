@@ -70,4 +70,5 @@ See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az49Lk
 
 ## Related services
 
+- [Memos](memos.md) — Markdown-native note-taking tool
 - [SilverBullet](silverbullet.md) — Programmable, private, personal knowledge management platform

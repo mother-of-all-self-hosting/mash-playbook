@@ -402,6 +402,10 @@
     - role: galaxy/healthchecks
     # /role-specific:healthchecks
 
+    # role-specific:heyform
+    - role: galaxy/heyform
+    # /role-specific:heyform
+
     # role-specific:homarr
     - role: galaxy/homarr
     # /role-specific:homarr
@@ -549,6 +553,10 @@
     # role-specific:memcached
     - role: galaxy/memcached
     # /role-specific:memcached
+
+    # role-specific:memos
+    - role: galaxy/memos
+    # /role-specific:memos
 
     # role-specific:minecraft
     - role: galaxy/minecraft

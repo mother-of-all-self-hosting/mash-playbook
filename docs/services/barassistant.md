@@ -194,13 +194,13 @@ Having configured `vars.yml` for the dedicated instance, add the following confi
 # Point Bar Assistant server to its dedicated Valkey instance
 barassistant_redis_hostname: mash-barassistant-valkey
 
-# Make sure the Bar Assistant server service (mash-barassistant-server.service) starts after its dedicated Valkey service (mash-barassistant-valkey.service)
-barassistant_server_systemd_required_services_list_custom:
-  - "mash-barassistant-valkey.service"
-
 # Make sure the Bar Assistant server container is connected to the container network of its dedicated Valkey service (mash-barassistant-valkey)
 barassistant_server_container_additional_networks_custom:
   - "mash-barassistant-valkey"
+
+# Make sure the Bar Assistant server service (mash-barassistant-server.service) starts after its dedicated Valkey service (mash-barassistant-valkey.service)
+barassistant_server_systemd_required_services_list_custom:
+  - "mash-barassistant-valkey.service"
 
 ########################################################################
 #                                                                      #
@@ -244,13 +244,13 @@ valkey_enabled: true
 # Point Bar Assistant server to the shared Valkey instance
 barassistant_redis_hostname: "{{ valkey_identifier }}"
 
-# Make sure the Bar Assistant server service (mash-barassistant-server.service) starts after the shared Valkey service (mash-valkey.service)
-barassistant_server_systemd_required_services_list_custom:
-  - "{{ valkey_identifier }}.service"
-
 # Make sure the Bar Assistant server container is connected to the container network of the shared Valkey service (mash-valkey)
 barassistant_server_container_additional_networks_custom:
   - "{{ valkey_identifier }}"
+
+# Make sure the Bar Assistant server service (mash-barassistant-server.service) starts after the shared Valkey service (mash-valkey.service)
+barassistant_server_systemd_required_services_list_custom:
+  - "{{ valkey_identifier }}.service"
 
 ########################################################################
 #                                                                      #
@@ -260,6 +260,43 @@ barassistant_server_container_additional_networks_custom:
 ```
 
 Running the installation command will create the shared Valkey instance named `mash-valkey`.
+
+### Integrating with Prometheus (optional)
+
+Bar Assistant server can natively expose metrics to [Prometheus](prometheus.md).
+
+#### Expose metrics internally
+
+If Bar Assistant server and Prometheus do not share a network (like Traefik), you can connect the Bar Assistant server container network to Prometheus by adding the following configuration to your `vars.yml` file:
+
+```yaml
+prometheus_container_additional_networks_custom:
+  - "{{ barassistant_server_container_network }}"
+```
+
+#### Expose metrics publicly
+
+If Bar Assistant server metrics are not scraped from a local Prometheus instance, you can expose the metrics publicly so that a remote instance can fetch them.
+
+When exposing metrics publicly, you should consider to set up [HTTP Basic Authentication](https://developer.mozilla.org/en-US/docs/Web/HTTP/Authentication) **or anyone would be able to read your metrics**.
+
+To expose the metrics publicly, add the following configuration to your `vars.yml` file (adapt to your needs):
+
+```yaml
+mash_playbook_metrics_exposure_enabled: true
+mash_playbook_metrics_exposure_hostname: mash.example.com
+```
+
+It will expose the metrics at `https://mash.example.com/metrics/mash-barassistant-server`.
+
+To enable the HTTP Basic authentication, add the following configuration to your `vars.yml` file (adapt to your needs):
+
+```yaml
+barassistant_server_container_labels_traefik_metrics_middleware_basic_auth_enabled: true
+
+# See https://doc.traefik.io/traefik/middlewares/http/basicauth/#users for details.
+barassistant_server_container_labels_traefik_metrics_middleware_basic_auth_users: ""
+```
 
 ## Installation
 

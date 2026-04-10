@@ -12,6 +12,8 @@ SPDX-FileCopyrightText: 2023 Antonis Christofides
 SPDX-FileCopyrightText: 2023 Felix Stupp
 SPDX-FileCopyrightText: 2023 Julian-Samuel Gebühr
 SPDX-FileCopyrightText: 2023 Pierre 'McFly' Marty
+SPDX-FileCopyrightText: 2024 Thomas Miceli
+SPDX-FileCopyrightText: 2024 Tiz
 SPDX-FileCopyrightText: 2024-2026 Suguru Hirahara
 
 SPDX-License-Identifier: AGPL-3.0-or-later
@@ -58,6 +60,47 @@ silverbullet_hostname: silverbullet.example.com
 ```
 
 **Note**: hosting SilverBullet under a subpath (by configuring the `silverbullet_path_prefix` variable) does not seem to be possible due to SilverBullet's technical limitations.
+
+### Set the username and password
+
+You also need to create an instance's user to access to the UI after installation. See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3PxyXm3EXE4xCNKcaKVKmtdjVNog/tree/docs/configuring-silverbullet.md#set-the-username-and-password) on the role's documentation for details.
+
+### Integrating with Prometheus (optional)
+
+SilverBullet can natively expose metrics to [Prometheus](prometheus.md).
+
+#### Expose metrics internally
+
+If SilverBullet and Prometheus do not share a network (like Traefik), you can connect the SilverBullet container network to Prometheus by adding the following configuration to your `vars.yml` file:
+
+```yaml
+prometheus_container_additional_networks_custom:
+  - "{{ silverbullet_container_network }}"
+```
+
+#### Expose metrics publicly
+
+If SilverBullet metrics are not scraped from a local Prometheus instance, you can expose the metrics publicly so that a remote instance can fetch them.
+
+When exposing metrics publicly, you should consider to set up [HTTP Basic Authentication](https://developer.mozilla.org/en-US/docs/Web/HTTP/Authentication) **or anyone would be able to read your metrics**.
+
+To expose the metrics publicly, add the following configuration to your `vars.yml` file (adapt to your needs):
+
+```yaml
+mash_playbook_metrics_exposure_enabled: true
+mash_playbook_metrics_exposure_hostname: mash.example.com
+```
+
+It will expose the metrics at `https://mash.example.com/metrics/mash-silverbullet`.
+
+To enable the HTTP Basic authentication, add the following configuration to your `vars.yml` file (adapt to your needs):
+
+```yaml
+silverbullet_container_labels_traefik_metrics_middleware_basic_auth_enabled: true
+
+# See https://doc.traefik.io/traefik/middlewares/http/basicauth/#users for details.
+silverbullet_container_labels_traefik_metrics_middleware_basic_auth_users: ""
+```
 
 ## Usage
 
