@@ -14284,6 +14284,8 @@ silverbullet_container_labels_traefik_metrics_path_prefix: "{{ mash_playbook_met
 silverbullet_container_labels_traefik_metrics_middleware_basic_auth_enabled: "{{ mash_playbook_metrics_exposure_http_basic_auth_enabled }}"
 silverbullet_container_labels_traefik_metrics_middleware_basic_auth_users: "{{ mash_playbook_metrics_exposure_http_basic_auth_users }}"
 
+silverbullet_metrics_enabled: "{{ prometheus_enabled | default(false) or mash_playbook_metrics_exposure_enabled }}"
+
 # role-specific:traefik
 silverbullet_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
 silverbullet_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
