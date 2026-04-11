@@ -2503,8 +2503,8 @@ mash_playbook_traefix_managed_additional_entrypoints_auto_itemized:
     {{
       ({
         'name': mosquitto_container_labels_traefik_tcp_entrypoints,
-        'port': mosquitto_container_tcp_port,
-        'host_bind_port': mosquitto_container_tcp_host_bind_port,
+        'port': mosquitto_container_tcp_tls_port,
+        'host_bind_port': mosquitto_container_tcp_tls_host_bind_port,
         'config': {
           'transport': {
             'respondingTimeouts': {
