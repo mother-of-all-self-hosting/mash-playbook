@@ -123,13 +123,16 @@ navidrome_container_additional_volumes:
 ########################################################################
 ```
 
-## Securing Navidrome behind OAuth2-Proxy
+### Securing Navidrome behind OAuth2-Proxy
 
 Navidrome currently only supports [external authentication](https://www.navidrome.org/docs/usage/integration/authentication/) via a trusted reverse-proxy.
 
-It is possible to configure the OAuth2-Proxy role to protect Navidrome via OAuth2/OIDC.
+Leveraging the [OAuth2-Proxy](./oauth2-proxy.md) role it is possible to protect Navidrome behind OAuth2/OIDC.
 
-Below you will find a sample configutaration that works with the Nextcloud OIDC provider.
+Below you will find a sample configuration with the [Nextcloud OIDC provider](https://github.com/mother-of-all-self-hosting/ansible-role-nextcloud/blob/main/docs/configuring-oidc-provider.md).
+
+> [!NOTE]
+> This example assumes that you serve Navidrome under a dedicated hostname. If you are serving Navidrome under a path prefix, adjust the `PathPrefix` of the public rule to bypass authentication correctly.
 
 ```yml
 ########################################################################
@@ -138,18 +141,20 @@ Below you will find a sample configutaration that works with the Nextcloud OIDC 
 #                                                                      #
 ########################################################################
 
-navidrome_enabled: true
-navidrome_hostname: navidrome.hostname
+# Your other Navidrome configuration goes here.
+# See the documentation in navidrome.md.
 
-navidrome_oidc_client_enabled: true
-navidrome_oidc_redirect_uris: "https://{{ navidrome_hostname }}/oauth2/callback"
-navidrome_oidc_client_id: "" 	  # pwgen -s 64 1
-navidrome_oidc_client_secret: ""  # pwgen -s 64 1
-
+# Enable external authentication by setting ND_EXTAUTH_TRUSTEDSOURCES to include traefik's internal IP
+# Specify the HTTP header containing the username (expects Remote-User by default)
 navidrome_environment_variables_additional_variables: |
   ND_EXTAUTH_TRUSTEDSOURCES=172.16.0.0/12
   ND_EXTAUTH_USERHEADER=X-Auth-Request-Preferred-Username
 
+# Block potentially malicious forwarding of the username header from external clients
+navidrome_container_labels_traefik_additional_request_headers_custom:
+  X-Auth-Request-Preferred-Username: ""
+
+# Recollect middlewares from templates/labels.j2 for reuse
 navidrome_container_labels_middlewares:
   - "{{ navidrome_container_labels_traefik_compression_middleware_name if navidrome_container_labels_traefik_compression_middleware_enabled }}"
   - "{{ navidrome_identifier ~ '-slashless-redirect' if navidrome_container_labels_traefik_path_prefix != '/' }}"
@@ -163,11 +168,11 @@ navidrome_container_labels_additional_labels_custom:
   - traefik.http.middlewares.{{ navidrome_identifier }}-oauth-errors.errors.query=/oauth2/sign_in?rd={url}
 
   # Create a middleware which passes each incoming request to OAuth2-Proxy,
-  # so it can decide whether it should be let through (to Hubsite) or should blocked (serving the OAuth2-Proxy sign in page).
+  # so it can decide whether it should be let through (to Navidrome) or should be forwarded to the OAuth2-Proxy sign in page.
   - traefik.http.middlewares.{{ navidrome_identifier }}-oauth-auth.forwardAuth.address=http://{{ oauth2_proxy_identifier }}:{{ oauth2_proxy_container_process_http_port }}/oauth2/auth
   - traefik.http.middlewares.{{ navidrome_identifier }}-oauth-auth.forwardAuth.trustForwardHeader=true
 
-  # Let the HTTP header defined in ND_EXTAUTH_USERHEADER get passed from OAuth2-Proxy to Navidrome.
+  # Allow forwarding the HTTP header defined in ND_EXTAUTH_USERHEADER to identify users in Navidrome.
   # See more information about this in the comments for `oauth2_proxy_environment_variable_set_xauthrequest`.
   - traefik.http.middlewares.{{ navidrome_identifier }}-oauth-auth.forwardAuth.authResponseHeaders=X-Auth-Request-Preferred-Username
 
@@ -175,8 +180,8 @@ navidrome_container_labels_additional_labels_custom:
   - traefik.http.routers.{{ navidrome_identifier }}.middlewares={{ navidrome_container_labels_middlewares | select() | join(',') }},{{ navidrome_identifier }}-oauth-errors,{{ navidrome_identifier }}-oauth-auth
 
   # Authentication bypass for share and subsonic endpoints
-  # This is necessary if you want to stream music over the subsonic API and let unauthenticated users access the music that you want to share
-  - traefik.http.routers.{{ navidrome_identifier }}-public.rule={{ navidrome_container_labels_traefik_rule }} && (PathPrefix(`/share/`) || PathPrefix(`/rest/`))
+  # Necessary if you want to stream music over the subsonic API and access shared content without authentication
+  - traefik.http.routers.{{ navidrome_identifier }}-public.rule=Host(`{{ navidrome_hostname }}`) && (PathPrefix(`/share/`) || PathPrefix(`/rest/`))
   - traefik.http.routers.{{ navidrome_identifier }}-public.service={{ navidrome_identifier }}
   - traefik.http.routers.{{ navidrome_identifier }}-public.middlewares={{ navidrome_container_labels_middlewares | select() | join(',') }}
   - traefik.http.routers.{{ navidrome_identifier }}-public.entrypoints={{ navidrome_container_labels_traefik_entrypoints }}
@@ -190,7 +195,25 @@ navidrome_container_labels_additional_labels_custom:
 ########################################################################
 ```
 
-Then, configure OAuth2-Proxy:
+
+> [!CAUTION]
+> As we use the less invasive 2. mode documented in [oauth2-proxy.md](./oauth2-proxy.md) navidrome will see requests as coming from traefik.
+> Accordingly we tell navidrome to trust the username header coming from our traefik reverse-proxy.
+> 
+> But navidrome will automatically create new users at first login passed on by the username header if the source is trusted.
+> 
+> Therefore we need to strip this header from all external requests in order to avoid risking unauthorized user creation:
+> ```yml
+> navidrome_container_labels_traefik_additional_request_headers_custom:
+>   X-Auth-Request-Preferred-Username: ""
+> ```
+>
+> Consider the more invasive 1. mode of oauth2-proxy if you want to exclude traefik from your trusted IPs altogether and only accept authorization requests from oauth2-proxy directly.
+
+> [!NOTE]
+> Currently Navidrome user auto-creation from external sources is tightly coupled to serving the webpage index and may fail when the webpage is loaded from cache upon first login, e.g. when changing accounts within the same browser.
+
+Configure OAuth2-Proxy as follows (e.g. with Keycloak):
 
 ```yml
 ########################################################################
@@ -201,22 +224,21 @@ Then, configure OAuth2-Proxy:
 
 oauth2_proxy_enabled: true
 
-oauth2_proxy_environment_variable_provider: oidc
-oauth2_proxy_environment_variable_provider_display_name: "Nextcloud"
+oauth2_proxy_environment_variable_provider: keycloak-oidc
+oauth2_proxy_environment_variable_provider_display_name: Keycloak
 
-oauth2_proxy_environment_variable_oidc_issuer_url: "https://{{ nextcloud_hostname }}"
-oauth2_proxy_environment_variable_redirect_url: "{{ navidrome_oidc_redirect_uris }}"
-oauth2_proxy_environment_variable_client_id: "{{ navidrome_oidc_client_id }}"
-oauth2_proxy_environment_variable_client_secret: "{{ navidrome_oidc_client_secret }}"
+# Authorize oauth2-proxy with your oidc credentials
+oauth2_proxy_environment_variable_client_id: ""
+oauth2_proxy_environment_variable_client_secret: ""
+oauth2_proxy_environment_variable_oidc_issuer_url: https://keycloak.example.com/realms/my-realm
+oauth2_proxy_environment_variable_redirect_url: "https://{{ navidrome_hostname }}/oauth2/callback"
 
 oauth2_proxy_environment_variable_code_challenge_method: S256
 
 # Generate this with: `python -c 'import os,base64; print(base64.urlsafe_b64encode(os.urandom(32)).decode())'`
 oauth2_proxy_environment_variable_cookie_secret: ""
 
-oauth2_proxy_environment_variables_additional_variables: |
-  OAUTH2_PROXY_WHITELIST_DOMAINS=.oauthprovider.hostname:*
-  
+# Serve the oauth2-proxy authentication page
 oauth2_proxy_container_labels_additional_labels_custom:
   - traefik.http.routers.{{ oauth2_proxy_identifier }}-navidrome.rule=Host(`{{ navidrome_hostname }}`) && PathPrefix(`/oauth2/`)
   - traefik.http.routers.{{ oauth2_proxy_identifier }}-navidrome.service={{ oauth2_proxy_identifier }}
@@ -231,6 +253,8 @@ oauth2_proxy_container_labels_additional_labels_custom:
 ########################################################################
 ```
 
+The first user to login via OAuth2-Proxy will become an administrator, subsequent logins will be created as non-admin user.
+
 ## Usage
 
 After running the command for installation, the Navidrome instance becomes available at the URL specified with `navidrome_hostname` and `navidrome_path_prefix`. With the configuration above, the service is hosted at `https://mash.example.com/navidrome`.
@@ -243,3 +267,4 @@ You can also connect various Subsonic-API-compatible [apps](https://www.navidrom
 ## Recommended other services
 
 - [Syncthing](syncthing.md) — a continuous file synchronization program which synchronizes files between two or more computers in real time. See [Syncthing integration](#syncthing-integration)
+- [OAuth2-Proxy](oauth2-proxy.md) — Reverse proxy and static file server that provides authentication using OpenID Connect providers (Google, GitHub, authentik, Keycloak, Nextcloud and others) to SSO-protect services which do not support SSO natively
