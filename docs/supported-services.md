@@ -187,7 +187,7 @@ Below is an exhaustive list of the free and open-source software for self-hostin
 | [Plex](https://www.plex.tv/) | A personal media server | [Link](services/plex.md) |
 | [Pocket ID](https://pocket-id.org/) | Simple OIDC provider for passkey-only authentication | [Link](services/pocket-id.md) |
 | [PoodleDonts](https://git.private.coffee/PrivateCoffee/poodledonts) | Privacy-friendly Google Fonts proxy | [Link](services/poodledonts.md) |
-| [Postgis](https://postgis.net/) | A spatial database extender for PostgreSQL object-relational database | [Link](services/postgis.md) |
+| [PostGIS](https://postgis.net/) | A spatial database extender for PostgreSQL object-relational database | [Link](services/postgis.md) |
 | [Postgres](https://www.postgresql.org) | A powerful object-relational database system | [Link](services/postgres.md) |
 | [Postgres Backup](https://github.com/prodrigestivill/docker-postgres-backup-local) | A solution for backing up PostgreSQL to local filesystem with periodic backups | [Link](services/postgres-backup.md) |
 | [PrivateBin](https://privatebin.info/) | Minimalist online pastebin where the server has zero knowledge of pasted data | [Link](services/privatebin.md) |
