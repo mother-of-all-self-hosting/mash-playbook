@@ -176,5 +176,6 @@ Most users should be fine with the automatically-done tuning. However, you may w
 
 - [Adminer](adminer.md) — Full-featured database management tool written in PHP
 - [pgAdmin](pgadmin.md) — Management tool for Postgres with a graphical interface
+- [PostGIS](postgis.md) — Spatial database extender for PostgreSQL
 - [Postgres Backup](postgres-backup.md) for backing up your Postgres database
 - [Prometheus](prometheus.md), [prometheus-postgres-exporter](prometheus-postgres-exporter.md) and [Grafana](grafana.md) for monitoring your Postgres database

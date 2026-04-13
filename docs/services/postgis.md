@@ -53,3 +53,7 @@ postgis_connection_password: ''
 ## Usage
 
 After running the command for installation, the Postgres instance with PostGIS extensions installed becomes available.
+
+## Related services
+
+- [Postgres](postgres.md) — Powerful object-relational database system
