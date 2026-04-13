@@ -36,6 +36,8 @@ This service requires the following other services:
 
 - [Traefik](traefik.md) reverse-proxy server
 - [Valkey](valkey.md) data-store; see [below](#configure-valkey) for details about installation
+- (optional) [exim-relay](exim-relay.md) mailer
+- (optional) [ntfy](ntfy.md) — supported by [the plugin](https://github.com/NodeBB/nodebb-plugin-ntfy)
 
 ## Adjusting the playbook configuration
 
@@ -161,16 +163,20 @@ Having configured `vars.yml` for the dedicated instance, add the following confi
 
 # Add the base configuration as specified above
 
-# Point NodeBB to its dedicated Valkey instance
-nodebb_redis_hostname: mash-nodebb-valkey
+# Make sure the connection via Unix domain socket is enabled
+# Set to `false` to enable TCP connection instead
+nodebb_redis_socket_enabled: true
+
+# Connect NodeBB to its dedicated Valkey instance via the Unix domain socket
+#
+# Alternatively, if you set `nodebb_redis_socket_enabled` to `false`,
+# - Add the dedicated Valkey instance (mash-nodebb-valkey) to `nodebb_redis_hostname`
+# - Add its network (mash-nodebb-valkey) to `nodebb_container_additional_networks_custom`
+nodebb_redis_socket_path_host: /mash/nodebb-valkey/run
 
 # Make sure the NodeBB service (mash-nodebb.service) starts after its dedicated Valkey service (mash-nodebb-valkey.service)
 nodebb_systemd_required_services_list_custom:
   - "mash-nodebb-valkey.service"
-
-# Make sure the NodeBB service (mash-nodebb.service) is connected to the container network of its dedicated Valkey service (mash-nodebb-valkey)
-nodebb_container_additional_networks_custom:
-  - "mash-nodebb-valkey"
 
 ########################################################################
 #                                                                      #
@@ -211,16 +217,20 @@ valkey_enabled: true
 
 # Add the base configuration as specified above
 
-# Point NodeBB to the shared Valkey instance
-nodebb_redis_hostname: "{{ valkey_identifier }}"
+# Make sure the connection via Unix domain socket is enabled
+# Set to `false` to enable TCP connection instead
+nodebb_redis_socket_enabled: true
 
-# Make sure the NodeBB service (mash-nodebb.service) starts after its dedicated Valkey service (mash-nodebb-valkey.service)
+# Connect NodeBB to the shared Valkey instance via the Unix domain socket
+#
+# Alternatively, if you set `nodebb_redis_socket_enabled` to `false`,
+# - Add the shared Valkey instance (mash-valkey) to `nodebb_redis_hostname`
+# - Add its network (mash-valkey) to `nodebb_container_additional_networks_custom`
+nodebb_redis_socket_path_host: "{{ valkey_run_path }}"
+
+# Make sure the NodeBB service (mash-nodebb.service) starts after the shared Valkey service (mash-valkey.service)
 nodebb_systemd_required_services_list_custom:
   - "{{ valkey_identifier }}.service"
-
-# Make sure the NodeBB container is connected to the container network of its dedicated Valkey service (mash-nodebb-valkey)
-nodebb_container_additional_networks_custom:
-  - "{{ valkey_container_network }}"
 
 ########################################################################
 #                                                                      #
@@ -244,6 +254,35 @@ After installation, the NodeBB instance becomes available at the URL specified w
 To get started, open the URL with a web browser, and follow the set up wizard. Make sure that the scheme (`HTTPS` or `HTTP`) for the public facing URL is detected properly, and fix it if not.
 
 Refer to [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az2K9dPANyrXJY7juE9XecXyernA6h/tree/docs/configuring-nodebb.md#usage) on the role's documentation for more information.
+
+### Configuring the mailer (optional)
+
+On NodeBB you can add configuration settings of a SMTP server for functions such as password recovery. If you enable the [exim-relay](exim-relay.md) service in your inventory configuration, the playbook will automatically connect it to the NodeBB service.
+
+As the NodeBB instance does not support configuring the mailer with environment variables, you can add default options for it on its UI.
+
+To set up with the default exim-relay settings, open `https://nodebb.example.com/admin/settings/email` to add the following configuration:
+
+- **Email Address**: (Input the email address specified to `exim_relay_sender_address` on your `vars.yml`)
+- **From Name**: (Input the name)
+- **Enable SMTP Transport**: Enable
+- **Select a service**: `Custom Service`
+- **SMTP Host**: `mash-exim-relay`
+- **SMTP Port**: 8025
+- **Connection security**: None
+- **Username**: (Empty)
+- **Password**: (Empty)
+
+After setting the configuration, you can have the NodeBB instance test SMTP settings and send a test mail.
+
+>[!WARNING]
+> Without setting an authentication method such as DKIM, SPF, and DMARC for your hostname, emails are most likely to be quarantined as spam at recipient's mail servers. The worst scenario is that your server's IP address or hostname will be included in the spam list such as the one managed by [Spamhaus](https://www.spamhaus.org/), depending on the reputation. As the exim-relay service supports DKIM signing, refer to [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-exim-relay/blob/main/docs/configuring-exim-relay.md#enable-dkim-support-optional) for details about how to set it up.
+
+### Configuring ntfy (optional)
+
+On NodeBB you can set up a plugin for [ntfy](ntfy.md) integration. If you enable the service in your inventory configuration, the playbook will automatically connect the ntfy service to the NodeBB service.
+
+Refer to [the official documentation](https://github.com/NodeBB/nodebb-plugin-ntfy/blob/main/README.md) for details about how to configure the plugin on the NodeBB's UI.
 
 ## Troubleshooting
 

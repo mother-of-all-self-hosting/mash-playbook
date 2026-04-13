@@ -86,7 +86,7 @@ docker rmi registry.example.com/alpine:3.17.2
 docker pull registry.example.com/alpine:3.17.2
 ```
 
-## Recommended other services
+## Related services
 
 - [Docker Registry Browser](docker-registry-browser.md) — Web Interface for the Docker Registry HTTP API V2 written in Ruby on Rails
 - [Docker Registry Purger](docker-registry-purger.md) — a small tool used for purging a private Docker Registry's old tags

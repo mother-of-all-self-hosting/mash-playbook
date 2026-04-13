@@ -181,14 +181,9 @@ plex_container_read_only: false
 plex_version_environment_variable: latest
 ```
 
-## Recommended other services
+## Related services
 
-Consider these other related services:
-
-- [Autobrr](autobrr.md)
+- "* Arr" applications — [Autobrr](autobrr.md) / [FlareSolverr](flaresolverr.md) / [Homarr](homarr.md) / [Jellyseerr](jellyseerr.md) / [Overseerr](overseerr.md) / [Radarr](radarr.md) / [Sonarr](sonarr.md)
 - [Jackett](jackett.md)
 - [Jellyfin](jellyfin.md)
-- [Overseerr](overseerr.md)
 - [qBittorrent](qbittorrent.md)
-- [Radarr](radarr.md)
-- [Sonarr](sonarr.md)

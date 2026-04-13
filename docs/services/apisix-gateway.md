@@ -88,6 +88,6 @@ If you've enabled the [Admin API](https://apisix.apache.org/docs/apisix/admin-ap
 
 Example: `curl -H 'X-API-KEY: YOUR_SECRET_API_KEY_HERE' https://admin.api.example.com/apisix/admin/routes`
 
-## Recommended other services
+## Related services
 
 - [APISIX dashboard](apisix-dashboard.md) — a dashboard (web UI) for APISIX

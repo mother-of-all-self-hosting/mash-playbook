@@ -120,15 +120,10 @@ jellyfin_nvidia_visible_devices: "all"
 
 Upstream documentation: https://github.com/linuxserver/docker-jellyfin#nvidia
 
-## Recommended other services
+## Related services
 
-Consider these other related services:
-
-- [Autobrr](autobrr.md)
+- "* Arr" applications — [Autobrr](autobrr.md) / [FlareSolverr](flaresolverr.md) / [Homarr](homarr.md) / [Jellyseerr](jellyseerr.md) / [Overseerr](overseerr.md) / [Radarr](radarr.md) / [Sonarr](sonarr.md)
+- [Feishin](feishin.md) — Music player for Navidrome, Jellyfin, Funkwhale, etc.
 - [Jackett](jackett.md)
-- [Jellyseerr](jellyseerr.md)
-- [Overseerr](overseerr.md)
 - [Plex](plex.md)
 - [qBittorrent](qbittorrent.md)
-- [Radarr](radarr.md)
-- [Sonarr](sonarr.md)

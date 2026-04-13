@@ -65,9 +65,9 @@ openarchiver_hostname: openarchiver.example.com
 
 **Note**: hosting Open Archiver under a subpath (by configuring the `openarchiver_path_prefix` variable) does not seem to be possible due to Open Archiver's technical limitations.
 
-### Set 32-byte hex digits for secret key
+### Set random 32-byte hex digits for secret key
 
-You also need to specify **32-byte hex digits** for keys to be used for encryption. To do so, add the following configuration to your `vars.yml` file. The value can be generated with `openssl rand -hex 32` or in another way.
+You also need to set random **32-byte hex digits** for keys to be used for encryption. To do so, add the following configuration to your `vars.yml` file. The value can be generated with `openssl rand -hex 32` or in another way.
 
 ```yaml
 openarchiver_environment_variables_storage_encryption_key: RANDOM_32_BYTE_HEX_STRING_HERE
@@ -82,7 +82,7 @@ openarchiver_environment_variables_encryption_key: RANDOM_32_BYTE_HEX_STRING_HER
 
 To enable the search function, you need to have the Open Archiver instance connect to a Meilisearch instance.
 
-Meilisearch is available on the playbook. Enabling it and setting the default admin API key automatically configures the Open Archiver instance to connect to it.
+Meilisearch is available on the playbook. Enabling it and setting the default admin API key (`meilisearch_default_admin_api_key`) automatically configures the Open Archiver instance to connect to it.
 
 See [this page](meilisearch.md) for details about how to install it and setting the key for the Meilisearch instance.
 
@@ -186,16 +186,16 @@ Having configured `vars.yml` for the dedicated instance, add the following confi
 
 # Add the base configuration as specified above
 
-# Point Open Archiver server to its dedicated Valkey instance
+# Point Open Archiver to its dedicated Valkey instance
 openarchiver_redis_hostname: mash-openarchiver-valkey
 
-# Make sure the Open Archiver server service (mash-openarchiver-server.service) starts after its dedicated Valkey service (mash-openarchiver-valkey.service)
-openarchiver_systemd_required_services_list_custom:
-  - "mash-openarchiver-valkey.service"
-
-# Make sure the Open Archiver server container is connected to the container network of its dedicated Valkey service (mash-openarchiver-valkey)
+# Make sure the Open Archiver container is connected to the container network of its dedicated Valkey service (mash-openarchiver-valkey)
 openarchiver_container_additional_networks_custom:
   - "mash-openarchiver-valkey"
+
+# Make sure the Open Archiver service (mash-openarchiver-server.service) starts after its dedicated Valkey service (mash-openarchiver-valkey.service)
+openarchiver_systemd_required_services_list_custom:
+  - "mash-openarchiver-valkey.service"
 
 ########################################################################
 #                                                                      #
@@ -236,16 +236,16 @@ valkey_enabled: true
 
 # Add the base configuration as specified above
 
-# Point Open Archiver server to the shared Valkey instance
+# Point Open Archiver to the shared Valkey instance
 openarchiver_redis_hostname: "{{ valkey_identifier }}"
 
-# Make sure the Open Archiver server service (mash-openarchiver-server.service) starts after the shared Valkey service (mash-valkey.service)
-openarchiver_systemd_required_services_list_custom:
-  - "{{ valkey_identifier }}.service"
-
-# Make sure the Open Archiver server container is connected to the container network of the shared Valkey service (mash-valkey)
+# Make sure the Open Archiver container is connected to the container network of the shared Valkey service (mash-valkey)
 openarchiver_container_additional_networks_custom:
   - "{{ valkey_identifier }}"
+
+# Make sure the Open Archiver service (mash-openarchiver-server.service) starts after the shared Valkey service (mash-valkey.service)
+openarchiver_systemd_required_services_list_custom:
+  - "{{ valkey_identifier }}.service"
 
 ########################################################################
 #                                                                      #

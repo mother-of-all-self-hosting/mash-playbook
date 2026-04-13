@@ -1,10 +1,10 @@
 <!--
-SPDX-FileCopyrightText: 2020 - 2024 MDAD project contributors
-SPDX-FileCopyrightText: 2020 - 2024 Slavi Pantaleev
 SPDX-FileCopyrightText: 2020 Aaron Raimist
 SPDX-FileCopyrightText: 2020 Chris van Dijk
 SPDX-FileCopyrightText: 2020 Dominik Zajac
 SPDX-FileCopyrightText: 2020 Mickaël Cornière
+SPDX-FileCopyrightText: 2020-2024 MDAD project contributors
+SPDX-FileCopyrightText: 2020-2024 Slavi Pantaleev
 SPDX-FileCopyrightText: 2022 François Darveau
 SPDX-FileCopyrightText: 2022 Julian Foad
 SPDX-FileCopyrightText: 2022 Warren Bailey
@@ -12,7 +12,8 @@ SPDX-FileCopyrightText: 2023 Antonis Christofides
 SPDX-FileCopyrightText: 2023 Felix Stupp
 SPDX-FileCopyrightText: 2023 Julian-Samuel Gebühr
 SPDX-FileCopyrightText: 2023 Pierre 'McFly' Marty
-SPDX-FileCopyrightText: 2024 - 2025 Suguru Hirahara
+SPDX-FileCopyrightText: 2024 Thomas Miceli
+SPDX-FileCopyrightText: 2024-2026 Suguru Hirahara
 
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->
@@ -165,13 +166,13 @@ Having configured `vars.yml` for the dedicated instance, add the following confi
 # Point Weblate to its dedicated Valkey instance
 weblate_redis_hostname: mash-weblate-valkey
 
-# Make sure the Weblate service (mash-weblate.service) starts after its dedicated Valkey service (mash-weblate-valkey.service)
-weblate_systemd_required_services_list_custom:
-  - "mash-weblate-valkey.service"
-
 # Make sure the Weblate service (mash-weblate.service) is connected to the container network of its dedicated Valkey service (mash-weblate-valkey)
 weblate_container_additional_networks_custom:
   - "mash-weblate-valkey"
+
+# Make sure the Weblate service (mash-weblate.service) starts after its dedicated Valkey service (mash-weblate-valkey.service)
+weblate_systemd_required_services_list_custom:
+  - "mash-weblate-valkey.service"
 
 ########################################################################
 #                                                                      #
@@ -215,13 +216,13 @@ valkey_enabled: true
 # Point Weblate to the shared Valkey instance
 weblate_redis_hostname: "{{ valkey_identifier }}"
 
-# Make sure the Weblate service (mash-weblate.service) starts after its dedicated Valkey service (mash-weblate-valkey.service)
-weblate_systemd_required_services_list_custom:
-  - "{{ valkey_identifier }}.service"
-
-# Make sure the Weblate container is connected to the container network of its dedicated Valkey service (mash-weblate-valkey)
+# Make sure the Weblate container is connected to the container network of the shared Valkey service (mash-valkey)
 weblate_container_additional_networks_custom:
   - "{{ valkey_container_network }}"
+
+# Make sure the Weblate service (mash-weblate.service) starts after the shared Valkey service (mash-valkey.service)
+weblate_systemd_required_services_list_custom:
+  - "{{ valkey_identifier }}.service"
 
 ########################################################################
 #                                                                      #
@@ -232,9 +233,14 @@ weblate_container_additional_networks_custom:
 
 Running the installation command will create the shared Valkey instance named `mash-valkey`.
 
-### Configure the mailer
+### Configuring the mailer (optional)
 
-You can configure a SMTP mailer for functions such as signing up, verifying or changing email address, resetting password, etc. If you enable the [exim-relay](exim-relay.md) service in your inventory configuration, the playbook will automatically configure it as a mailer for the service.
+On Weblate you can set up a mailer for functions such as signing up, verifying or changing email address, resetting password, etc. If you enable the [exim-relay](exim-relay.md) service in your inventory configuration, the playbook will automatically configure it as a mailer for the service.
+
+To actually have the service use (and get messages sent through the exim-relay service), you will need to adjust settings on the service's UI after the service is installed.
+
+>[!WARNING]
+> Without setting an authentication method such as DKIM, SPF, and DMARC for your hostname, emails are most likely to be quarantined as spam at recipient's mail servers. The worst scenario is that your server's IP address or hostname will be included in the spam list such as the one managed by [Spamhaus](https://www.spamhaus.org/), depending on the reputation. As the exim-relay service supports DKIM signing, refer to [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-exim-relay/blob/main/docs/configuring-exim-relay.md#enable-dkim-support-optional) for details about how to set it up.
 
 To disable the mailer function altogether, add the following configuration to your `vars.yml` file as below:
 

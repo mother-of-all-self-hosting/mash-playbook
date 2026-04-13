@@ -44,14 +44,6 @@ After running the installation command, the FlareSolverr instance becomes availa
 
 For additional configuration options, refer to the [ansible-role-flaresolverr](https://github.com/sudo-Tiz/ansible-role-flaresolverr)'s `defaults/main.yml` file.
 
-## Recommended other services
+## Related services
 
-Consider these other related services:
-
-- [Autobrr](autobrr.md)
-- [Jackett](jackett.md)
-- [Jellyfin](jellyfin.md)
-- [Jellyseerr](jellyseerr.md)
-- [qBittorrent](qbittorrent.md)
-- [Radarr](radarr.md)
-- [Sonarr](sonarr.md)
+- "* Arr" applications — [Autobrr](autobrr.md) / [Homarr](homarr.md) / [Jellyseerr](jellyseerr.md) / [Overseerr](overseerr.md) / [Radarr](radarr.md) / [Sonarr](sonarr.md)

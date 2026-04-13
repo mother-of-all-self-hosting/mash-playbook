@@ -1,21 +1,46 @@
 <!--
-SPDX-FileCopyrightText: 2024 Julian-Samuel Gebühr
+SPDX-FileCopyrightText: 2020 Aaron Raimist
+SPDX-FileCopyrightText: 2020 Chris van Dijk
+SPDX-FileCopyrightText: 2020 Dominik Zajac
+SPDX-FileCopyrightText: 2020 Mickaël Cornière
+SPDX-FileCopyrightText: 2020-2024 MDAD project contributors
+SPDX-FileCopyrightText: 2020-2024 Slavi Pantaleev
+SPDX-FileCopyrightText: 2022 François Darveau
+SPDX-FileCopyrightText: 2022 Julian Foad
+SPDX-FileCopyrightText: 2022 Warren Bailey
+SPDX-FileCopyrightText: 2023 Antonis Christofides
+SPDX-FileCopyrightText: 2023 Felix Stupp
+SPDX-FileCopyrightText: 2023 Pierre 'McFly' Marty
+SPDX-FileCopyrightText: 2023, 2024 Julian-Samuel Gebühr
+SPDX-FileCopyrightText: 2024 Thomas Miceli
+SPDX-FileCopyrightText: 2024-2026 Suguru Hirahara
 
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 
 # Wordpress
 
-[WordPress](https://wordpress.org/) is a widley used open source web content management system that this playbook can install, powered by the [mother-of-all-self-hosting/ansible-role-wordpress](https://github.com/mother-of-all-self-hosting/ansible-role-wordpress) Ansible role.
+The playbook can install and configure [WordPress](https://wordpress.org/) for you.
+
+Wordpress is a web content management system.
+
+See the project's [documentation](https://codex.wordpress.org/Main_Page/) to learn what Wordpress does and why it might be useful to you.
+
+For details about configuring the [Ansible role for Wordpress](https://github.com/mother-of-all-self-hosting/ansible-role-wordpress), you can check them via:
+- 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-wordpress/blob/main/docs/configuring-wordpress.md) online
+- 📁 `roles/galaxy/wordpress/docs/configuring-wordpress.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 ## Dependencies
 
 This service requires the following other services:
 
-- a [MariaDB](mariadb.md) database
-- a [Traefik](traefik.md) reverse-proxy server
+- [MariaDB](mariadb.md) database
+- [Traefik](traefik.md) reverse-proxy server
+- (optional) [exim-relay](exim-relay.md) mailer
 
-## Configuration
+## Adjusting the playbook configuration
+
+To enable this service, add the following configuration to your `vars.yml` file and re-run the [installation](../installing.md) process:
 
 ```yaml
 ########################################################################
@@ -35,32 +60,25 @@ wordpress_hostname: wordpress.example.com
 ########################################################################
 ```
 
+### Configuring the mailer (optional)
+
+On Wordpress you can set up a mailer for functions such as password recovery. If you enable the [exim-relay](exim-relay.md) service in your inventory configuration, the playbook will automatically configure it as a mailer for the service.
+
+To actually have the service use (and get messages sent through the exim-relay service), you will need to install a plugin and adjust settings on the service's UI after the service is installed.
+
+>[!WARNING]
+> Without setting an authentication method such as DKIM, SPF, and DMARC for your hostname, emails are most likely to be quarantined as spam at recipient's mail servers. The worst scenario is that your server's IP address or hostname will be included in the spam list such as the one managed by [Spamhaus](https://www.spamhaus.org/), depending on the reputation. As the exim-relay service supports DKIM signing, refer to [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-exim-relay/blob/main/docs/configuring-exim-relay.md#enable-dkim-support-optional) for details about how to set it up.
+
 ## Usage
 
-Navigate to the domain you set as `wordpress_hostname`, select a language and create an admin user.
+After running the command for installation, the Wordpress instance becomes available at the URL specified with `wordpress_hostname`. With the configuration above, the service is hosted at `https://wordpress.example.com`.
 
-> **Make sure to create a user with a strong password**
+To get started, open the URL with a web browser, and follow the set up wizard.
 
-You can now log in and fill your website with content!
+## Troubleshooting
 
+FAQ is available on [this page](https://codex.wordpress.org/FAQ).
 
-## Advanced
+## Related services
 
-### Basic authentication
-
-If you don't want to have your website accessible to everyone (e.g. you first want to present it to a client) you can use
-
-```yaml
-wordpress_container_labels_middleware_basic_auth_enabled: true
-# Use `htpasswd -nb USERNAME PASSWORD` to generate the users below.
-# See: https://doc.traefik.io/traefik/middlewares/http/basicauth/#users
-wordpress_container_labels_middleware_basic_auth_users: ''
-```
-
-### Increase upload limit
-
-By default we set the upload limit to `64M`. Increasing or decreasing the upload limit can be done by adding the following to your `vars.yml`
-
-```yaml
-wordpress_max_upload_size: '64M'
-```
+- [WriteFreely](writefreely.md) — Clean, minimalist publishing platform made for writers with optional federation via ActivityPub

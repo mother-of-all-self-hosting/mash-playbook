@@ -158,13 +158,13 @@ Having configured `vars.yml` for the dedicated instance, add the following confi
 # Point Lago to its dedicated Valkey instance
 lago_redis_hostname: mash-lago-valkey
 
-# Make sure the Lago service (mash-lago.service) starts after its dedicated Valkey service (mash-lago-valkey.service)
-lago_api_systemd_required_services_list_custom:
-  - "mash-lago-valkey.service"
-
 # Make sure the Lago container is connected to the container network of its dedicated Valkey service (mash-lago-valkey)
 lago_api_container_additional_networks_custom:
   - "mash-lago-valkey"
+
+# Make sure the Lago service (mash-lago.service) starts after its dedicated Valkey service (mash-lago-valkey.service)
+lago_api_systemd_required_services_list_custom:
+  - "mash-lago-valkey.service"
 
 ########################################################################
 #                                                                      #
@@ -208,13 +208,13 @@ valkey_enabled: true
 # Point Lago to the shared Valkey instance
 lago_redis_hostname: "{{ valkey_identifier }}"
 
-# Make sure the Lago service (mash-lago.service) starts after the shared Valkey service (mash-valkey.service)
-lago_api_systemd_required_services_list_custom:
-  - "{{ valkey_identifier }}.service"
-
 # Make sure the Lago container is connected to the container network of the shared Valkey service (mash-valkey)
 lago_api_container_additional_networks_custom:
   - "{{ valkey_identifier }}"
+
+# Make sure the Lago service (mash-lago.service) starts after the shared Valkey service (mash-valkey.service)
+lago_api_systemd_required_services_list_custom:
+  - "{{ valkey_identifier }}.service"
 
 ########################################################################
 #                                                                      #

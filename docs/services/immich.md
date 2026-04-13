@@ -1,10 +1,10 @@
 <!--
-SPDX-FileCopyrightText: 2020 - 2024 MDAD project contributors
-SPDX-FileCopyrightText: 2020 - 2025 Slavi Pantaleev
 SPDX-FileCopyrightText: 2020 Aaron Raimist
 SPDX-FileCopyrightText: 2020 Chris van Dijk
 SPDX-FileCopyrightText: 2020 Dominik Zajac
 SPDX-FileCopyrightText: 2020 Mickaël Cornière
+SPDX-FileCopyrightText: 2020-2024 MDAD project contributors
+SPDX-FileCopyrightText: 2020-2025 Slavi Pantaleev
 SPDX-FileCopyrightText: 2022 François Darveau
 SPDX-FileCopyrightText: 2022 Julian Foad
 SPDX-FileCopyrightText: 2022 Warren Bailey
@@ -15,7 +15,8 @@ SPDX-FileCopyrightText: 2023 MASH project contributors
 SPDX-FileCopyrightText: 2023 Niels Bouma
 SPDX-FileCopyrightText: 2023 Pierre 'McFly' Marty
 SPDX-FileCopyrightText: 2024 Gergely Horváth
-SPDX-FileCopyrightText: 2024 - 2025 Suguru Hirahara
+SPDX-FileCopyrightText: 2024 Thomas Miceli
+SPDX-FileCopyrightText: 2024-2026 Suguru Hirahara
 SPDX-FileCopyrightText: 2025 IUCCA
 
 SPDX-License-Identifier: AGPL-3.0-or-later
@@ -276,15 +277,14 @@ traefik_config_entrypoint_web_transport_respondingTimeouts_idleTimeout: 1800s
 ########################################################################
 ```
 
-#### Optional: enabling exim-relay
+### Configuring the mailer (optional)
 
-If you'll be configuring Immich to send email notifications, you may wish to route all emails through [exim-relay](exim-relay.md). Exim-relay can be pointed to another SMTP server and various [services](../supported-services.md) can re-use it.
+On Immich you can set up a mailer for functions such as notifications. If you enable the [exim-relay](exim-relay.md) service in your inventory configuration, the playbook will automatically configure it as a mailer for the service.
 
-Follow our [exim-relay documentation](exim-relay.md) documentation to set it up.
+To actually enable email-notifications (and make them go through exim-relay), you will need to [adjust notification settings](#adjusting-notification-settings) from Immich's Administration UI after Immich is installed.
 
-> [!WARNING]
-> Installing exim-relay auto-wires Immich for contacting it. To actually enable email-notifications (and make them go through exim-relay), you will need to [adjust notification settings](#adjusting-notification-settings) from Immich's Administration UI after Immich is installed.
-
+>[!WARNING]
+> Without setting an authentication method such as DKIM, SPF, and DMARC for your hostname, emails are most likely to be quarantined as spam at recipient's mail servers. The worst scenario is that your server's IP address or hostname will be included in the spam list such as the one managed by [Spamhaus](https://www.spamhaus.org/), depending on the reputation. As the exim-relay service supports DKIM signing, refer to [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-exim-relay/blob/main/docs/configuring-exim-relay.md#enable-dkim-support-optional) for details about how to set it up.
 
 #### Configuring Immich
 
@@ -309,19 +309,19 @@ immich_server_environment_variable_tz: Europe/Sofia
 # configured in the other inventory host (e.g. `mash.example.com-immich-deps`).
 immich_redis_hostname: mash-immich-valkey
 
-# This wires the Immich/Server systemd service to:
-# - the dedicated (for Immich) Valkey installation (see `mash.example.com-immich-deps`)
-# - the dedicated (for Immich) custom PostgreSQL installation (see `mash.example.com-immich-deps`)
-immich_server_systemd_required_services_list_custom:
-  - "mash-immich-valkey.service"
-  - "mash-immich-postgres.service"
-
 # This wires the Immich/Server container to:
 # - the network of the dedicated (for Immich) Valkey installation (see `mash.example.com-immich-deps`)
 # - the network of the dedicated (for Immich) custom PostgreSQL installation (see `mash.example.com-immich-deps`)
 immich_server_container_additional_networks_custom:
   - "mash-immich-valkey"
   - "mash-immich-postgres"
+
+# This wires the Immich/Server systemd service to:
+# - the dedicated (for Immich) Valkey installation (see `mash.example.com-immich-deps`)
+# - the dedicated (for Immich) custom PostgreSQL installation (see `mash.example.com-immich-deps`)
+immich_server_systemd_required_services_list_custom:
+  - "mash-immich-valkey.service"
+  - "mash-immich-postgres.service"
 
 # This points to the dedicated (for Immich) custom PostgreSQL installation,
 # configured in the other inventory host (e.g. `mash.example.com-immich-deps`).

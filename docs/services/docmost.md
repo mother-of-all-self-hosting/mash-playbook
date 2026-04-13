@@ -1,10 +1,10 @@
 <!--
-SPDX-FileCopyrightText: 2020 - 2024 MDAD project contributors
-SPDX-FileCopyrightText: 2020 - 2024 Slavi Pantaleev
 SPDX-FileCopyrightText: 2020 Aaron Raimist
 SPDX-FileCopyrightText: 2020 Chris van Dijk
 SPDX-FileCopyrightText: 2020 Dominik Zajac
 SPDX-FileCopyrightText: 2020 Mickaël Cornière
+SPDX-FileCopyrightText: 2020-2024 MDAD project contributors
+SPDX-FileCopyrightText: 2020-2024 Slavi Pantaleev
 SPDX-FileCopyrightText: 2022 François Darveau
 SPDX-FileCopyrightText: 2022 Julian Foad
 SPDX-FileCopyrightText: 2022 Warren Bailey
@@ -12,7 +12,8 @@ SPDX-FileCopyrightText: 2023 Antonis Christofides
 SPDX-FileCopyrightText: 2023 Felix Stupp
 SPDX-FileCopyrightText: 2023 Julian-Samuel Gebühr
 SPDX-FileCopyrightText: 2023 Pierre 'McFly' Marty
-SPDX-FileCopyrightText: 2024 - 2025 Suguru Hirahara
+SPDX-FileCopyrightText: 2024 Thomas Miceli
+SPDX-FileCopyrightText: 2024-2026 Suguru Hirahara
 
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->
@@ -72,11 +73,16 @@ The service provides these storage backend options: local filesystem (default) a
 
 See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-docmost/blob/main/docs/configuring-docmost.md#configure-a-storage-backend) on the role's documentation for details about how to set up Amazon S3 compatible object storage for Docmost.
 
-### Configure the mailer
+### Configuring the mailer (optional)
 
 You can configure a mailer for functions such as user invitation. Docmost supports a SMTP server and Postmark.
 
-If you enable the [exim-relay](exim-relay.md) service in your inventory configuration, the playbook will automatically configure it as a mailer for the service. If it is fine for you, you do not have to add settings for it.
+If you enable the [exim-relay](exim-relay.md) service in your inventory configuration, the playbook will automatically configure it as a mailer for the service.
+
+To actually have the service use (and get messages sent through the exim-relay service), you will need to adjust settings on the service's UI after the service is installed.
+
+>[!WARNING]
+> Without setting an authentication method such as DKIM, SPF, and DMARC for your hostname, emails are most likely to be quarantined as spam at recipient's mail servers. The worst scenario is that your server's IP address or hostname will be included in the spam list such as the one managed by [Spamhaus](https://www.spamhaus.org/), depending on the reputation. As the exim-relay service supports DKIM signing, refer to [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-exim-relay/blob/main/docs/configuring-exim-relay.md#enable-dkim-support-optional) for details about how to set it up.
 
 If you will use another SMTP server or Postmark, see [this section](https://github.com/mother-of-all-self-hosting/ansible-role-docmost/blob/main/docs/configuring-docmost.md#configure-the-mailer) on the role's documentation for details about configuring the mailer.
 
@@ -189,13 +195,13 @@ Having configured `vars.yml` for the dedicated instance, add the following confi
 # Point Docmost to its dedicated Valkey instance
 docmost_redis_hostname: mash-docmost-valkey
 
-# Make sure the Docmost service (mash-docmost.service) starts after its dedicated Valkey service (mash-docmost-valkey.service)
-docmost_systemd_required_services_list_custom:
-  - "mash-docmost-valkey.service"
-
 # Make sure the Docmost service (mash-docmost.service) is connected to the container network of its dedicated Valkey service (mash-docmost-valkey)
 docmost_container_additional_networks_custom:
   - "mash-docmost-valkey"
+
+# Make sure the Docmost service (mash-docmost.service) starts after its dedicated Valkey service (mash-docmost-valkey.service)
+docmost_systemd_required_services_list_custom:
+  - "mash-docmost-valkey.service"
 
 ########################################################################
 #                                                                      #
@@ -239,13 +245,13 @@ valkey_enabled: true
 # Point Docmost to the shared Valkey instance
 docmost_redis_hostname: "{{ valkey_identifier }}"
 
-# Make sure the Docmost service (mash-docmost.service) starts after its dedicated Valkey service (mash-docmost-valkey.service)
-docmost_systemd_required_services_list_custom:
-  - "{{ valkey_identifier }}.service"
-
-# Make sure the Docmost container is connected to the container network of its dedicated Valkey service (mash-docmost-valkey)
+# Make sure the Docmost container is connected to the container network of the shared Valkey service (mash-valkey)
 docmost_container_additional_networks_custom:
   - "{{ valkey_container_network }}"
+
+# Make sure the Docmost service (mash-docmost.service) starts after the shared Valkey service (mash-valkey.service)
+docmost_systemd_required_services_list_custom:
+  - "{{ valkey_identifier }}.service"
 
 ########################################################################
 #                                                                      #
@@ -285,3 +291,4 @@ See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-do
 ## Related services
 
 - [Excalidraw](excalidraw.md) — Free and open source virtual whiteboard for sketching hand-drawn like diagrams
+- [Outline](outline.md) — Knowledge base for growing teams

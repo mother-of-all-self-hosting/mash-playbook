@@ -1,10 +1,10 @@
 <!--
-SPDX-FileCopyrightText: 2020 - 2024 MDAD project contributors
-SPDX-FileCopyrightText: 2020 - 2024 Slavi Pantaleev
 SPDX-FileCopyrightText: 2020 Aaron Raimist
 SPDX-FileCopyrightText: 2020 Chris van Dijk
 SPDX-FileCopyrightText: 2020 Dominik Zajac
 SPDX-FileCopyrightText: 2020 Mickaël Cornière
+SPDX-FileCopyrightText: 2020-2024 MDAD project contributors
+SPDX-FileCopyrightText: 2020-2024 Slavi Pantaleev
 SPDX-FileCopyrightText: 2022 François Darveau
 SPDX-FileCopyrightText: 2022 Julian Foad
 SPDX-FileCopyrightText: 2022 Warren Bailey
@@ -12,7 +12,8 @@ SPDX-FileCopyrightText: 2023 Antonis Christofides
 SPDX-FileCopyrightText: 2023 Felix Stupp
 SPDX-FileCopyrightText: 2023 Julian-Samuel Gebühr
 SPDX-FileCopyrightText: 2023 Pierre 'McFly' Marty
-SPDX-FileCopyrightText: 2024 - 2025 Suguru Hirahara
+SPDX-FileCopyrightText: 2024 Thomas Miceli
+SPDX-FileCopyrightText: 2024-2026 Suguru Hirahara
 
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->
@@ -74,14 +75,16 @@ barassistant_server_environment_variables_allow_registration: true
 
 On Bar Assistant you can set up a mailer for functions such as password recovery. If you enable the [exim-relay](exim-relay.md) service in your inventory configuration, the playbook will automatically configure it as a mailer for the service.
 
->[!NOTE]
-> Without setting an authentication method such as DKIM, SPF, and DMARC for your hostname, emails are most likely to be quarantined as spam at recipient's mail servers. If you have set up a mail server with the [exim-relay Ansible role](https://github.com/mother-of-all-self-hosting/ansible-role-exim-relay), you can enable DKIM signing with it. Refer [its documentation](https://github.com/mother-of-all-self-hosting/ansible-role-exim-relay/blob/main/docs/configuring-exim-relay.md#enable-dkim-support-optional) for details.
+To actually have the service use (and get messages sent through the exim-relay service), you will need to adjust settings on the service's UI after the service is installed.
+
+>[!WARNING]
+> Without setting an authentication method such as DKIM, SPF, and DMARC for your hostname, emails are most likely to be quarantined as spam at recipient's mail servers. The worst scenario is that your server's IP address or hostname will be included in the spam list such as the one managed by [Spamhaus](https://www.spamhaus.org/), depending on the reputation. As the exim-relay service supports DKIM signing, refer to [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-exim-relay/blob/main/docs/configuring-exim-relay.md#enable-dkim-support-optional) for details about how to set it up.
 
 ### Connecting to a Meilisearch instance (optional)
 
 To enable the search and filtering functions, you can optionally have the Bar Assistant instance connect to a Meilisearch instance.
 
-Meilisearch is available on the playbook. Enabling it and setting the default admin API key automatically configures the Bar Assistant instance to connect to it.
+Meilisearch is available on the playbook. Enabling it and setting the default admin API key (`meilisearch_default_admin_api_key`) automatically configures the Bar Assistant instance to connect to it.
 
 See [this page](meilisearch.md) for details about how to install it and setting the key for the Meilisearch instance.
 
@@ -191,13 +194,13 @@ Having configured `vars.yml` for the dedicated instance, add the following confi
 # Point Bar Assistant server to its dedicated Valkey instance
 barassistant_redis_hostname: mash-barassistant-valkey
 
-# Make sure the Bar Assistant server service (mash-barassistant-server.service) starts after its dedicated Valkey service (mash-barassistant-valkey.service)
-barassistant_server_systemd_required_services_list_custom:
-  - "mash-barassistant-valkey.service"
-
 # Make sure the Bar Assistant server container is connected to the container network of its dedicated Valkey service (mash-barassistant-valkey)
 barassistant_server_container_additional_networks_custom:
   - "mash-barassistant-valkey"
+
+# Make sure the Bar Assistant server service (mash-barassistant-server.service) starts after its dedicated Valkey service (mash-barassistant-valkey.service)
+barassistant_server_systemd_required_services_list_custom:
+  - "mash-barassistant-valkey.service"
 
 ########################################################################
 #                                                                      #
@@ -241,13 +244,13 @@ valkey_enabled: true
 # Point Bar Assistant server to the shared Valkey instance
 barassistant_redis_hostname: "{{ valkey_identifier }}"
 
-# Make sure the Bar Assistant server service (mash-barassistant-server.service) starts after the shared Valkey service (mash-valkey.service)
-barassistant_server_systemd_required_services_list_custom:
-  - "{{ valkey_identifier }}.service"
-
 # Make sure the Bar Assistant server container is connected to the container network of the shared Valkey service (mash-valkey)
 barassistant_server_container_additional_networks_custom:
   - "{{ valkey_identifier }}"
+
+# Make sure the Bar Assistant server service (mash-barassistant-server.service) starts after the shared Valkey service (mash-valkey.service)
+barassistant_server_systemd_required_services_list_custom:
+  - "{{ valkey_identifier }}.service"
 
 ########################################################################
 #                                                                      #
@@ -257,6 +260,43 @@ barassistant_server_container_additional_networks_custom:
 ```
 
 Running the installation command will create the shared Valkey instance named `mash-valkey`.
+
+### Integrating with Prometheus (optional)
+
+Bar Assistant server can natively expose metrics to [Prometheus](prometheus.md).
+
+#### Expose metrics internally
+
+If Bar Assistant server and Prometheus do not share a network (like Traefik), you can connect the Bar Assistant server container network to Prometheus by adding the following configuration to your `vars.yml` file:
+
+```yaml
+prometheus_container_additional_networks_custom:
+  - "{{ barassistant_server_container_network }}"
+```
+
+#### Expose metrics publicly
+
+If Bar Assistant server metrics are not scraped from a local Prometheus instance, you can expose the metrics publicly so that a remote instance can fetch them.
+
+When exposing metrics publicly, you should consider to set up [HTTP Basic Authentication](https://developer.mozilla.org/en-US/docs/Web/HTTP/Authentication) **or anyone would be able to read your metrics**.
+
+To expose the metrics publicly, add the following configuration to your `vars.yml` file (adapt to your needs):
+
+```yaml
+mash_playbook_metrics_exposure_enabled: true
+mash_playbook_metrics_exposure_hostname: mash.example.com
+```
+
+It will expose the metrics at `https://mash.example.com/metrics/mash-barassistant-server`.
+
+To enable the HTTP Basic authentication, add the following configuration to your `vars.yml` file (adapt to your needs):
+
+```yaml
+barassistant_server_container_labels_traefik_metrics_middleware_basic_auth_enabled: true
+
+# See https://doc.traefik.io/traefik/middlewares/http/basicauth/#users for details.
+barassistant_server_container_labels_traefik_metrics_middleware_basic_auth_users: ""
+```
 
 ## Installation
 

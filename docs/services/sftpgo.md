@@ -1,10 +1,10 @@
 <!--
-SPDX-FileCopyrightText: 2020 - 2024 MDAD project contributors
-SPDX-FileCopyrightText: 2020 - 2024 Slavi Pantaleev
 SPDX-FileCopyrightText: 2020 Aaron Raimist
 SPDX-FileCopyrightText: 2020 Chris van Dijk
 SPDX-FileCopyrightText: 2020 Dominik Zajac
 SPDX-FileCopyrightText: 2020 Mickaël Cornière
+SPDX-FileCopyrightText: 2020-2024 MDAD project contributors
+SPDX-FileCopyrightText: 2020-2024 Slavi Pantaleev
 SPDX-FileCopyrightText: 2022 François Darveau
 SPDX-FileCopyrightText: 2022 Julian Foad
 SPDX-FileCopyrightText: 2022 Warren Bailey
@@ -12,7 +12,9 @@ SPDX-FileCopyrightText: 2023 Antonis Christofides
 SPDX-FileCopyrightText: 2023 Felix Stupp
 SPDX-FileCopyrightText: 2023 Julian-Samuel Gebühr
 SPDX-FileCopyrightText: 2023 Pierre 'McFly' Marty
-SPDX-FileCopyrightText: 2024 - 2025 Suguru Hirahara
+SPDX-FileCopyrightText: 2024 Thomas Miceli
+SPDX-FileCopyrightText: 2024 Tiz
+SPDX-FileCopyrightText: 2024-2026 Suguru Hirahara
 
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->
@@ -37,9 +39,9 @@ You may need to open some ports to your server, if you use another firewall in f
 
 This service requires the following other services:
 
-- [Postgres](postgres.md) / MySQL / [MariaDB](mariadb.md) / [CockroachDB](https://www.cockroachlabs.com/) database — SFTPGo will default to [SQLite](https://www.sqlite.org/) if none of them is enabled
+- [Postgres](postgres.md) / MySQL / [MariaDB](mariadb.md) / [CockroachDB](https://www.cockroachlabs.com/) / [SQLite](https://www.sqlite.org/) database — SFTPGo will default to Postgres
 - [Traefik](traefik.md) reverse-proxy server
-- (optional) [traefik-certs-dumper](traefik-certs-dumper.md) — for enabling HTTPS connection between the WebDAV server
+- (optional) [exim-relay](exim-relay.md) mailer
 
 ## Adjusting the playbook configuration
 
@@ -69,34 +71,59 @@ sftpgo_hostname: sftpgo.example.com
 
 By default SFTPGo is configured to use Postgres, but you can choose other database such as SQLite, MySQL (MariaDB), and CockroachDB.
 
-To use MariaDB, add the following configuration to your `vars.yml` file:
+Please note that it is necessary to add environment variables to `sftpgo_environment_variables_additional_variables` manually for database other than Postgres and MySQL (MariaDB). Refer to [this section](https://docs.sftpgo.com/latest/config-file/#data-provider) on the official documentation for options to be configured.
+
+### Configuring the mailer (optional)
+
+On SFTPGo you can set up a mailer for functions such as password recovery. If you enable the [exim-relay](exim-relay.md) service in your inventory configuration, the playbook will automatically configure it as a mailer for the service.
+
+To actually have the service use (and get messages sent through the exim-relay service), you will need to adjust settings on the service's UI after the service is installed.
+
+>[!WARNING]
+> Without setting an authentication method such as DKIM, SPF, and DMARC for your hostname, emails are most likely to be quarantined as spam at recipient's mail servers. The worst scenario is that your server's IP address or hostname will be included in the spam list such as the one managed by [Spamhaus](https://www.spamhaus.org/), depending on the reputation. As the exim-relay service supports DKIM signing, refer to [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-exim-relay/blob/main/docs/configuring-exim-relay.md#enable-dkim-support-optional) for details about how to set it up.
+
+### Integrating with Prometheus (optional)
+
+SFTPGo can natively expose metrics to [Prometheus](prometheus.md).
+
+#### Expose metrics internally
+
+If SFTPGo and Prometheus do not share a network (like Traefik), you can connect the SFTPGo container network to Prometheus by adding the following configuration to your `vars.yml` file:
 
 ```yaml
-sftpgo_environment_variables_data_provider_driver: mysql
+prometheus_container_additional_networks_custom:
+  - "{{ sftpgo_container_network }}"
 ```
 
-Please note that it is necessary to add environment variables manually for database other than Postgres and MySQL (MariaDB).
+#### Expose metrics publicly
 
-Refer to [this section](https://docs.sftpgo.com/latest/config-file/#data-provider) on the official documentation for options to be configured.
+If SFTPGo metrics are not scraped from a local Prometheus instance, you can expose the metrics publicly so that a remote instance can fetch them.
+
+When exposing metrics publicly, you should consider to set up [HTTP Basic Authentication](https://developer.mozilla.org/en-US/docs/Web/HTTP/Authentication) **or anyone would be able to read your metrics**.
+
+To expose the metrics publicly, add the following configuration to your `vars.yml` file (adapt to your needs):
+
+```yaml
+mash_playbook_metrics_exposure_enabled: true
+mash_playbook_metrics_exposure_hostname: mash.example.com
+```
+
+It will expose the metrics at `https://mash.example.com/metrics/mash-sftpgo`.
+
+To enable the HTTP Basic authentication, add the following configuration to your `vars.yml` file (adapt to your needs):
+
+```yaml
+sftpgo_container_labels_traefik_metrics_middleware_basic_auth_enabled: true
+
+# See https://doc.traefik.io/traefik/middlewares/http/basicauth/#users for details.
+sftpgo_container_labels_traefik_metrics_middleware_basic_auth_users: ""
+```
 
 ## Usage
 
 After running the command for installation, the SFTPGo instance becomes available at the URL specified with `sftpgo_hostname`. With the configuration above, the service is hosted at `https://sftpgo.example.com`. By default you can connect to the SFTP server on the port `2022`.
 
 See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-sftpgo/blob/main/docs/configuring-sftpgo.md#adjusting-the-playbook-configuration) on the role's documentation for details about how to enable web interfaces and create the first admin account, including the configuration to enable WebDAV server.
-
-### Enabling HTTPS connection between WebDAV server
-
-You can automatically enable HTTPS connection between the SFTPGo's WebDAV server by using [traefik-certs-dumper](https://github.com/ldez/traefik-certs-dumper). This playbook supports it, and you can set it up by adding `traefik_certs_dumper_enabled: true` to your `vars.yml` file.
-
-See [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-traefik-certs-dumper/blob/main/docs/configuring-traefik-certs-dumper.md) for details.
-
-### Configure the mailer (optional)
-
-On SFTPGo you can set up a mailer for functions such as sending a password reset mail. If you enable the [exim-relay](exim-relay.md) service in your inventory configuration, the playbook will automatically configure it as a mailer for the service.
-
->[!NOTE]
-> Without setting an authentication method such as DKIM, SPF, and DMARC for your hostname, emails are most likely to be quarantined as spam at recipient's mail servers. If you have set up a mail server with the [exim-relay Ansible role](https://github.com/mother-of-all-self-hosting/ansible-role-exim-relay), you can enable DKIM signing with it. Refer [its documentation](https://github.com/mother-of-all-self-hosting/ansible-role-exim-relay/blob/main/docs/configuring-exim-relay.md#enable-dkim-support-optional) for details.
 
 ## Troubleshooting
 

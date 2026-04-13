@@ -1,4 +1,6 @@
-# SPDX-FileCopyrightText: 2024 - 2025 Slavi Pantaleev
+# SPDX-FileCopyrightText: 2022-2025 Slavi Pantaleev
+# SPDX-FileCopyrightText: 2024, 2025 MDAD project contributors
+# SPDX-FileCopyrightText: 2024-2026 Suguru Hirahara
 #
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
@@ -10,9 +12,9 @@
       Please change your configuration to rename the variable (`{{ item.old }}` -> `{{ item.new }}`).
   when: "lookup('ansible.builtin.varnames', ('^' + item.old + '$'), wantlist=True) | length > 0"
   with_items:
-    - { "old": "docmost_config_redis_hostname", "new": "docmost_redis_hostname" }
-    - { "old": "ghostfolio_config_redis_hostname", "new": "ghostfolio_redis_hostname" }
-    - { "old": "woodpecker_ci_server_database_datasource", "new": "<Removed in favor of the role's configuration>" }
+    - {"old": "docmost_config_redis_hostname", "new": "docmost_redis_hostname"}
+    - {"old": "ghostfolio_config_redis_hostname", "new": "ghostfolio_redis_hostname"}
+    - {"old": "woodpecker_ci_server_database_datasource", "new": "<Removed in favor of the role's configuration>"}
 
 - name: (Deprecation) Catch and report devture_postgres_backup variables
   ansible.builtin.fail:
@@ -90,3 +92,15 @@
 
       The following variables in your configuration need to be renamed: {{ lookup('ansible.builtin.varnames', '^devture_woodpecker_ci_agent_.+', wantlist=True) | join(', ') }}
   when: "lookup('ansible.builtin.varnames', '^devture_woodpecker_ci_agent_.+', wantlist=True) | length > 0"
+
+- name: (Deprecation) Catch and report Firezone variables
+  ansible.builtin.fail:
+    msg: |-
+      Firezone was completely removed from the playbook in March 2026.
+
+      Please remove all `firezone_*` variables from your configuration file (vars.yml).
+
+      You may also wish to uninstall the service manually. See `docs/services/firezone.md` for more information.
+
+      The following variables in your configuration need to be removed: {{ lookup('ansible.builtin.varnames', '^firezone_.+', wantlist=True) | join(', ') }}
+  when: "lookup('ansible.builtin.varnames', '^firezone_.+', wantlist=True) | length > 0"

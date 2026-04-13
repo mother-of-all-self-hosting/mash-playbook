@@ -91,20 +91,12 @@ You can set other arguments to customize how metrics are exposed, such as `-prom
 
 After settings arguments, you need to expose metrics internally or externally.
 
-- If Endlessh is on the same host as Prometheus, refer to this section: [Expose metrics internally](#expose-metrics-internally)
-- If Endlessh is on a different host than Prometheus, refer to this section: [Expose metrics publicly](#expose-metrics-publicly)
-
 #### Expose metrics internally
 
-If Endlessh and Prometheus do not share a network (like Traefik), you will have to either:
-
-- Connect the Prometheus container network to Endlessh by adjusting `prometheus_container_additional_networks_auto`
-- Connect the Endlessh container network to Prometheus by adjusting `endlessh_container_additional_networks_custom`
-
-Here is an example configuration to be added to your `vars.yml` file:
+If Endlessh and Prometheus do not share a network (like Traefik), you can connect the Endlessh container network to Prometheus by adding the following configuration to your `vars.yml` file:
 
 ```yaml
-prometheus_container_additional_networks:
+prometheus_container_additional_networks_custom:
   - "{{ endlessh_container_network }}"
 ```
 
@@ -117,12 +109,11 @@ When exposing metrics publicly, you should consider to set up [HTTP Basic Authen
 To expose the metrics publicly, add the following configuration to your `vars.yml` file (adapt to your needs):
 
 ```yaml
-# The hostname at which Endlessh is served.
-endlessh_hostname: ""
-
-# The path at which Endlessh is exposed.
-endlessh_path_prefix: /metrics/mash-endlessh
+mash_playbook_metrics_exposure_enabled: true
+mash_playbook_metrics_exposure_hostname: mash.example.com
 ```
+
+It will expose the metrics at `https://mash.example.com/metrics/mash-endlessh`.
 
 To enable the HTTP Basic authentication, add the following configuration to your `vars.yml` file (adapt to your needs):
 

@@ -1,15 +1,41 @@
 <!--
+SPDX-FileCopyrightText: 2020 Aaron Raimist
+SPDX-FileCopyrightText: 2020 Chris van Dijk
+SPDX-FileCopyrightText: 2020 Dominik Zajac
+SPDX-FileCopyrightText: 2020 Mickaël Cornière
+SPDX-FileCopyrightText: 2020-2024 MDAD project contributors
+SPDX-FileCopyrightText: 2020-2024 Slavi Pantaleev
+SPDX-FileCopyrightText: 2022 François Darveau
+SPDX-FileCopyrightText: 2022 Julian Foad
+SPDX-FileCopyrightText: 2022 Warren Bailey
+SPDX-FileCopyrightText: 2023 Antonis Christofides
+SPDX-FileCopyrightText: 2023 Felix Stupp
+SPDX-FileCopyrightText: 2023 Julian-Samuel Gebühr
 SPDX-FileCopyrightText: 2023 Nikita Chernyi
-SPDX-FileCopyrightText: 2023 - 2024 Slavi Pantaleev
+SPDX-FileCopyrightText: 2023 Pierre 'McFly' Marty
+SPDX-FileCopyrightText: 2024 Tiz
+SPDX-FileCopyrightText: 2024-2026 Suguru Hirahara
 
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 
 # Prometheus Blackbox Exporter
 
-This playbook can configure [Prometheus Blackbox Exporter](https://github.com/prometheus/blackbox_exporter).
+The playbook can install and configure [Prometheus Blackbox Exporter](https://github.com/prometheus/blackbox_exporter) for you.
 
-## Configuration
+Prometheus Blackbox Exporter is the Prometheus exporter which allows blackbox probing of endpoints over HTTP, HTTPS, DNS, TCP, ICMP and gRPC.
+
+See the project's [documentation](https://github.com/prometheus/blackbox_exporter/blob/master/README.md) to learn what Prometheus Blackbox Exporter does and why it might be useful to you.
+
+## Dependencies
+
+This service requires the following other services:
+
+- [Prometheus](prometheus.md) — database for storing metrics
+- (optional) [Grafana](grafana.md) — web UI that can query the Prometheus datasource (connection) and display the logs
+- (optional) [Traefik](traefik.md) — reverse-proxy server for exposing Prometheus Blackbox Exporter
+
+## Adjusting the playbook configuration
 
 To enable this service, add the following configuration to your `vars.yml` file and re-run the [installation](../installing.md) process:
 
@@ -22,15 +48,6 @@ To enable this service, add the following configuration to your `vars.yml` file 
 
 prometheus_blackbox_exporter_enabled: true
 
-# To expose the metrics publicly, enable and configure the lines below:
-# prometheus_blackbox_exporter_hostname: mash.example.com
-# prometheus_blackbox_exporter_path_prefix: /metrics/mash-prometheus-blackbox-exporter
-
-# To protect the metrics with HTTP Basic Auth, enable and configure the lines below.
-# See: https://doc.traefik.io/traefik/middlewares/http/basicauth/#users
-# prometheus_blackbox_exporter_container_labels_metrics_middleware_basic_auth_enabled: true
-# prometheus_blackbox_exporter_container_labels_metrics_middleware_basic_auth_users: ''
-
 ########################################################################
 #                                                                      #
 # /prometheus_blackbox_exporter                                        #
@@ -40,4 +57,37 @@ prometheus_blackbox_exporter_enabled: true
 
 ## Usage
 
-After you've installed the blackbox exporter, your blackbox prober will be available on `mash.example.com/metrics/mash-prometheus-blackbox-exporter` with the basic auth credentials you've configured if hostname and path prefix where provided
+After running the command for installation, the blackbox prober becomes available.
+
+### Expose metrics internally
+
+If Prometheus Blackbox Exporter and Prometheus do not share a network (like Traefik), you can connect the Prometheus Blackbox Exporter container network to Prometheus by adding the following configuration to your `vars.yml` file:
+
+```yaml
+prometheus_container_additional_networks_custom:
+  - "{{ prometheus_blackbox_exporter_container_network }}"
+```
+
+### Expose metrics publicly
+
+If Prometheus Blackbox Exporter metrics are not scraped from a local Prometheus instance, you can expose the metrics publicly so that a remote instance can fetch them.
+
+When exposing metrics publicly, you should consider to set up [HTTP Basic Authentication](https://developer.mozilla.org/en-US/docs/Web/HTTP/Authentication) **or anyone would be able to read your metrics**.
+
+To expose the metrics publicly, add the following configuration to your `vars.yml` file (adapt to your needs):
+
+```yaml
+mash_playbook_metrics_exposure_enabled: true
+mash_playbook_metrics_exposure_hostname: mash.example.com
+```
+
+It will expose the metrics at `https://mash.example.com/metrics/mash-prometheus-blackbox-exporter`.
+
+To enable the HTTP Basic authentication, add the following configuration to your `vars.yml` file (adapt to your needs):
+
+```yaml
+prometheus_blackbox_exporter_container_labels_metrics_middleware_basic_auth_enabled: true
+
+# See https://doc.traefik.io/traefik/middlewares/http/basicauth/#users for details.
+prometheus_blackbox_exporter_container_labels_metrics_middleware_basic_auth_users: ""
+```

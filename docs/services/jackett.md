@@ -146,14 +146,9 @@ Next, click `Copy Torznab Feed` of the indexer (tracker) you added to Jackett. P
 
 Fill in the rest of the form with your preferences, and you're done!
 
-## Recommended other services
+## Related services
 
-Consider these other related services:
-
-- [Autobrr](autobrr.md)
+- "* Arr" applications — [Autobrr](autobrr.md) / [FlareSolverr](flaresolverr.md) / [Homarr](homarr.md) / [Jellyseerr](jellyseerr.md) / [Overseerr](overseerr.md) / [Radarr](radarr.md) / [Sonarr](sonarr.md)
 - [Jellyfin](jellyfin.md)
-- [Overseerr](overseerr.md)
 - [Plex](plex.md)
 - [qBittorrent](qbittorrent.md)
-- [Radarr](radarr.md)
-- [Sonarr](sonarr.md)

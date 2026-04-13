@@ -305,6 +305,6 @@ Regardless of what you choose, your WireGuard clients will get a network interfa
 To change the IPv6 CIDR, refer to the [Adjusting the IPv4/IPv6 CIDR](#adjusting-the-ipv4ipv6-cidr) section above.
 
 
-## Recommended other services
+## Related services
 
 - [AdGuard Home](adguard-home.md) — A network-wide DNS software for blocking ads & tracking

@@ -1,3 +1,4 @@
+---
 - name: "Set up a self-hosted server"
   hosts: "{{ target if target is defined else 'mash_servers' }}"
   become: true
@@ -93,6 +94,10 @@
     - role: galaxy/traefik
     # /role-specific:traefik
 
+    # role-specific:actual
+    - role: galaxy/actual
+    # /role-specific:actual
+
     # role-specific:adguard_home
     - role: galaxy/adguard_home
     # /role-specific:adguard_home
@@ -173,6 +178,10 @@
     - role: galaxy/bitmagnet
     # /role-specific:bitmagnet
 
+    # role-specific:borg_ui
+    - role: galaxy/borg_ui
+    # /role-specific:borg_ui
+
     # role-specific:browserless
     - role: galaxy/browserless
     # /role-specific:browserless
@@ -181,6 +190,10 @@
     - role: galaxy/calibre_web
     # /role-specific:calibre_web
 
+    # role-specific:calibre_web_automated
+    - role: galaxy/calibre_web_automated
+    # /role-specific:calibre_web_automated
+
     # role-specific:cap
     - role: galaxy/cap
     # /role-specific:cap
@@ -188,6 +201,14 @@
     # role-specific:changedetection
     - role: galaxy/changedetection
     # /role-specific:changedetection
+
+    # role-specific:chiefonboarding
+    - role: galaxy/chiefonboarding
+    # /role-specific:chiefonboarding
+
+    # role-specific:cinny
+    - role: galaxy/cinny
+    # /role-specific:cinny
 
     # role-specific:clickhouse
     - role: galaxy/clickhouse
@@ -225,6 +246,10 @@
     - role: galaxy/databasus
     # /role-specific:databasus
 
+    # role-specific:ddclient
+    - role: galaxy/ddclient
+    # /role-specific:ddclient
+
     # role-specific:docker_registry
     - role: galaxy/docker_registry
     # /role-specific:docker_registry
@@ -244,6 +269,10 @@
     # role-specific:docmost
     - role: galaxy/docmost
     # /role-specific:docmost
+
+    # role-specific:docuseal
+    - role: galaxy/docuseal
+    # /role-specific:docuseal
 
     # role-specific:dokuwiki
     - role: galaxy/dokuwiki
@@ -285,6 +314,10 @@
     - role: galaxy/farmos
     # /role-specific:farmos
 
+    # role-specific:feishin
+    - role: galaxy/feishin
+    # /role-specific:feishin
+
     # role-specific:fider
     - role: galaxy/fider
     # /role-specific:fider
@@ -297,13 +330,13 @@
     - role: galaxy/filebrowser_quantum
     # /role-specific:filebrowser_quantum
 
-    # role-specific:firezone
-    - role: galaxy/firezone
-    # /role-specific:firezone
-
     # role-specific:flaresolverr
     - role: galaxy/flaresolverr
     # /role-specific:flaresolverr
+
+    # role-specific:flatnotes
+    - role: galaxy/flatnotes
+    # /role-specific:flatnotes
 
     # role-specific:fmd_server
     - role: galaxy/fmd_server
@@ -368,6 +401,10 @@
     # role-specific:healthchecks
     - role: galaxy/healthchecks
     # /role-specific:healthchecks
+
+    # role-specific:heyform
+    - role: galaxy/heyform
+    # /role-specific:heyform
 
     # role-specific:homarr
     - role: galaxy/homarr
@@ -520,6 +557,10 @@
     # role-specific:memcached
     - role: galaxy/memcached
     # /role-specific:memcached
+
+    # role-specific:memos
+    - role: galaxy/memos
+    # /role-specific:memos
 
     # role-specific:minecraft
     - role: galaxy/minecraft
@@ -681,6 +722,10 @@
     - role: galaxy/phpmyadmin
     # /role-specific:phpmyadmin
 
+    # role-specific:pinepods
+    - role: galaxy/pinepods
+    # /role-specific:pinepods
+
     # role-specific:plausible
     - role: galaxy/plausible
     # /role-specific:plausible
@@ -712,6 +757,10 @@
     # role-specific:prometheus
     - role: galaxy/prometheus
     # /role-specific:prometheus
+
+    # role-specific:prometheus_alertmanager
+    - role: galaxy/prometheus_alertmanager
+    # /role-specific:prometheus_alertmanager
 
     # role-specific:prometheus_blackbox_exporter
     - role: galaxy/prometheus_blackbox_exporter
@@ -817,6 +866,10 @@
     - role: galaxy/sftpgo
     # /role-specific:sftpgo
 
+    # role-specific:silverbullet
+    - role: galaxy/silverbullet
+    # /role-specific:silverbullet
+
     # role-specific:smp_server
     - role: galaxy/smp_server
     # /role-specific:smp_server
@@ -860,6 +913,10 @@
     # role-specific:tandoor
     - role: galaxy/tandoor
     # /role-specific:tandoor
+
+    # role-specific:teable
+    - role: galaxy/teable
+    # /role-specific:teable
 
     # role-specific:telegraf
     - role: galaxy/telegraf
@@ -948,6 +1005,10 @@
     # role-specific:yacy
     - role: galaxy/yacy
     # /role-specific:yacy
+
+    # role-specific:yggstack
+    - role: galaxy/yggstack
+    # /role-specific:yggstack
 
     # role-specific:yourls
     - role: galaxy/yourls

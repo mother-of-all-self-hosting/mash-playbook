@@ -1,10 +1,10 @@
 <!--
-SPDX-FileCopyrightText: 2020 - 2024 MDAD project contributors
-SPDX-FileCopyrightText: 2020 - 2025 Slavi Pantaleev
 SPDX-FileCopyrightText: 2020 Aaron Raimist
 SPDX-FileCopyrightText: 2020 Chris van Dijk
 SPDX-FileCopyrightText: 2020 Dominik Zajac
 SPDX-FileCopyrightText: 2020 Mickaël Cornière
+SPDX-FileCopyrightText: 2020-2024 MDAD project contributors
+SPDX-FileCopyrightText: 2020-2025 Slavi Pantaleev
 SPDX-FileCopyrightText: 2022 François Darveau
 SPDX-FileCopyrightText: 2022 Julian Foad
 SPDX-FileCopyrightText: 2022 Warren Bailey
@@ -13,27 +13,36 @@ SPDX-FileCopyrightText: 2023 Felix Stupp
 SPDX-FileCopyrightText: 2023 Julian-Samuel Gebühr
 SPDX-FileCopyrightText: 2023 MASH project contributors
 SPDX-FileCopyrightText: 2023 Pierre 'McFly' Marty
-SPDX-FileCopyrightText: 2024 - 2025 Suguru Hirahara
 SPDX-FileCopyrightText: 2024 Sergio Durigan Junior
+SPDX-FileCopyrightText: 2024 Thomas Miceli
+SPDX-FileCopyrightText: 2024-2026 Suguru Hirahara
 
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 
 # Healthchecks
 
-[Healthchecks](https://healthchecks.io/) is simple and Effective **Cron Job Monitoring** solution.
+The playbook can install and configure [Healthchecks](https://healthchecks.io/) for you.
 
+Healthchecks is a cron job monitoring software.
+
+See the project's [documentation](https://healthchecks.io/docs/) to learn what Healthchecks does and why it might be useful to you.
+
+For details about configuring the [Ansible role for Healthchecks](https://github.com/mother-of-all-self-hosting/ansible-role-healthchecks/), you can check them via:
+- 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-healthchecks/blob/main/docs/configuring-healthchecks.md) online
+- 📁 `roles/galaxy/healthchecks/docs/configuring-healthchecks.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 ## Dependencies
 
 This service requires the following other services:
 
-- a [Traefik](traefik.md) reverse-proxy server
+- [Traefik](traefik.md) reverse-proxy server
+- (optional) [exim-relay](exim-relay.md) mailer
+- (optional) [Gotify](gotify.md)
+- (optional) [ntfy](ntfy.md)
 - (optional) [Postgres](postgres.md) / MySQL / [MariaDB](mariadb.md) database — Healthchecks will default to [SQLite](https://www.sqlite.org/) if Postgres is not enabled
-- (optional) the [exim-relay](exim-relay.md) mailer
 
-
-## Configuration
+## Adjusting the playbook configuration
 
 To enable this service, add the following configuration to your `vars.yml` file and re-run the [installation](../installing.md) process:
 
@@ -66,29 +75,13 @@ To use MariaDB, add the following configuration to your `vars.yml` file:
 healthchecks_database_type: mysql
 ```
 
-### Authentication
+### Configuring notification services (optional)
 
-The first superuser account is created after installation. See [Usage](#usage).
-You can create as many accounts as you wish.
+On Healthchecks you can add configuration settings of notification services. If you enable [exim-relay](exim-relay.md), [ntfy](ntfy.md), and/or [Gotify](gotify.md) services in your inventory configuration, the playbook will automatically connect them to the Healthchecks service.
 
-### Email integration
+As the Healthchecks instance does not support configuring the self-hosted ntfy or Gotify instances with environment variables, you can add default options for them on its UI. Refer to [this page](https://healthchecks.io/docs/configuring_notifications/) on the official documentation as well about how to configure them.
 
-If you've enabled the [exim-relay](exim-relay.md) mailer service, Healthchecks will automatically be configured to send through it.
-
-If you need to configure Healthchecks to send email directly, the [ansible.role.healthchecks](https://github.com/mother-of-all-self-hosting/ansible-role-healthchecks) Ansible role provides various variables for tweaking the email-sending configuration in its `default/main.yml` file (`healthchecks_environment_variable_default_from_email` and various `healthchecks_environment_variable_email_*` variables).
-
-### Integrating with other services
-
-Refer to the [upstream `.env.example` file](https://github.com/healthchecks/healthchecks/blob/master/docker/.env.example) for discovering additional environment variables.
-
-You can pass these to the Healthchecks container using the `healthchecks_environment_variables_additional_variables` variable. Example:
-
-```yml
-healthchecks_environment_variables_additional_variables: |
-  DISCORD_CLIENT_ID=123
-  DISCORD_CLIENT_SECRET=456
-```
-
+See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-healthchecks/blob/main/docs/configuring-healthchecks.md#configuring-notification-services-optional) on the role's documentation for details about configuring other services.
 
 ## Usage
 
@@ -97,12 +90,11 @@ After running the command for installation, the Healthchecks instance becomes av
 To get started, create a superuser account by running the command as below:
 
 ```sh
-ansible-playbook -i inventory/hosts setup.yml --tags=createsuperuser-healthchecks -e email=EMAIL_ADDRESS_HERE -e password=PASSWORD_HERE
+ansible-playbook -i inventory/hosts setup.yml --tags=create-admin-healthchecks -e email=EMAIL_ADDRESS_HERE -e password=PASSWORD_HERE
 ```
 
-After creating the superuser account, you can open the URL to log in and start setting up monitoring tasks.
+After creating the superuser account, you can open the URL to log in and start setting up monitoring tasks. You can create as many accounts as you wish.
 
-
-## Recommended other services
+## Related services
 
 - [Prometheus](prometheus.md) — a metrics collection and alerting monitoring solution

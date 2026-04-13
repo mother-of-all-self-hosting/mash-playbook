@@ -48,11 +48,12 @@ exim_relay_sender_address: "someone@{{ exim_relay_hostname }}"
 
 By default, exim-relay attempts to deliver emails directly. This may or may not work, depending on your domain configuration.
 
-To improve email deliverability, you can configure authentication methods such as DKIM (DomainKeys Identified Mail), SPF, and DMARC for your domain. Without setting any of these authentication methods, your outgoing email is most likely to be quarantined as spam at recipient's mail servers.
+To improve email deliverability, you can configure authentication methods such as DKIM (DomainKeys Identified Mail), SPF, and DMARC for your domain. Without setting any of these authentication methods, your outgoing email is most likely to be quarantined as spam at recipient's mail servers. The worst scenario is that your server's IP address or hostname will be included in the spam list such as the one managed by [Spamhaus](https://www.spamhaus.org/), depending on the reputation.
 
 For details about configuring DKIM, refer [this section](https://github.com/mother-of-all-self-hosting/ansible-role-exim-relay/blob/main/docs/configuring-exim-relay.md#enable-dkim-support-optional) on the role's documentation.
 
-💡 If you cannot enable DKIM, SPF, or DMARC on your domain for some reason, we recommend relaying email through another SMTP server.
+>[!NOTE]
+> If you cannot enable DKIM, SPF, or DMARC on your domain for some reason, relaying email through another SMTP server is recommended.
 
 ### Relaying email through another SMTP server (optional)
 

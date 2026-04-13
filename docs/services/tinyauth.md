@@ -1,10 +1,10 @@
 <!--
-SPDX-FileCopyrightText: 2020 - 2024 MDAD project contributors
-SPDX-FileCopyrightText: 2020 - 2024 Slavi Pantaleev
 SPDX-FileCopyrightText: 2020 Aaron Raimist
 SPDX-FileCopyrightText: 2020 Chris van Dijk
 SPDX-FileCopyrightText: 2020 Dominik Zajac
 SPDX-FileCopyrightText: 2020 Mickaël Cornière
+SPDX-FileCopyrightText: 2020-2024 MDAD project contributors
+SPDX-FileCopyrightText: 2020-2024 Slavi Pantaleev
 SPDX-FileCopyrightText: 2022 François Darveau
 SPDX-FileCopyrightText: 2022 Julian Foad
 SPDX-FileCopyrightText: 2022 Warren Bailey
@@ -12,7 +12,7 @@ SPDX-FileCopyrightText: 2023 Antonis Christofides
 SPDX-FileCopyrightText: 2023 Felix Stupp
 SPDX-FileCopyrightText: 2023 Julian-Samuel Gebühr
 SPDX-FileCopyrightText: 2023 Pierre 'McFly' Marty
-SPDX-FileCopyrightText: 2024 - 2025 Suguru Hirahara
+SPDX-FileCopyrightText: 2024-2026 Suguru Hirahara
 
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->
@@ -30,7 +30,7 @@ For details about configuring the [Ansible role for Tinyauth](https://app.radicl
 - 📁 `roles/galaxy/tinyauth/docs/configuring-tinyauth.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 >[!WARNING]
-> The version 4 contains breaking changes. When updating the playbook, please follow the migration guide in the [documentation](https://tinyauth.app/docs/breaking-updates/3-to-4).
+> The version 5 contains breaking changes related to configurations and CLI flags. If custom environment variables are specified to `tinyauth_environment_variables_additional_variables`, please follow the migration guide in the [documentation](https://tinyauth.app/docs/breaking-updates/4-to-5/). As mentioned there, while a convenient converter is available, it does not support dynamic configuration for OAuth authentication, etc. You will need to manually update your configuration file and environment variables to use the new format.
 
 ## Prerequisites
 
@@ -88,7 +88,7 @@ With this configuration, Tinyauth will set a cookie for `.example.com` for authe
 If you skipped creating a user to use OAuth authentication only, you can configure authentication with your OAuth provider by following the instruction available on [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3AzLMiPKSyMcb5m85H2brZd4GHCDTF/tree/docs/configuring-tinyauth.md#oauth) of the role's documentation.
 
 >[!NOTE]
-> When setting OAuth configuration, make sure to set the `OAUTH_WHITELIST` environment variable to limit who is allowed to log in with OAuth. Enabling OAuth solely will not activate authorization!
+> When setting OAuth configuration, make sure to set the `TINYAUTH_OAUTH_WHITELIST` environment variable to limit who is allowed to log in with OAuth. Enabling OAuth solely will not activate authorization!
 
 ## Usage
 
@@ -141,19 +141,19 @@ After installing it and adding Tinyauth as an OIDC client on the Pocket ID's UI 
 
 ```yaml
 tinyauth_environment_variables_additional_variables: |
-  PROVIDERS_POCKETID_CLIENT_ID=YOUR_POCKET_ID_CLIENT_ID_HERE
-  PROVIDERS_POCKETID_CLIENT_SECRET=YOUR_POCKET_ID_CLIENT_SECRET_HERE
-  PROVIDERS_POCKETID_AUTH_URL=https://{{ pocket_id_hostname }}/authorize
-  PROVIDERS_POCKETID_TOKEN_URL=https://{{ pocket_id_hostname }}/api/oidc/token
-  PROVIDERS_POCKETID_USER_INFO_URL=https://{{ pocket_id_hostname }}/api/oidc/userinfo
-  PROVIDERS_POCKETID_SCOPES=openid email profile groups
-  PROVIDERS_POCKETID_NAME=Pocket ID
-  OAUTH_WHITELIST=YOUR_POCKET_ID_EMAIL_ADDRESS_HERE
+  TINYAUTH_OAUTH_PROVIDERS_POCKETID_CLIENTID=YOUR_POCKET_ID_CLIENT_ID_HERE
+  TINYAUTH_OAUTH_PROVIDERS_POCKETID_CLIENTSECRET=YOUR_POCKET_ID_CLIENT_SECRET_HERE
+  TINYAUTH_OAUTH_PROVIDERS_POCKETID_AUTHURL=https://{{ pocket_id_hostname }}/authorize
+  TINYAUTH_OAUTH_PROVIDERS_POCKETID_TOKENURL=https://{{ pocket_id_hostname }}/api/oidc/token
+  TINYAUTH_OAUTH_PROVIDERS_POCKETID_USERINFOURL=https://{{ pocket_id_hostname }}/api/oidc/userinfo
+  TINYAUTH_OAUTH_PROVIDERS_POCKETID_SCOPES=openid email profile groups
+  TINYAUTH_OAUTH_PROVIDERS_POCKETID_NAME=Pocket ID
+  TINYAUTH_OAUTH_WHITELIST=YOUR_POCKET_ID_EMAIL_ADDRESS_HERE
 ```
 
 Replace `YOUR_POCKET_ID_CLIENT_ID_HERE`, `YOUR_POCKET_ID_CLIENT_SECRET_HERE`, and `YOUR_POCKET_ID_EMAIL_ADDRESS_HERE` with your own values.
 
-Instead of using `OAUTH_WHITELIST`, it is able to manage access control by using Pocket ID's user group function. See [this section](https://tinyauth.app/docs/guides/pocket-id/#access-controls-with-pocket-id-groups) on the Tinyauth's documentation for details.
+Instead of using `TINYAUTH_OAUTH_WHITELIST`, it is able to manage access control by using Pocket ID's user group function. See [this section](https://tinyauth.app/docs/guides/pocket-id/#access-controls-with-pocket-id-groups) on the Tinyauth's documentation for details.
 
 #### Example: passkey-only authentication with access control for echoip
 
@@ -214,13 +214,13 @@ tinyauth_hostname: tinyauth.example.com
 
 # Obtain the OIDC client ID and secret for Tinyauth at pocketid.example.com first
 tinyauth_environment_variables_additional_variables: |
-  PROVIDERS_POCKETID_CLIENT_ID=YOUR_POCKET_ID_CLIENT_ID_HERE
-  PROVIDERS_POCKETID_CLIENT_SECRET=YOUR_POCKET_ID_CLIENT_SECRET_HERE
-  PROVIDERS_POCKETID_AUTH_URL=https://{{ pocket_id_hostname }}/authorize
-  PROVIDERS_POCKETID_TOKEN_URL=https://{{ pocket_id_hostname }}/api/oidc/token
-  PROVIDERS_POCKETID_USER_INFO_URL=https://{{ pocket_id_hostname }}/api/oidc/userinfo
-  PROVIDERS_POCKETID_SCOPES=openid email profile groups
-  PROVIDERS_POCKETID_NAME=Pocket ID
+  TINYAUTH_OAUTH_PROVIDERS_POCKETID_CLIENTID=YOUR_POCKET_ID_CLIENT_ID_HERE
+  TINYAUTH_OAUTH_PROVIDERS_POCKETID_CLIENTSECRET=YOUR_POCKET_ID_CLIENT_SECRET_HERE
+  TINYAUTH_OAUTH_PROVIDERS_POCKETID_AUTHURL=https://{{ pocket_id_hostname }}/authorize
+  TINYAUTH_OAUTH_PROVIDERS_POCKETID_TOKENURL=https://{{ pocket_id_hostname }}/api/oidc/token
+  TINYAUTH_OAUTH_PROVIDERS_POCKETID_USERINFOURL=https://{{ pocket_id_hostname }}/api/oidc/userinfo
+  TINYAUTH_OAUTH_PROVIDERS_POCKETID_SCOPES=openid email profile groups
+  TINYAUTH_OAUTH_PROVIDERS_POCKETID_NAME=Pocket ID
 
 # Disable logging in with a password
 tinyauth_environment_variables_users_enabled: false

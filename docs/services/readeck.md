@@ -35,7 +35,9 @@ For details about configuring the [Ansible role for Readeck](https://github.com/
 
 This service requires the following other services:
 
-- a [Traefik](traefik.md) reverse-proxy server
+- [Postgres](postgres.md) / [SQLite](https://www.sqlite.org/) database
+- [Traefik](traefik.md) reverse-proxy server
+- (optional) [exim-relay](exim-relay.md) mailer
 
 ## Adjusting the playbook configuration
 
@@ -58,6 +60,17 @@ readeck_hostname: readeck.example.com
 #                                                                      #
 ########################################################################
 ```
+
+### Select database to use
+
+It is necessary to select a database used by Readeck from Postgres and SQLite. See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-readeck/blob/main/docs/configuring-readeck.md#specify-database) on the role's documentation for details.
+
+### Configuring the mailer (optional)
+
+On Readeck you can set up a mailer for functions such as bookmark sharing and password recovery. If you enable the [exim-relay](exim-relay.md) service in your inventory configuration, the playbook will automatically configure it as a mailer for the service.
+
+>[!WARNING]
+> Without setting an authentication method such as DKIM, SPF, and DMARC for your hostname, emails are most likely to be quarantined as spam at recipient's mail servers. The worst scenario is that your server's IP address or hostname will be included in the spam list such as the one managed by [Spamhaus](https://www.spamhaus.org/), depending on the reputation. As the exim-relay service supports DKIM signing, refer to [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-exim-relay/blob/main/docs/configuring-exim-relay.md#enable-dkim-support-optional) for details about how to set it up.
 
 ## Usage
 

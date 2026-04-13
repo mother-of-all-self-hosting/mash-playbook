@@ -167,13 +167,13 @@ Having configured `vars.yml` for the dedicated instance, add the following confi
 # Point Ghostfolio to its dedicated Valkey instance
 ghostfolio_redis_hostname: mash-ghostfolio-valkey
 
-# Make sure the Ghostfolio service (mash-ghostfolio.service) starts after its dedicated Valkey service (mash-ghostfolio-valkey.service)
-ghostfolio_systemd_required_services_list_custom:
-  - "mash-ghostfolio-valkey.service"
-
 # Make sure the Ghostfolio service (mash-ghostfolio.service) is connected to the container network of its dedicated Valkey service (mash-ghostfolio-valkey)
 ghostfolio_container_additional_networks_custom:
   - "mash-ghostfolio-valkey"
+
+# Make sure the Ghostfolio service (mash-ghostfolio.service) starts after its dedicated Valkey service (mash-ghostfolio-valkey.service)
+ghostfolio_systemd_required_services_list_custom:
+  - "mash-ghostfolio-valkey.service"
 
 ########################################################################
 #                                                                      #
@@ -217,13 +217,13 @@ valkey_enabled: true
 # Point Ghostfolio to the shared Valkey instance
 ghostfolio_redis_hostname: "{{ valkey_identifier }}"
 
-# Make sure the Ghostfolio service (mash-ghostfolio.service) starts after its dedicated Valkey service (mash-ghostfolio-valkey.service)
-ghostfolio_systemd_required_services_list_custom:
-  - "{{ valkey_identifier }}.service"
-
-# Make sure the Ghostfolio container is connected to the container network of its dedicated Valkey service (mash-ghostfolio-valkey)
+# Make sure the Ghostfolio container is connected to the container network of the shared Valkey service (mash-valkey)
 ghostfolio_container_additional_networks_custom:
   - "{{ valkey_container_network }}"
+
+# Make sure the Ghostfolio service (mash-ghostfolio.service) starts after the shared Valkey service (mash-valkey.service)
+ghostfolio_systemd_required_services_list_custom:
+  - "{{ valkey_identifier }}.service"
 
 ########################################################################
 #                                                                      #

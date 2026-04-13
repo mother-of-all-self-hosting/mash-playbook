@@ -1,10 +1,10 @@
 <!--
-SPDX-FileCopyrightText: 2020 - 2024 MDAD project contributors
-SPDX-FileCopyrightText: 2020 - 2024 Slavi Pantaleev
 SPDX-FileCopyrightText: 2020 Aaron Raimist
 SPDX-FileCopyrightText: 2020 Chris van Dijk
 SPDX-FileCopyrightText: 2020 Dominik Zajac
 SPDX-FileCopyrightText: 2020 Mickaël Cornière
+SPDX-FileCopyrightText: 2020-2024 MDAD project contributors
+SPDX-FileCopyrightText: 2020-2024 Slavi Pantaleev
 SPDX-FileCopyrightText: 2022 François Darveau
 SPDX-FileCopyrightText: 2022 Julian Foad
 SPDX-FileCopyrightText: 2022 Warren Bailey
@@ -12,7 +12,7 @@ SPDX-FileCopyrightText: 2023 Antonis Christofides
 SPDX-FileCopyrightText: 2023 Felix Stupp
 SPDX-FileCopyrightText: 2023 Julian-Samuel Gebühr
 SPDX-FileCopyrightText: 2023 Pierre 'McFly' Marty
-SPDX-FileCopyrightText: 2024 - 2025 Suguru Hirahara
+SPDX-FileCopyrightText: 2024-2026 Suguru Hirahara
 
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->
@@ -33,7 +33,7 @@ For details about configuring the [Ansible role for Ergo](https://app.radicle.xy
 
 This service requires the following other services:
 
-- (optional) MySQL / [MariaDB](mariadb.md) database — for persistent message history
+- (optional) [Postgres](postgres.md) / MySQL / [MariaDB](mariadb.md) / [SQLite](https://www.sqlite.org/) database — for persistent message history
 - (optional) [Traefik](traefik.md) reverse-proxy server — required on the default configuration
 
 ## Adjusting the playbook configuration
@@ -68,9 +68,9 @@ By default the server is not protected with a shared "server password" (`PASS`),
 
 See [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az2CSxS3YLtJYM87TyGZkZCan3uoSJ/tree/docs/configuring-ergo.md#setting-server-39-s-password) for details about how to configure those passwords.
 
-### Enabling message storage on MariaDB database (optional)
+### Enabling permanent message storage (optional)
 
-Ergo supports storing messages in a persistent storage. Currently a MySQL-compatible database is supported for it. This playbook supports MariaDB, and you can set up a MariaDB instance by enabling it on `vars.yml`. Refer to [this page](mariadb.md) for the instruction to enable it.
+Ergo supports storing messages in a MySQL-compatible database, Postgres, or SQLite. This playbook is configured to use MariaDB by default. Refer to [this page](mariadb.md) for the instruction to set up a MariaDB instance.
 
 After installing it, add the following configuration to your `vars.yml` file:
 

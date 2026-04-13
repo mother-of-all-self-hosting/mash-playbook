@@ -1,10 +1,10 @@
 <!--
-SPDX-FileCopyrightText: 2020 - 2024 MDAD project contributors
-SPDX-FileCopyrightText: 2020 - 2024 Slavi Pantaleev
 SPDX-FileCopyrightText: 2020 Aaron Raimist
 SPDX-FileCopyrightText: 2020 Chris van Dijk
 SPDX-FileCopyrightText: 2020 Dominik Zajac
 SPDX-FileCopyrightText: 2020 Mickaël Cornière
+SPDX-FileCopyrightText: 2020-2024 MDAD project contributors
+SPDX-FileCopyrightText: 2020-2024 Slavi Pantaleev
 SPDX-FileCopyrightText: 2022 François Darveau
 SPDX-FileCopyrightText: 2022 Julian Foad
 SPDX-FileCopyrightText: 2022 Warren Bailey
@@ -12,7 +12,7 @@ SPDX-FileCopyrightText: 2023 Antonis Christofides
 SPDX-FileCopyrightText: 2023 Felix Stupp
 SPDX-FileCopyrightText: 2023 Julian-Samuel Gebühr
 SPDX-FileCopyrightText: 2023 Pierre 'McFly' Marty
-SPDX-FileCopyrightText: 2024 - 2025 Suguru Hirahara
+SPDX-FileCopyrightText: 2024-2026 Suguru Hirahara
 SPDX-FileCopyrightText: 2025 MASH project contributors
 
 SPDX-License-Identifier: AGPL-3.0-or-later
@@ -36,6 +36,7 @@ This service requires the following other services:
 
 - MySQL / [MariaDB](mariadb.md) database
 - [Traefik](traefik.md) reverse-proxy server
+- (optional) [exim-relay](exim-relay.md) mailer
 
 ## Configuration
 
@@ -79,6 +80,26 @@ To get started, open the URL with a web browser, and follow the set up wizard wh
 > On the step three (Database Setup), please make sure to select `MariaDB` for the database engine instead of `MySQL`.
 
 After finishing installation, you can log in to the service with the administrator account. If you have added the tracking code to your website, the Matomo instance should have started collecting analytics data.
+
+### Configuring the mailer (optional)
+
+On Matomo you can add configuration settings of a SMTP server for password recovery function. If you enable the [exim-relay](exim-relay.md) service in your inventory configuration, the playbook will automatically connect it to the Matomo service.
+
+As the Matomo instance does not support configuring the mailer with environment variables, you can add default options for it on its UI. Refer to [this page](https://matomo.org/faq/how-to/faq_93/) on the official documentation as well about how to configure it.
+
+To set up with the default exim-relay settings, and navigate to "General settings" to add the following configuration:
+
+- **SMTP server address**: `mash-exim-relay`
+- **SMTP port**: 8025
+- **Authentication method for SMTP**: (Empty)
+- **SMTP username**: (Empty)
+- **SMTP password**: (Empty)
+- **SMTP from address**: (Input the email address specified to `exim_relay_sender_address` on your `vars.yml`)
+- **SMTP from name**: (Input the name)
+- **SMTP encryption**: `none`
+
+>[!WARNING]
+> Without setting an authentication method such as DKIM, SPF, and DMARC for your hostname, emails are most likely to be quarantined as spam at recipient's mail servers. The worst scenario is that your server's IP address or hostname will be included in the spam list such as the one managed by [Spamhaus](https://www.spamhaus.org/), depending on the reputation. As the exim-relay service supports DKIM signing, refer to [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-exim-relay/blob/main/docs/configuring-exim-relay.md#enable-dkim-support-optional) for details about how to set it up.
 
 ## Related services
 

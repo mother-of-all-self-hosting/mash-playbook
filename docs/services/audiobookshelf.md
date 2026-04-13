@@ -1,10 +1,10 @@
 <!--
-SPDX-FileCopyrightText: 2020 - 2024 MDAD project contributors
-SPDX-FileCopyrightText: 2020 - 2024 Slavi Pantaleev
 SPDX-FileCopyrightText: 2020 Aaron Raimist
 SPDX-FileCopyrightText: 2020 Chris van Dijk
 SPDX-FileCopyrightText: 2020 Dominik Zajac
 SPDX-FileCopyrightText: 2020 Mickaël Cornière
+SPDX-FileCopyrightText: 2020-2024 MDAD project contributors
+SPDX-FileCopyrightText: 2020-2024 Slavi Pantaleev
 SPDX-FileCopyrightText: 2022 François Darveau
 SPDX-FileCopyrightText: 2022 Julian Foad
 SPDX-FileCopyrightText: 2022 Warren Bailey
@@ -12,7 +12,8 @@ SPDX-FileCopyrightText: 2023 Antonis Christofides
 SPDX-FileCopyrightText: 2023 Felix Stupp
 SPDX-FileCopyrightText: 2023 Julian-Samuel Gebühr
 SPDX-FileCopyrightText: 2023 Pierre 'McFly' Marty
-SPDX-FileCopyrightText: 2024 - 2025 Suguru Hirahara
+SPDX-FileCopyrightText: 2024 Thomas Miceli
+SPDX-FileCopyrightText: 2024-2026 Suguru Hirahara
 
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->
@@ -34,6 +35,7 @@ For details about configuring the [Ansible role for audiobookshelf](https://app.
 This service requires the following other services:
 
 - [Traefik](traefik.md) reverse-proxy server
+- (optional) [exim-relay](exim-relay.md) mailer
 
 ## Adjusting the playbook configuration
 
@@ -59,11 +61,13 @@ audiobookshelf_hostname: audiobookshelf.example.com
 
 **Note**: hosting audiobookshelf under a subpath (by configuring the `audiobookshelf_path_prefix` variable) does not seem to be possible due to audiobookshelf's technical limitations.
 
-### Syncthing integration (optional)
+### File management
 
-If you've got a [Syncthing](syncthing.md) service running, you can use it to synchronize your audiobookshelf directory onto the server and then mount it as read-only into the audiobookshelf container.
+If your server runs a file management service along with audiobookshelf such as [File Browser](filebrowser.md), [FileBrowser Quantum](filebrowser-quantum.md), and [Syncthing](syncthing.md), it is possible to upload files to the server or synchronize your audiobook and podcast directory with it to make them accessible on audiobookshelf.
 
-We recommend that you make use of the [aux](auxiliary.md) role to create some shared directory like this:
+#### Preparing directories
+
+First, let's create a directory to be shared with the services. You can make use of the [aux](auxiliary.md) role by adding the following configuration to your `vars.yml` file. We create two directories here; the directory to be shared among audiobookshelf and other services, and its parent directory. If you are willing to have other services share directories, you can add another path by adding one to the list:
 
 ```yaml
 ########################################################################
@@ -75,6 +79,7 @@ We recommend that you make use of the [aux](auxiliary.md) role to create some sh
 aux_directory_definitions:
   - dest: "{{ mash_playbook_base_path }}/storage"
   - dest: "{{ mash_playbook_base_path }}/storage/audiobookshelf"
+# - dest: another shared directory path …
 
 ########################################################################
 #                                                                      #
@@ -83,7 +88,62 @@ aux_directory_definitions:
 ########################################################################
 ```
 
-You can then mount this `{{ mash_playbook_base_path }}/storage/audiobookshelf` directory into the Syncthing container and synchronize it with some other computer:
+#### Mounting the directory into the audiobookshelf container
+
+Next, mount the `{{ mash_playbook_base_path }}/storage/audiobookshelf` directory into the audiobookshelf container.
+
+>[!NOTE]
+> The directory is mounted as writable to enable data modification and deletion by audiobookshelf.
+
+```yaml
+########################################################################
+#                                                                      #
+# audiobookshelf                                                       #
+#                                                                      #
+########################################################################
+
+# Other audiobookshelf configuration …
+
+audiobookshelf_container_additional_volumes_custom:
+  - type: bind
+    src: "{{ mash_playbook_base_path }}/storage/audiobookshelf"
+    dst: /audiobookshelf
+
+########################################################################
+#                                                                      #
+# /audiobookshelf                                                      #
+#                                                                      #
+########################################################################
+```
+
+#### Sharing the directory with other containers
+
+You can then mount this `{{ mash_playbook_base_path }}/storage/audiobookshelf` directory on other service's container.
+
+For example, adding the configuration below will let you to access to `/audiobookshelf` directory on the File Browser's UI, so that you can upload files to the server directly and make them accessible on audiobookshelf:
+
+```yaml
+########################################################################
+#                                                                      #
+# filebrowser                                                          #
+#                                                                      #
+########################################################################
+
+# Other File Browser configuration …
+
+filebrowser_container_additional_volumes_custom:
+  - type: bind
+    src: "{{ mash_playbook_base_path }}/storage/audiobookshelf"
+    dst: "/srv/audiobookshelf"
+
+########################################################################
+#                                                                      #
+# /filebrowser                                                         #
+#                                                                      #
+########################################################################
+```
+
+Adding the configuration below makes it possible for the Syncthing service to synchronize the directory with other computers:
 
 ```yaml
 ########################################################################
@@ -92,7 +152,7 @@ You can then mount this `{{ mash_playbook_base_path }}/storage/audiobookshelf` d
 #                                                                      #
 ########################################################################
 
-# Other Syncthing configuration..
+# Other Syncthing configuration …
 
 syncthing_container_additional_volumes:
   - type: bind
@@ -102,30 +162,6 @@ syncthing_container_additional_volumes:
 ########################################################################
 #                                                                      #
 # /syncthing                                                           #
-#                                                                      #
-########################################################################
-```
-
-Finally, mount the `{{ mash_playbook_base_path }}/storage/audiobookshelf` directory into the audiobookshelf container as read-only:
-
-```yaml
-########################################################################
-#                                                                      #
-# audiobookshelf                                                       #
-#                                                                      #
-########################################################################
-
-# Other audiobookshelf configuration..
-
-audiobookshelf_container_additional_volumes:
-  - type: bind
-    src: "{{ mash_playbook_base_path }}/storage/audiobookshelf"
-    dst: /audiobookshelf
-    options: readonly
-
-########################################################################
-#                                                                      #
-# /audiobookshelf                                                      #
 #                                                                      #
 ########################################################################
 ```
@@ -144,7 +180,7 @@ See [this page](https://www.audiobookshelf.org/docs/) on the documentation about
 
 If you are looking for free public domain audiobooks which can be uploaded to your audiobookshelf instance, you might be interested in websites such as <https://librivox.org/>.
 
-### Configure the SMTP server (optional)
+### Configuring the mailer (optional)
 
 On audiobookshelf you can add configuration settings of a SMTP server to let the service send email to e-reader devices. If you enable the [exim-relay](exim-relay.md) service in your inventory configuration, the playbook will automatically configure it as a mailer for the service.
 
@@ -162,11 +198,14 @@ To set up with the default exim-relay settings, open `https://audiobookshelf.exa
 
 After setting the configuration, you can have the audiobookshelf instance send a test mail.
 
+>[!WARNING]
+> Without setting an authentication method such as DKIM, SPF, and DMARC for your hostname, emails are most likely to be quarantined as spam at recipient's mail servers. The worst scenario is that your server's IP address or hostname will be included in the spam list such as the one managed by [Spamhaus](https://www.spamhaus.org/), depending on the reputation. As the exim-relay service supports DKIM signing, refer to [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-exim-relay/blob/main/docs/configuring-exim-relay.md#enable-dkim-support-optional) for details about how to set it up.
+
 ## Troubleshooting
 
 See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3rwhJ9rQ82H6GXg7ZCt3UNpStbaW/tree/docs/configuring-audiobookshelf.md#troubleshooting) on the role's documentation for details.
 
-## Recommended other services
+## Related services
 
 - [Calibre-Web](calibre-web.md) — Web app for browsing, reading and downloading eBooks stored in a [Calibre](https://calibre-ebook.com/) database
-- [Syncthing](syncthing.md) — a continuous file synchronization program which synchronizes files between two or more computers in real time. See [Syncthing integration](#syncthing-integration)
+- [PinePods](pinepods.md) — Podcast management system that manages podcasts with multi-user support

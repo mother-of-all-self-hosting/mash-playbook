@@ -19,7 +19,7 @@ The [Ansible role for Mobilizon](https://github.com/mother-of-all-self-hosting/a
 
 This service requires the following other services:
 
-- a [Postgis](postgis.md) database (postgres based database that supports geospatial data)
+- a [PostGIS](postgis.md) database (postgres based database that supports geospatial data)
 - a [Traefik](traefik.md) reverse-proxy server
 
 ## Configuration
@@ -47,9 +47,9 @@ mobilizon_hostname: mobilizon.example.com
 >[!WARNING]
 > DO NOT change the hostname after the instance has already run once. If changed, the Mobilizon instance stop working properly!
 
-### Enable Postgis
+### Enable PostGIS
 
-You also need to enable [Postgis](postgis.md) for a database server by adding the following configuration:
+You also need to enable [PostGIS](postgis.md) for a database server by adding the following configuration:
 
 ```yaml
 ########################################################################

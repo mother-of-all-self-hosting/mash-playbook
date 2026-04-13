@@ -1,16 +1,40 @@
 <!--
+SPDX-FileCopyrightText: 2020 Aaron Raimist
+SPDX-FileCopyrightText: 2020 Chris van Dijk
+SPDX-FileCopyrightText: 2020 Dominik Zajac
+SPDX-FileCopyrightText: 2020 Mickaël Cornière
+SPDX-FileCopyrightText: 2020-2024 MDAD project contributors
+SPDX-FileCopyrightText: 2020-2024 Slavi Pantaleev
+SPDX-FileCopyrightText: 2022 François Darveau
+SPDX-FileCopyrightText: 2022 Julian Foad
+SPDX-FileCopyrightText: 2022 Warren Bailey
+SPDX-FileCopyrightText: 2023 Antonis Christofides
+SPDX-FileCopyrightText: 2023 Felix Stupp
 SPDX-FileCopyrightText: 2023 Julian-Samuel Gebühr
-SPDX-FileCopyrightText: 2023 - 2024 Slavi Pantaleev
+SPDX-FileCopyrightText: 2023 Nikita Chernyi
+SPDX-FileCopyrightText: 2023 Pierre 'McFly' Marty
+SPDX-FileCopyrightText: 2024 Tiz
+SPDX-FileCopyrightText: 2024-2026 Suguru Hirahara
 
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 
 # Prometheus
 
-[Prometheus](https://prometheus.io/) is a metrics collection and alerting monitoring solution.
+The playbook can install and configure [Prometheus](https://prometheus.io/) for you.
 
+Prometheus is a metrics collection and alerting monitoring solution.
 
-## Configuration
+See the project's [documentation](https://prometheus.io/docs/introduction/overview/) to learn what Prometheus does and why it might be useful to you.
+
+## Dependencies
+
+This service requires the following other services:
+
+- (optional) [Grafana](grafana.md) — web UI that can query the Prometheus datasource (connection) and display the logs
+- (optional) [Traefik](traefik.md) — reverse-proxy server for exposing Prometheus
+
+## Adjusting the playbook configuration
 
 To enable this service, add the following configuration to your `vars.yml` file and re-run the [installation](../installing.md) process:
 
@@ -30,32 +54,21 @@ prometheus_enabled: true
 ########################################################################
 ```
 
-By default, Prometheus is configured to scrape (collect metrics from) its own process. If you wish to disable this behavior, use `prometheus_self_process_scraper_enabled: false`.
-
-To make Prometheus useful, you'll need to make it scrape one or more hosts by adjusting the configuration.
-
-
 ### Integrating with Prometheus Node Exporter
 
-If you've installed [Prometheus Node Exporter](prometheus-node-exporter.md) on the same host, you can make Prometheus scrape its metrics with the following **additional configuration**:
+If you've installed [Prometheus Node Exporter](prometheus-node-exporter.md) on the same host, you can make Prometheus scrape its metrics by adding the following configuration to your `vars.yml` file:
 
 ```yaml
 prometheus_self_node_scraper_enabled: true
 prometheus_self_node_scraper_static_configs_target: "{{ prometheus_node_exporter_identifier }}:9100"
-
-# node-exporter runs in another container network, so we need to connect to it.
-prometheus_container_additional_networks:
-  - "{{ prometheus_node_exporter_container_network }}"
 ```
 
-To scrape a **remote** Prometheus Node Exporter instance, do not use `prometheus_self_node_scraper_*`, but rather follow the [Scraping any other exporter service](#scraping-any-other-exporter-service) guide below.
+>[!NOTE]
+> To scrape a *remote* Prometheus Node Exporter instance, add the configuration to `prometheus_config_scrape_configs_additional` described below.
 
+### Scraping other exporter services
 
-### Scraping any other exporter service
-
-To inject your own scrape configuration, use the `prometheus_config_scrape_configs_additional` variable that's part of the [ansible-role-prometheus](https://github.com/mother-of-all-self-hosting/ansible-role-prometheus) Ansible role.
-
-Example **additional** configuration:
+To make Prometheus useful, you'll need to get it scrape one or more hosts by adjusting the configuration. You can add your own scrape configuration to `prometheus_config_scrape_configs_additional` as below (adapt to your needs):
 
 ```yaml
 prometheus_config_scrape_configs_additional:
@@ -76,27 +89,36 @@ prometheus_config_scrape_configs_additional:
           - another-host:8080
 ```
 
-If you're scraping others services running in containers over the container network, make sure the Prometheus container is connected to their own network by adjusting `prometheus_container_additional_networks` as demonstrated above for [Integrating with Prometheus Node Exporter](#integrating-with-prometheus-node-exporter).
+### Disabling scraping from own process
 
+By default, Prometheus is configured to scrape (collect metrics from) its own process. You can disable this behavior by adding the following configuration to your `vars.yml` file:
+
+```yaml
+prometheus_self_process_scraper_enabled: false
+```
 
 ### Exposing the web interface
 
-By setting a hostname you will expose prometheus on this domain.
-Usually you should also set up basic_auth in this case, otherwise everyone will be able to access your metrics
+To expose the Prometheus web interface publicly, add the following configuration to your `vars.yml` file (adapt to your needs).
 
 ```yaml
 prometheus_hostname: prometheus.example.com
-
-# Uncommenting the following lines allows you to configure basic auth
-# prometheus_container_labels_metrics_middleware_basic_auth_enabled: true
-# Use `htpasswd -nb USERNAME PASSWORD` to generate the users below.
-# prometheus_container_labels_metrics_middleware_basic_auth_users: ''
 ```
 
-## Recommended other services
+When exposing it, you should consider to set up [HTTP Basic Authentication](https://developer.mozilla.org/en-US/docs/Web/HTTP/Authentication) **or anyone would be able to read your metrics**. To enable the HTTP Basic authentication, add the following configuration to your `vars.yml` file:
+
+```yaml
+prometheus_container_labels_metrics_middleware_basic_auth_enabled: true
+
+# See https://doc.traefik.io/traefik/middlewares/http/basicauth/#users for details.
+prometheus_container_labels_metrics_middleware_basic_auth_users: ""
+```
+
+## Related services
 
 - [Grafana](grafana.md) — a web-based tool for visualizing your Prometheus metrics (time-series)
 - [Grafana Loki](grafana-loki.md) — a log aggregation system that helps collect, store, and analyze logs in a scalable and efficient manner (like Prometheus, but for logs)
+- [Prometheus Alertmanager](prometheus-alertmanager.md) — Handle alerts sent by client applications such as the Prometheus server
 - [prometheus-blackbox-exporter](prometheus-blackbox-exporter.md) — Blackbox probing of HTTP/HTTPS/DNS/TCP/ICMP and gRPC endpoints
 - [prometheus-node-exporter](prometheus-node-exporter.md) — an exporter for machine metrics
 - [prometheus-postgres-exporter](prometheus-postgres-exporter.md) — an exporter for monitoring a [Postgres](postgres.md) database server

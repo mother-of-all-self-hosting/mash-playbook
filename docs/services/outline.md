@@ -1,15 +1,30 @@
 <!--
-SPDX-FileCopyrightText: 2023 - 2024 Slavi Pantaleev
+SPDX-FileCopyrightText: 2020 Aaron Raimist
+SPDX-FileCopyrightText: 2020 Chris van Dijk
+SPDX-FileCopyrightText: 2020 Dominik Zajac
+SPDX-FileCopyrightText: 2020 Mickaël Cornière
+SPDX-FileCopyrightText: 2020-2024 MDAD project contributors
+SPDX-FileCopyrightText: 2020-2024 Slavi Pantaleev
+SPDX-FileCopyrightText: 2022 François Darveau
+SPDX-FileCopyrightText: 2022 Julian Foad
+SPDX-FileCopyrightText: 2022 Warren Bailey
+SPDX-FileCopyrightText: 2023 Antonis Christofides
+SPDX-FileCopyrightText: 2023 Felix Stupp
 SPDX-FileCopyrightText: 2023 Julian-Samuel Gebühr
-SPDX-FileCopyrightText: 2025 Suguru Hirahara
+SPDX-FileCopyrightText: 2023 Pierre 'McFly' Marty
+SPDX-FileCopyrightText: 2024 Thomas Miceli
+SPDX-FileCopyrightText: 2024-2026 Suguru Hirahara
 
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 
 # Outline
 
-[Outline](https://www.getoutline.com/) is an open-source knowledge base for growing teams.
+The playbook can install and configure [Outline](https://www.getoutline.com/) for you.
 
+Outline is an open-source knowledge base for growing teams.
+
+See the project's [documentation](https://docs.getoutline.com/s/guide) to learn what Outline does and why it might be useful to you.
 
 ## Dependencies
 
@@ -34,22 +49,6 @@ outline_enabled: true
 
 outline_hostname: outline.example.com
 
-# This must be generated with: `openssl rand -hex 32`
-outline_environment_variable_secret_key: ''
-
-# The configuration below connects Outline to the Valkey instance, for session storage purposes.
-# You may wish to run a separate Valkey instance for Outline, because Valkey is not multi-tenant.
-# Read more in docs/services/valkey.md.
-outline_redis_hostname: "{{ valkey_identifier if valkey_enabled else '' }}"
-
-outline_container_additional_networks_custom: |
-  {{
-    [valkey_container_network]
-  }}
-
-# By default, files are stored locally.
-# To use another file storage provider, see the "File Storage" section below.
-
 # At least one authentication method MUST be enabled for Outline to work.
 # See the "Authentication" section below.
 
@@ -62,7 +61,15 @@ outline_container_additional_networks_custom: |
 
 **Note**: hosting Outline under a subpath (by configuring the `outline_path_prefix` variable) does not seem to be possible due to Outline's technical limitations.
 
-### File Storage
+### Set random 32-byte hex digits for secret key
+
+You also need to set random **32-byte hex digits** for the secret key. To do so, add the following configuration to your `vars.yml` file. The value can be generated with `openssl rand -hex 32` or in another way.
+
+```yaml
+outline_environment_variable_secret_key: YOUR_SECRET_KEY_HERE
+```
+
+### Configuring file storage
 
 Outline supports multiple [file storage](https://docs.getoutline.com/s/hosting/doc/file-storage-N4M0T6Ypu7) mechanisms.
 
@@ -193,16 +200,20 @@ Having configured `vars.yml` for the dedicated instance, add the following confi
 
 # Add the base configuration as specified above
 
-# Point outline to its dedicated Valkey instance
-outline_redis_hostname: mash-outline-valkey
+# Make sure the connection via Unix domain socket is enabled
+# Set to `false` to enable TCP connection instead
+outline_redis_socket_enabled: true
 
-# Make sure the outline service (mash-outline.service) starts after its dedicated Valkey service
+# Connect Outline to its dedicated Valkey instance via the Unix domain socket
+#
+# Alternatively, if you set `outline_redis_socket_enabled` to `false`,
+# - Add the dedicated Valkey instance (mash-outline-valkey) to `outline_redis_hostname`
+# - Add its network (mash-outline-valkey) to `outline_container_additional_networks_custom`
+outline_redis_socket_path_host: /mash/outline-valkey/run
+
+# Make sure the outline service (mash-outline.service) starts after its dedicated Valkey service (mash-outline-valkey.service)
 outline_systemd_required_services_list_custom:
   - "mash-outline-valkey.service"
-
-# Make sure the outline service (mash-outline.service) is connected to the container network of its dedicated Valkey service
-outline_container_additional_networks_custom:
-  - "mash-outline-valkey"
 
 ########################################################################
 #                                                                      #
@@ -243,16 +254,20 @@ valkey_enabled: true
 
 # Add the base configuration as specified above
 
-# Point outline to the shared Valkey instance
-outline_redis_hostname: "{{ valkey_identifier }}"
+# Make sure the connection via Unix domain socket is enabled
+# Set to `false` to enable TCP connection instead
+outline_redis_socket_enabled: true
 
-# Make sure the outline API service (mash-outline.service) starts after the shared Valkey service
+# Connect Outline to the shared Valkey instance via the Unix domain socket
+#
+# Alternatively, if you set `outline_redis_socket_enabled` to `false`,
+# - Add the shared Valkey instance (mash-valkey) to `outline_redis_hostname`
+# - Add its network (mash-valkey) to `outline_container_additional_networks_custom`
+outline_redis_socket_path_host: "{{ valkey_run_path }}"
+
+# Make sure the outline API service (mash-outline.service) starts after the shared Valkey service (mash-valkey.service)
 outline_systemd_required_services_list_custom:
   - "{{ valkey_identifier }}.service"
-
-# Make sure the outline API service (mash-outline.service) is connected to the container network of the shared Valkey service
-outline_container_additional_networks_custom:
-  - "{{ valkey_container_network }}"
 
 ########################################################################
 #                                                                      #
@@ -272,3 +287,7 @@ Note that running the `just` commands for installation (`just install-all` or `j
 ## Usage
 
 After installation, the Outline instance becomes available at the URL specified with `outline_hostname`. With the configuration above, the service is hosted at `https://outline.example.com`.
+
+## Related services
+
+- [Docmost](docmost.md) — Collaborative wiki and documentation software
