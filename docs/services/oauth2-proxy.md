@@ -67,7 +67,7 @@ oauth2_proxy_enabled: true
 oauth2_proxy_environment_variable_provider: keycloak-oidc
 oauth2_proxy_environment_variable_provider_display_name: SSO
 
-# Authorize oauth2-proxy with your oidc credentials
+# Authorize oauth2-proxy with your OIDC credentials
 oauth2_proxy_environment_variable_client_id: ""
 oauth2_proxy_environment_variable_client_secret: ""
 oauth2_proxy_environment_variable_oidc_issuer_url: https://keycloak.example.com/realms/my-realm
@@ -78,7 +78,7 @@ oauth2_proxy_environment_variable_code_challenge_method: S256
 # Generate this with: `python3 -c 'import os,base64; print(base64.urlsafe_b64encode(os.urandom(32)).decode())'`
 oauth2_proxy_environment_variable_cookie_secret: ''
 
-# Serve the oauth2-proxy authentication page
+# Serve the OAuth2-Proxy authentication page
 oauth2_proxy_container_labels_additional_labels_custom:
   - traefik.http.routers.{{ oauth2_proxy_identifier }}-navidrome.rule=Host(`{{ navidrome_hostname }}`) && PathPrefix(`/oauth2/`)
   - traefik.http.routers.{{ oauth2_proxy_identifier }}-navidrome.service={{ oauth2_proxy_identifier }}

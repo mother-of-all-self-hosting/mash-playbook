@@ -251,7 +251,7 @@ navidrome_container_labels_additional_labels_custom:
 >   X-Auth-Request-Preferred-Username: ""
 > ```
 >
-> Consider the more invasive 1. mode of oauth2-proxy if you want to exclude traefik from your trusted IPs altogether and only accept authorization requests from oauth2-proxy directly.
+> Consider the more invasive 1. mode of OAuth2-Proxy if you want to exclude Traefik from your trusted IPs altogether and only accept authorization requests from OAuth2-Proxy directly.
 
 > [!NOTE]
 > Currently Navidrome user auto-creation from external sources is tightly coupled to serving the webpage index and may fail when the webpage is loaded from cache upon first login, e.g. when changing accounts within the same browser.
@@ -270,7 +270,7 @@ oauth2_proxy_enabled: true
 oauth2_proxy_environment_variable_provider: keycloak-oidc
 oauth2_proxy_environment_variable_provider_display_name: Keycloak
 
-# Authorize oauth2-proxy with your oidc credentials
+# Authorize OAuth2-Proxy with your OIDC credentials
 oauth2_proxy_environment_variable_client_id: ""
 oauth2_proxy_environment_variable_client_secret: ""
 oauth2_proxy_environment_variable_oidc_issuer_url: https://keycloak.example.com/realms/my-realm
@@ -281,7 +281,7 @@ oauth2_proxy_environment_variable_code_challenge_method: S256
 # Generate this with: `python -c 'import os,base64; print(base64.urlsafe_b64encode(os.urandom(32)).decode())'`
 oauth2_proxy_environment_variable_cookie_secret: ""
 
-# Serve the oauth2-proxy authentication page
+# Serve the OAuth2-Proxy authentication page
 oauth2_proxy_container_labels_additional_labels_custom:
   - traefik.http.routers.{{ oauth2_proxy_identifier }}-navidrome.rule=Host(`{{ navidrome_hostname }}`) && PathPrefix(`/oauth2/`)
   - traefik.http.routers.{{ oauth2_proxy_identifier }}-navidrome.service={{ oauth2_proxy_identifier }}
