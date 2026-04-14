@@ -13,6 +13,7 @@ SPDX-FileCopyrightText: 2023 Felix Stupp
 SPDX-FileCopyrightText: 2023 Julian-Samuel Gebühr
 SPDX-FileCopyrightText: 2023 Pierre 'McFly' Marty
 SPDX-FileCopyrightText: 2024 Thomas Miceli
+SPDX-FileCopyrightText: 2024 Tiz
 SPDX-FileCopyrightText: 2024-2026 Suguru Hirahara
 
 SPDX-License-Identifier: AGPL-3.0-or-later
@@ -24,7 +25,11 @@ The playbook can install and configure [Funkwhale](https://funkwhale.audio/) for
 
 Funkwhale is a community-driven project that lets you listen and share music and audio within a decentralized, open network.
 
-See the project's [documentation](https://docs.funkwhale.audio) to learn what Apache Answer does and why it might be useful to you.
+See the project's [documentation](https://docs.funkwhale.audio) to learn what Funkwhale does and why it might be useful to you.
+
+For details about configuring the [Ansible role for Funkwhale](https://github.com/mother-of-all-self-hosting/ansible-role-funkwhale), you can check them via:
+- 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-funkwhale/blob/main/docs/configuring-funkwhale.md) online
+- 📁 `roles/galaxy/funkwhale/docs/configuring-funkwhale.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 ## Dependencies
 
@@ -247,13 +252,7 @@ Note that running the `just` commands for installation (`just install-all` or `j
 
 After installation, the Funkwhale instance becomes available at the URL specified with `funkwhale_hostname`. With the configuration above, the service is hosted at `https://funkwhale.example.com`.
 
-To get started, run the command below to create a first administrator account:
-
-```sh
-ansible-playbook -i inventory/hosts setup.yml --tags=create-admin-funkwhale -e username=USERNAME_HERE -e password=PASSWORD_HERE -e email=EMAIL_ADDRESS_HERE
-```
-
-After running the command, open the URL with a web browser, and log in to the instance with the administrator account.
+To get started, create **an administrator user** first and open the URL with a web browser to log in to the instance. You can run the playbook with the `create-admin-funkwhale` or `ensure-funkwhale-users-created` tag to create users. See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-funkwhale/blob/main/docs/configuring-funkwhale.md#creating-users) on the role's documentation for details.
 
 ## Related services
 
