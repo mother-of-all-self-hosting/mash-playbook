@@ -91,7 +91,9 @@ On Mobilizon you can set up a mailer for functions such as password recovery. If
 
 After running the command for installation, the Focalboard instance becomes available at the URL specified with `mobilizon_hostname`. With the configuration above, the service is hosted at `https://mobilizon.example.com`.
 
-To get started, create a user first and open the URL with a web browser to log in to the instance. You can create one on the web UI if `mobilizon_environment_variables_registrations_open` is set to `true`. Alternatively, you can run the playbook with the `create-user-mobilizon` or `ensure-mobilizon-users-created` tag to create users. See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-mobilizon/blob/main/docs/configuring-mobilizon.md#creating-users) on the role's documentation for details.
+To get started, create a user first and open the URL with a web browser to log in to the instance. You can create one on the web UI if `mobilizon_environment_variables_registrations_open` is set to `true`.
+
+Alternatively, you can run the playbook with the `create-user-mobilizon` or `ensure-mobilizon-users-created` tag to create users. See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-mobilizon/blob/main/docs/configuring-mobilizon.md#creating-users) on the role's documentation for details.
 
 ## Troubleshooting
 
