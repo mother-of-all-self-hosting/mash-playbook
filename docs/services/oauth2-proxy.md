@@ -42,7 +42,7 @@ This can be any of the supported providers. If hosting your own (via this playbo
 
 ## Sample configuration
 
-The configuration is [provider](https://oauth2-proxy.github.io/oauth2-proxy/configuration/providers/)-specific and also depends on the service you're SSO-protecting, on which server it runs (in relation to OAuth-Proxy), etc.
+The configuration is [provider](https://oauth2-proxy.github.io/oauth2-proxy/configuration/providers/)-specific and also depends on the service you're SSO-protecting, on which server it runs (in relation to OAuth2-Proxy), etc.
 
 Below is a **sample** configuration for protecting a static website (in this case powered by the [Navidrome](navidrome.md)) service via [Keycloak](keycloak.md).
 
@@ -137,7 +137,7 @@ navidrome_container_labels_middlewares:
   - "{{ navidrome_identifier + '-add-response-headers' if navidrome_container_labels_traefik_additional_response_headers.keys() | length > 0 }}"
 
 navidrome_container_labels_additional_labels_custom:
-  # Create a middleware which catches "unauthenticated" errors and serves the OAuth-Proxy sign in page.
+  # Create a middleware which catches "unauthenticated" errors and serves the OAuth2-Proxy sign in page.
   - traefik.http.middlewares.{{ navidrome_identifier }}-oauth-errors.errors.status=401-403
   - traefik.http.middlewares.{{ navidrome_identifier }}-oauth-errors.errors.service={{ oauth2_proxy_identifier }}
   - traefik.http.middlewares.{{ navidrome_identifier }}-oauth-errors.errors.query=/oauth2/sign_in?rd={url}
@@ -199,7 +199,7 @@ ihatemoney_container_labels_middlewares:
   - "{{ ihatemoney_identifier ~ '-add-response-headers' if ihatemoney_container_labels_traefik_additional_response_headers.keys() | length > 0 }}"
 
 ihatemoney_container_labels_additional_labels:
-  # Create a middleware which catches "unauthenticated" errors and serves the OAuth-Proxy sign in page.
+  # Create a middleware which catches "unauthenticated" errors and serves the OAuth2-Proxy sign in page.
   - traefik.http.middlewares.{{ ihatemoney_identifier }}-oauth-errors.errors.status=401-403
   - traefik.http.middlewares.{{ ihatemoney_identifier }}-oauth-errors.errors.service={{ oauth2_proxy_identifier }}
   - traefik.http.middlewares.{{ ihatemoney_identifier }}-oauth-errors.errors.query=/oauth2/sign_in?rd={url}

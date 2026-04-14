@@ -205,7 +205,7 @@ navidrome_container_labels_middlewares:
   - "{{ navidrome_identifier + '-add-response-headers' if navidrome_container_labels_traefik_additional_response_headers.keys() | length > 0 }}"
 
 navidrome_container_labels_additional_labels_custom:
-  # Create a middleware which catches "unauthenticated" errors and serves the OAuth-Proxy sign in page.
+  # Create a middleware which catches "unauthenticated" errors and serves the OAuth2-Proxy sign in page.
   - traefik.http.middlewares.{{ navidrome_identifier }}-oauth-errors.errors.status=401-403
   - traefik.http.middlewares.{{ navidrome_identifier }}-oauth-errors.errors.service={{ oauth2_proxy_identifier }}
   - traefik.http.middlewares.{{ navidrome_identifier }}-oauth-errors.errors.query=/oauth2/sign_in?rd={url}
