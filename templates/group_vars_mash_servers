@@ -748,7 +748,7 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
 
   # role-specific:mobilizon
   - |-
-    {{ ({'name': (mobilizon_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'mobilizon']} if mobilizon_enabled else omit) }}
+    {{ ({'name': (mobilizon_identifier + '.service'), 'priority': 2000, 'restart_necessary': (mobilizon_restart_necessary | bool), 'groups': ['mash', 'mobilizon']} if mobilizon_enabled else omit) }}
   # /role-specific:mobilizon
 
   # role-specific:monerooo

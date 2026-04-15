@@ -509,7 +509,7 @@
   name: misskey
   activation_prefix: misskey_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-mobilizon.git
-  version: v5.2.3-0
+  version: v5.2.3-1
   name: mobilizon
   activation_prefix: mobilizon_
 - src: git+https://iris.radicle.xyz/z3i2ogEXxuSzVAxVaRuoydAiDCBKi.git
