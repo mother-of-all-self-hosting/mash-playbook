@@ -304,7 +304,7 @@ After running the command for installation, the Vikunja instance becomes availab
 
 To get started, create a user first and open the URL with a web browser to log in to the instance. You can create one on the web UI if `vikunja_environment_variables_service_enableregistration` is set to `true`.
 
-Alternatively, you can run the playbook with the `create-user-vikunja` tag to create users. See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-vikunja/blob/main/docs/configuring-vikunja.md#creating-users) on the role's documentation for details.
+Alternatively, you can run the playbook with the `create-user-vikunja` or `ensure-vikunja-users-created` tag to create users. See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-vikunja/blob/main/docs/configuring-vikunja.md#creating-users) on the role's documentation for details.
 
 ## Troubleshooting
 
