@@ -53,7 +53,7 @@ Keycloak may run anywhere.
 You also need to have prepared Keycloak and a "Client app" for it, according to the [Keycloak OIDC](https://oauth2-proxy.github.io/oauth2-proxy/configuration/providers/keycloak_oidc) documentation of OAuth2-Proxy.
 
 
-#### OAuth2-Proxy configuration
+### OAuth2-Proxy configuration
 
 ```yaml
 ########################################################################
@@ -170,7 +170,7 @@ navidrome_container_labels_additional_labels_custom:
 ########################################################################
 ```
 
-After adding this to your `vars.yml` file, [re-run the playbook](../installing.md): `just install-service hubsite`.
+After adding this to your `vars.yml` file, [re-run the playbook](../installing.md): `just install-service navidrome`.
 
 Specific services (e.g. [Nextcloud](nextcloud.md)) provide Ansible variables (`nextcloud_container_labels_traefik_http_middlewares_custom`) for injecting new middlewares at a specific position (priority) in the list. Others services (Ansible roles) do not support this yet, which would prevent you from using them this way. Consider submitting an issue or better yet opening a PR to improve these services.
 
