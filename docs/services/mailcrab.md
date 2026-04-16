@@ -48,7 +48,8 @@ To enable this service, add the following configuration to your `vars.yml` file 
 
 mailcrab_enabled: true
 
-mailcrab_hostname: mailcrab.example.com
+mailcrab_hostname: mash.example.com
+mailcrab_path_prefix: /mailcrab
 
 ########################################################################
 #                                                                      #
@@ -56,8 +57,6 @@ mailcrab_hostname: mailcrab.example.com
 #                                                                      #
 ########################################################################
 ```
-
-**Note**: hosting MailCrab's web interface under a subpath (by configuring the `mailcrab_path_prefix` variable) does not seem to be possible due to MailCrab's technical limitations.
 
 ### Configuring HTTP Basic authentication
 
