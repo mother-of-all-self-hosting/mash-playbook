@@ -51,7 +51,8 @@ To enable this service, add the following configuration to your `vars.yml` file 
 
 filebrowser_quantum_enabled: true
 
-filebrowser_quantum_hostname: filebrowser.example.com
+filebrowser_quantum_hostname: mash.example.com
+filebrowser_quantum_path_prefix: filebrowser
 
 ########################################################################
 #                                                                      #
