@@ -174,9 +174,35 @@ After adding this to your `vars.yml` file, [re-run the playbook](../installing.m
 
 Specific services (e.g. [Nextcloud](nextcloud.md)) provide Ansible variables (`nextcloud_container_labels_traefik_http_middlewares_custom`) for injecting new middlewares at a specific position (priority) in the list. Others services (Ansible roles) do not support this yet, which would prevent you from using them this way. Consider submitting an issue or better yet opening a PR to improve these services.
 
-### Ihatemoney configuration adjustments
+## Another sample configuration: Protecting specific prefixes of a website
 
-Now that OAuth2-Proxy is ready and handling the `/oauth2/` paths on the domain Ihatemoney is running, we need to set up Traefik's [ForwardAuth](https://doc.traefik.io/traefik/middlewares/http/forwardauth/) middleware, so that all Ihatemoney requests would consult OAuth2-Proxy.
+Sometimes you want to protect only a specific endpoint of a website while leaving the rest of the site publicly available.
+
+Below configuration demonstrates how to protect sensible endpoints (`/create`, `/admin` and `/dashboard`) of the [I hate money](ihatemoney.md) service behind Oauth2-Proxy, such that only authenticated users can create new projects and access the admin space (which needs further additional local credentials).
+
+For this to work as described here, both OAuth2-Proxy and the protected service (e.g. [Navidrome](navidrome.md)) need to run on the same machine.
+
+### OAuth2-Proxy configuration
+
+As in above example with Navidrome, we serve the OAuth2-Proxy authentication page under the `/oauth2/` prefix, adjusting `Host` and name the Traefik router in favor of `ihatemoney`:
+
+```yaml
+oauth2_proxy_container_labels_additional_labels_custom:
+  - traefik.http.routers.{{ oauth2_proxy_identifier }}-ihatemoney.rule=Host(`{{ ihatemoney_hostname }}`) && PathPrefix(`/oauth2/`)
+  - traefik.http.routers.{{ oauth2_proxy_identifier }}-ihatemoney.service={{ oauth2_proxy_identifier }}
+  - traefik.http.routers.{{ oauth2_proxy_identifier }}-ihatemoney.entrypoints={{ oauth2_proxy_container_labels_traefik_entrypoints }}
+  - traefik.http.routers.{{ oauth2_proxy_identifier }}-ihatemoney.tls={{ oauth2_proxy_container_labels_traefik_tls }}
+  - traefik.http.routers.{{ oauth2_proxy_identifier }}-ihatemoney.tls.certResolver={{ oauth2_proxy_container_labels_traefik_tls_certResolver }}
+
+```
+
+As usual, after changing your `vars.yml` file, [re-run the playbook](../installing.md): `just install-service oauth2-proxy`.
+
+"I hate money" configuration adjustments are also necessary, so proceed below.
+
+### "I hate money" configuration adjustments
+
+Now that OAuth2-Proxy is ready and handling the `/oauth2/` paths on the domain "I hate money" is running on, we need to set up Traefik's [ForwardAuth](https://doc.traefik.io/traefik/middlewares/http/forwardauth/) middleware, so that all requests to the protected endpoints would need authorisation from OAuth2-Proxy.
 
 The configuration described below is based on the official [Configuring for use with the Traefik (v2) ForwardAuth middleware](https://oauth2-proxy.github.io/oauth2-proxy/configuration/overview#configuring-for-use-with-the-traefik-v2-forwardauth-middleware) documentation of OAuth2-Proxy.
 
@@ -204,7 +230,7 @@ ihatemoney_container_labels_additional_labels:
   - traefik.http.middlewares.{{ ihatemoney_identifier }}-oauth-errors.errors.service={{ oauth2_proxy_identifier }}
   - traefik.http.middlewares.{{ ihatemoney_identifier }}-oauth-errors.errors.query=/oauth2/sign_in?rd={url}
 
-  # Create a middleware which passes each incoming request to OAuth2-Proxy,
+  # Create a middleware which passes incoming requests to OAuth2-Proxy,
   # so it can decide whether it should be let through (to Ihatemoney) or should be forwarded to the OAuth2-Proxy sign in page.
   - traefik.http.middlewares.{{ ihatemoney_identifier }}-oauth-auth.forwardAuth.address=http://{{ oauth2_proxy_identifier }}:{{ oauth2_proxy_container_process_http_port }}/oauth2/auth
   - traefik.http.middlewares.{{ ihatemoney_identifier }}-oauth-auth.forwardAuth.trustForwardHeader=true
@@ -225,9 +251,8 @@ ihatemoney_container_labels_additional_labels:
 ########################################################################
 ```
 
-After adding this to your `vars.yml` file, [re-run the playbook](../installing.md): `just install-service hubsite`.
+After adding this to your `vars.yml` file, [re-run the playbook](../installing.md): `just install-service ihatemoney`.
 
-Specific services (e.g. [Nextcloud](nextcloud.md)) provide Ansible variables (`nextcloud_container_labels_traefik_http_middlewares_custom`) for injecting new middlewares at a specific position (priority) in the list. Others services (Ansible roles) do not support this yet, which would prevent you from using them this way. Consider submitting an issue or better yet opening a PR to improve these services.
 
 
 ## Further reading
