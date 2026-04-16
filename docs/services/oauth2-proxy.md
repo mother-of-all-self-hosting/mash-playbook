@@ -97,7 +97,7 @@ After adding this to your `vars.yml` file, [re-run the playbook](../installing.m
 
 This merely configures OAuth2-Proxy to handle the `/oauth2/` paths for Navidrome's domain.
 
-[Navidrome configuration adjustments](#navidrome-configuration-adjustments) are also necessary, so proceed to do those as well.
+Navidrome configuration adjustments are also necessary, so proceed to do those as well. Please see below for details.
 
 
 ### Navidrome configuration adjustments
