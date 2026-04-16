@@ -180,11 +180,11 @@ Sometimes you want to protect only a specific endpoint of a website while leavin
 
 Below configuration demonstrates how to protect sensible endpoints (`/create`, `/admin` and `/dashboard`) of the [I hate money](ihatemoney.md) service behind Oauth2-Proxy, such that only authenticated users can create new projects and access the admin space (which needs further additional local credentials).
 
-For this to work as described here, both OAuth2-Proxy and the protected service (e.g. [Navidrome](navidrome.md)) need to run on the same machine.
+For this to work as described here, both OAuth2-Proxy and the protected service (e.g. [I hate money](ihatemoney.md)) need to run on the same machine.
 
 ### OAuth2-Proxy configuration
 
-As in above example with Navidrome, we serve the OAuth2-Proxy authentication page under the `/oauth2/` prefix, adjusting `Host` and name the Traefik router in favor of `ihatemoney`:
+As in above example with Navidrome, we serve the OAuth2-Proxy authentication page under the `/oauth2/` prefix, adjusting `Host` and name the Traefik router in favor of "I hate money":
 
 ```yaml
 oauth2_proxy_container_labels_additional_labels_custom:
