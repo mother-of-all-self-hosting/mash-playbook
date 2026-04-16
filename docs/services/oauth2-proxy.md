@@ -44,7 +44,7 @@ This can be any of the supported providers. If hosting your own (via this playbo
 
 The configuration is [provider](https://oauth2-proxy.github.io/oauth2-proxy/configuration/providers/)-specific and also depends on the service you're SSO-protecting, on which server it runs (in relation to OAuth2-Proxy), etc.
 
-Below is a **sample** configuration for protecting a static website (in this case powered by the [Navidrome](navidrome.md)) service via [Keycloak](keycloak.md).
+Below is a **sample** configuration for protecting the [Navidrome](navidrome.md) service via [Keycloak](keycloak.md).
 
 For this to work as described here, both OAuth2-Proxy and the protected service (e.g. [Navidrome](navidrome.md)) need to run on the same machine.
 
