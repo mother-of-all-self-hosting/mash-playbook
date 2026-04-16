@@ -49,7 +49,8 @@ To enable this service, add the following configuration to your `vars.yml` file 
 
 flatnotes_enabled: true
 
-flatnotes_hostname: flatnotes.example.com
+flatnotes_hostname: mash.example.com
+flatnotes_path_prefix: /flatnotes
 
 ########################################################################
 #                                                                      #
