@@ -52,7 +52,8 @@ To enable this service, add the following configuration to your `vars.yml` file 
 
 readeck_enabled: true
 
-readeck_hostname: readeck.example.com
+readeck_hostname: mash.example.com
+readeck_path_prefix: /readeck
 
 ########################################################################
 #                                                                      #
