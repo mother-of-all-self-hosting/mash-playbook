@@ -11027,6 +11027,12 @@ neko_container_additional_networks_auto: |
 neko_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
 neko_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
 
+neko_container_labels_traefik_metrics_enabled: "{{ mash_playbook_metrics_exposure_enabled }}"
+neko_container_labels_traefik_metrics_hostname: "{{ mash_playbook_metrics_exposure_hostname }}"
+neko_container_labels_traefik_metrics_path_prefix: "{{ mash_playbook_metrics_exposure_path_prefix }}/{{ neko_identifier }}"
+neko_container_labels_traefik_metrics_middleware_basic_auth_enabled: "{{ mash_playbook_metrics_exposure_http_basic_auth_enabled }}"
+neko_container_labels_traefik_metrics_middleware_basic_auth_users: "{{ mash_playbook_metrics_exposure_http_basic_auth_users }}"
+
 # role-specific:traefik
 neko_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
 neko_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
