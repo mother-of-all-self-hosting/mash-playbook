@@ -17,7 +17,6 @@ SPDX-FileCopyrightText: 2024 Tiz
 SPDX-FileCopyrightText: 2024-2026 Suguru Hirahara
 SPDX-FileCopyrightText: 2026 Timofej Luitle
 
-
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 
