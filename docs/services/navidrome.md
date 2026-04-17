@@ -240,10 +240,9 @@ navidrome_container_labels_additional_labels_custom:
 
 
 > [!CAUTION]
-> As we use the less invasive 2. mode documented in [oauth2-proxy.md](./oauth2-proxy.md) navidrome will see requests as coming from traefik.
-> Accordingly we tell navidrome to trust the username header coming from our traefik reverse-proxy.
+> As we use the less invasive 2. mode documented in [oauth2-proxy.md](./oauth2-proxy.md), Navidrome will see requests as coming from Traefik. Accordingly we tell Navidrome to trust the username header coming from our Traefik reverse-proxy.
 >
-> But navidrome will automatically create new users at first login passed on by the username header if the source is trusted.
+> But Navidrome will automatically create new users at first login passed on by the username header if the source is trusted.
 >
 > Therefore we need to strip this header from all external requests in order to avoid risking unauthorized user creation:
 > ```yml
