@@ -974,7 +974,7 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
 
   # role-specific:postgis
   - |-
-    {{ ({'name': (postgis_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'postgis']} if postgis_enabled else omit) }}
+    {{ ({'name': (postgis_identifier + '.service'), 'priority': 2000, 'restart_necessary': (postgis_restart_necessary | bool), 'groups': ['mash', 'postgis']} if postgis_enabled else omit) }}
   # /role-specific:postgis
 
   # role-specific:postgres
@@ -12860,28 +12860,36 @@ poodledonts_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_
 
 postgis_enabled: false
 
-postgis_architecture: "{{ mash_playbook_architecture }}"
-
 postgis_identifier: "{{ mash_playbook_service_identifier_prefix }}postgis"
+
+postgis_architecture: "{{ mash_playbook_architecture }}"
 
 postgis_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}postgis"
 
 postgis_uid: "{{ mash_playbook_uid }}"
 postgis_gid: "{{ mash_playbook_gid }}"
 
-postgis_systemd_services_to_stop_for_maintenance_list: |
-  {{
-    ([(mobilizon_identifier + '.service')] if mobilizon_enabled else [])
-  }}
+# This includes everything for maximum safety.
+# It may not be optimal though, because some services may not be dependent on PostGIS at all, etc.
+postgis_systemd_services_to_stop_for_maintenance_list_auto: "{{ devture_systemd_service_manager_services_list_auto | map(attribute='name') | reject('equalto', (postgis_identifier + '.service')) }}"
 
-postgis_managed_databases_auto: |
-  {{
-    ([{
-      'name': mobilizon_database_name,
-      'username': mobilizon_database_username,
-      'password': mobilizon_database_password,
-    }] if mobilizon_enabled and mobilizon_database_hostname == postgis_identifier and mobilizon_database_type == 'postgis' else [])
-  }}
+mash_playbook_postgis_managed_databases_auto_itemized:
+  # Dummy entry, which is not role-specific.
+  # Ensures there's at least one entry defined in the list.
+  - "{{ omit }}"
+
+  # role-specific:mobilizon
+  - |-
+    {{
+      ({
+        'name': mobilizon_database_name,
+        'username': mobilizon_database_username,
+        'password': mobilizon_database_password,
+      } if mobilizon_enabled and mobilizon_database_hostname == postgis_connection_hostname else omit)
+    }}
+  # /role-specific:mobilizon
+
+postgis_managed_databases_auto: "{{ mash_playbook_postgis_managed_databases_auto_itemized | reject('equalto', omit) }}"
 
 ########################################################################
 #                                                                      #
