@@ -45,7 +45,7 @@
   name: asciinema_server
   activation_prefix: asciinema_server_
 - src: git+https://seed.radicle.garden/z4ATDhf89CPqP7XCLNpNwobuJ9fBs.git
-  version: v18.14.1-0
+  version: v18.15.2-0
   name: atuin
   activation_prefix: atuin_
 - src: git+https://seed.radicle.garden/z3rwhJ9rQ82H6GXg7ZCt3UNpStbaW.git
@@ -89,7 +89,7 @@
   name: bitmagnet
   activation_prefix: bitmagnet_
 - src: git+https://seed.radicle.garden/zxNS7XeayGimb4WFfvqmasiZZC3v.git
-  version: v2.0.2-0
+  version: v2.0.2-1
   name: borg_ui
   activation_prefix: borg_ui_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-browserless.git
@@ -245,7 +245,7 @@
   name: fail2ban
   activation_prefix: system_security_fail2ban_
 - src: git+https://seed.radicle.garden/z2H8vYeXaYHLzV3jXH1YjVwhuzTsk.git
-  version: v4.0.0-1
+  version: v4.0.1-0
   name: farmos
   activation_prefix: farmos_
 - src: git+https://seed.radicle.garden/zmszzm7ynZe8nt5ZwaLctssyJcNm.git
@@ -289,7 +289,7 @@
   name: forgejo_runner
   activation_prefix: forgejo_runner_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-freescout.git
-  version: v1.17.154-0
+  version: v1.17.156-0
   name: freescout
   activation_prefix: freescout_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-freshrss.git
@@ -405,7 +405,7 @@
   name: karakeep
   activation_prefix: karakeep_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-keycloak.git
-  version: v26.6.0-0
+  version: v26.6.1-0
   name: keycloak
   activation_prefix: keycloak_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-keydb.git
@@ -465,7 +465,7 @@
   name: mailcrab
   activation_prefix: mailcrab_
 - src: git+https://seed.radicle.garden/z3BKJz8wwtQHfXm8MPX81h4izT2QS.git
-  version: v1.29.6-1
+  version: v1.29.7-0
   name: mailpit
   activation_prefix: mailpit_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-mariadb.git
@@ -569,7 +569,7 @@
   name: nocdnbs
   activation_prefix: nocdnbs_
 - src: git+https://seed.radicle.garden/z2K9dPANyrXJY7juE9XecXyernA6h.git
-  version: v4.10.2-0
+  version: v4.10.3-0
   name: nodebb
   activation_prefix: nodebb_
 - src: git+https://codeberg.org/moanos/ansible-role-notfellchen.git
@@ -877,7 +877,7 @@
   name: systemd_service_manager
   activation_prefix: ""
 - src: git+https://github.com/IUCCA/ansible-role-tandoor.git
-  version: v2.6.6-0
+  version: v2.6.8-0
   name: tandoor
   activation_prefix: tandoor_
 - src: git+https://seed.radicle.garden/z2bcU1U9yJfJE6t8quZ1BMnEpQLic.git
@@ -933,7 +933,7 @@
   name: valkey
   activation_prefix: valkey_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-vaultwarden.git
-  version: v1.35.6-0
+  version: v1.35.7-0
   name: vaultwarden
   activation_prefix: vaultwarden_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-versatiles.git
@@ -945,7 +945,7 @@
   name: vikunja
   activation_prefix: vikunja_
 - src: git+https://seed.radicle.garden/z3NoFEkNtQQjSGjLvweqwCFPbC59R.git
-  version: v5.16.2.3-0
+  version: v5.17.0.0-0
   name: weblate
   activation_prefix: weblate_
 - src: git+https://github.com/spatterIight/ansible-role-wetty.git
