@@ -834,6 +834,10 @@
     - role: galaxy/redmine
     # /role-specific:redmine
 
+    # role-specific:reitti
+    - role: galaxy/reitti
+    # /role-specific:reitti
+
     # role-specific:roundcube
     - role: galaxy/roundcube
     # /role-specific:roundcube
