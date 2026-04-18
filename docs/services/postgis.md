@@ -54,6 +54,9 @@ postgis_connection_password: ''
 
 After running the command for installation, the Postgres instance with PostGIS extensions installed becomes available.
 
+>[!WARNING]
+> Upgrading the Postgres instance with PostGIS extensions installed to a new major version is currently tested and not yet available.
+
 ## Related services
 
 - [Postgres](postgres.md) — Powerful object-relational database system
