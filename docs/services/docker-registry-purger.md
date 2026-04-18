@@ -17,7 +17,6 @@ See the project's [documentation](https://github.com/devture/docker-registry-pur
 
 This service requires to be pointed to a container registry. It may be a registry powered by [Docker Registry](docker-registry.md) or by some other software.
 
-
 ## Configuration
 
 To enable this service, add the following configuration to your `vars.yml` file and re-run the [installation](../installing.md) process:
@@ -50,13 +49,11 @@ docker_registry_purger_container_network: "{{ docker_registry_container_network 
 
 You may wish to tweak some [default configuration]() variables, which ultimately control [environment variables](https://github.com/devture/docker-registry-purger#environment-variables) of the purger tool.
 
-
 ## Usage
 
 After running the command for installation, the Docker Registry Purger instance becomes available at the URL specified with `docker_registry_browser_hostname` and `docker_registry_browser_path_prefix`.
 
 You should be able to browse the images and possibly delete them (if enabled via `docker_registry_browser_enabled_delete_images`).
-
 
 ## Related services
 

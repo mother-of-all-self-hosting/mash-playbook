@@ -57,7 +57,6 @@ Importing multiple databases (as dumped by `pg_dumpall`) is also supported.
 
 Before doing the actual import, **you need to upload your Postgres dump file to the server** (any path is okay).
 
-
 ### Importing a dump file
 
 To import, run this command (make sure to replace `SERVER_PATH_TO_POSTGRES_DUMP_FILE` with a file path on your server):
@@ -73,7 +72,6 @@ just run-tags import-postgres \
 - `SERVER_PATH_TO_POSTGRES_DUMP_FILE` must be a file path to a Postgres dump file on the server (not on your local machine!)
 - `postgres_default_import_database` defaults to `main`, which is useful for importing multiple databases (for dumps made with `pg_dumpall`). If you're importing a single database (e.g. `miniflux`), consider changing `postgres_default_import_database` to the name of the database (e.g. `miniflux`)
 - after importing a large database, it's a good idea to run [an `ANALYZE` operation](https://www.postgresql.org/docs/current/sql-analyze.html) to make Postgres rebuild its database statistics and optimize its query planner. You can easily do this via the playbook by running `just run-tags run-postgres-vacuum -e postgres_vacuum_preset=analyze` (see [Vacuuming PostgreSQL](#vacuuming-postgresql) for more details).
-
 
 ## Maintenance
 

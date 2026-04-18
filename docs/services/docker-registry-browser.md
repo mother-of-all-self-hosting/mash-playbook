@@ -19,7 +19,6 @@ This service requires the following other services:
 
 - a [Traefik](traefik.md) reverse-proxy server
 
-
 ## Configuration
 
 To enable this service, add the following configuration to your `vars.yml` file and re-run the [installation](../installing.md) process:
@@ -71,13 +70,11 @@ In the example configuration above, we configure the service to be hosted at `ht
 
 If you make the registry browser live on the same container network as the [Docker Registry](docker-registry.md) itself (like we've done by overriding `docker_registry_browser_container_network` above), the browser will be able to talk to the registry over the private container network and IP restrictions (such as those defined in `docker_registry_private_services_whitelisted_ip_ranges`) will not be able to stop it.
 
-
 ## Usage
 
 After running the command for installation, the Docker Registry Browser instance becomes available at the URL specified with `docker_registry_browser_hostname` and `docker_registry_browser_path_prefix`.
 
 You should be able to browse the images and possibly delete them (if enabled via `docker_registry_browser_enabled_delete_images`).
-
 
 ## Related services
 

@@ -42,7 +42,6 @@ This service requires the following other services:
 - a [Valkey](valkey.md) data-store. See [Configuration overview](#configuration-overview) for details about installation
 - (optional) [exim-relay](exim-relay.md) for sending emails via this service
 
-
 ## Adjusting the playbook configuration
 
 ### Configuration overview
@@ -112,7 +111,6 @@ mash_playbook_service_base_directory_name_prefix: 'immich-'
 #                                                                      #
 ########################################################################
 
-
 ########################################################################
 #                                                                      #
 # Various other overrides                                              #
@@ -128,7 +126,6 @@ devture_systemd_docker_base_ipv6_enabled: true
 #                                                                      #
 ########################################################################
 
-
 ########################################################################
 #                                                                      #
 # valkey                                                               #
@@ -142,7 +139,6 @@ valkey_enabled: true
 # /valkey                                                              #
 #                                                                      #
 ########################################################################
-
 
 ########################################################################
 #                                                                      #
@@ -218,7 +214,6 @@ postgres_managed_databases_additional:
 # /postgres                                                            #
 #                                                                      #
 ########################################################################
-
 
 ########################################################################
 #                                                                      #
@@ -342,7 +337,6 @@ immich_database_sslmode: disable
 
 💡 Before [Installing](#installation), **consider doing some additional Immich configuration tweaking via Ansible**, as described below.
 
-
 ##### Disabling the Machine Learning component
 
 The [Immich role for Ansible](https://github.com/mother-of-all-self-hosting/ansible-role-immich) used by this playbook, supports selectively enabling/disabling of its components (`server` and `machine-learning`).
@@ -428,13 +422,11 @@ immich_server_environment_variable_immich_allow_setup: false
 
 Unfortunately, most of Immich's configuration cannot be managed via Ansible and needs to be done from the UI, after it's installed. After installation, check the [Usage](#usage) section below for some recommendations for things you may wish to change.
 
-
 ## Installation
 
 As described in [Configuration overview](#configuration-overview), we're dealing with 2 inventory hosts (`mash.example.com-immich-deps` and `mash.example.com`).
 
 You need to run the [installing](../installing.md) command for the supplementary host (`mash.example.com-immich-deps`) first, before running it for the main host (`mash.example.com`).
-
 
 ## Usage
 

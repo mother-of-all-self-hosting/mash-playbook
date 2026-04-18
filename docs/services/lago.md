@@ -22,7 +22,6 @@ This service requires the following other services:
 - a [Traefik](traefik.md) reverse-proxy server
 - a [Valkey](valkey.md) data-store; see [below](#configure-valkey) for details about installation
 
-
 ## Configuration
 
 To enable this service, add the following configuration to your `vars.yml` file:
@@ -129,7 +128,6 @@ mash_playbook_service_base_directory_name_prefix: 'lago-'
 #                                                                      #
 ########################################################################
 
-
 ########################################################################
 #                                                                      #
 # valkey                                                               #
@@ -198,7 +196,6 @@ valkey_enabled: true
 # /valkey                                                              #
 #                                                                      #
 ########################################################################
-
 
 ########################################################################
 #                                                                      #

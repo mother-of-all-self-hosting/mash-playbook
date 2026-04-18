@@ -23,7 +23,6 @@ This service requires the following other services:
 - [Grafana Loki](grafana-loki.md) — a log-storage server where you'd be sending the logs
 - (optional) [Traefik](traefik.md) — a reverse-proxy server, if you're exposing Promtail's metrics or API
 
-
 ## Configuration
 
 To enable this service, add the following configuration to your `vars.yml` file and re-run the [installation](../installing.md) process:
@@ -154,7 +153,6 @@ promtail_container_extra_arguments_custom:
   - "-p 127.0.0.1:1234:1234"
 ```
 
-
 ### Configuring clients
 
 If you've also enabled [Grafana Loki](grafana-loki.md) on the same server, Promtail will automatically be configured to push logs to it.
@@ -171,7 +169,6 @@ promtail_config_clients_custom:
 
 For more information about configuring clients, see the [Promtail `clients` configuration reference](https://grafana.com/docs/loki/latest/send-data/promtail/configuration/#clients).
 
-
 ### Exposing the web interface
 
 There are 2 reasons to expose Promtail to the public web:
@@ -186,8 +183,6 @@ You can then decide whether you'd like to expose Promtail's whole API via `promt
 Consult the `defaults/main.yml` file for variables related to these.
 
 When exposing metrics, and especially the whole API, it's important to protected them. The Promtail Ansible role has variables that let you easily set up [HTTP Basic Authentication](https://developer.mozilla.org/en-US/docs/Web/HTTP/Authentication) via `promtail_container_labels_api_traefik_middleware_basic_auth_*` and `promtail_container_labels_metrics_traefik_middleware_basic_auth_*` variables.
-
-
 
 ## Related services
 

@@ -19,7 +19,6 @@ This service requires the following other services:
 
 - a [Traefik](traefik.md) reverse-proxy server
 
-
 ## Configuration
 
 To enable this service, add the following configuration to your `vars.yml` file and re-run the [installation](../installing.md) process:
@@ -105,7 +104,6 @@ However, changing `syncthing_container_sync_tcp_port` or `syncthing_container_sy
 3. Log in to the Syncthing Web UI (see [Usage](#usage))
 4. Go to **Settings** -> **Connections** and put something like this in the **Sync Protocol Listen Addresses** configuration (inspired by the [Listen Addresses documentation](https://docs.syncthing.net/v1.27.0/users/config#listen-addresses)): `tcp://0.0.0.0:TCP_PORT_HERE, quic://0.0.0.0:UDP_PORT_HERE, dynamic+https://relays.syncthing.net/endpoint` (adjust `TCP_PORT_HERE` and `UDP_PORT_HERE` with the port numbers you've chosen for `syncthing_container_sync_tcp_port` and `syncthing_container_sync_udp_port`)
 
-
 ### Configuration & Data
 
 The Syncthing configuration (stored in `syncthing_config_path` on the host) is mounted to the `/var/syncthing` directory in the container.
@@ -114,7 +112,6 @@ By default, Syncthing will create a default `Sync` directory underneath. We advi
 As mentioned above, the **data directory** (stored in `syncthing_data_path` on the host) is mounted to the `/data` directory in the container. We advise that you put data files underneath `/data` when you start using Syncthing.
 
 If you'd like to **mount additional directories** into the container, look into the `syncthing_container_additional_volumes` variable part of the [`ansible-role-syncthing` role](https://github.com/mother-of-all-self-hosting/ansible-role-syncthing)'s [`defaults/main.yml` file](https://github.com/mother-of-all-self-hosting/ansible-role-syncthing/blob/main/defaults/main.yml).
-
 
 ## Usage
 

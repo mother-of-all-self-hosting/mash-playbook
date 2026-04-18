@@ -20,13 +20,11 @@ This playbook supports installing a container image registry which is:
 
 Authentication is not supported.
 
-
 ## Dependencies
 
 This service requires the following other services:
 
 - a [Traefik](traefik.md) reverse-proxy server
-
 
 ## Configuration
 

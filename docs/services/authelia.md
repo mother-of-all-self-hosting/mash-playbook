@@ -30,7 +30,6 @@ This service requires the following other services:
   - for serving the Authelia portal website
   - for protecting other Traefik-based services by adding the Authelia forward-auth middleware to them when [Protecting services with Authelia's forward-auth](#protecting-a-service-with-authelias-forward-auth)
 
-
 ## Configuration
 
 To enable this service, add the following configuration to your `vars.yml` file and re-run the [installation](../installing.md) process:
@@ -114,7 +113,6 @@ As mentioned in the default configuration above (see `authelia_config_session_re
 
 You may wish to run a separate Valkey instance for Authelia, because Valkey is not multi-tenant. See [our Valkey documentation page](valkey.md) for additional details. When running a separate instance of Valkey, you may need to connect Authelia to the Valkey instance's container network via the `authelia_container_additional_networks_custom` variable.
 
-
 ### Authentication storage providers
 
 Authelia supports [LDAP](https://www.authelia.com/configuration/first-factor/ldap/) and [file-based](https://www.authelia.com/configuration/first-factor/file/) storage providers for the user database.
@@ -123,7 +121,6 @@ The default configuration above enables the file-based provider with the `authel
 
 To use LDAP, remove the `authelia_config_authentication_backend_file_content` variable and define a bunch of `authelia_config_authentication_backend_ldap_*` variables.
 
-
 ### Modes of operation
 
 Authelia has 2 [modes of operation](#modes-of-operation) which can be enabled simultaneously:
@@ -131,7 +128,6 @@ Authelia has 2 [modes of operation](#modes-of-operation) which can be enabled si
 - **Forward-Auth**: [Forward-Auth](https://doc.traefik.io/traefik/middlewares/http/forwardauth/) is useful for protecting services which are not aware of authentication at all or which can receive authentication/authorization data via [HTTP headers](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers). Forward-Auth can act as a replacement for [HTTP Basic Authentication](https://en.wikipedia.org/wiki/Basic_access_authentication). It does this by acting as a companion to [common reverse proxies](https://www.authelia.com/overview/prologue/supported-proxies/), like [Traefik](traefik.md) which is frequently used by this playbook. To learn more, see [Protecting a service with Authelia's forward-auth](#protecting-a-service-with-authelias-forward-auth)
 
 - **OpenID Connect**: experimental OpenID Connect support support, so that services which are OpenID Connect-compatible can use Authelia as an identity provider. To learn more, see [Protecting a service with OpenID Connect](#protecting-a-service-with-openid-connect)
-
 
 #### Protecting a service with Authelia's forward-auth
 
@@ -149,7 +145,6 @@ hubsite_container_labels_additional_labels_custom:
 The Hubsite component does not use any Traefik middlewares, so defining a `.middlewares` configuration key and pointing it to the Authelia middleware works well.
 
 For most other components, middlewares are in use in their default Traefik labels, so adding an additional `.middlewares` key will not work. You may need to inject additional middlewares on top of the default ones. Not all components may (yet) have a variable for doing so. Consider contributing to various roles to allow additional middlewares to be injected dynamically!
-
 
 #### Protecting a service with OpenID Connect
 

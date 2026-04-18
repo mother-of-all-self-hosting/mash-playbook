@@ -36,13 +36,11 @@ This service requires the following other services:
 - a [Traefik](traefik.md) reverse-proxy server
 - an OIDC provider running anywhere. See [Choosing a provider](#choosing-a-provider).
 
-
 ## Choosing a provider
 
 To use OAuth2-Proxy, you need to choose an [OIDC provider](https://oauth2-proxy.github.io/oauth2-proxy/configuration/providers/).
 
 This can be any of the supported providers. If hosting your own (via this playbook or via other means), the OIDC provider may be hosted anywhere (not necessarily on the same server as OAuth2-Proxy or the service you're SSO-protecting).
-
 
 ## Sample configuration
 
@@ -55,7 +53,6 @@ For this to work as described here, both OAuth2-Proxy and the protected service 
 Keycloak may run anywhere.
 
 You also need to have prepared Keycloak and a "Client app" for it, according to the [Keycloak OIDC](https://oauth2-proxy.github.io/oauth2-proxy/configuration/providers/keycloak_oidc) documentation of OAuth2-Proxy.
-
 
 #### OAuth2-Proxy configuration
 
@@ -100,7 +97,6 @@ After adding this to your `vars.yml` file, [re-run the playbook](../installing.m
 This merely configures OAuth2-Proxy to handle the `/oauth2/` paths for Hubsite's domain.
 
 [Hubsite configuration adjustments](#hubsite-configuration-adjustments) are also necessary, so proceed to do those as well.
-
 
 ### Hubsite configuration adjustments
 
@@ -153,13 +149,11 @@ Some [services](../supported-services.md) already define their own `middlewares`
 
 Specific services (e.g. [Nextcloud](nextcloud.md)) provide Ansible variables (`nextcloud_container_labels_traefik_http_middlewares_custom`) for injecting new middlewares at a specific position (priority) in the list. Others services (Ansible roles) do not support this yet, which would prevent you from using them this way. Consider submitting an issue or better yet opening a PR to improve these services.
 
-
 ## Further reading
 
 If you'd like to do something more advanced, the [`ansible-role-oauth2-proxy` Ansible role](https://github.com/mother-of-all-self-hosting/ansible-role-oauth2-proxy) is very configurable and should let you do what you need.
 
 Take a look at [its `default/main.yml` file](https://github.com/mother-of-all-self-hosting/ansible-role-oauth2-proxy/blob/main/defaults/main.yml) for available Ansible variables you can use in your own `vars.yml` configuration file.
-
 
 ## Related services
 

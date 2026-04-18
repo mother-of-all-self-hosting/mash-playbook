@@ -19,7 +19,6 @@ This service requires the following other services:
 
 - a [Traefik](traefik.md) reverse-proxy server
 
-
 ## Configuration
 
 To enable this service, add the following configuration to your `vars.yml` file and re-run the [installation](../installing.md) process:

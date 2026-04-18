@@ -19,7 +19,6 @@ This service requires the following other services:
 
 - a [Traefik](traefik.md) reverse-proxy server
 
-
 ## Configuration
 
 To enable this service, add the following configuration to your `vars.yml` file and re-run the [installation](../installing.md) process:
@@ -170,7 +169,6 @@ tailscale up --login-server=https://headscale.example.com --auth-key=...
 ```
 
 The device will be automatically connected to the Headscale server, without any additional approval steps.
-
 
 ## Related services
 

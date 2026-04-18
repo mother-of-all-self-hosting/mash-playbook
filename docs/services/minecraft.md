@@ -17,11 +17,9 @@ See the project's [documentation](https://docker-minecraft-server.readthedocs.io
 > [!WARNING]
 > itzg docker-minecraft server is published under the Apache-2.0 license, however Minecraft itself is proprietary software, and by using this role you are agreeing to the [EULA](https://www.minecraft.net/en-us/eula). Know your rights!
 
-
 ## Dependencies
 
 This service currently requires no other services.
-
 
 ## Configuration
 
@@ -74,7 +72,6 @@ minecraft_environment_variables_additional: |
 In the example configuration above, we configure the server to be hosted on port `25565` on all network interfaces. Port forwarding will be required to access it. It will be the "latest" pinned version of [Paper minecraft server](https://papermc.io/), limited to 2GB of RAM, hard difficulty, only you on the whitelist, rather generous render distance, PvP, and bundles.
 
 See the full set of available [Environment Variables](https://docker-minecraft-server.readthedocs.io/en/latest/variables/) to configure the server.
-
 
 ## Usage
 

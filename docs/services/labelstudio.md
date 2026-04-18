@@ -20,7 +20,6 @@ This service requires the following other services:
 - a [Postgres](postgres.md) database
 - a [Traefik](traefik.md) reverse-proxy server
 
-
 ## Configuration
 
 To enable this service, add the following configuration to your `vars.yml` file and re-run the [installation](../installing.md) process:
@@ -60,7 +59,6 @@ labelstudio_environment_variables_disable_signup_without_link: true
 labelstudio_environment_variables_username: "admin-username"
 labelstudio_environment_variables_password: "admin-user-password"
 ```
-
 
 ## Related services
 

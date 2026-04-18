@@ -27,7 +27,6 @@ To deploy Apache NiFi using this role it is necessary that:
 2. The [community.crypto](https://github.com/ansible-collections/community.crypto) collection be installed. This is needed to create the self-signed HTTPS certificate for Apache NiFi.
 3. The `keytool` program be available on the target host. This can be installed via `apt install default-jre` on Debian systems.
 
-
 ## Configuration
 
 To enable this service, add the following configuration to your `vars.yml` file and re-run the [installation](../installing.md) process:

@@ -152,7 +152,6 @@ To get started, open the URL with a web browser, and click the **Log in** button
 
 Follow the official Woodpecker CI [Getting started](https://woodpecker-ci.org/docs/usage/intro) documentation for additional usage details.
 
-
 ## Woodpecker CI agent
 
 As mentioned above, unless you completely trust your CI workloads, it's best to run the Woodpecker CI agent on another machine.
