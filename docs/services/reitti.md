@@ -28,6 +28,7 @@ Reitti is a personal location tracking and analysis application.
 See the project's [documentation](https://www.dedicatedcode.com/projects/reitti/) to learn what Reitti does and why it might be useful to you.
 
 For details about configuring the [Ansible role for Reitti](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3rhdtDR5EHHGk1SNBHwYtofxNyAf), you can check them via:
+
 - 🌐 [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3rhdtDR5EHHGk1SNBHwYtofxNyAf/tree/docs/configuring-reitti.md) online
 - 📁 `roles/galaxy/reitti/docs/configuring-reitti.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
