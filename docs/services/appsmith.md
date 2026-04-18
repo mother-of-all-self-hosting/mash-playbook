@@ -26,6 +26,7 @@ Appsmith is an open-source platform that enables developers to build and deploy 
 See the project's [documentation](https://docs.appsmith.com/) to learn what Appsmith does and why it might be useful to you.
 
 For details about configuring the [Ansible role for Appsmith](https://github.com/mother-of-all-self-hosting/ansible-role-appsmith), you can check them via:
+
 - 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-appsmith/blob/main/docs/configuring-appsmith.md) online
 - 📁 `roles/galaxy/appsmith/docs/configuring-appsmith.md` locally, if you have [fetched the Ansible roles](../installing.md)
 

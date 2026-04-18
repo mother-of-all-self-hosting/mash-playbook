@@ -26,6 +26,7 @@ Radicle HTTP Daemon is a background process which makes it possible to browse th
 See the project's [documentation](https://radicle.xyz/guides/seeder#running-the-http-daemon) to learn what Radicle HTTP Daemon does and why it might be useful to you.
 
 For details about configuring the [Ansible role for Radicle HTTP Daemon](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3roZFCprFZhmK8BvkrsKwkLZXr56), you can check them via:
+
 - 🌐 [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3roZFCprFZhmK8BvkrsKwkLZXr56/tree/docs/configuring-radicle-httpd.md) online
 - 📁 `roles/galaxy/radicle_httpd/docs/configuring-radicle-httpd.md` locally, if you have [fetched the Ansible roles](../installing.md)
 

@@ -28,6 +28,7 @@ Funkwhale is a community-driven project that lets you listen and share music and
 See the project's [documentation](https://docs.funkwhale.audio) to learn what Funkwhale does and why it might be useful to you.
 
 For details about configuring the [Ansible role for Funkwhale](https://github.com/mother-of-all-self-hosting/ansible-role-funkwhale), you can check them via:
+
 - 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-funkwhale/blob/main/docs/configuring-funkwhale.md) online
 - 📁 `roles/galaxy/funkwhale/docs/configuring-funkwhale.md` locally, if you have [fetched the Ansible roles](../installing.md)
 

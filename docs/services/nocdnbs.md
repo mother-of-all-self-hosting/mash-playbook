@@ -26,6 +26,7 @@ noCDNbs allows you to use cdnjs without exposing your IP address, browsing habit
 See the project's [documentation](https://git.private.coffee/PrivateCoffee/nocdnbs/src/branch/main/README.md) to learn what noCDNbs does and why it might be useful to you.
 
 For details about configuring the [Ansible role for noCDNbs](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az8vyzN3a8DmwhcUq3949SihKd1Wh), you can check them via:
+
 - 🌐 [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az8vyzN3a8DmwhcUq3949SihKd1Wh/tree/docs/configuring-nocdnbs.md) online
 - 📁 `roles/galaxy/nocdnbs/docs/configuring-nocdnbs.md` locally, if you have [fetched the Ansible roles](../installing.md)
 

@@ -27,6 +27,7 @@ Browserless allows to deploy headless browsers in Docker.
 See the project's [documentation](https://docs.browserless.io/enterprise/quick-start) to learn what Browserless does and why it might be useful to you.
 
 For details about configuring the [Ansible role for Browserless](https://github.com/mother-of-all-self-hosting/ansible-role-browserless), you can check them via:
+
 - 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-browserless/blob/main/docs/configuring-browserless.md) online
 - 📁 `roles/galaxy/browserless/docs/configuring-browserless.md` locally, if you have [fetched the Ansible roles](../installing.md)
 

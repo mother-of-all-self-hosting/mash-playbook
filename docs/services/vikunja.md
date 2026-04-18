@@ -28,6 +28,7 @@ Vikunja is a self-hosted to-do application.
 See the project's [documentation](https://vikunja.io/docs) to learn what Vikunja does and why it might be useful to you.
 
 For details about configuring the [Ansible role for Vikunja](https://github.com/mother-of-all-self-hosting/ansible-role-vikunja/), you can check them via:
+
 - 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-vikunja/blob/main/docs/configuring-vikunja.md) online
 - 📁 `roles/galaxy/vikunja/docs/configuring-vikunja.md` locally, if you have [fetched the Ansible roles](../installing.md)
 

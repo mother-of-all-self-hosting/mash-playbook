@@ -28,6 +28,7 @@ AdGuard Home is a network-wide DNS software for blocking ads & tracking.
 See the project's [documentation](https://adguard.com/kb/) to learn what AdGuard Home does and why it might be useful to you.
 
 For details about configuring the [Ansible role for AdGuard Home](https://github.com/mother-of-all-self-hosting/ansible-role-adguard-home), you can check them via:
+
 - 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-adguard-home/blob/main/docs/configuring-adguard-home.md) online
 - 📁 `roles/galaxy/adguard_home/docs/configuring-adguard-home.md` locally, if you have [fetched the Ansible roles](../installing.md)
 

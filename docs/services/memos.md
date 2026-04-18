@@ -27,6 +27,7 @@ Memos is a Markdown-native note-taking tool.
 See the project's [documentation](https://usememos.com/docs) to learn what Memos does and why it might be useful to you.
 
 For details about configuring the [Ansible role for Memos](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az2UFFCDXMH6Am1K99TaiYP8BJmqaj), you can check them via:
+
 - 🌐 [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az2UFFCDXMH6Am1K99TaiYP8BJmqaj/tree/docs/configuring-memos.md) online
 - 📁 `roles/galaxy/memos/docs/configuring-memos.md` locally, if you have [fetched the Ansible roles](../installing.md)
 

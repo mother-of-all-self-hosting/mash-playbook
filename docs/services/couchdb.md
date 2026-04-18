@@ -28,6 +28,7 @@ CouchDB is a document-oriented NoSQL database which uses JSON to store data.
 See the project's [documentation](https://docs.couchdb.org/en/stable/) to learn what CouchDB does and why it might be useful to you.
 
 For details about configuring the [Ansible role for CouchDB](https://github.com/mother-of-all-self-hosting/ansible-role-couchdb), you can check them via:
+
 - 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-couchdb/blob/main/docs/configuring-couchdb.md) online
 - 📁 `roles/galaxy/couchdb/docs/configuring-couchdb.md` locally, if you have [fetched the Ansible roles](../installing.md)
 

@@ -26,6 +26,7 @@ RSS-Bridge is the PHP web application which generates web feeds for websites tha
 See the project's [documentation](https://rss-bridge.github.io/rss-bridge/) to learn what RSS-Bridge does and why it might be useful to you.
 
 For details about configuring the [Ansible role for RSS-Bridge](https://github.com/mother-of-all-self-hosting/ansible-role-rssbridge), you can check them via:
+
 - 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-rssbridge/blob/main/docs/configuring-rssbridge.md) online
 - 📁 `roles/galaxy/rssbridge/docs/configuring-rssbridge.md` locally, if you have [fetched the Ansible roles](../installing.md)
 

@@ -28,6 +28,7 @@ ntfy lets you send push notifications to your phone or desktop via scripts from 
 See the project's [documentation](https://docs.ntfy.sh/) to learn what it does and why it might be useful to you.
 
 The [Ansible role for ntfy](https://github.com/mother-of-all-self-hosting/ansible-role-ntfy) is developed and maintained by the MASH project. For details about configuring ntfy, you can check them via:
+
 - 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-ntfy/blob/main/docs/configuring-ntfy.md) online
 - 📁 `roles/galaxy/ntfy/docs/configuring-ntfy.md` locally, if you have [fetched the Ansible roles](../installing.md)
 

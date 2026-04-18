@@ -28,6 +28,7 @@ Mobilizon is a ActivityPub/Fediverse server to create and share events.
 See the project's [documentation](https://docs.mobilizon.org/) to learn what Mobilizon does and why it might be useful to you.
 
 For details about configuring the [Ansible role for Mobilizon](https://github.com/mother-of-all-self-hosting/ansible-role-mobilizon), you can check them via:
+
 - 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-mobilizon/blob/main/docs/configuring-mobilizon.md) online
 - 📁 `roles/galaxy/mobilizon/docs/configuring-mobilizon.md` locally, if you have [fetched the Ansible roles](../installing.md)
 

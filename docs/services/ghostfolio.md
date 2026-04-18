@@ -26,6 +26,7 @@ Ghostfolio is a free software for wealth management to keep track of assets such
 See the project's [documentation](https://ghostfol.io/en/features) to learn what Ghostfolio does and why it might be useful to you.
 
 For details about configuring the [Ansible role for Ghostfolio](https://github.com/mother-of-all-self-hosting/ansible-role-ghostfolio), you can check them via:
+
 - 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-ghostfolio/blob/main/docs/configuring-ghostfolio.md) online
 - 📁 `roles/galaxy/ghostfolio/docs/configuring-ghostfolio.md` locally, if you have [fetched the Ansible roles](../installing.md)
 

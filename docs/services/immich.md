@@ -31,6 +31,7 @@ Immich is a self-hosted photo and video management solution, into which you can 
 See the project's [documentation](https://immich.app/docs/overview/welcome) to learn what Immich does and why it might be useful to you.
 
 For details about configuring the [Ansible role for Immich](https://github.com/mother-of-all-self-hosting/ansible-role-immich), you can check them via:
+
 - 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-immich/blob/main/docs/configuring-immich.md) online
 
 ## Dependencies

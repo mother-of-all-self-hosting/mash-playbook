@@ -30,6 +30,7 @@ Owncast is a free and open source live video and web chat server for use with ex
 See the project's [documentation](https://owncast.online/docs/) to learn what Owncast does and why it might be useful to you.
 
 For details about configuring the [Ansible role for Owncast](https://github.com/mother-of-all-self-hosting/ansible-role-owncast), you can check them via:
+
 - 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-owncast/blob/main/docs/configuring-owncast.md) online
 - 📁 `roles/galaxy/owncast/docs/configuring-owncast.md` locally, if you have [fetched the Ansible roles](../installing.md)
 

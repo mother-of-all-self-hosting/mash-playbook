@@ -28,6 +28,7 @@ DokuWiki is a lightweight, file-based wiki engine with intuitive syntax and no d
 See the project's [documentation](https://www.dokuwiki.org/manual) to learn what DokuWiki does and why it might be useful to you.
 
 For details about configuring the [Ansible role for DokuWiki](https://github.com/mother-of-all-self-hosting/ansible-role-dokuwiki), you can check them via:
+
 - 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-dokuwiki/blob/main/docs/configuring-dokuwiki.md) online
 - 📁 `roles/galaxy/dokuwiki/docs/configuring-dokuwiki.md` locally, if you have [fetched the Ansible roles](../installing.md)
 

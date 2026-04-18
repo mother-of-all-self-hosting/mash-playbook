@@ -27,6 +27,7 @@ HeyForm is a form builder that lets you create, customize, and automate forms.
 See the project's [documentation](https://docs.heyform.net/) to learn what HeyForm does and why it might be useful to you.
 
 For details about configuring the [Ansible role for HeyForm](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3AzsKztkwnLv9wVMRYbcpoFesx6L5j), you can check them via:
+
 - 🌐 [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3AzsKztkwnLv9wVMRYbcpoFesx6L5j/tree/docs/configuring-heyform.md) online
 - 📁 `roles/galaxy/heyform/docs/configuring-heyform.md` locally, if you have [fetched the Ansible roles](../installing.md)
 

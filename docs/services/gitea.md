@@ -29,6 +29,7 @@ Gitea is a self-hosted lightweight software forge (Git hosting service, etc).
 See the project's [documentation](https://docs.gitea.com/) to learn what Gitea does and why it might be useful to you.
 
 For details about configuring the [Ansible role for Gitea](https://github.com/mother-of-all-self-hosting/ansible-role-gitea), you can check them via:
+
 - 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-gitea/blob/main/docs/configuring-gitea.md) online
 - 📁 `roles/galaxy/gitea/docs/configuring-gitea.md` locally, if you have [fetched the Ansible roles](../installing.md)
 

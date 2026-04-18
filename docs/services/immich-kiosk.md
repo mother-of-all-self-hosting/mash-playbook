@@ -27,6 +27,7 @@ Immich Kiosk is a software for displaying photos and videos on your [Immich](htt
 See the project's [documentation](https://docs.immichkiosk.app) to learn what Immich Kiosk does and why it might be useful to you.
 
 For details about configuring the [Ansible role for Immich Kiosk](https://github.com/mother-of-all-self-hosting/ansible-role-immich-kiosk), you can check them via:
+
 - 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-immich-kiosk/blob/main/docs/configuring-immich-kiosk.md) online
 - 📁 `roles/galaxy/immich_kiosk/docs/configuring-immich-kiosk.md` locally, if you have [fetched the Ansible roles](../installing.md)
 

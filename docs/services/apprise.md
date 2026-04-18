@@ -28,6 +28,7 @@ The playbook can install and configure [Apprise API](https://github.com/caronc/a
 See the project's [documentation](https://github.com/caronc/apprise-api/blob/master/README.md) to learn what Apprise API does and why it might be useful to you.
 
 For details about configuring the [Ansible role for Apprise API](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az292aD8q3r8xqhJvLe2zv1b24gu7a), you can check them via:
+
 - 🌐 [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az292aD8q3r8xqhJvLe2zv1b24gu7a/tree/docs/configuring-apprise.md) online
 - 📁 `roles/galaxy/apprise/docs/configuring-apprise.md` locally, if you have [fetched the Ansible roles](../installing.md)
 

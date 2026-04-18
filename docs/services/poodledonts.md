@@ -26,6 +26,7 @@ PoodleDonts allows you to use Google Fonts without exposing your IP address, bro
 See the project's [documentation](https://git.private.coffee/PrivateCoffee/poodledonts/src/branch/main/README.md) to learn what PoodleDonts does and why it might be useful to you.
 
 For details about configuring the [Ansible role for PoodleDonts](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az4MgJseWRZ9FL3Mh6ASufmi1RJoVh), you can check them via:
+
 - 🌐 [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az4MgJseWRZ9FL3Mh6ASufmi1RJoVh/tree/docs/configuring-poodledonts.md) online
 - 📁 `roles/galaxy/poodledonts/docs/configuring-poodledonts.md` locally, if you have [fetched the Ansible roles](../installing.md)
 

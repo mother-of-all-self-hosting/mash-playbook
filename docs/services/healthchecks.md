@@ -29,6 +29,7 @@ Healthchecks is a cron job monitoring software.
 See the project's [documentation](https://healthchecks.io/docs/) to learn what Healthchecks does and why it might be useful to you.
 
 For details about configuring the [Ansible role for Healthchecks](https://github.com/mother-of-all-self-hosting/ansible-role-healthchecks/), you can check them via:
+
 - 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-healthchecks/blob/main/docs/configuring-healthchecks.md) online
 - 📁 `roles/galaxy/healthchecks/docs/configuring-healthchecks.md` locally, if you have [fetched the Ansible roles](../installing.md)
 

@@ -30,6 +30,7 @@ YaCy is a distributed web search engine, based on a peer-to-peer network. It pro
 See the project's [documentation](https://yacy.net/docs/) to learn what YaCy does and why it might be useful to you.
 
 For details about configuring the [Ansible role for YaCy](https://github.com/mother-of-all-self-hosting/ansible-role-yacy), you can check them via:
+
 - 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-yacy/blob/main/docs/configuring-yacy.md) online
 - 📁 `roles/galaxy/yacy/docs/configuring-yacy.md` locally, if you have [fetched the Ansible roles](../installing.md)
 

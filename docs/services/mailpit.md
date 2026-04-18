@@ -30,6 +30,7 @@ While the service is primarily intended to be used for testing (bulk mail sendin
 See the project's [documentation](https://mailpit.axllent.org/docs/) to learn what Mailpit does and why it might be useful to you.
 
 For details about configuring the [Ansible role for Mailpit](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3BKJz8wwtQHfXm8MPX81h4izT2QS), you can check them via:
+
 - 🌐 [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3BKJz8wwtQHfXm8MPX81h4izT2QS/tree/docs/configuring-mailpit.md) online
 - 📁 `roles/galaxy/mailpit/docs/configuring-mailpit.md` locally, if you have [fetched the Ansible roles](../installing.md)
 

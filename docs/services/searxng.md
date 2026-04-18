@@ -28,6 +28,7 @@ SearXNG is a privacy-respecting, hackable [metasearch engine](https://en.wikiped
 See the project's [documentation](https://docs.searxng.org/) to learn what SearXNG does and why it might be useful to you.
 
 For details about configuring the [Ansible role for SearXNG](https://github.com/mother-of-all-self-hosting/ansible-role-searxng), you can check them via:
+
 - 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-searxng/blob/main/docs/configuring-searxng.md) online
 - 📁 `roles/galaxy/searxng/docs/configuring-searxng.md` locally, if you have [fetched the Ansible roles](../installing.md)
 

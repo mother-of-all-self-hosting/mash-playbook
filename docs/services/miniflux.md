@@ -27,6 +27,7 @@ Miniflux is a minimalist and opinionated feed reader.
 See the project's [documentation](https://github.com/httpjamesm/Miniflux/blob/main/README.md) to learn what Miniflux does and why it might be useful to you.
 
 For details about configuring the [Ansible role for Miniflux](https://github.com/mother-of-all-self-hosting/ansible-role-miniflux), you can check them via:
+
 - 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-miniflux/blob/main/docs/configuring-miniflux.md) online
 - 📁 `roles/galaxy/miniflux/docs/configuring-miniflux.md` locally, if you have [fetched the Ansible roles](../installing.md)
 

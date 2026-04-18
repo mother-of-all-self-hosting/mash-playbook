@@ -27,6 +27,7 @@ Kanboard is a free and open source Kanban project management software.
 See the project's [documentation](https://docs.kanboard.org/) to learn what Kanboard does and why it might be useful to you.
 
 For details about configuring the [Ansible role for Kanboard](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az2LZH9TGMxYbGBaGoMHNFX5HymEL3), you can check them via:
+
 - 🌐 [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az2LZH9TGMxYbGBaGoMHNFX5HymEL3/tree/docs/configuring-kanboard.md) online
 - 📁 `roles/galaxy/kanboard/docs/configuring-kanboard.md` locally, if you have [fetched the Ansible roles](../installing.md)
 

@@ -26,6 +26,7 @@ The playbook can install and configure a [standalone Snowflake proxy](https://co
 The standalone [Snowflake](https://snowflake.torproject.org/) proxy helps users connect to the [Tor](https://torproject.org/) network in places where Tor is blocked.
 
 The [Ansible role for the standalone Snowflake proxy](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Aznvd313jEb23f9AUNmtsweE7YHCK) is developed and maintained by the MASH project. For details about configuring the proxy, you can check them via:
+
 - 🌐 [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Aznvd313jEb23f9AUNmtsweE7YHCK/tree/docs/configuring-snowflake.md) online
 - 📁 `roles/galaxy/snowflake/docs/configuring-snowflake.md` locally, if you have [fetched the Ansible roles](../installing.md)
 

@@ -27,6 +27,7 @@ Teable is a no-code platform for managing databases using a spreadsheet-like int
 See the project's [documentation](https://help.teable.ai/en/about) to learn what Teable does and why it might be useful to you.
 
 For details about configuring the [Ansible role for Teable](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az2bcU1U9yJfJE6t8quZ1BMnEpQLic), you can check them via:
+
 - 🌐 [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az2bcU1U9yJfJE6t8quZ1BMnEpQLic/tree/docs/configuring-teable.md) online
 - 📁 `roles/galaxy/teable/docs/configuring-teable.md` locally, if you have [fetched the Ansible roles](../installing.md)
 

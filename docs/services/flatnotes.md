@@ -27,6 +27,7 @@ flatnotes is a database-less note taking web app that utilises a flat folder of 
 See the project's [documentation](https://github.com/dullage/flatnotes/wiki) to learn what flatnotes does and why it might be useful to you.
 
 For details about configuring the [Ansible role for flatnotes](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az49LkutSMcaLA2DBazn1h4V6Pn6GK), you can check them via:
+
 - 🌐 [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az49LkutSMcaLA2DBazn1h4V6Pn6GK/tree/docs/configuring-flatnotes.md) online
 - 📁 `roles/galaxy/flatnotes/docs/configuring-flatnotes.md` locally, if you have [fetched the Ansible roles](../installing.md)
 

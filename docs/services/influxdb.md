@@ -30,6 +30,7 @@ InfluxDB OSS v2 is a self-hosted time-series database.
 See the project's [documentation](https://docs.influxdata.com/influxdb/v2/get-started/) to learn what InfluxDB OSS v2 does and why it might be useful to you.
 
 For details about configuring the [Ansible role for InfluxDB OSS v2](https://github.com/mother-of-all-self-hosting/ansible-role-influxdb), you can check them via:
+
 - 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-influxdb/blob/main/docs/configuring-influxdb.md) online
 - 📁 `roles/galaxy/influxdb/docs/configuring-influxdb.md` locally, if you have [fetched the Ansible roles](../installing.md)
 

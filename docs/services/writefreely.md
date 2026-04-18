@@ -29,6 +29,7 @@ WriteFreely is free and open source software for easily publishing writing on th
 See the project's [documentation](https://writefreely.org/docs) to learn what WriteFreely does and why it might be useful to you.
 
 For details about configuring the [Ansible role for WriteFreely](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az2i8BkHXzRvK1ZtGwHuvLACRswXgA), you can check them via:
+
 - 🌐 [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az2i8BkHXzRvK1ZtGwHuvLACRswXgA/tree/docs/configuring-writefreely.md) online
 - 📁 `roles/galaxy/writefreely/docs/configuring-writefreely.md` locally, if you have [fetched the Ansible roles](../installing.md)
 

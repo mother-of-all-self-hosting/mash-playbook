@@ -27,6 +27,7 @@ Papra is a document management and archiving platform.
 See the project's [documentation](https://docs.papra.app/) to learn what Papra does and why it might be useful to you.
 
 For details about configuring the [Ansible role for Papra](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az2LGSfc7ziSKvErzZAQdTyTQ4sJcs), you can check them via:
+
 - 🌐 [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az2LGSfc7ziSKvErzZAQdTyTQ4sJcs/tree/docs/configuring-papra.md) online
 - 📁 `roles/galaxy/papra/docs/configuring-papra.md` locally, if you have [fetched the Ansible roles](../installing.md)
 

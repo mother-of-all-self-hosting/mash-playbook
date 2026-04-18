@@ -27,6 +27,7 @@ echoip is simple service for looking up your IP address, which powers [ifconfig.
 See the project's [documentation](https://github.com/mpolden/echoip/blob/master/README.md) to learn what echoip does and why it might be useful to you.
 
 For details about configuring the [Ansible role for echoip](https://github.com/mother-of-all-self-hosting/ansible-role-echoip), you can check them via:
+
 - 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-echoip/blob/main/docs/configuring-echoip.md) online
 - 📁 `roles/galaxy/echoip/docs/configuring-echoip.md` locally, if you have [fetched the Ansible roles](../installing.md)
 

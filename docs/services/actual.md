@@ -27,6 +27,7 @@ Actual is a local-first personal finance tool.
 See the project's [documentation](https://actualbudget.org/docs/) to learn what Actual does and why it might be useful to you.
 
 For details about configuring the [Ansible role for Actual](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az2chD7Kt74JwEMafxTooxN7MaeYtK), you can check them via:
+
 - 🌐 [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az2chD7Kt74JwEMafxTooxN7MaeYtK/tree/docs/configuring-actual.md) online
 - 📁 `roles/galaxy/actual/docs/configuring-actual.md` locally, if you have [fetched the Ansible roles](../installing.md)
 

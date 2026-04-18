@@ -27,6 +27,7 @@ Docmost is an free and open-source collaborative wiki and documentation software
 See the project's [documentation](https://docmost.com/docs/) to learn what Docmost does and why it might be useful to you.
 
 For details about configuring the [Ansible role for Docmost](https://github.com/mother-of-all-self-hosting/ansible-role-docmost), you can check them via:
+
 - 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-docmost/blob/main/docs/configuring-docmost.md) online
 - 📁 `roles/galaxy/docmost/docs/configuring-docmost.md` locally, if you have [fetched the Ansible roles](../installing.md)
 

@@ -26,6 +26,7 @@ BentoPDF is a client-side PDF editor to manipulate PDF files (merge, cut, split 
 See the project's [documentation](https://github.com/alam00000/bentopdf/blob/main/README.md) to learn what BentoPDF does and why it might be useful to you.
 
 For details about configuring the [Ansible role for BentoPDF](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az2bgVhWju6shYSwtdKb7v3eoSL1Pt), you can check them via:
+
 - 🌐 [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az2bgVhWju6shYSwtdKb7v3eoSL1Pt/tree/docs/configuring-bentopdf.md) online
 - 📁 `roles/galaxy/bentopdf/docs/configuring-bentopdf.md` locally, if you have [fetched the Ansible roles](../installing.md)
 

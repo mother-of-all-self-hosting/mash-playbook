@@ -28,6 +28,7 @@ Neko is a self-hosted virtual browser which runs in a Docker's container based o
 See the project's [documentation](https://neko.m1k1o.net/docs/v3/introduction) to learn what Neko does and why it might be useful to you.
 
 For details about configuring the [Ansible role for Neko](https://github.com/mother-of-all-self-hosting/ansible-role-neko), you can check them via:
+
 - 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-neko/blob/main/docs/configuring-neko.md) online
 - 📁 `roles/galaxy/neko/docs/configuring-neko.md` locally, if you have [fetched the Ansible roles](../installing.md)
 

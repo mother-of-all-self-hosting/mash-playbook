@@ -26,6 +26,7 @@ FMD Server is the official server for [FMD (FindMyDevice)](https://gitlab.com/fm
 See the project's [documentation](https://gitlab.com/fmd-foss/fmd-server/-/blob/master/README.md) to learn what FMD Server does and why it might be useful to you.
 
 For details about configuring the [Ansible role for FMD Server](https://github.com/mother-of-all-self-hosting/ansible-role-fmd-server), you can check them via:
+
 - 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-fmd-server/blob/main/docs/configuring-fmd-server.md) online
 - 📁 `roles/galaxy/fmd_server/docs/configuring-fmd-server.md` locally, if you have [fetched the Ansible roles](../installing.md)
 

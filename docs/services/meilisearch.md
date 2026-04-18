@@ -27,6 +27,7 @@ Meilisearch is a typo-tolerant fulltext search engine like ElasticSearch with a 
 See the project's [documentation](https://www.meilisearch.com/docs/learn/self_hosted/getting_started_with_self_hosted_meilisearch) to learn what Meilisearch does and why it might be useful to you.
 
 For details about configuring the [Ansible role for Meilisearch](https://github.com/mother-of-all-self-hosting/ansible-role-meilisearch), you can check them via:
+
 - 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-meilisearch/blob/main/docs/configuring-meilisearch.md) online
 - 📁 `roles/galaxy/meilisearch/docs/configuring-meilisearch.md` locally, if you have [fetched the Ansible roles](../installing.md)
 

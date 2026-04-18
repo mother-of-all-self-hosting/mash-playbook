@@ -28,6 +28,7 @@ SFTPGo is a full-featured and highly configurable event-driven file transfer sol
 See the project's [documentation](https://docs.sftpgo.com/latest/) to learn what SFTPGo does and why it might be useful to you.
 
 For details about configuring the [Ansible role for SFTPGo](https://github.com/mother-of-all-self-hosting/ansible-role-sftpgo), you can check them via:
+
 - 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-sftpgo/blob/main/docs/configuring-sftpgo.md) online
 - 📁 `roles/galaxy/sftpgo/docs/configuring-sftpgo.md` locally, if you have [fetched the Ansible roles](../installing.md)
 

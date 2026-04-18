@@ -26,6 +26,7 @@ Excalidraw is a free and open source virtual whiteboard for sketching hand-drawn
 See the project's [documentation](https://docs.excalidraw.com/) to learn what it does and why it might be useful to you.
 
 For details about configuring the [Ansible role for the server](https://github.com/mother-of-all-self-hosting/ansible-role-excalidraw), you can check them via:
+
 - 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-excalidraw/blob/main/docs/configuring-excalidraw.md) online
 - 📁 `roles/galaxy/excalidraw/docs/configuring-excalidraw.md` locally, if you have [fetched the Ansible roles](../installing.md)
 

@@ -26,6 +26,7 @@ PinePods is a podcast management system with multi-user support.
 See the project's [documentation](https://www.pinepods.online/docs/intro) to learn what PinePods does and why it might be useful to you.
 
 For details about configuring the [Ansible role for PinePods](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3AzKNyeEtymCZc7yio6JnHxY2AteZu), you can check them via:
+
 - 🌐 [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3AzKNyeEtymCZc7yio6JnHxY2AteZu/tree/docs/configuring-pinepods.md) online
 - 📁 `roles/galaxy/pinepods/docs/configuring-pinepods.md` locally, if you have [fetched the Ansible roles](../installing.md)
 

@@ -27,6 +27,7 @@ Duplicati is a backup software that securely stores encrypted, incremental, comp
 See the project's [documentation](https://docs.duplicati.com) to learn what Duplicati does and why it might be useful to you.
 
 For details about configuring the [Ansible role for Duplicati](https://github.com/mother-of-all-self-hosting/ansible-role-duplicati), you can check them via:
+
 - 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-duplicati/blob/main/docs/configuring-duplicati.md) online
 - 📁 `roles/galaxy/duplicati/docs/configuring-duplicati.md` locally, if you have [fetched the Ansible roles](../installing.md)
 

@@ -27,6 +27,7 @@ Changedetection.io is a simple website change detection and restock monitoring s
 See the project's [documentation](https://github.com/dgtlmoon/changedetection.io/blob/master/README.md) to learn what Changedetection.io does and why it might be useful to you.
 
 For details about configuring the [Ansible role for Changedetection.io](https://github.com/mother-of-all-self-hosting/ansible-role-changedetection), you can check them via:
+
 - 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-changedetection/blob/main/docs/configuring-changedetection.md) online
 - 📁 `roles/galaxy/changedetection/docs/configuring-changedetection.md` locally, if you have [fetched the Ansible roles](../installing.md)
 

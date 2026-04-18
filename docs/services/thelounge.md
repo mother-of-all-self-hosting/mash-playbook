@@ -26,6 +26,7 @@ The Lounge is a modern web IRC client designed for self-hosting. It implements f
 See the project's [documentation](https://thelounge.chat/docs) to learn what The Lounge does and why it might be useful to you.
 
 For details about configuring the [Ansible role for The Lounge](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3vaa8VAuz3pxqB3FyciNKQRSHqyt), you can check them via:
+
 - 🌐 [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3vaa8VAuz3pxqB3FyciNKQRSHqyt/tree/docs/configuring-thelounge.md) online
 - 📁 `roles/galaxy/thelounge/docs/configuring-thelounge.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
