@@ -1,12 +1,17 @@
 <!--
 SPDX-FileCopyrightText: 2025 spatterlight
+SPDX-FileCopyrightText: 2026 Suguru Hirahara
 
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 
 # Apache NiFi
 
-[Apache NiFi](https://nifi.apache.org/) is an open source, easy to use, powerful, and reliable system to process and distribute data.
+The playbook can install and configure [Apache NiFi](https://nifi.apache.org/) for you.
+
+Apache NiFi is an open source, easy to use, powerful, and reliable system to process and distribute data.
+
+See the project's [documentation](https://nifi.apache.org/components/) to learn what Apache NiFi does and why it might be useful to you.
 
 ## Dependencies
 

@@ -1,5 +1,6 @@
 <!--
 SPDX-FileCopyrightText: 2024 Slavi Pantaleev
+SPDX-FileCopyrightText: 2026 Suguru Hirahara
 
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->
@@ -9,8 +10,11 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 >[!WARNING]
 > Promtail has reached end-of-life status on March 2, 2026. If you are currently using Promtail, you should plan your [migration to Alloy](https://grafana.com/docs/loki/latest/setup/migrate/migrate-to-alloy/).
 
-[Promtail](https://grafana.com/docs/loki/latest/send-data/promtail/) agent is a log aggregation system designed to store and query logs from all your applications and infrastructure. It integrates nicely with [Grafana Loki](grafana-loki.md).
+The playbook can install and configure [Promtail](https://grafana.com/docs/loki/latest/send-data/promtail/) for you.
 
+Promtail agent is a log aggregation system designed to store and query logs from all your applications and infrastructure. It integrates nicely with [Grafana Loki](grafana-loki.md).
+
+See the project's [documentation](https://grafana.com/docs/loki/latest/send-data/promtail/) to learn what Promtail does and why it might be useful to you.
 
 ## Dependencies
 

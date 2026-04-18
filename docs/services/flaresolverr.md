@@ -1,13 +1,18 @@
 <!--
 SPDX-FileCopyrightText: 2025 MASH project contributors
 SPDX-FileCopyrightText: 2025 sudo-Tiz
+SPDX-FileCopyrightText: 2026 Suguru Hirahara
 
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 
 # FlareSolverr
 
-[FlareSolverr](https://github.com/FlareSolverr/FlareSolverr) is an open-source proxy server to bypass Cloudflare protection.
+The playbook can install and configure [FlareSolverr](https://github.com/FlareSolverr/FlareSolverr) for you.
+
+FlareSolverr is an open-source proxy server to bypass Cloudflare protection.
+
+See the project's [documentation](https://github.com/FlareSolverr/FlareSolverr/blob/master/README.md) to learn what FlareSolverr does and why it might be useful to you.
 
 ## Dependencies
 

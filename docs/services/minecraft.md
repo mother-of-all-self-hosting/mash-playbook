@@ -1,14 +1,18 @@
 <!--
-SPDX-FileCopyrightText: 2025 XHawk87
 SPDX-FileCopyrightText: 2025 Slavi Pantaleev
-SPDX-FileCopyrightText: 2025 Suguru Hirahara
+SPDX-FileCopyrightText: 2025 XHawk87
+SPDX-FileCopyrightText: 2025, 2026 Suguru Hirahara
 
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 
 # Minecraft
 
-[Minecraft](https://docker-minecraft-server.readthedocs.io) is a first-person open-world procedurally-generated voxel-based sandbox game with RPG elements.
+The playbook can install and configure [itzg docker-minecraft server](https://docker-minecraft-server.readthedocs.io) for you.
+
+Minecraft is a first-person open-world procedurally-generated voxel-based sandbox game with RPG elements.
+
+See the project's [documentation](https://docker-minecraft-server.readthedocs.io/en/latest/) to learn what the server does and why it might be useful to you.
 
 > [!WARNING]
 > itzg docker-minecraft server is published under the Apache-2.0 license, however Minecraft itself is proprietary software, and by using this role you are agreeing to the [EULA](https://www.minecraft.net/en-us/eula). Know your rights!

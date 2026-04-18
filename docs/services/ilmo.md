@@ -1,15 +1,17 @@
 <!--
 SPDX-FileCopyrightText: 2023 Julian-Samuel Gebühr
-SPDX-FileCopyrightText: 2025 Suguru Hirahara
+SPDX-FileCopyrightText: 2025, 2026 Suguru Hirahara
 
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 
 # ILMO
 
-[Ilmo](https://github.com/moan0s/ILMO2) is an open source library management tool.
+The playbook can install and configure [Ilmo](https://github.com/moan0s/ILMO2) for you.
 
-Read [the documentation](https://ilmo2.readthedocs.io/) to learn what you can do with it.
+Ilmo is an open source library management tool.
+
+See the project's [documentation](https://ilmo2.readthedocs.io/) to learn what ILMO does and why it might be useful to you.
 
 > [!WARNING]
 > This service is a custom solution for a small library. Feel free to use it but don't expect a solution that works for every use case

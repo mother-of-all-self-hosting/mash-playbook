@@ -1,12 +1,20 @@
 <!--
 SPDX-FileCopyrightText: 2025 MASH project contributors
+SPDX-FileCopyrightText: 2026 Suguru Hirahara
 
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 
 # Stirling PDF
 
-Stirling PDF is an online PDF converter and editor with many functionalities. Visit the [official website](https://www.stirlingpdf.com) or [demo](https://stirlingpdf.io) to learn more.
+The playbook can install and configure [Stirling PDF](https://github.com/Stirling-Tools/Stirling-PDF) for you.
+
+Stirling PDF is an online PDF converter and editor.
+
+See the project's [documentation](https://github.com/Stirling-Tools/Stirling-PDF/blob/main/README.md) to learn what Stirling PDF does and why it might be useful to you.
+
+>[!WARNING]
+> Since [v2.0.0](https://github.com/Stirling-Tools/Stirling-PDF/releases/tag/v2.0.0) Stirling PDF enforces Open Core license.
 
 ## Dependencies
 

@@ -1,15 +1,18 @@
 <!--
 SPDX-FileCopyrightText: 2023 Julian-Samuel Gebühr
 SPDX-FileCopyrightText: 2024 Slavi Pantaleev
-SPDX-FileCopyrightText: 2025 Suguru Hirahara
+SPDX-FileCopyrightText: 2025, 2026 Suguru Hirahara
 
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 
 # Notfellchen
 
-[Notfellchen](https://codeberg.org/moanos/notfellchen) is a self-hosted tool to list animals available for adoption to increase their chance of finding a forever-home.
+The playbook can install and configure [Notfellchen](https://codeberg.org/moanos/notfellchen) for you.
 
+Notfellchen is a self-hosted tool to list animals available for adoption to increase their chance of finding a forever-home.
+
+See the project's [documentation](https://codeberg.org/moanos/notfellchen/src/branch/main/README.md) to learn what Notfellchen does and why it might be useful to you.
 
 > [!WARNING]
 > This service is a custom solution. Feel free to use it but don't expect a solution that works for every use case. Issues with this should be filed in the [project itself](https://codeberg.org/moanos/notfellchen).

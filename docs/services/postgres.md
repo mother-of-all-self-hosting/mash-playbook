@@ -1,23 +1,24 @@
 <!--
-SPDX-FileCopyrightText: 2019 - 2024 Slavi Pantaleev
-SPDX-FileCopyrightText: 2020 - 2021 Aaron Raimist
+SPDX-FileCopyrightText: 2019-2024 Slavi Pantaleev
 SPDX-FileCopyrightText: 2020 Hardy Erlinger
-SPDX-FileCopyrightText: 2021 - 2024 MDAD project contributors
+SPDX-FileCopyrightText: 2020, 2021 Aaron Raimist
 SPDX-FileCopyrightText: 2021 Marc Leuser
+SPDX-FileCopyrightText: 2021-2024 MDAD project contributors
 SPDX-FileCopyrightText: 2024 Kim Brose
-SPDX-FileCopyrightText: 2024 - 2025 Suguru Hirahara
+SPDX-FileCopyrightText: 2024-2026 Suguru Hirahara
 
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 
 # Postgres
 
-[PostgreSQL](https://www.postgresql.org) is a powerful, open source object-relational database system with over 35 years of active development that has earned it a strong reputation for reliability, feature robustness, and performance.
+The playbook can install and configure [PostgreSQL](https://www.postgresql.org) for you.
 
-Many of the services installed by this playbook require a Postgres database.
+PostgreSQL is a powerful, open source object-relational database system with over 35 years of active development that has earned it a strong reputation for reliability, feature robustness, and performance.
 
-Enabling the Postgres database service will automatically wire all other services which require such a database to use it.
+See the project's [documentation](https://www.postgresql.org/docs/) to learn what PostgreSQL does and why it might be useful to you.
 
+Many of the services installed by this playbook require a Postgres database. Enabling the Postgres database service will automatically wire all other services which require such a database to use it.
 
 ## Configuration
 

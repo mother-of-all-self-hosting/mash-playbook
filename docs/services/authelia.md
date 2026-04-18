@@ -1,19 +1,17 @@
 <!--
-SPDX-FileCopyrightText: 2023 - 2024 Slavi Pantaleev
-SPDX-FileCopyrightText: 2025 Suguru Hirahara
+SPDX-FileCopyrightText: 2023, 2024 Slavi Pantaleev
+SPDX-FileCopyrightText: 2025, 2026 Suguru Hirahara
 
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 
 # Authelia
 
-[Authelia](https://www.authelia.com/) is an open-source [authentication](https://www.authelia.com/overview/authentication/introduction/) and [authorization](https://www.authelia.com/overview/authorization/access-control/) server and portal fulfilling the identity and access management (IAM) role of information security in providing [multi-factor authentication](https://www.authelia.com/overview/authentication/introduction/) and single sign-on (SSO) for your applications via a web portal.
+The playbook can install and configure [Authelia](https://www.authelia.com/) for you.
 
-Authelia has 2 [modes of operation](#modes-of-operation) (Forward-Auth and OpenID Connect). Read below for more information.
+Authelia is an open-source [authentication](https://www.authelia.com/overview/authentication/introduction/) and [authorization](https://www.authelia.com/overview/authorization/access-control/) server and portal fulfilling the identity and access management (IAM) role of information security in providing [multi-factor authentication](https://www.authelia.com/overview/authentication/introduction/) and single sign-on (SSO) for your applications via a web portal.
 
-> [!WARNING]
-> This service is a new addition to the playbook. It may not fully work or be configured in a suboptimal manner.
-
+See the project's [documentation](https://www.authelia.com/integration/prologue/get-started/) to learn what Authelia does and why it might be useful to you.
 
 ## Dependencies
 

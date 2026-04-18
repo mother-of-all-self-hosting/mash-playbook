@@ -1,14 +1,17 @@
 <!--
 SPDX-FileCopyrightText: 2023 Slavi Pantaleev
-SPDX-FileCopyrightText: 2025 Suguru Hirahara
+SPDX-FileCopyrightText: 2025, 2026 Suguru Hirahara
 
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 
 # Docker Registry Browser
 
-[Docker Registry Browser](https://github.com/klausmeyer/docker-registry-browser) is a Web Interface for the Docker Registry HTTP API V2 written in Ruby on Rails.
+The playbook can install and configure [Docker Registry Browser](https://github.com/klausmeyer/docker-registry-browser) for you.
 
+Docker Registry Browser is a Web Interface for the Docker Registry HTTP API V2 written in Ruby on Rails.
+
+See the project's [documentation](https://github.com/klausmeyer/docker-registry-browser/blob/master/README.md) to learn what Docker Registry Browser does and why it might be useful to you.
 
 ## Dependencies
 

@@ -1,14 +1,17 @@
 <!--
-SPDX-FileCopyrightText: 2023 - 2024 Slavi Pantaleev
-SPDX-FileCopyrightText: 2025 Suguru Hirahara
+SPDX-FileCopyrightText: 2023, 2024 Slavi Pantaleev
+SPDX-FileCopyrightText: 2025, 2026 Suguru Hirahara
 
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 
 # NetBox
 
-[NetBox](https://docs.netbox.dev/en/stable/) is an open-source web application that provides [IP address management (IPAM)](https://en.wikipedia.org/wiki/IP_address_management) and [data center infrastructure management (DCIM)](https://en.wikipedia.org/wiki/Data_center_management#Data_center_infrastructure_management) functionality.
+The playbook can install and configure [NetBox](https://docs.netbox.dev/en/stable/) for you.
 
+NetBox is an open-source web application that provides [IP address management (IPAM)](https://en.wikipedia.org/wiki/IP_address_management) and [data center infrastructure management (DCIM)](https://en.wikipedia.org/wiki/Data_center_management#Data_center_infrastructure_management) functionality.
+
+See the project's [documentation](https://docs.netbox.dev/en/stable/) to learn what NetBox does and why it might be useful to you.
 
 ## Dependencies
 

@@ -1,13 +1,17 @@
 <!--
 SPDX-FileCopyrightText: 2025 MASH project contributors
-SPDX-FileCopyrightText: 2025 Suguru Hirahara
+SPDX-FileCopyrightText: 2025, 2026 Suguru Hirahara
 
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 
 # Autobrr
 
-[Autobrr](https://autobrr.com/) is a modern autodl-irssi replacement, an easy to use download automator for torrents and Usenet.
+The playbook can install and configure [Autobrr](https://autobrr.com/) for you.
+
+Autobrr is a modern autodl-irssi replacement, an easy to use download automator for torrents and Usenet.
+
+See the project's [documentation](https://autobrr.com/introduction) to learn what Autobrr does and why it might be useful to you.
 
 ## Dependencies
 

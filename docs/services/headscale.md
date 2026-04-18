@@ -1,14 +1,17 @@
 <!--
 SPDX-FileCopyrightText: 2025 Slavi Pantaleev
-SPDX-FileCopyrightText: 2025 Suguru Hirahara
+SPDX-FileCopyrightText: 2025, 2026 Suguru Hirahara
 
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 
 # Headscale
 
-[Headscale](https://headscale.net/) is an open source, self-hosted implementation of the [Tailscale](https://tailscale.com/) control server.
+The playbook can install and configure [Headscale](https://headscale.net/) for you.
 
+Headscale is an open source, self-hosted implementation of the [Tailscale](https://tailscale.com/) control server.
+
+See the project's [documentation](https://headscale.net/stable/usage/getting-started/) to learn what Headscale does and why it might be useful to you.
 
 ## Dependencies
 

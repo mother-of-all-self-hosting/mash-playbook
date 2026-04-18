@@ -1,12 +1,17 @@
 <!--
-SPDX-FileCopyrightText: 2023 - 2025 Slavi Pantaleev
+SPDX-FileCopyrightText: 2023-2025 Slavi Pantaleev
+SPDX-FileCopyrightText: 2026 Suguru Hirahara
 
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 
 # WireGuard Easy
 
-[WireGuard Easy](https://github.com/wg-easy/wg-easy) is the easiest way to run [WireGuard](https://www.wireguard.com/) VPN + Web-based Admin UI.
+The playbook can install and configure [WireGuard Easy](https://github.com/wg-easy/wg-easy) for you.
+
+WireGuard Easy is the easiest way to run [WireGuard](https://www.wireguard.com/) VPN + Web-based Admin UI.
+
+See the project's [documentation](https://wg-easy.github.io/wg-easy/latest/) to learn what WireGuard Easy does and why it might be useful to you.
 
 ## Dependencies
 

@@ -1,13 +1,17 @@
 <!--
 SPDX-FileCopyrightText: 2023 Slavi Pantaleev
+SPDX-FileCopyrightText: 2026 Suguru Hirahara
 
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 
 # Syncthing
 
-[Syncthing](https://syncthing.net/) is a **continuous file synchronization** program which synchronizes files between two or more computers in real time, safely protected from prying eyes.
+The playbook can install and configure [Syncthing](https://syncthing.net/) for you.
 
+Syncthing is a continuous file synchronization program which synchronizes files between two or more computers in real time, safely protected from prying eyes.
+
+See the project's [documentation](https://docs.syncthing.net/) to learn what Syncthing does and why it might be useful to you.
 
 ## Dependencies
 
