@@ -2790,6 +2790,8 @@ adminer_systemd_required_services_list_auto: |
     +
     ([mongodb_identifier ~ '.service'] if mongodb_enabled | default(false) else [])
     +
+    ([postgis_identifier ~ '.service'] if postgis_enabled | default(false) else [])
+    +
     ([postgres_identifier ~ '.service'] if postgres_enabled | default(false) else [])
   }}
 
@@ -2802,6 +2804,8 @@ adminer_container_additional_networks_auto: |
     ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
     +
     ([mongodb_container_network] if mongodb_enabled | default(false) and adminer_container_network != mongodb_container_network else [])
+    +
+    ([postgis_container_network] if postgis_enabled | default(false) and adminer_container_network != postgis_container_network else [])
     +
     ([postgres_container_network] if postgres_enabled | default(false) and adminer_container_network != postgres_container_network else [])
   }}
@@ -4584,6 +4588,8 @@ databasus_systemd_required_services_list_auto: |
     +
     ([mongodb_identifier ~ '.service'] if mongodb_enabled | default(false) else [])
     +
+    ([postgis_identifier ~ '.service'] if postgis_enabled | default(false) else [])
+    +
     ([postgres_identifier ~ '.service'] if postgres_enabled | default(false) else [])
   }}
 
@@ -4601,6 +4607,8 @@ databasus_container_additional_networks_auto: |
     ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
     +
     ([mongodb_container_network] if mongodb_enabled | default(false) and databasus_container_network != mongodb_container_network else [])
+    +
+    ([postgis_container_network] if postgis_enabled | default(false) and databasus_container_network != postgis_container_network else [])
     +
     ([postgres_container_network] if postgres_enabled | default(false) and databasus_container_network != postgres_container_network and not databasus_database_postgres_socket_enabled else [])
   }}
@@ -12430,7 +12438,9 @@ pgadmin_gid: 5050
 
 pgadmin_systemd_required_services_list_auto: |
   {{
-    ([postgres_identifier ~ '.service'] if postgres_enabled else [])
+    ([postgis_identifier ~ '.service'] if postgis_enabled | default(false) else [])
+    +
+    ([postgres_identifier ~ '.service'] if postgres_enabled | default(false) else [])
   }}
 
 pgadmin_systemd_wanted_services_list_auto: |
@@ -12444,7 +12454,9 @@ pgadmin_container_additional_networks_auto: |
     +
     ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
     +
-    ([postgres_container_network] if postgres_enabled and pgadmin_container_network != postgres_container_network and not pgadmin_database_socket_enabled else [])
+    ([postgis_container_network] if postgis_enabled | default(false) and pgadmin_container_network != postgis_container_network else [])
+    +
+    ([postgres_container_network] if postgres_enabled | default(false) and pgadmin_container_network != postgres_container_network else [])
   }}
 
 pgadmin_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
