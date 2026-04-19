@@ -575,11 +575,6 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
     {{ ({'name': (jellyfin_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'jellyfin']} if jellyfin_enabled else omit) }}
   # /role-specific:jellyfin
 
-  # role-specific:jellyseerr
-  - |-
-    {{ ({'name': (jellyseerr_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'jellyseerr']} if jellyseerr_enabled else omit) }}
-  # /role-specific:jellyseerr
-
   # role-specific:jitsi
   - |-
     {{ ({'name': (jitsi_identifier + '-web.service'), 'priority': 4200, 'restart_necessary': (jitsi_web_restart_necessary | bool), 'groups': ['mash', 'jitsi', 'jitsi-web']} if jitsi_enabled else omit) }}
@@ -900,11 +895,6 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
     {{ ({'name': (outline_identifier + '.service'), 'priority': 2000, 'restart_necessary': (outline_restart_necessary | bool), 'groups': ['mash', 'outline']} if outline_enabled else omit) }}
   # /role-specific:outline
 
-  # role-specific:overseerr
-  - |-
-    {{ ({'name': (overseerr_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'overseerr']} if overseerr_enabled else omit) }}
-  # /role-specific:overseerr
-
   # role-specific:owncast
   - |-
     {{ ({'name': (owncast_identifier + '.service'), 'priority': 2000, 'restart_necessary': (owncast_restart_necessary | bool), 'groups': ['mash', 'owncast']} if owncast_enabled else omit) }}
@@ -1120,6 +1110,11 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
   - |-
     {{ ({'name': (searxng_identifier + '.service'), 'priority': 2000, 'restart_necessary': (searxng_restart_necessary | bool), 'groups': ['mash', 'searxng']} if searxng_enabled else omit) }}
   # /role-specific:searxng
+
+  # role-specific:seerr
+  - |-
+    {{ ({'name': (seerr_identifier + '.service'), 'priority': 2000, 'restart_necessary': (seerr_restart_necessary | bool), 'groups': ['mash', 'seerr']} if seerr_enabled else omit) }}
+  # /role-specific:seerr
 
   # role-specific:semaphore
   - |-
@@ -8405,43 +8400,6 @@ jellyfin_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_pri
 
 
 
-# role-specific:jellyseerr
-########################################################################
-#                                                                      #
-# jellyseerr                                                           #
-#                                                                      #
-########################################################################
-
-jellyseerr_enabled: false
-
-jellyseerr_identifier: "{{ mash_playbook_service_identifier_prefix }}jellyseerr"
-
-jellyseerr_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}jellyseerr"
-
-jellyseerr_uid: "{{ mash_playbook_uid }}"
-jellyseerr_gid: "{{ mash_playbook_gid }}"
-
-jellyseerr_container_additional_networks_auto: |
-  {{
-    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
-  }}
-
-jellyseerr_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
-jellyseerr_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
-
-# role-specific:traefik
-jellyseerr_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
-jellyseerr_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
-# /role-specific:traefik
-
-########################################################################
-#                                                                      #
-# /jellyseerr                                                          #
-#                                                                      #
-########################################################################
-# /role-specific:jellyseerr
-
-
 
 # role-specific:jitsi
 ########################################################################
@@ -12003,43 +11961,6 @@ outline_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_prim
 
 
 
-# role-specific:overseerr
-########################################################################
-#                                                                      #
-# overseerr                                                            #
-#                                                                      #
-########################################################################
-
-overseerr_enabled: false
-
-overseerr_identifier: "{{ mash_playbook_service_identifier_prefix }}overseerr"
-
-overseerr_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}overseerr"
-
-overseerr_uid: "{{ mash_playbook_uid }}"
-overseerr_gid: "{{ mash_playbook_gid }}"
-
-overseerr_container_additional_networks_auto: |
-  {{
-    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
-  }}
-
-overseerr_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
-overseerr_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
-
-# role-specific:traefik
-overseerr_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
-overseerr_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
-# /role-specific:traefik
-
-########################################################################
-#                                                                      #
-# /overseerr                                                           #
-#                                                                      #
-########################################################################
-# /role-specific:overseerr
-
-
 
 # role-specific:owncast
 ########################################################################
@@ -14141,6 +14062,44 @@ searxng_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_prim
 #                                                                      #
 ########################################################################
 # /role-specific:searxng
+
+
+
+# role-specific:seerr
+########################################################################
+#                                                                      #
+# seerr                                                                #
+#                                                                      #
+########################################################################
+
+seerr_enabled: false
+
+seerr_identifier: "{{ mash_playbook_service_identifier_prefix }}seerr"
+
+seerr_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}seerr"
+
+seerr_uid: "{{ mash_playbook_uid }}"
+seerr_gid: "{{ mash_playbook_gid }}"
+
+seerr_container_additional_networks_auto: |
+  {{
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+  }}
+
+seerr_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+seerr_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+
+# role-specific:traefik
+seerr_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
+seerr_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
+# /role-specific:traefik
+
+########################################################################
+#                                                                      #
+# /seerr                                                               #
+#                                                                      #
+########################################################################
+# /role-specific:seerr
 
 
 

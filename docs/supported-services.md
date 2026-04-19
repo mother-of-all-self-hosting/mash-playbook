@@ -119,7 +119,6 @@ Below is an exhaustive list of the free and open-source software for self-hostin
 | [InspIRCd](https://www.inspircd.org/) | Modular IRC server written in C++ | [Link](services/inspircd.md) |
 | [Jackett](https://github.com/Jackett/Jackett) | An API for your favorite torrent trackers | [Link](services/jackett.md) |
 | [Jellyfin](https://github.com/jellyfin/jellyfin) | A personal media server | [Link](services/jellyfin.md) |
-| [Jellyseerr](https://github.com/Fallenbagel/jellyseerr)| A media request and discovery manager for Jellyfin, Plex, and Emby | [Link](services/jellyseerr.md) |
 | [Jitsi](https://jitsi.org/) | A fully encrypted video conferencing solution | [Link](services/jitsi.md) |
 | [Joplin Server](https://joplinapp.org/help/dev/spec/architecture#joplin-server) | Server component for [Joplin](https://joplinapp.org/) | [Link](services/joplin-server.md) |
 | [Kanboard](https://kanboard.org/) | Kanban project management software | [Link](services/kanboard.md) |
@@ -173,7 +172,6 @@ Below is an exhaustive list of the free and open-source software for self-hostin
 | [OrigamiVault](https://github.com/origamivault/origamivault) | Encrypted paper storage | [Link](services/origamivault.md) |
 | [OTS](https://ots.fyi/) | One-Time-Secret sharing platform | [Link](services/ots.md) |
 | [Outline](https://www.getoutline.com/) | A knowledge base for growing teams | [Link](services/outline.md) |
-| [Overseerr](https://overseerr.dev/) | A request management and media discovery tool for the Plex ecosystem | [Link](services/overseerr.md) |
 | [Owncast](https://owncast.online/) | Live video and web chat server for use with existing popular broadcasting software | [Link](services/owncast.md) |
 | [OxiTraffic](https://codeberg.org/mo8it/oxitraffic) | Simple and privacy respecting website traffic tracker | [Link](services/oxitraffic.md) |
 | [Paperless-ngx](https://paperless-ngx.com) | A community-supported document management system that transforms your physical documents into a searchable online archive | [Link](services/paperless-ngx.md) |
@@ -216,6 +214,7 @@ Below is an exhaustive list of the free and open-source software for self-hostin
 | [RSSHub](https://docs.rsshub.app/) | Create RSS feeds from web pages | [Link](services/rsshub.md) |
 | [rumqttd](https://github.com/bytebeamio/rumqtt) | A high performance, embeddable [MQTT](https://en.wikipedia.org/wiki/MQTT) broker | [Link](services/rumqttd.md) |
 | [SearXNG](https://github.com/searxng/searxng) | A privacy-respecting, hackable [metasearch engine](https://en.wikipedia.org/wiki/Metasearch_engine) | [Link](services/searxng.md) |
+| [Seerr](https://github.com/seerr-team/seerr) | A media request and discovery manager | [Link](services/seerr.md) |
 | [Semaphore UI](https://semaphoreui.com/) | Modern UI for Ansible, Terraform/OpenTofu/Terragrunt, PowerShell and other DevOps tools | [Link](services/semaphore.md) |
 | [Send](https://github.com/timvisee/send) | Fork of Mozilla's [Firefox Send](https://github.com/mozilla/send) which allows you to send encrypted files to other users | [Link](services/send.md) |
 | [SFTPGo](https://github.com/drakkan/sftpgo/) | File transfer software which supports SFTP, HTTP/S, FTP/S and WebDAV and can connect to various storage backends including S3 (compatible) Object Storage and Google Cloud Storage | [Link](services/sftpgo.md) |
