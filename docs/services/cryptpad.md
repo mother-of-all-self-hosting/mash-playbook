@@ -26,6 +26,7 @@ CryptPad is a free and open-source collaboration suite that is end-to-end encryp
 See the project's [documentation](https://docs.cryptpad.org) to learn what CryptPad does and why it might be useful to you.
 
 For details about configuring the [Ansible role for CryptPad](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az38Yp2e9yFouswvrnX5MdgZYaViLb), you can check them via:
+
 - 🌐 [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az38Yp2e9yFouswvrnX5MdgZYaViLb/tree/docs/configuring-cryptpad.md) online
 - 📁 `roles/galaxy/cryptpad/docs/configuring-cryptpad.md` locally, if you have [fetched the Ansible roles](../installing.md)
 

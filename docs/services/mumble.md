@@ -26,6 +26,7 @@ Mumble is a free and open source voice chat application known for its low latenc
 See the project's [documentation](https://www.mumble.info/documentation/) to learn what Mumble does and why it might be useful to you.
 
 For details about configuring the [Ansible role for Mumble](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az4VBCibmQHyfHKEWTAJmQKBAAjtsv), you can check them via:
+
 - 🌐 [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az4VBCibmQHyfHKEWTAJmQKBAAjtsv/tree/docs/configuring-mumble.md) online
 - 📁 `roles/galaxy/mumble/docs/configuring-mumble.md` locally, if you have [fetched the Ansible roles](../installing.md)
 

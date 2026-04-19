@@ -27,6 +27,7 @@ asciinema server is a server-side component of the asciinema system, a suite of 
 See the project's [documentation](https://docs.asciinema.org/) to learn what asciinema does and why it might be useful to you.
 
 For details about configuring the [Ansible role for asciinema server](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3AzcSq6tnVLBUQ88zSRLThc7A7RDZb), you can check them via:
+
 - 🌐 [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3AzcSq6tnVLBUQ88zSRLThc7A7RDZb/tree/docs/configuring-asciinema-server.md) online
 - 📁 `roles/galaxy/asciinema_server/docs/configuring-asciinema-server.md` locally, if you have [fetched the Ansible roles](../installing.md)
 

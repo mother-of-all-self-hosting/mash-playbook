@@ -1,23 +1,24 @@
 <!--
-SPDX-FileCopyrightText: 2019 - 2024 Slavi Pantaleev
-SPDX-FileCopyrightText: 2020 - 2021 Aaron Raimist
+SPDX-FileCopyrightText: 2019-2024 Slavi Pantaleev
 SPDX-FileCopyrightText: 2020 Hardy Erlinger
-SPDX-FileCopyrightText: 2021 - 2024 MDAD project contributors
+SPDX-FileCopyrightText: 2020, 2021 Aaron Raimist
 SPDX-FileCopyrightText: 2021 Marc Leuser
+SPDX-FileCopyrightText: 2021-2024 MDAD project contributors
 SPDX-FileCopyrightText: 2024 Kim Brose
-SPDX-FileCopyrightText: 2024 - 2025 Suguru Hirahara
+SPDX-FileCopyrightText: 2024-2026 Suguru Hirahara
 
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 
 # Postgres
 
-[PostgreSQL](https://www.postgresql.org) is a powerful, open source object-relational database system with over 35 years of active development that has earned it a strong reputation for reliability, feature robustness, and performance.
+The playbook can install and configure [PostgreSQL](https://www.postgresql.org) for you.
 
-Many of the services installed by this playbook require a Postgres database.
+PostgreSQL is a powerful, open source object-relational database system with over 35 years of active development that has earned it a strong reputation for reliability, feature robustness, and performance.
 
-Enabling the Postgres database service will automatically wire all other services which require such a database to use it.
+See the project's [documentation](https://www.postgresql.org/docs/) to learn what PostgreSQL does and why it might be useful to you.
 
+Many of the services installed by this playbook require a Postgres database. Enabling the Postgres database service will automatically wire all other services which require such a database to use it.
 
 ## Configuration
 
@@ -56,7 +57,6 @@ Importing multiple databases (as dumped by `pg_dumpall`) is also supported.
 
 Before doing the actual import, **you need to upload your Postgres dump file to the server** (any path is okay).
 
-
 ### Importing a dump file
 
 To import, run this command (make sure to replace `SERVER_PATH_TO_POSTGRES_DUMP_FILE` with a file path on your server):
@@ -72,7 +72,6 @@ just run-tags import-postgres \
 - `SERVER_PATH_TO_POSTGRES_DUMP_FILE` must be a file path to a Postgres dump file on the server (not on your local machine!)
 - `postgres_default_import_database` defaults to `main`, which is useful for importing multiple databases (for dumps made with `pg_dumpall`). If you're importing a single database (e.g. `miniflux`), consider changing `postgres_default_import_database` to the name of the database (e.g. `miniflux`)
 - after importing a large database, it's a good idea to run [an `ANALYZE` operation](https://www.postgresql.org/docs/current/sql-analyze.html) to make Postgres rebuild its database statistics and optimize its query planner. You can easily do this via the playbook by running `just run-tags run-postgres-vacuum -e postgres_vacuum_preset=analyze` (see [Vacuuming PostgreSQL](#vacuuming-postgresql) for more details).
-
 
 ## Maintenance
 
@@ -176,5 +175,6 @@ Most users should be fine with the automatically-done tuning. However, you may w
 
 - [Adminer](adminer.md) — Full-featured database management tool written in PHP
 - [pgAdmin](pgadmin.md) — Management tool for Postgres with a graphical interface
+- [PostGIS](postgis.md) — Spatial database extender for PostgreSQL
 - [Postgres Backup](postgres-backup.md) for backing up your Postgres database
 - [Prometheus](prometheus.md), [prometheus-postgres-exporter](prometheus-postgres-exporter.md) and [Grafana](grafana.md) for monitoring your Postgres database

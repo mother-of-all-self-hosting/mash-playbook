@@ -1,12 +1,17 @@
 <!--
 SPDX-FileCopyrightText: 2025 spatterlight
+SPDX-FileCopyrightText: 2026 Suguru Hirahara
 
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 
 # Apache NiFi
 
-[Apache NiFi](https://nifi.apache.org/) is an open source, easy to use, powerful, and reliable system to process and distribute data.
+The playbook can install and configure [Apache NiFi](https://nifi.apache.org/) for you.
+
+Apache NiFi is an open source, easy to use, powerful, and reliable system to process and distribute data.
+
+See the project's [documentation](https://nifi.apache.org/components/) to learn what Apache NiFi does and why it might be useful to you.
 
 ## Dependencies
 
@@ -21,7 +26,6 @@ To deploy Apache NiFi using this role it is necessary that:
 1. The [community.general](https://github.com/ansible-collections/community.general) collection be installed. This is needed to support modifying XML configuration files.
 2. The [community.crypto](https://github.com/ansible-collections/community.crypto) collection be installed. This is needed to create the self-signed HTTPS certificate for Apache NiFi.
 3. The `keytool` program be available on the target host. This can be installed via `apt install default-jre` on Debian systems.
-
 
 ## Configuration
 

@@ -27,6 +27,7 @@ SolidInvoice is a web-based free software for invoicing.
 See the project's [documentation](https://docs.solidinvoice.co/en/latest/) to learn what SolidInvoice does and why it might be useful to you.
 
 For details about configuring the [Ansible role for SolidInvoice](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3AzeEwXM9Fp4C8NU4oQfNg474Vivwu), you can check them via:
+
 - 🌐 [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3AzeEwXM9Fp4C8NU4oQfNg474Vivwu/tree/docs/configuring-solidinvoice.md) online
 - 📁 `roles/galaxy/solidinvoice/docs/configuring-solidinvoice.md` locally, if you have [fetched the Ansible roles](../installing.md)
 

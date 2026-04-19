@@ -27,6 +27,7 @@ OrigamiVault is a web application encrypting or splitting secrets for printing t
 See the project's [documentation](https://github.com/origamivault/origamivault/blob/main/README.md) to learn what OrigamiVault does and why it might be useful to you.
 
 For details about configuring the [Ansible role for OrigamiVault](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3aGv2oUAxqmoGddtk1VwRioUTKbs), you can check them via:
+
 - 🌐 [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3aGv2oUAxqmoGddtk1VwRioUTKbs/tree/docs/configuring-origamivault.md) online
 - 📁 `roles/galaxy/origamivault/docs/configuring-origamivault.md` locally, if you have [fetched the Ansible roles](../installing.md)
 

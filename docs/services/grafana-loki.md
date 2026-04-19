@@ -26,6 +26,7 @@ Loki is a log aggregation system designed to store and query logs from all your 
 See the project's [documentation](https://grafana.com/docs/loki/latest/) to learn what Loki does and why it might be useful to you.
 
 For details about configuring the [Ansible role for Loki](https://github.com/mother-of-all-self-hosting/ansible-role-loki), you can check them via:
+
 - 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-loki/blob/main/docs/configuring-loki.md) online
 - 📁 `roles/galaxy/loki/docs/configuring-loki.md` locally, if you have [fetched the Ansible roles](../installing.md)
 

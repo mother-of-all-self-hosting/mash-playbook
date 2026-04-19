@@ -88,7 +88,6 @@ Your variable should contain the whole output from above, including hashing pref
 ihatemoney_admin_password: "scrypt:32768:8:1$....$......."
 ```
 
-
 ### Control project creation access (optional)
 
 By default the instance is open to public and anyone can create a project. If you wish to limit who is capable of creating one, you can secure the instance with the admin password.

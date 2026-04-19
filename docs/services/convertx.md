@@ -26,6 +26,7 @@ ConvertX is a self-hosted online file converter which supports a lot of differen
 See the project's [documentation](https://github.com/C4illin/ConvertX/blob/main/README.md) to learn what ConvertX does and why it might be useful to you.
 
 For details about configuring the [Ansible role for ConvertX](https://github.com/mother-of-all-self-hosting/ansible-role-convertx), you can check them via:
+
 - 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-convertx/blob/main/docs/configuring-convertx.md) online
 - 📁 `roles/galaxy/convertx/docs/configuring-convertx.md` locally, if you have [fetched the Ansible roles](../installing.md)
 

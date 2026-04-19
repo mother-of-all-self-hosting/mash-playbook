@@ -1,13 +1,17 @@
 <!--
 SPDX-FileCopyrightText: 2024 Nikita Chernyi
-SPDX-FileCopyrightText: 2025 Suguru Hirahara
+SPDX-FileCopyrightText: 2025, 2026 Suguru Hirahara
 
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 
 # Docker Registry Proxy
 
-[Docker Registry Proxy](https://github.com/etkecc/docker-registry-proxy) is a pass-through Docker registry (distribution) proxy with metadata caching, Docker-compatible errors, Prometheus metrics, etc.
+The playbook can install and configure [Docker Registry Proxy](https://github.com/etkecc/docker-registry-proxy) for you.
+
+Docker Registry Proxy is a pass-through Docker registry (distribution) proxy with metadata caching, Docker-compatible errors, Prometheus metrics, etc.
+
+See the project's [documentation](https://github.com/etkecc/docker-registry-proxy/blob/main/README.md) to learn what Docker Registry Proxy does and why it might be useful to you.
 
 ## Dependencies
 

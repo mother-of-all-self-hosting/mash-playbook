@@ -28,6 +28,7 @@ See the project's [documentation](https://www.mongodb.com/docs/) to learn what M
 Some of the services installed by this playbook require a MongoDB database. Enabling the MongoDB database service will automatically wire all other services which require such a database to use it.
 
 For details about configuring the [Ansible role for MongoDB](https://github.com/mother-of-all-self-hosting/ansible-role-mongodb), you can check them via:
+
 - 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-mongodb/blob/main/docs/configuring-mongodb.md) online
 - 📁 `roles/galaxy/mongodb/docs/configuring-mongodb.md` locally, if you have [fetched the Ansible roles](../installing.md)
 

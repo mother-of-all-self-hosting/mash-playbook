@@ -1,19 +1,21 @@
 <!--
 SPDX-FileCopyrightText: 2023 Slavi Pantaleev
-SPDX-FileCopyrightText: 2025 Suguru Hirahara
+SPDX-FileCopyrightText: 2025, 2026 Suguru Hirahara
 
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 
 # Docker Registry Purger
 
-[Docker Registry Purger](https://github.com/devture/docker-registry-purger) is a small tool used for purging a private Docker registry's old tags.
+The playbook can install and configure [Docker Registry Purger](https://github.com/devture/docker-registry-purger) for you.
 
+Docker Registry Purger is a small tool used for purging a private Docker registry's old tags.
+
+See the project's [documentation](https://github.com/devture/docker-registry-purger/blob/main/README.md) to learn what Docker Registry Purger does and why it might be useful to you.
 
 ## Dependencies
 
 This service requires to be pointed to a container registry. It may be a registry powered by [Docker Registry](docker-registry.md) or by some other software.
-
 
 ## Configuration
 
@@ -47,13 +49,11 @@ docker_registry_purger_container_network: "{{ docker_registry_container_network 
 
 You may wish to tweak some [default configuration]() variables, which ultimately control [environment variables](https://github.com/devture/docker-registry-purger#environment-variables) of the purger tool.
 
-
 ## Usage
 
 After running the command for installation, the Docker Registry Purger instance becomes available at the URL specified with `docker_registry_browser_hostname` and `docker_registry_browser_path_prefix`.
 
 You should be able to browse the images and possibly delete them (if enabled via `docker_registry_browser_enabled_delete_images`).
-
 
 ## Related services
 

@@ -27,6 +27,7 @@ Converse is a free and open-source XMPP chat client written in JavaScript which 
 See the project's [documentation](https://conversejs.org/docs/html/index.html) to learn what Converse does and why it might be useful to you.
 
 For details about configuring the [Ansible role for Converse](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az22bUmhZzA5VWtmKERFkEjGzdPuke), you can check them via:
+
 - 🌐 [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az22bUmhZzA5VWtmKERFkEjGzdPuke/tree/docs/configuring-converse.md) online
 - 📁 `roles/galaxy/converse/docs/configuring-converse.md` locally, if you have [fetched the Ansible roles](../installing.md)
 

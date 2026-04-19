@@ -30,6 +30,7 @@ Forgejo is a self-hosted lightweight software forge (Git hosting service, etc.),
 See the project's [documentation](https://forgejo.org/docs/latest/) to learn what Forgejo does and why it might be useful to you.
 
 For details about configuring the [Ansible role for Forgejo](https://github.com/mother-of-all-self-hosting/ansible-role-forgejo), you can check them via:
+
 - 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-forgejo/blob/main/docs/configuring-forgejo.md) online
 - 📁 `roles/galaxy/forgejo/docs/configuring-forgejo.md` locally, if you have [fetched the Ansible roles](../installing.md)
 

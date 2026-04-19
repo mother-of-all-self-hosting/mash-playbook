@@ -26,6 +26,7 @@ PrivateBin is a minimalist, open source online pastebin where the server has zer
 See the project's [documentation](https://github.com/PrivateBin/PrivateBin/tree/master/doc) to learn what PrivateBin does and why it might be useful to you.
 
 For details about configuring the [Ansible role for PrivateBin](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az47v1S9DRcEtm2dgKwZZs4YgoLRgF), you can check them via:
+
 - 🌐 [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az47v1S9DRcEtm2dgKwZZs4YgoLRgF/tree/docs/configuring-privatebin.md) online
 - 📁 `roles/galaxy/privatebin/docs/configuring-privatebin.md` locally, if you have [fetched the Ansible roles](../installing.md)
 

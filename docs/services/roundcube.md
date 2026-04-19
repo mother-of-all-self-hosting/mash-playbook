@@ -28,6 +28,7 @@ Roundcube is a browser-based multilingual IMAP client with an application-like u
 See the project's [documentation](https://docs.roundcube.net/) to learn what Roundcube does and why it might be useful to you.
 
 For details about configuring the [Ansible role for Roundcube](https://github.com/mother-of-all-self-hosting/ansible-role-roundcube), you can check them via:
+
 - 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-roundcube/blob/main/docs/configuring-roundcube.md) online
 - 📁 `roles/galaxy/roundcube/docs/configuring-roundcube.md` locally, if you have [fetched the Ansible roles](../installing.md)
 

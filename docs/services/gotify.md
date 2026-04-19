@@ -27,6 +27,7 @@ Gotify is a simple server for sending and receiving messages.
 See the project's [documentation](https://gotify.net/docs/) to learn what Gotify does and why it might be useful to you.
 
 For details about configuring the [Ansible role for Gotify](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3dQNNLitS9sByxZ83ivu5qg6qR4N), you can check them via:
+
 - 🌐 [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3dQNNLitS9sByxZ83ivu5qg6qR4N/tree/docs/configuring-gotify.md) online
 - 📁 `roles/galaxy/gotify/docs/configuring-gotify.md` locally, if you have [fetched the Ansible roles](../installing.md)
 

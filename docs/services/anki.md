@@ -26,6 +26,7 @@ Anki is a flashcard program that helps you spend more time on challenging materi
 See the project's [documentation](https://docs.ankiweb.net/sync-server.html) to learn what the synchronization server does and why it might be useful to you.
 
 For details about configuring the [Ansible role for the server](https://github.com/mother-of-all-self-hosting/ansible-role-anki), you can check them via:
+
 - 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-anki/blob/main/docs/configuring-anki.md) online
 - 📁 `roles/galaxy/anki/docs/configuring-anki.md` locally, if you have [fetched the Ansible roles](../installing.md)
 

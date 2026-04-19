@@ -17,7 +17,11 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
 # qBittorrent
 
-[qBittorrent](https://www.qbittorrent.org/) is a BitTorrent client programmed in C++ / Qt that uses libtorrent.
+The playbook can install and configure [qBittorrent](https://github.com/linuxserver/docker-qbittorrent) for you.
+
+qBittorrent is a BitTorrent client programmed in C++ / Qt that uses libtorrent.
+
+See the project's [documentation](https://docs.linuxserver.io/images/docker-qbittorrent/) to learn what qBittorrent does and why it might be useful to you.
 
 ## Dependencies
 

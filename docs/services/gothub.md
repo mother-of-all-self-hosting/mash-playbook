@@ -26,6 +26,7 @@ GotHub allows you to view GitHub repositories without exposing your IP address, 
 See the project's [documentation](https://codeberg.org/gothub/gothub/src/branch/dev/README.md) to learn what GotHub does and why it might be useful to you.
 
 For details about configuring the [Ansible role for GotHub](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3AzFVv3koKtheJTTwPSjF3J6DajePK), you can check them via:
+
 - 🌐 [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3AzFVv3koKtheJTTwPSjF3J6DajePK/tree/docs/configuring-gothub.md) online
 - 📁 `roles/galaxy/gothub/docs/configuring-gothub.md` locally, if you have [fetched the Ansible roles](../installing.md)
 

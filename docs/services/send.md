@@ -26,6 +26,7 @@ Send is a fork of Mozilla's discontinued [Firefox Send](https://github.com/mozil
 See the project's [documentation](https://github.com/timvisee/send/blob/master/README.md) to learn what Send does and why it might be useful to you.
 
 For details about configuring the [Ansible role for Send](https://github.com/mother-of-all-self-hosting/ansible-role-send), you can check them via:
+
 - 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-send/blob/main/docs/configuring-send.md) online
 - 📁 `roles/galaxy/send/docs/configuring-send.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
@@ -158,7 +159,6 @@ mash_playbook_service_base_directory_name_prefix: 'send-'
 #                                                                      #
 ########################################################################
 
-
 ########################################################################
 #                                                                      #
 # valkey                                                               #
@@ -227,7 +227,6 @@ valkey_enabled: true
 # /valkey                                                              #
 #                                                                      #
 ########################################################################
-
 
 ########################################################################
 #                                                                      #

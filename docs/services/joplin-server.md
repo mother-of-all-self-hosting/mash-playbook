@@ -29,6 +29,7 @@ While Joplin is architectured to be "offline first", with a Joplin Server it is 
 See the project's [documentation](https://joplinapp.org/help/) to learn what Joplin and Joplin Server do and why they might be useful to you.
 
 For details about configuring the [Ansible role for Joplin Server](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3AzttNpUS7xCeDnn2e4No2dUvZv7L7), you can check them via:
+
 - 🌐 [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3AzttNpUS7xCeDnn2e4No2dUvZv7L7/tree/docs/configuring-joplin-server.md) online
 - 📁 `roles/galaxy/joplin_server/docs/configuring-joplin-server.md` locally, if you have [fetched the Ansible roles](../installing.md)
 

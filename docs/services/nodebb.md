@@ -27,6 +27,7 @@ NodeBB is a Node.js based free forum software.
 See the project's [documentation](https://docs.nodebb.org/) to learn what NodeBB does and why it might be useful to you.
 
 For details about configuring the [Ansible role for NodeBB](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az2K9dPANyrXJY7juE9XecXyernA6h), you can check them via:
+
 - 🌐 [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az2K9dPANyrXJY7juE9XecXyernA6h/tree/docs/configuring-nodebb.md) online
 - 📁 `roles/galaxy/nodebb/docs/configuring-nodebb.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
@@ -134,7 +135,6 @@ mash_playbook_service_base_directory_name_prefix: 'nodebb-'
 #                                                                      #
 ########################################################################
 
-
 ########################################################################
 #                                                                      #
 # valkey                                                               #
@@ -207,7 +207,6 @@ valkey_enabled: true
 # /valkey                                                              #
 #                                                                      #
 ########################################################################
-
 
 ########################################################################
 #                                                                      #

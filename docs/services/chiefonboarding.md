@@ -27,6 +27,7 @@ ChiefOnboarding is a remote-first employee onboarding platform to streamline the
 See the project's [documentation](https://docs.chiefonboarding.com) to learn what ChiefOnboarding does and why it might be useful to you.
 
 For details about configuring the [Ansible role for ChiefOnboarding](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3HYheWh86U9ErEL18tK2gBkq7g2A), you can check them via:
+
 - 🌐 [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3HYheWh86U9ErEL18tK2gBkq7g2A/tree/docs/configuring-chiefonboarding.md) online
 - 📁 `roles/galaxy/chiefonboarding/docs/configuring-chiefonboarding.md` locally, if you have [fetched the Ansible roles](../installing.md)
 

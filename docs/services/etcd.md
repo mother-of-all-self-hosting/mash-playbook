@@ -26,6 +26,7 @@ etcd is a strongly consistent, distributed key-value store that provides a relia
 See the project's [documentation](https://etcd.io/docs/latest/) to learn what etcd does and why it might be useful to you.
 
 For details about configuring the [Ansible role for etcd](https://github.com/mother-of-all-self-hosting/ansible-role-etcd), you can check them via:
+
 - 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-etcd/blob/main/docs/configuring-etcd.md) online
 - 📁 `roles/galaxy/etcd/docs/configuring-etcd.md` locally, if you have [fetched the Ansible roles](../installing.md)
 

@@ -28,6 +28,7 @@ In Radicle, while all nodes contribute to the network by seeding data to others,
 See the project's [documentation](https://radicle.xyz/guides/seeder#introduction) to learn what `radicle-node` does and why it might be useful to you.
 
 For details about configuring the [Ansible role for Radicle node](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az28JTUhepmbS3hLZyUeEvXeqk9QW5), you can check them via:
+
 - 🌐 [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az28JTUhepmbS3hLZyUeEvXeqk9QW5/tree/docs/configuring-radicle-node.md) online
 - 📁 `roles/galaxy/radicle_node/docs/configuring-radicle-node.md` locally, if you have [fetched the Ansible roles](../installing.md)
 

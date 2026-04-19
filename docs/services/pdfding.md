@@ -27,6 +27,7 @@ PdfDing is a self-hosted PDF manager, viewer and editor, which offers a seamless
 See the project's [documentation](https://docs.pdfding.com/) to learn what PdfDing does and why it might be useful to you.
 
 For details about configuring the [Ansible role for PdfDing](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az2cZCZP8Mu4LYMbHKaTdnP1otc46L), you can check them via:
+
 - 🌐 [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az2cZCZP8Mu4LYMbHKaTdnP1otc46L/tree/docs/configuring-pdfding.md) online
 - 📁 `roles/galaxy/pdfding/docs/configuring-pdfding.md` locally, if you have [fetched the Ansible roles](../installing.md)
 

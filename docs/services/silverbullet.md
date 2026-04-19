@@ -28,6 +28,7 @@ SilverBullet is a programmable, private, personal knowledge management platform.
 See the project's [documentation](https://silverbullet.md/Manual) to learn what SilverBullet does and why it might be useful to you.
 
 For details about configuring the [Ansible role for SilverBullet](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3PxyXm3EXE4xCNKcaKVKmtdjVNog), you can check them via:
+
 - 🌐 [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3PxyXm3EXE4xCNKcaKVKmtdjVNog/tree/docs/configuring-silverbullet.md) online
 - 📁 `roles/galaxy/silverbullet/docs/configuring-silverbullet.md` locally, if you have [fetched the Ansible roles](../installing.md)
 

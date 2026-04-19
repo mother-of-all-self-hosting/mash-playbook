@@ -30,6 +30,7 @@ Databasus is free software for backing up database of PostgreSQL, MySQL, MariaDB
 See the project's [documentation](https://databasus.com/installation) to learn what Databasus does and why it might be useful to you.
 
 For details about configuring the [Ansible role for Databasus](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3AzeQ4hXq2LkbADcndSsjesgq9kDPf), you can check them via:
+
 - 🌐 [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3AzeQ4hXq2LkbADcndSsjesgq9kDPf/tree/docs/configuring-databasus.md) online
 - 📁 `roles/galaxy/databasus/docs/configuring-databasus.md` locally, if you have [fetched the Ansible roles](../installing.md)
 

@@ -26,6 +26,7 @@ ReactFlux is a third-party web frontend for Miniflux, aimed at providing a more 
 See the project's [documentation](https://github.com/electh/ReactFlux/blob/main/README.md) to learn what ReactFlux does and why it might be useful to you.
 
 For details about configuring the [Ansible role for ReactFlux](https://github.com/mother-of-all-self-hosting/ansible-role-reactflux), you can check them via:
+
 - 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-reactflux/blob/main/docs/configuring-reactflux.md) online
 - 📁 `roles/galaxy/reactflux/docs/configuring-reactflux.md` locally, if you have [fetched the Ansible roles](../installing.md)
 

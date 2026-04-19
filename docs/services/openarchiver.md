@@ -28,6 +28,7 @@ Open Archiver is free software for archiving, storing, indexing, and searching e
 See the project's [documentation](https://docs.openarchiver.com/) to learn what Open Archiver does and why it might be useful to you.
 
 For details about configuring the [Ansible role for Open Archiver](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az2Q7Pka6bCT5D6Ng54kT8UcYAcVTC), you can check them via:
+
 - 🌐 [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az2Q7Pka6bCT5D6Ng54kT8UcYAcVTC/tree/docs/configuring-openarchiver.md) online
 - 📁 `roles/galaxy/openarchiver/docs/configuring-openarchiver.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
@@ -157,7 +158,6 @@ mash_playbook_service_base_directory_name_prefix: 'openarchiver-'
 #                                                                      #
 ########################################################################
 
-
 ########################################################################
 #                                                                      #
 # valkey                                                               #
@@ -226,7 +226,6 @@ valkey_enabled: true
 # /valkey                                                              #
 #                                                                      #
 ########################################################################
-
 
 ########################################################################
 #                                                                      #

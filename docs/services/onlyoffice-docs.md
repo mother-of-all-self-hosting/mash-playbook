@@ -26,6 +26,7 @@ ONLYOFFICE Docs is an online office suite comprising viewers and editors for tex
 See the project's [documentation](https://helpcenter.onlyoffice.com/docs) to learn what ONLYOFFICE Docs does and why it might be useful to you.
 
 For details about configuring the [Ansible role for ONLYOFFICE Docs](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3kozTn4Kn5eJtgJQj1aCFUpqxW5Y), you can check them via:
+
 - 🌐 [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3kozTn4Kn5eJtgJQj1aCFUpqxW5Y/tree/docs/configuring-onlyoffice-docs.md) online
 - 📁 `roles/galaxy/onlyoffice_docs/docs/configuring-onlyoffice-docs.md` locally, if you have [fetched the Ansible roles](../installing.md)
 

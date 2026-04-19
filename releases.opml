@@ -27,7 +27,7 @@
     <outline text="bitmagnet" title="bitmagnet" type="rss" htmlUrl="https://github.com/bitmagnet-io/bitmagnet" xmlUrl="https://github.com/bitmagnet-io/bitmagnet/releases.atom" />
     <outline text="borg_ui" title="borg_ui" type="rss" htmlUrl="https://github.com/karanhudia/borg-ui" xmlUrl="https://github.com/karanhudia/borg-ui/releases.atom" />
     <outline text="browserless" title="browserless" type="rss" htmlUrl="https://github.com/browserless/browserless" xmlUrl="https://github.com/browserless/browserless/releases.atom" />
-    <outline text="calibre_web" title="calibre_web" type="rss" htmlUrl="https://github.com/calibre_web/calibre_web" xmlUrl="https://github.com/calibre_web/calibre_web/releases.atom" />
+    <outline text="calibre_web" title="calibre_web" type="rss" htmlUrl="https://github.com/janeczku/calibre-web" xmlUrl="https://github.com/janeczku/calibre-web/releases.atom" />
     <outline text="calibre_web_automated" title="calibre_web_automated" type="rss" htmlUrl="https://github.com/crocodilestick/Calibre-Web-Automated" xmlUrl="https://github.com/crocodilestick/Calibre-Web-Automated/releases.atom" />
     <outline text="cap" title="cap" type="rss" htmlUrl="https://github.com/tiagozip/cap" xmlUrl="https://github.com/tiagozip/cap/releases.atom" />
     <outline text="changedetection" title="changedetection" type="rss" htmlUrl="https://github.com/dgtlmoon/changedetection.io" xmlUrl="https://github.com/dgtlmoon/changedetection.io/releases.atom" />
@@ -80,6 +80,7 @@
     <outline text="headplane" title="headplane" type="rss" htmlUrl="https://github.com/tale/headplane" xmlUrl="https://github.com/tale/headplane/releases.atom" />
     <outline text="headscale" title="headscale" type="rss" htmlUrl="https://github.com/juanfont/headscale" xmlUrl="https://github.com/juanfont/headscale/releases.atom" />
     <outline text="healthchecks" title="healthchecks" type="rss" htmlUrl="https://github.com/healthchecks/healthchecks" xmlUrl="https://github.com/healthchecks/healthchecks/releases.atom" />
+    <outline text="heyform" title="heyform" type="rss" htmlUrl="https://github.com/heyform/heyform" xmlUrl="https://github.com/heyform/heyform/releases.atom" />
     <outline text="homarr" title="homarr" type="rss" htmlUrl="https://github.com/homarr-labs/homarr" xmlUrl="https://github.com/homarr-labs/homarr/releases.atom" />
     <outline text="ihatemoney" title="ihatemoney" type="rss" htmlUrl="https://github.com/spiral-project/ihatemoney" xmlUrl="https://github.com/spiral-project/ihatemoney/releases.atom" />
     <outline text="immich" title="immich" type="rss" htmlUrl="https://github.com/immich-app/immich" xmlUrl="https://github.com/immich-app/immich/releases.atom" />
@@ -113,6 +114,7 @@
     <outline text="matterbridge" title="matterbridge" type="rss" htmlUrl="https://github.com/42wim/matterbridge" xmlUrl="https://github.com/42wim/matterbridge/releases.atom" />
     <outline text="meilisearch" title="meilisearch" type="rss" htmlUrl="https://github.com/meilisearch/meilisearch" xmlUrl="https://github.com/meilisearch/meilisearch/releases.atom" />
     <outline text="memcached" title="memcached" type="rss" htmlUrl="https://github.com/memcached/memcached/" xmlUrl="https://github.com/memcached/memcached//releases.atom" />
+    <outline text="memos" title="memos" type="rss" htmlUrl="https://github.com/usememos/memos" xmlUrl="https://github.com/usememos/memos/releases.atom" />
     <outline text="minecraft" title="minecraft" type="rss" htmlUrl="https://github.com/itzg/docker-minecraft-server" xmlUrl="https://github.com/itzg/docker-minecraft-server/releases.atom" />
     <outline text="miniflux" title="miniflux" type="rss" htmlUrl="https://github.com/miniflux/v2" xmlUrl="https://github.com/miniflux/v2/releases.atom" />
     <outline text="misskey" title="misskey" type="rss" htmlUrl="https://github.com/misskey-dev/misskey" xmlUrl="https://github.com/misskey-dev/misskey/releases.atom" />
@@ -156,7 +158,7 @@
     <outline text="plausible" title="plausible" type="rss" htmlUrl="https://github.com/plausible/analytics" xmlUrl="https://github.com/plausible/analytics/releases.atom" />
     <outline text="plex" title="plex" type="rss" htmlUrl="https://github.com/plexinc" xmlUrl="https://github.com/plexinc/releases.atom" />
     <outline text="pocket_id" title="pocket_id" type="rss" htmlUrl="https://github.com/pocket-id/pocket-id" xmlUrl="https://github.com/pocket-id/pocket-id/releases.atom" />
-    <outline text="postgis" title="postgis" type="rss" htmlUrl="https://git.osgeo.org/gitea/postgis/postgis" xmlUrl="https://git.osgeo.org/gitea/postgis/postgis.atom" />
+    <outline text="postgis" title="postgis" type="rss" htmlUrl="https://github.com/postgis/postgis" xmlUrl="https://github.com/postgis/postgis/releases.atom" />
     <outline text="postgres" title="postgres" type="rss" htmlUrl="https://github.com/postgres/postgres" xmlUrl="https://github.com/postgres/postgres/releases.atom" />
     <outline text="postgres_backup" title="postgres_backup" type="rss" htmlUrl="https://github.com/prodrigestivill/docker-postgres-backup-local" xmlUrl="https://github.com/prodrigestivill/docker-postgres-backup-local/releases.atom" />
     <outline text="privatebin" title="privatebin" type="rss" htmlUrl="https://github.com/PrivateBin/PrivateBin" xmlUrl="https://github.com/PrivateBin/PrivateBin/releases.atom" />

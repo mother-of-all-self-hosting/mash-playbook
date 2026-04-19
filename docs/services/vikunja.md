@@ -28,6 +28,7 @@ Vikunja is a self-hosted to-do application.
 See the project's [documentation](https://vikunja.io/docs) to learn what Vikunja does and why it might be useful to you.
 
 For details about configuring the [Ansible role for Vikunja](https://github.com/mother-of-all-self-hosting/ansible-role-vikunja/), you can check them via:
+
 - 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-vikunja/blob/main/docs/configuring-vikunja.md) online
 - 📁 `roles/galaxy/vikunja/docs/configuring-vikunja.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
@@ -148,7 +149,6 @@ mash_playbook_service_base_directory_name_prefix: 'vikunja-'
 #                                                                      #
 ########################################################################
 
-
 ########################################################################
 #                                                                      #
 # valkey                                                               #
@@ -221,7 +221,6 @@ valkey_enabled: true
 # /valkey                                                              #
 #                                                                      #
 ########################################################################
-
 
 ########################################################################
 #                                                                      #
@@ -302,7 +301,9 @@ vikunja_container_labels_traefik_metrics_middleware_basic_auth_users: ""
 
 After running the command for installation, the Vikunja instance becomes available at the URL specified with `vikunja_hostname`. With the configuration above, the service is hosted at `https://vikunja.example.com`.
 
-To get started, create a user first and open the URL with a web browser to log in to the instance. You can create one on the web UI if `vikunja_environment_variables_service_enableregistration` is set to `true`. Alternatively, you can run the playbook with the `create-user-vikunja` tag to create users. See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-vikunja/blob/main/docs/configuring-vikunja.md#creating-users) on the role's documentation for details.
+To get started, create a user first and open the URL with a web browser to log in to the instance. You can create one on the web UI if `vikunja_environment_variables_service_enableregistration` is set to `true`.
+
+Alternatively, you can run the playbook with the `create-user-vikunja` or `ensure-vikunja-users-created` tag to create users. See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-vikunja/blob/main/docs/configuring-vikunja.md#creating-users) on the role's documentation for details.
 
 ## Troubleshooting
 

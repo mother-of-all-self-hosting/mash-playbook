@@ -1,15 +1,18 @@
 <!--
 SPDX-FileCopyrightText: 2023 Julian-Samuel Gebühr
-SPDX-FileCopyrightText: 2023 - 2024 Slavi Pantaleev
-SPDX-FileCopyrightText: 2025 Suguru Hirahara
+SPDX-FileCopyrightText: 2023, 2024 Slavi Pantaleev
+SPDX-FileCopyrightText: 2025, 2026 Suguru Hirahara
 
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 
 # Infisical
 
-[Infisical](https://infisical.com/) is an open-source end-to-end encrypted platform for securely managing secrets and configs across your team, devices, and infrastructure.
+The playbook can install and configure [Infisical](https://infisical.com/) for you.
 
+Infisical is an open-source end-to-end encrypted platform for securely managing secrets and configs across your team, devices, and infrastructure.
+
+See the project's [documentation](https://infisical.com/docs/documentation/guides/introduction) to learn what Infisical does and why it might be useful to you.
 
 ## Dependencies
 
@@ -18,7 +21,6 @@ This service requires the following other services:
 - a [MongoDB](mongodb.md) document-oriented database server
 - a [Traefik](traefik.md) reverse-proxy server
 - a [Valkey](valkey.md) data-store; see [below](#configure-valkey) for details about installation
-
 
 ## Configuration
 
@@ -122,7 +124,6 @@ mash_playbook_service_base_directory_name_prefix: 'infisical-'
 #                                                                      #
 ########################################################################
 
-
 ########################################################################
 #                                                                      #
 # valkey                                                               #
@@ -192,7 +193,6 @@ valkey_enabled: true
 # /valkey                                                              #
 #                                                                      #
 ########################################################################
-
 
 ########################################################################
 #                                                                      #

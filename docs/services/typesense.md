@@ -27,6 +27,7 @@ Typesense is a fast and typo-tolerant fulltext search engine like ElasticSearch.
 See the project's [documentation](https://typesense.org/docs/) to learn what Typesense does and why it might be useful to you.
 
 For details about configuring the [Ansible role for Typesense](https://github.com/mother-of-all-self-hosting/ansible-role-typesense), you can check them via:
+
 - 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-typesense/blob/main/docs/configuring-typesense.md) online
 - 📁 `roles/galaxy/typesense/docs/configuring-typesense.md` locally, if you have [fetched the Ansible roles](../installing.md)
 

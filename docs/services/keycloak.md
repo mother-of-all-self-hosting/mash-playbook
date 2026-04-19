@@ -1,19 +1,17 @@
 <!--
 SPDX-FileCopyrightText: 2023 Slavi Pantaleev
-SPDX-FileCopyrightText: 2025 Suguru Hirahara
+SPDX-FileCopyrightText: 2025, 2026 Suguru Hirahara
 
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 
 # Keycloak
 
-[Keycloak](https://www.keycloak.org/) is an open source identity and access management solution.
+The playbook can install and configure [Keycloak](https://www.keycloak.org/) for you.
 
-Follow the [Keycloak documentation](https://www.keycloak.org/documentation) or other guides for learning how to use Keycloak.
+Keycloak is an open source identity and access management solution.
 
-> [!WARNING]
-> This service is a new addition to the playbook. It may not fully work or be configured in a suboptimal manner.
-
+See the project's [documentation](https://www.keycloak.org/documentation) to learn what Keycloak does and why it might be useful to you.
 
 ## Dependencies
 
@@ -21,7 +19,6 @@ This service requires the following other services:
 
 - a [Postgres](postgres.md) database
 - a [Traefik](traefik.md) reverse-proxy server
-
 
 ## Configuration
 

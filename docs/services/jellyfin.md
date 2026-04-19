@@ -1,13 +1,17 @@
 <!--
 SPDX-FileCopyrightText: 2025 MASH project contributors
-SPDX-FileCopyrightText: 2025 Suguru Hirahara
+SPDX-FileCopyrightText: 2025, 2026 Suguru Hirahara
 
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 
 # Jellyfin
 
-[Jellyfin](https://jellyfin.org/) is an open-source personal media server that allows you to organize and stream your collection of movies, TV shows, and music.
+The playbook can install and configure [Jellyfin](https://jellyfin.org/) for you.
+
+Jellyfin is an open-source personal media server that allows you to organize and stream your collection of movies, TV shows, and music.
+
+See the project's [documentation](https://jellyfin.org/docs/) to learn what Jellyfin does and why it might be useful to you.
 
 ## Dependencies
 

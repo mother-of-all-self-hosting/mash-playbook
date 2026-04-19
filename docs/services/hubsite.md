@@ -27,6 +27,7 @@ Hubsite is a simple, static site that shows an overview of available services. I
 See the project's [documentation](https://github.com/moan0s/hubsite/blob/main/README.md) to learn what Hubsite does and why it might be useful to you.
 
 For details about configuring the [Ansible role for Hubsite](https://github.com/mother-of-all-self-hosting/ansible-role-hubsite), you can check them via:
+
 - 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-hubsite/blob/main/docs/configuring-hubsite.md) online
 - 📁 `roles/galaxy/hubsite/docs/configuring-hubsite.md` locally, if you have [fetched the Ansible roles](../installing.md)
 

@@ -27,6 +27,7 @@ Wordpress is a web content management system.
 See the project's [documentation](https://codex.wordpress.org/Main_Page/) to learn what Wordpress does and why it might be useful to you.
 
 For details about configuring the [Ansible role for Wordpress](https://github.com/mother-of-all-self-hosting/ansible-role-wordpress), you can check them via:
+
 - 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-wordpress/blob/main/docs/configuring-wordpress.md) online
 - 📁 `roles/galaxy/wordpress/docs/configuring-wordpress.md` locally, if you have [fetched the Ansible roles](../installing.md)
 

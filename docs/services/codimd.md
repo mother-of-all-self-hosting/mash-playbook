@@ -27,6 +27,7 @@ CodiMD is a realtime collaborative markdown notes on all platforms.
 See the project's [documentation](https://hackmd.io/c/codimd-documentation) to learn what CodiMD does and why it might be useful to you.
 
 For details about configuring the [Ansible role for CodiMD](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Azp12kTQqmgqnFpUU6gPyVq19HNMD), you can check them via:
+
 - 🌐 [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Azp12kTQqmgqnFpUU6gPyVq19HNMD/tree/docs/configuring-codimd.md) online
 - 📁 `roles/galaxy/codimd/docs/configuring-codimd.md` locally, if you have [fetched the Ansible roles](../installing.md)
 

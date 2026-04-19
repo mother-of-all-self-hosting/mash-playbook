@@ -26,6 +26,7 @@ Telegraf is an open source server agent to help you collect metrics from your st
 See the project's [documentation](https://docs.influxdata.com/telegraf/v1/) to learn what Telegraf does and why it might be useful to you.
 
 For details about configuring the [Ansible role for Telegraf](https://github.com/mother-of-all-self-hosting/ansible-role-telegraf), you can check them via:
+
 - 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-telegraf/blob/main/docs/configuring-telegraf.md) online
 - 📁 `roles/galaxy/telegraf/docs/configuring-telegraf.md` locally, if you have [fetched the Ansible roles](../installing.md)
 

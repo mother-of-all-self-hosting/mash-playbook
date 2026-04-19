@@ -1,12 +1,17 @@
 <!--
-SPDX-FileCopyrightText: 2023 - 2025 Slavi Pantaleev
+SPDX-FileCopyrightText: 2023-2025 Slavi Pantaleev
+SPDX-FileCopyrightText: 2026 Suguru Hirahara
 
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 
 # WireGuard Easy
 
-[WireGuard Easy](https://github.com/wg-easy/wg-easy) is the easiest way to run [WireGuard](https://www.wireguard.com/) VPN + Web-based Admin UI.
+The playbook can install and configure [WireGuard Easy](https://github.com/wg-easy/wg-easy) for you.
+
+WireGuard Easy is the easiest way to run [WireGuard](https://www.wireguard.com/) VPN + Web-based Admin UI.
+
+See the project's [documentation](https://wg-easy.github.io/wg-easy/latest/) to learn what WireGuard Easy does and why it might be useful to you.
 
 ## Dependencies
 
@@ -15,7 +20,6 @@ This service requires the following other services:
 - a [Traefik](traefik.md) reverse-proxy server
 - a modern Linux kernel which supports WireGuard
 - `devture_systemd_docker_base_ipv6_enabled: true` if you'd like IPv6 support
-
 
 ## Configuration
 
@@ -203,7 +207,6 @@ wg_easy_environment_variables_additional_variables: |
 
 💡 Injecting this `INSECURE` environment variable like this is pointless, since the Ansible role provides a dedicated variable for controlling it (`wg_easy_environment_variables_additional_variable_insecure`).
 
-
 ## Usage
 
 After installation, you can open the wg-easy [URL](#url).
@@ -219,7 +222,6 @@ Similarly, if you have provided a hostname (`wg_easy_hostname` and/or `wg_easy_e
 ### Creating WireGuard clients
 
 You can then create various Clients and import the configuration for them onto your devices — either by downloading a file or by scanning a QR code.
-
 
 ### Creating additional users
 
@@ -303,7 +305,6 @@ We propose 2 alternatives for your IPv6 CIDR:
 Regardless of what you choose, your WireGuard clients will get a network interface which uses a GUA or GUA-like IPv6 address instead of a ULA IPv6 address. With that, IPv6 connectivity will be preferred over IPv4 even without custom changes to `/etc/gai.conf`.
 
 To change the IPv6 CIDR, refer to the [Adjusting the IPv4/IPv6 CIDR](#adjusting-the-ipv4ipv6-cidr) section above.
-
 
 ## Related services
 
