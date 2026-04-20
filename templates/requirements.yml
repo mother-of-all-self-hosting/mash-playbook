@@ -784,6 +784,10 @@
   version: v6.1.2-1
   name: redmine
   activation_prefix: redmine_
+- src: git+https://seed.radicle.garden/z3rhdtDR5EHHGk1SNBHwYtofxNyAf.git
+  version: v4.0.0-0
+  name: reitti
+  activation_prefix: reitti_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-roundcube.git
   version: v1.6.14-3
   name: roundcube
