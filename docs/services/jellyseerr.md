@@ -51,8 +51,6 @@ For additional configuration options, refer to [ansible-role-jellyseerr](https:/
 
 ## Related services
 
-## Related services
-
 - "* Arr" applications — [Autobrr](autobrr.md) / [FlareSolverr](flaresolverr.md) / [Homarr](homarr.md) / [Overseerr](overseerr.md) / [Radarr](radarr.md) / [Sonarr](sonarr.md)
 - [Jackett](jackett.md)
 - [Jellyfin](jellyfin.md)
