@@ -171,9 +171,7 @@ Although Navidrome currently does not offer a native OAuth2 client configuration
 
 This will substitute the local sign-in flow and delegate authentication to a reverse-proxy, which will catch requests and pass usernames to Navidrome via HTML headers after authentication. Navidrome will trust configured proxies unconditionally, create local users and subsequently grant access to existent accounts based on the username header. The first user to login will receive admin privileges, subsequent first logins will be created as non-admin user.
 
-Leveraging the [OAuth2-Proxy](./oauth2-proxy.md) role it is possible to protect Navidrome behind OAuth2/OIDC.
-
-Below you will find a sample configuration with the [Nextcloud OIDC provider](https://github.com/mother-of-all-self-hosting/ansible-role-nextcloud/blob/main/docs/configuring-oidc-provider.md).
+The [OAuth2-Proxy](./oauth2-proxy.md) role supported by this playbook offers a reverse-proxy service capable to authenticate against Navidrome via OAuth2/OIDC and shall serve as such in the sample configuration provided below.
 
 > [!NOTE]
 > This example assumes that you serve Navidrome under a dedicated hostname. If you are serving Navidrome under a path prefix, adjust the `PathPrefix` of the public rule to bypass authentication correctly.
