@@ -342,8 +342,6 @@ You can also connect various Subsonic-API-compatible [apps](https://www.navidrom
 
 ## Related services
 
-## Recommended other services
-
 - [Syncthing](syncthing.md) — a continuous file synchronization program which synchronizes files between two or more computers in real time. See [Syncthing integration](#syncthing-integration)
 - [OAuth2-Proxy](oauth2-proxy.md) — Reverse proxy and static file server that provides authentication using OpenID Connect providers (Google, GitHub, authentik, Keycloak, Nextcloud and others) to SSO-protect services which do not support SSO natively
 - [Feishin](feishin.md) — Music player for Navidrome, Jellyfin, Funkwhale, etc.

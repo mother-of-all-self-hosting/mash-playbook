@@ -29,7 +29,6 @@ Our [Sample configuration](#sample-configuration) below uses [ForwardAuth](https
 
 The [OAuth2-Proxy Ansible role](https://github.com/mother-of-all-self-hosting/ansible-role-oauth2-proxy) should be flexible enough to let you reconfigure it for both modes of operation. However, if feasible, we recommend using the 2nd (ForwardAuth) method.
 
-
 ## Dependencies
 
 This service requires the following other services:
