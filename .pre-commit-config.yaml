@@ -14,6 +14,38 @@ repos:
       - id: check-toml
       - id: trailing-whitespace
       - id: end-of-file-fixer
+  - repo: https://github.com/igorshubovych/markdownlint-cli
+    rev: v0.46.0
+    hooks:
+      - id: markdownlint
+        args: [
+          --disable=MD001,
+          --disable=MD004,
+          --disable=MD007,
+          --disable=MD010,
+          --disable=MD012,
+          --disable=MD013,
+          --disable=MD024,
+          --disable=MD025,
+          --disable=MD026,
+          --disable=MD027,
+          --disable=MD028,
+          --disable=MD029,
+          --disable=MD031,
+          --disable=MD032,
+          --disable=MD033,
+          --disable=MD034,
+          --disable=MD036,
+          --disable=MD037,
+          --disable=MD038,
+          --disable=MD040,
+          --disable=MD041,
+          --disable=MD042,
+          --disable=MD051,
+          --disable=MD055,
+          --disable=MD059,
+          --disable=MD060
+        ]
   - repo: https://github.com/codespell-project/codespell
     rev: v2.4.2
     hooks:
