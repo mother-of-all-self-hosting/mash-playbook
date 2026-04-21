@@ -104,7 +104,7 @@ Done 🥳
 
 If you by accident started the service before importing the database you should
 
-* stop the service
-* use `/mash/postgres/bin/cli` to get a database interface
-* Delete the existing database (THIS WILL DELETE ALL DATA!) `DROP DATABASE ilmo WITH (FORCE);`
-* Continue from "Install (but don't start) the service and database on the server and import the database."
+- stop the service
+- use `/mash/postgres/bin/cli` to get a database interface
+- Delete the existing database (THIS WILL DELETE ALL DATA!) `DROP DATABASE ilmo WITH (FORCE);`
+- Continue from "Install (but don't start) the service and database on the server and import the database."

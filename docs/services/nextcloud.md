@@ -302,10 +302,10 @@ Nextcloud supports Single-Sign-On (SSO) via LDAP, SAML, and OIDC. To make use of
 
 For example, you can enable SSO with authentik via OIDC by following the steps below:
 
-* Create a new provider in authentik and trim the client secret to less than 64 characters
-* Create an application in authentik using this provider
-* Install the app `user_oidc` in Nextcloud
-* Fill in the details from authentik in the app settings
+- Create a new provider in authentik and trim the client secret to less than 64 characters
+- Create an application in authentik using this provider
+- Install the app `user_oidc` in Nextcloud
+- Fill in the details from authentik in the app settings
 
 Refer to [this blogpost by a third party](https://blog.cubieserver.de/2022/complete-guide-to-nextcloud-oidc-authentication-with-authentik/) for details.
 
