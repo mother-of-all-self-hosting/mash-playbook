@@ -158,10 +158,10 @@ Our new [Configuring IPv6](./docs/configuring-ipv6.md) documentation page has mo
 **Existing playbook users** will **need to do some manual work** to enable IPv6 support. This consists of:
 
 - enabling IPv6 support for the Docker container networks:
-	- add `devture_systemd_docker_base_ipv6_enabled: true` to their `vars.yml` configuration file
-	- stop all services (`just stop-all`)
-	- delete all container networks on the server: `docker network rm $(docker network ls -q)`
-	- re-run the playbook fully: `just install-all`
+  - add `devture_systemd_docker_base_ipv6_enabled: true` to their `vars.yml` configuration file
+  - stop all services (`just stop-all`)
+  - delete all container networks on the server: `docker network rm $(docker network ls -q)`
+  - re-run the playbook fully: `just install-all`
 
 - [configuring IPv6 (`AAAA`) DNS records](./docs/configuring-ipv6.md#configuring-dns-records-for-ipv6)
 
