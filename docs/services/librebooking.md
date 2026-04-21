@@ -79,15 +79,27 @@ The playbook automatically provisions a MariaDB database and user for LibreBooki
 
 ### First-time setup
 
-After running the playbook for the first time, navigate to:
 
+LibreBooking does **not** initialize its database schema automatically. You must run the web-based install wizard on first install.
+
+After running the playbook for the first time, retrieve your database credentials:
+
+```bash
+ansible-playbook -i inventory/hosts setup.yml --tags=print-db-credentials-librebooking
 ```
+
+Then navigate to the install wizard:
+
+```text
 https://booking.example.com/Web/install/
 ```
 
-Enter the `librebooking_install_password` you configured when prompted, then follow the wizard to initialize the database schema and create your administrator account.
+You will be prompted for the **installation password** you set above. On the next page:
 
-Keep `librebooking_install_password` set to a strong value to prevent unauthorized access to the setup page.
+- Enter the database credentials printed above as the **MySQL User** and **Password**
+- **Check "Import sample data"** — this creates the database schema and an initial `admin`/`password` account
+- Do **not** check "Create the database" or "Create the database user" — both already exist
+- Afterwards, log in with `admin`/`password` (and change the password)
 
 ## Usage
 
