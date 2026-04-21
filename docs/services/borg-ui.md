@@ -38,7 +38,7 @@ This service requires the following other services:
 
 - [Traefik](traefik.md) reverse-proxy server
 - (optional) [Apprise API](apprise.md)
-- (optional) [Valkey](valkey.md) data-store; see [below](#configure-valkey) for details about installation
+- (optional) [Valkey](valkey.md) data-store; see [below](#configure-valkey-optional) for details about installation
 
 ## Adjusting the playbook configuration
 

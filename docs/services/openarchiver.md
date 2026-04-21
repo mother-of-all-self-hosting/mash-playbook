@@ -39,7 +39,7 @@ This service requires the following other services:
 - [Meilisearch](meilisearch.md)
 - [Postgres](postgres.md) database
 - [Traefik](traefik.md) reverse-proxy server
-- [Valkey](valkey.md) data-store; see [below](#configuring-valkey-optional) for details about installation
+- [Valkey](valkey.md) data-store; see [below](#configure-valkey) for details about installation
 - (optional) [Apache Tika Server](tika.md)
 
 ## Adjusting the playbook configuration
