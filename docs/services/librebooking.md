@@ -79,7 +79,6 @@ The playbook automatically provisions a MariaDB database and user for LibreBooki
 
 ### First-time setup
 
-
 LibreBooking does **not** initialize its database schema automatically. You must run the web-based install wizard on first install.
 
 After running the playbook for the first time, retrieve your database credentials:
