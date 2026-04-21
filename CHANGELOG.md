@@ -176,6 +176,7 @@ This variable did **2 different things at once**:
 - adjusted the Docker daemon's configuration to set `experimental: true` and `ip6tables: true` (a necessary prerequisite for creating IPv6-enabled networks)
 
 Since Docker 27.0.1's [changes to how it handles IPv6](https://docs.docker.com/engine/release-notes/27/#ipv6), **adjusting the Docker daemon's configuration is no longer necessary**, because:
+
 - `ip6tables` defaults to `true` for everyone
 - `ip6tables` is out of the experimental phase, so `experimental` is no longer necessary
 

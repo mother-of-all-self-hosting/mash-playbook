@@ -38,6 +38,7 @@ For details about `just` commands, take a look at: [Running `just` commands](jus
 The Ansible playbook's tasks are tagged, so that certain parts of the Ansible playbook can be run without running all other tasks.
 
 The general command syntax is:
+
 - (**recommended**) when using `just`: `just run-tags COMMA_SEPARATED_TAGS_GO_HERE`
 - when not using `just`: `ansible-playbook -i inventory/hosts setup.yml --tags=COMMA_SEPARATED_TAGS_GO_HERE`
 

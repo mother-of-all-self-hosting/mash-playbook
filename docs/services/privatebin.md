@@ -99,6 +99,7 @@ It is possible to have the PrivateBin instance use a URL shortener such as Bit.l
 YOURLS is available on the playbook. See [here](yourls.md) for details about how to install it.
 
 💡 **Notes**
+
 - YOURLS requires a MariaDB instance (see [here](mariadb.md) for details about configuring it with the playbook); if PostgreSQL is going to be used for PrivateBin (or other services), you need to use both of them.
 - If you are going to install PrivateBin and YOURLS at the same time, **you need to complete installation of YOURLS at first** by visiting its admin UI available at the specified hostname with `/admin/` such as `https://yourls.example.com/admin/`. Otherwise the function to shorten a paste's URL does not work. See [here](yourls.md#usage) for the instruction to complete installation.
 

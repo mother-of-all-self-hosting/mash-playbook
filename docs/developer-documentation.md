@@ -29,6 +29,7 @@ To support a new service, at first you need to create an Ansible role for it in 
 When it comes to the structure of roles, you can follow existing roles such as [`ansible-role-postgres`](https://github.com/mother-of-all-self-hosting/ansible-role-postgres), [`ansible-role-syncthing`](https://github.com/mother-of-all-self-hosting/ansible-role-syncthing), and [`ansible-role-ntfy`](https://github.com/mother-of-all-self-hosting/ansible-role-ntfy). Generally, it is not recommended to create a role from the scratch as it can lack important variables required for the playbook. If you are not quite sure where to start, your best bet would be to copy the existing (and recently updated) role maintained by [MASH project](https://github.com/mother-of-all-self-hosting), and reuse it as a template.
 
 💡 **Notes**:
+
 - Your role's file structure should be similar to this tree:
 
     ```
