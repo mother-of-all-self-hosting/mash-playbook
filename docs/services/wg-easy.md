@@ -240,8 +240,7 @@ The steps for creating a new user are like this:
 1. Make sure the `sqlite3` tool is available on the server
 2. Generate a strong password (e.g. `pwgen -s 1 64`)
 3. Hash the password using [Argon2id](https://en.wikipedia.org/wiki/Argon2)
-  - Here's a one-liner to do it using [PHP](https://php.net/): `php -r 'echo password_hash("YOUR_PASSWORD_HERE", \PASSWORD_ARGON2ID);'
-`
+    - Here's a one-liner to do it using [PHP](https://php.net/): `php -r 'echo password_hash("YOUR_PASSWORD_HERE", \PASSWORD_ARGON2ID);'`
 4. Open the database using `sqlite3 /mash/wg-easy/data/wg-easy.db`
 5. Run a query like this:
 
