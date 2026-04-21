@@ -165,9 +165,11 @@ syncthing_container_additional_volumes_custom:
 ########################################################################
 ```
 
-### Securing Navidrome behind OAuth2-Proxy
+### Authenticating with an identity provider via OAuth2-Proxy
 
-Navidrome currently only supports [external authentication](https://www.navidrome.org/docs/usage/integration/authentication/) via a trusted reverse-proxy.
+Although Navidrome currently does not offer a native OAuth2 client configuration, [external authentication](https://www.navidrome.org/docs/usage/integration/authentication/) via a trusted reverse-proxy is supported.
+
+This will substitute the local sign-in flow and delegate authentication to a reverse-proxy, which will catch requests and pass usernames to Navidrome via HTML headers after authentication. Navidrome will trust configured proxies unconditionally, create local users and subsequently grant access to existent accounts based on the username header. The first user to login will receive admin privileges, subsequent first logins will be created as non-admin user.
 
 Leveraging the [OAuth2-Proxy](./oauth2-proxy.md) role it is possible to protect Navidrome behind OAuth2/OIDC.
 
