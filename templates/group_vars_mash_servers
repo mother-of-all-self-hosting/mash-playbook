@@ -9118,7 +9118,7 @@ librebooking_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_
 
 # role-specific:mariadb
 librebooking_database_hostname: "{{ mariadb_connection_hostname if mariadb_enabled else '' }}"
-librebooking_database_password: "{{ (mash_playbook_generic_secret_key + ':db.' + librebooking_identifier) | hash('sha512') | to_uuid }}"
+librebooking_database_password: "{{ (mash_playbook_generic_secret_key + ':librebooking') | hash('sha512') | to_uuid }}"
 # /role-specific:mariadb
 
 # role-specific:traefik
