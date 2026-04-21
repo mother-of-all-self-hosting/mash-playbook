@@ -23,7 +23,6 @@ repos:
           --disable=MD007,
           --disable=MD013,
           --disable=MD025,
-          --disable=MD026,
           --disable=MD027,
           --disable=MD028,
           --disable=MD029,
