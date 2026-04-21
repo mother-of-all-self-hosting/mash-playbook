@@ -112,8 +112,7 @@ promtail_config_scrape_configs_custom:
 
 The following example demonstrates the use of rsyslog and promtail to scrape syslog logs.
 
-**Prerequisites**: Edit your rsyslog configuration in order to send logs to `promtail.*``
-This could be done by creating a `/etc/rsyslog.d/00-promtail-relay.conf` file with the following content:
+**Prerequisites**: Edit your rsyslog configuration in order to send logs to `promtail.*`. This could be done by creating a `/etc/rsyslog.d/00-promtail-relay.conf` file with the following content:
 
 ```
 *.* action(type="omfwd" protocol="tcp" target="<promtail_host>" port="<promtail_port>" Template="RSYSLOG_SyslogProtocol23Format" TCP_Framing="octet-counted" KeepAlive="on")
