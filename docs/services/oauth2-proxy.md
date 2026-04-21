@@ -37,13 +37,11 @@ This service requires the following other services:
 - a [Traefik](traefik.md) reverse-proxy server
 - an OIDC provider running anywhere. See [Choosing a provider](#choosing-a-provider).
 
-
 ## Choosing a provider
 
 To use OAuth2-Proxy, you need to choose an [OIDC provider](https://oauth2-proxy.github.io/oauth2-proxy/configuration/providers/).
 
 This can be any of the supported providers. If hosting your own (via this playbook or via other means), the OIDC provider may be hosted anywhere (not necessarily on the same server as OAuth2-Proxy or the service you're SSO-protecting).
-
 
 ## Sample configuration
 
@@ -178,7 +176,6 @@ After adding this to your `vars.yml` file, [re-run the playbook](../installing.m
 
 Specific services (e.g. [Nextcloud](nextcloud.md)) provide Ansible variables (`nextcloud_container_labels_traefik_http_middlewares_custom`) for injecting new middlewares at a specific position (priority) in the list. Others services (Ansible roles) do not support this yet, which would prevent you from using them this way. Consider submitting an issue or better yet opening a PR to improve these services.
 
-
 ## Another sample configuration: Protecting specific prefixes of a website
 
 Sometimes you want to protect only a specific endpoint of a website while leaving the rest of the site publicly available.
@@ -258,13 +255,11 @@ ihatemoney_container_labels_additional_labels:
 
 After adding this to your `vars.yml` file, [re-run the playbook](../installing.md): `just install-service ihatemoney`.
 
-
 ## Further reading
 
 If you'd like to do something more advanced, the [`ansible-role-oauth2-proxy` Ansible role](https://github.com/mother-of-all-self-hosting/ansible-role-oauth2-proxy) is very configurable and should let you do what you need.
 
 Take a look at [its `default/main.yml` file](https://github.com/mother-of-all-self-hosting/ansible-role-oauth2-proxy/blob/main/defaults/main.yml) for available Ansible variables you can use in your own `vars.yml` configuration file.
-
 
 ## Related services
 
