@@ -31,7 +31,6 @@ repos:
           --disable=MD040,
           --disable=MD041,
           --disable=MD051,
-          --disable=MD055,
           --disable=MD059,
           --disable=MD060
         ]

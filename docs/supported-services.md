@@ -156,7 +156,7 @@ Below is an exhaustive list of the free and open-source software for self-hostin
 | [Mosquitto](https://mosquitto.org/) | A MQTT broker | [Link](services/mosquitto.md) |
 | [Mozhi](https://codeberg.org/aryak/mozhi) | Frontend for translation engines | [Link](services/mozhi.md) |
 | [Mumble](https://www.mumble.info/) | Voice chat application known for its low latency and high voice quality | [Link](services/mumble.md) |
-| [Navidrome](https://www.navidrome.org/) | [Subsonic-API](http://www.subsonic.org/pages/api.jsp) compatible music server | [Link](services/navidrome.md)
+| [Navidrome](https://www.navidrome.org/) | [Subsonic-API](http://www.subsonic.org/pages/api.jsp) compatible music server | [Link](services/navidrome.md) |
 | [Neko](https://neko.m1k1o.net/) | A virtual browser or even desktop environment | [Link](services/neko.md) |
 | [NetBox](https://docs.netbox.dev/en/stable/) | Web application that provides [IP address management (IPAM)](https://en.wikipedia.org/wiki/IP_address_management) and [data center infrastructure management (DCIM)](https://en.wikipedia.org/wiki/Data_center_management#Data_center_infrastructure_management) functionality | [Link](services/netbox.md) |
 | [Nextcloud](https://nextcloud.com/) | The most popular collaboration solution for tens of millions of users at thousands of organizations across the globe | [Link](services/nextcloud.md) |
@@ -231,7 +231,7 @@ Below is an exhaustive list of the free and open-source software for self-hostin
 | [Stirling PDF](https://github.com/Stirling-Tools/Stirling-PDF) | A PDF converter | [Link](services/stirling-pdf.md) |
 | [syncstorage-rs](https://github.com/mozilla-services/syncstorage-rs) | Mozilla Sync Storage server in Rust, used to power Firefox Sync | [Link](services/syncstorage-rs.md) |
 | [Syncthing](https://syncthing.net/) | A continuous file synchronization program which synchronizes files between two or more computers in real time | [Link](services/syncthing.md) |
-| [Tandoor](https://docs.tandoor.dev/) | The recipe manager that allows you to manage your ever growing collection of digital recipes | [Link](services/tandoor.md)
+| [Tandoor](https://docs.tandoor.dev/) | The recipe manager that allows you to manage your ever growing collection of digital recipes | [Link](services/tandoor.md) |
 | [Teable](https://github.com/teableio/teable) | No-code database management platform with spreadsheet-like interface | [Link](services/teable.md) |
 | [Telegraf](https://www.influxdata.com/time-series-platform/telegraf/) | A server agent to help you collect metrics from your stacks, sensors, and systems | [Link](services/telegraf.md) |
 | [Termix](https://docs.termix.site/) | Server management platform with SSH terminal | [Link](services/termix.md) |
