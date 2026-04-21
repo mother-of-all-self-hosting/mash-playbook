@@ -21,8 +21,8 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
 Below is an exhaustive list of the free and open-source software for self-hosting which this playbook supports.
 
-|              Name              |              Description              | Documentation |
-| ------------------------------ | ------------------------------------- | ------------- |
+| Name | Description | Documentation |
+| ---- | ----------- | ------------- |
 | [AUX](https://github.com/mother-of-all-self-hosting/ansible-role-aux) | Auxiliary file/directory management on your server via Ansible | [Link](services/auxiliary.md) |
 | [Actual](https://actualbudget.org) | Local-first personal finance tool | [Link](services/actual.md) |
 | [AdGuard Home](https://adguard.com/en/adguard-home/overview.html/) | A network-wide DNS software for blocking ads & tracking | [Link](services/adguard-home.md) |
@@ -47,7 +47,7 @@ Below is an exhaustive list of the free and open-source software for self-hostin
 | [BentoPDF](https://github.com/alam00000/bentopdf) | Client-side PDF editor and converter | [Link](services/bentopdf.md) |
 | [BIND](https://www.isc.org/bind/) | A full-featured DNS server | [Link](services/bind.md) |
 | [bitmagnet](https://bitmagnet.io/) | BitTorrent indexer, DHT crawler, content classifier and search engine | [Link](services/bitmagnet.md) |
-| [BorgBackup](https://www.borgbackup.org/) (via [borgmatic](https://torsion.org/borgmatic/)) | A deduplicating backup program with optional compression and encryption| [Link](services/backup-borg.md) |
+| [BorgBackup](https://www.borgbackup.org/) (via [borgmatic](https://torsion.org/borgmatic/)) | A deduplicating backup program with optional compression and encryption | [Link](services/backup-borg.md) |
 | [Borg Web UI](https://karanhudia.github.io/borg-ui/) | Unofficial web interface for [BorgBackup](https://borgbackup.readthedocs.io/) | [Link](services/borg-ui.md) |
 | [Browserless](https://docs.browserless.io) | Deploy headless browsers in Docker | [Link](services/browserless.md) |
 | [Calibre-Web](https://github.com/janeczku/calibre-web) | Web app for browsing, reading and downloading eBooks stored in a [Calibre](https://calibre-ebook.com/) database | [Link](services/calibre-web.md) |
@@ -119,7 +119,7 @@ Below is an exhaustive list of the free and open-source software for self-hostin
 | [InspIRCd](https://www.inspircd.org/) | Modular IRC server written in C++ | [Link](services/inspircd.md) |
 | [Jackett](https://github.com/Jackett/Jackett) | An API for your favorite torrent trackers | [Link](services/jackett.md) |
 | [Jellyfin](https://github.com/jellyfin/jellyfin) | A personal media server | [Link](services/jellyfin.md) |
-| [Jellyseerr](https://github.com/Fallenbagel/jellyseerr)| A media request and discovery manager for Jellyfin, Plex, and Emby | [Link](services/jellyseerr.md) |
+| [Jellyseerr](https://github.com/Fallenbagel/jellyseerr) | A media request and discovery manager for Jellyfin, Plex, and Emby | [Link](services/jellyseerr.md) |
 | [Jitsi](https://jitsi.org/) | A fully encrypted video conferencing solution | [Link](services/jitsi.md) |
 | [Joplin Server](https://joplinapp.org/help/dev/spec/architecture#joplin-server) | Server component for [Joplin](https://joplinapp.org/) | [Link](services/joplin-server.md) |
 | [Kanboard](https://kanboard.org/) | Kanban project management software | [Link](services/kanboard.md) |
@@ -262,8 +262,8 @@ Below is an exhaustive list of the free and open-source software for self-hostin
 
 Below is a list of non-free (i.e. licensed under a non-free license) software which this playbook supports.
 
-|              Name              |              Description              | Documentation |
-| ------------------------------ | ------------------------------------- | ------------- |
+| Name | Description | Documentation |
+| ---- | ----------- | ------------- |
 | [MongoDB](https://www.mongodb.com/) | A source-available cross-platform document-oriented (NoSQL) database program | [Link](services/mongodb.md) |
 | [n8n](https://n8n.io/) | Workflow automation for technical people | [Link](services/n8n.md) |
 
