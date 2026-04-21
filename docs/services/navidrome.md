@@ -237,7 +237,6 @@ navidrome_container_labels_additional_labels_custom:
 ########################################################################
 ```
 
-
 > [!CAUTION]
 > As we use the less invasive 2. mode documented in [oauth2-proxy.md](./oauth2-proxy.md), Navidrome will see requests as coming from Traefik. Accordingly we tell Navidrome to trust the username header coming from our Traefik reverse-proxy.
 >

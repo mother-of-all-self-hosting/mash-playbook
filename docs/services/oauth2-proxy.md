@@ -195,7 +195,6 @@ oauth2_proxy_container_labels_additional_labels_custom:
   - traefik.http.routers.{{ oauth2_proxy_identifier }}-ihatemoney.entrypoints={{ oauth2_proxy_container_labels_traefik_entrypoints }}
   - traefik.http.routers.{{ oauth2_proxy_identifier }}-ihatemoney.tls={{ oauth2_proxy_container_labels_traefik_tls }}
   - traefik.http.routers.{{ oauth2_proxy_identifier }}-ihatemoney.tls.certResolver={{ oauth2_proxy_container_labels_traefik_tls_certResolver }}
-
 ```
 
 As usual, after changing your `vars.yml` file, [re-run the playbook](../installing.md): `just install-service oauth2-proxy`.
