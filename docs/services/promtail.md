@@ -148,6 +148,7 @@ promtail_config_scrape_configs_custom:
 You'd then need to expose this TCP port outside of the container, so that the local host (or remote host) can reach it.
 
 To expose it on the loopback interface (reachable only from the same machine), use a configuration like this:
+
 ```yaml
 promtail_container_extra_arguments_custom:
   - "-p 127.0.0.1:1234:1234"

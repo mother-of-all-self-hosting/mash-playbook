@@ -101,8 +101,9 @@ plex_container_roku_bind_port: 8324
 # You probably don't need this
 plex_container_bonjour_port: 5353
 ```
-Upstream documentation #1: https://support.plex.tv/articles/201543147-what-network-ports-do-i-need-to-allow-through-my-firewall/
-Upstream documentation #2: https://docs.linuxserver.io/images/docker-plex/#umask-for-running-applications
+
+- Upstream documentation #1: https://support.plex.tv/articles/201543147-what-network-ports-do-i-need-to-allow-through-my-firewall/
+- Upstream documentation #2: https://docs.linuxserver.io/images/docker-plex/#umask-for-running-applications
 
 ### Hardware Acceleration
 

@@ -73,6 +73,7 @@ serverA$ systemctl stop ilmo
 ```
 
 Dump the database (depending on your existing setup you might have to adjust this)
+
 ```
 serverA$ pg_dump ilmo > latest.sql
 ```
