@@ -26,6 +26,7 @@ Tinyauth is a simple authentication middleware that adds a login screen or OAuth
 See the project's [documentation](https://tinyauth.app/docs/about) to learn what Tinyauth does and why it might be useful to you.
 
 For details about configuring the [Ansible role for Tinyauth](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3AzLMiPKSyMcb5m85H2brZd4GHCDTF), you can check them via:
+
 - 🌐 [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3AzLMiPKSyMcb5m85H2brZd4GHCDTF/tree/docs/configuring-tinyauth.md) online
 - 📁 `roles/galaxy/tinyauth/docs/configuring-tinyauth.md` locally, if you have [fetched the Ansible roles](../installing.md)
 

@@ -27,6 +27,7 @@ Feishin is a music player for servers which implement a [Navidrome](https://www.
 See the project's [documentation](https://github.com/jeffvli/feishin/blob/development/README.md) to learn what Feishin does and why it might be useful to you.
 
 For details about configuring the [Ansible role for Feishin](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Azmszzm7ynZe8nt5ZwaLctssyJcNm), you can check them via:
+
 - 🌐 [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Azmszzm7ynZe8nt5ZwaLctssyJcNm/tree/docs/configuring-feishin.md) online
 - 📁 `roles/galaxy/feishin/docs/configuring-feishin.md` locally, if you have [fetched the Ansible roles](../installing.md)
 

@@ -1,21 +1,24 @@
 <!--
 SPDX-FileCopyrightText: 2023 Nikita Chernyi
 SPDX-FileCopyrightText: 2023 Slavi Pantaleev
-SPDX-FileCopyrightText: 2025 Suguru Hirahara
+SPDX-FileCopyrightText: 2025, 2026 Suguru Hirahara
 
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 
 # Matrix Rooms Search API
 
-[Matrix Rooms Search](https://github.com/etkecc/mrs) is a fully-featured, standalone, [Matrix](https://matrix.org/) rooms search service.
+The playbook can install and configure [Matrix Rooms Search](https://github.com/etkecc/mrs) for you.
+
+Matrix Rooms Search is a fully-featured, standalone, [Matrix](https://matrix.org/) rooms search service.
+
+See the project's [documentation](https://github.com/etkecc/mrs/blob/main/README.md) to learn what Matrix Rooms Search does and why it might be useful to you.
 
 ## Dependencies
 
 This service requires the following other services:
 
 - a [Traefik](traefik.md) reverse-proxy server
-
 
 ## Configuration
 

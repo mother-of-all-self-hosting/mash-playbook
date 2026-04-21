@@ -1,12 +1,17 @@
 <!--
 SPDX-FileCopyrightText: 2025 spatterlight
+SPDX-FileCopyrightText: 2026 Suguru Hirahara
 
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 
 # Headplane
 
-[Headplane](https://headplane.net/) is an open source, self-hosted implementation of the [Tailscale Web UI](https://tailscale.com/) for [Headscale](headscale.md).
+The playbook can install and configure [Headplane](https://headplane.net/) for you.
+
+Headplane is an open source, self-hosted implementation of the [Tailscale Web UI](https://tailscale.com/) for [Headscale](headscale.md).
+
+See the project's [documentation](https://headplane.net/introduction) to learn what Headplane does and why it might be useful to you.
 
 ## Dependencies
 

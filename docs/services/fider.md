@@ -28,6 +28,7 @@ Fider is a feedback portal for feature requests and suggestions.
 See the project's [documentation](https://docs.fider.io/) to learn what Fider does and why it might be useful to you.
 
 For details about configuring the [Ansible role for Fider](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3Fe49p3uVZpC43KdB5gDCTmr8u7Y), you can check them via:
+
 - 🌐 [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3Fe49p3uVZpC43KdB5gDCTmr8u7Y/tree/docs/configuring-fider.md) online
 - 📁 `roles/galaxy/fider/docs/configuring-fider.md` locally, if you have [fetched the Ansible roles](../installing.md)
 

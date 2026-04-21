@@ -27,6 +27,7 @@ Onion Service is a service that can only be accessed over Tor.
 See the project's [documentation](https://community.torproject.org/onion-services/overview/) to learn what Onion Service with C Tor does and why it might be useful to you.
 
 For details about configuring the [Ansible role for Onion Service with C Tor](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Aznw3BPXrSbPWcARpYbk3yGy4iGQ4), you can check them via:
+
 - 🌐 [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Aznw3BPXrSbPWcARpYbk3yGy4iGQ4/tree/docs/configuring-onion-service-tor.md) online
 - 📁 `roles/galaxy/onion_service_tor/docs/configuring-onion-service-tor.md` locally, if you have [fetched the Ansible roles](../installing.md)
 

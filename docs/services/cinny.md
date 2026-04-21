@@ -27,6 +27,7 @@ Cinny is a web client for [Matrix](https://matrix.org/), realtime communication 
 See the project's [documentation](https://github.com/cinnyapp/cinny/blob/dev/README.md) to learn what Cinny does and why it might be useful to you.
 
 For details about configuring the [Ansible role for Cinny](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3P5L5p1gs7TGCpmhaXKUYmTJNKpi), you can check them via:
+
 - 🌐 [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3P5L5p1gs7TGCpmhaXKUYmTJNKpi/tree/docs/configuring-cinny.md) online
 - 📁 `roles/galaxy/cinny/docs/configuring-cinny.md` locally, if you have [fetched the Ansible roles](../installing.md)
 

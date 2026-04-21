@@ -26,6 +26,7 @@ OpenRegex is a self-hosted, web-based regular expression (regex) tester and debu
 See the project's [documentation](https://github.com/SunneV/OpenRegex/blob/main/README.md) to learn what OpenRegex does and why it might be useful to you.
 
 For details about configuring the [Ansible role for OpenRegex](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az2kcNwMys48Wy3SLPnLU7oBnkkQyj), you can check them via:
+
 - 🌐 [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az2kcNwMys48Wy3SLPnLU7oBnkkQyj/tree/docs/configuring-openregex.md) online
 - 📁 `roles/galaxy/openregex/docs/configuring-openregex.md` locally, if you have [fetched the Ansible roles](../installing.md)
 

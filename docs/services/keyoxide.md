@@ -26,6 +26,7 @@ keyoxide-web is a web client for [Keyoxide](https://keyoxide.org/), a decentrali
 See the project's [documentation](https://docs.keyoxide.org/) to learn what keyoxide-web does and why it might be useful to you.
 
 For details about configuring the [Ansible role for keyoxide-web](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3m9zZgMmAQX5aVtj5Y9KYRnhjVrt), you can check them via:
+
 - 🌐 [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3m9zZgMmAQX5aVtj5Y9KYRnhjVrt/tree/docs/configuring-keyoxide.md) online
 - 📁 `roles/galaxy/keyoxide/docs/configuring-keyoxide.md` locally, if you have [fetched the Ansible roles](../installing.md)
 

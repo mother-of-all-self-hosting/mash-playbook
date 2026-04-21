@@ -1,13 +1,17 @@
 <!--
 SPDX-FileCopyrightText: 2025 MASH project contributors
-SPDX-FileCopyrightText: 2025 Suguru Hirahara
+SPDX-FileCopyrightText: 2025, 2026 Suguru Hirahara
 
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 
 # Sonarr
 
-[Sonarr](https://sonarr.tv/) is a smart PVR for newsgroup and BitTorrent users.
+The playbook can install and configure [Sonarr](https://sonarr.tv/) for you.
+
+Sonarr is a smart PVR for newsgroup and BitTorrent users.
+
+See the project's [documentation](https://wiki.servarr.com/sonarr) to learn what Sonarr does and why it might be useful to you.
 
 ## Dependencies
 

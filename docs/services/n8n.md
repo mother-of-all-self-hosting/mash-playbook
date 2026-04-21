@@ -28,6 +28,7 @@ n8n is a workflow automation tool for technical people.
 See the project's [documentation](https://docs.n8n.io/) to learn what n8n does and why it might be useful to you.
 
 For details about configuring the [Ansible role for n8n](https://github.com/mother-of-all-self-hosting/ansible-role-n8n), you can check them via:
+
 - 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-n8n/blob/main/docs/configuring-n8n.md) online
 - 📁 `roles/galaxy/actual/docs/configuring-actual.md` locally, if you have [fetched the Ansible roles](../installing.md)
 

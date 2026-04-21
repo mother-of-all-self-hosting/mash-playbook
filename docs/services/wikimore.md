@@ -26,6 +26,7 @@ Wikimore allows you to browse Wikipedia projects without exposing your IP addres
 See the project's [documentation](https://git.private.coffee/PrivateCoffee/wikimore/src/branch/main/README.md) to learn what Wikimore does and why it might be useful to you.
 
 For details about configuring the [Ansible role for Wikimore](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az54oV5qKRrLSArZqdisrD9s7h9BQ), you can check them via:
+
 - 🌐 [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az54oV5qKRrLSArZqdisrD9s7h9BQ/tree/docs/configuring-wikimore.md) online
 - 📁 `roles/galaxy/wikimore/docs/configuring-wikimore.md` locally, if you have [fetched the Ansible roles](../installing.md)
 

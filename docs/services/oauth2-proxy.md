@@ -1,13 +1,17 @@
 <!--
 SPDX-FileCopyrightText: 2024 Slavi Pantaleev
+SPDX-FileCopyrightText: 2026 Suguru Hirahara
 
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 
 # OAuth2-Proxy
 
-[OAuth2-Proxy](https://oauth2-proxy.github.io/oauth2-proxy/) is a reverse proxy and static file server that provides authentication using OpenID Connect Providers (Google, GitHub, [authentik](authentik.md), [Keycloak](keycloak.md), and others) to SSO-protect services which do not support SSO natively.
+The playbook can install and configure [OAuth2-Proxy](https://github.com/oauth2-proxy/oauth2-proxy) for you.
 
+OAuth2-Proxy is a reverse proxy and static file server that provides authentication using OpenID Connect Providers (Google, GitHub, [authentik](authentik.md), [Keycloak](keycloak.md), and others) to SSO-protect services which do not support SSO natively.
+
+See the project's [documentation](https://oauth2-proxy.github.io/oauth2-proxy/) to learn what OAuth2-Proxy does and why it might be useful to you.
 
 ## Modes of operation
 
@@ -24,6 +28,7 @@ The 2nd one lets you keep the existing application configuration. However, it ne
 Our [Sample configuration](#sample-configuration) below uses [ForwardAuth](https://doc.traefik.io/traefik/middlewares/http/forwardauth/).
 
 The [OAuth2-Proxy Ansible role](https://github.com/mother-of-all-self-hosting/ansible-role-oauth2-proxy) should be flexible enough to let you reconfigure it for both modes of operation. However, if feasible, we recommend using the 2nd (ForwardAuth) method.
+
 
 ## Dependencies
 
@@ -51,7 +56,6 @@ For this to work as described here, both OAuth2-Proxy and the protected service 
 Keycloak may run anywhere.
 
 You also need to have prepared Keycloak and a "Client app" for it, according to the [Keycloak OIDC](https://oauth2-proxy.github.io/oauth2-proxy/configuration/providers/keycloak_oidc) documentation of OAuth2-Proxy.
-
 
 ### OAuth2-Proxy configuration
 
@@ -174,6 +178,7 @@ After adding this to your `vars.yml` file, [re-run the playbook](../installing.m
 
 Specific services (e.g. [Nextcloud](nextcloud.md)) provide Ansible variables (`nextcloud_container_labels_traefik_http_middlewares_custom`) for injecting new middlewares at a specific position (priority) in the list. Others services (Ansible roles) do not support this yet, which would prevent you from using them this way. Consider submitting an issue or better yet opening a PR to improve these services.
 
+
 ## Another sample configuration: Protecting specific prefixes of a website
 
 Sometimes you want to protect only a specific endpoint of a website while leaving the rest of the site publicly available.
@@ -252,7 +257,6 @@ ihatemoney_container_labels_additional_labels:
 ```
 
 After adding this to your `vars.yml` file, [re-run the playbook](../installing.md): `just install-service ihatemoney`.
-
 
 
 ## Further reading

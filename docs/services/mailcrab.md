@@ -26,6 +26,7 @@ MailCrab is the SMTP server written in Rust, which catches any message sent to i
 See the project's [documentation](https://github.com/tweedegolf/mailcrab/blob/main/README.md) to learn what MailCrab does and why it might be useful to you.
 
 For details about configuring the [Ansible role for MailCrab](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3rh69mtu7bBk5K1WmAkVEBTy6NpW), you can check them via:
+
 - 🌐 [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3rh69mtu7bBk5K1WmAkVEBTy6NpW/tree/docs/configuring-mailcrab.md) online
 - 📁 `roles/galaxy/mailcrab/docs/configuring-mailcrab.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
@@ -48,7 +49,8 @@ To enable this service, add the following configuration to your `vars.yml` file 
 
 mailcrab_enabled: true
 
-mailcrab_hostname: mailcrab.example.com
+mailcrab_hostname: mash.example.com
+mailcrab_path_prefix: /mailcrab
 
 ########################################################################
 #                                                                      #
@@ -56,8 +58,6 @@ mailcrab_hostname: mailcrab.example.com
 #                                                                      #
 ########################################################################
 ```
-
-**Note**: hosting MailCrab's web interface under a subpath (by configuring the `mailcrab_path_prefix` variable) does not seem to be possible due to MailCrab's technical limitations.
 
 ### Configuring HTTP Basic authentication
 

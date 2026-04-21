@@ -80,7 +80,6 @@ There are various configuration options — check the defaults and adjust them t
 
 Playbook may perform some housekeeping automatically, cleaning up unused docker resources, logs, even kernels (debian-only) and packages (debian-only). Here is how to enable different housekeeping tasks that will run on `setup-all`, `setup-cleanup`, `install-cleanup`:
 
-
 ```yaml
 ########################################################################
 #                                                                      #
@@ -111,7 +110,6 @@ system_cleanup_kernels: false
 #                                                                      #
 ########################################################################
 ```
-
 
 ### fail2ban
 

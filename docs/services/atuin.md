@@ -26,6 +26,7 @@ Atuin server is an optional data synchronization server for Atuin, which replace
 See the project's [documentation](https://docs.atuin.sh/self-hosting/server-setup/) to learn what Atuin server does and why it might be useful to you.
 
 For details about configuring the [Ansible role for Atuin server](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az4ATDhf89CPqP7XCLNpNwobuJ9fBs), you can check them via:
+
 - 🌐 [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az4ATDhf89CPqP7XCLNpNwobuJ9fBs/tree/docs/configuring-atuin.md) online
 - 📁 `roles/galaxy/atuin/docs/configuring-atuin.md` locally, if you have [fetched the Ansible roles](../installing.md)
 

@@ -1,18 +1,19 @@
 <!--
 SPDX-FileCopyrightText: 2024 Slavi Pantaleev
+SPDX-FileCopyrightText: 2026 Suguru Hirahara
 
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 
 # APISIX Gateway
 
-[APISIX Gateway](https://apisix.apache.org/docs/apisix/getting-started/README/) is an [API Gateway](https://apisix.apache.org/docs/apisix/terminology/api-gateway/) and Ingress Controller.
+The playbook can install and configure [APISIX Gateway](https://apisix.apache.org/docs/apisix/getting-started/README/) for you.
+
+APISIX Gateway is an [API Gateway](https://apisix.apache.org/docs/apisix/terminology/api-gateway/) and Ingress Controller.
 
 APISIX Gateway has a complex [architecture](https://apisix.apache.org/docs/apisix/architecture-design/apisix/) in which APISIX can serve multiple roles (data plane, control plane). There are different [deployment modes](https://apisix.apache.org/docs/apisix/deployment-modes/) for achieving a more decoupled setup.
 
-What we're configuring here is a `traditional` deployment in which one APISIX instance acts as both the data plane and the control plane.
-By tweaking the configuration, you may be able to install multiple instances (on separate machines), each serving a different role. This is beyond the scope of this documentation page.
-
+What we're configuring here is a `traditional` deployment in which one APISIX instance acts as both the data plane and the control plane. By tweaking the configuration, you may be able to install multiple instances (on separate machines), each serving a different role. This is beyond the scope of this documentation page.
 
 ## Dependencies
 
@@ -20,7 +21,6 @@ This service requires the following other services:
 
 - a [Traefik](traefik.md) reverse-proxy server
 - an [etcd](etcd.md) key-value store
-
 
 ## Configuration
 

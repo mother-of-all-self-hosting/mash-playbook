@@ -27,6 +27,7 @@ An Otter Wiki is a minimalistic wiki powered by Python, Markdown and Git.
 See the project's [documentation](https://otterwiki.com/-/help) to learn what An Otter Wiki does and why it might be useful to you.
 
 For details about configuring the [Ansible role for An Otter Wiki](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3AzvzJe15VMBkGd2CMBctvpVZgmQG5), you can check them via:
+
 - 🌐 [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3AzvzJe15VMBkGd2CMBctvpVZgmQG5/tree/docs/configuring-otterwiki.md) online
 - 📁 `roles/galaxy/otterwiki/docs/configuring-otterwiki.md` locally, if you have [fetched the Ansible roles](../installing.md)
 

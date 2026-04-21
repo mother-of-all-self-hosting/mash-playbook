@@ -27,6 +27,7 @@ pgAdmin is a management tool for Postgres with a graphical interface which simpl
 See the project's [documentation](https://www.pgadmin.org/docs/pgadmin4/latest/) to learn what pgAdmin does and why it might be useful to you.
 
 For details about configuring the [Ansible role for pgAdmin](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Aztixjo2qUzCBLADieR3hKkYEk4eE), you can check them via:
+
 - 🌐 [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Aztixjo2qUzCBLADieR3hKkYEk4eE/tree/docs/configuring-pgadmin.md) online
 - 📁 `roles/galaxy/pgadmin/docs/configuring-pgadmin.md` locally, if you have [fetched the Ansible roles](../installing.md)
 

@@ -26,6 +26,7 @@ Moodist is a free web application to mix and play ambient soundtracks (river, ra
 See the project's [documentation](https://github.com/remvze/moodist/blob/main/README.md) to learn what Moodist does and why it might be useful to you.
 
 For details about configuring the [Ansible role for Moodist](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az4Ez9aU119yFMs59cnA3KUnExFAeN), you can check them via:
+
 - 🌐 [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az4Ez9aU119yFMs59cnA3KUnExFAeN/tree/docs/configuring-moodist.md) online
 - 📁 `roles/galaxy/moodist/docs/configuring-moodist.md` locally, if you have [fetched the Ansible roles](../installing.md)
 

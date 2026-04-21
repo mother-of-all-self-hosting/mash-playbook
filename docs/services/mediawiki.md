@@ -27,6 +27,7 @@ MediaWiki is a popular free and open-source wiki software.
 See the project's [documentation](https://www.mediawiki.org/wiki/MediaWiki) to learn what MediaWiki does and why it might be useful to you.
 
 For details about configuring the [Ansible role for MediaWiki](https://github.com/mother-of-all-self-hosting/ansible-role-mediawiki), you can check them via:
+
 - 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-mediawiki/blob/main/docs/configuring-mediawiki.md) online
 - 📁 `roles/galaxy/mediawiki/docs/configuring-mediawiki.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
@@ -138,7 +139,6 @@ mash_playbook_service_base_directory_name_prefix: "mediawiki-"
 #                                                                      #
 ########################################################################
 
-
 ########################################################################
 #                                                                      #
 # Various other overrides                                              #
@@ -153,7 +153,6 @@ devture_systemd_docker_base_ipv6_enabled: true
 # /Various other overrides                                             #
 #                                                                      #
 ########################################################################
-
 
 ########################################################################
 #                                                                      #
@@ -181,7 +180,6 @@ mariadb_managed_databases_custom:
 # /mariadb                                                             #
 #                                                                      #
 ########################################################################
-
 
 ########################################################################
 #                                                                      #

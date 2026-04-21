@@ -1,13 +1,17 @@
 <!--
 SPDX-FileCopyrightText: 2025 MASH project contributors
-SPDX-FileCopyrightText: 2025 Suguru Hirahara
+SPDX-FileCopyrightText: 2025, 2026 Suguru Hirahara
 
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 
 # Radarr
 
-[Radarr](https://radarr.video/) is a movie organizer/manager for Usenet and BitTorrent users.
+The playbook can install and configure [Radarr](https://radarr.video/) for you.
+
+Radarr is a movie organizer/manager for Usenet and BitTorrent users.
+
+See the project's [documentation](https://wiki.servarr.com/radarr) to learn what Radarr does and why it might be useful to you.
 
 ## Dependencies
 

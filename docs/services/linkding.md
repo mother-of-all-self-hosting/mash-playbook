@@ -27,6 +27,7 @@ linkding is a bookmark manager that is designed be to be minimal and fast.
 See the project's [documentation](https://linkding.link/installation/) to learn what linkding does and why it might be useful to you.
 
 For details about configuring the [Ansible role for linkding](https://github.com/mother-of-all-self-hosting/ansible-role-linkding), you can check them via:
+
 - 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-linkding/blob/main/docs/configuring-linkding.md) online
 - 📁 `roles/galaxy/linkding/docs/configuring-linkding.md` locally, if you have [fetched the Ansible roles](../installing.md)
 

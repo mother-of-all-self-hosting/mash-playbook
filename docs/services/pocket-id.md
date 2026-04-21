@@ -27,6 +27,7 @@ Pocket ID is a simple OpenID Connect (OIDC) provider (Identity Provider, IdP) th
 See the project's [documentation](https://pocket-id.org/docs/) to learn what Pocket ID does and why it might be useful to you.
 
 For details about configuring the [Ansible role for Pocket ID](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az2vTmc3fLqxvpuT9EoZvkErWNZM1K), you can check them via:
+
 - 🌐 [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az2vTmc3fLqxvpuT9EoZvkErWNZM1K/tree/docs/configuring-pocket-id.md) online
 - 📁 `roles/galaxy/pocket_id/docs/configuring-pocket-id.md` locally, if you have [fetched the Ansible roles](../installing.md)
 

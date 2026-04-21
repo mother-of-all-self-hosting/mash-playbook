@@ -28,6 +28,7 @@ ddclient is a Perl client to update dynamic DNS entries for accounts on a wide r
 See the project's [documentation](https://ddclient.net/) to learn what ddclient does and why it might be useful to you.
 
 For details about configuring the [Ansible role for ddclient](https://github.com/mother-of-all-self-hosting/ansible-role-ddclient), you can check them via:
+
 - 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-ddclient/blob/main/docs/configuring-ddclient.md) online
 - 📁 `roles/galaxy/ddclient/docs/configuring-ddclient.md` locally, if you have [fetched the Ansible roles](../installing.md)
 

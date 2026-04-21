@@ -26,6 +26,7 @@ Ergo is a modern IRCd (IRC server software) written in Go.
 See the project's [documentation](https://ergo.chat/about) to learn what Ergo does and why it might be useful to you.
 
 For details about configuring the [Ansible role for Ergo](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az2CSxS3YLtJYM87TyGZkZCan3uoSJ), you can check them via:
+
 - 🌐 [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az2CSxS3YLtJYM87TyGZkZCan3uoSJ/tree/docs/configuring-ergo.md) online
 - 📁 `roles/galaxy/ergo/docs/configuring-ergo.md` locally, if you have [fetched the Ansible roles](../installing.md)
 

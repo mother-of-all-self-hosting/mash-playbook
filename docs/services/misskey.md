@@ -27,6 +27,7 @@ Misskey is a free decentralized microblogging platform based on the ActivityPub 
 See the project's [documentation](https://misskey-hub.net/en/docs/) to learn what Misskey does and why it might be useful to you.
 
 For details about configuring the [Ansible role for Misskey](https://github.com/mother-of-all-self-hosting/ansible-role-misskey), you can check them via:
+
 - 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-misskey/blob/main/docs/configuring-misskey.md) online
 - 📁 `roles/galaxy/misskey/docs/configuring-misskey.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
@@ -138,7 +139,6 @@ mash_playbook_service_base_directory_name_prefix: 'misskey-'
 #                                                                      #
 ########################################################################
 
-
 ########################################################################
 #                                                                      #
 # valkey                                                               #
@@ -207,7 +207,6 @@ valkey_enabled: true
 # /valkey                                                              #
 #                                                                      #
 ########################################################################
-
 
 ########################################################################
 #                                                                      #

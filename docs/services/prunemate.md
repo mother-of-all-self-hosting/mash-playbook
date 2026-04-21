@@ -27,6 +27,7 @@ PruneMate is a web interface to automatically clean up Docker resources on a sch
 See the project's [documentation](https://github.com/anoniemerd/PruneMate/blob/main/README.md) to learn what PruneMate does and why it might be useful to you.
 
 For details about configuring the [Ansible role for PruneMate](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3AzTsddBnXnhE3i4xhzsEX12deb4fx), you can check them via:
+
 - 🌐 [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3AzTsddBnXnhE3i4xhzsEX12deb4fx/tree/docs/configuring-prunemate.md) online
 - 📁 `roles/galaxy/prunemate/docs/configuring-prunemate.md` locally, if you have [fetched the Ansible roles](../installing.md)
 

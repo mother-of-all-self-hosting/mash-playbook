@@ -28,6 +28,7 @@ Borg Web UI is an unofficial web interface for [BorgBackup](https://borgbackup.r
 See the project's [documentation](https://karanhudia.github.io/borg-ui/) to learn what Borg Web UI does and why it might be useful to you.
 
 For details about configuring the [Ansible role for Borg Web UI](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3AzxNS7XeayGimb4WFfvqmasiZZC3v), you can check them via:
+
 - 🌐 [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3AzxNS7XeayGimb4WFfvqmasiZZC3v/tree/docs/configuring-borg-ui.md) online
 - 📁 `roles/galaxy/borg_ui/docs/configuring-borg-ui.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
@@ -134,7 +135,6 @@ mash_playbook_service_base_directory_name_prefix: 'borg-ui-'
 #                                                                      #
 ########################################################################
 
-
 ########################################################################
 #                                                                      #
 # valkey                                                               #
@@ -207,7 +207,6 @@ valkey_enabled: true
 # /valkey                                                              #
 #                                                                      #
 ########################################################################
-
 
 ########################################################################
 #                                                                      #

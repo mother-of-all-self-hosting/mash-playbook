@@ -27,6 +27,7 @@ farmOS is web-based free software for farm management, planning, and record keep
 See the project's [documentation](https://farmos.org/guide/) to learn what farmOS does and why it might be useful to you.
 
 For details about configuring the [Ansible role for farmOS](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az2H8vYeXaYHLzV3jXH1YjVwhuzTsk), you can check them via:
+
 - 🌐 [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az2H8vYeXaYHLzV3jXH1YjVwhuzTsk/tree/docs/configuring-farmos.md) online
 - 📁 `roles/galaxy/farmos/docs/configuring-farmos.md` locally, if you have [fetched the Ansible roles](../installing.md)
 

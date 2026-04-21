@@ -26,6 +26,7 @@ SMP server is the relay server used to pass messages in [SimpleX](https://simple
 See the project's [documentation](https://simplex.chat/docs/server.html#overview) to learn what SMP server does and why it might be useful to you.
 
 For details about configuring the [Ansible role for SMP server](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3AzXf3qnvPwC2UsBpfTYmPesL5KSZc), you can check them via:
+
 - 🌐 [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3AzXf3qnvPwC2UsBpfTYmPesL5KSZc/tree/docs/configuring-smp-server.md) online
 - 📁 `roles/galaxy/smp-server/docs/configuring-smp-server.md` locally, if you have [fetched the Ansible roles](../installing.md)
 

@@ -1,13 +1,17 @@
 <!--
 SPDX-FileCopyrightText: 2025 Gergely Horváth
-SPDX-FileCopyrightText: 2025 Suguru Hirahara
+SPDX-FileCopyrightText: 2025, 2026 Suguru Hirahara
 
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 
 # LabelStudio
 
-[LabelStudio](https://labelstud.io/) is an open source data labeling tool that supports multiple projects.
+The playbook can install and configure [LabelStudio](https://labelstud.io/) for you.
+
+LabelStudio is an open source data labeling tool that supports multiple projects.
+
+See the project's [documentation](https://labelstud.io/quick-start/) to learn what LabelStudio does and why it might be useful to you.
 
 ## Dependencies
 
@@ -15,7 +19,6 @@ This service requires the following other services:
 
 - a [Postgres](postgres.md) database
 - a [Traefik](traefik.md) reverse-proxy server
-
 
 ## Configuration
 
@@ -56,7 +59,6 @@ labelstudio_environment_variables_disable_signup_without_link: true
 labelstudio_environment_variables_username: "admin-username"
 labelstudio_environment_variables_password: "admin-user-password"
 ```
-
 
 ## Related services
 

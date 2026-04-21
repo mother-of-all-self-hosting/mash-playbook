@@ -13,28 +13,30 @@ SPDX-FileCopyrightText: 2023 Felix Stupp
 SPDX-FileCopyrightText: 2023 Julian-Samuel Gebühr
 SPDX-FileCopyrightText: 2023 Pierre 'McFly' Marty
 SPDX-FileCopyrightText: 2024 Thomas Miceli
+SPDX-FileCopyrightText: 2024 Tiz
 SPDX-FileCopyrightText: 2024-2026 Suguru Hirahara
 
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 
-# Termix
+# Reitti
 
-The playbook can install and configure [Termix](https://docs.termix.site/) for you.
+The playbook can install and configure [Reitti](https://www.dedicatedcode.com/projects/reitti/) for you.
 
-Termix is a clientless web-based server management platform with SSH terminal, tunneling, and file editing capabilities.
+Reitti is a personal location tracking and analysis application.
 
-See the project's [documentation](https://docs.termix.site/install) to learn what Termix does and why it might be useful to you.
+See the project's [documentation](https://www.dedicatedcode.com/projects/reitti/) to learn what Reitti does and why it might be useful to you.
 
-For details about configuring the [Ansible role for Termix](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az4TiZiqkm6MBmkPL2NTPMavni6LV), you can check them via:
+For details about configuring the [Ansible role for Reitti](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3rhdtDR5EHHGk1SNBHwYtofxNyAf), you can check them via:
 
-- 🌐 [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az4TiZiqkm6MBmkPL2NTPMavni6LV/tree/docs/configuring-termix.md) online
-- 📁 `roles/galaxy/termix/docs/configuring-termix.md` locally, if you have [fetched the Ansible roles](../installing.md)
+- 🌐 [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3rhdtDR5EHHGk1SNBHwYtofxNyAf/tree/docs/configuring-reitti.md) online
+- 📁 `roles/galaxy/reitti/docs/configuring-reitti.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 ## Dependencies
 
 This service requires the following other services:
 
+- [Postgres database with PostGIS extensions installed](postgis.md)
 - [Traefik](traefik.md) reverse-proxy server
 
 ## Adjusting the playbook configuration
@@ -44,31 +46,27 @@ To enable this service, add the following configuration to your `vars.yml` file 
 ```yaml
 ########################################################################
 #                                                                      #
-# termix                                                               #
+# reitti                                                               #
 #                                                                      #
 ########################################################################
 
-termix_enabled: true
+reitti_enabled: true
 
-termix_hostname: termix.example.com
+reitti_hostname: reitti.example.com
 
 ########################################################################
 #                                                                      #
-# /termix                                                              #
+# /reitti                                                              #
 #                                                                      #
 ########################################################################
 ```
 
-## Usage
+### Usage
 
-After running the command for installation, the Termix instance becomes available at the URL specified with `termix_hostname`. With the configuration above, the service is hosted at `https://termix.example.com`.
+After running the command for installation, the Reitti instance becomes available at the URL specified with `reitti_hostname`. With the configuration above, the service is hosted at `https://reitti.example.com`.
 
 To get started, open the URL with a web browser to create an account. **Note that the first registered user becomes an administrator automatically.**
 
 ## Troubleshooting
 
-See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az4TiZiqkm6MBmkPL2NTPMavni6LV/tree/docs/configuring-termix.md#troubleshooting) on the role's documentation for details.
-
-## Related services
-
-- [Wetty](wetty.md) — SSH terminal over HTTP/HTTPS
+See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3rhdtDR5EHHGk1SNBHwYtofxNyAf/tree/docs/configuring-reitti.md#troubleshooting) on the role's documentation for details.

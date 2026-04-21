@@ -1,18 +1,20 @@
 <!--
-SPDX-FileCopyrightText: 2020 - 2024 MDAD project contributors
-SPDX-FileCopyrightText: 2020 - 2024 Slavi Pantaleev
 SPDX-FileCopyrightText: 2020 Aaron Raimist
 SPDX-FileCopyrightText: 2020 Chris van Dijk
 SPDX-FileCopyrightText: 2020 Dominik Zajac
 SPDX-FileCopyrightText: 2020 Mickaël Cornière
+SPDX-FileCopyrightText: 2020-2024 MDAD project contributors
+SPDX-FileCopyrightText: 2020-2024 Slavi Pantaleev
 SPDX-FileCopyrightText: 2022 François Darveau
 SPDX-FileCopyrightText: 2022 Julian Foad
 SPDX-FileCopyrightText: 2022 Warren Bailey
 SPDX-FileCopyrightText: 2023 Antonis Christofides
 SPDX-FileCopyrightText: 2023 Felix Stupp
 SPDX-FileCopyrightText: 2023 Pierre 'McFly' Marty
-SPDX-FileCopyrightText: 2024 Julian-Samuel Gebühr
-SPDX-FileCopyrightText: 2024 - 2025 Suguru Hirahara
+SPDX-FileCopyrightText: 2023, 2024 Julian-Samuel Gebühr
+SPDX-FileCopyrightText: 2024 Thomas Miceli
+SPDX-FileCopyrightText: 2024 Tiz
+SPDX-FileCopyrightText: 2024-2026 Suguru Hirahara
 
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->
@@ -26,6 +28,7 @@ Neko is a self-hosted virtual browser which runs in a Docker's container based o
 See the project's [documentation](https://neko.m1k1o.net/docs/v3/introduction) to learn what Neko does and why it might be useful to you.
 
 For details about configuring the [Ansible role for Neko](https://github.com/mother-of-all-self-hosting/ansible-role-neko), you can check them via:
+
 - 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-neko/blob/main/docs/configuring-neko.md) online
 - 📁 `roles/galaxy/neko/docs/configuring-neko.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
@@ -74,6 +77,43 @@ By default the instance is configured to authenticate administrators and regular
 neko_environment_variables_neko_member_multiuser_admin_password: ADMIN_PASSWORD_HERE
 
 neko_environment_variables_neko_member_multiuser_user_password: USER_PASSWORD_HERE
+```
+
+### Integrating with Prometheus (optional)
+
+Neko can natively expose metrics to [Prometheus](prometheus.md).
+
+#### Expose metrics internally
+
+If Neko and Prometheus do not share a network (like Traefik), you can connect the Neko container network to Prometheus by adding the following configuration to your `vars.yml` file:
+
+```yaml
+prometheus_container_additional_networks_custom:
+  - "{{ neko_container_network }}"
+```
+
+#### Expose metrics publicly
+
+If Neko metrics are not scraped from a local Prometheus instance, you can expose the metrics publicly so that a remote instance can fetch them.
+
+When exposing metrics publicly, you should consider to set up [HTTP Basic Authentication](https://developer.mozilla.org/en-US/docs/Web/HTTP/Authentication) **or anyone would be able to read your metrics**.
+
+To expose the metrics publicly, add the following configuration to your `vars.yml` file (adapt to your needs):
+
+```yaml
+mash_playbook_metrics_exposure_enabled: true
+mash_playbook_metrics_exposure_hostname: mash.example.com
+```
+
+It will expose the metrics at `https://mash.example.com/metrics/mash-neko`.
+
+To enable the HTTP Basic authentication, add the following configuration to your `vars.yml` file (adapt to your needs):
+
+```yaml
+neko_container_labels_traefik_metrics_middleware_basic_auth_enabled: true
+
+# See https://doc.traefik.io/traefik/middlewares/http/basicauth/#users for details.
+neko_container_labels_traefik_metrics_middleware_basic_auth_users: ""
 ```
 
 ## Usage

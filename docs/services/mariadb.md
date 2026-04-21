@@ -28,6 +28,7 @@ See the project's [documentation](https://mariadb.org/documentation/) to learn w
 Some of the services installed by this playbook require a MariaDB database. Enabling the MariaDB database service will automatically wire all other services which require such a database to use it.
 
 For details about configuring the [Ansible role for MariaDB](https://github.com/mother-of-all-self-hosting/ansible-role-mariadb), you can check them via:
+
 - 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-mariadb/blob/main/docs/configuring-mariadb.md) online
 - 📁 `roles/galaxy/mariadb/docs/configuring-mariadb.md` locally, if you have [fetched the Ansible roles](../installing.md)
 

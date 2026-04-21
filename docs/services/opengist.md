@@ -28,6 +28,7 @@ Opengist is a self-hosted pastebin powered by Git. All snippets are stored in a 
 See the project's [documentation](https://opengist.io/docs/) to learn what Opengist does and why it might be useful to you.
 
 For details about configuring the [Ansible role for Opengist](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az48WEbcYK3E6uDmfP1Qbb9AGdz1L3), you can check them via:
+
 - 🌐 [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az48WEbcYK3E6uDmfP1Qbb9AGdz1L3/tree/docs/configuring-opengist.md) online
 - 📁 `roles/galaxy/opengist/docs/configuring-opengist.md` locally, if you have [fetched the Ansible roles](../installing.md)
 

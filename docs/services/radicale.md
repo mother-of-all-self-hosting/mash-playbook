@@ -1,20 +1,23 @@
 <!--
 SPDX-FileCopyrightText: 2023 Slavi Pantaleev
+SPDX-FileCopyrightText: 2026 Suguru Hirahara
 
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 
 # Radicale
 
-[Radicale](https://radicale.org/) is a Free and Open-Source CalDAV and CardDAV Server (solution for hosting contacts and calendars).
+The playbook can install and configure [Radicale](https://radicale.org/) for you.
 
+Radicale is a Free and Open-Source CalDAV and CardDAV Server (solution for hosting contacts and calendars).
+
+See the project's [documentation](https://radicale.org/v3.html#documentation-1) to learn what Radicale does and why it might be useful to you.
 
 ## Dependencies
 
 This service requires the following other services:
 
 - a [Traefik](traefik.md) reverse-proxy server
-
 
 ## Configuration
 

@@ -1,12 +1,17 @@
 <!--
 SPDX-FileCopyrightText: 2025 MASH project contributors
+SPDX-FileCopyrightText: 2026 Suguru Hirahara
 
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 
-# Plex
+# Plex Media Server
 
-[Plex](https://www.plex.tv/) is a personal media server that allows you to organize and stream your collection of movies, TV shows, music, and photos.
+The playbook can install and configure a standalone [Plex Media Server](https://github.com/linuxserver/docker-plex) for you.
+
+Plex is a personal media server that allows you to organize and stream your collection of movies, TV shows, music, and photos.
+
+See the project's [documentation](https://docs.linuxserver.io/images/docker-plex/) to learn what Plex Media Server does and why it might be useful to you.
 
 ## Dependencies
 

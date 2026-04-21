@@ -26,6 +26,7 @@ RSSHub is a self-hosted service to create RSS feeds from web pages via various "
 See the project's [documentation](https://docs.rsshub.app/guide/) to learn what RSSHub does and why it might be useful to you.
 
 For details about configuring the [Ansible role for RSSHub](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3yKvCwcEfxn41ozRTcNR8ad6kpUm), you can check them via:
+
 - 🌐 [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3yKvCwcEfxn41ozRTcNR8ad6kpUm/tree/docs/configuring-rsshub.md) online
 - 📁 `roles/galaxy/rsshub/docs/configuring-rsshub.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
@@ -140,7 +141,6 @@ mash_playbook_service_base_directory_name_prefix: 'rsshub-'
 #                                                                      #
 ########################################################################
 
-
 ########################################################################
 #                                                                      #
 # valkey                                                               #
@@ -216,7 +216,6 @@ valkey_enabled: true
 # /valkey                                                              #
 #                                                                      #
 ########################################################################
-
 
 ########################################################################
 #                                                                      #

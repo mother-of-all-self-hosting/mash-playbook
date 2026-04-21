@@ -748,7 +748,7 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
 
   # role-specific:mobilizon
   - |-
-    {{ ({'name': (mobilizon_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'mobilizon']} if mobilizon_enabled else omit) }}
+    {{ ({'name': (mobilizon_identifier + '.service'), 'priority': 2000, 'restart_necessary': (mobilizon_restart_necessary | bool), 'groups': ['mash', 'mobilizon']} if mobilizon_enabled else omit) }}
   # /role-specific:mobilizon
 
   # role-specific:monerooo
@@ -974,7 +974,7 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
 
   # role-specific:postgis
   - |-
-    {{ ({'name': (postgis_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'postgis']} if postgis_enabled else omit) }}
+    {{ ({'name': (postgis_identifier + '.service'), 'priority': 2000, 'restart_necessary': (postgis_restart_necessary | bool), 'groups': ['mash', 'postgis']} if postgis_enabled else omit) }}
   # /role-specific:postgis
 
   # role-specific:postgres
@@ -1095,6 +1095,13 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
   - |-
     {{ ({'name': (redmine_identifier + '-recurring-tasks.timer'), 'priority': 2000, 'restart_necessary': (redmine_restart_necessary | bool), 'groups': ['mash', 'redmine']} if redmine_enabled and redmine_recurring_tasks_enabled else omit) }}
   # /role-specific:redmine
+
+  # role-specific:reitti
+  - |-
+    {{ ({'name': (reitti_identifier + '.service'), 'priority': 2000, 'restart_necessary': (reitti_restart_necessary | bool), 'groups': ['mash', 'reitti']} if reitti_enabled else omit) }}
+  - |-
+    {{ ({'name': (reitti_tilecache_identifier + '.service'), 'priority': 2000, 'restart_necessary': (reitti_restart_necessary | bool), 'groups': ['mash', 'reitti']} if reitti_enabled else omit) }}
+  # /role-specific:reitti
 
   # role-specific:roundcube
   - |-
@@ -2790,6 +2797,8 @@ adminer_systemd_required_services_list_auto: |
     +
     ([mongodb_identifier ~ '.service'] if mongodb_enabled | default(false) else [])
     +
+    ([postgis_identifier ~ '.service'] if postgis_enabled | default(false) else [])
+    +
     ([postgres_identifier ~ '.service'] if postgres_enabled | default(false) else [])
   }}
 
@@ -2802,6 +2811,8 @@ adminer_container_additional_networks_auto: |
     ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
     +
     ([mongodb_container_network] if mongodb_enabled | default(false) and adminer_container_network != mongodb_container_network else [])
+    +
+    ([postgis_container_network] if postgis_enabled | default(false) and adminer_container_network != postgis_container_network else [])
     +
     ([postgres_container_network] if postgres_enabled | default(false) and adminer_container_network != postgres_container_network else [])
   }}
@@ -4584,6 +4595,8 @@ databasus_systemd_required_services_list_auto: |
     +
     ([mongodb_identifier ~ '.service'] if mongodb_enabled | default(false) else [])
     +
+    ([postgis_identifier ~ '.service'] if postgis_enabled | default(false) else [])
+    +
     ([postgres_identifier ~ '.service'] if postgres_enabled | default(false) else [])
   }}
 
@@ -4601,6 +4614,8 @@ databasus_container_additional_networks_auto: |
     ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
     +
     ([mongodb_container_network] if mongodb_enabled | default(false) and databasus_container_network != mongodb_container_network else [])
+    +
+    ([postgis_container_network] if postgis_enabled | default(false) and databasus_container_network != postgis_container_network else [])
     +
     ([postgres_container_network] if postgres_enabled | default(false) and databasus_container_network != postgres_container_network and not databasus_database_postgres_socket_enabled else [])
   }}
@@ -9573,6 +9588,10 @@ mariadb_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_
 mariadb_uid: "{{ mash_playbook_uid }}"
 mariadb_gid: "{{ mash_playbook_gid }}"
 
+# This includes everything for maximum safety.
+# It may not be optimal though, because some services may not be dependent on MariaDB at all, etc.
+mariadb_systemd_services_to_stop_for_maintenance_list_auto: "{{ devture_systemd_service_manager_services_list_auto | map(attribute='name') | reject('equalto', (mariadb_identifier + '.service')) }}"
+
 mash_playbook_mariadb_managed_databases_auto_itemized:
   # Dummy entry, which is not role-specific.
   # Ensures there's at least one entry defined in the list.
@@ -10522,18 +10541,20 @@ mobilizon_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_bas
 mobilizon_uid: "{{ mash_playbook_uid }}"
 mobilizon_gid: "{{ mash_playbook_gid }}"
 
-mobilizon_secret_key: "{{ (mash_playbook_generic_secret_key + ':sk.mobilizon') | hash('sha512') | to_uuid }}"
-mobilizon_secret_key_base: "{{ (mash_playbook_generic_secret_key + ':skb.mobilizon') | hash('sha512') | to_uuid }}"
-
-mobilizon_systemd_required_services_list: |
+mobilizon_systemd_required_services_list_auto: |
   {{
-    ([devture_systemd_docker_base_docker_service_name] if devture_systemd_docker_base_docker_service_name else [])
-    +
     ([postgis_identifier ~ '.service'] if postgis_enabled and mobilizon_database_hostname == postgis_identifier else [])
   }}
 
-mobilizon_container_additional_networks: |
+mobilizon_systemd_wanted_services_list_auto: |
   {{
+    ([exim_relay_identifier ~ '.service'] if exim_relay_enabled | default(false) and mobilizon_environment_variables_email_smtp_server == exim_relay_identifier else [])
+  }}
+
+mobilizon_container_additional_networks_auto: |
+  {{
+    ([exim_relay_container_network] if exim_relay_enabled | default(false) and mobilizon_environment_variables_email_smtp_server == exim_relay_identifier and mobilizon_container_network != exim_relay_container_network else [])
+    +
     ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
     +
     ([postgis_container_network] if postgis_enabled and mobilizon_database_hostname == postgis_identifier and mobilizon_container_network != postgis_container_network else [])
@@ -10541,6 +10562,16 @@ mobilizon_container_additional_networks: |
 
 mobilizon_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
 mobilizon_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+
+mobilizon_environment_variables_secret_key: "{{ (mash_playbook_generic_secret_key + ':sk.mobilizon') | hash('sha512') | to_uuid }}"
+
+# role-specific:exim_relay
+mobilizon_environment_variables_email_smtp_server: "{{ exim_relay_identifier if exim_relay_enabled else '' }}"
+mobilizon_environment_variables_email_smtp_port: 8025
+mobilizon_environment_variables_email_smtp_ssl: "{{ false if exim_relay_enabled }}"
+mobilizon_environment_variables_email_smtp_tls: "{{ 'never' if exim_relay_enabled }}"
+mobilizon_environment_variables_instance_email: "{{ exim_relay_sender_address if exim_relay_enabled else '' }}"
+# /role-specific:exim_relay
 
 # role-specific:postgis
 mobilizon_database_hostname: "{{ postgis_identifier if postgis_enabled else '' }}"
@@ -11010,6 +11041,12 @@ neko_container_additional_networks_auto: |
 
 neko_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
 neko_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+
+neko_container_labels_traefik_metrics_enabled: "{{ mash_playbook_metrics_exposure_enabled }}"
+neko_container_labels_traefik_metrics_hostname: "{{ mash_playbook_metrics_exposure_hostname }}"
+neko_container_labels_traefik_metrics_path_prefix: "{{ mash_playbook_metrics_exposure_path_prefix }}/{{ neko_identifier }}"
+neko_container_labels_traefik_metrics_middleware_basic_auth_enabled: "{{ mash_playbook_metrics_exposure_http_basic_auth_enabled }}"
+neko_container_labels_traefik_metrics_middleware_basic_auth_users: "{{ mash_playbook_metrics_exposure_http_basic_auth_users }}"
 
 # role-specific:traefik
 neko_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
@@ -12035,6 +12072,11 @@ owncast_container_additional_networks_auto: |
 owncast_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
 owncast_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
 
+owncast_container_labels_traefik_metrics_enabled: "{{ mash_playbook_metrics_exposure_enabled }}"
+owncast_container_labels_traefik_metrics_hostname: "{{ mash_playbook_metrics_exposure_hostname }}"
+owncast_container_labels_traefik_metrics_path_prefix: "{{ mash_playbook_metrics_exposure_path_prefix }}/{{ owncast_identifier }}"
+# The variables for HTTP Basic authentication are intentionally not defined, as it is managed by the service itself
+
 # role-specific:traefik
 owncast_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
 owncast_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
@@ -12403,7 +12445,9 @@ pgadmin_gid: 5050
 
 pgadmin_systemd_required_services_list_auto: |
   {{
-    ([postgres_identifier ~ '.service'] if postgres_enabled else [])
+    ([postgis_identifier ~ '.service'] if postgis_enabled | default(false) else [])
+    +
+    ([postgres_identifier ~ '.service'] if postgres_enabled | default(false) else [])
   }}
 
 pgadmin_systemd_wanted_services_list_auto: |
@@ -12417,7 +12461,9 @@ pgadmin_container_additional_networks_auto: |
     +
     ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
     +
-    ([postgres_container_network] if postgres_enabled and pgadmin_container_network != postgres_container_network and not pgadmin_database_socket_enabled else [])
+    ([postgis_container_network] if postgis_enabled | default(false) and pgadmin_container_network != postgis_container_network else [])
+    +
+    ([postgres_container_network] if postgres_enabled | default(false) and pgadmin_container_network != postgres_container_network else [])
   }}
 
 pgadmin_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
@@ -12833,28 +12879,47 @@ poodledonts_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_
 
 postgis_enabled: false
 
-postgis_architecture: "{{ mash_playbook_architecture }}"
-
 postgis_identifier: "{{ mash_playbook_service_identifier_prefix }}postgis"
+
+postgis_architecture: "{{ mash_playbook_architecture }}"
 
 postgis_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}postgis"
 
 postgis_uid: "{{ mash_playbook_uid }}"
 postgis_gid: "{{ mash_playbook_gid }}"
 
-postgis_systemd_services_to_stop_for_maintenance_list: |
-  {{
-    ([(mobilizon_identifier + '.service')] if mobilizon_enabled else [])
-  }}
+# This includes everything for maximum safety.
+# It may not be optimal though, because some services may not be dependent on PostGIS at all, etc.
+postgis_systemd_services_to_stop_for_maintenance_list_auto: "{{ devture_systemd_service_manager_services_list_auto | map(attribute='name') | reject('equalto', (postgis_identifier + '.service')) }}"
 
-postgis_managed_databases_auto: |
-  {{
-    ([{
-      'name': mobilizon_database_name,
-      'username': mobilizon_database_username,
-      'password': mobilizon_database_password,
-    }] if mobilizon_enabled and mobilizon_database_hostname == postgis_identifier and mobilizon_database_type == 'postgis' else [])
-  }}
+mash_playbook_postgis_managed_databases_auto_itemized:
+  # Dummy entry, which is not role-specific.
+  # Ensures there's at least one entry defined in the list.
+  - "{{ omit }}"
+
+  # role-specific:mobilizon
+  - |-
+    {{
+      ({
+        'name': mobilizon_database_name,
+        'username': mobilizon_database_username,
+        'password': mobilizon_database_password,
+      } if mobilizon_enabled and mobilizon_database_hostname == postgis_connection_hostname else omit)
+    }}
+  # /role-specific:mobilizon
+
+  # role-specific:reitti
+  - |-
+    {{
+      ({
+        'name': reitti_database_name,
+        'username': reitti_database_username,
+        'password': reitti_database_password,
+      } if reitti_enabled and reitti_database_hostname == postgis_connection_hostname else omit)
+    }}
+  # /role-specific:reitti
+
+postgis_managed_databases_auto: "{{ mash_playbook_postgis_managed_databases_auto_itemized | reject('equalto', omit) }}"
 
 ########################################################################
 #                                                                      #
@@ -13865,6 +13930,61 @@ redmine_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_prim
 #                                                                      #
 ########################################################################
 # /role-specific:redmine
+
+
+
+# role-specific:reitti
+########################################################################
+#                                                                      #
+# reitti                                                               #
+#                                                                      #
+########################################################################
+
+reitti_enabled: false
+
+reitti_identifier: "{{ mash_playbook_service_identifier_prefix }}reitti"
+
+reitti_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}reitti"
+
+reitti_uid: "{{ mash_playbook_uid }}"
+reitti_gid: "{{ mash_playbook_gid }}"
+
+reitti_systemd_required_services_list_auto: |
+  {{
+    ([postgis_identifier ~ '.service'] if postgis_enabled and reitti_database_hostname == postgis_connection_hostname else [])
+  }}
+
+reitti_container_additional_networks_auto: |
+  {{
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+    +
+    ([postgis_container_network] if postgis_enabled and reitti_database_hostname == postgis_connection_hostname and reitti_container_network != postgis_container_network else [])
+  }}
+
+reitti_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+reitti_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+reitti_tilecache_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+reitti_tilecache_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+
+# role-specific:postgis
+reitti_database_hostname: "{{ postgis_connection_hostname if postgis_enabled else '' }}"
+reitti_database_port: "{{ postgis_connection_port if postgis_enabled else '5432' }}"
+reitti_database_password: "{{ (mash_playbook_generic_secret_key + ':reitti') | hash('sha512') | to_uuid }}"
+# /role-specific:postgis
+
+# role-specific:traefik
+reitti_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
+reitti_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
+reitti_tilecache_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
+reitti_tilecache_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
+# /role-specific:traefik
+
+########################################################################
+#                                                                      #
+# /reitti                                                              #
+#                                                                      #
+########################################################################
+# /role-specific:reitti
 
 
 

@@ -26,6 +26,7 @@ It enables to self-host the collaboration server for your Excalidraw's instance,
 See the project's [documentation](https://github.com/excalidraw/excalidraw-room/blob/master/README.md) to learn what it does and why it might be useful to you.
 
 For details about configuring the [Ansible role for the server](https://github.com/mother-of-all-self-hosting/ansible-role-excalidraw-room), you can check them via:
+
 - 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-excalidraw-room/blob/main/docs/configuring-excalidraw-room.md) online
 - 📁 `roles/galaxy/excalidraw_room/docs/configuring-excalidraw-room.md` locally, if you have [fetched the Ansible roles](../installing.md)
 

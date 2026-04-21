@@ -26,6 +26,7 @@ InspIRCd is a modular Internet Relay Chat (IRC) server written in C++.
 See the project's [documentation](https://docs.inspircd.org/) to learn what InspIRCd does and why it might be useful to you.
 
 For details about configuring the [Ansible role for InspIRCd](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3AzA2EcZYaHBzoc3XudvDhVDBjT42a), you can check them via:
+
 - 🌐 [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3AzA2EcZYaHBzoc3XudvDhVDBjT42a/tree/docs/configuring-inspircd.md) online
 - 📁 `roles/galaxy/inspircd/docs/configuring-inspircd.md` locally, if you have [fetched the Ansible roles](../installing.md)
 

@@ -27,6 +27,7 @@ Yggstack is a SOCKS5 proxy server and TCP port forwarder for [Yggdrasil](https:/
 See the project's [documentation](https://github.com/yggdrasil-network/yggstack/blob/develop/README.md) to learn what Yggstack does and why it might be useful to you.
 
 For details about configuring the [Ansible role for Yggstack](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az2BzsfYJzpSCK4tC8kCR1uCooZYX5), you can check them via:
+
 - 🌐 [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az2BzsfYJzpSCK4tC8kCR1uCooZYX5/tree/docs/configuring-yggstack.md) online
 - 📁 `roles/galaxy/yggstack/docs/configuring-yggstack.md` locally, if you have [fetched the Ansible roles](../installing.md)
 

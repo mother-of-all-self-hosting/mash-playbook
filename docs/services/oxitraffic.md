@@ -26,6 +26,7 @@ OxiTraffic is a self-hosted, simple and privacy respecting website traffic track
 See the project's [documentation](https://codeberg.org/mo8it/oxitraffic/src/branch/main/README.md) to learn what OxiTraffic does and why it might be useful to you.
 
 For details about configuring the [Ansible role for OxiTraffic](https://github.com/mother-of-all-self-hosting/ansible-role-oxitraffic), you can check them via:
+
 - 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-oxitraffic/blob/main/docs/configuring-oxitraffic.md) online
 - 📁 `roles/galaxy/oxitraffic/docs/configuring-oxitraffic.md` locally, if you have [fetched the Ansible roles](../installing.md)
 

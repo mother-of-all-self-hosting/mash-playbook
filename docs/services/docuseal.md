@@ -27,6 +27,7 @@ DocuSeal is a web application for digital document signing and processing.
 See the project's [documentation](https://www.docuseal.com/docs/) to learn what DocuSeal does and why it might be useful to you.
 
 For details about configuring the [Ansible role for DocuSeal](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az2HG5jWufCQfA8cYAFkJ9GmZyRcCs), you can check them via:
+
 - 🌐 [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az2HG5jWufCQfA8cYAFkJ9GmZyRcCs/tree/docs/configuring-docuseal.md) online
 - 📁 `roles/galaxy/docuseal/docs/configuring-docuseal.md` locally, if you have [fetched the Ansible roles](../installing.md)
 

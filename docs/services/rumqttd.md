@@ -14,6 +14,7 @@ The playbook can install and configure [rumqttd](https://github.com/bytebeamio/r
 rumqttd is a high performance, embeddable [MQTT](https://en.wikipedia.org/wiki/MQTT) broker.
 
 The [Ansible role for rumqttd](https://github.com/mother-of-all-self-hosting/ansible-role-rumqttd) is developed and maintained by the MASH project. For details about configuring rumqttd, you can check them via:
+
 - 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-rumqttd/blob/main/docs/configuring-rumqttd.md) online
 - 📁 `roles/galaxy/rumqttd/docs/configuring-rumqttd.md` locally, if you have [fetched the Ansible roles](../installing.md)
 

@@ -1,13 +1,17 @@
 <!--
 SPDX-FileCopyrightText: 2023 Slavi Pantaleev
-SPDX-FileCopyrightText: 2025 Suguru Hirahara
+SPDX-FileCopyrightText: 2025, 2026 Suguru Hirahara
 
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 
 # Docker Registry
 
-[Docker Registry](https://docs.docker.com/registry/) is a container image distribution registry developed by [Docker Inc](https://www.docker.com/).
+The playbook can install and configure [Docker Registry](https://docs.docker.com/registry/) for you.
+
+Docker Registry is a container image distribution registry developed by [Docker Inc](https://www.docker.com/).
+
+See the project's [documentation](https://docs.docker.com/registry/) to learn what Docker Registry does and why it might be useful to you.
 
 This playbook supports installing a container image registry which is:
 
@@ -16,13 +20,11 @@ This playbook supports installing a container image registry which is:
 
 Authentication is not supported.
 
-
 ## Dependencies
 
 This service requires the following other services:
 
 - a [Traefik](traefik.md) reverse-proxy server
-
 
 ## Configuration
 

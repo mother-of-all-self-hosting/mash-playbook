@@ -22,7 +22,11 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
 # Paperless-ngx
 
-[Paperless-ngx](https://paperless-ngx.com) is a community-supported open-source document management system that transforms your physical documents into a searchable online archive to organize them paperless.
+The playbook can install and configure [Paperless-ngx](https://paperless-ngx.com) for you.
+
+Paperless-ngx is a community-supported open-source document management system that transforms your physical documents into a searchable online archive to organize them paperless.
+
+See the project's [documentation](https://docs.paperless-ngx.com/) to learn what Paperless-ngx does and why it might be useful to you.
 
 ## Dependencies
 
@@ -144,7 +148,6 @@ mash_playbook_service_base_directory_name_prefix: 'paperless-'
 #                                                                      #
 ########################################################################
 
-
 ########################################################################
 #                                                                      #
 # valkey                                                               #
@@ -213,7 +216,6 @@ valkey_enabled: true
 # /valkey                                                              #
 #                                                                      #
 ########################################################################
-
 
 ########################################################################
 #                                                                      #

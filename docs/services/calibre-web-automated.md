@@ -29,6 +29,7 @@ Calibre-Web Automated is a web application based on [Calibre-Web](https://github
 See the project's [documentation](https://github.com/crocodilestick/Calibre-Web-Automated/blob/main/README.md) to learn what Calibre-Web Automated does and why it might be useful to you.
 
 For details about configuring the [Ansible role for Calibre-Web Automated](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3AzSfEaojv4NnFnivPm248Lx123CNe), you can check them via:
+
 - 🌐 [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3AzSfEaojv4NnFnivPm248Lx123CNe/tree/docs/configuring-calibre-web-automated.md) online
 - 📁 `roles/galaxy/calibre_web_automated/docs/configuring-calibre-web-automated.md` locally, if you have [fetched the Ansible roles](../installing.md)
 

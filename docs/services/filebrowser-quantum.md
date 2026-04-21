@@ -29,6 +29,7 @@ FileBrowser Quantum is a free self-hosted web-based file manager.
 See the project's [documentation](https://filebrowserquantum.com/en/docs/) to learn what FileBrowser Quantum does and why it might be useful to you.
 
 For details about configuring the [Ansible role for FileBrowser Quantum](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3ALGSKDhVLeMnR49YPXk5yv2yTge), you can check them via:
+
 - 🌐 [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3ALGSKDhVLeMnR49YPXk5yv2yTge/tree/docs/configuring-filebrowser-quantum.md) online
 - 📁 `roles/galaxy/filebrowser_quantum/docs/configuring-filebrowser-quantum.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
@@ -51,7 +52,8 @@ To enable this service, add the following configuration to your `vars.yml` file 
 
 filebrowser_quantum_enabled: true
 
-filebrowser_quantum_hostname: filebrowser.example.com
+filebrowser_quantum_hostname: mash.example.com
+filebrowser_quantum_path_prefix: /filebrowser
 
 ########################################################################
 #                                                                      #

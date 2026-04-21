@@ -26,6 +26,7 @@ Radicle Explorer allows you to interact with [Radicle](https://radicle.xyz/), a 
 See the project's [documentation](https://app.radicle.xyz/nodes/seed.radicle.xyz/rad%3Az4V1sjrXqjvFdnCUbxPFqd5p4DtH5/tree/README.md) to learn what Radicle Explorer does and why it might be useful to you.
 
 For details about configuring the [Ansible role for Radicle Explorer](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Azopwjin5Vh5dMgdHWiifJ2cg3bQW), you can check them via:
+
 - 🌐 [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Azopwjin5Vh5dMgdHWiifJ2cg3bQW/tree/docs/configuring-radicle-explorer.md) online
 - 📁 `roles/galaxy/radicle_explorer/docs/configuring-radicle-explorer.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
