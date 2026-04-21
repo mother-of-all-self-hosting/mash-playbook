@@ -161,7 +161,7 @@ To save disk space in `/tmp`, the dump file is gzipped on the fly at the expense
 
 PostgreSQL can be [tuned](https://wiki.postgresql.org/wiki/Tuning_Your_PostgreSQL_Server) to make it run faster. This is done by passing extra arguments to the Postgres process.
 
-The [Postgres Ansible role](https://github.com/mother-of-all-self-hosting/ansible-role-postgres) **already does some tuning by default**, which matches the [tuning logic](https://github.com/le0pard/pgtune/blob/master/src/features/configuration/configurationSlice.js) done by websites like https://pgtune.leopard.in.ua/. You can manually influence some of the tuning variables. These parameters (variables) are injected via the `postgres_postgres_process_extra_arguments_auto` variable.
+The [Postgres Ansible role](https://github.com/mother-of-all-self-hosting/ansible-role-postgres) **already does some tuning by default**, which matches the [tuning logic](https://github.com/le0pard/pgtune/blob/master/src/features/configuration/configurationSlice.js) done by websites like <https://pgtune.leopard.in.ua/>. You can manually influence some of the tuning variables. These parameters (variables) are injected via the `postgres_postgres_process_extra_arguments_auto` variable.
 
 Most users should be fine with the automatically-done tuning. However, you may wish to:
 

@@ -35,7 +35,7 @@ Depending on your distribution, you may be able to upgrade Ansible in a few diff
 
 - by removing the Ansible package (`yum remove ansible` or `apt-get remove ansible`) and installing via [pip](https://pip.pypa.io/en/stable/installation/) (`pip install ansible`).
 
-If using the `pip` method, do note that the `ansible-playbook` binary may not be on the `$PATH` (https://linuxconfig.org/linux-path-environment-variable), but in some more special location like `/usr/local/bin/ansible-playbook`. You may need to invoke it using the full path.
+If using the `pip` method, do note that the `ansible-playbook` binary may not be on the `$PATH` (<https://linuxconfig.org/linux-path-environment-variable>), but in some more special location like `/usr/local/bin/ansible-playbook`. You may need to invoke it using the full path.
 
 **Note**: Both of the above methods are a bad way to run system software such as Ansible. If you find yourself needing to resort to such hacks, please consider reporting a bug to your distribution and/or switching to a sane distribution, which provides up-to-date software.
 

@@ -139,8 +139,7 @@ Here’s what that means:
 - **Untare** was built for the old API — it no longer works with Tandoor 2.0 and is **no longer maintained**
 - **Kitshn** is being actively developed, but only a **beta version** supports Tandoor 2.0
 
-You can find more details in the official release notes:
-https://github.com/TandoorRecipes/recipes/releases/tag/2.0.0
+You can find more details in the official release notes: <https://github.com/TandoorRecipes/recipes/releases/tag/2.0.0>
 
 # 2025-03-08
 
@@ -260,7 +259,7 @@ traefik_config_entrypoint_web_secure_http3_enabled: false
 
 The playbook has provided some hints about [Tuning PostgreSQL](docs/maintenance-postgres.md#tuning-postgresql) for quite a while now.
 
-From now on, the [Postgres Ansible role](https://github.com/devture/com.devture.ansible.role.postgres) automatically tunes your Postgres configuration with the same [calculation logic](https://github.com/le0pard/pgtune/blob/master/src/features/configuration/configurationSlice.js) that powers https://pgtune.leopard.in.ua/.
+From now on, the [Postgres Ansible role](https://github.com/devture/com.devture.ansible.role.postgres) automatically tunes your Postgres configuration with the same [calculation logic](https://github.com/le0pard/pgtune/blob/master/src/features/configuration/configurationSlice.js) that powers <https://pgtune.leopard.in.ua/>.
 
 Our [Tuning PostgreSQL](docs/maintenance-postgres.md#tuning-postgresql) documentation page has details about how you can turn auto-tuning off or adjust the automatically-determined Postgres configuration parameters manually.
 

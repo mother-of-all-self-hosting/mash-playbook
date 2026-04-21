@@ -71,7 +71,7 @@ You can log in with **any** of the Basic Auth credentials defined in `syncthing_
 
 Generate entries outside Ansible with `htpasswd -nb USERNAME PASSWORD` and put the resulting lines into `syncthing_basicauth_htpasswds`.
 
-The legacy `syncthing_basicauth_credentials` convenience variable is discouraged, because it depends on the `passlib` Python library, may be affected by passlib/bcrypt compatibility issues (see: https://foss.heptapod.net/python-libs/passlib/-/issues/196), and produces non-deterministic hashes which can trigger unnecessary Ansible changes.
+The legacy `syncthing_basicauth_credentials` convenience variable is discouraged, because it depends on the `passlib` Python library, may be affected by passlib/bcrypt compatibility issues (see: <https://foss.heptapod.net/python-libs/passlib/-/issues/196>), and produces non-deterministic hashes which can trigger unnecessary Ansible changes.
 
 Authentication is **done at the reverse-proxy level** (Traefik), so upon logging in, Syncthing will show you scary warnings about **no GUI password being set**. You should ignore these warnings.
 
