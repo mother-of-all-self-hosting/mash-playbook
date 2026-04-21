@@ -25,7 +25,6 @@ See the project's [documentation](https://github.com/mozilla-services/syncstorag
 
 For details about configuring the [Ansible role for syncstorage-rs](https://github.com/mother-of-all-self-hosting/ansible-role-syncstorage-rs-docker), you can check them via:
 
-
 - 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-syncstorage-rs-docker/blob/main/docs/configuring-syncstorage-rs-docker.md) online
 - 📁 `roles/galaxy/syncstorage_rs_docker/docs/configuring-syncstorage-rs-docker.md` locally, if you have [fetched the Ansible roles](../installing.md)
 

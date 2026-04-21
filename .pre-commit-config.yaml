@@ -21,7 +21,6 @@ repos:
         args: [
           --disable=MD001,
           --disable=MD007,
-          --disable=MD012,
           --disable=MD013,
           --disable=MD024,
           --disable=MD025,
