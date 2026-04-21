@@ -9098,8 +9098,8 @@ librebooking_identifier: "{{ mash_playbook_service_identifier_prefix }}librebook
 
 librebooking_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}librebooking"
 
-librebooking_uid: "{{ mash_playbook_uid }}"
-librebooking_gid: "{{ mash_playbook_gid }}"
+librebooking_uid: "33"
+librebooking_gid: "33"
 
 librebooking_systemd_required_services_list_auto: |
   {{
