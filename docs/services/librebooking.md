@@ -48,23 +48,23 @@ librebooking_enabled: true
 
 librebooking_hostname: booking.example.com
 
-# To serve at a subpath instead of /, uncomment:
-# librebooking_path_prefix: /booking
-
 # Protects the /Web/install/ setup wizard. Use a strong password.
-librebooking_install_password: "your-strong-install-password-here"
+librebooking_environment_variables_lb_install_password: "your-strong-install-password-here"
 
-# Optional: set timezone
-# librebooking_timezone: "Europe/Berlin"
+# Optional: set the timezone
+# librebooking_environment_variables_lb_default_timezone: "Europe/Berlin"
 
-# Optional: enable built-in cron for reminder emails, etc.
-# librebooking_cron_enabled: 'true'
+# Optional: enable background cron jobs (for reminder emails, etc.)
+# librebooking_environment_variables_lb_cron_enabled: true
 
-# Optional: pass additional LB_ environment variables.
+# Optional: allow users to self-register accounts (disabled by default).
+# Enable temporarily if you need to register your admin account manually.
+# librebooking_environment_variables_lb_registration_allow_self_registration: true
+
+# Optional: pass extra LB_ environment variables to configure the application.
 # See: https://librebooking.readthedocs.io/en/stable/BASIC-CONFIGURATION.html
-# librebooking_environment_variables_additional: |
-#   LB_APP_TITLE=My Booking System
-#   LB_COMPANY_NAME=Acme Corp
+# librebooking_environment_variables_additional_variables: |
+#   LB_APP_TITLE='My Booking System'
 
 ########################################################################
 #                                                                      #
