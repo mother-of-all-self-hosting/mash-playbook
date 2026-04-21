@@ -106,8 +106,7 @@ However, changing `syncthing_container_sync_tcp_port` or `syncthing_container_sy
 
 ### Configuration & Data
 
-The Syncthing configuration (stored in `syncthing_config_path` on the host) is mounted to the `/var/syncthing` directory in the container.
-By default, Syncthing will create a default `Sync` directory underneath. We advise that you **don't use this** `Sync` directory and use the data directory (discussed below).
+The Syncthing configuration (stored in `syncthing_config_path` on the host) is mounted to the `/var/syncthing` directory in the container. By default, Syncthing will create a default `Sync` directory underneath. We advise that you **don't use this** `Sync` directory and use the data directory (discussed below).
 
 As mentioned above, the **data directory** (stored in `syncthing_data_path` on the host) is mounted to the `/data` directory in the container. We advise that you put data files underneath `/data` when you start using Syncthing.
 

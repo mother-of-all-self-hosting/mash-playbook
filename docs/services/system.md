@@ -8,8 +8,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
 # System-related configuration
 
-This Ansible playbook can install and configure various system-related things for you.
-All the sections below relate to the host OS instead of the managed containers.
+This Ansible playbook can install and configure various system-related things for you. All the sections below relate to the host OS instead of the managed containers.
 
 ### swap
 
