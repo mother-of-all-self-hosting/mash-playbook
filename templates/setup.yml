@@ -302,6 +302,10 @@
     - role: galaxy/etherpad
     # /role-specific:etherpad
 
+    # role-specific:eurooffice
+    - role: galaxy/eurooffice
+    # /role-specific:eurooffice
+
     # role-specific:excalidraw
     - role: galaxy/excalidraw
     # /role-specific:excalidraw
