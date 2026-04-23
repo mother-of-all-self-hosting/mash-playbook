@@ -17,8 +17,8 @@ See the project's [documentation](https://wg-easy.github.io/wg-easy/latest/) to 
 
 This service requires the following other services:
 
-- a [Traefik](traefik.md) reverse-proxy server
-- a modern Linux kernel which supports WireGuard
+- [Traefik](traefik.md) reverse-proxy server
+- Modern Linux kernel which supports WireGuard
 - `devture_systemd_docker_base_ipv6_enabled: true` if you'd like IPv6 support
 
 ## Configuration

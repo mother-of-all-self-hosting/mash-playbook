@@ -43,7 +43,7 @@ Small installations which only run trusted CI jobs can afford to run an agent in
 
 This service requires the following other services:
 
-- a [Traefik](traefik.md) reverse-proxy server
+- [Traefik](traefik.md) reverse-proxy server
 - (optional) [Postgres](postgres.md) / MySQL / [MariaDB](mariadb.md) database — Woodpecker CI server will default to [SQLite](https://www.sqlite.org/) if Postgres is not enabled
 
 ### Configuration — Woodpecker CI server
@@ -160,7 +160,7 @@ As mentioned above, unless you completely trust your CI workloads, it's best to 
 
 This service requires the following other services:
 
-- a Woodpecker CI server — installed via this playbook or otherwise
+- Woodpecker CI server — installed via this playbook or otherwise
 
 ### Configuration — Woodpecker CI agent
 

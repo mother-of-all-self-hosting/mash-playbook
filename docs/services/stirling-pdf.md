@@ -18,7 +18,7 @@ See the project's [documentation](https://github.com/Stirling-Tools/Stirling-PDF
 
 ## Dependencies
 
-- a [Traefik](traefik.md) reverse-proxy server (optional)
+- [Traefik](traefik.md) reverse-proxy server (optional)
 
 ## Configuration
 

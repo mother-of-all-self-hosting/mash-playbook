@@ -38,9 +38,9 @@ For details about configuring the [Ansible role for Immich](https://github.com/m
 
 This service requires the following other services:
 
-- a [Traefik](traefik.md) reverse-proxy server
-- a **custom** [Postgres](postgres.md) database, powered by the [Immich-specific Postgres image](https://github.com/immich-app/base-images/tree/main/postgres) (based on [pgvector](https://github.com/pgvector/pgvector), but also includes additional extensions). See [Configuration overview](#configuration-overview) for details about installation
-- a [Valkey](valkey.md) data-store. See [Configuration overview](#configuration-overview) for details about installation
+- **Custom** [Postgres](postgres.md) database, powered by the [Immich-specific Postgres image](https://github.com/immich-app/base-images/tree/main/postgres) (based on [pgvector](https://github.com/pgvector/pgvector), but also includes additional extensions). See [Configuration overview](#configuration-overview) for details about installation
+- [Traefik](traefik.md) reverse-proxy server
+- [Valkey](valkey.md) data-store. See [Configuration overview](#configuration-overview) for details about installation
 - (optional) [exim-relay](exim-relay.md) for sending emails via this service
 
 ## Adjusting the playbook configuration

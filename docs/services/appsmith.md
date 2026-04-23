@@ -34,7 +34,7 @@ For details about configuring the [Ansible role for Appsmith](https://github.com
 
 This service requires the following other services:
 
-- a [Traefik](traefik.md) reverse-proxy server
+- [Traefik](traefik.md) reverse-proxy server
 
 ## Configuration
 

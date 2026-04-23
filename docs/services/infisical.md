@@ -18,9 +18,9 @@ See the project's [documentation](https://infisical.com/docs/documentation/guide
 
 This service requires the following other services:
 
-- a [MongoDB](mongodb.md) document-oriented database server
-- a [Traefik](traefik.md) reverse-proxy server
-- a [Valkey](valkey.md) data-store; see [below](#configure-valkey) for details about installation
+- [MongoDB](mongodb.md) document-oriented database server
+- [Traefik](traefik.md) reverse-proxy server
+- [Valkey](valkey.md) data-store; see [below](#configure-valkey) for details about installation
 
 ## Configuration
 

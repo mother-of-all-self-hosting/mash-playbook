@@ -32,8 +32,8 @@ See the project's [documentation](https://docs.paperless-ngx.com/) to learn what
 
 This service requires the following other services:
 
-- a [Traefik](traefik.md) reverse-proxy server
-- a [Valkey](valkey.md) data-store; see [below](#configure-valkey) for details about installation
+- [Traefik](traefik.md) reverse-proxy server
+- [Valkey](valkey.md) data-store; see [below](#configure-valkey) for details about installation
 - (optional) [Apache Tika Server](tika.md)
 - (optional) [exim-relay](exim-relay.md) mailer
 - (optional) [Postgres](postgres.md) / [MariaDB](mariadb.md) database — Paperless-ngx will default to [SQLite](https://www.sqlite.org/) if Postgres is not enabled

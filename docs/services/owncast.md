@@ -44,7 +44,7 @@ You may need to open a port for TCP based [RTMP](https://en.wikipedia.org/wiki/R
 
 This service requires the following other services:
 
-- a [Traefik](traefik.md) reverse-proxy server
+- [Traefik](traefik.md) reverse-proxy server
 
 ## Adjusting the playbook configuration
 

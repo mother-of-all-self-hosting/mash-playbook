@@ -34,8 +34,8 @@ For details about configuring the [Ansible role for ONLYOFFICE Docs](https://app
 
 This service requires the following other services:
 
-- a [Traefik](traefik.md) reverse-proxy server
 - [MariaDB](mariadb.md) / [Postgres](postgres.md) database — ONLYOFFICE Docs will default to Postgres
+- [Traefik](traefik.md) reverse-proxy server
 - (optional) [RabbitMQ](rabbitmq.md)
 
 >[!NOTE]

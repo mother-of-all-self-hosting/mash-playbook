@@ -17,7 +17,7 @@ See the project's [documentation](https://docs.syncthing.net/) to learn what Syn
 
 This service requires the following other services:
 
-- a [Traefik](traefik.md) reverse-proxy server
+- [Traefik](traefik.md) reverse-proxy server
 
 ## Configuration
 

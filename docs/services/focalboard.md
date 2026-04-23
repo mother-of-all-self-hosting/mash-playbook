@@ -34,7 +34,7 @@ For details about configuring the [Ansible role for Focalboard](https://github.c
 
 This service requires the following other services:
 
-- a [Traefik](traefik.md) reverse-proxy server
+- [Traefik](traefik.md) reverse-proxy server
 - (optional) a [Postgres](postgres.md) database — Focalboard will default to [SQLite](https://www.sqlite.org/) if Postgres is not enabled
 
 ## Adjusting the playbook configuration

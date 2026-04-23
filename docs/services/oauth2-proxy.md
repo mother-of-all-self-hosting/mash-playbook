@@ -33,14 +33,8 @@ The [OAuth2-Proxy Ansible role](https://github.com/mother-of-all-self-hosting/an
 
 This service requires the following other services:
 
-- a [Traefik](traefik.md) reverse-proxy server
-- an OIDC provider running anywhere. See [Choosing a provider](#choosing-a-provider).
-
-## Choosing a provider
-
-To use OAuth2-Proxy, you need to choose an [OIDC provider](https://oauth2-proxy.github.io/oauth2-proxy/configuration/providers/).
-
-This can be any of the supported providers. If hosting your own (via this playbook or via other means), the OIDC provider may be hosted anywhere (not necessarily on the same server as OAuth2-Proxy or the service you're SSO-protecting).
+- [OIDC provider](https://oauth2-proxy.github.io/oauth2-proxy/configuration/providers/) —  This may be hosted anywhere; not necessarily on the same server as OAuth2-Proxy or the service you're SSO-protecting
+- [Traefik](traefik.md) reverse-proxy server
 
 ## Sample configuration
 

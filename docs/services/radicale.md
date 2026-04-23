@@ -17,7 +17,7 @@ See the project's [documentation](https://radicale.org/v3.html#documentation-1) 
 
 This service requires the following other services:
 
-- a [Traefik](traefik.md) reverse-proxy server
+- [Traefik](traefik.md) reverse-proxy server
 
 ## Configuration
 

@@ -20,8 +20,8 @@ See the project's [documentation](https://ilmo2.readthedocs.io/) to learn what I
 
 This service requires the following other services:
 
-- a [Postgres](postgres.md) database
-- a [Traefik](traefik.md) reverse-proxy server
+- [Postgres](postgres.md) database
+- [Traefik](traefik.md) reverse-proxy server
 
 ## Configuration
 

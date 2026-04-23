@@ -17,7 +17,7 @@ See the project's [documentation](https://github.com/Jackett/Jackett/blob/master
 
 This service requires the following other services:
 
-- a [Traefik](traefik.md) reverse-proxy server
+- [Traefik](traefik.md) reverse-proxy server
 
 ## Configuration
 

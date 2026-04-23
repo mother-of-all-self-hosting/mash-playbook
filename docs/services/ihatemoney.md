@@ -31,7 +31,7 @@ See the project's [documentation](https://ihatemoney.readthedocs.io/en/latest/) 
 
 This service requires the following other services:
 
-- a [Postgres](postgres.md) database
+- [Postgres](postgres.md) database
 - [Traefik](traefik.md) reverse-proxy server
 - (optional) [exim-relay](exim-relay.md) mailer
 
