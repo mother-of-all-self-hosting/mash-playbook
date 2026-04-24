@@ -6256,7 +6256,7 @@ ghostfolio_database_hostname: "{{ postgres_connection_hostname if postgres_enabl
 ghostfolio_database_port: "{{ postgres_connection_port if postgres_enabled else '5432' }}"
 ghostfolio_database_username: ghostfolio
 ghostfolio_database_password: "{{ (mash_playbook_generic_secret_key + ':db.ghostfolio') | hash('sha512') | to_uuid }}"
-ghostfolio_database_sslmode: "{{ 'disable' if postgres_enabled and (ghostfolio_database_hostname == postgres_connection_hostname or ghostfolio_database_socket_enabled) else 'prefer' }}"
+ghostfolio_database_sslmode: "{{ 'disable' if postgres_enabled and (ghostfolio_database_hostname == postgres_connection_hostname or ghostfolio_database_socket_enabled) else 'require' }}"
 ghostfolio_database_socket_path_host: "{{ postgres_run_path }}"
 # /role-specific:postgres
 
