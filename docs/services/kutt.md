@@ -26,9 +26,9 @@ Kutt is a modern URL shortener with support for custom domains with functions li
 
 See the project's [documentation](https://github.com/thedevs-network/kutt/blob/main/README.md) to learn what Kutt does and why it might be useful to you.
 
-For details about configuring the [Ansible role for Kutt](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az36dPzLyvPA52m845g1MMqHgoiaEz), you can check them via:
+For details about configuring the [Ansible role for Kutt](https://radicle.network/nodes/seed.radicle.garden/rad%3Az36dPzLyvPA52m845g1MMqHgoiaEz), you can check them via:
 
-- 🌐 [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az36dPzLyvPA52m845g1MMqHgoiaEz/tree/docs/configuring-kutt.md) online
+- 🌐 [the role's documentation](https://radicle.network/nodes/seed.radicle.garden/rad%3Az36dPzLyvPA52m845g1MMqHgoiaEz/tree/docs/configuring-kutt.md) online
 - 📁 `roles/galaxy/kutt/docs/configuring-kutt.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 ## Dependencies
@@ -66,7 +66,7 @@ kutt_hostname: kutt.example.com
 
 ### Select database to use (optional)
 
-By default Kutt is configured to use [Postgres](postgres.md) (if enabled), but you can choose other databases such as MySQL (MariaDB) and SQLite. If Postgres is not enabled, SQLite will be used. See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az36dPzLyvPA52m845g1MMqHgoiaEz/tree/docs/configuring-kutt.md#specify-database-optional) on the role's documentation for details.
+By default Kutt is configured to use [Postgres](postgres.md) (if enabled), but you can choose other databases such as MySQL (MariaDB) and SQLite. If Postgres is not enabled, SQLite will be used. See [this section](https://radicle.network/nodes/seed.radicle.garden/rad%3Az36dPzLyvPA52m845g1MMqHgoiaEz/tree/docs/configuring-kutt.md#specify-database-optional) on the role's documentation for details.
 
 ### Configuring the mailer (optional)
 
@@ -259,7 +259,7 @@ To get started, open the URL with a web browser to create an administrator accou
 
 ## Troubleshooting
 
-See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az36dPzLyvPA52m845g1MMqHgoiaEz/tree/docs/configuring-kutt.md#troubleshooting) on the role's documentation for details.
+See [this section](https://radicle.network/nodes/seed.radicle.garden/rad%3Az36dPzLyvPA52m845g1MMqHgoiaEz/tree/docs/configuring-kutt.md#troubleshooting) on the role's documentation for details.
 
 ## Related services
 

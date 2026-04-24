@@ -25,9 +25,9 @@ bitmagnet is a self-hosted BitTorrent indexer, DHT crawler, content classifier a
 
 See the project's [documentation](https://bitmagnet.io/) to learn what bitmagnet does and why it might be useful to you.
 
-For details about configuring the [Ansible role for bitmagnet](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Azs18Rifa7437q7hTFhsx11nYeGhD), you can check them via:
+For details about configuring the [Ansible role for bitmagnet](https://radicle.network/nodes/seed.radicle.garden/rad%3Azs18Rifa7437q7hTFhsx11nYeGhD), you can check them via:
 
-- 🌐 [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Azs18Rifa7437q7hTFhsx11nYeGhD/tree/docs/configuring-bitmagnet.md) online
+- 🌐 [the role's documentation](https://radicle.network/nodes/seed.radicle.garden/rad%3Azs18Rifa7437q7hTFhsx11nYeGhD/tree/docs/configuring-bitmagnet.md) online
 - 📁 `roles/galaxy/bitmagnet/docs/configuring-bitmagnet.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 >[!NOTE]
@@ -64,7 +64,7 @@ bitmagnet_hostname: bitmagnet.example.com
 
 ### Configuring HTTP Basic authentication
 
-Since there does not exist an authentication system on the web interface, the HTTP Basic authentication on Traefik is enabled for the web interface by default, considering the nature of the service. See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Azs18Rifa7437q7hTFhsx11nYeGhD/tree/docs/configuring-bitmagnet.md#configuring-http-basic-authentication) on the role's documentation for details about how to set it up.
+Since there does not exist an authentication system on the web interface, the HTTP Basic authentication on Traefik is enabled for the web interface by default, considering the nature of the service. See [this section](https://radicle.network/nodes/seed.radicle.garden/rad%3Azs18Rifa7437q7hTFhsx11nYeGhD/tree/docs/configuring-bitmagnet.md#configuring-http-basic-authentication) on the role's documentation for details about how to set it up.
 
 ### Integrating with Prometheus (optional)
 
@@ -111,7 +111,7 @@ To use it, open the URL on the browser and log in to the service if authenticati
 
 ## Troubleshooting
 
-See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Azs18Rifa7437q7hTFhsx11nYeGhD/tree/docs/configuring-bitmagnet.md#troubleshooting) on the role's documentation for details.
+See [this section](https://radicle.network/nodes/seed.radicle.garden/rad%3Azs18Rifa7437q7hTFhsx11nYeGhD/tree/docs/configuring-bitmagnet.md#troubleshooting) on the role's documentation for details.
 
 ## Related services
 

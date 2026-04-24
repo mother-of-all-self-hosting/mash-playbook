@@ -128,7 +128,7 @@
   version: v26.3.7.8-0
   name: clickhouse
   activation_prefix: clickhouse_
-- src: git+https://iris.radicle.xyz/zp12kTQqmgqnFpUU6gPyVq19HNMD.git
+- src: git+https://iris.radicle.network/zp12kTQqmgqnFpUU6gPyVq19HNMD.git
   version: v2.6.1-3
   name: codimd
   activation_prefix: codimd_
@@ -396,7 +396,7 @@
   version: v10888-0
   name: jitsi
   activation_prefix: jitsi_
-- src: git+https://iris.radicle.xyz/zttNpUS7xCeDnn2e4No2dUvZv7L7.git
+- src: git+https://iris.radicle.network/zttNpUS7xCeDnn2e4No2dUvZv7L7.git
   version: v3.6.1-0
   name: joplin_server
   activation_prefix: joplin_server_
@@ -516,7 +516,7 @@
   version: v5.2.3-2
   name: mobilizon
   activation_prefix: mobilizon_
-- src: git+https://iris.radicle.xyz/z3i2ogEXxuSzVAxVaRuoydAiDCBKi.git
+- src: git+https://iris.radicle.network/z3i2ogEXxuSzVAxVaRuoydAiDCBKi.git
   version: v0.0.0-2
   name: monerooo
   activation_prefix: monerooo_

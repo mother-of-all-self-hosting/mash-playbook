@@ -28,9 +28,9 @@ While Joplin is architectured to be "offline first", with a Joplin Server it is 
 
 See the project's [documentation](https://joplinapp.org/help/) to learn what Joplin and Joplin Server do and why they might be useful to you.
 
-For details about configuring the [Ansible role for Joplin Server](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3AzttNpUS7xCeDnn2e4No2dUvZv7L7), you can check them via:
+For details about configuring the [Ansible role for Joplin Server](https://radicle.network/nodes/seed.radicle.garden/rad%3AzttNpUS7xCeDnn2e4No2dUvZv7L7), you can check them via:
 
-- 🌐 [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3AzttNpUS7xCeDnn2e4No2dUvZv7L7/tree/docs/configuring-joplin-server.md) online
+- 🌐 [the role's documentation](https://radicle.network/nodes/seed.radicle.garden/rad%3AzttNpUS7xCeDnn2e4No2dUvZv7L7/tree/docs/configuring-joplin-server.md) online
 - 📁 `roles/galaxy/joplin_server/docs/configuring-joplin-server.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 ## Dependencies
@@ -74,7 +74,7 @@ To actually have the service use (and get messages sent through the exim-relay s
 
 During installation, the Joplin Server by default creates its admin user with `admin@localhost` as its email address and `admin` as its password. To change the credentials from the admin page after logging in, authentication is required with an email sent to the updated email address. Email address authentication is also required by default for changing the credentials of non-admin users.
 
-See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3AzttNpUS7xCeDnn2e4No2dUvZv7L7/tree/docs/configuring-joplin-server.md#configure-the-mailer) on the role's documentation for details about configuring the mailer.
+See [this section](https://radicle.network/nodes/seed.radicle.garden/rad%3AzttNpUS7xCeDnn2e4No2dUvZv7L7/tree/docs/configuring-joplin-server.md#configure-the-mailer) on the role's documentation for details about configuring the mailer.
 
 >[!WARNING]
 > Without setting an authentication method such as DKIM, SPF, and DMARC for your hostname, emails are most likely to be quarantined as spam at recipient's mail servers. The worst scenario is that your server's IP address or hostname will be included in the spam list such as the one managed by [Spamhaus](https://www.spamhaus.org/), depending on the reputation. As the exim-relay service supports DKIM signing, refer to [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-exim-relay/blob/main/docs/configuring-exim-relay.md#enable-dkim-support-optional) for details about how to set it up.
@@ -85,8 +85,8 @@ To configure and manage the Joplin Server, open the URL `mash.example.com/joplin
 
 For security reason, the developer recommends to create a non-admin user for synchronization. You can create one on the "Users" page. After creating, you can use the email and password you specified for the user to synchronize data with your Joplin clients.
 
-See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3AzttNpUS7xCeDnn2e4No2dUvZv7L7/tree/docs/configuring-joplin-server.md#usage) on the role's documentation for details about configuring the Joplin Server and the client application.
+See [this section](https://radicle.network/nodes/seed.radicle.garden/rad%3AzttNpUS7xCeDnn2e4No2dUvZv7L7/tree/docs/configuring-joplin-server.md#usage) on the role's documentation for details about configuring the Joplin Server and the client application.
 
 ## Troubleshooting
 
-See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3AzttNpUS7xCeDnn2e4No2dUvZv7L7/tree/docs/configuring-joplin-server.md#troubleshooting) on the role's documentation for details.
+See [this section](https://radicle.network/nodes/seed.radicle.garden/rad%3AzttNpUS7xCeDnn2e4No2dUvZv7L7/tree/docs/configuring-joplin-server.md#troubleshooting) on the role's documentation for details.

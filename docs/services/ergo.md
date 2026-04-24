@@ -25,9 +25,9 @@ Ergo is a modern IRCd (IRC server software) written in Go.
 
 See the project's [documentation](https://ergo.chat/about) to learn what Ergo does and why it might be useful to you.
 
-For details about configuring the [Ansible role for Ergo](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az2CSxS3YLtJYM87TyGZkZCan3uoSJ), you can check them via:
+For details about configuring the [Ansible role for Ergo](https://radicle.network/nodes/seed.radicle.garden/rad%3Az2CSxS3YLtJYM87TyGZkZCan3uoSJ), you can check them via:
 
-- 🌐 [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az2CSxS3YLtJYM87TyGZkZCan3uoSJ/tree/docs/configuring-ergo.md) online
+- 🌐 [the role's documentation](https://radicle.network/nodes/seed.radicle.garden/rad%3Az2CSxS3YLtJYM87TyGZkZCan3uoSJ/tree/docs/configuring-ergo.md) online
 - 📁 `roles/galaxy/ergo/docs/configuring-ergo.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 ## Dependencies
@@ -67,7 +67,7 @@ It is also necessary to specify to the `ergo_config_network_name` variable the n
 
 By default the server is not protected with a shared "server password" (`PASS`), and anyone can use it. For the IRC operators ("oper", "ircop") the role specifies the random password which should be replaced with yours.
 
-See [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az2CSxS3YLtJYM87TyGZkZCan3uoSJ/tree/docs/configuring-ergo.md#setting-server-39-s-password) for details about how to configure those passwords.
+See [the role's documentation](https://radicle.network/nodes/seed.radicle.garden/rad%3Az2CSxS3YLtJYM87TyGZkZCan3uoSJ/tree/docs/configuring-ergo.md#setting-server-39-s-password) for details about how to configure those passwords.
 
 ### Enabling permanent message storage (optional)
 
@@ -88,7 +88,7 @@ Before logging in to the server with your IRC client, you might want to have a l
 
 ## Troubleshooting
 
-See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az2CSxS3YLtJYM87TyGZkZCan3uoSJ/tree/docs/configuring-ergo.md#troubleshooting) on the role's documentation for details.
+See [this section](https://radicle.network/nodes/seed.radicle.garden/rad%3Az2CSxS3YLtJYM87TyGZkZCan3uoSJ/tree/docs/configuring-ergo.md#troubleshooting) on the role's documentation for details.
 
 ## Related services
 

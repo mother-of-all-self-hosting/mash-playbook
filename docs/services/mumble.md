@@ -25,14 +25,14 @@ Mumble is a free and open source voice chat application known for its low latenc
 
 See the project's [documentation](https://www.mumble.info/documentation/) to learn what Mumble does and why it might be useful to you.
 
-For details about configuring the [Ansible role for Mumble](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az4VBCibmQHyfHKEWTAJmQKBAAjtsv), you can check them via:
+For details about configuring the [Ansible role for Mumble](https://radicle.network/nodes/seed.radicle.garden/rad%3Az4VBCibmQHyfHKEWTAJmQKBAAjtsv), you can check them via:
 
-- 🌐 [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az4VBCibmQHyfHKEWTAJmQKBAAjtsv/tree/docs/configuring-mumble.md) online
+- 🌐 [the role's documentation](https://radicle.network/nodes/seed.radicle.garden/rad%3Az4VBCibmQHyfHKEWTAJmQKBAAjtsv/tree/docs/configuring-mumble.md) online
 - 📁 `roles/galaxy/mumble/docs/configuring-mumble.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 ## Prerequisites
 
-You may need to open some ports to your server if another firewall is used in front of the server. Refer to [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad:z4VBCibmQHyfHKEWTAJmQKBAAjtsv/tree/docs/configuring-mumble.md#prerequisites) to check which ones to be configured.
+You may need to open some ports to your server if another firewall is used in front of the server. Refer to [the role's documentation](https://radicle.network/nodes/seed.radicle.garden/rad:z4VBCibmQHyfHKEWTAJmQKBAAjtsv/tree/docs/configuring-mumble.md#prerequisites) to check which ones to be configured.
 
 ## Dependencies
 
@@ -66,11 +66,11 @@ mumble_hostname: mumble.example.com
 
 ### Select database to use
 
-It is necessary to select a database used by Mumble from a MySQL compatible database, Postgres, and SQLite. See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az4VBCibmQHyfHKEWTAJmQKBAAjtsv/tree/docs/configuring-mumble.md#specify-database) on the role's documentation for details.
+It is necessary to select a database used by Mumble from a MySQL compatible database, Postgres, and SQLite. See [this section](https://radicle.network/nodes/seed.radicle.garden/rad%3Az4VBCibmQHyfHKEWTAJmQKBAAjtsv/tree/docs/configuring-mumble.md#specify-database) on the role's documentation for details.
 
 ### Setting admin's password (optional)
 
-It is possible to specify the admin (`SuperUser`) password by configuring a variable for it. See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az4VBCibmQHyfHKEWTAJmQKBAAjtsv/tree/docs/configuring-mumble.md#setting-admin-39-s-password) on the role's documentation for details. **If not specified, a random password will be generated upon the first startup.**
+It is possible to specify the admin (`SuperUser`) password by configuring a variable for it. See [this section](https://radicle.network/nodes/seed.radicle.garden/rad%3Az4VBCibmQHyfHKEWTAJmQKBAAjtsv/tree/docs/configuring-mumble.md#setting-admin-39-s-password) on the role's documentation for details. **If not specified, a random password will be generated upon the first startup.**
 
 ## Usage
 
@@ -82,4 +82,4 @@ As anyone can use the server without a password by default, you might also want 
 
 ## Troubleshooting
 
-See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az4VBCibmQHyfHKEWTAJmQKBAAjtsv/tree/docs/configuring-mumble.md#troubleshooting) on the role's documentation for details.
+See [this section](https://radicle.network/nodes/seed.radicle.garden/rad%3Az4VBCibmQHyfHKEWTAJmQKBAAjtsv/tree/docs/configuring-mumble.md#troubleshooting) on the role's documentation for details.

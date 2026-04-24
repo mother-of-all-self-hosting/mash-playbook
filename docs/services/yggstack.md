@@ -26,9 +26,9 @@ Yggstack is a SOCKS5 proxy server and TCP port forwarder for [Yggdrasil](https:/
 
 See the project's [documentation](https://github.com/yggdrasil-network/yggstack/blob/develop/README.md) to learn what Yggstack does and why it might be useful to you.
 
-For details about configuring the [Ansible role for Yggstack](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az2BzsfYJzpSCK4tC8kCR1uCooZYX5), you can check them via:
+For details about configuring the [Ansible role for Yggstack](https://radicle.network/nodes/seed.radicle.garden/rad%3Az2BzsfYJzpSCK4tC8kCR1uCooZYX5), you can check them via:
 
-- 🌐 [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az2BzsfYJzpSCK4tC8kCR1uCooZYX5/tree/docs/configuring-yggstack.md) online
+- 🌐 [the role's documentation](https://radicle.network/nodes/seed.radicle.garden/rad%3Az2BzsfYJzpSCK4tC8kCR1uCooZYX5/tree/docs/configuring-yggstack.md) online
 - 📁 `roles/galaxy/yggstack/docs/configuring-yggstack.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 ## Adjusting the playbook configuration
@@ -55,7 +55,7 @@ yggstack_enabled: true
 
 After running the command for installation, Yggstack becomes available at the IPv6 address which the service generates for you. The IPv6 address, its subnet, and your public key have been been logged to the console logs on the startup. The configuration file (`yggdrasil.conf`) can be found in `yggstack_data_path`.
 
-Refer to [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az2BzsfYJzpSCK4tC8kCR1uCooZYX5/tree/docs/configuring-yggstack.md#usage) for details about how to set up Yggstack.
+Refer to [this section](https://radicle.network/nodes/seed.radicle.garden/rad%3Az2BzsfYJzpSCK4tC8kCR1uCooZYX5/tree/docs/configuring-yggstack.md#usage) for details about how to set up Yggstack.
 
 ### Connecting with Traefik
 
@@ -102,7 +102,7 @@ If the service requires a TLS certificate for some reason, you can have Traefik 
 
 ## Troubleshooting
 
-See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az2BzsfYJzpSCK4tC8kCR1uCooZYX5/tree/docs/configuring-yggstack.md#troubleshooting) on the role's documentation for details.
+See [this section](https://radicle.network/nodes/seed.radicle.garden/rad%3Az2BzsfYJzpSCK4tC8kCR1uCooZYX5/tree/docs/configuring-yggstack.md#troubleshooting) on the role's documentation for details.
 
 ## References
 

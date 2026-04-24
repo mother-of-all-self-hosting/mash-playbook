@@ -26,9 +26,9 @@ OTS is a one-time-secret sharing platform.
 
 See the project's [documentation](https://github.com/Luzifer/ots/blob/master/README.md) to learn what OTS does and why it might be useful to you.
 
-For details about configuring the [Ansible role for OTS](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3cspgyZXPNcnzNXCYKsEGJK7dKKA), you can check them via:
+For details about configuring the [Ansible role for OTS](https://radicle.network/nodes/seed.radicle.garden/rad%3Az3cspgyZXPNcnzNXCYKsEGJK7dKKA), you can check them via:
 
-- 🌐 [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3cspgyZXPNcnzNXCYKsEGJK7dKKA/tree/docs/configuring-ots.md) online
+- 🌐 [the role's documentation](https://radicle.network/nodes/seed.radicle.garden/rad%3Az3cspgyZXPNcnzNXCYKsEGJK7dKKA/tree/docs/configuring-ots.md) online
 - 📁 `roles/galaxy/ots/docs/configuring-ots.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 ## Dependencies
@@ -66,4 +66,4 @@ After running the command for installation, the OTS instance becomes available a
 
 ## Troubleshooting
 
-See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3cspgyZXPNcnzNXCYKsEGJK7dKKA/tree/docs/configuring-ots.md#troubleshooting) on the role's documentation for details.
+See [this section](https://radicle.network/nodes/seed.radicle.garden/rad%3Az3cspgyZXPNcnzNXCYKsEGJK7dKKA/tree/docs/configuring-ots.md#troubleshooting) on the role's documentation for details.

@@ -25,9 +25,9 @@ keyoxide-web is a web client for [Keyoxide](https://keyoxide.org/), a decentrali
 
 See the project's [documentation](https://docs.keyoxide.org/) to learn what keyoxide-web does and why it might be useful to you.
 
-For details about configuring the [Ansible role for keyoxide-web](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3m9zZgMmAQX5aVtj5Y9KYRnhjVrt), you can check them via:
+For details about configuring the [Ansible role for keyoxide-web](https://radicle.network/nodes/seed.radicle.garden/rad%3Az3m9zZgMmAQX5aVtj5Y9KYRnhjVrt), you can check them via:
 
-- 🌐 [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3m9zZgMmAQX5aVtj5Y9KYRnhjVrt/tree/docs/configuring-keyoxide.md) online
+- 🌐 [the role's documentation](https://radicle.network/nodes/seed.radicle.garden/rad%3Az3m9zZgMmAQX5aVtj5Y9KYRnhjVrt/tree/docs/configuring-keyoxide.md) online
 - 📁 `roles/galaxy/keyoxide/docs/configuring-keyoxide.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 ## Prerequisites
@@ -66,8 +66,8 @@ keyoxide_hostname: keyoxide.example.com
 
 After running the command for installation, the keyoxide-web instance becomes available at the URL specified with `keyoxide_hostname`. With the configuration above, the service is hosted at `https://keyoxide.example.com`.
 
-See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3m9zZgMmAQX5aVtj5Y9KYRnhjVrt/tree/docs/configuring-keyoxide.md#usage) on the role's documentation for details about the usage.
+See [this section](https://radicle.network/nodes/seed.radicle.garden/rad%3Az3m9zZgMmAQX5aVtj5Y9KYRnhjVrt/tree/docs/configuring-keyoxide.md#usage) on the role's documentation for details about the usage.
 
 ## Troubleshooting
 
-See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3m9zZgMmAQX5aVtj5Y9KYRnhjVrt/tree/docs/configuring-keyoxide.md#troubleshooting) on the role's documentation for details.
+See [this section](https://radicle.network/nodes/seed.radicle.garden/rad%3Az3m9zZgMmAQX5aVtj5Y9KYRnhjVrt/tree/docs/configuring-keyoxide.md#troubleshooting) on the role's documentation for details.

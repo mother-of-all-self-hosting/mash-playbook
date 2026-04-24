@@ -13720,7 +13720,7 @@ radicle_node_identifier: "{{ mash_playbook_service_identifier_prefix }}radicle-n
 radicle_node_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}radicle-node"
 
 # Apparently the UID and GID are fixed
-# Also see: https://app.radicle.xyz/nodes/iris.radicle.xyz/rad%3Az26FDgNVVRUfPpLiUvUksoFPFkwdw/commits/5a095b1816ec75522d59ede8e258844763e1f1ae
+# Also see: https://app.radicle.xyz/nodes/iris.radicle.network/rad%3Az26FDgNVVRUfPpLiUvUksoFPFkwdw/commits/5a095b1816ec75522d59ede8e258844763e1f1ae
 radicle_node_uid: "11011"
 radicle_node_gid: "11011"
 

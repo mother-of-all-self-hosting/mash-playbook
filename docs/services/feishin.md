@@ -26,9 +26,9 @@ Feishin is a music player for servers which implement a [Navidrome](https://www.
 
 See the project's [documentation](https://github.com/jeffvli/feishin/blob/development/README.md) to learn what Feishin does and why it might be useful to you.
 
-For details about configuring the [Ansible role for Feishin](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Azmszzm7ynZe8nt5ZwaLctssyJcNm), you can check them via:
+For details about configuring the [Ansible role for Feishin](https://radicle.network/nodes/seed.radicle.garden/rad%3Azmszzm7ynZe8nt5ZwaLctssyJcNm), you can check them via:
 
-- 🌐 [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Azmszzm7ynZe8nt5ZwaLctssyJcNm/tree/docs/configuring-feishin.md) online
+- 🌐 [the role's documentation](https://radicle.network/nodes/seed.radicle.garden/rad%3Azmszzm7ynZe8nt5ZwaLctssyJcNm/tree/docs/configuring-feishin.md) online
 - 📁 `roles/galaxy/feishin/docs/configuring-feishin.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 ## Dependencies
@@ -62,7 +62,7 @@ feishin_hostname: feishin.example.com
 
 ### Enabling server lock (optional)
 
-By default one can have Feishin connect to any server as specified. Refer to [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Azmszzm7ynZe8nt5ZwaLctssyJcNm/tree/docs/configuring-feishin.md#enabling-server-lock-optional) on the role's documentation about how to activate "server lock".
+By default one can have Feishin connect to any server as specified. Refer to [this section](https://radicle.network/nodes/seed.radicle.garden/rad%3Azmszzm7ynZe8nt5ZwaLctssyJcNm/tree/docs/configuring-feishin.md#enabling-server-lock-optional) on the role's documentation about how to activate "server lock".
 
 ## Usage
 
@@ -72,4 +72,4 @@ To get started, open the URL with a web browser to create an account.
 
 ## Troubleshooting
 
-See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Azmszzm7ynZe8nt5ZwaLctssyJcNm/tree/docs/configuring-feishin.md#troubleshooting) on the role's documentation for details.
+See [this section](https://radicle.network/nodes/seed.radicle.garden/rad%3Azmszzm7ynZe8nt5ZwaLctssyJcNm/tree/docs/configuring-feishin.md#troubleshooting) on the role's documentation for details.

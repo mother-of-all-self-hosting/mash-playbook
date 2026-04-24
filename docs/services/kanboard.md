@@ -26,9 +26,9 @@ Kanboard is a free and open source Kanban project management software.
 
 See the project's [documentation](https://docs.kanboard.org/) to learn what Kanboard does and why it might be useful to you.
 
-For details about configuring the [Ansible role for Kanboard](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az2LZH9TGMxYbGBaGoMHNFX5HymEL3), you can check them via:
+For details about configuring the [Ansible role for Kanboard](https://radicle.network/nodes/seed.radicle.garden/rad%3Az2LZH9TGMxYbGBaGoMHNFX5HymEL3), you can check them via:
 
-- 🌐 [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az2LZH9TGMxYbGBaGoMHNFX5HymEL3/tree/docs/configuring-kanboard.md) online
+- 🌐 [the role's documentation](https://radicle.network/nodes/seed.radicle.garden/rad%3Az2LZH9TGMxYbGBaGoMHNFX5HymEL3/tree/docs/configuring-kanboard.md) online
 - 📁 `roles/galaxy/kanboard/docs/configuring-kanboard.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 ## Dependencies
@@ -65,7 +65,7 @@ kanboard_hostname: kanboard.example.com
 
 ### Select database to use
 
-It is necessary to select a database used by Kanboard from a MySQL compatible database, Postgres, and SQLite. See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az2LZH9TGMxYbGBaGoMHNFX5HymEL3/tree/docs/configuring-kanboard.md#specify-database) on the role's documentation for details.
+It is necessary to select a database used by Kanboard from a MySQL compatible database, Postgres, and SQLite. See [this section](https://radicle.network/nodes/seed.radicle.garden/rad%3Az2LZH9TGMxYbGBaGoMHNFX5HymEL3/tree/docs/configuring-kanboard.md#specify-database) on the role's documentation for details.
 
 ### Configuring the mailer (optional)
 
@@ -86,4 +86,4 @@ The initial username and password of the administrator is both `admin` (refer to
 
 ## Troubleshooting
 
-See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az2LZH9TGMxYbGBaGoMHNFX5HymEL3/tree/docs/configuring-kanboard.md#troubleshooting) on the role's documentation for details.
+See [this section](https://radicle.network/nodes/seed.radicle.garden/rad%3Az2LZH9TGMxYbGBaGoMHNFX5HymEL3/tree/docs/configuring-kanboard.md#troubleshooting) on the role's documentation for details.

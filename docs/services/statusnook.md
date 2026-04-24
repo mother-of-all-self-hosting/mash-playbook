@@ -26,9 +26,9 @@ Statusnook is a self-hosted status page deployment service.
 
 See the project's [documentation](https://statusnook.com/) to learn what Statusnook does and why it might be useful to you.
 
-For details about configuring the [Ansible role for Statusnook](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az4Ki52caKbH1y9jFNdKzQnc8WH1Jd), you can check them via:
+For details about configuring the [Ansible role for Statusnook](https://radicle.network/nodes/seed.radicle.garden/rad%3Az4Ki52caKbH1y9jFNdKzQnc8WH1Jd), you can check them via:
 
-- 🌐 [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az4Ki52caKbH1y9jFNdKzQnc8WH1Jd/tree/docs/configuring-statusnook.md) online
+- 🌐 [the role's documentation](https://radicle.network/nodes/seed.radicle.garden/rad%3Az4Ki52caKbH1y9jFNdKzQnc8WH1Jd/tree/docs/configuring-statusnook.md) online
 - 📁 `roles/galaxy/statusnook/docs/configuring-statusnook.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 ## Dependencies
@@ -79,7 +79,7 @@ To get started, open the URL with a web browser, and follow the set up wizard.
 
 ## Troubleshooting
 
-See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az4Ki52caKbH1y9jFNdKzQnc8WH1Jd/tree/docs/configuring-statusnook.md#troubleshooting) on the role's documentation for details.
+See [this section](https://radicle.network/nodes/seed.radicle.garden/rad%3Az4Ki52caKbH1y9jFNdKzQnc8WH1Jd/tree/docs/configuring-statusnook.md#troubleshooting) on the role's documentation for details.
 
 ## Related services
 

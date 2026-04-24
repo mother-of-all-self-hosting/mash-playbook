@@ -26,9 +26,9 @@ farmOS is web-based free software for farm management, planning, and record keep
 
 See the project's [documentation](https://farmos.org/guide/) to learn what farmOS does and why it might be useful to you.
 
-For details about configuring the [Ansible role for farmOS](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az2H8vYeXaYHLzV3jXH1YjVwhuzTsk), you can check them via:
+For details about configuring the [Ansible role for farmOS](https://radicle.network/nodes/seed.radicle.garden/rad%3Az2H8vYeXaYHLzV3jXH1YjVwhuzTsk), you can check them via:
 
-- 🌐 [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az2H8vYeXaYHLzV3jXH1YjVwhuzTsk/tree/docs/configuring-farmos.md) online
+- 🌐 [the role's documentation](https://radicle.network/nodes/seed.radicle.garden/rad%3Az2H8vYeXaYHLzV3jXH1YjVwhuzTsk/tree/docs/configuring-farmos.md) online
 - 📁 `roles/galaxy/farmos/docs/configuring-farmos.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 ## Dependencies
@@ -68,7 +68,7 @@ farmos_hostname: farmos.example.com
 
 ### Select database to use
 
-It is necessary to select a database used by farmOS from a MySQL compatible database, Postgres, and SQLite. See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az2H8vYeXaYHLzV3jXH1YjVwhuzTsk/tree/docs/configuring-farmos.md#specify-database) on the role's documentation for details.
+It is necessary to select a database used by farmOS from a MySQL compatible database, Postgres, and SQLite. See [this section](https://radicle.network/nodes/seed.radicle.garden/rad%3Az2H8vYeXaYHLzV3jXH1YjVwhuzTsk/tree/docs/configuring-farmos.md#specify-database) on the role's documentation for details.
 
 ### Configuring the mailer (optional)
 
@@ -85,8 +85,8 @@ After running the command for installation, the farmOS instance becomes availabl
 
 To get started, open the URL with a web browser, and follow the set up wizard.
 
-On the set up wizard, it is required to input database credentials to use a MySQL compatible database or Postgres. See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az2H8vYeXaYHLzV3jXH1YjVwhuzTsk/tree/docs/configuring-farmos.md#outputting-database-credentials) on the role's documentation for details about how to check them.
+On the set up wizard, it is required to input database credentials to use a MySQL compatible database or Postgres. See [this section](https://radicle.network/nodes/seed.radicle.garden/rad%3Az2H8vYeXaYHLzV3jXH1YjVwhuzTsk/tree/docs/configuring-farmos.md#outputting-database-credentials) on the role's documentation for details about how to check them.
 
 ## Troubleshooting
 
-See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az2H8vYeXaYHLzV3jXH1YjVwhuzTsk/tree/docs/configuring-farmos.md#troubleshooting) on the role's documentation for details.
+See [this section](https://radicle.network/nodes/seed.radicle.garden/rad%3Az2H8vYeXaYHLzV3jXH1YjVwhuzTsk/tree/docs/configuring-farmos.md#troubleshooting) on the role's documentation for details.

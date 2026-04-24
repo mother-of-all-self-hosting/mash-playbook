@@ -25,9 +25,9 @@ GotHub allows you to view GitHub repositories without exposing your IP address, 
 
 See the project's [documentation](https://codeberg.org/gothub/gothub/src/branch/dev/README.md) to learn what GotHub does and why it might be useful to you.
 
-For details about configuring the [Ansible role for GotHub](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3AzFVv3koKtheJTTwPSjF3J6DajePK), you can check them via:
+For details about configuring the [Ansible role for GotHub](https://radicle.network/nodes/seed.radicle.garden/rad%3AzFVv3koKtheJTTwPSjF3J6DajePK), you can check them via:
 
-- 🌐 [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3AzFVv3koKtheJTTwPSjF3J6DajePK/tree/docs/configuring-gothub.md) online
+- 🌐 [the role's documentation](https://radicle.network/nodes/seed.radicle.garden/rad%3AzFVv3koKtheJTTwPSjF3J6DajePK/tree/docs/configuring-gothub.md) online
 - 📁 `roles/galaxy/gothub/docs/configuring-gothub.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 ## Dependencies
@@ -60,7 +60,7 @@ gothub_hostname: gothub.example.com
 
 **Note**: hosting GotHub under a subpath (by configuring the `gothub_path_prefix` variable) does not seem to be possible due to GotHub's technical limitations.
 
-There are other settings which need configuring such as ones about instance's management and its transparency. See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3AzFVv3koKtheJTTwPSjF3J6DajePK/tree/docs/configuring-gothub.md#enable-disable-proxying-non-essential-data) on the role's documentation for details.
+There are other settings which need configuring such as ones about instance's management and its transparency. See [this section](https://radicle.network/nodes/seed.radicle.garden/rad%3AzFVv3koKtheJTTwPSjF3J6DajePK/tree/docs/configuring-gothub.md#enable-disable-proxying-non-essential-data) on the role's documentation for details.
 
 ## Usage
 
@@ -72,7 +72,7 @@ If you would like to make your instance public so that it can be used by anyone 
 
 ## Troubleshooting
 
-See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3AzFVv3koKtheJTTwPSjF3J6DajePK/tree/docs/configuring-gothub.md#troubleshooting) on the role's documentation for details.
+See [this section](https://radicle.network/nodes/seed.radicle.garden/rad%3AzFVv3koKtheJTTwPSjF3J6DajePK/tree/docs/configuring-gothub.md#troubleshooting) on the role's documentation for details.
 
 ## Related services
 
