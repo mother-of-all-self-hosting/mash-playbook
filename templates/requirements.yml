@@ -308,6 +308,10 @@
   version: v1.26.0-0
   name: gitea
   activation_prefix: gitea_
+- src: git+https://github.com/mother-of-all-self-hosting/ansible-role-gotenberg
+  version: v8.31.0-0
+  name: gotenberg
+  activation_prefix: gotenberg_
 - src: git+https://seed.radicle.garden/zFVv3koKtheJTTwPSjF3J6DajePK.git
   version: v2025.3.9-5
   name: gothub

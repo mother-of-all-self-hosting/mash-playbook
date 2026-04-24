@@ -476,6 +476,11 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
     {{ ({'name': (gitea_identifier + '.service'), 'priority': 2000, 'restart_necessary': (gitea_restart_necessary | bool), 'groups': ['mash', 'gitea']} if gitea_enabled else omit) }}
   # /role-specific:gitea
 
+  # role-specific:gotenberg
+  - |-
+    {{ ({'name': (gotenberg_identifier + '.service'), 'priority': 2000, 'restart_necessary': (gotenberg_restart_necessary | bool), 'groups': ['mash', 'gotenberg']} if gotenberg_enabled else omit) }}
+  # /role-specific:gotenberg
+
   # role-specific:gothub
   - |-
     {{ ({'name': (gothub_identifier + '.service'), 'priority': 2000, 'restart_necessary': (gothub_restart_necessary | bool), 'groups': ['mash', 'gothub']} if gothub_enabled else omit) }}
@@ -918,8 +923,6 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
   # role-specific:paperless
   - |-
     {{ ({'name': (paperless_identifier + '.service'), 'priority': 2000, 'restart_necessary': (paperless_restart_necessary | bool), 'groups': ['mash', 'paperless']} if paperless_enabled else omit) }}
-  - |-
-    {{ ({'name': (paperless_gotenberg_identifier + '.service'), 'priority': 2000, 'restart_necessary': (paperless_restart_necessary | bool), 'groups': ['mash', 'paperless']} if paperless_enabled and paperless_gotenberg_enabled else omit) }}
   # /role-specific:paperless
 
   # role-specific:papra
@@ -6376,6 +6379,52 @@ gitea_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primar
 #                                                                      #
 ########################################################################
 # /role-specific:gitea
+
+
+
+# role-specific:gotenberg
+########################################################################
+#                                                                      #
+# gotenberg                                                            #
+#                                                                      #
+########################################################################
+
+gotenberg_enabled: false
+
+gotenberg_identifier: "{{ mash_playbook_service_identifier_prefix }}gotenberg"
+
+gotenberg_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}gotenberg"
+
+gotenberg_uid: "{{ mash_playbook_uid }}"
+gotenberg_gid: "{{ mash_playbook_gid }}"
+
+gotenberg_container_additional_networks_auto: |
+  {{
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+  }}
+
+# Only enable Traefik labels if a hostname is set (indicating that this will be exposed publicly)
+gotenberg_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled and gotenberg_hostname | length > 0 }}"
+gotenberg_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+
+# role-specific:paperless
+# See: https://raw.githubusercontent.com/paperless-ngx/paperless-ngx/refs/heads/main/docker/compose/docker-compose.sqlite-tika.yml
+gotenberg_environment_variables_additional_variables: |
+  CHROMIUM_DISABLE_JAVASCRIPT=true
+  CHROMIUM_ALLOW_LIST=file:///tmp/.*
+# /role-specific:paperless
+
+# role-specific:traefik
+gotenberg_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
+gotenberg_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
+# /role-specific:traefik
+
+########################################################################
+#                                                                      #
+# /gotenberg                                                           #
+#                                                                      #
+########################################################################
+# /role-specific:gotenberg
 
 
 
@@ -12168,6 +12217,8 @@ paperless_systemd_required_services_list_auto: |
 
 paperless_systemd_wanted_services_list_auto: |
   {{
+    ([gotenberg_identifier ~ '.service'] if gotenberg_enabled | default(false) else [])
+    +
     ([exim_relay_identifier ~ '.service'] if exim_relay_enabled | default(false) and paperless_email_host == exim_relay_identifier else [])
     +
     ([tika_identifier ~ '.service'] if tika_enabled | default(false) else [])
@@ -12176,6 +12227,8 @@ paperless_systemd_wanted_services_list_auto: |
 paperless_container_additional_networks_auto: |
   {{
     ([exim_relay_container_network] if exim_relay_enabled | default(false) and paperless_email_host == exim_relay_identifier and paperless_container_network != exim_relay_container_network else [])
+    +
+    ([gotenberg_container_network] if gotenberg_enabled | default(false) and paperless_container_network != gotenberg_container_network else [])
     +
     ([mariadb_container_network] if mariadb_enabled | default(false) and paperless_database_mariadb_hostname == mariadb_connection_hostname and paperless_container_network != mariadb_container_network and paperless_database_type == 'mariadb' else [])
     +
@@ -12191,6 +12244,8 @@ paperless_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_pro
 
 paperless_database_type: "{{ 'postgres' if postgres_enabled | default(false) else 'sqlite' }}"
 
+paperless_gotenberg_enabled: "{{ paperless_tika_enabled | default(false) }}" # Apache Tika Server requires Gotenberg
+
 paperless_secret_key: "{{ (mash_playbook_generic_secret_key + ':paperless.secret') | hash('sha512') | to_uuid }}"
 
 # role-specific:exim_relay
@@ -12198,6 +12253,11 @@ paperless_email_host: "{{ exim_relay_identifier if exim_relay_enabled else '' }}
 paperless_email_port: "{{ 8025 if exim_relay_enabled else '' }}"
 paperless_email_from: "{{ exim_relay_sender_address if exim_relay_enabled else '' }}"
 # /role-specific:exim_relay
+
+# role-specific:gotenberg
+paperless_gotenberg_bundled_enabled: "{{ false if gotenberg_enabled }}" # Stop ansible-role-paperless from installing Gotenberg bundled with the role if it is managed by ansible-role-gotenberg
+paperless_tika_gotenberg_endpoint: "http://{{ gotenberg_identifier }}:{{ gotenberg_container_http_port }}"
+# /role-specific:gotenberg
 
 # role-specific:mariadb
 paperless_database_mariadb_hostname: "{{ mariadb_connection_hostname if mariadb_enabled else '' }}"
@@ -12215,9 +12275,8 @@ paperless_database_postgres_socket_path_host: "{{ postgres_run_path }}"
 # /role-specific:postgres
 
 # role-specific:tika
-paperless_gotenberg_enabled: "{{ tika_enabled }}"
-paperless_tika_bundled_enabled: "{{ false if tika_enabled }}" # Stop ansible-role-paperless from installing Apache Tika Server bundled with the role if it is managed by ansible-role-tika
 paperless_tika_enabled: "{{ tika_enabled }}"
+paperless_tika_bundled_enabled: "{{ false if tika_enabled }}" # Stop ansible-role-paperless from installing Apache Tika Server bundled with the role if it is managed by ansible-role-tika
 paperless_tika_endpoint: "http://{{ tika_identifier }}:{{ tika_container_http_port }}"
 # /role-specific:tika
 

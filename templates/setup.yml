@@ -374,6 +374,10 @@
     - role: galaxy/gitea
     # /role-specific:gitea
 
+    # role-specific:gotenberg
+    - role: galaxy/gotenberg
+    # /role-specific:gotenberg
+
     # role-specific:gothub
     - role: galaxy/gothub
     # /role-specific:gothub
