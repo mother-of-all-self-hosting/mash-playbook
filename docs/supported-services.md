@@ -99,6 +99,7 @@ Below is an exhaustive list of the free and open-source software for self-hostin
 | [Funkwhale](https://funkwhale.audio/) | Streaming server for listening and sharing music | [Link](services/funkwhale.md) |
 | [Ghostfolio](https://ghostfol.io/) | Wealth management software to keep track of assets such as stocks, bonds, ETFs, etc. | [Link](services/ghostfolio.md) |
 | [Gitea](https://gitea.io/) | A painless [Git](https://git-scm.com/) service | [Link](services/gitea.md) |
+| [Gotenberg](https://gotenberg.dev/) | Docker-based API for converting documents to PDF | [Link](services/gotenberg.md) |
 | [GotHub](https://codeberg.org/gothub/gothub) | View GitHub repositories without exposing your IP address, browsing habits, and other browser fingerprinting data to the website | [Link](services/gothub.md) |
 | [Gotify](https://gotify.net/) | Simple server for sending and receiving messages | [Link](services/gotify.md) |
 | [GoToSocial](https://gotosocial.org/) | An [ActivityPub](https://activitypub.rocks/) social network server | [Link](services/gotosocial.md) |
