@@ -1,24 +1,23 @@
 <!--
 SPDX-FileCopyrightText: 2021 foxcris
-SPDX-FileCopyrightText: 2021 - 2024 Slavi Pantaleev
+SPDX-FileCopyrightText: 2021-2024 Slavi Pantaleev
 SPDX-FileCopyrightText: 2023 Julian-Samuel Gebühr
-SPDX-FileCopyrightText: 2024 - 2025 Suguru Hirahara
+SPDX-FileCopyrightText: 2024-2026 Suguru Hirahara
 
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 
-# Apache Tika Server
+# Gotenberg
 
-The playbook can install and configure [Apache Tika Server](https://github.com/apache/tika-docker) for you.
+The playbook can install and configure [Gotenberg](https://gotenberg.dev/) for you.
 
-Apache Tika Server is a toolkit which detects and extracts metadata and text from different file types (such as PPT, XLS, and PDF).
+Gotenberg is a Docker-based API for converting documents to PDF.
 
-The [Ansible role for Apache Tika Server](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Azbk3MzAN6SX6d8pa9DT2kHDscyr6) is developed and maintained by the MASH project. For details about configuring Apache Tika Server, you can check them via:
+The [Ansible role for Gotenberg](https://github.com/mother-of-all-self-hosting/ansible-role-gotenberg) is developed and maintained by the MASH project. For details about configuring Gotenberg, you can check them via:
 
-- 🌐 [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Azbk3MzAN6SX6d8pa9DT2kHDscyr6/tree/docs/configuring-tika.md) online
-- 📁 `roles/galaxy/tika/docs/configuring-tika.md` locally, if you have [fetched the Ansible roles](../installing.md)
+- 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-gotenberg/blob/main/docs/configuring-gotenberg.md) online
+- 📁 `roles/galaxy/gotenberg/docs/configuring-gotenberg.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 ## Related services
 
-- [Open Archiver](openarchiver.md) — Archive, store, index, and search emails from various platforms, including generic IMAP-enabled email inboxes
 - [Paperless-ngx](paperless-ngx.md) — Community-supported document management system that transforms your physical documents into a searchable online archive
