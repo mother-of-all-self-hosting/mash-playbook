@@ -19,24 +19,22 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
 # Euro-Office
 
-The playbook can install and configure [Euro-Office](https://github.com/ONLYOFFICE/DocumentServer) for you.
+The playbook can install and configure [Euro-Office](https://github.com/Euro-Office/DocumentServer) for you.
 
 Euro-Office is an online office suite comprising viewers and editors for texts, spreadsheets and presentations, compatible with Office Open XML formats: .docx, .xlsx, .pptx and enabling collaborative editing in real time.
 
-See the project's [documentation](https://helpcenter.eurooffice.com/docs) to learn what Euro-Office does and why it might be useful to you.
+See the project's [documentation](https://github.com/Euro-Office/DocumentServer/blob/main/README.md) to learn what Euro-Office does and why it might be useful to you.
 
-For details about configuring the [Ansible role for Euro-Office](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3kozTn4Kn5eJtgJQj1aCFUpqxW5Y), you can check them via:
+For details about configuring the [Ansible role for Euro-Office](https://radicle.network/nodes/seed.radicle.garden/rad%3Az4SSf2SU2YwBaMmCFBJnM5KqorU9T), you can check them via:
 
-- 🌐 [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3kozTn4Kn5eJtgJQj1aCFUpqxW5Y/tree/docs/configuring-eurooffice-docs.md) online
+- 🌐 [the role's documentation](https://radicle.network/nodes/seed.radicle.garden/rad%3Az4SSf2SU2YwBaMmCFBJnM5KqorU9T/tree/docs/configuring-eurooffice-docs.md) online
 - 📁 `roles/galaxy/eurooffice/docs/configuring-eurooffice-docs.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 ## Dependencies
 
 This service requires the following other services:
 
-- [MariaDB](mariadb.md) / [Postgres](postgres.md) database — Euro-Office will default to Postgres
 - [Traefik](traefik.md) reverse-proxy server
-- (optional) [RabbitMQ](rabbitmq.md)
 
 >[!NOTE]
 > To use an Euro-Office instance to edit office documents, it is necessary to integrate it with another software which functions as a data storage and manages access control for users. **You cannot edit the documents without such integrations.**
@@ -63,21 +61,26 @@ eurooffice_hostname: eurooffice.example.com
 ########################################################################
 ```
 
-### Integrating Euro-Office with FileBrowser Quantum (optional)
-
-You can integrate Euro-Office with [FileBrowser Quantum](https://filebrowserquantum.com/) to edit office documents on the service.
-
-By default, this playbook is configured to automatically integrate Euro-Office with the FileBrowser Quantum instance which this playbook manages, if both of them are enabled. See [this page](filebrowser-quantum.md) for details about how to install FileBrowser Quantum.
-
 ## Usage
 
 After running the command for installation, the Euro-Office instance becomes available at the URL specified with `eurooffice_hostname`. With the configuration above, the service is hosted at `https://eurooffice.example.com`.
 
+### Integrating Euro-Office with FileBrowser Quantum (optional)
+
+You can integrate Euro-Office with [FileBrowser Quantum](https://filebrowserquantum.com/) to edit office documents on the service. See [this page](filebrowser-quantum.md) for details about how to install FileBrowser Quantum.
+
+To enable the integration, add the following configuration to your `vars.yml` file:
+
+```yaml
+filebrowser_quantum_config_integrations_office_url: "{{ eurooffice_scheme }}://{{ eurooffice_hostname }}"
+filebrowser_quantum_config_integrations_office_secret: "{{ eurooffice_environment_variables_jwt_secret }}"
+```
+
 ## Troubleshooting
 
-See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3kozTn4Kn5eJtgJQj1aCFUpqxW5Y/tree/docs/configuring-eurooffice-docs.md#troubleshooting) on the role's documentation for details.
+See [this section](https://radicle.network/nodes/seed.radicle.garden/rad%3Az4SSf2SU2YwBaMmCFBJnM5KqorU9T/tree/docs/configuring-eurooffice-docs.md#troubleshooting) on the role's documentation for details.
 
 ## Related services
 
 - [Collabora Online Development Edition (CODE)](code.md) — Development version of Collabora Online, which enables you to edit office documents with integrations
-- [FileBrowser Quantum](filebrowser-quantum.md) — Free self-hosted web-based file manager
+- [ONLYOFFICE Docs](onlyoffice-docs.md) — Online office suite comprising viewers and editors
