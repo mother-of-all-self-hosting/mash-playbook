@@ -80,6 +80,7 @@ Below is an exhaustive list of the free and open-source software for self-hostin
 | [Ergo](https://ergo.chat/) | Modern IRCd (IRC server software) written in Go | [Link](services/ergo.md) |
 | [etcd](https://etcd.io/) | A distributed, reliable key-value store for the most critical data of a distributed system | [Link](services/etcd.md) |
 | [Etherpad](https://etherpad.org) | Collaborative text editor | [Link](services/etherpad.md) |
+| [Euro-Office](https://github.com/Euro-Office/DocumentServer) | Online office suite comprising viewers and editors | [Link](services/eurooffice.md) |
 | [Excalidraw](https://excalidraw.com/) | Virtual whiteboard for sketching hand-drawn like diagrams | [Link](services/excalidraw.md) |
 | [Excalidraw collaboration server](https://github.com/excalidraw/excalidraw-room) | Collaboration server for Excalidraw instance | [Link](services/excalidraw-room.md) |
 | [exim-relay](https://github.com/devture/exim-relay) | A lightweight [Exim](https://www.exim.org/) SMTP mail relay server | [Link](services/exim-relay.md) |

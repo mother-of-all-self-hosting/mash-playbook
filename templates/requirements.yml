@@ -228,6 +228,10 @@
   version: v2.6.1-6
   name: etherpad
   activation_prefix: etherpad_
+- src: git+https://seed.radicle.garden/z4SSf2SU2YwBaMmCFBJnM5KqorU9T.git
+  version: v0.0.0-0
+  name: eurooffice
+  activation_prefix: eurooffice_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-excalidraw.git
   version: v2025.12.5-4
   name: excalidraw

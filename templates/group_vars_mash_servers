@@ -373,6 +373,11 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
     {{ ({'name': (etherpad_identifier + '.service'), 'priority': 2000, 'restart_necessary': (etherpad_restart_necessary | bool), 'groups': ['mash', 'etherpad']} if etherpad_enabled else omit) }}
   # /role-specific:etherpad
 
+  # role-specific:eurooffice
+  - |-
+    {{ ({'name': (eurooffice_identifier + '.service'), 'priority': 2000, 'restart_necessary': (eurooffice_restart_necessary | bool), 'groups': ['mash', 'eurooffice']} if eurooffice_enabled else omit) }}
+  # /role-specific:eurooffice
+
   # role-specific:excalidraw
   - |-
     {{ ({'name': (excalidraw_identifier + '.service'), 'priority': 2000, 'restart_necessary': (excalidraw_restart_necessary | bool), 'groups': ['mash', 'excalidraw']} if excalidraw_enabled else omit) }}
@@ -5309,6 +5314,47 @@ etherpad_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_pri
 
 
 
+# role-specific:eurooffice
+########################################################################
+#                                                                      #
+# eurooffice                                                           #
+#                                                                      #
+########################################################################
+
+eurooffice_enabled: false
+
+eurooffice_identifier: "{{ mash_playbook_service_identifier_prefix }}eurooffice"
+
+eurooffice_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}eurooffice"
+
+# Run as root
+eurooffice_uid: "0"
+eurooffice_gid: "0"
+
+eurooffice_container_additional_networks_auto: |
+  {{
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+  }}
+
+eurooffice_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+eurooffice_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+
+eurooffice_environment_variables_jwt_secret: "{{ (mash_playbook_generic_secret_key + ':onlyoffice.j') | hash('sha512') | to_uuid }}"
+
+# role-specific:traefik
+eurooffice_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
+eurooffice_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
+# /role-specific:traefik
+
+########################################################################
+#                                                                      #
+# /eurooffice                                                          #
+#                                                                      #
+########################################################################
+# /role-specific:eurooffice
+
+
+
 # role-specific:excalidraw
 ########################################################################
 #                                                                      #
@@ -5654,6 +5700,8 @@ filebrowser_quantum_gid: "{{ mash_playbook_gid }}"
 
 filebrowser_quantum_systemd_wanted_services_list_auto: |
   {{
+    ([eurooffice_identifier ~ '.service'] if eurooffice_enabled | default(false) and filebrowser_quantum_config_integrations_office else [])
+    +
     ([onlyoffice_docs_identifier ~ '.service'] if onlyoffice_docs_enabled | default(false) and filebrowser_quantum_config_integrations_office else [])
   }}
 
@@ -5662,14 +5710,10 @@ filebrowser_quantum_container_additional_networks_auto: |
     ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
   }}
 
+filebrowser_quantum_config_integrations_office: "{{ onlyoffice_docs_enabled | default(false) or eurooffice_enabled | default(false) }}"
+
 filebrowser_quantum_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
 filebrowser_quantum_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
-
-# role-specific:onlyoffice_docs
-filebrowser_quantum_config_integrations_office: "{{ onlyoffice_docs_enabled }}"
-filebrowser_quantum_config_integrations_office_url: "{{ onlyoffice_docs_scheme }}://{{ onlyoffice_docs_hostname }}"
-filebrowser_quantum_config_integrations_office_secret: "{{ onlyoffice_docs_environment_variables_jwt_secret }}"
-# /role-specific:onlyoffice_docs
 
 # role-specific:traefik
 filebrowser_quantum_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
