@@ -14,13 +14,15 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
 <sup>Prerequisites > [Configuring DNS settings](configuring-dns.md) > [Getting the playbook](getting-the-playbook.md) > [Configuring the playbook](configuring-playbook.md) > [Installing](installing.md)</sup>
 
-To install services using this Ansible playbook, you need to prepare several requirements both on your local computer (where you will run the playbook to configure the server) and the server (where the playbook will install the services for you). **These requirements need to be set up manually** before proceeding to the next step.
+To install services using this Ansible playbook, you need to prepare several requirements both on the Ansible control node (where you will run the playbook to configure the server) and the managed node (the server where the playbook will install services for you). See Ansible's [basic concepts](https://docs.ansible.com/ansible/latest/network/getting_started/basic_concepts.html) documentation for the terminology. **These requirements need to be set up manually** before proceeding to the next step.
 
 We will be using `example.com` as the domain in the following instruction. Please remember to replace it with your own domain before running any commands.
 
-## Your local computer
+## Control node
 
 - [Ansible](http://ansible.com/) program. It's used to run this playbook and configures your server for you. Take a look at [our guide about Ansible](ansible.md) for more information, as well as [version requirements](ansible.md#supported-ansible-versions) and alternative ways to run Ansible.
+
+- [Python](https://www.python.org/) on the control node. Ansible and helper commands run locally, so the control node's Python version must be supported by the Ansible version you use. See Ansible's [ansible-core support matrix](https://docs.ansible.com/projects/ansible/latest/reference_appendices/release_and_maintenance.html#ansible-core-support-matrix) for current control-node and managed-node Python support.
 
 - [passlib](https://passlib.readthedocs.io/en/stable/index.html) Python library. See [this official documentation](https://passlib.readthedocs.io/en/stable/install.html#installation-instructions) for an instruction to install it. On most distros, you need to install some `python-passlib` or `py3-passlib` package, etc.
 
@@ -32,7 +34,7 @@ We will be using `example.com` as the domain in the following instruction. Pleas
 
 - (Optional) [regex](https://github.com/mrabarnett/mrab-regex) Python library for running `just optimize`. On most distros, you need to install some `python-regex` or `py3-regex` package, etc.
 
-## Server
+## Managed node
 
 - (Recommended) An **x86** server running one of these operating systems that make use of [systemd](https://systemd.io/):
   - **Archlinux**
@@ -48,7 +50,7 @@ We will be using `example.com` as the domain in the following instruction. Pleas
 
 - `root` access to your server (or a user capable of elevating to `root` via `sudo`).
 
-- [Python](https://www.python.org/). Most distributions install Python by default, but some don't (e.g. Ubuntu 18.04) and require manual installation (something like `apt-get install python3`). On some distros, Ansible may incorrectly [detect the Python version](https://docs.ansible.com/ansible/latest/reference_appendices/interpreter_discovery.html) (2 vs 3) and you may need to explicitly specify the interpreter path in `inventory/hosts` during installation (e.g. `ansible_python_interpreter=/usr/bin/python3`)
+- [Python](https://www.python.org/) on the managed node. Most distributions install Python by default, but some don't (e.g. Ubuntu 18.04) and require manual installation (something like `apt-get install python3`). The managed node's Python version must also be supported by the Ansible version you use. On some distros, Ansible may incorrectly [detect the Python interpreter](https://docs.ansible.com/ansible/latest/reference_appendices/interpreter_discovery.html) and you may need to explicitly specify the interpreter path in `inventory/hosts` during installation (e.g. `ansible_python_interpreter=/usr/bin/python3`)
 
 - [sudo](https://www.sudo.ws/), even when you've configured Ansible to log in as `root`, because this Ansible playbook sometimes uses the Ansible [become](https://docs.ansible.com/ansible/latest/playbook_guide/playbooks_privilege_escalation.html) module to perform tasks as another user (e.g. `mash`) and the `become` module's default implementation uses `sudo`. Some distributions, like a minimal Debian net install, do not include the `sudo` package by default.
 
