@@ -21,9 +21,9 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
 The playbook can install and configure [Radicle HTTP Daemon](https://radicle.network/nodes/seed.radicle.dev/rad%3Az4V1sjrXqjvFdnCUbxPFqd5p4DtH5/tree/radicle-httpd/) for you.
 
-Radicle HTTP Daemon is a background process which makes it possible to browse the content of your [seed node](https://radicle.xyz/guides/seeder#configuring-your-node) (`radicle-node`) on the [Radicle](https://radicle.xyz/) network, a peer-to-peer code collaboration stack built on Git. It is configured to have direct read-only access to the node’s storage and database, and expose this data via an HTTP JSON API.
+Radicle HTTP Daemon is a background process which makes it possible to browse the content of your [seed node](https://radicle.dev/guides/seeder#configuring-your-node) (`radicle-node`) on the [Radicle](https://radicle.dev/) network, a peer-to-peer code collaboration stack built on Git. It is configured to have direct read-only access to the node’s storage and database, and expose this data via an HTTP JSON API.
 
-See the project's [documentation](https://radicle.xyz/guides/seeder#running-the-http-daemon) to learn what Radicle HTTP Daemon does and why it might be useful to you.
+See the project's [documentation](https://radicle.dev/guides/seeder#running-the-http-daemon) to learn what Radicle HTTP Daemon does and why it might be useful to you.
 
 For details about configuring the [Ansible role for Radicle HTTP Daemon](https://radicle.network/nodes/seed.radicle.garden/rad%3Az3roZFCprFZhmK8BvkrsKwkLZXr56), you can check them via:
 
