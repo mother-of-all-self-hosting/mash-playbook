@@ -1,17 +1,17 @@
 <!--
-SPDX-FileCopyrightText: 2018 - 2025 Slavi Pantaleev
-SPDX-FileCopyrightText: 2018 - 2024 MDAD project contributors
+SPDX-FileCopyrightText: 2018-2024 MDAD project contributors
+SPDX-FileCopyrightText: 2018-2025 Slavi Pantaleev
 SPDX-FileCopyrightText: 2020 Sabine Laszakovits
 SPDX-FileCopyrightText: 2021 Cody Neiman
 SPDX-FileCopyrightText: 2021 Matthew Cengia
 SPDX-FileCopyrightText: 2021 Toni Spets
 SPDX-FileCopyrightText: 2022 Julian Foad
 SPDX-FileCopyrightText: 2022 Vladimir Panteleev
-SPDX-FileCopyrightText: 2022 - 2023 Julian-Samuel Gebühr
-SPDX-FileCopyrightText: 2023 MASH project contributors
-SPDX-FileCopyrightText: 2023 Shreyas Ajjarapu
+SPDX-FileCopyrightText: 2022, 2023 Julian-Samuel Gebühr
 SPDX-FileCopyrightText: 2023 Nikita Chernyi
-SPDX-FileCopyrightText: 2024 - 2025 Suguru Hirahara
+SPDX-FileCopyrightText: 2023 Shreyas Ajjarapu
+SPDX-FileCopyrightText: 2023-2026 MASH project contributors
+SPDX-FileCopyrightText: 2024-2026 Suguru Hirahara
 
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->
