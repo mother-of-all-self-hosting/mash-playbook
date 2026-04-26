@@ -46,16 +46,11 @@ It is recommended to get yourself familiar with the [playbook tags](playbook-tag
 
 If you **don't** use SSH keys for authentication, but rather a regular password, you may need to add `--ask-pass` to the all Ansible (or `just`) commands.
 
-If your SSH private key is protected by a passphrase, make sure it is unlocked
-before running the playbook, for example with `ssh-agent` and `ssh-add`. See
-[Configuring the playbook](configuring-playbook.md#inventory-connection-options)
-for more connection and credential options.
+If your SSH private key is protected by a passphrase, make sure it is unlocked before running the playbook, for example with `ssh-agent` and `ssh-add`. See [Configuring the playbook](configuring-playbook.md#inventory-connection-options) for more connection and credential options.
 
 If you **do** use SSH keys for authentication, **and** use a non-root user to *become* root (sudo), you may need to add `--ask-become-pass` to all Ansible commands.
 
-If your inventory uses encrypted Ansible Vault files, you may need to add
-`--ask-vault-pass` to raw `ansible-playbook` commands. When using `just`, pass
-the same long flag form, for example `just install-all --ask-vault-pass`.
+If your inventory uses encrypted Ansible Vault files, you may need to add `--ask-vault-pass` to raw `ansible-playbook` commands. When using `just`, pass the same long flag form, for example `just install-all --ask-vault-pass`.
 
 There 2 ways to start the installation process — depending on whether you're [Installing a brand new server (without importing data)](#installing-a-brand-new-server-without-importing-data) or [Installing a server into which you'll import old data](#installing-a-server-into-which-youll-import-old-data).
 
