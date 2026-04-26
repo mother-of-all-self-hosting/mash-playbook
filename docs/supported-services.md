@@ -44,6 +44,7 @@ Below is an exhaustive list of the free and open-source software for self-hostin
 | [authentik](https://goauthentik.io/) | An Identity Provider (IdP) focused on flexibility and versatility | [Link](services/authentik.md) |
 | [Autobrr](https://autobrr.com/) | Modern, easy to use download automation for torrents and Usenet | [Link](services/autobrr.md) |
 | [Bar Assistant](https://github.com/karlomikus/bar-assistant/) | Managing cocktail recipes at your home bar with cocktail-oriented features | [Link](services/barassistant.md) |
+| [Bazarr](https://www.bazarr.media/) | Companion application to Sonarr and Radarr that manages and downloads subtitles | [Link](services/bazarr.md) |
 | [BentoPDF](https://github.com/alam00000/bentopdf) | Client-side PDF editor and converter | [Link](services/bentopdf.md) |
 | [BIND](https://www.isc.org/bind/) | A full-featured DNS server | [Link](services/bind.md) |
 | [bitmagnet](https://bitmagnet.io/) | BitTorrent indexer, DHT crawler, content classifier and search engine | [Link](services/bitmagnet.md) |
