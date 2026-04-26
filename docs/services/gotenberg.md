@@ -20,4 +20,5 @@ The [Ansible role for Gotenberg](https://github.com/mother-of-all-self-hosting/a
 
 ## Related services
 
+- [Apache Tika Server](tika.md) — Detect and extract metadata and text from different file types (such as PPT, XLS, and PDF)
 - [Paperless-ngx](paperless-ngx.md) — Community-supported document management system that transforms your physical documents into a searchable online archive
