@@ -59,7 +59,8 @@ yourls_hostname: yourls.example.com
 ########################################################################
 ```
 
-**Notes**:
+💡 **Notes**:
+
 - It is optionally possible to use a shorter hostname different from the main one. If doing so, make sure to point a DNS record for the domain to the server where the YOURLS instance is going to be hosted.
 - Hosting YOURLS under a subpath (by configuring the `yourls_path_prefix` variable) does not seem to be possible due to YOURLS's technical limitations.
 

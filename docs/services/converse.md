@@ -26,9 +26,9 @@ Converse is a free and open-source XMPP chat client written in JavaScript which 
 
 See the project's [documentation](https://conversejs.org/docs/html/index.html) to learn what Converse does and why it might be useful to you.
 
-For details about configuring the [Ansible role for Converse](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az22bUmhZzA5VWtmKERFkEjGzdPuke), you can check them via:
+For details about configuring the [Ansible role for Converse](https://radicle.network/nodes/seed.radicle.garden/rad%3Az22bUmhZzA5VWtmKERFkEjGzdPuke), you can check them via:
 
-- 🌐 [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az22bUmhZzA5VWtmKERFkEjGzdPuke/tree/docs/configuring-converse.md) online
+- 🌐 [the role's documentation](https://radicle.network/nodes/seed.radicle.garden/rad%3Az22bUmhZzA5VWtmKERFkEjGzdPuke/tree/docs/configuring-converse.md) online
 - 📁 `roles/galaxy/converse/docs/configuring-converse.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 >[!NOTE]
@@ -67,11 +67,11 @@ converse_path_prefix: /converse
 ########################################################################
 ```
 
-It is optionally possible to edit settings about encryption, default themes, etc. See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az22bUmhZzA5VWtmKERFkEjGzdPuke/tree/docs/configuring-converse.md#adjusting-the-playbook-configuration) for details.
+It is optionally possible to edit settings about encryption, default themes, etc. See [this section](https://radicle.network/nodes/seed.radicle.garden/rad%3Az22bUmhZzA5VWtmKERFkEjGzdPuke/tree/docs/configuring-converse.md#adjusting-the-playbook-configuration) for details.
 
 ### Specify BOSH / WebSocket API
 
-To use XMPP via HTTP with the client, it is necessary to use a BOSH connection manager or the WebSocket API. Refer to [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad:z22bUmhZzA5VWtmKERFkEjGzdPuke/tree/docs/configuring-converse.md#specify-bosh-websocket-api) on the role's documentation for details.
+To use XMPP via HTTP with the client, it is necessary to use a BOSH connection manager or the WebSocket API. Refer to [this section](https://radicle.network/nodes/seed.radicle.garden/rad:z22bUmhZzA5VWtmKERFkEjGzdPuke/tree/docs/configuring-converse.md#specify-bosh-websocket-api) on the role's documentation for details.
 
 ## Usage
 
@@ -81,4 +81,4 @@ To get started, open the URL with a web browser to log in to your XMPP server.
 
 ## Troubleshooting
 
-See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az22bUmhZzA5VWtmKERFkEjGzdPuke/tree/docs/configuring-converse.md#troubleshooting) on the role's documentation for details.
+See [this section](https://radicle.network/nodes/seed.radicle.garden/rad%3Az22bUmhZzA5VWtmKERFkEjGzdPuke/tree/docs/configuring-converse.md#troubleshooting) on the role's documentation for details.

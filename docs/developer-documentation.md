@@ -29,7 +29,9 @@ To support a new service, at first you need to create an Ansible role for it in 
 When it comes to the structure of roles, you can follow existing roles such as [`ansible-role-postgres`](https://github.com/mother-of-all-self-hosting/ansible-role-postgres), [`ansible-role-syncthing`](https://github.com/mother-of-all-self-hosting/ansible-role-syncthing), and [`ansible-role-ntfy`](https://github.com/mother-of-all-self-hosting/ansible-role-ntfy). Generally, it is not recommended to create a role from the scratch as it can lack important variables required for the playbook. If you are not quite sure where to start, your best bet would be to copy the existing (and recently updated) role maintained by [MASH project](https://github.com/mother-of-all-self-hosting), and reuse it as a template.
 
 💡 **Notes**:
+
 - Your role's file structure should be similar to this tree:
+
     ```
     .
     ├── defaults/
@@ -52,6 +54,7 @@ When it comes to the structure of roles, you can follow existing roles such as [
     ├── LICENSE
     └── README.md
     ```
+
 - You will also need to decide on a licence. Otherwise ansible-galaxy won't work. We recommend AGPLv3, as it is adoped by the most roles of the MASH playbook.
 - If you are committed to free software, you might probably be interested in publishing the role based on [REUSE](https://reuse.software/), an initiative by [FSFE](https://fsfe.org/).
 
@@ -114,6 +117,7 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
 # /role-specific:systemd_service_manager
 
 ```
+
 </details>
 
 **Optional**:
@@ -247,10 +251,11 @@ YOUR-SERVICE_config_mailer_protocol: "{{ 'smtp' if exim_relay_enabled else '' }}
 ########################################################################
 # /role-specific:YOUR-SERVICE
 ```
+
 </details>
 
 ### Additional hints
 
 Please consider to add a line like `# Project source code URL: YOUR-SERVICE-GIT-REPO` to your Ansible role's `defaults/main.yml` file, so that [`bin/feeds.py`](/bin/feeds.py) can automatically find the Atom/RSS feed for new releases.
 
-If you have any questions, you are welcomed to join the Matrix room for the MASH playbook and free free to ask: https://matrix.to/#/%23mash-playbook:devture.com
+If you have any questions, you are welcomed to join the Matrix room for the MASH playbook and free free to ask: <https://matrix.to/#/%23mash-playbook:devture.com>

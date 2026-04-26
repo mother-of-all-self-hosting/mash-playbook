@@ -30,7 +30,7 @@ See the project's [documentation](https://github.com/dani-garcia/vaultwarden/blo
 
 This service requires the following other services:
 
-- a [Postgres](postgres.md) database
+- [Postgres](postgres.md) database
 - [Traefik](traefik.md) reverse-proxy server
 - (optional) [exim-relay](exim-relay.md) mailer
 

@@ -14,7 +14,7 @@ SPDX-FileCopyrightText: 2025 Suguru Hirahara
 
 This service requires the following other services:
 
-- a [Traefik](traefik.md) reverse-proxy server
+- [Traefik](traefik.md) reverse-proxy server
 
 ## Configuration
 
@@ -49,9 +49,7 @@ For additional configuration options, refer to [ansible-role-seerr](https://gith
 
 ## Related services
 
-## Related services
-
-- "* Arr" applications — [Autobrr](autobrr.md) / [FlareSolverr](flaresolverr.md) / [Homarr](homarr.md) / [Overseerr](overseerr.md) / [Radarr](radarr.md) / [Sonarr](sonarr.md)
+- "* Arr" applications — [Autobrr](autobrr.md) / [FlareSolverr](flaresolverr.md) / [Homarr](homarr.md) / [Radarr](radarr.md) / [Sonarr](sonarr.md)
 - [Jackett](jackett.md)
 - [Jellyfin](jellyfin.md)
 - [Plex](plex.md)

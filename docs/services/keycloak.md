@@ -17,8 +17,8 @@ See the project's [documentation](https://www.keycloak.org/documentation) to lea
 
 This service requires the following other services:
 
-- a [Postgres](postgres.md) database
-- a [Traefik](traefik.md) reverse-proxy server
+- [Postgres](postgres.md) database
+- [Traefik](traefik.md) reverse-proxy server
 
 ## Configuration
 

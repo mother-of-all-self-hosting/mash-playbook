@@ -25,14 +25,14 @@ The Lounge is a modern web IRC client designed for self-hosting. It implements f
 
 See the project's [documentation](https://thelounge.chat/docs) to learn what The Lounge does and why it might be useful to you.
 
-For details about configuring the [Ansible role for The Lounge](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3vaa8VAuz3pxqB3FyciNKQRSHqyt), you can check them via:
+For details about configuring the [Ansible role for The Lounge](https://radicle.network/nodes/seed.radicle.garden/rad%3Az3vaa8VAuz3pxqB3FyciNKQRSHqyt), you can check them via:
 
-- 🌐 [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3vaa8VAuz3pxqB3FyciNKQRSHqyt/tree/docs/configuring-thelounge.md) online
+- 🌐 [the role's documentation](https://radicle.network/nodes/seed.radicle.garden/rad%3Az3vaa8VAuz3pxqB3FyciNKQRSHqyt/tree/docs/configuring-thelounge.md) online
 - 📁 `roles/galaxy/thelounge/docs/configuring-thelounge.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 ## Prerequisites
 
-You may need to open some ports to your server, if `identd` (built-in server for ident) is enabled and another firewall is used in front of the server. Refer to [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3vaa8VAuz3pxqB3FyciNKQRSHqyt/tree/docs/configuring-thelounge.md#prerequisites) to check which ones to be configured.
+You may need to open some ports to your server, if `identd` (built-in server for ident) is enabled and another firewall is used in front of the server. Refer to [the role's documentation](https://radicle.network/nodes/seed.radicle.garden/rad%3Az3vaa8VAuz3pxqB3FyciNKQRSHqyt/tree/docs/configuring-thelounge.md#prerequisites) to check which ones to be configured.
 
 See [this page](https://thelounge.chat/docs/guides/identd-and-oidentd) on the official documentation for details about `identd`.
 
@@ -66,7 +66,7 @@ thelounge_hostname: thelounge.example.com
 
 **Note**: hosting The Lounge under a subpath (by configuring the `thelounge_path_prefix` variable) does not seem to be possible due to The Lounge's technical limitations.
 
-See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3vaa8VAuz3pxqB3FyciNKQRSHqyt/tree/docs/configuring-thelounge.md#adjusting-the-playbook-configuration) on the role's documentation for necessary configurations to enable functions like file upload and link previews.
+See [this section](https://radicle.network/nodes/seed.radicle.garden/rad%3Az3vaa8VAuz3pxqB3FyciNKQRSHqyt/tree/docs/configuring-thelounge.md#adjusting-the-playbook-configuration) on the role's documentation for necessary configurations to enable functions like file upload and link previews.
 
 ## Usage
 
@@ -82,7 +82,7 @@ After the user is configured, it will be possible to log in to the instance.
 
 ## Troubleshooting
 
-See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3vaa8VAuz3pxqB3FyciNKQRSHqyt/tree/docs/configuring-thelounge.md#troubleshooting) on the role's documentation for details.
+See [this section](https://radicle.network/nodes/seed.radicle.garden/rad%3Az3vaa8VAuz3pxqB3FyciNKQRSHqyt/tree/docs/configuring-thelounge.md#troubleshooting) on the role's documentation for details.
 
 ## Related services
 

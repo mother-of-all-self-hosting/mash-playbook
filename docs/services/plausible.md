@@ -30,8 +30,8 @@ See the project's [documentation](https://plausible.io/docs) to learn what Plaus
 
 This service requires the following other services:
 
-- a [ClickHouse](clickhouse.md) database
-- a [Postgres](postgres.md) database
+- [ClickHouse](clickhouse.md) database
+- [Postgres](postgres.md) database
 - [Traefik](traefik.md) reverse-proxy server
 - (optional) [exim-relay](exim-relay.md) mailer
 

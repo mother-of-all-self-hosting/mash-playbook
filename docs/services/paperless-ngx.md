@@ -32,9 +32,9 @@ See the project's [documentation](https://docs.paperless-ngx.com/) to learn what
 
 This service requires the following other services:
 
-- a [Traefik](traefik.md) reverse-proxy server
-- a [Valkey](valkey.md) data-store; see [below](#configure-valkey) for details about installation
-- (optional) [Apache Tika Server](tika.md)
+- [Traefik](traefik.md) reverse-proxy server
+- [Valkey](valkey.md) data-store; see [below](#configure-valkey) for details about installation
+- (optional) [Apache Tika Server](tika.md) with [Gotenberg](gotenberg.md)
 - (optional) [exim-relay](exim-relay.md) mailer
 - (optional) [Postgres](postgres.md) / [MariaDB](mariadb.md) database — Paperless-ngx will default to [SQLite](https://www.sqlite.org/) if Postgres is not enabled
 
@@ -269,11 +269,11 @@ To actually have the service use (and get messages sent through the exim-relay s
 >[!WARNING]
 > Without setting an authentication method such as DKIM, SPF, and DMARC for your hostname, emails are most likely to be quarantined as spam at recipient's mail servers. The worst scenario is that your server's IP address or hostname will be included in the spam list such as the one managed by [Spamhaus](https://www.spamhaus.org/), depending on the reputation. As the exim-relay service supports DKIM signing, refer to [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-exim-relay/blob/main/docs/configuring-exim-relay.md#enable-dkim-support-optional) for details about how to set it up.
 
-### Configuring Apache Tika Server integration (optional)
+### Configuring Apache Tika Server integration with Gotenberg (optional)
 
 You can optionally have the instance connect to [Apache Tika Server](http://tika.apache.org/) for parsing and converting document files (such as ".doc", ".xlsx" and ".odt"). It is required for parsing emails (".eml") as well.
 
-Apache Tika Server is available on the playbook. Enabling it configures the instance to connect to it. See [this page](tika.md) for details about how to install it.
+Apache Tika Server is available on the playbook. As it requires [Gotenberg](gotenberg.md), enabling both of them configures the instance to connect to it. See [this page](tika.md) for details about how to install Apache Tika Server, and [this page](gotenberg.md) about how to install Gotenberg, respectively.
 
 ### Extending the configuration
 

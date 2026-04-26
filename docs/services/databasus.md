@@ -29,9 +29,9 @@ Databasus is free software for backing up database of PostgreSQL, MySQL, MariaDB
 
 See the project's [documentation](https://databasus.com/installation) to learn what Databasus does and why it might be useful to you.
 
-For details about configuring the [Ansible role for Databasus](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3AzeQ4hXq2LkbADcndSsjesgq9kDPf), you can check them via:
+For details about configuring the [Ansible role for Databasus](https://radicle.network/nodes/seed.radicle.garden/rad%3AzeQ4hXq2LkbADcndSsjesgq9kDPf), you can check them via:
 
-- 🌐 [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3AzeQ4hXq2LkbADcndSsjesgq9kDPf/tree/docs/configuring-databasus.md) online
+- 🌐 [the role's documentation](https://radicle.network/nodes/seed.radicle.garden/rad%3AzeQ4hXq2LkbADcndSsjesgq9kDPf/tree/docs/configuring-databasus.md) online
 - 📁 `roles/galaxy/databasus/docs/configuring-databasus.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 ## Dependencies
@@ -93,7 +93,7 @@ After setting the configuration, you can have the Databasus instance send a test
 
 ## Troubleshooting
 
-See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3AzeQ4hXq2LkbADcndSsjesgq9kDPf/tree/docs/configuring-databasus.md#troubleshooting) on the role's documentation for details.
+See [this section](https://radicle.network/nodes/seed.radicle.garden/rad%3AzeQ4hXq2LkbADcndSsjesgq9kDPf/tree/docs/configuring-databasus.md#troubleshooting) on the role's documentation for details.
 
 ## Related services
 

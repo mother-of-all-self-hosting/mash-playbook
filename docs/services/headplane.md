@@ -17,8 +17,8 @@ See the project's [documentation](https://headplane.net/introduction) to learn w
 
 This service requires the following other services:
 
-- a [Traefik](traefik.md) reverse-proxy server
-- a [Headscale](headscale.md) server
+- [Traefik](traefik.md) reverse-proxy server
+- [Headscale](headscale.md) server
 
 ## Configuration
 

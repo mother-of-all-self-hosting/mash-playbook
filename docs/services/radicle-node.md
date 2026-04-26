@@ -21,20 +21,20 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
 The playbook can install and configure the Radicle node (`radicle-node`) for you.
 
-The Radicle node is the network daemon based on [Heartwood](https://app.radicle.xyz/nodes/seed.radicle.xyz/rad%3Az3gqcJUoA1n9HaHKufZs5FCSGazv5), the third iteration of the Radicle Protocol, which powers the [Radicle](https://radicle.xyz/) network, a peer-to-peer code collaboration stack built on Git.
+The Radicle node is the network daemon based on [Heartwood](https://radicle.network/nodes/seed.radicle.dev/rad%3Az3gqcJUoA1n9HaHKufZs5FCSGazv5), the third iteration of the Radicle Protocol, which powers the [Radicle](https://radicle.dev/) network, a peer-to-peer code collaboration stack built on Git.
 
 In Radicle, while all nodes contribute to the network by seeding data to others, running `radicle-node` as the *seed node* on a highly available server can help to keep the peer-to-peer network resilient and healthy.
 
-See the project's [documentation](https://radicle.xyz/guides/seeder#introduction) to learn what `radicle-node` does and why it might be useful to you.
+See the project's [documentation](https://radicle.dev/guides/seeder#introduction) to learn what `radicle-node` does and why it might be useful to you.
 
-For details about configuring the [Ansible role for Radicle node](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az28JTUhepmbS3hLZyUeEvXeqk9QW5), you can check them via:
+For details about configuring the [Ansible role for Radicle node](https://radicle.network/nodes/seed.radicle.garden/rad%3Az28JTUhepmbS3hLZyUeEvXeqk9QW5), you can check them via:
 
-- 🌐 [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az28JTUhepmbS3hLZyUeEvXeqk9QW5/tree/docs/configuring-radicle-node.md) online
+- 🌐 [the role's documentation](https://radicle.network/nodes/seed.radicle.garden/rad%3Az28JTUhepmbS3hLZyUeEvXeqk9QW5/tree/docs/configuring-radicle-node.md) online
 - 📁 `roles/galaxy/radicle_node/docs/configuring-radicle-node.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 ## Prerequisites
 
-You may need to open some ports to your server, if you use another firewall in front of the server. Refer to [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az28JTUhepmbS3hLZyUeEvXeqk9QW5/tree/docs/configuring-radicle-node.md#prerequisites) to check which ones to be configured.
+You may need to open some ports to your server, if you use another firewall in front of the server. Refer to [the role's documentation](https://radicle.network/nodes/seed.radicle.garden/rad%3Az28JTUhepmbS3hLZyUeEvXeqk9QW5/tree/docs/configuring-radicle-node.md#prerequisites) to check which ones to be configured.
 
 ## Adjusting the playbook configuration
 
@@ -77,11 +77,11 @@ The Radicle node instance then becomes available at the hostname specified with 
 
 Please note that the default seeding policy is *selective* one, meaning that the node will ignore all repositories, except the ones which the node's operator explicitly allows to be seeded.
 
-See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az28JTUhepmbS3hLZyUeEvXeqk9QW5/tree/docs/configuring-radicle-node.md#usage) on the role's documentation for details about updating settings including the seeding policy.
+See [this section](https://radicle.network/nodes/seed.radicle.garden/rad%3Az28JTUhepmbS3hLZyUeEvXeqk9QW5/tree/docs/configuring-radicle-node.md#usage) on the role's documentation for details about updating settings including the seeding policy.
 
 ## Troubleshooting
 
-See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az28JTUhepmbS3hLZyUeEvXeqk9QW5/tree/docs/configuring-radicle-node.md#troubleshooting) on the role's documentation for details.
+See [this section](https://radicle.network/nodes/seed.radicle.garden/rad%3Az28JTUhepmbS3hLZyUeEvXeqk9QW5/tree/docs/configuring-radicle-node.md#troubleshooting) on the role's documentation for details.
 
 ## Related services
 

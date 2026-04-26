@@ -47,7 +47,7 @@ docker_registry_purger_container_network: "{{ docker_registry_container_network 
 ########################################################################
 ```
 
-You may wish to tweak some [default configuration]() variables, which ultimately control [environment variables](https://github.com/devture/docker-registry-purger#environment-variables) of the purger tool.
+You may wish to tweak some [default configuration](https://github.com/mother-of-all-self-hosting/ansible-role-docker-registry-purger/blob/main/defaults/main.yml) variables, which ultimately control [environment variables](https://github.com/devture/docker-registry-purger#environment-variables) of the purger tool.
 
 ## Usage
 

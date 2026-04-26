@@ -25,9 +25,9 @@ Cap Standalone is a self-hosted version of Cap's backend.
 
 See the project's [documentation](https://capjs.js.org/guide/standalone/) to learn what Cap Standalone does and why it might be useful to you.
 
-For details about configuring the [Ansible role for Cap Standalone](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3AzSj65STd1FuR22pm4vLCSmFQ1rt5), you can check them via:
+For details about configuring the [Ansible role for Cap Standalone](https://radicle.network/nodes/seed.radicle.garden/rad%3AzSj65STd1FuR22pm4vLCSmFQ1rt5), you can check them via:
 
-- 🌐 [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3AzSj65STd1FuR22pm4vLCSmFQ1rt5/tree/docs/configuring-cap.md) online
+- 🌐 [the role's documentation](https://radicle.network/nodes/seed.radicle.garden/rad%3AzSj65STd1FuR22pm4vLCSmFQ1rt5/tree/docs/configuring-cap.md) online
 - 📁 `roles/galaxy/cap/docs/configuring-cap.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 ## Dependencies
@@ -78,4 +78,4 @@ Refer to <https://capjs.js.org/guide/> for the usage.
 
 ## Troubleshooting
 
-See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3AzSj65STd1FuR22pm4vLCSmFQ1rt5/tree/docs/configuring-cap.md#troubleshooting) on the role's documentation for details.
+See [this section](https://radicle.network/nodes/seed.radicle.garden/rad%3AzSj65STd1FuR22pm4vLCSmFQ1rt5/tree/docs/configuring-cap.md#troubleshooting) on the role's documentation for details.

@@ -21,10 +21,9 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
 The playbook can install and configure [syncstorage-rs](https://github.com/mozilla-services/syncstorage-rs), Mozilla Sync Storage server in Rust used to power Firefox Sync, for you.
 
-See the project's [documentation](https://github.com/mozilla-services/syncstorage-rs/blob/master/README.md) to learn what syncstorage-rs does and [syncstorage-rs-docker](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az4J84n7U8ea9A91oD1WjAVY6ybU7g)'s documentation about how to set it up.
+See the project's [documentation](https://github.com/mozilla-services/syncstorage-rs/blob/master/README.md) to learn what syncstorage-rs does and [syncstorage-rs-docker](https://radicle.network/nodes/seed.radicle.garden/rad%3Az4J84n7U8ea9A91oD1WjAVY6ybU7g)'s documentation about how to set it up.
 
 For details about configuring the [Ansible role for syncstorage-rs](https://github.com/mother-of-all-self-hosting/ansible-role-syncstorage-rs-docker), you can check them via:
-
 
 - 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-syncstorage-rs-docker/blob/main/docs/configuring-syncstorage-rs-docker.md) online
 - 📁 `roles/galaxy/syncstorage_rs_docker/docs/configuring-syncstorage-rs-docker.md` locally, if you have [fetched the Ansible roles](../installing.md)
@@ -77,7 +76,7 @@ syncstorage_rs_docker_environment_variable_metrics_hash_secret: YOUR_SECRET_KEY_
 
 After running the command for installation, the syncstorage-rs instance becomes available at the URL specified with `syncstorage_rs_docker_hostname`. With the configuration above, the service is hosted at `https://syncstorage-rs-docker.example.com`.
 
-See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az4J84n7U8ea9A91oD1WjAVY6ybU7g/tree/README.md#adjusting-firefox-setting) on the documentation for details about how to configure Firefox to have it use your server for data synchronization.
+See [this section](https://radicle.network/nodes/seed.radicle.garden/rad%3Az4J84n7U8ea9A91oD1WjAVY6ybU7g/tree/README.md#adjusting-firefox-setting) on the documentation for details about how to configure Firefox to have it use your server for data synchronization.
 
 ## Troubleshooting
 

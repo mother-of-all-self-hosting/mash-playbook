@@ -18,9 +18,9 @@ See the project's [documentation](https://getlago.com/docs/welcome) to learn wha
 
 This service requires the following other services:
 
-- a [Postgres](postgres.md) database
-- a [Traefik](traefik.md) reverse-proxy server
-- a [Valkey](valkey.md) data-store; see [below](#configure-valkey) for details about installation
+- [Postgres](postgres.md) database
+- [Traefik](traefik.md) reverse-proxy server
+- [Valkey](valkey.md) data-store; see [below](#configure-valkey) for details about installation
 
 ## Configuration
 
@@ -53,7 +53,8 @@ lago_front_environment_variable_lago_disable_signup: false
 ########################################################################
 ```
 
-**Notes**:
+💡 **Notes**:
+
 - Hosting Lago under a subpath (by configuring the `lago_path_prefix` variable) does not seem to be possible right now, due to Lago limitations.
 - Our setup hosts the Lago frontend at the root path (`/`) and the Lago API at the `/api` prefix. This seems to work well, except for [PDF invoices failing due to a Lago bug](https://github.com/getlago/lago/issues/221).
 

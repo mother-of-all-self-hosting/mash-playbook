@@ -25,9 +25,9 @@ SMP server is the relay server used to pass messages in [SimpleX](https://simple
 
 See the project's [documentation](https://simplex.chat/docs/server.html#overview) to learn what SMP server does and why it might be useful to you.
 
-For details about configuring the [Ansible role for SMP server](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3AzXf3qnvPwC2UsBpfTYmPesL5KSZc), you can check them via:
+For details about configuring the [Ansible role for SMP server](https://radicle.network/nodes/seed.radicle.garden/rad%3AzXf3qnvPwC2UsBpfTYmPesL5KSZc), you can check them via:
 
-- 🌐 [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3AzXf3qnvPwC2UsBpfTYmPesL5KSZc/tree/docs/configuring-smp-server.md) online
+- 🌐 [the role's documentation](https://radicle.network/nodes/seed.radicle.garden/rad%3AzXf3qnvPwC2UsBpfTYmPesL5KSZc/tree/docs/configuring-smp-server.md) online
 - 📁 `roles/galaxy/smp-server/docs/configuring-smp-server.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 ## Dependencies
@@ -62,8 +62,8 @@ smp_server_hostname: smpserver.example.com
 
 After running the command for installation, the SMP server instance becomes available at the hostname specified with `smp_server_hostname`. With the configuration above, the service is hosted at `smpserver.example.com`.
 
-See [this section](https://app.radicle.xyz/nodes/seed.progressiv.dev/rad:zXf3qnvPwC2UsBpfTYmPesL5KSZc/tree/docs/configuring-smp-server.md#usage) on the role's documentation for details about how to use the server. Also refer to [the official documentation](https://simplex.chat/docs/server.html#configuring-the-app-to-use-the-server) about how to configure the client to get it connect to your SMP server.
+See [this section](https://radicle.network/nodes/seed.progressiv.dev/rad:zXf3qnvPwC2UsBpfTYmPesL5KSZc/tree/docs/configuring-smp-server.md#usage) on the role's documentation for details about how to use the server. Also refer to [the official documentation](https://simplex.chat/docs/server.html#configuring-the-app-to-use-the-server) about how to configure the client to get it connect to your SMP server.
 
 ## Troubleshooting
 
-See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3AzXf3qnvPwC2UsBpfTYmPesL5KSZc/tree/docs/configuring-smp-server.md#troubleshooting) on the role's documentation for details.
+See [this section](https://radicle.network/nodes/seed.radicle.garden/rad%3AzXf3qnvPwC2UsBpfTYmPesL5KSZc/tree/docs/configuring-smp-server.md#troubleshooting) on the role's documentation for details.

@@ -25,9 +25,9 @@ soundcloak allows you to browse SoundCloud without exposing your IP address, bro
 
 See the project's [documentation](https://git.maid.zone/stuff/soundcloak/src/branch/main/README.md) to learn what soundcloak does and why it might be useful to you.
 
-For details about configuring the [Ansible role for soundcloak](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az381JyLARWwSiZnYotVXehYcQEw7u), you can check them via:
+For details about configuring the [Ansible role for soundcloak](https://radicle.network/nodes/seed.radicle.garden/rad%3Az381JyLARWwSiZnYotVXehYcQEw7u), you can check them via:
 
-- 🌐 [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az381JyLARWwSiZnYotVXehYcQEw7u/tree/docs/configuring-soundcloak.md) online
+- 🌐 [the role's documentation](https://radicle.network/nodes/seed.radicle.garden/rad%3Az381JyLARWwSiZnYotVXehYcQEw7u/tree/docs/configuring-soundcloak.md) online
 - 📁 `roles/galaxy/soundcloak/docs/configuring-soundcloak.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 ## Dependencies
@@ -66,7 +66,7 @@ After running the command for installation, the soundcloak instance becomes avai
 
 ## Troubleshooting
 
-See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az381JyLARWwSiZnYotVXehYcQEw7u/tree/docs/configuring-soundcloak.md#troubleshooting) on the role's documentation for details.
+See [this section](https://radicle.network/nodes/seed.radicle.garden/rad%3Az381JyLARWwSiZnYotVXehYcQEw7u/tree/docs/configuring-soundcloak.md#troubleshooting) on the role's documentation for details.
 
 ## Related services
 

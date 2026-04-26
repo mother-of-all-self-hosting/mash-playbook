@@ -19,8 +19,8 @@ What we're configuring here is a `traditional` deployment in which one APISIX in
 
 This service requires the following other services:
 
-- a [Traefik](traefik.md) reverse-proxy server
-- an [etcd](etcd.md) key-value store
+- [etcd](etcd.md) key-value store
+- [Traefik](traefik.md) reverse-proxy server
 
 ## Configuration
 

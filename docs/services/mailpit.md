@@ -29,9 +29,9 @@ While the service is primarily intended to be used for testing (bulk mail sendin
 
 See the project's [documentation](https://mailpit.axllent.org/docs/) to learn what Mailpit does and why it might be useful to you.
 
-For details about configuring the [Ansible role for Mailpit](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3BKJz8wwtQHfXm8MPX81h4izT2QS), you can check them via:
+For details about configuring the [Ansible role for Mailpit](https://radicle.network/nodes/seed.radicle.garden/rad%3Az3BKJz8wwtQHfXm8MPX81h4izT2QS), you can check them via:
 
-- 🌐 [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3BKJz8wwtQHfXm8MPX81h4izT2QS/tree/docs/configuring-mailpit.md) online
+- 🌐 [the role's documentation](https://radicle.network/nodes/seed.radicle.garden/rad%3Az3BKJz8wwtQHfXm8MPX81h4izT2QS/tree/docs/configuring-mailpit.md) online
 - 📁 `roles/galaxy/mailpit/docs/configuring-mailpit.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 ## Dependencies
@@ -64,11 +64,11 @@ mailpit_hostname: mailpit.example.com
 
 ### Configuring HTTP Basic authentication
 
-The HTTP Basic authentication on Traefik is enabled for the web interface by default, considering the nature of the service. See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3BKJz8wwtQHfXm8MPX81h4izT2QS/tree/docs/configuring-mailpit.md#web-ui) on the role's documentation for details about how to set it up or disable it.
+The HTTP Basic authentication on Traefik is enabled for the web interface by default, considering the nature of the service. See [this section](https://radicle.network/nodes/seed.radicle.garden/rad%3Az3BKJz8wwtQHfXm8MPX81h4izT2QS/tree/docs/configuring-mailpit.md#web-ui) on the role's documentation for details about how to set it up or disable it.
 
 ### Configuring POP3 server (optional)
 
-While the SMTP server can be used without setting credentials, **the POP3 server requires you to specify a pair of username and password**. See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3BKJz8wwtQHfXm8MPX81h4izT2QS/tree/docs/configuring-mailpit.md#pop3-server) on the role's documentation for details.
+While the SMTP server can be used without setting credentials, **the POP3 server requires you to specify a pair of username and password**. See [this section](https://radicle.network/nodes/seed.radicle.garden/rad%3Az3BKJz8wwtQHfXm8MPX81h4izT2QS/tree/docs/configuring-mailpit.md#pop3-server) on the role's documentation for details.
 
 ### Integrating with Prometheus (optional)
 
@@ -134,7 +134,7 @@ To download messages from the POP3 server, you can configure your email client s
 
 ## Troubleshooting
 
-See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3BKJz8wwtQHfXm8MPX81h4izT2QS/tree/docs/configuring-mailpit.md#troubleshooting) on the role's documentation for details.
+See [this section](https://radicle.network/nodes/seed.radicle.garden/rad%3Az3BKJz8wwtQHfXm8MPX81h4izT2QS/tree/docs/configuring-mailpit.md#troubleshooting) on the role's documentation for details.
 
 ## Related services
 

@@ -33,7 +33,7 @@ You may need to open some ports to your server, if you use another firewall in f
 
 This service requires the following other services:
 
-- a [Traefik](traefik.md) reverse-proxy server
+- [Traefik](traefik.md) reverse-proxy server
 
 ## Adjusting the playbook configuration
 

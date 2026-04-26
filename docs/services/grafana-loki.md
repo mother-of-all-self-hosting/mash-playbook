@@ -32,6 +32,7 @@ For details about configuring the [Ansible role for Loki](https://github.com/mot
 
 >[!NOTE]
 > As Loki is just a log storage system, you would need at least two other components in order to make use of it:
+>
 > - an agent such as Promtail to send logs to Loki
 > - a system such as Grafana to read the logs out of Loki and display them nicely
 

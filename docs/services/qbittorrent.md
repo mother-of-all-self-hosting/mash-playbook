@@ -27,7 +27,7 @@ See the project's [documentation](https://docs.linuxserver.io/images/docker-qbit
 
 This service requires the following other services:
 
-- a [Traefik](traefik.md) reverse-proxy server
+- [Traefik](traefik.md) reverse-proxy server
 
 ## Configuration
 

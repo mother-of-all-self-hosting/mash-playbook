@@ -26,9 +26,9 @@ Karakeep is a self-hosted, open-source bookmark manager to collect, organize and
 
 See the project's [documentation](https://docs.karakeep.app) to learn what Karakeep does and why it might be useful to you.
 
-For details about configuring the [Ansible role for Karakeep](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az4W1oeRiFKEikhj4Mk3HbVJM7er6S), you can check them via:
+For details about configuring the [Ansible role for Karakeep](https://radicle.network/nodes/seed.radicle.garden/rad%3Az4W1oeRiFKEikhj4Mk3HbVJM7er6S), you can check them via:
 
-- 🌐 [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az4W1oeRiFKEikhj4Mk3HbVJM7er6S/tree/docs/configuring-karakeep.md) online
+- 🌐 [the role's documentation](https://radicle.network/nodes/seed.radicle.garden/rad%3Az4W1oeRiFKEikhj4Mk3HbVJM7er6S/tree/docs/configuring-karakeep.md) online
 - 📁 `roles/galaxy/karakeep/docs/configuring-karakeep.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 ## Dependencies
@@ -114,7 +114,7 @@ Since account registration is disabled by default, you need to enable it first b
 
 ## Troubleshooting
 
-See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az4W1oeRiFKEikhj4Mk3HbVJM7er6S/tree/docs/configuring-karakeep.md#troubleshooting) on the role's documentation for details.
+See [this section](https://radicle.network/nodes/seed.radicle.garden/rad%3Az4W1oeRiFKEikhj4Mk3HbVJM7er6S/tree/docs/configuring-karakeep.md#troubleshooting) on the role's documentation for details.
 
 ## Related services
 

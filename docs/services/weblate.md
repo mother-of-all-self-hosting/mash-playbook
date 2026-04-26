@@ -26,9 +26,9 @@ Weblate is a web-based translation tool with tight version control integration.
 
 See the project's [documentation](https://docs.weblate.org/) to learn what Weblate does and why it might be useful to you.
 
-For details about configuring the [Ansible role for Weblate](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3NoFEkNtQQjSGjLvweqwCFPbC59R), you can check them via:
+For details about configuring the [Ansible role for Weblate](https://radicle.network/nodes/seed.radicle.garden/rad%3Az3NoFEkNtQQjSGjLvweqwCFPbC59R), you can check them via:
 
-- 🌐 [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3NoFEkNtQQjSGjLvweqwCFPbC59R/tree/docs/configuring-weblate.md) online
+- 🌐 [the role's documentation](https://radicle.network/nodes/seed.radicle.garden/rad%3Az3NoFEkNtQQjSGjLvweqwCFPbC59R/tree/docs/configuring-weblate.md) online
 - 📁 `roles/galaxy/weblate/docs/configuring-weblate.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 ## Dependencies
@@ -282,4 +282,4 @@ To get started, open the URL with a web browser to log in to the instance with t
 
 ## Troubleshooting
 
-See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3NoFEkNtQQjSGjLvweqwCFPbC59R/tree/docs/configuring-weblate.md#troubleshooting) on the role's documentation for details.
+See [this section](https://radicle.network/nodes/seed.radicle.garden/rad%3Az3NoFEkNtQQjSGjLvweqwCFPbC59R/tree/docs/configuring-weblate.md#troubleshooting) on the role's documentation for details.

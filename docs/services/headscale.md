@@ -17,7 +17,7 @@ See the project's [documentation](https://headscale.net/stable/usage/getting-sta
 
 This service requires the following other services:
 
-- a [Traefik](traefik.md) reverse-proxy server
+- [Traefik](traefik.md) reverse-proxy server
 
 ## Configuration
 

@@ -18,7 +18,7 @@ See the project's [documentation](https://github.com/FlareSolverr/FlareSolverr/b
 
 This service requires the following other services:
 
-- a [Traefik](traefik.md) reverse-proxy server
+- [Traefik](traefik.md) reverse-proxy server
 
 ## Configuration
 

@@ -9,11 +9,30 @@ repos:
     hooks:
       - id: check-added-large-files
       - id: check-case-conflict
+      - id: check-merge-conflict
+        args: ["--assume-in-merge"]
+      - id: detect-private-key
       - id: check-json
       - id: check-shebang-scripts-are-executable
       - id: check-toml
       - id: trailing-whitespace
       - id: end-of-file-fixer
+  - repo: https://github.com/igorshubovych/markdownlint-cli
+    rev: v0.48.0
+    hooks:
+      - id: markdownlint
+        args: [
+          --disable=MD001, # heading-increment
+          --disable=MD013, # line-length
+          --disable=MD025, # single-h1
+          --disable=MD027, # no-multiple-space-blockquote
+          --disable=MD033, # no-inline-html
+          --disable=MD037, # no-space-in-emphasis
+          --disable=MD040, # fenced-code-language
+          --disable=MD041, # first-line-h1
+          --disable=MD051, # link-fragments
+          --disable=MD059  # descriptive-link-text
+        ]
   - repo: https://github.com/codespell-project/codespell
     rev: v2.4.2
     hooks:

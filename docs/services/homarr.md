@@ -114,4 +114,4 @@ See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-ho
 
 ## Related services
 
-- "* Arr" applications — [Autobrr](autobrr.md) / [FlareSolverr](flaresolverr.md) / [Jellyseerr](jellyseerr.md) / [Overseerr](overseerr.md) / [Radarr](radarr.md) / [Sonarr](sonarr.md)
+- "* Arr" applications — [Autobrr](autobrr.md) / [FlareSolverr](flaresolverr.md) / [Radarr](radarr.md) / [Sonarr](sonarr.md)

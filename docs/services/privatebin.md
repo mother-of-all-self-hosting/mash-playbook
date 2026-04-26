@@ -25,9 +25,9 @@ PrivateBin is a minimalist, open source online pastebin where the server has zer
 
 See the project's [documentation](https://github.com/PrivateBin/PrivateBin/tree/master/doc) to learn what PrivateBin does and why it might be useful to you.
 
-For details about configuring the [Ansible role for PrivateBin](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az47v1S9DRcEtm2dgKwZZs4YgoLRgF), you can check them via:
+For details about configuring the [Ansible role for PrivateBin](https://radicle.network/nodes/seed.radicle.garden/rad%3Az47v1S9DRcEtm2dgKwZZs4YgoLRgF), you can check them via:
 
-- 🌐 [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az47v1S9DRcEtm2dgKwZZs4YgoLRgF/tree/docs/configuring-privatebin.md) online
+- 🌐 [the role's documentation](https://radicle.network/nodes/seed.radicle.garden/rad%3Az47v1S9DRcEtm2dgKwZZs4YgoLRgF/tree/docs/configuring-privatebin.md) online
 - 📁 `roles/galaxy/privatebin/docs/configuring-privatebin.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 ## Dependencies
@@ -90,7 +90,7 @@ See [here](mariadb.md) on the role's documentation for details about how to conf
 
 #### Google Cloud Storage / Amazon S3
 
-See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az47v1S9DRcEtm2dgKwZZs4YgoLRgF/tree/docs/configuring-privatebin.md#configure-a-storage-for-pastes) on the role's documentation for details about how to configure a storage at Google Cloud Storage or Amazon S3.
+See [this section](https://radicle.network/nodes/seed.radicle.garden/rad%3Az47v1S9DRcEtm2dgKwZZs4YgoLRgF/tree/docs/configuring-privatebin.md#configure-a-storage-for-pastes) on the role's documentation for details about how to configure a storage at Google Cloud Storage or Amazon S3.
 
 ### Configure a URL shortener (optional)
 
@@ -98,7 +98,8 @@ It is possible to have the PrivateBin instance use a URL shortener such as Bit.l
 
 YOURLS is available on the playbook. See [here](yourls.md) for details about how to install it.
 
-**Notes**
+💡 **Notes**
+
 - YOURLS requires a MariaDB instance (see [here](mariadb.md) for details about configuring it with the playbook); if PostgreSQL is going to be used for PrivateBin (or other services), you need to use both of them.
 - If you are going to install PrivateBin and YOURLS at the same time, **you need to complete installation of YOURLS at first** by visiting its admin UI available at the specified hostname with `/admin/` such as `https://yourls.example.com/admin/`. Otherwise the function to shorten a paste's URL does not work. See [here](yourls.md#usage) for the instruction to complete installation.
 
@@ -126,7 +127,7 @@ Take a look at:
 
 - [PrivateBin](https://github.com/mother-of-all-self-hosting/ansible-role-privatebin)'s [`defaults/main.yml`](https://github.com/mother-of-all-self-hosting/ansible-role-privatebin/blob/main/defaults/main.yml) for some variables that you can customize via your `vars.yml` file.
 
-See its [configuration sample file](https://github.com/PrivateBin/PrivateBin/blob/master/cfg/conf.sample.php) and the [documentation](https://github.com/PrivateBin/PrivateBin/wiki/Configuration) for a complete list of PrivateBin's config options such as [discussion](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az47v1S9DRcEtm2dgKwZZs4YgoLRgF/tree/docs/configuring-privatebin.md#configure-the-discussion-feature-optional), [password](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az47v1S9DRcEtm2dgKwZZs4YgoLRgF/tree/docs/configuring-privatebin.md#configure-the-password-feature-optional), [file upload](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az47v1S9DRcEtm2dgKwZZs4YgoLRgF/tree/docs/configuring-privatebin.md#configure-the-file-upload-feature-optional), and [default theme](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az47v1S9DRcEtm2dgKwZZs4YgoLRgF/tree/docs/configuring-privatebin.md#configure-the-default-template-optional) features.
+See its [configuration sample file](https://github.com/PrivateBin/PrivateBin/blob/master/cfg/conf.sample.php) and the [documentation](https://github.com/PrivateBin/PrivateBin/wiki/Configuration) for a complete list of PrivateBin's config options such as [discussion](https://radicle.network/nodes/seed.radicle.garden/rad%3Az47v1S9DRcEtm2dgKwZZs4YgoLRgF/tree/docs/configuring-privatebin.md#configure-the-discussion-feature-optional), [password](https://radicle.network/nodes/seed.radicle.garden/rad%3Az47v1S9DRcEtm2dgKwZZs4YgoLRgF/tree/docs/configuring-privatebin.md#configure-the-password-feature-optional), [file upload](https://radicle.network/nodes/seed.radicle.garden/rad%3Az47v1S9DRcEtm2dgKwZZs4YgoLRgF/tree/docs/configuring-privatebin.md#configure-the-file-upload-feature-optional), and [default theme](https://radicle.network/nodes/seed.radicle.garden/rad%3Az47v1S9DRcEtm2dgKwZZs4YgoLRgF/tree/docs/configuring-privatebin.md#configure-the-default-template-optional) features.
 
 ## Usage
 
@@ -134,7 +135,7 @@ After running the command for installation, the PrivateBin instance becomes avai
 
 ## Troubleshooting
 
-See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az47v1S9DRcEtm2dgKwZZs4YgoLRgF/tree/docs/configuring-privatebin.md#troubleshooting) on the role's documentation for details.
+See [this section](https://radicle.network/nodes/seed.radicle.garden/rad%3Az47v1S9DRcEtm2dgKwZZs4YgoLRgF/tree/docs/configuring-privatebin.md#troubleshooting) on the role's documentation for details.
 
 ## Related services
 

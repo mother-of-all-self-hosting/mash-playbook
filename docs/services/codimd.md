@@ -26,9 +26,9 @@ CodiMD is a realtime collaborative markdown notes on all platforms.
 
 See the project's [documentation](https://hackmd.io/c/codimd-documentation) to learn what CodiMD does and why it might be useful to you.
 
-For details about configuring the [Ansible role for CodiMD](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Azp12kTQqmgqnFpUU6gPyVq19HNMD), you can check them via:
+For details about configuring the [Ansible role for CodiMD](https://radicle.network/nodes/seed.radicle.garden/rad%3Azp12kTQqmgqnFpUU6gPyVq19HNMD), you can check them via:
 
-- 🌐 [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Azp12kTQqmgqnFpUU6gPyVq19HNMD/tree/docs/configuring-codimd.md) online
+- 🌐 [the role's documentation](https://radicle.network/nodes/seed.radicle.garden/rad%3Azp12kTQqmgqnFpUU6gPyVq19HNMD/tree/docs/configuring-codimd.md) online
 - 📁 `roles/galaxy/codimd/docs/configuring-codimd.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 ## Dependencies
@@ -65,7 +65,7 @@ codimd_hostname: codimd.example.com
 
 ### Select database to use
 
-It is necessary to select a database used by CodiMD from a MySQL compatible database and Postgres. See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Azp12kTQqmgqnFpUU6gPyVq19HNMD/tree/docs/configuring-codimd.md#specify-database) on the role's documentation for details.
+It is necessary to select a database used by CodiMD from a MySQL compatible database and Postgres. See [this section](https://radicle.network/nodes/seed.radicle.garden/rad%3Azp12kTQqmgqnFpUU6gPyVq19HNMD/tree/docs/configuring-codimd.md#specify-database) on the role's documentation for details.
 
 ### Enabling signing up
 
@@ -98,7 +98,7 @@ To get started, open the URL with a web browser to create an account.
 
 ## Troubleshooting
 
-See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Azp12kTQqmgqnFpUU6gPyVq19HNMD/tree/docs/configuring-codimd.md#troubleshooting) on the role's documentation for details.
+See [this section](https://radicle.network/nodes/seed.radicle.garden/rad%3Azp12kTQqmgqnFpUU6gPyVq19HNMD/tree/docs/configuring-codimd.md#troubleshooting) on the role's documentation for details.
 
 ## Related services
 

@@ -27,9 +27,9 @@ Open Archiver is free software for archiving, storing, indexing, and searching e
 
 See the project's [documentation](https://docs.openarchiver.com/) to learn what Open Archiver does and why it might be useful to you.
 
-For details about configuring the [Ansible role for Open Archiver](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az2Q7Pka6bCT5D6Ng54kT8UcYAcVTC), you can check them via:
+For details about configuring the [Ansible role for Open Archiver](https://radicle.network/nodes/seed.radicle.garden/rad%3Az2Q7Pka6bCT5D6Ng54kT8UcYAcVTC), you can check them via:
 
-- 🌐 [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az2Q7Pka6bCT5D6Ng54kT8UcYAcVTC/tree/docs/configuring-openarchiver.md) online
+- 🌐 [the role's documentation](https://radicle.network/nodes/seed.radicle.garden/rad%3Az2Q7Pka6bCT5D6Ng54kT8UcYAcVTC/tree/docs/configuring-openarchiver.md) online
 - 📁 `roles/galaxy/openarchiver/docs/configuring-openarchiver.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 ## Dependencies
@@ -39,7 +39,7 @@ This service requires the following other services:
 - [Meilisearch](meilisearch.md)
 - [Postgres](postgres.md) database
 - [Traefik](traefik.md) reverse-proxy server
-- [Valkey](valkey.md) data-store; see [below](#configuring-valkey-optional) for details about installation
+- [Valkey](valkey.md) data-store; see [below](#configure-valkey) for details about installation
 - (optional) [Apache Tika Server](tika.md)
 
 ## Adjusting the playbook configuration
@@ -275,4 +275,4 @@ To get started, open the URL with a web browser to create an account. **Note tha
 
 ## Troubleshooting
 
-See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az2Q7Pka6bCT5D6Ng54kT8UcYAcVTC/tree/docs/configuring-openarchiver.md#troubleshooting) on the role's documentation for details.
+See [this section](https://radicle.network/nodes/seed.radicle.garden/rad%3Az2Q7Pka6bCT5D6Ng54kT8UcYAcVTC/tree/docs/configuring-openarchiver.md#troubleshooting) on the role's documentation for details.

@@ -34,7 +34,7 @@ For details about configuring the [Ansible role for CODE](https://github.com/mot
 
 This service requires the following other services:
 
-- a [Traefik](traefik.md) reverse-proxy server
+- [Traefik](traefik.md) reverse-proxy server
 
 >[!NOTE]
 > To use a CODE instance to edit office documents, it is necessary to integrate it with another software which functions as a data storage and manages access control for users. **You cannot edit the documents without such integrations.** This playbook supports installing Nextcloud. See [this page](nextcloud.md) for details about configuring it.

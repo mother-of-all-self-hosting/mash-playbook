@@ -26,9 +26,9 @@ audiobookshelf is a self-hosted audiobook and podcast server.
 
 See the project's [documentation](https://www.audiobookshelf.org/docs/) to learn what audiobookshelf does and why it might be useful to you.
 
-For details about configuring the [Ansible role for audiobookshelf](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3rwhJ9rQ82H6GXg7ZCt3UNpStbaW), you can check them via:
+For details about configuring the [Ansible role for audiobookshelf](https://radicle.network/nodes/seed.radicle.garden/rad%3Az3rwhJ9rQ82H6GXg7ZCt3UNpStbaW), you can check them via:
 
-- 🌐 [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3rwhJ9rQ82H6GXg7ZCt3UNpStbaW/tree/docs/configuring-audiobookshelf.md) online
+- 🌐 [the role's documentation](https://radicle.network/nodes/seed.radicle.garden/rad%3Az3rwhJ9rQ82H6GXg7ZCt3UNpStbaW/tree/docs/configuring-audiobookshelf.md) online
 - 📁 `roles/galaxy/audiobookshelf/docs/configuring-audiobookshelf.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 ## Dependencies
@@ -204,7 +204,7 @@ After setting the configuration, you can have the audiobookshelf instance send a
 
 ## Troubleshooting
 
-See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3rwhJ9rQ82H6GXg7ZCt3UNpStbaW/tree/docs/configuring-audiobookshelf.md#troubleshooting) on the role's documentation for details.
+See [this section](https://radicle.network/nodes/seed.radicle.garden/rad%3Az3rwhJ9rQ82H6GXg7ZCt3UNpStbaW/tree/docs/configuring-audiobookshelf.md#troubleshooting) on the role's documentation for details.
 
 ## Related services
 

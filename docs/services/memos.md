@@ -26,9 +26,9 @@ Memos is a Markdown-native note-taking tool.
 
 See the project's [documentation](https://usememos.com/docs) to learn what Memos does and why it might be useful to you.
 
-For details about configuring the [Ansible role for Memos](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az2UFFCDXMH6Am1K99TaiYP8BJmqaj), you can check them via:
+For details about configuring the [Ansible role for Memos](https://radicle.network/nodes/seed.radicle.garden/rad%3Az2UFFCDXMH6Am1K99TaiYP8BJmqaj), you can check them via:
 
-- 🌐 [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az2UFFCDXMH6Am1K99TaiYP8BJmqaj/tree/docs/configuring-memos.md) online
+- 🌐 [the role's documentation](https://radicle.network/nodes/seed.radicle.garden/rad%3Az2UFFCDXMH6Am1K99TaiYP8BJmqaj/tree/docs/configuring-memos.md) online
 - 📁 `roles/galaxy/memos/docs/configuring-memos.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 ## Dependencies
@@ -64,7 +64,7 @@ memos_hostname: memos.example.com
 
 ### Select database to use
 
-It is necessary to select a database used by Memos from a MySQL compatible database, Postgres, and SQLite. See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az2UFFCDXMH6Am1K99TaiYP8BJmqaj/tree/docs/configuring-memos.md#specify-database) on the role's documentation for details.
+It is necessary to select a database used by Memos from a MySQL compatible database, Postgres, and SQLite. See [this section](https://radicle.network/nodes/seed.radicle.garden/rad%3Az2UFFCDXMH6Am1K99TaiYP8BJmqaj/tree/docs/configuring-memos.md#specify-database) on the role's documentation for details.
 
 ## Usage
 
@@ -74,7 +74,7 @@ To get started, open the URL with a web browser, and register the account.
 
 ## Troubleshooting
 
-See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az2UFFCDXMH6Am1K99TaiYP8BJmqaj/tree/docs/configuring-memos.md#troubleshooting) on the role's documentation for details.
+See [this section](https://radicle.network/nodes/seed.radicle.garden/rad%3Az2UFFCDXMH6Am1K99TaiYP8BJmqaj/tree/docs/configuring-memos.md#troubleshooting) on the role's documentation for details.
 
 ## Related services
 

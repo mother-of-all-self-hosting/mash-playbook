@@ -17,8 +17,8 @@ See the project's [documentation](https://labelstud.io/quick-start/) to learn wh
 
 This service requires the following other services:
 
-- a [Postgres](postgres.md) database
-- a [Traefik](traefik.md) reverse-proxy server
+- [Postgres](postgres.md) database
+- [Traefik](traefik.md) reverse-proxy server
 
 ## Configuration
 
@@ -49,8 +49,7 @@ After running the command for installation, the LabelStudio instance becomes ava
 
 To get started, open the URL with a web browser to register new accounts, log in with them, and start working.
 
-Keep in mind that every user will see every project.
-It may be more secure to disable user registration and use an admin use (created during setup) to send out sign-up emails to additional users later on.
+Keep in mind that every user will see every project. It may be more secure to disable user registration and use an admin use (created during setup) to send out sign-up emails to additional users later on.
 
 This admin user can be enabled by using the following settings:
 

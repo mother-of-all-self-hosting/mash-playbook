@@ -17,7 +17,7 @@ See the project's [documentation](https://docs.linuxserver.io/images/docker-plex
 
 This service requires the following other services:
 
-- a [Traefik](traefik.md) reverse-proxy server
+- [Traefik](traefik.md) reverse-proxy server
 
 ## Configuration
 
@@ -60,7 +60,7 @@ plex_claim_token: ""
 Due to an [upstream bug](https://github.com/linuxserver/docker-plex/issues/422) there is a bit of a dance you must do when setting up Plex for the first time. The dance is as follows:
 
 1. Run [installation](../installing.md) with `plex_claim_token` set to `""`
-2. Obtain a `plex_claim_token` from https://plex.tv/claim.
+2. Obtain a `plex_claim_token` from <https://plex.tv/claim.>
 3. Run [installation](../installing.md) again with `plex_claim_token` set to the token you obtained
 
 If you do not follow these steps you will get an error like: `s6-applyuidgid: fatal: unable to set supplementary group list: Operation not permitted`. If this happens simply follow the steps above.
@@ -101,8 +101,9 @@ plex_container_roku_bind_port: 8324
 # You probably don't need this
 plex_container_bonjour_port: 5353
 ```
-Upstream documentation #1: https://support.plex.tv/articles/201543147-what-network-ports-do-i-need-to-allow-through-my-firewall/
-Upstream documentation #2: https://docs.linuxserver.io/images/docker-plex/#umask-for-running-applications
+
+- Upstream documentation #1: <https://support.plex.tv/articles/201543147-what-network-ports-do-i-need-to-allow-through-my-firewall/>
+- Upstream documentation #2: <https://docs.linuxserver.io/images/docker-plex/#umask-for-running-applications>
 
 ### Hardware Acceleration
 
@@ -121,7 +122,7 @@ plex_gpu_path: "/dev/dri"
 plex_gpu_bind_path: "{{ plex_gpu_path }}"
 ```
 
-Upstream documentation: https://docs.linuxserver.io/images/docker-plex/#intelatiamd
+Upstream documentation: <https://docs.linuxserver.io/images/docker-plex/#intelatiamd>
 
 #### NVIDIA
 
@@ -138,7 +139,7 @@ plex_container_runtime: "nvidia"
 plex_nvidia_visible_devices: "all"
 ```
 
-Upstream documentation: https://docs.linuxserver.io/images/docker-plex/#nvidia
+Upstream documentation: <https://docs.linuxserver.io/images/docker-plex/#nvidia>
 
 ---
 

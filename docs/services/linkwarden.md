@@ -25,9 +25,9 @@ Linkwarden is a self-hosted, open-source collaborative bookmark manager to colle
 
 See the project's [documentation](https://docs.linkwarden.app) to learn what Linkwarden does and why it might be useful to you.
 
-For details about configuring the [Ansible role for Linkwarden](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3AzCF75tYyujYQ3T4L3BkBDrPzXree), you can check them via:
+For details about configuring the [Ansible role for Linkwarden](https://radicle.network/nodes/seed.radicle.garden/rad%3AzCF75tYyujYQ3T4L3BkBDrPzXree), you can check them via:
 
-- 🌐 [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3AzCF75tYyujYQ3T4L3BkBDrPzXree/tree/docs/configuring-linkwarden.md) online
+- 🌐 [the role's documentation](https://radicle.network/nodes/seed.radicle.garden/rad%3AzCF75tYyujYQ3T4L3BkBDrPzXree/tree/docs/configuring-linkwarden.md) online
 - 📁 `roles/galaxy/linkwarden/docs/configuring-linkwarden.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 ## Dependencies
@@ -88,7 +88,7 @@ Since account registration is disabled by default, you need to enable it first b
 
 ## Troubleshooting
 
-See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3AzCF75tYyujYQ3T4L3BkBDrPzXree/tree/docs/configuring-linkwarden.md#troubleshooting) on the role's documentation for details.
+See [this section](https://radicle.network/nodes/seed.radicle.garden/rad%3AzCF75tYyujYQ3T4L3BkBDrPzXree/tree/docs/configuring-linkwarden.md#troubleshooting) on the role's documentation for details.
 
 ## Related services
 

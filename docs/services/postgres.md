@@ -67,7 +67,7 @@ just run-tags import-postgres \
 --extra-vars=postgres_default_import_database=main
 ```
 
-**Notes**:
+💡 **Notes**:
 
 - `SERVER_PATH_TO_POSTGRES_DUMP_FILE` must be a file path to a Postgres dump file on the server (not on your local machine!)
 - `postgres_default_import_database` defaults to `main`, which is useful for importing multiple databases (for dumps made with `pg_dumpall`). If you're importing a single database (e.g. `miniflux`), consider changing `postgres_default_import_database` to the name of the database (e.g. `miniflux`)
@@ -78,6 +78,7 @@ just run-tags import-postgres \
 This section shows you how to perform various maintenance tasks related to the Postgres database server used by various components of this playbook.
 
 Table of contents:
+
 - [Getting a database terminal](#getting-a-database-terminal), for when you wish to execute SQL queries
 - [Vacuuming PostgreSQL](#vacuuming-postgresql), for when you wish to run a Postgres [VACUUM](https://www.postgresql.org/docs/current/sql-vacuum.html) (optimizing disk space)
 - [Backing up PostgreSQL](#backing-up-postgresql), for when you wish to make a backup
@@ -161,7 +162,7 @@ To save disk space in `/tmp`, the dump file is gzipped on the fly at the expense
 
 PostgreSQL can be [tuned](https://wiki.postgresql.org/wiki/Tuning_Your_PostgreSQL_Server) to make it run faster. This is done by passing extra arguments to the Postgres process.
 
-The [Postgres Ansible role](https://github.com/mother-of-all-self-hosting/ansible-role-postgres) **already does some tuning by default**, which matches the [tuning logic](https://github.com/le0pard/pgtune/blob/master/src/features/configuration/configurationSlice.js) done by websites like https://pgtune.leopard.in.ua/. You can manually influence some of the tuning variables. These parameters (variables) are injected via the `postgres_postgres_process_extra_arguments_auto` variable.
+The [Postgres Ansible role](https://github.com/mother-of-all-self-hosting/ansible-role-postgres) **already does some tuning by default**, which matches the [tuning logic](https://github.com/le0pard/pgtune/blob/master/src/features/configuration/configurationSlice.js) done by websites like <https://pgtune.leopard.in.ua/>. You can manually influence some of the tuning variables. These parameters (variables) are injected via the `postgres_postgres_process_extra_arguments_auto` variable.
 
 Most users should be fine with the automatically-done tuning. However, you may wish to:
 

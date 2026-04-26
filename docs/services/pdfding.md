@@ -26,9 +26,9 @@ PdfDing is a self-hosted PDF manager, viewer and editor, which offers a seamless
 
 See the project's [documentation](https://docs.pdfding.com/) to learn what PdfDing does and why it might be useful to you.
 
-For details about configuring the [Ansible role for PdfDing](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az2cZCZP8Mu4LYMbHKaTdnP1otc46L), you can check them via:
+For details about configuring the [Ansible role for PdfDing](https://radicle.network/nodes/seed.radicle.garden/rad%3Az2cZCZP8Mu4LYMbHKaTdnP1otc46L), you can check them via:
 
-- 🌐 [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az2cZCZP8Mu4LYMbHKaTdnP1otc46L/tree/docs/configuring-pdfding.md) online
+- 🌐 [the role's documentation](https://radicle.network/nodes/seed.radicle.garden/rad%3Az2cZCZP8Mu4LYMbHKaTdnP1otc46L/tree/docs/configuring-pdfding.md) online
 - 📁 `roles/galaxy/pdfding/docs/configuring-pdfding.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 ## Dependencies
@@ -65,7 +65,7 @@ pdfding_hostname: pdfding.example.com
 
 ### Select database to use
 
-It is necessary to select a database used by the service from Postgres and SQLite. See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az2cZCZP8Mu4LYMbHKaTdnP1otc46L/tree/docs/configuring-pdfding.md#specify-database) on the role's documentation for details.
+It is necessary to select a database used by the service from Postgres and SQLite. See [this section](https://radicle.network/nodes/seed.radicle.garden/rad%3Az2cZCZP8Mu4LYMbHKaTdnP1otc46L/tree/docs/configuring-pdfding.md#specify-database) on the role's documentation for details.
 
 ### Enabling signing up
 
@@ -94,4 +94,4 @@ Since account registration is disabled by default, you need to enable it first b
 
 ## Troubleshooting
 
-See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az2cZCZP8Mu4LYMbHKaTdnP1otc46L/tree/docs/configuring-pdfding.md#troubleshooting) on the role's documentation for details.
+See [this section](https://radicle.network/nodes/seed.radicle.garden/rad%3Az2cZCZP8Mu4LYMbHKaTdnP1otc46L/tree/docs/configuring-pdfding.md#troubleshooting) on the role's documentation for details.

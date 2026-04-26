@@ -13,70 +13,68 @@ SPDX-FileCopyrightText: 2023 Felix Stupp
 SPDX-FileCopyrightText: 2023 Julian-Samuel Gebühr
 SPDX-FileCopyrightText: 2023 Pierre 'McFly' Marty
 SPDX-FileCopyrightText: 2024 Thomas Miceli
+SPDX-FileCopyrightText: 2024 Tiz
 SPDX-FileCopyrightText: 2024-2026 Suguru Hirahara
 
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 
-# Teable
+# Reitti
 
-The playbook can install and configure [Teable](https://github.com/teableio/teable) for you.
+The playbook can install and configure [Reitti](https://www.dedicatedcode.com/projects/reitti/) for you.
 
-Teable is a no-code platform for managing databases using a spreadsheet-like interface.
+Reitti is a personal location tracking and analysis application.
 
-See the project's [documentation](https://help.teable.ai/en/about) to learn what Teable does and why it might be useful to you.
+See the project's [documentation](https://www.dedicatedcode.com/projects/reitti/) to learn what Reitti does and why it might be useful to you.
 
-For details about configuring the [Ansible role for Teable](https://radicle.network/nodes/seed.radicle.garden/rad%3Az2bcU1U9yJfJE6t8quZ1BMnEpQLic), you can check them via:
+For details about configuring the [Ansible role for Reitti](https://radicle.network/nodes/seed.radicle.garden/rad%3Az3rhdtDR5EHHGk1SNBHwYtofxNyAf), you can check them via:
 
-- 🌐 [the role's documentation](https://radicle.network/nodes/seed.radicle.garden/rad%3Az2bcU1U9yJfJE6t8quZ1BMnEpQLic/tree/docs/configuring-teable.md) online
-- 📁 `roles/galaxy/teable/docs/configuring-teable.md` locally, if you have [fetched the Ansible roles](../installing.md)
+- 🌐 [the role's documentation](https://radicle.network/nodes/seed.radicle.garden/rad%3Az3rhdtDR5EHHGk1SNBHwYtofxNyAf/tree/docs/configuring-reitti.md) online
+- 📁 `roles/galaxy/reitti/docs/configuring-reitti.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 ## Dependencies
 
 This service requires the following other services:
 
-- [Postgres](postgres.md) database
+- [Postgres database with PostGIS extensions installed](postgis.md)
 - [Traefik](traefik.md) reverse-proxy server
 - [Valkey](valkey.md) data-store; see [below](#configure-valkey) for details about installation
-- (optional) [exim-relay](exim-relay.md) mailer
 
 ## Adjusting the playbook configuration
 
-To enable this service, add the following configuration to your `vars.yml` file:
+To enable this service, add the following configuration to your `vars.yml` file and re-run the [installation](../installing.md) process:
 
 ```yaml
 ########################################################################
 #                                                                      #
-# teable                                                               #
+# reitti                                                               #
 #                                                                      #
 ########################################################################
 
-teable_enabled: true
+reitti_enabled: true
 
-teable_hostname: teable.example.com
+reitti_hostname: reitti.example.com
 
 ########################################################################
 #                                                                      #
-# /teable                                                              #
+# /reitti                                                              #
 #                                                                      #
 ########################################################################
 ```
 
-**Note**: hosting Teable under a subpath (by configuring the `teable_path_prefix` variable) does not seem to be possible due to Teable's technical limitations.
-
 ### Configure Valkey
 
-Teable requires a Valkey data-store to work. This playbook supports it, and you can set up a Valkey instance by enabling it on `vars.yml`.
+Reitti requires a Valkey data-store to work. This playbook supports it, and you can set up a Valkey instance by enabling it on `vars.yml`.
 
-If Teable is the sole service which requires Valkey on your server, it is fine to set up just a single Valkey instance. However, **it is not recommended if there are other services which require it, because sharing the Valkey instance has security concerns and possibly causes data conflicts**, as described on the [documentation for configuring Valkey](valkey.md). In this case, you should install a dedicated Valkey instance for each of them.
+If Reitti is the sole service which requires Valkey on your server, it is fine to set up just a single Valkey instance. However, **it is not recommended if there are other services which require it, because sharing the Valkey instance has security concerns and possibly causes data conflicts**, as described on the [documentation for configuring Valkey](valkey.md). In this case, you should install a dedicated Valkey instance for each of them.
 
-If you are unsure whether you will install other services along with Teable or you have already set up services which need Valkey (such as [Nextcloud](nextcloud.md), [PeerTube](peertube.md), and [Funkwhale](funkwhale.md)), it is recommended to install a Valkey instance dedicated to Teable.
+If you are unsure whether you will install other services along with Reitti or you have already set up services which need Valkey (such as [Nextcloud](nextcloud.md), [PeerTube](peertube.md), and [Funkwhale](funkwhale.md)), it is recommended to install a Valkey instance dedicated to Reitti.
 
 *See [below](#setting-up-a-shared-valkey-instance) for an instruction to install a shared instance.*
 
 #### Setting up a dedicated Valkey instance
 
-To create a dedicated instance for Teable, you can follow the steps below:
+To create a dedicated instance for Reitti, you can follow the steps below:
 
 1. Adjust the `hosts` file
 2. Create a new `vars.yml` file for the dedicated instance
@@ -86,7 +84,7 @@ To create a dedicated instance for Teable, you can follow the steps below:
 
 ##### Adjust `hosts`
 
-At first, you need to adjust `inventory/hosts` file to add a supplementary host for Teable.
+At first, you need to adjust `inventory/hosts` file to add a supplementary host for Reitti.
 
 The content should be something like below. Make sure to replace `mash.example.com` with your hostname and `YOUR_SERVER_IP_ADDRESS_HERE` with the IP address of the host, respectively. The same IP address should be set to both, unless the Valkey instance will be served from a different machine.
 
@@ -97,7 +95,7 @@ mash_example_com
 
 [mash_example_com]
 mash.example.com ansible_host=YOUR_SERVER_IP_ADDRESS_HERE
-mash.example.com-teable-deps ansible_host=YOUR_SERVER_IP_ADDRESS_HERE
+mash.example.com-reitti-deps ansible_host=YOUR_SERVER_IP_ADDRESS_HERE
 …
 ```
 
@@ -107,12 +105,12 @@ You can just add an entry for the supplementary host to `[mash_example_com]` if 
 
 ##### Create `vars.yml` for the dedicated instance
 
-Then, create a new directory where `vars.yml` for the supplementary host is stored. If `mash.example.com` is your main host, name the directory as `mash.example.com-teable-deps`. Its path therefore will be `inventory/host_vars/mash.example.com-teable-deps`.
+Then, create a new directory where `vars.yml` for the supplementary host is stored. If `mash.example.com` is your main host, name the directory as `mash.example.com-reitti-deps`. Its path therefore will be `inventory/host_vars/mash.example.com-reitti-deps`.
 
-After creating the directory, add a new `vars.yml` file inside it with a content below. It will have running the playbook create a `mash-teable-valkey` instance on the new host, setting `/mash/teable-valkey` to the base directory of the dedicated Valkey instance.
+After creating the directory, add a new `vars.yml` file inside it with a content below. It will have running the playbook create a `mash-reitti-valkey` instance on the new host, setting `/mash/reitti-valkey` to the base directory of the dedicated Valkey instance.
 
 ```yaml
-# This is vars.yml for the supplementary host of Teable.
+# This is vars.yml for the supplementary host of Reitti.
 
 ---
 
@@ -126,8 +124,8 @@ After creating the directory, add a new `vars.yml` file inside it with a content
 mash_playbook_generic_secret_key: ''
 
 # Override service names and directory path prefixes
-mash_playbook_service_identifier_prefix: 'mash-teable-'
-mash_playbook_service_base_directory_name_prefix: 'teable-'
+mash_playbook_service_identifier_prefix: 'mash-reitti-'
+mash_playbook_service_base_directory_name_prefix: 'reitti-'
 
 ########################################################################
 #                                                                      #
@@ -157,37 +155,37 @@ Having configured `vars.yml` for the dedicated instance, add the following confi
 ```yaml
 ########################################################################
 #                                                                      #
-# teable                                                               #
+# reitti                                                               #
 #                                                                      #
 ########################################################################
 
 # Add the base configuration as specified above
 
-# Point Teable to its dedicated Valkey instance
-teable_redis_hostname: mash-teable-valkey
+# Point Reitti to its dedicated Valkey instance
+reitti_redis_hostname: mash-reitti-valkey
 
-# Make sure the Teable service (mash-teable.service) is connected to the container network of its dedicated Valkey service (mash-teable-valkey)
-teable_container_additional_networks_custom:
-  - "mash-teable-valkey"
+# Make sure the Reitti service (mash-reitti.service) is connected to the container network of its dedicated Valkey service (mash-reitti-valkey)
+reitti_container_additional_networks_custom:
+  - "mash-reitti-valkey"
 
-# Make sure the Teable service (mash-teable.service) starts after its dedicated Valkey service (mash-teable-valkey.service)
-teable_systemd_required_services_list_custom:
-  - "mash-teable-valkey.service"
+# Make sure the Reitti service (mash-reitti.service) starts after its dedicated Valkey service (mash-reitti-valkey.service)
+reitti_systemd_required_services_list_custom:
+  - "mash-reitti-valkey.service"
 
 ########################################################################
 #                                                                      #
-# /teable                                                              #
+# /reitti                                                              #
 #                                                                      #
 ########################################################################
 ```
 
-Running the installation command will create the dedicated Valkey instance named `mash-teable-valkey`.
+Running the installation command will create the dedicated Valkey instance named `mash-reitti-valkey`.
 
 #### Setting up a shared Valkey instance
 
-If you host only Teable on this server, it is fine to set up a single shared Valkey instance.
+If you host only Reitti on this server, it is fine to set up a single shared Valkey instance.
 
-To install the single instance and hook Teable to it, add the following configuration to `inventory/host_vars/mash.example.com/vars.yml`:
+To install the single instance and hook Reitti to it, add the following configuration to `inventory/host_vars/mash.example.com/vars.yml`:
 
 ```yaml
 ########################################################################
@@ -206,53 +204,38 @@ valkey_enabled: true
 
 ########################################################################
 #                                                                      #
-# teable                                                               #
+# reitti                                                               #
 #                                                                      #
 ########################################################################
 
 # Add the base configuration as specified above
 
-# Point Teable to the shared Valkey instance
-teable_redis_hostname: "{{ valkey_identifier }}"
+# Point Reitti to the shared Valkey instance
+reitti_redis_hostname: "{{ valkey_identifier }}"
 
-# Make sure the Teable container is connected to the container network of the shared Valkey service (mash-valkey)
-teable_container_additional_networks_custom:
+# Make sure the Reitti container is connected to the container network of the shared Valkey service (mash-valkey)
+reitti_container_additional_networks_custom:
   - "{{ valkey_container_network }}"
 
-# Make sure the Teable service (mash-teable.service) starts after the shared Valkey service (mash-valkey.service)
-teable_systemd_required_services_list_custom:
+# Make sure the Reitti service (mash-reitti.service) starts after the shared Valkey service (mash-valkey.service)
+reitti_systemd_required_services_list_custom:
   - "{{ valkey_identifier }}.service"
 
 ########################################################################
 #                                                                      #
-# /teable                                                              #
+# /reitti                                                              #
 #                                                                      #
 ########################################################################
 ```
 
 Running the installation command will create the shared Valkey instance named `mash-valkey`.
 
-### Configuring the mailer (optional)
+### Usage
 
-On Teable you can set up a mailer for functions such as signing up, verifying or changing email address, resetting password, etc. If you enable the [exim-relay](exim-relay.md) service in your inventory configuration, the playbook will automatically configure it as a mailer for the service.
+After running the command for installation, the Reitti instance becomes available at the URL specified with `reitti_hostname`. With the configuration above, the service is hosted at `https://reitti.example.com`.
 
-To actually have the service use (and get messages sent through the exim-relay service), you will need to adjust settings on the service's UI after the service is installed.
-
->[!WARNING]
-> Without setting an authentication method such as DKIM, SPF, and DMARC for your hostname, emails are most likely to be quarantined as spam at recipient's mail servers. The worst scenario is that your server's IP address or hostname will be included in the spam list such as the one managed by [Spamhaus](https://www.spamhaus.org/), depending on the reputation. As the exim-relay service supports DKIM signing, refer to [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-exim-relay/blob/main/docs/configuring-exim-relay.md#enable-dkim-support-optional) for details about how to set it up.
-
-## Installation
-
-If you have decided to install the dedicated Valkey instance for Teable, make sure to run the [installing](../installing.md) command for the supplementary host (`mash.example.com-teable-deps`) first, before running it for the main host (`mash.example.com`).
-
-Note that running the `just` commands for installation (`just install-all` or `just setup-all`) automatically takes care of the order. See [here](../running-multiple-instances.md#1-adjust-hosts) for more details about it.
-
-## Usage
-
-After installation, the Teable instance becomes available at the URL specified with `teable_hostname`. With the configuration above, the service is hosted at `https://teable.example.com`.
-
-To get started, open the URL with a web browser, and register the account. **Note that the first registered user becomes an administrator automatically.**
+To get started, open the URL with a web browser to create an account. **Note that the first registered user becomes an administrator automatically.**
 
 ## Troubleshooting
 
-See [this section](https://radicle.network/nodes/seed.radicle.garden/rad%3Az2bcU1U9yJfJE6t8quZ1BMnEpQLic/tree/docs/configuring-teable.md#troubleshooting) on the role's documentation for details.
+See [this section](https://radicle.network/nodes/seed.radicle.garden/rad%3Az3rhdtDR5EHHGk1SNBHwYtofxNyAf/tree/docs/configuring-reitti.md#troubleshooting) on the role's documentation for details.

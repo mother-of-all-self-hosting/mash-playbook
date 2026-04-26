@@ -26,9 +26,9 @@ PruneMate is a web interface to automatically clean up Docker resources on a sch
 
 See the project's [documentation](https://github.com/anoniemerd/PruneMate/blob/main/README.md) to learn what PruneMate does and why it might be useful to you.
 
-For details about configuring the [Ansible role for PruneMate](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3AzTsddBnXnhE3i4xhzsEX12deb4fx), you can check them via:
+For details about configuring the [Ansible role for PruneMate](https://radicle.network/nodes/seed.radicle.garden/rad%3AzTsddBnXnhE3i4xhzsEX12deb4fx), you can check them via:
 
-- 🌐 [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3AzTsddBnXnhE3i4xhzsEX12deb4fx/tree/docs/configuring-prunemate.md) online
+- 🌐 [the role's documentation](https://radicle.network/nodes/seed.radicle.garden/rad%3AzTsddBnXnhE3i4xhzsEX12deb4fx/tree/docs/configuring-prunemate.md) online
 - 📁 `roles/galaxy/prunemate/docs/configuring-prunemate.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 >[!NOTE]
@@ -67,7 +67,7 @@ prunemate_hostname: prunemate.example.com
 
 ### Setting up authentication
 
-The playbook by default enables authentication implemented by the service. It supports the HTTP Basic authentication with Traefik as well. Though it is optional and can be disabled, **it is strongly encouraged to enable a certain authentication mechanism**, considering the nature of the service. See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad:zTsddBnXnhE3i4xhzsEX12deb4fx/tree/docs/configuring-prunemate.md#setting-up-authentication) on the role's documentation for details about how to set up authentication.
+The playbook by default enables authentication implemented by the service. It supports the HTTP Basic authentication with Traefik as well. Though it is optional and can be disabled, **it is strongly encouraged to enable a certain authentication mechanism**, considering the nature of the service. See [this section](https://radicle.network/nodes/seed.radicle.garden/rad:zTsddBnXnhE3i4xhzsEX12deb4fx/tree/docs/configuring-prunemate.md#setting-up-authentication) on the role's documentation for details about how to set up authentication.
 
 ### Configuring Docker socket (optional)
 
@@ -81,7 +81,7 @@ To get started, open the URL with a web browser, and edit settings to enable a s
 
 ### Creating a user
 
-To enable authentication, see [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3AzTsddBnXnhE3i4xhzsEX12deb4fx/tree/docs/configuring-prunemate.md#creating-a-user) on the role's documentation about how to create a user. Make sure to start the service first, before creating the user.
+To enable authentication, see [this section](https://radicle.network/nodes/seed.radicle.garden/rad%3AzTsddBnXnhE3i4xhzsEX12deb4fx/tree/docs/configuring-prunemate.md#creating-a-user) on the role's documentation about how to create a user. Make sure to start the service first, before creating the user.
 
 ### Configuring the Docker host URL
 
@@ -95,7 +95,7 @@ As a notification provider, it is possible to use Gotify and ntfy, both of which
 
 ## Troubleshooting
 
-See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3AzTsddBnXnhE3i4xhzsEX12deb4fx/tree/docs/configuring-prunemate.md#troubleshooting) on the role's documentation for details.
+See [this section](https://radicle.network/nodes/seed.radicle.garden/rad%3AzTsddBnXnhE3i4xhzsEX12deb4fx/tree/docs/configuring-prunemate.md#troubleshooting) on the role's documentation for details.
 
 ## Related services
 

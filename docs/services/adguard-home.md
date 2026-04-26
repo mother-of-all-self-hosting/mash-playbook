@@ -50,7 +50,7 @@ See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-ad
 
 This service requires the following other services:
 
-- a [Traefik](traefik.md) reverse-proxy server
+- [Traefik](traefik.md) reverse-proxy server
 
 ## Adjusting the playbook configuration
 

@@ -17,7 +17,7 @@ See the project's [documentation](https://nifi.apache.org/components/) to learn 
 
 This service requires the following other services:
 
-- a [Traefik](traefik.md) reverse-proxy server
+- [Traefik](traefik.md) reverse-proxy server
 
 ## Prerequisites
 

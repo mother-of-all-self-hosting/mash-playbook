@@ -28,9 +28,9 @@ Calibre-Web Automated is a web application based on [Calibre-Web](https://github
 
 See the project's [documentation](https://github.com/crocodilestick/Calibre-Web-Automated/blob/main/README.md) to learn what Calibre-Web Automated does and why it might be useful to you.
 
-For details about configuring the [Ansible role for Calibre-Web Automated](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3AzSfEaojv4NnFnivPm248Lx123CNe), you can check them via:
+For details about configuring the [Ansible role for Calibre-Web Automated](https://radicle.network/nodes/seed.radicle.garden/rad%3AzSfEaojv4NnFnivPm248Lx123CNe), you can check them via:
 
-- 🌐 [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3AzSfEaojv4NnFnivPm248Lx123CNe/tree/docs/configuring-calibre-web-automated.md) online
+- 🌐 [the role's documentation](https://radicle.network/nodes/seed.radicle.garden/rad%3AzSfEaojv4NnFnivPm248Lx123CNe/tree/docs/configuring-calibre-web-automated.md) online
 - 📁 `roles/galaxy/calibre_web_automated/docs/configuring-calibre-web-automated.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 ## Dependencies
@@ -175,7 +175,7 @@ syncthing_container_additional_volumes_custom:
 
 After running the command for installation, the Calibre-Web Automated instance becomes available at the URL specified with `calibre_web_automated_hostname`. With the configuration above, the service is hosted at `https://cwa.example.com`.
 
-See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3AzSfEaojv4NnFnivPm248Lx123CNe/tree/docs/configuring-calibre-web-automated.md#usage) for details about setting up the instance.
+See [this section](https://radicle.network/nodes/seed.radicle.garden/rad%3AzSfEaojv4NnFnivPm248Lx123CNe/tree/docs/configuring-calibre-web-automated.md#usage) for details about setting up the instance.
 
 ### Configuring the mailer (optional)
 
@@ -200,7 +200,7 @@ After setting the configuration, you can have the Calibre-Web Automated instance
 
 ## Troubleshooting
 
-See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3AzSfEaojv4NnFnivPm248Lx123CNe/tree/docs/configuring-calibre-web-automated.md#troubleshooting) on the role's documentation for details.
+See [this section](https://radicle.network/nodes/seed.radicle.garden/rad%3AzSfEaojv4NnFnivPm248Lx123CNe/tree/docs/configuring-calibre-web-automated.md#troubleshooting) on the role's documentation for details.
 
 ## Related services
 

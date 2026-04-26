@@ -17,7 +17,7 @@ See the project's [documentation](https://wiki.servarr.com/radarr) to learn what
 
 This service requires the following other services:
 
-- a [Traefik](traefik.md) reverse-proxy server
+- [Traefik](traefik.md) reverse-proxy server
 
 ## Configuration
 

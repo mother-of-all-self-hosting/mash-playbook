@@ -208,9 +208,9 @@ Below are examples for Grafana configuration.
 
 #### Single-Sign-On / authentik
 
-* Create a new OAuth provider in authentik called `grafana`
-* Create an application also named `grafana` in authentik using this provider
-* Add the following configuration to your `vars.yml` file and re-run the [installation](../installing.md) process (make sure to adjust `authentik.example.com`)
+- Create a new OAuth provider in authentik called `grafana`
+- Create an application also named `grafana` in authentik using this provider
+- Add the following configuration to your `vars.yml` file and re-run the [installation](../installing.md) process (make sure to adjust `authentik.example.com`)
 
 ```yaml
 # To make Grafana honor the expiration time of JWT tokens, enable this experimental feature below.

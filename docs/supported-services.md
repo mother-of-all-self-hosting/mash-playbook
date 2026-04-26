@@ -21,8 +21,8 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
 Below is an exhaustive list of the free and open-source software for self-hosting which this playbook supports.
 
-|              Name              |              Description              | Documentation |
-| ------------------------------ | ------------------------------------- | ------------- |
+| Name | Description | Documentation |
+| ---- | ----------- | ------------- |
 | [AUX](https://github.com/mother-of-all-self-hosting/ansible-role-aux) | Auxiliary file/directory management on your server via Ansible | [Link](services/auxiliary.md) |
 | [Actual](https://actualbudget.org) | Local-first personal finance tool | [Link](services/actual.md) |
 | [AdGuard Home](https://adguard.com/en/adguard-home/overview.html/) | A network-wide DNS software for blocking ads & tracking | [Link](services/adguard-home.md) |
@@ -47,7 +47,7 @@ Below is an exhaustive list of the free and open-source software for self-hostin
 | [BentoPDF](https://github.com/alam00000/bentopdf) | Client-side PDF editor and converter | [Link](services/bentopdf.md) |
 | [BIND](https://www.isc.org/bind/) | A full-featured DNS server | [Link](services/bind.md) |
 | [bitmagnet](https://bitmagnet.io/) | BitTorrent indexer, DHT crawler, content classifier and search engine | [Link](services/bitmagnet.md) |
-| [BorgBackup](https://www.borgbackup.org/) (via [borgmatic](https://torsion.org/borgmatic/)) | A deduplicating backup program with optional compression and encryption| [Link](services/backup-borg.md) |
+| [BorgBackup](https://www.borgbackup.org/) (via [borgmatic](https://torsion.org/borgmatic/)) | A deduplicating backup program with optional compression and encryption | [Link](services/backup-borg.md) |
 | [Borg Web UI](https://karanhudia.github.io/borg-ui/) | Unofficial web interface for [BorgBackup](https://borgbackup.readthedocs.io/) | [Link](services/borg-ui.md) |
 | [Browserless](https://docs.browserless.io) | Deploy headless browsers in Docker | [Link](services/browserless.md) |
 | [Calibre-Web](https://github.com/janeczku/calibre-web) | Web app for browsing, reading and downloading eBooks stored in a [Calibre](https://calibre-ebook.com/) database | [Link](services/calibre-web.md) |
@@ -80,6 +80,7 @@ Below is an exhaustive list of the free and open-source software for self-hostin
 | [Ergo](https://ergo.chat/) | Modern IRCd (IRC server software) written in Go | [Link](services/ergo.md) |
 | [etcd](https://etcd.io/) | A distributed, reliable key-value store for the most critical data of a distributed system | [Link](services/etcd.md) |
 | [Etherpad](https://etherpad.org) | Collaborative text editor | [Link](services/etherpad.md) |
+| [Euro-Office](https://github.com/Euro-Office/DocumentServer) | Online office suite comprising viewers and editors | [Link](services/eurooffice.md) |
 | [Excalidraw](https://excalidraw.com/) | Virtual whiteboard for sketching hand-drawn like diagrams | [Link](services/excalidraw.md) |
 | [Excalidraw collaboration server](https://github.com/excalidraw/excalidraw-room) | Collaboration server for Excalidraw instance | [Link](services/excalidraw-room.md) |
 | [exim-relay](https://github.com/devture/exim-relay) | A lightweight [Exim](https://www.exim.org/) SMTP mail relay server | [Link](services/exim-relay.md) |
@@ -99,6 +100,7 @@ Below is an exhaustive list of the free and open-source software for self-hostin
 | [Funkwhale](https://funkwhale.audio/) | Streaming server for listening and sharing music | [Link](services/funkwhale.md) |
 | [Ghostfolio](https://ghostfol.io/) | Wealth management software to keep track of assets such as stocks, bonds, ETFs, etc. | [Link](services/ghostfolio.md) |
 | [Gitea](https://gitea.io/) | A painless [Git](https://git-scm.com/) service | [Link](services/gitea.md) |
+| [Gotenberg](https://gotenberg.dev/) | Docker-based API for converting documents to PDF | [Link](services/gotenberg.md) |
 | [GotHub](https://codeberg.org/gothub/gothub) | View GitHub repositories without exposing your IP address, browsing habits, and other browser fingerprinting data to the website | [Link](services/gothub.md) |
 | [Gotify](https://gotify.net/) | Simple server for sending and receiving messages | [Link](services/gotify.md) |
 | [GoToSocial](https://gotosocial.org/) | An [ActivityPub](https://activitypub.rocks/) social network server | [Link](services/gotosocial.md) |
@@ -155,7 +157,7 @@ Below is an exhaustive list of the free and open-source software for self-hostin
 | [Mosquitto](https://mosquitto.org/) | A MQTT broker | [Link](services/mosquitto.md) |
 | [Mozhi](https://codeberg.org/aryak/mozhi) | Frontend for translation engines | [Link](services/mozhi.md) |
 | [Mumble](https://www.mumble.info/) | Voice chat application known for its low latency and high voice quality | [Link](services/mumble.md) |
-| [Navidrome](https://www.navidrome.org/) | [Subsonic-API](http://www.subsonic.org/pages/api.jsp) compatible music server | [Link](services/navidrome.md)
+| [Navidrome](https://www.navidrome.org/) | [Subsonic-API](http://www.subsonic.org/pages/api.jsp) compatible music server | [Link](services/navidrome.md) |
 | [Neko](https://neko.m1k1o.net/) | A virtual browser or even desktop environment | [Link](services/neko.md) |
 | [NetBox](https://docs.netbox.dev/en/stable/) | Web application that provides [IP address management (IPAM)](https://en.wikipedia.org/wiki/IP_address_management) and [data center infrastructure management (DCIM)](https://en.wikipedia.org/wiki/Data_center_management#Data_center_infrastructure_management) functionality | [Link](services/netbox.md) |
 | [Nextcloud](https://nextcloud.com/) | The most popular collaboration solution for tens of millions of users at thousands of organizations across the globe | [Link](services/nextcloud.md) |
@@ -201,14 +203,15 @@ Below is an exhaustive list of the free and open-source software for self-hostin
 | [RabbitMQ](https://www.rabbitmq.com/) | Message-broker which supports AMQP, STOMP, MQTT, etc. | [Link](services/rabbitmq.md) |
 | [Radarr](https://radarr.video/) | A movie organizer/manager for Usenet and BitTorrent users | [Link](services/radarr.md) |
 | [Radicale](https://radicale.org/) | A CalDAV and CardDAV Server (solution for hosting contacts and calendars) | [Link](services/radicale.md) |
-| [Radicle Explorer](https://app.radicle.xyz/nodes/seed.radicle.xyz/rad%3Az4V1sjrXqjvFdnCUbxPFqd5p4DtH5) | [Radicle](https://radicle.xyz/) user interface for the web browser | [Link](services/radicle-explorer.md) |
-| [Radicle HTTP Daemon](https://app.radicle.xyz/nodes/seed.radicle.xyz/rad%3Az4V1sjrXqjvFdnCUbxPFqd5p4DtH5/tree/radicle-httpd/radicle-httpd.1.adoc) | Gateway between the [Radicle](https://radicle.xyz/) protocol and the HTTP protocol | [Link](services/radicle-httpd.md) |
-| [Radicle node](https://app.radicle.xyz/nodes/seed.radicle.xyz/rad%3Az3gqcJUoA1n9HaHKufZs5FCSGazv5) | Network daemon for the [Radicle](https://radicle.xyz/) network | [Link](services/radicle-node.md) |
+| [Radicle Explorer](https://radicle.network/nodes/seed.radicle.dev/rad%3Az4V1sjrXqjvFdnCUbxPFqd5p4DtH5) | [Radicle](https://radicle.dev/) user interface for the web browser | [Link](services/radicle-explorer.md) |
+| [Radicle HTTP Daemon](https://radicle.network/nodes/seed.radicle.dev/rad%3Az4V1sjrXqjvFdnCUbxPFqd5p4DtH5/tree/radicle-httpd/radicle-httpd.1.adoc) | Gateway between the [Radicle](https://radicle.dev/) protocol and the HTTP protocol | [Link](services/radicle-httpd.md) |
+| [Radicle node](https://radicle.network/nodes/seed.radicle.dev/rad%3Az3gqcJUoA1n9HaHKufZs5FCSGazv5) | Network daemon for the [Radicle](https://radicle.dev/) network | [Link](services/radicle-node.md) |
 | [ReactFlux](https://github.com/electh/ReactFlux) | Third-party web frontend for Miniflux | [Link](services/reactflux.md) |
 | [Readeck](https://readeck.org) | A bookmark manager and a read-later tool combined in one | [Link](services/readeck.md) |
 | [Redis](https://redis.io/) | An in-memory data store used by millions of developers as a database, cache, streaming engine, and message broker | [Link](services/redis.md) |
 | [Redlib](https://github.com/redlib-org/redlib) | Browse Reddit without exposing your IP address, browsing habits, and other browser fingerprinting data to the website | [Link](services/redlib.md) |
 | [Redmine](https://redmine.org/) | A flexible project management web application | [Link](services/redmine.md) |
+| [Reitti](https://www.dedicatedcode.com/projects/reitti/) | Personal location tracking and analysis application | [Link](services/reitti.md) |
 | [Roundcube](https://roundcube.net/) | A browser-based multilingual IMAP client with an application-like user interface | [Link](services/roundcube.md) |
 | [RSS-Bridge](https://rss-bridge.github.io/rss-bridge/) | Generates web feeds for websites that do not have one | [Link](services/rssbridge.md) |
 | [RSSHub](https://docs.rsshub.app/) | Create RSS feeds from web pages | [Link](services/rsshub.md) |
@@ -229,7 +232,7 @@ Below is an exhaustive list of the free and open-source software for self-hostin
 | [Stirling PDF](https://github.com/Stirling-Tools/Stirling-PDF) | A PDF converter | [Link](services/stirling-pdf.md) |
 | [syncstorage-rs](https://github.com/mozilla-services/syncstorage-rs) | Mozilla Sync Storage server in Rust, used to power Firefox Sync | [Link](services/syncstorage-rs.md) |
 | [Syncthing](https://syncthing.net/) | A continuous file synchronization program which synchronizes files between two or more computers in real time | [Link](services/syncthing.md) |
-| [Tandoor](https://docs.tandoor.dev/) | The recipe manager that allows you to manage your ever growing collection of digital recipes | [Link](services/tandoor.md)
+| [Tandoor](https://docs.tandoor.dev/) | The recipe manager that allows you to manage your ever growing collection of digital recipes | [Link](services/tandoor.md) |
 | [Teable](https://github.com/teableio/teable) | No-code database management platform with spreadsheet-like interface | [Link](services/teable.md) |
 | [Telegraf](https://www.influxdata.com/time-series-platform/telegraf/) | A server agent to help you collect metrics from your stacks, sensors, and systems | [Link](services/telegraf.md) |
 | [Termix](https://docs.termix.site/) | Server management platform with SSH terminal | [Link](services/termix.md) |
@@ -260,8 +263,8 @@ Below is an exhaustive list of the free and open-source software for self-hostin
 
 Below is a list of non-free (i.e. licensed under a non-free license) software which this playbook supports.
 
-|              Name              |              Description              | Documentation |
-| ------------------------------ | ------------------------------------- | ------------- |
+| Name | Description | Documentation |
+| ---- | ----------- | ------------- |
 | [MongoDB](https://www.mongodb.com/) | A source-available cross-platform document-oriented (NoSQL) database program | [Link](services/mongodb.md) |
 | [n8n](https://n8n.io/) | Workflow automation for technical people | [Link](services/n8n.md) |
 

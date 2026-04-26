@@ -26,9 +26,9 @@ Gotify is a simple server for sending and receiving messages.
 
 See the project's [documentation](https://gotify.net/docs/) to learn what Gotify does and why it might be useful to you.
 
-For details about configuring the [Ansible role for Gotify](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3dQNNLitS9sByxZ83ivu5qg6qR4N), you can check them via:
+For details about configuring the [Ansible role for Gotify](https://radicle.network/nodes/seed.radicle.garden/rad%3Az3dQNNLitS9sByxZ83ivu5qg6qR4N), you can check them via:
 
-- 🌐 [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3dQNNLitS9sByxZ83ivu5qg6qR4N/tree/docs/configuring-gotify.md) online
+- 🌐 [the role's documentation](https://radicle.network/nodes/seed.radicle.garden/rad%3Az3dQNNLitS9sByxZ83ivu5qg6qR4N/tree/docs/configuring-gotify.md) online
 - 📁 `roles/galaxy/gotify/docs/configuring-gotify.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 ## Dependencies
@@ -64,11 +64,11 @@ gotify_hostname: gotify.example.com
 
 ### Select database to use
 
-It is necessary to select a database used by Gotify from a MySQL compatible database, Postgres, and SQLite. See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3dQNNLitS9sByxZ83ivu5qg6qR4N/tree/docs/configuring-gotify.md#specify-database) on the role's documentation for details.
+It is necessary to select a database used by Gotify from a MySQL compatible database, Postgres, and SQLite. See [this section](https://radicle.network/nodes/seed.radicle.garden/rad%3Az3dQNNLitS9sByxZ83ivu5qg6qR4N/tree/docs/configuring-gotify.md#specify-database) on the role's documentation for details.
 
 ### Set the username and password for the first user
 
-You also need to set an initial username and password for the first user. Refer to [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3dQNNLitS9sByxZ83ivu5qg6qR4N/tree/docs/configuring-gotify.md#specify-username-and-password-for-the-first-user) on the role's documentation.
+You also need to set an initial username and password for the first user. Refer to [this section](https://radicle.network/nodes/seed.radicle.garden/rad%3Az3dQNNLitS9sByxZ83ivu5qg6qR4N/tree/docs/configuring-gotify.md#specify-username-and-password-for-the-first-user) on the role's documentation.
 
 ## Usage
 
@@ -78,7 +78,7 @@ To get started, open the URL with a web browser to log in to the instance. **Not
 
 ## Troubleshooting
 
-See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3dQNNLitS9sByxZ83ivu5qg6qR4N/tree/docs/configuring-gotify.md#troubleshooting) on the role's documentation for details.
+See [this section](https://radicle.network/nodes/seed.radicle.garden/rad%3Az3dQNNLitS9sByxZ83ivu5qg6qR4N/tree/docs/configuring-gotify.md#troubleshooting) on the role's documentation for details.
 
 ## Related services
 

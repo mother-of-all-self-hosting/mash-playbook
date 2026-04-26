@@ -17,8 +17,8 @@ See the project's [documentation](https://wg-easy.github.io/wg-easy/latest/) to 
 
 This service requires the following other services:
 
-- a [Traefik](traefik.md) reverse-proxy server
-- a modern Linux kernel which supports WireGuard
+- [Traefik](traefik.md) reverse-proxy server
+- Modern Linux kernel which supports WireGuard
 - `devture_systemd_docker_base_ipv6_enabled: true` if you'd like IPv6 support
 
 ## Configuration
@@ -195,8 +195,7 @@ After doing so, you'll wish to restart `iptables`/`ip6tables`. Restarting iptabl
 
 ### Additional configuration
 
-The new wg-easy version (after the v15 release) does not support most of the environment variables that were supported in previous versions.
-Most of the configuration happens via the web UI after installation. See [Adjusting the post-installation configuration](#adjusting-the-post-installation-configuration) for more details.
+The new wg-easy version (after the v15 release) does not support most of the environment variables that were supported in previous versions. Most of the configuration happens via the web UI after installation. See [Adjusting the post-installation configuration](#adjusting-the-post-installation-configuration) for more details.
 
 Nevertheless, if you need to inject additional environment variables, you can do so with this additional configuration:
 
@@ -240,8 +239,7 @@ The steps for creating a new user are like this:
 1. Make sure the `sqlite3` tool is available on the server
 2. Generate a strong password (e.g. `pwgen -s 1 64`)
 3. Hash the password using [Argon2id](https://en.wikipedia.org/wiki/Argon2)
-  - Here's a one-liner to do it using [PHP](https://php.net/): `php -r 'echo password_hash("YOUR_PASSWORD_HERE", \PASSWORD_ARGON2ID);'
-`
+    - Here's a one-liner to do it using [PHP](https://php.net/): `php -r 'echo password_hash("YOUR_PASSWORD_HERE", \PASSWORD_ARGON2ID);'`
 4. Open the database using `sqlite3 /mash/wg-easy/data/wg-easy.db`
 5. Run a query like this:
 
@@ -265,8 +263,7 @@ The steps for creating a new user are like this:
 > [!WARNING]
 > For IPv6 to work, you need your container networks to have been created with IPv6 support (`devture_systemd_docker_base_ipv6_enabled: true`) as mentioned in the [Prerequisites](#prerequisites). If your wg-easy container network (`mash-wg-easy`) was created before you flipped this setting to `true`, you may need to stop the wg-easy service, delete the container network manually (`docker network rm mash-wg-easy`) and re-run the playbook to have it create the container network anew.
 
-💡 The Ansible wg-easy role goes against the upstream default and uses a [Global Unicast Address (GUA)](https://www.oreilly.com/library/view/ipv6-fundamentals-a/9780134670584/ch05.html)-like CIDR value (a documentation-reserved CIDR (`2001:db8::/32`) as per [RFC 3849](https://datatracker.ietf.org/doc/html/rfc3849)) instead of a [Unique Local Address (ULA)](https://en.wikipedia.org/wiki/Unique_local_address) one, as described below.
-Due to this, you should have outgoing IPv6 connectivity and it should be preferred over IPv4, as expected. **Most users can rely on our defaults and leave things as they are**, without having to do anything.
+💡 The Ansible wg-easy role goes against the upstream default and uses a [Global Unicast Address (GUA)](https://www.oreilly.com/library/view/ipv6-fundamentals-a/9780134670584/ch05.html)-like CIDR value (a documentation-reserved CIDR (`2001:db8::/32`) as per [RFC 3849](https://datatracker.ietf.org/doc/html/rfc3849)) instead of a [Unique Local Address (ULA)](https://en.wikipedia.org/wiki/Unique_local_address) one, as described below. Due to this, you should have outgoing IPv6 connectivity and it should be preferred over IPv4, as expected. **Most users can rely on our defaults and leave things as they are**, without having to do anything.
 
 Below, we describe what upstream wg-easy does by default, why we're doing things differently and how you can improve on what we do by default (using a documentation-reserved IPv6 CIDR value).
 
