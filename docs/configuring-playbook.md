@@ -81,6 +81,8 @@ This keeps the host identity and host-specific variables consistent while using 
 
 Python interpreter requirements and discovery problems are covered in [Prerequisites](prerequisites.md#managed-node). If Ansible detects the wrong Python interpreter for a host, set an explicit value such as `ansible_python_interpreter=/usr/bin/python3`.
 
+## Configuring interoperability with other services
+
 If you're installing services on the same server using another playbook (like [matrix-docker-ansible-deploy](https://github.com/spantaleev/matrix-docker-ansible-deploy)) or you already have [Traefik](./services/traefik.md) or [Docker](./services/docker.md) installed on the server, consult our [Interoperability](./interoperability.md) documentation.
 
 ---------------------------------------------
