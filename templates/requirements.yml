@@ -440,6 +440,10 @@
   version: v6.7-1
   name: languagetool
   activation_prefix: languagetool_
+- src: git+https://github.com/shukon/ansible-role-librebooking.git
+  version: v4.2.0-1
+  name: librebooking
+  activation_prefix: librebooking_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-limesurvey.git
   version: v6.17.0-0
   name: limesurvey
