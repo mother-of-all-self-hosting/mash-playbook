@@ -103,7 +103,7 @@ Homarr also integrates with various software, to which you can connect your appl
 - **Torrent client**: [qBittorent](qbittorrent.md)
 - **Media server**: [Plex](plex.md)
 - **Media collection managers**: [Sonarr](sonarr.md) and [Radarr](radarr.md)
-- **Media request manager**: [Overseerr](overseerr.md)
+- **Media request manager**: [Seerr](seerr.md)
 - **DNS ad-blocker**: [AdGuard Home](adguard-home.md)
 
 See [this page](https://homarr.dev/docs/category/integrations) on the official documentation for the latest information about integrations.
@@ -114,4 +114,4 @@ See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-ho
 
 ## Related services
 
-- "* Arr" applications — [Autobrr](autobrr.md) / [FlareSolverr](flaresolverr.md) / [Jellyseerr](jellyseerr.md) / [Overseerr](overseerr.md) / [Radarr](radarr.md) / [Sonarr](sonarr.md)
+- "* Arr" applications — [Autobrr](autobrr.md) / [Radarr](radarr.md) / [Sonarr](sonarr.md)

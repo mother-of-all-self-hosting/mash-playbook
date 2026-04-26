@@ -51,4 +51,8 @@ For additional configuration options, refer to the [ansible-role-flaresolverr](h
 
 ## Related services
 
-- "* Arr" applications — [Autobrr](autobrr.md) / [Homarr](homarr.md) / [Jellyseerr](jellyseerr.md) / [Overseerr](overseerr.md) / [Radarr](radarr.md) / [Sonarr](sonarr.md)
+- "* Arr" applications — [Autobrr](autobrr.md) / [Homarr](homarr.md) / [Radarr](radarr.md) / [Sonarr](sonarr.md)
+- [Jackett](jackett.md)
+- [Jellyfin](jellyfin.md)
+- [Seerr](seerr.md)
+- [qBittorrent](qbittorrent.md)

@@ -458,10 +458,6 @@
     - role: galaxy/jellyfin
     # /role-specific:jellyfin
 
-    # role-specific:jellyseerr
-    - role: galaxy/jellyseerr
-    # /role-specific:jellyseerr
-
     # role-specific:jitsi
     - role: galaxy/jitsi
     # /role-specific:jitsi
@@ -694,10 +690,6 @@
     - role: galaxy/outline
     # /role-specific:outline
 
-    # role-specific:overseerr
-    - role: galaxy/overseerr
-    # /role-specific:overseerr
-
     # role-specific:owncast
     - role: galaxy/owncast
     # /role-specific:owncast
@@ -865,6 +857,10 @@
     # role-specific:searxng
     - role: galaxy/searxng
     # /role-specific:searxng
+
+    # role-specific:seerr
+    - role: galaxy/seerr
+    # /role-specific:seerr
 
     # role-specific:semaphore
     - role: galaxy/semaphore
