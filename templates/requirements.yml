@@ -501,7 +501,7 @@
   name: memcached
   activation_prefix: memcached_
 - src: git+https://seed.radicle.garden/z2UFFCDXMH6Am1K99TaiYP8BJmqaj.git
-  version: v0.27.1-0
+  version: v0.28.0-0
   name: memos
   activation_prefix: memos_
 - src: git+https://github.com/XHawk87/ansible-role-minecraft.git
