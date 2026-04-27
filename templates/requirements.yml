@@ -793,7 +793,7 @@
   name: redmine
   activation_prefix: redmine_
 - src: git+https://seed.radicle.garden/z3rhdtDR5EHHGk1SNBHwYtofxNyAf.git
-  version: v4.0.0-1
+  version: v4.0.4-0
   name: reitti
   activation_prefix: reitti_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-roundcube.git
