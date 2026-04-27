@@ -21,25 +21,6 @@ To enable this service, add the following configuration to your `vars.yml` file 
 ```yaml
 ########################################################################
 #                                                                      #
-# mariadb                                                              #
-#                                                                      #
-########################################################################
-
-# If MariaDB is not already enabled for another service, enable it here.
-mariadb_enabled: true
-
-# Put a strong password below, generated with `pwgen -s 64 1` or another way
-mariadb_root_password: ""
-
-########################################################################
-#                                                                      #
-# /mariadb                                                             #
-#                                                                      #
-########################################################################
-
-
-########################################################################
-#                                                                      #
 # librebooking                                                         #
 #                                                                      #
 ########################################################################
@@ -72,10 +53,6 @@ librebooking_environment_variables_lb_install_password: "your-strong-install-pas
 #                                                                      #
 ########################################################################
 ```
-
-### Database
-
-The playbook automatically provisions a MariaDB database and user for LibreBooking and wires up the connection. You do not need to set database credentials manually.
 
 ### First-time setup
 
