@@ -241,6 +241,7 @@ Below is an exhaustive list of the free and open-source software for self-hostin
 | [Tinyauth](https://tinyauth.app/) | Simple authentication middleware that adds a login screen or OAuth with providers to your Docker services | [Link](services/tinyauth.md) |
 | [Traefik](https://doc.traefik.io/traefik/) | A container-aware reverse-proxy server | [Link](services/traefik.md) |
 | [traefik-certs-dumper](https://github.com/ldez/traefik-certs-dumper) | Dump ACME data from Traefik to certificates | [Link](services/traefik-certs-dumper.md) |
+| [transfer.sh](https://github.com/dutchcoders/transfer.sh) | File sharing with the command-line | [Link](services/transfersh.md) |
 | [TSDProxy](https://almeidapaulopt.github.io/tsdproxy/) | A proxy for virtual services in Tailscale | [Link](services/tsdproxy.md) |
 | [Typesense](https://typesense.org) | Fast and typo-tolerant fulltext search engine | [Link](services/typesense.md) |
 | [Uptime Kuma](https://uptime.kuma.pet/) | A fancy monitoring tool | [Link](services/uptime-kuma.md) |
