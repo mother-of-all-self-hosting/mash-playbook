@@ -1251,6 +1251,11 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
     {{ ({'name': (traefik_certs_dumper_identifier + '.service'), 'priority': 300, 'restart_necessary': (traefik_certs_dumper_restart_necessary | bool), 'groups': ['mash', 'traefik-certs-dumper']} if traefik_certs_dumper_enabled else omit) }}
   # /role-specific:traefik_certs_dumper
 
+  # role-specific:transfersh
+  - |-
+    {{ ({'name': (transfersh_identifier + '.service'), 'priority': 2000, 'restart_necessary': (transfersh_restart_necessary | bool), 'groups': ['mash', 'transfersh']} if transfersh_enabled else omit) }}
+  # /role-specific:transfersh
+
   # role-specific:tsdproxy
   - |-
     {{ ({'name': (tsdproxy_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'tsdproxy']} if tsdproxy_enabled else omit) }}
@@ -15360,6 +15365,44 @@ traefik_certs_dumper_systemd_required_services_list_auto: |
 #                                                                      #
 ########################################################################
 # /role-specific:traefik_certs_dumper
+
+
+
+# role-specific:transfersh
+########################################################################
+#                                                                      #
+# transfer.sh                                                          #
+#                                                                      #
+########################################################################
+
+transfersh_enabled: false
+
+transfersh_identifier: "{{ mash_playbook_service_identifier_prefix }}transfersh"
+
+transfersh_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}transfersh"
+
+transfersh_uid: 5000 # Fixed value: https://github.com/dutchcoders/transfer.sh/blob/main/README.md#no-root
+transfersh_gid: 5000 # Fixed value: https://github.com/dutchcoders/transfer.sh/blob/main/README.md#no-root
+
+transfersh_container_additional_networks_auto: |
+  {{
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+  }}
+
+transfersh_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+transfersh_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+
+# role-specific:traefik
+transfersh_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
+transfersh_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
+# /role-specific:traefik
+
+########################################################################
+#                                                                      #
+# /transfer.sh                                                         #
+#                                                                      #
+########################################################################
+# /role-specific:transfersh
 
 
 

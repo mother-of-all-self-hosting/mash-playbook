@@ -928,6 +928,10 @@
   version: v2.10.0-5
   name: traefik_certs_dumper
   activation_prefix: traefik_certs_dumper_
+- src: git+https://seed.radicle.garden/z3baazpMjGxvdYmB7RTqr5WnrSRke.git
+  version: v1.6.1-0
+  name: transfersh
+  activation_prefix: transfersh_
 - src: git+https://github.com/Bergruebe/ansible-role-tsdproxy.git
   version: v1.4.7-0
   name: tsdproxy

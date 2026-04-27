@@ -954,6 +954,10 @@
     - role: galaxy/traefik_certs_dumper
     # /role-specific:traefik_certs_dumper
 
+    # role-specific:transfersh
+    - role: galaxy/transfersh
+    # /role-specific:transfersh
+
     # role-specific:tsdproxy
     - role: galaxy/tsdproxy
     # /role-specific:tsdproxy
