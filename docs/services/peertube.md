@@ -20,16 +20,19 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
 # PeerTube
 
-[PeerTube](https://joinpeertube.org/) is a tool for sharing online videos developed by [Framasoft](https://framasoft.org/), a french non-profit.
+The playbook can install and configure [PeerTube](https://joinpeertube.org/) for you.
 
+PeerTube is a tool for sharing online videos developed by [Framasoft](https://framasoft.org/), a french non-profit.
+
+See the project's [documentation](https://docs.joinpeertube.org/) to learn what PeerTube does and why it might be useful to you.
 
 ## Dependencies
 
 This service requires the following other services:
 
-- a [Postgres](postgres.md) database
-- a [Traefik](traefik.md) reverse-proxy server
-- a [Valkey](valkey.md) data-store; see [below](#configure-valkey) for details about installation
+- [Postgres](postgres.md) database
+- [Traefik](traefik.md) reverse-proxy server
+- [Valkey](valkey.md) data-store; see [below](#configure-valkey) for details about installation
 - (optional) [exim-relay](exim-relay.md) mailer
 
 ## Configuration
@@ -137,7 +140,6 @@ mash_playbook_service_base_directory_name_prefix: 'peertube-'
 #                                                                      #
 ########################################################################
 
-
 ########################################################################
 #                                                                      #
 # valkey                                                               #
@@ -169,13 +171,13 @@ Having configured `vars.yml` for the dedicated instance, add the following confi
 # Point PeerTube to its dedicated Valkey instance
 peertube_redis_hostname: mash-peertube-valkey
 
-# Make sure the PeerTube service (mash-peertube.service) starts after its dedicated Valkey service (mash-peertube-valkey.service)
-peertube_systemd_required_services_list_custom:
-  - "mash-peertube-valkey.service"
-
 # Make sure the PeerTube container is connected to the container network of its dedicated Valkey service (mash-peertube-valkey)
 peertube_container_additional_networks_custom:
   - "mash-peertube-valkey"
+
+# Make sure the PeerTube service (mash-peertube.service) starts after its dedicated Valkey service (mash-peertube-valkey.service)
+peertube_systemd_required_services_list_custom:
+  - "mash-peertube-valkey.service"
 
 ########################################################################
 #                                                                      #
@@ -207,7 +209,6 @@ valkey_enabled: true
 #                                                                      #
 ########################################################################
 
-
 ########################################################################
 #                                                                      #
 # peertube                                                             #
@@ -219,13 +220,13 @@ valkey_enabled: true
 # Point PeerTube to the shared Valkey instance
 peertube_redis_hostname: "{{ valkey_identifier }}"
 
-# Make sure the PeerTube service (mash-peertube.service) starts after the shared Valkey service (mash-valkey.service)
-peertube_systemd_required_services_list_custom:
-  - "{{ valkey_identifier }}.service"
-
 # Make sure the PeerTube container is connected to the container network of the shared Valkey service (mash-valkey)
 peertube_container_additional_networks_custom:
   - "{{ valkey_identifier }}"
+
+# Make sure the PeerTube service (mash-peertube.service) starts after the shared Valkey service (mash-valkey.service)
+peertube_systemd_required_services_list_custom:
+  - "{{ valkey_identifier }}.service"
 
 ########################################################################
 #                                                                      #

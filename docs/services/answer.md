@@ -26,8 +26,9 @@ Apache Answer is a Q&A community platform software for teams.
 
 See the project's [documentation](https://answer.apache.org/docs/) to learn what Apache Answer does and why it might be useful to you.
 
-For details about configuring the [Ansible role for Apache Answer](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az4Cd3nL74nNap51RBB6mtC1jipeH9), you can check them via:
-- 🌐 [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az4Cd3nL74nNap51RBB6mtC1jipeH9/tree/docs/configuring-answer.md) online
+For details about configuring the [Ansible role for Apache Answer](https://radicle.network/nodes/seed.radicle.garden/rad%3Az4Cd3nL74nNap51RBB6mtC1jipeH9), you can check them via:
+
+- 🌐 [the role's documentation](https://radicle.network/nodes/seed.radicle.garden/rad%3Az4Cd3nL74nNap51RBB6mtC1jipeH9/tree/docs/configuring-answer.md) online
 - 📁 `roles/galaxy/answer/docs/configuring-answer.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 ## Dependencies
@@ -38,7 +39,7 @@ This service requires the following other services:
 - [Traefik](traefik.md) reverse-proxy server
 - (optional) [exim-relay](exim-relay.md) mailer
 
-## Adjusting the playbook configuration
+## Configuration
 
 To enable this service, add the following configuration to your `vars.yml` file and re-run the [installation](../installing.md) process:
 
@@ -64,7 +65,7 @@ answer_hostname: answer.example.com
 
 ### Select database to use
 
-It is necessary to select a database used by Apache Answer from a MySQL compatible database, Postgres, and SQLite. See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az4Cd3nL74nNap51RBB6mtC1jipeH9/tree/docs/configuring-answer.md#specify-database) on the role's documentation for details.
+It is necessary to select a database used by Apache Answer from a MySQL compatible database, Postgres, and SQLite. See [this section](https://radicle.network/nodes/seed.radicle.garden/rad%3Az4Cd3nL74nNap51RBB6mtC1jipeH9/tree/docs/configuring-answer.md#specify-database) on the role's documentation for details.
 
 ### Configuring the mailer (optional)
 
@@ -98,7 +99,7 @@ To get started, open the URL with a web browser to log in to the instance.
 
 ## Troubleshooting
 
-See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az4Cd3nL74nNap51RBB6mtC1jipeH9/tree/docs/configuring-answer.md#troubleshooting) on the role's documentation for details.
+See [this section](https://radicle.network/nodes/seed.radicle.garden/rad%3Az4Cd3nL74nNap51RBB6mtC1jipeH9/tree/docs/configuring-answer.md#troubleshooting) on the role's documentation for details.
 
 ## Related services
 

@@ -27,6 +27,7 @@ Misskey is a free decentralized microblogging platform based on the ActivityPub 
 See the project's [documentation](https://misskey-hub.net/en/docs/) to learn what Misskey does and why it might be useful to you.
 
 For details about configuring the [Ansible role for Misskey](https://github.com/mother-of-all-self-hosting/ansible-role-misskey), you can check them via:
+
 - 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-misskey/blob/main/docs/configuring-misskey.md) online
 - 📁 `roles/galaxy/misskey/docs/configuring-misskey.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
@@ -40,7 +41,7 @@ This service requires the following other services:
 - (optional) [exim-relay](exim-relay.md) mailer
 - (optional) [Meilisearch](meilisearch.md)
 
-## Adjusting the playbook configuration
+## Configuration
 
 To enable this service, add the following configuration to your `vars.yml` file:
 
@@ -138,7 +139,6 @@ mash_playbook_service_base_directory_name_prefix: 'misskey-'
 #                                                                      #
 ########################################################################
 
-
 ########################################################################
 #                                                                      #
 # valkey                                                               #
@@ -170,13 +170,13 @@ Having configured `vars.yml` for the dedicated instance, add the following confi
 # Point Misskey to its dedicated Valkey instance
 misskey_redis_hostname: mash-misskey-valkey
 
-# Make sure the Misskey service (mash-misskey.service) starts after its dedicated Valkey service (mash-misskey-valkey.service)
-misskey_systemd_required_services_list_custom:
-  - "mash-misskey-valkey.service"
-
 # Make sure the Misskey service (mash-misskey.service) is connected to the container network of its dedicated Valkey service (mash-misskey-valkey)
 misskey_container_additional_networks_custom:
   - "mash-misskey-valkey"
+
+# Make sure the Misskey service (mash-misskey.service) starts after its dedicated Valkey service (mash-misskey-valkey.service)
+misskey_systemd_required_services_list_custom:
+  - "mash-misskey-valkey.service"
 
 ########################################################################
 #                                                                      #
@@ -208,7 +208,6 @@ valkey_enabled: true
 #                                                                      #
 ########################################################################
 
-
 ########################################################################
 #                                                                      #
 # misskey                                                              #
@@ -220,13 +219,13 @@ valkey_enabled: true
 # Point Misskey to the shared Valkey instance
 misskey_redis_hostname: "{{ valkey_identifier }}"
 
-# Make sure the Misskey service (mash-misskey.service) starts after the shared Valkey service (mash-valkey.service)
-misskey_systemd_required_services_list_custom:
-  - "{{ valkey_identifier }}.service"
-
 # Make sure the Misskey container is connected to the container network of the shared Valkey service (mash-valkey)
 misskey_container_additional_networks_custom:
   - "{{ valkey_container_network }}"
+
+# Make sure the Misskey service (mash-misskey.service) starts after the shared Valkey service (mash-valkey.service)
+misskey_systemd_required_services_list_custom:
+  - "{{ valkey_identifier }}.service"
 
 ########################################################################
 #                                                                      #

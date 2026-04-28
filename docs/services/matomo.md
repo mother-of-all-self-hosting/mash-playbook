@@ -27,6 +27,7 @@ Matomo is a leading open-source web analytics platform that gives you full data 
 See the project's [documentation](https://matomo.org/guides/) to learn what Matomo does and why it might be useful to you.
 
 For details about configuring the [Ansible role for Matomo](https://github.com/mother-of-all-self-hosting/ansible-role-matomo), you can check them via:
+
 - 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-matomo/blob/main/docs/configuring-matomo.md) online
 - 📁 `roles/galaxy/matomo/docs/configuring-matomo.md` locally, if you have [fetched the Ansible roles](../installing.md)
 

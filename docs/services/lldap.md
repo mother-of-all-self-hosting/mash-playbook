@@ -30,6 +30,7 @@ LLDAP is a lightweight authentication server that provides an opinionated, simpl
 See the project's [documentation](https://github.com/lldap/lldap/blob/main/README.md) to learn what LLDAP does and why it might be useful to you.
 
 For details about configuring the [Ansible role for LLDAP](https://github.com/mother-of-all-self-hosting/ansible-role-lldap), you can check them via:
+
 - 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-lldap/blob/main/docs/configuring-lldap.md) online
 - 📁 `roles/galaxy/lldap/docs/configuring-lldap.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
@@ -41,7 +42,7 @@ This service requires the following other services:
 - (optional) [exim-relay](exim-relay.md) mailer
 - (optional) [Postgres](postgres.md) / MySQL / [MariaDB](mariadb.md) database — LLDAP will default to [SQLite](https://www.sqlite.org/) if Postgres is not enabled
 
-## Adjusting the playbook configuration
+## Configuration
 
 To enable this service, add the following configuration to your `vars.yml` file and re-run the [installation](../installing.md) process:
 

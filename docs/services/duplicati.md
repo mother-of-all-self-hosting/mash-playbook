@@ -27,6 +27,7 @@ Duplicati is a backup software that securely stores encrypted, incremental, comp
 See the project's [documentation](https://docs.duplicati.com) to learn what Duplicati does and why it might be useful to you.
 
 For details about configuring the [Ansible role for Duplicati](https://github.com/mother-of-all-self-hosting/ansible-role-duplicati), you can check them via:
+
 - 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-duplicati/blob/main/docs/configuring-duplicati.md) online
 - 📁 `roles/galaxy/duplicati/docs/configuring-duplicati.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
@@ -42,7 +43,7 @@ This service requires the following other services:
 - [Traefik](traefik.md) reverse-proxy server
 - (optional) [exim-relay](exim-relay.md) mailer
 
-## Adjusting the playbook configuration
+## Configuration
 
 To enable this service, add the following configuration to your `vars.yml` file and re-run the [installation](../installing.md) process:
 
@@ -65,6 +66,14 @@ duplicati_hostname: duplicati.example.com
 ```
 
 **Note**: hosting Duplicati under a subpath (by configuring the `duplicati_path_prefix` variable) does not seem to be possible due to Duplicati's technical limitations.
+
+### Set a random string
+
+You also need to set a random string to the variable as below by adding the following configuration to your `vars.yml` file. The value can be generated with `pwgen -s 64 1` or in another way.
+
+```yaml
+duplicati_environment_variable_settings_encryption_key: YOUR_SECRET_KEY_HERE
+```
 
 ### Mount a directory for files to backup
 

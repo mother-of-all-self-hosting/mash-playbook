@@ -25,8 +25,9 @@ Moodist is a free web application to mix and play ambient soundtracks (river, ra
 
 See the project's [documentation](https://github.com/remvze/moodist/blob/main/README.md) to learn what Moodist does and why it might be useful to you.
 
-For details about configuring the [Ansible role for Moodist](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az4Ez9aU119yFMs59cnA3KUnExFAeN), you can check them via:
-- 🌐 [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az4Ez9aU119yFMs59cnA3KUnExFAeN/tree/docs/configuring-moodist.md) online
+For details about configuring the [Ansible role for Moodist](https://radicle.network/nodes/seed.radicle.garden/rad%3Az4Ez9aU119yFMs59cnA3KUnExFAeN), you can check them via:
+
+- 🌐 [the role's documentation](https://radicle.network/nodes/seed.radicle.garden/rad%3Az4Ez9aU119yFMs59cnA3KUnExFAeN/tree/docs/configuring-moodist.md) online
 - 📁 `roles/galaxy/moodist/docs/configuring-moodist.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 ## Dependencies
@@ -35,7 +36,7 @@ This service requires the following other services:
 
 - [Traefik](traefik.md) reverse-proxy server
 
-## Adjusting the playbook configuration
+## Configuration
 
 To enable this service, add the following configuration to your `vars.yml` file and re-run the [installation](../installing.md) process:
 
@@ -61,7 +62,7 @@ moodist_hostname: moodist.example.com
 
 ### Using the default Docker image (optional)
 
-To have the service run as the playbook's default user instead of root user, this service is by default configured to use the Docker image locally built on [this own Dockerfile](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az4Ez9aU119yFMs59cnA3KUnExFAeN/tree/templates/Dockerfile.j2).
+To have the service run as the playbook's default user instead of root user, this service is by default configured to use the Docker image locally built on [this own Dockerfile](https://radicle.network/nodes/seed.radicle.garden/rad%3Az4Ez9aU119yFMs59cnA3KUnExFAeN/tree/templates/Dockerfile.j2).
 
 If you prefer simply pulling and using [the official Docker image](https://github.com/users/remvze/packages/container/package/moodist) instead, add the following configuration to your `vars.yml` file:
 
@@ -78,4 +79,4 @@ After running the command for installation, the Moodist instance becomes availab
 
 ## Troubleshooting
 
-See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az4Ez9aU119yFMs59cnA3KUnExFAeN/tree/docs/configuring-moodist.md#troubleshooting) on the role's documentation for details.
+See [this section](https://radicle.network/nodes/seed.radicle.garden/rad%3Az4Ez9aU119yFMs59cnA3KUnExFAeN/tree/docs/configuring-moodist.md#troubleshooting) on the role's documentation for details.

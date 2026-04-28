@@ -28,6 +28,7 @@ FreeScout is a free open-source helpdesk and shared inbox solution.
 See the project's [documentation](https://github.com/freescout-help-desk/freescout/wiki) to learn what FreeScout does and why it might be useful to you.
 
 For details about configuring the [Ansible role for FreeScout](https://github.com/mother-of-all-self-hosting/ansible-role-freescout), you can check them via:
+
 - 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-freescout/blob/main/docs/configuring-freescout.md) online
 - 📁 `roles/galaxy/freescout/docs/configuring-freescout.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
@@ -39,7 +40,7 @@ This service requires the following other services:
 - [Traefik](traefik.md) reverse-proxy server
 - (optional) [exim-relay](exim-relay.md) mailer — FreeScout is compatible with other email delivery services
 
-## Adjusting the playbook configuration
+## Configuration
 
 To enable this service, add the following configuration to your `vars.yml` file and re-run the [installation](../installing.md) process:
 

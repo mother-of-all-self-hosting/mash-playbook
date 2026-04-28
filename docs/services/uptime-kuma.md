@@ -26,6 +26,7 @@ Uptime Kuma is a fancy self-hosted monitoring tool similar to [Uptime Robot](htt
 See the project's [documentation](https://github.com/louislam/uptime-kuma/wiki) to learn what Uptime Kuma does and why it might be useful to you.
 
 For details about configuring the [Ansible role for Uptime Kuma](https://github.com/mother-of-all-self-hosting/ansible-role-uptime_kuma), you can check them via:
+
 - 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-uptime_kuma/blob/main/docs/configuring-uptime-kuma.md) online
 - 📁 `roles/galaxy/uptime_kuma/docs/configuring-uptime-kuma.md` locally, if you have [fetched the Ansible roles](../installing.md)
 

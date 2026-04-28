@@ -26,6 +26,7 @@ Ghostfolio is a free software for wealth management to keep track of assets such
 See the project's [documentation](https://ghostfol.io/en/features) to learn what Ghostfolio does and why it might be useful to you.
 
 For details about configuring the [Ansible role for Ghostfolio](https://github.com/mother-of-all-self-hosting/ansible-role-ghostfolio), you can check them via:
+
 - 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-ghostfolio/blob/main/docs/configuring-ghostfolio.md) online
 - 📁 `roles/galaxy/ghostfolio/docs/configuring-ghostfolio.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
@@ -40,7 +41,7 @@ This service requires the following other services:
 - [Traefik](traefik.md) reverse-proxy server
 - [Valkey](valkey.md) data-store; see [below](#configure-valkey) for details about installation
 
-## Adjusting the playbook configuration
+## Configuration
 
 To enable this service, add the following configuration to your `vars.yml` file:
 
@@ -135,7 +136,6 @@ mash_playbook_service_base_directory_name_prefix: 'ghostfolio-'
 #                                                                      #
 ########################################################################
 
-
 ########################################################################
 #                                                                      #
 # valkey                                                               #
@@ -167,13 +167,13 @@ Having configured `vars.yml` for the dedicated instance, add the following confi
 # Point Ghostfolio to its dedicated Valkey instance
 ghostfolio_redis_hostname: mash-ghostfolio-valkey
 
-# Make sure the Ghostfolio service (mash-ghostfolio.service) starts after its dedicated Valkey service (mash-ghostfolio-valkey.service)
-ghostfolio_systemd_required_services_list_custom:
-  - "mash-ghostfolio-valkey.service"
-
 # Make sure the Ghostfolio service (mash-ghostfolio.service) is connected to the container network of its dedicated Valkey service (mash-ghostfolio-valkey)
 ghostfolio_container_additional_networks_custom:
   - "mash-ghostfolio-valkey"
+
+# Make sure the Ghostfolio service (mash-ghostfolio.service) starts after its dedicated Valkey service (mash-ghostfolio-valkey.service)
+ghostfolio_systemd_required_services_list_custom:
+  - "mash-ghostfolio-valkey.service"
 
 ########################################################################
 #                                                                      #
@@ -205,7 +205,6 @@ valkey_enabled: true
 #                                                                      #
 ########################################################################
 
-
 ########################################################################
 #                                                                      #
 # ghostfolio                                                           #
@@ -217,13 +216,13 @@ valkey_enabled: true
 # Point Ghostfolio to the shared Valkey instance
 ghostfolio_redis_hostname: "{{ valkey_identifier }}"
 
-# Make sure the Ghostfolio service (mash-ghostfolio.service) starts after the shared Valkey service (mash-valkey.service)
-ghostfolio_systemd_required_services_list_custom:
-  - "{{ valkey_identifier }}.service"
-
 # Make sure the Ghostfolio container is connected to the container network of the shared Valkey service (mash-valkey)
 ghostfolio_container_additional_networks_custom:
   - "{{ valkey_container_network }}"
+
+# Make sure the Ghostfolio service (mash-ghostfolio.service) starts after the shared Valkey service (mash-valkey.service)
+ghostfolio_systemd_required_services_list_custom:
+  - "{{ valkey_identifier }}.service"
 
 ########################################################################
 #                                                                      #

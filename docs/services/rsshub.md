@@ -25,8 +25,9 @@ RSSHub is a self-hosted service to create RSS feeds from web pages via various "
 
 See the project's [documentation](https://docs.rsshub.app/guide/) to learn what RSSHub does and why it might be useful to you.
 
-For details about configuring the [Ansible role for RSSHub](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3yKvCwcEfxn41ozRTcNR8ad6kpUm), you can check them via:
-- 🌐 [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3yKvCwcEfxn41ozRTcNR8ad6kpUm/tree/docs/configuring-rsshub.md) online
+For details about configuring the [Ansible role for RSSHub](https://radicle.network/nodes/seed.radicle.garden/rad%3Az3yKvCwcEfxn41ozRTcNR8ad6kpUm), you can check them via:
+
+- 🌐 [the role's documentation](https://radicle.network/nodes/seed.radicle.garden/rad%3Az3yKvCwcEfxn41ozRTcNR8ad6kpUm/tree/docs/configuring-rsshub.md) online
 - 📁 `roles/galaxy/rsshub/docs/configuring-rsshub.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 ## Dependencies
@@ -37,7 +38,7 @@ This service requires the following other services:
 - (optional) [Browserless](browserless.md)
 - (optional) [Valkey](valkey.md) data-store; see [below](#configuring-valkey-optional) for details about installation
 
-## Adjusting the playbook configuration
+## Configuration
 
 To enable this service, add the following configuration to your `vars.yml` file:
 
@@ -140,7 +141,6 @@ mash_playbook_service_base_directory_name_prefix: 'rsshub-'
 #                                                                      #
 ########################################################################
 
-
 ########################################################################
 #                                                                      #
 # valkey                                                               #
@@ -169,12 +169,21 @@ Having configured `vars.yml` for the dedicated instance, add the following confi
 
 # Add the base configuration as specified above
 
+# Enable caching with Redis
 rsshub_environment_variables_cache_type: redis
 
-# Point RSSHub server to its dedicated Valkey instance
+# Make sure the connection via Unix domain socket is enabled
+# Set to `false` to enable TCP connection instead
+rsshub_redis_socket_enabled: true
+
+# Connect RSSHub to its dedicated Valkey instance via the Unix domain socket
+#
+# Alternatively, if you set `rsshub_redis_socket_enabled` to `false`,
+# - Add the dedicated Valkey instance (mash-rsshub-valkey) to `rsshub_redis_hostname`
+# - Add its network (mash-rsshub-valkey) to `rsshub_container_additional_networks_custom`
 rsshub_redis_socket_path_host: /mash/rsshub-valkey/run
 
-# Make sure the RSSHub server service (mash-rsshub-server.service) starts after its dedicated Valkey service (mash-rsshub-valkey.service)
+# Make sure the RSSHub service (mash-rsshub-server.service) starts after its dedicated Valkey service (mash-rsshub-valkey.service)
 rsshub_systemd_required_services_list_custom:
   - "mash-rsshub-valkey.service"
 
@@ -208,7 +217,6 @@ valkey_enabled: true
 #                                                                      #
 ########################################################################
 
-
 ########################################################################
 #                                                                      #
 # rsshub                                                               #
@@ -217,12 +225,21 @@ valkey_enabled: true
 
 # Add the base configuration as specified above
 
+# Enable caching with Redis
 rsshub_environment_variables_cache_type: redis
 
-# Point RSSHub server to the shared Valkey instance
+# Make sure the connection via Unix domain socket is enabled
+# Set to `false` to enable TCP connection instead
+rsshub_redis_socket_enabled: true
+
+# Connect RSSHub to the shared Valkey instance via the Unix domain socket
+#
+# Alternatively, if you set `rsshub_redis_socket_enabled` to `false`,
+# - Add the shared Valkey instance (mash-valkey) to `rsshub_redis_hostname`
+# - Add its network (mash-valkey) to `rsshub_container_additional_networks_custom`
 rsshub_redis_socket_path_host: "{{ valkey_run_path }}"
 
-# Make sure the RSSHub server service (mash-rsshub-server.service) starts after the shared Valkey service (mash-valkey.service)
+# Make sure the RSSHub service (mash-rsshub-server.service) starts after the shared Valkey service (mash-valkey.service)
 rsshub_systemd_required_services_list_custom:
   - "{{ valkey_identifier }}.service"
 
@@ -249,7 +266,7 @@ See the [official documentation](https://docs.rsshub.app/guide/) for usage.
 
 ## Troubleshooting
 
-See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3yKvCwcEfxn41ozRTcNR8ad6kpUm/tree/docs/configuring-rsshub.md#troubleshooting) on the role's documentation for details.
+See [this section](https://radicle.network/nodes/seed.radicle.garden/rad%3Az3yKvCwcEfxn41ozRTcNR8ad6kpUm/tree/docs/configuring-rsshub.md#troubleshooting) on the role's documentation for details.
 
 ## Related services
 

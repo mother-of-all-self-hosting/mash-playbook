@@ -1,17 +1,19 @@
 <!--
-SPDX-FileCopyrightText: 2023 - 2024 Slavi Pantaleev
+SPDX-FileCopyrightText: 2023, 2024 Slavi Pantaleev
+SPDX-FileCopyrightText: 2026 Suguru Hirahara
 
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 
 # Traefik
 
-[Traefik](https://doc.traefik.io/traefik/) is a container-aware reverse-proxy server.
+The playbook can install and configure [Traefik](https://doc.traefik.io/traefik/) for you.
 
-Many of the services installed by this playbook need to be exposed to the web (HTTP/HTTPS). This is handled by Traefik, which is installed by default if you have used the [example `vars.yml` file](../../examples/vars.yml).
+Traefik is a container-aware reverse-proxy server.
 
-Enabling the Traefik service will automatically wire all other services to use it.
+See the project's [documentation](https://doc.traefik.io/traefik/) to learn what Traefik does and why it might be useful to you.
 
+Many of the services installed by this playbook need to be exposed to the web (HTTP/HTTPS). This is handled by Traefik, which is installed by default if you have used the [example `vars.yml` file](../../examples/vars.yml). Enabling the Traefik service will automatically wire all other services to use it.
 
 ## Configuration
 
@@ -92,7 +94,7 @@ traefik_dashboard_basicauth_htpasswd: "YOUR_USERNAME_HERE:$apr1$..."
 
 Generate the `traefik_dashboard_basicauth_htpasswd` value on your local machine with a command like `htpasswd -nb YOUR_USERNAME_HERE YOUR_PASSWORD_HERE`.
 
-The role also supports the legacy `traefik_dashboard_basicauth_user` / `traefik_dashboard_basicauth_password` convenience variables, but that path depends on the `passlib` Python library on the Ansible controller, may be affected by passlib/bcrypt compatibility issues (see: https://foss.heptapod.net/python-libs/passlib/-/issues/196), and produces non-deterministic hashes which can trigger unnecessary Ansible changes.
+The role also supports the legacy `traefik_dashboard_basicauth_user` / `traefik_dashboard_basicauth_password` convenience variables, but that path depends on the `passlib` Python library on the Ansible controller, may be affected by passlib/bcrypt compatibility issues (see: <https://foss.heptapod.net/python-libs/passlib/-/issues/196>), and produces non-deterministic hashes which can trigger unnecessary Ansible changes.
 
 > [!WARNING]
 > Enabling the dashboard on a hostname you use for something else (like `mash.example.com` in the configuration above) may cause conflicts. Enabling the Traefik Dashboard makes Traefik capture all `/dashboard` and `/api` requests and forward them to itself. If any of the services hosted on the same hostname requires any of these 2 URL prefixes, you will experience problems.

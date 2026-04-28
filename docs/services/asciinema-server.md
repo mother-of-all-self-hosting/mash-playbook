@@ -26,8 +26,9 @@ asciinema server is a server-side component of the asciinema system, a suite of 
 
 See the project's [documentation](https://docs.asciinema.org/) to learn what asciinema does and why it might be useful to you.
 
-For details about configuring the [Ansible role for asciinema server](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3AzcSq6tnVLBUQ88zSRLThc7A7RDZb), you can check them via:
-- 🌐 [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3AzcSq6tnVLBUQ88zSRLThc7A7RDZb/tree/docs/configuring-asciinema-server.md) online
+For details about configuring the [Ansible role for asciinema server](https://radicle.network/nodes/seed.radicle.garden/rad%3AzcSq6tnVLBUQ88zSRLThc7A7RDZb), you can check them via:
+
+- 🌐 [the role's documentation](https://radicle.network/nodes/seed.radicle.garden/rad%3AzcSq6tnVLBUQ88zSRLThc7A7RDZb/tree/docs/configuring-asciinema-server.md) online
 - 📁 `roles/galaxy/asciinema_server/docs/configuring-asciinema-server.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 ## Dependencies
@@ -38,7 +39,7 @@ This service requires the following other services:
 - [Traefik](traefik.md) reverse-proxy server
 - (optional) [exim-relay](exim-relay.md) mailer — required on the default configuration
 
-## Adjusting the playbook configuration
+## Configuration
 
 To enable this service, add the following configuration to your `vars.yml` file and re-run the [installation](../installing.md) process:
 
@@ -115,4 +116,4 @@ Adding an authentication proxy service like [Keycloak](keycloak.md) and [Tinyaut
 
 ## Troubleshooting
 
-See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3AzcSq6tnVLBUQ88zSRLThc7A7RDZb/tree/docs/configuring-asciinema-server.md#troubleshooting) on the role's documentation for details.
+See [this section](https://radicle.network/nodes/seed.radicle.garden/rad%3AzcSq6tnVLBUQ88zSRLThc7A7RDZb/tree/docs/configuring-asciinema-server.md#troubleshooting) on the role's documentation for details.

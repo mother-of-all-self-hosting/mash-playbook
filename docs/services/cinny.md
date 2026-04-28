@@ -26,8 +26,9 @@ Cinny is a web client for [Matrix](https://matrix.org/), realtime communication 
 
 See the project's [documentation](https://github.com/cinnyapp/cinny/blob/dev/README.md) to learn what Cinny does and why it might be useful to you.
 
-For details about configuring the [Ansible role for Cinny](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3P5L5p1gs7TGCpmhaXKUYmTJNKpi), you can check them via:
-- 🌐 [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3P5L5p1gs7TGCpmhaXKUYmTJNKpi/tree/docs/configuring-cinny.md) online
+For details about configuring the [Ansible role for Cinny](https://radicle.network/nodes/seed.radicle.garden/rad%3Az3P5L5p1gs7TGCpmhaXKUYmTJNKpi), you can check them via:
+
+- 🌐 [the role's documentation](https://radicle.network/nodes/seed.radicle.garden/rad%3Az3P5L5p1gs7TGCpmhaXKUYmTJNKpi/tree/docs/configuring-cinny.md) online
 - 📁 `roles/galaxy/cinny/docs/configuring-cinny.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 >[!NOTE]
@@ -39,7 +40,7 @@ This service requires the following other services:
 
 - [Traefik](traefik.md) reverse-proxy server
 
-## Adjusting the playbook configuration
+## Configuration
 
 To enable this service, add the following configuration to your `vars.yml` file and re-run the [installation](../installing.md) process:
 
@@ -65,7 +66,7 @@ cinny_hostname: cinny.example.com
 
 ### Set the default homeserver URL
 
-It is also necessary to specify the default homeserver's URL. See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3P5L5p1gs7TGCpmhaXKUYmTJNKpi/tree/docs/configuring-cinny.md#set-the-default-homeserver-url) on the role's documentation for details.
+It is also necessary to specify the default homeserver's URL. See [this section](https://radicle.network/nodes/seed.radicle.garden/rad%3Az3P5L5p1gs7TGCpmhaXKUYmTJNKpi/tree/docs/configuring-cinny.md#set-the-default-homeserver-url) on the role's documentation for details.
 
 ## Usage
 
@@ -75,7 +76,7 @@ To get started, open the URL with a web browser, and log in to your homeserver w
 
 ## Troubleshooting
 
-See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3P5L5p1gs7TGCpmhaXKUYmTJNKpi/tree/docs/configuring-cinny.md#troubleshooting) on the role's documentation for details.
+See [this section](https://radicle.network/nodes/seed.radicle.garden/rad%3Az3P5L5p1gs7TGCpmhaXKUYmTJNKpi/tree/docs/configuring-cinny.md#troubleshooting) on the role's documentation for details.
 
 ## Related services
 

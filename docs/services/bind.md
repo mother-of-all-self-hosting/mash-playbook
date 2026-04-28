@@ -27,7 +27,7 @@ See the project's [documentation](https://www.isc.org/bind/) to learn what BIND 
 
 This service requires no other services.
 
-## Adjusting the playbook configuration
+## Configuration
 
 To enable this service, add the following configuration to your `vars.yml` file:
 

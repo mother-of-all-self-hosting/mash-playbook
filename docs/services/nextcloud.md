@@ -30,6 +30,7 @@ Nextcloud is the most popular self-hosted collaboration solution for tens of mil
 See the project's [documentation](https://docs.nextcloud.com/) to learn what Nextcloud does and why it might be useful to you.
 
 For details about configuring the [Ansible role for Nextcloud](https://github.com/mother-of-all-self-hosting/ansible-role-nextcloud), you can check them via:
+
 - 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-nextcloud/blob/main/docs/configuring-nextcloud.md) online
 - 📁 `roles/galaxy/nextcloud/docs/configuring-nextcloud.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
@@ -42,7 +43,7 @@ This service requires the following other services:
 - (optional) a [Valkey](valkey.md) data-store; see [below](#configuring-valkey-optional) for details about installation
 - (optional) [exim-relay](exim-relay.md) mailer
 
-## Adjusting the playbook configuration
+## Configuration
 
 To enable this service, add the following configuration to your `vars.yml` file:
 
@@ -157,7 +158,6 @@ mash_playbook_service_base_directory_name_prefix: 'nextcloud-'
 #                                                                      #
 ########################################################################
 
-
 ########################################################################
 #                                                                      #
 # valkey                                                               #
@@ -186,7 +186,15 @@ Having configured `vars.yml` for the dedicated instance, add the following confi
 
 # Add the base configuration as specified above
 
-# Point Nextcloud to its dedicated Valkey instance
+# Make sure the connection via Unix domain socket is enabled
+# Set to `false` to enable TCP connection instead
+nextcloud_redis_socket_enabled: true
+
+# Connect Nextcloud to its dedicated Valkey instance via the Unix domain socket
+#
+# Alternatively, if you set `nextcloud_redis_socket_enabled` to `false`,
+# - Add the dedicated Valkey instance (mash-nextcloud-valkey) to `nextcloud_redis_hostname`
+# - Add its network (mash-nextcloud-valkey) to `nextcloud_container_additional_networks_custom`
 nextcloud_redis_socket_path_host: /mash/nextcloud-valkey/run
 
 # Make sure the Nextcloud service (mash-nextcloud.service) starts after its dedicated Valkey service (mash-nextcloud-valkey.service)
@@ -223,7 +231,6 @@ valkey_enabled: true
 #                                                                      #
 ########################################################################
 
-
 ########################################################################
 #                                                                      #
 # nextcloud                                                            #
@@ -232,7 +239,15 @@ valkey_enabled: true
 
 # Add the base configuration as specified above
 
-# Point Nextcloud to the shared Valkey instance
+# Make sure the connection via Unix domain socket is enabled
+# Set to `false` to enable TCP connection instead
+nextcloud_redis_socket_enabled: true
+
+# Connect Nextcloud to the shared Valkey instance via the Unix domain socket
+#
+# Alternatively, if you set `nextcloud_redis_socket_enabled` to `false`,
+# - Add the shared Valkey instance (mash-valkey) to `nextcloud_redis_hostname`
+# - Add its network (mash-valkey) to `nextcloud_container_additional_networks_custom`
 nextcloud_redis_socket_path_host: "{{ valkey_run_path }}"
 
 # Make sure the Nextcloud service (mash-nextcloud.service) starts after the shared Valkey service (mash-valkey.service)
@@ -287,14 +302,15 @@ Nextcloud supports Single-Sign-On (SSO) via LDAP, SAML, and OIDC. To make use of
 
 For example, you can enable SSO with authentik via OIDC by following the steps below:
 
-* Create a new provider in authentik and trim the client secret to less than 64 characters
-* Create an application in authentik using this provider
-* Install the app `user_oidc` in Nextcloud
-* Fill in the details from authentik in the app settings
+- Create a new provider in authentik and trim the client secret to less than 64 characters
+- Create an application in authentik using this provider
+- Install the app `user_oidc` in Nextcloud
+- Fill in the details from authentik in the app settings
 
 Refer to [this blogpost by a third party](https://blog.cubieserver.de/2022/complete-guide-to-nextcloud-oidc-authentication-with-authentik/) for details.
 
-**Notes**:
+💡 **Notes**:
+
 - The official documentation of authentik to connect nextcloud via SAML does not seem to work (as of August 2023).
 - If you cannot log in due to an error (the error message contains `SHA1 mismatch`), make sure that Nextcloud users and authentik users do not have the same name. If they do, check `Use unique user ID` in the OIDC App settings.
 

@@ -32,11 +32,11 @@ See the project's [documentation](https://docs.tandoor.dev/) to learn what Tando
 
 This service requires the following other services:
 
-- a [Postgres](postgres.md) database
+- [Postgres](postgres.md) database
 - [Traefik](traefik.md) reverse-proxy server
 - (optional) [exim-relay](exim-relay.md) mailer
 
-## Adjusting the playbook configuration
+## Configuration
 
 To enable this service, add the following configuration to your `vars.yml` file and re-run the [installation](../installing.md) process:
 

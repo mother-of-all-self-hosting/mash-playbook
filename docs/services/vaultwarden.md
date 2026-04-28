@@ -20,17 +20,19 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
 # Vaultwarden
 
-[Vaultwarden](https://github.com/dani-garcia/vaultwarden) (unofficial [Bitwarden](https://bitwarden.com/) compatible server) is a password manager server that you can use with the official **Bitwarden** apps and browser addons.
+The playbook can install and configure [Vaultwarden](https://github.com/dani-garcia/vaultwarden) for you.
 
+Vaultwarden is an unofficial [Bitwarden](https://bitwarden.com/) compatible server.
+
+See the project's [documentation](https://github.com/dani-garcia/vaultwarden/blob/main/README.md) to learn what Vaultwarden does and why it might be useful to you.
 
 ## Dependencies
 
 This service requires the following other services:
 
-- a [Postgres](postgres.md) database
+- [Postgres](postgres.md) database
 - [Traefik](traefik.md) reverse-proxy server
 - (optional) [exim-relay](exim-relay.md) mailer
-
 
 ## Configuration
 

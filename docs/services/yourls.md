@@ -26,6 +26,7 @@ YOURLS is a set of PHP scripts that will allow you to run Your Own URL Shortener
 See the project's [documentation](https://yourls.org/docs) to learn what YOURLS does and why it might be useful to you.
 
 For details about configuring the [Ansible role for YOURLS](https://github.com/mother-of-all-self-hosting/ansible-role-yourls), you can check them via:
+
 - 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-yourls/blob/main/docs/configuring-yourls.md) online
 - 📁 `roles/galaxy/yourls/docs/configuring-yourls.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
@@ -36,7 +37,7 @@ This service requires the following other services:
 - MySQL / [MariaDB](mariadb.md) database
 - [Traefik](traefik.md) reverse-proxy server
 
-## Adjusting the playbook configuration
+## Configuration
 
 To enable this service, add the following configuration to your `vars.yml` file and re-run the [installation](../installing.md) process:
 
@@ -58,7 +59,8 @@ yourls_hostname: yourls.example.com
 ########################################################################
 ```
 
-**Notes**:
+💡 **Notes**:
+
 - It is optionally possible to use a shorter hostname different from the main one. If doing so, make sure to point a DNS record for the domain to the server where the YOURLS instance is going to be hosted.
 - Hosting YOURLS under a subpath (by configuring the `yourls_path_prefix` variable) does not seem to be possible due to YOURLS's technical limitations.
 

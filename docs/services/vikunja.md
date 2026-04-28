@@ -13,6 +13,7 @@ SPDX-FileCopyrightText: 2023 Felix Stupp
 SPDX-FileCopyrightText: 2023 Julian-Samuel Gebühr
 SPDX-FileCopyrightText: 2023 Pierre 'McFly' Marty
 SPDX-FileCopyrightText: 2024 Thomas Miceli
+SPDX-FileCopyrightText: 2024 Tiz
 SPDX-FileCopyrightText: 2024-2026 Suguru Hirahara
 
 SPDX-License-Identifier: AGPL-3.0-or-later
@@ -27,6 +28,7 @@ Vikunja is a self-hosted to-do application.
 See the project's [documentation](https://vikunja.io/docs) to learn what Vikunja does and why it might be useful to you.
 
 For details about configuring the [Ansible role for Vikunja](https://github.com/mother-of-all-self-hosting/ansible-role-vikunja/), you can check them via:
+
 - 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-vikunja/blob/main/docs/configuring-vikunja.md) online
 - 📁 `roles/galaxy/vikunja/docs/configuring-vikunja.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
@@ -39,7 +41,7 @@ This service requires the following other services:
 - (optional) [Postgres](postgres.md) / MySQL / [MariaDB](mariadb.md) database — Vikunja will default to [SQLite](https://www.sqlite.org/) if Postgres is not enabled
 - (optional) [Valkey](valkey.md) data-store; see [below](#configuring-valkey-optional) for details about installation
 
-## Adjusting the playbook configuration
+## Configuration
 
 To enable this service, add the following configuration to your `vars.yml` file:
 
@@ -147,7 +149,6 @@ mash_playbook_service_base_directory_name_prefix: 'vikunja-'
 #                                                                      #
 ########################################################################
 
-
 ########################################################################
 #                                                                      #
 # valkey                                                               #
@@ -176,7 +177,15 @@ Having configured `vars.yml` for the dedicated instance, add the following confi
 
 # Add the base configuration as specified above
 
-# Point Vikunja to its dedicated Valkey instance
+# Make sure the connection via Unix domain socket is enabled
+# Set to `false` to enable TCP connection instead
+vikunja_redis_socket_enabled: true
+
+# Connect Vikunja to its dedicated Valkey instance via the Unix domain socket
+#
+# Alternatively, if you set `vikunja_redis_socket_enabled` to `false`,
+# - Add the dedicated Valkey instance (mash-vikunja-valkey) to `vikunja_redis_hostname`
+# - Add its network (mash-vikunja-valkey) to `vikunja_container_additional_networks_custom`
 vikunja_redis_socket_path_host: /mash/vikunja-valkey/run
 
 # Make sure the Vikunja service (mash-vikunja.service) starts after its dedicated Valkey service (mash-vikunja-valkey.service)
@@ -213,7 +222,6 @@ valkey_enabled: true
 #                                                                      #
 ########################################################################
 
-
 ########################################################################
 #                                                                      #
 # vikunja                                                              #
@@ -222,7 +230,15 @@ valkey_enabled: true
 
 # Add the base configuration as specified above
 
-# Point Vikunja to the shared Valkey instance
+# Make sure the connection via Unix domain socket is enabled
+# Set to `false` to enable TCP connection instead
+vikunja_redis_socket_enabled: true
+
+# Connect Vikunja to the shared Valkey instance via the Unix domain socket
+#
+# Alternatively, if you set `vikunja_redis_socket_enabled` to `false`,
+# - Add the shared Valkey instance (mash-valkey) to `vikunja_redis_hostname`
+# - Add its network (mash-valkey) to `vikunja_container_additional_networks_custom`
 vikunja_redis_socket_path_host: "{{ valkey_run_path }}"
 
 # Make sure the Vikunja service (mash-vikunja.service) starts after the shared Valkey service (mash-valkey.service)
@@ -244,11 +260,50 @@ If you have decided to install the dedicated Valkey instance for Vikunja, make s
 
 Note that running the `just` commands for installation (`just install-all` or `just setup-all`) automatically takes care of the order. See [here](../running-multiple-instances.md#1-adjust-hosts) for more details about it.
 
+### Integrating with Prometheus (optional)
+
+Vikunja can natively expose metrics to [Prometheus](prometheus.md).
+
+#### Expose metrics internally
+
+If Vikunja and Prometheus do not share a network (like Traefik), you can connect the Vikunja container network to Prometheus by adding the following configuration to your `vars.yml` file:
+
+```yaml
+prometheus_container_additional_networks_custom:
+  - "{{ vikunja_container_network }}"
+```
+
+#### Expose metrics publicly
+
+If Vikunja metrics are not scraped from a local Prometheus instance, you can expose the metrics publicly so that a remote instance can fetch them.
+
+When exposing metrics publicly, you should consider to set up [HTTP Basic Authentication](https://developer.mozilla.org/en-US/docs/Web/HTTP/Authentication) **or anyone would be able to read your metrics**.
+
+To expose the metrics publicly, add the following configuration to your `vars.yml` file (adapt to your needs):
+
+```yaml
+mash_playbook_metrics_exposure_enabled: true
+mash_playbook_metrics_exposure_hostname: mash.example.com
+```
+
+It will expose the metrics at `https://mash.example.com/metrics/mash-vikunja`.
+
+To enable the HTTP Basic authentication, add the following configuration to your `vars.yml` file (adapt to your needs):
+
+```yaml
+vikunja_container_labels_traefik_metrics_middleware_basic_auth_enabled: true
+
+# See https://doc.traefik.io/traefik/middlewares/http/basicauth/#users for details.
+vikunja_container_labels_traefik_metrics_middleware_basic_auth_users: ""
+```
+
 ## Usage
 
 After running the command for installation, the Vikunja instance becomes available at the URL specified with `vikunja_hostname`. With the configuration above, the service is hosted at `https://vikunja.example.com`.
 
-To get started, create a user first and open the URL with a web browser to log in to the instance. You can create one on the web UI if `vikunja_environment_variables_service_enableregistration` is set to `true`. Alternatively, you can run the playbook with the `create-user-vikunja` tag to create users. See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-vikunja/blob/main/docs/configuring-vikunja.md#creating-users) on the role's documentation for details.
+To get started, create a user first and open the URL with a web browser to log in to the instance. You can create one on the web UI if `vikunja_environment_variables_service_enableregistration` is set to `true`.
+
+Alternatively, you can run the playbook with the `create-user-vikunja` or `ensure-vikunja-users-created` tag to create users. See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-vikunja/blob/main/docs/configuring-vikunja.md#creating-users) on the role's documentation for details.
 
 ## Troubleshooting
 

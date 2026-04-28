@@ -26,8 +26,9 @@ ChiefOnboarding is a remote-first employee onboarding platform to streamline the
 
 See the project's [documentation](https://docs.chiefonboarding.com) to learn what ChiefOnboarding does and why it might be useful to you.
 
-For details about configuring the [Ansible role for ChiefOnboarding](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3HYheWh86U9ErEL18tK2gBkq7g2A), you can check them via:
-- 🌐 [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3HYheWh86U9ErEL18tK2gBkq7g2A/tree/docs/configuring-chiefonboarding.md) online
+For details about configuring the [Ansible role for ChiefOnboarding](https://radicle.network/nodes/seed.radicle.garden/rad%3Az3HYheWh86U9ErEL18tK2gBkq7g2A), you can check them via:
+
+- 🌐 [the role's documentation](https://radicle.network/nodes/seed.radicle.garden/rad%3Az3HYheWh86U9ErEL18tK2gBkq7g2A/tree/docs/configuring-chiefonboarding.md) online
 - 📁 `roles/galaxy/chiefonboarding/docs/configuring-chiefonboarding.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 ## Dependencies
@@ -38,7 +39,7 @@ This service requires the following other services:
 - [Traefik](traefik.md) reverse-proxy server
 - (optional) [exim-relay](exim-relay.md) mailer — ChiefOnboarding is compatible with other email delivery services
 
-## Adjusting the playbook configuration
+## Configuration
 
 To enable this service, add the following configuration to your `vars.yml` file and re-run the [installation](../installing.md) process:
 
@@ -64,7 +65,7 @@ chiefonboarding_hostname: chiefonboarding.example.com
 
 ### Set a random string
 
-You also need to set a random string by adding the following configuration to your `vars.yml` file. The value can be generated with `pwgen -s 64 1` or in another way.
+You also need to set a random string to the variable as below by adding the following configuration to your `vars.yml` file. The value can be generated with `pwgen -s 64 1` or in another way.
 
 ```yaml
 chiefonboarding_environment_variables_secret_key: YOUR_SECRET_KEY_HERE
@@ -77,7 +78,7 @@ On ChiefOnboarding you can set up a mailer for functions such as password recove
 >[!WARNING]
 > Without setting an authentication method such as DKIM, SPF, and DMARC for your hostname, emails are most likely to be quarantined as spam at recipient's mail servers. The worst scenario is that your server's IP address or hostname will be included in the spam list such as the one managed by [Spamhaus](https://www.spamhaus.org/), depending on the reputation. As the exim-relay service supports DKIM signing, refer to [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-exim-relay/blob/main/docs/configuring-exim-relay.md#enable-dkim-support-optional) for details about how to set it up.
 
-Refer to [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad:z3HYheWh86U9ErEL18tK2gBkq7g2A/tree/docs/configuring-chiefonboarding.md#configure-the-mailer) on the role's documentation for the details about how to configure the mailer.
+Refer to [this section](https://radicle.network/nodes/seed.radicle.garden/rad:z3HYheWh86U9ErEL18tK2gBkq7g2A/tree/docs/configuring-chiefonboarding.md#configure-the-mailer) on the role's documentation for the details about how to configure the mailer.
 
 ## Usage
 
@@ -87,4 +88,4 @@ To get started, open the URL with a web browser to create an account.
 
 ## Troubleshooting
 
-See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az3HYheWh86U9ErEL18tK2gBkq7g2A/tree/docs/configuring-chiefonboarding.md#troubleshooting) on the role's documentation for details.
+See [this section](https://radicle.network/nodes/seed.radicle.garden/rad%3Az3HYheWh86U9ErEL18tK2gBkq7g2A/tree/docs/configuring-chiefonboarding.md#troubleshooting) on the role's documentation for details.

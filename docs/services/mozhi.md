@@ -26,6 +26,7 @@ Mozhi is a frontend for translation engines which supports Google, Reverso, Libr
 See the project's [documentation](https://codeberg.org/aryak/mozhi/src/branch/master/README.md) to learn what Mozhi does and why it might be useful to you.
 
 For details about configuring the [Ansible role for Mozhi](https://github.com/mother-of-all-self-hosting/ansible-role-mozhi), you can check them via:
+
 - 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-mozhi/blob/main/docs/configuring-mozhi.md) online
 - 📁 `roles/galaxy/mozhi/docs/configuring-mozhi.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
@@ -35,7 +36,7 @@ This service requires the following other services:
 
 - [Traefik](traefik.md) reverse-proxy server
 
-## Adjusting the playbook configuration
+## Configuration
 
 To enable this service, add the following configuration to your `vars.yml` file and re-run the [installation](../installing.md) process:
 

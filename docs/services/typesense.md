@@ -27,6 +27,7 @@ Typesense is a fast and typo-tolerant fulltext search engine like ElasticSearch.
 See the project's [documentation](https://typesense.org/docs/) to learn what Typesense does and why it might be useful to you.
 
 For details about configuring the [Ansible role for Typesense](https://github.com/mother-of-all-self-hosting/ansible-role-typesense), you can check them via:
+
 - 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-typesense/blob/main/docs/configuring-typesense.md) online
 - 📁 `roles/galaxy/typesense/docs/configuring-typesense.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
@@ -36,7 +37,7 @@ This service requires the following other services:
 
 - (optional) [Traefik](traefik.md) — a reverse-proxy server for exposing Typesense publicly
 
-## Adjusting the playbook configuration
+## Configuration
 
 To enable this service, add the following configuration to your `vars.yml` file and re-run the [installation](../installing.md) process:
 
@@ -54,6 +55,14 @@ typesense_enabled: true
 # /typesense                                                           #
 #                                                                      #
 ########################################################################
+```
+
+### Set a random string
+
+You also need to set a random string to the variable as below by adding the following configuration to your `vars.yml` file. The value can be generated with `pwgen -s 64 1` or in another way.
+
+```yaml
+typesense_environment_variables_api_key: YOUR_SECRET_KEY_HERE
 ```
 
 ### Expose the instance publicly (optional)

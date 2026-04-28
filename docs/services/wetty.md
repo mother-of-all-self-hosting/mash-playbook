@@ -9,13 +9,17 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
 # Wetty
 
-[Wetty](https://github.com/butlerx/wetty/tree/main) is an SSH terminal over HTTP/HTTPS, useful for when on a strict network which disallows outbound SSH traffic, or when only a browser can be used (like a managed chromebook).
+The playbook can install and configure [Wetty](https://github.com/butlerx/wetty) for you.
+
+Wetty is an SSH terminal over HTTP/HTTPS, useful for when on a strict network which disallows outbound SSH traffic, or when only a browser can be used (like a managed chromebook).
+
+See the project's [documentation](https://butlerx.github.io/wetty) to learn what Wetty does and why it might be useful to you.
 
 ## Dependencies
 
 This service requires the following other services:
 
-- a [Traefik](traefik.md) reverse-proxy server
+- [Traefik](traefik.md) reverse-proxy server
 
 ## Configuration
 

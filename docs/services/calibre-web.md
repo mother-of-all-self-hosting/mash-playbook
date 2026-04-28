@@ -29,6 +29,7 @@ Calibre-Web is a web app that offers a clean and intuitive interface for browsin
 See the project's [documentation](https://github.com/janeczku/calibre-web/wiki) to learn what Calibre-Web does and why it might be useful to you.
 
 For details about configuring the [Ansible role for Calibre-Web](https://github.com/mother-of-all-self-hosting/ansible-role-calibre-web), you can check them via:
+
 - 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-calibre-web/blob/master/docs/configuring-calibre-web.md) online
 - 📁 `roles/galaxy/calibre_web/docs/configuring-calibre-web.md` locally, if you have [fetched the Ansible roles](../installing.md)
 

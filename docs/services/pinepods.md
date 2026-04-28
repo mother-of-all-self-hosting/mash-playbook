@@ -21,12 +21,13 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
 The playbook can install and configure [PinePods](https://www.pinepods.online/) for you.
 
-PinePods is a podcast management system that manages podcasts with multi-user support.
+PinePods is a podcast management system with multi-user support.
 
 See the project's [documentation](https://www.pinepods.online/docs/intro) to learn what PinePods does and why it might be useful to you.
 
-For details about configuring the [Ansible role for PinePods](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3AzKNyeEtymCZc7yio6JnHxY2AteZu), you can check them via:
-- 🌐 [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3AzKNyeEtymCZc7yio6JnHxY2AteZu/tree/docs/configuring-pinepods.md) online
+For details about configuring the [Ansible role for PinePods](https://radicle.network/nodes/seed.radicle.garden/rad%3AzKNyeEtymCZc7yio6JnHxY2AteZu), you can check them via:
+
+- 🌐 [the role's documentation](https://radicle.network/nodes/seed.radicle.garden/rad%3AzKNyeEtymCZc7yio6JnHxY2AteZu/tree/docs/configuring-pinepods.md) online
 - 📁 `roles/galaxy/pinepods/docs/configuring-pinepods.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 ## Dependencies
@@ -40,7 +41,7 @@ This service requires the following other services:
 - (optional) [ntfy](ntfy.md)
 - (optional) [Valkey](valkey.md) data-store; see [below](#configuring-valkey-optional) for details about installation
 
-## Adjusting the playbook configuration
+## Configuration
 
 To enable this service, add the following configuration to your `vars.yml` file:
 
@@ -66,7 +67,7 @@ pinepods_hostname: pinepods.example.com
 
 ### Select database to use
 
-It is necessary to select a database used by PinePods from MariaDB and Postgres. See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3AzKNyeEtymCZc7yio6JnHxY2AteZu/tree/docs/configuring-pinepods.md#specify-database) on the role's documentation for details.
+It is necessary to select a database used by PinePods from MariaDB and Postgres. See [this section](https://radicle.network/nodes/seed.radicle.garden/rad%3AzKNyeEtymCZc7yio6JnHxY2AteZu/tree/docs/configuring-pinepods.md#specify-database) on the role's documentation for details.
 
 ### Configuring Valkey (optional)
 
@@ -139,7 +140,6 @@ mash_playbook_service_base_directory_name_prefix: 'pinepods-'
 #                                                                      #
 ########################################################################
 
-
 ########################################################################
 #                                                                      #
 # valkey                                                               #
@@ -168,16 +168,16 @@ Having configured `vars.yml` for the dedicated instance, add the following confi
 
 # Add the base configuration as specified above
 
-# Point PinePods server to its dedicated Valkey instance
+# Point PinePods to its dedicated Valkey instance
 pinepods_redis_hostname: mash-pinepods-valkey
 
-# Make sure the PinePods server service (mash-pinepods-server.service) starts after its dedicated Valkey service (mash-pinepods-valkey.service)
-pinepods_systemd_required_services_list_custom:
-  - "mash-pinepods-valkey.service"
-
-# Make sure the PinePods server container is connected to the container network of its dedicated Valkey service (mash-pinepods-valkey)
+# Make sure the PinePods container is connected to the container network of its dedicated Valkey service (mash-pinepods-valkey)
 pinepods_container_additional_networks_custom:
   - "mash-pinepods-valkey"
+
+# Make sure the PinePods service (mash-pinepods-server.service) starts after its dedicated Valkey service (mash-pinepods-valkey.service)
+pinepods_systemd_required_services_list_custom:
+  - "mash-pinepods-valkey.service"
 
 ########################################################################
 #                                                                      #
@@ -209,7 +209,6 @@ valkey_enabled: true
 #                                                                      #
 ########################################################################
 
-
 ########################################################################
 #                                                                      #
 # pinepods                                                             #
@@ -218,16 +217,16 @@ valkey_enabled: true
 
 # Add the base configuration as specified above
 
-# Point PinePods server to the shared Valkey instance
+# Point PinePods to the shared Valkey instance
 pinepods_redis_hostname: "{{ valkey_identifier }}"
 
-# Make sure the PinePods server service (mash-pinepods-server.service) starts after the shared Valkey service (mash-valkey.service)
-pinepods_systemd_required_services_list_custom:
-  - "{{ valkey_identifier }}.service"
-
-# Make sure the PinePods server container is connected to the container network of the shared Valkey service (mash-valkey)
+# Make sure the PinePods container is connected to the container network of the shared Valkey service (mash-valkey)
 pinepods_container_additional_networks_custom:
   - "{{ valkey_identifier }}"
+
+# Make sure the PinePods service (mash-pinepods-server.service) starts after the shared Valkey service (mash-valkey.service)
+pinepods_systemd_required_services_list_custom:
+  - "{{ valkey_identifier }}.service"
 
 ########################################################################
 #                                                                      #
@@ -291,7 +290,7 @@ After setting the configuration, you can have the PinePods instance send a test 
 
 ## Troubleshooting
 
-See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3AzKNyeEtymCZc7yio6JnHxY2AteZu/tree/docs/configuring-pinepods.md#troubleshooting) on the role's documentation for details.
+See [this section](https://radicle.network/nodes/seed.radicle.garden/rad%3AzKNyeEtymCZc7yio6JnHxY2AteZu/tree/docs/configuring-pinepods.md#troubleshooting) on the role's documentation for details.
 
 ## Related services
 

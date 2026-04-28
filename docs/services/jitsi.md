@@ -19,6 +19,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 The playbook can install and configure the [Jitsi](https://jitsi.org/) video-conferencing platform for you.
 
 The [Ansible role for Jitsi](https://github.com/mother-of-all-self-hosting/ansible-role-jitsi) is developed and maintained by the MASH project. For details about configuring Jitsi, you can check them via:
+
 - 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-jitsi/blob/main/docs/configuring-jitsi.md) online
 - 📁 `roles/galaxy/jitsi/docs/configuring-jitsi.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
@@ -32,9 +33,9 @@ You may need to open some ports to your server, if you use another firewall in f
 
 This service requires the following other services:
 
-- a [Traefik](traefik.md) reverse-proxy server
+- [Traefik](traefik.md) reverse-proxy server
 
-## Adjusting the playbook configuration
+## Configuration
 
 To enable this service, add the following configuration to your `vars.yml` file and re-run the [installation](../installing.md) process:
 

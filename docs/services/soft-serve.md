@@ -1,13 +1,18 @@
 <!--
 SPDX-FileCopyrightText: 2023 Nikita Chernyi
 SPDX-FileCopyrightText: 2023 Slavi Pantaleev
+SPDX-FileCopyrightText: 2026 Suguru Hirahara
 
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 
 # Soft Serve
 
-[Soft Serve](https://github.com/charmbracelet/soft-serve) is a tasty, self-hostable [Git](https://git-scm.com/) server for the command line.
+The playbook can install and configure [Soft Serve](https://github.com/charmbracelet/soft-serve) for you.
+
+Soft Serve is a tasty, self-hostable [Git](https://git-scm.com/) server for the command line.
+
+See the project's [documentation](https://github.com/charmbracelet/soft-serve/blob/main/README.md) to learn what Soft Serve does and why it might be useful to you.
 
 ## Configuration
 

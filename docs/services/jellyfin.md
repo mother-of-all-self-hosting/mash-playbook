@@ -1,19 +1,23 @@
 <!--
 SPDX-FileCopyrightText: 2025 MASH project contributors
-SPDX-FileCopyrightText: 2025 Suguru Hirahara
+SPDX-FileCopyrightText: 2025, 2026 Suguru Hirahara
 
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 
 # Jellyfin
 
-[Jellyfin](https://jellyfin.org/) is an open-source personal media server that allows you to organize and stream your collection of movies, TV shows, and music.
+The playbook can install and configure [Jellyfin](https://jellyfin.org/) for you.
+
+Jellyfin is an open-source personal media server that allows you to organize and stream your collection of movies, TV shows, and music.
+
+See the project's [documentation](https://jellyfin.org/docs/) to learn what Jellyfin does and why it might be useful to you.
 
 ## Dependencies
 
 This service requires the following other services:
 
-- a [Traefik](traefik.md) reverse-proxy server
+- [Traefik](traefik.md) reverse-proxy server
 
 ## Configuration
 
@@ -80,7 +84,8 @@ jellyfin_container_client_discover_bind_port: 7359
 # The server address the client discovery service should respond with
 jellyfin_published_server_url: "http://{{ ansible_default_ipv4.address }}:{{ jellyfin_container_http_bind_port }}"
 ```
-Upstream documentation: https://jellyfin.org/docs/general/post-install/networking/
+
+Upstream documentation: <https://jellyfin.org/docs/general/post-install/networking/>
 
 After setting these variables you should be able to discover and connect to your Jellyfin server entirely on the LAN. If for some reason it is still not discoverable try inputting your `jellyfin_published_server_url` manually.
 
@@ -101,7 +106,7 @@ jellyfin_gpu_path: "/dev/dri"
 jellyfin_gpu_bind_path: "{{ jellyfin_gpu_path }}"
 ```
 
-Upstream documentation: https://github.com/linuxserver/docker-jellyfin#intelatiamd
+Upstream documentation: <https://github.com/linuxserver/docker-jellyfin#intelatiamd>
 
 #### NVIDIA
 
@@ -118,7 +123,7 @@ jellyfin_container_runtime: "nvidia"
 jellyfin_nvidia_visible_devices: "all"
 ```
 
-Upstream documentation: https://github.com/linuxserver/docker-jellyfin#nvidia
+Upstream documentation: <https://github.com/linuxserver/docker-jellyfin#nvidia>
 
 ## Related services
 

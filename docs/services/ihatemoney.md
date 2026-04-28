@@ -31,11 +31,11 @@ See the project's [documentation](https://ihatemoney.readthedocs.io/en/latest/) 
 
 This service requires the following other services:
 
-- a [Postgres](postgres.md) database
+- [Postgres](postgres.md) database
 - [Traefik](traefik.md) reverse-proxy server
 - (optional) [exim-relay](exim-relay.md) mailer
 
-## Adjusting the playbook configuration
+## Configuration
 
 To enable this service, add the following configuration to your `vars.yml` file and re-run the [installation](../installing.md) process:
 
@@ -87,7 +87,6 @@ Your variable should contain the whole output from above, including hashing pref
 ```yaml
 ihatemoney_admin_password: "scrypt:32768:8:1$....$......."
 ```
-
 
 ### Control project creation access (optional)
 

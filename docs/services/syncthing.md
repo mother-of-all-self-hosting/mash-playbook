@@ -1,20 +1,23 @@
 <!--
 SPDX-FileCopyrightText: 2023 Slavi Pantaleev
+SPDX-FileCopyrightText: 2026 Suguru Hirahara
 
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 
 # Syncthing
 
-[Syncthing](https://syncthing.net/) is a **continuous file synchronization** program which synchronizes files between two or more computers in real time, safely protected from prying eyes.
+The playbook can install and configure [Syncthing](https://syncthing.net/) for you.
 
+Syncthing is a continuous file synchronization program which synchronizes files between two or more computers in real time, safely protected from prying eyes.
+
+See the project's [documentation](https://docs.syncthing.net/) to learn what Syncthing does and why it might be useful to you.
 
 ## Dependencies
 
 This service requires the following other services:
 
-- a [Traefik](traefik.md) reverse-proxy server
-
+- [Traefik](traefik.md) reverse-proxy server
 
 ## Configuration
 
@@ -68,7 +71,7 @@ You can log in with **any** of the Basic Auth credentials defined in `syncthing_
 
 Generate entries outside Ansible with `htpasswd -nb USERNAME PASSWORD` and put the resulting lines into `syncthing_basicauth_htpasswds`.
 
-The legacy `syncthing_basicauth_credentials` convenience variable is discouraged, because it depends on the `passlib` Python library, may be affected by passlib/bcrypt compatibility issues (see: https://foss.heptapod.net/python-libs/passlib/-/issues/196), and produces non-deterministic hashes which can trigger unnecessary Ansible changes.
+The legacy `syncthing_basicauth_credentials` convenience variable is discouraged, because it depends on the `passlib` Python library, may be affected by passlib/bcrypt compatibility issues (see: <https://foss.heptapod.net/python-libs/passlib/-/issues/196>), and produces non-deterministic hashes which can trigger unnecessary Ansible changes.
 
 Authentication is **done at the reverse-proxy level** (Traefik), so upon logging in, Syncthing will show you scary warnings about **no GUI password being set**. You should ignore these warnings.
 
@@ -101,16 +104,13 @@ However, changing `syncthing_container_sync_tcp_port` or `syncthing_container_sy
 3. Log in to the Syncthing Web UI (see [Usage](#usage))
 4. Go to **Settings** -> **Connections** and put something like this in the **Sync Protocol Listen Addresses** configuration (inspired by the [Listen Addresses documentation](https://docs.syncthing.net/v1.27.0/users/config#listen-addresses)): `tcp://0.0.0.0:TCP_PORT_HERE, quic://0.0.0.0:UDP_PORT_HERE, dynamic+https://relays.syncthing.net/endpoint` (adjust `TCP_PORT_HERE` and `UDP_PORT_HERE` with the port numbers you've chosen for `syncthing_container_sync_tcp_port` and `syncthing_container_sync_udp_port`)
 
-
 ### Configuration & Data
 
-The Syncthing configuration (stored in `syncthing_config_path` on the host) is mounted to the `/var/syncthing` directory in the container.
-By default, Syncthing will create a default `Sync` directory underneath. We advise that you **don't use this** `Sync` directory and use the data directory (discussed below).
+The Syncthing configuration (stored in `syncthing_config_path` on the host) is mounted to the `/var/syncthing` directory in the container. By default, Syncthing will create a default `Sync` directory underneath. We advise that you **don't use this** `Sync` directory and use the data directory (discussed below).
 
 As mentioned above, the **data directory** (stored in `syncthing_data_path` on the host) is mounted to the `/data` directory in the container. We advise that you put data files underneath `/data` when you start using Syncthing.
 
 If you'd like to **mount additional directories** into the container, look into the `syncthing_container_additional_volumes` variable part of the [`ansible-role-syncthing` role](https://github.com/mother-of-all-self-hosting/ansible-role-syncthing)'s [`defaults/main.yml` file](https://github.com/mother-of-all-self-hosting/ansible-role-syncthing/blob/main/defaults/main.yml).
-
 
 ## Usage
 

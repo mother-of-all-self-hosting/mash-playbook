@@ -1,23 +1,25 @@
 <!--
-SPDX-FileCopyrightText: 2025 XHawk87
 SPDX-FileCopyrightText: 2025 Slavi Pantaleev
-SPDX-FileCopyrightText: 2025 Suguru Hirahara
+SPDX-FileCopyrightText: 2025 XHawk87
+SPDX-FileCopyrightText: 2025, 2026 Suguru Hirahara
 
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 
 # Minecraft
 
-[Minecraft](https://docker-minecraft-server.readthedocs.io) is a first-person open-world procedurally-generated voxel-based sandbox game with RPG elements.
+The playbook can install and configure [itzg docker-minecraft server](https://docker-minecraft-server.readthedocs.io) for you.
+
+Minecraft is a first-person open-world procedurally-generated voxel-based sandbox game with RPG elements.
+
+See the project's [documentation](https://docker-minecraft-server.readthedocs.io/en/latest/) to learn what the server does and why it might be useful to you.
 
 > [!WARNING]
 > itzg docker-minecraft server is published under the Apache-2.0 license, however Minecraft itself is proprietary software, and by using this role you are agreeing to the [EULA](https://www.minecraft.net/en-us/eula). Know your rights!
 
-
 ## Dependencies
 
 This service currently requires no other services.
-
 
 ## Configuration
 
@@ -70,7 +72,6 @@ minecraft_environment_variables_additional: |
 In the example configuration above, we configure the server to be hosted on port `25565` on all network interfaces. Port forwarding will be required to access it. It will be the "latest" pinned version of [Paper minecraft server](https://papermc.io/), limited to 2GB of RAM, hard difficulty, only you on the whitelist, rather generous render distance, PvP, and bundles.
 
 See the full set of available [Environment Variables](https://docker-minecraft-server.readthedocs.io/en/latest/variables/) to configure the server.
-
 
 ## Usage
 

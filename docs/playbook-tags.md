@@ -10,6 +10,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 The Ansible playbook's tasks are tagged, so that certain parts of the Ansible playbook can be run without running all other tasks.
 
 The general command syntax is:
+
 - (**recommended**) when using `just`: `just run-tags COMMA_SEPARATED_TAGS_GO_HERE`
 - when not using `just`: `ansible-playbook -i inventory/hosts setup.yml --tags=COMMA_SEPARATED_TAGS_GO_HERE`
 
@@ -27,6 +28,7 @@ Here are some playbook tags that you should be familiar with:
 
 - `stop` — stops all systemd services
 
-**Notes**:
+💡 **Notes**:
+
 - `setup-*` tags and `install-*` tags **do not start services** automatically, because you may wish to do things before starting services, such as importing a database dump, restoring data from another server, etc.
 - Please be careful not to confuse the playbook tags with the `just` shortcut commands ("recipes"). For details about `just` commands, see: [Running `just` commands](just.md)

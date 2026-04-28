@@ -72,7 +72,6 @@ next playbook run. The main/superuser database password (`postgres_connection_pa
 is not affected. All services will receive their new passwords as part of the same
 run, so this should be a seamless, non-user-impacting change.
 
-
 # 2025-10-29
 
 ## Miniflux upgrade to v2.2.14 may require manual work
@@ -88,7 +87,6 @@ You can fix this issue before upgrading to Miniflux v2.2.14 or after an unsucces
 1. Running this one-liner on your MASH server: `/mash/postgres/bin/cli-non-interactive -d miniflux -c "DROP EXTENSION IF EXISTS hstore;"`
 2. Restarting the Miniflux service
 
-
 # 2025-10-28
 
 ## authentik no longer requires a Redis-compatible datastore
@@ -96,7 +94,6 @@ You can fix this issue before upgrading to Miniflux v2.2.14 or after an unsucces
 Since authentik [2025.10.0](https://docs.goauthentik.io/releases/2025.10), a Redis-compatible datastore (we used to recommend [Valkey](docs/services/valkey.md)) is no longer necessary. authentik no longer uses a Redis-compatible datastore at all (moving all that into Postgres).
 
 If you have an existing authentik installation, you may now wish to remove all Valkey-related integration settings.
-
 
 # 2025-10-22
 
@@ -109,7 +106,6 @@ These changes have landed into MASH playbook and we're making use of them to mak
 Due to these changes, **users who install Immich/Postgres** for the [Immich](./docs/services/immich.md) service now **need to update their `vars.yml` file** [like this](https://github.com/mother-of-all-self-hosting/mash-playbook/commit/297c414bddb37f82e066d14b66b4ae2cf4b78318), or the playbook will encourage them to upgrade to *vanilla* Postgres v18 (which is not what Immich needs).
 
 While at it, Immich users can **consider upgrading to Immich/Postgres v18** as described in the comments seen in [the same commit](https://github.com/mother-of-all-self-hosting/mash-playbook/commit/297c414bddb37f82e066d14b66b4ae2cf4b78318) and using a new variable override of `postgres_container_image_v18_version: 18-vectorchord0.5.3-pgvector0.8.1`. After all the upgrade steps and final cleanup are done, your `vars.yml` would only contain Postgres v18 references, as seen [here](https://github.com/mother-of-all-self-hosting/mash-playbook/commit/f4dff6927e12eda413e768ab5a58ab09a434c1ba).
-
 
 # 2025-08-11
 
@@ -143,9 +139,7 @@ Here’s what that means:
 - **Untare** was built for the old API — it no longer works with Tandoor 2.0 and is **no longer maintained**
 - **Kitshn** is being actively developed, but only a **beta version** supports Tandoor 2.0
 
-You can find more details in the official release notes:
-https://github.com/TandoorRecipes/recipes/releases/tag/2.0.0
-
+You can find more details in the official release notes: <https://github.com/TandoorRecipes/recipes/releases/tag/2.0.0>
 
 # 2025-03-08
 
@@ -158,10 +152,10 @@ Our new [Configuring IPv6](./docs/configuring-ipv6.md) documentation page has mo
 **Existing playbook users** will **need to do some manual work** to enable IPv6 support. This consists of:
 
 - enabling IPv6 support for the Docker container networks:
-	- add `devture_systemd_docker_base_ipv6_enabled: true` to their `vars.yml` configuration file
-	- stop all services (`just stop-all`)
-	- delete all container networks on the server: `docker network rm $(docker network ls -q)`
-	- re-run the playbook fully: `just install-all`
+  - add `devture_systemd_docker_base_ipv6_enabled: true` to their `vars.yml` configuration file
+  - stop all services (`just stop-all`)
+  - delete all container networks on the server: `docker network rm $(docker network ls -q)`
+  - re-run the playbook fully: `just install-all`
 
 - [configuring IPv6 (`AAAA`) DNS records](./docs/configuring-ipv6.md#configuring-dns-records-for-ipv6)
 
@@ -182,6 +176,7 @@ This variable did **2 different things at once**:
 - adjusted the Docker daemon's configuration to set `experimental: true` and `ip6tables: true` (a necessary prerequisite for creating IPv6-enabled networks)
 
 Since Docker 27.0.1's [changes to how it handles IPv6](https://docs.docker.com/engine/release-notes/27/#ipv6), **adjusting the Docker daemon's configuration is no longer necessary**, because:
+
 - `ip6tables` defaults to `true` for everyone
 - `ip6tables` is out of the experimental phase, so `experimental` is no longer necessary
 
@@ -220,7 +215,6 @@ You need to do the following replacements:
 
 As always, the playbook would let you know about this and point out any variables you may have missed.
 
-
 # 2024-07-06
 
 ## Traefik v3 and HTTP/3 are here now
@@ -243,7 +237,6 @@ If you've tweaked any of this playbook's `_path_prefix` variables and made them 
 
 You **may potentially downgrade to Traefik v2** (if necessary) by adding `traefik_verison: v2.11.4` to your configuration.
 
-
 ### HTTP/3 is enabled by default
 
 In Traefik v3, [HTTP/3](https://en.wikipedia.org/wiki/HTTP/3) support is no longer considered experimental now.
@@ -261,14 +254,13 @@ To **disable HTTP/3**, you can use the following configuration:
 traefik_config_entrypoint_web_secure_http3_enabled: false
 ```
 
-
 # 2023-10-18
 
 ## Postgres parameters are automatically tuned now
 
 The playbook has provided some hints about [Tuning PostgreSQL](docs/maintenance-postgres.md#tuning-postgresql) for quite a while now.
 
-From now on, the [Postgres Ansible role](https://github.com/devture/com.devture.ansible.role.postgres) automatically tunes your Postgres configuration with the same [calculation logic](https://github.com/le0pard/pgtune/blob/master/src/features/configuration/configurationSlice.js) that powers https://pgtune.leopard.in.ua/.
+From now on, the [Postgres Ansible role](https://github.com/devture/com.devture.ansible.role.postgres) automatically tunes your Postgres configuration with the same [calculation logic](https://github.com/le0pard/pgtune/blob/master/src/features/configuration/configurationSlice.js) that powers <https://pgtune.leopard.in.ua/>.
 
 Our [Tuning PostgreSQL](docs/maintenance-postgres.md#tuning-postgresql) documentation page has details about how you can turn auto-tuning off or adjust the automatically-determined Postgres configuration parameters manually.
 
@@ -305,7 +297,6 @@ For this reason, we're no longer auto-wiring PeerTube to Redis. If you're runnin
 
 If you're only running PeerTube on a dedicated server (no other services that may need Redis) or you'd like to stick to what you've used until now (a single shared Redis instance), follow the [Using the shared Redis instance for PeerTube](docs/services/peertube.md#using-the-shared-redis-instance-for-peertube) documentation.
 
-
 # 2023-03-25
 
 ## (Backward Compatibility Break) Docker no longer installed by default
@@ -337,7 +328,6 @@ devture_docker_sdk_for_python_installation_enabled: true
 ```
 
 Our [example vars.yml](examples/vars.yml) file has been updated, so that new hosts created based on it will have this configuration by default.
-
 
 # 2023-03-15
 

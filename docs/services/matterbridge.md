@@ -16,5 +16,6 @@ The playbook can install and configure [Matterbridge](https://github.com/42wim/m
 Matterbridge is the bridge which enables you to talk over various protocols, including IRC, Discord, Slack, etc.
 
 The [Ansible role for Matterbridge](https://github.com/mother-of-all-self-hosting/ansible-role-matterbridge) is developed and maintained by the MASH project. For details about configuring Matterbridge, you can check them via:
+
 - 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-matterbridge/blob/main/docs/configuring-matterbridge.md) online
 - 📁 `roles/galaxy/matterbridge/docs/configuring-matterbridge.md` locally, if you have [fetched the Ansible roles](../installing.md)

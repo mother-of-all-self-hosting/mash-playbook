@@ -28,6 +28,7 @@ Readeck is a simple web application that lets you save the precious readable con
 See the project's [documentation](https://readeck.org/en/docs/) to learn what Readeck does and why it might be useful to you.
 
 For details about configuring the [Ansible role for Readeck](https://github.com/mother-of-all-self-hosting/ansible-role-readeck), you can check them via:
+
 - 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-readeck/blob/main/docs/configuring-readeck.md) online
 - 📁 `roles/galaxy/readeck/docs/configuring-readeck.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
@@ -39,7 +40,7 @@ This service requires the following other services:
 - [Traefik](traefik.md) reverse-proxy server
 - (optional) [exim-relay](exim-relay.md) mailer
 
-## Adjusting the playbook configuration
+## Configuration
 
 To enable this service, add the following configuration to your `vars.yml` file and re-run the [installation](../installing.md) process:
 
@@ -52,7 +53,8 @@ To enable this service, add the following configuration to your `vars.yml` file 
 
 readeck_enabled: true
 
-readeck_hostname: readeck.example.com
+readeck_hostname: mash.example.com
+readeck_path_prefix: /readeck
 
 ########################################################################
 #                                                                      #

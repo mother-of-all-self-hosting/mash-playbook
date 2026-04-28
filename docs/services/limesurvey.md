@@ -27,6 +27,7 @@ LimeSurvey is a feature-rich free software for web based forms and surveys, whic
 See the project's [documentation](https://www.limesurvey.org/manual/LimeSurvey_Manual) to learn what LimeSurvey does and why it might be useful to you.
 
 For details about configuring the [Ansible role for LimeSurvey](https://github.com/mother-of-all-self-hosting/ansible-role-limesurvey), you can check them via:
+
 - 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-limesurvey/blob/main/docs/configuring-limesurvey.md) online
 - 📁 `roles/galaxy/limesurvey/docs/configuring-limesurvey.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
@@ -38,7 +39,7 @@ This service requires the following other services:
 - [Traefik](traefik.md) reverse-proxy server
 - (optional) [exim-relay](exim-relay.md) mailer
 
-## Adjusting the playbook configuration
+## Configuration
 
 To enable this service, add the following configuration to your `vars.yml` file and re-run the [installation](../installing.md) process:
 
@@ -99,3 +100,7 @@ To get started, open the URL `https://limesurvey.example.com/index.php/admin` wi
 ## Troubleshooting
 
 See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-limesurvey/blob/main/docs/configuring-limesurvey.md#troubleshooting) on the role's documentation for details.
+
+## Related services
+
+- [HeyForm](heyform.md) — Form builder that lets you create, customize, and automate forms

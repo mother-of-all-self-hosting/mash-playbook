@@ -25,8 +25,9 @@ bitmagnet is a self-hosted BitTorrent indexer, DHT crawler, content classifier a
 
 See the project's [documentation](https://bitmagnet.io/) to learn what bitmagnet does and why it might be useful to you.
 
-For details about configuring the [Ansible role for bitmagnet](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Azs18Rifa7437q7hTFhsx11nYeGhD), you can check them via:
-- 🌐 [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Azs18Rifa7437q7hTFhsx11nYeGhD/tree/docs/configuring-bitmagnet.md) online
+For details about configuring the [Ansible role for bitmagnet](https://radicle.network/nodes/seed.radicle.garden/rad%3Azs18Rifa7437q7hTFhsx11nYeGhD), you can check them via:
+
+- 🌐 [the role's documentation](https://radicle.network/nodes/seed.radicle.garden/rad%3Azs18Rifa7437q7hTFhsx11nYeGhD/tree/docs/configuring-bitmagnet.md) online
 - 📁 `roles/galaxy/bitmagnet/docs/configuring-bitmagnet.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 >[!NOTE]
@@ -39,7 +40,7 @@ This service requires the following other services:
 - [Postgres](postgres.md) database
 - [Traefik](traefik.md) reverse-proxy server
 
-## Adjusting the playbook configuration
+## Configuration
 
 To enable this service, add the following configuration to your `vars.yml` file and re-run the [installation](../installing.md) process:
 
@@ -63,7 +64,44 @@ bitmagnet_hostname: bitmagnet.example.com
 
 ### Configuring HTTP Basic authentication
 
-Since there does not exist an authentication system on the web interface, the HTTP Basic authentication on Traefik is enabled for the web interface by default, considering the nature of the service. See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Azs18Rifa7437q7hTFhsx11nYeGhD/tree/docs/configuring-bitmagnet.md#configuring-http-basic-authentication) on the role's documentation for details about how to set it up.
+Since there does not exist an authentication system on the web interface, the HTTP Basic authentication on Traefik is enabled for the web interface by default, considering the nature of the service. See [this section](https://radicle.network/nodes/seed.radicle.garden/rad%3Azs18Rifa7437q7hTFhsx11nYeGhD/tree/docs/configuring-bitmagnet.md#configuring-http-basic-authentication) on the role's documentation for details about how to set it up.
+
+### Integrating with Prometheus (optional)
+
+bitmagnet can natively expose metrics to [Prometheus](prometheus.md).
+
+#### Expose metrics internally
+
+If bitmagnet and Prometheus do not share a network (like Traefik), you can connect the bitmagnet container network to Prometheus by adding the following configuration to your `vars.yml` file:
+
+```yaml
+prometheus_container_additional_networks_custom:
+  - "{{ bitmagnet_container_network }}"
+```
+
+#### Expose metrics publicly
+
+If bitmagnet metrics are not scraped from a local Prometheus instance, you can expose the metrics publicly so that a remote instance can fetch them.
+
+When exposing metrics publicly, you should consider to set up [HTTP Basic Authentication](https://developer.mozilla.org/en-US/docs/Web/HTTP/Authentication) **or anyone would be able to read your metrics**.
+
+To expose the metrics publicly, add the following configuration to your `vars.yml` file (adapt to your needs):
+
+```yaml
+mash_playbook_metrics_exposure_enabled: true
+mash_playbook_metrics_exposure_hostname: mash.example.com
+```
+
+It will expose the metrics at `https://mash.example.com/metrics/mash-bitmagnet`.
+
+To enable the HTTP Basic authentication, add the following configuration to your `vars.yml` file (adapt to your needs):
+
+```yaml
+bitmagnet_container_labels_traefik_metrics_middleware_basic_auth_enabled: true
+
+# See https://doc.traefik.io/traefik/middlewares/http/basicauth/#users for details.
+bitmagnet_container_labels_traefik_metrics_middleware_basic_auth_users: ""
+```
 
 ## Usage
 
@@ -73,7 +111,7 @@ To use it, open the URL on the browser and log in to the service if authenticati
 
 ## Troubleshooting
 
-See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Azs18Rifa7437q7hTFhsx11nYeGhD/tree/docs/configuring-bitmagnet.md#troubleshooting) on the role's documentation for details.
+See [this section](https://radicle.network/nodes/seed.radicle.garden/rad%3Azs18Rifa7437q7hTFhsx11nYeGhD/tree/docs/configuring-bitmagnet.md#troubleshooting) on the role's documentation for details.
 
 ## Related services
 

@@ -26,6 +26,7 @@ listmonk is a self-hosted, high performance one-way mailing list and newsletter 
 See the project's [documentation](https://listmonk.app/docs/) to learn what listmonk does and why it might be useful to you.
 
 For details about configuring the [Ansible role for listmonk](https://github.com/mother-of-all-self-hosting/ansible-role-listmonk), you can check them via:
+
 - 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-listmonk/blob/main/docs/configuring-listmonk.md) online
 - 📁 `roles/galaxy/listmonk/docs/configuring-listmonk.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
@@ -36,7 +37,7 @@ This service requires the following other services:
 - [Postgres](postgres.md) database
 - [Traefik](traefik.md) reverse-proxy server
 
-## Adjusting the playbook configuration
+## Configuration
 
 To enable this service, add the following configuration to your `vars.yml` file and re-run the [installation](../installing.md) process:
 

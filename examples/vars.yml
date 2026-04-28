@@ -7,6 +7,7 @@
 
 # Below is an example which installs a few services on the host, in different configuration.
 # You should tweak this example as you see fit and enable the services that you need.
+
 ########################################################################
 #                                                                      #
 # Playbook                                                             #
@@ -16,11 +17,13 @@
 # Put a strong secret below, generated with `pwgen -s 64 1` or in another way
 # Various other secrets will be derived from this secret automatically.
 mash_playbook_generic_secret_key: ''
+
 ########################################################################
 #                                                                      #
 # /Playbook                                                            #
 #                                                                      #
 ########################################################################
+
 ########################################################################
 #                                                                      #
 # Docker                                                               #
@@ -51,6 +54,7 @@ devture_docker_sdk_for_python_installation_enabled: true
 #
 # Learn more in `docs/configuring-ipv6.md`.
 devture_systemd_docker_base_ipv6_enabled: true
+
 ########################################################################
 #                                                                      #
 # /Docker                                                              #
@@ -179,7 +183,6 @@ miniflux_admin_password: a-strong-password-here
 #                                                                      #
 ########################################################################
 
-
 ########################################################################
 #                                                                      #
 # uptime-kuma                                                          #
@@ -204,7 +207,6 @@ uptime_kuma_hostname: uptime-kuma.example.com
 # /uptime-kuma                                                         #
 #                                                                      #
 ########################################################################
-
 
 # You can add additional services here, as you see fit.
 # To discover new services and configuration, see docs/supported-services.md

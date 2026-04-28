@@ -14,6 +14,7 @@ This Ansible playbook is meant to be executed on your own computer (not on the s
 In special cases (if your computer cannot run Ansible, etc.) you may put the playbook on the server as well.
 
 You can retrieve the playbook's source code by:
+
 - [Using git to get the playbook](#using-git-to-get-the-playbook) (recommended)
 - [Downloading the playbook as a ZIP archive](#downloading-the-playbook-as-a-zip-archive) (not recommended)
 
@@ -33,7 +34,7 @@ This will create a new `mash-playbook` directory. You're supposed to execute all
 
 Alternatively, you can download the playbook as a ZIP archive. This is not recommended, as it's not easy to keep up to date with future updates. We suggest you [use git](#using-git-to-get-the-playbook) instead.
 
-The latest version is always at the following URL: https://github.com/mother-of-all-self-hosting/mash-playbook/archive/master.zip
+The latest version is always at the following URL: <https://github.com/mother-of-all-self-hosting/mash-playbook/archive/master.zip>
 
 You can extract this archive anywhere. You'll get a directory called `mash-playbook-master`. You're supposed to execute all other installation commands inside that directory.
 

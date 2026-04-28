@@ -26,10 +26,11 @@ ClickHouse is an open-source column-oriented DBMS for online analytical processi
 See the project's [documentation](https://clickhouse.com/docs) to learn what ClickHouse does and why it might be useful to you.
 
 For details about configuring the [Ansible role for ClickHouse](https://github.com/mother-of-all-self-hosting/ansible-role-clickhouse), you can check them via:
+
 - 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-clickhouse/blob/main/docs/configuring-clickhouse.md) online
 - 📁 `roles/galaxy/clickhouse/docs/configuring-clickhouse.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
-## Adjusting the playbook configuration
+## Configuration
 
 To enable this service, add the following configuration to your `vars.yml` file and re-run the [installation](../installing.md) process:
 

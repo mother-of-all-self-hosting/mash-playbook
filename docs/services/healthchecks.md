@@ -29,6 +29,7 @@ Healthchecks is a cron job monitoring software.
 See the project's [documentation](https://healthchecks.io/docs/) to learn what Healthchecks does and why it might be useful to you.
 
 For details about configuring the [Ansible role for Healthchecks](https://github.com/mother-of-all-self-hosting/ansible-role-healthchecks/), you can check them via:
+
 - 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-healthchecks/blob/main/docs/configuring-healthchecks.md) online
 - 📁 `roles/galaxy/healthchecks/docs/configuring-healthchecks.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
@@ -42,7 +43,7 @@ This service requires the following other services:
 - (optional) [ntfy](ntfy.md)
 - (optional) [Postgres](postgres.md) / MySQL / [MariaDB](mariadb.md) database — Healthchecks will default to [SQLite](https://www.sqlite.org/) if Postgres is not enabled
 
-## Adjusting the playbook configuration
+## Configuration
 
 To enable this service, add the following configuration to your `vars.yml` file and re-run the [installation](../installing.md) process:
 

@@ -1,59 +1,49 @@
 <!--
 SPDX-FileCopyrightText: 2024 Slavi Pantaleev
+SPDX-FileCopyrightText: 2026 Suguru Hirahara
 
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 
 # OAuth2-Proxy
 
-[OAuth2-Proxy](https://oauth2-proxy.github.io/oauth2-proxy/) is a reverse proxy and static file server that provides authentication using OpenID Connect Providers (Google, GitHub, [authentik](authentik.md), [Keycloak](keycloak.md), and others) to SSO-protect services which do not support SSO natively.
+The playbook can install and configure [OAuth2-Proxy](https://github.com/oauth2-proxy/oauth2-proxy) for you.
 
+OAuth2-Proxy is a reverse proxy and static file server that provides authentication using OpenID Connect Providers (Google, GitHub, [authentik](authentik.md), [Keycloak](keycloak.md), and others) to SSO-protect services which do not support SSO natively.
 
-## Modes of operation
-
-OAuth2-Proxy can be used in 2 different modes:
-
-1. Capturing incoming traffic for the app (e.g. https://app.example.com/), and then proxying it to the application container if the user is authenticated
-
-2. Letting the application itself capture incoming traffic for itself (on https://app.example.com/) and use Traefik's [ForwardAuth](https://doc.traefik.io/traefik/middlewares/http/forwardauth/) middleware to authenticate the request via OAuth2-Proxy. In this case, OAuth2-Proxy will only handle the `/oauth2/` prefix on the application domain (e.g. https://app.example.com/oauth2/).
-
-The 1st one is a bit invasive, as it requires moving all custom reverse-proxying configuration for the handled domain to the OAuth2-Proxy side.
-
-The 2nd one lets you keep the existing application configuration. However, it needs all URLs to go to one service (the application) with the exception of `/oauth2/` (which should go to OAuth2-Proxy). As such, it it requires that both services (the application and OAuth2-Proxy) run on the same machine.
-
-Our [Sample configuration](#sample-configuration) below uses [ForwardAuth](https://doc.traefik.io/traefik/middlewares/http/forwardauth/).
-
-The [OAuth2-Proxy Ansible role](https://github.com/mother-of-all-self-hosting/ansible-role-oauth2-proxy) should be flexible enough to let you reconfigure it for both modes of operation. However, if feasible, we recommend using the 2nd (ForwardAuth) method.
+See the project's [documentation](https://oauth2-proxy.github.io/oauth2-proxy/) to learn what OAuth2-Proxy does and why it might be useful to you.
 
 ## Dependencies
 
 This service requires the following other services:
 
-- a [Traefik](traefik.md) reverse-proxy server
-- an OIDC provider running anywhere. See [Choosing a provider](#choosing-a-provider).
+- [OIDC provider](https://oauth2-proxy.github.io/oauth2-proxy/configuration/providers/) —  This may be hosted anywhere; not necessarily on the same server as OAuth2-Proxy or the service you're SSO-protecting
+- [Traefik](traefik.md) reverse-proxy server
 
+## Operation modes
 
-## Choosing a provider
+OAuth2-Proxy can be used in two different modes:
 
-To use OAuth2-Proxy, you need to choose an [OIDC provider](https://oauth2-proxy.github.io/oauth2-proxy/configuration/providers/).
+1. Capturing incoming traffic for the app (e.g. <https://app.example.com/>), and then proxying it to the application container if the user is authenticated
 
-This can be any of the supported providers. If hosting your own (via this playbook or via other means), the OIDC provider may be hosted anywhere (not necessarily on the same server as OAuth2-Proxy or the service you're SSO-protecting).
+2. Letting the application itself capture incoming traffic for itself (on <https://app.example.com/>) and use Traefik's [ForwardAuth](https://doc.traefik.io/traefik/middlewares/http/forwardauth/) middleware to authenticate the request via OAuth2-Proxy. In this case, OAuth2-Proxy will only handle the `/oauth2/` prefix on the application domain (e.g. <https://app.example.com/oauth2/>).
 
+The first one is a bit invasive, as it will require all custom reverse-proxying configuration for the handled domain to be moved to the OAuth2-Proxy side.
+
+The second one lets you keep the existing application configuration. However, this mode needs all URLs to go to one service (the application) with the exception of `/oauth2/` (which should go to OAuth2-Proxy). As such, it requires that both services (the application and OAuth2-Proxy) run on the same machine.
+
+Our sample configuration below uses [ForwardAuth](https://doc.traefik.io/traefik/middlewares/http/forwardauth/). While the [Ansible role](https://github.com/mother-of-all-self-hosting/ansible-role-oauth2-proxy) which this playbook incorporates to manage the service should be flexible enough to let you reconfigure it for both modes, we recommend using the second (ForwardAuth) method if feasible.
 
 ## Sample configuration
 
-The configuration is [provider](https://oauth2-proxy.github.io/oauth2-proxy/configuration/providers/)-specific and also depends on the service you're SSO-protecting, on which server it runs (in relation to OAuth-Proxy), etc.
+Below is a sample configuration for protecting a static website (in this case powered by the [Hubsite](hubsite.md)) service with [Keycloak](keycloak.md). For this to work as described, both OAuth2-Proxy and the protected service need to run on the same machine. Keycloak may run anywhere.
 
-Below is a **sample** configuration for protecting a static website (in this case powered by the [Hubsite](hubsite.md)) service via [Keycloak](keycloak.md).
+>[!NOTE]
+>
+> - The configuration is specific to [providers](https://oauth2-proxy.github.io/oauth2-proxy/configuration/providers/) and also depends on which service you're SSO-protecting, on which server it runs (in relation to OAuth-Proxy), etc.
+> - You also need to have prepared Keycloak and a "Client app" for it. Please refer to the [Keycloak OIDC](https://oauth2-proxy.github.io/oauth2-proxy/configuration/providers/keycloak_oidc) documentation on configuring OAuth2-Proxy.
 
-For this to work as described here, both OAuth2-Proxy and the protected service (e.g. [Hubsite](hubsite.md)) need to run on the same machine.
-
-Keycloak may run anywhere.
-
-You also need to have prepared Keycloak and a "Client app" for it, according to the [Keycloak OIDC](https://oauth2-proxy.github.io/oauth2-proxy/configuration/providers/keycloak_oidc) documentation of OAuth2-Proxy.
-
-
-#### OAuth2-Proxy configuration
+### OAuth2-Proxy configuration
 
 ```yaml
 ########################################################################
@@ -96,7 +86,6 @@ After adding this to your `vars.yml` file, [re-run the playbook](../installing.m
 This merely configures OAuth2-Proxy to handle the `/oauth2/` paths for Hubsite's domain.
 
 [Hubsite configuration adjustments](#hubsite-configuration-adjustments) are also necessary, so proceed to do those as well.
-
 
 ### Hubsite configuration adjustments
 
@@ -149,13 +138,11 @@ Some [services](../supported-services.md) already define their own `middlewares`
 
 Specific services (e.g. [Nextcloud](nextcloud.md)) provide Ansible variables (`nextcloud_container_labels_traefik_http_middlewares_custom`) for injecting new middlewares at a specific position (priority) in the list. Others services (Ansible roles) do not support this yet, which would prevent you from using them this way. Consider submitting an issue or better yet opening a PR to improve these services.
 
-
 ## Further reading
 
 If you'd like to do something more advanced, the [`ansible-role-oauth2-proxy` Ansible role](https://github.com/mother-of-all-self-hosting/ansible-role-oauth2-proxy) is very configurable and should let you do what you need.
 
 Take a look at [its `default/main.yml` file](https://github.com/mother-of-all-self-hosting/ansible-role-oauth2-proxy/blob/main/defaults/main.yml) for available Ansible variables you can use in your own `vars.yml` configuration file.
-
 
 ## Related services
 

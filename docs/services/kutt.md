@@ -26,8 +26,9 @@ Kutt is a modern URL shortener with support for custom domains with functions li
 
 See the project's [documentation](https://github.com/thedevs-network/kutt/blob/main/README.md) to learn what Kutt does and why it might be useful to you.
 
-For details about configuring the [Ansible role for Kutt](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az36dPzLyvPA52m845g1MMqHgoiaEz), you can check them via:
-- 🌐 [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az36dPzLyvPA52m845g1MMqHgoiaEz/tree/docs/configuring-kutt.md) online
+For details about configuring the [Ansible role for Kutt](https://radicle.network/nodes/seed.radicle.garden/rad%3Az36dPzLyvPA52m845g1MMqHgoiaEz), you can check them via:
+
+- 🌐 [the role's documentation](https://radicle.network/nodes/seed.radicle.garden/rad%3Az36dPzLyvPA52m845g1MMqHgoiaEz/tree/docs/configuring-kutt.md) online
 - 📁 `roles/galaxy/kutt/docs/configuring-kutt.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 ## Dependencies
@@ -39,7 +40,7 @@ This service requires the following other services:
 - (optional) [Postgres](postgres.md) / MySQL / [MariaDB](mariadb.md) database — Kutt will default to [SQLite](https://www.sqlite.org/) if Postgres is not enabled
 - (optional) [Valkey](valkey.md) data-store; see [below](#configuring-valkey-optional) for details about installation
 
-## Adjusting the playbook configuration
+## Configuration
 
 To enable this service, add the following configuration to your `vars.yml` file:
 
@@ -65,7 +66,7 @@ kutt_hostname: kutt.example.com
 
 ### Select database to use (optional)
 
-By default Kutt is configured to use [Postgres](postgres.md) (if enabled), but you can choose other databases such as MySQL (MariaDB) and SQLite. If Postgres is not enabled, SQLite will be used. See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az36dPzLyvPA52m845g1MMqHgoiaEz/tree/docs/configuring-kutt.md#specify-database-optional) on the role's documentation for details.
+By default Kutt is configured to use [Postgres](postgres.md) (if enabled), but you can choose other databases such as MySQL (MariaDB) and SQLite. If Postgres is not enabled, SQLite will be used. See [this section](https://radicle.network/nodes/seed.radicle.garden/rad%3Az36dPzLyvPA52m845g1MMqHgoiaEz/tree/docs/configuring-kutt.md#specify-database-optional) on the role's documentation for details.
 
 ### Configuring the mailer (optional)
 
@@ -147,7 +148,6 @@ mash_playbook_service_base_directory_name_prefix: 'kutt-'
 #                                                                      #
 ########################################################################
 
-
 ########################################################################
 #                                                                      #
 # valkey                                                               #
@@ -179,13 +179,13 @@ Having configured `vars.yml` for the dedicated instance, add the following confi
 # Point Kutt to its dedicated Valkey instance
 kutt_redis_hostname: mash-kutt-valkey
 
-# Make sure the Kutt service (mash-kutt.service) starts after its dedicated Valkey service (mash-kutt-valkey.service)
-kutt_systemd_required_services_list_custom:
-  - "mash-kutt-valkey.service"
-
 # Make sure the Kutt container is connected to the container network of its dedicated Valkey service (mash-kutt-valkey)
 kutt_container_additional_networks_custom:
   - "mash-kutt-valkey"
+
+# Make sure the Kutt service (mash-kutt.service) starts after its dedicated Valkey service (mash-kutt-valkey.service)
+kutt_systemd_required_services_list_custom:
+  - "mash-kutt-valkey.service"
 
 ########################################################################
 #                                                                      #
@@ -217,7 +217,6 @@ valkey_enabled: true
 #                                                                      #
 ########################################################################
 
-
 ########################################################################
 #                                                                      #
 # kutt                                                                 #
@@ -229,13 +228,13 @@ valkey_enabled: true
 # Point Kutt to the shared Valkey instance
 kutt_redis_hostname: "{{ valkey_identifier }}"
 
-# Make sure the Kutt service (mash-kutt.service) starts after the shared Valkey service (mash-valkey.service)
-kutt_systemd_required_services_list_custom:
-  - "{{ valkey_identifier }}.service"
-
 # Make sure the Kutt container is connected to the container network of the shared Valkey service (mash-valkey)
 kutt_container_additional_networks_custom:
   - "{{ valkey_identifier }}"
+
+# Make sure the Kutt service (mash-kutt.service) starts after the shared Valkey service (mash-valkey.service)
+kutt_systemd_required_services_list_custom:
+  - "{{ valkey_identifier }}.service"
 
 ########################################################################
 #                                                                      #
@@ -260,7 +259,7 @@ To get started, open the URL with a web browser to create an administrator accou
 
 ## Troubleshooting
 
-See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az36dPzLyvPA52m845g1MMqHgoiaEz/tree/docs/configuring-kutt.md#troubleshooting) on the role's documentation for details.
+See [this section](https://radicle.network/nodes/seed.radicle.garden/rad%3Az36dPzLyvPA52m845g1MMqHgoiaEz/tree/docs/configuring-kutt.md#troubleshooting) on the role's documentation for details.
 
 ## Related services
 

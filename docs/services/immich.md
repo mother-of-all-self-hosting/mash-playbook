@@ -31,19 +31,19 @@ Immich is a self-hosted photo and video management solution, into which you can 
 See the project's [documentation](https://immich.app/docs/overview/welcome) to learn what Immich does and why it might be useful to you.
 
 For details about configuring the [Ansible role for Immich](https://github.com/mother-of-all-self-hosting/ansible-role-immich), you can check them via:
+
 - 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-immich/blob/main/docs/configuring-immich.md) online
 
 ## Dependencies
 
 This service requires the following other services:
 
-- a [Traefik](traefik.md) reverse-proxy server
-- a **custom** [Postgres](postgres.md) database, powered by the [Immich-specific Postgres image](https://github.com/immich-app/base-images/tree/main/postgres) (based on [pgvector](https://github.com/pgvector/pgvector), but also includes additional extensions). See [Configuration overview](#configuration-overview) for details about installation
-- a [Valkey](valkey.md) data-store. See [Configuration overview](#configuration-overview) for details about installation
+- **Custom** [Postgres](postgres.md) database, powered by the [Immich-specific Postgres image](https://github.com/immich-app/base-images/tree/main/postgres) (based on [pgvector](https://github.com/pgvector/pgvector), but also includes additional extensions). See [Configuration overview](#configuration-overview) for details about installation
+- [Traefik](traefik.md) reverse-proxy server
+- [Valkey](valkey.md) data-store. See [Configuration overview](#configuration-overview) for details about installation
 - (optional) [exim-relay](exim-relay.md) for sending emails via this service
 
-
-## Adjusting the playbook configuration
+## Configuration
 
 ### Configuration overview
 
@@ -112,7 +112,6 @@ mash_playbook_service_base_directory_name_prefix: 'immich-'
 #                                                                      #
 ########################################################################
 
-
 ########################################################################
 #                                                                      #
 # Various other overrides                                              #
@@ -128,7 +127,6 @@ devture_systemd_docker_base_ipv6_enabled: true
 #                                                                      #
 ########################################################################
 
-
 ########################################################################
 #                                                                      #
 # valkey                                                               #
@@ -142,7 +140,6 @@ valkey_enabled: true
 # /valkey                                                              #
 #                                                                      #
 ########################################################################
-
 
 ########################################################################
 #                                                                      #
@@ -218,7 +215,6 @@ postgres_managed_databases_additional:
 # /postgres                                                            #
 #                                                                      #
 ########################################################################
-
 
 ########################################################################
 #                                                                      #
@@ -309,19 +305,19 @@ immich_server_environment_variable_tz: Europe/Sofia
 # configured in the other inventory host (e.g. `mash.example.com-immich-deps`).
 immich_redis_hostname: mash-immich-valkey
 
-# This wires the Immich/Server systemd service to:
-# - the dedicated (for Immich) Valkey installation (see `mash.example.com-immich-deps`)
-# - the dedicated (for Immich) custom PostgreSQL installation (see `mash.example.com-immich-deps`)
-immich_server_systemd_required_services_list_custom:
-  - "mash-immich-valkey.service"
-  - "mash-immich-postgres.service"
-
 # This wires the Immich/Server container to:
 # - the network of the dedicated (for Immich) Valkey installation (see `mash.example.com-immich-deps`)
 # - the network of the dedicated (for Immich) custom PostgreSQL installation (see `mash.example.com-immich-deps`)
 immich_server_container_additional_networks_custom:
   - "mash-immich-valkey"
   - "mash-immich-postgres"
+
+# This wires the Immich/Server systemd service to:
+# - the dedicated (for Immich) Valkey installation (see `mash.example.com-immich-deps`)
+# - the dedicated (for Immich) custom PostgreSQL installation (see `mash.example.com-immich-deps`)
+immich_server_systemd_required_services_list_custom:
+  - "mash-immich-valkey.service"
+  - "mash-immich-postgres.service"
 
 # This points to the dedicated (for Immich) custom PostgreSQL installation,
 # configured in the other inventory host (e.g. `mash.example.com-immich-deps`).
@@ -341,7 +337,6 @@ immich_database_sslmode: disable
 ```
 
 💡 Before [Installing](#installation), **consider doing some additional Immich configuration tweaking via Ansible**, as described below.
-
 
 ##### Disabling the Machine Learning component
 
@@ -428,13 +423,11 @@ immich_server_environment_variable_immich_allow_setup: false
 
 Unfortunately, most of Immich's configuration cannot be managed via Ansible and needs to be done from the UI, after it's installed. After installation, check the [Usage](#usage) section below for some recommendations for things you may wish to change.
 
-
 ## Installation
 
 As described in [Configuration overview](#configuration-overview), we're dealing with 2 inventory hosts (`mash.example.com-immich-deps` and `mash.example.com`).
 
 You need to run the [installing](../installing.md) command for the supplementary host (`mash.example.com-immich-deps`) first, before running it for the main host (`mash.example.com`).
-
 
 ## Usage
 
@@ -519,33 +512,33 @@ You probably wish to adjust a few different things here.
 
 1. **Transcode policy**, to specify:
 
-  - **Accepted video codecs** = **only `H.264`**
+    - **Accepted video codecs** = **only `H.264`**
 
-  If your Immich installation will serve various devices (new and old) and various browsers (Chromium-based and Firefox), you'd better pick a format that plays well on all.
+      If your Immich installation will serve various devices (new and old) and various browsers (Chromium-based and Firefox), you'd better pick a format that plays well on all.
 
-  Right now, this probably eliminates all options other than `H.264`.
+      Right now, this probably eliminates all options other than `H.264`.
 
-  💡 If you're hoping to use Hardware Acceleration for transcoding, your GPU (even if it's an integrated one) better have support for the selected codec (or codecs).
+      💡 If you're hoping to use Hardware Acceleration for transcoding, your GPU (even if it's an integrated one) better have support for the selected codec (or codecs).
 
-  - **Accepted audio codecs** = **only `AAC`**
+    - **Accepted audio codecs** = **only `AAC`**
 
-  - **Accepted containers** = nothing selected (which means "only MP4")
+    - **Accepted containers** = nothing selected (which means "only MP4")
 
 2. **Encoding options**, to specify:
 
-  - **Video codec** = `h264`
+    - **Video codec** = `h264`
 
-  - **Audio codec** = `aac`
+    - **Audio codec** = `aac`
 
-  - **Target resolution** = `720p` (though, adjust as necessary; `original` may be a good option, but underpowered devices may struggle with it)
+    - **Target resolution** = `720p` (though, adjust as necessary; `original` may be a good option, but underpowered devices may struggle with it)
 
-  - **Preset** = `fast` (perhaps better storage and quality than the default `ultrafast`, but adjust as necessary)
+    - **Preset** = `fast` (perhaps better storage and quality than the default `ultrafast`, but adjust as necessary)
 
 3. **Hardware Acceleration**
 
-  - **Acceleration API** = choose the one that matches your hardware and configuration preset in [Enabling Hardware Acceleration for video transcoding](#enabling-hardware-acceleration-for-video-transcoding).
+    - **Acceleration API** = choose the one that matches your hardware and configuration preset in [Enabling Hardware Acceleration for video transcoding](#enabling-hardware-acceleration-for-video-transcoding).
 
-  - **Hardware decoding** = enabled (but consider disabling if it doesn't work well for you)
+    - **Hardware decoding** = enabled (but consider disabling if it doesn't work well for you)
 
 #### Adjusting Notification settings
 

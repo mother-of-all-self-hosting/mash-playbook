@@ -27,6 +27,7 @@ Endlessh-go is a Golang implementation of [Endlessh](https://github.com/skeeto/e
 See the project's [documentation](https://github.com/shizunge/endlessh-go/blob/main/README.md) to learn what Endlessh-go does and why it might be useful to you.
 
 For details about configuring the [Ansible role for Endlessh-go](https://github.com/mother-of-all-self-hosting/ansible-role-endlessh), you can check them via:
+
 - 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-endlessh/blob/main/docs/configuring-endlessh.md) online
 - 📁 `roles/galaxy/endlessh/docs/configuring-endlessh.md` locally, if you have [fetched the Ansible roles](../installing.md)
 

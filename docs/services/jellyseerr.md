@@ -16,7 +16,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
 This service requires the following other services:
 
-- a [Traefik](traefik.md) reverse-proxy server
+- [Traefik](traefik.md) reverse-proxy server
 
 ## Configuration
 
@@ -48,8 +48,6 @@ After running the command for installation, the Jellyseerr instance becomes avai
 > The `jellyseerr_path_prefix` variable can be adjusted to host under a subpath (e.g. `jellyseerr_path_prefix: /jellyseerr`), but this hasn't been tested yet.
 
 For additional configuration options, refer to [ansible-role-jellyseerr](https://github.com/sudo-Tiz/ansible-role-jellyseerr)'s `defaults/main.yml` file.
-
-## Related services
 
 ## Related services
 

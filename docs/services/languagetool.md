@@ -27,6 +27,7 @@ LanguageTool is an open source online grammar, style and spell checker.
 See the project's [documentation](https://languagetool.org/dev) to learn what LanguageTool does and why it might be useful to you.
 
 For details about configuring the [Ansible role for LanguageTool](https://github.com/mother-of-all-self-hosting/ansible-role-languagetool), you can check them via:
+
 - 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-languagetool/blob/main/docs/configuring-languagetool.md) online
 - 📁 `roles/galaxy/languagetool/docs/configuring-languagetool.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
@@ -36,7 +37,7 @@ This service requires the following other services:
 
 - [Traefik](traefik.md) — a reverse-proxy server
 
-## Adjusting the playbook configuration
+## Configuration
 
 To enable this service, add the following configuration to your `vars.yml` file and re-run the [installation](../installing.md) process:
 

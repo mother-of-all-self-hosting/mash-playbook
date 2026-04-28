@@ -1,10 +1,10 @@
 <!--
-SPDX-FileCopyrightText: 2020 - 2024 MDAD project contributors
-SPDX-FileCopyrightText: 2020 - 2025 Slavi Pantaleev
 SPDX-FileCopyrightText: 2020 Aaron Raimist
 SPDX-FileCopyrightText: 2020 Chris van Dijk
 SPDX-FileCopyrightText: 2020 Dominik Zajac
 SPDX-FileCopyrightText: 2020 Mickaël Cornière
+SPDX-FileCopyrightText: 2020-2024 MDAD project contributors
+SPDX-FileCopyrightText: 2020-2025 Slavi Pantaleev
 SPDX-FileCopyrightText: 2022 François Darveau
 SPDX-FileCopyrightText: 2022 Julian Foad
 SPDX-FileCopyrightText: 2022 Warren Bailey
@@ -13,15 +13,15 @@ SPDX-FileCopyrightText: 2023 Felix Stupp
 SPDX-FileCopyrightText: 2023 Julian-Samuel Gebühr
 SPDX-FileCopyrightText: 2023 MASH project contributors
 SPDX-FileCopyrightText: 2023 Pierre 'McFly' Marty
-SPDX-FileCopyrightText: 2024 - 2025 Suguru Hirahara
 SPDX-FileCopyrightText: 2024 Sergio Durigan Junior
+SPDX-FileCopyrightText: 2024-2026 Suguru Hirahara
 
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 
 # Woodpecker CI
 
-This playbook can install and configure [Woodpecker CI](https://woodpecker-ci.org/) for you.
+The playbook can install and configure [Woodpecker CI](https://woodpecker-ci.org/) for you.
 
 Woodpecker CI is a [Continuous Integration](https://en.wikipedia.org/wiki/Continuous_integration) engine which can build and deploy your code automatically after pushing to a [Gitea](gitea.md) or [Forgejo](forgejo.md) repository.
 
@@ -39,14 +39,14 @@ Small installations which only run trusted CI jobs can afford to run an agent in
 
 ## Woodpecker CI server
 
-### Dependencies
+### Dependencies — Woodpecker CI server
 
 This service requires the following other services:
 
-- a [Traefik](traefik.md) reverse-proxy server
+- [Traefik](traefik.md) reverse-proxy server
 - (optional) [Postgres](postgres.md) / MySQL / [MariaDB](mariadb.md) database — Woodpecker CI server will default to [SQLite](https://www.sqlite.org/) if Postgres is not enabled
 
-### Configuration
+### Configuration — Woodpecker CI server
 
 To enable this service, add the following configuration to your `vars.yml` file and re-run the [installation](../installing.md) process:
 
@@ -144,7 +144,7 @@ woodpecker_ci_server_container_add_host_domain_name: "{{ forgejo_hostname }}"
 woodpecker_ci_server_container_add_host_ip_address: "{{ ansible_host }}"
 ```
 
-### Usage
+### Usage — Woodpecker CI server
 
 After running the command for installation, the Woodpecker CI server becomes available at the URL specified with `woodpecker_ci_server_hostname` and `woodpecker_ci_server_path_prefix`. With the configuration above, the service is hosted at `https://mash.example.com/ci`.
 
@@ -152,18 +152,17 @@ To get started, open the URL with a web browser, and click the **Log in** button
 
 Follow the official Woodpecker CI [Getting started](https://woodpecker-ci.org/docs/usage/intro) documentation for additional usage details.
 
-
 ## Woodpecker CI agent
 
 As mentioned above, unless you completely trust your CI workloads, it's best to run the Woodpecker CI agent on another machine.
 
-### Dependencies
+### Dependencies — Woodpecker CI agent
 
 This service requires the following other services:
 
-- a Woodpecker CI server — installed via this playbook or otherwise
+- Woodpecker CI server — installed via this playbook or otherwise
 
-### Configuration
+### Configuration — Woodpecker CI agent
 
 ```yaml
 ########################################################################
@@ -209,7 +208,7 @@ woodpecker_ci_agent_config_server: ''
 ########################################################################
 ```
 
-### Usage
+### Usage — Woodpecker CI agent
 
 The agent should automatically register with the [Woodpecker CI server](#woodpecker-ci-server) and take jobs from it.
 
