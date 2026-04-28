@@ -109,7 +109,7 @@
   name: cap
   activation_prefix: cap_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-changedetection.git
-  version: v0.54.10-0
+  version: v0.55.3-0
   name: changedetection
   activation_prefix: changedetection_
 - src: git+https://seed.radicle.garden/z3HYheWh86U9ErEL18tK2gBkq7g2A.git
