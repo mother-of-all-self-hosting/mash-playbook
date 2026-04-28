@@ -341,7 +341,7 @@
   name: headscale
   activation_prefix: headscale_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-healthchecks.git
-  version: v4.1-2
+  version: v4.2-0
   name: healthchecks
   activation_prefix: healthchecks_
 - src: git+https://seed.radicle.garden/zsKztkwnLv9wVMRYbcpoFesx6L5j.git
