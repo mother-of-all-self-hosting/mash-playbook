@@ -27,6 +27,8 @@ Here are some examples of shortcuts:
 | `just start-all`                               | (Re-)starts all services                                                                                       |
 | `just stop-group postgres`                     | Stop only the Postgres service                                                                                 |
 
+When both Vault and sudo/become credentials are required, pass both prompt flags together. For example: `just install-all --ask-vault-pass --ask-become-pass`.
+
 While [our documentation on prerequisites](prerequisites.md) lists `just` as one of the requirements for installation, using `just` is optional. If you find it difficult to install it, do not find it useful, or want to prefer raw `ansible-playbook` commands for some reason, feel free to run all commands manually. For example, you can run `ansible-galaxy` directly to install the Ansible roles: `rm -rf roles/galaxy; ansible-galaxy install -r requirements.yml -p roles/galaxy/ --force`.
 
 ## Difference between playbook tags and shortcuts
