@@ -801,7 +801,7 @@
   name: reitti
   activation_prefix: reitti_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-roundcube.git
-  version: v1.6.14-3
+  version: v1.6.14-4
   name: roundcube
   activation_prefix: roundcube_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-rssbridge.git
