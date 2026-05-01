@@ -69,4 +69,4 @@ See [this section](https://radicle.network/nodes/seed.radicle.garden/rad%3Az8D2G
 
 ## Related services
 
-- [I hate money](ihatemoney.md) — Shared budget manager
+- [Homarr](homarr.md) — Dashboard for management of your favorite applications and services
