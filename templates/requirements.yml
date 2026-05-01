@@ -344,6 +344,10 @@
   version: v4.2-0
   name: healthchecks
   activation_prefix: healthchecks_
+- src: git+https://seed.radicle.garden/z8D2GRZrm8JXZeHHe9j1HMvvj8An.git
+  version: v2.7.6-0
+  name: heimdall
+  activation_prefix: heimdall_
 - src: git+https://seed.radicle.garden/zsKztkwnLv9wVMRYbcpoFesx6L5j.git
   version: v3.0.0-0
   name: heyform

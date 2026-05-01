@@ -410,6 +410,10 @@
     - role: galaxy/healthchecks
     # /role-specific:healthchecks
 
+    # role-specific:heimdall
+    - role: galaxy/heimdall
+    # /role-specific:heimdall
+
     # role-specific:heyform
     - role: galaxy/heyform
     # /role-specific:heyform

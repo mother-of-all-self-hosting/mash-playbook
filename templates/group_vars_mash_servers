@@ -521,6 +521,11 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
     {{ ({'name': (healthchecks_identifier + '.service'), 'priority': 2000, 'restart_necessary': (healthchecks_restart_necessary | bool), 'groups': ['mash', 'healthchecks']} if healthchecks_enabled else omit) }}
   # /role-specific:healthchecks
 
+  # role-specific:heimdall
+  - |-
+    {{ ({'name': (heimdall_identifier + '.service'), 'priority': 2000, 'restart_necessary': (heimdall_restart_necessary | bool), 'groups': ['mash', 'heimdall']} if heimdall_enabled else omit) }}
+  # /role-specific:heimdall
+
   # role-specific:heyform
   - |-
     {{ ({'name': (heyform_identifier + '.service'), 'priority': 2000, 'restart_necessary': (heyform_restart_necessary | bool), 'groups': ['mash', 'heyform']} if heyform_enabled else omit) }}
@@ -6918,6 +6923,44 @@ healthchecks_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver
 #                                                                      #
 ########################################################################
 # /role-specific:healthchecks
+
+
+
+# role-specific:heimdall
+########################################################################
+#                                                                      #
+# heimdall                                                             #
+#                                                                      #
+########################################################################
+
+heimdall_enabled: false
+
+heimdall_identifier: "{{ mash_playbook_service_identifier_prefix }}heimdall"
+
+heimdall_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}heimdall"
+
+heimdall_uid: "{{ mash_playbook_uid }}"
+heimdall_gid: "{{ mash_playbook_gid }}"
+
+heimdall_container_additional_networks_auto: |
+  {{
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+  }}
+
+heimdall_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+heimdall_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+
+# role-specific:traefik
+heimdall_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
+heimdall_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
+# /role-specific:traefik
+
+########################################################################
+#                                                                      #
+# /heimdall                                                            #
+#                                                                      #
+########################################################################
+# /role-specific:heimdall
 
 
 
