@@ -265,7 +265,7 @@
   name: filebrowser
   activation_prefix: filebrowser_
 - src: git+https://seed.radicle.garden/z3ALGSKDhVLeMnR49YPXk5yv2yTge.git
-  version: v1.3.0-1
+  version: v1.3.1-0
   name: filebrowser_quantum
   activation_prefix: filebrowser_quantum_
 - src: git+https://github.com/sudo-Tiz/ansible-role-flaresolverr.git
