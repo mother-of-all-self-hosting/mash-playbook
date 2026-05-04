@@ -957,7 +957,7 @@
   name: valkey
   activation_prefix: valkey_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-vaultwarden.git
-  version: v1.35.8-0
+  version: v1.36.0-0
   name: vaultwarden
   activation_prefix: vaultwarden_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-versatiles.git
