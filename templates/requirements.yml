@@ -69,7 +69,7 @@
   name: auxiliary
   activation_prefix: aux_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-backup_borg.git
-  version: v1.4.4-2.1.4-0
+  version: v1.4.4-2.1.4-1
   name: backup_borg
   activation_prefix: backup_borg_
 - src: git+https://seed.radicle.garden/z3JDUHjeHMqbZ3YLxquSUbCmAJLi.git
@@ -117,7 +117,7 @@
   name: chiefonboarding
   activation_prefix: chiefonboarding_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-cinny.git
-  version: v4.11.1-1
+  version: v4.11.1-2
   name: cinny
   activation_prefix: cinny_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-cleanup.git
@@ -137,7 +137,7 @@
   name: collabora_online
   activation_prefix: collabora_online_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-container-socket-proxy.git
-  version: v0.4.2-4
+  version: v0.4.2-5
   name: container_socket_proxy
   activation_prefix: mash_
 - src: git+https://seed.radicle.garden/z22bUmhZzA5VWtmKERFkEjGzdPuke.git
@@ -165,7 +165,7 @@
   name: databasus
   activation_prefix: databasus_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-ddclient.git
-  version: v4.0.0-2
+  version: v4.0.0-3
   name: ddclient
   activation_prefix: ddclient_
 - src: git+https://github.com/geerlingguy/ansible-role-docker
@@ -225,7 +225,7 @@
   name: etcd
   activation_prefix: etcd_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-etherpad.git
-  version: v2.7.2-0
+  version: v2.7.2-1
   name: etherpad
   activation_prefix: etherpad_
 - src: git+https://seed.radicle.garden/z4SSf2SU2YwBaMmCFBJnM5KqorU9T.git
@@ -241,7 +241,7 @@
   name: excalidraw_room
   activation_prefix: excalidraw_room_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-exim-relay.git
-  version: v4.99.1-r0-2-0
+  version: v4.99.1-r0-2-1
   name: exim_relay
   activation_prefix: exim_relay_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-fail2ban.git
@@ -329,7 +329,7 @@
   name: gotosocial
   activation_prefix: gotosocial_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-grafana.git
-  version: v11.6.5-9
+  version: v11.6.5-10
   name: grafana
   activation_prefix: grafana_
 - src: git+https://github.com/spatterIight/ansible-role-headplane.git
@@ -401,7 +401,7 @@
   name: jellyseerr
   activation_prefix: jellyseerr_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-jitsi.git
-  version: v10888-0
+  version: v10888-1
   name: jitsi
   activation_prefix: jitsi_
 - src: git+https://iris.radicle.network/zttNpUS7xCeDnn2e4No2dUvZv7L7.git
@@ -593,7 +593,7 @@
   name: notfellchen
   activation_prefix: notfellchen_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-ntfy.git
-  version: v2.22.0-0
+  version: v2.22.0-1
   name: ntfy
   activation_prefix: ntfy_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-oauth2-proxy.git
@@ -709,11 +709,11 @@
   name: postgis
   activation_prefix: postgis_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-postgres.git
-  version: v18.3-4
+  version: v18.3-5
   name: postgres
   activation_prefix: postgres_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-postgres-backup.git
-  version: v18-2
+  version: v18-3
   name: postgres_backup
   activation_prefix: postgres_backup_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-privatebin.git
@@ -721,7 +721,7 @@
   name: privatebin
   activation_prefix: privatebin_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-prometheus.git
-  version: v3.11.3-0
+  version: v3.11.3-1
   name: prometheus
   activation_prefix: prometheus_enabled
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-prometheus-alertmanager.git
@@ -733,11 +733,11 @@
   name: prometheus_blackbox_exporter
   activation_prefix: prometheus_blackbox_exporter_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-prometheus-node-exporter.git
-  version: v1.10.2-0
+  version: v1.10.2-1
   name: prometheus_node_exporter
   activation_prefix: prometheus_node_exporter_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-prometheus-postgres-exporter.git
-  version: v0.19.1-3
+  version: v0.19.1-4
   name: prometheus_postgres_exporter
   activation_prefix: prometheus_postgres_exporter_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-prometheus-ssh-exporter.git
@@ -929,11 +929,11 @@
   name: tinyauth
   activation_prefix: tinyauth_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-traefik.git
-  version: v3.6.15-0
+  version: v3.6.15-1
   name: traefik
   activation_prefix: mash_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-traefik-certs-dumper.git
-  version: v2.10.0-6
+  version: v2.10.0-7
   name: traefik_certs_dumper
   activation_prefix: traefik_certs_dumper_
 - src: git+https://seed.radicle.garden/z3baazpMjGxvdYmB7RTqr5WnrSRke.git
@@ -953,7 +953,7 @@
   name: uptime_kuma
   activation_prefix: uptime_kuma_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-valkey.git
-  version: v9.0.3-3
+  version: v9.0.3-4
   name: valkey
   activation_prefix: valkey_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-vaultwarden.git
