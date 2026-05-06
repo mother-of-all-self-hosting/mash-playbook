@@ -1,7 +1,7 @@
 ---
 
 - src: git+https://seed.radicle.garden/z2chD7Kt74JwEMafxTooxN7MaeYtK.git
-  version: v26.4.0-0
+  version: v26.5.0-0
   name: actual
   activation_prefix: actual_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-adguard-home.git
