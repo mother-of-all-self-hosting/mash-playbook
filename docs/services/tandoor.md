@@ -28,6 +28,9 @@ Tandoor is a self-hosted recipe manager.
 
 See the project's [documentation](https://docs.tandoor.dev/) to learn what Tandoor does and why it might be useful to you.
 
+>[!NOTE]
+> While the [LICENSE](https://github.com/TandoorRecipes/recipes/blob/b8b8a773e7548962723f7a76dcca731ca1dad96d/LICENSE.md) file of the software contains “Commons Clause” License Condition v1.0 as of writing, that additional term constitutes one of the "further restrictions" and may be removed. Refer to [this article](https://www.fsf.org/blogs/licensing/protecting-free-software-against-confusing-additional-restrictions) by FSF for relevant information.
+
 ## Dependencies
 
 This service requires the following other services:
