@@ -945,7 +945,7 @@
   name: transfersh
   activation_prefix: transfersh_
 - src: git+https://github.com/Bergruebe/ansible-role-tsdproxy.git
-  version: v1.4.7-0
+  version: v1.4.7-2
   name: tsdproxy
   activation_prefix: tsdproxy_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-typesense.git
