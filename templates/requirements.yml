@@ -88,6 +88,10 @@
   version: v0.10.0-5
   name: bitmagnet
   activation_prefix: bitmagnet_
+- src: git+https://seed.radicle.garden/zQdRwQ2s3FG5BZUjvSn1GYXbzVmw.git
+  version: v26.3.4-0
+  name: bookstack
+  activation_prefix: bookstack_
 - src: git+https://seed.radicle.garden/zxNS7XeayGimb4WFfvqmasiZZC3v.git
   version: v2.0.9-0
   name: borg_ui

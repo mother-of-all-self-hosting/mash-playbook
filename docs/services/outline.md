@@ -288,4 +288,5 @@ After installation, the Outline instance becomes available at the URL specified 
 
 ## Related services
 
+- [BookStack](bookstack.md) — Platform for organising and storing information
 - [Docmost](docmost.md) — Collaborative wiki and documentation software

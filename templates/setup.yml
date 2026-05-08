@@ -178,6 +178,10 @@
     - role: galaxy/bitmagnet
     # /role-specific:bitmagnet
 
+    # role-specific:bookstack
+    - role: galaxy/bookstack
+    # /role-specific:bookstack
+
     # role-specific:borg_ui
     - role: galaxy/borg_ui
     # /role-specific:borg_ui
