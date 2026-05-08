@@ -209,6 +209,11 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
     {{ ({'name': (bitmagnet_identifier + '.service'), 'priority': 2000, 'restart_necessary': (bitmagnet_restart_necessary | bool), 'groups': ['mash', 'bitmagnet']} if bitmagnet_enabled else omit) }}
   # /role-specific:bitmagnet
 
+  # role-specific:bookstack
+  - |-
+    {{ ({'name': (bookstack_identifier + '.service'), 'priority': 2000, 'restart_necessary': (bookstack_restart_necessary | bool), 'groups': ['mash', 'bookstack']} if bookstack_enabled else omit) }}
+  # /role-specific:bookstack
+
   # role-specific:borg_ui
   - |-
     {{ ({'name': (borg_ui_identifier + '.service'), 'priority': 2000, 'restart_necessary': (borg_ui_restart_necessary | bool), 'groups': ['mash', 'borg-ui']} if borg_ui_enabled else omit) }}
@@ -3841,6 +3846,72 @@ bitmagnet_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_pr
 #                                                                      #
 ########################################################################
 # /role-specific:bitmagnet
+
+
+
+# role-specific:bookstack
+########################################################################
+#                                                                      #
+# bookstack                                                            #
+#                                                                      #
+########################################################################
+
+bookstack_enabled: false
+
+bookstack_identifier: "{{ mash_playbook_service_identifier_prefix }}bookstack"
+
+bookstack_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}bookstack"
+
+# Run as www-data:www-data
+bookstack_uid: 33
+bookstack_gid: 33
+
+bookstack_systemd_required_services_list_auto: |
+  {{
+    ([mariadb_identifier ~ '.service'] if mariadb_enabled and bookstack_database_hostname == mariadb_connection_hostname else [])
+  }}
+
+bookstack_systemd_wanted_services_list_auto: |
+  {{
+    ([exim_relay_identifier ~ '.service'] if exim_relay_enabled | default(false) and bookstack_environment_variables_mail_driver == 'smtp' else [])
+  }}
+
+bookstack_container_additional_networks_auto: |
+  {{
+    ([exim_relay_container_network] if exim_relay_enabled | default(false) and bookstack_environment_variables_mail_driver == 'smtp' and bookstack_container_network != exim_relay_container_network else [])
+    +
+    ([mariadb_container_network] if mariadb_enabled and bookstack_database_hostname == mariadb_connection_hostname and bookstack_container_network != mariadb_container_network else [])
+    +
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+  }}
+
+bookstack_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+bookstack_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+
+# role-specific:exim_relay
+bookstack_environment_variables_mail_driver: "{{ 'smtp' if exim_relay_enabled }}"
+bookstack_environment_variables_mail_host: "{{ exim_relay_identifier if exim_relay_enabled else '' }}"
+bookstack_environment_variables_mail_port: 8025
+bookstack_environment_variables_mail_from: "{{ exim_relay_sender_address if exim_relay_enabled else '' }}"
+# /role-specific:exim_relay
+
+# role-specific:mariadb
+bookstack_database_hostname: "{{ mariadb_connection_hostname if mariadb_enabled else '' }}"
+bookstack_database_port: "{{ mariadb_connection_port if mariadb_enabled else '3306' }}"
+bookstack_database_password: "{{ (mash_playbook_generic_secret_key + ':bookstack.db') | hash('sha512') | to_uuid }}"
+# /role-specific:mariadb
+
+# role-specific:traefik
+bookstack_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
+bookstack_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
+# /role-specific:traefik
+
+########################################################################
+#                                                                      #
+# /bookstack                                                           #
+#                                                                      #
+########################################################################
+# /role-specific:bookstack
 
 
 
@@ -9814,6 +9885,17 @@ mash_playbook_mariadb_managed_databases_auto_itemized:
       } if authelia_enabled and authelia_config_storage_mysql_hostname == mariadb_connection_hostname else omit)
     }}
   # /role-specific:authelia
+
+  # role-specific:bookstack
+  - |-
+    {{
+      ({
+        'name': bookstack_database_name,
+        'username': bookstack_database_username,
+        'password': bookstack_database_password,
+      } if bookstack_enabled and bookstack_database_hostname == mariadb_connection_hostname else omit)
+    }}
+  # /role-specific:bookstack
 
   # role-specific:codimd
   - |-
