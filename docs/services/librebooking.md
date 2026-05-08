@@ -76,6 +76,12 @@ librebooking_environment_variables_lb_install_password: ""
 ########################################################################
 ```
 
+### Enable MariaDB
+
+LibreBooking requires a MySQL-compatible database to work. This playbook supports MariaDB, and you can set up a MariaDB instance by enabling it on `vars.yml`.
+
+Refer to [this page](mariadb.md) for the instruction about how to enable it.
+
 ## Usage
 
 After running the command for installation, the LibreBooking instance becomes available at the URL specified with `librebooking_hostname`. With the configuration above, the service is hosted at `https://librebooking.example.com`.
