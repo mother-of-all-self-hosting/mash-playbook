@@ -75,7 +75,7 @@ To use a MySQL compatible database, add the following configuration to your `var
 writefreely_database_type: mysql
 ```
 
-Set `sqlite3` to use SQLite. The SQLite database is stored in the directory specified with `writefreely_data_path`.
+Set `sqlite` to use SQLite. The SQLite database is stored in the directory specified with `writefreely_data_path`.
 
 ### Configuring the mailer (optional)
 
