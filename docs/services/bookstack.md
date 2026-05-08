@@ -20,15 +20,15 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
 # BookStack
 
-The playbook can install and configure [BookStack](https://www.bookstack.org) for you.
+The playbook can install and configure [BookStack](https://www.bookstackapp.com) for you.
 
-BookStack is a feature-rich free software for web based forms and surveys, which supports extensive survey logic.
+BookStack is a platform for organising and storing information.
 
-See the project's [documentation](https://www.bookstack.org/manual/BookStack_Manual) to learn what BookStack does and why it might be useful to you.
+See the project's [documentation](https://www.bookstackapp.com/docs/) to learn what BookStack does and why it might be useful to you.
 
-For details about configuring the [Ansible role for BookStack](https://github.com/mother-of-all-self-hosting/ansible-role-bookstack), you can check them via:
+For details about configuring the [Ansible role for BookStack](https://radicle.network/nodes/seed.radicle.garden/rad%3AzQdRwQ2s3FG5BZUjvSn1GYXbzVmw), you can check them via:
 
-- 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-bookstack/blob/main/docs/configuring-bookstack.md) online
+- 🌐 [the role's documentation](https://radicle.network/nodes/seed.radicle.garden/rad%3AzQdRwQ2s3FG5BZUjvSn1GYXbzVmw/tree/docs/configuring-bookstack.md) online
 - 📁 `roles/galaxy/bookstack/docs/configuring-bookstack.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 ## Dependencies
@@ -61,32 +61,23 @@ bookstack_hostname: bookstack.example.com
 ########################################################################
 ```
 
-**Note**: hosting BookStack under a subpath (by configuring the `bookstack_path_prefix` variable) does not seem to be possible due to BookStack's technical limitations.
-
 ### Enable MariaDB
 
 BookStack requires a MySQL-compatible database to work. This playbook supports MariaDB, and you can set up a MariaDB instance by enabling it on `vars.yml`.
 
 Refer to [this page](mariadb.md) for the instruction to enable it.
 
-### Set administrator's account details
+### Set a random string
 
-You also need to create an instance's user to access to the admin UI after installation. To create one, add the following configuration to your `vars.yml` file.
+You also need to set a random **32 character** string. To do so, add the following configuration to your `vars.yml` file. The value can be generated with `openssl rand -hex 16` or in another way.
 
 ```yaml
-bookstack_environment_variables_admin_user: LIMESURVEY_ADMIN_USERNAME_HERE
-bookstack_environment_variables_admin_password: LIMESURVEY_ADMIN_PASSWORD_HERE
-bookstack_environment_variables_admin_name: LIMESURVEY_ADMIN_NAME_HERE
-bookstack_environment_variables_admin_email: LIMESURVEY_ADMIN_EMAIL_ADDRESS_HERE
+bookstack_environment_variables_app_key: YOUR_SECRET_KEY_HERE
 ```
-
-Make sure to replace the values with your own ones.
 
 ### Configuring the mailer (optional)
 
 On BookStack you can set up a mailer for functions such as password recovery. If you enable the [exim-relay](exim-relay.md) service in your inventory configuration, the playbook will automatically configure it as a mailer for the service.
-
-To actually have the service use (and get messages sent through the exim-relay service), you will need to adjust settings on the service's UI after the service is installed.
 
 >[!WARNING]
 > Without setting an authentication method such as DKIM, SPF, and DMARC for your hostname, emails are most likely to be quarantined as spam at recipient's mail servers. The worst scenario is that your server's IP address or hostname will be included in the spam list such as the one managed by [Spamhaus](https://www.spamhaus.org/), depending on the reputation. As the exim-relay service supports DKIM signing, refer to [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-exim-relay/blob/main/docs/configuring-exim-relay.md#enable-dkim-support-optional) for details about how to set it up.
@@ -95,11 +86,11 @@ To actually have the service use (and get messages sent through the exim-relay s
 
 After running the command for installation, the BookStack instance becomes available at the URL specified with `bookstack_hostname`. With the configuration above, the service is hosted at `https://bookstack.example.com`.
 
-To get started, open the URL `https://bookstack.example.com/index.php/admin` with a web browser to log in to the instance with the administrator account.
+To get started, open the URL `https://example.com` with a web browser, and log in to the instance with the administrator account credentials. The default login credentials can be checked at <https://github.com/solidnerd/docker-bookstack/blob/master/README.md>.
 
 ## Troubleshooting
 
-See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-bookstack/blob/main/docs/configuring-bookstack.md#troubleshooting) on the role's documentation for details.
+See [this section](https://radicle.network/nodes/seed.radicle.garden/rad%3AzQdRwQ2s3FG5BZUjvSn1GYXbzVmw/tree/docs/configuring-bookstack.md#troubleshooting) on the role's documentation for details.
 
 ## Related services
 
