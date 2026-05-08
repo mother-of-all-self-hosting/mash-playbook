@@ -47,6 +47,7 @@ Below is an exhaustive list of the free and open-source software for self-hostin
 | [BentoPDF](https://github.com/alam00000/bentopdf) | Client-side PDF editor and converter | [Link](services/bentopdf.md) |
 | [BIND](https://www.isc.org/bind/) | A full-featured DNS server | [Link](services/bind.md) |
 | [bitmagnet](https://bitmagnet.io/) | BitTorrent indexer, DHT crawler, content classifier and search engine | [Link](services/bitmagnet.md) |
+| [BookStack](https://www.bookstackapp.com) | Platform for organising and storing information | [Link](services/bookstack.md) |
 | [BorgBackup](https://www.borgbackup.org/) (via [borgmatic](https://torsion.org/borgmatic/)) | A deduplicating backup program with optional compression and encryption | [Link](services/backup-borg.md) |
 | [Borg Web UI](https://karanhudia.github.io/borg-ui/) | Unofficial web interface for [BorgBackup](https://borgbackup.readthedocs.io/) | [Link](services/borg-ui.md) |
 | [Browserless](https://docs.browserless.io) | Deploy headless browsers in Docker | [Link](services/browserless.md) |
