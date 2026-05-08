@@ -290,5 +290,6 @@ See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-do
 
 ## Related services
 
+- [BookStack](bookstack.md) — Platform for organising and storing information
 - [Excalidraw](excalidraw.md) — Free and open source virtual whiteboard for sketching hand-drawn like diagrams
 - [Outline](outline.md) — Knowledge base for growing teams
