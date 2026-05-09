@@ -54,8 +54,9 @@ To get started, open the URL with a web browser to create an account.
 
 ## Related services
 
-- "* Arr" applications — [FlareSolverr](flaresolverr.md) / [Homarr](homarr.md) / [Jellyseerr](jellyseerr.md) / [Overseerr](overseerr.md) / [Radarr](radarr.md) / [Sonarr](sonarr.md)
+- "* Arr" applications — [Homarr](homarr.md) / [Radarr](radarr.md) / [Sonarr](sonarr.md)
 - [Jackett](jackett.md)
 - [Jellyfin](jellyfin.md)
+- [Seerr](seerr.md)
 - [Plex](plex.md)
 - [qBittorrent](qbittorrent.md)

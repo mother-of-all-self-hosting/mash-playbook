@@ -1,7 +1,7 @@
 ---
 
 - src: git+https://seed.radicle.garden/z2chD7Kt74JwEMafxTooxN7MaeYtK.git
-  version: v26.5.0-0
+  version: v26.5.2-0
   name: actual
   activation_prefix: actual_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-adguard-home.git
@@ -61,7 +61,7 @@
   name: authentik
   activation_prefix: authentik_
 - src: git+https://github.com/spatterIight/ansible-role-autobrr.git
-  version: v1.77.0-0
+  version: v1.77.1-1
   name: autobrr
   activation_prefix: autobrr_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-aux.git
@@ -281,7 +281,7 @@
   name: flatnotes
   activation_prefix: flatnotes_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-fmd-server.git
-  version: v0.14.2-0
+  version: v0.15.0-0
   name: fmd_server
   activation_prefix: fmd_server_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-focalboard.git
@@ -317,7 +317,7 @@
   name: gitea
   activation_prefix: gitea_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-gotenberg
-  version: v8.31.0-0
+  version: v8.32.0-0
   name: gotenberg
   activation_prefix: gotenberg_
 - src: git+https://seed.radicle.garden/zFVv3koKtheJTTwPSjF3J6DajePK.git
@@ -337,7 +337,7 @@
   name: grafana
   activation_prefix: grafana_
 - src: git+https://github.com/spatterIight/ansible-role-headplane.git
-  version: v0.6.2-0
+  version: v0.6.2-1
   name: headplane
   activation_prefix: headplane_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-headscale.git
@@ -357,7 +357,7 @@
   name: heyform
   activation_prefix: heyform_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-homarr.git
-  version: v1.60.0-0
+  version: v1.61.0-0
   name: homarr
   activation_prefix: homarr_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-hubsite.git
@@ -377,7 +377,7 @@
   name: immich
   activation_prefix: immich_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-immich-kiosk.git
-  version: v0.38.0-1
+  version: v0.38.1-0
   name: immich_kiosk
   activation_prefix: immich_kiosk_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-infisical.git
@@ -400,10 +400,6 @@
   version: v10.11.8-0
   name: jellyfin
   activation_prefix: jellyfin_
-- src: git+https://github.com/sudo-Tiz/ansible-role-jellyseerr.git
-  version: v2.7.3-0
-  name: jellyseerr
-  activation_prefix: jellyseerr_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-jitsi.git
   version: v10888-1
   name: jitsi
@@ -417,7 +413,7 @@
   name: kanboard
   activation_prefix: kanboard_
 - src: git+https://seed.radicle.garden/z4W1oeRiFKEikhj4Mk3HbVJM7er6S.git
-  version: v0.31.0-1
+  version: v0.32.0-0
   name: karakeep
   activation_prefix: karakeep_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-keycloak.git
@@ -453,7 +449,7 @@
   name: librebooking
   activation_prefix: librebooking_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-limesurvey.git
-  version: v6.17.0-0
+  version: v6.17.2-0
   name: limesurvey
   activation_prefix: limesurvey_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-linkding.git
@@ -505,7 +501,7 @@
   name: mediawiki
   activation_prefix: mediawiki_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-meilisearch.git
-  version: v1.42.1-0
+  version: v1.43.0-0
   name: meilisearch
   activation_prefix: meilisearch_
 - src: git+https://seed.radicle.garden/z2arPcue4GZ6G6FY3gZexsJXqHyDs.git
@@ -640,10 +636,6 @@
   version: v1.7.1-0
   name: outline
   activation_prefix: outline_
-- src: git+https://github.com/spatterIight/ansible-role-overseerr.git
-  version: v1.34.0-2
-  name: overseerr
-  activation_prefix: overseerr_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-owncast.git
   version: v0.2.5-1
   name: owncast
@@ -828,6 +820,10 @@
   version: v1.0.0-8
   name: searxng
   activation_prefix: searxng_
+- src: git+https://github.com/spatterIight/ansible-role-seerr.git
+  version: v3.2.0-0
+  name: seerr
+  activation_prefix: seerr_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-semaphore.git
   version: v2.18.2-0
   name: semaphore
