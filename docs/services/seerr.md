@@ -1,14 +1,19 @@
 <!--
 SPDX-FileCopyrightText: 2025 MASH project contributors
+SPDX-FileCopyrightText: 2025 sudo-Tiz
+SPDX-FileCopyrightText: 2025, 2026 Suguru Hirahara
+SPDX-FileCopyrightText: 2026 spatterlight
 
 SPDX-License-Identifier: AGPL-3.0-or-later
-SPDX-FileCopyrightText: 2025 sudo-Tiz
-SPDX-FileCopyrightText: 2025 Suguru Hirahara
 -->
 
 # Seerr
 
-[Seerr](https://github.com/seerr-team/seerr) is a media request and discovery manager with support for [Jellyfin](jellyfin.md), [Plex](plex.md), and Emby.
+The playbook can install and configure [Seerr](https://github.com/seerr-team/seerr) for you.
+
+Seerr is a media request and discovery manager with support for [Jellyfin](jellyfin.md), [Plex](plex.md), and Emby.
+
+See the project's [documentation](https://docs.seerr.dev/) to learn what Seerr does and why it might be useful to you.
 
 ## Dependencies
 
@@ -49,8 +54,5 @@ For additional configuration options, refer to [ansible-role-seerr](https://gith
 
 ## Related services
 
-- "* Arr" applications — [Autobrr](autobrr.md) / [Homarr](homarr.md) / [Radarr](radarr.md) / [Sonarr](sonarr.md)
-- [Jackett](jackett.md)
 - [Jellyfin](jellyfin.md)
 - [Plex](plex.md)
-- [qBittorrent](qbittorrent.md)
