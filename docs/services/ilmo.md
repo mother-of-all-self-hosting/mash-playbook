@@ -51,6 +51,7 @@ To enable this service, add the following configuration to your `vars.yml` file 
 
 ilmo_enabled: true
 ilmo_hostname: ilmo.example.com
+
 ilmo_instance_name: "My library"
 
 ########################################################################
@@ -60,20 +61,15 @@ ilmo_instance_name: "My library"
 ########################################################################
 ```
 
-## Setting up the first user
-
-You need to create a first user (unless you import an existing database).
-You can do this conveniently by running
-
-```bash
-just run-tags ilmo-add-superuser --extra-vars=username=USERNAME --extra-vars=password=PASSWORD --extra-vars=email=EMAIL
-```
-
 ## Usage
 
 After running the command for installation, the ILMO instance becomes available at the URL specified with `ilmo_hostname`. With the configuration above, the service is hosted at `https://ilmo.example.com`.
 
-To get started, open the URL with a web browser to log in to the instance with the user credentials from above.
+To log in to the service and get started, you have to create a user ("superuser") at first. To do so, run the command below after replacing `USERNAME`, `PASSWORD`, and `EMAIL_ADDRESS`:
+
+```bash
+ansible-playbook -i inventory/hosts setup.yml --tags=ilmo-add-superuser -e username=USERNAME -e password=PASSWORD -e email=EMAIL_ADDRESS
+```
 
 Follow the [ILMO documentation](https://ilmo2.readthedocs.io/en/latest/index.html) to learn how to use ILMO.
 

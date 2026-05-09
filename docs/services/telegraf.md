@@ -30,7 +30,7 @@ For details about configuring the [Ansible role for Telegraf](https://github.com
 - 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-telegraf/blob/main/docs/configuring-telegraf.md) online
 - 📁 `roles/galaxy/telegraf/docs/configuring-telegraf.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
-## Adjusting the playbook configuration
+## Configuration
 
 To enable this service, add the following configuration to your `vars.yml` file and re-run the [installation](../installing.md) process:
 

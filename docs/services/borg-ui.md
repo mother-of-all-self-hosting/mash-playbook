@@ -40,7 +40,7 @@ This service requires the following other services:
 - (optional) [Apprise API](apprise.md)
 - (optional) [Valkey](valkey.md) data-store; see [below](#configure-valkey-optional) for details about installation
 
-## Adjusting the playbook configuration
+## Configuration
 
 To enable this service, add the following configuration to your `vars.yml` file:
 

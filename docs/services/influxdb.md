@@ -34,7 +34,7 @@ For details about configuring the [Ansible role for InfluxDB OSS v2](https://git
 - 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-influxdb/blob/main/docs/configuring-influxdb.md) online
 - 📁 `roles/galaxy/influxdb/docs/configuring-influxdb.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
-## Adjusting the playbook configuration
+## Configuration
 
 To enable this service, add the following configuration to your `vars.yml` file and re-run the [installation](../installing.md) process:
 

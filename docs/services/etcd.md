@@ -33,7 +33,7 @@ For details about configuring the [Ansible role for etcd](https://github.com/mot
 >[!NOTE]
 > Our current setup and documentation are **aiming at running etcd for internal purposes** (as a dependency for other [services](../supported-services.md) such as [APISIX Dashboard](apisix-dashboard.md) and [APISIX Gateway](apisix-gateway.md)). If you need a production deployment, you will need to install multiple etcd instances (on multiple machines) and connect them in a cluster. Please note that this is beyond the scope of our documentation here.
 
-## Adjusting the playbook configuration
+## Configuration
 
 To enable this service, add the following configuration to your `vars.yml` file and re-run the [installation](../installing.md) process:
 

@@ -43,7 +43,7 @@ This service requires the following other services:
 - [Valkey](valkey.md) data-store. See [Configuration overview](#configuration-overview) for details about installation
 - (optional) [exim-relay](exim-relay.md) for sending emails via this service
 
-## Adjusting the playbook configuration
+## Configuration
 
 ### Configuration overview
 

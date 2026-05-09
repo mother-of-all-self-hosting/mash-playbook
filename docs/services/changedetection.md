@@ -38,7 +38,7 @@ This service requires the following other services:
 - [Traefik](traefik.md) reverse-proxy server
 - (optional) Notification services which [Apprise API](apprise.md) supports, including [exim-relay](exim-relay.md) mailer, [Gotify](gotify.md), and [ntfy](ntfy.md)
 
-## Adjusting the playbook configuration
+## Configuration
 
 To enable this service, add the following configuration to your `vars.yml` file and re-run the [installation](../installing.md) process:
 

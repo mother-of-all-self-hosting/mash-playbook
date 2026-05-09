@@ -41,7 +41,7 @@ This service requires the following other services:
 - [Valkey](valkey.md) data-store; see [below](#configure-valkey) for details about installation
 - (optional) [exim-relay](exim-relay.md) mailer
 
-## Adjusting the playbook configuration
+## Configuration
 
 To enable this service, add the following configuration to your `vars.yml` file:
 

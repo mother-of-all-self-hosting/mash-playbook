@@ -177,8 +177,7 @@ The example configuration above configures a single OpenID Connect client (appli
 
 You will need to create a shared secret and hash its value (e.g. `php -r 'echo password_hash("PASSWORD_HERE",  PASSWORD_ARGON2ID);'`). Feel free to use another language (or tool) for creating a hash as well. A few different hash algorithms are supported besides Argon2id.
 
-Finally, configure your application, hooking it to Authelia's OpenID Connect identity provider.
-You can get inspired by the [sample configuration](grafana.md#single-sign-on--authelia) we have created for [Grafana](grafana.md).
+Finally, configure your application, hooking it to Authelia's OpenID Connect identity provider. You can get inspired by the [sample configuration](grafana.md#single-sign-on--authelia) we have created for [Grafana](grafana.md).
 
 ## Extending the Authelia configuration
 

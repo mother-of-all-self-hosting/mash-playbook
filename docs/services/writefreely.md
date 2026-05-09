@@ -41,7 +41,7 @@ This service requires the following other services:
 - [Traefik](traefik.md) reverse-proxy server
 - (optional) [exim-relay](exim-relay.md) mailer
 
-## Adjusting the playbook configuration
+## Configuration
 
 To enable this service, add the following configuration to your `vars.yml` file and re-run the [installation](../installing.md) process:
 
@@ -75,7 +75,7 @@ To use a MySQL compatible database, add the following configuration to your `var
 writefreely_database_type: mysql
 ```
 
-Set `sqlite3` to use SQLite. The SQLite database is stored in the directory specified with `writefreely_data_path`.
+Set `sqlite` to use SQLite. The SQLite database is stored in the directory specified with `writefreely_data_path`.
 
 ### Configuring the mailer (optional)
 

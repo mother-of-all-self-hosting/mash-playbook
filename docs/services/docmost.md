@@ -45,7 +45,7 @@ This service requires the following other services:
 - [Valkey](valkey.md) data-store; see [below](#configure-valkey) for details about installation
 - (optional) [exim-relay](exim-relay.md) mailer — required on the default configuration
 
-## Adjusting the playbook configuration
+## Configuration
 
 To enable this service, add the following configuration to your `vars.yml` file:
 
@@ -290,5 +290,6 @@ See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-do
 
 ## Related services
 
+- [BookStack](bookstack.md) — Platform for organising and storing information
 - [Excalidraw](excalidraw.md) — Free and open source virtual whiteboard for sketching hand-drawn like diagrams
 - [Outline](outline.md) — Knowledge base for growing teams

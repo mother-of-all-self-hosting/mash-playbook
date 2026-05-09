@@ -32,6 +32,7 @@ To enable this service, add the following configuration to your `vars.yml` file 
 ########################################################################
 
 labelstudio_enabled: true
+
 labelstudio_hostname: labelstudio.example.com
 
 ########################################################################
@@ -40,8 +41,6 @@ labelstudio_hostname: labelstudio.example.com
 #                                                                      #
 ########################################################################
 ```
-
-In the example configuration above, we configure the service to be hosted at `labelstudio.example.com`.
 
 ## Usage
 
@@ -61,5 +60,4 @@ labelstudio_environment_variables_password: "admin-user-password"
 
 ## Related services
 
-It is possible to attach a pre-labeling backend to LabelStudio.
-One such example project can be found in [this repository](https://github.com/seblful/label-studio-yolo-backend).
+It is possible to attach a pre-labeling backend to LabelStudio. One such example project can be found in [this repository](https://github.com/seblful/label-studio-yolo-backend).

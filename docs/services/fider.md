@@ -40,7 +40,7 @@ This service requires the following other services:
 - [Traefik](traefik.md) reverse-proxy server
 - [exim-relay](exim-relay.md) mailer — required on the default configuration; alternatively it is possible to use one of the SMTP servers which catch outgoing messages like [Mailpit](mailpit.md)
 
-## Adjusting the playbook configuration
+## Configuration
 
 To enable this service, add the following configuration to your `vars.yml` file and re-run the [installation](../installing.md) process:
 

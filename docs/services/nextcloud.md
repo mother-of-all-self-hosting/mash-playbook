@@ -43,7 +43,7 @@ This service requires the following other services:
 - (optional) a [Valkey](valkey.md) data-store; see [below](#configuring-valkey-optional) for details about installation
 - (optional) [exim-relay](exim-relay.md) mailer
 
-## Adjusting the playbook configuration
+## Configuration
 
 To enable this service, add the following configuration to your `vars.yml` file:
 
@@ -348,26 +348,24 @@ To disable the integration altogether (in case of using another LDAP server for 
 nextcloud_lldap_enabled: false
 ```
 
-## Related services
+### Configuring Nextcloud Office application
 
-### Collabora Online Development Edition
-
-On Nextcloud it is possible to integrate the Collabora Online Development Edition (CODE) office suite. This playbook supports it, and you can set up a CODE instance by enabling it on `vars.yml`. You can follow the [documentation](code.md) to install it.
+To use the [Nextcloud Office application](https://apps.nextcloud.com/apps/richdocuments), it is necessary to set up a WOPI (Web Application Open Platform Interface) client such as [Collabora Online Development Edition (CODE)](https://www.collaboraonline.com/code/). This playbook supports CODE, and you can set up a CODE instance by enabling it on `vars.yml`. You can follow the [documentation](code.md) to install it.
 
 By default, this playbook is configured to automatically integrate the CODE instance with the Nextcloud instance which this playbook manages, if both of them are enabled.
 
-After installing both CODE and Nextcloud, run this command to install and configure the [Office](https://apps.nextcloud.com/apps/richdocuments) app for Nextcloud:
+After installing both CODE and Nextcloud, run this command to install and configure the Nextcloud Office application:
 
 ```sh
-just run-tags install-nextcloud-app-collabora
+just run-tags install-nextcloud-app-richdocuments
 ```
 
 Open the URL `https://mash.example.com/nextcloud/settings/admin/richdocuments` to have the instance set up the connection with the CODE instance.
 
-You should then be able to open any document (`.doc`, `.odt`, `.pdf`, etc.) and create new ones in Nextcloud Files with Collabora Online Development Edition's editor.
+You should then be able to open any document (`.doc`, `.odt`, `.pdf`, etc.) and create new ones in Nextcloud Files with the Nextcloud Office application.
 
 >[!NOTE]
-> By default, various private IPv4 networks are whitelisted to connect to the WOPI API (document serving API). If your CODE instance does not live on the same server as Nextcloud, you may need to adjust the list of networks. If necessary, redefine the `nextcloud_app_collabora_wopi_allowlist` environment variable on `vars.yml`.
+> By default, several private IPv4 networks are whitelisted to connect to the WOPI API (document serving API). If your CODE instance does not live on the same server as Nextcloud, you may need to adjust the list of networks. If necessary, redefine the `nextcloud_app_richdocuments_wopi_client_allowlist` environment variable on `vars.yml`.
 
 ## Troubleshooting
 

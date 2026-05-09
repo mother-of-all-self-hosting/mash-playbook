@@ -18,18 +18,18 @@ SPDX-FileCopyrightText: 2024-2026 Suguru Hirahara
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 
-# OTS
+# Heimdall
 
-The playbook can install and configure [OTS](https://ots.fyi/) for you.
+The playbook can install and configure [Heimdall](https://heimdall.site/) for you.
 
-OTS is a one-time-secret sharing platform.
+Heimdall is a dashboard for web applications.
 
-See the project's [documentation](https://github.com/Luzifer/ots/blob/master/README.md) to learn what OTS does and why it might be useful to you.
+See the project's [documentation](https://github.com/linuxserver/docker-heimdall/blob/master/README.md) to learn what Heimdall does and why it might be useful to you.
 
-For details about configuring the [Ansible role for OTS](https://radicle.network/nodes/seed.radicle.garden/rad%3Az3cspgyZXPNcnzNXCYKsEGJK7dKKA), you can check them via:
+For details about configuring the [Ansible role for Heimdall](https://radicle.network/nodes/seed.radicle.garden/rad%3Az8D2GRZrm8JXZeHHe9j1HMvvj8An), you can check them via:
 
-- 🌐 [the role's documentation](https://radicle.network/nodes/seed.radicle.garden/rad%3Az3cspgyZXPNcnzNXCYKsEGJK7dKKA/tree/docs/configuring-ots.md) online
-- 📁 `roles/galaxy/ots/docs/configuring-ots.md` locally, if you have [fetched the Ansible roles](../installing.md)
+- 🌐 [the role's documentation](https://radicle.network/nodes/seed.radicle.garden/rad%3Az8D2GRZrm8JXZeHHe9j1HMvvj8An/tree/docs/configuring-heimdall.md) online
+- 📁 `roles/galaxy/heimdall/docs/configuring-heimdall.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 ## Dependencies
 
@@ -44,26 +44,29 @@ To enable this service, add the following configuration to your `vars.yml` file 
 ```yaml
 ########################################################################
 #                                                                      #
-# ots                                                                  #
+# heimdall                                                             #
 #                                                                      #
 ########################################################################
 
-ots_enabled: true
+heimdall_enabled: true
 
-ots_hostname: mash.example.com
-ots_path_prefix: /ots
+heimdall_hostname: heimdall.example.com
 
 ########################################################################
 #                                                                      #
-# /ots                                                                 #
+# /heimdall                                                            #
 #                                                                      #
 ########################################################################
 ```
 
 ## Usage
 
-After running the command for installation, the OTS instance becomes available at the URL specified with `ots_hostname`. With the configuration above, the service is hosted at `https://mash.example.com/ots`.
+After running the command for installation, the Heimdall instance becomes available at the URL specified with `heimdall_hostname`. With the configuration above, the service is hosted at `https://heimdall.example.com`.
 
 ## Troubleshooting
 
-See [this section](https://radicle.network/nodes/seed.radicle.garden/rad%3Az3cspgyZXPNcnzNXCYKsEGJK7dKKA/tree/docs/configuring-ots.md#troubleshooting) on the role's documentation for details.
+See [this section](https://radicle.network/nodes/seed.radicle.garden/rad%3Az8D2GRZrm8JXZeHHe9j1HMvvj8An/tree/docs/configuring-heimdall.md#troubleshooting) on the role's documentation for details.
+
+## Related services
+
+- [Homarr](homarr.md) — Dashboard for management of your favorite applications and services

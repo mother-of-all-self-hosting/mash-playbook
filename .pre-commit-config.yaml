@@ -52,3 +52,4 @@ repos:
         files: '^roles/mash/'
         args: ['roles/mash']
         pass_filenames: false
+        language_version: python3

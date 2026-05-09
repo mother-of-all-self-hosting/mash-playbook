@@ -31,7 +31,7 @@ For details about configuring the [Ansible role for Yggstack](https://radicle.ne
 - 🌐 [the role's documentation](https://radicle.network/nodes/seed.radicle.garden/rad%3Az2BzsfYJzpSCK4tC8kCR1uCooZYX5/tree/docs/configuring-yggstack.md) online
 - 📁 `roles/galaxy/yggstack/docs/configuring-yggstack.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
-## Adjusting the playbook configuration
+## Configuration
 
 To enable this service, add the following configuration to your `vars.yml` file and re-run the [installation](../installing.md) process:
 

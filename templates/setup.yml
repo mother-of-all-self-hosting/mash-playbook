@@ -178,6 +178,10 @@
     - role: galaxy/bitmagnet
     # /role-specific:bitmagnet
 
+    # role-specific:bookstack
+    - role: galaxy/bookstack
+    # /role-specific:bookstack
+
     # role-specific:borg_ui
     - role: galaxy/borg_ui
     # /role-specific:borg_ui
@@ -410,6 +414,10 @@
     - role: galaxy/healthchecks
     # /role-specific:healthchecks
 
+    # role-specific:heimdall
+    - role: galaxy/heimdall
+    # /role-specific:heimdall
+
     # role-specific:heyform
     - role: galaxy/heyform
     # /role-specific:heyform
@@ -501,6 +509,10 @@
     # role-specific:languagetool
     - role: galaxy/languagetool
     # /role-specific:languagetool
+
+    # role-specific:librebooking
+    - role: galaxy/librebooking
+    # /role-specific:librebooking
 
     # role-specific:limesurvey
     - role: galaxy/limesurvey
@@ -949,6 +961,10 @@
     # role-specific:traefik_certs_dumper
     - role: galaxy/traefik_certs_dumper
     # /role-specific:traefik_certs_dumper
+
+    # role-specific:transfersh
+    - role: galaxy/transfersh
+    # /role-specific:transfersh
 
     # role-specific:tsdproxy
     - role: galaxy/tsdproxy

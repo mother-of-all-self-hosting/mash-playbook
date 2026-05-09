@@ -35,7 +35,7 @@ This service requires the following other services:
 - (optional) [Grafana](grafana.md) — web UI that can query the Prometheus datasource (connection) and display the logs
 - (optional) [Traefik](traefik.md) — reverse-proxy server for exposing Prometheus Blackbox Exporter
 
-## Adjusting the playbook configuration
+## Configuration
 
 To enable this service, add the following configuration to your `vars.yml` file and re-run the [installation](../installing.md) process:
 

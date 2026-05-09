@@ -40,7 +40,7 @@ This service requires the following other services:
 - (optional) [Postgres](postgres.md) / MySQL / [MariaDB](mariadb.md) database — Kutt will default to [SQLite](https://www.sqlite.org/) if Postgres is not enabled
 - (optional) [Valkey](valkey.md) data-store; see [below](#configuring-valkey-optional) for details about installation
 
-## Adjusting the playbook configuration
+## Configuration
 
 To enable this service, add the following configuration to your `vars.yml` file:
 

@@ -47,6 +47,7 @@ Below is an exhaustive list of the free and open-source software for self-hostin
 | [BentoPDF](https://github.com/alam00000/bentopdf) | Client-side PDF editor and converter | [Link](services/bentopdf.md) |
 | [BIND](https://www.isc.org/bind/) | A full-featured DNS server | [Link](services/bind.md) |
 | [bitmagnet](https://bitmagnet.io/) | BitTorrent indexer, DHT crawler, content classifier and search engine | [Link](services/bitmagnet.md) |
+| [BookStack](https://www.bookstackapp.com) | Platform for organising and storing information | [Link](services/bookstack.md) |
 | [BorgBackup](https://www.borgbackup.org/) (via [borgmatic](https://torsion.org/borgmatic/)) | A deduplicating backup program with optional compression and encryption | [Link](services/backup-borg.md) |
 | [Borg Web UI](https://karanhudia.github.io/borg-ui/) | Unofficial web interface for [BorgBackup](https://borgbackup.readthedocs.io/) | [Link](services/borg-ui.md) |
 | [Browserless](https://docs.browserless.io) | Deploy headless browsers in Docker | [Link](services/browserless.md) |
@@ -109,6 +110,7 @@ Below is an exhaustive list of the free and open-source software for self-hostin
 | [Headplane](https://headplane.net/) | A feature-complete Web UI for Headscale | [Link](services/headplane.md) |
 | [Headscale](https://headscale.net/) | A Tailscale-compatible control server for managing Tailscale devices | [Link](services/headscale.md) |
 | [Healthchecks](https://healthchecks.io/) | A simple and Effective Cron Job Monitoring solution | [Link](services/healthchecks.md) |
+| [Heimdall](https://heimdall.site/) | Dashboard for web applications | [Link](services/heimdall.md) |
 | [HeyForm](https://github.com/heyform/heyform) | Form builder that lets you create, customize, and automate forms | [Link](services/heyform.md) |
 | [Homarr](https://homarr.dev/) | Highly customizable dashboard for management of your favorite applications and services with a drag-and-drop grid system | [Link](services/homarr.md) |
 | [Hubsite](https://github.com/moan0s/hubsite) | A simple, static site that shows an overview of the available services | [Link](services/hubsite.md) |
@@ -132,6 +134,7 @@ Below is an exhaustive list of the free and open-source software for self-hostin
 | [LabelStudio](https://labelstud.io/) | Data labeling tool that supports multiple projects, users, and data types in one platform | [Link](services/labelstudio.md) |
 | [Lago](https://www.getlago.com/) | Metering and usage-based billing | [Link](services/lago.md) |
 | [LanguageTool](https://languagetool.org/) | An online grammar, style and spell checker | [Link](services/languagetool.md) |
+| [LibreBooking](https://github.com/LibreBooking/librebooking) | Resource scheduling and booking application | [Link](services/librebooking.md) |
 | [LimeSurvey](https://www.limesurvey.org) | Web based forms and surveys | [Link](services/limesurvey.md) |
 | [linkding](https://github.com/sissbruecker/linkding/) | Bookmark manager designed to be minimal and fast | [Link](services/linkding.md) |
 | [Linkwarden](https://github.com/linkwarden/linkwarden) | Collaborative bookmark manager to collect, organize and archive webpages | [Link](services/linkwarden.md) |
@@ -240,6 +243,7 @@ Below is an exhaustive list of the free and open-source software for self-hostin
 | [Tinyauth](https://tinyauth.app/) | Simple authentication middleware that adds a login screen or OAuth with providers to your Docker services | [Link](services/tinyauth.md) |
 | [Traefik](https://doc.traefik.io/traefik/) | A container-aware reverse-proxy server | [Link](services/traefik.md) |
 | [traefik-certs-dumper](https://github.com/ldez/traefik-certs-dumper) | Dump ACME data from Traefik to certificates | [Link](services/traefik-certs-dumper.md) |
+| [transfer.sh](https://github.com/dutchcoders/transfer.sh) | File sharing with the command-line | [Link](services/transfersh.md) |
 | [TSDProxy](https://almeidapaulopt.github.io/tsdproxy/) | A proxy for virtual services in Tailscale | [Link](services/tsdproxy.md) |
 | [Typesense](https://typesense.org) | Fast and typo-tolerant fulltext search engine | [Link](services/typesense.md) |
 | [Uptime Kuma](https://uptime.kuma.pet/) | A fancy monitoring tool | [Link](services/uptime-kuma.md) |

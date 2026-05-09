@@ -227,5 +227,5 @@ After installation, the Notfellchen instance becomes available at the URL specif
 To log in to the service and get started, you have to create a user ("superuser") at first. To do so, run the command below after replacing `USERNAME`, `PASSWORD`, and `EMAIL_ADDRESS`:
 
 ```bash
-just run-tags notfellchen-add-superuser --extra-vars=username=USERNAME --extra-vars=password=PASSWORD --extra-vars=email=EMAIL_ADDRESS
+ansible-playbook -i inventory/hosts setup.yml --tags=notfellchen-add-superuser -e username=USERNAME -e password=PASSWORD -e email=EMAIL_ADDRESS
 ```

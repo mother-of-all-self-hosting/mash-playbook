@@ -39,7 +39,7 @@ This service requires the following other services:
 
 Note that Grafana is just a visualization tool and requires pulling data from a metrics (time-series) database.
 
-## Adjusting the playbook configuration
+## Configuration
 
 To enable this service, add the following configuration to your `vars.yml` file and re-run the [installation](../installing.md) process:
 

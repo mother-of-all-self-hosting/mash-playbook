@@ -45,7 +45,7 @@ This service requires the following other services:
 - (optional) [Meilisearch](meilisearch.md)
 - (optional) [Postgres](postgres.md) / MySQL / [MariaDB](mariadb.md) database
 
-## Adjusting the playbook configuration
+## Configuration
 
 To enable this service, add the following configuration to your `vars.yml` file and re-run the [installation](../installing.md) process:
 

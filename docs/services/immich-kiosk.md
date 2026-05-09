@@ -38,7 +38,7 @@ This service requires the following other services:
 - [Immich](immich.md)
 - (optional) [Traefik](traefik.md) — a reverse-proxy server for exposing Immich Kiosk publicly
 
-## Adjusting the playbook configuration
+## Configuration
 
 To enable this service, add the following configuration to your `vars.yml` file and re-run the [installation](../installing.md) process:
 

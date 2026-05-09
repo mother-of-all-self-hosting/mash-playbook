@@ -42,7 +42,7 @@ This service requires the following other services:
 - (optional) [Traefik](traefik.md) reverse-proxy server — required on the default configuration for retrieving a TLS certificate
 - (optional) [traefik-certs-dumper](traefik-certs-dumper.md) — required on the default configuration for setting up the TLS certificate
 
-## Adjusting the playbook configuration
+## Configuration
 
 To enable this service, add the following configuration to your `vars.yml` file and re-run the [installation](../installing.md) process:
 

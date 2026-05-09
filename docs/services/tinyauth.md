@@ -58,7 +58,7 @@ This service requires the following other services:
 >[!NOTE]
 > Tinyauth is available for other proxies like nginx and Caddy. See the documentation for details: <https://tinyauth.app/docs/guides/nginx-proxy-manager> and <https://tinyauth.app/docs/community/caddy>
 
-## Adjusting the playbook configuration
+## Configuration
 
 To enable this service, add the following configuration to your `vars.yml` file and re-run the [installation](../installing.md) process:
 

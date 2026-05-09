@@ -27,7 +27,7 @@ See the project's [documentation](https://postgis.net/documentation/) to learn w
 
 Some of the services installed by this playbook require a Postgres database with PostGIS extensions installed. Enabling the service will automatically wire all other services which require such a database to use it.
 
-## Adjusting the playbook configuration
+## Configuration
 
 To enable this service, add the following configuration to your `vars.yml` file and re-run the [installation](../installing.md) process:
 

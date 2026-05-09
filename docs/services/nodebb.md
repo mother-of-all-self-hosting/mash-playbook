@@ -40,7 +40,7 @@ This service requires the following other services:
 - (optional) [exim-relay](exim-relay.md) mailer
 - (optional) [ntfy](ntfy.md) — supported by [the plugin](https://github.com/NodeBB/nodebb-plugin-ntfy)
 
-## Adjusting the playbook configuration
+## Configuration
 
 To enable this service, add the following configuration to your `vars.yml` file:
 

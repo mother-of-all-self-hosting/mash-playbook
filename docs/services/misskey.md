@@ -41,7 +41,7 @@ This service requires the following other services:
 - (optional) [exim-relay](exim-relay.md) mailer
 - (optional) [Meilisearch](meilisearch.md)
 
-## Adjusting the playbook configuration
+## Configuration
 
 To enable this service, add the following configuration to your `vars.yml` file:
 

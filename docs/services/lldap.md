@@ -42,7 +42,7 @@ This service requires the following other services:
 - (optional) [exim-relay](exim-relay.md) mailer
 - (optional) [Postgres](postgres.md) / MySQL / [MariaDB](mariadb.md) database — LLDAP will default to [SQLite](https://www.sqlite.org/) if Postgres is not enabled
 
-## Adjusting the playbook configuration
+## Configuration
 
 To enable this service, add the following configuration to your `vars.yml` file and re-run the [installation](../installing.md) process:
 

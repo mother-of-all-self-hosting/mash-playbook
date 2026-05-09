@@ -72,7 +72,7 @@ To use a CODE instance to edit office documents, you need to integrate it with a
 By default, this playbook is configured to automatically integrate the CODE instance with the Nextcloud instance which this playbook manages, if both of them are enabled.
 
 >[!NOTE]
-> For details, see [this section about the integration](nextcloud.md#collabora-online-development-edition) on our Nextcloud documentation.
+> For details, see [this section about the integration](nextcloud.md#configuring-nextcloud-office-application) on our Nextcloud documentation.
 
 ## Usage
 

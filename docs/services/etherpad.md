@@ -42,7 +42,7 @@ This service requires the following other services:
 - Datapase supported by [ueberdb2](https://www.npmjs.com/package/ueberdb2) such as [CouchDB](couchdb.md) / [Postgres](postgres.md) / MySQL / [MariaDB](mariadb.md) database — Etherpad will default to [SQLite](https://www.sqlite.org/) if Postgres is not enabled
 - [Traefik](traefik.md) reverse-proxy server
 
-## Adjusting the playbook configuration
+## Configuration
 
 To enable this service, add the following configuration to your `vars.yml` file and re-run the [installation](../installing.md) process:
 

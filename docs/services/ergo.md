@@ -37,7 +37,7 @@ This service requires the following other services:
 - (optional) [Postgres](postgres.md) / MySQL / [MariaDB](mariadb.md) / [SQLite](https://www.sqlite.org/) database — for persistent message history
 - (optional) [Traefik](traefik.md) reverse-proxy server — required on the default configuration
 
-## Adjusting the playbook configuration
+## Configuration
 
 To enable this service, add the following configuration to your `vars.yml` file and re-run the [installation](../installing.md) process:
 

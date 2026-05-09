@@ -32,7 +32,7 @@ For details about configuring the [Ansible role for MariaDB](https://github.com/
 - 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-mariadb/blob/main/docs/configuring-mariadb.md) online
 - 📁 `roles/galaxy/mariadb/docs/configuring-mariadb.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
-## Adjusting the playbook configuration
+## Configuration
 
 To enable this service, add the following configuration to your `vars.yml` file and re-run the [installation](../installing.md) process:
 

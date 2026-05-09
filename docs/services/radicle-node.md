@@ -36,7 +36,7 @@ For details about configuring the [Ansible role for Radicle node](https://radicl
 
 You may need to open some ports to your server, if you use another firewall in front of the server. Refer to [the role's documentation](https://radicle.network/nodes/seed.radicle.garden/rad%3Az28JTUhepmbS3hLZyUeEvXeqk9QW5/tree/docs/configuring-radicle-node.md#prerequisites) to check which ones to be configured.
 
-## Adjusting the playbook configuration
+## Configuration
 
 To enable this service, add the following configuration to your `vars.yml` file and re-run the [installation](../installing.md) process:
 

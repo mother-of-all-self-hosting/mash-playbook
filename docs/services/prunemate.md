@@ -43,7 +43,7 @@ This service requires the following other services:
 - (optional) [Gotify](gotify.md)
 - (optional) [ntfy](ntfy.md)
 
-## Adjusting the playbook configuration
+## Configuration
 
 To enable this service, add the following configuration to your `vars.yml` file and re-run the [installation](../installing.md) process:
 

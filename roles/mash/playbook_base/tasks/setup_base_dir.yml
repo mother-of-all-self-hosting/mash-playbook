@@ -4,7 +4,7 @@
 
 ---
 
-- name: Ensure mash base paths exists
+- name: Ensure mash base path exists
   ansible.builtin.file:
     path: "{{ mash_playbook_base_path }}"
     state: directory

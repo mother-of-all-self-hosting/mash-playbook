@@ -39,7 +39,7 @@ This service requires the following other services:
 - (optional) [Postgres](postgres.md) database — required on the default configuration
 - (optional) [YOURLS](yourls.md)
 
-## Adjusting the playbook configuration
+## Configuration
 
 To enable this service, add the following configuration to your `vars.yml` file and re-run the [installation](../installing.md) process:
 
