@@ -97,7 +97,7 @@ Fill in the rest of the form with your preferences, and you're done!
 - [bitmagnet](bitmagnet.md) — BitTorrent indexer, DHT crawler, content classifier and search engine
 - [Jackett](jackett.md) — API for torrent trackers
 - [Jellyfin](jellyfin.md) — Personal media server
-- [Overseerr](overseerr.md) — Request management and media discovery tool for the Plex ecosystem
+- [Seerr](seerr.md) — A media request and discovery manager
 - [Plex](plex.md) — Personal media server
 - [Radarr](radarr.md) — Movie organizer/manager for Usenet and BitTorrent users
 - [Sonarr](sonarr.md) — PVR for newsgroup and BitTorrent users
