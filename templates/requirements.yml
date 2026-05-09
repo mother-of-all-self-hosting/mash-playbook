@@ -972,6 +972,10 @@
   version: v2.3.0-2
   name: vikunja
   activation_prefix: vikunja_
+- src: git+https://github.com/spatterIight/ansible-role-wazuh.git
+  version: v4.14.5-0
+  name: wazuh
+  activation_prefix: wazuh_
 - src: git+https://seed.radicle.garden/z3NoFEkNtQQjSGjLvweqwCFPbC59R.git
   version: v5.17.1.0-0
   name: weblate
