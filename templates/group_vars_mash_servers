@@ -513,7 +513,7 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
 
   # role-specific:headplane
   - |-
-    {{ ({'name': (headplane_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'headplane']} if headplane_enabled else omit) }}
+    {{ ({'name': (headplane_identifier + '.service'), 'priority': 2000, 'restart_necessary': (headplane_restart_necessary | bool), 'groups': ['mash', 'headplane']} if headplane_enabled else omit) }}
   # /role-specific:headplane
 
   # role-specific:headscale
