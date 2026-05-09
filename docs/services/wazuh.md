@@ -1,12 +1,17 @@
 <!--
-SPDX-FileCopyrightText: 2026 MASH project contributors
+SPDX-FileCopyrightText: 2025, 2026 MASH project contributors
+SPDX-FileCopyrightText: 2025, 2026 Suguru Hirahara
 
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 
 # Wazuh
 
-[Wazuh](https://wazuh.com/) is an open source security platform providing unified SIEM, threat detection, and compliance monitoring. It runs as three containers: a manager (rules engine and agent coordinator), an indexer (OpenSearch-based event storage), and a dashboard (web UI).
+The playbook can install and configure [Wazuh](https://wazuh.com/) for you.
+
+Wazuh is an open source security platform providing unified SIEM, threat detection, and compliance monitoring. It runs as three containers: a manager (rules engine and agent coordinator), an indexer (OpenSearch-based event storage), and a dashboard (web UI).
+
+See the project's [documentation](https://documentation.wazuh.com/current/index.html) to learn what Wazuh does and why it might be useful to you.
 
 ## Dependencies
 
@@ -71,4 +76,4 @@ Take a look at:
 
 After running the installation command, the Wazuh dashboard becomes available at the URL specified with `wazuh_hostname`. With the configuration above, the service is hosted at `https://wazuh.example.com`.
 
-Log in with the username `admin` and the password set in `wazuh_indexer_admin_password`.
+To get started, open the URL with a web browser to log in to the instance with the username `admin` and the password set to `wazuh_indexer_admin_password`.
