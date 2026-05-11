@@ -1218,7 +1218,7 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
 
   # role-specific:tandoor
   - |-
-    {{ ({'name': (tandoor_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'tandoor']} if tandoor_enabled else omit) }}
+    {{ ({'name': (tandoor_identifier + '.service'), 'priority': 2000, 'restart_necessary': (tandoor_restart_necessary | bool), 'groups': ['mash', 'tandoor']} if tandoor_enabled else omit) }}
   # /role-specific:tandoor
 
   # role-specific:teable
