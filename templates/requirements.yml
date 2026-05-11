@@ -273,7 +273,7 @@
   name: filebrowser_quantum
   activation_prefix: filebrowser_quantum_
 - src: git+https://github.com/sudo-Tiz/ansible-role-flaresolverr.git
-  version: v3.4.1-0
+  version: v3.4.1-1
   name: flaresolverr
   activation_prefix: flaresolverr_
 - src: git+https://seed.radicle.garden/z49LkutSMcaLA2DBazn1h4V6Pn6GK.git
