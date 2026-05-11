@@ -27,11 +27,16 @@ The playbook can install and configure [I hate money](https://github.com/spiral-
 
 See the project's [documentation](https://ihatemoney.readthedocs.io/en/latest/) to learn what "I hate money" does and why it might be useful to you.
 
+For details about configuring the [Ansible role for I hate money](https://github.com/IUCCA/ansible-role-ihatemoney), you can check them via:
+
+- 🌐 [the role's documentation](https://github.com/IUCCA/ansible-role-ihatemoney/blob/main/docs/configuring-ihatemoney.md) online
+- 📁 `roles/galaxy/ihatemoney/docs/configuring-ihatemoney.md` locally, if you have [fetched the Ansible roles](../installing.md)
+
 ## Dependencies
 
 This service requires the following other services:
 
-- [Postgres](postgres.md) database
+- [Postgres](postgres.md) / MySQL / [MariaDB](mariadb.md) / [SQLite](https://www.sqlite.org/) database
 - [Traefik](traefik.md) reverse-proxy server
 - (optional) [exim-relay](exim-relay.md) mailer
 
@@ -58,6 +63,18 @@ ihatemoney_path_prefix: /ihatemoney
 ########################################################################
 ```
 
+### Select database to use (optional)
+
+By default I hate money is configured to use Postgres, but you can choose other database such as SQLite and MySQL (MariaDB).
+
+To use MariaDB, add the following configuration to your `vars.yml` file:
+
+```yaml
+ihatemoney_database_type: mysql
+```
+
+See [this section](https://github.com/IUCCA/ansible-role-ihatemoney/blob/main/docs/configuring-ihatemoney.md#specify-database-optional) on the role's documentation for details.
+
 ### Configuring the mailer (optional)
 
 On "I hate money" you can set up a mailer for functions such as password recovery. If you enable the [exim-relay](exim-relay.md) service in your inventory configuration, the playbook will automatically configure it as a mailer for the service.
@@ -66,27 +83,6 @@ To actually have the service use (and get messages sent through the exim-relay s
 
 >[!WARNING]
 > Without setting an authentication method such as DKIM, SPF, and DMARC for your hostname, emails are most likely to be quarantined as spam at recipient's mail servers. The worst scenario is that your server's IP address or hostname will be included in the spam list such as the one managed by [Spamhaus](https://www.spamhaus.org/), depending on the reputation. As the exim-relay service supports DKIM signing, refer to [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-exim-relay/blob/main/docs/configuring-exim-relay.md#enable-dkim-support-optional) for details about how to set it up.
-
-### Enable the admin dashboard (optional)
-
-You can enable the admin dashboard by adding the following configuration to your `vars.yml` file.
-
-```yaml
-ihatemoney_admin_password: ADMIN_PASSWORD_HERE
-```
-
-Having installed the service, generate a hashed password by **SSH-ing into into the server** and running a command as below:
-
-```sh
-docker exec -it mash-ihatemoney ihatemoney generate_password_hash
-```
-
-After populating the variable with the hashed password, run the installation process again.
-Your variable should contain the whole output from above, including hashing prefix, salt and key:
-
-```yaml
-ihatemoney_admin_password: "scrypt:32768:8:1$....$......."
-```
 
 ### Control project creation access (optional)
 
@@ -101,6 +97,30 @@ ihatemoney_public_project_creation: true
 ## Usage
 
 After running the command for installation, the "I hate money" instance becomes available at the URL specified with `ihatemoney_hostname` and `ihatemoney_path_prefix`. With the configuration above, the service is hosted at `https://mash.example.com/ihatemoney`.
+
+### Enabling administrative tasks
+
+By default all administrative tasks are disabled. You can enable them by defining the `ADMIN_PASSWORD` environment variable.
+
+You can generate an administrator's hashed password by **SSH-ing into into the server** and running a command as below:
+
+```sh
+docker exec -it mash-ihatemoney ihatemoney generate_password_hash
+```
+
+The generated value needs to be specified to the `ihatemoney_admin_password` variable on your `vars.yml` file:
+
+```yaml
+ihatemoney_admin_password: YOUR_HASHED_PASSWORD_HERE
+```
+
+Note that the value should contain the whole output of the command, including the hashing prefix, salt and key in the format as below:
+
+```yaml
+ihatemoney_admin_password: "scrypt:32768:8:1$....$......."
+```
+
+After populating the variable, re-run the installation process.
 
 ## Related services
 
