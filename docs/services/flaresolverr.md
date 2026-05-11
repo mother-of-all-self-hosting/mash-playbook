@@ -42,17 +42,11 @@ flaresolverr_enabled: true
 
 ## Usage
 
-After running the installation command, the FlareSolverr instance becomes available internally at the `flaresolverr_container_http_port` value (default is **8191**) and is reachable from any other media service like [Jackett](jackett.md). If you need the container to be accessible from outside, you can use `flaresolverr_container_http_bind_port` or `flaresolverr_hostname`.
+After running the command for installation, the FlareSolverr instance becomes available and starts running on the server, listening to the specified port (port 8191 by default) and is reachable from other services.
+
+If you need the container to be accessible from outside, you can use `flaresolverr_container_http_bind_port` or `flaresolverr_hostname`.
 
 > **Note:**
 > The `flaresolverr_path_prefix` variable can be adjusted to host under a subpath (e.g., `flaresolverr_path_prefix: /flaresolverr`), but this configuration has not been tested yet.
 
 For additional configuration options, refer to the [ansible-role-flaresolverr](https://github.com/sudo-Tiz/ansible-role-flaresolverr)'s `defaults/main.yml` file.
-
-## Related services
-
-- "* Arr" applications — [Autobrr](autobrr.md) / [Homarr](homarr.md) / [Radarr](radarr.md) / [Sonarr](sonarr.md)
-- [Jackett](jackett.md)
-- [Jellyfin](jellyfin.md)
-- [Seerr](seerr.md)
-- [qBittorrent](qbittorrent.md)
