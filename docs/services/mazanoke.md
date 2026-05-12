@@ -20,15 +20,15 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
 # MAZANOKE
 
-The playbook can install and configure [MAZANOKE](https://mazanokebudget.org) for you.
+The playbook can install and configure [MAZANOKE](https://github.com/civilblur/mazanoke) for you.
 
-MAZANOKE is a local-first personal finance tool.
+MAZANOKE is a self-hosted web app offering a simple image optimizer that runs in your browser. All files are processed entirely on the client side.
 
-See the project's [documentation](https://mazanokebudget.org/docs/) to learn what MAZANOKE does and why it might be useful to you.
+See the project's [documentation](https://github.com/civilblur/mazanoke/blob/main/README.md) to learn what MAZANOKE does and why it might be useful to you.
 
-For details about configuring the [Ansible role for MAZANOKE](https://radicle.network/nodes/seed.radicle.garden/rad%3Az2chD7Kt74JwEMafxTooxN7MaeYtK), you can check them via:
+For details about configuring the [Ansible role for MAZANOKE](https://radicle.network/nodes/seed.radicle.garden/rad%3AzGHUEPjboBuF8AWo3HKxEraEuHFq), you can check them via:
 
-- 🌐 [the role's documentation](https://radicle.network/nodes/seed.radicle.garden/rad%3Az2chD7Kt74JwEMafxTooxN7MaeYtK/tree/docs/configuring-mazanoke.md) online
+- 🌐 [the role's documentation](https://radicle.network/nodes/seed.radicle.garden/rad%3AzGHUEPjboBuF8AWo3HKxEraEuHFq/tree/docs/configuring-mazanoke.md) online
 - 📁 `roles/galaxy/mazanoke/docs/configuring-mazanoke.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 ## Dependencies
@@ -63,11 +63,9 @@ mazanoke_hostname: mazanoke.example.com
 
 After running the command for installation, the MAZANOKE instance becomes available at the URL specified with `mazanoke_hostname`. With the configuration above, the service is hosted at `https://mazanoke.example.com`.
 
-To get started, open the URL with a web browser to create an account.
-
 ## Troubleshooting
 
-See [this section](https://radicle.network/nodes/seed.radicle.garden/rad%3Az2chD7Kt74JwEMafxTooxN7MaeYtK/tree/docs/configuring-mazanoke.md#troubleshooting) on the role's documentation for details.
+See [this section](https://radicle.network/nodes/seed.radicle.garden/rad%3AzGHUEPjboBuF8AWo3HKxEraEuHFq/tree/docs/configuring-mazanoke.md#troubleshooting) on the role's documentation for details.
 
 ## Related services
 
