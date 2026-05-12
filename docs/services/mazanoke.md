@@ -69,4 +69,4 @@ See [this section](https://radicle.network/nodes/seed.radicle.garden/rad%3AzGHUE
 
 ## Related services
 
-- [I hate money](ihatemoney.md) — Shared budget manager
+- [ConvertX](convertx.md) — Online file converter which supports a lot of different formats
