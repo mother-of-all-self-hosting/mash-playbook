@@ -26,7 +26,7 @@ Before working on implementation, check if:
 
 To support a new service, at first you need to create an Ansible role for it in its public git repository. It does not have to be maintained on a specific forge like GitHub; you can use GitLab, Codeberg, or anywhere you choose. Note that the instance should be stable and globally available as the roles are to be fetched anytime.
 
-When it comes to the structure of roles, you can follow existing roles such as [`ansible-role-postgres`](https://github.com/mother-of-all-self-hosting/ansible-role-postgres), [`ansible-role-syncthing`](https://github.com/mother-of-all-self-hosting/ansible-role-syncthing), and [`ansible-role-ntfy`](https://github.com/mother-of-all-self-hosting/ansible-role-ntfy). Generally, it is not recommended to create a role from the scratch as it can lack important variables required for the playbook. If you are not quite sure where to start, your best bet would be to copy the existing (and recently updated) role maintained by [MASH project](https://github.com/mother-of-all-self-hosting), and reuse it as a template.
+When it comes to the structure of roles, you can follow existing roles such as [`ansible-role-echoip`](https://github.com/mother-of-all-self-hosting/ansible-role-echoip), [`ansible-role-readeck`](https://github.com/mother-of-all-self-hosting/ansible-role-readeck), and [`ansible-role-syncthing`](https://github.com/mother-of-all-self-hosting/ansible-role-syncthing). Generally, it is not recommended to create a role from the scratch as it can lack important variables required for the playbook. If you are not quite sure where to start, your best bet would be to copy the existing (and recently updated) role maintained by [MASH project](https://github.com/mother-of-all-self-hosting), and reuse it as a template.
 
 💡 **Notes**:
 
@@ -74,7 +74,7 @@ There are a few files that you need to adapt:
 │   └── setup.yml  ← Add your Ansible role
 ```
 
-💡 Make sure to edit configuration files inside `templates` — These are source files to be optimized and used when running [`just`](just.md) commands to install, configure, or uninstall services.
+Make sure to edit configuration files inside `templates` — These are source files to be optimized and used when running [`just`](just.md) commands to install, configure, or uninstall services.
 
 #### Add the role to `group_vars_mash_servers` in `templates` directory
 
@@ -84,7 +84,8 @@ When adding the role, replace `YOUR-SERVICE` with yours, and also mind the place
 
 See below for details about what to configure. Note that not all roles require to be wired to anything other than `systemd_service_manager`.
 
-💡 If the role requires a fixed string for something like passwords, please try to avoid pre-setting it with `mash_playbook_generic_secret_key` for the sake of users. It is intended for secrets that are fine to be changed later.
+>[!NOTE]
+> Please do not use `mash_playbook_generic_secret_key` for a fixed string for something like passwords, because it is intended for secrets that are fine to be changed later.
 
 <details>
 <summary>Wire the role to systemd_service_manager</summary>
@@ -259,3 +260,13 @@ YOUR-SERVICE_config_mailer_protocol: "{{ 'smtp' if exim_relay_enabled else '' }}
 Please consider to add a line like `# Project source code URL: YOUR-SERVICE-GIT-REPO` to your Ansible role's `defaults/main.yml` file, so that [`bin/feeds.py`](/bin/feeds.py) can automatically find the Atom/RSS feed for new releases.
 
 If you have any questions, you are welcomed to join the Matrix room for the MASH playbook and free free to ask: <https://matrix.to/#/%23mash-playbook:devture.com>
+
+## Maintain your role
+
+While the roles managed under [the MASH organization](https://github.com/orgs/mother-of-all-self-hosting) are maintained and updated when necessary, it is essentially your responsibility to maintain yours, though a team member might send a push request to your role's repository to apply the changes which have been added to the MASH roles in order to improve maintainability (by sharing codebase).
+
+If the role is regarded to have been abandoned by the author from the viewpoint of common sense (the role being unusable for a long time, for example), the MASH organization might fork the repository at will to resurrect the role to make it usable on the MASH playbook. However, if it simply stopped working or blocks the playbook from running, the role can be removed from the playbook until the issue will be fixed — though this has not happened yet.
+
+Please keep an eye on the roles maintained by the MASH organization to keep yours up-to-date by adding proper changes if any. Since the background of the decision for the changes are usually not announced (though you may find references in a commit message), you might as well to ask a team member on the Matrix room about changes you are expected to apply.
+
+Please do not hesitate to ask for help to let the community members help you! 👋
