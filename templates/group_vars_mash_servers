@@ -731,6 +731,11 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
     {{ ({'name': (matterbridge_identifier + '.service'), 'priority': 2000, 'restart_necessary': (matterbridge_restart_necessary | bool), 'groups': ['mash', 'matterbridge']} if matterbridge_enabled else omit) }}
   # /role-specific:matterbridge
 
+  # role-specific:mazanoke
+  - |-
+    {{ ({'name': (mazanoke_identifier + '.service'), 'priority': 2000, 'restart_necessary': (mazanoke_restart_necessary | bool), 'groups': ['mash', 'mazanoke']} if mazanoke_enabled else omit) }}
+  # /role-specific:mazanoke
+
   # role-specific:mediawiki
   - |-
     {{ ({'name': (mediawiki_identifier + '.service'), 'priority': 2000, 'restart_necessary': (mediawiki_restart_necessary | bool), 'groups': ['mash', 'mediawiki']} if mediawiki_enabled else omit) }}
@@ -10398,6 +10403,44 @@ matterbridge_gid: "{{ mash_playbook_gid }}"
 #                                                                      #
 ########################################################################
 # /role-specific:matterbridge
+
+
+
+# role-specific:mazanoke
+########################################################################
+#                                                                      #
+# mazanoke                                                             #
+#                                                                      #
+########################################################################
+
+mazanoke_enabled: false
+
+mazanoke_identifier: "{{ mash_playbook_service_identifier_prefix }}mazanoke"
+
+mazanoke_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}mazanoke"
+
+mazanoke_uid: "{{ mash_playbook_uid }}"
+mazanoke_gid: "{{ mash_playbook_gid }}"
+
+mazanoke_container_additional_networks_auto: |
+  {{
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+  }}
+
+mazanoke_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+mazanoke_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+
+# role-specific:traefik
+mazanoke_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
+mazanoke_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
+# /role-specific:traefik
+
+########################################################################
+#                                                                      #
+# /mazanoke                                                            #
+#                                                                      #
+########################################################################
+# /role-specific:mazanoke
 
 
 
