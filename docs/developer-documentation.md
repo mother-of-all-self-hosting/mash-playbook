@@ -263,10 +263,10 @@ If you have any questions, you are welcomed to join the Matrix room for the MASH
 
 ## Maintain your role
 
-While the roles managed under [the MASH organization](https://github.com/orgs/mother-of-all-self-hosting) are maintained and updated when necessary, it is essentially your responsibility to maintain yours, though a team member might send a push request to your role's repository to apply the changes which have been added to the MASH roles in order to improve maintainability (by sharing codebase).
+While the roles managed under [the MASH organization](https://github.com/orgs/mother-of-all-self-hosting) are maintained and updated when necessary by the organization in general, it is essentially your responsibility to maintain yours, though an organization member might send a push request to your role's repository to apply such changes that have been added to the MASH roles in order to improve maintainability (by sharing codebase).
 
 If the role is regarded to have been abandoned by the author from the viewpoint of common sense (the role being unusable for a long time, for example), the MASH organization might fork the repository at will to resurrect the role to make it usable on the MASH playbook. However, if it simply stopped working or blocks the playbook from running, the role can be removed from the playbook until the issue will be fixed — though this has not happened yet.
 
-Please keep an eye on the roles maintained by the MASH organization to keep yours up-to-date by adding proper changes if any. Since the background of the decision for the changes are usually not announced (though you may find references in a commit message), you might as well to ask a team member on the Matrix room about changes you are expected to apply.
+Please keep an eye on the roles maintained by the MASH organization to keep yours up-to-date by adding proper changes if any. Since the background of the decision for the changes are usually not announced (though you may find references in a commit message), you might as well to ask an organization member on the Matrix room about changes you are expected to apply.
 
 Please do not hesitate to ask for help to let the community members help you! 👋
