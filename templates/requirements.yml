@@ -496,6 +496,10 @@
   version: v1.26.0-13
   name: matterbridge
   activation_prefix: matterbridge_
+- src: git+https://seed.radicle.garden/zGHUEPjboBuF8AWo3HKxEraEuHFq.git
+  version: v1.1.6-0
+  name: mazanoke
+  activation_prefix: mazanoke_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-mediawiki.git
   version: v1.43.3-4
   name: mediawiki

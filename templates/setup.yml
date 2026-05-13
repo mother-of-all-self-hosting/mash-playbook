@@ -562,6 +562,10 @@
     - role: galaxy/matterbridge
     # /role-specific:matterbridge
 
+    # role-specific:mazanoke
+    - role: galaxy/mazanoke
+    # /role-specific:mazanoke
+
     # role-specific:mediawiki
     - role: galaxy/mediawiki
     # /role-specific:mediawiki

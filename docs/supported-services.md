@@ -147,6 +147,7 @@ Below is an exhaustive list of the free and open-source software for self-hostin
 | [Matomo](https://matomo.org/) | Web analytics platform | [Link](services/matomo.md) |
 | [Matrix Rooms Search API](https://github.com/etkecc/mrs) | A fully-featured, standalone, Matrix rooms search service | [Link](services/mrs.md) |
 | [Matterbridge](https://github.com/42wim/matterbridge) | Bridges Messenger Chatrooms | [Link](services/matterbridge.md) |
+| [MAZANOKE](https://github.com/civilblur/mazanoke) | Simple image optimizer that runs in your browser | [Link](services/mazanoke.md) |
 | [MediaWiki](https://www.mediawiki.org) | Popular wiki software | [Link](services/mediawiki.md) |
 | [Meilisearch](https://www.meilisearch.com) | Typo-tolerant fulltext search engine with a RESTful search API | [Link](services/meilisearch.md) |
 | [Memcached](https://memcached.org) | In-memory key-value store | [Link](services/memcached.md) |
