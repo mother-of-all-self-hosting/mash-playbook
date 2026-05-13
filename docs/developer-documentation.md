@@ -85,7 +85,7 @@ There are a few files that you need to adapt:
 │       └── YOUR-SERVICE.md  ← Add documentation about how to configure it
 ├── templates/
 │   ├── group_vars_mash_servers  ← Add default configuration
-│   └── requirements.yml  ← Add your Ansible role
+│   ├── requirements.yml  ← Add your Ansible role
 │   └── setup.yml  ← Add your Ansible role
 ```
 
