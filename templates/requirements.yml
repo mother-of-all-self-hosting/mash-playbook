@@ -825,7 +825,7 @@
   name: seerr
   activation_prefix: seerr_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-semaphore.git
-  version: v2.18.2-0
+  version: v2.18.3-0
   name: semaphore
   activation_prefix: semaphore_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-send.git
