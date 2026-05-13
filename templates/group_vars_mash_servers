@@ -972,7 +972,7 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
 
   # role-specific:plex
   - |-
-    {{ ({'name': (plex_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'plex']} if plex_enabled else omit) }}
+    {{ ({'name': (plex_identifier + '.service'), 'priority': 2000, 'restart_necessary': (plex_restart_necessary | bool), 'groups': ['mash', 'plex']} if plex_enabled else omit) }}
   # /role-specific:plex
 
   # role-specific:pocket_id
