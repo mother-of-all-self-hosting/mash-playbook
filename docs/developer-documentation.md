@@ -34,10 +34,18 @@ When it comes to the structure of roles, you can follow existing roles such as [
 
     ```
     .
+    ├── .github/
+    │   ├── renovate.json
+    │   └── workflows/
+    │       ├── autotag.yml
+    │       └── pre-commit.yml
     ├── defaults/
     │   └── main.yml
     ├── docs/
     │   └── configuring-YOUR-SERVICE.md
+    ├── LICENSES
+    │   ├── AGPL-3.0-or-later.txt
+    │   └── CC0-1.0.txt
     ├── meta/
     │   └── main.yml
     ├── tasks/
@@ -50,13 +58,20 @@ When it comes to the structure of roles, you can follow existing roles such as [
     │   ├── labels.j2
     │   └── systemd/
     │       └── YOUR-SERVICE.service.j2
+    ├── .ansible-lint
+    ├── .gitignore
+    ├── .pre-commit-config.yaml
+    ├── .yamllint.yml
     ├── justfile
     ├── LICENSE
-    └── README.md
+    ├── mise.toml
+    ├── README.md
+    └── REUSE.toml
     ```
 
 - You will also need to decide on a licence. Otherwise ansible-galaxy won't work. We recommend AGPLv3, as it is adoped by the most roles of the MASH playbook.
 - If you are committed to free software, you might probably be interested in publishing the role based on [REUSE](https://reuse.software/), an initiative by [FSFE](https://fsfe.org/).
+- It is recommended to set up a Git pre-commit hook (via [mise](https://mise.jdx.dev/) + [prek](https://prek.j178.dev/)) that runs formatting and linting checks before each commit, and make sure that your role passes the linter before submitting. `.pre-commit-config.yaml` defines which hooks are to be executed.
 
 ### 3. Update the MASH playbook to support your created Ansible role
 
