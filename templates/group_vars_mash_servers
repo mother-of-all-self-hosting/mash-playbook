@@ -587,7 +587,7 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
 
   # role-specific:jackett
   - |-
-    {{ ({'name': (jackett_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'jackett']} if jackett_enabled else omit) }}
+    {{ ({'name': (jackett_identifier + '.service'), 'priority': 2000, 'restart_necessary': (jackett_restart_necessary | bool), 'groups': ['mash', 'jackett']} if jackett_enabled else omit) }}
   # /role-specific:jackett
 
   # role-specific:jellyfin
