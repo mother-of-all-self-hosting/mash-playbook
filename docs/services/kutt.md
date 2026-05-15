@@ -20,7 +20,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
 # Kutt
 
-The playbook can install and configure [Kutt](https://kutt.it) for you.
+The playbook can install and configure [Kutt](https://kutt.to) for you.
 
 Kutt is a modern URL shortener with support for custom domains with functions like statistics and user management.
 
