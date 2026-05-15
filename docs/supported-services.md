@@ -130,7 +130,7 @@ Below is an exhaustive list of the free and open-source software for self-hostin
 | [Keycloak](https://www.keycloak.org/) | An identity and access management solution | [Link](services/keycloak.md) |
 | [KeyDB](https://docs.keydb.dev/) | An in-memory data store used by millions of developers as a database, cache, streaming engine, and message broker | [Link](services/keydb.md) |
 | [keyoxide-web](https://codeberg.org/keyoxide/keyoxide-web) | Web client for [Keyoxide](https://keyoxide.org/), a decentralized tool to create and verify decentralized online identities | [Link](services/keyoxide.md) |
-| [Kutt](https://kutt.it/) | Modern URL shortener with support for custom domains | [Link](services/kutt.md) |
+| [Kutt](https://kutt.to/) | Modern URL shortener with support for custom domains | [Link](services/kutt.md) |
 | [LabelStudio](https://labelstud.io/) | Data labeling tool that supports multiple projects, users, and data types in one platform | [Link](services/labelstudio.md) |
 | [Lago](https://www.getlago.com/) | Metering and usage-based billing | [Link](services/lago.md) |
 | [LanguageTool](https://languagetool.org/) | An online grammar, style and spell checker | [Link](services/languagetool.md) |
