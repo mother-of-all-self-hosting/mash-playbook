@@ -1198,7 +1198,7 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
 
   # role-specific:sonarr
   - |-
-    {{ ({'name': (sonarr_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'sonarr']} if sonarr_enabled else omit) }}
+    {{ ({'name': (sonarr_identifier + '.service'), 'priority': 2000, 'restart_necessary': (sonarr_restart_necessary | bool), 'groups': ['mash', 'sonarr']} if sonarr_enabled else omit) }}
   # /role-specific:sonarr
 
   # role-specific:soundcloak
