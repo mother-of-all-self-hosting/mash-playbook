@@ -880,8 +880,8 @@
   version: v0.3.0-4
   name: statusnook
   activation_prefix: statusnook_
-- src: git+https://github.com/Bergruebe/ansible-role-stirling-pdf.git
-  version: v1.5.0-1
+- src: git+https://github.com/mother-of-all-self-hosting/ansible-role-stirling-pdf.git
+  version: v1.5.0-2
   name: stirling_pdf
   activation_prefix: stirling_pdf_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-swap.git

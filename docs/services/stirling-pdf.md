@@ -1,20 +1,33 @@
 <!--
+SPDX-FileCopyrightText: 2020 Aaron Raimist
+SPDX-FileCopyrightText: 2020 Chris van Dijk
+SPDX-FileCopyrightText: 2020 Dominik Zajac
+SPDX-FileCopyrightText: 2020 Mickaël Cornière
+SPDX-FileCopyrightText: 2020-2024 MDAD project contributors
+SPDX-FileCopyrightText: 2020-2024 Slavi Pantaleev
+SPDX-FileCopyrightText: 2022 François Darveau
+SPDX-FileCopyrightText: 2022 Julian Foad
+SPDX-FileCopyrightText: 2022 Warren Bailey
+SPDX-FileCopyrightText: 2023 Antonis Christofides
+SPDX-FileCopyrightText: 2023 Felix Stupp
+SPDX-FileCopyrightText: 2023 Julian-Samuel Gebühr
+SPDX-FileCopyrightText: 2023 Pierre 'McFly' Marty
+SPDX-FileCopyrightText: 2024-2026 Suguru Hirahara
 SPDX-FileCopyrightText: 2025 MASH project contributors
-SPDX-FileCopyrightText: 2026 Suguru Hirahara
 
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 
-# Stirling PDF
+# Stirling PDF v1
 
-The playbook can install and configure [Stirling PDF](https://github.com/Stirling-Tools/Stirling-PDF) for you.
+>[!NOTE]
+> On this playbook, Stirling PDF is implemented with [ansible-role-stirling-pdf](https://github.com/mother-of-all-self-hosting/ansible-role-stirling-pdf). While Stirling PDF itself continues to be actively developed, the role is configured to install version 1 and will not support version 2, because it enforces Open Core license since [v2.0.0](https://github.com/Stirling-Tools/Stirling-PDF/releases/tag/v2.0.0).
+
+The playbook can install and configure [Stirling PDF](https://github.com/Stirling-Tools/Stirling-PDF) version 1 for you.
 
 Stirling PDF is an online PDF converter and editor.
 
 See the project's [documentation](https://github.com/Stirling-Tools/Stirling-PDF/blob/main/README.md) to learn what Stirling PDF does and why it might be useful to you.
-
->[!WARNING]
-> Since [v2.0.0](https://github.com/Stirling-Tools/Stirling-PDF/releases/tag/v2.0.0) Stirling PDF enforces Open Core license.
 
 ## Dependencies
 
@@ -33,14 +46,8 @@ To enable this service, add the following configuration to your `vars.yml` file 
 
 stirling_pdf_enabled: true
 
-stirling_pdf_hostname: stirling-pdf.example.com
-
-# The path at which stirling_pdf is served.
-# This value must either be `/` or not end with a slash (e.g. `/pdf`).
-stirling_pdf_path_prefix: /
-
-# Set to true to download calibre onto stirling-pdf enabling pdf to/from book and advanced html conversion | default false
-stirling_pdf_install_calibre: false
+stirling_pdf_hostname: mash.example.com
+stirling_pdf_path_prefix: /stirling-pdf
 
 ########################################################################
 #                                                                      #
@@ -64,8 +71,15 @@ stirling_pdf_environment_variables_extensions: |
 
 Find all possible arguments in the [official documentation](https://docs.stirlingpdf.com/Advanced%20Configuration/How%20to%20add%20configurations).
 
-All possible variables to configure the ansible-role can be found in its [defaults/main.yml](https://github.com/Bergruebe/ansible-role-stirling-pdf/blob/main/defaults/main.yml) file.
+### Extending the configuration
+
+There are some additional things you may wish to configure about the service.
+
+Take a look at:
+
+- [`ansible-role-stirling-pdf` Ansible role](https://github.com/mother-of-all-self-hosting/ansible-role-stirling-pdf)'s [`defaults/main.yml`](https://github.com/mother-of-all-self-hosting/ansible-role-stirling-pdf/blob/main/defaults/main.yml) for some variables that you can customize via your `vars.yml` file.
 
 ## Related services
 
-- [BentoPDF](bentopdf.md) — client-side PDF editor and converter
+- [BentoPDF](bentopdf.md) — Client-side PDF editor and converter
+- [OmniTools](omnitools.md) — Web app offering a variety of online tools to simplify everyday tasks
