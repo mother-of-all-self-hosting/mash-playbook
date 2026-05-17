@@ -276,3 +276,7 @@ To get started, open the URL with a web browser to create an account. **Note tha
 ## Troubleshooting
 
 See [this section](https://radicle.network/nodes/seed.radicle.garden/rad%3Az2Q7Pka6bCT5D6Ng54kT8UcYAcVTC/tree/docs/configuring-openarchiver.md#troubleshooting) on the role's documentation for details.
+
+## Related services
+
+- [Bichon](bichon.md) — Email archiving server with with full-text search function
