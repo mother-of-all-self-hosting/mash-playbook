@@ -79,4 +79,4 @@ See [this section](https://radicle.network/nodes/seed.radicle.garden/rad%3Az2nQc
 
 ## Related services
 
-- [I hate money](ihatemoney.md) — Shared budget manager
+- [Open Archiver](openarchiver.md) — Archive, store, index, and search emails from various platforms, including generic IMAP-enabled email inboxes
