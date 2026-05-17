@@ -353,7 +353,7 @@
   name: heimdall
   activation_prefix: heimdall_
 - src: git+https://seed.radicle.garden/zsKztkwnLv9wVMRYbcpoFesx6L5j.git
-  version: v3.0.0-1
+  version: v3.0.0-2
   name: heyform
   activation_prefix: heyform_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-homarr.git
