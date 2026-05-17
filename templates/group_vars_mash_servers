@@ -430,7 +430,7 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
 
   # role-specific:flaresolverr
   - |-
-    {{ ({'name': (flaresolverr_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'flaresolverr']} if flaresolverr_enabled else omit) }}
+    {{ ({'name': (flaresolverr_identifier + '.service'), 'priority': 2000, 'restart_necessary': (flaresolverr_restart_necessary | bool), 'groups': ['mash', 'flaresolverr']} if flaresolverr_enabled else omit) }}
   # /role-specific:flaresolverr
 
   # role-specific:flatnotes
