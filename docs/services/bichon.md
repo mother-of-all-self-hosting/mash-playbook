@@ -18,18 +18,18 @@ SPDX-FileCopyrightText: 2024-2026 Suguru Hirahara
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 
-# Actual
+# Bichon
 
-The playbook can install and configure [Actual](https://actualbudget.org) for you.
+The playbook can install and configure [Bichon](https://bichonbudget.org) for you.
 
-Actual is a local-first personal finance tool.
+Bichon is a local-first personal finance tool.
 
-See the project's [documentation](https://actualbudget.org/docs/) to learn what Actual does and why it might be useful to you.
+See the project's [documentation](https://bichonbudget.org/docs/) to learn what Bichon does and why it might be useful to you.
 
-For details about configuring the [Ansible role for Actual](https://radicle.network/nodes/seed.radicle.garden/rad%3Az2chD7Kt74JwEMafxTooxN7MaeYtK), you can check them via:
+For details about configuring the [Ansible role for Bichon](https://radicle.network/nodes/seed.radicle.garden/rad%3Az2chD7Kt74JwEMafxTooxN7MaeYtK), you can check them via:
 
-- 🌐 [the role's documentation](https://radicle.network/nodes/seed.radicle.garden/rad%3Az2chD7Kt74JwEMafxTooxN7MaeYtK/tree/docs/configuring-actual.md) online
-- 📁 `roles/galaxy/actual/docs/configuring-actual.md` locally, if you have [fetched the Ansible roles](../installing.md)
+- 🌐 [the role's documentation](https://radicle.network/nodes/seed.radicle.garden/rad%3Az2chD7Kt74JwEMafxTooxN7MaeYtK/tree/docs/configuring-bichon.md) online
+- 📁 `roles/galaxy/bichon/docs/configuring-bichon.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 ## Dependencies
 
@@ -44,30 +44,30 @@ To enable this service, add the following configuration to your `vars.yml` file 
 ```yaml
 ########################################################################
 #                                                                      #
-# actual                                                               #
+# bichon                                                               #
 #                                                                      #
 ########################################################################
 
-actual_enabled: true
+bichon_enabled: true
 
-actual_hostname: actual.example.com
+bichon_hostname: bichon.example.com
 
 ########################################################################
 #                                                                      #
-# /actual                                                              #
+# /bichon                                                              #
 #                                                                      #
 ########################################################################
 ```
 
 ## Usage
 
-After running the command for installation, the Actual instance becomes available at the URL specified with `actual_hostname`. With the configuration above, the service is hosted at `https://actual.example.com`.
+After running the command for installation, the Bichon instance becomes available at the URL specified with `bichon_hostname`. With the configuration above, the service is hosted at `https://bichon.example.com`.
 
 To get started, open the URL with a web browser to create an account.
 
 ## Troubleshooting
 
-See [this section](https://radicle.network/nodes/seed.radicle.garden/rad%3Az2chD7Kt74JwEMafxTooxN7MaeYtK/tree/docs/configuring-actual.md#troubleshooting) on the role's documentation for details.
+See [this section](https://radicle.network/nodes/seed.radicle.garden/rad%3Az2chD7Kt74JwEMafxTooxN7MaeYtK/tree/docs/configuring-bichon.md#troubleshooting) on the role's documentation for details.
 
 ## Related services
 
