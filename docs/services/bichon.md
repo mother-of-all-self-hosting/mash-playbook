@@ -20,15 +20,15 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
 # Bichon
 
-The playbook can install and configure [Bichon](https://bichonbudget.org) for you.
+The playbook can install and configure [Bichon](https://github.com/rustmailer/bichon) for you.
 
-Bichon is a local-first personal finance tool.
+Bichon is an email archiving server which downloads emails from IMAP accounts, builds a full-text search index, and serves a REST API with an embedded WebUI.
 
-See the project's [documentation](https://bichonbudget.org/docs/) to learn what Bichon does and why it might be useful to you.
+See the project's [documentation](https://github.com/rustmailer/bichon/blob/main/README.md) to learn what Bichon does and why it might be useful to you.
 
-For details about configuring the [Ansible role for Bichon](https://radicle.network/nodes/seed.radicle.garden/rad%3Az2chD7Kt74JwEMafxTooxN7MaeYtK), you can check them via:
+For details about configuring the [Ansible role for Bichon](https://radicle.network/nodes/seed.radicle.garden/rad%3Az2nQcYvPh51zfvVu8hkftDYPmELYP), you can check them via:
 
-- 🌐 [the role's documentation](https://radicle.network/nodes/seed.radicle.garden/rad%3Az2chD7Kt74JwEMafxTooxN7MaeYtK/tree/docs/configuring-bichon.md) online
+- 🌐 [the role's documentation](https://radicle.network/nodes/seed.radicle.garden/rad%3Az2nQcYvPh51zfvVu8hkftDYPmELYP/tree/docs/configuring-bichon.md) online
 - 📁 `roles/galaxy/bichon/docs/configuring-bichon.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 ## Dependencies
@@ -59,6 +59,14 @@ bichon_hostname: bichon.example.com
 ########################################################################
 ```
 
+### Set a random string
+
+You also need to set a random secure string used for encrypting stored credentials. To do so, add the following configuration to your `vars.yml` file. The value can be generated with `pwgen -s 64 1` or in another way.
+
+```yaml
+bichon_environment_variables_bichon_encrypt_password: YOUR_SECRET_KEY_HERE
+```
+
 ## Usage
 
 After running the command for installation, the Bichon instance becomes available at the URL specified with `bichon_hostname`. With the configuration above, the service is hosted at `https://bichon.example.com`.
@@ -67,7 +75,7 @@ To get started, open the URL with a web browser to create an account.
 
 ## Troubleshooting
 
-See [this section](https://radicle.network/nodes/seed.radicle.garden/rad%3Az2chD7Kt74JwEMafxTooxN7MaeYtK/tree/docs/configuring-bichon.md#troubleshooting) on the role's documentation for details.
+See [this section](https://radicle.network/nodes/seed.radicle.garden/rad%3Az2nQcYvPh51zfvVu8hkftDYPmELYP/tree/docs/configuring-bichon.md#troubleshooting) on the role's documentation for details.
 
 ## Related services
 
