@@ -80,6 +80,10 @@
   version: v2.8.4-1
   name: bentopdf
   activation_prefix: bentopdf_
+- src: git+https://seed.radicle.garden/z2nQcYvPh51zfvVu8hkftDYPmELYP.git
+  version: v1.0.2-0
+  name: bichon
+  activation_prefix: bichon_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-bind.git
   version: v9.20-2
   name: bind

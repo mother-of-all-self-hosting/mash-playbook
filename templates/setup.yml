@@ -170,6 +170,10 @@
     - role: galaxy/bentopdf
     # /role-specific:bentopdf
 
+    # role-specific:bichon
+    - role: galaxy/bichon
+    # /role-specific:bichon
+
     # role-specific:bind
     - role: galaxy/bind
     # /role-specific:bind
