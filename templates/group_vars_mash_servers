@@ -1072,7 +1072,7 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
 
   # role-specific:radarr
   - |-
-    {{ ({'name': (radarr_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'radarr']} if radarr_enabled else omit) }}
+    {{ ({'name': (radarr_identifier + '.service'), 'priority': 2000, 'restart_necessary': (radarr_restart_necessary | bool), 'groups': ['mash', 'radarr']} if radarr_enabled else omit) }}
   # /role-specific:radarr
 
   # role-specific:radicale
