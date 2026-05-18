@@ -1323,7 +1323,7 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
 
   # role-specific:wetty
   - |-
-    {{ ({'name': (wetty_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'wetty']} if wetty_enabled else omit) }}
+    {{ ({'name': (wetty_identifier + '.service'), 'priority': 2000, 'restart_necessary': (wetty_restart_necessary | bool), 'groups': ['mash', 'wetty']} if wetty_enabled else omit) }}
   # /role-specific:wetty
 
   # role-specific:wg_easy
