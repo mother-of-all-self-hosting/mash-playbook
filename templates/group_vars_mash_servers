@@ -1316,6 +1316,15 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
     {{ ({'name': (vikunja_identifier + '.service'), 'priority': 2000, 'restart_necessary': (vikunja_restart_necessary | bool), 'groups': ['mash', 'vikunja']} if vikunja_enabled else omit) }}
   # /role-specific:vikunja
 
+  # role-specific:wazuh
+  - |-
+    {{ ({'name': (wazuh_manager_identifier + '.service'), 'priority': 2000, 'restart_necessary': (wazuh_manager_restart_necessary | bool), 'groups': ['mash', 'wazuh']} if wazuh_enabled else omit) }}
+  - |-
+    {{ ({'name': (wazuh_indexer_identifier + '.service'), 'priority': 2000, 'restart_necessary': (wazuh_indexer_restart_necessary | bool), 'groups': ['mash', 'wazuh']} if wazuh_enabled else omit) }}
+  - |-
+    {{ ({'name': (wazuh_dashboard_identifier + '.service'), 'priority': 2000, 'restart_necessary': (wazuh_dashboard_restart_necessary | bool), 'groups': ['mash', 'wazuh']} if wazuh_enabled else omit) }}
+  # /role-specific:wazuh
+
   # role-specific:weblate
   - |-
     {{ ({'name': (weblate_identifier + '.service'), 'priority': 2000, 'restart_necessary': (weblate_restart_necessary | bool), 'groups': ['mash', 'weblate']} if weblate_enabled else omit) }}
@@ -16105,6 +16114,44 @@ vikunja_environment_variables_typesense_apikey: "{{ typesense_environment_variab
 #                                                                      #
 ########################################################################
 # /role-specific:vikunja
+
+
+
+# role-specific:wazuh
+########################################################################
+#                                                                      #
+# wazuh                                                                #
+#                                                                      #
+########################################################################
+
+wazuh_enabled: false
+
+wazuh_identifier: "{{ mash_playbook_service_identifier_prefix }}wazuh"
+
+wazuh_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}wazuh"
+
+# wazuh_uid and wazuh_gid are intentionally not set here — they are
+# hardcoded upstream due to container requirements and are non-configurable.
+
+wazuh_dashboard_container_additional_networks_auto: |
+  {{
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+  }}
+
+wazuh_dashboard_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+wazuh_dashboard_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+
+# role-specific:traefik
+wazuh_dashboard_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
+wazuh_dashboard_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
+# /role-specific:traefik
+
+########################################################################
+#                                                                      #
+# /wazuh                                                               #
+#                                                                      #
+########################################################################
+# /role-specific:wazuh
 
 
 

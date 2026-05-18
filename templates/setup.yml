@@ -1006,6 +1006,10 @@
     - role: galaxy/vikunja
     # /role-specific:vikunja
 
+    # role-specific:wazuh
+    - role: galaxy/wazuh
+    # /role-specific:wazuh
+
     # role-specific:weblate
     - role: galaxy/weblate
     # /role-specific:weblate

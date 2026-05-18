@@ -254,6 +254,7 @@ Below is an exhaustive list of the free and open-source software for self-hostin
 | [Vaultwarden](https://github.com/dani-garcia/vaultwarden) | A lightweight unofficial and compatible implementation of the [Bitwarden](https://bitwarden.com/) password manager | [Link](services/vaultwarden.md) |
 | [VersaTiles](https://versatiles.org) | Generate and serve vector tiles from OpenStreetMap | [Link](services/versatiles.md) |
 | [Vikunja](https://vikunja.io/) | To-do app | [Link](services/vikunja.md) |
+| [Wazuh](https://wazuh.com/) | An open source security platform providing SIEM, threat detection, and compliance monitoring | [Link](services/wazuh.md) |
 | [Weblate](https://weblate.org/) | Web-based translation tool with version control integration | [Link](services/weblate.md) |
 | [Wetty](https://github.com/butlerx/wetty) | An SSH terminal over HTTP/HTTPS | [Link](services/wetty.md) |
 | [Wikimore](https://git.private.coffee/PrivateCoffee/wikimore) | View Wikipedia projects without exposing your IP address, browsing habits, and other browser fingerprinting data to them | [Link](services/wikimore.md) |
