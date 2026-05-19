@@ -47,12 +47,12 @@ wazuh_enabled: true
 
 wazuh_hostname: wazuh.example.com
 
-# Generate with: pwgen -s 63 4 (add at least one special character to each)
+# Generate with: pwgen -s 63 3 (add at least one special character to each)
 wazuh_indexer_admin_password: ""
 wazuh_indexer_kibanaserver_password: ""
 wazuh_manager_api_password: ""
 
-# Generate with: pwgen -s 22 1 (must be exactly 22 characters)
+# Generate with: pwgen -s 22 2 (must be exactly 22 characters)
 wazuh_indexer_admin_password_salt: ""
 wazuh_indexer_kibanaserver_password_salt: ""
 
