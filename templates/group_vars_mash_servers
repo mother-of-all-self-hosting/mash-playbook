@@ -199,6 +199,11 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
     {{ ({'name': (bentopdf_identifier + '.service'), 'priority': 2000, 'restart_necessary': (bentopdf_restart_necessary | bool), 'groups': ['mash', 'bentopdf']} if bentopdf_enabled else omit) }}
   # /role-specific:bentopdf
 
+  # role-specific:bichon
+  - |-
+    {{ ({'name': (bichon_identifier + '.service'), 'priority': 2000, 'restart_necessary': (bichon_restart_necessary | bool), 'groups': ['mash', 'bichon']} if bichon_enabled else omit) }}
+  # /role-specific:bichon
+
   # role-specific:bind
   - |-
     {{ ({'name': (bind_identifier + '.service'), 'priority': 2000, 'restart_necessary': (bind_restart_necessary | bool), 'groups': ['mash', 'bind']} if bind_enabled else omit) }}
@@ -548,7 +553,7 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
 
   # role-specific:ihatemoney
   - |-
-    {{ ({'name': (ihatemoney_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'ihatemoney']} if ihatemoney_enabled else omit) }}
+    {{ ({'name': (ihatemoney_identifier + '.service'), 'priority': 2000, 'restart_necessary': (ihatemoney_restart_necessary | bool), 'groups': ['mash', 'ihatemoney']} if ihatemoney_enabled else omit) }}
   # /role-specific:ihatemoney
 
   # role-specific:ilmo
@@ -587,12 +592,12 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
 
   # role-specific:jackett
   - |-
-    {{ ({'name': (jackett_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'jackett']} if jackett_enabled else omit) }}
+    {{ ({'name': (jackett_identifier + '.service'), 'priority': 2000, 'restart_necessary': (jackett_restart_necessary | bool), 'groups': ['mash', 'jackett']} if jackett_enabled else omit) }}
   # /role-specific:jackett
 
   # role-specific:jellyfin
   - |-
-    {{ ({'name': (jellyfin_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'jellyfin']} if jellyfin_enabled else omit) }}
+    {{ ({'name': (jellyfin_identifier + '.service'), 'priority': 2000, 'restart_necessary': (jellyfin_restart_necessary | bool), 'groups': ['mash', 'jellyfin']} if jellyfin_enabled else omit) }}
   # /role-specific:jellyfin
 
   # role-specific:jitsi
@@ -731,6 +736,11 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
     {{ ({'name': (matterbridge_identifier + '.service'), 'priority': 2000, 'restart_necessary': (matterbridge_restart_necessary | bool), 'groups': ['mash', 'matterbridge']} if matterbridge_enabled else omit) }}
   # /role-specific:matterbridge
 
+  # role-specific:mazanoke
+  - |-
+    {{ ({'name': (mazanoke_identifier + '.service'), 'priority': 2000, 'restart_necessary': (mazanoke_restart_necessary | bool), 'groups': ['mash', 'mazanoke']} if mazanoke_enabled else omit) }}
+  # /role-specific:mazanoke
+
   # role-specific:mediawiki
   - |-
     {{ ({'name': (mediawiki_identifier + '.service'), 'priority': 2000, 'restart_necessary': (mediawiki_restart_necessary | bool), 'groups': ['mash', 'mediawiki']} if mediawiki_enabled else omit) }}
@@ -753,7 +763,7 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
 
   # role-specific:minecraft
   - |-
-    {{ ({'name': (minecraft_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'minecraft']} if minecraft_enabled else omit) }}
+    {{ ({'name': (minecraft_identifier + '.service'), 'priority': 2000, 'restart_necessary': (minecraft_restart_necessary | bool), 'groups': ['mash', 'minecraft']} if minecraft_enabled else omit) }}
   # /role-specific:minecraft
 
   # role-specific:miniflux
@@ -875,6 +885,11 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
     {{ ({'name': (oauth2_proxy_identifier + '.service'), 'priority': 1900, 'restart_necessary': (oauth2_proxy_restart_necessary | bool), 'groups': ['mash', 'oauth2-proxy']} if oauth2_proxy_enabled else omit) }}
   # /role-specific:oauth2_proxy
 
+  # role-specific:omnitools
+  - |-
+    {{ ({'name': (omnitools_identifier + '.service'), 'priority': 2000, 'restart_necessary': (omnitools_restart_necessary | bool), 'groups': ['mash', 'omnitools']} if omnitools_enabled else omit) }}
+  # /role-specific:omnitools
+
   # role-specific:onion_service_tor
   - |-
     {{ ({'name': (onion_service_tor_identifier + '.service'), 'priority': 2000, 'restart_necessary': (onion_service_tor_restart_necessary | bool), 'groups': ['mash', 'onion-service-tor']} if onion_service_tor_enabled else omit) }}
@@ -972,7 +987,7 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
 
   # role-specific:plex
   - |-
-    {{ ({'name': (plex_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'plex']} if plex_enabled else omit) }}
+    {{ ({'name': (plex_identifier + '.service'), 'priority': 2000, 'restart_necessary': (plex_restart_necessary | bool), 'groups': ['mash', 'plex']} if plex_enabled else omit) }}
   # /role-specific:plex
 
   # role-specific:pocket_id
@@ -1057,7 +1072,7 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
 
   # role-specific:radarr
   - |-
-    {{ ({'name': (radarr_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'radarr']} if radarr_enabled else omit) }}
+    {{ ({'name': (radarr_identifier + '.service'), 'priority': 2000, 'restart_necessary': (radarr_restart_necessary | bool), 'groups': ['mash', 'radarr']} if radarr_enabled else omit) }}
   # /role-specific:radarr
 
   # role-specific:radicale
@@ -1188,7 +1203,7 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
 
   # role-specific:sonarr
   - |-
-    {{ ({'name': (sonarr_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'sonarr']} if sonarr_enabled else omit) }}
+    {{ ({'name': (sonarr_identifier + '.service'), 'priority': 2000, 'restart_necessary': (sonarr_restart_necessary | bool), 'groups': ['mash', 'sonarr']} if sonarr_enabled else omit) }}
   # /role-specific:sonarr
 
   # role-specific:soundcloak
@@ -1203,7 +1218,7 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
 
   # role-specific:stirling_pdf
   - |-
-    {{ ({'name': (stirling_pdf_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'stirling-pdf']} if stirling_pdf_enabled else omit) }}
+    {{ ({'name': (stirling_pdf_identifier + '.service'), 'priority': 2000, 'restart_necessary': (stirling_pdf_restart_necessary | bool), 'groups': ['mash', 'stirling-pdf']} if stirling_pdf_enabled else omit) }}
   # /role-specific:stirling_pdf
 
   # role-specific:syncstorage_rs_docker
@@ -1218,7 +1233,7 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
 
   # role-specific:tandoor
   - |-
-    {{ ({'name': (tandoor_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'tandoor']} if tandoor_enabled else omit) }}
+    {{ ({'name': (tandoor_identifier + '.service'), 'priority': 2000, 'restart_necessary': (tandoor_restart_necessary | bool), 'groups': ['mash', 'tandoor']} if tandoor_enabled else omit) }}
   # /role-specific:tandoor
 
   # role-specific:teable
@@ -1317,7 +1332,7 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
 
   # role-specific:wetty
   - |-
-    {{ ({'name': (wetty_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'wetty']} if wetty_enabled else omit) }}
+    {{ ({'name': (wetty_identifier + '.service'), 'priority': 2000, 'restart_necessary': (wetty_restart_necessary | bool), 'groups': ['mash', 'wetty']} if wetty_enabled else omit) }}
   # /role-specific:wetty
 
   # role-specific:wg_easy
@@ -1685,9 +1700,9 @@ mash_playbook_postgres_managed_databases_auto_itemized:
     {{
       ({
         'name': ihatemoney_database_name,
-        'username': ihatemoney_database_username,
-        'password': ihatemoney_database_password,
-      } if ihatemoney_enabled and ihatemoney_database_hostname == postgres_connection_hostname and ihatemoney_database_type == 'postgres' else omit)
+        'username': ihatemoney_database_postgres_username,
+        'password': ihatemoney_database_postgres_password,
+      } if ihatemoney_enabled and (ihatemoney_database_postgres_hostname == postgres_connection_hostname or ihatemoney_database_postgres_socket_enabled) and ihatemoney_database_type == 'postgres' else omit)
     }}
   # /role-specific:ihatemoney
 
@@ -3760,6 +3775,44 @@ bentopdf_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_pri
 #                                                                      #
 ########################################################################
 # /role-specific:bentopdf
+
+
+
+# role-specific:bichon
+########################################################################
+#                                                                      #
+# bichon                                                               #
+#                                                                      #
+########################################################################
+
+bichon_enabled: false
+
+bichon_identifier: "{{ mash_playbook_service_identifier_prefix }}bichon"
+
+bichon_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}bichon"
+
+bichon_uid: "{{ mash_playbook_uid }}"
+bichon_gid: "{{ mash_playbook_gid }}"
+
+bichon_container_additional_networks_auto: |
+  {{
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+  }}
+
+bichon_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+bichon_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+
+# role-specific:traefik
+bichon_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
+bichon_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
+# /role-specific:traefik
+
+########################################################################
+#                                                                      #
+# /bichon                                                              #
+#                                                                      #
+########################################################################
+# /role-specific:bichon
 
 
 
@@ -8187,7 +8240,9 @@ ihatemoney_gid: "{{ mash_playbook_gid }}"
 
 ihatemoney_systemd_required_services_list_auto: |
   {{
-    ([postgres_identifier ~ '.service'] if postgres_enabled and ihatemoney_database_hostname == postgres_connection_hostname else [])
+    ([postgres_identifier ~ '.service'] if postgres_enabled | default(false) and (ihatemoney_database_postgres_hostname == postgres_connection_hostname or ihatemoney_database_postgres_socket_enabled) and ihatemoney_database_type == 'postgres' else [])
+    +
+    ([mariadb_identifier ~ '.service'] if mariadb_enabled | default(false) and (ihatemoney_database_mysql_hostname == mariadb_connection_hostname or ihatemoney_database_mysql_socket_enabled) and ihatemoney_database_type == 'mysql' else [])
   }}
 
 ihatemoney_systemd_wanted_services_list_auto: |
@@ -8200,9 +8255,11 @@ ihatemoney_container_additional_networks_auto: |
     (
       ([exim_relay_container_network] if exim_relay_enabled | default(false) and ihatemoney_email_host == exim_relay_identifier and ihatemoney_container_network != exim_relay_container_network else [])
       +
+      ([mariadb_container_network] if mariadb_enabled | default(false) and (ihatemoney_database_mysql_hostname == mariadb_connection_hostname and ihatemoney_container_network != mariadb_container_network and not ihatemoney_database_mysql_socket_enabled) and ihatemoney_database_type == 'mysql' else [])
+      +
       ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
       +
-      ([postgres_container_network] if postgres_enabled and ihatemoney_database_hostname == postgres_connection_hostname and ihatemoney_container_network != postgres_container_network else [])
+      ([postgres_container_network] if postgres_enabled | default(false) and (ihatemoney_database_postgres_hostname == postgres_connection_hostname and ihatemoney_container_network != postgres_container_network and not ihatemoney_database_postgres_socket_enabled) and ihatemoney_database_type == 'postgres' else [])
     ) | unique
   }}
 
@@ -8217,11 +8274,18 @@ ihatemoney_email_port: "{{ 8025 if exim_relay_enabled else '' }}"
 ihatemoney_default_from_email: "{{ exim_relay_sender_address if exim_relay_enabled else '' }}"
 # /role-specific:exim_relay
 
+# role-specific:mariadb
+ihatemoney_database_mysql_hostname: "{{ mariadb_connection_hostname if mariadb_enabled and not ihatemoney_database_mysql_socket_enabled else '' }}"
+ihatemoney_database_mysql_port: "{{ mariadb_connection_port if mariadb_enabled else '3306' }}"
+ihatemoney_database_mysql_password: "{{ (mash_playbook_generic_secret_key + ':ihatemoney.db.m') | hash('sha512') | to_uuid }}"
+ihatemoney_database_mysql_socket_path_host: "{{ mariadb_run_path }}"
+# /role-specific:mariadb
+
 # role-specific:postgres
-ihatemoney_database_hostname: "{{ postgres_connection_hostname if postgres_enabled else '' }}"
-ihatemoney_database_port: "{{ postgres_connection_port if postgres_enabled else '5432' }}"
-ihatemoney_database_username: "ihatemoney"
-ihatemoney_database_password: "{{ (mash_playbook_generic_secret_key + ':db.ihatemoney') | hash('sha512') | to_uuid }}"
+ihatemoney_database_postgres_hostname: "{{ postgres_connection_hostname if postgres_enabled and not ihatemoney_database_postgres_socket_enabled else '' }}"
+ihatemoney_database_postgres_port: "{{ postgres_connection_port if postgres_enabled else '5432' }}"
+ihatemoney_database_postgres_password: "{{ (mash_playbook_generic_secret_key + ':db.ihatemoney') | hash('sha512') | to_uuid }}"
+ihatemoney_database_postgres_socket_path_host: "{{ postgres_run_path }}"
 # /role-specific:postgres
 
 # role-specific:traefik
@@ -9985,6 +10049,17 @@ mash_playbook_mariadb_managed_databases_auto_itemized:
     }}
   # /role-specific:healthchecks
 
+  # role-specific:ihatemoney
+  - |-
+    {{
+      ({
+        'name': ihatemoney_database_name,
+        'username': ihatemoney_database_mysql_username,
+        'password': ihatemoney_database_mysql_password,
+      } if ihatemoney_enabled and (ihatemoney_database_mysql_hostname == mariadb_connection_hostname or ihatemoney_database_mysql_socket_enabled) and ihatemoney_database_type == 'mysql' else omit)
+    }}
+  # /role-specific:ihatemoney
+
   # role-specific:kanboard
   - |-
     {{
@@ -10385,6 +10460,44 @@ matterbridge_gid: "{{ mash_playbook_gid }}"
 #                                                                      #
 ########################################################################
 # /role-specific:matterbridge
+
+
+
+# role-specific:mazanoke
+########################################################################
+#                                                                      #
+# mazanoke                                                             #
+#                                                                      #
+########################################################################
+
+mazanoke_enabled: false
+
+mazanoke_identifier: "{{ mash_playbook_service_identifier_prefix }}mazanoke"
+
+mazanoke_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}mazanoke"
+
+mazanoke_uid: "{{ mash_playbook_uid }}"
+mazanoke_gid: "{{ mash_playbook_gid }}"
+
+mazanoke_container_additional_networks_auto: |
+  {{
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+  }}
+
+mazanoke_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+mazanoke_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+
+# role-specific:traefik
+mazanoke_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
+mazanoke_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
+# /role-specific:traefik
+
+########################################################################
+#                                                                      #
+# /mazanoke                                                            #
+#                                                                      #
+########################################################################
+# /role-specific:mazanoke
 
 
 
@@ -11768,6 +11881,44 @@ oauth2_proxy_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver
 #                                                                      #
 ########################################################################
 # /role-specific:oauth2_proxy
+
+
+
+# role-specific:omnitools
+########################################################################
+#                                                                      #
+# omnitools                                                            #
+#                                                                      #
+########################################################################
+
+omnitools_enabled: false
+
+omnitools_identifier: "{{ mash_playbook_service_identifier_prefix }}omnitools"
+
+omnitools_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}omnitools"
+
+omnitools_uid: "{{ mash_playbook_uid }}"
+omnitools_gid: "{{ mash_playbook_gid }}"
+
+omnitools_container_additional_networks_auto: |
+  {{
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+  }}
+
+omnitools_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+omnitools_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+
+# role-specific:traefik
+omnitools_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
+omnitools_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
+# /role-specific:traefik
+
+########################################################################
+#                                                                      #
+# /omnitools                                                           #
+#                                                                      #
+########################################################################
+# /role-specific:omnitools
 
 
 

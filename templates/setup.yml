@@ -170,6 +170,10 @@
     - role: galaxy/bentopdf
     # /role-specific:bentopdf
 
+    # role-specific:bichon
+    - role: galaxy/bichon
+    # /role-specific:bichon
+
     # role-specific:bind
     - role: galaxy/bind
     # /role-specific:bind
@@ -562,6 +566,10 @@
     - role: galaxy/matterbridge
     # /role-specific:matterbridge
 
+    # role-specific:mazanoke
+    - role: galaxy/mazanoke
+    # /role-specific:mazanoke
+
     # role-specific:mediawiki
     - role: galaxy/mediawiki
     # /role-specific:mediawiki
@@ -665,6 +673,10 @@
     # role-specific:oauth2_proxy
     - role: galaxy/oauth2_proxy
     # /role-specific:oauth2_proxy
+
+    # role-specific:omnitools
+    - role: galaxy/omnitools
+    # /role-specific:omnitools
 
     # role-specific:onion_service_tor
     - role: galaxy/onion_service_tor

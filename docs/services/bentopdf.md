@@ -86,4 +86,4 @@ See [this section](https://radicle.network/nodes/seed.radicle.garden/rad%3Az2bgV
 
 ## Related services
 
-- [Stirling PDF](stirling-pdf.md) — self-hosted PDF converter
+- [Stirling PDF v1](stirling-pdf.md) — self-hosted PDF converter

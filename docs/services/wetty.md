@@ -35,8 +35,8 @@ To enable this service, add the following configuration to your `vars.yml` file 
 wetty_enabled: true
 wetty_hostname: mash.example.com
 wetty_path_prefix: /wetty
-wetty_ssh_host: example.com
-wetty_ssh_port: 22
+
+wetty_environment_variables_ssh_host: example.com
 
 ########################################################################
 #                                                                      #
@@ -47,12 +47,10 @@ wetty_ssh_port: 22
 
 ### Configure SSH port for Wetty (optional)
 
-Wetty uses port 22 for its SSH feature by default.
-
-If you wish to have the instance listen to another port, add the following configuration to your `vars.yml` file and adjust the port as you see fit.
+By default Wetty is configured to connect to the port 22 of the SSH server. If you wish to have the instance connect to another port, add the following configuration to your `vars.yml` file and adjust the port as you see fit.
 
 ```yaml
-wetty_ssh_port: 222
+wetty_environment_variables_ssh_port: 222
 ```
 
 ## Usage
@@ -62,7 +60,7 @@ After running the command for installation, the Wetty instance becomes available
 Once connected, you can log in with SSH with the username and password.
 
 >[!NOTE]
-> Wetty only supports password authentication, so if the SSH daemon at `wetty_ssh_host` only allows pubkey authentication you will not be able to connect.
+> Wetty only supports password authentication, so if the SSH daemon at `wetty_environment_variables_ssh_host` only allows pubkey authentication you will not be able to connect.
 
 ## Related services
 
