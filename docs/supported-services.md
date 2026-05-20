@@ -190,7 +190,6 @@ Below is an exhaustive list of the free and open-source software for self-hostin
 | [phpMyAdmin](https://www.phpmyadmin.net/) | Web-based MySQL or MariaDB database server administration software | [Link](services/phpmyadmin.md) |
 | [PinePods](https://www.pinepods.online/) | Podcast management system with multi-user support | [Link](services/pinepods.md) |
 | [Plausible Analytics](https://plausible.io/) | Intuitive and lightweight web analytics | [Link](services/plausible.md) |
-| [Plex](https://www.plex.tv/) | A personal media server | [Link](services/plex.md) |
 | [Pocket ID](https://pocket-id.org/) | Simple OIDC provider for passkey-only authentication | [Link](services/pocket-id.md) |
 | [PoodleDonts](https://git.private.coffee/PrivateCoffee/poodledonts) | Privacy-friendly Google Fonts proxy | [Link](services/poodledonts.md) |
 | [PostGIS](https://postgis.net/) | A spatial database extender for PostgreSQL object-relational database | [Link](services/postgis.md) |
@@ -275,6 +274,7 @@ Below is a list of non-free (i.e. licensed under a non-free license) software wh
 | ---- | ----------- | ------------- |
 | [MongoDB](https://www.mongodb.com/) | A source-available cross-platform document-oriented (NoSQL) database program | [Link](services/mongodb.md) |
 | [n8n](https://n8n.io/) | Workflow automation for technical people | [Link](services/n8n.md) |
+| [Plex](https://www.plex.tv/) | A personal media server | [Link](services/plex.md) |
 
 ## Related playbooks
 
