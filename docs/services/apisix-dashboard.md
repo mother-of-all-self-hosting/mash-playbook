@@ -29,11 +29,11 @@ See the project's [documentation](https://apisix.apache.org/docs/dashboard/USER_
 
 This service requires the following other services:
 
-- a [Traefik](traefik.md) reverse-proxy server
-- an [etcd](etcd.md) key-value store
+- [etcd](etcd.md) key-value store
+- [Traefik](traefik.md) reverse-proxy server
 - (optional) [APISIX Gateway](apisix-gateway.md) — there's no point in administrating APISIX Gateway configuration stored in etcd without having an APISIX Gateway instance to initialize and consume it
 
-## Adjusting the playbook configuration
+## Configuration
 
 To enable this service, add the following configuration to your `vars.yml` file and re-run the [installation](../installing.md) process:
 

@@ -12,6 +12,7 @@ SPDX-FileCopyrightText: 2023 Antonis Christofides
 SPDX-FileCopyrightText: 2023 Felix Stupp
 SPDX-FileCopyrightText: 2023 Julian-Samuel Gebühr
 SPDX-FileCopyrightText: 2023 Pierre 'McFly' Marty
+SPDX-FileCopyrightText: 2024 Thomas Miceli
 SPDX-FileCopyrightText: 2024-2026 Suguru Hirahara
 
 SPDX-License-Identifier: AGPL-3.0-or-later
@@ -25,8 +26,9 @@ Teable is a no-code platform for managing databases using a spreadsheet-like int
 
 See the project's [documentation](https://help.teable.ai/en/about) to learn what Teable does and why it might be useful to you.
 
-For details about configuring the [Ansible role for Teable](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az2bcU1U9yJfJE6t8quZ1BMnEpQLic), you can check them via:
-- 🌐 [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az2bcU1U9yJfJE6t8quZ1BMnEpQLic/tree/docs/configuring-teable.md) online
+For details about configuring the [Ansible role for Teable](https://radicle.network/nodes/seed.radicle.garden/rad%3Az2bcU1U9yJfJE6t8quZ1BMnEpQLic), you can check them via:
+
+- 🌐 [the role's documentation](https://radicle.network/nodes/seed.radicle.garden/rad%3Az2bcU1U9yJfJE6t8quZ1BMnEpQLic/tree/docs/configuring-teable.md) online
 - 📁 `roles/galaxy/teable/docs/configuring-teable.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 ## Dependencies
@@ -38,7 +40,7 @@ This service requires the following other services:
 - [Valkey](valkey.md) data-store; see [below](#configure-valkey) for details about installation
 - (optional) [exim-relay](exim-relay.md) mailer
 
-## Adjusting the playbook configuration
+## Configuration
 
 To enable this service, add the following configuration to your `vars.yml` file:
 
@@ -133,7 +135,6 @@ mash_playbook_service_base_directory_name_prefix: 'teable-'
 #                                                                      #
 ########################################################################
 
-
 ########################################################################
 #                                                                      #
 # valkey                                                               #
@@ -165,13 +166,13 @@ Having configured `vars.yml` for the dedicated instance, add the following confi
 # Point Teable to its dedicated Valkey instance
 teable_redis_hostname: mash-teable-valkey
 
-# Make sure the Teable service (mash-teable.service) starts after its dedicated Valkey service (mash-teable-valkey.service)
-teable_systemd_required_services_list_custom:
-  - "mash-teable-valkey.service"
-
 # Make sure the Teable service (mash-teable.service) is connected to the container network of its dedicated Valkey service (mash-teable-valkey)
 teable_container_additional_networks_custom:
   - "mash-teable-valkey"
+
+# Make sure the Teable service (mash-teable.service) starts after its dedicated Valkey service (mash-teable-valkey.service)
+teable_systemd_required_services_list_custom:
+  - "mash-teable-valkey.service"
 
 ########################################################################
 #                                                                      #
@@ -203,7 +204,6 @@ valkey_enabled: true
 #                                                                      #
 ########################################################################
 
-
 ########################################################################
 #                                                                      #
 # teable                                                               #
@@ -215,13 +215,13 @@ valkey_enabled: true
 # Point Teable to the shared Valkey instance
 teable_redis_hostname: "{{ valkey_identifier }}"
 
-# Make sure the Teable service (mash-teable.service) starts after its dedicated Valkey service (mash-teable-valkey.service)
-teable_systemd_required_services_list_custom:
-  - "{{ valkey_identifier }}.service"
-
-# Make sure the Teable container is connected to the container network of its dedicated Valkey service (mash-teable-valkey)
+# Make sure the Teable container is connected to the container network of the shared Valkey service (mash-valkey)
 teable_container_additional_networks_custom:
   - "{{ valkey_container_network }}"
+
+# Make sure the Teable service (mash-teable.service) starts after the shared Valkey service (mash-valkey.service)
+teable_systemd_required_services_list_custom:
+  - "{{ valkey_identifier }}.service"
 
 ########################################################################
 #                                                                      #
@@ -232,11 +232,14 @@ teable_container_additional_networks_custom:
 
 Running the installation command will create the shared Valkey instance named `mash-valkey`.
 
-### Configure the mailer
+### Configuring the mailer (optional)
 
-You can configure a SMTP mailer for functions such as signing up, verifying or changing email address, resetting password, etc. If you enable the [exim-relay](exim-relay.md) service in your inventory configuration, the playbook will automatically configure it as a mailer for the service.
+On Teable you can set up a mailer for functions such as signing up, verifying or changing email address, resetting password, etc. If you enable the [exim-relay](exim-relay.md) service in your inventory configuration, the playbook will automatically configure it as a mailer for the service.
 
-You can set up the mailer on the administration dashboard after installing the service.
+To actually have the service use (and get messages sent through the exim-relay service), you will need to adjust settings on the service's UI after the service is installed.
+
+>[!WARNING]
+> Without setting an authentication method such as DKIM, SPF, and DMARC for your hostname, emails are most likely to be quarantined as spam at recipient's mail servers. The worst scenario is that your server's IP address or hostname will be included in the spam list such as the one managed by [Spamhaus](https://www.spamhaus.org/), depending on the reputation. As the exim-relay service supports DKIM signing, refer to [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-exim-relay/blob/main/docs/configuring-exim-relay.md#enable-dkim-support-optional) for details about how to set it up.
 
 ## Installation
 
@@ -252,4 +255,4 @@ To get started, open the URL with a web browser, and register the account. **Not
 
 ## Troubleshooting
 
-See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Az2bcU1U9yJfJE6t8quZ1BMnEpQLic/tree/docs/configuring-teable.md#troubleshooting) on the role's documentation for details.
+See [this section](https://radicle.network/nodes/seed.radicle.garden/rad%3Az2bcU1U9yJfJE6t8quZ1BMnEpQLic/tree/docs/configuring-teable.md#troubleshooting) on the role's documentation for details.

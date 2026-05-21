@@ -1,10 +1,10 @@
 <!--
-SPDX-FileCopyrightText: 2020 - 2024 MDAD project contributors
-SPDX-FileCopyrightText: 2020 - 2024 Slavi Pantaleev
 SPDX-FileCopyrightText: 2020 Aaron Raimist
 SPDX-FileCopyrightText: 2020 Chris van Dijk
 SPDX-FileCopyrightText: 2020 Dominik Zajac
 SPDX-FileCopyrightText: 2020 Mickaël Cornière
+SPDX-FileCopyrightText: 2020-2024 MDAD project contributors
+SPDX-FileCopyrightText: 2020-2024 Slavi Pantaleev
 SPDX-FileCopyrightText: 2022 François Darveau
 SPDX-FileCopyrightText: 2022 Julian Foad
 SPDX-FileCopyrightText: 2022 Warren Bailey
@@ -15,7 +15,8 @@ SPDX-FileCopyrightText: 2023 MASH project contributors
 SPDX-FileCopyrightText: 2023 Niels Bouma
 SPDX-FileCopyrightText: 2023 Pierre 'McFly' Marty
 SPDX-FileCopyrightText: 2024 Gergely Horváth
-SPDX-FileCopyrightText: 2024 - 2025 Suguru Hirahara
+SPDX-FileCopyrightText: 2024 Thomas Miceli
+SPDX-FileCopyrightText: 2024-2026 Suguru Hirahara
 
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->
@@ -29,6 +30,7 @@ Nextcloud is the most popular self-hosted collaboration solution for tens of mil
 See the project's [documentation](https://docs.nextcloud.com/) to learn what Nextcloud does and why it might be useful to you.
 
 For details about configuring the [Ansible role for Nextcloud](https://github.com/mother-of-all-self-hosting/ansible-role-nextcloud), you can check them via:
+
 - 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-nextcloud/blob/main/docs/configuring-nextcloud.md) online
 - 📁 `roles/galaxy/nextcloud/docs/configuring-nextcloud.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
@@ -36,13 +38,12 @@ For details about configuring the [Ansible role for Nextcloud](https://github.co
 
 This service requires the following other services:
 
-- a [Traefik](traefik.md) reverse-proxy server
-- (optional) [Postgres](postgres.md) / MySQL / [MariaDB](mariadb.md) database — Nextcloud will default to [SQLite](https://www.sqlite.org/) if Postgres is not enabled
-    - [This page](https://docs.nextcloud.com/server/latest/admin_manual/configuration_database/linux_database_configuration.html) of the Nextcloud documentation recommends MySQL or MariaDB database
+- [Postgres](postgres.md) / MySQL / [MariaDB](mariadb.md) / [SQLite](https://www.sqlite.org/) database — Nextcloud will default to SQLite if Postgres is not enabled
+- [Traefik](traefik.md) reverse-proxy server
 - (optional) a [Valkey](valkey.md) data-store; see [below](#configuring-valkey-optional) for details about installation
-- (optional) the [exim-relay](exim-relay.md) mailer
+- (optional) [exim-relay](exim-relay.md) mailer
 
-## Adjusting the playbook configuration
+## Configuration
 
 To enable this service, add the following configuration to your `vars.yml` file:
 
@@ -70,6 +71,15 @@ nextcloud_path_prefix: /nextcloud
 ### Select database to use (optional)
 
 By default Nextcloud is configured to use [Postgres](postgres.md) (if enabled), but you can choose other databases such as MySQL (MariaDB) and SQLite. If Postgres is not enabled, SQLite will be used. See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-nextcloud/blob/main/docs/configuring-nextcloud.md#configure-database) on the role's documentation for details.
+
+### Configuring the mailer (optional)
+
+On Nextcloud you can set up a mailer for functions such as password recovery. If you enable the [exim-relay](exim-relay.md) service in your inventory configuration, the playbook will automatically configure it as a mailer for the service.
+
+To actually have the service use (and get messages sent through the exim-relay service), you will need to adjust settings on the service's UI after the service is installed.
+
+>[!WARNING]
+> Without setting an authentication method such as DKIM, SPF, and DMARC for your hostname, emails are most likely to be quarantined as spam at recipient's mail servers. The worst scenario is that your server's IP address or hostname will be included in the spam list such as the one managed by [Spamhaus](https://www.spamhaus.org/), depending on the reputation. As the exim-relay service supports DKIM signing, refer to [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-exim-relay/blob/main/docs/configuring-exim-relay.md#enable-dkim-support-optional) for details about how to set it up.
 
 ### Editing default configuration parameters (optional)
 
@@ -148,7 +158,6 @@ mash_playbook_service_base_directory_name_prefix: 'nextcloud-'
 #                                                                      #
 ########################################################################
 
-
 ########################################################################
 #                                                                      #
 # valkey                                                               #
@@ -177,16 +186,20 @@ Having configured `vars.yml` for the dedicated instance, add the following confi
 
 # Add the base configuration as specified above
 
-# Point Nextcloud to its dedicated Valkey instance
-nextcloud_redis_hostname: mash-nextcloud-valkey
+# Make sure the connection via Unix domain socket is enabled
+# Set to `false` to enable TCP connection instead
+nextcloud_redis_socket_enabled: true
+
+# Connect Nextcloud to its dedicated Valkey instance via the Unix domain socket
+#
+# Alternatively, if you set `nextcloud_redis_socket_enabled` to `false`,
+# - Add the dedicated Valkey instance (mash-nextcloud-valkey) to `nextcloud_redis_hostname`
+# - Add its network (mash-nextcloud-valkey) to `nextcloud_container_additional_networks_custom`
+nextcloud_redis_socket_path_host: /mash/nextcloud-valkey/run
 
 # Make sure the Nextcloud service (mash-nextcloud.service) starts after its dedicated Valkey service (mash-nextcloud-valkey.service)
 nextcloud_systemd_required_services_list_custom:
   - "mash-nextcloud-valkey.service"
-
-# Make sure the Nextcloud container is connected to the container network of its dedicated Valkey service (mash-nextcloud-valkey)
-nextcloud_container_additional_networks_custom:
-  - "mash-nextcloud-valkey"
 
 ########################################################################
 #                                                                      #
@@ -218,7 +231,6 @@ valkey_enabled: true
 #                                                                      #
 ########################################################################
 
-
 ########################################################################
 #                                                                      #
 # nextcloud                                                            #
@@ -227,16 +239,20 @@ valkey_enabled: true
 
 # Add the base configuration as specified above
 
-# Point Nextcloud to the shared Valkey instance
-nextcloud_redis_hostname: "{{ valkey_identifier }}"
+# Make sure the connection via Unix domain socket is enabled
+# Set to `false` to enable TCP connection instead
+nextcloud_redis_socket_enabled: true
+
+# Connect Nextcloud to the shared Valkey instance via the Unix domain socket
+#
+# Alternatively, if you set `nextcloud_redis_socket_enabled` to `false`,
+# - Add the shared Valkey instance (mash-valkey) to `nextcloud_redis_hostname`
+# - Add its network (mash-valkey) to `nextcloud_container_additional_networks_custom`
+nextcloud_redis_socket_path_host: "{{ valkey_run_path }}"
 
 # Make sure the Nextcloud service (mash-nextcloud.service) starts after the shared Valkey service (mash-valkey.service)
 nextcloud_systemd_required_services_list_custom:
   - "{{ valkey_identifier }}.service"
-
-# Make sure the Nextcloud container is connected to the container network of the shared Valkey service (mash-valkey)
-nextcloud_container_additional_networks_custom:
-  - "{{ valkey_identifier }}"
 
 ########################################################################
 #                                                                      #
@@ -286,14 +302,15 @@ Nextcloud supports Single-Sign-On (SSO) via LDAP, SAML, and OIDC. To make use of
 
 For example, you can enable SSO with authentik via OIDC by following the steps below:
 
-* Create a new provider in authentik and trim the client secret to less than 64 characters
-* Create an application in authentik using this provider
-* Install the app `user_oidc` in Nextcloud
-* Fill in the details from authentik in the app settings
+- Create a new provider in authentik and trim the client secret to less than 64 characters
+- Create an application in authentik using this provider
+- Install the app `user_oidc` in Nextcloud
+- Fill in the details from authentik in the app settings
 
 Refer to [this blogpost by a third party](https://blog.cubieserver.de/2022/complete-guide-to-nextcloud-oidc-authentication-with-authentik/) for details.
 
-**Notes**:
+💡 **Notes**:
+
 - The official documentation of authentik to connect nextcloud via SAML does not seem to work (as of August 2023).
 - If you cannot log in due to an error (the error message contains `SHA1 mismatch`), make sure that Nextcloud users and authentik users do not have the same name. If they do, check `Use unique user ID` in the OIDC App settings.
 
@@ -331,26 +348,24 @@ To disable the integration altogether (in case of using another LDAP server for 
 nextcloud_lldap_enabled: false
 ```
 
-## Related services
+### Configuring Nextcloud Office application
 
-### Collabora Online Development Edition
-
-On Nextcloud it is possible to integrate the Collabora Online Development Edition (CODE) office suite. This playbook supports it, and you can set up a CODE instance by enabling it on `vars.yml`. You can follow the [documentation](code.md) to install it.
+To use the [Nextcloud Office application](https://apps.nextcloud.com/apps/richdocuments), it is necessary to set up a WOPI (Web Application Open Platform Interface) client such as [Collabora Online Development Edition (CODE)](https://www.collaboraonline.com/code/). This playbook supports CODE, and you can set up a CODE instance by enabling it on `vars.yml`. You can follow the [documentation](code.md) to install it.
 
 By default, this playbook is configured to automatically integrate the CODE instance with the Nextcloud instance which this playbook manages, if both of them are enabled.
 
-After installing both CODE and Nextcloud, run this command to install and configure the [Office](https://apps.nextcloud.com/apps/richdocuments) app for Nextcloud:
+After installing both CODE and Nextcloud, run this command to install and configure the Nextcloud Office application:
 
 ```sh
-just run-tags install-nextcloud-app-collabora
+just run-tags install-nextcloud-app-richdocuments
 ```
 
 Open the URL `https://mash.example.com/nextcloud/settings/admin/richdocuments` to have the instance set up the connection with the CODE instance.
 
-You should then be able to open any document (`.doc`, `.odt`, `.pdf`, etc.) and create new ones in Nextcloud Files with Collabora Online Development Edition's editor.
+You should then be able to open any document (`.doc`, `.odt`, `.pdf`, etc.) and create new ones in Nextcloud Files with the Nextcloud Office application.
 
 >[!NOTE]
-> By default, various private IPv4 networks are whitelisted to connect to the WOPI API (document serving API). If your CODE instance does not live on the same server as Nextcloud, you may need to adjust the list of networks. If necessary, redefine the `nextcloud_app_collabora_wopi_allowlist` environment variable on `vars.yml`.
+> By default, several private IPv4 networks are whitelisted to connect to the WOPI API (document serving API). If your CODE instance does not live on the same server as Nextcloud, you may need to adjust the list of networks. If necessary, redefine the `nextcloud_app_richdocuments_wopi_client_allowlist` environment variable on `vars.yml`.
 
 ## Troubleshooting
 

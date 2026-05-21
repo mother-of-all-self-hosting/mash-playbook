@@ -26,16 +26,26 @@ Before working on implementation, check if:
 
 To support a new service, at first you need to create an Ansible role for it in its public git repository. It does not have to be maintained on a specific forge like GitHub; you can use GitLab, Codeberg, or anywhere you choose. Note that the instance should be stable and globally available as the roles are to be fetched anytime.
 
-When it comes to the structure of roles, you can follow existing roles such as [`ansible-role-postgres`](https://github.com/mother-of-all-self-hosting/ansible-role-postgres), [`ansible-role-syncthing`](https://github.com/mother-of-all-self-hosting/ansible-role-syncthing), and [`ansible-role-ntfy`](https://github.com/mother-of-all-self-hosting/ansible-role-ntfy). Generally, it is not recommended to create a role from the scratch as it can lack important variables required for the playbook. If you are not quite sure where to start, your best bet would be to copy the existing (and recently updated) role maintained by [MASH project](https://github.com/mother-of-all-self-hosting), and reuse it as a template.
+When it comes to the structure of roles, you can follow existing roles such as [`ansible-role-echoip`](https://github.com/mother-of-all-self-hosting/ansible-role-echoip), [`ansible-role-readeck`](https://github.com/mother-of-all-self-hosting/ansible-role-readeck), and [`ansible-role-syncthing`](https://github.com/mother-of-all-self-hosting/ansible-role-syncthing). Generally, it is not recommended to create a role from the scratch as it can lack important variables required for the playbook. If you are not quite sure where to start, your best bet would be to copy the existing (and recently updated) role maintained by [MASH project](https://github.com/mother-of-all-self-hosting), and reuse it as a template.
 
 💡 **Notes**:
+
 - Your role's file structure should be similar to this tree:
+
     ```
     .
+    ├── .github/
+    │   ├── renovate.json
+    │   └── workflows/
+    │       ├── autotag.yml
+    │       └── pre-commit.yml
     ├── defaults/
     │   └── main.yml
     ├── docs/
     │   └── configuring-YOUR-SERVICE.md
+    ├── LICENSES
+    │   ├── AGPL-3.0-or-later.txt
+    │   └── CC0-1.0.txt
     ├── meta/
     │   └── main.yml
     ├── tasks/
@@ -48,12 +58,20 @@ When it comes to the structure of roles, you can follow existing roles such as [
     │   ├── labels.j2
     │   └── systemd/
     │       └── YOUR-SERVICE.service.j2
+    ├── .ansible-lint
+    ├── .gitignore
+    ├── .pre-commit-config.yaml
+    ├── .yamllint.yml
     ├── justfile
     ├── LICENSE
-    └── README.md
+    ├── mise.toml
+    ├── README.md
+    └── REUSE.toml
     ```
+
 - You will also need to decide on a licence. Otherwise ansible-galaxy won't work. We recommend AGPLv3, as it is adoped by the most roles of the MASH playbook.
 - If you are committed to free software, you might probably be interested in publishing the role based on [REUSE](https://reuse.software/), an initiative by [FSFE](https://fsfe.org/).
+- It is recommended to set up a Git pre-commit hook (via [mise](https://mise.jdx.dev/) + [prek](https://prek.j178.dev/)) that runs formatting and linting checks before each commit, and make sure that your role passes the linter before submitting. `.pre-commit-config.yaml` defines which hooks are to be executed.
 
 ### 3. Update the MASH playbook to support your created Ansible role
 
@@ -67,11 +85,11 @@ There are a few files that you need to adapt:
 │       └── YOUR-SERVICE.md  ← Add documentation about how to configure it
 ├── templates/
 │   ├── group_vars_mash_servers  ← Add default configuration
-│   └── requirements.yml  ← Add your Ansible role
+│   ├── requirements.yml  ← Add your Ansible role
 │   └── setup.yml  ← Add your Ansible role
 ```
 
-💡 Make sure to edit configuration files inside `templates` — These are source files to be optimized and used when running [`just`](just.md) commands to install, configure, or uninstall services.
+Make sure to edit configuration files inside `templates` — These are source files to be optimized and used when running [`just`](just.md) commands to install, configure, or uninstall services.
 
 #### Add the role to `group_vars_mash_servers` in `templates` directory
 
@@ -81,7 +99,8 @@ When adding the role, replace `YOUR-SERVICE` with yours, and also mind the place
 
 See below for details about what to configure. Note that not all roles require to be wired to anything other than `systemd_service_manager`.
 
-💡 If the role requires a fixed string for something like passwords, please try to avoid pre-setting it with `mash_playbook_generic_secret_key` for the sake of users. It is intended for secrets that are fine to be changed later.
+>[!NOTE]
+> Please do not use `mash_playbook_generic_secret_key` for a fixed string for something like passwords, because it is intended for secrets that are fine to be changed later.
 
 <details>
 <summary>Wire the role to systemd_service_manager</summary>
@@ -114,6 +133,7 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
 # /role-specific:systemd_service_manager
 
 ```
+
 </details>
 
 **Optional**:
@@ -220,7 +240,7 @@ To wire the role to exim-relay, add the configuration for it as below:
 
 YOUR-SERVICE_systemd_wanted_services_list_auto: |
   {{
-    ([(exim_relay_identifier | default('mash-exim-relay')) ~ '.service'] if (exim_relay_enabled | default(false) and YOUR-SERVICE_config_mailer_smtp_addr == exim_relay_identifier | default('mash-exim-relay')) else [])
+    ([exim_relay_identifier ~ '.service'] if exim_relay_enabled | default(false) and YOUR-SERVICE_config_mailer_smtp_addr == exim_relay_identifier else [])
   }}
 
 [...]
@@ -229,7 +249,7 @@ YOUR-SERVICE_container_additional_networks_auto: |
   {{
     [...]
     +
-    ([exim_relay_container_network | default('mash-exim-relay')] if (exim_relay_enabled | default(false) and YOUR-SERVICE_config_mailer_smtp_addr == exim_relay_identifier | default('mash-exim-relay') and YOUR-SERVICE_container_network != exim_relay_container_network) else [])
+    ([exim_relay_container_network] if exim_relay_enabled | default(false) and YOUR-SERVICE_config_mailer_smtp_addr == exim_relay_identifier and YOUR-SERVICE_container_network != exim_relay_container_network else [])
   }}
 
 # role-specific:exim_relay
@@ -247,10 +267,21 @@ YOUR-SERVICE_config_mailer_protocol: "{{ 'smtp' if exim_relay_enabled else '' }}
 ########################################################################
 # /role-specific:YOUR-SERVICE
 ```
+
 </details>
 
 ### Additional hints
 
 Please consider to add a line like `# Project source code URL: YOUR-SERVICE-GIT-REPO` to your Ansible role's `defaults/main.yml` file, so that [`bin/feeds.py`](/bin/feeds.py) can automatically find the Atom/RSS feed for new releases.
 
-If you have any questions, you are welcomed to join the Matrix room for the MASH playbook and free free to ask: https://matrix.to/#/%23mash-playbook:devture.com
+If you have any questions, you are welcomed to join the Matrix room for the MASH playbook and free free to ask: <https://matrix.to/#/%23mash-playbook:devture.com>
+
+## Maintain your role
+
+While the roles managed under [the MASH organization](https://github.com/orgs/mother-of-all-self-hosting) are maintained and updated when necessary by the organization in general, it is essentially your responsibility to maintain yours, though an organization member might send a push request to your role's repository to apply such changes that have been added to the MASH roles in order to improve maintainability (by sharing codebase).
+
+If the role is regarded to have been abandoned by the author from the viewpoint of common sense (the role being unusable for a long time, for example), the MASH organization might fork the repository at will to resurrect the role to make it usable on the MASH playbook. However, if it simply stopped working or blocks the playbook from running, the role can be removed from the playbook until the issue will be fixed — though this has not happened yet.
+
+Please keep an eye on the roles maintained by the MASH organization to keep yours up-to-date by adding proper changes if any. Since the background of the decision for the changes are usually not announced (though you may find references in a commit message), you might as well to ask an organization member on the Matrix room about changes you are expected to apply.
+
+Please do not hesitate to ask for help to let the community members help you! 👋

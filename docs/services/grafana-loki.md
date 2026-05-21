@@ -26,11 +26,13 @@ Loki is a log aggregation system designed to store and query logs from all your 
 See the project's [documentation](https://grafana.com/docs/loki/latest/) to learn what Loki does and why it might be useful to you.
 
 For details about configuring the [Ansible role for Loki](https://github.com/mother-of-all-self-hosting/ansible-role-loki), you can check them via:
+
 - 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-loki/blob/main/docs/configuring-loki.md) online
 - 📁 `roles/galaxy/loki/docs/configuring-loki.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 >[!NOTE]
 > As Loki is just a log storage system, you would need at least two other components in order to make use of it:
+>
 > - an agent such as Promtail to send logs to Loki
 > - a system such as Grafana to read the logs out of Loki and display them nicely
 

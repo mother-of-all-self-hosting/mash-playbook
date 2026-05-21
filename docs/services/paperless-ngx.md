@@ -1,10 +1,10 @@
 <!--
-SPDX-FileCopyrightText: 2020 - 2024 MDAD project contributors
-SPDX-FileCopyrightText: 2020 - 2025 Slavi Pantaleev
 SPDX-FileCopyrightText: 2020 Aaron Raimist
 SPDX-FileCopyrightText: 2020 Chris van Dijk
 SPDX-FileCopyrightText: 2020 Dominik Zajac
 SPDX-FileCopyrightText: 2020 Mickaël Cornière
+SPDX-FileCopyrightText: 2020-2024 MDAD project contributors
+SPDX-FileCopyrightText: 2020-2025 Slavi Pantaleev
 SPDX-FileCopyrightText: 2022 François Darveau
 SPDX-FileCopyrightText: 2022 Julian Foad
 SPDX-FileCopyrightText: 2022 Warren Bailey
@@ -13,23 +13,29 @@ SPDX-FileCopyrightText: 2023 Felix Stupp
 SPDX-FileCopyrightText: 2023 Julian-Samuel Gebühr
 SPDX-FileCopyrightText: 2023 MASH project contributors
 SPDX-FileCopyrightText: 2023 Pierre 'McFly' Marty
-SPDX-FileCopyrightText: 2024 - 2025 Suguru Hirahara
 SPDX-FileCopyrightText: 2024 Sergio Durigan Junior
+SPDX-FileCopyrightText: 2024 Thomas Miceli
+SPDX-FileCopyrightText: 2024-2026 Suguru Hirahara
 
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 
 # Paperless-ngx
 
-[Paperless-ngx](https://paperless-ngx.com) is a community-supported open-source document management system that transforms your physical documents into a searchable online archive to organize them paperless.
+The playbook can install and configure [Paperless-ngx](https://paperless-ngx.com) for you.
+
+Paperless-ngx is a community-supported open-source document management system that transforms your physical documents into a searchable online archive to organize them paperless.
+
+See the project's [documentation](https://docs.paperless-ngx.com/) to learn what Paperless-ngx does and why it might be useful to you.
 
 ## Dependencies
 
 This service requires the following other services:
 
-- a [Traefik](traefik.md) reverse-proxy server
-- a [Valkey](valkey.md) data-store; see [below](#configure-valkey) for details about installation
-- (optional) [Apache Tika Server](tika.md)
+- [Traefik](traefik.md) reverse-proxy server
+- [Valkey](valkey.md) data-store; see [below](#configure-valkey) for details about installation
+- (optional) [Apache Tika Server](tika.md) with [Gotenberg](gotenberg.md)
+- (optional) [exim-relay](exim-relay.md) mailer
 - (optional) [Postgres](postgres.md) / [MariaDB](mariadb.md) database — Paperless-ngx will default to [SQLite](https://www.sqlite.org/) if Postgres is not enabled
 
 ## Configuration
@@ -142,7 +148,6 @@ mash_playbook_service_base_directory_name_prefix: 'paperless-'
 #                                                                      #
 ########################################################################
 
-
 ########################################################################
 #                                                                      #
 # valkey                                                               #
@@ -174,13 +179,13 @@ Having configured `vars.yml` for the dedicated instance, add the following confi
 # Point Paperless-ngx to its dedicated Valkey instance
 paperless_redis_hostname: mash-paperless-valkey
 
-# Make sure the Paperless-ngx service (mash-paperless.service) starts after its dedicated Valkey service (mash-paperless-valkey.service)
-paperless_systemd_required_services_list_custom:
-  - "mash-paperless-valkey.service"
-
 # Make sure the Paperless-ngx container is connected to the container network of its dedicated Valkey service (mash-paperless-valkey)
 paperless_container_additional_networks_custom:
   - "mash-paperless-valkey"
+
+# Make sure the Paperless-ngx service (mash-paperless.service) starts after its dedicated Valkey service (mash-paperless-valkey.service)
+paperless_systemd_required_services_list_custom:
+  - "mash-paperless-valkey.service"
 
 ########################################################################
 #                                                                      #
@@ -212,7 +217,6 @@ valkey_enabled: true
 #                                                                      #
 ########################################################################
 
-
 ########################################################################
 #                                                                      #
 # paperless                                                            #
@@ -224,13 +228,13 @@ valkey_enabled: true
 # Point Paperless-ngx to the shared Valkey instance
 paperless_redis_hostname: "{{ valkey_identifier }}"
 
-# Make sure the Paperless-ngx service (mash-paperless.service) starts after the shared Valkey service (mash-valkey.service)
-paperless_systemd_required_services_list_custom:
-  - "{{ valkey_identifier }}.service"
-
 # Make sure the Paperless-ngx container is connected to the container network of the shared Valkey service (mash-valkey)
 paperless_container_additional_networks_custom:
   - "{{ valkey_identifier }}"
+
+# Make sure the Paperless-ngx service (mash-paperless.service) starts after the shared Valkey service (mash-valkey.service)
+paperless_systemd_required_services_list_custom:
+  - "{{ valkey_identifier }}.service"
 
 ########################################################################
 #                                                                      #
@@ -256,11 +260,20 @@ paperless_ocr_languages_custom:
   - jpn
 ```
 
-### Configuring Apache Tika Server integration (optional)
+### Configuring the mailer (optional)
+
+On Paperless-ngx you can set up a mailer for functions such as password recovery. If you enable the [exim-relay](exim-relay.md) service in your inventory configuration, the playbook will automatically configure it as a mailer for the service.
+
+To actually have the service use (and get messages sent through the exim-relay service), you will need to adjust settings on the service's UI after the service is installed.
+
+>[!WARNING]
+> Without setting an authentication method such as DKIM, SPF, and DMARC for your hostname, emails are most likely to be quarantined as spam at recipient's mail servers. The worst scenario is that your server's IP address or hostname will be included in the spam list such as the one managed by [Spamhaus](https://www.spamhaus.org/), depending on the reputation. As the exim-relay service supports DKIM signing, refer to [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-exim-relay/blob/main/docs/configuring-exim-relay.md#enable-dkim-support-optional) for details about how to set it up.
+
+### Configuring Apache Tika Server integration with Gotenberg (optional)
 
 You can optionally have the instance connect to [Apache Tika Server](http://tika.apache.org/) for parsing and converting document files (such as ".doc", ".xlsx" and ".odt"). It is required for parsing emails (".eml") as well.
 
-Apache Tika Server is available on the playbook. Enabling it configures the instance to connect to it. See [this page](tika.md) for details about how to install it.
+Apache Tika Server is available on the playbook. As it requires [Gotenberg](gotenberg.md), enabling both of them configures the instance to connect to it. See [this page](tika.md) for details about how to install Apache Tika Server, and [this page](gotenberg.md) about how to install Gotenberg, respectively.
 
 ### Extending the configuration
 

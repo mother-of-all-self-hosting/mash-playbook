@@ -1,81 +1,47 @@
 <!--
-SPDX-FileCopyrightText: 2020 - 2024 MDAD project contributors
-SPDX-FileCopyrightText: 2020 - 2025 Slavi Pantaleev
+SPDX-FileCopyrightText: 2019 Edgars Voroboks
+SPDX-FileCopyrightText: 2019 Eduardo Beltrame
+SPDX-FileCopyrightText: 2019-2025 MDAD project contributors
+SPDX-FileCopyrightText: 2019-2025 Slavi Pantaleev
 SPDX-FileCopyrightText: 2020 Aaron Raimist
 SPDX-FileCopyrightText: 2020 Chris van Dijk
 SPDX-FileCopyrightText: 2020 Dominik Zajac
 SPDX-FileCopyrightText: 2020 Mickaël Cornière
+SPDX-FileCopyrightText: 2020 Tulir Asokan
+SPDX-FileCopyrightText: 2020 jens quade
+SPDX-FileCopyrightText: 2022 Dennis Ciba
 SPDX-FileCopyrightText: 2022 François Darveau
 SPDX-FileCopyrightText: 2022 Julian Foad
+SPDX-FileCopyrightText: 2022 Kim Brose
+SPDX-FileCopyrightText: 2022 Travis Ralston
+SPDX-FileCopyrightText: 2022 Vladimir Panteleev
 SPDX-FileCopyrightText: 2022 Warren Bailey
+SPDX-FileCopyrightText: 2022 Yan Minagawa
 SPDX-FileCopyrightText: 2023 Antonis Christofides
 SPDX-FileCopyrightText: 2023 Felix Stupp
 SPDX-FileCopyrightText: 2023 Julian-Samuel Gebühr
 SPDX-FileCopyrightText: 2023 Pierre 'McFly' Marty
-SPDX-FileCopyrightText: 2024 - 2025 Suguru Hirahara
+SPDX-FileCopyrightText: 2024-2026 Suguru Hirahara
 SPDX-FileCopyrightText: 2025 Nicola Murino
 
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 
-# Firezone
+# Firezone (removed)
 
->[!WARNING]
-> On this playbook, Firezone is implemented with [ansible-role-firezone](https://github.com/mother-of-all-self-hosting/ansible-role-firezone). The role is configured to install the legacy 0.7 version of Firezone which has reached end-of-life status and stopped receiving updates since January 31st, 2024. For later versions, Firezone, Inc. does not provide support for self-hosting in production, while the source code remains provided for self-hosting Firezone for merely *educational* or *hobby* purposes. See [this page](https://web.archive.org/web/20241230194456/https://github.com/firezone/firezone/blob/main/docs/README.md#can-i-self-host-firezone) for details.
+🪦 The playbook used to be able to install and configure the legacy 0.7 version of [Firezone](https://www.firezone.dev/), but no longer includes this service, as the role to install it ([ansible-role-firezone](https://github.com/mother-of-all-self-hosting/ansible-role-firezone)) has been deprecated.
 
-The playbook can install and configure [Firezone](https://www.firezone.dev/) for you.
+>[!NOTE]
+> You might be interested in having a look at [WireGuard Easy](wg-easy.md).
 
-Firezone is a self-hosted VPN server based on [WireGuard](https://www.wireguard.com/) with a web UI.
+## Uninstalling the service manually
 
-See the project's [documentation](https://www.firezone.dev/kb) to learn what Firezone does and why it might be useful to you.
+If you still have Firezone installed on your server, the playbook can no longer help you uninstall it and you will need to do it manually. To uninstall manually, run these commands on the server:
 
-For details about configuring the [Ansible role for Firezone](https://github.com/mother-of-all-self-hosting/ansible-role-firezone), you can check them via:
-- 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-firezone/blob/main/docs/configuring-firezone.md) online
-- 📁 `roles/galaxy/firezone/docs/configuring-firezone.md` locally, if you have [fetched the Ansible roles](../installing.md)
+```sh
+systemctl disable --now mash-firezone.service
 
-## Prerequisites
+rm -rf /mash/firezone
 
-### Open ports
-
-You may need to open the following ports on your server. See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-firezone/blob/main/docs/configuring-firezone.md#open-ports) on the role's documentation for details.
-
-## Dependencies
-
-This service requires the following other services:
-
-- a [Postgres](postgres.md) database
-- a [Traefik](traefik.md) reverse-proxy server
-
-## Adjusting the playbook configuration
-
-To enable this service, add the following configuration to your `vars.yml` file and re-run the [installation](../installing.md) process:
-
-```yaml
-########################################################################
-#                                                                      #
-# firezone                                                             #
-#                                                                      #
-########################################################################
-
-firezone_enabled: true
-
-firezone_hostname: firezone.example.com
-
-########################################################################
-#                                                                      #
-# /firezone                                                            #
-#                                                                      #
-########################################################################
+/mash/postgres/bin/cli-non-interactive -c 'DROP DATABASE firezone;'
 ```
-
-To use Firezone, you also need to add other configurations for creating an admin account and setting a string for a secret key. See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-firezone/blob/main/docs/configuring-firezone.md#adjusting-the-playbook-configuration) on the role's documentation for details.
-
-### Usage
-
-After running the command for installation, the Firezone instance becomes available at the URL specified with `firezone_hostname`. With the configuration above, the service is hosted at `https://firezone.example.com`.
-
-To get started, open the URL with a web browser to log in to the instance with the administrator account, as defined with the `firezone_default_admin_email` and `firezone_default_admin_password` variables.
-
-## Related services
-
-- [WireGuard Easy](wg-easy.md) — [WireGuard](https://www.wireguard.com/) VPN + Web-based Admin UI

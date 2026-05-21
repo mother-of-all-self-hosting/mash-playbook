@@ -26,8 +26,9 @@ CodiMD is a realtime collaborative markdown notes on all platforms.
 
 See the project's [documentation](https://hackmd.io/c/codimd-documentation) to learn what CodiMD does and why it might be useful to you.
 
-For details about configuring the [Ansible role for CodiMD](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Azp12kTQqmgqnFpUU6gPyVq19HNMD), you can check them via:
-- 🌐 [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Azp12kTQqmgqnFpUU6gPyVq19HNMD/tree/docs/configuring-codimd.md) online
+For details about configuring the [Ansible role for CodiMD](https://radicle.network/nodes/seed.radicle.garden/rad%3Azp12kTQqmgqnFpUU6gPyVq19HNMD), you can check them via:
+
+- 🌐 [the role's documentation](https://radicle.network/nodes/seed.radicle.garden/rad%3Azp12kTQqmgqnFpUU6gPyVq19HNMD/tree/docs/configuring-codimd.md) online
 - 📁 `roles/galaxy/codimd/docs/configuring-codimd.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 ## Dependencies
@@ -36,8 +37,9 @@ This service requires the following other services:
 
 - [Postgres](postgres.md) / MySQL / [MariaDB](mariadb.md)
 - [Traefik](traefik.md) reverse-proxy server
+- (optional) [exim-relay](exim-relay.md) mailer
 
-## Adjusting the playbook configuration
+## Configuration
 
 To enable this service, add the following configuration to your `vars.yml` file and re-run the [installation](../installing.md) process:
 
@@ -63,7 +65,7 @@ codimd_hostname: codimd.example.com
 
 ### Select database to use
 
-It is necessary to select a database used by CodiMD from a MySQL compatible database and Postgres. See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Azp12kTQqmgqnFpUU6gPyVq19HNMD/tree/docs/configuring-codimd.md#specify-database) on the role's documentation for details.
+It is necessary to select a database used by CodiMD from a MySQL compatible database and Postgres. See [this section](https://radicle.network/nodes/seed.radicle.garden/rad%3Azp12kTQqmgqnFpUU6gPyVq19HNMD/tree/docs/configuring-codimd.md#specify-database) on the role's documentation for details.
 
 ### Enabling signing up
 
@@ -79,6 +81,15 @@ codimd_environment_variables_cmd_allow_email_register: true
 
 See [this section](https://hackmd.io/c/codimd-documentation/%2Fs%2Fcodimd-configuration#Authentication) on the official documentation for details about setting up other authentication system like LDAP and OAuth.
 
+### Configuring the mailer (optional)
+
+On CodiMD you can set up a mailer for functions such as password recovery. If you enable the [exim-relay](exim-relay.md) service in your inventory configuration, the playbook will automatically configure it as a mailer for the service.
+
+To actually have the service use (and get messages sent through the exim-relay service), you will need to adjust settings on the service's UI after the service is installed.
+
+>[!WARNING]
+> Without setting an authentication method such as DKIM, SPF, and DMARC for your hostname, emails are most likely to be quarantined as spam at recipient's mail servers. The worst scenario is that your server's IP address or hostname will be included in the spam list such as the one managed by [Spamhaus](https://www.spamhaus.org/), depending on the reputation. As the exim-relay service supports DKIM signing, refer to [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-exim-relay/blob/main/docs/configuring-exim-relay.md#enable-dkim-support-optional) for details about how to set it up.
+
 ## Usage
 
 After running the command for installation, the CodiMD instance becomes available at the URL specified with `codimd_hostname`. With the configuration above, the service is hosted at `https://codimd.example.com`.
@@ -87,7 +98,7 @@ To get started, open the URL with a web browser to create an account.
 
 ## Troubleshooting
 
-See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3Azp12kTQqmgqnFpUU6gPyVq19HNMD/tree/docs/configuring-codimd.md#troubleshooting) on the role's documentation for details.
+See [this section](https://radicle.network/nodes/seed.radicle.garden/rad%3Azp12kTQqmgqnFpUU6gPyVq19HNMD/tree/docs/configuring-codimd.md#troubleshooting) on the role's documentation for details.
 
 ## Related services
 

@@ -26,6 +26,7 @@ Focalboard is an open source, self-hosted alternative to [Trello](https://trello
 See the project's [documentation](https://github.com/mattermost-community/focalboard/blob/main/README.md) to learn what Focalboard does and why it might be useful to you.
 
 For details about configuring the [Ansible role for Focalboard](https://github.com/mother-of-all-self-hosting/ansible-role-focalboard), you can check them via:
+
 - 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-focalboard/blob/main/docs/configuring-focalboard.md) online
 - 📁 `roles/galaxy/focalboard/docs/configuring-focalboard.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
@@ -33,10 +34,10 @@ For details about configuring the [Ansible role for Focalboard](https://github.c
 
 This service requires the following other services:
 
-- a [Traefik](traefik.md) reverse-proxy server
+- [Traefik](traefik.md) reverse-proxy server
 - (optional) a [Postgres](postgres.md) database — Focalboard will default to [SQLite](https://www.sqlite.org/) if Postgres is not enabled
 
-## Adjusting the playbook configuration
+## Configuration
 
 To enable this service, add the following configuration to your `vars.yml` file and re-run the [installation](../installing.md) process:
 

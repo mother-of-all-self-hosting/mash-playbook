@@ -10,16 +10,13 @@ This project allows self-hosting of a [large number of services](docs/supported-
 
 [Installation](docs/README.md) (upgrades) and some maintenance tasks are automated using [Ansible](https://www.ansible.com/) (see [our Ansible guide](docs/ansible.md)).
 
-
 ## Supported services
 
 See the [full list of supported services here](docs/supported-services.md).
 
-
 ## Installation
 
 To configure and install services on your own server, follow the [README in the docs/ directory](docs/README.md).
-
 
 ## Changes
 
@@ -27,13 +24,11 @@ This playbook evolves over time, sometimes with backward-incompatible changes.
 
 When updating the playbook, refer to [the changelog](CHANGELOG.md) to catch up with what's new.
 
-
 ## Support
 
 - Matrix room: [#mash-playbook:devture.com](https://matrixrooms.info/room/mash-playbook:devture.com). To join Matrix, [use a public server](https://app.element.io) like `matrix.org` or self-host Matrix yourself using the related [matrix-docker-ansible-deploy](https://github.com/spantaleev/matrix-docker-ansible-deploy) Ansible playbook
 
 - GitHub issues: [mother-of-all-self-hosting/mash-playbook/issues](https://github.com/mother-of-all-self-hosting/mash-playbook/issues)
-
 
 ## Why create such a mega playbook?
 
@@ -61,7 +56,6 @@ Having one large playbook with all services does not necessarily mean you need t
 
 All of the aforementioned playbooks have been absorbed into this one. See the [full list of supported services here](docs/supported-services.md).
 The [Matrix playbook](https://github.com/spantaleev/matrix-docker-ansible-deploy) will remain separate, because it contains a huge number of components and will likely grow even more. It deserves to stand on its own.
-
 
 ## What's with the name?
 

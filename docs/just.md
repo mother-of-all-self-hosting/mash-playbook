@@ -34,6 +34,7 @@ While [our documentation on prerequisites](prerequisites.md) lists `just` as one
 It is worth noting that `just` "recipes" are different from [playbook tags](playbook-tags.md). The recipes are shortcuts of commands defined in `justfile` and can be executed by the `just` program only, while the playbook tags are available for the raw `ansible-playbook` commands as well. Please be careful not to confuse them.
 
 For example, these two commands are different:
+
 - `just install-all`
 - `ansible-playbook -i inventory/hosts setup.yml --tags=install-all`
 

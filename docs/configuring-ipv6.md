@@ -133,7 +133,7 @@ The `devture_systemd_docker_base_ipv6_enabled` setting controls whether containe
 Changing this setting subsequently requires manual work (deleting all container networks).
 See [I've changed the `devture_systemd_docker_base_ipv6_enabled` setting, but it doesn't seem to have any effect](#i-ve-changed-the-devture_systemd_docker_base_ipv6_enabled-setting-but-it-doesn-t-seem-to-have-any-effect).
 
-#### I've changed the `devture_systemd_docker_base_ipv6_enabled` setting, but it doesn't seem to have any effect.
+#### I've changed the `devture_systemd_docker_base_ipv6_enabled` setting, but it doesn't seem to have any effect
 
 If you're using an older Docker version (Docker 27.0.0 or older), see [A note about old Docker](#a-note-about-old-docker).
 

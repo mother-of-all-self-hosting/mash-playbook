@@ -25,8 +25,9 @@ Linkwarden is a self-hosted, open-source collaborative bookmark manager to colle
 
 See the project's [documentation](https://docs.linkwarden.app) to learn what Linkwarden does and why it might be useful to you.
 
-For details about configuring the [Ansible role for Linkwarden](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3AzCF75tYyujYQ3T4L3BkBDrPzXree), you can check them via:
-- 🌐 [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3AzCF75tYyujYQ3T4L3BkBDrPzXree/tree/docs/configuring-linkwarden.md) online
+For details about configuring the [Ansible role for Linkwarden](https://radicle.network/nodes/seed.radicle.garden/rad%3AzCF75tYyujYQ3T4L3BkBDrPzXree), you can check them via:
+
+- 🌐 [the role's documentation](https://radicle.network/nodes/seed.radicle.garden/rad%3AzCF75tYyujYQ3T4L3BkBDrPzXree/tree/docs/configuring-linkwarden.md) online
 - 📁 `roles/galaxy/linkwarden/docs/configuring-linkwarden.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 ## Dependencies
@@ -37,7 +38,7 @@ This service requires the following other services:
 - [Traefik](traefik.md) reverse-proxy server
 - (optional) [Meilisearch](meilisearch.md)
 
-## Adjusting the playbook configuration
+## Configuration
 
 To enable this service, add the following configuration to your `vars.yml` file and re-run the [installation](../installing.md) process:
 
@@ -73,7 +74,7 @@ linkwarden_environment_variables_next_public_disable_registration: false
 
 To enable the [advanced search options](https://docs.linkwarden.app/Usage/advanced-search), you can optionally have the Linkwarden instance connect to a Meilisearch instance.
 
-Meilisearch is available on the playbook. Enabling it and setting its default admin API key automatically configures the Linkwarden instance to connect to it.
+Meilisearch is available on the playbook. Enabling it and setting its default admin API key (`meilisearch_default_admin_api_key`) automatically configures the Linkwarden instance to connect to it.
 
 See [this page](meilisearch.md) for details about how to install it and setting the key for the Meilisearch instance.
 
@@ -87,7 +88,7 @@ Since account registration is disabled by default, you need to enable it first b
 
 ## Troubleshooting
 
-See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3AzCF75tYyujYQ3T4L3BkBDrPzXree/tree/docs/configuring-linkwarden.md#troubleshooting) on the role's documentation for details.
+See [this section](https://radicle.network/nodes/seed.radicle.garden/rad%3AzCF75tYyujYQ3T4L3BkBDrPzXree/tree/docs/configuring-linkwarden.md#troubleshooting) on the role's documentation for details.
 
 ## Related services
 

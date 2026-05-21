@@ -25,8 +25,9 @@ Tinyauth is a simple authentication middleware that adds a login screen or OAuth
 
 See the project's [documentation](https://tinyauth.app/docs/about) to learn what Tinyauth does and why it might be useful to you.
 
-For details about configuring the [Ansible role for Tinyauth](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3AzLMiPKSyMcb5m85H2brZd4GHCDTF), you can check them via:
-- 🌐 [the role's documentation](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3AzLMiPKSyMcb5m85H2brZd4GHCDTF/tree/docs/configuring-tinyauth.md) online
+For details about configuring the [Ansible role for Tinyauth](https://radicle.network/nodes/seed.radicle.garden/rad%3AzLMiPKSyMcb5m85H2brZd4GHCDTF), you can check them via:
+
+- 🌐 [the role's documentation](https://radicle.network/nodes/seed.radicle.garden/rad%3AzLMiPKSyMcb5m85H2brZd4GHCDTF/tree/docs/configuring-tinyauth.md) online
 - 📁 `roles/galaxy/tinyauth/docs/configuring-tinyauth.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 >[!WARNING]
@@ -46,7 +47,7 @@ ansible-playbook -i inventory/hosts setup.yml --tags=create-user-tinyauth -e use
 
 Then, specify the output to the `tinyauth_environment_variables_users` environment variable on your `vars.yml` file.
 
-Refer to [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3AzLMiPKSyMcb5m85H2brZd4GHCDTF/tree/docs/configuring-tinyauth.md#prerequisites) on the role's documentation for details.
+Refer to [this section](https://radicle.network/nodes/seed.radicle.garden/rad%3AzLMiPKSyMcb5m85H2brZd4GHCDTF/tree/docs/configuring-tinyauth.md#prerequisites) on the role's documentation for details.
 
 ## Dependencies
 
@@ -57,7 +58,7 @@ This service requires the following other services:
 >[!NOTE]
 > Tinyauth is available for other proxies like nginx and Caddy. See the documentation for details: <https://tinyauth.app/docs/guides/nginx-proxy-manager> and <https://tinyauth.app/docs/community/caddy>
 
-## Adjusting the playbook configuration
+## Configuration
 
 To enable this service, add the following configuration to your `vars.yml` file and re-run the [installation](../installing.md) process:
 
@@ -85,7 +86,7 @@ With this configuration, Tinyauth will set a cookie for `.example.com` for authe
 
 ### Configuring OAuth (optional)
 
-If you skipped creating a user to use OAuth authentication only, you can configure authentication with your OAuth provider by following the instruction available on [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3AzLMiPKSyMcb5m85H2brZd4GHCDTF/tree/docs/configuring-tinyauth.md#oauth) of the role's documentation.
+If you skipped creating a user to use OAuth authentication only, you can configure authentication with your OAuth provider by following the instruction available on [this section](https://radicle.network/nodes/seed.radicle.garden/rad%3AzLMiPKSyMcb5m85H2brZd4GHCDTF/tree/docs/configuring-tinyauth.md#oauth) of the role's documentation.
 
 >[!NOTE]
 > When setting OAuth configuration, make sure to set the `TINYAUTH_OAUTH_WHITELIST` environment variable to limit who is allowed to log in with OAuth. Enabling OAuth solely will not activate authorization!
@@ -254,7 +255,7 @@ tinyauth_environment_variable_ldap_base_dn: "dc=example,dc=com"
 tinyauth_environment_variable_ldap_user_search_filter: "(uid=%s)"
 ```
 
-See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3AzLMiPKSyMcb5m85H2brZd4GHCDTF/tree/docs/configuring-tinyauth.md#ldap) on the role's documentation for details.
+See [this section](https://radicle.network/nodes/seed.radicle.garden/rad%3AzLMiPKSyMcb5m85H2brZd4GHCDTF/tree/docs/configuring-tinyauth.md#ldap) on the role's documentation for details.
 
 To disable the integration altogether, add the following configuration to your `vars.yml` file:
 
@@ -264,7 +265,7 @@ tinyauth_ldap_enabled: false
 
 ## Troubleshooting
 
-See [this section](https://app.radicle.xyz/nodes/seed.radicle.garden/rad%3AzLMiPKSyMcb5m85H2brZd4GHCDTF/tree/docs/configuring-tinyauth.md#troubleshooting) on the role's documentation for details.
+See [this section](https://radicle.network/nodes/seed.radicle.garden/rad%3AzLMiPKSyMcb5m85H2brZd4GHCDTF/tree/docs/configuring-tinyauth.md#troubleshooting) on the role's documentation for details.
 
 ## Related services
 

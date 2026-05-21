@@ -8,8 +8,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
 # System-related configuration
 
-This Ansible playbook can install and configure various system-related things for you.
-All the sections below relate to the host OS instead of the managed containers.
+This Ansible playbook can install and configure various system-related things for you. All the sections below relate to the host OS instead of the managed containers.
 
 ### swap
 
@@ -80,7 +79,6 @@ There are various configuration options — check the defaults and adjust them t
 
 Playbook may perform some housekeeping automatically, cleaning up unused docker resources, logs, even kernels (debian-only) and packages (debian-only). Here is how to enable different housekeeping tasks that will run on `setup-all`, `setup-cleanup`, `install-cleanup`:
 
-
 ```yaml
 ########################################################################
 #                                                                      #
@@ -111,7 +109,6 @@ system_cleanup_kernels: false
 #                                                                      #
 ########################################################################
 ```
-
 
 ### fail2ban
 

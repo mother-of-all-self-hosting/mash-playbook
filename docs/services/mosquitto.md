@@ -14,6 +14,7 @@ The playbook can install and configure [Mosquitto](https://mosquitto.org/) for y
 Mosquitto is a high performance, embeddable [MQTT](https://en.wikipedia.org/wiki/MQTT) broker.
 
 The [Ansible role for Mosquitto](https://github.com/mother-of-all-self-hosting/ansible-role-mosquitto) is developed and maintained by the MASH project. For details about configuring Mosquitto, you can check them via:
+
 - 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-mosquitto/blob/main/docs/configuring-mosquitto.md) online
 - 📁 `roles/galaxy/mosquitto/docs/configuring-mosquitto.md` locally, if you have [fetched the Ansible roles](../installing.md)
 

@@ -1,19 +1,23 @@
 <!--
 SPDX-FileCopyrightText: 2024 Nikita Chernyi
-SPDX-FileCopyrightText: 2025 Suguru Hirahara
+SPDX-FileCopyrightText: 2025, 2026 Suguru Hirahara
 
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 
 # Docker Registry Proxy
 
-[Docker Registry Proxy](https://github.com/etkecc/docker-registry-proxy) is a pass-through Docker registry (distribution) proxy with metadata caching, Docker-compatible errors, Prometheus metrics, etc.
+The playbook can install and configure [Docker Registry Proxy](https://github.com/etkecc/docker-registry-proxy) for you.
+
+Docker Registry Proxy is a pass-through Docker registry (distribution) proxy with metadata caching, Docker-compatible errors, Prometheus metrics, etc.
+
+See the project's [documentation](https://github.com/etkecc/docker-registry-proxy/blob/main/README.md) to learn what Docker Registry Proxy does and why it might be useful to you.
 
 ## Dependencies
 
 This service requires the following other services:
 
-- a [Traefik](traefik.md) reverse-proxy server
+- [Traefik](traefik.md) reverse-proxy server
 
 ## Configuration
 
@@ -51,7 +55,7 @@ docker_registry_proxy_trusted_ips: []
 
 After running the command for installation, the Docker Registry Proxy instance becomes available at the URL specified with `registry_hostname`. With the configuration above, the service is hosted at `https://registry.example.com`.
 
-## Recommended other services
+## Related services
 
 - [Docker Registry](docker-registry.md) — a container image distribution registry developed by [Docker Inc](https://www.docker.com/), wired automatically to the proxy, just disable registry's Traefik labels
 - [Grafana](grafana.md) — a multi-platform open source analytics and interactive visualization web application, Docker Registry Proxy comes with [pre-configured grafana dashboard](https://github.com/etkecc/docker-registry-proxy/blob/main/contrib/grafana-dashboard.json)

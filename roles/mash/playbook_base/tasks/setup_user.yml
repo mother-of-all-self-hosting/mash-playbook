@@ -4,7 +4,8 @@
 
 ---
 
-- when: not mash_playbook_uid and not mash_playbook_uid
+- name: Create the mash system user when UID and GID are unset
+  when: not mash_playbook_uid and not mash_playbook_gid
   block:
     - name: Ensure mash group is created
       ansible.builtin.group:

@@ -1,10 +1,10 @@
 <!--
-SPDX-FileCopyrightText: 2020 - 2024 MDAD project contributors
-SPDX-FileCopyrightText: 2020 - 2024 Slavi Pantaleev
 SPDX-FileCopyrightText: 2020 Aaron Raimist
 SPDX-FileCopyrightText: 2020 Chris van Dijk
 SPDX-FileCopyrightText: 2020 Dominik Zajac
 SPDX-FileCopyrightText: 2020 Mickaël Cornière
+SPDX-FileCopyrightText: 2020-2024 MDAD project contributors
+SPDX-FileCopyrightText: 2020-2024 Slavi Pantaleev
 SPDX-FileCopyrightText: 2022 François Darveau
 SPDX-FileCopyrightText: 2022 Julian Foad
 SPDX-FileCopyrightText: 2022 Warren Bailey
@@ -12,24 +12,34 @@ SPDX-FileCopyrightText: 2023 Antonis Christofides
 SPDX-FileCopyrightText: 2023 Felix Stupp
 SPDX-FileCopyrightText: 2023 Julian-Samuel Gebühr
 SPDX-FileCopyrightText: 2023 Pierre 'McFly' Marty
-SPDX-FileCopyrightText: 2024 - 2025 Suguru Hirahara
+SPDX-FileCopyrightText: 2024 Thomas Miceli
+SPDX-FileCopyrightText: 2024 Tiz
+SPDX-FileCopyrightText: 2024-2026 Suguru Hirahara
 
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 
 # Funkwhale
 
-[Funkwhale](https://funkwhale.audio/) is a community-driven project that lets you listen and share music and audio within a decentralized, open network.
+The playbook can install and configure [Funkwhale](https://funkwhale.audio/) for you.
 
+Funkwhale is a community-driven project that lets you listen and share music and audio within a decentralized, open network.
+
+See the project's [documentation](https://docs.funkwhale.audio) to learn what Funkwhale does and why it might be useful to you.
+
+For details about configuring the [Ansible role for Funkwhale](https://github.com/mother-of-all-self-hosting/ansible-role-funkwhale), you can check them via:
+
+- 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-funkwhale/blob/main/docs/configuring-funkwhale.md) online
+- 📁 `roles/galaxy/funkwhale/docs/configuring-funkwhale.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 ## Dependencies
 
 This service requires the following other services:
 
-- a [Postgres](postgres.md) database
-- a [Traefik](traefik.md) reverse-proxy server
-- a [Valkey](valkey.md) data-store; see [below](#configure-valkey) for details about installation
-
+- [Postgres](postgres.md) database
+- [Traefik](traefik.md) reverse-proxy server
+- [Valkey](valkey.md) data-store; see [below](#configure-valkey) for details about installation
+- (optional) [exim-relay](exim-relay.md) mailer
 
 ## Configuration
 
@@ -127,7 +137,6 @@ mash_playbook_service_base_directory_name_prefix: 'funkwhale-'
 #                                                                      #
 ########################################################################
 
-
 ########################################################################
 #                                                                      #
 # valkey                                                               #
@@ -159,13 +168,13 @@ Having configured `vars.yml` for the dedicated instance, add the following confi
 # Point Funkwhale to its dedicated Valkey instance
 funkwhale_redis_hostname: mash-funkwhale-valkey
 
-# Make sure the Funkwhale API service (mash-funkwhale-api.service) starts after its dedicated Valkey service
-funkwhale_api_systemd_required_services_list_custom:
-  - "mash-funkwhale-valkey.service"
-
-# Make sure the Funkwhale API service (mash-funkwhale-api.service) is connected to the container network of its dedicated Valkey service
+# Make sure the Funkwhale API service (mash-funkwhale-api.service) is connected to the container network of its dedicated Valkey service (mash-funkwhale-valkey)
 funkwhale_api_container_additional_networks_custom:
   - "mash-funkwhale-valkey"
+
+# Make sure the Funkwhale API service (mash-funkwhale-api.service) starts after its dedicated Valkey service (mash-funkwhale-valkey.service)
+funkwhale_api_systemd_required_services_list_custom:
+  - "mash-funkwhale-valkey.service"
 
 ########################################################################
 #                                                                      #
@@ -197,7 +206,6 @@ valkey_enabled: true
 #                                                                      #
 ########################################################################
 
-
 ########################################################################
 #                                                                      #
 # funkwhale                                                            #
@@ -209,13 +217,13 @@ valkey_enabled: true
 # Point Funkwhale to the shared Valkey instance
 funkwhale_redis_hostname: "{{ valkey_identifier }}"
 
-# Make sure the Funkwhale API service (mash-funkwhale-api.service) starts after the shared Valkey service
-funkwhale_api_systemd_required_services_list_custom:
-  - "{{ valkey_identifier }}.service"
-
 # Make sure the Funkwhale API service (mash-funkwhale-api.service) is connected to the container network of the shared Valkey service
 funkwhale_api_container_additional_networks_custom:
   - "{{ valkey_container_network }}"
+
+# Make sure the Funkwhale API service (mash-funkwhale-api.service) starts after the shared Valkey service (mash-valkey.service)
+funkwhale_api_systemd_required_services_list_custom:
+  - "{{ valkey_identifier }}.service"
 
 ########################################################################
 #                                                                      #
@@ -225,6 +233,13 @@ funkwhale_api_container_additional_networks_custom:
 ```
 
 Running the installation command will create the shared Valkey instance named `mash-valkey`.
+
+### Configuring the mailer (optional)
+
+On Funkwhale you can set up a mailer for functions such as password recovery. If you enable the [exim-relay](exim-relay.md) service in your inventory configuration, the playbook will automatically configure it as a mailer for the service.
+
+>[!WARNING]
+> Without setting an authentication method such as DKIM, SPF, and DMARC for your hostname, emails are most likely to be quarantined as spam at recipient's mail servers. The worst scenario is that your server's IP address or hostname will be included in the spam list such as the one managed by [Spamhaus](https://www.spamhaus.org/), depending on the reputation. As the exim-relay service supports DKIM signing, refer to [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-exim-relay/blob/main/docs/configuring-exim-relay.md#enable-dkim-support-optional) for details about how to set it up.
 
 ## Installation
 
@@ -236,16 +251,11 @@ Note that running the `just` commands for installation (`just install-all` or `j
 
 After installation, the Funkwhale instance becomes available at the URL specified with `funkwhale_hostname`. With the configuration above, the service is hosted at `https://funkwhale.example.com`.
 
-To log in to the service and get started, you have to create a user ("superuser") at first. To do so, run the command below after replacing `USERNAME`, `PASSWORD`, and `EMAIL_ADDRESS`:
-
-```bash
-just run-tags funkwhale-add-superuser --extra-vars=username=USERNAME --extra-vars=password=PASSWORD --extra-vars=email=EMAIL_ADDRESS
-```
-
-Log in to the web UI with the superuser to create other users.
+To get started, create **an administrator user** first and open the URL with a web browser to log in to the instance. You can run the playbook with the `create-admin-funkwhale` or `ensure-funkwhale-users-created` tag to create users. See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-funkwhale/blob/main/docs/configuring-funkwhale.md#creating-users) on the role's documentation for details.
 
 ## Related services
 
+- [Feishin](feishin.md) — Music player for Navidrome, Jellyfin, Funkwhale, etc.
 - [GoToSocial](gotosocial.md) — Self-hosted ActivityPub social network server
 - [Misskey](misskey.md) — Free decentralized microblogging platform based on the ActivityPub protocol
 - [PeerTube](peertube.md) — Tool for sharing online videos

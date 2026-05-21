@@ -25,13 +25,18 @@ VersaTiles is a free stack for generating and serving vector tiles based on [Ope
 
 See the project's [documentation](https://docs.versatiles.org/) to learn what VersaTiles does and why it might be useful to you.
 
+For details about configuring the [Ansible role for VersaTiles](https://github.com/mother-of-all-self-hosting/ansible-role-versatiles/), you can check them via:
+
+- 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-versatiles/blob/main/docs/configuring-versatiles.md) online
+- 📁 `roles/galaxy/versatiles/docs/configuring-versatiles.md` locally, if you have [fetched the Ansible roles](../installing.md)
+
 ## Dependencies
 
 This service requires the following other services:
 
-- a [Traefik](traefik.md) reverse-proxy server
+- [Traefik](traefik.md) reverse-proxy server
 
-## Adjusting the playbook configuration
+## Configuration
 
 To enable this service, add the following configuration to your `vars.yml` file and re-run the [installation](../installing.md) process:
 
@@ -79,3 +84,7 @@ To embed the map on a website, add the following tags to the website:
 ```
 
 Refer to [examples from MapLibre](https://maplibre.org/maplibre-gl-js/docs/examples/) for details about adjustments.
+
+## Troubleshooting
+
+See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-versatiles/blob/main/docs/configuring-versatiles.md#troubleshooting) on the role's documentation for details.

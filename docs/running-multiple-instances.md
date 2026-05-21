@@ -26,7 +26,8 @@ To install those instances, you can follow the steps below:
 
 At first, you need to set up your `hosts` file in `inventory` directory as follows, so that hosts for multiple instances of the same service target the same server.
 
-**Notes**:
+💡 **Notes**:
+
 - Make sure to replace `mash.example.com` with your hostname and `YOUR_SERVER_IP_ADDRESS_HERE` with the IP address of the host, respectively.
 - `mash_example_com` can be any string and does not have to match with the hostname of the server.
 
@@ -67,7 +68,8 @@ First, create new directories where `vars.yml` for the supplementary hosts are s
 
 Then, create a new `vars.yml` file inside each of them with a content below.
 
-**Notes**:
+💡 **Notes**:
+
 - As this `vars.yml` file will be used for the new host, make sure to set `mash_playbook_generic_secret_key`. It does not need to be same as the one on `vars.yml` for the main host.
 - These variables are not related to the hostname of the server. For example, even if it is `www.example.com`, you do not need to include `www` in either of them. If you are not sure which string you should set, you might as well use the values as they are.
 
@@ -96,7 +98,6 @@ mash_playbook_service_base_directory_name_prefix: 'netbox-'
 # /Playbook                                                            #
 #                                                                      #
 ########################################################################
-
 
 ########################################################################
 #                                                                      #
@@ -139,7 +140,6 @@ mash_playbook_service_base_directory_name_prefix: 'peertube-'
 #                                                                      #
 ########################################################################
 
-
 ########################################################################
 #                                                                      #
 # valkey                                                               #
@@ -179,21 +179,19 @@ Having configured `vars.yml` for Valkey instances for PeerTube and NetBox, add t
 netbox_environment_variable_redis_hostname: mash-netbox-valkey
 netbox_environment_variable_redis_cache_hostname: mash-netbox-valkey
 
-# Make sure the NetBox service (mash-netbox.service) starts after its dedicated Valkey service (mash-netbox-valkey.service)
-netbox_systemd_required_services_list_custom:
-  - mash-netbox-valkey.service
-
 # Make sure the NetBox container is connected to the container network of its dedicated Valkey service (mash-netbox-valkey)
 netbox_container_additional_networks_custom:
   - mash-netbox-valkey
+
+# Make sure the NetBox service (mash-netbox.service) starts after its dedicated Valkey service (mash-netbox-valkey.service)
+netbox_systemd_required_services_list_custom:
+  - mash-netbox-valkey.service
 
 ########################################################################
 #                                                                      #
 # /netbox                                                              #
 #                                                                      #
 ########################################################################
-
-
 
 ########################################################################
 #                                                                      #
@@ -206,13 +204,13 @@ netbox_container_additional_networks_custom:
 # Point PeerTube to its dedicated Valkey instance
 peertube_redis_hostname: mash-peertube-valkey
 
-# Make sure the PeerTube service (mash-peertube.service) starts after its dedicated Valkey service (mash-peertube-valkey.service)
-peertube_systemd_required_services_list_custom:
-  - "mash-peertube-valkey.service"
-
 # Make sure the PeerTube container is connected to the container network of its dedicated Valkey service (mash-peertube-valkey)
 peertube_container_additional_networks_custom:
   - "mash-peertube-valkey"
+
+# Make sure the PeerTube service (mash-peertube.service) starts after its dedicated Valkey service (mash-peertube-valkey.service)
+peertube_systemd_required_services_list_custom:
+  - "mash-peertube-valkey.service"
 
 ########################################################################
 #                                                                      #
