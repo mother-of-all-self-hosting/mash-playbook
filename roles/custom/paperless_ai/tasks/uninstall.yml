@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: 2026 2026 Oliver Lorenz
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
 ---
 - name: Check existence of Paperless Nextcloud Sync systemd service
   ansible.builtin.stat:

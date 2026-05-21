@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: 2026 2026 Oliver Lorenz
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
 FROM golang:tip-alpine3.22 as agru
 RUN apk add --no-cache git
 WORKDIR /go/agru

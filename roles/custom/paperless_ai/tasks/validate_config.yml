@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: 2026 2026 Oliver Lorenz
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
 ---
 - name: Fail if required Paperless AI settings not defined
   ansible.builtin.fail:
@@ -11,7 +15,7 @@
     - paperless_ai_path_prefix
     - paperless_ai_container_network
     - paperless_ai_paperless_api_token
-    
+
 - name: Run if Traefik is enabled
   when: paperless_ai_container_labels_traefik_enabled | bool
   block:

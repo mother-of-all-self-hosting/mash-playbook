@@ -1,5 +1,9 @@
 #!/usr/bin/env sh
 
+# SPDX-FileCopyrightText: 2026 2026 Oliver Lorenz
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
 LOGIN_CHECK="$(bw login --check | grep 'You are logged in!')"
 if [ -z "$LOGIN_CHECK" ]; then
   echo ""

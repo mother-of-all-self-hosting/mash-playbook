@@ -1,3 +1,6 @@
+# SPDX-FileCopyrightText: 2026 2026 Oliver Lorenz
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
 
 default:
     @{{ just_executable() }} --list --justfile {{ justfile() }}
@@ -19,7 +22,7 @@ _ensure_upstream_remote:
     else
         echo "Add remote '{{ upstream_remote_name }}'"
         git remote add "{{ upstream_remote_name }}" "{{ upstream_url }}"
-        
+
         if [ $? -eq 0 ]; then
             echo "Successfully added: {{ upstream_url }} as {{ upstream_remote_name }}"
         else
@@ -30,7 +33,7 @@ _ensure_upstream_remote:
 
 _merge_from_upstream:
     #!/usr/bin/env sh
-    
+
     CURRENT_BRANCH=$(git rev-parse --abbrev-ref HEAD)
 
     if [ "$CURRENT_BRANCH" != "main" ]; then

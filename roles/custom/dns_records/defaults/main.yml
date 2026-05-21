@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: 2026 2026 Oliver Lorenz
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
 ---
 dns_records_enabled: true
 dns_records_default_ttl: 3600
