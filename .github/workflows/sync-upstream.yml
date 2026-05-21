@@ -1,0 +1,66 @@
+# SPDX-FileCopyrightText: 2026 Oliver Lorenz
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+---
+name: Sync upstream
+on:  # yamllint disable-line rule:truthy
+  schedule:
+    - cron: '0 8 * * 1'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  sync:
+    name: Sync from upstream
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Configure git
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Add upstream remote
+        run: git remote add upstream https://github.com/mother-of-all-self-hosting/mash-playbook.git
+
+      - name: Fetch upstream
+        run: git fetch upstream
+
+      - name: Create sync branch
+        run: |
+          BRANCH="sync/upstream-$(date +%Y-%m-%d)"
+          git checkout -b "$BRANCH"
+          echo "BRANCH=$BRANCH" >> "$GITHUB_ENV"
+
+      - name: Merge upstream main
+        run: git merge upstream/main --no-edit
+
+      - name: Push sync branch
+        run: git push origin "$BRANCH"
+
+      - name: Close existing sync PRs
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh pr list --search "chore: sync upstream in:title" --state open --json number,headRefName \
+            --jq '.[] | "\(.number) \(.headRefName)"' \
+          | while read -r number branch; do
+              gh pr close "$number" --comment "Superseded by a newer sync PR." --delete-branch
+            done
+
+      - name: Create pull request
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh pr create \
+            --title "chore: sync upstream $(date +%Y-%m-%d)" \
+            --body "Automated weekly sync from [mother-of-all-self-hosting/mash-playbook](https://github.com/mother-of-all-self-hosting/mash-playbook)." \
+            --base main \
+            --head "$BRANCH"
