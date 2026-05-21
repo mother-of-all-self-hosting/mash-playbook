@@ -27,6 +27,11 @@ See the project's [documentation](https://postgis.net/documentation/) to learn w
 
 Some of the services installed by this playbook require a Postgres database with PostGIS extensions installed. Enabling the service will automatically wire all other services which require such a database to use it.
 
+>[!NOTE]
+>
+> - Upgrading the Postgres instance with PostGIS extensions installed to a new major version is currently tested and not yet available.
+> - The database is not configured to be backed up with BorgBackup. Please make sure to set it up manually if needed.
+
 ## Configuration
 
 To enable this service, add the following configuration to your `vars.yml` file and re-run the [installation](../installing.md) process:
@@ -53,9 +58,6 @@ postgis_connection_password: ''
 ## Usage
 
 After running the command for installation, the Postgres instance with PostGIS extensions installed becomes available.
-
->[!WARNING]
-> Upgrading the Postgres instance with PostGIS extensions installed to a new major version is currently tested and not yet available.
 
 ## Related services
 
