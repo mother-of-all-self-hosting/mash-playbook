@@ -71,4 +71,4 @@ See [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az2zr
 
 ## Related services
 
-- [I hate money](ihatemoney.md) — Shared budget manager
+- [Send](send.md) — Fork of Mozilla's Firefox Send which allows you to send encrypted files to other users
