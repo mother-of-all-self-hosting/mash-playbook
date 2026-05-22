@@ -20,15 +20,15 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
 # Gokapi
 
-The playbook can install and configure [Gokapi](https://gokapibudget.org) for you.
+The playbook can install and configure [Gokapi](https://github.com/Forceu/Gokapi) for you.
 
-Gokapi is a local-first personal finance tool.
+Gokapi is a lightweight server to share files that expire after a set number of downloads or days.
 
-See the project's [documentation](https://gokapibudget.org/docs/) to learn what Gokapi does and why it might be useful to you.
+See the project's [documentation](https://gokapi.readthedocs.io) to learn what Gokapi does and why it might be useful to you.
 
-For details about configuring the [Ansible role for Gokapi](https://radicle.network/nodes/seed.radicle.garden/rad%3Az2chD7Kt74JwEMafxTooxN7MaeYtK), you can check them via:
+For details about configuring the [Ansible role for Gokapi](https://radicle.network/nodes/iris.radicle.network/rad%3Az2zryaw72dpp4pRWKK1qvQzsY4qHR), you can check them via:
 
-- 🌐 [the role's documentation](https://radicle.network/nodes/seed.radicle.garden/rad%3Az2chD7Kt74JwEMafxTooxN7MaeYtK/tree/docs/configuring-gokapi.md) online
+- 🌐 [the role's documentation](https://radicle.network/nodes/iris.radicle.network/rad%3Az2zryaw72dpp4pRWKK1qvQzsY4qHR/tree/docs/configuring-gokapi.md) online
 - 📁 `roles/galaxy/gokapi/docs/configuring-gokapi.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 ## Dependencies
@@ -63,11 +63,11 @@ gokapi_hostname: gokapi.example.com
 
 After running the command for installation, the Gokapi instance becomes available at the URL specified with `gokapi_hostname`. With the configuration above, the service is hosted at `https://gokapi.example.com`.
 
-To get started, open the URL with a web browser to create an account.
+To get started, open the URL `https://gokapi.example.com/setup` with a web browser, and follow the set up wizard. Refer to [this page](https://gokapi.readthedocs.io/en/latest/setup.html#initial-setup) on the official documentation for details.
 
 ## Troubleshooting
 
-See [this section](https://radicle.network/nodes/seed.radicle.garden/rad%3Az2chD7Kt74JwEMafxTooxN7MaeYtK/tree/docs/configuring-gokapi.md#troubleshooting) on the role's documentation for details.
+See [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az2zryaw72dpp4pRWKK1qvQzsY4qHR/tree/docs/configuring-gokapi.md#troubleshooting) on the role's documentation for details.
 
 ## Related services
 
