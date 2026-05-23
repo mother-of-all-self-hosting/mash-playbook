@@ -271,3 +271,7 @@ See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-se
 ## Troubleshooting
 
 See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-send/blob/main/docs/configuring-send.md#troubleshooting) on the role's documentation for details.
+
+## Related services
+
+- [Gokapi](gokapi.md) — Share files that expire after a set number of downloads or days

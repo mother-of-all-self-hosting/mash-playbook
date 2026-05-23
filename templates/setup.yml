@@ -390,6 +390,10 @@
     - role: galaxy/gitea
     # /role-specific:gitea
 
+    # role-specific:gokapi
+    - role: galaxy/gokapi
+    # /role-specific:gokapi
+
     # role-specific:gotenberg
     - role: galaxy/gotenberg
     # /role-specific:gotenberg
