@@ -320,6 +320,10 @@
   version: v1.26.2-0
   name: gitea
   activation_prefix: gitea_
+- src: git+https://iris.radicle.network/z2zryaw72dpp4pRWKK1qvQzsY4qHR.git
+  version: v2.2.4-0
+  name: gokapi
+  activation_prefix: gokapi_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-gotenberg
   version: v8.32.0-0
   name: gotenberg
