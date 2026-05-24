@@ -12,6 +12,8 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
 Are you interested in adding a new service which is not yet [available on this playbook](supported-services.md)? Great! By following the guide below, you can easily implement one to the playbook.
 
+If you have any questions, you are welcomed to join the Matrix room for the MASH playbook and free free to ask: <https://matrix.to/#/%23mash-playbook:devture.com>
+
 ### 1. Get started
 
 Before working on implementation, check if:
@@ -72,6 +74,7 @@ When it comes to the structure of roles, you can follow existing roles such as [
 - You will also need to decide on a licence. Otherwise ansible-galaxy won't work. We recommend AGPLv3, as it is adoped by the most roles of the MASH playbook.
 - If you are committed to free software, you might probably be interested in publishing the role based on [REUSE](https://reuse.software/), an initiative by [FSFE](https://fsfe.org/).
 - It is recommended to set up a Git pre-commit hook (via [mise](https://mise.jdx.dev/) + [prek](https://prek.j178.dev/)) that runs formatting and linting checks before each commit, and make sure that your role passes the linter before submitting. `.pre-commit-config.yaml` defines which hooks are to be executed.
+- Please consider to add a line like `# Project source code URL: YOUR-SERVICE-GIT-REPO` to your Ansible role's `defaults/main.yml` file, so that [`bin/feeds.py`](/bin/feeds.py) can automatically find the Atom/RSS feed for new releases.
 
 ### 3. Update the MASH playbook to support your created Ansible role
 
@@ -270,11 +273,11 @@ YOUR-SERVICE_config_mailer_protocol: "{{ 'smtp' if exim_relay_enabled else '' }}
 
 </details>
 
-### Additional hints
+### 4. Make sure the role actually works
 
-Please consider to add a line like `# Project source code URL: YOUR-SERVICE-GIT-REPO` to your Ansible role's `defaults/main.yml` file, so that [`bin/feeds.py`](/bin/feeds.py) can automatically find the Atom/RSS feed for new releases.
+If you are willing to submit the change to the playbook's repository, please make sure that the role actually works as expected.
 
-If you have any questions, you are welcomed to join the Matrix room for the MASH playbook and free free to ask: <https://matrix.to/#/%23mash-playbook:devture.com>
+There are several ways of testing the playbook; from using a local virtual machine, configuring a [Molecule](https://docs.ansible.com/projects/molecule/) testing framework, to running the locally modified playbook against an actual machine, and so on. As there is not a recommended or preferred way of testing, please conduct tests before submitting the change with whatever method you prefer.
 
 ## Maintain your role
 
