@@ -1,0 +1,26 @@
+# SPDX-FileCopyrightText: 2025 Oliver Lorenz
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+---
+- name: Perform API installation tasks
+  when: oliverlorenz_api_enabled | bool
+  tags:
+    - setup-all
+    - setup-oliverlorenz-api
+    - install-all
+    - install-oliverlorenz-api
+  block:
+    - name: Validate API configuration
+      ansible.builtin.include_tasks: "{{ role_path }}/tasks/validate_config.yml"
+    - name: Install API
+      ansible.builtin.include_tasks: "{{ role_path }}/tasks/install.yml"
+
+- name: Perform API uninstallation tasks
+  when: not oliverlorenz_api_enabled | bool
+  tags:
+    - setup-all
+    - setup-oliverlorenz-api
+  block:
+    - name: Uninstall API
+      ansible.builtin.include_tasks: "{{ role_path }}/tasks/uninstall.yml"

@@ -1,0 +1,57 @@
+{#
+SPDX-FileCopyrightText: 2025 Oliver Lorenz
+
+SPDX-License-Identifier: AGPL-3.0-or-later
+#}
+
+[Unit]
+Description=Oliver Lorenz API ({{ oliverlorenz_api_identifier }})
+{% for service in oliverlorenz_api_systemd_required_services_list %}
+Requires={{ service }}
+After={{ service }}
+{% endfor %}
+{% for service in oliverlorenz_api_systemd_wanted_services_list %}
+Wants={{ service }}
+{% endfor %}
+DefaultDependencies=no
+
+[Service]
+Type=simple
+Environment="HOME={{ devture_systemd_docker_base_systemd_unit_home_path }}"
+ExecStartPre=-{{ devture_systemd_docker_base_host_command_sh }} -c '{{ devture_systemd_docker_base_host_command_docker }} stop -t {{ devture_systemd_docker_base_container_stop_grace_time_seconds }} {{ oliverlorenz_api_identifier }} 2>/dev/null || true'
+ExecStartPre=-{{ devture_systemd_docker_base_host_command_sh }} -c '{{ devture_systemd_docker_base_host_command_docker }} rm {{ oliverlorenz_api_identifier }} 2>/dev/null || true'
+
+ExecStartPre={{ devture_systemd_docker_base_host_command_docker }} create \
+      --rm \
+      --name={{ oliverlorenz_api_identifier }} \
+      --log-driver=none \
+      --cap-drop=ALL \
+      --network={{ oliverlorenz_api_container_network }} \
+      {% if oliverlorenz_api_container_http_host_bind_port %}
+      -p {{ oliverlorenz_api_container_http_host_bind_port }}:{{ oliverlorenz_api_container_http_port }} \
+      {% endif %}
+      --env-file={{ oliverlorenz_api_base_path }}/env \
+      --label-file={{ oliverlorenz_api_base_path }}/labels \
+      {% for volume in oliverlorenz_api_container_additional_volumes %}
+      --mount type={{ volume.type | default('bind' if '/' in volume.src else 'volume') }},src={{ volume.src }},dst={{ volume.dst }}{{ (',' + volume.options) if volume.options else '' }} \
+      {% endfor %}
+      {% for arg in oliverlorenz_api_container_extra_arguments %}
+      {{ arg }} \
+      {% endfor %}
+      {{ oliverlorenz_api_container_image }}
+
+{% for network in oliverlorenz_api_container_additional_networks %}
+ExecStartPre={{ devture_systemd_docker_base_host_command_docker }} network connect {{ network }} {{ oliverlorenz_api_identifier }}
+{% endfor %}
+
+ExecStart={{ devture_systemd_docker_base_host_command_docker }} start --attach {{ oliverlorenz_api_identifier }}
+
+ExecStop=-{{ devture_systemd_docker_base_host_command_sh }} -c '{{ devture_systemd_docker_base_host_command_docker }} stop -t {{ devture_systemd_docker_base_container_stop_grace_time_seconds }} {{ oliverlorenz_api_identifier }} 2>/dev/null || true'
+ExecStop=-{{ devture_systemd_docker_base_host_command_sh }} -c '{{ devture_systemd_docker_base_host_command_docker }} rm {{ oliverlorenz_api_identifier }} 2>/dev/null || true'
+
+Restart=always
+RestartSec=30
+SyslogIdentifier={{ oliverlorenz_api_identifier }}
+
+[Install]
+WantedBy=multi-user.target

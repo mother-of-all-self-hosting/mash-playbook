@@ -1,0 +1,80 @@
+# SPDX-FileCopyrightText: 2025 Oliver Lorenz
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+---
+- name: Ensure API path exists
+  ansible.builtin.file:
+    path: "{{ item }}"
+    state: directory
+    mode: "0750"
+    owner: "{{ oliverlorenz_api_uid }}"
+    group: "{{ oliverlorenz_api_gid }}"
+  with_items:
+    - "{{ oliverlorenz_api_base_path }}"
+
+- name: Ensure API support files installed
+  ansible.builtin.template:
+    src: "{{ role_path }}/templates/{{ item }}.j2"
+    dest: "{{ oliverlorenz_api_base_path }}/{{ item }}"
+    mode: "0640"
+    owner: "{{ oliverlorenz_api_uid }}"
+    group: "{{ oliverlorenz_api_gid }}"
+  with_items:
+    - env
+    - labels
+
+- name: Log in to container image registry
+  when: oliverlorenz_api_container_image_registry_username != '' and oliverlorenz_api_container_image_registry_password != ''
+  community.docker.docker_login:
+    registry_url: "{{ oliverlorenz_api_container_image_registry_login_server }}"
+    username: "{{ oliverlorenz_api_container_image_registry_username }}"
+    password: "{{ oliverlorenz_api_container_image_registry_password }}"
+
+- name: Ensure API container image is pulled via community.docker.docker_image
+  when: devture_systemd_docker_base_container_image_pull_method == 'ansible-module'
+  community.docker.docker_image:
+    name: "{{ oliverlorenz_api_container_image }}"
+    source: "{{ 'pull' if ansible_version.major > 2 or ansible_version.minor > 7 else omit }}"
+    force_source: "{{ oliverlorenz_api_container_image_force_pull if ansible_version.major > 2 or ansible_version.minor >= 8 else omit }}"
+    force: "{{ omit if ansible_version.major > 2 or ansible_version.minor >= 8 else oliverlorenz_api_container_image_force_pull }}"
+  register: result
+  retries: "{{ devture_playbook_help_container_retries_count }}"
+  delay: "{{ devture_playbook_help_container_retries_delay }}"
+  until: result is not failed
+
+- name: Ensure API container image is pulled via ansible.builtin.command
+  when: devture_systemd_docker_base_container_image_pull_method == 'command'
+  ansible.builtin.command:
+    cmd: "{{ devture_systemd_docker_base_host_command_docker }} pull {{ oliverlorenz_api_container_image }}"
+  register: result
+  retries: "{{ devture_playbook_help_container_retries_count }}"
+  delay: "{{ devture_playbook_help_container_retries_delay }}"
+  until: result is not failed
+  changed_when: "'Downloaded newer image' in result.stdout"
+
+- name: Ensure API container network is created via community.docker.docker_network
+  when: devture_systemd_docker_base_container_network_creation_method == 'ansible-module'
+  community.docker.docker_network:
+    enable_ipv6: "{{ devture_systemd_docker_base_ipv6_enabled }}"
+    name: "{{ oliverlorenz_api_container_network }}"
+    driver: bridge
+    driver_options: "{{ devture_systemd_docker_base_container_networks_driver_options }}"
+
+- name: Ensure API container network is created via ansible.builtin.command
+  when: devture_systemd_docker_base_container_network_creation_method == 'command'
+  ansible.builtin.command:
+    cmd: >-
+      {{ devture_systemd_docker_base_host_command_docker }} network create
+      {% if devture_systemd_docker_base_ipv6_enabled %}--ipv6{% endif %}
+      {{ devture_systemd_docker_base_container_networks_driver_options_string }}
+      {{ oliverlorenz_api_container_network }}
+  register: network_creation_result
+  changed_when: network_creation_result.rc == 0
+  failed_when: network_creation_result.rc != 0 and 'already exists' not in network_creation_result.stderr
+
+- name: Ensure API systemd service is present
+  ansible.builtin.template:
+    src: "{{ role_path }}/templates/systemd/oliverlorenz-api.service.j2"
+    dest: "{{ devture_systemd_docker_base_systemd_path }}/{{ oliverlorenz_api_identifier }}.service"
+    mode: "0644"

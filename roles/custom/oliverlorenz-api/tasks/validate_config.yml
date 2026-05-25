@@ -1,0 +1,24 @@
+# SPDX-FileCopyrightText: 2025 Oliver Lorenz
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+---
+- name: Fail if required API settings not defined
+  ansible.builtin.fail:
+    msg: >-
+      You need to define a required configuration setting (`{{ item }}`).
+  when: "lookup('vars', item, default='') | string | length == 0"
+  with_items:
+    - oliverlorenz_api_container_network
+
+- name: Run if Traefik is enabled
+  when: oliverlorenz_api_container_labels_traefik_enabled | bool
+  block:
+    - name: Fail if Traefik settings required for API are not defined
+      ansible.builtin.fail:
+        msg: >-
+          You need to define a required configuration setting (`{{ item }}`).
+      when: "lookup('vars', item, default='') | string | length == 0"
+      with_items:
+        - oliverlorenz_api_container_labels_traefik_hostname
+        - oliverlorenz_api_container_labels_traefik_path_prefix

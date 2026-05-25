@@ -410,6 +410,10 @@
     - role: galaxy/gotosocial
     # /role-specific:gotosocial
 
+    # role-specific:oliverlorenz-api
+    - role: custom/oliverlorenz-api
+    # /role-specific:oliverlorenz-api
+
     # role-specific:gowa
     - role: custom/gowa
     # /role-specific:gowa

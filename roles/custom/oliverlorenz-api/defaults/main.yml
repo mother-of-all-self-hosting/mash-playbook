@@ -1,0 +1,130 @@
+# SPDX-FileCopyrightText: 2025 Oliver Lorenz
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+---
+# Project source code URL: https://github.com/oliverlorenz/com_oliverlorenz_api
+
+oliverlorenz_api_enabled: true
+
+oliverlorenz_api_identifier: oliverlorenz-api
+oliverlorenz_api_base_path: "{{ mash_playbook_base_path }}/{{ oliverlorenz_api_identifier }}"
+
+oliverlorenz_api_container_image: "ghcr.io/oliverlorenz/com_oliverlorenz_api:latest"
+oliverlorenz_api_container_image_force_pull: true
+
+oliverlorenz_api_container_image_registry_login_server: ghcr.io
+oliverlorenz_api_container_image_registry_username: ""
+oliverlorenz_api_container_image_registry_password: ""
+
+oliverlorenz_api_environment_jwt_secret: ""
+oliverlorenz_api_environment_token_master_secret: ""
+oliverlorenz_api_environment_nc_base_path: ""
+oliverlorenz_api_environment_nc_username: ""
+oliverlorenz_api_environment_nc_app_password: ""
+
+# Controls whether the container exposes its HTTP port (tcp/8080 in the container).
+#
+# Takes an "<ip>:<port>" or "<port>" value (e.g. "127.0.0.1:8080"), or empty string to not expose.
+oliverlorenz_api_container_http_host_bind_port: ""
+
+# The base container network. It will be auto-created by this role if it doesn't exist already.
+oliverlorenz_api_container_network: "{{ oliverlorenz_api_identifier }}"
+
+# The port number in the container
+oliverlorenz_api_container_http_port: 3000
+
+# The hostname at which the API is served.
+oliverlorenz_api_hostname: ""
+
+# The path at which the API is exposed.
+# This value must either be `/` or not end with a slash (e.g. `/api`).
+oliverlorenz_api_path_prefix: /
+
+# A list of additional container networks that the container would be connected to.
+# The role does not create these networks, so make sure they already exist.
+# Use this to expose this container to another reverse proxy, which runs in a different container network.
+oliverlorenz_api_container_additional_networks: "{{ oliverlorenz_api_container_additional_networks_auto + oliverlorenz_api_container_additional_networks_custom }}"
+oliverlorenz_api_container_additional_networks_auto: []
+oliverlorenz_api_container_additional_networks_custom: []
+
+# A list of additional "volumes" to mount in the container.
+# Contains definition objects like this: `{"type": "bind", "src": "/outside", "dst": "/inside", "options": "readonly"}.
+oliverlorenz_api_container_additional_volumes: "{{ oliverlorenz_api_container_additional_volumes_auto + oliverlorenz_api_container_additional_volumes_custom }}"
+oliverlorenz_api_container_additional_volumes_auto: []
+oliverlorenz_api_container_additional_volumes_custom: []
+
+# A list of extra arguments to pass to the container (`docker run` command)
+oliverlorenz_api_container_extra_arguments: []
+
+# Additional environment variables to pass to the container.
+oliverlorenz_api_environment_variables_additional_variables: ""
+
+# oliverlorenz_api_container_labels_traefik_enabled controls whether labels to assist a Traefik reverse-proxy will be attached to the container.
+# See `../templates/labels.j2` for details.
+#
+# To inject your own other container labels, see `oliverlorenz_api_container_labels_additional_labels`.
+oliverlorenz_api_container_labels_traefik_enabled: true
+oliverlorenz_api_container_labels_traefik_docker_network: "{{ oliverlorenz_api_container_network }}"
+oliverlorenz_api_container_labels_traefik_hostname: "{{ oliverlorenz_api_hostname }}"
+# The path prefix must either be `/` or not end with a slash (e.g. `/api`).
+oliverlorenz_api_container_labels_traefik_path_prefix: "{{ oliverlorenz_api_path_prefix }}"
+oliverlorenz_api_container_labels_traefik_rule: "Host(`{{ oliverlorenz_api_container_labels_traefik_hostname }}`)"
+oliverlorenz_api_container_labels_traefik_priority: 0
+oliverlorenz_api_container_labels_traefik_entrypoints: web-secure
+oliverlorenz_api_container_labels_traefik_tls: "{{ oliverlorenz_api_container_labels_traefik_entrypoints != 'web' }}"
+oliverlorenz_api_container_labels_traefik_tls_certResolver: default  # noqa var-naming
+
+# Controls which additional headers to attach to all HTTP requests.
+# To add your own custom request headers, use `oliverlorenz_api_container_labels_traefik_additional_request_headers_custom`
+oliverlorenz_api_container_labels_traefik_additional_request_headers: "{{ oliverlorenz_api_container_labels_traefik_additional_request_headers_auto | combine(oliverlorenz_api_container_labels_traefik_additional_request_headers_custom) }}"
+oliverlorenz_api_container_labels_traefik_additional_request_headers_auto: {}
+oliverlorenz_api_container_labels_traefik_additional_request_headers_custom: {}
+
+# Controls which additional headers to attach to all HTTP responses.
+# To add your own custom response headers, use `oliverlorenz_api_container_labels_traefik_additional_response_headers_custom`
+oliverlorenz_api_container_labels_traefik_additional_response_headers: "{{ oliverlorenz_api_container_labels_traefik_additional_response_headers_auto | combine(oliverlorenz_api_container_labels_traefik_additional_response_headers_custom) }}"
+oliverlorenz_api_container_labels_traefik_additional_response_headers_auto: |
+  {{
+    {}
+    | combine ({'X-XSS-Protection': oliverlorenz_api_http_header_xss_protection} if oliverlorenz_api_http_header_xss_protection else {})
+    | combine ({'X-Content-Type-Options': oliverlorenz_api_http_header_content_type_options} if oliverlorenz_api_http_header_content_type_options else {})
+    | combine ({'Content-Security-Policy': oliverlorenz_api_http_header_content_security_policy} if oliverlorenz_api_http_header_content_security_policy else {})
+    | combine ({'Permissions-Policy': oliverlorenz_api_http_header_permissions_policy} if oliverlorenz_api_http_header_permissions_policy else {})
+    | combine ({'Strict-Transport-Security': oliverlorenz_api_http_header_strict_transport_security} if oliverlorenz_api_http_header_strict_transport_security and oliverlorenz_api_container_labels_traefik_tls else {})
+  }}
+oliverlorenz_api_container_labels_traefik_additional_response_headers_custom: {}
+
+# gowa_container_labels_additional_labels contains a multiline string with additional labels to add to the container label file.
+# See `../templates/labels.j2` for details.
+oliverlorenz_api_container_labels_additional_labels: ""
+
+# Specifies the value of the `X-XSS-Protection` header
+oliverlorenz_api_http_header_xss_protection: "1; mode=block"
+
+# Specifies the value of the `X-Content-Type-Options` header.
+oliverlorenz_api_http_header_content_type_options: nosniff
+
+# Specifies the value of the `Content-Security-Policy` header.
+oliverlorenz_api_http_header_content_security_policy: frame-ancestors 'self'
+
+# Specifies the value of the `Permissions-Policy` header.
+oliverlorenz_api_http_header_permissions_policy: "{{ 'interest-cohort=()' if oliverlorenz_api_floc_optout_enabled else '' }}"
+
+# Specifies the value of the `Strict-Transport-Security` header.
+oliverlorenz_api_http_header_strict_transport_security: "max-age=31536000; includeSubDomains{{ '; preload' if oliverlorenz_api_hsts_preload_enabled else '' }}"
+
+oliverlorenz_api_floc_optout_enabled: true
+oliverlorenz_api_hsts_preload_enabled: false
+
+# List of systemd services that the API systemd service depends on
+oliverlorenz_api_systemd_required_services_list: "{{ oliverlorenz_api_systemd_required_services_list_default + oliverlorenz_api_systemd_required_services_list_auto + oliverlorenz_api_systemd_required_services_list_custom }}"
+oliverlorenz_api_systemd_required_services_list_default: "{{ [devture_systemd_docker_base_docker_service_name] if devture_systemd_docker_base_docker_service_name else [] }}"
+oliverlorenz_api_systemd_required_services_list_auto: []
+oliverlorenz_api_systemd_required_services_list_custom: []
+
+# List of systemd services that the API systemd service wants
+oliverlorenz_api_systemd_wanted_services_list: "{{ oliverlorenz_api_systemd_wanted_services_list_default + oliverlorenz_api_systemd_wanted_services_list_auto + oliverlorenz_api_systemd_wanted_services_list_custom }}"
+oliverlorenz_api_systemd_wanted_services_list_default: []
+oliverlorenz_api_systemd_wanted_services_list_auto: []
+oliverlorenz_api_systemd_wanted_services_list_custom: []

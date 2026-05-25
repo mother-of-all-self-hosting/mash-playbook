@@ -1,0 +1,13 @@
+# SPDX-FileCopyrightText: 2025 Oliver Lorenz
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+version = 1
+
+# Computer-generated files and other files which cannot be copyrighted
+[[annotations]]
+path = [
+    "meta/main.yml"
+]
+SPDX-FileCopyrightText = "NONE"
+SPDX-License-Identifier = "CC0-1.0"

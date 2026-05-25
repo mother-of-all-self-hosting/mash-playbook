@@ -1,0 +1,47 @@
+{#
+SPDX-FileCopyrightText: 2025 Oliver Lorenz
+
+SPDX-License-Identifier: AGPL-3.0-or-later
+#}
+
+{% if oliverlorenz_api_container_labels_traefik_enabled %}
+traefik.enable=true
+
+{% if oliverlorenz_api_container_labels_traefik_docker_network %}
+traefik.docker.network={{ oliverlorenz_api_container_labels_traefik_docker_network }}
+{% endif %}
+
+{% set middlewares = [] %}
+
+{% if oliverlorenz_api_container_labels_traefik_additional_request_headers.keys() | length > 0 %}
+{% for name, value in oliverlorenz_api_container_labels_traefik_additional_request_headers.items() %}
+traefik.http.middlewares.{{ oliverlorenz_api_identifier }}-add-request-headers.headers.customrequestheaders.{{ name }}={{ value }}
+{% endfor %}
+{% set middlewares = middlewares + [oliverlorenz_api_identifier + '-add-request-headers'] %}
+{% endif %}
+
+{% if oliverlorenz_api_container_labels_traefik_additional_response_headers.keys() | length > 0 %}
+{% for name, value in oliverlorenz_api_container_labels_traefik_additional_response_headers.items() %}
+traefik.http.middlewares.{{ oliverlorenz_api_identifier }}-add-response-headers.headers.customresponseheaders.{{ name }}={{ value }}
+{% endfor %}
+{% set middlewares = middlewares + [oliverlorenz_api_identifier + '-add-response-headers'] %}
+{% endif %}
+
+traefik.http.routers.{{ oliverlorenz_api_identifier }}.rule={{ oliverlorenz_api_container_labels_traefik_rule }}
+{% if oliverlorenz_api_container_labels_traefik_priority | int > 0 %}
+traefik.http.routers.{{ oliverlorenz_api_identifier }}.priority={{ oliverlorenz_api_container_labels_traefik_priority }}
+{% endif %}
+traefik.http.routers.{{ oliverlorenz_api_identifier }}.service={{ oliverlorenz_api_identifier }}
+{% if middlewares | length > 0 %}
+traefik.http.routers.{{ oliverlorenz_api_identifier }}.middlewares={{ middlewares | join(',') }}
+{% endif %}
+traefik.http.routers.{{ oliverlorenz_api_identifier }}.entrypoints={{ oliverlorenz_api_container_labels_traefik_entrypoints }}
+traefik.http.routers.{{ oliverlorenz_api_identifier }}.tls={{ oliverlorenz_api_container_labels_traefik_tls | to_json }}
+{% if oliverlorenz_api_container_labels_traefik_tls %}
+traefik.http.routers.{{ oliverlorenz_api_identifier }}.tls.certResolver={{ oliverlorenz_api_container_labels_traefik_tls_certResolver }}
+{% endif %}
+
+traefik.http.services.{{ oliverlorenz_api_identifier }}.loadbalancer.server.port={{ oliverlorenz_api_container_http_port }}
+{% endif %}
+
+{{ oliverlorenz_api_container_labels_additional_labels }}
