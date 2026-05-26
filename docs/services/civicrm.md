@@ -20,15 +20,15 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
 # CiviCRM
 
-The playbook can install and configure [CiviCRM](https://www.civicrmapp.com) for you.
+The playbook can install and configure [CiviCRM](https://civicrm.org/) for you.
 
-CiviCRM is a platform for organising and storing information.
+CiviCRM is a relationship management system designed to meet the needs of advocacy, non-profit and non-governmental groups.
 
-See the project's [documentation](https://www.civicrmapp.com/docs/) to learn what CiviCRM does and why it might be useful to you.
+See the project's [documentation](https://docs.civicrm.org) to learn what CiviCRM does and why it might be useful to you.
 
-For details about configuring the [Ansible role for CiviCRM](https://radicle.network/nodes/seed.radicle.garden/rad%3AzQdRwQ2s3FG5BZUjvSn1GYXbzVmw), you can check them via:
+For details about configuring the [Ansible role for CiviCRM](https://radicle.network/nodes/iris.radicle.network/rad%3Az2kX5GbCKBFjiunvLKThDXLzbYnw1), you can check them via:
 
-- 🌐 [the role's documentation](https://radicle.network/nodes/seed.radicle.garden/rad%3AzQdRwQ2s3FG5BZUjvSn1GYXbzVmw/tree/docs/configuring-civicrm.md) online
+- 🌐 [the role's documentation](https://radicle.network/nodes/iris.radicle.network/rad%3Az2kX5GbCKBFjiunvLKThDXLzbYnw1/tree/docs/configuring-civicrm.md) online
 - 📁 `roles/galaxy/civicrm/docs/configuring-civicrm.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 ## Dependencies
@@ -67,32 +67,14 @@ CiviCRM requires a MySQL-compatible database to work. This playbook supports Mar
 
 Refer to [this page](mariadb.md) for the instruction to enable it.
 
-### Set a random string
-
-You also need to set a random **32 character** string. To do so, add the following configuration to your `vars.yml` file. The value can be generated with `openssl rand -hex 16` or in another way.
-
-```yaml
-civicrm_environment_variables_app_key: YOUR_SECRET_KEY_HERE
-```
-
-### Configuring the mailer (optional)
-
-On CiviCRM you can set up a mailer for functions such as password recovery. If you enable the [exim-relay](exim-relay.md) service in your inventory configuration, the playbook will automatically configure it as a mailer for the service.
-
->[!WARNING]
-> Without setting an authentication method such as DKIM, SPF, and DMARC for your hostname, emails are most likely to be quarantined as spam at recipient's mail servers. The worst scenario is that your server's IP address or hostname will be included in the spam list such as the one managed by [Spamhaus](https://www.spamhaus.org/), depending on the reputation. As the exim-relay service supports DKIM signing, refer to [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-exim-relay/blob/main/docs/configuring-exim-relay.md#enable-dkim-support-optional) for details about how to set it up.
-
 ## Usage
 
 After running the command for installation, the CiviCRM instance becomes available at the URL specified with `civicrm_hostname`. With the configuration above, the service is hosted at `https://civicrm.example.com`.
 
-To get started, open the URL `https://example.com` with a web browser, and log in to the instance with the administrator account credentials. The default login credentials can be checked at <https://github.com/solidnerd/docker-civicrm/blob/master/README.md>.
+To get started, open the URL with a web browser, and follow the set up wizard.
+
+On the set up wizard, it is required to input database credentials. See [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az2kX5GbCKBFjiunvLKThDXLzbYnw1/tree/docs/configuring-civicrm.md#outputting-database-credentials) on the role's documentation for details about how to check them.
 
 ## Troubleshooting
 
-See [this section](https://radicle.network/nodes/seed.radicle.garden/rad%3AzQdRwQ2s3FG5BZUjvSn1GYXbzVmw/tree/docs/configuring-civicrm.md#troubleshooting) on the role's documentation for details.
-
-## Related services
-
-- [Docmost](docmost.md) — Collaborative wiki and documentation software
-- [Outline](outline.md) — Knowledge base for growing teams
+See [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az2kX5GbCKBFjiunvLKThDXLzbYnw1/tree/docs/configuring-civicrm.md#troubleshooting) on the role's documentation for details.
