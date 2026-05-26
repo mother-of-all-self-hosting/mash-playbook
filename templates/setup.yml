@@ -218,6 +218,10 @@
     - role: galaxy/cinny
     # /role-specific:cinny
 
+    # role-specific:civicrm
+    - role: galaxy/civicrm
+    # /role-specific:civicrm
+
     # role-specific:clickhouse
     - role: galaxy/clickhouse
     # /role-specific:clickhouse
