@@ -58,6 +58,7 @@ Below is an exhaustive list of the free and open-source software for self-hostin
 | [Changedetection.io](https://github.com/dgtlmoon/changedetection.io) | A simple website change detection and restock monitoring solution | [Link](services/changedetection.md) |
 | [ChiefOnboarding](https://docs.chiefonboarding.com) | Employee onboarding platform | [Link](services/chiefonboarding.md) |
 | [Cinny](https://github.com/ajbura/cinny) | Elegant web client for [Matrix](https://matrix.org/) | [Link](services/cinny.md) |
+| [CiviCRM](https://civicrm.org/) | Relationship management system for advocacy, non-profit and non-governmental groups | [Link](services/civicrm.md) |
 | [ClickHouse](https://clickhouse.com/) | A column-oriented DBMS for online analytical processing (OLAP) that allows users to generate analytical reports using SQL queries in real-time | [Link](services/clickhouse.md) |
 | [CodiMD](https://github.com/hackmdio/codimd) | Realtime collaborative markdown notes on all platforms | [Link](services/codimd.md) |
 | [Collabora Online Development Edition](https://www.collaboraonline.com/code/) | Development version of Collabora Online, which enables you to edit office documents with integrations such as Nextcloud | [Link](services/code.md) |
