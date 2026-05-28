@@ -230,7 +230,8 @@ for role_definition in all_role_definitions:
     if is_role_definition_in_use(role_definition, used_variable_names):
         enabled_role_definitions.append(role_definition)
 
-write_yaml_to_file(enabled_role_definitions, args.dst_requirements_yml_path)
+installable_role_definitions = [r for r in enabled_role_definitions if "src" in r]
+write_yaml_to_file(installable_role_definitions, args.dst_requirements_yml_path)
 
 known_role_names = tuple(
     map(lambda definition: definition["name"], all_role_definitions)
