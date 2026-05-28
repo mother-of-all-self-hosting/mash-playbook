@@ -61,6 +61,12 @@ wordpress_hostname: wordpress.example.com
 ########################################################################
 ```
 
+### Enable MariaDB
+
+WordPress requires a MySQL-compatible database to work. This playbook supports MariaDB, and you can set up a MariaDB instance by enabling it on `vars.yml`.
+
+Refer to [this page](mariadb.md) for the instruction to enable it.
+
 ### Configuring the mailer (optional)
 
 On Wordpress you can set up a mailer for functions such as password recovery. If you enable the [exim-relay](exim-relay.md) service in your inventory configuration, the playbook will automatically configure it as a mailer for the service.
