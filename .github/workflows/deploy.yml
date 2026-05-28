@@ -49,6 +49,9 @@ jobs:
       - name: Install Ansible
         run: pip install ansible
 
+      - name: Optimize for host
+        run: just optimize-for-host ${{ inputs.host }}
+
       - name: Install Ansible roles
         run: just roles
 
