@@ -18,15 +18,15 @@ SPDX-FileCopyrightText: 2024-2026 Suguru Hirahara
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 
-# Wordpress
+# WordPress
 
 The playbook can install and configure [WordPress](https://wordpress.org/) for you.
 
-Wordpress is a web content management system.
+WordPress is a web content management system.
 
-See the project's [documentation](https://codex.wordpress.org/Main_Page/) to learn what Wordpress does and why it might be useful to you.
+See the project's [documentation](https://codex.wordpress.org/Main_Page/) to learn what WordPress does and why it might be useful to you.
 
-For details about configuring the [Ansible role for Wordpress](https://github.com/mother-of-all-self-hosting/ansible-role-wordpress), you can check them via:
+For details about configuring the [Ansible role for WordPress](https://github.com/mother-of-all-self-hosting/ansible-role-wordpress), you can check them via:
 
 - 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-wordpress/blob/main/docs/configuring-wordpress.md) online
 - 📁 `roles/galaxy/wordpress/docs/configuring-wordpress.md` locally, if you have [fetched the Ansible roles](../installing.md)
@@ -69,7 +69,7 @@ Refer to [this page](mariadb.md) for the instruction to enable it.
 
 ### Configuring the mailer (optional)
 
-On Wordpress you can set up a mailer for functions such as password recovery. If you enable the [exim-relay](exim-relay.md) service in your inventory configuration, the playbook will automatically configure it as a mailer for the service.
+On WordPress you can set up a mailer for functions such as password recovery. If you enable the [exim-relay](exim-relay.md) service in your inventory configuration, the playbook will automatically configure it as a mailer for the service.
 
 To actually have the service use (and get messages sent through the exim-relay service), you will need to install a plugin and adjust settings on the service's UI after the service is installed.
 
@@ -78,7 +78,7 @@ To actually have the service use (and get messages sent through the exim-relay s
 
 ## Usage
 
-After running the command for installation, the Wordpress instance becomes available at the URL specified with `wordpress_hostname`. With the configuration above, the service is hosted at `https://wordpress.example.com`.
+After running the command for installation, the WordPress instance becomes available at the URL specified with `wordpress_hostname`. With the configuration above, the service is hosted at `https://wordpress.example.com`.
 
 To get started, open the URL with a web browser, and follow the set up wizard.
 
