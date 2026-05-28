@@ -1,0 +1,72 @@
+# SPDX-FileCopyrightText: 2026 Oliver Lorenz
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+---
+name: Deploy
+
+on:
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: Deploy mode
+        required: true
+        type: choice
+        options:
+          - setup-service
+          - setup-all
+        default: setup-service
+      service:
+        description: Service name (only required for setup-service)
+        required: false
+        type: string
+      host:
+        description: Target host
+        required: true
+        type: string
+        default: mash.oliverlorenz.com
+
+permissions:
+  contents: read
+
+jobs:
+  deploy:
+    name: Deploy (${{ inputs.mode }})
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Checkout inventory
+        uses: actions/checkout@v4
+        with:
+          repository: oliverlorenz/mash-inventories
+          token: ${{ secrets.GH_PAT }}
+          path: inventory
+
+      - name: Install just
+        uses: extractions/setup-just@v2
+
+      - name: Install Ansible
+        run: pip install ansible
+
+      - name: Install Ansible roles
+        run: just roles
+
+      - name: Write SSH private key
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_ed25519
+          chmod 600 ~/.ssh/id_ed25519
+          ssh-keyscan -H "${{ inputs.host }}" >> ~/.ssh/known_hosts
+
+      - name: Write secrets
+        run: |
+          echo "${{ secrets.INVENTORY_SECRETS }}" > inventory/host_vars/${{ inputs.host }}/secrets.yml
+
+      - name: Deploy (setup-service)
+        if: inputs.mode == 'setup-service'
+        run: just -f justfile.custom setup-service ${{ inputs.service }} ${{ inputs.host }}
+
+      - name: Deploy (setup-all)
+        if: inputs.mode == 'setup-all'
+        run: just -f justfile.custom setup-all ${{ inputs.host }}
