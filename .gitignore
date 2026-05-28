@@ -28,3 +28,4 @@
 # custom ignores
 .ansible
 .env
+inventory.zip
