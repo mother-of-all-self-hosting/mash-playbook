@@ -128,6 +128,10 @@
   version: v4.12.2-0
   name: cinny
   activation_prefix: cinny_
+- src: git+https://iris.radicle.network/z2kX5GbCKBFjiunvLKThDXLzbYnw1.git
+  version: v6.14.1-0
+  name: civicrm
+  activation_prefix: civicrm_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-cleanup.git
   version: v1.0.0-0
   name: cleanup

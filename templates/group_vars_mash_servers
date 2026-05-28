@@ -261,6 +261,11 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
     {{ ({'name': (cinny_identifier + '.service'), 'priority': 2000, 'restart_necessary': (cinny_restart_necessary | bool), 'groups': ['mash', 'cinny']} if cinny_enabled else omit) }}
   # /role-specific:cinny
 
+  # role-specific:civicrm
+  - |-
+    {{ ({'name': (civicrm_identifier + '.service'), 'priority': 2000, 'restart_necessary': (civicrm_restart_necessary | bool), 'groups': ['mash', 'civicrm']} if civicrm_enabled else omit) }}
+  # /role-specific:civicrm
+
   # role-specific:clickhouse
   - |-
     {{ ({'name': (clickhouse_identifier + '.service'), 'priority': 2000, 'restart_necessary': (clickhouse_restart_necessary | bool), 'groups': ['mash', 'clickhouse']} if clickhouse_enabled else omit) }}
@@ -4366,6 +4371,64 @@ cinny_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primar
 #                                                                      #
 ########################################################################
 # /role-specific:cinny
+
+
+
+# role-specific:civicrm
+########################################################################
+#                                                                      #
+# civicrm                                                              #
+#                                                                      #
+########################################################################
+
+civicrm_enabled: false
+
+civicrm_identifier: "{{ mash_playbook_service_identifier_prefix }}civicrm"
+
+civicrm_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}civicrm"
+
+civicrm_uid: 33
+civicrm_gid: 33
+
+civicrm_systemd_required_services_list_auto: |
+  {{
+    ([mariadb_identifier ~ '.service'] if mariadb_enabled and civicrm_database_hostname == mariadb_connection_hostname else [])
+  }}
+
+civicrm_systemd_wanted_services_list_auto: |
+  {{
+    ([exim_relay_identifier ~ '.service'] if exim_relay_enabled | default(false) else [])
+  }}
+
+civicrm_container_additional_networks_auto: |
+  {{
+    ([exim_relay_container_network] if exim_relay_enabled | default(false) and civicrm_container_network != exim_relay_container_network else [])
+    +
+    ([mariadb_container_network] if mariadb_enabled and civicrm_database_hostname == mariadb_connection_hostname and civicrm_container_network != mariadb_container_network else [])
+    +
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+  }}
+
+civicrm_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+civicrm_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+
+# role-specific:mariadb
+civicrm_database_hostname: "{{ mariadb_connection_hostname if mariadb_enabled else '' }}"
+civicrm_database_port: "{{ mariadb_connection_port if mariadb_enabled else '3306' }}"
+civicrm_database_password: "{{ (mash_playbook_generic_secret_key + ':civicrm.db') | hash('sha512') | to_uuid }}"
+# /role-specific:mariadb
+
+# role-specific:traefik
+civicrm_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
+civicrm_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
+# /role-specific:traefik
+
+########################################################################
+#                                                                      #
+# /civicrm                                                             #
+#                                                                      #
+########################################################################
+# /role-specific:civicrm
 
 
 
@@ -9970,6 +10033,17 @@ mash_playbook_mariadb_managed_databases_auto_itemized:
       } if bookstack_enabled and bookstack_database_hostname == mariadb_connection_hostname else omit)
     }}
   # /role-specific:bookstack
+
+  # role-specific:civicrm
+  - |-
+    {{
+      ({
+        'name': civicrm_database_name,
+        'username': civicrm_database_username,
+        'password': civicrm_database_password,
+      } if civicrm_enabled and civicrm_database_hostname == mariadb_connection_hostname else omit)
+    }}
+  # /role-specific:civicrm
 
   # role-specific:codimd
   - |-
