@@ -47,7 +47,7 @@ jobs:
         uses: extractions/setup-just@v2
 
       - name: Install Ansible
-        run: pip install ansible
+        run: pip install ansible regex
 
       - name: Optimize for host
         run: just optimize-for-host ${{ inputs.host }}
