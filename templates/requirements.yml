@@ -929,7 +929,7 @@
   name: telegraf
   activation_prefix: telegraf_
 - src: git+https://seed.radicle.garden/z4TiZiqkm6MBmkPL2NTPMavni6LV.git
-  version: v2.2.1-0
+  version: v2.3.1-0
   name: termix
   activation_prefix: termix_
 - src: git+https://seed.radicle.garden/z3vaa8VAuz3pxqB3FyciNKQRSHqyt.git
