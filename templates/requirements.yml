@@ -165,7 +165,7 @@
   name: couchdb
   activation_prefix: couchdb_
 - src: git+https://seed.radicle.garden/z38Yp2e9yFouswvrnX5MdgZYaViLb.git
-  version: v2026.2.2-1
+  version: v2026.5.1-0
   name: cryptpad
   activation_prefix: cryptpad_
 - src: git+https://seed.radicle.garden/z2zgHMDh4Pb8yr4DH8BVkMcdboBXd.git
