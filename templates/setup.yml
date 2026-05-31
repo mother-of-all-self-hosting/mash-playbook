@@ -774,6 +774,10 @@
     - role: galaxy/poodledonts
     # /role-specific:poodledonts
 
+    # role-specific:polaris
+    - role: galaxy/polaris
+    # /role-specific:polaris
+
     # role-specific:postgis
     - role: galaxy/postgis
     # /role-specific:postgis

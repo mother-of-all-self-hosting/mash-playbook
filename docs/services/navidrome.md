@@ -212,3 +212,4 @@ You can also connect various Subsonic-API-compatible [apps](https://www.navidrom
 ## Related services
 
 - [Feishin](feishin.md) — Music player for Navidrome, Jellyfin, Funkwhale, etc.
+- [Polaris](polaris.md) — Music streaming server with a player
