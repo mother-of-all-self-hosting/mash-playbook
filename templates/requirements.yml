@@ -280,8 +280,8 @@
   version: v1.3.3-0
   name: filebrowser_quantum
   activation_prefix: filebrowser_quantum_
-- src: git+https://github.com/sudo-Tiz/ansible-role-flaresolverr.git
-  version: v3.4.1-0
+- src: git+https://github.com/mother-of-all-self-hosting/ansible-role-flaresolverr.git
+  version: v3.5.0-0
   name: flaresolverr
   activation_prefix: flaresolverr_
 - src: git+https://seed.radicle.garden/z49LkutSMcaLA2DBazn1h4V6Pn6GK.git
