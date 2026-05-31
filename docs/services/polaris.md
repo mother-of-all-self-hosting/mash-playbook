@@ -20,15 +20,15 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
 # Polaris
 
-The playbook can install and configure [Polaris](https://www.Polaris.org) for you.
+The playbook can install and configure [Polaris](https://github.com/agersant/polaris) for you.
 
-Polaris is a self-hosted audiobook and podcast server.
+Polaris is a music streaming server with a player to enjoy your music collection from any computer or mobile device.
 
-See the project's [documentation](https://www.Polaris .org/docs/) to learn what Polaris does and why it might be useful to you.
+See the project's [documentation](https://github.com/agersant/polaris/blob/master/README.md) to learn what Polaris does and why it might be useful to you.
 
-For details about configuring the [Ansible role for Polaris ](https://radicle.network/nodes/seed.radicle.garden/rad%3Az3rwhJ9rQ82H6GXg7ZCt3UNpStbaW), you can check them via:
+For details about configuring the [Ansible role for Polaris](https://radicle.network/nodes/iris.radicle.network/rad%3Az49EpGUPcp76sUQ4udcz7pBRPuq7u), you can check them via:
 
-- 🌐 [the role's documentation](https://radicle.network/nodes/seed.radicle.garden/rad%3Az3rwhJ9rQ82H6GXg7ZCt3UNpStbaW/tree/docs/configuring-polaris.md) online
+- 🌐 [the role's documentation](https://radicle.network/nodes/iris.radicle.network/rad%3Az49EpGUPcp76sUQ4udcz7pBRPuq7u/tree/docs/configuring-polaris.md) online
 - 📁 `roles/galaxy/polaris/docs/configuring-polaris.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 ## Dependencies
@@ -36,7 +36,6 @@ For details about configuring the [Ansible role for Polaris ](https://radicle.ne
 This service requires the following other services:
 
 - [Traefik](traefik.md) reverse-proxy server
-- (optional) [exim-relay](exim-relay.md) mailer
 
 ## Configuration
 
@@ -64,7 +63,7 @@ polaris_hostname: polaris.example.com
 
 ### File management
 
-If your server runs a file management service along with Polaris such as [File Browser](filebrowser.md), [FileBrowser Quantum](filebrowser-quantum.md), and [Syncthing](syncthing.md), it is possible to upload files to the server or synchronize your audiobook and podcast directory with it to make them accessible on polaris.
+If your server runs a file management service along with Polaris such as [File Browser](filebrowser.md), [FileBrowser Quantum](filebrowser-quantum.md), and [Syncthing](syncthing.md), it is possible to upload files to the server or synchronize your music directory with it to make them accessible on Polaris.
 
 #### Preparing directories
 
@@ -108,7 +107,7 @@ Next, mount the `{{ mash_playbook_base_path }}/storage/polaris` directory into t
 polaris_container_additional_volumes_custom:
   - type: bind
     src: "{{ mash_playbook_base_path }}/storage/polaris"
-    dst: /polaris
+    dst: /music
 
 ########################################################################
 #                                                                      #
@@ -167,44 +166,15 @@ syncthing_container_additional_volumes:
 ########################################################################
 ```
 
-After restarting the services, you can add the directory `/polaris` to Syncthing for file synchronization between the server and your local machine, and specify the same path to the library on Polaris as below, so that the audiobooks on your local machine will be synchronized and available on the Polaris instance automatically:
-
-[<img src="../assets/polaris/library.webp" title="Details tab on the library's configuration" width="600" alt="Details tab on the library's configuration">](../assets/polaris/library.webp)
-
 ## Usage
 
 After running the command for installation, the Polaris instance becomes available at the URL specified with `polaris_hostname`. With the configuration above, the service is hosted at `https://polaris.example.com`.
 
-To get started, open the URL with a web browser to create an account. **Note that the first registered user becomes an administrator automatically.**
-
-See [this page](https://www.polaris.org/docs/) on the documentation about its usage.
-
-If you are looking for free public domain audiobooks which can be uploaded to your Polaris instance, you might be interested in websites such as <https://librivox.org/>.
-
-### Configuring the mailer (optional)
-
-On Polaris you can add configuration settings of a SMTP server to let the service send email to e-reader devices. If you enable the [exim-relay](exim-relay.md) service in your inventory configuration, the playbook will automatically configure it as a mailer for the service.
-
-As the Polaris instance does not support configuring the mailer with environment variables, you can add default options for it on its UI. Refer to [this page](https://www.polaris.org/guides/send_to_ereader/) on the official documentation as well about how to configure it.
-
-To set up with the default exim-relay settings, open `https://polaris.example.com/polaris/config/email` to add the following configuration:
-
-- **Host**: `mash-exim-relay`
-- **Port**: 8025
-- **Secure**: (off)
-- **Reject unauthorized certificates**: (off)
-- **Username**: (Empty)
-- **Password**: (Empty)
-- **From Address**: (Input the email address specified to `exim_relay_sender_address` on your `vars.yml`)
-
-After setting the configuration, you can have the Polaris instance send a test mail.
-
->[!WARNING]
-> Without setting an authentication method such as DKIM, SPF, and DMARC for your hostname, emails are most likely to be quarantined as spam at recipient's mail servers. The worst scenario is that your server's IP address or hostname will be included in the spam list such as the one managed by [Spamhaus](https://www.spamhaus.org/), depending on the reputation. As the exim-relay service supports DKIM signing, refer to [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-exim-relay/blob/main/docs/configuring-exim-relay.md#enable-dkim-support-optional) for details about how to set it up.
+To get started, open the URL with a web browser, and register the account. **Note that the first registered user becomes an administrator automatically.**
 
 ## Troubleshooting
 
-See [this section](https://radicle.network/nodes/seed.radicle.garden/rad%3Az3rwhJ9rQ82H6GXg7ZCt3UNpStbaW/tree/docs/configuring-polaris.md#troubleshooting) on the role's documentation for details.
+See [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az49EpGUPcp76sUQ4udcz7pBRPuq7u/tree/docs/configuring-polaris.md#troubleshooting) on the role's documentation for details.
 
 ## Related services
 
