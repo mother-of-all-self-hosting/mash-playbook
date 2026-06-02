@@ -25,7 +25,7 @@ jobs:
         run: pacman -Sy --noconfirm git
 
       - name: Checkout code
-        uses: actions/checkout@v6.0.2
+        uses: actions/checkout@v6.0.3
 
       - name: Restore prek cache
         uses: actions/cache@v5.0.5
