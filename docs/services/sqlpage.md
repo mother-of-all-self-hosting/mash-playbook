@@ -18,18 +18,18 @@ SPDX-FileCopyrightText: 2024-2026 Suguru Hirahara
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 
-# Actual
+# SQLPage
 
-The playbook can install and configure [Actual](https://actualbudget.org) for you.
+The playbook can install and configure [SQLPage](https://sqlpagebudget.org) for you.
 
-Actual is a local-first personal finance tool.
+SQLPage is a local-first personal finance tool.
 
-See the project's [documentation](https://actualbudget.org/docs/) to learn what Actual does and why it might be useful to you.
+See the project's [documentation](https://sqlpagebudget.org/docs/) to learn what SQLPage does and why it might be useful to you.
 
-For details about configuring the [Ansible role for Actual](https://radicle.network/nodes/seed.radicle.garden/rad%3Az2chD7Kt74JwEMafxTooxN7MaeYtK), you can check them via:
+For details about configuring the [Ansible role for SQLPage](https://radicle.network/nodes/seed.radicle.garden/rad%3Az2chD7Kt74JwEMafxTooxN7MaeYtK), you can check them via:
 
-- 🌐 [the role's documentation](https://radicle.network/nodes/seed.radicle.garden/rad%3Az2chD7Kt74JwEMafxTooxN7MaeYtK/tree/docs/configuring-actual.md) online
-- 📁 `roles/galaxy/actual/docs/configuring-actual.md` locally, if you have [fetched the Ansible roles](../installing.md)
+- 🌐 [the role's documentation](https://radicle.network/nodes/seed.radicle.garden/rad%3Az2chD7Kt74JwEMafxTooxN7MaeYtK/tree/docs/configuring-sqlpage.md) online
+- 📁 `roles/galaxy/sqlpage/docs/configuring-sqlpage.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 ## Dependencies
 
@@ -44,30 +44,30 @@ To enable this service, add the following configuration to your `vars.yml` file 
 ```yaml
 ########################################################################
 #                                                                      #
-# actual                                                               #
+# sqlpage                                                              #
 #                                                                      #
 ########################################################################
 
-actual_enabled: true
+sqlpage_enabled: true
 
-actual_hostname: actual.example.com
+sqlpage_hostname: sqlpage.example.com
 
 ########################################################################
 #                                                                      #
-# /actual                                                              #
+# /sqlpage                                                             #
 #                                                                      #
 ########################################################################
 ```
 
 ## Usage
 
-After running the command for installation, the Actual instance becomes available at the URL specified with `actual_hostname`. With the configuration above, the service is hosted at `https://actual.example.com`.
+After running the command for installation, the SQLPage instance becomes available at the URL specified with `sqlpage_hostname`. With the configuration above, the service is hosted at `https://sqlpage.example.com`.
 
 To get started, open the URL with a web browser to create an account.
 
 ## Troubleshooting
 
-See [this section](https://radicle.network/nodes/seed.radicle.garden/rad%3Az2chD7Kt74JwEMafxTooxN7MaeYtK/tree/docs/configuring-actual.md#troubleshooting) on the role's documentation for details.
+See [this section](https://radicle.network/nodes/seed.radicle.garden/rad%3Az2chD7Kt74JwEMafxTooxN7MaeYtK/tree/docs/configuring-sqlpage.md#troubleshooting) on the role's documentation for details.
 
 ## Related services
 
