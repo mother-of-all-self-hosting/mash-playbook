@@ -888,6 +888,10 @@
   version: v0.0.0-3
   name: soundcloak
   activation_prefix: soundcloak_
+- src: git+https://iris.radicle.network/z2eyt9uovdZtjh8TL5qiyv2PqAYvP.git
+  version: v0.44.0-0
+  name: sqlpage
+  activation_prefix: sqlpage_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-ssh.git
   version: v1.0.1-0
   name: ssh

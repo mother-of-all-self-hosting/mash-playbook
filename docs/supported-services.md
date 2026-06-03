@@ -235,6 +235,7 @@ Below is an exhaustive list of the free and open-source software for self-hostin
 | [SolidInvoice](https://github.com/SolidInvoice/SolidInvoice) | Web-based software for invoicing | [Link](services/solidinvoice.md) |
 | [Sonarr](https://sonarr.tv/) | A smart PVR for newsgroup and BitTorrent users | [Link](services/sonarr.md) |
 | [soundcloak](https://git.maid.zone/stuff/soundcloak) | Browse SoundCloud without exposing your IP address, browsing habits, and other browser fingerprinting data to the website | [Link](services/soundcloak.md) |
+| [SQLPage](https://sql-page.com/) | SQL-only data application builder | [Link](services/sqlpage.md) |
 | [Standalone Snowflake proxy](https://community.torproject.org/relay/setup/snowflake/standalone/) | Help users connect to the [Tor](https://torproject.org/) network in places where Tor is blocked | [Link](services/snowflake.md) |
 | [Statusnook](https://statusnook.com/) | Status page deployment service | [Link](services/statusnook.md) |
 | [Stirling PDF v1](https://github.com/Stirling-Tools/Stirling-PDF) | A PDF converter | [Link](services/stirling-pdf.md) |

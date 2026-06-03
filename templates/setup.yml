@@ -938,6 +938,10 @@
     - role: galaxy/soundcloak
     # /role-specific:soundcloak
 
+    # role-specific:sqlpage
+    - role: galaxy/sqlpage
+    # /role-specific:sqlpage
+
     # role-specific:statusnook
     - role: galaxy/statusnook
     # /role-specific:statusnook
