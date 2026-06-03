@@ -5,13 +5,17 @@
 ---
 - name: Ensure API path exists
   ansible.builtin.file:
-    path: "{{ item }}"
+    path: "{{ oliverlorenz_api_base_path }}"
     state: directory
     mode: "0750"
     owner: "{{ oliverlorenz_api_uid }}"
     group: "{{ oliverlorenz_api_gid }}"
-  with_items:
-    - "{{ oliverlorenz_api_base_path }}"
+
+- name: Ensure API chatlog data path exists
+  ansible.builtin.file:
+    path: "{{ oliverlorenz_api_chatlog_data_path }}"
+    state: directory
+    mode: "0777"
 
 - name: Ensure API support files installed
   ansible.builtin.template:

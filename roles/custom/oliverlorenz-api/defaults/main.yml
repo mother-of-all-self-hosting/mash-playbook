@@ -19,9 +19,14 @@ oliverlorenz_api_container_image_registry_password: ""
 
 oliverlorenz_api_environment_jwt_secret: ""
 oliverlorenz_api_environment_token_master_secret: ""
-oliverlorenz_api_environment_nc_base_path: ""
-oliverlorenz_api_environment_nc_username: ""
-oliverlorenz_api_environment_nc_app_password: ""
+oliverlorenz_api_environment_chatlog_nc_base_url: ""
+oliverlorenz_api_environment_chatlog_nc_username: ""
+oliverlorenz_api_environment_chatlog_nc_app_password: ""
+oliverlorenz_api_environment_chatlog_nc_dir: ""
+oliverlorenz_api_environment_chatlog_local_mirror_dir: "/chatlogs-mirror"
+oliverlorenz_api_environment_chatlog_sync_interval_ms: ""
+
+oliverlorenz_api_chatlog_data_path: "{{ oliverlorenz_api_base_path }}/chatlogs-mirror"
 
 # Controls whether the container exposes its HTTP port (tcp/8080 in the container).
 #
@@ -51,7 +56,11 @@ oliverlorenz_api_container_additional_networks_custom: []
 # A list of additional "volumes" to mount in the container.
 # Contains definition objects like this: `{"type": "bind", "src": "/outside", "dst": "/inside", "options": "readonly"}.
 oliverlorenz_api_container_additional_volumes: "{{ oliverlorenz_api_container_additional_volumes_auto + oliverlorenz_api_container_additional_volumes_custom }}"
-oliverlorenz_api_container_additional_volumes_auto: []
+oliverlorenz_api_container_additional_volumes_auto:
+  - type: bind
+    src: "{{ oliverlorenz_api_chatlog_data_path }}"
+    dst: "{{ oliverlorenz_api_environment_chatlog_local_mirror_dir }}"
+    options: ""
 oliverlorenz_api_container_additional_volumes_custom: []
 
 # A list of extra arguments to pass to the container (`docker run` command)
