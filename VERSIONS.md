@@ -13,7 +13,7 @@
 * Atuin: 18.16.1
 * Audiobookshelf: 2.34.0
 * Authelia: 4.37.5
-* Authentik: 2026.2.3
+* Authentik: 2026.5.2
 * Autobrr: v1.77.1
 * Barassistant Saltrim: 4.15.0
 * Barassistant Server: 5.15.0
