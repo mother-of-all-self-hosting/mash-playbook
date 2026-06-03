@@ -25,9 +25,9 @@ Radicle HTTP Daemon is a background process which makes it possible to browse th
 
 See the project's [documentation](https://radicle.dev/guides/seeder#running-the-http-daemon) to learn what Radicle HTTP Daemon does and why it might be useful to you.
 
-For details about configuring the [Ansible role for Radicle HTTP Daemon](https://radicle.network/nodes/seed.radicle.garden/rad%3Az3roZFCprFZhmK8BvkrsKwkLZXr56), you can check them via:
+For details about configuring the [Ansible role for Radicle HTTP Daemon](https://radicle.network/nodes/iris.radicle.network/rad%3Az3roZFCprFZhmK8BvkrsKwkLZXr56), you can check them via:
 
-- 🌐 [the role's documentation](https://radicle.network/nodes/seed.radicle.garden/rad%3Az3roZFCprFZhmK8BvkrsKwkLZXr56/tree/docs/configuring-radicle-httpd.md) online
+- 🌐 [the role's documentation](https://radicle.network/nodes/iris.radicle.network/rad%3Az3roZFCprFZhmK8BvkrsKwkLZXr56/tree/docs/configuring-radicle-httpd.md) online
 - 📁 `roles/galaxy/radicle_httpd/docs/configuring-radicle-httpd.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 ## Prerequisites
@@ -61,13 +61,13 @@ radicle_httpd_enabled: true
 
 After running the command for installation, the Radicle HTTP Daemon instance becomes available at the same URL as specified to the Radicle node with `radicle_node_hostname`.
 
-See [this section](https://radicle.network/nodes/seed.radicle.garden/rad%3Az3roZFCprFZhmK8BvkrsKwkLZXr56/tree/docs/configuring-radicle-httpd.md#usage) on the role's documentation for details about how to browse a repository on your seed node via a web client like [Radicle Explorer](https://radicle.network/nodes/seed.radicle.dev/rad%3Az4V1sjrXqjvFdnCUbxPFqd5p4DtH5).
+See [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az3roZFCprFZhmK8BvkrsKwkLZXr56/tree/docs/configuring-radicle-httpd.md#usage) on the role's documentation for details about how to browse a repository on your seed node via a web client like [Radicle Explorer](https://radicle.network/nodes/seed.radicle.dev/rad%3Az4V1sjrXqjvFdnCUbxPFqd5p4DtH5).
 
 This playbook supports Radicle Explorer, and you can set up the instance by enabling it on `vars.yml`. See [this page](radicle-explorer.md) for details.
 
 ## Troubleshooting
 
-See [this section](https://radicle.network/nodes/seed.radicle.garden/rad%3Az3roZFCprFZhmK8BvkrsKwkLZXr56/tree/docs/configuring-radicle-httpd.md#troubleshooting) on the role's documentation for details.
+See [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az3roZFCprFZhmK8BvkrsKwkLZXr56/tree/docs/configuring-radicle-httpd.md#troubleshooting) on the role's documentation for details.
 
 ## Related services
 

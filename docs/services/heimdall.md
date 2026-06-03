@@ -26,9 +26,9 @@ Heimdall is a dashboard for web applications.
 
 See the project's [documentation](https://github.com/linuxserver/docker-heimdall/blob/master/README.md) to learn what Heimdall does and why it might be useful to you.
 
-For details about configuring the [Ansible role for Heimdall](https://radicle.network/nodes/seed.radicle.garden/rad%3Az8D2GRZrm8JXZeHHe9j1HMvvj8An), you can check them via:
+For details about configuring the [Ansible role for Heimdall](https://radicle.network/nodes/iris.radicle.network/rad%3Az8D2GRZrm8JXZeHHe9j1HMvvj8An), you can check them via:
 
-- 🌐 [the role's documentation](https://radicle.network/nodes/seed.radicle.garden/rad%3Az8D2GRZrm8JXZeHHe9j1HMvvj8An/tree/docs/configuring-heimdall.md) online
+- 🌐 [the role's documentation](https://radicle.network/nodes/iris.radicle.network/rad%3Az8D2GRZrm8JXZeHHe9j1HMvvj8An/tree/docs/configuring-heimdall.md) online
 - 📁 `roles/galaxy/heimdall/docs/configuring-heimdall.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 ## Dependencies
@@ -65,7 +65,7 @@ After running the command for installation, the Heimdall instance becomes availa
 
 ## Troubleshooting
 
-See [this section](https://radicle.network/nodes/seed.radicle.garden/rad%3Az8D2GRZrm8JXZeHHe9j1HMvvj8An/tree/docs/configuring-heimdall.md#troubleshooting) on the role's documentation for details.
+See [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az8D2GRZrm8JXZeHHe9j1HMvvj8An/tree/docs/configuring-heimdall.md#troubleshooting) on the role's documentation for details.
 
 ## Related services
 

@@ -25,9 +25,9 @@ Euro-Office is an online office suite comprising viewers and editors for texts, 
 
 See the project's [documentation](https://github.com/Euro-Office/DocumentServer/blob/main/README.md) to learn what Euro-Office does and why it might be useful to you.
 
-For details about configuring the [Ansible role for Euro-Office](https://radicle.network/nodes/seed.radicle.garden/rad%3Az4SSf2SU2YwBaMmCFBJnM5KqorU9T), you can check them via:
+For details about configuring the [Ansible role for Euro-Office](https://radicle.network/nodes/iris.radicle.network/rad%3Az4SSf2SU2YwBaMmCFBJnM5KqorU9T), you can check them via:
 
-- 🌐 [the role's documentation](https://radicle.network/nodes/seed.radicle.garden/rad%3Az4SSf2SU2YwBaMmCFBJnM5KqorU9T/tree/docs/configuring-eurooffice-docs.md) online
+- 🌐 [the role's documentation](https://radicle.network/nodes/iris.radicle.network/rad%3Az4SSf2SU2YwBaMmCFBJnM5KqorU9T/tree/docs/configuring-eurooffice-docs.md) online
 - 📁 `roles/galaxy/eurooffice/docs/configuring-eurooffice-docs.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 ## Dependencies
@@ -78,7 +78,7 @@ filebrowser_quantum_config_integrations_office_secret: "{{ eurooffice_environmen
 
 ## Troubleshooting
 
-See [this section](https://radicle.network/nodes/seed.radicle.garden/rad%3Az4SSf2SU2YwBaMmCFBJnM5KqorU9T/tree/docs/configuring-eurooffice-docs.md#troubleshooting) on the role's documentation for details.
+See [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az4SSf2SU2YwBaMmCFBJnM5KqorU9T/tree/docs/configuring-eurooffice-docs.md#troubleshooting) on the role's documentation for details.
 
 ## Related services
 

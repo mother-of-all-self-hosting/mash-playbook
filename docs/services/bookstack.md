@@ -26,9 +26,9 @@ BookStack is a platform for organising and storing information.
 
 See the project's [documentation](https://www.bookstackapp.com/docs/) to learn what BookStack does and why it might be useful to you.
 
-For details about configuring the [Ansible role for BookStack](https://radicle.network/nodes/seed.radicle.garden/rad%3AzQdRwQ2s3FG5BZUjvSn1GYXbzVmw), you can check them via:
+For details about configuring the [Ansible role for BookStack](https://radicle.network/nodes/iris.radicle.network/rad%3AzQdRwQ2s3FG5BZUjvSn1GYXbzVmw), you can check them via:
 
-- 🌐 [the role's documentation](https://radicle.network/nodes/seed.radicle.garden/rad%3AzQdRwQ2s3FG5BZUjvSn1GYXbzVmw/tree/docs/configuring-bookstack.md) online
+- 🌐 [the role's documentation](https://radicle.network/nodes/iris.radicle.network/rad%3AzQdRwQ2s3FG5BZUjvSn1GYXbzVmw/tree/docs/configuring-bookstack.md) online
 - 📁 `roles/galaxy/bookstack/docs/configuring-bookstack.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 ## Dependencies
@@ -90,7 +90,7 @@ To get started, open the URL `https://example.com` with a web browser, and log i
 
 ## Troubleshooting
 
-See [this section](https://radicle.network/nodes/seed.radicle.garden/rad%3AzQdRwQ2s3FG5BZUjvSn1GYXbzVmw/tree/docs/configuring-bookstack.md#troubleshooting) on the role's documentation for details.
+See [this section](https://radicle.network/nodes/iris.radicle.network/rad%3AzQdRwQ2s3FG5BZUjvSn1GYXbzVmw/tree/docs/configuring-bookstack.md#troubleshooting) on the role's documentation for details.
 
 ## Related services
 

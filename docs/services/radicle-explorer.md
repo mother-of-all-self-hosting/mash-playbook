@@ -25,9 +25,9 @@ Radicle Explorer allows you to interact with [Radicle](https://radicle.dev/), a 
 
 See the project's [documentation](https://radicle.network/nodes/seed.radicle.dev/rad%3Az4V1sjrXqjvFdnCUbxPFqd5p4DtH5/tree/README.md) to learn what Radicle Explorer does and why it might be useful to you.
 
-For details about configuring the [Ansible role for Radicle Explorer](https://radicle.network/nodes/seed.radicle.garden/rad%3Azopwjin5Vh5dMgdHWiifJ2cg3bQW), you can check them via:
+For details about configuring the [Ansible role for Radicle Explorer](https://radicle.network/nodes/iris.radicle.network/rad%3Azopwjin5Vh5dMgdHWiifJ2cg3bQW), you can check them via:
 
-- 🌐 [the role's documentation](https://radicle.network/nodes/seed.radicle.garden/rad%3Azopwjin5Vh5dMgdHWiifJ2cg3bQW/tree/docs/configuring-radicle-explorer.md) online
+- 🌐 [the role's documentation](https://radicle.network/nodes/iris.radicle.network/rad%3Azopwjin5Vh5dMgdHWiifJ2cg3bQW/tree/docs/configuring-radicle-explorer.md) online
 - 📁 `roles/galaxy/radicle_explorer/docs/configuring-radicle-explorer.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 ## Prerequisites
@@ -64,11 +64,11 @@ radicle_explorer_hostname: explorer.example.com
 
 After running the command for installation, the Radicle Explorer instance becomes available at the URL specified with `radicle_node_hostname`. With the configuration above, the service is hosted at `https://explorer.example.com`.
 
-See [this section](https://radicle.network/nodes/seed.radicle.garden/rad%3Azopwjin5Vh5dMgdHWiifJ2cg3bQW/tree/docs/configuring-radicle-explorer.md#usage) on the role's documentation for details about how to browse a repository with the web client.
+See [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Azopwjin5Vh5dMgdHWiifJ2cg3bQW/tree/docs/configuring-radicle-explorer.md#usage) on the role's documentation for details about how to browse a repository with the web client.
 
 ## Troubleshooting
 
-See [this section](https://radicle.network/nodes/seed.radicle.garden/rad%3Azopwjin5Vh5dMgdHWiifJ2cg3bQW/tree/docs/configuring-radicle-explorer.md#troubleshooting) on the role's documentation for details.
+See [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Azopwjin5Vh5dMgdHWiifJ2cg3bQW/tree/docs/configuring-radicle-explorer.md#troubleshooting) on the role's documentation for details.
 
 ## Related services
 

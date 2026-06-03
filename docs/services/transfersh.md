@@ -26,9 +26,9 @@ transfer.sh is a tool for file sharing with the command-line.
 
 See the project's [documentation](https://github.com/dutchcoders/transfer.sh/blob/main/README.md) to learn what transfer.sh does and why it might be useful to you.
 
-For details about configuring the [Ansible role for transfer.sh](https://radicle.network/nodes/seed.radicle.garden/rad%3Az3baazpMjGxvdYmB7RTqr5WnrSRke), you can check them via:
+For details about configuring the [Ansible role for transfer.sh](https://radicle.network/nodes/iris.radicle.network/rad%3Az3baazpMjGxvdYmB7RTqr5WnrSRke), you can check them via:
 
-- 🌐 [the role's documentation](https://radicle.network/nodes/seed.radicle.garden/rad%3Az3baazpMjGxvdYmB7RTqr5WnrSRke/tree/docs/configuring-transfersh.md) online
+- 🌐 [the role's documentation](https://radicle.network/nodes/iris.radicle.network/rad%3Az3baazpMjGxvdYmB7RTqr5WnrSRke/tree/docs/configuring-transfersh.md) online
 - 📁 `roles/galaxy/transfersh/docs/configuring-transfer.sh.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 ## Dependencies
@@ -73,4 +73,4 @@ See [this section](https://github.com/dutchcoders/transfer.sh/blob/main/README.m
 
 ## Troubleshooting
 
-See [this section](https://radicle.network/nodes/seed.radicle.garden/rad%3Az3baazpMjGxvdYmB7RTqr5WnrSRke/tree/docs/configuring-transfersh.md#troubleshooting) on the role's documentation for details.
+See [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az3baazpMjGxvdYmB7RTqr5WnrSRke/tree/docs/configuring-transfersh.md#troubleshooting) on the role's documentation for details.
