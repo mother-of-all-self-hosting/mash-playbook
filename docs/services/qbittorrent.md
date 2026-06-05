@@ -95,7 +95,7 @@ Fill in the rest of the form with your preferences, and you're done!
 
 - [Autobrr](autobrr.md) — Download automation for torrents and Usenet
 - [bitmagnet](bitmagnet.md) — BitTorrent indexer, DHT crawler, content classifier and search engine
-- [Jackett](jackett.md) — API for torrent trackers
+- [Jackett](jackett.md) — API for Torrent trackers
 - [Jellyfin](jellyfin.md) — Personal media server
 - [Seerr](seerr.md) — A media request and discovery manager
 - [Plex](plex.md) — Personal media server
