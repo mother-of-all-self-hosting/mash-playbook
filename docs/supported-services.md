@@ -55,7 +55,7 @@ Below is an exhaustive list of the free and open-source software for self-hostin
 | [Calibre-Web](https://github.com/janeczku/calibre-web) | Web app for browsing, reading and downloading eBooks stored in a [Calibre](https://calibre-ebook.com/) database | [Link](services/calibre-web.md) |
 | [Calibre-Web Automated](https://github.com/crocodilestick/Calibre-Web-Automated) | Web application based on [Calibre-Web](https://github.com/janeczku/calibre-web) with additional features and automation | [Link](services/calibre-web-automated.md) |
 | [Cap Standalone](https://capjs.js.org/guide/standalone/) | Backend of Cap, a POW Captcha | [Link](services/cap.md) |
-| [Changedetection.io](https://github.com/dgtlmoon/changedetection.io) | A simple website change detection and restock monitoring solution | [Link](services/changedetection.md) |
+| [Changedetection.io](https://github.com/dgtlmoon/changedetection.io) | Website change detection and restock monitoring solution | [Link](services/changedetection.md) |
 | [ChiefOnboarding](https://docs.chiefonboarding.com) | Employee onboarding platform | [Link](services/chiefonboarding.md) |
 | [Cinny](https://github.com/ajbura/cinny) | Elegant web client for [Matrix](https://matrix.org/) | [Link](services/cinny.md) |
 | [CiviCRM](https://civicrm.org/) | Relationship management system for advocacy, non-profit and non-governmental groups | [Link](services/civicrm.md) |
@@ -78,7 +78,7 @@ Below is an exhaustive list of the free and open-source software for self-hostin
 | [DocuSeal](https://github.com/docusealco/docuseal) | Digital document signing and processing | [Link](services/docuseal.md) |
 | [DokuWiki](https://dokuwiki.org/) | File-based wiki engine without database requirement | [Link](services/dokuwiki.md) |
 | [Duplicati](https://duplicati.com) | Backup software that securely stores encrypted, incremental, compressed backups on local storage, cloud storage services and remote file servers | [Link](services/duplicati.md) |
-| [echoip](https://github.com/mpolden/echoip) | A simple service for looking up your IP address | [Link](services/echoip.md) |
+| [echoip](https://github.com/mpolden/echoip) | Look up your IP address | [Link](services/echoip.md) |
 | [Endlessh-go](https://github.com/shizunge/endlessh-go) | A golang implementation of Endlessh, an SSH tarpit | [Link](services/endlessh.md) |
 | [Ergo](https://ergo.chat/) | Modern IRCd (IRC server software) written in Go | [Link](services/ergo.md) |
 | [etcd](https://etcd.io/) | A distributed, reliable key-value store for the most critical data of a distributed system | [Link](services/etcd.md) |
@@ -124,7 +124,7 @@ Below is an exhaustive list of the free and open-source software for self-hostin
 | [Infisical](https://infisical.com/) | An end-to-end encrypted platform for securely managing secrets and configs across your team, devices, and infrastructure | [Link](services/infisical.md) |
 | [InfluxDB OSS v2](https://docs.influxdata.com/influxdb/v2/) | A time-series database | [Link](services/influxdb.md) |
 | [InspIRCd](https://www.inspircd.org/) | Modular IRC server written in C++ | [Link](services/inspircd.md) |
-| [Jackett](https://github.com/Jackett/Jackett) | An API for your favorite torrent trackers | [Link](services/jackett.md) |
+| [Jackett](https://github.com/Jackett/Jackett) | An API for your favorite Torrent trackers | [Link](services/jackett.md) |
 | [Jellyfin](https://github.com/jellyfin/jellyfin) | A personal media server | [Link](services/jellyfin.md) |
 | [Jitsi](https://jitsi.org/) | A fully encrypted video conferencing solution | [Link](services/jitsi.md) |
 | [Joplin Server](https://joplinapp.org/help/dev/spec/architecture#joplin-server) | Server component for [Joplin](https://joplinapp.org/) | [Link](services/joplin-server.md) |
@@ -257,7 +257,7 @@ Below is an exhaustive list of the free and open-source software for self-hostin
 | [Vaultwarden](https://github.com/dani-garcia/vaultwarden) | A lightweight unofficial and compatible implementation of the [Bitwarden](https://bitwarden.com/) password manager | [Link](services/vaultwarden.md) |
 | [VersaTiles](https://versatiles.org) | Generate and serve vector tiles from OpenStreetMap | [Link](services/versatiles.md) |
 | [Vikunja](https://vikunja.io/) | To-do app | [Link](services/vikunja.md) |
-| [Wazuh](https://wazuh.com/) | An open source security platform providing SIEM, threat detection, and compliance monitoring | [Link](services/wazuh.md) |
+| [Wazuh](https://wazuh.com/) | Security platform providing SIEM, threat detection, and compliance monitoring | [Link](services/wazuh.md) |
 | [Weblate](https://weblate.org/) | Web-based translation tool with version control integration | [Link](services/weblate.md) |
 | [Wetty](https://github.com/butlerx/wetty) | An SSH terminal over HTTP/HTTPS | [Link](services/wetty.md) |
 | [Wikimore](https://git.private.coffee/PrivateCoffee/wikimore) | Frontend for Wikipedia projects | [Link](services/wikimore.md) |
