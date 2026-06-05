@@ -22,7 +22,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
 The playbook can install and configure [Gotify](https://gotify.net) for you.
 
-Gotify is a simple server for sending and receiving messages.
+Gotify is a simple server for sending and receiving messages in real-time per WebSocket.
 
 See the project's [documentation](https://gotify.net/docs/) to learn what Gotify does and why it might be useful to you.
 
