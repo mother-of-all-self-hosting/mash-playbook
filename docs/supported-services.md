@@ -110,7 +110,7 @@ Below is an exhaustive list of the free and open-source software for self-hostin
 | [GoToSocial](https://gotosocial.org/) | [ActivityPub](https://activitypub.rocks/) federated microblogging platform | [Link](services/gotosocial.md) |
 | [Grafana](https://grafana.com/) | Web-based tool for visualizing your Prometheus metrics (time-series) | [Link](services/grafana.md) |
 | [Grafana Loki](https://grafana.com/docs/loki/latest/) | Log aggregation system that helps collect, store, and analyze logs in a scalable and efficient manner | [Link](services/grafana-loki.md) |
-| [Headplane](https://headplane.net/) | A feature-complete Web UI for Headscale | [Link](services/headplane.md) |
+| [Headplane](https://headplane.net/) | Feature-complete [Tailscale Web UI](https://tailscale.com/) for Headscale | [Link](services/headplane.md) |
 | [Headscale](https://headscale.net/) | A Tailscale-compatible control server for managing Tailscale devices | [Link](services/headscale.md) |
 | [Healthchecks](https://healthchecks.io/) | Cron job monitoring solution | [Link](services/healthchecks.md) |
 | [Heimdall](https://heimdall.site/) | Dashboard for web applications | [Link](services/heimdall.md) |
