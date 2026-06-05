@@ -138,4 +138,4 @@ See [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az48W
 
 ## Related services
 
-- [PrivateBin](privatebin.md) — Minimalist, open source online pastebin where the server has zero knowledge of pasted data
+- [PrivateBin](privatebin.md) — Minimalist online pastebin where the server has zero knowledge of pasted data
