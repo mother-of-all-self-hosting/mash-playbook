@@ -107,7 +107,7 @@ Below is an exhaustive list of the free and open-source software for self-hostin
 | [Gotenberg](https://gotenberg.dev/) | Docker-based API for converting documents to PDF | [Link](services/gotenberg.md) |
 | [GotHub](https://codeberg.org/gothub/gothub) | View GitHub repositories without exposing your IP address, browsing habits, and other browser fingerprinting data to the website | [Link](services/gothub.md) |
 | [Gotify](https://gotify.net/) | Send and receive messages in real-time per WebSocket | [Link](services/gotify.md) |
-| [GoToSocial](https://gotosocial.org/) | [ActivityPub](https://activitypub.rocks/) federated microblogging platform | [Link](services/gotosocial.md) |
+| [GoToSocial](https://gotosocial.org/) | ActivityPub federated microblogging platform | [Link](services/gotosocial.md) |
 | [Grafana](https://grafana.com/) | Web-based tool for visualizing your Prometheus metrics (time-series) | [Link](services/grafana.md) |
 | [Grafana Loki](https://grafana.com/docs/loki/latest/) | Log aggregation system that helps collect, store, and analyze logs in a scalable and efficient manner | [Link](services/grafana-loki.md) |
 | [Headplane](https://headplane.net/) | Feature-complete [Tailscale Web UI](https://tailscale.com/) for Headscale | [Link](services/headplane.md) |
@@ -158,7 +158,7 @@ Below is an exhaustive list of the free and open-source software for self-hostin
 | [Minecraft](https://docker-minecraft-server.readthedocs.io) | The popular voxel-based sandbox game | [Link](services/minecraft.md) |
 | [Miniflux](https://miniflux.app/) | Minimalist and opinionated feed reader | [Link](services/miniflux.md) |
 | [Misskey](https://misskey-hub.net/en/) | ActivityPub federated microblogging platform | [Link](services/misskey.md) |
-| [Mobilizon](https://joinmobilizon.org/en/) | An ActivityPub/Fediverse server to create and share events | [Link](services/mobilizon.md) |
+| [Mobilizon](https://joinmobilizon.org/en/) | ActivityPub federated server for creating and sharing events | [Link](services/mobilizon.md) |
 | [Moner.ooo](https://github.com/nice42q/moner.ooo) | Monero / fiat exchange rates in various currencies | [Link](services/monerooo.md) |
 | [Moodist](https://moodist.mvze.net/) | Web application to mix and play ambient soundtracks | [Link](services/moodist.md) |
 | [Mosquitto](https://mosquitto.org/) | MQTT broker | [Link](services/mosquitto.md) |

@@ -23,7 +23,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
 The playbook can install and configure [GoToSocial](https://gotosocial.org/) for you.
 
-GoToSocial is a self-hosted [ActivityPub](https://activitypub.rocks/) social network server. With GoToSocial, you can keep in touch with your friends, post, read, and share images and articles.
+GoToSocial is an ActivityPub federated microblogging platform. With GoToSocial, you can keep in touch with your friends, post, read, and share images and articles.
 
 See the project's [documentation](https://docs.gotosocial.org/) to learn what GoToSocial does and why it might be useful to you.
 

@@ -23,7 +23,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
 The playbook can install and configure [Mobilizon](https://joinmobilizon.org/en/) for you.
 
-Mobilizon is a ActivityPub/Fediverse server to create and share events.
+Mobilizon is an ActivityPub federated server for creating and sharing events.
 
 See the project's [documentation](https://docs.mobilizon.org/) to learn what Mobilizon does and why it might be useful to you.
 
