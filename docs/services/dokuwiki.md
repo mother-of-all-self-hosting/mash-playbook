@@ -91,4 +91,4 @@ See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-do
 ## Related services
 
 - [An Otter Wiki](otterwiki.md) — Minimalistic wiki powered by Python, Markdown and Git
-- [MediaWiki](mediawiki.md) — Popular free and open-source wiki software
+- [MediaWiki](mediawiki.md) — Popular wiki software

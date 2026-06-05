@@ -93,5 +93,5 @@ See [this section](https://radicle.network/nodes/iris.radicle.network/rad%3AzvzJ
 
 ## Related services
 
-- [DokuWiki](dokuwiki.md) — Lightweight, file-based wiki engine
-- [MediaWiki](mediawiki.md) — Popular free and open-source wiki software
+- [DokuWiki](dokuwiki.md) — File-based wiki engine without database requirement
+- [MediaWiki](mediawiki.md) — Popular wiki software

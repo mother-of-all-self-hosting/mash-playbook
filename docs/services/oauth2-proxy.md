@@ -146,7 +146,7 @@ Take a look at [its `default/main.yml` file](https://github.com/mother-of-all-se
 
 ## Related services
 
-- [authentik](authentik.md) — An open-source Identity Provider (IdP) focused on flexibility and versatility.
-- [Keycloak](keycloak.md) — An open source identity and access management solution
-- [Authelia](authelia.md) — An open-source authentication and authorization server that can work as a companion to [common reverse proxies](https://www.authelia.com/overview/prologue/supported-proxies/) (like [Traefik](traefik.md) frequently used by this playbook)
-- [Pocket ID](pocket-id.md) — Simple OIDC provider for passkey-only authentication
+- [authentik](authentik.md) — Identity Provider focused on flexibility and versatility
+- [Keycloak](keycloak.md) — Identity and access management solution
+- [Authelia](authelia.md) — Authentication and authorization server that can work as a companion to common reverse proxies
+- [Pocket ID](pocket-id.md) — OIDC provider for passkey-only authentication

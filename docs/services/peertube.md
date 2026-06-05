@@ -275,6 +275,6 @@ You should then be able to log in with:
 
 ## Related services
 
-- [Funkwhale](funkwhale.md) — Community-driven project that lets you listen and share music and audio in the Fediverse
-- [GoToSocial](gotosocial.md) — Self-hosted ActivityPub social network server
-- [Misskey](misskey.md) — Free decentralized microblogging platform based on the ActivityPub protocol
+- [Funkwhale](funkwhale.md) — ActivityPub federated streaming server for listening and sharing music
+- [GoToSocial](gotosocial.md) — ActivityPub federated microblogging platform
+- [Misskey](misskey.md) — ActivityPub federated microblogging platform

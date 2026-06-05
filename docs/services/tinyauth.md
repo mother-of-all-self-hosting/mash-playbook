@@ -269,7 +269,7 @@ See [this section](https://radicle.network/nodes/iris.radicle.network/rad%3AzLMi
 
 ## Related services
 
-- [Authelia](authelia.md) — Open-source authentication and authorization server that can work as a companion to common reverse proxies like Traefik
-- [authentik](authentik.md) — Open-source identity provider focused on flexibility and versatility
-- [Keycloak](keycloak.md) — Open source identity and access management solution
+- [Authelia](authelia.md) — Authentication and authorization server that can work as a companion to common reverse proxies
+- [authentik](authentik.md) — Identity Provider focused on flexibility and versatility
+- [Keycloak](keycloak.md) — Identity and access management solution
 - [LLDAP](lldap.md) — Lightweight authentication server that provides an opinionated, simplified LDAP interface for authentication

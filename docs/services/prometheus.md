@@ -116,10 +116,10 @@ prometheus_container_labels_metrics_middleware_basic_auth_users: ""
 
 ## Related services
 
-- [Grafana](grafana.md) — a web-based tool for visualizing your Prometheus metrics (time-series)
-- [Grafana Loki](grafana-loki.md) — a log aggregation system that helps collect, store, and analyze logs in a scalable and efficient manner (like Prometheus, but for logs)
+- [Grafana](grafana.md) — Web-based tool for visualizing your Prometheus metrics (time-series)
+- [Grafana Loki](grafana-loki.md) — Log aggregation system that helps collect, store, and analyze logs in a scalable and efficient manner
 - [Prometheus Alertmanager](prometheus-alertmanager.md) — Handle alerts sent by client applications such as the Prometheus server
-- [prometheus-blackbox-exporter](prometheus-blackbox-exporter.md) — Blackbox probing of HTTP/HTTPS/DNS/TCP/ICMP and gRPC endpoints
-- [prometheus-node-exporter](prometheus-node-exporter.md) — an exporter for machine metrics
-- [prometheus-postgres-exporter](prometheus-postgres-exporter.md) — an exporter for monitoring a [Postgres](postgres.md) database server
-- [Healthchecks](healthchecks.md) — a simple and Effective Cron Job Monitoring solution
+- [Prometheus Blackbox Exporter](prometheus-blackbox-exporter.md) — Blackbox probing of HTTP/HTTPS/DNS/TCP/ICMP and gRPC endpoints
+- [Prometheus Node Exporter](prometheus-node-exporter.md) — Exporter for machine metrics
+- [Prometheus Postgres Exporter](prometheus-postgres-exporter.md) — PostgreSQL metric exporter for Prometheus
+- [Healthchecks](healthchecks.md) — Cron job monitoring solution

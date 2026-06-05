@@ -204,4 +204,4 @@ See [this section](https://radicle.network/nodes/iris.radicle.network/rad%3AzSfE
 
 ## Related services
 
-- [audiobookshelf](audiobookshelf.md) — Self-hosted audiobook and podcast server
+- [audiobookshelf](audiobookshelf.md) — Audiobook and podcast server

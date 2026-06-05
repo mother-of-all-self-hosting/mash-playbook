@@ -77,4 +77,4 @@ See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-co
 
 ## Related services
 
-- [MAZANOKE](mazanoke.md) — Simple image optimizer that runs in your browser
+- [MAZANOKE](mazanoke.md) — Image optimizer that runs in your browser

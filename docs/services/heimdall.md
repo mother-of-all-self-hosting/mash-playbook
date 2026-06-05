@@ -69,4 +69,4 @@ See [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az8D2
 
 ## Related services
 
-- [Homarr](homarr.md) — Dashboard for management of your favorite applications and services
+- [Homarr](homarr.md) — Dashboard for management of your favorite applications and services with a drag-and-drop grid system

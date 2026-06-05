@@ -92,6 +92,6 @@ See [this section](https://radicle.network/nodes/iris.radicle.network/rad%3AzCF7
 
 ## Related services
 
-- [Karakeep](karakeep.md) — Self-hosted, open-source bookmark manager to collect, organize and archive webpages
+- [Karakeep](karakeep.md) — Bookmark manager to collect, organize and archive webpages
 - [linkding](linkding.md) — Bookmark manager designed to be minimal and fast
 - [Readeck](readeck.md) — Bookmark manager and a read-later tool combined in one

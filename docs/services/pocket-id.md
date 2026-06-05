@@ -155,8 +155,8 @@ See [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az2vT
 
 ## Related services
 
-- [authentik](authentik.md) — Open-source Identity Provider (IdP) focused on flexibility and versatility
-- [Authelia](authelia.md) — Open-source authentication and authorization server that can work as a companion to common reverse proxies like Traefik
-- [Keycloak](keycloak.md) — Open source identity and access management solution
+- [authentik](authentik.md) — Identity Provider focused on flexibility and versatility
+- [Authelia](authelia.md) — Authentication and authorization server that can work as a companion to common reverse proxies
+- [Keycloak](keycloak.md) — Identity and access management solution
 - [LLDAP](lldap.md) — Lightweight authentication server that provides an opinionated, simplified LDAP interface for authentication
-- [Tinyauth](tinyauth.md) — Simple authentication middleware that adds a login screen or OAuth with Google, Github, and any provider to your Docker services
+- [Tinyauth](tinyauth.md) — Authentication middleware that adds a login screen or OAuth with providers to Docker services

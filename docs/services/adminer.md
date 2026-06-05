@@ -79,4 +79,4 @@ See [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az3px
 ## Related services
 
 - [pgAdmin](pgadmin.md) — Management tool for Postgres with a graphical interface
-- [phpMyAdmin](phpmyadmin.md) — Free software written in PHP to handle the administration of a MySQL or MariaDB database server over the web
+- [phpMyAdmin](phpmyadmin.md) — Web-based MySQL or MariaDB database server administration software

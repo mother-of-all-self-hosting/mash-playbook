@@ -57,4 +57,4 @@ You should be able to browse the images and possibly delete them (if enabled via
 
 ## Related services
 
-- [Docker Registry](docker-registry.md) — a container image distribution registry developed by [Docker Inc](https://www.docker.com/)
+- [Docker Registry](docker-registry.md) — Container image distribution registry

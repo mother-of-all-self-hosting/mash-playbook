@@ -229,5 +229,5 @@ After setting the configuration, you can have the Calibre-Web instance send a te
 
 ## Related services
 
-- [audiobookshelf](audiobookshelf.md) — Self-hosted audiobook and podcast server
+- [audiobookshelf](audiobookshelf.md) — Audiobook and podcast server
 - [Calibre-Web Automated](calibre-web-automated.md) — Web application based on Calibre-Web with additional features and automation

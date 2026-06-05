@@ -60,8 +60,8 @@ On each start after that, Keycloak will attempt to create the user again and rep
 
 ## Related services
 
-- [authentik](authentik.md) — Open-source Identity Provider (IdP) focused on flexibility and versatility
-- [Authelia](authelia.md) — Open-source authentication and authorization server that can work as a companion to common reverse proxies like Traefik
-- [OAuth2-Proxy](oauth2-proxy.md) — Reverse proxy and static file server that provides authentication using OpenID Connect providers (Google, GitHub, authentik, Keycloak, and others) to SSO-protect services which do not support SSO natively
-- [Pocket ID](pocket-id.md) — Simple OIDC provider for passkey-only authentication
-- [Tinyauth](tinyauth.md) — Simple authentication middleware that adds a login screen or OAuth with Google, Github, and any provider to your Docker services
+- [authentik](authentik.md) — Identity Provider focused on flexibility and versatility
+- [Authelia](authelia.md) — Authentication and authorization server that can work as a companion to common reverse proxies
+- [OAuth2-Proxy](oauth2-proxy.md) — Reverse proxy and static file server that provides authentication using OpenID Connect providers
+- [Pocket ID](pocket-id.md) — OIDC provider for passkey-only authentication
+- [Tinyauth](tinyauth.md) — Authentication middleware that adds a login screen or OAuth with providers to Docker services

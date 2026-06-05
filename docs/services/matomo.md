@@ -104,5 +104,5 @@ To set up with the default exim-relay settings, and navigate to "General setting
 
 ## Related services
 
-- [OxiTraffic](oxitraffic.md) — Self-hosted, simple and privacy respecting website traffic tracker
-- [Plausible Analytics](plausible.md) — Intuitive, lightweight and open source web analytics
+- [OxiTraffic](oxitraffic.md) — Simple and privacy respecting website traffic tracker
+- [Plausible Analytics](plausible.md) — Intuitive and lightweight web analytics

@@ -209,4 +209,4 @@ See [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az3rw
 ## Related services
 
 - [Calibre-Web](calibre-web.md) — Web app for browsing, reading and downloading eBooks stored in a [Calibre](https://calibre-ebook.com/) database
-- [PinePods](pinepods.md) — Podcast management system that manages podcasts with multi-user support
+- [PinePods](pinepods.md) — Multi-user podcast management system

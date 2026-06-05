@@ -98,4 +98,4 @@ After creating the superuser account, you can open the URL to log in and start s
 
 ## Related services
 
-- [Prometheus](prometheus.md) — a metrics collection and alerting monitoring solution
+- [Prometheus](prometheus.md) — Metrics collection and alerting monitoring solution

@@ -70,4 +70,4 @@ See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-in
 
 ## Related services
 
-- [Telegraf](telegraf.md) — Open source server agent to collect metrics from your stacks, sensors, and systems
+- [Telegraf](telegraf.md) — Server agent to help you collect metrics from your stacks, sensors, and systems

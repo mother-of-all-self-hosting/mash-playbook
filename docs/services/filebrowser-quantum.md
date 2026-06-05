@@ -92,7 +92,7 @@ See [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az3AL
 
 ## Related services
 
-- [authentik](authentik.md) — Open-source Identity Provider (IdP) focused on flexibility and versatility
+- [authentik](authentik.md) — Identity Provider focused on flexibility and versatility
 - [Euro-Office](eurooffice.md) — Online office suite comprising viewers and editors
-- [File Browser](filebrowser.md) — File managing interface within a specified directory, which can be used to upload, delete, preview and edit your files
-- [Pocket ID](pocket-id.md) — Simple OIDC provider for passkey-only authentication
+- [File Browser](filebrowser.md) — Web-based file manager
+- [Pocket ID](pocket-id.md) — OIDC provider for passkey-only authentication

@@ -193,8 +193,8 @@ To get started, open the URL with a web browser to log in to the portal website 
 
 ## Related services
 
-- [authentik](authentik.md) — Open-source Identity Provider (IdP) focused on flexibility and versatility
-- [Keycloak](keycloak.md) — Open source identity and access management solution
-- [OAuth2-Proxy](oauth2-proxy.md) — Reverse proxy and static file server that provides authentication using OpenID Connect providers (Google, GitHub, authentik, Keycloak, and others) to SSO-protect services which do not support SSO natively
-- [Pocket ID](pocket-id.md) — Simple OIDC provider for passkey-only authentication
-- [Tinyauth](tinyauth.md) — Simple authentication middleware that adds a login screen or OAuth with Google, Github, and any provider to your Docker services
+- [authentik](authentik.md) — Identity Provider focused on flexibility and versatility
+- [Keycloak](keycloak.md) — Identity and access management solution
+- [OAuth2-Proxy](oauth2-proxy.md) — Reverse proxy and static file server that provides authentication using OpenID Connect providers
+- [Pocket ID](pocket-id.md) — OIDC provider for passkey-only authentication
+- [Tinyauth](tinyauth.md) — Authentication middleware that adds a login screen or OAuth with providers to Docker services

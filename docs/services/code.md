@@ -93,4 +93,4 @@ See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-co
 
 ## Related services
 
-- [Nextcloud](nextcloud.md) — Self-hosted collaboration solution for tens of millions of users at thousands of organizations across the globe
+- [Nextcloud](nextcloud.md) — Popular collaboration solution

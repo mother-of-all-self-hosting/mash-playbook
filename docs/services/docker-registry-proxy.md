@@ -57,5 +57,7 @@ After running the command for installation, the Docker Registry Proxy instance b
 
 ## Related services
 
-- [Docker Registry](docker-registry.md) — a container image distribution registry developed by [Docker Inc](https://www.docker.com/), wired automatically to the proxy, just disable registry's Traefik labels
-- [Grafana](grafana.md) — a multi-platform open source analytics and interactive visualization web application, Docker Registry Proxy comes with [pre-configured grafana dashboard](https://github.com/etkecc/docker-registry-proxy/blob/main/contrib/grafana-dashboard.json)
+- [Docker Registry](docker-registry.md) — Container image distribution registry
+  - Wired automatically to the proxy
+- [Grafana](grafana.md) — Web-based tool for visualizing your Prometheus metrics (time-series)
+  - Docker Registry Proxy comes with [pre-configured grafana dashboard](https://github.com/etkecc/docker-registry-proxy/blob/main/contrib/grafana-dashboard.json)

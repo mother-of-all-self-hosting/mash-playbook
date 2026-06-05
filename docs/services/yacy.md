@@ -83,4 +83,4 @@ See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-ya
 
 ## Related services
 
-- [SearXNG](searxng.md) — a privacy-respecting, hackable [metasearch engine](https://en.wikipedia.org/wiki/Metasearch_engine). See [this section](searxng.md#add-your-yacy-instance-optional) for the instruction to add your YaCy instance to the SearXNG instance.
+- [SearXNG](searxng.md) — Privacy-respecting, hackable [metasearch engine](https://en.wikipedia.org/wiki/Metasearch_engine). See [this section](searxng.md#add-your-yacy-instance-optional) for the instruction to add your YaCy instance to the SearXNG instance.

@@ -85,4 +85,4 @@ See [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az318
 
 ## Related services
 
-- [FileBrowser Quantum](filebrowser-quantum.md) — Free self-hosted web-based file manager
+- [FileBrowser Quantum](filebrowser-quantum.md) — Web-based file manager

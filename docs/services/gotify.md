@@ -83,4 +83,4 @@ See [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az3dQ
 ## Related services
 
 - [Apprise API](apprise.md) — Lightweight REST framework that wraps the [Apprise](https://github.com/caronc/apprise) Notification Library
-- [ntfy](ntfy.md) — Simple HTTP-based pub-sub notification service to send you push notifications from any computer
+- [ntfy](ntfy.md) — HTTP-based pub-sub notification service to send you push notifications from any computer

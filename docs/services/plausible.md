@@ -90,5 +90,5 @@ For additional configuration options, refer to [ansible-role-plausible](https://
 
 ## Related services
 
-- [Matomo](matomo.md) — Free and open source web analytics platform
-- [OxiTraffic](oxitraffic.md) — Self-hosted, simple and privacy respecting website traffic tracker
+- [Matomo](matomo.md) — Web analytics platform
+- [OxiTraffic](oxitraffic.md) — Simple and privacy respecting website traffic tracker

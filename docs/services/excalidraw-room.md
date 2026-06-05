@@ -75,4 +75,4 @@ See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-ex
 
 ## Related services
 
-- [Excalidraw](excalidraw.md) — Free and open source virtual whiteboard for sketching hand-drawn like diagrams
+- [Excalidraw](excalidraw.md) — Virtual whiteboard for sketching hand-drawn like diagrams

@@ -80,4 +80,4 @@ You can alternatively output the page manually. See [this section](https://githu
 
 ## Related services
 
-- [Homarr](homarr.md) — customizable dashboard for managing your favorite applications and services
+- [Homarr](homarr.md) — Dashboard for management of your favorite applications and services with a drag-and-drop grid system

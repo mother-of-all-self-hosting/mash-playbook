@@ -33,24 +33,24 @@ Below is an exhaustive list of the free and open-source software for self-hostin
 | [Apache Answer](https://answer.apache.org/) | Q&A community platform software for teams | [Link](services/answer.md) |
 | [Apache NiFi](https://nifi.apache.org/) | An easy to use, powerful, and reliable system to process and distribute data | [Link](services/nifi.md) |
 | [Apache Tika Server](https://github.com/apache/tika-docker) | Detect and extract metadata and text from different file types (such as PPT, XLS, and PDF) | [Link](services/tika.md) |
-| [APISIX Dashboard](https://apisix.apache.org/docs/dashboard/USER_GUIDE/) | A web UI for [APISIX Gateway](services/apisix-gateway.md) | [Link](services/apisix-dashboard.md) |
+| [APISIX Dashboard](https://apisix.apache.org/docs/dashboard/USER_GUIDE/) | Dashboard (web UI) for [APISIX Gateway](services/apisix-gateway.md) | [Link](services/apisix-dashboard.md) |
 | [APISIX Gateway](https://apisix.apache.org/docs/apisix/getting-started/README/) | An API Gateway, Ingress Controller, etc | [Link](services/apisix-gateway.md) |
 | [Apprise API](https://github.com/caronc/apprise-api) | Lightweight REST framework that wraps the [Apprise](https://github.com/caronc/apprise) Notification Library | [Link](services/apprise.md) |
 | [Appsmith](https://www.appsmith.com/) | Platform for building and deploying custom internal tools and applications without writing code | [Link](services/appsmith.md) |
 | [asciinema server](https://github.com/asciinema/asciinema-server) | Server-side component of the [asciinema](https://docs.asciinema.org/) system, a suite of tools for recording, streaming, and sharing terminal sessions) | [Link](services/asciinema-server.md) |
 | [Atuin server](https://docs.atuin.sh/self-hosting/server-setup/) | Data synchronization server for [Atuin](https://atuin.sh/) | [Link](services/atuin.md) |
 | [audiobookshelf](https://www.audiobookshelf.org/) | Audiobook and podcast server | [Link](services/audiobookshelf.md) |
-| [Authelia](https://www.authelia.com/) | An authentication and authorization server that can work as a companion to [common reverse proxies](https://www.authelia.com/overview/prologue/supported-proxies/) (like [Traefik](services/traefik.md) frequently used by this playbook) | [Link](services/authelia.md) |
-| [authentik](https://goauthentik.io/) | An Identity Provider (IdP) focused on flexibility and versatility | [Link](services/authentik.md) |
+| [Authelia](https://www.authelia.com/) | An authentication and authorization server that can work as a companion to [common reverse proxies](https://www.authelia.com/overview/prologue/supported-proxies/) | [Link](services/authelia.md) |
+| [authentik](https://goauthentik.io/) | An Identity Provider focused on flexibility and versatility | [Link](services/authentik.md) |
 | [Autobrr](https://autobrr.com/) | Modern, easy to use download automation for torrents and Usenet | [Link](services/autobrr.md) |
 | [Bar Assistant](https://github.com/karlomikus/bar-assistant/) | Managing cocktail recipes at your home bar with cocktail-oriented features | [Link](services/barassistant.md) |
 | [BentoPDF](https://github.com/alam00000/bentopdf) | Client-side PDF editor and converter | [Link](services/bentopdf.md) |
 | [Bichon](https://github.com/rustmailer/bichon) | Email archiving server with with full-text search function | [Link](services/bichon.md) |
 | [BIND](https://www.isc.org/bind/) | A full-featured DNS server | [Link](services/bind.md) |
 | [bitmagnet](https://bitmagnet.io/) | BitTorrent indexer, DHT crawler, content classifier and search engine | [Link](services/bitmagnet.md) |
-| [BookStack](https://www.bookstackapp.com) | Platform for organising and storing information | [Link](services/bookstack.md) |
+| [BookStack](https://www.bookstackapp.com) | Information organizer and storage | [Link](services/bookstack.md) |
 | [BorgBackup](https://www.borgbackup.org/) (via [borgmatic](https://torsion.org/borgmatic/)) | A deduplicating backup program with optional compression and encryption | [Link](services/backup-borg.md) |
-| [Borg Web UI](https://karanhudia.github.io/borg-ui/) | Unofficial web interface for [BorgBackup](https://borgbackup.readthedocs.io/) | [Link](services/borg-ui.md) |
+| [Borg Web UI](https://karanhudia.github.io/borg-ui/) | Unofficial web interface for BorgBackup | [Link](services/borg-ui.md) |
 | [Browserless](https://docs.browserless.io) | Deploy headless browsers in Docker | [Link](services/browserless.md) |
 | [Calibre-Web](https://github.com/janeczku/calibre-web) | Web app for browsing, reading and downloading eBooks stored in a [Calibre](https://calibre-ebook.com/) database | [Link](services/calibre-web.md) |
 | [Calibre-Web Automated](https://github.com/crocodilestick/Calibre-Web-Automated) | Web application based on [Calibre-Web](https://github.com/janeczku/calibre-web) with additional features and automation | [Link](services/calibre-web-automated.md) |
@@ -70,13 +70,13 @@ Below is an exhaustive list of the free and open-source software for self-hostin
 | [Databasus](https://databasus.com/) | PostgreSQL, MySQL, MariaDB, and MongoDB database backup | [Link](services/databasus.md) |
 | [ddclient](https://ddclient.net/) | Dynamic DNS entries updater | [Link](services/ddclient.md) |
 | [Docker](https://www.docker.com/) | Containerized applications deployment | [Link](services/docker.md) |
-| [Docker Registry](https://docs.docker.com/registry/) | A container image distribution registry | [Link](services/docker-registry.md) |
+| [Docker Registry](https://docs.docker.com/registry/) | Container image distribution registry | [Link](services/docker-registry.md) |
 | [Docker Registry Browser](https://github.com/klausmeyer/docker-registry-browser) | Web Interface for the Docker Registry HTTP API V2 written in Ruby on Rails | [Link](services/docker-registry-browser.md) |
 | [Docker Registry Proxy](https://github.com/etkecc/docker-registry-proxy) | Pass-through Docker registry (distribution) proxy with metadata caching, Docker-compatible errors, Prometheus metrics, etc. | [Link](services/docker-registry-proxy.md) |
 | [Docker Registry Purger](https://github.com/devture/docker-registry-purger) | A small tool used for purging a private Docker Registry's old tags | [Link](services/docker-registry-purger.md) |
 | [Docmost](https://docmost.com/) | Collaborative wiki and documentation software | [Link](services/docmost.md) |
 | [DocuSeal](https://github.com/docusealco/docuseal) | Digital document signing and processing | [Link](services/docuseal.md) |
-| [DokuWiki](https://dokuwiki.org/) | A lightweight, file-based wiki engine with intuitive syntax and no database requirements | [Link](services/dokuwiki.md) |
+| [DokuWiki](https://dokuwiki.org/) | File-based wiki engine without database requirement | [Link](services/dokuwiki.md) |
 | [Duplicati](https://duplicati.com) | Backup software that securely stores encrypted, incremental, compressed backups on local storage, cloud storage services and remote file servers | [Link](services/duplicati.md) |
 | [echoip](https://github.com/mpolden/echoip) | A simple service for looking up your IP address | [Link](services/echoip.md) |
 | [Endlessh-go](https://github.com/shizunge/endlessh-go) | A golang implementation of Endlessh, an SSH tarpit | [Link](services/endlessh.md) |
@@ -90,34 +90,34 @@ Below is an exhaustive list of the free and open-source software for self-hostin
 | [farmOS](https://farmos.org/) | Farm management, planning, and record keeping | [Link](services/farmos.md) |
 | [Feishin](https://github.com/jeffvli/feishin) | Music player for Navidrome, Jellyfin, Funkwhale, etc. | [Link](services/feishin.md) |
 | [Fider](https://github.com/getfider/fider) | Feedback portal for feature requests and suggestions | [Link](services/fider.md) |
-| [File Browser](https://filebrowser.org/) | File managing interface within a specified directory, which can be used to upload, delete, preview and edit your files | [Link](services/filebrowser.md) |
+| [File Browser](https://filebrowser.org/) | Web-based file manager | [Link](services/filebrowser.md) |
 | [FileBrowser Quantum](https://filebrowserquantum.com/) | Web-based file manager | [Link](services/filebrowser-quantum.md) |
 | [FlareSolverr](https://github.com/FlareSolverr/FlareSolverr) | A proxy server to bypass Cloudflare protection | [Link](services/flaresolverr.md) |
 | [flatnotes](https://flatnotes.io/) | Database-less note taking web app that utilises a flat folder of markdown files for storage | [Link](services/flatnotes.md) |
 | [FMD Server](https://gitlab.com/fmd-foss/fmd-server) | Official server for FMD (FindMyDevice) | [Link](services/fmd-server.md) |
 | [Focalboard](https://www.focalboard.com/) | An alternative to [Trello](https://trello.com/), [Notion](https://www.notion.so/), and [Asana](https://asana.com/) | [Link](services/focalboard.md) |
-| [Forgejo](https://forgejo.org/) | A lightweight software forge (Git hosting service, etc). An alternative to [Gitea](./services/gitea.md) | [Link](services/forgejo.md) |
+| [Forgejo](https://forgejo.org/) | Software forge (Git hosting service, etc). An alternative to [Gitea](./services/gitea.md) | [Link](services/forgejo.md) |
 | [Forgejo Runner](https://code.forgejo.org/forgejo/runner) | A runner to use with Forgejo Actions | [Link](services/forgejo-runner.md) |
 | [FreeScout](https://freescout.net/) | A help desk software | [Link](services/freescout.md) |
 | [FreshRSS](https://freshrss.org/) | RSS and Atom feed aggregator | [Link](services/freshrss.md) |
-| [Funkwhale](https://funkwhale.audio/) | Streaming server for listening and sharing music | [Link](services/funkwhale.md) |
+| [Funkwhale](https://funkwhale.audio/) | ActivityPub federated streaming server for listening and sharing music | [Link](services/funkwhale.md) |
 | [Ghostfolio](https://ghostfol.io/) | Wealth management software to keep track of assets such as stocks, bonds, ETFs, etc. | [Link](services/ghostfolio.md) |
-| [Gitea](https://gitea.io/) | A painless [Git](https://git-scm.com/) service | [Link](services/gitea.md) |
+| [Gitea](https://gitea.io/) | Software forge (Git hosting service, etc.) | [Link](services/gitea.md) |
 | [Gokapi](https://github.com/Forceu/Gokapi) | Share files that expire after a set number of downloads or days | [Link](services/gokapi.md) |
 | [Gotenberg](https://gotenberg.dev/) | Docker-based API for converting documents to PDF | [Link](services/gotenberg.md) |
 | [GotHub](https://codeberg.org/gothub/gothub) | View GitHub repositories without exposing your IP address, browsing habits, and other browser fingerprinting data to the website | [Link](services/gothub.md) |
-| [Gotify](https://gotify.net/) | Simple server for sending and receiving messages | [Link](services/gotify.md) |
-| [GoToSocial](https://gotosocial.org/) | An [ActivityPub](https://activitypub.rocks/) social network server | [Link](services/gotosocial.md) |
-| [Grafana](https://grafana.com/) | An open and composable observability and data visualization platform, often used with [Prometheus](services/prometheus.md) | [Link](services/grafana.md) |
+| [Gotify](https://gotify.net/) | Send and receive messages in real-time per WebSocket | [Link](services/gotify.md) |
+| [GoToSocial](https://gotosocial.org/) | [ActivityPub](https://activitypub.rocks/) federated microblogging platform | [Link](services/gotosocial.md) |
+| [Grafana](https://grafana.com/) | Web-based tool for visualizing your Prometheus metrics (time-series) | [Link](services/grafana.md) |
 | [Grafana Loki](https://grafana.com/docs/loki/latest/) | Log aggregation system that helps collect, store, and analyze logs in a scalable and efficient manner | [Link](services/grafana-loki.md) |
 | [Headplane](https://headplane.net/) | A feature-complete Web UI for Headscale | [Link](services/headplane.md) |
 | [Headscale](https://headscale.net/) | A Tailscale-compatible control server for managing Tailscale devices | [Link](services/headscale.md) |
-| [Healthchecks](https://healthchecks.io/) | A simple and Effective Cron Job Monitoring solution | [Link](services/healthchecks.md) |
+| [Healthchecks](https://healthchecks.io/) | Cron job monitoring solution | [Link](services/healthchecks.md) |
 | [Heimdall](https://heimdall.site/) | Dashboard for web applications | [Link](services/heimdall.md) |
 | [HeyForm](https://github.com/heyform/heyform) | Form builder that lets you create, customize, and automate forms | [Link](services/heyform.md) |
-| [Homarr](https://homarr.dev/) | Highly customizable dashboard for management of your favorite applications and services with a drag-and-drop grid system | [Link](services/homarr.md) |
+| [Homarr](https://homarr.dev/) | Dashboard for management of your favorite applications and services with a drag-and-drop grid system | [Link](services/homarr.md) |
 | [Hubsite](https://github.com/moan0s/hubsite) | A simple, static site that shows an overview of the available services | [Link](services/hubsite.md) |
-| [I hate money](https://github.com/spiral-project/ihatemoney) | A shared budget manager | [Link](services/ihatemoney.md) |
+| [I hate money](https://github.com/spiral-project/ihatemoney) | Shared budget manager | [Link](services/ihatemoney.md) |
 | [ILMO](https://github.com/moan0s/ILMO2) | A library management tool | [Link](services/ilmo.md) |
 | [Immich](https://github.com/immich-app/immich) | High performance photo and video management solution | [Link](services/immich.md) |
 | [Immich Kiosk](https://immichkiosk.app/) | Highly configurable slideshow for displaying [Immich](https://immich.app/) pictures and videos on browsers and devices | [Link](services/immich-kiosk.md) |
@@ -140,7 +140,7 @@ Below is an exhaustive list of the free and open-source software for self-hostin
 | [LibreBooking](https://github.com/LibreBooking/librebooking) | Resource scheduling and booking application | [Link](services/librebooking.md) |
 | [LimeSurvey](https://www.limesurvey.org) | Web based forms and surveys | [Link](services/limesurvey.md) |
 | [linkding](https://github.com/sissbruecker/linkding/) | Bookmark manager designed to be minimal and fast | [Link](services/linkding.md) |
-| [Linkwarden](https://github.com/linkwarden/linkwarden) | Collaborative bookmark manager to collect, organize and archive webpages | [Link](services/linkwarden.md) |
+| [Linkwarden](https://github.com/linkwarden/linkwarden) | Collaborative bookmark manager | [Link](services/linkwarden.md) |
 | [listmonk](https://listmonk.app) | Newsletter and mailing list manager | [Link](services/listmonk.md) |
 | [LLDAP](https://github.com/lldap/lldap/) | Lightweight authentication server that provides an opinionated, simplified LDAP interface for authentication | [Link](services/lldap.md) |
 | [MailCatcher](http://mailcatcher.me/) | SMTP server which catches messages sent to it and displays in a web interface | [Link](services/mailcatcher.md) |
@@ -150,29 +150,29 @@ Below is an exhaustive list of the free and open-source software for self-hostin
 | [Matomo](https://matomo.org/) | Web analytics platform | [Link](services/matomo.md) |
 | [Matrix Rooms Search API](https://github.com/etkecc/mrs) | A fully-featured, standalone, Matrix rooms search service | [Link](services/mrs.md) |
 | [Matterbridge](https://github.com/42wim/matterbridge) | Bridges Messenger Chatrooms | [Link](services/matterbridge.md) |
-| [MAZANOKE](https://github.com/civilblur/mazanoke) | Simple image optimizer that runs in your browser | [Link](services/mazanoke.md) |
+| [MAZANOKE](https://github.com/civilblur/mazanoke) | Image optimizer that runs in your browser | [Link](services/mazanoke.md) |
 | [MediaWiki](https://www.mediawiki.org) | Popular wiki software | [Link](services/mediawiki.md) |
 | [Meilisearch](https://www.meilisearch.com) | Typo-tolerant fulltext search engine with a RESTful search API | [Link](services/meilisearch.md) |
 | [Memcached](https://memcached.org) | In-memory key-value store | [Link](services/memcached.md) |
 | [Memos](https://usememos.com/) | Markdown-native note-taking tool | [Link](services/memos.md) |
 | [Minecraft](https://docker-minecraft-server.readthedocs.io) | The popular voxel-based sandbox game | [Link](services/minecraft.md) |
 | [Miniflux](https://miniflux.app/) | Minimalist and opinionated feed reader | [Link](services/miniflux.md) |
-| [Misskey](https://misskey-hub.net/en/) | Decentralized microblogging platform based on the ActivityPub protocol | [Link](services/misskey.md) |
+| [Misskey](https://misskey-hub.net/en/) | ActivityPub federated microblogging platform | [Link](services/misskey.md) |
 | [Mobilizon](https://joinmobilizon.org/en/) | An ActivityPub/Fediverse server to create and share events | [Link](services/mobilizon.md) |
 | [Moner.ooo](https://github.com/nice42q/moner.ooo) | Monero / fiat exchange rates in various currencies | [Link](services/monerooo.md) |
 | [Moodist](https://moodist.mvze.net/) | Web application to mix and play ambient soundtracks | [Link](services/moodist.md) |
-| [Mosquitto](https://mosquitto.org/) | A MQTT broker | [Link](services/mosquitto.md) |
+| [Mosquitto](https://mosquitto.org/) | MQTT broker | [Link](services/mosquitto.md) |
 | [Mozhi](https://codeberg.org/aryak/mozhi) | Frontend for translation engines | [Link](services/mozhi.md) |
 | [Mumble](https://www.mumble.info/) | Voice chat application known for its low latency and high voice quality | [Link](services/mumble.md) |
 | [Navidrome](https://www.navidrome.org/) | [Subsonic-API](http://www.subsonic.org/pages/api.jsp) compatible music server | [Link](services/navidrome.md) |
 | [Neko](https://neko.m1k1o.net/) | A virtual browser or even desktop environment | [Link](services/neko.md) |
 | [NetBox](https://docs.netbox.dev/en/stable/) | Web application that provides [IP address management (IPAM)](https://en.wikipedia.org/wiki/IP_address_management) and [data center infrastructure management (DCIM)](https://en.wikipedia.org/wiki/Data_center_management#Data_center_infrastructure_management) functionality | [Link](services/netbox.md) |
-| [Nextcloud](https://nextcloud.com/) | The most popular collaboration solution for tens of millions of users at thousands of organizations across the globe | [Link](services/nextcloud.md) |
+| [Nextcloud](https://nextcloud.com/) | Popular collaboration solution | [Link](services/nextcloud.md) |
 | [noCDNbs](https://git.private.coffee/PrivateCoffee/nocdnbs) | Privacy-friendly cdnjs proxy | [Link](services/nocdnbs.md) |
 | [NodeBB](https://github.com/NodeBB/NodeBB) | Node.js based forum software | [Link](services/nodebb.md) |
 | [Notfellchen](https://codeberg.org/moanos/notfellchen) | List animals available for adoption to increase their chance of finding a forever-home | [Link](services/notfellchen.md) |
-| [ntfy](https://ntfy.sh/) | Pub-sub notification service to send you push notifications from any computer, using simple HTTP PUT or POST requests | [Link](services/ntfy.md) |
-| [OAuth2-Proxy](https://oauth2-proxy.github.io/oauth2-proxy/) | A reverse proxy and static file server that provides authentication using OpenID Connect Providers (Google, GitHub, [Keycloak](services/keycloak.md), and others) to SSO-protect services which do not support SSO natively | [Link](services/oauth2-proxy.md) |
+| [ntfy](https://ntfy.sh/) | HTTP-based pub-sub notification service to send you push notifications from any computer | [Link](services/ntfy.md) |
+| [OAuth2-Proxy](https://oauth2-proxy.github.io/oauth2-proxy/) | A reverse proxy and static file server that provides authentication using OpenID Connect Providers | [Link](services/oauth2-proxy.md) |
 | [OmniTools](https://github.com/iib0011/omni-tools) | Web app offering a variety of online tools to simplify everyday tasks | [Link](services/omnitools.md) |
 | [Onion Service with C Tor](https://community.torproject.org/onion-services/) | Run Onion Service with [C Tor](https://gitlab.torproject.org/tpo/core/tor) | [Link](services/onion-service-tor.md) |
 | [ONLYOFFICE Docs](https://helpcenter.onlyoffice.com/docs) | Online office suite comprising viewers and editors | [Link](services/onlyoffice-docs.md) |
@@ -184,28 +184,28 @@ Below is an exhaustive list of the free and open-source software for self-hostin
 | [Outline](https://www.getoutline.com/) | A knowledge base for growing teams | [Link](services/outline.md) |
 | [Owncast](https://owncast.online/) | Live video and web chat server for use with existing popular broadcasting software | [Link](services/owncast.md) |
 | [OxiTraffic](https://codeberg.org/mo8it/oxitraffic) | Simple and privacy respecting website traffic tracker | [Link](services/oxitraffic.md) |
-| [Paperless-ngx](https://paperless-ngx.com) | A community-supported document management system that transforms your physical documents into a searchable online archive | [Link](services/paperless-ngx.md) |
+| [Paperless-ngx](https://paperless-ngx.com) | Document management system that transforms your physical documents into a searchable online archive | [Link](services/paperless-ngx.md) |
 | [Papra](https://github.com/papra-hq/papra) | Document management and archiving platform | [Link](services/papra.md) |
 | [PdfDing](https://www.pdfding.com/) | PDF manager, viewer and editor | [Link](services/pdfding.md) |
-| [PeerTube](https://joinpeertube.org/) | A tool for sharing online videos | [Link](services/peertube.md) |
+| [PeerTube](https://joinpeertube.org/) | ActivityPub federated video platform | [Link](services/peertube.md) |
 | [pgAdmin](https://www.pgadmin.org/) | Management tool for Postgres with a graphical interface | [Link](services/pgadmin.md) |
 | [phpMyAdmin](https://www.phpmyadmin.net/) | Web-based MySQL or MariaDB database server administration software | [Link](services/phpmyadmin.md) |
-| [PinePods](https://www.pinepods.online/) | Podcast management system with multi-user support | [Link](services/pinepods.md) |
+| [PinePods](https://www.pinepods.online/) | Multi-user podcast management system | [Link](services/pinepods.md) |
 | [Plausible Analytics](https://plausible.io/) | Intuitive and lightweight web analytics | [Link](services/plausible.md) |
-| [Pocket ID](https://pocket-id.org/) | Simple OIDC provider for passkey-only authentication | [Link](services/pocket-id.md) |
+| [Pocket ID](https://pocket-id.org/) | OIDC provider for passkey-only authentication | [Link](services/pocket-id.md) |
 | [Polaris](https://github.com/agersant/polaris) | Music streaming server with a player | [Link](services/polaris.md) |
 | [PoodleDonts](https://git.private.coffee/PrivateCoffee/poodledonts) | Privacy-friendly Google Fonts proxy | [Link](services/poodledonts.md) |
 | [PostGIS](https://postgis.net/) | A spatial database extender for PostgreSQL object-relational database | [Link](services/postgis.md) |
 | [Postgres](https://www.postgresql.org) | A powerful object-relational database system | [Link](services/postgres.md) |
 | [Postgres Backup](https://github.com/prodrigestivill/docker-postgres-backup-local) | A solution for backing up PostgreSQL to local filesystem with periodic backups | [Link](services/postgres-backup.md) |
 | [PrivateBin](https://privatebin.info/) | Minimalist online pastebin where the server has zero knowledge of pasted data | [Link](services/privatebin.md) |
-| [Prometheus](https://prometheus.io/) | A metrics collection and alerting monitoring solution | [Link](services/prometheus.md) |
+| [Prometheus](https://prometheus.io/) | Metrics collection and alerting monitoring solution | [Link](services/prometheus.md) |
 | [Prometheus Alertmanager](https://github.com/prometheus/alertmanager) | Handle alerts sent by client applications such as the Prometheus server | [Link](services/prometheus-alertmanager.md) |
 | [Prometheus Blackbox Exporter](https://github.com/prometheus/blackbox_exporter) | Blackbox probing of HTTP/HTTPS/DNS/TCP/ICMP and gRPC endpoints | [Link](services/prometheus-blackbox-exporter.md) |
 | [Prometheus Node Exporter](https://github.com/prometheus/node_exporter) | Exporter for machine metrics | [Link](services/prometheus-node-exporter.md) |
 | [Prometheus Postgres Exporter](https://github.com/prometheus-community/postgres_exporter) | A PostgreSQL metric exporter for Prometheus | [Link](services/prometheus-postgres-exporter.md) |
 | [Prometheus SSH Exporter](https://github.com/treydock/ssh_exporter) | SSH probes | [Link](services/prometheus-ssh-exporter.md) |
-| [Promtail](https://grafana.com/docs/loki/latest/send-data/promtail/) | An agent which ships the contents of local logs to a private [Grafana Loki](services/grafana-loki.md) instance | [Link](services/promtail.md) |
+| [Promtail](https://grafana.com/docs/loki/latest/send-data/promtail/) | Agent which ships the contents of local logs to a private [Grafana Loki](services/grafana-loki.md) instance | [Link](services/promtail.md) |
 | [PruneMate](https://github.com/anoniemerd/PruneMate) | Automatically clean up Docker resources on a schedule | [Link](services/prunemate.md) |
 | [qBittorrent](https://www.qbittorrent.org/) | A BitTorrent client written in native C++ | [Link](services/qbittorrent.md) |
 | [RabbitMQ](https://www.rabbitmq.com/) | Message-broker which supports AMQP, STOMP, MQTT, etc. | [Link](services/rabbitmq.md) |
@@ -217,14 +217,14 @@ Below is an exhaustive list of the free and open-source software for self-hostin
 | [ReactFlux](https://github.com/electh/ReactFlux) | Third-party web frontend for Miniflux | [Link](services/reactflux.md) |
 | [Readeck](https://readeck.org) | A bookmark manager and a read-later tool combined in one | [Link](services/readeck.md) |
 | [Redis](https://redis.io/) | An in-memory data store used by millions of developers as a database, cache, streaming engine, and message broker | [Link](services/redis.md) |
-| [Redlib](https://github.com/redlib-org/redlib) | Browse Reddit without exposing your IP address, browsing habits, and other browser fingerprinting data to the website | [Link](services/redlib.md) |
+| [Redlib](https://github.com/redlib-org/redlib) | Frontend for Reddit | [Link](services/redlib.md) |
 | [Redmine](https://redmine.org/) | A flexible project management web application | [Link](services/redmine.md) |
 | [Reitti](https://www.dedicatedcode.com/projects/reitti/) | Personal location tracking and analysis application | [Link](services/reitti.md) |
 | [Roundcube](https://roundcube.net/) | A browser-based multilingual IMAP client with an application-like user interface | [Link](services/roundcube.md) |
 | [RSS-Bridge](https://rss-bridge.github.io/rss-bridge/) | Generates web feeds for websites that do not have one | [Link](services/rssbridge.md) |
 | [RSSHub](https://docs.rsshub.app/) | Create RSS feeds from web pages | [Link](services/rsshub.md) |
-| [rumqttd](https://github.com/bytebeamio/rumqtt) | A high performance, embeddable [MQTT](https://en.wikipedia.org/wiki/MQTT) broker | [Link](services/rumqttd.md) |
-| [SearXNG](https://github.com/searxng/searxng) | A privacy-respecting, hackable [metasearch engine](https://en.wikipedia.org/wiki/Metasearch_engine) | [Link](services/searxng.md) |
+| [rumqttd](https://github.com/bytebeamio/rumqtt) | High performance, embeddable [MQTT](https://en.wikipedia.org/wiki/MQTT) broker | [Link](services/rumqttd.md) |
+| [SearXNG](https://github.com/searxng/searxng) | Privacy-respecting, hackable [metasearch engine](https://en.wikipedia.org/wiki/Metasearch_engine) | [Link](services/searxng.md) |
 | [Seerr](https://github.com/seerr-team/seerr) | A media request and discovery manager | [Link](services/seerr.md) |
 | [Semaphore UI](https://semaphoreui.com/) | Modern UI for Ansible, Terraform/OpenTofu/Terragrunt, PowerShell and other DevOps tools | [Link](services/semaphore.md) |
 | [Send](https://github.com/timvisee/send) | Fork of Mozilla's [Firefox Send](https://github.com/mozilla/send) which allows you to send encrypted files to other users | [Link](services/send.md) |
@@ -238,7 +238,7 @@ Below is an exhaustive list of the free and open-source software for self-hostin
 | [SQLPage](https://sql-page.com/) | SQL-only data application builder | [Link](services/sqlpage.md) |
 | [Standalone Snowflake proxy](https://community.torproject.org/relay/setup/snowflake/standalone/) | Help users connect to the [Tor](https://torproject.org/) network in places where Tor is blocked | [Link](services/snowflake.md) |
 | [Statusnook](https://statusnook.com/) | Status page deployment service | [Link](services/statusnook.md) |
-| [Stirling PDF v1](https://github.com/Stirling-Tools/Stirling-PDF) | A PDF converter | [Link](services/stirling-pdf.md) |
+| [Stirling PDF v1](https://github.com/Stirling-Tools/Stirling-PDF) | PDF converter | [Link](services/stirling-pdf.md) |
 | [syncstorage-rs](https://github.com/mozilla-services/syncstorage-rs) | Mozilla Sync Storage server in Rust, used to power Firefox Sync | [Link](services/syncstorage-rs.md) |
 | [Syncthing](https://syncthing.net/) | A continuous file synchronization program which synchronizes files between two or more computers in real time | [Link](services/syncthing.md) |
 | [Tandoor](https://docs.tandoor.dev/) | The recipe manager that allows you to manage your ever growing collection of digital recipes | [Link](services/tandoor.md) |
@@ -246,7 +246,7 @@ Below is an exhaustive list of the free and open-source software for self-hostin
 | [Telegraf](https://www.influxdata.com/time-series-platform/telegraf/) | A server agent to help you collect metrics from your stacks, sensors, and systems | [Link](services/telegraf.md) |
 | [Termix](https://docs.termix.site/) | Server management platform with SSH terminal | [Link](services/termix.md) |
 | [The Lounge](https://thelounge.chat/) | Web IRC client with modern features, which keeps a persistent connection to IRC servers | [Link](services/thelounge.md) |
-| [Tinyauth](https://tinyauth.app/) | Simple authentication middleware that adds a login screen or OAuth with providers to your Docker services | [Link](services/tinyauth.md) |
+| [Tinyauth](https://tinyauth.app/) | Authentication middleware that adds a login screen or OAuth with providers to Docker services | [Link](services/tinyauth.md) |
 | [Traefik](https://doc.traefik.io/traefik/) | A container-aware reverse-proxy server | [Link](services/traefik.md) |
 | [traefik-certs-dumper](https://github.com/ldez/traefik-certs-dumper) | Dump ACME data from Traefik to certificates | [Link](services/traefik-certs-dumper.md) |
 | [transfer.sh](https://github.com/dutchcoders/transfer.sh) | File sharing with the command-line | [Link](services/transfersh.md) |
@@ -260,9 +260,9 @@ Below is an exhaustive list of the free and open-source software for self-hostin
 | [Wazuh](https://wazuh.com/) | An open source security platform providing SIEM, threat detection, and compliance monitoring | [Link](services/wazuh.md) |
 | [Weblate](https://weblate.org/) | Web-based translation tool with version control integration | [Link](services/weblate.md) |
 | [Wetty](https://github.com/butlerx/wetty) | An SSH terminal over HTTP/HTTPS | [Link](services/wetty.md) |
-| [Wikimore](https://git.private.coffee/PrivateCoffee/wikimore) | View Wikipedia projects without exposing your IP address, browsing habits, and other browser fingerprinting data to them | [Link](services/wikimore.md) |
+| [Wikimore](https://git.private.coffee/PrivateCoffee/wikimore) | Frontend for Wikipedia projects | [Link](services/wikimore.md) |
 | [WireGuard Easy](https://github.com/wg-easy/wg-easy) | The easiest way to run [WireGuard](https://www.wireguard.com/) VPN + Web-based Admin UI | [Link](services/wg-easy.md) |
-| [Woodpecker CI](https://woodpecker-ci.org/) | A simple Continuous Integration (CI) engine with great extensibility | [Link](services/woodpecker-ci.md) |
+| [Woodpecker CI](https://woodpecker-ci.org/) | Extensible Continuous Integration (CI) engine | [Link](services/woodpecker-ci.md) |
 | [WordPress](https://wordpress.org/) | A widely used web content management system | [Link](services/wordpress.md) |
 | [Writefreely](https://writefreely.org) | A clean, minimalist publishing platform made for writers with optional federation via ActivityPub | [Link](services/writefreely.md) |
 | [YaCy](https://yacy.net) | Distributed web search engine on a P2P network | [Link](services/yacy.md) |

@@ -20,5 +20,5 @@ The [Ansible role for RabbitMQ](https://radicle.network/nodes/iris.radicle.netwo
 
 ## Related services
 
-- [Mosquitto](mosquitto.md) — Open-source MQTT broker
+- [Mosquitto](mosquitto.md) — MQTT broker
 - [rumqttd](rumqttd.md) — High performance, embeddable MQTT broker

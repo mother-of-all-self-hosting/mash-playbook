@@ -105,6 +105,6 @@ See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-go
 
 ## Related services
 
-- [Funkwhale](funkwhale.md) — Community-driven project that lets you listen and share music and audio in the Fediverse
-- [Misskey](misskey.md) — Free decentralized microblogging platform based on the ActivityPub protocol
-- [PeerTube](peertube.md) — Tool for sharing online videos
+- [Funkwhale](funkwhale.md) — ActivityPub federated streaming server for listening and sharing music
+- [Misskey](misskey.md) — ActivityPub federated microblogging platform
+- [PeerTube](peertube.md) — ActivityPub federated video platform

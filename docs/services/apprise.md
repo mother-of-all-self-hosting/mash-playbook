@@ -120,5 +120,5 @@ See [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az292
 
 ## Related services
 
-- [Gotify](gotify.md) — Simple server for sending and receiving messages
-- [ntfy](ntfy.md) — Simple HTTP-based pub-sub notification service to send you push notifications from any computer
+- [Gotify](gotify.md) — Send and receive messages in real-time per WebSocket
+- [ntfy](ntfy.md) — HTTP-based pub-sub notification service to send you push notifications from any computer

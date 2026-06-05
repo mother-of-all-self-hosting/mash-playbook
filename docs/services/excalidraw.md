@@ -91,5 +91,5 @@ See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-ex
 
 ## Related services
 
-- [Docmost](docmost.md) — Open-source collaborative wiki and documentation software
-- [Excalidraw collaboration server](excalidraw-room.md) — Self-hosted collaboration server for Excalidraw instance
+- [Docmost](docmost.md) — Collaborative wiki and documentation software
+- [Excalidraw collaboration server](excalidraw-room.md) — Collaboration server for Excalidraw instance

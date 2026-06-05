@@ -119,5 +119,5 @@ See [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az4W1
 ## Related services
 
 - [linkding](linkding.md) — Bookmark manager designed to be minimal and fast
-- [Linkwarden](linkwarden.md) — Self-hosted, open-source collaborative bookmark manager to collect, organize and archive webpages
+- [Linkwarden](linkwarden.md) — Collaborative bookmark manager
 - [Readeck](readeck.md) — Bookmark manager and a read-later tool combined in one

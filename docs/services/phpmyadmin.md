@@ -87,5 +87,5 @@ See [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Azby9
 ## Related services
 
 - [Adminer](adminer.md) — Full-featured database management tool written in PHP
-- [MariaDB](mariadb.md) — Powerful, open source object-relational database system
+- [MariaDB](mariadb.md) — Powerful object-relational database system
 - [pgAdmin](pgadmin.md) — Management tool for Postgres with a graphical interface

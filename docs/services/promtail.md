@@ -186,5 +186,5 @@ When exposing metrics, and especially the whole API, it's important to protected
 
 ## Related services
 
-- [Grafana Loki](grafana-loki.md) — a storage server for your logs compatible with Promtail
-- [Grafana](grafana.md) — a web-based tool for visualizing your Promtail logs (stored in [Grafana Loki](grafana-loki.md) or elsewhere)
+- [Grafana](grafana.md) — Web-based tool for visualizing your Prometheus metrics (time-series)
+- [Grafana Loki](grafana-loki.md) — Log aggregation system that helps collect, store, and analyze logs in a scalable and efficient manner

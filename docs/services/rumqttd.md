@@ -20,5 +20,5 @@ The [Ansible role for rumqttd](https://github.com/mother-of-all-self-hosting/ans
 
 ## Related services
 
-- [Mosquitto](mosquitto.md) — Open-source MQTT broker
+- [Mosquitto](mosquitto.md) — MQTT broker
 - [RabbitMQ](rabbitmq.md) — Message-broker which supports AMQP, STOMP, MQTT, etc.

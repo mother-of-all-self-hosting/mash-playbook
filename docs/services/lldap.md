@@ -103,5 +103,5 @@ See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-ll
 
 ## Related services
 
-- [Pocket ID](pocket-id.md) — Simple OIDC provider for passkey-only authentication
-- [Tinyauth](tinyauth.md) — Simple authentication middleware that adds a login screen or OAuth with Google, Github, and any provider to your Docker services
+- [Pocket ID](pocket-id.md) — OIDC provider for passkey-only authentication
+- [Tinyauth](tinyauth.md) — Authentication middleware that adds a login screen or OAuth with providers to Docker services

@@ -110,4 +110,4 @@ You will need to use the `tsdproxy_config_files` variable and add your proxy lis
 
 ## Related services
 
-- [Headscale](headscale.md) — Open source, self-hosted implementation of the [Tailscale](https://tailscale.com/) control server
+- [Headscale](headscale.md) — Tailscale-compatible control server for managing Tailscale devices

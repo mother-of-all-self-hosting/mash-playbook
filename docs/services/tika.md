@@ -22,4 +22,4 @@ The [Ansible role for Apache Tika Server](https://radicle.network/nodes/iris.rad
 
 - [Gotenberg](gotenberg.md) — Docker-based API for converting documents to PDF
 - [Open Archiver](openarchiver.md) — Archive, store, index, and search emails from various platforms, including generic IMAP-enabled email inboxes
-- [Paperless-ngx](paperless-ngx.md) — Community-supported document management system that transforms your physical documents into a searchable online archive
+- [Paperless-ngx](paperless-ngx.md) — Document management system that transforms your physical documents into a searchable online archive

@@ -103,4 +103,4 @@ See [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az4Cd
 
 ## Related services
 
-- [NodeBB](nodebb.md) — Node.js based free forum software
+- [NodeBB](nodebb.md) — Node.js based forum software

@@ -139,4 +139,4 @@ See [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az47v
 
 ## Related services
 
-- [Opengist](opengist.md) — Self-hosted pastebin powered by Git
+- [Opengist](opengist.md) — Pastebin powered by Git

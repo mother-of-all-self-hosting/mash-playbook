@@ -96,4 +96,4 @@ prometheus_node_exporter_container_labels_metrics_middleware_basic_auth_users: "
 
 ## Related services
 
-- [Promtail](promtail.md) — an agent which ships the contents of local logs to a private [Grafana Loki](grafana-loki.md) instance
+- [Promtail](promtail.md) — Agent which ships the contents of local logs to a private Grafana Loki instance

@@ -172,4 +172,4 @@ The device will be automatically connected to the Headscale server, without any 
 
 ## Related services
 
-- [Headplane](headplane.md) — an open source, self-hosted implementation of the [Tailscale Web UI](https://tailscale.com/) for Headscale
+- [Headplane](headplane.md) — Feature-complete [Tailscale Web UI](https://tailscale.com/) for Headscale
