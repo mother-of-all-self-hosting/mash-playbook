@@ -26,10 +26,10 @@ Below is an exhaustive list of the free and open-source software for self-hostin
 | [AUX](https://github.com/mother-of-all-self-hosting/ansible-role-aux) | Auxiliary file/directory management on your server via Ansible | [Link](services/auxiliary.md) |
 | [Actual](https://actualbudget.org) | Local-first personal finance tool | [Link](services/actual.md) |
 | [AdGuard Home](https://adguard.com/en/adguard-home/overview.html/) | A network-wide DNS software for blocking ads & tracking | [Link](services/adguard-home.md) |
-| [Adminer](https://www.adminer.org/) | Full-featured database management tool written in PHP | [Link](services/adminer.md) |
+| [Adminer](https://www.adminer.org/) | Full-featured database server administration software written in PHP | [Link](services/adminer.md) |
 | [An Otter Wiki](https://otterwiki.com/) | Minimalistic wiki powered by Python, Markdown and Git | [Link](services/otterwiki.md) |
 | [Anki](https://docs.ankiweb.net/sync-server.html) | Data synchronization server for [Anki](https://apps.ankiweb.net) | [Link](services/anki.md) |
-| [AnonymousOverflow](https://github.com/httpjamesm/AnonymousOverflow) | View StackOverflow threads without exposing your IP address, browsing habits, and other browser fingerprinting data to the website | [Link](services/anonymousoverflow.md) |
+| [AnonymousOverflow](https://github.com/httpjamesm/AnonymousOverflow) | Frontend for StackOverflow | [Link](services/anonymousoverflow.md) |
 | [Apache Answer](https://answer.apache.org/) | Q&A community platform software for teams | [Link](services/answer.md) |
 | [Apache NiFi](https://nifi.apache.org/) | An easy to use, powerful, and reliable system to process and distribute data | [Link](services/nifi.md) |
 | [Apache Tika Server](https://github.com/apache/tika-docker) | Detect and extract metadata and text from different file types (such as PPT, XLS, and PDF) | [Link](services/tika.md) |
@@ -105,7 +105,7 @@ Below is an exhaustive list of the free and open-source software for self-hostin
 | [Gitea](https://gitea.io/) | Software forge (Git hosting service, etc.) | [Link](services/gitea.md) |
 | [Gokapi](https://github.com/Forceu/Gokapi) | Share files that expire after a set number of downloads or days | [Link](services/gokapi.md) |
 | [Gotenberg](https://gotenberg.dev/) | Docker-based API for converting documents to PDF | [Link](services/gotenberg.md) |
-| [GotHub](https://codeberg.org/gothub/gothub) | View GitHub repositories without exposing your IP address, browsing habits, and other browser fingerprinting data to the website | [Link](services/gothub.md) |
+| [GotHub](https://codeberg.org/gothub/gothub) | Frontend for GitHub | [Link](services/gothub.md) |
 | [Gotify](https://gotify.net/) | Send and receive messages in real-time per WebSocket | [Link](services/gotify.md) |
 | [GoToSocial](https://gotosocial.org/) | ActivityPub federated microblogging platform | [Link](services/gotosocial.md) |
 | [Grafana](https://grafana.com/) | Web-based tool for visualizing your Prometheus metrics (time-series) | [Link](services/grafana.md) |
@@ -188,7 +188,7 @@ Below is an exhaustive list of the free and open-source software for self-hostin
 | [Papra](https://github.com/papra-hq/papra) | Document management and archiving platform | [Link](services/papra.md) |
 | [PdfDing](https://www.pdfding.com/) | PDF manager, viewer and editor | [Link](services/pdfding.md) |
 | [PeerTube](https://joinpeertube.org/) | ActivityPub federated video platform | [Link](services/peertube.md) |
-| [pgAdmin](https://www.pgadmin.org/) | Management tool for Postgres with a graphical interface | [Link](services/pgadmin.md) |
+| [pgAdmin](https://www.pgadmin.org/) | Web-based Postgres database server administration software | [Link](services/pgadmin.md) |
 | [phpMyAdmin](https://www.phpmyadmin.net/) | Web-based MySQL or MariaDB database server administration software | [Link](services/phpmyadmin.md) |
 | [PinePods](https://www.pinepods.online/) | Multi-user podcast management system | [Link](services/pinepods.md) |
 | [Plausible Analytics](https://plausible.io/) | Intuitive and lightweight web analytics | [Link](services/plausible.md) |
@@ -221,8 +221,8 @@ Below is an exhaustive list of the free and open-source software for self-hostin
 | [Redmine](https://redmine.org/) | A flexible project management web application | [Link](services/redmine.md) |
 | [Reitti](https://www.dedicatedcode.com/projects/reitti/) | Personal location tracking and analysis application | [Link](services/reitti.md) |
 | [Roundcube](https://roundcube.net/) | A browser-based multilingual IMAP client with an application-like user interface | [Link](services/roundcube.md) |
-| [RSS-Bridge](https://rss-bridge.github.io/rss-bridge/) | Generates web feeds for websites that do not have one | [Link](services/rssbridge.md) |
-| [RSSHub](https://docs.rsshub.app/) | Create RSS feeds from web pages | [Link](services/rsshub.md) |
+| [RSS-Bridge](https://rss-bridge.github.io/rss-bridge/) | RSS feed generator for websites that do not have one | [Link](services/rssbridge.md) |
+| [RSSHub](https://docs.rsshub.app/) | RSS feed generator for websites | [Link](services/rsshub.md) |
 | [rumqttd](https://github.com/bytebeamio/rumqtt) | High performance, embeddable [MQTT](https://en.wikipedia.org/wiki/MQTT) broker | [Link](services/rumqttd.md) |
 | [SearXNG](https://github.com/searxng/searxng) | Privacy-respecting, hackable [metasearch engine](https://en.wikipedia.org/wiki/Metasearch_engine) | [Link](services/searxng.md) |
 | [Seerr](https://github.com/seerr-team/seerr) | A media request and discovery manager | [Link](services/seerr.md) |
@@ -234,7 +234,7 @@ Below is an exhaustive list of the free and open-source software for self-hostin
 | [Soft Serve](https://github.com/charmbracelet/soft-serve) | A tasty [Git](https://git-scm.com/) server for the command line | [Link](services/soft-serve.md) |
 | [SolidInvoice](https://github.com/SolidInvoice/SolidInvoice) | Web-based software for invoicing | [Link](services/solidinvoice.md) |
 | [Sonarr](https://sonarr.tv/) | A smart PVR for newsgroup and BitTorrent users | [Link](services/sonarr.md) |
-| [soundcloak](https://git.maid.zone/stuff/soundcloak) | Browse SoundCloud without exposing your IP address, browsing habits, and other browser fingerprinting data to the website | [Link](services/soundcloak.md) |
+| [soundcloak](https://git.maid.zone/stuff/soundcloak) | Frontend for SoundCloud | [Link](services/soundcloak.md) |
 | [SQLPage](https://sql-page.com/) | SQL-only data application builder | [Link](services/sqlpage.md) |
 | [Standalone Snowflake proxy](https://community.torproject.org/relay/setup/snowflake/standalone/) | Help users connect to the [Tor](https://torproject.org/) network in places where Tor is blocked | [Link](services/snowflake.md) |
 | [Statusnook](https://statusnook.com/) | Status page deployment service | [Link](services/statusnook.md) |
@@ -251,11 +251,11 @@ Below is an exhaustive list of the free and open-source software for self-hostin
 | [traefik-certs-dumper](https://github.com/ldez/traefik-certs-dumper) | Dump ACME data from Traefik to certificates | [Link](services/traefik-certs-dumper.md) |
 | [transfer.sh](https://github.com/dutchcoders/transfer.sh) | File sharing with the command-line | [Link](services/transfersh.md) |
 | [TSDProxy](https://almeidapaulopt.github.io/tsdproxy/) | A proxy for virtual services in Tailscale | [Link](services/tsdproxy.md) |
-| [Typesense](https://typesense.org) | Fast and typo-tolerant fulltext search engine | [Link](services/typesense.md) |
+| [Typesense](https://typesense.org) | Typo-tolerant fulltext search engine | [Link](services/typesense.md) |
 | [Uptime Kuma](https://uptime.kuma.pet/) | A fancy monitoring tool | [Link](services/uptime-kuma.md) |
 | [Valkey](https://valkey.io/) | A flexible distributed key-value datastore that is optimized for caching and other realtime workloads | [Link](services/valkey.md) |
 | [Vaultwarden](https://github.com/dani-garcia/vaultwarden) | A lightweight unofficial and compatible implementation of the [Bitwarden](https://bitwarden.com/) password manager | [Link](services/vaultwarden.md) |
-| [VersaTiles](https://versatiles.org) | Generate and serve vector tiles from OpenStreetMap | [Link](services/versatiles.md) |
+| [VersaTiles](https://versatiles.org) | Vector tile generator & server from OpenStreetMap | [Link](services/versatiles.md) |
 | [Vikunja](https://vikunja.io/) | To-do app | [Link](services/vikunja.md) |
 | [Wazuh](https://wazuh.com/) | Security platform providing SIEM, threat detection, and compliance monitoring | [Link](services/wazuh.md) |
 | [Weblate](https://weblate.org/) | Web-based translation tool with version control integration | [Link](services/weblate.md) |
@@ -263,8 +263,8 @@ Below is an exhaustive list of the free and open-source software for self-hostin
 | [Wikimore](https://git.private.coffee/PrivateCoffee/wikimore) | Frontend for Wikipedia projects | [Link](services/wikimore.md) |
 | [WireGuard Easy](https://github.com/wg-easy/wg-easy) | The easiest way to run [WireGuard](https://www.wireguard.com/) VPN + Web-based Admin UI | [Link](services/wg-easy.md) |
 | [Woodpecker CI](https://woodpecker-ci.org/) | Extensible Continuous Integration (CI) engine | [Link](services/woodpecker-ci.md) |
-| [WordPress](https://wordpress.org/) | A widely used web content management system | [Link](services/wordpress.md) |
-| [Writefreely](https://writefreely.org) | A clean, minimalist publishing platform made for writers with optional federation via ActivityPub | [Link](services/writefreely.md) |
+| [WordPress](https://wordpress.org/) | Web content management system | [Link](services/wordpress.md) |
+| [Writefreely](https://writefreely.org) | Minimalist publishing platform for writers with optional federation via ActivityPub | [Link](services/writefreely.md) |
 | [YaCy](https://yacy.net) | Distributed web search engine on a P2P network | [Link](services/yacy.md) |
 | [Yggstack](https://github.com/yggdrasil-network/yggstack) | SOCKS5 proxy server and TCP port forwarder for [Yggdrasil Network](https://yggdrasil-network.github.io) | [Link](services/yggstack.md) |
 | [YOURLS](https://yourls.org) | Your Own URL Shortener, on your server | [Link](services/yourls.md) |
