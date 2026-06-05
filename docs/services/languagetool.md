@@ -35,7 +35,7 @@ For details about configuring the [Ansible role for LanguageTool](https://github
 
 This service requires the following other services:
 
-- [Traefik](traefik.md) — a reverse-proxy server
+- [Traefik](traefik.md) reverse-proxy server
 
 ## Configuration
 

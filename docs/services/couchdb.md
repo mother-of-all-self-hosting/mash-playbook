@@ -36,7 +36,7 @@ For details about configuring the [Ansible role for CouchDB](https://github.com/
 
 This service requires the following other services:
 
-- (optional) [Traefik](traefik.md) — a reverse-proxy server for exposing CouchDB publicly
+- (optional) [Traefik](traefik.md) — Reverse-proxy server for exposing CouchDB publicly
 
 ## Configuration
 

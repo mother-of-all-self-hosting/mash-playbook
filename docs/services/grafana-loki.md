@@ -40,9 +40,9 @@ For details about configuring the [Ansible role for Loki](https://github.com/mot
 
 This service requires the following other services:
 
-- (optional) [Traefik](traefik.md) — a reverse-proxy server for exposing Loki publicly
-- (optional; recommended) [Grafana](grafana.md) — a web-based tool for visualizing your Promtail logs (stored in Grafana Loki or elsewhere)
-- (optional; recommended) [Promtail](promtail.md) — an agent which ships the contents of local logs to a private Grafana Loki instance
+- (optional) [Traefik](traefik.md) — Reverse-proxy server for exposing Loki publicly
+- (optional; recommended) [Grafana](grafana.md) — Web-based tool for visualizing your Prometheus metrics (time-series)
+- (optional; recommended) [Promtail](promtail.md) — Agent which ships the contents of local logs to a private Grafana Loki instance
 
 ## Configuration
 

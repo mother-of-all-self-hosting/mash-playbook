@@ -31,8 +31,8 @@ See the project's [documentation](https://prometheus.io/docs/introduction/overvi
 
 This service requires the following other services:
 
-- (optional) [Grafana](grafana.md) — web UI that can query the Prometheus datasource (connection) and display the logs
-- (optional) [Traefik](traefik.md) — reverse-proxy server for exposing Prometheus
+- (optional) [Grafana](grafana.md) — Web-based tool for visualizing your Prometheus metrics (time-series)
+- (optional) [Traefik](traefik.md) — Reverse-proxy server for exposing Prometheus
 
 ## Configuration
 

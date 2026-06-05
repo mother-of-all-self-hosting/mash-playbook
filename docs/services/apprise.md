@@ -36,7 +36,7 @@ For details about configuring the [Ansible role for Apprise API](https://radicle
 
 This service requires the following other services:
 
-- (optional) [Traefik](traefik.md) — a reverse-proxy server for exposing Configuration Manager publicly
+- (optional) [Traefik](traefik.md) — Reverse-proxy server for exposing Configuration Manager publicly
 
 ## Configuration
 

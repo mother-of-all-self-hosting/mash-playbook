@@ -35,7 +35,7 @@ For details about configuring the [Ansible role for Typesense](https://github.co
 
 This service requires the following other services:
 
-- (optional) [Traefik](traefik.md) — a reverse-proxy server for exposing Typesense publicly
+- (optional) [Traefik](traefik.md) — Reverse-proxy server for exposing Typesense publicly
 
 ## Configuration
 

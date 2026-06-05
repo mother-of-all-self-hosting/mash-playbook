@@ -20,8 +20,8 @@ See the project's [documentation](https://grafana.com/docs/loki/latest/send-data
 
 This service requires the following other services:
 
-- [Grafana Loki](grafana-loki.md) — a log-storage server where you'd be sending the logs
-- (optional) [Traefik](traefik.md) — a reverse-proxy server, if you're exposing Promtail's metrics or API
+- [Grafana Loki](grafana-loki.md) — Log aggregation system that helps collect, store, and analyze logs in a scalable and efficient manner
+- (optional) [Traefik](traefik.md) — Reverse-proxy server for exposing Promtail's metrics or API
 
 ## Configuration
 

@@ -36,7 +36,7 @@ For details about configuring the [Ansible role for Immich Kiosk](https://github
 This service requires the following other services:
 
 - [Immich](immich.md)
-- (optional) [Traefik](traefik.md) — a reverse-proxy server for exposing Immich Kiosk publicly
+- (optional) [Traefik](traefik.md) — Reverse-proxy server for exposing Immich Kiosk publicly
 
 ## Configuration
 

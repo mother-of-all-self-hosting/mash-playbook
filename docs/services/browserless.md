@@ -35,7 +35,7 @@ For details about configuring the [Ansible role for Browserless](https://github.
 
 This service requires the following other services:
 
-- (optional) [Traefik](traefik.md) — a reverse-proxy server for exposing Browserless publicly
+- (optional) [Traefik](traefik.md) — Reverse-proxy server for exposing Browserless publicly
 
 ## Configuration
 
