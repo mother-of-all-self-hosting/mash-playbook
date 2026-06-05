@@ -6,7 +6,7 @@ SPDX-FileCopyrightText: 2025, 2026 Suguru Hirahara
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 
-# Minecraft
+# Minecraft Server
 
 The playbook can install and configure [itzg docker-minecraft server](https://docker-minecraft-server.readthedocs.io) for you.
 
@@ -75,7 +75,7 @@ See the full set of available [Environment Variables](https://docker-minecraft-s
 
 ## Usage
 
-After running the command for installation, the Minecraft instance becomes available.
+After running the command for installation, the Minecraft Server becomes available.
 
 You can use your Minecraft client to log into the game.
 
