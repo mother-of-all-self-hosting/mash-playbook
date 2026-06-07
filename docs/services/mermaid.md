@@ -18,18 +18,18 @@ SPDX-FileCopyrightText: 2024-2026 Suguru Hirahara
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 
-# Actual
+# Mermaid Live Editor
 
-The playbook can install and configure [Actual](https://actualbudget.org) for you.
+The playbook can install and configure [Mermaid Live Editor](https://github.com/mermaid-js/mermaid-live-editor) for you.
 
-Actual is a local-first personal finance tool.
+Mermaid Live Editor is an online flow chart and diagrams editor.
 
-See the project's [documentation](https://actualbudget.org/docs/) to learn what Actual does and why it might be useful to you.
+See the project's [documentation](https://github.com/mermaid-js/mermaid-live-editor/blob/develop/README.md) to learn what Mermaid Live Editor does and why it might be useful to you.
 
-For details about configuring the [Ansible role for Actual](https://radicle.network/nodes/iris.radicle.network/rad%3Az2chD7Kt74JwEMafxTooxN7MaeYtK), you can check them via:
+For details about configuring the [Ansible role for Mermaid Live Editor](https://radicle.network/nodes/iris.radicle.network/rad%3Az2RAnfyxCYZSoUiDufyzTM7P3RvEd), you can check them via:
 
-- 🌐 [the role's documentation](https://radicle.network/nodes/iris.radicle.network/rad%3Az2chD7Kt74JwEMafxTooxN7MaeYtK/tree/docs/configuring-actual.md) online
-- 📁 `roles/galaxy/actual/docs/configuring-actual.md` locally, if you have [fetched the Ansible roles](../installing.md)
+- 🌐 [the role's documentation](https://radicle.network/nodes/iris.radicle.network/rad%3Az2RAnfyxCYZSoUiDufyzTM7P3RvEd/tree/docs/configuring-mermaid.md) online
+- 📁 `roles/galaxy/mermaid/docs/configuring-mermaid.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 ## Dependencies
 
@@ -44,30 +44,28 @@ To enable this service, add the following configuration to your `vars.yml` file 
 ```yaml
 ########################################################################
 #                                                                      #
-# actual                                                               #
+# mermaid                                                              #
 #                                                                      #
 ########################################################################
 
-actual_enabled: true
+mermaid_enabled: true
 
-actual_hostname: actual.example.com
+mermaid_hostname: mermaid.example.com
 
 ########################################################################
 #                                                                      #
-# /actual                                                              #
+# /mermaid                                                             #
 #                                                                      #
 ########################################################################
 ```
 
 ## Usage
 
-After running the command for installation, the Actual instance becomes available at the URL specified with `actual_hostname`. With the configuration above, the service is hosted at `https://actual.example.com`.
-
-To get started, open the URL with a web browser to create an account.
+After running the command for installation, the Mermaid Live Editor instance becomes available at the URL specified with `mermaid_hostname`. With the configuration above, the service is hosted at `https://mermaid.example.com`.
 
 ## Troubleshooting
 
-See [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az2chD7Kt74JwEMafxTooxN7MaeYtK/tree/docs/configuring-actual.md#troubleshooting) on the role's documentation for details.
+See [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az2RAnfyxCYZSoUiDufyzTM7P3RvEd/tree/docs/configuring-mermaid.md#troubleshooting) on the role's documentation for details.
 
 ## Related services
 
