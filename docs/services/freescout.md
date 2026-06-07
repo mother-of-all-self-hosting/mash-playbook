@@ -23,7 +23,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
 The playbook can install and configure [FreeScout](https://freescout.net/) for you.
 
-FreeScout is a free open-source helpdesk and shared inbox solution.
+FreeScout is a free and open-source helpdesk and shared inbox software.
 
 See the project's [documentation](https://github.com/freescout-help-desk/freescout/wiki) to learn what FreeScout does and why it might be useful to you.
 

@@ -23,7 +23,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
 The playbook can install and configure [CouchDB](https://couchdb.apache.org/) for you.
 
-CouchDB is a document-oriented NoSQL database which uses JSON to store data.
+CouchDB is a document-oriented NoSQL database which uses JSON to store data, written in Erlang.
 
 See the project's [documentation](https://docs.couchdb.org/en/stable/) to learn what CouchDB does and why it might be useful to you.
 

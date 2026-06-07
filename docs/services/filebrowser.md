@@ -24,7 +24,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
 The playbook can install and configure [File Browser](https://filebrowser.org/) for you.
 
-File Browser provides a file managing interface within a specified directory and it can be used to upload, delete, preview and edit your files.
+File Browser is a free self-hosted web-based file manager.
 
 See the project's [documentation](https://filebrowser.org/) to learn what File Browser does and why it might be useful to you.
 

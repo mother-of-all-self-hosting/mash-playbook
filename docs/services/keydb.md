@@ -9,7 +9,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
 The playbook can install and configure [KeyDB](https://docs.keydb.dev/) for you.
 
-KeyDB is a fork of [Redis](redis.md), an open source, in-memory data store used by millions of developers as a database, cache, streaming engine, and message broker.
+KeyDB is a fork of [Redis](redis.md), a flexible distributed key-value datastore that is optimized for caching and other realtime workloads.
 
 See the project's [documentation](https://docs.keydb.dev/) to learn what KeyDB does and why it might be useful to you.
 

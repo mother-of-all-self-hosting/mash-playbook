@@ -22,7 +22,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
 The playbook can install and configure [Changedetection.io](https://github.com/dgtlmoon/changedetection.io) for you.
 
-Changedetection.io is a simple website change detection and restock monitoring solution.
+Changedetection.io is a website change detection and restock monitoring service.
 
 See the project's [documentation](https://github.com/dgtlmoon/changedetection.io/blob/master/README.md) to learn what Changedetection.io does and why it might be useful to you.
 

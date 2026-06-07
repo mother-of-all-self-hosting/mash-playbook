@@ -25,7 +25,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
 The playbook can install and configure [Grafana](https://grafana.com/) for you.
 
-Grafana is an open and composable observability and data visualization platform. It is often used with [Prometheus](prometheus.md).
+Grafana is a web-based tool for visualizing your [Prometheus](prometheus.md) metrics (time-series).
 
 See the project's [documentation](https://grafana.com/docs/) to learn what Grafana does and why it might be useful to you.
 

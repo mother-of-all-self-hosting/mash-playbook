@@ -26,7 +26,7 @@ Below is an exhaustive list of the free and open-source software for self-hostin
 | [AUX](https://github.com/mother-of-all-self-hosting/ansible-role-aux) | Auxiliary file/directory management on your server via Ansible | [Link](services/auxiliary.md) |
 | [Actual](https://actualbudget.org) | Local-first personal finance tool | [Link](services/actual.md) |
 | [AdGuard Home](https://adguard.com/en/adguard-home/overview.html/) | A network-wide DNS software for blocking ads & tracking | [Link](services/adguard-home.md) |
-| [Adminer](https://www.adminer.org/) | Full-featured database server administration software written in PHP | [Link](services/adminer.md) |
+| [Adminer](https://www.adminer.org/) | Full-featured database server administration software | [Link](services/adminer.md) |
 | [An Otter Wiki](https://otterwiki.com/) | Minimalistic wiki powered by Python, Markdown and Git | [Link](services/otterwiki.md) |
 | [Anki](https://docs.ankiweb.net/sync-server.html) | Data synchronization server for [Anki](https://apps.ankiweb.net) | [Link](services/anki.md) |
 | [AnonymousOverflow](https://github.com/httpjamesm/AnonymousOverflow) | Frontend for StackOverflow | [Link](services/anonymousoverflow.md) |
@@ -42,7 +42,7 @@ Below is an exhaustive list of the free and open-source software for self-hostin
 | [audiobookshelf](https://www.audiobookshelf.org/) | Audiobook and podcast server | [Link](services/audiobookshelf.md) |
 | [Authelia](https://www.authelia.com/) | An authentication and authorization server that can work as a companion to [common reverse proxies](https://www.authelia.com/overview/prologue/supported-proxies/) | [Link](services/authelia.md) |
 | [authentik](https://goauthentik.io/) | An Identity Provider focused on flexibility and versatility | [Link](services/authentik.md) |
-| [Autobrr](https://autobrr.com/) | Modern, easy to use download automation for torrents and Usenet | [Link](services/autobrr.md) |
+| [Autobrr](https://autobrr.com/) | Download automator for torrents and Usenet | [Link](services/autobrr.md) |
 | [Bar Assistant](https://github.com/karlomikus/bar-assistant/) | Managing cocktail recipes at your home bar with cocktail-oriented features | [Link](services/barassistant.md) |
 | [Bazarr](https://www.bazarr.media/) | Companion application to Sonarr and Radarr that manages and downloads subtitles | [Link](services/bazarr.md) |
 | [BentoPDF](https://github.com/alam00000/bentopdf) | Client-side PDF editor and converter | [Link](services/bentopdf.md) |
@@ -56,23 +56,23 @@ Below is an exhaustive list of the free and open-source software for self-hostin
 | [Calibre-Web](https://github.com/janeczku/calibre-web) | Web app for browsing, reading and downloading eBooks stored in a [Calibre](https://calibre-ebook.com/) database | [Link](services/calibre-web.md) |
 | [Calibre-Web Automated](https://github.com/crocodilestick/Calibre-Web-Automated) | Web application based on [Calibre-Web](https://github.com/janeczku/calibre-web) with additional features and automation | [Link](services/calibre-web-automated.md) |
 | [Cap Standalone](https://capjs.js.org/guide/standalone/) | Backend of Cap, a POW Captcha | [Link](services/cap.md) |
-| [Changedetection.io](https://github.com/dgtlmoon/changedetection.io) | Website change detection and restock monitoring solution | [Link](services/changedetection.md) |
+| [Changedetection.io](https://github.com/dgtlmoon/changedetection.io) | Website change detection and restock monitoring service | [Link](services/changedetection.md) |
 | [ChiefOnboarding](https://docs.chiefonboarding.com) | Employee onboarding platform | [Link](services/chiefonboarding.md) |
-| [Cinny](https://github.com/ajbura/cinny) | Elegant web client for [Matrix](https://matrix.org/) | [Link](services/cinny.md) |
+| [Cinny](https://github.com/ajbura/cinny) | Web client for [Matrix](https://matrix.org/) | [Link](services/cinny.md) |
 | [CiviCRM](https://civicrm.org/) | Relationship management system for advocacy, non-profit and non-governmental groups | [Link](services/civicrm.md) |
 | [ClickHouse](https://clickhouse.com/) | A column-oriented DBMS for online analytical processing (OLAP) that allows users to generate analytical reports using SQL queries in real-time | [Link](services/clickhouse.md) |
 | [CodiMD](https://github.com/hackmdio/codimd) | Realtime collaborative markdown notes on all platforms | [Link](services/codimd.md) |
 | [Collabora Online Development Edition](https://www.collaboraonline.com/code/) | Development version of Collabora Online, which enables you to edit office documents with integrations such as Nextcloud | [Link](services/code.md) |
 | [Converse](https://conversejs.org/) | Browser based XMPP chat client | [Link](services/converse.md) |
 | [ConvertX](https://github.com/C4illin/ConvertX) | Online file converter for pictures, video, images, document files, etc. | [Link](services/convertx.md) |
-| [CouchDB](https://couchdb.apache.org/) | A document-oriented NoSQL database, implemented in Erlang | [Link](services/couchdb.md) |
+| [CouchDB](https://couchdb.apache.org/) | Document-oriented NoSQL database which uses JSON to store data | [Link](services/couchdb.md) |
 | [CryptPad](https://cryptpad.org/) | End-to-end encrypted collaborative office suite | [Link](services/cryptpad.md) |
 | [CyberChef](https://github.com/gchq/CyberChef) | Intuitive web application for encryption, encoding, compression, and data analysis within a browser | [Link](services/cyberchef.md) |
 | [Databasus](https://databasus.com/) | PostgreSQL, MySQL, MariaDB, and MongoDB database backup | [Link](services/databasus.md) |
 | [ddclient](https://ddclient.net/) | Dynamic DNS entries updater | [Link](services/ddclient.md) |
 | [Docker](https://www.docker.com/) | Containerized applications deployment | [Link](services/docker.md) |
 | [Docker Registry](https://docs.docker.com/registry/) | Container image distribution registry | [Link](services/docker-registry.md) |
-| [Docker Registry Browser](https://github.com/klausmeyer/docker-registry-browser) | Web Interface for the Docker Registry HTTP API V2 written in Ruby on Rails | [Link](services/docker-registry-browser.md) |
+| [Docker Registry Browser](https://github.com/klausmeyer/docker-registry-browser) | Web interface for the Docker Registry HTTP API V2 | [Link](services/docker-registry-browser.md) |
 | [Docker Registry Proxy](https://github.com/etkecc/docker-registry-proxy) | Pass-through Docker registry (distribution) proxy with metadata caching, Docker-compatible errors, Prometheus metrics, etc. | [Link](services/docker-registry-proxy.md) |
 | [Docker Registry Purger](https://github.com/devture/docker-registry-purger) | A small tool used for purging a private Docker Registry's old tags | [Link](services/docker-registry-purger.md) |
 | [Docmost](https://docmost.com/) | Collaborative wiki and documentation software | [Link](services/docmost.md) |
@@ -80,8 +80,8 @@ Below is an exhaustive list of the free and open-source software for self-hostin
 | [DokuWiki](https://dokuwiki.org/) | File-based wiki engine without database requirement | [Link](services/dokuwiki.md) |
 | [Duplicati](https://duplicati.com) | Backup software that securely stores encrypted, incremental, compressed backups on local storage, cloud storage services and remote file servers | [Link](services/duplicati.md) |
 | [echoip](https://github.com/mpolden/echoip) | Look up your IP address | [Link](services/echoip.md) |
-| [Endlessh-go](https://github.com/shizunge/endlessh-go) | A golang implementation of Endlessh, an SSH tarpit | [Link](services/endlessh.md) |
-| [Ergo](https://ergo.chat/) | Modern IRCd (IRC server software) written in Go | [Link](services/ergo.md) |
+| [Endlessh-go](https://github.com/shizunge/endlessh-go) | A Golang implementation of Endlessh, an SSH tarpit | [Link](services/endlessh.md) |
+| [Ergo](https://ergo.chat/) | Modern IRCd (IRC server software) | [Link](services/ergo.md) |
 | [etcd](https://etcd.io/) | A distributed, reliable key-value store for the most critical data of a distributed system | [Link](services/etcd.md) |
 | [Etherpad](https://etherpad.org) | Collaborative text editor | [Link](services/etherpad.md) |
 | [Euro-Office](https://github.com/Euro-Office/DocumentServer) | Online office suite comprising viewers and editors | [Link](services/eurooffice.md) |
@@ -99,7 +99,7 @@ Below is an exhaustive list of the free and open-source software for self-hostin
 | [Focalboard](https://www.focalboard.com/) | An alternative to [Trello](https://trello.com/), [Notion](https://www.notion.so/), and [Asana](https://asana.com/) | [Link](services/focalboard.md) |
 | [Forgejo](https://forgejo.org/) | Software forge (Git hosting service, etc). An alternative to [Gitea](./services/gitea.md) | [Link](services/forgejo.md) |
 | [Forgejo Runner](https://code.forgejo.org/forgejo/runner) | A runner to use with Forgejo Actions | [Link](services/forgejo-runner.md) |
-| [FreeScout](https://freescout.net/) | A help desk software | [Link](services/freescout.md) |
+| [FreeScout](https://freescout.net/) | Helpdesk and shared inbox software | [Link](services/freescout.md) |
 | [FreshRSS](https://freshrss.org/) | RSS and Atom feed aggregator | [Link](services/freshrss.md) |
 | [Funkwhale](https://funkwhale.audio/) | ActivityPub federated streaming server for listening and sharing music | [Link](services/funkwhale.md) |
 | [Ghostfolio](https://ghostfol.io/) | Wealth management software to keep track of assets such as stocks, bonds, ETFs, etc. | [Link](services/ghostfolio.md) |
@@ -124,7 +124,7 @@ Below is an exhaustive list of the free and open-source software for self-hostin
 | [Immich Kiosk](https://immichkiosk.app/) | Highly configurable slideshow for displaying [Immich](https://immich.app/) pictures and videos on browsers and devices | [Link](services/immich-kiosk.md) |
 | [Infisical](https://infisical.com/) | An end-to-end encrypted platform for securely managing secrets and configs across your team, devices, and infrastructure | [Link](services/infisical.md) |
 | [InfluxDB OSS v2](https://docs.influxdata.com/influxdb/v2/) | A time-series database | [Link](services/influxdb.md) |
-| [InspIRCd](https://www.inspircd.org/) | Modular IRC server written in C++ | [Link](services/inspircd.md) |
+| [InspIRCd](https://www.inspircd.org/) | Modular IRC server | [Link](services/inspircd.md) |
 | [Jackett](https://github.com/Jackett/Jackett) | An API for your favorite Torrent trackers | [Link](services/jackett.md) |
 | [Jellyfin](https://github.com/jellyfin/jellyfin) | A personal media server | [Link](services/jellyfin.md) |
 | [Jitsi](https://jitsi.org/) | A fully encrypted video conferencing solution | [Link](services/jitsi.md) |
@@ -132,7 +132,7 @@ Below is an exhaustive list of the free and open-source software for self-hostin
 | [Kanboard](https://kanboard.org/) | Kanban project management software | [Link](services/kanboard.md) |
 | [Karakeep](https://karakeep.app/) | Bookmark manager to collect, organize and archive webpages | [Link](services/karakeep.md) |
 | [Keycloak](https://www.keycloak.org/) | An identity and access management solution | [Link](services/keycloak.md) |
-| [KeyDB](https://docs.keydb.dev/) | An in-memory data store used by millions of developers as a database, cache, streaming engine, and message broker | [Link](services/keydb.md) |
+| [KeyDB](https://docs.keydb.dev/) | An in-memory data store used as a database, cache, streaming engine, and message broker | [Link](services/keydb.md) |
 | [keyoxide-web](https://codeberg.org/keyoxide/keyoxide-web) | Web client for [Keyoxide](https://keyoxide.org/), a decentralized tool to create and verify decentralized online identities | [Link](services/keyoxide.md) |
 | [Kutt](https://kutt.to/) | Modern URL shortener with support for custom domains | [Link](services/kutt.md) |
 | [LabelStudio](https://labelstud.io/) | Data labeling tool that supports multiple projects, users, and data types in one platform | [Link](services/labelstudio.md) |
@@ -142,10 +142,10 @@ Below is an exhaustive list of the free and open-source software for self-hostin
 | [LimeSurvey](https://www.limesurvey.org) | Web based forms and surveys | [Link](services/limesurvey.md) |
 | [linkding](https://github.com/sissbruecker/linkding/) | Bookmark manager designed to be minimal and fast | [Link](services/linkding.md) |
 | [Linkwarden](https://github.com/linkwarden/linkwarden) | Collaborative bookmark manager | [Link](services/linkwarden.md) |
-| [listmonk](https://listmonk.app) | Newsletter and mailing list manager | [Link](services/listmonk.md) |
+| [listmonk](https://listmonk.app) | One-way mailing list and newsletter manager | [Link](services/listmonk.md) |
 | [LLDAP](https://github.com/lldap/lldap/) | Lightweight authentication server that provides an opinionated, simplified LDAP interface for authentication | [Link](services/lldap.md) |
 | [MailCatcher](http://mailcatcher.me/) | SMTP server which catches messages sent to it and displays in a web interface | [Link](services/mailcatcher.md) |
-| [MailCrab](https://github.com/tweedegolf/mailcrab) | SMTP test server for development, written in Rust | [Link](services/mailcrab.md) |
+| [MailCrab](https://github.com/tweedegolf/mailcrab) | SMTP test server for development | [Link](services/mailcrab.md) |
 | [Mailpit](https://mailpit.axllent.org/) | Email testing tool & API | [Link](services/mailpit.md) |
 | [MariaDB](https://mariadb.org/) | A powerful object-relational database system | [Link](services/mariadb.md) |
 | [Matomo](https://matomo.org/) | Web analytics platform | [Link](services/matomo.md) |
@@ -208,7 +208,7 @@ Below is an exhaustive list of the free and open-source software for self-hostin
 | [Prometheus SSH Exporter](https://github.com/treydock/ssh_exporter) | SSH probes | [Link](services/prometheus-ssh-exporter.md) |
 | [Promtail](https://grafana.com/docs/loki/latest/send-data/promtail/) | Agent which ships the contents of local logs to a private [Grafana Loki](services/grafana-loki.md) instance | [Link](services/promtail.md) |
 | [PruneMate](https://github.com/anoniemerd/PruneMate) | Automatically clean up Docker resources on a schedule | [Link](services/prunemate.md) |
-| [qBittorrent](https://www.qbittorrent.org/) | A BitTorrent client written in native C++ | [Link](services/qbittorrent.md) |
+| [qBittorrent](https://www.qbittorrent.org/) | A BitTorrent client | [Link](services/qbittorrent.md) |
 | [RabbitMQ](https://www.rabbitmq.com/) | Message-broker which supports AMQP, STOMP, MQTT, etc. | [Link](services/rabbitmq.md) |
 | [Radarr](https://radarr.video/) | A movie organizer/manager for Usenet and BitTorrent users | [Link](services/radarr.md) |
 | [Radicale](https://radicale.org/) | A CalDAV and CardDAV Server (solution for hosting contacts and calendars) | [Link](services/radicale.md) |
@@ -232,15 +232,15 @@ Below is an exhaustive list of the free and open-source software for self-hostin
 | [SFTPGo](https://github.com/drakkan/sftpgo/) | File transfer software which supports SFTP, HTTP/S, FTP/S and WebDAV and can connect to various storage backends including S3 (compatible) Object Storage and Google Cloud Storage | [Link](services/sftpgo.md) |
 | [SilverBullet](https://silverbullet.md) | Programmable, private, personal knowledge management platform | [Link](services/silverbullet.md) |
 | [SMP server](https://simplex.chat/docs/server.html) | Relay server used to pass messages in [SimpleX](https://simplex.chat/) network | [Link](services/smp-server.md) |
-| [Soft Serve](https://github.com/charmbracelet/soft-serve) | A tasty [Git](https://git-scm.com/) server for the command line | [Link](services/soft-serve.md) |
+| [Soft Serve](https://github.com/charmbracelet/soft-serve) | [Git](https://git-scm.com/) server for the command line | [Link](services/soft-serve.md) |
 | [SolidInvoice](https://github.com/SolidInvoice/SolidInvoice) | Web-based software for invoicing | [Link](services/solidinvoice.md) |
 | [Sonarr](https://sonarr.tv/) | A smart PVR for newsgroup and BitTorrent users | [Link](services/sonarr.md) |
 | [soundcloak](https://git.maid.zone/stuff/soundcloak) | Frontend for SoundCloud | [Link](services/soundcloak.md) |
 | [SQLPage](https://sql-page.com/) | SQL-only data application builder | [Link](services/sqlpage.md) |
 | [Standalone Snowflake proxy](https://community.torproject.org/relay/setup/snowflake/standalone/) | Help users connect to the [Tor](https://torproject.org/) network in places where Tor is blocked | [Link](services/snowflake.md) |
 | [Statusnook](https://statusnook.com/) | Status page deployment service | [Link](services/statusnook.md) |
-| [Stirling PDF v1](https://github.com/Stirling-Tools/Stirling-PDF) | PDF converter | [Link](services/stirling-pdf.md) |
-| [syncstorage-rs](https://github.com/mozilla-services/syncstorage-rs) | Mozilla Sync Storage server in Rust, used to power Firefox Sync | [Link](services/syncstorage-rs.md) |
+| [Stirling PDF v1](https://github.com/Stirling-Tools/Stirling-PDF) | PDF converter and editor | [Link](services/stirling-pdf.md) |
+| [syncstorage-rs](https://github.com/mozilla-services/syncstorage-rs) | Mozilla Sync Storage server for Firefox Sync | [Link](services/syncstorage-rs.md) |
 | [Syncthing](https://syncthing.net/) | A continuous file synchronization program which synchronizes files between two or more computers in real time | [Link](services/syncthing.md) |
 | [Tandoor](https://docs.tandoor.dev/) | The recipe manager that allows you to manage your ever growing collection of digital recipes | [Link](services/tandoor.md) |
 | [Teable](https://github.com/teableio/teable) | No-code database management platform with spreadsheet-like interface | [Link](services/teable.md) |

@@ -21,6 +21,8 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
 The playbook can install and configure the [BIND](https://www.isc.org/bind/) DNS server for you.
 
+BIND is a full-featured DNS server.
+
 See the project's [documentation](https://www.isc.org/bind/) to learn what BIND does and why it might be useful to you.
 
 ## Dependencies

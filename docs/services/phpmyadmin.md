@@ -22,7 +22,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
 The playbook can install and configure [phpMyAdmin](https://www.phpmyadmin.net/) for you.
 
-phpMyAdmin is a free software tool written in PHP that is intended to handle the administration of a MySQL or MariaDB database server.
+phpMyAdmin is a free web-based MySQL or MariaDB database server administration software, written in PHP.
 
 See the project's [documentation](https://docs.phpmyadmin.net/en/latest/) to learn what phpMyAdmin does and why it might be useful to you.
 

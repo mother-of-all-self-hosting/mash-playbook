@@ -24,7 +24,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
 The playbook can install and configure [LibreBooking](https://github.com/LibreBooking/app) for you.
 
-LibreBooking is a simply powerful scheduling solution for any organization. It is an actively maintained FOSS fork of Booked Scheduler.
+LibreBooking is a resource scheduling and booking application for any organization. It is an actively maintained FOSS fork of Booked Scheduler.
 
 See the project's [documentation](https://librebooking.readthedocs.io/) to learn what LibreBooking does and why it might be useful to you.
 

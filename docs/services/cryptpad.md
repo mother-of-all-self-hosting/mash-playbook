@@ -21,7 +21,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
 The playbook can install and configure [CryptPad](https://cryptpad.org) for you.
 
-CryptPad is a free and open-source collaboration suite that is end-to-end encrypted.
+CryptPad is a free and open-source collaborative office suite that is end-to-end encrypted.
 
 See the project's [documentation](https://docs.cryptpad.org) to learn what CryptPad does and why it might be useful to you.
 

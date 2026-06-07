@@ -22,7 +22,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
 The playbook can install and configure [Teable](https://github.com/teableio/teable) for you.
 
-Teable is a no-code platform for managing databases using a spreadsheet-like interface.
+Teable is a no-code database management platform with spreadsheet-like interface.
 
 See the project's [documentation](https://help.teable.ai/en/about) to learn what Teable does and why it might be useful to you.
 

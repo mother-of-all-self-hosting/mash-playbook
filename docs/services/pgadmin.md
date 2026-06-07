@@ -22,7 +22,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
 The playbook can install and configure [pgAdmin](https://www.pgadmin.org/) for you.
 
-pgAdmin is a management tool for Postgres with a graphical interface which simplifies the creation, maintenance and use of database objects.
+pgAdmin is a web-based Postgres database server administration software.
 
 See the project's [documentation](https://www.pgadmin.org/docs/pgadmin4/latest/) to learn what pgAdmin does and why it might be useful to you.
 
