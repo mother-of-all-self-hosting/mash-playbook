@@ -69,4 +69,4 @@ See [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az2RA
 
 ## Related services
 
-- [I hate money](ihatemoney.md) — Shared budget manager
+- [Excalidraw](excalidraw.md) — Virtual whiteboard for sketching hand-drawn like diagrams

@@ -292,4 +292,5 @@ See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-do
 
 - [BookStack](bookstack.md) — Information organizer and storage
 - [Excalidraw](excalidraw.md) — Virtual whiteboard for sketching hand-drawn like diagrams
+- [Mermaid Live Editor](mermaid.md) — Flow chart and diagrams editor
 - [Outline](outline.md) — Knowledge base for growing teams
