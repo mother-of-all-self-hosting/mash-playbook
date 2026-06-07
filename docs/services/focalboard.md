@@ -21,7 +21,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
 The playbook can install and configure [Focalboard](https://www.focalboard.com/) for you.
 
-Focalboard is an open source, self-hosted alternative to [Trello](https://trello.com/), [Notion](https://www.notion.so/), and [Asana](https://asana.com/).
+Focalboard is an open-source, self-hosted alternative to [Trello](https://trello.com/), [Notion](https://www.notion.so/), and [Asana](https://asana.com/).
 
 See the project's [documentation](https://github.com/mattermost-community/focalboard/blob/main/README.md) to learn what Focalboard does and why it might be useful to you.
 

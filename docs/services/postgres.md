@@ -14,7 +14,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
 The playbook can install and configure [PostgreSQL](https://www.postgresql.org) for you.
 
-PostgreSQL is a powerful, open source object-relational database system with over 35 years of active development that has earned it a strong reputation for reliability, feature robustness, and performance.
+PostgreSQL is a powerful, open-source object-relational database system with over 35 years of active development that has earned it a strong reputation for reliability, feature robustness, and performance.
 
 See the project's [documentation](https://www.postgresql.org/docs/) to learn what PostgreSQL does and why it might be useful to you.
 

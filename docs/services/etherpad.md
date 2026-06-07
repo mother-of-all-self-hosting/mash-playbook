@@ -26,7 +26,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
 # Etherpad
 
-The playbook can install and configure [Etherpad](https://etherpad.org), an open source collaborative text editor, for you.
+The playbook can install and configure [Etherpad](https://etherpad.org), an open-source collaborative text editor, for you.
 
 See the project's [documentation](https://docs.etherpad.org/) to learn what it does and why it might be useful to you.
 

@@ -21,7 +21,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 # InfluxDB OSS v2
 
 >[!NOTE]
-> On this playbook, InfluxDB is implemented with [ansible-role-influxdb](https://github.com/mother-of-all-self-hosting/ansible-role-influxdb). The role is configured to install [InfluxDB OSS v2](https://docs.influxdata.com/influxdb/v2/). Though [InfluxDB 3 Core](https://docs.influxdata.com/influxdb3/core/) is open source, it is **not** a replacement for OSS v2. [InfluxDB 3 Enterprise](https://docs.influxdata.com/influxdb3/enterprise/) can replace OSS v2, but it is proprietary and we will not support it.
+> On this playbook, InfluxDB is implemented with [ansible-role-influxdb](https://github.com/mother-of-all-self-hosting/ansible-role-influxdb). The role is configured to install [InfluxDB OSS v2](https://docs.influxdata.com/influxdb/v2/). Though [InfluxDB 3 Core](https://docs.influxdata.com/influxdb3/core/) is open-source, it is **not** a replacement for OSS v2. [InfluxDB 3 Enterprise](https://docs.influxdata.com/influxdb3/enterprise/) can replace OSS v2, but it is proprietary and we will not support it.
 
 The playbook can install and configure [InfluxDB OSS v2](https://docs.influxdata.com/influxdb/v2/) for you.
 

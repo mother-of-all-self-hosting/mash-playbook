@@ -24,7 +24,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
 The playbook can install and configure [Ilmo](https://github.com/moan0s/ILMO2) for you.
 
-Ilmo is an open source library management tool.
+Ilmo is an open-source library management tool.
 
 See the project's [documentation](https://ilmo2.readthedocs.io/) to learn what ILMO does and why it might be useful to you.
 

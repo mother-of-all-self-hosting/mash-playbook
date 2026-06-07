@@ -9,7 +9,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
 The playbook can install and configure [LabelStudio](https://labelstud.io/) for you.
 
-LabelStudio is an open source data labeling tool that supports multiple projects.
+LabelStudio is an open-source data labeling tool that supports multiple projects.
 
 See the project's [documentation](https://labelstud.io/quick-start/) to learn what LabelStudio does and why it might be useful to you.
 

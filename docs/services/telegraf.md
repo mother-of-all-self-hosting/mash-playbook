@@ -21,7 +21,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
 The playbook can install and configure [Telegraf](https://www.influxdata.com/time-series-platform/telegraf/) for you.
 
-Telegraf is an open source server agent to help you collect metrics from your stacks, sensors, and systems.
+Telegraf is an open-source server agent to help you collect metrics from your stacks, sensors, and systems.
 
 See the project's [documentation](https://docs.influxdata.com/telegraf/v1/) to learn what Telegraf does and why it might be useful to you.
 

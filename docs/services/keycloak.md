@@ -9,7 +9,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
 The playbook can install and configure [Keycloak](https://www.keycloak.org/) for you.
 
-Keycloak is an open source identity and access management solution.
+Keycloak is an open-source identity and access management solution.
 
 See the project's [documentation](https://www.keycloak.org/documentation) to learn what Keycloak does and why it might be useful to you.
 

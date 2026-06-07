@@ -21,7 +21,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
 The playbook can install and configure [PrivateBin](https://privatebin.info) for you.
 
-PrivateBin is a minimalist, open source online pastebin where the server has zero knowledge of pasted data.
+PrivateBin is a minimalist, open-source online pastebin where the server has zero knowledge of pasted data.
 
 See the project's [documentation](https://github.com/PrivateBin/PrivateBin/tree/master/doc) to learn what PrivateBin does and why it might be useful to you.
 

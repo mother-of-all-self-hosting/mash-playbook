@@ -22,7 +22,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
 The playbook can install and configure [Plausible Analytics](https://plausible.io/) for you.
 
-Plausible Analytics is intuitive, lightweight and open source web analytics. No cookies and fully compliant with GDPR, CCPA and PECR. With this playbook, you can install the [Community Edition](https://plausible.io/blog/community-edition) of Plausible Analytics.
+Plausible Analytics is intuitive, lightweight and open-source web analytics. No cookies and fully compliant with GDPR, CCPA and PECR. With this playbook, you can install the [Community Edition](https://plausible.io/blog/community-edition) of Plausible Analytics.
 
 See the project's [documentation](https://plausible.io/docs) to learn what Plausible Analytics does and why it might be useful to you.
 

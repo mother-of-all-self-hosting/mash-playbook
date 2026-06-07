@@ -9,7 +9,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
 The playbook can install and configure [Wazuh](https://wazuh.com/) for you.
 
-Wazuh is an open source security platform providing unified SIEM, threat detection, and compliance monitoring. It runs as three containers: a manager (rules engine and agent coordinator), an indexer (OpenSearch-based event storage), and a dashboard (web UI).
+Wazuh is an open-source security platform providing unified SIEM, threat detection, and compliance monitoring. It runs as three containers: a manager (rules engine and agent coordinator), an indexer (OpenSearch-based event storage), and a dashboard (web UI).
 
 See the project's [documentation](https://documentation.wazuh.com/current/index.html) to learn what Wazuh does and why it might be useful to you.
 

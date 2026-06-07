@@ -9,7 +9,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
 The playbook can install and configure [Headscale](https://headscale.net/) for you.
 
-Headscale is an open source, self-hosted implementation of the [Tailscale](https://tailscale.com/) control server.
+Headscale is an open-source, self-hosted implementation of the [Tailscale](https://tailscale.com/) control server.
 
 See the project's [documentation](https://headscale.net/stable/usage/getting-started/) to learn what Headscale does and why it might be useful to you.
 
