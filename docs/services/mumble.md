@@ -21,7 +21,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
 The playbook can install and configure [Mumble](https://www.mumble.info) for you.
 
-Mumble is a free and open source voice chat application known for its low latency and high voice quality.
+Mumble is a free and open-source voice chat application known for its low latency and high voice quality.
 
 See the project's [documentation](https://www.mumble.info/documentation/) to learn what Mumble does and why it might be useful to you.
 

@@ -28,7 +28,7 @@ We will be using `example.com` as the domain in the following instruction. Pleas
 
 - [`just`](https://github.com/casey/just) for running `just roles`, `just update`, etc. (see [`justfile`](../justfile)), although you can also run these commands manually. Take a look at this documentation for more information: [Running `just` commands](just.md).
 
-- Strong password (random strings) generator. The playbook often requires you to create a strong password and use it for settings on `vars.yml`, components, etc. As any tools should be fine, this playbook has adopted [`pwgen`](https://linux.die.net/man/1/pwgen) (running `pwgen -s 64 1`). [Password Tech](https://pwgen-win.sourceforge.io/), formerly known as "PWGen for Windows", is available as free and open source password generator for Windows. Generally, using a random generator available on the internet is not recommended.
+- Strong password (random strings) generator. The playbook often requires you to create a strong password and use it for settings on `vars.yml`, components, etc. As any tools should be fine, this playbook has adopted [`pwgen`](https://linux.die.net/man/1/pwgen) (running `pwgen -s 64 1`). [Password Tech](https://pwgen-win.sourceforge.io/), formerly known as "PWGen for Windows", is available as free and open-source password generator for Windows. Generally, using a random generator available on the internet is not recommended.
 
 - (Optional) [regex](https://github.com/mrabarnett/mrab-regex) Python library for running `just optimize`. On most distros, you need to install some `python-regex` or `py3-regex` package, etc.
 

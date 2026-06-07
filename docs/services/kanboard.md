@@ -22,7 +22,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
 The playbook can install and configure [Kanboard](https://kanboard.org/) for you.
 
-Kanboard is a free and open source Kanban project management software.
+Kanboard is a free and open-source Kanban project management software.
 
 See the project's [documentation](https://docs.kanboard.org/) to learn what Kanboard does and why it might be useful to you.
 

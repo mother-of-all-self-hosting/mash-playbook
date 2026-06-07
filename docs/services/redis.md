@@ -12,7 +12,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
 The playbook can install and configure [Redis](https://redis.io/) for you.
 
-Redis is a free and open source, in-memory data store used by millions of developers as a database, cache, streaming engine, and message broker.
+Redis is a free and open-source, in-memory data store used by millions of developers as a database, cache, streaming engine, and message broker.
 
 See the project's [documentation](https://redis.io/docs/latest/) to learn what Redis does and why it might be useful to you.
 

@@ -24,7 +24,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
 The playbook can install and configure [WriteFreely](https://writefreely.org) for you.
 
-WriteFreely is free and open source software for easily publishing writing on the web.
+WriteFreely is free and open-source software for easily publishing writing on the web.
 
 See the project's [documentation](https://writefreely.org/docs) to learn what WriteFreely does and why it might be useful to you.
 

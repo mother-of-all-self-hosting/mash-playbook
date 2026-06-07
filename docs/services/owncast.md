@@ -25,7 +25,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
 The playbook can install and configure [Owncast](https://owncast.online) for you.
 
-Owncast is a free and open source live video and web chat server for use with existing popular broadcasting software.
+Owncast is a free and open-source live video and web chat server for use with existing popular broadcasting software.
 
 See the project's [documentation](https://owncast.online/docs/) to learn what Owncast does and why it might be useful to you.
 
