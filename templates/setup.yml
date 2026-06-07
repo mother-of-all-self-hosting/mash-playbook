@@ -598,6 +598,10 @@
     - role: galaxy/memos
     # /role-specific:memos
 
+    # role-specific:mermaid
+    - role: galaxy/mermaid
+    # /role-specific:mermaid
+
     # role-specific:minecraft
     - role: galaxy/minecraft
     # /role-specific:minecraft

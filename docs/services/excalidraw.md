@@ -93,3 +93,4 @@ See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-ex
 
 - [Docmost](docmost.md) — Collaborative wiki and documentation software
 - [Excalidraw collaboration server](excalidraw-room.md) — Collaboration server for Excalidraw instance
+- [Mermaid Live Editor](mermaid.md) — Flow chart and diagrams editor

@@ -156,6 +156,7 @@ Below is an exhaustive list of the free and open-source software for self-hostin
 | [Meilisearch](https://www.meilisearch.com) | Typo-tolerant fulltext search engine with a RESTful search API | [Link](services/meilisearch.md) |
 | [Memcached](https://memcached.org) | In-memory key-value store | [Link](services/memcached.md) |
 | [Memos](https://usememos.com/) | Markdown-native note-taking tool | [Link](services/memos.md) |
+| [Mermaid Live Editor](https://github.com/mermaid-js/mermaid-live-editor) | Flow chart and diagrams editor | [Link](services/mermaid.md) |
 | [Minecraft Server](https://docker-minecraft-server.readthedocs.io) | Java edition server for Minecraft, a popular voxel-based sandbox game | [Link](services/minecraft.md) |
 | [Miniflux](https://miniflux.app/) | Minimalist and opinionated feed reader | [Link](services/miniflux.md) |
 | [Misskey](https://misskey-hub.net/en/) | ActivityPub federated microblogging platform | [Link](services/misskey.md) |
