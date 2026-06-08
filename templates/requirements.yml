@@ -1009,7 +1009,7 @@
   name: wazuh
   activation_prefix: wazuh_
 - src: git+https://seed.radicle.garden/z3NoFEkNtQQjSGjLvweqwCFPbC59R.git
-  version: v2026.5.0.0-0
+  version: v2026.6.1.0-0
   name: weblate
   activation_prefix: weblate_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-wetty.git
