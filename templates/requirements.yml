@@ -269,7 +269,7 @@
   name: farmos
   activation_prefix: farmos_
 - src: git+https://seed.radicle.garden/zmszzm7ynZe8nt5ZwaLctssyJcNm.git
-  version: v1.12.1-0
+  version: v1.13.0-0
   name: feishin
   activation_prefix: feishin_
 - src: git+https://seed.radicle.garden/z3Fe49p3uVZpC43KdB5gDCTmr8u7Y.git
