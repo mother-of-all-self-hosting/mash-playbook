@@ -155,7 +155,7 @@ Adding the configuration below makes it possible for the Syncthing service to sy
 
 # Other Syncthing configuration …
 
-syncthing_container_additional_volumes:
+syncthing_container_additional_volumes_custom:
   - type: bind
     src: "{{ mash_playbook_base_path }}/storage/audiobookshelf"
     dst: /audiobookshelf
@@ -167,10 +167,6 @@ syncthing_container_additional_volumes:
 ########################################################################
 ```
 
-After restarting the services, you can add the directory `/audiobookshelf` to Syncthing for file synchronization between the server and your local machine, and specify the same path to the library on audiobookshelf as below, so that the audiobooks on your local machine will be synchronized and available on the audiobookshelf instance automatically:
-
-[<img src="../assets/audiobookshelf/library.webp" title="Details tab on the library's configuration" width="600" alt="Details tab on the library's configuration">](../assets/audiobookshelf/library.webp)
-
 ## Usage
 
 After running the command for installation, the audiobookshelf instance becomes available at the URL specified with `audiobookshelf_hostname`. With the configuration above, the service is hosted at `https://audiobookshelf.example.com`.
@@ -180,6 +176,12 @@ To get started, open the URL with a web browser to create an account. **Note tha
 See [this page](https://www.audiobookshelf.org/docs/) on the documentation about its usage.
 
 If you are looking for free public domain audiobooks which can be uploaded to your audiobookshelf instance, you might be interested in websites such as <https://librivox.org/>.
+
+### Adding the mounted directory to the library
+
+To add the mounted audiobook and podcast directory `/audiobookshelf` to the library, you need to specify its path on the library's details tab as below:
+
+[<img src="../assets/audiobookshelf/library.webp" title="Details tab on the library's configuration" width="600" alt="Details tab on the library's configuration">](../assets/audiobookshelf/library.webp)
 
 ### Configuring the mailer (optional)
 
