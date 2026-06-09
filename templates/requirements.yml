@@ -537,7 +537,7 @@
   name: mermaid
   activation_prefix: mermaid_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-minecraft.git
-  version: v2025.4.2-2
+  version: v2026.6.0-0
   name: minecraft
   activation_prefix: minecraft_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-miniflux.git
