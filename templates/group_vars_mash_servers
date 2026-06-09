@@ -11722,6 +11722,8 @@ nextcloud_systemd_required_services_list_auto: |
 
 nextcloud_systemd_wanted_services_list_auto: |
   {{
+    ([eurooffice_identifier ~ '.service'] if eurooffice_enabled | default(false) else [])
+    +
     ([exim_relay_identifier ~ '.service'] if exim_relay_enabled | default(false) and nextcloud_environment_variables_smtp_host == exim_relay_identifier else [])
     +
     ([lldap_identifier ~ '.service'] if lldap_enabled | default(false) and nextcloud_lldap_enabled else [])
@@ -11759,6 +11761,11 @@ nextcloud_database_type: "{{ 'postgres' if postgres_enabled | default(false) els
 nextcloud_app_richdocuments_wopi_client_url: "{{ collabora_online_url if collabora_online_enabled }}"
 nextcloud_app_richdocuments_wopi_client_network: "{{ collabora_online_container_network }}"
 # /role-specific:collabora_online
+
+# role-specific:eurooffice
+nextcloud_app_eurooffice_documentserverurl: "{{ eurooffice_scheme }}://{{ eurooffice_hostname }}"
+nextcloud_app_eurooffice_jwt_secret: "{{ eurooffice_environment_variables_jwt_secret }}"
+# /role-specific:eurooffice
 
 # role-specific:exim_relay
 nextcloud_environment_variables_smtp_host: "{{ exim_relay_identifier if exim_relay_enabled else '' }}"
