@@ -350,11 +350,27 @@ nextcloud_lldap_enabled: false
 
 ### Configuring Nextcloud Office application
 
-To use the [Nextcloud Office application](https://apps.nextcloud.com/apps/richdocuments), it is necessary to set up a WOPI (Web Application Open Platform Interface) client such as [Collabora Online Development Edition (CODE)](https://www.collaboraonline.com/code/). This playbook supports CODE, and you can set up a CODE instance by enabling it on `vars.yml`. You can follow the [documentation](code.md) to install it.
+To use the [Nextcloud Office application](https://apps.nextcloud.com/apps/eurooffice), it is necessary to set up an [Euro-Office](https://github.com/Euro-Office/DocumentServer) instance. This playbook supports it, and you can set it up by enabling it on `vars.yml`. You can follow the [documentation](eurooffice.md) to install it.
+
+By default, this playbook is configured to automatically integrate the Euro-Office instance with the Nextcloud instance which this playbook manages, if both of them are enabled.
+
+After installing both Euro-Office and Nextcloud, run this command to install and configure the Nextcloud Office application:
+
+```sh
+just run-tags install-nextcloud-app-eurooffice
+```
+
+You should then be able to open any document (`.doc`, `.odt`, `.pdf`, etc.) and create new ones in Nextcloud Files with the Nextcloud Office application.
+
+Open the URL `https://mash.example.com/nextcloud/settings/admin/eurooffice` to configure the application. Refer to [this page](https://github.com/Euro-Office/eurooffice-nextcloud/blob/main/README.md#common-settings) for details about available settings.
+
+### Configuring Nextcloud Office (Collabora) application
+
+To use the [Nextcloud Office (Collabora) application](https://apps.nextcloud.com/apps/richdocuments), it is necessary to set up a WOPI (Web Application Open Platform Interface) client such as [Collabora Online Development Edition (CODE)](https://www.collaboraonline.com/code/). This playbook supports CODE, and you can set up a CODE instance by enabling it on `vars.yml`. You can follow the [documentation](code.md) to install it.
 
 By default, this playbook is configured to automatically integrate the CODE instance with the Nextcloud instance which this playbook manages, if both of them are enabled.
 
-After installing both CODE and Nextcloud, run this command to install and configure the Nextcloud Office application:
+After installing both CODE and Nextcloud, run this command to install and configure the Nextcloud Office (Collabora) application:
 
 ```sh
 just run-tags install-nextcloud-app-richdocuments
@@ -362,7 +378,7 @@ just run-tags install-nextcloud-app-richdocuments
 
 Open the URL `https://mash.example.com/nextcloud/settings/admin/richdocuments` to have the instance set up the connection with the CODE instance.
 
-You should then be able to open any document (`.doc`, `.odt`, `.pdf`, etc.) and create new ones in Nextcloud Files with the Nextcloud Office application.
+You should then be able to open any document (`.doc`, `.odt`, `.pdf`, etc.) and create new ones in Nextcloud Files with the Nextcloud Office (Collabora) application.
 
 >[!NOTE]
 > By default, several private IPv4 networks are whitelisted to connect to the WOPI API (document serving API). If your CODE instance does not live on the same server as Nextcloud, you may need to adjust the list of networks. If necessary, redefine the `nextcloud_app_richdocuments_wopi_client_allowlist` environment variable on `vars.yml`.
