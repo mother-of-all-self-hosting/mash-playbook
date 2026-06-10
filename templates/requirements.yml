@@ -220,6 +220,10 @@
   version: v2025-05-14b-3
   name: dokuwiki
   activation_prefix: dokuwiki_
+- src: git+https://iris.radicle.network/z2EKWswSBFJgUQmxEBzi7sb8QyS2r.git
+  version: v0.1.75-0
+  name: donetick
+  activation_prefix: donetick_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-duplicati.git
   version: v2.3.0-1
   name: duplicati

@@ -294,6 +294,10 @@
     - role: galaxy/dokuwiki
     # /role-specific:dokuwiki
 
+    # role-specific:donetick
+    - role: galaxy/donetick
+    # /role-specific:donetick
+
     # role-specific:duplicati
     - role: galaxy/duplicati
     # /role-specific:duplicati
