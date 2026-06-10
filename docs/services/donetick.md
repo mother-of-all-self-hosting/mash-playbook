@@ -18,18 +18,18 @@ SPDX-FileCopyrightText: 2024-2026 Suguru Hirahara
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 
-# PdfDing
+# Donetick
 
-The playbook can install and configure [PdfDing](https://pdfding.com/) for you.
+The playbook can install and configure [Donetick](https://donetick.com/) for you.
 
-PdfDing is a self-hosted PDF manager, viewer and editor, which offers a seamless user experience on multiple devices.
+Donetick is a self-hosted PDF manager, viewer and editor, which offers a seamless user experience on multiple devices.
 
-See the project's [documentation](https://docs.pdfding.com/) to learn what PdfDing does and why it might be useful to you.
+See the project's [documentation](https://docs.donetick.com/) to learn what Donetick does and why it might be useful to you.
 
-For details about configuring the [Ansible role for PdfDing](https://radicle.network/nodes/iris.radicle.network/rad%3Az2cZCZP8Mu4LYMbHKaTdnP1otc46L), you can check them via:
+For details about configuring the [Ansible role for Donetick](https://radicle.network/nodes/iris.radicle.network/rad%3Az2cZCZP8Mu4LYMbHKaTdnP1otc46L), you can check them via:
 
-- 🌐 [the role's documentation](https://radicle.network/nodes/iris.radicle.network/rad%3Az2cZCZP8Mu4LYMbHKaTdnP1otc46L/tree/docs/configuring-pdfding.md) online
-- 📁 `roles/galaxy/pdfding/docs/configuring-pdfding.md` locally, if you have [fetched the Ansible roles](../installing.md)
+- 🌐 [the role's documentation](https://radicle.network/nodes/iris.radicle.network/rad%3Az2cZCZP8Mu4LYMbHKaTdnP1otc46L/tree/docs/configuring-donetick.md) online
+- 📁 `roles/galaxy/donetick/docs/configuring-donetick.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 ## Dependencies
 
@@ -46,38 +46,38 @@ To enable this service, add the following configuration to your `vars.yml` file 
 ```yaml
 ########################################################################
 #                                                                      #
-# pdfding                                                              #
+# donetick                                                             #
 #                                                                      #
 ########################################################################
 
-pdfding_enabled: true
+donetick_enabled: true
 
-pdfding_hostname: pdfding.example.com
+donetick_hostname: donetick.example.com
 
 ########################################################################
 #                                                                      #
-# /pdfding                                                             #
+# /donetick                                                            #
 #                                                                      #
 ########################################################################
 ```
 
-**Note**: hosting PdfDing under a subpath (by configuring the `pdfding_path_prefix` variable) does not seem to be possible due to PdfDing's technical limitations.
+**Note**: hosting Donetick under a subpath (by configuring the `donetick_path_prefix` variable) does not seem to be possible due to Donetick's technical limitations.
 
 ### Select database to use
 
-It is necessary to select a database used by the service from Postgres and SQLite. See [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az2cZCZP8Mu4LYMbHKaTdnP1otc46L/tree/docs/configuring-pdfding.md#specify-database) on the role's documentation for details.
+It is necessary to select a database used by the service from Postgres and SQLite. See [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az2cZCZP8Mu4LYMbHKaTdnP1otc46L/tree/docs/configuring-donetick.md#specify-database) on the role's documentation for details.
 
 ### Enabling signing up
 
 By default account registration for the service is disabled. To enable it, add the following configuration to your `vars.yml` file:
 
 ```yaml
-pdfding_environment_variables_disable_user_signup: false
+donetick_environment_variables_disable_user_signup: false
 ```
 
 ### Configuring the mailer (optional)
 
-On PdfDing you can set up a mailer for functions such as password recovery. If you enable the [exim-relay](exim-relay.md) service in your inventory configuration, the playbook will automatically configure it as a mailer for the service.
+On Donetick you can set up a mailer for functions such as password recovery. If you enable the [exim-relay](exim-relay.md) service in your inventory configuration, the playbook will automatically configure it as a mailer for the service.
 
 To actually have the service use (and get messages sent through the exim-relay service), you will need to adjust settings on the service's UI after the service is installed.
 
@@ -86,12 +86,12 @@ To actually have the service use (and get messages sent through the exim-relay s
 
 ## Usage
 
-After installation, the PdfDing instance becomes available at the URL specified with `pdfding_hostname`. With the configuration above, the service is hosted at `https://pdfding.example.com`.
+After installation, the Donetick instance becomes available at the URL specified with `donetick_hostname`. With the configuration above, the service is hosted at `https://donetick.example.com`.
 
 To get started, open the URL with a web browser to create an account.
 
-Since account registration is disabled by default, you need to enable it first by setting `pdfding_environment_variables_disable_user_signup` to `false` temporarily in order to create your own account.
+Since account registration is disabled by default, you need to enable it first by setting `donetick_environment_variables_disable_user_signup` to `false` temporarily in order to create your own account.
 
 ## Troubleshooting
 
-See [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az2cZCZP8Mu4LYMbHKaTdnP1otc46L/tree/docs/configuring-pdfding.md#troubleshooting) on the role's documentation for details.
+See [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az2cZCZP8Mu4LYMbHKaTdnP1otc46L/tree/docs/configuring-donetick.md#troubleshooting) on the role's documentation for details.
