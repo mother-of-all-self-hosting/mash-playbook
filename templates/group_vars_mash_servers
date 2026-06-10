@@ -363,6 +363,11 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
     {{ ({'name': (dokuwiki_identifier + '.service'), 'priority': 2000, 'restart_necessary': (dokuwiki_restart_necessary | bool), 'groups': ['mash', 'dokuwiki']} if dokuwiki_enabled else omit) }}
   # /role-specific:dokuwiki
 
+  # role-specific:donetick
+  - |-
+    {{ ({'name': (donetick_identifier + '.service'), 'priority': 2000, 'restart_necessary': (donetick_restart_necessary | bool), 'groups': ['mash', 'donetick']} if donetick_enabled else omit) }}
+  # /role-specific:donetick
+
   # role-specific:duplicati
   - |-
     {{ ({'name': (duplicati_identifier + '.service'), 'priority': 2000, 'restart_necessary': (duplicati_restart_necessary | bool), 'groups': ['mash', 'duplicati']} if duplicati_enabled else omit) }}
@@ -1559,6 +1564,17 @@ mash_playbook_postgres_managed_databases_auto_itemized:
       } if docuseal_enabled and (docuseal_database_postgres_hostname == postgres_connection_hostname or docuseal_database_postgres_socket_enabled) and docuseal_database_type == 'postgres' else omit)
     }}
   # /role-specific:docuseal
+
+  # role-specific:donetick
+  - |-
+    {{
+      ({
+        'name': donetick_database_name,
+        'username': donetick_database_username,
+        'password': donetick_database_password,
+      } if donetick_enabled and donetick_database_hostname == postgres_connection_hostname and donetick_database_type == 'postgres' else omit)
+    }}
+  # /role-specific:donetick
 
   # role-specific:ergo
   - |-
@@ -5280,6 +5296,73 @@ dokuwiki_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_pri
 #                                                                      #
 ########################################################################
 # /role-specific:dokuwiki
+
+
+
+# role-specific:donetick
+########################################################################
+#                                                                      #
+# donetick                                                             #
+#                                                                      #
+########################################################################
+
+donetick_enabled: false
+
+donetick_identifier: "{{ mash_playbook_service_identifier_prefix }}donetick"
+
+donetick_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}donetick"
+
+donetick_uid: "{{ mash_playbook_uid }}"
+donetick_gid: "{{ mash_playbook_gid }}"
+
+donetick_systemd_required_services_list_auto: |
+  {{
+    ([postgres_identifier ~ '.service'] if postgres_enabled and donetick_database_hostname == postgres_connection_hostname and donetick_database_type == 'postgres' else [])
+  }}
+
+donetick_systemd_wanted_services_list_auto: |
+  {{
+    ([exim_relay_identifier ~ '.service'] if exim_relay_enabled | default(false) and donetick_config_email_host == exim_relay_identifier else [])
+  }}
+
+donetick_container_additional_networks_auto: |
+  {{
+    ([exim_relay_container_network] if exim_relay_enabled | default(false) and donetick_config_email_host == exim_relay_identifier and donetick_container_network != exim_relay_container_network else [])
+    +
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+    +
+    ([postgres_container_network] if postgres_enabled and donetick_database_hostname == postgres_connection_hostname and donetick_container_network != postgres_container_network and donetick_database_type == 'postgres' else [])
+  }}
+
+donetick_config_jwt_secret: "{{ (mash_playbook_generic_secret_key + ':jwt.donetick') | hash('sha512') | to_uuid }}"
+
+donetick_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+donetick_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+
+# role-specific:exim_relay
+donetick_config_email_host: "{{ exim_relay_identifier if exim_relay_enabled else '' }}"
+donetick_config_email_port: "{{ 8025 if exim_relay_enabled else '587' }}"
+donetick_config_email_email: "{{ exim_relay_sender_address if exim_relay_enabled else '' }}"
+# /role-specific:exim_relay
+
+# role-specific:postgres
+donetick_database_hostname: "{{ postgres_connection_hostname if postgres_enabled else '' }}"
+donetick_database_port: "{{ postgres_connection_port if postgres_enabled else '5432' }}"
+donetick_database_username: "{{ donetick_identifier }}"
+donetick_database_password: "{{ (mash_playbook_generic_secret_key + ':db.donetick') | hash('sha512') | to_uuid }}"
+# /role-specific:postgres
+
+# role-specific:traefik
+donetick_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
+donetick_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
+# /role-specific:traefik
+
+########################################################################
+#                                                                      #
+# /donetick                                                            #
+#                                                                      #
+########################################################################
+# /role-specific:donetick
 
 
 
