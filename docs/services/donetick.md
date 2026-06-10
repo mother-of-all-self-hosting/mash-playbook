@@ -95,3 +95,7 @@ Since account registration is disabled by default, you need to enable it first b
 ## Troubleshooting
 
 See [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az2EKWswSBFJgUQmxEBzi7sb8QyS2r/tree/docs/configuring-donetick.md#troubleshooting) on the role's documentation for details.
+
+## Related services
+
+- [Vikunja](vikunja.md) — To-do app

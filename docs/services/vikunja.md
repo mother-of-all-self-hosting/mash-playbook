@@ -308,3 +308,7 @@ Alternatively, you can run the playbook with the `create-user-vikunja` or `ensur
 ## Troubleshooting
 
 See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-vikunja/blob/main/docs/configuring-vikunja.md#troubleshooting) on the role's documentation for details.
+
+## Related services
+
+- [Donetick](donetick.md) — Tasks and chores manager
