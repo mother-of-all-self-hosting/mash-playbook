@@ -22,13 +22,13 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
 The playbook can install and configure [Donetick](https://donetick.com/) for you.
 
-Donetick is a self-hosted PDF manager, viewer and editor, which offers a seamless user experience on multiple devices.
+Donetick is an application for managing tasks and chores.
 
 See the project's [documentation](https://docs.donetick.com/) to learn what Donetick does and why it might be useful to you.
 
-For details about configuring the [Ansible role for Donetick](https://radicle.network/nodes/iris.radicle.network/rad%3Az2cZCZP8Mu4LYMbHKaTdnP1otc46L), you can check them via:
+For details about configuring the [Ansible role for Donetick](https://radicle.network/nodes/iris.radicle.network/rad%3Az2EKWswSBFJgUQmxEBzi7sb8QyS2r), you can check them via:
 
-- 🌐 [the role's documentation](https://radicle.network/nodes/iris.radicle.network/rad%3Az2cZCZP8Mu4LYMbHKaTdnP1otc46L/tree/docs/configuring-donetick.md) online
+- 🌐 [the role's documentation](https://radicle.network/nodes/iris.radicle.network/rad%3Az2EKWswSBFJgUQmxEBzi7sb8QyS2r/tree/docs/configuring-donetick.md) online
 - 📁 `roles/galaxy/donetick/docs/configuring-donetick.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 ## Dependencies
@@ -65,14 +65,14 @@ donetick_hostname: donetick.example.com
 
 ### Select database to use
 
-It is necessary to select a database used by the service from Postgres and SQLite. See [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az2cZCZP8Mu4LYMbHKaTdnP1otc46L/tree/docs/configuring-donetick.md#specify-database) on the role's documentation for details.
+It is necessary to select a database used by the service from Postgres and SQLite. See [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az2EKWswSBFJgUQmxEBzi7sb8QyS2r/tree/docs/configuring-donetick.md#specify-database) on the role's documentation for details.
 
 ### Enabling signing up
 
 By default account registration for the service is disabled. To enable it, add the following configuration to your `vars.yml` file:
 
 ```yaml
-donetick_environment_variables_disable_user_signup: false
+donetick_config_is_user_creation_disabled: false
 ```
 
 ### Configuring the mailer (optional)
@@ -90,8 +90,8 @@ After installation, the Donetick instance becomes available at the URL specified
 
 To get started, open the URL with a web browser to create an account.
 
-Since account registration is disabled by default, you need to enable it first by setting `donetick_environment_variables_disable_user_signup` to `false` temporarily in order to create your own account.
+Since account registration is disabled by default, you need to enable it first by setting `donetick_config_is_user_creation_disabled` to `false` temporarily in order to create your own account.
 
 ## Troubleshooting
 
-See [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az2cZCZP8Mu4LYMbHKaTdnP1otc46L/tree/docs/configuring-donetick.md#troubleshooting) on the role's documentation for details.
+See [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az2EKWswSBFJgUQmxEBzi7sb8QyS2r/tree/docs/configuring-donetick.md#troubleshooting) on the role's documentation for details.
