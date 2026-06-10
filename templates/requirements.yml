@@ -97,7 +97,7 @@
   name: bitmagnet
   activation_prefix: bitmagnet_
 - src: git+https://seed.radicle.garden/zQdRwQ2s3FG5BZUjvSn1GYXbzVmw.git
-  version: v26.5.0-0
+  version: v26.5.1-0
   name: bookstack
   activation_prefix: bookstack_
 - src: git+https://seed.radicle.garden/zxNS7XeayGimb4WFfvqmasiZZC3v.git
