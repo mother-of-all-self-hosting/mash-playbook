@@ -78,6 +78,7 @@ Below is an exhaustive list of the free and open-source software for self-hostin
 | [Docmost](https://docmost.com/) | Collaborative wiki and documentation software | [Link](services/docmost.md) |
 | [DocuSeal](https://github.com/docusealco/docuseal) | Digital document signing and processing | [Link](services/docuseal.md) |
 | [DokuWiki](https://dokuwiki.org/) | File-based wiki engine without database requirement | [Link](services/dokuwiki.md) |
+| [Donetick](https://donetick.com/) | Tasks and chores manager | [Link](services/donetick.md) |
 | [Duplicati](https://duplicati.com) | Backup software that securely stores encrypted, incremental, compressed backups on local storage, cloud storage services and remote file servers | [Link](services/duplicati.md) |
 | [echoip](https://github.com/mpolden/echoip) | Look up your IP address | [Link](services/echoip.md) |
 | [Endlessh-go](https://github.com/shizunge/endlessh-go) | A Golang implementation of Endlessh, an SSH tarpit | [Link](services/endlessh.md) |
