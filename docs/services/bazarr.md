@@ -69,7 +69,7 @@ bazarr_hostname: bazarr.example.com
 
 ### Configuring HTTP Basic authentication (optional)
 
-Since there does not exist an authentication system on the web interface, the HTTP Basic authentication on Traefik can be enabled for it. Refer to [ansible-role-bazarr](https://github.com/sudo-Tiz/ansible-role-bazarr)'s [`defaults/main.yml`](https://github.com/sudo-Tiz/ansible-role-bazarr/blob/master/defaults/main.yml) file for details about how to set it up.
+Since there does not exist an authentication system on the web interface, the HTTP Basic authentication on Traefik can be enabled for it. Refer to [ansible-role-bazarr](https://github.com/mother-of-all-self-hosting/ansible-role-bazarr)'s [`defaults/main.yml`](https://github.com/mother-of-all-self-hosting/ansible-role-bazarr/blob/main/defaults/main.yml) file for details about how to set it up.
 
 ## Usage
 
