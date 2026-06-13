@@ -31,7 +31,7 @@ See the project's [documentation](https://github.com/FlareSolverr/FlareSolverr/b
 
 This service requires the following other services:
 
-- [Traefik](traefik.md) reverse-proxy server
+- (optional) [Traefik](traefik.md) — Reverse-proxy server for exposing FlareSolverr publicly
 
 ## Configuration
 
