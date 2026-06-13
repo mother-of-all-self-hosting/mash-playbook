@@ -337,7 +337,7 @@
   name: gokapi
   activation_prefix: gokapi_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-gotenberg
-  version: v8.33.0-0
+  version: v8.34.0-0
   name: gotenberg
   activation_prefix: gotenberg_
 - src: git+https://seed.radicle.garden/zFVv3koKtheJTTwPSjF3J6DajePK.git
