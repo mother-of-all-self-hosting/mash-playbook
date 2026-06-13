@@ -1,7 +1,20 @@
 <!--
+SPDX-FileCopyrightText: 2020 Aaron Raimist
+SPDX-FileCopyrightText: 2020 Chris van Dijk
+SPDX-FileCopyrightText: 2020 Dominik Zajac
+SPDX-FileCopyrightText: 2020 Mickaël Cornière
+SPDX-FileCopyrightText: 2020-2024 MDAD project contributors
+SPDX-FileCopyrightText: 2020-2024 Slavi Pantaleev
+SPDX-FileCopyrightText: 2022 François Darveau
+SPDX-FileCopyrightText: 2022 Julian Foad
+SPDX-FileCopyrightText: 2022 Warren Bailey
+SPDX-FileCopyrightText: 2023 Antonis Christofides
+SPDX-FileCopyrightText: 2023 Felix Stupp
+SPDX-FileCopyrightText: 2023 Julian-Samuel Gebühr
+SPDX-FileCopyrightText: 2023 Pierre 'McFly' Marty
+SPDX-FileCopyrightText: 2024-2026 Suguru Hirahara
 SPDX-FileCopyrightText: 2025 MASH project contributors
 SPDX-FileCopyrightText: 2025 sudo-Tiz
-SPDX-FileCopyrightText: 2026 Suguru Hirahara
 
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->
@@ -40,13 +53,17 @@ flaresolverr_enabled: true
 ########################################################################
 ```
 
+### Expose the instance publicly (optional)
+
+By default, the FlareSolverr instance is not exposed externally, as it is mainly intended to be used in the internal network.
+
+To expose it publicly, add the following configuration to your `vars.yml` file (adapt to your needs):
+
+```yaml
+# The hostname at which FlareSolverr is served.
+flaresolverr_hostname: "flaresolverr.example.com"
+```
+
 ## Usage
 
-After running the command for installation, the FlareSolverr instance becomes available and starts running on the server, listening to the specified port (port 8191 by default) and is reachable from other services.
-
-If you need the container to be accessible from outside, you can use `flaresolverr_container_http_bind_port` or `flaresolverr_hostname`.
-
-> **Note:**
-> The `flaresolverr_path_prefix` variable can be adjusted to host under a subpath (e.g., `flaresolverr_path_prefix: /flaresolverr`), but this configuration has not been tested yet.
-
-For additional configuration options, refer to the [ansible-role-flaresolverr](https://github.com/sudo-Tiz/ansible-role-flaresolverr)'s `defaults/main.yml` file.
+After running the command for installation, FlareSolverr becomes available internally to other services on the same network. If the service is exposed to the internet, it becomes available at the URL specified with `flaresolverr_hostname`. With the configuration above, the service is hosted at `https://flaresolverr.example.com`.
