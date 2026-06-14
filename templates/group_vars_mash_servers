@@ -443,6 +443,11 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
     {{ ({'name': (filebrowser_quantum_identifier + '.service'), 'priority': 2000, 'restart_necessary': (filebrowser_quantum_restart_necessary | bool), 'groups': ['mash', 'filebrowser-quantum']} if filebrowser_quantum_enabled else omit) }}
   # /role-specific:filebrowser_quantum
 
+  # role-specific:filegator
+  - |-
+    {{ ({'name': (filegator_identifier + '.service'), 'priority': 2000, 'restart_necessary': (filegator_restart_necessary | bool), 'groups': ['mash', 'filegator']} if filegator_enabled else omit) }}
+  # /role-specific:filegator
+
   # role-specific:flaresolverr
   - |-
     {{ ({'name': (flaresolverr_identifier + '.service'), 'priority': 2000, 'restart_necessary': (flaresolverr_restart_necessary | bool), 'groups': ['mash', 'flaresolverr']} if flaresolverr_enabled else omit) }}
@@ -6078,6 +6083,45 @@ filebrowser_quantum_container_labels_traefik_tls_certResolver: "{{ traefik_certR
 #                                                                      #
 ########################################################################
 # /role-specific:filebrowser_quantum
+
+
+
+# role-specific:filegator
+########################################################################
+#                                                                      #
+# filegator                                                            #
+#                                                                      #
+########################################################################
+
+filegator_enabled: false
+
+filegator_identifier: "{{ mash_playbook_service_identifier_prefix }}filegator"
+
+filegator_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}filegator"
+
+# Run as www-data:www-data
+filegator_uid: 33
+filegator_gid: 33
+
+filegator_container_additional_networks_auto: |
+  {{
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+  }}
+
+filegator_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+filegator_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+
+# role-specific:traefik
+filegator_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
+filegator_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
+# /role-specific:traefik
+
+########################################################################
+#                                                                      #
+# /filegator                                                           #
+#                                                                      #
+########################################################################
+# /role-specific:filegator
 
 
 
