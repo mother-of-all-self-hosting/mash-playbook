@@ -20,18 +20,18 @@ SPDX-FileCopyrightText: 2024 Philipp Homann
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 
-# File Browser
+# FileGator
 
-The playbook can install and configure [File Browser](https://filebrowser.org/) for you.
+The playbook can install and configure [FileGator](https://filegator.org/) for you.
 
-File Browser is a free self-hosted web-based file manager.
+FileGator is a free self-hosted web-based file manager.
 
-See the project's [documentation](https://filebrowser.org/) to learn what File Browser does and why it might be useful to you.
+See the project's [documentation](https://filegator.org/) to learn what FileGator does and why it might be useful to you.
 
-For details about configuring the [Ansible role for File Browser](https://radicle.network/nodes/iris.radicle.network/rad%3Az318zbpe2RNjFqVzXqPoDDJvvohbw), you can check them via:
+For details about configuring the [Ansible role for FileGator](https://radicle.network/nodes/iris.radicle.network/rad%3Az318zbpe2RNjFqVzXqPoDDJvvohbw), you can check them via:
 
-- 🌐 [the role's documentation](https://radicle.network/nodes/iris.radicle.network/rad%3Az318zbpe2RNjFqVzXqPoDDJvvohbw/tree/docs/configuring-filebrowser.md) online
-- 📁 `roles/galaxy/filebrowser/docs/configuring-filebrowser.md` locally, if you have [fetched the Ansible roles](../installing.md)
+- 🌐 [the role's documentation](https://radicle.network/nodes/iris.radicle.network/rad%3Az318zbpe2RNjFqVzXqPoDDJvvohbw/tree/docs/configuring-filegator.md) online
+- 📁 `roles/galaxy/filegator/docs/configuring-filegator.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 ## Dependencies
 
@@ -46,43 +46,43 @@ To enable this service, add the following configuration to your `vars.yml` file 
 ```yaml
 ########################################################################
 #                                                                      #
-# filebrowser                                                          #
+# filegator                                                            #
 #                                                                      #
 ########################################################################
 
-filebrowser_enabled: true
+filegator_enabled: true
 
-filebrowser_hostname: filebrowser.example.com
+filegator_hostname: filegator.example.com
 
 ########################################################################
 #                                                                      #
-# /filebrowser                                                         #
+# /filegator                                                           #
 #                                                                      #
 ########################################################################
 ```
 
-**Note**: hosting File Browser under a subpath (by configuring the `filebrowser_path_prefix` variable) does not seem to be possible due to File Browser's technical limitations.
+**Note**: hosting FileGator under a subpath (by configuring the `filegator_path_prefix` variable) does not seem to be possible due to FileGator's technical limitations.
 
 ## Usage
 
-After running the command for installation, the File Browser instance becomes available at the URL specified with `filebrowser_hostname`. With the configuration above, the service is hosted at `https://filebrowser.example.com`.
+After running the command for installation, the FileGator instance becomes available at the URL specified with `filegator_hostname`. With the configuration above, the service is hosted at `https://filegator.example.com`.
 
 To get started, open the URL with a web browser to log in to the instance with the administrator account (`admin`).
 
 The initial password of the administrator has been logged to the console logs during the first run.
 
-You can check it directly by logging in to the server with SSH and running `journalctl -fu filebrowser` (or how you/your playbook named the service, e.g. `mash-filebrowser`). You also can use the command below to check the line on the log to find the initial password:
+You can check it directly by logging in to the server with SSH and running `journalctl -fu filegator` (or how you/your playbook named the service, e.g. `mash-filegator`). You also can use the command below to check the line on the log to find the initial password:
 
 ```sh
-ansible-playbook -i inventory/hosts setup.yml --tags=check-initial-password-filebrowser
+ansible-playbook -i inventory/hosts setup.yml --tags=check-initial-password-filegator
 ```
 
 You can create additional users (admin-privileged or not) after logging in via the web frontend.
 
 ## Troubleshooting
 
-See [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az318zbpe2RNjFqVzXqPoDDJvvohbw/tree/docs/configuring-filebrowser.md#troubleshooting) on the role's documentation for details.
+See [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az318zbpe2RNjFqVzXqPoDDJvvohbw/tree/docs/configuring-filegator.md#troubleshooting) on the role's documentation for details.
 
 ## Related services
 
-- [FileBrowser Quantum](filebrowser-quantum.md) — Web-based file manager
+- [FileBrowser Quantum](filegator-quantum.md) — Web-based file manager
