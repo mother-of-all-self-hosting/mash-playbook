@@ -94,6 +94,7 @@ Below is an exhaustive list of the free and open-source software for self-hostin
 | [Fider](https://github.com/getfider/fider) | Feedback portal for feature requests and suggestions | [Link](services/fider.md) |
 | [File Browser](https://filebrowser.org/) | Web-based file manager | [Link](services/filebrowser.md) |
 | [FileBrowser Quantum](https://filebrowserquantum.com/) | Web-based file manager | [Link](services/filebrowser-quantum.md) |
+| [FileGator](https://filegator.io/) | Web-based file manager | [Link](services/filegator.md) |
 | [FlareSolverr](https://github.com/FlareSolverr/FlareSolverr) | A proxy server to bypass Cloudflare protection | [Link](services/flaresolverr.md) |
 | [flatnotes](https://flatnotes.io/) | Database-less note taking web app that utilises a flat folder of markdown files for storage | [Link](services/flatnotes.md) |
 | [FMD Server](https://gitlab.com/fmd-foss/fmd-server) | Official server for FMD (FindMyDevice) | [Link](services/fmd-server.md) |
