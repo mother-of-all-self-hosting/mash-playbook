@@ -95,4 +95,5 @@ See [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az3AL
 - [authentik](authentik.md) — Identity Provider focused on flexibility and versatility
 - [Euro-Office](eurooffice.md) — Online office suite comprising viewers and editors
 - [File Browser](filebrowser.md) — Web-based file manager
+- [FileGator](filegator.md) — Web-based file manager
 - [Pocket ID](pocket-id.md) — OIDC provider for passkey-only authentication

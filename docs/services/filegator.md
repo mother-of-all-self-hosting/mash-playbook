@@ -73,4 +73,5 @@ See [this section](https://radicle.network/nodes/iris.radicle.network/rad%3AzBuF
 
 ## Related services
 
-- [FileBrowser Quantum](filegator-quantum.md) — Web-based file manager
+- [File Browser](filebrowser.md) — Web-based file manager
+- [FileBrowser Quantum](filebrowser-quantum.md) — Web-based file manager
