@@ -22,15 +22,15 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
 # FileGator
 
-The playbook can install and configure [FileGator](https://filegator.org/) for you.
+The playbook can install and configure [FileGator](https://filegator.io/) for you.
 
 FileGator is a free self-hosted web-based file manager.
 
-See the project's [documentation](https://filegator.org/) to learn what FileGator does and why it might be useful to you.
+See the project's [documentation](https://docs.filegator.io/) to learn what FileGator does and why it might be useful to you.
 
-For details about configuring the [Ansible role for FileGator](https://radicle.network/nodes/iris.radicle.network/rad%3Az318zbpe2RNjFqVzXqPoDDJvvohbw), you can check them via:
+For details about configuring the [Ansible role for FileGator](https://radicle.network/nodes/iris.radicle.network/rad%3AzBuFgpA5FBmUEcLEXHY9ZBVGpqDM), you can check them via:
 
-- 🌐 [the role's documentation](https://radicle.network/nodes/iris.radicle.network/rad%3Az318zbpe2RNjFqVzXqPoDDJvvohbw/tree/docs/configuring-filegator.md) online
+- 🌐 [the role's documentation](https://radicle.network/nodes/iris.radicle.network/rad%3AzBuFgpA5FBmUEcLEXHY9ZBVGpqDM/tree/docs/configuring-filegator.md) online
 - 📁 `roles/galaxy/filegator/docs/configuring-filegator.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 ## Dependencies
@@ -61,27 +61,15 @@ filegator_hostname: filegator.example.com
 ########################################################################
 ```
 
-**Note**: hosting FileGator under a subpath (by configuring the `filegator_path_prefix` variable) does not seem to be possible due to FileGator's technical limitations.
-
 ## Usage
 
 After running the command for installation, the FileGator instance becomes available at the URL specified with `filegator_hostname`. With the configuration above, the service is hosted at `https://filegator.example.com`.
 
-To get started, open the URL with a web browser to log in to the instance with the administrator account (`admin`).
-
-The initial password of the administrator has been logged to the console logs during the first run.
-
-You can check it directly by logging in to the server with SSH and running `journalctl -fu filegator` (or how you/your playbook named the service, e.g. `mash-filegator`). You also can use the command below to check the line on the log to find the initial password:
-
-```sh
-ansible-playbook -i inventory/hosts setup.yml --tags=check-initial-password-filegator
-```
-
-You can create additional users (admin-privileged or not) after logging in via the web frontend.
+To get started, open the URL with a web browser, and log in to the instance with the administrator account credentials. The default login credentials can be checked at <https://github.com/filegator/filegator/blob/master/README.md>. **After logging in, make sure to change the credentials.**
 
 ## Troubleshooting
 
-See [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az318zbpe2RNjFqVzXqPoDDJvvohbw/tree/docs/configuring-filegator.md#troubleshooting) on the role's documentation for details.
+See [this section](https://radicle.network/nodes/iris.radicle.network/rad%3AzBuFgpA5FBmUEcLEXHY9ZBVGpqDM/tree/docs/configuring-filegator.md#troubleshooting) on the role's documentation for details.
 
 ## Related services
 
