@@ -354,6 +354,10 @@
     - role: galaxy/filebrowser_quantum
     # /role-specific:filebrowser_quantum
 
+    # role-specific:filegator
+    - role: galaxy/filegator
+    # /role-specific:filegator
+
     # role-specific:flaresolverr
     - role: galaxy/flaresolverr
     # /role-specific:flaresolverr
