@@ -11279,7 +11279,7 @@ mobilizon_environment_variables_secret_key: "{{ (mash_playbook_generic_secret_ke
 # role-specific:exim_relay
 mobilizon_environment_variables_email_smtp_server: "{{ exim_relay_identifier if exim_relay_enabled else '' }}"
 mobilizon_environment_variables_email_smtp_port: 8025
-mobilizon_environment_variables_email_smtp_ssl: "{{ false if exim_relay_enabled }}"
+mobilizon_environment_variables_email_smtp_ssl: "{{ false if exim_relay_enabled else true }}"
 mobilizon_environment_variables_email_smtp_tls: "{{ 'never' if exim_relay_enabled }}"
 mobilizon_environment_variables_instance_email: "{{ exim_relay_sender_address if exim_relay_enabled else '' }}"
 # /role-specific:exim_relay
@@ -12999,7 +12999,7 @@ papra_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyab
 papra_environment_variables_emails_driver: "{{ 'smtp' if exim_relay_enabled }}"
 papra_environment_variables_smtp_host: "{{ exim_relay_identifier if exim_relay_enabled else '' }}"
 papra_environment_variables_smtp_port: "{{ 8025 if exim_relay_enabled else '' }}"
-papra_environment_variables_smtp_secure: "{{ false if exim_relay_enabled }}"
+papra_environment_variables_smtp_secure: "{{ false if exim_relay_enabled else true }}"
 papra_environment_variables_emails_from_address: "Papra <{{ exim_relay_sender_address if exim_relay_enabled else '' }}>"
 # /role-specific:exim_relay
 
@@ -13064,7 +13064,7 @@ pdfding_environment_variables_email_backend: "{{ 'smtp' if exim_relay_enabled }}
 pdfding_environment_variables_smtp_host: "{{ exim_relay_identifier if exim_relay_enabled else '' }}"
 pdfding_environment_variables_smtp_port: "{{ 8025 if exim_relay_enabled else '' }}"
 pdfding_environment_variables_email_address: "{{ exim_relay_sender_address if exim_relay_enabled else '' }}"
-pdfding_environment_variables_smtp_use_tls: "{{ false if exim_relay_enabled }}"
+pdfding_environment_variables_smtp_use_tls: "{{ false if exim_relay_enabled else true }}"
 # /role-specific:exim_relay
 
 # role-specific:postgres
@@ -16969,7 +16969,7 @@ writefreely_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_p
 writefreely_environment_variables_domain: "{{ exim_relay_hostname }}"
 writefreely_environment_variables_smtp_host: "{{ exim_relay_identifier if exim_relay_enabled else '' }}"
 writefreely_environment_variables_smtp_port: "{{ 8025 if exim_relay_enabled else '587' }}"
-writefreely_environment_variables_smtp_enable_start_tls: "{{ false if exim_relay_enabled else '' }}"
+writefreely_environment_variables_smtp_enable_start_tls: "{{ false if exim_relay_enabled else true }}"
 writefreely_environment_variables_smtp_username: mash # dummy random username — without a value specified the SMTP mailer is not enabled
 writefreely_environment_variables_smtp_password: mash # dummy random password — without a value specified the SMTP mailer is not enabled
 # /role-specific:exim_relay
