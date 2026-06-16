@@ -11288,6 +11288,7 @@ mobilizon_environment_variables_instance_email: "{{ exim_relay_sender_address if
 mobilizon_database_hostname: "{{ postgis_identifier if postgis_enabled else '' }}"
 mobilizon_database_port: "{{ '5432' if postgis_enabled else '' }}"
 mobilizon_database_password: "{{ (mash_playbook_generic_secret_key + ':db.mobilizon') | hash('sha512') | to_uuid }}"
+mobilizon_database_sslmode: "{{ 'false' if postgis_enabled and mobilizon_database_hostname == postgis_connection_hostname else 'prefer' }}"
 # /role-specific:postgis
 
 # role-specific:traefik
