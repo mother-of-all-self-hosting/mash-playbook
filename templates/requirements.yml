@@ -473,7 +473,7 @@
   name: librebooking
   activation_prefix: librebooking_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-limesurvey.git
-  version: v7.0.2-0
+  version: v7.0.3-0
   name: limesurvey
   activation_prefix: limesurvey_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-linkding.git
