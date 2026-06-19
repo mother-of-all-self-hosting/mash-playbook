@@ -5,13 +5,13 @@ SPDX-FileCopyrightText: 2025, 2026 Suguru Hirahara
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 
-# LabelStudio
+# Label Studio
 
-The playbook can install and configure [LabelStudio](https://labelstud.io/) for you.
+The playbook can install and configure [Label Studio](https://labelstud.io/) for you.
 
-LabelStudio is an open-source data labeling tool that supports multiple projects.
+Label Studio is an open-source data labeling tool that supports multiple projects.
 
-See the project's [documentation](https://labelstud.io/quick-start/) to learn what LabelStudio does and why it might be useful to you.
+See the project's [documentation](https://labelstud.io/quick-start/) to learn what Label Studio does and why it might be useful to you.
 
 ## Dependencies
 
@@ -27,7 +27,7 @@ To enable this service, add the following configuration to your `vars.yml` file 
 ```yaml
 ########################################################################
 #                                                                      #
-# LabelStudio                                                          #
+# Label Studio                                                         #
 #                                                                      #
 ########################################################################
 
@@ -37,14 +37,14 @@ labelstudio_hostname: labelstudio.example.com
 
 ########################################################################
 #                                                                      #
-# /LabelStudio                                                         #
+# /Label Studio                                                        #
 #                                                                      #
 ########################################################################
 ```
 
 ## Usage
 
-After running the command for installation, the LabelStudio instance becomes available at the URL specified with `labelstudio_hostname`. With the configuration above, the service is hosted at `https://labelstudio.example.com`.
+After running the command for installation, the Label Studio instance becomes available at the URL specified with `labelstudio_hostname`. With the configuration above, the service is hosted at `https://labelstudio.example.com`.
 
 To get started, open the URL with a web browser to register new accounts, log in with them, and start working.
 
@@ -60,4 +60,4 @@ labelstudio_environment_variables_password: "admin-user-password"
 
 ## Related services
 
-It is possible to attach a pre-labeling backend to LabelStudio. One such example project can be found in [this repository](https://github.com/seblful/label-studio-yolo-backend).
+It is possible to attach a pre-labeling backend to Label Studio. One such example project can be found in [this repository](https://github.com/seblful/label-studio-yolo-backend).
