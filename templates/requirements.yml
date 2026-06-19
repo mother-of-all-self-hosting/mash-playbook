@@ -173,7 +173,7 @@
   name: cryptpad
   activation_prefix: cryptpad_
 - src: git+https://seed.radicle.garden/z2zgHMDh4Pb8yr4DH8BVkMcdboBXd.git
-  version: v11.1.0-0
+  version: v11.2.0-0
   name: cyberchef
   activation_prefix: cyberchef_
 - src: git+https://seed.radicle.garden/zeQ4hXq2LkbADcndSsjesgq9kDPf.git
