@@ -944,6 +944,10 @@
   version: v2.6.9-4
   name: tandoor
   activation_prefix: tandoor_
+- src: git+https://iris.radicle.network/zfFbFSPaygGqPEkWCTUGnzNwWNoT.git
+  version: v3.3.0-0
+  name: tasksmd
+  activation_prefix: tasksmd_
 - src: git+https://seed.radicle.garden/z2bcU1U9yJfJE6t8quZ1BMnEpQLic.git
   version: v1.10.0-3
   name: teable

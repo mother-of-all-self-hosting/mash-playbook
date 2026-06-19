@@ -978,6 +978,10 @@
     - role: galaxy/tandoor
     # /role-specific:tandoor
 
+    # role-specific:tasksmd
+    - role: galaxy/tasksmd
+    # /role-specific:tasksmd
+
     # role-specific:teable
     - role: galaxy/teable
     # /role-specific:teable
