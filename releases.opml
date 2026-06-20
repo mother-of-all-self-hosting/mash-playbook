@@ -110,7 +110,7 @@
     <outline text="keydb" title="keydb" type="rss" htmlUrl="https://github.com/Snapchat/KeyDB" xmlUrl="https://github.com/Snapchat/KeyDB/releases.atom" />
     <outline text="keyoxide" title="keyoxide" type="rss" htmlUrl="https://codeberg.org/keyoxide/keyoxide-web" xmlUrl="https://codeberg.org/keyoxide/keyoxide-web/releases.atom" />
     <outline text="kutt" title="kutt" type="rss" htmlUrl="https://github.com/thedevs-network/kutt" xmlUrl="https://github.com/thedevs-network/kutt/releases.atom" />
-    <outline text="labelstudio" title="labelstudio" type="rss" htmlUrl="https://github.com/labelstudio/labelstudio" xmlUrl="https://github.com/labelstudio/labelstudio/releases.atom" />
+    <outline text="labelstudio" title="labelstudio" type="rss" htmlUrl="https://github.com/HumanSignal/label-studio" xmlUrl="https://github.com/HumanSignal/label-studio/releases.atom" />
     <outline text="lago" title="lago" type="rss" htmlUrl="https://github.com/getlago/lago" xmlUrl="https://github.com/getlago/lago/releases.atom" />
     <outline text="languagetool" title="languagetool" type="rss" htmlUrl="https://github.com/Erikvl87/docker-languagetool" xmlUrl="https://github.com/Erikvl87/docker-languagetool/releases.atom" />
     <outline text="librebooking" title="librebooking" type="rss" htmlUrl="https://github.com/LibreBooking/librebooking" xmlUrl="https://github.com/LibreBooking/librebooking/releases.atom" />
