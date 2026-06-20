@@ -2,14 +2,14 @@
 * Adguard Home: v0.107.77
 * Adminer: 5.4.2
 * Alpine: edge
-* Anki: 25.09.4
+* Anki: 26.05
 * Anonymousoverflow: release
 * Answer: 2.0.1
 * Apisix Dashboard: 3.0.1
 * Apisix Gateway: 3.8.0
 * Apprise: 1.5.0
 * Appsmith: v1.73.1
-* Asciinema Server: 20260207
+* Asciinema Server: 20260616
 * Atuin: 18.16.1
 * Audiobookshelf: 2.35.1
 * Authelia: 4.37.5
@@ -26,7 +26,7 @@
 * Borg: 1.4.4
 * Borg Ui: 2.2.5
 * Borgmatic: 2.1.4
-* Browserless: v2.52.1
+* Browserless: v2.54.0
 * Calibre Web: 0.6.26
 * Calibre Web Automated: v4.0.6
 * Cap: 3.1.5
@@ -37,14 +37,14 @@
 * Civicrm: 6.14.1
 * Clickhouse: 26.5.1.882
 * Codimd: 2.6.1
-* Collabora Online: 25.04.9.4.1
+* Collabora Online: 26.04.1.4.1
 * Container Socket Proxy: v0.4.2
 * Converse: v13.0.1
 * Convertx: v0.17.0
 * Couchdb: 3.5.2
 * Cryptpad: 2026.5.1
-* Cyberchef: 11.0.0
-* Databasus: v3.42.0
+* Cyberchef: 11.2.0
+* Databasus: v3.45.0
 * Ddclient: 4.0.0
 * Docker Compose: v2.32.1
 * Docker Registry: 2.8.3
@@ -53,7 +53,7 @@
 * Docker Registry Proxy: v1.2.7
 * Docker Registry Purger: 1.0.0
 * Docmost: 0.90.1
-* Docuseal: 3.0.3
+* Docuseal: 3.1.0
 * Dokuwiki: 2025-05-14b
 * Donetick: v0.1.75
 * Duplicati: 2.3.0
@@ -70,18 +70,18 @@
 * Feishin: 1.13.0
 * Fider: v0.35.0
 * Filebrowser: v2.63.15
-* Filebrowser Quantum: 1.3.3
+* Filebrowser Quantum: 1.4.0
 * Filegator: v7.14.3
 * Flaresolverr: v3.5.0
 * Flatnotes: v5.5.4
-* Fmd Server: 0.15.0
+* Fmd Server: 0.16.0
 * Focalboard: 7.11.4
 * Forgejo: 15.0.3
-* Forgejo Runner: 12.10.2
+* Forgejo Runner: 12.11.1
 * Freescout: php8.3-1.17.999
 * Freshrss: 1.29.1
 * Funkwhale: 1.4.1
-* Ghostfolio: 3.10.0
+* Ghostfolio: 3.12.0
 * Gitea: 1.26.2
 * Gokapi: v2.2.4
 * Gotenberg: 8.34.0
@@ -90,11 +90,11 @@
 * Gotosocial: 0.21.2
 * Grafana: 11.6.5
 * Headplane: 0.6.3
-* Headscale: v0.28.0
+* Headscale: v0.29.1
 * Healthchecks: v4.2
 * Heimdall: 2.7.6
 * Heyform: v3.0.0-rc.8
-* Homarr: v1.65.0
+* Homarr: v1.67.0
 * Hubsite Nginx: 1.31.0
 * Ihatemoney: 7.0.1
 * Ilmo: 1.0.4
@@ -117,11 +117,11 @@
 * Keyoxide: 5.1.0
 * Keyoxide Proxy: 5.1.0
 * Kutt: v3.2.5
-* Labelstudio: latest
+* Labelstudio: 1.23.0
 * Lago: v0.50.0-beta
-* Languagetool: 6.7-dockerupdate-1
+* Languagetool: 6.8
 * Librebooking: 4.2.0
-* Limesurvey: 7.0.0-
+* Limesurvey: 7.0.4
 * Linkding: 1.45.0
 * Linkwarden: v2.14.1
 * Listmonk: 6.1.0
@@ -129,12 +129,12 @@
 * Loki: 3.7.2
 * Mailcatcher: v0.10.0
 * Mailcrab: v1.7.0
-* Mailpit: v1.30.0
+* Mailpit: v1.30.2
 * Matomo: 5.11.1
 * Matterbridge: 1.26.0
 * Mazanoke: v1.1.6
 * Mediawiki: lts
-* Meilisearch: v1.46.1
+* Meilisearch: v1.47.0
 * Memcached: 1.6.42
 * Memos: 0.29.1
 * Mermaid: latest
@@ -149,7 +149,7 @@
 * Mozhi: latest
 * Mrs: v0.1.0
 * Mumble: v1.5.857
-* N8N: 2.26.3
+* N8N: 2.27.3
 * Navidrome: 0.62.0
 * Neko: 3.1.4
 * Netbox: v3.7.0-2.8.0
@@ -157,7 +157,7 @@
 * Nextcloud: 34.0.0
 * Nifi: 2.9.0
 * Nocdnbs: 2096249f93e591804b7188640858399a87fc4b49
-* Nodebb: 4.13.1
+* Nodebb: 4.13.2
 * Notfellchen: 1.1.0
 * Notfellchen Sws: 2
 * Ntfy: v2.24.0
@@ -181,12 +181,12 @@
 * Papra: 26.4.2
 * Pdfding: v1.8.0
 * Peertube: v7.2.3
-* Pgadmin: 9.15.0
+* Pgadmin: 9.16
 * Phpmyadmin: 5.2.3
 * Pinepods: 0.8.2
 * Plausible: v3.2.1
 * Plex: 1.43.2
-* Pocket Id: v2.8.0
+* Pocket Id: v2.9.0
 * Polaris: 0.16.1
 * Poodledonts: 62283b9cddd54e91f46d78863d36e02c7b50ff6b
 * Postgis Container Image V10: 10-3.2
@@ -220,7 +220,7 @@
 * Promtail: 3.6.11
 * Prunemate: 1.3.3
 * Qbittorrent: 5.2.1
-* Rabbitmq: 4.2.6
+* Rabbitmq: 4.3.2
 * Radarr: 6.2.1
 * Radicale: 3.7.3.0
 * Radicle Explorer: 7d5dd7e8a2a65b4adc60662da07fec61daa88fd0
@@ -244,11 +244,11 @@
 * Sftpgo: v2.7.3
 * Silverbullet: 2.4.1
 * Smp Server: v6.5.2
-* Snowflake: v2.13.1
+* Snowflake: v2.14.0
 * Soft Serve: v0.11.6
-* Solidinvoice: 2.3.17
+* Solidinvoice: 3.0.0
 * Sonarr: 4.0.17
-* Sqlpage: v0.44.0
+* Sqlpage: v0.44.1
 * Statusnook: latest
 * Stirling Pdf: 1.5.0-fat
 * Syncstorage Rs Docker: 0.21.0
@@ -256,12 +256,12 @@
 * Tandoor: 2.6.9
 * Teable: latest
 * Telegraf: 1.39.0
-* Termix: 2.3.2
+* Termix: 2.4.0
 * Thelounge: 4.5.0
 * Tika: 3.3.0.0
 * Tinyauth: v5.0.7
 * Traefik: v3.7.5
-* Traefik Certs Dumper: v2.10.0
+* Traefik Certs Dumper: v2.11.4
 * Traefik Config Tcp Servertransports Default Proxyprotocol: 1
 * Transfersh: v1.6.1
 * Tsdproxy: 1.4.7
@@ -269,7 +269,7 @@
 * Uptime Kuma: 1.23.17
 * Valkey: 9.1.0
 * Vaultwarden: 1.36.0
-* Versatiles: v4.2.0
+* Versatiles: v4.2.2
 * Vikunja: 2.3.0
 * Wazuh: 4.14.5
 * Weblate: 2026.6.1.0
