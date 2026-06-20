@@ -675,7 +675,7 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
 
   # role-specific:labelstudio
   - |-
-    {{ ({'name': (labelstudio_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'labelstudio']} if labelstudio_enabled else omit) }}
+    {{ ({'name': (labelstudio_identifier + '.service'), 'priority': 2000, 'restart_necessary': (labelstudio_restart_necessary | bool), 'groups': ['mash', 'labelstudio']} if labelstudio_enabled else omit) }}
   # /role-specific:labelstudio
 
   # role-specific:lago
@@ -1832,7 +1832,7 @@ mash_playbook_postgres_managed_databases_auto_itemized:
         'name': labelstudio_database_name,
         'username': labelstudio_database_username,
         'password': labelstudio_database_password,
-      } if labelstudio_enabled and labelstudio_database_hostname == postgres_connection_hostname else omit)
+      } if labelstudio_enabled and labelstudio_database_hostname == postgres_connection_hostname and labelstudio_postgres_backend_enabled else omit)
     }}
   # /role-specific:labelstudio
 
@@ -9501,14 +9501,14 @@ labelstudio_gid: "{{ mash_playbook_gid }}"
 
 labelstudio_systemd_required_services_list_auto: |
   {{
-    ([postgres_identifier ~ '.service'] if postgres_enabled and labelstudio_database_hostname == postgres_identifier else [])
+    ([postgres_identifier ~ '.service'] if postgres_enabled | default(false) and labelstudio_database_hostname == postgres_connection_hostname and labelstudio_postgres_backend_enabled else [])
   }}
 
 labelstudio_container_additional_networks_auto: |
   {{
     ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
     +
-    ([postgres_container_network] if postgres_enabled and labelstudio_database_hostname == postgres_connection_hostname and labelstudio_container_network != postgres_container_network else [])
+    ([postgres_container_network] if postgres_enabled | default(false) and labelstudio_database_hostname == postgres_connection_hostname and labelstudio_container_network != postgres_container_network and labelstudio_postgres_backend_enabled else [])
   }}
 
 labelstudio_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
@@ -9516,9 +9516,8 @@ labelstudio_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_p
 labelstudio_container_labels_traefik_compression_middleware_enabled: "{{ mash_playbook_reverse_proxy_traefik_middleware_compession_enabled }}"
 labelstudio_container_labels_traefik_compression_middleware_name: "{{ mash_playbook_reverse_proxy_traefik_middleware_compession_name if mash_playbook_reverse_proxy_traefik_middleware_compession_enabled else '' }}"
 
-labelstudio_postgres_backend_enabled: "{{ postgres_enabled }}"
-
 # role-specific:postgres
+labelstudio_postgres_backend_enabled: "{{ postgres_enabled }}"
 labelstudio_database_hostname: "{{ postgres_connection_hostname if postgres_enabled else '' }}"
 labelstudio_database_port: "{{ postgres_connection_port if postgres_enabled else '5432' }}"
 labelstudio_database_username: "labelstudio"
