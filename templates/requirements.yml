@@ -1,6 +1,6 @@
 ---
 
-- src: git+https://seed.radicle.garden/z2chD7Kt74JwEMafxTooxN7MaeYtK.git
+- src: git+https://iris.radicle.network/z2chD7Kt74JwEMafxTooxN7MaeYtK.git
   version: v26.6.0-0
   name: actual
   activation_prefix: actual_
@@ -8,7 +8,7 @@
   version: v0.107.77-0
   name: adguard_home
   activation_prefix: adguard_home_
-- src: git+https://seed.radicle.garden/z3px8gLDo2opjQZW7qFiLoNuk4eSu.git
+- src: git+https://iris.radicle.network/z3px8gLDo2opjQZW7qFiLoNuk4eSu.git
   version: v5.4.2-3
   name: adminer
   activation_prefix: adminer_
@@ -20,7 +20,7 @@
   version: v2024.8.23-15
   name: anonymousoverflow
   activation_prefix: anonymousoverflow_
-- src: git+https://seed.radicle.garden/z4Cd3nL74nNap51RBB6mtC1jipeH9.git
+- src: git+https://iris.radicle.network/z4Cd3nL74nNap51RBB6mtC1jipeH9.git
   version: v2.0.1-0
   name: answer
   activation_prefix: answer_
@@ -32,7 +32,7 @@
   version: v3.8.0-13
   name: apisix_gateway
   activation_prefix: apisix_gateway_
-- src: git+https://seed.radicle.garden/z292aD8q3r8xqhJvLe2zv1b24gu7a.git
+- src: git+https://iris.radicle.network/z292aD8q3r8xqhJvLe2zv1b24gu7a.git
   version: v1.5.0-0
   name: apprise
   activation_prefix: apprise_
@@ -40,15 +40,15 @@
   version: v1.73.1-6
   name: appsmith
   activation_prefix: appsmith_
-- src: git+https://seed.radicle.garden/zcSq6tnVLBUQ88zSRLThc7A7RDZb.git
+- src: git+https://iris.radicle.network/zcSq6tnVLBUQ88zSRLThc7A7RDZb.git
   version: v20260616-0
   name: asciinema_server
   activation_prefix: asciinema_server_
-- src: git+https://seed.radicle.garden/z4ATDhf89CPqP7XCLNpNwobuJ9fBs.git
+- src: git+https://iris.radicle.network/z4ATDhf89CPqP7XCLNpNwobuJ9fBs.git
   version: v18.16.1-0
   name: atuin
   activation_prefix: atuin_
-- src: git+https://seed.radicle.garden/z3rwhJ9rQ82H6GXg7ZCt3UNpStbaW.git
+- src: git+https://iris.radicle.network/z3rwhJ9rQ82H6GXg7ZCt3UNpStbaW.git
   version: v2.35.1-0
   name: audiobookshelf
   activation_prefix: audiobookshelf_
@@ -72,7 +72,7 @@
   version: v1.4.4-2.1.4-1
   name: backup_borg
   activation_prefix: backup_borg_
-- src: git+https://seed.radicle.garden/z3JDUHjeHMqbZ3YLxquSUbCmAJLi.git
+- src: git+https://iris.radicle.network/z3JDUHjeHMqbZ3YLxquSUbCmAJLi.git
   version: v5.15.2-0
   name: barassistant
   activation_prefix: barassistant_
@@ -80,11 +80,11 @@
   version: v1.5.6-ls342-3
   name: bazarr
   activation_prefix: bazarr_
-- src: git+https://seed.radicle.garden/z2bgVhWju6shYSwtdKb7v3eoSL1Pt.git
+- src: git+https://iris.radicle.network/z2bgVhWju6shYSwtdKb7v3eoSL1Pt.git
   version: v2.8.5-0
   name: bentopdf
   activation_prefix: bentopdf_
-- src: git+https://seed.radicle.garden/z2nQcYvPh51zfvVu8hkftDYPmELYP.git
+- src: git+https://iris.radicle.network/z2nQcYvPh51zfvVu8hkftDYPmELYP.git
   version: v1.5.2-0
   name: bichon
   activation_prefix: bichon_
@@ -92,15 +92,15 @@
   version: v9.20-2
   name: bind
   activation_prefix: bind_
-- src: git+https://seed.radicle.garden/zs18Rifa7437q7hTFhsx11nYeGhD.git
+- src: git+https://iris.radicle.network/zs18Rifa7437q7hTFhsx11nYeGhD.git
   version: v0.10.0-6
   name: bitmagnet
   activation_prefix: bitmagnet_
-- src: git+https://seed.radicle.garden/zQdRwQ2s3FG5BZUjvSn1GYXbzVmw.git
+- src: git+https://iris.radicle.network/zQdRwQ2s3FG5BZUjvSn1GYXbzVmw.git
   version: v26.5.1-0
   name: bookstack
   activation_prefix: bookstack_
-- src: git+https://seed.radicle.garden/zxNS7XeayGimb4WFfvqmasiZZC3v.git
+- src: git+https://iris.radicle.network/zxNS7XeayGimb4WFfvqmasiZZC3v.git
   version: v2.2.5-0
   name: borg_ui
   activation_prefix: borg_ui_
@@ -112,11 +112,11 @@
   version: v0.6.25-7
   name: calibre_web
   activation_prefix: calibre_web_
-- src: git+https://seed.radicle.garden/zSfEaojv4NnFnivPm248Lx123CNe.git
+- src: git+https://iris.radicle.network/zSfEaojv4NnFnivPm248Lx123CNe.git
   version: v4.0.6-2
   name: calibre_web_automated
   activation_prefix: calibre_web_automated_
-- src: git+https://seed.radicle.garden/zSj65STd1FuR22pm4vLCSmFQ1rt5.git
+- src: git+https://iris.radicle.network/zSj65STd1FuR22pm4vLCSmFQ1rt5.git
   version: v3.1.5-0
   name: cap
   activation_prefix: cap_
@@ -124,7 +124,7 @@
   version: v0.55.7-0
   name: changedetection
   activation_prefix: changedetection_
-- src: git+https://seed.radicle.garden/z3HYheWh86U9ErEL18tK2gBkq7g2A.git
+- src: git+https://iris.radicle.network/z3HYheWh86U9ErEL18tK2gBkq7g2A.git
   version: v2.4.0-3
   name: chiefonboarding
   activation_prefix: chiefonboarding_
@@ -156,7 +156,7 @@
   version: v0.4.2-5
   name: container_socket_proxy
   activation_prefix: mash_
-- src: git+https://seed.radicle.garden/z22bUmhZzA5VWtmKERFkEjGzdPuke.git
+- src: git+https://iris.radicle.network/z22bUmhZzA5VWtmKERFkEjGzdPuke.git
   version: v13.0.1-0
   name: converse
   activation_prefix: converse_
@@ -168,15 +168,15 @@
   version: v3.5.2-0
   name: couchdb
   activation_prefix: couchdb_
-- src: git+https://seed.radicle.garden/z38Yp2e9yFouswvrnX5MdgZYaViLb.git
+- src: git+https://iris.radicle.network/z38Yp2e9yFouswvrnX5MdgZYaViLb.git
   version: v2026.5.1-0
   name: cryptpad
   activation_prefix: cryptpad_
-- src: git+https://seed.radicle.garden/z2zgHMDh4Pb8yr4DH8BVkMcdboBXd.git
+- src: git+https://iris.radicle.network/z2zgHMDh4Pb8yr4DH8BVkMcdboBXd.git
   version: v11.2.0-0
   name: cyberchef
   activation_prefix: cyberchef_
-- src: git+https://seed.radicle.garden/zeQ4hXq2LkbADcndSsjesgq9kDPf.git
+- src: git+https://iris.radicle.network/zeQ4hXq2LkbADcndSsjesgq9kDPf.git
   version: v3.45.0-0
   name: databasus
   activation_prefix: databasus_
@@ -212,7 +212,7 @@
   version: v0.90.1-0
   name: docmost
   activation_prefix: docmost_
-- src: git+https://seed.radicle.garden/z2HG5jWufCQfA8cYAFkJ9GmZyRcCs.git
+- src: git+https://iris.radicle.network/z2HG5jWufCQfA8cYAFkJ9GmZyRcCs.git
   version: v3.1.0-0
   name: docuseal
   activation_prefix: docuseal_
@@ -236,7 +236,7 @@
   version: v2026-0
   name: endlessh
   activation_prefix: endlessh_
-- src: git+https://seed.radicle.garden/z2CSxS3YLtJYM87TyGZkZCan3uoSJ.git
+- src: git+https://iris.radicle.network/z2CSxS3YLtJYM87TyGZkZCan3uoSJ.git
   version: v2.18.0-2
   name: ergo
   activation_prefix: ergo_
@@ -248,7 +248,7 @@
   version: v2.7.3-0
   name: etherpad
   activation_prefix: etherpad_
-- src: git+https://seed.radicle.garden/z4SSf2SU2YwBaMmCFBJnM5KqorU9T.git
+- src: git+https://iris.radicle.network/z4SSf2SU2YwBaMmCFBJnM5KqorU9T.git
   version: v9.3.1-0
   name: eurooffice
   activation_prefix: eurooffice_
@@ -268,23 +268,23 @@
   version: v1.0.0-1
   name: fail2ban
   activation_prefix: system_security_fail2ban_
-- src: git+https://seed.radicle.garden/z2H8vYeXaYHLzV3jXH1YjVwhuzTsk.git
+- src: git+https://iris.radicle.network/z2H8vYeXaYHLzV3jXH1YjVwhuzTsk.git
   version: v4.0.2-0
   name: farmos
   activation_prefix: farmos_
-- src: git+https://seed.radicle.garden/zmszzm7ynZe8nt5ZwaLctssyJcNm.git
+- src: git+https://iris.radicle.network/zmszzm7ynZe8nt5ZwaLctssyJcNm.git
   version: v1.13.0-0
   name: feishin
   activation_prefix: feishin_
-- src: git+https://seed.radicle.garden/z3Fe49p3uVZpC43KdB5gDCTmr8u7Y.git
+- src: git+https://iris.radicle.network/z3Fe49p3uVZpC43KdB5gDCTmr8u7Y.git
   version: v0.35.0-0
   name: fider
   activation_prefix: fider_
-- src: git+https://seed.radicle.garden/z318zbpe2RNjFqVzXqPoDDJvvohbw.git
+- src: git+https://iris.radicle.network/z318zbpe2RNjFqVzXqPoDDJvvohbw.git
   version: v2.63.15-0
   name: filebrowser
   activation_prefix: filebrowser_
-- src: git+https://seed.radicle.garden/z3ALGSKDhVLeMnR49YPXk5yv2yTge.git
+- src: git+https://iris.radicle.network/z3ALGSKDhVLeMnR49YPXk5yv2yTge.git
   version: v1.4.0-0
   name: filebrowser_quantum
   activation_prefix: filebrowser_quantum_
@@ -296,7 +296,7 @@
   version: v3.5.0-1
   name: flaresolverr
   activation_prefix: flaresolverr_
-- src: git+https://seed.radicle.garden/z49LkutSMcaLA2DBazn1h4V6Pn6GK.git
+- src: git+https://iris.radicle.network/z49LkutSMcaLA2DBazn1h4V6Pn6GK.git
   version: v5.5.4-4
   name: flatnotes
   activation_prefix: flatnotes_
@@ -344,11 +344,11 @@
   version: v8.34.0-0
   name: gotenberg
   activation_prefix: gotenberg_
-- src: git+https://seed.radicle.garden/zFVv3koKtheJTTwPSjF3J6DajePK.git
+- src: git+https://iris.radicle.network/zFVv3koKtheJTTwPSjF3J6DajePK.git
   version: v2025.3.9-6
   name: gothub
   activation_prefix: gothub_
-- src: git+https://seed.radicle.garden/z3dQNNLitS9sByxZ83ivu5qg6qR4N.git
+- src: git+https://iris.radicle.network/z3dQNNLitS9sByxZ83ivu5qg6qR4N.git
   version: v2.9.1-7
   name: gotify
   activation_prefix: gotify_
@@ -372,11 +372,11 @@
   version: v4.2.0-1
   name: healthchecks
   activation_prefix: healthchecks_
-- src: git+https://seed.radicle.garden/z8D2GRZrm8JXZeHHe9j1HMvvj8An.git
+- src: git+https://iris.radicle.network/z8D2GRZrm8JXZeHHe9j1HMvvj8An.git
   version: v2.7.6-1
   name: heimdall
   activation_prefix: heimdall_
-- src: git+https://seed.radicle.garden/zsKztkwnLv9wVMRYbcpoFesx6L5j.git
+- src: git+https://iris.radicle.network/zsKztkwnLv9wVMRYbcpoFesx6L5j.git
   version: v3.0.0-3
   name: heyform
   activation_prefix: heyform_
@@ -412,7 +412,7 @@
   version: v2.9.1-0
   name: influxdb
   activation_prefix: influxdb_
-- src: git+https://seed.radicle.garden/zA2EcZYaHBzoc3XudvDhVDBjT42a.git
+- src: git+https://iris.radicle.network/zA2EcZYaHBzoc3XudvDhVDBjT42a.git
   version: v4.11.0-0
   name: inspircd
   activation_prefix: inspircd_
@@ -432,11 +432,11 @@
   version: v3.7.1-0
   name: joplin_server
   activation_prefix: joplin_server_
-- src: git+https://seed.radicle.garden/z2LZH9TGMxYbGBaGoMHNFX5HymEL3.git
+- src: git+https://iris.radicle.network/z2LZH9TGMxYbGBaGoMHNFX5HymEL3.git
   version: v1.2.52-1
   name: kanboard
   activation_prefix: kanboard_
-- src: git+https://seed.radicle.garden/z4W1oeRiFKEikhj4Mk3HbVJM7er6S.git
+- src: git+https://iris.radicle.network/z4W1oeRiFKEikhj4Mk3HbVJM7er6S.git
   version: v0.32.0-0
   name: karakeep
   activation_prefix: karakeep_
@@ -448,11 +448,11 @@
   version: v6.3.4-14
   name: keydb
   activation_prefix: keydb_
-- src: git+https://seed.radicle.garden/z3m9zZgMmAQX5aVtj5Y9KYRnhjVrt.git
+- src: git+https://iris.radicle.network/z3m9zZgMmAQX5aVtj5Y9KYRnhjVrt.git
   version: v5.1.0-4
   name: keyoxide
   activation_prefix: keyoxide_
-- src: git+https://seed.radicle.garden/z36dPzLyvPA52m845g1MMqHgoiaEz.git
+- src: git+https://iris.radicle.network/z36dPzLyvPA52m845g1MMqHgoiaEz.git
   version: v3.2.5-0
   name: kutt
   activation_prefix: kutt_
@@ -480,7 +480,7 @@
   version: v1.45.0-2
   name: linkding
   activation_prefix: linkding_
-- src: git+https://seed.radicle.garden/zQxCS4UUiKpEWtG4RLzjqgA2gYmz.git
+- src: git+https://iris.radicle.network/zQxCS4UUiKpEWtG4RLzjqgA2gYmz.git
   version: v2.14.1-1
   name: linkwarden
   activation_prefix: linkwarden_
@@ -496,15 +496,15 @@
   version: v3.7.2-0
   name: loki
   activation_prefix: loki_
-- src: git+https://seed.radicle.garden/z3QmarrgiC7ZGmd7UCTW2EZTheCZb.git
+- src: git+https://iris.radicle.network/z3QmarrgiC7ZGmd7UCTW2EZTheCZb.git
   version: v0.10.0-5
   name: mailcatcher
   activation_prefix: mailcatcher_
-- src: git+https://seed.radicle.garden/z3rh69mtu7bBk5K1WmAkVEBTy6NpW.git
+- src: git+https://iris.radicle.network/z3rh69mtu7bBk5K1WmAkVEBTy6NpW.git
   version: v1.7.0-0
   name: mailcrab
   activation_prefix: mailcrab_
-- src: git+https://seed.radicle.garden/z3BKJz8wwtQHfXm8MPX81h4izT2QS.git
+- src: git+https://iris.radicle.network/z3BKJz8wwtQHfXm8MPX81h4izT2QS.git
   version: v1.30.2-0
   name: mailpit
   activation_prefix: mailpit_
@@ -520,7 +520,7 @@
   version: v1.26.0-14
   name: matterbridge
   activation_prefix: matterbridge_
-- src: git+https://seed.radicle.garden/zGHUEPjboBuF8AWo3HKxEraEuHFq.git
+- src: git+https://iris.radicle.network/zGHUEPjboBuF8AWo3HKxEraEuHFq.git
   version: v1.1.6-0
   name: mazanoke
   activation_prefix: mazanoke_
@@ -532,11 +532,11 @@
   version: v1.47.0-0
   name: meilisearch
   activation_prefix: meilisearch_
-- src: git+https://seed.radicle.garden/z2arPcue4GZ6G6FY3gZexsJXqHyDs.git
+- src: git+https://iris.radicle.network/z2arPcue4GZ6G6FY3gZexsJXqHyDs.git
   version: v1.6.42-0
   name: memcached
   activation_prefix: memcached_
-- src: git+https://seed.radicle.garden/z2UFFCDXMH6Am1K99TaiYP8BJmqaj.git
+- src: git+https://iris.radicle.network/z2UFFCDXMH6Am1K99TaiYP8BJmqaj.git
   version: v0.29.1-0
   name: memos
   activation_prefix: memos_
@@ -568,7 +568,7 @@
   version: v8.3.3-0
   name: mongodb
   activation_prefix: mongodb_
-- src: git+https://seed.radicle.garden/z4Ez9aU119yFMs59cnA3KUnExFAeN.git
+- src: git+https://iris.radicle.network/z4Ez9aU119yFMs59cnA3KUnExFAeN.git
   version: v2.6.0-1
   name: moodist
   activation_prefix: moodist_
@@ -584,7 +584,7 @@
   version: v0.1.0-15
   name: mrs
   activation_prefix: mrs_
-- src: git+https://seed.radicle.garden/z4VBCibmQHyfHKEWTAJmQKBAAjtsv.git
+- src: git+https://iris.radicle.network/z4VBCibmQHyfHKEWTAJmQKBAAjtsv.git
   version: v1.5.857-5
   name: mumble
   activation_prefix: mumble_
@@ -612,11 +612,11 @@
   version: v2.9.0-3
   name: nifi
   activation_prefix: nifi_
-- src: git+https://seed.radicle.garden/z8vyzN3a8DmwhcUq3949SihKd1Wh.git
+- src: git+https://iris.radicle.network/z8vyzN3a8DmwhcUq3949SihKd1Wh.git
   version: v2025.10.0-6
   name: nocdnbs
   activation_prefix: nocdnbs_
-- src: git+https://seed.radicle.garden/z2K9dPANyrXJY7juE9XecXyernA6h.git
+- src: git+https://iris.radicle.network/z2K9dPANyrXJY7juE9XecXyernA6h.git
   version: v4.13.2-0
   name: nodebb
   activation_prefix: nodebb_
@@ -636,35 +636,35 @@
   version: v0.6.0-0
   name: omnitools
   activation_prefix: omnitools_
-- src: git+https://seed.radicle.garden/znw3BPXrSbPWcARpYbk3yGy4iGQ4.git
+- src: git+https://iris.radicle.network/znw3BPXrSbPWcARpYbk3yGy4iGQ4.git
   version: v0.0.0-3
   name: onion_service_tor
   activation_prefix: onion_service_tor_
-- src: git+https://seed.radicle.garden/z3kozTn4Kn5eJtgJQj1aCFUpqxW5Y.git
+- src: git+https://iris.radicle.network/z3kozTn4Kn5eJtgJQj1aCFUpqxW5Y.git
   version: v9.4.0-0
   name: onlyoffice_docs
   activation_prefix: onlyoffice_docs_
-- src: git+https://seed.radicle.garden/z2Q7Pka6bCT5D6Ng54kT8UcYAcVTC.git
+- src: git+https://iris.radicle.network/z2Q7Pka6bCT5D6Ng54kT8UcYAcVTC.git
   version: v0.5.0-2
   name: openarchiver
   activation_prefix: openarchiver_
-- src: git+https://seed.radicle.garden/z48WEbcYK3E6uDmfP1Qbb9AGdz1L3.git
+- src: git+https://iris.radicle.network/z48WEbcYK3E6uDmfP1Qbb9AGdz1L3.git
   version: v1.13.1-0
   name: opengist
   activation_prefix: opengist_
-- src: git+https://seed.radicle.garden/z2kcNwMys48Wy3SLPnLU7oBnkkQyj.git
+- src: git+https://iris.radicle.network/z2kcNwMys48Wy3SLPnLU7oBnkkQyj.git
   version: v1.3.0-4
   name: openregex
   activation_prefix: openregex_
-- src: git+https://seed.radicle.garden/z3aGv2oUAxqmoGddtk1VwRioUTKbs.git
+- src: git+https://iris.radicle.network/z3aGv2oUAxqmoGddtk1VwRioUTKbs.git
   version: v0.0.0-6
   name: origamivault
   activation_prefix: origamivault_
-- src: git+https://seed.radicle.garden/z3cspgyZXPNcnzNXCYKsEGJK7dKKA.git
+- src: git+https://iris.radicle.network/z3cspgyZXPNcnzNXCYKsEGJK7dKKA.git
   version: v1.21.6-0
   name: ots
   activation_prefix: ots_
-- src: git+https://seed.radicle.garden/zvzJe15VMBkGd2CMBctvpVZgmQG5.git
+- src: git+https://iris.radicle.network/zvzJe15VMBkGd2CMBctvpVZgmQG5.git
   version: v2.20.6-0
   name: otterwiki
   activation_prefix: otterwiki_
@@ -684,11 +684,11 @@
   version: v2.20.15-1
   name: paperless
   activation_prefix: paperless_
-- src: git+https://seed.radicle.garden/z2LGSfc7ziSKvErzZAQdTyTQ4sJcs.git
+- src: git+https://iris.radicle.network/z2LGSfc7ziSKvErzZAQdTyTQ4sJcs.git
   version: v26.4.2-0
   name: papra
   activation_prefix: papra_
-- src: git+https://seed.radicle.garden/z2cZCZP8Mu4LYMbHKaTdnP1otc46L.git
+- src: git+https://iris.radicle.network/z2cZCZP8Mu4LYMbHKaTdnP1otc46L.git
   version: v1.8.0-0
   name: pdfding
   activation_prefix: pdfding_
@@ -696,15 +696,15 @@
   version: v7.2.3-7
   name: peertube
   activation_prefix: peertube_
-- src: git+https://seed.radicle.garden/ztixjo2qUzCBLADieR3hKkYEk4eE.git
+- src: git+https://iris.radicle.network/ztixjo2qUzCBLADieR3hKkYEk4eE.git
   version: v9.16-0
   name: pgadmin
   activation_prefix: pgadmin_
-- src: git+https://seed.radicle.garden/zby9EmMBhyNe8Nj4f66izwrmhk5g.git
+- src: git+https://iris.radicle.network/zby9EmMBhyNe8Nj4f66izwrmhk5g.git
   version: v5.2.3-6
   name: phpmyadmin
   activation_prefix: phpmyadmin_
-- src: git+https://seed.radicle.garden/zKNyeEtymCZc7yio6JnHxY2AteZu.git
+- src: git+https://iris.radicle.network/zKNyeEtymCZc7yio6JnHxY2AteZu.git
   version: v0.8.2-2
   name: pinepods
   activation_prefix: pinepods_
@@ -728,7 +728,7 @@
   version: v1.43.2-2
   name: plex
   activation_prefix: plex_
-- src: git+https://seed.radicle.garden/z2vTmc3fLqxvpuT9EoZvkErWNZM1K.git
+- src: git+https://iris.radicle.network/z2vTmc3fLqxvpuT9EoZvkErWNZM1K.git
   version: v2.9.0-0
   name: pocket_id
   activation_prefix: pocket_id_
@@ -736,7 +736,7 @@
   version: v0.16.1-2
   name: polaris
   activation_prefix: polaris_
-- src: git+https://seed.radicle.garden/z4MgJseWRZ9FL3Mh6ASufmi1RJoVh.git
+- src: git+https://iris.radicle.network/z4MgJseWRZ9FL3Mh6ASufmi1RJoVh.git
   version: v2025.10.0-7
   name: poodledonts
   activation_prefix: poodledonts_
@@ -784,7 +784,7 @@
   version: v3.6.11-0
   name: promtail
   activation_prefix: promtail_
-- src: git+https://seed.radicle.garden/zTsddBnXnhE3i4xhzsEX12deb4fx.git
+- src: git+https://iris.radicle.network/zTsddBnXnhE3i4xhzsEX12deb4fx.git
   version: v1.3.3-3
   name: prunemate
   activation_prefix: prunemate_
@@ -792,7 +792,7 @@
   version: v5.2.1-1
   name: qbittorrent
   activation_prefix: qbittorrent_
-- src: git+https://seed.radicle.garden/z3PCtuwyz2HdHeKnHCefR253rpYwp.git
+- src: git+https://iris.radicle.network/z3PCtuwyz2HdHeKnHCefR253rpYwp.git
   version: v4.3.2-0
   name: rabbitmq
   activation_prefix: rabbitmq_
@@ -804,15 +804,15 @@
   version: v3.7.3.0-0
   name: radicale
   activation_prefix: radicale_
-- src: git+https://seed.radicle.garden/zopwjin5Vh5dMgdHWiifJ2cg3bQW.git
+- src: git+https://iris.radicle.network/zopwjin5Vh5dMgdHWiifJ2cg3bQW.git
   version: v0.0.0-9
   name: radicle_explorer
   activation_prefix: radicle_explorer_
-- src: git+https://seed.radicle.garden/z3roZFCprFZhmK8BvkrsKwkLZXr56.git
+- src: git+https://iris.radicle.network/z3roZFCprFZhmK8BvkrsKwkLZXr56.git
   version: v0.25.0-1
   name: radicle_httpd
   activation_prefix: radicle_httpd_
-- src: git+https://seed.radicle.garden/z28JTUhepmbS3hLZyUeEvXeqk9QW5.git
+- src: git+https://iris.radicle.network/z28JTUhepmbS3hLZyUeEvXeqk9QW5.git
   version: v1.9.1-0
   name: radicle_node
   activation_prefix: radicle_node_
@@ -836,7 +836,7 @@
   version: v6.1.2-2
   name: redmine
   activation_prefix: redmine_
-- src: git+https://seed.radicle.garden/z3rhdtDR5EHHGk1SNBHwYtofxNyAf.git
+- src: git+https://iris.radicle.network/z3rhdtDR5EHHGk1SNBHwYtofxNyAf.git
   version: v4.0.5-0
   name: reitti
   activation_prefix: reitti_
@@ -848,7 +848,7 @@
   version: v2025.10.7-6
   name: rssbridge
   activation_prefix: rssbridge_
-- src: git+https://seed.radicle.garden/z3yKvCwcEfxn41ozRTcNR8ad6kpUm.git
+- src: git+https://iris.radicle.network/z3yKvCwcEfxn41ozRTcNR8ad6kpUm.git
   version: v2025.11.04-6
   name: rsshub
   activation_prefix: rsshub_
@@ -876,15 +876,15 @@
   version: v2.7.3-0
   name: sftpgo
   activation_prefix: sftpgo_
-- src: git+https://seed.radicle.garden/z3PxyXm3EXE4xCNKcaKVKmtdjVNog.git
+- src: git+https://iris.radicle.network/z3PxyXm3EXE4xCNKcaKVKmtdjVNog.git
   version: v2.4.1-4
   name: silverbullet
   activation_prefix: silverbullet_
-- src: git+https://seed.radicle.garden/zXf3qnvPwC2UsBpfTYmPesL5KSZc.git
+- src: git+https://iris.radicle.network/zXf3qnvPwC2UsBpfTYmPesL5KSZc.git
   version: v6.5.2-0
   name: smp_server
   activation_prefix: smp_server_
-- src: git+https://seed.radicle.garden/znvd313jEb23f9AUNmtsweE7YHCK.git
+- src: git+https://iris.radicle.network/znvd313jEb23f9AUNmtsweE7YHCK.git
   version: v2.14.0-0
   name: snowflake
   activation_prefix: snowflake_
@@ -892,7 +892,7 @@
   version: v0.11.6-0
   name: soft_serve
   activation_prefix: soft_serve_
-- src: git+https://seed.radicle.garden/zeEwXM9Fp4C8NU4oQfNg474Vivwu.git
+- src: git+https://iris.radicle.network/zeEwXM9Fp4C8NU4oQfNg474Vivwu.git
   version: v3.0.0-0
   name: solidinvoice
   activation_prefix: solidinvoice_
@@ -900,7 +900,7 @@
   version: v4.0.17-2
   name: sonarr
   activation_prefix: sonarr_
-- src: git+https://seed.radicle.garden/z381JyLARWwSiZnYotVXehYcQEw7u.git
+- src: git+https://iris.radicle.network/z381JyLARWwSiZnYotVXehYcQEw7u.git
   version: v0.0.0-3
   name: soundcloak
   activation_prefix: soundcloak_
@@ -912,7 +912,7 @@
   version: v1.0.2-1
   name: ssh
   activation_prefix: system_security_ssh_
-- src: git+https://seed.radicle.garden/z4Ki52caKbH1y9jFNdKzQnc8WH1Jd.git
+- src: git+https://iris.radicle.network/z4Ki52caKbH1y9jFNdKzQnc8WH1Jd.git
   version: v0.3.0-4
   name: statusnook
   activation_prefix: statusnook_
@@ -948,7 +948,7 @@
   version: v3.3.0-0
   name: tasksmd
   activation_prefix: tasksmd_
-- src: git+https://seed.radicle.garden/z2bcU1U9yJfJE6t8quZ1BMnEpQLic.git
+- src: git+https://iris.radicle.network/z2bcU1U9yJfJE6t8quZ1BMnEpQLic.git
   version: v1.10.0-3
   name: teable
   activation_prefix: teable_
@@ -956,15 +956,15 @@
   version: v1.39.0-0
   name: telegraf
   activation_prefix: telegraf_
-- src: git+https://seed.radicle.garden/z4TiZiqkm6MBmkPL2NTPMavni6LV.git
+- src: git+https://iris.radicle.network/z4TiZiqkm6MBmkPL2NTPMavni6LV.git
   version: v2.4.0-0
   name: termix
   activation_prefix: termix_
-- src: git+https://seed.radicle.garden/z3vaa8VAuz3pxqB3FyciNKQRSHqyt.git
+- src: git+https://iris.radicle.network/z3vaa8VAuz3pxqB3FyciNKQRSHqyt.git
   version: v4.5.0-0
   name: thelounge
   activation_prefix: thelounge_
-- src: git+https://seed.radicle.garden/zbk3MzAN6SX6d8pa9DT2kHDscyr6.git
+- src: git+https://iris.radicle.network/zbk3MzAN6SX6d8pa9DT2kHDscyr6.git
   version: v3.3.0.0-0
   name: tika
   activation_prefix: tika_
@@ -972,7 +972,7 @@
   version: v1.1.0-1
   name: timesync
   activation_prefix: devture_timesync_
-- src: git+https://seed.radicle.garden/zLMiPKSyMcb5m85H2brZd4GHCDTF.git
+- src: git+https://iris.radicle.network/zLMiPKSyMcb5m85H2brZd4GHCDTF.git
   version: v5.0.7-1
   name: tinyauth
   activation_prefix: tinyauth_
@@ -984,7 +984,7 @@
   version: v2.11.4-0
   name: traefik_certs_dumper
   activation_prefix: traefik_certs_dumper_
-- src: git+https://seed.radicle.garden/z3baazpMjGxvdYmB7RTqr5WnrSRke.git
+- src: git+https://iris.radicle.network/z3baazpMjGxvdYmB7RTqr5WnrSRke.git
   version: v1.6.1-1
   name: transfersh
   activation_prefix: transfersh_
@@ -1020,7 +1020,7 @@
   version: v4.14.5-11
   name: wazuh
   activation_prefix: wazuh_
-- src: git+https://seed.radicle.garden/z3NoFEkNtQQjSGjLvweqwCFPbC59R.git
+- src: git+https://iris.radicle.network/z3NoFEkNtQQjSGjLvweqwCFPbC59R.git
   version: v2026.6.1.0-0
   name: weblate
   activation_prefix: weblate_
@@ -1032,7 +1032,7 @@
   version: v15.3.0-0
   name: wg_easy
   activation_prefix: wg_easy_
-- src: git+https://seed.radicle.garden/z9wRjUKpo8iRJQ3c3GPN7Zkk12ei.git
+- src: git+https://iris.radicle.network/z9wRjUKpo8iRJQ3c3GPN7Zkk12ei.git
   version: v0.1.16-5
   name: wikimore
   activation_prefix: wikimore_
@@ -1048,7 +1048,7 @@
   version: v7-0
   name: wordpress
   activation_prefix: wordpress_
-- src: git+https://seed.radicle.garden/z2i8BkHXzRvK1ZtGwHuvLACRswXgA.git
+- src: git+https://iris.radicle.network/z2i8BkHXzRvK1ZtGwHuvLACRswXgA.git
   version: v0.16.0-7
   name: writefreely
   activation_prefix: writefreely_
@@ -1056,7 +1056,7 @@
   version: v1.93.2-8
   name: yacy
   activation_prefix: yacy_
-- src: git+https://seed.radicle.garden/z2BzsfYJzpSCK4tC8kCR1uCooZYX5.git
+- src: git+https://iris.radicle.network/z2BzsfYJzpSCK4tC8kCR1uCooZYX5.git
   version: v0.0.0-3
   name: yggstack
   activation_prefix: yggstack_
