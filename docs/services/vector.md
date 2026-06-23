@@ -50,6 +50,28 @@ Out of the box, the default pipeline collects host metrics (`host_metrics`) and 
 
 To build your own pipeline, extend the default by adding sources, transforms, and sinks through the `vector_sources_custom`, `vector_transforms_custom`, and `vector_sinks_custom` variables. The sections below show common integrations.
 
+### Collecting system logs (journald and `/var/log`)
+
+By default, Vector's pipeline only sees its own metrics and internal logs — it has no access to the host's logs. To collect the host's systemd journal and/or textual log files under `/var/log`, enable the built-in log sources:
+
+```yaml
+# Ship the host's systemd journal (adds a source named `journald`)
+vector_journald_source_enabled: true
+
+# Ship textual log files found under /var/log (adds a source named `varlog`)
+vector_varlog_source_enabled: true
+```
+
+Enabling either source automatically:
+
+- bind-mounts the relevant host paths into the container read-only (`/var/log/journal` + `/etc/machine-id` for journald, `/var/log` for varlog), and
+- relaxes the container's security posture so it can read these root-owned files: Vector then runs as `root` with the `DAC_OVERRIDE` and `DAC_READ_SEARCH` capabilities (instead of the default non-root, all-capabilities-dropped posture). This mirrors how [Promtail](promtail.md) operates its scrapers.
+
+> [!NOTE]
+> The `journald` source requires the `journalctl` binary, which is only present in the `debian` Vector image variant (the default). If you've switched `vector_container_image_distribution` to `alpine` or a `distroless` variant, enabling `vector_journald_source_enabled` will fail validation.
+
+These sources only collect logs — they do not forward them anywhere on their own. Add the source names (`journald`, `varlog`) to the `inputs` of a sink (for example the Loki sink below).
+
 ### Shipping logs to Grafana Loki
 
 If [Grafana Loki](grafana-loki.md) runs on the same server, Vector automatically joins Loki's container network when `loki_enabled` is set, so you can ship logs to it directly over the container network.
@@ -62,6 +84,9 @@ vector_sinks_custom:
     type: loki
     inputs:
       - internal_logs
+      # If you enabled the host-log sources above, forward them too:
+      - journald
+      - varlog
     endpoint: "{{ loki_scheme }}://{{ loki_identifier }}:{{ loki_server_http_listen_port }}"
     tenant_id: mash
     encoding:
