@@ -87,7 +87,7 @@ vector_sinks_custom:
     endpoint: "{{ loki_scheme }}://{{ loki_identifier }}:{{ loki_server_http_listen_port }}"
     tenant_id: mash
     encoding:
-      codec: json
+      codec: text
     labels:
       source: vector
       # Promote the journald fields to Loki labels so you can filter by service in Grafana Explore. 
