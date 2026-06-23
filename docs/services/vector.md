@@ -83,7 +83,7 @@ vector_sinks_custom:
   prometheus:
     type: prometheus_exporter
     inputs:
-      - host_metrics
+      - internal_metrics
     address: 0.0.0.0:9598
 ```
 
