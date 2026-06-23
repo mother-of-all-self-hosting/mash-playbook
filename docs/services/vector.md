@@ -46,13 +46,20 @@ vector_enabled: true
 ########################################################################
 ```
 
-Out of the box, the default pipeline collects host metrics (`host_metrics`) and Vector's own internal logs (`internal_logs`) and writes them as JSON to the console, where they're captured by journald. You can inspect them with `journalctl -u mash-vector`.
+## Usage
 
-To build your own pipeline, extend the default by adding sources, transforms, and sinks through the `vector_sources_custom`, `vector_transforms_custom`, and `vector_sinks_custom` variables. The sections below show common integrations.
+
+By default Vector is configured to collect host metrics and Vector's own internal logs and write them as JSON to the console. After running the command for installation you can observe its output with:
+
+```sh
+journalctl -fu mash-vector
+```
+
+To extend the default configuration we show you a few built-in scrapers (or `sources`) you can easily enable below. To build your own extend the default sources, transforms, and sinks through the `vector_sources_custom`, `vector_transforms_custom`, and `vector_sinks_custom` variables. 
 
 ### Collecting system logs (journald and `/var/log`)
 
-By default, Vector's pipeline only sees its own metrics and internal logs — it has no access to the host's logs. To collect the host's systemd journal and/or textual log files under `/var/log`, enable the built-in log sources:
+To collect the host's systemd journal and/or textual log files under `/var/log`, enable the built-in log sources:
 
 ```yaml
 # Ship the host's systemd journal (exposes a labeled stream named `journald`)
@@ -61,12 +68,6 @@ vector_journald_source_enabled: true
 # Ship textual log files found under /var/log (adds a source named `varlog`)
 vector_varlog_source_enabled: true
 ```
-
-These sources only collect logs — they do not forward them anywhere on their own. Add the stream names (`journald`, `varlog`) to the `inputs` of a sink (for example the Loki sink below).
-
-When `vector_journald_source_enabled` is on, the role also wires up a small built-in `remap` transform (component id `journald`) that promotes journal fields onto each event as the clean, low-cardinality fields `unit`, `syslog_identifier`, and `service_name`. You consume this labeled stream by referencing `journald` in your sink `inputs` (as below); you don't need to define the transform yourself.
-
-To actually surface those fields as **labels** in Grafana/Loki (so you can filter by service in Explore, instead of everything landing under `unknown_service`), map them in your sink's `labels` block — see the Loki example below.
 
 ### Shipping logs to Grafana Loki
 
@@ -89,10 +90,8 @@ vector_sinks_custom:
       codec: json
     labels:
       source: vector
-      # Promote the journald fields (added by the built-in `journald` transform) to
-      # Loki labels so you can filter by service in Grafana Explore. `service_name`
-      # is what drives Grafana's service picker and prevents the `unknown_service`
-      # fallback. These render empty for non-journald inputs, which Loki simply drops.
+      # Promote the journald fields to Loki labels so you can filter by service in Grafana Explore. 
+      # These render empty for non-journald inputs, which Loki simply drops.
       service_name: "{{ '{{ service_name }}' }}"
       unit: "{{ '{{ unit }}' }}"
       syslog_identifier: "{{ '{{ syslog_identifier }}' }}"
@@ -100,9 +99,7 @@ vector_sinks_custom:
 ```
 
 > [!NOTE]
-> Vector uses its own `{{ field }}` syntax to pull a field's value into a label. Because Ansible *also* uses `{{ }}`, you must escape it in `vars.yml` (write it as `"{{ '{{ field }}' }}"`, exactly as shown above) so Ansible passes the literal `{{ field }}` through to Vector instead of trying to resolve it as an Ansible variable. This is why `endpoint` above uses bare `{{ ... }}` (those *are* Ansible variables) while the `labels` are escaped.
->
-> Keep labels low-cardinality: `service_name`, `unit`, `syslog_identifier`, and `host` are safe; never promote high-cardinality fields like the message or PID to labels — they stay searchable inside the log line. To label `/var/log` files similarly, add your own `remap` transform keyed off the `varlog` source's `file` field.
+> Vector uses its own `{{ field }}` syntax to pull a field's value into a label. Because Ansible *also* uses `{{ }}`, you must escape it in `vars.yml` (write it as `"{{ '{{ field }}' }}"`, exactly as shown above) so Ansible passes the literal `{{ field }}` through to Vector instead of trying to resolve it as an Ansible variable.
 
 For connecting to a remote Loki instance, set `endpoint` to the public hostname (e.g. `https://mash.example.com/loki`) and adjust authentication as needed.
 
@@ -144,7 +141,6 @@ Vector ships a GraphQL API (with a `/health` endpoint and an interactive `/playg
 
 ```yaml
 vector_api_enabled: true
-
 vector_hostname: mash.example.com
 vector_path_prefix: /vector
 ```
@@ -157,16 +153,6 @@ vector_path_prefix: /vector
 > # See https://doc.traefik.io/traefik/middlewares/http/basicauth/#users for the format.
 > vector_container_labels_api_middleware_basic_auth_users: ""
 > ```
-
-## Usage
-
-After running the command for installation, Vector runs the configured `sources` → `transforms` → `sinks` pipeline as a systemd service. With the default configuration, you can observe its output with:
-
-```sh
-journalctl -fu mash-vector
-```
-
-If you enabled the API and exposed it (see above), it becomes available at the URL specified with `vector_hostname` and `vector_path_prefix`.
 
 ## Related services
 
