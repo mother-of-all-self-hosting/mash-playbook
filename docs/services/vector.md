@@ -62,14 +62,6 @@ vector_journald_source_enabled: true
 vector_varlog_source_enabled: true
 ```
 
-Enabling either source automatically:
-
-- bind-mounts the relevant host paths into the container read-only (`/var/log/journal` + `/etc/machine-id` for journald, `/var/log` for varlog), and
-- relaxes the container's security posture so it can read these root-owned files: Vector then runs as `root` with the `DAC_OVERRIDE` and `DAC_READ_SEARCH` capabilities (instead of the default non-root, all-capabilities-dropped posture). This mirrors how [Promtail](promtail.md) operates its scrapers.
-
-> [!NOTE]
-> The `journald` source requires the `journalctl` binary, which is only present in the `debian` Vector image variant (the default). If you've switched `vector_container_image_distribution` to `alpine` or a `distroless` variant, enabling `vector_journald_source_enabled` will fail validation.
-
 These sources only collect logs — they do not forward them anywhere on their own. Add the source names (`journald`, `varlog`) to the `inputs` of a sink (for example the Loki sink below).
 
 ### Shipping logs to Grafana Loki
