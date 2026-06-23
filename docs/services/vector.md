@@ -17,9 +17,6 @@ For details about configuring the [Ansible role for Vector](https://github.com/s
 - 🌐 [the role's `defaults/main.yml`](https://github.com/spatterIight/ansible-role-vector/blob/main/defaults/main.yml) online
 - 📁 `roles/galaxy/vector/defaults/main.yml` locally, if you have [fetched the Ansible roles](../installing.md)
 
->[!NOTE]
-> Vector is a router/processor, not a storage system. To make use of it, you typically pair it with a storage backend such as [Grafana Loki](grafana-loki.md) (for logs) or [Prometheus](prometheus.md) (for metrics), and visualize the result with [Grafana](grafana.md).
-
 ## Dependencies
 
 This service requires the following other services:
@@ -66,7 +63,6 @@ vector_sinks_custom:
     inputs:
       - internal_logs
     endpoint: "{{ loki_scheme }}://{{ loki_identifier }}:{{ loki_server_http_listen_port }}"
-    # Loki on this playbook expects a tenant ID. Promtail uses `mash` by default.
     tenant_id: mash
     encoding:
       codec: json
