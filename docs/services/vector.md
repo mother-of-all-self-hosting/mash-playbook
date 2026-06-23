@@ -79,6 +79,10 @@ You can then add Loki as a datasource in Grafana — see [Integrating with a loc
 To let [Prometheus](prometheus.md) collect Vector's metrics, add a `prometheus_exporter` sink that exposes them on a port:
 
 ```yaml
+vector_sources_custom:
+  internal_metrics:
+    type: internal_metrics
+
 vector_sinks_custom:
   prometheus:
     type: prometheus_exporter
