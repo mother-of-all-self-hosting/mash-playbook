@@ -1008,6 +1008,10 @@
   version: v1.36.0-1
   name: vaultwarden
   activation_prefix: vaultwarden_
+- src: git+https://github.com/spatterIight/ansible-role-vector.git
+  version: v0.56.0-0
+  name: vector
+  activation_prefix: vector_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-versatiles.git
   version: v4.3.0-0
   name: versatiles

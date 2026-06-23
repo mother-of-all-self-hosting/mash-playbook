@@ -1034,6 +1034,10 @@
     - role: galaxy/vaultwarden
     # /role-specific:vaultwarden
 
+    # role-specific:vector
+    - role: galaxy/vector
+    # /role-specific:vector
+
     # role-specific:versatiles
     - role: galaxy/versatiles
     # /role-specific:versatiles
