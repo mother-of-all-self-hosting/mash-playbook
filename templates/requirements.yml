@@ -217,7 +217,7 @@
   name: docuseal
   activation_prefix: docuseal_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-dokuwiki.git
-  version: v2025-05-14b-3
+  version: v2025-05-14b-4
   name: dokuwiki
   activation_prefix: dokuwiki_
 - src: git+https://iris.radicle.network/z2EKWswSBFJgUQmxEBzi7sb8QyS2r.git
