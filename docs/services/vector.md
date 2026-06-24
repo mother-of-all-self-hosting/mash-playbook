@@ -48,14 +48,13 @@ vector_enabled: true
 
 ## Usage
 
-
 By default Vector is configured to collect host metrics and Vector's own internal logs and write them as JSON to the console. After running the command for installation you can observe its output with:
 
 ```sh
 journalctl -fu mash-vector
 ```
 
-To extend the default configuration we show you a few built-in scrapers (or `sources`) you can easily enable below. To build your own extend the default sources, transforms, and sinks through the `vector_sources_custom`, `vector_transforms_custom`, and `vector_sinks_custom` variables. 
+To extend the default configuration we show you a few built-in scrapers (or `sources`) you can easily enable below. To build your own extend the default sources, transforms, and sinks through the `vector_sources_custom`, `vector_transforms_custom`, and `vector_sinks_custom` variables.
 
 ### Collecting system logs (journald and `/var/log`)
 
@@ -111,7 +110,6 @@ vector_sinks_custom:
 
 > [!WARNING]
 > A `{{ '{{ field }}' }}` label must reference a field present and non-empty on **every** event the sink receives, otherwise Vector drops the event and logs a warning. Never route `internal_logs` into such a sink: it carries those warnings, so a failed render feeds back into the sink and can pin the CPU. Only label on guaranteed fields (`service_name` on `journald`, `file` on `varlog`); `unit` and `syslog_identifier` are empty for unit-less entries like kernel messages, so they are not safe to label on.
-
 > [!NOTE]
 > Vector uses its own `{{ field }}` syntax to pull a field's value into a label. Because Ansible *also* uses `{{ }}`, you must escape it in `vars.yml` (write it as `"{{ '{{ field }}' }}"`, exactly as shown above) so Ansible passes the literal `{{ field }}` through to Vector instead of trying to resolve it as an Ansible variable.
 
