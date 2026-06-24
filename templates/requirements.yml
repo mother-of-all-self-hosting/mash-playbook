@@ -893,7 +893,7 @@
   name: soft_serve
   activation_prefix: soft_serve_
 - src: git+https://iris.radicle.network/zeEwXM9Fp4C8NU4oQfNg474Vivwu.git
-  version: v3.0.0-0
+  version: v3.0.1-0
   name: solidinvoice
   activation_prefix: solidinvoice_
 - src: git+https://github.com/spatterIight/ansible-role-sonarr.git
