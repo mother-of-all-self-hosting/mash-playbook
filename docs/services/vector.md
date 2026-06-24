@@ -48,23 +48,23 @@ vector_enabled: true
 
 ## Usage
 
-By default Vector is configured to collect host metrics and Vector's own internal logs and write them as JSON to the console. After running the command for installation you can observe its output with:
+By default Vector is configured to output its own internal logs and write them as JSON to the console. After running the command for installation you can observe its output with:
 
 ```sh
 journalctl -fu mash-vector
 ```
 
-To extend the default configuration we show you a few built-in scrapers (or `sources`) you can easily enable below. To build your own extend the default sources, transforms, and sinks through the `vector_sources_custom`, `vector_transforms_custom`, and `vector_sinks_custom` variables.
+To extend the default configuration we show you a few built-in log sources you can easily enable below. To build your own extend the default sources, transforms, and sinks through the `vector_sources_custom`, `vector_transforms_custom`, and `vector_sinks_custom` variables.
 
 ### Collecting system logs (journald and `/var/log`)
 
 To collect the host's systemd journal and/or textual log files under `/var/log`, enable the built-in log sources:
 
 ```yaml
-# Ship the host's systemd journal (exposes a labeled stream named `journald`)
+# Collect the host's systemd journal
 vector_journald_source_enabled: true
 
-# Ship textual log files found under /var/log (adds a source named `varlog`)
+# Collect textual log files found under /var/log
 vector_varlog_source_enabled: true
 ```
 
