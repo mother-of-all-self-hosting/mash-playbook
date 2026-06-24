@@ -69,20 +69,35 @@ vector_journald_source_enabled: true
 vector_varlog_source_enabled: true
 ```
 
+Each enabled source becomes a stream you reference in a sink's `inputs`:
+
+- `journald` — carries a `service_name` field (derived from the systemd unit, falling back to the syslog identifier).
+- `varlog` — carries a `file` field with the source file's path.
+
 ### Shipping logs to Grafana Loki
 
 If [Grafana Loki](grafana-loki.md) runs on the same server, Vector automatically joins Loki's container network when `loki_enabled` is set, so you can ship logs to it directly over the container network.
 
-Add a `loki` sink with the following additional configuration (adapt the `inputs` to the sources/transforms you want to forward):
+Add `loki` sinks with the following additional configuration. Use a separate sink per stream, since a sink applies one `labels` block to all its inputs and `journald`/`varlog` carry different fields:
 
 ```yaml
 vector_sinks_custom:
-  loki:
+  loki_journald:
     type: loki
     inputs:
-      - internal_logs
-      # If you enabled the host-log sources above, forward them too:
       - journald
+    endpoint: "{{ loki_scheme }}://{{ loki_identifier }}:{{ loki_server_http_listen_port }}"
+    tenant_id: mash
+    encoding:
+      codec: text
+    labels:
+      source: vector
+      service_name: "{{ '{{ service_name }}' }}"
+      host: "{{ '{{ host }}' }}"
+
+  loki_varlog:
+    type: loki
+    inputs:
       - varlog
     endpoint: "{{ loki_scheme }}://{{ loki_identifier }}:{{ loki_server_http_listen_port }}"
     tenant_id: mash
@@ -90,13 +105,12 @@ vector_sinks_custom:
       codec: text
     labels:
       source: vector
-      # Promote the journald fields to Loki labels so you can filter by service in Grafana Explore. 
-      # These render empty for non-journald inputs, which Loki simply drops.
-      service_name: "{{ '{{ service_name }}' }}"
-      unit: "{{ '{{ unit }}' }}"
-      syslog_identifier: "{{ '{{ syslog_identifier }}' }}"
-      host: "{{ '{{ host }}' }}"
+      filename: "{{ '{{ file }}' }}"
+      host: "{{ ansible_hostname | default(inventory_hostname) }}"
 ```
+
+> [!WARNING]
+> A `{{ '{{ field }}' }}` label must reference a field present and non-empty on **every** event the sink receives, otherwise Vector drops the event and logs a warning. Never route `internal_logs` into such a sink: it carries those warnings, so a failed render feeds back into the sink and can pin the CPU. Only label on guaranteed fields (`service_name` on `journald`, `file` on `varlog`); `unit` and `syslog_identifier` are empty for unit-less entries like kernel messages, so they are not safe to label on.
 
 > [!NOTE]
 > Vector uses its own `{{ field }}` syntax to pull a field's value into a label. Because Ansible *also* uses `{{ }}`, you must escape it in `vars.yml` (write it as `"{{ '{{ field }}' }}"`, exactly as shown above) so Ansible passes the literal `{{ field }}` through to Vector instead of trying to resolve it as an Ansible variable.
@@ -110,10 +124,6 @@ You can then add Loki as a datasource in Grafana — see [Integrating with a loc
 To let [Prometheus](prometheus.md) collect Vector's metrics, add a `prometheus_exporter` sink that exposes them on a port:
 
 ```yaml
-vector_sources_custom:
-  internal_metrics:
-    type: internal_metrics
-
 vector_sinks_custom:
   prometheus:
     type: prometheus_exporter
