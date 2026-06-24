@@ -110,8 +110,6 @@ vector_sinks_custom:
 
 > [!WARNING]
 > A `{{ '{{ field }}' }}` label must reference a field present and non-empty on **every** event the sink receives, otherwise Vector drops the event and logs a warning. Never route `internal_logs` into such a sink: it carries those warnings, so a failed render feeds back into the sink and can pin the CPU. Only label on guaranteed fields (`service_name` on `journald`, `file` on `varlog`); `unit` and `syslog_identifier` are empty for unit-less entries like kernel messages, so they are not safe to label on.
-> [!NOTE]
-> Vector uses its own `{{ field }}` syntax to pull a field's value into a label. Because Ansible *also* uses `{{ }}`, you must escape it in `vars.yml` (write it as `"{{ '{{ field }}' }}"`, exactly as shown above) so Ansible passes the literal `{{ field }}` through to Vector instead of trying to resolve it as an Ansible variable.
 
 For connecting to a remote Loki instance, set `endpoint` to the public hostname (e.g. `https://mash.example.com/loki`) and adjust authentication as needed.
 
