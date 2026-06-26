@@ -60,6 +60,29 @@ cryptpad_sandbox_hostname: sandbox.example.com
 ########################################################################
 ```
 
+## Optional: enable CryptPad spreadsheets
+
+CryptPad’s spreadsheet editor is backed by its bundled OnlyOffice integration. If the `Sheets` or `Spreadsheet` app does not show up in the UI, enable that bundle explicitly and persist its local data with additional bind mounts:
+
+```yaml
+cryptpad_environment_variables_additional_variables: |-
+    CPAD_INSTALL_ONLYOFFICE=yes
+
+cryptpad_container_additional_volumes_custom:
+    - type: bind
+      src: "{{ cryptpad_base_path }}/onlyoffice-dist"
+      dst: /cryptpad/www/common/onlyoffice/dist
+    - type: bind
+      src: "{{ cryptpad_base_path }}/onlyoffice-conf"
+      dst: /cryptpad/onlyoffice-conf
+```
+
+After updating `vars.yml`, re-run the installation process and restart CryptPad.
+
+```sh
+ansible-playbook -i inventory/hosts setup.yml --tags=setup-cryptpad,start
+```
+
 ## Usage
 
 After running the command for installation, the CryptPad instance becomes available at the URL specified with `cryptpad_main_hostname`. With the configuration above, the service is hosted at `https://cryptpad.example.com`.
