@@ -172,7 +172,19 @@ setup-service service *extra_args:
 
 # Runs the playbook with the given list of arguments
 run +extra_args: _requirements-yml _setup-yml _group-vars-mash-servers
-    ansible-playbook -i inventory/hosts setup.yml {{ extra_args }}
+    #!/usr/bin/env sh
+    set -eu
+    if ! [ -x "$(command -v etkepass)" ]; then
+        ansible-playbook -i inventory/hosts setup.yml {{ extra_args }}
+        exit $?
+    fi
+    export SSH_ASKPASS="$(command -v etkepass)"
+    export SSH_ASKPASS_REQUIRE=force
+    _tmpdir="$(mktemp -d)"
+    chmod 700 "$_tmpdir"
+    trap 'rm -rf "$_tmpdir"' EXIT INT TERM HUP
+    (cd inventory && etkepass --decrypt-inv-to "$_tmpdir")
+    ansible-playbook -i inventory/hosts -i "$_tmpdir" setup.yml {{ extra_args }}
 
 # Runs the playbook with the given list of comma-separated tags and optional arguments
 run-tags tags *extra_args:
