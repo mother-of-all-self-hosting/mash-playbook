@@ -13,6 +13,7 @@ SPDX-FileCopyrightText: 2023 Felix Stupp
 SPDX-FileCopyrightText: 2023 Julian-Samuel Gebühr
 SPDX-FileCopyrightText: 2023 Pierre 'McFly' Marty
 SPDX-FileCopyrightText: 2024-2026 Suguru Hirahara
+SPDX-FileCopyrightText: 2026 microchipster
 
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->
@@ -59,6 +60,10 @@ cryptpad_sandbox_hostname: sandbox.example.com
 #                                                                      #
 ########################################################################
 ```
+
+### Enabling spreadsheets (optional)
+
+CryptPad’s spreadsheet editor is backed by its bundled OnlyOffice integration. If the `Sheets` or `Spreadsheet` app does not show up in the UI, you need to enable that bundle explicitly and persist its local data with additional bind mounts. See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-cryptpad/blob/main/docs/configuring-cryptpad.md#enabling-spreadsheets-optional) on the role's documentation for details.
 
 ## Usage
 
