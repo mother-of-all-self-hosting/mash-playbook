@@ -174,6 +174,7 @@ Below is an exhaustive list of the free and open-source software for self-hostin
 | [Nextcloud](https://nextcloud.com/) | Popular collaboration solution | [Link](services/nextcloud.md) |
 | [noCDNbs](https://git.private.coffee/PrivateCoffee/nocdnbs) | Privacy-friendly cdnjs proxy | [Link](services/nocdnbs.md) |
 | [NodeBB](https://github.com/NodeBB/NodeBB) | Node.js based forum software | [Link](services/nodebb.md) |
+| [Node-RED](https://nodered.org) | Flow-based programming tool | [Link](services/nodered.md) |
 | [Notfellchen](https://codeberg.org/moanos/notfellchen) | List animals available for adoption to increase their chance of finding a forever-home | [Link](services/notfellchen.md) |
 | [ntfy](https://ntfy.sh/) | HTTP-based pub-sub notification service to send you push notifications from any computer | [Link](services/ntfy.md) |
 | [OAuth2-Proxy](https://oauth2-proxy.github.io/oauth2-proxy/) | A reverse proxy and static file server that provides authentication using OpenID Connect Providers | [Link](services/oauth2-proxy.md) |
