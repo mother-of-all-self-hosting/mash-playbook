@@ -249,7 +249,7 @@
   name: etherpad
   activation_prefix: etherpad_
 - src: git+https://iris.radicle.network/z4SSf2SU2YwBaMmCFBJnM5KqorU9T.git
-  version: v9.3.1-0
+  version: v9.3.2-0
   name: eurooffice
   activation_prefix: eurooffice_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-excalidraw.git
