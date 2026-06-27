@@ -20,15 +20,15 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
 # Node-RED
 
-The playbook can install and configure [Node-RED](https://noderedbudget.org) for you.
+The playbook can install and configure [Node-RED](https://nodered.org) for you.
 
-Node-RED is a local-first personal finance tool.
+Node-RED is a flow-based programming tool.
 
-See the project's [documentation](https://noderedbudget.org/docs/) to learn what Node-RED does and why it might be useful to you.
+See the project's [documentation](https://nodered.org/docs/) to learn what Node-RED does and why it might be useful to you.
 
-For details about configuring the [Ansible role for Node-RED](https://radicle.network/nodes/iris.radicle.network/rad%3Az2chD7Kt74JwEMafxTooxN7MaeYtK), you can check them via:
+For details about configuring the [Ansible role for Node-RED](https://radicle.network/nodes/iris.radicle.network/rad%3Az3g4bZnzZJis1DEKVzR3pPsyUzicT), you can check them via:
 
-- 🌐 [the role's documentation](https://radicle.network/nodes/iris.radicle.network/rad%3Az2chD7Kt74JwEMafxTooxN7MaeYtK/tree/docs/configuring-nodered.md) online
+- 🌐 [the role's documentation](https://radicle.network/nodes/iris.radicle.network/rad%3Az3g4bZnzZJis1DEKVzR3pPsyUzicT/tree/docs/configuring-nodered.md) online
 - 📁 `roles/galaxy/nodered/docs/configuring-nodered.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 ## Dependencies
@@ -67,8 +67,4 @@ To get started, open the URL with a web browser to create an account.
 
 ## Troubleshooting
 
-See [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az2chD7Kt74JwEMafxTooxN7MaeYtK/tree/docs/configuring-nodered.md#troubleshooting) on the role's documentation for details.
-
-## Related services
-
-- [I hate money](ihatemoney.md) — Shared budget manager
+See [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az3g4bZnzZJis1DEKVzR3pPsyUzicT/tree/docs/configuring-nodered.md#troubleshooting) on the role's documentation for details.
