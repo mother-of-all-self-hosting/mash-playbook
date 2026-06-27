@@ -281,7 +281,7 @@
   name: fider
   activation_prefix: fider_
 - src: git+https://iris.radicle.network/z318zbpe2RNjFqVzXqPoDDJvvohbw.git
-  version: v2.63.15-0
+  version: v2.63.16-0
   name: filebrowser
   activation_prefix: filebrowser_
 - src: git+https://iris.radicle.network/z3ALGSKDhVLeMnR49YPXk5yv2yTge.git
