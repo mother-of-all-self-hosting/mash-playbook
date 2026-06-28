@@ -157,7 +157,7 @@
   name: container_socket_proxy
   activation_prefix: mash_
 - src: git+https://iris.radicle.network/z22bUmhZzA5VWtmKERFkEjGzdPuke.git
-  version: v13.0.1-0
+  version: v14.0.0-0
   name: converse
   activation_prefix: converse_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-convertx.git
