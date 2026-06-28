@@ -620,6 +620,10 @@
   version: v4.13.2-0
   name: nodebb
   activation_prefix: nodebb_
+- src: git+https://iris.radicle.network/z3g4bZnzZJis1DEKVzR3pPsyUzicT.git
+  version: v5.0.0-0
+  name: nodered
+  activation_prefix: nodered_
 - src: git+https://codeberg.org/moanos/ansible-role-notfellchen.git
   version: v1.3.0-0
   name: notfellchen

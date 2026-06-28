@@ -686,6 +686,10 @@
     - role: galaxy/nodebb
     # /role-specific:nodebb
 
+    # role-specific:nodered
+    - role: galaxy/nodered
+    # /role-specific:nodered
+
     # role-specific:notfellchen
     - role: galaxy/notfellchen
     # /role-specific:notfellchen
