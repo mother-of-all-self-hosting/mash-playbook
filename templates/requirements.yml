@@ -705,7 +705,7 @@
   name: phpmyadmin
   activation_prefix: phpmyadmin_
 - src: git+https://iris.radicle.network/zKNyeEtymCZc7yio6JnHxY2AteZu.git
-  version: v0.8.2-2
+  version: v0.9.0-0
   name: pinepods
   activation_prefix: pinepods_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-plausible.git
