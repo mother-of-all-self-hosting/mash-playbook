@@ -1013,7 +1013,7 @@
   name: vaultwarden
   activation_prefix: vaultwarden_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-versatiles.git
-  version: v4.4.0-0
+  version: v4.5.0-0
   name: versatiles
   activation_prefix: versatiles_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-vikunja.git
