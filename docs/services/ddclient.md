@@ -60,7 +60,7 @@ You might need to specify the endpoint to obtain IP address as well. Refer to [t
 
 ## Usage
 
-After running the command for installation, ddclient becomes available. Your DNS entry will be automatically updated per seconds specified to `ddclient_daemon_interval` (300 seconds by default).
+After running the command for installation, the ddclient instance becomes available. Your DNS entry will be automatically updated per seconds specified to `ddclient_daemon_interval` (300 seconds by default).
 
 ## Troubleshooting
 

@@ -110,7 +110,7 @@ apprise_container_labels_traefik_metrics_middleware_basic_auth_users: ""
 
 ## Usage
 
-After running the command for installation, Apprise API becomes available. If the Configuration Manager is configured to be exposed to the internet, it becomes available at the URL specified with `apprise_hostname`. With the configuration above, it is hosted at `https://apprise.example.com`.
+After running the command for installation, the Apprise API instance becomes available. If the Configuration Manager is configured to be exposed to the internet, it becomes available at the URL specified with `apprise_hostname`. With the configuration above, it is hosted at `https://apprise.example.com`.
 
 You can check the list of notification services supported by Apprise at <https://github.com/caronc/apprise/wiki#notification-services>. The instruction to use the Apprise CLI is available at <https://github.com/caronc/apprise/wiki/CLI_Usage>.
 

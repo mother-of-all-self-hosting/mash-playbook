@@ -82,7 +82,7 @@ Refer to [this section](https://radicle.network/nodes/iris.radicle.network/rad:z
 
 ## Usage
 
-After installation, the ChiefOnboarding instance becomes available at the URL specified with `chiefonboarding_hostname`. With the configuration above, the service is hosted at `https://chiefonboarding.example.com`.
+After running the command for installation, the ChiefOnboarding instance becomes available at the URL specified with `chiefonboarding_hostname`. With the configuration above, the service is hosted at `https://chiefonboarding.example.com`.
 
 To get started, open the URL with a web browser to create an account.
 

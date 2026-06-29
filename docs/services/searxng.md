@@ -256,7 +256,7 @@ Note that running the `just` commands for installation (`just install-all` or `j
 
 ## Usage
 
-After installation, the SearXNG instance becomes available at the URL specified with `searxng_hostname` and `searxng_path_prefix`. With the configuration above, the service is hosted at `https://mash.example.com/searxng`.
+After running the command for installation, the SearXNG instance becomes available at the URL specified with `searxng_hostname` and `searxng_path_prefix`. With the configuration above, the service is hosted at `https://mash.example.com/searxng`.
 
 ### Add your YaCy instance (optional)
 

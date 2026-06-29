@@ -208,7 +208,7 @@ wg_easy_environment_variables_additional_variables: |
 
 ## Usage
 
-After installation, you can open the wg-easy [URL](#url).
+After running the command for installation, you can open the wg-easy [URL](#url).
 
 Most users can log in with the credentials they provided before the first installation and can log in and proceed to [create WireGuard clients](#creating-wireguard-clients).
 

@@ -249,7 +249,7 @@ Note that running the `just` commands for installation (`just install-all` or `j
 
 ## Usage
 
-After installation, the Funkwhale instance becomes available at the URL specified with `funkwhale_hostname`. With the configuration above, the service is hosted at `https://funkwhale.example.com`.
+After running the command for installation, the Funkwhale instance becomes available at the URL specified with `funkwhale_hostname`. With the configuration above, the service is hosted at `https://funkwhale.example.com`.
 
 To get started, create **an administrator user** first and open the URL with a web browser to log in to the instance. You can run the playbook with the `create-admin-funkwhale` or `ensure-funkwhale-users-created` tag to create users. See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-funkwhale/blob/main/docs/configuring-funkwhale.md#creating-users) on the role's documentation for details.
 

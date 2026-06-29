@@ -112,7 +112,7 @@ fider_container_labels_traefik_metrics_middleware_basic_auth_users: ""
 
 ## Usage
 
-After installation, the Fider instance becomes available at the URL specified with `fider_hostname`. With the configuration above, the service is hosted at `https://fider.example.com`.
+After running the command for installation, the Fider instance becomes available at the URL specified with `fider_hostname`. With the configuration above, the service is hosted at `https://fider.example.com`.
 
 To get started, open the URL with a web browser, and follow the set up wizard.
 

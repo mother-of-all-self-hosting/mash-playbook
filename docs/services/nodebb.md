@@ -248,7 +248,7 @@ Note that running the `just` commands for installation (`just install-all` or `j
 
 ## Usage
 
-After installation, the NodeBB instance becomes available at the URL specified with `nodebb_hostname`. With the configuration above, the service is hosted at `https://nodebb.example.com`.
+After running the command for installation, the NodeBB instance becomes available at the URL specified with `nodebb_hostname`. With the configuration above, the service is hosted at `https://nodebb.example.com`.
 
 To get started, open the URL with a web browser, and follow the set up wizard. Make sure that the scheme (`HTTPS` or `HTTP`) for the public facing URL is detected properly, and fix it if not.
 

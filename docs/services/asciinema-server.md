@@ -106,7 +106,7 @@ asciinema_server_environment_variable_upload_auth_required: false
 
 ## Usage
 
-After installation, the asciinema server instance becomes available at the URL specified with `asciinema_server_hostname`. With the configuration above, the service is hosted at `https://asciinema-server.example.com`.
+After running the command for installation, the asciinema server instance becomes available at the URL specified with `asciinema_server_hostname`. With the configuration above, the service is hosted at `https://asciinema-server.example.com`.
 
 To get started, install the asciinema CLI on your local computer, and then point it to the server, so that the CLI will upload your recordings to it. The basic flow to use the CLI from recording a terminal session to upload the recording to your server is available on [this page](https://docs.asciinema.org/getting-started/).
 

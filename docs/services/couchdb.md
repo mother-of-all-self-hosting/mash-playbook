@@ -80,7 +80,7 @@ couchdb_hostname: "couchdb.example.com"
 
 ## Usage
 
-After running the command for installation, CouchDB becomes available internally to other services on the same network. If the service is exposed to the internet, it becomes available at the URL specified with `couchdb_hostname`. With the configuration above, the service is hosted at `https://couchdb.example.com`.
+After running the command for installation, the CouchDB instance becomes available internally to other services on the same network. If the service is exposed to the internet, it becomes available at the URL specified with `couchdb_hostname`. With the configuration above, the service is hosted at `https://couchdb.example.com`.
 
 ### Creating users
 

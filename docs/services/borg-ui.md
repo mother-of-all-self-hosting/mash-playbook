@@ -285,7 +285,7 @@ Note that running the `just` commands for installation (`just install-all` or `j
 
 ## Usage
 
-After installation, the Borg Web UI instance becomes available at the URL specified with `borg_ui_hostname`. With the configuration above, the service is hosted at `https://borg-ui.example.com`.
+After running the command for installation, the Borg Web UI instance becomes available at the URL specified with `borg_ui_hostname`. With the configuration above, the service is hosted at `https://borg-ui.example.com`.
 
 To get started, open the URL with a web browser to log in to the instance.
 

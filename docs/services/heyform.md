@@ -255,7 +255,7 @@ Note that running the `just` commands for installation (`just install-all` or `j
 
 ## Usage
 
-After installation, the HeyForm instance becomes available at the URL specified with `heyform_hostname`. With the configuration above, the service is hosted at `https://heyform.example.com`.
+After running the command for installation, the HeyForm instance becomes available at the URL specified with `heyform_hostname`. With the configuration above, the service is hosted at `https://heyform.example.com`.
 
 To get started, open the URL with a web browser to create an account.
 

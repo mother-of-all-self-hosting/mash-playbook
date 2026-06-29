@@ -72,7 +72,7 @@ browserless_hostname: "browserless.example.com"
 
 ## Usage
 
-After running the command for installation, Browserless becomes available internally to other services on the same network. If the service is exposed to the internet, it becomes available at the URL specified with `browserless_hostname`. With the configuration above, the service is hosted at `https://browserless.example.com`.
+After running the command for installation, the Browserless instance becomes available internally to other services on the same network. If the service is exposed to the internet, it becomes available at the URL specified with `browserless_hostname`. With the configuration above, the service is hosted at `https://browserless.example.com`.
 
 ## Troubleshooting
 

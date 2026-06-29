@@ -53,7 +53,7 @@ yggstack_enabled: true
 
 ## Usage
 
-After running the command for installation, Yggstack becomes available at the IPv6 address which the service generates for you. The IPv6 address, its subnet, and your public key have been been logged to the console logs on the startup. The configuration file (`yggdrasil.conf`) can be found in `yggstack_data_path`.
+After running the command for installation, the Yggstack instance becomes available at the IPv6 address which the service generates for you. The IPv6 address, its subnet, and your public key have been been logged to the console logs on the startup. The configuration file (`yggdrasil.conf`) can be found in `yggstack_data_path`.
 
 Refer to [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az2BzsfYJzpSCK4tC8kCR1uCooZYX5/tree/docs/configuring-yggstack.md#usage) for details about how to set up Yggstack.
 

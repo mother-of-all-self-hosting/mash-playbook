@@ -66,4 +66,4 @@ flaresolverr_hostname: "flaresolverr.example.com"
 
 ## Usage
 
-After running the command for installation, FlareSolverr becomes available internally to other services on the same network. If the service is exposed to the internet, it becomes available at the URL specified with `flaresolverr_hostname`. With the configuration above, the service is hosted at `https://flaresolverr.example.com`.
+After running the command for installation, the FlareSolverr instance becomes available internally to other services on the same network. If the service is exposed to the internet, it becomes available at the URL specified with `flaresolverr_hostname`. With the configuration above, the service is hosted at `https://flaresolverr.example.com`.

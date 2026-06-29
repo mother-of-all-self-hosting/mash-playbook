@@ -91,7 +91,7 @@ To actually have the service use (and get messages sent through the exim-relay s
 
 ## Usage
 
-After installation, the Papra instance becomes available at the URL specified with `papra_hostname`. With the configuration above, the service is hosted at `https://papra.example.com`.
+After running the command for installation, the Papra instance becomes available at the URL specified with `papra_hostname`. With the configuration above, the service is hosted at `https://papra.example.com`.
 
 To get started, open the URL with a web browser to create an account.
 

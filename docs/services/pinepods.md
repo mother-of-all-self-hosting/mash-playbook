@@ -245,7 +245,7 @@ Note that running the `just` commands for installation (`just install-all` or `j
 
 ## Usage
 
-After installation, the PinePods instance becomes available at the URL specified with `pinepods_hostname`. With the configuration above, the service is hosted at `https://pinepods.example.com`.
+After running the command for installation, the PinePods instance becomes available at the URL specified with `pinepods_hostname`. With the configuration above, the service is hosted at `https://pinepods.example.com`.
 
 To get started, open the URL with a web browser to create an account. **Note that the first registered user becomes an administrator automatically.**
 

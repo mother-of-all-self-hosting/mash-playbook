@@ -80,7 +80,7 @@ immich_kiosk_hostname: "immichkiosk.example.com"
 
 ## Usage
 
-After running the command for installation, Immich Kiosk becomes available internally to other services on the same network. If the service is exposed to the internet, it becomes available at the URL specified with `immich_kiosk_hostname`. With the configuration above, the service is hosted at `https://immichkiosk.example.com`.
+After running the command for installation, the Immich Kiosk instance becomes available internally to other services on the same network. If the service is exposed to the internet, it becomes available at the URL specified with `immich_kiosk_hostname`. With the configuration above, the service is hosted at `https://immichkiosk.example.com`.
 
 To get started, refer to [the documentation](https://docs.immichkiosk.app/guides/digital-picture-frame-immich-kiosk-old-tablet/) and other pages for guides about how to display pictures on devices.
 
