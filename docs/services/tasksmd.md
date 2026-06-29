@@ -66,7 +66,7 @@ The HTTP Basic authentication on Traefik is enabled for the web interface by def
 
 ## Usage
 
-After running the command for installation, the Tasks.md instance becomes available at the hostname `mash-tasksmd`. Its web interface is hosted at `https://tasksmd.example.com`, with the configuration above.
+After running the command for installation, the Tasks.md instance becomes available at the URL specified with `tasksmd_hostname`. With the configuration above, the service is hosted at `https://tasksmd.example.com`.
 
 ## Troubleshooting
 
