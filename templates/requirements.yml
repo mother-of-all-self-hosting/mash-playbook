@@ -85,7 +85,7 @@
   name: bentopdf
   activation_prefix: bentopdf_
 - src: git+https://iris.radicle.network/z2nQcYvPh51zfvVu8hkftDYPmELYP.git
-  version: v1.6.0-0
+  version: v1.6.1-0
   name: bichon
   activation_prefix: bichon_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-bind.git
