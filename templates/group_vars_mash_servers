@@ -731,6 +731,11 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
     {{ ({'name': (loki_identifier + '.service'), 'priority': 2000, 'restart_necessary': (loki_restart_necessary | bool), 'groups': ['mash', 'loki']} if loki_enabled else omit) }}
   # /role-specific:loki
 
+  # role-specific:lute
+  - |-
+    {{ ({'name': (lute_identifier + '.service'), 'priority': 2000, 'restart_necessary': (lute_restart_necessary | bool), 'groups': ['mash', 'lute']} if lute_enabled else omit) }}
+  # /role-specific:lute
+
   # role-specific:mailcatcher
   - |-
     {{ ({'name': (mailcatcher_identifier + '.service'), 'priority': 2000, 'restart_necessary': (mailcatcher_restart_necessary | bool), 'groups': ['mash', 'mailcatcher']} if mailcatcher_enabled else omit) }}
@@ -10046,6 +10051,44 @@ loki_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary
 #                                                                      #
 ########################################################################
 # /role-specific:loki
+
+
+
+# role-specific:lute
+########################################################################
+#                                                                      #
+# lute                                                                 #
+#                                                                      #
+########################################################################
+
+lute_enabled: false
+
+lute_identifier: "{{ mash_playbook_service_identifier_prefix }}lute"
+
+lute_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}lute"
+
+lute_uid: "{{ mash_playbook_uid }}"
+lute_gid: "{{ mash_playbook_gid }}"
+
+lute_container_additional_networks_auto: |
+  {{
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+  }}
+
+lute_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+lute_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+
+# role-specific:traefik
+lute_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
+lute_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
+# /role-specific:traefik
+
+########################################################################
+#                                                                      #
+# /lute                                                                #
+#                                                                      #
+########################################################################
+# /role-specific:lute
 
 
 
