@@ -81,7 +81,7 @@
   name: bazarr
   activation_prefix: bazarr_
 - src: git+https://iris.radicle.network/z2bgVhWju6shYSwtdKb7v3eoSL1Pt.git
-  version: v2.8.5-0
+  version: v2.8.6-0
   name: bentopdf
   activation_prefix: bentopdf_
 - src: git+https://iris.radicle.network/z2nQcYvPh51zfvVu8hkftDYPmELYP.git
