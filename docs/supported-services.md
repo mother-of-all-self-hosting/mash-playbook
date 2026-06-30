@@ -146,6 +146,7 @@ Below is an exhaustive list of the free and open-source software for self-hostin
 | [Linkwarden](https://github.com/linkwarden/linkwarden) | Collaborative bookmark manager | [Link](services/linkwarden.md) |
 | [listmonk](https://listmonk.app) | One-way mailing list and newsletter manager | [Link](services/listmonk.md) |
 | [LLDAP](https://github.com/lldap/lldap/) | Lightweight authentication server that provides an opinionated, simplified LDAP interface for authentication | [Link](services/lldap.md) |
+| [Lute](https://github.com/LuteOrg/lute-v3) | Learning foreign languages through reading | [Link](services/lute.md) |
 | [MailCatcher](http://mailcatcher.me/) | SMTP server which catches messages sent to it and displays in a web interface | [Link](services/mailcatcher.md) |
 | [MailCrab](https://github.com/tweedegolf/mailcrab) | SMTP test server for development | [Link](services/mailcrab.md) |
 | [Mailpit](https://mailpit.axllent.org/) | Email testing tool & API | [Link](services/mailpit.md) |
