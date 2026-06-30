@@ -21,15 +21,15 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
 # Lute
 
-The playbook can install and configure [Lute](https://hub.docker.com/r/baldissaramatheus/lute) for you.
+The playbook can install and configure [Lute](https://github.com/LuteOrg/lute-v3) for you.
 
-Lute is a Markdown file-based task management board.
+Lute (Learning Using Texts) is a web application for learning foreign languages through reading.
 
-See the project's [documentation](https://hub.docker.com/r/baldissaramatheus/lute) to learn what Lute does and why it might be useful to you.
+See the project's [documentation](https://luteorg.github.io/lute-manual/) to learn what Lute does and why it might be useful to you.
 
-For details about configuring the [Ansible role for Lute](https://radicle.network/nodes/iris.radicle.network/rad%3AzfFbFSPaygGqPEkWCTUGnzNwWNoT), you can check them via:
+For details about configuring the [Ansible role for Lute](https://radicle.network/nodes/iris.radicle.network/rad%3Az3NzUqjPeDbwcwQcZ4Vfi82tpWkm1), you can check them via:
 
-- 🌐 [the role's documentation](https://radicle.network/nodes/iris.radicle.network/rad%3AzfFbFSPaygGqPEkWCTUGnzNwWNoT/tree/docs/configuring-lute.md) online
+- 🌐 [the role's documentation](https://radicle.network/nodes/iris.radicle.network/rad%3Az3NzUqjPeDbwcwQcZ4Vfi82tpWkm1/tree/docs/configuring-lute.md) online
 - 📁 `roles/galaxy/lute/docs/configuring-lute.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 ## Dependencies
@@ -62,12 +62,12 @@ lute_hostname: lute.example.com
 
 ### Configuring HTTP Basic authentication
 
-The HTTP Basic authentication on Traefik is enabled for the web interface by default, considering the nature of the service. See [this section](https://radicle.network/nodes/iris.radicle.network/rad%3AzfFbFSPaygGqPEkWCTUGnzNwWNoT/tree/docs/configuring-lute.md#configuring-http-basic-authentication) on the role's documentation for details about how to set it up or disable it.
+The HTTP Basic authentication on Traefik is enabled for the web interface by default, considering the nature of the service. See [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az3NzUqjPeDbwcwQcZ4Vfi82tpWkm1/tree/docs/configuring-lute.md#configuring-http-basic-authentication) on the role's documentation for details about how to set it up or disable it.
 
 ## Usage
 
-After running the command for installation, the Lute instance becomes available at the hostname `mash-lute`. Its web interface is hosted at `https://lute.example.com`, with the configuration above.
+After running the command for installation, the Lute instance becomes available at the URL specified with `lute_hostname`. With the configuration above, the service is hosted at `https://lute.example.com`.
 
 ## Troubleshooting
 
-See [this section](https://radicle.network/nodes/iris.radicle.network/rad%3AzfFbFSPaygGqPEkWCTUGnzNwWNoT/tree/docs/configuring-lute.md#troubleshooting) on the role's documentation for details.
+See [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az3NzUqjPeDbwcwQcZ4Vfi82tpWkm1/tree/docs/configuring-lute.md#troubleshooting) on the role's documentation for details.
