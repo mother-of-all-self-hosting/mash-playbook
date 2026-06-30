@@ -19,18 +19,18 @@ SPDX-FileCopyrightText: 2024-2026 Suguru Hirahara
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 
-# Tasks.md
+# Lute
 
-The playbook can install and configure [Tasks.md](https://hub.docker.com/r/baldissaramatheus/tasks.md) for you.
+The playbook can install and configure [Lute](https://hub.docker.com/r/baldissaramatheus/lute) for you.
 
-Tasks.md is a Markdown file-based task management board.
+Lute is a Markdown file-based task management board.
 
-See the project's [documentation](https://hub.docker.com/r/baldissaramatheus/tasks.md) to learn what Tasks.md does and why it might be useful to you.
+See the project's [documentation](https://hub.docker.com/r/baldissaramatheus/lute) to learn what Lute does and why it might be useful to you.
 
-For details about configuring the [Ansible role for Tasks.md](https://radicle.network/nodes/iris.radicle.network/rad%3AzfFbFSPaygGqPEkWCTUGnzNwWNoT), you can check them via:
+For details about configuring the [Ansible role for Lute](https://radicle.network/nodes/iris.radicle.network/rad%3AzfFbFSPaygGqPEkWCTUGnzNwWNoT), you can check them via:
 
-- 🌐 [the role's documentation](https://radicle.network/nodes/iris.radicle.network/rad%3AzfFbFSPaygGqPEkWCTUGnzNwWNoT/tree/docs/configuring-tasksmd.md) online
-- 📁 `roles/galaxy/tasksmd/docs/configuring-tasksmd.md` locally, if you have [fetched the Ansible roles](../installing.md)
+- 🌐 [the role's documentation](https://radicle.network/nodes/iris.radicle.network/rad%3AzfFbFSPaygGqPEkWCTUGnzNwWNoT/tree/docs/configuring-lute.md) online
+- 📁 `roles/galaxy/lute/docs/configuring-lute.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 ## Dependencies
 
@@ -45,29 +45,29 @@ To enable this service, add the following configuration to your `vars.yml` file 
 ```yaml
 ########################################################################
 #                                                                      #
-# tasks.md                                                             #
+# lute                                                                 #
 #                                                                      #
 ########################################################################
 
-tasksmd_enabled: true
+lute_enabled: true
 
-tasksmd_hostname: tasksmd.example.com
+lute_hostname: lute.example.com
 
 ########################################################################
 #                                                                      #
-# /tasks.md                                                            #
+# /lute                                                                #
 #                                                                      #
 ########################################################################
 ```
 
 ### Configuring HTTP Basic authentication
 
-The HTTP Basic authentication on Traefik is enabled for the web interface by default, considering the nature of the service. See [this section](https://radicle.network/nodes/iris.radicle.network/rad%3AzfFbFSPaygGqPEkWCTUGnzNwWNoT/tree/docs/configuring-tasksmd.md#configuring-http-basic-authentication) on the role's documentation for details about how to set it up or disable it.
+The HTTP Basic authentication on Traefik is enabled for the web interface by default, considering the nature of the service. See [this section](https://radicle.network/nodes/iris.radicle.network/rad%3AzfFbFSPaygGqPEkWCTUGnzNwWNoT/tree/docs/configuring-lute.md#configuring-http-basic-authentication) on the role's documentation for details about how to set it up or disable it.
 
 ## Usage
 
-After running the command for installation, the Tasks.md instance becomes available at the hostname `mash-tasksmd`. Its web interface is hosted at `https://tasksmd.example.com`, with the configuration above.
+After running the command for installation, the Lute instance becomes available at the hostname `mash-lute`. Its web interface is hosted at `https://lute.example.com`, with the configuration above.
 
 ## Troubleshooting
 
-See [this section](https://radicle.network/nodes/iris.radicle.network/rad%3AzfFbFSPaygGqPEkWCTUGnzNwWNoT/tree/docs/configuring-tasksmd.md#troubleshooting) on the role's documentation for details.
+See [this section](https://radicle.network/nodes/iris.radicle.network/rad%3AzfFbFSPaygGqPEkWCTUGnzNwWNoT/tree/docs/configuring-lute.md#troubleshooting) on the role's documentation for details.
