@@ -496,6 +496,10 @@
   version: v3.7.3-0
   name: loki
   activation_prefix: loki_
+- src: git+https://iris.radicle.network/z3NzUqjPeDbwcwQcZ4Vfi82tpWkm1.git
+  version: v3.10.2-0
+  name: lute
+  activation_prefix: lute_
 - src: git+https://iris.radicle.network/z3QmarrgiC7ZGmd7UCTW2EZTheCZb.git
   version: v0.10.0-5
   name: mailcatcher
