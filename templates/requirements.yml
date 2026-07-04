@@ -1,15 +1,15 @@
 ---
 
 - src: git+https://iris.radicle.network/z2chD7Kt74JwEMafxTooxN7MaeYtK.git
-  version: v26.6.0-0
+  version: v26.6.0-1
   name: actual
   activation_prefix: actual_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-adguard-home.git
-  version: v0.107.77-0
+  version: v0.107.77-1
   name: adguard_home
   activation_prefix: adguard_home_
 - src: git+https://iris.radicle.network/z3px8gLDo2opjQZW7qFiLoNuk4eSu.git
-  version: v5.4.2-3
+  version: v5.4.2-4
   name: adminer
   activation_prefix: adminer_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-anki.git
@@ -21,23 +21,23 @@
   name: anonymousoverflow
   activation_prefix: anonymousoverflow_
 - src: git+https://iris.radicle.network/z4Cd3nL74nNap51RBB6mtC1jipeH9.git
-  version: v2.0.1-0
+  version: v2.0.1-1
   name: answer
   activation_prefix: answer_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-apisix-dashboard.git
-  version: v3.0.1-11
+  version: v3.0.1-12
   name: apisix_dashboard
   activation_prefix: apisix_dashboard_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-apisix-gateway.git
-  version: v3.8.0-13
+  version: v3.8.0-14
   name: apisix_gateway
   activation_prefix: apisix_gateway_
 - src: git+https://iris.radicle.network/z292aD8q3r8xqhJvLe2zv1b24gu7a.git
-  version: v1.5.0-0
+  version: v1.5.0-1
   name: apprise
   activation_prefix: apprise_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-appsmith.git
-  version: v1.73.1-6
+  version: v1.73.1-7
   name: appsmith
   activation_prefix: appsmith_
 - src: git+https://iris.radicle.network/zcSq6tnVLBUQ88zSRLThc7A7RDZb.git
@@ -45,11 +45,11 @@
   name: asciinema_server
   activation_prefix: asciinema_server_
 - src: git+https://iris.radicle.network/z4ATDhf89CPqP7XCLNpNwobuJ9fBs.git
-  version: v18.16.1-0
+  version: v18.16.1-1
   name: atuin
   activation_prefix: atuin_
 - src: git+https://iris.radicle.network/z3rwhJ9rQ82H6GXg7ZCt3UNpStbaW.git
-  version: v2.35.1-0
+  version: v2.35.1-1
   name: audiobookshelf
   activation_prefix: audiobookshelf_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-authelia.git
@@ -73,7 +73,7 @@
   name: backup_borg
   activation_prefix: backup_borg_
 - src: git+https://iris.radicle.network/z3JDUHjeHMqbZ3YLxquSUbCmAJLi.git
-  version: v5.15.2-0
+  version: v5.15.2-1
   name: barassistant
   activation_prefix: barassistant_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-bazarr.git
@@ -81,11 +81,11 @@
   name: bazarr
   activation_prefix: bazarr_
 - src: git+https://iris.radicle.network/z2bgVhWju6shYSwtdKb7v3eoSL1Pt.git
-  version: v2.8.6-0
+  version: v2.8.6-1
   name: bentopdf
   activation_prefix: bentopdf_
 - src: git+https://iris.radicle.network/z2nQcYvPh51zfvVu8hkftDYPmELYP.git
-  version: v1.6.1-0
+  version: v1.6.1-1
   name: bichon
   activation_prefix: bichon_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-bind.git
@@ -93,39 +93,39 @@
   name: bind
   activation_prefix: bind_
 - src: git+https://iris.radicle.network/zs18Rifa7437q7hTFhsx11nYeGhD.git
-  version: v0.10.0-6
+  version: v0.10.0-7
   name: bitmagnet
   activation_prefix: bitmagnet_
 - src: git+https://iris.radicle.network/zQdRwQ2s3FG5BZUjvSn1GYXbzVmw.git
-  version: v26.5.1-0
+  version: v26.5.1-1
   name: bookstack
   activation_prefix: bookstack_
 - src: git+https://iris.radicle.network/zxNS7XeayGimb4WFfvqmasiZZC3v.git
-  version: v2.2.5-0
+  version: v2.2.5-1
   name: borg_ui
   activation_prefix: borg_ui_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-browserless.git
-  version: v2.54.2-0
+  version: v2.54.2-1
   name: browserless
   activation_prefix: browserless_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-calibre-web.git
-  version: v0.6.25-7
+  version: v0.6.25-8
   name: calibre_web
   activation_prefix: calibre_web_
 - src: git+https://iris.radicle.network/zSfEaojv4NnFnivPm248Lx123CNe.git
-  version: v4.0.6-2
+  version: v4.0.6-3
   name: calibre_web_automated
   activation_prefix: calibre_web_automated_
 - src: git+https://iris.radicle.network/zSj65STd1FuR22pm4vLCSmFQ1rt5.git
-  version: v3.1.5-0
+  version: v3.1.5-1
   name: cap
   activation_prefix: cap_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-changedetection.git
-  version: v0.55.7-0
+  version: v0.55.7-1
   name: changedetection
   activation_prefix: changedetection_
 - src: git+https://iris.radicle.network/z3HYheWh86U9ErEL18tK2gBkq7g2A.git
-  version: v2.4.0-3
+  version: v2.4.0-4
   name: chiefonboarding
   activation_prefix: chiefonboarding_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-cinny.git
@@ -133,7 +133,7 @@
   name: cinny
   activation_prefix: cinny_
 - src: git+https://iris.radicle.network/z2kX5GbCKBFjiunvLKThDXLzbYnw1.git
-  version: v6.14.1-0
+  version: v6.14.1-1
   name: civicrm
   activation_prefix: civicrm_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-cleanup.git
@@ -145,7 +145,7 @@
   name: clickhouse
   activation_prefix: clickhouse_
 - src: git+https://iris.radicle.network/zp12kTQqmgqnFpUU6gPyVq19HNMD.git
-  version: v2.6.1-4
+  version: v2.6.1-5
   name: codimd
   activation_prefix: codimd_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-collabora-online.git
@@ -153,15 +153,15 @@
   name: collabora_online
   activation_prefix: collabora_online_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-container-socket-proxy.git
-  version: v0.4.2-5
+  version: v0.4.2-6
   name: container_socket_proxy
   activation_prefix: mash_
 - src: git+https://iris.radicle.network/z22bUmhZzA5VWtmKERFkEjGzdPuke.git
-  version: v14.0.0-0
+  version: v14.0.0-1
   name: converse
   activation_prefix: converse_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-convertx.git
-  version: v0.18.0-0
+  version: v0.18.0-1
   name: convertx
   activation_prefix: convertx_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-couchdb.git
