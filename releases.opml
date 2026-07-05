@@ -76,7 +76,7 @@
     <outline text="focalboard" title="focalboard" type="rss" htmlUrl="https://github.com/mattermost/focalboard" xmlUrl="https://github.com/mattermost/focalboard/releases.atom" />
     <outline text="forgejo" title="forgejo" type="rss" htmlUrl="https://codeberg.org/forgejo/forgejo" xmlUrl="https://codeberg.org/forgejo/forgejo/releases.atom" />
     <outline text="forgejo_runner" title="forgejo_runner" type="rss" htmlUrl="https://code.forgejo.org/forgejo/runner" xmlUrl="https://code.forgejo.org/forgejo/runner/releases.atom" />
-    <outline text="freescout" title="freescout" type="rss" htmlUrl="https://github.com/tiredofit/docker-freescout" xmlUrl="https://github.com/tiredofit/docker-freescout/releases.atom" />
+    <outline text="freescout" title="freescout" type="rss" htmlUrl="https://github.com/nfrastack/container-freescout" xmlUrl="https://github.com/nfrastack/container-freescout/releases.atom" />
     <outline text="freshrss" title="freshrss" type="rss" htmlUrl="https://github.com/freshrss/freshrss" xmlUrl="https://github.com/freshrss/freshrss/releases.atom" />
     <outline text="funkwhale" title="funkwhale" type="rss" htmlUrl="https://dev.funkwhale.audio/funkwhale/funkwhale" xmlUrl="https://dev.funkwhale.audio/funkwhale/funkwhale/-/tags?format=atom" />
     <outline text="ghostfolio" title="ghostfolio" type="rss" htmlUrl="https://github.com/ghostfolio/ghostfolio" xmlUrl="https://github.com/ghostfolio/ghostfolio/releases.atom" />
@@ -119,6 +119,7 @@
     <outline text="listmonk" title="listmonk" type="rss" htmlUrl="https://github.com/knadh/listmonk" xmlUrl="https://github.com/knadh/listmonk/releases.atom" />
     <outline text="lldap" title="lldap" type="rss" htmlUrl="https://github.com/thedevs-network/lldap" xmlUrl="https://github.com/thedevs-network/lldap/releases.atom" />
     <outline text="loki" title="loki" type="rss" htmlUrl="https://github.com/grafana/loki" xmlUrl="https://github.com/grafana/loki/releases.atom" />
+    <outline text="lute" title="lute" type="rss" htmlUrl="https://github.com/LuteOrg/lute-v3" xmlUrl="https://github.com/LuteOrg/lute-v3/releases.atom" />
     <outline text="mailcatcher" title="mailcatcher" type="rss" htmlUrl="https://github.com/sj26/mailcatcher" xmlUrl="https://github.com/sj26/mailcatcher/releases.atom" />
     <outline text="mailcrab" title="mailcrab" type="rss" htmlUrl="https://github.com/tweedegolf/mailcrab" xmlUrl="https://github.com/tweedegolf/mailcrab/releases.atom" />
     <outline text="mailpit" title="mailpit" type="rss" htmlUrl="https://github.com/axllent/mailpit" xmlUrl="https://github.com/axllent/mailpit/releases.atom" />
@@ -146,6 +147,7 @@
     <outline text="nextcloud" title="nextcloud" type="rss" htmlUrl="https://github.com/nextcloud/server" xmlUrl="https://github.com/nextcloud/server/releases.atom" />
     <outline text="nifi" title="nifi" type="rss" htmlUrl="https://github.com/apache/nifi" xmlUrl="https://github.com/apache/nifi/releases.atom" />
     <outline text="nodebb" title="nodebb" type="rss" htmlUrl="https://github.com/NodeBB/NodeBB" xmlUrl="https://github.com/NodeBB/NodeBB/releases.atom" />
+    <outline text="nodered" title="nodered" type="rss" htmlUrl="https://github.com/node-red/node-red" xmlUrl="https://github.com/node-red/node-red/releases.atom" />
     <outline text="ntfy" title="ntfy" type="rss" htmlUrl="https://github.com/binwiederhier/ntfy" xmlUrl="https://github.com/binwiederhier/ntfy/releases.atom" />
     <outline text="oauth2_proxy" title="oauth2_proxy" type="rss" htmlUrl="https://github.com/oauth2-proxy/oauth2-proxy" xmlUrl="https://github.com/oauth2-proxy/oauth2-proxy/releases.atom" />
     <outline text="omnitools" title="omnitools" type="rss" htmlUrl="https://github.com/iib0011/omni-tools" xmlUrl="https://github.com/iib0011/omni-tools/releases.atom" />
@@ -216,6 +218,7 @@
     <outline text="stirling_pdf" title="stirling_pdf" type="rss" htmlUrl="https://github.com/Stirling-Tools/Stirling-PDF" xmlUrl="https://github.com/Stirling-Tools/Stirling-PDF/releases.atom" />
     <outline text="syncthing" title="syncthing" type="rss" htmlUrl="https://github.com/syncthing/syncthing/" xmlUrl="https://github.com/syncthing/syncthing//releases.atom" />
     <outline text="tandoor" title="tandoor" type="rss" htmlUrl="https://github.com/TandoorRecipes/recipes" xmlUrl="https://github.com/TandoorRecipes/recipes/releases.atom" />
+    <outline text="tasksmd" title="tasksmd" type="rss" htmlUrl="https://github.com/BaldissaraMatheus/Tasks.md" xmlUrl="https://github.com/BaldissaraMatheus/Tasks.md/releases.atom" />
     <outline text="teable" title="teable" type="rss" htmlUrl="https://github.com/teableio/teable" xmlUrl="https://github.com/teableio/teable/releases.atom" />
     <outline text="termix" title="termix" type="rss" htmlUrl="https://github.com/Termix-SSH/Termix" xmlUrl="https://github.com/Termix-SSH/Termix/releases.atom" />
     <outline text="thelounge" title="thelounge" type="rss" htmlUrl="https://github.com/thelounge/thelounge-docker" xmlUrl="https://github.com/thelounge/thelounge-docker/releases.atom" />
@@ -229,6 +232,7 @@
     <outline text="uptime_kuma" title="uptime_kuma" type="rss" htmlUrl="https://github.com/louislam/uptime-kuma" xmlUrl="https://github.com/louislam/uptime-kuma/releases.atom" />
     <outline text="valkey" title="valkey" type="rss" htmlUrl="https://github.com/valkey-io/valkey" xmlUrl="https://github.com/valkey-io/valkey/releases.atom" />
     <outline text="vaultwarden" title="vaultwarden" type="rss" htmlUrl="https://github.com/dani-garcia/vaultwarden" xmlUrl="https://github.com/dani-garcia/vaultwarden/releases.atom" />
+    <outline text="vector" title="vector" type="rss" htmlUrl="https://github.com/vectordotdev/vector" xmlUrl="https://github.com/vectordotdev/vector/releases.atom" />
     <outline text="versatiles" title="versatiles" type="rss" htmlUrl="https://github.com/versatiles-org/versatiles-rs" xmlUrl="https://github.com/versatiles-org/versatiles-rs/releases.atom" />
     <outline text="vikunja" title="vikunja" type="rss" htmlUrl="https://github.com/vikunja/vikunja" xmlUrl="https://github.com/vikunja/vikunja/releases.atom" />
     <outline text="wazuh" title="wazuh" type="rss" htmlUrl="https://github.com/wazuh/wazuh-docker" xmlUrl="https://github.com/wazuh/wazuh-docker/releases.atom" />
