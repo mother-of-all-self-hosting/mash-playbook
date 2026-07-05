@@ -6638,8 +6638,6 @@ funkwhale_frontend_container_additional_networks_auto: |
     ([postgres_container_network] if postgres_enabled and (funkwhale_database_hostname == postgres_connection_hostname and funkwhale_frontend_container_network != postgres_container_network and not funkwhale_database_socket_enabled) else [])
   }}
 
-funkwhale_api_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
-funkwhale_api_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
 funkwhale_frontend_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
 funkwhale_frontend_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
 
@@ -6662,8 +6660,6 @@ funkwhale_database_socket_path_host: "{{ postgres_run_path }}"
 # /role-specific:postgres
 
 # role-specific:traefik
-funkwhale_api_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
-funkwhale_api_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
 funkwhale_frontend_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
 funkwhale_frontend_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
 # /role-specific:traefik
