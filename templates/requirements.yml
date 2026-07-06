@@ -453,7 +453,7 @@
   name: keyoxide
   activation_prefix: keyoxide_
 - src: git+https://iris.radicle.network/z36dPzLyvPA52m845g1MMqHgoiaEz.git
-  version: v3.2.5-1
+  version: v3.2.6-0
   name: kutt
   activation_prefix: kutt_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-labelstudio.git
