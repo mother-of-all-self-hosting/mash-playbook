@@ -226,6 +226,7 @@ Below is an exhaustive list of the free and open-source software for self-hostin
 | [Redlib](https://github.com/redlib-org/redlib) | Frontend for Reddit | [Link](services/redlib.md) |
 | [Redmine](https://redmine.org/) | A flexible project management web application | [Link](services/redmine.md) |
 | [Reitti](https://www.dedicatedcode.com/projects/reitti/) | Personal location tracking and analysis application | [Link](services/reitti.md) |
+| [Rest Server](https://github.com/restic/rest-server) | HTTP server that implements restic's REST backend API to backup data remotely | [Link](services/restserver.md) |
 | [Roundcube](https://roundcube.net/) | A browser-based multilingual IMAP client with an application-like user interface | [Link](services/roundcube.md) |
 | [RSS-Bridge](https://rss-bridge.github.io/rss-bridge/) | RSS feed generator for websites that do not have one | [Link](services/rssbridge.md) |
 | [RSSHub](https://docs.rsshub.app/) | RSS feed generator for websites | [Link](services/rsshub.md) |
