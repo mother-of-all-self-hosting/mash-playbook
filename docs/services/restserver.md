@@ -21,15 +21,15 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
 # Rest Server
 
-The playbook can install and configure [Rest Server](https://github.com/Rest ServerOrg/restserver-v3) for you.
+The playbook can install and configure [Rest Server](https://github.com/restic/rest-server) for you.
 
-Rest Server (Learning Using Texts) is a web application for learning foreign languages through reading.
+Rest Server is an HTTP server that implements restic's REST backend API to backup data remotely, using restic backup client via the `rest:` URL.
 
-See the project's [documentation](https://restserverorg.github.io/restserver-manual/) to learn what Rest Server does and why it might be useful to you.
+See the project's [documentation](https://github.com/restic/rest-server/blob/master/README.md) to learn what Rest Server does and why it might be useful to you.
 
-For details about configuring the [Ansible role for Rest Server](https://radicle.network/nodes/iris.radicle.network/rad%3Az3NzUqjPeDbwcwQcZ4Vfi82tpWkm1), you can check them via:
+For details about configuring the [Ansible role for Rest Server](https://radicle.network/nodes/iris.radicle.network/rad%3Azi4z5FpzySQ1kRqVpqcTkEfnXrD9), you can check them via:
 
-- 🌐 [the role's documentation](https://radicle.network/nodes/iris.radicle.network/rad%3Az3NzUqjPeDbwcwQcZ4Vfi82tpWkm1/tree/docs/configuring-restserver.md) online
+- 🌐 [the role's documentation](https://radicle.network/nodes/iris.radicle.network/rad%3Azi4z5FpzySQ1kRqVpqcTkEfnXrD9/tree/docs/configuring-restserver.md) online
 - 📁 `roles/galaxy/restserver/docs/configuring-restserver.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 ## Dependencies
@@ -62,12 +62,14 @@ restserver_hostname: restserver.example.com
 
 ### Configuring HTTP Basic authentication
 
-The HTTP Basic authentication on Traefik is enabled for the web interface by default, considering the nature of the service. See [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az3NzUqjPeDbwcwQcZ4Vfi82tpWkm1/tree/docs/configuring-restserver.md#configuring-http-basic-authentication) on the role's documentation for details about how to set it up or disable it.
+The HTTP Basic authentication on Traefik is enabled for the web interface by default, considering the nature of the service. See [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Azi4z5FpzySQ1kRqVpqcTkEfnXrD9/tree/docs/configuring-restserver.md#configuring-http-basic-authentication) on the role's documentation for details about how to set it up or disable it.
 
 ## Usage
 
 After running the command for installation, the Rest Server instance becomes available at the URL specified with `restserver_hostname`. With the configuration above, the service is hosted at `https://restserver.example.com`.
 
+Refer to [this section](https://restic.readthedocs.io/en/latest/030_preparing_a_new_repo.html#rest-server) on the official documentation for details about how to prepare a new repository.
+
 ## Troubleshooting
 
-See [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az3NzUqjPeDbwcwQcZ4Vfi82tpWkm1/tree/docs/configuring-restserver.md#troubleshooting) on the role's documentation for details.
+See [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Azi4z5FpzySQ1kRqVpqcTkEfnXrD9/tree/docs/configuring-restserver.md#troubleshooting) on the role's documentation for details.
