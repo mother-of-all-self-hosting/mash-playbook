@@ -669,7 +669,7 @@
   name: origamivault
   activation_prefix: origamivault_
 - src: git+https://iris.radicle.network/z3cspgyZXPNcnzNXCYKsEGJK7dKKA.git
-  version: v1.21.7-1
+  version: v1.21.8-0
   name: ots
   activation_prefix: ots_
 - src: git+https://iris.radicle.network/zvzJe15VMBkGd2CMBctvpVZgmQG5.git
