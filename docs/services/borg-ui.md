@@ -318,3 +318,4 @@ See [this section](https://radicle.network/nodes/iris.radicle.network/rad%3AzxNS
 
 - [BorgBackup with borgmatic](backup-borg.md) — Deduplicating backup program with optional compression and encryption
 - [Duplicati](duplicati.md) — Backup software that securely stores encrypted, incremental, compressed backups on local storage, cloud storage services and remote file servers
+- [Rest Server](restserver.md) — HTTP server that implements restic's REST backend API to backup data remotely
