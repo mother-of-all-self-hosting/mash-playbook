@@ -1,0 +1,26 @@
+# SPDX-FileCopyrightText: 2026 Oliver Lorenz
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+---
+- name: Fail if required app-dooropener settings not defined
+  ansible.builtin.fail:
+    msg: >-
+      You need to define a required configuration setting (`{{ item }}`).
+  when: "lookup('vars', item, default='') | string | length == 0"
+  with_items:
+    - app_dooropener_container_network
+    - app_dooropener_environment_homeassistant_token
+    - app_dooropener_config_home_assistant_base_url
+
+- name: Run if Traefik is enabled
+  when: app_dooropener_container_labels_traefik_enabled | bool
+  block:
+    - name: Fail if Traefik settings required for app-dooropener are not defined
+      ansible.builtin.fail:
+        msg: >-
+          You need to define a required configuration setting (`{{ item }}`).
+      when: "lookup('vars', item, default='') | string | length == 0"
+      with_items:
+        - app_dooropener_container_labels_traefik_hostname
+        - app_dooropener_container_labels_traefik_path_prefix
