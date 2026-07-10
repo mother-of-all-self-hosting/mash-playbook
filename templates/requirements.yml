@@ -169,7 +169,7 @@
   name: couchdb
   activation_prefix: couchdb_
 - src: git+https://iris.radicle.network/z38Yp2e9yFouswvrnX5MdgZYaViLb.git
-  version: v2026.5.1-0
+  version: v2026.5.1-1
   name: cryptpad
   activation_prefix: cryptpad_
 - src: git+https://iris.radicle.network/z2zgHMDh4Pb8yr4DH8BVkMcdboBXd.git
