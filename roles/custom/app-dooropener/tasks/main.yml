@@ -1,0 +1,26 @@
+# SPDX-FileCopyrightText: 2026 Oliver Lorenz
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+---
+- name: Perform app-dooropener installation tasks
+  when: app_dooropener_enabled | bool
+  tags:
+    - setup-all
+    - setup-app-dooropener
+    - install-all
+    - install-app-dooropener
+  block:
+    - name: Validate app-dooropener configuration
+      ansible.builtin.include_tasks: "{{ role_path }}/tasks/validate_config.yml"
+    - name: Install app-dooropener
+      ansible.builtin.include_tasks: "{{ role_path }}/tasks/install.yml"
+
+- name: Perform app-dooropener uninstallation tasks
+  when: not app_dooropener_enabled | bool
+  tags:
+    - setup-all
+    - setup-app-dooropener
+  block:
+    - name: Uninstall app-dooropener
+      ansible.builtin.include_tasks: "{{ role_path }}/tasks/uninstall.yml"

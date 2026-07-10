@@ -1,0 +1,157 @@
+# SPDX-FileCopyrightText: 2026 Oliver Lorenz
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+---
+# Project source code URL: https://github.com/oliverlorenz/app-dooropener
+
+app_dooropener_enabled: true
+
+app_dooropener_identifier: app-dooropener
+app_dooropener_base_path: "{{ mash_playbook_base_path }}/{{ app_dooropener_identifier }}"
+
+app_dooropener_container_image: "ghcr.io/oliverlorenz/app-dooropener:latest"
+app_dooropener_container_image_force_pull: true
+
+app_dooropener_container_image_registry_login_server: ghcr.io
+app_dooropener_container_image_registry_username: ""
+app_dooropener_container_image_registry_password: ""
+
+# HomeAssistant long-lived access token used to trigger the door-opening scripts.
+# The token is written to the container's env-file and never logged.
+app_dooropener_environment_homeassistant_token: ""
+
+# Additional environment variables to pass to the container.
+app_dooropener_environment_variables_additional_variables: ""
+
+# Controls whether the container exposes its HTTP port (tcp/3000 in the container).
+#
+# Takes an "<ip>:<port>" or "<port>" value (e.g. "127.0.0.1:3000"), or empty string to not expose.
+app_dooropener_container_http_host_bind_port: ""
+
+# The base container network. It will be auto-created by this role if it doesn't exist already.
+app_dooropener_container_network: "{{ app_dooropener_identifier }}"
+
+# The port number in the container
+app_dooropener_container_http_port: 3000
+
+# The hostname at which the PWA is served.
+app_dooropener_hostname: ""
+
+# The path at which the PWA is exposed.
+# This value must either be `/` or not end with a slash (e.g. `/dooropener`).
+app_dooropener_path_prefix: /
+
+# The path (inside the container) that the app reads its `config.json` (doors/PINs) from.
+app_dooropener_container_config_path: /config/config.json
+
+# The HomeAssistant base URL that the container calls to trigger door-opening scripts
+# (`config.json`'s `homeAssistantBaseUrl`).
+app_dooropener_config_home_assistant_base_url: ""
+
+# A list of doors, each with its own HomeAssistant scriptId and time-boxed PINs.
+# This is rendered into `config.json` (see `../templates/config.json.j2`) and mounted
+# read-only into the container, so PINs can be rotated by re-running the playbook
+# (container restart only, no image rebuild).
+#
+# Example:
+#   app_dooropener_config_doors:
+#     - doorId: haustuer
+#       scriptId: script.open_haustuer
+#       pins:
+#         - pin: "1234"
+#           validFrom: "2026-01-01T00:00:00.000Z"
+#           validUntil: "2026-12-31T23:59:59.000Z"
+#
+# This typically contains secrets (the PINs), so define it in an ansible-vault-encrypted
+# file (e.g. `inventory/host_vars/<server>/vault.yml`).
+app_dooropener_config_doors: []
+
+# A list of additional container networks that the container would be connected to.
+# The role does not create these networks, so make sure they already exist.
+# Use this to expose this container to another reverse proxy, which runs in a different container network.
+app_dooropener_container_additional_networks: "{{ app_dooropener_container_additional_networks_auto + app_dooropener_container_additional_networks_custom }}"
+app_dooropener_container_additional_networks_auto: []
+app_dooropener_container_additional_networks_custom: []
+
+# A list of additional "volumes" to mount in the container.
+# Contains definition objects like this: `{"type": "bind", "src": "/outside", "dst": "/inside", "options": "readonly"}.
+app_dooropener_container_additional_volumes: "{{ app_dooropener_container_additional_volumes_auto + app_dooropener_container_additional_volumes_custom }}"
+app_dooropener_container_additional_volumes_auto:
+  - type: bind
+    src: "{{ app_dooropener_base_path }}/config.json"
+    dst: "{{ app_dooropener_container_config_path }}"
+    options: ro
+app_dooropener_container_additional_volumes_custom: []
+
+# A list of extra arguments to pass to the container (`docker run` command)
+app_dooropener_container_extra_arguments: []
+
+# app_dooropener_container_labels_traefik_enabled controls whether labels to assist a Traefik reverse-proxy will be attached to the container.
+# See `../templates/labels.j2` for details.
+#
+# To inject your own other container labels, see `app_dooropener_container_labels_additional_labels`.
+app_dooropener_container_labels_traefik_enabled: true
+app_dooropener_container_labels_traefik_docker_network: "{{ app_dooropener_container_network }}"
+app_dooropener_container_labels_traefik_hostname: "{{ app_dooropener_hostname }}"
+# The path prefix must either be `/` or not end with a slash (e.g. `/dooropener`).
+app_dooropener_container_labels_traefik_path_prefix: "{{ app_dooropener_path_prefix }}"
+app_dooropener_container_labels_traefik_rule: "Host(`{{ app_dooropener_container_labels_traefik_hostname }}`)"
+app_dooropener_container_labels_traefik_priority: 0
+app_dooropener_container_labels_traefik_entrypoints: web-secure
+app_dooropener_container_labels_traefik_tls: "{{ app_dooropener_container_labels_traefik_entrypoints != 'web' }}"
+app_dooropener_container_labels_traefik_tls_certResolver: default  # noqa var-naming
+
+# Controls which additional headers to attach to all HTTP requests.
+# To add your own custom request headers, use `app_dooropener_container_labels_traefik_additional_request_headers_custom`
+app_dooropener_container_labels_traefik_additional_request_headers: "{{ app_dooropener_container_labels_traefik_additional_request_headers_auto | combine(app_dooropener_container_labels_traefik_additional_request_headers_custom) }}"
+app_dooropener_container_labels_traefik_additional_request_headers_auto: {}
+app_dooropener_container_labels_traefik_additional_request_headers_custom: {}
+
+# Controls which additional headers to attach to all HTTP responses.
+# To add your own custom response headers, use `app_dooropener_container_labels_traefik_additional_response_headers_custom`
+app_dooropener_container_labels_traefik_additional_response_headers: "{{ app_dooropener_container_labels_traefik_additional_response_headers_auto | combine(app_dooropener_container_labels_traefik_additional_response_headers_custom) }}"
+app_dooropener_container_labels_traefik_additional_response_headers_auto: |
+  {{
+    {}
+    | combine ({'X-XSS-Protection': app_dooropener_http_header_xss_protection} if app_dooropener_http_header_xss_protection else {})
+    | combine ({'X-Content-Type-Options': app_dooropener_http_header_content_type_options} if app_dooropener_http_header_content_type_options else {})
+    | combine ({'Content-Security-Policy': app_dooropener_http_header_content_security_policy} if app_dooropener_http_header_content_security_policy else {})
+    | combine ({'Permissions-Policy': app_dooropener_http_header_permissions_policy} if app_dooropener_http_header_permissions_policy else {})
+    | combine ({'Strict-Transport-Security': app_dooropener_http_header_strict_transport_security} if app_dooropener_http_header_strict_transport_security and app_dooropener_container_labels_traefik_tls else {})
+  }}
+app_dooropener_container_labels_traefik_additional_response_headers_custom: {}
+
+# app_dooropener_container_labels_additional_labels contains a multiline string with additional labels to add to the container label file.
+# See `../templates/labels.j2` for details.
+app_dooropener_container_labels_additional_labels: ""
+
+# Specifies the value of the `X-XSS-Protection` header
+app_dooropener_http_header_xss_protection: "1; mode=block"
+
+# Specifies the value of the `X-Content-Type-Options` header.
+app_dooropener_http_header_content_type_options: nosniff
+
+# Specifies the value of the `Content-Security-Policy` header.
+app_dooropener_http_header_content_security_policy: frame-ancestors 'self'
+
+# Specifies the value of the `Permissions-Policy` header.
+app_dooropener_http_header_permissions_policy: "{{ 'interest-cohort=()' if app_dooropener_floc_optout_enabled else '' }}"
+
+# Specifies the value of the `Strict-Transport-Security` header.
+app_dooropener_http_header_strict_transport_security: "max-age=31536000; includeSubDomains{{ '; preload' if app_dooropener_hsts_preload_enabled else '' }}"
+
+app_dooropener_floc_optout_enabled: true
+app_dooropener_hsts_preload_enabled: false
+
+# List of systemd services that the app-dooropener systemd service depends on
+app_dooropener_systemd_required_services_list: "{{ app_dooropener_systemd_required_services_list_default + app_dooropener_systemd_required_services_list_auto + app_dooropener_systemd_required_services_list_custom }}"
+app_dooropener_systemd_required_services_list_default: "{{ [devture_systemd_docker_base_docker_service_name] if devture_systemd_docker_base_docker_service_name else [] }}"
+app_dooropener_systemd_required_services_list_auto: []
+app_dooropener_systemd_required_services_list_custom: []
+
+# List of systemd services that the app-dooropener systemd service wants
+app_dooropener_systemd_wanted_services_list: "{{ app_dooropener_systemd_wanted_services_list_default + app_dooropener_systemd_wanted_services_list_auto + app_dooropener_systemd_wanted_services_list_custom }}"
+app_dooropener_systemd_wanted_services_list_default: []
+app_dooropener_systemd_wanted_services_list_auto: []
+app_dooropener_systemd_wanted_services_list_custom: []

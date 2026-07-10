@@ -1,0 +1,47 @@
+{#
+SPDX-FileCopyrightText: 2026 Oliver Lorenz
+
+SPDX-License-Identifier: AGPL-3.0-or-later
+#}
+
+{% if app_dooropener_container_labels_traefik_enabled %}
+traefik.enable=true
+
+{% if app_dooropener_container_labels_traefik_docker_network %}
+traefik.docker.network={{ app_dooropener_container_labels_traefik_docker_network }}
+{% endif %}
+
+{% set middlewares = [] %}
+
+{% if app_dooropener_container_labels_traefik_additional_request_headers.keys() | length > 0 %}
+{% for name, value in app_dooropener_container_labels_traefik_additional_request_headers.items() %}
+traefik.http.middlewares.{{ app_dooropener_identifier }}-add-request-headers.headers.customrequestheaders.{{ name }}={{ value }}
+{% endfor %}
+{% set middlewares = middlewares + [app_dooropener_identifier + '-add-request-headers'] %}
+{% endif %}
+
+{% if app_dooropener_container_labels_traefik_additional_response_headers.keys() | length > 0 %}
+{% for name, value in app_dooropener_container_labels_traefik_additional_response_headers.items() %}
+traefik.http.middlewares.{{ app_dooropener_identifier }}-add-response-headers.headers.customresponseheaders.{{ name }}={{ value }}
+{% endfor %}
+{% set middlewares = middlewares + [app_dooropener_identifier + '-add-response-headers'] %}
+{% endif %}
+
+traefik.http.routers.{{ app_dooropener_identifier }}.rule={{ app_dooropener_container_labels_traefik_rule }}
+{% if app_dooropener_container_labels_traefik_priority | int > 0 %}
+traefik.http.routers.{{ app_dooropener_identifier }}.priority={{ app_dooropener_container_labels_traefik_priority }}
+{% endif %}
+traefik.http.routers.{{ app_dooropener_identifier }}.service={{ app_dooropener_identifier }}
+{% if middlewares | length > 0 %}
+traefik.http.routers.{{ app_dooropener_identifier }}.middlewares={{ middlewares | join(',') }}
+{% endif %}
+traefik.http.routers.{{ app_dooropener_identifier }}.entrypoints={{ app_dooropener_container_labels_traefik_entrypoints }}
+traefik.http.routers.{{ app_dooropener_identifier }}.tls={{ app_dooropener_container_labels_traefik_tls | to_json }}
+{% if app_dooropener_container_labels_traefik_tls %}
+traefik.http.routers.{{ app_dooropener_identifier }}.tls.certResolver={{ app_dooropener_container_labels_traefik_tls_certResolver }}
+{% endif %}
+
+traefik.http.services.{{ app_dooropener_identifier }}.loadbalancer.server.port={{ app_dooropener_container_http_port }}
+{% endif %}
+
+{{ app_dooropener_container_labels_additional_labels }}
