@@ -537,7 +537,7 @@
   name: meilisearch
   activation_prefix: meilisearch_
 - src: git+https://iris.radicle.network/z2arPcue4GZ6G6FY3gZexsJXqHyDs.git
-  version: v1.6.42-1
+  version: v1.6.45-0
   name: memcached
   activation_prefix: memcached_
 - src: git+https://iris.radicle.network/z2UFFCDXMH6Am1K99TaiYP8BJmqaj.git
