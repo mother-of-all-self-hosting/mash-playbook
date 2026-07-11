@@ -60,8 +60,8 @@
   version: v2026.5.2-0
   name: authentik
   activation_prefix: authentik_
-- src: git+https://github.com/spatterIight/ansible-role-autobrr.git
-  version: v1.79.0-1
+- src: git+https://github.com/mother-of-all-self-hosting/ansible-role-autobrr.git
+  version: v1.79.0-2
   name: autobrr
   activation_prefix: autobrr_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-aux.git
