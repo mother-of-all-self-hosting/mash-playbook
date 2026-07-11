@@ -497,7 +497,7 @@
   name: loki
   activation_prefix: loki_
 - src: git+https://iris.radicle.network/z3NzUqjPeDbwcwQcZ4Vfi82tpWkm1.git
-  version: v3.10.2-1
+  version: v3.10.3-0
   name: lute
   activation_prefix: lute_
 - src: git+https://iris.radicle.network/z3QmarrgiC7ZGmd7UCTW2EZTheCZb.git
