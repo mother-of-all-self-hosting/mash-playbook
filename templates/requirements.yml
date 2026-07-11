@@ -1049,7 +1049,7 @@
   name: wg_easy
   activation_prefix: wg_easy_
 - src: git+https://iris.radicle.network/z9wRjUKpo8iRJQ3c3GPN7Zkk12ei.git
-  version: v0.1.16-6
+  version: v0.1.18-0
   name: wikimore
   activation_prefix: wikimore_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-woodpecker-ci-agent.git
