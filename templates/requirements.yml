@@ -509,7 +509,7 @@
   name: mailcrab
   activation_prefix: mailcrab_
 - src: git+https://iris.radicle.network/z3BKJz8wwtQHfXm8MPX81h4izT2QS.git
-  version: v1.30.3-1
+  version: v1.30.4-0
   name: mailpit
   activation_prefix: mailpit_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-mariadb.git
