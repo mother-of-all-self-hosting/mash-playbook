@@ -14,6 +14,10 @@ prek_home := env("PREK_HOME", justfile_directory() / "var/prek")
 default:
     @{{ just_executable() }} --list --justfile {{ justfile() }}
 
+# Adds a new host to the inventory, creating the inventory files if necessary (e.g. `just add-inventory-host mash.example.com 1.2.3.4`)
+add-inventory-host host server_address:
+    @{{ justfile_directory() }}/bin/add-inventory-host.sh {{ quote(host) }} {{ quote(server_address) }}
+
 run_directory_path := justfile_directory() + "/run"
 templates_directory_path := justfile_directory() + "/templates"
 optimization_vars_files_file_path := run_directory_path + "/optimization-vars-files.state"
