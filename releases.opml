@@ -101,7 +101,6 @@
     <outline text="inspircd" title="inspircd" type="rss" htmlUrl="https://github.com/inspircd/inspircd" xmlUrl="https://github.com/inspircd/inspircd/releases.atom" />
     <outline text="jackett" title="jackett" type="rss" htmlUrl="https://github.com/Jackett/Jackett" xmlUrl="https://github.com/Jackett/Jackett/releases.atom" />
     <outline text="jellyfin" title="jellyfin" type="rss" htmlUrl="https://github.com/jellyfin/jellyfin" xmlUrl="https://github.com/jellyfin/jellyfin/releases.atom" />
-    <outline text="jellyseerr" title="jellyseerr" type="rss" htmlUrl="https://github.com/sct/jellyseerr" xmlUrl="https://github.com/sct/jellyseerr/releases.atom" />
     <outline text="jitsi" title="jitsi" type="rss" htmlUrl="https://github.com/jitsi/docker-jitsi-meet" xmlUrl="https://github.com/jitsi/docker-jitsi-meet/releases.atom" />
     <outline text="joplin_server" title="joplin_server" type="rss" htmlUrl="https://github.com/laurent22/joplin" xmlUrl="https://github.com/laurent22/joplin/releases.atom" />
     <outline text="kanboard" title="kanboard" type="rss" htmlUrl="https://github.com/kanboard/kanboard" xmlUrl="https://github.com/kanboard/kanboard/releases.atom" />
@@ -160,7 +159,6 @@
     <outline text="ots" title="ots" type="rss" htmlUrl="https://github.com/Luzifer/ots" xmlUrl="https://github.com/Luzifer/ots/releases.atom" />
     <outline text="otterwiki" title="otterwiki" type="rss" htmlUrl="https://github.com/redimp/otterwiki" xmlUrl="https://github.com/redimp/otterwiki/releases.atom" />
     <outline text="outline" title="outline" type="rss" htmlUrl="https://github.com/outline/outline" xmlUrl="https://github.com/outline/outline/releases.atom" />
-    <outline text="overseerr" title="overseerr" type="rss" htmlUrl="https://github.com/sct/overseerr" xmlUrl="https://github.com/sct/overseerr/releases.atom" />
     <outline text="owncast" title="owncast" type="rss" htmlUrl="https://github.com/owncast/owncast" xmlUrl="https://github.com/owncast/owncast/releases.atom" />
     <outline text="oxitraffic" title="oxitraffic" type="rss" htmlUrl="https://codeberg.org/mo8it/oxitraffic" xmlUrl="https://codeberg.org/mo8it/oxitraffic/releases.atom" />
     <outline text="paperless" title="paperless" type="rss" htmlUrl="https://github.com/paperless-ngx/paperless-ngx" xmlUrl="https://github.com/paperless-ngx/paperless-ngx/releases.atom" />
@@ -198,6 +196,7 @@
     <outline text="redlib" title="redlib" type="rss" htmlUrl="https://github.com/redlib-org/redlib" xmlUrl="https://github.com/redlib-org/redlib/releases.atom" />
     <outline text="redmine" title="redmine" type="rss" htmlUrl="https://github.com/redmine/redmine" xmlUrl="https://github.com/redmine/redmine/releases.atom" />
     <outline text="reitti" title="reitti" type="rss" htmlUrl="https://github.com/dedicatedcode/reitti" xmlUrl="https://github.com/dedicatedcode/reitti/releases.atom" />
+    <outline text="restserver" title="restserver" type="rss" htmlUrl="https://github.com/restic/rest-server" xmlUrl="https://github.com/restic/rest-server/releases.atom" />
     <outline text="roundcube" title="roundcube" type="rss" htmlUrl="https://github.com/roundcube/roundcubemail" xmlUrl="https://github.com/roundcube/roundcubemail/releases.atom" />
     <outline text="rssbridge" title="rssbridge" type="rss" htmlUrl="https://github.com/RSS-Bridge/rss-bridge" xmlUrl="https://github.com/RSS-Bridge/rss-bridge/releases.atom" />
     <outline text="rsshub" title="rsshub" type="rss" htmlUrl="https://github.com/DIYgod/RSSHub" xmlUrl="https://github.com/DIYgod/RSSHub/releases.atom" />
