@@ -697,7 +697,7 @@
   name: papra
   activation_prefix: papra_
 - src: git+https://iris.radicle.network/z2cZCZP8Mu4LYMbHKaTdnP1otc46L.git
-  version: v1.9.0-1
+  version: v1.10.0-0
   name: pdfding
   activation_prefix: pdfding_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-peertube.git
