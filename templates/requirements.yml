@@ -333,7 +333,7 @@
   name: ghostfolio
   activation_prefix: ghostfolio_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-gitea.git
-  version: v1.26.4-0
+  version: v1.27.0-0
   name: gitea
   activation_prefix: gitea_
 - src: git+https://iris.radicle.network/z2zryaw72dpp4pRWKK1qvQzsY4qHR.git
