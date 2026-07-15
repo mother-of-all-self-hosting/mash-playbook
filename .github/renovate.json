@@ -17,6 +17,15 @@
         "https://gitlab.com{/,}**",
         "https://iris.radicle.network{/,}**"
       ]
+    },
+    {
+      "matchFileNames": [
+        ".pre-commit-config.yaml",
+        "mise.toml"
+      ],
+      "enabled": true,
+      "automerge": true,
+      "automergeType": "branch"
     }
   ],
   "pre-commit": {
