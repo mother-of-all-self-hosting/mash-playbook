@@ -31,6 +31,9 @@ For details about configuring the [Ansible role for Browserless](https://github.
 - 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-browserless/blob/main/docs/configuring-browserless.md) online
 - 📁 `roles/galaxy/browserless/docs/configuring-browserless.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
+>[!WARNING]
+> Browserless is licensed under [Server Side Public License, v1](https://github.com/browserless/browserless/blob/main/LICENSE), and therefore non-free software. We do not encourage using Browserless.
+
 ## Dependencies
 
 This service requires the following other services:
