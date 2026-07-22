@@ -11,6 +11,7 @@ SPDX-FileCopyrightText: 2025 Gergely Horváth
 SPDX-FileCopyrightText: 2025 Suguru Hirahara
 SPDX-FileCopyrightText: 2025 XHawk87
 SPDX-FileCopyrightText: 2025 spatterlight
+SPDX-FileCopyrightText: 2026 sudo-Tiz
 
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->
