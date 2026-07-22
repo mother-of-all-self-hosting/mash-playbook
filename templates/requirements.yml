@@ -493,7 +493,7 @@
   name: lldap
   activation_prefix: lldap_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-loki.git
-  version: v3.7.3-1
+  version: v3.7.4-0
   name: loki
   activation_prefix: loki_
 - src: git+https://iris.radicle.network/z3NzUqjPeDbwcwQcZ4Vfi82tpWkm1.git
