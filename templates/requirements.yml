@@ -472,6 +472,10 @@
   version: v4.2.0-4
   name: librebooking
   activation_prefix: librebooking_
+- src: git+https://github.com/mother-of-all-self-hosting/ansible-role-lidarr.git
+  version: v3.1.0-0
+  name: lidarr
+  activation_prefix: lidarr_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-limesurvey.git
   version: v7.0.6-0
   name: limesurvey

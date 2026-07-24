@@ -538,6 +538,10 @@
     - role: galaxy/librebooking
     # /role-specific:librebooking
 
+    # role-specific:lidarr
+    - role: galaxy/lidarr
+    # /role-specific:lidarr
+
     # role-specific:limesurvey
     - role: galaxy/limesurvey
     # /role-specific:limesurvey
