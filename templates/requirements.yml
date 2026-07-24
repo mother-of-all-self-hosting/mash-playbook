@@ -848,6 +848,10 @@
   version: v4.0.5-1
   name: reitti
   activation_prefix: reitti_
+- src: git+https://github.com/mother-of-all-self-hosting/ansible-role-restic.git
+  version: v0.19.1-0
+  name: restic
+  activation_prefix: restic_
 - src: git+https://iris.radicle.network/zi4z5FpzySQ1kRqVpqcTkEfnXrD9.git
   version: v0.14.0-1
   name: restserver

@@ -1176,6 +1176,11 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
     {{ ({'name': (reitti_tilecache_identifier + '.service'), 'priority': 2000, 'restart_necessary': (reitti_restart_necessary | bool), 'groups': ['mash', 'reitti']} if reitti_enabled else omit) }}
   # /role-specific:reitti
 
+  # role-specific:restic
+  - |-
+    {{ ({'name': (restic_identifier + '.timer'), 'priority': 5000, 'restart_necessary': (restic_restart_necessary | bool), 'groups': ['mash', 'restic']} if restic_enabled else omit) }}
+  # /role-specific:restic
+
   # role-specific:restserver
   - |-
     {{ ({'name': (restserver_identifier + '.service'), 'priority': 2000, 'restart_necessary': (restserver_restart_necessary | bool), 'groups': ['mash', 'restserver']} if restserver_enabled else omit) }}
@@ -14843,6 +14848,37 @@ reitti_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_prima
 #                                                                      #
 ########################################################################
 # /role-specific:reitti
+
+
+
+# role-specific:restic
+########################################################################
+#                                                                      #
+# restic                                                               #
+#                                                                      #
+########################################################################
+
+restic_enabled: false
+
+restic_identifier: "{{ mash_playbook_service_identifier_prefix }}restic"
+
+restic_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}restic"
+
+restic_uid: "{{ mash_playbook_uid }}"
+restic_gid: "{{ mash_playbook_gid }}"
+
+restic_container_additional_volumes_auto:
+  - type: bind
+    src: "{{ mash_playbook_base_path }}"
+    dst: /data
+    options: readonly
+
+########################################################################
+#                                                                      #
+# /restic                                                              #
+#                                                                      #
+########################################################################
+# /role-specific:restic
 
 
 
