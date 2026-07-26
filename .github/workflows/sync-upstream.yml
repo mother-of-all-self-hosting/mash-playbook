@@ -66,11 +66,14 @@ jobs:
       - name: Close existing sync PRs
         env:
           GH_TOKEN: ${{ secrets.SYNC_UPSTREAM_PAT }}
+        # --repo is required: this repo is a registered GitHub fork of
+        # mother-of-all-self-hosting/mash-playbook, and gh defaults to
+        # targeting the parent repo instead of this one otherwise.
         run: |
-          gh pr list --search "chore: sync upstream in:title" --state open --json number,headRefName \
+          gh pr list --repo "$GITHUB_REPOSITORY" --search "chore: sync upstream in:title" --state open --json number,headRefName \
             --jq '.[] | "\(.number) \(.headRefName)"' \
           | while read -r number branch; do
-              gh pr close "$number" --comment "Superseded by a newer sync PR." --delete-branch
+              gh pr close "$number" --repo "$GITHUB_REPOSITORY" --comment "Superseded by a newer sync PR." --delete-branch
             done
 
       - name: Create pull request
@@ -78,6 +81,7 @@ jobs:
           GH_TOKEN: ${{ secrets.SYNC_UPSTREAM_PAT }}
         run: |
           gh pr create \
+            --repo "$GITHUB_REPOSITORY" \
             --title "chore: sync upstream $(date +%Y-%m-%d)" \
             --body "Automated weekly sync from [mother-of-all-self-hosting/mash-playbook](https://github.com/mother-of-all-self-hosting/mash-playbook)." \
             --base main \
