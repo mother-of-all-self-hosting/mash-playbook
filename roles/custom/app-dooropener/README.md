@@ -22,8 +22,21 @@ At minimum you need to set:
 - `app_dooropener_hostname` — the hostname the PWA is served at
 - `app_dooropener_config_home_assistant_base_url` — the HomeAssistant base URL (e.g. `https://api.example.com`)
 - `app_dooropener_environment_homeassistant_token` — a HomeAssistant long-lived access token
-- `app_dooropener_config_doors` — the list of doors, scripts and time-boxed PINs (see the example in [defaults/main.yml](defaults/main.yml))
+- `app_dooropener_environment_admin_password_hash` — scrypt hash protecting the admin PIN-management UI at `/admin`; generate it in the app repo with `npm run admin:hash-password` (never store the plaintext password)
+- `app_dooropener_environment_admin_session_secret` — random secret used to sign the admin session cookie, e.g. `openssl rand -hex 32`
+- `app_dooropener_config_doors` — the **initial seed** for the list of doors, scripts and time-boxed PINs (see the example in [defaults/main.yml](defaults/main.yml))
 
-`app_dooropener_environment_homeassistant_token` and `app_dooropener_config_doors` contain secrets, so define them in an ansible-vault-encrypted file (e.g. `inventory/host_vars/<server>/vault.yml`), not in plain `group_vars`.
+`app_dooropener_environment_homeassistant_token`, `app_dooropener_environment_admin_password_hash`, `app_dooropener_environment_admin_session_secret` and `app_dooropener_config_doors` contain secrets, so define them in an ansible-vault-encrypted file (e.g. `inventory/host_vars/<server>/vault.yml`), not in plain `group_vars`.
 
-The doors/PINs are rendered into `config.json` and bind-mounted read-only into the container. To rotate PINs, update `app_dooropener_config_doors` and re-run the playbook (`just setup-service app-dooropener <server>` or similar) — no image rebuild is required, only a container restart.
+`config.json` (doors/PINs) lives in its own `config/` subdirectory on the host
+(`{{ app_dooropener_base_path }}/config/config.json`), and that whole *directory* —
+not just the file — is bind-mounted **writable** into the container at
+`app_dooropener_container_config_dir` (`/config` by default). This is required
+because the admin UI at `/admin` persists PIN changes at runtime via an atomic
+temp-file-plus-rename, which needs write access to the containing directory, not
+just the file itself; mounting only the file (as older versions of this role did)
+fails with `EACCES` once the app tries to write. Because of this,
+`app_dooropener_config_doors` only *seeds* `config.json` the first time the role
+runs (`tasks/install.yml` uses `force: false`) — the playbook never overwrites an
+existing `config.json` again, so it won't clobber admin-made changes. To reset
+back to the seed value, delete `config.json` on the host and re-run the playbook.

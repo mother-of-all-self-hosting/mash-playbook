@@ -442,10 +442,6 @@
     - role: custom/app-dooropener
     # /role-specific:app-dooropener
 
-    # role-specific:github-runner
-    - role: custom/github-runner
-    # /role-specific:github-runner
-
     # role-specific:grafana
     - role: galaxy/grafana
     # /role-specific:grafana

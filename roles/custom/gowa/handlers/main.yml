@@ -1,0 +1,10 @@
+# SPDX-FileCopyrightText: 2025 Oliver Lorenz
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+---
+- name: Restart GOWA
+  ansible.builtin.command:
+    cmd: "systemctl try-restart {{ gowa_identifier }}.service"
+  listen: "gowa-restart"
+  changed_when: false

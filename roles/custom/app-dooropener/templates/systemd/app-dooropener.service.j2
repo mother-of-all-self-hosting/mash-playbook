@@ -25,6 +25,7 @@ ExecStartPre={{ devture_systemd_docker_base_host_command_docker }} create \
       --rm \
       --name={{ app_dooropener_identifier }} \
       --log-driver=none \
+      --user={{ app_dooropener_uid }}:{{ app_dooropener_gid }} \
       --cap-drop=ALL \
       --network={{ app_dooropener_container_network }} \
       {% if app_dooropener_container_http_host_bind_port %}

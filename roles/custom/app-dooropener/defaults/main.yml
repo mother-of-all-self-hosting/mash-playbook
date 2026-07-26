@@ -21,6 +21,16 @@ app_dooropener_container_image_registry_password: ""
 # The token is written to the container's env-file and never logged.
 app_dooropener_environment_homeassistant_token: ""
 
+# scrypt hash of the password that protects the admin PIN-management UI (`/admin`).
+# Generate it in the app repo with `npm run admin:hash-password` — never store the
+# plaintext password itself. The token is written to the container's env-file and
+# never logged.
+app_dooropener_environment_admin_password_hash: ""
+
+# Random secret used to sign the admin session cookie (e.g. `openssl rand -hex 32`).
+# The token is written to the container's env-file and never logged.
+app_dooropener_environment_admin_session_secret: ""
+
 # Additional environment variables to pass to the container.
 app_dooropener_environment_variables_additional_variables: ""
 
@@ -42,17 +52,27 @@ app_dooropener_hostname: ""
 # This value must either be `/` or not end with a slash (e.g. `/dooropener`).
 app_dooropener_path_prefix: /
 
+# The directory (inside the container) that holds `config.json`. It must be a whole
+# directory (not just the file) bind-mounted writable: the app writes a temp file into
+# this same directory and renames it over `config.json` for atomic persistence (see the
+# admin UI notes on `app_dooropener_config_doors` below) — that requires write access to
+# the directory itself, not just the file.
+app_dooropener_container_config_dir: /config
+
 # The path (inside the container) that the app reads its `config.json` (doors/PINs) from.
-app_dooropener_container_config_path: /config/config.json
+app_dooropener_container_config_path: "{{ app_dooropener_container_config_dir }}/config.json"
 
 # The HomeAssistant base URL that the container calls to trigger door-opening scripts
 # (`config.json`'s `homeAssistantBaseUrl`).
 app_dooropener_config_home_assistant_base_url: ""
 
 # A list of doors, each with its own HomeAssistant scriptId and time-boxed PINs.
-# This is rendered into `config.json` (see `../templates/config.json.j2`) and mounted
-# read-only into the container, so PINs can be rotated by re-running the playbook
-# (container restart only, no image rebuild).
+# This is rendered into `config.json` (see `../templates/config.json.j2`) and used only
+# to *seed* the file once (see `tasks/install.yml`, `force: false`): once `config.json`
+# exists on the host, the playbook never overwrites it again, because the running
+# container's admin UI (`/admin`) manages PINs at runtime and persists changes back into
+# that same file. To change this initial-seed value has no effect after first deploy —
+# use the admin UI (or edit `config.json` on the host directly) instead.
 #
 # Example:
 #   app_dooropener_config_doors:
@@ -77,11 +97,16 @@ app_dooropener_container_additional_networks_custom: []
 # A list of additional "volumes" to mount in the container.
 # Contains definition objects like this: `{"type": "bind", "src": "/outside", "dst": "/inside", "options": "readonly"}.
 app_dooropener_container_additional_volumes: "{{ app_dooropener_container_additional_volumes_auto + app_dooropener_container_additional_volumes_custom }}"
+# The whole `config` directory (not just `config.json`) is mounted writable
+# (options: "", not "ro"): the admin UI (`/admin`) persists PIN changes back into
+# `config.json` at runtime via a temp-file-plus-rename, which needs write access to the
+# containing directory, not just the file. See the `app_dooropener_config_doors` comment
+# above for how the file is seeded without being clobbered on subsequent playbook runs.
 app_dooropener_container_additional_volumes_auto:
   - type: bind
-    src: "{{ app_dooropener_base_path }}/config.json"
-    dst: "{{ app_dooropener_container_config_path }}"
-    options: ro
+    src: "{{ app_dooropener_base_path }}/config"
+    dst: "{{ app_dooropener_container_config_dir }}"
+    options: ""
 app_dooropener_container_additional_volumes_custom: []
 
 # A list of extra arguments to pass to the container (`docker run` command)

@@ -551,11 +551,6 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
     {{ ({'name': (app_dooropener_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'app-dooropener']} if app_dooropener_enabled else omit) }}
   # /role-specific:app-dooropener
 
-  # role-specific:github-runner
-  - |-
-    {{ ({'name': (github_runner_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'github-runner']} if github_runner_enabled else omit) }}
-  # /role-specific:github-runner
-
   # role-specific:grafana
   - |-
     {{ ({'name': (grafana_identifier + '.service'), 'priority': 2000, 'restart_necessary': (grafana_restart_necessary | bool), 'groups': ['mash', 'grafana']} if grafana_enabled else omit) }}
@@ -7261,33 +7256,6 @@ app_dooropener_container_labels_traefik_tls_certResolver: "{{ traefik_certResolv
 #                                                                      #
 ########################################################################
 # /role-specific:app-dooropener
-
-# role-specific:github-runner
-########################################################################
-#                                                                      #
-# github-runner                                                       #
-#                                                                      #
-########################################################################
-
-github_runner_enabled: false
-
-# Only repository-level registration is supported (personal GitHub accounts have no
-# org-wide runner pool). Set this to the target repository's full URL, e.g.:
-# github_runner_repo_url: "https://github.com/oliverlorenz/mash-playbook"
-github_runner_repo_url: ""
-
-# Fine-grained PAT with "Administration: Read & Write" on the target repository.
-# Do not set a value here - define `github_runner_access_token` in secrets.yml instead,
-# it will take precedence over the empty default in the role (host_vars > group_vars).
-
-# github_runner_labels: "self-hosted,linux,x64,mash"
-
-########################################################################
-#                                                                      #
-# /github-runner                                                      #
-#                                                                      #
-########################################################################
-# /role-specific:github-runner
 
 # role-specific:grafana
 ########################################################################

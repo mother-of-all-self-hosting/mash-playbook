@@ -11,6 +11,20 @@
     owner: "{{ app_dooropener_uid }}"
     group: "{{ app_dooropener_gid }}"
 
+# `config.json` lives in its own subdirectory (not directly under app_dooropener_base_path)
+# because the whole directory - not just the file - is bind-mounted writable into the
+# container (see `app_dooropener_container_additional_volumes_auto` in defaults/main.yml):
+# the admin UI's atomic write (temp file + rename) needs write access to the containing
+# directory, and only this subdirectory should be exposed inside the container, not `env`
+# or `labels`.
+- name: Ensure app-dooropener config directory exists
+  ansible.builtin.file:
+    path: "{{ app_dooropener_base_path }}/config"
+    state: directory
+    mode: "0750"
+    owner: "{{ app_dooropener_uid }}"
+    group: "{{ app_dooropener_gid }}"
+
 - name: Ensure app-dooropener support files installed
   ansible.builtin.template:
     src: "{{ role_path }}/templates/{{ item }}.j2"
@@ -21,7 +35,15 @@
   with_items:
     - env
     - labels
-    - config.json
+
+- name: Ensure app-dooropener config.json is seeded
+  ansible.builtin.template:
+    src: "{{ role_path }}/templates/config.json.j2"
+    dest: "{{ app_dooropener_base_path }}/config/config.json"
+    mode: "0640"
+    owner: "{{ app_dooropener_uid }}"
+    group: "{{ app_dooropener_gid }}"
+    force: false
 
 - name: Log in to container image registry
   when: app_dooropener_container_image_registry_username != '' and app_dooropener_container_image_registry_password != ''
