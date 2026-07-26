@@ -21,6 +21,10 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
+          # GITHUB_TOKEN can never push changes to .github/workflows/* by
+          # GitHub design, and upstream syncs regularly touch those files.
+          # Use a PAT with the 'workflow' scope instead.
+          token: ${{ secrets.SYNC_UPSTREAM_PAT }}
 
       - name: Configure git
         run: |
@@ -61,7 +65,7 @@ jobs:
 
       - name: Close existing sync PRs
         env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_TOKEN: ${{ secrets.SYNC_UPSTREAM_PAT }}
         run: |
           gh pr list --search "chore: sync upstream in:title" --state open --json number,headRefName \
             --jq '.[] | "\(.number) \(.headRefName)"' \
@@ -71,7 +75,7 @@ jobs:
 
       - name: Create pull request
         env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_TOKEN: ${{ secrets.SYNC_UPSTREAM_PAT }}
         run: |
           gh pr create \
             --title "chore: sync upstream $(date +%Y-%m-%d)" \
