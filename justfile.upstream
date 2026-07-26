@@ -67,16 +67,15 @@ _merge_from_upstream:
         fi
     fi
 
-    # merge=union (see .gitattributes) resolves nearby insertions in
-    # templates/setup.yml and templates/group_vars_mash_servers automatically,
-    # but if both sides touched the exact same block, it keeps both instead
-    # of conflicting. Surface that so it can be cleaned up manually.
-    DUPES=$(cat templates/setup.yml templates/group_vars_mash_servers 2>/dev/null \
-        | grep -o '# role-specific:[A-Za-z0-9_-]*' | sort | uniq -d)
-    if [ -n "$DUPES" ]; then
+    # merge=union (see .gitattributes) can silently leave conflict markers in
+    # place if it's ever applied to a binary-ish or unusually-shaped hunk.
+    # Cheap, reliable safety net regardless of merge strategy.
+    MARKERS=$(grep -rl '^<<<<<<< ' --exclude-dir=.git . 2>/dev/null)
+    if [ -n "$MARKERS" ]; then
         echo ""
-        echo "Warning: duplicate role-specific blocks after union-merge, please de-duplicate manually:"
-        echo "$DUPES" | sed 's/^/  - /'
+        echo "Warning: leftover conflict markers found in:"
+        echo "$MARKERS" | sed 's/^/  - /'
+        exit 1
     fi
 
     echo "merge done. Changes are local. You have to push it to origin/main by yourself"
