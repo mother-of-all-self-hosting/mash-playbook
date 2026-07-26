@@ -17,7 +17,7 @@ gowa_identifier: gowa
 gowa_base_path: "{{ mash_playbook_base_path }}/{{ gowa_identifier }}"
 
 # renovate: datasource=docker depName=ghcr.io/aldinokemal/go-whatsapp-web-multidevice
-gowa_version: 7.7.0
+gowa_version: latest
 
 gowa_scheme: https
 
@@ -34,7 +34,7 @@ gowa_storages_path: "{{ gowa_base_path }}/storages"
 gowa_statics_path: "{{ gowa_base_path }}/statics"
 
 gowa_container_image: "{{ gowa_container_image_registry_prefix }}aldinokemal/go-whatsapp-web-multidevice:{{ gowa_container_image_tag }}"
-gowa_container_image_tag: "v{{ gowa_version }}"
+gowa_container_image_tag: "{{ 'latest' if gowa_version == 'latest' else 'v' + gowa_version }}"
 gowa_container_image_registry_prefix: "{{ gowa_container_image_registry_prefix_upstream }}"
 gowa_container_image_registry_prefix_upstream: "{{ gowa_container_image_registry_prefix_upstream_default }}"
 gowa_container_image_registry_prefix_upstream_default: ghcr.io/

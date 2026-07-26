@@ -546,6 +546,11 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
     {{ ({'name': (app_dooropener_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'app-dooropener']} if app_dooropener_enabled else omit) }}
   # /role-specific:app-dooropener
 
+  # role-specific:github-runner
+  - |-
+    {{ ({'name': (github_runner_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'github-runner']} if github_runner_enabled else omit) }}
+  # /role-specific:github-runner
+
   # role-specific:grafana
   - |-
     {{ ({'name': (grafana_identifier + '.service'), 'priority': 2000, 'restart_necessary': (grafana_restart_necessary | bool), 'groups': ['mash', 'grafana']} if grafana_enabled else omit) }}
@@ -924,6 +929,11 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
   - |-
     {{ ({'name': (oauth2_proxy_identifier + '.service'), 'priority': 1900, 'restart_necessary': (oauth2_proxy_restart_necessary | bool), 'groups': ['mash', 'oauth2-proxy']} if oauth2_proxy_enabled else omit) }}
   # /role-specific:oauth2_proxy
+
+  # role-specific:ohrwurm
+  - |-
+    {{ ({'name': (ohrwurm_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'ohrwurm']} if ohrwurm_enabled else omit) }}
+  # /role-specific:ohrwurm
 
   # role-specific:omnitools
   - |-
@@ -7106,6 +7116,34 @@ oliverlorenz_api_container_labels_traefik_tls_certResolver: "{{ traefik_certReso
 ########################################################################
 # /role-specific:oliverlorenz-api
 
+
+# role-specific:ohrwurm
+########################################################################
+#                                                                      #
+# ohrwurm                                                              #
+#                                                                      #
+########################################################################
+
+ohrwurm_enabled: false
+
+ohrwurm_container_additional_networks_auto: |
+  {{
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+  }}
+ohrwurm_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+ohrwurm_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
+ohrwurm_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
+
+# Auto-derived from the shared stack secret, so no manual secrets.yml entry is required for this one.
+ohrwurm_environment_session_secret: "{{ '%s' | format(mash_playbook_generic_secret_key) | password_hash('sha512', 'ses.ohrwurm', rounds=655555) | to_uuid }}"
+
+########################################################################
+#                                                                      #
+# /ohrwurm                                                             #
+#                                                                      #
+########################################################################
+# /role-specific:ohrwurm
+
 # role-specific:gowa
 ########################################################################
 #                                                                      #
@@ -7117,6 +7155,13 @@ gowa_enabled: false
 
 gowa_uid: "{{ mash_playbook_uid }}"
 gowa_gid: "{{ mash_playbook_gid }}"
+
+gowa_container_additional_networks_auto: |
+  {{
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+  }}
+
+gowa_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
 
 ########################################################################
 #                                                                      #
@@ -7151,6 +7196,33 @@ app_dooropener_container_labels_traefik_tls_certResolver: "{{ traefik_certResolv
 #                                                                      #
 ########################################################################
 # /role-specific:app-dooropener
+
+# role-specific:github-runner
+########################################################################
+#                                                                      #
+# github-runner                                                       #
+#                                                                      #
+########################################################################
+
+github_runner_enabled: false
+
+# Only repository-level registration is supported (personal GitHub accounts have no
+# org-wide runner pool). Set this to the target repository's full URL, e.g.:
+# github_runner_repo_url: "https://github.com/oliverlorenz/mash-playbook"
+github_runner_repo_url: ""
+
+# Fine-grained PAT with "Administration: Read & Write" on the target repository.
+# Do not set a value here - define `github_runner_access_token` in secrets.yml instead,
+# it will take precedence over the empty default in the role (host_vars > group_vars).
+
+# github_runner_labels: "self-hosted,linux,x64,mash"
+
+########################################################################
+#                                                                      #
+# /github-runner                                                      #
+#                                                                      #
+########################################################################
+# /role-specific:github-runner
 
 # role-specific:grafana
 ########################################################################

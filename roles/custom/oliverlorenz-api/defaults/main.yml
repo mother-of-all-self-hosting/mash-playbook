@@ -24,6 +24,7 @@ oliverlorenz_api_environment_chatlog_nc_username: ""
 oliverlorenz_api_environment_chatlog_nc_app_password: ""
 oliverlorenz_api_environment_chatlog_nc_dir: ""
 oliverlorenz_api_environment_chatlog_local_mirror_dir: "/data/chatlogs-mirror"
+oliverlorenz_api_environment_db_vendo_user_agent: "eeleud0I"
 
 oliverlorenz_api_chatlog_data_path: "{{ oliverlorenz_api_base_path }}/chatlogs-mirror"
 

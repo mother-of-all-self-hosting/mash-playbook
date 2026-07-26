@@ -46,11 +46,38 @@ _merge_from_upstream:
     #     exit 1
     # fi
 
+    # Remembers how you resolved past conflicts and re-applies the same
+    # resolution automatically the next time the identical conflict shows up
+    # (e.g. in role code that both upstream and we touch).
+    git config rerere.enabled true
+
     echo "Start sync: {{ upstream_remote_name}}/main to local main branch"
     git fetch upstream
 
     echo "Merge from {{ upstream_remote_name}}/main"
-    git merge upstream/main --no-edit
+    if ! git merge upstream/main --no-edit; then
+        REMAINING=$(git diff --name-only --diff-filter=U)
+        if [ -n "$REMAINING" ]; then
+            echo ""
+            echo "Merge stopped with unresolved conflicts (not auto-resolvable via merge=union/rerere):"
+            echo "$REMAINING" | sed 's/^/  - /'
+            echo ""
+            echo "Resolve them, 'git add' the files, then 'git commit' to finish the merge."
+            exit 1
+        fi
+    fi
+
+    # merge=union (see .gitattributes) resolves nearby insertions in
+    # templates/setup.yml and templates/group_vars_mash_servers automatically,
+    # but if both sides touched the exact same block, it keeps both instead
+    # of conflicting. Surface that so it can be cleaned up manually.
+    DUPES=$(cat templates/setup.yml templates/group_vars_mash_servers 2>/dev/null \
+        | grep -o '# role-specific:[A-Za-z0-9_-]*' | sort | uniq -d)
+    if [ -n "$DUPES" ]; then
+        echo ""
+        echo "Warning: duplicate role-specific blocks after union-merge, please de-duplicate manually:"
+        echo "$DUPES" | sed 's/^/  - /'
+    fi
 
     echo "merge done. Changes are local. You have to push it to origin/main by yourself"
 

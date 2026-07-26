@@ -1,0 +1,16 @@
+# SPDX-FileCopyrightText: 2026 Oliver Lorenz
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+# These files are alphabetically-sorted, block-based lists (role-specific
+# markers). Upstream and our custom roles (roles/custom/*) both insert new
+# blocks near each other, which git's default merge frequently flags as a
+# conflict even though both insertions are independent additions.
+#
+# `merge=union` makes git keep both sides' lines automatically instead of
+# raising a conflict. Worst case: a duplicated role-specific block, which is
+# harmless here (each block is gated by its own `*_enabled` conditional) and
+# easy to spot - see `just --justfile justfile.upstream update`'s
+# post-merge duplicate check.
+templates/setup.yml merge=union
+templates/group_vars_mash_servers merge=union

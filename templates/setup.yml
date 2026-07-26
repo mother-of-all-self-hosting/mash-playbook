@@ -438,6 +438,10 @@
     - role: custom/app-dooropener
     # /role-specific:app-dooropener
 
+    # role-specific:github-runner
+    - role: custom/github-runner
+    # /role-specific:github-runner
+
     # role-specific:grafana
     - role: galaxy/grafana
     # /role-specific:grafana
@@ -713,6 +717,10 @@
     # role-specific:oauth2_proxy
     - role: galaxy/oauth2_proxy
     # /role-specific:oauth2_proxy
+
+    # role-specific:ohrwurm
+    - role: custom/ohrwurm
+    # /role-specific:ohrwurm
 
     # role-specific:omnitools
     - role: galaxy/omnitools

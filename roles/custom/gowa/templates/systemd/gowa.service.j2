@@ -29,6 +29,8 @@ ExecStartPre={{ devture_systemd_docker_base_host_command_docker }} create \
       --name={{ gowa_identifier }} \
       --log-driver=none \
       --cap-drop=ALL \
+      --cap-add=SETUID \
+      --cap-add=SETGID \
       --network={{ gowa_container_network }} \
       {% if gowa_container_http_host_bind_port %}
       -p {{ gowa_container_http_host_bind_port }}:{{ gowa_container_http_port }} \

@@ -5,17 +5,27 @@
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
 ---
-- name: Ensure GOWA path exists
+- name: Ensure GOWA base path exists
   ansible.builtin.file:
-    path: "{{ item }}"
+    path: "{{ gowa_base_path }}"
     state: directory
     mode: "0750"
     owner: "{{ gowa_uid }}"
     group: "{{ gowa_gid }}"
+
+- name: Ensure GOWA data paths exist
+  ansible.builtin.file:
+    path: "{{ item }}"
+    state: directory
+    mode: "0755"
+    owner: "{{ gowa_uid }}"
+    group: "{{ gowa_gid }}"
   with_items:
-    - "{{ gowa_base_path }}"
     - "{{ gowa_storages_path }}"
     - "{{ gowa_statics_path }}"
+    - "{{ gowa_statics_path }}/qrcode"
+    - "{{ gowa_statics_path }}/senditems"
+    - "{{ gowa_statics_path }}/media"
 
 
 - name: Ensure GOWA support files installed
@@ -43,6 +53,7 @@
       retries: "{{ devture_playbook_help_container_retries_count }}"
       delay: "{{ devture_playbook_help_container_retries_delay }}"
       until: result is not failed
+      notify: gowa-restart
 
     - name: Ensure GOWA container image is pulled via ansible.builtin.command
       when: devture_systemd_docker_base_container_image_pull_method == 'command'
@@ -53,6 +64,7 @@
       delay: "{{ devture_playbook_help_container_retries_delay }}"
       until: result is not failed
       changed_when: "'Downloaded newer image' in result.stdout"
+      notify: gowa-restart
 
 - name: Run if self-building of GOWA container image is enabled
   when: "gowa_container_image_self_build | bool"

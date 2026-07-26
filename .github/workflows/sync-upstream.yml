@@ -42,6 +42,22 @@ jobs:
       - name: Merge upstream main
         run: git merge upstream/main --no-edit
 
+      - name: Check for duplicate role-specific blocks
+        # .gitattributes sets merge=union for templates/setup.yml and
+        # templates/group_vars_mash_servers so nearby insertions from
+        # upstream and our custom roles don't conflict. If both sides
+        # touched the exact same block, union keeps both instead of
+        # conflicting - fail the run so it gets reviewed rather than
+        # silently shipping a duplicated block in the sync PR.
+        run: |
+          DUPES=$(cat templates/setup.yml templates/group_vars_mash_servers \
+            | grep -o '# role-specific:[A-Za-z0-9_-]*' | sort | uniq -d)
+          if [ -n "$DUPES" ]; then
+            echo "Duplicate role-specific blocks found after union-merge:"
+            echo "$DUPES"
+            exit 1
+          fi
+
       - name: Push sync branch
         run: git push origin "$BRANCH"
 
