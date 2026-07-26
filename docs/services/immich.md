@@ -421,7 +421,7 @@ immich_server_environment_variable_immich_allow_setup: false
 
 ##### Other configuration
 
-Unfortunately, most of Immich's configuration cannot be managed via Ansible and needs to be done from the UI, after it's installed. After installation, check the [Usage](#usage) section below for some recommendations for things you may wish to change.
+Unfortunately, most of Immich's configuration cannot be managed via Ansible and needs to be done from the UI, after it's installed. After running the command for installation, check the [Usage](#usage) section below for some recommendations for things you may wish to change.
 
 ## Installation
 
@@ -431,7 +431,7 @@ You need to run the [installing](../installing.md) command for the supplementary
 
 ## Usage
 
-After installation, you can go to the Immich URL, as defined in `immich_hostname`.
+After running the command for installation, you can go to the Immich URL, as defined in `immich_hostname`.
 
 Follow the sections below for **important post-installation steps**.
 

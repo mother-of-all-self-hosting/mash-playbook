@@ -55,21 +55,9 @@ plex_claim_token: ""
 ########################################################################
 ```
 
-## First-time setup
-
-Due to an [upstream bug](https://github.com/linuxserver/docker-plex/issues/422) there is a bit of a dance you must do when setting up Plex for the first time. The dance is as follows:
-
-1. Run [installation](../installing.md) with `plex_claim_token` set to `""`
-2. Obtain a `plex_claim_token` from <https://plex.tv/claim.>
-3. Run [installation](../installing.md) again with `plex_claim_token` set to the token you obtained
-
-If you do not follow these steps you will get an error like: `s6-applyuidgid: fatal: unable to set supplementary group list: Operation not permitted`. If this happens simply follow the steps above.
-
-Once the server has been successfully claimed you can remove the `plex_claim_token` variable.
-
 ## Usage
 
-Once you have completed [first-time setup](#first-time-setup) you should access your new Plex instance at the URL you've chosen. Follow the prompts to finish setup. When prompted to add your media libraries keep in mind that it will be the path **inside** the container, most likely some variation of your `plex_media_bind_path` variable.
+After running the command for installation, the Plex instance becomes available at the URL specified with `plex_hostname`. With the configuration above, the service is hosted at `https://plex.example.com`. Navigate to the service in a web browser and follow the prompts to finish setup. When prompted to add your media libraries keep in mind that it will be the path **inside** the container.
 
 ### Exposing ports
 

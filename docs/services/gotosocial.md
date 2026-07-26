@@ -91,7 +91,7 @@ To actually have the service use (and get messages sent through the exim-relay s
 
 ## Usage
 
-After installation, the GoToSocial instance becomes available at the URL specified with `gotosocial_hostname`. With the configuration above, the service is hosted at `https://gotosocial.example.com`.
+After running the command for installation, the GoToSocial instance becomes available at the URL specified with `gotosocial_hostname`. With the configuration above, the service is hosted at `https://gotosocial.example.com`.
 
 To get started, create **an administrator user** first and open the URL with a web browser to log in to the instance. You can run the playbook with the `create-admin-gotosocial` or `ensure-gotosocial-users-created` tag to create users. See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-gotosocial/blob/main/docs/configuring-gotosocial.md#creating-users) on the role's documentation for details.
 

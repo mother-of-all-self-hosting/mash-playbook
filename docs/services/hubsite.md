@@ -80,4 +80,5 @@ You can alternatively output the page manually. See [this section](https://githu
 
 ## Related services
 
+- [Heimdall](heimdall.md) — Dashboard for web applications
 - [Homarr](homarr.md) — Dashboard for management of your favorite applications and services with a drag-and-drop grid system

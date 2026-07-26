@@ -95,6 +95,6 @@ Take a look at:
 
 ## Usage
 
-After running the command for installation, Apache NiFi becomes available at the specified hostname like `https://nifi.example.com`.
+After running the command for installation, the Apache NiFi instance becomes available at the specified hostname like `https://nifi.example.com`.
 
 To get started, open the URL with a web browser to log in to the instance with the administrator account.

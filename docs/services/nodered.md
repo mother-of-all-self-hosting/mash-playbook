@@ -12,26 +12,30 @@ SPDX-FileCopyrightText: 2023 Antonis Christofides
 SPDX-FileCopyrightText: 2023 Felix Stupp
 SPDX-FileCopyrightText: 2023 Julian-Samuel Gebühr
 SPDX-FileCopyrightText: 2023 Pierre 'McFly' Marty
+SPDX-FileCopyrightText: 2024 Thomas Miceli
 SPDX-FileCopyrightText: 2024-2026 Suguru Hirahara
-SPDX-FileCopyrightText: 2025 MASH project contributors
-SPDX-FileCopyrightText: 2025 sudo-Tiz
 
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 
-# FlareSolverr
+# Node-RED
 
-The playbook can install and configure [FlareSolverr](https://github.com/FlareSolverr/FlareSolverr) for you.
+The playbook can install and configure [Node-RED](https://nodered.org) for you.
 
-FlareSolverr is an open-source proxy server to bypass Cloudflare protection.
+Node-RED is a flow-based programming tool.
 
-See the project's [documentation](https://github.com/FlareSolverr/FlareSolverr/blob/master/README.md) to learn what FlareSolverr does and why it might be useful to you.
+See the project's [documentation](https://nodered.org/docs/) to learn what Node-RED does and why it might be useful to you.
+
+For details about configuring the [Ansible role for Node-RED](https://radicle.network/nodes/iris.radicle.network/rad%3Az3g4bZnzZJis1DEKVzR3pPsyUzicT), you can check them via:
+
+- 🌐 [the role's documentation](https://radicle.network/nodes/iris.radicle.network/rad%3Az3g4bZnzZJis1DEKVzR3pPsyUzicT/tree/docs/configuring-nodered.md) online
+- 📁 `roles/galaxy/nodered/docs/configuring-nodered.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 ## Dependencies
 
 This service requires the following other services:
 
-- (optional) [Traefik](traefik.md) — Reverse-proxy server for exposing FlareSolverr publicly
+- [Traefik](traefik.md) reverse-proxy server
 
 ## Configuration
 
@@ -40,30 +44,27 @@ To enable this service, add the following configuration to your `vars.yml` file 
 ```yaml
 ########################################################################
 #                                                                      #
-# flaresolverr                                                         #
+# node-red                                                             #
 #                                                                      #
 ########################################################################
 
-flaresolverr_enabled: true
+nodered_enabled: true
+
+nodered_hostname: nodered.example.com
 
 ########################################################################
 #                                                                      #
-# /flaresolverr                                                        #
+# /node-red                                                            #
 #                                                                      #
 ########################################################################
-```
-
-### Expose the instance publicly (optional)
-
-By default, the FlareSolverr instance is not exposed externally, as it is mainly intended to be used in the internal network.
-
-To expose it publicly, add the following configuration to your `vars.yml` file (adapt to your needs):
-
-```yaml
-# The hostname at which FlareSolverr is served.
-flaresolverr_hostname: "flaresolverr.example.com"
 ```
 
 ## Usage
 
-After running the command for installation, the FlareSolverr instance becomes available internally to other services on the same network. If the service is exposed to the internet, it becomes available at the URL specified with `flaresolverr_hostname`. With the configuration above, the service is hosted at `https://flaresolverr.example.com`.
+After running the command for installation, the Node-RED instance becomes available at the URL specified with `nodered_hostname`. With the configuration above, the service is hosted at `https://nodered.example.com`.
+
+To get started, open the URL with a web browser to create an account.
+
+## Troubleshooting
+
+See [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az3g4bZnzZJis1DEKVzR3pPsyUzicT/tree/docs/configuring-nodered.md#troubleshooting) on the role's documentation for details.

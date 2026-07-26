@@ -80,7 +80,7 @@ meilisearch_hostname: "meilisearch.example.com"
 
 ## Usage
 
-After running the command for installation, Meilisearch becomes available internally to other services on the same network. If the service is exposed to the internet, it becomes available at the URL specified with `meilisearch_hostname`. With the configuration above, the service is hosted at `https://meilisearch.example.com`.
+After running the command for installation, the Meilisearch instance becomes available internally to other services on the same network. If the service is exposed to the internet, it becomes available at the URL specified with `meilisearch_hostname`. With the configuration above, the service is hosted at `https://meilisearch.example.com`.
 
 To get started, refer to [the documentation](https://www.meilisearch.com/docs/learn/getting_started/what_is_meilisearch) for guides about how to integrate Meilisearch.
 

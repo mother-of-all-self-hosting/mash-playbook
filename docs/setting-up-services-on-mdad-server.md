@@ -1,13 +1,13 @@
 <!--
 SPDX-FileCopyrightText: 2025 Slavi Pantaleev
-SPDX-FileCopyrightText: 2025 Suguru Hirahara
+SPDX-FileCopyrightText: 2025-2026 Suguru Hirahara
 
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 
 # Setting up services on the Matrix server configured with the MDAD playbook
 
-If you use the [matrix-docker-ansible-deploy (MDAD)](https://github.com/spantaleev/matrix-docker-ansible-deploy/) Ansible playbook to manage [Matrix](https://matrix.org/) services on your server, you can configure the MASH playbook to set up services such as [Forgejo](services/forgejo.md), [GoToSocial](services/gotosocial.md), [Nextcloud](services/nextcloud.md), [PeerTube](services/peertube.md) and tons of other [supported services](./supported-services.md), along with the Matrix services on the same server. This page explains how to do so.
+If you use the [matrix-docker-ansible-deploy (MDAD)](https://github.com/spantaleev/matrix-docker-ansible-deploy/) Ansible playbook to manage [Matrix](https://matrix.org/) services on your server, you can configure the MASH playbook to set up services such as [Forgejo](services/forgejo.md), [Nextcloud](services/nextcloud.md), [PeerTube](services/peertube.md), [VaultWarden](services/vaultwarden.md), and tons of other [supported services](./supported-services.md), along with the Matrix services on the same server. This page explains how to do so.
 
 The basic steps to configure the MASH playbook and use it to install services are pretty same as doing so with the MDAD playbook: **setting up prerequisites (if running this playbook on a different computer), retrieving the MASH playbook, configuring it as well as the DNS records, and installing the services on the server**. If you have been accustomed to maintain Matrix services with the MDAD playbook, it should not be difficult to set up and use this playbook too.
 
@@ -57,7 +57,7 @@ After copying the files, let's edit your `hosts` file.
 
 Because you are running the playbook against the same server where the Matrix services run, you can just copy the server's external IP address specified on `hosts` file on the MDAD playbook.
 
-If you have edited the MDAD's `hosts` file on your preference (such as adjusting the SSH port), you might probably want to copy the entire line and replace the domain with the one for this playbook such as `mash.example.com`. This should work for most case, as you should have already connected to your Matrix server with such preference.
+If you have edited the MDAD's `hosts` file per your preference (such as adjusting the SSH port), you might probably want to copy the entire line and replace the domain with the one for this playbook such as `mash.example.com`. This should work for most case, as you should have already connected to your Matrix server with such preference.
 
 ### Configure `vars.yml` file
 
@@ -75,7 +75,7 @@ The step for installation is common to both MASH and MDAD playbooks (ie. fetchin
 
 You can see [this page](supported-services.md) for a full list of the supported services and pick services which you want to install. When enabling a service, please check its documentation for the instruction.
 
-If you want to install services, you can do so whenever you want by running the playbook. However, it is generally not recommended to install a lot of services all at once, since it can overflow the server, which can already be suffering from heavy load of [Synapse](https://github.com/spantaleev/matrix-docker-ansible-deploy/blob/master/docs/configuring-playbook-synapse.md), its de-facto Matrix homeserver.
+If you want to install services, you can do so whenever you want by running the playbook. However, it is generally not recommended to install a lot of services all at once, since it can overflow the server. You probably might want to install them one by one, confirming that each of them works as expected.
 
 After running the installation command, make sure to check the installed services can be accessed. **If you can access to them, the installation has completed and you can use the services along with the Matrix services**🎉
 

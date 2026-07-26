@@ -266,7 +266,7 @@ peertube_trusted_proxies_values_custom: ["172.21.0.0/16"]
 
 ## Usage
 
-After installation, the PeerTube instance becomes available at the URL specified with `peertube_hostname`. With the configuration above, the service is hosted at `https://peertube.example.com`.
+After running the command for installation, the PeerTube instance becomes available at the URL specified with `peertube_hostname`. With the configuration above, the service is hosted at `https://peertube.example.com`.
 
 You should then be able to log in with:
 

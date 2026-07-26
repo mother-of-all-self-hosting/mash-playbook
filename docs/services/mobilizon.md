@@ -40,6 +40,9 @@ This service requires the following other services:
 - [Traefik](traefik.md) reverse-proxy server
 - (optional) [exim-relay](exim-relay.md) mailer
 
+>[!NOTE]
+> Mobilizon seems to be incompatible with Postgres v18 as database migration fails due to an error like this one: `** (Postgrex.Error) ERROR 42P16 (invalid_table_definition) primary key column "id" is not marked NOT NULL`. Until the issue is fixed, pinning the major version to a lower one with the `postgis_allowed_versions_custom` variable should be helpful.
+
 ## Configuration
 
 To enable this service, add the following configuration to your `vars.yml` file and re-run the [installation](../installing.md) process:

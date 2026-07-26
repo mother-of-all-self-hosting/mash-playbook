@@ -249,7 +249,7 @@ Note that running the `just` commands for installation (`just install-all` or `j
 
 ## Usage
 
-After installation, the Teable instance becomes available at the URL specified with `teable_hostname`. With the configuration above, the service is hosted at `https://teable.example.com`.
+After running the command for installation, the Teable instance becomes available at the URL specified with `teable_hostname`. With the configuration above, the service is hosted at `https://teable.example.com`.
 
 To get started, open the URL with a web browser, and register the account. **Note that the first registered user becomes an administrator automatically.**
 

@@ -265,7 +265,7 @@ Note that running the `just` commands for installation (`just install-all` or `j
 
 ## Usage
 
-After installation, the Misskey instance becomes available at the URL specified with `misskey_hostname`. With the configuration above, the service is hosted at `https://misskey.example.com`.
+After running the command for installation, the Misskey instance becomes available at the URL specified with `misskey_hostname`. With the configuration above, the service is hosted at `https://misskey.example.com`.
 
 To get started, open the URL with a web browser, and follow the set up wizard.
 

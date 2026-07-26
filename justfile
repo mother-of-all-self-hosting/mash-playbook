@@ -14,6 +14,10 @@ prek_home := env("PREK_HOME", justfile_directory() / "var/prek")
 default:
     @{{ just_executable() }} --list --justfile {{ justfile() }}
 
+# Adds a new host to the inventory, creating the inventory files if necessary (e.g. `just add-inventory-host mash.example.com 1.2.3.4`)
+add-inventory-host host server_address:
+    @{{ justfile_directory() }}/bin/add-inventory-host.sh {{ quote(host) }} {{ quote(server_address) }}
+
 run_directory_path := justfile_directory() + "/run"
 templates_directory_path := justfile_directory() + "/templates"
 optimization_vars_files_file_path := run_directory_path + "/optimization-vars-files.state"
@@ -23,7 +27,7 @@ roles: _requirements-yml
     #!/usr/bin/env sh
     if [ -x "$(command -v agru)" ]; then
         echo "[NOTE] This command just updates the roles, but if you want to update everything at once (playbook, roles, etc.) - use 'just update'"
-        agru -r {{ justfile_directory() }}/requirements.yml
+        agru -r {{ justfile_directory() }}/requirements.yml -no-tui
     else
         echo "[NOTE] You are using the standard ansible-galaxy tool to install roles, which is slow and lacks other features. We recommend installing the 'agru' tool to speed up the process: https://github.com/etkecc/agru#where-to-get"
         echo "[NOTE] This command just updates the roles, but if you want to update everything at once (playbook, roles, etc.) - use 'just update'"
@@ -88,7 +92,7 @@ update *flags: _requirements-yml update-playbook-only
     #!/usr/bin/env sh
     if [ -x "$(command -v agru)" ]; then
         echo {{ if flags == "" { "Installing roles pinned in requirements.yml..." } else if flags == "-u" { "Updating roles and pinning new versions in requirements.yml..." } else { "Unknown flags passed" } }}
-        agru -r {{ templates_directory_path }}/requirements.yml {{ flags }}
+        agru -r {{ templates_directory_path }}/requirements.yml -no-tui {{ flags }}
     else
         echo "[NOTE] You are using the standard ansible-galaxy tool to install roles, which is slow and lacks other features. We recommend installing the 'agru' tool to speed up the process: https://github.com/etkecc/agru#where-to-get"
         echo "Installing roles..."
@@ -172,7 +176,19 @@ setup-service service *extra_args:
 
 # Runs the playbook with the given list of arguments
 run +extra_args: _requirements-yml _setup-yml _group-vars-mash-servers
-    ansible-playbook -i inventory/hosts setup.yml {{ extra_args }}
+    #!/usr/bin/env sh
+    set -eu
+    if ! [ -x "$(command -v etkepass)" ]; then
+        ansible-playbook -i inventory/hosts setup.yml {{ extra_args }}
+        exit $?
+    fi
+    export SSH_ASKPASS="$(command -v etkepass)"
+    export SSH_ASKPASS_REQUIRE=force
+    _tmpdir="$(mktemp -d)"
+    chmod 700 "$_tmpdir"
+    trap 'rm -rf "$_tmpdir"' EXIT INT TERM HUP
+    (cd inventory && etkepass --decrypt-inv-to "$_tmpdir")
+    ansible-playbook -i inventory/hosts -i "$_tmpdir" setup.yml {{ extra_args }}
 
 # Runs the playbook with the given list of comma-separated tags and optional arguments
 run-tags tags *extra_args:
