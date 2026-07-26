@@ -72,4 +72,4 @@ jobs:
 
       - name: Deploy (setup-all)
         if: inputs.mode == 'setup-all'
-        run: just -f justfile.custom setup-all ${{ inputs.host }}@
+        run: just -f justfile.custom setup-all ${{ inputs.host }}
