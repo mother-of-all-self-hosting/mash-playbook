@@ -119,8 +119,8 @@ It will expose the metrics at `https://mash.example.com/metrics/mash-endlessh`.
 To enable the HTTP Basic authentication, add the following configuration to your `vars.yml` file (adapt to your needs):
 
 ```yaml
-endlessh_container_labels_metrics_middleware_basic_auth_enabled: true
+endlessh_container_labels_traefik_metrics_middleware_basic_auth_enabled: true
 
 # See https://doc.traefik.io/traefik/middlewares/http/basicauth/#users for details.
-endlessh_container_labels_metrics_middleware_basic_auth_users: ""
+endlessh_container_labels_traefik_metrics_middleware_basic_auth_users: ""
 ```

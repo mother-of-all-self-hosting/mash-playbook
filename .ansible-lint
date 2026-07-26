@@ -3,5 +3,8 @@ profile: production # min, basic, moderate, safety, shared, production
 
 skip_list:
   - yaml[line-length]
+  # Variables in our roles intentionally use the global `mash_playbook_` namespace
+  # instead of a role-name prefix, so we disable ansible-lint's role-prefix check.
+  - var-naming[no-role-prefix]
 
 offline: true

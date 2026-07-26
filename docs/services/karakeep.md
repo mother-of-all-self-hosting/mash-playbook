@@ -106,7 +106,7 @@ See [this page](https://docs.karakeep.app/configuration/) for a complete list of
 
 ## Usage
 
-After installation, the Karakeep instance becomes available at the URL specified with `karakeep_hostname`. With the configuration above, the service is hosted at `https://karakeep.example.com`.
+After running the command for installation, the Karakeep instance becomes available at the URL specified with `karakeep_hostname`. With the configuration above, the service is hosted at `https://karakeep.example.com`.
 
 To get started, open the URL with a web browser to create an account. **Note that the first registered user becomes an administrator automatically.**
 

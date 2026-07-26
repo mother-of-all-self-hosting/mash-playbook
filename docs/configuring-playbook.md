@@ -20,7 +20,11 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
 <sup>[Prerequisites](prerequisites.md) > [Configuring DNS settings](configuring-dns.md) > [Getting the playbook](getting-the-playbook.md) > Configuring the playbook > [Installing](installing.md)</sup>
 
-If you've configured your DNS records and retrieved the playbook's source code to your computer, you can start configuring the playbook. To do so, follow these steps inside the playbook directory:
+If you've configured your DNS records and retrieved the playbook's source code to your computer, you can start configuring the playbook.
+
+To initialize your configuration automatically (with the inventory host pre-filled and secrets generated for you), run `just add-inventory-host mash.example.com 1.2.3.4` (see the [`just`](just.md) tool) inside the playbook directory, where `mash.example.com` is the hostname you've picked for your server and `1.2.3.4` is its external IP address (or domain name). Afterward, continue from step 3 below to adjust the generated configuration. Existing configuration is never overwritten (the command refuses to run if the host is already in your inventory), so it can also be used for adding more hosts later.
+
+To initialize it manually instead, follow these steps inside the playbook directory:
 
 1. create a directory to hold your configuration (`mkdir -p inventory/host_vars/mash.example.com`)
 

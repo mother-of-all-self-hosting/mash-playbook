@@ -13,6 +13,7 @@ SPDX-FileCopyrightText: 2023 Felix Stupp
 SPDX-FileCopyrightText: 2023 Julian-Samuel Gebühr
 SPDX-FileCopyrightText: 2023 Pierre 'McFly' Marty
 SPDX-FileCopyrightText: 2024-2026 Suguru Hirahara
+SPDX-FileCopyrightText: 2026 microchipster
 
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->
@@ -49,9 +50,9 @@ To enable this service, add the following configuration to your `vars.yml` file 
 
 cryptpad_enabled: true
 
-cryptpad_main_hostname: cryptpad.example.com
+cryptpad_hostname_main: cryptpad.example.com
 
-cryptpad_sandbox_hostname: sandbox.example.com
+cryptpad_hostname_sandbox: sandbox.example.com
 
 ########################################################################
 #                                                                      #
@@ -60,9 +61,13 @@ cryptpad_sandbox_hostname: sandbox.example.com
 ########################################################################
 ```
 
+### Enabling spreadsheets (optional)
+
+CryptPad’s spreadsheet editor is backed by its bundled OnlyOffice integration. If the `Sheets` or `Spreadsheet` app does not show up in the UI, you need to enable that bundle explicitly and persist its local data with additional bind mounts. See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-cryptpad/blob/main/docs/configuring-cryptpad.md#enabling-spreadsheets-optional) on the role's documentation for details.
+
 ## Usage
 
-After running the command for installation, the CryptPad instance becomes available at the URL specified with `cryptpad_main_hostname`. With the configuration above, the service is hosted at `https://cryptpad.example.com`.
+After running the command for installation, the CryptPad instance becomes available at the URL specified with `cryptpad_hostname_main`. With the configuration above, the service is hosted at `https://cryptpad.example.com`.
 
 To get started, run the command below to output the URL for creating a first administrator account:
 

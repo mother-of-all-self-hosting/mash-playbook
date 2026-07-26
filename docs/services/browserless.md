@@ -31,6 +31,9 @@ For details about configuring the [Ansible role for Browserless](https://github.
 - 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-browserless/blob/main/docs/configuring-browserless.md) online
 - 📁 `roles/galaxy/browserless/docs/configuring-browserless.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
+>[!WARNING]
+> Browserless is licensed under [Server Side Public License, v1](https://github.com/browserless/browserless/blob/main/LICENSE), and therefore non-free software. We do not encourage using Browserless.
+
 ## Dependencies
 
 This service requires the following other services:
@@ -72,7 +75,7 @@ browserless_hostname: "browserless.example.com"
 
 ## Usage
 
-After running the command for installation, Browserless becomes available internally to other services on the same network. If the service is exposed to the internet, it becomes available at the URL specified with `browserless_hostname`. With the configuration above, the service is hosted at `https://browserless.example.com`.
+After running the command for installation, the Browserless instance becomes available internally to other services on the same network. If the service is exposed to the internet, it becomes available at the URL specified with `browserless_hostname`. With the configuration above, the service is hosted at `https://browserless.example.com`.
 
 ## Troubleshooting
 

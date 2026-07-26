@@ -276,7 +276,7 @@ Note that running the `just` commands for installation (`just install-all` or `j
 
 ## Usage
 
-After installation, the Weblate instance becomes available at the URL specified with `weblate_hostname`. With the configuration above, the service is hosted at `https://weblate.example.com`.
+After running the command for installation, the Weblate instance becomes available at the URL specified with `weblate_hostname`. With the configuration above, the service is hosted at `https://weblate.example.com`.
 
 To get started, open the URL with a web browser to log in to the instance with the administrator account.
 

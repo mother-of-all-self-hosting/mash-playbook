@@ -80,7 +80,7 @@ See [this page](meilisearch.md) for details about how to install it and setting 
 
 ## Usage
 
-After installation, the Linkwarden instance becomes available at the URL specified with `linkwarden_hostname`. With the configuration above, the service is hosted at `https://linkwarden.example.com`.
+After running the command for installation, the Linkwarden instance becomes available at the URL specified with `linkwarden_hostname`. With the configuration above, the service is hosted at `https://linkwarden.example.com`.
 
 To get started, open the URL with a web browser to create an account. **Note that the first registered user becomes an administrator automatically.**
 

@@ -75,7 +75,7 @@ atuin_environment_variables_open_registration: true
 
 ## Usage
 
-After installation, the Atuin server instance becomes available at the URL specified with `atuin_hostname`. With the configuration above, the service is hosted at `https://atuin.example.com`.
+After running the command for installation, the Atuin server instance becomes available at the URL specified with `atuin_hostname`. With the configuration above, the service is hosted at `https://atuin.example.com`.
 
 To get started, [install Atuin](https://docs.atuin.sh/guide/installation/) on your local computer if it is not yet available there, and proceed to configure synchronization. See [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az4ATDhf89CPqP7XCLNpNwobuJ9fBs/tree/docs/configuring-atuin.md#usage) on the role's documentation for details.
 

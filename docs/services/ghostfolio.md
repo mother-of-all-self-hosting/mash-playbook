@@ -250,7 +250,7 @@ Note that running the `just` commands for installation (`just install-all` or `j
 
 ## Usage
 
-After installation, the Ghostfolio instance becomes available at the URL specified with `ghostfolio_hostname`. With the configuration above, the service is hosted at `https://ghostfolio.example.com`.
+After running the command for installation, the Ghostfolio instance becomes available at the URL specified with `ghostfolio_hostname`. With the configuration above, the service is hosted at `https://ghostfolio.example.com`.
 
 As **registration is open to anyone by default**, you also would probably want to disable the signup form on "Admin Control" page after creating the account.
 

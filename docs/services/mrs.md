@@ -34,9 +34,9 @@ To enable this service, add the following configuration to your `vars.yml` file 
 mrs_enabled: true
 mrs_hostname: mrs.example.com
 
-mrs_admin_login: admin
-mrs_admin_password: changeme
-mrs_admin_ips:
+mrs_auth_admin_login: admin
+mrs_auth_admin_password: changeme
+mrs_auth_admin_ips:
   - 123.123.123.123
 
 mrs_servers:
@@ -53,7 +53,7 @@ mrs_servers:
 
 After running the command for installation, the Matrix Rooms Search instance becomes available at the URL specified with `mrs_hostname`. With the configuration above, the service is hosted at `https://mrs.example.com`.
 
-You can call the `https://mrs.example.com/-/full` endpoint using admin credentials (see the `mrs_admin_*` variables) to discover and parse content.
+You can call the `https://mrs.example.com/-/full` endpoint using admin credentials (see the `mrs_auth_admin_*` variables) to discover and parse content.
 
 To see the list of supported public and private APIs, see the [API documentation](https://github.com/etkecc/mrs/blob/main/openapi.yml).
 
