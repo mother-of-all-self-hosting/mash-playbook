@@ -62,6 +62,10 @@ jobs:
           chmod 600 ~/.ssh/id_ed25519
           ssh-keyscan -H "${{ inputs.host }}" >> ~/.ssh/known_hosts
 
+      - name: Debug SSH connection (temporary)
+        run: |
+          ssh -vvv -o BatchMode=yes -o ConnectTimeout=10 -i ~/.ssh/id_ed25519 root@${{ inputs.host }} exit 2>&1 || true
+
       - name: Write secrets
         run: |
           echo "${{ secrets.INVENTORY_SECRETS }}" > inventory/host_vars/${{ inputs.host }}/secrets.yml
