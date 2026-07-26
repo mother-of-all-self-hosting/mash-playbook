@@ -82,6 +82,7 @@ jobs:
         run: |
           gh pr create \
             --repo "$GITHUB_REPOSITORY" \
+            --assignee "@me" \
             --title "chore: sync upstream $(date +%Y-%m-%d)" \
             --body "Automated weekly sync from [mother-of-all-self-hosting/mash-playbook](https://github.com/mother-of-all-self-hosting/mash-playbook)." \
             --base main \
