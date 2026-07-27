@@ -101,7 +101,7 @@
   name: bookstack
   activation_prefix: bookstack_
 - src: git+https://iris.radicle.network/zxNS7XeayGimb4WFfvqmasiZZC3v.git
-  version: v2.2.5-1
+  version: v2.2.6-0
   name: borg_ui
   activation_prefix: borg_ui_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-browserless.git
