@@ -37,16 +37,32 @@ jobs:
       - name: Fetch upstream
         run: git fetch upstream
 
+      - name: Check if sync is needed
+        id: check_sync
+        # Nothing to do if upstream/main is already merged into main - this
+        # is the normal weekly outcome, not a failure, so skip the rest of
+        # the job instead of pushing an empty branch and failing on PR
+        # creation ("No commits between main and sync/...").
+        run: |
+          if git merge-base --is-ancestor upstream/main main; then
+            echo "needed=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "needed=true" >> "$GITHUB_OUTPUT"
+          fi
+
       - name: Create sync branch
+        if: steps.check_sync.outputs.needed == 'true'
         run: |
           BRANCH="sync/upstream-$(date +%Y-%m-%d)"
           git checkout -b "$BRANCH"
           echo "BRANCH=$BRANCH" >> "$GITHUB_ENV"
 
       - name: Merge upstream main
+        if: steps.check_sync.outputs.needed == 'true'
         run: git merge upstream/main --no-edit
 
       - name: Check for leftover conflict markers
+        if: steps.check_sync.outputs.needed == 'true'
         # .gitattributes sets merge=union for templates/setup.yml and
         # templates/group_vars_mash_servers so nearby insertions from
         # upstream and our custom roles don't conflict. This is a cheap,
@@ -61,9 +77,11 @@ jobs:
           fi
 
       - name: Push sync branch
+        if: steps.check_sync.outputs.needed == 'true'
         run: git push origin "$BRANCH"
 
       - name: Close existing sync PRs
+        if: steps.check_sync.outputs.needed == 'true'
         env:
           GH_TOKEN: ${{ secrets.SYNC_UPSTREAM_PAT }}
         # --repo is required: this repo is a registered GitHub fork of
@@ -77,6 +95,7 @@ jobs:
             done
 
       - name: Create pull request
+        if: steps.check_sync.outputs.needed == 'true'
         env:
           GH_TOKEN: ${{ secrets.SYNC_UPSTREAM_PAT }}
         run: |
