@@ -1,0 +1,92 @@
+# SPDX-FileCopyrightText: 2026 Oliver Lorenz
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+---
+name: Deploy (core)
+
+on:
+  workflow_call:
+    inputs:
+      mode:
+        required: true
+        type: string
+      service:
+        required: false
+        type: string
+      host:
+        required: true
+        type: string
+      ref:
+        description: mash-playbook ref to deploy. Empty deploys the ref this workflow run started from.
+        required: false
+        type: string
+    outputs:
+      deployed_sha:
+        description: Commit SHA of mash-playbook that was deployed
+        value: ${{ jobs.run.outputs.deployed_sha }}
+
+permissions:
+  contents: read
+
+jobs:
+  run:
+    name: Deploy (${{ inputs.mode }})
+    runs-on: ubuntu-latest
+    outputs:
+      deployed_sha: ${{ steps.resolve.outputs.sha }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.ref || github.ref }}
+
+      - name: Record deployed commit
+        id: resolve
+        run: echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+
+      - name: Resolve pinned inventory commit
+        id: inventory
+        run: echo "sha=$(git rev-parse HEAD:inventory)" >> "$GITHUB_OUTPUT"
+
+      - name: Checkout inventory
+        uses: actions/checkout@v4
+        with:
+          repository: oliverlorenz/mash-inventories
+          token: ${{ secrets.GH_PAT }}
+          path: inventory
+          ref: ${{ steps.inventory.outputs.sha }}
+
+      - name: Install just
+        uses: extractions/setup-just@v2
+
+      - name: Install Ansible
+        run: pip install ansible regex
+
+      - name: Optimize for host
+        run: just optimize-for-host ${{ inputs.host }}
+
+      - name: Install Ansible roles
+        run: just roles
+
+      - name: Write SSH private key
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_ed25519
+          chmod 600 ~/.ssh/id_ed25519
+          ssh-keyscan -H "${{ inputs.host }}" >> ~/.ssh/known_hosts
+          host_ip="$(getent ahostsv4 "${{ inputs.host }}" | head -n1 | awk '{print $1}')"
+          if [ -n "$host_ip" ]; then
+            ssh-keyscan -H "$host_ip" >> ~/.ssh/known_hosts
+          fi
+
+      - name: Write secrets
+        run: |
+          echo "${{ secrets.INVENTORY_SECRETS }}" > inventory/host_vars/${{ inputs.host }}/secrets.yml
+
+      - name: Deploy (setup-service)
+        if: inputs.mode == 'setup-service'
+        run: just -f justfile.custom setup-service ${{ inputs.service }} ${{ inputs.host }}
+
+      - name: Deploy (setup-all)
+        if: inputs.mode == 'setup-all'
+        run: just -f justfile.custom setup-all ${{ inputs.host }}

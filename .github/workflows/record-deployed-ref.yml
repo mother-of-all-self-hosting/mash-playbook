@@ -1,0 +1,33 @@
+# SPDX-FileCopyrightText: 2026 Oliver Lorenz
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+---
+name: Record deployed ref
+
+on:
+  workflow_call:
+    inputs:
+      host:
+        required: true
+        type: string
+      sha:
+        required: true
+        type: string
+
+permissions:
+  contents: write
+
+jobs:
+  record:
+    name: Tag deployed/${{ inputs.host }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Update last-known-good tag
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git tag -f "deployed/${{ inputs.host }}" "${{ inputs.sha }}"
+          git push origin "refs/tags/deployed/${{ inputs.host }}" --force

@@ -25,55 +25,75 @@ on:
         required: true
         type: string
         default: mash.oliverlorenz.com
+      ref:
+        description: mash-playbook ref (branch, tag, or commit) to deploy. Leave empty to deploy the ref this workflow is run from.
+        required: false
+        type: string
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
   deploy:
     name: Deploy (${{ inputs.mode }})
+    uses: ./.github/workflows/deploy-run.yml
+    with:
+      mode: ${{ inputs.mode }}
+      service: ${{ inputs.service }}
+      host: ${{ inputs.host }}
+      ref: ${{ inputs.ref }}
+    secrets: inherit
+
+  record-success:
+    name: Record last known-good ref
+    needs: deploy
+    if: success()
+    uses: ./.github/workflows/record-deployed-ref.yml
+    with:
+      host: ${{ inputs.host }}
+      sha: ${{ needs.deploy.outputs.deployed_sha }}
+    secrets: inherit
+
+  await-rollback-approval:
+    name: Await rollback approval
+    needs: deploy
+    if: failure()
+    environment: rollback-approval
     runs-on: ubuntu-latest
+    outputs:
+      sha: ${{ steps.resolve.outputs.sha }}
     steps:
       - uses: actions/checkout@v4
-
-      - name: Checkout inventory
-        uses: actions/checkout@v4
         with:
-          repository: oliverlorenz/mash-inventories
-          token: ${{ secrets.GH_PAT }}
-          path: inventory
+          fetch-depth: 0
 
-      - name: Install just
-        uses: extractions/setup-just@v2
-
-      - name: Install Ansible
-        run: pip install ansible regex
-
-      - name: Optimize for host
-        run: just optimize-for-host ${{ inputs.host }}
-
-      - name: Install Ansible roles
-        run: just roles
-
-      - name: Write SSH private key
+      - name: Resolve last known-good ref
+        id: resolve
         run: |
-          mkdir -p ~/.ssh
-          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_ed25519
-          chmod 600 ~/.ssh/id_ed25519
-          ssh-keyscan -H "${{ inputs.host }}" >> ~/.ssh/known_hosts
-          host_ip="$(getent ahostsv4 "${{ inputs.host }}" | head -n1 | awk '{print $1}')"
-          if [ -n "$host_ip" ]; then
-            ssh-keyscan -H "$host_ip" >> ~/.ssh/known_hosts
+          if git rev-parse -q --verify "refs/tags/deployed/${{ inputs.host }}" >/dev/null; then
+            echo "sha=$(git rev-parse "refs/tags/deployed/${{ inputs.host }}")" >> "$GITHUB_OUTPUT"
+          else
+            echo "::error::No previously successful deploy recorded for host '${{ inputs.host }}' -- nothing to roll back to."
+            exit 1
           fi
 
-      - name: Write secrets
-        run: |
-          echo "${{ secrets.INVENTORY_SECRETS }}" > inventory/host_vars/${{ inputs.host }}/secrets.yml
+  rollback:
+    name: Auto-rollback (${{ inputs.host }})
+    needs: await-rollback-approval
+    uses: ./.github/workflows/deploy-run.yml
+    with:
+      mode: ${{ inputs.mode }}
+      service: ${{ inputs.service }}
+      host: ${{ inputs.host }}
+      ref: ${{ needs.await-rollback-approval.outputs.sha }}
+    secrets: inherit
 
-      - name: Deploy (setup-service)
-        if: inputs.mode == 'setup-service'
-        run: just -f justfile.custom setup-service ${{ inputs.service }} ${{ inputs.host }}
-
-      - name: Deploy (setup-all)
-        if: inputs.mode == 'setup-all'
-        run: just -f justfile.custom setup-all ${{ inputs.host }}
+  record-rollback-success:
+    name: Record last known-good ref (post-rollback)
+    needs: rollback
+    if: success()
+    uses: ./.github/workflows/record-deployed-ref.yml
+    with:
+      host: ${{ inputs.host }}
+      sha: ${{ needs.rollback.outputs.deployed_sha }}
+    secrets: inherit

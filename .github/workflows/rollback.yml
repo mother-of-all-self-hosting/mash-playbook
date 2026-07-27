@@ -1,0 +1,55 @@
+# SPDX-FileCopyrightText: 2026 Oliver Lorenz
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+---
+name: Rollback
+
+on:
+  workflow_dispatch:
+    inputs:
+      ref:
+        description: mash-playbook ref (tag, branch, or commit SHA) to roll back to. The inventory pin recorded at that ref is deployed alongside it.
+        required: true
+        type: string
+      mode:
+        description: Deploy mode
+        required: true
+        type: choice
+        options:
+          - setup-service
+          - setup-all
+        default: setup-all
+      service:
+        description: Service name (only required for setup-service)
+        required: false
+        type: string
+      host:
+        description: Target host
+        required: true
+        type: string
+        default: mash.oliverlorenz.com
+
+permissions:
+  contents: write
+
+jobs:
+  rollback:
+    name: Rollback to ${{ inputs.ref }}
+    uses: ./.github/workflows/deploy-run.yml
+    with:
+      mode: ${{ inputs.mode }}
+      service: ${{ inputs.service }}
+      host: ${{ inputs.host }}
+      ref: ${{ inputs.ref }}
+    secrets: inherit
+
+  record-success:
+    name: Record last known-good ref
+    needs: rollback
+    if: success()
+    uses: ./.github/workflows/record-deployed-ref.yml
+    with:
+      host: ${{ inputs.host }}
+      sha: ${{ needs.rollback.outputs.deployed_sha }}
+    secrets: inherit
