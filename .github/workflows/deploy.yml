@@ -47,7 +47,7 @@ jobs:
   record-success:
     name: Record last known-good ref
     needs: deploy
-    if: success()
+    if: needs.deploy.result == 'success'
     uses: ./.github/workflows/record-deployed-ref.yml
     with:
       host: ${{ inputs.host }}
@@ -80,6 +80,7 @@ jobs:
   rollback:
     name: Auto-rollback (${{ inputs.host }})
     needs: await-rollback-approval
+    if: needs.await-rollback-approval.result == 'success'
     uses: ./.github/workflows/deploy-run.yml
     with:
       mode: ${{ inputs.mode }}
@@ -91,7 +92,7 @@ jobs:
   record-rollback-success:
     name: Record last known-good ref (post-rollback)
     needs: rollback
-    if: success()
+    if: needs.rollback.result == 'success'
     uses: ./.github/workflows/record-deployed-ref.yml
     with:
       host: ${{ inputs.host }}
