@@ -1065,7 +1065,7 @@
   name: wordpress
   activation_prefix: wordpress_
 - src: git+https://iris.radicle.network/z2i8BkHXzRvK1ZtGwHuvLACRswXgA.git
-  version: v0.16.0-8
+  version: v0.17.0-0
   name: writefreely
   activation_prefix: writefreely_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-yacy.git
