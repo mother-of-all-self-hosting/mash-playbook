@@ -27,6 +27,11 @@ FlareSolverr is an open-source proxy server to bypass Cloudflare protection.
 
 See the project's [documentation](https://github.com/FlareSolverr/FlareSolverr/blob/master/README.md) to learn what FlareSolverr does and why it might be useful to you.
 
+For details about configuring the [Ansible role for FlareSolverr](https://github.com/mother-of-all-self-hosting/ansible-role-flaresolverr), you can check them via:
+
+- 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-flaresolverr/blob/main/docs/configuring-flaresolverr.md) online
+- 📁 `roles/galaxy/flaresolverr/docs/configuring-flaresolverr.md` locally, if you have [fetched the Ansible roles](../installing.md)
+
 ## Dependencies
 
 This service requires the following other services:
@@ -67,3 +72,7 @@ flaresolverr_hostname: "flaresolverr.example.com"
 ## Usage
 
 After running the command for installation, the FlareSolverr instance becomes available internally to other services on the same network. If the service is exposed to the internet, it becomes available at the URL specified with `flaresolverr_hostname`. With the configuration above, the service is hosted at `https://flaresolverr.example.com`.
+
+## Troubleshooting
+
+See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-flaresolverr/blob/main/docs/configuring-flaresolverr.md#troubleshooting) on the role's documentation for details.
