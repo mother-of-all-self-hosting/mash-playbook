@@ -13,6 +13,11 @@ Label Studio is an open-source data labeling tool that supports multiple project
 
 See the project's [documentation](https://labelstud.io/quick-start/) to learn what Label Studio does and why it might be useful to you.
 
+For details about configuring the [Ansible role for Label Studio](https://github.com/mother-of-all-self-hosting/ansible-role-labelstudio), you can check them via:
+
+- 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-labelstudio/blob/main/docs/configuring-labelstudio.md) online
+- 📁 `roles/galaxy/labelstudio/docs/configuring-labelstudio.md` locally, if you have [fetched the Ansible roles](../installing.md)
+
 ## Dependencies
 
 This service requires the following other services:
@@ -48,15 +53,7 @@ After running the command for installation, the Label Studio instance becomes av
 
 To get started, open the URL with a web browser to register new accounts, log in with them, and start working.
 
-Keep in mind that every user will see every project. It may be more secure to disable user registration and use an admin use (created during setup) to send out sign-up emails to additional users later on.
-
-This admin user can be enabled by using the following settings:
-
-```yml
-labelstudio_environment_variables_disable_signup_without_link: true
-labelstudio_environment_variables_username: "admin-username"
-labelstudio_environment_variables_password: "admin-user-password"
-```
+Keep in mind that every user will see every project. It may be more secure to disable user registration and use an admin user. See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-labelstudio/blob/main/docs/configuring-labelstudio.md#setting-administrators-account-details-optional) on the role's documentation for details.
 
 ## Related services
 
