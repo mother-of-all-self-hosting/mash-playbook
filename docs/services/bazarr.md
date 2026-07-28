@@ -27,7 +27,7 @@ Bazarr is a companion application to [Sonarr](https://sonarr.tv/) and [Radarr](h
 
 See the project's [documentation](https://wiki.bazarr.media/) to learn what Bazarr does and why it might be useful to you.
 
-For details about configuring the [Ansible role for Autobrr](https://github.com/mother-of-all-self-hosting/ansible-role-bazarr), you can check them via:
+For details about configuring the [Ansible role for Bazarr](https://github.com/mother-of-all-self-hosting/ansible-role-bazarr), you can check them via:
 
 - 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-bazarr/blob/main/docs/configuring-bazarr.md) online
 - 📁 `roles/galaxy/bazarr/docs/configuring-bazarr.md` locally, if you have [fetched the Ansible roles](../installing.md)
