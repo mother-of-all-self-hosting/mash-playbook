@@ -15,6 +15,11 @@ Wetty is an SSH terminal over HTTP/HTTPS, useful for when on a strict network wh
 
 See the project's [documentation](https://butlerx.github.io/wetty) to learn what Wetty does and why it might be useful to you.
 
+For details about configuring the [Ansible role for Wetty](https://github.com/mother-of-all-self-hosting/ansible-role-wetty), you can check them via:
+
+- 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-wetty/blob/main/docs/configuring-wetty.md) online
+- 📁 `roles/galaxy/wetty/docs/configuring-wetty.md` locally, if you have [fetched the Ansible roles](../installing.md)
+
 ## Dependencies
 
 This service requires the following other services:
@@ -61,6 +66,10 @@ Once connected, you can log in with SSH with the username and password.
 
 >[!NOTE]
 > Wetty only supports password authentication, so if the SSH daemon at `wetty_environment_variables_ssh_host` only allows pubkey authentication you will not be able to connect.
+
+## Troubleshooting
+
+See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-wetty/blob/main/docs/configuring-wetty.md#troubleshooting) on the role's documentation for details.
 
 ## Related services
 
