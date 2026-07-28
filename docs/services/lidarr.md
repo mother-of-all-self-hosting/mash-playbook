@@ -61,7 +61,7 @@ After running the command for installation, the Lidarr instance becomes availabl
 >[!NOTE]
 > The `lidarr_path_prefix` variable can be adjusted to host under a subpath (e.g. `lidarr_path_prefix: /lidarr`), but this hasn't been tested yet.
 
-To get started, open the URL with a web browser to create an account. The recommended authentication method is `Forms (Login Page)`.
+To get started, open the URL with a web browser to create an account.
 
 For additional configuration options, refer to `defaults/main.yml` file.
 
@@ -71,4 +71,3 @@ For additional configuration options, refer to `defaults/main.yml` file.
 - [Jellyfin](jellyfin.md)
 - [Plex](plex.md)
 - [qBittorrent](qbittorrent.md)
-  - For qBittorrent integration instructions, see the [setup guide](qbittorrent.md#integration-with-sonarrradarr)

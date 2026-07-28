@@ -473,7 +473,7 @@
   name: librebooking
   activation_prefix: librebooking_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-lidarr.git
-  version: v3.1.0-0
+  version: v3.1.0.4875-0
   name: lidarr
   activation_prefix: lidarr_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-limesurvey.git
