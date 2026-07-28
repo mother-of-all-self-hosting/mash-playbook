@@ -20,6 +20,10 @@
     },
     {
       "matchFileNames": [
+        ".github/workflows/close-stale-issues.yml",
+        ".github/workflows/lock-threads.yml",
+        ".github/workflows/pre-commit.yml",
+        ".github/workflows/workflow.yml",
         ".pre-commit-config.yaml",
         "mise.toml"
       ],
