@@ -21,7 +21,7 @@
   name: anonymousoverflow
   activation_prefix: anonymousoverflow_
 - src: git+https://iris.radicle.network/z4Cd3nL74nNap51RBB6mtC1jipeH9.git
-  version: v2.0.1-1
+  version: v2.0.2-0
   name: answer
   activation_prefix: answer_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-apisix-dashboard.git
