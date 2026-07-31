@@ -973,7 +973,7 @@
   name: termix
   activation_prefix: termix_
 - src: git+https://iris.radicle.network/z3vaa8VAuz3pxqB3FyciNKQRSHqyt.git
-  version: v4.5.0-1
+  version: v4.5.2-0
   name: thelounge
   activation_prefix: thelounge_
 - src: git+https://iris.radicle.network/zbk3MzAN6SX6d8pa9DT2kHDscyr6.git
