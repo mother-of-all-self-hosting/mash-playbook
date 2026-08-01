@@ -55,7 +55,7 @@ After running the command for installation, the Matrix Rooms Search instance bec
 
 You can call the `https://mrs.example.com/-/full` endpoint using admin credentials (see the `mrs_auth_admin_*` variables) to discover and parse content.
 
-To see the list of supported public and private APIs, see the [API documentation](https://github.com/etkecc/mrs/blob/main/openapi.yml).
+To see the list of supported public and private APIs, see the [API documentation](https://github.com/etkecc/mrs/blob/main/docs/swagger.yaml).
 
 ## Related services
 
