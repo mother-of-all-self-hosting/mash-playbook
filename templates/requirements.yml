@@ -737,7 +737,7 @@
   name: plex
   activation_prefix: plex_
 - src: git+https://iris.radicle.network/z2vTmc3fLqxvpuT9EoZvkErWNZM1K.git
-  version: v2.11.0-0
+  version: v2.12.0-0
   name: pocket_id
   activation_prefix: pocket_id_
 - src: git+https://iris.radicle.network/z49EpGUPcp76sUQ4udcz7pBRPuq7u.git
