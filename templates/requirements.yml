@@ -845,7 +845,7 @@
   name: redmine
   activation_prefix: redmine_
 - src: git+https://iris.radicle.network/z3rhdtDR5EHHGk1SNBHwYtofxNyAf.git
-  version: v4.0.5-1
+  version: v5.1.0-0
   name: reitti
   activation_prefix: reitti_
 - src: git+https://iris.radicle.network/zi4z5FpzySQ1kRqVpqcTkEfnXrD9.git
