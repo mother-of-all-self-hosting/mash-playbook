@@ -13,6 +13,11 @@ Autobrr is a modern autodl-irssi replacement, an easy to use download automator 
 
 See the project's [documentation](https://autobrr.com/introduction) to learn what Autobrr does and why it might be useful to you.
 
+For details about configuring the [Ansible role for Autobrr](https://github.com/mother-of-all-self-hosting/ansible-role-autobrr), you can check them via:
+
+- 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-autobrr/blob/main/docs/configuring-autobrr.md) online
+- 📁 `roles/galaxy/autobrr/docs/configuring-autobrr.md` locally, if you have [fetched the Ansible roles](../installing.md)
+
 ## Dependencies
 
 This service requires the following other services:
@@ -51,6 +56,10 @@ After running the command for installation, the Autobrr instance becomes availab
 To get started, open the URL with a web browser to create an account.
 
 ![Autobrr Create Account](../assets/autobrr/setup-1.webp)
+
+## Troubleshooting
+
+See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-autobrr/blob/main/docs/configuring-autobrr.md#troubleshooting) on the role's documentation for details.
 
 ## Related services
 

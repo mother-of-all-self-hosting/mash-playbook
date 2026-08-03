@@ -217,7 +217,7 @@ Below is an exhaustive list of the free and open-source software for self-hostin
 | [Radarr](https://radarr.video/) | A movie organizer/manager for Usenet and BitTorrent users | [Link](services/radarr.md) |
 | [Radicale](https://radicale.org/) | A CalDAV and CardDAV Server (solution for hosting contacts and calendars) | [Link](services/radicale.md) |
 | [Radicle Explorer](https://radicle.network/nodes/seed.radicle.dev/rad%3Az4V1sjrXqjvFdnCUbxPFqd5p4DtH5) | [Radicle](https://radicle.dev/) user interface for the web browser | [Link](services/radicle-explorer.md) |
-| [Radicle HTTP Daemon](https://radicle.network/nodes/seed.radicle.dev/rad%3Az4V1sjrXqjvFdnCUbxPFqd5p4DtH5/tree/radicle-httpd/radicle-httpd.1.adoc) | Gateway between the [Radicle](https://radicle.dev/) protocol and the HTTP protocol | [Link](services/radicle-httpd.md) |
+| [Radicle HTTP Daemon](https://radicle.network/nodes/seed.radicle.dev/rad%3Az4V1sjrXqjvFdnCUbxPFqd5p4DtH5/tree/crates/radicle-httpd/radicle-httpd.1.adocradicle-httpd.1.adoc) | Gateway between the [Radicle](https://radicle.dev/) protocol and the HTTP protocol | [Link](services/radicle-httpd.md) |
 | [Radicle node](https://radicle.network/nodes/seed.radicle.dev/rad%3Az3gqcJUoA1n9HaHKufZs5FCSGazv5) | Network daemon for the [Radicle](https://radicle.dev/) network | [Link](services/radicle-node.md) |
 | [ReactFlux](https://github.com/electh/ReactFlux) | Third-party web frontend for Miniflux | [Link](services/reactflux.md) |
 | [Readeck](https://readeck.org) | A bookmark manager and a read-later tool combined in one | [Link](services/readeck.md) |

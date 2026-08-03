@@ -27,6 +27,11 @@ Bazarr is a companion application to [Sonarr](https://sonarr.tv/) and [Radarr](h
 
 See the project's [documentation](https://wiki.bazarr.media/) to learn what Bazarr does and why it might be useful to you.
 
+For details about configuring the [Ansible role for Bazarr](https://github.com/mother-of-all-self-hosting/ansible-role-bazarr), you can check them via:
+
+- 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-bazarr/blob/main/docs/configuring-bazarr.md) online
+- 📁 `roles/galaxy/bazarr/docs/configuring-bazarr.md` locally, if you have [fetched the Ansible roles](../installing.md)
+
 ## Dependencies
 
 This service requires the following other services:
@@ -67,9 +72,9 @@ bazarr_hostname: bazarr.example.com
 ########################################################################
 ```
 
-### Configuring HTTP Basic authentication (optional)
+### Configuring HTTP Basic authentication
 
-Since there does not exist an authentication system on the web interface, the HTTP Basic authentication on Traefik can be enabled for it. Refer to [ansible-role-bazarr](https://github.com/mother-of-all-self-hosting/ansible-role-bazarr)'s [`defaults/main.yml`](https://github.com/mother-of-all-self-hosting/ansible-role-bazarr/blob/main/defaults/main.yml) file for details about how to set it up.
+Since there does not exist an authentication system on the web interface, the HTTP Basic authentication on Traefik is enabled for the web interface by default, considering the nature of the service. See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-bazarr/blob/main/docs/configuring-bazarr.md#configuring-http-basic-authentication) on the role's documentation for details about how to set it up.
 
 ## Usage
 
@@ -97,6 +102,10 @@ To integrate Bazarr with [Sonarr](sonarr.md) and/or [Radarr](radarr.md), you nee
     ```
 
 After setup, configure the integrations in Bazarr's web interface under Settings → Sonarr/Radarr.
+
+## Troubleshooting
+
+See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-bazarr/blob/main/docs/configuring-bazarr.md#troubleshooting) on the role's documentation for details.
 
 ## Related services
 
