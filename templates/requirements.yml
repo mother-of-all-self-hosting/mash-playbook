@@ -893,7 +893,7 @@
   name: silverbullet
   activation_prefix: silverbullet_
 - src: git+https://iris.radicle.network/zXf3qnvPwC2UsBpfTYmPesL5KSZc.git
-  version: v6.5.2-1
+  version: v7.0.1-0
   name: smp_server
   activation_prefix: smp_server_
 - src: git+https://iris.radicle.network/znvd313jEb23f9AUNmtsweE7YHCK.git
