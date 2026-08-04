@@ -621,7 +621,7 @@
   name: nocdnbs
   activation_prefix: nocdnbs_
 - src: git+https://iris.radicle.network/z2K9dPANyrXJY7juE9XecXyernA6h.git
-  version: v4.14.4-0
+  version: v4.14.5-0
   name: nodebb
   activation_prefix: nodebb_
 - src: git+https://iris.radicle.network/z3g4bZnzZJis1DEKVzR3pPsyUzicT.git
