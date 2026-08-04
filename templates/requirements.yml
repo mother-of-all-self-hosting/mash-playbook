@@ -705,7 +705,7 @@
   name: peertube
   activation_prefix: peertube_
 - src: git+https://iris.radicle.network/ztixjo2qUzCBLADieR3hKkYEk4eE.git
-  version: v9.16-0
+  version: v9.17-0
   name: pgadmin
   activation_prefix: pgadmin_
 - src: git+https://iris.radicle.network/zby9EmMBhyNe8Nj4f66izwrmhk5g.git
