@@ -3,30 +3,22 @@
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
 ---
-# Deprecated: superseded by deploy-setup-all.yml / deploy-setup-service.yml, which split
-# mode-specific logic into separate workflows instead of branching on inputs.mode here and
-# in deploy-run.yml. No other workflow calls this one; kept only until it is removed.
-name: Deploy
+# Entry point (user-triggered). Orchestrates deploy -> record known-good -> approval-gated
+# auto-rollback. The actual deploy step is factored out to deploy-run-setup-all.yml so it
+# can be reused here for both the initial deploy (below) and the rollback job.
+name: Deploy - setup-all
 
 on:
   workflow_dispatch:
     inputs:
-      mode:
-        description: Deploy mode
-        required: true
-        type: choice
-        options:
-          - setup-service
-          - setup-all
-        default: setup-service
-      service:
-        description: Service name (only required for setup-service)
-        required: false
-        type: string
       host:
         description: Target host
         required: true
-        type: string
+        type: choice
+        options:
+          # BEGIN GENERATED: hosts
+          - mash.oliverlorenz.com
+          # END GENERATED: hosts
         default: mash.oliverlorenz.com
       ref:
         description: mash-playbook ref (branch, tag, or commit) to deploy. Leave empty to deploy the ref this workflow is run from.
@@ -38,11 +30,9 @@ permissions:
 
 jobs:
   deploy:
-    name: Deploy (${{ inputs.mode }})
-    uses: ./.github/workflows/deploy-run.yml
+    name: Deploy
+    uses: ./.github/workflows/deploy-run-setup-all.yml
     with:
-      mode: ${{ inputs.mode }}
-      service: ${{ inputs.service }}
       host: ${{ inputs.host }}
       ref: ${{ inputs.ref }}
     secrets: inherit
@@ -84,10 +74,8 @@ jobs:
     name: Auto-rollback (${{ inputs.host }})
     needs: await-rollback-approval
     if: always() && needs.await-rollback-approval.result == 'success'
-    uses: ./.github/workflows/deploy-run.yml
+    uses: ./.github/workflows/deploy-run-setup-all.yml
     with:
-      mode: ${{ inputs.mode }}
-      service: ${{ inputs.service }}
       host: ${{ inputs.host }}
       ref: ${{ needs.await-rollback-approval.outputs.sha }}
     secrets: inherit

@@ -1,0 +1,85 @@
+# SPDX-FileCopyrightText: 2026 Oliver Lorenz
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+---
+# Manual rollback entry point. Reuses deploy-run-setup-service.yml (the same job the normal
+# deploy uses) so rolling back is just "deploy an older ref".
+name: Rollback - setup-service
+
+on:
+  workflow_dispatch:
+    inputs:
+      ref:
+        description: mash-playbook ref (tag, branch, or commit SHA) to roll back to. The inventory pin recorded at that ref is deployed alongside it.
+        required: true
+        type: string
+      host:
+        description: Target host
+        required: true
+        type: choice
+        options:
+          # BEGIN GENERATED: hosts
+          - mash.oliverlorenz.com
+          # END GENERATED: hosts
+        default: mash.oliverlorenz.com
+      service:
+        description: Service to set up
+        required: true
+        type: choice
+        options:
+          # BEGIN GENERATED: services
+          - app-dooropener
+          - bentopdf
+          - cleanup
+          - container_socket_proxy
+          - convertx
+          - dayplanner
+          - dns_records
+          - docker
+          - docker_sdk_for_python
+          - gotosocial
+          - gowa
+          - keydb
+          - languagetool
+          - n8n
+          - ohrwurm
+          - oliverlorenz-api
+          - openwebui
+          - paperless
+          - paperless_ai
+          - playbook_help
+          - playbook_runtime_messages
+          - postgres
+          - rssbridge
+          - systemd_docker_base
+          - systemd_service_manager
+          - timesync
+          - tinyauth
+          - traefik
+          - uptime_kuma
+          - vaultwarden
+          # END GENERATED: services
+
+permissions:
+  contents: write
+
+jobs:
+  rollback:
+    name: Rollback to ${{ inputs.ref }}
+    uses: ./.github/workflows/deploy-run-setup-service.yml
+    with:
+      service: ${{ inputs.service }}
+      host: ${{ inputs.host }}
+      ref: ${{ inputs.ref }}
+    secrets: inherit
+
+  record-success:
+    name: Record last known-good ref
+    needs: rollback
+    if: success()
+    uses: ./.github/workflows/record-deployed-ref.yml
+    with:
+      host: ${{ inputs.host }}
+      sha: ${{ needs.rollback.outputs.deployed_sha }}
+    secrets: inherit

@@ -5,19 +5,39 @@
 default:
     @{{ just_executable() }} --list --justfile {{ justfile() }}
 
-receive_secrets foldername:
+receive_secrets mode +hostnames:
+    ./bin/receive_secrets.sh {{ mode }} {{ hostnames }}
+
+sync-deploy-options:
+    ./bin/sync-deploy-workflow-options.py
+
+setup-all hostname='': (_ensure-secrets hostname)
+    just setup-all {{ if hostname == '' { '' } else { '-e target=' + hostname } }}
+
+setup-service service hostname='': (_ensure-secrets hostname)
+    just setup-service {{ service }} {{ if hostname == '' { '' } else { '-e target=' + hostname } }}
+
+# Internal - optimizes for the given host (or all hosts if empty) and ensures secrets.yml exists for every host that will be targeted
+_ensure-secrets hostname:
     #!/usr/bin/env sh
+    set -e
 
-    ./bin/receive_secrets.sh {{ foldername }} > inventory/host_vars/{{ foldername }}/secrets.yml
+    if [ -n "{{ hostname }}" ]; then
+        HOSTS="{{ hostname }}"
+        just optimize-for-host {{ hostname }}
+    else
+        HOSTS=$(ansible-inventory -i inventory/hosts --list | jq -r '.mash_servers.hosts[]')
+        just optimize
+    fi
 
-setup-all foldername:
-    just optimize-for-host {{ foldername }}
-    just setup-all -e target={{ foldername }} --extra-vars "@inventory/host_vars/{{ foldername }}/secrets.yml"
-
-setup-service service foldername:
-    just optimize-for-host {{ foldername }}
-    just setup-service {{ service }} -e target={{ foldername }} --extra-vars "@inventory/host_vars/{{ foldername }}/secrets.yml"
-
-install-service service foldername:
-    just optimize-for-host {{ foldername }}
-    just install-service {{ service }} -e target={{ foldername }} --extra-vars "@inventory/host_vars/{{ foldername }}/secrets.yml"
+    MISSING=0
+    for HOST in $HOSTS; do
+        if [ ! -f "inventory/host_vars/${HOST}/secrets.yml" ]; then
+            echo "Missing secrets file: inventory/host_vars/${HOST}/secrets.yml" >&2
+            echo "  Run: just receive_secrets folder ${HOST}" >&2
+            MISSING=1
+        fi
+    done
+    if [ "$MISSING" -eq 1 ]; then
+        exit 1
+    fi

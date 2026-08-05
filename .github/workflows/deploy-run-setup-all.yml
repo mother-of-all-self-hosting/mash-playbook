@@ -1,0 +1,49 @@
+# SPDX-FileCopyrightText: 2026 Oliver Lorenz
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+---
+# Reusable deploy step, split out of deploy-setup-all.yml so the same checkout/prepare/deploy
+# logic can be called from three places: the initial deploy and the auto-rollback job in
+# deploy-setup-all.yml, plus the manual rollback in rollback-setup-all.yml.
+name: Deploy run (setup-all)
+
+on:
+  workflow_call:
+    inputs:
+      host:
+        required: true
+        type: string
+      ref:
+        description: mash-playbook ref to deploy. Empty deploys the ref this workflow run started from.
+        required: false
+        type: string
+    outputs:
+      deployed_sha:
+        description: Commit SHA of mash-playbook that was deployed
+        value: ${{ jobs.run.outputs.deployed_sha }}
+
+permissions:
+  contents: read
+
+jobs:
+  run:
+    name: Deploy (setup-all)
+    runs-on: ubuntu-latest
+    outputs:
+      deployed_sha: ${{ steps.prepare.outputs.deployed_sha }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Prepare
+        id: prepare
+        uses: ./.github/actions/deploy-prepare
+        with:
+          host: ${{ inputs.host }}
+          ref: ${{ inputs.ref }}
+          gh_pat: ${{ secrets.GH_PAT }}
+          ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY }}
+          inventory_secrets: ${{ secrets.INVENTORY_SECRETS }}
+
+      - name: Deploy
+        run: just -f justfile.custom setup-all ${{ inputs.host }}

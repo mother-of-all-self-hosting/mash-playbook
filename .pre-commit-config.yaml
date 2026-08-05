@@ -53,3 +53,11 @@ repos:
         args: ['roles/mash']
         pass_filenames: false
         language_version: python3
+  - repo: local
+    hooks:
+      - id: sync-deploy-workflow-options
+        name: sync-deploy-workflow-options
+        entry: ./bin/sync-deploy-workflow-options.py
+        language: system
+        pass_filenames: false
+        always_run: true
