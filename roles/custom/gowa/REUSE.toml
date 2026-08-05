@@ -8,6 +8,7 @@ version = 1
 [[annotations]]
 path = [
     ".ansible-lint",
+    ".codespellrc",
     ".github/renovate.json",
     ".github/workflows/pre-commit.yml",
     ".gitignore",

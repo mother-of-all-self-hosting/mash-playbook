@@ -27,7 +27,6 @@
     - "{{ gowa_statics_path }}/senditems"
     - "{{ gowa_statics_path }}/media"
 
-
 - name: Ensure GOWA support files installed
   ansible.builtin.template:
     src: "{{ role_path }}/templates/{{ item }}.j2"

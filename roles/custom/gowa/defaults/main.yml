@@ -64,7 +64,7 @@ gowa_container_environment_debug:
 gowa_container_environment_app_os: Bridge
 gowa_container_environment_basic_auth_user: admin
 gowa_container_environment_basic_auth_password: admin
-gowa_container_environment_base_path: "{{ gowa_path_prefix}}"
+gowa_container_environment_base_path: "{{ gowa_path_prefix }}"
 gowa_container_environment_db_uri:
 gowa_container_environment_auto_mark_read:
 gowa_container_environment_webhook:

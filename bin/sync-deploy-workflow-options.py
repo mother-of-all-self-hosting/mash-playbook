@@ -16,9 +16,13 @@ WORKFLOWS_DIR = REPO_ROOT / ".github" / "workflows"
 
 
 def get_ready_hosts():
+    hosts_path = REPO_ROOT / "inventory" / "hosts"
+    if not hosts_path.is_file():
+        return None
+
     hosts = []
     in_group = False
-    for line in (REPO_ROOT / "inventory" / "hosts").read_text().splitlines():
+    for line in hosts_path.read_text().splitlines():
         stripped = line.strip()
         if not stripped or stripped.startswith("#"):
             continue
@@ -114,6 +118,14 @@ def replace_generated_block(text, marker, items):
 
 def main():
     hosts = get_ready_hosts()
+
+    if hosts is None:
+        print(
+            "inventory/hosts not found -- skipping "
+            "(this check requires a local checkout of the private inventory submodule).",
+        )
+        return 0
+
     services = get_enabled_services()
 
     if not hosts:

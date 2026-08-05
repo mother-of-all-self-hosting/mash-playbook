@@ -4,7 +4,7 @@
 
 ---
 - name: Restart GOWA
-  ansible.builtin.command:
-    cmd: "systemctl try-restart {{ gowa_identifier }}.service"
+  ansible.builtin.systemd:
+    name: "{{ gowa_identifier }}.service"
+    state: restarted
   listen: "gowa-restart"
-  changed_when: false
