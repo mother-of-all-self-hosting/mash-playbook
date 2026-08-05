@@ -3742,14 +3742,14 @@ barassistant_server_systemd_wanted_services_list_auto: |
   {{
     ([exim_relay_identifier ~ '.service'] if exim_relay_enabled | default(false) and barassistant_mailer_enabled | default(false) and barassistant_server_environment_variables_mail_host == exim_relay_identifier else [])
     +
-    ([meilisearch_identifier ~ '.service'] if meilisearch_identifier | default(false) else [])
+    ([meilisearch_identifier ~ '.service'] if meilisearch_enabled | default(false) else [])
   }}
 
 barassistant_saltrim_systemd_wanted_services_list_auto: |
   {{
     ([exim_relay_identifier ~ '.service'] if exim_relay_enabled | default(false) and barassistant_mailer_enabled | default(false) and barassistant_server_environment_variables_mail_host == exim_relay_identifier else [])
     +
-    ([meilisearch_identifier ~ '.service'] if meilisearch_identifier | default(false) else [])
+    ([meilisearch_identifier ~ '.service'] if meilisearch_enabled | default(false) else [])
   }}
 
 barassistant_server_container_additional_networks_auto: |
