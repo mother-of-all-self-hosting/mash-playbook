@@ -5,7 +5,10 @@
 ---
 # Reusable deploy step, split out of deploy-setup-all.yml so the same checkout/prepare/deploy
 # logic can be called from three places: the initial deploy and the auto-rollback job in
-# deploy-setup-all.yml, plus the manual rollback in rollback-setup-all.yml.
+# deploy-setup-all.yml, plus the manual rollback in rollback-setup-all.yml. `rollback: true`
+# resolves the deployed/<host> tag itself (rather than the caller passing a resolved sha) so
+# each host in a deploy-setup-all.yml matrix run resolves independently -- job outputs can't
+# be fanned out per-matrix-instance to a downstream job in GitHub Actions.
 name: Deploy run (setup-all)
 
 on:
@@ -15,9 +18,14 @@ on:
         required: true
         type: string
       ref:
-        description: mash-playbook ref to deploy. Empty deploys the ref this workflow run started from.
+        description: mash-playbook ref to deploy. Empty deploys the ref this workflow run started from. Ignored when `rollback` is true.
         required: false
         type: string
+      rollback:
+        description: If true, ignore `ref` and deploy the last known-good ref recorded for this host (refs/tags/deployed/<host>).
+        required: false
+        type: boolean
+        default: false
     outputs:
       deployed_sha:
         description: Commit SHA of mash-playbook that was deployed
@@ -34,13 +42,27 @@ jobs:
       deployed_sha: ${{ steps.prepare.outputs.deployed_sha }}
     steps:
       - uses: actions/checkout@v4
+        with:
+          # Rollback needs full history to resolve the deployed/<host> tag below.
+          fetch-depth: ${{ inputs.rollback && 0 || 1 }}
+
+      - name: Resolve last known-good ref
+        id: resolve-rollback
+        if: inputs.rollback
+        run: |
+          if git rev-parse -q --verify "refs/tags/deployed/${{ inputs.host }}" >/dev/null; then
+            echo "sha=$(git rev-parse "refs/tags/deployed/${{ inputs.host }}")" >> "$GITHUB_OUTPUT"
+          else
+            echo "::error::No previously successful deploy recorded for host '${{ inputs.host }}' -- nothing to roll back to."
+            exit 1
+          fi
 
       - name: Prepare
         id: prepare
         uses: ./.github/actions/deploy-prepare
         with:
           host: ${{ inputs.host }}
-          ref: ${{ inputs.ref }}
+          ref: ${{ inputs.rollback && steps.resolve-rollback.outputs.sha || inputs.ref }}
           gh_pat: ${{ secrets.GH_PAT }}
           ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY }}
           inventory_secrets: ${{ secrets.INVENTORY_SECRETS }}

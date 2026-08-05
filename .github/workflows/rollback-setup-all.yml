@@ -5,6 +5,9 @@
 ---
 # Manual rollback entry point. Reuses deploy-run-setup-all.yml (the same job the normal
 # deploy uses) so rolling back is just "deploy an older ref".
+#
+# Leaving `host` empty rolls back every host in mash_servers in parallel (resolve-hosts below
+# resolves the group via ansible-inventory), all to the same explicit `ref`.
 name: Rollback - setup-all
 
 on:
@@ -15,33 +18,76 @@ on:
         required: true
         type: string
       host:
-        description: Target host
-        required: true
-        type: choice
-        options:
-          # BEGIN GENERATED: hosts
-          - mash.oliverlorenz.com
-          # END GENERATED: hosts
-        default: mash.oliverlorenz.com
+        description: Target host. Leave empty to roll back every host in mash_servers.
+        required: false
+        type: string
 
 permissions:
   contents: write
 
 jobs:
+  resolve-hosts:
+    name: Resolve target hosts
+    runs-on: ubuntu-latest
+    outputs:
+      hosts: ${{ steps.resolve.outputs.hosts }}
+    steps:
+      - uses: actions/checkout@v4
+        if: inputs.host == ''
+        with:
+          ref: ${{ inputs.ref }}
+
+      - name: Resolve pinned inventory commit
+        id: inventory
+        if: inputs.host == ''
+        run: echo "sha=$(git rev-parse HEAD:inventory)" >> "$GITHUB_OUTPUT"
+
+      - name: Checkout inventory
+        if: inputs.host == ''
+        uses: actions/checkout@v4
+        with:
+          repository: oliverlorenz/mash-inventories
+          token: ${{ secrets.GH_PAT }}
+          path: inventory
+          ref: ${{ steps.inventory.outputs.sha }}
+
+      - name: Install Ansible
+        if: inputs.host == ''
+        run: pip install ansible regex
+
+      - name: Resolve hosts
+        id: resolve
+        run: |
+          if [ -n "${{ inputs.host }}" ]; then
+            echo 'hosts=["${{ inputs.host }}"]' >> "$GITHUB_OUTPUT"
+          else
+            echo "hosts=$(ansible-inventory -i inventory/hosts --list | jq -c '.mash_servers.hosts')" >> "$GITHUB_OUTPUT"
+          fi
+
   rollback:
-    name: Rollback to ${{ inputs.ref }}
+    name: Rollback to ${{ inputs.ref }} (${{ matrix.host }})
+    needs: resolve-hosts
+    strategy:
+      fail-fast: false
+      matrix:
+        host: ${{ fromJson(needs.resolve-hosts.outputs.hosts) }}
     uses: ./.github/workflows/deploy-run-setup-all.yml
     with:
-      host: ${{ inputs.host }}
+      host: ${{ matrix.host }}
       ref: ${{ inputs.ref }}
     secrets: inherit
 
   record-success:
-    name: Record last known-good ref
-    needs: rollback
+    name: Record last known-good ref (${{ matrix.host }})
+    needs: [resolve-hosts, rollback]
     if: success()
+    strategy:
+      matrix:
+        host: ${{ fromJson(needs.resolve-hosts.outputs.hosts) }}
     uses: ./.github/workflows/record-deployed-ref.yml
     with:
-      host: ${{ inputs.host }}
+      host: ${{ matrix.host }}
+      # Same explicit ref is rolled back to on every host, so every matrix instance resolves
+      # the same sha.
       sha: ${{ needs.rollback.outputs.deployed_sha }}
     secrets: inherit
