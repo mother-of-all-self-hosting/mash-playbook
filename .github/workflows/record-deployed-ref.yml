@@ -3,6 +3,9 @@
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
 ---
+# Shared by every deploy/rollback workflow (setup-all and setup-service, both directions).
+# Tags the successfully deployed commit per host so a later rollback has a "last known-good"
+# ref to resolve against.
 name: Record deployed ref
 
 on:

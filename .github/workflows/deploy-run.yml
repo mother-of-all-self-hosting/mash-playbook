@@ -3,6 +3,9 @@
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
 ---
+# Deprecated: superseded by deploy-run-setup-all.yml / deploy-run-setup-service.yml, which
+# use the shared deploy-prepare action instead of duplicating these steps inline. Called
+# only from deploy.yml and rollback.yml, which are deprecated for the same reason.
 name: Deploy (core)
 
 on:

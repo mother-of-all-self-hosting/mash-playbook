@@ -3,10 +3,9 @@
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
 ---
-# Deprecated: superseded by rollback-setup-all.yml / rollback-setup-service.yml, the
-# counterparts of deploy-setup-all.yml / deploy-setup-service.yml. No other workflow calls
-# this one; kept only until it is removed.
-name: Rollback
+# Manual rollback entry point. Reuses deploy-run-setup-all.yml (the same job the normal
+# deploy uses) so rolling back is just "deploy an older ref".
+name: Rollback - setup-all
 
 on:
   workflow_dispatch:
@@ -15,22 +14,14 @@ on:
         description: mash-playbook ref (tag, branch, or commit SHA) to roll back to. The inventory pin recorded at that ref is deployed alongside it.
         required: true
         type: string
-      mode:
-        description: Deploy mode
-        required: true
-        type: choice
-        options:
-          - setup-service
-          - setup-all
-        default: setup-all
-      service:
-        description: Service name (only required for setup-service)
-        required: false
-        type: string
       host:
         description: Target host
         required: true
-        type: string
+        type: choice
+        options:
+          # BEGIN GENERATED: hosts
+          - mash.oliverlorenz.com
+          # END GENERATED: hosts
         default: mash.oliverlorenz.com
 
 permissions:
@@ -39,10 +30,8 @@ permissions:
 jobs:
   rollback:
     name: Rollback to ${{ inputs.ref }}
-    uses: ./.github/workflows/deploy-run.yml
+    uses: ./.github/workflows/deploy-run-setup-all.yml
     with:
-      mode: ${{ inputs.mode }}
-      service: ${{ inputs.service }}
       host: ${{ inputs.host }}
       ref: ${{ inputs.ref }}
     secrets: inherit
