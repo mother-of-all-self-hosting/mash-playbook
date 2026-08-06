@@ -82,11 +82,11 @@ meilisearch_hostname: "meilisearch.example.com"
 
 After running the command for installation, the Meilisearch instance becomes available internally to other services on the same network. If the service is exposed to the internet, it becomes available at the URL specified with `meilisearch_hostname`. With the configuration above, the service is hosted at `https://meilisearch.example.com`.
 
-To get started, refer to [the documentation](https://www.meilisearch.com/docs/learn/getting_started/what_is_meilisearch) for guides about how to integrate Meilisearch.
+To get started, refer to [the documentation](https://www.meilisearch.com/docs/getting_started/overview) for guides about how to integrate Meilisearch.
 
 ### Obtaining API keys
 
-**It is [not recommended](https://www.meilisearch.com/docs/learn/security/basic_security) to use the master key for operations anything but managing other API keys.** See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-meilisearch/blob/main/docs/configuring-meilisearch.md#obtaining-api-keys) about the instruction to obtain those API keys.
+**It is [not recommended](https://www.meilisearch.com/docs/resources/self_hosting/security/basic_security#obtaining-api-keys-in-a-self-hosted-instance) to use the master key for operations anything but managing other API keys.** See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-meilisearch/blob/main/docs/configuring-meilisearch.md#obtaining-api-keys) about the instruction to obtain those API keys.
 
 #### Setting default API admin key
 
