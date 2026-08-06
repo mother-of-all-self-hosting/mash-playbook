@@ -821,7 +821,7 @@
   name: radicle_explorer
   activation_prefix: radicle_explorer_
 - src: git+https://iris.radicle.network/z3roZFCprFZhmK8BvkrsKwkLZXr56.git
-  version: v0.27.0-1
+  version: v0.27.0-3
   name: radicle_httpd
   activation_prefix: radicle_httpd_
 - src: git+https://iris.radicle.network/z28JTUhepmbS3hLZyUeEvXeqk9QW5.git
