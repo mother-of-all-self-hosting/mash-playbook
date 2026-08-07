@@ -2,7 +2,8 @@
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
     "config:recommended",
-    ":semanticCommitsDisabled"
+    ":semanticCommitsDisabled",
+    "helpers:pinGitHubActionDigests"
   ],
   "labels": [
     "dependencies"
@@ -17,22 +18,19 @@
         "https://gitlab.com{/,}**",
         "https://iris.radicle.network{/,}**"
       ]
-    },
-    {
-      "matchFileNames": [
-        ".github/workflows/close-stale-issues.yml",
-        ".github/workflows/lock-threads.yml",
-        ".github/workflows/pre-commit.yml",
-        ".github/workflows/workflow.yml",
-        ".pre-commit-config.yaml",
-        "mise.toml"
-      ],
-      "enabled": true,
-      "automerge": true,
-      "automergeType": "branch"
     }
   ],
+  "github-actions": {
+    "automerge": true,
+    "automergeType": "branch"
+  },
+  "mise": {
+    "automerge": true,
+    "automergeType": "branch"
+  },
   "pre-commit": {
-    "enabled": true
+    "enabled": true,
+    "automerge": true,
+    "automergeType": "branch"
   }
 }
