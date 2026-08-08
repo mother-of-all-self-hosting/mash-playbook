@@ -1,0 +1,32 @@
+# SPDX-FileCopyrightText: 2026 Travis Wichert
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+---
+
+activation_prefix: talk_hpb_
+
+# Entries added to other components' lists, while those components are in use
+inject:
+  systemd_service_manager:
+    services:
+      - name: "{{ talk_hpb_identifier }}.service"
+        priority: 2000
+        restart_necessary: talk_hpb_restart_necessary
+        groups: ['mash', 'talk_hpb']
+        when: talk_hpb_enabled
+      - name: "{{ talk_hpb_signalling_identifier }}.service"
+        priority: 2000
+        restart_necessary: talk_hpb_signalling_restart_necessary
+        groups: ['mash', 'talk_hpb']
+        when: talk_hpb_signalling_enabled
+      - name: "{{ talk_hpb_nats_identifier }}.service"
+        priority: 2000
+        restart_necessary: talk_hpb_nats_restart_necessary
+        groups: ['mash', 'talk_hpb']
+        when: talk_hpb_nats_enabled
+      - name: "{{ talk_hpb_janus_identifier }}.service"
+        priority: 2000
+        restart_necessary: talk_hpb_janus_restart_necessary
+        groups: ['mash', 'talk_hpb']
+        when: talk_hpb_janus_enabled

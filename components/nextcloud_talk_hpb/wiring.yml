@@ -1,0 +1,11 @@
+# SPDX-FileCopyrightText: 2026 Travis Wichert
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+---
+
+talk_hpb_enabled: false
+talk_hpb_identifier: talk-hpb
+talk_hpb_base_path: "{{ mash_playbook_base_path }}/{{ talk_hpb_identifier }}"
+talk_hpb_uid: "{{ mash_playbook_uid }}"
+talk_hpb_gid: "{{ mash_playbook_uid }}"
