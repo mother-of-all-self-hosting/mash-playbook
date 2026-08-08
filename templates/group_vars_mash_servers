@@ -1291,6 +1291,14 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
     {{ ({'name': (syncthing_identifier + '.service'), 'priority': 2000, 'restart_necessary': (syncthing_restart_necessary | bool), 'groups': ['mash', 'syncthing']} if syncthing_enabled else omit) }}
   # /role-specific:syncthing
 
+  # role-specific:talk_hpb
+  - |-
+    {{ ({'name': (talk_hpb_identifier + '.service'), 'priority': 2000, 'restart_necessary': (talk_hpb_restart_necessary | bool), 'groups': ['mash', 'talk_hpb']} if talk_hpb_enabled else omit) }}
+    {{ ({'name': (talk_hpb_signalling_identifier + '.service'), 'priority': 2000, 'restart_necessary': (talk_hpb_signalling_restart_necessary | bool), 'groups': ['mash', 'talk_hpb']} if talk_hpb_signalling_enabled else omit) }}
+    {{ ({'name': (talk_hpb_nats_identifier + '.service'), 'priority': 2000, 'restart_necessary': (talk_hpb_nats_restart_necessary | bool), 'groups': ['mash', 'talk_hpb']} if talk_hpb_nats_enabled else omit) }}
+    {{ ({'name': (talk_hpb_janus_identifier + '.service'), 'priority': 2000, 'restart_necessary': (talk_hpb_janus_restart_necessary | bool), 'groups': ['mash', 'talk_hpb']} if talk_hpb_janus_enabled else omit) }}
+  # /role-specific:talk_hpb
+
   # role-specific:tandoor
   - |-
     {{ ({'name': (tandoor_identifier + '.service'), 'priority': 2000, 'restart_necessary': (tandoor_restart_necessary | bool), 'groups': ['mash', 'tandoor']} if tandoor_enabled else omit) }}
@@ -15910,6 +15918,27 @@ syncthing_container_labels_traefik_udp_enabled: true
 ########################################################################
 # /role-specific:syncthing
 
+
+
+# role-specific:talk-hpb
+########################################################################
+#                                                                      #
+# talk_hpb                                                             #
+#                                                                      #
+########################################################################
+
+talk_hpb_enabled: false
+talk_hpb_identifier: talk-hpb
+talk_hpb_base_path: "{{ mash_playbook_base_path }}/{{ talk_hpb_identifier }}"
+talk_hpb_uid: "{{ mash_playbook_uid }}"
+talk_hpb_gid: "{{ mash_playbook_uid }}"
+
+########################################################################
+#                                                                      #
+# /talk_hpb                                                             #
+#                                                                      #
+########################################################################
+# /role-specific:talk-hpb
 
 
 # role-specific:tandoor

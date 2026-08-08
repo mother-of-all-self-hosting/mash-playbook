@@ -956,6 +956,10 @@
   version: v3.2.1-0
   name: systemd_service_manager
   activation_prefix: ""
+- src: git+https://forgejo.littlecedar.net/littlecedar/ansible-role-mash-nextcloud-talk-hpb.git
+  version: main
+  name: nextcloud_talk_hpb
+  activation_prefix: talk_hpb_
 - src: git+https://github.com/IUCCA/ansible-role-tandoor.git
   version: v2.6.13-0
   name: tandoor
