@@ -4,8 +4,8 @@
 
 ---
 
-talk_hpb_enabled: false
-talk_hpb_identifier: talk-hpb
-talk_hpb_base_path: "{{ mash_playbook_base_path }}/{{ talk_hpb_identifier }}"
-talk_hpb_uid: "{{ mash_playbook_uid }}"
-talk_hpb_gid: "{{ mash_playbook_uid }}"
+nextcloud_talk_hpb_enabled: false
+nextcloud_talk_hpb_identifier: talk-hpb
+nextcloud_talk_hpb_base_path: "{{ mash_playbook_base_path }}/{{ nextcloud_talk_hpb_identifier }}"
+nextcloud_talk_hpb_uid: "{{ mash_playbook_uid }}"
+nextcloud_talk_hpb_gid: "{{ mash_playbook_uid }}"
