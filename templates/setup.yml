@@ -682,6 +682,10 @@
     - role: galaxy/nextcloud
     # /role-specific:nextcloud
 
+    # role-specific:nextcloud_talk_hpb
+    - role: galaxy/nextcloud_talk_hpb
+    # /role-specific:nextcloud_talk_hpb
+
     # role-specific:nifi
     - role: galaxy/nifi
     # /role-specific:nifi
