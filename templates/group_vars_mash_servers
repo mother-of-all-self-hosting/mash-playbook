@@ -1294,7 +1294,7 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
   # role-specific:nextcloud_talk_hpb
   - |-
     {{ ({'name': (nextcloud_talk_hpb_identifier + '.service'), 'priority': 2000, 'restart_necessary': (nextcloud_talk_hpb_restart_necessary | bool), 'groups': ['mash', 'nextcloud_talk_hpb']} if nextcloud_talk_hpb_enabled else omit) }}
-    {{ ({'name': (nextcloud_talk_hpb_signalling_identifier + '.service'), 'priority': 2000, 'restart_necessary': (nextcloud_talk_hpb_signalling_restart_necessary | bool), 'groups': ['mash', 'nextcloud_talk_hpb']} if nextcloud_talk_hpb_signalling_enabled else omit) }}
+    {{ ({'name': (nextcloud_talk_hpb_signaling_identifier + '.service'), 'priority': 2000, 'restart_necessary': (nextcloud_talk_hpb_signaling_restart_necessary | bool), 'groups': ['mash', 'nextcloud_talk_hpb']} if nextcloud_talk_hpb_signaling_enabled else omit) }}
     {{ ({'name': (nextcloud_talk_hpb_nats_identifier + '.service'), 'priority': 2000, 'restart_necessary': (nextcloud_talk_hpb_nats_restart_necessary | bool), 'groups': ['mash', 'nextcloud_talk_hpb']} if nextcloud_talk_hpb_nats_enabled else omit) }}
     {{ ({'name': (nextcloud_talk_hpb_janus_identifier + '.service'), 'priority': 2000, 'restart_necessary': (nextcloud_talk_hpb_janus_restart_necessary | bool), 'groups': ['mash', 'nextcloud_talk_hpb']} if nextcloud_talk_hpb_janus_enabled else omit) }}
   # /role-specific:nextcloud_talk_hpb
@@ -15920,25 +15920,50 @@ syncthing_container_labels_traefik_udp_enabled: true
 
 
 
-# role-specific:nextcloud-talk-hpb
+# role-specific:nextcloud_talk_hpb
 ########################################################################
 #                                                                      #
-# nextcloud_nextcloud_talk_hpb                                                   #
+# nextcloud_talk_hpb                                                   #
 #                                                                      #
 ########################################################################
 
 nextcloud_talk_hpb_enabled: false
-nextcloud_talk_hpb_identifier: talk-hpb
-nextcloud_talk_hpb_base_path: "{{ mash_playbook_base_path }}/{{ nextcloud_talk_hpb_identifier }}"
+nextcloud_talk_hpb_identifier: "{{ mash_playbook_service_identifier_prefix }}nextcloud_talk_hpb"
+nextcloud_talk_hpb_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}nextcloud_talk_hpb"
 nextcloud_talk_hpb_uid: "{{ mash_playbook_uid }}"
-nextcloud_talk_hpb_gid: "{{ mash_playbook_uid }}"
+nextcloud_talk_hpb_gid: "{{ mash_playbook_gid }}"
+nextcloud_talk_hpb_restart_necessary: false
+
+nextcloud_talk_hpb_container_network: "{{ nextcloud_talk_hpb_identifier }}"
+
+nextcloud_talk_hpb_signaling_enabled: "{{ nextcloud_talk_hpb_enabled }}"
+nextcloud_talk_hpb_signaling_identifier: "{{ nextcloud_talk_hpb_identifier }}-signaling"
+nextcloud_talk_hpb_signaling_base_path: "{{ nextcloud_talk_hpb_base_path }}/signaling"
+nextcloud_talk_hpb_signaling_hostname: ""
+nextcloud_talk_hpb_signaling_http_port: 8080
+nextcloud_talk_hpb_signaling_sessions_hash_key: ""
+
+nextcloud_talk_hpb_janus_enabled: "{{ nextcloud_talk_hpb_enabled }}"
+nextcloud_talk_hpb_janus_identifier: "{{ nextcloud_talk_hpb_identifier }}-janus"
+nextcloud_talk_hpb_janus_base_path: "{{ nextcloud_talk_hpb_base_path }}/janus"
+nextcloud_talk_hpb_janus_stun_server: ""
+nextcloud_talk_hpb_janus_stun_port: 3478
+
+nextcloud_talk_hpb_nats_enabled: "{{ nextcloud_talk_hpb_enabled }}"
+nextcloud_talk_hpb_nats_identifier: "{{ nextcloud_talk_hpb_identifier }}-nats"
+nextcloud_talk_hpb_nats_base_path: "{{ nextcloud_talk_hpb_base_path }}/nats"
+nextcloud_talk_hpb_nats_port: 4222
+
+nextcloud_talk_hpb_signaling_restart_necessary: false
+nextcloud_talk_hpb_janus_restart_necessary: false
+nextcloud_talk_hpb_nats_restart_necessary: false
 
 ########################################################################
 #                                                                      #
 # /nextcloud_talk_hpb                                                             #
 #                                                                      #
 ########################################################################
-# /role-specific:talk-hpb
+# /role-specific:nextcloud_talk_hpb
 
 
 # role-specific:tandoor
