@@ -15,11 +15,11 @@ inject:
         restart_necessary: nextcloud_talk_hpb_restart_necessary
         groups: ['mash', 'talk_hpb']
         when: nextcloud_talk_hpb_enabled
-      - name: "{{ nextcloud_talk_hpb_signalling_identifier }}.service"
+      - name: "{{ nextcloud_talk_hpb_signaling_identifier }}.service"
         priority: 2000
-        restart_necessary: nextcloud_talk_hpb_signalling_restart_necessary
+        restart_necessary: nextcloud_talk_hpb_signaling_restart_necessary
         groups: ['mash', 'talk_hpb']
-        when: nextcloud_talk_hpb_signalling_enabled
+        when: nextcloud_talk_hpb_signaling_enabled
       - name: "{{ nextcloud_talk_hpb_nats_identifier }}.service"
         priority: 2000
         restart_necessary: nextcloud_talk_hpb_nats_restart_necessary
