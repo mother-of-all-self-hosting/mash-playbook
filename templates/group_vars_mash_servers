@@ -3293,13 +3293,27 @@ appsmith_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base
 appsmith_uid: "{{ mash_playbook_uid }}"
 appsmith_gid: "{{ mash_playbook_gid }}"
 
+appsmith_systemd_wanted_services_list_auto: |
+  {{
+    ([exim_relay_identifier ~ '.service'] if exim_relay_enabled | default(false) and appsmith_environment_variable_appsmith_mail_enabled else [])
+  }}
+
 appsmith_container_additional_networks_auto: |
   {{
+    ([exim_relay_container_network] if exim_relay_enabled | default(false) and appsmith_environment_variable_appsmith_mail_enabled and appsmith_container_network != exim_relay_container_network else [])
+    +
     ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
   }}
 
 appsmith_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
 appsmith_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+
+# role-specific:exim_relay
+appsmith_environment_variable_appsmith_mail_enabled: "{{ exim_relay_enabled }}"
+appsmith_environment_variable_appsmith_mail_host: "{{ exim_relay_identifier if exim_relay_enabled else '' }}"
+appsmith_environment_variable_appsmith_mail_port: 8025
+appsmith_environment_variable_appsmith_mail_from: "{{ exim_relay_sender_address if exim_relay_enabled else '' }}"
+# /role-specific:exim_relay
 
 # role-specific:traefik
 appsmith_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
