@@ -21,11 +21,11 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
 # Borg Web UI
 
-The playbook can install and configure [Borg Web UI](https://karanhudia.github.io/borg-ui/) for you.
+The playbook can install and configure [Borg Web UI](https://github.com/karanhudia/borg-ui) for you.
 
 Borg Web UI is an unofficial web interface for [BorgBackup](https://borgbackup.readthedocs.io/).
 
-See the project's [documentation](https://karanhudia.github.io/borg-ui/) to learn what Borg Web UI does and why it might be useful to you.
+See the project's [documentation](https://docs.borgui.com/) to learn what Borg Web UI does and why it might be useful to you.
 
 For details about configuring the [Ansible role for Borg Web UI](https://radicle.network/nodes/iris.radicle.network/rad%3AzxNS7XeayGimb4WFfvqmasiZZC3v), you can check them via:
 
@@ -308,7 +308,7 @@ borg_ui_container_additional_volumes_custom:
 
 On Borg Web UI you can add configuration settings of notification services. If you enable [Apprise API](apprise.md) in your inventory configuration, the playbook will automatically connect it to the Borg Web UI service.
 
-As the Borg Web UI instance does not support configuring the notification services with environment variables, you can add default options for them on its UI. Refer to [this page](https://karanhudia.github.io/borg-ui/notifications.html) on the official documentation as well about how to configure them.
+As the Borg Web UI instance does not support configuring the notification services with environment variables, you can add default options for them on its UI. Refer to [this page](https://docs.borgui.com/notifications.html) on the official documentation as well about how to configure them.
 
 ## Troubleshooting
 
