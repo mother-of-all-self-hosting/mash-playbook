@@ -1,5 +1,5 @@
 ---
 
 - src: git+https://github.com/littlecedar/ansible-role-authentik.git
-  version: lcg-changes
+  version: next/lcg-changes
   name: authentik
