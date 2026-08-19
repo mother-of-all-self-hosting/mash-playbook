@@ -56,8 +56,8 @@
   version: v4.37.5-12
   name: authelia
   activation_prefix: authelia_
-- src: git+https://github.com/mother-of-all-self-hosting/ansible-role-authentik.git
-  version: v2026.5.5-0
+- src: git+https://github.com/littlecedar/ansible-role-authentik.git
+  version: lcg_changes
   name: authentik
   activation_prefix: authentik_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-autobrr.git
