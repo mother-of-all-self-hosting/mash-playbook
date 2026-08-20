@@ -405,7 +405,7 @@
   name: immich_kiosk
   activation_prefix: immich_kiosk_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-infisical.git
-  version: v0.43.19-2
+  version: v0.162.19-0
   name: infisical
   activation_prefix: infisical_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-influxdb.git

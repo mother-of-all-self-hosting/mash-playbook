@@ -8,17 +8,17 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
 # Infisical
 
-The playbook can install and configure [Infisical](https://infisical.com/) for you.
+The playbook can install and configure [Infisical](https://github.com/Infisical/infisical) for you.
 
 Infisical is an open-source end-to-end encrypted platform for securely managing secrets and configs across your team, devices, and infrastructure.
 
-See the project's [documentation](https://infisical.com/docs/documentation/guides/introduction) to learn what Infisical does and why it might be useful to you.
+See the project's [documentation](https://infisical.com/docs/documentation/getting-started/overview) to learn what Infisical does and why it might be useful to you.
 
 ## Dependencies
 
 This service requires the following other services:
 
-- [MongoDB](mongodb.md) document-oriented database server
+- [Postgres](postgres.md) database
 - [Traefik](traefik.md) reverse-proxy server
 - [Valkey](valkey.md) data-store; see [below](#configure-valkey) for details about installation
 
@@ -37,13 +37,6 @@ infisical_enabled: true
 
 infisical_hostname: infisical.example.com
 
-# Generate this with: `openssl rand -hex 16`
-infisical_backend_environment_variable_encryption_key: ''
-
-# WARNING: uncomment this after creating your first user account,
-# unless you'd like to run a server with public registration enabled.
-# infisical_backend_environment_variable_invite_only_signup: true
-
 ########################################################################
 #                                                                      #
 # /infisical                                                           #
@@ -51,7 +44,9 @@ infisical_backend_environment_variable_encryption_key: ''
 ########################################################################
 ```
 
-**Note**: hosting Infisical under a subpath (by configuring the `infisical_path_prefix` variable) does not seem to be possible right now, due to Infisical limitations.
+### Set random strings for keys
+
+You also need to set random secure strings for an encryption key and a secret. See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-infisical/blob/main/docs/configuring-infisical.md#set-random-strings-for-keys) on the role's documentation for details.
 
 ### Configure Valkey
 
@@ -153,8 +148,7 @@ Having configured `vars.yml` for the dedicated instance, add the following confi
 # Add the base configuration as specified above
 
 # Point Infisical to its dedicated Valkey instance
-infisical_environment_variable_redis_hostname: mash-infisical-valkey
-infisical_environment_variable_redis_cache_host: mash-infisical-valkey
+infisical_redis_hostname: mash-infisical-valkey
 
 # Make sure the Infisical container is connected to the container network of its dedicated Valkey service (mash-infisical-valkey)
 infisical_container_additional_networks_custom:
@@ -203,8 +197,7 @@ valkey_enabled: true
 # Add the base configuration as specified above
 
 # Point Infisical to the shared Valkey instance
-infisical_environment_variable_redis_hostname: "{{ valkey_identifier }}"
-infisical_environment_variable_redis_cache_host: "{{ valkey_identifier }}"
+infisical_redis_hostname: "{{ valkey_identifier }}"
 
 # Make sure the Infisical container is connected to the container network of the shared Valkey service (mash-valkey)
 infisical_container_additional_networks_custom:
@@ -223,42 +216,12 @@ infisical_systemd_required_services_list_custom:
 
 Running the installation command will create the shared Valkey instance named `mash-valkey`.
 
-### Configure authentication
+### Configuring the mailer (optional)
 
-By default, the Infisical instance allows anyone to sign up from the web interface.
+On Infisical you can set up a mailer for functions such as password recovery. If you enable the [exim-relay](exim-relay.md) service in your inventory configuration, the playbook will automatically configure it as a mailer for the service.
 
-We recommend installing with registration open to public at first to create your first user. After creating the user, you can disable public registration by adding the following configuration to `vars.yml`:
-
-```yaml
-infisical_backend_environment_variable_invite_only_signup: true
-```
-
-Note that enabling invite-only registration requires the mailer to be configured with the settings below.
-
-### Configure the mailer
-
-As described in the Infisical documentation about [email](https://infisical.com/docs/self-hosting/configuration/email), Infisical requires the mailer (SMTP server) for important functionality such as user registration.
-
-To enable the mailer function, add the following configuration to your `vars.yml` file:
-
-```yaml
-infisical_backend_environment_variable_smtp_host: smtp.example.com
-infisical_backend_environment_variable_smtp_port: 587
-infisical_backend_environment_variable_smtp_secure: false
-
-infisical_backend_environment_variable_smtp_username: infisical@example.com
-infisical_backend_environment_variable_smtp_password: ''
-
-infisical_backend_environment_variable_smtp_address: infisical@example.com
-infisical_backend_environment_variable_smtp_name: Infisical
-```
-
-For additional SMTP-related variables, consult the [`defaults/main.yml` file](https://github.com/mother-of-all-self-hosting/ansible-role-infisical/blob/main/defaults/main.yml) in the [ansible-role-infisical](https://github.com/mother-of-all-self-hosting/ansible-role-infisical) Ansible role.
-
-💡 **Notes**:
-
-- If you enable the [exim-relay](exim-relay.md) service in your inventory configuration, the playbook will automatically configure it as a mailer for the service.
-- Without setting an authentication method such as DKIM, SPF, and DMARC for your hostname, emails are most likely to be quarantined as spam at recipient's mail servers. As the exim-relay service supports DKIM signing, refer to [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-exim-relay/blob/main/docs/configuring-exim-relay.md#enable-dkim-support-optional) for details about how to set it up.
+>[!WARNING]
+> Without setting an authentication method such as DKIM, SPF, and DMARC for your hostname, emails are most likely to be quarantined as spam at recipient's mail servers. The worst scenario is that your server's IP address or hostname will be included in the spam list such as the one managed by [Spamhaus](https://www.spamhaus.org/), depending on the reputation. As the exim-relay service supports DKIM signing, refer to [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-exim-relay/blob/main/docs/configuring-exim-relay.md#enable-dkim-support-optional) for details about how to set it up.
 
 ## Installation
 
@@ -270,6 +233,8 @@ Note that running the `just` commands for installation (`just install-all` or `j
 
 After running the command for installation, the Infisical instance becomes available at the URL specified with `infisical_hostname`. With the configuration above, the service is hosted at `https://infisical.example.com`.
 
-To log in to the service and get started, you need to create a user from the web interface.
+To get started, open the URL with a web browser to create an account. **Note that the first registered user becomes an administrator automatically.**
 
-After creating the first user, you can prevent others from registering by making registration invite-only. To do so, configure [authentication](#configure-authentication) and re-run the playbook: `just install-service infisical`
+## Troubleshooting
+
+See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-infisical/blob/main/docs/configuring-infisical.md#troubleshooting) on the role's documentation for details.

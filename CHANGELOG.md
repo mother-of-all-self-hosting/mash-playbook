@@ -1,3 +1,9 @@
+# 2026-08-20
+
+## Updated Infisical requires manual database migration from MongoDB to Postgres
+
+[Infisical](docs/services/infisical.md) transitioned from MongoDB to Postgres backend on [v0.46.11](https://hub.docker.com/layers/infisical/infisical/v0.46.11-postgres/). The role to install the application ([ansible-role-infisical](https://github.com/mother-of-all-self-hosting/ansible-role-infisical)) does not provide an automated method to conduct database migration from MongoDB, so it is necessary to conduct manual migration if you have deployed an old Infisical instance with the playbook and wish to keep the data. Refer to [this page](https://infisical.com/docs/self-hosting/guides/mongo-to-postgres) for details about migration.
+
 # 2026-08-06
 
 ## (Backward Compatibility Break) Jitsi no longer uses Colibri WebSockets

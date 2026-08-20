@@ -600,9 +600,7 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
 
   # role-specific:infisical
   - |-
-    {{ ({'name': (infisical_identifier + '-backend.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'infisical', 'infisical-backend']} if infisical_enabled else omit) }}
-  - |-
-    {{ ({'name': (infisical_identifier + '-frontend.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'infisical', 'infisical-frontend']} if infisical_enabled else omit) }}
+    {{ ({'name': (infisical_identifier + '.service'), 'priority': 2000, 'restart_necessary': (infisical_restart_necessary | bool), 'groups': ['mash', 'infisical']} if infisical_enabled else omit) }}
   # /role-specific:infisical
 
   # role-specific:influxdb
@@ -1810,6 +1808,17 @@ mash_playbook_postgres_managed_databases_auto_itemized:
       } if immich_enabled and immich_server_enabled and immich_database_hostname == postgres_identifier else omit)
     }}
   # /role-specific:immich
+
+  # role-specific:infisical
+  - |-
+    {{
+      ({
+        'name': infisical_database_name,
+        'username': infisical_database_username,
+        'password': infisical_database_password,
+      } if infisical_enabled and infisical_database_hostname == postgres_connection_hostname else omit)
+    }}
+  # /role-specific:infisical
 
   # role-specific:joplin_server
   - |-
@@ -8821,52 +8830,59 @@ infisical_identifier: "{{ mash_playbook_service_identifier_prefix }}infisical"
 
 infisical_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}infisical"
 
-infisical_uid: "{{ mash_playbook_uid }}"
-infisical_gid: "{{ mash_playbook_gid }}"
+# Runs as root for managing SSL certificates (along with a master SSL certificate) internally
+infisical_uid: 0
+infisical_gid: 0
 
-infisical_backend_systemd_required_services_list: |
+infisical_systemd_required_services_list_auto: |
   {{
-    ([devture_systemd_docker_base_docker_service_name] if devture_systemd_docker_base_docker_service_name else [])
-    +
-    ([mongodb_identifier ~ '.service'] if mongodb_enabled and infisical_mongodb_hostname == mongodb_connection_hostname else [])
+    ([postgres_identifier ~ '.service'] if postgres_enabled and infisical_database_hostname == postgres_connection_hostname else [])
   }}
 
-infisical_backend_container_additional_networks_auto: |
+infisical_systemd_wanted_services_list_auto: |
   {{
+    ([exim_relay_identifier ~ '.service'] if exim_relay_enabled | default(false) and infisical_environment_variables_smtp_host == exim_relay_identifier else [])
+  }}
+
+infisical_container_additional_networks_auto: |
+  {{
+    ([exim_relay_container_network] if exim_relay_enabled | default(false) and infisical_environment_variables_smtp_host == exim_relay_identifier and infisical_container_network != exim_relay_container_network else [])
+    +
     ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
     +
-    ([mongodb_container_network] if mongodb_enabled and infisical_mongodb_hostname == mongodb_connection_hostname and infisical_backend_container_network != mongodb_container_network else [])
+    ([postgres_container_network] if postgres_enabled and infisical_database_hostname == postgres_connection_hostname and infisical_container_network != postgres_container_network else [])
   }}
 
-infisical_backend_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
-infisical_backend_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
-infisical_frontend_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
-infisical_frontend_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+infisical_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+infisical_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
 
-# Intentionally not auto-generating infisical_backend_environment_variable_encryption_key here.
-# We prefer it to be explicit as it seems important that it remains stable.
+infisical_container_labels_traefik_metrics_enabled: "{{ mash_playbook_metrics_exposure_enabled }}"
+infisical_container_labels_traefik_metrics_hostname: "{{ mash_playbook_metrics_exposure_hostname }}"
+infisical_container_labels_traefik_metrics_path_prefix: "{{ mash_playbook_metrics_exposure_path_prefix }}/{{ infisical_identifier }}"
+infisical_container_labels_traefik_metrics_middleware_basic_auth_enabled: "{{ mash_playbook_metrics_exposure_http_basic_auth_enabled }}"
+infisical_container_labels_traefik_metrics_middleware_basic_auth_users: "{{ mash_playbook_metrics_exposure_http_basic_auth_users }}"
 
-infisical_backend_environment_variable_jwt_signup_secret: "{{ ((mash_playbook_generic_secret_key + ':inf.jwt.signup') | hash('sha512') | to_uuid | replace('-', ''))[0:32] }}"
-infisical_backend_environment_variable_jwt_refresh_secret: "{{ ((mash_playbook_generic_secret_key + ':inf.jwt.r') | hash('sha512') | to_uuid | replace('-', ''))[0:32] }}"
-infisical_backend_environment_variable_jwt_auth_secret: "{{ ((mash_playbook_generic_secret_key + ':inf.jwt.a') | hash('sha512') | to_uuid | replace('-', ''))[0:32] }}"
-infisical_backend_environment_variable_jwt_service_secret: "{{ ((mash_playbook_generic_secret_key + ':inf.jwt.svc') | hash('sha512') | to_uuid | replace('-', ''))[0:32] }}"
+infisical_environment_variables_otel_telemetry_collection_enabled: "{{ true if mash_playbook_metrics_exposure_enabled else false }}"
+infisical_environment_variables_otel_export_type: "{{ 'prometheus' if prometheus_enabled | default(false) or mash_playbook_metrics_exposure_enabled else '' }}"
 
-infisical_frontend_container_additional_networks_auto: |
-  {{
-    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
-  }}
+# role-specific:exim_relay
+infisical_environment_variables_smtp_host: "{{ exim_relay_identifier if exim_relay_enabled else '' }}"
+infisical_environment_variables_smtp_port: 8025
+infisical_environment_variables_smtp_ignore_tls: "{{ true if exim_relay_enabled else false }}"
+infisical_environment_variables_smtp_require_tls: "{{ false if exim_relay_enabled else true }}"
+infisical_environment_variables_smtp_from_address: "{{ exim_relay_sender_address if exim_relay_enabled else '' }}"
+# /role-specific:exim_relay
 
-# role-specific:mongodb
-infisical_mongodb_hostname: "{{ mongodb_connection_hostname if mongodb_enabled else '' }}"
-infisical_mongodb_password: "{{ (mash_playbook_generic_secret_key + ':infisical.db') | hash('sha512') | to_uuid }}"
-infisical_mongodb_auth_source: "{{ infisical_mongodb_db_name }}"
-# /role-specific:mongodb
+# role-specific:postgres
+infisical_database_hostname: "{{ postgres_connection_hostname if postgres_enabled else '' }}"
+infisical_database_port: "{{ postgres_connection_port if postgres_enabled else '5432' }}"
+infisical_database_password: "{{ (mash_playbook_generic_secret_key + ':infisical.db') | hash('sha512') | to_uuid }}"
+infisical_database_sslmode: "{{ 'disable' if postgres_enabled and infisical_database_hostname == postgres_connection_hostname else 'prefer' }}"
+# /role-specific:postgres
 
 # role-specific:traefik
-infisical_backend_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
-infisical_backend_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
-infisical_frontend_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
-infisical_frontend_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
+infisical_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
+infisical_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
 # /role-specific:traefik
 
 ########################################################################
@@ -11487,17 +11503,6 @@ mash_playbook_mongodb_managed_databases_auto_itemized:
       } if heyform_enabled and heyform_database_hostname == mongodb_connection_hostname else omit)
     }}
   # /role-specific:heyform
-
-  # role-specific:infisical
-  - |-
-    {{
-      ({
-        'name': infisical_mongodb_db_name,
-        'username': infisical_mongodb_username,
-        'password': infisical_mongodb_password,
-      } if infisical_enabled and infisical_mongodb_hostname == mongodb_connection_hostname else omit)
-    }}
-  # /role-specific:infisical
 
 mongodb_managed_databases_auto: "{{ mash_playbook_mongodb_managed_databases_auto_itemized | reject('equalto', omit) }}"
 
