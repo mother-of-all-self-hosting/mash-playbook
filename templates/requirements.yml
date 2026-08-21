@@ -349,7 +349,7 @@
   name: gothub
   activation_prefix: gothub_
 - src: git+https://iris.radicle.network/z3dQNNLitS9sByxZ83ivu5qg6qR4N.git
-  version: v2.9.1-8
+  version: v3.0.0-0
   name: gotify
   activation_prefix: gotify_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-gotosocial.git
