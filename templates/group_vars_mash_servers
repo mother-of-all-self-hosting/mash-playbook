@@ -1682,7 +1682,7 @@ mash_playbook_postgres_managed_databases_auto_itemized:
         'name': freescout_database_name,
         'username': freescout_database_postgres_username,
         'password': freescout_database_postgres_password,
-      } if freescout_enabled and freescout_database_postgres_hostname == postgres_connection_hostname and freescout_database_type == 'postgres' else omit)
+      } if freescout_enabled and (freescout_database_postgres_hostname == postgres_connection_hostname or freescout_database_postgres_socket_enabled) and freescout_database_type == 'postgres' else omit)
     }}
   # /role-specific:freescout
 
@@ -6508,9 +6508,9 @@ freescout_gid: "{{ mash_playbook_gid }}"
 
 freescout_systemd_required_services_list_auto: |
   {{
-    ([mariadb_identifier ~ '.service'] if mariadb_enabled | default(false) and freescout_database_mysql_hostname == mariadb_connection_hostname and freescout_database_type == 'mysql' else [])
+    ([mariadb_identifier ~ '.service'] if mariadb_enabled | default(false) and (freescout_database_mysql_hostname == mariadb_connection_hostname or freescout_database_mysql_socket_enabled) and freescout_database_type == 'mysql' else [])
     +
-    ([postgres_identifier ~ '.service'] if postgres_enabled | default(false) and freescout_database_postgres_hostname == postgres_connection_hostname and freescout_database_type == 'postgres' else [])
+    ([postgres_identifier ~ '.service'] if postgres_enabled | default(false) and (freescout_database_postgres_hostname == postgres_connection_hostname or freescout_database_postgres_socket_enabled) and freescout_database_type == 'postgres' else [])
   }}
 
 freescout_systemd_wanted_services_list_auto: |
@@ -6522,27 +6522,29 @@ freescout_container_additional_networks_auto: |
   {{
     ([exim_relay_container_network] if exim_relay_enabled | default(false) and freescout_container_network != exim_relay_container_network else [])
     +
-    ([mariadb_container_network] if mariadb_enabled | default(false) and freescout_database_mysql_hostname == mariadb_connection_hostname and freescout_container_network != mariadb_container_network and freescout_database_type == 'mysql' else [])
+    ([mariadb_container_network] if mariadb_enabled | default(false) and (freescout_database_mysql_hostname == mariadb_connection_hostname and freescout_container_network != mariadb_container_network and not freescout_database_mysql_socket_enabled) and freescout_database_type == 'mysql' else [])
     +
     ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
     +
-    ([postgres_container_network] if postgres_enabled | default(false) and freescout_database_postgres_hostname == postgres_connection_hostname and freescout_container_network != postgres_container_network and freescout_database_type == 'postgres' else [])
+    ([postgres_container_network] if postgres_enabled | default(false) and (freescout_database_postgres_hostname == postgres_connection_hostname and freescout_container_network != postgres_container_network and not freescout_database_postgres_socket_enabled) and freescout_database_type == 'postgres' else [])
   }}
 
 freescout_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
 freescout_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
 
 # role-specific:mariadb
-freescout_database_mysql_hostname: "{{ mariadb_connection_hostname if mariadb_enabled else '' }}"
+freescout_database_mysql_hostname: "{{ mariadb_connection_hostname if mariadb_enabled and not freescout_database_mysql_socket_enabled else '' }}"
 freescout_database_mysql_port: "{{ mariadb_connection_port if mariadb_enabled else '3306' }}"
 freescout_database_mysql_password: "{{ (mash_playbook_generic_secret_key + ':freescout.db.m') | hash('sha512') | to_uuid }}"
+freescout_database_mysql_socket_path_host: "{{ mariadb_run_path }}"
 # /role-specific:mariadb
 
 # role-specific:postgres
-freescout_database_postgres_hostname: "{{ postgres_connection_hostname if postgres_enabled else '' }}"
+freescout_database_postgres_hostname: "{{ postgres_connection_hostname if postgres_enabled and not freescout_database_postgres_socket_enabled else '' }}"
 freescout_database_postgres_port: "{{ postgres_connection_port if postgres_enabled else '5432' }}"
 freescout_database_postgres_password: "{{ (mash_playbook_generic_secret_key + ':freescout.db') | hash('sha512') | to_uuid }}"
-freescout_database_postgres_sslmode: "{{ 'disable' if postgres_enabled and freescout_database_postgres_hostname == postgres_connection_hostname else 'enable' }}"
+freescout_database_postgres_sslmode: "{{ 'disable' if postgres_enabled and (freescout_database_postgres_hostname == postgres_connection_hostname or freescout_database_postgres_socket_enabled) else 'enable' }}"
+freescout_database_postgres_socket_path_host: "{{ postgres_run_path }}"
 # /role-specific:postgres
 
 # role-specific:traefik
@@ -10433,7 +10435,7 @@ mash_playbook_mariadb_managed_databases_auto_itemized:
         'name': freescout_database_name,
         'username': freescout_database_mysql_username,
         'password': freescout_database_mysql_password,
-      } if freescout_enabled and freescout_database_mysql_hostname == mariadb_connection_hostname and freescout_database_type == 'mysql' else omit)
+      } if freescout_enabled and (freescout_database_mysql_hostname == mariadb_connection_hostname or freescout_database_mysql_socket_enabled) and freescout_database_type == 'mysql' else omit)
     }}
   # /role-specific:freescout
 
