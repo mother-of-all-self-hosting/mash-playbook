@@ -247,6 +247,7 @@ Below is an exhaustive list of the free and open-source software for self-hostin
 | [Standalone Snowflake proxy](https://community.torproject.org/relay/setup/snowflake/standalone/) | Help users connect to the [Tor](https://torproject.org/) network in places where Tor is blocked | [Link](services/snowflake.md) |
 | [Statusnook](https://statusnook.com/) | Status page deployment service | [Link](services/statusnook.md) |
 | [Stirling PDF v1](https://github.com/Stirling-Tools/Stirling-PDF) | PDF converter and editor | [Link](services/stirling-pdf.md) |
+| [Svix](https://github.com/svix/svix-webhooks) | Webhook service | [Link](services/svix-server.md) |
 | [syncstorage-rs](https://github.com/mozilla-services/syncstorage-rs) | Mozilla Sync Storage server for Firefox Sync | [Link](services/syncstorage-rs.md) |
 | [Syncthing](https://syncthing.net/) | A continuous file synchronization program which synchronizes files between two or more computers in real time | [Link](services/syncthing.md) |
 | [Tandoor](https://docs.tandoor.dev/) | The recipe manager that allows you to manage your ever growing collection of digital recipes | [Link](services/tandoor.md) |
