@@ -936,6 +936,10 @@
   version: v1.5.0-3
   name: stirling_pdf
   activation_prefix: stirling_pdf_
+- src: git+https://iris.radicle.network/z23UDsbsiGGq9B8M8TSNWB4MLk3vX.git
+  version: v1.100.0-0
+  name: svix
+  activation_prefix: svix_server_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-swap.git
   version: abfb18b6862108bbf24347500446203170324d7f
   name: swap

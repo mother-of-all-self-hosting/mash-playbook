@@ -982,6 +982,10 @@
     - role: galaxy/stirling_pdf
     # /role-specific:stirling_pdf
 
+    # role-specific:svix
+    - role: galaxy/svix
+    # /role-specific:svix
+
     # role-specific:syncstorage_rs_docker
     - role: galaxy/syncstorage_rs_docker
     # /role-specific:syncstorage_rs_docker

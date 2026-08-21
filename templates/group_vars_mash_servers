@@ -1279,6 +1279,11 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
     {{ ({'name': (stirling_pdf_identifier + '.service'), 'priority': 2000, 'restart_necessary': (stirling_pdf_restart_necessary | bool), 'groups': ['mash', 'stirling-pdf']} if stirling_pdf_enabled else omit) }}
   # /role-specific:stirling_pdf
 
+  # role-specific:svix
+  - |-
+    {{ ({'name': (svix_server_identifier + '.service'), 'priority': 2000, 'restart_necessary': (svix_server_restart_necessary | bool), 'groups': ['mash', 'svix']} if svix_server_enabled else omit) }}
+  # /role-specific:svix
+
   # role-specific:syncstorage_rs_docker
   - |-
     {{ ({'name': (syncstorage_rs_docker_identifier + '.service'), 'priority': 2000, 'restart_necessary': (syncstorage_rs_docker_restart_necessary | bool), 'groups': ['mash', 'syncstorage-rs-docker']} if syncstorage_rs_docker_enabled else omit) }}
@@ -2248,6 +2253,17 @@ mash_playbook_postgres_managed_databases_auto_itemized:
       } if solidinvoice_enabled and solidinvoice_database_postgres_hostname == postgres_connection_hostname and solidinvoice_database_type == 'postgres' else omit)
     }}
   # /role-specific:solidinvoice
+
+  # role-specific:svix
+  - |-
+    {{
+      ({
+        'name': svix_server_database_name,
+        'username': svix_server_database_username,
+        'password': svix_server_database_password,
+      } if svix_server_enabled and (svix_server_database_hostname == postgres_connection_hostname or svix_server_database_socket_enabled) else omit)
+    }}
+  # /role-specific:svix
 
   # role-specific:tandoor
   - |-
@@ -15838,6 +15854,60 @@ stirling_pdf_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver
 #                                                                      #
 ########################################################################
 # /role-specific:stirling_pdf
+
+
+
+# role-specific:svix
+########################################################################
+#                                                                      #
+# svix_server                                                          #
+#                                                                      #
+########################################################################
+
+svix_server_enabled: false
+
+svix_server_identifier: "{{ mash_playbook_service_identifier_prefix }}svix-server"
+
+svix_server_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}svix-server"
+
+svix_server_uid: "{{ mash_playbook_uid }}"
+svix_server_gid: "{{ mash_playbook_gid }}"
+
+svix_server_systemd_required_services_list_auto: |
+  {{
+    ([postgres_identifier ~ '.service'] if postgres_enabled and (svix_server_database_hostname == postgres_connection_hostname or svix_server_database_socket_enabled) else [])
+  }}
+
+svix_server_container_additional_networks_auto: |
+  {{
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+    +
+    ([postgres_container_network] if postgres_enabled and (svix_server_database_hostname == postgres_connection_hostname and svix_server_container_network != postgres_container_network and not svix_server_database_socket_enabled) else [])
+  }}
+
+svix_server_environment_variables_svix_jwt_secret: "{{ (mash_playbook_generic_secret_key + ':svix') | hash('sha512') | to_uuid }}"
+
+svix_server_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+svix_server_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+
+# role-specific:postgres
+svix_server_database_hostname: "{{ postgres_connection_hostname if postgres_enabled and not svix_server_database_socket_enabled else '' }}"
+svix_server_database_port: "{{ postgres_connection_port if postgres_enabled else '5432' }}"
+svix_server_database_password: "{{ (mash_playbook_generic_secret_key + ':db.svix') | hash('sha512') | to_uuid }}"
+svix_server_database_socket_path_host: "{{ postgres_run_path }}"
+# /role-specific:postgres
+
+# role-specific:traefik
+svix_server_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
+svix_server_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
+# /role-specific:traefik
+
+########################################################################
+#                                                                      #
+# /svix_server                                                         #
+#                                                                      #
+########################################################################
+# /role-specific:svix
 
 
 
