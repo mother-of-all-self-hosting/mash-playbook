@@ -289,7 +289,7 @@
   name: filebrowser_quantum
   activation_prefix: filebrowser_quantum_
 - src: git+https://iris.radicle.network/zBuFgpA5FBmUEcLEXHY9ZBVGpqDM.git
-  version: v7.14.4-0
+  version: v7.15.1-0
   name: filegator
   activation_prefix: filegator_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-flaresolverr.git
