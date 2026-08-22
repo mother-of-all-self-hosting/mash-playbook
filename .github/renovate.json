@@ -18,6 +18,15 @@
         "https://gitlab.com{/,}**",
         "https://iris.radicle.network{/,}**"
       ]
+    },
+    {
+      "description": "Automerge version bumps of roles maintained in the MASH organization (via branch push - no PR)",
+      "matchManagers": ["ansible-galaxy"],
+      "matchSourceUrls": [
+        "https://github.com/mother-of-all-self-hosting{/,}**"
+      ],
+      "automerge": true,
+      "automergeType": "branch"
     }
   ],
   "github-actions": {
