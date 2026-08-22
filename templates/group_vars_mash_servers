@@ -871,11 +871,11 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
 
   # role-specific:netbox
   - |-
-    {{ ({'name': (netbox_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'netbox', 'netbox-server']} if netbox_enabled else omit) }}
+    {{ ({'name': (netbox_identifier + '.service'), 'priority': 2000, 'restart_necessary': (netbox_restart_necessary | bool), 'groups': ['mash', 'netbox', 'netbox-server']} if netbox_enabled else omit) }}
   - |-
-    {{ ({'name': (netbox_identifier + '-worker.service'), 'priority': 2500, 'restart_necessary': true, 'groups': ['mash', 'netbox', 'netbox-worker']} if netbox_enabled else omit) }}
+    {{ ({'name': (netbox_identifier + '-worker.service'), 'priority': 2500, 'restart_necessary': (netbox_restart_necessary | bool), 'groups': ['mash', 'netbox', 'netbox-worker']} if netbox_enabled else omit) }}
   - |-
-    {{ ({'name': (netbox_identifier + '-housekeeping.service'), 'priority': 2500, 'restart_necessary': true, 'groups': ['mash', 'netbox', 'netbox-housekeeping']} if netbox_enabled else omit) }}
+    {{ ({'name': (netbox_identifier + '-housekeeping.service'), 'priority': 2500, 'restart_necessary': (netbox_restart_necessary | bool), 'groups': ['mash', 'netbox', 'netbox-housekeeping']} if netbox_enabled else omit) }}
   # /role-specific:netbox
 
   # role-specific:nextcloud
