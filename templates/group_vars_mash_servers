@@ -13093,6 +13093,11 @@ paperless_database_type: "{{ 'postgres' if postgres_enabled | default(false) els
 
 paperless_gotenberg_enabled: "{{ paperless_tika_enabled | default(false) }}" # Apache Tika Server requires Gotenberg
 
+# Wire Paperless-ngx to the Apache Tika Server and Gotenberg services of this playbook.
+# The paperless role no longer bundles its own instances of them.
+paperless_tika_endpoint: "{{ ('http://' + tika_identifier + ':' + (tika_container_http_port | string)) if tika_enabled | default(false) else '' }}"
+paperless_tika_gotenberg_endpoint: "{{ ('http://' + gotenberg_identifier + ':' + (gotenberg_container_http_port | string)) if gotenberg_enabled | default(false) else '' }}"
+
 paperless_secret_key: "{{ (mash_playbook_generic_secret_key + ':paperless.secret') | hash('sha512') | to_uuid }}"
 
 # role-specific:exim_relay
