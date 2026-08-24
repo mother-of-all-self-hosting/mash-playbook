@@ -281,7 +281,9 @@ There are several ways of testing the playbook; from using a local virtual machi
 
 Our pick is to add a Molecule test framework. It is versatile, simulates installation in a predictable way, and helps you to spot an implementation bug before it is published and merged to the playbook.
 
-💡 If you look at the roles maintained by the MASH organization, you might be overwhelmed with intensiveness of the Molecule test implementation. It is basically because the team enables patch level automerging with Renovate for them and wants to make sure that they can be successfully updated without causing a disruption. **If you are not familiar with Molecule, it is fine not to implement a test with it.** Please avoid making something up which you cannot confirm by yourself that it really works as expected (by using Gen-AI / LLM, etc). A defected test is worse than not having one in the first place.
+💡 If you look at the roles maintained by the MASH organization, you might be overwhelmed with intensiveness and aggressiveness of the Molecule test implementation. It is basically because the team enables patch level automerging with Renovate for them and wants to make sure as much as possible that they can be successfully updated without causing a disruption. *Verifying that the service that the role installs works is by default out-of-scope of the tests, and not your responsibility either*, though it might be appreciated.
+
+**If you are not familiar with Molecule, it is fine not to implement a test with it.** Please avoid making something up which you cannot confirm by yourself that it really works as expected (by using Gen-AI / LLM, etc). A defected test is worse than not having one in the first place.
 
 ## Maintain your role
 
