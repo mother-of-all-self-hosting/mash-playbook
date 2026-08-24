@@ -106,7 +106,6 @@
     <outline text="kanboard" title="kanboard" type="rss" htmlUrl="https://github.com/kanboard/kanboard" xmlUrl="https://github.com/kanboard/kanboard/releases.atom" />
     <outline text="karakeep" title="karakeep" type="rss" htmlUrl="https://github.com/karakeep-app/karakeep" xmlUrl="https://github.com/karakeep-app/karakeep/releases.atom" />
     <outline text="keycloak" title="keycloak" type="rss" htmlUrl="https://github.com/keycloak/keycloak" xmlUrl="https://github.com/keycloak/keycloak/releases.atom" />
-    <outline text="keydb" title="keydb" type="rss" htmlUrl="https://github.com/Snapchat/KeyDB" xmlUrl="https://github.com/Snapchat/KeyDB/releases.atom" />
     <outline text="keyoxide" title="keyoxide" type="rss" htmlUrl="https://codeberg.org/keyoxide/keyoxide-web" xmlUrl="https://codeberg.org/keyoxide/keyoxide-web/releases.atom" />
     <outline text="kutt" title="kutt" type="rss" htmlUrl="https://github.com/thedevs-network/kutt" xmlUrl="https://github.com/thedevs-network/kutt/releases.atom" />
     <outline text="labelstudio" title="labelstudio" type="rss" htmlUrl="https://github.com/HumanSignal/label-studio" xmlUrl="https://github.com/HumanSignal/label-studio/releases.atom" />

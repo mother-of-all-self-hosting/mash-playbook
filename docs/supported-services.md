@@ -134,7 +134,6 @@ Below is an exhaustive list of the free and open-source software for self-hostin
 | [Kanboard](https://kanboard.org/) | Kanban project management software | [Link](services/kanboard.md) |
 | [Karakeep](https://karakeep.app/) | Bookmark manager to collect, organize and archive webpages | [Link](services/karakeep.md) |
 | [Keycloak](https://www.keycloak.org/) | An identity and access management solution | [Link](services/keycloak.md) |
-| [KeyDB](https://docs.keydb.dev/) | An in-memory data store used as a database, cache, streaming engine, and message broker | [Link](services/keydb.md) |
 | [keyoxide-web](https://codeberg.org/keyoxide/keyoxide-web) | Web client for [Keyoxide](https://keyoxide.org/), a decentralized tool to create and verify decentralized online identities | [Link](services/keyoxide.md) |
 | [Kutt](https://kutt.to/) | Modern URL shortener with support for custom domains | [Link](services/kutt.md) |
 | [Label Studio](https://labelstud.io/) | Data labeling tool that supports multiple projects, users, and data types in one platform | [Link](services/labelstudio.md) |

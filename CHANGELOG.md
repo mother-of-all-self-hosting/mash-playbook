@@ -1,3 +1,15 @@
+# 2026-08-24
+
+## (Backward Compatibility Break) KeyDB support removed
+
+This only affects you if you have [KeyDB](docs/services/keydb.md) enabled.
+
+KeyDB has been removed from the playbook, because the KeyDB project has been unmaintained since 2023 — its last release (6.3.4) dates from then. The role that installed it ([ansible-role-keydb](https://github.com/mother-of-all-self-hosting/ansible-role-keydb)) has been deprecated.
+
+[Valkey](docs/services/valkey.md) — also a Redis fork, protocol-compatible with KeyDB — is a well-maintained alternative and has been the playbook's recommendation since 2024-11-23. Point services that used your KeyDB instance at a Valkey instance instead.
+
+The playbook will complain about any remaining `keydb_*` variables in your configuration. Uninstalling the service from your server is a manual step — see [the KeyDB page](docs/services/keydb.md) for the commands.
+
 # 2026-08-20
 
 ## Updated Infisical requires manual database migration from MongoDB to Postgres

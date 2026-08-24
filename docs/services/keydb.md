@@ -5,53 +5,24 @@ SPDX-FileCopyrightText: 2025 Suguru Hirahara
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 
-# KeyDB
+# KeyDB (removed)
 
-The playbook can install and configure [KeyDB](https://docs.keydb.dev/) for you.
+🪦 The playbook used to be able to install and configure [KeyDB](https://docs.keydb.dev/), but no longer includes this service, as the KeyDB project has been unmaintained since 2023 (its last release, 6.3.4, dates from then) and the role to install it ([ansible-role-keydb](https://github.com/mother-of-all-self-hosting/ansible-role-keydb)) has been deprecated.
 
-KeyDB is a fork of [Redis](redis.md), a flexible distributed key-value datastore that is optimized for caching and other realtime workloads.
+>[!NOTE]
+> KeyDB is a fork of Redis, and [Valkey](valkey.md) (another Redis fork — the one this playbook has recommended since 2024-11-23) is protocol-compatible with it. Services that used to point at your KeyDB instance can point at a Valkey instance instead.
 
-See the project's [documentation](https://docs.keydb.dev/) to learn what KeyDB does and why it might be useful to you.
+## Uninstalling the service manually
 
-Some of the services installed by this playbook require a Redis or its compatible data store including KeyDB and [Valkey](valkey.md). As this playbook supports both as well, we recommend using Valkey since 2024-11-23.
+If you still have KeyDB installed on your server, the playbook can no longer help you uninstall it and you will need to do it manually. To uninstall manually, run these commands on the server:
 
-> [!WARNING]
-> Because KeyDB is not as flexible as [Postgres](postgres.md) when it comes to authentication and data separation, it's **recommended that you run separate KeyDB instances** (one for each service). KeyDB supports multiple database and a [SELECT](https://docs.keydb.dev/docs/commands/#select) command for switching between them. However, **reusing the same KeyDB instance is not good enough** because:
->
-> - if all services use the same KeyDB instance and database (id = 0), services may conflict with one another
-> - the number of databases is limited to [16 by default](https://github.com/Snapchat/KeyDB/blob/0731a0509a82af5114da1b5aa6cf8ba84c06e134/keydb.conf#L342-L345), which may or may not be enough. With configuration changes, this is solvable.
-> - some services do not support switching the KeyDB database and always insist on using the default one (id = 0)
-> - KeyDB [does not support different authentication credentials for its different databases](https://stackoverflow.com/a/37262596), so each service can potentially read and modify other services' data
->
-> If you're only hosting a single service (like [PeerTube](peertube.md) or [NetBox](netbox.md)) on your server, you can get away with running a single instance. If you're hosting multiple services, you should prepare separate instances for each service.
+```sh
+systemctl disable --now mash-keydb.service
 
-## Configuration
-
-To enable this service, add the following configuration to your `vars.yml` file and re-run the [installation](../installing.md) process to **host a single instance of the KeyDB service**:
-
-```yaml
-########################################################################
-#                                                                      #
-# keydb                                                                #
-#                                                                      #
-########################################################################
-
-keydb_enabled: true
-
-########################################################################
-#                                                                      #
-# /keydb                                                               #
-#                                                                      #
-########################################################################
+rm -rf /mash/keydb
 ```
 
-To **host multiple instances of the KeyDB service**, follow the [Running multiple instances of the same service on the same host](../running-multiple-instances.md) documentation or the **KeyDB** section (if available) of the service you're installing.
-
-## Usage
-
-After running the command for installation, the KeyDB instance becomes available.
-
-The purpose of the KeyDB component in this Ansible playbook is to serve as a dependency for other [services](../supported-services.md). For this use-case, you don't need to do anything special beyond enabling the component per your choice (whether hosting a single instance or multiple ones).
+If you were [running multiple instances of the KeyDB service](../running-multiple-instances.md), repeat the commands for each instance's service name and base path.
 
 ## Related services
 

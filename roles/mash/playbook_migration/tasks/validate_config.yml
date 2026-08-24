@@ -93,6 +93,20 @@
       The following variables in your configuration need to be renamed: {{ lookup('ansible.builtin.varnames', '^devture_woodpecker_ci_agent_.+', wantlist=True) | join(', ') }}
   when: "lookup('ansible.builtin.varnames', '^devture_woodpecker_ci_agent_.+', wantlist=True) | length > 0"
 
+- name: (Deprecation) Catch and report KeyDB variables
+  ansible.builtin.fail:
+    msg: |-
+      KeyDB was removed from the playbook in August 2026, because the KeyDB project has been unmaintained since 2023.
+
+      Valkey is a well-maintained alternative (also a Redis fork, protocol-compatible) and has been this playbook's recommendation since 2024-11-23. See `docs/services/valkey.md` for enabling it and pointing your services at it.
+
+      Please remove all `keydb_*` variables from your configuration file (vars.yml).
+
+      You may also wish to uninstall the KeyDB service manually. See `docs/services/keydb.md` for more information.
+
+      The following variables in your configuration need to be removed: {{ lookup('ansible.builtin.varnames', '^keydb_.+', wantlist=True) | join(', ') }}
+  when: "lookup('ansible.builtin.varnames', '^keydb_.+', wantlist=True) | length > 0"
+
 - name: (Deprecation) Catch and report Firezone variables
   ansible.builtin.fail:
     msg: |-

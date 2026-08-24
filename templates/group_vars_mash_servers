@@ -654,11 +654,6 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
     {{ ({'name': (keycloak_identifier + '.service'), 'priority': 1000, 'restart_necessary': (keycloak_restart_necessary | bool), 'groups': ['mash', 'keycloak']} if keycloak_enabled else omit) }}
   # /role-specific:keycloak
 
-  # role-specific:keydb
-  - |-
-    {{ ({'name': (keydb_identifier + '.service'), 'priority': 750, 'restart_necessary': (keydb_restart_necessary | bool), 'groups': ['mash', 'keydb']} if keydb_enabled else omit) }}
-  # /role-specific:keydb
-
   # role-specific:keyoxide
   - |-
     {{ ({'name': (keyoxide_identifier + '.service'), 'priority': 2000, 'restart_necessary': (keyoxide_restart_necessary | bool), 'groups': ['mash', 'keyoxide']} if keyoxide_enabled else omit) }}
@@ -5221,7 +5216,7 @@ docmost_environment_variable_app_secret: "{{ (mash_playbook_generic_secret_key +
 # Disable Telemetry by default
 docmost_environment_variable_disable_telemetry: true
 
-# Required for a Redis / KeyDB / Valkey instance
+# Required for a Redis / Valkey instance
 docmost_environment_variable_redis_url: "redis://{{ docmost_redis_hostname }}:{{ docmost_redis_port }}"
 
 docmost_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
@@ -9394,39 +9389,6 @@ keycloak_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_pri
 ########################################################################
 # /role-specific:keycloak
 
-
-
-# role-specific:keydb
-########################################################################
-#                                                                      #
-# keydb                                                                #
-#                                                                      #
-########################################################################
-
-keydb_enabled: false
-
-keydb_identifier: "{{ mash_playbook_service_identifier_prefix }}keydb"
-
-keydb_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}keydb"
-
-keydb_uid: "{{ mash_playbook_uid }}"
-keydb_gid: "{{ mash_playbook_gid }}"
-
-keydb_arch: |-
-  {{
-    ({
-      'amd64': 'x86_64',
-      'arm32': 'arm32',
-      'arm64': 'arm64',
-    })[mash_playbook_architecture]
-  }}
-
-########################################################################
-#                                                                      #
-# /keydb                                                               #
-#                                                                      #
-########################################################################
-# /role-specific:keydb
 
 
 

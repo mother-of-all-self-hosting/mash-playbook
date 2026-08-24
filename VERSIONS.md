@@ -112,7 +112,6 @@
 * Kanboard: v1.2.53
 * Karakeep: 0.33.2
 * Keycloak: 26.7.2
-* Keydb: 6.3.4
 * Keyoxide: 5.1.0
 * Keyoxide Proxy: 5.1.0
 * Kutt: v3.2.6

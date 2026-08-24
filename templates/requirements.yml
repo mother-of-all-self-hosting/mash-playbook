@@ -444,10 +444,6 @@
   version: v26.7.2-0
   name: keycloak
   activation_prefix: keycloak_
-- src: git+https://github.com/mother-of-all-self-hosting/ansible-role-keydb.git
-  version: v6.3.4-15
-  name: keydb
-  activation_prefix: keydb_
 - src: git+https://iris.radicle.network/z3m9zZgMmAQX5aVtj5Y9KYRnhjVrt.git
   version: v5.1.0-5
   name: keyoxide

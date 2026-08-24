@@ -510,10 +510,6 @@
     - role: galaxy/keycloak
     # /role-specific:keycloak
 
-    # role-specific:keydb
-    - role: galaxy/keydb
-    # /role-specific:keydb
-
     # role-specific:keyoxide
     - role: galaxy/keyoxide
     # /role-specific:keyoxide
