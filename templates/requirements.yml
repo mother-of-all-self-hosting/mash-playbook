@@ -24,10 +24,10 @@
   version: v2.0.2-0
   name: answer
   activation_prefix: answer_
-- src: git+https://github.com/mother-of-all-self-hosting/ansible-role-apisix-gateway.git
-  version: v3.8.0-14
-  name: apisix_gateway
-  activation_prefix: apisix_gateway_
+- src: git+https://github.com/mother-of-all-self-hosting/ansible-role-apisix.git
+  version: v3.18.0-3
+  name: apisix
+  activation_prefix: apisix_
 - src: git+https://iris.radicle.network/z292aD8q3r8xqhJvLe2zv1b24gu7a.git
   version: v1.5.2-0
   name: apprise

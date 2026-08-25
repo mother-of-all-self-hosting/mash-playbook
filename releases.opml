@@ -10,7 +10,7 @@
     <outline text="anki" title="anki" type="rss" htmlUrl="https://github.com/ankitects/anki" xmlUrl="https://github.com/ankitects/anki/releases.atom" />
     <outline text="anonymousoverflow" title="anonymousoverflow" type="rss" htmlUrl="https://github.com/httpjamesm/AnonymousOverflow" xmlUrl="https://github.com/httpjamesm/AnonymousOverflow/releases.atom" />
     <outline text="answer" title="answer" type="rss" htmlUrl="https://github.com/apache/answer" xmlUrl="https://github.com/apache/answer/releases.atom" />
-    <outline text="apisix_gateway" title="apisix_gateway" type="rss" htmlUrl="https://github.com/apache/apisix" xmlUrl="https://github.com/apache/apisix/releases.atom" />
+    <outline text="apisix" title="apisix" type="rss" htmlUrl="https://github.com/apache/apisix" xmlUrl="https://github.com/apache/apisix/releases.atom" />
     <outline text="apprise" title="apprise" type="rss" htmlUrl="https://github.com/caronc/apprise-api" xmlUrl="https://github.com/caronc/apprise-api/releases.atom" />
     <outline text="appsmith" title="appsmith" type="rss" htmlUrl="https://github.com/appsmithorg/appsmith" xmlUrl="https://github.com/appsmithorg/appsmith/releases.atom" />
     <outline text="asciinema_server" title="asciinema_server" type="rss" htmlUrl="https://github.com/asciinema/asciinema-server" xmlUrl="https://github.com/asciinema/asciinema-server/releases.atom" />

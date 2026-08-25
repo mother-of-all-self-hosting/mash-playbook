@@ -112,9 +112,9 @@
     msg: |-
       APISIX Dashboard was removed from the playbook in August 2026, because it is no longer a separately released project.
 
-      Upstream has rewritten the dashboard as a pure front-end which ships inside the `apache/apisix` container image itself, starting with APISIX 3.13. Your APISIX Gateway is already serving it at `/ui/` on its Admin API port, so there is nothing to install.
+      Upstream has rewritten the dashboard as a pure front-end which ships inside the `apache/apisix` container image itself, starting with APISIX 3.13. Your APISIX is already serving it at `/ui/` on its Admin API port, so there is nothing to install.
 
-      Note that the bundled dashboard shares a listener and an IP allowlist with the Admin API and has no authentication of its own, so reaching it is not the same as reaching the standalone dashboard was. See `docs/services/apisix-gateway.md` for how to get to it safely.
+      Note that the bundled dashboard shares a listener and an IP allowlist with the Admin API and has no authentication of its own, so reaching it is not the same as reaching the standalone dashboard was. See `docs/services/apisix.md` for how to get to it safely.
 
       Please remove all `apisix_dashboard_*` variables from your configuration file (vars.yml).
 

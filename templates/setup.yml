@@ -118,9 +118,9 @@
     - role: galaxy/answer
     # /role-specific:answer
 
-    # role-specific:apisix_gateway
-    - role: galaxy/apisix_gateway
-    # /role-specific:apisix_gateway
+    # role-specific:apisix
+    - role: galaxy/apisix
+    # /role-specific:apisix
 
     # role-specific:apprise
     - role: galaxy/apprise

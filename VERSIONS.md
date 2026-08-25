@@ -5,7 +5,7 @@
 * Anki: 26.05
 * Anonymousoverflow: release
 * Answer: 2.0.2
-* Apisix Gateway: 3.8.0
+* Apisix: 3.18.0
 * Apprise: 1.5.1
 * Appsmith: v2.3
 * Asciinema Server: 20260626

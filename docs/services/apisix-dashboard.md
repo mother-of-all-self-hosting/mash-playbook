@@ -28,14 +28,14 @@ The last standalone release, 3.0.1, dates from March 2023, and upstream says tha
 
 ## Migrating to the bundled dashboard
 
-You do not need to install anything. If you run [APISIX Gateway](apisix-gateway.md) at version 3.13 or newer (the playbook is well past that), it is already serving the dashboard — at `/ui/` on its Admin API port.
+You do not need to install anything. If you run [APISIX](apisix.md) at version 3.13 or newer (the playbook is well past that), it is already serving the dashboard — at `/ui/` on its Admin API port.
 
 > [!WARNING]
 > The bundled dashboard is served from inside the Admin API's own `server` block, so it shares that listener's port and its `allow_admin` allowlist. **Making the dashboard reachable makes the Admin API reachable**, and while the Admin API requires a key, the dashboard itself is static files with no authentication of its own.
 >
 > This is a real difference from the standalone APISIX Dashboard, which had its own login page and its own user list. Do not simply point the hostname you used for `apisix_dashboard_hostname` at the Admin API and consider the job done.
 
-See the **Reaching the bundled dashboard** section of the [APISIX Gateway](apisix-gateway.md) documentation for the safe ways to get to it — an SSH tunnel needs no public exposure at all.
+See the **Reaching the bundled dashboard** section of the [APISIX](apisix.md) documentation for the safe ways to get to it — an SSH tunnel needs no public exposure at all.
 
 ## Uninstalling the service manually
 
@@ -49,9 +49,9 @@ rm -rf /mash/apisix-dashboard
 
 If you were [running multiple instances of the APISIX Dashboard service](../running-multiple-instances.md), repeat the commands for each instance's service name and base path.
 
-Your APISIX configuration is not affected. The standalone dashboard stored nothing of its own — it edited the [etcd](etcd.md) database that APISIX Gateway reads, and that database, along with all your routes and upstreams, stays where it is.
+Your APISIX configuration is not affected. The standalone dashboard stored nothing of its own — it edited the [etcd](etcd.md) database that APISIX reads, and that database, along with all your routes and upstreams, stays where it is.
 
 ## Related services
 
-- [APISIX Gateway](apisix-gateway.md) — An API Gateway and Ingress Controller, which now serves the dashboard itself
+- [APISIX](apisix.md) — An API Gateway and Ingress Controller, which now serves the dashboard itself
 - [etcd](etcd.md) — Distributed key-value store, where APISIX keeps its configuration
