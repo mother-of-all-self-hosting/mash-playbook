@@ -109,7 +109,18 @@ Reaching it, from least to most exposed:
 
 - **Through an SSH tunnel** — nothing is published to the network. Add `apisix_gateway_container_admin_http_bind_port: "127.0.0.1:9180"` to your `vars.yml`, re-run the [installation](../installing.md) process, then run `ssh -L 9180:127.0.0.1:9180 you@your-server` from your own machine and open <http://127.0.0.1:9180/ui/>.
 
-- **Through Traefik, with authentication** — enable the Admin API as in the example configuration above, and put a [basic-auth middleware](https://doc.traefik.io/traefik/reference/routing-configuration/http/middlewares/basicauth/) in front of it via `apisix_gateway_container_labels_admin_middlewares`. The UI is then at `https://admin.api.example.com/ui/`. Without such a middleware, you are publishing an admin console to the internet.
+- **Through Traefik, with authentication** — enable the Admin API as in the example configuration above and put a [basic-auth middleware](https://doc.traefik.io/traefik/reference/routing-configuration/http/middlewares/basicauth/) in front of it. The role has no dedicated variable for this (unlike the metrics route), so you declare the middleware yourself and then reference it by name:
+
+  ```yaml
+  apisix_gateway_container_labels_additional_labels_custom:
+    # Generate the entry with `htpasswd -nb USERNAME PASSWORD`
+    - "traefik.http.middlewares.mash-apisix-gateway-admin-auth.basicauth.users=someone:$apr1$..."
+
+  apisix_gateway_container_labels_admin_middlewares:
+    - mash-apisix-gateway-admin-auth
+  ```
+
+  The UI is then at `https://admin.api.example.com/ui/`. **Without such a middleware, you are publishing an admin console to the internet.**
 
 If you expose the Admin API but would rather not publish the console alongside it, set `apisix_gateway_config_deployment_admin_enable_admin_ui: false`. `/ui/` then returns a 404 while the Admin API keeps working on the same port.
 
