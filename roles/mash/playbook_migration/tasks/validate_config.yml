@@ -1,4 +1,4 @@
-# SPDX-FileCopyrightText: 2022-2025 Slavi Pantaleev
+# SPDX-FileCopyrightText: 2022-2026 Slavi Pantaleev
 # SPDX-FileCopyrightText: 2024, 2025 MDAD project contributors
 # SPDX-FileCopyrightText: 2024-2026 Suguru Hirahara
 #
@@ -122,6 +122,36 @@
 
       The following variables in your configuration need to be removed: {{ lookup('ansible.builtin.varnames', '^apisix_dashboard_.+', wantlist=True) | join(', ') }}
   when: "lookup('ansible.builtin.varnames', '^apisix_dashboard_.+', wantlist=True) | length > 0"
+
+# The apisix role catches this too, and with the same detail. This copy fires
+# earlier and does not depend on the role having been fetched, so somebody who
+# runs the playbook before `just update` still gets told what to change rather
+# than an "the role galaxy/apisix was not found" error.
+- name: (Deprecation) Catch and report APISIX variables
+  vars:
+    apisix_deprecated_variables: "{{ lookup('ansible.builtin.varnames', '^apisix_gateway_.+', wantlist=True) | sort }}"
+
+    # Variables which had already been renamed to something that is not a plain
+    # `apisix_gateway_` -> `apisix_` prefix swap. Without them, the message
+    # below would point at variables that have never existed.
+    apisix_deprecated_variables_special_cases:
+      apisix_gateway_systemd_required_systemd_services_list_default: apisix_systemd_required_services_list_default
+      apisix_gateway_systemd_required_systemd_services_list_auto: apisix_systemd_required_services_list_auto
+      apisix_gateway_systemd_required_systemd_services_list_custom: apisix_systemd_required_services_list_custom
+      apisix_gateway_container_image_force_pull: <remove it - the community.docker.docker_image_pull module handles this natively>
+  ansible.builtin.fail:
+    msg: |-
+      The APISIX role is now called `apisix` rather than `apisix-gateway`, and every one of its variables lost the `_gateway` from its prefix (`apisix_gateway_*` -> `apisix_*`). It stopped installing only a gateway when APISIX 3.13 started shipping the APISIX Dashboard inside the `apache/apisix` image.
+
+      Please rename the following variables in your configuration file (vars.yml):
+      {% for old_name in apisix_deprecated_variables %}
+      - `{{ old_name }}` -> `{{ apisix_deprecated_variables_special_cases[old_name] | default('apisix_' + old_name | regex_replace('^apisix_gateway_', '')) }}`
+      {% endfor %}
+
+      The `# apisix_gateway` section markers around that block in your vars.yml are now `# apisix`, and the tags are too: `just install-service apisix` rather than `just install-service apisix-gateway`.
+
+      Only the names changed. `apisix_identifier` still resolves to the same value, so your systemd service, container, container network and data path keep the names they have now, and nothing is reinstalled or moved. See `docs/services/apisix.md`.
+  when: apisix_deprecated_variables | length > 0
 
 - name: (Deprecation) Catch and report Firezone variables
   ansible.builtin.fail:
