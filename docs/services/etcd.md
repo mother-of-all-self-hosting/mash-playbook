@@ -31,7 +31,7 @@ For details about configuring the [Ansible role for etcd](https://github.com/mot
 - 📁 `roles/galaxy/etcd/docs/configuring-etcd.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 >[!NOTE]
-> Our current setup and documentation are **aiming at running etcd for internal purposes** (as a dependency for other [services](../supported-services.md) such as [APISIX Dashboard](apisix-dashboard.md) and [APISIX Gateway](apisix-gateway.md)). If you need a production deployment, you will need to install multiple etcd instances (on multiple machines) and connect them in a cluster. Please note that this is beyond the scope of our documentation here.
+> Our current setup and documentation are **aiming at running etcd for internal purposes** (as a dependency for other [services](../supported-services.md) such as [APISIX Gateway](apisix-gateway.md)). If you need a production deployment, you will need to install multiple etcd instances (on multiple machines) and connect them in a cluster. Please note that this is beyond the scope of our documentation here.
 
 ## Configuration
 

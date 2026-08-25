@@ -107,6 +107,22 @@
       The following variables in your configuration need to be removed: {{ lookup('ansible.builtin.varnames', '^keydb_.+', wantlist=True) | join(', ') }}
   when: "lookup('ansible.builtin.varnames', '^keydb_.+', wantlist=True) | length > 0"
 
+- name: (Deprecation) Catch and report APISIX Dashboard variables
+  ansible.builtin.fail:
+    msg: |-
+      APISIX Dashboard was removed from the playbook in August 2026, because it is no longer a separately released project.
+
+      Upstream has rewritten the dashboard as a pure front-end which ships inside the `apache/apisix` container image itself, starting with APISIX 3.13. Your APISIX Gateway is already serving it at `/ui/` on its Admin API port, so there is nothing to install.
+
+      Note that the bundled dashboard shares a listener and an IP allowlist with the Admin API and has no authentication of its own, so reaching it is not the same as reaching the standalone dashboard was. See `docs/services/apisix-gateway.md` for how to get to it safely.
+
+      Please remove all `apisix_dashboard_*` variables from your configuration file (vars.yml).
+
+      You may also wish to uninstall the standalone APISIX Dashboard service manually. See `docs/services/apisix-dashboard.md` for more information.
+
+      The following variables in your configuration need to be removed: {{ lookup('ansible.builtin.varnames', '^apisix_dashboard_.+', wantlist=True) | join(', ') }}
+  when: "lookup('ansible.builtin.varnames', '^apisix_dashboard_.+', wantlist=True) | length > 0"
+
 - name: (Deprecation) Catch and report Firezone variables
   ansible.builtin.fail:
     msg: |-

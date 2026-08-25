@@ -24,10 +24,6 @@
   version: v2.0.2-0
   name: answer
   activation_prefix: answer_
-- src: git+https://github.com/mother-of-all-self-hosting/ansible-role-apisix-dashboard.git
-  version: v3.0.1-12
-  name: apisix_dashboard
-  activation_prefix: apisix_dashboard_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-apisix-gateway.git
   version: v3.8.0-14
   name: apisix_gateway

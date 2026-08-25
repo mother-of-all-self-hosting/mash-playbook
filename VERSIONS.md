@@ -5,7 +5,6 @@
 * Anki: 26.05
 * Anonymousoverflow: release
 * Answer: 2.0.2
-* Apisix Dashboard: 3.0.1
 * Apisix Gateway: 3.8.0
 * Apprise: 1.5.1
 * Appsmith: v2.3

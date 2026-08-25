@@ -118,10 +118,6 @@
     - role: galaxy/answer
     # /role-specific:answer
 
-    # role-specific:apisix_dashboard
-    - role: galaxy/apisix_dashboard
-    # /role-specific:apisix_dashboard
-
     # role-specific:apisix_gateway
     - role: galaxy/apisix_gateway
     # /role-specific:apisix_gateway

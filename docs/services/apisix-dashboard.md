@@ -13,71 +13,45 @@ SPDX-FileCopyrightText: 2023 Felix Stupp
 SPDX-FileCopyrightText: 2023 Julian-Samuel Gebühr
 SPDX-FileCopyrightText: 2023 Pierre 'McFly' Marty
 SPDX-FileCopyrightText: 2024 - 2025 Suguru Hirahara
+SPDX-FileCopyrightText: 2026 Slavi Pantaleev
 
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 
-# APISIX Dashboard
+# APISIX Dashboard (removed)
 
-The playbook can install and configure [APISIX Dashboard](https://apisix.apache.org/docs/dashboard/USER_GUIDE/) for you.
+🪦 The playbook used to be able to install and configure [APISIX Dashboard](https://apisix.apache.org/docs/dashboard/USER_GUIDE/) as a service of its own, but no longer does, because upstream no longer ships it that way.
 
-APISIX Dashboard is a web UI for [APISIX Gateway](apisix-gateway.md). It works by directly editing the [etcd](etcd.md) database that APISIX Gateway stores its data in.
+The APISIX Dashboard is now a pure front-end which lives **inside the `apache/apisix` container image itself**, first available in APISIX **3.13**. Upstream [has stated](https://github.com/apache/apisix-dashboard/releases/tag/notice) that it will not be released independently again and that there are no plans for further APISIX Dashboard container images.
 
-See the project's [documentation](https://apisix.apache.org/docs/dashboard/USER_GUIDE/) to learn what APISIX Dashboard does and why it might be useful to you.
+The last standalone release, 3.0.1, dates from March 2023, and upstream says that it "should and only should be used with APISIX 3.0. Any higher or lower version has not been tested." The playbook installed APISIX 3.8.0 and newer alongside it, which is exactly the untested combination that warning is about. The role which installed it ([ansible-role-apisix-dashboard](https://github.com/mother-of-all-self-hosting/ansible-role-apisix-dashboard)) has been deprecated and archived.
 
-## Dependencies
+## Migrating to the bundled dashboard
 
-This service requires the following other services:
+You do not need to install anything. If you run [APISIX Gateway](apisix-gateway.md) at version 3.13 or newer (the playbook is well past that), it is already serving the dashboard — at `/ui/` on its Admin API port.
 
-- [etcd](etcd.md) key-value store
-- [Traefik](traefik.md) reverse-proxy server
-- (optional) [APISIX Gateway](apisix-gateway.md) — there's no point in administrating APISIX Gateway configuration stored in etcd without having an APISIX Gateway instance to initialize and consume it
+> [!WARNING]
+> The bundled dashboard is served from inside the Admin API's own `server` block, so it shares that listener's port and its `allow_admin` allowlist. **Making the dashboard reachable makes the Admin API reachable**, and while the Admin API requires a key, the dashboard itself is static files with no authentication of its own.
+>
+> This is a real difference from the standalone APISIX Dashboard, which had its own login page and its own user list. Do not simply point the hostname you used for `apisix_dashboard_hostname` at the Admin API and consider the job done.
 
-## Configuration
+See the **Reaching the bundled dashboard** section of the [APISIX Gateway](apisix-gateway.md) documentation for the safe ways to get to it — an SSH tunnel needs no public exposure at all.
 
-To enable this service, add the following configuration to your `vars.yml` file and re-run the [installation](../installing.md) process:
+## Uninstalling the service manually
 
-```yaml
-########################################################################
-#                                                                      #
-# apisix_dashboard                                                     #
-#                                                                      #
-########################################################################
+The playbook can no longer help you uninstall the standalone APISIX Dashboard, so you will need to do it manually. To uninstall manually, run these commands on the server:
 
-apisix_dashboard_enabled: true
+```sh
+systemctl disable --now mash-apisix-dashboard.service
 
-apisix_dashboard_hostname: dashboard.api.example.com
-
-# A strong secret for JWT authentication
-apisix_dashboard_config_authentication_secret: ''
-
-apisix_dashboard_config_authentication_users:
-  - username: admin
-    password: password-here
-
-########################################################################
-#                                                                      #
-# /apisix_dashboard                                                    #
-#                                                                      #
-########################################################################
+rm -rf /mash/apisix-dashboard
 ```
 
-### Authentication
+If you were [running multiple instances of the APISIX Dashboard service](../running-multiple-instances.md), repeat the commands for each instance's service name and base path.
 
-The example above uses the built-in login page of APISIX Dashboard with a list of users is defined via `apisix_dashboard_config_authentication_users`.
+Your APISIX configuration is not affected. The standalone dashboard stored nothing of its own — it edited the [etcd](etcd.md) database that APISIX Gateway reads, and that database, along with all your routes and upstreams, stays where it is.
 
-APISIX Dashboard also supports OpenID Connect providers. It can be enabled and configured via various `apisix_dashboard_config_oidc_*` Ansible variables.
+## Related services
 
-### Extending the configuration
-
-There are some additional things you may wish to configure about the component.
-
-Take a look at:
-
-- [`ansible-role-apisix-dashboard` Ansible role](https://github.com/mother-of-all-self-hosting/ansible-role-apisix-dashboard)'s [`defaults/main.yml`](https://github.com/mother-of-all-self-hosting/ansible-role-apisix-dashboard/blob/main/defaults/main.yml) for some variables that you can customize via your `vars.yml` file.
-
-## Usage
-
-After running the command for installation, the APISIX Dashboard instance becomes available at the URL specified with `apisix_dashboard_hostname`. With the configuration above, the service is hosted at `https://dashboard.api.example.com`.
-
-You can open the APISIX Dashboard URL and authenticate with a credential as specified in `apisix_dashboard_config_authentication_users`. If you've enabled OpenID Connect, you may also be able to authenticate with that.
+- [APISIX Gateway](apisix-gateway.md) — An API Gateway and Ingress Controller, which now serves the dashboard itself
+- [etcd](etcd.md) — Distributed key-value store, where APISIX keeps its configuration
