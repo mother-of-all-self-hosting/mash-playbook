@@ -5,20 +5,26 @@ SPDX-FileCopyrightText: 2025, 2026 Suguru Hirahara
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 
-# Docker Registry
+# Distribution Registry
 
-The playbook can install and configure [Docker Registry](https://docs.docker.com/registry/) for you.
+The playbook can install and configure [Distribution Registry](https://github.com/distribution/distribution/) for you.
 
-Docker Registry is a container image distribution registry developed by [Docker Inc](https://www.docker.com/).
+Distribution Registry is a stateless, scalable server side application that stores and lets you distribute container images and other content.
 
-See the project's [documentation](https://docs.docker.com/registry/) to learn what Docker Registry does and why it might be useful to you.
+See the project's [documentation](https://distribution.github.io/distribution/) to learn what Distribution Registry does and why it might be useful to you.
 
-This playbook supports installing a container image registry which is:
+For details about configuring the [Ansible role for Distribution Registry](https://github.com/mother-of-all-self-hosting/ansible-role-docker-registry), you can check them via:
 
-- completely public, when it comes to pulling images
-- IP-restricted, when it comes to pushing images
+- 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-docker-registry/blob/main/docs/configuring-distribution-registry.md) online
+- 📁 `roles/galaxy/anki/docs/configuring-distribution-registry.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
-Authentication is not supported.
+>[!NOTE]
+> This playbook supports installing a container image registry which is:
+>
+> - completely public, when it comes to pulling images
+> - IP-restricted, when it comes to pushing images
+>
+> Authentication is not supported.
 
 ## Dependencies
 
@@ -41,15 +47,6 @@ docker_registry_enabled: true
 
 docker_registry_hostname: registry.example.com
 
-# Uncomment the line below if you'd like to allow for image deletion.
-# docker_registry_storage_delete_enabled: true
-
-# Only whitelisted IPs will be able to perform DELETE, PATCH, POST, PUT requests against the registry.
-# All other IP addresses get read-only (GET, HEAD) access.
-docker_registry_private_services_whitelisted_ip_ranges:
-  - 1.2.3.4/32
-  - 4.3.2.1/32
-
 ########################################################################
 #                                                                      #
 # /docker_registry                                                     #
@@ -57,36 +54,16 @@ docker_registry_private_services_whitelisted_ip_ranges:
 ########################################################################
 ```
 
+See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-docker-registry/blob/main/docs/configuring-distribution-registry.md#adjusting-the-playbook-configuration) on the role's documentation for other settings, such as whitelisting IPs.
+
 ## Usage
 
-After running the command for installation, the Docker Registry instance becomes available at the URL specified with `docker_registry_hostname`. With the configuration above, the service is hosted at `https://registry.example.com`.
+After running the command for installation, the Distribution Registry instance becomes available at the URL specified with `docker_registry_hostname`. With the configuration above, the service is hosted at `https://registry.example.com`.
 
 >[!NOTE]
 > The base URL (e.g. `https://registry.example.com`) serves an empty (blank) page. To browse your registry's images via a web interface, you may need another piece of software, like [Docker Registry Browser](docker-registry-browser.md).
 
-You should be able to:
-
-- pull images from your registry from any IP address
-- push images to your registry from the whitelisted IP addresses (`docker_registry_private_services_whitelisted_ip_ranges`)
-
-With custom Traefik configuration (hint: see [`docker_registry_container_labels_traefik_rule_*` variables](https://github.com/mother-of-all-self-hosting/ansible-role-docker-registry/blob/main/defaults/main.yml) in the [docker-registry role](https://github.com/mother-of-all-self-hosting/ansible-role-docker-registry)), you may be able to add additional restrictions.
-
-To **test pushing** images, try the following:
-
-```sh
-docker pull docker.io/alpine:3.17.2
-docker tag docker.io/alpine:3.17.2 registry.example.com/alpine:3.17.2
-docker push registry.example.com/alpine:3.17.2
-```
-
-To **test pulling** images, try the following:
-
-```sh
-# Clean up from before
-docker rmi registry.example.com/alpine:3.17.2
-
-docker pull registry.example.com/alpine:3.17.2
-```
+See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-docker-registry/blob/main/docs/configuring-distribution-registry.md#usage) on the role's documentation for details.
 
 ## Related services
 
