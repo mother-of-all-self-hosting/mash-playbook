@@ -13011,7 +13011,6 @@ paperless_email_from: "{{ exim_relay_sender_address if exim_relay_enabled else '
 # /role-specific:exim_relay
 
 # role-specific:gotenberg
-paperless_gotenberg_bundled_enabled: "{{ false if gotenberg_enabled }}" # Stop ansible-role-paperless from installing Gotenberg bundled with the role if it is managed by ansible-role-gotenberg
 paperless_tika_gotenberg_endpoint: "http://{{ gotenberg_identifier }}:{{ gotenberg_container_http_port }}"
 # /role-specific:gotenberg
 
@@ -13032,7 +13031,6 @@ paperless_database_postgres_socket_path_host: "{{ postgres_run_path }}"
 
 # role-specific:tika
 paperless_tika_enabled: "{{ tika_enabled }}"
-paperless_tika_bundled_enabled: "{{ false if tika_enabled }}" # Stop ansible-role-paperless from installing Apache Tika Server bundled with the role if it is managed by ansible-role-tika
 paperless_tika_endpoint: "http://{{ tika_identifier }}:{{ tika_container_http_port }}"
 # /role-specific:tika
 
