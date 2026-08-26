@@ -34,9 +34,9 @@ To enable this service, add the following configuration to your `vars.yml` file 
 
 minecraft_enabled: true
 
-minecraft_bind_port: 25565
+minecraft_container_tcp_host_bind_port: 25565
 
-minecraft_environment_variables_additional: |
+minecraft_environment_variables_additional_variables: |
   MOTD=[Your Server Name Here]
   TYPE=PAPER
   VERSION=latest

@@ -39,6 +39,18 @@ mrs_auth_admin_password: changeme
 mrs_auth_admin_ips:
   - 123.123.123.123
 
+# MRS splits its HTTP API into five separately-credentialed groups, and a group
+# whose login and password are both left empty is not protected. Set all five,
+# not just the admin one - `moderation` in particular can ban and unban rooms.
+mrs_auth_metrics_login: metrics
+mrs_auth_metrics_password: changeme
+mrs_auth_catalog_login: catalog
+mrs_auth_catalog_password: changeme
+mrs_auth_discovery_login: discovery
+mrs_auth_discovery_password: changeme
+mrs_auth_moderation_login: moderation
+mrs_auth_moderation_password: changeme
+
 mrs_servers:
   - matrix.org
 

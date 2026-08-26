@@ -37,7 +37,7 @@ For details about configuring the [Ansible role for Neko](https://github.com/mot
 
 ## Prerequisites
 
-To use the service, by default you need to open ports `56000-56100/udp` of the host. See [here](https://neko.m1k1o.net/docs/v3/configuration/webrtc#epr) for details.
+To use the service, by default you need to open ports `52000-52100/udp` of the host. See [here](https://neko.m1k1o.net/docs/v3/configuration/webrtc#epr) for details.
 
 ## Dependencies
 
