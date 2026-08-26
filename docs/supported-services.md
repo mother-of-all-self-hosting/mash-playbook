@@ -69,7 +69,7 @@ Below is an exhaustive list of the free and open-source software for self-hostin
 | [CyberChef](https://github.com/gchq/CyberChef) | Intuitive web application for encryption, encoding, compression, and data analysis within a browser | [Link](services/cyberchef.md) |
 | [Databasus](https://databasus.com/) | PostgreSQL, MySQL, MariaDB, and MongoDB database backup | [Link](services/databasus.md) |
 | [ddclient](https://ddclient.net/) | Dynamic DNS entries updater | [Link](services/ddclient.md) |
-| [Distribution Registry](https://docs.docker.com/registry/) | Container image distribution registry | [Link](services/docker-registry.md) |
+| [Distribution Registry](https://github.com/distribution/distribution/) | Container image distribution registry | [Link](services/docker-registry.md) |
 | [Docker](https://www.docker.com/) | Containerized applications deployment | [Link](services/docker.md) |
 | [Docker Registry Browser](https://github.com/klausmeyer/docker-registry-browser) | Web interface for the Docker Registry HTTP API V2 | [Link](services/docker-registry-browser.md) |
 | [Docker Registry Proxy](https://github.com/etkecc/docker-registry-proxy) | Pass-through Docker registry (distribution) proxy with metadata caching, Docker-compatible errors, Prometheus metrics, etc. | [Link](services/docker-registry-proxy.md) |
