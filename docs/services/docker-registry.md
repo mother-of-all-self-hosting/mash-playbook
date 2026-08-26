@@ -68,4 +68,4 @@ See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-do
 ## Related services
 
 - [Docker Registry Browser](docker-registry-browser.md) — Web Interface for the Docker Registry HTTP API V2 written in Ruby on Rails
-- [Docker Registry Purger](docker-registry-purger.md) — a small tool used for purging a private Docker Registry's old tags
+- [Docker Registry Purger](docker-registry-purger.md) — a small tool used for purging a private Distribution Registry's old tags

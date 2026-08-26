@@ -15,7 +15,7 @@ See the project's [documentation](https://github.com/devture/docker-registry-pur
 
 ## Dependencies
 
-This service requires to be pointed to a container registry. It may be a registry powered by [Docker Registry](docker-registry.md) or by some other software.
+This service requires to be pointed to a container registry. It may be a registry powered by [Distribution Registry](docker-registry.md) or by some other software.
 
 ## Configuration
 
@@ -30,7 +30,7 @@ To enable this service, add the following configuration to your `vars.yml` file 
 
 docker_registry_purger_enabled: true
 
-# To integrate with a locally running (in a container) Docker Registry (see `docker-registry.md`),
+# To integrate with a locally running (in a container) Distribution Registry (see `docker-registry.md`),
 # point to its local container address and configure the purger to run in the registry's network.
 docker_registry_purger_registry_url: "http://{{ docker_registry_identifier }}:5000"
 docker_registry_purger_container_network: "{{ docker_registry_container_network }}"
@@ -57,4 +57,4 @@ You should be able to browse the images and possibly delete them (if enabled via
 
 ## Related services
 
-- [Docker Registry](docker-registry.md) — Container image distribution registry
+- [Distribution Registry](docker-registry.md) — Container image distribution registry

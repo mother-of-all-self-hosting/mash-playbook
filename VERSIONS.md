@@ -46,7 +46,7 @@
 * Databasus: v3.53.0
 * Ddclient: 4.0.0
 * Docker Compose: v2.32.1
-* Docker Registry: 2.8.3
+* Distribution Registry: 2.8.3
 * Docker Registry Browser: 1.10.0
 * Docker Registry Browser Basic Auth Apache: 2.4.57-alpine3.17
 * Docker Registry Proxy: v1.2.7
