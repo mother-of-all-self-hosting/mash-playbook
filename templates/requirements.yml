@@ -509,7 +509,7 @@
   name: mailpit
   activation_prefix: mailpit_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-mariadb.git
-  version: v12.3.2-2
+  version: v12.3.3-0
   name: mariadb
   activation_prefix: mariadb_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-matomo.git
