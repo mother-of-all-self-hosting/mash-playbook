@@ -20,22 +20,22 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
 # MollySocket
 
-The playbook can install and configure [MollySocket](https://mollysocketbudget.org) for you.
+The playbook can install and configure [MollySocket](https://github.com/mollyim/mollysocket) for you.
 
-MollySocket is a local-first personal finance tool.
+MollySocket is a service which allows [Molly](https://molly.im/) to receive [Signal](https://signal.org/) notifications via [UnifiedPush](https://unifiedpush.org/), the standard which makes it possible to send and receive push notifications without using Google's Firebase Cloud Messaging (FCM) service.
 
-See the project's [documentation](https://mollysocketbudget.org/docs/) to learn what MollySocket does and why it might be useful to you.
+See the project's [documentation](https://github.com/mollyim/mollysocket/blob/main/README.md) to learn what MollySocket does and why it might be useful to you.
 
-For details about configuring the [Ansible role for MollySocket](https://radicle.network/nodes/iris.radicle.network/rad%3Az2chD7Kt74JwEMafxTooxN7MaeYtK), you can check them via:
+For details about configuring the [Ansible role for MollySocket](https://radicle.network/nodes/iris.radicle.network/rad%3Az2RnNwtTL5bKspfqmxQ2fX4JV4cXV), you can check them via:
 
-- 🌐 [the role's documentation](https://radicle.network/nodes/iris.radicle.network/rad%3Az2chD7Kt74JwEMafxTooxN7MaeYtK/tree/docs/configuring-mollysocket.md) online
+- 🌐 [the role's documentation](https://radicle.network/nodes/iris.radicle.network/rad%3Az2RnNwtTL5bKspfqmxQ2fX4JV4cXV/tree/docs/configuring-mollysocket.md) online
 - 📁 `roles/galaxy/mollysocket/docs/configuring-mollysocket.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 ## Dependencies
 
 This service requires the following other services:
 
-- [Traefik](traefik.md) reverse-proxy server
+- (optional) [Traefik](traefik.md) — Reverse-proxy server for exposing MollySocket web server
 
 ## Configuration
 
@@ -50,8 +50,6 @@ To enable this service, add the following configuration to your `vars.yml` file 
 
 mollysocket_enabled: true
 
-mollysocket_hostname: mollysocket.example.com
-
 ########################################################################
 #                                                                      #
 # /mollysocket                                                         #
@@ -59,16 +57,39 @@ mollysocket_hostname: mollysocket.example.com
 ########################################################################
 ```
 
+### Configuring the web server
+
+By default MollySocket's web server is configured to be exposed externally, and you need to set the hostname by adding the following configuration to your `vars.yml` file:
+
+```yaml
+# The hostname at which MollySocket's web server is served.
+mollysocket_hostname: "mollysocket.example.com"
+```
+
+To disable it in favor of the "Air Gapped" mode, add the following configuration to your `vars.yml` file:
+
+```yaml
+mollysocket_environment_variables_molly_webserver: false
+```
+
+### Connecting to a ntfy instance (optional)
+
+To use a MollySocket instance it is necessary to prepare a **Push Server**, such as the [ntfy](https://ntfy.sh/) server.
+
+The ntfy server is available on the playbook. Enabling it automatically configures the mollysocket instance to connect to it.
+
+See [this page](ntfy.md) for details about how to install it.
+
 ## Usage
 
-After running the command for installation, the MollySocket instance becomes available at the URL specified with `mollysocket_hostname`. With the configuration above, the service is hosted at `https://mollysocket.example.com`.
+After running the command for installation, the MollySocket instance becomes available, and its web server can be reached at the URL specified with `mollysocket_hostname`. With the configuration above, the web server is hosted at `https://mollysocket.example.com`.
 
-To get started, open the URL with a web browser to create an account.
+To use a MollySocket instance it is necessary to prepare a **Distributor** running on Android and other devices (see [definitions on the official documentation of UnifiedPush](https://unifiedpush.org/developers/spec/definitions/) for the definition of the Distributor), such as [the ntfy application](https://docs.ntfy.sh/subscribe/phone/).
 
 ## Troubleshooting
 
-See [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az2chD7Kt74JwEMafxTooxN7MaeYtK/tree/docs/configuring-mollysocket.md#troubleshooting) on the role's documentation for details.
+See [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az2RnNwtTL5bKspfqmxQ2fX4JV4cXV/tree/docs/configuring-mollysocket.md#troubleshooting) on the role's documentation for details.
 
 ## Related services
 
-- [I hate money](ihatemoney.md) — Shared budget manager
+- [ntfy](ntfy.md) — HTTP-based pub-sub notification service to send you push notifications from any computer
