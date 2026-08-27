@@ -841,7 +841,7 @@
   name: redlib
   activation_prefix: redlib_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-redmine.git
-  version: v7-0
+  version: v7.0.1-0
   name: redmine
   activation_prefix: redmine_
 - src: git+https://iris.radicle.network/z3rhdtDR5EHHGk1SNBHwYtofxNyAf.git
