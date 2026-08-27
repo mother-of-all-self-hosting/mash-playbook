@@ -29,6 +29,11 @@ Stirling PDF is an online PDF converter and editor.
 
 See the project's [documentation](https://github.com/Stirling-Tools/Stirling-PDF/blob/main/README.md) to learn what Stirling PDF does and why it might be useful to you.
 
+For details about configuring the [Ansible role for Stirling PDF](https://github.com/mother-of-all-self-hosting/ansible-role-stirling-pdf), you can check them via:
+
+- 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-stirling-pdf/blob/main/docs/configuring-stirling-pdf.md) online
+- 📁 `roles/galaxy/stirling_pdf/docs/configuring-stirling-pdf.md` locally, if you have [fetched the Ansible roles](../installing.md)
+
 ## Dependencies
 
 - [Traefik](traefik.md) reverse-proxy server (optional)
@@ -40,7 +45,7 @@ To enable this service, add the following configuration to your `vars.yml` file 
 ```yaml
 ########################################################################
 #                                                                      #
-# stirling-pdf                                                         #
+# stirling_pdf                                                         #
 #                                                                      #
 ########################################################################
 
@@ -51,33 +56,18 @@ stirling_pdf_path_prefix: /stirling-pdf
 
 ########################################################################
 #                                                                      #
-# /stirling-pdf                                                        #
+# /stirling_pdf                                                        #
 #                                                                      #
 ########################################################################
 ```
 
-### Optional Configuration
+### Configuring HTTP Basic authentication
 
-You can decide if you want to configure via environment variables. Environment variables outrank the configuration file. Using the configuration file via `stirling_pdf_extra_config` is not encurage, since stirling-pdf override it at application start ([see](https://github.com/Bergruebe/ansible-role-stirling-pdf/issues/7)).
+The HTTP Basic authentication on Traefik is enabled for the web interface by default. See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-stirling-pdf/blob/main/docs/configuring-stirling-pdf.md#configuring-http-basic-authentication) on the role's documentation for details about how to set it up or disable it.
 
-To set addition environment variables use `stirling_pdf_environment_variables_extensions` in your `vars.yml` file.
+## Usage
 
-```yaml
-stirling_pdf_environment_variables_extensions: |
-  SYSTEM_DEFAULTLOCALE=de-DE
-  SYSTEM_DEFAULTLOCALE=de-DE
-  SECURITY_ENABLELOGIN=false
-```
-
-Find all possible arguments in the [official documentation](https://docs.stirlingpdf.com/Advanced%20Configuration/How%20to%20add%20configurations).
-
-### Extending the configuration
-
-There are some additional things you may wish to configure about the service.
-
-Take a look at:
-
-- [`ansible-role-stirling-pdf` Ansible role](https://github.com/mother-of-all-self-hosting/ansible-role-stirling-pdf)'s [`defaults/main.yml`](https://github.com/mother-of-all-self-hosting/ansible-role-stirling-pdf/blob/main/defaults/main.yml) for some variables that you can customize via your `vars.yml` file.
+After running the command for installation, the Lute instance becomes available at the URL specified with `stirling_pdf_hostname`. With the configuration above, the service is hosted at `https://mash.example.com/stirling-pdf`.
 
 ## Related services
 

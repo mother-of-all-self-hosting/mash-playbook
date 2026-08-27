@@ -15729,7 +15729,7 @@ statusnook_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_p
 # role-specific:stirling_pdf
 ########################################################################
 #                                                                      #
-# stirling-pdf                                                         #
+# stirling_pdf                                                         #
 #                                                                      #
 ########################################################################
 
@@ -15757,7 +15757,7 @@ stirling_pdf_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver
 
 ########################################################################
 #                                                                      #
-# /stirling-pdf                                                        #
+# /stirling_pdf                                                        #
 #                                                                      #
 ########################################################################
 # /role-specific:stirling_pdf
