@@ -809,6 +809,11 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
     {{ ({'name': (mobilizon_identifier + '.service'), 'priority': 2000, 'restart_necessary': (mobilizon_restart_necessary | bool), 'groups': ['mash', 'mobilizon']} if mobilizon_enabled else omit) }}
   # /role-specific:mobilizon
 
+  # role-specific:mollysocket
+  - |-
+    {{ ({'name': (mollysocket_identifier + '.service'), 'priority': 2000, 'restart_necessary': (mollysocket_restart_necessary | bool), 'groups': ['mash', 'mollysocket']} if mollysocket_enabled else omit) }}
+  # /role-specific:mollysocket
+
   # role-specific:monerooo
   - |-
     {{ ({'name': (monerooo_identifier + '.service'), 'priority': 2000, 'restart_necessary': (monerooo_restart_necessary | bool), 'groups': ['mash', 'monerooo']} if monerooo_enabled else omit) }}
@@ -11353,6 +11358,58 @@ mobilizon_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_pr
 #                                                                      #
 ########################################################################
 # /role-specific:mobilizon
+
+
+
+# role-specific:mollysocket
+########################################################################
+#                                                                      #
+# mollysocket                                                          #
+#                                                                      #
+########################################################################
+
+mollysocket_enabled: false
+
+mollysocket_identifier: "{{ mash_playbook_service_identifier_prefix }}mollysocket"
+
+mollysocket_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}mollysocket"
+
+mollysocket_uid: "{{ mash_playbook_uid }}"
+mollysocket_gid: "{{ mash_playbook_gid }}"
+
+mollysocket_systemd_wanted_services_list_auto: |
+  {{
+    ([ntfy_identifier ~ '.service'] if ntfy_enabled | default(false) else [])
+  }}
+
+mollysocket_container_additional_networks_auto: |
+  {{
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+    +
+    ([ntfy_container_network] if ntfy_enabled | default(false) and mollysocket_container_network != ntfy_container_network else [])
+  }}
+
+mollysocket_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+mollysocket_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+
+# role-specific:ntfy
+mollysocket_environment_variables_molly_allowed_endpoints: |
+  {{
+    (['https://' ~ ntfy_hostname] if ntfy_enabled else [])
+  }}
+# /role-specific:ntfy
+
+# role-specific:traefik
+mollysocket_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
+mollysocket_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
+# /role-specific:traefik
+
+########################################################################
+#                                                                      #
+# /mollysocket                                                         #
+#                                                                      #
+########################################################################
+# /role-specific:mollysocket
 
 
 

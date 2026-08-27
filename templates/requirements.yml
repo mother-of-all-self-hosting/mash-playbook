@@ -560,6 +560,10 @@
   version: v5.2.4-1
   name: mobilizon
   activation_prefix: mobilizon_
+- src: git+https://iris.radicle.network/z2RnNwtTL5bKspfqmxQ2fX4JV4cXV.git
+  version: v1.7.1-0
+  name: mollysocket
+  activation_prefix: mollysocket_
 - src: git+https://iris.radicle.network/z3i2ogEXxuSzVAxVaRuoydAiDCBKi.git
   version: v0.0.0-4
   name: monerooo
