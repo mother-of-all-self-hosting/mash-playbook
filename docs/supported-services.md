@@ -163,6 +163,7 @@ Below is an exhaustive list of the free and open-source software for self-hostin
 | [Miniflux](https://miniflux.app/) | Minimalist and opinionated feed reader | [Link](services/miniflux.md) |
 | [Misskey](https://misskey-hub.net/en/) | ActivityPub federated microblogging platform | [Link](services/misskey.md) |
 | [Mobilizon](https://joinmobilizon.org/en/) | ActivityPub federated server for creating and sharing events | [Link](services/mobilizon.md) |
+| [MollySocket](https://github.com/mollyim/mollysocket) | [Signal](https://signal.org/) notification receiver via UnifiedPush for [Molly](https://molly.im/) | [Link](services/mollysocket.md) |
 | [Moner.ooo](https://github.com/nice42q/moner.ooo) | Monero / fiat exchange rates in various currencies | [Link](services/monerooo.md) |
 | [Moodist](https://moodist.mvze.net/) | Web application to mix and play ambient soundtracks | [Link](services/moodist.md) |
 | [Mosquitto](https://mosquitto.org/) | MQTT broker | [Link](services/mosquitto.md) |
