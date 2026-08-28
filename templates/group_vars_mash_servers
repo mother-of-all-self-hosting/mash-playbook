@@ -1294,8 +1294,11 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
   # role-specific:nextcloud_talk_hpb
   - |-
     {{ ({'name': (nextcloud_talk_hpb_identifier + '.service'), 'priority': 2000, 'restart_necessary': (nextcloud_talk_hpb_restart_necessary | bool), 'groups': ['mash', 'nextcloud_talk_hpb']} if nextcloud_talk_hpb_enabled else omit) }}
+  - |-
     {{ ({'name': (nextcloud_talk_hpb_signaling_identifier + '.service'), 'priority': 2000, 'restart_necessary': (nextcloud_talk_hpb_signaling_restart_necessary | bool), 'groups': ['mash', 'nextcloud_talk_hpb']} if nextcloud_talk_hpb_signaling_enabled else omit) }}
+  - |-
     {{ ({'name': (nextcloud_talk_hpb_nats_identifier + '.service'), 'priority': 2000, 'restart_necessary': (nextcloud_talk_hpb_nats_restart_necessary | bool), 'groups': ['mash', 'nextcloud_talk_hpb']} if nextcloud_talk_hpb_nats_enabled else omit) }}
+  - |-
     {{ ({'name': (nextcloud_talk_hpb_janus_identifier + '.service'), 'priority': 2000, 'restart_necessary': (nextcloud_talk_hpb_janus_restart_necessary | bool), 'groups': ['mash', 'nextcloud_talk_hpb']} if nextcloud_talk_hpb_janus_enabled else omit) }}
   # /role-specific:nextcloud_talk_hpb
 
