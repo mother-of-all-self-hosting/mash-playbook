@@ -821,7 +821,7 @@
   name: radicle_httpd
   activation_prefix: radicle_httpd_
 - src: git+https://iris.radicle.network/z28JTUhepmbS3hLZyUeEvXeqk9QW5.git
-  version: v1.9.1-3
+  version: v1.10.2-0
   name: radicle_node
   activation_prefix: radicle_node_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-reactflux
