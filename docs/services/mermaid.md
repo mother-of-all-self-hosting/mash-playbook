@@ -59,6 +59,19 @@ mermaid_hostname: mermaid.example.com
 ########################################################################
 ```
 
+### Using the default Docker image (optional)
+
+To have the service run as the playbook's default user instead of root user, this service is by default configured to use the Docker image locally built on [this own Dockerfile](hhttps://radicle.network/nodes/iris.radicle.network/rad%3Az2RAnfyxCYZSoUiDufyzTM7P3RvEd/tree/templates/Dockerfile.j2).
+
+If you prefer simply pulling and using [the official Docker image](https://github.com/-/mermaid-js/packages/container/package/mermaid-live-editor) instead, add the following configuration to your `vars.yml` file:
+
+```yaml
+mermaid_container_image_self_build: false
+```
+
+>[!NOTE]
+> Adding the variable configures the playbook to run the service as a root user.
+
 ## Usage
 
 After running the command for installation, the Mermaid Live Editor instance becomes available at the URL specified with `mermaid_hostname`. With the configuration above, the service is hosted at `https://mermaid.example.com`.

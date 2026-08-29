@@ -11086,9 +11086,8 @@ mermaid_identifier: "{{ mash_playbook_service_identifier_prefix }}mermaid"
 
 mermaid_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}mermaid"
 
-# Run as root
-mermaid_uid: 0
-mermaid_gid: 0
+mermaid_uid: "{{ mash_playbook_uid }}"
+mermaid_gid: "{{ mash_playbook_gid }}"
 
 mermaid_container_additional_networks_auto: |
   {{

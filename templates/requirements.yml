@@ -541,7 +541,7 @@
   name: memos
   activation_prefix: memos_
 - src: git+https://iris.radicle.network/z2RAnfyxCYZSoUiDufyzTM7P3RvEd.git
-  version: v0.0.0-1
+  version: v0.0.0-2
   name: mermaid
   activation_prefix: mermaid_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-minecraft.git
