@@ -525,7 +525,7 @@
   name: mazanoke
   activation_prefix: mazanoke_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-mediawiki.git
-  version: v1.43.3-6
+  version: v1.46.0-0
   name: mediawiki
   activation_prefix: mediawiki_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-meilisearch.git
