@@ -61,7 +61,7 @@
   name: autobrr
   activation_prefix: autobrr_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-aux.git
-  version: v1.0.0-7
+  version: v1.0.0-8
   name: auxiliary
   activation_prefix: aux_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-backup_borg.git
