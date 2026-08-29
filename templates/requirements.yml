@@ -456,7 +456,7 @@
   name: kutt
   activation_prefix: kutt_
 - src: git+https://forgejo.littlecedar.net/grenewode/ansible-role-mash-litellm.git
-  version: ffb83919e2234b328151ce8221fc951b63e7db22
+  version: main
   name: litellm
   activation_prefix: litellm_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-labelstudio.git

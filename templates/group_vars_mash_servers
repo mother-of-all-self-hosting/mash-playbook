@@ -9557,6 +9557,8 @@ kutt_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary
 #                                                                      #
 ########################################################################
 
+litellm_enabled: false
+
 litellm_systemd_required_services_list_auto: |
   {{
     ([postgres_identifier ~ '.service'] if postgres_enabled | default(false) and (litellm_database_postgres_hostname == postgres_connection_hostname) else [])
