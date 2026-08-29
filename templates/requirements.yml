@@ -1,5 +1,4 @@
 ---
-
 - src: git+https://iris.radicle.network/z2chD7Kt74JwEMafxTooxN7MaeYtK.git
   version: v26.8.0-0
   name: actual
@@ -456,6 +455,10 @@
   version: v3.2.6-0
   name: kutt
   activation_prefix: kutt_
+- src: git+https://forgejo.littlecedar.net/grenewode/ansible-role-mash-litellm.git
+  version: ffb83919e2234b328151ce8221fc951b63e7db22
+  name: litellm
+  activation_prefix: litellm_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-labelstudio.git
   version: v1.23.0-2
   name: labelstudio

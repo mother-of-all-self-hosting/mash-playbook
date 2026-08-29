@@ -673,6 +673,11 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
     {{ ({'name': (kutt_identifier + '.service'), 'priority': 2000, 'restart_necessary': (kutt_restart_necessary | bool), 'groups': ['mash', 'kutt']} if kutt_enabled else omit) }}
   # /role-specific:kutt
 
+  # role-specific:litellm
+  - |-
+    {{ ({'name': (litellm_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'litellm']} if litellm_enabled else omit) }}
+  # /role-specific:litellm
+
   # role-specific:labelstudio
   - |-
     {{ ({'name': (labelstudio_identifier + '.service'), 'priority': 2000, 'restart_necessary': (labelstudio_restart_necessary | bool), 'groups': ['mash', 'labelstudio']} if labelstudio_enabled else omit) }}
@@ -1865,6 +1870,17 @@ mash_playbook_postgres_managed_databases_auto_itemized:
       } if kutt_enabled and (kutt_database_postgres_hostname == postgres_connection_hostname or kutt_database_postgres_socket_enabled) and kutt_database_type == 'postgres' else omit)
     }}
   # /role-specific:kutt
+
+  # role-specific:litellm
+  - |-
+    {{
+      ({
+        'name': litellm_database_name,
+        'username': litellm_database_postgres_username,
+        'password': litellm_database_postgres_password,
+      } if litellm_enabled and (litellm_database_postgres_hostname == postgres_connection_hostname) else omit)
+    }}
+  # /role-specific:litellm
 
   # role-specific:labelstudio
   - |-
@@ -9531,6 +9547,54 @@ kutt_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary
 #                                                                      #
 ########################################################################
 # /role-specific:kutt
+
+
+
+# role-specific:litellm
+########################################################################
+#                                                                      #
+# litellm                                                              #
+#                                                                      #
+########################################################################
+
+litellm_systemd_required_services_list_auto: |
+  {{
+    ([postgres_identifier ~ '.service'] if postgres_enabled | default(false) and (litellm_database_postgres_hostname == postgres_connection_hostname) else [])
+  }}
+
+litellm_container_additional_networks_auto: |
+  {{
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+    +
+    ([postgres_container_network] if postgres_enabled | default(false) and (litellm_database_postgres_hostname == postgres_connection_hostname) and litellm_container_network != postgres_container_network else [])
+  }}
+
+litellm_uid: "{{ mash_playbook_uid }}"
+litellm_gid: "{{ mash_playbook_gid }}"
+
+litellm_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+litellm_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+litellm_container_labels_traefik_compression_middleware_enabled: "{{ mash_playbook_reverse_proxy_traefik_middleware_compession_enabled }}"
+litellm_container_labels_traefik_compression_middleware_name: "{{ mash_playbook_reverse_proxy_traefik_middleware_compession_name if mash_playbook_reverse_proxy_traefik_middleware_compession_enabled else '' }}"
+
+# role-specific:postgres
+litellm_database_postgres_hostname: "{{ postgres_connection_hostname if postgres_enabled | default(false) else '' }}"
+litellm_database_postgres_port: "{{ postgres_connection_port if postgres_enabled | default(false) else '5432' }}"
+litellm_database_postgres_username: "{{ litellm_identifier }}"
+litellm_database_postgres_password: "{{ (mash_playbook_generic_secret_key + ':db.litellm') | hash('sha512') | to_uuid }}"
+# /role-specific:postgres
+
+# role-specific:traefik
+litellm_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
+litellm_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
+# /role-specific:traefik
+
+########################################################################
+#                                                                      #
+# /litellm                                                             #
+#                                                                      #
+########################################################################
+# /role-specific:litellm
 
 
 

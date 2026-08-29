@@ -522,6 +522,10 @@
     - role: galaxy/kutt
     # /role-specific:kutt
 
+    # role-specific:litellm
+    - role: galaxy/litellm
+    # /role-specific:litellm
+
     # role-specific:labelstudio
     - role: galaxy/labelstudio
     # /role-specific:labelstudio
