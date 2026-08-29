@@ -61,7 +61,7 @@ mermaid_hostname: mermaid.example.com
 
 ### Using the default Docker image (optional)
 
-To have the service run as the playbook's default user instead of root user, this service is by default configured to use the Docker image locally built on [this own Dockerfile](hhttps://radicle.network/nodes/iris.radicle.network/rad%3Az2RAnfyxCYZSoUiDufyzTM7P3RvEd/tree/templates/Dockerfile.j2).
+To have the service run as the playbook's default user instead of root user, this service is by default configured to use the Docker image locally built on [this own Dockerfile](https://radicle.network/nodes/iris.radicle.network/rad%3Az2RAnfyxCYZSoUiDufyzTM7P3RvEd/tree/templates/Dockerfile.j2).
 
 If you prefer simply pulling and using [the official Docker image](https://github.com/-/mermaid-js/packages/container/package/mermaid-live-editor) instead, add the following configuration to your `vars.yml` file:
 
