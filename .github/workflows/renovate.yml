@@ -38,9 +38,9 @@ permissions:
   contents: read
 
 env:
-  # Keep this disabled until Mend-hosted Renovate is disabled for this repository.
-  # A manual dry-run is still allowed while automatic processing is disabled.
-  MASH_RENOVATE_AUTOMATION_ENABLED: 'false'
+  # Mend-hosted Renovate must remain disabled while this automation is enabled.
+  # A manual dry-run remains available if this switch is disabled during migration.
+  MASH_RENOVATE_AUTOMATION_ENABLED: 'true'
 
   # renovate: datasource=docker depName=mash-renovate-runner packageName=ghcr.io/renovatebot/renovate
   MASH_RENOVATE_VERSION: '44.51.2'
