@@ -279,4 +279,4 @@ See [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az2Q7
 
 ## Related services
 
-- [Bichon](bichon.md) — Email archiving server with with full-text search function
+- [Bichon](bichon.md) — Email archiving server with full-text search function
