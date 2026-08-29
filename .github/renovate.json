@@ -8,6 +8,19 @@
   "labels": [
     "dependencies"
   ],
+  "branchConcurrentLimit": 3,
+  "customManagers": [
+    {
+      "customType": "regex",
+      "description": "Update the self-hosted Renovate runner version",
+      "managerFilePatterns": [
+        "/^\\.github\\/workflows\\/renovate\\.yml$/"
+      ],
+      "matchStrings": [
+        "# renovate: datasource=(?<datasource>\\S+) depName=(?<depName>\\S+) packageName=(?<packageName>\\S+)\\s+MASH_RENOVATE_VERSION: '(?<currentValue>[^']+)'"
+      ]
+    }
+  ],
   "packageRules": [
     {
       "ignoreUnstable": false,
@@ -26,6 +39,13 @@
         "https://github.com/devture/com.devture.ansible.role{/,}**",
         "https://github.com/mother-of-all-self-hosting{/,}**"
       ],
+      "automerge": true,
+      "automergeType": "branch"
+    },
+    {
+      "description": "Automerge updates of the self-hosted Renovate runner (via branch push - no PR)",
+      "matchManagers": ["custom.regex"],
+      "matchDepNames": ["mash-renovate-runner"],
       "automerge": true,
       "automergeType": "branch"
     }
