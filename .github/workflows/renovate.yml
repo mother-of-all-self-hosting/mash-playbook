@@ -147,6 +147,8 @@ jobs:
         env:
           LOG_LEVEL: ${{ inputs.log_level || 'info' }}
           RENOVATE_DRY_RUN: ${{ github.event_name == 'workflow_dispatch' && inputs.dry_run && 'full' || '' }}
+          # Permit mash-renovate to adopt branches created by the Mend-hosted App.
+          RENOVATE_GIT_IGNORED_AUTHORS: '["29139614+renovate[bot]@users.noreply.github.com"]'
           RENOVATE_IGNORE_PR_AUTHOR: 'true'
           RENOVATE_PLATFORM: github
           RENOVATE_PLATFORM_COMMIT: enabled
