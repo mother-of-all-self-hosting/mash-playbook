@@ -20,7 +20,8 @@
       "maxRequestsPerSecond": 2
     }
   ],
-  "branchConcurrentLimit": 3,
+  "branchConcurrentLimit": 5,
+  "prConcurrentLimit": 3,
   "customManagers": [
     {
       "customType": "regex",
