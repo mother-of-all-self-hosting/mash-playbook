@@ -898,6 +898,10 @@
     - role: galaxy/reitti
     # /role-specific:reitti
 
+    # role-specific:restic
+    - role: galaxy/restic
+    # /role-specific:restic
+
     # role-specific:restserver
     - role: galaxy/restserver
     # /role-specific:restserver

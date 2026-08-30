@@ -76,6 +76,4 @@ See [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Azi4z
 
 ## Related services
 
-- [BorgBackup with borgmatic](backup-borg.md) — Deduplicating backup program with optional compression and encryption
-- [Borg Web UI](borg-ui.md) — Unofficial web interface for BorgBackup
-- [Duplicati](duplicati.md) — Backup software that securely stores encrypted, incremental, compressed backups on local storage, cloud storage services and remote file servers
+- [restic](restic.md) — Fast and secure backup program
