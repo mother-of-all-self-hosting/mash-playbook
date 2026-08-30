@@ -28,7 +28,7 @@ on:  # yamllint disable-line rule:truthy
   push:
     branches: ['main']
   workflow_run:
-    workflows: ['pre-commit']
+    workflows: ['pre-commit', 'Renovate smoke test']
     types: [completed]
     branches: ['renovate/**']
   issues:
