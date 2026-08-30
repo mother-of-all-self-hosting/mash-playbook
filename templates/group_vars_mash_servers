@@ -9558,6 +9558,8 @@ kutt_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary
 ########################################################################
 
 litellm_enabled: false
+litellm_identifier: "{{ mash_playbook_service_identifier_prefix }}litellm"
+litellm_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}litellm"
 
 litellm_systemd_required_services_list_auto: |
   {{
