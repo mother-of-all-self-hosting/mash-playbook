@@ -8,6 +8,18 @@
   "labels": [
     "dependencies"
   ],
+  "hostRules": [
+    {
+      "matchHost": "https://codeberg.org",
+      "concurrentRequestLimit": 2,
+      "maxRequestsPerSecond": 2
+    },
+    {
+      "matchHost": "https://iris.radicle.network",
+      "concurrentRequestLimit": 2,
+      "maxRequestsPerSecond": 2
+    }
+  ],
   "branchConcurrentLimit": 3,
   "customManagers": [
     {
