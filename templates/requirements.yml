@@ -1077,7 +1077,7 @@
   name: yacy
   activation_prefix: yacy_
 - src: git+https://iris.radicle.network/z2BzsfYJzpSCK4tC8kCR1uCooZYX5.git
-  version: v0.0.0-4
+  version: v1.0.5-0
   name: yggstack
   activation_prefix: yggstack_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-yourls.git
