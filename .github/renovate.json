@@ -56,6 +56,12 @@
       "automergeType": "branch"
     },
     {
+      "matchSourceUrls": [
+        "https://iris.radicle.network{/,}**"
+      ],
+      "reviewers": ["luixxiul"]
+    },
+    {
       "description": "Automerge updates of the self-hosted Renovate runner (via branch push - no PR)",
       "matchManagers": ["custom.regex"],
       "matchDepNames": ["mash-renovate-runner"],
