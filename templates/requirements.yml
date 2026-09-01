@@ -889,7 +889,7 @@
   name: sftpgo
   activation_prefix: sftpgo_
 - src: git+https://iris.radicle.network/z3PxyXm3EXE4xCNKcaKVKmtdjVNog.git
-  version: v2.4.1-5
+  version: v2.10.0-0
   name: silverbullet
   activation_prefix: silverbullet_
 - src: git+https://iris.radicle.network/zXf3qnvPwC2UsBpfTYmPesL5KSZc.git
