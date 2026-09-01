@@ -43,7 +43,7 @@ env:
   MASH_RENOVATE_AUTOMATION_ENABLED: 'true'
 
   # renovate: datasource=docker depName=mash-renovate-runner packageName=ghcr.io/renovatebot/renovate
-  MASH_RENOVATE_VERSION: '44.52.1'
+  MASH_RENOVATE_VERSION: '44.53.0'
 
 jobs:
   preflight:
