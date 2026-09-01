@@ -933,7 +933,7 @@
   name: stirling_pdf
   activation_prefix: stirling_pdf_
 - src: git+https://iris.radicle.network/z23UDsbsiGGq9B8M8TSNWB4MLk3vX.git
-  version: v1.100.0-0
+  version: v1.101.0-0
   name: svix
   activation_prefix: svix_server_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-swap.git
