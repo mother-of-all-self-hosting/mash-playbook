@@ -293,7 +293,7 @@
   name: flaresolverr
   activation_prefix: flaresolverr_
 - src: git+https://iris.radicle.network/z49LkutSMcaLA2DBazn1h4V6Pn6GK.git
-  version: v5.5.4-6
+  version: v5.5.5-0
   name: flatnotes
   activation_prefix: flatnotes_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-fmd-server.git
