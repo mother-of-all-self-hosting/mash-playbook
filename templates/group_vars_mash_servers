@@ -7181,9 +7181,12 @@ headplane_gid: "{{ mash_playbook_gid }}"
 
 headplane_systemd_required_services_list_auto: |
   {{
-    ([headscale_identifier ~ '.service'] if headscale_enabled | default(false) and headplane_headscale_hostname == headscale_identifier and headplane_container_network != headscale_container_network else [])
-    +
     ([container_socket_proxy_identifier + '.service'] if container_socket_proxy_enabled | default(false) else [])
+  }}
+
+headplane_systemd_wanted_services_list_auto: |
+  {{
+    ([headscale_identifier ~ '.service'] if headscale_enabled | default(false) and headplane_headscale_hostname == headscale_identifier and headplane_container_network != headscale_container_network else [])
   }}
 
 headplane_container_additional_networks_auto: |
