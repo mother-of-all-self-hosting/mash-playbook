@@ -52,13 +52,13 @@ headplane_cookie_secret: ''
 
 ### Enabling the Headplane agent (optional)
 
-The [Headplane agent](https://headplane.net/features/agent) periodically syncs information about the nodes in your Tailnet. It requires a Headscale API key, which you can create using the [Headscale convenience script](headscale.md#convenience-script-to-call-the-binary):
+The [Headplane agent](https://headplane.net/features/agent) periodically syncs information about the nodes in your Tailnet. It requires a Headscale API key. If Headplane already uses one, you can reuse the same key. Otherwise, create one by running the command from [Headscale's API documentation](https://headscale.net/stable/ref/api/) with the [Headscale convenience script](headscale.md#convenience-script-to-call-the-binary):
 
 ```sh
 /mash/headscale/bin/headscale apikeys create
 ```
 
-Headscale API keys expire. Use the command's `--expiration` option to choose a suitable lifetime. Treat the key as a secret, store it as `vault_headplane_headscale_api_key` in Ansible Vault, and replace it before it expires.
+Headscale API keys expire and are only displayed when they are created. Treat the key as a secret, store it as `vault_headplane_headscale_api_key` in Ansible Vault, and replace it before it expires.
 
 Add the following configuration to your `vars.yml` file and re-run the [installation](../installing.md) process:
 
@@ -68,7 +68,7 @@ headplane_config_headscale_api_key: "{{ vault_headplane_headscale_api_key }}"
 headplane_config_integration_agent_tailscale_netns: false
 ```
 
-The API-key variable must contain a Headscale API key, not a pre-auth key.
+`headplane_config_headscale_api_key` must contain the Headscale API key. Do not use a pre-auth key, which is a different credential type.
 
 `headplane_config_integration_agent_tailscale_netns` defaults to `true`, preserving Headplane's default behavior. MASH normally connects Headplane to the Headscale container network in addition to its own network, so `false` is required for the agent in the typical MASH configuration and lets it use ordinary route selection.
 
