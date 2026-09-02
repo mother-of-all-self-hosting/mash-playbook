@@ -20,6 +20,8 @@ This service requires the following other services:
 - [Traefik](traefik.md) reverse-proxy server
 - [Headscale](headscale.md) server
 
+Headplane and Headscale have version-specific compatibility requirements. See the [Headplane release notes](https://github.com/tale/headplane/releases) and [Headplane agent documentation](https://headplane.net/features/agent) for the relevant upstream information.
+
 ## Configuration
 
 To enable this service, add the following configuration to your `vars.yml` file and re-run the [installation](../installing.md) process:
@@ -47,6 +49,28 @@ headplane_cookie_secret: ''
 #                                                                      #
 ########################################################################
 ```
+
+### Enabling the Headplane agent (optional)
+
+The [Headplane agent](https://headplane.net/features/agent) periodically syncs information about the nodes in your Tailnet. It requires a Headscale API key, which you can create using the [Headscale convenience script](headscale.md#convenience-script-to-call-the-binary):
+
+```sh
+/mash/headscale/bin/headscale apikeys create
+```
+
+Headscale API keys expire. Use the command's `--expiration` option to choose a suitable lifetime. Treat the key as a secret, store it as `vault_headplane_headscale_api_key` in Ansible Vault, and replace it before it expires.
+
+Add the following configuration to your `vars.yml` file and re-run the [installation](../installing.md) process:
+
+```yaml
+headplane_config_integration_agent_enabled: true
+headplane_config_headscale_api_key: "{{ vault_headplane_headscale_api_key }}"
+headplane_config_integration_agent_tailscale_netns: false
+```
+
+The API-key variable must contain a Headscale API key, not a pre-auth key.
+
+`headplane_config_integration_agent_tailscale_netns` defaults to `true`, preserving Headplane's default behavior. MASH normally connects Headplane to the Headscale container network in addition to its own network, so `false` is required for the agent in the typical MASH configuration and lets it use ordinary route selection.
 
 ### Extending the configuration
 
