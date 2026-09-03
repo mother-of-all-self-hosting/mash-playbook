@@ -43,6 +43,10 @@ litellm_hostname: litellm.example.com
 # Put a strong secret below, generated with `pwgen -s 64 1` or in another way.
 # litellm_master_key must start with 'sk-'.
 litellm_master_key: ''
+
+# Put a strong secret below, generated with `pwgen -s 64 1` or in another way.
+# litellm_salt_key MUST not be changed. Postgres uses it to encrypt provider
+# keys. Changing the litellm_salt_key looses those encrypted secrets.
 litellm_salt_key: ''
 
 ########################################################################
@@ -52,7 +56,7 @@ litellm_salt_key: ''
 ########################################################################
 ```
 
-**Note**: hosting LiteLLM under a subpath (by configuring the `litellm_path_prefix` variable) is not possible due to LiteLLM's limitations.
+**Note**: hosting LiteLLM under a subpath (by configuring the `litellm_path_prefix` variable) is not possible due to `ansible-role-mash-litellm`'s limitations.
 
 ### Configuring Valkey (optional)
 
