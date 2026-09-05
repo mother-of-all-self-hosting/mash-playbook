@@ -62,11 +62,13 @@
       "reviewers": ["luixxiul"]
     },
     {
-      "description": "Automerge updates of the self-hosted Renovate runner (via branch push - no PR)",
+      "description": "Automerge updates of the self-hosted Renovate runner (via branch push - no PR) monthly",
       "matchManagers": ["custom.regex"],
       "matchDepNames": ["mash-renovate-runner"],
       "automerge": true,
-      "automergeType": "branch"
+      "automergeType": "branch",
+      "schedule": ["* 0-3 1 * *"],
+      "automergeSchedule": ["* 0-3 1 * *"]
     }
   ],
   "github-actions": {
