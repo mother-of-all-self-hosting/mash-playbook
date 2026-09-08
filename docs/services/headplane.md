@@ -72,6 +72,21 @@ headplane_config_integration_agent_tailscale_netns: false
 
 `headplane_config_integration_agent_tailscale_netns` defaults to `true`, preserving Headplane's default behavior. MASH normally connects Headplane to the Headscale container network in addition to its own network, so `false` is required for the agent in the typical MASH configuration and lets it use ordinary route selection.
 
+#### Upgrading custom agent configuration from Headplane 0.6
+
+In Headplane 0.7, `integration.agent.cache_ttl` controls the interval between sync attempts in milliseconds. The default is `180000` (three minutes). Headplane 0.6.3 did not use this setting, despite including it in the example configuration.
+
+If you set `cache_ttl` through `headplane_configuration_extension_yaml`, check its value before upgrading. An old example value of `60` now means 60 milliseconds. To request one-minute intervals, merge the following setting into your existing configuration extension, preserving its other settings:
+
+```yaml
+headplane_configuration_extension_yaml: |
+  integration:
+    agent:
+      cache_ttl: 60000
+```
+
+The `integration.agent.cache_path` setting is deprecated and has no effect in Headplane 0.7. Remove it from your configuration extension. The agent's persistent working directory is still controlled by `integration.agent.work_dir`; its default, `/var/lib/headplane/agent`, is inside the data directory mounted by the role.
+
 ### Extending the configuration
 
 There are some additional things you may wish to configure about the component.
