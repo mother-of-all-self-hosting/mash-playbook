@@ -813,7 +813,7 @@
   name: radicale
   activation_prefix: radicale_
 - src: git+https://iris.radicle.network/zopwjin5Vh5dMgdHWiifJ2cg3bQW.git
-  version: v0.0.0-10
+  version: v0.28.0-0
   name: radicle_explorer
   activation_prefix: radicle_explorer_
 - src: git+https://iris.radicle.network/z3roZFCprFZhmK8BvkrsKwkLZXr56.git
