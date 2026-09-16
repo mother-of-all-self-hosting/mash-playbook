@@ -20,15 +20,15 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
 # Copyparty
 
-The playbook can install and configure [Copyparty](https://copypartybudget.org) for you.
+The playbook can install and configure [Copyparty](https://copyparty.eu/) for you.
 
-Copyparty is a local-first personal finance tool.
+Copyparty is a portable file server with many features.
 
-See the project's [documentation](https://copypartybudget.org/docs/) to learn what Copyparty does and why it might be useful to you.
+See the project's [documentation](https://github.com/9001/copyparty/blob/hovudstraum/README.md) to learn what Copyparty does and why it might be useful to you.
 
-For details about configuring the [Ansible role for Copyparty](https://radicle.network/nodes/iris.radicle.network/rad%3Az2chD7Kt74JwEMafxTooxN7MaeYtK), you can check them via:
+For details about configuring the [Ansible role for Copyparty](https://radicle.network/nodes/iris.radicle.network/rad%3Az4GaYR5FxcSuYuCKovEo9Zfm3HPXc), you can check them via:
 
-- 🌐 [the role's documentation](https://radicle.network/nodes/iris.radicle.network/rad%3Az2chD7Kt74JwEMafxTooxN7MaeYtK/tree/docs/configuring-copyparty.md) online
+- 🌐 [the role's documentation](https://radicle.network/nodes/iris.radicle.network/rad%3Az4GaYR5FxcSuYuCKovEo9Zfm3HPXc/tree/docs/configuring-copyparty.md) online
 - 📁 `roles/galaxy/copyparty/docs/configuring-copyparty.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 ## Dependencies
@@ -59,16 +59,18 @@ copyparty_hostname: copyparty.example.com
 ########################################################################
 ```
 
+### Set administrator password
+
+By default it is necessary to create an administrator account, whose default username is set to `copyparty`. See [this section](https://radicle.network/nodes/iris.radicle.network/rad:z4GaYR5FxcSuYuCKovEo9Zfm3HPXc/tree/docs/configuring-copyparty.md#set-username-and-password) on the role's documentation for details.
+
 ## Usage
 
 After running the command for installation, the Copyparty instance becomes available at the URL specified with `copyparty_hostname`. With the configuration above, the service is hosted at `https://copyparty.example.com`.
 
-To get started, open the URL with a web browser to create an account.
+By default uploading is limited to the administrator account only. If you want to allow others (with or without accounts) upload, move, or delete files, it is necessary to specify corresponding permissions by recreating the default settings specified to `copyparty_config_options_additional_configuration`.
+
+Refer to [this page](https://copyparty.eu/cli/) for the exhaustive list of available options.
 
 ## Troubleshooting
 
-See [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az2chD7Kt74JwEMafxTooxN7MaeYtK/tree/docs/configuring-copyparty.md#troubleshooting) on the role's documentation for details.
-
-## Related services
-
-- [I hate money](ihatemoney.md) — Shared budget manager
+See [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az4GaYR5FxcSuYuCKovEo9Zfm3HPXc/tree/docs/configuring-copyparty.md#troubleshooting) on the role's documentation for details.
