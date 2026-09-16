@@ -242,6 +242,10 @@
     - role: galaxy/convertx
     # /role-specific:convertx
 
+    # role-specific:copyparty
+    - role: galaxy/copyparty
+    # /role-specific:copyparty
+
     # role-specific:couchdb
     - role: galaxy/couchdb
     # /role-specific:couchdb

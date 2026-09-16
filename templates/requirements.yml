@@ -160,6 +160,10 @@
   version: v0.18.0-1
   name: convertx
   activation_prefix: convertx_
+- src: git+https://iris.radicle.network/z4GaYR5FxcSuYuCKovEo9Zfm3HPXc.git
+  version: v1.20.23-0
+  name: copyparty
+  activation_prefix: copyparty_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-couchdb.git
   version: v3.5.2-2
   name: couchdb
