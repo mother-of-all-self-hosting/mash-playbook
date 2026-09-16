@@ -164,7 +164,7 @@
     <outline text="paperless-2" title="paperless-2" type="rss" htmlUrl="https://github.com/apache/tika" xmlUrl="https://github.com/apache/tika/releases.atom" />
     <outline text="paperless-3" title="paperless-3" type="rss" htmlUrl="https://github.com/gotenberg/gotenberg" xmlUrl="https://github.com/gotenberg/gotenberg/releases.atom" />
     <outline text="papra" title="papra" type="rss" htmlUrl="https://github.com/papra-hq/papra" xmlUrl="https://github.com/papra-hq/papra/releases.atom" />
-    <outline text="pdfding" title="pdfding" type="rss" htmlUrl="https://github.com/mrmn2/PdfDing" xmlUrl="https://github.com/mrmn2/PdfDing/releases.atom" />
+    <outline text="pdfding" title="pdfding" type="rss" htmlUrl="https://codeberg.org/mrmn/PdfDing" xmlUrl="https://codeberg.org/mrmn/PdfDing/releases.atom" />
     <outline text="peertube" title="peertube" type="rss" htmlUrl="https://github.com/Chocobozzz/PeerTube" xmlUrl="https://github.com/Chocobozzz/PeerTube/releases.atom" />
     <outline text="pgadmin" title="pgadmin" type="rss" htmlUrl="https://github.com/pgadmin-org/pgadmin4" xmlUrl="https://github.com/pgadmin-org/pgadmin4/releases.atom" />
     <outline text="phpmyadmin" title="phpmyadmin" type="rss" htmlUrl="https://github.com/phpmyadmin/docker" xmlUrl="https://github.com/phpmyadmin/docker/releases.atom" />
