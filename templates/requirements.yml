@@ -65,7 +65,7 @@
   name: auxiliary
   activation_prefix: aux_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-backup_borg.git
-  version: v1.4.5-2.1.8-0
+  version: v1.4.5-2.1.8-1
   name: backup_borg
   activation_prefix: backup_borg_
 - src: git+https://iris.radicle.network/z3JDUHjeHMqbZ3YLxquSUbCmAJLi.git
@@ -773,7 +773,7 @@
   name: prometheus
   activation_prefix: prometheus_enabled
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-prometheus-alertmanager.git
-  version: v0.34.1-0
+  version: v0.34.1-1
   name: prometheus_alertmanager
   activation_prefix: prometheus_alertmanager_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-prometheus-blackbox-exporter.git
@@ -973,7 +973,7 @@
   name: teable
   activation_prefix: teable_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-telegraf.git
-  version: v1.40.0-0
+  version: v1.40.0-1
   name: telegraf
   activation_prefix: telegraf_
 - src: git+https://iris.radicle.network/z4TiZiqkm6MBmkPL2NTPMavni6LV.git
