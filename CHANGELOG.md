@@ -1,3 +1,11 @@
+# 2026-09-17
+
+## Radarr requires explicit trust for reverse-proxy headers
+
+The Radarr role update to `v6.4.4-0` includes [Radarr's new Trusted Networks setting](https://github.com/Radarr/Radarr/releases/tag/v6.4.4.10685). Radarr no longer trusts forwarded headers from all private networks by default. This affects Traefik deployments: without configuration, Radarr sees the proxy's address and internal HTTP scheme instead of the original client address and HTTPS scheme.
+
+Configure the actual proxy address or subnet as described in [the Radarr reverse-proxy guide](docs/services/radarr.md#trusting-reverse-proxy-headers), then verify login and API access through the public URL. Existing custom environment variables and application settings are not rewritten by the playbook.
+
 # 2026-08-24
 
 ## (Backward Compatibility Break) KeyDB support removed
