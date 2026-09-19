@@ -65,7 +65,7 @@
   name: auxiliary
   activation_prefix: aux_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-backup_borg.git
-  version: v1.4.5-2.1.7-3
+  version: v1.4.5-2.1.7-4
   name: backup_borg
   activation_prefix: backup_borg_
 - src: git+https://iris.radicle.network/z3JDUHjeHMqbZ3YLxquSUbCmAJLi.git
@@ -117,7 +117,7 @@
   name: cap
   activation_prefix: cap_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-changedetection.git
-  version: v0.60.7-0
+  version: v0.60.7-1
   name: changedetection
   activation_prefix: changedetection_
 - src: git+https://iris.radicle.network/z3HYheWh86U9ErEL18tK2gBkq7g2A.git
@@ -137,7 +137,7 @@
   name: cleanup
   activation_prefix: system_cleanup_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-clickhouse.git
-  version: v26.8.7.19-0
+  version: v26.8.7.19-1
   name: clickhouse
   activation_prefix: clickhouse_
 - src: git+https://iris.radicle.network/zp12kTQqmgqnFpUU6gPyVq19HNMD.git
@@ -149,7 +149,7 @@
   name: collabora_online
   activation_prefix: collabora_online_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-container-socket-proxy.git
-  version: v0.5.0-1
+  version: v0.5.0-2
   name: container_socket_proxy
   activation_prefix: mash_
 - src: git+https://iris.radicle.network/z22bUmhZzA5VWtmKERFkEjGzdPuke.git
@@ -181,7 +181,7 @@
   name: databasus
   activation_prefix: databasus_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-ddclient.git
-  version: v4.0.0-5
+  version: v4.0.0-6
   name: ddclient
   activation_prefix: ddclient_
 - src: git+https://github.com/geerlingguy/ansible-role-docker
@@ -233,7 +233,7 @@
   name: echoip
   activation_prefix: echoip_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-endlessh.git
-  version: v2026.0730.0-0
+  version: v2026.0730.0-1
   name: endlessh
   activation_prefix: endlessh_
 - src: git+https://iris.radicle.network/z2CSxS3YLtJYM87TyGZkZCan3uoSJ.git
@@ -261,7 +261,7 @@
   name: excalidraw_room
   activation_prefix: excalidraw_room_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-exim-relay.git
-  version: v4.99.1-r0-2-3
+  version: v4.99.1-r0-2-4
   name: exim_relay
   activation_prefix: exim_relay_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-fail2ban.git
@@ -353,7 +353,7 @@
   name: gotify
   activation_prefix: gotify_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-gotosocial.git
-  version: v0.22.1-0
+  version: v0.22.1-1
   name: gotosocial
   activation_prefix: gotosocial_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-grafana.git
