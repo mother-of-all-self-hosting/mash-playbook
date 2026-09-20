@@ -12,6 +12,23 @@
     - name: Include migration validation tasks
       ansible.builtin.include_tasks: "{{ role_path }}/tasks/validate_config.yml"
 
+- name: (Deprecation) Catch and report Jackett labels in the old string format
+  ansible.builtin.fail:
+    msg: >-
+      Jackett additional labels now require a list of strings.
+      Replace `jackett_container_labels_additional_labels: |` with
+      `jackett_container_labels_additional_labels_custom:` and make each label a list item.
+      Remove an empty string override or replace it with an empty list ([]).
+      See the Jackett entry in CHANGELOG.md for an example.
+  when:
+    - jackett_enabled | default(false) | bool
+    - jackett_container_labels_additional_labels | default([]) is string
+  tags:
+    - setup-all
+    - install-all
+    - setup-jackett
+    - install-jackett
+
 - name: Run the Docker trusted.gpg.d migration on Debian
   when: ansible_facts.os_family == 'Debian' and mash_playbook_docker_installation_enabled | bool and mash_playbook_migration_docker_trusted_gpg_d_migration_enabled | bool
   tags:

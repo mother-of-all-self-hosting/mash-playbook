@@ -34,10 +34,10 @@ jackett_enabled: true
 
 jackett_hostname: jackett.example.com
 
-# To mount additional data directories, use `jackett_container_additional_volumes`
+# To mount additional data directories, use `jackett_container_additional_volumes_custom`
 #
 # Example:
-# jackett_container_additional_volumes:
+# jackett_container_additional_volumes_custom:
 #   - type: bind
 #     src: /path/to/blackhole
 #     dst: /downloads
@@ -65,10 +65,10 @@ For additional configuration options, refer to [ansible-role-jackett](https://gi
 Additional command line arguments can be passed to Jackett by use of the `RUN_OPTS` environment variable. To specify this, add the following to your configuration:
 
 ```yaml
-# To add additional environment variables, use `jackett_container_additional_environment_variables`
+# To add additional environment variables, use `jackett_environment_variables_additional_variables`
 #
 # Example:
-# jackett_container_additional_environment_variables: |
+# jackett_environment_variables_additional_variables: |
 #   RUN_OPTS="--IgnoreSslErrors true --ProxyConnection 192.168.10.3:9999"
 ```
 

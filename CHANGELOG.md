@@ -1,3 +1,36 @@
+# 2026-09-20
+
+## (Backward Compatibility Break) Jackett configuration changes
+
+The [Jackett role update](https://github.com/spatterIight/ansible-role-jackett/compare/v0.24.1870-3...v0.24.1870-4) keeps Jackett at `0.24.1870`, but changes its configuration interface. Before re-running the playbook, update any of these overrides in `vars.yml`:
+
+| Old variable | New variable (keep the same value) |
+| --- | --- |
+| `jackett_timezone` | `jackett_environment_variables_tz` |
+| `jackett_container_http_bind_port` | `jackett_container_http_host_bind_port` |
+
+The role reports an error if either old name is still defined. If you copied the older command-line example from our Jackett documentation, also rename `jackett_container_additional_environment_variables` to `jackett_environment_variables_additional_variables`, keeping its multiline string value.
+
+Additional Docker labels now take a list instead of a multiline string. For example, replace:
+
+```yaml
+jackett_container_labels_additional_labels: |
+  my.label=1
+  another.label=value
+```
+
+with:
+
+```yaml
+jackett_container_labels_additional_labels_custom:
+  - "my.label=1"
+  - "another.label=value"
+```
+
+Remove an empty string override or replace it with `[]`. The playbook rejects the old string format before installing Jackett. Existing list overrides for additional volumes and container arguments remain supported; use `jackett_container_additional_volumes_custom` and `jackett_container_extra_arguments_custom` when you want to extend the role's automatically supplied lists.
+
+The default image registry changes from `lscr.io` to `ghcr.io`; allow access to the new registry when pulling images. Explicit image and registry overrides remain supported. New Traefik response headers include HSTS and `Content-Security-Policy: frame-ancestors 'self'`. If you embed Jackett in another site's dashboard, review `jackett_http_header_content_security_policy`; individual header defaults can be disabled with an empty string or adjusted with `jackett_container_labels_traefik_additional_response_headers_custom`.
+
 # 2026-08-24
 
 ## (Backward Compatibility Break) KeyDB support removed
