@@ -65,12 +65,9 @@ Add the following configuration to your `vars.yml` file and re-run the [installa
 ```yaml
 headplane_config_integration_agent_enabled: true
 headplane_config_headscale_api_key: "{{ vault_headplane_headscale_api_key }}"
-headplane_config_integration_agent_tailscale_netns: false
 ```
 
 `headplane_config_headscale_api_key` must contain the Headscale API key. Do not use a pre-auth key, which is a different credential type.
-
-`headplane_config_integration_agent_tailscale_netns` defaults to `true`, preserving Headplane's default behavior. MASH normally connects Headplane to the Headscale container network in addition to its own network, so `false` is required for the agent in the typical MASH configuration and lets it use ordinary route selection.
 
 #### Upgrading custom agent configuration from Headplane 0.6
 

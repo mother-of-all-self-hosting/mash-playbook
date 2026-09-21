@@ -7251,6 +7251,7 @@ headplane_headscale_config_path: "{{ headscale_config_path if headscale_enabled 
 headplane_headscale_container_name: "{{ headscale_identifier if headscale_enabled else '' }}"
 headplane_headscale_extra_records_enabled: "{{ true if headscale_enabled and headscale_extra_records_path_enabled else false }}"
 headplane_headscale_public_url: "{{ (headscale_scheme + '://' + headscale_hostname + headscale_path_prefix) if headscale_enabled else '' }}"
+headplane_config_integration_agent_tailscale_netns: "{{ false if headplane_config_integration_agent_enabled and headplane_headscale_hostname == headscale_identifier else true }}" # let the agent use ordinary route selection
 # /role-specific:headscale
 
 # role-specific:traefik
