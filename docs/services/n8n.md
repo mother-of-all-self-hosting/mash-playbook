@@ -39,7 +39,7 @@ For details about configuring the [Ansible role for n8n](https://github.com/moth
 
 This service requires the following other services:
 
-- [Postgres](postgres.md) database
+- [Postgres](postgres.md) / [SQLite](https://www.sqlite.org/) database — n8n will default to Postgres
 - [Traefik](traefik.md) reverse-proxy server
 
 ## Configuration
@@ -64,6 +64,18 @@ n8n_path_prefix: /n8n
 #                                                                      #
 ########################################################################
 ```
+
+### Select database to use (optional)
+
+By default n8n is configured to use Postgres, but you can choose SQLite.
+
+To use SQLite, add the following configuration to your `vars.yml` file:
+
+```yaml
+n8n_database_type: sqlite
+```
+
+Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-n8n/blob/main/docs/configuring-n8n.md#configuring-the-database) on the role's documentation for details.
 
 ## Usage
 

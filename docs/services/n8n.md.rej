@@ -1,0 +1,11 @@
+--- docs/services/n8n.md
++++ docs/services/n8n.md
+@@ -39,7 +39,7 @@ For details about configuring the [Ansible role for n8n](https://github.com/moth
+ 
+ This service requires the following other services:
+ 
+-- [Postgres](postgres.md) database
++- [Postgres](postgres.md) / [SQLite](https://www.sqlite.org/) database — n8n will default to Postgres
+ - [Traefik](traefik.md) reverse-proxy server
+ 
+ ## Configuration
