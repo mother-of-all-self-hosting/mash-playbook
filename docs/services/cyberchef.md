@@ -66,4 +66,4 @@ After running the command for installation, the CyberChef instance becomes avail
 
 ## Troubleshooting
 
-See [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az2zgHMDh4Pb8yr4DH8BVkMcdboBXd/tree/docs/configuring-cyberchef.md#troubleshooting) on the role's documentation for details.
+Refer to [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az2zgHMDh4Pb8yr4DH8BVkMcdboBXd/tree/docs/configuring-cyberchef.md#troubleshooting) on the role's documentation for details.

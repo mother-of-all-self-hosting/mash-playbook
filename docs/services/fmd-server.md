@@ -74,11 +74,11 @@ fmd_server_config_registrationtoken: YOUR_TOKEN_HERE
 
 After running the command for installation, the FMD Server instance becomes available at the URL specified with `fmd_hostname`. With the configuration above, the service is hosted at `https://fmd.example.com`.
 
-See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-fmd-server/blob/main/docs/configuring-fmd-server.md#usage) on the role's documentation for details about how to set up the client (FMD).
+Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-fmd-server/blob/main/docs/configuring-fmd-server.md#usage) on the role's documentation for details about how to set up the client (FMD).
 
 >[!NOTE]
 > As sending commands from FMD Server to your device requires a UnifiedPush Distributor application, you might be interested in self-hosting a [ntfy](ntfy.md) Push Server along with it.
 
 ## Troubleshooting
 
-See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-fmd-server/blob/main/docs/configuring-fmd-server.md#troubleshooting) on the role's documentation for details.
+Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-fmd-server/blob/main/docs/configuring-fmd-server.md#troubleshooting) on the role's documentation for details.

@@ -67,7 +67,7 @@ converse_path_prefix: /converse
 ########################################################################
 ```
 
-It is optionally possible to edit settings about encryption, default themes, etc. See [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az22bUmhZzA5VWtmKERFkEjGzdPuke/tree/docs/configuring-converse.md#adjusting-the-playbook-configuration) for details.
+It is optionally possible to edit settings about encryption, default themes, etc. Refer to [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az22bUmhZzA5VWtmKERFkEjGzdPuke/tree/docs/configuring-converse.md#adjusting-the-playbook-configuration) for details.
 
 ### Specify BOSH / WebSocket API
 
@@ -81,4 +81,4 @@ To get started, open the URL with a web browser to log in to your XMPP server.
 
 ## Troubleshooting
 
-See [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az22bUmhZzA5VWtmKERFkEjGzdPuke/tree/docs/configuring-converse.md#troubleshooting) on the role's documentation for details.
+Refer to [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az22bUmhZzA5VWtmKERFkEjGzdPuke/tree/docs/configuring-converse.md#troubleshooting) on the role's documentation for details.

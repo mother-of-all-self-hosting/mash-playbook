@@ -62,7 +62,7 @@ restserver_hostname: restserver.example.com
 
 ### Configuring HTTP Basic authentication
 
-The HTTP Basic authentication on Traefik is enabled for the web interface by default, considering the nature of the service. See [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Azi4z5FpzySQ1kRqVpqcTkEfnXrD9/tree/docs/configuring-restserver.md#configuring-http-basic-authentication) on the role's documentation for details about how to set it up or disable it.
+The HTTP Basic authentication on Traefik is enabled for the web interface by default, considering the nature of the service. Refer to [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Azi4z5FpzySQ1kRqVpqcTkEfnXrD9/tree/docs/configuring-restserver.md#configuring-http-basic-authentication) on the role's documentation for details about how to set it up or disable it.
 
 ## Usage
 
@@ -72,7 +72,7 @@ Refer to [this section](https://restic.readthedocs.io/en/latest/030_preparing_a_
 
 ## Troubleshooting
 
-See [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Azi4z5FpzySQ1kRqVpqcTkEfnXrD9/tree/docs/configuring-restserver.md#troubleshooting) on the role's documentation for details.
+Refer to [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Azi4z5FpzySQ1kRqVpqcTkEfnXrD9/tree/docs/configuring-restserver.md#troubleshooting) on the role's documentation for details.
 
 ## Related services
 

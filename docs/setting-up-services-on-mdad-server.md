@@ -25,7 +25,7 @@ For the local environment, please make sure that you have installed and configur
 
 While it is technically not impossible to integrate the roles used by the MASH playbook to the MDAD playbook, you can just retrieve the MASH playbook and run it against the same server. This way is straightforward and recommended for most cases.
 
-See [this page](getting-the-playbook.md) for details about how to get the playbook's source code. In the same way as for the MDAD playbook, you can retrieve the playbook with git or by downloading its ZIP archive.
+Refer to [this page](getting-the-playbook.md) for details about how to get the playbook's source code. In the same way as for the MDAD playbook, you can retrieve the playbook with git or by downloading its ZIP archive.
 
 ## Configure DNS settings
 
@@ -71,12 +71,12 @@ Note that `example.com` is specified as hostname values for services enabled by 
 
 After configuring the playbook, you can proceed to installing the services.
 
-The step for installation is common to both MASH and MDAD playbooks (ie. fetching the Ansible roles and running the installation command), so there should not be a problem. If you do not feel confident pretty much, please see [this page](installing.md) to make sure what needs to be done.
+The step for installation is common to both MASH and MDAD playbooks (ie. fetching the Ansible roles and running the installation command), so there should not be a problem. If you do not feel confident pretty much, please refer to [this page](installing.md) to make sure what needs to be done.
 
-You can see [this page](supported-services.md) for a full list of the supported services and pick services which you want to install. When enabling a service, please check its documentation for the instruction.
+You can refer to [this page](supported-services.md) for a full list of the supported services and pick services which you want to install. When enabling a service, please check its documentation for the instruction.
 
 If you want to install services, you can do so whenever you want by running the playbook. However, it is generally not recommended to install a lot of services all at once, since it can overflow the server. You probably might want to install them one by one, confirming that each of them works as expected.
 
 After running the installation command, make sure to check the installed services can be accessed. **If you can access to them, the installation has completed and you can use the services along with the Matrix services**🎉
 
-See [this section](installing.md#things-to-do-next) for details about what to do after successful installation. The MASH playbook, like the MDAD playbook, will **not** automatically run the maintenance task for you, so do not forget to update the playbook and re-run it **manually**.
+Refer to [this section](installing.md#things-to-do-next) for details about what to do after successful installation. The MASH playbook, like the MDAD playbook, will **not** automatically run the maintenance task for you, so do not forget to update the playbook and re-run it **manually**.

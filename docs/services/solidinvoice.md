@@ -65,7 +65,7 @@ solidinvoice_hostname: solidinvoice.example.com
 
 ### Select database to use
 
-It is necessary to select a database used by SolidInvoice from a MySQL compatible database, Postgres, and SQLite. See [this section](https://radicle.network/nodes/iris.radicle.network/rad%3AzeEwXM9Fp4C8NU4oQfNg474Vivwu/tree/docs/configuring-solidinvoice.md#specify-database) on the role's documentation for details.
+It is necessary to select a database used by SolidInvoice from a MySQL compatible database, Postgres, and SQLite. Refer to [this section](https://radicle.network/nodes/iris.radicle.network/rad%3AzeEwXM9Fp4C8NU4oQfNg474Vivwu/tree/docs/configuring-solidinvoice.md#specify-database) on the role's documentation for details.
 
 ### Configuring the mailer (optional)
 
@@ -82,8 +82,8 @@ After running the command for installation, the SolidInvoice instance becomes av
 
 To get started, open the URL with a web browser, and follow the set up wizard.
 
-On the set up wizard, it is required to input database credentials to use a MySQL compatible database or Postgres. See [this section](https://radicle.network/nodes/iris.radicle.network/rad%3AzeEwXM9Fp4C8NU4oQfNg474Vivwu/tree/docs/configuring-solidinvoice.md#outputting-database-credentials) on the role's documentation for details about how to check them.
+On the set up wizard, it is required to input database credentials to use a MySQL compatible database or Postgres. Refer to [this section](https://radicle.network/nodes/iris.radicle.network/rad%3AzeEwXM9Fp4C8NU4oQfNg474Vivwu/tree/docs/configuring-solidinvoice.md#outputting-database-credentials) on the role's documentation for details about how to check them.
 
 ## Troubleshooting
 
-See [this section](https://radicle.network/nodes/iris.radicle.network/rad%3AzeEwXM9Fp4C8NU4oQfNg474Vivwu/tree/docs/configuring-solidinvoice.md#troubleshooting) on the role's documentation for details.
+Refer to [this section](https://radicle.network/nodes/iris.radicle.network/rad%3AzeEwXM9Fp4C8NU4oQfNg474Vivwu/tree/docs/configuring-solidinvoice.md#troubleshooting) on the role's documentation for details.

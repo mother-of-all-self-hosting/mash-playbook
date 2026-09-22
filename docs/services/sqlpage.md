@@ -67,4 +67,4 @@ Refer to [this page](https://sql-page.com/your-first-sql-website/) on the offici
 
 ## Troubleshooting
 
-See [this section](https://radicle.network/nodes/iris.radicle.network/rad:z2eyt9uovdZtjh8TL5qiyv2PqAYvP/tree/docs/configuring-sqlpage.md#troubleshooting) on the role's documentation for details.
+Refer to [this section](https://radicle.network/nodes/iris.radicle.network/rad:z2eyt9uovdZtjh8TL5qiyv2PqAYvP/tree/docs/configuring-sqlpage.md#troubleshooting) on the role's documentation for details.

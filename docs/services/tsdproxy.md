@@ -56,7 +56,7 @@ tsdproxy_tailscale_authkey: '' # OR
 tsdproxy_tailscale_authkeyfile: '' # use this to load authkey from file. If this is defined, tsdproxy_tailscale_authkey is ignored
 ```
 
-See [this page](https://almeidapaulopt.github.io/tsdproxy/docs/advanced/tailscale/) on the official documentation for details.
+Refer to [this page](https://almeidapaulopt.github.io/tsdproxy/docs/advanced/tailscale/) on the official documentation for details.
 
 ## Usage
 

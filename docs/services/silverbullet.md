@@ -64,7 +64,7 @@ silverbullet_hostname: silverbullet.example.com
 
 ### Set the username and password
 
-You also need to create an instance's user to access to the UI after installation. See [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az3PxyXm3EXE4xCNKcaKVKmtdjVNog/tree/docs/configuring-silverbullet.md#set-the-username-and-password) on the role's documentation for details.
+You also need to create an instance's user to access to the UI after installation. Refer to [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az3PxyXm3EXE4xCNKcaKVKmtdjVNog/tree/docs/configuring-silverbullet.md#set-the-username-and-password) on the role's documentation for details.
 
 ### Integrating with Prometheus (optional)
 
@@ -109,7 +109,7 @@ After running the command for installation, the SilverBullet instance becomes av
 
 ## Troubleshooting
 
-See [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az3PxyXm3EXE4xCNKcaKVKmtdjVNog/tree/docs/configuring-silverbullet.md#troubleshooting) on the role's documentation for details.
+Refer to [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az3PxyXm3EXE4xCNKcaKVKmtdjVNog/tree/docs/configuring-silverbullet.md#troubleshooting) on the role's documentation for details.
 
 ## Related services
 

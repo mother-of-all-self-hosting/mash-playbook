@@ -67,7 +67,7 @@ It is also necessary to specify to the `ergo_config_network_name` variable the n
 
 By default the server is not protected with a shared "server password" (`PASS`), and anyone can use it. For the IRC operators ("oper", "ircop") the role specifies the random password which should be replaced with yours.
 
-See [the role's documentation](https://radicle.network/nodes/iris.radicle.network/rad%3Az2CSxS3YLtJYM87TyGZkZCan3uoSJ/tree/docs/configuring-ergo.md#setting-server-39-s-password) for details about how to configure those passwords.
+Refer to [the role's documentation](https://radicle.network/nodes/iris.radicle.network/rad%3Az2CSxS3YLtJYM87TyGZkZCan3uoSJ/tree/docs/configuring-ergo.md#setting-server-39-s-password) for details about how to configure those passwords.
 
 ### Enabling permanent message storage (optional)
 
@@ -88,7 +88,7 @@ Before logging in to the server with your IRC client, you might want to have a l
 
 ## Troubleshooting
 
-See [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az2CSxS3YLtJYM87TyGZkZCan3uoSJ/tree/docs/configuring-ergo.md#troubleshooting) on the role's documentation for details.
+Refer to [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az2CSxS3YLtJYM87TyGZkZCan3uoSJ/tree/docs/configuring-ergo.md#troubleshooting) on the role's documentation for details.
 
 ## Related services
 

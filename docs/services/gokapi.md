@@ -67,7 +67,7 @@ To get started, open the URL `https://gokapi.example.com/setup` with a web brows
 
 ## Troubleshooting
 
-See [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az2zryaw72dpp4pRWKK1qvQzsY4qHR/tree/docs/configuring-gokapi.md#troubleshooting) on the role's documentation for details.
+Refer to [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az2zryaw72dpp4pRWKK1qvQzsY4qHR/tree/docs/configuring-gokapi.md#troubleshooting) on the role's documentation for details.
 
 ## Related services
 

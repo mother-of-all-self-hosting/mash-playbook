@@ -82,7 +82,7 @@ To create a dedicated instance for Borg Web UI, you can follow the steps below:
 2. Create a new `vars.yml` file for the dedicated instance
 3. Edit the existing `vars.yml` file for the main host
 
-*See [this page](../running-multiple-instances.md) for details about configuring multiple instances of Valkey on the same server.*
+*Refer to [this page](../running-multiple-instances.md) for details about configuring multiple instances of Valkey on the same server.*
 
 ##### Adjust `hosts`
 
@@ -312,7 +312,7 @@ As the Borg Web UI instance does not support configuring the notification servic
 
 ## Troubleshooting
 
-See [this section](https://radicle.network/nodes/iris.radicle.network/rad%3AzxNS7XeayGimb4WFfvqmasiZZC3v/tree/docs/configuring-borg-ui.md#troubleshooting) on the role's documentation for details.
+Refer to [this section](https://radicle.network/nodes/iris.radicle.network/rad%3AzxNS7XeayGimb4WFfvqmasiZZC3v/tree/docs/configuring-borg-ui.md#troubleshooting) on the role's documentation for details.
 
 ## Related services
 

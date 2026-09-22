@@ -82,7 +82,7 @@ After running the command for installation, the BentoPDF instance becomes availa
 
 ## Troubleshooting
 
-See [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az2bgVhWju6shYSwtdKb7v3eoSL1Pt/tree/docs/configuring-bentopdf.md#troubleshooting) on the role's documentation for details.
+Refer to [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az2bgVhWju6shYSwtdKb7v3eoSL1Pt/tree/docs/configuring-bentopdf.md#troubleshooting) on the role's documentation for details.
 
 ## Related services
 

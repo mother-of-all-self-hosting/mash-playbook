@@ -204,7 +204,7 @@ syncthing_container_additional_volumes_custom:
 
 After running the command for installation, the Calibre-Web instance becomes available at the URL specified with `calibre_web_hostname` and `calibre_web_path_prefix`. With the configuration above, the service is hosted at `https://mash.example.com/calibre-web`.
 
-See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-calibre-web/blob/master/docs/configuring-calibre-web.md#usage) for details about setting up the instance.
+Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-calibre-web/blob/master/docs/configuring-calibre-web.md#usage) for details about setting up the instance.
 
 ### Configuring the mailer (optional)
 

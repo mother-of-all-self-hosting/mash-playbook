@@ -37,7 +37,7 @@ For details about configuring the [Ansible role for Neko](https://github.com/mot
 
 ## Prerequisites
 
-To use the service, by default you need to open ports `52000-52100/udp` of the host. See [here](https://neko.m1k1o.net/docs/v3/configuration/webrtc#epr) for details.
+To use the service, by default you need to open ports `52000-52100/udp` of the host. Refer to [here](https://neko.m1k1o.net/docs/v3/configuration/webrtc#epr) for details.
 
 ## Dependencies
 
@@ -122,8 +122,8 @@ After running the command for installation, the Neko instance becomes available 
 
 If you cannot log in to the instance, make sure that the ports are open on the server and WebRTC is enabled on the browser.
 
-See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-neko/blob/main/docs/configuring-neko.md#usage) on the role's documentation for the usage.
+Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-neko/blob/main/docs/configuring-neko.md#usage) on the role's documentation for the usage.
 
 ## Troubleshooting
 
-See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-neko/blob/main/docs/configuring-neko.md#troubleshooting) on the role's documentation for details.
+Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-neko/blob/main/docs/configuring-neko.md#troubleshooting) on the role's documentation for details.

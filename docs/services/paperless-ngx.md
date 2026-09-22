@@ -95,7 +95,7 @@ To create a dedicated instance for Paperless-ngx, you can follow the steps below
 2. Create a new `vars.yml` file for the dedicated instance
 3. Edit the existing `vars.yml` file for the main host
 
-*See [this page](../running-multiple-instances.md) for details about configuring multiple instances of Valkey on the same server.*
+*Refer to [this page](../running-multiple-instances.md) for details about configuring multiple instances of Valkey on the same server.*
 
 ##### Adjust `hosts`
 
@@ -273,7 +273,7 @@ To actually have the service use (and get messages sent through the exim-relay s
 
 You can optionally have the instance connect to [Apache Tika Server](http://tika.apache.org/) for parsing and converting document files (such as ".doc", ".xlsx" and ".odt"). It is required for parsing emails (".eml") as well.
 
-Apache Tika Server is available on the playbook. As it requires [Gotenberg](gotenberg.md), enabling both of them configures the instance to connect to it. See [this page](tika.md) for details about how to install Apache Tika Server, and [this page](gotenberg.md) about how to install Gotenberg, respectively.
+Apache Tika Server is available on the playbook. As it requires [Gotenberg](gotenberg.md), enabling both of them configures the instance to connect to it. Refer to [this page](tika.md) for details about how to install Apache Tika Server, and [this page](gotenberg.md) about how to install Gotenberg, respectively.
 
 ### Extending the configuration
 

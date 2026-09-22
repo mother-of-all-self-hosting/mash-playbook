@@ -82,7 +82,7 @@ On Healthchecks you can add configuration settings of notification services. If 
 
 As the Healthchecks instance does not support configuring the self-hosted ntfy or Gotify instances with environment variables, you can add default options for them on its UI. Refer to [this page](https://healthchecks.io/docs/configuring_notifications/) on the official documentation as well about how to configure them.
 
-See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-healthchecks/blob/main/docs/configuring-healthchecks.md#configuring-notification-services-optional) on the role's documentation for details about configuring other services.
+Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-healthchecks/blob/main/docs/configuring-healthchecks.md#configuring-notification-services-optional) on the role's documentation for details about configuring other services.
 
 ## Usage
 

@@ -74,11 +74,11 @@ Replace `YOUR_ADMIN_PASSWORD_HERE` with your own value.
 
 ### Configuring OIDC authentication (optional)
 
-Alternatively, you can enable OIDC authentication for FileBrowser Quantum. See [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az3ALGSKDhVLeMnR49YPXk5yv2yTge/tree/docs/configuring-filebrowser-quantum.md#configuring-oidc-authentication-optional) on the role's documentation for necessary settings.
+Alternatively, you can enable OIDC authentication for FileBrowser Quantum. Refer to [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az3ALGSKDhVLeMnR49YPXk5yv2yTge/tree/docs/configuring-filebrowser-quantum.md#configuring-oidc-authentication-optional) on the role's documentation for necessary settings.
 
 ### Integrating Euro-Office (optional)
 
-You can integrate [Euro-Office](https://github.com/Euro-Office/DocumentServer) with the service to edit office documents on the service. See [this section](eurooffice.md#integrating-euro-office-with-filebrowser-quantum-optional) for details about how to set up the integration.
+You can integrate [Euro-Office](https://github.com/Euro-Office/DocumentServer) with the service to edit office documents on the service. Refer to [this section](eurooffice.md#integrating-euro-office-with-filebrowser-quantum-optional) for details about how to set up the integration.
 
 ## Usage
 
@@ -88,7 +88,7 @@ To get started, open the URL with a web browser to log in to the instance with t
 
 ## Troubleshooting
 
-See [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az3ALGSKDhVLeMnR49YPXk5yv2yTge/tree/docs/configuring-filebrowser-quantum.md#troubleshooting) on the role's documentation for details.
+Refer to [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az3ALGSKDhVLeMnR49YPXk5yv2yTge/tree/docs/configuring-filebrowser-quantum.md#troubleshooting) on the role's documentation for details.
 
 ## Related services
 

@@ -82,7 +82,7 @@ To get started, open the URL with a web browser to log in to the instance with t
 
 ## Troubleshooting
 
-See [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Azby9EmMBhyNe8Nj4f66izwrmhk5g/tree/docs/configuring-phpmyadmin.md#troubleshooting) on the role's documentation for details.
+Refer to [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Azby9EmMBhyNe8Nj4f66izwrmhk5g/tree/docs/configuring-phpmyadmin.md#troubleshooting) on the role's documentation for details.
 
 ## Related services
 

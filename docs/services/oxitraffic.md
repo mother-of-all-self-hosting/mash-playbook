@@ -73,11 +73,11 @@ Replace `https://example.com` with the hostname of your website.
 
 After running the command for installation, the OxiTraffic instance becomes available at the URL specified with `oxitraffic_hostname`. With the configuration above, the service is hosted at `https://oxitraffic.example.com`.
 
-See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-oxitraffic/blob/main/docs/configuring-oxitraffic.md#usage) on the role's documentation for details about how to use the service.
+Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-oxitraffic/blob/main/docs/configuring-oxitraffic.md#usage) on the role's documentation for details about how to use the service.
 
 ## Troubleshooting
 
-See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-oxitraffic/blob/main/docs/configuring-oxitraffic.md#troubleshooting) on the role's documentation for details.
+Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-oxitraffic/blob/main/docs/configuring-oxitraffic.md#troubleshooting) on the role's documentation for details.
 
 ## Related services
 

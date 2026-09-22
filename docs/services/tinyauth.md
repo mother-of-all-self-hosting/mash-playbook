@@ -80,7 +80,7 @@ tinyauth_hostname: tinyauth.example.com
 ########################################################################
 ```
 
-With this configuration, Tinyauth will set a cookie for `.example.com` for authentication. Note that all your services to be authenticated will need to be under this domain. See [this section](https://tinyauth.app/docs/getting-started/#set-up-the-domains) on the official documentation for details.
+With this configuration, Tinyauth will set a cookie for `.example.com` for authentication. Note that all your services to be authenticated will need to be under this domain. Refer to [this section](https://tinyauth.app/docs/getting-started/#set-up-the-domains) on the official documentation for details.
 
 **Note**: hosting Tinyauth under a subpath (by configuring the `tinyauth_path_prefix` variable) does not seem to be possible due to Tinyauth's technical limitations.
 
@@ -136,9 +136,9 @@ After re-running the playbook, accessing to `https://echoip.example.com` redirec
 
 Pocket ID is a simple OpenID Connect (OIDC) provider (Identity Provider, IdP) that accepts exclusively passkeys for authentication. This playbook supports it, and it is possible to set up the Tinyauth instance as a proxy service for it.
 
-See [this page](pocket-id.md) for the instruction to install Pocket ID with this playbook.
+Refer to [this page](pocket-id.md) for the instruction to install Pocket ID with this playbook.
 
-After installing it and adding Tinyauth as an OIDC client on the Pocket ID's UI (see [this section](https://tinyauth.app/docs/guides/pocket-id/#configuring-pocket-id) for details), add Pocket ID as a generic OAuth provider by adding the configuration as below:
+After installing it and adding Tinyauth as an OIDC client on the Pocket ID's UI (refer to [this section](https://tinyauth.app/docs/guides/pocket-id/#configuring-pocket-id) for details), add Pocket ID as a generic OAuth provider by adding the configuration as below:
 
 ```yaml
 tinyauth_environment_variables_additional_variables: |
@@ -154,7 +154,7 @@ tinyauth_environment_variables_additional_variables: |
 
 Replace `YOUR_POCKET_ID_CLIENT_ID_HERE`, `YOUR_POCKET_ID_CLIENT_SECRET_HERE`, and `YOUR_POCKET_ID_EMAIL_ADDRESS_HERE` with your own values.
 
-Instead of using `TINYAUTH_OAUTH_WHITELIST`, it is able to manage access control by using Pocket ID's user group function. See [this section](https://tinyauth.app/docs/guides/pocket-id/#access-controls-with-pocket-id-groups) on the Tinyauth's documentation for details.
+Instead of using `TINYAUTH_OAUTH_WHITELIST`, it is able to manage access control by using Pocket ID's user group function. Refer to [this section](https://tinyauth.app/docs/guides/pocket-id/#access-controls-with-pocket-id-groups) on the Tinyauth's documentation for details.
 
 #### Example: passkey-only authentication with access control for echoip
 
@@ -255,7 +255,7 @@ tinyauth_environment_variable_ldap_base_dn: "dc=example,dc=com"
 tinyauth_environment_variable_ldap_user_search_filter: "(uid=%s)"
 ```
 
-See [this section](https://radicle.network/nodes/iris.radicle.network/rad%3AzLMiPKSyMcb5m85H2brZd4GHCDTF/tree/docs/configuring-tinyauth.md#ldap) on the role's documentation for details.
+Refer to [this section](https://radicle.network/nodes/iris.radicle.network/rad%3AzLMiPKSyMcb5m85H2brZd4GHCDTF/tree/docs/configuring-tinyauth.md#ldap) on the role's documentation for details.
 
 To disable the integration altogether, add the following configuration to your `vars.yml` file:
 
@@ -265,7 +265,7 @@ tinyauth_ldap_enabled: false
 
 ## Troubleshooting
 
-See [this section](https://radicle.network/nodes/iris.radicle.network/rad%3AzLMiPKSyMcb5m85H2brZd4GHCDTF/tree/docs/configuring-tinyauth.md#troubleshooting) on the role's documentation for details.
+Refer to [this section](https://radicle.network/nodes/iris.radicle.network/rad%3AzLMiPKSyMcb5m85H2brZd4GHCDTF/tree/docs/configuring-tinyauth.md#troubleshooting) on the role's documentation for details.
 
 ## Related services
 

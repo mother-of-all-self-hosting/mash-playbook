@@ -69,7 +69,7 @@ To get started, open the URL with a web browser, and log in to the instance with
 
 ## Troubleshooting
 
-See [this section](https://radicle.network/nodes/iris.radicle.network/rad%3AzBuFgpA5FBmUEcLEXHY9ZBVGpqDM/tree/docs/configuring-filegator.md#troubleshooting) on the role's documentation for details.
+Refer to [this section](https://radicle.network/nodes/iris.radicle.network/rad%3AzBuFgpA5FBmUEcLEXHY9ZBVGpqDM/tree/docs/configuring-filegator.md#troubleshooting) on the role's documentation for details.
 
 ## Related services
 

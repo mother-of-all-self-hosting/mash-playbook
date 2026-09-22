@@ -90,7 +90,7 @@ To get started, open the URL `https://example.com` with a web browser, and log i
 
 ## Troubleshooting
 
-See [this section](https://radicle.network/nodes/iris.radicle.network/rad%3AzQdRwQ2s3FG5BZUjvSn1GYXbzVmw/tree/docs/configuring-bookstack.md#troubleshooting) on the role's documentation for details.
+Refer to [this section](https://radicle.network/nodes/iris.radicle.network/rad%3AzQdRwQ2s3FG5BZUjvSn1GYXbzVmw/tree/docs/configuring-bookstack.md#troubleshooting) on the role's documentation for details.
 
 ## Related services
 

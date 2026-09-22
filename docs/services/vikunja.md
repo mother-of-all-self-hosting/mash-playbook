@@ -67,7 +67,7 @@ vikunja_hostname: vikunja.example.com
 
 ### Select database to use (optional)
 
-By default Vikunja is configured to use [Postgres](postgres.md) (if enabled), but you can choose other databases such as MySQL (MariaDB) and SQLite. If Postgres is not enabled, SQLite will be used. See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-vikunja/blob/main/docs/configuring-vikunja.md#specify-database-optional) on the role's documentation for details.
+By default Vikunja is configured to use [Postgres](postgres.md) (if enabled), but you can choose other databases such as MySQL (MariaDB) and SQLite. If Postgres is not enabled, SQLite will be used. Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-vikunja/blob/main/docs/configuring-vikunja.md#specify-database-optional) on the role's documentation for details.
 
 ### Configuring the mailer (optional)
 
@@ -96,7 +96,7 @@ To create a dedicated instance for Vikunja, you can follow the steps below:
 2. Create a new `vars.yml` file for the dedicated instance
 3. Edit the existing `vars.yml` file for the main host
 
-*See [this page](../running-multiple-instances.md) for details about configuring multiple instances of Valkey on the same server.*
+*Refer to [this page](../running-multiple-instances.md) for details about configuring multiple instances of Valkey on the same server.*
 
 ##### Adjust `hosts`
 
@@ -303,11 +303,11 @@ After running the command for installation, the Vikunja instance becomes availab
 
 To get started, create a user first and open the URL with a web browser to log in to the instance. You can create one on the web UI if `vikunja_environment_variables_service_enableregistration` is set to `true`.
 
-Alternatively, you can run the playbook with the `create-user-vikunja` or `ensure-vikunja-users-created` tag to create users. See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-vikunja/blob/main/docs/configuring-vikunja.md#creating-users) on the role's documentation for details.
+Alternatively, you can run the playbook with the `create-user-vikunja` or `ensure-vikunja-users-created` tag to create users. Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-vikunja/blob/main/docs/configuring-vikunja.md#creating-users) on the role's documentation for details.
 
 ## Troubleshooting
 
-See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-vikunja/blob/main/docs/configuring-vikunja.md#troubleshooting) on the role's documentation for details.
+Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-vikunja/blob/main/docs/configuring-vikunja.md#troubleshooting) on the role's documentation for details.
 
 ## Related services
 

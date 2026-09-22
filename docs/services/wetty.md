@@ -69,7 +69,7 @@ Once connected, you can log in with SSH with the username and password.
 
 ## Troubleshooting
 
-See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-wetty/blob/main/docs/configuring-wetty.md#troubleshooting) on the role's documentation for details.
+Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-wetty/blob/main/docs/configuring-wetty.md#troubleshooting) on the role's documentation for details.
 
 ## Related services
 

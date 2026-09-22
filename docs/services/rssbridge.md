@@ -63,7 +63,7 @@ rssbridge_path_prefix: /rssbridge
 
 By default the service is public, and anyone can generate a feed to subscribe.
 
-You can enable HTTP Basic authentication or token authentication. See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-rssbridge/blob/main/docs/configuring-rssbridge.md#enabling-authentication) on the role's documentation for details.
+You can enable HTTP Basic authentication or token authentication. Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-rssbridge/blob/main/docs/configuring-rssbridge.md#enabling-authentication) on the role's documentation for details.
 
 ## Usage
 
@@ -73,7 +73,7 @@ To use it, open the URL on the browser and log in to the service if authenticati
 
 ## Troubleshooting
 
-See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-rssbridge/blob/main/docs/configuring-rssbridge.md#troubleshooting) on the role's documentation for details.
+Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-rssbridge/blob/main/docs/configuring-rssbridge.md#troubleshooting) on the role's documentation for details.
 
 ## Related services
 

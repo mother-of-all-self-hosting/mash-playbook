@@ -75,4 +75,4 @@ After running the command for installation, the FlareSolverr instance becomes av
 
 ## Troubleshooting
 
-See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-flaresolverr/blob/main/docs/configuring-flaresolverr.md#troubleshooting) on the role's documentation for details.
+Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-flaresolverr/blob/main/docs/configuring-flaresolverr.md#troubleshooting) on the role's documentation for details.

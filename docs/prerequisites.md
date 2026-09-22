@@ -22,11 +22,11 @@ We will be using `example.com` as the domain in the following instruction. Pleas
 
 - [Ansible](http://ansible.com/) program. It's used to run this playbook and configures your server for you. Take a look at [our guide about Ansible](ansible.md) for more information, as well as [version requirements](ansible.md#supported-ansible-versions) and alternative ways to run Ansible.
 
-- [passlib](https://passlib.readthedocs.io/en/stable/index.html) Python library. See [this official documentation](https://passlib.readthedocs.io/en/stable/install.html#installation-instructions) for an instruction to install it. On most distros, you need to install some `python-passlib` or `py3-passlib` package, etc.
+- [passlib](https://passlib.readthedocs.io/en/stable/index.html) Python library. Refer to [this official documentation](https://passlib.readthedocs.io/en/stable/install.html#installation-instructions) for an instruction to install it. On most distros, you need to install some `python-passlib` or `py3-passlib` package, etc.
 
 - [`git`](https://git-scm.com/) as the recommended way to download the playbook. `git` may also be required on the server if you will be [self-building](self-building.md) components.
 
-- [`just`](https://github.com/casey/just) for running `just roles`, `just update`, etc. (see [`justfile`](../justfile)), although you can also run these commands manually. Take a look at this documentation for more information: [Running `just` commands](just.md).
+- [`just`](https://github.com/casey/just) for running `just roles`, `just update`, etc. (refer to [`justfile`](../justfile)), although you can also run these commands manually. Take a look at this documentation for more information: [Running `just` commands](just.md).
 
 - Strong password (random strings) generator. The playbook often requires you to create a strong password and use it for settings on `vars.yml`, components, etc. As any tools should be fine, this playbook has adopted [`pwgen`](https://linux.die.net/man/1/pwgen) (running `pwgen -s 64 1`). [Password Tech](https://pwgen-win.sourceforge.io/), formerly known as "PWGen for Windows", is available as free and open-source password generator for Windows. Generally, using a random generator available on the internet is not recommended.
 
@@ -42,7 +42,7 @@ We will be using `example.com` as the domain in the following instruction. Pleas
 
   Generally, newer is better. We only strive to support released stable versions of distributions, not betas or pre-releases. The playbook can take over your whole server or co-exist with other services that you have there.
 
-  This playbook somewhat supports running on non-`amd64` architectures like ARM. See [Alternative Architectures](alternative-architectures.md).
+  This playbook somewhat supports running on non-`amd64` architectures like ARM. Refer to [Alternative Architectures](alternative-architectures.md).
 
   If your distro runs within an [LXC container](https://linuxcontainers.org/), you may hit [this issue](https://github.com/spantaleev/matrix-docker-ansible-deploy/issues/703). It can be worked around, if absolutely necessary, but we suggest that you avoid running from within an LXC container.
 

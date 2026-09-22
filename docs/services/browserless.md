@@ -79,4 +79,4 @@ After running the command for installation, the Browserless instance becomes ava
 
 ## Troubleshooting
 
-See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-browserless/blob/main/docs/configuring-browserless.md#troubleshooting) on the role's documentation for details.
+Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-browserless/blob/main/docs/configuring-browserless.md#troubleshooting) on the role's documentation for details.

@@ -64,11 +64,11 @@ radicle_explorer_hostname: explorer.example.com
 
 After running the command for installation, the Radicle Explorer instance becomes available at the URL specified with `radicle_node_hostname`. With the configuration above, the service is hosted at `https://explorer.example.com`.
 
-See [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Azopwjin5Vh5dMgdHWiifJ2cg3bQW/tree/docs/configuring-radicle-explorer.md#usage) on the role's documentation for details about how to browse a repository with the web client.
+Refer to [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Azopwjin5Vh5dMgdHWiifJ2cg3bQW/tree/docs/configuring-radicle-explorer.md#usage) on the role's documentation for details about how to browse a repository with the web client.
 
 ## Troubleshooting
 
-See [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Azopwjin5Vh5dMgdHWiifJ2cg3bQW/tree/docs/configuring-radicle-explorer.md#troubleshooting) on the role's documentation for details.
+Refer to [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Azopwjin5Vh5dMgdHWiifJ2cg3bQW/tree/docs/configuring-radicle-explorer.md#troubleshooting) on the role's documentation for details.
 
 ## Related services
 

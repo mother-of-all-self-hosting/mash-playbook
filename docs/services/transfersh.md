@@ -69,8 +69,8 @@ You can upload a file to the transfer.sh instance by running a command as below:
 curl -v --upload-file ./hello.txt https://transfersh.example.com/hello.txt
 ```
 
-See [this section](https://github.com/dutchcoders/transfer.sh/blob/main/README.md#usage) on the documentation for details about its usage.
+Refer to [this section](https://github.com/dutchcoders/transfer.sh/blob/main/README.md#usage) on the documentation for details about its usage.
 
 ## Troubleshooting
 
-See [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az3baazpMjGxvdYmB7RTqr5WnrSRke/tree/docs/configuring-transfersh.md#troubleshooting) on the role's documentation for details.
+Refer to [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az3baazpMjGxvdYmB7RTqr5WnrSRke/tree/docs/configuring-transfersh.md#troubleshooting) on the role's documentation for details.

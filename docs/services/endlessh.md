@@ -75,7 +75,7 @@ endlessh_container_ssh_host_bind_port: YOUR_PORT_NUMBER_HERE
 
 After running the command for installation, the Endlessh instance becomes available and starts running on the server, listening to the specified port (port 22 by default).
 
-You can customize how it works with the `endlessh_container_extra_arguments_custom` variable. See [this section](https://github.com/shizunge/endlessh-go/blob/main/README.md#usage) of the documentation for available arguments.
+You can customize how it works with the `endlessh_container_extra_arguments_custom` variable. Refer to [this section](https://github.com/shizunge/endlessh-go/blob/main/README.md#usage) of the documentation for available arguments.
 
 ### Integrating with Prometheus (optional)
 
@@ -88,7 +88,7 @@ endlessh_container_extra_arguments_custom:
   - "-enable_prometheus"
 ```
 
-You can set other arguments to customize how metrics are exposed, such as `-prometheus_port`, `-prometheus_host`, `-prometheus_entry`, etc. See [this section](https://github.com/shizunge/endlessh-go/blob/main/README.md#usage) of the documentation for details.
+You can set other arguments to customize how metrics are exposed, such as `-prometheus_port`, `-prometheus_host`, `-prometheus_entry`, etc. Refer to [this section](https://github.com/shizunge/endlessh-go/blob/main/README.md#usage) of the documentation for details.
 
 After settings arguments, you need to expose metrics internally or externally.
 

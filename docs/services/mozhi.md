@@ -66,7 +66,7 @@ After running the command for installation, the Mozhi instance becomes available
 
 ## Troubleshooting
 
-See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-mozhi/blob/main/docs/configuring-mozhi.md#troubleshooting) on the role's documentation for details.
+Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-mozhi/blob/main/docs/configuring-mozhi.md#troubleshooting) on the role's documentation for details.
 
 ## Related services
 

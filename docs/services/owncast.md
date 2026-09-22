@@ -38,7 +38,7 @@ For details about configuring the [Ansible role for Owncast](https://github.com/
 
 ### Open a port
 
-You may need to open a port for TCP based [RTMP](https://en.wikipedia.org/wiki/Real-Time_Messaging_Protocol) on your server. See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-owncast/blob/main/docs/configuring-owncast.md#open-a-port) on the role's documentation for details.
+You may need to open a port for TCP based [RTMP](https://en.wikipedia.org/wiki/Real-Time_Messaging_Protocol) on your server. Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-owncast/blob/main/docs/configuring-owncast.md#open-a-port) on the role's documentation for details.
 
 ## Dependencies
 
@@ -110,4 +110,4 @@ To get started, open the URL `https://owncast.example.com/admin` with a web brow
 
 ## Troubleshooting
 
-See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-owncast/blob/main/docs/configuring-owncast.md#troubleshooting) on the role's documentation for details.
+Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-owncast/blob/main/docs/configuring-owncast.md#troubleshooting) on the role's documentation for details.

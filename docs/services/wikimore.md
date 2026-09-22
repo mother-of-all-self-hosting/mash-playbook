@@ -66,11 +66,11 @@ After running the command for installation, the Wikimore instance becomes availa
 
 [Libredirect](https://libredirect.github.io/), an extension for Firefox and Chromium-based desktop browsers, has support for redirections to Wikimore.
 
-If you would like to publish your instance so that it can be used by anyone including Libredirect, please consider to send a PR to the [upstream project](https://git.private.coffee/PrivateCoffee/wikimore/) to add yours to [`instances.json`](https://git.private.coffee/PrivateCoffee/wikimore/src/branch/main/instances.json), which Libredirect automatically fetches using a script (see [this FAQ entry](https://libredirect.github.io/faq.html#where_the_hell_are_those_instances_coming_from)).
+If you would like to publish your instance so that it can be used by anyone including Libredirect, please consider to send a PR to the [upstream project](https://git.private.coffee/PrivateCoffee/wikimore/) to add yours to [`instances.json`](https://git.private.coffee/PrivateCoffee/wikimore/src/branch/main/instances.json), which Libredirect automatically fetches using a script (refer to [this FAQ entry](https://libredirect.github.io/faq.html#where_the_hell_are_those_instances_coming_from)).
 
 ## Troubleshooting
 
-See [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az54oV5qKRrLSArZqdisrD9s7h9BQ/tree/docs/configuring-wikimore.md#troubleshooting) on the role's documentation for details.
+Refer to [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az54oV5qKRrLSArZqdisrD9s7h9BQ/tree/docs/configuring-wikimore.md#troubleshooting) on the role's documentation for details.
 
 ## Related services
 

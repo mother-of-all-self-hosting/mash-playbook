@@ -66,7 +66,7 @@ linkding_superuser_password: ''
 
 ### Configure superuser (optional)
 
-You can optionally create an initial "superuser". See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-linkding/blob/main/docs/configuring-linkding.md#configure-superuser-optional) on the role's documentation for details.
+You can optionally create an initial "superuser". Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-linkding/blob/main/docs/configuring-linkding.md#configure-superuser-optional) on the role's documentation for details.
 
 ## Usage
 
@@ -76,7 +76,7 @@ To get started, open the URL with a web browser to log in to the instance with t
 
 ## Troubleshooting
 
-See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-linkding/blob/main/docs/configuring-linkding.md#troubleshooting) on the role's documentation for details.
+Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-linkding/blob/main/docs/configuring-linkding.md#troubleshooting) on the role's documentation for details.
 
 ## Related services
 

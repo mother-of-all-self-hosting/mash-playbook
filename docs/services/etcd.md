@@ -68,4 +68,4 @@ As mentioned above, the purpose of the etcd component in this Ansible playbook i
 
 ## Troubleshooting
 
-See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-etcd/blob/main/docs/configuring-etcd.md#troubleshooting) on the role's documentation for details.
+Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-etcd/blob/main/docs/configuring-etcd.md#troubleshooting) on the role's documentation for details.

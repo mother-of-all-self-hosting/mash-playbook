@@ -65,4 +65,4 @@ After running the command for installation, the OmniTools instance becomes avail
 
 ## Troubleshooting
 
-See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-omnitools/blob/main/docs/configuring-omnitools.md#troubleshooting) on the role's documentation for details.
+Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-omnitools/blob/main/docs/configuring-omnitools.md#troubleshooting) on the role's documentation for details.

@@ -67,4 +67,4 @@ To get started, open the URL with a web browser to create an account.
 
 ## Troubleshooting
 
-See [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az3g4bZnzZJis1DEKVzR3pPsyUzicT/tree/docs/configuring-nodered.md#troubleshooting) on the role's documentation for details.
+Refer to [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az3g4bZnzZJis1DEKVzR3pPsyUzicT/tree/docs/configuring-nodered.md#troubleshooting) on the role's documentation for details.

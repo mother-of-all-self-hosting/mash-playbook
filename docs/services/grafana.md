@@ -242,7 +242,7 @@ The configuration flow below assumes [Authelia](authelia.md) configured via the 
 - Come up with a client ID you'd like to use. Example: `grafana`
 - Generate a shared secret for the OpenID Connect application: `pwgen -s 64 1`. This is to be used in `GF_AUTH_GENERIC_OAUTH_CLIENT_SECRET` below
 - Hash the shared secret for use in Authelia's configuration (`authelia_config_identity_providers_oidc_clients`): `php -r 'echo password_hash("PASSWORD_HERE",  PASSWORD_ARGON2ID);'`. Feel free to use another language (or tool) for creating a hash as well. A few different hash algorithms are supported besides Argon2id.
-- Define this `grafana` client in Authelia via `authelia_config_identity_providers_oidc_clients`. See [example configuration](authelia.md#protecting-a-service-with-openid-connect) on the Authelia documentation page.
+- Define this `grafana` client in Authelia via `authelia_config_identity_providers_oidc_clients`. Refer to [example configuration](authelia.md#protecting-a-service-with-openid-connect) on the Authelia documentation page.
 
 ```yaml
 # To make Grafana honor the expiration time of JWT tokens, enable this experimental feature below.

@@ -83,7 +83,7 @@ To create a dedicated instance for Ghostfolio, you can follow the steps below:
 2. Create a new `vars.yml` file for the dedicated instance
 3. Edit the existing `vars.yml` file for the main host
 
-*See [this page](../running-multiple-instances.md) for details about configuring multiple instances of Valkey on the same server.*
+*Refer to [this page](../running-multiple-instances.md) for details about configuring multiple instances of Valkey on the same server.*
 
 ##### Adjust `hosts`
 
@@ -254,8 +254,8 @@ After running the command for installation, the Ghostfolio instance becomes avai
 
 As **registration is open to anyone by default**, you also would probably want to disable the signup form on "Admin Control" page after creating the account.
 
-See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-ghostfolio/blob/main/docs/configuring-ghostfolio.md#usage) on the role's documentation for details.
+Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-ghostfolio/blob/main/docs/configuring-ghostfolio.md#usage) on the role's documentation for details.
 
 ## Troubleshooting
 
-See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-ghostfolio/blob/main/docs/configuring-ghostfolio.md#troubleshooting) on the role's documentation for details.
+Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-ghostfolio/blob/main/docs/configuring-ghostfolio.md#troubleshooting) on the role's documentation for details.

@@ -71,4 +71,4 @@ curl https://echoip.example.com
 
 ## Troubleshooting
 
-See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-echoip/blob/main/docs/configuring-echoip.md#troubleshooting) on the role's documentation for details.
+Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-echoip/blob/main/docs/configuring-echoip.md#troubleshooting) on the role's documentation for details.

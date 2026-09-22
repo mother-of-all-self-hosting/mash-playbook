@@ -74,13 +74,13 @@ You probably might want to enable authentication to disallow anonymous access to
 
 It is possible to enable HTTP basic authentication by **creating an admin user** with `etherpad_admin_username` and `etherpad_admin_password` variables. The admin user account is also used by plugins for authentication and authorization.
 
-See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-etherpad/blob/main/docs/configuring-etherpad.md#create-admin-user-optional) on the role's documentation for details about how to create the admin user.
+Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-etherpad/blob/main/docs/configuring-etherpad.md#create-admin-user-optional) on the role's documentation for details about how to create the admin user.
 
 ### Control Etherpad's availability on Jitsi conferences (optional)
 
-If a Jitsi video-conferencing platform (see [our docs on Jitsi](jitsi.md)) is enabled on your server, you can configure it so to make Etherpad available on conferences.
+If a Jitsi video-conferencing platform (refer to [our docs on Jitsi](jitsi.md)) is enabled on your server, you can configure it so to make Etherpad available on conferences.
 
-See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-jitsi/blob/main/docs/configuring-jitsi.md#control-etherpads-availability-on-jitsi-conferences) on the Jitsi role's documentation for details about how to set it up.
+Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-jitsi/blob/main/docs/configuring-jitsi.md#control-etherpads-availability-on-jitsi-conferences) on the Jitsi role's documentation for details about how to set it up.
 
 ### Integrating with Prometheus (optional)
 
@@ -123,11 +123,11 @@ etherpad_container_labels_traefik_metrics_middleware_basic_auth_users: ""
 
 After running the command for installation, the Etherpad instance becomes available at the URL specified with `etherpad_hostname`. With the configuration above, the service is hosted at `https://etherpad.example.com`. The admin UI (if enabled) becomes available at `https://etherpad.example.com/admin`.
 
-💡 See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-etherpad/blob/main/docs/configuring-etherpad.md#usage) on the role's documentation for more information about usage.
+💡 Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-etherpad/blob/main/docs/configuring-etherpad.md#usage) on the role's documentation for more information about usage.
 
 ## Troubleshooting
 
-See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-etherpad/blob/main/docs/configuring-etherpad.md#troubleshooting) on the role's documentation for details.
+Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-etherpad/blob/main/docs/configuring-etherpad.md#troubleshooting) on the role's documentation for details.
 
 ## Related services
 

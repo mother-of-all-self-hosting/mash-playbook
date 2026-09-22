@@ -40,7 +40,7 @@ The [Ansible role for ntfy](https://github.com/mother-of-all-self-hosting/ansibl
 
 ntfy implements [UnifiedPush](https://unifiedpush.org), the standard which makes it possible to send and receive push notifications without using Google's Firebase Cloud Messaging (FCM) service.
 
-Working as a **Push Server**, a ntfy server can forward messages to a **Distributor** running on Android and other devices (see [here](https://unifiedpush.org/users/distributors/#definitions) for the definition of the Push Server and the Distributor).
+Working as a **Push Server**, a ntfy server can forward messages to a **Distributor** running on Android and other devices (refer to [this page](https://unifiedpush.org/users/distributors/#definitions) for the definition of the Push Server and the Distributor).
 
 This role installs and manages a self-hosted ntfy server as the Push Server, which the Distributor (such as the ntfy Android app) on your device listens to.
 
@@ -58,7 +58,7 @@ As the ntfy Android app functions as the Distributor too, you do not have to ins
 
 Because iOS heavily restricts background processing, it is impossible to implement instant push notifications without a central server.
 
-To implement instant notification through the self-hosted ntfy server, see [this official documentation](https://docs.ntfy.sh/config/#ios-instant-notifications) for instructions.
+To implement instant notification through the self-hosted ntfy server, refer to [this official documentation](https://docs.ntfy.sh/config/#ios-instant-notifications) for instructions.
 
 ## Dependencies
 
@@ -143,7 +143,7 @@ ntfy_container_labels_traefik_metrics_middleware_basic_auth_users: ""
 
 To receive push notifications from the ntfy server, you need to **install [the ntfy Android/iOS app](https://docs.ntfy.sh/subscribe/phone/)**, **log in to the account on the ntfy app** if you have enabled the access control, and then **subscribe to a topic** where messages will be published. You can also send/receive notifications on the ntfy's web app at `example.com`.
 
-See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-ntfy/blob/main/docs/configuring-ntfy.md#usage) on the role's documentation for details.
+Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-ntfy/blob/main/docs/configuring-ntfy.md#usage) on the role's documentation for details.
 
 If you enable [Uptime Kuma](uptime-kuma.md), the self-hosted monitoring tool (hint: this playbook enables it by default on its example `vars.yml` files), it is possible to set it up to have it send notifications to a topic when the monitored web service is down. You can subscribe to the topic both from the ntfy Android/iOS app and the web app.
 
@@ -159,7 +159,7 @@ If you are configuring UnifiedPush on a [Matrix](https://matrix.org) client, you
 
 ## Troubleshooting
 
-See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-ntfy/blob/main/docs/configuring-ntfy.md#troubleshooting) on the role's documentation for details.
+Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-ntfy/blob/main/docs/configuring-ntfy.md#troubleshooting) on the role's documentation for details.
 
 ## Related services
 

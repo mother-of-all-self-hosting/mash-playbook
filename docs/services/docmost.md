@@ -34,7 +34,7 @@ For details about configuring the [Ansible role for Docmost](https://github.com/
 >[!NOTE]
 >
 > - The role is based on Node.js docker image, and is currently expected to run with uid 1000.
-> - Excalidraw is available on the playbook. See [here](excalidraw.md) for details about how to install it.
+> - Excalidraw is available on the playbook. Refer to [this page](excalidraw.md) for details about how to install it.
 
 ## Dependencies
 
@@ -73,7 +73,7 @@ docmost_hostname: docmost.example.com
 
 The service provides these storage backend options: local filesystem (default) and Amazon S3 compatible object storage.
 
-See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-docmost/blob/main/docs/configuring-docmost.md#configure-a-storage-backend) on the role's documentation for details about how to set up Amazon S3 compatible object storage for Docmost.
+Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-docmost/blob/main/docs/configuring-docmost.md#configure-a-storage-backend) on the role's documentation for details about how to set up Amazon S3 compatible object storage for Docmost.
 
 ### Configuring the mailer (optional)
 
@@ -86,7 +86,7 @@ To actually have the service use (and get messages sent through the exim-relay s
 >[!WARNING]
 > Without setting an authentication method such as DKIM, SPF, and DMARC for your hostname, emails are most likely to be quarantined as spam at recipient's mail servers. The worst scenario is that your server's IP address or hostname will be included in the spam list such as the one managed by [Spamhaus](https://www.spamhaus.org/), depending on the reputation. As the exim-relay service supports DKIM signing, refer to [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-exim-relay/blob/main/docs/configuring-exim-relay.md#enable-dkim-support-optional) for details about how to set it up.
 
-If you will use another SMTP server or Postmark, see [this section](https://github.com/mother-of-all-self-hosting/ansible-role-docmost/blob/main/docs/configuring-docmost.md#configure-the-mailer) on the role's documentation for details about configuring the mailer.
+If you will use another SMTP server or Postmark, refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-docmost/blob/main/docs/configuring-docmost.md#configure-the-mailer) on the role's documentation for details about configuring the mailer.
 
 If you do not want to enable a mailer for Docmost altogether, add the following configuration to your `vars.yml` file:
 
@@ -112,7 +112,7 @@ To create a dedicated instance for Docmost, you can follow the steps below:
 2. Create a new `vars.yml` file for the dedicated instance
 3. Edit the existing `vars.yml` file for the main host
 
-*See [this page](../running-multiple-instances.md) for details about configuring multiple instances of Valkey on the same server.*
+*Refer to [this page](../running-multiple-instances.md) for details about configuring multiple instances of Valkey on the same server.*
 
 ##### Adjust `hosts`
 
@@ -264,7 +264,7 @@ Running the installation command will create the shared Valkey instance named `m
 
 ### Enable Telemetry (optional)
 
-By default this playbook disables Docmost's [telemetry](https://docmost.com/docs/self-hosting/environment-variables#telemetry) which collects information about the active version, user count, page count, space and workspace count, and sends to the Docmost server (see [here](https://github.com/docmost/docmost/blob/main/apps/server/src/integrations/telemetry/telemetry.service.ts)).
+By default this playbook disables Docmost's [telemetry](https://docmost.com/docs/self-hosting/environment-variables#telemetry) which collects information about the active version, user count, page count, space and workspace count, and sends to the Docmost server (refer to [this page](https://github.com/docmost/docmost/blob/main/apps/server/src/integrations/telemetry/telemetry.service.ts)).
 
 If you are fine with sending such information and want to help developers, add the following configuration to your `vars.yml` file:
 
@@ -286,7 +286,7 @@ To get started, open the URL with a web browser, and create a first workspace by
 
 ## Troubleshooting
 
-See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-docmost/blob/main/docs/configuring-docmost.md#troubleshooting) on the role's documentation for details.
+Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-docmost/blob/main/docs/configuring-docmost.md#troubleshooting) on the role's documentation for details.
 
 ## Related services
 

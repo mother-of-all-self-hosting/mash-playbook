@@ -101,7 +101,7 @@ However, changing `syncthing_container_sync_tcp_port` or `syncthing_container_sy
 
 1. Adjust `syncthing_container_sync_tcp_port` and `syncthing_container_sync_udp_port` in your `vars.yml`
 2. Re-install the Syncthing service by re-running the Ansible playbook
-3. Log in to the Syncthing Web UI (see [Usage](#usage))
+3. Log in to the Syncthing Web UI (refer to [Usage](#usage))
 4. Go to **Settings** -> **Connections** and put something like this in the **Sync Protocol Listen Addresses** configuration (inspired by the [Listen Addresses documentation](https://docs.syncthing.net/v1.27.0/users/config#listen-addresses)): `tcp://0.0.0.0:TCP_PORT_HERE, quic://0.0.0.0:UDP_PORT_HERE, dynamic+https://relays.syncthing.net/endpoint` (adjust `TCP_PORT_HERE` and `UDP_PORT_HERE` with the port numbers you've chosen for `syncthing_container_sync_tcp_port` and `syncthing_container_sync_udp_port`)
 
 ### Configuration & Data

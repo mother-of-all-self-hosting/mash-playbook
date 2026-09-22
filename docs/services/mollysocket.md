@@ -78,17 +78,17 @@ To use a MollySocket instance it is necessary to prepare a **Push Server**, such
 
 The ntfy server is available on the playbook. Enabling it automatically configures the mollysocket instance to connect to it.
 
-See [this page](ntfy.md) for details about how to install it.
+Refer to [this page](ntfy.md) for details about how to install it.
 
 ## Usage
 
 After running the command for installation, the MollySocket instance becomes available, and its web server can be reached at the URL specified with `mollysocket_hostname`. With the configuration above, the web server is hosted at `https://mollysocket.example.com`.
 
-To use a MollySocket instance it is necessary to prepare a **Distributor** running on Android and other devices (see [definitions on the official documentation of UnifiedPush](https://unifiedpush.org/developers/spec/definitions/) for the definition of the Distributor), such as [the ntfy application](https://docs.ntfy.sh/subscribe/phone/).
+To use a MollySocket instance it is necessary to prepare a **Distributor** running on Android and other devices (refer to [definitions on the official documentation of UnifiedPush](https://unifiedpush.org/developers/spec/definitions/) for the definition of the Distributor), such as [the ntfy application](https://docs.ntfy.sh/subscribe/phone/).
 
 ## Troubleshooting
 
-See [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az2RnNwtTL5bKspfqmxQ2fX4JV4cXV/tree/docs/configuring-mollysocket.md#troubleshooting) on the role's documentation for details.
+Refer to [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az2RnNwtTL5bKspfqmxQ2fX4JV4cXV/tree/docs/configuring-mollysocket.md#troubleshooting) on the role's documentation for details.
 
 ## Related services
 

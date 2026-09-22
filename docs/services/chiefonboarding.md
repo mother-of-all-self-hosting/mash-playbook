@@ -88,4 +88,4 @@ To get started, open the URL with a web browser to create an account.
 
 ## Troubleshooting
 
-See [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az3HYheWh86U9ErEL18tK2gBkq7g2A/tree/docs/configuring-chiefonboarding.md#troubleshooting) on the role's documentation for details.
+Refer to [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az3HYheWh86U9ErEL18tK2gBkq7g2A/tree/docs/configuring-chiefonboarding.md#troubleshooting) on the role's documentation for details.

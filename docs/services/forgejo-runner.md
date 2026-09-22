@@ -36,7 +36,7 @@ See the project's [documentation](https://forgejo.org/docs/latest/admin/actions/
 
 To set up Forgejo Runner for Forgejo, you will need to retrieve the registration token which is used for registering the runner on the Forgejo instance.
 
-The registration token can be obtained via Forgejo's web interface by going to `Site Administration -> Actions -> Runners -> Create new runner`. See [this section](https://forgejo.org/docs/latest/admin/actions/runner-installation/#standard-registration) on the official documentation for the latest information.
+The registration token can be obtained via Forgejo's web interface by going to `Site Administration -> Actions -> Runners -> Create new runner`. Refer to [this section](https://forgejo.org/docs/latest/admin/actions/runner-installation/#standard-registration) on the official documentation for the latest information.
 
 ## Configuration
 

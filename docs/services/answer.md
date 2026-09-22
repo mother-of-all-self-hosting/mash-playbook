@@ -65,7 +65,7 @@ answer_hostname: answer.example.com
 
 ### Select database to use
 
-It is necessary to select a database used by Apache Answer from a MySQL compatible database, Postgres, and SQLite. See [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az4Cd3nL74nNap51RBB6mtC1jipeH9/tree/docs/configuring-answer.md#specify-database) on the role's documentation for details.
+It is necessary to select a database used by Apache Answer from a MySQL compatible database, Postgres, and SQLite. Refer to [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az4Cd3nL74nNap51RBB6mtC1jipeH9/tree/docs/configuring-answer.md#specify-database) on the role's documentation for details.
 
 ### Configuring the mailer (optional)
 
@@ -99,7 +99,7 @@ To get started, open the URL with a web browser to log in to the instance.
 
 ## Troubleshooting
 
-See [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az4Cd3nL74nNap51RBB6mtC1jipeH9/tree/docs/configuring-answer.md#troubleshooting) on the role's documentation for details.
+Refer to [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az4Cd3nL74nNap51RBB6mtC1jipeH9/tree/docs/configuring-answer.md#troubleshooting) on the role's documentation for details.
 
 ## Related services
 

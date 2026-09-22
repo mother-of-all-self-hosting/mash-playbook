@@ -64,7 +64,7 @@ appsmith_hostname: appsmith.example.com
 
 After configuring the playbook, run the [installation](../installing.md) command.
 
-It is recommended to install Appsmith with public registration enabled at first, create your user account, and disable public registration unless you need it. See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-appsmith/blob/main/docs/configuring-appsmith.md#installing) on the role's documentation for details.
+It is recommended to install Appsmith with public registration enabled at first, create your user account, and disable public registration unless you need it. Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-appsmith/blob/main/docs/configuring-appsmith.md#installing) on the role's documentation for details.
 
 ## Usage
 
@@ -74,4 +74,4 @@ To get started, open the URL with a web browser to create an account.
 
 ## Troubleshooting
 
-See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-appsmith/blob/main/docs/configuring-appsmith.md#troubleshooting) on the role's documentation for details.
+Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-appsmith/blob/main/docs/configuring-appsmith.md#troubleshooting) on the role's documentation for details.

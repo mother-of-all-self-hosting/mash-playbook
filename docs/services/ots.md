@@ -66,4 +66,4 @@ After running the command for installation, the OTS instance becomes available a
 
 ## Troubleshooting
 
-See [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az3cspgyZXPNcnzNXCYKsEGJK7dKKA/tree/docs/configuring-ots.md#troubleshooting) on the role's documentation for details.
+Refer to [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az3cspgyZXPNcnzNXCYKsEGJK7dKKA/tree/docs/configuring-ots.md#troubleshooting) on the role's documentation for details.

@@ -67,4 +67,4 @@ After running the command for installation, the ReactFlux instance becomes avail
 
 ## Troubleshooting
 
-See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-reactflux/blob/main/docs/configuring-reactflux.md#troubleshooting) on the role's documentation for details.
+Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-reactflux/blob/main/docs/configuring-reactflux.md#troubleshooting) on the role's documentation for details.

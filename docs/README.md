@@ -27,7 +27,7 @@ Follow this guide to install services on your server using this Ansible playbook
 
 ## 🛠️ Configuration options
 
-You can check useful documentation for configuring components in [`services`](services/) directory. See [this page](supported-services.md) for a list of all supported services.
+You can check useful documentation for configuring components in [`services`](services/) directory. Refer to [this page](supported-services.md) for a list of all supported services.
 
 ## 👨‍🔧 Maintenance
 

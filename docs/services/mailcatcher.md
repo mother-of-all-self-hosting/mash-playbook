@@ -62,7 +62,7 @@ mailcatcher_hostname: mailcatcher.example.com
 
 ### Configuring HTTP Basic authentication
 
-Since there does not exist an authentication system on the web interface, the HTTP Basic authentication on Traefik is enabled for the web interface by default, considering the nature of the service. See [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az3QmarrgiC7ZGmd7UCTW2EZTheCZb/tree/docs/configuring-mailcatcher.md#configuring-http-basic-authentication) on the role's documentation for details about how to set it up.
+Since there does not exist an authentication system on the web interface, the HTTP Basic authentication on Traefik is enabled for the web interface by default, considering the nature of the service. Refer to [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az3QmarrgiC7ZGmd7UCTW2EZTheCZb/tree/docs/configuring-mailcatcher.md#configuring-http-basic-authentication) on the role's documentation for details about how to set it up.
 
 ## Usage
 
@@ -90,7 +90,7 @@ You can check the message sent by the asciinema server at `https://mailcatcher.e
 
 ## Troubleshooting
 
-See [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az3QmarrgiC7ZGmd7UCTW2EZTheCZb/tree/docs/configuring-mailcatcher.md#troubleshooting) on the role's documentation for details.
+Refer to [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az3QmarrgiC7ZGmd7UCTW2EZTheCZb/tree/docs/configuring-mailcatcher.md#troubleshooting) on the role's documentation for details.
 
 ## Related services
 

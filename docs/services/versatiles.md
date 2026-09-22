@@ -87,4 +87,4 @@ Refer to [examples from MapLibre](https://maplibre.org/maplibre-gl-js/docs/examp
 
 ## Troubleshooting
 
-See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-versatiles/blob/main/docs/configuring-versatiles.md#troubleshooting) on the role's documentation for details.
+Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-versatiles/blob/main/docs/configuring-versatiles.md#troubleshooting) on the role's documentation for details.

@@ -69,7 +69,7 @@ After running the command for installation, the ONLYOFFICE Docs instance becomes
 
 ### Integrating ONLYOFFICE Docs with FileBrowser Quantum (optional)
 
-You can integrate ONLYOFFICE Docs with [FileBrowser Quantum](https://filebrowserquantum.com/) to edit office documents on the service. See [this page](filebrowser-quantum.md) for details about how to install FileBrowser Quantum.
+You can integrate ONLYOFFICE Docs with [FileBrowser Quantum](https://filebrowserquantum.com/) to edit office documents on the service. Refer to [this page](filebrowser-quantum.md) for details about how to install FileBrowser Quantum.
 
 To enable the integration, add the following configuration to your `vars.yml` file:
 
@@ -80,7 +80,7 @@ filebrowser_quantum_config_integrations_office_secret: "{{ onlyoffice_docs_envir
 
 ## Troubleshooting
 
-See [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az3kozTn4Kn5eJtgJQj1aCFUpqxW5Y/tree/docs/configuring-onlyoffice-docs.md#troubleshooting) on the role's documentation for details.
+Refer to [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az3kozTn4Kn5eJtgJQj1aCFUpqxW5Y/tree/docs/configuring-onlyoffice-docs.md#troubleshooting) on the role's documentation for details.
 
 ## Related services
 

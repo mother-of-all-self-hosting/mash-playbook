@@ -59,11 +59,11 @@ mariadb_root_password: ''
 
 After running the command for installation, the MariaDB instance becomes available.
 
-See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-mariadb/blob/main/docs/configuring-mariadb.md#maintenance) on the role's documentation for details about how to conduct maintenance tasks, such as upgrading MariaDB and backing up its database.
+Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-mariadb/blob/main/docs/configuring-mariadb.md#maintenance) on the role's documentation for details about how to conduct maintenance tasks, such as upgrading MariaDB and backing up its database.
 
 ## Troubleshooting
 
-See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-mariadb/blob/main/docs/configuring-mariadb.md#troubleshooting) on the role's documentation for details.
+Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-mariadb/blob/main/docs/configuring-mariadb.md#troubleshooting) on the role's documentation for details.
 
 ## Related services
 

@@ -174,7 +174,7 @@ To get started, open the URL with a web browser, and register the account. **Not
 
 ## Troubleshooting
 
-See [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az49EpGUPcp76sUQ4udcz7pBRPuq7u/tree/docs/configuring-polaris.md#troubleshooting) on the role's documentation for details.
+Refer to [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az49EpGUPcp76sUQ4udcz7pBRPuq7u/tree/docs/configuring-polaris.md#troubleshooting) on the role's documentation for details.
 
 ## Related services
 

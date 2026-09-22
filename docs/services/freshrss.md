@@ -56,7 +56,7 @@ freshrss_hostname: freshrss.example.com
 ########################################################################
 ```
 
-**Note**: hosting FreshRSS under a subpath (by configuring the `freshrss_path_prefix` variable) does not seem to be possible due to FreshRSS's technical limitations. See [this issue](https://github.com/mother-of-all-self-hosting/mash-playbook/issues/116) for details.
+**Note**: hosting FreshRSS under a subpath (by configuring the `freshrss_path_prefix` variable) does not seem to be possible due to FreshRSS's technical limitations. Refer to [this issue](https://github.com/mother-of-all-self-hosting/mash-playbook/issues/116) for details.
 
 ### Specify database
 

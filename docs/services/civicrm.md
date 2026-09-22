@@ -73,8 +73,8 @@ After running the command for installation, the CiviCRM instance becomes availab
 
 To get started, open the URL with a web browser, and follow the set up wizard.
 
-On the set up wizard, it is required to input database credentials. See [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az2kX5GbCKBFjiunvLKThDXLzbYnw1/tree/docs/configuring-civicrm.md#outputting-database-credentials) on the role's documentation for details about how to check them.
+On the set up wizard, it is required to input database credentials. Refer to [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az2kX5GbCKBFjiunvLKThDXLzbYnw1/tree/docs/configuring-civicrm.md#outputting-database-credentials) on the role's documentation for details about how to check them.
 
 ## Troubleshooting
 
-See [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az2kX5GbCKBFjiunvLKThDXLzbYnw1/tree/docs/configuring-civicrm.md#troubleshooting) on the role's documentation for details.
+Refer to [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az2kX5GbCKBFjiunvLKThDXLzbYnw1/tree/docs/configuring-civicrm.md#troubleshooting) on the role's documentation for details.

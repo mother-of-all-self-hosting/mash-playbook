@@ -65,7 +65,7 @@ docuseal_hostname: docuseal.example.com
 
 ### Select database to use
 
-It is necessary to select a database used by DocuSeal from a MySQL compatible database, Postgres, and SQLite. See [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az2HG5jWufCQfA8cYAFkJ9GmZyRcCs/tree/docs/configuring-docuseal.md#specify-database) on the role's documentation for details.
+It is necessary to select a database used by DocuSeal from a MySQL compatible database, Postgres, and SQLite. Refer to [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az2HG5jWufCQfA8cYAFkJ9GmZyRcCs/tree/docs/configuring-docuseal.md#specify-database) on the role's documentation for details.
 
 ### Configuring the mailer (optional)
 
@@ -84,4 +84,4 @@ To get started, open the URL with a web browser, and follow the set up wizard.
 
 ## Troubleshooting
 
-See [this section](https://radicle.network/nodes/iris.radicle.network/rad%3AzeEwXM9Fp4C8NU4oQfNg474Vivwu/tree/docs/configuring-docuseal.md#troubleshooting) on the role's documentation for details.
+Refer to [this section](https://radicle.network/nodes/iris.radicle.network/rad%3AzeEwXM9Fp4C8NU4oQfNg474Vivwu/tree/docs/configuring-docuseal.md#troubleshooting) on the role's documentation for details.

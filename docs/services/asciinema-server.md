@@ -116,4 +116,4 @@ Adding an authentication proxy service like [Keycloak](keycloak.md) and [Tinyaut
 
 ## Troubleshooting
 
-See [this section](https://radicle.network/nodes/iris.radicle.network/rad%3AzcSq6tnVLBUQ88zSRLThc7A7RDZb/tree/docs/configuring-asciinema-server.md#troubleshooting) on the role's documentation for details.
+Refer to [this section](https://radicle.network/nodes/iris.radicle.network/rad%3AzcSq6tnVLBUQ88zSRLThc7A7RDZb/tree/docs/configuring-asciinema-server.md#troubleshooting) on the role's documentation for details.

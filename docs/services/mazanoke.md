@@ -65,7 +65,7 @@ After running the command for installation, the MAZANOKE instance becomes availa
 
 ## Troubleshooting
 
-See [this section](https://radicle.network/nodes/iris.radicle.network/rad%3AzGHUEPjboBuF8AWo3HKxEraEuHFq/tree/docs/configuring-mazanoke.md#troubleshooting) on the role's documentation for details.
+Refer to [this section](https://radicle.network/nodes/iris.radicle.network/rad%3AzGHUEPjboBuF8AWo3HKxEraEuHFq/tree/docs/configuring-mazanoke.md#troubleshooting) on the role's documentation for details.
 
 ## Related services
 

@@ -66,7 +66,7 @@ After running the command for installation, the noCDNbs instance becomes availab
 
 ## Troubleshooting
 
-See [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az8vyzN3a8DmwhcUq3949SihKd1Wh/tree/docs/configuring-nocdnbs.md#troubleshooting) on the role's documentation for details.
+Refer to [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az8vyzN3a8DmwhcUq3949SihKd1Wh/tree/docs/configuring-nocdnbs.md#troubleshooting) on the role's documentation for details.
 
 ## Related services
 

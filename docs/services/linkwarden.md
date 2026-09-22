@@ -76,7 +76,7 @@ To enable the [advanced search options](https://docs.linkwarden.app/Usage/advanc
 
 Meilisearch is available on the playbook. Enabling it and setting its default admin API key (`meilisearch_default_admin_api_key`) automatically configures the Linkwarden instance to connect to it.
 
-See [this page](meilisearch.md) for details about how to install it and setting the key for the Meilisearch instance.
+Refer to [this page](meilisearch.md) for details about how to install it and setting the key for the Meilisearch instance.
 
 ## Usage
 
@@ -88,7 +88,7 @@ Since account registration is disabled by default, you need to enable it first b
 
 ## Troubleshooting
 
-See [this section](https://radicle.network/nodes/iris.radicle.network/rad%3AzCF75tYyujYQ3T4L3BkBDrPzXree/tree/docs/configuring-linkwarden.md#troubleshooting) on the role's documentation for details.
+Refer to [this section](https://radicle.network/nodes/iris.radicle.network/rad%3AzCF75tYyujYQ3T4L3BkBDrPzXree/tree/docs/configuring-linkwarden.md#troubleshooting) on the role's documentation for details.
 
 ## Related services
 

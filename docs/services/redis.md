@@ -8,7 +8,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 # Redis
 
 > [!NOTE]
-> Starting from 8.0.0, Redis is licensed under your choice of the multiple licenses, one of which is AGPLv3. See [the release note for 8.0.0](https://github.com/redis/redis/releases/tag/8.0.0) for details.
+> Starting from 8.0.0, Redis is licensed under your choice of the multiple licenses, one of which is AGPLv3. Refer to [the release note for 8.0.0](https://github.com/redis/redis/releases/tag/8.0.0) for details.
 
 The playbook can install and configure [Redis](https://redis.io/) for you.
 

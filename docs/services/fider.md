@@ -118,4 +118,4 @@ To get started, open the URL with a web browser, and follow the set up wizard.
 
 ## Troubleshooting
 
-See [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az3Fe49p3uVZpC43KdB5gDCTmr8u7Y/tree/docs/configuring-fider.md#troubleshooting) on the role's documentation for details.
+Refer to [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az3Fe49p3uVZpC43KdB5gDCTmr8u7Y/tree/docs/configuring-fider.md#troubleshooting) on the role's documentation for details.

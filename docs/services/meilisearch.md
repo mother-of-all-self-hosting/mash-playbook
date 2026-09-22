@@ -86,7 +86,7 @@ To get started, refer to [the documentation](https://www.meilisearch.com/docs/ge
 
 ### Obtaining API keys
 
-**It is [not recommended](https://www.meilisearch.com/docs/resources/self_hosting/security/basic_security#obtaining-api-keys-in-a-self-hosted-instance) to use the master key for operations anything but managing other API keys.** See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-meilisearch/blob/main/docs/configuring-meilisearch.md#obtaining-api-keys) about the instruction to obtain those API keys.
+**It is [not recommended](https://www.meilisearch.com/docs/resources/self_hosting/security/basic_security#obtaining-api-keys-in-a-self-hosted-instance) to use the master key for operations anything but managing other API keys.** Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-meilisearch/blob/main/docs/configuring-meilisearch.md#obtaining-api-keys) about the instruction to obtain those API keys.
 
 #### Setting default API admin key
 
@@ -98,7 +98,7 @@ meilisearch_default_admin_api_key: YOUR_DEFAULT_ADMIN_API_KEY_HERE
 
 ## Troubleshooting
 
-See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-meilisearch/blob/main/docs/configuring-meilisearch.md#troubleshooting) on the role's documentation for details.
+Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-meilisearch/blob/main/docs/configuring-meilisearch.md#troubleshooting) on the role's documentation for details.
 
 ## Related services
 

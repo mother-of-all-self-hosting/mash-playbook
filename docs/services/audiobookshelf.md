@@ -173,7 +173,7 @@ After running the command for installation, the audiobookshelf instance becomes 
 
 To get started, open the URL with a web browser to create an account. **Note that the first registered user becomes an administrator automatically.**
 
-See [this page](https://www.audiobookshelf.org/docs/) on the documentation about its usage.
+Refer to [this page](https://www.audiobookshelf.org/docs/) on the documentation about its usage.
 
 If you are looking for free public domain audiobooks which can be uploaded to your audiobookshelf instance, you might be interested in websites such as <https://librivox.org/>.
 
@@ -206,7 +206,7 @@ After setting the configuration, you can have the audiobookshelf instance send a
 
 ## Troubleshooting
 
-See [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az3rwhJ9rQ82H6GXg7ZCt3UNpStbaW/tree/docs/configuring-audiobookshelf.md#troubleshooting) on the role's documentation for details.
+Refer to [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az3rwhJ9rQ82H6GXg7ZCt3UNpStbaW/tree/docs/configuring-audiobookshelf.md#troubleshooting) on the role's documentation for details.
 
 ## Related services
 

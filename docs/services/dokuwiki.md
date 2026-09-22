@@ -86,7 +86,7 @@ After setting the configuration, you can have the DokuWiki instance send a test 
 
 ## Troubleshooting
 
-See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-dokuwiki/blob/main/docs/configuring-dokuwiki.md#troubleshooting) on the role's documentation for details.
+Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-dokuwiki/blob/main/docs/configuring-dokuwiki.md#troubleshooting) on the role's documentation for details.
 
 ## Related services
 

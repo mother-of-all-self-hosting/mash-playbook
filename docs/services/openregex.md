@@ -66,4 +66,4 @@ After running the command for installation, the OpenRegex instance becomes avail
 
 ## Troubleshooting
 
-See [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az2kcNwMys48Wy3SLPnLU7oBnkkQyj/tree/docs/configuring-openregex.md#troubleshooting) on the role's documentation for details.
+Refer to [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az2kcNwMys48Wy3SLPnLU7oBnkkQyj/tree/docs/configuring-openregex.md#troubleshooting) on the role's documentation for details.

@@ -59,8 +59,8 @@ mongodb_root_password: ''
 
 After running the command for installation, the MongoDB instance becomes available.
 
-See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-mongodb/blob/main/docs/configuring-mongodb.md#maintenance) on the role's documentation for details about how to conduct maintenance tasks, such backing up its database and importing it.
+Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-mongodb/blob/main/docs/configuring-mongodb.md#maintenance) on the role's documentation for details about how to conduct maintenance tasks, such backing up its database and importing it.
 
 ## Troubleshooting
 
-See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-mongodb/blob/main/docs/configuring-mongodb.md#troubleshooting) on the role's documentation for details.
+Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-mongodb/blob/main/docs/configuring-mongodb.md#troubleshooting) on the role's documentation for details.

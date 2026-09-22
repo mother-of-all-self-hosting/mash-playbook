@@ -86,22 +86,22 @@ To use MySQL for a storage, add the following configuration to your `vars.yml` f
 privatebin_config_model: mysql
 ```
 
-See [here](mariadb.md) on the role's documentation for details about how to configure a MariaDB instance with the playbook.
+Refer to [here](mariadb.md) on the role's documentation for details about how to configure a MariaDB instance with the playbook.
 
 #### Google Cloud Storage / Amazon S3
 
-See [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az47v1S9DRcEtm2dgKwZZs4YgoLRgF/tree/docs/configuring-privatebin.md#configure-a-storage-for-pastes) on the role's documentation for details about how to configure a storage at Google Cloud Storage or Amazon S3.
+Refer to [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az47v1S9DRcEtm2dgKwZZs4YgoLRgF/tree/docs/configuring-privatebin.md#configure-a-storage-for-pastes) on the role's documentation for details about how to configure a storage at Google Cloud Storage or Amazon S3.
 
 ### Configure a URL shortener (optional)
 
 It is possible to have the PrivateBin instance use a URL shortener such as Bit.ly and a [YOURLS](https://yourls.org) instance, so that users can shorten a URL of a paste with it. **It is recommended to use a self-hosted shortener only and set a password to a paste, as the shortener will leak the paste's encryption key.**
 
-YOURLS is available on the playbook. See [here](yourls.md) for details about how to install it.
+YOURLS is available on the playbook. Refer to [here](yourls.md) for details about how to install it.
 
 💡 **Notes**
 
-- YOURLS requires a MariaDB instance (see [here](mariadb.md) for details about configuring it with the playbook); if PostgreSQL is going to be used for PrivateBin (or other services), you need to use both of them.
-- If you are going to install PrivateBin and YOURLS at the same time, **you need to complete installation of YOURLS at first** by visiting its admin UI available at the specified hostname with `/admin/` such as `https://yourls.example.com/admin/`. Otherwise the function to shorten a paste's URL does not work. See [here](yourls.md#usage) for the instruction to complete installation.
+- YOURLS requires a MariaDB instance (refer to [this page](mariadb.md) for details about configuring it with the playbook); if PostgreSQL is going to be used for PrivateBin (or other services), you need to use both of them.
+- If you are going to install PrivateBin and YOURLS at the same time, **you need to complete installation of YOURLS at first** by visiting its admin UI available at the specified hostname with `/admin/` such as `https://yourls.example.com/admin/`. Otherwise the function to shorten a paste's URL does not work. Refer to [here](yourls.md#usage) for the instruction to complete installation.
 
 #### Use a private YOURLS instance with API access key
 
@@ -135,7 +135,7 @@ After running the command for installation, the PrivateBin instance becomes avai
 
 ## Troubleshooting
 
-See [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az47v1S9DRcEtm2dgKwZZs4YgoLRgF/tree/docs/configuring-privatebin.md#troubleshooting) on the role's documentation for details.
+Refer to [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az47v1S9DRcEtm2dgKwZZs4YgoLRgF/tree/docs/configuring-privatebin.md#troubleshooting) on the role's documentation for details.
 
 ## Related services
 

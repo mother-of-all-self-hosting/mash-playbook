@@ -87,7 +87,7 @@ To enable the search and filtering functions, you can optionally have the Bar As
 
 Meilisearch is available on the playbook. Enabling it and setting the default admin API key (`meilisearch_default_admin_api_key`) automatically configures the Bar Assistant instance to connect to it.
 
-See [this page](meilisearch.md) for details about how to install it and setting the key for the Meilisearch instance.
+Refer to [this page](meilisearch.md) for details about how to install it and setting the key for the Meilisearch instance.
 
 >[!NOTE]
 > The Meilisearch instance needs to be exposed to the internet. Setting a hostname of the instance to `meilisearch_hostname` automatically exposes it.
@@ -110,7 +110,7 @@ To create a dedicated instance for Bar Assistant, you can follow the steps below
 2. Create a new `vars.yml` file for the dedicated instance
 3. Edit the existing `vars.yml` file for the main host
 
-*See [this page](../running-multiple-instances.md) for details about configuring multiple instances of Valkey on the same server.*
+*Refer to [this page](../running-multiple-instances.md) for details about configuring multiple instances of Valkey on the same server.*
 
 ##### Adjust `hosts`
 
@@ -313,4 +313,4 @@ Since account registration is disabled by default, you need to enable it first b
 
 ## Troubleshooting
 
-See [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az3JDUHjeHMqbZ3YLxquSUbCmAJLi/tree/docs/configuring-barassistant.md#troubleshooting) on the role's documentation for details.
+Refer to [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az3JDUHjeHMqbZ3YLxquSUbCmAJLi/tree/docs/configuring-barassistant.md#troubleshooting) on the role's documentation for details.

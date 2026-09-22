@@ -67,11 +67,11 @@ excalidraw_room_hostname: excalidraw-room.example.com
 
 After running the command for installation, the Excalidraw collaboration server becomes available at the URL specified with `excalidraw_room_hostname`. With the configuration above, the service is hosted at `https://excalidraw-room.example.com`.
 
-To use the collaboration server, you need to set up an Excalidraw instance built for the collaboration server. See [this page](excalidraw.md) for the instruction to set up the instance with this playbook.
+To use the collaboration server, you need to set up an Excalidraw instance built for the collaboration server. Refer to [this page](excalidraw.md) for the instruction to set up the instance with this playbook.
 
 ## Troubleshooting
 
-See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-excalidraw-room/blob/main/docs/configuring-excalidraw-room.md#troubleshooting) on the role's documentation for details.
+Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-excalidraw-room/blob/main/docs/configuring-excalidraw-room.md#troubleshooting) on the role's documentation for details.
 
 ## Related services
 

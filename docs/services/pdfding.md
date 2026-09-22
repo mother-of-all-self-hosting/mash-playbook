@@ -65,7 +65,7 @@ pdfding_hostname: pdfding.example.com
 
 ### Select database to use
 
-It is necessary to select a database used by the service from Postgres and SQLite. See [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az2cZCZP8Mu4LYMbHKaTdnP1otc46L/tree/docs/configuring-pdfding.md#specify-database) on the role's documentation for details.
+It is necessary to select a database used by the service from Postgres and SQLite. Refer to [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az2cZCZP8Mu4LYMbHKaTdnP1otc46L/tree/docs/configuring-pdfding.md#specify-database) on the role's documentation for details.
 
 ### Enabling signing up
 
@@ -94,4 +94,4 @@ Since account registration is disabled by default, you need to enable it first b
 
 ## Troubleshooting
 
-See [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az2cZCZP8Mu4LYMbHKaTdnP1otc46L/tree/docs/configuring-pdfding.md#troubleshooting) on the role's documentation for details.
+Refer to [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az2cZCZP8Mu4LYMbHKaTdnP1otc46L/tree/docs/configuring-pdfding.md#troubleshooting) on the role's documentation for details.

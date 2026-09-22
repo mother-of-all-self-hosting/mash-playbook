@@ -102,7 +102,7 @@ ansible-playbook -i inventory/hosts setup.yml --tags=print-hostname-onion-servic
 
 ## Troubleshooting
 
-See [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Aznw3BPXrSbPWcARpYbk3yGy4iGQ4/tree/docs/configuring-onion-service-tor.md#troubleshooting) on the role's documentation for details.
+Refer to [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Aznw3BPXrSbPWcARpYbk3yGy4iGQ4/tree/docs/configuring-onion-service-tor.md#troubleshooting) on the role's documentation for details.
 
 ## Related services
 

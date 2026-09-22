@@ -53,7 +53,7 @@ After running the command for installation, the Label Studio instance becomes av
 
 To get started, open the URL with a web browser to register new accounts, log in with them, and start working.
 
-Keep in mind that every user will see every project. It may be more secure to disable user registration and use an admin user. See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-labelstudio/blob/main/docs/configuring-labelstudio.md#setting-administrators-account-details-optional) on the role's documentation for details.
+Keep in mind that every user will see every project. It may be more secure to disable user registration and use an admin user. Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-labelstudio/blob/main/docs/configuring-labelstudio.md#setting-administrators-account-details-optional) on the role's documentation for details.
 
 ## Related services
 

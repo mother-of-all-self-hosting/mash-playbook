@@ -79,7 +79,7 @@ To create a dedicated instance for Svix, you can follow the steps below:
 2. Create a new `vars.yml` file for the dedicated instance
 3. Edit the existing `vars.yml` file for the main host
 
-*See [this page](../running-multiple-instances.md) for details about configuring multiple instances of Valkey on the same server.*
+*Refer to [this page](../running-multiple-instances.md) for details about configuring multiple instances of Valkey on the same server.*
 
 ##### Adjust `hosts`
 
@@ -241,4 +241,4 @@ After running the command for installation, the Svix instance becomes available 
 
 ## Troubleshooting
 
-See [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az23UDsbsiGGq9B8M8TSNWB4MLk3vX/tree/docs/configuring-svix-server.md#troubleshooting) on the role's documentation for details.
+Refer to [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az23UDsbsiGGq9B8M8TSNWB4MLk3vX/tree/docs/configuring-svix-server.md#troubleshooting) on the role's documentation for details.

@@ -85,7 +85,7 @@ To enable the search function, you need to have the Open Archiver instance conne
 
 Meilisearch is available on the playbook. Enabling it and setting the default admin API key (`meilisearch_default_admin_api_key`) automatically configures the Open Archiver instance to connect to it.
 
-See [this page](meilisearch.md) for details about how to install it and setting the key for the Meilisearch instance.
+Refer to [this page](meilisearch.md) for details about how to install it and setting the key for the Meilisearch instance.
 
 ### Configure Valkey
 
@@ -105,7 +105,7 @@ To create a dedicated instance for Open Archiver, you can follow the steps below
 2. Create a new `vars.yml` file for the dedicated instance
 3. Edit the existing `vars.yml` file for the main host
 
-*See [this page](../running-multiple-instances.md) for details about configuring multiple instances of Valkey on the same server.*
+*Refer to [this page](../running-multiple-instances.md) for details about configuring multiple instances of Valkey on the same server.*
 
 ##### Adjust `hosts`
 
@@ -259,7 +259,7 @@ Running the installation command will create the shared Valkey instance named `m
 
 You can optionally have the instance connect to [Apache Tika Server](http://tika.apache.org/) for extracting and indexing text data on attachment files. If not enabled, the application falls back to built-in parsers for PDF, Word, and Excel files.
 
-Apache Tika Server is available on the playbook. Enabling it configures the instance to connect to it. See [this page](tika.md) for details about how to install it.
+Apache Tika Server is available on the playbook. Enabling it configures the instance to connect to it. Refer to [this page](tika.md) for details about how to install it.
 
 ## Installation
 
@@ -275,7 +275,7 @@ To get started, open the URL with a web browser to create an account. **Note tha
 
 ## Troubleshooting
 
-See [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az2Q7Pka6bCT5D6Ng54kT8UcYAcVTC/tree/docs/configuring-openarchiver.md#troubleshooting) on the role's documentation for details.
+Refer to [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az2Q7Pka6bCT5D6Ng54kT8UcYAcVTC/tree/docs/configuring-openarchiver.md#troubleshooting) on the role's documentation for details.
 
 ## Related services
 

@@ -175,7 +175,7 @@ syncthing_container_additional_volumes_custom:
 
 After running the command for installation, the Calibre-Web Automated instance becomes available at the URL specified with `calibre_web_automated_hostname`. With the configuration above, the service is hosted at `https://cwa.example.com`.
 
-See [this section](https://radicle.network/nodes/iris.radicle.network/rad%3AzSfEaojv4NnFnivPm248Lx123CNe/tree/docs/configuring-calibre-web-automated.md#usage) for details about setting up the instance.
+Refer to [this section](https://radicle.network/nodes/iris.radicle.network/rad%3AzSfEaojv4NnFnivPm248Lx123CNe/tree/docs/configuring-calibre-web-automated.md#usage) for details about setting up the instance.
 
 ### Configuring the mailer (optional)
 
@@ -200,7 +200,7 @@ After setting the configuration, you can have the Calibre-Web Automated instance
 
 ## Troubleshooting
 
-See [this section](https://radicle.network/nodes/iris.radicle.network/rad%3AzSfEaojv4NnFnivPm248Lx123CNe/tree/docs/configuring-calibre-web-automated.md#troubleshooting) on the role's documentation for details.
+Refer to [this section](https://radicle.network/nodes/iris.radicle.network/rad%3AzSfEaojv4NnFnivPm248Lx123CNe/tree/docs/configuring-calibre-web-automated.md#troubleshooting) on the role's documentation for details.
 
 ## Related services
 

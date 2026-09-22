@@ -63,7 +63,7 @@ atuin_hostname: atuin.example.com
 
 ### Select database to use
 
-It is necessary to select a database used by Atuin server from Postgres and SQLite. See [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az4ATDhf89CPqP7XCLNpNwobuJ9fBs/tree/docs/configuring-atuin.md#specify-database) on the role's documentation for details.
+It is necessary to select a database used by Atuin server from Postgres and SQLite. Refer to [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az4ATDhf89CPqP7XCLNpNwobuJ9fBs/tree/docs/configuring-atuin.md#specify-database) on the role's documentation for details.
 
 ### Enabling signing up
 
@@ -77,10 +77,10 @@ atuin_environment_variables_open_registration: true
 
 After running the command for installation, the Atuin server instance becomes available at the URL specified with `atuin_hostname`. With the configuration above, the service is hosted at `https://atuin.example.com`.
 
-To get started, [install Atuin](https://docs.atuin.sh/guide/installation/) on your local computer if it is not yet available there, and proceed to configure synchronization. See [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az4ATDhf89CPqP7XCLNpNwobuJ9fBs/tree/docs/configuring-atuin.md#usage) on the role's documentation for details.
+To get started, [install Atuin](https://docs.atuin.sh/guide/installation/) on your local computer if it is not yet available there, and proceed to configure synchronization. Refer to [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az4ATDhf89CPqP7XCLNpNwobuJ9fBs/tree/docs/configuring-atuin.md#usage) on the role's documentation for details.
 
 Since account registration is disabled by default, you need to enable it first by setting `atuin_environment_variables_open_registration` to `true` temporarily in order to create your own account.
 
 ## Troubleshooting
 
-See [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az4ATDhf89CPqP7XCLNpNwobuJ9fBs/tree/docs/configuring-atuin.md#troubleshooting) on the role's documentation for details.
+Refer to [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az4ATDhf89CPqP7XCLNpNwobuJ9fBs/tree/docs/configuring-atuin.md#troubleshooting) on the role's documentation for details.

@@ -82,7 +82,7 @@ To create a dedicated instance for Weblate, you can follow the steps below:
 2. Create a new `vars.yml` file for the dedicated instance
 3. Edit the existing `vars.yml` file for the main host
 
-*See [this page](../running-multiple-instances.md) for details about configuring multiple instances of Valkey on the same server.*
+*Refer to [this page](../running-multiple-instances.md) for details about configuring multiple instances of Valkey on the same server.*
 
 ##### Adjust `hosts`
 
@@ -282,4 +282,4 @@ To get started, open the URL with a web browser to log in to the instance with t
 
 ## Troubleshooting
 
-See [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az3NoFEkNtQQjSGjLvweqwCFPbC59R/tree/docs/configuring-weblate.md#troubleshooting) on the role's documentation for details.
+Refer to [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az3NoFEkNtQQjSGjLvweqwCFPbC59R/tree/docs/configuring-weblate.md#troubleshooting) on the role's documentation for details.

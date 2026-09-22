@@ -61,7 +61,7 @@ copyparty_hostname: copyparty.example.com
 
 ### Set administrator password
 
-By default it is necessary to create an administrator account, whose default username is set to `copyparty`. See [this section](https://radicle.network/nodes/iris.radicle.network/rad:z4GaYR5FxcSuYuCKovEo9Zfm3HPXc/tree/docs/configuring-copyparty.md#set-username-and-password) on the role's documentation for details.
+By default it is necessary to create an administrator account, whose default username is set to `copyparty`. Refer to [this section](https://radicle.network/nodes/iris.radicle.network/rad:z4GaYR5FxcSuYuCKovEo9Zfm3HPXc/tree/docs/configuring-copyparty.md#set-username-and-password) on the role's documentation for details.
 
 ## Usage
 
@@ -73,4 +73,4 @@ Refer to [this page](https://copyparty.eu/cli/) for the exhaustive list of avail
 
 ## Troubleshooting
 
-See [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az4GaYR5FxcSuYuCKovEo9Zfm3HPXc/tree/docs/configuring-copyparty.md#troubleshooting) on the role's documentation for details.
+Refer to [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az4GaYR5FxcSuYuCKovEo9Zfm3HPXc/tree/docs/configuring-copyparty.md#troubleshooting) on the role's documentation for details.

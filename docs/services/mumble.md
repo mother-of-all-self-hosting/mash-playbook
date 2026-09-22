@@ -66,11 +66,11 @@ mumble_hostname: mumble.example.com
 
 ### Select database to use
 
-It is necessary to select a database used by Mumble from a MySQL compatible database, Postgres, and SQLite. See [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az4VBCibmQHyfHKEWTAJmQKBAAjtsv/tree/docs/configuring-mumble.md#specify-database) on the role's documentation for details.
+It is necessary to select a database used by Mumble from a MySQL compatible database, Postgres, and SQLite. Refer to [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az4VBCibmQHyfHKEWTAJmQKBAAjtsv/tree/docs/configuring-mumble.md#specify-database) on the role's documentation for details.
 
 ### Setting admin's password (optional)
 
-It is possible to specify the admin (`SuperUser`) password by configuring a variable for it. See [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az4VBCibmQHyfHKEWTAJmQKBAAjtsv/tree/docs/configuring-mumble.md#setting-admin-39-s-password) on the role's documentation for details. **If not specified, a random password will be generated upon the first startup.**
+It is possible to specify the admin (`SuperUser`) password by configuring a variable for it. Refer to [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az4VBCibmQHyfHKEWTAJmQKBAAjtsv/tree/docs/configuring-mumble.md#setting-admin-39-s-password) on the role's documentation for details. **If not specified, a random password will be generated upon the first startup.**
 
 ## Usage
 
@@ -82,4 +82,4 @@ As anyone can use the server without a password by default, you might also want 
 
 ## Troubleshooting
 
-See [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az4VBCibmQHyfHKEWTAJmQKBAAjtsv/tree/docs/configuring-mumble.md#troubleshooting) on the role's documentation for details.
+Refer to [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az4VBCibmQHyfHKEWTAJmQKBAAjtsv/tree/docs/configuring-mumble.md#troubleshooting) on the role's documentation for details.

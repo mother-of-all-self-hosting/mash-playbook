@@ -66,4 +66,4 @@ After running the command for installation, the Moner.ooo instance becomes avail
 
 ## Troubleshooting
 
-See [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az3i2ogEXxuSzVAxVaRuoydAiDCBKi/tree/docs/configuring-monerooo.md#troubleshooting) on the role's documentation for details.
+Refer to [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az3i2ogEXxuSzVAxVaRuoydAiDCBKi/tree/docs/configuring-monerooo.md#troubleshooting) on the role's documentation for details.

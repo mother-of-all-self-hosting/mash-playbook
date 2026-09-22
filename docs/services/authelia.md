@@ -111,7 +111,7 @@ authelia_config_session_redis_hostname: "{{ valkey_identifier if valkey_enabled 
 
 As mentioned in the default configuration above (see `authelia_config_session_redis_hostname`), you may wish to run [Valkey](valkey.md) for storing session data.
 
-You may wish to run a separate Valkey instance for Authelia, because Valkey is not multi-tenant. See [our Valkey documentation page](valkey.md) for additional details. When running a separate instance of Valkey, you may need to connect Authelia to the Valkey instance's container network via the `authelia_container_additional_networks_custom` variable.
+You may wish to run a separate Valkey instance for Authelia, because Valkey is not multi-tenant. Refer to [our Valkey documentation page](valkey.md) for additional details. When running a separate instance of Valkey, you may need to connect Authelia to the Valkey instance's container network via the `authelia_container_additional_networks_custom` variable.
 
 ### Authentication storage providers
 
@@ -125,9 +125,9 @@ To use LDAP, remove the `authelia_config_authentication_backend_file_content` va
 
 Authelia has 2 [modes of operation](#modes-of-operation) which can be enabled simultaneously:
 
-- **Forward-Auth**: [Forward-Auth](https://doc.traefik.io/traefik/middlewares/http/forwardauth/) is useful for protecting services which are not aware of authentication at all or which can receive authentication/authorization data via [HTTP headers](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers). Forward-Auth can act as a replacement for [HTTP Basic Authentication](https://en.wikipedia.org/wiki/Basic_access_authentication). It does this by acting as a companion to [common reverse proxies](https://www.authelia.com/overview/prologue/supported-proxies/), like [Traefik](traefik.md) which is frequently used by this playbook. To learn more, see [Protecting a service with Authelia's forward-auth](#protecting-a-service-with-authelias-forward-auth)
+- **Forward-Auth**: [Forward-Auth](https://doc.traefik.io/traefik/middlewares/http/forwardauth/) is useful for protecting services which are not aware of authentication at all or which can receive authentication/authorization data via [HTTP headers](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers). Forward-Auth can act as a replacement for [HTTP Basic Authentication](https://en.wikipedia.org/wiki/Basic_access_authentication). It does this by acting as a companion to [common reverse proxies](https://www.authelia.com/overview/prologue/supported-proxies/), like [Traefik](traefik.md) which is frequently used by this playbook. To learn more, refer to [Protecting a service with Authelia's forward-auth](#protecting-a-service-with-authelias-forward-auth)
 
-- **OpenID Connect**: experimental OpenID Connect support support, so that services which are OpenID Connect-compatible can use Authelia as an identity provider. To learn more, see [Protecting a service with OpenID Connect](#protecting-a-service-with-openid-connect)
+- **OpenID Connect**: experimental OpenID Connect support support, so that services which are OpenID Connect-compatible can use Authelia as an identity provider. To learn more, refer to [Protecting a service with OpenID Connect](#protecting-a-service-with-openid-connect)
 
 #### Protecting a service with Authelia's forward-auth
 

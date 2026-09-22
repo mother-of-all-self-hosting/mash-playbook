@@ -124,8 +124,8 @@ sftpgo_container_labels_traefik_metrics_middleware_basic_auth_users: ""
 
 After running the command for installation, the SFTPGo instance becomes available at the URL specified with `sftpgo_hostname`. With the configuration above, the service is hosted at `https://sftpgo.example.com`. By default you can connect to the SFTP server on the port `2022`.
 
-See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-sftpgo/blob/main/docs/configuring-sftpgo.md#adjusting-the-playbook-configuration) on the role's documentation for details about how to enable web interfaces and create the first admin account, including the configuration to enable WebDAV server.
+Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-sftpgo/blob/main/docs/configuring-sftpgo.md#adjusting-the-playbook-configuration) on the role's documentation for details about how to enable web interfaces and create the first admin account, including the configuration to enable WebDAV server.
 
 ## Troubleshooting
 
-See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-sftpgo/blob/main/docs/configuring-sftpgo.md#troubleshooting) on the role's documentation for details.
+Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-sftpgo/blob/main/docs/configuring-sftpgo.md#troubleshooting) on the role's documentation for details.

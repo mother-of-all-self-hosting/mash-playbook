@@ -40,7 +40,7 @@ This service requires the following other services:
 - (optional) [Postgres](postgres.md) — Pocket ID will default to [SQLite](https://www.sqlite.org/) if Postgres is not enabled
 
 >[!NOTE]
-> It is not recommended to store a SQLite database inside a networked filesystem, such as a NFS or SMB share. See [this section](https://pocket-id.org/docs/configuration/environment-variables#database-connection-string) on the official documentation for details.
+> It is not recommended to store a SQLite database inside a networked filesystem, such as a NFS or SMB share. Refer to [this section](https://pocket-id.org/docs/configuration/environment-variables#database-connection-string) on the official documentation for details.
 
 ## Configuration
 
@@ -76,7 +76,7 @@ pocket_id_environment_variable_encryption_key: YOUR_SECRET_KEY_HERE
 
 ### Select database to use (optional)
 
-By default Pocket ID is configured to use Postgres, but you can choose SQLite. See [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az2vTmc3fLqxvpuT9EoZvkErWNZM1K/tree/docs/configuring-pocket-id.md#specify-database-optional) on the role's documentation for details.
+By default Pocket ID is configured to use Postgres, but you can choose SQLite. Refer to [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az2vTmc3fLqxvpuT9EoZvkErWNZM1K/tree/docs/configuring-pocket-id.md#specify-database-optional) on the role's documentation for details.
 
 ### Configuring the mailer (optional)
 
@@ -96,7 +96,7 @@ By default, this playbook enables configuring them on the UI, which therefore di
 >[!NOTE]
 > Basic settings can still be configured with environment variables.
 
-See [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az2vTmc3fLqxvpuT9EoZvkErWNZM1K/tree/docs/configuring-pocket-id.md#enable-or-disable-overriding-ui-configuration-with-environment-variables) on the role's documentation for details about what needs specifying.
+Refer to [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az2vTmc3fLqxvpuT9EoZvkErWNZM1K/tree/docs/configuring-pocket-id.md#enable-or-disable-overriding-ui-configuration-with-environment-variables) on the role's documentation for details about what needs specifying.
 
 ## Usage
 
@@ -104,7 +104,7 @@ After running the command for installation, the Pocket ID instance becomes avail
 
 To get started, open the URL `https://pocketid.example.com/setup` with a web browser to create an administrator account.
 
-See [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az2vTmc3fLqxvpuT9EoZvkErWNZM1K/tree/docs/configuring-pocket-id.md#usage) on the role's documentation for details about how to use Pocket ID.
+Refer to [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az2vTmc3fLqxvpuT9EoZvkErWNZM1K/tree/docs/configuring-pocket-id.md#usage) on the role's documentation for details about how to use Pocket ID.
 
 If you are interested in integrating Pocket ID with [Tinyauth](https://tinyauth.app), you might also be interested in having a look at [this section](tinyauth.md#integrating-with-pocket-id).
 
@@ -151,7 +151,7 @@ Refer to these guides as well:
 
 ## Troubleshooting
 
-See [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az2vTmc3fLqxvpuT9EoZvkErWNZM1K/tree/docs/configuring-pocket-id.md#troubleshooting) on the role's documentation for details.
+Refer to [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az2vTmc3fLqxvpuT9EoZvkErWNZM1K/tree/docs/configuring-pocket-id.md#troubleshooting) on the role's documentation for details.
 
 ## Related services
 

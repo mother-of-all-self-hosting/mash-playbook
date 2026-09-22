@@ -59,7 +59,7 @@ To get started, open the URL with a web browser to create an account.
 
 ## Troubleshooting
 
-See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-autobrr/blob/main/docs/configuring-autobrr.md#troubleshooting) on the role's documentation for details.
+Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-autobrr/blob/main/docs/configuring-autobrr.md#troubleshooting) on the role's documentation for details.
 
 ## Related services
 

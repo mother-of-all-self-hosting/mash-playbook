@@ -89,7 +89,7 @@ Since account registration is disabled by default, you need to enable it first b
 
 ## Troubleshooting
 
-See [this section](https://radicle.network/nodes/iris.radicle.network/rad%3AzvzJe15VMBkGd2CMBctvpVZgmQG5/tree/docs/configuring-otterwiki.md#troubleshooting) on the role's documentation for details.
+Refer to [this section](https://radicle.network/nodes/iris.radicle.network/rad%3AzvzJe15VMBkGd2CMBctvpVZgmQG5/tree/docs/configuring-otterwiki.md#troubleshooting) on the role's documentation for details.
 
 ## Related services
 

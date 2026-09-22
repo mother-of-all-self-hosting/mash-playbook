@@ -65,7 +65,7 @@ readeck_path_prefix: /readeck
 
 ### Select database to use
 
-It is necessary to select a database used by Readeck from Postgres and SQLite. See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-readeck/blob/main/docs/configuring-readeck.md#specify-database) on the role's documentation for details.
+It is necessary to select a database used by Readeck from Postgres and SQLite. Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-readeck/blob/main/docs/configuring-readeck.md#specify-database) on the role's documentation for details.
 
 ### Configuring the mailer (optional)
 
@@ -82,7 +82,7 @@ To get started, open the URL with a web browser to create an account.
 
 ## Troubleshooting
 
-See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-readeck/blob/main/docs/configuring-readeck.md#troubleshooting) on the role's documentation for details.
+Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-readeck/blob/main/docs/configuring-readeck.md#troubleshooting) on the role's documentation for details.
 
 ## Related services
 

@@ -46,7 +46,7 @@ infisical_hostname: infisical.example.com
 
 ### Set random strings for keys
 
-You also need to set random secure strings for an encryption key and a secret. See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-infisical/blob/main/docs/configuring-infisical.md#set-random-strings-for-keys) on the role's documentation for details.
+You also need to set random secure strings for an encryption key and a secret. Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-infisical/blob/main/docs/configuring-infisical.md#set-random-strings-for-keys) on the role's documentation for details.
 
 ### Configure Valkey
 
@@ -66,7 +66,7 @@ To create a dedicated instance for Infisical, you can follow the steps below:
 2. Create a new `vars.yml` file for the dedicated instance
 3. Edit the existing `vars.yml` file for the main host
 
-*See [this page](../running-multiple-instances.md) for details about configuring multiple instances of Valkey on the same server.*
+*Refer to [this page](../running-multiple-instances.md) for details about configuring multiple instances of Valkey on the same server.*
 
 ##### Adjust `hosts`
 
@@ -237,4 +237,4 @@ To get started, open the URL with a web browser to create an account. **Note tha
 
 ## Troubleshooting
 
-See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-infisical/blob/main/docs/configuring-infisical.md#troubleshooting) on the role's documentation for details.
+Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-infisical/blob/main/docs/configuring-infisical.md#troubleshooting) on the role's documentation for details.

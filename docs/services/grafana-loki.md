@@ -68,7 +68,7 @@ loki_enabled: true
 
 By setting a hostname with `loki_hostname` and optionally a path prefix with `loki_path_prefix`, you can expose Loki publicly. You may wish to do this, if you'd like to be able to push logs from remote agents (e.g. Promtail installed on remote machines, etc.) and query logs from remote systems (e.g. Grafana installed elsewhere).
 
-See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-loki/blob/main/docs/configuring-loki.md#set-the-hostname-to-expose-the-web-interface-optional) on the role's documentation for details about configuring it.
+Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-loki/blob/main/docs/configuring-loki.md#set-the-hostname-to-expose-the-web-interface-optional) on the role's documentation for details about configuring it.
 
 ## Usage
 
@@ -76,4 +76,4 @@ Refer to the [official documentation](https://grafana.com/docs/loki/latest/refer
 
 ## Troubleshooting
 
-See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-loki/blob/main/docs/configuring-loki.md#troubleshooting) on the role's documentation for details.
+Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-loki/blob/main/docs/configuring-loki.md#troubleshooting) on the role's documentation for details.

@@ -62,7 +62,7 @@ redlib_hostname: redlib.example.com
 
 ### Configure instance and user settings (optional)
 
-There are various options for the instance and user settings. See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-redlib/blob/main/docs/configuring-redlib.md#configure-instance-and-user-settings-optional) on the role's documentation for details.
+There are various options for the instance and user settings. Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-redlib/blob/main/docs/configuring-redlib.md#configure-instance-and-user-settings-optional) on the role's documentation for details.
 
 ## Usage
 
@@ -70,11 +70,11 @@ After running the command for installation, the Redlib instance becomes availabl
 
 [Libredirect](https://libredirect.github.io/), an extension for Firefox and Chromium-based desktop browsers, has support for redirections to Redlib.
 
-If you would like to make your instance public so that it can be used by anyone including Libredirect, please consider to send a PR to the [upstream project](https://github.com/redlib-org/redlib-instances) to add yours to the list, which Libredirect automatically fetches using a script (see [this FAQ entry](https://libredirect.github.io/faq.html#where_the_hell_are_those_instances_coming_from)). See [here](https://github.com/redlib-org/redlib-instances/blob/main/README.md) for details about how to do so.
+If you would like to make your instance public so that it can be used by anyone including Libredirect, please consider to send a PR to the [upstream project](https://github.com/redlib-org/redlib-instances) to add yours to the list, which Libredirect automatically fetches using a script (refer to [this FAQ entry](https://libredirect.github.io/faq.html#where_the_hell_are_those_instances_coming_from)). Refer to [here](https://github.com/redlib-org/redlib-instances/blob/main/README.md) for details about how to do so.
 
 ## Troubleshooting
 
-See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-redlib/blob/main/docs/configuring-redlib.md#troubleshooting) on the role's documentation for details.
+Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-redlib/blob/main/docs/configuring-redlib.md#troubleshooting) on the role's documentation for details.
 
 ## Related services
 

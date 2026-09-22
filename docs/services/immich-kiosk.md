@@ -60,7 +60,7 @@ immich_kiosk_enabled: true
 
 ### Set the Immich's API key and URLs
 
-It is also necessary to specify the API key and URLs of the Immich's instance. See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-immich-kiosk/blob/main/docs/configuring-immich-kiosk.md#set-the-immich-instances-api-key) on the role's documentation for details.
+It is also necessary to specify the API key and URLs of the Immich's instance. Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-immich-kiosk/blob/main/docs/configuring-immich-kiosk.md#set-the-immich-instances-api-key) on the role's documentation for details.
 
 ### Expose the instance publicly (optional)
 
@@ -76,7 +76,7 @@ immich_kiosk_hostname: "immichkiosk.example.com"
 >[!NOTE]
 >
 > - Hosting Immich Kiosk under a subpath (by configuring the `immich_kiosk_path_prefix` variable) does not seem to be possible due to Immich Kiosk's technical limitations.
-> - When exposing the instance, it is recommended to consider to set a password (see [this section](https://docs.immichkiosk.app/configuration/additional-options/#password) for the necessary configuration) as well as enable a service for authentication such as [authentik](authentik.md) and [Tinyauth](tinyauth.md) based on your use-case.
+> - When exposing the instance, it is recommended to consider to set a password (refer to [this section](https://docs.immichkiosk.app/configuration/additional-options/#password) for the necessary configuration) as well as enable a service for authentication such as [authentik](authentik.md) and [Tinyauth](tinyauth.md) based on your use-case.
 
 ## Usage
 
@@ -86,4 +86,4 @@ To get started, refer to [the documentation](https://docs.immichkiosk.app/guides
 
 ## Troubleshooting
 
-See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-immich-kiosk/blob/main/docs/configuring-immich-kiosk.md#troubleshooting) on the role's documentation for details.
+Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-immich-kiosk/blob/main/docs/configuring-immich-kiosk.md#troubleshooting) on the role's documentation for details.

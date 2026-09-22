@@ -66,4 +66,4 @@ After running the command for installation, the OrigamiVault instance becomes av
 
 ## Troubleshooting
 
-See [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az3aGv2oUAxqmoGddtk1VwRioUTKbs/tree/docs/configuring-origamivault.md#troubleshooting) on the role's documentation for details.
+Refer to [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az3aGv2oUAxqmoGddtk1VwRioUTKbs/tree/docs/configuring-origamivault.md#troubleshooting) on the role's documentation for details.

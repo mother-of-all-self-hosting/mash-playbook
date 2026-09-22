@@ -73,7 +73,7 @@ To use it, open the URL on the browser and create an account.
 
 ## Troubleshooting
 
-See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-convertx/blob/main/docs/configuring-convertx.md#troubleshooting) on the role's documentation for details.
+Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-convertx/blob/main/docs/configuring-convertx.md#troubleshooting) on the role's documentation for details.
 
 ## Related services
 

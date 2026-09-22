@@ -116,7 +116,7 @@ You can check the list of notification services supported by Apprise at <https:/
 
 ## Troubleshooting
 
-See [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az292aD8q3r8xqhJvLe2zv1b24gu7a/tree/docs/configuring-apprise.md#troubleshooting) on the role's documentation for details.
+Refer to [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az292aD8q3r8xqhJvLe2zv1b24gu7a/tree/docs/configuring-apprise.md#troubleshooting) on the role's documentation for details.
 
 ## Related services
 

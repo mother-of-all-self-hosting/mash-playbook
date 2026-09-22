@@ -68,7 +68,7 @@ You can optionally have the RSSHub instance connect to a Browserless instance, i
 
 Browserless is available on the playbook. Enabling it automatically configures the RSSHub instance to connect to it.
 
-See [this page](browserless.md) for details about how to install it.
+Refer to [this page](browserless.md) for details about how to install it.
 
 ### Configuring Valkey (optional)
 
@@ -88,7 +88,7 @@ To create a dedicated instance for RSSHub, you can follow the steps below:
 2. Create a new `vars.yml` file for the dedicated instance
 3. Edit the existing `vars.yml` file for the main host
 
-*See [this page](../running-multiple-instances.md) for details about configuring multiple instances of Valkey on the same server.*
+*Refer to [this page](../running-multiple-instances.md) for details about configuring multiple instances of Valkey on the same server.*
 
 ##### Adjust `hosts`
 
@@ -266,7 +266,7 @@ See the [official documentation](https://docs.rsshub.app/guide/) for usage.
 
 ## Troubleshooting
 
-See [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az3yKvCwcEfxn41ozRTcNR8ad6kpUm/tree/docs/configuring-rsshub.md#troubleshooting) on the role's documentation for details.
+Refer to [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az3yKvCwcEfxn41ozRTcNR8ad6kpUm/tree/docs/configuring-rsshub.md#troubleshooting) on the role's documentation for details.
 
 ## Related services
 

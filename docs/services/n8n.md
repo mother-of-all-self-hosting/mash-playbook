@@ -73,4 +73,4 @@ To get started, open the URL with a web browser to create an account.
 
 ## Troubleshooting
 
-See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-n8n/blob/main/docs/configuring-n8n.md#troubleshooting) on the role's documentation for details.
+Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-n8n/blob/main/docs/configuring-n8n.md#troubleshooting) on the role's documentation for details.

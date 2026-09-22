@@ -54,7 +54,7 @@ ddclient_enabled: true
 
 ### Add configurations for dynamic DNS provider
 
-To enable the service it is also required to add configurations for your dynamic DNS provider. See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-ddclient/blob/main/docs/configuring-ddclient.md#add-configurations-for-dynamic-dns-provider) on the role's documentation for details about what to be added. Keep in mind that certain providers may require a different configuration.
+To enable the service it is also required to add configurations for your dynamic DNS provider. Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-ddclient/blob/main/docs/configuring-ddclient.md#add-configurations-for-dynamic-dns-provider) on the role's documentation for details about what to be added. Keep in mind that certain providers may require a different configuration.
 
 You might need to specify the endpoint to obtain IP address as well. Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-ddclient/blob/main/docs/configuring-ddclient.md#setting-the-endpoint-to-obtain-ip-address-optional) for more information.
 
@@ -64,4 +64,4 @@ After running the command for installation, the ddclient instance becomes availa
 
 ## Troubleshooting
 
-See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-ddclient/blob/main/docs/configuring-ddclient.md#troubleshooting) on the role's documentation for details.
+Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-ddclient/blob/main/docs/configuring-ddclient.md#troubleshooting) on the role's documentation for details.

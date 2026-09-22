@@ -126,7 +126,7 @@ woodpecker_ci_server_container_add_host_ip_address: "{{ ansible_host }}"
 
 The Woodpecker CI server comes with built-in support for Forgejo.
 
-To integrate it, you need to create an OAuth 2 application on a Forgejo instance at `https://FORGEJO_INSTANCE_URL_HERE/user/settings/applications` for Woodpecker CI server authorization. When creating one, set `https://FORGEJO_INSTANCE_URL_HERE/authorize` to the "Redirect URIs" text input area. See [this section](https://woodpecker-ci.org/docs/administration/configuration/forges/forgejo#registration) on the Woodpecker CI's documentation for details.
+To integrate it, you need to create an OAuth 2 application on a Forgejo instance at `https://FORGEJO_INSTANCE_URL_HERE/user/settings/applications` for Woodpecker CI server authorization. When creating one, set `https://FORGEJO_INSTANCE_URL_HERE/authorize` to the "Redirect URIs" text input area. Refer to [this section](https://woodpecker-ci.org/docs/administration/configuration/forges/forgejo#registration) on the Woodpecker CI's documentation for details.
 
 After creating the application, add the following configuration to your `vars.yml` file:
 

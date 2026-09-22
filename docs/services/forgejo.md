@@ -76,15 +76,15 @@ To use MariaDB, add the following configuration to your `vars.yml` file:
 forgejo_database_type: mysql
 ```
 
-See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-forgejo/blob/main/docs/configuring-forgejo.md#specify-database-optional) on the role's documentation for details.
+Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-forgejo/blob/main/docs/configuring-forgejo.md#specify-database-optional) on the role's documentation for details.
 
 ### Configure SSH port for Forgejo (optional)
 
-Forgejo uses port 22 for its SSH feature by default. We recommend you to move your regular SSH server to another port and stick to this default for your Forgejo instance, but you can have the instance listen to another port. See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-forgejo/blob/main/docs/configuring-forgejo.md#configure-ssh-port-for-forgejo-optional) on the role's documentation for details.
+Forgejo uses port 22 for its SSH feature by default. We recommend you to move your regular SSH server to another port and stick to this default for your Forgejo instance, but you can have the instance listen to another port. Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-forgejo/blob/main/docs/configuring-forgejo.md#configure-ssh-port-for-forgejo-optional) on the role's documentation for details.
 
 ### Configuring cache (optional)
 
-Forgejo uses caching to avoid repeating expensive operations. By default the internal memory (`memory`) is enabled for it, but you can use a specific cache adapter like [Redis](redis.md) and [Memcached](memcached.md). See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-forgejo/blob/main/docs/configuring-forgejo.md#configuring-cache-optional) on the role's documentation for details.
+Forgejo uses caching to avoid repeating expensive operations. By default the internal memory (`memory`) is enabled for it, but you can use a specific cache adapter like [Redis](redis.md) and [Memcached](memcached.md). Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-forgejo/blob/main/docs/configuring-forgejo.md#configuring-cache-optional) on the role's documentation for details.
 
 ### Configuring issue indexer (optional)
 
@@ -96,7 +96,7 @@ Meilisearch is available on the playbook. To have the Forgejo instance connect t
 forgejo_environment_variables_indexer_issue_indexer_type: meilisearch
 ```
 
-See [this page](meilisearch.md) for details about how to install it and setting the key for the Meilisearch instance.
+Refer to [this page](meilisearch.md) for details about how to install it and setting the key for the Meilisearch instance.
 
 ### Configuring the mailer (optional)
 
@@ -128,7 +128,7 @@ To apply only OAuth configuration tasks, run:
 just run-tags configure-oauth-forgejo
 ```
 
-See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-forgejo/blob/main/docs/configuring-forgejo.md#configure-oauth2openid-connect-login-optional) on the role's documentation for additional options.
+Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-forgejo/blob/main/docs/configuring-forgejo.md#configure-oauth2openid-connect-login-optional) on the role's documentation for additional options.
 
 ### Integrating with Prometheus (optional)
 
@@ -177,7 +177,7 @@ To get started, open the URL with a web browser, and follow the set up wizard.
 
 Forgejo is a fork of [Gitea](gitea.md). Migrating Gitea (versions up to and including v1.22.0) to Forgejo was relatively easy, but [Gitea versions after v1.22.0 do not allow such transparent upgrades anymore](https://forgejo.org/2024-12-gitea-compatibility/).
 
-Nevertheless, upgrades may be possible with some manual work. See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-forgejo/blob/main/docs/configuring-forgejo.md#migrating-from-gitea) on the role's documentation for details.
+Nevertheless, upgrades may be possible with some manual work. Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-forgejo/blob/main/docs/configuring-forgejo.md#migrating-from-gitea) on the role's documentation for details.
 
 ## Related services
 

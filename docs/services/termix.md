@@ -67,7 +67,7 @@ To get started, open the URL with a web browser to create an account. **Note tha
 
 ## Troubleshooting
 
-See [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az4TiZiqkm6MBmkPL2NTPMavni6LV/tree/docs/configuring-termix.md#troubleshooting) on the role's documentation for details.
+Refer to [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az4TiZiqkm6MBmkPL2NTPMavni6LV/tree/docs/configuring-termix.md#troubleshooting) on the role's documentation for details.
 
 ## Related services
 

@@ -68,7 +68,7 @@ To get started, open the URL with a web browser to create an account.
 
 ## Troubleshooting
 
-See [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az49LkutSMcaLA2DBazn1h4V6Pn6GK/tree/docs/configuring-flatnotes.md#troubleshooting) on the role's documentation for details.
+Refer to [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az49LkutSMcaLA2DBazn1h4V6Pn6GK/tree/docs/configuring-flatnotes.md#troubleshooting) on the role's documentation for details.
 
 ## Related services
 

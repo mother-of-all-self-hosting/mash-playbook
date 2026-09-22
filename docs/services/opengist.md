@@ -77,7 +77,7 @@ opengist_environment_variables_secret_key: YOUR_SECRET_KEY_HERE
 
 ### Select database to use (optional)
 
-By default Opengist is configured to use Postgres, but you can choose other database such as SQLite and MySQL. See [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az48WEbcYK3E6uDmfP1Qbb9AGdz1L3/tree/docs/configuring-opengist.md#specify-database-optional) on the role's documentation for details.
+By default Opengist is configured to use Postgres, but you can choose other database such as SQLite and MySQL. Refer to [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az48WEbcYK3E6uDmfP1Qbb9AGdz1L3/tree/docs/configuring-opengist.md#specify-database-optional) on the role's documentation for details.
 
 ### Connecting to a Meilisearch instance (optional)
 
@@ -85,7 +85,7 @@ You can optionally have the Opengist instance connect to a Meilisearch instance 
 
 Meilisearch is available on the playbook. Enabling it and setting its default admin API key (`meilisearch_default_admin_api_key`) automatically configures the Opengist instance to connect to it.
 
-See [this page](meilisearch.md) for details about how to install it and setting the key for the Meilisearch instance.
+Refer to [this page](meilisearch.md) for details about how to install it and setting the key for the Meilisearch instance.
 
 ### Integrating with Prometheus (optional)
 
@@ -130,11 +130,11 @@ After running the command for installation, the Opengist instance becomes availa
 
 To get started, open the URL with a web browser to create an account. **Note that the first registered user becomes an administrator automatically.**
 
-See [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az48WEbcYK3E6uDmfP1Qbb9AGdz1L3/tree/docs/configuring-opengist.md#configuring-ssh-feature-for-opengist-optional) on the role's documentation for details about how to set up the SSH feature.
+Refer to [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az48WEbcYK3E6uDmfP1Qbb9AGdz1L3/tree/docs/configuring-opengist.md#configuring-ssh-feature-for-opengist-optional) on the role's documentation for details about how to set up the SSH feature.
 
 ## Troubleshooting
 
-See [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az48WEbcYK3E6uDmfP1Qbb9AGdz1L3/tree/docs/configuring-opengist.md#troubleshooting) on the role's documentation for details.
+Refer to [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az48WEbcYK3E6uDmfP1Qbb9AGdz1L3/tree/docs/configuring-opengist.md#troubleshooting) on the role's documentation for details.
 
 ## Related services
 

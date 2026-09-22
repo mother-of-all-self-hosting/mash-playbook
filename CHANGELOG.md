@@ -8,7 +8,7 @@ KeyDB has been removed from the playbook, because the KeyDB project has been unm
 
 [Valkey](docs/services/valkey.md) — also a Redis fork, protocol-compatible with KeyDB — is a well-maintained alternative and has been the playbook's recommendation since 2024-11-23. Point services that used your KeyDB instance at a Valkey instance instead.
 
-The playbook will complain about any remaining `keydb_*` variables in your configuration. Uninstalling the service from your server is a manual step — see [the KeyDB page](docs/services/keydb.md) for the commands.
+The playbook will complain about any remaining `keydb_*` variables in your configuration. Uninstalling the service from your server is a manual step — refer to [the KeyDB page](docs/services/keydb.md) for the commands.
 
 # 2026-08-20
 
@@ -86,7 +86,7 @@ Some benchmarks from [matrix-docker-ansible-deploy](https://github.com/spantalee
   - Traefik restarted: no ✅
   - dependent services restarted: no ✅
 
-This behavior can be overridden via `--extra-vars='devture_systemd_service_manager_conditional_restart_enabled=false'` to force unconditional restarts. See [Conditional service restart](docs/just.md#conditional-service-restart) for details.
+This behavior can be overridden via `--extra-vars='devture_systemd_service_manager_conditional_restart_enabled=false'` to force unconditional restarts. Refer to [Conditional service restart](docs/just.md#conditional-service-restart) for details.
 
 ## Set service passwords on `vars.yml` manually
 
@@ -156,7 +156,7 @@ If you have an existing authentik installation, you may now wish to remove all V
 
 ## Adapting Immich/Postgres to changes in the Postgres role
 
-The [Postgres](./docs/services/postgres.md) role was recently updated (see [this commit](https://github.com/mother-of-all-self-hosting/ansible-role-postgres/commit/b39dcdf3421a4b3d7c4a758c9b533399ede4547b)) to add support for restricting the versions that it's allowed to install.
+The [Postgres](./docs/services/postgres.md) role was recently updated (refer to [this commit](https://github.com/mother-of-all-self-hosting/ansible-role-postgres/commit/b39dcdf3421a4b3d7c4a758c9b533399ede4547b)) to add support for restricting the versions that it's allowed to install.
 
 These changes have landed into MASH playbook and we're making use of them to make [Postgres](./docs/services/postgres.md) play better with [Borg Backup](./docs/services/backup-borg.md) and avoid the risk of suffering from issues like this: [Unable to use borg backup after postgresql 18 upgrade](https://github.com/spantaleev/matrix-docker-ansible-deploy/issues/4632).
 
@@ -280,7 +280,7 @@ As always, the playbook would let you know about this and point out any variable
 
 ### Traefik v3
 
-The reverse-proxy that the playbook uses by default (Traefik) has recently been upgraded to v3 (see [this blog post](https://traefik.io/blog/announcing-traefik-proxy-v3-rc/) to learn about its new features). Version 3 includes some small breaking configuration changes requiring a [migration](https://doc.traefik.io/traefik/migration/v2-to-v3/).
+The reverse-proxy that the playbook uses by default (Traefik) has recently been upgraded to v3 (refer to [this blog post](https://traefik.io/blog/announcing-traefik-proxy-v3-rc/) to learn about its new features). Version 3 includes some small breaking configuration changes requiring a [migration](https://doc.traefik.io/traefik/migration/v2-to-v3/).
 
 We have **updated the playbook to Traefik v3** (make sure to run `just roles` / `make roles` to get it).
 

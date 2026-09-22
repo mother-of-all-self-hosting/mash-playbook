@@ -44,7 +44,7 @@ You may need to open the following ports on your server:
 - `53` over **TCP**, controlled by `adguard_home_container_dns_tcp_bind_port` — used for DNS over TCP
 - `53` over **UDP**, controlled by `adguard_home_container_dns_udp_bind_port` — used for DNS over UDP
 
-See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-adguard-home/blob/main/docs/configuring-adguard-home.md#open-ports) on the role's documentation for details.
+Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-adguard-home/blob/main/docs/configuring-adguard-home.md#open-ports) on the role's documentation for details.
 
 ## Dependencies
 
@@ -84,7 +84,7 @@ adguard_home_path_prefix: /adguard-home
 After running the command for installation, the AdGuard instance becomes available at the URL specified with `adguard_home_hostname` and `adguard_home_path_prefix`. With the configuration above, the service is hosted at `https://mash.example.com/adguard-home`.
 
 >[!NOTE]
-> When hosting under a subpath, there are some quirks caused by [this bug](https://github.com/AdguardTeam/AdGuardHome/issues/5478). See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-adguard-home/blob/main/docs/configuring-adguard-home.md#set-the-hostname) on the role's documentation for details.
+> When hosting under a subpath, there are some quirks caused by [this bug](https://github.com/AdguardTeam/AdGuardHome/issues/5478). Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-adguard-home/blob/main/docs/configuring-adguard-home.md#set-the-hostname) on the role's documentation for details.
 
 To get started, open the URL with a web browser, and follow the set up wizard.
 
@@ -97,4 +97,4 @@ Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-ro
 
 ## Troubleshooting and workaround
 
-Adguard Home does not currently support being set up with a non-`root` account (see [issue](https://github.com/AdguardTeam/AdGuardHome/issues/4714)). See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-adguard-home/blob/main/docs/configuring-adguard-home.md#workaround-for-the-issue-related-non-root-account) on the role's documentation for the workaround.
+Adguard Home does not currently support being set up with a non-`root` account (<https://github.com/AdguardTeam/AdGuardHome/issues/4714>). Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-adguard-home/blob/main/docs/configuring-adguard-home.md#workaround-for-the-issue-related-non-root-account) on the role's documentation for the workaround.

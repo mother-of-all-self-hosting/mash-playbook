@@ -34,7 +34,7 @@ For details about configuring the [Ansible role for The Lounge](https://radicle.
 
 You may need to open some ports to your server, if `identd` (built-in server for ident) is enabled and another firewall is used in front of the server. Refer to [the role's documentation](https://radicle.network/nodes/iris.radicle.network/rad%3Az3vaa8VAuz3pxqB3FyciNKQRSHqyt/tree/docs/configuring-thelounge.md#prerequisites) to check which ones to be configured.
 
-See [this page](https://thelounge.chat/docs/guides/identd-and-oidentd) on the official documentation for details about `identd`.
+Refer to [this page](https://thelounge.chat/docs/guides/identd-and-oidentd) on the official documentation for details about `identd`.
 
 ## Dependencies
 
@@ -66,7 +66,7 @@ thelounge_hostname: thelounge.example.com
 
 **Note**: hosting The Lounge under a subpath (by configuring the `thelounge_path_prefix` variable) does not seem to be possible due to The Lounge's technical limitations.
 
-See [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az3vaa8VAuz3pxqB3FyciNKQRSHqyt/tree/docs/configuring-thelounge.md#adjusting-the-playbook-configuration) on the role's documentation for necessary configurations to enable functions like file upload and link previews.
+Refer to [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az3vaa8VAuz3pxqB3FyciNKQRSHqyt/tree/docs/configuring-thelounge.md#adjusting-the-playbook-configuration) on the role's documentation for necessary configurations to enable functions like file upload and link previews.
 
 ## Usage
 
@@ -82,7 +82,7 @@ After the user is configured, it will be possible to log in to the instance.
 
 ## Troubleshooting
 
-See [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az3vaa8VAuz3pxqB3FyciNKQRSHqyt/tree/docs/configuring-thelounge.md#troubleshooting) on the role's documentation for details.
+Refer to [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az3vaa8VAuz3pxqB3FyciNKQRSHqyt/tree/docs/configuring-thelounge.md#troubleshooting) on the role's documentation for details.
 
 ## Related services
 

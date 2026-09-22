@@ -40,7 +40,7 @@ For example, these two commands are different:
 
 The just recipe runs `start` tag after `install-all`, while the latter runs only `install-all` tag. The correct shortcut of the latter is `just run-tags install-all`.
 
-Such kind of difference sometimes matters. For example, when you install a server into which you will import old data (see [here](installing.md#installing-a-server-into-which-youll-import-old-data)), you are not supposed to run `just install-all` or `just setup-all`, because these commands start services immediately after installing components, which may prevent you from importing the data.
+Such kind of difference sometimes matters. For example, when you install a server into which you will import old data (refer to [this page](installing.md#installing-a-server-into-which-youll-import-old-data)), you are not supposed to run `just install-all` or `just setup-all`, because these commands start services immediately after installing components, which may prevent you from importing the data.
 
 ## Conditional service restart
 

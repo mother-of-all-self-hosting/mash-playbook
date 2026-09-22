@@ -101,7 +101,7 @@ If the authentication with username and password, or an access token is enabled,
 
 ## Troubleshooting
 
-See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-miniflux/blob/main/docs/configuring-miniflux.md#troubleshooting) on the role's documentation for details.
+Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-miniflux/blob/main/docs/configuring-miniflux.md#troubleshooting) on the role's documentation for details.
 
 ## Related services
 

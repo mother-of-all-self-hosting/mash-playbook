@@ -68,7 +68,7 @@ You can adjust the hostname of the web UI with the `wg_easy_hostname` variable.
 
 Previously (prior to wg-easy v15), a `wg_easy_path_prefix` variable could allow you to host wg-easy at a subpath (e.g. `wg_easy_path_prefix: /wg-easy`), but this is [no longer possible](https://github.com/wg-easy/wg-easy/issues/1704#issuecomment-2705873936) and such a feature [may re-appear later](https://github.com/wg-easy/wg-easy/issues/1704#issuecomment-2706575504).
 
-💡 WireGuard clients may optionally be pointed to a different hostname than the one used for the web UI. See [Adjusting the WireGuard endpoint](#adjusting-the-wireguard-endpoint) for details.
+💡 WireGuard clients may optionally be pointed to a different hostname than the one used for the web UI. Refer to [Adjusting the WireGuard endpoint](#adjusting-the-wireguard-endpoint) for details.
 
 ### Adjusting the Wireguard endpoint
 
@@ -119,7 +119,7 @@ wg_easy_environment_variables_additional_variable_init_ipv4_cidr: "10.8.0.0/24"
 wg_easy_environment_variables_additional_variable_init_ipv6_cidr: "2001:db8::/32"
 ```
 
-💡 The `wg_easy_environment_variables_additional_variable_init_ipv6_cidr` value you see above is what we use by default. It represents the documentation-reserved IPv6 CIDR value, but we're not only using it for documentation purposes, but because it's a GUA-like CIDR value. See [Note about the IPv6 CIDR and IPv6 connectivity](#note-about-the-ipv6-cidr-and-ipv6-connectivity) for more details and for a recommended alternative if you can use your own GUA address.
+💡 The `wg_easy_environment_variables_additional_variable_init_ipv6_cidr` value you see above is what we use by default. It represents the documentation-reserved IPv6 CIDR value, but we're not only using it for documentation purposes, but because it's a GUA-like CIDR value. Refer to [Note about the IPv6 CIDR and IPv6 connectivity](#note-about-the-ipv6-cidr-and-ipv6-connectivity) for more details and for a recommended alternative if you can use your own GUA address.
 
 > [!WARNING]
 > If you need to change the IPv4/IPv6 CIDRs after the initial setup, you need to do so from the Admin Panel -> Interface page of the web UI, via the Change CIDR button. After changing the CIDR in wg-easy's settings, you must restart the wg-easy service for the changes to take effect.
@@ -195,7 +195,7 @@ After doing so, you'll wish to restart `iptables`/`ip6tables`. Restarting iptabl
 
 ### Additional configuration
 
-The new wg-easy version (after the v15 release) does not support most of the environment variables that were supported in previous versions. Most of the configuration happens via the web UI after installation. See [Adjusting the post-installation configuration](#adjusting-the-post-installation-configuration) for more details.
+The new wg-easy version (after the v15 release) does not support most of the environment variables that were supported in previous versions. Most of the configuration happens via the web UI after installation. Refer to [Adjusting the post-installation configuration](#adjusting-the-post-installation-configuration) for more details.
 
 Nevertheless, if you need to inject additional environment variables, you can do so with this additional configuration:
 
@@ -214,7 +214,7 @@ Most users can log in with the credentials they provided before the first instal
 
 Depending on your configuration, you may need to go through a setup wizard first. Details are below.
 
-If you have provided a username (`wg_easy_environment_variables_additional_variable_init_username`) and password (`wg_easy_environment_variables_additional_variable_init_password`) before the first installation, the unattended setup process would have created these credentials for you, so you can log in with them. Otherwise, you'll see a setup wizard and can create your own credentials. For creating additional users, see [Creating additional users](#creating-additional-users).
+If you have provided a username (`wg_easy_environment_variables_additional_variable_init_username`) and password (`wg_easy_environment_variables_additional_variable_init_password`) before the first installation, the unattended setup process would have created these credentials for you, so you can log in with them. Otherwise, you'll see a setup wizard and can create your own credentials. For creating additional users, refer to [Creating additional users](#creating-additional-users).
 
 Similarly, if you have provided a hostname (`wg_easy_hostname` and/or `wg_easy_environment_variables_additional_variable_init_host`) and port (`wg_easy_environment_variables_additional_variable_init_port`) before the first installation, the unattended setup process would have initialized the wg-easy service with these values. Otherwise, you'll see a setup wizard about this.
 

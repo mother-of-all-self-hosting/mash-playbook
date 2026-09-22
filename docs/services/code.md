@@ -37,7 +37,7 @@ This service requires the following other services:
 - [Traefik](traefik.md) reverse-proxy server
 
 >[!NOTE]
-> To use a CODE instance to edit office documents, it is necessary to integrate it with another software which functions as a data storage and manages access control for users. **You cannot edit the documents without such integrations.** This playbook supports installing Nextcloud. See [this page](nextcloud.md) for details about configuring it.
+> To use a CODE instance to edit office documents, it is necessary to integrate it with another software which functions as a data storage and manages access control for users. **You cannot edit the documents without such integrations.** This playbook supports installing Nextcloud. Refer to [this page](nextcloud.md) for details about configuring it.
 
 ## Configuration
 
@@ -72,7 +72,7 @@ To use a CODE instance to edit office documents, you need to integrate it with a
 By default, this playbook is configured to automatically integrate the CODE instance with the Nextcloud instance which this playbook manages, if both of them are enabled.
 
 >[!NOTE]
-> For details, see [this section about the integration](nextcloud.md#configuring-nextcloud-office-application) on our Nextcloud documentation.
+> For details, refer to [this section about the integration](nextcloud.md#configuring-nextcloud-office-application) on our Nextcloud documentation.
 
 ## Usage
 
@@ -89,7 +89,7 @@ Use your admin credentials for logging in:
 
 ## Troubleshooting
 
-See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-collabora-online/blob/main/docs/configuring-code.md#troubleshooting) on the role's documentation for details.
+Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-collabora-online/blob/main/docs/configuring-code.md#troubleshooting) on the role's documentation for details.
 
 ## Related services
 

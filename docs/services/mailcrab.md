@@ -61,7 +61,7 @@ mailcrab_path_prefix: /mailcrab
 
 ### Configuring HTTP Basic authentication
 
-Since there does not exist an authentication system on the web interface, the HTTP Basic authentication on Traefik is enabled for the web interface by default, considering the nature of the service. See [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az3rh69mtu7bBk5K1WmAkVEBTy6NpW/tree/docs/configuring-mailcrab.md#configuring-http-basic-authentication) on the role's documentation for details about how to set it up.
+Since there does not exist an authentication system on the web interface, the HTTP Basic authentication on Traefik is enabled for the web interface by default, considering the nature of the service. Refer to [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az3rh69mtu7bBk5K1WmAkVEBTy6NpW/tree/docs/configuring-mailcrab.md#configuring-http-basic-authentication) on the role's documentation for details about how to set it up.
 
 ## Usage
 
@@ -89,7 +89,7 @@ You can check the message sent by the asciinema server at `https://mailcrab.exam
 
 ## Troubleshooting
 
-See [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az3rh69mtu7bBk5K1WmAkVEBTy6NpW/tree/docs/configuring-mailcrab.md#troubleshooting) on the role's documentation for details.
+Refer to [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az3rh69mtu7bBk5K1WmAkVEBTy6NpW/tree/docs/configuring-mailcrab.md#troubleshooting) on the role's documentation for details.
 
 ## Related services
 

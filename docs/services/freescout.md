@@ -67,7 +67,7 @@ freescout_environment_variables_admin_password: a-strong-password-here
 
 ### Select database to use
 
-It is necessary to select a database used by FreeScout from a MySQL compatible database and Postgres. See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-freescout/blob/main/docs/configuring-freescout.md#specify-database) on the role's documentation for details.
+It is necessary to select a database used by FreeScout from a MySQL compatible database and Postgres. Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-freescout/blob/main/docs/configuring-freescout.md#specify-database) on the role's documentation for details.
 
 ### Configuring the mailer
 
@@ -98,4 +98,4 @@ To get started, open the URL with a web browser to log in to the instance. You c
 
 ## Troubleshooting
 
-See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-freescout/blob/main/docs/configuring-freescout.md#troubleshooting) on the role's documentation for details.
+Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-freescout/blob/main/docs/configuring-freescout.md#troubleshooting) on the role's documentation for details.

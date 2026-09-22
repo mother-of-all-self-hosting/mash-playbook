@@ -52,7 +52,7 @@ telegraf_enabled: true
 
 ### Set variables for connecting to an InfluxDB instance (optional)
 
-The Telegraf instance can be configured to collect and write metrics to [InfluxDB](https://www.influxdata.com/) or other outputs. See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-telegraf/blob/main/docs/configuring-telegraf.md#set-variables-for-connecting-to-an-influxdb-instance-optional) on the role's documentation for details.
+The Telegraf instance can be configured to collect and write metrics to [InfluxDB](https://www.influxdata.com/) or other outputs. Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-telegraf/blob/main/docs/configuring-telegraf.md#set-variables-for-connecting-to-an-influxdb-instance-optional) on the role's documentation for details.
 
 ## Usage
 
@@ -60,4 +60,4 @@ After running the command for installation, the Telegraf instance becomes availa
 
 ## Troubleshooting
 
-See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-telegraf/blob/main/docs/configuring-telegraf.md#troubleshooting) on the role's documentation for details.
+Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-telegraf/blob/main/docs/configuring-telegraf.md#troubleshooting) on the role's documentation for details.

@@ -65,7 +65,7 @@ donetick_hostname: donetick.example.com
 
 ### Select database to use
 
-It is necessary to select a database used by the service from Postgres and SQLite. See [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az2EKWswSBFJgUQmxEBzi7sb8QyS2r/tree/docs/configuring-donetick.md#specify-database) on the role's documentation for details.
+It is necessary to select a database used by the service from Postgres and SQLite. Refer to [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az2EKWswSBFJgUQmxEBzi7sb8QyS2r/tree/docs/configuring-donetick.md#specify-database) on the role's documentation for details.
 
 ### Enabling signing up
 
@@ -94,7 +94,7 @@ Since account registration is disabled by default, you need to enable it first b
 
 ## Troubleshooting
 
-See [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az2EKWswSBFJgUQmxEBzi7sb8QyS2r/tree/docs/configuring-donetick.md#troubleshooting) on the role's documentation for details.
+Refer to [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az2EKWswSBFJgUQmxEBzi7sb8QyS2r/tree/docs/configuring-donetick.md#troubleshooting) on the role's documentation for details.
 
 ## Related services
 

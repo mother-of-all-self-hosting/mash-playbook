@@ -63,7 +63,7 @@ hubsite_hostname: hubsite.example.com
 
 ### Specify headers on the UI
 
-You also need to specify headers on the UI by adding configurations to your `vars.yml` file. See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-hubsite/blob/main/docs/configuring-hubsite.md#specify-headers-on-the-ui) on the role's documentation for details.
+You also need to specify headers on the UI by adding configurations to your `vars.yml` file. Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-hubsite/blob/main/docs/configuring-hubsite.md#specify-headers-on-the-ui) on the role's documentation for details.
 
 ## Usage
 
@@ -74,9 +74,9 @@ After running the command for installation, the Hubsite instance becomes availab
 
 ## Troubleshooting
 
-See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-hubsite/blob/main/docs/configuring-hubsite.md#troubleshooting) on the role's documentation for details.
+Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-hubsite/blob/main/docs/configuring-hubsite.md#troubleshooting) on the role's documentation for details.
 
-You can alternatively output the page manually. See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-hubsite/blob/main/docs/configuring-hubsite.md#usage) on the role's documentation for details.
+You can alternatively output the page manually. Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-hubsite/blob/main/docs/configuring-hubsite.md#usage) on the role's documentation for details.
 
 ## Related services
 

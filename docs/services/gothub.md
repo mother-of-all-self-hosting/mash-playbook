@@ -60,7 +60,7 @@ gothub_hostname: gothub.example.com
 
 **Note**: hosting GotHub under a subpath (by configuring the `gothub_path_prefix` variable) does not seem to be possible due to GotHub's technical limitations.
 
-There are other settings which need configuring such as ones about instance's management and its transparency. See [this section](https://radicle.network/nodes/iris.radicle.network/rad%3AzFVv3koKtheJTTwPSjF3J6DajePK/tree/docs/configuring-gothub.md#enable-disable-proxying-non-essential-data) on the role's documentation for details.
+There are other settings which need configuring such as ones about instance's management and its transparency. Refer to [this section](https://radicle.network/nodes/iris.radicle.network/rad%3AzFVv3koKtheJTTwPSjF3J6DajePK/tree/docs/configuring-gothub.md#enable-disable-proxying-non-essential-data) on the role's documentation for details.
 
 ## Usage
 
@@ -68,11 +68,11 @@ After running the command for installation, the GotHub instance becomes availabl
 
 [Libredirect](https://libredirect.github.io/), an extension for Firefox and Chromium-based desktop browsers, has support for redirections to GotHub.
 
-If you would like to make your instance public so that it can be used by anyone including Libredirect, please consider to send a PR to the [upstream project](https://codeberg.org/gothub/gothub-instances) to add yours to [`instances.json`](https://codeberg.org/gothub/gothub-instances/src/branch/master/instances.json), which Libredirect automatically fetches using a script (see [this FAQ entry](https://libredirect.github.io/faq.html#where_the_hell_are_those_instances_coming_from)).
+If you would like to make your instance public so that it can be used by anyone including Libredirect, please consider to send a PR to the [upstream project](https://codeberg.org/gothub/gothub-instances) to add yours to [`instances.json`](https://codeberg.org/gothub/gothub-instances/src/branch/master/instances.json), which Libredirect automatically fetches using a script (refer to [this FAQ entry](https://libredirect.github.io/faq.html#where_the_hell_are_those_instances_coming_from)).
 
 ## Troubleshooting
 
-See [this section](https://radicle.network/nodes/iris.radicle.network/rad%3AzFVv3koKtheJTTwPSjF3J6DajePK/tree/docs/configuring-gothub.md#troubleshooting) on the role's documentation for details.
+Refer to [this section](https://radicle.network/nodes/iris.radicle.network/rad%3AzFVv3koKtheJTTwPSjF3J6DajePK/tree/docs/configuring-gothub.md#troubleshooting) on the role's documentation for details.
 
 ## Related services
 

@@ -78,7 +78,7 @@ After running the command for installation, the Excalidraw client becomes availa
 
 It is optionally possible to self-host an [example collaboration server](https://github.com/excalidraw/excalidraw-room) for your instance, which by default is configured to connect to the Excalidraw's server at `oss-collab.excalidraw.com`.
 
-To set up the collaboration server with this playbook, see [this page](excalidraw-room.md) for the instruction.
+To set up the collaboration server with this playbook, refer to [this page](excalidraw-room.md) for the instruction.
 
 >[!NOTE]
 > By enabling the collaboration server along with the Excalidraw instance, the Docker image for the instance will be built instead of downloading it — This case there will be two images to be built; one for the Excalidraw instance and the other for the collaboration server itself.
@@ -87,7 +87,7 @@ To set up the collaboration server with this playbook, see [this page](excalidra
 
 ## Troubleshooting
 
-See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-excalidraw/blob/main/docs/configuring-excalidraw.md#troubleshooting) on the role's documentation for details.
+Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-excalidraw/blob/main/docs/configuring-excalidraw.md#troubleshooting) on the role's documentation for details.
 
 ## Related services
 

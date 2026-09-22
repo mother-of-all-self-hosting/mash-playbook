@@ -59,8 +59,8 @@ After running the command for installation, the Clickhouse instance becomes avai
 
 Some of the services installed by this playbook like [Plausible Analytics](plausible.md) require a ClickHouse database. Enabling the ClickHouse database service will automatically wire all other services which require such a database to use it.
 
-See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-clickhouse/blob/main/docs/configuring-clickhouse.md#usage) for details about how to use it (backing up the database, etc).
+Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-clickhouse/blob/main/docs/configuring-clickhouse.md#usage) for details about how to use it (backing up the database, etc).
 
 ## Troubleshooting
 
-See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-clickhouse/blob/main/docs/configuring-clickhouse.md#troubleshooting) on the role's documentation for details.
+Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-clickhouse/blob/main/docs/configuring-clickhouse.md#troubleshooting) on the role's documentation for details.

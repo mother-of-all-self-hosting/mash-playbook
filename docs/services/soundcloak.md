@@ -66,7 +66,7 @@ After running the command for installation, the soundcloak instance becomes avai
 
 ## Troubleshooting
 
-See [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az381JyLARWwSiZnYotVXehYcQEw7u/tree/docs/configuring-soundcloak.md#troubleshooting) on the role's documentation for details.
+Refer to [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az381JyLARWwSiZnYotVXehYcQEw7u/tree/docs/configuring-soundcloak.md#troubleshooting) on the role's documentation for details.
 
 ## Related services
 

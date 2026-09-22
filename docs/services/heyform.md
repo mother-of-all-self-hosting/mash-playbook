@@ -97,7 +97,7 @@ To create a dedicated instance for HeyForm, you can follow the steps below:
 2. Create a new `vars.yml` file for the dedicated instance
 3. Edit the existing `vars.yml` file for the main host
 
-*See [this page](../running-multiple-instances.md) for details about configuring multiple instances of Valkey on the same server.*
+*Refer to [this page](../running-multiple-instances.md) for details about configuring multiple instances of Valkey on the same server.*
 
 ##### Adjust `hosts`
 
@@ -261,7 +261,7 @@ To get started, open the URL with a web browser to create an account.
 
 ## Troubleshooting
 
-See [this section](https://radicle.network/nodes/iris.radicle.network/rad%3AzsKztkwnLv9wVMRYbcpoFesx6L5j/tree/docs/configuring-heyform.md#troubleshooting) on the role's documentation for details.
+Refer to [this section](https://radicle.network/nodes/iris.radicle.network/rad%3AzsKztkwnLv9wVMRYbcpoFesx6L5j/tree/docs/configuring-heyform.md#troubleshooting) on the role's documentation for details.
 
 ## Related services
 

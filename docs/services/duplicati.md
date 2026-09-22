@@ -34,7 +34,7 @@ For details about configuring the [Ansible role for Duplicati](https://github.co
 >[!NOTE]
 > As the Duplicati instance runs as the Docker container, it is necessary to mount the directory which includes files to back up on the host machine. Note that it is not able for the container to access files **outside of the mounted directory**.
 >
-> If you wish to manage a backup of directories on the machine without such restriction, you might probably want to consider to install Duplicati directly on the host machine. See [this page on the official documentation](https://docs.duplicati.com/getting-started/installation) for details.
+> If you wish to manage a backup of directories on the machine without such restriction, you might probably want to consider to install Duplicati directly on the host machine. Refer to [this page on the official documentation](https://docs.duplicati.com/getting-started/installation) for details.
 
 ## Dependencies
 
@@ -105,7 +105,7 @@ Replace `YOUR_WEBUI_PASSWORD_HERE` with your own value.
 
 After running the command for installation, the Duplicati instance becomes available at the URL specified with `duplicati_hostname`. With the configuration above, the service is hosted at `https://duplicati.example.com`.
 
-See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-duplicati/blob/main/docs/configuring-duplicati.md#usage) for details about setting up a backup task.
+Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-duplicati/blob/main/docs/configuring-duplicati.md#usage) for details about setting up a backup task.
 
 ⚠️ When setting the Source Data option, **choose `source` or directories inside it** as the backup source.
 
@@ -133,7 +133,7 @@ Since the default report message is fairly verbose, you might probably want to c
 
 ## Troubleshooting
 
-See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-duplicati/blob/main/docs/configuring-duplicati.md#troubleshooting) on the role's documentation for details.
+Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-duplicati/blob/main/docs/configuring-duplicati.md#troubleshooting) on the role's documentation for details.
 
 ## Related services
 

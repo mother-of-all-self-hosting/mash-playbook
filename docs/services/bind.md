@@ -91,7 +91,7 @@ By default, BIND is configured to recursively resolve queries, but the default A
 
 We recommend **either** disabling recursion explicitly (`bind_config_options_recursion: false`) **or** allowing recursion for clients on specific networks.
 
-To do the latter, you'll need to define some ACLs (see [Configuring ACLs](#configuring-acls)) and then adjust the `allow-recursion` option in the `options` block by adding the following configuration your `vars.yml` file:
+To do the latter, you'll need to define some ACLs (refer to [Configuring ACLs](#configuring-acls)) and then adjust the `allow-recursion` option in the `options` block by adding the following configuration your `vars.yml` file:
 
 ```yaml
 bind_config_options_allow_recursion: [trusted]
@@ -250,9 +250,9 @@ bind_config_options_additional_configuration: |
 
 The Ansible role supports some variables (`bind_config_*`) for configuring various settings in the BIND configuration file like:
 
-- [`options` block](https://bind9.readthedocs.io/en/stable/reference.html#options-block-grammar) variables - see [Injecting additional BIND `options`](#injecting-additional-bind-options)
-- [`acl` block](https://bind9.readthedocs.io/en/stable/reference.html#acl-block-grammar) variables - see [Configuring ACLs](#configuring-acls)
-- [`zone` block](https://bind9.readthedocs.io/en/stable/reference.html#zone-block-grammar) variables - see [Managing zones](#managing-zones)
+- [`options` block](https://bind9.readthedocs.io/en/stable/reference.html#options-block-grammar) variables - refer to [Injecting additional BIND `options`](#injecting-additional-bind-options)
+- [`acl` block](https://bind9.readthedocs.io/en/stable/reference.html#acl-block-grammar) variables - refer to [Configuring ACLs](#configuring-acls)
+- [`zone` block](https://bind9.readthedocs.io/en/stable/reference.html#zone-block-grammar) variables - refer to [Managing zones](#managing-zones)
 - etc.
 
 If you need to configure something else in the configuration file for which there's no dedicated variable, you can use the `bind_config_additional_configuration` variable. Example:

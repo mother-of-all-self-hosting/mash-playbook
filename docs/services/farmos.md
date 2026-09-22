@@ -68,7 +68,7 @@ farmos_hostname: farmos.example.com
 
 ### Select database to use
 
-It is necessary to select a database used by farmOS from a MySQL compatible database, Postgres, and SQLite. See [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az2H8vYeXaYHLzV3jXH1YjVwhuzTsk/tree/docs/configuring-farmos.md#specify-database) on the role's documentation for details.
+It is necessary to select a database used by farmOS from a MySQL compatible database, Postgres, and SQLite. Refer to [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az2H8vYeXaYHLzV3jXH1YjVwhuzTsk/tree/docs/configuring-farmos.md#specify-database) on the role's documentation for details.
 
 ### Configuring the mailer (optional)
 
@@ -85,8 +85,8 @@ After running the command for installation, the farmOS instance becomes availabl
 
 To get started, open the URL with a web browser, and follow the set up wizard.
 
-On the set up wizard, it is required to input database credentials to use a MySQL compatible database or Postgres. See [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az2H8vYeXaYHLzV3jXH1YjVwhuzTsk/tree/docs/configuring-farmos.md#outputting-database-credentials) on the role's documentation for details about how to check them.
+On the set up wizard, it is required to input database credentials to use a MySQL compatible database or Postgres. Refer to [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az2H8vYeXaYHLzV3jXH1YjVwhuzTsk/tree/docs/configuring-farmos.md#outputting-database-credentials) on the role's documentation for details about how to check them.
 
 ## Troubleshooting
 
-See [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az2H8vYeXaYHLzV3jXH1YjVwhuzTsk/tree/docs/configuring-farmos.md#troubleshooting) on the role's documentation for details.
+Refer to [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az2H8vYeXaYHLzV3jXH1YjVwhuzTsk/tree/docs/configuring-farmos.md#troubleshooting) on the role's documentation for details.

@@ -56,7 +56,7 @@ influxdb_hostname: influxdb.example.com
 ########################################################################
 ```
 
-See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-influxdb/blob/main/docs/configuring-influxdb.md#adjusting-the-playbook-configuration) on the role's documentation for other optional settings such as configuring the initial user with the playbook.
+Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-influxdb/blob/main/docs/configuring-influxdb.md#adjusting-the-playbook-configuration) on the role's documentation for other optional settings such as configuring the initial user with the playbook.
 
 ## Usage
 
@@ -66,7 +66,7 @@ To get started, open the URL with a web browser to log in to the service if `inf
 
 ## Troubleshooting
 
-See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-influxdb/blob/main/docs/configuring-influxdb.md#troubleshooting) on the role's documentation for details.
+Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-influxdb/blob/main/docs/configuring-influxdb.md#troubleshooting) on the role's documentation for details.
 
 ## Related services
 

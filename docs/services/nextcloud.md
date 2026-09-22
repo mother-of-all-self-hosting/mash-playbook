@@ -70,7 +70,7 @@ nextcloud_path_prefix: /nextcloud
 
 ### Select database to use (optional)
 
-By default Nextcloud is configured to use [Postgres](postgres.md) (if enabled), but you can choose other databases such as MySQL (MariaDB) and SQLite. If Postgres is not enabled, SQLite will be used. See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-nextcloud/blob/main/docs/configuring-nextcloud.md#configure-database) on the role's documentation for details.
+By default Nextcloud is configured to use [Postgres](postgres.md) (if enabled), but you can choose other databases such as MySQL (MariaDB) and SQLite. If Postgres is not enabled, SQLite will be used. Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-nextcloud/blob/main/docs/configuring-nextcloud.md#configure-database) on the role's documentation for details.
 
 ### Configuring the mailer (optional)
 
@@ -83,7 +83,7 @@ To actually have the service use (and get messages sent through the exim-relay s
 
 ### Editing default configuration parameters (optional)
 
-Some configuration parameters for Nextcloud can be specified with variables starting with `nextcloud_config_parameter_default_*`. See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-nextcloud/blob/main/docs/configuring-nextcloud.md#editing-default-configuration-parameters-optional) on the role's documentation for details. Refer to [this page](https://docs.nextcloud.com/server/latest/admin_manual/configuration_server/config_sample_php_parameters.html) of the Nextcloud documentation as well.
+Some configuration parameters for Nextcloud can be specified with variables starting with `nextcloud_config_parameter_default_*`. Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-nextcloud/blob/main/docs/configuring-nextcloud.md#editing-default-configuration-parameters-optional) on the role's documentation for details. Refer to [this page](https://docs.nextcloud.com/server/latest/admin_manual/configuration_server/config_sample_php_parameters.html) of the Nextcloud documentation as well.
 
 ### Configuring Valkey (optional)
 
@@ -105,7 +105,7 @@ To create a dedicated instance for Nextcloud, you can follow the steps below:
 2. Create a new `vars.yml` file for the dedicated instance
 3. Edit the existing `vars.yml` file for the main host
 
-*See [this page](../running-multiple-instances.md) for details about configuring multiple instances of Valkey on the same server.*
+*Refer to [this page](../running-multiple-instances.md) for details about configuring multiple instances of Valkey on the same server.*
 
 ##### Adjust `hosts`
 
@@ -265,7 +265,7 @@ Running the installation command will create the shared Valkey instance named `m
 
 ### Samba (optional)
 
-You can enable [Samba](https://www.samba.org/) external Windows fileshares using [smbclient](https://www.samba.org/samba/docs/current/man-html/smbclient.1.html). See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-nextcloud/blob/main/docs/configuring-nextcloud.md#enable-samba-optional) on the role's documentation for details.
+You can enable [Samba](https://www.samba.org/) external Windows fileshares using [smbclient](https://www.samba.org/samba/docs/current/man-html/smbclient.1.html). Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-nextcloud/blob/main/docs/configuring-nextcloud.md#enable-samba-optional) on the role's documentation for details.
 
 ## Installation
 
@@ -294,7 +294,7 @@ Before sending a test mail, **make sure to set the email address of the admin us
 
 ### Preview Generator
 
-It is possible to set up preview generation. See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-nextcloud/blob/main/docs/configuring-nextcloud.md#enable-preview-generator-app-optional) on the role's documentation for details about necessary steps to enable it.
+It is possible to set up preview generation. Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-nextcloud/blob/main/docs/configuring-nextcloud.md#enable-preview-generator-app-optional) on the role's documentation for details about necessary steps to enable it.
 
 ### Single-Sign-On (SSO) integration
 
@@ -316,11 +316,11 @@ Refer to [this blogpost by a third party](https://blog.cubieserver.de/2022/compl
 
 ### LDAP integration with LLDAP
 
-Nextcloud ships with an LDAP application to allow LDAP (including Active Directory) users to log in to the Nextcloud instance with their LDAP credentials. See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-nextcloud/blob/main/docs/configuring-nextcloud.md#connecting-to-ldap-server) on the role's documentation for details about how to configure Nextcloud.
+Nextcloud ships with an LDAP application to allow LDAP (including Active Directory) users to log in to the Nextcloud instance with their LDAP credentials. Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-nextcloud/blob/main/docs/configuring-nextcloud.md#connecting-to-ldap-server) on the role's documentation for details about how to configure Nextcloud.
 
 This playbook supports [LLDAP](https://github.com/lldap/lldap), and it is possible to set up the LLDAP instance as a source for users.
 
-First, the LLDAP instance needs to be installed. See [this page](lldap.md) for the instruction.
+First, the LLDAP instance needs to be installed. Refer to [this page](lldap.md) for the instruction.
 
 Then, proceed to configure the LDAP application on the Nextcloud to have it connect to the LLDAP instance. By default the playbook is configured to use the user specified with `lldap_environment_variables_lldap_ldap_user_dn` for binding. To use another user (with search privileges), add the following configuration to your `vars.yml` file:
 
@@ -385,4 +385,4 @@ You should then be able to open any document (`.doc`, `.odt`, `.pdf`, etc.) and 
 
 ## Troubleshooting
 
-See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-nextcloud/blob/main/docs/configuring-nextcloud.md#troubleshooting) on the role's documentation for details.
+Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-nextcloud/blob/main/docs/configuring-nextcloud.md#troubleshooting) on the role's documentation for details.

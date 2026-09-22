@@ -59,7 +59,7 @@ adminer_hostname: adminer.example.com
 ########################################################################
 ```
 
-It is optionally possible to edit settings about the default server to connect, plugins to load (ones for loading databases), etc. See [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az3px8gLDo2opjQZW7qFiLoNuk4eSu/tree/docs/configuring-adminer.md#adjusting-the-playbook-configuration) for details.
+It is optionally possible to edit settings about the default server to connect, plugins to load (ones for loading databases), etc. Refer to [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az3px8gLDo2opjQZW7qFiLoNuk4eSu/tree/docs/configuring-adminer.md#adjusting-the-playbook-configuration) for details.
 
 ## Usage
 
@@ -70,11 +70,11 @@ To get started, open the URL with a web browser to log in to the instance with t
 To log in to database servers which this playbook manages, you need to specify its `*_identifier` to the `server` input area. For example, the default value for the MariaDB server is `mash-mariadb` and the one for the Postgres server is `mash-postgres`, respectively.
 
 >[!NOTE]
-> Since enabling Adminer with this playbook exposes the instance (thus practically the databases as well) to the internet, it is important to set a proper method to restrict who can access to it. See [this section](https://www.adminer.org/en/#requirements) on the project website for security recommendations.
+> Since enabling Adminer with this playbook exposes the instance (thus practically the databases as well) to the internet, it is important to set a proper method to restrict who can access to it. Refer to [this section](https://www.adminer.org/en/#requirements) on the project website for security recommendations.
 
 ## Troubleshooting
 
-See [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az3px8gLDo2opjQZW7qFiLoNuk4eSu/tree/docs/configuring-adminer.md#troubleshooting) on the role's documentation for details.
+Refer to [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az3px8gLDo2opjQZW7qFiLoNuk4eSu/tree/docs/configuring-adminer.md#troubleshooting) on the role's documentation for details.
 
 ## Related services
 

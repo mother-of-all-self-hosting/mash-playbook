@@ -65,7 +65,7 @@ codimd_hostname: codimd.example.com
 
 ### Select database to use
 
-It is necessary to select a database used by CodiMD from a MySQL compatible database and Postgres. See [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Azp12kTQqmgqnFpUU6gPyVq19HNMD/tree/docs/configuring-codimd.md#specify-database) on the role's documentation for details.
+It is necessary to select a database used by CodiMD from a MySQL compatible database and Postgres. Refer to [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Azp12kTQqmgqnFpUU6gPyVq19HNMD/tree/docs/configuring-codimd.md#specify-database) on the role's documentation for details.
 
 ### Enabling signing up
 
@@ -79,7 +79,7 @@ codimd_environment_variables_cmd_email: true
 codimd_environment_variables_cmd_allow_email_register: true
 ```
 
-See [this section](https://hackmd.io/c/codimd-documentation/%2Fs%2Fcodimd-configuration#Authentication) on the official documentation for details about setting up other authentication system like LDAP and OAuth.
+Refer to [this section](https://hackmd.io/c/codimd-documentation/%2Fs%2Fcodimd-configuration#Authentication) on the official documentation for details about setting up other authentication system like LDAP and OAuth.
 
 ### Configuring the mailer (optional)
 
@@ -98,7 +98,7 @@ To get started, open the URL with a web browser to create an account.
 
 ## Troubleshooting
 
-See [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Azp12kTQqmgqnFpUU6gPyVq19HNMD/tree/docs/configuring-codimd.md#troubleshooting) on the role's documentation for details.
+Refer to [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Azp12kTQqmgqnFpUU6gPyVq19HNMD/tree/docs/configuring-codimd.md#troubleshooting) on the role's documentation for details.
 
 ## Related services
 

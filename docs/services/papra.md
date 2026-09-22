@@ -99,7 +99,7 @@ Since account registration is disabled by default, you need to enable it first b
 
 ## Troubleshooting
 
-See [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az2LGSfc7ziSKvErzZAQdTyTQ4sJcs/tree/docs/configuring-papra.md#troubleshooting) on the role's documentation for details.
+Refer to [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az2LGSfc7ziSKvErzZAQdTyTQ4sJcs/tree/docs/configuring-papra.md#troubleshooting) on the role's documentation for details.
 
 ## Related services
 

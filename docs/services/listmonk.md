@@ -67,4 +67,4 @@ After running the command for installation, the listmonk instance becomes availa
 
 ## Troubleshooting
 
-See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-listmonk/blob/main/docs/configuring-listmonk.md#troubleshooting) on the role's documentation for details.
+Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-listmonk/blob/main/docs/configuring-listmonk.md#troubleshooting) on the role's documentation for details.

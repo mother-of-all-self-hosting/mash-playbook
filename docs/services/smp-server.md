@@ -62,8 +62,8 @@ smp_server_hostname: smpserver.example.com
 
 After running the command for installation, the SMP server instance becomes available at the hostname specified with `smp_server_hostname`. With the configuration above, the service is hosted at `smpserver.example.com`.
 
-See [this section](https://radicle.network/nodes/seed.progressiv.dev/rad:zXf3qnvPwC2UsBpfTYmPesL5KSZc/tree/docs/configuring-smp-server.md#usage) on the role's documentation for details about how to use the server. Also refer to [the official documentation](https://simplex.chat/docs/server.html#configuring-the-app-to-use-the-server) about how to configure the client to get it connect to your SMP server.
+Refer to [this section](https://radicle.network/nodes/seed.progressiv.dev/rad:zXf3qnvPwC2UsBpfTYmPesL5KSZc/tree/docs/configuring-smp-server.md#usage) on the role's documentation for details about how to use the server. Also refer to [the official documentation](https://simplex.chat/docs/server.html#configuring-the-app-to-use-the-server) about how to configure the client to get it connect to your SMP server.
 
 ## Troubleshooting
 
-See [this section](https://radicle.network/nodes/iris.radicle.network/rad%3AzXf3qnvPwC2UsBpfTYmPesL5KSZc/tree/docs/configuring-smp-server.md#troubleshooting) on the role's documentation for details.
+Refer to [this section](https://radicle.network/nodes/iris.radicle.network/rad%3AzXf3qnvPwC2UsBpfTYmPesL5KSZc/tree/docs/configuring-smp-server.md#troubleshooting) on the role's documentation for details.

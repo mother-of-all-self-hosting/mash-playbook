@@ -65,7 +65,7 @@ After running the command for installation, the Heimdall instance becomes availa
 
 ## Troubleshooting
 
-See [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az8D2GRZrm8JXZeHHe9j1HMvvj8An/tree/docs/configuring-heimdall.md#troubleshooting) on the role's documentation for details.
+Refer to [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az8D2GRZrm8JXZeHHe9j1HMvvj8An/tree/docs/configuring-heimdall.md#troubleshooting) on the role's documentation for details.
 
 ## Related services
 

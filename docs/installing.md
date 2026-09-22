@@ -138,4 +138,4 @@ ansible-playbook -i inventory/hosts setup.yml --tags=install-all,start
 ansible-playbook -i inventory/hosts setup.yml --tags=setup-all,start
 ```
 
-**Note**: see [this page on the playbook tags](playbook-tags.md) for more information about those tags.
+**Note**: refer to [this page on the playbook tags](playbook-tags.md) for more information about those tags.

@@ -82,7 +82,7 @@ To create a dedicated instance for Teable, you can follow the steps below:
 2. Create a new `vars.yml` file for the dedicated instance
 3. Edit the existing `vars.yml` file for the main host
 
-*See [this page](../running-multiple-instances.md) for details about configuring multiple instances of Valkey on the same server.*
+*Refer to [this page](../running-multiple-instances.md) for details about configuring multiple instances of Valkey on the same server.*
 
 ##### Adjust `hosts`
 
@@ -255,4 +255,4 @@ To get started, open the URL with a web browser, and register the account. **Not
 
 ## Troubleshooting
 
-See [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az2bcU1U9yJfJE6t8quZ1BMnEpQLic/tree/docs/configuring-teable.md#troubleshooting) on the role's documentation for details.
+Refer to [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az2bcU1U9yJfJE6t8quZ1BMnEpQLic/tree/docs/configuring-teable.md#troubleshooting) on the role's documentation for details.

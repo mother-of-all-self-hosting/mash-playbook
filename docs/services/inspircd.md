@@ -66,7 +66,7 @@ It is also necessary to specify to the `inspircd_environment_variables_insp_net_
 
 By default the server is not protected with a shared "server password" (`PASS`), and anyone can use it. Neither are IRC operators ("oper", "ircop") protected with a hashed password.
 
-See [the role's documentation](https://radicle.network/nodes/iris.radicle.network/rad%3AzA2EcZYaHBzoc3XudvDhVDBjT42a/tree/docs/configuring-inspircd.md#setting-server-39-s-password) for details about how to configure those passwords.
+Refer to [the role's documentation](https://radicle.network/nodes/iris.radicle.network/rad%3AzA2EcZYaHBzoc3XudvDhVDBjT42a/tree/docs/configuring-inspircd.md#setting-server-39-s-password) for details about how to configure those passwords.
 
 ## Usage
 
@@ -74,7 +74,7 @@ After running the command for installation, the InspIRCd instance becomes availa
 
 ## Troubleshooting
 
-See [this section](https://radicle.network/nodes/iris.radicle.network/rad%3AzA2EcZYaHBzoc3XudvDhVDBjT42a/tree/docs/configuring-inspircd.md#troubleshooting) on the role's documentation for details.
+Refer to [this section](https://radicle.network/nodes/iris.radicle.network/rad%3AzA2EcZYaHBzoc3XudvDhVDBjT42a/tree/docs/configuring-inspircd.md#troubleshooting) on the role's documentation for details.
 
 ## Related services
 

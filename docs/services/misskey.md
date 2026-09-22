@@ -86,7 +86,7 @@ To create a dedicated instance for Misskey, you can follow the steps below:
 2. Create a new `vars.yml` file for the dedicated instance
 3. Edit the existing `vars.yml` file for the main host
 
-*See [this page](../running-multiple-instances.md) for details about configuring multiple instances of Valkey on the same server.*
+*Refer to [this page](../running-multiple-instances.md) for details about configuring multiple instances of Valkey on the same server.*
 
 ##### Adjust `hosts`
 
@@ -255,7 +255,7 @@ Meilisearch is available on the playbook. To have the Misskey instance connect t
 misskey_config_fulltext_search_provider: meilisearch
 ```
 
-See [this page](meilisearch.md) for details about how to install it and setting the key for the Meilisearch instance.
+Refer to [this page](meilisearch.md) for details about how to install it and setting the key for the Meilisearch instance.
 
 ## Installation
 
@@ -271,7 +271,7 @@ To get started, open the URL with a web browser, and follow the set up wizard.
 
 ## Troubleshooting
 
-See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-misskey/blob/main/docs/configuring-misskey.md#troubleshooting) on the role's documentation for details.
+Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-misskey/blob/main/docs/configuring-misskey.md#troubleshooting) on the role's documentation for details.
 
 ## Related services
 

@@ -102,7 +102,7 @@ If the service requires a TLS certificate for some reason, you can have Traefik 
 
 ## Troubleshooting
 
-See [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az2BzsfYJzpSCK4tC8kCR1uCooZYX5/tree/docs/configuring-yggstack.md#troubleshooting) on the role's documentation for details.
+Refer to [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az2BzsfYJzpSCK4tC8kCR1uCooZYX5/tree/docs/configuring-yggstack.md#troubleshooting) on the role's documentation for details.
 
 ## References
 

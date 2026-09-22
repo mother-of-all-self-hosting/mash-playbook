@@ -62,7 +62,7 @@ lute_hostname: lute.example.com
 
 ### Configuring HTTP Basic authentication
 
-The HTTP Basic authentication on Traefik is enabled for the web interface by default, considering the nature of the service. See [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az3NzUqjPeDbwcwQcZ4Vfi82tpWkm1/tree/docs/configuring-lute.md#configuring-http-basic-authentication) on the role's documentation for details about how to set it up or disable it.
+The HTTP Basic authentication on Traefik is enabled for the web interface by default, considering the nature of the service. Refer to [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az3NzUqjPeDbwcwQcZ4Vfi82tpWkm1/tree/docs/configuring-lute.md#configuring-http-basic-authentication) on the role's documentation for details about how to set it up or disable it.
 
 ## Usage
 
@@ -70,4 +70,4 @@ After running the command for installation, the Lute instance becomes available 
 
 ## Troubleshooting
 
-See [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az3NzUqjPeDbwcwQcZ4Vfi82tpWkm1/tree/docs/configuring-lute.md#troubleshooting) on the role's documentation for details.
+Refer to [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az3NzUqjPeDbwcwQcZ4Vfi82tpWkm1/tree/docs/configuring-lute.md#troubleshooting) on the role's documentation for details.

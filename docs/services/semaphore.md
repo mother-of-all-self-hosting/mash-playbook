@@ -63,7 +63,7 @@ semaphore_hostname: semaphore.example.com
 
 ### Set details for the admin user
 
-You need to create an instance's admin user by setting values to the `semaphore_admin_*` variables. See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-semaphore/blob/main/docs/configuring-semaphore.md#set-details-for-the-admin-user) on the role's documentation for details.
+You need to create an instance's admin user by setting values to the `semaphore_admin_*` variables. Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-semaphore/blob/main/docs/configuring-semaphore.md#set-details-for-the-admin-user) on the role's documentation for details.
 
 ### Set a string for encrypting access keys
 
@@ -71,7 +71,7 @@ You also have to set a string used for encrypting access keys in database to `se
 
 ### Select database to use (optional)
 
-By default Semaphore UI is configured to use [Postgres](postgres.md) (if enabled), but you can choose other databases such as MySQL (MariaDB) and SQLite. If Postgres is not enabled, SQLite will be used. See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-semaphore/blob/main/docs/configuring-semaphore.md#configure-database) on the role's documentation for details.
+By default Semaphore UI is configured to use [Postgres](postgres.md) (if enabled), but you can choose other databases such as MySQL (MariaDB) and SQLite. If Postgres is not enabled, SQLite will be used. Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-semaphore/blob/main/docs/configuring-semaphore.md#configure-database) on the role's documentation for details.
 
 ### Configuring the mailer (optional)
 
@@ -96,8 +96,8 @@ See the [documentation](https://docs.semaphoreui.com/administration-guide/config
 
 After running the command for installation, the Semaphore UI instance becomes available at the URL specified with `semaphore_hostname`. With the configuration above, the service is hosted at `https://semaphore.example.com`.
 
-To get started, open the URL with a web browser to log in to the instance. See [this official guide](https://docs.semaphoreui.com/user-guide/projects/) for details about how to use it.
+To get started, open the URL with a web browser to log in to the instance. Refer to [this official guide](https://docs.semaphoreui.com/user-guide/projects/) for details about how to use it.
 
 ## Troubleshooting
 
-See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-semaphore/blob/main/docs/configuring-semaphore.md#troubleshooting) on the role's documentation for details.
+Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-semaphore/blob/main/docs/configuring-semaphore.md#troubleshooting) on the role's documentation for details.

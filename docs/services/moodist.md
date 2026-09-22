@@ -79,4 +79,4 @@ After running the command for installation, the Moodist instance becomes availab
 
 ## Troubleshooting
 
-See [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az4Ez9aU119yFMs59cnA3KUnExFAeN/tree/docs/configuring-moodist.md#troubleshooting) on the role's documentation for details.
+Refer to [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az4Ez9aU119yFMs59cnA3KUnExFAeN/tree/docs/configuring-moodist.md#troubleshooting) on the role's documentation for details.

@@ -63,7 +63,7 @@ writefreely_hostname: writefreely.example.com
 ########################################################################
 ```
 
-**Note**: hosting WriteFreely under a subpath (by configuring the `writefreely_path_prefix` variable) does not seem to be possible due to WriteFreely's technical limitations. See [this issue](https://github.com/mother-of-all-self-hosting/mash-playbook/issues/116) for details.
+**Note**: hosting WriteFreely under a subpath (by configuring the `writefreely_path_prefix` variable) does not seem to be possible due to WriteFreely's technical limitations. Refer to [this issue](https://github.com/mother-of-all-self-hosting/mash-playbook/issues/116) for details.
 
 ### Specify database
 
@@ -90,13 +90,13 @@ To actually have the service use (and get messages sent through the exim-relay s
 
 By default the service is configured to use the Docker image locally built on the source code using [this Dockerfile](https://github.com/writefreely/writefreely/blob/develop/Dockerfile) provided by the author.
 
-As the official Docker image is not available, the role to install the service supports [this unofficial Docker image](https://hub.docker.com/r/jrasanen/writefreely) for user's convenience. See [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az2i8BkHXzRvK1ZtGwHuvLACRswXgA/tree/docs/configuring-writefreely.md#using-an-unofficial-docker-image-optional) for details about how to use it.
+As the official Docker image is not available, the role to install the service supports [this unofficial Docker image](https://hub.docker.com/r/jrasanen/writefreely) for user's convenience. Refer to [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az2i8BkHXzRvK1ZtGwHuvLACRswXgA/tree/docs/configuring-writefreely.md#using-an-unofficial-docker-image-optional) for details about how to use it.
 
 ## Usage
 
 After running the command for installation, the WriteFreely instance becomes available at the URL specified with `writefreely_hostname`. With the configuration above, the service is hosted at `https://writefreely.example.com`.
 
-To get started, you need to create an account on the instance. See [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az2i8BkHXzRvK1ZtGwHuvLACRswXgA/tree/docs/configuring-writefreely.md#creating-a-user) on the role's documentation for details about how to create an account.
+To get started, you need to create an account on the instance. Refer to [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az2i8BkHXzRvK1ZtGwHuvLACRswXgA/tree/docs/configuring-writefreely.md#creating-a-user) on the role's documentation for details about how to create an account.
 
 After creating one, open the URL with a web browser to log in to the instance with the account.
 

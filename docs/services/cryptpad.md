@@ -63,7 +63,7 @@ cryptpad_hostname_sandbox: sandbox.example.com
 
 ### Enabling spreadsheets (optional)
 
-CryptPad’s spreadsheet editor is backed by its bundled OnlyOffice integration. If the `Sheets` or `Spreadsheet` app does not show up in the UI, you need to enable that bundle explicitly and persist its local data with additional bind mounts. See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-cryptpad/blob/main/docs/configuring-cryptpad.md#enabling-spreadsheets-optional) on the role's documentation for details.
+CryptPad’s spreadsheet editor is backed by its bundled OnlyOffice integration. If the `Sheets` or `Spreadsheet` app does not show up in the UI, you need to enable that bundle explicitly and persist its local data with additional bind mounts. Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-cryptpad/blob/main/docs/configuring-cryptpad.md#enabling-spreadsheets-optional) on the role's documentation for details.
 
 ## Usage
 
@@ -79,4 +79,4 @@ After running the command, open the URL with a web browser, and follow the set u
 
 ## Troubleshooting
 
-See [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az38Yp2e9yFouswvrnX5MdgZYaViLb/tree/docs/configuring-cryptpad.md#troubleshooting) on the role's documentation for details.
+Refer to [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az38Yp2e9yFouswvrnX5MdgZYaViLb/tree/docs/configuring-cryptpad.md#troubleshooting) on the role's documentation for details.

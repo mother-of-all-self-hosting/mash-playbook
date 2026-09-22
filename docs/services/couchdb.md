@@ -60,7 +60,7 @@ couchdb_enabled: true
 
 ### Specify server administrator's username and password
 
-You also need to specify a server administrator's login credential. See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-couchdb/blob/main/docs/configuring-couchdb.md#specify-server-administrators-username-and-password) on the role's documentation for details.
+You also need to specify a server administrator's login credential. Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-couchdb/blob/main/docs/configuring-couchdb.md#specify-server-administrators-username-and-password) on the role's documentation for details.
 
 >[!NOTE]
 > CouchDB requires a server administrator account to start. If one has not been created, CouchDB will print an error message and terminate.
@@ -84,8 +84,8 @@ After running the command for installation, the CouchDB instance becomes availab
 
 ### Creating users
 
-See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-couchdb/blob/main/docs/configuring-couchdb.md#creating-users) on the role's documentation about how to create users (administrators and normal users).
+Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-couchdb/blob/main/docs/configuring-couchdb.md#creating-users) on the role's documentation about how to create users (administrators and normal users).
 
 ## Troubleshooting
 
-See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-couchdb/blob/main/docs/configuring-couchdb.md#troubleshooting) on the role's documentation for details.
+Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-couchdb/blob/main/docs/configuring-couchdb.md#troubleshooting) on the role's documentation for details.

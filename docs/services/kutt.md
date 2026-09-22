@@ -66,7 +66,7 @@ kutt_hostname: kutt.example.com
 
 ### Select database to use (optional)
 
-By default Kutt is configured to use [Postgres](postgres.md) (if enabled), but you can choose other databases such as MySQL (MariaDB) and SQLite. If Postgres is not enabled, SQLite will be used. See [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az36dPzLyvPA52m845g1MMqHgoiaEz/tree/docs/configuring-kutt.md#specify-database-optional) on the role's documentation for details.
+By default Kutt is configured to use [Postgres](postgres.md) (if enabled), but you can choose other databases such as MySQL (MariaDB) and SQLite. If Postgres is not enabled, SQLite will be used. Refer to [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az36dPzLyvPA52m845g1MMqHgoiaEz/tree/docs/configuring-kutt.md#specify-database-optional) on the role's documentation for details.
 
 ### Configuring the mailer (optional)
 
@@ -95,7 +95,7 @@ To create a dedicated instance for Kutt, you can follow the steps below:
 2. Create a new `vars.yml` file for the dedicated instance
 3. Edit the existing `vars.yml` file for the main host
 
-*See [this page](../running-multiple-instances.md) for details about configuring multiple instances of Valkey on the same server.*
+*Refer to [this page](../running-multiple-instances.md) for details about configuring multiple instances of Valkey on the same server.*
 
 ##### Adjust `hosts`
 
@@ -259,7 +259,7 @@ To get started, open the URL with a web browser to create an administrator accou
 
 ## Troubleshooting
 
-See [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az36dPzLyvPA52m845g1MMqHgoiaEz/tree/docs/configuring-kutt.md#troubleshooting) on the role's documentation for details.
+Refer to [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az36dPzLyvPA52m845g1MMqHgoiaEz/tree/docs/configuring-kutt.md#troubleshooting) on the role's documentation for details.
 
 ## Related services
 

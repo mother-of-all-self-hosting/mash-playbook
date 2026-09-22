@@ -73,15 +73,15 @@ The Radicle node instance then becomes available at the hostname specified with 
 >[!NOTE]
 > `radicle-node` cannot be accessed via HTTP. It is necessary to set up the HTTP Daemon (`radicle-httpd`) for browsing repositories on a web browser, retrieving details about them with `curl`, etc.
 >
-> This playbook supports Radicle HTTP Daemon, and you can set up the instance by enabling it on `vars.yml`. See [this page](radicle-httpd.md) for details.
+> This playbook supports Radicle HTTP Daemon, and you can set up the instance by enabling it on `vars.yml`. Refer to [this page](radicle-httpd.md) for details.
 
 Please note that the default seeding policy is *selective* one, meaning that the node will ignore all repositories, except the ones which the node's operator explicitly allows to be seeded.
 
-See [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az28JTUhepmbS3hLZyUeEvXeqk9QW5/tree/docs/configuring-radicle-node.md#usage) on the role's documentation for details about updating settings including the seeding policy.
+Refer to [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az28JTUhepmbS3hLZyUeEvXeqk9QW5/tree/docs/configuring-radicle-node.md#usage) on the role's documentation for details about updating settings including the seeding policy.
 
 ## Troubleshooting
 
-See [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az28JTUhepmbS3hLZyUeEvXeqk9QW5/tree/docs/configuring-radicle-node.md#troubleshooting) on the role's documentation for details.
+Refer to [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az28JTUhepmbS3hLZyUeEvXeqk9QW5/tree/docs/configuring-radicle-node.md#troubleshooting) on the role's documentation for details.
 
 ## Related services
 

@@ -90,7 +90,7 @@ To create a dedicated instance for Cap Standalone, you can follow the steps belo
 2. Create a new `vars.yml` file for the dedicated instance
 3. Edit the existing `vars.yml` file for the main host
 
-*See [this page](../running-multiple-instances.md) for details about configuring multiple instances of Valkey on the same server.*
+*Refer to [this page](../running-multiple-instances.md) for details about configuring multiple instances of Valkey on the same server.*
 
 ##### Adjust `hosts`
 
@@ -254,4 +254,4 @@ Refer to <https://capjs.js.org/guide/> for the usage.
 
 ## Troubleshooting
 
-See [this section](https://radicle.network/nodes/iris.radicle.network/rad%3AzSj65STd1FuR22pm4vLCSmFQ1rt5/tree/docs/configuring-cap.md#troubleshooting) on the role's documentation for details.
+Refer to [this section](https://radicle.network/nodes/iris.radicle.network/rad%3AzSj65STd1FuR22pm4vLCSmFQ1rt5/tree/docs/configuring-cap.md#troubleshooting) on the role's documentation for details.

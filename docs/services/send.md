@@ -65,13 +65,13 @@ send_hostname: send.example.com
 
 The service provides these storage backend options: local filesystem (default), Amazon S3 compatible object storage, and Google Cloud Storage.
 
-See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-send/blob/main/docs/configuring-send.md#configure-a-storage-backend) on the role's documentation for details about how to set up Amazon S3 compatible object storage and Google Cloud Storage.
+Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-send/blob/main/docs/configuring-send.md#configure-a-storage-backend) on the role's documentation for details about how to set up Amazon S3 compatible object storage and Google Cloud Storage.
 
 ### Configure upload and download limits (optional)
 
 You can also configure settings for uploading and downloading limits (such as the maximum upload file size and number of the download, as well as expiry time).
 
-See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-send/blob/main/docs/configuring-send.md#configure-upload-and-download-limits-optional) on the role's documentation for details about how to set up.
+Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-send/blob/main/docs/configuring-send.md#configure-upload-and-download-limits-optional) on the role's documentation for details about how to set up.
 
 **To mitigate the risk of your server being overwhelmed by legal / illegal use, it is important to set proper limits for the server.** For example, if you intend to use the Send instance for sending relatively small files to a small group of your friends or family, then you can make the default limits stricter as below:
 
@@ -106,7 +106,7 @@ To create a dedicated instance for Send, you can follow the steps below:
 2. Create a new `vars.yml` file for the dedicated instance
 3. Edit the existing `vars.yml` file for the main host
 
-*See [this page](../running-multiple-instances.md) for details about configuring multiple instances of Valkey on the same server.*
+*Refer to [this page](../running-multiple-instances.md) for details about configuring multiple instances of Valkey on the same server.*
 
 ##### Adjust `hosts`
 
@@ -266,11 +266,11 @@ Note that running the `just` commands for installation (`just install-all` or `j
 
 After running the command for installation, the Send instance becomes available at the URL specified with `send_hostname`. With the configuration above, the service is hosted at `https://send.example.com`.
 
-See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-send/blob/main/docs/configuring-send.md#usage) on the role's documentation for details about its [CLI client](https://github.com/timvisee/ffsend). The instruction to takedown illegal materials is also available [here](https://github.com/mother-of-all-self-hosting/ansible-role-send/blob/main/docs/configuring-send.md#takedown-illegal-materials).
+Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-send/blob/main/docs/configuring-send.md#usage) on the role's documentation for details about its [CLI client](https://github.com/timvisee/ffsend). The instruction to takedown illegal materials is also available [here](https://github.com/mother-of-all-self-hosting/ansible-role-send/blob/main/docs/configuring-send.md#takedown-illegal-materials).
 
 ## Troubleshooting
 
-See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-send/blob/main/docs/configuring-send.md#troubleshooting) on the role's documentation for details.
+Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-send/blob/main/docs/configuring-send.md#troubleshooting) on the role's documentation for details.
 
 ## Related services
 

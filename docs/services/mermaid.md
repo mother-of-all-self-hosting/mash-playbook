@@ -78,7 +78,7 @@ After running the command for installation, the Mermaid Live Editor instance bec
 
 ## Troubleshooting
 
-See [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az2RAnfyxCYZSoUiDufyzTM7P3RvEd/tree/docs/configuring-mermaid.md#troubleshooting) on the role's documentation for details.
+Refer to [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az2RAnfyxCYZSoUiDufyzTM7P3RvEd/tree/docs/configuring-mermaid.md#troubleshooting) on the role's documentation for details.
 
 ## Related services
 

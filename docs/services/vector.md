@@ -113,7 +113,7 @@ vector_sinks_custom:
 
 For connecting to a remote Loki instance, set `endpoint` to the public hostname (e.g. `https://mash.example.com/loki`) and adjust authentication as needed.
 
-You can then add Loki as a datasource in Grafana — see [Integrating with a local Loki instance](grafana.md#integrating-with-a-local-loki-instance) on the Grafana documentation page.
+You can then add Loki as a datasource in Grafana — refer to [Integrating with a local Loki instance](grafana.md#integrating-with-a-local-loki-instance) on the Grafana documentation page.
 
 ### Exposing metrics to Prometheus
 
@@ -139,7 +139,7 @@ prometheus_config_scrape_configs_additional:
           - "{{ vector_identifier }}:9598"
 ```
 
-See [Scraping other exporter services](prometheus.md#scraping-other-exporter-services) on the Prometheus documentation page for more details.
+Refer to [Scraping other exporter services](prometheus.md#scraping-other-exporter-services) on the Prometheus documentation page for more details.
 
 ### Exposing the API (optional)
 

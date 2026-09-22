@@ -66,7 +66,7 @@ cinny_hostname: cinny.example.com
 
 ### Set the default homeserver URL
 
-It is also necessary to specify the default homeserver's URL. See [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az3P5L5p1gs7TGCpmhaXKUYmTJNKpi/tree/docs/configuring-cinny.md#set-the-default-homeserver-url) on the role's documentation for details.
+It is also necessary to specify the default homeserver's URL. Refer to [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az3P5L5p1gs7TGCpmhaXKUYmTJNKpi/tree/docs/configuring-cinny.md#set-the-default-homeserver-url) on the role's documentation for details.
 
 ## Usage
 
@@ -76,7 +76,7 @@ To get started, open the URL with a web browser, and log in to your homeserver w
 
 ## Troubleshooting
 
-See [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az3P5L5p1gs7TGCpmhaXKUYmTJNKpi/tree/docs/configuring-cinny.md#troubleshooting) on the role's documentation for details.
+Refer to [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az3P5L5p1gs7TGCpmhaXKUYmTJNKpi/tree/docs/configuring-cinny.md#troubleshooting) on the role's documentation for details.
 
 ## Related services
 

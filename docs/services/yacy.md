@@ -75,12 +75,12 @@ You can log in to the instance with the default login credential of the admin ac
 
 To improve security regarding the admin account, **the role configures the instance on the intranet search mode by default**, so that it does not broadcast its existence to peers before you change the login credential.
 
-See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-yacy/blob/main/docs/configuring-yacy.md#usage) on the role's documentation for details about changing the admin user password and search mode, including protecting the instance with the password.
+Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-yacy/blob/main/docs/configuring-yacy.md#usage) on the role's documentation for details about changing the admin user password and search mode, including protecting the instance with the password.
 
 ## Troubleshooting
 
-See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-yacy/blob/main/docs/configuring-yacy.md#troubleshooting) on the role's documentation for details.
+Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-yacy/blob/main/docs/configuring-yacy.md#troubleshooting) on the role's documentation for details.
 
 ## Related services
 
-- [SearXNG](searxng.md) — Privacy-respecting, hackable [metasearch engine](https://en.wikipedia.org/wiki/Metasearch_engine). See [this section](searxng.md#add-your-yacy-instance-optional) for the instruction to add your YaCy instance to the SearXNG instance.
+- [SearXNG](searxng.md) — Privacy-respecting, hackable [metasearch engine](https://en.wikipedia.org/wiki/Metasearch_engine). Refer to [this section](searxng.md#add-your-yacy-instance-optional) for the instruction to add your YaCy instance to the SearXNG instance.

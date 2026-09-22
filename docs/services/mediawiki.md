@@ -73,7 +73,7 @@ mediawiki_config_sitename: YOUR_WIKI_NAME_HERE
 
 ### Select database to use
 
-It is necessary to select a database used by MediaWiki from a MySQL compatible database, Postgres, and SQLite. See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-mediawiki/blob/main/docs/configuring-mediawiki.md#specify-database) on the role's documentation for details.
+It is necessary to select a database used by MediaWiki from a MySQL compatible database, Postgres, and SQLite. Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-mediawiki/blob/main/docs/configuring-mediawiki.md#specify-database) on the role's documentation for details.
 
 >[!NOTE]
 > It is [not recommended](https://www.mediawiki.org/wiki/Compatibility#Database) to use Postgres, as [this page](https://www.mediawiki.org/wiki/Postgres) on the manual describes that the Postgres support is "second-class" and you may run into some bugs.
@@ -253,7 +253,7 @@ To actually have the service use (and get messages sent through the exim-relay s
 
 ### Extending the configuration
 
-As the configuration settings specified on that file are basic despite being sufficient for starting up the instance, you would probably want to add other standard settings listed on [this section](https://www.mediawiki.org/wiki/Manual:LocalSettings.php#Standard_settings) on the manual to `mediawiki_config_additional_configurations` such as disabling user registration and enabling email functions, for example. See [this setcion](https://github.com/mother-of-all-self-hosting/ansible-role-mediawiki/blob/main/docs/configuring-mediawiki.md#extending-the-configuration) for details.
+As the configuration settings specified on that file are basic despite being sufficient for starting up the instance, you would probably want to add other standard settings listed on [this section](https://www.mediawiki.org/wiki/Manual:LocalSettings.php#Standard_settings) on the manual to `mediawiki_config_additional_configurations` such as disabling user registration and enabling email functions, for example. Refer to [this setcion](https://github.com/mother-of-all-self-hosting/ansible-role-mediawiki/blob/main/docs/configuring-mediawiki.md#extending-the-configuration) for details.
 
 ## Installation
 
@@ -271,7 +271,7 @@ Some specific operations such as updating MediaWiki's configurations on [`LocalS
 
 ## Troubleshooting
 
-See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-mediawiki/blob/main/docs/configuring-mediawiki.md#troubleshooting) on the role's documentation for details.
+Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-mediawiki/blob/main/docs/configuring-mediawiki.md#troubleshooting) on the role's documentation for details.
 
 ## Related services
 

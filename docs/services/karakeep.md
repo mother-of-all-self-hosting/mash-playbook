@@ -78,7 +78,7 @@ To enable the screenshot function with JavaScript execution allowed, you can opt
 
 Browserless is available on the playbook. Enabling it automatically configures the Karakeep instance to connect to it.
 
-See [this page](browserless.md) for details about how to install it.
+Refer to [this page](browserless.md) for details about how to install it.
 
 ### Connecting to a Meilisearch instance (optional)
 
@@ -86,7 +86,7 @@ To enable the search function, you can optionally have the Karakeep instance con
 
 Meilisearch is available on the playbook. Enabling it and setting its default admin API key (`meilisearch_default_admin_api_key`) automatically configures the Karakeep instance to connect to it.
 
-See [this page](meilisearch.md) for details about how to install it and setting the key for the Meilisearch instance.
+Refer to [this page](meilisearch.md) for details about how to install it and setting the key for the Meilisearch instance.
 
 ### Configuring the mailer (optional)
 
@@ -99,10 +99,10 @@ To actually have the service use (and get messages sent through the exim-relay s
 
 ### Extending the configuration
 
-See [this page](https://docs.karakeep.app/configuration/) for a complete list of Karakeep's config options that you could put in `karakeep_environment_variables_additional_variables`.
+Refer to [this page](https://docs.karakeep.app/configuration/) for a complete list of Karakeep's config options that you could put in `karakeep_environment_variables_additional_variables`.
 
 >[!NOTE]
-> Enabling automatic tagging with LLM providers requires environment variables to be specified manually. See [this section](https://docs.karakeep.app/configuration/#inference-configs-for-automatic-tagging) on the documentation for details.
+> Enabling automatic tagging with LLM providers requires environment variables to be specified manually. Refer to [this section](https://docs.karakeep.app/configuration/#inference-configs-for-automatic-tagging) on the documentation for details.
 
 ## Usage
 
@@ -114,7 +114,7 @@ Since account registration is disabled by default, you need to enable it first b
 
 ## Troubleshooting
 
-See [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az4W1oeRiFKEikhj4Mk3HbVJM7er6S/tree/docs/configuring-karakeep.md#troubleshooting) on the role's documentation for details.
+Refer to [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az4W1oeRiFKEikhj4Mk3HbVJM7er6S/tree/docs/configuring-karakeep.md#troubleshooting) on the role's documentation for details.
 
 ## Related services
 

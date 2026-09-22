@@ -64,7 +64,7 @@ gotify_hostname: gotify.example.com
 
 ### Select database to use
 
-It is necessary to select a database used by Gotify from a MySQL compatible database, Postgres, and SQLite. See [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az3dQNNLitS9sByxZ83ivu5qg6qR4N/tree/docs/configuring-gotify.md#specify-database) on the role's documentation for details.
+It is necessary to select a database used by Gotify from a MySQL compatible database, Postgres, and SQLite. Refer to [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az3dQNNLitS9sByxZ83ivu5qg6qR4N/tree/docs/configuring-gotify.md#specify-database) on the role's documentation for details.
 
 ### Set the username and password for the first user
 
@@ -78,7 +78,7 @@ To get started, open the URL with a web browser to log in to the instance. **Not
 
 ## Troubleshooting
 
-See [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az3dQNNLitS9sByxZ83ivu5qg6qR4N/tree/docs/configuring-gotify.md#troubleshooting) on the role's documentation for details.
+Refer to [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az3dQNNLitS9sByxZ83ivu5qg6qR4N/tree/docs/configuring-gotify.md#troubleshooting) on the role's documentation for details.
 
 ## Related services
 

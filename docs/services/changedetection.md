@@ -63,7 +63,7 @@ changedetection_path_prefix: /changedetection
 
 ### Enable Playwright webdriver for advanced options (optional)
 
-Some advanced options like using Javascript or the Visual Selector tool require an additional Playwright webdriver. See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-changedetection/blob/main/docs/configuring-changedetection.md#enable-playwright-webdriver-for-advanced-options-optional) on the role's documentation for details.
+Some advanced options like using Javascript or the Visual Selector tool require an additional Playwright webdriver. Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-changedetection/blob/main/docs/configuring-changedetection.md#enable-playwright-webdriver-for-advanced-options-optional) on the role's documentation for details.
 
 ## Usage
 
@@ -88,4 +88,4 @@ After setting the configuration, you can have the Changedetection.io instance se
 
 ## Troubleshooting
 
-See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-changedetection/blob/main/docs/configuring-changedetection.md#troubleshooting) on the role's documentation for details.
+Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-changedetection/blob/main/docs/configuring-changedetection.md#troubleshooting) on the role's documentation for details.

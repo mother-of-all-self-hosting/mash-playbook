@@ -66,8 +66,8 @@ keyoxide_hostname: keyoxide.example.com
 
 After running the command for installation, the keyoxide-web instance becomes available at the URL specified with `keyoxide_hostname`. With the configuration above, the service is hosted at `https://keyoxide.example.com`.
 
-See [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az3m9zZgMmAQX5aVtj5Y9KYRnhjVrt/tree/docs/configuring-keyoxide.md#usage) on the role's documentation for details about the usage.
+Refer to [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az3m9zZgMmAQX5aVtj5Y9KYRnhjVrt/tree/docs/configuring-keyoxide.md#usage) on the role's documentation for details about the usage.
 
 ## Troubleshooting
 
-See [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az3m9zZgMmAQX5aVtj5Y9KYRnhjVrt/tree/docs/configuring-keyoxide.md#troubleshooting) on the role's documentation for details.
+Refer to [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az3m9zZgMmAQX5aVtj5Y9KYRnhjVrt/tree/docs/configuring-keyoxide.md#troubleshooting) on the role's documentation for details.

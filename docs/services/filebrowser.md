@@ -81,7 +81,7 @@ You can create additional users (admin-privileged or not) after logging in via t
 
 ## Troubleshooting
 
-See [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az318zbpe2RNjFqVzXqPoDDJvvohbw/tree/docs/configuring-filebrowser.md#troubleshooting) on the role's documentation for details.
+Refer to [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az318zbpe2RNjFqVzXqPoDDJvvohbw/tree/docs/configuring-filebrowser.md#troubleshooting) on the role's documentation for details.
 
 ## Related services
 

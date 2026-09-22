@@ -39,7 +39,7 @@ This service requires the following other services:
 - (optional) [Postgres](postgres.md) / MySQL database — Homarr will default to [SQLite](https://www.sqlite.org/) if Postgres is not enabled
 
 >[!NOTE]
-> Currently (as of v1.35.0) MariaDB is not supported but planned. See [this issue at GitHub](https://github.com/homarr-labs/homarr/issues/2305) for the latest information.
+> Currently (as of v1.35.0) MariaDB is not supported but planned. Refer to [this issue at GitHub](https://github.com/homarr-labs/homarr/issues/2305) for the latest information.
 
 ## Configuration
 
@@ -86,13 +86,13 @@ To use SQLite, add the following configuration to your `vars.yml` file:
 homarr_database_type: sqlite
 ```
 
-See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-homarr/blob/main/docs/configuring-homarr.md#specify-database-optional) on the role's documentation for details.
+Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-homarr/blob/main/docs/configuring-homarr.md#specify-database-optional) on the role's documentation for details.
 
 ## Usage
 
 After running the command for installation, the Homarr instance becomes available at the URL specified with `homarr_hostname`. With the configuration above, the service is hosted at `https://homarr.example.com`.
 
-To get started, open the URL with a web browser, and follow the set up wizard. See [this official guide](https://homarr.dev/docs/getting-started/after-the-installation/) for details.
+To get started, open the URL with a web browser, and follow the set up wizard. Refer to [this official guide](https://homarr.dev/docs/getting-started/after-the-installation/) for details.
 
 ### Playbook's services on Homarr
 
@@ -106,11 +106,11 @@ Homarr also integrates with various software, to which you can connect your appl
 - **Media request manager**: [Seerr](seerr.md)
 - **DNS ad-blocker**: [AdGuard Home](adguard-home.md)
 
-See [this page](https://homarr.dev/docs/category/integrations) on the official documentation for the latest information about integrations.
+Refer to [this page](https://homarr.dev/docs/category/integrations) on the official documentation for the latest information about integrations.
 
 ## Troubleshooting
 
-See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-homarr/blob/main/docs/configuring-homarr.md#troubleshooting) on the role's documentation for details.
+Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-homarr/blob/main/docs/configuring-homarr.md#troubleshooting) on the role's documentation for details.
 
 ## Related services
 

@@ -66,7 +66,7 @@ After running the command for installation, the PoodleDonts instance becomes ava
 
 ## Troubleshooting
 
-See [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az4MgJseWRZ9FL3Mh6ASufmi1RJoVh/tree/docs/configuring-poodledonts.md#troubleshooting) on the role's documentation for details.
+Refer to [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az4MgJseWRZ9FL3Mh6ASufmi1RJoVh/tree/docs/configuring-poodledonts.md#troubleshooting) on the role's documentation for details.
 
 ## Related services
 

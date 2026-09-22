@@ -98,7 +98,7 @@ Example: `curl -H 'X-API-KEY: YOUR_SECRET_API_KEY_HERE' https://admin.api.exampl
 
 Since APISIX 3.13, the [APISIX Dashboard](apisix-dashboard.md) is no longer a separate project — it ships inside the `apache/apisix` image as a pure front-end, and APISIX serves it at `/ui/`. The playbook used to install the standalone dashboard as a service of its own; it [no longer does](apisix-dashboard.md), and no longer needs to.
 
-There is nothing to install and nothing to enable, as long as you run APISIX 3.13 or newer (see [`VERSIONS.md`](../../VERSIONS.md) for the version the playbook currently installs, and [upgrade](../maintenance-upgrading-services.md) if you are behind). The only question is how you reach it, and it deserves a careful answer.
+There is nothing to install and nothing to enable, as long as you run APISIX 3.13 or newer (refer to [`VERSIONS.md`](../../VERSIONS.md) for the version the playbook currently installs, and [upgrade](../maintenance-upgrading-services.md) if you are behind). The only question is how you reach it, and it deserves a careful answer.
 
 > [!WARNING]
 > **The bundled UI is served from inside the Admin API's `server` block.** It shares that listener's port (`apisix_config_deployment_admin_admin_listen_port`, `9180` by default) and its `allow_admin` allowlist. **Making the UI reachable makes the Admin API reachable** — there is no way to publish one without the other.

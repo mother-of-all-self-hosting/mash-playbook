@@ -73,7 +73,7 @@ To use MariaDB, add the following configuration to your `vars.yml` file:
 ihatemoney_database_type: mysql
 ```
 
-See [this section](https://github.com/IUCCA/ansible-role-ihatemoney/blob/main/docs/configuring-ihatemoney.md#specify-database-optional) on the role's documentation for details.
+Refer to [this section](https://github.com/IUCCA/ansible-role-ihatemoney/blob/main/docs/configuring-ihatemoney.md#specify-database-optional) on the role's documentation for details.
 
 ### Configuring the mailer (optional)
 

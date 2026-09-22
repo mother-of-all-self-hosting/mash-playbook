@@ -146,7 +146,7 @@ Please wire your role to other services than `systemd_service_manager` if necess
 <details>
 <summary>Wire the role to Postgres / MariaDB</summary>
 
-On this playbook Postgres is enabled by default (see [`examples/vars.yml`](../examples/vars.yml)), and you can wire your role to Postgres by adding it to the configuration for Postgres as below:
+On this playbook Postgres is enabled by default (refer to [`examples/vars.yml`](../examples/vars.yml)), and you can wire your role to Postgres by adding it to the configuration for Postgres as below:
 
 ```yaml
 # role-specific:postgres

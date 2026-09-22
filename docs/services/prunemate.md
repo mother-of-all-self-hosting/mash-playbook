@@ -67,7 +67,7 @@ prunemate_hostname: prunemate.example.com
 
 ### Setting up authentication
 
-The playbook by default enables authentication implemented by the service. It supports the HTTP Basic authentication with Traefik as well. Though it is optional and can be disabled, **it is strongly encouraged to enable a certain authentication mechanism**, considering the nature of the service. See [this section](https://radicle.network/nodes/iris.radicle.network/rad:zTsddBnXnhE3i4xhzsEX12deb4fx/tree/docs/configuring-prunemate.md#setting-up-authentication) on the role's documentation for details about how to set up authentication.
+The playbook by default enables authentication implemented by the service. It supports the HTTP Basic authentication with Traefik as well. Though it is optional and can be disabled, **it is strongly encouraged to enable a certain authentication mechanism**, considering the nature of the service. Refer to [this section](https://radicle.network/nodes/iris.radicle.network/rad:zTsddBnXnhE3i4xhzsEX12deb4fx/tree/docs/configuring-prunemate.md#setting-up-authentication) on the role's documentation for details about how to set up authentication.
 
 ### Configuring Docker socket (optional)
 
@@ -81,7 +81,7 @@ To get started, open the URL with a web browser, and edit settings to enable a s
 
 ### Creating a user
 
-To enable authentication, see [this section](https://radicle.network/nodes/iris.radicle.network/rad%3AzTsddBnXnhE3i4xhzsEX12deb4fx/tree/docs/configuring-prunemate.md#creating-a-user) on the role's documentation about how to create a user. Make sure to start the service first, before creating the user.
+To enable authentication, refer to [this section](https://radicle.network/nodes/iris.radicle.network/rad%3AzTsddBnXnhE3i4xhzsEX12deb4fx/tree/docs/configuring-prunemate.md#creating-a-user) on the role's documentation about how to create a user. Make sure to start the service first, before creating the user.
 
 ### Configuring the Docker host URL
 
@@ -95,7 +95,7 @@ As a notification provider, it is possible to use Gotify and ntfy, both of which
 
 ## Troubleshooting
 
-See [this section](https://radicle.network/nodes/iris.radicle.network/rad%3AzTsddBnXnhE3i4xhzsEX12deb4fx/tree/docs/configuring-prunemate.md#troubleshooting) on the role's documentation for details.
+Refer to [this section](https://radicle.network/nodes/iris.radicle.network/rad%3AzTsddBnXnhE3i4xhzsEX12deb4fx/tree/docs/configuring-prunemate.md#troubleshooting) on the role's documentation for details.
 
 ## Related services
 

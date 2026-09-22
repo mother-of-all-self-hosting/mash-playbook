@@ -64,13 +64,13 @@ anonymousoverflow_hostname: anonymousoverflow.example.com
 
 After running the command for installation, the AnonymousOverflow instance becomes available at the URL specified with `anonymousoverflow_hostname`. With the configuration above, the service is hosted at `https://anonymousoverflow.example.com`.
 
-[Libredirect](https://libredirect.github.io/), an extension for Firefox and Chromium-based desktop browsers, has support for redirections to AnonymousOverflow. See [this section](https://github.com/httpjamesm/AnonymousOverflow/blob/main/README.md#how-to-make-stack-overflow-links-take-you-to-anonymousoverflow-automatically) on the official documentation for more information.
+[Libredirect](https://libredirect.github.io/), an extension for Firefox and Chromium-based desktop browsers, has support for redirections to AnonymousOverflow. Refer to [this section](https://github.com/httpjamesm/AnonymousOverflow/blob/main/README.md#how-to-make-stack-overflow-links-take-you-to-anonymousoverflow-automatically) on the official documentation for more information.
 
-If you would like to publish your instance so that it can be used by anyone including Libredirect, please consider to send a PR to the [upstream project](https://github.com/httpjamesm/AnonymousOverflow) to add yours to [`instances.json`](https://github.com/httpjamesm/AnonymousOverflow/blob/main/instances.json), which Libredirect automatically fetches using a script (see [this FAQ entry](https://libredirect.github.io/faq.html#where_the_hell_are_those_instances_coming_from)).
+If you would like to publish your instance so that it can be used by anyone including Libredirect, please consider to send a PR to the [upstream project](https://github.com/httpjamesm/AnonymousOverflow) to add yours to [`instances.json`](https://github.com/httpjamesm/AnonymousOverflow/blob/main/instances.json), which Libredirect automatically fetches using a script (refer to [this FAQ entry](https://libredirect.github.io/faq.html#where_the_hell_are_those_instances_coming_from)).
 
 ## Troubleshooting
 
-See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-anonymousoverflow/blob/main/docs/configuring-anonymousoverflow.md#troubleshooting) on the role's documentation for details.
+Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-anonymousoverflow/blob/main/docs/configuring-anonymousoverflow.md#troubleshooting) on the role's documentation for details.
 
 ## Related services
 

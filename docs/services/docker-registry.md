@@ -54,7 +54,7 @@ docker_registry_hostname: registry.example.com
 ########################################################################
 ```
 
-See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-docker-registry/blob/main/docs/configuring-distribution-registry.md#adjusting-the-playbook-configuration) on the role's documentation for other settings, such as whitelisting IPs.
+Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-docker-registry/blob/main/docs/configuring-distribution-registry.md#adjusting-the-playbook-configuration) on the role's documentation for other settings, such as whitelisting IPs.
 
 ## Usage
 
@@ -63,7 +63,7 @@ After running the command for installation, the Distribution Registry instance b
 >[!NOTE]
 > The base URL (e.g. `https://registry.example.com`) serves an empty (blank) page. To browse your registry's images via a web interface, you may need another piece of software, like [Docker Registry Browser](docker-registry-browser.md).
 
-See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-docker-registry/blob/main/docs/configuring-distribution-registry.md#usage) on the role's documentation for details.
+Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-docker-registry/blob/main/docs/configuring-distribution-registry.md#usage) on the role's documentation for details.
 
 ## Related services
 

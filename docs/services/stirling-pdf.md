@@ -63,7 +63,7 @@ stirling_pdf_path_prefix: /stirling-pdf
 
 ### Configuring HTTP Basic authentication
 
-The HTTP Basic authentication on Traefik is enabled for the web interface by default. See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-stirling-pdf/blob/main/docs/configuring-stirling-pdf.md#configuring-http-basic-authentication) on the role's documentation for details about how to set it up or disable it.
+The HTTP Basic authentication on Traefik is enabled for the web interface by default. Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-stirling-pdf/blob/main/docs/configuring-stirling-pdf.md#configuring-http-basic-authentication) on the role's documentation for details about how to set it up or disable it.
 
 ## Usage
 
