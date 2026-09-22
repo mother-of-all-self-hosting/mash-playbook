@@ -13,11 +13,6 @@
       "matchHost": "https://codeberg.org",
       "concurrentRequestLimit": 2,
       "maxRequestsPerSecond": 2
-    },
-    {
-      "matchHost": "https://iris.radicle.network",
-      "concurrentRequestLimit": 2,
-      "maxRequestsPerSecond": 2
     }
   ],
   "branchConcurrentLimit": 5,
@@ -50,12 +45,6 @@
       ],
       "automerge": true,
       "automergeType": "branch"
-    },
-    {
-      "matchSourceUrls": [
-        "https://iris.radicle.network{/,}**"
-      ],
-      "reviewers": ["luixxiul"]
     },
     {
       "description": "Automerge updates of the self-hosted Renovate runner (via branch push - no PR) monthly",
