@@ -44,15 +44,6 @@ qbittorrent_enabled: true
 
 qbittorrent_hostname: qbittorrent.example.com
 
-# The path where downloaded files will be stored on the host system
-qbittorrent_download_path: "{{ qbittorrent_base_path }}/downloads"
-
-# The path at which qbittorrent_download_path is mounted to inside the container
-qbittorrent_download_bind_path: "/downloads"
-
-# The port qBittorrent is listening for torrents on inside the container
-qbittorrent_container_torrenting_port: 6881
-
 # Controls whether the container exposes its torrenting port
 # To become an "active node" you'll want to set this and configure port-forwarding in your router
 qbittorrent_container_torrenting_bind_port: "{{ qbittorrent_container_torrenting_port }}"
@@ -78,8 +69,6 @@ just run-tags print-qbittorrent-password
 ```
 
 Once you've got that, log in as the `admin` user with the password and change it under `Tools -> Options -> WebUI` in the `Authentication` section. Make sure you change the password, since the default one is temporary and will change with each start-up.
-
-For additional configuration options, refer to [ansible-role-qbittorrent](https://github.com/mother-of-all-self-hosting/ansible-role-qbittorrent)'s `defaults/main.yml` file.
 
 ## Integration with Sonarr/Radarr
 
