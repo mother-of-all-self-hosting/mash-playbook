@@ -55,8 +55,6 @@ After running the command for installation, the Autobrr instance becomes availab
 
 To get started, open the URL with a web browser to create an account.
 
-![Autobrr Create Account](../assets/autobrr/setup-1.webp)
-
 ## Troubleshooting
 
 Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-autobrr/blob/main/docs/configuring-autobrr.md#troubleshooting) on the role's documentation for details.
