@@ -17,11 +17,16 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
 # qBittorrent
 
-The playbook can install and configure [qBittorrent](https://docs.linuxserver.io/images/docker-qbittorrent) for you.
+The playbook can install and configure [qBittorrent](https://www.qbittorrent.org/) for you.
 
 qBittorrent is a BitTorrent client programmed in C++ / Qt that uses libtorrent.
 
-See the project's [documentation](https://docs.linuxserver.io/images/docker-qbittorrent/) to learn what qBittorrent does and why it might be useful to you.
+See the project's [documentation](https://github.com/qbittorrent/qBittorrent/wiki/) to learn what qBittorrent does and why it might be useful to you.
+
+For details about configuring the [Ansible role for qBittorrent](https://github.com/mother-of-all-self-hosting/ansible-role-qbittorrent), you can check them via:
+
+- 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-qbittorrent/blob/main/docs/configuring-qbittorrent.md) online
+- 📁 `roles/galaxy/qbittorrent/docs/configuring-qbittorrent.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 ## Dependencies
 
@@ -44,10 +49,6 @@ qbittorrent_enabled: true
 
 qbittorrent_hostname: qbittorrent.example.com
 
-# Controls whether the container exposes its torrenting port
-# To become an "active node" you'll want to set this and configure port-forwarding in your router
-qbittorrent_container_torrenting_bind_port: "{{ qbittorrent_container_torrenting_port }}"
-
 ########################################################################
 #                                                                      #
 # /qbittorrent                                                         #
@@ -55,30 +56,13 @@ qbittorrent_container_torrenting_bind_port: "{{ qbittorrent_container_torrenting
 ########################################################################
 ```
 
+Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-qbittorrent/blob/main/docs/configuring-qbittorrent.md#adjusting-the-playbook-configuration) on the role's documentation for details about other settings.
+
 ## Usage
 
 After running the command for installation, the qBittorrent instance becomes available at the URL specified with `qbittorrent_hostname`. With the configuration above, the service is hosted at `https://qbittorrent.example.com`.
 
->[!NOTE]
-> The `qbittorrent_path_prefix` variable can be adjusted to host under a subpath (e.g. `qbittorrent_path_prefix: /qbittorrent`), but this hasn't been tested yet.
-
-To get started, open the URL with a web browser to log in to the instance with the **temporary** randomly generated password for your instance. The password can be obtained by running the command below:
-
-```sh
-just run-tags print-qbittorrent-password
-```
-
-Once you've got that, log in as the `admin` user with the password and change it under `Tools -> Options -> WebUI` in the `Authentication` section. Make sure you change the password, since the default one is temporary and will change with each start-up.
-
-## Integration with Sonarr/Radarr
-
-To add qBittorrent to your [Sonarr](sonarr.md) or [Radarr](radarr.md) instance navigate to the form at `Settings > Download Clients > Add > qBittorrent`:
-
-Set the `host` field to your qBittorrent URL (without the protocol) and `port` as 443. Make sure to click `Use SSL`. Set the `username` and `password` fields as your qBittorrent credentials.
-
-Fill in the rest of the form with your preferences, and you're done!
-
-![Sonarr Add Download Client](../assets/sonarr/add-download-client.webp)
+To get started, open the URL with a web browser to log in to the instance with a **temporary** randomly generated password. Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-qbittorrent/blob/main/docs/configuring-qbittorrent.md#usage) on the role's documentation for details.
 
 ## Related services
 

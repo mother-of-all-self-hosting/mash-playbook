@@ -73,4 +73,4 @@ For additional configuration options, refer to [ansible-role-radarr](https://git
 - [Seerr](seerr.md)
 - [Plex](plex.md)
 - [qBittorrent](qbittorrent.md)
-  - For qBittorrent integration instructions, see the [setup guide](qbittorrent.md#intergration-with-sonarrradarr)
+  - For qBittorrent integration instructions, refer to the [setup guide](https://github.com/mother-of-all-self-hosting/ansible-role-qbittorrent/blob/main/docs/configuring-qbittorrent.md#integration-with-sonarrradarr) on the role's documentation
