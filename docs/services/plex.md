@@ -7,7 +7,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
 # Plex Media Server
 
-The playbook can install and configure a standalone [Plex Media Server](https://github.com/linuxserver/docker-plex) for you.
+The playbook can install and configure a standalone [Plex Media Server](https://docs.linuxserver.io/images/docker-plex) for you.
 
 Plex is a personal media server that allows you to organize and stream your collection of movies, TV shows, music, and photos.
 

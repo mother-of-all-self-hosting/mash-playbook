@@ -51,7 +51,7 @@ jellyfin_container_additional_volumes:
 
 ## Security Notice
 
-Unlike most MASH services, this service **runs with root privileges** and requires **read-write filesystem access** due to [upstream requirements](https://github.com/linuxserver/docker-jellyfin). These exceptions represent a deviation from our standard security practices. The container remains reasonably secure, but users should be aware of this modified security posture when deploying this service. We actively monitor upstream changes and will implement improved security configurations as soon as the Jellyfin container image supports non-root execution and read-only operations.
+Unlike most MASH services, this service **runs with root privileges** and requires **read-write filesystem access** due to [upstream requirements](https://docs.linuxserver.io/images/docker-jellyfin). These exceptions represent a deviation from our standard security practices. The container remains reasonably secure, but users should be aware of this modified security posture when deploying this service. We actively monitor upstream changes and will implement improved security configurations as soon as the Jellyfin container image supports non-root execution and read-only operations.
 
 ## Usage
 
@@ -106,7 +106,7 @@ jellyfin_gpu_path: "/dev/dri"
 jellyfin_gpu_bind_path: "{{ jellyfin_gpu_path }}"
 ```
 
-Upstream documentation: <https://github.com/linuxserver/docker-jellyfin#intelatiamd>
+Upstream documentation: <https://docs.linuxserver.io/images/docker-jellyfin#intelatiamd>
 
 #### NVIDIA
 
@@ -123,7 +123,7 @@ jellyfin_container_runtime: "nvidia"
 jellyfin_nvidia_visible_devices: "all"
 ```
 
-Upstream documentation: <https://github.com/linuxserver/docker-jellyfin#nvidia>
+Upstream documentation: <https://docs.linuxserver.io/images/docker-jellyfin#nvidia>
 
 ## Related services
 

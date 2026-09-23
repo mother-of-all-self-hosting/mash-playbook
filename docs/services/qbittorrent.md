@@ -17,7 +17,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
 # qBittorrent
 
-The playbook can install and configure [qBittorrent](https://github.com/linuxserver/docker-qbittorrent) for you.
+The playbook can install and configure [qBittorrent](https://docs.linuxserver.io/images/docker-qbittorrent) for you.
 
 qBittorrent is a BitTorrent client programmed in C++ / Qt that uses libtorrent.
 
