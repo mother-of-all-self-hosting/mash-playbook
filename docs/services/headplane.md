@@ -93,6 +93,20 @@ Take a look at:
 - The [Headplane role](https://github.com/spatterIight/ansible-role-headplane/)'s [`defaults/main.yml`](https://github.com/spatterIight/ansible-role-headplane/blob/main/defaults/main.yml) for additional variables that you can customize via your `vars.yml` file.
 - The [Headplane example configuration](https://github.com/tale/headplane/blob/main/config.example.yaml) for all the possible configuration options (like OIDC).
 
+### Custom container labels and response headers
+
+Add custom container labels as a list of strings in `vars.yml`:
+
+```yaml
+headplane_container_labels_additional_labels_custom:
+  - "my.label=1"
+  - "another.label=value"
+```
+
+If you previously used `headplane_container_labels_additional_labels: |`, remove that definition and move each label into this list, preserving the label names and values. Merge them with any existing `_custom` entries. An empty old string can simply be removed. Leaving the old definition in place overrides the combined list, and the role rejects strings when Traefik integration is enabled.
+
+The role adds response headers through Traefik, including a content security policy that restricts framing to the same origin and HSTS for TLS routes. To permit framing from a trusted external origin, adjust `headplane_http_header_content_security_policy`. To disable HSTS for this service, set `headplane_http_header_strict_transport_security: ""`; browsers may retain an HSTS policy they have already received. You can also override individual headers using the `headplane_container_labels_traefik_additional_response_headers_custom` mapping. Preserve any existing overrides when changing these settings.
+
 ## Usage
 
 After running the command for installation, the Headplane instance becomes available at the URL specified with `headplane_hostname`. With the configuration above, the service is hosted at `https://headplane.example.com/admin`.

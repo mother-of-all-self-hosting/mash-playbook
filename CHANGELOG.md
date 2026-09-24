@@ -1,3 +1,13 @@
+# 2026-09-24
+
+## (Backward Compatibility Break) Headplane custom labels now use a list
+
+The Headplane role update to `v0.7.1-4` changes custom container labels from a multiline string to a list. If your `vars.yml` sets `headplane_container_labels_additional_labels: |`, remove that definition and move each label into `headplane_container_labels_additional_labels_custom`, preserving its value. See the [Headplane configuration examples](docs/services/headplane.md#custom-container-labels-and-response-headers). The role rejects the old string format when Traefik integration is enabled.
+
+The role also validates the existing requirement that `headplane_cookie_secret` be exactly 32 characters. Keep an existing valid secret; changing it invalidates sessions.
+
+Traefik responses now include security headers by default, including `Content-Security-Policy: frame-ancestors 'self'` and, with TLS enabled, `Strict-Transport-Security: max-age=31536000; includeSubDomains`. Review [response header overrides](docs/services/headplane.md#custom-container-labels-and-response-headers) if you embed Headplane on another origin or serve subdomains over HTTP. The Headplane application version remains `0.7.1`.
+
 # 2026-08-24
 
 ## (Backward Compatibility Break) KeyDB support removed
