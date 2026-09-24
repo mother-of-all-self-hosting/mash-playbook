@@ -1,3 +1,23 @@
+# 2026-09-24
+
+## (Backward Compatibility Break) Jellyfin role configuration changes
+
+The [Jellyfin role update](https://github.com/spatterIight/ansible-role-jellyfin/compare/v10.11.11-1...v10.11.11-2) keeps Jellyfin at 10.11.11 but changes some configuration variables. Before rerunning the playbook, update your `vars.yml`:
+
+- Rename `jellyfin_container_http_bind_port` to `jellyfin_container_http_host_bind_port`, preserving its value. Update references to it too, including in `jellyfin_published_server_url`.
+- Rename `jellyfin_timezone` to `jellyfin_environment_variables_tz`, preserving its value.
+- Replace a multiline `jellyfin_container_labels_additional_labels` string with `jellyfin_container_labels_additional_labels_custom`, making each existing label a YAML list item:
+
+  ```yaml
+  jellyfin_container_labels_additional_labels_custom:
+    - my.label=1
+    - another.label=here
+  ```
+
+The role reports the renamed variables and, when Traefik labels are enabled, the old string label format as configuration errors. Existing list overrides for additional volumes and container arguments remain supported; new configuration can use `jellyfin_container_additional_volumes_custom` and `jellyfin_container_extra_arguments_custom`.
+
+The default image registry changes from `lscr.io` to `ghcr.io`, so the next installation may pull the image again. Explicit image and registry overrides remain supported. The role also adds response headers through Traefik, including HSTS on HTTPS and `Content-Security-Policy: frame-ancestors 'self'`. If you embed Jellyfin on another origin, review `jellyfin_http_header_content_security_policy`; response headers can be overridden with `jellyfin_container_labels_traefik_additional_response_headers_custom`.
+
 # 2026-08-24
 
 ## (Backward Compatibility Break) KeyDB support removed

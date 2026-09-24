@@ -32,7 +32,7 @@ To enable this service, add the following configuration to your `vars.yml` file 
 
 jellyfin_enabled: true
 jellyfin_hostname: jellyfin.example.com
-jellyfin_container_additional_volumes:
+jellyfin_container_additional_volumes_custom:
   - type: bind
     src: /path/on/the/host/movies
     dst: /movies
@@ -61,7 +61,7 @@ To get started, open the URL with a web browser to create an account:
 
 ![Jellyfin Configure User](../assets/jellyfin/setup-1.webp)
 
-When prompted to add your media libraries keep in mind that it will be the path **inside** the container, most likely the `dst` parameter of your `jellyfin_container_additional_volumes` variable.
+When prompted to add your media libraries keep in mind that it will be the path **inside** the container, most likely the `dst` parameter of your `jellyfin_container_additional_volumes_custom` variable.
 
 ### Configuring DLNA & Local discovery
 
@@ -71,7 +71,7 @@ Keep in mind that doing so will send your Jellyfin password across the network i
 
 ```yaml
 # The main Jellyfin webserver port, setting this variable will expose that port and allow you to connect directly to it (without Traefik).
-jellyfin_container_http_bind_port: 8096
+jellyfin_container_http_host_bind_port: 8096
 
 # The Jellyfin DLNA server, used for clients to discover Jellyfin on the LAN
 jellyfin_container_service_discover_bind_port: 1900
@@ -82,7 +82,7 @@ jellyfin_container_service_discover_bind_port: 1900
 jellyfin_container_client_discover_bind_port: 7359
 
 # The server address the client discovery service should respond with
-jellyfin_published_server_url: "http://{{ ansible_default_ipv4.address }}:{{ jellyfin_container_http_bind_port }}"
+jellyfin_published_server_url: "http://{{ ansible_default_ipv4.address }}:{{ jellyfin_container_http_host_bind_port }}"
 ```
 
 Upstream documentation: <https://jellyfin.org/docs/general/post-install/networking/>
