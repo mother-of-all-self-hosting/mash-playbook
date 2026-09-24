@@ -620,6 +620,10 @@
   version: v2.11.0-0
   name: nifi
   activation_prefix: nifi_
+- src: git+https://github.com/spatterIight/ansible-role-nifi-registry.git
+  version: v2.12.0-1
+  name: nifi_registry
+  activation_prefix: nifi_registry_
 - src: git+https://iris.radicle.network/z8vyzN3a8DmwhcUq3949SihKd1Wh.git
   version: v2025.10.0-7
   name: nocdnbs

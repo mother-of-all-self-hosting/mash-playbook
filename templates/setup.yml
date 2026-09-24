@@ -686,6 +686,10 @@
     - role: galaxy/nifi
     # /role-specific:nifi
 
+    # role-specific:nifi_registry
+    - role: galaxy/nifi_registry
+    # /role-specific:nifi_registry
+
     # role-specific:nocdnbs
     - role: galaxy/nocdnbs
     # /role-specific:nocdnbs

@@ -33,6 +33,7 @@ Below is an exhaustive list of the free and open-source software for self-hostin
 | [AnonymousOverflow](https://github.com/httpjamesm/AnonymousOverflow) | Frontend for StackOverflow | [Link](services/anonymousoverflow.md) |
 | [Apache Answer](https://answer.apache.org/) | Q&A community platform software for teams | [Link](services/answer.md) |
 | [Apache NiFi](https://nifi.apache.org/) | An easy to use, powerful, and reliable system to process and distribute data | [Link](services/nifi.md) |
+| [Apache NiFi Registry](https://nifi.apache.org/projects/registry/) | Central storage and management of versioned flows shared across Apache NiFi instances | [Link](services/nifi-registry.md) |
 | [Apache Tika Server](https://github.com/apache/tika-docker) | Detect and extract metadata and text from different file types (such as PPT, XLS, and PDF) | [Link](services/tika.md) |
 | [APISIX](https://apisix.apache.org/docs/apisix/getting-started/README/) | An API Gateway, Ingress Controller, etc | [Link](services/apisix.md) |
 | [Apprise API](https://github.com/caronc/apprise-api) | Lightweight REST framework that wraps the [Apprise](https://github.com/caronc/apprise) Notification Library | [Link](services/apprise.md) |
