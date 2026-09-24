@@ -13,14 +13,17 @@ Headplane is an open-source, self-hosted implementation of the [Tailscale Web UI
 
 See the project's [documentation](https://headplane.net/introduction) to learn what Headplane does and why it might be useful to you.
 
+For details about configuring the [Ansible role for Headplane](https://github.com/spatterIight/ansible-role-headplane), you can check them via:
+
+- 🌐 [the role's documentation](https://github.com/spatterIight/ansible-role-headplane/blob/main/docs/configuring-headplane.md) online
+- 📁 `roles/galaxy/headplane/docs/configuring-headplane.md` locally, if you have [fetched the Ansible roles](../installing.md)
+
 ## Dependencies
 
 This service requires the following other services:
 
 - [Traefik](traefik.md) reverse-proxy server
 - [Headscale](headscale.md) server
-
-Headplane and Headscale have version-specific compatibility requirements. See the [Headplane release notes](https://github.com/tale/headplane/releases) and [Headplane agent documentation](https://headplane.net/features/agent) for the relevant upstream information.
 
 ## Configuration
 
@@ -37,12 +40,6 @@ headplane_enabled: true
 
 headplane_hostname: headplane.example.com
 
-# The secret used to encode and decode web sessions
-# Ensure that this is exactly 32 characters long
-#
-# Generate with `pwgen -s 32 1` or in another way
-headplane_cookie_secret: ''
-
 ########################################################################
 #                                                                      #
 # /headplane                                                           #
@@ -50,87 +47,10 @@ headplane_cookie_secret: ''
 ########################################################################
 ```
 
-### Enabling the Headplane agent (optional)
-
-The [Headplane agent](https://headplane.net/features/agent) periodically syncs information about the nodes in your Tailnet. It requires a Headscale API key. If Headplane already uses one, you can reuse the same key. Otherwise, create one by running the command from [Headscale's API documentation](https://headscale.net/stable/ref/api/) with the [Headscale convenience script](headscale.md#convenience-script-to-call-the-binary):
-
-```sh
-/mash/headscale/bin/headscale apikeys create
-```
-
-Headscale API keys expire and are only displayed when they are created. Treat the key as a secret, store it as `vault_headplane_headscale_api_key` in Ansible Vault, and replace it before it expires.
-
-Add the following configuration to your `vars.yml` file and re-run the [installation](../installing.md) process:
-
-```yaml
-headplane_config_integration_agent_enabled: true
-headplane_config_headscale_api_key: "{{ vault_headplane_headscale_api_key }}"
-```
-
-`headplane_config_headscale_api_key` must contain the Headscale API key. Do not use a pre-auth key, which is a different credential type.
-
-#### Upgrading custom agent configuration from Headplane 0.6
-
-In Headplane 0.7, `integration.agent.cache_ttl` controls the interval between sync attempts in milliseconds. The default is `180000` (three minutes). Headplane 0.6.3 did not use this setting, despite including it in the example configuration.
-
-If you set `cache_ttl` through `headplane_configuration_extension_yaml`, check its value before upgrading. An old example value of `60` now means 60 milliseconds. To request one-minute intervals, merge the following setting into your existing configuration extension, preserving its other settings:
-
-```yaml
-headplane_configuration_extension_yaml: |
-  integration:
-    agent:
-      cache_ttl: 60000
-```
-
-The `integration.agent.cache_path` setting is deprecated and has no effect in Headplane 0.7. Remove it from your configuration extension. The agent's persistent working directory is still controlled by `integration.agent.work_dir`; its default, `/var/lib/headplane/agent`, is inside the data directory mounted by the role.
-
-### Extending the configuration
-
-There are some additional things you may wish to configure about the component.
-
-Take a look at:
-
-- The [Headplane role](https://github.com/spatterIight/ansible-role-headplane/)'s [`defaults/main.yml`](https://github.com/spatterIight/ansible-role-headplane/blob/main/defaults/main.yml) for additional variables that you can customize via your `vars.yml` file.
-- The [Headplane example configuration](https://github.com/tale/headplane/blob/main/config.example.yaml) for all the possible configuration options (like OIDC).
+Refer to [this section](https://github.com/spatterIight/ansible-role-headplane/blob/main/docs/configuring-headplane.md#adjusting-the-playbook-configuration) on the role's documentation for details about other settings.
 
 ## Usage
 
 After running the command for installation, the Headplane instance becomes available at the URL specified with `headplane_hostname`. With the configuration above, the service is hosted at `https://headplane.example.com/admin`.
 
-The application being hosted at `/admin` is [not easily configurable](https://github.com/tale/headplane/blob/main/docs/install/native-mode.md#custom-path-prefix). The default configuration is to automatically redirect `/` requests to `/admin`.
-
-> [!NOTE]
-> The `headplane_path_prefix` variable can be adjusted to host under a subpath (e.g. `headplane_path_prefix: /headplane`), but this hasn't been tested yet.
-
-### Logging in
-
-To [login to headplane](https://headplane.net/install/docker#accessing-headplane), run a command using the [Headscale convenience script](headscale.md#convenience-script-to-call-the-binary) like this:
-
-```sh
-/mash/headscale/bin/headscale apikeys create
-```
-
-Then login to `https://headplane.example.com/admin` by entering the generated API key.
-
-### Modifying DNS
-
-To modify Headscale DNS in Headplane some variables should be adjusted:
-
-```yaml
-headscale_extra_records_path_enabled: true
-headplane_headscale_config_path_mount_options: readwrite
-```
-
-Otherwise you'll see an error like: "The Headscale configuration is read-only. You cannot make changes to the configuration"
-
-Be careful making changes outside of the `DNS Records` section, since many of other configuration options will directly modify the Headscale configuration file managed by Ansible -- this is likely to lead to conflicts. The `DNS Records` section does not have this issue since it uses a separate file (`extra_records.json`).
-
-### Modifying Access Control Lists
-
-To modify Headscale ACL's you'll need to adjust the Headscale configuration:
-
-```yaml
-headscale_config_policy_mode: database
-```
-
-Otherwise you'll see an error like: "The ACL policy mode is set to `file` in your Headscale configuration. This means that the ACL file cannot be edited through the web interface."
+Refer to [this section](https://github.com/spatterIight/ansible-role-headplane/blob/main/docs/configuring-headplane.md#usage) on the role's documentation for details about the usage.
