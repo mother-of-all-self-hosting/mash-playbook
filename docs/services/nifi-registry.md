@@ -65,3 +65,7 @@ After running the command for installation, the Apache NiFi Registry instance be
 ## Troubleshooting
 
 See [this section](https://github.com/spatterIight/ansible-role-nifi-registry/blob/main/docs/configuring-nifi-registry.md#troubleshooting) on the role's documentation for details.
+
+## Related services
+
+- [Apache NiFi](nifi.md) — An easy to use, powerful, and reliable system to process and distribute data
