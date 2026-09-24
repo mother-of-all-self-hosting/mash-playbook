@@ -13,7 +13,10 @@ The playbook can install and configure [Seerr](https://github.com/seerr-team/see
 
 Seerr is a media request and discovery manager with support for [Jellyfin](jellyfin.md), [Plex](plex.md), and Emby.
 
-See the project's [documentation](https://docs.seerr.dev/) to learn what Seerr does and why it might be useful to you.
+For details about configuring the [Ansible role for Seerr](https://github.com/spatterIight/ansible-role-seerr), you can check them via:
+
+- 🌐 [the role's documentation](https://github.com/spatterIight/ansible-role-seerr/blob/main/docs/configuring-seerr.md) online
+- 📁 `roles/galaxy/seerr/docs/configuring-seerr.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 ## Dependencies
 
@@ -47,10 +50,9 @@ seerr_hostname: seerr.example.com
 
 After running the command for installation, the Seerr instance becomes available at the URL specified with `seerr_hostname`. With the configuration above, the service is hosted at `https://seerr.example.com`.
 
-> [!NOTE]
-> The `seerr_path_prefix` variable can be adjusted to host under a subpath (e.g. `seerr_path_prefix: /seerr`), but this hasn't been tested yet.
+## Troubleshooting
 
-For additional configuration options, refer to [ansible-role-seerr](https://github.com/spatterIight/ansible-role-seerr)'s `defaults/main.yml` file.
+Refer to [this section](https://github.com/spatterIight/ansible-role-seerr/blob/main/docs/configuring-seerr.md#troubleshooting) on the role's documentation for details.
 
 ## Related services
 
