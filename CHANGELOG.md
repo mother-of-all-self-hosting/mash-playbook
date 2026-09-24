@@ -1,3 +1,11 @@
+# 2026-09-24
+
+## NiFi upgrade requires attention for custom images and clusters
+
+The updated [NiFi role](https://github.com/spatterIight/ansible-role-nifi/compare/v2.11.0-0...v2.12.0-0) removes container image self-building. If you used `nifi_container_image_self_build: true`, the role now ignores that setting and pulls `nifi_container_image` instead, without a validation warning. Before upgrading, build and publish your custom image separately and set `nifi_container_image` to its pullable image reference, or switch to the default upstream image. Remove the obsolete `nifi_container_image_self_build*` settings from your configuration.
+
+If you customized NiFi to run as a TLS cluster, [NiFi 2.12 migration guidance](https://cwiki.apache.org/confluence/display/NIFI/Migration+Guidance#MigrationGuidance-Migratingto2.12.0) requires DNS hostnames for `nifi.cluster.load.balance.host` and `nifi.cluster.node.address`. Custom dashboards or alerts using the removed `connected_nodes` label must instead use the numeric `cluster_connected_node_count` and `cluster_total_node_count` metrics. The playbook's default standalone configuration does not use these cluster features.
+
 # 2026-08-24
 
 ## (Backward Compatibility Break) KeyDB support removed
