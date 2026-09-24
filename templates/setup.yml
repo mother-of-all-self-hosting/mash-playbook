@@ -682,6 +682,10 @@
     - role: galaxy/nextcloud
     # /role-specific:nextcloud
 
+    # role-specific:nginx
+    - role: galaxy/nginx
+    # /role-specific:nginx
+
     # role-specific:nifi
     - role: galaxy/nifi
     # /role-specific:nifi
