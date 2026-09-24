@@ -50,7 +50,7 @@ Refer to [this section](https://github.com/spatterIight/ansible-role-radarr/blob
 
 ## Usage
 
-After running the command for installation, the Autobrr instance becomes available at the URL specified with `radarr_hostname`. With the configuration above, the service is hosted at `https://radarr.example.com`.
+After running the command for installation, the Radarr instance becomes available at the URL specified with `radarr_hostname`. With the configuration above, the service is hosted at `https://radarr.example.com`.
 
 To get started, open the URL with a web browser to create an account.
 
