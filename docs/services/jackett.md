@@ -13,6 +13,11 @@ Jackett is an API for your favorite Torrent trackers. It translates queries from
 
 See the project's [documentation](https://github.com/Jackett/Jackett/blob/master/README.md) to learn what Jackett does and why it might be useful to you.
 
+For details about configuring the [Ansible role for Jackett](https://github.com/spatterIight/ansible-role-jackett), you can check them via:
+
+- 🌐 [the role's documentation](https://github.com/spatterIight/ansible-role-jackett/blob/main/docs/configuring-jackett.md) online
+- 📁 `roles/galaxy/jackett/docs/configuring-jackett.md` locally, if you have [fetched the Ansible roles](../installing.md)
+
 ## Dependencies
 
 This service requires the following other services:
@@ -34,14 +39,6 @@ jackett_enabled: true
 
 jackett_hostname: jackett.example.com
 
-# To mount additional data directories, use `jackett_container_additional_volumes`
-#
-# Example:
-# jackett_container_additional_volumes:
-#   - type: bind
-#     src: /path/to/blackhole
-#     dst: /downloads
-
 ########################################################################
 #                                                                      #
 # /jackett                                                             #
@@ -53,100 +50,7 @@ jackett_hostname: jackett.example.com
 
 After running the command for installation, the Jackett instance becomes available at the URL specified with `jackett_hostname`. With the configuration above, the service is hosted at `https://jackett.example.com`.
 
->[!NOTE]
-> The `jackett_path_prefix` variable can be adjusted to host under a subpath (e.g. `jackett_path_prefix: /jackett`), but this hasn't been tested yet.
-
 To get started, open the URL with a web browser to create an administrator account.
-
-For additional configuration options, refer to [ansible-role-jackett](https://github.com/spatterIight/ansible-role-jackett)'s `defaults/main.yml` file.
-
-## Command-line arguments
-
-Additional command line arguments can be passed to Jackett by use of the `RUN_OPTS` environment variable. To specify this, add the following to your configuration:
-
-```yaml
-# To add additional environment variables, use `jackett_container_additional_environment_variables`
-#
-# Example:
-# jackett_container_additional_environment_variables: |
-#   RUN_OPTS="--IgnoreSslErrors true --ProxyConnection 192.168.10.3:9999"
-```
-
-The full list of available arguments is as follows:
-
-```sh
-Jackett v0.22.1377
-  -i, --Install            Install Jackett windows service (Must be admin)
-
-  -r, --ReserveUrls        (Re)Register windows port reservations (Required for
-                           listening on all interfaces).
-
-  -u, --Uninstall          Uninstall Jackett windows service (Must be admin).
-
-  -l, --Logging            Log all requests/responses to Jackett
-
-  -t, --Tracing            Enable tracing
-
-  -c, --UseClient          Override web client selection.
-                           [automatic(Default)/httpclient/httpclient2]
-
-  -s, --Start              Start the Jacket Windows service (Must be admin)
-
-  -k, --Stop               Stop the Jacket Windows service (Must be admin)
-
-  -x, --ListenPublic       Listen publicly
-
-  -z, --ListenPrivate      Only allow local access
-
-  -p, --Port               Web server port
-
-  -n, --IgnoreSslErrors    [true/false] Ignores invalid SSL certificates
-
-  -d, --DataFolder         Specify the location of the data folder (Must be
-                           admin on Windows) eg. --DataFolder="D:\Your
-                           Data\Jackett\". Don't use this on Unix (mono)
-                           systems. On Unix just adjust the HOME directory of
-                           the user to the datadir or set the XDG_CONFIG_HOME
-                           environment variable.
-
-  --NoRestart              Don't restart after update
-
-  --PIDFile                Specify the location of PID file
-
-  --NoUpdates              Disable automatic updates
-
-  --help                   Display this help screen.
-
-  --version                Display version information.
-```
-
-## Adding an Indexer
-
-Once you've installed Jackett and setup an admin password you can start configuring it. One of the first things you're likely to want to do is configure some indexers. An indexer is basically a tracker, which can be either public, semi-private, or private.
-
-To add an indexer, click the `+ Add indexer` button and select your tracker from the list.
-
-![Jackett Add Indexer](../assets/jackett/add-indexer.webp)
-
-If its a semi-private or private tracker you will have to add some specific configuration, like a username and password. If its public you can just add it as-is.
-
-Once its added you can test it using the `Test ✓` button, if it returns successfully you're good to go!
-
-## Integration with Sonarr/Radarr
-
-To add Jackett to your [Sonarr](sonarr.md) or [Radarr](radarr.md) instance navigate to the form at `Settings > Indexers > Add > Torznab > Custom`:
-
-![Sonarr Add Indexer](../assets/sonarr/add-indexer.webp)
-
-Next copy Jackett's `API Key` from in the top right of the Jackett dashboard:
-
-![Jackett API Key](../assets/jackett/api-key.webp)
-
-Paste this into the Sonarr/Radarr form, under `API Key`.
-
-Next, click `Copy Torznab Feed` of the indexer (tracker) you added to Jackett. Paste this into the Sonarr/Radarr form too, under `URL`.
-
-Fill in the rest of the form with your preferences, and you're done!
 
 ## Related services
 
