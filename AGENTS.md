@@ -23,6 +23,8 @@ Use `CHANGELOG.md` for new or removed services, shared playbook behavior changes
 or consequential role-specific changes users must plan for.
 Examples include a manual data migration or disruptive behavior that validation cannot explain.
 State who is affected and what they need to do.
+When adding an entry, explain in the pull request why it meets this scope.
+For a role bump, say whether role validation already gives affected users an actionable error.
 
 Skip entries for routine role bumps and for one role's renamed or removed variables or formats
 when the affected role's `tasks/validate_config.yml` gives users an actionable error.
