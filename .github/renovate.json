@@ -45,16 +45,6 @@
       ]
     },
     {
-      "description": "Automerge version bumps of roles maintained in the MASH organization and of devture roles (via branch push - no PR)",
-      "matchManagers": ["ansible-galaxy"],
-      "matchSourceUrls": [
-        "https://github.com/devture/com.devture.ansible.role{/,}**",
-        "https://github.com/mother-of-all-self-hosting{/,}**"
-      ],
-      "automerge": true,
-      "automergeType": "branch"
-    },
-    {
       "description": "Automerge updates of the self-hosted Renovate runner (via branch push - no PR) monthly",
       "matchManagers": ["custom.regex"],
       "matchDepNames": ["mash-renovate-runner"],
