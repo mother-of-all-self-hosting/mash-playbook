@@ -50,7 +50,7 @@ Refer to [this section](https://github.com/spatterIight/ansible-role-radarr/blob
 
 ## Usage
 
-After running the command for installation, the Autobrr instance becomes available at the URL specified with `radarr_hostname`. With the configuration above, the service is hosted at `https://radarr.example.com`.
+After running the command for installation, the Radarr instance becomes available at the URL specified with `radarr_hostname`. With the configuration above, the service is hosted at `https://radarr.example.com`.
 
 To get started, open the URL with a web browser to create an account.
 
@@ -58,7 +58,7 @@ To get started, open the URL with a web browser to create an account.
 
 - "* Arr" applications — [Autobrr](autobrr.md) / [Homarr](homarr.md) / [Sonarr](sonarr.md)
 - [Jackett](jackett.md)
-  - For Jackett integration instructions, refer to the [setup guide](https://github.com/spatterIight/ansible-role-jackett/blob/main/docs/configuring-jackett.md#intergration-with-sonarrradarr) on the role's documentation
+  - For Jackett integration instructions, refer to the [setup guide](https://github.com/spatterIight/ansible-role-jackett/blob/main/docs/configuring-jackett.md#integration-with-sonarrradarr) on the role's documentation
 - [Jellyfin](jellyfin.md)
 - [Seerr](seerr.md)
 - [Plex](plex.md)
