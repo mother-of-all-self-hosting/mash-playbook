@@ -13,6 +13,10 @@
       "matchHost": "https://codeberg.org",
       "concurrentRequestLimit": 2,
       "maxRequestsPerSecond": 2
+    },
+    {
+      "matchHost": "iris.radicle.network",
+      "enabled": false
     }
   ],
   "branchConcurrentLimit": 5,
