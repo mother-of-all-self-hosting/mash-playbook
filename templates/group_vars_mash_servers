@@ -5077,15 +5077,26 @@ docker_registry_browser_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbo
 docker_registry_browser_uid: "{{ mash_playbook_uid }}"
 docker_registry_browser_gid: "{{ mash_playbook_gid }}"
 
-docker_registry_browser_secret_key_base: "{{ (mash_playbook_generic_secret_key + ':browser') | hash('sha512') }}"
+docker_registry_browser_systemd_wanted_services_list_auto: |
+  {{
+    ([docker_registry_identifier ~ '.service'] if docker_registry_enabled | default(false) entifier else [])
+  }}
 
 docker_registry_browser_container_additional_networks_auto: |
   {{
+    ([docker_registry_container_network] if docker_registry_enabled | default(false) and docker_registry_browser_container_network != docker_registry_container_network else [])
+    +
     ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
   }}
 
 docker_registry_browser_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
 docker_registry_browser_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+
+docker_registry_browser_secret_key_base: "{{ (mash_playbook_generic_secret_key + ':browser') | hash('sha512') }}"
+
+# role-specific:docker_registry
+docker_registry_browser_docker_registry_url: "http://{{ docker_registry_identifier }}:5000"
+# /role-specific:docker_registry
 
 # role-specific:traefik
 docker_registry_browser_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
