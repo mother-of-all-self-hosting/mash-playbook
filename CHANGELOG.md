@@ -1,3 +1,11 @@
+# 2026-09-25
+
+## GitLab support added
+
+The playbook can now install [GitLab](docs/services/gitlab.md), a complete DevOps platform (Git hosting, code reviews, issue tracking, CI/CD, a container registry, etc.), via [ansible-role-gitlab](https://github.com/spatterIight/ansible-role-gitlab).
+
+This does not affect existing installations. To try it out, see [the GitLab page](docs/services/gitlab.md). GitLab needs considerably more memory than most services (at least 4 GB of RAM, 8 GB recommended).
+
 # 2026-08-24
 
 ## (Backward Compatibility Break) KeyDB support removed

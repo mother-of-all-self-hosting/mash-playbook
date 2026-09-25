@@ -183,6 +183,7 @@ Nevertheless, upgrades may be possible with some manual work. Refer to [this sec
 
 - [Forgejo Runner](forgejo-runner.md) — Runner to use with Forgejo Actions
 - [Gitea](gitea.md) — Software forge (Git hosting service, etc.)
+- [GitLab](gitlab.md) — Complete DevOps platform (Git hosting service, CI/CD, etc.)
 - [Radicle node](radicle-node.md) — Network daemon for the [Radicle](https://radicle.dev/) network, a peer-to-peer code collaboration stack built on Git
 - [Woodpecker CI](woodpecker-ci.md) — Extensible Continuous Integration (CI) engine
 

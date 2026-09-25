@@ -402,6 +402,10 @@
     - role: galaxy/gitea
     # /role-specific:gitea
 
+    # role-specific:gitlab
+    - role: galaxy/gitlab
+    # /role-specific:gitlab
+
     # role-specific:gokapi
     - role: galaxy/gokapi
     # /role-specific:gokapi

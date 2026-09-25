@@ -336,6 +336,10 @@
   version: v1.27.3-1
   name: gitea
   activation_prefix: gitea_
+- src: git+https://github.com/spatterIight/ansible-role-gitlab.git
+  version: v19.4.1-0
+  name: gitlab
+  activation_prefix: gitlab_
 - src: git+https://iris.radicle.network/z2zryaw72dpp4pRWKK1qvQzsY4qHR.git
   version: v2.2.4-1
   name: gokapi
