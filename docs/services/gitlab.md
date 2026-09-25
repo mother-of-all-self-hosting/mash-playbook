@@ -57,17 +57,9 @@ Refer to [this section](https://github.com/spatterIight/ansible-role-gitlab/blob
 
 ### Configuring Valkey (optional)
 
-GitLab uses the Redis server bundled in its container image by default. Optionally, it can use a Valkey instance instead. This playbook supports it, and you can set up a Valkey instance by enabling it on `vars.yml`.
+GitLab uses the Redis server bundled in its container image by default. Optionally, it can use a [Valkey](valkey.md) instance dedicated to GitLab instead (sharing a Valkey instance among services has security concerns and can cause data conflicts).
 
-If GitLab is the sole service which requires Valkey on your server, it is fine to set up just a single Valkey instance. However, **it is not recommended if there are other services which require it, because sharing the Valkey instance has security concerns and possibly causes data conflicts**, as described on the [documentation for configuring Valkey](valkey.md). In this case, you should install a dedicated Valkey instance for each of them.
-
-If you are unsure whether you will install other services along with GitLab or you have already set up services which need Valkey (such as [PeerTube](peertube.md), [Funkwhale](funkwhale.md), and [Docmost](docmost.md)), it is recommended to install a Valkey instance dedicated to GitLab.
-
-*See [below](#setting-up-a-shared-valkey-instance) for an instruction to install a shared instance.*
-
-#### Setting up a dedicated Valkey instance
-
-To create a dedicated instance for GitLab, you can follow the steps below:
+To create the dedicated instance, follow the steps below:
 
 1. Adjust the `hosts` file
 2. Create a new `vars.yml` file for the dedicated instance
@@ -75,7 +67,7 @@ To create a dedicated instance for GitLab, you can follow the steps below:
 
 *Refer to [this page](../running-multiple-instances.md) for details about configuring multiple instances of Valkey on the same server.*
 
-##### Adjust `hosts`
+#### Adjust `hosts`
 
 At first, you need to adjust `inventory/hosts` file to add a supplementary host for GitLab.
 
@@ -96,7 +88,7 @@ mash.example.com-gitlab-deps ansible_host=YOUR_SERVER_IP_ADDRESS_HERE
 
 You can just add an entry for the supplementary host to `[mash_example_com]` if there are other entries there already.
 
-##### Create `vars.yml` for the dedicated instance
+#### Create `vars.yml` for the dedicated instance
 
 Then, create a new directory where `vars.yml` for the supplementary host is stored. If `mash.example.com` is your main host, name the directory as `mash.example.com-gitlab-deps`. Its path therefore will be `inventory/host_vars/mash.example.com-gitlab-deps`.
 
@@ -141,7 +133,7 @@ valkey_enabled: true
 ########################################################################
 ```
 
-##### Edit the main `vars.yml` file
+#### Edit the main `vars.yml` file
 
 Having configured `vars.yml` for the dedicated instance, add the following configuration to `vars.yml` for the main host, whose path should be `inventory/host_vars/mash.example.com/vars.yml` (replace `mash.example.com` with yours).
 
@@ -174,58 +166,9 @@ gitlab_systemd_required_services_list_custom:
 
 Running the installation command will create the dedicated Valkey instance named `mash-gitlab-valkey`.
 
-#### Setting up a shared Valkey instance
-
-If you host only GitLab on this server, it is fine to set up a single shared Valkey instance.
-
-To install the single instance and hook GitLab to it, add the following configuration to `inventory/host_vars/mash.example.com/vars.yml`:
-
-```yaml
-########################################################################
-#                                                                      #
-# valkey                                                               #
-#                                                                      #
-########################################################################
-
-valkey_enabled: true
-
-########################################################################
-#                                                                      #
-# /valkey                                                              #
-#                                                                      #
-########################################################################
-
-########################################################################
-#                                                                      #
-# gitlab                                                               #
-#                                                                      #
-########################################################################
-
-# Add the base configuration as specified above
-
-# Point GitLab to the shared Valkey instance
-gitlab_redis_hostname: "{{ valkey_identifier }}"
-
-# Make sure the GitLab container is connected to the container network of the shared Valkey service (mash-valkey)
-gitlab_container_additional_networks_custom:
-  - "{{ valkey_identifier }}"
-
-# Make sure the GitLab service (mash-gitlab.service) starts after the shared Valkey service (mash-valkey.service)
-gitlab_systemd_required_services_list_custom:
-  - "{{ valkey_identifier }}.service"
-
-########################################################################
-#                                                                      #
-# /gitlab                                                              #
-#                                                                      #
-########################################################################
-```
-
-Running the installation command will create the shared Valkey instance named `mash-valkey`.
-
 ## Installation
 
-If you have decided to install the dedicated Valkey instance for GitLab, make sure to run the [installing](../installing.md) command for the supplementary host (`mash.example.com-gitlab-deps`) first, before running it for the main host (`mash.example.com`).
+If you have set up the dedicated Valkey instance for GitLab, make sure to run the [installing](../installing.md) command for the supplementary host (`mash.example.com-gitlab-deps`) first, before running it for the main host (`mash.example.com`).
 
 Note that running the `just` commands for installation (`just install-all` or `just setup-all`) automatically takes care of the order. See [here](../running-multiple-instances.md#1-adjust-hosts) for more details about it.
 
