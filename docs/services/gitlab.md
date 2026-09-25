@@ -8,9 +8,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
 The playbook can install and configure [GitLab](https://about.gitlab.com/) for you.
 
-GitLab is a complete DevOps platform: Git repository management, code reviews, issue tracking, CI/CD, a container registry and more, in a single application.
-
-See the project's [documentation](https://docs.gitlab.com/) to learn what GitLab does and why it might be useful to you.
+GitLab is a complete DevOps platform: Git repository management, code reviews, issue tracking, CI/CD, a container registry and more, in a single application. See the project's [documentation](https://docs.gitlab.com/) to learn more.
 
 For details about configuring the [Ansible role for GitLab](https://github.com/spatterIight/ansible-role-gitlab), you can check them via:
 
@@ -18,7 +16,7 @@ For details about configuring the [Ansible role for GitLab](https://github.com/s
 - 📁 `roles/galaxy/gitlab/docs/configuring-gitlab.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 >[!NOTE]
-> GitLab is considerably more resource-intensive than most services. It needs at least 4 GB of RAM (8 GB is recommended). Refer to [this page](https://docs.gitlab.com/install/requirements/) for details.
+> GitLab needs at least 4 GB of RAM (8 GB is recommended). Refer to [this page](https://docs.gitlab.com/install/requirements/) for details.
 
 ## Dependencies
 
@@ -51,9 +49,9 @@ gitlab_hostname: gitlab.example.com
 ########################################################################
 ```
 
-If [Postgres](postgres.md) and [exim-relay](exim-relay.md) are enabled on the playbook, GitLab is wired to them automatically. With Postgres, a Postgres extension needs to be created by hand, and some of the Postgres server's settings need adjusting. Refer to [this section](https://github.com/spatterIight/ansible-role-gitlab/blob/main/docs/configuring-gitlab.md#using-an-external-postgres-server) on the role's documentation for details.
+If [Postgres](postgres.md) and [exim-relay](exim-relay.md) are enabled on the playbook, GitLab is wired to them automatically. With Postgres, an extension needs to be created by hand and some server settings adjusted (see [this section](https://github.com/spatterIight/ansible-role-gitlab/blob/main/docs/configuring-gitlab.md#using-an-external-postgres-server) on the role's documentation).
 
-Refer to [this section](https://github.com/spatterIight/ansible-role-gitlab/blob/main/docs/configuring-gitlab.md#adjusting-the-playbook-configuration) on the role's documentation for details about other settings such as setting the password for the `root` user, enabling Git over SSH, and enabling the container registry.
+See [the role's documentation](https://github.com/spatterIight/ansible-role-gitlab/blob/main/docs/configuring-gitlab.md#adjusting-the-playbook-configuration) for other settings, such as the password for the `root` user, Git over SSH and the container registry.
 
 ### Configuring Valkey (optional)
 
@@ -69,9 +67,7 @@ To create the dedicated instance, follow the steps below:
 
 #### Adjust `hosts`
 
-At first, you need to adjust `inventory/hosts` file to add a supplementary host for GitLab.
-
-The content should be something like below. Make sure to replace `mash.example.com` with your hostname and `YOUR_SERVER_IP_ADDRESS_HERE` with the IP address of the host, respectively. The same IP address should be set to both, unless the Valkey instance will be served from a different machine.
+Add a supplementary host for GitLab to `inventory/hosts`. Replace `mash.example.com` with your hostname, and `YOUR_SERVER_IP_ADDRESS_HERE` with the host's IP address (the same for both, unless Valkey runs on another machine):
 
 ```ini
 [mash_servers]
@@ -84,15 +80,11 @@ mash.example.com-gitlab-deps ansible_host=YOUR_SERVER_IP_ADDRESS_HERE
 …
 ```
 
-`mash_example_com` can be any string and does not have to match with the hostname.
-
-You can just add an entry for the supplementary host to `[mash_example_com]` if there are other entries there already.
+`mash_example_com` can be any string. If `[mash_example_com]` already has other entries, add the supplementary host to it.
 
 #### Create `vars.yml` for the dedicated instance
 
-Then, create a new directory where `vars.yml` for the supplementary host is stored. If `mash.example.com` is your main host, name the directory as `mash.example.com-gitlab-deps`. Its path therefore will be `inventory/host_vars/mash.example.com-gitlab-deps`.
-
-After creating the directory, add a new `vars.yml` file inside it with a content below. It will have running the playbook create a `mash-gitlab-valkey` instance on the new host, setting `/mash/gitlab-valkey` to the base directory of the dedicated Valkey instance.
+Create `inventory/host_vars/mash.example.com-gitlab-deps/vars.yml` with the content below. Running the playbook then creates the `mash-gitlab-valkey` instance, with `/mash/gitlab-valkey` as its base directory.
 
 ```yaml
 # This is vars.yml for the supplementary host of GitLab.
@@ -135,7 +127,7 @@ valkey_enabled: true
 
 #### Edit the main `vars.yml` file
 
-Having configured `vars.yml` for the dedicated instance, add the following configuration to `vars.yml` for the main host, whose path should be `inventory/host_vars/mash.example.com/vars.yml` (replace `mash.example.com` with yours).
+Add the following configuration to the main host's `vars.yml` file (`inventory/host_vars/mash.example.com/vars.yml`):
 
 ```yaml
 ########################################################################
@@ -146,14 +138,14 @@ Having configured `vars.yml` for the dedicated instance, add the following confi
 
 # Add the base configuration as specified above
 
-# Point GitLab to its dedicated Valkey instance
+# Point GitLab to the dedicated Valkey instance
 gitlab_redis_hostname: mash-gitlab-valkey
 
-# Make sure the GitLab container is connected to the container network of its dedicated Valkey service (mash-gitlab-valkey)
+# Connect GitLab to the dedicated Valkey instance's container network
 gitlab_container_additional_networks_custom:
   - "mash-gitlab-valkey"
 
-# Make sure the GitLab service (mash-gitlab.service) starts after its dedicated Valkey service (mash-gitlab-valkey.service)
+# Start GitLab after the dedicated Valkey instance
 gitlab_systemd_required_services_list_custom:
   - "mash-gitlab-valkey.service"
 
@@ -164,26 +156,20 @@ gitlab_systemd_required_services_list_custom:
 ########################################################################
 ```
 
-Running the installation command will create the dedicated Valkey instance named `mash-gitlab-valkey`.
-
 ## Installation
 
-If you have set up the dedicated Valkey instance for GitLab, make sure to run the [installing](../installing.md) command for the supplementary host (`mash.example.com-gitlab-deps`) first, before running it for the main host (`mash.example.com`).
-
-Note that running the `just` commands for installation (`just install-all` or `just setup-all`) automatically takes care of the order. See [here](../running-multiple-instances.md#1-adjust-hosts) for more details about it.
+If you set up the dedicated Valkey instance, run the [installation](../installing.md) command for the supplementary host (`mash.example.com-gitlab-deps`) before the main host (`mash.example.com`). `just install-all` and `just setup-all` take care of this order (see [here](../running-multiple-instances.md#1-adjust-hosts)).
 
 ## Usage
 
-After running the command for installation, the GitLab instance becomes available at the URL specified with `gitlab_hostname`. With the configuration above, the service is hosted at `https://gitlab.example.com`.
+After installation, GitLab becomes available at `gitlab_hostname` (`https://gitlab.example.com` with the configuration above). It reconfigures itself on every start, so it may take a few minutes to become reachable.
 
-GitLab reconfigures itself every time it starts, so it may take a few minutes until it becomes reachable.
-
-To get started, open the URL with a web browser, and log in with the username `root`. Refer to [this section](https://github.com/spatterIight/ansible-role-gitlab/blob/main/docs/configuring-gitlab.md#set-the-password-for-the-root-user-optional-recommended) on the role's documentation for details about its password.
+Log in with the username `root` (see [this section](https://github.com/spatterIight/ansible-role-gitlab/blob/main/docs/configuring-gitlab.md#set-the-password-for-the-root-user-optional-recommended) on the role's documentation for its password).
 
 >[!WARNING]
-> By default, GitLab allows anyone to register an account, though new accounts need to be approved by an administrator. If you do not want this, disable sign-ups in the **Admin area** under **Settings** → **General** → **Sign-up restrictions** right after installing.
+> By default, anyone can register an account, pending approval by an administrator. To disable sign-ups, go to the **Admin area** → **Settings** → **General** → **Sign-up restrictions** right after installing.
 
-See [this section](https://github.com/spatterIight/ansible-role-gitlab/blob/main/docs/configuring-gitlab.md#backing-up-gitlab) on the role's documentation for details about backing up the instance, and [this section](https://github.com/spatterIight/ansible-role-gitlab/blob/main/docs/configuring-gitlab.md#upgrading-gitlab) about upgrading it.
+See the role's documentation for [backing up](https://github.com/spatterIight/ansible-role-gitlab/blob/main/docs/configuring-gitlab.md#backing-up-gitlab) and [upgrading](https://github.com/spatterIight/ansible-role-gitlab/blob/main/docs/configuring-gitlab.md#upgrading-gitlab) GitLab.
 
 ## Related services
 
