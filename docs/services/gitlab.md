@@ -25,7 +25,7 @@ For details about configuring the [Ansible role for GitLab](https://github.com/s
 This service requires the following other services:
 
 - [Traefik](traefik.md) reverse-proxy server
-- (optional) [Postgres](postgres.md) database — GitLab uses the one bundled in its container image if Postgres is not enabled
+- (optional) [Postgres](postgres.md) database — GitLab will default to the Postgres server bundled in its container image if Postgres is not enabled
 - (optional) [Valkey](valkey.md) data-store; see [below](#configuring-valkey-optional) for details about installation
 - (optional) [exim-relay](exim-relay.md) mailer
 
