@@ -174,6 +174,7 @@ Below is an exhaustive list of the free and open-source software for self-hostin
 | [Neko](https://neko.m1k1o.net/) | A virtual browser or even desktop environment | [Link](services/neko.md) |
 | [NetBox](https://docs.netbox.dev/en/stable/) | Web application that provides [IP address management (IPAM)](https://en.wikipedia.org/wiki/IP_address_management) and [data center infrastructure management (DCIM)](https://en.wikipedia.org/wiki/Data_center_management#Data_center_infrastructure_management) functionality | [Link](services/netbox.md) |
 | [Nextcloud](https://nextcloud.com/) | Popular collaboration solution | [Link](services/nextcloud.md) |
+| [Nginx](https://nginx.org/) | Web server, which can also be used as a reverse proxy, load balancer and HTTP cache | [Link](services/nginx.md) |
 | [noCDNbs](https://git.private.coffee/PrivateCoffee/nocdnbs) | Privacy-friendly cdnjs proxy | [Link](services/nocdnbs.md) |
 | [NodeBB](https://github.com/NodeBB/NodeBB) | Node.js based forum software | [Link](services/nodebb.md) |
 | [Node-RED](https://nodered.org) | Flow-based programming tool | [Link](services/nodered.md) |
