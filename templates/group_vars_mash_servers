@@ -892,6 +892,11 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
     {{ ({'name': (nifi_identifier + '.service'), 'priority': 2000, 'restart_necessary': true, 'groups': ['mash', 'nifi']} if nifi_enabled else omit) }}
   # /role-specific:nifi
 
+  # role-specific:nifi_registry
+  - |-
+    {{ ({'name': (nifi_registry_identifier + '.service'), 'priority': 1900, 'restart_necessary': (nifi_registry_restart_necessary | bool), 'groups': ['mash', 'nifi-registry']} if nifi_registry_enabled else omit) }}
+  # /role-specific:nifi_registry
+
   # role-specific:nocdnbs
   - |-
     {{ ({'name': (nocdnbs_identifier + '.service'), 'priority': 2000, 'restart_necessary': (nocdnbs_restart_necessary | bool), 'groups': ['mash', 'nocdnbs']} if nocdnbs_enabled else omit) }}
@@ -12122,9 +12127,16 @@ nifi_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_dir
 nifi_uid: "0"
 nifi_gid: "0"
 
+nifi_systemd_wanted_services_list_auto: |
+  {{
+    ([nifi_registry_identifier ~ '.service'] if nifi_registry_enabled | default(false) else [])
+  }}
+
 nifi_container_additional_networks_auto: |
   {{
     ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+    +
+    ([nifi_registry_container_network] if nifi_registry_enabled | default(false) and nifi_container_network != nifi_registry_container_network else [])
   }}
 
 nifi_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
@@ -12141,6 +12153,44 @@ nifi_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary
 #                                                                      #
 ########################################################################
 # /role-specific:nifi
+
+
+
+# role-specific:nifi_registry
+########################################################################
+#                                                                      #
+# nifi-registry                                                        #
+#                                                                      #
+########################################################################
+
+nifi_registry_enabled: false
+
+nifi_registry_identifier: "{{ mash_playbook_service_identifier_prefix }}nifi-registry"
+
+nifi_registry_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}nifi-registry"
+
+nifi_registry_uid: "{{ mash_playbook_uid }}"
+nifi_registry_gid: "{{ mash_playbook_gid }}"
+
+nifi_registry_container_additional_networks_auto: |
+  {{
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+  }}
+
+nifi_registry_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+nifi_registry_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+
+# role-specific:traefik
+nifi_registry_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
+nifi_registry_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
+# /role-specific:traefik
+
+########################################################################
+#                                                                      #
+# /nifi-registry                                                       #
+#                                                                      #
+########################################################################
+# /role-specific:nifi_registry
 
 
 
