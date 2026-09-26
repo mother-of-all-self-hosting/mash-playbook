@@ -13,6 +13,11 @@ Docker Registry Browser is a web interface for the Docker Registry HTTP API V2, 
 
 See the project's [documentation](https://github.com/klausmeyer/docker-registry-browser/blob/master/README.md) to learn what Docker Registry Browser does and why it might be useful to you.
 
+The [Ansible role for Docker Registry Browser](https://github.com/mother-of-all-self-hosting/ansible-role-docker-registry-browser) is developed and maintained by the MASH project. For details about configuring Docker Registry Browser, you can check them via:
+
+- 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-docker-registry-browser/blob/main/docs/configuring-docker-registry-browser.md) online
+- 📁 `roles/galaxy/docker_registry_browser/docs/configuring-docker-registry-browser.md` locally, if you have [fetched the Ansible roles](../installing.md)
+
 ## Dependencies
 
 This service requires the following other services:
@@ -37,22 +42,6 @@ docker_registry_browser_enabled: true
 docker_registry_browser_hostname: registry.example.com
 docker_registry_browser_path_prefix: /browser
 
-# If the browser will be able to delete images and live on the same private container network
-# as the registry itself (like we do below), it's recommended to protect it with HTTP Basic Auth.
-#
-# If you're running a read-only browser, you may leave it publicly accessible.
-docker_registry_browser_basic_auth_enabled: true
-docker_registry_browser_basic_auth_username: admin
-# You can put any string here, but generating a strong one is preferred (e.g. `pwgen -s 64 1`).
-docker_registry_browser_basic_auth_password: ''
-
-# To use a registry running elsewhere,
-# use something like this instead:
-# docker_registry_browser_docker_registry_url: "https://registry.example.com"
-
-# Image deletion is disabled by default, so you need to explicitly enable it if you need it.
-docker_registry_browser_enabled_delete_images: true
-
 ########################################################################
 #                                                                      #
 # /docker_registry_browser                                             #
@@ -60,15 +49,11 @@ docker_registry_browser_enabled_delete_images: true
 ########################################################################
 ```
 
-In the example configuration above, we configure the service to be hosted at `https://registry.example.com/browser`.
-
-If you make the registry browser live on the same container network as the [Distribution Registry](docker-registry.md) itself (like we've done by overriding `docker_registry_browser_container_network` above), the browser will be able to talk to the registry over the private container network and IP restrictions (such as those defined in `docker_registry_private_services_whitelisted_ip_ranges`) will not be able to stop it.
+Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-docker-registry-browser/blob/main/docs/configuring-docker-registry-browser.md#adjusting-the-playbook-configuration) on the role's documentation for details about other settings such as the one for configuring HTTP Basic authentication.
 
 ## Usage
 
-After running the command for installation, the Docker Registry Browser instance becomes available at the URL specified with `docker_registry_browser_hostname` and `docker_registry_browser_path_prefix`.
-
-You should be able to browse the images and possibly delete them (if enabled via `docker_registry_browser_enabled_delete_images`).
+After running the command for installation, the Docker Registry Browser instance becomes available at the URL specified with `docker_registry_browser_hostname` and `docker_registry_browser_path_prefix`. With the configuration above, the service is hosted at `https://registry.example.com/browser`.
 
 ## Related services
 
