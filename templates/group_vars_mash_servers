@@ -16747,6 +16747,9 @@ vector_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_d
 vector_uid: "{{ mash_playbook_uid }}"
 vector_gid: "{{ mash_playbook_gid }}"
 
+# Preserve overrides of the image distribution variable used by earlier Vector role versions.
+vector_distro_variant: "{{ vector_container_image_distribution | default('debian') }}"
+
 vector_container_additional_networks_auto: |
   {{
     (
