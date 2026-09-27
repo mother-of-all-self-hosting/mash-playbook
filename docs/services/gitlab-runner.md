@@ -16,7 +16,7 @@ For details about configuring the [Ansible role for GitLab Runner](https://githu
 - 📁 `roles/galaxy/gitlab_runner/docs/configuring-gitlab-runner.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 >[!WARNING]
-> GitLab Runner starts the containers of its jobs through the host's Docker socket, which is equivalent to `root` access on the host. Run it on a host of its own (not the one running GitLab or other services), and only let it run jobs you trust.
+> GitLab Runner starts the containers of its jobs through the host's Docker socket, which is equivalent to `root` access on the host. Only let it run jobs you trust.
 
 ## Prerequisites
 

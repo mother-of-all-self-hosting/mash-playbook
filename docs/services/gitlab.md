@@ -169,7 +169,7 @@ Log in with the username `root` (see [this section](https://github.com/spatterIi
 >[!WARNING]
 > By default, anyone can register an account, pending approval by an administrator. To disable sign-ups, go to the **Admin area** → **Settings** → **General** → **Sign-up restrictions** right after installing.
 
-To run CI/CD jobs, set up [GitLab Runner](gitlab-runner.md), preferably on another host.
+To run CI/CD jobs, set up [GitLab Runner](gitlab-runner.md).
 
 See the role's documentation for [backing up](https://github.com/spatterIight/ansible-role-gitlab/blob/main/docs/configuring-gitlab.md#backing-up-gitlab) and [upgrading](https://github.com/spatterIight/ansible-role-gitlab/blob/main/docs/configuring-gitlab.md#upgrading-gitlab) GitLab.
 
