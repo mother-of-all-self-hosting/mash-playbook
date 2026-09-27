@@ -3825,6 +3825,10 @@ bazarr_gid: "{{ mash_playbook_gid }}"
 bazarr_container_additional_networks_auto: |
   {{
     ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+    +
+    ([radarr_container_network] if radarr_enabled | default(false) and bazarr_container_network != radarr_container_network else [])
+    +
+    ([sonarr_container_network] if sonarr_enabled | default(false) and bazarr_container_network != sonarr_container_network else [])
   }}
 
 bazarr_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
