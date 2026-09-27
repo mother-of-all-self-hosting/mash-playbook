@@ -109,26 +109,7 @@ To actually have the service use (and get messages sent through the exim-relay s
 
 ### Configuring OAuth2/OpenID Connect login (optional)
 
-You can configure Forgejo to authenticate users through an OpenID Connect provider.
-
-Add variables like these to your `vars.yml` file:
-
-```yaml
-forgejo_oidc_client_enabled: true
-
-forgejo_oidc_provider_name: "authentik"
-forgejo_oidc_client_id: "FORGEJO_OIDC_CLIENT_ID_HERE"
-forgejo_oidc_client_secret: "FORGEJO_OIDC_CLIENT_SECRET_HERE"
-forgejo_oidc_auto_discover_url: "https://sso.example.com/application/o/forgejo/.well-known/openid-configuration"
-```
-
-To apply only OAuth configuration tasks, run:
-
-```sh
-just run-tags configure-oauth-forgejo
-```
-
-Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-forgejo/blob/main/docs/configuring-forgejo.md#configure-oauth2openid-connect-login-optional) on the role's documentation for additional options.
+You can configure Forgejo to authenticate users through an OpenID Connect provider. Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-forgejo/blob/main/docs/configuring-forgejo.md#configure-oauth2openid-connect-login-optional) on the role's documentation for details.
 
 ### Integrating with Prometheus (optional)
 
