@@ -406,6 +406,10 @@
     - role: galaxy/gitlab
     # /role-specific:gitlab
 
+    # role-specific:gitlab_runner
+    - role: galaxy/gitlab_runner
+    # /role-specific:gitlab_runner
+
     # role-specific:gokapi
     - role: galaxy/gokapi
     # /role-specific:gokapi

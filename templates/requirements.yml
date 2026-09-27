@@ -340,6 +340,10 @@
   version: v19.4.1-4
   name: gitlab
   activation_prefix: gitlab_
+- src: git+https://github.com/spatterIight/ansible-role-gitlab-runner.git
+  version: v19.4.1-1
+  name: gitlab_runner
+  activation_prefix: gitlab_runner_
 - src: git+https://iris.radicle.network/z2zryaw72dpp4pRWKK1qvQzsY4qHR.git
   version: v2.2.4-1
   name: gokapi

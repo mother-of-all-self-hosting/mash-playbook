@@ -516,6 +516,11 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
     {{ ({'name': (gitlab_identifier + '.service'), 'priority': 2000, 'restart_necessary': (gitlab_restart_necessary | bool), 'groups': ['mash', 'gitlab']} if gitlab_enabled else omit) }}
   # /role-specific:gitlab
 
+  # role-specific:gitlab_runner
+  - |-
+    {{ ({'name': (gitlab_runner_identifier + '.service'), 'priority': 2100, 'restart_necessary': (gitlab_runner_restart_necessary | bool), 'groups': ['mash', 'gitlab-runner']} if gitlab_runner_enabled else omit) }}
+  # /role-specific:gitlab_runner
+
   # role-specific:gokapi
   - |-
     {{ ({'name': (gokapi_identifier + '.service'), 'priority': 2000, 'restart_necessary': (gokapi_restart_necessary | bool), 'groups': ['mash', 'gokapi']} if gokapi_enabled else omit) }}
@@ -6958,6 +6963,35 @@ gitlab_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_prima
 #                                                                      #
 ########################################################################
 # /role-specific:gitlab
+
+
+
+# role-specific:gitlab_runner
+########################################################################
+#                                                                      #
+# gitlab_runner                                                        #
+#                                                                      #
+########################################################################
+
+gitlab_runner_enabled: false
+
+gitlab_runner_identifier: "{{ mash_playbook_service_identifier_prefix }}gitlab-runner"
+
+gitlab_runner_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}gitlab-runner"
+
+gitlab_runner_uid: "{{ mash_playbook_uid }}"
+gitlab_runner_gid: "{{ mash_playbook_gid }}"
+
+# role-specific:gitlab
+gitlab_runner_config_gitlab_url: "{{ gitlab_config_external_url if gitlab_enabled else '' }}"
+# /role-specific:gitlab
+
+########################################################################
+#                                                                      #
+# /gitlab_runner                                                       #
+#                                                                      #
+########################################################################
+# /role-specific:gitlab_runner
 
 
 
