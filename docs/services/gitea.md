@@ -147,5 +147,6 @@ To get started, open the URL with a web browser, and follow the set up wizard.
 ## Related services
 
 - [Forgejo](forgejo.md) — Software forge (Git hosting service, etc.)
+- [GitLab](gitlab.md) — Complete DevOps platform (Git hosting service, CI/CD, etc.)
 - [Radicle node](radicle-node.md) — Network daemon for the [Radicle](https://radicle.dev/) network, a peer-to-peer code collaboration stack built on Git
 - [Woodpecker CI](woodpecker-ci.md) — Extensible Continuous Integration (CI) engine

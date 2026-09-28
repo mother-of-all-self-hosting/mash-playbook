@@ -123,4 +123,5 @@ After running the command for installation, the Forgejo Runner instance becomes 
 ## Related services
 
 - [Forgejo](forgejo.md) — Software forge (Git hosting service, etc.)
+- [GitLab Runner](gitlab-runner.md) — Runner to use with GitLab CI/CD
 - [Woodpecker CI](woodpecker-ci.md) — Extensible Continuous Integration (CI) engine

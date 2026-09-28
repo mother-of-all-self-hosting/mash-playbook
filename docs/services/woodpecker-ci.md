@@ -215,3 +215,4 @@ The agent should automatically register with the [Woodpecker CI server](#woodpec
 ## Related services
 
 - [Forgejo Runner](forgejo-runner.md) — Runner to use with Forgejo Actions
+- [GitLab Runner](gitlab-runner.md) — Runner to use with GitLab CI/CD

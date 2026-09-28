@@ -107,6 +107,8 @@ Below is an exhaustive list of the free and open-source software for self-hostin
 | [Funkwhale](https://funkwhale.audio/) | ActivityPub federated streaming server for listening and sharing music | [Link](services/funkwhale.md) |
 | [Ghostfolio](https://ghostfol.io/) | Wealth management software to keep track of assets such as stocks, bonds, ETFs, etc. | [Link](services/ghostfolio.md) |
 | [Gitea](https://gitea.io/) | Software forge (Git hosting service, etc.) | [Link](services/gitea.md) |
+| [GitLab](https://about.gitlab.com/) | Complete DevOps platform (Git hosting service, CI/CD, etc.) | [Link](services/gitlab.md) |
+| [GitLab Runner](https://docs.gitlab.com/runner/) | A runner to use with GitLab CI/CD | [Link](services/gitlab-runner.md) |
 | [Gokapi](https://github.com/Forceu/Gokapi) | Share files that expire after a set number of downloads or days | [Link](services/gokapi.md) |
 | [Gotenberg](https://gotenberg.dev/) | Docker-based API for converting documents to PDF | [Link](services/gotenberg.md) |
 | [GotHub](https://codeberg.org/gothub/gothub) | Frontend for GitHub | [Link](services/gothub.md) |

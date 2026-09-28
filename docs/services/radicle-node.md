@@ -87,6 +87,7 @@ Refer to [this section](https://radicle.network/nodes/iris.radicle.network/rad%3
 
 - [Forgejo](forgejo.md) — Software forge (Git hosting service, etc.)
 - [Gitea](gitea.md) — Software forge (Git hosting service, etc.)
+- [GitLab](gitlab.md) — Complete DevOps platform (Git hosting service, CI/CD, etc.)
 - [Radicle Explorer](radicle-explorer.md) — Radicle user interface for the web browser
 - [Radicle HTTP Daemon](radicle-httpd.md) — Gateway between the Radicle protocol and the HTTP protocol
 - [Woodpecker CI](woodpecker-ci.md) — Extensible Continuous Integration (CI) engine
