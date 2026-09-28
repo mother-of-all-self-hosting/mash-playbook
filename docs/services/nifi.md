@@ -84,8 +84,12 @@ traefik_provider_configuration_extension_yaml: |
 
 After running the command for installation, the Apache NiFi instance becomes available at the specified hostname like `https://nifi.example.com`.
 
-Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-nifi/blob/main/docs/configuring-nifi.md#usage) on the role's documentation for details about how to use the service.
+To get started, open the URL with a web browser to log in to the instance with the administrator account.
 
 ## Troubleshooting
 
 Refer to [this section](https://github.com/spatterIight/ansible-role-nifi/blob/main/docs/configuring-nifi.md#troubleshooting) on the role's documentation for details.
+
+## Related services
+
+- [Apache NiFi Registry](nifi-registry.md) — Central storage and management of versioned flows shared across Apache NiFi instances
