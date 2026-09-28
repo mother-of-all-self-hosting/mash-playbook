@@ -93,4 +93,3 @@ Refer to [this section](https://github.com/spatterIight/ansible-role-nifi/blob/m
 ## Related services
 
 - [Apache NiFi Registry](nifi-registry.md) — Central storage and management of versioned flows shared across Apache NiFi instances
-Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-nifi/blob/main/docs/configuring-nifi.md#usage) on the role's documentation for details about how to use the service.
