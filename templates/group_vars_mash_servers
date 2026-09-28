@@ -1756,12 +1756,18 @@ mash_playbook_postgres_managed_databases_auto_itemized:
   # /role-specific:gitea
 
   # role-specific:gitlab
+  # GitLab requires the `amcheck` extension, which only a superuser may create.
+  # Ref: https://docs.gitlab.com/administration/postgresql/extensions/
   - |-
     {{
       ({
         'name': gitlab_database_name,
         'username': gitlab_database_postgres_username,
         'password': gitlab_database_postgres_password,
+        'additional_sql_queries': [
+          ('\\c ' ~ gitlab_database_name),
+          'CREATE EXTENSION IF NOT EXISTS amcheck;',
+        ],
       } if gitlab_enabled and (gitlab_database_postgres_hostname == postgres_connection_hostname or gitlab_database_postgres_socket_enabled) and gitlab_database_type == 'postgres' else omit)
     }}
   # /role-specific:gitlab

@@ -49,7 +49,15 @@ gitlab_hostname: gitlab.example.com
 ########################################################################
 ```
 
-If [Postgres](postgres.md) and [exim-relay](exim-relay.md) are enabled on the playbook, GitLab is wired to them automatically. With Postgres, an extension needs to be created by hand and some server settings adjusted (see [this section](https://github.com/mother-of-all-self-hosting/ansible-role-gitlab/blob/main/docs/configuring-gitlab.md#using-an-external-postgres-server) on the role's documentation).
+If [Postgres](postgres.md) and [exim-relay](exim-relay.md) are enabled on the playbook, GitLab is wired to them automatically. The playbook also creates the `amcheck` extension which GitLab requires in its database.
+
+GitLab asks for a Postgres server allowing at least 400 connections (200 by default). As this setting applies to the whole Postgres server, the playbook does not raise it on its own. To raise it, add the following configuration to your `vars.yml` file:
+
+```yaml
+postgres_max_connections: 400
+```
+
+See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-gitlab/blob/main/docs/configuring-gitlab.md#tuning-the-postgres-server) on the role's documentation for other settings GitLab recommends.
 
 See [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-gitlab/blob/main/docs/configuring-gitlab.md#adjusting-the-playbook-configuration) for other settings, such as the password for the `root` user, Git over SSH and the container registry.
 
