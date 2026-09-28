@@ -255,7 +255,7 @@ mash_playbook_metrics_exposure_enabled: true
 mash_playbook_metrics_exposure_hostname: mash.example.com
 ```
 
-If the endpoint is publicly reachable, consider enabling [HTTP Basic Authentication](https://developer.mozilla.org/en-US/docs/Web/HTTP/Authentication) with `mash_playbook_metrics_exposure_http_basic_auth_enabled` and `mash_playbook_metrics_exposure_http_basic_auth_users`. The [PeerTube role documentation](https://github.com/mother-of-all-self-hosting/ansible-role-peertube) covers further exporter settings.
+If the endpoint is publicly reachable, consider enabling [HTTP Basic Authentication](https://developer.mozilla.org/en-US/docs/Web/HTTP/Authentication) with `mash_playbook_metrics_exposure_http_basic_auth_enabled` and `mash_playbook_metrics_exposure_http_basic_auth_users`. See the role's [`defaults/main.yml`](https://github.com/mother-of-all-self-hosting/ansible-role-peertube/blob/main/defaults/main.yml) for further exporter settings (`peertube_environment_variable_open_telemetry_metrics_*` and `peertube_container_labels_traefik_metrics_*`).
 
 ## Installation
 
