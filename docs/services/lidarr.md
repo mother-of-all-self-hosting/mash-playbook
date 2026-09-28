@@ -61,7 +61,7 @@ After running the command for installation, the Lidarr instance becomes availabl
 >[!NOTE]
 > The `lidarr_path_prefix` variable can be adjusted to host under a subpath (e.g. `lidarr_path_prefix: /lidarr`), but this hasn't been tested yet.
 
-To get started, open the URL with a web browser to create an account.
+Lidarr starts without authentication and does not prompt you to create an account. Before exposing the hostname, [configure authentication as described by the Lidarr role](https://github.com/mother-of-all-self-hosting/ansible-role-lidarr/blob/v3.1.0.4875-3/docs/configuring-lidarr.md#protecting-the-web-interface).
 
 For additional configuration options, refer to `defaults/main.yml` file.
 
