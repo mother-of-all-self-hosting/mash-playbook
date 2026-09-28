@@ -817,7 +817,7 @@
   name: prunemate
   activation_prefix: prunemate_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-qbittorrent.git
-  version: v5.2.3-2
+  version: v5.2.3-3
   name: qbittorrent
   activation_prefix: qbittorrent_
 - src: git+https://iris.radicle.network/z3PCtuwyz2HdHeKnHCefR253rpYwp.git
