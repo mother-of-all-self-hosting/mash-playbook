@@ -246,6 +246,17 @@ To actually have the service use (and get messages sent through the exim-relay s
 >[!WARNING]
 > Without setting an authentication method such as DKIM, SPF, and DMARC for your hostname, emails are most likely to be quarantined as spam at recipient's mail servers. The worst scenario is that your server's IP address or hostname will be included in the spam list such as the one managed by [Spamhaus](https://www.spamhaus.org/), depending on the reputation. As the exim-relay service supports DKIM signing, refer to [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-exim-relay/blob/main/docs/configuring-exim-relay.md#enable-dkim-support-optional) for details about how to set it up.
 
+### Exposing Prometheus metrics (optional)
+
+PeerTube can expose [Prometheus](prometheus.md) metrics through Traefik. To enable the exporter and expose it at `https://mash.example.com/metrics/mash-peertube`, add the following to your `vars.yml` (adjust the hostname):
+
+```yaml
+mash_playbook_metrics_exposure_enabled: true
+mash_playbook_metrics_exposure_hostname: mash.example.com
+```
+
+If the endpoint is publicly reachable, consider enabling [HTTP Basic Authentication](https://developer.mozilla.org/en-US/docs/Web/HTTP/Authentication) with `mash_playbook_metrics_exposure_http_basic_auth_enabled` and `mash_playbook_metrics_exposure_http_basic_auth_users`. The [PeerTube role documentation](https://github.com/mother-of-all-self-hosting/ansible-role-peertube) covers further exporter settings.
+
 ## Installation
 
 If you have decided to install the dedicated Valkey instance for PeerTube, make sure to run the [installing](../installing.md) command for the supplementary host (`mash.example.com-peertube-deps`) first, before running it for the main host (`mash.example.com`).
