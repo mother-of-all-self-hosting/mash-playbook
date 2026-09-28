@@ -616,6 +616,10 @@
   version: v35.0.1-0
   name: nextcloud
   activation_prefix: nextcloud_
+- src: git+https://github.com/spatterIight/ansible-role-nginx.git
+  version: v1.31.6-1
+  name: nginx
+  activation_prefix: nginx_
 - src: git+https://github.com/spatterIight/ansible-role-nifi.git
   version: v2.12.0-0
   name: nifi
