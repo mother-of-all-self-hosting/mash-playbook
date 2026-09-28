@@ -15,9 +15,9 @@ Nginx is a web server, which can also be used as a reverse proxy, load balancer 
 
 See the project's [documentation](https://nginx.org/en/docs/) to learn what Nginx does and why it might be useful to you.
 
-For details about configuring the [Ansible role for Nginx](https://github.com/spatterIight/ansible-role-nginx), you can check them via:
+For details about configuring the [Ansible role for Nginx](https://github.com/mother-of-all-self-hosting/ansible-role-nginx), you can check them via:
 
-- 🌐 [the role's documentation](https://github.com/spatterIight/ansible-role-nginx/blob/main/docs/configuring-nginx.md) online
+- 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-nginx/blob/main/docs/configuring-nginx.md) online
 - 📁 `roles/galaxy/nginx/docs/configuring-nginx.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 ## Dependencies
@@ -52,7 +52,7 @@ nginx_hostname: nginx.example.com
 
 By default, Nginx serves the files found in the `data` directory under the service's base path (`/mash/nginx/data` on the server by default). Put your website's files (e.g. `index.html`) there.
 
-To have Nginx do something else (e.g. reverse-proxy to another container), see [this section](https://github.com/spatterIight/ansible-role-nginx/blob/main/docs/configuring-nginx.md#changing-what-nginx-serves-optional) on the role's documentation for details.
+To have Nginx do something else (e.g. reverse-proxy to another container), see [this section](https://github.com/mother-of-all-self-hosting/ansible-role-nginx/blob/main/docs/configuring-nginx.md#changing-what-nginx-serves-optional) on the role's documentation for details.
 
 ## Usage
 
@@ -60,4 +60,4 @@ After running the command for installation, Nginx becomes available at the URL s
 
 ## Troubleshooting
 
-See [this section](https://github.com/spatterIight/ansible-role-nginx/blob/main/docs/configuring-nginx.md#troubleshooting) on the role's documentation for details.
+See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-nginx/blob/main/docs/configuring-nginx.md#troubleshooting) on the role's documentation for details.

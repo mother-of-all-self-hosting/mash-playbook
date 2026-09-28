@@ -13,9 +13,9 @@ Vector is a high-performance observability data pipeline that lets you collect, 
 
 See the project's [documentation](https://vector.dev/docs/) to learn what Vector does and why it might be useful to you.
 
-For details about configuring the [Ansible role for Vector](https://github.com/spatterIight/ansible-role-vector), you can check them via:
+For details about configuring the [Ansible role for Vector](https://github.com/mother-of-all-self-hosting/ansible-role-vector), you can check them via:
 
-- 🌐 [the role's documentation](https://github.com/spatterIight/ansible-role-vector/blob/main/docs/configuring-vector.md) online
+- 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-vector/blob/main/docs/configuring-vector.md) online
 - 📁 `roles/galaxy/vector/docs/configuring-vector.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 ## Dependencies
@@ -47,13 +47,13 @@ vector_enabled: true
 ########################################################################
 ```
 
-Refer to [this section](https://github.com/spatterIight/ansible-role-vector/blob/main/docs/configuring-vector.md#adjusting-the-playbook-configuration) on the role's documentation for details about integrating Vector with Grafana Loki and Prometheus, and exposing its GraphQL API, etc.
+Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-vector/blob/main/docs/configuring-vector.md#adjusting-the-playbook-configuration) on the role's documentation for details about integrating Vector with Grafana Loki and Prometheus, and exposing its GraphQL API, etc.
 
 ## Usage
 
 After running the command for installation, the Vector instance becomes available.
 
-Refer to [this section](https://github.com/spatterIight/ansible-role-vector/blob/main/docs/configuring-vector.md#usage) on the role's documentation for more details about how to use it.
+Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-vector/blob/main/docs/configuring-vector.md#usage) on the role's documentation for more details about how to use it.
 
 ## Related services
 

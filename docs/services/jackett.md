@@ -13,9 +13,9 @@ Jackett is an API for your favorite Torrent trackers. It translates queries from
 
 See the project's [documentation](https://github.com/Jackett/Jackett/blob/master/README.md) to learn what Jackett does and why it might be useful to you.
 
-For details about configuring the [Ansible role for Jackett](https://github.com/spatterIight/ansible-role-jackett), you can check them via:
+For details about configuring the [Ansible role for Jackett](https://github.com/mother-of-all-self-hosting/ansible-role-jackett), you can check them via:
 
-- 🌐 [the role's documentation](https://github.com/spatterIight/ansible-role-jackett/blob/main/docs/configuring-jackett.md) online
+- 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-jackett/blob/main/docs/configuring-jackett.md) online
 - 📁 `roles/galaxy/jackett/docs/configuring-jackett.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 ## Dependencies

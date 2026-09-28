@@ -13,9 +13,9 @@ Plex is a personal media server that allows you to organize and stream your coll
 
 See the project's [documentation](https://docs.linuxserver.io/images/docker-plex/) to learn what Plex Media Server does and why it might be useful to you.
 
-For details about configuring the [Ansible role for Plex Media Server](https://github.com/spatterIight/ansible-role-plex), you can check them via:
+For details about configuring the [Ansible role for Plex Media Server](https://github.com/mother-of-all-self-hosting/ansible-role-plex), you can check them via:
 
-- 🌐 [the role's documentation](https://github.com/spatterIight/ansible-role-plex/blob/main/docs/configuring-plex.md) online
+- 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-plex/blob/main/docs/configuring-plex.md) online
 - 📁 `roles/galaxy/plex/docs/configuring-plex.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 ## Dependencies
@@ -46,7 +46,7 @@ plex_hostname: plex.example.com
 ########################################################################
 ```
 
-Refer to [this section](https://github.com/spatterIight/ansible-role-plex/blob/main/docs/configuring-plex.md#adjusting-the-playbook-configuration) on the role's documentation for details about other settings.
+Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-plex/blob/main/docs/configuring-plex.md#adjusting-the-playbook-configuration) on the role's documentation for details about other settings.
 
 ## Usage
 

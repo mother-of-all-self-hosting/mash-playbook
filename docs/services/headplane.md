@@ -13,9 +13,9 @@ Headplane is an open-source, self-hosted implementation of the [Tailscale Web UI
 
 See the project's [documentation](https://headplane.net/introduction) to learn what Headplane does and why it might be useful to you.
 
-For details about configuring the [Ansible role for Headplane](https://github.com/spatterIight/ansible-role-headplane), you can check them via:
+For details about configuring the [Ansible role for Headplane](https://github.com/mother-of-all-self-hosting/ansible-role-headplane), you can check them via:
 
-- 🌐 [the role's documentation](https://github.com/spatterIight/ansible-role-headplane/blob/main/docs/configuring-headplane.md) online
+- 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-headplane/blob/main/docs/configuring-headplane.md) online
 - 📁 `roles/galaxy/headplane/docs/configuring-headplane.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 ## Dependencies
@@ -47,10 +47,10 @@ headplane_hostname: headplane.example.com
 ########################################################################
 ```
 
-Refer to [this section](https://github.com/spatterIight/ansible-role-headplane/blob/main/docs/configuring-headplane.md#adjusting-the-playbook-configuration) on the role's documentation for details about other settings.
+Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-headplane/blob/main/docs/configuring-headplane.md#adjusting-the-playbook-configuration) on the role's documentation for details about other settings.
 
 ## Usage
 
 After running the command for installation, the Headplane instance becomes available at the URL specified with `headplane_hostname`. With the configuration above, the service is hosted at `https://headplane.example.com/admin`.
 
-Refer to [this section](https://github.com/spatterIight/ansible-role-headplane/blob/main/docs/configuring-headplane.md#usage) on the role's documentation for details about the usage.
+Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-headplane/blob/main/docs/configuring-headplane.md#usage) on the role's documentation for details about the usage.

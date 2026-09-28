@@ -13,9 +13,9 @@ The playbook can install and configure [Seerr](https://github.com/seerr-team/see
 
 Seerr is a media request and discovery manager with support for [Jellyfin](jellyfin.md), [Plex](plex.md), and Emby.
 
-For details about configuring the [Ansible role for Seerr](https://github.com/spatterIight/ansible-role-seerr), you can check them via:
+For details about configuring the [Ansible role for Seerr](https://github.com/mother-of-all-self-hosting/ansible-role-seerr), you can check them via:
 
-- 🌐 [the role's documentation](https://github.com/spatterIight/ansible-role-seerr/blob/main/docs/configuring-seerr.md) online
+- 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-seerr/blob/main/docs/configuring-seerr.md) online
 - 📁 `roles/galaxy/seerr/docs/configuring-seerr.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 ## Dependencies
@@ -52,7 +52,7 @@ After running the command for installation, the Seerr instance becomes available
 
 ## Troubleshooting
 
-Refer to [this section](https://github.com/spatterIight/ansible-role-seerr/blob/main/docs/configuring-seerr.md#troubleshooting) on the role's documentation for details.
+Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-seerr/blob/main/docs/configuring-seerr.md#troubleshooting) on the role's documentation for details.
 
 ## Related services
 

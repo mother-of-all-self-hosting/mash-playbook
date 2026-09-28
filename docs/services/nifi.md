@@ -13,9 +13,9 @@ Apache NiFi is an open-source, easy to use, powerful, and reliable system to pro
 
 See the project's [documentation](https://nifi.apache.org/components/) to learn what Apache NiFi does and why it might be useful to you.
 
-For details about configuring the [Ansible role for Apache NiFi](https://github.com/spatterIight/ansible-role-nifi), you can check them via:
+For details about configuring the [Ansible role for Apache NiFi](https://github.com/mother-of-all-self-hosting/ansible-role-nifi), you can check them via:
 
-- 🌐 [the role's documentation](https://github.com/spatterIight/ansible-role-nifi/blob/main/docs/configuring-nifi.md) online
+- 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-nifi/blob/main/docs/configuring-nifi.md) online
 - 📁 `roles/galaxy/nifi/docs/configuring-nifi.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 ## Dependencies
@@ -54,7 +54,7 @@ nifi_hostname: nifi.example.com
 ########################################################################
 ```
 
-Refer to [this section](https://github.com/spatterIight/ansible-role-nifi/blob/main/docs/configuring-nifi.md#adjusting-the-playbook-configuration) on the role's documentation for details about what to be added.
+Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-nifi/blob/main/docs/configuring-nifi.md#adjusting-the-playbook-configuration) on the role's documentation for details about what to be added.
 
 To integrate with Traefik, the custom Traefik `serversTransports` definition is required since Apache NiFi only supports listening via HTTPS. Because this "backend" certificate is self-signed, Traefik must be configured to skip verifying it:
 
@@ -88,7 +88,7 @@ To get started, open the URL with a web browser to log in to the instance with t
 
 ## Troubleshooting
 
-Refer to [this section](https://github.com/spatterIight/ansible-role-nifi/blob/main/docs/configuring-nifi.md#troubleshooting) on the role's documentation for details.
+Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-nifi/blob/main/docs/configuring-nifi.md#troubleshooting) on the role's documentation for details.
 
 ## Related services
 

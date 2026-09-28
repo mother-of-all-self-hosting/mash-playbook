@@ -13,9 +13,9 @@ Wazuh is an open-source security platform providing unified SIEM, threat detecti
 
 See the project's [documentation](https://documentation.wazuh.com/current/index.html) to learn what Wazuh does and why it might be useful to you.
 
-For details about configuring the [Ansible role for Wazuh](https://github.com/spatterIight/ansible-role-wazuh), you can check them via:
+For details about configuring the [Ansible role for Wazuh](https://github.com/mother-of-all-self-hosting/ansible-role-wazuh), you can check them via:
 
-- 🌐 [the role's documentation](https://github.com/spatterIight/ansible-role-wazuh/blob/main/docs/configuring-wazuh.md) online
+- 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-wazuh/blob/main/docs/configuring-wazuh.md) online
 - 📁 `roles/galaxy/wazuh/docs/configuring-wazuh.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 ## Dependencies

@@ -13,9 +13,9 @@ Jellyfin is an open-source personal media server that allows you to organize and
 
 See the project's [documentation](https://jellyfin.org/docs/) to learn what Jellyfin does and why it might be useful to you.
 
-For details about configuring the [Ansible role for Jellyfin](https://github.com/spatterIight/ansible-role-jellyfin), you can check them via:
+For details about configuring the [Ansible role for Jellyfin](https://github.com/mother-of-all-self-hosting/ansible-role-jellyfin), you can check them via:
 
-- 🌐 [the role's documentation](https://github.com/spatterIight/ansible-role-jellyfin/blob/main/docs/configuring-jellyfin.md) online
+- 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-jellyfin/blob/main/docs/configuring-jellyfin.md) online
 - 📁 `roles/galaxy/jellyfin/docs/configuring-jellyfin.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 ## Dependencies
@@ -46,7 +46,7 @@ jellyfin_hostname: jellyfin.example.com
 ########################################################################
 ```
 
-Refer to [this section](https://github.com/spatterIight/ansible-role-jellyfin/blob/main/docs/configuring-jellyfin.md#adjusting-the-playbook-configuration) on the role's documentation for details about other settings.
+Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-jellyfin/blob/main/docs/configuring-jellyfin.md#adjusting-the-playbook-configuration) on the role's documentation for details about other settings.
 
 ## Usage
 

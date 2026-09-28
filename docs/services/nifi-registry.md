@@ -12,9 +12,9 @@ Apache NiFi Registry is a complementary application for [Apache NiFi](nifi.md) t
 
 See the project's [documentation](https://nifi.apache.org/docs/nifi-registry-docs/) to learn what Apache NiFi Registry does and why it might be useful to you.
 
-For details about configuring the [Ansible role for Apache NiFi Registry](https://github.com/spatterIight/ansible-role-nifi-registry), you can check them via:
+For details about configuring the [Ansible role for Apache NiFi Registry](https://github.com/mother-of-all-self-hosting/ansible-role-nifi-registry), you can check them via:
 
-- 🌐 [the role's documentation](https://github.com/spatterIight/ansible-role-nifi-registry/blob/main/docs/configuring-nifi-registry.md) online
+- 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-nifi-registry/blob/main/docs/configuring-nifi-registry.md) online
 - 📁 `roles/galaxy/nifi_registry/docs/configuring-nifi-registry.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 ## Dependencies
@@ -50,7 +50,7 @@ nifi_registry_basic_auth_password: ""
 ########################################################################
 ```
 
-Apache NiFi Registry has no login of its own, so the role protects it with HTTP basic authentication on Traefik. See [this section](https://github.com/spatterIight/ansible-role-nifi-registry/blob/main/docs/configuring-nifi-registry.md#how-this-role-secures-apache-nifi-registry) on the role's documentation for details.
+Apache NiFi Registry has no login of its own, so the role protects it with HTTP basic authentication on Traefik. See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-nifi-registry/blob/main/docs/configuring-nifi-registry.md#how-this-role-secures-apache-nifi-registry) on the role's documentation for details.
 
 ### Connecting Apache NiFi
 
@@ -64,7 +64,7 @@ After running the command for installation, the Apache NiFi Registry instance be
 
 ## Troubleshooting
 
-See [this section](https://github.com/spatterIight/ansible-role-nifi-registry/blob/main/docs/configuring-nifi-registry.md#troubleshooting) on the role's documentation for details.
+See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-nifi-registry/blob/main/docs/configuring-nifi-registry.md#troubleshooting) on the role's documentation for details.
 
 ## Related services
 

@@ -10,9 +10,9 @@ The playbook can install and configure [GitLab](https://about.gitlab.com/) for y
 
 GitLab is a complete DevOps platform: Git repository management, code reviews, issue tracking, CI/CD, a container registry and more, in a single application. See the project's [documentation](https://docs.gitlab.com/) to learn more.
 
-For details about configuring the [Ansible role for GitLab](https://github.com/spatterIight/ansible-role-gitlab), you can check them via:
+For details about configuring the [Ansible role for GitLab](https://github.com/mother-of-all-self-hosting/ansible-role-gitlab), you can check them via:
 
-- 🌐 [the role's documentation](https://github.com/spatterIight/ansible-role-gitlab/blob/main/docs/configuring-gitlab.md) online
+- 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-gitlab/blob/main/docs/configuring-gitlab.md) online
 - 📁 `roles/galaxy/gitlab/docs/configuring-gitlab.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 >[!NOTE]
@@ -49,9 +49,9 @@ gitlab_hostname: gitlab.example.com
 ########################################################################
 ```
 
-If [Postgres](postgres.md) and [exim-relay](exim-relay.md) are enabled on the playbook, GitLab is wired to them automatically. With Postgres, an extension needs to be created by hand and some server settings adjusted (see [this section](https://github.com/spatterIight/ansible-role-gitlab/blob/main/docs/configuring-gitlab.md#using-an-external-postgres-server) on the role's documentation).
+If [Postgres](postgres.md) and [exim-relay](exim-relay.md) are enabled on the playbook, GitLab is wired to them automatically. With Postgres, an extension needs to be created by hand and some server settings adjusted (see [this section](https://github.com/mother-of-all-self-hosting/ansible-role-gitlab/blob/main/docs/configuring-gitlab.md#using-an-external-postgres-server) on the role's documentation).
 
-See [the role's documentation](https://github.com/spatterIight/ansible-role-gitlab/blob/main/docs/configuring-gitlab.md#adjusting-the-playbook-configuration) for other settings, such as the password for the `root` user, Git over SSH and the container registry.
+See [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-gitlab/blob/main/docs/configuring-gitlab.md#adjusting-the-playbook-configuration) for other settings, such as the password for the `root` user, Git over SSH and the container registry.
 
 ### Configuring Valkey (optional)
 
@@ -164,14 +164,14 @@ If you set up the dedicated Valkey instance, run the [installation](../installin
 
 After installation, GitLab becomes available at `gitlab_hostname` (`https://gitlab.example.com` with the configuration above). It reconfigures itself on every start, so it may take a few minutes to become reachable.
 
-Log in with the username `root` (see [this section](https://github.com/spatterIight/ansible-role-gitlab/blob/main/docs/configuring-gitlab.md#set-the-password-for-the-root-user-optional-recommended) on the role's documentation for its password).
+Log in with the username `root` (see [this section](https://github.com/mother-of-all-self-hosting/ansible-role-gitlab/blob/main/docs/configuring-gitlab.md#set-the-password-for-the-root-user-optional-recommended) on the role's documentation for its password).
 
 >[!WARNING]
 > By default, anyone can register an account, pending approval by an administrator. To disable sign-ups, go to the **Admin area** → **Settings** → **General** → **Sign-up restrictions** right after installing.
 
 To run CI/CD jobs, set up [GitLab Runner](gitlab-runner.md).
 
-See the role's documentation for [backing up](https://github.com/spatterIight/ansible-role-gitlab/blob/main/docs/configuring-gitlab.md#backing-up-gitlab) and [upgrading](https://github.com/spatterIight/ansible-role-gitlab/blob/main/docs/configuring-gitlab.md#upgrading-gitlab) GitLab.
+See the role's documentation for [backing up](https://github.com/mother-of-all-self-hosting/ansible-role-gitlab/blob/main/docs/configuring-gitlab.md#backing-up-gitlab) and [upgrading](https://github.com/mother-of-all-self-hosting/ansible-role-gitlab/blob/main/docs/configuring-gitlab.md#upgrading-gitlab) GitLab.
 
 ## Related services
 

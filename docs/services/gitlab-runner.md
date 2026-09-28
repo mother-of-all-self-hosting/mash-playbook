@@ -10,9 +10,9 @@ The playbook can install and configure [GitLab Runner](https://docs.gitlab.com/r
 
 GitLab Runner runs the CI/CD jobs of a [GitLab](gitlab.md) instance. It is set up with the [Docker executor](https://docs.gitlab.com/runner/executors/docker/): every job runs in a container of its own. See the project's [documentation](https://docs.gitlab.com/runner/) to learn more.
 
-For details about configuring the [Ansible role for GitLab Runner](https://github.com/spatterIight/ansible-role-gitlab-runner), you can check them via:
+For details about configuring the [Ansible role for GitLab Runner](https://github.com/mother-of-all-self-hosting/ansible-role-gitlab-runner), you can check them via:
 
-- 🌐 [the role's documentation](https://github.com/spatterIight/ansible-role-gitlab-runner/blob/main/docs/configuring-gitlab-runner.md) online
+- 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-gitlab-runner/blob/main/docs/configuring-gitlab-runner.md) online
 - 📁 `roles/galaxy/gitlab_runner/docs/configuring-gitlab-runner.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 >[!WARNING]
@@ -20,7 +20,7 @@ For details about configuring the [Ansible role for GitLab Runner](https://githu
 
 ## Prerequisites
 
-Create a runner in GitLab first (e.g. **Admin area** → **CI/CD** → **Runners** → **New instance runner**), and copy the runner authentication token (`glrt-…`) that GitLab shows for it. See [this section](https://github.com/spatterIight/ansible-role-gitlab-runner/blob/main/docs/configuring-gitlab-runner.md#prerequisites) on the role's documentation for details.
+Create a runner in GitLab first (e.g. **Admin area** → **CI/CD** → **Runners** → **New instance runner**), and copy the runner authentication token (`glrt-…`) that GitLab shows for it. See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-gitlab-runner/blob/main/docs/configuring-gitlab-runner.md#prerequisites) on the role's documentation for details.
 
 ## Configuration
 
@@ -50,7 +50,7 @@ gitlab_runner_runners:
 
 If [GitLab](gitlab.md) is enabled on the same host, `gitlab_runner_config_gitlab_url` defaults to its URL.
 
-See [the role's documentation](https://github.com/spatterIight/ansible-role-gitlab-runner/blob/main/docs/configuring-gitlab-runner.md#adjusting-the-playbook-configuration) for other settings, such as the number of concurrent jobs, additional runners and Docker-in-Docker.
+See [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-gitlab-runner/blob/main/docs/configuring-gitlab-runner.md#adjusting-the-playbook-configuration) for other settings, such as the number of concurrent jobs, additional runners and Docker-in-Docker.
 
 ## Usage
 
