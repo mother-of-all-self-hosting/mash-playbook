@@ -295,6 +295,13 @@ Please keep an eye on the roles maintained by the MASH organization to keep your
 
 Please do not hesitate to ask for help to let the community members help you! 👋
 
+## Reviewing role dependency updates
+
+Renovate opens pull requests for Ansible role version updates instead of merging their branches
+directly. Review the released role changes and the playbook wiring before merging; a role update may
+need a playbook adaptation even when its role tests pass. Other dependency classes retain their
+separate Renovate policies.
+
 ## Maintaining the Renovate runner
 
 The self-hosted runner version is pinned in [`.github/workflows/renovate.yml`](../.github/workflows/renovate.yml). Renovate updates this pin and automerges passing updates during the monthly window configured in [`.github/renovate.json`](../.github/renovate.json).

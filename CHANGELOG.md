@@ -1,3 +1,9 @@
+# 2026-09-27
+
+## Jellyfin 12 requires preparation before upgrading
+
+This affects users with Jellyfin enabled. Before rerunning the playbook, stop Jellyfin and make a full backup of its data and configuration. Check for usernames that differ only by capitalization, and remove third-party plugins until versions compatible with Jellyfin 12 are available. After the upgrade, run a full library scan; let the database migrations and first scan finish without interruption. The database changes cannot be rolled back without restoring a backup. See the [Jellyfin 12 release notes](https://jellyfin.org/posts/jellyfin-release-12.0/) for details.
+
 # 2026-08-24
 
 ## (Backward Compatibility Break) KeyDB support removed

@@ -13,6 +13,11 @@ Wazuh is an open-source security platform providing unified SIEM, threat detecti
 
 See the project's [documentation](https://documentation.wazuh.com/current/index.html) to learn what Wazuh does and why it might be useful to you.
 
+For details about configuring the [Ansible role for Wazuh](https://github.com/spatterIight/ansible-role-wazuh), you can check them via:
+
+- 🌐 [the role's documentation](https://github.com/spatterIight/ansible-role-wazuh/blob/main/docs/configuring-wazuh.md) online
+- 📁 `roles/galaxy/wazuh/docs/configuring-wazuh.md` locally, if you have [fetched the Ansible roles](../installing.md)
+
 ## Dependencies
 
 This service requires the following other services:
@@ -62,15 +67,6 @@ wazuh_indexer_kibanaserver_password_salt: ""
 #                                                                      #
 ########################################################################
 ```
-
-### Extending the configuration
-
-There are some additional things you may wish to configure about the component.
-
-Take a look at:
-
-- The [Wazuh role](https://github.com/spatterIight/ansible-role-wazuh/)'s [`defaults/main.yml`](https://github.com/spatterIight/ansible-role-wazuh/blob/main/defaults/main.yml) for additional variables that you can customize via your `vars.yml` file.
-- The [Wazuh role documentation](https://github.com/spatterIight/ansible-role-wazuh/blob/main/docs/configuring-wazuh.md#usage).
 
 ## Usage
 

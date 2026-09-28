@@ -13,6 +13,10 @@
       "matchHost": "https://codeberg.org",
       "concurrentRequestLimit": 2,
       "maxRequestsPerSecond": 2
+    },
+    {
+      "matchHost": "iris.radicle.network",
+      "enabled": false
     }
   ],
   "branchConcurrentLimit": 5,
@@ -34,17 +38,11 @@
       "description": "Roles use `vUPSTREAM-N` tags. `sourceUrl` is only known after lookup, so `matchSourceUrls` cannot select the versioning; match the datasource instead",
       "ignoreUnstable": false,
       "versioning": "loose",
-      "matchDatasources": ["git-tags"]
-    },
-    {
-      "description": "Automerge version bumps of roles maintained in the MASH organization and of devture roles (via branch push - no PR)",
-      "matchManagers": ["ansible-galaxy"],
+      "matchDatasources": ["git-tags"],
       "matchSourceUrls": [
-        "https://github.com/devture/com.devture.ansible.role{/,}**",
-        "https://github.com/mother-of-all-self-hosting{/,}**"
-      ],
-      "automerge": true,
-      "automergeType": "branch"
+        "https://github.com{/,}**",
+        "https://codeberg.org{/,}**"
+      ]
     },
     {
       "description": "Automerge updates of the self-hosted Renovate runner (via branch push - no PR) monthly",
