@@ -28,6 +28,11 @@ LibreBooking is a resource scheduling and booking application for any organizati
 
 See the project's [documentation](https://librebooking.readthedocs.io/) to learn what LibreBooking does and why it might be useful to you.
 
+For details about configuring the [Ansible role for LibreBooking](https://github.com/mother-of-all-self-hosting/ansible-role-librebooking), you can check them via:
+
+- 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-librebooking/blob/main/docs/configuring-librebooking.md) online
+- 📁 `roles/galaxy/librebooking/docs/configuring-librebooking.md` locally, if you have [fetched the Ansible roles](../installing.md)
+
 ## Dependencies
 
 This service requires the following other services:
@@ -50,25 +55,6 @@ librebooking_enabled: true
 
 librebooking_hostname: librebooking.example.com
 
-# Protects the /Web/install/ setup wizard.
-# Put a strong secret below, generated with `pwgen -s 64 1` or in another way
-librebooking_environment_variables_lb_install_password: ""
-
-# Optional: set the timezone
-# librebooking_environment_variables_lb_default_timezone: "Europe/Berlin"
-
-# Optional: enable background cron jobs (for reminder emails, etc.)
-# librebooking_environment_variables_lb_cron_enabled: true
-
-# Optional: allow users to self-register accounts (disabled by default).
-# Enable temporarily if you need to register your admin account manually.
-# librebooking_environment_variables_lb_registration_allow_self_registration: true
-
-# Optional: pass extra LB_ environment variables to configure the application.
-# See: https://librebooking.readthedocs.io/en/stable/BASIC-CONFIGURATION.html
-# librebooking_environment_variables_additional_variables: |
-#   LB_APP_TITLE='My Booking System'
-
 ########################################################################
 #                                                                      #
 # /librebooking                                                        #
@@ -82,25 +68,16 @@ LibreBooking requires a MySQL-compatible database to work. This playbook support
 
 Refer to [this page](mariadb.md) for the instruction about how to enable it.
 
+### Set a string for protecting setup wizard
+
+You also have to set a string used for protecting the `/Web/install/` setup wizard. Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-librebooking/blob/main/docs/configuring-librebooking.md#set-a-string-for-protecting-setup-wizard) on the role's documentation for details.
+
 ## Usage
 
 After running the command for installation, the LibreBooking instance becomes available at the URL specified with `librebooking_hostname`. With the configuration above, the service is hosted at `https://librebooking.example.com`.
 
-To get started, open the URL `https://librebooking.example.com/Web/install/` with a web browser, and follow the set up wizard. It is necessary to input the string specified to `librebooking_environment_variables_lb_install_password` as the installation password.
-
-You can retrieve the database credentials by running the command below:
-
-```bash
-ansible-playbook -i inventory/hosts setup.yml --tags=print-db-credentials-librebooking
-```
-
-By checking "Import sample data" on the UI, the database schema and an initial `admin`/`password` account will be created.
-
->[!WARNING]
-> Do **not** check "Create the database" or "Create the database user" — both already exist
-
-After completing the set up wizard, you can log in to the instance with that account. Make sure to changed the password.
+To get started, open the URL with a web browser, and follow the set up wizard. Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-librebooking/blob/main/docs/configuring-librebooking.md#usage) on the role's documentation for details.
 
 ## Troubleshooting
 
-After major version upgrades you may need to revisit the `/Web/install/` page to run pending database migrations.
+Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-librebooking/blob/main/docs/configuring-librebooking.md#troubleshooting) on the role's documentation for details.
