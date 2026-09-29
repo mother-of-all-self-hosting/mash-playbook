@@ -1065,7 +1065,7 @@
   name: weblate
   activation_prefix: weblate_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-wetty.git
-  version: v3.0.0-4
+  version: v3.0.0-5
   name: wetty
   activation_prefix: wetty_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-wg-easy.git
