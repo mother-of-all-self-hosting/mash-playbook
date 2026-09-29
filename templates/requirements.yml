@@ -929,7 +929,7 @@
   name: solidinvoice
   activation_prefix: solidinvoice_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-sonarr.git
-  version: v4.0.20-3
+  version: v4.0.20-4
   name: sonarr
   activation_prefix: sonarr_
 - src: git+https://iris.radicle.network/z381JyLARWwSiZnYotVXehYcQEw7u.git
