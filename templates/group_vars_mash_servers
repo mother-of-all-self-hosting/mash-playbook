@@ -3697,7 +3697,7 @@ backup_borg_systemd_required_services_list_auto: |
     ([postgres_identifier ~ '.service'] if postgres_enabled | default(false) and backup_borg_postgresql_enabled else [])
   }}
 
-backup_borg_location_exclude_patterns: |
+backup_borg_location_exclude_patterns_auto: |
   {{
     ([mariadb_data_path] if mariadb_enabled | default(false) and backup_borg_mysql_enabled else [])
     +
