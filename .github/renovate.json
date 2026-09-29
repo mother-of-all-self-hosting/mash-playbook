@@ -49,6 +49,12 @@
       "automergeType": "branch",
       "schedule": ["* 0-3 1 * *"],
       "automergeSchedule": ["* 0-3 1 * *"]
+    },
+    {
+      "description": "Disable Git tag updates from iris.radicle.network",
+      "matchDatasources": ["git-tags"],
+      "matchPackageNames": ["iris.radicle.network/**"],
+      "enabled": false
     }
   ],
   "github-actions": {
