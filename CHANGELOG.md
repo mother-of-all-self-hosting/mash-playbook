@@ -1,3 +1,9 @@
+# 2026-09-29
+
+## Memos 0.31 removes RSS and changes API behavior
+
+This affects users with Memos enabled who rely on RSS feeds or integrations using the Shortcut or reaction APIs. Before rerunning the playbook, replace RSS feeds and update affected API clients; existing feed URLs will stop working. Memos migrates Shortcuts to Views automatically, but clients must use the new View API, and reactions no longer accept `contentId`. Active instance administrators also gain access to individual private and Space-only memos. Review the [Memos 0.31 upgrade notes](https://usememos.com/changelog/0-31-0) before upgrading.
+
 # 2026-09-27
 
 ## Jellyfin 12 requires preparation before upgrading
