@@ -25,7 +25,7 @@
   name: answer
   activation_prefix: answer_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-apisix.git
-  version: v3.18.0-5
+  version: v3.19.0-0
   name: apisix
   activation_prefix: apisix_
 - src: git+https://iris.radicle.network/z292aD8q3r8xqhJvLe2zv1b24gu7a.git
