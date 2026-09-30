@@ -27,6 +27,11 @@ Navidrome is a [Subsonic-API](http://www.subsonic.org/pages/api.jsp) compatible 
 
 See the project's [documentation](https://www.navidrome.org/docs/) to learn what Navidrome does and why it might be useful to you.
 
+For details about configuring the [Ansible role for Navidrome](https://github.com/mother-of-all-self-hosting/ansible-role-navidrome), you can check them via:
+
+- 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-navidrome/blob/main/docs/configuring-navidrome.md) online
+- 📁 `roles/galaxy/navidrome/docs/configuring-navidrome.md` locally, if you have [fetched the Ansible roles](../installing.md)
+
 ## Dependencies
 
 This service requires the following other services:
