@@ -1,10 +1,11 @@
 <!--
-SPDX-FileCopyrightText: 2020 - 2024 MDAD project contributors
-SPDX-FileCopyrightText: 2020 - 2025 Slavi Pantaleev
 SPDX-FileCopyrightText: 2020 Aaron Raimist
 SPDX-FileCopyrightText: 2020 Chris van Dijk
 SPDX-FileCopyrightText: 2020 Dominik Zajac
 SPDX-FileCopyrightText: 2020 Mickaël Cornière
+SPDX-FileCopyrightText: 2020-2024 MDAD project contributors
+SPDX-FileCopyrightText: 2020-2025 Slavi Pantaleev
+SPDX-FileCopyrightText: 2021 foxcris
 SPDX-FileCopyrightText: 2022 François Darveau
 SPDX-FileCopyrightText: 2022 Julian Foad
 SPDX-FileCopyrightText: 2022 Warren Bailey
@@ -13,8 +14,8 @@ SPDX-FileCopyrightText: 2023 Felix Stupp
 SPDX-FileCopyrightText: 2023 Julian-Samuel Gebühr
 SPDX-FileCopyrightText: 2023 MASH project contributors
 SPDX-FileCopyrightText: 2023 Pierre 'McFly' Marty
-SPDX-FileCopyrightText: 2024 - 2025 Suguru Hirahara
 SPDX-FileCopyrightText: 2024 Sergio Durigan Junior
+SPDX-FileCopyrightText: 2024-2026 Suguru Hirahara
 
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->
@@ -30,87 +31,10 @@ See the project's [documentation](https://forgejo.org/docs/latest/admin/actions/
 > [!WARNING]
 > The projects' documentation does **not recommend** running Forgejo Runner on the same machine as the Forgejo instance for security reasons.
 
-## Prerequisites
+The [Ansible role for Forgejo Runner](https://github.com/mother-of-all-self-hosting/ansible-role-forgejo-runner) is developed and maintained by the MASH project. For details about configuring Forgejo Runner, you can check them via:
 
-### Retrieve a registration token
-
-To set up Forgejo Runner for Forgejo, you will need to retrieve the registration token which is used for registering the runner on the Forgejo instance.
-
-The registration token can be obtained via Forgejo's web interface by going to `Site Administration -> Actions -> Runners -> Create new runner`. Refer to [this section](https://forgejo.org/docs/latest/admin/actions/runner-installation/#standard-registration) on the official documentation for the latest information.
-
-## Configuration
-
-To enable this service, add the following configuration to your `vars.yml` file and re-run the [installation](../installing.md) process:
-
-```yaml
-########################################################################
-#                                                                      #
-# forgejo_runner                                                       #
-#                                                                      #
-########################################################################
-
-forgejo_runner_enabled: true
-
-########################################################################
-#                                                                      #
-# /forgejo_runner                                                      #
-#                                                                      #
-########################################################################
-```
-
-### Set the Forgejo instance URL
-
-It is necessary to specify the URL of the Forgejo instance as well, for which the runner is used. Add the following configuration to your `vars.yml` file:
-
-```yaml
-forgejo_runner_instance_url: "https://example.com"
-```
-
-### Set the registration token
-
-You also need to set the registration token retrieved on the Forgejo instance by adding the following configuration to your `vars.yml` file:
-
-```yaml
-forgejo_runner_registration_token: REGISTRATION_TOKEN_HERE
-```
-
-### Set runner's labels
-
-It is required to specify the labels of a runner, which are used to determine which jobs the runner can run, and how to run them.
-
-For example, you can specify a label to `forgejo_runner_labels` as below:
-
-```yaml
-forgejo_runner_labels:
-  - ubuntu-22.04:docker://node:20-bullseye
-```
-
-Since the labels are an important aspect of the runner, they should be carefully chosen. Read [the official documentation](https://forgejo.org/docs/latest/admin/actions/#choosing-labels) for more information.
-
-### Customize the runner's name (optional)
-
-By default the runner's name is set to `forgejo-runner-by-mash-playbook`. You can customize it by adding the following configuration to your `vars.yml` file:
-
-```yaml
-forgejo_runner_runner_name: "Your Runner Name Here"
-```
-
-### Increase the capacity (optional)
-
-By default the playbook specifies the capacity of the runner (how many concurrent tasks it can run) to `1`. You can increase it per the computation power of the machine where the runner is used by adding the following configuration to your `vars.yml` file:
-
-```yaml
-forgejo_runner_capacity: 2
-```
-
-## Usage
-
-After running the command for installation, the Forgejo Runner instance becomes available.
-
->[!NOTE]
-> The runner will register with the Forgejo instance (provided via the `forgejo_runner_instance_url` variable) and generate a `.runner` file inside its configuration path. This file should not be modified manually. If for some reason you wish to force the registration to run again, you can delete the `.runner` file and restart the service.
->
-> If you wish to change the labels associated with the runner, you can simply modify the `forgejo_runner_labels` variable and run the playbook again. There is no need to delete the `.runner` file and run the registration again.
+- 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-forgejo-runner/blob/main/docs/configuring-forgejo-runner.md) online
+- 📁 `roles/galaxy/forgejo_runner/docs/configuring-forgejo-runner.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 ## Related services
 
