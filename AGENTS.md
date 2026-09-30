@@ -20,13 +20,16 @@ Correct stale playbook examples, but leave role-specific option details in the r
 ## Changelog
 
 Use `CHANGELOG.md` for new or removed services, shared playbook behavior changes,
-or consequential role-specific changes users must plan for.
-Examples include a manual data migration or disruptive behavior that validation cannot explain.
-State who is affected and what they need to do.
-When adding an entry, explain in the pull request why it meets this scope.
-For a role bump, say whether role validation already gives affected users an actionable error.
+or upgrades requiring concrete action by the system administrator running this playbook.
+Examples include a manual backup, data migration or inventory change that the role does not handle.
+For a role bump, upstream application behavior alone does not warrant a playbook entry, even
+when disruptive or absent from role validation. Missing validation alone is not a reason for
+an entry. Explain narrower upstream risks and link release notes in the pull request instead.
+State who is affected and what they need to do when adding an entry, and explain why it meets
+this scope. For a role bump, say whether role validation already gives affected users an
+actionable error.
 
 Skip entries for routine role bumps and for one role's renamed or removed variables or formats
 when the affected role's `tasks/validate_config.yml` gives users an actionable error.
-Correct stale service docs or examples; explain narrower upgrade risks in the pull request.
-An upstream “breaking change” label alone does not require a playbook changelog entry.
+Correct stale service docs or examples. An upstream “breaking change” label alone does not
+require a playbook changelog entry.
