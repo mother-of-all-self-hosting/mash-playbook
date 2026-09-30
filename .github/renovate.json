@@ -53,7 +53,7 @@
     {
       "description": "Disable Git tag updates from iris.radicle.network",
       "matchDatasources": ["git-tags"],
-      "matchRegistryUrls": ["iris.radicle.network/**"],
+      "matchSourceUrls": ["https://iris.radicle.network/**"],
       "enabled": false
     }
   ],
