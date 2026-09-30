@@ -56,6 +56,8 @@ navidrome_path_prefix: /navidrome
 ########################################################################
 ```
 
+Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-navidrome/blob/main/docs/configuring-navidrome.md#adjusting-the-playbook-configuration) on the role's documentation for details about other settings.
+
 ### File management
 
 Since Navidrome is just a music player, you would need to prepare music files to be played with it.
