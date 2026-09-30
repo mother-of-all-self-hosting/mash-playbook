@@ -66,14 +66,6 @@ It is necessary to specify the URL of the Forgejo instance as well, for which th
 forgejo_runner_instance_url: "https://example.com"
 ```
 
-If the Forgejo instance is also managed by the playbook and set to be accessible at `https://mash.example.com/forgejo`, you can set the URL as below:
-
-```yaml
-forgejo_runner_instance_url: "{{ forgejo_hostname }}{{ forgejo_path_prefix }}"
-```
-
-Remove `{{ forgejo_path_prefix }}` if the instance is not configured to host under the subpath.
-
 ### Set the registration token
 
 You also need to set the registration token retrieved on the Forgejo instance by adding the following configuration to your `vars.yml` file:
