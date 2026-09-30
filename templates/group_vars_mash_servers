@@ -6532,8 +6532,6 @@ forgejo_runner_docker_endpoint_is_unix_socket: "{{ false if forgejo_runner_docke
 
 forgejo_runner_runner_name: "forgejo-runner-by-mash-playbook"
 
-forgejo_runner_capacity: 1
-
 # role-specific:forgejo
 forgejo_runner_instance_url: "{{ forgejo_hostname }}{{ forgejo_path_prefix if forgejo_path_prefix != '/' }}"
 # role-specific:forgejo
