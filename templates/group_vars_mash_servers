@@ -199,6 +199,11 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
     {{ ({'name': (bentopdf_identifier + '.service'), 'priority': 2000, 'restart_necessary': (bentopdf_restart_necessary | bool), 'groups': ['mash', 'bentopdf']} if bentopdf_enabled else omit) }}
   # /role-specific:bentopdf
 
+  # role-specific:beszel
+  - |-
+    {{ ({'name': (beszel_identifier + '.service'), 'priority': 2000, 'restart_necessary': (beszel_restart_necessary | bool), 'groups': ['mash', 'beszel']} if beszel_enabled else omit) }}
+  # /role-specific:beszel
+
   # role-specific:bichon
   - |-
     {{ ({'name': (bichon_identifier + '.service'), 'priority': 2000, 'restart_necessary': (bichon_restart_necessary | bool), 'groups': ['mash', 'bichon']} if bichon_enabled else omit) }}
@@ -3958,6 +3963,44 @@ bentopdf_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_pri
 #                                                                      #
 ########################################################################
 # /role-specific:bentopdf
+
+
+
+# role-specific:beszel
+########################################################################
+#                                                                      #
+# beszel                                                               #
+#                                                                      #
+########################################################################
+
+beszel_enabled: false
+
+beszel_identifier: "{{ mash_playbook_service_identifier_prefix }}beszel"
+
+beszel_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}beszel"
+
+beszel_uid: "{{ mash_playbook_uid }}"
+beszel_gid: "{{ mash_playbook_gid }}"
+
+beszel_container_additional_networks_auto: |
+  {{
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+  }}
+
+beszel_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+beszel_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+
+# role-specific:traefik
+beszel_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
+beszel_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
+# /role-specific:traefik
+
+########################################################################
+#                                                                      #
+# /beszel                                                              #
+#                                                                      #
+########################################################################
+# /role-specific:beszel
 
 
 
