@@ -1,3 +1,15 @@
+# 2026-10-01
+
+## MongoDB 9 requires an upgrade prerequisite check
+
+This affects existing [MongoDB](docs/services/mongodb.md) installations using the role's default version, which changes from 8.3.11 to 9.0.2. Before rerunning the playbook, connect to the running 8.3 instance using the role's `cli` script in `mongodb_bin_path` and check its feature compatibility version:
+
+```javascript
+db.adminCommand({ getParameter: 1, featureCompatibilityVersion: 1 })
+```
+
+The feature compatibility version must be `8.3` before upgrading from 8.3 to 9.0. If it is lower, complete the supported upgrade procedure for your current version before proceeding. The role does not check or update feature compatibility versions, so rerunning Ansible alone does not handle this prerequisite. Follow the [MongoDB standalone upgrade procedure](https://www.mongodb.com/docs/manual/release-notes/9.0-upgrade-standalone/) (or the linked procedure for your deployment topology). Keep a restorable backup before upgrading. Users overriding `mongodb_version` or `mongodb_container_image` must follow the upgrade path for their actual running version.
+
 # 2026-09-27
 
 ## Jellyfin 12 requires preparation before upgrading
