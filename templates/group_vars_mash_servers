@@ -6534,7 +6534,7 @@ forgejo_runner_runner_name: "forgejo-runner-by-mash-playbook"
 
 # role-specific:forgejo
 forgejo_runner_instance_url: "{{ forgejo_hostname }}{{ forgejo_path_prefix if forgejo_path_prefix != '/' }}"
-# role-specific:forgejo
+# /role-specific:forgejo
 
 ########################################################################
 #                                                                      #
