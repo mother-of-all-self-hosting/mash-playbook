@@ -47,8 +47,6 @@ syncthing_path_prefix: /syncthing
 # Secure with HTTP Basic Auth (at the Traefik level)
 syncthing_basicauth_enabled: true
 
-# Syncthing is NOT a multi-user system.
-# Whichever user you authenticate with later, you would get to the same shared system.
 # Generate each entry with `htpasswd -nb USERNAME PASSWORD`
 # and paste the whole `USERNAME:HASH` line below.
 # Example:
@@ -65,17 +63,24 @@ syncthing_basicauth_htpasswds:
 ########################################################################
 ```
 
-### Authentication
+### Configuring HTTP Basic authentication
+
+For Syncthing, it is configured to enable the HTTP Basic authentication on Traefik by default. Refer to [this page](https://doc.traefik.io/traefik/reference/routing-configuration/http/middlewares/basicauth/) on the Traefik's documentation for details.
+
+You can use `htpasswd` to generate the user and password pair, which needs to be set to `syncthing_basicauth_htpasswds`.
 
 You can log in with **any** of the Basic Auth credentials defined in `syncthing_basicauth_htpasswds`. Syncthing is **not a multi-user system**, so whichever user you authenticate with, you'd ultimately end up looking at the same shared system.
 
-Generate entries outside Ansible with `htpasswd -nb USERNAME PASSWORD` and put the resulting lines into `syncthing_basicauth_htpasswds`.
+Upon logging in, Syncthing will show you warnings about no GUI password being set. You can safely ignore them, and suppress them on the advanced settings on Syncthing's UI.
 
-The legacy `syncthing_basicauth_credentials` convenience variable is discouraged, because it depends on the `passlib` Python library, may be affected by passlib/bcrypt compatibility issues (see: <https://foss.heptapod.net/python-libs/passlib/-/issues/196>), and produces non-deterministic hashes which can trigger unnecessary Ansible changes.
+If the Syncthing's own authentication system is preferred, another authentication service than Traefik's is used, or authentication is not required at all, you can disable it by adding the following configuration to your `vars.yml` file:
 
-Authentication is **done at the reverse-proxy level** (Traefik), so upon logging in, Syncthing will show you scary warnings about **no GUI password being set**. You should ignore these warnings.
+```yaml
+syncthing_basicauth_enabled: false
+```
 
-You can hide the warning permanently by going to **Actions** -> **Advanced** -> **GUI** section -> checking the **Insecure Admin Access** checkbox.
+>[!NOTE]
+> The legacy `syncthing_basicauth_credentials` convenience variable is discouraged.
 
 ### Networking
 
