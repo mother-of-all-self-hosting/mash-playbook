@@ -429,7 +429,7 @@
   name: jackett
   activation_prefix: jackett_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-jellyfin.git
-  version: v12.1-1
+  version: v12.1-2
   name: jellyfin
   activation_prefix: jellyfin_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-jitsi.git
