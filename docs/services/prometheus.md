@@ -27,6 +27,11 @@ Prometheus is a metrics collection and alerting monitoring solution.
 
 See the project's [documentation](https://prometheus.io/docs/introduction/overview/) to learn what Prometheus does and why it might be useful to you.
 
+For details about configuring the [Ansible role for the Prometheus](https://github.com/mother-of-all-self-hosting/ansible-role-prometheus), you can check them via:
+
+- 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-prometheus/blob/main/docs/configuring-prometheus.md) online
+- 📁 `roles/galaxy/prometheus/docs/configuring-prometheus.md` locally, if you have [fetched the Ansible roles](../installing.md)
+
 ## Dependencies
 
 This service requires the following other services:
@@ -54,65 +59,7 @@ prometheus_enabled: true
 ########################################################################
 ```
 
-### Integrating with Prometheus Node Exporter
-
-If you've installed [Prometheus Node Exporter](prometheus-node-exporter.md) on the same host, you can make Prometheus scrape its metrics by adding the following configuration to your `vars.yml` file:
-
-```yaml
-prometheus_self_node_scraper_enabled: true
-prometheus_self_node_scraper_static_configs_target: "{{ prometheus_node_exporter_identifier }}:9100"
-```
-
->[!NOTE]
-> To scrape a *remote* Prometheus Node Exporter instance, add the configuration to `prometheus_config_scrape_configs_additional` described below.
-
-### Scraping other exporter services
-
-To make Prometheus useful, you'll need to get it scrape one or more hosts by adjusting the configuration. You can add your own scrape configuration to `prometheus_config_scrape_configs_additional` as below (adapt to your needs):
-
-```yaml
-prometheus_config_scrape_configs_additional:
-  - job_name: some_job
-    metrics_path: /metrics
-    scrape_interval: 120s
-    scrape_timeout: 120s
-    static_configs:
-      - targets:
-          - some-host:8080
-
-  - job_name: another_job
-    metrics_path: /metrics
-    scrape_interval: 120s
-    scrape_timeout: 120s
-    static_configs:
-      - targets:
-          - another-host:8080
-```
-
-### Disabling scraping from own process
-
-By default, Prometheus is configured to scrape (collect metrics from) its own process. You can disable this behavior by adding the following configuration to your `vars.yml` file:
-
-```yaml
-prometheus_self_process_scraper_enabled: false
-```
-
-### Exposing the web interface
-
-To expose the Prometheus web interface publicly, add the following configuration to your `vars.yml` file (adapt to your needs).
-
-```yaml
-prometheus_hostname: prometheus.example.com
-```
-
-When exposing it, you should consider to set up [HTTP Basic Authentication](https://developer.mozilla.org/en-US/docs/Web/HTTP/Authentication) **or anyone would be able to read your metrics**. To enable the HTTP Basic authentication, add the following configuration to your `vars.yml` file:
-
-```yaml
-prometheus_container_labels_metrics_middleware_basic_auth_enabled: true
-
-# See https://doc.traefik.io/traefik/middlewares/http/basicauth/#users for details.
-prometheus_container_labels_metrics_middleware_basic_auth_users: ""
-```
+Refer to the role's documentation for details about configuring Prometheus per your preference (such as [Prometheus Node Exporter integration](https://github.com/mother-of-all-self-hosting/ansible-role-prometheus/blob/main/docs/configuring-prometheus.md#integrating-with-prometheus-node-exporter), [scraping other exporter services](https://github.com/mother-of-all-self-hosting/ansible-role-prometheus/blob/main/docs/configuring-prometheus.md#scraping-other-exporter-services), and [exposing the web interface](https://github.com/mother-of-all-self-hosting/ansible-role-prometheus/blob/main/docs/configuring-prometheus.md#exposing-the-web-interface-optional)).
 
 ## Related services
 
