@@ -7,26 +7,23 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
 # Redis
 
-> [!NOTE]
-> Starting from 8.0.0, Redis is licensed under your choice of the multiple licenses, one of which is AGPLv3. Refer to [the release note for 8.0.0](https://github.com/redis/redis/releases/tag/8.0.0) for details.
-
 The playbook can install and configure [Redis](https://redis.io/) for you.
 
-Redis is a free and open-source, in-memory data store used by millions of developers as a database, cache, streaming engine, and message broker.
+Redis is a free and open-source, in-memory data store used as a database, cache, streaming engine, and message broker.
 
 See the project's [documentation](https://redis.io/docs/latest/) to learn what Redis does and why it might be useful to you.
 
 Some of the services installed by this playbook require a Redis (compatible) data store. As this playbook supports [Valkey](valkey.md) as well, we recommend using Valkey since 2024-11-23.
 
+For details about configuring the [Ansible role for Redis](https://github.com/mother-of-all-self-hosting/ansible-role-redis), you can check them via:
+
+- 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-redis/blob/main/docs/configuring-redis.md) online
+- 📁 `roles/galaxy/redis/docs/configuring-redis.md` locally, if you have [fetched the Ansible roles](../installing.md)
+
 > [!WARNING]
-> Because Redis is not as flexible as [Postgres](postgres.md) when it comes to authentication and data separation, it's **recommended that you run separate Redis instances** (one for each service). Redis supports multiple database and a [SELECT](https://redis.io/commands/select/) command for switching between them. However, **reusing the same Redis instance is not good enough** because:
+> Because Redis is not as flexible as [Postgres](postgres.md) when it comes to authentication and data separation, it's **recommended that you run separate Redis instances** (one for each service). Refer to the role's documentation for details.
 >
-> - if all services use the same Redis instance and database (id = 0), services may conflict with one another
-> - the number of databases is limited to [16 by default](https://github.com/redis/redis/blob/aa2403ca98f6a39b6acd8373f8de1a7ba75162d5/redis.conf#L376-L379), which may or may not be enough. With configuration changes, this is solvable.
-> - some services do not support switching the Redis database and always insist on using the default one (id = 0)
-> - Redis [does not support different authentication credentials for its different databases](https://stackoverflow.com/a/37262596), so each service can potentially read and modify other services' data
->
-> If you're only hosting a single service (like [PeerTube](peertube.md) or [NetBox](netbox.md)) on your server, you can get away with running a single instance. If you're hosting multiple services, you should prepare separate instances for each service.
+> If you're only hosting a single service (like [PeerTube](peertube.md) or [NetBox](netbox.md)) on your server, you can get away with running a single instance. If you're hosting multiple services, you should prepare separate ones for each service.
 
 ## Configuration
 
@@ -48,13 +45,13 @@ redis_enabled: true
 ########################################################################
 ```
 
-To **host multiple instances of the Redis service**, follow the [Running multiple instances of the same service on the same host](../running-multiple-instances.md) documentation or the **Redis** section (if available) of the service you're installing.
+To host multiple Redis instances, follow the [Running multiple instances of the same service on the same host](../running-multiple-instances.md) documentation.
 
 ## Usage
 
 After running the command for installation, the Redis instance becomes available.
 
-The purpose of the Redis component in this Ansible playbook is to serve as a dependency for other [services](../supported-services.md). For this use-case, you don't need to do anything special beyond enabling the component per your choice (whether hosting a single instance or multiple ones).
+The purpose of Redis in this playbook is to serve as a dependency for other [services](../supported-services.md). Since this playbook no longer provides setting instructions for Redis but for Valkey, you can refer to these instructions and adjust them for Redis as necessary.
 
 ## Related services
 
