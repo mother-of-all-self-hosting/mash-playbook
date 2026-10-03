@@ -108,9 +108,7 @@ update *flags: _requirements-yml update-playbook-only
 # Updates the playbook without installing/updating Ansible roles
 update-playbook-only:
     @echo "Updating playbook..."
-    @git stash -q
-    @git pull -q
-    @-git stash pop -q
+    @git pull -q --ff-only
 
 # Invokes mise with the project-local data directory
 mise *args: _ensure_mise_data_directory
