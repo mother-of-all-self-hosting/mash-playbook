@@ -1,3 +1,13 @@
+# 2026-10-03
+
+## The playbook's container image is no longer published
+
+This only affects you if you run the playbook using the `ghcr.io/mother-of-all-self-hosting/mash-playbook` container image.
+
+This image bundled the playbook and its roles, but was never part of the documented ways of running the playbook. Its build, which fetched every role from many separate git hosts, failed regularly because of temporary network errors. We have stopped building it, and the existing image will no longer receive updates.
+
+If you used it, clone the playbook and run it with your own Ansible, or with the [`ghcr.io/devture/ansible`](https://github.com/devture/docker-ansible/pkgs/container/ansible) container image as described in [Using Ansible via Docker](docs/ansible.md#using-ansible-via-docker).
+
 # 2026-09-27
 
 ## Jellyfin 12 requires preparation before upgrading
