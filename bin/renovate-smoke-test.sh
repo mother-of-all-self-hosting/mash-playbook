@@ -52,13 +52,18 @@ if ! jq --slurp --exit-status '
     and any(.[];
         .msg == "Dependency extraction complete"
         and (.stats.managers as $managers
-            | all(["ansible-galaxy", "dockerfile", "github-actions", "mise", "pre-commit", "regex"][];
+            | all(["ansible-galaxy", "github-actions", "mise", "pre-commit", "regex"][];
                 $managers[.].depCount > 0))
     )
     and any(.[];
         .msg == "Extracted dependencies"
         and any(.packageFiles.regex[]?.deps[]?;
             .depName == "mash-renovate-runner" and .datasource == "docker")
+    )
+    and any(.[];
+        .msg == "Extracted dependencies"
+        and any(.packageFiles.regex[]?.deps[]?;
+            .depName == "ghcr.io/devture/ansible" and .datasource == "docker")
     )
 ' "$log_file"; then
     echo 'Renovate did not complete dependency extraction successfully' >&2
