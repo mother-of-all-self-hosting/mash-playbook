@@ -9,7 +9,6 @@ version = 1
 path = [
     ".ansible-lint",
     ".codespellrc",
-    ".dockerignore",
     ".editorconfig",
     ".github/renovate.json",
     ".gitignore",
