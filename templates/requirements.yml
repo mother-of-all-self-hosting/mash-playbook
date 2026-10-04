@@ -1049,7 +1049,7 @@
   name: vector
   activation_prefix: vector_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-versatiles.git
-  version: v4.13.0-1
+  version: v4.15.0-0
   name: versatiles
   activation_prefix: versatiles_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-vikunja.git
