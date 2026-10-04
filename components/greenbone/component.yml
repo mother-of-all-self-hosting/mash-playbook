@@ -1,0 +1,9 @@
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+---
+
+activation_prefix: greenbone_
+description: Vulnerability scanner using Greenbone Community Edition.
+
+inject:
