@@ -55,8 +55,8 @@ To enable this service, add the following configuration to your `vars.yml` file 
 
 n8n_enabled: true
 
-n8n_hostname: mash.example.com
-n8n_path_prefix: /n8n
+n8n_hostname: n8n.example.com
+n8n_path_prefix: /
 
 ########################################################################
 #                                                                      #
@@ -64,6 +64,8 @@ n8n_path_prefix: /n8n
 #                                                                      #
 ########################################################################
 ```
+
+n8n requires a dedicated hostname when using Traefik; hosting under a subpath is not supported.
 
 ### Select database to use (optional)
 
@@ -79,7 +81,7 @@ Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-ro
 
 ## Usage
 
-After running the command for installation, the n8n instance becomes available at the URL specified with `n8n_hostname` and `n8n_path_prefix`. With the configuration above, the service is hosted at `https://mash.example.com/n8n`.
+After running the command for installation, the n8n instance becomes available at the URL specified with `n8n_hostname` and `n8n_path_prefix`. With the configuration above, the service is hosted at `https://n8n.example.com/`.
 
 To get started, open the URL with a web browser to create an account.
 
