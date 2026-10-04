@@ -1846,7 +1846,7 @@ mash_playbook_postgres_managed_databases_auto_itemized:
         'name': immich_database_name,
         'username': immich_database_username,
         'password': immich_database_password,
-        'additional_sql_queries': immich_database_preparation_sql_queries,
+        'additional_sql_queries': [('\c ' ~ immich_database_name)] + immich_database_preparation_sql_queries,
       } if immich_enabled and immich_server_enabled and immich_database_hostname == postgres_identifier else omit)
     }}
   # /role-specific:immich
