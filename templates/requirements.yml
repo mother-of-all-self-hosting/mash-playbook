@@ -157,7 +157,7 @@
   name: converse
   activation_prefix: converse_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-convertx.git
-  version: v0.18.0-4
+  version: v0.19.0-0
   name: convertx
   activation_prefix: convertx_
 - src: git+https://iris.radicle.network/z4GaYR5FxcSuYuCKovEo9Zfm3HPXc.git
