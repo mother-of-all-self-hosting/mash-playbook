@@ -54,6 +54,6 @@ repos:
         pass_filenames: false
         language_version: python3
   - repo: https://github.com/renovatebot/pre-commit-hooks
-    rev: 44.132.5
+    rev: 44.133.0
     hooks:
       - id: renovate-config-validator
