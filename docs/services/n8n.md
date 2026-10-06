@@ -56,7 +56,6 @@ To enable this service, add the following configuration to your `vars.yml` file 
 n8n_enabled: true
 
 n8n_hostname: n8n.example.com
-n8n_path_prefix: /
 
 ########################################################################
 #                                                                      #
@@ -65,7 +64,7 @@ n8n_path_prefix: /
 ########################################################################
 ```
 
-n8n requires a dedicated hostname when using Traefik; hosting under a subpath is not supported.
+**Note**: hosting n8n under a subpath (by configuring the `n8n_path_prefix` variable) does not seem to be possible due to n8n's technical limitations.
 
 ### Select database to use (optional)
 
