@@ -69,7 +69,7 @@
   name: backup_borg
   activation_prefix: backup_borg_
 - src: git+https://iris.radicle.network/z3JDUHjeHMqbZ3YLxquSUbCmAJLi.git
-  version: v6.7.0-0
+  version: v6.8.1-0
   name: barassistant
   activation_prefix: barassistant_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-bazarr.git
@@ -129,7 +129,7 @@
   name: cinny
   activation_prefix: cinny_
 - src: git+https://iris.radicle.network/z2kX5GbCKBFjiunvLKThDXLzbYnw1.git
-  version: v6.18.0-0
+  version: v6.18.1-0
   name: civicrm
   activation_prefix: civicrm_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-cleanup.git
@@ -269,7 +269,7 @@
   name: fail2ban
   activation_prefix: system_security_fail2ban_
 - src: git+https://iris.radicle.network/z2H8vYeXaYHLzV3jXH1YjVwhuzTsk.git
-  version: v4.0.5-0
+  version: v4.0.6-0
   name: farmos
   activation_prefix: farmos_
 - src: git+https://iris.radicle.network/zmszzm7ynZe8nt5ZwaLctssyJcNm.git
@@ -421,7 +421,7 @@
   name: influxdb
   activation_prefix: influxdb_
 - src: git+https://iris.radicle.network/zA2EcZYaHBzoc3XudvDhVDBjT42a.git
-  version: v4.12.0-0
+  version: v4.12.1-0
   name: inspircd
   activation_prefix: inspircd_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-jackett.git
@@ -489,7 +489,7 @@
   name: linkding
   activation_prefix: linkding_
 - src: git+https://iris.radicle.network/zQxCS4UUiKpEWtG4RLzjqgA2gYmz.git
-  version: v2.16.2-0
+  version: v2.16.3-0
   name: linkwarden
   activation_prefix: linkwarden_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-listmonk.git
@@ -517,7 +517,7 @@
   name: mailcrab
   activation_prefix: mailcrab_
 - src: git+https://iris.radicle.network/z3BKJz8wwtQHfXm8MPX81h4izT2QS.git
-  version: v1.31.1-0
+  version: v1.31.4-0
   name: mailpit
   activation_prefix: mailpit_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-mariadb.git
@@ -533,7 +533,7 @@
   name: matterbridge
   activation_prefix: matterbridge_
 - src: git+https://iris.radicle.network/zGHUEPjboBuF8AWo3HKxEraEuHFq.git
-  version: v1.1.6-1
+  version: v1.1.7-0
   name: mazanoke
   activation_prefix: mazanoke_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-mediawiki.git
@@ -641,7 +641,7 @@
   name: nocdnbs
   activation_prefix: nocdnbs_
 - src: git+https://iris.radicle.network/z2K9dPANyrXJY7juE9XecXyernA6h.git
-  version: v4.15.1-0
+  version: v4.16.2-0
   name: nodebb
   activation_prefix: nodebb_
 - src: git+https://iris.radicle.network/z3g4bZnzZJis1DEKVzR3pPsyUzicT.git
@@ -689,7 +689,7 @@
   name: origamivault
   activation_prefix: origamivault_
 - src: git+https://iris.radicle.network/z3cspgyZXPNcnzNXCYKsEGJK7dKKA.git
-  version: v1.21.9-0
+  version: v1.22.0-0
   name: ots
   activation_prefix: ots_
 - src: git+https://iris.radicle.network/zvzJe15VMBkGd2CMBctvpVZgmQG5.git
@@ -909,7 +909,7 @@
   name: sftpgo
   activation_prefix: sftpgo_
 - src: git+https://iris.radicle.network/z3PxyXm3EXE4xCNKcaKVKmtdjVNog.git
-  version: v2.10.0-0
+  version: v2.11.1-0
   name: silverbullet
   activation_prefix: silverbullet_
 - src: git+https://iris.radicle.network/zXf3qnvPwC2UsBpfTYmPesL5KSZc.git
@@ -993,7 +993,7 @@
   name: telegraf
   activation_prefix: telegraf_
 - src: git+https://iris.radicle.network/z4TiZiqkm6MBmkPL2NTPMavni6LV.git
-  version: v2.7.1-0
+  version: v2.8.0-0
   name: termix
   activation_prefix: termix_
 - src: git+https://iris.radicle.network/z3vaa8VAuz3pxqB3FyciNKQRSHqyt.git
@@ -1061,7 +1061,7 @@
   name: wazuh
   activation_prefix: wazuh_
 - src: git+https://iris.radicle.network/z3NoFEkNtQQjSGjLvweqwCFPbC59R.git
-  version: v2026.8.1.0-0
+  version: v2026.9.1.2-0
   name: weblate
   activation_prefix: weblate_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-wetty.git
