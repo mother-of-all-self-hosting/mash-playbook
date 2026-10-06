@@ -2491,9 +2491,6 @@ container_socket_proxy_gid: "{{ mash_playbook_gid }}"
 # Socket proxy permissions (`container_socket_proxy_write_access_enabled` and `container_socket_proxy_api_*_enabled`)
 # required by services using the socket proxy. Each item is a list of permission names (e.g. `images`, `write_access`).
 mash_playbook_container_socket_proxy_permissions_auto_itemized:
-  # Traefik requires read access to the containers APIs to do its job
-  - ['containers']
-
   # role-specific:headplane
   # Headplane's Docker integration requires write access to restart the Headscale container
   - "{{ ['containers', 'write_access'] if headplane_enabled and headplane_config_integration_docker_enabled and headplane_config_integration_docker_endpoint == container_socket_proxy_endpoint else [] }}"
@@ -2510,6 +2507,11 @@ mash_playbook_container_socket_proxy_permissions_auto_itemized:
   # Without `system`, the socket proxy returns a 403 error.
   - "{{ ['write_access', 'build', 'containers', 'images', 'network', 'volumes', 'system'] if prunemate_enabled and prunemate_docker_endpoint == container_socket_proxy_endpoint else [] }}"
   # /role-specific:prunemate
+
+  # role-specific:traefik
+  # Traefik requires read access to the containers APIs to work
+  - ['containers']
+  # /role-specific:traefik
 
   # role-specific:tsdproxy
   # TSDProxy requires access to the Docker networks and images to work
