@@ -40,12 +40,6 @@ radicale_enabled: true
 radicale_hostname: mash.example.com
 radicale_path_prefix: /radicale
 
-# Generate each entry with `htpasswd -nb USERNAME PASSWORD`
-# and paste the whole `USERNAME:HASH` line as below.
-radicale_htpasswds:
-  - 'someone:$apr1$Dz1QzvR9$TQj8rP2QfLz7dYkP6Y0K4/'
-  - 'another:$apr1$QfJ1mU7a$gR0d9D0dKfIDm0w3lN4hY0'
-
 ########################################################################
 #                                                                      #
 # /radicale                                                            #
@@ -53,11 +47,15 @@ radicale_htpasswds:
 ########################################################################
 ```
 
+### Configuring HTTP Basic authentication
+
+For Radicale, it is configured to enable the HTTP Basic authentication by default. Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-radicale/blob/main/docs/configuring-radicale.md#configuring-http-basic-authentication) on the role's documentation for details about how to set it up.
+
 ## Usage
 
 After running the command for installation, the Radicale instance becomes available at the URL specified with `radicale_hostname` and `radicale_path_prefix`. With the configuration above, the service is hosted at `https://mash.example.com/radicale`.
 
-You can log in with your credentials (see the `radicale_htpasswds` configuration variable).
+Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-radicale/blob/main/docs/configuring-radicale.md#usage) on the role's documentation for details about usage.
 
 ## Troubleshooting
 
