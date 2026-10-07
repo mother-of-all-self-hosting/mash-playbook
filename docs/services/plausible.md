@@ -26,6 +26,11 @@ Plausible Analytics is intuitive, lightweight and open-source web analytics. No 
 
 See the project's [documentation](https://plausible.io/docs) to learn what Plausible Analytics does and why it might be useful to you.
 
+For details about configuring the [Ansible role for Plausible Analytics](https://github.com/mother-of-all-self-hosting/ansible-role-plausible), you can check them via:
+
+- 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-plausible/blob/main/docs/configuring-plausible.md) online
+- 📁 `roles/galaxy/plausible/docs/configuring-plausible.md` locally, if you have [fetched the Ansible roles](../installing.md)
+
 ## Dependencies
 
 This service requires the following other services:
@@ -50,16 +55,6 @@ plausible_enabled: true
 
 plausible_hostname: plausible.example.com
 
-# Generate this with: `openssl rand -base64 48`
-plausible_environment_variable_secret_key_base: ''
-
-# Generate this with: `openssl rand -base64 32`
-plausible_environment_variable_totp_vault_key: ''
-
-# Controls which user ids will be system admins
-# By default, only the first user (`1`) to be registered will be made an admin.
-# plausible_environment_variable_admin_user_ids: '1,2,3'
-
 ########################################################################
 #                                                                      #
 # /plausible                                                           #
@@ -68,6 +63,18 @@ plausible_environment_variable_totp_vault_key: ''
 ```
 
 **Note**: hosting Plausible Analytics under a subpath (by configuring the `plausible_path_prefix` variable) does not seem to be possible due to Plausible Analytics' technical limitations.
+
+### Set random strings
+
+You also need to set random secure strings. To do so, add the following configuration to your `vars.yml` file:
+
+```yaml
+# Generate this with: `openssl rand -base64 48`
+plausible_environment_variable_secret_key_base: YOUR_SECRET_KEY_HERE
+
+# Generate this with: `openssl rand -base64 32`
+plausible_environment_variable_totp_vault_key: YOUR_SECRET_KEY_FOR_TOTP_VAULT_HERE
+```
 
 ### Configuring the mailer (optional)
 
@@ -81,12 +88,6 @@ To actually have the service use (and get messages sent through the exim-relay s
 ## Usage
 
 After running the command for installation, the Plausible Analytics instance becomes available at the URL specified with `plausible_hostname`. With the configuration above, the service is hosted at `https://plausible.example.com`.
-
-First, create your first user account, which will be created as an admin (see the details about `plausible_environment_variable_admin_user_ids` above).
-
-After logging in with your user account you can create properties (websites) and invite other users by email. By default, the system is configured to allow registrations that are coming from an explicit invitation, while public registrations are disabled. This can be controlled via the `plausible_environment_variable_disable_registration` variable.
-
-For additional configuration options, refer to [ansible-role-plausible](https://github.com/mother-of-all-self-hosting/ansible-role-plausible)'s `defaults/main.yml` file.
 
 ## Related services
 
