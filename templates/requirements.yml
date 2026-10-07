@@ -617,7 +617,7 @@
   name: neko
   activation_prefix: neko_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-netbox.git
-  version: v4.7.0-5.1.1-1
+  version: v4.7.0-5.1.1-2
   name: netbox
   activation_prefix: netbox_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-nextcloud.git
