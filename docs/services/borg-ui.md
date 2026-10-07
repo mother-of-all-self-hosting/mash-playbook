@@ -19,15 +19,15 @@ SPDX-FileCopyrightText: 2024-2026 Suguru Hirahara
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 
-# Borg Web UI
+# Borg UI
 
-The playbook can install and configure [Borg Web UI](https://github.com/karanhudia/borg-ui) for you.
+The playbook can install and configure [Borg UI](https://github.com/karanhudia/borg-ui) for you.
 
-Borg Web UI is an unofficial web interface for [BorgBackup](https://borgbackup.readthedocs.io/).
+Borg UI is an unofficial web interface for [BorgBackup](https://borgbackup.readthedocs.io/).
 
-See the project's [documentation](https://docs.borgui.com/) to learn what Borg Web UI does and why it might be useful to you.
+See the project's [documentation](https://docs.borgui.com/) to learn what Borg UI does and why it might be useful to you.
 
-For details about configuring the [Ansible role for Borg Web UI](https://radicle.network/nodes/iris.radicle.network/rad%3AzxNS7XeayGimb4WFfvqmasiZZC3v), you can check them via:
+For details about configuring the [Ansible role for Borg UI](https://radicle.network/nodes/iris.radicle.network/rad%3AzxNS7XeayGimb4WFfvqmasiZZC3v), you can check them via:
 
 - 🌐 [the role's documentation](https://radicle.network/nodes/iris.radicle.network/rad%3AzxNS7XeayGimb4WFfvqmasiZZC3v/tree/docs/configuring-borg-ui.md) online
 - 📁 `roles/galaxy/borg_ui/docs/configuring-borg-ui.md` locally, if you have [fetched the Ansible roles](../installing.md)
@@ -62,21 +62,21 @@ borg_ui_hostname: borg-ui.example.com
 ########################################################################
 ```
 
-**Note**: hosting Borg Web UI under a subpath (by configuring the `borg_ui_path_prefix` variable) does not seem to be possible due to Borg Web UI's technical limitations.
+**Note**: hosting Borg UI under a subpath (by configuring the `borg_ui_path_prefix` variable) does not seem to be possible due to Borg UI's technical limitations.
 
 ### Configure Valkey (optional)
 
-Valkey can optionally be enabled to improve Borg Web UI's performance on archive browsing. This playbook supports it, and you can set up a Valkey instance by enabling it on `vars.yml`.
+Valkey can optionally be enabled to improve Borg UI's performance on archive browsing. This playbook supports it, and you can set up a Valkey instance by enabling it on `vars.yml`.
 
-If Borg Web UI is the sole service which requires Valkey on your server, it is fine to set up just a single Valkey instance. However, **it is not recommended if there are other services which require it, because sharing the Valkey instance has security concerns and possibly causes data conflicts**, as described on the [documentation for configuring Valkey](valkey.md). In this case, you should install a dedicated Valkey instance for each of them.
+If Borg UI is the sole service which requires Valkey on your server, it is fine to set up just a single Valkey instance. However, **it is not recommended if there are other services which require it, because sharing the Valkey instance has security concerns and possibly causes data conflicts**, as described on the [documentation for configuring Valkey](valkey.md). In this case, you should install a dedicated Valkey instance for each of them.
 
-If you are unsure whether you will install other services along with Borg Web UI or you have already set up services which need Valkey (such as [Nextcloud](nextcloud.md), [PeerTube](peertube.md), and [Funkwhale](funkwhale.md)), it is recommended to install a Valkey instance dedicated to Borg Web UI.
+If you are unsure whether you will install other services along with Borg UI or you have already set up services which need Valkey (such as [Nextcloud](nextcloud.md), [PeerTube](peertube.md), and [Funkwhale](funkwhale.md)), it is recommended to install a Valkey instance dedicated to Borg UI.
 
 *See [below](#setting-up-a-shared-valkey-instance) for an instruction to install a shared instance.*
 
 #### Setting up a dedicated Valkey instance
 
-To create a dedicated instance for Borg Web UI, you can follow the steps below:
+To create a dedicated instance for Borg UI, you can follow the steps below:
 
 1. Adjust the `hosts` file
 2. Create a new `vars.yml` file for the dedicated instance
@@ -86,7 +86,7 @@ To create a dedicated instance for Borg Web UI, you can follow the steps below:
 
 ##### Adjust `hosts`
 
-At first, you need to adjust `inventory/hosts` file to add a supplementary host for Borg Web UI.
+At first, you need to adjust `inventory/hosts` file to add a supplementary host for Borg UI.
 
 The content should be something like below. Make sure to replace `mash.example.com` with your hostname and `YOUR_SERVER_IP_ADDRESS_HERE` with the IP address of the host, respectively. The same IP address should be set to both, unless the Valkey instance will be served from a different machine.
 
@@ -112,7 +112,7 @@ Then, create a new directory where `vars.yml` for the supplementary host is stor
 After creating the directory, add a new `vars.yml` file inside it with a content below. It will have running the playbook create a `mash-borg-ui-valkey` instance on the new host, setting `/mash/borg-ui-valkey` to the base directory of the dedicated Valkey instance.
 
 ```yaml
-# This is vars.yml for the supplementary host of Borg Web UI.
+# This is vars.yml for the supplementary host of Borg UI.
 
 ---
 
@@ -167,14 +167,14 @@ Having configured `vars.yml` for the dedicated instance, add the following confi
 # Set to `false` to enable TCP connection instead
 borg_ui_redis_socket_enabled: true
 
-# Connect Borg Web UI to its dedicated Valkey instance via the Unix domain socket
+# Connect Borg UI to its dedicated Valkey instance via the Unix domain socket
 #
 # Alternatively, if you set `borg_ui_redis_socket_enabled` to `false`,
 # - Add the dedicated Valkey instance (mash-borg-ui-valkey) to `borg_ui_redis_hostname`
 # - Add its network (mash-borg-ui-valkey) to `borg_ui_container_additional_networks_custom`
 borg_ui_redis_socket_path_host: /mash/borg-ui-valkey/run
 
-# Make sure the Borg Web UI service (mash-borg-ui.service) starts after its dedicated Valkey service (mash-borg-ui-valkey.service)
+# Make sure the Borg UI service (mash-borg-ui.service) starts after its dedicated Valkey service (mash-borg-ui-valkey.service)
 borg_ui_systemd_required_services_list_custom:
   - "mash-borg-ui-valkey.service"
 
@@ -189,9 +189,9 @@ Running the installation command will create the dedicated Valkey instance named
 
 #### Setting up a shared Valkey instance
 
-If you host only Borg Web UI on this server, it is fine to set up a single shared Valkey instance.
+If you host only Borg UI on this server, it is fine to set up a single shared Valkey instance.
 
-To install the single instance and hook Borg Web UI to it, add the following configuration to `inventory/host_vars/mash.example.com/vars.yml`:
+To install the single instance and hook Borg UI to it, add the following configuration to `inventory/host_vars/mash.example.com/vars.yml`:
 
 ```yaml
 ########################################################################
@@ -220,14 +220,14 @@ valkey_enabled: true
 # Set to `false` to enable TCP connection instead
 borg_ui_redis_socket_enabled: true
 
-# Connect Borg Web UI to the shared Valkey instance via the Unix domain socket
+# Connect Borg UI to the shared Valkey instance via the Unix domain socket
 #
 # Alternatively, if you set `borg_ui_redis_socket_enabled` to `false`,
 # - Add the shared Valkey instance (mash-valkey) to `borg_ui_redis_hostname`
 # - Add its network (mash-valkey) to `borg_ui_container_additional_networks_custom`
 borg_ui_redis_socket_path_host: "{{ valkey_run_path }}"
 
-# Make sure the Borg Web UI service (mash-borg-ui.service) starts after the shared Valkey service (mash-valkey.service)
+# Make sure the Borg UI service (mash-borg-ui.service) starts after the shared Valkey service (mash-valkey.service)
 borg_ui_systemd_required_services_list_custom:
   - "{{ valkey_identifier }}.service"
 
@@ -242,11 +242,11 @@ Running the installation command will create the shared Valkey instance named `m
 
 ### Integrating with Prometheus (optional)
 
-Borg Web UI can natively expose metrics to [Prometheus](prometheus.md).
+Borg UI can natively expose metrics to [Prometheus](prometheus.md).
 
 #### Expose metrics internally
 
-If Borg Web UI and Prometheus do not share a network (like Traefik), you can connect the Borg Web UI container network to Prometheus by adding the following configuration to your `vars.yml` file:
+If Borg UI and Prometheus do not share a network (like Traefik), you can connect the Borg UI container network to Prometheus by adding the following configuration to your `vars.yml` file:
 
 ```yaml
 prometheus_container_additional_networks_custom:
@@ -255,7 +255,7 @@ prometheus_container_additional_networks_custom:
 
 #### Expose metrics publicly
 
-If Borg Web UI metrics are not scraped from a local Prometheus instance, you can expose the metrics publicly so that a remote instance can fetch them.
+If Borg UI metrics are not scraped from a local Prometheus instance, you can expose the metrics publicly so that a remote instance can fetch them.
 
 When exposing metrics publicly, you should consider to set up [HTTP Basic Authentication](https://developer.mozilla.org/en-US/docs/Web/HTTP/Authentication) **or anyone would be able to read your metrics**.
 
@@ -279,13 +279,13 @@ borg_ui_container_labels_traefik_metrics_middleware_basic_auth_users: ""
 
 ## Installation
 
-If you have decided to install the dedicated Valkey instance for Borg Web UI, make sure to run the [installing](../installing.md) command for the supplementary host (`mash.example.com-borg-ui-deps`) first, before running it for the main host (`mash.example.com`).
+If you have decided to install the dedicated Valkey instance for Borg UI, make sure to run the [installing](../installing.md) command for the supplementary host (`mash.example.com-borg-ui-deps`) first, before running it for the main host (`mash.example.com`).
 
 Note that running the `just` commands for installation (`just install-all` or `just setup-all`) automatically takes care of the order. See [here](../running-multiple-instances.md#1-adjust-hosts) for more details about it.
 
 ## Usage
 
-After running the command for installation, the Borg Web UI instance becomes available at the URL specified with `borg_ui_hostname`. With the configuration above, the service is hosted at `https://borg-ui.example.com`.
+After running the command for installation, the Borg UI instance becomes available at the URL specified with `borg_ui_hostname`. With the configuration above, the service is hosted at `https://borg-ui.example.com`.
 
 To get started, open the URL with a web browser to log in to the instance.
 
@@ -306,9 +306,9 @@ borg_ui_container_additional_volumes_custom:
 
 ### Configuring notification services (optional)
 
-On Borg Web UI you can add configuration settings of notification services. If you enable [Apprise API](apprise.md) in your inventory configuration, the playbook will automatically connect it to the Borg Web UI service.
+On Borg UI you can add configuration settings of notification services. If you enable [Apprise API](apprise.md) in your inventory configuration, the playbook will automatically connect it to the Borg UI service.
 
-As the Borg Web UI instance does not support configuring the notification services with environment variables, you can add default options for them on its UI. Refer to [this page](https://docs.borgui.com/notifications.html) on the official documentation as well about how to configure them.
+As the Borg UI instance does not support configuring the notification services with environment variables, you can add default options for them on its UI. Refer to [this page](https://docs.borgui.com/notifications.html) on the official documentation as well about how to configure them.
 
 ## Troubleshooting
 

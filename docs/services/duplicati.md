@@ -138,5 +138,5 @@ Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-ro
 ## Related services
 
 - [BorgBackup](backup-borg.md) — Deduplicating backup program with optional compression and encryption
-- [Borg Web UI](borg-ui.md) — Unofficial web interface for BorgBackup
+- [Borg UI](borg-ui.md) — Unofficial web interface for BorgBackup
 - [Rest Server](restserver.md) — HTTP server that implements restic's REST backend API to backup data remotely
