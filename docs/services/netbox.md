@@ -13,6 +13,11 @@ NetBox is an open-source web application that provides [IP address management (I
 
 See the project's [documentation](https://docs.netbox.dev/en/stable/) to learn what NetBox does and why it might be useful to you.
 
+For details about configuring the [Ansible role for NetBox](https://github.com/mother-of-all-self-hosting/ansible-role-netbox), you can check them via:
+
+- 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-netbox/blob/main/docs/configuring-netbox.md) online
+- 📁 `roles/galaxy/netbox/docs/configuring-netbox.md` locally, if you have [fetched the Ansible roles](../installing.md)
+
 ## Dependencies
 
 This service requires the following other services:
@@ -36,9 +41,6 @@ netbox_enabled: true
 
 netbox_hostname: mash.example.com
 netbox_path_prefix: /netbox
-
-# Put a strong secret below, generated with `pwgen -s 64 1` or in another way
-netbox_environment_variable_secret_key: ''
 
 ########################################################################
 #                                                                      #
@@ -217,75 +219,6 @@ netbox_systemd_required_services_list_custom:
 
 Running the installation command will create the shared Valkey instance named `mash-valkey`.
 
-### Authentication
-
-You can create the "superuser" (if missing) for NetBox upon launch by adding the following configuration to `vars.yml`:
-
-```yaml
-netbox_environment_variable_superuser_name: your_username_here
-netbox_environment_variable_superuser_email: your.email@example.com
-
-# Put a strong secret below, generated with `pwgen -s 64 1` or in another way.
-# Changing the password subsequently will not affect the user's password.
-netbox_environment_variable_superuser_password: ''
-```
-
-Single-Sign-On is also supported. See below for details.
-
-### Single-Sign-On (SSO) integration
-
-NetBox supports different [Remote Authentication](https://docs.netbox.dev/en/stable/configuration/remote-authentication/) backends, including those provided by the [Python Social Auth](https://python-social-auth.readthedocs.io/) library. This library is included in the NetBox container image by default, so you can invoke any [backend](https://github.com/python-social-auth/social-core/tree/master/social_core/backends) provided by it.
-
-Each module's Python file contains detailed information about how to configure it. It should be noted that module-specific configuration is passed as Python configuration (via `netbox_configuration_extra_python`), and **not as environment variables**.
-
-We have detailed information about integrating with [Keycloak](keycloak.md) below. You can use the configuration in the [Keycloak section](#keycloak) as a template for configuring other backends.
-
-#### Keycloak
-
-To integrate with [Keycloak](keycloak.md) use the following **additional** configuration:
-
-```yaml
-netbox_environment_variables_additional_variables: |
-  REMOTE_AUTH_ENABLED=True
-  REMOTE_AUTH_BACKEND=social_core.backends.keycloak.KeycloakOAuth2
-
-  # Space-separated names of groups that new users will be assigned to.
-  # These groups must be created manually (from the Admin panel's Groups section) before use.
-  REMOTE_AUTH_DEFAULT_GROUPS=
-
-netbox_configuration_extra_python: |
-  # These need to match your Client app information in Keycloak. See below
-  SOCIAL_AUTH_KEYCLOAK_KEY = ''
-  SOCIAL_AUTH_KEYCLOAK_SECRET = ''
-
-  # The value for this is retrieved from Keycloak -> Realm Settings -> Keys tab -> Public key button for RS256
-  SOCIAL_AUTH_KEYCLOAK_PUBLIC_KEY = ''
-
-  # The value for these are retrieved from Keycloak -> Realm Settings -> General tab -> OpenID Endpoint Configuration button
-  SOCIAL_AUTH_KEYCLOAK_AUTHORIZATION_URL = 'https://KEYCLOAK_URL/realms/REALM_IDENTIFIER/protocol/openid-connect/auth'
-  SOCIAL_AUTH_KEYCLOAK_ACCESS_TOKEN_URL = 'https://KEYCLOAK_URL/realms/REALM_IDENTIFIER/protocol/openid-connect/token'
-
-# If Keycloak is running on the same server, uncomment the lines below
-# and replace HOSTNAME with the hostname of the Keycloak server (e.g. mash.example.com or keycloak.example.com).
-# netbox_container_extra_arguments:
-#  - --add-host=HOSTNAME:{{ ansible_host }}
-```
-
-The Client app needs to be created and configured in a special way on the Keycloak side by:
-
-- activating **Client authentication**
-- **Valid redirect URIs**: `https://NETBOX_URL/oauth/complete/keycloak/`
-- **Web origins**: `https://NETBOX_URL/`
-- in **Advanced**, changing the following settings:
-  - **Request object signature algorithm** = `RS256`
-  - **User info signed response algorithm** = `RS256`
-- in **Client scopes** (for this Client app via the **Client scopes** tab, not for all apps via the left-most menu), configure the `*-dedicated` scope (e.g. `netbox-dedicated` if you named your Client app `netbox`) and in the **Mappers** tab, click **Configure a new mapper** add a new **Audience** mapper with the following settings:
-  - **Name** = anything you like (e.g. `netbox-audience`)
-  - **Included Client Audience** = the key of this Client app (e.g. `netbox`)
-  - **Add to access token** = On
-
-For additional environment variables controlling groups and permissions for new users (like `REMOTE_AUTH_DEFAULT_GROUPS`), see the NetBox documentation for [Remote Authentication](https://docs.netbox.dev/en/stable/configuration/remote-authentication/).
-
 ## Installation
 
 If you have decided to install the dedicated Valkey instance for Netbox, make sure to run the [installing](../installing.md) command for the supplementary host (`mash.example.com-netbox-deps`) first, before running it for the main host (`mash.example.com`).
@@ -295,5 +228,3 @@ Note that running the `just` commands for installation (`just install-all` or `j
 ## Usage
 
 After running the command for installation, the Netbox instance becomes available at the URL specified with `netbox_hostname` and `netbox_path_prefix`. With the configuration above, the service is hosted at `https://mash.example.com/netbox`.
-
-You can log in with the **username** (**not** email) and password specified in the `netbox_environment_variable_superuser*` variables.
