@@ -170,9 +170,9 @@
     - role: galaxy/bentopdf
     # /role-specific:bentopdf
 
-    # role-specific:beszel
-    - role: galaxy/beszel
-    # /role-specific:beszel
+    # role-specific:beszel_hub
+    - role: galaxy/beszel_hub
+    # /role-specific:beszel_hub
 
     # role-specific:bichon
     - role: galaxy/bichon
