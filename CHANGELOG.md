@@ -1,3 +1,11 @@
+# 2026-10-08
+
+## (Backward Compatibility Break) TSDProxy upgraded to v2
+
+This only affects you if you have [TSDProxy](docs/services/tsdproxy.md) enabled.
+
+TSDProxy v2 changes its configuration format. The role reports renamed variables and v1 keys in custom configuration, but proxy list files have to be migrated by hand. See the [role's upgrade notes](https://github.com/Bergruebe/ansible-role-tsdproxy/blob/main/README.md#upgrading-from-tsdproxy-v1) and the [upstream upgrade guide](https://almeidapaulopt.github.io/tsdproxy/docs/upgrading/from-v1/).
+
 # 2026-10-03
 
 ## The playbook's container image is no longer published
