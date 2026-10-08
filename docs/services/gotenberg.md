@@ -13,7 +13,7 @@ The playbook can install and configure [Gotenberg](https://gotenberg.dev/) for y
 
 Gotenberg is a Docker-based API for converting documents to PDF.
 
-The [Ansible role for Gotenberg](https://github.com/mother-of-all-self-hosting/ansible-role-gotenberg) is developed and maintained by the MASH project. For details about configuring Gotenberg, you can check them via:
+For details about configuring the [Ansible role for Gotenberg](https://github.com/mother-of-all-self-hosting/ansible-role-gotenberg), you can check them via:
 
 - 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-gotenberg/blob/main/docs/configuring-gotenberg.md) online
 - 📁 `roles/galaxy/gotenberg/docs/configuring-gotenberg.md` locally, if you have [fetched the Ansible roles](../installing.md)

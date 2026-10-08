@@ -31,7 +31,7 @@ See the project's [documentation](https://forgejo.org/docs/latest/admin/actions/
 > [!WARNING]
 > The projects' documentation does **not recommend** running Forgejo Runner on the same machine as the Forgejo instance for security reasons.
 
-The [Ansible role for Forgejo Runner](https://github.com/mother-of-all-self-hosting/ansible-role-forgejo-runner) is developed and maintained by the MASH project. For details about configuring Forgejo Runner, you can check them via:
+For details about configuring the [Ansible role for Forgejo Runner](https://github.com/mother-of-all-self-hosting/ansible-role-forgejo-runner), you can check them via:
 
 - 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-forgejo-runner/blob/main/docs/configuring-forgejo-runner.md) online
 - 📁 `roles/galaxy/forgejo_runner/docs/configuring-forgejo-runner.md` locally, if you have [fetched the Ansible roles](../installing.md)

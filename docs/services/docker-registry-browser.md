@@ -13,7 +13,7 @@ Docker Registry Browser is a web interface for the Docker Registry HTTP API V2, 
 
 See the project's [documentation](https://github.com/klausmeyer/docker-registry-browser/blob/master/README.md) to learn what Docker Registry Browser does and why it might be useful to you.
 
-The [Ansible role for Docker Registry Browser](https://github.com/mother-of-all-self-hosting/ansible-role-docker-registry-browser) is developed and maintained by the MASH project. For details about configuring Docker Registry Browser, you can check them via:
+For details about configuring the [Ansible role for Docker Registry Browser](https://github.com/mother-of-all-self-hosting/ansible-role-docker-registry-browser), you can check them via:
 
 - 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-docker-registry-browser/blob/main/docs/configuring-docker-registry-browser.md) online
 - 📁 `roles/galaxy/docker_registry_browser/docs/configuring-docker-registry-browser.md` locally, if you have [fetched the Ansible roles](../installing.md)

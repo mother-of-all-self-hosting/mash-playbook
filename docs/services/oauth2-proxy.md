@@ -13,7 +13,7 @@ OAuth2-Proxy is a reverse proxy and static file server that provides authenticat
 
 See the project's [documentation](https://oauth2-proxy.github.io/oauth2-proxy/) to learn what OAuth2-Proxy does and why it might be useful to you.
 
-The [Ansible role for OAuth2-Proxy](https://github.com/mother-of-all-self-hosting/ansible-role-oauth2-proxy) is developed and maintained by the MASH project. For details about configuring OAuth2-Proxy, you can check them via:
+For details about configuring the [Ansible role for OAuth2-Proxy](https://github.com/mother-of-all-self-hosting/ansible-role-oauth2-proxy), you can check them via:
 
 - 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-oauth2-proxy/blob/main/docs/configuring-oauth2-proxy.md) online
 - 📁 `roles/galaxy/oauth2_proxy/docs/configuring-oauth2-proxy.md` locally, if you have [fetched the Ansible roles](../installing.md)

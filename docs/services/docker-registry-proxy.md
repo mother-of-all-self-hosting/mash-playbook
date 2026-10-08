@@ -13,7 +13,7 @@ Docker Registry Proxy is a pass-through Docker registry (distribution) proxy wit
 
 See the project's [documentation](https://github.com/etkecc/docker-registry-proxy/blob/main/README.md) to learn what Docker Registry Proxy does and why it might be useful to you.
 
-The [Ansible role for Docker Registry Proxy](https://github.com/mother-of-all-self-hosting/ansible-role-docker-registry-proxy) is developed and maintained by the MASH project. For details about configuring Docker Registry Proxy, you can check them via:
+For details about configuring the [Ansible role for Docker Registry Proxy](https://github.com/mother-of-all-self-hosting/ansible-role-docker-registry-proxy), you can check them via:
 
 - 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-docker-registry-proxy/blob/main/docs/configuring-docker-registry-proxy.md) online
 - 📁 `roles/galaxy/docker_registry_proxy/docs/configuring-docker-registry-proxy.md` locally, if you have [fetched the Ansible roles](../installing.md)

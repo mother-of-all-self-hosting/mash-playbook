@@ -13,7 +13,7 @@ Docker Registry Purger is a small tool used for purging a private Docker registr
 
 See the project's [documentation](https://github.com/devture/docker-registry-purger/blob/main/README.md) to learn what Docker Registry Purger does and why it might be useful to you.
 
-The [Ansible role for Docker Registry Purger](https://github.com/mother-of-all-self-hosting/ansible-role-docker-registry-purger) is developed and maintained by the MASH project. For details about configuring Docker Registry Purger, you can check them via:
+For details about configuring the [Ansible role for Docker Registry Purger](https://github.com/mother-of-all-self-hosting/ansible-role-docker-registry-purger), you can check them via:
 
 - 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-docker-registry-purger/blob/main/docs/configuring-docker-registry-purger.md) online
 - 📁 `roles/galaxy/docker_registry_purger/docs/configuring-docker-registry-purger.md` locally, if you have [fetched the Ansible roles](../installing.md)
