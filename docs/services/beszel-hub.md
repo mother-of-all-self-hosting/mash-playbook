@@ -115,10 +115,6 @@ See [this section](https://github.com/Bergruebe/ansible-role-beszel-hub/blob/mai
 
 To monitor the server on which the hub runs, you can install an agent on it and have the hub connect to it via a Unix socket. See [this section](https://github.com/Bergruebe/ansible-role-beszel-hub/blob/main/docs/configuring-beszel-hub.md#connect-a-local-agent-via-unix-socket-optional) on the role's documentation for details.
 
-### A note on container hardening
-
-The hub container runs as the `mash` user with all capabilities dropped and a read-only root filesystem. Only its data directory, the optional agent socket directory, and a `tmpfs` mount at `/tmp` are writable.
-
 ## Troubleshooting
 
 See [this section](https://github.com/Bergruebe/ansible-role-beszel-hub/blob/main/docs/configuring-beszel-hub.md#troubleshooting) on the role's documentation for details.
