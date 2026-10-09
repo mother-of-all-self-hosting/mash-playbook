@@ -62,6 +62,10 @@ vaultwarden_path_prefix: /vaultwarden-secret-custom-prefix
 ########################################################################
 ```
 
+### Select database to use (optional)
+
+By default Vaultwarden is configured to use Postgres, but you can choose other database such as SQLite and MySQL (MariaDB). Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-vaultwarden/blob/main/docs/configuring-vaultwarden.md#specify-database-optional) on the role's documentation for details.
+
 ### Configuring the mailer (optional)
 
 On Vaultwarden you can set up a mailer for functions such as password recovery. If you enable the [exim-relay](exim-relay.md) service in your inventory configuration, the playbook will automatically configure it as a mailer for the service.
