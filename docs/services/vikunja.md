@@ -65,9 +65,9 @@ vikunja_hostname: vikunja.example.com
 
 **Note**: hosting Vikunja under a subpath (by configuring the `vikunja_path_prefix` variable) does not seem to be possible due to Vikunja's technical limitations.
 
-### Select database to use (optional)
+### Select database to use
 
-By default Vikunja is configured to use [Postgres](postgres.md) (if enabled), but you can choose other databases such as MySQL (MariaDB) and SQLite. If Postgres is not enabled, SQLite will be used. Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-vikunja/blob/main/docs/configuring-vikunja.md#specify-database-optional) on the role's documentation for details.
+It is necessary to select a database used by Vikunja from a MySQL compatible database, Postgres, and SQLite. Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-vikunja/blob/main/docs/configuring-vikunja.md#specify-database) on the role's documentation for details.
 
 ### Configuring the mailer (optional)
 
