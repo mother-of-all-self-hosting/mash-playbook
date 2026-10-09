@@ -76,9 +76,7 @@ By default, GoToSocial uses `gotosocial_hostname` that you provide for the serve
 
 ### Select database to use (optional)
 
-By default GoToSocial is configured to use Postgres, but you can choose SQLite.
-
-Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-gotosocial/blob/main/docs/configuring-gotosocial.md#specify-database-optional) on the role's documentation for details.
+By default GoToSocial is configured to use Postgres, but you can choose SQLite. Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-gotosocial/blob/main/docs/configuring-gotosocial.md#specify-database-optional) on the role's documentation for details.
 
 ### Configuring the mailer (optional)
 

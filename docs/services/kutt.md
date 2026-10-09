@@ -66,7 +66,7 @@ kutt_hostname: kutt.example.com
 
 ### Select database to use (optional)
 
-By default Kutt is configured to use [Postgres](postgres.md) (if enabled), but you can choose other databases such as MySQL (MariaDB) and SQLite. If Postgres is not enabled, SQLite will be used. Refer to [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az36dPzLyvPA52m845g1MMqHgoiaEz/tree/docs/configuring-kutt.md#specify-database-optional) on the role's documentation for details.
+By default Kutt is configured to use Postgres, but you can choose other database such as SQLite and MySQL (MariaDB). Refer to [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az36dPzLyvPA52m845g1MMqHgoiaEz/tree/docs/configuring-kutt.md#specify-database-optional) on the role's documentation for details.
 
 ### Configuring the mailer (optional)
 

@@ -70,7 +70,7 @@ sftpgo_hostname: sftpgo.example.com
 
 ### Select database to use (optional)
 
-By default SFTPGo is configured to use Postgres, but you can choose other database such as SQLite, MySQL (MariaDB), and CockroachDB.
+By default SFTPGo is configured to use Postgres, but you can choose other database such as SQLite, MySQL (MariaDB), and CockroachDB. Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-sftpgo/blob/main/docs/configuring-sftpgo.md#specify-data-driver-optional) on the role's documentation for details.
 
 Please note that it is necessary to add environment variables to `sftpgo_environment_variables_additional_variables` manually for database other than Postgres and MySQL (MariaDB). Refer to [this section](https://docs.sftpgo.com/latest/config-file/#data-provider) on the official documentation for options to be configured.
 

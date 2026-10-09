@@ -65,15 +65,7 @@ ihatemoney_path_prefix: /ihatemoney
 
 ### Select database to use (optional)
 
-By default I hate money is configured to use Postgres, but you can choose other database such as SQLite and MySQL (MariaDB).
-
-To use MariaDB, add the following configuration to your `vars.yml` file:
-
-```yaml
-ihatemoney_database_type: mysql
-```
-
-Refer to [this section](https://github.com/IUCCA/ansible-role-ihatemoney/blob/main/docs/configuring-ihatemoney.md#specify-database-optional) on the role's documentation for details.
+By default I hate money is configured to use Postgres, but you can choose other database such as SQLite and MySQL (MariaDB). Refer to [this section](https://github.com/IUCCA/ansible-role-ihatemoney/blob/main/docs/configuring-ihatemoney.md#specify-database-optional) on the role's documentation for details.
 
 ### Configuring the mailer (optional)
 

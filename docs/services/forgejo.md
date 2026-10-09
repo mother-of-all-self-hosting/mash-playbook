@@ -68,15 +68,7 @@ forgejo_path_prefix: /forgejo
 
 ### Select database to use (optional)
 
-By default Forgejo is configured to use Postgres, but you can choose other database such as SQLite and MySQL (MariaDB).
-
-To use MariaDB, add the following configuration to your `vars.yml` file:
-
-```yaml
-forgejo_database_type: mysql
-```
-
-Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-forgejo/blob/main/docs/configuring-forgejo.md#specify-database-optional) on the role's documentation for details.
+By default Forgejo is configured to use Postgres, but you can choose other database such as SQLite and MySQL (MariaDB). Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-forgejo/blob/main/docs/configuring-forgejo.md#specify-database-optional) on the role's documentation for details.
 
 ### Configure SSH port for Forgejo (optional)
 
