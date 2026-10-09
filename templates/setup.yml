@@ -56,10 +56,6 @@
     # system
     # see /docs/services/system.md
 
-    # role-specific:cleanup
-    - role: galaxy/cleanup
-    # /role-specific:cleanup
-
     # role-specific:fail2ban
     - when: system_security_fail2ban_enabled | bool
       role: galaxy/fail2ban
@@ -1141,6 +1137,13 @@
     - when: devture_systemd_service_manager_enabled | bool
       role: galaxy/systemd_service_manager
     # /role-specific:systemd_service_manager
+
+    # role-specific:cleanup
+    # This role needs to run after the services have been (re)started.
+    # By then, every image the services need has been pulled and is in use by a running container,
+    # so the Docker cleanup can tell which images are still needed and which have been superseded.
+    - role: galaxy/cleanup
+    # /role-specific:cleanup
 
     # role-specific:playbook_state_preserver
     # This is pretty much last, because we want it to better serve as a "last known good configuration".
