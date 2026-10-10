@@ -7359,7 +7359,7 @@ grafana_gid: "{{ mash_playbook_gid }}"
 
 grafana_systemd_wanted_services_list_auto: |
   {{
-    ([exim_relay_identifier ~ '.service'] if exim_relay_enabled | default(false) and grafana_mailer_smtp_enabled | default(false) and grafana_smtp_host == exim_relay_identifier else [])
+    ([exim_relay_identifier ~ '.service'] if exim_relay_enabled | default(false) and grafana_mailer_enabled | default(false) and grafana_config_smtp_host == exim_relay_identifier else [])
     +
     ([loki_identifier ~ '.service'] if loki_enabled | default(false) else [])
     +
@@ -7372,7 +7372,7 @@ grafana_systemd_wanted_services_list_auto: |
 
 grafana_container_additional_networks_auto: |
   {{
-    ([exim_relay_container_network] if exim_relay_enabled | default(false) and grafana_mailer_smtp_enabled | default(false) and grafana_smtp_host == exim_relay_identifier and grafana_container_network != exim_relay_container_network else [])
+    ([exim_relay_container_network] if exim_relay_enabled | default(false) and grafana_mailer_enabled | default(false) and grafana_config_smtp_host == exim_relay_identifier and grafana_container_network != exim_relay_container_network else [])
     +
     ([loki_container_network] if loki_enabled | default(false) and grafana_container_network != loki_container_network else [])
     +
@@ -7389,10 +7389,10 @@ grafana_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabl
 grafana_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
 
 # role-specific:exim_relay
-grafana_mailer_smtp_enabled: "{{ exim_relay_enabled | default(false) }}"
-grafana_smtp_host: "{{ exim_relay_identifier if exim_relay_enabled else '' }}"
-grafana_smtp_port: 8025
-grafana_smtp_from_address: "{{ exim_relay_sender_address if exim_relay_enabled else '' }}"
+grafana_mailer_enabled: "{{ exim_relay_enabled | default(false) }}"
+grafana_config_smtp_host: "{{ exim_relay_identifier if exim_relay_enabled else '' }}"
+grafana_config_smtp_port: 8025
+grafana_config_smtp_from_address: "{{ exim_relay_sender_address if exim_relay_enabled else '' }}"
 # /role-specific:exim_relay
 
 # role-specific:traefik
