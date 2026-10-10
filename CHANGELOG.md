@@ -1,3 +1,17 @@
+# 2026-10-10
+
+## (Backward Compatibility Break) Safer Docker cleanup, and no more journald vacuuming by default
+
+This only affects you if you use the [cleanup](docs/services/system.md#cleanup) role (any `system_cleanup_*` variable in your `vars.yml`).
+
+The role has been upgraded to v2:
+
+- **`system_cleanup_docker`** no longer runs `docker image prune -a` and `docker volume prune`. It now removes stopped containers and only those unused images which a newer image of the same repository superseded at least 3 days ago. Unused images without a newer version (of stopped services, timer-only containers, locally built images) are kept, and anonymous volumes are left alone unless you enable `system_cleanup_docker_config_remove_anonymous_volumes`. To remove superseded images right away, set `system_cleanup_docker_config_superseded_images_grace_period_days: 0`. The cleanup now lives in a script (`/mash/system-cleanup/bin/cleanup-docker`), which you can also run by hand (`--dry-run` shows what it would remove) or on a schedule (`system_cleanup_docker_timer_enabled: true`).
+- **The journald vacuum timer** (`journalctl --vacuum-time=7d`) was installed on every host, whatever `system_cleanup_logs` said. It now follows `system_cleanup_logs`, which defaults to `false`, so the timer gets removed. journald already limits the space logs take up on its own. To keep the timer, set `system_cleanup_logs: true`.
+- **`purge-old-kernels`** (`system_cleanup_kernels`) moved from `/usr/local/bin` to `/mash/system-cleanup/bin`.
+
+See the role's [upgrade notes](https://github.com/mother-of-all-self-hosting/ansible-role-cleanup#upgrading-to-v2) for details.
+
 # 2026-10-03
 
 ## The playbook's container image is no longer published

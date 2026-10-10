@@ -76,6 +76,26 @@ system_swap_enabled: false
 
 
 
+# role-specific:cleanup
+########################################################################
+#                                                                      #
+# cleanup                                                              #
+#                                                                      #
+########################################################################
+
+system_cleanup_identifier: "{{ mash_playbook_service_identifier_prefix }}system-cleanup"
+
+system_cleanup_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}system-cleanup"
+
+########################################################################
+#                                                                      #
+# /cleanup                                                             #
+#                                                                      #
+########################################################################
+# /role-specific:cleanup
+
+
+
 # role-specific:systemd_service_manager
 ########################################################################
 #                                                                      #

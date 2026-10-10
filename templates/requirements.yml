@@ -133,7 +133,7 @@
   name: civicrm
   activation_prefix: civicrm_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-cleanup.git
-  version: v1.0.0-2
+  version: v2.0.0-0
   name: cleanup
   activation_prefix: system_cleanup_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-clickhouse.git
