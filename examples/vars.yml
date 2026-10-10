@@ -80,6 +80,23 @@ devture_timesync_installation_enabled: true
 
 ########################################################################
 #                                                                      #
+# system                                                               #
+#                                                                      #
+########################################################################
+
+# Removes stopped containers and Docker images superseded by a newer version (on runs with the `start` tag),
+# so that old images don't fill up the disk over time.
+# Learn more in docs/services/system.md
+system_cleanup_docker: true
+
+########################################################################
+#                                                                      #
+# /system                                                              #
+#                                                                      #
+########################################################################
+
+########################################################################
+#                                                                      #
 # traefik                                                              #
 #                                                                      #
 ########################################################################
