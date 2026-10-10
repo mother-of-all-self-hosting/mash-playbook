@@ -60,7 +60,7 @@ couchdb_enabled: true
 
 ### Set administrator's account details
 
-You also need to specify a server administrator's login credential. Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-couchdb/blob/main/docs/configuring-couchdb.md#specify-server-administrators-username-and-password) on the role's documentation for details.
+You also need to specify a server administrator's login credential. Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-couchdb/blob/main/docs/configuring-couchdb.md#set-administrators-account-details) on the role's documentation for details.
 
 >[!NOTE]
 > CouchDB requires a server administrator account to start. If one has not been created, CouchDB will print an error message and terminate.
