@@ -62,7 +62,7 @@ Refer to [this page](https://almeidapaulopt.github.io/tsdproxy/docs/advanced/tai
 
 After running the command for installation, the TSDProxy instance becomes available.
 
-If [ansible-role-container-socket-proxy](https://github.com/mother-of-all-self-hosting/ansible-role-container-socket-proxy) is installed by the playbook (default), the container will use the proxy. If not, the container will mount the Docker socket at `/var/run/docker.sock`. You can change the path by configuring `tsdproxy_docker_socket`.
+If [ansible-role-container-socket-proxy](https://github.com/mother-of-all-self-hosting/ansible-role-container-socket-proxy) is installed by the playbook (default), the container will use the proxy. If not, the container will mount the Docker socket at `/var/run/docker.sock`. You can change the path by configuring `tsdproxy_docker_endpoint`.
 
 Do not forget to adjust the `tsdproxy_docker_endpoint_is_unix_socket` variable to `false` if a TCP endpoint is enabled.
 
@@ -86,27 +86,27 @@ The next step is to add the service to the proxy. There are two ways of doing so
 
 ```yaml
 YOUR-SERVICE_container_labels_additional_labels_custom:
-  - tsdproxy.enable: "true"
-  - tsdproxy.container_port: 8080
+  - tsdproxy.enable=true
+  - tsdproxy.port.1=443/https:8080/http
 ```
 
-The following labels are optional. Please read the [official TSDProxy documentation](https://almeidapaulopt.github.io/tsdproxy/docs/docker/) for more information.
+The port label exposes HTTPS on port 443 of the service's Tailscale node and forwards to HTTP on port 8080 of the container. Additional labels use the same `key=value` format and can be appended to the list above.
+
+The following labels are optional. Please read the [official TSDProxy documentation](https://almeidapaulopt.github.io/tsdproxy/docs/providers/docker/) for more information.
 
 ```yaml
-  tsdproxy.name: "my-service"
-  tsdproxy.autodetect: "false"
-  tsdproxy.proxyprovider: "providername"
-  tsdproxy.ephemeral: "false"
-  tsdproxy.funnel: "false"
+  - tsdproxy.name=my-service
+  - tsdproxy.proxyprovider=providername
+  - tsdproxy.ephemeral=false
 ```
 
 #### Connecting a service to the proxy via a Proxy list
 
-An alternative way to add a service to the proxy is to use Proxy files.
+An alternative way to add a service to the proxy is to use proxy lists.
 
-Please read the [official TSDProxy documentation](https://almeidapaulopt.github.io/tsdproxy/docs/files/) for more information.
+Please read the [official TSDProxy documentation](https://almeidapaulopt.github.io/tsdproxy/docs/providers/lists/) for more information.
 
-You will need to use the `tsdproxy_config_files` variable and add your proxy list file to the directory for configuration files, most likely `/mash/tsdproxy/config/`. It is possible to so so manually or by using [AUX-Files](auxiliary.md).
+Refer to the [role documentation](https://github.com/Bergruebe/ansible-role-tsdproxy#via-proxy-list) for the configuration format. You will need to use the `tsdproxy_config_lists` variable and add your proxy list file to the directory for configuration files, most likely `/mash/tsdproxy/config/`. It is possible to do so manually or by using [AUX-Files](auxiliary.md).
 
 ## Related services
 
