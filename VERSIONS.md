@@ -266,7 +266,7 @@
 * Traefik Certs Dumper: v2.11.4
 * Traefik Config Tcp Servertransports Default Proxyprotocol: 1
 * Transfersh: v1.6.1
-* Tsdproxy: 1.4.7
+* Tsdproxy: 2.3.4
 * Typesense: 30.2
 * Uptime Kuma: 1.23.17
 * Valkey: 9.1.1

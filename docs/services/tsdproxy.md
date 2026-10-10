@@ -14,6 +14,7 @@ SPDX-FileCopyrightText: 2023 Julian-Samuel Gebühr
 SPDX-FileCopyrightText: 2023 Pierre 'McFly' Marty
 SPDX-FileCopyrightText: 2024 - 2025 Suguru Hirahara
 SPDX-FileCopyrightText: 2025 MASH project contributors
+SPDX-FileCopyrightText: 2026 Bergrübe
 
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->
@@ -56,13 +57,17 @@ tsdproxy_tailscale_authkey: '' # OR
 tsdproxy_tailscale_authkeyfile: '' # use this to load authkey from file. If this is defined, tsdproxy_tailscale_authkey is ignored
 ```
 
+Alternatively, you can use an OAuth client by setting `tsdproxy_tailscale_client_id` and `tsdproxy_tailscale_client_secret` (and usually `tsdproxy_tailscale_tags`).
+
 Refer to [this page](https://almeidapaulopt.github.io/tsdproxy/docs/advanced/tailscale/) on the official documentation for details.
+
+See the [role's documentation](https://github.com/Bergruebe/ansible-role-tsdproxy/blob/main/README.md) for other options, e.g. the dashboard.
 
 ## Usage
 
 After running the command for installation, the TSDProxy instance becomes available.
 
-If [ansible-role-container-socket-proxy](https://github.com/mother-of-all-self-hosting/ansible-role-container-socket-proxy) is installed by the playbook (default), the container will use the proxy. If not, the container will mount the Docker socket at `/var/run/docker.sock`. You can change the path by configuring `tsdproxy_docker_socket`.
+If [ansible-role-container-socket-proxy](https://github.com/mother-of-all-self-hosting/ansible-role-container-socket-proxy) is installed by the playbook (default), the container will use the proxy. If not, the container will mount the Docker socket at `/var/run/docker.sock`. You can change this by configuring `tsdproxy_docker_endpoint`.
 
 Do not forget to adjust the `tsdproxy_docker_endpoint_is_unix_socket` variable to `false` if a TCP endpoint is enabled.
 
@@ -86,27 +91,28 @@ The next step is to add the service to the proxy. There are two ways of doing so
 
 ```yaml
 YOUR-SERVICE_container_labels_additional_labels_custom:
-  - tsdproxy.enable: "true"
-  - tsdproxy.container_port: 8080
+  - tsdproxy.enable=true
+  - tsdproxy.port.1=443/https:8080/http
 ```
 
-The following labels are optional. Please read the [official TSDProxy documentation](https://almeidapaulopt.github.io/tsdproxy/docs/docker/) for more information.
+`tsdproxy.port.1` makes the service available via HTTPS on port 443 of its Tailscale machine and proxies to port 8080 of the container. Without it, TSDProxy uses the first port the container exposes.
 
-```yaml
-  tsdproxy.name: "my-service"
-  tsdproxy.autodetect: "false"
-  tsdproxy.proxyprovider: "providername"
-  tsdproxy.ephemeral: "false"
-  tsdproxy.funnel: "false"
-```
+See the [official TSDProxy documentation](https://almeidapaulopt.github.io/tsdproxy/docs/providers/docker/) for further labels.
 
 #### Connecting a service to the proxy via a Proxy list
 
-An alternative way to add a service to the proxy is to use Proxy files.
+An alternative way to add a service to the proxy is to use Proxy lists. Define them with the `tsdproxy_config_lists` variable:
 
-Please read the [official TSDProxy documentation](https://almeidapaulopt.github.io/tsdproxy/docs/files/) for more information.
+```yaml
+tsdproxy_config_lists:
+  critical:
+    filename: /config/critical.yaml
+    defaultProxyProvider: default
+```
 
-You will need to use the `tsdproxy_config_files` variable and add your proxy list file to the directory for configuration files, most likely `/mash/tsdproxy/config/`. It is possible to so so manually or by using [AUX-Files](auxiliary.md).
+and put the list file into the directory for configuration files (most likely `/mash/tsdproxy/config/`, mounted at `/config` in the container). It is possible to do so manually or by using [AUX-Files](auxiliary.md). The file has to exist before TSDProxy starts.
+
+Please read the [official TSDProxy documentation](https://almeidapaulopt.github.io/tsdproxy/docs/providers/lists/) for the format of the list file.
 
 ## Related services
 
