@@ -51,7 +51,7 @@ authentik_enabled: true
 authentik_hostname: authentik.example.com
 
 # Put a strong secret below, generated with `pwgen -s 64 1` or in another way
-authentik_secret_key: ''
+authentik_environment_variables_authentik_secret_key: ''
 
 ########################################################################
 #                                                                      #
