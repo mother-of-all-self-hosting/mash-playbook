@@ -69,7 +69,7 @@ grafana_path_prefix: /grafana
 
 While Grafana creates a user with `admin` as the username and password by default, it is possible to specify your own values.
 
-Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-grafana/blob/main/docs/configuring-grafana.md#setting-username-and-password-for-the-admin-user-optional) on the role's documentation for details.
+Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-grafana/blob/main/docs/configuring-grafana.md#setting-administrators-account-details-optional) on the role's documentation for details.
 
 ### File provisioning
 
