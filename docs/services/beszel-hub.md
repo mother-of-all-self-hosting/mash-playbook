@@ -40,8 +40,6 @@ This service requires the following other services:
 - (optional) [Pocket ID](pocket-id.md) — for single sign-on via OIDC
 - (optional) [TSDProxy](tsdproxy.md) — for reaching the hub over Tailscale
 
-The Beszel hub needs no database server — it keeps its data in an embedded SQLite database.
-
 ## Configuration
 
 To enable this service, add the following configuration to your `vars.yml` file and re-run the [installation](../installing.md) process:
@@ -66,21 +64,14 @@ beszel_hub_hostname: beszel.example.com
 
 **Note**: hosting the Beszel hub under a subpath is possible by configuring the `beszel_hub_path_prefix` variable (e.g. `/beszel`).
 
-## Installation
-
-After adjusting the configuration, run the playbook with [installing](../installing.md) to install the service:
-
-```sh
-just install-service beszel-hub
-```
-
 ## Usage
 
 After running the command for installation, the Beszel hub becomes available at the URL specified with `beszel_hub_hostname` (and `beszel_hub_path_prefix`). With the configuration above, the service is hosted at `https://beszel.example.com`.
 
-To get started, open the URL with a web browser and create the first user account. Then add the systems to be monitored by clicking "Add System", and install an agent on each of them with the public key and token shown in the dialog. See [this page](https://beszel.dev/guide/agent-installation) on the official documentation for details about installing agents.
+To get started, open the URL with a web browser and create the first user account. Then add the systems to be monitored by clicking "Add System", and install an agent on each of them with the public key and token shown in the dialog. Refer to [this page](https://beszel.dev/guide/agent-installation) on the official documentation for details about installing agents.
 
-Agents configured with the hub's URL and a token connect to the hub via WebSocket through Traefik, so no additional port needs to be opened on the server.
+>[!NOTE]
+> Agents configured with the hub's URL and a token connect to the hub via WebSocket through Traefik, so no additional port needs to be opened on the server.
 
 ### Single sign-on with Pocket ID
 
@@ -99,7 +90,7 @@ beszel_hub_environment_variable_oauth_disable_popup: true
 # beszel_hub_environment_variable_disable_password_auth: true
 ```
 
-The OIDC client still needs to be created on Pocket ID and added as a provider on the hub's PocketBase admin interface. With the default MASH settings, use `https://pocketid.example.com/authorize` as the auth URL, and `http://mash-pocket-id:1411/api/oidc/token` and `http://mash-pocket-id:1411/api/oidc/userinfo` as the token and user info URLs. See [this section](https://github.com/Bergruebe/ansible-role-beszel-hub/blob/main/docs/configuring-beszel-hub.md#single-sign-on-with-oidc-eg-pocket-id-optional) on the role's documentation for the step-by-step instructions.
+The OIDC client still needs to be created on Pocket ID and added as a provider on the hub's PocketBase admin interface. With the default MASH settings, use `https://pocketid.example.com/authorize` as the auth URL, and `http://mash-pocket-id:1411/api/oidc/token` and `http://mash-pocket-id:1411/api/oidc/userinfo` as the token and user info URLs. Refer to [this section](https://github.com/Bergruebe/ansible-role-beszel-hub/blob/main/docs/configuring-beszel-hub.md#single-sign-on-with-oidc-eg-pocket-id-optional) on the role's documentation for the step-by-step instructions.
 
 ### Reaching the hub over Tailscale (TSDProxy)
 
@@ -121,14 +112,14 @@ beszel_hub_container_labels_tsdproxy_enabled: true
 beszel_hub_hostname: mash-beszel-hub.tail1234.ts.net
 ```
 
-See [this section](https://github.com/Bergruebe/ansible-role-beszel-hub/blob/main/docs/configuring-beszel-hub.md#using-the-beszel-hub-with-tailscale-tsdproxy-optional) on the role's documentation for details, including how to set up agents.
+Refer to [this section](https://github.com/Bergruebe/ansible-role-beszel-hub/blob/main/docs/configuring-beszel-hub.md#using-the-beszel-hub-with-tailscale-tsdproxy-optional) on the role's documentation for details, including how to set up agents.
 
 >[!NOTE]
 > Exposing the hub via TSDProxy cannot be combined with hosting the Beszel hub under a subpath (`beszel_hub_path_prefix`).
 
 ### Monitoring the MASH server itself
 
-To monitor the server on which the hub runs, you can install an agent on it and have the hub connect to it via a Unix socket. See [this section](https://github.com/Bergruebe/ansible-role-beszel-hub/blob/main/docs/configuring-beszel-hub.md#connect-a-local-agent-via-unix-socket-optional) on the role's documentation for details.
+To monitor the server on which the hub runs, you can install an agent on it and have the hub connect to it via a Unix socket. Refer to [this section](https://github.com/Bergruebe/ansible-role-beszel-hub/blob/main/docs/configuring-beszel-hub.md#connect-a-local-agent-via-unix-socket-optional) on the role's documentation for details.
 
 ## Troubleshooting
 
