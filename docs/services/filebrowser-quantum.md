@@ -62,7 +62,7 @@ filebrowser_quantum_path_prefix: /filebrowser
 ########################################################################
 ```
 
-### Set an administrator's password
+### Set administrator's account details
 
 By default the password authentication is enabled, and you need to set a log in password for the administrator by adding the following configuration to your `vars.yml` file:
 

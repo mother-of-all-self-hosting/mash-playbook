@@ -51,7 +51,7 @@ wg_easy_hostname: wg-easy.example.com
 >[!NOTE]
 > There are a few variables that you may wish to adjust before doing the initial [unattended setup](https://github.com/wg-easy/wg-easy/blob/v15.2.0/docs/content/advanced/config/unattended-setup.md). The reason it's important to do this early on is because certain variables (`wg_easy_environment_variables_additional_variable_init_*`) **only take effect during the initial setup phase**.
 
-Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-wg-easy/blob/main/docs/configuring-wg-easy.md#adjusting-the-playbook-configuration) on the role's documentation for details about other settings such as [setting details for the initial setup user](https://github.com/mother-of-all-self-hosting/ansible-role-wg-easy/blob/main/docs/configuring-wg-easy.md#setting-details-for-the-initial-setup-user), [adjusting the Wireguard endpoint](https://github.com/mother-of-all-self-hosting/ansible-role-wg-easy/blob/main/docs/configuring-wg-easy.md#adjusting-the-wireguard-endpoint), etc.
+Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-wg-easy/blob/main/docs/configuring-wg-easy.md#adjusting-the-playbook-configuration) on the role's documentation for details about other settings such as [setting details for the initial setup user](https://github.com/mother-of-all-self-hosting/ansible-role-wg-easy/blob/main/docs/configuring-wg-easy.md#setting-details-for-the-initial-setup-user-optional), [adjusting the Wireguard endpoint](https://github.com/mother-of-all-self-hosting/ansible-role-wg-easy/blob/main/docs/configuring-wg-easy.md#adjusting-the-wireguard-endpoint), etc.
 
 ## Usage
 

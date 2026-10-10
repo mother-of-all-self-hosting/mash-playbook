@@ -61,9 +61,9 @@ keycloak_path_prefix: /keycloak
 ########################################################################
 ```
 
-### Set details for the admin user
+### Set administrator's account details
 
-You need to create an instance's admin user by setting values to the `keycloak_environment_variable_kc_bootstrap_admin_*` variables. Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-keycloak/blob/main/docs/configuring-keycloak.md#set-details-for-the-admin-user) on the role's documentation for details.
+You need to create an instance's admin user by setting values to the `keycloak_environment_variable_kc_bootstrap_admin_*` variables. Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-keycloak/blob/main/docs/configuring-keycloak.md#set-administrators-account-details) on the role's documentation for details.
 
 ## Usage
 

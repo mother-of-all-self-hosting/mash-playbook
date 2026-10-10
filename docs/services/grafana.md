@@ -65,7 +65,7 @@ grafana_path_prefix: /grafana
 ########################################################################
 ```
 
-### Setting username and password for the admin user (optional)
+### Setting administrator's account details (optional)
 
 While Grafana creates a user with `admin` as the username and password by default, it is possible to specify your own values.
 

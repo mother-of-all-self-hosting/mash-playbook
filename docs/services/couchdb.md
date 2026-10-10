@@ -58,7 +58,7 @@ couchdb_enabled: true
 ########################################################################
 ```
 
-### Specify server administrator's username and password
+### Set administrator's account details
 
 You also need to specify a server administrator's login credential. Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-couchdb/blob/main/docs/configuring-couchdb.md#specify-server-administrators-username-and-password) on the role's documentation for details.
 
