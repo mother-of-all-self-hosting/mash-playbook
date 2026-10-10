@@ -27,6 +27,11 @@ Redmine is a project management web application.
 
 See the project's [documentation](https://www.redmine.org/projects/redmine/wiki) to learn what Redmine does and why it might be useful to you.
 
+For details about configuring the [Ansible role for Redmine](https://github.com/mother-of-all-self-hosting/ansible-role-redmine), you can check them via:
+
+- 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-redmine/blob/main/docs/configuring-redmine.md) online
+- 📁 `roles/galaxy/redmine/docs/configuring-redmine.md` locally, if you have [fetched the Ansible roles](../installing.md)
+
 ## Dependencies
 
 This service requires the following other services:
@@ -50,11 +55,6 @@ redmine_enabled: true
 
 redmine_hostname: redmine.example.com
 
-# If you'll be installing Redmine plugins which pull Ruby gems,
-# which need to compile native code, consider installing build tools in the container image,
-# by uncommenting the line below.
-# redmine_container_image_customizations_build_tools_installation_enabled: true
-
 ########################################################################
 #                                                                      #
 # /redmine                                                             #
@@ -64,15 +64,7 @@ redmine_hostname: redmine.example.com
 
 ### Select database to use (optional)
 
-By default Redmine is configured to use Postgres, but you can choose other database such as a MySQL compatible database, SQLite, and SQL Server.
-
-To use MySQL, add the following configuration to your `vars.yml` file:
-
-```yaml
-redmine_database_type: mysql
-```
-
-Set `sqlite` to use SQLite, and `sqlserver` to use SQL Server.
+By default Redmine is configured to use Postgres, but you can choose other database such as a MySQL compatible database, SQLite, and SQL Server. Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-redmine/blob/main/docs/configuring-redmine.md#specify-database) on the role's documentation for details.
 
 ### Configuring the mailer (optional)
 
