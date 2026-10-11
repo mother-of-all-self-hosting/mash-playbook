@@ -56,14 +56,19 @@ funkwhale_enabled: true
 
 funkwhale_hostname: funkwhale.example.com
 
-# Put a strong secret below, generated with `pwgen -s 64 1` or in another way
-funkwhale_django_secret_key: ''
-
 ########################################################################
 #                                                                      #
 # /funkwhale                                                           #
 #                                                                      #
 ########################################################################
+```
+
+### Set a random string
+
+You also need to set a random string to the variable as below by adding the following configuration to your `vars.yml` file. The value can be generated with `pwgen -s 64 1` or in another way.
+
+```yaml
+funkwhale_django_secret_key: YOUR_SECRET_KEY_HERE
 ```
 
 ### Configure Valkey
