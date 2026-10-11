@@ -63,7 +63,7 @@ semaphore_hostname: semaphore.example.com
 
 ### Set administrator's account details
 
-You need to create an instance's admin user by setting values to the `semaphore_admin_*` variables. Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-semaphore/blob/main/docs/configuring-semaphore.md#set-administrators-account-details) on the role's documentation for details.
+You also need to specify administrator's account details. Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-semaphore/blob/main/docs/configuring-semaphore.md#set-administrators-account-details) on the role's documentation for details.
 
 ### Set a string for encrypting access keys
 

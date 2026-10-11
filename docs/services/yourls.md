@@ -70,14 +70,9 @@ YOURLS requires a MySQL-compatible database to work. This playbook supports Mari
 
 Refer to [this page](mariadb.md) for the instruction to enable it.
 
-### Set the admin username and password
+### Set administrator's account details
 
-You also need to create an instance's user to access to the admin UI after installation. To create one, add the following configuration to your `vars.yml` file. Make sure to replace `YOUR_ADMIN_USERNAME_HERE` and `YOUR_ADMIN_PASSWORD_HERE`.
-
-```yaml
-yourls_environment_variable_user: YOUR_ADMIN_USERNAME_HERE
-yourls_environment_variable_pass: YOUR_ADMIN_PASSWORD_HERE
-```
+You also need to specify administrator's account details. Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-yourls/blob/main/docs/configuring-yourls.md#set-administrators-account-details) on the role's documentation for details.
 
 ## Usage
 
