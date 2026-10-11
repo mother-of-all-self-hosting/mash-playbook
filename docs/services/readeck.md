@@ -76,7 +76,7 @@ On Readeck you can set up a mailer for functions such as bookmark sharing and pa
 
 ## Usage
 
-After running the command for installation, the Readeck instance becomes available at the URL specified with `readeck_hostname`. With the configuration above, the service is hosted at `https://readeck.example.com`.
+After running the command for installation, the Readeck instance becomes available at the URL specified with `readeck_hostname` and `readeck_path_prefix`. With the configuration above, the service is hosted at `https://mash.example.com/readeck`.
 
 To get started, open the URL with a web browser to create an account.
 
