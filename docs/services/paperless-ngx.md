@@ -28,6 +28,11 @@ Paperless-ngx is a community-supported open-source document management system th
 
 See the project's [documentation](https://docs.paperless-ngx.com/) to learn what Paperless-ngx does and why it might be useful to you.
 
+For details about configuring the [Ansible role for Paperless-ngx](https://github.com/mother-of-all-self-hosting/ansible-role-paperless), you can check them via:
+
+- 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-paperless/blob/main/docs/configuring-paperless.md) online
+- 📁 `roles/galaxy/paperless/docs/configuring-paperless.md` locally, if you have [fetched the Ansible roles](../installing.md)
+
 ## Dependencies
 
 This service requires the following other services:
@@ -53,13 +58,6 @@ paperless_enabled: true
 
 paperless_hostname: paperless.example.com
 
-# Set the following variables to create an initial admin user
-# It will not re-create an admin user, it will not change a password if the user is already created
-# paperless_admin_user: USERNAME
-# paperless_admin_password: SECURE_PASSWORD
-
-# Valkey configuration, as described below
-
 ########################################################################
 #                                                                      #
 # /paperless                                                           #
@@ -67,15 +65,13 @@ paperless_hostname: paperless.example.com
 ########################################################################
 ```
 
+### Set administrator's account details
+
+It is necessary to create an instance's admin user. Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-paperless/blob/main/docs/configuring-paperless.md#set-administrators-account-details) on the role's documentation for details.
+
 ### Select database to use (optional)
 
-By default Paperless-ngx is configured to use Postgres, but you can choose other database such as SQLite and MariaDB.
-
-To use MariaDB, add the following configuration to your `vars.yml` file:
-
-```yaml
-paperless_database_type: mariadb
-```
+By default Paperless-ngx is configured to use Postgres, but you can choose other database such as SQLite and MariaDB. Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-paperless/blob/main/docs/configuring-paperless.md#specify-database-optional) on the role's documentation for details.
 
 ### Configure Valkey
 
@@ -245,21 +241,6 @@ paperless_systemd_required_services_list_custom:
 
 Running the installation command will create the shared Valkey instance named `mash-valkey`.
 
-### Enabling additional languages for OCR
-
-If you're dealing with languages other than the ones for which [OCR support is installed by default (English, German, French, Italian, Spanish)](https://docs.paperless-ngx.com/configuration/#PAPERLESS_OCR_LANGUAGES), you may wish to adjust `paperless_ocr_languages_custom`. This variable takes a list of 3-letter language codes (as seen [here](https://tesseract-ocr.github.io/tessdoc/Data-Files-in-different-versions.html)).
-
-Doing this will instruct the container image to install additional `tesseract-ocr-{LANGUAGE}` packages on startup.
-
-Example:
-
-```yml
-# Add OCR support for Bulgarian and Japanese
-paperless_ocr_languages_custom:
-  - bul
-  - jpn
-```
-
 ### Configuring the mailer (optional)
 
 On Paperless-ngx you can set up a mailer for functions such as password recovery. If you enable the [exim-relay](exim-relay.md) service in your inventory configuration, the playbook will automatically configure it as a mailer for the service.
@@ -274,14 +255,6 @@ To actually have the service use (and get messages sent through the exim-relay s
 You can optionally have the instance connect to [Apache Tika Server](http://tika.apache.org/) for parsing and converting document files (such as ".doc", ".xlsx" and ".odt"). It is required for parsing emails (".eml") as well.
 
 Apache Tika Server is available on the playbook. As it requires [Gotenberg](gotenberg.md), enabling both of them configures the instance to connect to it. Refer to [this page](tika.md) for details about how to install Apache Tika Server, and [this page](gotenberg.md) about how to install Gotenberg, respectively.
-
-### Extending the configuration
-
-There are some additional things you may wish to configure about the service.
-
-Take a look at:
-
-- [Paperless-ngx](https://github.com/mother-of-all-self-hosting/ansible-role-paperless)'s [`defaults/main.yml`](https://github.com/mother-of-all-self-hosting/ansible-role-paperless/blob/main/defaults/main.yml) for some variables that you can customize via your `vars.yml` file.
 
 ## Installation
 
