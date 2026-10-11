@@ -1,10 +1,10 @@
 <!--
-SPDX-FileCopyrightText: 2020 - 2024 MDAD project contributors
-SPDX-FileCopyrightText: 2020 - 2024 Slavi Pantaleev
 SPDX-FileCopyrightText: 2020 Aaron Raimist
 SPDX-FileCopyrightText: 2020 Chris van Dijk
 SPDX-FileCopyrightText: 2020 Dominik Zajac
 SPDX-FileCopyrightText: 2020 Mickaël Cornière
+SPDX-FileCopyrightText: 2020-2024 MDAD project contributors
+SPDX-FileCopyrightText: 2020-2024 Slavi Pantaleev
 SPDX-FileCopyrightText: 2022 François Darveau
 SPDX-FileCopyrightText: 2022 Julian Foad
 SPDX-FileCopyrightText: 2022 Warren Bailey
@@ -12,7 +12,7 @@ SPDX-FileCopyrightText: 2023 Antonis Christofides
 SPDX-FileCopyrightText: 2023 Felix Stupp
 SPDX-FileCopyrightText: 2023 Julian-Samuel Gebühr
 SPDX-FileCopyrightText: 2023 Pierre 'McFly' Marty
-SPDX-FileCopyrightText: 2024 - 2025 Suguru Hirahara
+SPDX-FileCopyrightText: 2024-2026 Suguru Hirahara
 
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->
@@ -54,16 +54,16 @@ collabora_online_enabled: true
 
 collabora_online_hostname: collabora.example.com
 
-# A password for the admin interface, available at: https://collabora.example.com/browser/dist/admin/admin.html
-# Use only alphanumeric characters
-collabora_online_environment_variable_password: ''
-
 ########################################################################
 #                                                                      #
 # /collabora_online                                                    #
 #                                                                      #
 ########################################################################
 ```
+
+### Set a password for the admin dashboard
+
+You also need to set a password for the admin dashboard. Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-collabora-online/blob/main/docs/configuring-code.md#set-a-password-for-the-admin-interface) on the role's documentation for details.
 
 ### Integrate CODE instance with Nextcloud (optional)
 
@@ -72,20 +72,11 @@ To use a CODE instance to edit office documents, you need to integrate it with a
 By default, this playbook is configured to automatically integrate the CODE instance with the Nextcloud instance which this playbook manages, if both of them are enabled.
 
 >[!NOTE]
-> For details, refer to [this section about the integration](nextcloud.md#configuring-nextcloud-office-application) on our Nextcloud documentation.
+> Refer to [this section about the integration](nextcloud.md#configuring-nextcloud-office-application) on our Nextcloud documentation for details.
 
 ## Usage
 
 After running the command for installation, the CODE instance becomes available at the URL specified with `collabora_hostname`. With the configuration above, the service is hosted at `https://collabora.example.com`.
-
-### Admin Interface
-
-There's an admin interface with various statistics and information at: `https://collabora.example.com/browser/dist/admin/admin.html`
-
-Use your admin credentials for logging in:
-
-- the default username is `admin`, as specified with `collabora_online_environment_variable_username`
-- the password is the one you've specified with `collabora_online_environment_variable_password`
 
 ## Troubleshooting
 
