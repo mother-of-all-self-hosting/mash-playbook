@@ -13408,7 +13408,7 @@ paperless_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_pro
 
 paperless_database_type: "{{ 'postgres' if postgres_enabled | default(false) else 'sqlite' }}"
 
-paperless_secret_key: "{{ (mash_playbook_generic_secret_key + ':paperless.secret') | hash('sha512') | to_uuid }}"
+paperless_environment_variables_paperless_secret_key: "{{ (mash_playbook_generic_secret_key + ':paperless.secret') | hash('sha512') | to_uuid }}"
 
 # role-specific:exim_relay
 paperless_environment_variables_paperless_email_host: "{{ exim_relay_identifier if exim_relay_enabled else '' }}"
