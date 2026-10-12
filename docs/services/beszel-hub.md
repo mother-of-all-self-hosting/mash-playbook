@@ -53,7 +53,8 @@ To enable this service, add the following configuration to your `vars.yml` file 
 
 beszel_hub_enabled: true
 
-beszel_hub_hostname: beszel.example.com
+beszel_hub_hostname: mash.example.com
+beszel_hub_path_prefix: /beszel-hub
 
 ########################################################################
 #                                                                      #
@@ -61,8 +62,6 @@ beszel_hub_hostname: beszel.example.com
 #                                                                      #
 ########################################################################
 ```
-
-**Note**: hosting the Beszel hub under a subpath is possible by configuring the `beszel_hub_path_prefix` variable (e.g. `/beszel`).
 
 ### Single sign-on with Pocket ID (optional)
 
@@ -80,7 +79,7 @@ The playbook then connects the hub to TSDProxy's container network automatically
 
 ## Usage
 
-After running the command for installation, the Beszel hub becomes available at the URL specified with `beszel_hub_hostname` (and `beszel_hub_path_prefix`). With the configuration above, the service is hosted at `https://beszel.example.com`.
+After running the command for installation, the Beszel hub becomes available at the URL specified with `beszel_hub_hostname` (and `beszel_hub_path_prefix`). With the configuration above, the service is hosted at `https://mash.example.com/beszel-hub`.
 
 To get started, open the URL with a web browser and create the first user account. Then add the systems to be monitored by clicking "Add System", and install an agent on each of them. Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-beszel-hub/blob/main/docs/configuring-beszel-hub.md#usage) on the role's documentation for details, and [this section](https://github.com/mother-of-all-self-hosting/ansible-role-beszel-hub/blob/main/docs/configuring-beszel-hub.md#connect-a-local-agent-via-unix-socket-optional) for connecting an agent on the same server via a Unix socket.
 
