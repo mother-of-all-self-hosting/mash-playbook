@@ -82,16 +82,6 @@ To actually have the service use (and get messages sent through the exim-relay s
 >[!WARNING]
 > Without setting an authentication method such as DKIM, SPF, and DMARC for your hostname, emails are most likely to be quarantined as spam at recipient's mail servers. The worst scenario is that your server's IP address or hostname will be included in the spam list such as the one managed by [Spamhaus](https://www.spamhaus.org/), depending on the reputation. As the exim-relay service supports DKIM signing, refer to [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-exim-relay/blob/main/docs/configuring-exim-relay.md#enable-dkim-support-optional) for details about how to set it up.
 
-### Extending the configuration
-
-There are some additional things you may wish to configure about the component.
-
-Take a look at:
-
-- [Semaphore UI](https://github.com/mother-of-all-self-hosting/ansible-role-semaphore)'s [`defaults/main.yml`](https://github.com/mother-of-all-self-hosting/ansible-role-semaphore/blob/main/defaults/main.yml) for some variables that you can customize via your `vars.yml` file.
-
-See the [documentation](https://docs.semaphoreui.com/administration-guide/configuration/) for a complete list of Semaphore UI's config options such as [two-factor authentication with TOTP](https://github.com/mother-of-all-self-hosting/ansible-role-semaphore/blob/main/docs/configuring-semaphore.md#enable-2fa-authentication-with-totp-optional).
-
 ## Usage
 
 After running the command for installation, the Semaphore UI instance becomes available at the URL specified with `semaphore_hostname`. With the configuration above, the service is hosted at `https://semaphore.example.com`.

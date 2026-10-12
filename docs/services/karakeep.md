@@ -97,13 +97,6 @@ To actually have the service use (and get messages sent through the exim-relay s
 >[!WARNING]
 > Without setting an authentication method such as DKIM, SPF, and DMARC for your hostname, emails are most likely to be quarantined as spam at recipient's mail servers. The worst scenario is that your server's IP address or hostname will be included in the spam list such as the one managed by [Spamhaus](https://www.spamhaus.org/), depending on the reputation. As the exim-relay service supports DKIM signing, refer to [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-exim-relay/blob/main/docs/configuring-exim-relay.md#enable-dkim-support-optional) for details about how to set it up.
 
-### Extending the configuration
-
-Refer to [this page](https://docs.karakeep.app/configuration/) for a complete list of Karakeep's config options that you could put in `karakeep_environment_variables_additional_variables`.
-
->[!NOTE]
-> Enabling automatic tagging with LLM providers requires environment variables to be specified manually. Refer to [this section](https://docs.karakeep.app/configuration/#inference-configs-for-automatic-tagging) on the documentation for details.
-
 ## Usage
 
 After running the command for installation, the Karakeep instance becomes available at the URL specified with `karakeep_hostname`. With the configuration above, the service is hosted at `https://karakeep.example.com`.
