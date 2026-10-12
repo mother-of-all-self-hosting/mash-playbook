@@ -1,3 +1,13 @@
+# 2026-10-12
+
+## (Backward Compatibility Break) TSDProxy upgraded to v2
+
+This only affects you if you have [TSDProxy](docs/services/tsdproxy.md) enabled and use proxy lists (`tsdproxy_config_files`).
+
+TSDProxy v2 changed the format of proxy list files. The role does not manage these files, so it cannot check or convert them: before re-running the playbook, migrate them by hand following the [upstream upgrade guide](https://almeidapaulopt.github.io/tsdproxy/docs/upgrading/from-v1/), and define them with `tsdproxy_config_lists` instead of `tsdproxy_config_files`.
+
+The role reports its other changes (renamed variables, TSDProxy v1 keys in custom configuration) with actionable errors, and container labels in the TSDProxy v1 format keep working. See the [role's upgrade notes](https://github.com/mother-of-all-self-hosting/ansible-role-tsdproxy#upgrading-from-tsdproxy-v1) for details.
+
 # 2026-10-10
 
 ## (Backward Compatibility Break) Safer Docker cleanup, and no more journald vacuuming by default

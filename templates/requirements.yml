@@ -81,7 +81,7 @@
   name: bentopdf
   activation_prefix: bentopdf_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-beszel-hub.git
-  version: v0.21.0-0
+  version: v0.21.0-1
   name: beszel_hub
   activation_prefix: beszel_hub_
 - src: git+https://iris.radicle.network/z2nQcYvPh51zfvVu8hkftDYPmELYP.git
@@ -1028,8 +1028,8 @@
   version: v1.6.1-2
   name: transfersh
   activation_prefix: transfersh_
-- src: git+https://github.com/Bergruebe/ansible-role-tsdproxy.git
-  version: v1.4.7-3
+- src: git+https://github.com/mother-of-all-self-hosting/ansible-role-tsdproxy.git
+  version: v2.3.4-0
   name: tsdproxy
   activation_prefix: tsdproxy_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-typesense.git
