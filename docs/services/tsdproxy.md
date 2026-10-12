@@ -52,16 +52,16 @@ tsdproxy_enabled: true
 You also need to set an authkey for Tailscale by adding the following configuration to your `vars.yml` file:
 
 ```yaml
-tsdproxy_tailscale_authkey: '' # OR
+tsdproxy_config_tailscale_providers_default_authkey: '' # OR
 
-tsdproxy_tailscale_authkeyfile: '' # use this to load authkey from file. If this is defined, tsdproxy_tailscale_authkey is ignored
+tsdproxy_config_tailscale_providers_default_authkeyfile: '' # use this to load authkey from file. If this is defined, tsdproxy_config_tailscale_providers_default_authkey is ignored
 ```
 
-Alternatively, you can use an OAuth client by setting `tsdproxy_tailscale_client_id` and `tsdproxy_tailscale_client_secret` (and usually `tsdproxy_tailscale_tags`).
+Alternatively, you can use an OAuth client by setting `tsdproxy_config_tailscale_providers_default_clientid` and `tsdproxy_config_tailscale_providers_default_clientsecret` (and usually `tsdproxy_config_tailscale_providers_default_tags`).
 
 Refer to [this page](https://almeidapaulopt.github.io/tsdproxy/docs/advanced/tailscale/) on the official documentation for details.
 
-See the [role's documentation](https://github.com/Bergruebe/ansible-role-tsdproxy/blob/main/README.md) for other options, e.g. the dashboard.
+See the [role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-tsdproxy/blob/main/README.md) for other options, e.g. the dashboard.
 
 ## Usage
 
