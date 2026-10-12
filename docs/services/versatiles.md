@@ -62,7 +62,7 @@ versatiles_hostname: versatiles.example.com
 
 After running the command for installation, the VersaTiles instance becomes available at the URL specified with `versatiles_hostname`. With the configuration above, the service is hosted at `https://versatiles.example.com`.
 
-Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-versatiles/blob/main/docs/configuring-versatiles.md#usage) on the role's documentation for details.
+Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-versatiles/blob/main/docs/configuring-versatiles.md#usage) on the role's documentation for details about the usage.
 
 ## Troubleshooting
 

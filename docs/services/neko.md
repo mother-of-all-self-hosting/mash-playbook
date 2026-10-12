@@ -122,7 +122,7 @@ After running the command for installation, the Neko instance becomes available 
 
 If you cannot log in to the instance, make sure that the ports are open on the server and WebRTC is enabled on the browser.
 
-Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-neko/blob/main/docs/configuring-neko.md#usage) on the role's documentation for the usage.
+Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-neko/blob/main/docs/configuring-neko.md#usage) on the role's documentation for details about the usage.
 
 ## Troubleshooting
 

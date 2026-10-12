@@ -123,7 +123,7 @@ etherpad_container_labels_traefik_metrics_middleware_basic_auth_users: ""
 
 After running the command for installation, the Etherpad instance becomes available at the URL specified with `etherpad_hostname`. With the configuration above, the service is hosted at `https://etherpad.example.com`. The admin UI (if enabled) becomes available at `https://etherpad.example.com/admin`.
 
-💡 Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-etherpad/blob/main/docs/configuring-etherpad.md#usage) on the role's documentation for more information about usage.
+Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-etherpad/blob/main/docs/configuring-etherpad.md#usage) on the role's documentation for details about the usage.
 
 ## Troubleshooting
 

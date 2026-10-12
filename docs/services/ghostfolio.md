@@ -254,7 +254,7 @@ After running the command for installation, the Ghostfolio instance becomes avai
 
 As **registration is open to anyone by default**, you also would probably want to disable the signup form on "Admin Control" page after creating the account.
 
-Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-ghostfolio/blob/main/docs/configuring-ghostfolio.md#usage) on the role's documentation for details.
+Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-ghostfolio/blob/main/docs/configuring-ghostfolio.md#usage) on the role's documentation for details about the usage.
 
 ## Troubleshooting
 

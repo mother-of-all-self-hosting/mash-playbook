@@ -57,7 +57,7 @@ Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-ro
 
 After running the command for installation, the WireGuard Easy instance becomes available at the URL specified with `wg_easy_hostname`. With the configuration above, the service is hosted at `wg-easy.example.com`.
 
-Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-wg-easy/blob/main/docs/configuring-wg-easy.md#usage) on the role's documentation for details about usage such as [creating WireGuard clients](https://github.com/mother-of-all-self-hosting/ansible-role-wg-easy/blob/main/docs/configuring-wg-easy.md#creating-wireguard-clients) and [creating additional users](https://github.com/mother-of-all-self-hosting/ansible-role-wg-easy/blob/main/docs/configuring-wg-easy.md#creating-additional-users), etc.
+Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-wg-easy/blob/main/docs/configuring-wg-easy.md#usage) on the role's documentation for details about the usage such as [creating WireGuard clients](https://github.com/mother-of-all-self-hosting/ansible-role-wg-easy/blob/main/docs/configuring-wg-easy.md#creating-wireguard-clients) and [creating additional users](https://github.com/mother-of-all-self-hosting/ansible-role-wg-easy/blob/main/docs/configuring-wg-easy.md#creating-additional-users), etc.
 
 ## Related services
 

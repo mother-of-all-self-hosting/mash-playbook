@@ -68,7 +68,7 @@ LanguageTool can make use of large n-gram data sets to detect errors with words 
 
 After running the command for installation, the LanguageTool instance becomes available at the URL specified with `languagetool_hostname` and `languagetool_path_prefix`. With the configuration above, the service is hosted at `https://mash.example.com/languagetool`.
 
-Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-languagetool/blob/main/docs/configuring-languagetool.md#usage) on the role's documentation for usage.
+Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-languagetool/blob/main/docs/configuring-languagetool.md#usage) on the role's documentation for details about the usage.
 
 ## Troubleshooting
 

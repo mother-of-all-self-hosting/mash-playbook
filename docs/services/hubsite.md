@@ -76,7 +76,7 @@ After running the command for installation, the Hubsite instance becomes availab
 
 Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-hubsite/blob/main/docs/configuring-hubsite.md#troubleshooting) on the role's documentation for details.
 
-You can alternatively output the page manually. Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-hubsite/blob/main/docs/configuring-hubsite.md#usage) on the role's documentation for details.
+You can alternatively output the page manually. Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-hubsite/blob/main/docs/configuring-hubsite.md#usage) on the role's documentation for details about the usage.
 
 ## Related services
 

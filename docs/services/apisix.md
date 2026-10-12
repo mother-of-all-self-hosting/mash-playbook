@@ -51,7 +51,7 @@ Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-ro
 
 ## Usage
 
-After running the command for installation, the APISIX instance becomes available. Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-apisix/blob/main/docs/configuring-apisix.md#usage) on the role's documentation for details.
+After running the command for installation, the APISIX instance becomes available. Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-apisix/blob/main/docs/configuring-apisix.md#usage) on the role's documentation for details about the usage.
 
 ## Related services
 

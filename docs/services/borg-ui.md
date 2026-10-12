@@ -289,7 +289,7 @@ After running the command for installation, the Borg UI instance becomes availab
 
 To get started, open the URL with a web browser to log in to the instance.
 
-Refer to [this section](https://radicle.network/nodes/iris.radicle.network/rad%3AzxNS7XeayGimb4WFfvqmasiZZC3v/tree/docs/configuring-borg-ui.md#usage) on the role's documentation for more information.
+Refer to [this section](https://radicle.network/nodes/iris.radicle.network/rad%3AzxNS7XeayGimb4WFfvqmasiZZC3v/tree/docs/configuring-borg-ui.md#usage) on the role's documentation for details about the usage.
 
 To load a source directory to be backed up inside the container, you can add one to `borg_ui_container_additional_volumes_custom` as below:
 

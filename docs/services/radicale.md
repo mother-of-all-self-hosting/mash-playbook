@@ -55,7 +55,7 @@ For Radicale, it is configured to enable the HTTP Basic authentication by defaul
 
 After running the command for installation, the Radicale instance becomes available at the URL specified with `radicale_hostname` and `radicale_path_prefix`. With the configuration above, the service is hosted at `https://mash.example.com/radicale`.
 
-Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-radicale/blob/main/docs/configuring-radicale.md#usage) on the role's documentation for details about usage.
+Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-radicale/blob/main/docs/configuring-radicale.md#usage) on the role's documentation for details about the usage.
 
 ## Troubleshooting
 

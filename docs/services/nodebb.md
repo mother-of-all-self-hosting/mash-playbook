@@ -252,7 +252,7 @@ After running the command for installation, the NodeBB instance becomes availabl
 
 To get started, open the URL with a web browser, and follow the set up wizard. Make sure that the scheme (`HTTPS` or `HTTP`) for the public facing URL is detected properly, and fix it if not.
 
-Refer to [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az2K9dPANyrXJY7juE9XecXyernA6h/tree/docs/configuring-nodebb.md#usage) on the role's documentation for more information.
+Refer to [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az2K9dPANyrXJY7juE9XecXyernA6h/tree/docs/configuring-nodebb.md#usage) on the role's documentation for details about the usage.
 
 ### Configuring the mailer (optional)
 

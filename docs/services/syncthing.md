@@ -55,4 +55,4 @@ For Syncthing, it is configured to enable the HTTP Basic authentication on Traef
 
 After running the command for installation, the Syncthing instance becomes available at the URL specified with `syncthing_hostname` and `syncthing_path_prefix`. With the configuration above, the service is hosted at `https://mash.example.com/syncthing`.
 
-Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-syncthing/blob/main/docs/configuring-syncthing.md#usage) on the role's documentation for details about usage, including recommended settings.
+Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-syncthing/blob/main/docs/configuring-syncthing.md#usage) on the role's documentation for details about the usage, including recommended settings.

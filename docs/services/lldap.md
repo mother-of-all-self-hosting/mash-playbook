@@ -87,7 +87,7 @@ To actually have the service use (and get messages sent through the exim-relay s
 
 After running the command for installation, the LLDAP instance becomes available at the URL specified with `lldap_hostname`. With the configuration above, the service is hosted at `https://lldap.example.com`.
 
-To get started, open the URL with a web browser to log in to the instance with the administrator account. You can create additional users (admin-privileged or not) after that via the web frontend. Refer to [this section](https://github.com/lldap/lldap/blob/main/README.md#usage) on the documentation for details about usage, including a recommended architecture.
+To get started, open the URL with a web browser to log in to the instance with the administrator account. You can create additional users (admin-privileged or not) after that via the web frontend. Refer to [this section](https://github.com/lldap/lldap/blob/main/README.md#usage) on the documentation for details about the usage, including a recommended architecture.
 
 ## Troubleshooting
 
