@@ -27,9 +27,9 @@ Beszel is a lightweight server monitoring platform that includes Docker statisti
 
 See the project's [documentation](https://beszel.dev/guide/what-is-beszel) to learn what Beszel does and why it might be useful to you.
 
-For details about configuring the [Ansible role for the Beszel hub](https://github.com/Bergruebe/ansible-role-beszel-hub), you can check them via:
+For details about configuring the [Ansible role for the Beszel hub](https://github.com/mother-of-all-self-hosting/ansible-role-beszel-hub), you can check them via:
 
-- 🌐 [the role's documentation](https://github.com/Bergruebe/ansible-role-beszel-hub/blob/main/docs/configuring-beszel-hub.md) online
+- 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-beszel-hub/blob/main/docs/configuring-beszel-hub.md) online
 - 📁 `roles/galaxy/beszel_hub/docs/configuring-beszel-hub.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 ## Dependencies
@@ -75,22 +75,16 @@ To get started, open the URL with a web browser and create the first user accoun
 
 ### Single sign-on with Pocket ID
 
-If [Pocket ID](pocket-id.md) is enabled, the playbook connects the hub to Pocket ID's container network automatically (controlled by `beszel_hub_pocket_id_integration_enabled`). This lets the hub request the OIDC token and user info from Pocket ID internally, while your browser uses Pocket ID's public URL.
+The hub supports logging in with [Pocket ID](pocket-id.md) or another OIDC provider. Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-beszel-hub/blob/main/docs/configuring-beszel-hub.md#single-sign-on-with-oidc-eg-pocket-id-optional) on the role's documentation for the settings and the step-by-step instructions.
 
-To control the login behavior, add the following configuration to your `vars.yml` file as needed:
+If Pocket ID is installed on the same server, the hub can request the OIDC token and user info over Pocket ID's container network instead of its public URL. To do so, add the following configuration to your `vars.yml` file:
 
 ```yaml
-# Create a Beszel user automatically on the first login via Pocket ID
-beszel_hub_environment_variable_user_creation: true
-
-# Open Pocket ID's login page in the same window instead of a popup
-beszel_hub_environment_variable_oauth_disable_popup: true
-
-# Allow logging in with Pocket ID only (enable it after confirming that the login works)
-# beszel_hub_environment_variable_disable_password_auth: true
+beszel_hub_container_additional_networks_custom:
+  - "{{ pocket_id_container_network }}"
 ```
 
-The OIDC client still needs to be created on Pocket ID and added as a provider on the hub's PocketBase admin interface. With the default MASH settings, use `https://pocketid.example.com/authorize` as the auth URL, and `http://mash-pocket-id:1411/api/oidc/token` and `http://mash-pocket-id:1411/api/oidc/userinfo` as the token and user info URLs. Refer to [this section](https://github.com/Bergruebe/ansible-role-beszel-hub/blob/main/docs/configuring-beszel-hub.md#single-sign-on-with-oidc-eg-pocket-id-optional) on the role's documentation for the step-by-step instructions.
+Then use `http://mash-pocket-id:1411/api/oidc/token` and `http://mash-pocket-id:1411/api/oidc/userinfo` as the token and user info URLs, while keeping Pocket ID's public URL as the auth URL.
 
 ### Reaching the hub over Tailscale (TSDProxy)
 
@@ -112,18 +106,18 @@ beszel_hub_container_labels_tsdproxy_enabled: true
 beszel_hub_hostname: mash-beszel-hub.tail1234.ts.net
 ```
 
-Refer to [this section](https://github.com/Bergruebe/ansible-role-beszel-hub/blob/main/docs/configuring-beszel-hub.md#using-the-beszel-hub-with-tailscale-tsdproxy-optional) on the role's documentation for details, including how to set up agents.
+Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-beszel-hub/blob/main/docs/configuring-beszel-hub.md#using-the-beszel-hub-with-tailscale-tsdproxy-optional) on the role's documentation for details, including how to set up agents.
 
 >[!NOTE]
 > Exposing the hub via TSDProxy cannot be combined with hosting the Beszel hub under a subpath (`beszel_hub_path_prefix`).
 
-### Monitoring the MASH server itself
+### Connecting a local agent
 
-To monitor the server on which the hub runs, you can install an agent on it and have the hub connect to it via a Unix socket. Refer to [this section](https://github.com/Bergruebe/ansible-role-beszel-hub/blob/main/docs/configuring-beszel-hub.md#connect-a-local-agent-via-unix-socket-optional) on the role's documentation for details.
+To monitor the server on which the hub runs, you can install an agent on it and have the hub connect to it via a Unix socket. Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-beszel-hub/blob/main/docs/configuring-beszel-hub.md#connect-a-local-agent-via-unix-socket-optional) on the role's documentation for details.
 
 ## Troubleshooting
 
-See [this section](https://github.com/Bergruebe/ansible-role-beszel-hub/blob/main/docs/configuring-beszel-hub.md#troubleshooting) on the role's documentation for details.
+See [this section](https://github.com/mother-of-all-self-hosting/ansible-role-beszel-hub/blob/main/docs/configuring-beszel-hub.md#troubleshooting) on the role's documentation for details.
 
 ## Related services
 
