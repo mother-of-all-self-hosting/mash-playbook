@@ -65,9 +65,9 @@ semaphore_hostname: semaphore.example.com
 
 You also need to specify administrator's account details. Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-semaphore/blob/main/docs/configuring-semaphore.md#set-administrators-account-details) on the role's documentation for details.
 
-### Set a string for encrypting access keys
+### Set a random string
 
-You also have to set a string used for encrypting access keys in database to `semaphore_access_key_encryption`. Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-semaphore/blob/main/docs/configuring-semaphore.md#set-a-string-for-encrypting-access-keys) on the role's documentation for details.
+You also have to set a random string used for encrypting access keys. Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-semaphore/blob/main/docs/configuring-semaphore.md#set-a-string-for-encrypting-access-keys) on the role's documentation for details.
 
 ### Select database to use (optional)
 
