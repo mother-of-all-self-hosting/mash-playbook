@@ -13,47 +13,10 @@ Docker Registry Purger is a small tool used for purging a private Docker registr
 
 See the project's [documentation](https://github.com/devture/docker-registry-purger/blob/main/README.md) to learn what Docker Registry Purger does and why it might be useful to you.
 
-## Dependencies
+For details about configuring the [Ansible role for Docker Registry Purger](https://github.com/mother-of-all-self-hosting/ansible-role-docker-registry-purger), you can check them via:
 
-This service requires to be pointed to a container registry. It may be a registry powered by [Distribution Registry](docker-registry.md) or by some other software.
-
-## Configuration
-
-To enable this service, add the following configuration to your `vars.yml` file and re-run the [installation](../installing.md) process:
-
-```yaml
-########################################################################
-#                                                                      #
-# docker_registry_purger                                               #
-#                                                                      #
-########################################################################
-
-docker_registry_purger_enabled: true
-
-# To integrate with a locally running (in a container) Distribution Registry (see `docker-registry.md`),
-# point to its local container address and configure the purger to run in the registry's network.
-docker_registry_purger_registry_url: "http://{{ docker_registry_identifier }}:5000"
-docker_registry_purger_container_network: "{{ docker_registry_container_network }}"
-
-# Alternatively, to use a registry running elsewhere, delete both lines above
-# (docker_registry_purger_registry_url and docker_registry_purger_container_network),
-# and use something this instead:
-# docker_registry_purger_registry_url: "https://registry.example.com"
-
-########################################################################
-#                                                                      #
-# /docker_registry_purger                                              #
-#                                                                      #
-########################################################################
-```
-
-You may wish to tweak some [default configuration](https://github.com/mother-of-all-self-hosting/ansible-role-docker-registry-purger/blob/main/defaults/main.yml) variables, which ultimately control [environment variables](https://github.com/devture/docker-registry-purger#environment-variables) of the purger tool.
-
-## Usage
-
-After running the command for installation, the Docker Registry Purger instance becomes available at the URL specified with `docker_registry_browser_hostname` and `docker_registry_browser_path_prefix`.
-
-You should be able to browse the images and possibly delete them (if enabled via `docker_registry_browser_enabled_delete_images`).
+- 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-docker-registry-purger/blob/main/docs/configuring-docker-registry-purger.md) online
+- 📁 `roles/galaxy/docker_registry_purger/docs/configuring-docker-registry-purger.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 ## Related services
 

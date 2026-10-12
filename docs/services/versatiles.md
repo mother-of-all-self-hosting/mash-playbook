@@ -62,28 +62,7 @@ versatiles_hostname: versatiles.example.com
 
 After running the command for installation, the VersaTiles instance becomes available at the URL specified with `versatiles_hostname`. With the configuration above, the service is hosted at `https://versatiles.example.com`.
 
-![Map of Dresden](../assets/versatiles/map-example.jpeg)
-
-To embed the map on a website, add the following tags to the website:
-
-```html
-<!-- add MapLibre JavaScript and CSS -->
-<script src="https://tiles.example.com/assets/lib/maplibre-gl/maplibre-gl.js"></script>
-<link href="https://tiles.example.com/assets/lib/maplibre-gl/maplibre-gl.css" rel="stylesheet" />
-
-<!-- add container for the map -->
-<div id="map" style="width:100%;aspect-ratio:16/9"></div>
-
-<!-- start map -->
-<script>
-  new maplibregl.Map({
-    container: 'map',
-    style: 'https://tiles.example.com/assets/styles/colorful.json'
-  }).addControl(new maplibregl.NavigationControl());
-</script>
-```
-
-Refer to [examples from MapLibre](https://maplibre.org/maplibre-gl-js/docs/examples/) for details about adjustments.
+Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-versatiles/blob/main/docs/configuring-versatiles.md#usage) on the role's documentation for details.
 
 ## Troubleshooting
 

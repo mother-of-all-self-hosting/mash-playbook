@@ -26,7 +26,7 @@ BIND is a full-featured DNS server.
 
 See the project's [documentation](https://www.isc.org/bind/) to learn what BIND does and why it might be useful to you.
 
-The [Ansible role for BIND](https://github.com/mother-of-all-self-hosting/ansible-role-bind) is developed and maintained by the MASH project. For details about configuring BIND, you can check them via:
+For details about configuring the [Ansible role for BIND](https://github.com/mother-of-all-self-hosting/ansible-role-bind), you can check them via:
 
 - 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-bind/blob/main/docs/configuring-bind.md) online
 - 📁 `roles/galaxy/bind/docs/configuring-bind.md` locally, if you have [fetched the Ansible roles](../installing.md)

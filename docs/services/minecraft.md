@@ -17,7 +17,7 @@ See the project's [documentation](https://docker-minecraft-server.readthedocs.io
 > [!WARNING]
 > itzg docker-minecraft server is published under the Apache-2.0 license, however Minecraft itself is proprietary software, and by using this role you are agreeing to the [EULA](https://www.minecraft.net/en-us/eula). Know your rights!
 
-The [Ansible role for Minecraft Server](https://github.com/mother-of-all-self-hosting/ansible-role-minecraft) is developed and maintained by the MASH project. For details about configuring Minecraft Server, you can check them via:
+For details about configuring the [Ansible role for Minecraft Server](https://github.com/mother-of-all-self-hosting/ansible-role-minecraft), you can check them via:
 
 - 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-minecraft/blob/main/docs/configuring-minecraft.md) online
 - 📁 `roles/galaxy/minecraft/docs/configuring-minecraft.md` locally, if you have [fetched the Ansible roles](../installing.md)

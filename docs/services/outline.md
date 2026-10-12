@@ -26,6 +26,11 @@ Outline is an open-source knowledge base for growing teams.
 
 See the project's [documentation](https://docs.getoutline.com/s/guide) to learn what Outline does and why it might be useful to you.
 
+For details about configuring the [Ansible role for Outline](https://github.com/mother-of-all-self-hosting/ansible-role-outline), you can check them via:
+
+- 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-outline/blob/main/docs/configuring-outline.md) online
+- 📁 `roles/galaxy/outline/docs/configuring-outline.md` locally, if you have [fetched the Ansible roles](../installing.md)
+
 ## Dependencies
 
 This service requires the following other services:
@@ -49,9 +54,6 @@ outline_enabled: true
 
 outline_hostname: outline.example.com
 
-# At least one authentication method MUST be enabled for Outline to work.
-# See the "Authentication" section below.
-
 ########################################################################
 #                                                                      #
 # /outline                                                             #
@@ -69,36 +71,9 @@ You also need to set random **32-byte hex digits** for the secret key. To do so,
 outline_environment_variable_secret_key: YOUR_SECRET_KEY_HERE
 ```
 
-### Configuring file storage
+### Configure authentication methods
 
-Outline supports multiple [file storage](https://docs.getoutline.com/s/hosting/doc/file-storage-N4M0T6Ypu7) mechanisms.
-
-The default configuration stores files locally in a `data` directory, but you can also stores files on AWS S3 (or [compatible S3 alternative](https://docs.getoutline.com/s/hosting/doc/file-storage-N4M0T6Ypu7#h-s3-compatible-services)).
-
-To enable S3 storage, add the following to your `vars.yml` configuration:
-
-```yml
-outline_environment_variable_file_storage: s3
-
-outline_environment_variable_aws_access_key_id: ''
-outline_environment_variable_aws_secret_access_key: ''
-outline_environment_variable_aws_region: eu-central-1 # example
-outline_environment_variable_aws_s3_upload_bucket_url: https://OUTLINE_ASSETS_BUCKET_NAME.s3.eu-central-1.amazonaws.com
-outline_environment_variable_aws_s3_upload_bucket_name: OUTLINE_ASSETS_BUCKET_NAME
-outline_environment_variable_aws_s3_force_path_style: false
-```
-
-### Authentication
-
-For Outline to work, at least one [authentication method](https://docs.getoutline.com/s/hosting/doc/authentication-7ViKRmRY5o) must be enabled.
-
-The Outline Ansible role provides dedicated Ansible variables for configuring these authentication methods via environment variables (see the `outline_environment_variable_*` variables in [`defaults/main.yml` of ansible-role-outline](https://github.com/mother-of-all-self-hosting/ansible-role-outline/blob/main/defaults/main.yml)).
-
-If you need to pass additional environment variables to Outline, for which dedicated Ansible variables are not available, you can use `outline_environment_variables_additional_variables`.
-
-If you define SMTP settings (see the `outline_environment_variable_smtp_*` variables in `defaults/main.yml`), the [Email magic link](https://docs.getoutline.com/s/hosting/doc/email-magic-link-N2CPh5tmTS) authentication method will be enabled:
-
-Unfortunately, even with SMTP settings being defined, we haven't been able to get Outline to successfully send emails just yet, hitting issues similar to [this one](https://github.com/outline/outline/discussions/2605).
+For Outline to work, at least one [authentication method](https://docs.getoutline.com/s/hosting/doc/authentication-7ViKRmRY5o) must be enabled. Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-outline/blob/main/docs/configuring-outline.md#configure-authentication-methods) on the role's documentation for details.
 
 ### Configure Valkey
 

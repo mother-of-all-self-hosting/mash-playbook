@@ -64,33 +64,9 @@ privatebin_path_prefix: /bin
 
 ### Configure a storage for pastes (optional)
 
-PrivateBin instance requires a storage backend to work. The available options: PostgreSQL (default), local filesystem, MySQL, SQLite, Google Cloud Storage, and Amazon S3.
+PrivateBin instance requires a storage backend to work. As the playbook enables [PostgreSQL](postgres.md) on `vars.yml` by default, it is configured to use it as the default backend. If it is fine for you, you do not have to add configuration for the storage.
 
-As the playbook enables the [PostgreSQL service](postgres.md) on `vars.yml` by default, it is configured to use it as the default backend. If it is fine for you, you do not have to add configuration for the storage.
-
-See below for the instruction to use one of the others.
-
-#### Local filesystem
-
-To use local filesystem database for a storage, add the following configuration to your `vars.yml` file:
-
-```yaml
-privatebin_config_model: filesystem
-```
-
-#### MySQL
-
-To use MySQL for a storage, add the following configuration to your `vars.yml` file:
-
-```yaml
-privatebin_config_model: mysql
-```
-
-Refer to [here](mariadb.md) on the role's documentation for details about how to configure a MariaDB instance with the playbook.
-
-#### Google Cloud Storage / Amazon S3
-
-Refer to [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az47v1S9DRcEtm2dgKwZZs4YgoLRgF/tree/docs/configuring-privatebin.md#configure-a-storage-for-pastes) on the role's documentation for details about how to configure a storage at Google Cloud Storage or Amazon S3.
+Refer to [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az47v1S9DRcEtm2dgKwZZs4YgoLRgF/tree/docs/configuring-privatebin.md#configure-a-storage-for-pastes) on the role's documentation for details about how to configure storages.
 
 ### Configure a URL shortener (optional)
 
@@ -101,7 +77,7 @@ YOURLS is available on the playbook. Refer to [here](yourls.md) for details abou
 💡 **Notes**
 
 - YOURLS requires a MariaDB instance (refer to [this page](mariadb.md) for details about configuring it with the playbook); if PostgreSQL is going to be used for PrivateBin (or other services), you need to use both of them.
-- If you are going to install PrivateBin and YOURLS at the same time, **you need to complete installation of YOURLS at first** by visiting its admin UI available at the specified hostname with `/admin/` such as `https://yourls.example.com/admin/`. Otherwise the function to shorten a paste's URL does not work. Refer to [here](yourls.md#usage) for the instruction to complete installation.
+- If you are going to install PrivateBin and YOURLS at the same time, **you need to complete installation of YOURLS at first**. Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-yourls/blob/main/docs/configuring-yourls.md#usage) on the role's documentation for the instruction to set it up.
 
 #### Use a private YOURLS instance with API access key
 
@@ -118,16 +94,6 @@ privatebin_config_yourlsapi_url: https://yourls.example.com/yourls-api.php
 ```
 
 You can find the "signature" and API's URL on the "Tools" page of the YOURLS instance.
-
-### Extending the configuration
-
-There are some additional things you may wish to configure about the component.
-
-Take a look at:
-
-- [PrivateBin](https://github.com/mother-of-all-self-hosting/ansible-role-privatebin)'s [`defaults/main.yml`](https://github.com/mother-of-all-self-hosting/ansible-role-privatebin/blob/main/defaults/main.yml) for some variables that you can customize via your `vars.yml` file.
-
-See its [configuration sample file](https://github.com/PrivateBin/PrivateBin/blob/master/cfg/conf.sample.php) and the [documentation](https://github.com/PrivateBin/PrivateBin/wiki/Configuration) for a complete list of PrivateBin's config options such as [discussion](https://radicle.network/nodes/iris.radicle.network/rad%3Az47v1S9DRcEtm2dgKwZZs4YgoLRgF/tree/docs/configuring-privatebin.md#configure-the-discussion-feature-optional), [password](https://radicle.network/nodes/iris.radicle.network/rad%3Az47v1S9DRcEtm2dgKwZZs4YgoLRgF/tree/docs/configuring-privatebin.md#configure-the-password-feature-optional), [file upload](https://radicle.network/nodes/iris.radicle.network/rad%3Az47v1S9DRcEtm2dgKwZZs4YgoLRgF/tree/docs/configuring-privatebin.md#configure-the-file-upload-feature-optional), and [default theme](https://radicle.network/nodes/iris.radicle.network/rad%3Az47v1S9DRcEtm2dgKwZZs4YgoLRgF/tree/docs/configuring-privatebin.md#configure-the-default-template-optional) features.
 
 ## Usage
 

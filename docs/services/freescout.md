@@ -55,9 +55,6 @@ freescout_enabled: true
 
 freescout_hostname: freescout.example.com
 
-freescout_environment_variables_admin_email: your-email-here
-freescout_environment_variables_admin_password: a-strong-password-here
-
 ########################################################################
 #                                                                      #
 # /freescout                                                           #
@@ -68,6 +65,10 @@ freescout_environment_variables_admin_password: a-strong-password-here
 ### Select database to use
 
 It is necessary to select a database used by FreeScout from a MySQL compatible database and Postgres. Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-freescout/blob/main/docs/configuring-freescout.md#specify-database) on the role's documentation for details.
+
+### Set administrator's account details
+
+You also need to specify administrator's account details. Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-freescout/blob/main/docs/configuring-freescout.md#set-administrators-account-details) on the role's documentation for details.
 
 ### Configuring the mailer
 
@@ -94,7 +95,7 @@ After setting the configuration, you can have the FreeScout instance send a test
 
 After running the command for installation, the FreeScout instance becomes available at the URL specified with `freescout_hostname`. With the configuration above, the service is hosted at `https://freescout.example.com`.
 
-To get started, open the URL with a web browser to log in to the instance. You can log in to the instance with the administrator email address (`freescout_admin_email`) and password (`freescout_admin_password`).
+To get started, open the URL with a web browser to log in to the instance. You can log in to the instance with the administrator email address and password.
 
 ## Troubleshooting
 

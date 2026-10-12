@@ -1,6 +1,6 @@
 <!--
 SPDX-FileCopyrightText: 2024 Slavi Pantaleev
-SPDX-FileCopyrightText: 2025 Suguru Hirahara
+SPDX-FileCopyrightText: 2025, 2026 Suguru Hirahara
 
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->
@@ -25,33 +25,7 @@ For details about configuring the [Ansible role for Valkey](https://github.com/m
 >
 > If you're only hosting a single service (like [PeerTube](peertube.md) or [NetBox](netbox.md)) on your server, you can get away with running a single instance. If you're hosting multiple services, you should prepare separate ones for each service.
 
-## Configuration
-
-To enable this service, add the following configuration to your `vars.yml` file and re-run the [installation](../installing.md) process to **host a single instance of the Valkey service**:
-
-```yaml
-########################################################################
-#                                                                      #
-# valkey                                                               #
-#                                                                      #
-########################################################################
-
-valkey_enabled: true
-
-########################################################################
-#                                                                      #
-# /valkey                                                              #
-#                                                                      #
-########################################################################
-```
-
 To host multiple instances of the Valkey service, follow the [Running multiple instances of the same service on the same host](../running-multiple-instances.md) documentation or the **Valkey** section (if available) of the service you're installing.
-
-## Usage
-
-After running the command for installation, the Valkey instance becomes available.
-
-The purpose of the Valkey component in this Ansible playbook is to serve as a dependency for other [services](../supported-services.md). For this use-case, you don't need to do anything special beyond enabling the component per your choice (whether hosting a single instance or multiple ones).
 
 ## Related services
 

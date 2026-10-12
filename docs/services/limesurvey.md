@@ -71,16 +71,7 @@ Refer to [this page](mariadb.md) for the instruction to enable it.
 
 ### Set administrator's account details
 
-You also need to create an instance's user to access to the admin UI after installation. To create one, add the following configuration to your `vars.yml` file.
-
-```yaml
-limesurvey_environment_variables_admin_user: LIMESURVEY_ADMIN_USERNAME_HERE
-limesurvey_environment_variables_admin_password: LIMESURVEY_ADMIN_PASSWORD_HERE
-limesurvey_environment_variables_admin_name: LIMESURVEY_ADMIN_NAME_HERE
-limesurvey_environment_variables_admin_email: LIMESURVEY_ADMIN_EMAIL_ADDRESS_HERE
-```
-
-Make sure to replace the values with your own ones.
+You also need to specify administrator's account details. Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-limesurvey/blob/main/docs/configuring-limesurvey.md#set-administrators-account-details) on the role's documentation for details.
 
 ### Configuring the mailer (optional)
 

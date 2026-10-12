@@ -65,17 +65,9 @@ writefreely_hostname: writefreely.example.com
 
 **Note**: hosting WriteFreely under a subpath (by configuring the `writefreely_path_prefix` variable) does not seem to be possible due to WriteFreely's technical limitations. Refer to [this issue](https://github.com/mother-of-all-self-hosting/mash-playbook/issues/116) for details.
 
-### Specify database
+### Select database to use
 
-It is necessary to select database used by WriteFreely from a MySQL compatible database and SQLite.
-
-To use a MySQL compatible database, add the following configuration to your `vars.yml` file:
-
-```yaml
-writefreely_database_type: mysql
-```
-
-Set `sqlite` to use SQLite. The SQLite database is stored in the directory specified with `writefreely_data_path`.
+It is necessary to select database used by WriteFreely from a MySQL compatible database and SQLite. Refer to [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az2i8BkHXzRvK1ZtGwHuvLACRswXgA/tree/docs/configuring-writefreely.md#specify-database) on the role's documentation for details.
 
 ### Configuring the mailer (optional)
 

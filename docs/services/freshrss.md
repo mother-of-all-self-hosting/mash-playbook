@@ -58,17 +58,9 @@ freshrss_hostname: freshrss.example.com
 
 **Note**: hosting FreshRSS under a subpath (by configuring the `freshrss_path_prefix` variable) does not seem to be possible due to FreshRSS's technical limitations. Refer to [this issue](https://github.com/mother-of-all-self-hosting/mash-playbook/issues/116) for details.
 
-### Specify database
+### Select database to use
 
-It is necessary to select database used by FreshRSS from a MySQL compatible database, Postgres, and SQLite.
-
-To use Postgres, add the following configuration to your `vars.yml` file:
-
-```yaml
-freshrss_database_type: postgres
-```
-
-Set `mysql` to use a MySQL compatible database, and `sqlite` to use SQLite. The SQLite database is stored in the directory specified with `freshrss_data_path`.
+It is necessary to select a database used by FreshRSS from a MySQL compatible database, Postgres, and SQLite. Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-freshrss/blob/main/docs/configuring-freshrss.md#specify-database) on the role's documentation for details.
 
 ## Usage
 

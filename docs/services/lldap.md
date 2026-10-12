@@ -66,21 +66,13 @@ lldap_hostname: lldap.example.com
 
 **Note**: hosting LLDAP under a subpath (by configuring the `lldap_path_prefix` variable) does not seem to be possible due to LLDAP's technical limitations.
 
-### Specify the username and password for the initial admin user
+### Set administrator's account details
 
-It is necessary to create an initial user with admin privileges by adding the following configuration to your `vars.yml` file:
-
-```yaml
-lldap_environment_variables_lldap_ldap_user_dn: ADMIN_USER_USERNAME_HERE
-
-lldap_environment_variables_lldap_ldap_user_pass: ADMIN_USER_PASSWORD_HERE
-```
-
-Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-lldap/blob/main/docs/configuring-lldap.md#specify-the-username-and-password-for-the-initial-admin-user) on the role's documentation for details.
+It is necessary to create an initial user with admin privileges. Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-lldap/blob/main/docs/configuring-lldap.md#set-administrators-account-details) on the role's documentation for details.
 
 ### Select database to use (optional)
 
-By default LLDAP is configured to use [Postgres](postgres.md) (if enabled), but you can choose other databases such as MySQL (MariaDB) and SQLite. If Postgres is not enabled, SQLite will be used. Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-lldap/blob/main/docs/configuring-lldap.md#specify-database-optional) on the role's documentation for details.
+By default LLDAP is configured to use Postgres, but you can choose other database such as SQLite and MySQL (MariaDB). Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-lldap/blob/main/docs/configuring-lldap.md#specify-database-optional) on the role's documentation for details.
 
 ### Configuring the mailer (optional)
 

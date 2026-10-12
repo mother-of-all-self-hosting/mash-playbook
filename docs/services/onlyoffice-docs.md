@@ -12,6 +12,8 @@ SPDX-FileCopyrightText: 2023 Antonis Christofides
 SPDX-FileCopyrightText: 2023 Felix Stupp
 SPDX-FileCopyrightText: 2023 Julian-Samuel Gebühr
 SPDX-FileCopyrightText: 2023 Pierre 'McFly' Marty
+SPDX-FileCopyrightText: 2024 Thomas Miceli
+SPDX-FileCopyrightText: 2024 Tiz
 SPDX-FileCopyrightText: 2024-2026 Suguru Hirahara
 
 SPDX-License-Identifier: AGPL-3.0-or-later
@@ -62,6 +64,10 @@ onlyoffice_docs_hostname: onlyoffice.example.com
 #                                                                      #
 ########################################################################
 ```
+
+### Select database to use (optional)
+
+By default ONLYOFFICE Docs is configured to use Postgres, but you can choose MySQL (MariaDB). Refer to [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az3kozTn4Kn5eJtgJQj1aCFUpqxW5Y/tree/docs/configuring-onlyoffice-docs.md#specify-database-optional) on the role's documentation for details.
 
 ## Usage
 

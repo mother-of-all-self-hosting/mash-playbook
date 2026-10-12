@@ -255,15 +255,9 @@ By default account registration for the service is disabled. To enable it, add t
 weblate_environment_variables_weblate_registration_open: "1"
 ```
 
-### Configuring initial admin email address and password (optional)
+### Setting administrator's account details (optional)
 
-You can set the email address and password for the initial administrator by adding the following configuration to your `vars.yml` file:
-
-```yaml
-weblate_environment_variables_weblate_admin_email: ADMIN_EMAIL_ADDRESS_HERE
-
-weblate_environment_variables_weblate_admin_password: ADMIN_PASSWORD_HERE
-```
+You can specify an initial administrator's login credential. Refer to [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az3NoFEkNtQQjSGjLvweqwCFPbC59R/tree/docs/configuring-weblate.md#setting-administrator-39-s-account-details-optional) on the role's documentation for details.
 
 >[!NOTE]
 > If you skip setting them, the Weblate instance creates an administrator user on the initial start with `admin@example.com` and a random password which can be checked on the service's log.

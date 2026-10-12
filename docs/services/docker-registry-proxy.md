@@ -13,6 +13,11 @@ Docker Registry Proxy is a pass-through Docker registry (distribution) proxy wit
 
 See the project's [documentation](https://github.com/etkecc/docker-registry-proxy/blob/main/README.md) to learn what Docker Registry Proxy does and why it might be useful to you.
 
+For details about configuring the [Ansible role for Docker Registry Proxy](https://github.com/mother-of-all-self-hosting/ansible-role-docker-registry-proxy), you can check them via:
+
+- 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-docker-registry-proxy/blob/main/docs/configuring-docker-registry-proxy.md) online
+- 📁 `roles/galaxy/docker_registry_proxy/docs/configuring-docker-registry-proxy.md` locally, if you have [fetched the Ansible roles](../installing.md)
+
 ## Dependencies
 
 This service requires the following other services:
@@ -34,22 +39,14 @@ docker_registry_proxy_enabled: true
 
 docker_registry_proxy_hostname: registry.example.com
 
-# List of the IPs allowed to access the registry (GET, HEAD, OPTIONS requests only)
-docker_registry_proxy_allowed_ips: []
-
-# List of the User Agent names(!) allowed to access the registry (GET, HEAD, OPTIONS requests only)
-docker_registry_proxy_allowed_uas:
-- docker
-
-# List of the IPs trusted to access the registry (PATCH, POST, PUT, DELETE requests only)
-docker_registry_proxy_trusted_ips: []
-
 ########################################################################
 #                                                                      #
 # /docker_registry_proxy                                               #
 #                                                                      #
 ########################################################################
 ```
+
+Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-docker-registry-proxy/blob/main/docs/configuring-docker-registry-proxy.md#adjusting-the-playbook-configuration) on the role's documentation for details about other settings.
 
 ## Usage
 

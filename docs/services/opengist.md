@@ -77,7 +77,7 @@ opengist_environment_variables_secret_key: YOUR_SECRET_KEY_HERE
 
 ### Select database to use (optional)
 
-By default Opengist is configured to use Postgres, but you can choose other database such as SQLite and MySQL. Refer to [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az48WEbcYK3E6uDmfP1Qbb9AGdz1L3/tree/docs/configuring-opengist.md#specify-database-optional) on the role's documentation for details.
+By default Opengist is configured to use Postgres, but you can choose other database such as SQLite and MySQL (MariaDB). Refer to [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az48WEbcYK3E6uDmfP1Qbb9AGdz1L3/tree/docs/configuring-opengist.md#specify-database-optional) on the role's documentation for details.
 
 ### Connecting to a Meilisearch instance (optional)
 

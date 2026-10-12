@@ -63,7 +63,7 @@ asciinema_server_hostname: asciinema-server.example.com
 
 **Note**: hosting asciinema server under a subpath (by configuring the `asciinema_server_path_prefix` variable) does not seem to be possible due to asciinema server's technical limitations.
 
-### Set a random string for secret key base
+### Set a random string
 
 You also need to set a random string used for cryptographic operations, such as signing and verification of session cookies. To do so, add the following configuration to your `vars.yml` file. The value can be generated with `pwgen -s 64 1` or in another way.
 

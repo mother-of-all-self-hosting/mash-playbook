@@ -24,8 +24,10 @@ The playbook can install and configure [authentik](https://goauthentik.io/) for 
 
 authentik is an open-source Identity Provider (IdP) focused on flexibility and versatility.
 
-> [!WARNING]
-> The SSO system of authentik is pretty complex, and we have only tested OIDC and OAuth integration. There is a high probability that using outposts/LDAP would need further configuration efforts. Make sure you test before using this in production, and feel free to provide feedback!
+For details about configuring the [Ansible role for authentik](https://github.com/mother-of-all-self-hosting/ansible-role-authentik), you can check them via:
+
+- 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-authentik/blob/main/docs/configuring-authentik.md) online
+- 📁 `roles/galaxy/authentik/docs/configuring-authentik.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 ## Dependencies
 
@@ -37,7 +39,7 @@ This service requires the following other services:
 
 ## Configuration
 
-To enable this service, add the following configuration to your `vars.yml` file:
+To enable this service, add the following configuration to your `vars.yml` file and re-run the [installation](../installing.md) process:
 
 ```yaml
 ########################################################################
@@ -50,14 +52,19 @@ authentik_enabled: true
 
 authentik_hostname: authentik.example.com
 
-# Put a strong secret below, generated with `pwgen -s 64 1` or in another way
-authentik_secret_key: ''
-
 ########################################################################
 #                                                                      #
 # /authentik                                                           #
 #                                                                      #
 ########################################################################
+```
+
+### Set a random string
+
+You also need to set a random string to the variable as below by adding the following configuration to your `vars.yml` file. The value can be generated with `pwgen -s 64 1` or in another way.
+
+```yaml
+authentik_environment_variables_authentik_secret_key: YOUR_SECRET_KEY_HERE
 ```
 
 ### Configuring the mailer (optional)
@@ -69,28 +76,9 @@ To actually have the service use (and get messages sent through the exim-relay s
 >[!WARNING]
 > Without setting an authentication method such as DKIM, SPF, and DMARC for your hostname, emails are most likely to be quarantined as spam at recipient's mail servers. The worst scenario is that your server's IP address or hostname will be included in the spam list such as the one managed by [Spamhaus](https://www.spamhaus.org/), depending on the reputation. As the exim-relay service supports DKIM signing, refer to [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-exim-relay/blob/main/docs/configuring-exim-relay.md#enable-dkim-support-optional) for details about how to set it up.
 
-### Extending the configuration
-
-There are some additional things you may wish to configure about the service.
-
-Take a look at:
-
-- [authentik](https://github.com/mother-of-all-self-hosting/ansible-role-authentik)'s [`defaults/main.yml`](https://github.com/mother-of-all-self-hosting/ansible-role-authentik/blob/main/defaults/main.yml) for some variables that you can customize via your `vars.yml` file.
-
-## Installation
-
-Once you're done configuring authentik, proceed to run the [installing](../installing.md) command.
-
 ## Usage
 
 After running the command for installation, the authentik instance becomes available at the URL specified with `authentik_hostname`. With the configuration above, the service is hosted at `https://authentik.example.com`.
-
-You can set the admin password at `https://authentik.example.com/if/flow/initial-setup/`, and start adding applications and users. Refer to the [official documentation](https://goauthentik.io/docs/) to learn how to integrate services.
-
-When it comes to this playbook, tested configuration examples are described on the respective service documentation. See below for details:
-
-- [Grafana](grafana.md#single-sign-on-authentik)
-- [Nextcloud](nextcloud.md#single-sign-on-authentik)
 
 ## Related services
 

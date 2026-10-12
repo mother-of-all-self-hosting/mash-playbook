@@ -60,7 +60,9 @@ pgadmin_hostname: pgadmin.example.com
 ########################################################################
 ```
 
-You also need to specify an email address and password for the initial administrator of the pgAdmin instance. Refer to [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Aztixjo2qUzCBLADieR3hKkYEk4eE/tree/docs/configuring-pgadmin.md#set-email-address-and-password-for-initial-administrator) on the role's documentation for details.
+### Set administrator's account details
+
+You also need to specify administrator's account details. Refer to [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Aztixjo2qUzCBLADieR3hKkYEk4eE/tree/docs/configuring-pgadmin.md#set-administrator-39-s-account-details) on the role's documentation for details.
 
 ### Configuring the mailer (optional)
 

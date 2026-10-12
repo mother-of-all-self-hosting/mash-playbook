@@ -64,13 +64,7 @@ cap_hostname: cap.example.com
 
 ### Set a password for the admin dashboard
 
-You also need to set a password for the admin dashboard by adding the following configuration to your `vars.yml` file:
-
-```yaml
-cap_environment_variables_admin_key: YOUR_ADMIN_PASSWORD_HERE
-```
-
-Replace `YOUR_ADMIN_PASSWORD_HERE` with your own value.
+You also need to set a password for the admin dashboard. Refer to [this section](https://radicle.network/nodes/iris.radicle.network/rad%3AzSj65STd1FuR22pm4vLCSmFQ1rt5/tree/docs/configuring-cap.md#set-a-password-for-the-admin-dashboard) on the role's documentation for details.
 
 ### Configure Valkey
 

@@ -62,15 +62,9 @@ filebrowser_quantum_path_prefix: /filebrowser
 ########################################################################
 ```
 
-### Set an administrator's password
+### Set administrator's account details
 
-By default the password authentication is enabled, and you need to set a log in password for the administrator by adding the following configuration to your `vars.yml` file:
-
-```yaml
-filebrowser_quantum_environment_variables_filebrowser_admin_password: YOUR_ADMIN_PASSWORD_HERE
-```
-
-Replace `YOUR_ADMIN_PASSWORD_HERE` with your own value.
+By default the password authentication is enabled, and you need to specify an administrator's login credential. Refer to [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az3ALGSKDhVLeMnR49YPXk5yv2yTge/tree/docs/configuring-filebrowser-quantum.md#set-administrator-39-s-account-details) on the role's documentation for details.
 
 ### Configuring OIDC authentication (optional)
 

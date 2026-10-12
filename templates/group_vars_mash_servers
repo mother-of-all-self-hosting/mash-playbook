@@ -76,6 +76,26 @@ system_swap_enabled: false
 
 
 
+# role-specific:cleanup
+########################################################################
+#                                                                      #
+# cleanup                                                              #
+#                                                                      #
+########################################################################
+
+system_cleanup_identifier: "{{ mash_playbook_service_identifier_prefix }}system-cleanup"
+
+system_cleanup_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}system-cleanup"
+
+########################################################################
+#                                                                      #
+# /cleanup                                                             #
+#                                                                      #
+########################################################################
+# /role-specific:cleanup
+
+
+
 # role-specific:systemd_service_manager
 ########################################################################
 #                                                                      #
@@ -198,6 +218,11 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
   - |-
     {{ ({'name': (bentopdf_identifier + '.service'), 'priority': 2000, 'restart_necessary': (bentopdf_restart_necessary | bool), 'groups': ['mash', 'bentopdf']} if bentopdf_enabled else omit) }}
   # /role-specific:bentopdf
+
+  # role-specific:beszel_hub
+  - |-
+    {{ ({'name': (beszel_hub_identifier + '.service'), 'priority': 2000, 'restart_necessary': (beszel_hub_restart_necessary | bool), 'groups': ['mash', 'beszel-hub']} if beszel_hub_enabled else omit) }}
+  # /role-specific:beszel_hub
 
   # role-specific:bichon
   - |-
@@ -3629,7 +3654,7 @@ authentik_server_systemd_required_services_list_auto: |
 
 authentik_container_additional_networks_auto: |
   {{
-    ([exim_relay_container_network] if exim_relay_enabled | default(false) and authentik_email_host == exim_relay_identifier and authentik_container_network != exim_relay_container_network else [])
+    ([exim_relay_container_network] if exim_relay_enabled | default(false) and authentik_environment_variables_authentik_email_host == exim_relay_identifier and authentik_container_network != exim_relay_container_network else [])
     +
     ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
     +
@@ -3640,9 +3665,9 @@ authentik_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_ena
 authentik_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
 
 # role-specific:exim_relay
-authentik_email_host: "{{ exim_relay_identifier if exim_relay_enabled else '' }}"
-authentik_email_port: "{{ 8025 if exim_relay_enabled else '587' }}"
-authentik_email_from: "{{ exim_relay_sender_address if exim_relay_enabled else '' }}"
+authentik_environment_variables_authentik_email_host: "{{ exim_relay_identifier if exim_relay_enabled else '' }}"
+authentik_environment_variables_authentik_email_port: "{{ 8025 if exim_relay_enabled else '587' }}"
+authentik_environment_variables_authentik_email_from: "{{ exim_relay_sender_address if exim_relay_enabled else '' }}"
 # /role-specific:exim_relay
 
 # role-specific:postgres
@@ -3958,6 +3983,51 @@ bentopdf_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_pri
 #                                                                      #
 ########################################################################
 # /role-specific:bentopdf
+
+
+
+# role-specific:beszel_hub
+########################################################################
+#                                                                      #
+# beszel_hub                                                           #
+#                                                                      #
+########################################################################
+
+beszel_hub_enabled: false
+
+beszel_hub_identifier: "{{ mash_playbook_service_identifier_prefix }}beszel-hub"
+
+beszel_hub_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}beszel-hub"
+
+beszel_hub_uid: "{{ mash_playbook_uid }}"
+beszel_hub_gid: "{{ mash_playbook_gid }}"
+
+beszel_hub_systemd_wanted_services_list_auto: |
+  {{
+    ([tsdproxy_identifier ~ '.service'] if tsdproxy_enabled | default(false) and beszel_hub_container_labels_tsdproxy_enabled else [])
+  }}
+
+beszel_hub_container_additional_networks_auto: |
+  {{
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+    +
+    ([tsdproxy_container_network] if tsdproxy_enabled | default(false) and beszel_hub_container_labels_tsdproxy_enabled and beszel_hub_container_network != tsdproxy_container_network else [])
+  }}
+
+beszel_hub_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+beszel_hub_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+
+# role-specific:traefik
+beszel_hub_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
+beszel_hub_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
+# /role-specific:traefik
+
+########################################################################
+#                                                                      #
+# /beszel_hub                                                          #
+#                                                                      #
+########################################################################
+# /role-specific:beszel_hub
 
 
 
@@ -5201,16 +5271,20 @@ docker_registry_proxy_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook
 docker_registry_proxy_uid: "{{ mash_playbook_uid }}"
 docker_registry_proxy_gid: "{{ mash_playbook_gid }}"
 
-docker_registry_proxy_target_scheme: "{{ 'http' if docker_registry_enabled else '' }}"
-docker_registry_proxy_target_host: "{{ docker_registry_identifier+':5000' if docker_registry_enabled else '' }}"
-
 docker_registry_proxy_container_additional_networks_auto: |
   {{
+    ([docker_registry_container_network] if docker_registry_enabled | default(false) and docker_registry_proxy_container_network != docker_registry_container_network else [])
+    +
     ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
   }}
 
 docker_registry_proxy_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
 docker_registry_proxy_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+
+# role-specific:docker_registry
+docker_registry_proxy_target_scheme: "{{ 'http' if docker_registry_enabled else '' }}"
+docker_registry_proxy_target_host: "{{ docker_registry_identifier+':5000' if docker_registry_enabled else '' }}"
+# /role-specific:docker_registry
 
 # role-specific:traefik
 docker_registry_proxy_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
@@ -5241,6 +5315,15 @@ docker_registry_purger_base_path: "{{ mash_playbook_base_path }}/{{ mash_playboo
 
 docker_registry_purger_uid: "{{ mash_playbook_uid }}"
 docker_registry_purger_gid: "{{ mash_playbook_gid }}"
+
+docker_registry_purger_container_additional_networks_auto: |
+  {{
+    ([docker_registry_container_network] if docker_registry_enabled | default(false) and docker_registry_purger_container_network != docker_registry_container_network else [])
+  }}
+
+# role-specific:docker_registry
+docker_registry_purger_registry_url: "http://{{ docker_registry_identifier }}:5000"
+# /role-specific:docker_registry
 
 ########################################################################
 #                                                                      #
@@ -7346,7 +7429,7 @@ grafana_gid: "{{ mash_playbook_gid }}"
 
 grafana_systemd_wanted_services_list_auto: |
   {{
-    ([exim_relay_identifier ~ '.service'] if exim_relay_enabled | default(false) and grafana_mailer_smtp_enabled | default(false) and grafana_smtp_host == exim_relay_identifier else [])
+    ([exim_relay_identifier ~ '.service'] if exim_relay_enabled | default(false) and grafana_mailer_enabled | default(false) and grafana_config_smtp_host == exim_relay_identifier else [])
     +
     ([loki_identifier ~ '.service'] if loki_enabled | default(false) else [])
     +
@@ -7359,7 +7442,7 @@ grafana_systemd_wanted_services_list_auto: |
 
 grafana_container_additional_networks_auto: |
   {{
-    ([exim_relay_container_network] if exim_relay_enabled | default(false) and grafana_mailer_smtp_enabled | default(false) and grafana_smtp_host == exim_relay_identifier and grafana_container_network != exim_relay_container_network else [])
+    ([exim_relay_container_network] if exim_relay_enabled | default(false) and grafana_mailer_enabled | default(false) and grafana_config_smtp_host == exim_relay_identifier and grafana_container_network != exim_relay_container_network else [])
     +
     ([loki_container_network] if loki_enabled | default(false) and grafana_container_network != loki_container_network else [])
     +
@@ -7376,10 +7459,10 @@ grafana_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabl
 grafana_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
 
 # role-specific:exim_relay
-grafana_mailer_smtp_enabled: "{{ exim_relay_enabled | default(false) }}"
-grafana_smtp_host: "{{ exim_relay_identifier if exim_relay_enabled else '' }}"
-grafana_smtp_port: 8025
-grafana_smtp_from_address: "{{ exim_relay_sender_address if exim_relay_enabled else '' }}"
+grafana_mailer_enabled: "{{ exim_relay_enabled | default(false) }}"
+grafana_config_smtp_host: "{{ exim_relay_identifier if exim_relay_enabled else '' }}"
+grafana_config_smtp_port: 8025
+grafana_config_smtp_from_address: "{{ exim_relay_sender_address if exim_relay_enabled else '' }}"
 # /role-specific:exim_relay
 
 # role-specific:traefik
@@ -13348,18 +13431,18 @@ paperless_systemd_required_services_list_auto: |
 
 paperless_systemd_wanted_services_list_auto: |
   {{
-    ([gotenberg_identifier ~ '.service'] if gotenberg_enabled | default(false) else [])
+    ([gotenberg_identifier ~ '.service'] if gotenberg_enabled | default(false) and paperless_environment_variables_paperless_tika_enabled | default(false) else [])
     +
-    ([exim_relay_identifier ~ '.service'] if exim_relay_enabled | default(false) and paperless_email_host == exim_relay_identifier else [])
+    ([exim_relay_identifier ~ '.service'] if exim_relay_enabled | default(false) and paperless_environment_variables_paperless_email_host == exim_relay_identifier else [])
     +
-    ([tika_identifier ~ '.service'] if tika_enabled | default(false) else [])
+    ([tika_identifier ~ '.service'] if tika_enabled | default(false) and paperless_environment_variables_paperless_tika_enabled | default(false) else [])
   }}
 
 paperless_container_additional_networks_auto: |
   {{
-    ([exim_relay_container_network] if exim_relay_enabled | default(false) and paperless_email_host == exim_relay_identifier and paperless_container_network != exim_relay_container_network else [])
+    ([exim_relay_container_network] if exim_relay_enabled | default(false) and paperless_environment_variables_paperless_email_host == exim_relay_identifier and paperless_container_network != exim_relay_container_network else [])
     +
-    ([gotenberg_container_network] if gotenberg_enabled | default(false) and paperless_container_network != gotenberg_container_network else [])
+    ([gotenberg_container_network] if gotenberg_enabled | default(false) and paperless_container_network != gotenberg_container_network and paperless_environment_variables_paperless_tika_enabled | default(false) else [])
     +
     ([mariadb_container_network] if mariadb_enabled | default(false) and paperless_database_mariadb_hostname == mariadb_connection_hostname and paperless_container_network != mariadb_container_network and paperless_database_type == 'mariadb' else [])
     +
@@ -13367,7 +13450,7 @@ paperless_container_additional_networks_auto: |
     +
     ([postgres_container_network] if postgres_enabled | default(false) and (paperless_database_postgres_hostname == postgres_connection_hostname and paperless_container_network != postgres_container_network and not paperless_database_postgres_socket_enabled) and paperless_database_type == 'postgres' else [])
     +
-    ([tika_container_network] if tika_enabled | default(false) and paperless_container_network != tika_container_network else [])
+    ([tika_container_network] if tika_enabled | default(false) and paperless_container_network != tika_container_network and paperless_environment_variables_paperless_tika_enabled | default(false) else [])
   }}
 
 paperless_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
@@ -13375,23 +13458,16 @@ paperless_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_pro
 
 paperless_database_type: "{{ 'postgres' if postgres_enabled | default(false) else 'sqlite' }}"
 
-paperless_gotenberg_enabled: "{{ paperless_tika_enabled | default(false) }}" # Apache Tika Server requires Gotenberg
-
-# Wire Paperless-ngx to the Apache Tika Server and Gotenberg services of this playbook.
-# The paperless role no longer bundles its own instances of them.
-paperless_tika_endpoint: "{{ ('http://' + tika_identifier + ':' + (tika_container_http_port | string)) if tika_enabled | default(false) else '' }}"
-paperless_tika_gotenberg_endpoint: "{{ ('http://' + gotenberg_identifier + ':' + (gotenberg_container_http_port | string)) if gotenberg_enabled | default(false) else '' }}"
-
-paperless_secret_key: "{{ (mash_playbook_generic_secret_key + ':paperless.secret') | hash('sha512') | to_uuid }}"
+paperless_environment_variables_paperless_secret_key: "{{ (mash_playbook_generic_secret_key + ':paperless.secret') | hash('sha512') | to_uuid }}"
 
 # role-specific:exim_relay
-paperless_email_host: "{{ exim_relay_identifier if exim_relay_enabled else '' }}"
-paperless_email_port: "{{ 8025 if exim_relay_enabled else '' }}"
-paperless_email_from: "{{ exim_relay_sender_address if exim_relay_enabled else '' }}"
+paperless_environment_variables_paperless_email_host: "{{ exim_relay_identifier if exim_relay_enabled else '' }}"
+paperless_environment_variables_paperless_email_port: "{{ 8025 if exim_relay_enabled else '' }}"
+paperless_environment_variables_paperless_email_from: "{{ exim_relay_sender_address if exim_relay_enabled else '' }}"
 # /role-specific:exim_relay
 
 # role-specific:gotenberg
-paperless_tika_gotenberg_endpoint: "http://{{ gotenberg_identifier }}:{{ gotenberg_container_http_port }}"
+paperless_environment_variables_paperless_tika_gotenberg_endpoint: "{{ ('http://' + gotenberg_identifier + ':' + (gotenberg_container_http_port | string)) if gotenberg_enabled else '' }}"
 # /role-specific:gotenberg
 
 # role-specific:mariadb
@@ -13410,8 +13486,8 @@ paperless_database_postgres_socket_path_host: "{{ postgres_run_path }}"
 # /role-specific:postgres
 
 # role-specific:tika
-paperless_tika_enabled: "{{ tika_enabled }}"
-paperless_tika_endpoint: "http://{{ tika_identifier }}:{{ tika_container_http_port }}"
+paperless_environment_variables_paperless_tika_enabled: "{{ tika_enabled }}"
+paperless_environment_variables_paperless_tika_endpoint: "{{ ('http://' + tika_identifier + ':' + (tika_container_http_port | string)) if tika_enabled else '' }}"
 # /role-specific:tika
 
 # role-specific:traefik
@@ -15100,10 +15176,6 @@ redmine_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_
 redmine_uid: "{{ mash_playbook_uid }}"
 redmine_gid: "{{ mash_playbook_gid }}"
 
-redmine_secret_key_base: "{{ (mash_playbook_generic_secret_key + ':secret.base') | hash('sha512') | to_uuid }}"
-redmine_secret_token: "{{ (mash_playbook_generic_secret_key + ':secret.token') | hash('sha512') | to_uuid }}"
-redmine_database_cipher_key: "{{ (mash_playbook_generic_secret_key + ':db.cipherkey') | hash('sha512') | to_uuid }}"
-
 redmine_systemd_required_services_list_auto: |
   {{
     ([mariadb_identifier ~ '.service'] if mariadb_enabled | default(false) and (redmine_database_mysql_hostname == mariadb_connection_hostname or redmine_database_mysql_socket_enabled) and redmine_database_type == 'mysql' else [])
@@ -15130,7 +15202,11 @@ redmine_container_additional_networks_auto: |
 redmine_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
 redmine_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
 
-redmine_database_type: "{{ 'postgres' if postgres_enabled else '' }}"
+redmine_database_type: "{{ 'postgres' if postgres_enabled | default(false) else '' }}"
+
+redmine_secret_key_base: "{{ (mash_playbook_generic_secret_key + ':secret.base') | hash('sha512') | to_uuid }}"
+redmine_secret_token: "{{ (mash_playbook_generic_secret_key + ':secret.token') | hash('sha512') | to_uuid }}"
+redmine_database_cipher_key: "{{ (mash_playbook_generic_secret_key + ':db.cipherkey') | hash('sha512') | to_uuid }}"
 
 # role-specific:exim_relay
 redmine_email_delivery_smtp_settings_address: "{{ exim_relay_identifier if exim_relay_enabled else '' }}"
@@ -17416,7 +17492,7 @@ woodpecker_ci_agent_gid: "{{ mash_playbook_gid }}"
 
 woodpecker_ci_agent_systemd_required_services_list_auto: |
   {{
-    ([woodpecker_ci_server_identifier ~ '.service'] if woodpecker_ci_server_enabled else [])
+    ([woodpecker_ci_server_identifier ~ '.service'] if woodpecker_ci_server_enabled | default(false) else [])
   }}
 
 woodpecker_ci_agent_container_additional_networks_auto: |
@@ -17426,9 +17502,10 @@ woodpecker_ci_agent_container_additional_networks_auto: |
     ) | unique
   }}
 
-woodpecker_ci_agent_config_server: "{{ (woodpecker_ci_server_identifier + ':' + woodpecker_ci_server_config_grpc_addr_port | string) if woodpecker_ci_agent_enabled else '' }}"
-
-woodpecker_ci_agent_config_agent_secret: "{{ woodpecker_ci_server_config_agent_secret if woodpecker_ci_agent_enabled else '' }}"
+# role-specific:woodpecker_ci_server
+woodpecker_ci_agent_config_server: "{{ (woodpecker_ci_server_identifier + ':' + woodpecker_ci_server_config_grpc_addr_port | string) if woodpecker_ci_server_enabled else '' }}"
+woodpecker_ci_agent_config_agent_secret: "{{ woodpecker_ci_server_config_agent_secret if woodpecker_ci_server_enabled else '' }}"
+# /role-specific:woodpecker_ci_server
 
 ########################################################################
 #                                                                      #

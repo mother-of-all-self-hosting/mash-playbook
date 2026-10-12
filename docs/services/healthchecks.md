@@ -68,13 +68,7 @@ healthchecks_path_prefix: /healthchecks
 
 ### Select database to use (optional)
 
-By default Healthchecks is configured to use Postgres, but you can choose other database such as SQLite and MySQL (MariaDB).
-
-To use MariaDB, add the following configuration to your `vars.yml` file:
-
-```yaml
-healthchecks_database_type: mysql
-```
+By default Healthchecks is configured to use Postgres, but you can choose other database such as SQLite and MySQL (MariaDB). Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-healthchecks/blob/main/docs/configuring-healthchecks.md#specify-database-optional) on the role's documentation for details.
 
 ### Configuring notification services (optional)
 

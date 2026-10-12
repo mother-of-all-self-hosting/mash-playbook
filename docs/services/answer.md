@@ -80,16 +80,7 @@ To actually have the service use (and get messages sent through the exim-relay s
 
 By default the role is configured to install the service with environment variables automatically when running the installation command.
 
-For automatic installation, you need to set the name, email address, password for the administrator, and the email address for the contact who is responsible for the instance as well.
-
-To do so, add the following configuration to your `vars.yml` file:
-
-```yaml
-answer_environment_variables_admin_name: ADMIN_NAME_HERE
-answer_environment_variables_admin_email: ADMIN_EMAIL_ADDRESS_HERE
-answer_environment_variables_admin_password: ADMIN_PASSWORD_HERE
-answer_environment_variables_contact_email: CONTACT_EMAIL_ADDRESS_HERE
-```
+For automatic installation, you need to set the name, email address, password for the administrator, and the email address for the contact who is responsible for the instance as well. Refer to [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az4Cd3nL74nNap51RBB6mtC1jipeH9/tree/docs/configuring-answer.md#set-administrator-39-s-account-details) on the role's documentation for details.
 
 ## Usage
 

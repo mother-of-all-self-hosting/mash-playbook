@@ -1,10 +1,26 @@
-# 2026-10-08
+# 2026-10-12
 
 ## (Backward Compatibility Break) TSDProxy upgraded to v2
 
-This only affects you if you have [TSDProxy](docs/services/tsdproxy.md) enabled.
+This only affects you if you have [TSDProxy](docs/services/tsdproxy.md) enabled and use proxy lists (`tsdproxy_config_files`).
 
-TSDProxy v2 changes its configuration format. The role reports renamed variables and v1 keys in custom configuration, but proxy list files have to be migrated by hand. See the [role's upgrade notes](https://github.com/Bergruebe/ansible-role-tsdproxy/blob/main/README.md#upgrading-from-tsdproxy-v1) and the [upstream upgrade guide](https://almeidapaulopt.github.io/tsdproxy/docs/upgrading/from-v1/).
+TSDProxy v2 changed the format of proxy list files. The role does not manage these files, so it cannot check or convert them: before re-running the playbook, migrate them by hand following the [upstream upgrade guide](https://almeidapaulopt.github.io/tsdproxy/docs/upgrading/from-v1/), and define them with `tsdproxy_config_lists` instead of `tsdproxy_config_files`.
+
+The role reports its other changes (renamed variables, TSDProxy v1 keys in custom configuration) with actionable errors, and container labels in the TSDProxy v1 format keep working. See the [role's upgrade notes](https://github.com/mother-of-all-self-hosting/ansible-role-tsdproxy#upgrading-from-tsdproxy-v1) for details.
+
+# 2026-10-10
+
+## (Backward Compatibility Break) Safer Docker cleanup, and no more journald vacuuming by default
+
+This only affects you if you use the [cleanup](docs/services/system.md#cleanup) role (any `system_cleanup_*` variable in your `vars.yml`).
+
+The role has been upgraded to v2:
+
+- **`system_cleanup_docker`** no longer runs `docker image prune -a` and `docker volume prune`. It now removes stopped containers and only those unused images which a newer image of the same repository superseded at least 3 days ago. Unused images without a newer version (of stopped services, timer-only containers, locally built images) are kept, and anonymous volumes are left alone unless you enable `system_cleanup_docker_config_remove_anonymous_volumes`. To remove superseded images right away, set `system_cleanup_docker_config_superseded_images_grace_period_days: 0`. The cleanup now lives in a script (`/mash/system-cleanup/bin/cleanup-docker`), which you can also run by hand (`--dry-run` shows what it would remove) or on a schedule (`system_cleanup_docker_timer_enabled: true`).
+- **The journald vacuum timer** (`journalctl --vacuum-time=7d`) was installed on every host, whatever `system_cleanup_logs` said. It now follows `system_cleanup_logs`, which defaults to `false`, so the timer gets removed. journald already limits the space logs take up on its own. To keep the timer, set `system_cleanup_logs: true`.
+- **`purge-old-kernels`** (`system_cleanup_kernels`) moved from `/usr/local/bin` to `/mash/system-cleanup/bin`.
+
+See the role's [upgrade notes](https://github.com/mother-of-all-self-hosting/ansible-role-cleanup#upgrading-to-v2) for details.
 
 # 2026-10-03
 

@@ -61,17 +61,17 @@ semaphore_hostname: semaphore.example.com
 ########################################################################
 ```
 
-### Set details for the admin user
+### Set administrator's account details
 
-You need to create an instance's admin user by setting values to the `semaphore_admin_*` variables. Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-semaphore/blob/main/docs/configuring-semaphore.md#set-details-for-the-admin-user) on the role's documentation for details.
+You also need to specify administrator's account details. Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-semaphore/blob/main/docs/configuring-semaphore.md#set-administrators-account-details) on the role's documentation for details.
 
-### Set a string for encrypting access keys
+### Set a random string
 
-You also have to set a string used for encrypting access keys in database to `semaphore_access_key_encryption`. Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-semaphore/blob/main/docs/configuring-semaphore.md#set-a-string-for-encrypting-access-keys) on the role's documentation for details.
+You also have to set a random string used for encrypting access keys. Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-semaphore/blob/main/docs/configuring-semaphore.md#set-a-string-for-encrypting-access-keys) on the role's documentation for details.
 
 ### Select database to use (optional)
 
-By default Semaphore UI is configured to use [Postgres](postgres.md) (if enabled), but you can choose other databases such as MySQL (MariaDB) and SQLite. If Postgres is not enabled, SQLite will be used. Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-semaphore/blob/main/docs/configuring-semaphore.md#configure-database) on the role's documentation for details.
+By default Semaphore UI is configured to use Postgres, but you can choose other database such as SQLite and MySQL (MariaDB). Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-semaphore/blob/main/docs/configuring-semaphore.md#specify-database-optional) on the role's documentation for details.
 
 ### Configuring the mailer (optional)
 
@@ -81,16 +81,6 @@ To actually have the service use (and get messages sent through the exim-relay s
 
 >[!WARNING]
 > Without setting an authentication method such as DKIM, SPF, and DMARC for your hostname, emails are most likely to be quarantined as spam at recipient's mail servers. The worst scenario is that your server's IP address or hostname will be included in the spam list such as the one managed by [Spamhaus](https://www.spamhaus.org/), depending on the reputation. As the exim-relay service supports DKIM signing, refer to [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-exim-relay/blob/main/docs/configuring-exim-relay.md#enable-dkim-support-optional) for details about how to set it up.
-
-### Extending the configuration
-
-There are some additional things you may wish to configure about the component.
-
-Take a look at:
-
-- [Semaphore UI](https://github.com/mother-of-all-self-hosting/ansible-role-semaphore)'s [`defaults/main.yml`](https://github.com/mother-of-all-self-hosting/ansible-role-semaphore/blob/main/defaults/main.yml) for some variables that you can customize via your `vars.yml` file.
-
-See the [documentation](https://docs.semaphoreui.com/administration-guide/configuration/) for a complete list of Semaphore UI's config options such as [two-factor authentication with TOTP](https://github.com/mother-of-all-self-hosting/ansible-role-semaphore/blob/main/docs/configuring-semaphore.md#enable-2fa-authentication-with-totp-optional).
 
 ## Usage
 

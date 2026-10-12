@@ -1,6 +1,6 @@
 <!--
-SPDX-FileCopyrightText: 2023 - 2024 Slavi Pantaleev
-SPDX-FileCopyrightText: 2025 Suguru Hirahara
+SPDX-FileCopyrightText: 2023, 2024 Slavi Pantaleev
+SPDX-FileCopyrightText: 2025, 2026 Suguru Hirahara
 
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->
@@ -25,33 +25,7 @@ For details about configuring the [Ansible role for Redis](https://github.com/mo
 >
 > If you're only hosting a single service (like [PeerTube](peertube.md) or [NetBox](netbox.md)) on your server, you can get away with running a single instance. If you're hosting multiple services, you should prepare separate ones for each service.
 
-## Configuration
-
-To enable this service, add the following configuration to your `vars.yml` file and re-run the [installation](../installing.md) process to **host a single instance of the Redis service**:
-
-```yaml
-########################################################################
-#                                                                      #
-# redis                                                                #
-#                                                                      #
-########################################################################
-
-redis_enabled: true
-
-########################################################################
-#                                                                      #
-# /redis                                                               #
-#                                                                      #
-########################################################################
-```
-
-To host multiple Redis instances, follow the [Running multiple instances of the same service on the same host](../running-multiple-instances.md) documentation.
-
-## Usage
-
-After running the command for installation, the Redis instance becomes available.
-
-The purpose of Redis in this playbook is to serve as a dependency for other [services](../supported-services.md). Since this playbook no longer provides setting instructions for Redis but for Valkey, you can refer to these instructions and adjust them for Redis as necessary.
+To host multiple instances of the Redis service, follow the [Running multiple instances of the same service on the same host](../running-multiple-instances.md) documentation.
 
 ## Related services
 

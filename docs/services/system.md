@@ -77,7 +77,7 @@ There are various configuration options — check the defaults and adjust them t
 
 ### cleanup
 
-Playbook may perform some housekeeping automatically, cleaning up unused docker resources, logs, even kernels (debian-only) and packages (debian-only). Here is how to enable different housekeeping tasks that will run on `setup-all`, `setup-cleanup`, `install-cleanup`:
+The playbook can perform some housekeeping: cleaning up Docker leftovers, logs, paths, and (Debian only) packages and old kernels. Everything is off by default. Here is how to enable the different housekeeping tasks:
 
 ```yaml
 ########################################################################
@@ -86,11 +86,16 @@ Playbook may perform some housekeeping automatically, cleaning up unused docker 
 #                                                                      #
 ########################################################################
 
-# runs `docker system prune -a -f --volumes` to remove unused images and containers
+# Removes stopped containers and Docker images which a newer image of the same repository superseded
+# at least 3 days ago (and which no container uses). Unlike `docker image prune -a`, unused images
+# without a newer version (of stopped services, timer-only containers, locally built images) are kept.
+# Runs on runs with the `start` tag (e.g. `just setup-all`); to also run it daily via a systemd timer,
+# enable `system_cleanup_docker_timer_enabled`.
 system_cleanup_docker: true
 
-# configures a systemd unit (and timer) that runs `journalctl --vacuum-time=7d` daily, you can control schedules using system_cleanup_logs_* vars
-system_cleanup_logs: true
+# installs a systemd timer which runs `journalctl --vacuum-time=7d` daily
+# (journald already limits the space logs take up on its own, so this is only needed for keeping logs for a shorter time)
+system_cleanup_logs: false
 
 # list of arbitrary absolute paths to remove on each invocation
 system_cleanup_paths: []
@@ -109,6 +114,8 @@ system_cleanup_kernels: false
 #                                                                      #
 ########################################################################
 ```
+
+See the role's [`defaults/main.yml`](https://github.com/mother-of-all-self-hosting/ansible-role-cleanup/blob/main/defaults/main.yml) for more options (grace period, exclude patterns, dry run, anonymous volumes, the timer's schedule). The Docker cleanup script (`/mash/system-cleanup/bin/cleanup-docker`) can also be run by hand, with `--dry-run` to only see what it would remove.
 
 ### fail2ban
 
