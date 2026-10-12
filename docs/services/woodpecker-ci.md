@@ -33,7 +33,8 @@ A Woodpecker CI installation contains 2 components:
 - one [Woodpecker CI **server**](#woodpecker-ci-server) (web interface, central management node)
 - one or more [Woodpecker CI **agent**](#woodpecker-ci-agent) instances (which run your CI jobs)
 
-It's better to run the **agent** instances elsewhere (not on the source-control server or a server serving anything of value) — on a machine that doesn't contain sensitive data.
+>[!WARNING]
+> It's better to run the **agent** instances elsewhere (not on the source-control server or a server serving anything of value) — on a machine that doesn't contain sensitive data.
 
 Small installations which only run trusted CI jobs can afford to run an agent instance on the source-control server itself.
 
@@ -158,9 +159,6 @@ For details about configuring the [Ansible role for Woodpecker CI agent](https:/
 
 - 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-woodpecker-ci-agent/blob/main/docs/configuring-woodpecker-ci-agent.md) online
 - 📁 `roles/galaxy/woodpecker_ci_agent/docs/configuring-woodpecker-ci-agent.md` locally, if you have [fetched the Ansible roles](../installing.md)
-
->[!WARNING]
-> As mentioned above, unless you completely trust your CI workloads, it's best to run the Woodpecker CI agent on another machine.
 
 ### Dependencies — Woodpecker CI agent
 
