@@ -154,63 +154,43 @@ Follow the official Woodpecker CI [Getting started](https://woodpecker-ci.org/do
 
 ## Woodpecker CI agent
 
-As mentioned above, unless you completely trust your CI workloads, it's best to run the Woodpecker CI agent on another machine.
+For details about configuring the [Ansible role for Woodpecker CI agent](https://github.com/mother-of-all-self-hosting/ansible-role-woodpecker-ci-agent), you can check them via:
+
+- 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-woodpecker-ci-agent/blob/main/docs/configuring-woodpecker-ci-agent.md) online
+- 📁 `roles/galaxy/woodpecker_ci_agent/docs/configuring-woodpecker-ci-agent.md` locally, if you have [fetched the Ansible roles](../installing.md)
+
+>[!WARNING]
+> As mentioned above, unless you completely trust your CI workloads, it's best to run the Woodpecker CI agent on another machine.
 
 ### Dependencies — Woodpecker CI agent
 
 This service requires the following other services:
 
-- Woodpecker CI server — installed via this playbook or otherwise
+- Woodpecker CI server
 
 ### Configuration — Woodpecker CI agent
+
+To enable this service, add the following configuration to your `vars.yml` file and re-run the [installation](../installing.md) process:
 
 ```yaml
 ########################################################################
 #                                                                      #
-# woodpecker_ci_server                                                 #
+# woodpecker_ci_agent                                                  #
 #                                                                      #
 ########################################################################
 
 woodpecker_ci_agent_enabled: true
 
-# If the agent runs on the same machine as the server, enabling the agent
-# is everything you need. The agent and server will be wired automatically.
-#
-# Otherwise, you'll need to configure the variables below:
-
-# This needs to point to the server's gRPC host:port.
-# If your Woodpecker CI server is deployed using this playbook, its
-# gRPC port will likely be 443. E.g., ci.example.com:443.
-woodpecker_ci_agent_config_server: ''
-
-# This playbook only supports agent-specific secrets, i.e., it is not recommended to use
-# a shared secret between Woodpecker CI server and all of its agents. Please refer to
-# the following upstream documentation in order to learn how to register an agent and
-# obtain a secret for it:
-#
-#   https://woodpecker-ci.org/docs/administration/agent-config#using-agent-token
-#
-# then, when you have the agent secret, uncomment the following line.
-#woodpecker_ci_agent_config_agent_secret: ''
-
-# Uncomment the line below if you want the agent to connect to the
-# server over a secure gRPC channel (recommended).
-#woodpecker_ci_agent_config_grpc_secure: true
-
-# Uncomment the line below if you want the agent to verify the
-# server's TLS certificate when connecting over a secure gRPC channel.
-#woodpecker_ci_agent_config_grpc_verify: true
-
 ########################################################################
 #                                                                      #
-# /woodpecker_ci_server                                                #
+# /woodpecker_ci_agent                                                 #
 #                                                                      #
 ########################################################################
 ```
 
 ### Usage — Woodpecker CI agent
 
-The agent should automatically register with the [Woodpecker CI server](#woodpecker-ci-server) and take jobs from it.
+The agent should automatically register with the Woodpecker CI server and take jobs from it.
 
 ## Related services
 
