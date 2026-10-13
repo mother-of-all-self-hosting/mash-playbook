@@ -14,6 +14,11 @@ Matrix Rooms Search is a fully-featured, standalone, [Matrix](https://matrix.org
 
 See the project's [documentation](https://github.com/etkecc/mrs/blob/main/README.md) to learn what Matrix Rooms Search does and why it might be useful to you.
 
+For details about configuring the [Ansible role for Matrix Rooms Search](https://github.com/mother-of-all-self-hosting/ansible-role-mrs), you can check them via:
+
+- 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-mrs/blob/main/docs/configuring-mrs.md) online
+- 📁 `roles/galaxy/mrs/docs/configuring-mrs.md` locally, if you have [fetched the Ansible roles](../installing.md)
+
 ## Dependencies
 
 This service requires the following other services:
@@ -32,27 +37,8 @@ To enable this service, add the following configuration to your `vars.yml` file 
 ########################################################################
 
 mrs_enabled: true
+
 mrs_hostname: mrs.example.com
-
-mrs_auth_admin_login: admin
-mrs_auth_admin_password: changeme
-mrs_auth_admin_ips:
-  - 123.123.123.123
-
-# MRS splits its HTTP API into five separately-credentialed groups, and a group
-# whose login and password are both left empty is not protected. Set all five,
-# not just the admin one - `moderation` in particular can ban and unban rooms.
-mrs_auth_metrics_login: metrics
-mrs_auth_metrics_password: changeme
-mrs_auth_catalog_login: catalog
-mrs_auth_catalog_password: changeme
-mrs_auth_discovery_login: discovery
-mrs_auth_discovery_password: changeme
-mrs_auth_moderation_login: moderation
-mrs_auth_moderation_password: changeme
-
-mrs_servers:
-  - matrix.org
 
 ########################################################################
 #                                                                      #
@@ -61,13 +47,13 @@ mrs_servers:
 ########################################################################
 ```
 
+Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-mrs/blob/main/docs/configuring-mrs.md#adjusting-the-playbook-configuration) on the role's documentation for details about other settings.
+
 ## Usage
 
 After running the command for installation, the Matrix Rooms Search instance becomes available at the URL specified with `mrs_hostname`. With the configuration above, the service is hosted at `https://mrs.example.com`.
 
-You can call the `https://mrs.example.com/-/full` endpoint using admin credentials (see the `mrs_auth_admin_*` variables) to discover and parse content.
-
-To see the list of supported public and private APIs, see the [API documentation](https://github.com/etkecc/mrs/blob/main/docs/swagger.yaml).
+Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-mrs/blob/main/docs/configuring-mrs.md#usage) on the role's documentation for details about the usage.
 
 ## Related services
 
