@@ -3382,7 +3382,7 @@ appsmith_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_prox
 # role-specific:exim_relay
 appsmith_environment_variable_appsmith_mail_enabled: "{{ exim_relay_enabled }}"
 appsmith_environment_variable_appsmith_mail_host: "{{ exim_relay_identifier if exim_relay_enabled else '' }}"
-appsmith_environment_variable_appsmith_mail_port: 8025
+appsmith_environment_variable_appsmith_mail_port: "{{ '8025' if exim_relay_enabled else '587' }}"
 appsmith_environment_variable_appsmith_mail_from: "{{ exim_relay_sender_address if exim_relay_enabled else '' }}"
 # /role-specific:exim_relay
 
@@ -3441,7 +3441,7 @@ asciinema_server_container_labels_traefik_docker_network: "{{ mash_playbook_reve
 # role-specific:exim_relay
 asciinema_server_mailer_enabled: "{{ exim_relay_enabled }}"
 asciinema_server_environment_variable_smtp_host: "{{ exim_relay_identifier if exim_relay_enabled else '' }}"
-asciinema_server_environment_variable_smtp_port: "{{ 8025 if exim_relay_enabled else '587' }}"
+asciinema_server_environment_variable_smtp_port: "{{ '8025' if exim_relay_enabled else '587' }}"
 asciinema_server_environment_variable_mail_from_address: "{{ exim_relay_sender_address if exim_relay_enabled else '' }}"
 # /role-specific:exim_relay
 
@@ -3666,7 +3666,7 @@ authentik_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_pro
 
 # role-specific:exim_relay
 authentik_environment_variables_authentik_email_host: "{{ exim_relay_identifier if exim_relay_enabled else '' }}"
-authentik_environment_variables_authentik_email_port: "{{ 8025 if exim_relay_enabled else '587' }}"
+authentik_environment_variables_authentik_email_port: "{{ '8025' if exim_relay_enabled else '587' }}"
 authentik_environment_variables_authentik_email_from: "{{ exim_relay_sender_address if exim_relay_enabled else '' }}"
 # /role-specific:exim_relay
 
@@ -3879,7 +3879,7 @@ barassistant_server_traefik_name: "{{ traefik_identifier | default(false) }}"
 barassistant_mailer_enabled: "{{ exim_relay_enabled }}"
 barassistant_server_environment_variables_mail_mailer: "{{ 'smtp' if exim_relay_enabled else '' }}"
 barassistant_server_environment_variables_mail_host: "{{ exim_relay_identifier if exim_relay_enabled else '' }}"
-barassistant_server_environment_variables_mail_port: 8025
+barassistant_server_environment_variables_mail_port: "{{ '8025' if exim_relay_enabled else '587' }}"
 barassistant_server_environment_variables_mail_from_address: "{{ exim_relay_sender_address if exim_relay_enabled else '' }}"
 # /role-specific:exim_relay
 
@@ -4201,7 +4201,7 @@ bookstack_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_pro
 # role-specific:exim_relay
 bookstack_environment_variables_mail_driver: "{{ 'smtp' if exim_relay_enabled }}"
 bookstack_environment_variables_mail_host: "{{ exim_relay_identifier if exim_relay_enabled else '' }}"
-bookstack_environment_variables_mail_port: 8025
+bookstack_environment_variables_mail_port: "{{ '8025' if exim_relay_enabled else '587' }}"
 bookstack_environment_variables_mail_from: "{{ exim_relay_sender_address if exim_relay_enabled else '' }}"
 # /role-specific:exim_relay
 
@@ -4553,7 +4553,7 @@ chiefonboarding_container_labels_traefik_docker_network: "{{ mash_playbook_rever
 # role-specific:exim_relay
 chiefonboarding_mailer_smtp_enabled: "{{ exim_relay_enabled }}"
 chiefonboarding_environment_variables_email_host: "{{ exim_relay_identifier if exim_relay_enabled else '' }}"
-chiefonboarding_environment_variables_email_port: 8025
+chiefonboarding_environment_variables_email_port: "{{ '8025' if exim_relay_enabled else '587' }}"
 chiefonboarding_environment_variables_default_from_email: "{{ exim_relay_sender_address if exim_relay_enabled else '' }}"
 # /role-specific:exim_relay
 
@@ -5388,7 +5388,7 @@ docmost_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxy
 docmost_mailer_enabled: "{{ exim_relay_enabled }}"
 docmost_environment_variable_mail_driver: "{{ 'smtp' if exim_relay_enabled else '' }}"
 docmost_environment_variable_smtp_host: "{{ exim_relay_identifier if exim_relay_enabled else '' }}"
-docmost_environment_variable_smtp_port: "{{ 8025 if exim_relay_enabled else '587' }}"
+docmost_environment_variable_smtp_port: "{{ '8025' if exim_relay_enabled else '587' }}"
 docmost_environment_variable_mail_from_address: "{{ exim_relay_sender_address if exim_relay_enabled else '' }}"
 # /role-specific:exim_relay
 
@@ -5572,7 +5572,7 @@ donetick_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_prox
 
 # role-specific:exim_relay
 donetick_config_email_host: "{{ exim_relay_identifier if exim_relay_enabled else '' }}"
-donetick_config_email_port: "{{ 8025 if exim_relay_enabled else '587' }}"
+donetick_config_email_port: "{{ '8025' if exim_relay_enabled else '587' }}"
 donetick_config_email_email: "{{ exim_relay_sender_address if exim_relay_enabled else '' }}"
 # /role-specific:exim_relay
 
@@ -6202,7 +6202,7 @@ fider_environment_variables_jwt_secret: "{{ (mash_playbook_generic_secret_key + 
 # role-specific:exim_relay
 fider_mailer_smtp_enabled: "{{ exim_relay_enabled }}"
 fider_environment_variables_email_smtp_host: "{{ exim_relay_identifier if exim_relay_enabled else '' }}"
-fider_environment_variables_email_smtp_port: 8025
+fider_environment_variables_email_smtp_port: "{{ '8025' if exim_relay_enabled else '587' }}"
 fider_environment_variables_email_noreply: "{{ exim_relay_sender_address if exim_relay_enabled else '' }}"
 # /role-specific:exim_relay
 
@@ -6589,7 +6589,7 @@ forgejo_database_type: "{{ 'postgres' if postgres_enabled | default(false) else 
 forgejo_config_mailer_enabled: "{{ exim_relay_enabled }}"
 forgejo_config_mailer_protocol: "{{ 'smtp' if exim_relay_enabled else '' }}"
 forgejo_config_mailer_smtp_addr: "{{ exim_relay_identifier if exim_relay_enabled else '' }}"
-forgejo_config_mailer_smtp_port: 8025
+forgejo_config_mailer_smtp_port: "{{ '8025' if exim_relay_enabled else '587' }}"
 forgejo_config_mailer_from: "{{ exim_relay_sender_address if exim_relay_enabled else '' }}"
 # /role-specific:exim_relay
 
@@ -6856,7 +6856,7 @@ funkwhale_frontend_container_labels_traefik_docker_network: "{{ mash_playbook_re
 funkwhale_api_environment_variables_email_config: "{{ funkwhale_api_environment_variables_email_config_protocol }}{{ funkwhale_api_environment_variables_email_config_host }}:{{ funkwhale_api_environment_variables_email_config_port }}"
 funkwhale_api_environment_variables_email_config_protocol: "{{ 'smtp://' if exim_relay_enabled else '' }}"
 funkwhale_api_environment_variables_email_config_host: "{{ exim_relay_identifier if exim_relay_enabled else '' }}"
-funkwhale_api_environment_variables_email_config_port: 8025
+funkwhale_api_environment_variables_email_config_port: "{{ '8025' if exim_relay_enabled else '587' }}"
 funkwhale_api_environment_variables_email_config_from: "{{ exim_relay_sender_address if exim_relay_enabled else '' }}"
 # /role-specific:exim_relay
 
@@ -7006,7 +7006,7 @@ gitea_container_labels_traefik_metrics_middleware_basic_auth_users: "{{ mash_pla
 gitea_config_mailer_enabled: "{{ exim_relay_enabled }}"
 gitea_config_mailer_protocol: "{{ 'smtp' if exim_relay_enabled else '' }}"
 gitea_config_mailer_smtp_addr: "{{ exim_relay_identifier if exim_relay_enabled else '' }}"
-gitea_config_mailer_smtp_port: 8025
+gitea_config_mailer_smtp_port: "{{ '8025' if exim_relay_enabled else '587' }}"
 gitea_config_mailer_from: "{{ exim_relay_sender_address if exim_relay_enabled else '' }}"
 # /role-specific:exim_relay
 
@@ -7092,7 +7092,7 @@ gitlab_container_labels_traefik_compression_middleware_name: "{{ mash_playbook_r
 # role-specific:exim_relay
 gitlab_config_smtp_enabled: "{{ exim_relay_enabled }}"
 gitlab_config_smtp_address: "{{ exim_relay_identifier if exim_relay_enabled else '' }}"
-gitlab_config_smtp_port: "{{ 8025 if exim_relay_enabled else 587 }}"
+gitlab_config_smtp_port: "{{ '8025' if exim_relay_enabled else '587' }}"
 gitlab_config_email_from: "{{ exim_relay_sender_address if exim_relay_enabled else '' }}"
 # /role-specific:exim_relay
 
@@ -7384,7 +7384,7 @@ gotosocial_database_type: "{{ 'postgres' if postgres_enabled | default(false) el
 
 # role-specific:exim_relay
 gotosocial_smtp_host: "{{ exim_relay_identifier if exim_relay_enabled else '' }}"
-gotosocial_smtp_port: 8025
+gotosocial_smtp_port: "{{ '8025' if exim_relay_enabled else '587' }}"
 gotosocial_smtp_from: "{{ exim_relay_sender_address if exim_relay_enabled else '' }}"
 # /role-specific:exim_relay
 
@@ -7461,7 +7461,7 @@ grafana_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxy
 # role-specific:exim_relay
 grafana_mailer_enabled: "{{ exim_relay_enabled | default(false) }}"
 grafana_config_smtp_host: "{{ exim_relay_identifier if exim_relay_enabled else '' }}"
-grafana_config_smtp_port: 8025
+grafana_config_smtp_port: "{{ '8025' if exim_relay_enabled else '587' }}"
 grafana_config_smtp_from_address: "{{ exim_relay_sender_address if exim_relay_enabled else '' }}"
 # /role-specific:exim_relay
 
@@ -7640,7 +7640,7 @@ healthchecks_database_type: "{{ 'postgres' if postgres_enabled | default(false) 
 
 # role-specific:exim_relay
 healthchecks_environment_variable_email_host: "{{ exim_relay_identifier if exim_relay_enabled else '' }}"
-healthchecks_environment_variable_email_port: "{{ 8025 if exim_relay_enabled else '587' }}"
+healthchecks_environment_variable_email_port: "{{ '8025' if exim_relay_enabled else '587' }}"
 healthchecks_environment_variable_default_from_email: "{{ exim_relay_sender_address if exim_relay_enabled else '' }}"
 healthchecks_environment_variable_email_use_tls: "{{ false if exim_relay_enabled else true }}"
 healthchecks_environment_variable_email_use_verification: "{{ false if exim_relay_enabled else true }}"
@@ -8891,7 +8891,7 @@ ihatemoney_environment_variable_secret: "{{ (mash_playbook_generic_secret_key + 
 
 # role-specific:exim_relay
 ihatemoney_email_host: "{{ exim_relay_identifier if exim_relay_enabled else '' }}"
-ihatemoney_email_port: "{{ 8025 if exim_relay_enabled else '' }}"
+ihatemoney_email_port: "{{ '8025' if exim_relay_enabled else '587' }}"
 ihatemoney_default_from_email: "{{ exim_relay_sender_address if exim_relay_enabled else '' }}"
 # /role-specific:exim_relay
 
@@ -9147,7 +9147,7 @@ infisical_environment_variables_otel_export_type: "{{ 'prometheus' if prometheus
 
 # role-specific:exim_relay
 infisical_environment_variables_smtp_host: "{{ exim_relay_identifier if exim_relay_enabled else '' }}"
-infisical_environment_variables_smtp_port: 8025
+infisical_environment_variables_smtp_port: "{{ '8025' if exim_relay_enabled else '587' }}"
 infisical_environment_variables_smtp_ignore_tls: "{{ true if exim_relay_enabled else false }}"
 infisical_environment_variables_smtp_require_tls: "{{ false if exim_relay_enabled else true }}"
 infisical_environment_variables_smtp_from_address: "{{ exim_relay_sender_address if exim_relay_enabled else '' }}"
@@ -9423,7 +9423,7 @@ joplin_server_container_labels_traefik_docker_network: "{{ mash_playbook_reverse
 # role-specific:exim_relay
 joplin_server_environment_variable_mailer_enabled: "{{ exim_relay_enabled }}"
 joplin_server_environment_variable_mailer_host: "{{ exim_relay_identifier if exim_relay_enabled else '' }}"
-joplin_server_environment_variable_mailer_port: 8025
+joplin_server_environment_variable_mailer_port: "{{ '8025' if exim_relay_enabled else '587' }}"
 joplin_server_environment_variable_mailer_from: "{{ exim_relay_sender_address if exim_relay_enabled else '' }}"
 joplin_server_environment_variable_mailer_security: MailerSecurity.None
 # /role-specific:exim_relay
@@ -9496,7 +9496,7 @@ kanboard_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_prox
 
 # role-specific:exim_relay
 kanboard_environment_variables_mail_smtp_hostname: "{{ exim_relay_identifier if exim_relay_enabled else '' }}"
-kanboard_environment_variables_mail_smtp_port: "{{ 8025 if exim_relay_enabled else '587' }}"
+kanboard_environment_variables_mail_smtp_port: "{{ '8025' if exim_relay_enabled else '587' }}"
 kanboard_environment_variables_mail_from: "{{ exim_relay_sender_address if exim_relay_enabled else '' }}"
 # /role-specific:exim_relay
 
@@ -9577,7 +9577,7 @@ karakeep_environment_variables_browser_websocket_url: "ws://{{ browserless_ident
 # role-specific:exim_relay
 karakeep_mailer_enabled: "{{ exim_relay_enabled }}"
 karakeep_environment_variables_smtp_host: "{{ exim_relay_identifier if exim_relay_enabled else '' }}"
-karakeep_environment_variables_smtp_port: 8025
+karakeep_environment_variables_smtp_port: "{{ '8025' if exim_relay_enabled else '587' }}"
 karakeep_environment_variables_smtp_from: "{{ exim_relay_sender_address if exim_relay_enabled else '' }}"
 # /role-specific:exim_relay
 
@@ -9754,7 +9754,7 @@ kutt_environment_variables_jwt_secret: "{{ (mash_playbook_generic_secret_key + '
 kutt_environment_variables_smtp_enabled: "{{ exim_relay_enabled }}"
 kutt_environment_variables_smtp_from: "{{ exim_relay_sender_address if exim_relay_enabled else '' }}"
 kutt_environment_variables_smtp_host: "{{ exim_relay_identifier if exim_relay_enabled else '' }}"
-kutt_environment_variables_smtp_port: "{{ 8025 if exim_relay_enabled else '587' }}"
+kutt_environment_variables_smtp_port: "{{ '8025' if exim_relay_enabled else '587' }}"
 # /role-specific:exim_relay
 
 # role-specific:mariadb
@@ -10306,7 +10306,7 @@ lldap_environment_variables_lldap_key_seed: "{{ (mash_playbook_generic_secret_ke
 # role-specific:exim_relay
 lldap_environment_variables_smtp_enabled: "{{ exim_relay_enabled }}"
 lldap_environment_variables_smtp_host: "{{ exim_relay_identifier if exim_relay_enabled else '' }}"
-lldap_environment_variables_smtp_port: "{{ 8025 if exim_relay_enabled else '587' }}"
+lldap_environment_variables_smtp_port: "{{ '8025' if exim_relay_enabled else '587' }}"
 lldap_environment_variables_smtp_from: "{{ exim_relay_sender_address if exim_relay_enabled else '' }}"
 # /role-specific:exim_relay
 
@@ -11653,7 +11653,7 @@ mobilizon_environment_variables_secret_key: "{{ (mash_playbook_generic_secret_ke
 
 # role-specific:exim_relay
 mobilizon_environment_variables_email_smtp_server: "{{ exim_relay_identifier if exim_relay_enabled else '' }}"
-mobilizon_environment_variables_email_smtp_port: 8025
+mobilizon_environment_variables_email_smtp_port: "{{ '8025' if exim_relay_enabled else '587' }}"
 mobilizon_environment_variables_email_smtp_ssl: "{{ false if exim_relay_enabled else true }}"
 mobilizon_environment_variables_email_smtp_tls: "{{ 'never' if exim_relay_enabled }}"
 mobilizon_environment_variables_instance_email: "{{ exim_relay_sender_address if exim_relay_enabled else '' }}"
@@ -12316,7 +12316,7 @@ nextcloud_app_eurooffice_jwt_secret: "{{ eurooffice_environment_variables_jwt_se
 
 # role-specific:exim_relay
 nextcloud_environment_variables_smtp_host: "{{ exim_relay_identifier if exim_relay_enabled else '' }}"
-nextcloud_environment_variables_smtp_port: "{{ 8025 if exim_relay_enabled else '' }}"
+nextcloud_environment_variables_smtp_port: "{{ '8025' if exim_relay_enabled else '587' }}"
 nextcloud_environment_variables_mail_from_address: "{{ (exim_relay_sender_address | split('@'))[0] if exim_relay_enabled else '' }}"
 nextcloud_environment_variables_mail_domain: "{{ (exim_relay_sender_address | split('@'))[1] if exim_relay_enabled else '' }}"
 nextcloud_environment_variables_smtp_authtype: PLAIN
@@ -12722,7 +12722,7 @@ ntfy_visitor_request_limit_exempt_hosts_hostnames_auto: |
 # role-specific:exim_relay
 ntfy_smtp_sender_enabled: "{{ exim_relay_enabled }}"
 ntfy_smtp_sender_addr_host: "{{ exim_relay_identifier if exim_relay_enabled else '' }}"
-ntfy_smtp_sender_addr_port: 8025
+ntfy_smtp_sender_addr_port: "{{ '8025' if exim_relay_enabled else '587' }}"
 ntfy_smtp_sender_from: "{{ exim_relay_sender_address if exim_relay_enabled else '' }}"
 # /role-specific:exim_relay
 
@@ -13236,7 +13236,7 @@ otterwiki_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_pro
 
 # role-specific:exim_relay
 otterwiki_environment_variables_mail_server: "{{ exim_relay_identifier if exim_relay_enabled else '' }}"
-otterwiki_environment_variables_mail_port: "{{ 8025 if exim_relay_enabled else '587' }}"
+otterwiki_environment_variables_mail_port: "{{ '8025' if exim_relay_enabled else '587' }}"
 otterwiki_environment_variables_mail_use_tls: "{{ false if exim_relay_enabled else true }}"
 otterwiki_environment_variables_mail_default_sender: "{{ exim_relay_sender_address if exim_relay_enabled else '' }}"
 # /role-specific:exim_relay
@@ -13462,7 +13462,7 @@ paperless_environment_variables_paperless_secret_key: "{{ (mash_playbook_generic
 
 # role-specific:exim_relay
 paperless_environment_variables_paperless_email_host: "{{ exim_relay_identifier if exim_relay_enabled else '' }}"
-paperless_environment_variables_paperless_email_port: "{{ 8025 if exim_relay_enabled else '' }}"
+paperless_environment_variables_paperless_email_port: "{{ '8025' if exim_relay_enabled else '587' }}"
 paperless_environment_variables_paperless_email_from: "{{ exim_relay_sender_address if exim_relay_enabled else '' }}"
 # /role-specific:exim_relay
 
@@ -13538,7 +13538,7 @@ papra_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyab
 # role-specific:exim_relay
 papra_environment_variables_emails_driver: "{{ 'smtp' if exim_relay_enabled }}"
 papra_environment_variables_smtp_host: "{{ exim_relay_identifier if exim_relay_enabled else '' }}"
-papra_environment_variables_smtp_port: "{{ 8025 if exim_relay_enabled else '' }}"
+papra_environment_variables_smtp_port: "{{ '8025' if exim_relay_enabled else '587' }}"
 papra_environment_variables_smtp_secure: "{{ false if exim_relay_enabled else true }}"
 papra_environment_variables_emails_from_address: "Papra <{{ exim_relay_sender_address if exim_relay_enabled else '' }}>"
 # /role-specific:exim_relay
@@ -13602,7 +13602,7 @@ pdfding_environment_variables_secret_key: "{{ (mash_playbook_generic_secret_key 
 # role-specific:exim_relay
 pdfding_environment_variables_email_backend: "{{ 'smtp' if exim_relay_enabled }}"
 pdfding_environment_variables_smtp_host: "{{ exim_relay_identifier if exim_relay_enabled else '' }}"
-pdfding_environment_variables_smtp_port: "{{ 8025 if exim_relay_enabled else '' }}"
+pdfding_environment_variables_smtp_port: "{{ '8025' if exim_relay_enabled else '587' }}"
 pdfding_environment_variables_email_address: "{{ exim_relay_sender_address if exim_relay_enabled else '' }}"
 pdfding_environment_variables_smtp_use_tls: "{{ false if exim_relay_enabled else true }}"
 # /role-specific:exim_relay
@@ -13677,7 +13677,7 @@ peertube_environment_variable_open_telemetry_metrics_enabled: "{{ mash_playbook_
 
 # role-specific:exim_relay
 peertube_config_smtp_hostname: "{{ exim_relay_identifier if exim_relay_enabled else '' }}"
-peertube_config_smtp_port: "{{ 8025 if exim_relay_enabled else '' }}"
+peertube_config_smtp_port: "{{ '8025' if exim_relay_enabled else '587' }}"
 peertube_config_smtp_from: "{{ exim_relay_sender_address if exim_relay_enabled else '' }}"
 # /role-specific:exim_relay
 
@@ -13749,7 +13749,7 @@ pgadmin_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxy
 # role-specific:exim_relay
 pgadmin_environment_variables_pgadmin_disable_postfix: "{{ exim_relay_enabled }}"
 pgadmin_environment_variables_pgadmin_config_mail_server: "{{ exim_relay_identifier if exim_relay_enabled else '' }}"
-pgadmin_environment_variables_pgadmin_config_mail_port: "{{ 8025 if exim_relay_enabled else '' }}"
+pgadmin_environment_variables_pgadmin_config_mail_port: "{{ '8025' if exim_relay_enabled else '587' }}"
 pgadmin_environment_variables_pgadmin_config_security_email_sender: "{{ exim_relay_sender_address if exim_relay_enabled else '' }}"
 # /role-specific:exim_relay
 
@@ -13956,7 +13956,7 @@ plausible_clickhouse_database_password: "{{ ((mash_playbook_generic_secret_key +
 # The Bamboo.Mua SMTP adapter is more modern, but always sends authentication, even when the SMTP user is empty.
 plausible_environment_variable_mailer_adapter: "{{ 'Bamboo.SMTPAdapter' if exim_relay_enabled else 'Bamboo.LocalAdapter' }}"
 plausible_environment_variable_smtp_host_addr: "{{ exim_relay_identifier if exim_relay_enabled else '' }}"
-plausible_environment_variable_smtp_host_port: "{{ 8025 if exim_relay_enabled else '587' }}"
+plausible_environment_variable_smtp_host_port: "{{ '8025' if exim_relay_enabled else '587' }}"
 plausible_environment_variable_mailer_email: "{{ exim_relay_sender_address if exim_relay_enabled else '' }}"
 plausible_environment_variable_smtp_host_ssl_enabled: false
 # /role-specific:exim_relay
@@ -14075,7 +14075,7 @@ pocket_id_mailer_enabled: "{{ exim_relay_enabled }}"
 # Note these settings are automatically applied only if `pocket_id_environment_variable_ui_config_disabled` is set to `true`.
 # Otherwise, it is still possible to configure SMTP mailer on the Pocket ID's UI.
 pocket_id_environment_variable_smtp_host: "{{ exim_relay_identifier if exim_relay_enabled else '' }}"
-pocket_id_environment_variable_smtp_port: 8025
+pocket_id_environment_variable_smtp_port: "{{ '8025' if exim_relay_enabled else '587' }}"
 pocket_id_environment_variable_smtp_from: "{{ exim_relay_sender_address if exim_relay_enabled else '' }}"
 # /role-specific:exim_relay
 
@@ -15070,7 +15070,7 @@ readeck_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxy
 
 # role-specific:exim_relay
 readeck_environment_variables_readeck_mail_host: "{{ exim_relay_identifier if exim_relay_enabled else '' }}"
-readeck_environment_variables_readeck_mail_port: 8025
+readeck_environment_variables_readeck_mail_port: "{{ '8025' if exim_relay_enabled else '587' }}"
 readeck_environment_variables_readeck_mail_insecure: "{{ exim_relay_enabled }}"
 readeck_environment_variables_readeck_mail_fromnoreply: "{{ exim_relay_sender_address if exim_relay_enabled else '' }}"
 # /role-specific:exim_relay
@@ -15210,7 +15210,7 @@ redmine_database_cipher_key: "{{ (mash_playbook_generic_secret_key + ':db.cipher
 
 # role-specific:exim_relay
 redmine_email_delivery_smtp_settings_address: "{{ exim_relay_identifier if exim_relay_enabled else '' }}"
-redmine_email_delivery_smtp_settings_port: 8025
+redmine_email_delivery_smtp_settings_port: "{{ '8025' if exim_relay_enabled else '587' }}"
 # /role-specific:exim_relay
 
 # role-specific:mariadb
@@ -15643,7 +15643,7 @@ semaphore_database_type: "{{ 'postgres' if postgres_enabled | default(false) els
 
 # role-specific:exim_relay
 semaphore_environment_variables_email_host: "{{ exim_relay_identifier if exim_relay_enabled else '' }}"
-semaphore_environment_variables_email_port: 8025
+semaphore_environment_variables_email_port: "{{ '8025' if exim_relay_enabled else '587' }}"
 semaphore_environment_variables_email_sender: "{{ exim_relay_sender_address if exim_relay_enabled else '' }}"
 # /role-specific:exim_relay
 
@@ -15770,7 +15770,7 @@ sftpgo_environment_variables_data_provider_driver: postgres
 # role-specific:exim_relay
 sftpgo_mailer_smtp_enabled: "{{ exim_relay_enabled }}"
 sftpgo_environment_variables_smtp_host: "{{ exim_relay_identifier if exim_relay_enabled else '' }}"
-sftpgo_environment_variables_smtp_port: 8025
+sftpgo_environment_variables_smtp_port: "{{ '8025' if exim_relay_enabled else '587' }}"
 sftpgo_environment_variables_smtp_from: "{{ exim_relay_sender_address if exim_relay_enabled else '' }}"
 # /role-specific:exim_relay
 
@@ -16411,7 +16411,7 @@ tandoor_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxy
 
 # role-specific:exim_relay
 tandoor_email_host: "{{ exim_relay_identifier if exim_relay_enabled else '' }}"
-tandoor_email_port: "{{ 8025 if exim_relay_enabled else '' }}"
+tandoor_email_port: "{{ '8025' if exim_relay_enabled else '587' }}"
 tandoor_default_from_email: "{{ exim_relay_sender_address if exim_relay_enabled else '' }}"
 # /role-specific:exim_relay
 
@@ -17044,7 +17044,7 @@ vaultwarden_container_labels_traefik_compression_middleware_name: "{{ mash_playb
 
 # role-specific:exim_relay
 vaultwarden_config_smtp_host: "{{ exim_relay_identifier if exim_relay_enabled else '' }}"
-vaultwarden_config_smtp_port: "{{ 8025 if exim_relay_enabled else '587' }}"
+vaultwarden_config_smtp_port: "{{ '8025' if exim_relay_enabled else '587' }}"
 vaultwarden_config_smtp_from: "{{ exim_relay_sender_address if exim_relay_enabled else '' }}"
 vaultwarden_config_smtp_security: "{{ 'off' if exim_relay_enabled else 'starttls' }}"
 # /role-specific:exim_relay
@@ -17223,9 +17223,9 @@ vikunja_environment_variables_service_secret: "{{ (mash_playbook_generic_secret_
 
 # role-specific:exim_relay
 vikunja_mailer_enabled: "{{ exim_relay_enabled }}"
-vikunja_environment_variables_smtp_from: "{{ exim_relay_sender_address if exim_relay_enabled else '' }}"
 vikunja_environment_variables_smtp_host: "{{ exim_relay_identifier if exim_relay_enabled else '' }}"
-vikunja_environment_variables_smtp_port: "{{ 8025 if exim_relay_enabled else '587' }}"
+vikunja_environment_variables_smtp_port: "{{ '8025' if exim_relay_enabled else '587' }}"
+vikunja_environment_variables_smtp_from: "{{ exim_relay_sender_address if exim_relay_enabled else '' }}"
 # /role-specific:exim_relay
 
 # role-specific:mariadb
@@ -17342,7 +17342,7 @@ weblate_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxy
 
 # role-specific:exim_relay
 weblate_environment_variables_weblate_email_host: "{{ exim_relay_identifier if exim_relay_enabled else '' }}"
-weblate_environment_variables_weblate_email_port: "{{ 8025 if exim_relay_enabled else '587' }}"
+weblate_environment_variables_weblate_email_port: "{{ '8025' if exim_relay_enabled else '587' }}"
 weblate_environment_variables_weblate_server_email: "{{ exim_relay_sender_address if exim_relay_enabled else '' }}"
 weblate_environment_variables_weblate_default_from_email: "{{ exim_relay_sender_address if exim_relay_enabled else '' }}"
 # /role-specific:exim_relay
@@ -17690,7 +17690,7 @@ writefreely_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_p
 # role-specific:exim_relay
 writefreely_environment_variables_domain: "{{ exim_relay_hostname }}"
 writefreely_environment_variables_smtp_host: "{{ exim_relay_identifier if exim_relay_enabled else '' }}"
-writefreely_environment_variables_smtp_port: "{{ 8025 if exim_relay_enabled else '587' }}"
+writefreely_environment_variables_smtp_port: "{{ '8025' if exim_relay_enabled else '587' }}"
 writefreely_environment_variables_smtp_enable_start_tls: "{{ false if exim_relay_enabled else true }}"
 writefreely_environment_variables_smtp_username: mash # dummy random username — without a value specified the SMTP mailer is not enabled
 writefreely_environment_variables_smtp_password: mash # dummy random password — without a value specified the SMTP mailer is not enabled
