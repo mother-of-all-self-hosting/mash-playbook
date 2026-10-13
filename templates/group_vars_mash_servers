@@ -17507,7 +17507,7 @@ woodpecker_ci_agent_systemd_required_services_list_auto: |
 woodpecker_ci_agent_container_additional_networks_auto: |
   {{
     (
-      ([woodpecker_ci_server_container_network] if woodpecker_ci_server_enabled and woodpecker_ci_server_container_network != woodpecker_ci_agent_container_network else [])
+      ([woodpecker_ci_server_container_network] if woodpecker_ci_server_enabled | default(false) and woodpecker_ci_server_container_network != woodpecker_ci_agent_container_network else [])
     ) | unique
   }}
 
