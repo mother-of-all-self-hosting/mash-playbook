@@ -40,6 +40,11 @@ Small installations which only run trusted CI jobs can afford to run an agent in
 
 ## Woodpecker CI server
 
+For details about configuring the [Ansible role for Woodpecker CI server](https://github.com/mother-of-all-self-hosting/ansible-role-woodpecker-ci-server), you can check them via:
+
+- 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-woodpecker-ci-server/blob/main/docs/configuring-woodpecker-ci-server.md) online
+- 📁 `roles/galaxy/woodpecker_ci_server/docs/configuring-woodpecker-ci-server.md` locally, if you have [fetched the Ansible roles](../installing.md)
+
 ### Dependencies — Woodpecker CI server
 
 This service requires the following other services:
@@ -63,28 +68,6 @@ woodpecker_ci_server_enabled: true
 woodpecker_ci_server_hostname: mash.example.com
 woodpecker_ci_server_path_prefix: /ci
 
-# Generate this secret with `openssl rand -hex 32`
-#
-# Note that this playbook only supports agent-specific secrets, which
-# means that if you choose to share this secret with an agent, the
-# server will register it as a non-persistent agent.
-#
-# See the definition of
-# woodpecker_ci_agent_config_agent_secret below for more details.
-woodpecker_ci_server_config_agent_secret: ''
-
-woodpecker_ci_server_config_admins: [YOUR_USERNAME_HERE]
-
-# Add one or more usernames that match your version control system (e.g. Gitea) below.
-# These users will have admin privileges upon signup.
-woodpecker_ci_server_config_admins:
-  - YOUR_USERNAME_HERE
-  - ANOTHER_USERNAME_HERE
-
-# Uncomment the line below if you'll be running Woodpecker CI agents on remote machines.
-# If you'll only run agents on the same machine as the server, you can keep gRPC expose disabled.
-# woodpecker_ci_server_container_labels_traefik_grpc_enabled: true
-
 ########################################################################
 #                                                                      #
 # /woodpecker_ci_server                                                #
@@ -92,21 +75,17 @@ woodpecker_ci_server_config_admins:
 ########################################################################
 ```
 
+#### Set username matching VCS
+
+It is necessary to specify one or more usernames that match your version control system (e.g. Gitea). Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-woodpecker-ci-server/blob/main/docs/configuring-woodpecker-ci-server.md#set-username-matching-vcs) on the role's documentation for details.
+
 #### Select database to use (optional)
 
-By default Woodpecker CI server is configured to use Postgres, but you can choose other database such as SQLite and MySQL (MariaDB).
-
-To use MariaDB, add the following configuration to your `vars.yml` file:
-
-```yaml
-woodpecker_ci_server_database_type: mysql
-```
-
-Set `sqlite3` for a SQLite database.
+By default Woodpecker CI server is configured to use Postgres, but you can choose other database such as SQLite and MySQL (MariaDB). Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-woodpecker-ci-server/blob/main/docs/configuring-woodpecker-ci-server.md#specify-database-optional) on the role's documentation for details.
 
 #### Gitea Integration
 
-The Woodpecker CI server can integrate with [Gitea](gitea.md) using the following **additional** `vars.yml` configuration:
+The Woodpecker CI server can integrate with [Gitea](gitea.md) by adding the following **additional** `vars.yml` configuration:
 
 ```yaml
 woodpecker_ci_server_provider: gitea
@@ -149,9 +128,7 @@ woodpecker_ci_server_container_add_host_ip_address: "{{ ansible_host }}"
 
 After running the command for installation, the Woodpecker CI server becomes available at the URL specified with `woodpecker_ci_server_hostname` and `woodpecker_ci_server_path_prefix`. With the configuration above, the service is hosted at `https://mash.example.com/ci`.
 
-To get started, open the URL with a web browser, and click the **Log in** button. It takes you to Gitea or Forgejo per your configuration, and you can authorize Woodpecker CI with the OAuth 2 application.
-
-Follow the official Woodpecker CI [Getting started](https://woodpecker-ci.org/docs/usage/intro) documentation for additional usage details.
+Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-woodpecker-ci-server/blob/main/docs/configuring-woodpecker-ci-server.md#usage) on the role's documentation for details about the usage.
 
 ## Woodpecker CI agent
 
