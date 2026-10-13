@@ -173,7 +173,7 @@ After running the command for installation, the audiobookshelf instance becomes 
 
 To get started, open the URL with a web browser to create an account. **Note that the first registered user becomes an administrator automatically.**
 
-Refer to [this page](https://www.audiobookshelf.org/docs/) on the documentation about its usage.
+Refer to [this page](https://www.audiobookshelf.org/docs/) on the documentation for details about the usage.
 
 If you are looking for free public domain audiobooks which can be uploaded to your audiobookshelf instance, you might be interested in websites such as <https://librivox.org/>.
 

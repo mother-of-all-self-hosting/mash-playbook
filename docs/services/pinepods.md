@@ -249,7 +249,7 @@ After running the command for installation, the PinePods instance becomes availa
 
 To get started, open the URL with a web browser to create an account. **Note that the first registered user becomes an administrator automatically.**
 
-Refer to [this page](https://www.pinepods.online/docs/tutorial-basics/AdjustingUserSettings) on the documentation about its usage.
+Refer to [this page](https://www.pinepods.online/docs/tutorial-basics/AdjustingUserSettings) on the documentation for details about the usage.
 
 ### Configuring the mailer (optional)
 

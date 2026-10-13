@@ -262,7 +262,7 @@ Note that running the `just` commands for installation (`just install-all` or `j
 
 After running the command for installation, the RSSHub instance becomes available at the URL specified with `rsshubp_hostname`. With the configuration above, the service is hosted at `https://rsshubp.example.com`.
 
-See the [official documentation](https://docs.rsshub.app/guide/) for usage.
+Refer to the [official documentation](https://docs.rsshub.app/guide/) for details about the usage.
 
 ## Troubleshooting
 

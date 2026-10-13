@@ -69,7 +69,7 @@ You can upload a file to the transfer.sh instance by running a command as below:
 curl -v --upload-file ./hello.txt https://transfersh.example.com/hello.txt
 ```
 
-Refer to [this section](https://github.com/dutchcoders/transfer.sh/blob/main/README.md#usage) on the documentation for details about its usage.
+Refer to [this section](https://github.com/dutchcoders/transfer.sh/blob/main/README.md#usage) on the documentation for details about the usage.
 
 ## Troubleshooting
 
