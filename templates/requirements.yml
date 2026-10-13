@@ -81,7 +81,7 @@
   name: bentopdf
   activation_prefix: bentopdf_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-beszel-hub.git
-  version: v0.21.0-2
+  version: v0.21.0-3
   name: beszel_hub
   activation_prefix: beszel_hub_
 - src: git+https://iris.radicle.network/z2nQcYvPh51zfvVu8hkftDYPmELYP.git
