@@ -6168,7 +6168,7 @@ fider_uid: "{{ mash_playbook_uid }}"
 fider_gid: "{{ mash_playbook_gid }}"
 
 fider_systemd_required_services_list_auto: |
- {{
+  {{
     ([postgres_identifier ~ '.service'] if postgres_enabled and fider_database_hostname == postgres_connection_hostname else [])
   }}
 
