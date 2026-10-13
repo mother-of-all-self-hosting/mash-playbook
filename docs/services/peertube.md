@@ -27,6 +27,11 @@ PeerTube is an ActivityPub federated video platform developed by [Framasoft](htt
 
 See the project's [documentation](https://docs.joinpeertube.org/) to learn what PeerTube does and why it might be useful to you.
 
+For details about configuring the [Ansible role for PeerTube](https://github.com/mother-of-all-self-hosting/ansible-role-peertube), you can check them via:
+
+- 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-peertube/blob/main/docs/configuring-peertube.md) online
+- 📁 `roles/galaxy/peertube/docs/configuring-peertube.md` locally, if you have [fetched the Ansible roles](../installing.md)
+
 ## Dependencies
 
 This service requires the following other services:
@@ -51,16 +56,6 @@ peertube_enabled: true
 
 peertube_hostname: peertube.example.com
 
-# Put a strong secret below, generated with `pwgen -s 64 1` or in another way
-peertube_config_secret: ''
-
-# An email address to be associated with the `root` PeerTube administrator account.
-peertube_config_admin_email: ''
-
-# The initial password that the `root` PeerTube administrator account will be created with.
-# You can put any string here, but generating a strong one is preferred (e.g. `pwgen -s 64 1`).
-peertube_config_root_user_initial_password: ''
-
 ########################################################################
 #                                                                      #
 # /peertube                                                            #
@@ -69,6 +64,18 @@ peertube_config_root_user_initial_password: ''
 ```
 
 **Note**: hosting PeerTube under a subpath (by configuring the `peertube_path_prefix` variable) does not seem to be possible right now, due to PeerTube limitations.
+
+### Set a random string
+
+You also need to set a random string to the variable as below by adding the following configuration to your `vars.yml` file. The value can be generated with `pwgen -s 64 1` or in another way.
+
+```yaml
+peertube_config_secret: YOUR_SECRET_KEY_HERE
+```
+
+### Set administrator's account details
+
+It is necessary to create an instance's admin user. Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-peertube/blob/main/docs/configuring-peertube.md#set-administrators-account-details) on the role's documentation for details.
 
 ### Configure Valkey
 
@@ -294,24 +301,13 @@ Note that running the `just` commands for installation (`just install-all` or `j
 
 ### Adjust Traefik network's IP address range
 
-After completing the initial installation, it is necessary to adjust the Traefik network's IP address range.
-
-First, find the `traefik` network's IP address range by running the following command on the server: `docker network inspect traefik -f "{{ (index .IPAM.Config 0).Subnet }}"`
-
-Then, add the following configuration after replacing the example IP range below, and re-run the playbook.
-
-```yaml
-peertube_trusted_proxies_values_custom: ["172.21.0.0/16"]
-```
+After completing the initial installation, it is necessary to adjust the Traefik network's IP address range. Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-peertube/blob/main/docs/configuring-peertube.md#adjust-traefik-networks-ip-address-range) on the role's documentation for details.
 
 ## Usage
 
 After running the command for installation, the PeerTube instance becomes available at the URL specified with `peertube_hostname`. With the configuration above, the service is hosted at `https://peertube.example.com`.
 
-You should then be able to log in with:
-
-- username: `root`
-- password: the password you've set in `peertube_config_root_user_initial_password` in `vars.yml`
+Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-peertube/blob/main/docs/configuring-peertube.md#usage) on the role's documentation for details about the usage.
 
 ## Related services
 
