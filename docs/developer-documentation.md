@@ -21,13 +21,17 @@ The guide is meant for anyone preparing a contribution. If you find existing fil
 
 ### Markdown style
 
-- Do not hard-wrap prose. Each paragraph is a single line in the source file, no matter how long. This keeps the source and the rendered result consistent and makes diffs and translations easier to work with.
+- Do not hard-wrap prose. Each paragraph is a single line in the source file, no matter how long. This keeps the source and the rendered result consistent and makes diffs easier to work with.
 - Number ordered lists sequentially (`1.`, `2.`, `3.`), instead of relying on the Markdown renderer to fix a repeated (`1.`, `1.`, `1.`) or wrong (`1.`, `2.`, `4.`) sequence.
 - Use `-` for unordered lists.
 - Wrap variable names, file paths, commands, domains, and service names in backticks (`` ` ``).
 - Use fenced code blocks with a language hint (```` ```yaml ````, ```` ```sh ````) for configuration and command examples.
 - Use relative links when linking between documentation pages (e.g. `[Configuring DNS](configuring-dns.md)`).
-- Link to the upstream project's official documentation instead of duplicating its content (installation steps, distro-specific commands, etc.). Copied instructions go stale; links age much better.
+
+### Miscellaneous
+
+- Link to the role's documentation instead of duplicating its content (installation steps, distro-specific commands, etc.). Copied instructions go stale; links age much better.
+- Reuse existing files to minimize inconsistencies.
 
 ## Support a new service | Create your own role
 
