@@ -17565,7 +17565,7 @@ woodpecker_ci_server_container_labels_traefik_docker_network: "{{ mash_playbook_
 woodpecker_ci_server_container_labels_traefik_compression_middleware_enabled: "{{ mash_playbook_reverse_proxy_traefik_middleware_compession_enabled }}"
 woodpecker_ci_server_container_labels_traefik_compression_middleware_name: "{{ mash_playbook_reverse_proxy_traefik_middleware_compession_name if mash_playbook_reverse_proxy_traefik_middleware_compession_enabled else '' }}"
 
-woodpecker_ci_server_database_type: "{{ 'postgres' if postgres_enabled | default(false) else 'sqlite3' }}"
+woodpecker_ci_server_database_type: "{{ 'postgres' if postgres_enabled | default(false) else 'sqlite' }}"
 
 # role-specific:mariadb
 woodpecker_ci_server_database_mysql_hostname: "{{ woodpecker_ci_server_database_mysql_socket_path_container + '/mysqld.sock' if woodpecker_ci_server_database_mysql_socket_enabled else (mariadb_connection_hostname if mariadb_enabled else '') }}"
