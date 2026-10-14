@@ -870,6 +870,10 @@
     - role: galaxy/qbittorrent
     # /role-specific:qbittorrent
 
+    # role-specific:qui
+    - role: galaxy/qui
+    # /role-specific:qui
+
     # role-specific:rabbitmq
     - role: galaxy/rabbitmq
     # /role-specific:rabbitmq
