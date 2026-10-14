@@ -961,7 +961,7 @@
   name: svix
   activation_prefix: svix_server_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-swap.git
-  version: v1.0.0-0
+  version: v1.0.0-1
   name: swap
   activation_prefix: system_swap_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-syncstorage-rs-docker.git
