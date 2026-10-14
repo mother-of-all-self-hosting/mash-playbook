@@ -47,7 +47,9 @@ qui_hostname: qui.example.com
 
 ### Connecting to qBittorrent
 
-If [qBittorrent](qbittorrent.md) is enabled as well, the playbook wires qui to it automatically: qui joins qBittorrent's container network, starts along with it, and gets qBittorrent's download directory mounted at the same path qBittorrent sees it at (for qui's Local Filesystem Access features).
+If [qBittorrent](qbittorrent.md) is enabled as well, the playbook wires qui to it automatically: qui joins qBittorrent's container network and starts along with it.
+
+qui's Local Filesystem Access features additionally need qBittorrent's download directory mounted into qui. Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-qui/blob/main/docs/configuring-qui.md#enabling-local-filesystem-access-optional) on the role's documentation for details.
 
 ## Usage
 
@@ -55,7 +57,7 @@ After running the command for installation, the qui instance becomes available a
 
 To get started, open the URL with a web browser to create an account. As whoever opens it first can claim the instance, it is recommended to do so immediately after installing.
 
-To add the qBittorrent instance installed by the playbook, open `Settings > Instances`, click `Add Instance` and set the `URL` field to `http://mash-qbittorrent:8080`. If you enable `Local Filesystem Access` on the instance, the features which depend on it work without further configuration.
+To add the qBittorrent instance installed by the playbook, open `Settings > Instances`, click `Add Instance` and set the `URL` field to `http://mash-qbittorrent:8080`.
 
 Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-qui/blob/main/docs/configuring-qui.md#usage) on the role's documentation for details about the usage.
 
