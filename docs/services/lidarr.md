@@ -71,3 +71,4 @@ For additional configuration options, refer to `defaults/main.yml` file.
 - [Jellyfin](jellyfin.md)
 - [Plex](plex.md)
 - [qBittorrent](qbittorrent.md)
+- [Unpackerr](unpackerr.md)
