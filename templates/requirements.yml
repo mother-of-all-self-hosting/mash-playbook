@@ -829,7 +829,7 @@
   name: qbittorrent
   activation_prefix: qbittorrent_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-qui.git
-  version: v1.32.0-0
+  version: v1.32.0-1
   name: qui
   activation_prefix: qui_
 - src: git+https://iris.radicle.network/z3PCtuwyz2HdHeKnHCefR253rpYwp.git
