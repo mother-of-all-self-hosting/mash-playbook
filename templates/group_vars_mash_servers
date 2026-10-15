@@ -2880,7 +2880,11 @@ mash_playbook_traefix_managed_additional_entrypoints_auto_itemized:
         'name': syncthing_container_labels_traefik_udp_entrypoints,
         'port': syncthing_container_sync_udp_port | string + '/udp',
         'host_bind_port': syncthing_container_sync_udp_bind_port,
-        'config': {}
+        'config': {
+          'udp': {
+            'timeout': syncthing_container_labels_traefik_udp_entrypoint_timeout
+          }
+        }
       } if syncthing_enabled and syncthing_container_labels_traefik_udp_enabled else omit)
     }}
   # /role-specific:syncthing
