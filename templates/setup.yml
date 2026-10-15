@@ -1062,6 +1062,10 @@
     - role: galaxy/typesense
     # /role-specific:typesense
 
+    # role-specific:unpackerr
+    - role: galaxy/unpackerr
+    # /role-specific:unpackerr
+
     # role-specific:uptime_kuma
     - role: galaxy/uptime_kuma
     # /role-specific:uptime_kuma
