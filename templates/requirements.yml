@@ -824,6 +824,10 @@
   version: v5.2.4-1
   name: qbittorrent
   activation_prefix: qbittorrent_
+- src: git+https://github.com/mother-of-all-self-hosting/ansible-role-qui.git
+  version: v1.32.0-0
+  name: qui
+  activation_prefix: qui_
 - src: git+https://iris.radicle.network/z3PCtuwyz2HdHeKnHCefR253rpYwp.git
   version: v4.3.6-0
   name: rabbitmq

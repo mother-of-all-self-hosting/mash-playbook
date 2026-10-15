@@ -67,3 +67,4 @@ Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-ro
 - [Seerr](seerr.md)
 - [Plex](plex.md)
 - [qBittorrent](qbittorrent.md)
+- [qui](qui.md)
