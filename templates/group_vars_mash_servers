@@ -1148,6 +1148,11 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
     {{ ({'name': (promtail_identifier + '.service'), 'priority': 500, 'restart_necessary': (promtail_restart_necessary | bool), 'groups': ['mash', 'logs', 'promtail']} if promtail_enabled else omit) }}
   # /role-specific:promtail
 
+  # role-specific:prowlarr
+  - |-
+    {{ ({'name': (prowlarr_identifier + '.service'), 'priority': 2000, 'restart_necessary': (prowlarr_restart_necessary | bool), 'groups': ['mash', 'prowlarr']} if prowlarr_enabled else omit) }}
+  # /role-specific:prowlarr
+
   # role-specific:prunemate
   - |-
     {{ ({'name': (prunemate_identifier + '.service'), 'priority': 2000, 'restart_necessary': (prunemate_restart_necessary | bool), 'groups': ['mash', 'prunemate']} if prunemate_enabled else omit) }}
@@ -14672,6 +14677,45 @@ promtail_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_pri
 #                                                                      #
 ########################################################################
 # /role-specific:promtail
+
+
+
+# role-specific:prowlarr
+########################################################################
+#                                                                      #
+# prowlarr                                                             #
+#                                                                      #
+########################################################################
+
+prowlarr_enabled: false
+
+prowlarr_identifier: "{{ mash_playbook_service_identifier_prefix }}prowlarr"
+
+prowlarr_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}prowlarr"
+
+prowlarr_uid: "{{ mash_playbook_uid }}"
+prowlarr_gid: "{{ mash_playbook_gid }}"
+
+prowlarr_container_additional_networks_auto: |
+  {{
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+  }}
+
+prowlarr_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+prowlarr_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+
+# role-specific:traefik
+prowlarr_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
+prowlarr_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
+# /role-specific:traefik
+
+########################################################################
+#                                                                      #
+# /prowlarr                                                            #
+#                                                                      #
+########################################################################
+# /role-specific:prowlarr
+
 
 
 

@@ -59,7 +59,7 @@ lidarr_hostname: lidarr.example.com
 After running the command for installation, the Lidarr instance becomes available at the URL specified with `lidarr_hostname`. With the configuration above, the service is hosted at `https://lidarr.example.com`.
 
 >[!NOTE]
-> The `lidarr_path_prefix` variable can be adjusted to host under a subpath (e.g. `lidarr_path_prefix: /lidarr`), but this hasn't been tested yet.
+> The `lidarr_path_prefix` variable can be adjusted to host under a subpath (e.g. `lidarr_path_prefix: /lidarr`).
 
 Lidarr starts without authentication and does not prompt you to create an account. Before exposing the hostname, [configure authentication as described by the Lidarr role](https://github.com/mother-of-all-self-hosting/ansible-role-lidarr/blob/v3.1.0.4875-3/docs/configuring-lidarr.md#protecting-the-web-interface).
 
@@ -67,7 +67,7 @@ For additional configuration options, refer to `defaults/main.yml` file.
 
 ## Related services
 
-- "* Arr" applications — [Autobrr](autobrr.md) / [Homarr](homarr.md) / [Radarr](radarr.md) / [Sonarr](sonarr.md)
+- "* Arr" applications — [Autobrr](autobrr.md) / [Homarr](homarr.md) / [Prowlarr](prowlarr.md) / [Radarr](radarr.md) / [Sonarr](sonarr.md)
 - [Jellyfin](jellyfin.md)
 - [Plex](plex.md)
 - [qBittorrent](qbittorrent.md)

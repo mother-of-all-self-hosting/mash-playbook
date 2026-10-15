@@ -481,7 +481,7 @@
   name: librebooking
   activation_prefix: librebooking_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-lidarr.git
-  version: v3.1.0.4875-4
+  version: v3.1.0.4875-5
   name: lidarr
   activation_prefix: lidarr_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-limesurvey.git
@@ -816,6 +816,10 @@
   version: v3.6.11-3
   name: promtail
   activation_prefix: promtail_
+- src: git+https://github.com/mother-of-all-self-hosting/ansible-role-prowlarr.git
+  version: v2.6.5-0
+  name: prowlarr
+  activation_prefix: prowlarr_
 - src: git+https://iris.radicle.network/zTsddBnXnhE3i4xhzsEX12deb4fx.git
   version: v1.3.3-4
   name: prunemate
