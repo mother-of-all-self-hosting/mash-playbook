@@ -56,7 +56,7 @@ To get started, open the URL with a web browser to create an account.
 
 ## Related services
 
-- "* Arr" applications — [Autobrr](autobrr.md) / [Homarr](homarr.md) / [Radarr](radarr.md)
+- "* Arr" applications — [Autobrr](autobrr.md) / [Homarr](homarr.md) / [Prowlarr](prowlarr.md) / [Radarr](radarr.md)
 - [Jackett](jackett.md)
   - For Jackett integration instructions, refer to the [setup guide](https://github.com/mother-of-all-self-hosting/ansible-role-jackett/blob/main/docs/configuring-jackett.md#integration-with-sonarrradarr) on the role's documentation
 - [Jellyfin](jellyfin.md)

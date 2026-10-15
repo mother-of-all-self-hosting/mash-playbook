@@ -67,7 +67,7 @@ For additional configuration options, refer to `defaults/main.yml` file.
 
 ## Related services
 
-- "* Arr" applications — [Autobrr](autobrr.md) / [Homarr](homarr.md) / [Radarr](radarr.md) / [Sonarr](sonarr.md)
+- "* Arr" applications — [Autobrr](autobrr.md) / [Homarr](homarr.md) / [Prowlarr](prowlarr.md) / [Radarr](radarr.md) / [Sonarr](sonarr.md)
 - [Jellyfin](jellyfin.md)
 - [Plex](plex.md)
 - [qBittorrent](qbittorrent.md)

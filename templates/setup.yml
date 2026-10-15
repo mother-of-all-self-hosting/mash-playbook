@@ -862,6 +862,10 @@
     - role: galaxy/promtail
     # /role-specific:promtail
 
+    # role-specific:prowlarr
+    - role: galaxy/prowlarr
+    # /role-specific:prowlarr
+
     # role-specific:prunemate
     - role: galaxy/prunemate
     # /role-specific:prunemate

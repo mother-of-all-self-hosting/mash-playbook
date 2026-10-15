@@ -218,6 +218,7 @@ Below is an exhaustive list of the free and open-source software for self-hostin
 | [Prometheus Postgres Exporter](https://github.com/prometheus-community/postgres_exporter) | A PostgreSQL metric exporter for Prometheus | [Link](services/prometheus-postgres-exporter.md) |
 | [Prometheus SSH Exporter](https://github.com/treydock/ssh_exporter) | SSH probes | [Link](services/prometheus-ssh-exporter.md) |
 | [Promtail](https://grafana.com/docs/loki/latest/send-data/promtail/) | Agent which ships the contents of local logs to a private [Grafana Loki](services/grafana-loki.md) instance | [Link](services/promtail.md) |
+| [Prowlarr](https://prowlarr.com/) | An indexer manager/proxy for Usenet and BitTorrent users | [Link](services/prowlarr.md) |
 | [PruneMate](https://github.com/anoniemerd/PruneMate) | Automatically clean up Docker resources on a schedule | [Link](services/prunemate.md) |
 | [qBittorrent](https://www.qbittorrent.org/) | A BitTorrent client | [Link](services/qbittorrent.md) |
 | [qui](https://getqui.com/) | A fast, modern web interface for qBittorrent | [Link](services/qui.md) |
