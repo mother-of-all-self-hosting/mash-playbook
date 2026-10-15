@@ -16358,8 +16358,11 @@ syncthing_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_pro
 # role-specific:traefik
 syncthing_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
 syncthing_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
-syncthing_container_labels_traefik_tcp_enabled: true
-syncthing_container_labels_traefik_udp_enabled: true
+# Sync traffic is not routed through Traefik, because Syncthing would then only see Traefik's IP address
+# instead of its peers' addresses (Syncthing does not support the PROXY protocol, and UDP cannot carry it).
+# The container publishes the sync ports by itself instead.
+syncthing_container_labels_traefik_tcp_enabled: false
+syncthing_container_labels_traefik_udp_enabled: false
 # /role-specific:traefik
 
 ########################################################################
