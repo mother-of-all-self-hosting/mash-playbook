@@ -1,3 +1,13 @@
+# 2026-10-15
+
+## Uptime Kuma v2 requires a backup before upgrading
+
+This affects existing Uptime Kuma v1 installations. Before rerunning the playbook, stop Uptime Kuma and back up its data directory (`uptime_kuma_data_path`, normally `/mash/uptime-kuma/data`). The first v2 start migrates the database; allow it to finish without restarting the service or host. Migration can take hours, and interruption requires restoring the backup.
+
+Debian/Raspbian Buster hosts must be upgraded to a newer OS before moving to v2: upstream reports container startup failures with Buster's `libseccomp2`. See the [upstream migration guide](https://github.com/louislam/uptime-kuma/wiki/Migration-From-v1-To-v2) for other application changes.
+
+Follow the [role's upgrade instructions](https://github.com/mother-of-all-self-hosting/ansible-role-uptime_kuma/blob/v2.5.6-0/docs/configuring-uptime-kuma.md#upgrading-from-uptime-kuma-1x-to-2x) before upgrading. The role starts the upgrade automatically and does not make the backup or stop with a validation error to remind you.
+
 # 2026-10-12
 
 ## (Backward Compatibility Break) TSDProxy upgraded to v2

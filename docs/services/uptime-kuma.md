@@ -32,6 +32,8 @@ For details about configuring the [Ansible role for Uptime Kuma](https://github.
 
 ## Dependencies
 
+Uptime Kuma v2 does not support Debian/Raspbian Buster hosts due to a `libseccomp2` issue; use a newer host OS. See the [upstream compatibility notes](https://github.com/louislam/uptime-kuma/wiki/Migration-From-v1-To-v2#docker-only-breaking-changes).
+
 This service requires the following other services:
 
 - [Traefik](traefik.md) reverse-proxy server
