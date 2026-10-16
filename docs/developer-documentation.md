@@ -298,17 +298,20 @@ YOUR-SERVICE_config_mailer_protocol: "{{ 'smtp' if exim_relay_enabled else '' }}
 
 </details>
 
-### 4. Make sure the role actually works
+### 4. Make sure the playbook can actually install a service with the role
 
-If you are willing to submit the change to the playbook's repository, please make sure that the role actually works as expected.
+If you are willing to submit the change to this repository, please make sure that the role is integrated with the playbook properly, and the playbook can install a service with the role as expected.
 
-There are several ways of testing the playbook; from using a local virtual machine, configuring a [Molecule](https://docs.ansible.com/projects/molecule/) testing framework, to running the locally modified playbook against an actual machine, and so on.
+Our pick to **test a role** is to use a [Molecule](https://docs.ansible.com/projects/molecule/) test framework. It is versatile, simulates installation in a predictable way, and helps you to spot an implementation bug before it is published.
 
-Our pick is to add a Molecule test framework. It is versatile, simulates installation in a predictable way, and helps you to spot an implementation bug before it is published and merged to the playbook.
+>[!NOTE]
+> If you look at the roles maintained by the MASH organization, you might be overwhelmed with intensiveness and aggressiveness of the Molecule test implementation. It is basically because the team enables patch level automerging with Renovate for them and wants to make sure as much as possible that they can be successfully updated without causing a disruption. *Verifying that the service that the role installs works is by default out-of-scope of the tests, and not your responsibility either*, though it might be appreciated.
+>
+> If you are not familiar with Molecule, it is fine not to implement a test with it. Please avoid making something up which you cannot confirm by yourself that it really works as expected (by using Gen-AI / LLM, etc). A defected test is worse than not having one in the first place.
 
-💡 If you look at the roles maintained by the MASH organization, you might be overwhelmed with intensiveness and aggressiveness of the Molecule test implementation. It is basically because the team enables patch level automerging with Renovate for them and wants to make sure as much as possible that they can be successfully updated without causing a disruption. *Verifying that the service that the role installs works is by default out-of-scope of the tests, and not your responsibility either*, though it might be appreciated.
+However, please do note that *it is not (yet) possible to check with Molecule whether the playbook can install a service with the role as expected*. In other words, passing Molecule tests on the side of the role has nothing to with whether the role is properly implemented to the playbook; even if it will be, it won't be nothing more than a mere simulation, under certain specific conditions. **It is always encouraged to confirm with your own eyes that the service has become usable on an actual machine, and discouraged to rely on a simulation by a Gen-AI / LLM or something else to assume the service probably might be installed.** Such implementation can be labelled as a AI slop, and dropped from the playbook.
 
-**If you are not familiar with Molecule, it is fine not to implement a test with it.** Please avoid making something up which you cannot confirm by yourself that it really works as expected (by using Gen-AI / LLM, etc). A defected test is worse than not having one in the first place.
+There are several ways of testing the playbook; from using a local virtual machine to running the locally modified playbook against an actual machine, and so on. In these cases, creating a symbolic link to the role's directory inside `roles/galaxy` should make it easier to test the role while debugging it, as you won't have to delete the directory and recreate it again and again.
 
 ### 5. Maintain your role
 
