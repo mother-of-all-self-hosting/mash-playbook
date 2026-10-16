@@ -13646,8 +13646,6 @@ passbolt_container_additional_networks_auto: |
 passbolt_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
 passbolt_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
 
-passbolt_database_type: "{{ 'postgres' if postgres_enabled | default(false) else '' }}"
-
 # role-specific:exim_relay
 passbolt_environment_variables_email_transport_default_host: "{{ exim_relay_identifier if exim_relay_enabled else '' }}"
 passbolt_environment_variables_email_transport_default_port: "{{ '8025' if exim_relay_enabled else '587' }}"

@@ -21,7 +21,7 @@ For details about configuring the [Ansible role for Passbolt](https://github.com
 
 This service requires the following other services:
 
-- [Postgres](postgres.md) / MySQL / [MariaDB](mariadb.md) database — Passbolt will default to Postgres
+- [Postgres](postgres.md) / MySQL / [MariaDB](mariadb.md) database
 - [Traefik](traefik.md) reverse-proxy server
 - (optional) [exim-relay](exim-relay.md) mailer
 
@@ -49,9 +49,9 @@ passbolt_hostname: passbolt.example.com
 
 **Note**: hosting Passbolt under a subpath (by configuring the `passbolt_path_prefix` variable) does not seem to be possible due to Passbolt's technical limitations.
 
-### Select database to use (optional)
+### Select database to use
 
-By default Passbolt is configured to use Postgres, but you can choose a MySQL compatible database. Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-passbolt/blob/main/docs/configuring-passbolt.md#specify-database) on the role's documentation for details.
+It is necessary to select a database used by Passbolt from a MySQL compatible database and Postgres. Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-passbolt/blob/main/docs/configuring-passbolt.md#specify-database) on the role's documentation for details.
 
 ### Configuring the mailer (optional)
 
