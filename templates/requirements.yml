@@ -1045,7 +1045,7 @@
   name: typesense
   activation_prefix: typesense_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-unpackerr.git
-  version: v0.16.1-0
+  version: v0.16.1-2
   name: unpackerr
   activation_prefix: unpackerr_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-uptime_kuma.git
