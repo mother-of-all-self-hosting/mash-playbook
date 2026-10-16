@@ -63,7 +63,7 @@ atuin_hostname: atuin.example.com
 
 ### Select database to use
 
-It is necessary to select a database used by Atuin server from Postgres and SQLite. Refer to [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az4ATDhf89CPqP7XCLNpNwobuJ9fBs/tree/docs/configuring-atuin.md#specify-database) on the role's documentation for details.
+Atuin server can use either Postgres or SQLite, and you need to choose one. Refer to [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az4ATDhf89CPqP7XCLNpNwobuJ9fBs/tree/docs/configuring-atuin.md#specify-database) on the role's documentation for details.
 
 ### Enabling signing up
 

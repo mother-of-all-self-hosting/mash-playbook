@@ -79,7 +79,7 @@ You also need to specify the base domain that session cookies related to authent
 
 ### Select database to use
 
-It is necessary to select a database used by Authelia from a MySQL compatible database, Postgres, and SQLite. Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-authelia/blob/main/docs/configuring-authelia.md#configuring-database) on the role's documentation for details.
+Authelia can use a MySQL compatible database, Postgres, or SQLite, and you need to choose one. Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-authelia/blob/main/docs/configuring-authelia.md#configuring-database) on the role's documentation for details.
 
 >[!NOTE]
 > If you have neither enabled MariaDB or disabled Postgres explicitly with this playbook, the database for your existing installation is most likely to be `postgres`.

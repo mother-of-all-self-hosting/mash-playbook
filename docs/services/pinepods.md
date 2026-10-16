@@ -67,7 +67,7 @@ pinepods_hostname: pinepods.example.com
 
 ### Select database to use
 
-It is necessary to select a database used by PinePods from MariaDB and Postgres. Refer to [this section](https://radicle.network/nodes/iris.radicle.network/rad%3AzKNyeEtymCZc7yio6JnHxY2AteZu/tree/docs/configuring-pinepods.md#specify-database) on the role's documentation for details.
+PinePods can use either MariaDB or Postgres, and you need to choose one. Refer to [this section](https://radicle.network/nodes/iris.radicle.network/rad%3AzKNyeEtymCZc7yio6JnHxY2AteZu/tree/docs/configuring-pinepods.md#specify-database) on the role's documentation for details.
 
 ### Configure Valkey
 

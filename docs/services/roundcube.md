@@ -64,7 +64,7 @@ roundcube_path_prefix: /roundcube
 
 ### Select database to use
 
-It is necessary to select a database used by Roundcube from a MySQL compatible database, Postgres, and SQLite. Refer to [`defaults/main.yml`](https://github.com/mother-of-all-self-hosting/ansible-role-roundcube/blob/main/defaults/main.yml) of the role for details.
+Roundcube can use a MySQL compatible database, Postgres, or SQLite, and you need to choose one. Refer to [`defaults/main.yml`](https://github.com/mother-of-all-self-hosting/ansible-role-roundcube/blob/main/defaults/main.yml) of the role for details.
 
 ### Specify IMAP and SMTP servers
 

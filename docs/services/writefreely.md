@@ -67,7 +67,7 @@ writefreely_hostname: writefreely.example.com
 
 ### Select database to use
 
-It is necessary to select database used by WriteFreely from a MySQL compatible database and SQLite. Refer to [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az2i8BkHXzRvK1ZtGwHuvLACRswXgA/tree/docs/configuring-writefreely.md#specify-database) on the role's documentation for details.
+WriteFreely can use either a MySQL compatible database or SQLite, and you need to choose one. Refer to [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az2i8BkHXzRvK1ZtGwHuvLACRswXgA/tree/docs/configuring-writefreely.md#specify-database) on the role's documentation for details.
 
 ### Configuring the mailer (optional)
 

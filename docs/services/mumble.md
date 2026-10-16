@@ -66,7 +66,7 @@ mumble_hostname: mumble.example.com
 
 ### Select database to use
 
-It is necessary to select a database used by Mumble from a MySQL compatible database, Postgres, and SQLite. Refer to [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az4VBCibmQHyfHKEWTAJmQKBAAjtsv/tree/docs/configuring-mumble.md#specify-database) on the role's documentation for details.
+Mumble can use a MySQL compatible database, Postgres, or SQLite, and you need to choose one. Refer to [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az4VBCibmQHyfHKEWTAJmQKBAAjtsv/tree/docs/configuring-mumble.md#specify-database) on the role's documentation for details.
 
 ### Setting admin's password (optional)
 
