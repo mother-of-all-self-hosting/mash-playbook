@@ -9348,7 +9348,6 @@ jellyfin_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_pri
 
 
 
-
 # role-specific:jitsi
 ########################################################################
 #                                                                      #
@@ -9678,7 +9677,6 @@ keycloak_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_pri
 #                                                                      #
 ########################################################################
 # /role-specific:keycloak
-
 
 
 
@@ -13333,7 +13331,6 @@ outline_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_prim
 
 
 
-
 # role-specific:owncast
 ########################################################################
 #                                                                      #
@@ -14715,7 +14712,6 @@ prowlarr_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_pri
 #                                                                      #
 ########################################################################
 # /role-specific:prowlarr
-
 
 
 
