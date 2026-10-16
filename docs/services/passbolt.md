@@ -51,7 +51,7 @@ passbolt_hostname: passbolt.example.com
 
 ### Select database to use
 
-It is necessary to select a database used by Passbolt from a MySQL compatible database and Postgres. Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-passbolt/blob/main/docs/configuring-passbolt.md#specify-database) on the role's documentation for details.
+Passbolt can use either a MySQL compatible database or Postgres, and you need to choose one. Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-passbolt/blob/main/docs/configuring-passbolt.md#specify-database) on the role's documentation for details.
 
 ### Configuring the mailer (optional)
 
