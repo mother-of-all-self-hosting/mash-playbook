@@ -198,6 +198,7 @@ Below is an exhaustive list of the free and open-source software for self-hostin
 | [OxiTraffic](https://codeberg.org/mo8it/oxitraffic) | Simple and privacy respecting website traffic tracker | [Link](services/oxitraffic.md) |
 | [Paperless-ngx](https://paperless-ngx.com) | Document management system that transforms your physical documents into a searchable online archive | [Link](services/paperless-ngx.md) |
 | [Papra](https://github.com/papra-hq/papra) | Document management and archiving platform | [Link](services/papra.md) |
+| [Passbolt](https://www.passbolt.com/) | An open source password manager for teams | [Link](services/passbolt.md) |
 | [PdfDing](https://www.pdfding.com/) | PDF manager, viewer and editor | [Link](services/pdfding.md) |
 | [PeerTube](https://joinpeertube.org/) | ActivityPub federated video platform | [Link](services/peertube.md) |
 | [pgAdmin](https://www.pgadmin.org/) | Web-based Postgres database server administration software | [Link](services/pgadmin.md) |

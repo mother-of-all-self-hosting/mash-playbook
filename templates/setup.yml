@@ -782,6 +782,10 @@
     - role: galaxy/papra
     # /role-specific:papra
 
+    # role-specific:passbolt
+    - role: galaxy/passbolt
+    # /role-specific:passbolt
+
     # role-specific:pdfding
     - role: galaxy/pdfding
     # /role-specific:pdfding

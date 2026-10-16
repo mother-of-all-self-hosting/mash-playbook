@@ -1043,6 +1043,11 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
     {{ ({'name': (papra_identifier + '.service'), 'priority': 2000, 'restart_necessary': (papra_restart_necessary | bool), 'groups': ['mash', 'papra']} if papra_enabled else omit) }}
   # /role-specific:papra
 
+  # role-specific:passbolt
+  - |-
+    {{ ({'name': (passbolt_identifier + '.service'), 'priority': 2000, 'restart_necessary': (passbolt_restart_necessary | bool), 'groups': ['mash', 'passbolt']} if passbolt_enabled else omit) }}
+  # /role-specific:passbolt
+
   # role-specific:pdfding
   - |-
     {{ ({'name': (pdfding_identifier + '.service'), 'priority': 2000, 'restart_necessary': (pdfding_restart_necessary | bool), 'groups': ['mash', 'pdfding']} if pdfding_enabled else omit) }}
@@ -2176,6 +2181,17 @@ mash_playbook_postgres_managed_databases_auto_itemized:
       } if paperless_enabled and (paperless_database_postgres_hostname == postgres_connection_hostname or paperless_database_postgres_socket_enabled) and paperless_database_type == 'postgres' else omit)
     }}
   # /role-specific:paperless
+
+  # role-specific:passbolt
+  - |-
+    {{
+      ({
+        'name': passbolt_database_name,
+        'username': passbolt_database_postgres_username,
+        'password': passbolt_database_postgres_password,
+      } if passbolt_enabled and (passbolt_database_postgres_hostname == postgres_connection_hostname or passbolt_database_postgres_socket_enabled) and passbolt_database_type == 'postgres' else omit)
+    }}
+  # /role-specific:passbolt
 
   # role-specific:pdfding
   - |-
@@ -10903,6 +10919,17 @@ mash_playbook_mariadb_managed_databases_auto_itemized:
     }}
   # /role-specific:paperless
 
+  # role-specific:passbolt
+  - |-
+    {{
+      ({
+        'name': passbolt_database_name,
+        'username': passbolt_database_mysql_username,
+        'password': passbolt_database_mysql_password,
+      } if passbolt_enabled and (passbolt_database_mysql_hostname == mariadb_connection_hostname or passbolt_database_mysql_socket_enabled) and passbolt_database_type == 'mysql' else omit)
+    }}
+  # /role-specific:passbolt
+
   # role-specific:pinepods
   - |-
     {{
@@ -13574,6 +13601,85 @@ papra_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primar
 #                                                                      #
 ########################################################################
 # /role-specific:papra
+
+
+
+# role-specific:passbolt
+########################################################################
+#                                                                      #
+# passbolt                                                             #
+#                                                                      #
+########################################################################
+
+passbolt_enabled: false
+
+passbolt_identifier: "{{ mash_playbook_service_identifier_prefix }}passbolt"
+
+passbolt_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}passbolt"
+
+passbolt_uid: "{{ mash_playbook_uid }}"
+passbolt_gid: "{{ mash_playbook_gid }}"
+
+passbolt_systemd_required_services_list_auto: |
+  {{
+    ([mariadb_identifier ~ '.service'] if mariadb_enabled | default(false) and (passbolt_database_mysql_hostname == mariadb_connection_hostname or passbolt_database_mysql_socket_enabled) and passbolt_database_type == 'mysql' else [])
+    +
+    ([postgres_identifier ~ '.service'] if postgres_enabled | default(false) and (passbolt_database_postgres_hostname == postgres_connection_hostname or passbolt_database_postgres_socket_enabled) and passbolt_database_type == 'postgres' else [])
+  }}
+
+passbolt_systemd_wanted_services_list_auto: |
+  {{
+    ([exim_relay_identifier ~ '.service'] if exim_relay_enabled | default(false) else [])
+  }}
+
+passbolt_container_additional_networks_auto: |
+  {{
+    ([exim_relay_container_network] if exim_relay_enabled | default(false) and passbolt_container_network != exim_relay_container_network else [])
+    +
+    ([mariadb_container_network] if mariadb_enabled | default(false) and (passbolt_database_mysql_hostname == mariadb_connection_hostname and passbolt_container_network != mariadb_container_network and not passbolt_database_mysql_socket_enabled) and passbolt_database_type == 'mysql' else [])
+    +
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+    +
+    ([postgres_container_network] if postgres_enabled | default(false) and (passbolt_database_postgres_hostname == postgres_connection_hostname and passbolt_container_network != postgres_container_network and not passbolt_database_postgres_socket_enabled) and passbolt_database_type == 'postgres' else [])
+  }}
+
+passbolt_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+passbolt_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+
+passbolt_database_type: "{{ 'postgres' if postgres_enabled | default(false) else '' }}"
+
+# role-specific:exim_relay
+passbolt_environment_variables_email_transport_default_host: "{{ exim_relay_identifier if exim_relay_enabled else '' }}"
+passbolt_environment_variables_email_transport_default_port: "{{ '8025' if exim_relay_enabled else '587' }}"
+passbolt_environment_variables_email_transport_default_tls: "{{ false if exim_relay_enabled else true }}"
+passbolt_environment_variables_email_default_from: "{{ exim_relay_sender_address if exim_relay_enabled else '' }}"
+# /role-specific:exim_relay
+
+# role-specific:mariadb
+passbolt_database_mysql_hostname: "{{ mariadb_connection_hostname if mariadb_enabled else '' }}"
+passbolt_database_mysql_port: "{{ mariadb_connection_port if mariadb_enabled else '3306' }}"
+passbolt_database_mysql_password: "{{ (mash_playbook_generic_secret_key + ':db.passbolt') | hash('sha512') | to_uuid }}"
+passbolt_database_mysql_socket_path_host: "{{ mariadb_run_path }}"
+# /role-specific:mariadb
+
+# role-specific:postgres
+passbolt_database_postgres_hostname: "{{ postgres_connection_hostname if postgres_enabled else '' }}"
+passbolt_database_postgres_port: "{{ postgres_connection_port if postgres_enabled else '5432' }}"
+passbolt_database_postgres_password: "{{ (mash_playbook_generic_secret_key + ':db.passbolt') | hash('sha512') | to_uuid }}"
+passbolt_database_postgres_socket_path_host: "{{ postgres_run_path }}"
+# /role-specific:postgres
+
+# role-specific:traefik
+passbolt_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
+passbolt_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
+# /role-specific:traefik
+
+########################################################################
+#                                                                      #
+# /passbolt                                                            #
+#                                                                      #
+########################################################################
+# /role-specific:passbolt
 
 
 
