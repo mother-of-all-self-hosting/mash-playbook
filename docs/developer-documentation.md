@@ -241,7 +241,10 @@ YOUR-SERVICE_database_password: "{{ (mash_playbook_generic_secret_key + ':db.you
 # /role-specific:YOUR-SERVICE
 ```
 
-💡 If your role requires MySQL, you can instead wire it to MariaDB on this playbook via `mash_playbook_mariadb_managed_databases_auto_itemized` in a similar way. See the [service documentation](services/mariadb.md) for details about managing a MariaDB instance.
+💡 **Notes**:
+
+- If your role requires MySQL, you can instead wire it to MariaDB on this playbook via `mash_playbook_mariadb_managed_databases_auto_itemized` in a similar way. See the [service documentation](services/mariadb.md) for details about managing a MariaDB instance.
+- If the service supports multiple database drivers (MySQL, Postgres, SQLite, etc.), please prepare a `YOUR-SERVICE_database_type` variable on `defaults/main.yml` *without setting a default value*, so that users will be able to choose which one to use by themselves. Though a default database driver is specified for some roles on `group_vars_mash_servers` with a value such as `"{{ 'postgres' if postgres_enabled | default(false) else 'sqlite' }}"`, it is not a best practice, and should be avoided for a new role. Please refer to <https://github.com/mother-of-all-self-hosting/mash-playbook/issues/1061> for the context.
 
 </details>
 
