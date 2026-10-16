@@ -191,7 +191,7 @@ mash_playbook_postgres_managed_databases_auto_itemized:
         'name': YOUR-SERVICE_database_name,
         'username': YOUR-SERVICE_database_username,
         'password': YOUR-SERVICE_database_password,
-      } if YOUR-SERVICE_enabled else omit)
+      } if YOUR-SERVICE_enabled and (YOUR-SERVICE_database_hostname == postgres_connection_hostname or YOUR-SERVICE_database_socket_enabled) else omit)
     }}
   # /role-specific:YOUR-SERVICE
 
@@ -214,23 +214,24 @@ mash_playbook_postgres_managed_databases_auto_itemized:
 
 YOUR-SERVICE_systemd_required_services_list_auto: |
   {{
-    ([postgres_identifier ~ '.service'] if postgres_enabled and YOUR-SERVICE_database_hostname == postgres_connection_hostname else [])
+    ([postgres_identifier ~ '.service'] if postgres_enabled and (YOUR-SERVICE_database_hostname == postgres_connection_hostname or YOUR-SERVICE_database_socket_enabled) else [])
   }}
 
 YOUR-SERVICE_container_additional_networks_auto: |
   {{
     [...]
     +
-    ([postgres_container_network] if postgres_enabled and YOUR-SERVICE_database_hostname == postgres_connection_hostname and YOUR-SERVICE_container_network != postgres_container_network else [])
+    ([postgres_container_network] if postgres_enabled and (YOUR-SERVICE_database_hostname == postgres_connection_hostname and YOUR-SERVICE_container_network != postgres_container_network and not YOUR-SERVICE_database_socket_enabled) else [])
   }}
 
 [...]
 
 # role-specific:postgres
-YOUR-SERVICE_database_hostname: "{{ postgres_connection_hostname if postgres_enabled else '' }}"
+YOUR-SERVICE_database_hostname: "{{ postgres_connection_hostname if postgres_enabled and not YOUR-SERVICE_database_socket_enabled else '' }}"
 YOUR-SERVICE_database_port: "{{ postgres_connection_port if postgres_enabled else '5432' }}"
-YOUR-SERVICE_database_username: "{{ YOUR-SERVICE_identifier }}"
-YOUR-SERVICE_database_password: "{{ (mash_playbook_generic_secret_key + ':db.yourservice') | hash('sha512') | to_uuid }}"
+YOUR-SERVICE_database_password: "{{ (mash_playbook_generic_secret_key + ':YOUR-SERVICE.db') | hash('sha512') | to_uuid }}"
+YOUR-SERVICE_database_sslmode: "{{ 'disable' if postgres_enabled and (YOUR-SERVICE_database_hostname == postgres_connection_hostname or YOUR-SERVICE_database_socket_enabled) else 'prefer' }}"
+YOUR-SERVICE_database_socket_path_host: "{{ postgres_run_path }}"
 # /role-specific:postgres
 
 ########################################################################
@@ -240,6 +241,8 @@ YOUR-SERVICE_database_password: "{{ (mash_playbook_generic_secret_key + ':db.you
 ########################################################################
 # /role-specific:YOUR-SERVICE
 ```
+
+The example above presupposes that the role is configured to connect the service with Postgres via a Unix socket. Adjust it as necessary if the service does not support Unix socket.
 
 💡 **Notes**:
 
