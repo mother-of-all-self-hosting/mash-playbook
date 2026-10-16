@@ -1,7 +1,8 @@
 <!--
 SPDX-FileCopyrightText: 2023 Nikita Chernyi
 SPDX-FileCopyrightText: 2023 Slavi Pantaleev
-SPDX-FileCopyrightText: 2026 Suguru Hirahara
+SPDX-FileCopyrightText: 2025 MASH project contributors
+SPDX-FileCopyrightText: 2025, 2026 Suguru Hirahara
 
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->
@@ -13,6 +14,11 @@ The playbook can install and configure [Soft Serve](https://github.com/charmbrac
 Soft Serve is a self-hostable [Git](https://git-scm.com/) server for the command line.
 
 See the project's [documentation](https://github.com/charmbracelet/soft-serve/blob/main/README.md) to learn what Soft Serve does and why it might be useful to you.
+
+For details about configuring the [Ansible role for Soft Serve](https://github.com/mother-of-all-self-hosting/ansible-role-soft_serve), you can check them via:
+
+- 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-soft_serve/blob/main/docs/configuring-soft-serve.md) online
+- 📁 `roles/galaxy/soft_serve/docs/configuring-soft-serve.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 ## Configuration
 
@@ -27,15 +33,7 @@ To enable this service, add the following configuration to your `vars.yml` file 
 
 soft_serve_enabled: true
 
-# The hostname of this system.
-# It will be used for generating git clone URLs (e.g. ssh://soft-serve.example.com/repository.git)
 soft_serve_hostname: soft-serve.example.com
-
-# Expose Soft Serve's port. For git servers the usual git-over-ssh port is 22
-soft_serve_container_bind_port: 2222
-
-# This key will be able to authenticate with ANY user until you configure Soft Serve
-soft_serve_initial_admin_key: YOUR PUBLIC SSH KEY HERE
 
 ########################################################################
 #                                                                      #
@@ -44,8 +42,10 @@ soft_serve_initial_admin_key: YOUR PUBLIC SSH KEY HERE
 ########################################################################
 ```
 
+Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-soft_serve/blob/main/docs/configuring-soft-serve.md#adjusting-the-playbook-configuration) on the role's documentation for details about other settings.
+
 ## Usage
 
-After you've installed Soft Serve, you can `ssh your-user@soft-serve.example.com -p 2222` with the SSH key defined in `soft_serve_initial_admin_key` to see its [TUI](https://en.wikipedia.org/wiki/Text-based_user_interface) and follow the instructions to configure Soft Serve further.
+After running the command for installation, the Soft Serve instance becomes available at the hostname specified with `soft_serve_hostname`. With the configuration above, the service is hosted at `soft-serve.example.com`.
 
-Note that you have to [finish the configuration yourself](https://github.com/charmbracelet/soft-serve#configuration), otherwise any user with `soft_serve_initial_admin_key` will work as an admin.
+To get started, you can run a command `ssh example@soft-serve.example.com -p 2222` with the defined SSH key. Note that you need to [finish the configuration yourself](https://github.com/charmbracelet/soft-serve#configuration). **Otherwise any user with the SSH key will be able to log in as an administrator.**
