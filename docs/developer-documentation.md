@@ -300,7 +300,7 @@ YOUR-SERVICE_config_mailer_protocol: "{{ 'smtp' if exim_relay_enabled else '' }}
 
 ### 4. Make sure the playbook can actually install a service with the role
 
-If you are willing to submit the change to this repository, please make sure that the role is integrated with the playbook properly, and the playbook can install a service with the role as expected.
+If you are willing to submit the change to this repository, please make sure that the role is integrated with the playbook properly, and the playbook can install a service with the role as expected. This is an important step which should never be skipped.
 
 Our pick to **test a role** is to use a [Molecule](https://docs.ansible.com/projects/molecule/) test framework. It is versatile, simulates installation in a predictable way, and helps you to spot an implementation bug before it is published.
 
