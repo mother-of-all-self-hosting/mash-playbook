@@ -64,7 +64,7 @@ freescout_hostname: freescout.example.com
 
 ### Select database to use
 
-It is necessary to select a database used by FreeScout from a MySQL compatible database and Postgres. Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-freescout/blob/main/docs/configuring-freescout.md#specify-database) on the role's documentation for details.
+FreeScout can use either a MySQL compatible database or Postgres, and you need to choose one. Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-freescout/blob/main/docs/configuring-freescout.md#specify-database) on the role's documentation for details.
 
 ### Set administrator's account details
 

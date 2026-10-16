@@ -64,7 +64,7 @@ gotify_hostname: gotify.example.com
 
 ### Select database to use
 
-It is necessary to select a database used by Gotify from a MySQL compatible database, Postgres, and SQLite. Refer to [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az3dQNNLitS9sByxZ83ivu5qg6qR4N/tree/docs/configuring-gotify.md#specify-database) on the role's documentation for details.
+Gotify can use a MySQL compatible database, Postgres, or SQLite, and you need to choose one. Refer to [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az3dQNNLitS9sByxZ83ivu5qg6qR4N/tree/docs/configuring-gotify.md#specify-database) on the role's documentation for details.
 
 ### Set the username and password for the first user
 

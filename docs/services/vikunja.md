@@ -67,7 +67,7 @@ vikunja_hostname: vikunja.example.com
 
 ### Select database to use
 
-It is necessary to select a database used by Vikunja from a MySQL compatible database, Postgres, and SQLite. Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-vikunja/blob/main/docs/configuring-vikunja.md#specify-database) on the role's documentation for details.
+Vikunja can use a MySQL compatible database, Postgres, or SQLite, and you need to choose one. Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-vikunja/blob/main/docs/configuring-vikunja.md#specify-database) on the role's documentation for details.
 
 ### Configuring the mailer (optional)
 

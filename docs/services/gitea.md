@@ -70,7 +70,7 @@ gitea_path_prefix: /gitea
 
 ### Select database to use
 
-It is necessary to select a database used by Gitea from a MySQL compatible database, Postgres, and SQLite. Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-gitea/blob/main/docs/configuring-gitea.md#specify-database) on the role's documentation for details.
+Gitea can use a MySQL compatible database, Postgres, or SQLite, and you need to choose one. Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-gitea/blob/main/docs/configuring-gitea.md#specify-database) on the role's documentation for details.
 
 ### Configure SSH port for Gitea (optional)
 

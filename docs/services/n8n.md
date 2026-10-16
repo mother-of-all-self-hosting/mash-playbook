@@ -68,7 +68,7 @@ n8n_hostname: n8n.example.com
 
 ### Select database to use
 
-It is necessary to select a database used by n8n from Postgres and SQLite. Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-n8n/blob/main/docs/configuring-n8n.md#specify-database) on the role's documentation for details.
+n8n can use either Postgres or SQLite, and you need to choose one. Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-n8n/blob/main/docs/configuring-n8n.md#specify-database) on the role's documentation for details.
 
 ## Usage
 

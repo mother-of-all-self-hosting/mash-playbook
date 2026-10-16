@@ -64,7 +64,7 @@ memos_hostname: memos.example.com
 
 ### Select database to use
 
-It is necessary to select a database used by Memos from a MySQL compatible database, Postgres, and SQLite. Refer to [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az2UFFCDXMH6Am1K99TaiYP8BJmqaj/tree/docs/configuring-memos.md#specify-database) on the role's documentation for details.
+Memos can use a MySQL compatible database, Postgres, or SQLite, and you need to choose one. Refer to [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az2UFFCDXMH6Am1K99TaiYP8BJmqaj/tree/docs/configuring-memos.md#specify-database) on the role's documentation for details.
 
 ## Usage
 

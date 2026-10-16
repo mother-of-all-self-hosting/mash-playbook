@@ -65,7 +65,7 @@ codimd_hostname: codimd.example.com
 
 ### Select database to use
 
-It is necessary to select a database used by CodiMD from a MySQL compatible database and Postgres. Refer to [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Azp12kTQqmgqnFpUU6gPyVq19HNMD/tree/docs/configuring-codimd.md#specify-database) on the role's documentation for details.
+CodiMD can use either a MySQL compatible database or Postgres, and you need to choose one. Refer to [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Azp12kTQqmgqnFpUU6gPyVq19HNMD/tree/docs/configuring-codimd.md#specify-database) on the role's documentation for details.
 
 ### Enabling signing up
 

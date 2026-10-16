@@ -60,7 +60,7 @@ freshrss_hostname: freshrss.example.com
 
 ### Select database to use
 
-It is necessary to select a database used by FreshRSS from a MySQL compatible database, Postgres, and SQLite. Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-freshrss/blob/main/docs/configuring-freshrss.md#specify-database) on the role's documentation for details.
+FreshRSS can use a MySQL compatible database, Postgres, or SQLite, and you need to choose one. Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-freshrss/blob/main/docs/configuring-freshrss.md#specify-database) on the role's documentation for details.
 
 ## Usage
 

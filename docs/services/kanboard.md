@@ -65,7 +65,7 @@ kanboard_hostname: kanboard.example.com
 
 ### Select database to use
 
-It is necessary to select a database used by Kanboard from a MySQL compatible database, Postgres, and SQLite. Refer to [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az2LZH9TGMxYbGBaGoMHNFX5HymEL3/tree/docs/configuring-kanboard.md#specify-database) on the role's documentation for details.
+Kanboard can use a MySQL compatible database, Postgres, or SQLite, and you need to choose one. Refer to [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az2LZH9TGMxYbGBaGoMHNFX5HymEL3/tree/docs/configuring-kanboard.md#specify-database) on the role's documentation for details.
 
 ### Configuring the mailer (optional)
 
