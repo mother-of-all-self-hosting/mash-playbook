@@ -121,7 +121,7 @@ Make sure to edit configuration files inside `templates` — These are source fi
 
 #### Add the role to `group_vars_mash_servers` in `templates` directory
 
-On `group_vars_mash_servers` you need to wire your role with the rest of the services of the playbook — integrating with the service manager or potentially with other roles.
+On [`group_vars_mash_servers`](../templates/group_vars_mash_servers) you need to wire your role with the rest of the services of the playbook — integrating with the service manager or potentially with other roles.
 
 When adding the role, replace `YOUR-SERVICE` with yours, and also mind the place to add the role, as the roles are (mostly) sorted alphabetically for other developers' sanity.
 
