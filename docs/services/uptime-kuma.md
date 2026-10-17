@@ -32,15 +32,17 @@ For details about configuring the [Ansible role for Uptime Kuma](https://github.
 
 ## Dependencies
 
-Uptime Kuma v2 does not support Debian/Raspbian Buster hosts due to a `libseccomp2` issue; use a newer host OS. See the [upstream compatibility notes](https://github.com/louislam/uptime-kuma/wiki/Migration-From-v1-To-v2#docker-only-breaking-changes).
-
 This service requires the following other services:
 
+- [MariaDB](mariadb.md) / [SQLite](https://www.sqlite.org/) database
 - [Traefik](traefik.md) reverse-proxy server
 - (optional) [Apprise API](apprise.md)
 - (optional) [exim-relay](exim-relay.md) mailer
 - (optional) [Gotify](gotify.md)
 - (optional) [ntfy](ntfy.md)
+
+>[!NOTE]
+> Uptime Kuma v2 does not support Debian/Raspbian Buster hosts due to a `libseccomp2` issue; use a newer host OS. Refer to the [upstream compatibility notes](https://github.com/louislam/uptime-kuma/wiki/Migration-From-v1-To-v2#docker-only-breaking-changes) for details.
 
 ## Configuration
 
@@ -65,6 +67,13 @@ uptime_kuma_hostname: uptime-kuma.example.com
 ```
 
 **Note**: hosting Uptime Kuma under a subpath (by configuring the `uptime_kuma_path_prefix` variable) does not seem to be possible due to Uptime Kuma's technical limitations.
+
+### Select database to use (optional)
+
+By default Uptime Kuma is configured to use SQLite, but you can choose MariaDB. Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-uptime_kuma/blob/main/docs/configuring-uptime-kuma.md#specify-database-optional) on the role's documentation for details.
+
+>[!NOTE]
+> If the Update Kuma instance is upgraded from 1.x, you need to remove the existing `kuma.db` database manually first in order to use a new MariaDB database.
 
 ## Usage
 
