@@ -910,7 +910,7 @@ mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
   - |-
     {{ ({'name': (netbox_identifier + '-worker.service'), 'priority': 2500, 'restart_necessary': (netbox_restart_necessary | bool), 'groups': ['mash', 'netbox', 'netbox-worker']} if netbox_enabled else omit) }}
   - |-
-    {{ ({'name': (netbox_identifier + '-housekeeping.service'), 'priority': 2500, 'restart_necessary': (netbox_restart_necessary | bool), 'groups': ['mash', 'netbox', 'netbox-housekeeping']} if netbox_enabled else omit) }}
+    {{ ({'name': (netbox_identifier + '-housekeeping.service'), 'priority': 2500, 'restart_necessary': (netbox_restart_necessary | bool), 'groups': ['mash', 'netbox', 'netbox-housekeeping']} if netbox_enabled and netbox_housekeeping_script_enabled else omit) }}
   # /role-specific:netbox
 
   # role-specific:nextcloud
@@ -12293,6 +12293,14 @@ netbox_container_additional_networks_auto: |
 
 netbox_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
 netbox_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+
+netbox_container_labels_traefik_metrics_enabled: "{{ mash_playbook_metrics_exposure_enabled }}"
+netbox_container_labels_traefik_metrics_hostname: "{{ mash_playbook_metrics_exposure_hostname }}"
+netbox_container_labels_traefik_metrics_path_prefix: "{{ mash_playbook_metrics_exposure_path_prefix }}/{{ netbox_identifier }}"
+netbox_container_labels_traefik_metrics_middleware_basic_auth_enabled: "{{ mash_playbook_metrics_exposure_http_basic_auth_enabled }}"
+netbox_container_labels_traefik_metrics_middleware_basic_auth_users: "{{ mash_playbook_metrics_exposure_http_basic_auth_users }}"
+
+netbox_environment_variable_metrics_enabled: "{{ prometheus_enabled | default(false) or mash_playbook_metrics_exposure_enabled }}"
 
 # role-specific:postgres
 netbox_database_hostname: "{{ postgres_connection_hostname if postgres_enabled else '' }}"

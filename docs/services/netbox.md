@@ -219,6 +219,43 @@ netbox_systemd_required_services_list_custom:
 
 Running the installation command will create the shared Valkey instance named `mash-valkey`.
 
+### Integrating with Prometheus (optional)
+
+NetBox can natively expose metrics to [Prometheus](prometheus.md).
+
+#### Expose metrics internally
+
+If NetBox and Prometheus do not share a network (like Traefik), you can connect the NetBox container network to Prometheus by adding the following configuration to your `vars.yml` file:
+
+```yaml
+prometheus_container_additional_networks_custom:
+  - "{{ netbox_container_network }}"
+```
+
+#### Expose metrics publicly
+
+If NetBox metrics are not scraped from a local Prometheus instance, you can expose the metrics publicly so that a remote instance can fetch them.
+
+When exposing metrics publicly, you should consider to set up [HTTP Basic Authentication](https://developer.mozilla.org/en-US/docs/Web/HTTP/Authentication) **or anyone would be able to read your metrics**.
+
+To expose the metrics publicly, add the following configuration to your `vars.yml` file (adapt to your needs):
+
+```yaml
+mash_playbook_metrics_exposure_enabled: true
+mash_playbook_metrics_exposure_hostname: mash.example.com
+```
+
+It will expose the metrics at `https://mash.example.com/metrics/mash-netbox`.
+
+To enable the HTTP Basic authentication, add the following configuration to your `vars.yml` file (adapt to your needs):
+
+```yaml
+netbox_container_labels_traefik_metrics_middleware_basic_auth_enabled: true
+
+# See https://doc.traefik.io/traefik/middlewares/http/basicauth/#users for details.
+netbox_container_labels_traefik_metrics_middleware_basic_auth_users: ""
+```
+
 ## Installation
 
 If you have decided to install the dedicated Valkey instance for Netbox, make sure to run the [installing](../installing.md) command for the supplementary host (`mash.example.com-netbox-deps`) first, before running it for the main host (`mash.example.com`).
