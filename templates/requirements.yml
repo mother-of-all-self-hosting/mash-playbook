@@ -720,6 +720,10 @@
   version: v26.7.0-0
   name: papra
   activation_prefix: papra_
+- src: git+https://github.com/mother-of-all-self-hosting/ansible-role-passbolt.git
+  version: v5.16.0-1-0
+  name: passbolt
+  activation_prefix: passbolt_
 - src: git+https://iris.radicle.network/z2cZCZP8Mu4LYMbHKaTdnP1otc46L.git
   version: v1.14.0-0
   name: pdfding

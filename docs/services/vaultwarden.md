@@ -78,3 +78,7 @@ To actually have the service use (and get messages sent through the exim-relay s
 ## Usage
 
 After running the command for installation, the Vaultwarden instance becomes available at the URL specified with `vaultwarden_hostname` and `vaultwarden_path_prefix`. With the configuration above, the service is hosted at `https://mash.example.com/vaultwarden-secret-custom-prefix`.
+
+## Related services
+
+- [Passbolt](passbolt.md) — An open source password manager for teams
