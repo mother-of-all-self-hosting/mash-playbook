@@ -55,7 +55,7 @@ Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-ro
 The service can use either Postgres or SQLite, and you need to choose one. Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-soft_serve/blob/main/docs/configuring-soft-serve.md#specify-database) on the role's documentation for details.
 
 >[!NOTE]
-> If your current `vars.yml` file does not include `soft_serve_database_type`, the database driver of your existing instalation is most likely to be `sqlite`.
+> If your current `vars.yml` file does not include `soft_serve_database_type`, the database driver of your existing installation is most likely to be `sqlite`.
 
 ## Usage
 
