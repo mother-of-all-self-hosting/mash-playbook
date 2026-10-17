@@ -17112,6 +17112,13 @@ uptime_kuma_container_additional_networks_auto: |
 uptime_kuma_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
 uptime_kuma_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
 
+uptime_kuma_container_labels_traefik_metrics_enabled: "{{ mash_playbook_metrics_exposure_enabled }}"
+uptime_kuma_container_labels_traefik_metrics_hostname: "{{ mash_playbook_metrics_exposure_hostname }}"
+uptime_kuma_container_labels_traefik_metrics_path_prefix: "{{ mash_playbook_metrics_exposure_path_prefix }}/{{ uptime_kuma_identifier }}"
+# NOTE: Uptime Kuma enables the HTTP Basic authentication for the metrics endpoint by default, and you're required to specify log in credentials to retrieve metrics, unless its authentication is disabled on the settings UI.
+uptime_kuma_container_labels_traefik_metrics_middleware_basic_auth_enabled: false
+uptime_kuma_container_labels_traefik_metrics_middleware_basic_auth_users: "{{ mash_playbook_metrics_exposure_http_basic_auth_users }}"
+
 # role-specific:mariadb
 uptime_kuma_database_hostname: "{{ mariadb_connection_hostname if mariadb_enabled else '' }}"
 uptime_kuma_database_port: "{{ mariadb_connection_port if mariadb_enabled else '3306' }}"

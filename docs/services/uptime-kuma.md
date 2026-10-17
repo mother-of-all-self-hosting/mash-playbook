@@ -75,6 +75,45 @@ By default Uptime Kuma is configured to use SQLite, but you can choose MariaDB. 
 >[!NOTE]
 > If the Update Kuma instance is upgraded from 1.x, you need to remove the existing `kuma.db` database manually first in order to use a new MariaDB database.
 
+### Integrating with Prometheus (optional)
+
+Uptime Kuma can natively expose metrics to [Prometheus](prometheus.md).
+
+💡 Uptime Kuma enables the HTTP Basic authentication for the metrics endpoint by default, and you're required to specify log in credentials to retrieve metrics, unless its authentication is disabled on the settings UI.
+
+#### Expose metrics internally
+
+If Uptime Kuma and Prometheus do not share a network (like Traefik), you can connect the Uptime Kuma container network to Prometheus by adding the following configuration to your `vars.yml` file:
+
+```yaml
+prometheus_container_additional_networks_custom:
+  - "{{ uptime_kuma_container_network }}"
+```
+
+#### Expose metrics publicly
+
+If Uptime Kuma metrics are not scraped from a local Prometheus instance, you can expose the metrics publicly so that a remote instance can fetch them.
+
+When exposing metrics publicly, you should consider to set up [HTTP Basic Authentication](https://developer.mozilla.org/en-US/docs/Web/HTTP/Authentication) **or anyone would be able to read your metrics**.
+
+To expose the metrics publicly, add the following configuration to your `vars.yml` file (adapt to your needs):
+
+```yaml
+mash_playbook_metrics_exposure_enabled: true
+mash_playbook_metrics_exposure_hostname: mash.example.com
+```
+
+It will expose the metrics at `https://mash.example.com/metrics/mash-uptime-kuma`.
+
+To have Traefik handle authentication, you need to disable authentication on the Uptime Kuma's settings UI, then add the following configuration to your `vars.yml` file (adapt to your needs):
+
+```yaml
+uptime_kuma_container_labels_traefik_metrics_middleware_basic_auth_enabled: true
+
+# See https://doc.traefik.io/traefik/middlewares/http/basicauth/#users for details.
+uptime_kuma_container_labels_traefik_metrics_middleware_basic_auth_users: ""
+```
+
 ## Usage
 
 After running the command for installation, the Uptime Kuma instance becomes available at the URL specified with `uptime_kuma_hostname`. With the configuration above, the service is hosted at `https://uptime-kuma.example.com`.
