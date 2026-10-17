@@ -2320,6 +2320,17 @@ mash_playbook_postgres_managed_databases_auto_itemized:
     }}
   # /role-specific:sftpgo
 
+  # role-specific:soft_serve
+  - |-
+    {{
+      ({
+        'name': soft_serve_database_name,
+        'username': soft_serve_database_username,
+        'password': soft_serve_database_password,
+      } if soft_serve_enabled and soft_serve_database_hostname == postgres_connection_hostname and soft_serve_database_type == 'postgres' else omit)
+    }}
+  # /role-specific:soft_serve
+
   # role-specific:solidinvoice
   - |-
     {{
@@ -16060,6 +16071,23 @@ soft_serve_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_ba
 
 soft_serve_uid: "{{ mash_playbook_uid }}"
 soft_serve_gid: "{{ mash_playbook_gid }}"
+
+soft_serve_systemd_required_services_list_auto: |
+  {{
+    ([postgres_identifier ~ '.service'] if postgres_enabled | default(false) and soft_serve_database_hostname == postgres_connection_hostname and soft_serve_database_type == 'postgres' else [])
+  }}
+
+soft_serve_container_additional_networks_auto: |
+  {{
+    ([postgres_container_network] if postgres_enabled | default(false) and soft_serve_database_hostname == postgres_connection_hostname and soft_serve_container_network != postgres_container_network and soft_serve_database_type == 'postgres' else [])
+  }}
+
+# role-specific:postgres
+soft_serve_database_hostname: "{{ postgres_connection_hostname if postgres_enabled else '' }}"
+soft_serve_database_port: "{{ postgres_connection_port if postgres_enabled else '5432' }}"
+soft_serve_database_password: "{{ (mash_playbook_generic_secret_key + ':db.softserve') | hash('sha512') | to_uuid }}"
+soft_serve_database_sslmode: "{{ 'disable' if postgres_enabled and soft_serve_database_hostname == postgres_connection_hostname else 'prefer' }}"
+# /role-specific:postgres
 
 ########################################################################
 #                                                                      #

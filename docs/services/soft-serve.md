@@ -20,6 +20,12 @@ For details about configuring the [Ansible role for Soft Serve](https://github.c
 - 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-soft_serve/blob/main/docs/configuring-soft-serve.md) online
 - 📁 `roles/galaxy/soft_serve/docs/configuring-soft-serve.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
+## Dependencies
+
+This service requires the following other services:
+
+- [Postgres](postgres.md) / [SQLite](https://www.sqlite.org/) database
+
 ## Configuration
 
 To enable this service, add the following configuration to your `vars.yml` file and re-run the [installation](../installing.md) process:
@@ -43,6 +49,13 @@ soft_serve_hostname: soft-serve.example.com
 ```
 
 Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-soft_serve/blob/main/docs/configuring-soft-serve.md#adjusting-the-playbook-configuration) on the role's documentation for details about other settings.
+
+### Select database to use
+
+The service can use either Postgres or SQLite, and you need to choose one. Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-soft_serve/blob/main/docs/configuring-soft-serve.md#specify-database) on the role's documentation for details.
+
+>[!NOTE]
+> If your current `vars.yml` file does not include `soft_serve_database_type`, the database driver of your existing instalation is most likely to be `sqlite`.
 
 ## Usage
 
