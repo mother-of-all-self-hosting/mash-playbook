@@ -665,7 +665,7 @@
   name: oauth2_proxy
   activation_prefix: oauth2_proxy_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-ollama.git
-  version: develop
+  version: v0.40.6-0
   name: ollama
   activation_prefix: ollama_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-omnitools.git
@@ -681,7 +681,7 @@
   name: onlyoffice_docs
   activation_prefix: onlyoffice_docs_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-open-webui.git
-  version: develop
+  version: v0.12.3-0
   name: open_webui
   activation_prefix: open_webui_
 - src: git+https://iris.radicle.network/z2Q7Pka6bCT5D6Ng54kT8UcYAcVTC.git
