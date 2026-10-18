@@ -60,14 +60,45 @@ fmd_server_hostname: fmd.example.com
 
 **Note**: hosting FMD Server under a subpath (by configuring the `fmd_server_path_prefix` variable) does not seem to be possible due to FMD Server's technical limitations.
 
-### Set a registration token (optional)
+### Set a registration token
 
-With the default setting, the instance will be public and open to registration by anyone.
+The instance is configured to require a token for registration to be specified. Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-fmd-server/blob/main/docs/configuring-fmd-server.md#set-a-registration-token) on the role's documentation for details.
 
-To make it private and have it require a token for registration, set it by adding the following configuration to your `vars.yml` file. Make sure to replace `YOUR_TOKEN_HERE` with your own value. Generating a strong token (e.g. `pwgen -s 64 1`) is recommended.
+### Integrating with Prometheus (optional)
+
+FMD Server can natively expose metrics to [Prometheus](prometheus.md).
+
+#### Expose metrics internally
+
+If FMD Server and Prometheus do not share a network (like Traefik), you can connect the FMD Server container network to Prometheus by adding the following configuration to your `vars.yml` file:
 
 ```yaml
-fmd_server_config_registrationtoken: YOUR_TOKEN_HERE
+prometheus_container_additional_networks_custom:
+  - "{{ fmd_server_container_network }}"
+```
+
+#### Expose metrics publicly
+
+If FMD Server metrics are not scraped from a local Prometheus instance, you can expose the metrics publicly so that a remote instance can fetch them.
+
+When exposing metrics publicly, you should consider to set up [HTTP Basic Authentication](https://developer.mozilla.org/en-US/docs/Web/HTTP/Authentication) **or anyone would be able to read your metrics**.
+
+To expose the metrics publicly, add the following configuration to your `vars.yml` file (adapt to your needs):
+
+```yaml
+mash_playbook_metrics_exposure_enabled: true
+mash_playbook_metrics_exposure_hostname: mash.example.com
+```
+
+It will expose the metrics at `https://mash.example.com/metrics/mash-findmydeviceserver`.
+
+To enable the HTTP Basic authentication, add the following configuration to your `vars.yml` file (adapt to your needs):
+
+```yaml
+fmd_server_container_labels_traefik_metrics_middleware_basic_auth_enabled: true
+
+# See https://doc.traefik.io/traefik/middlewares/http/basicauth/#users for details.
+fmd_server_container_labels_traefik_metrics_middleware_basic_auth_users: ""
 ```
 
 ## Usage
