@@ -10231,10 +10231,8 @@ linkwarden_identifier: "{{ mash_playbook_service_identifier_prefix }}linkwarden"
 
 linkwarden_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}linkwarden"
 
-# Currently root access without read-only option is necessary for Linkwarden to work properly.
-# See: https://github.com/linkwarden/linkwarden/issues/799
-linkwarden_uid: "0"
-linkwarden_gid: "0"
+linkwarden_uid: "{{ mash_playbook_uid }}"
+linkwarden_gid: "{{ mash_playbook_gid }}"
 
 linkwarden_systemd_required_services_list_auto: |
   {{
