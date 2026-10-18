@@ -6438,6 +6438,14 @@ flaresolverr_container_additional_networks_auto: |
 flaresolverr_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled and flaresolverr_hostname | length > 0 }}"
 flaresolverr_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
 
+flaresolverr_container_labels_traefik_metrics_enabled: "{{ mash_playbook_metrics_exposure_enabled }}"
+flaresolverr_container_labels_traefik_metrics_hostname: "{{ mash_playbook_metrics_exposure_hostname }}"
+flaresolverr_container_labels_traefik_metrics_path_prefix: "{{ mash_playbook_metrics_exposure_path_prefix }}/{{ flaresolverr_identifier }}"
+flaresolverr_container_labels_traefik_metrics_middleware_basic_auth_enabled: "{{ mash_playbook_metrics_exposure_http_basic_auth_enabled }}"
+flaresolverr_container_labels_traefik_metrics_middleware_basic_auth_users: "{{ mash_playbook_metrics_exposure_http_basic_auth_users }}"
+
+flaresolverr_environment_variables_prometheus_enabled: "{{ prometheus_enabled | default(false) or mash_playbook_metrics_exposure_enabled }}"
+
 # role-specific:traefik
 flaresolverr_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
 flaresolverr_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
