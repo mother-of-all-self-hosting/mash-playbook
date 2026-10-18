@@ -53,6 +53,10 @@ open_webui_hostname: open-webui.example.com
 
 Open WebUI can use either Postgres or SQLite, and you need to choose one. Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-open-webui/blob/main/docs/configuring-open-webui.md#specify-database) on the role's documentation for details.
 
+### Set administrator's account details (optional)
+
+By default, the first user who signs up becomes the administrator, so anyone who reaches the instance before you can take that role. To have Open WebUI create the administrator's account on its first start instead, refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-open-webui/blob/main/docs/configuring-open-webui.md#set-the-administrators-account-details-optional) on the role's documentation.
+
 ### Connecting to models
 
 If you enable the [Ollama](ollama.md) service in your inventory configuration, the playbook will automatically connect Open WebUI to it.
@@ -63,7 +67,7 @@ Open WebUI reads its connections from the environment only on its first start, a
 
 After running the command for installation, the Open WebUI instance becomes available at the URL specified with `open_webui_hostname`. With the configuration above, the service is hosted at `https://open-webui.example.com`.
 
-To get started, open the URL with a web browser, and create a user. The first user becomes the administrator.
+To get started, open the URL with a web browser, and create a user or log in with the administrator's account set above. The first user becomes the administrator, and Open WebUI then turns sign-up off. To let other users sign up, turn it on again in the admin panel.
 
 ## Troubleshooting
 
