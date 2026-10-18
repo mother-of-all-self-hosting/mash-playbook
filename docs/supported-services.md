@@ -185,6 +185,7 @@ Below is an exhaustive list of the free and open-source software for self-hostin
 | [Notfellchen](https://codeberg.org/moanos/notfellchen) | List animals available for adoption to increase their chance of finding a forever-home | [Link](services/notfellchen.md) |
 | [ntfy](https://ntfy.sh/) | HTTP-based pub-sub notification service to send you push notifications from any computer | [Link](services/ntfy.md) |
 | [OAuth2-Proxy](https://oauth2-proxy.github.io/oauth2-proxy/) | A reverse proxy and static file server that provides authentication using OpenID Connect Providers | [Link](services/oauth2-proxy.md) |
+| [Ollama](https://ollama.com/) | Server for running large language models on your own hardware | [Link](services/ollama.md) |
 | [OmniTools](https://github.com/iib0011/omni-tools) | Web app offering a variety of online tools to simplify everyday tasks | [Link](services/omnitools.md) |
 | [Onion Service with C Tor](https://community.torproject.org/onion-services/) | Run Onion Service with [C Tor](https://gitlab.torproject.org/tpo/core/tor) | [Link](services/onion-service-tor.md) |
 | [ONLYOFFICE Docs](https://helpcenter.onlyoffice.com/docs) | Online office suite comprising viewers and editors | [Link](services/onlyoffice-docs.md) |
@@ -299,6 +300,7 @@ Below is a list of non-free (i.e. licensed under a non-free license) software wh
 | [Browserless](https://docs.browserless.io) | Deploy headless browsers in Docker | [Link](services/browserless.md) |
 | [MongoDB](https://www.mongodb.com/) | A source-available cross-platform document-oriented (NoSQL) database program | [Link](services/mongodb.md) |
 | [n8n](https://n8n.io/) | Workflow automation for technical people | [Link](services/n8n.md) |
+| [Open WebUI](https://openwebui.com/) | Self-hosted web interface for AI models | [Link](services/open-webui.md) |
 | [Plex](https://www.plex.tv/) | A personal media server | [Link](services/plex.md) |
 
 ## Related playbooks

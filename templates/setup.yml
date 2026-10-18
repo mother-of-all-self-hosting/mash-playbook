@@ -726,6 +726,10 @@
     - role: galaxy/oauth2_proxy
     # /role-specific:oauth2_proxy
 
+    # role-specific:ollama
+    - role: galaxy/ollama
+    # /role-specific:ollama
+
     # role-specific:omnitools
     - role: galaxy/omnitools
     # /role-specific:omnitools
@@ -737,6 +741,10 @@
     # role-specific:onlyoffice_docs
     - role: galaxy/onlyoffice_docs
     # /role-specific:onlyoffice_docs
+
+    # role-specific:open_webui
+    - role: galaxy/open_webui
+    # /role-specific:open_webui
 
     # role-specific:openarchiver
     - role: galaxy/openarchiver

@@ -664,6 +664,10 @@
   version: v7.15.5-0
   name: oauth2_proxy
   activation_prefix: oauth2_proxy_
+- src: git+https://github.com/mother-of-all-self-hosting/ansible-role-ollama.git
+  version: 24730f9d38bf959006a1d13934d36cdb71636a7c
+  name: ollama
+  activation_prefix: ollama_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-omnitools.git
   version: v0.6.0-3
   name: omnitools
@@ -676,6 +680,10 @@
   version: v9.4.0-1
   name: onlyoffice_docs
   activation_prefix: onlyoffice_docs_
+- src: git+https://github.com/mother-of-all-self-hosting/ansible-role-open-webui.git
+  version: 105571d4b3fc10367a0b4528aebe6ae0815dd0ae
+  name: open_webui
+  activation_prefix: open_webui_
 - src: git+https://iris.radicle.network/z2Q7Pka6bCT5D6Ng54kT8UcYAcVTC.git
   version: v0.6.0-0
   name: openarchiver
