@@ -95,13 +95,16 @@ On Homarr's board it is possible to create and add icons of many services, inclu
 
 Homarr also integrates with various software, to which you can connect your applications to interact via widgets. Here is a list of integrations which are also available on this playbook:
 
-- **Torrent client**: [qBittorent](qbittorrent.md)
-- **Media server**: [Plex](plex.md)
-- **Media collection managers**: [Sonarr](sonarr.md) and [Radarr](radarr.md)
-- **Media request manager**: [Seerr](seerr.md)
-- **DNS ad-blocker**: [AdGuard Home](adguard-home.md)
+| Category | Service |
+| ---------- | -------- |
+| Bookmark | [Karakeep](karakeep.md), [Linkwarden](linkwarden.md) |
+| Indexer | [Jackett](jackett.md), [Prowlarr](prowlarr.md) |
+| Media | [audiobookshelf](audiobookshelf.md), [Bazarr](bazarr.md), [Immich](immich.md), [Jellyfin](jellyfin.md), [Lidarr](lidarr.md), [Navidrome](navidrome.md), [Plex](plex.md), [Radarr](radarr.md), [Seerr](seerr.md), [Sonarr](sonarr.md) |
+| Monitoring | [Beszel](beszel-hub.md), [Changedetection.io](changedetection.md), [Prometheus](prometheus.md), [Uptime Kuma](uptime-kuma.md) |
+| Notification | [Gotify](gotify.md), [Nextcloud](nextcloud.md), [ntfy](ntfy.md) |
+| Misc | [AdGuard Home](adguard-home.md), [Autobrr](autobrr.md), [Miniflux](miniflux.md), [Paperless-ngx](paperless-ngx.md), [qBittorrent](qbittorrent.md), [Syncthing](syncthing.md), [Tandoor](tandoor.md), [Wazuh](wazuh.md) |
 
-Refer to [this page](https://homarr.dev/docs/category/integrations) on the official documentation for the latest information about integrations.
+Refer to [this page](https://homarr.dev/docs/integrations/) on the official documentation for the latest information about integrations.
 
 ## Troubleshooting
 
@@ -109,5 +112,4 @@ Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-ro
 
 ## Related services
 
-- "* Arr" applications — [Autobrr](autobrr.md) / [Radarr](radarr.md) / [Seerr](seerr.md) / [Sonarr](sonarr.md)
 - [Heimdall](heimdall.md) — Dashboard for web applications
