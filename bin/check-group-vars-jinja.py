@@ -39,8 +39,17 @@ def main(paths):
     environment = jinja2.Environment()
     failed = False
     for path in paths:
-        with open(path, encoding="utf-8") as file:
-            document = yaml.compose(file, Loader=yaml.SafeLoader)
+        try:
+            with open(path, encoding="utf-8") as file:
+                document = yaml.compose(file, Loader=yaml.SafeLoader)
+        except yaml.YAMLError as error:
+            print(f"{path}: invalid YAML: {error}")
+            failed = True
+            continue
+        if document is None:
+            print(f"{path}:1: empty YAML document")
+            failed = True
+            continue
         for variable, node in string_values(document, None):
             try:
                 environment.parse(node.value)
