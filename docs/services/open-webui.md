@@ -59,9 +59,9 @@ By default, the first user who signs up becomes the administrator, so anyone who
 
 ### Connecting to models
 
-If you enable the [Ollama](ollama.md) service in your inventory configuration, the playbook will automatically connect Open WebUI to it.
+If you enable the [Ollama](ollama.md) service in your inventory configuration before Open WebUI starts for the first time, the playbook automatically configures Open WebUI to connect to it by default.
 
-Open WebUI reads its connections from the environment only on its first start, and keeps them in its database afterwards. If you enable Ollama after Open WebUI has started for the first time, add the connection on the admin panel. Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-open-webui/blob/main/docs/configuring-open-webui.md#connecting-to-models) on the role's documentation for details, including how to connect to an OpenAI-compatible API.
+By default, Open WebUI reads its connections from the environment only on its first start, and keeps them in its database afterwards. If you enable Ollama after Open WebUI has started for the first time, add the connection in the admin panel. Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-open-webui/blob/main/docs/configuring-open-webui.md#connecting-to-models) on the role's documentation for details, including how to connect to an OpenAI-compatible API or disable persistent configuration so that inventory changes take effect on subsequent starts.
 
 ## Usage
 

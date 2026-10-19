@@ -43,7 +43,7 @@ ollama_enabled: true
 ########################################################################
 ```
 
-If you enable [Open WebUI](open-webui.md) as well, the playbook automatically connects it to Ollama.
+If you enable Ollama before [Open WebUI](open-webui.md) starts for the first time, the playbook automatically configures Open WebUI to connect to it by default. If Open WebUI has already started, add the connection in its admin panel; see [Connecting to models](open-webui.md#connecting-to-models) for details.
 
 ### Expose the instance publicly (optional)
 
