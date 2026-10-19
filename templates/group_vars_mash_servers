@@ -3321,8 +3321,8 @@ apisix_config_deployment_etcd_host: |
     ([('http://' + etcd_identifier + ':2379')] if etcd_enabled else [])
   }}
 
-apisix_config_deployment_etcd_user: "{{ ('root' if (etcd_enabled and not etcd_environment_variable_allow_none_authentication) else '') }}"
-apisix_config_deployment_etcd_password: "{{ (etcd_environment_variable_etcd_root_password if (etcd_enabled and not etcd_environment_variable_allow_none_authentication) else '') }}"
+apisix_config_deployment_etcd_user: "{{ ('root' if (etcd_enabled and not etcd_auth_provisioning_allow_none_authentication) else '') }}"
+apisix_config_deployment_etcd_password: "{{ (etcd_auth_provisioning_password if (etcd_enabled and not etcd_auth_provisioning_allow_none_authentication) else '') }}"
 
 apisix_container_additional_networks_custom: |
   {{
@@ -5867,7 +5867,7 @@ etcd_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_dir
 etcd_uid: "{{ mash_playbook_uid }}"
 etcd_gid: "{{ mash_playbook_gid }}"
 
-etcd_environment_variable_etcd_root_password: "{{ '' if etcd_environment_variable_allow_none_authentication else ((mash_playbook_generic_secret_key + ':etcd') | hash('sha512') | to_uuid) }}"
+etcd_auth_provisioning_password: "{{ '' if etcd_auth_provisioning_allow_none_authentication else ((mash_playbook_generic_secret_key + ':etcd') | hash('sha512') | to_uuid) }}"
 
 ########################################################################
 #                                                                      #
