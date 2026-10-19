@@ -36,9 +36,9 @@ For details about configuring the [Ansible role for Opengist](https://radicle.ne
 
 This service requires the following other services:
 
+- [Postgres](postgres.md) / MySQL / [MariaDB](mariadb.md) / [SQLite](https://www.sqlite.org/) database
 - [Traefik](traefik.md) reverse-proxy server
 - (optional) [Meilisearch](meilisearch.md)
-- (optional) [Postgres](postgres.md) / MySQL / [MariaDB](mariadb.md) database — Opengist will default to [SQLite](https://www.sqlite.org/) if Postgres is not enabled
 
 ## Configuration
 
@@ -75,9 +75,12 @@ opengist_environment_variables_secret_key: YOUR_SECRET_KEY_HERE
 >[!NOTE]
 > Other type of values such as one generated with `pwgen -s 64 1` does not work.
 
-### Select database to use (optional)
+### Select database to use
 
-By default Opengist is configured to use Postgres, but you can choose other database such as SQLite and MySQL (MariaDB). Refer to [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az48WEbcYK3E6uDmfP1Qbb9AGdz1L3/tree/docs/configuring-opengist.md#specify-database-optional) on the role's documentation for details.
+Opengist can use a MySQL compatible database, Postgres, or SQLite, and you need to choose one. Refer to [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az48WEbcYK3E6uDmfP1Qbb9AGdz1L3/tree/docs/configuring-opengist.md#specify-database) on the role's documentation for details.
+
+>[!NOTE]
+> If you have not disabled Postgres explicitly with this playbook, the database for your existing installation is most likely to be `postgres`.
 
 ### Connecting to a Meilisearch instance (optional)
 
