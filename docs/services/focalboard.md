@@ -34,8 +34,8 @@ For details about configuring the [Ansible role for Focalboard](https://github.c
 
 This service requires the following other services:
 
+- [Postgres](postgres.md) / [SQLite](https://www.sqlite.org/) database
 - [Traefik](traefik.md) reverse-proxy server
-- (optional) a [Postgres](postgres.md) database — Focalboard will default to [SQLite](https://www.sqlite.org/) if Postgres is not enabled
 
 ## Configuration
 
@@ -59,6 +59,13 @@ focalboard_path_prefix: /focalboard
 #                                                                      #
 ########################################################################
 ```
+
+### Select database to use
+
+Focalboard can use Postgres or SQLite, and you need to choose one. Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-focalboard/blob/main/docs/configuring-focalboard.md#specify-database) on the role's documentation for details.
+
+>[!NOTE]
+> If you have not disabled Postgres explicitly with this playbook, the database for your existing installation is most likely to be `postgres`.
 
 ## Usage
 
