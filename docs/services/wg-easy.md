@@ -53,6 +53,43 @@ wg_easy_hostname: wg-easy.example.com
 
 Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-wg-easy/blob/main/docs/configuring-wg-easy.md#adjusting-the-playbook-configuration) on the role's documentation for details about other settings such as [setting details for the initial setup user](https://github.com/mother-of-all-self-hosting/ansible-role-wg-easy/blob/main/docs/configuring-wg-easy.md#setting-details-for-the-initial-setup-user-optional), [adjusting the Wireguard endpoint](https://github.com/mother-of-all-self-hosting/ansible-role-wg-easy/blob/main/docs/configuring-wg-easy.md#adjusting-the-wireguard-endpoint), etc.
 
+### Integrating with Prometheus (optional)
+
+WireGuard Easy can natively expose metrics to [Prometheus](prometheus.md).
+
+#### Expose metrics internally
+
+If WireGuard Easy and Prometheus do not share a network (like Traefik), you can connect the WireGuard Easy container network to Prometheus by adding the following configuration to your `vars.yml` file:
+
+```yaml
+prometheus_container_additional_networks_custom:
+  - "{{ wg_easy_container_network }}"
+```
+
+#### Expose metrics publicly
+
+If WireGuard Easy metrics are not scraped from a local Prometheus instance, you can expose the metrics publicly so that a remote instance can fetch them.
+
+When exposing metrics publicly, you should consider to set up [HTTP Basic Authentication](https://developer.mozilla.org/en-US/docs/Web/HTTP/Authentication) **or anyone would be able to read your metrics**.
+
+To expose the metrics publicly, add the following configuration to your `vars.yml` file (adapt to your needs):
+
+```yaml
+mash_playbook_metrics_exposure_enabled: true
+mash_playbook_metrics_exposure_hostname: mash.example.com
+```
+
+It will expose the metrics at `https://mash.example.com/metrics/mash-wg-easy`.
+
+To enable the HTTP Basic authentication, add the following configuration to your `vars.yml` file (adapt to your needs):
+
+```yaml
+wg_easy_container_labels_traefik_metrics_middleware_basic_auth_enabled: true
+
+# See https://doc.traefik.io/traefik/middlewares/http/basicauth/#users for details.
+wg_easy_container_labels_traefik_metrics_middleware_basic_auth_users: ""
+```
+
 ## Usage
 
 After running the command for installation, the WireGuard Easy instance becomes available at the URL specified with `wg_easy_hostname`. With the configuration above, the service is hosted at `wg-easy.example.com`.
