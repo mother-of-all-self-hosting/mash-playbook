@@ -34,9 +34,9 @@ For details about configuring the [Ansible role for Homarr](https://github.com/m
 
 This service requires the following other services:
 
+- [Postgres](postgres.md) / MySQL / [MariaDB](mariadb.md) / [SQLite](https://www.sqlite.org/) database
 - [Traefik](traefik.md) reverse-proxy server
 - (optional) [ntfy](ntfy.md)
-- (optional) [Postgres](postgres.md) / MySQL database — Homarr will default to [SQLite](https://www.sqlite.org/) if Postgres is not enabled
 
 >[!NOTE]
 > Currently (as of v1.35.0) MariaDB is not supported but planned. Refer to [this issue at GitHub](https://github.com/homarr-labs/homarr/issues/2305) for the latest information.
@@ -76,9 +76,12 @@ homarr_environment_variables_secret_encryption_key: YOUR_SECRET_KEY_HERE
 >[!NOTE]
 > Other type of values such as one generated with `pwgen -s 64 1` does not work.
 
-### Select database to use (optional)
+### Select database to use
 
-By default Homarr is configured to use Postgres, but you can choose other database such as SQLite and MySQL. Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-homarr/blob/main/docs/configuring-homarr.md#specify-database-optional) on the role's documentation for details.
+Homarr can use a MySQL compatible database, Postgres, or SQLite, and you need to choose one. Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-homarr/blob/main/docs/configuring-homarr.md#specify-database) on the role's documentation for details.
+
+>[!NOTE]
+> If you have not disabled Postgres explicitly with this playbook, the database for your existing installation is most likely to be `postgres`.
 
 ## Usage
 
