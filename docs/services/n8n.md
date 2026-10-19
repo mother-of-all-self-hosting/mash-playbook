@@ -71,6 +71,9 @@ n8n_hostname: n8n.example.com
 
 n8n can use either Postgres or SQLite, and you need to choose one. Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-n8n/blob/main/docs/configuring-n8n.md#specify-database) on the role's documentation for details.
 
+>[!NOTE]
+> If you have not disabled Postgres explicitly with this playbook, the database for your existing installation is most likely to be `postgres`.
+
 ### Integrating with Prometheus (optional)
 
 n8n can natively expose metrics to [Prometheus](prometheus.md).
