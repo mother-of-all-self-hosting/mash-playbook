@@ -49,8 +49,8 @@ For details about configuring the [Ansible role for Woodpecker CI server](https:
 
 This service requires the following other services:
 
+- [Postgres](postgres.md) / MySQL / [MariaDB](mariadb.md) database
 - [Traefik](traefik.md) reverse-proxy server
-- (optional) [Postgres](postgres.md) / MySQL / [MariaDB](mariadb.md) database — Woodpecker CI server will default to [SQLite](https://www.sqlite.org/) if Postgres is not enabled
 
 ### Configuration — Woodpecker CI server
 
@@ -79,9 +79,12 @@ woodpecker_ci_server_path_prefix: /ci
 
 It is necessary to specify one or more usernames that match your version control system (e.g. Gitea). Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-woodpecker-ci-server/blob/main/docs/configuring-woodpecker-ci-server.md#set-username-matching-vcs) on the role's documentation for details.
 
-#### Select database to use (optional)
+### Select database to use
 
-By default Woodpecker CI server is configured to use Postgres, but you can choose other database such as SQLite and MySQL (MariaDB). Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-woodpecker-ci-server/blob/main/docs/configuring-woodpecker-ci-server.md#specify-database-optional) on the role's documentation for details.
+The Woodpecker CI server can use a MySQL compatible database, Postgres, or SQLite, and you need to choose one. Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-woodpecker-ci-server/blob/main/docs/configuring-woodpecker-ci-server.md#specify-database) on the role's documentation for details.
+
+>[!NOTE]
+> If you have not disabled Postgres explicitly with this playbook, the database for your existing installation is most likely to be `postgres`.
 
 #### Gitea Integration
 
