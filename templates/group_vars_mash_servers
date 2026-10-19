@@ -10375,8 +10375,6 @@ lldap_container_additional_networks_auto: |
 lldap_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
 lldap_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
 
-lldap_database_type: "{{ 'postgres' if postgres_enabled | default(false) else 'sqlite' }}"
-
 lldap_environment_variables_lldap_jwt_secret: "{{ (mash_playbook_generic_secret_key + ':lldap.jwt') | hash('sha512') | to_uuid }}"
 lldap_environment_variables_lldap_key_seed: "{{ (mash_playbook_generic_secret_key + ':lldap.key') | hash('sha512') | to_uuid }}"
 
