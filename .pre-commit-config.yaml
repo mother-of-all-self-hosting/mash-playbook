@@ -60,7 +60,9 @@ repos:
         entry: bin/check-group-vars-jinja.py
         language: python
         additional_dependencies: ['jinja2==3.1.6', 'pyyaml==6.0.3']
-        files: '^templates/group_vars_mash_servers$'
+        files: '^(templates/group_vars_mash_servers|bin/check-group-vars-jinja\.py|\.pre-commit-config\.yaml)$'
+        args: ['templates/group_vars_mash_servers']
+        pass_filenames: false
   - repo: https://github.com/renovatebot/pre-commit-hooks
     rev: 44.168.2
     hooks:
