@@ -77,7 +77,7 @@
   name: bazarr
   activation_prefix: bazarr_
 - src: git+https://iris.radicle.network/z2bgVhWju6shYSwtdKb7v3eoSL1Pt.git
-  version: v2.8.8-0
+  version: v2.8.10-0
   name: bentopdf
   activation_prefix: bentopdf_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-beszel-hub.git
@@ -85,7 +85,7 @@
   name: beszel_hub
   activation_prefix: beszel_hub_
 - src: git+https://iris.radicle.network/z2nQcYvPh51zfvVu8hkftDYPmELYP.git
-  version: v2.0.3-0
+  version: v2.1.1-0
   name: bichon
   activation_prefix: bichon_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-bind.git
@@ -181,7 +181,7 @@
   name: cyberchef
   activation_prefix: cyberchef_
 - src: git+https://iris.radicle.network/zeQ4hXq2LkbADcndSsjesgq9kDPf.git
-  version: v3.55.1-0
+  version: v3.61.0-0
   name: databasus
   activation_prefix: databasus_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-ddclient.git
@@ -253,7 +253,7 @@
   name: etherpad
   activation_prefix: etherpad_
 - src: git+https://iris.radicle.network/z4SSf2SU2YwBaMmCFBJnM5KqorU9T.git
-  version: v9.3.4-0
+  version: v9.3.5-0
   name: eurooffice
   activation_prefix: eurooffice_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-excalidraw.git
@@ -293,7 +293,7 @@
   name: filebrowser_quantum
   activation_prefix: filebrowser_quantum_
 - src: git+https://iris.radicle.network/zBuFgpA5FBmUEcLEXHY9ZBVGpqDM.git
-  version: v7.16.2-0
+  version: v7.16.5-0
   name: filegator
   activation_prefix: filegator_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-flaresolverr.git
@@ -589,7 +589,7 @@
   name: mongodb
   activation_prefix: mongodb_
 - src: git+https://iris.radicle.network/z4Ez9aU119yFMs59cnA3KUnExFAeN.git
-  version: v2.6.1-0
+  version: v3.1.1-0
   name: moodist
   activation_prefix: moodist_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-mosquitto.git
@@ -1025,7 +1025,7 @@
   name: timesync
   activation_prefix: devture_timesync_
 - src: git+https://iris.radicle.network/zLMiPKSyMcb5m85H2brZd4GHCDTF.git
-  version: v5.1.3-0
+  version: v5.2.0-0
   name: tinyauth
   activation_prefix: tinyauth_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-traefik.git
@@ -1081,7 +1081,7 @@
   name: wazuh
   activation_prefix: wazuh_
 - src: git+https://iris.radicle.network/z3NoFEkNtQQjSGjLvweqwCFPbC59R.git
-  version: v2026.9.1.2-0
+  version: v2026.10.1.0-0
   name: weblate
   activation_prefix: weblate_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-wetty.git
