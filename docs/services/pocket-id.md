@@ -78,6 +78,9 @@ pocket_id_environment_variable_encryption_key: YOUR_SECRET_KEY_HERE
 
 Pocket ID can use either Postgres or SQLite, and you need to choose one. Refer to [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az2vTmc3fLqxvpuT9EoZvkErWNZM1K/tree/docs/configuring-pocket-id.md#specify-database) on the role's documentation for details.
 
+>[!NOTE]
+> If you have not disabled Postgres explicitly with this playbook, the database for your existing installation is most likely to be `postgres`.
+
 ### Configuring the mailer (optional)
 
 On Pocket ID you can set up a mailer for functions such as sending a login code. If you enable the [exim-relay](exim-relay.md) service in your inventory configuration, the playbook will automatically configure it as a mailer for the service.
