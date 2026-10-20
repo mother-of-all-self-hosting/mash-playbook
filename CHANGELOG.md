@@ -1,3 +1,13 @@
+# 2026-10-20
+
+## Homarr v2 requires a backup before upgrading
+
+This affects existing Homarr v1 installations. Before rerunning the playbook, stop Homarr and back up its data directory (`homarr_data_path`, normally `/mash/homarr/data`) and, if you use Postgres for it, its Postgres database. The first v2 start migrates the database in place, and Homarr v1 cannot use the migrated database, so rolling back requires restoring the backup. The role neither makes the backup nor stops with a validation error to remind you.
+
+Homarr v2 no longer supports MySQL (and MariaDB). If you have set `homarr_database_type: mysql`, the role stops with an error: before upgrading, convert the database to SQLite while still on Homarr v1.77 (the version the playbook installed until now) by following the [upstream migration guide](https://homarr.dev/docs/advanced/mysql-to-sqlite), then set `homarr_database_type: sqlite`.
+
+Refer to the [upstream release notes](https://github.com/homarr-labs/homarr/releases/tag/v2.0.0) for other application changes.
+
 # 2026-10-18
 
 ## `just start-all` and `just start-group` restart all targeted services again
