@@ -809,7 +809,7 @@
   name: prometheus_alertmanager
   activation_prefix: prometheus_alertmanager_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-prometheus-blackbox-exporter.git
-  version: v0.28.0-9
+  version: v0.28.0-10
   name: prometheus_blackbox_exporter
   activation_prefix: prometheus_blackbox_exporter_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-prometheus-node-exporter.git
