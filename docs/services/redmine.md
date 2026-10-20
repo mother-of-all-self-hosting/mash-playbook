@@ -36,7 +36,7 @@ For details about configuring the [Ansible role for Redmine](https://github.com/
 
 This service requires the following other services:
 
-- [Postgres](postgres.md) / MySQL / [MariaDB](mariadb.md) / [SQLite](https://www.sqlite.org/) / SQL Server database — Redmine will default to Postgres
+- [Postgres](postgres.md) / MySQL / [MariaDB](mariadb.md) / [SQLite](https://www.sqlite.org/) / SQL Server database
 - [Traefik](traefik.md) reverse-proxy server
 - (optional) [exim-relay](exim-relay.md) mailer
 
@@ -62,9 +62,12 @@ redmine_hostname: redmine.example.com
 ########################################################################
 ```
 
-### Select database to use (optional)
+### Select database to use
 
-By default Redmine is configured to use Postgres, but you can choose other database such as a MySQL compatible database, SQLite, and SQL Server. Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-redmine/blob/main/docs/configuring-redmine.md#specify-database) on the role's documentation for details.
+Redmine can use a MySQL compatible database, Postgres, SQLite, or SQL server, and you need to choose one. Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-redmine/blob/main/docs/configuring-redmine.md#specify-database) on the role's documentation for details.
+
+>[!NOTE]
+> If you have not disabled Postgres explicitly with this playbook, the database for your existing installation is most likely to be `postgres`.
 
 ### Configuring the mailer (optional)
 
