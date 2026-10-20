@@ -1,5 +1,11 @@
 # 2026-10-20
 
+## FMD Server 0.17: back up before upgrading
+
+This affects existing FMD Server installations. Before rerunning the playbook, follow the [upstream upgrade precautions](https://fmd-foss.org/blog/2026/09/18/api-v2/#what-changes-for-server-operators): back up the SQLite database and test the upgrade and user-facing functionality in a staging environment. For a consistent file backup, stop FMD Server and copy its database directory (`fmd_server_database_path`, normally `/mash/findmydeviceserver/database`). The role does not make this backup or issue a validation error reminding you to do so.
+
+The API and encryption rewrite remains backward compatible with existing accounts and clients. Account migration to API v2 is available through the Android app; it is not required for this server upgrade.
+
 ## Homarr v2 requires a backup before upgrading
 
 This affects existing Homarr v1 installations. Before rerunning the playbook, stop Homarr and back up its data directory (`homarr_data_path`, normally `/mash/homarr/data`) and, if you use Postgres for it, its Postgres database. The first v2 start migrates the database in place, and Homarr v1 cannot use the migrated database, so rolling back requires restoring the backup. The role neither makes the backup nor stops with a validation error to remind you.
