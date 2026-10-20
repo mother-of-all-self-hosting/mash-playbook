@@ -7467,12 +7467,12 @@ gotosocial_systemd_required_services_list_auto: |
 
 gotosocial_systemd_wanted_services_list_auto: |
   {{
-    ([exim_relay_identifier ~ '.service'] if exim_relay_enabled | default(false) and gotosocial_smtp_host == exim_relay_identifier else [])
+    ([exim_relay_identifier ~ '.service'] if exim_relay_enabled | default(false) and gotosocial_environment_variables_gts_smtp_host == exim_relay_identifier else [])
   }}
 
 gotosocial_container_additional_networks_auto: |
   {{
-    ([exim_relay_container_network] if exim_relay_enabled | default(false) and gotosocial_smtp_host == exim_relay_identifier and gotosocial_container_network != exim_relay_container_network else [])
+    ([exim_relay_container_network] if exim_relay_enabled | default(false) and gotosocial_environment_variables_gts_smtp_host == exim_relay_identifier and gotosocial_container_network != exim_relay_container_network else [])
     +
     ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
     +
@@ -7493,9 +7493,9 @@ gotosocial_metrics_enabled: "{{ prometheus_enabled | default(false) or mash_play
 gotosocial_database_type: "{{ 'postgres' if postgres_enabled | default(false) else 'sqlite' }}"
 
 # role-specific:exim_relay
-gotosocial_smtp_host: "{{ exim_relay_identifier if exim_relay_enabled else '' }}"
-gotosocial_smtp_port: "{{ '8025' if exim_relay_enabled else '587' }}"
-gotosocial_smtp_from: "{{ exim_relay_sender_address if exim_relay_enabled else '' }}"
+gotosocial_environment_variables_gts_smtp_host: "{{ exim_relay_identifier if exim_relay_enabled else '' }}"
+gotosocial_environment_variables_gts_smtp_port: "{{ '8025' if exim_relay_enabled else '587' }}"
+gotosocial_environment_variables_gts_smtp_from: "{{ exim_relay_sender_address if exim_relay_enabled else '' }}"
 # /role-specific:exim_relay
 
 # role-specific:postgres
