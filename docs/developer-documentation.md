@@ -331,10 +331,7 @@ Please do not hesitate to ask for help to let the community members help you! ðŸ
 
 ## Reviewing role dependency updates
 
-Renovate opens pull requests for Ansible role version updates instead of merging their branches
-directly. Review the released role changes and the playbook wiring before merging; a role update may
-need a playbook adaptation even when its role tests pass. Other dependency classes retain their
-separate Renovate policies.
+Renovate opens pull requests for Ansible role version updates instead of merging their branches directly. Review the released role changes and the playbook wiring before merging; a role update may need a playbook adaptation even when its role tests pass. Other dependency classes retain their separate Renovate policies.
 
 ## Maintaining the Renovate runner
 
