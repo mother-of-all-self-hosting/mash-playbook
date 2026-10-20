@@ -37,11 +37,11 @@ For details about configuring the [Ansible role for Healthchecks](https://github
 
 This service requires the following other services:
 
+- [Postgres](postgres.md) / MySQL / [MariaDB](mariadb.md) / [SQLite](https://www.sqlite.org/) database
 - [Traefik](traefik.md) reverse-proxy server
 - (optional) [exim-relay](exim-relay.md) mailer
 - (optional) [Gotify](gotify.md)
 - (optional) [ntfy](ntfy.md)
-- (optional) [Postgres](postgres.md) / MySQL / [MariaDB](mariadb.md) database — Healthchecks will default to [SQLite](https://www.sqlite.org/) if Postgres is not enabled
 
 ## Configuration
 
@@ -66,9 +66,12 @@ healthchecks_path_prefix: /healthchecks
 ########################################################################
 ```
 
-### Select database to use (optional)
+### Select database to use
 
-By default Healthchecks is configured to use Postgres, but you can choose other database such as SQLite and MySQL (MariaDB). Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-healthchecks/blob/main/docs/configuring-healthchecks.md#specify-database-optional) on the role's documentation for details.
+Healthchecks can use a MySQL compatible database, Postgres, or SQLite, and you need to choose one. Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-healthchecks/blob/main/docs/configuring-healthchecks.md#specify-database) on the role's documentation for details.
+
+>[!NOTE]
+> If you have not disabled Postgres explicitly with this playbook, the database for your existing installation is most likely to be `postgres`.
 
 ### Configuring notification services (optional)
 

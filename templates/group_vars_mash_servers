@@ -7746,8 +7746,6 @@ healthchecks_environment_variable_secret_key: "{{ (mash_playbook_generic_secret_
 healthchecks_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
 healthchecks_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
 
-healthchecks_database_type: "{{ 'postgres' if postgres_enabled | default(false) else 'sqlite' }}"
-
 # role-specific:exim_relay
 healthchecks_environment_variable_email_host: "{{ exim_relay_identifier if exim_relay_enabled else '' }}"
 healthchecks_environment_variable_email_port: "{{ '8025' if exim_relay_enabled else '587' }}"
