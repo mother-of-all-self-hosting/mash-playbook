@@ -36,9 +36,9 @@ For details about configuring the [Ansible role for Vikunja](https://github.com/
 
 This service requires the following other services:
 
+- [Postgres](postgres.md) / MySQL / [MariaDB](mariadb.md) database
 - [Traefik](traefik.md) reverse-proxy server
 - (optional) [exim-relay](exim-relay.md) mailer
-- (optional) [Postgres](postgres.md) / MySQL / [MariaDB](mariadb.md) database — Vikunja will default to [SQLite](https://www.sqlite.org/) if Postgres is not enabled
 - (optional) [Valkey](valkey.md) data-store; see [below](#configuring-valkey-optional) for details about installation
 
 ## Configuration
@@ -68,6 +68,9 @@ vikunja_hostname: vikunja.example.com
 ### Select database to use
 
 Vikunja can use a MySQL compatible database, Postgres, or SQLite, and you need to choose one. Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-vikunja/blob/main/docs/configuring-vikunja.md#specify-database) on the role's documentation for details.
+
+>[!NOTE]
+> If you have not disabled Postgres explicitly with this playbook, the database for your existing installation is most likely to be `postgres`.
 
 ### Configuring the mailer (optional)
 
