@@ -71,7 +71,7 @@ To configure a given service to use another sender address, override the specifi
 For example, to make [Vaultwarden](vaultwarden.md) (automatically wired to send via `exim-relay` if you have it enabled) send emails from a custom address (instead of the default, `exim_relay_sender_address`), add the following configuration to your `vars.yml` file:
 
 ```yml
-vaultwarden_config_smtp_from: vaultwarden@example.com
+vaultwarden_environment_variables_smtp_from: vaultwarden@example.com
 ```
 
 ## Troubleshooting

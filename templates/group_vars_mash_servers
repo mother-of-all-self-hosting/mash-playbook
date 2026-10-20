@@ -17493,12 +17493,12 @@ vaultwarden_systemd_required_services_list_auto: |
 
 vaultwarden_systemd_wanted_services_list_auto: |
   {{
-    ([exim_relay_identifier ~ '.service'] if exim_relay_enabled | default(false) and vaultwarden_config_smtp_host == exim_relay_identifier else [])
+    ([exim_relay_identifier ~ '.service'] if exim_relay_enabled | default(false) and vaultwarden_environment_variables_smtp_host == exim_relay_identifier else [])
   }}
 
 vaultwarden_container_additional_networks_auto: |
   {{
-    ([exim_relay_container_network] if exim_relay_enabled | default(false) and vaultwarden_config_smtp_host == exim_relay_identifier and vaultwarden_container_network != exim_relay_container_network else [])
+    ([exim_relay_container_network] if exim_relay_enabled | default(false) and vaultwarden_environment_variables_smtp_host == exim_relay_identifier and vaultwarden_container_network != exim_relay_container_network else [])
     +
     ([mariadb_container_network] if mariadb_enabled | default(false) and (vaultwarden_database_mysql_hostname == mariadb_connection_hostname and vaultwarden_container_network != mariadb_container_network and not vaultwarden_database_mysql_socket_enabled) and vaultwarden_database_type == 'mysql' else [])
     +
@@ -17513,10 +17513,10 @@ vaultwarden_container_labels_traefik_compression_middleware_enabled: "{{ mash_pl
 vaultwarden_container_labels_traefik_compression_middleware_name: "{{ mash_playbook_reverse_proxy_traefik_middleware_compession_name if mash_playbook_reverse_proxy_traefik_middleware_compession_enabled else '' }}"
 
 # role-specific:exim_relay
-vaultwarden_config_smtp_host: "{{ exim_relay_identifier if exim_relay_enabled else '' }}"
-vaultwarden_config_smtp_port: "{{ '8025' if exim_relay_enabled else '587' }}"
-vaultwarden_config_smtp_from: "{{ exim_relay_sender_address if exim_relay_enabled else '' }}"
-vaultwarden_config_smtp_security: "{{ 'off' if exim_relay_enabled else 'starttls' }}"
+vaultwarden_environment_variables_smtp_host: "{{ exim_relay_identifier if exim_relay_enabled else '' }}"
+vaultwarden_environment_variables_smtp_port: "{{ '8025' if exim_relay_enabled else '587' }}"
+vaultwarden_environment_variables_smtp_from: "{{ exim_relay_sender_address if exim_relay_enabled else '' }}"
+vaultwarden_environment_variables_smtp_security: "{{ 'off' if exim_relay_enabled else 'starttls' }}"
 # /role-specific:exim_relay
 
 # role-specific:mariadb
