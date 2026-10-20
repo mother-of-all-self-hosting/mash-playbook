@@ -35,9 +35,9 @@ For details about configuring the [Ansible role for Pocket ID](https://radicle.n
 
 This service requires the following other services:
 
+- [Postgres](postgres.md) / [SQLite](https://www.sqlite.org/) database
 - [Traefik](traefik.md) reverse-proxy server
 - (optional) [exim-relay](exim-relay.md) mailer
-- (optional) [Postgres](postgres.md) — Pocket ID will default to [SQLite](https://www.sqlite.org/) if Postgres is not enabled
 
 >[!NOTE]
 > It is not recommended to store a SQLite database inside a networked filesystem, such as a NFS or SMB share. Refer to [this section](https://pocket-id.org/docs/configuration/environment-variables#database-connection-string) on the official documentation for details.
@@ -74,9 +74,9 @@ You also need to set a random string to the variable as below by adding the foll
 pocket_id_environment_variable_encryption_key: YOUR_SECRET_KEY_HERE
 ```
 
-### Select database to use (optional)
+### Select database to use
 
-By default Pocket ID is configured to use Postgres, but you can choose SQLite. Refer to [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az2vTmc3fLqxvpuT9EoZvkErWNZM1K/tree/docs/configuring-pocket-id.md#specify-database-optional) on the role's documentation for details.
+Pocket ID can use either Postgres or SQLite, and you need to choose one. Refer to [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az2vTmc3fLqxvpuT9EoZvkErWNZM1K/tree/docs/configuring-pocket-id.md#specify-database) on the role's documentation for details.
 
 ### Configuring the mailer (optional)
 

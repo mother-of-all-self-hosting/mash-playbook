@@ -14379,8 +14379,6 @@ pocket_id_container_additional_networks_auto: |
 pocket_id_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
 pocket_id_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
 
-pocket_id_database_type: "{{ 'postgres' if postgres_enabled | default(false) else 'sqlite' }}"
-
 # Set `false` to enable telemetry for analytics
 pocket_id_environment_variable_analytics_disabled: true
 
