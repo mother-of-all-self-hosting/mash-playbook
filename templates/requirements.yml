@@ -341,7 +341,7 @@
   name: gitea
   activation_prefix: gitea_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-gitlab.git
-  version: v19.5.0-0
+  version: v19.5.0-1
   name: gitlab
   activation_prefix: gitlab_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-gitlab-runner.git
