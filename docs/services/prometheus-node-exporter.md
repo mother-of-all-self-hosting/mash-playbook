@@ -88,10 +88,10 @@ It will expose the metrics at `https://mash.example.com/metrics/mash-prometheus-
 To enable the HTTP Basic authentication, add the following configuration to your `vars.yml` file (adapt to your needs):
 
 ```yaml
-prometheus_node_exporter_container_labels_metrics_middleware_basic_auth_enabled: true
+prometheus_node_exporter_container_labels_traefik_metrics_middleware_basic_auth_enabled: true
 
 # See https://doc.traefik.io/traefik/middlewares/http/basicauth/#users for details.
-prometheus_node_exporter_container_labels_metrics_middleware_basic_auth_users: ""
+prometheus_node_exporter_container_labels_traefik_metrics_middleware_basic_auth_users: ""
 ```
 
 ## Related services
