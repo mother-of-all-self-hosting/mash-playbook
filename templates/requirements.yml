@@ -897,7 +897,7 @@
   name: restserver
   activation_prefix: restserver_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-roundcube.git
-  version: v1.7.4-2
+  version: v1.7.5-0
   name: roundcube
   activation_prefix: roundcube_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-rssbridge.git
