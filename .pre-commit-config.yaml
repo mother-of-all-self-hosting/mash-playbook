@@ -64,6 +64,6 @@ repos:
         args: ['templates/group_vars_mash_servers']
         pass_filenames: false
   - repo: https://github.com/renovatebot/pre-commit-hooks
-    rev: 44.168.2
+    rev: 44.175.2
     hooks:
       - id: renovate-config-validator
