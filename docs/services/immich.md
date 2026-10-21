@@ -195,7 +195,7 @@ postgres_container_mount_etc_passwd_enabled: false
 
 # Launch Postgres like Immich Postgres intends (passing in a custom config file).
 # See: https://github.com/immich-app/base-images/blob/489692aaafce6c4d005537809cd48b82f206a9bb/postgres/Dockerfile#L42
-postgres_postgres_process_extra_arguments_custom:
+postgres_process_extra_arguments_custom:
   - "-c"
   - "config_file=/etc/postgresql/postgresql.conf"
 
