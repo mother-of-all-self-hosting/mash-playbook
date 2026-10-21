@@ -1085,7 +1085,7 @@
   name: vikunja
   activation_prefix: vikunja_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-wazuh.git
-  version: v4.14.8-1
+  version: v4.14.9-0
   name: wazuh
   activation_prefix: wazuh_
 - src: git+https://iris.radicle.network/z3NoFEkNtQQjSGjLvweqwCFPbC59R.git
