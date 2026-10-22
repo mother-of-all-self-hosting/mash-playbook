@@ -36,9 +36,9 @@ For details about configuring the [Ansible role for GoToSocial](https://github.c
 
 This service requires the following other services:
 
+- [Postgres](postgres.md) / [SQLite](https://www.sqlite.org/) database
 - [Traefik](traefik.md) reverse-proxy server
 - (optional) [exim-relay](exim-relay.md) mailer
-- (optional) [Postgres](postgres.md) database — GoToSocial will default to [SQLite](https://www.sqlite.org/) if Postgres is not enabled
 
 ## Configuration
 
@@ -65,6 +65,13 @@ gotosocial_hostname: gotosocial.example.com
 ########################################################################
 ```
 
+### Select database to use
+
+GoToSocial can use either Postgres or SQLite, and you need to choose one. Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-gotosocial/blob/main/docs/configuring-gotosocial.md#specify-database) on the role's documentation for details.
+
+>[!NOTE]
+> If you have not disabled Postgres explicitly with this playbook, the database for your existing installation is most likely to be `postgres`.
+
 ### Set a shorter domain for your handle (optional)
 
 On ActivityPub-powered platforms like GoToSocial, the user handle consists of two parts: username and server. For example, if your handle is `@user@gotosocial.example.com`, `user` is the username and `gotosocial.example.com` indicates the server.
@@ -73,10 +80,6 @@ By default, GoToSocial uses `gotosocial_hostname` that you provide for the serve
 
 > [!WARNING]
 > Configuring it must be done before starting GoToSocial for the first time. Once you have federated with someone, you cannot change your domain layout.
-
-### Select database to use (optional)
-
-By default GoToSocial is configured to use Postgres, but you can choose SQLite. Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-gotosocial/blob/main/docs/configuring-gotosocial.md#specify-database-optional) on the role's documentation for details.
 
 ### Configuring the mailer (optional)
 

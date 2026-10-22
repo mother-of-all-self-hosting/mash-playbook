@@ -7490,8 +7490,6 @@ gotosocial_container_labels_traefik_metrics_middleware_basic_auth_users: "{{ mas
 
 gotosocial_metrics_enabled: "{{ prometheus_enabled | default(false) or mash_playbook_metrics_exposure_enabled }}"
 
-gotosocial_database_type: "{{ 'postgres' if postgres_enabled | default(false) else 'sqlite' }}"
-
 # role-specific:exim_relay
 gotosocial_environment_variables_gts_smtp_host: "{{ exim_relay_identifier if exim_relay_enabled else '' }}"
 gotosocial_environment_variables_gts_smtp_port: "{{ '8025' if exim_relay_enabled else '587' }}"
