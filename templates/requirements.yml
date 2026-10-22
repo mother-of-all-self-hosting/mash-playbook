@@ -261,7 +261,7 @@
   name: excalidraw
   activation_prefix: excalidraw_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-excalidraw-room.git
-  version: v2023.12.15-15
+  version: v2023.12.15-16
   name: excalidraw_room
   activation_prefix: excalidraw_room_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-exim-relay.git
@@ -325,7 +325,7 @@
   name: freescout
   activation_prefix: freescout_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-freshrss.git
-  version: v1.30.3-0
+  version: v1.30.4-0
   name: freshrss
   activation_prefix: freshrss_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-funkwhale.git
@@ -409,7 +409,7 @@
   name: ilmo
   activation_prefix: ilmo_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-immich.git
-  version: v3.3.4-0
+  version: v3.3.5-0
   name: immich
   activation_prefix: immich_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-immich-kiosk.git
@@ -445,7 +445,7 @@
   name: joplin_server
   activation_prefix: joplin_server_
 - src: git+https://iris.radicle.network/z2LZH9TGMxYbGBaGoMHNFX5HymEL3.git
-  version: v1.2.54-0
+  version: v1.2.56-0
   name: kanboard
   activation_prefix: kanboard_
 - src: git+https://iris.radicle.network/z4W1oeRiFKEikhj4Mk3HbVJM7er6S.git
@@ -809,7 +809,7 @@
   name: prometheus_alertmanager
   activation_prefix: prometheus_alertmanager_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-prometheus-blackbox-exporter.git
-  version: v0.29.0-0
+  version: v0.29.1-0
   name: prometheus_blackbox_exporter
   activation_prefix: prometheus_blackbox_exporter_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-prometheus-node-exporter.git
@@ -841,7 +841,7 @@
   name: qbittorrent
   activation_prefix: qbittorrent_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-qui.git
-  version: v1.33.0-0
+  version: v1.33.1-0
   name: qui
   activation_prefix: qui_
 - src: git+https://iris.radicle.network/z3PCtuwyz2HdHeKnHCefR253rpYwp.git
