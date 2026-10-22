@@ -37,11 +37,11 @@ For details about configuring the [Ansible role for Paperless-ngx](https://githu
 
 This service requires the following other services:
 
+- [Postgres](postgres.md) / [MariaDB](mariadb.md) / [SQLite](https://www.sqlite.org/) database
 - [Traefik](traefik.md) reverse-proxy server
 - [Valkey](valkey.md) data-store; see [below](#configure-valkey) for details about installation
 - (optional) [Apache Tika Server](tika.md) with [Gotenberg](gotenberg.md)
 - (optional) [exim-relay](exim-relay.md) mailer
-- (optional) [Postgres](postgres.md) / [MariaDB](mariadb.md) database — Paperless-ngx will default to [SQLite](https://www.sqlite.org/) if Postgres is not enabled
 
 ## Configuration
 
@@ -69,9 +69,12 @@ paperless_hostname: paperless.example.com
 
 It is necessary to create an instance's admin user. Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-paperless/blob/main/docs/configuring-paperless.md#set-administrators-account-details) on the role's documentation for details.
 
-### Select database to use (optional)
+### Select database to use
 
-By default Paperless-ngx is configured to use Postgres, but you can choose other database such as SQLite and MariaDB. Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-paperless/blob/main/docs/configuring-paperless.md#specify-database-optional) on the role's documentation for details.
+Paperless-ngx can use MariaDB, Postgres, or SQLite, and you need to choose one. Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-paperless/blob/main/docs/configuring-paperless.md#specify-database) on the role's documentation for details.
+
+>[!NOTE]
+> If you have not disabled Postgres explicitly with this playbook, the database for your existing installation is most likely to be `postgres`.
 
 ### Configure Valkey
 
