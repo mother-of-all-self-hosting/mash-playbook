@@ -38,7 +38,7 @@ For details about configuring the [Ansible role for Nextcloud](https://github.co
 
 This service requires the following other services:
 
-- [Postgres](postgres.md) / MySQL / [MariaDB](mariadb.md) / [SQLite](https://www.sqlite.org/) database — Nextcloud will default to SQLite if Postgres is not enabled
+- [Postgres](postgres.md) / MySQL / [MariaDB](mariadb.md) / [SQLite](https://www.sqlite.org/) database
 - [Traefik](traefik.md) reverse-proxy server
 - (optional) a [Valkey](valkey.md) data-store; see [below](#configuring-valkey-optional) for details about installation
 - (optional) [exim-relay](exim-relay.md) mailer
@@ -68,9 +68,12 @@ nextcloud_path_prefix: /nextcloud
 ########################################################################
 ```
 
-### Select database to use (optional)
+### Select database to use
 
-By default Nextcloud is configured to use Postgres, but you can choose other database such as SQLite and MySQL (MariaDB). Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-nextcloud/blob/main/docs/configuring-nextcloud.md#specify-database-optional) on the role's documentation for details.
+Nextcloud can use a MySQL compatible database, Postgres, or SQLite, and you need to choose one. Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-nextcloud/blob/main/docs/configuring-nextcloud.md#specify-database) on the role's documentation for details.
+
+>[!NOTE]
+> If you have not disabled Postgres explicitly with this playbook, the database for your existing installation is most likely to be `postgres`.
 
 ### Configuring the mailer (optional)
 
