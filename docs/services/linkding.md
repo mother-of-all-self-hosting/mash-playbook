@@ -35,8 +35,8 @@ For details about configuring the [Ansible role for linkding](https://github.com
 
 This service requires the following other services:
 
+- [Postgres](postgres.md) / [SQLite](https://www.sqlite.org/) database
 - [Traefik](traefik.md) reverse-proxy server
-- (optional) a [Postgres](postgres.md) database — linkding will default to [SQLite](https://www.sqlite.org/) if Postgres is not enabled
 
 ## Configuration
 
@@ -63,6 +63,13 @@ linkding_superuser_password: ''
 #                                                                      #
 ########################################################################
 ```
+
+### Select database to use
+
+linkding can use either Postgres or SQLite, and you need to choose one. Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-linkding/blob/main/docs/configuring-linkding.md#specify-database) on the role's documentation for details.
+
+>[!NOTE]
+> If you have not disabled Postgres explicitly with this playbook, the database for your existing installation is most likely to be `postgres`.
 
 ### Configure superuser (optional)
 
