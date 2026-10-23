@@ -5950,8 +5950,6 @@ etherpad_container_labels_traefik_metrics_path_prefix: "{{ mash_playbook_metrics
 etherpad_container_labels_traefik_metrics_middleware_basic_auth_enabled: "{{ mash_playbook_metrics_exposure_http_basic_auth_enabled }}"
 etherpad_container_labels_traefik_metrics_middleware_basic_auth_users: "{{ mash_playbook_metrics_exposure_http_basic_auth_users }}"
 
-etherpad_database_type: "{{ 'postgres' if postgres_enabled | default(false) else 'sqlite' }}"
-
 # role-specific:couchdb
 etherpad_database_couchdb_hostname: "{{ couchdb_connection_hostname if couchdb_enabled else '' }}"
 etherpad_database_couchdb_port: "{{ couchdb_connection_port if couchdb_enabled else '5984' }}"

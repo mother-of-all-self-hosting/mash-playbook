@@ -39,7 +39,7 @@ For details about configuring the [Ansible role for the server](https://github.c
 
 This service requires the following other services:
 
-- Datapase supported by [ueberdb2](https://www.npmjs.com/package/ueberdb2) such as [CouchDB](couchdb.md) / [Postgres](postgres.md) / MySQL / [MariaDB](mariadb.md) database — Etherpad will default to [SQLite](https://www.sqlite.org/) if Postgres is not enabled
+- Datapase supported by [ueberdb2](https://www.npmjs.com/package/ueberdb2) such as [CouchDB](couchdb.md) / [Postgres](postgres.md) / MySQL / [MariaDB](mariadb.md) database
 - [Traefik](traefik.md) reverse-proxy server
 
 ## Configuration
@@ -64,9 +64,14 @@ etherpad_hostname: etherpad.example.com
 ########################################################################
 ```
 
-As the most of the necessary settings for the role have been taken care of by the playbook, you can enable Etherpad on your server with this minimum configuration.
+See the role's documentation for details about configuring Etherpad per your preference (such as [the name of the instance](https://github.com/mother-of-all-self-hosting/ansible-role-etherpad/blob/main/docs/configuring-etherpad.md#set-the-name-of-the-instance-optional) and [the default pad text](https://github.com/mother-of-all-self-hosting/ansible-role-etherpad/blob/main/docs/configuring-etherpad.md#set-the-default-text-optional)).
 
-See the role's documentation for details about configuring Etherpad per your preference (such as [database type](https://github.com/mother-of-all-self-hosting/ansible-role-etherpad/blob/main/docs/configuring-etherpad.md#configure-database), [the name of the instance](https://github.com/mother-of-all-self-hosting/ansible-role-etherpad/blob/main/docs/configuring-etherpad.md#set-the-name-of-the-instance-optional) and [the default pad text](https://github.com/mother-of-all-self-hosting/ansible-role-etherpad/blob/main/docs/configuring-etherpad.md#set-the-default-text-optional)).
+### Select database to use
+
+Etherpad can use database such as MariaDB Postgres, or SQLite, and you need to choose one. Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-etherpad/blob/main/docs/configuring-etherpad.md#configure-database) on the role's documentation for details.
+
+>[!NOTE]
+> If you have not disabled Postgres explicitly with this playbook, the database for your existing installation is most likely to be `postgres`.
 
 ### Create admin user (optional)
 
