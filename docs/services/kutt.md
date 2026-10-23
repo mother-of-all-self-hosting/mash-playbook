@@ -80,6 +80,10 @@ To actually have the service use (and get messages sent through the exim-relay s
 >[!WARNING]
 > Without setting an authentication method such as DKIM, SPF, and DMARC for your hostname, emails are most likely to be quarantined as spam at recipient's mail servers. The worst scenario is that your server's IP address or hostname will be included in the spam list such as the one managed by [Spamhaus](https://www.spamhaus.org/), depending on the reputation. As the exim-relay service supports DKIM signing, refer to [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-exim-relay/blob/main/docs/configuring-exim-relay.md#enable-dkim-support-optional) for details about how to set it up.
 
+### Configuring OIDC authentication (optional)
+
+You can enable OIDC authentication for Kutt. Refer to [this section](https://radicle.network/nodes/iris.radicle.network/rad:z36dPzLyvPA52m845g1MMqHgoiaEz/tree/docs/configuring-kutt.md#configuring-oidc-authentication-optional) on the role's documentation for necessary settings.
+
 ### Configuring Valkey (optional)
 
 Valkey can optionally be enabled for caching data. This playbook supports it, and you can set up a Valkey instance by enabling it on `vars.yml`.
