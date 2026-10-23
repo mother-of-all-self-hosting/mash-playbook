@@ -35,9 +35,9 @@ For details about configuring the [Ansible role for Kutt](https://radicle.networ
 
 This service requires the following other services:
 
+- [Postgres](postgres.md) / MySQL / [MariaDB](mariadb.md) / [SQLite](https://www.sqlite.org/) database
 - [Traefik](traefik.md) reverse-proxy server
 - (optional) [exim-relay](exim-relay.md) mailer
-- (optional) [Postgres](postgres.md) / MySQL / [MariaDB](mariadb.md) database — Kutt will default to [SQLite](https://www.sqlite.org/) if Postgres is not enabled
 - (optional) [Valkey](valkey.md) data-store; see [below](#configuring-valkey-optional) for details about installation
 
 ## Configuration
@@ -64,9 +64,12 @@ kutt_hostname: kutt.example.com
 
 **Note**: hosting Kutt under a subpath (by configuring the `kutt_path_prefix` variable) does not seem to be possible due to Kutt's technical limitations.
 
-### Select database to use (optional)
+### Select database to use
 
-By default Kutt is configured to use Postgres, but you can choose other database such as SQLite and MySQL (MariaDB). Refer to [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az36dPzLyvPA52m845g1MMqHgoiaEz/tree/docs/configuring-kutt.md#specify-database-optional) on the role's documentation for details.
+Kutt can use a MySQL compatible database, Postgres, or SQLite, and you need to choose one. Refer to [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az36dPzLyvPA52m845g1MMqHgoiaEz/tree/docs/configuring-kutt.md#configuring-database) on the role's documentation for details.
+
+>[!NOTE]
+> If you have neither enabled MariaDB or disabled Postgres explicitly with this playbook, the database for your existing installation is most likely to be `postgres`.
 
 ### Configuring the mailer (optional)
 
