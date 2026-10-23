@@ -161,12 +161,16 @@ Having configured `vars.yml` for the dedicated instance, add the following confi
 
 # Add the base configuration as specified above
 
-# Point Reitti to its dedicated Valkey instance
-reitti_redis_hostname: mash-reitti-valkey
+# Make sure the connection via Unix domain socket is enabled
+# Set to `false` to enable TCP connection instead
+reitti_redis_socket_enabled: true
 
-# Make sure the Reitti service (mash-reitti.service) is connected to the container network of its dedicated Valkey service (mash-reitti-valkey)
-reitti_container_additional_networks_custom:
-  - "mash-reitti-valkey"
+# Connect Reitti to its dedicated Valkey instance via the Unix domain socket
+#
+# Alternatively, if you set `reitti_redis_socket_enabled` to `false`,
+# - Add the dedicated Valkey instance (mash-reitti-valkey) to `reitti_redis_hostname`
+# - Add its network (mash-reitti-valkey) to `reitti_container_additional_networks_custom`
+reitti_redis_socket_path_host: /mash/reitti-valkey/run
 
 # Make sure the Reitti service (mash-reitti.service) starts after its dedicated Valkey service (mash-reitti-valkey.service)
 reitti_systemd_required_services_list_custom:
@@ -210,12 +214,16 @@ valkey_enabled: true
 
 # Add the base configuration as specified above
 
-# Point Reitti to the shared Valkey instance
-reitti_redis_hostname: "{{ valkey_identifier }}"
+# Make sure the connection via Unix domain socket is enabled
+# Set to `false` to enable TCP connection instead
+reitti_redis_socket_enabled: true
 
-# Make sure the Reitti container is connected to the container network of the shared Valkey service (mash-valkey)
-reitti_container_additional_networks_custom:
-  - "{{ valkey_container_network }}"
+# Connect Reitti to the shared Valkey instance via the Unix domain socket
+#
+# Alternatively, if you set `reitti_redis_socket_enabled` to `false`,
+# - Add the shared Valkey instance (mash-valkey) to `reitti_redis_hostname`
+# - Add its network (mash-valkey) to `reitti_container_additional_networks_custom`
+reitti_redis_socket_path_host: "{{ valkey_run_path }}"
 
 # Make sure the Reitti service (mash-reitti.service) starts after the shared Valkey service (mash-valkey.service)
 reitti_systemd_required_services_list_custom:
