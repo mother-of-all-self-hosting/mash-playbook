@@ -1,0 +1,10 @@
+# SPDX-FileCopyrightText: 2026 Robin Miller
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+---
+
+localai_database_postgres_hostname: "{{ postgres_connection_hostname if postgres_enabled | default(false) else '' }}"
+localai_database_postgres_port: "{{ postgres_connection_port if postgres_enabled | default(false) else '5432' }}"
+localai_database_postgres_username: "{{ localai_identifier }}"
+localai_database_postgres_password: "{{ (mash_playbook_generic_secret_key + ':db.localai') | hash('sha512') | to_uuid }}"

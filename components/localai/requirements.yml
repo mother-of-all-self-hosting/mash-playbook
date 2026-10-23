@@ -1,0 +1,5 @@
+---
+
+- src: git+https://forgejo.littlecedar.net/littlecedar/ansible-role-mash-localai.git
+  version: main
+  name: localai

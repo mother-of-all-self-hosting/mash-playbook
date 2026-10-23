@@ -1,0 +1,22 @@
+# SPDX-FileCopyrightText: 2026 Robin Miller
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+---
+
+activation_prefix: localai_
+description: Run open models for chat, images, speech and video on your own machines.
+
+inject:
+  systemd_service_manager:
+    services:
+      - name: "{{ localai_identifier }}.service"
+        priority: 2000
+        groups: [mash, localai]
+        when: localai_enabled
+  postgres:
+    managed_databases:
+      name: "{{ localai_database_name }}"
+      username: "{{ localai_database_postgres_username }}"
+      password: "{{ localai_database_postgres_password }}"
+      when: "{{ localai_enabled and (localai_database_postgres_hostname == postgres_connection_hostname) }}"

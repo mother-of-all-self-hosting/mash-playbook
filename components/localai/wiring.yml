@@ -1,0 +1,28 @@
+# SPDX-FileCopyrightText: 2026 Robin Miller
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+---
+
+localai_enabled: false
+localai_uid: "{{ mash_playbook_uid }}"
+localai_gid: "{{ mash_playbook_gid }}"
+localai_identifier: "{{ mash_playbook_service_identifier_prefix }}localai"
+localai_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}localai"
+
+localai_systemd_required_services_list_auto: |
+  {{
+    ([postgres_identifier ~ '.service'] if postgres_enabled | default(false) and (localai_database_postgres_hostname == postgres_connection_hostname) else [])
+  }}
+
+localai_container_additional_networks_auto: |
+  {{
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+    +
+    ([postgres_container_network] if postgres_enabled | default(false) and (localai_database_postgres_hostname == postgres_connection_hostname) and localai_container_network != postgres_container_network else [])
+  }}
+
+localai_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+localai_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+localai_container_labels_traefik_compression_middleware_enabled: "{{ mash_playbook_reverse_proxy_traefik_middleware_compession_enabled }}"
+localai_container_labels_traefik_compression_middleware_name: "{{ mash_playbook_reverse_proxy_traefik_middleware_compession_name if mash_playbook_reverse_proxy_traefik_middleware_compession_enabled else '' }}"
