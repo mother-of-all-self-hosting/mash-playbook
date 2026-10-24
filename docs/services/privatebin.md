@@ -34,9 +34,8 @@ For details about configuring the [Ansible role for PrivateBin](https://radicle.
 
 This service requires the following other services:
 
+- [Postgres](postgres.md) / MySQL / [MariaDB](mariadb.md) / [SQLite](https://www.sqlite.org/) database
 - [Traefik](traefik.md) reverse-proxy server
-- (optional) MySQL / [MariaDB](mariadb.md) database
-- (optional) [Postgres](postgres.md) database — required on the default configuration
 - (optional) [YOURLS](yourls.md)
 
 ## Configuration
@@ -64,9 +63,10 @@ privatebin_path_prefix: /bin
 
 ### Configure a storage for pastes (optional)
 
-PrivateBin instance requires a storage backend to work. As the playbook enables [PostgreSQL](postgres.md) on `vars.yml` by default, it is configured to use it as the default backend. If it is fine for you, you do not have to add configuration for the storage.
+PrivateBin instance requires a storage backend to work. Refer to [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az47v1S9DRcEtm2dgKwZZs4YgoLRgF/tree/docs/configuring-privatebin.md#configure-a-storage-for-pastes) on the role's documentation for details about how to configure storages.
 
-Refer to [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az47v1S9DRcEtm2dgKwZZs4YgoLRgF/tree/docs/configuring-privatebin.md#configure-a-storage-for-pastes) on the role's documentation for details about how to configure storages.
+>[!NOTE]
+> If you have not disabled Postgres explicitly with this playbook, the storage backend for your existing installation is most likely to be `postgres`.
 
 ### Configure a URL shortener (optional)
 
