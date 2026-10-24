@@ -15,7 +15,7 @@
       "maxRequestsPerSecond": 2
     },
     {
-      "matchHost": "iris.radicle.network",
+      "matchHost": "progressiv.radicle.garden",
       "enabled": false
     }
   ],
@@ -63,9 +63,9 @@
       "automergeSchedule": ["* 0-3 1 * *"]
     },
     {
-      "description": "Disable Git tag updates from iris.radicle.network",
+      "description": "Disable Git tag updates from progressiv.radicle.garden",
       "matchDatasources": ["git-tags"],
-      "matchSourceUrls": ["https://iris.radicle.network/**"],
+      "matchSourceUrls": ["https://progressiv.radicle.garden/**"],
       "enabled": false
     },
     {
