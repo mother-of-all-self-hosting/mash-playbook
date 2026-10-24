@@ -27,9 +27,9 @@ Opengist is a self-hosted pastebin powered by Git. All snippets are stored in a 
 
 See the project's [documentation](https://opengist.io/docs/) to learn what Opengist does and why it might be useful to you.
 
-For details about configuring the [Ansible role for Opengist](https://radicle.network/nodes/iris.radicle.network/rad%3Az48WEbcYK3E6uDmfP1Qbb9AGdz1L3), you can check them via:
+For details about configuring the [Ansible role for Opengist](https://radicle.network/nodes/progressiv.radicle.garden/rad%3Az48WEbcYK3E6uDmfP1Qbb9AGdz1L3), you can check them via:
 
-- 🌐 [the role's documentation](https://radicle.network/nodes/iris.radicle.network/rad%3Az48WEbcYK3E6uDmfP1Qbb9AGdz1L3/tree/docs/configuring-opengist.md) online
+- 🌐 [the role's documentation](https://radicle.network/nodes/progressiv.radicle.garden/rad%3Az48WEbcYK3E6uDmfP1Qbb9AGdz1L3/tree/docs/configuring-opengist.md) online
 - 📁 `roles/galaxy/opengist/docs/configuring-opengist.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 ## Dependencies
@@ -77,7 +77,7 @@ opengist_environment_variables_secret_key: YOUR_SECRET_KEY_HERE
 
 ### Select database to use
 
-Opengist can use a MySQL compatible database, Postgres, or SQLite, and you need to choose one. Refer to [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az48WEbcYK3E6uDmfP1Qbb9AGdz1L3/tree/docs/configuring-opengist.md#specify-database) on the role's documentation for details.
+Opengist can use a MySQL compatible database, Postgres, or SQLite, and you need to choose one. Refer to [this section](https://radicle.network/nodes/progressiv.radicle.garden/rad%3Az48WEbcYK3E6uDmfP1Qbb9AGdz1L3/tree/docs/configuring-opengist.md#specify-database) on the role's documentation for details.
 
 >[!NOTE]
 > If you have not disabled Postgres explicitly with this playbook, the database for your existing installation is most likely to be `postgres`.
@@ -133,11 +133,11 @@ After running the command for installation, the Opengist instance becomes availa
 
 To get started, open the URL with a web browser to create an account. **Note that the first registered user becomes an administrator automatically.**
 
-Refer to [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az48WEbcYK3E6uDmfP1Qbb9AGdz1L3/tree/docs/configuring-opengist.md#configuring-ssh-feature-for-opengist-optional) on the role's documentation for details about how to set up the SSH feature.
+Refer to [this section](https://radicle.network/nodes/progressiv.radicle.garden/rad%3Az48WEbcYK3E6uDmfP1Qbb9AGdz1L3/tree/docs/configuring-opengist.md#configuring-ssh-feature-for-opengist-optional) on the role's documentation for details about how to set up the SSH feature.
 
 ## Troubleshooting
 
-Refer to [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az48WEbcYK3E6uDmfP1Qbb9AGdz1L3/tree/docs/configuring-opengist.md#troubleshooting) on the role's documentation for details.
+Refer to [this section](https://radicle.network/nodes/progressiv.radicle.garden/rad%3Az48WEbcYK3E6uDmfP1Qbb9AGdz1L3/tree/docs/configuring-opengist.md#troubleshooting) on the role's documentation for details.
 
 ## Related services
 

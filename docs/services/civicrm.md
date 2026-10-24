@@ -26,9 +26,9 @@ CiviCRM is a relationship management system designed to meet the needs of advoca
 
 See the project's [documentation](https://docs.civicrm.org) to learn what CiviCRM does and why it might be useful to you.
 
-For details about configuring the [Ansible role for CiviCRM](https://radicle.network/nodes/iris.radicle.network/rad%3Az2kX5GbCKBFjiunvLKThDXLzbYnw1), you can check them via:
+For details about configuring the [Ansible role for CiviCRM](https://radicle.network/nodes/progressiv.radicle.garden/rad%3Az2kX5GbCKBFjiunvLKThDXLzbYnw1), you can check them via:
 
-- 🌐 [the role's documentation](https://radicle.network/nodes/iris.radicle.network/rad%3Az2kX5GbCKBFjiunvLKThDXLzbYnw1/tree/docs/configuring-civicrm.md) online
+- 🌐 [the role's documentation](https://radicle.network/nodes/progressiv.radicle.garden/rad%3Az2kX5GbCKBFjiunvLKThDXLzbYnw1/tree/docs/configuring-civicrm.md) online
 - 📁 `roles/galaxy/civicrm/docs/configuring-civicrm.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 ## Dependencies
@@ -73,8 +73,8 @@ After running the command for installation, the CiviCRM instance becomes availab
 
 To get started, open the URL with a web browser, and follow the set up wizard.
 
-On the set up wizard, it is required to input database credentials. Refer to [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az2kX5GbCKBFjiunvLKThDXLzbYnw1/tree/docs/configuring-civicrm.md#outputting-database-credentials) on the role's documentation for details about how to check them.
+On the set up wizard, it is required to input database credentials. Refer to [this section](https://radicle.network/nodes/progressiv.radicle.garden/rad%3Az2kX5GbCKBFjiunvLKThDXLzbYnw1/tree/docs/configuring-civicrm.md#outputting-database-credentials) on the role's documentation for details about how to check them.
 
 ## Troubleshooting
 
-Refer to [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az2kX5GbCKBFjiunvLKThDXLzbYnw1/tree/docs/configuring-civicrm.md#troubleshooting) on the role's documentation for details.
+Refer to [this section](https://radicle.network/nodes/progressiv.radicle.garden/rad%3Az2kX5GbCKBFjiunvLKThDXLzbYnw1/tree/docs/configuring-civicrm.md#troubleshooting) on the role's documentation for details.

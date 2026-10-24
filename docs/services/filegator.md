@@ -28,9 +28,9 @@ FileGator is a free self-hosted web-based file manager.
 
 See the project's [documentation](https://docs.filegator.io/) to learn what FileGator does and why it might be useful to you.
 
-For details about configuring the [Ansible role for FileGator](https://radicle.network/nodes/iris.radicle.network/rad%3AzBuFgpA5FBmUEcLEXHY9ZBVGpqDM), you can check them via:
+For details about configuring the [Ansible role for FileGator](https://radicle.network/nodes/progressiv.radicle.garden/rad%3AzBuFgpA5FBmUEcLEXHY9ZBVGpqDM), you can check them via:
 
-- 🌐 [the role's documentation](https://radicle.network/nodes/iris.radicle.network/rad%3AzBuFgpA5FBmUEcLEXHY9ZBVGpqDM/tree/docs/configuring-filegator.md) online
+- 🌐 [the role's documentation](https://radicle.network/nodes/progressiv.radicle.garden/rad%3AzBuFgpA5FBmUEcLEXHY9ZBVGpqDM/tree/docs/configuring-filegator.md) online
 - 📁 `roles/galaxy/filegator/docs/configuring-filegator.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 ## Dependencies
@@ -69,7 +69,7 @@ To get started, open the URL with a web browser, and log in to the instance with
 
 ## Troubleshooting
 
-Refer to [this section](https://radicle.network/nodes/iris.radicle.network/rad%3AzBuFgpA5FBmUEcLEXHY9ZBVGpqDM/tree/docs/configuring-filegator.md#troubleshooting) on the role's documentation for details.
+Refer to [this section](https://radicle.network/nodes/progressiv.radicle.garden/rad%3AzBuFgpA5FBmUEcLEXHY9ZBVGpqDM/tree/docs/configuring-filegator.md#troubleshooting) on the role's documentation for details.
 
 ## Related services
 

@@ -26,9 +26,9 @@ Weblate is a web-based translation tool with tight version control integration.
 
 See the project's [documentation](https://docs.weblate.org/) to learn what Weblate does and why it might be useful to you.
 
-For details about configuring the [Ansible role for Weblate](https://radicle.network/nodes/iris.radicle.network/rad%3Az3NoFEkNtQQjSGjLvweqwCFPbC59R), you can check them via:
+For details about configuring the [Ansible role for Weblate](https://radicle.network/nodes/progressiv.radicle.garden/rad%3Az3NoFEkNtQQjSGjLvweqwCFPbC59R), you can check them via:
 
-- 🌐 [the role's documentation](https://radicle.network/nodes/iris.radicle.network/rad%3Az3NoFEkNtQQjSGjLvweqwCFPbC59R/tree/docs/configuring-weblate.md) online
+- 🌐 [the role's documentation](https://radicle.network/nodes/progressiv.radicle.garden/rad%3Az3NoFEkNtQQjSGjLvweqwCFPbC59R/tree/docs/configuring-weblate.md) online
 - 📁 `roles/galaxy/weblate/docs/configuring-weblate.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 ## Dependencies
@@ -257,7 +257,7 @@ weblate_environment_variables_weblate_registration_open: "1"
 
 ### Setting administrator's account details (optional)
 
-You can specify an initial administrator's login credential. Refer to [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az3NoFEkNtQQjSGjLvweqwCFPbC59R/tree/docs/configuring-weblate.md#setting-administrator-39-s-account-details-optional) on the role's documentation for details.
+You can specify an initial administrator's login credential. Refer to [this section](https://radicle.network/nodes/progressiv.radicle.garden/rad%3Az3NoFEkNtQQjSGjLvweqwCFPbC59R/tree/docs/configuring-weblate.md#setting-administrator-39-s-account-details-optional) on the role's documentation for details.
 
 >[!NOTE]
 > If you skip setting them, the Weblate instance creates an administrator user on the initial start with `admin@example.com` and a random password which can be checked on the service's log.
@@ -276,4 +276,4 @@ To get started, open the URL with a web browser to log in to the instance with t
 
 ## Troubleshooting
 
-Refer to [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az3NoFEkNtQQjSGjLvweqwCFPbC59R/tree/docs/configuring-weblate.md#troubleshooting) on the role's documentation for details.
+Refer to [this section](https://radicle.network/nodes/progressiv.radicle.garden/rad%3Az3NoFEkNtQQjSGjLvweqwCFPbC59R/tree/docs/configuring-weblate.md#troubleshooting) on the role's documentation for details.

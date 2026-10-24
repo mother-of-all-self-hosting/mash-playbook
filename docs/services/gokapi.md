@@ -26,9 +26,9 @@ Gokapi is a lightweight server to share files that expire after a set number of 
 
 See the project's [documentation](https://gokapi.readthedocs.io) to learn what Gokapi does and why it might be useful to you.
 
-For details about configuring the [Ansible role for Gokapi](https://radicle.network/nodes/iris.radicle.network/rad%3Az2zryaw72dpp4pRWKK1qvQzsY4qHR), you can check them via:
+For details about configuring the [Ansible role for Gokapi](https://radicle.network/nodes/progressiv.radicle.garden/rad%3Az2zryaw72dpp4pRWKK1qvQzsY4qHR), you can check them via:
 
-- 🌐 [the role's documentation](https://radicle.network/nodes/iris.radicle.network/rad%3Az2zryaw72dpp4pRWKK1qvQzsY4qHR/tree/docs/configuring-gokapi.md) online
+- 🌐 [the role's documentation](https://radicle.network/nodes/progressiv.radicle.garden/rad%3Az2zryaw72dpp4pRWKK1qvQzsY4qHR/tree/docs/configuring-gokapi.md) online
 - 📁 `roles/galaxy/gokapi/docs/configuring-gokapi.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 ## Dependencies
@@ -67,7 +67,7 @@ To get started, open the URL `https://gokapi.example.com/setup` with a web brows
 
 ## Troubleshooting
 
-Refer to [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az2zryaw72dpp4pRWKK1qvQzsY4qHR/tree/docs/configuring-gokapi.md#troubleshooting) on the role's documentation for details.
+Refer to [this section](https://radicle.network/nodes/progressiv.radicle.garden/rad%3Az2zryaw72dpp4pRWKK1qvQzsY4qHR/tree/docs/configuring-gokapi.md#troubleshooting) on the role's documentation for details.
 
 ## Related services
 

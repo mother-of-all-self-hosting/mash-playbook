@@ -26,9 +26,9 @@ MAZANOKE is a self-hosted web app offering a simple image optimizer that runs in
 
 See the project's [documentation](https://github.com/civilblur/mazanoke/blob/main/README.md) to learn what MAZANOKE does and why it might be useful to you.
 
-For details about configuring the [Ansible role for MAZANOKE](https://radicle.network/nodes/iris.radicle.network/rad%3AzGHUEPjboBuF8AWo3HKxEraEuHFq), you can check them via:
+For details about configuring the [Ansible role for MAZANOKE](https://radicle.network/nodes/progressiv.radicle.garden/rad%3AzGHUEPjboBuF8AWo3HKxEraEuHFq), you can check them via:
 
-- 🌐 [the role's documentation](https://radicle.network/nodes/iris.radicle.network/rad%3AzGHUEPjboBuF8AWo3HKxEraEuHFq/tree/docs/configuring-mazanoke.md) online
+- 🌐 [the role's documentation](https://radicle.network/nodes/progressiv.radicle.garden/rad%3AzGHUEPjboBuF8AWo3HKxEraEuHFq/tree/docs/configuring-mazanoke.md) online
 - 📁 `roles/galaxy/mazanoke/docs/configuring-mazanoke.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 ## Dependencies
@@ -61,7 +61,7 @@ mazanoke_hostname: mazanoke.example.com
 
 ### Using the default Docker image (optional)
 
-To have the service run as the playbook's default user instead of root user, this service is by default configured to use the Docker image locally built on [this own Dockerfile](https://radicle.network/nodes/iris.radicle.network/rad%3AzGHUEPjboBuF8AWo3HKxEraEuHFq/tree/templates/Dockerfile.j2).
+To have the service run as the playbook's default user instead of root user, this service is by default configured to use the Docker image locally built on [this own Dockerfile](https://radicle.network/nodes/progressiv.radicle.garden/rad%3AzGHUEPjboBuF8AWo3HKxEraEuHFq/tree/templates/Dockerfile.j2).
 
 If you prefer simply pulling and using [the official Docker image](https://github.com/civilblur/mazanoke/pkgs/container/mazanoke) instead, add the following configuration to your `vars.yml` file:
 
@@ -78,7 +78,7 @@ After running the command for installation, the MAZANOKE instance becomes availa
 
 ## Troubleshooting
 
-Refer to [this section](https://radicle.network/nodes/iris.radicle.network/rad%3AzGHUEPjboBuF8AWo3HKxEraEuHFq/tree/docs/configuring-mazanoke.md#troubleshooting) on the role's documentation for details.
+Refer to [this section](https://radicle.network/nodes/progressiv.radicle.garden/rad%3AzGHUEPjboBuF8AWo3HKxEraEuHFq/tree/docs/configuring-mazanoke.md#troubleshooting) on the role's documentation for details.
 
 ## Related services
 

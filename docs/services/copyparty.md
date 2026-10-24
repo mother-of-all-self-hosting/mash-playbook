@@ -26,9 +26,9 @@ Copyparty is a portable file server with many features.
 
 See the project's [documentation](https://github.com/9001/copyparty/blob/hovudstraum/README.md) to learn what Copyparty does and why it might be useful to you.
 
-For details about configuring the [Ansible role for Copyparty](https://radicle.network/nodes/iris.radicle.network/rad%3Az4GaYR5FxcSuYuCKovEo9Zfm3HPXc), you can check them via:
+For details about configuring the [Ansible role for Copyparty](https://radicle.network/nodes/progressiv.radicle.garden/rad%3Az4GaYR5FxcSuYuCKovEo9Zfm3HPXc), you can check them via:
 
-- 🌐 [the role's documentation](https://radicle.network/nodes/iris.radicle.network/rad%3Az4GaYR5FxcSuYuCKovEo9Zfm3HPXc/tree/docs/configuring-copyparty.md) online
+- 🌐 [the role's documentation](https://radicle.network/nodes/progressiv.radicle.garden/rad%3Az4GaYR5FxcSuYuCKovEo9Zfm3HPXc/tree/docs/configuring-copyparty.md) online
 - 📁 `roles/galaxy/copyparty/docs/configuring-copyparty.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 ## Dependencies
@@ -61,7 +61,7 @@ copyparty_hostname: copyparty.example.com
 
 ### Set administrator's account details
 
-By default it is necessary to create an administrator account, whose default username is set to `copyparty`. Refer to [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az4GaYR5FxcSuYuCKovEo9Zfm3HPXc/tree/docs/configuring-copyparty.md#set-administrator-39-s-account-details) on the role's documentation for details.
+By default it is necessary to create an administrator account, whose default username is set to `copyparty`. Refer to [this section](https://radicle.network/nodes/progressiv.radicle.garden/rad%3Az4GaYR5FxcSuYuCKovEo9Zfm3HPXc/tree/docs/configuring-copyparty.md#set-administrator-39-s-account-details) on the role's documentation for details.
 
 ## Usage
 
@@ -73,4 +73,4 @@ Refer to [this page](https://copyparty.eu/cli/) for the exhaustive list of avail
 
 ## Troubleshooting
 
-Refer to [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az4GaYR5FxcSuYuCKovEo9Zfm3HPXc/tree/docs/configuring-copyparty.md#troubleshooting) on the role's documentation for details.
+Refer to [this section](https://radicle.network/nodes/progressiv.radicle.garden/rad%3Az4GaYR5FxcSuYuCKovEo9Zfm3HPXc/tree/docs/configuring-copyparty.md#troubleshooting) on the role's documentation for details.

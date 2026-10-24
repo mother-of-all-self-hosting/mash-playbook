@@ -27,9 +27,9 @@ Rest Server is an HTTP server that implements restic's REST backend API to backu
 
 See the project's [documentation](https://github.com/restic/rest-server/blob/master/README.md) to learn what Rest Server does and why it might be useful to you.
 
-For details about configuring the [Ansible role for Rest Server](https://radicle.network/nodes/iris.radicle.network/rad%3Azi4z5FpzySQ1kRqVpqcTkEfnXrD9), you can check them via:
+For details about configuring the [Ansible role for Rest Server](https://radicle.network/nodes/progressiv.radicle.garden/rad%3Azi4z5FpzySQ1kRqVpqcTkEfnXrD9), you can check them via:
 
-- 🌐 [the role's documentation](https://radicle.network/nodes/iris.radicle.network/rad%3Azi4z5FpzySQ1kRqVpqcTkEfnXrD9/tree/docs/configuring-restserver.md) online
+- 🌐 [the role's documentation](https://radicle.network/nodes/progressiv.radicle.garden/rad%3Azi4z5FpzySQ1kRqVpqcTkEfnXrD9/tree/docs/configuring-restserver.md) online
 - 📁 `roles/galaxy/restserver/docs/configuring-restserver.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 ## Dependencies
@@ -62,7 +62,7 @@ restserver_hostname: restserver.example.com
 
 ### Configuring HTTP Basic authentication
 
-The HTTP Basic authentication on Traefik is enabled for the web interface by default, considering the nature of the service. Refer to [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Azi4z5FpzySQ1kRqVpqcTkEfnXrD9/tree/docs/configuring-restserver.md#configuring-http-basic-authentication) on the role's documentation for details about how to set it up or disable it.
+The HTTP Basic authentication on Traefik is enabled for the web interface by default, considering the nature of the service. Refer to [this section](https://radicle.network/nodes/progressiv.radicle.garden/rad%3Azi4z5FpzySQ1kRqVpqcTkEfnXrD9/tree/docs/configuring-restserver.md#configuring-http-basic-authentication) on the role's documentation for details about how to set it up or disable it.
 
 ## Usage
 
@@ -72,7 +72,7 @@ Refer to [this section](https://restic.readthedocs.io/en/latest/030_preparing_a_
 
 ## Troubleshooting
 
-Refer to [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Azi4z5FpzySQ1kRqVpqcTkEfnXrD9/tree/docs/configuring-restserver.md#troubleshooting) on the role's documentation for details.
+Refer to [this section](https://radicle.network/nodes/progressiv.radicle.garden/rad%3Azi4z5FpzySQ1kRqVpqcTkEfnXrD9/tree/docs/configuring-restserver.md#troubleshooting) on the role's documentation for details.
 
 ## Related services
 

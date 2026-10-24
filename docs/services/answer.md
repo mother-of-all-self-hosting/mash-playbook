@@ -26,9 +26,9 @@ Apache Answer is a Q&A community platform software for teams.
 
 See the project's [documentation](https://answer.apache.org/docs/) to learn what Apache Answer does and why it might be useful to you.
 
-For details about configuring the [Ansible role for Apache Answer](https://radicle.network/nodes/iris.radicle.network/rad%3Az4Cd3nL74nNap51RBB6mtC1jipeH9), you can check them via:
+For details about configuring the [Ansible role for Apache Answer](https://radicle.network/nodes/progressiv.radicle.garden/rad%3Az4Cd3nL74nNap51RBB6mtC1jipeH9), you can check them via:
 
-- 🌐 [the role's documentation](https://radicle.network/nodes/iris.radicle.network/rad%3Az4Cd3nL74nNap51RBB6mtC1jipeH9/tree/docs/configuring-answer.md) online
+- 🌐 [the role's documentation](https://radicle.network/nodes/progressiv.radicle.garden/rad%3Az4Cd3nL74nNap51RBB6mtC1jipeH9/tree/docs/configuring-answer.md) online
 - 📁 `roles/galaxy/answer/docs/configuring-answer.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 ## Dependencies
@@ -65,7 +65,7 @@ answer_hostname: answer.example.com
 
 ### Select database to use
 
-Apache Answer can use a MySQL compatible database, Postgres, or SQLite, and you need to choose one. Refer to [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az4Cd3nL74nNap51RBB6mtC1jipeH9/tree/docs/configuring-answer.md#specify-database) on the role's documentation for details.
+Apache Answer can use a MySQL compatible database, Postgres, or SQLite, and you need to choose one. Refer to [this section](https://radicle.network/nodes/progressiv.radicle.garden/rad%3Az4Cd3nL74nNap51RBB6mtC1jipeH9/tree/docs/configuring-answer.md#specify-database) on the role's documentation for details.
 
 ### Configuring the mailer (optional)
 
@@ -80,7 +80,7 @@ To actually have the service use (and get messages sent through the exim-relay s
 
 By default the role is configured to install the service with environment variables automatically when running the installation command.
 
-For automatic installation, you need to set the name, email address, password for the administrator, and the email address for the contact who is responsible for the instance as well. Refer to [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az4Cd3nL74nNap51RBB6mtC1jipeH9/tree/docs/configuring-answer.md#set-administrator-39-s-account-details) on the role's documentation for details.
+For automatic installation, you need to set the name, email address, password for the administrator, and the email address for the contact who is responsible for the instance as well. Refer to [this section](https://radicle.network/nodes/progressiv.radicle.garden/rad%3Az4Cd3nL74nNap51RBB6mtC1jipeH9/tree/docs/configuring-answer.md#set-administrator-39-s-account-details) on the role's documentation for details.
 
 ## Usage
 
@@ -90,7 +90,7 @@ To get started, open the URL with a web browser to log in to the instance.
 
 ## Troubleshooting
 
-Refer to [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az4Cd3nL74nNap51RBB6mtC1jipeH9/tree/docs/configuring-answer.md#troubleshooting) on the role's documentation for details.
+Refer to [this section](https://radicle.network/nodes/progressiv.radicle.garden/rad%3Az4Cd3nL74nNap51RBB6mtC1jipeH9/tree/docs/configuring-answer.md#troubleshooting) on the role's documentation for details.
 
 ## Related services
 

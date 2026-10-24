@@ -27,9 +27,9 @@ Tasks.md is a Markdown file-based task management board.
 
 See the project's [documentation](https://hub.docker.com/r/baldissaramatheus/tasks.md) to learn what Tasks.md does and why it might be useful to you.
 
-For details about configuring the [Ansible role for Tasks.md](https://radicle.network/nodes/iris.radicle.network/rad%3AzfFbFSPaygGqPEkWCTUGnzNwWNoT), you can check them via:
+For details about configuring the [Ansible role for Tasks.md](https://radicle.network/nodes/progressiv.radicle.garden/rad%3AzfFbFSPaygGqPEkWCTUGnzNwWNoT), you can check them via:
 
-- 🌐 [the role's documentation](https://radicle.network/nodes/iris.radicle.network/rad%3AzfFbFSPaygGqPEkWCTUGnzNwWNoT/tree/docs/configuring-tasksmd.md) online
+- 🌐 [the role's documentation](https://radicle.network/nodes/progressiv.radicle.garden/rad%3AzfFbFSPaygGqPEkWCTUGnzNwWNoT/tree/docs/configuring-tasksmd.md) online
 - 📁 `roles/galaxy/tasksmd/docs/configuring-tasksmd.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 ## Dependencies
@@ -62,7 +62,7 @@ tasksmd_hostname: tasksmd.example.com
 
 ### Configuring HTTP Basic authentication
 
-The HTTP Basic authentication on Traefik is enabled for the web interface by default, considering the nature of the service. Refer to [this section](https://radicle.network/nodes/iris.radicle.network/rad%3AzfFbFSPaygGqPEkWCTUGnzNwWNoT/tree/docs/configuring-tasksmd.md#configuring-http-basic-authentication) on the role's documentation for details about how to set it up or disable it.
+The HTTP Basic authentication on Traefik is enabled for the web interface by default, considering the nature of the service. Refer to [this section](https://radicle.network/nodes/progressiv.radicle.garden/rad%3AzfFbFSPaygGqPEkWCTUGnzNwWNoT/tree/docs/configuring-tasksmd.md#configuring-http-basic-authentication) on the role's documentation for details about how to set it up or disable it.
 
 ## Usage
 
@@ -70,4 +70,4 @@ After running the command for installation, the Tasks.md instance becomes availa
 
 ## Troubleshooting
 
-Refer to [this section](https://radicle.network/nodes/iris.radicle.network/rad%3AzfFbFSPaygGqPEkWCTUGnzNwWNoT/tree/docs/configuring-tasksmd.md#troubleshooting) on the role's documentation for details.
+Refer to [this section](https://radicle.network/nodes/progressiv.radicle.garden/rad%3AzfFbFSPaygGqPEkWCTUGnzNwWNoT/tree/docs/configuring-tasksmd.md#troubleshooting) on the role's documentation for details.

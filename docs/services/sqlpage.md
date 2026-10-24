@@ -26,9 +26,9 @@ SQLPage is a web server written in Rust which works as a SQL-only data applicati
 
 See the project's [documentation](https://sql-page.com/documentation.sql) to learn what SQLPage does and why it might be useful to you.
 
-For details about configuring the [Ansible role for SQLPage](https://radicle.network/nodes/iris.radicle.network/rad:z2eyt9uovdZtjh8TL5qiyv2PqAYvP), you can check them via:
+For details about configuring the [Ansible role for SQLPage](https://radicle.network/nodes/progressiv.radicle.garden/rad:z2eyt9uovdZtjh8TL5qiyv2PqAYvP), you can check them via:
 
-- 🌐 [the role's documentation](https://radicle.network/nodes/iris.radicle.network/rad:z2eyt9uovdZtjh8TL5qiyv2PqAYvP/tree/docs/configuring-sqlpage.md) online
+- 🌐 [the role's documentation](https://radicle.network/nodes/progressiv.radicle.garden/rad:z2eyt9uovdZtjh8TL5qiyv2PqAYvP/tree/docs/configuring-sqlpage.md) online
 - 📁 `roles/galaxy/sqlpage/docs/configuring-sqlpage.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 ## Dependencies
@@ -67,4 +67,4 @@ Refer to [this page](https://sql-page.com/your-first-sql-website/) on the offici
 
 ## Troubleshooting
 
-Refer to [this section](https://radicle.network/nodes/iris.radicle.network/rad:z2eyt9uovdZtjh8TL5qiyv2PqAYvP/tree/docs/configuring-sqlpage.md#troubleshooting) on the role's documentation for details.
+Refer to [this section](https://radicle.network/nodes/progressiv.radicle.garden/rad:z2eyt9uovdZtjh8TL5qiyv2PqAYvP/tree/docs/configuring-sqlpage.md#troubleshooting) on the role's documentation for details.

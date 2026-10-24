@@ -26,9 +26,9 @@ Svix is a webhook service.
 
 See the project's [documentation](https://docs.svix.com/) to learn what Svix does and why it might be useful to you.
 
-For details about configuring the [Ansible role for Svix](https://radicle.network/nodes/iris.radicle.network/rad%3Az23UDsbsiGGq9B8M8TSNWB4MLk3vX), you can check them via:
+For details about configuring the [Ansible role for Svix](https://radicle.network/nodes/progressiv.radicle.garden/rad%3Az23UDsbsiGGq9B8M8TSNWB4MLk3vX), you can check them via:
 
-- 🌐 [the role's documentation](https://radicle.network/nodes/iris.radicle.network/rad%3Az23UDsbsiGGq9B8M8TSNWB4MLk3vX/tree/docs/configuring-svix-server.md) online
+- 🌐 [the role's documentation](https://radicle.network/nodes/progressiv.radicle.garden/rad%3Az23UDsbsiGGq9B8M8TSNWB4MLk3vX/tree/docs/configuring-svix-server.md) online
 - 📁 `roles/galaxy/svix/docs/configuring-svix-server.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 ## Dependencies
@@ -241,4 +241,4 @@ After running the command for installation, the Svix instance becomes available 
 
 ## Troubleshooting
 
-Refer to [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az23UDsbsiGGq9B8M8TSNWB4MLk3vX/tree/docs/configuring-svix-server.md#troubleshooting) on the role's documentation for details.
+Refer to [this section](https://radicle.network/nodes/progressiv.radicle.garden/rad%3Az23UDsbsiGGq9B8M8TSNWB4MLk3vX/tree/docs/configuring-svix-server.md#troubleshooting) on the role's documentation for details.

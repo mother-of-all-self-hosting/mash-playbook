@@ -27,9 +27,9 @@ Borg UI is an unofficial web interface for [BorgBackup](https://borgbackup.readt
 
 See the project's [documentation](https://docs.borgui.com/) to learn what Borg UI does and why it might be useful to you.
 
-For details about configuring the [Ansible role for Borg UI](https://radicle.network/nodes/iris.radicle.network/rad%3AzxNS7XeayGimb4WFfvqmasiZZC3v), you can check them via:
+For details about configuring the [Ansible role for Borg UI](https://radicle.network/nodes/progressiv.radicle.garden/rad%3AzxNS7XeayGimb4WFfvqmasiZZC3v), you can check them via:
 
-- 🌐 [the role's documentation](https://radicle.network/nodes/iris.radicle.network/rad%3AzxNS7XeayGimb4WFfvqmasiZZC3v/tree/docs/configuring-borg-ui.md) online
+- 🌐 [the role's documentation](https://radicle.network/nodes/progressiv.radicle.garden/rad%3AzxNS7XeayGimb4WFfvqmasiZZC3v/tree/docs/configuring-borg-ui.md) online
 - 📁 `roles/galaxy/borg_ui/docs/configuring-borg-ui.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 ## Dependencies
@@ -289,7 +289,7 @@ After running the command for installation, the Borg UI instance becomes availab
 
 To get started, open the URL with a web browser to log in to the instance.
 
-Refer to [this section](https://radicle.network/nodes/iris.radicle.network/rad%3AzxNS7XeayGimb4WFfvqmasiZZC3v/tree/docs/configuring-borg-ui.md#usage) on the role's documentation for details about the usage.
+Refer to [this section](https://radicle.network/nodes/progressiv.radicle.garden/rad%3AzxNS7XeayGimb4WFfvqmasiZZC3v/tree/docs/configuring-borg-ui.md#usage) on the role's documentation for details about the usage.
 
 To load a source directory to be backed up inside the container, you can add one to `borg_ui_container_additional_volumes_custom` as below:
 
@@ -312,7 +312,7 @@ As the Borg UI instance does not support configuring the notification services w
 
 ## Troubleshooting
 
-Refer to [this section](https://radicle.network/nodes/iris.radicle.network/rad%3AzxNS7XeayGimb4WFfvqmasiZZC3v/tree/docs/configuring-borg-ui.md#troubleshooting) on the role's documentation for details.
+Refer to [this section](https://radicle.network/nodes/progressiv.radicle.garden/rad%3AzxNS7XeayGimb4WFfvqmasiZZC3v/tree/docs/configuring-borg-ui.md#troubleshooting) on the role's documentation for details.
 
 ## Related services
 

@@ -26,9 +26,9 @@ Donetick is an application for managing tasks and chores.
 
 See the project's [documentation](https://docs.donetick.com/) to learn what Donetick does and why it might be useful to you.
 
-For details about configuring the [Ansible role for Donetick](https://radicle.network/nodes/iris.radicle.network/rad%3Az2EKWswSBFJgUQmxEBzi7sb8QyS2r), you can check them via:
+For details about configuring the [Ansible role for Donetick](https://radicle.network/nodes/progressiv.radicle.garden/rad%3Az2EKWswSBFJgUQmxEBzi7sb8QyS2r), you can check them via:
 
-- 🌐 [the role's documentation](https://radicle.network/nodes/iris.radicle.network/rad%3Az2EKWswSBFJgUQmxEBzi7sb8QyS2r/tree/docs/configuring-donetick.md) online
+- 🌐 [the role's documentation](https://radicle.network/nodes/progressiv.radicle.garden/rad%3Az2EKWswSBFJgUQmxEBzi7sb8QyS2r/tree/docs/configuring-donetick.md) online
 - 📁 `roles/galaxy/donetick/docs/configuring-donetick.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 ## Dependencies
@@ -65,7 +65,7 @@ donetick_hostname: donetick.example.com
 
 ### Select database to use
 
-The service can use either Postgres or SQLite, and you need to choose one. Refer to [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az2EKWswSBFJgUQmxEBzi7sb8QyS2r/tree/docs/configuring-donetick.md#specify-database) on the role's documentation for details.
+The service can use either Postgres or SQLite, and you need to choose one. Refer to [this section](https://radicle.network/nodes/progressiv.radicle.garden/rad%3Az2EKWswSBFJgUQmxEBzi7sb8QyS2r/tree/docs/configuring-donetick.md#specify-database) on the role's documentation for details.
 
 ### Enabling signing up
 
@@ -94,7 +94,7 @@ Since account registration is disabled by default, you need to enable it first b
 
 ## Troubleshooting
 
-Refer to [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az2EKWswSBFJgUQmxEBzi7sb8QyS2r/tree/docs/configuring-donetick.md#troubleshooting) on the role's documentation for details.
+Refer to [this section](https://radicle.network/nodes/progressiv.radicle.garden/rad%3Az2EKWswSBFJgUQmxEBzi7sb8QyS2r/tree/docs/configuring-donetick.md#troubleshooting) on the role's documentation for details.
 
 ## Related services
 

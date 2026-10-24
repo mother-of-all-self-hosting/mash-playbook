@@ -27,9 +27,9 @@ ONLYOFFICE Docs is an online office suite comprising viewers and editors for tex
 
 See the project's [documentation](https://helpcenter.onlyoffice.com/docs) to learn what ONLYOFFICE Docs does and why it might be useful to you.
 
-For details about configuring the [Ansible role for ONLYOFFICE Docs](https://radicle.network/nodes/iris.radicle.network/rad%3Az3kozTn4Kn5eJtgJQj1aCFUpqxW5Y), you can check them via:
+For details about configuring the [Ansible role for ONLYOFFICE Docs](https://radicle.network/nodes/progressiv.radicle.garden/rad%3Az3kozTn4Kn5eJtgJQj1aCFUpqxW5Y), you can check them via:
 
-- 🌐 [the role's documentation](https://radicle.network/nodes/iris.radicle.network/rad%3Az3kozTn4Kn5eJtgJQj1aCFUpqxW5Y/tree/docs/configuring-onlyoffice-docs.md) online
+- 🌐 [the role's documentation](https://radicle.network/nodes/progressiv.radicle.garden/rad%3Az3kozTn4Kn5eJtgJQj1aCFUpqxW5Y/tree/docs/configuring-onlyoffice-docs.md) online
 - 📁 `roles/galaxy/onlyoffice_docs/docs/configuring-onlyoffice-docs.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 ## Dependencies
@@ -67,7 +67,7 @@ onlyoffice_docs_hostname: onlyoffice.example.com
 
 ### Select database to use (optional)
 
-By default ONLYOFFICE Docs is configured to use Postgres, but you can choose MySQL (MariaDB). Refer to [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az3kozTn4Kn5eJtgJQj1aCFUpqxW5Y/tree/docs/configuring-onlyoffice-docs.md#specify-database-optional) on the role's documentation for details.
+By default ONLYOFFICE Docs is configured to use Postgres, but you can choose MySQL (MariaDB). Refer to [this section](https://radicle.network/nodes/progressiv.radicle.garden/rad%3Az3kozTn4Kn5eJtgJQj1aCFUpqxW5Y/tree/docs/configuring-onlyoffice-docs.md#specify-database-optional) on the role's documentation for details.
 
 ## Usage
 
@@ -86,7 +86,7 @@ filebrowser_quantum_config_integrations_office_secret: "{{ onlyoffice_docs_envir
 
 ## Troubleshooting
 
-Refer to [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az3kozTn4Kn5eJtgJQj1aCFUpqxW5Y/tree/docs/configuring-onlyoffice-docs.md#troubleshooting) on the role's documentation for details.
+Refer to [this section](https://radicle.network/nodes/progressiv.radicle.garden/rad%3Az3kozTn4Kn5eJtgJQj1aCFUpqxW5Y/tree/docs/configuring-onlyoffice-docs.md#troubleshooting) on the role's documentation for details.
 
 ## Related services
 

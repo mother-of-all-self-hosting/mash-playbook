@@ -25,9 +25,9 @@ PrivateBin is a minimalist, open-source online pastebin where the server has zer
 
 See the project's [documentation](https://github.com/PrivateBin/PrivateBin/tree/master/doc) to learn what PrivateBin does and why it might be useful to you.
 
-For details about configuring the [Ansible role for PrivateBin](https://radicle.network/nodes/iris.radicle.network/rad%3Az47v1S9DRcEtm2dgKwZZs4YgoLRgF), you can check them via:
+For details about configuring the [Ansible role for PrivateBin](https://radicle.network/nodes/progressiv.radicle.garden/rad%3Az47v1S9DRcEtm2dgKwZZs4YgoLRgF), you can check them via:
 
-- 🌐 [the role's documentation](https://radicle.network/nodes/iris.radicle.network/rad%3Az47v1S9DRcEtm2dgKwZZs4YgoLRgF/tree/docs/configuring-privatebin.md) online
+- 🌐 [the role's documentation](https://radicle.network/nodes/progressiv.radicle.garden/rad%3Az47v1S9DRcEtm2dgKwZZs4YgoLRgF/tree/docs/configuring-privatebin.md) online
 - 📁 `roles/galaxy/privatebin/docs/configuring-privatebin.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 ## Dependencies
@@ -63,7 +63,7 @@ privatebin_path_prefix: /bin
 
 ### Configure a storage for pastes (optional)
 
-PrivateBin instance requires a storage backend to work. Refer to [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az47v1S9DRcEtm2dgKwZZs4YgoLRgF/tree/docs/configuring-privatebin.md#configure-a-storage-for-pastes) on the role's documentation for details about how to configure storages.
+PrivateBin instance requires a storage backend to work. Refer to [this section](https://radicle.network/nodes/progressiv.radicle.garden/rad%3Az47v1S9DRcEtm2dgKwZZs4YgoLRgF/tree/docs/configuring-privatebin.md#configure-a-storage-for-pastes) on the role's documentation for details about how to configure storages.
 
 >[!NOTE]
 > If you have not disabled Postgres explicitly with this playbook, the storage backend for your existing installation is most likely to be `postgres`.
@@ -101,7 +101,7 @@ After running the command for installation, the PrivateBin instance becomes avai
 
 ## Troubleshooting
 
-Refer to [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az47v1S9DRcEtm2dgKwZZs4YgoLRgF/tree/docs/configuring-privatebin.md#troubleshooting) on the role's documentation for details.
+Refer to [this section](https://radicle.network/nodes/progressiv.radicle.garden/rad%3Az47v1S9DRcEtm2dgKwZZs4YgoLRgF/tree/docs/configuring-privatebin.md#troubleshooting) on the role's documentation for details.
 
 ## Related services
 

@@ -26,9 +26,9 @@ MollySocket is a service which allows [Molly](https://molly.im/) to receive [Sig
 
 See the project's [documentation](https://github.com/mollyim/mollysocket/blob/main/README.md) to learn what MollySocket does and why it might be useful to you.
 
-For details about configuring the [Ansible role for MollySocket](https://radicle.network/nodes/iris.radicle.network/rad%3Az2RnNwtTL5bKspfqmxQ2fX4JV4cXV), you can check them via:
+For details about configuring the [Ansible role for MollySocket](https://radicle.network/nodes/progressiv.radicle.garden/rad%3Az2RnNwtTL5bKspfqmxQ2fX4JV4cXV), you can check them via:
 
-- 🌐 [the role's documentation](https://radicle.network/nodes/iris.radicle.network/rad%3Az2RnNwtTL5bKspfqmxQ2fX4JV4cXV/tree/docs/configuring-mollysocket.md) online
+- 🌐 [the role's documentation](https://radicle.network/nodes/progressiv.radicle.garden/rad%3Az2RnNwtTL5bKspfqmxQ2fX4JV4cXV/tree/docs/configuring-mollysocket.md) online
 - 📁 `roles/galaxy/mollysocket/docs/configuring-mollysocket.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 ## Dependencies
@@ -88,7 +88,7 @@ To use a MollySocket instance it is necessary to prepare a **Distributor** runni
 
 ## Troubleshooting
 
-Refer to [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az2RnNwtTL5bKspfqmxQ2fX4JV4cXV/tree/docs/configuring-mollysocket.md#troubleshooting) on the role's documentation for details.
+Refer to [this section](https://radicle.network/nodes/progressiv.radicle.garden/rad%3Az2RnNwtTL5bKspfqmxQ2fX4JV4cXV/tree/docs/configuring-mollysocket.md#troubleshooting) on the role's documentation for details.
 
 ## Related services
 

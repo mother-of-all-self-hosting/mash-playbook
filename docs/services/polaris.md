@@ -26,9 +26,9 @@ Polaris is a music streaming server with a player to enjoy your music collection
 
 See the project's [documentation](https://github.com/agersant/polaris/blob/master/README.md) to learn what Polaris does and why it might be useful to you.
 
-For details about configuring the [Ansible role for Polaris](https://radicle.network/nodes/iris.radicle.network/rad%3Az49EpGUPcp76sUQ4udcz7pBRPuq7u), you can check them via:
+For details about configuring the [Ansible role for Polaris](https://radicle.network/nodes/progressiv.radicle.garden/rad%3Az49EpGUPcp76sUQ4udcz7pBRPuq7u), you can check them via:
 
-- 🌐 [the role's documentation](https://radicle.network/nodes/iris.radicle.network/rad%3Az49EpGUPcp76sUQ4udcz7pBRPuq7u/tree/docs/configuring-polaris.md) online
+- 🌐 [the role's documentation](https://radicle.network/nodes/progressiv.radicle.garden/rad%3Az49EpGUPcp76sUQ4udcz7pBRPuq7u/tree/docs/configuring-polaris.md) online
 - 📁 `roles/galaxy/polaris/docs/configuring-polaris.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 ## Dependencies
@@ -174,7 +174,7 @@ To get started, open the URL with a web browser, and register the account. **Not
 
 ## Troubleshooting
 
-Refer to [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az49EpGUPcp76sUQ4udcz7pBRPuq7u/tree/docs/configuring-polaris.md#troubleshooting) on the role's documentation for details.
+Refer to [this section](https://radicle.network/nodes/progressiv.radicle.garden/rad%3Az49EpGUPcp76sUQ4udcz7pBRPuq7u/tree/docs/configuring-polaris.md#troubleshooting) on the role's documentation for details.
 
 ## Related services
 

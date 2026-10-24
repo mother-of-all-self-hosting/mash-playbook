@@ -26,9 +26,9 @@ Mermaid Live Editor is an online flow chart and diagrams editor.
 
 See the project's [documentation](https://github.com/mermaid-js/mermaid-live-editor/blob/develop/README.md) to learn what Mermaid Live Editor does and why it might be useful to you.
 
-For details about configuring the [Ansible role for Mermaid Live Editor](https://radicle.network/nodes/iris.radicle.network/rad%3Az2RAnfyxCYZSoUiDufyzTM7P3RvEd), you can check them via:
+For details about configuring the [Ansible role for Mermaid Live Editor](https://radicle.network/nodes/progressiv.radicle.garden/rad%3Az2RAnfyxCYZSoUiDufyzTM7P3RvEd), you can check them via:
 
-- 🌐 [the role's documentation](https://radicle.network/nodes/iris.radicle.network/rad%3Az2RAnfyxCYZSoUiDufyzTM7P3RvEd/tree/docs/configuring-mermaid.md) online
+- 🌐 [the role's documentation](https://radicle.network/nodes/progressiv.radicle.garden/rad%3Az2RAnfyxCYZSoUiDufyzTM7P3RvEd/tree/docs/configuring-mermaid.md) online
 - 📁 `roles/galaxy/mermaid/docs/configuring-mermaid.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 ## Dependencies
@@ -61,7 +61,7 @@ mermaid_hostname: mermaid.example.com
 
 ### Using the default Docker image (optional)
 
-To have the service run as the playbook's default user instead of root user, this service is by default configured to use the Docker image locally built on [this own Dockerfile](https://radicle.network/nodes/iris.radicle.network/rad%3Az2RAnfyxCYZSoUiDufyzTM7P3RvEd/tree/templates/Dockerfile.j2).
+To have the service run as the playbook's default user instead of root user, this service is by default configured to use the Docker image locally built on [this own Dockerfile](https://radicle.network/nodes/progressiv.radicle.garden/rad%3Az2RAnfyxCYZSoUiDufyzTM7P3RvEd/tree/templates/Dockerfile.j2).
 
 If you prefer simply pulling and using [the official Docker image](https://github.com/-/mermaid-js/packages/container/package/mermaid-live-editor) instead, add the following configuration to your `vars.yml` file:
 
@@ -78,7 +78,7 @@ After running the command for installation, the Mermaid Live Editor instance bec
 
 ## Troubleshooting
 
-Refer to [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az2RAnfyxCYZSoUiDufyzTM7P3RvEd/tree/docs/configuring-mermaid.md#troubleshooting) on the role's documentation for details.
+Refer to [this section](https://radicle.network/nodes/progressiv.radicle.garden/rad%3Az2RAnfyxCYZSoUiDufyzTM7P3RvEd/tree/docs/configuring-mermaid.md#troubleshooting) on the role's documentation for details.
 
 ## Related services
 

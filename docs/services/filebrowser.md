@@ -28,9 +28,9 @@ File Browser is a free self-hosted web-based file manager.
 
 See the project's [documentation](https://filebrowser.org/) to learn what File Browser does and why it might be useful to you.
 
-For details about configuring the [Ansible role for File Browser](https://radicle.network/nodes/iris.radicle.network/rad%3Az318zbpe2RNjFqVzXqPoDDJvvohbw), you can check them via:
+For details about configuring the [Ansible role for File Browser](https://radicle.network/nodes/progressiv.radicle.garden/rad%3Az318zbpe2RNjFqVzXqPoDDJvvohbw), you can check them via:
 
-- 🌐 [the role's documentation](https://radicle.network/nodes/iris.radicle.network/rad%3Az318zbpe2RNjFqVzXqPoDDJvvohbw/tree/docs/configuring-filebrowser.md) online
+- 🌐 [the role's documentation](https://radicle.network/nodes/progressiv.radicle.garden/rad%3Az318zbpe2RNjFqVzXqPoDDJvvohbw/tree/docs/configuring-filebrowser.md) online
 - 📁 `roles/galaxy/filebrowser/docs/configuring-filebrowser.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 ## Dependencies
@@ -81,7 +81,7 @@ You can create additional users (admin-privileged or not) after logging in via t
 
 ## Troubleshooting
 
-Refer to [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az318zbpe2RNjFqVzXqPoDDJvvohbw/tree/docs/configuring-filebrowser.md#troubleshooting) on the role's documentation for details.
+Refer to [this section](https://radicle.network/nodes/progressiv.radicle.garden/rad%3Az318zbpe2RNjFqVzXqPoDDJvvohbw/tree/docs/configuring-filebrowser.md#troubleshooting) on the role's documentation for details.
 
 ## Related services
 

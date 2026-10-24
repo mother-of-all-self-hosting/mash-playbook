@@ -13,9 +13,9 @@ The playbook can install and configure [Apache Tika Server](https://github.com/a
 
 Apache Tika Server is a toolkit which detects and extracts metadata and text from different file types (such as PPT, XLS, and PDF).
 
-For details about configuring the [Ansible role for Apache Tika Server](https://radicle.network/nodes/iris.radicle.network/rad%3Azbk3MzAN6SX6d8pa9DT2kHDscyr6), you can check them via:
+For details about configuring the [Ansible role for Apache Tika Server](https://radicle.network/nodes/progressiv.radicle.garden/rad%3Azbk3MzAN6SX6d8pa9DT2kHDscyr6), you can check them via:
 
-- 🌐 [the role's documentation](https://radicle.network/nodes/iris.radicle.network/rad%3Azbk3MzAN6SX6d8pa9DT2kHDscyr6/tree/docs/configuring-tika.md) online
+- 🌐 [the role's documentation](https://radicle.network/nodes/progressiv.radicle.garden/rad%3Azbk3MzAN6SX6d8pa9DT2kHDscyr6/tree/docs/configuring-tika.md) online
 - 📁 `roles/galaxy/tika/docs/configuring-tika.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 ## Related services

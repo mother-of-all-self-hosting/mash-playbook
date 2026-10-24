@@ -26,9 +26,9 @@ Kutt is a modern URL shortener with support for custom domains with functions li
 
 See the project's [documentation](https://github.com/thedevs-network/kutt/blob/main/README.md) to learn what Kutt does and why it might be useful to you.
 
-For details about configuring the [Ansible role for Kutt](https://radicle.network/nodes/iris.radicle.network/rad%3Az36dPzLyvPA52m845g1MMqHgoiaEz), you can check them via:
+For details about configuring the [Ansible role for Kutt](https://radicle.network/nodes/progressiv.radicle.garden/rad%3Az36dPzLyvPA52m845g1MMqHgoiaEz), you can check them via:
 
-- 🌐 [the role's documentation](https://radicle.network/nodes/iris.radicle.network/rad%3Az36dPzLyvPA52m845g1MMqHgoiaEz/tree/docs/configuring-kutt.md) online
+- 🌐 [the role's documentation](https://radicle.network/nodes/progressiv.radicle.garden/rad%3Az36dPzLyvPA52m845g1MMqHgoiaEz/tree/docs/configuring-kutt.md) online
 - 📁 `roles/galaxy/kutt/docs/configuring-kutt.md` locally, if you have [fetched the Ansible roles](../installing.md)
 
 ## Dependencies
@@ -66,7 +66,7 @@ kutt_hostname: kutt.example.com
 
 ### Select database to use
 
-Kutt can use a MySQL compatible database, Postgres, or SQLite, and you need to choose one. Refer to [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az36dPzLyvPA52m845g1MMqHgoiaEz/tree/docs/configuring-kutt.md#configuring-database) on the role's documentation for details.
+Kutt can use a MySQL compatible database, Postgres, or SQLite, and you need to choose one. Refer to [this section](https://radicle.network/nodes/progressiv.radicle.garden/rad%3Az36dPzLyvPA52m845g1MMqHgoiaEz/tree/docs/configuring-kutt.md#configuring-database) on the role's documentation for details.
 
 >[!NOTE]
 > If you have neither enabled MariaDB or disabled Postgres explicitly with this playbook, the database for your existing installation is most likely to be `postgres`.
@@ -82,7 +82,7 @@ To actually have the service use (and get messages sent through the exim-relay s
 
 ### Configuring OIDC authentication (optional)
 
-You can enable OIDC authentication for Kutt. Refer to [this section](https://radicle.network/nodes/iris.radicle.network/rad:z36dPzLyvPA52m845g1MMqHgoiaEz/tree/docs/configuring-kutt.md#configuring-oidc-authentication-optional) on the role's documentation for necessary settings.
+You can enable OIDC authentication for Kutt. Refer to [this section](https://radicle.network/nodes/progressiv.radicle.garden/rad:z36dPzLyvPA52m845g1MMqHgoiaEz/tree/docs/configuring-kutt.md#configuring-oidc-authentication-optional) on the role's documentation for necessary settings.
 
 ### Configuring Valkey (optional)
 
@@ -266,7 +266,7 @@ To get started, open the URL with a web browser to create an administrator accou
 
 ## Troubleshooting
 
-Refer to [this section](https://radicle.network/nodes/iris.radicle.network/rad%3Az36dPzLyvPA52m845g1MMqHgoiaEz/tree/docs/configuring-kutt.md#troubleshooting) on the role's documentation for details.
+Refer to [this section](https://radicle.network/nodes/progressiv.radicle.garden/rad%3Az36dPzLyvPA52m845g1MMqHgoiaEz/tree/docs/configuring-kutt.md#troubleshooting) on the role's documentation for details.
 
 ## Related services
 
