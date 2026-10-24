@@ -40,7 +40,7 @@ You may need to open some ports to your server, if you use another firewall in f
 
 This service requires the following other services:
 
-- [Postgres](postgres.md) / MySQL / [MariaDB](mariadb.md) / [CockroachDB](https://www.cockroachlabs.com/) / [SQLite](https://www.sqlite.org/) database — SFTPGo will default to Postgres
+- [Postgres](postgres.md) / MySQL / [MariaDB](mariadb.md) / [CockroachDB](https://www.cockroachlabs.com/) / [SQLite](https://www.sqlite.org/) database
 - [Traefik](traefik.md) reverse-proxy server
 - (optional) [exim-relay](exim-relay.md) mailer
 
@@ -68,9 +68,12 @@ sftpgo_hostname: sftpgo.example.com
 
 **Note**: hosting SFTPGo under a subpath (by configuring the `sftpgo_path_prefix` variable) does not seem to be possible due to SFTPGo's technical limitations.
 
-### Select database to use (optional)
+### Select database to use
 
-By default SFTPGo is configured to use Postgres, but you can choose other database such as SQLite, MySQL (MariaDB), and CockroachDB. Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-sftpgo/blob/main/docs/configuring-sftpgo.md#specify-data-driver-optional) on the role's documentation for details.
+SFTPGo can use a MySQL compatible database, Postgres, SQLite, or CockroachDB, and you need to choose one. Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-sftpgo/blob/main/docs/configuring-sftpgo.md#specify-data-driver) on the role's documentation for details.
+
+>[!NOTE]
+> If you have not disabled Postgres explicitly with this playbook, the database for your existing installation is most likely to be `postgres`.
 
 Please note that it is necessary to add environment variables to `sftpgo_environment_variables_additional_variables` manually for database other than Postgres and MySQL (MariaDB). Refer to [this section](https://docs.sftpgo.com/latest/config-file/#data-provider) on the official documentation for options to be configured.
 
