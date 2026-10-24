@@ -973,7 +973,7 @@
   name: statusnook
   activation_prefix: statusnook_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-stirling-pdf.git
-  version: v1.6.0-4
+  version: v1.6.0-5
   name: stirling_pdf
   activation_prefix: stirling_pdf_
 - src: git+https://progressiv.radicle.garden/z23UDsbsiGGq9B8M8TSNWB4MLk3vX.git
