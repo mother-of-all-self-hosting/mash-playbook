@@ -69,7 +69,7 @@ Follow the [role's upgrade instructions](https://github.com/mother-of-all-self-h
 
 ## (Backward Compatibility Break) TSDProxy upgraded to v2
 
-This only affects you if you have [TSDProxy](docs/services/tsdproxy.md) enabled and use proxy lists (`tsdproxy_config_files`).
+This only affects you if you have [TSDProxy](components/tsdproxy/README.md) enabled and use proxy lists (`tsdproxy_config_files`).
 
 TSDProxy v2 changed the format of proxy list files. The role does not manage these files, so it cannot check or convert them: before re-running the playbook, migrate them by hand following the [upstream upgrade guide](https://almeidapaulopt.github.io/tsdproxy/docs/upgrading/from-v1/), and define them with `tsdproxy_config_lists` instead of `tsdproxy_config_files`.
 
@@ -79,7 +79,7 @@ The role reports its other changes (renamed variables, TSDProxy v1 keys in custo
 
 ## (Backward Compatibility Break) Safer Docker cleanup, and no more journald vacuuming by default
 
-This only affects you if you use the [cleanup](docs/services/system.md#cleanup) role (any `system_cleanup_*` variable in your `vars.yml`).
+This only affects you if you use the [cleanup](components/cleanup/README.md) role (any `system_cleanup_*` variable in your `vars.yml`).
 
 The role has been upgraded to v2:
 
@@ -109,25 +109,25 @@ This affects users with Jellyfin enabled. Before rerunning the playbook, stop Je
 
 ## (Backward Compatibility Break) KeyDB support removed
 
-This only affects you if you have [KeyDB](docs/services/keydb.md) enabled.
+This only affects you if you have [KeyDB](docs/removed-services/keydb.md) enabled.
 
 KeyDB has been removed from the playbook, because the KeyDB project has been unmaintained since 2023 — its last release (6.3.4) dates from then. The role that installed it ([ansible-role-keydb](https://github.com/mother-of-all-self-hosting/ansible-role-keydb)) has been deprecated.
 
-[Valkey](docs/services/valkey.md) — also a Redis fork, protocol-compatible with KeyDB — is a well-maintained alternative and has been the playbook's recommendation since 2024-11-23. Point services that used your KeyDB instance at a Valkey instance instead.
+[Valkey](components/valkey/README.md) — also a Redis fork, protocol-compatible with KeyDB — is a well-maintained alternative and has been the playbook's recommendation since 2024-11-23. Point services that used your KeyDB instance at a Valkey instance instead.
 
-The playbook will complain about any remaining `keydb_*` variables in your configuration. Uninstalling the service from your server is a manual step — refer to [the KeyDB page](docs/services/keydb.md) for the commands.
+The playbook will complain about any remaining `keydb_*` variables in your configuration. Uninstalling the service from your server is a manual step — refer to [the KeyDB page](docs/removed-services/keydb.md) for the commands.
 
 # 2026-08-20
 
 ## Updated Infisical requires manual database migration from MongoDB to Postgres
 
-[Infisical](docs/services/infisical.md) transitioned from MongoDB to Postgres backend on [v0.46.11](https://hub.docker.com/layers/infisical/infisical/v0.46.11-postgres/). The role to install the application ([ansible-role-infisical](https://github.com/mother-of-all-self-hosting/ansible-role-infisical)) does not provide an automated method to conduct database migration from MongoDB, so it is necessary to conduct manual migration if you have deployed an old Infisical instance with the playbook and wish to keep the data. Refer to [this page](https://infisical.com/docs/self-hosting/guides/mongo-to-postgres) for details about migration.
+[Infisical](components/infisical/README.md) transitioned from MongoDB to Postgres backend on [v0.46.11](https://hub.docker.com/layers/infisical/infisical/v0.46.11-postgres/). The role to install the application ([ansible-role-infisical](https://github.com/mother-of-all-self-hosting/ansible-role-infisical)) does not provide an automated method to conduct database migration from MongoDB, so it is necessary to conduct manual migration if you have deployed an old Infisical instance with the playbook and wish to keep the data. Refer to [this page](https://infisical.com/docs/self-hosting/guides/mongo-to-postgres) for details about migration.
 
 # 2026-08-06
 
 ## (Backward Compatibility Break) Jitsi no longer uses Colibri WebSockets
 
-This only affects you if you have [Jitsi](docs/services/jitsi.md) enabled.
+This only affects you if you have [Jitsi](components/jitsi/README.md) enabled.
 
 Jitsi has been updated to `stable-11146-1`, which [removes Colibri WebSocket support](https://github.com/jitsi/docker-jitsi-meet/pull/2285) in favour of SCTP data channels. The Jitsi Video Bridge no longer serves HTTP at all, so a few `jitsi_jvb_*` variables are gone. The playbook will tell you which ones, if your configuration still sets them.
 
@@ -137,7 +137,7 @@ If you run [additional JVBs on other hosts](https://github.com/mother-of-all-sel
 
 ## (Backward Compatibility Break) ntfy users are now declared with hashed passwords
 
-This only affects you if you have enabled authentication for [ntfy](docs/services/ntfy.md) via `ntfy_credentials`.
+This only affects you if you have enabled authentication for [ntfy](components/ntfy/README.md) via `ntfy_credentials`.
 
 The ntfy role used to create users by invoking `ntfy user` commands against the running container. Since v2.14.0, ntfy can provision users and access-control entries from its own configuration file, so the role now does that instead. Besides being a lot simpler, this fixes passwords containing spaces never arriving intact.
 
@@ -168,9 +168,9 @@ Users with the `admin` role get access to all topics. Others start with no acces
 
 [Firezone](https://www.firezone.dev/) has been removed from the playbook, as the role to install it ([ansible-role-firezone](https://github.com/mother-of-all-self-hosting/ansible-role-firezone)) was deprecated in favor of [ansible-role-wg-easy](https://github.com/mother-of-all-self-hosting/ansible-role-wg-easy). The deprecated role was configured to install the legacy 0.7 version, which has reached end-of-life status and stopped receiving updates since January 31st, 2024.
 
-The playbook will let you know if you're using any `firezone_*` variables. You'll need to remove them from `vars.yml` and potentially [uninstall the service manually](./docs/services/firezone.md#uninstalling-the-service-manually).
+The playbook will let you know if you're using any `firezone_*` variables. You'll need to remove them from `vars.yml` and potentially [uninstall the service manually](docs/removed-services/firezone.md#uninstalling-the-service-manually).
 
-If you have deployed Firezone, you might be interested in having a look at [WireGuard Easy](./docs/services/wg-easy.md).
+If you have deployed Firezone, you might be interested in having a look at [WireGuard Easy](components/wg_easy/README.md).
 
 # 2026-02-13
 
@@ -255,7 +255,7 @@ You can fix this issue before upgrading to Miniflux v2.2.14 or after an unsucces
 
 ## authentik no longer requires a Redis-compatible datastore
 
-Since authentik [2025.10.0](https://docs.goauthentik.io/releases/2025.10), a Redis-compatible datastore (we used to recommend [Valkey](docs/services/valkey.md)) is no longer necessary. authentik no longer uses a Redis-compatible datastore at all (moving all that into Postgres).
+Since authentik [2025.10.0](https://docs.goauthentik.io/releases/2025.10), a Redis-compatible datastore (we used to recommend [Valkey](components/valkey/README.md)) is no longer necessary. authentik no longer uses a Redis-compatible datastore at all (moving all that into Postgres).
 
 If you have an existing authentik installation, you may now wish to remove all Valkey-related integration settings.
 
@@ -263,11 +263,11 @@ If you have an existing authentik installation, you may now wish to remove all V
 
 ## Adapting Immich/Postgres to changes in the Postgres role
 
-The [Postgres](./docs/services/postgres.md) role was recently updated (refer to [this commit](https://github.com/mother-of-all-self-hosting/ansible-role-postgres/commit/b39dcdf3421a4b3d7c4a758c9b533399ede4547b)) to add support for restricting the versions that it's allowed to install.
+The [Postgres](components/postgres/README.md) role was recently updated (refer to [this commit](https://github.com/mother-of-all-self-hosting/ansible-role-postgres/commit/b39dcdf3421a4b3d7c4a758c9b533399ede4547b)) to add support for restricting the versions that it's allowed to install.
 
-These changes have landed into MASH playbook and we're making use of them to make [Postgres](./docs/services/postgres.md) play better with [Borg Backup](./docs/services/backup-borg.md) and avoid the risk of suffering from issues like this: [Unable to use borg backup after postgresql 18 upgrade](https://github.com/spantaleev/matrix-docker-ansible-deploy/issues/4632).
+These changes have landed into MASH playbook and we're making use of them to make [Postgres](components/postgres/README.md) play better with [Borg Backup](components/backup_borg/README.md) and avoid the risk of suffering from issues like this: [Unable to use borg backup after postgresql 18 upgrade](https://github.com/spantaleev/matrix-docker-ansible-deploy/issues/4632).
 
-Due to these changes, **users who install Immich/Postgres** for the [Immich](./docs/services/immich.md) service now **need to update their `vars.yml` file** [like this](https://github.com/mother-of-all-self-hosting/mash-playbook/commit/297c414bddb37f82e066d14b66b4ae2cf4b78318), or the playbook will encourage them to upgrade to *vanilla* Postgres v18 (which is not what Immich needs).
+Due to these changes, **users who install Immich/Postgres** for the [Immich](components/immich/README.md) service now **need to update their `vars.yml` file** [like this](https://github.com/mother-of-all-self-hosting/mash-playbook/commit/297c414bddb37f82e066d14b66b4ae2cf4b78318), or the playbook will encourage them to upgrade to *vanilla* Postgres v18 (which is not what Immich needs).
 
 While at it, Immich users can **consider upgrading to Immich/Postgres v18** as described in the comments seen in [the same commit](https://github.com/mother-of-all-self-hosting/mash-playbook/commit/297c414bddb37f82e066d14b66b4ae2cf4b78318) and using a new variable override of `postgres_container_image_v18_version: 18-vectorchord0.5.3-pgvector0.8.1`. After all the upgrade steps and final cleanup are done, your `vars.yml` would only contain Postgres v18 references, as seen [here](https://github.com/mother-of-all-self-hosting/mash-playbook/commit/f4dff6927e12eda413e768ab5a58ab09a434c1ba).
 
@@ -442,7 +442,7 @@ As the role is pretty young and to avoid confusion because of legacy and reverte
 
 ## (Backward Compatibility Break) Firezone database renamed
 
-If you are running [Firezone](docs/services/firezone.md) with the default [Postgres](docs/services/postgres.md) integration the playbook automatically created the database with the name `mash-firezone`.
+If you are running [Firezone](docs/removed-services/firezone.md) with the default [Postgres](components/postgres/README.md) integration the playbook automatically created the database with the name `mash-firezone`.
 To be consistent with how this playbook names databases for all other services, going forward we've changed the database name to be just `firezone`. You will have to rename you database manually by running the following commands on your server:
 
 1. Stop Firezone: `systemctl stop mash-firezone`
@@ -455,11 +455,11 @@ Then update the playbook (don't forget to run `just roles`), run `just install-a
 
 ## (Backward Compatibility Break) PeerTube is no longer wired to Redis automatically
 
-As described in our [Redis](docs/services/redis.md) services docs, running a single instance of Redis to be used by multiple services is not a good practice.
+As described in our [Redis](components/redis/README.md) services docs, running a single instance of Redis to be used by multiple services is not a good practice.
 
-For this reason, we're no longer auto-wiring PeerTube to Redis. If you're running other services (which may require Redis in the future) on the same host, it's recommended that you follow the [Creating a Redis instance dedicated to PeerTube](docs/services/peertube.md#creating-a-redis-instance-dedicated-to-peertube) documentation.
+For this reason, we're no longer auto-wiring PeerTube to Redis. If you're running other services (which may require Redis in the future) on the same host, it's recommended that you follow the [Creating a Redis instance dedicated to PeerTube](components/peertube/README.md#creating-a-redis-instance-dedicated-to-peertube) documentation.
 
-If you're only running PeerTube on a dedicated server (no other services that may need Redis) or you'd like to stick to what you've used until now (a single shared Redis instance), follow the [Using the shared Redis instance for PeerTube](docs/services/peertube.md#using-the-shared-redis-instance-for-peertube) documentation.
+If you're only running PeerTube on a dedicated server (no other services that may need Redis) or you'd like to stick to what you've used until now (a single shared Redis instance), follow the [Using the shared Redis instance for PeerTube](components/peertube/README.md#using-the-shared-redis-instance-for-peertube) documentation.
 
 # 2023-03-25
 
@@ -469,7 +469,7 @@ The playbook used to install Docker and the Docker SDK for Python by default, un
 
 From now on, both of these variables default to `false`. An empty inventory file will not install these components.
 
-**Most** users will want to enable these, just like they would want to enable [Traefik](docs/services/traefik.md) and [Postgres](docs/services/postgres.md), so why default them to `false`? The answer is: it's cleaner to have "**everything** is off by default - enable as you wish" and just need to add stuff, as opposed to "**some** things are on, **some** are off - toggle as you wish".
+**Most** users will want to enable these, just like they would want to enable [Traefik](components/traefik/README.md) and [Postgres](components/postgres/README.md), so why default them to `false`? The answer is: it's cleaner to have "**everything** is off by default - enable as you wish" and just need to add stuff, as opposed to "**some** things are on, **some** are off - toggle as you wish".
 
 To enable these components, you need to explicitly add something like this to your `vars.yml` file:
 

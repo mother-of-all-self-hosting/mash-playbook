@@ -1,0 +1,89 @@
+<!--
+SPDX-FileCopyrightText: 2020 Aaron Raimist
+SPDX-FileCopyrightText: 2020 Chris van Dijk
+SPDX-FileCopyrightText: 2020 Dominik Zajac
+SPDX-FileCopyrightText: 2020 Mickaël Cornière
+SPDX-FileCopyrightText: 2020-2024 MDAD project contributors
+SPDX-FileCopyrightText: 2020-2024 Slavi Pantaleev
+SPDX-FileCopyrightText: 2022 François Darveau
+SPDX-FileCopyrightText: 2022 Julian Foad
+SPDX-FileCopyrightText: 2022 Warren Bailey
+SPDX-FileCopyrightText: 2023 Antonis Christofides
+SPDX-FileCopyrightText: 2023 Felix Stupp
+SPDX-FileCopyrightText: 2023 Julian-Samuel Gebühr
+SPDX-FileCopyrightText: 2023 Pierre 'McFly' Marty
+SPDX-FileCopyrightText: 2024-2026 Suguru Hirahara
+
+SPDX-License-Identifier: AGPL-3.0-or-later
+-->
+
+# syncstorage-rs
+
+The playbook can install and configure [syncstorage-rs](https://github.com/mozilla-services/syncstorage-rs), Mozilla Sync Storage server in Rust used to power Firefox Sync, for you.
+
+See the project's [documentation](https://github.com/mozilla-services/syncstorage-rs/blob/master/README.md) to learn what syncstorage-rs does and [syncstorage-rs-docker](https://radicle.network/nodes/progressiv.radicle.garden/rad%3Az4J84n7U8ea9A91oD1WjAVY6ybU7g)'s documentation about how to set it up.
+
+For details about configuring the [Ansible role for syncstorage-rs](https://github.com/mother-of-all-self-hosting/ansible-role-syncstorage-rs-docker), you can check them via:
+
+- 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-syncstorage-rs-docker/blob/main/docs/configuring-syncstorage-rs-docker.md) online
+- 📁 `roles/galaxy/syncstorage_rs_docker/docs/configuring-syncstorage-rs-docker.md` locally, if you have [fetched the Ansible roles](../../docs/installing.md)
+
+>[!NOTE]
+> The role is configured to build the Docker image by default, as it is not provided by the upstream project. Before proceeding, make sure that the machine which you are going to run the Ansible commands against has sufficient computing power to build it.
+
+## Dependencies
+
+This service requires the following other services:
+
+- MySQL / [MariaDB](../mariadb/README.md) database
+- [Traefik](../traefik/README.md) reverse-proxy server
+
+## Configuration
+
+To enable this service, add the following configuration to your `vars.yml` file and re-run the [installation](../../docs/installing.md) process:
+
+```yaml
+########################################################################
+#                                                                      #
+# syncstorage_rs_docker                                                #
+#                                                                      #
+########################################################################
+
+syncstorage_rs_docker_enabled: true
+
+syncstorage_rs_docker_hostname: syncstorage-rs-docker.example.com
+
+########################################################################
+#                                                                      #
+# /syncstorage_rs_docker                                               #
+#                                                                      #
+########################################################################
+```
+
+**Note**: hosting syncstorage-rs under a subpath (by configuring the `syncstorage_rs_docker_path_prefix` variable) does not seem to be possible due to syncstorage-rs's technical limitations.
+
+### Set random strings
+
+You also need to set random strings to the variables as below by adding the following configuration to your `vars.yml` file. The values can be generated with `pwgen -s 64 1` or in another way.
+
+```yaml
+syncstorage_rs_docker_environment_variable_sync_master_secret: YOUR_SECRET_KEY_HERE
+
+syncstorage_rs_docker_environment_variable_metrics_hash_secret: YOUR_SECRET_KEY_HERE
+```
+
+### Enable MariaDB
+
+syncstorage-rs requires a MySQL-compatible database to work. This playbook supports MariaDB, and you can set up a MariaDB instance by enabling it on `vars.yml`.
+
+Refer to [this page](../mariadb/README.md) for the instruction to enable it.
+
+## Usage
+
+After running the command for installation, the syncstorage-rs instance becomes available at the URL specified with `syncstorage_rs_docker_hostname`. With the configuration above, the service is hosted at `https://syncstorage-rs-docker.example.com`.
+
+Refer to [this section](https://radicle.network/nodes/progressiv.radicle.garden/rad%3Az4J84n7U8ea9A91oD1WjAVY6ybU7g/tree/README.md#adjusting-firefox-setting) on the documentation for details about how to configure Firefox to have it use your server for data synchronization.
+
+## Troubleshooting
+
+Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-syncstorage-rs-docker/blob/main/docs/configuring-syncstorage-rs-docker.md#troubleshooting) on the role's documentation for details.

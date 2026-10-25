@@ -1,0 +1,316 @@
+<!--
+SPDX-FileCopyrightText: 2020 Aaron Raimist
+SPDX-FileCopyrightText: 2020 Chris van Dijk
+SPDX-FileCopyrightText: 2020 Dominik Zajac
+SPDX-FileCopyrightText: 2020 Mickaël Cornière
+SPDX-FileCopyrightText: 2020-2024 MDAD project contributors
+SPDX-FileCopyrightText: 2020-2024 Slavi Pantaleev
+SPDX-FileCopyrightText: 2022 François Darveau
+SPDX-FileCopyrightText: 2022 Julian Foad
+SPDX-FileCopyrightText: 2022 Warren Bailey
+SPDX-FileCopyrightText: 2023 Antonis Christofides
+SPDX-FileCopyrightText: 2023 Felix Stupp
+SPDX-FileCopyrightText: 2023 Julian-Samuel Gebühr
+SPDX-FileCopyrightText: 2023 Pierre 'McFly' Marty
+SPDX-FileCopyrightText: 2024 Thomas Miceli
+SPDX-FileCopyrightText: 2024 Tiz
+SPDX-FileCopyrightText: 2024-2026 Suguru Hirahara
+
+SPDX-License-Identifier: AGPL-3.0-or-later
+-->
+
+# PeerTube
+
+The playbook can install and configure [PeerTube](https://joinpeertube.org/) for you.
+
+PeerTube is an ActivityPub federated video platform developed by [Framasoft](https://framasoft.org/), a french non-profit.
+
+See the project's [documentation](https://docs.joinpeertube.org/) to learn what PeerTube does and why it might be useful to you.
+
+For details about configuring the [Ansible role for PeerTube](https://github.com/mother-of-all-self-hosting/ansible-role-peertube), you can check them via:
+
+- 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-peertube/blob/main/docs/configuring-peertube.md) online
+- 📁 `roles/galaxy/peertube/docs/configuring-peertube.md` locally, if you have [fetched the Ansible roles](../../docs/installing.md)
+
+## Dependencies
+
+This service requires the following other services:
+
+- [Postgres](../postgres/README.md) database
+- [Traefik](../traefik/README.md) reverse-proxy server
+- [Valkey](../valkey/README.md) data-store; see [below](#configure-valkey) for details about installation
+- (optional) [exim-relay](../exim_relay/README.md) mailer
+
+## Configuration
+
+To enable this service, add the following configuration to your `vars.yml` file:
+
+```yaml
+########################################################################
+#                                                                      #
+# peertube                                                             #
+#                                                                      #
+########################################################################
+
+peertube_enabled: true
+
+peertube_hostname: peertube.example.com
+
+########################################################################
+#                                                                      #
+# /peertube                                                            #
+#                                                                      #
+########################################################################
+```
+
+**Note**: hosting PeerTube under a subpath (by configuring the `peertube_path_prefix` variable) does not seem to be possible right now, due to PeerTube limitations.
+
+### Set a random string
+
+You also need to set a random string to the variable as below by adding the following configuration to your `vars.yml` file. The value can be generated with `pwgen -s 64 1` or in another way.
+
+```yaml
+peertube_config_secret: YOUR_SECRET_KEY_HERE
+```
+
+### Set administrator's account details
+
+It is necessary to create an instance's admin user. Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-peertube/blob/main/docs/configuring-peertube.md#set-administrators-account-details) on the role's documentation for details.
+
+### Configure Valkey
+
+PeerTube requires a Valkey data-store to work. This playbook supports it, and you can set up a Valkey instance by enabling it on `vars.yml`.
+
+If PeerTube is the sole service which requires Valkey on your server, it is fine to set up just a single Valkey instance. However, **it is not recommended if there are other services which require it, because sharing the Valkey instance has security concerns and possibly causes data conflicts**, as described on the [documentation for configuring Valkey](../valkey/README.md). In this case, you should install a dedicated Valkey instance for each of them.
+
+If you are unsure whether you will install other services along with PeerTube or you have already set up services which need Valkey (such as [Nextcloud](../nextcloud/README.md), [Funkwhale](../funkwhale/README.md), and [SearXNG](../searxng/README.md)), it is recommended to install a Valkey instance dedicated to PeerTube.
+
+*See [below](#setting-up-a-shared-valkey-instance) for an instruction to install a shared instance.*
+
+#### Setting up a dedicated Valkey instance
+
+To create a dedicated instance for PeerTube, you can follow the steps below:
+
+1. Adjust the `hosts` file
+2. Create a new `vars.yml` file for the dedicated instance
+3. Edit the existing `vars.yml` file for the main host
+
+*Refer to [this page](../../docs/running-multiple-instances.md) for details about configuring multiple instances of Valkey on the same server.*
+
+##### Adjust `hosts`
+
+At first, you need to adjust `inventory/hosts` file to add a supplementary host for PeerTube.
+
+The content should be something like below. Make sure to replace `mash.example.com` with your hostname and `YOUR_SERVER_IP_ADDRESS_HERE` with the IP address of the host, respectively. The same IP address should be set to both, unless the Valkey instance will be served from a different machine.
+
+```ini
+[mash_servers]
+[mash_servers:children]
+mash_example_com
+
+[mash_example_com]
+mash.example.com ansible_host=YOUR_SERVER_IP_ADDRESS_HERE
+mash.example.com-peertube-deps ansible_host=YOUR_SERVER_IP_ADDRESS_HERE
+…
+```
+
+`mash_example_com` can be any string and does not have to match with the hostname.
+
+You can just add an entry for the supplementary host to `[mash_example_com]` if there are other entries there already.
+
+##### Create `vars.yml` for the dedicated instance
+
+Then, create a new directory where `vars.yml` for the supplementary host is stored. If `mash.example.com` is your main host, name the directory as `mash.example.com-peertube-deps`. Its path therefore will be `inventory/host_vars/mash.example.com-peertube-deps`.
+
+After creating the directory, add a new `vars.yml` file inside it with a content below. It will have running the playbook create a `mash-peertube-valkey` instance on the new host, setting `/mash/peertube-valkey` to the base directory of the dedicated Valkey instance.
+
+```yaml
+# This is vars.yml for the supplementary host of PeerTube.
+
+---
+
+########################################################################
+#                                                                      #
+# Playbook                                                             #
+#                                                                      #
+########################################################################
+
+# Put a strong secret below, generated with `pwgen -s 64 1` or in another way
+mash_playbook_generic_secret_key: ''
+
+# Override service names and directory path prefixes
+mash_playbook_service_identifier_prefix: 'mash-peertube-'
+mash_playbook_service_base_directory_name_prefix: 'peertube-'
+
+########################################################################
+#                                                                      #
+# /Playbook                                                            #
+#                                                                      #
+########################################################################
+
+########################################################################
+#                                                                      #
+# valkey                                                               #
+#                                                                      #
+########################################################################
+
+valkey_enabled: true
+
+########################################################################
+#                                                                      #
+# /valkey                                                              #
+#                                                                      #
+########################################################################
+```
+
+##### Edit the main `vars.yml` file
+
+Having configured `vars.yml` for the dedicated instance, add the following configuration to `vars.yml` for the main host, whose path should be `inventory/host_vars/mash.example.com/vars.yml` (replace `mash.example.com` with yours).
+
+```yaml
+########################################################################
+#                                                                      #
+# peertube                                                             #
+#                                                                      #
+########################################################################
+
+# Add the base configuration as specified above
+
+# Point PeerTube to its dedicated Valkey instance
+peertube_redis_hostname: mash-peertube-valkey
+
+# Make sure the PeerTube container is connected to the container network of its dedicated Valkey service (mash-peertube-valkey)
+peertube_container_additional_networks_custom:
+  - "mash-peertube-valkey"
+
+# Make sure the PeerTube service (mash-peertube.service) starts after its dedicated Valkey service (mash-peertube-valkey.service)
+peertube_systemd_required_services_list_custom:
+  - "mash-peertube-valkey.service"
+
+########################################################################
+#                                                                      #
+# /peertube                                                            #
+#                                                                      #
+########################################################################
+```
+
+Running the installation command will create the dedicated Valkey instance named `mash-peertube-valkey`.
+
+#### Setting up a shared Valkey instance
+
+If you host only PeerTube on this server, it is fine to set up a single shared Valkey instance.
+
+To install the single instance and hook PeerTube to it, add the following configuration to `inventory/host_vars/mash.example.com/vars.yml`:
+
+```yaml
+########################################################################
+#                                                                      #
+# valkey                                                               #
+#                                                                      #
+########################################################################
+
+valkey_enabled: true
+
+########################################################################
+#                                                                      #
+# /valkey                                                              #
+#                                                                      #
+########################################################################
+
+########################################################################
+#                                                                      #
+# peertube                                                             #
+#                                                                      #
+########################################################################
+
+# Add the base configuration as specified above
+
+# Point PeerTube to the shared Valkey instance
+peertube_redis_hostname: "{{ valkey_identifier }}"
+
+# Make sure the PeerTube container is connected to the container network of the shared Valkey service (mash-valkey)
+peertube_container_additional_networks_custom:
+  - "{{ valkey_identifier }}"
+
+# Make sure the PeerTube service (mash-peertube.service) starts after the shared Valkey service (mash-valkey.service)
+peertube_systemd_required_services_list_custom:
+  - "{{ valkey_identifier }}.service"
+
+########################################################################
+#                                                                      #
+# /peertube                                                            #
+#                                                                      #
+########################################################################
+```
+
+Running the installation command will create the shared Valkey instance named `mash-valkey`.
+
+### Configuring the mailer (optional)
+
+On PeerTube you can set up a mailer for functions such as password recovery. If you enable the [exim-relay](../exim_relay/README.md) service in your inventory configuration, the playbook will automatically configure it as a mailer for the service.
+
+To actually have the service use (and get messages sent through the exim-relay service), you will need to adjust settings on the service's UI after the service is installed.
+
+>[!WARNING]
+> Without setting an authentication method such as DKIM, SPF, and DMARC for your hostname, emails are most likely to be quarantined as spam at recipient's mail servers. The worst scenario is that your server's IP address or hostname will be included in the spam list such as the one managed by [Spamhaus](https://www.spamhaus.org/), depending on the reputation. As the exim-relay service supports DKIM signing, refer to [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-exim-relay/blob/main/docs/configuring-exim-relay.md#enable-dkim-support-optional) for details about how to set it up.
+
+### Integrating with Prometheus (optional)
+
+PeerTube can natively expose metrics to [Prometheus](../prometheus/README.md).
+
+#### Expose metrics internally
+
+If PeerTube and Prometheus do not share a network (like Traefik), you can connect the PeerTube container network to Prometheus by adding the following configuration to your `vars.yml` file:
+
+```yaml
+prometheus_container_additional_networks_custom:
+  - "{{ peertube_container_network }}"
+```
+
+#### Expose metrics publicly
+
+If PeerTube metrics are not scraped from a local Prometheus instance, you can expose the metrics publicly so that a remote instance can fetch them.
+
+When exposing metrics publicly, you should consider to set up [HTTP Basic Authentication](https://developer.mozilla.org/en-US/docs/Web/HTTP/Authentication) **or anyone would be able to read your metrics**.
+
+To expose the metrics publicly, add the following configuration to your `vars.yml` file (adapt to your needs):
+
+```yaml
+mash_playbook_metrics_exposure_enabled: true
+mash_playbook_metrics_exposure_hostname: mash.example.com
+```
+
+It will expose the metrics at `https://mash.example.com/metrics/mash-peertube`.
+
+To enable the HTTP Basic authentication, add the following configuration to your `vars.yml` file (adapt to your needs):
+
+```yaml
+peertube_container_labels_traefik_metrics_middleware_basic_auth_enabled: true
+
+# See https://doc.traefik.io/traefik/middlewares/http/basicauth/#users for details.
+peertube_container_labels_traefik_metrics_middleware_basic_auth_users: ""
+```
+
+Refer to the role's [`defaults/main.yml`](https://github.com/mother-of-all-self-hosting/ansible-role-peertube/blob/main/defaults/main.yml) for further exporter settings (`peertube_environment_variable_open_telemetry_metrics_*` and `peertube_container_labels_traefik_metrics_*`).
+
+## Installation
+
+If you have decided to install the dedicated Valkey instance for PeerTube, make sure to run the [installing](../../docs/installing.md) command for the supplementary host (`mash.example.com-peertube-deps`) first, before running it for the main host (`mash.example.com`).
+
+Note that running the `just` commands for installation (`just install-all` or `just setup-all`) automatically takes care of the order. See [here](../../docs/running-multiple-instances.md#1-adjust-hosts) for more details about it.
+
+### Adjust Traefik network's IP address range
+
+After completing the initial installation, it is necessary to adjust the Traefik network's IP address range. Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-peertube/blob/main/docs/configuring-peertube.md#adjust-traefik-networks-ip-address-range) on the role's documentation for details.
+
+## Usage
+
+After running the command for installation, the PeerTube instance becomes available at the URL specified with `peertube_hostname`. With the configuration above, the service is hosted at `https://peertube.example.com`.
+
+Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-peertube/blob/main/docs/configuring-peertube.md#usage) on the role's documentation for details about the usage.
+
+## Related services
+
+- [Funkwhale](../funkwhale/README.md) — ActivityPub federated streaming server for listening and sharing music
+- [GoToSocial](../gotosocial/README.md) — ActivityPub federated microblogging platform
+- [Misskey](../misskey/README.md) — ActivityPub federated microblogging platform

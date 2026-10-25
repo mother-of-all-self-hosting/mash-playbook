@@ -83,7 +83,7 @@ When this command completes, services won't be running yet.
 
 You can now:
 
-- [Importing an existing Postgres database (from another installation)](services/postgres.md#importing) (optional)
+- [Importing an existing Postgres database (from another installation)](../components/postgres/README.md#importing) (optional)
 
 … and then proceed to starting all services:
 

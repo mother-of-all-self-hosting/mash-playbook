@@ -110,15 +110,14 @@ Each role the playbook can use is wired in by a *component*: a directory in [`co
 ├── components/
 │   └── YOUR-SERVICE/
 │       ├── component.yml  ← When the component is in use, where it runs, what it adds to other components
+│       ├── README.md  ← Documentation about how to configure the service
 │       ├── requirements.yml  ← Your Ansible role and its version
 │       ├── wiring.yml  ← Default configuration of your role for this playbook
 │       └── with/
 │           ├── postgres.yml  ← Configuration which applies only when Postgres is in use too
 │           └── traefik.yml  ← … or Traefik, etc.
 └── docs/
-    ├── supported-services.md  ← Add your service
-    └── services/
-        └── YOUR-SERVICE.md  ← Add documentation about how to configure it
+    └── supported-services.md  ← Add your service
 ```
 
 Components can also live in the inventory, to extend the playbook without changing it (see [Extending the playbook with your own components](extending-the-playbook.md)).
@@ -251,7 +250,7 @@ The example above presupposes that the role is configured to wire the service to
 
 💡 **Notes**:
 
-- If your role requires MySQL, you can instead wire it to MariaDB on this playbook via `inject.mariadb.managed_databases` and `with/mariadb.yml` in a similar way. See the [service documentation](services/mariadb.md) for details about managing a MariaDB instance.
+- If your role requires MySQL, you can instead wire it to MariaDB on this playbook via `inject.mariadb.managed_databases` and `with/mariadb.yml` in a similar way. See the [service documentation](../components/mariadb/README.md) for details about managing a MariaDB instance.
 - If the service supports multiple database drivers (MySQL, Postgres, SQLite, etc.), please prepare a `YOUR-SERVICE_database_type` variable on `defaults/main.yml` *without setting a default value*, so that users will be able to choose which one to use by themselves. Though a default database driver is specified for some roles in their component with a value such as `"{{ 'postgres' if postgres_enabled | default(false) else 'sqlite' }}"`, it is not a best practice, and should be avoided for a new role. Please refer to <https://github.com/mother-of-all-self-hosting/mash-playbook/issues/1061> for the context.
 
 </details>

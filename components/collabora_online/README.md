@@ -1,0 +1,87 @@
+<!--
+SPDX-FileCopyrightText: 2020 Aaron Raimist
+SPDX-FileCopyrightText: 2020 Chris van Dijk
+SPDX-FileCopyrightText: 2020 Dominik Zajac
+SPDX-FileCopyrightText: 2020 Mickaël Cornière
+SPDX-FileCopyrightText: 2020-2024 MDAD project contributors
+SPDX-FileCopyrightText: 2020-2024 Slavi Pantaleev
+SPDX-FileCopyrightText: 2022 François Darveau
+SPDX-FileCopyrightText: 2022 Julian Foad
+SPDX-FileCopyrightText: 2022 Warren Bailey
+SPDX-FileCopyrightText: 2023 Antonis Christofides
+SPDX-FileCopyrightText: 2023 Felix Stupp
+SPDX-FileCopyrightText: 2023 Julian-Samuel Gebühr
+SPDX-FileCopyrightText: 2023 Pierre 'McFly' Marty
+SPDX-FileCopyrightText: 2024-2026 Suguru Hirahara
+
+SPDX-License-Identifier: AGPL-3.0-or-later
+-->
+
+# Collabora Online Development Edition (CODE)
+
+The playbook can install and configure [Collabora Online Development Edition (CODE)](https://www.collaboraonline.com/code/) for you.
+
+CODE is the development version of [Collabora Online](https://www.collaboraonline.com/), which enables you to edit office documents online with integrations such as [Nextcloud](https://nextcloud.com/office/), [OwnCloud](https://owncloud.com/), and [XWiki](https://xwiki.com/en/Blog/Collabora-Connector-Application/).
+
+See the project's [documentation](https://www.collaboraonline.com/code/) to learn what CODE does and why it might be useful to you.
+
+For details about configuring the [Ansible role for CODE](https://github.com/mother-of-all-self-hosting/ansible-role-collabora-online), you can check them via:
+
+- 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-collabora-online/blob/main/docs/configuring-code.md) online
+- 📁 `roles/galaxy/collabora_online/docs/configuring-code.md` locally, if you have [fetched the Ansible roles](../../docs/installing.md)
+
+## Dependencies
+
+This service requires the following other services:
+
+- [Traefik](../traefik/README.md) reverse-proxy server
+
+>[!NOTE]
+> To use a CODE instance to edit office documents, it is necessary to integrate it with another software which functions as a data storage and manages access control for users. **You cannot edit the documents without such integrations.** This playbook supports installing Nextcloud. Refer to [this page](../nextcloud/README.md) for details about configuring it.
+
+## Configuration
+
+To enable this service, add the following configuration to your `vars.yml` file and re-run the [installation](../../docs/installing.md) process:
+
+```yaml
+########################################################################
+#                                                                      #
+# collabora_online                                                     #
+#                                                                      #
+########################################################################
+
+collabora_online_enabled: true
+
+collabora_online_hostname: collabora.example.com
+
+########################################################################
+#                                                                      #
+# /collabora_online                                                    #
+#                                                                      #
+########################################################################
+```
+
+### Set a password for the admin dashboard
+
+You also need to set a password for the admin dashboard. Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-collabora-online/blob/main/docs/configuring-code.md#set-a-password-for-the-admin-interface) on the role's documentation for details.
+
+### Integrate CODE instance with Nextcloud (optional)
+
+To use a CODE instance to edit office documents, you need to integrate it with a File Sync and Share solution that implements the WOPI (*Web Application Open Platform Interface*) protocol, such as Nextcloud.
+
+By default, this playbook is configured to automatically integrate the CODE instance with the Nextcloud instance which this playbook manages, if both of them are enabled.
+
+>[!NOTE]
+> Refer to [this section about the integration](../nextcloud/README.md#configuring-nextcloud-office-application) on our Nextcloud documentation for details.
+
+## Usage
+
+After running the command for installation, the CODE instance becomes available at the URL specified with `collabora_hostname`. With the configuration above, the service is hosted at `https://collabora.example.com`.
+
+## Troubleshooting
+
+Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-collabora-online/blob/main/docs/configuring-code.md#troubleshooting) on the role's documentation for details.
+
+## Related services
+
+- [Nextcloud](../nextcloud/README.md) — Popular collaboration solution

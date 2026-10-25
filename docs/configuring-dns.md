@@ -19,7 +19,7 @@ To reach your services, you'd need to do some DNS configuration.
 
 - create additional domains (`CNAME` DNS records pointing to the main generic domain) for large services or services that explicitly require their own dedicated domain
 
-Some services (like [Uptime Kuma](services/uptime-kuma.md)) require being hosted at their own dedicated domain. Others, you can put on their own domain/subdomain or at subpaths on any domain you'd like.
+Some services (like [Uptime Kuma](../components/uptime_kuma/README.md)) require being hosted at their own dedicated domain. Others, you can put on their own domain/subdomain or at subpaths on any domain you'd like.
 
 ## Example DNS settings
 
@@ -35,9 +35,9 @@ If you don't have IPv6 connectivity yet, you can skip the `AAAA` record. For mor
 
 With such a setup, you could reach:
 
-- the feedreader [Miniflux](services/miniflux.md) at `https://mash.example.com/miniflux` (if you set `miniflux_hostname: mash.example.com` and `miniflux_path_prefix: /miniflux` in your `vars.yml`)
+- the feedreader [Miniflux](../components/miniflux/README.md) at `https://mash.example.com/miniflux` (if you set `miniflux_hostname: mash.example.com` and `miniflux_path_prefix: /miniflux` in your `vars.yml`)
 
-- the [Radicale](services/radicale.md) CalDAV/CardDAV sever at `https://mash.example.com/radicale` (if you set `radicale_hostname: mash.example.com` and `radicale_path_prefix: /radicale` in your `vars.yml`)
+- the [Radicale](../components/radicale/README.md) CalDAV/CardDAV sever at `https://mash.example.com/radicale` (if you set `radicale_hostname: mash.example.com` and `radicale_path_prefix: /radicale` in your `vars.yml`)
 
 - Nextcloud at its own dedicated domain, at `https://cloud.example.com`
 

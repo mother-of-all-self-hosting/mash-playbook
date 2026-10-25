@@ -1,0 +1,165 @@
+<!--
+SPDX-FileCopyrightText: 2020 Aaron Raimist
+SPDX-FileCopyrightText: 2020 Chris van Dijk
+SPDX-FileCopyrightText: 2020 Dominik Zajac
+SPDX-FileCopyrightText: 2020 Mickaël Cornière
+SPDX-FileCopyrightText: 2020-2024 MDAD project contributors
+SPDX-FileCopyrightText: 2020-2024 Slavi Pantaleev
+SPDX-FileCopyrightText: 2022 François Darveau
+SPDX-FileCopyrightText: 2022 Julian Foad
+SPDX-FileCopyrightText: 2022 Warren Bailey
+SPDX-FileCopyrightText: 2023 Antonis Christofides
+SPDX-FileCopyrightText: 2023 Felix Stupp
+SPDX-FileCopyrightText: 2023 Julian-Samuel Gebühr
+SPDX-FileCopyrightText: 2023 Pierre 'McFly' Marty
+SPDX-FileCopyrightText: 2024 Thomas Miceli
+SPDX-FileCopyrightText: 2024-2026 Suguru Hirahara
+
+SPDX-License-Identifier: AGPL-3.0-or-later
+-->
+
+# Pocket ID
+
+The playbook can install and configure [Pocket ID](https://pocket-id.org) for you.
+
+Pocket ID is a simple OpenID Connect (OIDC) provider (Identity Provider, IdP) that allows users to authenticate with their passkeys to your services.
+
+See the project's [documentation](https://pocket-id.org/docs/) to learn what Pocket ID does and why it might be useful to you.
+
+For details about configuring the [Ansible role for Pocket ID](https://radicle.network/nodes/progressiv.radicle.garden/rad%3Az2vTmc3fLqxvpuT9EoZvkErWNZM1K), you can check them via:
+
+- 🌐 [the role's documentation](https://radicle.network/nodes/progressiv.radicle.garden/rad%3Az2vTmc3fLqxvpuT9EoZvkErWNZM1K/tree/docs/configuring-pocket-id.md) online
+- 📁 `roles/galaxy/pocket_id/docs/configuring-pocket-id.md` locally, if you have [fetched the Ansible roles](../../docs/installing.md)
+
+## Dependencies
+
+This service requires the following other services:
+
+- [Postgres](../postgres/README.md) / [SQLite](https://www.sqlite.org/) database
+- [Traefik](../traefik/README.md) reverse-proxy server
+- (optional) [exim-relay](../exim_relay/README.md) mailer
+
+>[!NOTE]
+> It is not recommended to store a SQLite database inside a networked filesystem, such as a NFS or SMB share. Refer to [this section](https://pocket-id.org/docs/configuration/environment-variables#database-connection-string) on the official documentation for details.
+
+## Configuration
+
+To enable this service, add the following configuration to your `vars.yml` file and re-run the [installation](../../docs/installing.md) process:
+
+```yaml
+########################################################################
+#                                                                      #
+# pocket_id                                                            #
+#                                                                      #
+########################################################################
+
+pocket_id_enabled: true
+
+pocket_id_hostname: pocketid.example.com
+
+########################################################################
+#                                                                      #
+# /pocket_id                                                           #
+#                                                                      #
+########################################################################
+```
+
+**Note**: hosting Pocket ID under a subpath (by configuring the `pocket_id_path_prefix` variable) does not seem to be possible due to Pocket ID's technical limitations.
+
+### Set a random string
+
+You also need to set a random string to the variable as below by adding the following configuration to your `vars.yml` file. The value can be generated with `pwgen -s 64 1` or in another way.
+
+```yaml
+pocket_id_environment_variable_encryption_key: YOUR_SECRET_KEY_HERE
+```
+
+### Select database to use
+
+Pocket ID can use either Postgres or SQLite, and you need to choose one. Refer to [this section](https://radicle.network/nodes/progressiv.radicle.garden/rad%3Az2vTmc3fLqxvpuT9EoZvkErWNZM1K/tree/docs/configuring-pocket-id.md#specify-database) on the role's documentation for details.
+
+>[!NOTE]
+> If you have not disabled Postgres explicitly with this playbook, the database for your existing installation is most likely to be `postgres`.
+
+### Configuring the mailer (optional)
+
+On Pocket ID you can set up a mailer for functions such as sending a login code. If you enable the [exim-relay](../exim_relay/README.md) service in your inventory configuration, the playbook will automatically configure it as a mailer for the service.
+
+To actually have the service use (and get messages sent through the exim-relay service), you will need to adjust settings on the service's UI after the service is installed, unless configuring additional settings with environment variables is enabled.
+
+>[!WARNING]
+> Without setting an authentication method such as DKIM, SPF, and DMARC for your hostname, emails are most likely to be quarantined as spam at recipient's mail servers. The worst scenario is that your server's IP address or hostname will be included in the spam list such as the one managed by [Spamhaus](https://www.spamhaus.org/), depending on the reputation. As the exim-relay service supports DKIM signing, refer to [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-exim-relay/blob/main/docs/configuring-exim-relay.md#enable-dkim-support-optional) for details about how to set it up.
+
+### Configuring additional settings with environment variables (optional)
+
+The Pocket ID instance's additional settings can be specified with *either its UI or environment variables*.
+
+By default, this playbook enables configuring them on the UI, which therefore disables doing so with environment variables.
+
+>[!NOTE]
+> Basic settings can still be configured with environment variables.
+
+Refer to [this section](https://radicle.network/nodes/progressiv.radicle.garden/rad%3Az2vTmc3fLqxvpuT9EoZvkErWNZM1K/tree/docs/configuring-pocket-id.md#enable-or-disable-overriding-ui-configuration-with-environment-variables) on the role's documentation for details about what needs specifying.
+
+## Usage
+
+After running the command for installation, the Pocket ID instance becomes available at the URL specified with `pocket_id_hostname`. With the configuration above, the service is hosted at `https://pocketid.example.com`.
+
+To get started, open the URL `https://pocketid.example.com/setup` with a web browser to create an administrator account.
+
+Refer to [this section](https://radicle.network/nodes/progressiv.radicle.garden/rad%3Az2vTmc3fLqxvpuT9EoZvkErWNZM1K/tree/docs/configuring-pocket-id.md#usage) on the role's documentation for details about how to use Pocket ID.
+
+If you are interested in integrating Pocket ID with [Tinyauth](https://tinyauth.app), you might also be interested in having a look at [this section](../tinyauth/README.md#integrating-with-pocket-id).
+
+### Integrating with a LDAP server
+
+Pocket ID supports LDAP for user management. This playbook supports [LLDAP](../lldap/README.md), and it is possible to set up the LLDAP instance as a source for users.
+
+After installing it and creating an admin user (and optionally another user with less privileges), you can configure LDAP client settings and the attribute mapping on the Pocket ID's UI.
+
+If you enabled configuring additional settings with environment variables (by setting `pocket_id_environment_variable_ui_config_disabled` to `true`), you can follow [this example](https://radicle.network/nodes/progressiv.radicle.garden/rad%3Az2vTmc3fLqxvpuT9EoZvkErWNZM1K/tree/docs/configuring-pocket-id.md#configure-ldap-server-settings-with-environment-variables-optional) on the role's documentation to override the default values on the playbook per your needs.
+
+If you are looking for a less complicated example to get started, you can refer to the one below to get an idea about how it works. Note **it is not recommended to use a user with admin privileges for binding**, as search privileges are sufficient. On LLDAP it is recommended to use instead a user in the `lldap_strict_readonly` or `lldap_password_manager` group.
+
+```yaml
+lldap_environment_variables_lldap_ldap_user_dn: admin
+lldap_environment_variables_lldap_ldap_user_pass: PASSWORD_FOR_ADMIN
+lldap_environment_variables_lldap_ldap_base_dn: dc=domain,dc=com
+
+…
+
+# Specify LDAP bind Distinguished Name (dn) for the user
+pocket_id_environment_variable_ldap_bind_dn: uid={{ lldap_environment_variables_lldap_ldap_user_dn }},ou=people,{{ lldap_environment_variables_lldap_ldap_base_dn }}
+
+# Specify the password for the bind DN account
+pocket_id_environment_variable_ldap_bind_password: "{{ lldap_environment_variables_lldap_ldap_user_pass }}"
+
+# Specify the top-level path to search for users and groups
+pocket_id_environment_variable_ldap_base: "{{ lldap_environment_variables_lldap_ldap_base_dn }}"
+
+# Specify LDAP user search filter
+pocket_id_environment_variable_ldap_user_search_filter: "(objectClass=person)"
+
+# Specify the search filter to use to search/sync groups
+pocket_id_environment_variable_ldap_user_group_search_filter: "(objectClass=groupOfNames)"
+```
+
+>[!NOTE]
+> You can manually configure these settings for the LDAP server on the UI, if configuring additional settings with environment variable is disabled. This case, make sure to set `ldap://mash-lldap:3890` to "LDAP URL" and enable "skip certificate verification".
+
+Refer to these guides as well:
+
+- <https://pocket-id.org/docs/configuration/ldap>
+- <https://github.com/lldap/lldap/blob/main/README.md#general-configuration-guide>
+
+## Troubleshooting
+
+Refer to [this section](https://radicle.network/nodes/progressiv.radicle.garden/rad%3Az2vTmc3fLqxvpuT9EoZvkErWNZM1K/tree/docs/configuring-pocket-id.md#troubleshooting) on the role's documentation for details.
+
+## Related services
+
+- [authentik](../authentik/README.md) — Identity Provider focused on flexibility and versatility
+- [Authelia](../authelia/README.md) — Authentication and authorization server that can work as a companion to common reverse proxies
+- [Keycloak](../keycloak/README.md) — Identity and access management solution
+- [LLDAP](../lldap/README.md) — Lightweight authentication server that provides an opinionated, simplified LDAP interface for authentication
+- [Tinyauth](../tinyauth/README.md) — Authentication middleware that adds a login screen or OAuth with providers to Docker services

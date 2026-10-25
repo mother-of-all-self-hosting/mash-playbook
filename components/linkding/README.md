@@ -1,0 +1,92 @@
+<!--
+SPDX-FileCopyrightText: 2020 - 2024 MDAD project contributors
+SPDX-FileCopyrightText: 2020 - 2024 Slavi Pantaleev
+SPDX-FileCopyrightText: 2020 Aaron Raimist
+SPDX-FileCopyrightText: 2020 Chris van Dijk
+SPDX-FileCopyrightText: 2020 Dominik Zajac
+SPDX-FileCopyrightText: 2020 Mickaël Cornière
+SPDX-FileCopyrightText: 2022 François Darveau
+SPDX-FileCopyrightText: 2022 Julian Foad
+SPDX-FileCopyrightText: 2022 Warren Bailey
+SPDX-FileCopyrightText: 2023 - 2025 MASH project contributors
+SPDX-FileCopyrightText: 2023 Antonis Christofides
+SPDX-FileCopyrightText: 2023 Felix Stupp
+SPDX-FileCopyrightText: 2023 Julian-Samuel Gebühr
+SPDX-FileCopyrightText: 2023 Pierre 'McFly' Marty
+SPDX-FileCopyrightText: 2024 - 2025 Suguru Hirahara
+
+SPDX-License-Identifier: AGPL-3.0-or-later
+-->
+
+# linkding
+
+The playbook can install and configure [linkding](https://linkding.link) for you.
+
+linkding is a bookmark manager that is designed be to be minimal and fast.
+
+See the project's [documentation](https://linkding.link/installation/) to learn what linkding does and why it might be useful to you.
+
+For details about configuring the [Ansible role for linkding](https://github.com/mother-of-all-self-hosting/ansible-role-linkding), you can check them via:
+
+- 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-linkding/blob/main/docs/configuring-linkding.md) online
+- 📁 `roles/galaxy/linkding/docs/configuring-linkding.md` locally, if you have [fetched the Ansible roles](../../docs/installing.md)
+
+## Dependencies
+
+This service requires the following other services:
+
+- [Postgres](../postgres/README.md) / [SQLite](https://www.sqlite.org/) database
+- [Traefik](../traefik/README.md) reverse-proxy server
+
+## Configuration
+
+To enable this service, add the following configuration to your `vars.yml` file and re-run the [installation](../../docs/installing.md) process:
+
+```yaml
+########################################################################
+#                                                                      #
+# linkding                                                             #
+#                                                                      #
+########################################################################
+
+linkding_enabled: true
+
+linkding_hostname: mash.example.com
+linkding_path_prefix: /linkding
+
+linkding_superuser_username: ''
+linkding_superuser_password: ''
+
+########################################################################
+#                                                                      #
+# /linkding                                                            #
+#                                                                      #
+########################################################################
+```
+
+### Select database to use
+
+linkding can use either Postgres or SQLite, and you need to choose one. Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-linkding/blob/main/docs/configuring-linkding.md#specify-database) on the role's documentation for details.
+
+>[!NOTE]
+> If you have not disabled Postgres explicitly with this playbook, the database for your existing installation is most likely to be `postgres`.
+
+### Configure superuser (optional)
+
+You can optionally create an initial "superuser". Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-linkding/blob/main/docs/configuring-linkding.md#configure-superuser-optional) on the role's documentation for details.
+
+## Usage
+
+After running the command for installation, the linkding instance becomes available at the URL specified with `linkding_hostname` and `linkding_path_prefix`. With the configuration above, the service is hosted at `https://mash.example.com/linkding`.
+
+To get started, open the URL with a web browser to log in to the instance with the administrator account, defined with the `linkding_superuser_username` and `linkding_superuser_password` variables.
+
+## Troubleshooting
+
+Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-linkding/blob/main/docs/configuring-linkding.md#troubleshooting) on the role's documentation for details.
+
+## Related services
+
+- [Karakeep](../karakeep/README.md) — Bookmark manager to collect, organize and archive webpages
+- [Linkwarden](../linkwarden/README.md) — Collaborative bookmark manager
+- [Readeck](../readeck/README.md) — Bookmark manager and a read-later tool combined in one

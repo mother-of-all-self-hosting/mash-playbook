@@ -14,7 +14,7 @@ For role bumps, check the affected wiring, especially the role's component (`com
 and the `with/<role>.yml` files of other components.
 If the role handles its configuration changes, the playbook wiring and existing docs remain valid,
 and no consequential manual migration is needed, the version pin alone is usually enough.
-Keep `docs/services/` focused on current configuration and lasting procedures.
+Keep service docs (`components/<role>/README.md`) focused on current configuration and lasting procedures.
 Do not use service pages as another changelog for role releases.
 Correct stale playbook examples, but leave role-specific option details in the role's documentation.
 

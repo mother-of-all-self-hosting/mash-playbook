@@ -207,7 +207,7 @@ def fail(message):
 COMPONENT_KEYS = {"activation_prefix", "setup", "accepts", "inject"}
 SETUP_KEYS = {"priority", "entry"}
 ACCEPTS_KEYS = {"description", "into", "required_keys"}
-COMPONENT_FILES = {"component.yml", "requirements.yml", "wiring.yml", "with", "roles"}
+COMPONENT_FILES = {"component.yml", "README.md", "requirements.yml", "wiring.yml", "with", "roles"}
 
 # Components without a `setup` priority run at this one, sorted by name
 DEFAULT_PRIORITY = 1000

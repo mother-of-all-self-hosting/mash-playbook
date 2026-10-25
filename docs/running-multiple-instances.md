@@ -10,7 +10,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
 On this playbook, each Ansible role can only be invoked once and made to install one instance of the service it is responsible for. So, if you need multiple instances (of whichever service), you'll need some workarounds.
 
-Let's say you are setting up [PeerTube](services/peertube.md) and [NetBox](services/netbox.md), both of which require a [Valkey](services/valkey.md) instance, on the same host called `mash.example.com`.
+Let's say you are setting up [PeerTube](../components/peertube/README.md) and [NetBox](../components/netbox/README.md), both of which require a [Valkey](../components/valkey/README.md) instance, on the same host called `mash.example.com`.
 
 If you just add `valkey_enabled: true` to `vars.yml` for `mash.example.com`, a single shared Valkey instance (`mash-valkey`) would be set up. However, it is not recommended because sharing the Valkey instance has security concerns and possibly causes data conflicts. In this case, you should not add `valkey_enabled: true` to `vars.yml` but install dedicated Valkey instances for each of them.
 
@@ -44,8 +44,8 @@ mash.example.com-peertube-deps ansible_host=YOUR_SERVER_IP_ADDRESS_HERE
 
 This creates a new group (called `mash_example_com`) which contains all 3 hosts:
 
-- (**new**) `mash.example.com-netbox-deps` — a new host, for your [NetBox](services/netbox.md) dependencies
-- (**new**) `mash.example.com-peertube-deps` — a new host, for your [PeerTube](services/peertube.md) dependencies
+- (**new**) `mash.example.com-netbox-deps` — a new host, for your [NetBox](../components/netbox/README.md) dependencies
+- (**new**) `mash.example.com-peertube-deps` — a new host, for your [PeerTube](../components/peertube/README.md) dependencies
 - (old) `mash.example.com` — your main inventory host
 
 You can just add a new entry to `[mash_example_com]` in order to have another supplementary host contained in the group.
@@ -230,7 +230,7 @@ Finally, run the [installation](installing.md) command to create supplementary h
 
 **Can't I just use the same Valkey instance for multiple services?**
 
-> You may or you may not. See the [Valkey](services/valkey.md) documentation for why you shouldn't do this.
+> You may or you may not. See the [Valkey](../components/valkey/README.md) documentation for why you shouldn't do this.
 
 **Can't I just create one host and a separate stack for each service** (e.g. Nextcloud + all dependencies on one inventory host; PeerTube + all dependencies on another inventory host; with both inventory hosts targeting the same server)?
 

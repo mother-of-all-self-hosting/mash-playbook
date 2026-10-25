@@ -1,0 +1,69 @@
+<!--
+SPDX-FileCopyrightText: 2020 - 2024 MDAD project contributors
+SPDX-FileCopyrightText: 2020 - 2024 Slavi Pantaleev
+SPDX-FileCopyrightText: 2020 Aaron Raimist
+SPDX-FileCopyrightText: 2020 Chris van Dijk
+SPDX-FileCopyrightText: 2020 Dominik Zajac
+SPDX-FileCopyrightText: 2020 Mickaël Cornière
+SPDX-FileCopyrightText: 2022 François Darveau
+SPDX-FileCopyrightText: 2022 Julian Foad
+SPDX-FileCopyrightText: 2022 Warren Bailey
+SPDX-FileCopyrightText: 2023 Antonis Christofides
+SPDX-FileCopyrightText: 2023 Felix Stupp
+SPDX-FileCopyrightText: 2023 Julian-Samuel Gebühr
+SPDX-FileCopyrightText: 2023 Pierre 'McFly' Marty
+SPDX-FileCopyrightText: 2024 - 2025 Suguru Hirahara
+
+SPDX-License-Identifier: AGPL-3.0-or-later
+-->
+
+# OpenRegex
+
+The playbook can install and configure [OpenRegex](https://github.com/SunneV/OpenRegex) for you.
+
+OpenRegex is a self-hosted, web-based regular expression (regex) tester and debugger.
+
+See the project's [documentation](https://github.com/SunneV/OpenRegex/blob/main/README.md) to learn what OpenRegex does and why it might be useful to you.
+
+For details about configuring the [Ansible role for OpenRegex](https://radicle.network/nodes/progressiv.radicle.garden/rad%3Az2kcNwMys48Wy3SLPnLU7oBnkkQyj), you can check them via:
+
+- 🌐 [the role's documentation](https://radicle.network/nodes/progressiv.radicle.garden/rad%3Az2kcNwMys48Wy3SLPnLU7oBnkkQyj/tree/docs/configuring-openregex.md) online
+- 📁 `roles/galaxy/openregex/docs/configuring-openregex.md` locally, if you have [fetched the Ansible roles](../../docs/installing.md)
+
+## Dependencies
+
+This service requires the following other services:
+
+- [Traefik](../traefik/README.md) reverse-proxy server
+
+## Configuration
+
+To enable this service, add the following configuration to your `vars.yml` file and re-run the [installation](../../docs/installing.md) process:
+
+```yaml
+########################################################################
+#                                                                      #
+# openregex                                                            #
+#                                                                      #
+########################################################################
+
+openregex_enabled: true
+
+openregex_hostname: openregex.example.com
+
+########################################################################
+#                                                                      #
+# /openregex                                                           #
+#                                                                      #
+########################################################################
+```
+
+**Note**: hosting OpenRegex under a subpath (by configuring the `openregex_path_prefix` variable) does not seem to be possible due to OpenRegex's technical limitations.
+
+## Usage
+
+After running the command for installation, the OpenRegex instance becomes available at the URL specified with `openregex_hostname`. With the configuration above, the service is hosted at `https://openregex.example.com`.
+
+## Troubleshooting
+
+Refer to [this section](https://radicle.network/nodes/progressiv.radicle.garden/rad%3Az2kcNwMys48Wy3SLPnLU7oBnkkQyj/tree/docs/configuring-openregex.md#troubleshooting) on the role's documentation for details.

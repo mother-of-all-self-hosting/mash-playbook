@@ -1,0 +1,25 @@
+<!--
+SPDX-FileCopyrightText: 2021 foxcris
+SPDX-FileCopyrightText: 2021 - 2024 Slavi Pantaleev
+SPDX-FileCopyrightText: 2023 Julian-Samuel Gebühr
+SPDX-FileCopyrightText: 2024 - 2025 Suguru Hirahara
+
+SPDX-License-Identifier: AGPL-3.0-or-later
+-->
+
+# Apache Tika Server
+
+The playbook can install and configure [Apache Tika Server](https://github.com/apache/tika-docker) for you.
+
+Apache Tika Server is a toolkit which detects and extracts metadata and text from different file types (such as PPT, XLS, and PDF).
+
+For details about configuring the [Ansible role for Apache Tika Server](https://radicle.network/nodes/progressiv.radicle.garden/rad%3Azbk3MzAN6SX6d8pa9DT2kHDscyr6), you can check them via:
+
+- 🌐 [the role's documentation](https://radicle.network/nodes/progressiv.radicle.garden/rad%3Azbk3MzAN6SX6d8pa9DT2kHDscyr6/tree/docs/configuring-tika.md) online
+- 📁 `roles/galaxy/tika/docs/configuring-tika.md` locally, if you have [fetched the Ansible roles](../../docs/installing.md)
+
+## Related services
+
+- [Gotenberg](../gotenberg/README.md) — Docker-based API for converting documents to PDF
+- [Open Archiver](../openarchiver/README.md) — Archive, store, index, and search emails from various platforms, including generic IMAP-enabled email inboxes
+- [Paperless-ngx](../paperless/README.md) — Document management system that transforms your physical documents into a searchable online archive

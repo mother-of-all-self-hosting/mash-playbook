@@ -98,11 +98,11 @@
     msg: |-
       KeyDB was removed from the playbook in August 2026, because the KeyDB project has been unmaintained since 2023.
 
-      Valkey is a well-maintained alternative (also a Redis fork, protocol-compatible) and has been this playbook's recommendation since 2024-11-23. See `docs/services/valkey.md` for enabling it and pointing your services at it.
+      Valkey is a well-maintained alternative (also a Redis fork, protocol-compatible) and has been this playbook's recommendation since 2024-11-23. See `components/valkey/README.md` for enabling it and pointing your services at it.
 
       Please remove all `keydb_*` variables from your configuration file (vars.yml).
 
-      You may also wish to uninstall the KeyDB service manually. See `docs/services/keydb.md` for more information.
+      You may also wish to uninstall the KeyDB service manually. See `docs/removed-services/keydb.md` for more information.
 
       The following variables in your configuration need to be removed: {{ lookup('ansible.builtin.varnames', '^keydb_.+', wantlist=True) | join(', ') }}
   when: "lookup('ansible.builtin.varnames', '^keydb_.+', wantlist=True) | length > 0"
@@ -114,11 +114,11 @@
 
       Upstream has rewritten the dashboard as a pure front-end which ships inside the `apache/apisix` container image itself, starting with APISIX 3.13. Your APISIX is already serving it at `/ui/` on its Admin API port, so there is nothing to install.
 
-      Note that the bundled dashboard shares a listener and an IP allowlist with the Admin API and has no authentication of its own, so reaching it is not the same as reaching the standalone dashboard was. See `docs/services/apisix.md` for how to get to it safely.
+      Note that the bundled dashboard shares a listener and an IP allowlist with the Admin API and has no authentication of its own, so reaching it is not the same as reaching the standalone dashboard was. See `components/apisix/README.md` for how to get to it safely.
 
       Please remove all `apisix_dashboard_*` variables from your configuration file (vars.yml).
 
-      You may also wish to uninstall the standalone APISIX Dashboard service manually. See `docs/services/apisix-dashboard.md` for more information.
+      You may also wish to uninstall the standalone APISIX Dashboard service manually. See `docs/removed-services/apisix-dashboard.md` for more information.
 
       The following variables in your configuration need to be removed: {{ lookup('ansible.builtin.varnames', '^apisix_dashboard_.+', wantlist=True) | join(', ') }}
   when: "lookup('ansible.builtin.varnames', '^apisix_dashboard_.+', wantlist=True) | length > 0"
@@ -150,7 +150,7 @@
 
       The `# apisix_gateway` section markers around that block in your vars.yml are now `# apisix`, and the tags are too: `just install-service apisix` rather than `just install-service apisix-gateway`.
 
-      Only the names changed. `apisix_identifier` still resolves to the same value, so your systemd service, container, container network and data path keep the names they have now, and nothing is reinstalled or moved. See `docs/services/apisix.md`.
+      Only the names changed. `apisix_identifier` still resolves to the same value, so your systemd service, container, container network and data path keep the names they have now, and nothing is reinstalled or moved. See `components/apisix/README.md`.
   when: apisix_deprecated_variables | length > 0
 
 - name: (Deprecation) Catch and report Firezone variables
@@ -160,7 +160,7 @@
 
       Please remove all `firezone_*` variables from your configuration file (vars.yml).
 
-      You may also wish to uninstall the service manually. See `docs/services/firezone.md` for more information.
+      You may also wish to uninstall the service manually. See `docs/removed-services/firezone.md` for more information.
 
       The following variables in your configuration need to be removed: {{ lookup('ansible.builtin.varnames', '^firezone_.+', wantlist=True) | join(', ') }}
   when: "lookup('ansible.builtin.varnames', '^firezone_.+', wantlist=True) | length > 0"

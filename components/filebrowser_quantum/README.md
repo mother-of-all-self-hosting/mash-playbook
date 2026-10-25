@@ -1,0 +1,93 @@
+<!--
+SPDX-FileCopyrightText: 2020 Aaron Raimist
+SPDX-FileCopyrightText: 2020 Chris van Dijk
+SPDX-FileCopyrightText: 2020 Dominik Zajac
+SPDX-FileCopyrightText: 2020 Mickaël Cornière
+SPDX-FileCopyrightText: 2020-2024 MDAD project contributors
+SPDX-FileCopyrightText: 2020-2025 Slavi Pantaleev
+SPDX-FileCopyrightText: 2022 François Darveau
+SPDX-FileCopyrightText: 2022 Julian Foad
+SPDX-FileCopyrightText: 2022 Warren Bailey
+SPDX-FileCopyrightText: 2023 Antonis Christofides
+SPDX-FileCopyrightText: 2023 Felix Stupp
+SPDX-FileCopyrightText: 2023 Gergely Horváth
+SPDX-FileCopyrightText: 2023 Julian-Samuel Gebühr
+SPDX-FileCopyrightText: 2023 Pierre 'McFly' Marty
+SPDX-FileCopyrightText: 2023, 2024 MASH project contributors
+SPDX-FileCopyrightText: 2024 Philipp Homann
+SPDX-FileCopyrightText: 2024-2026 Suguru Hirahara
+
+SPDX-License-Identifier: AGPL-3.0-or-later
+-->
+
+# FileBrowser Quantum
+
+The playbook can install and configure [FileBrowser Quantum](https://filebrowserquantum.com/) for you.
+
+FileBrowser Quantum is a free self-hosted web-based file manager.
+
+See the project's [documentation](https://filebrowserquantum.com/en/docs/) to learn what FileBrowser Quantum does and why it might be useful to you.
+
+For details about configuring the [Ansible role for FileBrowser Quantum](https://radicle.network/nodes/progressiv.radicle.garden/rad%3Az3ALGSKDhVLeMnR49YPXk5yv2yTge), you can check them via:
+
+- 🌐 [the role's documentation](https://radicle.network/nodes/progressiv.radicle.garden/rad%3Az3ALGSKDhVLeMnR49YPXk5yv2yTge/tree/docs/configuring-filebrowser-quantum.md) online
+- 📁 `roles/galaxy/filebrowser_quantum/docs/configuring-filebrowser-quantum.md` locally, if you have [fetched the Ansible roles](../../docs/installing.md)
+
+## Dependencies
+
+This service requires the following other services:
+
+- [Traefik](../traefik/README.md) reverse-proxy server
+
+## Configuration
+
+To enable this service, add the following configuration to your `vars.yml` file and re-run the [installation](../../docs/installing.md) process:
+
+```yaml
+########################################################################
+#                                                                      #
+# filebrowser_quantum                                                  #
+#                                                                      #
+########################################################################
+
+filebrowser_quantum_enabled: true
+
+filebrowser_quantum_hostname: mash.example.com
+filebrowser_quantum_path_prefix: /filebrowser
+
+########################################################################
+#                                                                      #
+# /filebrowser_quantum                                                 #
+#                                                                      #
+########################################################################
+```
+
+### Set administrator's account details
+
+By default the password authentication is enabled, and you need to specify an administrator's login credential. Refer to [this section](https://radicle.network/nodes/progressiv.radicle.garden/rad%3Az3ALGSKDhVLeMnR49YPXk5yv2yTge/tree/docs/configuring-filebrowser-quantum.md#set-administrator-39-s-account-details) on the role's documentation for details.
+
+### Configuring OIDC authentication (optional)
+
+Alternatively, you can enable OIDC authentication for FileBrowser Quantum. Refer to [this section](https://radicle.network/nodes/progressiv.radicle.garden/rad%3Az3ALGSKDhVLeMnR49YPXk5yv2yTge/tree/docs/configuring-filebrowser-quantum.md#configuring-oidc-authentication-optional) on the role's documentation for necessary settings.
+
+### Integrating Euro-Office (optional)
+
+You can integrate [Euro-Office](https://github.com/Euro-Office/DocumentServer) with the service to edit office documents on the service. Refer to [this section](../eurooffice/README.md#integrating-euro-office-with-filebrowser-quantum-optional) for details about how to set up the integration.
+
+## Usage
+
+After running the command for installation, the FileBrowser Quantum instance becomes available at the URL specified with `filebrowser_quantum_hostname`. With the configuration above, the service is hosted at `https://filebrowser.example.com`.
+
+To get started, open the URL with a web browser to log in to the instance with the administrator account. The default username of the administrator account is `admin`.
+
+## Troubleshooting
+
+Refer to [this section](https://radicle.network/nodes/progressiv.radicle.garden/rad%3Az3ALGSKDhVLeMnR49YPXk5yv2yTge/tree/docs/configuring-filebrowser-quantum.md#troubleshooting) on the role's documentation for details.
+
+## Related services
+
+- [authentik](../authentik/README.md) — Identity Provider focused on flexibility and versatility
+- [Euro-Office](../eurooffice/README.md) — Online office suite comprising viewers and editors
+- [File Browser](../filebrowser/README.md) — Web-based file manager
+- [FileGator](../filegator/README.md) — Web-based file manager
+- [Pocket ID](../pocket_id/README.md) — OIDC provider for passkey-only authentication

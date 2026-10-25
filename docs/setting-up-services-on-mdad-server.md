@@ -7,7 +7,7 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
 # Setting up services on the Matrix server configured with the MDAD playbook
 
-If you use the [matrix-docker-ansible-deploy (MDAD)](https://github.com/spantaleev/matrix-docker-ansible-deploy/) Ansible playbook to manage [Matrix](https://matrix.org/) services on your server, you can configure the MASH playbook to set up services such as [Forgejo](services/forgejo.md), [Nextcloud](services/nextcloud.md), [PeerTube](services/peertube.md), [VaultWarden](services/vaultwarden.md), and tons of other [supported services](./supported-services.md), along with the Matrix services on the same server. This page explains how to do so.
+If you use the [matrix-docker-ansible-deploy (MDAD)](https://github.com/spantaleev/matrix-docker-ansible-deploy/) Ansible playbook to manage [Matrix](https://matrix.org/) services on your server, you can configure the MASH playbook to set up services such as [Forgejo](../components/forgejo/README.md), [Nextcloud](../components/nextcloud/README.md), [PeerTube](../components/peertube/README.md), [VaultWarden](../components/vaultwarden/README.md), and tons of other [supported services](./supported-services.md), along with the Matrix services on the same server. This page explains how to do so.
 
 The basic steps to configure the MASH playbook and use it to install services are pretty same as doing so with the MDAD playbook: **setting up prerequisites (if running this playbook on a different computer), retrieving the MASH playbook, configuring it as well as the DNS records, and installing the services on the server**. If you have been accustomed to maintain Matrix services with the MDAD playbook, it should not be difficult to set up and use this playbook too.
 
@@ -35,7 +35,7 @@ To configure them, go to your DNS service provider, and adjust DNS records as de
 
 If you are adding the common `mash.example.com` domain, set the same IP address as the Matrix server (e.g. `matrix.example.com`) to its A record.
 
-💡 As [Uptime Kuma](services/uptime-kuma.md), which needs its subdomain for now, will be enabled by default with the sample configuration file, you can go ahead and set its CNAME record in advance. The record should match with `uptime_kuma_hostname`, which will be specified when configuring `vars.yml` file next. If you will not enable the service, you do not have to add the CNAME record, of course.
+💡 As [Uptime Kuma](../components/uptime_kuma/README.md), which needs its subdomain for now, will be enabled by default with the sample configuration file, you can go ahead and set its CNAME record in advance. The record should match with `uptime_kuma_hostname`, which will be specified when configuring `vars.yml` file next. If you will not enable the service, you do not have to add the CNAME record, of course.
 
 ## Configure the MASH playbook
 
@@ -63,9 +63,9 @@ If you have edited the MDAD's `hosts` file per your preference (such as adjustin
 
 Having edited the `hosts` file, you need to edit the `vars.yml` file by setting passwords, etc. Check the comments on the file for details about how to configure it.
 
-Note that `example.com` is specified as hostname values for services enabled by default such as [exim-relay](services/exim-relay.md), [Uptime Kuma](services/uptime-kuma.md), etc., so do not forget to replace them with your domain.
+Note that `example.com` is specified as hostname values for services enabled by default such as [exim-relay](../components/exim_relay/README.md), [Uptime Kuma](../components/uptime_kuma/README.md), etc., so do not forget to replace them with your domain.
 
-💡 The modified sample `vars.yml` file is not configured to install basic services such as [Docker](services/docker.md) and [Traefik](services/traefik.md), as both have been installed and configured on your Matrix server with the MDAD playbook. Installing them with this playbook will cause conflicts on the server. You can check [this page on interoperability](interoperability.md) for more information.
+💡 The modified sample `vars.yml` file is not configured to install basic services such as [Docker](../components/docker/README.md) and [Traefik](../components/traefik/README.md), as both have been installed and configured on your Matrix server with the MDAD playbook. Installing them with this playbook will cause conflicts on the server. You can check [this page on interoperability](interoperability.md) for more information.
 
 ## Install services by running the MASH playbook
 

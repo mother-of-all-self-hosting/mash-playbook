@@ -59,4 +59,4 @@ For details about upgrading it, refer to the [upgrading MariaDB guide](https://g
 
 ## PostgreSQL major version upgrade
 
-Major version upgrades to the PostgreSQL database also need to be performed manually. Refer to the [upgrading PostgreSQL guide](services/postgres.md#upgrading-postgresql) for details.
+Major version upgrades to the PostgreSQL database also need to be performed manually. Refer to the [upgrading PostgreSQL guide](../components/postgres/README.md#upgrading-postgresql) for details.

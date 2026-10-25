@@ -20,7 +20,7 @@ Here are some playbook tags that you should be familiar with:
 
 - `install-all` — like `setup-all`, but skips uninstallation tasks. Useful for maintaining your setup quickly when its components remain unchanged. If you adjust your `vars.yml` to remove components, you'd need to run `setup-all` though, or these components will still remain installed
 
-- `setup-SERVICE` (e.g. `setup-miniflux`) — runs the setup tasks only for a given role, but does not start/restart services. You can discover these additional tags in each role (`roles/**/tasks/main.yml`). Running per-component setup tasks is **not recommended**, as components sometimes depend on each other and running just the setup tasks for a given component may not be enough. For example, setting up the [Miniflux](services/miniflux.md) service, in addition to the `setup-miniflux` tag, requires database changes (the `setup-postgres` tag) as well.
+- `setup-SERVICE` (e.g. `setup-miniflux`) — runs the setup tasks only for a given role, but does not start/restart services. You can discover these additional tags in each role (`roles/**/tasks/main.yml`). Running per-component setup tasks is **not recommended**, as components sometimes depend on each other and running just the setup tasks for a given component may not be enough. For example, setting up the [Miniflux](../components/miniflux/README.md) service, in addition to the `setup-miniflux` tag, requires database changes (the `setup-postgres` tag) as well.
 
 - `install-SERVICE` (e.g. `install-miniflux`) — like `setup-SERVICE`, but skips uninstallation tasks. See `install-all` above for additional information.
 

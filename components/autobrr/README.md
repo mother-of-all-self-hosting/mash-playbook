@@ -1,0 +1,70 @@
+<!--
+SPDX-FileCopyrightText: 2025 MASH project contributors
+SPDX-FileCopyrightText: 2025, 2026 Suguru Hirahara
+
+SPDX-License-Identifier: AGPL-3.0-or-later
+-->
+
+# Autobrr
+
+The playbook can install and configure [Autobrr](https://autobrr.com/) for you.
+
+Autobrr is a modern autodl-irssi replacement, an easy to use download automator for torrents and Usenet.
+
+See the project's [documentation](https://autobrr.com/introduction) to learn what Autobrr does and why it might be useful to you.
+
+For details about configuring the [Ansible role for Autobrr](https://github.com/mother-of-all-self-hosting/ansible-role-autobrr), you can check them via:
+
+- 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-autobrr/blob/main/docs/configuring-autobrr.md) online
+- 📁 `roles/galaxy/autobrr/docs/configuring-autobrr.md` locally, if you have [fetched the Ansible roles](../../docs/installing.md)
+
+## Dependencies
+
+This service requires the following other services:
+
+- [Traefik](../traefik/README.md) reverse-proxy server
+
+## Configuration
+
+To enable this service, add the following configuration to your `vars.yml` file and re-run the [installation](../../docs/installing.md) process:
+
+```yaml
+########################################################################
+#                                                                      #
+# autobrr                                                              #
+#                                                                      #
+########################################################################
+
+autobrr_enabled: true
+
+autobrr_hostname: autobrr.example.com
+
+########################################################################
+#                                                                      #
+# /autobrr                                                             #
+#                                                                      #
+########################################################################
+```
+
+## Usage
+
+After running the command for installation, the Autobrr instance becomes available at the URL specified with `autobrr_hostname`. With the configuration above, the service is hosted at `https://autobrr.example.com`.
+
+>[!NOTE]
+> The `autobrr_path_prefix` variable can be adjusted to host under a subpath (e.g. `autobrr_path_prefix: /autobrr`), but this hasn't been tested yet.
+
+To get started, open the URL with a web browser to create an account.
+
+## Troubleshooting
+
+Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-autobrr/blob/main/docs/configuring-autobrr.md#troubleshooting) on the role's documentation for details.
+
+## Related services
+
+- "* Arr" applications — [Homarr](../homarr/README.md) / [Radarr](../radarr/README.md) / [Sonarr](../sonarr/README.md)
+- [Jackett](../jackett/README.md)
+- [Jellyfin](../jellyfin/README.md)
+- [Seerr](../seerr/README.md)
+- [Plex](../plex/README.md)
+- [qBittorrent](../qbittorrent/README.md)
+- [qui](../qui/README.md)

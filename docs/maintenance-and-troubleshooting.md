@@ -19,7 +19,7 @@ You can free some disk space from Docker by running `docker system prune -a` on 
 
 ### Consider disabling unused services
 
-To reduce attack surfaces like zero-day vulnerabilities it might be worth considering to disable services if they are not actively used. If a certain service for mission critical software like databases (such as [pgAdmin](services/pgadmin.md) and [phpMyAdmin](services/phpmyadmin.md)) does not have to be always online, you can safely get one run only when necessary, since the data in the container to be persistent is stored in its bind mount or a Docker volume. It will also help you to avoid running outdated services as unattended.
+To reduce attack surfaces like zero-day vulnerabilities it might be worth considering to disable services if they are not actively used. If a certain service for mission critical software like databases (such as [pgAdmin](../components/pgadmin/README.md) and [phpMyAdmin](../components/phpmyadmin/README.md)) does not have to be always online, you can safely get one run only when necessary, since the data in the container to be persistent is stored in its bind mount or a Docker volume. It will also help you to avoid running outdated services as unattended.
 
 ### MariaDB
 
@@ -27,7 +27,7 @@ See the dedicated [MariaDB Maintenance](https://github.com/mother-of-all-self-ho
 
 ### Postgres
 
-See the dedicated [PostgreSQL Maintenance](services/postgres.md#maintenance) documentation page.
+See the dedicated [PostgreSQL Maintenance](../components/postgres/README.md#maintenance) documentation page.
 
 ## Troubleshooting
 

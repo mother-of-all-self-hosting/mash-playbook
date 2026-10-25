@@ -1,0 +1,97 @@
+<!--
+SPDX-FileCopyrightText: 2020 Aaron Raimist
+SPDX-FileCopyrightText: 2020 Chris van Dijk
+SPDX-FileCopyrightText: 2020 Dominik Zajac
+SPDX-FileCopyrightText: 2020 Mickaël Cornière
+SPDX-FileCopyrightText: 2020-2024 MDAD project contributors
+SPDX-FileCopyrightText: 2020-2024 Slavi Pantaleev
+SPDX-FileCopyrightText: 2022 François Darveau
+SPDX-FileCopyrightText: 2022 Julian Foad
+SPDX-FileCopyrightText: 2022 Warren Bailey
+SPDX-FileCopyrightText: 2023 Antonis Christofides
+SPDX-FileCopyrightText: 2023 Felix Stupp
+SPDX-FileCopyrightText: 2023 Julian-Samuel Gebühr
+SPDX-FileCopyrightText: 2023 Pierre 'McFly' Marty
+SPDX-FileCopyrightText: 2024 Thomas Miceli
+SPDX-FileCopyrightText: 2024-2026 Suguru Hirahara
+
+SPDX-License-Identifier: AGPL-3.0-or-later
+-->
+
+# LimeSurvey
+
+The playbook can install and configure [LimeSurvey](https://www.limesurvey.org) for you.
+
+LimeSurvey is a feature-rich free software for web based forms and surveys, which supports extensive survey logic.
+
+See the project's [documentation](https://www.limesurvey.org/manual/LimeSurvey_Manual) to learn what LimeSurvey does and why it might be useful to you.
+
+For details about configuring the [Ansible role for LimeSurvey](https://github.com/mother-of-all-self-hosting/ansible-role-limesurvey), you can check them via:
+
+- 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-limesurvey/blob/main/docs/configuring-limesurvey.md) online
+- 📁 `roles/galaxy/limesurvey/docs/configuring-limesurvey.md` locally, if you have [fetched the Ansible roles](../../docs/installing.md)
+
+## Dependencies
+
+This service requires the following other services:
+
+- MySQL / [MariaDB](../mariadb/README.md) database
+- [Traefik](../traefik/README.md) reverse-proxy server
+- (optional) [exim-relay](../exim_relay/README.md) mailer
+
+## Configuration
+
+To enable this service, add the following configuration to your `vars.yml` file and re-run the [installation](../../docs/installing.md) process:
+
+```yaml
+########################################################################
+#                                                                      #
+# limesurvey                                                           #
+#                                                                      #
+########################################################################
+
+limesurvey_enabled: true
+
+limesurvey_hostname: limesurvey.example.com
+
+########################################################################
+#                                                                      #
+# /limesurvey                                                          #
+#                                                                      #
+########################################################################
+```
+
+**Note**: hosting LimeSurvey under a subpath (by configuring the `limesurvey_path_prefix` variable) does not seem to be possible due to LimeSurvey's technical limitations.
+
+### Enable MariaDB
+
+LimeSurvey requires a MySQL-compatible database to work. This playbook supports MariaDB, and you can set up a MariaDB instance by enabling it on `vars.yml`.
+
+Refer to [this page](../mariadb/README.md) for the instruction to enable it.
+
+### Set administrator's account details
+
+You also need to specify administrator's account details. Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-limesurvey/blob/main/docs/configuring-limesurvey.md#set-administrators-account-details) on the role's documentation for details.
+
+### Configuring the mailer (optional)
+
+On LimeSurvey you can set up a mailer for functions such as password recovery. If you enable the [exim-relay](../exim_relay/README.md) service in your inventory configuration, the playbook will automatically configure it as a mailer for the service.
+
+To actually have the service use (and get messages sent through the exim-relay service), you will need to adjust settings on the service's UI after the service is installed.
+
+>[!WARNING]
+> Without setting an authentication method such as DKIM, SPF, and DMARC for your hostname, emails are most likely to be quarantined as spam at recipient's mail servers. The worst scenario is that your server's IP address or hostname will be included in the spam list such as the one managed by [Spamhaus](https://www.spamhaus.org/), depending on the reputation. As the exim-relay service supports DKIM signing, refer to [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-exim-relay/blob/main/docs/configuring-exim-relay.md#enable-dkim-support-optional) for details about how to set it up.
+
+## Usage
+
+After running the command for installation, the LimeSurvey instance becomes available at the URL specified with `limesurvey_hostname`. With the configuration above, the service is hosted at `https://limesurvey.example.com`.
+
+To get started, open the URL `https://limesurvey.example.com/index.php/admin` with a web browser to log in to the instance with the administrator account.
+
+## Troubleshooting
+
+Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-limesurvey/blob/main/docs/configuring-limesurvey.md#troubleshooting) on the role's documentation for details.
+
+## Related services
+
+- [HeyForm](../heyform/README.md) — Form builder that lets you create, customize, and automate forms

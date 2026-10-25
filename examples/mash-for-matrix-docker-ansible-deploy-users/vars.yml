@@ -121,7 +121,7 @@ mash_playbook_reverse_proxyable_services_additional_network: traefik
 
 # Most services require a Postgres database, so we enable Postgres here.
 #
-# Learn more about the Postgres service in docs/services/postgres.md
+# Learn more about the Postgres service in components/postgres/README.md
 
 postgres_enabled: true
 
@@ -158,7 +158,7 @@ postgres_connection_password: ''
 # Alternatively, you can have the exim-relay use via an external SMTP
 # server to relay emails.
 #
-# See docs/services/exim-relay.md for details about configuration.
+# See components/exim_relay/README.md for details about configuration.
 
 exim_relay_enabled: true
 
@@ -178,7 +178,7 @@ exim_relay_sender_address: "someone@{{ exim_relay_hostname }}"
 #                                                                      #
 ########################################################################
 
-# Learn more about the Miniflux service in docs/services/miniflux.md
+# Learn more about the Miniflux service in components/miniflux/README.md
 #
 # This service is only here as an example. If you don't wish to use the
 # Miniflux service, remove the whole section.
@@ -203,7 +203,7 @@ miniflux_admin_password: a-strong-password-here
 #                                                                      #
 ########################################################################
 
-# Learn more about the Uptime Kuma service in docs/services/uptime-kuma.md
+# Learn more about the Uptime Kuma service in components/uptime_kuma/README.md
 #
 # This service is only here as an example. If you don't wish to use the
 # Uptime Kuma service, remove the whole section.

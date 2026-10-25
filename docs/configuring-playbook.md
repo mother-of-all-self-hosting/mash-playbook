@@ -40,7 +40,7 @@ To initialize it manually instead, follow these steps inside the playbook direct
 
 For a basic installation, that's all you need.
 
-If you're installing services on the same server using another playbook (like [matrix-docker-ansible-deploy](https://github.com/spantaleev/matrix-docker-ansible-deploy)) or you already have [Traefik](./services/traefik.md) or [Docker](./services/docker.md) installed on the server, consult our [Interoperability](./interoperability.md) documentation.
+If you're installing services on the same server using another playbook (like [matrix-docker-ansible-deploy](https://github.com/spantaleev/matrix-docker-ansible-deploy)) or you already have [Traefik](../components/traefik/README.md) or [Docker](../components/docker/README.md) installed on the server, consult our [Interoperability](./interoperability.md) documentation.
 
 ---------------------------------------------
 
