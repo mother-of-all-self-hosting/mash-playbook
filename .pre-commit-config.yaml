@@ -24,7 +24,6 @@ repos:
         args: [
           --disable=MD001, # heading-increment
           --disable=MD013, # line-length
-          --disable=MD025, # single-h1
           --disable=MD033, # no-inline-html
           --disable=MD041, # first-line-h1
           --disable=MD051, # link-fragments
