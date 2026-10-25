@@ -7,10 +7,9 @@ This affects everyone. Before running the playbook (e.g. with `just install-all`
 - include only the roles of the services enabled in your inventory (its `host_vars` and `group_vars`). Previously, this optimization had to be enabled with `just optimize`.
 - install missing and outdated roles, and delete the roles of services which are no longer in use. `just roles` is no longer needed after pulling the playbook or enabling a service.
 
-See [Ansible roles and optimization](docs/just.md#ansible-roles-and-optimization) for details. Check the following before your first run after updating:
+See [Ansible roles and optimization](docs/just.md#ansible-roles-and-optimization) for details.
 
-- **If you enable services only through variables in your `hosts` file, or with `--extra-vars` on the command line**, the optimization does not see them, so these services would be left out. Move these variables to `vars.yml` (or another file in `host_vars`/`group_vars`), or run `just optimize-disable` to include all roles.
-- **If you have changed roles in `roles/galaxy`** (e.g. while developing them), save your changes elsewhere first. From now on, changed roles are kept (with a warning) instead of being replaced or deleted, but changes made before this update cannot be told apart from the original role. Symlinked roles and roles containing a `.git` directory are never touched.
+**If you enable services only through variables in your `hosts` file, or with `--extra-vars` on the command line**, the optimization does not see them, so these services would be left out. Before your first run after updating, move these variables to `vars.yml` (or another file in `host_vars`/`group_vars`), or run `just optimize-disable` to include all roles.
 
 `just optimize`, `just optimize-reset`, `just optimize-restore` and `just optimize-for-host` have been removed: optimization is now always for your whole inventory and kept up to date on its own. To turn it off, use `just optimize-disable` (and `just optimize-enable` to turn it on again).
 
