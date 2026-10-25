@@ -1,5 +1,8 @@
 /inventory
 
+# ignore the local CodeGraph index
+.codegraph/
+
 # ignore files created by running pre-commit locally
 .ansible
 
@@ -21,6 +24,7 @@
 !/run/.gitkeep
 
 /var/
+.direnv/
 
 /group_vars/*
 !/group_vars/.gitkeep
