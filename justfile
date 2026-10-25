@@ -156,8 +156,8 @@ setup-service service *extra_args:
     --tags=setup-{{ service }},start-group \
     --extra-vars=group={{ service }} {{ extra_args }}
 
-# Runs the playbook with the given list of arguments
-run +extra_args: _prepare-files
+# Runs the playbook with the given list of arguments, after installing missing and outdated roles
+run +extra_args: _prepare-files (_install-roles "--quiet")
     #!/usr/bin/env sh
     set -eu
     if ! [ -x "$(command -v etkepass)" ]; then

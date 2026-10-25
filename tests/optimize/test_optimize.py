@@ -491,15 +491,34 @@ class TestRoleInstallation(OptimizeTestCase):
         self.agru_log_path = bin_path / "agru.log"
         agru_path = bin_path / "agru"
         agru_path.write_text(textwrap.dedent("""\
-            #!/bin/sh
-            # Records the arguments and the role names in the file passed via -r
-            echo "args: $*" >> {log}
-            while [ $# -gt 0 ]; do
-                if [ "$1" = "-r" ]; then grep -o 'name: .*' "$2" | tr '\\n' ' ' >> {log}; echo >> {log}; fi
-                shift
-            done
-            """).format(log=self.agru_log_path))
+            #!/usr/bin/env python3
+            # Records the arguments and the role names in the file passed via -r,
+            # and "installs" them like agru does (with their version in meta/.galaxy_install_info)
+            import os, sys, yaml
+            arguments = sys.argv[1:]
+            definitions = []
+            if "-r" in arguments:
+                definitions = yaml.safe_load(open(arguments[arguments.index("-r") + 1]))
+            with open({log!r}, "a") as log:
+                log.write("args: " + " ".join(arguments) + "\\n")
+                log.write(" ".join("name: " + definition["name"] for definition in definitions) + "\\n")
+            if "-i=false" not in arguments and "-p" in arguments:
+                roles_path = arguments[arguments.index("-p") + 1]
+                for definition in definitions:
+                    meta_path = os.path.join(roles_path, definition["name"], "meta")
+                    os.makedirs(meta_path, exist_ok=True)
+                    with open(os.path.join(meta_path, ".galaxy_install_info"), "w") as file:
+                        file.write("version: {{0}}\\n".format(definition["version"]))
+            """).format(log=str(self.agru_log_path)))
         agru_path.chmod(0o755)
+        self.ansible_playbook_log_path = bin_path / "ansible-playbook.log"
+        ansible_playbook_path = bin_path / "ansible-playbook"
+        ansible_playbook_path.write_text(textwrap.dedent("""\
+            #!/bin/sh
+            # Records that it ran, and how many roles were installed at that point
+            echo "roles installed: $(ls roles/galaxy | wc -l)" >> {log}
+            """).format(log=self.ansible_playbook_log_path))
+        ansible_playbook_path.chmod(0o755)
         self.env = {"PATH": "{0}:{1}".format(bin_path, os.environ["PATH"]), **self.GIT_ENV}
 
     def git(self, *args, cwd):
@@ -515,6 +534,19 @@ class TestRoleInstallation(OptimizeTestCase):
         [(args, roles)] = self.agru_calls()
         self.assertIn("name: miniflux", roles)
         self.assertNotIn("name: nextcloud", roles)
+
+    def test_run_installs_missing_roles_first(self):
+        self.assertSucceeded(self.pb.just("run", "--tags=setup-all", env=self.env))
+        [(args, roles)] = self.agru_calls()
+        self.assertIn("name: miniflux", roles)
+        self.assertNotIn("name: nextcloud", roles)
+        self.assertNotIn("roles installed: 0", self.ansible_playbook_log_path.read_text())
+
+        # Nothing is installed again, and nothing is reported
+        result = self.pb.just("run", "--tags=setup-all", env=self.env)
+        self.assertSucceeded(result)
+        self.assertEqual(len(self.agru_calls()), 1)
+        self.assertEqual(result.stderr, "")
 
     def make_clone_with_upstream_change(self):
         """Turns the playbook into a clone of an upstream repository, which then gets a template change."""
