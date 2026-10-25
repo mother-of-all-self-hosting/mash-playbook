@@ -5,7 +5,7 @@
 
 # Tests for bin/ansible-python.sh, which runs Python using the interpreter which runs Ansible.
 #
-# Each test puts a fake `ansible-playbook` (with a given shebang) and fake Python interpreters on a minimal PATH.
+# Each test puts a fake `ansible-playbook` (with a given shebang and contents) and fake Python interpreters on a minimal PATH.
 # The fake interpreters print their name and arguments, so the tests can tell which one was used.
 #
 # Run directly (`tests/ansible_python/test_ansible_python.py`) or via the `test-ansible-python` pre-commit hook.
@@ -34,7 +34,7 @@ class AnsiblePythonTestCase(unittest.TestCase):
         # A minimal PATH, so that the system's ansible-playbook and python3 are not found
         self.bin_path = self.root / "bin"
         self.bin_path.mkdir()
-        for tool in ("sh", "head", "basename"):
+        for tool in ("sh", "head", "basename", "sed"):
             (self.bin_path / tool).symlink_to(shutil.which(tool))
         self.fake_python("python3")
 
@@ -46,10 +46,14 @@ class AnsiblePythonTestCase(unittest.TestCase):
         path.chmod(0o755)
         return path
 
-    def fake_ansible_playbook(self, shebang):
+    def fake_ansible_playbook(self, shebang, body="# ansible-playbook\n"):
         path = self.bin_path / "ansible-playbook"
-        path.write_text(shebang + "\n# ansible-playbook\n")
+        path.write_text(shebang + "\n" + body)
         path.chmod(0o755)
+
+    def version_output(self, python_path):
+        """What `ansible-playbook --version` prints when running on the given interpreter."""
+        return "ansible-playbook [core 2.19.3]\n  python version = 3.14.0 (main, Oct  7 2025) [GCC 15.2.1] ({0})\n".format(python_path)
 
     def run_script(self, *args):
         result = subprocess.run(
@@ -76,6 +80,24 @@ class AnsiblePythonTestCase(unittest.TestCase):
         system_python = self.fake_python("python3.11", self.root / "usr" / "bin")
         self.fake_ansible_playbook("#!{0} -E".format(system_python))
         self.assertEqual(self.run_script("script.py"), ["python3.11", "[script.py]"])
+
+    def test_asks_ansible_for_the_interpreter_behind_python_exec(self):
+        """On Gentoo, the shebang is the python-exec dispatcher (which only runs wrapped programs, not scripts)."""
+        gentoo_python = self.fake_python("python3.14", self.root / "usr" / "bin")
+        python_exec = self.root / "usr" / "bin" / "python-exec2c"
+        python_exec.write_text("#!/bin/sh\nprintf '{0}'\n".format(self.version_output(gentoo_python)))
+        python_exec.chmod(0o755)
+        self.fake_ansible_playbook("#!{0}".format(python_exec))
+        self.assertEqual(self.run_script("script.py"), ["python3.14", "[script.py]"])
+
+    def test_asks_ansible_for_the_interpreter_behind_wrapper_scripts(self):
+        wrapped_python = self.fake_python("python3.13", self.root / "nix" / "store" / "python" / "bin")
+        self.fake_ansible_playbook("#!/bin/sh", "printf '{0}'\n".format(self.version_output(wrapped_python)))
+        self.assertEqual(self.run_script("script.py")[0], "python3.13")
+
+    def test_falls_back_to_python3_for_unrecognized_version_output(self):
+        self.fake_ansible_playbook("#!/bin/sh", "echo 'ansible-playbook 99'\n")
+        self.assertEqual(self.run_script("script.py")[0], "python3")
 
     def test_falls_back_to_python3_for_wrapper_scripts(self):
         self.fake_ansible_playbook("#!/bin/sh")
