@@ -554,6 +554,10 @@ class TestRoleInstallation(OptimizeTestCase):
         ansible_playbook_path = bin_path / "ansible-playbook"
         ansible_playbook_path.write_text(textwrap.dedent("""\
             #!/bin/sh
+            # bin/ansible-python.sh asks wrapper scripts like this one for their interpreter. Do not record that.
+            if [ "${{1:-}}" = "--version" ]; then
+                exit 0
+            fi
             # Records that it ran, and how many roles were installed at that point
             echo "roles installed: $(ls roles/galaxy | wc -l)" >> {log}
             """).format(log=self.ansible_playbook_log_path))
