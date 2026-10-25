@@ -182,16 +182,27 @@ class TestInventoryLocation(OptimizeTestCase):
         self.assertEnabled("nextcloud")
         self.assertNotEnabled("miniflux", "gitea")
 
-    def test_no_variable_files_fails_cleanly(self):
+    def test_no_variable_files_includes_all_roles(self):
         self.pb.hosts("[mash_servers]\na\n")
-        self.assertFailedCleanly(self.pb.just("optimize-enable"))
-        self.assertFalse((self.pb.root / "run" / "optimization-enabled").exists())
+        result = self.pb.just("_prepare-files")
+        self.assertSucceeded(result)
+        self.assertIn("including all roles", result.stderr)
+        self.assertEnabled("miniflux", "gitea", "nextcloud")
 
-    def test_missing_inventory_directory_fails_cleanly(self):
-        result = self.pb.just("optimize-enable", env={"ANSIBLE_INVENTORY": str(self.pb.root / "no-such-inventory" / "hosts")})
-        self.assertFailedCleanly(result)
+    def test_missing_inventory_includes_all_roles(self):
+        """For example, before the inventory is created."""
+        result = self.pb.just("_prepare-files", env={"ANSIBLE_INVENTORY": str(self.pb.root / "no-such-inventory" / "hosts")})
+        self.assertSucceeded(result)
         self.assertIn("ANSIBLE_INVENTORY", result.stderr)
-        self.assertFalse((self.pb.root / "run" / "optimization-enabled").exists())
+        self.assertEnabled("miniflux", "gitea", "nextcloud")
+
+    def test_optimized_by_default(self):
+        self.standard_inventory()
+        result = self.pb.just("_prepare-files")
+        self.assertSucceeded(result)
+        self.assertEqual(result.stderr, "")
+        self.assertEnabled("miniflux", "gitea")
+        self.assertNotEnabled("nextcloud")
 
 
 class TestInventoryChanges(OptimizeTestCase):
@@ -245,20 +256,18 @@ class TestInventoryChanges(OptimizeTestCase):
         self.assertSucceeded(self.pb.just("_prepare-files"))
         self.assertEqual([path.stat().st_mtime_ns for path in generated], modification_times)
 
-    def test_legacy_state_keeps_optimization_enabled(self):
-        """Older versions stored a list of vars.yml paths. That file still means optimization is enabled."""
+    def test_leftover_markers_are_removed(self):
+        """Older versions marked optimization as enabled. It is now enabled unless disabled."""
         self.standard_inventory()
-        self.assertSucceeded(self.pb.just("optimize-enable"))
         run = self.pb.root / "run"
-        (run / "optimization-enabled").unlink()
+        (run / "optimization-enabled").write_text("")
         (run / "optimization-vars-files.state").write_text("/no/longer/existing/host_vars/x/vars.yml\n")
-        self.pb.write("host_vars/c/vars.yml", "nextcloud_enabled: true\n")
 
         self.assertSucceeded(self.pb.just("_prepare-files"))
-        self.assertEnabled("miniflux", "gitea", "nextcloud")
-        self.assertNotEnabled("vaultwarden")
+        self.assertEnabled("miniflux", "gitea")
+        self.assertNotEnabled("nextcloud")
+        self.assertFalse((run / "optimization-enabled").exists())
         self.assertFalse((run / "optimization-vars-files.state").exists())
-        self.assertTrue((run / "optimization-enabled").exists())
 
     def test_deleted_generated_file_is_regenerated_optimized(self):
         self.standard_inventory()
@@ -283,11 +292,10 @@ class TestInventoryChanges(OptimizeTestCase):
         self.assertNotEqual(self.pb.just("_prepare-files").returncode, 0)
         self.assertConsistent()
 
-    def test_optimize_disable(self):
+    def test_optimize_disable_and_enable(self):
         self.standard_inventory()
-        self.assertSucceeded(self.pb.just("optimize-enable"))
         self.assertSucceeded(self.pb.just("optimize-disable"))
-        self.assertFalse((self.pb.root / "run" / "optimization-enabled").exists())
+        self.assertTrue((self.pb.root / "run" / "optimization-disabled").exists())
         self.assertEqual(
             (self.pb.root / "setup.yml").read_text(),
             (self.pb.root / "templates" / "setup.yml").read_text(),
@@ -297,9 +305,13 @@ class TestInventoryChanges(OptimizeTestCase):
         self.assertSucceeded(self.pb.just("_prepare-files"))
         self.assertIn("nextcloud", self.pb.setup_roles())
 
+        self.assertSucceeded(self.pb.just("optimize-enable"))
+        self.assertFalse((self.pb.root / "run" / "optimization-disabled").exists())
+        self.assertNotEnabled("nextcloud")
+
     def test_templates_are_used_as_they_are_without_optimization(self):
         self.standard_inventory()
-        self.assertSucceeded(self.pb.just("_prepare-files"))
+        self.assertSucceeded(self.pb.just("optimize-disable"))
         self.pb.touch_template()
 
         self.assertSucceeded(self.pb.just("_prepare-files"))

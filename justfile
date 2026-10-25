@@ -23,9 +23,8 @@ add-inventory-host host server_address:
 
 run_directory_path := justfile_directory() + "/run"
 templates_directory_path := justfile_directory() + "/templates"
-optimization_enabled_file_path := run_directory_path + "/optimization-enabled"
-# Older versions stored a list of vars.yml paths here. Like the file above, it means optimization is enabled.
-optimization_legacy_state_file_path := run_directory_path + "/optimization-vars-files.state"
+# Optimization is enabled, unless this file exists
+optimization_disabled_file_path := run_directory_path + "/optimization-disabled"
 # Versions and checksums of the roles installed into roles/galaxy, for detecting local changes to them
 installed_roles_file_path := run_directory_path + "/installed-roles.yml"
 
@@ -34,17 +33,19 @@ roles *flags: _prepare-files
     @echo "[NOTE] This command just updates the roles, but if you want to update everything at once (playbook, roles, etc.) - use 'just update'"
     @{{ just_executable() }} --justfile {{ justfile() }} _install-roles {{ flags }}
 
-# Makes the playbook include only the roles of enabled services
-optimize-enable: _optimize-files
+# Makes the playbook include only the roles of enabled services (the default)
+optimize-enable:
     #!/usr/bin/env sh
-    touch {{ quote(optimization_enabled_file_path) }}
-    rm -f {{ quote(optimization_legacy_state_file_path) }}
+    set -eu
+    rm -f {{ quote(optimization_disabled_file_path) }}
+    {{ just_executable() }} --justfile {{ justfile() }} _prepare-files
 
 # Makes the playbook include all roles
 optimize-disable:
     #!/usr/bin/env sh
     set -eu
-    rm -f {{ quote(optimization_enabled_file_path) }} {{ quote(optimization_legacy_state_file_path) }}
+    mkdir -p {{ quote(run_directory_path) }}
+    touch {{ quote(optimization_disabled_file_path) }}
     {{ just_executable() }} --justfile {{ justfile() }} _prepare-files
 
 # Updates the playbook and installs the necessary Ansible roles pinned in requirements.yml. If a -u flag is passed, also updates the requirements.yml file with new role versions (if available)
@@ -217,19 +218,17 @@ _install-roles *flags:
     --state-path={{ quote(installed_roles_file_path) }} \
     {{ flags }}
 
-# Generates requirements.yml, setup.yml and group_vars/mash_servers from their templates (optimized, if optimization is enabled).
+# Generates requirements.yml, setup.yml and group_vars/mash_servers from their templates (optimized, unless optimization is disabled).
 # This runs before every playbook run, so they always match the templates and the inventory. Unchanged files are left as they are.
 _prepare-files:
     #!/usr/bin/env sh
     set -eu
-    # Left over from older versions, which only regenerated these files when the templates changed
+    # Left over from older versions, which only regenerated these files when the templates changed,
+    # and only optimized when enabled with these markers
     rm -f {{ run_directory_path }}/*.srchash
-    if [ -f {{ quote(optimization_legacy_state_file_path) }} ]; then
-        touch {{ quote(optimization_enabled_file_path) }}
-        rm {{ quote(optimization_legacy_state_file_path) }}
-    fi
+    rm -f {{ quote(run_directory_path / "optimization-enabled") }} {{ quote(run_directory_path / "optimization-vars-files.state") }}
 
-    if [ -f {{ quote(optimization_enabled_file_path) }} ]; then
+    if [ ! -f {{ quote(optimization_disabled_file_path) }} ]; then
         {{ just_executable() }} --justfile {{ justfile() }} _optimize-files
         exit 0
     fi

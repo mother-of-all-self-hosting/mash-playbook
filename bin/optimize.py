@@ -282,23 +282,25 @@ def process_file_contents(file_name, enabled_role_names, known_role_names):
     return "\n".join(lines_final)
 
 
+# Without an inventory to optimize for (e.g. before it is created), all roles are included
+include_all_roles = False
 if not os.path.isdir(args.inventory_path):
-    sys.exit(
-        "Cannot optimize the playbook: the inventory directory ({0}) does not exist. "
-        "If your inventory is elsewhere, point the `ANSIBLE_INVENTORY` environment variable to its hosts file.".format(
-            args.inventory_path
-        )
+    include_all_roles = True
+    reason = "the inventory directory ({0}) does not exist".format(args.inventory_path)
+elif len(find_vars_file_paths(args.inventory_path)) == 0:
+    include_all_roles = True
+    reason = "no variable files (in host_vars/ or group_vars/) were found in the inventory directory ({0})".format(
+        args.inventory_path
     )
-
-vars_paths = find_vars_file_paths(args.inventory_path)
-if len(vars_paths) == 0:
-    sys.exit(
-        "Cannot optimize the playbook: no variable files (in host_vars/ or group_vars/) found in the inventory directory ({0})".format(
-            args.inventory_path
-        )
+if include_all_roles:
+    print(
+        "Note: including all roles, because {0}. "
+        "If your inventory is elsewhere, point the `ANSIBLE_INVENTORY` environment variable to its hosts file.".format(reason),
+        file=sys.stderr,
     )
-
-used_variable_names = load_combined_variable_names_from_files(vars_paths)
+    used_variable_names = set()
+else:
+    used_variable_names = load_combined_variable_names_from_files(find_vars_file_paths(args.inventory_path))
 
 all_role_definitions = load_yaml_file(args.src_requirements_yml_path)
 
@@ -310,7 +312,7 @@ for role_definition in all_role_definitions:
                 role_definition
             )
         )
-    if is_role_definition_in_use(role_definition, used_variable_names):
+    if include_all_roles or is_role_definition_in_use(role_definition, used_variable_names):
         enabled_role_definitions.append(role_definition)
 
 known_role_names = tuple(
