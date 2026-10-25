@@ -18,6 +18,8 @@ For details about configuring the [Ansible role for Gotenberg](https://github.co
 - 🌐 [the role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-gotenberg/blob/main/docs/configuring-gotenberg.md) online
 - 📁 `roles/galaxy/gotenberg/docs/configuring-gotenberg.md` locally, if you have [fetched the Ansible roles](../../docs/installing.md)
 
+## Configuration
+
 ### Integrating with Prometheus (optional)
 
 Gotenberg can natively expose metrics to [Prometheus](../prometheus/README.md).

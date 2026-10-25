@@ -22,7 +22,6 @@ repos:
     hooks:
       - id: markdownlint
         args: [
-          --disable=MD001, # heading-increment
           --disable=MD013, # line-length
           --disable=MD033, # no-inline-html
           --disable=MD051, # link-fragments
