@@ -1,3 +1,13 @@
+# 2026-10-25
+
+## `just optimize-for-host` has been removed
+
+This only affects you if you have used `just optimize-for-host HOST`. It now stops with an error pointing to `just optimize`.
+
+Optimizing for the whole inventory with `just optimize` covers every host's services, so it is always correct. Optimizing for a single host could only make runs a little faster, at the cost of silently skipping the services of other hosts when running the playbook against them.
+
+The playbook remembers the last optimization and applies it again after playbook updates. If you last optimized with `just optimize-for-host`, run `just optimize` once, so that the playbook includes the services of all your hosts.
+
 # 2026-10-20
 
 ## FMD Server 0.17: back up before upgrading
