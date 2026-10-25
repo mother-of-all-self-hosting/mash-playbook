@@ -36,6 +36,16 @@ def find_just(path=None):
     return os.environ.get("JUST") or shutil.which("just", path=path) or shutil.which("rust-just", path=path)
 
 
+def clean_environment():
+    """The environment without variables that point git at another repository.
+
+    Git hooks (e.g. pre-commit, which runs these tests) export GIT_DIR, GIT_INDEX_FILE and others.
+    Inherited, they would make the git commands of the tests (and of `just update`) act on the
+    playbook's own repository instead of the temporary ones.
+    """
+    return {k: v for k, v in os.environ.items() if not k.startswith("GIT_")}
+
+
 JUST = find_just()
 if JUST is None:
     sys.exit("These tests require `just` (or `rust-just`) on PATH, or its path in the `JUST` environment variable")
@@ -74,7 +84,7 @@ class Playbook:
         self.write("hosts", textwrap.dedent(content))
 
     def just(self, *args, env=None):
-        full_env = {k: v for k, v in os.environ.items() if k != "ANSIBLE_INVENTORY"}
+        full_env = {k: v for k, v in clean_environment().items() if k != "ANSIBLE_INVENTORY"}
         full_env.update(env or {})
         return subprocess.run(
             [JUST, "--justfile", str(self.root / "justfile"), *args],
@@ -583,7 +593,7 @@ class TestRoleInstallation(OptimizeTestCase):
         self.env = {"PATH": "{0}:{1}".format(bin_path, os.environ["PATH"]), **self.GIT_ENV}
 
     def git(self, *args, cwd):
-        subprocess.run(["git", *args], cwd=cwd, env={**os.environ, **self.GIT_ENV}, check=True, capture_output=True)
+        subprocess.run(["git", *args], cwd=cwd, env={**clean_environment(), **self.GIT_ENV}, check=True, capture_output=True)
 
     def agru_calls(self):
         """Returns (arguments, role names) for each call of the fake agru."""
