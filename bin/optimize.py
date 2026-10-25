@@ -7,16 +7,25 @@
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
 import argparse
+import glob
+import os
 import re
 import sys
-import yaml
+
+try:
+    import yaml
+except ImportError:
+    sys.exit(
+        "Optimizing the playbook requires the PyYAML Python library. "
+        "Install it with your package manager (e.g. `python3-yaml` or `python-yaml`) or pip."
+    )
 
 parser = argparse.ArgumentParser(
-    description="Optimizes the playbook based on enabled components found in vars.yml files"
+    description="Optimizes the playbook based on enabled components found in the inventory's variable files"
 )
 parser.add_argument(
-    "--vars-paths",
-    help="Path to vars.yml configuration files to process",
+    "--inventory-path",
+    help="Path to the inventory directory",
     required=True,
 )
 parser.add_argument(
@@ -76,6 +85,12 @@ def load_variable_names_from_file(vars_path):
         return set()
 
     return set(yaml_data.keys())
+
+
+def find_vars_file_paths(inventory_path):
+    return sorted(
+        glob.glob(os.path.join(glob.escape(inventory_path), "host_vars", "*", "vars.yml"))
+    )
 
 
 def load_combined_variable_names_from_files(vars_yml_file_paths):
@@ -222,7 +237,22 @@ def process_file_contents(file_name, enabled_role_names, known_role_names):
     return "\n".join(lines_final)
 
 
-vars_paths = args.vars_paths.split(" ")
+if not os.path.isdir(args.inventory_path):
+    sys.exit(
+        "Cannot optimize the playbook: the inventory directory ({0}) does not exist. "
+        "If your inventory is elsewhere, point the `ANSIBLE_INVENTORY` environment variable to its hosts file.".format(
+            args.inventory_path
+        )
+    )
+
+vars_paths = find_vars_file_paths(args.inventory_path)
+if len(vars_paths) == 0:
+    sys.exit(
+        "Cannot optimize the playbook: no variable files (host_vars/*/vars.yml) found in the inventory directory ({0})".format(
+            args.inventory_path
+        )
+    )
+
 used_variable_names = load_combined_variable_names_from_files(vars_paths)
 
 all_role_definitions = load_yaml_file(args.src_requirements_yml_path)

@@ -23,7 +23,9 @@ add-inventory-host host server_address:
 
 run_directory_path := justfile_directory() + "/run"
 templates_directory_path := justfile_directory() + "/templates"
-optimization_vars_files_file_path := run_directory_path + "/optimization-vars-files.state"
+optimization_enabled_file_path := run_directory_path + "/optimization-enabled"
+# Older versions stored a list of vars.yml paths here. Like the file above, it means optimization is enabled.
+optimization_legacy_state_file_path := run_directory_path + "/optimization-vars-files.state"
 
 # Pulls external Ansible roles
 roles: _requirements-yml
@@ -38,50 +40,37 @@ roles: _requirements-yml
         ansible-galaxy install -r {{ justfile_directory() }}/requirements.yml -p roles/galaxy/ --force
     fi
 
-# Optimizes the playbook based on stored configuration (vars.yml paths)
-optimize-restore:
-    #!/usr/bin/env sh
-    if [ -f "{{ optimization_vars_files_file_path }}" ]; then
-        {{ just_executable() }} --justfile {{ justfile() }} \
-        _optimize-for-var-paths \
-        $(cat {{ optimization_vars_files_file_path }})
-    else
-        echo "Cannot restore optimization state from a file ($optimization_vars_files_file_path), because it doesn't exist"
-        exit 1
-    fi
-
 # Clears optimizations and resets the playbook to a non-optimized state
 optimize-reset: && _clean_template_derived_files
     #!/usr/bin/env sh
     rm -f {{ run_directory_path }}/*.srchash
-    rm -f {{ optimization_vars_files_file_path }}
+    rm -f {{ quote(optimization_enabled_file_path) }} {{ quote(optimization_legacy_state_file_path) }}
 
-# Optimizes the playbook based on the enabled components for all hosts in the inventory
-optimize inventory_path='inventory': _reconfigure-for-all-hosts
-
-_reconfigure-for-all-hosts inventory_path='inventory':
+# Optimizes the playbook based on the enabled components in the inventory (or the one $ANSIBLE_INVENTORY points to), and keeps it optimized on playbook updates
+optimize:
     #!/usr/bin/env sh
-    {{ just_executable() }} --justfile {{ justfile() }} \
-    _optimize-for-var-paths \
-    $(find {{ inventory_path }}/host_vars/ -maxdepth 2 -name 'vars.yml' -exec readlink -f {} \;)
-
-# Optimizes the playbook based on the enabled components found in the given vars.yml files
-_optimize-for-var-paths +PATHS:
-    #!/usr/bin/env sh
-    echo '{{ PATHS }}' > {{ optimization_vars_files_file_path }}
+    set -eu
+    # The inventory may be a directory or a hosts file inside it
+    inventory_path={{ quote(inventory) }}
+    if [ ! -d "$inventory_path" ]; then
+        inventory_path=$(dirname "$inventory_path")
+    fi
 
     {{ just_executable() }} --justfile {{ justfile() }} _save_hash_for_file {{ templates_directory_path }}/requirements.yml {{ justfile_directory() }}/requirements.yml
     {{ just_executable() }} --justfile {{ justfile() }} _save_hash_for_file {{ templates_directory_path }}/setup.yml {{ justfile_directory() }}/setup.yml
     {{ just_executable() }} --justfile {{ justfile() }} _save_hash_for_file {{ templates_directory_path }}/group_vars_mash_servers {{ justfile_directory() }}/group_vars/mash_servers
 
-    /usr/bin/env python {{ justfile_directory() }}/bin/optimize.py \
-    --vars-paths='{{ PATHS }}' \
+    python3 {{ justfile_directory() }}/bin/optimize.py \
+    --inventory-path="$inventory_path" \
     --src-requirements-yml-path={{ templates_directory_path }}/requirements.yml \
     --dst-requirements-yml-path={{ justfile_directory() }}/requirements.yml \
     --src-setup-yml-path={{ templates_directory_path }}/setup.yml \
     --dst-setup-yml-path={{ justfile_directory() }}/setup.yml \
     --src-group-vars-yml-path={{ templates_directory_path }}/group_vars_mash_servers \
     --dst-group-vars-yml-path={{ justfile_directory() }}/group_vars/mash_servers
+
+    touch {{ quote(optimization_enabled_file_path) }}
+    rm -f {{ quote(optimization_legacy_state_file_path) }}
 
 # Updates the playbook and installs the necessary Ansible roles pinned in requirements.yml. If a -u flag is passed, also updates the requirements.yml file with new role versions (if available)
 update *flags: _requirements-yml update-playbook-only
@@ -263,10 +252,8 @@ _ensure_file_prepared src_path dst_path:
             cp {{ src_path }} {{ dst_path }}
             echo $src_hash > $hash_path
 
-            if [ -f "{{ optimization_vars_files_file_path }}" ]; then
-                {{ just_executable() }} --justfile {{ justfile() }} \
-                _optimize-for-var-paths \
-                $(cat {{ optimization_vars_files_file_path }})
+            if [ -f "{{ optimization_enabled_file_path }}" ] || [ -f "{{ optimization_legacy_state_file_path }}" ]; then
+                {{ just_executable() }} --justfile {{ justfile() }} optimize
             fi
         fi
     fi
