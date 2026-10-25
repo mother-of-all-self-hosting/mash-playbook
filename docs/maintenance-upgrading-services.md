@@ -29,10 +29,9 @@ Before updating the playbook and the Ansible roles in the playbook, take a look 
 
 ### Update the playbook and the Ansible roles
 
-If it looks good to you, go to the `mash-playbook` directory, update your playbook directory and all upstream Ansible roles (defined in the `requirements.yml` file) by running:
+If it looks good to you, go to the `mash-playbook` directory, and update your playbook directory and the Ansible roles by running `just update`.
 
-- either: `just update`
-- or: a combination of `git pull` and `just roles`
+If you only update the playbook directory (e.g. with `git pull`), the Ansible roles are installed and updated automatically when you run the playbook with `just`.
 
 If you don't have either `just` tool, you can run the `ansible-galaxy` tool directly: `rm -rf roles/galaxy; ansible-galaxy install -r requirements.yml -p roles/galaxy/ --force`
 

@@ -17,7 +17,7 @@ Here are some examples of shortcuts:
 
 | Shortcut                                       | Result                                                                                                         |
 |------------------------------------------------|----------------------------------------------------------------------------------------------------------------|
-| `just roles`                                   | Install the necessary Ansible roles pinned in [`requirements.yml`](../templates/requirements.yml)              |
+| `just roles`                                   | Install and update the Ansible roles (also done automatically before running the playbook)                     |
 | `just update`                                  | Run `git pull` (to update the playbook) and install the Ansible roles                                          |
 | `just install-all`                             | Run `ansible-playbook -i inventory/hosts setup.yml --tags=install-all,start`                                   |
 | `just setup-all`                               | Run `ansible-playbook -i inventory/hosts setup.yml --tags=setup-all,start`                                     |
@@ -28,6 +28,27 @@ Here are some examples of shortcuts:
 | `just stop-group postgres`                     | Stop only the Postgres service                                                                                 |
 
 While [our documentation on prerequisites](prerequisites.md) lists `just` as one of the requirements for installation, using `just` is optional. If you find it difficult to install it, do not find it useful, or want to prefer raw `ansible-playbook` commands for some reason, feel free to run all commands manually. For example, you can run `ansible-galaxy` directly to install the Ansible roles: `rm -rf roles/galaxy; ansible-galaxy install -r requirements.yml -p roles/galaxy/ --force`.
+
+## Ansible roles and optimization
+
+Before running the playbook (e.g. with `just install-all`), the `just` recipes prepare it for your inventory:
+
+- They generate `requirements.yml`, `setup.yml` and `group_vars/mash_servers` from the [templates](../templates), including only the roles of the services enabled in your inventory (its `host_vars` and `group_vars`). This makes playbook runs faster.
+- They install missing and outdated Ansible roles into `roles/galaxy`, and delete the roles of services which are no longer in use.
+
+You can therefore run the playbook right after editing your `vars.yml` or updating the playbook, without running `just roles` first.
+
+Only variables in `host_vars` and `group_vars` are taken into account. Services enabled only elsewhere (inline in the `hosts` file, or with `--extra-vars`) are left out, unless you include all roles (see below).
+
+The inventory is `inventory/hosts`, unless the `ANSIBLE_INVENTORY` environment variable points to another inventory's hosts file (or directory). Until an inventory with variable files exists, all roles are included.
+
+To include all roles regardless of your inventory, run `just optimize-disable`. To go back to including only the roles in use, run `just optimize-enable`.
+
+### Roles you are working on
+
+If you change a role in `roles/galaxy` (for example, while developing it), it is kept as it is instead of being updated or deleted, and a warning is printed. To replace it with the version pinned in `requirements.yml`, run `just roles --force`.
+
+Roles which are symbolic links (for example, to your git checkout of the role) or contain a `.git` directory are never replaced or deleted, and neither are roles which the playbook does not know about.
 
 ## Difference between playbook tags and shortcuts
 

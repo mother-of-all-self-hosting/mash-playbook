@@ -20,12 +20,9 @@ If you've configured your DNS records and the playbook, you can start the instal
 
 ## Update Ansible roles
 
-Before installing, you need to update the Ansible roles that this playbook uses and fetches from outside.
+Before installing, update your playbook directory and the Ansible roles that this playbook uses and fetches from outside, by running `just update`.
 
-To update your playbook directory and all upstream Ansible roles (defined in the `requirements.yml` file), run:
-
-- either: `just update`
-- or: a combination of `git pull` and `just roles`
+If you only update the playbook directory (e.g. with `git pull`), the Ansible roles are installed and updated automatically when you run the playbook with `just`.
 
 If you don't have either `just` tool, you can run the `ansible-galaxy` tool directly: `rm -rf roles/galaxy; ansible-galaxy install -r requirements.yml -p roles/galaxy/ --force`
 

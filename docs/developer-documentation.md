@@ -319,7 +319,7 @@ Our pick to **test a role** is to use a [Molecule](https://docs.ansible.com/proj
 
 However, please do note that *it is not (yet) possible to check with Molecule whether the playbook can install a service with the role as expected*. In other words, passing Molecule tests on the side of the role has nothing to with whether the role is properly implemented to the playbook; even if Molecule tests will be implemented to the playbook, it won't be nothing more than a mere simulation, under certain specific conditions. **It is always encouraged to confirm with your own eyes that the service has become usable on an actual machine, and discouraged to rely on a simulation by a Gen-AI / LLM or something else to assume the service probably might be installed.** Such implementation can be labelled as a AI slop, and dropped from the playbook.
 
-There are several ways of testing the playbook; from using a local virtual machine to running the locally modified playbook against an actual machine, and so on. In these cases, creating a symbolic link to the role's directory inside `roles/galaxy` should make it easier to test the role while debugging it, as you won't have to delete the directory and recreate it again and again.
+There are several ways of testing the playbook; from using a local virtual machine to running the locally modified playbook against an actual machine, and so on. In these cases, creating a symbolic link to the role's directory inside `roles/galaxy` should make it easier to test the role while debugging it, as you won't have to delete the directory and recreate it again and again. The playbook never replaces or deletes such symlinked roles (see [Roles you are working on](just.md#roles-you-are-working-on)).
 
 ### 5. Maintain your role
 
