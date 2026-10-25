@@ -669,7 +669,7 @@
   name: ollama
   activation_prefix: ollama_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-omnitools.git
-  version: v0.7.0-1
+  version: v0.7.0-2
   name: omnitools
   activation_prefix: omnitools_
 - src: git+https://progressiv.radicle.garden/znw3BPXrSbPWcARpYbk3yGy4iGQ4.git
