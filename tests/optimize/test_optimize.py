@@ -1,0 +1,438 @@
+#!/usr/bin/env python3
+# SPDX-FileCopyrightText: 2026 MASH project contributors
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+# Tests for `just optimize` and the recipes around it (bin/optimize.py and the justfile).
+#
+# Each test copies the justfile, bin/optimize.py and the real templates into a temporary
+# playbook directory under var/tests/optimize/, builds an inventory there and runs the actual `just` recipes.
+# Using the real templates also checks their `role-specific` markers.
+#
+# Requires `just` on PATH, and PyYAML.
+# Run directly (`tests/optimize/test_optimize.py`) or via the `test-optimize` pre-commit hook.
+
+import ast
+import os
+import shutil
+import subprocess
+import sys
+import tempfile
+import textwrap
+import unittest
+from pathlib import Path
+
+import yaml
+
+REPO = Path(__file__).resolve().parents[2]
+
+# Each test's temporary playbook goes here (var/ is gitignored) and is removed afterwards.
+TMP_ROOT = REPO / "var" / "tests" / "optimize"
+
+FULLY_ENCRYPTED = "$ANSIBLE_VAULT;1.1;AES256\n3138353063616561616264653633353761\n"
+
+INLINE_VAULT = textwrap.dedent("""\
+    some_secret: !vault |
+      $ANSIBLE_VAULT;1.1;AES256
+      3138353063616561616264653633353761
+    """)
+
+
+class Playbook:
+    """A throwaway playbook directory with an inventory under `inventory/`."""
+
+    def __init__(self, root):
+        self.root = root
+        (root / "bin").mkdir(parents=True)
+        (root / "run").mkdir()
+        (root / "group_vars").mkdir()
+        shutil.copy(REPO / "justfile", root / "justfile")
+        shutil.copy(REPO / "bin" / "optimize.py", root / "bin" / "optimize.py")
+        shutil.copytree(REPO / "templates", root / "templates")
+        self.inventory = root / "inventory"
+
+    def write(self, relative_path, content, base=None):
+        path = (base or self.inventory) / relative_path
+        path.parent.mkdir(parents=True, exist_ok=True)
+        path.write_text(content)
+        return path
+
+    def hosts(self, content):
+        self.write("hosts", textwrap.dedent(content))
+
+    def just(self, *args, env=None):
+        full_env = {k: v for k, v in os.environ.items() if k != "ANSIBLE_INVENTORY"}
+        full_env.update(env or {})
+        return subprocess.run(
+            ["just", "--justfile", str(self.root / "justfile"), *args],
+            cwd=self.root,
+            env=full_env,
+            capture_output=True,
+            text=True,
+            timeout=120,
+        )
+
+    def touch_template(self, name="setup.yml"):
+        """Simulates a playbook update changing a template."""
+        with open(self.root / "templates" / name, "a") as file:
+            file.write("\n# changed by an update\n")
+
+    def requirements_roles(self):
+        definitions = yaml.safe_load((self.root / "requirements.yml").read_text())
+        return {definition["name"] for definition in definitions}
+
+    def setup_roles(self):
+        plays = yaml.safe_load((self.root / "setup.yml").read_text())
+        roles = set()
+        for play in plays:
+            for entry in play.get("roles", []):
+                role = entry["role"]
+                if role.startswith("galaxy/"):
+                    roles.add(role.removeprefix("galaxy/"))
+        return roles
+
+
+class OptimizeTestCase(unittest.TestCase):
+    def setUp(self):
+        TMP_ROOT.mkdir(parents=True, exist_ok=True)
+        tmp = tempfile.TemporaryDirectory(prefix="test-", dir=TMP_ROOT)
+        self.addCleanup(tmp.cleanup)
+        self.pb = Playbook(Path(tmp.name))
+
+    def standard_inventory(self):
+        """Two hosts: `a` runs Miniflux, `b` runs Gitea."""
+        self.pb.hosts("""\
+            [mash_servers]
+            a
+            b
+            """)
+        self.pb.write("host_vars/a/vars.yml", "mash_playbook_generic_secret_key: x\nminiflux_enabled: true\n")
+        self.pb.write("host_vars/b/vars.yml", "mash_playbook_generic_secret_key: x\ngitea_enabled: true\n")
+
+    def assertSucceeded(self, result):
+        self.assertEqual(
+            result.returncode, 0,
+            "command failed:\n--- stdout\n{0}\n--- stderr\n{1}".format(result.stdout, result.stderr),
+        )
+        self.assertNotIn("Traceback", result.stdout + result.stderr)
+
+    def assertFailedCleanly(self, result):
+        self.assertNotEqual(result.returncode, 0, "command unexpectedly succeeded:\n" + result.stdout)
+        self.assertNotIn("Traceback", result.stdout + result.stderr)
+
+    def assertConsistent(self):
+        """Every role that setup.yml uses must be among the roles that requirements.yml installs."""
+        missing = self.pb.setup_roles() - self.pb.requirements_roles()
+        self.assertEqual(missing, set(), "setup.yml uses roles missing from requirements.yml")
+
+    def assertEnabled(self, *roles):
+        self.assertConsistent()
+        enabled = self.pb.requirements_roles()
+        for role in roles:
+            self.assertIn(role, enabled)
+
+    def assertNotEnabled(self, *roles):
+        enabled = self.pb.requirements_roles()
+        for role in roles:
+            self.assertNotIn(role, enabled)
+
+
+class TestInventoryLocation(OptimizeTestCase):
+    def test_default_inventory(self):
+        self.standard_inventory()
+        self.assertSucceeded(self.pb.just("optimize"))
+        self.assertEnabled("miniflux", "gitea")
+        self.assertNotEnabled("nextcloud")
+
+    def other_inventory(self, name="other-inventory"):
+        """An inventory outside the playbook directory, which only enables Nextcloud."""
+        self.pb.hosts("[mash_servers]\n")
+        other = self.pb.root / name
+        self.pb.write("hosts", "[mash_servers]\nc\n", base=other)
+        self.pb.write("host_vars/c/vars.yml", "nextcloud_enabled: true\n", base=other)
+        return other
+
+    def test_ansible_inventory_hosts_file(self):
+        other = self.other_inventory()
+        self.assertSucceeded(self.pb.just("optimize", env={"ANSIBLE_INVENTORY": str(other / "hosts")}))
+        self.assertEnabled("nextcloud")
+
+    def test_ansible_inventory_directory(self):
+        other = self.other_inventory()
+        self.assertSucceeded(self.pb.just("optimize", env={"ANSIBLE_INVENTORY": str(other)}))
+        self.assertEnabled("nextcloud")
+
+    def test_inventory_path_with_space(self):
+        other = self.other_inventory("my inventory")
+        self.assertSucceeded(self.pb.just("optimize", env={"ANSIBLE_INVENTORY": str(other / "hosts")}))
+        self.assertEnabled("nextcloud")
+
+    def test_reoptimization_follows_ansible_inventory(self):
+        """One playbook used with several inventories is re-optimized for the one being used."""
+        self.standard_inventory()
+        self.assertSucceeded(self.pb.just("optimize"))
+
+        other = self.pb.root / "other-inventory"
+        self.pb.write("hosts", "[mash_servers]\nc\n", base=other)
+        self.pb.write("host_vars/c/vars.yml", "nextcloud_enabled: true\n", base=other)
+        self.pb.touch_template()
+
+        self.assertSucceeded(self.pb.just("_setup-yml", env={"ANSIBLE_INVENTORY": str(other / "hosts")}))
+        self.assertEnabled("nextcloud")
+        self.assertNotEnabled("miniflux", "gitea")
+
+    def test_no_variable_files_fails_cleanly(self):
+        self.pb.hosts("[mash_servers]\na\n")
+        self.assertFailedCleanly(self.pb.just("optimize"))
+        self.assertFalse((self.pb.root / "run" / "optimization-enabled").exists())
+
+    def test_missing_inventory_directory_fails_cleanly(self):
+        result = self.pb.just("optimize", env={"ANSIBLE_INVENTORY": str(self.pb.root / "no-such-inventory" / "hosts")})
+        self.assertFailedCleanly(result)
+        self.assertIn("ANSIBLE_INVENTORY", result.stderr)
+        self.assertFalse((self.pb.root / "run" / "optimization-enabled").exists())
+
+
+class TestInventoryChanges(OptimizeTestCase):
+    def test_removed_host_on_template_change(self):
+        self.standard_inventory()
+        self.assertSucceeded(self.pb.just("optimize"))
+
+        shutil.rmtree(self.pb.inventory / "host_vars" / "b")
+        self.pb.hosts("[mash_servers]\na\n")
+        self.pb.touch_template()
+
+        self.assertSucceeded(self.pb.just("_setup-yml"))
+        self.assertEnabled("miniflux")
+        self.assertNotEnabled("gitea")
+
+    def test_added_host_on_template_change(self):
+        self.standard_inventory()
+        self.assertSucceeded(self.pb.just("optimize"))
+
+        self.pb.hosts("[mash_servers]\na\nb\nc\n")
+        self.pb.write("host_vars/c/vars.yml", "nextcloud_enabled: true\n")
+        self.pb.touch_template()
+
+        self.assertSucceeded(self.pb.just("_setup-yml"))
+        self.assertEnabled("miniflux", "gitea", "nextcloud")
+
+    def test_legacy_state_keeps_optimization_enabled(self):
+        """Older versions stored a list of vars.yml paths. That file still means optimization is enabled."""
+        self.standard_inventory()
+        self.assertSucceeded(self.pb.just("optimize"))
+        run = self.pb.root / "run"
+        (run / "optimization-enabled").unlink()
+        (run / "optimization-vars-files.state").write_text("/no/longer/existing/host_vars/x/vars.yml\n")
+        self.pb.write("host_vars/c/vars.yml", "nextcloud_enabled: true\n")
+        self.pb.touch_template()
+
+        self.assertSucceeded(self.pb.just("_setup-yml"))
+        self.assertEnabled("miniflux", "gitea", "nextcloud")
+        self.assertNotEnabled("vaultwarden")
+        self.assertFalse((run / "optimization-vars-files.state").exists())
+        self.assertTrue((run / "optimization-enabled").exists())
+
+    def test_deleted_generated_file_is_regenerated_optimized(self):
+        self.standard_inventory()
+        self.assertSucceeded(self.pb.just("optimize"))
+        (self.pb.root / "setup.yml").unlink()
+
+        self.assertSucceeded(self.pb.just("_setup-yml"))
+        self.assertEnabled("miniflux", "gitea")
+        self.assertNotIn("nextcloud", self.pb.setup_roles())
+
+    def test_failed_reoptimization_does_not_leave_mismatched_files(self):
+        self.standard_inventory()
+        self.assertSucceeded(self.pb.just("optimize"))
+
+        # An unknown role name in a marker makes the optimization fail.
+        with open(self.pb.root / "templates" / "setup.yml", "a") as file:
+            file.write("\n    # role-specific:no_such_role\n    # /role-specific:no_such_role\n")
+        self.assertNotEqual(self.pb.just("_setup-yml").returncode, 0)
+
+        # Running again must retry (and fail again), not continue with an unoptimized setup.yml
+        # and an optimized requirements.yml.
+        self.assertNotEqual(self.pb.just("_setup-yml").returncode, 0)
+        self.assertConsistent()
+
+    def test_optimize_reset(self):
+        self.standard_inventory()
+        self.assertSucceeded(self.pb.just("optimize"))
+        self.assertSucceeded(self.pb.just("optimize-reset"))
+        self.assertFalse((self.pb.root / "run" / "optimization-enabled").exists())
+        self.assertFalse((self.pb.root / "setup.yml").exists())
+
+    def test_templates_are_used_as_they_are_without_optimization(self):
+        self.standard_inventory()
+        self.assertSucceeded(self.pb.just("_setup-yml"))
+        self.assertEqual(
+            (self.pb.root / "setup.yml").read_text(),
+            (self.pb.root / "templates" / "setup.yml").read_text(),
+        )
+
+
+class TestVariableFileContents(OptimizeTestCase):
+    def test_empty_file(self):
+        self.standard_inventory()
+        self.pb.write("host_vars/b/vars.yml", "")
+        self.assertSucceeded(self.pb.just("optimize"))
+        self.assertEnabled("miniflux")
+
+    def test_comments_only_file(self):
+        self.standard_inventory()
+        self.pb.write("host_vars/b/vars.yml", "---\n# gitea_enabled: true\n")
+        self.assertSucceeded(self.pb.just("optimize"))
+        self.assertEnabled("miniflux")
+        self.assertNotEnabled("gitea")
+
+    def test_non_mapping_file(self):
+        self.standard_inventory()
+        self.pb.write("host_vars/b/vars.yml", "- gitea_enabled\n")
+        self.assertSucceeded(self.pb.just("optimize"))
+        self.assertEnabled("miniflux")
+
+    def test_inline_vault_value(self):
+        self.standard_inventory()
+        self.pb.write("host_vars/a/vars.yml", "miniflux_enabled: true\n" + INLINE_VAULT)
+        self.assertSucceeded(self.pb.just("optimize"))
+        self.assertEnabled("miniflux", "gitea")
+
+    def test_invalid_yaml_is_skipped_with_warning(self):
+        self.standard_inventory()
+        self.pb.write("host_vars/b/broken.yml", "nextcloud_enabled: [\n")
+        result = self.pb.just("optimize")
+        self.assertSucceeded(result)
+        self.assertIn("broken.yml", result.stderr)
+        self.assertEnabled("miniflux", "gitea")
+
+    def test_fully_encrypted_file_is_skipped_silently(self):
+        self.standard_inventory()
+        self.pb.write("host_vars/b/vault.yml", FULLY_ENCRYPTED)
+        result = self.pb.just("optimize")
+        self.assertSucceeded(result)
+        self.assertNotIn("vault.yml", result.stdout + result.stderr)
+        self.assertEnabled("miniflux", "gitea")
+
+
+class TestVariableFileLayouts(OptimizeTestCase):
+    def test_flat_host_vars_file(self):
+        self.standard_inventory()
+        shutil.rmtree(self.pb.inventory / "host_vars" / "b")
+        self.pb.write("host_vars/b.yml", "gitea_enabled: true\n")
+        self.assertSucceeded(self.pb.just("optimize"))
+        self.assertEnabled("miniflux", "gitea")
+
+    def test_flat_host_vars_file_named_after_a_domain(self):
+        """Ansible picks flat files by host name, so `example.com` is a variable file despite its "extension"."""
+        self.standard_inventory()
+        shutil.rmtree(self.pb.inventory / "host_vars" / "b")
+        self.pb.write("host_vars/b.example.com", "gitea_enabled: true\n")
+        self.assertSucceeded(self.pb.just("optimize"))
+        self.assertEnabled("miniflux", "gitea")
+
+    def test_additional_files_in_host_vars_directory(self):
+        self.standard_inventory()
+        self.pb.write("host_vars/a/nextcloud.yml", "nextcloud_enabled: true\n")
+        self.pb.write("host_vars/a/services/syncthing.yaml", "syncthing_enabled: true\n")
+        self.assertSucceeded(self.pb.just("optimize"))
+        self.assertEnabled("miniflux", "gitea", "nextcloud", "syncthing")
+
+    def test_group_vars_layouts(self):
+        self.pb.hosts("""\
+            [mash_servers:children]
+            web
+            db
+
+            [web]
+            a
+
+            [db]
+            b
+            """)
+        self.pb.write("host_vars/a/vars.yml", "mash_playbook_generic_secret_key: x\n")
+        self.pb.write("group_vars/all.yml", "miniflux_enabled: true\n")
+        self.pb.write("group_vars/mash_servers/vars.yml", "aux_file_definitions_custom: []\n")
+        self.pb.write("group_vars/web", "nextcloud_enabled: true\n")
+        self.pb.write("group_vars/db.yaml", "gitea_enabled: true\n")
+        self.assertSucceeded(self.pb.just("optimize"))
+        self.assertEnabled("miniflux", "auxiliary", "nextcloud", "gitea")
+
+    def test_group_vars_without_host_vars(self):
+        self.pb.hosts("[mash_servers]\na\n")
+        self.pb.write("group_vars/mash_servers.yml", "miniflux_enabled: true\n")
+        self.assertSucceeded(self.pb.just("optimize"))
+        self.assertEnabled("miniflux")
+
+    def test_files_ansible_does_not_load_are_ignored(self):
+        self.standard_inventory()
+        self.pb.write("host_vars/a/notes.txt", "nextcloud_enabled: true\n")
+        self.pb.write("host_vars/a/vars.yml~", "syncthing_enabled: true\n")
+        self.pb.write("host_vars/a/.vars.yml.swp", "vaultwarden_enabled: true\n")
+        # Like Ansible, do not descend into directories with an extension
+        self.pb.write("host_vars/a/etc/nginx/conf.d/uptime.yml", "uptime_kuma_enabled: true\n")
+        self.assertSucceeded(self.pb.just("optimize"))
+        self.assertEnabled("miniflux", "gitea")
+        self.assertNotEnabled("nextcloud", "syncthing", "vaultwarden", "uptime_kuma")
+
+    def test_asset_files_are_ignored_quietly(self):
+        """Inventories often keep templates and other files for their own tasks in host_vars/<host>/."""
+        self.standard_inventory()
+        self.pb.write("host_vars/a/etc/systemd/system/backup.service.j2", "[Unit]\nDescription={{ x }}\n")
+        self.pb.write("host_vars/a/root/bin/backup.sh", "#!/bin/sh\necho 'nextcloud_enabled: true'\n")
+        self.pb.write("host_vars/a/docs/README.md", "# Notes\n")
+        self.pb.write("host_vars/a/root/ssh/id_ed25519", "")
+        result = self.pb.just("optimize")
+        self.assertSucceeded(result)
+        self.assertEqual(result.stderr, "")
+        self.assertEnabled("miniflux", "gitea")
+        self.assertNotEnabled("nextcloud")
+
+
+class TestTemplates(OptimizeTestCase):
+    """Checks the real templates, so that broken `role-specific` markers are caught when they change."""
+
+    def all_prefixes(self):
+        definitions = yaml.safe_load((REPO / "templates" / "requirements.yml").read_text())
+        return {definition["activation_prefix"] for definition in definitions} - {""}
+
+    def assertGeneratedFilesParse(self):
+        yaml.safe_load((self.pb.root / "setup.yml").read_text())
+        yaml.safe_load((self.pb.root / "group_vars" / "mash_servers").read_text())
+
+    def test_all_roles(self):
+        self.pb.hosts("[mash_servers]\na\n")
+        self.pb.write(
+            "host_vars/a/vars.yml",
+            "".join("{0}optimize_test: true\n".format(prefix) for prefix in sorted(self.all_prefixes())),
+        )
+        self.assertSucceeded(self.pb.just("optimize"))
+        self.assertConsistent()
+        self.assertGeneratedFilesParse()
+
+        definitions = yaml.safe_load((REPO / "templates" / "requirements.yml").read_text())
+        self.assertEqual(self.pb.requirements_roles(), {definition["name"] for definition in definitions})
+
+    def test_minimal_roles(self):
+        self.pb.hosts("[mash_servers]\na\n")
+        self.pb.write("host_vars/a/vars.yml", "mash_playbook_generic_secret_key: x\n")
+        self.assertSucceeded(self.pb.just("optimize"))
+        self.assertConsistent()
+        self.assertGeneratedFilesParse()
+
+
+class TestDependencies(unittest.TestCase):
+    def test_only_standard_library_and_pyyaml(self):
+        tree = ast.parse((REPO / "bin" / "optimize.py").read_text())
+        imported = set()
+        for node in ast.walk(tree):
+            if isinstance(node, ast.Import):
+                imported.update(alias.name.split(".")[0] for alias in node.names)
+            elif isinstance(node, ast.ImportFrom) and node.module:
+                imported.add(node.module.split(".")[0])
+        third_party = imported - set(sys.stdlib_module_names) - {"yaml"}
+        self.assertEqual(third_party, set())
+
+
+if __name__ == "__main__":
+    unittest.main()
