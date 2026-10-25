@@ -214,7 +214,7 @@
     <outline text="searxng" title="searxng" type="rss" htmlUrl="https://github.com/searxng/searxng-docker" xmlUrl="https://github.com/searxng/searxng-docker/releases.atom" />
     <outline text="seerr" title="seerr" type="rss" htmlUrl="https://github.com/seerr-team/seerr" xmlUrl="https://github.com/seerr-team/seerr/releases.atom" />
     <outline text="semaphore" title="semaphore" type="rss" htmlUrl="https://github.com/ansible-semaphore/semaphore" xmlUrl="https://github.com/ansible-semaphore/semaphore/releases.atom" />
-    <outline text="send" title="send" type="rss" htmlUrl="https://github.com/timvisee/send" xmlUrl="https://github.com/timvisee/send/releases.atom" />
+    <outline text="send" title="send" type="rss" htmlUrl="https://gitlab.com/timvisee/send" xmlUrl="https://gitlab.com/timvisee/send/-/tags?format=atom" />
     <outline text="sftpgo" title="sftpgo" type="rss" htmlUrl="https://github.com/drakkan/sftpgo" xmlUrl="https://github.com/drakkan/sftpgo/releases.atom" />
     <outline text="silverbullet" title="silverbullet" type="rss" htmlUrl="https://github.com/silverbulletmd/silverbullet" xmlUrl="https://github.com/silverbulletmd/silverbullet/releases.atom" />
     <outline text="smp_server" title="smp_server" type="rss" htmlUrl="https://github.com/simplex-chat/simplexmq" xmlUrl="https://github.com/simplex-chat/simplexmq/releases.atom" />

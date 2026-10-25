@@ -19,11 +19,11 @@ SPDX-License-Identifier: AGPL-3.0-or-later
 
 # Send
 
-The playbook can install and configure [Send](https://github.com/timvisee/send) for you.
+The playbook can install and configure [Send](https://gitlab.com/timvisee/send) for you.
 
 Send is a fork of Mozilla's discontinued [Firefox Send](https://github.com/mozilla/send) which allows you to send files to others with a link. Files are end-to-end encrypted so they cannot be read by the server, and also can be protected with a password.
 
-See the project's [documentation](https://github.com/timvisee/send/blob/master/README.md) to learn what Send does and why it might be useful to you.
+See the project's [documentation](https://gitlab.com/timvisee/send/blob/master/README.md) to learn what Send does and why it might be useful to you.
 
 For details about configuring the [Ansible role for Send](https://github.com/mother-of-all-self-hosting/ansible-role-send), you can check them via:
 
