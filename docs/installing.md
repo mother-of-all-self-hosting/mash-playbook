@@ -28,7 +28,7 @@ If you don't have either `just` tool, you can run the `ansible-galaxy` tool dire
 
 For details about `just` commands, take a look at: [Running `just` commands](just.md).
 
-**Note**: if you're not using the [`just`](https://github.com/casey/just) utility, you need to generate `setup.yml`, `requirements.yml` and `group_vars/mash_servers/` from the [`components/` directory](../components) yourself (again after each playbook update), by running `bin/ansible-python.sh bin/optimize.py --components-path=components --all-components --dst-requirements-yml-path=requirements.yml --dst-setup-yml-path=setup.yml --dst-group-vars-path=group_vars/mash_servers`. If you are using `just`, these files are created and maintained up-to-date automatically.
+**Note**: if you're not using the [`just`](https://github.com/casey/just) utility, you need to generate `setup.yml`, `requirements.yml` and `group_vars/mash_servers/` from the [`components/` directory](../components) yourself (again after each playbook update), by running `bin/ansible-python.sh bin/optimize.py --components-path=components --inventory-path=inventory --all-components --dst-requirements-yml-path=requirements.yml --dst-setup-yml-path=setup.yml --dst-group-vars-path=group_vars/mash_servers`. If you are using `just`, these files are created and maintained up-to-date automatically.
 
 ## Installing services
 

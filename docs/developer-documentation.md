@@ -121,6 +121,8 @@ Each role the playbook can use is wired in by a *component*: a directory in [`co
         └── YOUR-SERVICE.md  ← Add documentation about how to configure it
 ```
 
+Components can also live in the inventory, to extend the playbook without changing it (see [Extending the playbook with your own components](extending-the-playbook.md)).
+
 The easiest way to start is to copy the component of a similar service and adapt it. [`miniflux`](../components/miniflux) is a typical one (with Postgres and Traefik), [`postgres`](../components/postgres) accepts entries from other components, and [`docker`](../components/docker) has a special entry in `setup.yml`.
 
 Before every run, `just` generates `requirements.yml`, `setup.yml` and `group_vars/mash_servers/` from the components in use by the inventory (see [`bin/optimize.py`](../bin/optimize.py)). Do not edit those generated files. The `check-components` pre-commit hook validates the structure of all components, and the `test-optimize` hook ([`tests/optimize/test_optimize.py`](../tests/optimize/test_optimize.py)) tests the generation.
@@ -153,6 +155,8 @@ Optional fields:
         - role: galaxy/docker
           when: mash_playbook_docker_installation_enabled | bool
     ```
+
+    `setup` may also be a list of such placements, for a component which runs in several places, or `[]` for one which runs nothing. Role paths starting with `./` (e.g. `./roles/YOUR-ROLE`) are relative to the component's directory.
 
 - `accepts`: lists which other components can add entries to (with `inject`), for components such as Postgres. `into` names the variable which gets the entries of the components in use (those whose `when` is true, without `when`), and `required_keys` the keys each entry needs:
 

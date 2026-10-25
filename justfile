@@ -221,10 +221,18 @@ stop-group group *extra_args:
 _install-roles *flags:
     #!/usr/bin/env sh
     set -eu
-    # All roles the playbook knows about: installed ones which are no longer in use get deleted
+    # The inventory may be a directory or a hosts file inside it
+    inventory_path={{ quote(inventory) }}
+    if [ ! -d "$inventory_path" ]; then
+        inventory_path=$(dirname "$inventory_path")
+    fi
+
+    # All roles the playbook and the inventory's components know about: installed ones which are no longer in use get deleted
     set --
-    for requirements_path in {{ components_directory_path }}/*/requirements.yml; do
-        set -- "$@" --all-requirements-path="$requirements_path"
+    for requirements_path in {{ components_directory_path }}/*/requirements.yml "$inventory_path"/components/*/requirements.yml; do
+        if [ -f "$requirements_path" ]; then
+            set -- "$@" --all-requirements-path="$requirements_path"
+        fi
     done
     {{ justfile_directory() }}/bin/ansible-python.sh {{ justfile_directory() }}/bin/install-roles.py \
     --requirements-path={{ justfile_directory() }}/requirements.yml \

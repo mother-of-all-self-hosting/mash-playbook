@@ -677,6 +677,148 @@ class TestComponents(OptimizeTestCase):
         self.assertSucceeded(self.pb.just("optimize-enable"))
 
 
+class TestInventoryComponents(OptimizeTestCase):
+    """Components in the inventory's own components/ directory, next to the playbook's."""
+
+    HOOKS_COMPONENT = textwrap.dedent("""\
+        activation_prefix: hooks_
+        setup:
+          - priority: 200
+            entry:
+              - role: ./roles/before_services
+                tags: [setup-all, setup-hooks]
+          - priority: 9050
+            entry:
+              - role: ./roles/after_services
+                tags: [setup-all, setup-hooks]
+        """)
+
+    NOTES_COMPONENT = textwrap.dedent("""\
+        activation_prefix: notes_
+        inject:
+          systemd_service_manager:
+            services:
+              - name: "{{ notes_identifier }}.service"
+                priority: 2000
+                restart_necessary: false
+                groups: [mash, notes]
+                when: "{{ notes_enabled }}"
+        """)
+
+    def setUp(self):
+        super().setUp()
+        self.standard_inventory()
+
+    def add_hooks(self, inventory=None):
+        self.pb.write("components/hooks/component.yml", self.HOOKS_COMPONENT, base=inventory)
+        for role in ("before_services", "after_services"):
+            self.pb.write("components/hooks/roles/{0}/tasks/main.yml".format(role), "---\n", base=inventory)
+
+    def add_notes(self):
+        self.pb.write("components/notes/component.yml", self.NOTES_COMPONENT)
+        self.pb.write("components/notes/requirements.yml", "- src: git+https://example.com/notes.git\n  version: v1.0.0\n  name: notes\n")
+        self.pb.write("components/notes/wiring.yml", "notes_enabled: false\nnotes_identifier: notes\n")
+        self.pb.write("components/notes/with/postgres.yml", "notes_database_hostname: \"{{ postgres_connection_hostname }}\"\n")
+
+    def enable(self, *variables, inventory=None):
+        with open((inventory or self.pb.inventory) / "host_vars" / "a" / "vars.yml", "a") as file:
+            file.writelines("{0}: true\n".format(variable) for variable in variables)
+
+    def setup_entries(self):
+        [play] = yaml.safe_load((self.pb.root / "setup.yml").read_text())
+        return [entry["role"] for entry in play["roles"]]
+
+    def test_components_in_use(self):
+        self.add_hooks()
+        self.add_notes()
+        self.enable("hooks_enabled", "notes_enabled", "postgres_enabled")
+        self.assertSucceeded(self.pb.just("optimize-enable"))
+
+        self.assertEnabled("notes", "miniflux")
+        entries = self.setup_entries()
+        before, after = "inventory/components/hooks/roles/before_services", "inventory/components/hooks/roles/after_services"
+        # Placed by priority among the playbook's components: between systemd_docker_base (130) and Postgres (220), and after systemd_service_manager (9010)
+        self.assertLess(entries.index("galaxy/systemd_docker_base"), entries.index(before))
+        self.assertLess(entries.index(before), entries.index("galaxy/postgres"))
+        self.assertLess(entries.index("galaxy/systemd_service_manager"), entries.index(after))
+        self.assertIn("galaxy/notes", entries)
+        for role in (before, after):
+            self.assertTrue((self.pb.root / role).is_dir())
+
+        files = self.pb.group_vars_files()
+        self.assertIn("notes/wiring.yml", files)
+        self.assertIn("notes/with/postgres.yml", files)
+        injected = yaml.safe_load(
+            (self.pb.root / "group_vars" / "mash_servers" / "systemd_service_manager" / "injected.yml").read_text()
+        )
+        names = {entry["name"] for entry in injected["devture_systemd_service_manager_services_list_auto_unfiltered"]}
+        self.assertIn("{{ notes_identifier }}.service", names)
+
+    def test_components_not_in_use(self):
+        self.add_hooks()
+        self.add_notes()
+        self.assertSucceeded(self.pb.just("optimize-enable"))
+        self.assertNotEnabled("notes")
+        self.assertNotIn("inventory/components/hooks/roles/before_services", self.setup_entries())
+        self.assertNotIn("notes/wiring.yml", self.pb.group_vars_files())
+
+    def test_all_components_without_optimization(self):
+        self.add_notes()
+        self.assertSucceeded(self.pb.just("optimize-disable"))
+        self.assertEnabled("notes", "nextcloud")
+
+    def test_inventory_elsewhere(self):
+        inventory = self.pb.root.parent / (self.pb.root.name + "-inventory")
+        self.addCleanup(shutil.rmtree, inventory)
+        shutil.move(self.pb.inventory, inventory)
+        self.add_hooks(inventory)
+        self.enable("hooks_enabled", inventory=inventory)
+
+        self.assertSucceeded(self.pb.just("optimize-enable", env={"ANSIBLE_INVENTORY": str(inventory / "hosts")}))
+        role = "../{0}/components/hooks/roles/before_services".format(inventory.name)
+        self.assertIn(role, self.setup_entries())
+        self.assertTrue((self.pb.root / role).is_dir())
+
+    def test_inventory_in_the_playbook_directory(self):
+        # Its components/ directory is the playbook's own
+        self.pb.write("hosts", "[mash_servers]\na\n", base=self.pb.root)
+        self.pb.write("host_vars/a/vars.yml", "miniflux_enabled: true\n", base=self.pb.root)
+        self.assertSucceeded(self.pb.just("optimize-enable", env={"ANSIBLE_INVENTORY": "hosts"}))
+        self.assertEnabled("miniflux")
+
+    def test_wiring_only_component(self):
+        self.pb.write("components/notes/component.yml", "activation_prefix: notes_\nsetup: []\n" + self.NOTES_COMPONENT.split("\n", 1)[1])
+        self.pb.write("components/notes/wiring.yml", "notes_identifier: notes\n")
+        self.enable("notes_enabled")
+        self.assertSucceeded(self.pb.just("optimize-enable"))
+        self.assertNotIn("galaxy/notes", self.setup_entries())
+        self.assertIn("notes/wiring.yml", self.pb.group_vars_files())
+
+    def test_mistakes(self):
+        cases = {
+            "has the same name as": lambda: self.pb.write("components/miniflux/component.yml", "activation_prefix: miniflux_\n"),
+            "does not exist in": lambda: self.pb.write("components/hooks/component.yml", self.HOOKS_COMPONENT),
+            "has neither a requirements.yml nor a `setup.entry`": lambda: self.pb.write(
+                "components/notes/component.yml", self.NOTES_COMPONENT
+            ),
+            "is defined in both": lambda: (
+                self.add_notes(),
+                self.pb.write("components/notes/wiring.yml", "notes_enabled: false\nminiflux_enabled: true\n"),
+            ),
+        }
+        for expected, make_mistake in cases.items():
+            with self.subTest(expected):
+                self.setUp()
+                self.assertSucceeded(self.pb.just("optimize-enable"))
+                setup_yml = (self.pb.root / "setup.yml").read_text()
+                make_mistake()
+                self.enable("notes_enabled", "hooks_enabled")
+                result = self.pb.just("_prepare-files")
+                self.assertFailedCleanly(result)
+                self.assertIn(expected, result.stderr)
+                self.assertEqual((self.pb.root / "setup.yml").read_text(), setup_yml)
+
+
 class TestRoleInstallation(OptimizeTestCase):
     """Runs `just roles` and `just update` with a fake `agru`, which records how it was called."""
 
@@ -764,6 +906,19 @@ class TestRoleInstallation(OptimizeTestCase):
         self.assertSucceeded(result)
         self.assertEqual(len(self.agru_calls()), 1)
         self.assertEqual(result.stderr, "")
+
+    def test_roles_of_inventory_components(self):
+        self.pb.write("components/notes/component.yml", "activation_prefix: notes_\n")
+        self.pb.write("components/notes/requirements.yml", "- src: git+https://example.com/notes.git\n  version: v1.0.0\n  name: notes\n")
+        self.pb.write("host_vars/a/vars.yml", "mash_playbook_generic_secret_key: x\nminiflux_enabled: true\nnotes_enabled: true\n")
+        self.assertSucceeded(self.pb.just("roles", env=self.env))
+        self.assertTrue((self.pb.root / "roles" / "galaxy" / "notes").is_dir())
+
+        # Like the playbook's roles, it is deleted once no longer in use
+        self.pb.write("host_vars/a/vars.yml", "mash_playbook_generic_secret_key: x\nminiflux_enabled: true\n")
+        self.assertSucceeded(self.pb.just("roles", env=self.env))
+        self.assertFalse((self.pb.root / "roles" / "galaxy" / "notes").exists())
+        self.assertTrue((self.pb.root / "roles" / "galaxy" / "miniflux").is_dir())
 
     def make_clone_with_upstream_change(self):
         """Turns the playbook into a clone of an upstream repository, which then gets a component change."""

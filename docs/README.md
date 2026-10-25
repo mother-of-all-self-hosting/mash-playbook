@@ -52,6 +52,7 @@ If your server and services experience issues, feel free to come to [our support
 - [Configuring IPv6](configuring-ipv6.md)
 
 - [Developer documentation](developer-documentation.md)
+- [Extending the playbook with your own components](extending-the-playbook.md)
 
 - [Playbook tags](playbook-tags.md)
 

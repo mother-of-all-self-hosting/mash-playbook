@@ -12,6 +12,12 @@ Each role the playbook can use is now wired in by a component in [`components/`]
 
 **If you go back to an older version of the playbook** (e.g. with `git checkout`), delete the generated directory first (`rm -r group_vars/mash_servers`), as older versions generate a file in its place.
 
+## Your inventory can have components of its own
+
+You can now extend the playbook with components in your inventory's `components/` directory (e.g. `inventory/components/`): to run your own tasks at a given point of the run, to install a service with a role the playbook does not support, or to register your own systemd services. See [Extending the playbook with your own components](docs/extending-the-playbook.md).
+
+**If your inventory already has a `components/` directory for something else**, move it elsewhere: the playbook now reads it, and stops with an error, because it does not contain components.
+
 ## The playbook is now optimized by default, and installs its roles on its own
 
 This affects everyone. Before running the playbook (e.g. with `just install-all`), the `just` recipes now:

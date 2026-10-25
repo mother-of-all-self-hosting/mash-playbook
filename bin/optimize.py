@@ -6,7 +6,8 @@
 #
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
-# Generates requirements.yml, setup.yml and group_vars/mash_servers/ from the components in components/.
+# Generates requirements.yml, setup.yml and group_vars/mash_servers/ from the components in components/
+# and in the inventory's own components/ directory (if any).
 #
 # Only the components in use by the inventory are included (see `activation_prefix` in each component.yml),
 # unless all components are requested with --all-components. See docs/developer-documentation.md for the
@@ -30,7 +31,7 @@ parser = argparse.ArgumentParser(
     description="Generates the playbook's requirements.yml, setup.yml and group_vars/mash_servers/ from its components"
 )
 parser.add_argument("--components-path", help="Path to the components directory", required=True)
-parser.add_argument("--inventory-path", help="Path to the inventory directory")
+parser.add_argument("--inventory-path", help="Path to the inventory directory, whose own components/ are used too")
 parser.add_argument(
     "--playbook-path",
     help="Path to the playbook directory, whose own host_vars/ and group_vars/ are read too",
@@ -206,28 +207,48 @@ def fail(message):
 COMPONENT_KEYS = {"activation_prefix", "setup", "accepts", "inject"}
 SETUP_KEYS = {"priority", "entry"}
 ACCEPTS_KEYS = {"description", "into", "required_keys"}
-COMPONENT_FILES = {"component.yml", "requirements.yml", "wiring.yml", "with"}
+COMPONENT_FILES = {"component.yml", "requirements.yml", "wiring.yml", "with", "roles"}
 
 # Components without a `setup` priority run at this one, sorted by name
 DEFAULT_PRIORITY = 1000
 
 
-def load_components(components_path):
+def load_components(components_paths):
     components = {}
-    for name in sorted(os.listdir(components_path)):
-        if is_ignored_by_ansible(name):
-            continue
-        path = os.path.join(components_path, name)
-        if not os.path.isdir(path):
-            fail("{0} is not a component directory".format(path))
-        manifest_path = os.path.join(path, "component.yml")
-        if not os.path.isfile(manifest_path):
-            fail("{0} has no component.yml".format(path))
-        manifest = load_yaml_file(manifest_path) or {}
-        if not isinstance(manifest, dict):
-            fail("{0} does not contain a mapping".format(manifest_path))
-        components[name] = {"path": path, "manifest": manifest}
+    for components_path in components_paths:
+        for name in sorted(os.listdir(components_path)):
+            if is_ignored_by_ansible(name):
+                continue
+            path = os.path.join(components_path, name)
+            if name in components:
+                fail("{0} has the same name as {1}. Rename one of them".format(path, components[name]["path"]))
+            components[name] = load_component(path)
     return components
+
+
+def load_component(path):
+    if not os.path.isdir(path):
+        fail("{0} is not a component directory".format(path))
+    manifest_path = os.path.join(path, "component.yml")
+    if not os.path.isfile(manifest_path):
+        fail("{0} has no component.yml".format(path))
+    manifest = load_yaml_file(manifest_path) or {}
+    if not isinstance(manifest, dict):
+        fail("{0} does not contain a mapping".format(manifest_path))
+    return {"path": path, "manifest": manifest}
+
+
+def setup_placements(component):
+    """Returns where a component runs in setup.yml: a list of {priority, entry} (a single one, unless `setup` is a list)."""
+    setup = component["manifest"].get("setup")
+    if setup is None:
+        return [{}]
+    return setup if isinstance(setup, list) else [setup]
+
+
+def is_component_role(item):
+    """Tells whether a setup.yml entry runs a role of the component itself (`./roles/<role>`)."""
+    return isinstance(item.get("role"), str) and item["role"].startswith("./")
 
 
 def validate_components(components):
@@ -245,15 +266,6 @@ def validate_components(components):
         if not isinstance(manifest.get("activation_prefix"), str):
             fail("{0} needs an `activation_prefix` (`''` for components which are always in use)".format(manifest_path))
 
-        setup = manifest.get("setup")
-        if setup is not None:
-            if not isinstance(setup, dict) or set(setup) - SETUP_KEYS:
-                fail("{0}: `setup` may only contain {1}".format(manifest_path, ", ".join(sorted(SETUP_KEYS))))
-            if not isinstance(setup.get("priority", DEFAULT_PRIORITY), int):
-                fail("{0}: `setup.priority` must be a number".format(manifest_path))
-            if "entry" in setup and not isinstance(setup["entry"], list):
-                fail("{0}: `setup.entry` must be a list of setup.yml role entries".format(manifest_path))
-
         requirements_path = os.path.join(path, "requirements.yml")
         if os.path.exists(requirements_path):
             requirements = load_yaml_file(requirements_path)
@@ -265,8 +277,23 @@ def validate_components(components):
             ):
                 fail("{0} must contain exactly one role, named {1}".format(requirements_path, name))
             component["requirement"] = requirements[0]
-        elif setup is None or "entry" not in setup:
-            fail("{0} has neither a requirements.yml nor a `setup.entry` to run".format(path))
+
+        for setup in setup_placements(component):
+            if not isinstance(setup, dict) or set(setup) - SETUP_KEYS:
+                fail("{0}: `setup` may only contain {1} (or be a list of such)".format(
+                    manifest_path, ", ".join(sorted(SETUP_KEYS))))
+            if not isinstance(setup.get("priority", DEFAULT_PRIORITY), int):
+                fail("{0}: `setup.priority` must be a number".format(manifest_path))
+            if "entry" not in setup:
+                if "requirement" not in component:
+                    fail("{0} has neither a requirements.yml nor a `setup.entry` to run "
+                         "(`setup: []` for a component which runs nothing)".format(path))
+                continue
+            if not isinstance(setup["entry"], list) or not all(isinstance(item, dict) for item in setup["entry"]):
+                fail("{0}: `setup.entry` must be a list of setup.yml role entries".format(manifest_path))
+            for item in setup["entry"]:
+                if is_component_role(item) and not os.path.isdir(os.path.join(path, item["role"])):
+                    fail("{0}: the role {1} does not exist in {2}".format(manifest_path, item["role"], path))
 
         with_path = os.path.join(path, "with")
         if os.path.isdir(with_path):
@@ -346,13 +373,21 @@ def generate_requirements_yml(components, names):
     return yaml.dump([components[name]["requirement"] for name in names if "requirement" in components[name]])
 
 
-def generate_setup_yml(components, names):
-    def priority(name):
-        return (components[name]["manifest"].get("setup") or {}).get("priority", DEFAULT_PRIORITY)
+def generate_setup_yml(components, names, setup_yml_directory):
+    placements = []
+    for name in names:
+        for index, setup in enumerate(setup_placements(components[name])):
+            placements.append((setup.get("priority", DEFAULT_PRIORITY), name, index, setup))
 
     parts = [SETUP_YML_HEADER]
-    for name in sorted(names, key=lambda name: (priority(name), name)):
-        entry = (components[name]["manifest"].get("setup") or {}).get("entry") or [{"role": "galaxy/" + name}]
+    for _, name, _, setup in sorted(placements, key=lambda placement: placement[:3]):
+        entry = []
+        for item in setup.get("entry") or [{"role": "galaxy/" + name}]:
+            if is_component_role(item):
+                # Its path is relative to the component's directory, while Ansible looks for it relative to setup.yml
+                role_path = os.path.join(components[name]["path"], item["role"])
+                item = dict(item, role=os.path.relpath(role_path, setup_yml_directory))
+            entry.append(item)
         parts.append(indent(dump_yaml(entry), "    ") + "\n")
     return "".join(parts).rstrip("\n") + "\n"
 
@@ -457,7 +492,16 @@ def write_group_vars(files, path):
             os.rmdir(root)
 
 
-components = load_components(args.components_path)
+components_paths = [args.components_path]
+if args.inventory_path is not None:
+    # Components of the inventory itself, to extend the playbook without changing it.
+    # An inventory in the playbook's own directory has none: there, components/ are the playbook's.
+    inventory_components_path = os.path.join(args.inventory_path, "components")
+    if os.path.isdir(inventory_components_path) and os.path.realpath(inventory_components_path) != os.path.realpath(
+        args.components_path
+    ):
+        components_paths.append(inventory_components_path)
+components = load_components(components_paths)
 validate_components(components)
 
 if args.check:
@@ -497,7 +541,7 @@ else:
 group_vars_files = generate_group_vars(components, names)
 check_duplicate_variables(group_vars_files)
 requirements_yml = generate_requirements_yml(components, names)
-setup_yml = generate_setup_yml(components, names)
+setup_yml = generate_setup_yml(components, names, os.path.dirname(os.path.abspath(args.dst_setup_yml_path)))
 
 # Only write once everything has been generated successfully, so that the files match each other
 check_group_vars_destination(args.dst_group_vars_path)
