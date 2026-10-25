@@ -49,6 +49,7 @@ class Playbook:
         shutil.copy(REPO / "justfile", root / "justfile")
         shutil.copy(REPO / "bin" / "optimize.py", root / "bin" / "optimize.py")
         shutil.copy(REPO / "bin" / "install-roles.py", root / "bin" / "install-roles.py")
+        shutil.copy(REPO / "bin" / "ansible-python.sh", root / "bin" / "ansible-python.sh")
         shutil.copytree(REPO / "templates", root / "templates")
         self.inventory = root / "inventory"
 

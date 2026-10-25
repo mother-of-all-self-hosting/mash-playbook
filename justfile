@@ -131,12 +131,12 @@ prek-install-git-pre-commit-hook: _ensure_mise_tools_installed
 # dumps an OPML file with extracted git feeds for roles
 opml:
     @echo "generating opml..."
-    @python bin/feeds.py . dump
+    @{{ justfile_directory() }}/bin/ansible-python.sh bin/feeds.py . dump
 
 # dumps versions of the components found in the roles to the VERSIONS.md file
 versions:
     @echo "generating versions..."
-    @python bin/versions.py
+    @{{ justfile_directory() }}/bin/ansible-python.sh bin/versions.py
 
 # Runs the playbook with --tags=install-all,start and optional arguments
 install-all *extra_args: (run-tags "install-all,start" extra_args)
@@ -210,7 +210,7 @@ stop-group group *extra_args:
 
 # Installs the roles in requirements.yml and deletes unused ones, keeping roles with local changes
 _install-roles *flags:
-    @python3 {{ justfile_directory() }}/bin/install-roles.py \
+    @{{ justfile_directory() }}/bin/ansible-python.sh {{ justfile_directory() }}/bin/install-roles.py \
     --requirements-path={{ justfile_directory() }}/requirements.yml \
     --all-requirements-path={{ templates_directory_path }}/requirements.yml \
     --roles-path={{ justfile_directory() }}/roles/galaxy \
@@ -253,7 +253,7 @@ _optimize-files:
         inventory_path=$(dirname "$inventory_path")
     fi
 
-    python3 {{ justfile_directory() }}/bin/optimize.py \
+    {{ justfile_directory() }}/bin/ansible-python.sh {{ justfile_directory() }}/bin/optimize.py \
     --inventory-path="$inventory_path" \
     --src-requirements-yml-path={{ templates_directory_path }}/requirements.yml \
     --dst-requirements-yml-path={{ justfile_directory() }}/requirements.yml \
