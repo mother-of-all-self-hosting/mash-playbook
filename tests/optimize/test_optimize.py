@@ -467,6 +467,44 @@ class TestTemplates(OptimizeTestCase):
         self.assertGeneratedFilesParse()
 
 
+class TestRoleInstallation(OptimizeTestCase):
+    """Runs `just roles` with a fake `agru`, which records how it was called."""
+
+    def setUp(self):
+        super().setUp()
+        self.standard_inventory()
+        self.assertSucceeded(self.pb.just("optimize-enable"))
+
+        bin_path = self.pb.root.parent / (self.pb.root.name + "-bin")
+        bin_path.mkdir()
+        self.addCleanup(shutil.rmtree, bin_path)
+        self.agru_log_path = bin_path / "agru.log"
+        agru_path = bin_path / "agru"
+        agru_path.write_text(textwrap.dedent("""\
+            #!/bin/sh
+            # Records the arguments and the role names in the file passed via -r
+            echo "args: $*" >> {log}
+            while [ $# -gt 0 ]; do
+                if [ "$1" = "-r" ]; then grep -o 'name: .*' "$2" | tr '\\n' ' ' >> {log}; echo >> {log}; fi
+                shift
+            done
+            """).format(log=self.agru_log_path))
+        agru_path.chmod(0o755)
+        self.env = {"PATH": "{0}:{1}".format(bin_path, os.environ["PATH"])}
+
+    def agru_calls(self):
+        """Returns (arguments, role names) for each call of the fake agru."""
+        lines = self.agru_log_path.read_text().splitlines()
+        return [(lines[i].removeprefix("args: "), lines[i + 1]) for i in range(0, len(lines), 2)]
+
+    def test_roles_installs_optimized_roles(self):
+        self.assertSucceeded(self.pb.just("roles", env=self.env))
+        [(args, roles)] = self.agru_calls()
+        self.assertIn(str(self.pb.root / "requirements.yml"), args)
+        self.assertIn("name: miniflux", roles)
+        self.assertNotIn("name: nextcloud", roles)
+
+
 class TestDependencies(unittest.TestCase):
     def test_only_standard_library_and_pyyaml(self):
         tree = ast.parse((REPO / "bin" / "optimize.py").read_text())

@@ -29,16 +29,8 @@ optimization_legacy_state_file_path := run_directory_path + "/optimization-vars-
 
 # Pulls external Ansible roles
 roles: _prepare-files
-    #!/usr/bin/env sh
-    if [ -x "$(command -v agru)" ]; then
-        echo "[NOTE] This command just updates the roles, but if you want to update everything at once (playbook, roles, etc.) - use 'just update'"
-        agru -r {{ justfile_directory() }}/requirements.yml -p roles/galaxy/ -no-tui
-    else
-        echo "[NOTE] You are using the standard ansible-galaxy tool to install roles, which is slow and lacks other features. We recommend installing the 'agru' tool to speed up the process: https://github.com/etkecc/agru#where-to-get"
-        echo "[NOTE] This command just updates the roles, but if you want to update everything at once (playbook, roles, etc.) - use 'just update'"
-        rm -rf roles/galaxy
-        ansible-galaxy install -r {{ justfile_directory() }}/requirements.yml -p roles/galaxy/ --force
-    fi
+    @echo "[NOTE] This command just updates the roles, but if you want to update everything at once (playbook, roles, etc.) - use 'just update'"
+    @{{ just_executable() }} --justfile {{ justfile() }} _install-roles
 
 # Enables optimization: from then on, the playbook only includes the roles of the services enabled in the inventory (or the one $ANSIBLE_INVENTORY points to)
 optimize-enable: _optimize-files
@@ -204,6 +196,20 @@ stop-all *extra_args: (run-tags "stop-all" extra_args)
 # Stops a specific service group
 stop-group group *extra_args:
     @{{ just_executable() }} --justfile {{ justfile() }} run-tags stop-group --extra-vars="group={{ group }}" {{ extra_args }}
+
+# Installs the Ansible roles listed in requirements.yml
+_install-roles:
+    #!/usr/bin/env sh
+    set -eu
+    if [ -x "$(command -v agru)" ]; then
+        echo "Installing roles pinned in requirements.yml..."
+        agru -r {{ justfile_directory() }}/requirements.yml -p roles/galaxy/ -no-tui
+    else
+        echo "[NOTE] You are using the standard ansible-galaxy tool to install roles, which is slow and lacks other features. We recommend installing the 'agru' tool to speed up the process: https://github.com/etkecc/agru#where-to-get"
+        echo "Installing roles..."
+        rm -rf roles/galaxy
+        ansible-galaxy install -r {{ justfile_directory() }}/requirements.yml -p roles/galaxy/ --force
+    fi
 
 # Generates requirements.yml, setup.yml and group_vars/mash_servers from their templates (optimized, if optimization is enabled).
 # This runs before every playbook run, so they always match the templates and the inventory. Unchanged files are left as they are.
