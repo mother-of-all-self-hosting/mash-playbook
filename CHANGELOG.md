@@ -1,12 +1,18 @@
 # 2026-10-25
 
-## `just optimize-for-host` has been removed
+## The playbook is now optimized by default, and installs its roles on its own
 
-This only affects you if you have used `just optimize-for-host HOST`. Use `just optimize-enable` instead.
+This affects everyone. Before running the playbook (e.g. with `just install-all`), the `just` recipes now:
 
-Optimizing for the whole inventory covers every host's services, so it is always correct. Optimizing for a single host could only make runs a little faster, at the cost of silently skipping the services of other hosts when running the playbook against them.
+- include only the roles of the services enabled in your inventory (its `host_vars` and `group_vars`). Previously, this optimization had to be enabled with `just optimize`.
+- install missing and outdated roles, and delete the roles of services which are no longer in use. `just roles` is no longer needed after pulling the playbook or enabling a service.
 
-If you last optimized with `just optimize-for-host`, there is nothing to do: the playbook now optimizes for your whole inventory on its own.
+See [Ansible roles and optimization](docs/just.md#ansible-roles-and-optimization) for details. Check the following before your first run after updating:
+
+- **If you enable services only through variables in your `hosts` file, or with `--extra-vars` on the command line**, the optimization does not see them, so these services would be left out. Move these variables to `vars.yml` (or another file in `host_vars`/`group_vars`), or run `just optimize-disable` to include all roles.
+- **If you have changed roles in `roles/galaxy`** (e.g. while developing them), save your changes elsewhere first. From now on, changed roles are kept (with a warning) instead of being replaced or deleted, but changes made before this update cannot be told apart from the original role. Symlinked roles and roles containing a `.git` directory are never touched.
+
+`just optimize`, `just optimize-reset`, `just optimize-restore` and `just optimize-for-host` have been removed: optimization is now always for your whole inventory and kept up to date on its own. To turn it off, use `just optimize-disable` (and `just optimize-enable` to turn it on again).
 
 # 2026-10-20
 
