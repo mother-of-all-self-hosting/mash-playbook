@@ -64,7 +64,7 @@ repos:
         args: ['templates/group_vars_mash_servers']
         pass_filenames: false
       - id: test-optimize
-        name: Test `just optimize`
+        name: Test playbook optimization
         entry: tests/optimize/test_optimize.py
         language: python
         additional_dependencies: ['pyyaml==6.0.3']
