@@ -9,7 +9,7 @@
 # playbook directory under var/tests/optimize/, builds an inventory there and runs the actual `just` recipes.
 # Using the real templates also checks their `role-specific` markers.
 #
-# Requires `just` on PATH, and PyYAML.
+# Requires `just` (also found as `rust-just`, or set via the `JUST` environment variable) and PyYAML.
 # Run directly (`tests/optimize/test_optimize.py`) or via the `test-optimize` pre-commit hook.
 
 import ast
@@ -28,6 +28,16 @@ REPO = Path(__file__).resolve().parents[2]
 
 # Each test's temporary playbook goes here (var/ is gitignored) and is removed afterwards.
 TMP_ROOT = REPO / "var" / "tests" / "optimize"
+
+
+def find_just(path=None):
+    """Finds `just`, which some package managers (e.g. pip and npm) install as `rust-just`."""
+    return os.environ.get("JUST") or shutil.which("just", path=path) or shutil.which("rust-just", path=path)
+
+
+JUST = find_just()
+if JUST is None:
+    sys.exit("These tests require `just` (or `rust-just`) on PATH, or its path in the `JUST` environment variable")
 
 FULLY_ENCRYPTED = "$ANSIBLE_VAULT;1.1;AES256\n3138353063616561616264653633353761\n"
 
@@ -66,7 +76,7 @@ class Playbook:
         full_env = {k: v for k, v in os.environ.items() if k != "ANSIBLE_INVENTORY"}
         full_env.update(env or {})
         return subprocess.run(
-            ["just", "--justfile", str(self.root / "justfile"), *args],
+            [JUST, "--justfile", str(self.root / "justfile"), *args],
             cwd=self.root,
             env=full_env,
             capture_output=True,
