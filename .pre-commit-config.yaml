@@ -68,7 +68,7 @@ repos:
         entry: tests/optimize/test_optimize.py
         language: python
         additional_dependencies: ['pyyaml==6.0.3']
-        files: '^(justfile|bin/optimize\.py|templates/(requirements\.yml|setup\.yml|group_vars_mash_servers)|tests/optimize/.*|\.pre-commit-config\.yaml)$'
+        files: '^(justfile|bin/(optimize\.py|install-roles\.py|ansible-python\.sh)|templates/(requirements\.yml|setup\.yml|group_vars_mash_servers)|tests/optimize/.*|\.pre-commit-config\.yaml)$'
         pass_filenames: false
       - id: test-install-roles
         name: Test role installation
