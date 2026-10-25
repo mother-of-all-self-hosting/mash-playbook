@@ -28,6 +28,11 @@ parser.add_argument(
     required=True,
 )
 parser.add_argument(
+    "--playbook-path",
+    help="Path to the playbook directory, whose own host_vars/ and group_vars/ are read too",
+    required=True,
+)
+parser.add_argument(
     "--src-requirements-yml-path",
     help="Path to source requirements.yml file with all role definitions",
     required=True,
@@ -118,11 +123,11 @@ def find_vars_file_paths_in_directory(path):
     return found
 
 
-def find_vars_file_paths(inventory_path):
-    """Finds the variable files of all hosts and groups (host_vars/ and group_vars/) in the inventory."""
+def find_vars_file_paths(path):
+    """Finds the variable files of all hosts and groups (host_vars/ and group_vars/) in an inventory or playbook directory."""
     found = []
     for vars_directory_name in ("host_vars", "group_vars"):
-        vars_directory_path = os.path.join(inventory_path, vars_directory_name)
+        vars_directory_path = os.path.join(path, vars_directory_name)
         if not os.path.isdir(vars_directory_path):
             continue
         for name in sorted(os.listdir(vars_directory_path)):
@@ -300,7 +305,15 @@ if include_all_roles:
     )
     used_variable_names = set()
 else:
-    used_variable_names = load_combined_variable_names_from_files(find_vars_file_paths(args.inventory_path))
+    vars_file_paths = find_vars_file_paths(args.inventory_path)
+    # Ansible also reads the playbook's own host_vars/ and group_vars/. Unlike the inventory's group_vars,
+    # the playbook's group_vars/<group> can override group_vars/mash_servers, so services may be enabled there.
+    # group_vars/mash_servers itself is skipped, since we generate it.
+    generated_file_path = os.path.realpath(args.dst_group_vars_yml_path)
+    for path in find_vars_file_paths(args.playbook_path):
+        if os.path.realpath(path) != generated_file_path:
+            vars_file_paths.append(path)
+    used_variable_names = load_combined_variable_names_from_files(vars_file_paths)
 
 all_role_definitions = load_yaml_file(args.src_requirements_yml_path)
 

@@ -434,6 +434,22 @@ class TestVariableFileLayouts(OptimizeTestCase):
         self.assertSucceeded(self.pb.just("optimize-enable"))
         self.assertEnabled("miniflux")
 
+    def test_playbook_group_vars_and_host_vars(self):
+        """Ansible reads the playbook's own group_vars/ and host_vars/ too (and its group_vars/<group> overrides mash_servers)."""
+        self.standard_inventory()
+        self.pb.write("group_vars/web.yml", "nextcloud_enabled: true\n", base=self.pb.root)
+        self.pb.write("host_vars/a.yml", "syncthing_enabled: true\n", base=self.pb.root)
+        self.assertSucceeded(self.pb.just("optimize-enable"))
+        self.assertEnabled("miniflux", "gitea", "nextcloud", "syncthing")
+
+    def test_generated_group_vars_file_is_ignored(self):
+        """Variables in the generated group_vars/mash_servers do not count, so roles dropped from it stay dropped."""
+        self.standard_inventory()
+        self.assertSucceeded(self.pb.just("optimize-disable"))
+        self.assertSucceeded(self.pb.just("optimize-enable"))
+        self.assertEnabled("miniflux", "gitea")
+        self.assertNotEnabled("nextcloud", "syncthing")
+
     def test_files_ansible_does_not_load_are_ignored(self):
         self.standard_inventory()
         self.pb.write("host_vars/a/notes.txt", "nextcloud_enabled: true\n")

@@ -254,6 +254,7 @@ _optimize-files:
 
     {{ justfile_directory() }}/bin/ansible-python.sh {{ justfile_directory() }}/bin/optimize.py \
     --inventory-path="$inventory_path" \
+    --playbook-path={{ justfile_directory() }} \
     --src-requirements-yml-path={{ templates_directory_path }}/requirements.yml \
     --dst-requirements-yml-path={{ justfile_directory() }}/requirements.yml \
     --src-setup-yml-path={{ templates_directory_path }}/setup.yml \
