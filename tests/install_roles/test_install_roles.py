@@ -81,7 +81,7 @@ class InstallRolesTestCase(unittest.TestCase):
         ]))
         return path
 
-    def run_script(self, *extra_args, installer="agru", env=None):
+    def run_script(self, *extra_args, all_roles=None, installer="agru", env=None):
         args = [
             str(SCRIPT),
             "--requirements-path", str(self.root / "requirements.yml"),
@@ -89,6 +89,8 @@ class InstallRolesTestCase(unittest.TestCase):
             "--state-path", str(self.state_path),
             "--installer", installer,
         ]
+        if all_roles is not None:
+            args += ["--all-requirements-path", str(self.requirements(all_roles, "all-requirements.yml"))]
         return subprocess.run(
             [*args, *extra_args],
             env={**self.env, **(env or {})},
@@ -259,7 +261,7 @@ class TestDeveloperManagedRoles(InstallRolesTestCase):
         self.requirements({"a": "v2"})
 
         for extra_args in ((), ("--force",)):
-            result = self.run_script(*extra_args)
+            result = self.run_script(*extra_args, all_roles={"a": "v2"})
             self.assertSucceeded(result)
             self.assertEqual(self.installer_calls(), [])
             self.assertTrue((self.roles_path / "a").is_symlink())
@@ -275,6 +277,42 @@ class TestDeveloperManagedRoles(InstallRolesTestCase):
         self.assertEqual(self.installer_calls(), [])
         self.assertEdited("a")
 
+
+class TestDeleting(InstallRolesTestCase):
+    def test_deletes_roles_no_longer_used(self):
+        self.install({"a": "v1", "b": "v1"})
+        self.requirements({"a": "v1"})
+        result = self.run_script(all_roles={"a": "v1", "b": "v1"})
+        self.assertSucceeded(result)
+        self.assertFalse((self.roles_path / "b").exists())
+        self.assertNotIn("b", yaml.safe_load(self.state_path.read_text())["roles"])
+
+    def test_keeps_roles_no_longer_used_with_local_changes(self):
+        self.install({"a": "v1", "b": "v1"})
+        self.edit("b")
+        self.requirements({"a": "v1"})
+        result = self.run_script(all_roles={"a": "v1", "b": "v1"})
+        self.assertSucceeded(result)
+        self.assertEdited("b")
+        self.assertIn("no longer used, but has local changes", result.stderr)
+
+        self.assertSucceeded(self.run_script("--force", all_roles={"a": "v1", "b": "v1"}))
+        self.assertFalse((self.roles_path / "b").exists())
+
+    def test_never_deletes_unknown_roles(self):
+        """For example, a new role being developed, which is not in the playbook yet."""
+        self.install({"a": "v1", "new": "v1"})
+        self.requirements({"a": "v1"})
+        result = self.run_script("--force", all_roles={"a": "v1"})
+        self.assertSucceeded(result)
+        self.assertTrue((self.roles_path / "new").exists())
+        self.assertEqual(result.stderr, "")
+
+    def test_without_all_requirements_nothing_is_deleted(self):
+        self.install({"a": "v1", "b": "v1"})
+        self.requirements({"a": "v1"})
+        self.assertSucceeded(self.run_script("--force"))
+        self.assertTrue((self.roles_path / "b").exists())
 
 
 class TestDependencies(unittest.TestCase):

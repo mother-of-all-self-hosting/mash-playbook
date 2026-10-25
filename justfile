@@ -29,7 +29,7 @@ optimization_legacy_state_file_path := run_directory_path + "/optimization-vars-
 # Versions and checksums of the roles installed into roles/galaxy, for detecting local changes to them
 installed_roles_file_path := run_directory_path + "/installed-roles.yml"
 
-# Pulls external Ansible roles. Roles with local changes are kept, unless --force is passed
+# Pulls external Ansible roles (and deletes unused ones). Roles with local changes are kept, unless --force is passed
 roles *flags: _prepare-files
     @echo "[NOTE] This command just updates the roles, but if you want to update everything at once (playbook, roles, etc.) - use 'just update'"
     @{{ just_executable() }} --justfile {{ justfile() }} _install-roles {{ flags }}
@@ -208,10 +208,11 @@ stop-all *extra_args: (run-tags "stop-all" extra_args)
 stop-group group *extra_args:
     @{{ just_executable() }} --justfile {{ justfile() }} run-tags stop-group --extra-vars="group={{ group }}" {{ extra_args }}
 
-# Installs the Ansible roles listed in requirements.yml, keeping roles with local changes (unless --force is passed)
+# Installs the Ansible roles listed in requirements.yml and deletes the playbook's other roles, keeping roles with local changes (unless --force is passed)
 _install-roles *flags:
     @python3 {{ justfile_directory() }}/bin/install-roles.py \
     --requirements-path={{ justfile_directory() }}/requirements.yml \
+    --all-requirements-path={{ templates_directory_path }}/requirements.yml \
     --roles-path={{ justfile_directory() }}/roles/galaxy \
     --state-path={{ quote(installed_roles_file_path) }} \
     {{ flags }}

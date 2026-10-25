@@ -13,6 +13,10 @@
 # - roles at another version than the pinned one are replaced, unless they have local changes
 #   (detected by comparing their contents with a checksum recorded when this script installed them)
 # - roles which are symlinks or contain a `.git` directory are managed by a developer and never touched
+#
+# With `--all-requirements-path` (a requirements file listing all roles the playbook knows about),
+# installed roles which are listed there, but not in the requirements file, are deleted, unless they have local changes.
+# Roles which are not listed in either file (e.g. a new role being developed) are never touched.
 
 import argparse
 import hashlib
@@ -39,6 +43,10 @@ parser.add_argument(
     required=True,
 )
 parser.add_argument(
+    "--all-requirements-path",
+    help="Path to a requirements file with all known roles. Installed roles listed there, but not in --requirements-path, are deleted",
+)
+parser.add_argument(
     "--roles-path", help="Path to the directory to install roles into", required=True
 )
 parser.add_argument(
@@ -55,7 +63,7 @@ parser.add_argument(
 parser.add_argument(
     "--force",
     action="store_true",
-    help="Also replace roles with local changes",
+    help="Also replace and delete roles with local changes",
 )
 parser.add_argument(
     "--quiet",
@@ -170,6 +178,10 @@ def install(role_definitions, roles_path, installer):
 
 
 role_definitions = load_yaml_file(args.requirements_path)
+known_role_names = {definition["name"] for definition in role_definitions}
+if args.all_requirements_path is not None:
+    known_role_names |= {definition["name"] for definition in load_yaml_file(args.all_requirements_path)}
+
 state = load_state(args.state_path)
 os.makedirs(args.roles_path, exist_ok=True)
 
@@ -208,6 +220,24 @@ for definition in role_definitions:
     to_delete.append(role_path)
     to_install.append(definition)
 
+required_role_names = {definition["name"] for definition in role_definitions}
+for name in sorted(known_role_names - required_role_names):
+    role_path = os.path.join(args.roles_path, name)
+    if not os.path.lexists(role_path) or is_managed_by_developer(role_path):
+        continue
+    if installed_version(role_path) is None:
+        # Most likely put there by hand, so leave it alone
+        continue
+    if has_local_changes(name, role_path, state) and not args.force:
+        warn(
+            "{0} is no longer used, but has local changes, so it was not deleted. Run `just roles --force` to delete it.".format(
+                role_path
+            )
+        )
+        continue
+    to_delete.append(role_path)
+    print("Deleting {0}, which is no longer used".format(role_path), flush=True)
+
 for role_path in to_delete:
     shutil.rmtree(role_path)
     state.pop(os.path.basename(role_path), None)
@@ -226,7 +256,7 @@ if len(to_install) > 0:
             "version": installed_version(role_path),
             "checksum": checksum(role_path),
         }
-elif warnings_count == 0 and not args.quiet:
+elif len(to_delete) == 0 and warnings_count == 0 and not args.quiet:
     print("All roles are up to date.")
 
 # Forget roles which are gone
