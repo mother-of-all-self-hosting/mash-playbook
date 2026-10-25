@@ -138,6 +138,9 @@ Components can also live in the inventory, to extend the playbook without changi
 
 #### `component.yml`
 
+<details>
+<summary>Click here to display the details</summary>
+
 ```yaml
 # The component is in use when the inventory sets any variable starting with this prefix (`''`: always in use)
 activation_prefix: YOUR-SERVICE_
@@ -179,7 +182,12 @@ Optional fields:
 
 - `inject`: entries for other components' lists, as shown above. Each entry is added only while that component is in use, and only if its `when` (true when omitted) is true. Look at the `accepts` of a component for the lists it has. Ansible versions before 2.19 evaluate all entries of a list, also those whose `when` is false, so an entry must not fail when its component is disabled (e.g. use `default()` for variables which may be undefined then).
 
+</details>
+
 #### `requirements.yml`
+
+<details>
+<summary>Click here to display the details</summary>
 
 Your role, as for `ansible-galaxy`. The name must match the component's directory:
 
@@ -189,7 +197,12 @@ Your role, as for `ansible-galaxy`. The name must match the component's director
   name: YOUR-SERVICE
 ```
 
+</details>
+
 #### `wiring.yml` and `with/`
+
+<details>
+<summary>Click here to display the details</summary>
 
 `wiring.yml` holds the default configuration of your role for this playbook, which applies whenever the component is in use. `with/OTHER.yml` holds configuration which applies only when the `OTHER` component is in use too. A variable may only be defined in one of these files.
 
@@ -209,8 +222,7 @@ YOUR-SERVICE_gid: "{{ mash_playbook_gid }}"
 
 Variables referring to another component which may not be in use need a default, e.g. `postgres_enabled | default(false)`.
 
->[!NOTE]
-> Please do not use `mash_playbook_generic_secret_key` for a fixed string for something like passwords, because it is intended for secrets that are fine to be changed later.
+💡 Please do not use `mash_playbook_generic_secret_key` for a fixed string for something like passwords, because it is intended for secrets that are fine to be changed later.
 
 Not all roles need to be wired to anything other than `systemd_service_manager` (see `inject` above). Wire your role to other services if necessary:
 
@@ -297,6 +309,8 @@ YOUR-SERVICE_config_mailer_smtp_port: 8025
 YOUR-SERVICE_config_mailer_from: "{{ exim_relay_sender_address if exim_relay_enabled else '' }}"
 YOUR-SERVICE_config_mailer_protocol: "{{ 'smtp' if exim_relay_enabled else '' }}"
 ```
+
+</details>
 
 </details>
 
