@@ -335,7 +335,7 @@ Please do not hesitate to ask for help to let the community members help you! ðŸ
 
 Both directories are ignored by git, but they are not interchangeable:
 
-- `run/` holds state that the playbook keeps between runs, such as whether optimization is enabled. Deleting it changes how the playbook behaves.
+- `run/` holds state that the playbook keeps between runs, such as whether optimization is enabled, and checksums of the roles installed into `roles/galaxy/`, used to detect local changes to them. Deleting it changes how the playbook behaves.
 - `var/` holds data of development tools (mise, prek) and temporary files of tests. It can be deleted at any time; the tools set it up again when needed.
 
 ## Reviewing role dependency updates

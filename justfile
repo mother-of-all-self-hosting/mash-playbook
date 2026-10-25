@@ -26,11 +26,13 @@ templates_directory_path := justfile_directory() + "/templates"
 optimization_enabled_file_path := run_directory_path + "/optimization-enabled"
 # Older versions stored a list of vars.yml paths here. Like the file above, it means optimization is enabled.
 optimization_legacy_state_file_path := run_directory_path + "/optimization-vars-files.state"
+# Versions and checksums of the roles installed into roles/galaxy, for detecting local changes to them
+installed_roles_file_path := run_directory_path + "/installed-roles.yml"
 
-# Pulls external Ansible roles
-roles: _prepare-files
+# Pulls external Ansible roles. Roles with local changes are kept, unless --force is passed
+roles *flags: _prepare-files
     @echo "[NOTE] This command just updates the roles, but if you want to update everything at once (playbook, roles, etc.) - use 'just update'"
-    @{{ just_executable() }} --justfile {{ justfile() }} _install-roles
+    @{{ just_executable() }} --justfile {{ justfile() }} _install-roles {{ flags }}
 
 # Enables optimization: from then on, the playbook only includes the roles of the services enabled in the inventory (or the one $ANSIBLE_INVENTORY points to)
 optimize-enable: _optimize-files
@@ -61,9 +63,9 @@ update *flags:
     {{ just_executable() }} --justfile {{ justfile() }} update-playbook-only
 
     if [ "{{ flags }}" = "-u" ]; then
-        # This updates the versions pinned in the template, so it works on all roles
-        echo "Updating roles and pinning new versions in templates/requirements.yml..."
-        agru -r {{ templates_directory_path }}/requirements.yml -p roles/galaxy/ -no-tui -u
+        # Only updates the versions pinned in the template. The roles are installed below.
+        echo "Pinning new role versions in templates/requirements.yml..."
+        agru -r {{ templates_directory_path }}/requirements.yml -p roles/galaxy/ -no-tui -i=false -u
         {{ just_executable() }} --justfile {{ justfile() }} versions
         {{ just_executable() }} --justfile {{ justfile() }} opml
     fi
@@ -206,19 +208,13 @@ stop-all *extra_args: (run-tags "stop-all" extra_args)
 stop-group group *extra_args:
     @{{ just_executable() }} --justfile {{ justfile() }} run-tags stop-group --extra-vars="group={{ group }}" {{ extra_args }}
 
-# Installs the Ansible roles listed in requirements.yml
-_install-roles:
-    #!/usr/bin/env sh
-    set -eu
-    if [ -x "$(command -v agru)" ]; then
-        echo "Installing roles pinned in requirements.yml..."
-        agru -r {{ justfile_directory() }}/requirements.yml -p roles/galaxy/ -no-tui
-    else
-        echo "[NOTE] You are using the standard ansible-galaxy tool to install roles, which is slow and lacks other features. We recommend installing the 'agru' tool to speed up the process: https://github.com/etkecc/agru#where-to-get"
-        echo "Installing roles..."
-        rm -rf roles/galaxy
-        ansible-galaxy install -r {{ justfile_directory() }}/requirements.yml -p roles/galaxy/ --force
-    fi
+# Installs the Ansible roles listed in requirements.yml, keeping roles with local changes (unless --force is passed)
+_install-roles *flags:
+    @python3 {{ justfile_directory() }}/bin/install-roles.py \
+    --requirements-path={{ justfile_directory() }}/requirements.yml \
+    --roles-path={{ justfile_directory() }}/roles/galaxy \
+    --state-path={{ quote(installed_roles_file_path) }} \
+    {{ flags }}
 
 # Generates requirements.yml, setup.yml and group_vars/mash_servers from their templates (optimized, if optimization is enabled).
 # This runs before every playbook run, so they always match the templates and the inventory. Unchanged files are left as they are.

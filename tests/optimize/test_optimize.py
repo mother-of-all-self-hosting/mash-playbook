@@ -48,6 +48,7 @@ class Playbook:
         (root / "group_vars").mkdir()
         shutil.copy(REPO / "justfile", root / "justfile")
         shutil.copy(REPO / "bin" / "optimize.py", root / "bin" / "optimize.py")
+        shutil.copy(REPO / "bin" / "install-roles.py", root / "bin" / "install-roles.py")
         shutil.copytree(REPO / "templates", root / "templates")
         self.inventory = root / "inventory"
 
@@ -512,7 +513,6 @@ class TestRoleInstallation(OptimizeTestCase):
     def test_roles_installs_optimized_roles(self):
         self.assertSucceeded(self.pb.just("roles", env=self.env))
         [(args, roles)] = self.agru_calls()
-        self.assertIn(str(self.pb.root / "requirements.yml"), args)
         self.assertIn("name: miniflux", roles)
         self.assertNotIn("name: nextcloud", roles)
 
@@ -541,7 +541,6 @@ class TestRoleInstallation(OptimizeTestCase):
         self.assertSucceeded(self.pb.just("update", env=self.env))
         self.assertIn("# changed upstream", (self.pb.root / "setup.yml").read_text())
         [(args, roles)] = self.agru_calls()
-        self.assertIn(str(self.pb.root / "requirements.yml"), args)
         self.assertIn("name: miniflux", roles)
         self.assertNotIn("name: nextcloud", roles)
 
