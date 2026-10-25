@@ -339,7 +339,7 @@ just run-tags set-ldap-config-nextcloud -e agent_password=PASSWORD_OF_BIND_USER_
 
 After running the command successfully, the application's server tab should look like below (note: `uid` is set to `admin`):
 
-[<img src="../../docs/assets/nextcloud/ldap.webp" title="Server tab on the application's configuration" width="600" alt="Server tab on the application's configuration">](../../docs/assets/nextcloud/ldap.webp)
+[<img src="assets/ldap.webp" title="Server tab on the application's configuration" width="600" alt="Server tab on the application's configuration">](assets/ldap.webp)
 
 If "Configuration OK 🟢" is displayed at the bottom of the tab, the application is configured successfully, and now users on the LLDAP instance can log in to the instance with their LDAP credentials.
 

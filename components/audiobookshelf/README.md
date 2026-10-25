@@ -181,7 +181,7 @@ If you are looking for free public domain audiobooks which can be uploaded to yo
 
 To add the mounted audiobook and podcast directory `/audiobookshelf` to the library, you need to specify its path on the library's details tab as below:
 
-[<img src="../../docs/assets/audiobookshelf/library.webp" title="Details tab on the library's configuration" width="600" alt="Details tab on the library's configuration">](../../docs/assets/audiobookshelf/library.webp)
+[<img src="assets/library.webp" title="Details tab on the library's configuration" width="600" alt="Details tab on the library's configuration">](assets/library.webp)
 
 ### Configuring the mailer (optional)
 

@@ -90,7 +90,7 @@ To connect to the Postgres server which you manage with this playbook, you need 
 
 To register it, set `mash-postgres` to the `Host name/address` input field on the modal window for the registration. The default username is `root`, and its password is the one specified to `postgres_connection_password` on your `vars.yml` file.
 
-[<img src="../../docs/assets/pgadmin/register.webp" title="Modal window for database server registration" width="600" alt="Modal window for database server registration">](../../docs/assets/pgadmin/register.webp)
+[<img src="assets/register.webp" title="Modal window for database server registration" width="600" alt="Modal window for database server registration">](assets/register.webp)
 
 ## Troubleshooting
 
