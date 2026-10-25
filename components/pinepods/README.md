@@ -36,7 +36,7 @@ This service requires the following other services:
 
 - [Postgres](../postgres/README.md) / [MariaDB](../mariadb/README.md) database
 - [Traefik](../traefik/README.md) reverse-proxy server
-- [Valkey](../valkey/README.md) data-store; see [below](#configuring-valkey-optional) for details about installation
+- [Valkey](../valkey/README.md) data-store; see [below](#configure-valkey) for details about installation
 - (optional) [exim-relay](../exim_relay/README.md) mailer — PinePods is compatible with other email delivery services
 - (optional) [Gotify](../gotify/README.md)
 - (optional) [ntfy](../ntfy/README.md)

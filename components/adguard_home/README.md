@@ -33,7 +33,7 @@ For details about configuring the [Ansible role for AdGuard Home](https://github
 - 📁 `roles/galaxy/adguard_home/docs/configuring-adguard-home.md` locally, if you have [fetched the Ansible roles](../../docs/installing.md)
 
 > [!WARNING]
-> Running a public DNS server is not advisable. You'd better install AdGuard Home in a trusted local network, or adjust its network interfaces and port exposure (via the variables in the [Networking](#networking) configuration section below) so that you don't expose your DNS server publicly to the whole world. If you're exposing your DNS server publicly, consider restricting who can use it by adjusting the **Allowed clients** setting in the **Access settings** section of **Settings** -> **DNS settings**.
+> Running a public DNS server is not advisable. You'd better install AdGuard Home in a trusted local network, or adjust its network interfaces and port exposure so that you don't expose your DNS server publicly to the whole world. If you're exposing your DNS server publicly, consider restricting who can use it by adjusting the **Allowed clients** setting in the **Access settings** section of **Settings** -> **DNS settings**.
 
 ## Prerequisites
 
