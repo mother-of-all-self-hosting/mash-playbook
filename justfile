@@ -46,17 +46,26 @@ optimize-disable:
     {{ just_executable() }} --justfile {{ justfile() }} _prepare-files
 
 # Updates the playbook and installs the necessary Ansible roles pinned in requirements.yml. If a -u flag is passed, also updates the requirements.yml file with new role versions (if available)
-update *flags: update-playbook-only
+update *flags:
     #!/usr/bin/env sh
     set -eu
-    if [ "{{ flags }}" = "-u" ] && [ -x "$(command -v agru)" ]; then
+    if [ -n "{{ flags }}" ] && [ "{{ flags }}" != "-u" ]; then
+        echo "Unknown flags passed: {{ flags }}" >&2
+        exit 1
+    fi
+    if [ "{{ flags }}" = "-u" ] && ! [ -x "$(command -v agru)" ]; then
+        echo "Updating role versions (-u) requires the agru tool: https://github.com/etkecc/agru#where-to-get" >&2
+        exit 1
+    fi
+
+    {{ just_executable() }} --justfile {{ justfile() }} update-playbook-only
+
+    if [ "{{ flags }}" = "-u" ]; then
         # This updates the versions pinned in the template, so it works on all roles
         echo "Updating roles and pinning new versions in templates/requirements.yml..."
         agru -r {{ templates_directory_path }}/requirements.yml -p roles/galaxy/ -no-tui -u
         {{ just_executable() }} --justfile {{ justfile() }} versions
         {{ just_executable() }} --justfile {{ justfile() }} opml
-    elif [ -n "{{ flags }}" ]; then
-        echo "Ignoring unsupported flags: {{ flags }}"
     fi
 
     # Run these now, after the playbook update, so they use its new templates (and justfile)

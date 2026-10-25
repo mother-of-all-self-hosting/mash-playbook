@@ -545,6 +545,13 @@ class TestRoleInstallation(OptimizeTestCase):
         self.assertIn("name: miniflux", roles)
         self.assertNotIn("name: nextcloud", roles)
 
+    def test_update_with_unknown_flags_fails_before_pulling(self):
+        self.make_clone_with_upstream_change()
+        result = self.pb.just("update", "--bogus", env=self.env)
+        self.assertFailedCleanly(result)
+        self.assertNotIn("# changed upstream", (self.pb.root / "templates" / "setup.yml").read_text())
+        self.assertFalse(self.agru_log_path.exists())
+
 
 class TestDependencies(unittest.TestCase):
     def test_only_standard_library_and_pyyaml(self):
