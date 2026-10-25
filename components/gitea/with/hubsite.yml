@@ -1,0 +1,9 @@
+---
+
+# Gitea
+hubsite_service_gitea_enabled: "{{ gitea_enabled }}"
+hubsite_service_gitea_name: Gitea
+hubsite_service_gitea_url: "{{ gitea_scheme }}://{{ gitea_hostname }}{{ gitea_path_prefix }}"
+hubsite_service_gitea_logo_location: "{{ role_path }}/assets/gitea.png"
+hubsite_service_gitea_description: "A git service"
+hubsite_service_gitea_priority: 1000

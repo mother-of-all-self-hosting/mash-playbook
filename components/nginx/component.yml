@@ -1,0 +1,13 @@
+---
+
+activation_prefix: nginx_
+
+# Entries added to other components' lists, while those components are in use
+inject:
+  systemd_service_manager:
+    services:
+      - name: "{{ nginx_identifier }}.service"
+        priority: 2000
+        restart_necessary: "{{ nginx_restart_necessary | bool }}"
+        groups: [mash, nginx]
+        when: "{{ nginx_enabled }}"

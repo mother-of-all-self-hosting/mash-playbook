@@ -1,0 +1,9 @@
+---
+
+# Docker Registry Browser
+hubsite_service_docker_registry_browser_enabled: "{{ docker_registry_browser_enabled }}"
+hubsite_service_docker_registry_browser_name: Docker Registry Browser
+hubsite_service_docker_registry_browser_url: "https://{{ docker_registry_browser_hostname }}{{ docker_registry_browser_path_prefix }}"
+hubsite_service_docker_registry_browser_logo_location: "{{ role_path }}/assets/docker.png"
+hubsite_service_docker_registry_browser_description: "Browse docker images"
+hubsite_service_docker_registry_browser_priority: 1000

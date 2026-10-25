@@ -1,0 +1,19 @@
+---
+
+activation_prefix: librebooking_
+
+# Entries added to other components' lists, while those components are in use
+inject:
+  systemd_service_manager:
+    services:
+      - name: "{{ librebooking_identifier }}.service"
+        priority: 2000
+        restart_necessary: "{{ librebooking_restart_necessary | bool }}"
+        groups: [mash, librebooking]
+        when: "{{ librebooking_enabled }}"
+  mariadb:
+    managed_databases:
+      - name: "{{ librebooking_database_name }}"
+        username: "{{ librebooking_database_username }}"
+        password: "{{ librebooking_database_password }}"
+        when: "{{ librebooking_enabled and librebooking_database_hostname == mariadb_connection_hostname }}"

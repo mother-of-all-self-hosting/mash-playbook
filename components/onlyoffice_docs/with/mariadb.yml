@@ -1,0 +1,5 @@
+---
+
+onlyoffice_docs_database_mariadb_hostname: "{{ mariadb_connection_hostname if mariadb_enabled else '' }}"
+onlyoffice_docs_database_mariadb_port: "{{ mariadb_connection_port if mariadb_enabled else '3306' }}"
+onlyoffice_docs_database_mariadb_password: "{{ (mash_playbook_generic_secret_key + ':onlyoffice.d') | hash('sha512') | to_uuid }}"

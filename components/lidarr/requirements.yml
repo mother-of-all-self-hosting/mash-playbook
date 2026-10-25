@@ -1,0 +1,5 @@
+---
+
+- src: git+https://github.com/mother-of-all-self-hosting/ansible-role-lidarr.git
+  version: v3.1.0.4875-7
+  name: lidarr

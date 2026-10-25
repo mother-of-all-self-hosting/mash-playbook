@@ -1,0 +1,29 @@
+---
+
+activation_prefix: netbox_
+
+# Entries added to other components' lists, while those components are in use
+inject:
+  systemd_service_manager:
+    services:
+      - name: "{{ netbox_identifier }}.service"
+        priority: 2000
+        restart_necessary: "{{ netbox_restart_necessary | bool }}"
+        groups: [mash, netbox, netbox-server]
+        when: "{{ netbox_enabled }}"
+      - name: "{{ netbox_identifier }}-worker.service"
+        priority: 2500
+        restart_necessary: "{{ netbox_restart_necessary | bool }}"
+        groups: [mash, netbox, netbox-worker]
+        when: "{{ netbox_enabled }}"
+      - name: "{{ netbox_identifier }}-housekeeping.service"
+        priority: 2500
+        restart_necessary: "{{ netbox_restart_necessary | bool }}"
+        groups: [mash, netbox, netbox-housekeeping]
+        when: "{{ netbox_enabled and netbox_housekeeping_script_enabled }}"
+  postgres:
+    managed_databases:
+      - name: "{{ netbox_database_name }}"
+        username: "{{ netbox_database_username }}"
+        password: "{{ netbox_database_password }}"
+        when: "{{ netbox_enabled and netbox_database_hostname == postgres_connection_hostname }}"

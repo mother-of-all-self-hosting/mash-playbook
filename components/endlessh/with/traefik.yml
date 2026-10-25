@@ -1,0 +1,5 @@
+---
+
+endlessh_container_labels_traefik_metrics_entrypoints: "{{ traefik_entrypoint_primary }}"
+endlessh_container_labels_traefik_metrics_tls_certResolver: "{{ traefik_certResolver_primary }}"
+endlessh_container_labels_traefik_tcp_loadbalancer_serverstransport: "{{ traefik_config_tcp_servertransports_default_proxyprotocol_name }}@file"

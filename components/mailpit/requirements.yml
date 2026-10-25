@@ -1,0 +1,5 @@
+---
+
+- src: git+https://progressiv.radicle.garden/z3BKJz8wwtQHfXm8MPX81h4izT2QS.git
+  version: v1.32.0-0
+  name: mailpit

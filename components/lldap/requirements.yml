@@ -1,0 +1,5 @@
+---
+
+- src: git+https://github.com/mother-of-all-self-hosting/ansible-role-lldap.git
+  version: v0.6.3-6
+  name: lldap

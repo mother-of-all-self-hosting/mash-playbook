@@ -1,0 +1,11 @@
+---
+
+# The role enables itself by default. It stays disabled, unless enabled in your inventory.
+matterbridge_enabled: false
+
+matterbridge_identifier: "{{ mash_playbook_service_identifier_prefix }}matterbridge"
+
+matterbridge_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}matterbridge"
+
+matterbridge_uid: "{{ mash_playbook_uid }}"
+matterbridge_gid: "{{ mash_playbook_gid }}"

@@ -1,0 +1,5 @@
+---
+
+- src: git+https://github.com/mother-of-all-self-hosting/ansible-role-browserless.git
+  version: v2.57.3-0
+  name: browserless

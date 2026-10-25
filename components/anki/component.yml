@@ -1,0 +1,13 @@
+---
+
+activation_prefix: anki_
+
+# Entries added to other components' lists, while those components are in use
+inject:
+  systemd_service_manager:
+    services:
+      - name: "{{ anki_identifier }}.service"
+        priority: 2000
+        restart_necessary: "{{ anki_restart_necessary | bool }}"
+        groups: [mash, anki]
+        when: "{{ anki_enabled }}"

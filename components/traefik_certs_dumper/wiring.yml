@@ -1,0 +1,27 @@
+---
+
+# The role enables itself by default. It stays disabled, unless enabled in your inventory.
+traefik_certs_dumper_enabled: false
+
+traefik_certs_dumper_identifier: "{{ mash_playbook_service_identifier_prefix }}traefik-certs-dumper"
+
+traefik_certs_dumper_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}traefik-certs-dumper"
+traefik_certs_dumper_ssl_path: "{{ traefik_ssl_dir_path }}"
+
+traefik_certs_dumper_uid: "{{ mash_playbook_uid }}"
+traefik_certs_dumper_gid: "{{ mash_playbook_gid }}"
+
+# We make the certs dumper require the Traefik service (not just docker.service),
+# because when both restart simultaneously (e.g. in all-at-once mode), Traefik may
+# momentarily truncate or reinitialize acme.json, causing the certs dumper to read
+# an empty file and panic. By requiring Traefik, the certs dumper only starts after
+# Traefik is fully ready and acme.json is stable.
+traefik_certs_dumper_systemd_required_services_list_auto: |
+  {{
+    ([traefik_identifier + '.service'] if traefik_enabled else [])
+  }}
+
+traefik_certs_dumper_container_additional_networks_auto: |
+  {{
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+  }}

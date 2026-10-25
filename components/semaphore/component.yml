@@ -1,0 +1,25 @@
+---
+
+activation_prefix: semaphore_
+
+# Entries added to other components' lists, while those components are in use
+inject:
+  systemd_service_manager:
+    services:
+      - name: "{{ semaphore_identifier }}.service"
+        priority: 2000
+        restart_necessary: "{{ semaphore_restart_necessary | bool }}"
+        groups: [mash, semaphore]
+        when: "{{ semaphore_enabled }}"
+  mariadb:
+    managed_databases:
+      - name: "{{ semaphore_database_name }}"
+        username: "{{ semaphore_database_mysql_username }}"
+        password: "{{ semaphore_database_mysql_password }}"
+        when: "{{ semaphore_enabled and semaphore_database_mysql_hostname == mariadb_connection_hostname and semaphore_database_type == 'mysql' }}"
+  postgres:
+    managed_databases:
+      - name: "{{ semaphore_database_name }}"
+        username: "{{ semaphore_database_postgres_username }}"
+        password: "{{ semaphore_database_postgres_password }}"
+        when: "{{ semaphore_enabled and semaphore_database_postgres_hostname == postgres_connection_hostname and semaphore_database_type == 'postgres' }}"

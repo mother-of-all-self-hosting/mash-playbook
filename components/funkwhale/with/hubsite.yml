@@ -1,0 +1,9 @@
+---
+
+# Funkwhale
+hubsite_service_funkwhale_enabled: "{{ funkwhale_enabled }}"
+hubsite_service_funkwhale_name: Funkwhale
+hubsite_service_funkwhale_url: "https://{{ funkwhale_hostname }}"
+hubsite_service_funkwhale_logo_location: "{{ role_path }}/assets/funkwhale.png"
+hubsite_service_funkwhale_description: "Listen and share music with a selfhosted streaming server"
+hubsite_service_funkwhale_priority: 1000

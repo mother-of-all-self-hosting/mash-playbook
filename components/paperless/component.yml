@@ -1,0 +1,25 @@
+---
+
+activation_prefix: paperless_
+
+# Entries added to other components' lists, while those components are in use
+inject:
+  systemd_service_manager:
+    services:
+      - name: "{{ paperless_identifier }}.service"
+        priority: 2000
+        restart_necessary: "{{ paperless_restart_necessary | bool }}"
+        groups: [mash, paperless]
+        when: "{{ paperless_enabled }}"
+  mariadb:
+    managed_databases:
+      - name: "{{ paperless_database_name }}"
+        username: "{{ paperless_database_mariadb_username }}"
+        password: "{{ paperless_database_mariadb_password }}"
+        when: "{{ paperless_enabled and paperless_database_mariadb_hostname == mariadb_connection_hostname and paperless_database_type == 'mariadb' }}"
+  postgres:
+    managed_databases:
+      - name: "{{ paperless_database_name }}"
+        username: "{{ paperless_database_postgres_username }}"
+        password: "{{ paperless_database_postgres_password }}"
+        when: "{{ paperless_enabled and (paperless_database_postgres_hostname == postgres_connection_hostname or paperless_database_postgres_socket_enabled) and paperless_database_type == 'postgres' }}"

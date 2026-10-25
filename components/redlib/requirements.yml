@@ -1,0 +1,5 @@
+---
+
+- src: git+https://github.com/mother-of-all-self-hosting/ansible-role-redlib.git
+  version: v2025.4.9-16
+  name: redlib

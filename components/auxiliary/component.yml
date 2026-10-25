@@ -1,0 +1,10 @@
+---
+
+activation_prefix: aux_
+
+setup:
+  priority: 9000
+  entry:
+    # Run last to to ensure that all other roles have created their paths, etc.,
+    # and this role can build on top of all that.
+    - role: galaxy/auxiliary

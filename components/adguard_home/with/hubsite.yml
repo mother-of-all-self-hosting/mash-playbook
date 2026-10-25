@@ -1,0 +1,9 @@
+---
+
+# Adguard home
+hubsite_service_adguard_home_enabled: "{{ adguard_home_enabled }}"
+hubsite_service_adguard_home_name: Adguard Home
+hubsite_service_adguard_home_url: "https://{{ adguard_home_hostname }}{{ adguard_home_path_prefix }}"
+hubsite_service_adguard_home_logo_location: "{{ role_path }}/assets/shield.png"
+hubsite_service_adguard_home_description: "A network-wide DNS software for blocking ads & tracking"
+hubsite_service_adguard_home_priority: 1000

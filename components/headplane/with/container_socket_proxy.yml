@@ -1,0 +1,4 @@
+---
+
+headplane_docker_endpoint_is_unix_socket: "{{ false if headplane_config_integration_docker_endpoint.startswith('tcp://') else true }}"
+headplane_config_integration_docker_endpoint: "{{ container_socket_proxy_endpoint if container_socket_proxy_enabled else 'unix:///var/run/docker.sock' }}"

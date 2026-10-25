@@ -1,0 +1,19 @@
+---
+
+# The role enables itself by default. It stays disabled, unless enabled in your inventory.
+cryptpad_enabled: false
+
+cryptpad_identifier: "{{ mash_playbook_service_identifier_prefix }}cryptpad"
+
+cryptpad_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}cryptpad"
+
+cryptpad_uid: "{{ mash_playbook_uid }}"
+cryptpad_gid: "{{ mash_playbook_gid }}"
+
+cryptpad_container_additional_networks_auto: |
+  {{
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+  }}
+
+cryptpad_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+cryptpad_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"

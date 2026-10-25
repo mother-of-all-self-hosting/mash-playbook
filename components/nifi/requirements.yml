@@ -1,0 +1,5 @@
+---
+
+- src: git+https://github.com/mother-of-all-self-hosting/ansible-role-nifi.git
+  version: v2.12.0-1
+  name: nifi

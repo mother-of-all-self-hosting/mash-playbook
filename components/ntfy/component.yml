@@ -1,0 +1,21 @@
+---
+
+activation_prefix: ntfy_
+
+# Entries added to other components' lists, while those components are in use
+inject:
+  systemd_service_manager:
+    services:
+      - name: "{{ ntfy_identifier }}.service"
+        priority: 2000
+        restart_necessary: "{{ ntfy_restart_necessary | bool }}"
+        groups: [mash, ntfy]
+        when: "{{ ntfy_enabled }}"
+  hubsite:
+    services:
+      - name: "{{ hubsite_service_ntfy_name }}"
+        url: "{{ hubsite_service_ntfy_url }}"
+        logo_location: "{{ hubsite_service_ntfy_logo_location }}"
+        description: "{{ hubsite_service_ntfy_description }}"
+        priority: "{{ hubsite_service_ntfy_priority }}"
+        when: "{{ hubsite_service_ntfy_enabled }}"

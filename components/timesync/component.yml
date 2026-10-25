@@ -1,0 +1,14 @@
+---
+
+activation_prefix: devture_timesync_
+
+setup:
+  priority: 160
+  entry:
+    - when: devture_timesync_installation_enabled | bool
+      role: galaxy/timesync
+      tags:
+        - setup-timesync
+        - setup-all
+        - install-timesync
+        - install-all

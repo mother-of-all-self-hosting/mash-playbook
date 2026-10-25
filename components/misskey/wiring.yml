@@ -1,0 +1,37 @@
+---
+
+# The role enables itself by default. It stays disabled, unless enabled in your inventory.
+misskey_enabled: false
+
+misskey_identifier: "{{ mash_playbook_service_identifier_prefix }}misskey"
+
+misskey_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}misskey"
+
+misskey_uid: "{{ mash_playbook_uid }}"
+misskey_gid: "{{ mash_playbook_gid }}"
+
+misskey_systemd_required_services_list_auto: |
+  {{
+    ([postgres_identifier ~ '.service'] if postgres_enabled and misskey_database_hostname == postgres_connection_hostname else [])
+  }}
+
+misskey_systemd_wanted_services_list_auto: |
+  {{
+    ([exim_relay_identifier ~ '.service'] if exim_relay_enabled | default(false) else [])
+    +
+    ([meilisearch_identifier ~ '.service'] if meilisearch_enabled | default(false) and misskey_config_fulltext_search_provider == 'meilisearch' else [])
+  }}
+
+misskey_container_additional_networks_auto: |
+  {{
+    ([exim_relay_container_network] if exim_relay_enabled | default(false) and misskey_container_network != exim_relay_container_network else [])
+    +
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+    +
+    ([meilisearch_container_network] if meilisearch_enabled | default(false) and misskey_container_network != meilisearch_container_network and misskey_config_fulltext_search_provider == 'meilisearch' else [])
+    +
+    ([postgres_container_network] if postgres_enabled and misskey_database_hostname == postgres_connection_hostname and misskey_container_network != postgres_container_network else [])
+  }}
+
+misskey_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+misskey_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"

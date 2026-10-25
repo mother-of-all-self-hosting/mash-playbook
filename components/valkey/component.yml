@@ -1,0 +1,13 @@
+---
+
+activation_prefix: valkey_
+
+# Entries added to other components' lists, while those components are in use
+inject:
+  systemd_service_manager:
+    services:
+      - name: "{{ valkey_identifier }}.service"
+        priority: 750
+        restart_necessary: "{{ valkey_restart_necessary | bool }}"
+        groups: [mash, valkey]
+        when: "{{ valkey_enabled }}"

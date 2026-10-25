@@ -1,0 +1,4 @@
+---
+
+rssbridge_config_webdriver_headless: "{{ browserless_enabled }}"
+rssbridge_config_webdriver_selenium_server_url: "http://{{ browserless_identifier }}:{{ browserless_container_http_port }}/chromium/playwright"

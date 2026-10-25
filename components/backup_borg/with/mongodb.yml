@@ -1,0 +1,7 @@
+---
+
+backup_borg_mongodb_databases_hostname: "{{ mongodb_connection_hostname if mongodb_enabled else '' }}"
+backup_borg_mongodb_databases_port: "{{ mongodb_connection_port if mongodb_enabled else '27017' }}"
+backup_borg_mongodb_databases_username: "root"
+backup_borg_mongodb_databases_password: "{{ mongodb_root_password if mongodb_enabled else '' }}"
+backup_borg_mongodb_databases_auto: "{{ mongodb_managed_databases | map(attribute='name') if mongodb_enabled else [] }}"

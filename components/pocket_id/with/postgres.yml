@@ -1,0 +1,7 @@
+---
+
+pocket_id_database_hostname: "{{ postgres_connection_hostname if postgres_enabled else '' }}"
+pocket_id_database_port: "{{ postgres_connection_port if postgres_enabled else '5432' }}"
+pocket_id_database_password: "{{ (mash_playbook_generic_secret_key + ':db.pocketid') | hash('sha512') | to_uuid }}"
+pocket_id_database_sslmode: "{{ 'disable' if postgres_enabled and (pocket_id_database_hostname == postgres_connection_hostname or pocket_id_database_socket_enabled) else 'prefer' }}"
+pocket_id_database_socket_path_host: "{{ postgres_run_path }}"

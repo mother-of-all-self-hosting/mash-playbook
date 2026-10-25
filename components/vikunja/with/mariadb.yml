@@ -1,0 +1,6 @@
+---
+
+vikunja_database_mysql_hostname: "{{ mariadb_connection_hostname if mariadb_enabled else '' }}"
+vikunja_database_mysql_port: "{{ mariadb_connection_port if mariadb_enabled else '3306' }}"
+vikunja_database_mysql_password: "{{ (mash_playbook_generic_secret_key + ':vikunja.db') | hash('sha512') | to_uuid }}"
+vikunja_database_mysql_socket_path_host: "{{ mariadb_run_path }}"

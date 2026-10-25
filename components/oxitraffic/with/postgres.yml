@@ -1,0 +1,6 @@
+---
+
+oxitraffic_database_hostname: "{{ postgres_connection_hostname if postgres_enabled and not oxitraffic_database_socket_enabled else '' }}"
+oxitraffic_database_port: "{{ postgres_connection_port if postgres_enabled else '5432' }}"
+oxitraffic_database_password: "{{ (mash_playbook_generic_secret_key + ':db.oxitraffic') | hash('sha512') | to_uuid }}"
+oxitraffic_database_socket_path_host: "{{ postgres_run_path }}"

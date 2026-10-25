@@ -1,0 +1,5 @@
+---
+
+- src: git+https://progressiv.radicle.garden/zeEwXM9Fp4C8NU4oQfNg474Vivwu.git
+  version: v3.0.1-1
+  name: solidinvoice

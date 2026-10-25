@@ -1,0 +1,6 @@
+---
+
+passbolt_environment_variables_email_transport_default_host: "{{ exim_relay_identifier if exim_relay_enabled else '' }}"
+passbolt_environment_variables_email_transport_default_port: "{{ '8025' if exim_relay_enabled else '587' }}"
+passbolt_environment_variables_email_transport_default_tls: "{{ false if exim_relay_enabled else true }}"
+passbolt_environment_variables_email_default_from: "{{ exim_relay_sender_address if exim_relay_enabled else '' }}"

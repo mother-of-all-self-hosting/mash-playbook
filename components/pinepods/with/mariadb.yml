@@ -1,0 +1,5 @@
+---
+
+pinepods_database_mariadb_hostname: "{{ mariadb_connection_hostname if mariadb_enabled else '' }}"
+pinepods_database_mariadb_port: "{{ mariadb_connection_port if mariadb_enabled else '3306' }}"
+pinepods_database_mariadb_password: "{{ (mash_playbook_generic_secret_key + ':m.pinepods') | hash('sha512') | to_uuid }}"

@@ -1,0 +1,7 @@
+---
+
+lldap_database_postgres_hostname: "{{ postgres_connection_hostname if postgres_enabled and not lldap_database_postgres_socket_enabled else '' }}"
+lldap_database_postgres_port: "{{ postgres_connection_port if postgres_enabled else '5432' }}"
+lldap_database_postgres_password: "{{ (mash_playbook_generic_secret_key + ':lldap.db') | hash('sha512') | to_uuid }}"
+lldap_database_postgres_sslmode: "{{ 'disable' if postgres_enabled and (lldap_database_postgres_hostname == postgres_connection_hostname or lldap_database_postgres_socket_enabled) else 'prefer' }}"
+lldap_database_postgres_socket_path_host: "{{ postgres_run_path }}"

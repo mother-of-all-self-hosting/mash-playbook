@@ -14,7 +14,7 @@
 #   (detected by comparing their contents with a checksum recorded when this script installed them)
 # - roles which are symlinks or contain a `.git` directory are managed by a developer and never touched
 #
-# With `--all-requirements-path` (a requirements file listing all roles the playbook knows about),
+# With `--all-requirements-path` (requirements files listing all roles the playbook knows about, given once per file),
 # installed roles which are listed there, but not in the requirements file, are deleted, unless they have local changes.
 # Roles which are not listed in either file (e.g. a new role being developed) are never touched.
 
@@ -44,7 +44,10 @@ parser.add_argument(
 )
 parser.add_argument(
     "--all-requirements-path",
-    help="Path to a requirements file with all known roles. Installed roles listed there, but not in --requirements-path, are deleted",
+    action="append",
+    default=[],
+    help="Path to a requirements file with known roles (may be given multiple times). "
+    "Installed roles listed there, but not in --requirements-path, are deleted",
 )
 parser.add_argument(
     "--roles-path", help="Path to the directory to install roles into", required=True
@@ -179,8 +182,8 @@ def install(role_definitions, roles_path, installer):
 
 role_definitions = load_yaml_file(args.requirements_path)
 known_role_names = {definition["name"] for definition in role_definitions}
-if args.all_requirements_path is not None:
-    known_role_names |= {definition["name"] for definition in load_yaml_file(args.all_requirements_path)}
+for all_requirements_path in args.all_requirements_path:
+    known_role_names |= {definition["name"] for definition in load_yaml_file(all_requirements_path)}
 
 state = load_state(args.state_path)
 os.makedirs(args.roles_path, exist_ok=True)

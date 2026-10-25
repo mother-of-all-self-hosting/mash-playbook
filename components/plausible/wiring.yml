@@ -1,0 +1,37 @@
+---
+
+# The role enables itself by default. It stays disabled, unless enabled in your inventory.
+plausible_enabled: false
+
+plausible_identifier: "{{ mash_playbook_service_identifier_prefix }}plausible"
+
+plausible_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}plausible"
+
+plausible_uid: "{{ mash_playbook_uid }}"
+plausible_gid: "{{ mash_playbook_gid }}"
+
+plausible_systemd_required_services_list_auto: |
+  {{
+    ([postgres_identifier ~ '.service'] if postgres_enabled and plausible_database_hostname == postgres_connection_hostname else [])
+    +
+    ([clickhouse_identifier ~ '.service'] if clickhouse_enabled and plausible_clickhouse_database_hostname == clickhouse_identifier| default('mash-clickhouse') else [])
+  }}
+
+plausible_systemd_wanted_services_list_auto: |
+  {{
+    ([exim_relay_identifier ~ '.service'] if exim_relay_enabled | default(false) and plausible_environment_variable_smtp_host_addr == exim_relay_identifier else [])
+  }}
+
+plausible_container_additional_networks_auto: |
+  {{
+    ([clickhouse_container_network | default('mash-clickhouse')] if (clickhouse_enabled and plausible_clickhouse_database_hostname == clickhouse_identifier | default('mash-clickhouse') and plausible_container_network != clickhouse_container_network | default('mash-clickhouse')) else [])
+    +
+    ([exim_relay_container_network] if exim_relay_enabled | default(false) and plausible_environment_variable_smtp_host_addr == exim_relay_identifier and plausible_container_network != exim_relay_container_network else [])
+    +
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+    +
+    ([postgres_container_network] if postgres_enabled and plausible_database_hostname == postgres_connection_hostname and plausible_container_network != postgres_container_network else [])
+  }}
+
+plausible_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+plausible_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"

@@ -1,0 +1,19 @@
+---
+
+activation_prefix: pdfding_
+
+# Entries added to other components' lists, while those components are in use
+inject:
+  systemd_service_manager:
+    services:
+      - name: "{{ pdfding_identifier }}.service"
+        priority: 2000
+        restart_necessary: "{{ pdfding_restart_necessary | bool }}"
+        groups: [mash, pdfding]
+        when: "{{ pdfding_enabled }}"
+  postgres:
+    managed_databases:
+      - name: "{{ pdfding_database_name }}"
+        username: "{{ pdfding_database_username }}"
+        password: "{{ pdfding_database_password }}"
+        when: "{{ pdfding_enabled and pdfding_database_hostname == postgres_connection_hostname and pdfding_database_type == 'postgres' }}"

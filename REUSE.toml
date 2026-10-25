@@ -4,6 +4,42 @@
 
 version = 1
 
+# The components (moved here from templates/group_vars_mash_servers and templates/setup.yml)
+[[annotations]]
+path = ["components/**"]
+precedence = "aggregate"
+SPDX-FileCopyrightText = [
+    "2023 Aine",
+    "2023 Alejandro AR",
+    "2023 Antoine-Ali Zarrouk",
+    "2023 Julian-Samuel Gebühr",
+    "2023 kinduff",
+    "2023 M",
+    "2023 moanos",
+    "2023 Niels Bouma",
+    "2023 PΛVΞL D",
+    "2023 Sergio Durigan Junior",
+    "2023 - 2026 Slavi Pantaleev",
+    "2024 Bergruebe",
+    "2024 - 2025 Bergrübe",
+    "2024 IUCCA",
+    "2024 Kian Foroodi",
+    "2024 Kuchenmampfer",
+    "2024 noah",
+    "2024 Oliver Lorenz",
+    "2024 spatterlight",
+    "2024 - 2025 Tiz",
+    "2025 Aine",
+    "2025 Gergely Horváth",
+    "2025 hooger",
+    "2025 olli-acterglobal",
+    "2025 shukon",
+    "2025 - 2026 Suguru Hirahara",
+    "2025 XHawk87",
+    "2025 - 2026 zenphonix"
+]
+SPDX-License-Identifier = "AGPL-3.0-or-later"
+
 # Computer-generated files and other files which cannot be copyrighted
 [[annotations]]
 path = [
@@ -17,7 +53,7 @@ path = [
     "VERSIONS.md",
     "ansible.cfg",
     "releases.opml",
-    "templates/requirements.yml"
+    "components/*/requirements.yml"
 ]
 SPDX-FileCopyrightText = "NONE"
 SPDX-License-Identifier = "CC0-1.0"

@@ -1,0 +1,13 @@
+---
+
+activation_prefix: immich_kiosk_
+
+# Entries added to other components' lists, while those components are in use
+inject:
+  systemd_service_manager:
+    services:
+      - name: "{{ immich_kiosk_identifier }}.service"
+        priority: 2000
+        restart_necessary: "{{ immich_kiosk_restart_necessary | bool }}"
+        groups: [mash, immich-kiosk]
+        when: "{{ immich_kiosk_enabled }}"

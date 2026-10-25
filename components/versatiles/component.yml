@@ -1,0 +1,13 @@
+---
+
+activation_prefix: versatiles_
+
+# Entries added to other components' lists, while those components are in use
+inject:
+  systemd_service_manager:
+    services:
+      - name: "{{ versatiles_identifier }}.service"
+        priority: 2000
+        restart_necessary: "{{ versatiles_restart_necessary | bool }}"
+        groups: [mash, versatiles]
+        when: "{{ versatiles_enabled }}"

@@ -1,0 +1,9 @@
+---
+
+# Owncast
+hubsite_service_owncast_enabled: "{{ owncast_enabled }}"
+hubsite_service_owncast_name: Owncast
+hubsite_service_owncast_url: "https://{{ owncast_hostname }}"
+hubsite_service_owncast_logo_location: "{{ role_path }}/assets/owncast.png"
+hubsite_service_owncast_description: "Livestream & Chat"
+hubsite_service_owncast_priority: 1000

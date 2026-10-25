@@ -1,0 +1,5 @@
+---
+
+- src: git+https://progressiv.radicle.garden/zby9EmMBhyNe8Nj4f66izwrmhk5g.git
+  version: v5.2.3-7
+  name: phpmyadmin

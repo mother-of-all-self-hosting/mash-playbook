@@ -1,0 +1,7 @@
+---
+
+mobilizon_environment_variables_email_smtp_server: "{{ exim_relay_identifier if exim_relay_enabled else '' }}"
+mobilizon_environment_variables_email_smtp_port: "{{ '8025' if exim_relay_enabled else '587' }}"
+mobilizon_environment_variables_email_smtp_ssl: "{{ false if exim_relay_enabled else true }}"
+mobilizon_environment_variables_email_smtp_tls: "{{ 'never' if exim_relay_enabled }}"
+mobilizon_environment_variables_instance_email: "{{ exim_relay_sender_address if exim_relay_enabled else '' }}"

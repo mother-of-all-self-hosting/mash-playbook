@@ -1,0 +1,27 @@
+---
+
+activation_prefix: uptime_kuma_
+
+# Entries added to other components' lists, while those components are in use
+inject:
+  systemd_service_manager:
+    services:
+      - name: "{{ uptime_kuma_identifier }}.service"
+        priority: 2000
+        restart_necessary: "{{ uptime_kuma_restart_necessary | bool }}"
+        groups: [mash, uptime-kuma]
+        when: "{{ uptime_kuma_enabled }}"
+  hubsite:
+    services:
+      - name: "{{ hubsite_service_uptime_kuma_name }}"
+        url: "{{ hubsite_service_uptime_kuma_url }}"
+        logo_location: "{{ hubsite_service_uptime_kuma_logo_location }}"
+        description: "{{ hubsite_service_uptime_kuma_description }}"
+        priority: "{{ hubsite_service_uptime_kuma_priority }}"
+        when: "{{ hubsite_service_uptime_kuma_enabled }}"
+  mariadb:
+    managed_databases:
+      - name: "{{ uptime_kuma_database_name }}"
+        username: "{{ uptime_kuma_database_username }}"
+        password: "{{ uptime_kuma_database_password }}"
+        when: "{{ uptime_kuma_enabled and (uptime_kuma_database_hostname == mariadb_connection_hostname or uptime_kuma_database_socket_enabled) and uptime_kuma_database_type == 'mariadb' }}"

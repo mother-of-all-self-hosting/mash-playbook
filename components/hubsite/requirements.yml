@@ -1,0 +1,5 @@
+---
+
+- src: git+https://github.com/mother-of-all-self-hosting/ansible-role-hubsite.git
+  version: v1.31.8-0
+  name: hubsite

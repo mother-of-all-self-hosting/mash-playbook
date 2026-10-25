@@ -1,0 +1,5 @@
+---
+
+- src: git+https://github.com/mother-of-all-self-hosting/ansible-role-telegraf.git
+  version: v1.40.2-0
+  name: telegraf

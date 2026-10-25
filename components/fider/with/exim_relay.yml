@@ -1,0 +1,6 @@
+---
+
+fider_mailer_smtp_enabled: "{{ exim_relay_enabled }}"
+fider_environment_variables_email_smtp_host: "{{ exim_relay_identifier if exim_relay_enabled else '' }}"
+fider_environment_variables_email_smtp_port: "{{ '8025' if exim_relay_enabled else '587' }}"
+fider_environment_variables_email_noreply: "{{ exim_relay_sender_address if exim_relay_enabled else '' }}"

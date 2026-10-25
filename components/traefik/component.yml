@@ -1,0 +1,32 @@
+---
+
+activation_prefix: mash_
+
+setup:
+  priority: 230
+
+# Lists other components can add entries to (via `inject`).
+# The generator puts the entries of the components in use (whose `when` is true) into the `into` variable.
+accepts:
+  certificate_domains:
+    description: Additional domains to obtain certificates for
+    into: mash_playbook_traefik_additional_certificate_domains
+    required_keys: [hostname]
+  entrypoints:
+    description: Additional entrypoints (ports) to listen on
+    into: mash_playbook_traefik_additional_entrypoints
+    required_keys: [config, host_bind_port, name, port]
+
+# Entries added to other components' lists, while those components are in use
+inject:
+  systemd_service_manager:
+    services:
+      - name: "{{ traefik_identifier }}.service"
+        priority: 250
+        restart_necessary: "{{ traefik_restart_necessary | bool }}"
+        groups: [mash, traefik, reverse-proxies]
+        when: "{{ traefik_enabled }}"
+  container_socket_proxy:
+    permissions:
+      # Traefik requires read access to the containers APIs to work
+      - permissions: [containers]

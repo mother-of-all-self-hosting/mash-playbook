@@ -1,0 +1,9 @@
+---
+
+# As of 2024-06-28, only `Bamboo.SMTPAdapter` behaves well when no SMTP username/password AUTH is required (as is the case for exim-relay).
+# The Bamboo.Mua SMTP adapter is more modern, but always sends authentication, even when the SMTP user is empty.
+plausible_environment_variable_mailer_adapter: "{{ 'Bamboo.SMTPAdapter' if exim_relay_enabled else 'Bamboo.LocalAdapter' }}"
+plausible_environment_variable_smtp_host_addr: "{{ exim_relay_identifier if exim_relay_enabled else '' }}"
+plausible_environment_variable_smtp_host_port: "{{ '8025' if exim_relay_enabled else '587' }}"
+plausible_environment_variable_mailer_email: "{{ exim_relay_sender_address if exim_relay_enabled else '' }}"
+plausible_environment_variable_smtp_host_ssl_enabled: false

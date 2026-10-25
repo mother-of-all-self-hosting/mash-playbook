@@ -1,0 +1,19 @@
+---
+
+activation_prefix: ghostfolio_
+
+# Entries added to other components' lists, while those components are in use
+inject:
+  systemd_service_manager:
+    services:
+      - name: "{{ ghostfolio_identifier }}.service"
+        priority: 2000
+        restart_necessary: "{{ ghostfolio_restart_necessary | bool }}"
+        groups: [mash, ghostfolio]
+        when: "{{ ghostfolio_enabled }}"
+  postgres:
+    managed_databases:
+      - name: "{{ ghostfolio_database_name }}"
+        username: "{{ ghostfolio_database_username }}"
+        password: "{{ ghostfolio_database_password }}"
+        when: "{{ ghostfolio_enabled and (ghostfolio_database_hostname == postgres_connection_hostname or ghostfolio_database_socket_enabled) }}"

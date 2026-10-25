@@ -1,0 +1,19 @@
+---
+
+activation_prefix: asciinema_server_
+
+# Entries added to other components' lists, while those components are in use
+inject:
+  systemd_service_manager:
+    services:
+      - name: "{{ asciinema_server_identifier }}.service"
+        priority: 2000
+        restart_necessary: "{{ asciinema_server_restart_necessary | bool }}"
+        groups: [mash, asciinema-server]
+        when: "{{ asciinema_server_enabled }}"
+  postgres:
+    managed_databases:
+      - name: "{{ asciinema_server_database_name }}"
+        username: "{{ asciinema_server_database_username }}"
+        password: "{{ asciinema_server_database_password }}"
+        when: "{{ asciinema_server_enabled and (asciinema_server_database_hostname == postgres_connection_hostname or asciinema_server_database_socket_enabled) }}"

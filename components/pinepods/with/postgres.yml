@@ -1,0 +1,5 @@
+---
+
+pinepods_database_postgres_hostname: "{{ postgres_connection_hostname if postgres_enabled else '' }}"
+pinepods_database_postgres_port: "{{ postgres_connection_port if postgres_enabled else '5432' }}"
+pinepods_database_postgres_password: "{{ (mash_playbook_generic_secret_key + ':p.pinepods') | hash('sha512') | to_uuid }}"

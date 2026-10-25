@@ -1,0 +1,15 @@
+---
+
+# The role enables itself by default. It stays disabled, unless enabled in your inventory.
+postgres_backup_enabled: false
+
+postgres_backup_postgres_role_include_name: galaxy/postgres
+
+postgres_backup_identifier: "{{ mash_playbook_service_identifier_prefix }}postgres-backup"
+
+postgres_backup_architecture: "{{ mash_playbook_architecture }}"
+
+postgres_backup_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}postgres-backup"
+
+postgres_backup_uid: "{{ mash_playbook_uid }}"
+postgres_backup_gid: "{{ mash_playbook_gid }}"

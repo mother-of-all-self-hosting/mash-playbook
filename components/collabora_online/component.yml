@@ -1,0 +1,13 @@
+---
+
+activation_prefix: collabora_online_
+
+# Entries added to other components' lists, while those components are in use
+inject:
+  systemd_service_manager:
+    services:
+      - name: "{{ collabora_online_identifier }}.service"
+        priority: 2000
+        restart_necessary: "{{ collabora_online_restart_necessary | bool }}"
+        groups: [mash, collabora-online]
+        when: "{{ collabora_online_enabled }}"

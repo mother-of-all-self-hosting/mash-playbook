@@ -55,20 +55,25 @@ repos:
         language_version: python3
   - repo: local
     hooks:
-      - id: check-group-vars-jinja
-        name: Check the Jinja syntax in templates/group_vars_mash_servers
-        entry: bin/check-group-vars-jinja.py
+      - id: check-components
+        name: Check the structure of components/
+        entry: bin/optimize.py --components-path=components --check
+        language: python
+        additional_dependencies: ['pyyaml==6.0.3']
+        files: '^(components/|bin/optimize\.py$|\.pre-commit-config\.yaml$)'
+        pass_filenames: false
+      - id: check-components-jinja
+        name: Check the Jinja syntax in components/
+        entry: bin/check-components-jinja.py
         language: python
         additional_dependencies: ['jinja2==3.1.6', 'pyyaml==6.0.3']
-        files: '^(templates/group_vars_mash_servers|bin/check-group-vars-jinja\.py|\.pre-commit-config\.yaml)$'
-        args: ['templates/group_vars_mash_servers']
-        pass_filenames: false
+        files: '^components/.*\.yml$'
       - id: test-optimize
         name: Test playbook optimization
         entry: tests/optimize/test_optimize.py
         language: python
         additional_dependencies: ['pyyaml==6.0.3']
-        files: '^(justfile|bin/(optimize\.py|install-roles\.py|ansible-python\.sh)|templates/(requirements\.yml|setup\.yml|group_vars_mash_servers)|tests/optimize/.*|\.pre-commit-config\.yaml)$'
+        files: '^(justfile|bin/(optimize\.py|install-roles\.py|ansible-python\.sh)|components/.*|tests/optimize/.*|\.pre-commit-config\.yaml)$'
         pass_filenames: false
       - id: test-install-roles
         name: Test role installation

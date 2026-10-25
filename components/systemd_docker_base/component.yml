@@ -1,0 +1,9 @@
+---
+
+activation_prefix: ''  # Always in use
+
+setup:
+  priority: 130
+  entry:
+    # This role has no tasks at all
+    - role: galaxy/systemd_docker_base

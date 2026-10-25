@@ -1,0 +1,6 @@
+---
+
+tandoor_database_hostname: "{{ postgres_connection_hostname if postgres_enabled else '' }}"
+tandoor_database_port: "{{ postgres_connection_port if postgres_enabled else '5432' }}"
+tandoor_database_username: "tandoor"
+tandoor_database_password: "{{ (mash_playbook_generic_secret_key + ':db.tandoor') | hash('sha512') | to_uuid }}"

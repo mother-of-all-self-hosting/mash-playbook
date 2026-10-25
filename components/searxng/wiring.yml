@@ -1,0 +1,21 @@
+---
+
+# The role enables itself by default. It stays disabled, unless enabled in your inventory.
+searxng_enabled: false
+
+searxng_identifier: "{{ mash_playbook_service_identifier_prefix }}searxng"
+
+searxng_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}searxng"
+
+searxng_uid: "{{ mash_playbook_uid }}"
+searxng_gid: "{{ mash_playbook_gid }}"
+
+searxng_container_additional_networks_auto: |
+  {{
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+  }}
+
+searxng_config_server_secret_key: "{{ (mash_playbook_generic_secret_key + ':searxng.s') | hash('sha512') | to_uuid }}"
+
+searxng_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+searxng_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"

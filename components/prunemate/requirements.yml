@@ -1,0 +1,5 @@
+---
+
+- src: git+https://progressiv.radicle.garden/zTsddBnXnhE3i4xhzsEX12deb4fx.git
+  version: v1.3.3-4
+  name: prunemate

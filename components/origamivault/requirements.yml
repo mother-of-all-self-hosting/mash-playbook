@@ -1,0 +1,5 @@
+---
+
+- src: git+https://progressiv.radicle.garden/z3aGv2oUAxqmoGddtk1VwRioUTKbs.git
+  version: v0.0.0-8
+  name: origamivault

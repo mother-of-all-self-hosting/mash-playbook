@@ -1,0 +1,19 @@
+---
+
+activation_prefix: chiefonboarding_
+
+# Entries added to other components' lists, while those components are in use
+inject:
+  systemd_service_manager:
+    services:
+      - name: "{{ chiefonboarding_identifier }}.service"
+        priority: 2000
+        restart_necessary: "{{ chiefonboarding_restart_necessary | bool }}"
+        groups: [mash, chiefonboarding]
+        when: "{{ chiefonboarding_enabled }}"
+  postgres:
+    managed_databases:
+      - name: "{{ chiefonboarding_database_name }}"
+        username: "{{ chiefonboarding_database_username }}"
+        password: "{{ chiefonboarding_database_password }}"
+        when: "{{ chiefonboarding_enabled and (chiefonboarding_database_hostname == postgres_connection_hostname or chiefonboarding_database_socket_enabled) }}"

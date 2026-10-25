@@ -1,0 +1,5 @@
+---
+
+- src: git+https://progressiv.radicle.garden/z3kozTn4Kn5eJtgJQj1aCFUpqxW5Y.git
+  version: v9.4.0-1
+  name: onlyoffice_docs

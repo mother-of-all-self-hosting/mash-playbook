@@ -1,0 +1,13 @@
+---
+
+# The role enables itself by default. It stays disabled, unless enabled in your inventory.
+etcd_enabled: false
+
+etcd_identifier: "{{ mash_playbook_service_identifier_prefix }}etcd"
+
+etcd_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}etcd"
+
+etcd_uid: "{{ mash_playbook_uid }}"
+etcd_gid: "{{ mash_playbook_gid }}"
+
+etcd_auth_provisioning_password: "{{ '' if etcd_auth_provisioning_allow_none_authentication else ((mash_playbook_generic_secret_key + ':etcd') | hash('sha512') | to_uuid) }}"

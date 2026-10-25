@@ -1,0 +1,5 @@
+---
+
+- src: git+https://github.com/mother-of-all-self-hosting/ansible-role-ollama.git
+  version: v0.40.6-0
+  name: ollama

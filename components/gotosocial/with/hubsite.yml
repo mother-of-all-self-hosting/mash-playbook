@@ -1,0 +1,9 @@
+---
+
+# GoToSocial
+hubsite_service_gotosocial_enabled: "{{ gotosocial_enabled }}"
+hubsite_service_gotosocial_name: GoToSocial
+hubsite_service_gotosocial_url: "https://{{ gotosocial_hostname }}"
+hubsite_service_gotosocial_logo_location: "{{ role_path }}/assets/gotosocial.png"
+hubsite_service_gotosocial_description: "A fediverse server"
+hubsite_service_gotosocial_priority: 1000

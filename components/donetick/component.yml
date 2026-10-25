@@ -1,0 +1,19 @@
+---
+
+activation_prefix: donetick_
+
+# Entries added to other components' lists, while those components are in use
+inject:
+  systemd_service_manager:
+    services:
+      - name: "{{ donetick_identifier }}.service"
+        priority: 2000
+        restart_necessary: "{{ donetick_restart_necessary | bool }}"
+        groups: [mash, donetick]
+        when: "{{ donetick_enabled }}"
+  postgres:
+    managed_databases:
+      - name: "{{ donetick_database_name }}"
+        username: "{{ donetick_database_username }}"
+        password: "{{ donetick_database_password }}"
+        when: "{{ donetick_enabled and donetick_database_hostname == postgres_connection_hostname and donetick_database_type == 'postgres' }}"

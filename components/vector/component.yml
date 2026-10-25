@@ -1,0 +1,13 @@
+---
+
+activation_prefix: vector_
+
+# Entries added to other components' lists, while those components are in use
+inject:
+  systemd_service_manager:
+    services:
+      - name: "{{ vector_identifier }}.service"
+        priority: 2000
+        restart_necessary: "{{ vector_restart_necessary | bool }}"
+        groups: [mash, vector]
+        when: "{{ vector_enabled }}"

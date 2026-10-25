@@ -1,0 +1,25 @@
+---
+
+activation_prefix: docuseal_
+
+# Entries added to other components' lists, while those components are in use
+inject:
+  systemd_service_manager:
+    services:
+      - name: "{{ docuseal_identifier }}.service"
+        priority: 2000
+        restart_necessary: "{{ docuseal_restart_necessary | bool }}"
+        groups: [mash, docuseal]
+        when: "{{ docuseal_enabled }}"
+  mariadb:
+    managed_databases:
+      - name: "{{ docuseal_database_name }}"
+        username: "{{ docuseal_database_mysql_username }}"
+        password: "{{ docuseal_database_mysql_password }}"
+        when: "{{ docuseal_enabled and (docuseal_database_mysql_hostname == mariadb_connection_hostname or docuseal_database_mysql_socket_enabled) and docuseal_database_type == 'mysql' }}"
+  postgres:
+    managed_databases:
+      - name: "{{ docuseal_database_name }}"
+        username: "{{ docuseal_database_postgres_username }}"
+        password: "{{ docuseal_database_postgres_password }}"
+        when: "{{ docuseal_enabled and (docuseal_database_postgres_hostname == postgres_connection_hostname or docuseal_database_postgres_socket_enabled) and docuseal_database_type == 'postgres' }}"

@@ -1,0 +1,13 @@
+---
+
+activation_prefix: couchdb_
+
+# Entries added to other components' lists, while those components are in use
+inject:
+  systemd_service_manager:
+    services:
+      - name: "{{ couchdb_identifier }}.service"
+        priority: 2000
+        restart_necessary: "{{ couchdb_restart_necessary | bool }}"
+        groups: [mash, couchdb]
+        when: "{{ couchdb_enabled }}"

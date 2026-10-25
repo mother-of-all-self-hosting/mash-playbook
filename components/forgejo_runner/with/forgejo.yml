@@ -1,0 +1,3 @@
+---
+
+forgejo_runner_instance_url: "{{ forgejo_hostname }}{{ forgejo_path_prefix if forgejo_path_prefix != '/' }}"

@@ -1,0 +1,7 @@
+---
+
+pgadmin_database_hostname: "{{ postgres_connection_hostname if postgres_enabled else '' }}"
+pgadmin_database_port: "{{ postgres_connection_port if postgres_enabled else '5432' }}"
+pgadmin_database_password: "{{ (mash_playbook_generic_secret_key + ':pgadmin.db') | hash('sha512') | to_uuid }}"
+pgadmin_database_sslmode: "{{ 'disable' if postgres_enabled and (pgadmin_database_hostname == postgres_connection_hostname or pgadmin_database_socket_enabled) else 'prefer' }}"
+pgadmin_database_socket_path_host: "{{ postgres_run_path }}"

@@ -1,0 +1,5 @@
+---
+
+- src: git+https://github.com/mother-of-all-self-hosting/ansible-role-docker-registry.git
+  version: v3.1.2-0
+  name: docker_registry

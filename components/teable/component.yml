@@ -1,0 +1,19 @@
+---
+
+activation_prefix: teable_
+
+# Entries added to other components' lists, while those components are in use
+inject:
+  systemd_service_manager:
+    services:
+      - name: "{{ teable_identifier }}.service"
+        priority: 2000
+        restart_necessary: "{{ teable_restart_necessary | bool }}"
+        groups: [mash, teable]
+        when: "{{ teable_enabled }}"
+  postgres:
+    managed_databases:
+      - name: "{{ teable_database_name }}"
+        username: "{{ teable_database_username }}"
+        password: "{{ teable_database_password }}"
+        when: "{{ teable_enabled and teable_database_hostname == postgres_connection_hostname }}"

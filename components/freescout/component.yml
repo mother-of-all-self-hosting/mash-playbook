@@ -1,0 +1,25 @@
+---
+
+activation_prefix: freescout_
+
+# Entries added to other components' lists, while those components are in use
+inject:
+  systemd_service_manager:
+    services:
+      - name: "{{ freescout_identifier }}.service"
+        priority: 2000
+        restart_necessary: "{{ freescout_restart_necessary | bool }}"
+        groups: [mash, freescout]
+        when: "{{ freescout_enabled }}"
+  mariadb:
+    managed_databases:
+      - name: "{{ freescout_database_name }}"
+        username: "{{ freescout_database_mysql_username }}"
+        password: "{{ freescout_database_mysql_password }}"
+        when: "{{ freescout_enabled and (freescout_database_mysql_hostname == mariadb_connection_hostname or freescout_database_mysql_socket_enabled) and freescout_database_type == 'mysql' }}"
+  postgres:
+    managed_databases:
+      - name: "{{ freescout_database_name }}"
+        username: "{{ freescout_database_postgres_username }}"
+        password: "{{ freescout_database_postgres_password }}"
+        when: "{{ freescout_enabled and (freescout_database_postgres_hostname == postgres_connection_hostname or freescout_database_postgres_socket_enabled) and freescout_database_type == 'postgres' }}"

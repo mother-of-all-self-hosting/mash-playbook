@@ -1,0 +1,4 @@
+---
+
+karakeep_environment_variables_meili_addr: "http://{{ meilisearch_identifier }}:{{ meilisearch_container_http_port }}"
+karakeep_environment_variables_meili_key: "{{ meilisearch_default_admin_api_key }}"

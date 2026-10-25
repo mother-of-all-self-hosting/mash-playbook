@@ -1,0 +1,13 @@
+---
+
+activation_prefix: gothub_
+
+# Entries added to other components' lists, while those components are in use
+inject:
+  systemd_service_manager:
+    services:
+      - name: "{{ gothub_identifier }}.service"
+        priority: 2000
+        restart_necessary: "{{ gothub_restart_necessary | bool }}"
+        groups: [mash, gothub]
+        when: "{{ gothub_enabled }}"

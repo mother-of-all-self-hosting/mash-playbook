@@ -1,0 +1,5 @@
+---
+
+- src: git+https://github.com/mother-of-all-self-hosting/ansible-role-dokuwiki.git
+  version: v2026-07-14c-1
+  name: dokuwiki

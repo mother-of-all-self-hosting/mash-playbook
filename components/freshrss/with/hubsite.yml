@@ -1,0 +1,9 @@
+---
+
+# FreshRSS
+hubsite_service_freshrss_enabled: "{{ freshrss_enabled }}"
+hubsite_service_freshrss_name: FreshRSS
+hubsite_service_freshrss_url: "{{ freshrss_scheme }}://{{ freshrss_hostname }}{{ freshrss_path_prefix }}"
+hubsite_service_freshrss_logo_location: "{{ role_path }}/assets/freshrss.png"
+hubsite_service_freshrss_description: "RSS and Atom feed aggregator."
+hubsite_service_freshrss_priority: 1000

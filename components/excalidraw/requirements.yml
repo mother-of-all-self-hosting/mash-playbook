@@ -1,0 +1,5 @@
+---
+
+- src: git+https://github.com/mother-of-all-self-hosting/ansible-role-excalidraw.git
+  version: v2025.12.5-12
+  name: excalidraw

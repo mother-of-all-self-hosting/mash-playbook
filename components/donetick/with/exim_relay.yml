@@ -1,0 +1,5 @@
+---
+
+donetick_config_email_host: "{{ exim_relay_identifier if exim_relay_enabled else '' }}"
+donetick_config_email_port: "{{ '8025' if exim_relay_enabled else '587' }}"
+donetick_config_email_email: "{{ exim_relay_sender_address if exim_relay_enabled else '' }}"

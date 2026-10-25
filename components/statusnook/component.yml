@@ -1,0 +1,13 @@
+---
+
+activation_prefix: statusnook_
+
+# Entries added to other components' lists, while those components are in use
+inject:
+  systemd_service_manager:
+    services:
+      - name: "{{ statusnook_identifier }}.service"
+        priority: 2000
+        restart_necessary: "{{ statusnook_restart_necessary | bool }}"
+        groups: [mash, statusnook]
+        when: "{{ statusnook_enabled }}"

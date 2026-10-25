@@ -1,0 +1,5 @@
+---
+
+- src: git+https://github.com/devture/com.devture.ansible.role.timesync.git
+  version: v1.1.0-1
+  name: timesync

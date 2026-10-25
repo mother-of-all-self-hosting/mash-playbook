@@ -1,0 +1,27 @@
+---
+
+activation_prefix: yourls_
+
+# Entries added to other components' lists, while those components are in use
+inject:
+  systemd_service_manager:
+    services:
+      - name: "{{ yourls_identifier }}.service"
+        priority: 2000
+        restart_necessary: "{{ yourls_restart_necessary | bool }}"
+        groups: [mash, yourls]
+        when: "{{ yourls_enabled }}"
+  hubsite:
+    services:
+      - name: "{{ hubsite_service_yourls_name }}"
+        url: "{{ hubsite_service_yourls_url }}"
+        logo_location: "{{ hubsite_service_yourls_logo_location }}"
+        description: "{{ hubsite_service_yourls_description }}"
+        priority: "{{ hubsite_service_yourls_priority }}"
+        when: "{{ hubsite_service_yourls_enabled }}"
+  mariadb:
+    managed_databases:
+      - name: "{{ yourls_database_name }}"
+        username: "{{ yourls_database_username }}"
+        password: "{{ yourls_database_password }}"
+        when: "{{ yourls_enabled and (yourls_database_hostname == mariadb_connection_hostname or yourls_database_socket_enabled) }}"

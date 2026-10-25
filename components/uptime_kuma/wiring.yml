@@ -1,0 +1,57 @@
+---
+
+# The role enables itself by default. It stays disabled, unless enabled in your inventory.
+uptime_kuma_enabled: false
+
+uptime_kuma_identifier: "{{ mash_playbook_service_identifier_prefix }}uptime-kuma"
+
+uptime_kuma_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}uptime-kuma"
+
+uptime_kuma_uid: "{{ mash_playbook_uid }}"
+uptime_kuma_gid: "{{ mash_playbook_gid }}"
+
+uptime_kuma_systemd_wanted_services_list_auto: |
+  {{
+    ([apprise_identifier ~ '.service'] if apprise_enabled | default(false) else [])
+    +
+    ([exim_relay_identifier ~ '.service'] if exim_relay_enabled | default(false) else [])
+    +
+    ([gotify_identifier ~ '.service'] if gotify_enabled | default(false) else [])
+    +
+    ([mariadb_identifier ~ '.service'] if mariadb_enabled | default(false) else [])
+    +
+    ([mongodb_identifier ~ '.service'] if mongodb_enabled | default(false) else [])
+    +
+    ([ntfy_identifier ~ '.service'] if ntfy_enabled | default(false) else [])
+    +
+    ([postgres_identifier ~ '.service'] if postgres_enabled | default(false) else [])
+  }}
+
+uptime_kuma_container_additional_networks_auto: |
+  {{
+    ([apprise_container_network] if apprise_enabled | default(false) and uptime_kuma_container_network != apprise_container_network else [])
+    +
+    ([exim_relay_container_network] if exim_relay_enabled | default(false) and uptime_kuma_container_network != exim_relay_container_network else [])
+    +
+    ([gotify_container_network] if gotify_enabled | default(false) and uptime_kuma_container_network != gotify_container_network else [])
+    +
+    ([mariadb_container_network] if mariadb_enabled | default(false) and uptime_kuma_container_network != mariadb_container_network else [])
+    +
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+    +
+    ([mongodb_container_network] if mongodb_enabled | default(false) and uptime_kuma_container_network != mongodb_container_network else [])
+    +
+    ([ntfy_container_network] if ntfy_enabled | default(false) and uptime_kuma_container_network != ntfy_container_network else [])
+    +
+    ([postgres_container_network] if postgres_enabled | default(false) and uptime_kuma_container_network != postgres_container_network else [])
+  }}
+
+uptime_kuma_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+uptime_kuma_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+
+uptime_kuma_container_labels_traefik_metrics_enabled: "{{ mash_playbook_metrics_exposure_enabled }}"
+uptime_kuma_container_labels_traefik_metrics_hostname: "{{ mash_playbook_metrics_exposure_hostname }}"
+uptime_kuma_container_labels_traefik_metrics_path_prefix: "{{ mash_playbook_metrics_exposure_path_prefix }}/{{ uptime_kuma_identifier }}"
+# NOTE: Uptime Kuma enables the HTTP Basic authentication for the metrics endpoint by default, and you're required to specify log in credentials to retrieve metrics, unless its authentication is disabled on the settings UI.
+uptime_kuma_container_labels_traefik_metrics_middleware_basic_auth_enabled: false
+uptime_kuma_container_labels_traefik_metrics_middleware_basic_auth_users: "{{ mash_playbook_metrics_exposure_http_basic_auth_users }}"

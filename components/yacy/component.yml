@@ -1,0 +1,13 @@
+---
+
+activation_prefix: yacy_
+
+# Entries added to other components' lists, while those components are in use
+inject:
+  systemd_service_manager:
+    services:
+      - name: "{{ yacy_identifier }}.service"
+        priority: 2000
+        restart_necessary: "{{ yacy_restart_necessary | bool }}"
+        groups: [mash, yacy]
+        when: "{{ yacy_enabled }}"

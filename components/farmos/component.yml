@@ -1,0 +1,25 @@
+---
+
+activation_prefix: farmos_
+
+# Entries added to other components' lists, while those components are in use
+inject:
+  systemd_service_manager:
+    services:
+      - name: "{{ farmos_identifier }}.service"
+        priority: 2000
+        restart_necessary: "{{ farmos_restart_necessary | bool }}"
+        groups: [mash, farmos]
+        when: "{{ farmos_enabled }}"
+  mariadb:
+    managed_databases:
+      - name: "{{ farmos_database_name }}"
+        username: "{{ farmos_database_mysql_username }}"
+        password: "{{ farmos_database_mysql_password }}"
+        when: "{{ farmos_enabled and farmos_database_mysql_hostname == mariadb_connection_hostname and farmos_database_type == 'mysql' }}"
+  postgres:
+    managed_databases:
+      - name: "{{ farmos_database_name }}"
+        username: "{{ farmos_database_postgres_username }}"
+        password: "{{ farmos_database_postgres_password }}"
+        when: "{{ farmos_enabled and farmos_database_postgres_hostname == postgres_connection_hostname and farmos_database_type == 'postgres' }}"

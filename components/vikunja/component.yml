@@ -1,0 +1,25 @@
+---
+
+activation_prefix: vikunja_
+
+# Entries added to other components' lists, while those components are in use
+inject:
+  systemd_service_manager:
+    services:
+      - name: "{{ vikunja_identifier }}.service"
+        priority: 2000
+        restart_necessary: "{{ vikunja_restart_necessary | bool }}"
+        groups: [mash, vikunja]
+        when: "{{ vikunja_enabled }}"
+  mariadb:
+    managed_databases:
+      - name: "{{ vikunja_database_name }}"
+        username: "{{ vikunja_database_mysql_username }}"
+        password: "{{ vikunja_database_mysql_password }}"
+        when: "{{ vikunja_enabled and (vikunja_database_mysql_hostname == mariadb_connection_hostname or vikunja_database_mysql_socket_enabled) and vikunja_database_type == 'mysql' }}"
+  postgres:
+    managed_databases:
+      - name: "{{ vikunja_database_name }}"
+        username: "{{ vikunja_database_postgres_username }}"
+        password: "{{ vikunja_database_postgres_password }}"
+        when: "{{ vikunja_enabled and (vikunja_database_postgres_hostname == postgres_connection_hostname or vikunja_database_postgres_socket_enabled) and vikunja_database_type == 'postgres' }}"

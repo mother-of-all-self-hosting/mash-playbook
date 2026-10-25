@@ -1,0 +1,6 @@
+---
+
+authelia_database_postgres_hostname: "{{ postgres_connection_hostname if postgres_enabled else '' }}"
+authelia_database_postgres_port: "{{ postgres_connection_port if postgres_enabled else '5432' }}"
+authelia_database_postgres_password: "{{ (mash_playbook_generic_secret_key + ':db.authelia') | hash('sha512') | to_uuid }}"
+authelia_database_postgres_socket_path_host: "{{ postgres_run_path }}"

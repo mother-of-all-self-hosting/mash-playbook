@@ -1,0 +1,5 @@
+---
+
+- src: git+https://progressiv.radicle.garden/zs18Rifa7437q7hTFhsx11nYeGhD.git
+  version: v0.10.0-7
+  name: bitmagnet

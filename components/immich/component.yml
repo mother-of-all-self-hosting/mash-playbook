@@ -1,0 +1,26 @@
+---
+
+activation_prefix: immich_
+
+# Entries added to other components' lists, while those components are in use
+inject:
+  systemd_service_manager:
+    services:
+      - name: "{{ immich_server_identifier }}.service"
+        priority: 2000
+        restart_necessary: "{{ immich_server_restart_necessary | bool }}"
+        groups: [mash, immich]
+        when: "{{ immich_enabled and immich_server_enabled }}"
+      - name: "{{ immich_machine_learning_identifier }}.service"
+        priority: 1500
+        restart_necessary: "{{ immich_machine_learning_restart_necessary | bool }}"
+        groups: [mash, immich]
+        when: "{{ immich_enabled and immich_machine_learning_enabled }}"
+  postgres:
+    managed_databases:
+      # Ref: https://immich.app/docs/administration/postgres-standalone/#without-superuser-permission
+      - name: "{{ immich_database_name }}"
+        username: "{{ immich_database_username }}"
+        password: "{{ immich_database_password }}"
+        additional_sql_queries: "{{ [('\\c ' ~ immich_database_name)] + immich_database_preparation_sql_queries }}"
+        when: "{{ immich_enabled and immich_server_enabled and immich_database_hostname == postgres_identifier }}"

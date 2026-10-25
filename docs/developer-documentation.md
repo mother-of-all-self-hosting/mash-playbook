@@ -103,153 +103,152 @@ When it comes to the structure of roles, you can follow existing roles such as [
 
 ### 3. Update the MASH playbook to support your created Ansible role
 
-There are a few files that you need to adapt:
+Each role the playbook can use is wired in by a *component*: a directory in [`components/`](../components) named after the role. To add your role, add its component and its documentation:
 
 ```
 .
-├── docs/
-│   ├── supported-services.md  ← Add your service
-│   └── services/
-│       └── YOUR-SERVICE.md  ← Add documentation about how to configure it
-├── templates/
-│   ├── group_vars_mash_servers  ← Add default configuration
-│   ├── requirements.yml  ← Add your Ansible role
-│   └── setup.yml  ← Add your Ansible role
+├── components/
+│   └── YOUR-SERVICE/
+│       ├── component.yml  ← When the component is in use, where it runs, what it adds to other components
+│       ├── requirements.yml  ← Your Ansible role and its version
+│       ├── wiring.yml  ← Default configuration of your role for this playbook
+│       └── with/
+│           ├── postgres.yml  ← Configuration which applies only when Postgres is in use too
+│           └── traefik.yml  ← … or Traefik, etc.
+└── docs/
+    ├── supported-services.md  ← Add your service
+    └── services/
+        └── YOUR-SERVICE.md  ← Add documentation about how to configure it
 ```
 
-Make sure to edit configuration files inside `templates` — These are source files to be optimized and used when running [`just`](just.md) commands to install, configure, or uninstall services.
+The easiest way to start is to copy the component of a similar service and adapt it. [`miniflux`](../components/miniflux) is a typical one (with Postgres and Traefik), [`postgres`](../components/postgres) accepts entries from other components, and [`docker`](../components/docker) has a special entry in `setup.yml`.
 
-The `role-specific:ROLE` and `/role-specific:ROLE` comments mark the parts of these files that optimization removes when a role is not in use. The `test-optimize` pre-commit hook ([`tests/optimize/test_optimize.py`](../tests/optimize/test_optimize.py)) checks that they still work after a change.
+Before every run, `just` generates `requirements.yml`, `setup.yml` and `group_vars/mash_servers/` from the components in use by the inventory (see [`bin/optimize.py`](../bin/optimize.py)). Do not edit those generated files. The `check-components` pre-commit hook validates the structure of all components, and the `test-optimize` hook ([`tests/optimize/test_optimize.py`](../tests/optimize/test_optimize.py)) tests the generation.
 
-#### Add the role to `group_vars_mash_servers` in `templates` directory
+#### `component.yml`
 
-On [`group_vars_mash_servers`](../templates/group_vars_mash_servers) you need to wire your role with the rest of the services of the playbook — integrating with the service manager or potentially with other roles.
+```yaml
+# The component is in use when the inventory sets any variable starting with this prefix (`''`: always in use)
+activation_prefix: YOUR-SERVICE_
 
-When adding the role, replace `YOUR-SERVICE` with yours, and also mind the place to add the role, as the roles are (mostly) sorted alphabetically for other developers' sanity.
+# Entries added to other components' lists, while those components are in use (see below)
+inject:
+  systemd_service_manager:
+    services:
+      - name: "{{ YOUR-SERVICE_identifier }}.service"
+        priority: 2000
+        restart_necessary: "{{ YOUR-SERVICE_restart_necessary | bool }}"
+        groups: [mash, YOUR-SERVICE]
+        when: "{{ YOUR-SERVICE_enabled }}"
+```
 
-See below for details about what to configure. Note that not all roles require to be wired to anything other than `systemd_service_manager`.
+Optional fields:
+
+- `setup`: where the role runs in `setup.yml`. Components without it run `galaxy/YOUR-SERVICE` at priority `1000`, sorted by name with the others. A lower `priority` runs earlier, and `entry` replaces the default entry (e.g. to add `when` or `tags`):
+
+    ```yaml
+    setup:
+      priority: 140
+      entry:
+        - role: galaxy/docker
+          when: mash_playbook_docker_installation_enabled | bool
+    ```
+
+- `accepts`: lists which other components can add entries to (with `inject`), for components such as Postgres. `into` names the variable which gets the entries of the components in use (those whose `when` is true, without `when`), and `required_keys` the keys each entry needs:
+
+    ```yaml
+    accepts:
+      managed_databases:
+        description: Databases (and users) to create and keep up to date
+        into: postgres_managed_databases_auto
+        required_keys: [name, password, username]
+    ```
+
+- `inject`: entries for other components' lists, as shown above. Each entry is added only while that component is in use, and only if its `when` (true when omitted) is true. Look at the `accepts` of a component for the lists it has. Ansible versions before 2.19 evaluate all entries of a list, also those whose `when` is false, so an entry must not fail when its component is disabled (e.g. use `default()` for variables which may be undefined then).
+
+#### `requirements.yml`
+
+Your role, as for `ansible-galaxy`. The name must match the component's directory:
+
+```yaml
+- src: git+https://github.com/YOUR-USERNAME/ansible-role-YOUR-SERVICE.git
+  version: v1.0.0-0
+  name: YOUR-SERVICE
+```
+
+#### `wiring.yml` and `with/`
+
+`wiring.yml` holds the default configuration of your role for this playbook, which applies whenever the component is in use. `with/OTHER.yml` holds configuration which applies only when the `OTHER` component is in use too. A variable may only be defined in one of these files.
+
+```yaml
+# wiring.yml
+
+# The role enables itself by default. It stays disabled, unless enabled in your inventory.
+YOUR-SERVICE_enabled: false
+
+YOUR-SERVICE_identifier: "{{ mash_playbook_service_identifier_prefix }}YOUR-SERVICE"
+
+YOUR-SERVICE_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}YOUR-SERVICE"
+
+YOUR-SERVICE_uid: "{{ mash_playbook_uid }}"
+YOUR-SERVICE_gid: "{{ mash_playbook_gid }}"
+```
+
+Variables referring to another component which may not be in use need a default, e.g. `postgres_enabled | default(false)`.
 
 >[!NOTE]
 > Please do not use `mash_playbook_generic_secret_key` for a fixed string for something like passwords, because it is intended for secrets that are fine to be changed later.
 
-<details>
-<summary>Wire the role to systemd_service_manager</summary>
-
-You have to add the role to `mash_playbook_devture_systemd_service_manager_services_list_auto_itemized` so that it is wired to `systemd_service_manager`.
-
-See below for an example:
-
-```yaml
-# role-specific:systemd_service_manager
-########################################################################
-#                                                                      #
-# systemd_service_manager                                              #
-#                                                                      #
-########################################################################
-
-mash_playbook_devture_systemd_service_manager_services_list_auto_itemized:
-  [...]
-  # role-specific:YOUR-SERVICE
-  - |-
-    {{ ({'name': (YOUR-SERVICE_identifier + '.service'), 'priority': 2000, 'groups': ['mash', 'YOUR-SERVICE']} if YOUR-SERVICE_enabled else omit) }}
-  # /role-specific:YOUR-SERVICE
-
-[...]
-########################################################################
-#                                                                      #
-# /systemd_service_manager                                             #
-#                                                                      #
-########################################################################
-# /role-specific:systemd_service_manager
-
-```
-
-</details>
-
-**Optional**:
-
-Please wire your role to other services than `systemd_service_manager` if necessary.
+Not all roles need to be wired to anything other than `systemd_service_manager` (see `inject` above). Wire your role to other services if necessary:
 
 <details>
 <summary>Wire the role to Postgres / MariaDB</summary>
 
-On this playbook Postgres is enabled by default (refer to [`examples/vars.yml`](../examples/vars.yml)), and you can wire your role to Postgres by adding it to the configuration for Postgres as below:
+On this playbook Postgres is enabled by default (refer to [`examples/vars.yml`](../examples/vars.yml)). To have Postgres create the database for your service, add it to `component.yml`:
 
 ```yaml
-# role-specific:postgres
-########################################################################
-#                                                                      #
-# postgres                                                             #
-#                                                                      #
-########################################################################
-[...]
-
-mash_playbook_postgres_managed_databases_auto_itemized:
+inject:
   [...]
-  # role-specific:YOUR-SERVICE
-  - |-
-    {{
-      ({
-        'name': YOUR-SERVICE_database_name,
-        'username': YOUR-SERVICE_database_username,
-        'password': YOUR-SERVICE_database_password,
-      } if YOUR-SERVICE_enabled and (YOUR-SERVICE_database_hostname == postgres_connection_hostname or YOUR-SERVICE_database_socket_enabled) else omit)
-    }}
-  # /role-specific:YOUR-SERVICE
+  postgres:
+    managed_databases:
+      - name: "{{ YOUR-SERVICE_database_name }}"
+        username: "{{ YOUR-SERVICE_database_username }}"
+        password: "{{ YOUR-SERVICE_database_password }}"
+        when: "{{ YOUR-SERVICE_enabled and (YOUR-SERVICE_database_hostname == postgres_connection_hostname or YOUR-SERVICE_database_socket_enabled) }}"
+```
 
-  [...]
-########################################################################
-#                                                                      #
-# /postgres                                                            #
-#                                                                      #
-########################################################################
-# /role-specific:postgres
+Make your service depend on Postgres and join its network in `wiring.yml`:
 
-[...]
-
-# role-specific:YOUR-SERVICE
-########################################################################
-#                                                                      #
-# YOUR_SERVICE                                                         #
-#                                                                      #
-########################################################################
-
+```yaml
 YOUR-SERVICE_systemd_required_services_list_auto: |
   {{
-    ([postgres_identifier ~ '.service'] if postgres_enabled and (YOUR-SERVICE_database_hostname == postgres_connection_hostname or YOUR-SERVICE_database_socket_enabled) else [])
+    ([postgres_identifier ~ '.service'] if postgres_enabled | default(false) and (YOUR-SERVICE_database_hostname == postgres_connection_hostname or YOUR-SERVICE_database_socket_enabled) else [])
   }}
 
 YOUR-SERVICE_container_additional_networks_auto: |
   {{
     [...]
     +
-    ([postgres_container_network] if postgres_enabled and (YOUR-SERVICE_database_hostname == postgres_connection_hostname and YOUR-SERVICE_container_network != postgres_container_network and not YOUR-SERVICE_database_socket_enabled) else [])
+    ([postgres_container_network] if postgres_enabled | default(false) and (YOUR-SERVICE_database_hostname == postgres_connection_hostname and YOUR-SERVICE_container_network != postgres_container_network and not YOUR-SERVICE_database_socket_enabled) else [])
   }}
+```
 
-[...]
+And point it at Postgres in `with/postgres.yml`:
 
-# role-specific:postgres
+```yaml
 YOUR-SERVICE_database_hostname: "{{ postgres_connection_hostname if postgres_enabled and not YOUR-SERVICE_database_socket_enabled else '' }}"
 YOUR-SERVICE_database_port: "{{ postgres_connection_port if postgres_enabled else '5432' }}"
 YOUR-SERVICE_database_password: "{{ (mash_playbook_generic_secret_key + ':YOUR-SERVICE.db') | hash('sha512') | to_uuid }}"
 YOUR-SERVICE_database_sslmode: "{{ 'disable' if postgres_enabled and (YOUR-SERVICE_database_hostname == postgres_connection_hostname or YOUR-SERVICE_database_socket_enabled) else 'prefer' }}"
 YOUR-SERVICE_database_socket_path_host: "{{ postgres_run_path }}"
-# /role-specific:postgres
-
-########################################################################
-#                                                                      #
-# /YOUR_SERVICE                                                        #
-#                                                                      #
-########################################################################
-# /role-specific:YOUR-SERVICE
 ```
 
 The example above presupposes that the role is configured to wire the service to Postgres with a Unix socket. Adjust it as necessary if the service does not support one.
 
 💡 **Notes**:
 
-- If your role requires MySQL, you can instead wire it to MariaDB on this playbook via `mash_playbook_mariadb_managed_databases_auto_itemized` in a similar way. See the [service documentation](services/mariadb.md) for details about managing a MariaDB instance.
-- If the service supports multiple database drivers (MySQL, Postgres, SQLite, etc.), please prepare a `YOUR-SERVICE_database_type` variable on `defaults/main.yml` *without setting a default value*, so that users will be able to choose which one to use by themselves. Though a default database driver is specified for some roles on `group_vars_mash_servers` with a value such as `"{{ 'postgres' if postgres_enabled | default(false) else 'sqlite' }}"`, it is not a best practice, and should be avoided for a new role. Please refer to <https://github.com/mother-of-all-self-hosting/mash-playbook/issues/1061> for the context.
+- If your role requires MySQL, you can instead wire it to MariaDB on this playbook via `inject.mariadb.managed_databases` and `with/mariadb.yml` in a similar way. See the [service documentation](services/mariadb.md) for details about managing a MariaDB instance.
+- If the service supports multiple database drivers (MySQL, Postgres, SQLite, etc.), please prepare a `YOUR-SERVICE_database_type` variable on `defaults/main.yml` *without setting a default value*, so that users will be able to choose which one to use by themselves. Though a default database driver is specified for some roles in their component with a value such as `"{{ 'postgres' if postgres_enabled | default(false) else 'sqlite' }}"`, it is not a best practice, and should be avoided for a new role. Please refer to <https://github.com/mother-of-all-self-hosting/mash-playbook/issues/1061> for the context.
 
 </details>
 
@@ -260,26 +259,13 @@ This playbook implements [exim-relay](https://github.com/devture/exim-relay), a 
 
 Various services need to send out email, and exim-relay gives you a centralized place for configuring email-sending.
 
-To wire the role to exim-relay, add the configuration for it as below:
+To wire the role to exim-relay, add the configuration for it to `wiring.yml`:
 
 ```yaml
-[...]
-
-# role-specific:YOUR-SERVICE
-########################################################################
-#                                                                      #
-# YOUR_SERVICE                                                         #
-#                                                                      #
-########################################################################
-
-[...]
-
 YOUR-SERVICE_systemd_wanted_services_list_auto: |
   {{
     ([exim_relay_identifier ~ '.service'] if exim_relay_enabled | default(false) and YOUR-SERVICE_config_mailer_smtp_addr == exim_relay_identifier else [])
   }}
-
-[...]
 
 YOUR-SERVICE_container_additional_networks_auto: |
   {{
@@ -287,21 +273,16 @@ YOUR-SERVICE_container_additional_networks_auto: |
     +
     ([exim_relay_container_network] if exim_relay_enabled | default(false) and YOUR-SERVICE_config_mailer_smtp_addr == exim_relay_identifier and YOUR-SERVICE_container_network != exim_relay_container_network else [])
   }}
+```
 
-# role-specific:exim_relay
+And to `with/exim_relay.yml`:
+
+```yaml
 YOUR-SERVICE_config_mailer_enabled: "{{ exim_relay_enabled }}"
 YOUR-SERVICE_config_mailer_smtp_addr: "{{ exim_relay_identifier if exim_relay_enabled else '' }}"
 YOUR-SERVICE_config_mailer_smtp_port: 8025
 YOUR-SERVICE_config_mailer_from: "{{ exim_relay_sender_address if exim_relay_enabled else '' }}"
 YOUR-SERVICE_config_mailer_protocol: "{{ 'smtp' if exim_relay_enabled else '' }}"
-# /role-specific:exim_relay
-
-########################################################################
-#                                                                      #
-# /YOUR_SERVICE                                                        #
-#                                                                      #
-########################################################################
-# /role-specific:YOUR-SERVICE
 ```
 
 </details>

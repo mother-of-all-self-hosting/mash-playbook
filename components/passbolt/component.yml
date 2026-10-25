@@ -1,0 +1,25 @@
+---
+
+activation_prefix: passbolt_
+
+# Entries added to other components' lists, while those components are in use
+inject:
+  systemd_service_manager:
+    services:
+      - name: "{{ passbolt_identifier }}.service"
+        priority: 2000
+        restart_necessary: "{{ passbolt_restart_necessary | bool }}"
+        groups: [mash, passbolt]
+        when: "{{ passbolt_enabled }}"
+  mariadb:
+    managed_databases:
+      - name: "{{ passbolt_database_name }}"
+        username: "{{ passbolt_database_mysql_username }}"
+        password: "{{ passbolt_database_mysql_password }}"
+        when: "{{ passbolt_enabled and (passbolt_database_mysql_hostname == mariadb_connection_hostname or passbolt_database_mysql_socket_enabled) and passbolt_database_type == 'mysql' }}"
+  postgres:
+    managed_databases:
+      - name: "{{ passbolt_database_name }}"
+        username: "{{ passbolt_database_postgres_username }}"
+        password: "{{ passbolt_database_postgres_password }}"
+        when: "{{ passbolt_enabled and (passbolt_database_postgres_hostname == postgres_connection_hostname or passbolt_database_postgres_socket_enabled) and passbolt_database_type == 'postgres' }}"

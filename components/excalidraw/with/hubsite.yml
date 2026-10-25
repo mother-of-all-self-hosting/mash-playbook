@@ -1,0 +1,9 @@
+---
+
+# Excalidraw
+hubsite_service_excalidraw_enabled: "{{ excalidraw_enabled }}"
+hubsite_service_excalidraw_name: "Excalidraw"
+hubsite_service_excalidraw_url: "{{ excalidraw_scheme }}://{{ excalidraw_hostname }}{{ excalidraw_path_prefix }}"
+hubsite_service_excalidraw_logo_location: ""
+hubsite_service_excalidraw_description: "Virtual whiteboard for sketching hand-drawn like diagrams"
+hubsite_service_excalidraw_priority: 1000

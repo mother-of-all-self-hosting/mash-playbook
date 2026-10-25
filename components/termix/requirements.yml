@@ -1,0 +1,5 @@
+---
+
+- src: git+https://progressiv.radicle.garden/z4TiZiqkm6MBmkPL2NTPMavni6LV.git
+  version: v26.10.5-0
+  name: termix

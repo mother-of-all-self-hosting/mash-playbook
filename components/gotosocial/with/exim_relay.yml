@@ -1,0 +1,5 @@
+---
+
+gotosocial_environment_variables_gts_smtp_host: "{{ exim_relay_identifier if exim_relay_enabled else '' }}"
+gotosocial_environment_variables_gts_smtp_port: "{{ '8025' if exim_relay_enabled else '587' }}"
+gotosocial_environment_variables_gts_smtp_from: "{{ exim_relay_sender_address if exim_relay_enabled else '' }}"

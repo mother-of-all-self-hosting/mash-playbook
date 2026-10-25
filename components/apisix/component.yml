@@ -1,0 +1,13 @@
+---
+
+activation_prefix: apisix_
+
+# Entries added to other components' lists, while those components are in use
+inject:
+  systemd_service_manager:
+    services:
+      - name: "{{ apisix_identifier }}.service"
+        priority: 2000
+        restart_necessary: true
+        groups: [mash, apisix]
+        when: "{{ apisix_enabled }}"

@@ -1,0 +1,5 @@
+---
+
+- src: git+https://progressiv.radicle.garden/z3PCtuwyz2HdHeKnHCefR253rpYwp.git
+  version: v4.4.0-0
+  name: rabbitmq

@@ -1,0 +1,9 @@
+---
+
+promtail_config_clients_auto: |
+  {{
+    ([{
+      'url': (loki_scheme + '://' + loki_identifier + ':' + (loki_server_http_listen_port | string) + '/loki/api/v1/push'),
+      'tenant_id': 'mash',
+    }] if loki_enabled else [])
+  }}

@@ -1,0 +1,13 @@
+---
+
+activation_prefix: autobrr_
+
+# Entries added to other components' lists, while those components are in use
+inject:
+  systemd_service_manager:
+    services:
+      - name: "{{ autobrr_identifier }}.service"
+        priority: 2000
+        restart_necessary: "{{ autobrr_restart_necessary | bool }}"
+        groups: [mash, autobrr]
+        when: "{{ autobrr_enabled }}"

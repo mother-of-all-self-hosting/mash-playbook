@@ -1,0 +1,7 @@
+---
+
+barassistant_mailer_enabled: "{{ exim_relay_enabled }}"
+barassistant_server_environment_variables_mail_mailer: "{{ 'smtp' if exim_relay_enabled else '' }}"
+barassistant_server_environment_variables_mail_host: "{{ exim_relay_identifier if exim_relay_enabled else '' }}"
+barassistant_server_environment_variables_mail_port: "{{ '8025' if exim_relay_enabled else '587' }}"
+barassistant_server_environment_variables_mail_from_address: "{{ exim_relay_sender_address if exim_relay_enabled else '' }}"

@@ -1,0 +1,21 @@
+---
+
+activation_prefix: grafana_
+
+# Entries added to other components' lists, while those components are in use
+inject:
+  systemd_service_manager:
+    services:
+      - name: "{{ grafana_identifier }}.service"
+        priority: 2000
+        restart_necessary: "{{ grafana_restart_necessary | bool }}"
+        groups: [mash, grafana]
+        when: "{{ grafana_enabled }}"
+  hubsite:
+    services:
+      - name: "{{ hubsite_service_grafana_name }}"
+        url: "{{ hubsite_service_grafana_url }}"
+        logo_location: "{{ hubsite_service_grafana_logo_location }}"
+        description: "{{ hubsite_service_grafana_description }}"
+        priority: "{{ hubsite_service_grafana_priority }}"
+        when: "{{ hubsite_service_grafana_enabled }}"

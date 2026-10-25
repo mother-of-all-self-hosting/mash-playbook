@@ -1,0 +1,20 @@
+---
+
+# The role enables itself by default. It stays disabled, unless enabled in your inventory.
+bentopdf_enabled: false
+
+bentopdf_identifier: "{{ mash_playbook_service_identifier_prefix }}bentopdf"
+
+bentopdf_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}bentopdf"
+
+# The default Docker image requires root user
+bentopdf_uid: "{{ mash_playbook_uid if bentopdf_container_image_self_build else '0' }}"
+bentopdf_gid: "{{ mash_playbook_gid if bentopdf_container_image_self_build else '0' }}"
+
+bentopdf_container_additional_networks_auto: |
+  {{
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+  }}
+
+bentopdf_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+bentopdf_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"

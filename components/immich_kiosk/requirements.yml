@@ -1,0 +1,5 @@
+---
+
+- src: git+https://github.com/mother-of-all-self-hosting/ansible-role-immich-kiosk.git
+  version: v0.45.2-0
+  name: immich_kiosk

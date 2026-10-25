@@ -1,0 +1,13 @@
+---
+
+activation_prefix: radicle_node_
+
+# Entries added to other components' lists, while those components are in use
+inject:
+  systemd_service_manager:
+    services:
+      - name: "{{ radicle_node_identifier }}.service"
+        priority: 2000
+        restart_necessary: "{{ radicle_node_restart_necessary | bool }}"
+        groups: [mash, radicle-node]
+        when: "{{ radicle_node_enabled }}"

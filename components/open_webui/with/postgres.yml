@@ -1,0 +1,7 @@
+---
+
+open_webui_database_hostname: "{{ postgres_connection_hostname if postgres_enabled else '' }}"
+open_webui_database_port: "{{ postgres_connection_port if postgres_enabled else '5432' }}"
+open_webui_database_password: "{{ (mash_playbook_generic_secret_key + ':open_webui.db') | hash('sha512') | to_uuid }}"
+open_webui_database_sslmode: "{{ 'disable' if postgres_enabled and (open_webui_database_hostname == postgres_connection_hostname or open_webui_database_socket_enabled) else 'prefer' }}"
+open_webui_database_socket_path_host: "{{ postgres_run_path }}"

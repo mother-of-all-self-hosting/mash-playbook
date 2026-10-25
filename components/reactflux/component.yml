@@ -1,0 +1,13 @@
+---
+
+activation_prefix: reactflux_
+
+# Entries added to other components' lists, while those components are in use
+inject:
+  systemd_service_manager:
+    services:
+      - name: "{{ reactflux_identifier }}.service"
+        priority: 2000
+        restart_necessary: "{{ reactflux_restart_necessary | bool }}"
+        groups: [mash, reactflux]
+        when: "{{ reactflux_enabled }}"

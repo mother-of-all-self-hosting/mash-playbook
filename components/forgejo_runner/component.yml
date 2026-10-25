@@ -1,0 +1,13 @@
+---
+
+activation_prefix: forgejo_runner_
+
+# Entries added to other components' lists, while those components are in use
+inject:
+  systemd_service_manager:
+    services:
+      - name: "{{ forgejo_runner_identifier }}.service"
+        priority: 2000
+        restart_necessary: "{{ forgejo_runner_restart_necessary | bool }}"
+        groups: [mash, forgejo-runner]
+        when: "{{ forgejo_runner_enabled }}"

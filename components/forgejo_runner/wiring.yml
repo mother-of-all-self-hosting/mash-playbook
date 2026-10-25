@@ -1,0 +1,15 @@
+---
+
+# The role enables itself by default. It stays disabled, unless enabled in your inventory.
+forgejo_runner_enabled: false
+
+forgejo_runner_identifier: "{{ mash_playbook_service_identifier_prefix }}forgejo-runner"
+
+forgejo_runner_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}forgejo-runner"
+
+forgejo_runner_uid: "0"
+forgejo_runner_gid: "0"
+
+forgejo_runner_docker_endpoint_is_unix_socket: "{{ false if forgejo_runner_docker_endpoint.startswith('tcp://') else true }}"
+
+forgejo_runner_runner_name: "forgejo-runner-by-mash-playbook"

@@ -1,0 +1,13 @@
+---
+
+activation_prefix: ddclient_
+
+# Entries added to other components' lists, while those components are in use
+inject:
+  systemd_service_manager:
+    services:
+      - name: "{{ ddclient_identifier }}.service"
+        priority: 2000
+        restart_necessary: "{{ ddclient_restart_necessary | bool }}"
+        groups: [mash, ddclient]
+        when: "{{ ddclient_enabled }}"

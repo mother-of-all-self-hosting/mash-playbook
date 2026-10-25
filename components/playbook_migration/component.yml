@@ -1,0 +1,8 @@
+---
+
+activation_prefix: ''  # Always in use
+
+setup:
+  priority: 120
+  entry:
+    - role: mash/playbook_migration

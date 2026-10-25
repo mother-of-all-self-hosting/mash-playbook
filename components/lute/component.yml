@@ -1,0 +1,13 @@
+---
+
+activation_prefix: lute_
+
+# Entries added to other components' lists, while those components are in use
+inject:
+  systemd_service_manager:
+    services:
+      - name: "{{ lute_identifier }}.service"
+        priority: 2000
+        restart_necessary: "{{ lute_restart_necessary | bool }}"
+        groups: [mash, lute]
+        when: "{{ lute_enabled }}"

@@ -1,0 +1,6 @@
+---
+
+vaultwarden_environment_variables_smtp_host: "{{ exim_relay_identifier if exim_relay_enabled else '' }}"
+vaultwarden_environment_variables_smtp_port: "{{ '8025' if exim_relay_enabled else '587' }}"
+vaultwarden_environment_variables_smtp_from: "{{ exim_relay_sender_address if exim_relay_enabled else '' }}"
+vaultwarden_environment_variables_smtp_security: "{{ 'off' if exim_relay_enabled else 'starttls' }}"

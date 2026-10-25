@@ -1,0 +1,5 @@
+---
+
+- src: git+https://github.com/mother-of-all-self-hosting/ansible-role-traefik-certs-dumper.git
+  version: v2.11.4-2
+  name: traefik_certs_dumper

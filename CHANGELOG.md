@@ -1,5 +1,17 @@
 # 2026-10-25
 
+## The playbook's wiring moved from `templates/` to `components/`
+
+This affects you only if you run the playbook without `just`, or keep local changes to the files in `templates/`. If you use `just` and your inventory, nothing changes for you: your inventory stays as it is, and the playbook configures your services as before.
+
+Each role the playbook can use is now wired in by a component in [`components/`](components) (one directory per role), instead of `templates/group_vars_mash_servers`, `templates/requirements.yml` and `templates/setup.yml`. Before each run, `just` generates `requirements.yml`, `setup.yml` and `group_vars/mash_servers/` (now a directory) from the components your inventory uses.
+
+**If you run the playbook without `just`**, generate these files from `components/` after each update instead of copying the templates, as described in [Installing](docs/installing.md).
+
+**If you changed files in `templates/`**, move your changes to your inventory (e.g. `vars.yml`), which overrides the playbook's wiring, and discard them (`git checkout -- templates/`) before updating, as `just update` cannot pull the playbook otherwise. See the [developer documentation](docs/developer-documentation.md#3-update-the-mash-playbook-to-support-your-created-ansible-role) for the structure of components.
+
+**If you go back to an older version of the playbook** (e.g. with `git checkout`), delete the generated directory first (`rm -r group_vars/mash_servers`), as older versions generate a file in its place.
+
 ## The playbook is now optimized by default, and installs its roles on its own
 
 This affects everyone. Before running the playbook (e.g. with `just install-all`), the `just` recipes now:

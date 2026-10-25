@@ -1,0 +1,6 @@
+---
+
+answer_database_postgres_hostname: "{{ postgres_connection_hostname if postgres_enabled and not answer_database_postgres_socket_enabled else '' }}"
+answer_database_postgres_port: "{{ postgres_connection_port if postgres_enabled else '5432' }}"
+answer_database_postgres_password: "{{ (mash_playbook_generic_secret_key + ':p.answer') | hash('sha512') | to_uuid }}"
+answer_database_postgres_socket_path_host: "{{ postgres_run_path }}"

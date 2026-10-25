@@ -1,0 +1,25 @@
+---
+
+activation_prefix: homarr_
+
+# Entries added to other components' lists, while those components are in use
+inject:
+  systemd_service_manager:
+    services:
+      - name: "{{ homarr_identifier }}.service"
+        priority: 2000
+        restart_necessary: "{{ homarr_restart_necessary | bool }}"
+        groups: [mash, homarr]
+        when: "{{ homarr_enabled }}"
+  container_socket_proxy:
+    permissions:
+      # Homarr requires read access to the containers APIs to list containers.
+      # Container lifecycle actions (start, stop, etc.) additionally require `container_socket_proxy_write_access_enabled: true`.
+      - permissions: [containers]
+        when: "{{ homarr_enabled and homarr_docker_endpoint == container_socket_proxy_endpoint }}"
+  postgres:
+    managed_databases:
+      - name: "{{ homarr_database_name }}"
+        username: "{{ homarr_database_postgres_username }}"
+        password: "{{ homarr_database_postgres_password }}"
+        when: "{{ homarr_enabled and (homarr_database_postgres_hostname == postgres_connection_hostname or homarr_database_postgres_socket_enabled) and homarr_database_type == 'postgres' }}"

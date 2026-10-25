@@ -1,0 +1,3 @@
+---
+
+openarchiver_environment_variables_tika_url: "http://{{ tika_identifier }}:{{ tika_container_http_port }}"

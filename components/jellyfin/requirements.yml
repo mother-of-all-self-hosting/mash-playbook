@@ -1,0 +1,5 @@
+---
+
+- src: git+https://github.com/mother-of-all-self-hosting/ansible-role-jellyfin.git
+  version: v12.3-0
+  name: jellyfin

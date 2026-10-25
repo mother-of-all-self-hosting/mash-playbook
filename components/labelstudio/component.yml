@@ -1,0 +1,27 @@
+---
+
+activation_prefix: labelstudio_
+
+# Entries added to other components' lists, while those components are in use
+inject:
+  systemd_service_manager:
+    services:
+      - name: "{{ labelstudio_identifier }}.service"
+        priority: 2000
+        restart_necessary: "{{ labelstudio_restart_necessary | bool }}"
+        groups: [mash, labelstudio]
+        when: "{{ labelstudio_enabled }}"
+  hubsite:
+    services:
+      - name: "{{ hubsite_service_labelstudio_name }}"
+        url: "{{ hubsite_service_labelstudio_url }}"
+        logo_location: "{{ hubsite_service_labelstudio_logo_location }}"
+        description: "{{ hubsite_service_labelstudio_description }}"
+        priority: "{{ hubsite_service_labelstudio_priority }}"
+        when: "{{ hubsite_service_labelstudio_enabled }}"
+  postgres:
+    managed_databases:
+      - name: "{{ labelstudio_database_name }}"
+        username: "{{ labelstudio_database_username }}"
+        password: "{{ labelstudio_database_password }}"
+        when: "{{ labelstudio_enabled and labelstudio_database_hostname == postgres_connection_hostname and labelstudio_database_type == 'postgres' }}"

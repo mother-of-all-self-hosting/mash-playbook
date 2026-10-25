@@ -1,0 +1,9 @@
+---
+
+# tandoor
+hubsite_service_tandoor_enabled: "{{ tandoor_enabled }}"
+hubsite_service_tandoor_name: tandoor
+hubsite_service_tandoor_url: "{{ tandoor_scheme }}://{{ tandoor_hostname }}{{ tandoor_path_prefix }}"
+hubsite_service_tandoor_logo_location: "{{ role_path }}/assets/tandoor.png"
+hubsite_service_tandoor_description: "The recipe manager that allows you to manage your ever growing collection of digital recipes."
+hubsite_service_tandoor_priority: 1000

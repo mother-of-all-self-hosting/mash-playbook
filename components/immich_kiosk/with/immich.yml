@@ -1,0 +1,5 @@
+---
+
+immich_kiosk_environment_variables_kiosk_behind_proxy: "{{ mash_playbook_reverse_proxy_type != 'none' }}"
+immich_kiosk_environment_variables_kiosk_immich_url: "http://{{ immich_server_identifier }}:{{ immich_server_http_port }}"
+immich_kiosk_environment_variables_kiosk_immich_external_url: "{{ immich_scheme }}://{{ immich_hostname }}"

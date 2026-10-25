@@ -1,0 +1,21 @@
+---
+
+# The role enables itself by default. It stays disabled, unless enabled in your inventory.
+soft_serve_enabled: false
+
+soft_serve_identifier: "{{ mash_playbook_service_identifier_prefix }}soft-serve"
+
+soft_serve_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}soft-serve"
+
+soft_serve_uid: "{{ mash_playbook_uid }}"
+soft_serve_gid: "{{ mash_playbook_gid }}"
+
+soft_serve_systemd_required_services_list_auto: |
+  {{
+    ([postgres_identifier ~ '.service'] if postgres_enabled | default(false) and soft_serve_database_hostname == postgres_connection_hostname and soft_serve_database_type == 'postgres' else [])
+  }}
+
+soft_serve_container_additional_networks_auto: |
+  {{
+    ([postgres_container_network] if postgres_enabled | default(false) and soft_serve_database_hostname == postgres_connection_hostname and soft_serve_container_network != postgres_container_network and soft_serve_database_type == 'postgres' else [])
+  }}

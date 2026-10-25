@@ -1,0 +1,19 @@
+---
+
+activation_prefix: wordpress_
+
+# Entries added to other components' lists, while those components are in use
+inject:
+  systemd_service_manager:
+    services:
+      - name: "{{ wordpress_identifier }}.service"
+        priority: 2000
+        restart_necessary: "{{ wordpress_restart_necessary | bool }}"
+        groups: [mash, wordpress]
+        when: "{{ wordpress_enabled }}"
+  mariadb:
+    managed_databases:
+      - name: "{{ wordpress_database_name }}"
+        username: "{{ wordpress_database_username }}"
+        password: "{{ wordpress_database_password }}"
+        when: "{{ wordpress_enabled and (wordpress_database_hostname == mariadb_connection_hostname or wordpress_database_socket_enabled) }}"

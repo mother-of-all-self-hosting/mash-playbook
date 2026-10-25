@@ -1,0 +1,32 @@
+---
+
+# The role enables itself by default. It stays disabled, unless enabled in your inventory.
+tsdproxy_enabled: false
+
+tsdproxy_identifier: "{{ mash_playbook_service_identifier_prefix }}tsdproxy"
+
+tsdproxy_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}tsdproxy"
+
+tsdproxy_uid: "{{ mash_playbook_uid }}"
+tsdproxy_gid: "{{ mash_playbook_gid }}"
+
+tsdproxy_systemd_required_services_list_auto: |
+  {{
+    ([container_socket_proxy_identifier + '.service'] if container_socket_proxy_enabled | default(false) else [])
+  }}
+
+tsdproxy_systemd_wanted_services_list_auto: |
+  {{
+    ([gotify_identifier ~ '.service'] if gotify_enabled | default(false) else [])
+    +
+    ([ntfy_identifier ~ '.service'] if ntfy_enabled | default(false) else [])
+  }}
+
+tsdproxy_container_additional_networks_auto: |
+  {{
+    ([container_socket_proxy_container_network] if container_socket_proxy_enabled | default(false) else [])
+    +
+    ([gotify_container_network] if gotify_enabled | default(false) and tsdproxy_container_network != gotify_container_network else [])
+    +
+    ([ntfy_container_network] if ntfy_enabled | default(false) and tsdproxy_container_network != ntfy_container_network else [])
+  }}

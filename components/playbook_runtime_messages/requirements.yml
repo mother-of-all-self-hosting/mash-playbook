@@ -1,0 +1,5 @@
+---
+
+- src: git+https://github.com/devture/com.devture.ansible.role.playbook_runtime_messages.git
+  version: 9b4b088c62b528b73a9a7c93d3109b091dd42ec6
+  name: playbook_runtime_messages

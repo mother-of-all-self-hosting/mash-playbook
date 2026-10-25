@@ -1,0 +1,5 @@
+---
+
+- src: git+https://github.com/mother-of-all-self-hosting/ansible-role-labelstudio.git
+  version: v1.23.2-0
+  name: labelstudio

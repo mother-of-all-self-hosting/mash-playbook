@@ -5,9 +5,9 @@
 
 # Tests for playbook optimization (bin/optimize.py and the justfile recipes around it).
 #
-# Each test copies the justfile, bin/optimize.py and the real templates into a temporary
+# Each test copies the justfile, bin/optimize.py and the real components into a temporary
 # playbook directory under var/tests/optimize/, builds an inventory there and runs the actual `just` recipes.
-# Using the real templates also checks their `role-specific` markers.
+# Using the real components also checks that they are valid.
 #
 # Requires `just` (also found as `rust-just`, or set via the `JUST` environment variable) and PyYAML.
 # Run directly (`tests/optimize/test_optimize.py`) or via the `test-optimize` pre-commit hook.
@@ -15,6 +15,8 @@
 import ast
 import gzip
 import os
+import re
+import shlex
 import shutil
 import subprocess
 import sys
@@ -71,7 +73,7 @@ class Playbook:
         shutil.copy(REPO / "bin" / "optimize.py", root / "bin" / "optimize.py")
         shutil.copy(REPO / "bin" / "install-roles.py", root / "bin" / "install-roles.py")
         shutil.copy(REPO / "bin" / "ansible-python.sh", root / "bin" / "ansible-python.sh")
-        shutil.copytree(REPO / "templates", root / "templates")
+        shutil.copytree(REPO / "components", root / "components")
         self.inventory = root / "inventory"
 
     def write(self, relative_path, content, base=None):
@@ -95,10 +97,23 @@ class Playbook:
             timeout=120,
         )
 
-    def touch_template(self, name="setup.yml"):
-        """Simulates a playbook update changing a template (outside of any `role-specific` block)."""
-        with open(self.root / "templates" / name, "a") as file:
+    def touch_component(self, relative_path="miniflux/wiring.yml"):
+        """Simulates a playbook update changing a component."""
+        with open(self.root / "components" / relative_path, "a") as file:
             file.write("\n# changed by an update\n")
+
+    def group_vars_files(self):
+        """The generated group_vars/mash_servers/ files, relative to it."""
+        path = self.root / "group_vars" / "mash_servers"
+        return {str(file.relative_to(path)) for file in path.rglob("*") if file.is_file()}
+
+    def component_requirements(self):
+        """The names of all roles the components require."""
+        return {
+            definition["name"]
+            for path in (self.root / "components").glob("*/requirements.yml")
+            for definition in yaml.safe_load(path.read_text())
+        }
 
     def requirements_roles(self):
         definitions = yaml.safe_load((self.root / "requirements.yml").read_text())
@@ -207,7 +222,7 @@ class TestInventoryLocation(OptimizeTestCase):
         self.pb.hosts("[mash_servers]\na\n")
         result = self.pb.just("_prepare-files")
         self.assertSucceeded(result)
-        self.assertIn("including all roles", result.stderr)
+        self.assertIn("including all components", result.stderr)
         self.assertEnabled("miniflux", "gitea", "nextcloud")
 
     def test_missing_inventory_includes_all_roles(self):
@@ -259,23 +274,56 @@ class TestInventoryChanges(OptimizeTestCase):
         self.assertEnabled("miniflux", "gitea", "nextcloud")
         self.assertIn("nextcloud", self.pb.setup_roles())
 
-    def test_template_change_on_next_run(self):
+    def test_component_change_on_next_run(self):
         self.standard_inventory()
         self.assertSucceeded(self.pb.just("optimize-enable"))
-        self.pb.touch_template()
+        self.pb.touch_component()
 
         self.assertSucceeded(self.pb.just("_prepare-files"))
-        self.assertIn("# changed by an update", (self.pb.root / "setup.yml").read_text())
+        self.assertIn("# changed by an update", (self.pb.root / "group_vars" / "mash_servers" / "miniflux" / "wiring.yml").read_text())
         self.assertNotEnabled("nextcloud")
 
     def test_unchanged_files_are_not_rewritten(self):
         self.standard_inventory()
         self.assertSucceeded(self.pb.just("optimize-enable"))
-        generated = [self.pb.root / "requirements.yml", self.pb.root / "setup.yml", self.pb.root / "group_vars" / "mash_servers"]
+        group_vars_path = self.pb.root / "group_vars" / "mash_servers"
+        generated = [self.pb.root / "requirements.yml", self.pb.root / "setup.yml"]
+        generated += [group_vars_path / relative_path for relative_path in sorted(self.pb.group_vars_files())]
         modification_times = [path.stat().st_mtime_ns for path in generated]
 
         self.assertSucceeded(self.pb.just("_prepare-files"))
         self.assertEqual([path.stat().st_mtime_ns for path in generated], modification_times)
+
+    def test_files_of_components_no_longer_in_use_are_removed(self):
+        self.standard_inventory()
+        with open(self.pb.inventory / "host_vars" / "a" / "vars.yml", "a") as file:
+            file.write("nextcloud_enabled: true\n")
+        self.assertSucceeded(self.pb.just("optimize-enable"))
+        self.assertIn("nextcloud/wiring.yml", self.pb.group_vars_files())
+
+        self.pb.write("host_vars/a/vars.yml", "mash_playbook_generic_secret_key: x\nminiflux_enabled: true\n")
+        self.assertSucceeded(self.pb.just("_prepare-files"))
+        self.assertFalse((self.pb.root / "group_vars" / "mash_servers" / "nextcloud").exists())
+        self.assertIn("miniflux/wiring.yml", self.pb.group_vars_files())
+
+    def test_group_vars_file_of_older_versions_is_replaced(self):
+        """Older versions generated group_vars/mash_servers as a single file."""
+        self.standard_inventory()
+        (self.pb.root / "group_vars" / "mash_servers").write_text("miniflux_enabled: false\n")
+        self.assertSucceeded(self.pb.just("_prepare-files"))
+        self.assertIn("miniflux/wiring.yml", self.pb.group_vars_files())
+
+    def test_directory_not_generated_by_us_is_kept(self):
+        """A directory without our marker (e.g. a mistyped destination) is never cleaned up."""
+        self.standard_inventory()
+        user_file = self.pb.root / "group_vars" / "mash_servers" / "mine.yml"
+        user_file.parent.mkdir()
+        user_file.write_text("x: 1\n")
+        result = self.pb.just("_prepare-files")
+        self.assertFailedCleanly(result)
+        self.assertIn("was not generated by this script", result.stderr)
+        self.assertTrue(user_file.exists())
+        self.assertFalse((self.pb.root / "setup.yml").exists())
 
     def test_leftover_markers_are_removed(self):
         """Older versions marked optimization as enabled. It is now enabled unless disabled."""
@@ -303,9 +351,9 @@ class TestInventoryChanges(OptimizeTestCase):
         self.standard_inventory()
         self.assertSucceeded(self.pb.just("optimize-enable"))
 
-        # An unknown role name in a marker makes the optimization fail.
-        with open(self.pb.root / "templates" / "setup.yml", "a") as file:
-            file.write("\n    # role-specific:no_such_role\n    # /role-specific:no_such_role\n")
+        # An invalid component makes the optimization fail.
+        with open(self.pb.root / "components" / "miniflux" / "component.yml", "a") as file:
+            file.write("\nno_such_field: true\n")
         self.assertNotEqual(self.pb.just("_prepare-files").returncode, 0)
 
         # Running again must retry (and fail again), not continue with an unoptimized setup.yml
@@ -317,10 +365,7 @@ class TestInventoryChanges(OptimizeTestCase):
         self.standard_inventory()
         self.assertSucceeded(self.pb.just("optimize-disable"))
         self.assertTrue((self.pb.root / "run" / "optimization-disabled").exists())
-        self.assertEqual(
-            (self.pb.root / "setup.yml").read_text(),
-            (self.pb.root / "templates" / "setup.yml").read_text(),
-        )
+        self.assertEqual(self.pb.requirements_roles(), self.pb.component_requirements())
 
         # It stays disabled on the next runs
         self.assertSucceeded(self.pb.just("_prepare-files"))
@@ -330,21 +375,15 @@ class TestInventoryChanges(OptimizeTestCase):
         self.assertFalse((self.pb.root / "run" / "optimization-disabled").exists())
         self.assertNotEnabled("nextcloud")
 
-    def test_templates_are_used_as_they_are_without_optimization(self):
+    def test_all_components_are_used_without_optimization(self):
         self.standard_inventory()
         self.assertSucceeded(self.pb.just("optimize-disable"))
-        self.pb.touch_template()
+        self.pb.touch_component("nextcloud/wiring.yml")
 
         self.assertSucceeded(self.pb.just("_prepare-files"))
-        for template_name, generated_path in (
-            ("requirements.yml", "requirements.yml"),
-            ("setup.yml", "setup.yml"),
-            ("group_vars_mash_servers", "group_vars/mash_servers"),
-        ):
-            self.assertEqual(
-                (self.pb.root / generated_path).read_text(),
-                (self.pb.root / "templates" / template_name).read_text(),
-            )
+        self.assertConsistent()
+        self.assertEqual(self.pb.requirements_roles(), self.pb.component_requirements())
+        self.assertIn("# changed by an update", (self.pb.root / "group_vars" / "mash_servers" / "nextcloud" / "wiring.yml").read_text())
 
     def test_leftover_hash_files_are_removed(self):
         self.standard_inventory()
@@ -503,16 +542,17 @@ class TestVariableFileLayouts(OptimizeTestCase):
         self.assertNotEnabled("nextcloud")
 
 
-class TestTemplates(OptimizeTestCase):
-    """Checks the real templates, so that broken `role-specific` markers are caught when they change."""
+class TestComponents(OptimizeTestCase):
+    """Checks the real components, and how components are put together."""
 
     def all_prefixes(self):
-        definitions = yaml.safe_load((REPO / "templates" / "requirements.yml").read_text())
-        return {definition["activation_prefix"] for definition in definitions} - {""}
+        manifests = [yaml.safe_load(path.read_text()) for path in (REPO / "components").glob("*/component.yml")]
+        return {manifest["activation_prefix"] for manifest in manifests} - {""}
 
     def assertGeneratedFilesParse(self):
         yaml.safe_load((self.pb.root / "setup.yml").read_text())
-        yaml.safe_load((self.pb.root / "group_vars" / "mash_servers").read_text())
+        for relative_path in self.pb.group_vars_files():
+            yaml.safe_load((self.pb.root / "group_vars" / "mash_servers" / relative_path).read_text())
 
     def test_all_roles(self):
         self.pb.hosts("[mash_servers]\na\n")
@@ -524,8 +564,7 @@ class TestTemplates(OptimizeTestCase):
         self.assertConsistent()
         self.assertGeneratedFilesParse()
 
-        definitions = yaml.safe_load((REPO / "templates" / "requirements.yml").read_text())
-        self.assertEqual(self.pb.requirements_roles(), {definition["name"] for definition in definitions})
+        self.assertEqual(self.pb.requirements_roles(), self.pb.component_requirements())
 
     def test_minimal_roles(self):
         self.pb.hosts("[mash_servers]\na\n")
@@ -533,6 +572,109 @@ class TestTemplates(OptimizeTestCase):
         self.assertSucceeded(self.pb.just("optimize-enable"))
         self.assertConsistent()
         self.assertGeneratedFilesParse()
+
+    def test_with_files_apply_only_while_the_other_component_is_in_use(self):
+        self.standard_inventory()
+        self.assertSucceeded(self.pb.just("optimize-enable"))
+        self.assertNotIn("miniflux/with/postgres.yml", self.pb.group_vars_files())
+
+        with open(self.pb.inventory / "host_vars" / "a" / "vars.yml", "a") as file:
+            file.write("postgres_enabled: true\n")
+        self.assertSucceeded(self.pb.just("_prepare-files"))
+        self.assertIn("miniflux/with/postgres.yml", self.pb.group_vars_files())
+
+    def test_injected_entries_of_components_in_use(self):
+        self.standard_inventory()
+        with open(self.pb.inventory / "host_vars" / "a" / "vars.yml", "a") as file:
+            file.write("postgres_enabled: true\n")
+        self.assertSucceeded(self.pb.just("optimize-enable"))
+        injected = yaml.safe_load((self.pb.root / "group_vars" / "mash_servers" / "postgres" / "injected.yml").read_text())
+        self.assertIn("postgres_managed_databases_auto", injected)
+        names = {entry["name"] for entry in injected["postgres_managed_databases_auto_unfiltered"]}
+        self.assertIn("{{ miniflux_database_name }}", names)
+        self.assertNotIn("{{ nextcloud_database_name }}", names)
+
+    def test_documented_command_without_just(self):
+        # docs/installing.md tells people who don't use `just` to run this, from the playbook directory
+        # (with bin/ansible-python.sh, which only picks the Python interpreter)
+        [command] = re.findall(r"`(?:bin/ansible-python\.sh )?(bin/optimize\.py [^`]+)`", (REPO / "docs" / "installing.md").read_text())
+        result = subprocess.run([sys.executable, *shlex.split(command)], cwd=self.pb.root, capture_output=True, text=True)
+        self.assertSucceeded(result)
+        self.assertEqual(self.pb.requirements_roles(), self.pb.component_requirements())
+        self.assertGeneratedFilesParse()
+
+    def edit_yaml(self, relative_path, edit):
+        """Changes a component file with `edit`, which gets its parsed contents to change."""
+        path = self.pb.root / "components" / relative_path
+        data = yaml.safe_load(path.read_text())
+        edit(data)
+        path.write_text(yaml.safe_dump(data, sort_keys=False))
+
+    def write_component_file(self, relative_path, content):
+        path = self.pb.root / "components" / relative_path
+        path.parent.mkdir(parents=True, exist_ok=True)
+        path.write_text(content)
+
+    def check(self):
+        """Runs `bin/optimize.py --check` on the components."""
+        return subprocess.run(
+            [sys.executable, str(self.pb.root / "bin" / "optimize.py"), "--components-path", str(self.pb.root / "components"), "--check"],
+            capture_output=True,
+            text=True,
+        )
+
+    def test_check_passes(self):
+        result = self.check()
+        self.assertSucceeded(result)
+
+    def test_check_finds_mistakes(self):
+        manifest = "miniflux/component.yml"
+        cases = {
+            "unknown key": lambda: self.edit_yaml(manifest, lambda data: data.update(no_such_field=True)),
+            "is not a component": lambda: self.edit_yaml(
+                manifest, lambda data: data["inject"].update(no_such_component={"services": []})
+            ),
+            "but systemd_service_manager accepts services": lambda: self.edit_yaml(
+                manifest, lambda data: data["inject"]["systemd_service_manager"].update(service=[])
+            ),
+            "lacks priority": lambda: self.edit_yaml(
+                manifest, lambda data: data["inject"]["systemd_service_manager"]["services"][0].pop("priority")
+            ),
+            "`accepts` must be a mapping": lambda: self.edit_yaml(manifest, lambda data: data.update(accepts=["x"])),
+            "`inject.postgres` must be a mapping of lists": lambda: self.edit_yaml(
+                manifest, lambda data: data["inject"].update(postgres=["x"])
+            ),
+            "must contain exactly one role": lambda: self.write_component_file("miniflux/requirements.yml", "- miniflux\n"),
+            "is not valid YAML": lambda: self.write_component_file(manifest, "activation_prefix: [\n"),
+            "is defined in both": lambda: self.write_component_file("ntfy/with/miniflux.yml", "miniflux_enabled: true\n"),
+            "must contain a mapping of variables": lambda: self.write_component_file("miniflux/with/ntfy.yml", "- x\n"),
+            "may only contain <component>.yml": lambda: self.write_component_file("miniflux/with/no_such_component.yml", "---\n"),
+            "contains unknown files": lambda: self.write_component_file("miniflux/notes.txt", ""),
+        }
+        for expected, make_mistake in cases.items():
+            with self.subTest(expected):
+                self.setUp()
+                make_mistake()
+                result = self.check()
+                self.assertFailedCleanly(result)
+                self.assertIn(expected, result.stderr)
+
+    def test_hidden_files_and_backups_are_ignored(self):
+        # E.g. left by file managers (.DS_Store) and editors (swap files, backups), like Ansible ignores them
+        self.write_component_file("miniflux/.DS_Store", "\0")
+        self.write_component_file("miniflux/wiring.yml~", "miniflux_enabled: true\n")
+        self.write_component_file("miniflux/with/.postgres.yml.swp", "\0")
+        self.assertSucceeded(self.check())
+        self.standard_inventory()
+        self.assertSucceeded(self.pb.just("optimize-enable"))
+        self.assertNotIn("miniflux/wiring.yml~", self.pb.group_vars_files())
+
+    def test_ansible_tags_in_wiring(self):
+        with open(self.pb.root / "components" / "miniflux" / "wiring.yml", "a") as file:
+            file.write('\nminiflux_optimize_test_unsafe: !unsafe "{{ not_templated }}"\n' + INLINE_VAULT.replace("some_secret", "miniflux_optimize_test_secret"))
+        self.assertSucceeded(self.check())
+        self.standard_inventory()
+        self.assertSucceeded(self.pb.just("optimize-enable"))
 
 
 class TestRoleInstallation(OptimizeTestCase):
@@ -563,9 +705,13 @@ class TestRoleInstallation(OptimizeTestCase):
             # and "installs" them like agru does (with their version in meta/.galaxy_install_info)
             import os, sys, yaml
             arguments = sys.argv[1:]
+            if arguments == ["-v"]:
+                print(os.environ.get("FAKE_AGRU_VERSION", "v0.3.0"))
+                sys.exit(0)
             definitions = []
-            if "-r" in arguments:
-                definitions = yaml.safe_load(open(arguments[arguments.index("-r") + 1]))
+            for index, argument in enumerate(arguments):
+                if argument == "-r":
+                    definitions += yaml.safe_load(open(arguments[index + 1]))
             with open({log!r}, "a") as log:
                 log.write("args: " + " ".join(arguments) + "\\n")
                 log.write(" ".join("name: " + definition["name"] for definition in definitions) + "\\n")
@@ -620,7 +766,7 @@ class TestRoleInstallation(OptimizeTestCase):
         self.assertEqual(result.stderr, "")
 
     def make_clone_with_upstream_change(self):
-        """Turns the playbook into a clone of an upstream repository, which then gets a template change."""
+        """Turns the playbook into a clone of an upstream repository, which then gets a component change."""
         upstream_path = self.pb.root.parent / (self.pb.root.name + "-upstream.git")
         work_path = self.pb.root.parent / (self.pb.root.name + "-work")
         self.addCleanup(shutil.rmtree, upstream_path)
@@ -634,7 +780,7 @@ class TestRoleInstallation(OptimizeTestCase):
         self.git("fetch", "-q", "origin", cwd=self.pb.root)
         self.git("branch", "-q", "--set-upstream-to=origin/main", cwd=self.pb.root)
         self.git("clone", "-q", str(upstream_path), str(work_path), cwd=self.pb.root)
-        with open(work_path / "templates" / "setup.yml", "a") as file:
+        with open(work_path / "components" / "miniflux" / "wiring.yml", "a") as file:
             file.write("\n# changed upstream\n")
         self.git("commit", "-q", "-am", "Change", cwd=work_path)
         self.git("push", "-q", "origin", "main", cwd=work_path)
@@ -642,16 +788,33 @@ class TestRoleInstallation(OptimizeTestCase):
     def test_update_prepares_files_after_pulling(self):
         self.make_clone_with_upstream_change()
         self.assertSucceeded(self.pb.just("update", env=self.env))
-        self.assertIn("# changed upstream", (self.pb.root / "setup.yml").read_text())
+        self.assertIn("# changed upstream", (self.pb.root / "group_vars" / "mash_servers" / "miniflux" / "wiring.yml").read_text())
         [(args, roles)] = self.agru_calls()
         self.assertIn("name: miniflux", roles)
         self.assertNotIn("name: nextcloud", roles)
+
+    def test_update_pins_versions_of_all_components(self):
+        # `update -u` also regenerates VERSIONS.md and releases.opml, which these tests don't cover
+        for script in ("versions.py", "feeds.py"):
+            self.pb.write("bin/" + script, "", base=self.pb.root)
+        self.make_clone_with_upstream_change()
+        self.assertSucceeded(self.pb.just("update", "-u", env=self.env))
+        [pinned] = [roles for args, roles in self.agru_calls() if args.endswith(" -u")]
+        self.assertEqual(set(pinned.replace("name: ", "").split()), self.pb.component_requirements())
+
+    def test_update_with_old_agru_fails_before_pulling(self):
+        # agru before 0.3.0 only takes one requirements file
+        self.make_clone_with_upstream_change()
+        result = self.pb.just("update", "-u", env={**self.env, "FAKE_AGRU_VERSION": "v0.2.1"})
+        self.assertFailedCleanly(result)
+        self.assertIn("version 0.3.0 or newer", result.stderr)
+        self.assertNotIn("# changed upstream", (self.pb.root / "components" / "miniflux" / "wiring.yml").read_text())
 
     def test_update_with_unknown_flags_fails_before_pulling(self):
         self.make_clone_with_upstream_change()
         result = self.pb.just("update", "--bogus", env=self.env)
         self.assertFailedCleanly(result)
-        self.assertNotIn("# changed upstream", (self.pb.root / "templates" / "setup.yml").read_text())
+        self.assertNotIn("# changed upstream", (self.pb.root / "components" / "miniflux" / "wiring.yml").read_text())
         self.assertFalse(self.agru_log_path.exists())
 
 

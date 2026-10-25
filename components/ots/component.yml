@@ -1,0 +1,13 @@
+---
+
+activation_prefix: ots_
+
+# Entries added to other components' lists, while those components are in use
+inject:
+  systemd_service_manager:
+    services:
+      - name: "{{ ots_identifier }}.service"
+        priority: 2000
+        restart_necessary: "{{ ots_restart_necessary | bool }}"
+        groups: [mash, ots]
+        when: "{{ ots_enabled }}"

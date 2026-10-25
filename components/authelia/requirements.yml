@@ -1,0 +1,5 @@
+---
+
+- src: git+https://github.com/mother-of-all-self-hosting/ansible-role-authelia.git
+  version: v4.39.28-4
+  name: authelia

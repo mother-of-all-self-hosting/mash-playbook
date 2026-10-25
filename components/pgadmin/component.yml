@@ -1,0 +1,19 @@
+---
+
+activation_prefix: pgadmin_
+
+# Entries added to other components' lists, while those components are in use
+inject:
+  systemd_service_manager:
+    services:
+      - name: "{{ pgadmin_identifier }}.service"
+        priority: 2000
+        restart_necessary: "{{ pgadmin_restart_necessary | bool }}"
+        groups: [mash, pgadmin]
+        when: "{{ pgadmin_enabled }}"
+  postgres:
+    managed_databases:
+      - name: "{{ pgadmin_database_name }}"
+        username: "{{ pgadmin_database_username }}"
+        password: "{{ pgadmin_database_password }}"
+        when: "{{ pgadmin_enabled and (pgadmin_database_hostname == postgres_connection_hostname or pgadmin_database_socket_enabled) }}"

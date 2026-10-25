@@ -1,0 +1,29 @@
+---
+
+# The role enables itself by default. It stays disabled, unless enabled in your inventory.
+unpackerr_enabled: false
+
+unpackerr_identifier: "{{ mash_playbook_service_identifier_prefix }}unpackerr"
+
+unpackerr_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}unpackerr"
+
+unpackerr_uid: "{{ mash_playbook_uid }}"
+unpackerr_gid: "{{ mash_playbook_gid }}"
+
+unpackerr_systemd_wanted_services_list_auto: |
+  {{
+    ([lidarr_identifier ~ '.service'] if lidarr_enabled | default(false) else [])
+    +
+    ([radarr_identifier ~ '.service'] if radarr_enabled | default(false) else [])
+    +
+    ([sonarr_identifier ~ '.service'] if sonarr_enabled | default(false) else [])
+  }}
+
+unpackerr_container_additional_networks_auto: |
+  {{
+    ([lidarr_container_network] if lidarr_enabled | default(false) and unpackerr_container_network != lidarr_container_network else [])
+    +
+    ([radarr_container_network] if radarr_enabled | default(false) and unpackerr_container_network != radarr_container_network else [])
+    +
+    ([sonarr_container_network] if sonarr_enabled | default(false) and unpackerr_container_network != sonarr_container_network else [])
+  }}

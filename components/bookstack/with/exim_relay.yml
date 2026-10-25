@@ -1,0 +1,6 @@
+---
+
+bookstack_environment_variables_mail_driver: "{{ 'smtp' if exim_relay_enabled }}"
+bookstack_environment_variables_mail_host: "{{ exim_relay_identifier if exim_relay_enabled else '' }}"
+bookstack_environment_variables_mail_port: "{{ '8025' if exim_relay_enabled else '587' }}"
+bookstack_environment_variables_mail_from: "{{ exim_relay_sender_address if exim_relay_enabled else '' }}"

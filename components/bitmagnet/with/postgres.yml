@@ -1,0 +1,5 @@
+---
+
+bitmagnet_database_hostname: "{{ bitmagnet_database_socket_path_container + '/' if bitmagnet_database_socket_enabled else (postgres_connection_hostname if postgres_enabled else '') }}"
+bitmagnet_database_password: "{{ (mash_playbook_generic_secret_key + ':bitmagnet.db') | hash('sha512') | to_uuid }}"
+bitmagnet_database_socket_path_host: "{{ postgres_run_path }}"

@@ -1,0 +1,6 @@
+---
+
+gitlab_config_smtp_enabled: "{{ exim_relay_enabled }}"
+gitlab_config_smtp_address: "{{ exim_relay_identifier if exim_relay_enabled else '' }}"
+gitlab_config_smtp_port: "{{ '8025' if exim_relay_enabled else '587' }}"
+gitlab_config_email_from: "{{ exim_relay_sender_address if exim_relay_enabled else '' }}"

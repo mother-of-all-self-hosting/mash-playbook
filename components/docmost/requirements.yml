@@ -1,0 +1,5 @@
+---
+
+- src: git+https://github.com/mother-of-all-self-hosting/ansible-role-docmost.git
+  version: v0.96.0-1
+  name: docmost

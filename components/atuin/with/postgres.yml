@@ -1,0 +1,7 @@
+---
+
+atuin_database_hostname: "{{ postgres_connection_hostname if postgres_enabled else '' }}"
+atuin_database_port: "{{ postgres_connection_port if postgres_enabled else '5432' }}"
+atuin_database_password: "{{ (mash_playbook_generic_secret_key + ':db.atuin') | hash('sha512') | to_uuid }}"
+atuin_database_sslmode: "{{ 'disable' if postgres_enabled and (atuin_database_hostname == postgres_connection_hostname or atuin_database_socket_enabled) else 'prefer' }}"
+atuin_database_socket_path_host: "{{ postgres_run_path }}"

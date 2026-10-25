@@ -1,0 +1,5 @@
+---
+
+- src: git+https://progressiv.radicle.garden/z2kX5GbCKBFjiunvLKThDXLzbYnw1.git
+  version: v6.19.2-0
+  name: civicrm

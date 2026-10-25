@@ -1,0 +1,6 @@
+---
+
+sftpgo_mailer_smtp_enabled: "{{ exim_relay_enabled }}"
+sftpgo_environment_variables_smtp_host: "{{ exim_relay_identifier if exim_relay_enabled else '' }}"
+sftpgo_environment_variables_smtp_port: "{{ '8025' if exim_relay_enabled else '587' }}"
+sftpgo_environment_variables_smtp_from: "{{ exim_relay_sender_address if exim_relay_enabled else '' }}"

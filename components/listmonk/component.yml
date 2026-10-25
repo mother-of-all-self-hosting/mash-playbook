@@ -1,0 +1,19 @@
+---
+
+activation_prefix: listmonk_
+
+# Entries added to other components' lists, while those components are in use
+inject:
+  systemd_service_manager:
+    services:
+      - name: "{{ listmonk_identifier }}.service"
+        priority: 2000
+        restart_necessary: "{{ listmonk_restart_necessary | bool }}"
+        groups: [mash, listmonk]
+        when: "{{ listmonk_enabled }}"
+  postgres:
+    managed_databases:
+      - name: "{{ listmonk_database_name }}"
+        username: "{{ listmonk_database_username }}"
+        password: "{{ listmonk_database_password }}"
+        when: "{{ listmonk_enabled and (listmonk_database_hostname == postgres_connection_hostname or listmonk_database_socket_enabled) }}"

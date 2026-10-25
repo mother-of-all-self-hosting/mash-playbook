@@ -1,0 +1,8 @@
+---
+
+writefreely_environment_variables_domain: "{{ exim_relay_hostname }}"
+writefreely_environment_variables_smtp_host: "{{ exim_relay_identifier if exim_relay_enabled else '' }}"
+writefreely_environment_variables_smtp_port: "{{ '8025' if exim_relay_enabled else '587' }}"
+writefreely_environment_variables_smtp_enable_start_tls: "{{ false if exim_relay_enabled else true }}"
+writefreely_environment_variables_smtp_username: mash # dummy random username — without a value specified the SMTP mailer is not enabled
+writefreely_environment_variables_smtp_password: mash # dummy random password — without a value specified the SMTP mailer is not enabled

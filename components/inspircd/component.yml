@@ -1,0 +1,25 @@
+---
+
+activation_prefix: inspircd_
+
+# Entries added to other components' lists, while those components are in use
+inject:
+  systemd_service_manager:
+    services:
+      - name: "{{ inspircd_identifier }}.service"
+        priority: 2000
+        restart_necessary: "{{ inspircd_restart_necessary | bool }}"
+        groups: [mash, inspircd]
+        when: "{{ inspircd_enabled }}"
+  traefik:
+    entrypoints:
+      - name: "{{ inspircd_container_labels_traefik_entrypoints }}"
+        port: "{{ inspircd_container_tcp_tls_port }}"
+        host_bind_port: "{{ inspircd_container_tcp_tls_host_bind_port }}"
+        config:
+          transport:
+            respondingTimeouts:
+              readTimeout: "{{ traefik_config_entrypoint_web_transport_respondingTimeouts_readTimeout }}"
+              writeTimeout: "{{ traefik_config_entrypoint_web_transport_respondingTimeouts_writeTimeout }}"
+              idleTimeout: "{{ traefik_config_entrypoint_web_transport_respondingTimeouts_idleTimeout }}"
+        when: "{{ inspircd_enabled and inspircd_container_labels_traefik_enabled }}"

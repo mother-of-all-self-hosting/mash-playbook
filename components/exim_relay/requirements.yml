@@ -1,0 +1,5 @@
+---
+
+- src: git+https://github.com/mother-of-all-self-hosting/ansible-role-exim-relay.git
+  version: v4.99.5-r0-2-0
+  name: exim_relay

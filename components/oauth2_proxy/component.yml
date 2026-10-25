@@ -1,0 +1,13 @@
+---
+
+activation_prefix: oauth2_proxy_
+
+# Entries added to other components' lists, while those components are in use
+inject:
+  systemd_service_manager:
+    services:
+      - name: "{{ oauth2_proxy_identifier }}.service"
+        priority: 1900
+        restart_necessary: "{{ oauth2_proxy_restart_necessary | bool }}"
+        groups: [mash, oauth2-proxy]
+        when: "{{ oauth2_proxy_enabled }}"

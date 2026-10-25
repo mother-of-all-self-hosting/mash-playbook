@@ -1,0 +1,6 @@
+---
+
+linkding_database_hostname: "{{ postgres_connection_hostname if postgres_enabled and not linkding_database_socket_enabled else '' }}"
+linkding_database_port: "{{ postgres_connection_port if postgres_enabled else '5432' }}"
+linkding_database_password: "{{ (mash_playbook_generic_secret_key + ':linkding.db') | hash('sha512') | to_uuid }}"
+linkding_database_socket_path_host: "{{ postgres_run_path }}"

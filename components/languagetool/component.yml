@@ -1,0 +1,21 @@
+---
+
+activation_prefix: languagetool_
+
+# Entries added to other components' lists, while those components are in use
+inject:
+  systemd_service_manager:
+    services:
+      - name: "{{ languagetool_identifier }}.service"
+        priority: 2000
+        restart_necessary: "{{ languagetool_restart_necessary | bool }}"
+        groups: [mash, languagetool]
+        when: "{{ languagetool_enabled }}"
+  hubsite:
+    services:
+      - name: "{{ hubsite_service_languagetool_name }}"
+        url: "{{ hubsite_service_languagetool_url }}"
+        logo_location: "{{ hubsite_service_languagetool_logo_location }}"
+        description: "{{ hubsite_service_languagetool_description }}"
+        priority: "{{ hubsite_service_languagetool_priority }}"
+        when: "{{ hubsite_service_languagetool_enabled }}"

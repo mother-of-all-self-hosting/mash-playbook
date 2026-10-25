@@ -1,0 +1,47 @@
+---
+
+# The role enables itself by default. It stays disabled, unless enabled in your inventory.
+nextcloud_enabled: false
+
+nextcloud_identifier: "{{ mash_playbook_service_identifier_prefix }}nextcloud"
+
+nextcloud_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}nextcloud"
+
+nextcloud_uid: "{{ mash_playbook_uid }}"
+nextcloud_gid: "{{ mash_playbook_gid }}"
+
+nextcloud_systemd_required_services_list_auto: |
+  {{
+    ([mariadb_identifier ~ '.service'] if mariadb_enabled | default(false) and (nextcloud_database_mysql_hostname == mariadb_connection_hostname or nextcloud_database_mysql_socket_enabled) and nextcloud_database_type == 'mysql' else [])
+    +
+    ([postgres_identifier ~ '.service'] if postgres_enabled | default(false) and (nextcloud_database_postgres_hostname == postgres_connection_hostname or nextcloud_database_postgres_socket_enabled) and nextcloud_database_type == 'postgres' else [])
+  }}
+
+nextcloud_systemd_wanted_services_list_auto: |
+  {{
+    ([eurooffice_identifier ~ '.service'] if eurooffice_enabled | default(false) else [])
+    +
+    ([exim_relay_identifier ~ '.service'] if exim_relay_enabled | default(false) and nextcloud_environment_variables_smtp_host == exim_relay_identifier else [])
+    +
+    ([lldap_identifier ~ '.service'] if lldap_enabled | default(false) and nextcloud_lldap_enabled else [])
+  }}
+
+nextcloud_container_additional_networks_auto: |
+  {{
+    (
+      ([exim_relay_container_network] if exim_relay_enabled | default(false) and nextcloud_environment_variables_smtp_host == exim_relay_identifier and nextcloud_container_network != exim_relay_container_network else [])
+      +
+      ([lldap_container_network] if lldap_enabled | default(false) and nextcloud_container_network != lldap_container_network and nextcloud_lldap_enabled else [])
+      +
+      ([mariadb_container_network] if mariadb_enabled | default(false) and (nextcloud_database_mysql_hostname == mariadb_connection_hostname and nextcloud_container_network != mariadb_container_network and not nextcloud_database_mysql_socket_enabled) and nextcloud_database_type == 'mysql' else [])
+      +
+      ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+      +
+      ([postgres_container_network] if postgres_enabled | default(false) and (nextcloud_database_postgres_hostname == postgres_connection_hostname and nextcloud_container_network != postgres_container_network and not nextcloud_database_postgres_socket_enabled) and nextcloud_database_type == 'postgres' else [])
+    ) | unique
+  }}
+
+nextcloud_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+nextcloud_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+nextcloud_container_labels_traefik_compression_middleware_enabled: "{{ mash_playbook_reverse_proxy_traefik_middleware_compession_enabled }}"
+nextcloud_container_labels_traefik_compression_middleware_name: "{{ mash_playbook_reverse_proxy_traefik_middleware_compession_name if mash_playbook_reverse_proxy_traefik_middleware_compession_enabled else '' }}"

@@ -1,0 +1,47 @@
+---
+
+activation_prefix: sftpgo_
+
+# Entries added to other components' lists, while those components are in use
+inject:
+  systemd_service_manager:
+    services:
+      - name: "{{ sftpgo_identifier }}.service"
+        priority: 2000
+        restart_necessary: "{{ sftpgo_restart_necessary | bool }}"
+        groups: [mash, sftpgo]
+        when: "{{ sftpgo_enabled }}"
+  mariadb:
+    managed_databases:
+      - name: "{{ sftpgo_database_name }}"
+        username: "{{ sftpgo_database_mysql_username }}"
+        password: "{{ sftpgo_database_mysql_password }}"
+        when: "{{ sftpgo_enabled and (sftpgo_database_mysql_hostname == mariadb_connection_hostname or sftpgo_database_mysql_socket_enabled) and sftpgo_environment_variables_data_provider_driver == 'mysql' }}"
+  postgres:
+    managed_databases:
+      - name: "{{ sftpgo_database_name }}"
+        username: "{{ sftpgo_database_postgres_username }}"
+        password: "{{ sftpgo_database_postgres_password }}"
+        when: "{{ sftpgo_enabled and (sftpgo_database_postgres_hostname == postgres_connection_hostname or sftpgo_database_postgres_socket_enabled) and sftpgo_environment_variables_data_provider_driver == 'postgres' }}"
+  traefik:
+    entrypoints:
+      - name: "{{ sftpgo_container_labels_traefik_sftp_entrypoints }}"
+        port: "{{ sftpgo_container_sftp_port }}"
+        host_bind_port: "{{ sftpgo_container_sftp_host_bind_port }}"
+        config:
+          transport:
+            respondingTimeouts:
+              readTimeout: "{{ traefik_config_entrypoint_web_transport_respondingTimeouts_readTimeout }}"
+              writeTimeout: "{{ traefik_config_entrypoint_web_transport_respondingTimeouts_writeTimeout }}"
+              idleTimeout: "{{ traefik_config_entrypoint_web_transport_respondingTimeouts_idleTimeout }}"
+        when: "{{ sftpgo_enabled and sftpgo_container_labels_traefik_sftp_enabled }}"
+      - name: "{{ sftpgo_container_labels_traefik_webdav_entrypoints }}"
+        port: "{{ sftpgo_container_webdav_port }}"
+        host_bind_port: "{{ sftpgo_container_webdav_host_bind_port }}"
+        config:
+          transport:
+            respondingTimeouts:
+              readTimeout: "{{ traefik_config_entrypoint_web_transport_respondingTimeouts_readTimeout }}"
+              writeTimeout: "{{ traefik_config_entrypoint_web_transport_respondingTimeouts_writeTimeout }}"
+              idleTimeout: "{{ traefik_config_entrypoint_web_transport_respondingTimeouts_idleTimeout }}"
+        when: "{{ sftpgo_enabled and sftpgo_container_labels_traefik_webdav_enabled }}"

@@ -1,0 +1,5 @@
+---
+
+kanboard_database_mysql_hostname: "{{ mariadb_connection_hostname if mariadb_enabled else '' }}"
+kanboard_database_mysql_port: "{{ mariadb_connection_port if mariadb_enabled else '3306' }}"
+kanboard_database_mysql_password: "{{ (mash_playbook_generic_secret_key + ':kanboard.db.m') | hash('sha512') | to_uuid }}"

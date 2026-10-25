@@ -1,0 +1,19 @@
+---
+
+activation_prefix: svix_server_
+
+# Entries added to other components' lists, while those components are in use
+inject:
+  systemd_service_manager:
+    services:
+      - name: "{{ svix_server_identifier }}.service"
+        priority: 2000
+        restart_necessary: "{{ svix_server_restart_necessary | bool }}"
+        groups: [mash, svix]
+        when: "{{ svix_server_enabled }}"
+  postgres:
+    managed_databases:
+      - name: "{{ svix_server_database_name }}"
+        username: "{{ svix_server_database_username }}"
+        password: "{{ svix_server_database_password }}"
+        when: "{{ svix_server_enabled and (svix_server_database_hostname == postgres_connection_hostname or svix_server_database_socket_enabled) }}"

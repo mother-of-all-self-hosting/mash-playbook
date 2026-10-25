@@ -1,0 +1,22 @@
+---
+
+postgres_backup_systemd_required_services_list_auto: |
+  {{
+    ([(postgres_identifier + '.service')] if (postgres_enabled and postgres_backup_connection_hostname == postgres_connection_hostname) else [])
+  }}
+
+postgres_backup_container_additional_networks_auto: |-
+  {{
+    ([postgres_container_network] if (postgres_enabled and postgres_backup_connection_hostname == postgres_connection_hostname and postgres_backup_container_network != postgres_container_network) else [])
+  }}
+
+postgres_backup_container_network: "{{ (postgres_container_network if (postgres_enabled and postgres_backup_connection_hostname == postgres_connection_hostname) else postgres_backup_identifier) }}"
+
+postgres_backup_connection_hostname: "{{ postgres_connection_hostname if postgres_enabled else '' }}"
+postgres_backup_connection_port: "{{ postgres_connection_port if postgres_enabled else '5432' }}"
+postgres_backup_connection_username: "{{ postgres_connection_username if postgres_enabled else '' }}"
+postgres_backup_connection_password: "{{ postgres_connection_password if postgres_enabled else '' }}"
+
+postgres_backup_postgres_data_path: "{{ postgres_data_path if postgres_enabled else '' }}"
+
+postgres_backup_databases_auto: "{{ postgres_managed_databases | map(attribute='name') if postgres_enabled else [] }}"

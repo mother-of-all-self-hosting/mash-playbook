@@ -1,0 +1,33 @@
+---
+
+activation_prefix: vaultwarden_
+
+# Entries added to other components' lists, while those components are in use
+inject:
+  systemd_service_manager:
+    services:
+      - name: "{{ vaultwarden_identifier }}.service"
+        priority: 2000
+        restart_necessary: "{{ vaultwarden_restart_necessary | bool }}"
+        groups: [mash, vaultwarden]
+        when: "{{ vaultwarden_enabled }}"
+  hubsite:
+    services:
+      - name: "{{ hubsite_service_vaultwarden_name }}"
+        url: "{{ hubsite_service_vaultwarden_url }}"
+        logo_location: "{{ hubsite_service_vaultwarden_logo_location }}"
+        description: "{{ hubsite_service_vaultwarden_description }}"
+        priority: "{{ hubsite_service_vaultwarden_priority }}"
+        when: "{{ hubsite_service_vaultwarden_enabled }}"
+  mariadb:
+    managed_databases:
+      - name: "{{ vaultwarden_database_name }}"
+        username: "{{ vaultwarden_database_mysql_username }}"
+        password: "{{ vaultwarden_database_mysql_password }}"
+        when: "{{ vaultwarden_enabled and (vaultwarden_database_mysql_hostname == mariadb_connection_hostname or vaultwarden_database_mysql_socket_enabled) and vaultwarden_database_type == 'mysql' }}"
+  postgres:
+    managed_databases:
+      - name: "{{ vaultwarden_database_name }}"
+        username: "{{ vaultwarden_database_postgres_username }}"
+        password: "{{ vaultwarden_database_postgres_password }}"
+        when: "{{ vaultwarden_enabled and (vaultwarden_database_postgres_hostname == postgres_connection_hostname or vaultwarden_database_postgres_socket_enabled) and vaultwarden_database_type == 'postgres' }}"

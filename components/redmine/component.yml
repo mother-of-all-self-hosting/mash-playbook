@@ -1,0 +1,35 @@
+---
+
+activation_prefix: redmine_
+
+# Entries added to other components' lists, while those components are in use
+inject:
+  systemd_service_manager:
+    services:
+      - name: "{{ redmine_identifier }}.service"
+        priority: 2000
+        restart_necessary: "{{ redmine_restart_necessary | bool }}"
+        groups: [mash, redmine]
+        when: "{{ redmine_enabled }}"
+      - name: "{{ redmine_identifier }}-send-reminders.timer"
+        priority: 2000
+        restart_necessary: "{{ redmine_restart_necessary | bool }}"
+        groups: [mash, redmine]
+        when: "{{ redmine_enabled }}"
+      - name: "{{ redmine_identifier }}-recurring-tasks.timer"
+        priority: 2000
+        restart_necessary: "{{ redmine_restart_necessary | bool }}"
+        groups: [mash, redmine]
+        when: "{{ redmine_enabled and redmine_recurring_tasks_enabled }}"
+  mariadb:
+    managed_databases:
+      - name: "{{ redmine_database_name }}"
+        username: "{{ redmine_database_mysql_username }}"
+        password: "{{ redmine_database_mysql_password }}"
+        when: "{{ redmine_enabled and (redmine_database_mysql_hostname == mariadb_connection_hostname or redmine_database_mysql_socket_enabled) and redmine_database_type == 'mysql' }}"
+  postgres:
+    managed_databases:
+      - name: "{{ redmine_database_name }}"
+        username: "{{ redmine_database_postgres_username }}"
+        password: "{{ redmine_database_postgres_password }}"
+        when: "{{ redmine_enabled and (redmine_database_postgres_hostname == postgres_connection_hostname or redmine_database_postgres_socket_enabled) and redmine_database_type == 'postgres' }}"

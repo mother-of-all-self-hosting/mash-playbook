@@ -1,0 +1,26 @@
+---
+
+activation_prefix: plausible_
+
+# Entries added to other components' lists, while those components are in use
+inject:
+  systemd_service_manager:
+    services:
+      - name: "{{ plausible_identifier }}.service"
+        priority: 2000
+        restart_necessary: "{{ plausible_restart_necessary | bool }}"
+        groups: [mash, plausible]
+        when: "{{ plausible_enabled }}"
+  clickhouse:
+    managed_databases:
+      - name: "{{ plausible_clickhouse_database_name }}"
+        username: "{{ plausible_clickhouse_database_username }}"
+        password: "{{ plausible_clickhouse_database_password }}"
+        additional_sql: "{{ 'GRANT SELECT ON system.replicas TO ' + plausible_clickhouse_database_username + '; GRANT SELECT ON system.parts TO ' + plausible_clickhouse_database_username + '; GRANT CREATE FUNCTION ON *.* TO ' + plausible_clickhouse_database_username + '; GRANT DROP FUNCTION ON *.* TO ' + plausible_clickhouse_database_username + ';' }}"
+        when: "{{ plausible_enabled and plausible_clickhouse_database_hostname == clickhouse_identifier }}"
+  postgres:
+    managed_databases:
+      - name: "{{ plausible_database_name }}"
+        username: "{{ plausible_database_username }}"
+        password: "{{ plausible_database_password }}"
+        when: "{{ plausible_enabled and plausible_database_hostname == postgres_connection_hostname }}"

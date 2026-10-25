@@ -1,0 +1,33 @@
+---
+
+# The role enables itself by default. It stays disabled, unless enabled in your inventory.
+civicrm_enabled: false
+
+civicrm_identifier: "{{ mash_playbook_service_identifier_prefix }}civicrm"
+
+civicrm_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}civicrm"
+
+civicrm_uid: 33
+civicrm_gid: 33
+
+civicrm_systemd_required_services_list_auto: |
+  {{
+    ([mariadb_identifier ~ '.service'] if mariadb_enabled and civicrm_database_hostname == mariadb_connection_hostname else [])
+  }}
+
+civicrm_systemd_wanted_services_list_auto: |
+  {{
+    ([exim_relay_identifier ~ '.service'] if exim_relay_enabled | default(false) else [])
+  }}
+
+civicrm_container_additional_networks_auto: |
+  {{
+    ([exim_relay_container_network] if exim_relay_enabled | default(false) and civicrm_container_network != exim_relay_container_network else [])
+    +
+    ([mariadb_container_network] if mariadb_enabled and civicrm_database_hostname == mariadb_connection_hostname and civicrm_container_network != mariadb_container_network else [])
+    +
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+  }}
+
+civicrm_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+civicrm_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"

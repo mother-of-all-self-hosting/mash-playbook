@@ -1,0 +1,13 @@
+---
+
+activation_prefix: radicle_httpd_
+
+# Entries added to other components' lists, while those components are in use
+inject:
+  systemd_service_manager:
+    services:
+      - name: "{{ radicle_httpd_identifier }}.service"
+        priority: 2000
+        restart_necessary: "{{ radicle_httpd_restart_necessary | bool }}"
+        groups: [mash, radicle-httpd]
+        when: "{{ radicle_httpd_enabled }}"

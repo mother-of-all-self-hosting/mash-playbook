@@ -1,0 +1,5 @@
+---
+
+- src: git+https://github.com/mother-of-all-self-hosting/ansible-role-matterbridge.git
+  version: v1.26.0-16
+  name: matterbridge

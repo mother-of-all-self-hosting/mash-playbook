@@ -1,0 +1,19 @@
+---
+
+activation_prefix: infisical_
+
+# Entries added to other components' lists, while those components are in use
+inject:
+  systemd_service_manager:
+    services:
+      - name: "{{ infisical_identifier }}.service"
+        priority: 2000
+        restart_necessary: "{{ infisical_restart_necessary | bool }}"
+        groups: [mash, infisical]
+        when: "{{ infisical_enabled }}"
+  postgres:
+    managed_databases:
+      - name: "{{ infisical_database_name }}"
+        username: "{{ infisical_database_username }}"
+        password: "{{ infisical_database_password }}"
+        when: "{{ infisical_enabled and infisical_database_hostname == postgres_connection_hostname }}"

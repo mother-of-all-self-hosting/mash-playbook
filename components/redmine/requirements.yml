@@ -1,0 +1,5 @@
+---
+
+- src: git+https://github.com/mother-of-all-self-hosting/ansible-role-redmine.git
+  version: v7.0.2-1
+  name: redmine

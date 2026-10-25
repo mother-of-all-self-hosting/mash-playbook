@@ -1,0 +1,5 @@
+---
+
+- src: git+https://github.com/mother-of-all-self-hosting/ansible-role-appsmith.git
+  version: v2.4-3
+  name: appsmith

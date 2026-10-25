@@ -1,0 +1,7 @@
+---
+
+infisical_environment_variables_smtp_host: "{{ exim_relay_identifier if exim_relay_enabled else '' }}"
+infisical_environment_variables_smtp_port: "{{ '8025' if exim_relay_enabled else '587' }}"
+infisical_environment_variables_smtp_ignore_tls: "{{ true if exim_relay_enabled else false }}"
+infisical_environment_variables_smtp_require_tls: "{{ false if exim_relay_enabled else true }}"
+infisical_environment_variables_smtp_from_address: "{{ exim_relay_sender_address if exim_relay_enabled else '' }}"

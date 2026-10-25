@@ -1,0 +1,9 @@
+---
+
+# Forgejo
+hubsite_service_forgejo_enabled: "{{ forgejo_enabled }}"
+hubsite_service_forgejo_name: Forgejo
+hubsite_service_forgejo_url: "{{ forgejo_scheme }}://{{ forgejo_hostname }}{{ forgejo_path_prefix }}"
+hubsite_service_forgejo_logo_location: "{{ role_path }}/assets/forgejo.png"
+hubsite_service_forgejo_description: "Another git service"
+hubsite_service_forgejo_priority: 1000

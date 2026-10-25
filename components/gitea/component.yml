@@ -1,0 +1,45 @@
+---
+
+activation_prefix: gitea_
+
+# Entries added to other components' lists, while those components are in use
+inject:
+  systemd_service_manager:
+    services:
+      - name: "{{ gitea_identifier }}.service"
+        priority: 2000
+        restart_necessary: "{{ gitea_restart_necessary | bool }}"
+        groups: [mash, gitea]
+        when: "{{ gitea_enabled }}"
+  hubsite:
+    services:
+      - name: "{{ hubsite_service_gitea_name }}"
+        url: "{{ hubsite_service_gitea_url }}"
+        logo_location: "{{ hubsite_service_gitea_logo_location }}"
+        description: "{{ hubsite_service_gitea_description }}"
+        priority: "{{ hubsite_service_gitea_priority }}"
+        when: "{{ hubsite_service_gitea_enabled }}"
+  mariadb:
+    managed_databases:
+      - name: "{{ gitea_database_name }}"
+        username: "{{ gitea_database_mysql_username }}"
+        password: "{{ gitea_database_mysql_password }}"
+        when: "{{ gitea_enabled and (gitea_database_mysql_hostname == mariadb_connection_hostname or gitea_database_mysql_socket_enabled) and gitea_database_type == 'mysql' }}"
+  postgres:
+    managed_databases:
+      - name: "{{ gitea_database_name }}"
+        username: "{{ gitea_database_postgres_username }}"
+        password: "{{ gitea_database_postgres_password }}"
+        when: "{{ gitea_enabled and (gitea_database_postgres_hostname == postgres_connection_hostname or gitea_database_postgres_socket_enabled) and gitea_database_type == 'postgres' }}"
+  traefik:
+    entrypoints:
+      - name: "{{ gitea_container_labels_traefik_tcp_entrypoints }}"
+        port: "{{ gitea_config_server_ssh_listen_port }}"
+        host_bind_port: "{{ gitea_container_ssh_host_bind_port }}"
+        config:
+          transport:
+            respondingTimeouts:
+              readTimeout: "{{ traefik_config_entrypoint_web_transport_respondingTimeouts_readTimeout }}"
+              writeTimeout: "{{ traefik_config_entrypoint_web_transport_respondingTimeouts_writeTimeout }}"
+              idleTimeout: "{{ traefik_config_entrypoint_web_transport_respondingTimeouts_idleTimeout }}"
+        when: "{{ gitea_enabled and gitea_container_labels_traefik_tcp_enabled and gitea_container_ssh_host_bind_port }}"

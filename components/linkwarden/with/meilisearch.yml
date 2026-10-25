@@ -1,0 +1,4 @@
+---
+
+linkwarden_environment_variables_meili_host: "http://{{ meilisearch_identifier }}:{{ meilisearch_container_http_port }}"
+linkwarden_environment_variables_meili_key: "{{ meilisearch_default_admin_api_key }}"

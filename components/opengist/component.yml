@@ -1,0 +1,37 @@
+---
+
+activation_prefix: opengist_
+
+# Entries added to other components' lists, while those components are in use
+inject:
+  systemd_service_manager:
+    services:
+      - name: "{{ opengist_identifier }}.service"
+        priority: 2000
+        restart_necessary: "{{ opengist_restart_necessary | bool }}"
+        groups: [mash, opengist]
+        when: "{{ opengist_enabled }}"
+  mariadb:
+    managed_databases:
+      - name: "{{ opengist_database_name }}"
+        username: "{{ opengist_database_mysql_username }}"
+        password: "{{ opengist_database_mysql_password }}"
+        when: "{{ opengist_enabled and (opengist_database_mysql_hostname == mariadb_connection_hostname or opengist_database_mysql_socket_enabled) and opengist_database_type == 'mysql' }}"
+  postgres:
+    managed_databases:
+      - name: "{{ opengist_database_name }}"
+        username: "{{ opengist_database_postgres_username }}"
+        password: "{{ opengist_database_postgres_password }}"
+        when: "{{ opengist_enabled and (opengist_database_postgres_hostname == postgres_connection_hostname or opengist_database_postgres_socket_enabled) and opengist_database_type == 'postgres' }}"
+  traefik:
+    entrypoints:
+      - name: "{{ opengist_container_labels_traefik_tcp_entrypoints }}"
+        port: "{{ opengist_container_ssh_port }}"
+        host_bind_port: "{{ opengist_container_ssh_host_bind_port }}"
+        config:
+          transport:
+            respondingTimeouts:
+              readTimeout: "{{ traefik_config_entrypoint_web_transport_respondingTimeouts_readTimeout }}"
+              writeTimeout: "{{ traefik_config_entrypoint_web_transport_respondingTimeouts_writeTimeout }}"
+              idleTimeout: "{{ traefik_config_entrypoint_web_transport_respondingTimeouts_idleTimeout }}"
+        when: "{{ opengist_enabled and opengist_container_labels_traefik_tcp_enabled and opengist_container_ssh_host_bind_port }}"

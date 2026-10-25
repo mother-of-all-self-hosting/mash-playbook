@@ -1,0 +1,25 @@
+---
+
+activation_prefix: roundcube_
+
+# Entries added to other components' lists, while those components are in use
+inject:
+  systemd_service_manager:
+    services:
+      - name: "{{ roundcube_identifier }}.service"
+        priority: 2000
+        restart_necessary: "{{ roundcube_restart_necessary | bool }}"
+        groups: [mash, roundcube]
+        when: "{{ roundcube_enabled }}"
+  mariadb:
+    managed_databases:
+      - name: "{{ roundcube_database_name }}"
+        username: "{{ roundcube_database_mysql_username }}"
+        password: "{{ roundcube_database_mysql_password }}"
+        when: "{{ roundcube_enabled and (roundcube_database_mysql_hostname == mariadb_connection_hostname or roundcube_database_mysql_socket_enabled) and roundcube_database_type == 'mysql' }}"
+  postgres:
+    managed_databases:
+      - name: "{{ roundcube_database_name }}"
+        username: "{{ roundcube_database_postgres_username }}"
+        password: "{{ roundcube_database_postgres_password }}"
+        when: "{{ roundcube_enabled and (roundcube_database_postgres_hostname == postgres_connection_hostname or roundcube_database_socket_enabled) and roundcube_database_type == 'postgres' }}"

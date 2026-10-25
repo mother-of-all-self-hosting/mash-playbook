@@ -1,0 +1,6 @@
+---
+
+yourls_database_hostname: "{{ mariadb_connection_hostname if mariadb_enabled else '' }}"
+yourls_database_port: "{{ mariadb_connection_port if mariadb_enabled else '3306' }}"
+yourls_database_password: "{{ (mash_playbook_generic_secret_key + ':db.yourls') | hash('sha512') | to_uuid }}"
+yourls_database_socket_path_host: "{{ mariadb_run_path }}"

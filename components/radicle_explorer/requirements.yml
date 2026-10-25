@@ -1,0 +1,5 @@
+---
+
+- src: git+https://progressiv.radicle.garden/zopwjin5Vh5dMgdHWiifJ2cg3bQW.git
+  version: v0.28.0-1
+  name: radicle_explorer

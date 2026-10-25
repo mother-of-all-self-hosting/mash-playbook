@@ -1,0 +1,5 @@
+---
+
+- src: git+https://progressiv.radicle.garden/z4Ez9aU119yFMs59cnA3KUnExFAeN.git
+  version: v3.1.1-1
+  name: moodist

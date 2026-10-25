@@ -1,0 +1,19 @@
+---
+
+activation_prefix: linkwarden_
+
+# Entries added to other components' lists, while those components are in use
+inject:
+  systemd_service_manager:
+    services:
+      - name: "{{ linkwarden_identifier }}.service"
+        priority: 2000
+        restart_necessary: "{{ linkwarden_restart_necessary | bool }}"
+        groups: [mash, linkwarden]
+        when: "{{ linkwarden_enabled }}"
+  postgres:
+    managed_databases:
+      - name: "{{ linkwarden_database_name }}"
+        username: "{{ linkwarden_database_username }}"
+        password: "{{ linkwarden_database_password }}"
+        when: "{{ linkwarden_enabled and (linkwarden_database_hostname == postgres_connection_hostname or linkwarden_database_socket_enabled) }}"

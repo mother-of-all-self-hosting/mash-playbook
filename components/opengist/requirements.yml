@@ -1,0 +1,5 @@
+---
+
+- src: git+https://progressiv.radicle.garden/z48WEbcYK3E6uDmfP1Qbb9AGdz1L3.git
+  version: v1.15.2-1
+  name: opengist

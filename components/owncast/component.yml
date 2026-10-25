@@ -1,0 +1,21 @@
+---
+
+activation_prefix: owncast_
+
+# Entries added to other components' lists, while those components are in use
+inject:
+  systemd_service_manager:
+    services:
+      - name: "{{ owncast_identifier }}.service"
+        priority: 2000
+        restart_necessary: "{{ owncast_restart_necessary | bool }}"
+        groups: [mash, owncast]
+        when: "{{ owncast_enabled }}"
+  hubsite:
+    services:
+      - name: "{{ hubsite_service_owncast_name }}"
+        url: "{{ hubsite_service_owncast_url }}"
+        logo_location: "{{ hubsite_service_owncast_logo_location }}"
+        description: "{{ hubsite_service_owncast_description }}"
+        priority: "{{ hubsite_service_owncast_priority }}"
+        when: "{{ hubsite_service_owncast_enabled }}"

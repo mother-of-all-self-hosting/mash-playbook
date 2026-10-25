@@ -1,0 +1,6 @@
+---
+
+chiefonboarding_mailer_smtp_enabled: "{{ exim_relay_enabled }}"
+chiefonboarding_environment_variables_email_host: "{{ exim_relay_identifier if exim_relay_enabled else '' }}"
+chiefonboarding_environment_variables_email_port: "{{ '8025' if exim_relay_enabled else '587' }}"
+chiefonboarding_environment_variables_default_from_email: "{{ exim_relay_sender_address if exim_relay_enabled else '' }}"

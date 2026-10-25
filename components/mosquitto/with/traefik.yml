@@ -1,0 +1,3 @@
+---
+
+mosquitto_container_labels_traefik_tcp_loadbalancer_serverstransport: "{{ traefik_config_tcp_servertransports_default_proxyprotocol_name }}@file"

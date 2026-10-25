@@ -1,0 +1,13 @@
+---
+
+activation_prefix: polaris_
+
+# Entries added to other components' lists, while those components are in use
+inject:
+  systemd_service_manager:
+    services:
+      - name: "{{ polaris_identifier }}.service"
+        priority: 2000
+        restart_necessary: "{{ polaris_restart_necessary | bool }}"
+        groups: [mash, polaris]
+        when: "{{ polaris_enabled }}"

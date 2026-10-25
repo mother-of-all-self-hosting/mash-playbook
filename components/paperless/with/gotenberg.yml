@@ -1,0 +1,3 @@
+---
+
+paperless_environment_variables_paperless_tika_gotenberg_endpoint: "{{ ('http://' + gotenberg_identifier + ':' + (gotenberg_container_http_port | string)) if gotenberg_enabled else '' }}"

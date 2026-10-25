@@ -1,0 +1,4 @@
+---
+
+prometheus_alertmanager_container_labels_traefik_metrics_entrypoints: "{{ traefik_entrypoint_primary }}"
+prometheus_alertmanager_container_labels_traefik_metrics_tls_certResolver: "{{ traefik_certResolver_primary }}"

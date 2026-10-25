@@ -1,0 +1,9 @@
+---
+
+# Joplin Server
+hubsite_service_joplin_server_enabled: "{{ joplin_server_enabled }}"
+hubsite_service_joplin_server_name: Joplin Server
+hubsite_service_joplin_server_url: "{{ joplin_server_scheme }}://{{ joplin_server_hostname }}{{ joplin_server_path_prefix }}"
+hubsite_service_joplin_server_logo_location: ""  # Note official logos are non-free. See: https://github.com/laurent22/joplin/blob/dev/Assets/LICENSE
+hubsite_service_joplin_server_description: "Self-hosted server component for Joplin"
+hubsite_service_joplin_server_priority: 1000

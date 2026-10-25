@@ -1,0 +1,5 @@
+---
+
+sftpgo_environment_variables_webdavd_enable_https: "{{ traefik_certs_dumper_enabled }}"
+sftpgo_environment_variables_webdavd_certificate_file: /certificate.crt
+sftpgo_environment_variables_webdavd_certificate_key_file: /privatekey.crt

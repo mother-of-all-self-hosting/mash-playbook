@@ -1,0 +1,4 @@
+---
+
+woodpecker_ci_agent_config_server: "{{ (woodpecker_ci_server_identifier + ':' + woodpecker_ci_server_config_grpc_addr_port | string) if woodpecker_ci_server_enabled else '' }}"
+woodpecker_ci_agent_config_agent_secret: "{{ woodpecker_ci_server_config_agent_secret if woodpecker_ci_server_enabled else '' }}"

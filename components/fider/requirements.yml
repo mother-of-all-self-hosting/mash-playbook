@@ -1,0 +1,5 @@
+---
+
+- src: git+https://progressiv.radicle.garden/z3Fe49p3uVZpC43KdB5gDCTmr8u7Y.git
+  version: v0.38.2-0
+  name: fider

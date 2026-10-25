@@ -1,0 +1,21 @@
+---
+
+activation_prefix: adguard_home_
+
+# Entries added to other components' lists, while those components are in use
+inject:
+  systemd_service_manager:
+    services:
+      - name: "{{ adguard_home_identifier }}.service"
+        priority: 2000
+        restart_necessary: "{{ adguard_home_restart_necessary | bool }}"
+        groups: [mash, adguard-home]
+        when: "{{ adguard_home_enabled }}"
+  hubsite:
+    services:
+      - name: "{{ hubsite_service_adguard_home_name }}"
+        url: "{{ hubsite_service_adguard_home_url }}"
+        logo_location: "{{ hubsite_service_adguard_home_logo_location }}"
+        description: "{{ hubsite_service_adguard_home_description }}"
+        priority: "{{ hubsite_service_adguard_home_priority }}"
+        when: "{{ hubsite_service_adguard_home_enabled }}"

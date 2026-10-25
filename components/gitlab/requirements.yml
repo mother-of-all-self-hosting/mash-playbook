@@ -1,0 +1,5 @@
+---
+
+- src: git+https://github.com/mother-of-all-self-hosting/ansible-role-gitlab.git
+  version: v19.5.1-0
+  name: gitlab

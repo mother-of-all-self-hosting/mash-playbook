@@ -1,0 +1,25 @@
+---
+
+activation_prefix: answer_
+
+# Entries added to other components' lists, while those components are in use
+inject:
+  systemd_service_manager:
+    services:
+      - name: "{{ answer_identifier }}.service"
+        priority: 2000
+        restart_necessary: "{{ answer_restart_necessary | bool }}"
+        groups: [mash, answer]
+        when: "{{ answer_enabled }}"
+  mariadb:
+    managed_databases:
+      - name: "{{ answer_database_name }}"
+        username: "{{ answer_database_mysql_username }}"
+        password: "{{ answer_database_mysql_password }}"
+        when: "{{ answer_enabled and (answer_database_mysql_hostname == mariadb_connection_hostname or answer_database_mysql_socket_enabled) and answer_database_type == 'mysql' }}"
+  postgres:
+    managed_databases:
+      - name: "{{ answer_database_name }}"
+        username: "{{ answer_database_postgres_username }}"
+        password: "{{ answer_database_postgres_password }}"
+        when: "{{ answer_enabled and (answer_database_postgres_hostname == postgres_connection_hostname or answer_database_postgres_socket_enabled) and answer_database_type == 'postgres' }}"

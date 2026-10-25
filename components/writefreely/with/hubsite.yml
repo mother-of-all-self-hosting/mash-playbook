@@ -1,0 +1,9 @@
+---
+
+# writefreely
+hubsite_service_writefreely_enabled: "{{ writefreely_enabled }}"
+hubsite_service_writefreely_name: writefreely
+hubsite_service_writefreely_url: "https://{{ writefreely_hostname }}"
+hubsite_service_writefreely_logo_location: "{{ role_path }}/assets/writefreely.png"
+hubsite_service_writefreely_description: "A minimalist web blog"
+hubsite_service_writefreely_priority: 1000

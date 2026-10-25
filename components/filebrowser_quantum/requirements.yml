@@ -1,0 +1,5 @@
+---
+
+- src: git+https://progressiv.radicle.garden/z3ALGSKDhVLeMnR49YPXk5yv2yTge.git
+  version: v2.0.2-0
+  name: filebrowser_quantum

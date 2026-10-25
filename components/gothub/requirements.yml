@@ -1,0 +1,5 @@
+---
+
+- src: git+https://progressiv.radicle.garden/zFVv3koKtheJTTwPSjF3J6DajePK.git
+  version: v2025.3.9-7
+  name: gothub

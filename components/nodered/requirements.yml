@@ -1,0 +1,5 @@
+---
+
+- src: git+https://progressiv.radicle.garden/z3g4bZnzZJis1DEKVzR3pPsyUzicT.git
+  version: v5.0.0-1
+  name: nodered

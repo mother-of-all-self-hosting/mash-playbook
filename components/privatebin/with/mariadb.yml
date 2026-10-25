@@ -1,0 +1,6 @@
+---
+
+privatebin_database_mysql_hostname: "{{ mariadb_connection_hostname if mariadb_enabled and not privatebin_database_mysql_socket_enabled else '' }}"
+privatebin_database_mysql_username: "{{ privatebin_identifier }}"
+privatebin_database_mysql_password: "{{ (mash_playbook_generic_secret_key + ':db.privatebinm') | hash('sha512') | to_uuid }}"
+privatebin_database_mysql_socket_path_host: "{{ mariadb_run_path }}"

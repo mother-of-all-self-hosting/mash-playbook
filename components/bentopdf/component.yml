@@ -1,0 +1,13 @@
+---
+
+activation_prefix: bentopdf_
+
+# Entries added to other components' lists, while those components are in use
+inject:
+  systemd_service_manager:
+    services:
+      - name: "{{ bentopdf_identifier }}.service"
+        priority: 2000
+        restart_necessary: "{{ bentopdf_restart_necessary | bool }}"
+        groups: [mash, bentopdf]
+        when: "{{ bentopdf_enabled }}"

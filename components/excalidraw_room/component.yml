@@ -1,0 +1,13 @@
+---
+
+activation_prefix: excalidraw_room_
+
+# Entries added to other components' lists, while those components are in use
+inject:
+  systemd_service_manager:
+    services:
+      - name: "{{ excalidraw_room_identifier }}.service"
+        priority: 2000
+        restart_necessary: "{{ excalidraw_room_restart_necessary | bool }}"
+        groups: [mash, excalidraw-room]
+        when: "{{ excalidraw_room_enabled }}"

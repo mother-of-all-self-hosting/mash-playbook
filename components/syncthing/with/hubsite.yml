@@ -1,0 +1,9 @@
+---
+
+# Syncthing
+hubsite_service_syncthing_enabled: "{{ syncthing_enabled }}"
+hubsite_service_syncthing_name: Syncthing
+hubsite_service_syncthing_url: "https://{{ syncthing_hostname }}{{ syncthing_path_prefix }}"
+hubsite_service_syncthing_logo_location: "{{ role_path }}/assets/syncthing.png"
+hubsite_service_syncthing_description: "Sync your files"
+hubsite_service_syncthing_priority: 1000

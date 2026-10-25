@@ -1,0 +1,5 @@
+---
+
+- src: git+https://progressiv.radicle.garden/z2K9dPANyrXJY7juE9XecXyernA6h.git
+  version: v4.16.2-0
+  name: nodebb

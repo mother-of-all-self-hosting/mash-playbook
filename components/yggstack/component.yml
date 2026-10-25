@@ -1,0 +1,13 @@
+---
+
+activation_prefix: yggstack_
+
+# Entries added to other components' lists, while those components are in use
+inject:
+  systemd_service_manager:
+    services:
+      - name: "{{ yggstack_identifier }}.service"
+        priority: 500
+        restart_necessary: "{{ yggstack_restart_necessary | bool }}"
+        groups: [mash, yggstack]
+        when: "{{ yggstack_enabled }}"

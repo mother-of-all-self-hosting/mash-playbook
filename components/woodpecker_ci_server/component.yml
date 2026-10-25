@@ -1,0 +1,33 @@
+---
+
+activation_prefix: woodpecker_ci_server_
+
+# Entries added to other components' lists, while those components are in use
+inject:
+  systemd_service_manager:
+    services:
+      - name: "{{ woodpecker_ci_server_identifier }}.service"
+        priority: 4000
+        restart_necessary: "{{ woodpecker_ci_server_restart_necessary | bool }}"
+        groups: [mash, woodpecker, ci, woodpecker-ci-server]
+        when: "{{ woodpecker_ci_server_enabled }}"
+  hubsite:
+    services:
+      - name: "{{ hubsite_service_woodpecker_ci_name }}"
+        url: "{{ hubsite_service_woodpecker_ci_url }}"
+        logo_location: "{{ hubsite_service_woodpecker_ci_logo_location }}"
+        description: "{{ hubsite_service_woodpecker_ci_description }}"
+        priority: "{{ hubsite_service_woodpecker_ci_priority }}"
+        when: "{{ hubsite_service_woodpecker_ci_enabled }}"
+  mariadb:
+    managed_databases:
+      - name: "{{ woodpecker_ci_server_database_name }}"
+        username: "{{ woodpecker_ci_server_database_mysql_username }}"
+        password: "{{ woodpecker_ci_server_database_mysql_password }}"
+        when: "{{ woodpecker_ci_server_enabled and (woodpecker_ci_server_database_mysql_hostname == mariadb_connection_hostname or woodpecker_ci_server_database_mysql_socket_enabled) and woodpecker_ci_server_database_type == 'mysql' }}"
+  postgres:
+    managed_databases:
+      - name: "{{ woodpecker_ci_server_database_name }}"
+        username: "{{ woodpecker_ci_server_database_postgres_username }}"
+        password: "{{ woodpecker_ci_server_database_postgres_password }}"
+        when: "{{ woodpecker_ci_server_enabled and (woodpecker_ci_server_database_postgres_hostname == postgres_connection_hostname or woodpecker_ci_server_database_postgres_socket_enabled) and woodpecker_ci_server_database_type == 'postgres' }}"

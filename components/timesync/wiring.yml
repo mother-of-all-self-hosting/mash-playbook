@@ -1,0 +1,5 @@
+---
+
+# To completely disable installing systemd-timesyncd/ntpd, use `devture_timesync_installation_enabled: false`.
+
+devture_timesync_installation_enabled: false

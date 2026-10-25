@@ -1,0 +1,18 @@
+---
+
+activation_prefix: docker_registry_enabled
+
+# Entries added to other components' lists, while those components are in use
+inject:
+  systemd_service_manager:
+    services:
+      - name: "{{ docker_registry_identifier }}.service"
+        priority: 2000
+        restart_necessary: "{{ docker_registry_restart_necessary | bool }}"
+        groups: [mash, docker-registry]
+        when: "{{ docker_registry_enabled }}"
+      - name: "{{ docker_registry_identifier }}-garbage-collect.timer"
+        priority: 2500
+        restart_necessary: "{{ docker_registry_restart_necessary | bool }}"
+        groups: [mash, docker-registry, docker-registry-gc]
+        when: "{{ docker_registry_enabled }}"

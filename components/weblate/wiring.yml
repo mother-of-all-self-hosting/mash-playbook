@@ -1,0 +1,34 @@
+---
+
+# The role enables itself by default. It stays disabled, unless enabled in your inventory.
+weblate_enabled: false
+
+weblate_identifier: "{{ mash_playbook_service_identifier_prefix }}weblate"
+
+weblate_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}weblate"
+
+# Weblate runs as only root user with root group
+weblate_uid: "1000"
+weblate_gid: "0"
+
+weblate_systemd_required_services_list_auto: |
+  {{
+    ([postgres_identifier ~ '.service'] if postgres_enabled and (weblate_database_hostname == postgres_connection_hostname or weblate_database_socket_enabled) else [])
+  }}
+
+weblate_systemd_wanted_services_list_auto: |
+  {{
+    ([exim_relay_identifier ~ '.service'] if exim_relay_enabled | default(false) and weblate_environment_variables_weblate_email_host == exim_relay_identifier else [])
+  }}
+
+weblate_container_additional_networks_auto: |
+  {{
+    ([exim_relay_container_network] if exim_relay_enabled | default(false) and weblate_environment_variables_weblate_email_host == exim_relay_identifier and weblate_container_network != exim_relay_container_network else [])
+    +
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+    +
+    ([postgres_container_network] if postgres_enabled and (weblate_database_hostname == postgres_connection_hostname and weblate_container_network != postgres_container_network and not weblate_database_socket_enabled) else [])
+  }}
+
+weblate_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+weblate_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"

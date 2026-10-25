@@ -22,7 +22,7 @@ add-inventory-host host server_address:
     @{{ justfile_directory() }}/bin/add-inventory-host.sh {{ quote(host) }} {{ quote(server_address) }}
 
 run_directory_path := justfile_directory() + "/run"
-templates_directory_path := justfile_directory() + "/templates"
+components_directory_path := justfile_directory() + "/components"
 # Optimization is enabled, unless this file exists
 optimization_disabled_file_path := run_directory_path + "/optimization-disabled"
 # Versions and checksums of the roles installed into roles/galaxy, for detecting local changes to them
@@ -56,22 +56,30 @@ update *flags:
         echo "Unknown flags passed: {{ flags }}" >&2
         exit 1
     fi
-    if [ "{{ flags }}" = "-u" ] && ! [ -x "$(command -v agru)" ]; then
-        echo "Updating role versions (-u) requires the agru tool: https://github.com/etkecc/agru#where-to-get" >&2
-        exit 1
+    if [ "{{ flags }}" = "-u" ]; then
+        # Older versions of agru only take one requirements file (-r), and would ignore all others
+        agru_version=$(agru -v 2>/dev/null | sed 's/^v//' || true)
+        if [ "$(printf '%s\n' 0.3.0 "$agru_version" | sort -V | head -n 1)" != "0.3.0" ]; then
+            echo "Updating role versions (-u) requires the agru tool, version 0.3.0 or newer: https://github.com/etkecc/agru#where-to-get" >&2
+            exit 1
+        fi
     fi
 
     {{ just_executable() }} --justfile {{ justfile() }} update-playbook-only
 
     if [ "{{ flags }}" = "-u" ]; then
-        # Only updates the versions pinned in the template. The roles are installed below.
-        echo "Pinning new role versions in templates/requirements.yml..."
-        agru -r {{ templates_directory_path }}/requirements.yml -p roles/galaxy/ -no-tui -i=false -u
+        # Only updates the versions pinned in each component's requirements.yml. The roles are installed below.
+        echo "Pinning new role versions in components/*/requirements.yml..."
+        set --
+        for requirements_path in {{ components_directory_path }}/*/requirements.yml; do
+            set -- "$@" -r "$requirements_path"
+        done
+        agru "$@" -p roles/galaxy/ -no-tui -i=false -u
         {{ just_executable() }} --justfile {{ justfile() }} versions
         {{ just_executable() }} --justfile {{ justfile() }} opml
     fi
 
-    # Run these now, after the playbook update, so they use its new templates (and justfile)
+    # Run these now, after the playbook update, so they use its new components (and justfile)
     {{ just_executable() }} --justfile {{ justfile() }} _prepare-files
     {{ just_executable() }} --justfile {{ justfile() }} _install-roles
 
@@ -211,15 +219,22 @@ stop-group group *extra_args:
 
 # Installs the roles in requirements.yml and deletes unused ones, keeping roles with local changes
 _install-roles *flags:
-    @{{ justfile_directory() }}/bin/ansible-python.sh {{ justfile_directory() }}/bin/install-roles.py \
+    #!/usr/bin/env sh
+    set -eu
+    # All roles the playbook knows about: installed ones which are no longer in use get deleted
+    set --
+    for requirements_path in {{ components_directory_path }}/*/requirements.yml; do
+        set -- "$@" --all-requirements-path="$requirements_path"
+    done
+    {{ justfile_directory() }}/bin/ansible-python.sh {{ justfile_directory() }}/bin/install-roles.py \
     --requirements-path={{ justfile_directory() }}/requirements.yml \
-    --all-requirements-path={{ templates_directory_path }}/requirements.yml \
+    "$@" \
     --roles-path={{ justfile_directory() }}/roles/galaxy \
     --state-path={{ quote(installed_roles_file_path) }} \
     {{ flags }}
 
-# Generates requirements.yml, setup.yml and group_vars/mash_servers from their templates (optimized, unless optimization is disabled).
-# This runs before every playbook run, so they always match the templates and the inventory. Unchanged files are left as they are.
+# Generates requirements.yml, setup.yml and group_vars/mash_servers/ from components/ (optimized, unless optimization is disabled).
+# This runs before every playbook run, so they always match the components and the inventory. Unchanged files are left as they are.
 _prepare-files:
     #!/usr/bin/env sh
     set -eu
@@ -228,22 +243,15 @@ _prepare-files:
     rm -f {{ run_directory_path }}/*.srchash
     rm -f {{ quote(run_directory_path / "optimization-enabled") }} {{ quote(run_directory_path / "optimization-vars-files.state") }}
 
-    if [ ! -f {{ quote(optimization_disabled_file_path) }} ]; then
+    if [ -f {{ quote(optimization_disabled_file_path) }} ]; then
+        {{ just_executable() }} --justfile {{ justfile() }} _optimize-files --all-components
+    else
         {{ just_executable() }} --justfile {{ justfile() }} _optimize-files
-        exit 0
     fi
 
-    for file in requirements.yml:requirements.yml setup.yml:setup.yml group_vars_mash_servers:group_vars/mash_servers; do
-        src_path={{ templates_directory_path }}/${file%%:*}
-        dst_path={{ justfile_directory() }}/${file#*:}
-        if ! cmp -s "$src_path" "$dst_path"; then
-            cp "$src_path" "$dst_path"
-        fi
-    done
-
-# Generates optimized requirements.yml, setup.yml and group_vars/mash_servers files for the inventory.
-# If this fails, none of them is changed.
-_optimize-files:
+# Generates requirements.yml, setup.yml and group_vars/mash_servers/ with the components in use by the inventory
+# (or all of them, with --all-components). If this fails, none of them is changed.
+_optimize-files *flags:
     #!/usr/bin/env sh
     set -eu
     # The inventory may be a directory or a hosts file inside it
@@ -253,14 +261,13 @@ _optimize-files:
     fi
 
     {{ justfile_directory() }}/bin/ansible-python.sh {{ justfile_directory() }}/bin/optimize.py \
+    --components-path={{ components_directory_path }} \
     --inventory-path="$inventory_path" \
     --playbook-path={{ justfile_directory() }} \
-    --src-requirements-yml-path={{ templates_directory_path }}/requirements.yml \
     --dst-requirements-yml-path={{ justfile_directory() }}/requirements.yml \
-    --src-setup-yml-path={{ templates_directory_path }}/setup.yml \
     --dst-setup-yml-path={{ justfile_directory() }}/setup.yml \
-    --src-group-vars-yml-path={{ templates_directory_path }}/group_vars_mash_servers \
-    --dst-group-vars-yml-path={{ justfile_directory() }}/group_vars/mash_servers
+    --dst-group-vars-path={{ justfile_directory() }}/group_vars/mash_servers \
+    {{ flags }}
 
 # Internal - ensures var/mise and var/prek directories exist
 _ensure_mise_data_directory:

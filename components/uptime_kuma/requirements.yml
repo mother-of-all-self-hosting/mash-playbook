@@ -1,0 +1,5 @@
+---
+
+- src: git+https://github.com/mother-of-all-self-hosting/ansible-role-uptime_kuma.git
+  version: v2.5.7-0
+  name: uptime_kuma

@@ -1,0 +1,13 @@
+---
+
+activation_prefix: eurooffice_
+
+# Entries added to other components' lists, while those components are in use
+inject:
+  systemd_service_manager:
+    services:
+      - name: "{{ eurooffice_identifier }}.service"
+        priority: 2000
+        restart_necessary: "{{ eurooffice_restart_necessary | bool }}"
+        groups: [mash, eurooffice]
+        when: "{{ eurooffice_enabled }}"

@@ -1,0 +1,13 @@
+---
+
+activation_prefix: influxdb_
+
+# Entries added to other components' lists, while those components are in use
+inject:
+  systemd_service_manager:
+    services:
+      - name: "{{ influxdb_identifier }}.service"
+        priority: 2000
+        restart_necessary: "{{ influxdb_restart_necessary | bool }}"
+        groups: [mash, influxdb]
+        when: "{{ influxdb_enabled }}"

@@ -1,0 +1,33 @@
+---
+
+# The role enables itself by default. It stays disabled, unless enabled in your inventory.
+asciinema_server_enabled: false
+
+asciinema_server_identifier: "{{ mash_playbook_service_identifier_prefix }}asciinema-server"
+
+asciinema_server_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}asciinema-server"
+
+asciinema_server_uid: "{{ mash_playbook_uid }}"
+asciinema_server_gid: "{{ mash_playbook_gid }}"
+
+asciinema_server_systemd_required_services_list_auto: |
+ {{
+    ([postgres_identifier ~ '.service'] if postgres_enabled and (asciinema_server_database_hostname == postgres_connection_hostname or asciinema_server_database_socket_enabled) else [])
+  }}
+
+asciinema_server_systemd_wanted_services_list_auto: |
+  {{
+    ([exim_relay_identifier ~ '.service'] if exim_relay_enabled | default(false) and asciinema_server_mailer_enabled | default(false) and asciinema_server_environment_variable_smtp_host == exim_relay_identifier else [])
+  }}
+
+asciinema_server_container_additional_networks_auto: |
+  {{
+    ([exim_relay_container_network] if exim_relay_enabled | default(false) and asciinema_server_mailer_enabled | default(false) and asciinema_server_environment_variable_smtp_host == exim_relay_identifier and asciinema_server_container_network != exim_relay_container_network else [])
+    +
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+    +
+    ([postgres_container_network] if postgres_enabled and (asciinema_server_database_hostname == postgres_connection_hostname and asciinema_server_container_network != postgres_container_network and not asciinema_server_database_socket_enabled) else [])
+  }}
+
+asciinema_server_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+asciinema_server_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"

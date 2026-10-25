@@ -1,0 +1,25 @@
+---
+
+activation_prefix: mediawiki_
+
+# Entries added to other components' lists, while those components are in use
+inject:
+  systemd_service_manager:
+    services:
+      - name: "{{ mediawiki_identifier }}.service"
+        priority: 2000
+        restart_necessary: "{{ mediawiki_restart_necessary | bool }}"
+        groups: [mash, mediawiki]
+        when: "{{ mediawiki_enabled }}"
+  mariadb:
+    managed_databases:
+      - name: "{{ mediawiki_database_name }}"
+        username: "{{ mediawiki_database_mysql_username }}"
+        password: "{{ mediawiki_database_mysql_password }}"
+        when: "{{ mediawiki_enabled and mediawiki_database_mysql_hostname == mariadb_connection_hostname and mediawiki_database_type == 'mysql' }}"
+  postgres:
+    managed_databases:
+      - name: "{{ mediawiki_database_name }}"
+        username: "{{ mediawiki_database_postgres_username }}"
+        password: "{{ mediawiki_database_postgres_password }}"
+        when: "{{ mediawiki_enabled and mediawiki_database_postgres_hostname == postgres_connection_hostname and mediawiki_database_type == 'postgres' }}"

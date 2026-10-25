@@ -1,0 +1,19 @@
+---
+
+activation_prefix: limesurvey_
+
+# Entries added to other components' lists, while those components are in use
+inject:
+  systemd_service_manager:
+    services:
+      - name: "{{ limesurvey_identifier }}.service"
+        priority: 2000
+        restart_necessary: "{{ limesurvey_restart_necessary | bool }}"
+        groups: [mash, limesurvey]
+        when: "{{ limesurvey_enabled }}"
+  mariadb:
+    managed_databases:
+      - name: "{{ limesurvey_database_name }}"
+        username: "{{ limesurvey_database_username }}"
+        password: "{{ limesurvey_database_password }}"
+        when: "{{ limesurvey_enabled and limesurvey_database_hostname == mariadb_connection_hostname }}"

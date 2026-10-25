@@ -1,0 +1,13 @@
+---
+
+activation_prefix: filebrowser_quantum_
+
+# Entries added to other components' lists, while those components are in use
+inject:
+  systemd_service_manager:
+    services:
+      - name: "{{ filebrowser_quantum_identifier }}.service"
+        priority: 2000
+        restart_necessary: "{{ filebrowser_quantum_restart_necessary | bool }}"
+        groups: [mash, filebrowser-quantum]
+        when: "{{ filebrowser_quantum_enabled }}"

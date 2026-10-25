@@ -1,0 +1,20 @@
+---
+
+activation_prefix: endlessh_
+
+# Entries added to other components' lists, while those components are in use
+inject:
+  systemd_service_manager:
+    services:
+      - name: "{{ endlessh_identifier }}.service"
+        priority: 2000
+        restart_necessary: "{{ endlessh_restart_necessary | bool }}"
+        groups: [mash, endlessh]
+        when: "{{ endlessh_enabled }}"
+  traefik:
+    entrypoints:
+      - name: "{{ endlessh_container_labels_traefik_tcp_entrypoints }}"
+        port: "{{ endlessh_container_ssh_port }}"
+        host_bind_port: "{{ endlessh_container_ssh_host_bind_port }}"
+        config: {}
+        when: "{{ endlessh_enabled and endlessh_container_labels_traefik_tcp_enabled }}"

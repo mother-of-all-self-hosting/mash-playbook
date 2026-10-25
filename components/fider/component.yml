@@ -1,0 +1,19 @@
+---
+
+activation_prefix: fider_
+
+# Entries added to other components' lists, while those components are in use
+inject:
+  systemd_service_manager:
+    services:
+      - name: "{{ fider_identifier }}.service"
+        priority: 2000
+        restart_necessary: "{{ fider_restart_necessary | bool }}"
+        groups: [mash, fider]
+        when: "{{ fider_enabled }}"
+  postgres:
+    managed_databases:
+      - name: "{{ fider_database_name }}"
+        username: "{{ fider_database_username }}"
+        password: "{{ fider_database_password }}"
+        when: "{{ fider_enabled and fider_database_hostname == postgres_connection_hostname }}"

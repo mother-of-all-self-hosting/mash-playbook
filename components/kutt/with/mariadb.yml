@@ -1,0 +1,6 @@
+---
+
+kutt_database_mysql_hostname: "{{ mariadb_connection_hostname if mariadb_enabled else '' }}"
+kutt_database_mysql_port: "{{ mariadb_connection_port if mariadb_enabled else '3306' }}"
+kutt_database_mysql_password: "{{ (mash_playbook_generic_secret_key + ':kutt.db') | hash('sha512') | to_uuid }}"
+kutt_database_mysql_sslmode: "{{ false if mariadb_enabled and kutt_database_mysql_hostname == mariadb_connection_hostname else true }}"

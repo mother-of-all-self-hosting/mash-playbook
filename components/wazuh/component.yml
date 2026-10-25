@@ -1,0 +1,23 @@
+---
+
+activation_prefix: wazuh_
+
+# Entries added to other components' lists, while those components are in use
+inject:
+  systemd_service_manager:
+    services:
+      - name: "{{ wazuh_manager_identifier }}.service"
+        priority: 2000
+        restart_necessary: "{{ wazuh_manager_restart_necessary | bool }}"
+        groups: [mash, wazuh]
+        when: "{{ wazuh_enabled }}"
+      - name: "{{ wazuh_indexer_identifier }}.service"
+        priority: 2000
+        restart_necessary: "{{ wazuh_indexer_restart_necessary | bool }}"
+        groups: [mash, wazuh]
+        when: "{{ wazuh_enabled }}"
+      - name: "{{ wazuh_dashboard_identifier }}.service"
+        priority: 2000
+        restart_necessary: "{{ wazuh_dashboard_restart_necessary | bool }}"
+        groups: [mash, wazuh]
+        when: "{{ wazuh_enabled }}"

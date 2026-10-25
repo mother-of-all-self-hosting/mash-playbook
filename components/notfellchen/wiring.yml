@@ -1,0 +1,34 @@
+---
+
+# The role enables itself by default. It stays disabled, unless enabled in your inventory.
+notfellchen_enabled: false
+
+notfellchen_identifier: "{{ mash_playbook_service_identifier_prefix }}notfellchen"
+
+notfellchen_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}notfellchen"
+
+notfellchen_uid: "{{ mash_playbook_uid }}"
+notfellchen_gid: "{{ mash_playbook_gid }}"
+
+notfellchen_secret: "{{ (mash_playbook_generic_secret_key + ':secret.nf') | hash('sha512') | to_uuid }}"
+
+notfellchen_systemd_required_services_list: |
+  {{
+    ([devture_systemd_docker_base_docker_service_name] if devture_systemd_docker_base_docker_service_name else [])
+    +
+    ([postgres_identifier ~ '.service'] if postgres_enabled and notfellchen_database_host == postgres_connection_hostname else [])
+  }}
+
+notfellchen_container_additional_networks_auto: |
+  {{
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+    +
+    ([postgres_container_network] if postgres_enabled and notfellchen_database_host == postgres_connection_hostname and notfellchen_container_network != postgres_container_network else [])
+  }}
+
+notfellchen_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+notfellchen_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+notfellchen_sws_container_labels_traefik_enabled: "{{ notfellchen_container_labels_traefik_enabled }}"
+notfellchen_sws_container_labels_traefik_docker_network: "{{ notfellchen_container_labels_traefik_docker_network }}"
+notfellchen_sws_container_labels_traefik_entrypoints: "{{ notfellchen_container_labels_traefik_entrypoints }}"
+notfellchen_sws_container_labels_traefik_tls_certResolver: "{{ notfellchen_container_labels_traefik_tls_certResolver }}"

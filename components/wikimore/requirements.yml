@@ -1,0 +1,5 @@
+---
+
+- src: git+https://progressiv.radicle.garden/z9wRjUKpo8iRJQ3c3GPN7Zkk12ei.git
+  version: v0.1.27-0
+  name: wikimore

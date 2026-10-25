@@ -1,0 +1,24 @@
+---
+
+activation_prefix: mash_
+
+setup:
+  priority: 200
+
+# Lists other components can add entries to (via `inject`).
+# The generator puts the entries of the components in use (whose `when` is true) into the `into` variable.
+accepts:
+  permissions:
+    description: Container socket APIs to allow
+    into: mash_playbook_container_socket_proxy_permission_requests
+    required_keys: [permissions]
+
+# Entries added to other components' lists, while those components are in use
+inject:
+  systemd_service_manager:
+    services:
+      - name: "{{ container_socket_proxy_identifier }}.service"
+        priority: 200
+        restart_necessary: "{{ container_socket_proxy_restart_necessary | bool }}"
+        groups: [mash, reverse-proxies, container-socket-proxy]
+        when: "{{ container_socket_proxy_enabled }}"

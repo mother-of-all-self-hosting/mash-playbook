@@ -1,0 +1,25 @@
+---
+
+activation_prefix: pinepods_
+
+# Entries added to other components' lists, while those components are in use
+inject:
+  systemd_service_manager:
+    services:
+      - name: "{{ pinepods_identifier }}.service"
+        priority: 2000
+        restart_necessary: "{{ pinepods_restart_necessary | bool }}"
+        groups: [mash, pinepods]
+        when: "{{ pinepods_enabled }}"
+  mariadb:
+    managed_databases:
+      - name: "{{ pinepods_database_name }}"
+        username: "{{ pinepods_database_mariadb_username }}"
+        password: "{{ pinepods_database_mariadb_password }}"
+        when: "{{ pinepods_enabled and pinepods_database_mariadb_hostname == mariadb_connection_hostname and pinepods_database_type == 'mariadb' }}"
+  postgres:
+    managed_databases:
+      - name: "{{ pinepods_database_name }}"
+        username: "{{ pinepods_database_postgres_username }}"
+        password: "{{ pinepods_database_postgres_password }}"
+        when: "{{ pinepods_enabled and pinepods_database_postgres_hostname == postgres_connection_hostname and pinepods_database_type == 'postgres' }}"

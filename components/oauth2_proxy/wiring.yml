@@ -1,0 +1,16 @@
+---
+
+# The role enables itself by default. It stays disabled, unless enabled in your inventory.
+oauth2_proxy_enabled: false
+
+oauth2_proxy_identifier: "{{ mash_playbook_service_identifier_prefix }}oauth2-proxy"
+
+oauth2_proxy_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}oauth2-proxy"
+
+oauth2_proxy_uid: "{{ mash_playbook_uid }}"
+oauth2_proxy_gid: "{{ mash_playbook_gid }}"
+
+oauth2_proxy_container_network: "{{ (mash_playbook_reverse_proxyable_services_additional_network if mash_playbook_traefik_labels_enabled else '') | default(oauth2_proxy_identifier) }}"
+
+oauth2_proxy_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+oauth2_proxy_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"

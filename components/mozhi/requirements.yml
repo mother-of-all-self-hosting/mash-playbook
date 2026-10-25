@@ -1,0 +1,5 @@
+---
+
+- src: git+https://github.com/mother-of-all-self-hosting/ansible-role-mozhi.git
+  version: v2025.6.25-10
+  name: mozhi

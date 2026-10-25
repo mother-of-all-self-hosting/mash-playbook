@@ -1,0 +1,5 @@
+---
+
+- src: git+https://progressiv.radicle.garden/z3vaa8VAuz3pxqB3FyciNKQRSHqyt.git
+  version: v4.5.2-0
+  name: thelounge

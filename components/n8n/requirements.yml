@@ -1,0 +1,5 @@
+---
+
+- src: git+https://github.com/mother-of-all-self-hosting/ansible-role-n8n.git
+  version: v2.45.0-0
+  name: n8n

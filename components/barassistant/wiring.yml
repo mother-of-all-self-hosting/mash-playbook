@@ -1,0 +1,58 @@
+---
+
+# The role enables itself by default. It stays disabled, unless enabled in your inventory.
+barassistant_enabled: false
+
+barassistant_identifier: "{{ mash_playbook_service_identifier_prefix }}barassistant"
+
+barassistant_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}barassistant"
+
+barassistant_uid: "{{ mash_playbook_uid }}"
+barassistant_gid: "{{ mash_playbook_gid }}"
+
+barassistant_server_systemd_wanted_services_list_auto: |
+  {{
+    ([exim_relay_identifier ~ '.service'] if exim_relay_enabled | default(false) and barassistant_mailer_enabled | default(false) and barassistant_server_environment_variables_mail_host == exim_relay_identifier else [])
+    +
+    ([meilisearch_identifier ~ '.service'] if meilisearch_enabled | default(false) else [])
+  }}
+
+barassistant_saltrim_systemd_wanted_services_list_auto: |
+  {{
+    ([exim_relay_identifier ~ '.service'] if exim_relay_enabled | default(false) and barassistant_mailer_enabled | default(false) and barassistant_server_environment_variables_mail_host == exim_relay_identifier else [])
+    +
+    ([meilisearch_identifier ~ '.service'] if meilisearch_enabled | default(false) else [])
+  }}
+
+barassistant_server_container_additional_networks_auto: |
+  {{
+    ([exim_relay_container_network] if exim_relay_enabled | default(false) and barassistant_mailer_enabled | default(false) and barassistant_server_environment_variables_mail_host == exim_relay_identifier and barassistant_container_network != exim_relay_container_network else [])
+    +
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+    +
+    ([meilisearch_container_network] if meilisearch_enabled | default(false) and barassistant_container_network != meilisearch_container_network else [])
+  }}
+
+barassistant_saltrim_container_additional_networks_auto: |
+  {{
+    ([exim_relay_container_network] if exim_relay_enabled | default(false) and barassistant_mailer_enabled | default(false) and barassistant_server_environment_variables_mail_host == exim_relay_identifier and barassistant_container_network != exim_relay_container_network else [])
+    +
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+    +
+    ([meilisearch_container_network] if meilisearch_enabled | default(false) and barassistant_container_network != meilisearch_container_network else [])
+  }}
+
+barassistant_saltrim_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+barassistant_saltrim_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+barassistant_server_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+barassistant_server_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+
+barassistant_server_container_labels_traefik_metrics_enabled: "{{ barassistant_server_environment_variables_metrics_enabled and mash_playbook_metrics_exposure_enabled }}"
+barassistant_server_container_labels_traefik_metrics_hostname: "{{ mash_playbook_metrics_exposure_hostname }}"
+barassistant_server_container_labels_traefik_metrics_path_prefix: "{{ mash_playbook_metrics_exposure_path_prefix }}/{{ barassistant_server_identifier }}"
+barassistant_server_container_labels_traefik_metrics_middleware_basic_auth_enabled: "{{ mash_playbook_metrics_exposure_http_basic_auth_enabled }}"
+barassistant_server_container_labels_traefik_metrics_middleware_basic_auth_users: "{{ mash_playbook_metrics_exposure_http_basic_auth_users }}"
+
+barassistant_server_environment_variables_metrics_enabled: "{{ prometheus_enabled | default(false) or mash_playbook_metrics_exposure_enabled }}"
+
+barassistant_server_traefik_name: "{{ traefik_identifier | default(false) }}"

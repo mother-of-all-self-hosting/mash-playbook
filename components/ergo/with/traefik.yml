@@ -1,0 +1,4 @@
+---
+
+ergo_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
+ergo_container_labels_traefik_loadbalancer_serverstransport: "{{ traefik_config_tcp_servertransports_default_proxyprotocol_name }}@file"

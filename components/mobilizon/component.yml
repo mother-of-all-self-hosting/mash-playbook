@@ -1,0 +1,19 @@
+---
+
+activation_prefix: mobilizon_
+
+# Entries added to other components' lists, while those components are in use
+inject:
+  systemd_service_manager:
+    services:
+      - name: "{{ mobilizon_identifier }}.service"
+        priority: 2000
+        restart_necessary: "{{ mobilizon_restart_necessary | bool }}"
+        groups: [mash, mobilizon]
+        when: "{{ mobilizon_enabled }}"
+  postgis:
+    managed_databases:
+      - name: "{{ mobilizon_database_name }}"
+        username: "{{ mobilizon_database_username }}"
+        password: "{{ mobilizon_database_password }}"
+        when: "{{ mobilizon_enabled and mobilizon_database_hostname == postgis_connection_hostname }}"

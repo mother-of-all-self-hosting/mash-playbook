@@ -1,0 +1,5 @@
+---
+
+- src: git+https://progressiv.radicle.garden/z2BzsfYJzpSCK4tC8kCR1uCooZYX5.git
+  version: v1.0.5-0
+  name: yggstack

@@ -1,0 +1,4 @@
+---
+
+paperless_environment_variables_paperless_tika_enabled: "{{ tika_enabled }}"
+paperless_environment_variables_paperless_tika_endpoint: "{{ ('http://' + tika_identifier + ':' + (tika_container_http_port | string)) if tika_enabled else '' }}"

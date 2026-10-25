@@ -1,0 +1,13 @@
+---
+
+activation_prefix: traefik_certs_dumper_
+
+# Entries added to other components' lists, while those components are in use
+inject:
+  systemd_service_manager:
+    services:
+      - name: "{{ traefik_certs_dumper_identifier }}.service"
+        priority: 300
+        restart_necessary: "{{ traefik_certs_dumper_restart_necessary | bool }}"
+        groups: [mash, traefik-certs-dumper]
+        when: "{{ traefik_certs_dumper_enabled }}"

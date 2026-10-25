@@ -1,0 +1,13 @@
+---
+
+activation_prefix: docker_registry_purger_
+
+# Entries added to other components' lists, while those components are in use
+inject:
+  systemd_service_manager:
+    services:
+      - name: "{{ docker_registry_purger_identifier }}.timer"
+        priority: 3000
+        restart_necessary: "{{ docker_registry_purger_restart_necessary | bool }}"
+        groups: [mash, docker-registry-purger]
+        when: "{{ docker_registry_purger_enabled }}"

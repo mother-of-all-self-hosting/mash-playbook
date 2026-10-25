@@ -1,0 +1,4 @@
+---
+
+docker_registry_proxy_target_scheme: "{{ 'http' if docker_registry_enabled else '' }}"
+docker_registry_proxy_target_host: "{{ docker_registry_identifier+':5000' if docker_registry_enabled else '' }}"

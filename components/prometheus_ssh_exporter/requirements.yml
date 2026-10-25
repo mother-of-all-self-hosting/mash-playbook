@@ -1,0 +1,5 @@
+---
+
+- src: git+https://github.com/mother-of-all-self-hosting/ansible-role-prometheus-ssh-exporter.git
+  version: v1.7.0-2
+  name: prometheus_ssh_exporter

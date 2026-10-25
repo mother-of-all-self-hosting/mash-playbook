@@ -1,0 +1,3 @@
+---
+
+karakeep_environment_variables_browser_websocket_url: "ws://{{ browserless_identifier }}:{{ browserless_container_http_port }}/chromium/playwright"

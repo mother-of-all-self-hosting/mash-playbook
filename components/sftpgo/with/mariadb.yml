@@ -1,0 +1,8 @@
+---
+
+sftpgo_database_mysql_hostname: "{{ mariadb_connection_hostname if mariadb_enabled and sftpgo_environment_variables_data_provider_driver == 'mysql' else '' }}"
+sftpgo_database_mysql_port: "{{ mariadb_connection_port if mariadb_enabled and sftpgo_environment_variables_data_provider_driver == 'mysql' else '3306' }}"
+sftpgo_database_mysql_username: "{{ sftpgo_identifier }}"
+sftpgo_database_mysql_password: "{{ (mash_playbook_generic_secret_key + ':db.sftpgo') | hash('sha512') | to_uuid }}"
+sftpgo_database_mysql_sslmode: "{{ '0' if mariadb_enabled and (sftpgo_database_mysql_hostname == mariadb_connection_hostname or sftpgo_database_mysql_socket_enabled) else '3' }}"
+sftpgo_database_mysql_socket_path_host: "{{ mariadb_run_path }}"

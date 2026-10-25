@@ -1,0 +1,13 @@
+---
+
+activation_prefix: prometheus_blackbox_exporter_
+
+# Entries added to other components' lists, while those components are in use
+inject:
+  systemd_service_manager:
+    services:
+      - name: "{{ prometheus_blackbox_exporter_identifier }}.service"
+        priority: 500
+        restart_necessary: "{{ prometheus_blackbox_exporter_restart_necessary | bool }}"
+        groups: [mash, metrics, prometheus-blackbox-exporter]
+        when: "{{ prometheus_blackbox_exporter_enabled }}"

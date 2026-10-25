@@ -1,0 +1,25 @@
+---
+
+activation_prefix: authelia_
+
+# Entries added to other components' lists, while those components are in use
+inject:
+  systemd_service_manager:
+    services:
+      - name: "{{ authelia_identifier }}.service"
+        priority: 2000
+        restart_necessary: "{{ authelia_restart_necessary | bool }}"
+        groups: [mash, authelia]
+        when: "{{ authelia_enabled }}"
+  mariadb:
+    managed_databases:
+      - name: "{{ authelia_database_name }}"
+        username: "{{ authelia_database_mysql_username }}"
+        password: "{{ authelia_database_mysql_password }}"
+        when: "{{ authelia_enabled and (authelia_database_mysql_hostname == mariadb_connection_hostname or authelia_database_mysql_socket_enabled) and authelia_database_type == 'mysql' }}"
+  postgres:
+    managed_databases:
+      - name: "{{ authelia_database_name }}"
+        username: "{{ authelia_database_postgres_username }}"
+        password: "{{ authelia_database_postgres_password }}"
+        when: "{{ authelia_enabled and (authelia_database_postgres_hostname == postgres_connection_hostname or authelia_database_postgres_socket_enabled) and authelia_database_type == 'postgres' }}"

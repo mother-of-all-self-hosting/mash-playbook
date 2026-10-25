@@ -1,0 +1,6 @@
+---
+
+misskey_config_meilisearch_apikey: "{{ meilisearch_default_admin_api_key }}"
+misskey_config_meilisearch_host: "{{ meilisearch_identifier }}"
+misskey_config_meilisearch_port: "{{ meilisearch_container_http_port }}"
+misskey_config_meilisearch_ssl: false

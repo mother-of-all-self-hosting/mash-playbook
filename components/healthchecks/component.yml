@@ -1,0 +1,33 @@
+---
+
+activation_prefix: healthchecks_
+
+# Entries added to other components' lists, while those components are in use
+inject:
+  systemd_service_manager:
+    services:
+      - name: "{{ healthchecks_identifier }}.service"
+        priority: 2000
+        restart_necessary: "{{ healthchecks_restart_necessary | bool }}"
+        groups: [mash, healthchecks]
+        when: "{{ healthchecks_enabled }}"
+  hubsite:
+    services:
+      - name: "{{ hubsite_service_healthchecks_name }}"
+        url: "{{ hubsite_service_healthchecks_url }}"
+        logo_location: "{{ hubsite_service_healthchecks_logo_location }}"
+        description: "{{ hubsite_service_healthchecks_description }}"
+        priority: "{{ hubsite_service_healthchecks_priority }}"
+        when: "{{ hubsite_service_healthchecks_enabled }}"
+  mariadb:
+    managed_databases:
+      - name: "{{ healthchecks_database_name }}"
+        username: "{{ healthchecks_database_mysql_username }}"
+        password: "{{ healthchecks_database_mysql_password }}"
+        when: "{{ healthchecks_enabled and (healthchecks_database_mysql_hostname == mariadb_connection_hostname or healthchecks_database_mysql_socket_enabled) and healthchecks_database_type == 'mysql' }}"
+  postgres:
+    managed_databases:
+      - name: "{{ healthchecks_database_name }}"
+        username: "{{ healthchecks_database_postgres_username }}"
+        password: "{{ healthchecks_database_postgres_password }}"
+        when: "{{ healthchecks_enabled and (healthchecks_database_postgres_hostname == postgres_connection_hostname or healthchecks_database_postgres_socket_enabled) and healthchecks_database_type == 'postgres' }}"

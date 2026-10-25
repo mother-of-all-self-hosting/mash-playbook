@@ -1,0 +1,13 @@
+---
+
+activation_prefix: papra_
+
+# Entries added to other components' lists, while those components are in use
+inject:
+  systemd_service_manager:
+    services:
+      - name: "{{ papra_identifier }}.service"
+        priority: 2000
+        restart_necessary: "{{ papra_restart_necessary | bool }}"
+        groups: [mash, papra]
+        when: "{{ papra_enabled }}"

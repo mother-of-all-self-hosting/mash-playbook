@@ -1,0 +1,10 @@
+---
+
+# Vaultwarden
+# The vaultwarden service link is deactivated by default for security reasons, see: https://github.com/dani-garcia/vaultwarden/wiki/Hardening-Guide#hiding-under-a-subdir
+hubsite_service_vaultwarden_enabled: false
+hubsite_service_vaultwarden_name: Vaultwarden
+hubsite_service_vaultwarden_url: "https://{{ vaultwarden_hostname }}{{ vaultwarden_path_prefix }}"
+hubsite_service_vaultwarden_logo_location: "{{ role_path }}/assets/vaultwarden.png"
+hubsite_service_vaultwarden_description: "Securely access your passwords"
+hubsite_service_vaultwarden_priority: 1000

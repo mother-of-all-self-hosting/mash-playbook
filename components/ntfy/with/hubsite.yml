@@ -1,0 +1,9 @@
+---
+
+# ntfy
+hubsite_service_ntfy_enabled: "{{ ntfy_enabled }}"
+hubsite_service_ntfy_name: ntfy
+hubsite_service_ntfy_url: "https://{{ ntfy_hostname }}{{ ntfy_path_prefix }}"
+hubsite_service_ntfy_logo_location: "{{ role_path }}/assets/ntfy.png"
+hubsite_service_ntfy_description: "Send push notifications from any computer"
+hubsite_service_ntfy_priority: 1000

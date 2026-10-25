@@ -1,0 +1,5 @@
+---
+
+- src: git+https://github.com/mother-of-all-self-hosting/ansible-role-qui.git
+  version: v1.33.1-0
+  name: qui

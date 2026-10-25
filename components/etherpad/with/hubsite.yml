@@ -1,0 +1,9 @@
+---
+
+# etherpad
+hubsite_service_etherpad_enabled: "{{ etherpad_enabled }}"
+hubsite_service_etherpad_name: Etherpad
+hubsite_service_etherpad_url: "{{ etherpad_scheme }}://{{ etherpad_hostname }}{{ etherpad_path_prefix }}"
+hubsite_service_etherpad_logo_location: "{{ role_path }}/assets/etherpad.png"
+hubsite_service_etherpad_description: "open-source collaborative text editor"
+hubsite_service_etherpad_priority: 1000

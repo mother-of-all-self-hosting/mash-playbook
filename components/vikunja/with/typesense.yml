@@ -1,0 +1,5 @@
+---
+
+vikunja_environment_variables_typesense_enabled: "{{ typesense_enabled }}"
+vikunja_environment_variables_typesense_url: http://{{ typesense_identifier }}:{{ typesense_container_http_port }}
+vikunja_environment_variables_typesense_apikey: "{{ typesense_environment_variables_api_key }}"

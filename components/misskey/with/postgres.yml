@@ -1,0 +1,5 @@
+---
+
+misskey_database_hostname: "{{ postgres_connection_hostname if postgres_enabled else '' }}"
+misskey_database_port: "{{ postgres_connection_port if postgres_enabled else '5432' }}"
+misskey_database_password: "{{ (mash_playbook_generic_secret_key + ':misskey.db') | hash('sha512') | to_uuid }}"

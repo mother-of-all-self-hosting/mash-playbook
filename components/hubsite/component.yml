@@ -1,0 +1,21 @@
+---
+
+activation_prefix: hubsite_
+
+# Lists other components can add entries to (via `inject`).
+# The generator puts the entries of the components in use (whose `when` is true) into the `into` variable.
+accepts:
+  services:
+    description: Cards to show on the overview page
+    into: hubsite_service_list_auto
+    required_keys: [description, logo_location, name, priority, url]
+
+# Entries added to other components' lists, while those components are in use
+inject:
+  systemd_service_manager:
+    services:
+      - name: "{{ hubsite_identifier }}.service"
+        priority: 2000
+        restart_necessary: true
+        groups: [mash, hubsite]
+        when: "{{ hubsite_enabled }}"

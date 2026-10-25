@@ -1,0 +1,19 @@
+---
+
+apisix_config_deployment_etcd_host: |
+  {{
+    ([('http://' + etcd_identifier + ':2379')] if etcd_enabled else [])
+  }}
+
+apisix_config_deployment_etcd_user: "{{ ('root' if (etcd_enabled and not etcd_auth_provisioning_allow_none_authentication) else '') }}"
+apisix_config_deployment_etcd_password: "{{ (etcd_auth_provisioning_password if (etcd_enabled and not etcd_auth_provisioning_allow_none_authentication) else '') }}"
+
+apisix_container_additional_networks_custom: |
+  {{
+    ([etcd_container_network] if etcd_enabled else [])
+  }}
+
+apisix_systemd_required_services_list_auto: |
+  {{
+    ([(etcd_identifier + '.service')] if etcd_enabled else [])
+  }}

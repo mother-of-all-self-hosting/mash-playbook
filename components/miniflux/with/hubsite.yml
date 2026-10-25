@@ -1,0 +1,9 @@
+---
+
+# Miniflux
+hubsite_service_miniflux_enabled: "{{ miniflux_enabled }}"
+hubsite_service_miniflux_name: Miniflux
+hubsite_service_miniflux_url: "{{ miniflux_scheme }}://{{ miniflux_hostname }}{{ miniflux_path_prefix }}"
+hubsite_service_miniflux_logo_location: "{{ role_path }}/assets/miniflux.png"
+hubsite_service_miniflux_description: "An opinionated feed reader"
+hubsite_service_miniflux_priority: 1000

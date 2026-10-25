@@ -1,0 +1,13 @@
+---
+
+activation_prefix: databasus_
+
+# Entries added to other components' lists, while those components are in use
+inject:
+  systemd_service_manager:
+    services:
+      - name: "{{ databasus_identifier }}.service"
+        priority: 2000
+        restart_necessary: "{{ databasus_restart_necessary | bool }}"
+        groups: [mash, databasus]
+        when: "{{ databasus_enabled }}"

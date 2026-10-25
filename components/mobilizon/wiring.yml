@@ -1,0 +1,35 @@
+---
+
+# The role enables itself by default. It stays disabled, unless enabled in your inventory.
+mobilizon_enabled: false
+
+mobilizon_identifier: "{{ mash_playbook_service_identifier_prefix }}mobilizon"
+
+mobilizon_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}mobilizon"
+
+mobilizon_uid: "{{ mash_playbook_uid }}"
+mobilizon_gid: "{{ mash_playbook_gid }}"
+
+mobilizon_systemd_required_services_list_auto: |
+  {{
+    ([postgis_identifier ~ '.service'] if postgis_enabled and mobilizon_database_hostname == postgis_identifier else [])
+  }}
+
+mobilizon_systemd_wanted_services_list_auto: |
+  {{
+    ([exim_relay_identifier ~ '.service'] if exim_relay_enabled | default(false) and mobilizon_environment_variables_email_smtp_server == exim_relay_identifier else [])
+  }}
+
+mobilizon_container_additional_networks_auto: |
+  {{
+    ([exim_relay_container_network] if exim_relay_enabled | default(false) and mobilizon_environment_variables_email_smtp_server == exim_relay_identifier and mobilizon_container_network != exim_relay_container_network else [])
+    +
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+    +
+    ([postgis_container_network] if postgis_enabled and mobilizon_database_hostname == postgis_identifier and mobilizon_container_network != postgis_container_network else [])
+  }}
+
+mobilizon_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+mobilizon_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+
+mobilizon_environment_variables_secret_key: "{{ (mash_playbook_generic_secret_key + ':sk.mobilizon') | hash('sha512') | to_uuid }}"

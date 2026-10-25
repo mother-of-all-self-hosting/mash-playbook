@@ -1,0 +1,5 @@
+---
+
+- src: git+https://github.com/mother-of-all-self-hosting/ansible-role-excalidraw-room.git
+  version: v2023.12.15-16
+  name: excalidraw_room

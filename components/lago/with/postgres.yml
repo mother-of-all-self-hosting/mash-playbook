@@ -1,0 +1,5 @@
+---
+
+lago_database_hostname: "{{ postgres_connection_hostname if postgres_enabled else '' }}"
+lago_database_port: "{{ postgres_connection_port if postgres_enabled else '5432' }}"
+lago_database_password: "{{ (mash_playbook_generic_secret_key + ':lago.db') | hash('sha512') | to_uuid }}"

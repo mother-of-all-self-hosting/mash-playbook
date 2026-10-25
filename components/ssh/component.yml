@@ -1,0 +1,9 @@
+---
+
+activation_prefix: system_security_ssh_
+
+setup:
+  priority: 180
+  entry:
+    - when: system_security_ssh_enabled | bool
+      role: galaxy/ssh

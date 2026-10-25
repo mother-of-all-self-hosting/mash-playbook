@@ -1,0 +1,29 @@
+---
+
+# The role enables itself by default. It stays disabled, unless enabled in your inventory.
+promtail_enabled: false
+
+promtail_identifier: "{{ mash_playbook_service_identifier_prefix }}promtail"
+
+promtail_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}promtail"
+
+promtail_uid: "{{ mash_playbook_uid }}"
+promtail_gid: "{{ mash_playbook_gid }}"
+
+promtail_container_additional_networks_auto: |
+  {{
+    (
+      ([loki_container_network] if (loki_enabled | default(false) and loki_container_network | default('') != promtail_container_network) else [])
+      +
+      ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+    ) | unique
+  }}
+
+promtail_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+promtail_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+
+promtail_container_labels_traefik_metrics_enabled: "{{ mash_playbook_metrics_exposure_enabled }}"
+promtail_container_labels_traefik_metrics_hostname: "{{ mash_playbook_metrics_exposure_hostname }}"
+promtail_container_labels_traefik_metrics_path_prefix: "{{ mash_playbook_metrics_exposure_path_prefix }}/{{ promtail_identifier }}"
+promtail_container_labels_traefik_metrics_traefik_middleware_basic_auth_enabled: "{{ mash_playbook_metrics_exposure_http_basic_auth_enabled }}"
+promtail_container_labels_traefik_metrics_traefik_middleware_basic_auth_users: "{{ mash_playbook_metrics_exposure_http_basic_auth_users }}"

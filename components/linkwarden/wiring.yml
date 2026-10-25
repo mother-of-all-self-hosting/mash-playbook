@@ -1,0 +1,32 @@
+---
+
+# The role enables itself by default. It stays disabled, unless enabled in your inventory.
+linkwarden_enabled: false
+
+linkwarden_identifier: "{{ mash_playbook_service_identifier_prefix }}linkwarden"
+
+linkwarden_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}linkwarden"
+
+linkwarden_uid: "{{ mash_playbook_uid }}"
+linkwarden_gid: "{{ mash_playbook_gid }}"
+
+linkwarden_systemd_required_services_list_auto: |
+  {{
+    ([meilisearch_identifier ~ '.service'] if meilisearch_enabled | default(false) else [])
+    +
+    ([postgres_identifier ~ '.service'] if postgres_enabled and (linkwarden_database_hostname == postgres_connection_hostname or linkwarden_database_socket_enabled) else [])
+  }}
+
+linkwarden_container_additional_networks_auto: |
+  {{
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+    +
+    ([meilisearch_container_network] if meilisearch_enabled | default(false) and linkwarden_container_network != meilisearch_container_network else [])
+    +
+    ([postgres_container_network] if postgres_enabled and (linkwarden_database_hostname == postgres_connection_hostname and linkwarden_container_network != postgres_container_network and not linkwarden_database_socket_enabled) else [])
+  }}
+
+linkwarden_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+linkwarden_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+
+linkwarden_environment_variables_nextauth_secret: "{{ (mash_playbook_generic_secret_key + ':linkwarden.na') | hash('sha512') | to_uuid }}"

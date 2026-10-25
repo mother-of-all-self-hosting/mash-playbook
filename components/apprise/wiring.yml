@@ -1,0 +1,26 @@
+---
+
+# The role enables itself by default. It stays disabled, unless enabled in your inventory.
+apprise_enabled: false
+
+apprise_identifier: "{{ mash_playbook_service_identifier_prefix }}apprise"
+
+apprise_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}apprise"
+
+apprise_uid: "{{ mash_playbook_uid }}"
+apprise_gid: "{{ mash_playbook_gid }}"
+
+apprise_container_additional_networks_auto: |
+  {{
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+  }}
+
+# Only enable Traefik labels if a hostname is set (indicating that this will be exposed publicly)
+apprise_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled and apprise_hostname | length > 0 }}"
+apprise_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+
+apprise_container_labels_traefik_metrics_enabled: "{{ mash_playbook_metrics_exposure_enabled }}"
+apprise_container_labels_traefik_metrics_hostname: "{{ mash_playbook_metrics_exposure_hostname }}"
+apprise_container_labels_traefik_metrics_path_prefix: "{{ mash_playbook_metrics_exposure_path_prefix }}/{{ apprise_identifier }}"
+apprise_container_labels_traefik_metrics_middleware_basic_auth_enabled: "{{ mash_playbook_metrics_exposure_http_basic_auth_enabled }}"
+apprise_container_labels_traefik_metrics_middleware_basic_auth_users: "{{ mash_playbook_metrics_exposure_http_basic_auth_users }}"

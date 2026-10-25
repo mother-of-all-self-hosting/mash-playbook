@@ -1,0 +1,5 @@
+---
+
+- src: git+https://github.com/mother-of-all-self-hosting/ansible-role-soft_serve.git
+  version: v0.12.4-0
+  name: soft_serve

@@ -1,0 +1,6 @@
+---
+
+readeck_environment_variables_readeck_mail_host: "{{ exim_relay_identifier if exim_relay_enabled else '' }}"
+readeck_environment_variables_readeck_mail_port: "{{ '8025' if exim_relay_enabled else '587' }}"
+readeck_environment_variables_readeck_mail_insecure: "{{ exim_relay_enabled }}"
+readeck_environment_variables_readeck_mail_fromnoreply: "{{ exim_relay_sender_address if exim_relay_enabled else '' }}"

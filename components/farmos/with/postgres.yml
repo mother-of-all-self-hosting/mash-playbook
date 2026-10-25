@@ -1,0 +1,5 @@
+---
+
+farmos_database_postgres_hostname: "{{ postgres_connection_hostname if postgres_enabled else '' }}"
+farmos_database_postgres_port: "{{ postgres_connection_port if postgres_enabled else '5432' }}"
+farmos_database_postgres_password: "{{ (mash_playbook_generic_secret_key + ':db.farmos.p') | hash('sha512') | to_uuid }}"

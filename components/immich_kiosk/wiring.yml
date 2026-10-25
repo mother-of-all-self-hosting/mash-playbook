@@ -1,0 +1,27 @@
+---
+
+# The role enables itself by default. It stays disabled, unless enabled in your inventory.
+immich_kiosk_enabled: false
+
+immich_kiosk_identifier: "{{ mash_playbook_service_identifier_prefix }}immich-kiosk"
+
+immich_kiosk_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}immich-kiosk"
+
+immich_kiosk_uid: "{{ mash_playbook_uid }}"
+immich_kiosk_gid: "{{ mash_playbook_gid }}"
+
+immich_kiosk_systemd_wanted_services_list_auto: |
+  {{
+    ([immich_identifier ~ '.service'] if immich_enabled | default(false) else [])
+  }}
+
+immich_kiosk_container_additional_networks_auto: |
+  {{
+    ([immich_server_container_network] if immich_enabled | default(false) and immich_kiosk_container_network != immich_server_container_network else [])
+    +
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+  }}
+
+# Only enable Traefik labels if a hostname is set (indicating that this will be exposed publicly)
+immich_kiosk_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled and immich_kiosk_hostname }}"
+immich_kiosk_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"

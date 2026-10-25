@@ -1,0 +1,19 @@
+---
+
+activation_prefix: soft_serve_
+
+# Entries added to other components' lists, while those components are in use
+inject:
+  systemd_service_manager:
+    services:
+      - name: "{{ soft_serve_identifier }}.service"
+        priority: 2000
+        restart_necessary: "{{ soft_serve_restart_necessary | bool }}"
+        groups: [mash, soft-serve]
+        when: "{{ soft_serve_enabled }}"
+  postgres:
+    managed_databases:
+      - name: "{{ soft_serve_database_name }}"
+        username: "{{ soft_serve_database_username }}"
+        password: "{{ soft_serve_database_password }}"
+        when: "{{ soft_serve_enabled and soft_serve_database_hostname == postgres_connection_hostname and soft_serve_database_type == 'postgres' }}"

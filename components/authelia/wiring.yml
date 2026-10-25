@@ -1,0 +1,42 @@
+---
+
+# The role enables itself by default. It stays disabled, unless enabled in your inventory.
+authelia_enabled: false
+
+authelia_identifier: "{{ mash_playbook_service_identifier_prefix }}authelia"
+
+authelia_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}authelia"
+
+authelia_uid: "{{ mash_playbook_uid }}"
+authelia_gid: "{{ mash_playbook_gid }}"
+
+authelia_systemd_required_services_list_auto: |
+  {{
+    ([mariadb_identifier ~ '.service'] if mariadb_enabled | default(false) and (authelia_database_mysql_hostname == mariadb_connection_hostname or authelia_database_mysql_socket_enabled) and authelia_database_type == 'mysql' else [])
+    +
+    ([postgres_identifier ~ '.service'] if postgres_enabled | default(false) and (authelia_database_postgres_hostname == postgres_connection_hostname or authelia_database_postgres_socket_enabled) and authelia_database_type == 'postgres' else [])
+  }}
+
+authelia_container_additional_networks_auto: |
+  {{
+    ([mariadb_container_network] if mariadb_enabled | default(false) and (authelia_database_mysql_hostname == mariadb_connection_hostname and authelia_container_network != mariadb_container_network and not authelia_database_mysql_socket_enabled) and authelia_database_type == 'mysql' else [])
+    +
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+    +
+    ([postgres_container_network] if postgres_enabled | default(false) and (authelia_database_postgres_hostname == postgres_connection_hostname and authelia_container_network != postgres_container_network and not authelia_database_postgres_socket_enabled) and authelia_database_type == 'postgres' else [])
+  }}
+
+authelia_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+authelia_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+
+authelia_container_labels_traefik_metrics_enabled: "{{ authelia_config_telemetry_metrics_enabled and mash_playbook_metrics_exposure_enabled }}"
+authelia_container_labels_traefik_metrics_hostname: "{{ mash_playbook_metrics_exposure_hostname }}"
+authelia_container_labels_traefik_metrics_path_prefix: "{{ mash_playbook_metrics_exposure_path_prefix }}/{{ authelia_identifier }}"
+authelia_container_labels_traefik_metrics_middleware_basic_auth_enabled: "{{ mash_playbook_metrics_exposure_http_basic_auth_enabled }}"
+authelia_container_labels_traefik_metrics_middleware_basic_auth_users: "{{ mash_playbook_metrics_exposure_http_basic_auth_users }}"
+
+authelia_config_jwt_secret: "{{ (mash_playbook_generic_secret_key + ':jwt.authelia') | hash('sha512') | to_uuid }}"
+authelia_config_session_secret: "{{ (mash_playbook_generic_secret_key + ':ses.authelia') | hash('sha512') | to_uuid }}"
+authelia_config_identity_providers_oidc_hmac_secret: "{{ (mash_playbook_generic_secret_key + ':hm.authelia') | hash('sha512') | to_uuid }}"
+
+authelia_config_telemetry_metrics_enabled: "{{ prometheus_enabled | default(false) or mash_playbook_metrics_exposure_enabled }}"

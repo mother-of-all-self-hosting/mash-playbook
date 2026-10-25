@@ -1,0 +1,3 @@
+---
+
+excalidraw_container_image_self_build: "{{ excalidraw_room_enabled }}" # Building the image is necessary for using the self-hosted collaboration server

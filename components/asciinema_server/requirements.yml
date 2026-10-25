@@ -1,0 +1,5 @@
+---
+
+- src: git+https://progressiv.radicle.garden/zcSq6tnVLBUQ88zSRLThc7A7RDZb.git
+  version: v20260626-0
+  name: asciinema_server

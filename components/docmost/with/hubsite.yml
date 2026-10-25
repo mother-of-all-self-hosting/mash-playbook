@@ -1,0 +1,9 @@
+---
+
+# Docmost
+hubsite_service_docmost_enabled: "{{ docmost_enabled }}"
+hubsite_service_docmost_name: "Docmost"
+hubsite_service_docmost_url: "{{ docmost_scheme }}://{{ docmost_hostname }}{{ docmost_path_prefix }}"
+hubsite_service_docmost_logo_location: ""
+hubsite_service_docmost_description: "Open-source collaborative wiki and documentation software"
+hubsite_service_docmost_priority: 1000

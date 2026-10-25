@@ -1,0 +1,29 @@
+---
+
+activation_prefix: mumble_
+
+# Entries added to other components' lists, while those components are in use
+inject:
+  systemd_service_manager:
+    services:
+      - name: "{{ mumble_identifier }}.service"
+        priority: 2000
+        restart_necessary: "{{ mumble_restart_necessary | bool }}"
+        groups: [mash, mumble]
+        when: "{{ mumble_enabled }}"
+  mariadb:
+    managed_databases:
+      - name: "{{ mumble_database_name }}"
+        username: "{{ mumble_database_mysql_username }}"
+        password: "{{ mumble_database_mysql_password }}"
+        when: "{{ mumble_enabled and mumble_database_mysql_hostname == mariadb_connection_hostname and mumble_database_type == 'mysql' }}"
+  postgres:
+    managed_databases:
+      - name: "{{ mumble_database_name }}"
+        username: "{{ mumble_database_postgres_username }}"
+        password: "{{ mumble_database_postgres_password }}"
+        when: "{{ mumble_enabled and mumble_database_postgres_hostname == postgres_connection_hostname and mumble_database_type == 'postgres' }}"
+  traefik:
+    certificate_domains:
+      - hostname: "{{ mumble_hostname }}"
+        when: "{{ mumble_enabled }}"

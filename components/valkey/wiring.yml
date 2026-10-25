@@ -1,0 +1,13 @@
+---
+
+# The role enables itself by default. It stays disabled, unless enabled in your inventory.
+valkey_enabled: false
+
+valkey_identifier: "{{ mash_playbook_service_identifier_prefix }}valkey"
+
+valkey_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}valkey"
+
+valkey_uid: "{{ mash_playbook_uid }}"
+valkey_gid: "{{ mash_playbook_gid }}"
+
+valkey_arch: "{{ mash_playbook_architecture }}"

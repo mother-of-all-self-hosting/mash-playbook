@@ -1,0 +1,5 @@
+---
+
+- src: git+https://github.com/mother-of-all-self-hosting/ansible-role-etcd.git
+  version: v3.7.3-0
+  name: etcd

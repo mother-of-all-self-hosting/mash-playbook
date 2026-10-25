@@ -1,0 +1,11 @@
+---
+
+# The role enables itself by default. It stays disabled, unless enabled in your inventory.
+mongodb_enabled: false
+
+mongodb_identifier: "{{ mash_playbook_service_identifier_prefix }}mongodb"
+
+mongodb_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}mongodb"
+
+mongodb_uid: "{{ mash_playbook_uid }}"
+mongodb_gid: "{{ mash_playbook_gid }}"

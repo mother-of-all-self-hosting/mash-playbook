@@ -1,0 +1,5 @@
+---
+
+- src: git+https://progressiv.radicle.garden/z3PxyXm3EXE4xCNKcaKVKmtdjVNog.git
+  version: v2.12.1-0
+  name: silverbullet

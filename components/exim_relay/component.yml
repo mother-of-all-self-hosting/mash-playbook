@@ -1,0 +1,16 @@
+---
+
+activation_prefix: exim_relay_
+
+setup:
+  priority: 210
+
+# Entries added to other components' lists, while those components are in use
+inject:
+  systemd_service_manager:
+    services:
+      - name: "{{ exim_relay_identifier }}.service"
+        priority: 2000
+        restart_necessary: "{{ exim_relay_restart_necessary | bool }}"
+        groups: [mash, exim-relay]
+        when: "{{ exim_relay_enabled }}"

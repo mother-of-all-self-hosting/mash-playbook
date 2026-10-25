@@ -1,0 +1,6 @@
+---
+
+phpmyadmin_environment_variables_pma_arbitrary: "0"
+phpmyadmin_environment_variables_pma_host: "{{ mariadb_connection_hostname if mariadb_enabled and not phpmyadmin_socket_enabled else '' }}"
+phpmyadmin_environment_variables_pma_port: "{{ mariadb_connection_port if mariadb_enabled else '3306' }}"
+phpmyadmin_socket_path_host: "{{ mariadb_run_path }}"

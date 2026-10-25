@@ -1,0 +1,5 @@
+---
+
+- src: git+https://progressiv.radicle.garden/z4GaYR5FxcSuYuCKovEo9Zfm3HPXc.git
+  version: v1.20.24-0
+  name: copyparty

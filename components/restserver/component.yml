@@ -1,0 +1,13 @@
+---
+
+activation_prefix: restserver_
+
+# Entries added to other components' lists, while those components are in use
+inject:
+  systemd_service_manager:
+    services:
+      - name: "{{ restserver_identifier }}.service"
+        priority: 2000
+        restart_necessary: "{{ restserver_restart_necessary | bool }}"
+        groups: [mash, restserver]
+        when: "{{ restserver_enabled }}"

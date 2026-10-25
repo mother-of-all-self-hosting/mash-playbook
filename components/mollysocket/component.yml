@@ -1,0 +1,13 @@
+---
+
+activation_prefix: mollysocket_
+
+# Entries added to other components' lists, while those components are in use
+inject:
+  systemd_service_manager:
+    services:
+      - name: "{{ mollysocket_identifier }}.service"
+        priority: 2000
+        restart_necessary: "{{ mollysocket_restart_necessary | bool }}"
+        groups: [mash, mollysocket]
+        when: "{{ mollysocket_enabled }}"

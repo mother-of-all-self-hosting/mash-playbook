@@ -1,0 +1,5 @@
+---
+
+kanboard_environment_variables_mail_smtp_hostname: "{{ exim_relay_identifier if exim_relay_enabled else '' }}"
+kanboard_environment_variables_mail_smtp_port: "{{ '8025' if exim_relay_enabled else '587' }}"
+kanboard_environment_variables_mail_from: "{{ exim_relay_sender_address if exim_relay_enabled else '' }}"

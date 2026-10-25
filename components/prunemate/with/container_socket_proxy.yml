@@ -1,0 +1,4 @@
+---
+
+prunemate_docker_endpoint_is_unix_socket: "{{ false if prunemate_docker_endpoint.startswith('tcp://') else true }}"
+prunemate_docker_endpoint: "{{ container_socket_proxy_endpoint if container_socket_proxy_enabled else 'unix:///var/run/docker.sock' }}"

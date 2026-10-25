@@ -1,0 +1,3 @@
+---
+
+gitea_environment_variables_indexer_issue_indexer_conn_str: "http://:{{ meilisearch_default_admin_api_key }}@{{ meilisearch_identifier }}:{{ meilisearch_container_http_port }}"

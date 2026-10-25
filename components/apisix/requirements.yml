@@ -1,0 +1,5 @@
+---
+
+- src: git+https://github.com/mother-of-all-self-hosting/ansible-role-apisix.git
+  version: v3.19.0-2
+  name: apisix

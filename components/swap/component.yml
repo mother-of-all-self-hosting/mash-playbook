@@ -1,0 +1,9 @@
+---
+
+activation_prefix: system_swap_
+
+setup:
+  priority: 190
+  entry:
+    - when: system_swap_enabled | bool
+      role: galaxy/swap

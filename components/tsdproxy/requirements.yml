@@ -1,0 +1,5 @@
+---
+
+- src: git+https://github.com/mother-of-all-self-hosting/ansible-role-tsdproxy.git
+  version: v2.3.4-1
+  name: tsdproxy

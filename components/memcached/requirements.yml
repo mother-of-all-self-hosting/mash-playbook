@@ -1,0 +1,5 @@
+---
+
+- src: git+https://progressiv.radicle.garden/z2arPcue4GZ6G6FY3gZexsJXqHyDs.git
+  version: v1.6.45-0
+  name: memcached

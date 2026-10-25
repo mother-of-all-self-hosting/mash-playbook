@@ -1,0 +1,34 @@
+---
+
+# The role enables itself by default. It stays disabled, unless enabled in your inventory.
+authentik_enabled: false
+
+authentik_identifier: "{{ mash_playbook_service_identifier_prefix }}authentik"
+
+authentik_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}authentik"
+
+authentik_uid: "{{ mash_playbook_uid }}"
+authentik_gid: "{{ mash_playbook_gid }}"
+
+authentik_server_systemd_required_services_list_auto: |
+  {{
+    ([postgres_identifier ~ '.service'] if postgres_enabled and authentik_database_hostname == postgres_connection_hostname else [])
+  }}
+
+authentik_container_additional_networks_auto: |
+  {{
+    ([exim_relay_container_network] if exim_relay_enabled | default(false) and authentik_environment_variables_authentik_email_host == exim_relay_identifier and authentik_container_network != exim_relay_container_network else [])
+    +
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+    +
+    ([postgres_container_network] if postgres_enabled and authentik_database_hostname == postgres_connection_hostname and authentik_container_network != postgres_container_network else [])
+  }}
+
+authentik_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+authentik_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+
+authentik_container_labels_traefik_metrics_enabled: "{{ mash_playbook_metrics_exposure_enabled }}"
+authentik_container_labels_traefik_metrics_hostname: "{{ mash_playbook_metrics_exposure_hostname }}"
+authentik_container_labels_traefik_metrics_path_prefix: "{{ mash_playbook_metrics_exposure_path_prefix }}/{{ authentik_identifier }}"
+authentik_container_labels_traefik_metrics_middleware_basic_auth_enabled: "{{ mash_playbook_metrics_exposure_http_basic_auth_enabled }}"
+authentik_container_labels_traefik_metrics_middleware_basic_auth_users: "{{ mash_playbook_metrics_exposure_http_basic_auth_users }}"

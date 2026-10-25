@@ -1,0 +1,24 @@
+---
+
+# The role enables itself by default. It stays disabled, unless enabled in your inventory.
+vector_enabled: false
+
+vector_identifier: "{{ mash_playbook_service_identifier_prefix }}vector"
+
+vector_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}vector"
+
+vector_uid: "{{ mash_playbook_uid }}"
+vector_gid: "{{ mash_playbook_gid }}"
+
+vector_container_additional_networks_auto: |
+  {{
+    (
+      ([loki_container_network] if (loki_enabled | default(false) and loki_container_network | default('') != vector_container_network) else [])
+      +
+      ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+    ) | unique
+  }}
+
+# Only enable Traefik labels if a hostname is set (indicating that this will be exposed publicly)
+vector_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled and vector_hostname | length > 0 }}"
+vector_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"

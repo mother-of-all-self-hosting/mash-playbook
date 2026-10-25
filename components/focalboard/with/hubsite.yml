@@ -1,0 +1,9 @@
+---
+
+# Focalboard
+hubsite_service_focalboard_enabled: "{{ focalboard_enabled }}"
+hubsite_service_focalboard_name: Focalboard
+hubsite_service_focalboard_url: "https://{{ focalboard_hostname }}{{ focalboard_path_prefix }}"
+hubsite_service_focalboard_logo_location: "{{ role_path }}/assets/focalboard.png"
+hubsite_service_focalboard_description: "An open-source, self-hosted alternative to Trello, Notion, and Asana."
+hubsite_service_focalboard_priority: 1000

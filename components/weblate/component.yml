@@ -1,0 +1,19 @@
+---
+
+activation_prefix: weblate_
+
+# Entries added to other components' lists, while those components are in use
+inject:
+  systemd_service_manager:
+    services:
+      - name: "{{ weblate_identifier }}.service"
+        priority: 2000
+        restart_necessary: "{{ weblate_restart_necessary | bool }}"
+        groups: [mash, weblate]
+        when: "{{ weblate_enabled }}"
+  postgres:
+    managed_databases:
+      - name: "{{ weblate_database_name }}"
+        username: "{{ weblate_database_username }}"
+        password: "{{ weblate_database_password }}"
+        when: "{{ weblate_enabled and (weblate_database_hostname == postgres_connection_hostname or weblate_database_socket_enabled) }}"

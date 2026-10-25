@@ -1,0 +1,33 @@
+---
+
+activation_prefix: etherpad_
+
+# Entries added to other components' lists, while those components are in use
+inject:
+  systemd_service_manager:
+    services:
+      - name: "{{ etherpad_identifier }}.service"
+        priority: 2000
+        restart_necessary: "{{ etherpad_restart_necessary | bool }}"
+        groups: [mash, etherpad]
+        when: "{{ etherpad_enabled }}"
+  hubsite:
+    services:
+      - name: "{{ hubsite_service_etherpad_name }}"
+        url: "{{ hubsite_service_etherpad_url }}"
+        logo_location: "{{ hubsite_service_etherpad_logo_location }}"
+        description: "{{ hubsite_service_etherpad_description }}"
+        priority: "{{ hubsite_service_etherpad_priority }}"
+        when: "{{ hubsite_service_etherpad_enabled }}"
+  mariadb:
+    managed_databases:
+      - name: "{{ etherpad_database_name }}"
+        username: "{{ etherpad_database_mysql_username }}"
+        password: "{{ etherpad_database_mysql_password }}"
+        when: "{{ etherpad_enabled and (etherpad_database_mysql_hostname == mariadb_connection_hostname or etherpad_database_mysql_socket_enabled) and etherpad_database_type == 'mysql' }}"
+  postgres:
+    managed_databases:
+      - name: "{{ etherpad_database_name }}"
+        username: "{{ etherpad_database_postgres_username }}"
+        password: "{{ etherpad_database_postgres_password }}"
+        when: "{{ etherpad_enabled and etherpad_database_postgres_hostname == postgres_connection_hostname and etherpad_database_type == 'postgres' }}"

@@ -1,0 +1,27 @@
+---
+
+activation_prefix: miniflux_
+
+# Entries added to other components' lists, while those components are in use
+inject:
+  systemd_service_manager:
+    services:
+      - name: "{{ miniflux_identifier }}.service"
+        priority: 2000
+        restart_necessary: "{{ miniflux_restart_necessary | bool }}"
+        groups: [mash, miniflux]
+        when: "{{ miniflux_enabled }}"
+  hubsite:
+    services:
+      - name: "{{ hubsite_service_miniflux_name }}"
+        url: "{{ hubsite_service_miniflux_url }}"
+        logo_location: "{{ hubsite_service_miniflux_logo_location }}"
+        description: "{{ hubsite_service_miniflux_description }}"
+        priority: "{{ hubsite_service_miniflux_priority }}"
+        when: "{{ hubsite_service_miniflux_enabled }}"
+  postgres:
+    managed_databases:
+      - name: "{{ miniflux_database_name }}"
+        username: "{{ miniflux_database_username }}"
+        password: "{{ miniflux_database_password }}"
+        when: "{{ miniflux_enabled and (miniflux_database_hostname == postgres_connection_hostname or miniflux_database_socket_enabled) }}"

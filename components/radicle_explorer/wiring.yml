@@ -1,0 +1,19 @@
+---
+
+# The role enables itself by default. It stays disabled, unless enabled in your inventory.
+radicle_explorer_enabled: false
+
+radicle_explorer_identifier: "{{ mash_playbook_service_identifier_prefix }}radicle-explorer"
+
+radicle_explorer_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}radicle-explorer"
+
+radicle_explorer_uid: "{{ mash_playbook_uid }}"
+radicle_explorer_gid: "{{ mash_playbook_gid }}"
+
+radicle_explorer_container_additional_networks_auto: |
+  {{
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+  }}
+
+radicle_explorer_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+radicle_explorer_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"

@@ -1,0 +1,5 @@
+---
+
+- src: git+https://progressiv.radicle.garden/z2Q7Pka6bCT5D6Ng54kT8UcYAcVTC.git
+  version: v0.6.0-0
+  name: openarchiver

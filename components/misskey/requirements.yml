@@ -1,0 +1,5 @@
+---
+
+- src: git+https://github.com/mother-of-all-self-hosting/ansible-role-misskey.git
+  version: v2026.6.0-3
+  name: misskey

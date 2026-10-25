@@ -1,0 +1,34 @@
+---
+
+# The role enables itself by default. It stays disabled, unless enabled in your inventory.
+borg_ui_enabled: false
+
+borg_ui_identifier: "{{ mash_playbook_service_identifier_prefix }}borg-ui"
+
+borg_ui_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}borg-ui"
+
+borg_ui_uid: "{{ mash_playbook_uid }}"
+borg_ui_gid: "{{ mash_playbook_gid }}"
+
+borg_ui_systemd_wanted_services_list_auto: |
+  {{
+    ([apprise_identifier ~ '.service'] if apprise_enabled | default(false) else [])
+  }}
+
+borg_ui_container_additional_networks_auto: |
+  {{
+    ([apprise_container_network] if apprise_enabled | default(false) and borg_ui_container_network != apprise_container_network else [])
+    +
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+  }}
+
+borg_ui_environment_variables_secret_key: "{{ (mash_playbook_generic_secret_key + ':borg_ui') | hash('sha512') | to_uuid }}"
+
+borg_ui_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+borg_ui_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+
+borg_ui_container_labels_traefik_metrics_enabled: "{{ mash_playbook_metrics_exposure_enabled }}"
+borg_ui_container_labels_traefik_metrics_hostname: "{{ mash_playbook_metrics_exposure_hostname }}"
+borg_ui_container_labels_traefik_metrics_path_prefix: "{{ mash_playbook_metrics_exposure_path_prefix }}/{{ borg_ui_identifier }}"
+borg_ui_container_labels_traefik_metrics_middleware_basic_auth_enabled: "{{ mash_playbook_metrics_exposure_http_basic_auth_enabled }}"
+borg_ui_container_labels_traefik_metrics_middleware_basic_auth_users: "{{ mash_playbook_metrics_exposure_http_basic_auth_users }}"

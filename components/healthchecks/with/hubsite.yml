@@ -1,0 +1,9 @@
+---
+
+# Healthchecks
+hubsite_service_healthchecks_enabled: "{{ healthchecks_enabled }}"
+hubsite_service_healthchecks_name: Healthchecks
+hubsite_service_healthchecks_url: "https://{{ healthchecks_hostname }}{{ healthchecks_path_prefix }}"
+hubsite_service_healthchecks_logo_location: "{{ role_path }}/assets/healthchecks.png"
+hubsite_service_healthchecks_description: "A simple and Effective Cron Job Monitoring solution"
+hubsite_service_healthchecks_priority: 1000

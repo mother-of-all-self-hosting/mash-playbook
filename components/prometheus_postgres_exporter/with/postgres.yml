@@ -1,0 +1,6 @@
+---
+
+prometheus_postgres_exporter_database_hostname: "{{ postgres_connection_hostname if postgres_enabled else '' }}"
+prometheus_postgres_exporter_database_port: "{{ postgres_connection_port if postgres_enabled else '5432' }}"
+prometheus_postgres_exporter_database_password: "{{ postgres_connection_password if postgres_enabled else '' }}"
+prometheus_postgres_exporter_database_sslmode: "{{ 'disable' if postgres_enabled and prometheus_postgres_exporter_database_hostname == postgres_connection_hostname else 'prefer' }}"

@@ -1,0 +1,21 @@
+---
+
+activation_prefix: docker_registry_browser_
+
+# Entries added to other components' lists, while those components are in use
+inject:
+  systemd_service_manager:
+    services:
+      - name: "{{ docker_registry_browser_identifier }}.service"
+        priority: 2000
+        restart_necessary: "{{ docker_registry_browser_restart_necessary | bool }}"
+        groups: [mash, docker-registry-browser]
+        when: "{{ docker_registry_browser_enabled }}"
+  hubsite:
+    services:
+      - name: "{{ hubsite_service_docker_registry_browser_name }}"
+        url: "{{ hubsite_service_docker_registry_browser_url }}"
+        logo_location: "{{ hubsite_service_docker_registry_browser_logo_location }}"
+        description: "{{ hubsite_service_docker_registry_browser_description }}"
+        priority: "{{ hubsite_service_docker_registry_browser_priority }}"
+        when: "{{ hubsite_service_docker_registry_browser_enabled }}"

@@ -1,0 +1,47 @@
+---
+
+# The role enables itself by default. It stays disabled, unless enabled in your inventory.
+paperless_enabled: false
+
+paperless_identifier: "{{ mash_playbook_service_identifier_prefix }}paperless"
+
+paperless_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}paperless"
+
+paperless_uid: "{{ mash_playbook_uid }}"
+paperless_gid: "{{ mash_playbook_gid }}"
+
+paperless_systemd_required_services_list_auto: |
+  {{
+    ([mariadb_identifier ~ '.service'] if mariadb_enabled | default(false) and paperless_database_mariadb_hostname == mariadb_connection_hostname and paperless_database_type == 'mariadb' else [])
+    +
+    ([postgres_identifier ~ '.service'] if postgres_enabled | default(false) and (paperless_database_postgres_hostname == postgres_connection_hostname or paperless_database_postgres_socket_enabled) and paperless_database_type == 'postgres' else [])
+  }}
+
+paperless_systemd_wanted_services_list_auto: |
+  {{
+    ([gotenberg_identifier ~ '.service'] if gotenberg_enabled | default(false) and paperless_environment_variables_paperless_tika_enabled | default(false) else [])
+    +
+    ([exim_relay_identifier ~ '.service'] if exim_relay_enabled | default(false) and paperless_environment_variables_paperless_email_host == exim_relay_identifier else [])
+    +
+    ([tika_identifier ~ '.service'] if tika_enabled | default(false) and paperless_environment_variables_paperless_tika_enabled | default(false) else [])
+  }}
+
+paperless_container_additional_networks_auto: |
+  {{
+    ([exim_relay_container_network] if exim_relay_enabled | default(false) and paperless_environment_variables_paperless_email_host == exim_relay_identifier and paperless_container_network != exim_relay_container_network else [])
+    +
+    ([gotenberg_container_network] if gotenberg_enabled | default(false) and paperless_container_network != gotenberg_container_network and paperless_environment_variables_paperless_tika_enabled | default(false) else [])
+    +
+    ([mariadb_container_network] if mariadb_enabled | default(false) and paperless_database_mariadb_hostname == mariadb_connection_hostname and paperless_container_network != mariadb_container_network and paperless_database_type == 'mariadb' else [])
+    +
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+    +
+    ([postgres_container_network] if postgres_enabled | default(false) and (paperless_database_postgres_hostname == postgres_connection_hostname and paperless_container_network != postgres_container_network and not paperless_database_postgres_socket_enabled) and paperless_database_type == 'postgres' else [])
+    +
+    ([tika_container_network] if tika_enabled | default(false) and paperless_container_network != tika_container_network and paperless_environment_variables_paperless_tika_enabled | default(false) else [])
+  }}
+
+paperless_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+paperless_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+
+paperless_environment_variables_paperless_secret_key: "{{ (mash_playbook_generic_secret_key + ':paperless.secret') | hash('sha512') | to_uuid }}"

@@ -1,0 +1,4 @@
+---
+
+mazanoke_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
+mazanoke_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"

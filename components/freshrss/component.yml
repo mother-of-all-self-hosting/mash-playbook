@@ -1,0 +1,33 @@
+---
+
+activation_prefix: freshrss_
+
+# Entries added to other components' lists, while those components are in use
+inject:
+  systemd_service_manager:
+    services:
+      - name: "{{ freshrss_identifier }}.service"
+        priority: 2000
+        restart_necessary: "{{ freshrss_restart_necessary | bool }}"
+        groups: [mash, freshrss]
+        when: "{{ freshrss_enabled }}"
+  hubsite:
+    services:
+      - name: "{{ hubsite_service_freshrss_name }}"
+        url: "{{ hubsite_service_freshrss_url }}"
+        logo_location: "{{ hubsite_service_freshrss_logo_location }}"
+        description: "{{ hubsite_service_freshrss_description }}"
+        priority: "{{ hubsite_service_freshrss_priority }}"
+        when: "{{ hubsite_service_freshrss_enabled }}"
+  mariadb:
+    managed_databases:
+      - name: "{{ freshrss_database_name }}"
+        username: "{{ freshrss_database_mysql_username }}"
+        password: "{{ freshrss_database_mysql_password }}"
+        when: "{{ freshrss_enabled and (freshrss_database_mysql_hostname == mariadb_connection_hostname or freshrss_database_mysql_socket_enabled) and freshrss_database_type == 'mysql' }}"
+  postgres:
+    managed_databases:
+      - name: "{{ freshrss_database_name }}"
+        username: "{{ freshrss_database_postgres_username }}"
+        password: "{{ freshrss_database_postgres_password }}"
+        when: "{{ freshrss_enabled and (freshrss_database_postgres_hostname == postgres_connection_hostname or freshrss_database_postgres_socket_enabled) and freshrss_database_type == 'postgres' }}"

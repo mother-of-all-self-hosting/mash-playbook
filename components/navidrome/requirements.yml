@@ -1,0 +1,5 @@
+---
+
+- src: git+https://github.com/mother-of-all-self-hosting/ansible-role-navidrome.git
+  version: v0.64.2-0
+  name: navidrome

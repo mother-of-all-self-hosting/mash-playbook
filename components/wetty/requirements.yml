@@ -1,0 +1,5 @@
+---
+
+- src: git+https://github.com/mother-of-all-self-hosting/ansible-role-wetty.git
+  version: v3.0.0-5
+  name: wetty

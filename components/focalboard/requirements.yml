@@ -1,0 +1,5 @@
+---
+
+- src: git+https://github.com/mother-of-all-self-hosting/ansible-role-focalboard.git
+  version: v7.11.4-11
+  name: focalboard

@@ -1,0 +1,21 @@
+---
+
+activation_prefix: appsmith_
+
+# Entries added to other components' lists, while those components are in use
+inject:
+  systemd_service_manager:
+    services:
+      - name: "{{ appsmith_identifier }}.service"
+        priority: 2000
+        restart_necessary: "{{ appsmith_restart_necessary | bool }}"
+        groups: [mash, appsmith]
+        when: "{{ appsmith_enabled }}"
+  hubsite:
+    services:
+      - name: "{{ hubsite_service_appsmith_name }}"
+        url: "{{ hubsite_service_appsmith_url }}"
+        logo_location: "{{ hubsite_service_appsmith_logo_location }}"
+        description: "{{ hubsite_service_appsmith_description }}"
+        priority: "{{ hubsite_service_appsmith_priority }}"
+        when: "{{ hubsite_service_appsmith_enabled }}"

@@ -1,0 +1,53 @@
+---
+
+# The role enables itself by default. It stays disabled, unless enabled in your inventory.
+gitea_enabled: false
+
+gitea_identifier: "{{ mash_playbook_service_identifier_prefix }}gitea"
+
+gitea_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}gitea"
+
+gitea_uid: "{{ mash_playbook_uid }}"
+gitea_gid: "{{ mash_playbook_gid }}"
+
+gitea_systemd_required_services_list_auto: |
+  {{
+    ([mariadb_identifier ~ '.service'] if mariadb_enabled | default(false) and (gitea_database_mysql_hostname == mariadb_connection_hostname or gitea_database_mysql_socket_enabled) and gitea_database_type == 'mysql' else [])
+    +
+    ([memcached_identifier ~ '.service'] if memcached_enabled | default(false) and (gitea_config_cache_adapter == 'memcache' or gitea_cache_memcache_socket_enabled) else [])
+    +
+    ([postgres_identifier ~ '.service'] if postgres_enabled | default(false) and (gitea_database_postgres_hostname == postgres_connection_hostname or gitea_database_postgres_socket_enabled) and gitea_database_type == 'postgres' else [])
+  }}
+
+gitea_systemd_wanted_services_list_auto: |
+  {{
+    ([exim_relay_identifier ~ '.service'] if exim_relay_enabled | default(false) and gitea_config_mailer_enabled | default(false) and gitea_config_mailer_smtp_addr == exim_relay_identifier else [])
+    +
+    ([meilisearch_identifier ~ '.service'] if meilisearch_enabled | default(false) and gitea_environment_variables_indexer_issue_indexer_type == 'meilisearch' else [])
+  }}
+
+gitea_container_additional_networks_auto: |
+  {{
+    ([exim_relay_container_network] if exim_relay_enabled | default(false) and gitea_config_mailer_enabled | default(false) and gitea_config_mailer_smtp_addr == exim_relay_identifier and gitea_container_network != exim_relay_container_network else [])
+    +
+    ([mariadb_container_network] if mariadb_enabled | default(false) and (gitea_database_mysql_hostname == mariadb_connection_hostname and gitea_container_network != mariadb_container_network and not gitea_database_mysql_socket_enabled) and gitea_database_type == 'mysql' else [])
+    +
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+    +
+    ([meilisearch_container_network] if meilisearch_enabled | default(false) and gitea_container_network != meilisearch_container_network and gitea_environment_variables_indexer_issue_indexer_type == 'meilisearch' else [])
+    +
+    ([memcached_container_network] if memcached_enabled | default(false) and (gitea_container_network != memcached_container_network and not gitea_cache_memcache_socket_enabled) and gitea_config_cache_adapter == 'memcache' else [])
+    +
+    ([postgres_container_network] if postgres_enabled | default(false) and (gitea_database_postgres_hostname == postgres_connection_hostname and gitea_container_network != postgres_container_network and not gitea_database_postgres_socket_enabled) and gitea_database_type == 'postgres' else [])
+  }}
+
+gitea_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+gitea_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+gitea_container_labels_traefik_compression_middleware_enabled: "{{ mash_playbook_reverse_proxy_traefik_middleware_compession_enabled }}"
+gitea_container_labels_traefik_compression_middleware_name: "{{ mash_playbook_reverse_proxy_traefik_middleware_compession_name if mash_playbook_reverse_proxy_traefik_middleware_compession_enabled else '' }}"
+
+gitea_container_labels_traefik_metrics_enabled: "{{ mash_playbook_metrics_exposure_enabled }}"
+gitea_container_labels_traefik_metrics_hostname: "{{ mash_playbook_metrics_exposure_hostname }}"
+gitea_container_labels_traefik_metrics_path_prefix: "{{ mash_playbook_metrics_exposure_path_prefix }}/{{ gitea_identifier }}"
+gitea_container_labels_traefik_metrics_middleware_basic_auth_enabled: "{{ mash_playbook_metrics_exposure_http_basic_auth_enabled }}"
+gitea_container_labels_traefik_metrics_middleware_basic_auth_users: "{{ mash_playbook_metrics_exposure_http_basic_auth_users }}"

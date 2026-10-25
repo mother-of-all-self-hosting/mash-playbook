@@ -1,0 +1,34 @@
+---
+
+activation_prefix: notfellchen_
+
+# Entries added to other components' lists, while those components are in use
+inject:
+  systemd_service_manager:
+    services:
+      - name: "{{ notfellchen_identifier }}.service"
+        priority: 2000
+        restart_necessary: true
+        groups: [mash, notfellchen]
+        when: "{{ notfellchen_enabled }}"
+      - name: "{{ notfellchen_sws_identifier }}.service"
+        priority: 2000
+        restart_necessary: true
+        groups: [mash, notfellchen, notfellchen-sws]
+        when: "{{ notfellchen_enabled }}"
+      - name: "{{ notfellchen_celery_beat_identifier }}.service"
+        priority: 2000
+        restart_necessary: true
+        groups: [mash, notfellchen]
+        when: "{{ notfellchen_enabled }}"
+      - name: "{{ notfellchen_celery_worker_identifier }}.service"
+        priority: 2000
+        restart_necessary: true
+        groups: [mash, notfellchen]
+        when: "{{ notfellchen_enabled }}"
+  postgres:
+    managed_databases:
+      - name: "{{ notfellchen_database_name }}"
+        username: "{{ notfellchen_database_username }}"
+        password: "{{ notfellchen_database_password }}"
+        when: "{{ notfellchen_enabled and notfellchen_database_host == postgres_connection_hostname and notfellchen_database_type == 'postgresql' }}"

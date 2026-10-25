@@ -1,0 +1,46 @@
+---
+
+# The role enables itself by default. It stays disabled, unless enabled in your inventory.
+databasus_enabled: false
+
+databasus_identifier: "{{ mash_playbook_service_identifier_prefix }}databasus"
+
+databasus_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}databasus"
+
+# databasus runs only as root user
+databasus_uid: 0
+databasus_gid: 0
+
+databasus_systemd_required_services_list_auto: |
+  {{
+    ([mariadb_identifier ~ '.service'] if mariadb_enabled | default(false) else [])
+    +
+    ([mongodb_identifier ~ '.service'] if mongodb_enabled | default(false) else [])
+    +
+    ([postgis_identifier ~ '.service'] if postgis_enabled | default(false) else [])
+    +
+    ([postgres_identifier ~ '.service'] if postgres_enabled | default(false) else [])
+  }}
+
+databasus_systemd_wanted_services_list_auto: |
+  {{
+    ([exim_relay_identifier ~ '.service'] if exim_relay_enabled | default(false) else [])
+  }}
+
+databasus_container_additional_networks_auto: |
+  {{
+    ([exim_relay_container_network] if exim_relay_enabled | default(false) and databasus_container_network != exim_relay_container_network else [])
+    +
+    ([mariadb_container_network] if mariadb_enabled | default(false) and databasus_container_network != mariadb_container_network else [])
+    +
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+    +
+    ([mongodb_container_network] if mongodb_enabled | default(false) and databasus_container_network != mongodb_container_network else [])
+    +
+    ([postgis_container_network] if postgis_enabled | default(false) and databasus_container_network != postgis_container_network else [])
+    +
+    ([postgres_container_network] if postgres_enabled | default(false) and databasus_container_network != postgres_container_network and not databasus_database_postgres_socket_enabled else [])
+  }}
+
+databasus_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+databasus_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"

@@ -1,0 +1,5 @@
+---
+
+- src: git+https://progressiv.radicle.garden/z2nQcYvPh51zfvVu8hkftDYPmELYP.git
+  version: v2.2.0-0
+  name: bichon

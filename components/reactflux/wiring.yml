@@ -1,0 +1,24 @@
+---
+
+# The role enables itself by default. It stays disabled, unless enabled in your inventory.
+reactflux_enabled: false
+
+reactflux_identifier: "{{ mash_playbook_service_identifier_prefix }}reactflux"
+
+reactflux_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}reactflux"
+
+reactflux_uid: "{{ mash_playbook_uid }}"
+reactflux_gid: "{{ mash_playbook_gid }}"
+
+reactflux_systemd_required_services_list_auto: |
+  {{
+    ([miniflux_identifier ~ '.service'] if miniflux_enabled else [])
+  }}
+
+reactflux_container_additional_networks_auto: |
+  {{
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+  }}
+
+reactflux_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+reactflux_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"

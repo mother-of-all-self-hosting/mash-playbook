@@ -1,0 +1,19 @@
+---
+
+activation_prefix: civicrm_
+
+# Entries added to other components' lists, while those components are in use
+inject:
+  systemd_service_manager:
+    services:
+      - name: "{{ civicrm_identifier }}.service"
+        priority: 2000
+        restart_necessary: "{{ civicrm_restart_necessary | bool }}"
+        groups: [mash, civicrm]
+        when: "{{ civicrm_enabled }}"
+  mariadb:
+    managed_databases:
+      - name: "{{ civicrm_database_name }}"
+        username: "{{ civicrm_database_username }}"
+        password: "{{ civicrm_database_password }}"
+        when: "{{ civicrm_enabled and civicrm_database_hostname == mariadb_connection_hostname }}"

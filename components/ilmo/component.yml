@@ -1,0 +1,19 @@
+---
+
+activation_prefix: ilmo_
+
+# Entries added to other components' lists, while those components are in use
+inject:
+  systemd_service_manager:
+    services:
+      - name: "{{ ilmo_identifier }}.service"
+        priority: 2000
+        restart_necessary: true
+        groups: [mash, ilmo]
+        when: "{{ ilmo_enabled }}"
+  postgres:
+    managed_databases:
+      - name: "{{ ilmo_database_name }}"
+        username: "{{ ilmo_database_username }}"
+        password: "{{ ilmo_database_password }}"
+        when: "{{ ilmo_enabled and ilmo_database_host == postgres_connection_hostname and ilmo_database_type == 'postgresql' }}"

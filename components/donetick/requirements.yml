@@ -1,0 +1,5 @@
+---
+
+- src: git+https://progressiv.radicle.garden/z2EKWswSBFJgUQmxEBzi7sb8QyS2r.git
+  version: v0.1.83-0
+  name: donetick

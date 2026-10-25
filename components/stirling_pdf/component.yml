@@ -1,0 +1,13 @@
+---
+
+activation_prefix: stirling_pdf_
+
+# Entries added to other components' lists, while those components are in use
+inject:
+  systemd_service_manager:
+    services:
+      - name: "{{ stirling_pdf_identifier }}.service"
+        priority: 2000
+        restart_necessary: "{{ stirling_pdf_restart_necessary | bool }}"
+        groups: [mash, stirling-pdf]
+        when: "{{ stirling_pdf_enabled }}"

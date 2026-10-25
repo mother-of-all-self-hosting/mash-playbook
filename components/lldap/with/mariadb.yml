@@ -1,0 +1,6 @@
+---
+
+lldap_database_mysql_hostname: "{{ mariadb_connection_hostname if mariadb_enabled and not lldap_database_mysql_socket_enabled else '' }}"
+lldap_database_mysql_port: "{{ mariadb_connection_port if mariadb_enabled else '3306' }}"
+lldap_database_mysql_password: "{{ (mash_playbook_generic_secret_key + ':lldap.db') | hash('sha512') | to_uuid }}"
+lldap_database_mysql_socket_path_host: "{{ mariadb_run_path }}"

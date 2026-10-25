@@ -1,0 +1,5 @@
+---
+
+- src: git+https://github.com/mother-of-all-self-hosting/ansible-role-syncstorage-rs-docker.git
+  version: v0.21.0-10
+  name: syncstorage_rs_docker

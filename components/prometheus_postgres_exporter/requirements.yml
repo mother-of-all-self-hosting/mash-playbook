@@ -1,0 +1,5 @@
+---
+
+- src: git+https://github.com/mother-of-all-self-hosting/ansible-role-prometheus-postgres-exporter.git
+  version: v0.20.1-3
+  name: prometheus_postgres_exporter

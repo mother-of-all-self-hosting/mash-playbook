@@ -1,0 +1,13 @@
+---
+
+activation_prefix: backup_borg_
+
+# Entries added to other components' lists, while those components are in use
+inject:
+  systemd_service_manager:
+    services:
+      - name: "{{ backup_borg_identifier }}.timer"
+        priority: 5000
+        restart_necessary: true
+        groups: [mash, backup, borg]
+        when: "{{ backup_borg_enabled }}"

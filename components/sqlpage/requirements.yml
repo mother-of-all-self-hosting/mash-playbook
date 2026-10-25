@@ -1,0 +1,5 @@
+---
+
+- src: git+https://progressiv.radicle.garden/z2eyt9uovdZtjh8TL5qiyv2PqAYvP.git
+  version: v0.47.0-0
+  name: sqlpage

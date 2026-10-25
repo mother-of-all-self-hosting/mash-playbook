@@ -1,0 +1,21 @@
+---
+
+# The role enables itself by default. It stays disabled, unless enabled in your inventory.
+convertx_enabled: false
+
+convertx_identifier: "{{ mash_playbook_service_identifier_prefix }}convertx"
+
+convertx_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}convertx"
+
+convertx_uid: "{{ mash_playbook_uid }}"
+convertx_gid: "{{ mash_playbook_gid }}"
+
+convertx_container_additional_networks_auto: |
+  {{
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+  }}
+
+convertx_environment_variables_jwt_secret: "{{ (mash_playbook_generic_secret_key + ':jwt.convertx') | hash('sha512') | to_uuid }}"
+
+convertx_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+convertx_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"

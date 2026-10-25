@@ -1,0 +1,19 @@
+---
+
+activation_prefix: open_webui_
+
+# Entries added to other components' lists, while those components are in use
+inject:
+  systemd_service_manager:
+    services:
+      - name: "{{ open_webui_identifier }}.service"
+        priority: 2000
+        restart_necessary: "{{ open_webui_restart_necessary | bool }}"
+        groups: [mash, open-webui]
+        when: "{{ open_webui_enabled }}"
+  postgres:
+    managed_databases:
+      - name: "{{ open_webui_database_name }}"
+        username: "{{ open_webui_database_username }}"
+        password: "{{ open_webui_database_password }}"
+        when: "{{ open_webui_enabled and (open_webui_database_hostname == postgres_connection_hostname or open_webui_database_socket_enabled) and open_webui_database_type == 'postgres' }}"

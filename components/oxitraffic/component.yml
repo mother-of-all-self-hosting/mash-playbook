@@ -1,0 +1,19 @@
+---
+
+activation_prefix: oxitraffic_
+
+# Entries added to other components' lists, while those components are in use
+inject:
+  systemd_service_manager:
+    services:
+      - name: "{{ oxitraffic_identifier }}.service"
+        priority: 2000
+        restart_necessary: "{{ oxitraffic_restart_necessary | bool }}"
+        groups: [mash, oxitraffic]
+        when: "{{ oxitraffic_enabled }}"
+  postgres:
+    managed_databases:
+      - name: "{{ oxitraffic_database_name }}"
+        username: "{{ oxitraffic_database_username }}"
+        password: "{{ oxitraffic_database_password }}"
+        when: "{{ oxitraffic_enabled and (oxitraffic_database_hostname == postgres_connection_hostname or oxitraffic_database_socket_enabled) }}"

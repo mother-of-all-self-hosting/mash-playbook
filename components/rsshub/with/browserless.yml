@@ -1,0 +1,3 @@
+---
+
+rsshub_environment_variables_puppeteer_ws_endpoint: "ws://{{ browserless_identifier }}:{{ browserless_container_http_port }}"

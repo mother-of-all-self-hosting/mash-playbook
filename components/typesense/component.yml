@@ -1,0 +1,13 @@
+---
+
+activation_prefix: typesense_
+
+# Entries added to other components' lists, while those components are in use
+inject:
+  systemd_service_manager:
+    services:
+      - name: "{{ typesense_identifier }}.service"
+        priority: 2000
+        restart_necessary: "{{ typesense_restart_necessary | bool }}"
+        groups: [mash, typesense]
+        when: "{{ typesense_enabled }}"

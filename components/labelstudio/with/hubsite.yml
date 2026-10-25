@@ -1,0 +1,9 @@
+---
+
+# Label Studio
+hubsite_service_labelstudio_enabled: "{{ labelstudio_enabled }}"
+hubsite_service_labelstudio_name: "Label Studio"
+hubsite_service_labelstudio_url: "https://{{ labelstudio_hostname }}{{ labelstudio_path_prefix }}"
+hubsite_service_labelstudio_logo_location: "{{ role_path }}/assets/labelstudio.png"
+hubsite_service_labelstudio_description: "The most flexible data labeling platform to fine-tune LLMs, prepare training data or validate AI models"
+hubsite_service_labelstudio_priority: 1000

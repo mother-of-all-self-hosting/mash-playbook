@@ -1,0 +1,6 @@
+---
+
+ntfy_smtp_sender_enabled: "{{ exim_relay_enabled }}"
+ntfy_smtp_sender_addr_host: "{{ exim_relay_identifier if exim_relay_enabled else '' }}"
+ntfy_smtp_sender_addr_port: "{{ '8025' if exim_relay_enabled else '587' }}"
+ntfy_smtp_sender_from: "{{ exim_relay_sender_address if exim_relay_enabled else '' }}"

@@ -1,0 +1,26 @@
+---
+
+# The role enables itself by default. It stays disabled, unless enabled in your inventory.
+otterwiki_enabled: false
+
+otterwiki_identifier: "{{ mash_playbook_service_identifier_prefix }}otterwiki"
+
+otterwiki_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}otterwiki"
+
+otterwiki_uid: "{{ mash_playbook_uid }}"
+otterwiki_gid: "{{ mash_playbook_gid }}"
+
+otterwiki_systemd_wanted_services_list_auto: |
+  {{
+    ([exim_relay_identifier ~ '.service'] if exim_relay_enabled | default(false) and otterwiki_environment_variables_mail_server == exim_relay_identifier else [])
+  }}
+
+otterwiki_container_additional_networks_auto: |
+  {{
+    ([exim_relay_container_network] if exim_relay_enabled | default(false) and otterwiki_environment_variables_mail_server == exim_relay_identifier and otterwiki_container_network != exim_relay_container_network else [])
+    +
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+  }}
+
+otterwiki_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+otterwiki_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"

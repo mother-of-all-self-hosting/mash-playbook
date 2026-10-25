@@ -1,0 +1,25 @@
+---
+
+activation_prefix: kutt_
+
+# Entries added to other components' lists, while those components are in use
+inject:
+  systemd_service_manager:
+    services:
+      - name: "{{ kutt_identifier }}.service"
+        priority: 2000
+        restart_necessary: "{{ kutt_restart_necessary | bool }}"
+        groups: [mash, kutt]
+        when: "{{ kutt_enabled }}"
+  mariadb:
+    managed_databases:
+      - name: "{{ kutt_database_name }}"
+        username: "{{ kutt_database_mysql_username }}"
+        password: "{{ kutt_database_mysql_password }}"
+        when: "{{ kutt_enabled and kutt_database_mysql_hostname == mariadb_connection_hostname and kutt_database_type == 'mysql' }}"
+  postgres:
+    managed_databases:
+      - name: "{{ kutt_database_name }}"
+        username: "{{ kutt_database_postgres_username }}"
+        password: "{{ kutt_database_postgres_password }}"
+        when: "{{ kutt_enabled and (kutt_database_postgres_hostname == postgres_connection_hostname or kutt_database_postgres_socket_enabled) and kutt_database_type == 'postgres' }}"

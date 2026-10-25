@@ -1,0 +1,13 @@
+---
+
+activation_prefix: prometheus_alertmanager_
+
+# Entries added to other components' lists, while those components are in use
+inject:
+  systemd_service_manager:
+    services:
+      - name: "{{ prometheus_alertmanager_identifier }}.service"
+        priority: 500
+        restart_necessary: "{{ prometheus_alertmanager_restart_necessary | bool }}"
+        groups: [mash, metrics, prometheus-alertmanager]
+        when: "{{ prometheus_alertmanager_enabled }}"

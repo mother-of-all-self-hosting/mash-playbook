@@ -1,0 +1,5 @@
+---
+
+- src: git+https://progressiv.radicle.garden/zA2EcZYaHBzoc3XudvDhVDBjT42a.git
+  version: v4.12.1-0
+  name: inspircd

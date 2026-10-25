@@ -1,0 +1,27 @@
+---
+
+# The role enables itself by default. It stays disabled, unless enabled in your inventory.
+silverbullet_enabled: false
+
+silverbullet_identifier: "{{ mash_playbook_service_identifier_prefix }}silverbullet"
+
+silverbullet_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}silverbullet"
+
+silverbullet_uid: "{{ mash_playbook_uid }}"
+silverbullet_gid: "{{ mash_playbook_gid }}"
+
+silverbullet_container_additional_networks_auto: |
+  {{
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+  }}
+
+silverbullet_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+silverbullet_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+
+silverbullet_container_labels_traefik_metrics_enabled: "{{ silverbullet_metrics_enabled and mash_playbook_metrics_exposure_enabled }}"
+silverbullet_container_labels_traefik_metrics_hostname: "{{ mash_playbook_metrics_exposure_hostname }}"
+silverbullet_container_labels_traefik_metrics_path_prefix: "{{ mash_playbook_metrics_exposure_path_prefix }}/{{ silverbullet_identifier }}"
+silverbullet_container_labels_traefik_metrics_middleware_basic_auth_enabled: "{{ mash_playbook_metrics_exposure_http_basic_auth_enabled }}"
+silverbullet_container_labels_traefik_metrics_middleware_basic_auth_users: "{{ mash_playbook_metrics_exposure_http_basic_auth_users }}"
+
+silverbullet_metrics_enabled: "{{ prometheus_enabled | default(false) or mash_playbook_metrics_exposure_enabled }}"

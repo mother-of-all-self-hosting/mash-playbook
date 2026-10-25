@@ -1,0 +1,27 @@
+---
+
+activation_prefix: focalboard_
+
+# Entries added to other components' lists, while those components are in use
+inject:
+  systemd_service_manager:
+    services:
+      - name: "{{ focalboard_identifier }}.service"
+        priority: 2000
+        restart_necessary: "{{ focalboard_restart_necessary | bool }}"
+        groups: [mash, focalboard]
+        when: "{{ focalboard_enabled }}"
+  hubsite:
+    services:
+      - name: "{{ hubsite_service_focalboard_name }}"
+        url: "{{ hubsite_service_focalboard_url }}"
+        logo_location: "{{ hubsite_service_focalboard_logo_location }}"
+        description: "{{ hubsite_service_focalboard_description }}"
+        priority: "{{ hubsite_service_focalboard_priority }}"
+        when: "{{ hubsite_service_focalboard_enabled }}"
+  postgres:
+    managed_databases:
+      - name: "{{ focalboard_database_name }}"
+        username: "{{ focalboard_database_username }}"
+        password: "{{ focalboard_database_password }}"
+        when: "{{ focalboard_enabled and focalboard_database_hostname == postgres_connection_hostname and focalboard_database_type == 'postgres' }}"

@@ -1,0 +1,14 @@
+---
+
+activation_prefix: devture_playbook_state_preserver_
+
+setup:
+  priority: 9030
+  entry:
+    # This is pretty much last, because we want it to better serve as a "last known good configuration".
+    # See: https://github.com/spantaleev/matrix-docker-ansible-deploy/pull/2217#issuecomment-1301487601
+    - when: devture_playbook_state_preserver_enabled | bool
+      role: galaxy/playbook_state_preserver
+      tags:
+        - setup-all
+        - install-all

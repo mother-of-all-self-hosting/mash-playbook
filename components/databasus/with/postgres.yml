@@ -1,0 +1,3 @@
+---
+
+databasus_database_postgres_socket_path_host: "{{ postgres_run_path }}"

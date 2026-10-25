@@ -1,0 +1,8 @@
+---
+
+funkwhale_database_hostname: "{{ postgres_connection_hostname if postgres_enabled and not funkwhale_database_socket_enabled else '' }}"
+funkwhale_database_port: "{{ postgres_connection_port if postgres_enabled else '5432' }}"
+funkwhale_database_username: "{{ funkwhale_identifier }}"
+funkwhale_database_password: "{{ (mash_playbook_generic_secret_key + ':db.funkwhale') | hash('sha512') | to_uuid }}"
+funkwhale_database_sslmode: "{{ 'disable' if postgres_enabled and (funkwhale_database_hostname == postgres_connection_hostname or funkwhale_database_socket_enabled) else 'prefer' }}"
+funkwhale_database_socket_path_host: "{{ postgres_run_path }}"

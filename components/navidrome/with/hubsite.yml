@@ -1,0 +1,9 @@
+---
+
+# Navidrome
+hubsite_service_navidrome_enabled: "{{ navidrome_enabled }}"
+hubsite_service_navidrome_name: Navidrome
+hubsite_service_navidrome_url: "{{ navidrome_scheme }}://{{ navidrome_hostname }}{{ navidrome_path_prefix }}"
+hubsite_service_navidrome_logo_location: "{{ role_path }}/assets/navidrome.png"
+hubsite_service_navidrome_description: "A Subsonic-API compatible music server"
+hubsite_service_navidrome_priority: 1000

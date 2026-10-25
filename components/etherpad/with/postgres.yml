@@ -1,0 +1,6 @@
+---
+
+etherpad_database_postgres_hostname: "{{ postgres_connection_hostname if postgres_enabled else '' }}"
+etherpad_database_postgres_port: "{{ postgres_connection_port if postgres_enabled else '5432' }}"
+etherpad_database_postgres_username: "{{ etherpad_identifier }}"
+etherpad_database_postgres_password: "{{ (mash_playbook_generic_secret_key + ':db.etherpad') | hash('sha512') | to_uuid }}"

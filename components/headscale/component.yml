@@ -1,0 +1,13 @@
+---
+
+activation_prefix: headscale_
+
+# Entries added to other components' lists, while those components are in use
+inject:
+  systemd_service_manager:
+    services:
+      - name: "{{ headscale_identifier }}.service"
+        priority: 2000
+        restart_necessary: "{{ headscale_restart_necessary | bool }}"
+        groups: [mash, headscale]
+        when: "{{ headscale_enabled }}"

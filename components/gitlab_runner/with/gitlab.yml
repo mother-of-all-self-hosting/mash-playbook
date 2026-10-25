@@ -1,0 +1,3 @@
+---
+
+gitlab_runner_config_gitlab_url: "{{ gitlab_config_external_url if gitlab_enabled else '' }}"

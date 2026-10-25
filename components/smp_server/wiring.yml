@@ -1,0 +1,24 @@
+---
+
+# The role enables itself by default. It stays disabled, unless enabled in your inventory.
+smp_server_enabled: false
+
+smp_server_identifier: "{{ mash_playbook_service_identifier_prefix }}smp-server"
+
+smp_server_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}smp-server"
+
+smp_server_uid: "{{ mash_playbook_uid }}"
+smp_server_gid: "{{ mash_playbook_gid }}"
+
+smp_server_container_additional_networks_auto: |
+  {{
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+  }}
+
+# Disabled by default; this could be set to `true` for serving "Server information page".
+# See: https://simplex.chat/docs/server.html#server-information-page
+smp_server_container_labels_traefik_enabled: false
+smp_server_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+
+smp_server_container_labels_traefik_tcp_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+smp_server_container_labels_traefik_tcp_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"

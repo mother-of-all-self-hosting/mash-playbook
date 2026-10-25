@@ -1,0 +1,6 @@
+---
+
+ihatemoney_database_postgres_hostname: "{{ postgres_connection_hostname if postgres_enabled and not ihatemoney_database_postgres_socket_enabled else '' }}"
+ihatemoney_database_postgres_port: "{{ postgres_connection_port if postgres_enabled else '5432' }}"
+ihatemoney_database_postgres_password: "{{ (mash_playbook_generic_secret_key + ':db.ihatemoney') | hash('sha512') | to_uuid }}"
+ihatemoney_database_postgres_socket_path_host: "{{ postgres_run_path }}"

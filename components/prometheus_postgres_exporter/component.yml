@@ -1,0 +1,19 @@
+---
+
+activation_prefix: prometheus_postgres_exporter_
+
+# Entries added to other components' lists, while those components are in use
+inject:
+  systemd_service_manager:
+    services:
+      - name: "{{ prometheus_postgres_exporter_identifier }}.service"
+        priority: 500
+        restart_necessary: "{{ prometheus_postgres_exporter_restart_necessary | bool }}"
+        groups: [mash, metrics, prometheus-postgres-exporter]
+        when: "{{ prometheus_postgres_exporter_enabled }}"
+  postgres:
+    managed_databases:
+      - name: "{{ prometheus_postgres_exporter_database_name }}"
+        username: "{{ prometheus_postgres_exporter_database_username }}"
+        password: "{{ prometheus_postgres_exporter_database_password }}"
+        when: "{{ prometheus_postgres_exporter_enabled and prometheus_postgres_exporter_database_hostname == postgres_connection_hostname }}"

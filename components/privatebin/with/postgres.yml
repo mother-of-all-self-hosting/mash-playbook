@@ -1,0 +1,6 @@
+---
+
+privatebin_database_postgres_hostname: "{{ postgres_connection_hostname if postgres_enabled and not privatebin_database_postgres_socket_enabled else '' }}"
+privatebin_database_postgres_username: "{{ privatebin_identifier }}"
+privatebin_database_postgres_password: "{{ (mash_playbook_generic_secret_key + ':db.privatebinp') | hash('sha512') | to_uuid }}"
+privatebin_database_postgres_socket_path_host: "{{ postgres_run_path }}"

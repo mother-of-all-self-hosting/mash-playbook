@@ -1,0 +1,5 @@
+---
+
+- src: git+https://github.com/mother-of-all-self-hosting/ansible-role-collabora-online.git
+  version: v26.04.5.2.1-0
+  name: collabora_online

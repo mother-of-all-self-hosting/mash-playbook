@@ -1,0 +1,21 @@
+---
+
+mumble_container_additional_volumes_auto: |
+  {{
+    (
+      [
+       {
+         'src': (traefik_certs_dumper_dumped_certificates_path +  '/' + mumble_hostname + mumble_environment_variables_mumble_config_sslcert),
+         'dst': mumble_environment_variables_mumble_config_sslcert,
+         'options': 'ro',
+       },
+       {
+         'src': (traefik_certs_dumper_dumped_certificates_path +  '/' + mumble_hostname + mumble_environment_variables_mumble_config_sslkey),
+         'dst': mumble_environment_variables_mumble_config_sslkey,
+         'options': 'ro',
+       },
+      ] if traefik_enabled and traefik_certs_dumper_enabled else []
+    )
+  }}
+mumble_environment_variables_mumble_config_sslcert: /certificate.crt
+mumble_environment_variables_mumble_config_sslkey: /privatekey.key

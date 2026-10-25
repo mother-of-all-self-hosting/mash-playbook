@@ -1,0 +1,37 @@
+---
+
+# The role enables itself by default. It stays disabled, unless enabled in your inventory.
+tandoor_enabled: false
+
+tandoor_identifier: "{{ mash_playbook_service_identifier_prefix }}tandoor"
+
+tandoor_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}tandoor"
+
+tandoor_uid: "{{ mash_playbook_uid }}"
+tandoor_gid: "{{ mash_playbook_gid }}"
+
+tandoor_systemd_required_services_list_auto: |
+  {{
+    ([postgres_identifier ~ '.service'] if postgres_enabled and tandoor_database_hostname == postgres_connection_hostname else [])
+  }}
+
+tandoor_systemd_wanted_services_list_auto: |
+  {{
+    ([exim_relay_identifier ~ '.service'] if exim_relay_enabled | default(false) and tandoor_email_host == exim_relay_identifier else [])
+  }}
+
+tandoor_container_additional_networks_auto: |
+  {{
+    (
+      ([exim_relay_container_network] if exim_relay_enabled | default(false) and tandoor_email_host == exim_relay_identifier and tandoor_container_network != exim_relay_container_network else [])
+      +
+      ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+      +
+      ([postgres_container_network] if postgres_enabled and tandoor_database_hostname == postgres_connection_hostname and tandoor_container_network != postgres_container_network else [])
+    ) | unique
+  }}
+
+tandoor_environment_variable_secret: "{{ (mash_playbook_generic_secret_key + ':secret.tandoor') | hash('sha512') | to_uuid }}"
+
+tandoor_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+tandoor_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"

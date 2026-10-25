@@ -1,0 +1,36 @@
+---
+
+# The role enables itself by default. It stays disabled, unless enabled in your inventory.
+teable_enabled: false
+
+teable_identifier: "{{ mash_playbook_service_identifier_prefix }}teable"
+
+teable_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}teable"
+
+# Teable runs only as root
+teable_uid: "0"
+teable_gid: "0"
+
+teable_systemd_required_services_list_auto: |
+  {{
+    ([postgres_identifier ~ '.service'] if postgres_enabled and teable_database_hostname == postgres_connection_hostname else [])
+  }}
+
+teable_systemd_wanted_services_list_auto: |
+  {{
+    ([exim_relay_identifier ~ '.service'] if exim_relay_enabled | default(false) else [])
+  }}
+
+teable_container_additional_networks_auto: |
+  {{
+    ([exim_relay_container_network] if exim_relay_enabled | default(false) and teable_container_network != exim_relay_container_network else [])
+    +
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+    +
+    ([postgres_container_network] if postgres_enabled and teable_database_hostname == postgres_connection_hostname and teable_container_network != postgres_container_network else [])
+  }}
+
+teable_environment_variables_secret_key: "{{ (mash_playbook_generic_secret_key + ':teable.secret') | hash('sha512') | to_uuid }}"
+
+teable_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+teable_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"

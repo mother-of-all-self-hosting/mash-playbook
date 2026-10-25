@@ -1,0 +1,20 @@
+---
+
+# The role enables itself by default. It stays disabled, unless enabled in your inventory.
+filegator_enabled: false
+
+filegator_identifier: "{{ mash_playbook_service_identifier_prefix }}filegator"
+
+filegator_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}filegator"
+
+# Run as www-data:www-data
+filegator_uid: 33
+filegator_gid: 33
+
+filegator_container_additional_networks_auto: |
+  {{
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+  }}
+
+filegator_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+filegator_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"

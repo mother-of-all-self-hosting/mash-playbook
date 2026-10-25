@@ -1,0 +1,47 @@
+---
+
+activation_prefix: funkwhale_
+
+# Entries added to other components' lists, while those components are in use
+inject:
+  systemd_service_manager:
+    services:
+      - name: "{{ funkwhale_api_identifier }}.service"
+        priority: 2000
+        restart_necessary: "{{ funkwhale_restart_necessary | bool }}"
+        groups: [mash, funkwhale]
+        when: "{{ funkwhale_enabled }}"
+      - name: "{{ funkwhale_frontend_identifier }}.service"
+        priority: 2000
+        restart_necessary: "{{ funkwhale_restart_necessary | bool }}"
+        groups: [mash, funkwhale]
+        when: "{{ funkwhale_enabled }}"
+      - name: "{{ funkwhale_celery_beat_identifier }}.service"
+        priority: 2000
+        restart_necessary: "{{ funkwhale_restart_necessary | bool }}"
+        groups: [mash, funkwhale]
+        when: "{{ funkwhale_enabled }}"
+      - name: "{{ funkwhale_celery_worker_identifier }}.service"
+        priority: 2000
+        restart_necessary: "{{ funkwhale_restart_necessary | bool }}"
+        groups: [mash, funkwhale]
+        when: "{{ funkwhale_enabled }}"
+      - name: "{{ funkwhale_watch_imports_identifier }}.service"
+        priority: 2000
+        restart_necessary: "{{ funkwhale_restart_necessary | bool }}"
+        groups: [mash, funkwhale]
+        when: "{{ funkwhale_enabled and funkwhale_watch_imports_enabled }}"
+  hubsite:
+    services:
+      - name: "{{ hubsite_service_funkwhale_name }}"
+        url: "{{ hubsite_service_funkwhale_url }}"
+        logo_location: "{{ hubsite_service_funkwhale_logo_location }}"
+        description: "{{ hubsite_service_funkwhale_description }}"
+        priority: "{{ hubsite_service_funkwhale_priority }}"
+        when: "{{ hubsite_service_funkwhale_enabled }}"
+  postgres:
+    managed_databases:
+      - name: "{{ funkwhale_database_name }}"
+        username: "{{ funkwhale_database_username }}"
+        password: "{{ funkwhale_database_password }}"
+        when: "{{ funkwhale_enabled and (funkwhale_database_hostname == postgres_connection_hostname or funkwhale_database_socket_enabled) }}"

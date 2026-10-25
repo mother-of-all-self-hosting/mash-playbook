@@ -1,0 +1,5 @@
+---
+
+- src: git+https://github.com/mother-of-all-self-hosting/ansible-role-neko.git
+  version: v3.2.0-0
+  name: neko

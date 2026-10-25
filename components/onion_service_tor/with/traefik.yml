@@ -1,0 +1,3 @@
+---
+
+onion_service_tor_container_labels_traefik_entrypoints: "{{ traefik_config_entrypoint_web_name }}"

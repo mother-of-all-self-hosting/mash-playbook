@@ -1,0 +1,23 @@
+---
+
+activation_prefix: syncstorage_rs_docker_
+
+# Entries added to other components' lists, while those components are in use
+inject:
+  systemd_service_manager:
+    services:
+      - name: "{{ syncstorage_rs_docker_identifier }}.service"
+        priority: 2000
+        restart_necessary: "{{ syncstorage_rs_docker_restart_necessary | bool }}"
+        groups: [mash, syncstorage-rs-docker]
+        when: "{{ syncstorage_rs_docker_enabled }}"
+  mariadb:
+    managed_databases:
+      - name: "{{ syncstorage_rs_docker_database_name_syncstorage }}"
+        username: "{{ syncstorage_rs_docker_database_mysql_username }}"
+        password: "{{ syncstorage_rs_docker_database_mysql_password }}"
+        when: "{{ syncstorage_rs_docker_enabled and syncstorage_rs_docker_database_mysql_hostname == mariadb_connection_hostname }}"
+      - name: "{{ syncstorage_rs_docker_database_name_tokenserver }}"
+        username: "{{ syncstorage_rs_docker_database_mysql_username }}"
+        password: "{{ syncstorage_rs_docker_database_mysql_password }}"
+        when: "{{ syncstorage_rs_docker_enabled and syncstorage_rs_docker_database_mysql_hostname == mariadb_connection_hostname }}"

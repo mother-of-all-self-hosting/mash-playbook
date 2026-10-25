@@ -1,0 +1,5 @@
+---
+
+- src: git+https://progressiv.radicle.garden/z2RAnfyxCYZSoUiDufyzTM7P3RvEd.git
+  version: v0.0.0-3
+  name: mermaid

@@ -1,0 +1,19 @@
+---
+
+activation_prefix: pocket_id_
+
+# Entries added to other components' lists, while those components are in use
+inject:
+  systemd_service_manager:
+    services:
+      - name: "{{ pocket_id_identifier }}.service"
+        priority: 2000
+        restart_necessary: "{{ pocket_id_restart_necessary | bool }}"
+        groups: [mash, pocket-id]
+        when: "{{ pocket_id_enabled }}"
+  postgres:
+    managed_databases:
+      - name: "{{ pocket_id_database_name }}"
+        username: "{{ pocket_id_database_username }}"
+        password: "{{ pocket_id_database_password }}"
+        when: "{{ pocket_id_enabled and (pocket_id_database_hostname == postgres_connection_hostname or pocket_id_database_socket_enabled) and pocket_id_database_type == 'postgres' }}"

@@ -1,0 +1,5 @@
+---
+
+- src: git+https://progressiv.radicle.garden/z3HYheWh86U9ErEL18tK2gBkq7g2A.git
+  version: v2.5.0-0
+  name: chiefonboarding

@@ -1,0 +1,13 @@
+---
+
+activation_prefix: nifi_registry_
+
+# Entries added to other components' lists, while those components are in use
+inject:
+  systemd_service_manager:
+    services:
+      - name: "{{ nifi_registry_identifier }}.service"
+        priority: 1900
+        restart_necessary: "{{ nifi_registry_restart_necessary | bool }}"
+        groups: [mash, nifi-registry]
+        when: "{{ nifi_registry_enabled }}"

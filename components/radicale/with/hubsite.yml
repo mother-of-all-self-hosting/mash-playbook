@@ -1,0 +1,9 @@
+---
+
+# Radicale
+hubsite_service_radicale_enabled: "{{ radicale_enabled }}"
+hubsite_service_radicale_name: Radicale
+hubsite_service_radicale_url: "https://{{ radicale_hostname }}{{ radicale_path_prefix }}"
+hubsite_service_radicale_logo_location: "{{ role_path }}/assets/radicale.png"
+hubsite_service_radicale_description: "Sync contacts and calendars"
+hubsite_service_radicale_priority: 1000

@@ -1,0 +1,5 @@
+---
+
+- src: git+https://github.com/mother-of-all-self-hosting/ansible-role-open-webui.git
+  version: v0.12.3-0
+  name: open_webui

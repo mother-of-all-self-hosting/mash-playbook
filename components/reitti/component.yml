@@ -1,0 +1,24 @@
+---
+
+activation_prefix: reitti_
+
+# Entries added to other components' lists, while those components are in use
+inject:
+  systemd_service_manager:
+    services:
+      - name: "{{ reitti_identifier }}.service"
+        priority: 2000
+        restart_necessary: "{{ reitti_restart_necessary | bool }}"
+        groups: [mash, reitti]
+        when: "{{ reitti_enabled }}"
+      - name: "{{ reitti_tilecache_identifier }}.service"
+        priority: 2000
+        restart_necessary: "{{ reitti_restart_necessary | bool }}"
+        groups: [mash, reitti]
+        when: "{{ reitti_enabled }}"
+  postgis:
+    managed_databases:
+      - name: "{{ reitti_database_name }}"
+        username: "{{ reitti_database_username }}"
+        password: "{{ reitti_database_password }}"
+        when: "{{ reitti_enabled and reitti_database_hostname == postgis_connection_hostname }}"

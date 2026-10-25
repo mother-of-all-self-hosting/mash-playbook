@@ -1,0 +1,28 @@
+---
+
+activation_prefix: jitsi_
+
+# Entries added to other components' lists, while those components are in use
+inject:
+  systemd_service_manager:
+    services:
+      - name: "{{ jitsi_identifier }}-web.service"
+        priority: 4200
+        restart_necessary: "{{ jitsi_web_restart_necessary | bool }}"
+        groups: [mash, jitsi, jitsi-web]
+        when: "{{ jitsi_enabled }}"
+      - name: "{{ jitsi_identifier }}-prosody.service"
+        priority: 4000
+        restart_necessary: "{{ jitsi_prosody_restart_necessary | bool }}"
+        groups: [mash, jitsi, jitsi-prosody]
+        when: "{{ jitsi_enabled }}"
+      - name: "{{ jitsi_identifier }}-jicofo.service"
+        priority: 4100
+        restart_necessary: "{{ jitsi_jicofo_restart_necessary | bool }}"
+        groups: [mash, jitsi, jitsi-jicofo]
+        when: "{{ jitsi_enabled }}"
+      - name: "{{ jitsi_identifier }}-jvb.service"
+        priority: 4100
+        restart_necessary: "{{ jitsi_jvb_restart_necessary | bool }}"
+        groups: [mash, jitsi, jitsi-jvb]
+        when: "{{ jitsi_enabled }}"

@@ -1,0 +1,30 @@
+---
+
+# The role enables itself by default. It stays disabled, unless enabled in your inventory.
+apisix_enabled: false
+
+# Deliberately still `apisix-gateway`, even though the role and its variables
+# are now called `apisix`. These name the systemd service, the container, the
+# container network and the data path of every existing installation. Changing
+# them would not rename any of those - it would create a second set beside them
+# and leave the old ones running and unmanaged.
+apisix_identifier: "{{ mash_playbook_service_identifier_prefix }}apisix-gateway"
+
+apisix_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}apisix-gateway"
+
+apisix_uid: "{{ mash_playbook_uid }}"
+apisix_gid: "{{ mash_playbook_gid }}"
+
+apisix_container_additional_networks_auto: |
+  {{
+    ([mash_playbook_reverse_proxyable_services_additional_network] if (mash_playbook_reverse_proxyable_services_additional_network and apisix_container_labels_traefik_enabled) else [])
+  }}
+
+apisix_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+apisix_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+
+apisix_container_labels_traefik_metrics_enabled: "{{ mash_playbook_metrics_exposure_enabled }}"
+apisix_container_labels_traefik_metrics_hostname: "{{ mash_playbook_metrics_exposure_hostname }}"
+apisix_container_labels_traefik_metrics_path_prefix: "{{ mash_playbook_metrics_exposure_path_prefix }}/{{ apisix_identifier }}"
+apisix_container_labels_traefik_metrics_middleware_basic_auth_enabled: "{{ mash_playbook_metrics_exposure_http_basic_auth_enabled }}"
+apisix_container_labels_traefik_metrics_middleware_basic_auth_users: "{{ mash_playbook_metrics_exposure_http_basic_auth_users }}"

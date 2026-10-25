@@ -1,0 +1,13 @@
+---
+
+activation_prefix: calibre_web_
+
+# Entries added to other components' lists, while those components are in use
+inject:
+  systemd_service_manager:
+    services:
+      - name: "{{ calibre_web_identifier }}.service"
+        priority: 2000
+        restart_necessary: "{{ calibre_web_restart_necessary | bool }}"
+        groups: [mash, calibre-web]
+        when: "{{ calibre_web_enabled }}"

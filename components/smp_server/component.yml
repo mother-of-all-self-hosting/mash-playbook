@@ -1,0 +1,25 @@
+---
+
+activation_prefix: smp_server_
+
+# Entries added to other components' lists, while those components are in use
+inject:
+  systemd_service_manager:
+    services:
+      - name: "{{ smp_server_identifier }}.service"
+        priority: 2000
+        restart_necessary: "{{ smp_server_restart_necessary | bool }}"
+        groups: [mash, smp-server]
+        when: "{{ smp_server_enabled }}"
+  traefik:
+    entrypoints:
+      - name: "{{ smp_server_container_labels_traefik_tcp_entrypoints }}"
+        port: "{{ smp_server_container_tcp_port }}"
+        host_bind_port: "{{ smp_server_container_tcp_host_bind_port }}"
+        config:
+          transport:
+            respondingTimeouts:
+              readTimeout: "{{ traefik_config_entrypoint_web_transport_respondingTimeouts_readTimeout }}"
+              writeTimeout: "{{ traefik_config_entrypoint_web_transport_respondingTimeouts_writeTimeout }}"
+              idleTimeout: "{{ traefik_config_entrypoint_web_transport_respondingTimeouts_idleTimeout }}"
+        when: "{{ smp_server_enabled and smp_server_container_labels_traefik_tcp_enabled }}"

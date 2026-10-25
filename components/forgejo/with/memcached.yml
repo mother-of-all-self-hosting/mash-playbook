@@ -1,0 +1,4 @@
+---
+
+forgejo_config_cache_host: "{{ forgejo_cache_memcache_socket_path_container + '/memcached.sock' if forgejo_cache_memcache_socket_enabled else memcached_identifier + ':' + (memcached_container_http_port | string) }}"
+forgejo_cache_memcache_socket_path_host: "{{ memcached_run_path }}"

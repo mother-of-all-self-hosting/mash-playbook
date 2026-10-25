@@ -33,7 +33,7 @@ If it looks good to you, go to the `mash-playbook` directory, and update your pl
 
 If you only update the playbook directory (e.g. with `git pull`), the Ansible roles are installed and updated automatically when you run the playbook with `just`.
 
-If you don't have either `just` tool, you can run the `ansible-galaxy` tool directly: `rm -rf roles/galaxy; ansible-galaxy install -r requirements.yml -p roles/galaxy/ --force`
+If you don't have either `just` tool, generate `setup.yml`, `requirements.yml` and `group_vars/mash_servers/` again as described in [Installing](installing.md), then run the `ansible-galaxy` tool directly: `rm -rf roles/galaxy; ansible-galaxy install -r requirements.yml -p roles/galaxy/ --force`
 
 **Note**: for details about `just` commands, take a look at: [Running `just` commands](just.md).
 

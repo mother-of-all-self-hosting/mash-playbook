@@ -1,0 +1,13 @@
+---
+
+activation_prefix: termix_
+
+# Entries added to other components' lists, while those components are in use
+inject:
+  systemd_service_manager:
+    services:
+      - name: "{{ termix_identifier }}.service"
+        priority: 2000
+        restart_necessary: "{{ termix_restart_necessary | bool }}"
+        groups: [mash, termix]
+        when: "{{ termix_enabled }}"

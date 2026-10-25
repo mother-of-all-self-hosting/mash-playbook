@@ -1,0 +1,5 @@
+---
+
+- src: git+https://github.com/mother-of-all-self-hosting/ansible-role-postgres-backup.git
+  version: v18-5
+  name: postgres_backup

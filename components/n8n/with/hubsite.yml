@@ -1,0 +1,9 @@
+---
+
+# n8n
+hubsite_service_n8n_enabled: "{{ n8n_enabled }}"
+hubsite_service_n8n_name: n8n
+hubsite_service_n8n_url: "{{ n8n_scheme }}://{{ n8n_hostname }}{{ n8n_path_prefix }}"
+hubsite_service_n8n_logo_location: "{{ role_path }}/assets/n8n.png"
+hubsite_service_n8n_description: "Workflow automation for technical people."
+hubsite_service_n8n_priority: 1000

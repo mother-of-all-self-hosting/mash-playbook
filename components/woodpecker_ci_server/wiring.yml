@@ -1,0 +1,35 @@
+---
+
+# The role enables itself by default. It stays disabled, unless enabled in your inventory.
+woodpecker_ci_server_enabled: false
+
+woodpecker_ci_server_identifier: "{{ mash_playbook_service_identifier_prefix }}woodpecker-ci-server"
+
+woodpecker_ci_server_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}woodpecker-ci/server"
+
+woodpecker_ci_server_uid: "{{ mash_playbook_uid }}"
+woodpecker_ci_server_gid: "{{ mash_playbook_gid }}"
+
+woodpecker_ci_server_systemd_required_services_list_auto: |
+  {{
+    ([mariadb_identifier ~ '.service'] if mariadb_enabled | default(false) and (woodpecker_ci_server_database_mysql_hostname == mariadb_connection_hostname or woodpecker_ci_server_database_mysql_socket_enabled) and woodpecker_ci_server_database_type == 'mysql' else [])
+    +
+    ([postgres_identifier ~ '.service'] if postgres_enabled | default(false) and (woodpecker_ci_server_database_postgres_hostname == postgres_connection_hostname or woodpecker_ci_server_database_postgres_socket_enabled) and woodpecker_ci_server_database_type == 'postgres' else [])
+  }}
+
+woodpecker_ci_server_container_additional_networks_auto: |
+  {{
+    (
+      ([mariadb_container_network] if mariadb_enabled | default(false) and (woodpecker_ci_server_database_mysql_hostname == mariadb_connection_hostname and woodpecker_ci_server_container_network != mariadb_container_network and not woodpecker_ci_server_database_mysql_socket_enabled) and woodpecker_ci_server_database_type == 'mysql' else [])
+      +
+      ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+      +
+      ([postgres_container_network] if postgres_enabled | default(false) and (woodpecker_ci_server_database_postgres_hostname == postgres_connection_hostname and woodpecker_ci_server_container_network != postgres_container_network and not woodpecker_ci_server_database_postgres_socket_enabled) and woodpecker_ci_server_database_type == 'postgres' else [])
+    ) | unique
+  }}
+
+woodpecker_ci_server_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+woodpecker_ci_server_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+
+woodpecker_ci_server_container_labels_traefik_compression_middleware_enabled: "{{ mash_playbook_reverse_proxy_traefik_middleware_compession_enabled }}"
+woodpecker_ci_server_container_labels_traefik_compression_middleware_name: "{{ mash_playbook_reverse_proxy_traefik_middleware_compession_name if mash_playbook_reverse_proxy_traefik_middleware_compession_enabled else '' }}"

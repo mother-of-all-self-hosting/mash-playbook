@@ -1,0 +1,6 @@
+---
+
+immich_database_hostname: "{{ postgres_connection_hostname if postgres_enabled else '' }}"
+immich_database_port: "{{ postgres_connection_port if postgres_enabled else '5432' }}"
+immich_database_password: "{{ (mash_playbook_generic_secret_key + ':db.immich') | hash('sha512') | to_uuid }}"
+immich_database_sslmode: "{{ 'disable' if (immich_database_hostname == postgres_connection_hostname | default('mash-postgres')) else 'require' }}"

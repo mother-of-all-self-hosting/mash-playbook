@@ -1,0 +1,5 @@
+---
+
+- src: git+https://github.com/mother-of-all-self-hosting/ansible-role-duplicati.git
+  version: v2.4.0-2
+  name: duplicati

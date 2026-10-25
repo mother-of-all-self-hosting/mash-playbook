@@ -1,0 +1,5 @@
+---
+
+- src: git+https://github.com/mother-of-all-self-hosting/ansible-role-influxdb.git
+  version: v2.9.1-2
+  name: influxdb

@@ -1,0 +1,5 @@
+---
+
+- src: git+https://github.com/mother-of-all-self-hosting/ansible-role-radarr.git
+  version: v6.4.4-7
+  name: radarr

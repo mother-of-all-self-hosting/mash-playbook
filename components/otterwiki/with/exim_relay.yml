@@ -1,0 +1,6 @@
+---
+
+otterwiki_environment_variables_mail_server: "{{ exim_relay_identifier if exim_relay_enabled else '' }}"
+otterwiki_environment_variables_mail_port: "{{ '8025' if exim_relay_enabled else '587' }}"
+otterwiki_environment_variables_mail_use_tls: "{{ false if exim_relay_enabled else true }}"
+otterwiki_environment_variables_mail_default_sender: "{{ exim_relay_sender_address if exim_relay_enabled else '' }}"

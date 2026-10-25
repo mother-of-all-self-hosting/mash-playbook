@@ -1,0 +1,9 @@
+---
+
+# Grafana
+hubsite_service_grafana_enabled: "{{ grafana_enabled }}"
+hubsite_service_grafana_name: Grafana
+hubsite_service_grafana_url: "https://{{ grafana_hostname }}{{ grafana_path_prefix }}"
+hubsite_service_grafana_logo_location: "{{ role_path }}/assets/grafana.png"
+hubsite_service_grafana_description: "Check how your server is doing"
+hubsite_service_grafana_priority: 1000

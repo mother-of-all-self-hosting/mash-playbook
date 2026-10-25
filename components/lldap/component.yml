@@ -1,0 +1,25 @@
+---
+
+activation_prefix: lldap_
+
+# Entries added to other components' lists, while those components are in use
+inject:
+  systemd_service_manager:
+    services:
+      - name: "{{ lldap_identifier }}.service"
+        priority: 2000
+        restart_necessary: "{{ lldap_restart_necessary | bool }}"
+        groups: [mash, lldap]
+        when: "{{ lldap_enabled }}"
+  mariadb:
+    managed_databases:
+      - name: "{{ lldap_database_name }}"
+        username: "{{ lldap_database_mysql_username }}"
+        password: "{{ lldap_database_mysql_password }}"
+        when: "{{ lldap_enabled and (lldap_database_mysql_hostname == mariadb_connection_hostname or lldap_database_mysql_socket_enabled) and lldap_database_type == 'mysql' }}"
+  postgres:
+    managed_databases:
+      - name: "{{ lldap_database_name }}"
+        username: "{{ lldap_database_postgres_username }}"
+        password: "{{ lldap_database_postgres_password }}"
+        when: "{{ lldap_enabled and (lldap_database_postgres_hostname == postgres_connection_hostname or lldap_database_postgres_socket_enabled) and lldap_database_type == 'postgres' }}"

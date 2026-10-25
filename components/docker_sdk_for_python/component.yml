@@ -1,0 +1,14 @@
+---
+
+activation_prefix: devture_docker_sdk_for_python_installation_enabled
+
+setup:
+  priority: 150
+  entry:
+    - when: devture_docker_sdk_for_python_installation_enabled | bool
+      role: galaxy/docker_sdk_for_python
+      tags:
+        - setup-docker
+        - setup-all
+        - install-docker
+        - install-all

@@ -1,0 +1,19 @@
+---
+
+activation_prefix: heyform_
+
+# Entries added to other components' lists, while those components are in use
+inject:
+  systemd_service_manager:
+    services:
+      - name: "{{ heyform_identifier }}.service"
+        priority: 2000
+        restart_necessary: "{{ heyform_restart_necessary | bool }}"
+        groups: [mash, heyform]
+        when: "{{ heyform_enabled }}"
+  mongodb:
+    managed_databases:
+      - name: "{{ heyform_database_name }}"
+        username: "{{ heyform_database_username }}"
+        password: "{{ heyform_database_password }}"
+        when: "{{ heyform_enabled and heyform_database_hostname == mongodb_connection_hostname }}"

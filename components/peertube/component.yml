@@ -1,0 +1,27 @@
+---
+
+activation_prefix: peertube_
+
+# Entries added to other components' lists, while those components are in use
+inject:
+  systemd_service_manager:
+    services:
+      - name: "{{ peertube_identifier }}.service"
+        priority: 2000
+        restart_necessary: "{{ peertube_restart_necessary | bool }}"
+        groups: [mash, peertube]
+        when: "{{ peertube_enabled }}"
+  hubsite:
+    services:
+      - name: "{{ hubsite_service_peertube_name }}"
+        url: "{{ hubsite_service_peertube_url }}"
+        logo_location: "{{ hubsite_service_peertube_logo_location }}"
+        description: "{{ hubsite_service_peertube_description }}"
+        priority: "{{ hubsite_service_peertube_priority }}"
+        when: "{{ hubsite_service_peertube_enabled }}"
+  postgres:
+    managed_databases:
+      - name: "{{ peertube_database_name }}"
+        username: "{{ peertube_database_username }}"
+        password: "{{ peertube_database_password }}"
+        when: "{{ peertube_enabled and (peertube_database_hostname == postgres_connection_hostname or peertube_database_socket_enabled) }}"

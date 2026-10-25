@@ -1,0 +1,13 @@
+---
+
+activation_prefix: etcd_
+
+# Entries added to other components' lists, while those components are in use
+inject:
+  systemd_service_manager:
+    services:
+      - name: "{{ etcd_identifier }}.service"
+        priority: 500
+        restart_necessary: "{{ etcd_restart_necessary | bool }}"
+        groups: [mash, etcd]
+        when: "{{ etcd_enabled }}"

@@ -1,0 +1,9 @@
+---
+
+# Peertube
+hubsite_service_peertube_enabled: "{{ peertube_enabled }}"
+hubsite_service_peertube_name: Peertube
+hubsite_service_peertube_url: "https://{{ peertube_hostname }}{{ peertube_path_prefix }}"
+hubsite_service_peertube_logo_location: "{{ role_path }}/assets/peertube.png"
+hubsite_service_peertube_description: "Watch and upload videos"
+hubsite_service_peertube_priority: 1000

@@ -1,0 +1,5 @@
+---
+
+- src: git+https://progressiv.radicle.garden/z2i8BkHXzRvK1ZtGwHuvLACRswXgA.git
+  version: v0.17.2-0
+  name: writefreely

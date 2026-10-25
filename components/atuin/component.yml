@@ -1,0 +1,19 @@
+---
+
+activation_prefix: atuin_
+
+# Entries added to other components' lists, while those components are in use
+inject:
+  systemd_service_manager:
+    services:
+      - name: "{{ atuin_identifier }}.service"
+        priority: 2000
+        restart_necessary: "{{ atuin_restart_necessary | bool }}"
+        groups: [mash, atuin]
+        when: "{{ atuin_enabled }}"
+  postgres:
+    managed_databases:
+      - name: "{{ atuin_database_name }}"
+        username: "{{ atuin_database_username }}"
+        password: "{{ atuin_database_password }}"
+        when: "{{ atuin_enabled and (atuin_database_hostname == postgres_connection_hostname or atuin_database_socket_enabled) and atuin_database_type == 'postgres' }}"

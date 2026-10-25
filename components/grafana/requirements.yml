@@ -1,0 +1,5 @@
+---
+
+- src: git+https://github.com/mother-of-all-self-hosting/ansible-role-grafana.git
+  version: v13.0.2-7
+  name: grafana

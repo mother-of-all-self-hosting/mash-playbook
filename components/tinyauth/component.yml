@@ -1,0 +1,13 @@
+---
+
+activation_prefix: tinyauth_
+
+# Entries added to other components' lists, while those components are in use
+inject:
+  systemd_service_manager:
+    services:
+      - name: "{{ tinyauth_identifier }}.service"
+        priority: 1900
+        restart_necessary: "{{ tinyauth_restart_necessary | bool }}"
+        groups: [mash, tinyauth]
+        when: "{{ tinyauth_enabled }}"

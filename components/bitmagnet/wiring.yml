@@ -1,0 +1,32 @@
+---
+
+# The role enables itself by default. It stays disabled, unless enabled in your inventory.
+bitmagnet_enabled: false
+
+bitmagnet_identifier: "{{ mash_playbook_service_identifier_prefix }}bitmagnet"
+
+bitmagnet_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}bitmagnet"
+
+bitmagnet_uid: "{{ mash_playbook_uid }}"
+bitmagnet_gid: "{{ mash_playbook_gid }}"
+
+bitmagnet_systemd_required_services_list_auto: |
+  {{
+    ([postgres_identifier ~ '.service'] if postgres_enabled and (bitmagnet_database_hostname == postgres_connection_hostname or bitmagnet_database_socket_enabled) else [])
+  }}
+
+bitmagnet_container_additional_networks_auto: |
+  {{
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+    +
+    ([postgres_container_network] if postgres_enabled and (bitmagnet_database_hostname == postgres_connection_hostname and bitmagnet_container_network != postgres_container_network and not bitmagnet_database_socket_enabled) else [])
+  }}
+
+bitmagnet_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+bitmagnet_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+
+bitmagnet_container_labels_traefik_metrics_enabled: "{{ mash_playbook_metrics_exposure_enabled }}"
+bitmagnet_container_labels_traefik_metrics_hostname: "{{ mash_playbook_metrics_exposure_hostname }}"
+bitmagnet_container_labels_traefik_metrics_path_prefix: "{{ mash_playbook_metrics_exposure_path_prefix }}/{{ bitmagnet_identifier }}"
+bitmagnet_container_labels_traefik_metrics_middleware_basic_auth_enabled: "{{ mash_playbook_metrics_exposure_http_basic_auth_enabled }}"
+bitmagnet_container_labels_traefik_metrics_middleware_basic_auth_users: "{{ mash_playbook_metrics_exposure_http_basic_auth_users }}"

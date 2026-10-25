@@ -1,0 +1,5 @@
+---
+
+- src: git+https://progressiv.radicle.garden/z318zbpe2RNjFqVzXqPoDDJvvohbw.git
+  version: v2.63.23-0
+  name: filebrowser

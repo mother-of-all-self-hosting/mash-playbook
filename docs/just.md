@@ -33,7 +33,7 @@ While [our documentation on prerequisites](prerequisites.md) lists `just` as one
 
 Before running the playbook (e.g. with `just install-all`), the `just` recipes prepare it for your inventory:
 
-- They generate `requirements.yml`, `setup.yml` and `group_vars/mash_servers` from the [templates](../templates), including only the roles of the services enabled in your inventory (its `host_vars` and `group_vars`, as well as the playbook's own `group_vars`). This makes playbook runs faster.
+- They generate `requirements.yml`, `setup.yml` and `group_vars/mash_servers/` from the [components](../components), including only the components of the services enabled in your inventory (its `host_vars` and `group_vars`, as well as the playbook's own `group_vars`). This makes playbook runs faster.
 - They install missing and outdated Ansible roles into `roles/galaxy`, and delete the roles of services which are no longer in use.
 
 You can therefore run the playbook right after editing your `vars.yml` or updating the playbook, without running `just roles` first.

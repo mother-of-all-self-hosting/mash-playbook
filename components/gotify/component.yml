@@ -1,0 +1,25 @@
+---
+
+activation_prefix: gotify_
+
+# Entries added to other components' lists, while those components are in use
+inject:
+  systemd_service_manager:
+    services:
+      - name: "{{ gotify_identifier }}.service"
+        priority: 2000
+        restart_necessary: "{{ gotify_restart_necessary | bool }}"
+        groups: [mash, gotify]
+        when: "{{ gotify_enabled }}"
+  mariadb:
+    managed_databases:
+      - name: "{{ gotify_database_name }}"
+        username: "{{ gotify_database_mysql_username }}"
+        password: "{{ gotify_database_mysql_password }}"
+        when: "{{ gotify_enabled and (gotify_database_mysql_hostname == mariadb_connection_hostname or gotify_database_mysql_socket_enabled) and gotify_database_type == 'mysql' }}"
+  postgres:
+    managed_databases:
+      - name: "{{ gotify_database_name }}"
+        username: "{{ gotify_database_postgres_username }}"
+        password: "{{ gotify_database_postgres_password }}"
+        when: "{{ gotify_enabled and (gotify_database_postgres_hostname == postgres_connection_hostname or gotify_database_postgres_socket_enabled) and gotify_database_type == 'postgres' }}"

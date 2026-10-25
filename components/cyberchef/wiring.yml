@@ -1,0 +1,19 @@
+---
+
+# The role enables itself by default. It stays disabled, unless enabled in your inventory.
+cyberchef_enabled: false
+
+cyberchef_identifier: "{{ mash_playbook_service_identifier_prefix }}cyberchef"
+
+cyberchef_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}cyberchef"
+
+cyberchef_uid: "{{ mash_playbook_uid }}"
+cyberchef_gid: "{{ mash_playbook_gid }}"
+
+cyberchef_container_additional_networks_auto: |
+  {{
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+  }}
+
+cyberchef_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+cyberchef_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"

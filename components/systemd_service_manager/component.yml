@@ -1,0 +1,18 @@
+---
+
+activation_prefix: ''  # Always in use
+
+setup:
+  priority: 9010
+  entry:
+    # This role needs to run after setting up roles for individual services as it restarts them.
+    - when: devture_systemd_service_manager_enabled | bool
+      role: galaxy/systemd_service_manager
+
+# Lists other components can add entries to (via `inject`).
+# The generator puts the entries of the components in use (whose `when` is true) into the `into` variable.
+accepts:
+  services:
+    description: systemd services to manage (start, stop, restart in order of priority)
+    into: devture_systemd_service_manager_services_list_auto
+    required_keys: [groups, name, priority, restart_necessary]

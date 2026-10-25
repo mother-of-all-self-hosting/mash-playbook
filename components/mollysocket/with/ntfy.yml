@@ -1,0 +1,6 @@
+---
+
+mollysocket_environment_variables_molly_allowed_endpoints: |
+  {{
+    (['https://' ~ ntfy_hostname] if ntfy_enabled else [])
+  }}

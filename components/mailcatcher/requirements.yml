@@ -1,0 +1,5 @@
+---
+
+- src: git+https://progressiv.radicle.garden/z3QmarrgiC7ZGmd7UCTW2EZTheCZb.git
+  version: v0.10.0-6
+  name: mailcatcher

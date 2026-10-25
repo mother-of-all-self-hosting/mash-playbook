@@ -1,0 +1,17 @@
+---
+
+activation_prefix: mash_playbook_docker_installation_enabled
+
+setup:
+  priority: 140
+  entry:
+    - when: mash_playbook_docker_installation_enabled | bool
+      role: galaxy/docker
+      vars:
+        docker_install_compose: false
+        docker_install_compose_plugin: false
+      tags:
+        - setup-docker
+        - setup-all
+        - install-docker
+        - install-all

@@ -1,0 +1,4 @@
+---
+
+plausible_clickhouse_database_hostname: "{{ clickhouse_identifier if clickhouse_enabled else '' }}"
+plausible_clickhouse_database_password: "{{ ((mash_playbook_generic_secret_key + ':plaus.clk.db') | hash('sha512') | to_uuid) if clickhouse_enabled else '' }}"

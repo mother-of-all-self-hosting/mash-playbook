@@ -1,0 +1,21 @@
+---
+
+activation_prefix: mongodb_
+
+# Lists other components can add entries to (via `inject`).
+# The generator puts the entries of the components in use (whose `when` is true) into the `into` variable.
+accepts:
+  managed_databases:
+    description: Databases (and users) to create and keep up to date
+    into: mongodb_managed_databases_auto
+    required_keys: [name, password, username]
+
+# Entries added to other components' lists, while those components are in use
+inject:
+  systemd_service_manager:
+    services:
+      - name: "{{ mongodb_identifier }}.service"
+        priority: 2000
+        restart_necessary: "{{ mongodb_restart_necessary | bool }}"
+        groups: [mash, mongodb]
+        when: "{{ mongodb_enabled }}"

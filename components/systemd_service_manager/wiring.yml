@@ -1,0 +1,19 @@
+---
+
+# The systemd_service_manager role supports conditional restart — only restarting services
+# whose configuration or container image actually changed, leaving unchanged services running.
+# This is controlled by `devture_systemd_service_manager_conditional_restart_enabled` (default: true in the role).
+#
+# We override it here to automatically match the intent of the playbook tags being used:
+# - install-* tags (regular upgrades): conditional restart ON — only changed services restart, reducing downtime
+# - setup-* tags (full setup/reconfiguration): conditional restart OFF — all services restart unconditionally
+# - all other runs (e.g. only start/restart tags): conditional restart OFF — targeted services restart unconditionally
+#
+# This ensures consistent behavior whether users invoke the playbook via `just` shortcuts
+# or raw `ansible-playbook --tags=...` commands.
+devture_systemd_service_manager_conditional_restart_enabled: >-
+  {{
+    (ansible_run_tags | select('match', 'install-') | list | length > 0)
+    and
+    (ansible_run_tags | select('match', 'setup-') | list | length == 0)
+  }}

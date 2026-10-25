@@ -1,0 +1,34 @@
+---
+
+# The role enables itself by default. It stays disabled, unless enabled in your inventory.
+bookstack_enabled: false
+
+bookstack_identifier: "{{ mash_playbook_service_identifier_prefix }}bookstack"
+
+bookstack_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}bookstack"
+
+# Run as www-data:www-data
+bookstack_uid: 33
+bookstack_gid: 33
+
+bookstack_systemd_required_services_list_auto: |
+  {{
+    ([mariadb_identifier ~ '.service'] if mariadb_enabled and bookstack_database_hostname == mariadb_connection_hostname else [])
+  }}
+
+bookstack_systemd_wanted_services_list_auto: |
+  {{
+    ([exim_relay_identifier ~ '.service'] if exim_relay_enabled | default(false) and bookstack_environment_variables_mail_driver == 'smtp' else [])
+  }}
+
+bookstack_container_additional_networks_auto: |
+  {{
+    ([exim_relay_container_network] if exim_relay_enabled | default(false) and bookstack_environment_variables_mail_driver == 'smtp' and bookstack_container_network != exim_relay_container_network else [])
+    +
+    ([mariadb_container_network] if mariadb_enabled and bookstack_database_hostname == mariadb_connection_hostname and bookstack_container_network != mariadb_container_network else [])
+    +
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+  }}
+
+bookstack_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+bookstack_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"

@@ -1,0 +1,11 @@
+---
+
+# The role enables itself by default. It stays disabled, unless enabled in your inventory.
+gitlab_runner_enabled: false
+
+gitlab_runner_identifier: "{{ mash_playbook_service_identifier_prefix }}gitlab-runner"
+
+gitlab_runner_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}gitlab-runner"
+
+gitlab_runner_uid: "{{ mash_playbook_uid }}"
+gitlab_runner_gid: "{{ mash_playbook_gid }}"

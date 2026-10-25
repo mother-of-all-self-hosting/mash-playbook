@@ -1,0 +1,4 @@
+---
+
+redmine_email_delivery_smtp_settings_address: "{{ exim_relay_identifier if exim_relay_enabled else '' }}"
+redmine_email_delivery_smtp_settings_port: "{{ '8025' if exim_relay_enabled else '587' }}"

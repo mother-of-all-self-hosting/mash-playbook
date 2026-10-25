@@ -1,0 +1,27 @@
+---
+
+activation_prefix: joplin_server_
+
+# Entries added to other components' lists, while those components are in use
+inject:
+  systemd_service_manager:
+    services:
+      - name: "{{ joplin_server_identifier }}.service"
+        priority: 2000
+        restart_necessary: "{{ joplin_server_restart_necessary | bool }}"
+        groups: [mash, joplin-server]
+        when: "{{ joplin_server_enabled }}"
+  hubsite:
+    services:
+      - name: "{{ hubsite_service_joplin_server_name }}"
+        url: "{{ hubsite_service_joplin_server_url }}"
+        logo_location: "{{ hubsite_service_joplin_server_logo_location }}"
+        description: "{{ hubsite_service_joplin_server_description }}"
+        priority: "{{ hubsite_service_joplin_server_priority }}"
+        when: "{{ hubsite_service_joplin_server_enabled }}"
+  postgres:
+    managed_databases:
+      - name: "{{ joplin_server_database_name }}"
+        username: "{{ joplin_server_database_username }}"
+        password: "{{ joplin_server_database_password }}"
+        when: "{{ joplin_server_enabled and (joplin_server_database_hostname == postgres_connection_hostname or joplin_server_database_socket_enabled) }}"

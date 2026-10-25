@@ -1,0 +1,25 @@
+---
+
+activation_prefix: solidinvoice_
+
+# Entries added to other components' lists, while those components are in use
+inject:
+  systemd_service_manager:
+    services:
+      - name: "{{ solidinvoice_identifier }}.service"
+        priority: 2000
+        restart_necessary: "{{ solidinvoice_restart_necessary | bool }}"
+        groups: [mash, solidinvoice]
+        when: "{{ solidinvoice_enabled }}"
+  mariadb:
+    managed_databases:
+      - name: "{{ solidinvoice_database_name }}"
+        username: "{{ solidinvoice_database_mysql_username }}"
+        password: "{{ solidinvoice_database_mysql_password }}"
+        when: "{{ solidinvoice_enabled and solidinvoice_database_mysql_hostname == mariadb_connection_hostname and solidinvoice_database_type == 'mysql' }}"
+  postgres:
+    managed_databases:
+      - name: "{{ solidinvoice_database_name }}"
+        username: "{{ solidinvoice_database_postgres_username }}"
+        password: "{{ solidinvoice_database_postgres_password }}"
+        when: "{{ solidinvoice_enabled and solidinvoice_database_postgres_hostname == postgres_connection_hostname and solidinvoice_database_type == 'postgres' }}"

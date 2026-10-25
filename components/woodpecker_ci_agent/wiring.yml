@@ -1,0 +1,23 @@
+---
+
+# The role enables itself by default. It stays disabled, unless enabled in your inventory.
+woodpecker_ci_agent_enabled: false
+
+woodpecker_ci_agent_identifier: "{{ mash_playbook_service_identifier_prefix }}woodpecker-ci-agent"
+
+woodpecker_ci_agent_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}woodpecker-ci/agent"
+
+woodpecker_ci_agent_uid: "{{ mash_playbook_uid }}"
+woodpecker_ci_agent_gid: "{{ mash_playbook_gid }}"
+
+woodpecker_ci_agent_systemd_required_services_list_auto: |
+  {{
+    ([woodpecker_ci_server_identifier ~ '.service'] if woodpecker_ci_server_enabled | default(false) else [])
+  }}
+
+woodpecker_ci_agent_container_additional_networks_auto: |
+  {{
+    (
+      ([woodpecker_ci_server_container_network] if woodpecker_ci_server_enabled | default(false) and woodpecker_ci_server_container_network != woodpecker_ci_agent_container_network else [])
+    ) | unique
+  }}

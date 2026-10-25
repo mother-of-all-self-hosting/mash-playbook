@@ -1,0 +1,38 @@
+---
+
+# The role enables itself by default. It stays disabled, unless enabled in your inventory.
+ntfy_enabled: false
+
+ntfy_identifier: "{{ mash_playbook_service_identifier_prefix }}ntfy"
+
+ntfy_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}ntfy"
+
+ntfy_uid: "{{ mash_playbook_uid }}"
+ntfy_gid: "{{ mash_playbook_gid }}"
+
+ntfy_systemd_wanted_services_list_auto: |
+  {{
+    ([exim_relay_identifier ~ '.service'] if exim_relay_enabled | default(false) and ntfy_smtp_sender_enabled | default(false) and ntfy_smtp_sender_addr_host == exim_relay_identifier else [])
+  }}
+
+ntfy_container_additional_networks_auto: |
+  {{
+    ([exim_relay_container_network] if exim_relay_enabled | default(false) and ntfy_smtp_sender_enabled | default(false) and ntfy_smtp_sender_addr_host == exim_relay_identifier and ntfy_container_network != exim_relay_container_network else [])
+    +
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+  }}
+
+ntfy_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+ntfy_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+
+ntfy_container_labels_traefik_metrics_hostname: "{{ mash_playbook_metrics_exposure_hostname }}"
+ntfy_container_labels_traefik_metrics_path_prefix: "{{ mash_playbook_metrics_exposure_path_prefix }}/{{ ntfy_identifier }}"
+ntfy_container_labels_traefik_metrics_middleware_basic_auth_enabled: "{{ mash_playbook_metrics_exposure_http_basic_auth_enabled }}"
+ntfy_container_labels_traefik_metrics_middleware_basic_auth_users: "{{ mash_playbook_metrics_exposure_http_basic_auth_users }}"
+
+ntfy_metrics_default_enabled: "{{ prometheus_enabled | default(false) or mash_playbook_metrics_exposure_enabled }}"
+
+ntfy_visitor_request_limit_exempt_hosts_hostnames_auto: |
+  {{
+    [ntfy_hostname]
+  }}

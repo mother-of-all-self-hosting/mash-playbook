@@ -1,0 +1,9 @@
+---
+
+# ihatemoney
+hubsite_service_ihatemoney_enabled: "{{ ihatemoney_enabled }}"
+hubsite_service_ihatemoney_name: ihatemoney
+hubsite_service_ihatemoney_url: "https://{{ ihatemoney_hostname }}{{ ihatemoney_path_prefix }}"
+hubsite_service_ihatemoney_logo_location: "{{ role_path }}/assets/ihatemoney.png"
+hubsite_service_ihatemoney_description: "Manage your shared expenses, easily"
+hubsite_service_ihatemoney_priority: 1000

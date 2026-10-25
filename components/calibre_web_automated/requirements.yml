@@ -1,0 +1,5 @@
+---
+
+- src: git+https://progressiv.radicle.garden/zSfEaojv4NnFnivPm248Lx123CNe.git
+  version: v4.0.8-0
+  name: calibre_web_automated

@@ -1,0 +1,25 @@
+---
+
+activation_prefix: kanboard_
+
+# Entries added to other components' lists, while those components are in use
+inject:
+  systemd_service_manager:
+    services:
+      - name: "{{ kanboard_identifier }}.service"
+        priority: 2000
+        restart_necessary: "{{ kanboard_restart_necessary | bool }}"
+        groups: [mash, kanboard]
+        when: "{{ kanboard_enabled }}"
+  mariadb:
+    managed_databases:
+      - name: "{{ kanboard_database_name }}"
+        username: "{{ kanboard_database_mysql_username }}"
+        password: "{{ kanboard_database_mysql_password }}"
+        when: "{{ kanboard_enabled and kanboard_database_mysql_hostname == mariadb_connection_hostname and kanboard_database_type == 'mysql' }}"
+  postgres:
+    managed_databases:
+      - name: "{{ kanboard_database_name }}"
+        username: "{{ kanboard_database_postgres_username }}"
+        password: "{{ kanboard_database_postgres_password }}"
+        when: "{{ kanboard_enabled and (kanboard_database_postgres_hostname == postgres_connection_hostname or kanboard_database_postgres_socket_enabled) and kanboard_database_type == 'postgres' }}"

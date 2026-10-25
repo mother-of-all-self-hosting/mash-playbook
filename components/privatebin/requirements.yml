@@ -1,0 +1,5 @@
+---
+
+- src: git+https://github.com/mother-of-all-self-hosting/ansible-role-privatebin.git
+  version: v2.1.0-2
+  name: privatebin

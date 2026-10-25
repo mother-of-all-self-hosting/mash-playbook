@@ -1,0 +1,19 @@
+---
+
+activation_prefix: outline_
+
+# Entries added to other components' lists, while those components are in use
+inject:
+  systemd_service_manager:
+    services:
+      - name: "{{ outline_identifier }}.service"
+        priority: 2000
+        restart_necessary: "{{ outline_restart_necessary | bool }}"
+        groups: [mash, outline]
+        when: "{{ outline_enabled }}"
+  postgres:
+    managed_databases:
+      - name: "{{ outline_database_name }}"
+        username: "{{ outline_database_username }}"
+        password: "{{ outline_database_password }}"
+        when: "{{ outline_enabled and (outline_database_hostname == postgres_connection_hostname or outline_database_socket_enabled) }}"

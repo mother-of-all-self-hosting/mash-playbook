@@ -1,0 +1,5 @@
+---
+
+- src: git+https://github.com/mother-of-all-self-hosting/ansible-role-limesurvey.git
+  version: v7.7.0-0
+  name: limesurvey

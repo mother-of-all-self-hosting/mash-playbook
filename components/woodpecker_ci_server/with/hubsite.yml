@@ -1,0 +1,9 @@
+---
+
+# Woodpecker CI
+hubsite_service_woodpecker_ci_enabled: "{{ woodpecker_ci_server_enabled }}"
+hubsite_service_woodpecker_ci_name: Woodpecker CI
+hubsite_service_woodpecker_ci_url: "{{ woodpecker_ci_server_scheme }}://{{ woodpecker_ci_server_hostname }}"
+hubsite_service_woodpecker_ci_logo_location: "{{ role_path }}/assets/woodpecker.png"
+hubsite_service_woodpecker_ci_description: "Check you CI"
+hubsite_service_woodpecker_ci_priority: 1000

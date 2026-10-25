@@ -1,0 +1,5 @@
+---
+
+barassistant_saltrim_environment_variables_meilisearch_url: "{{ barassistant_server_environment_variables_meilisearch_host }}"
+barassistant_server_environment_variables_meilisearch_host: "{{ meilisearch_scheme }}://{{ meilisearch_hostname }}"
+barassistant_server_environment_variables_meilisearch_key: "{{ meilisearch_default_admin_api_key }}"

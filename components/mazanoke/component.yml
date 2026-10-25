@@ -1,0 +1,13 @@
+---
+
+activation_prefix: mazanoke_
+
+# Entries added to other components' lists, while those components are in use
+inject:
+  systemd_service_manager:
+    services:
+      - name: "{{ mazanoke_identifier }}.service"
+        priority: 2000
+        restart_necessary: "{{ mazanoke_restart_necessary | bool }}"
+        groups: [mash, mazanoke]
+        when: "{{ mazanoke_enabled }}"

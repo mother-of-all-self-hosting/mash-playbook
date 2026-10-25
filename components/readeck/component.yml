@@ -1,0 +1,19 @@
+---
+
+activation_prefix: readeck_
+
+# Entries added to other components' lists, while those components are in use
+inject:
+  systemd_service_manager:
+    services:
+      - name: "{{ readeck_identifier }}.service"
+        priority: 2000
+        restart_necessary: "{{ readeck_restart_necessary | bool }}"
+        groups: [mash, readeck]
+        when: "{{ readeck_enabled }}"
+  postgres:
+    managed_databases:
+      - name: "{{ readeck_database_name }}"
+        username: "{{ readeck_database_username }}"
+        password: "{{ readeck_database_password }}"
+        when: "{{ readeck_enabled and (readeck_database_hostname == postgres_connection_hostname or readeck_database_socket_enabled) and readeck_database_type == 'postgres' }}"

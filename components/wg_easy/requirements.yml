@@ -1,0 +1,5 @@
+---
+
+- src: git+https://github.com/mother-of-all-self-hosting/ansible-role-wg-easy.git
+  version: v15.5.0-0
+  name: wg_easy

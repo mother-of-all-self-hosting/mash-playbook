@@ -1,0 +1,6 @@
+---
+
+radicle_httpd_config_rad_passphrase: "{{ radicle_node_config_rad_passphrase }}"
+radicle_httpd_data_path: "{{ radicle_node_data_path }}" # The Docker volume is shared with `radicle_node`
+radicle_httpd_environment_variables_rad_home: "{{ radicle_node_environment_variables_rad_home }}" # This sets the same value to RAD_HOME as `radicle_node` does
+radicle_httpd_hostname: "{{ radicle_node_hostname }}" # The service is hosted with the same hostname as `radicle_node` is

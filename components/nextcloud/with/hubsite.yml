@@ -1,0 +1,9 @@
+---
+
+# Nextcloud
+hubsite_service_nextcloud_enabled: "{{ nextcloud_enabled }}"
+hubsite_service_nextcloud_name: Nextcloud
+hubsite_service_nextcloud_url: "{{ nextcloud_scheme }}://{{ nextcloud_hostname }}{{ nextcloud_path_prefix }}"
+hubsite_service_nextcloud_logo_location: "{{ role_path }}/assets/nextcloud.png"
+hubsite_service_nextcloud_description: "Sync your files & much more"
+hubsite_service_nextcloud_priority: 1000

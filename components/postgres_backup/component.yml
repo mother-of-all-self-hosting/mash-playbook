@@ -1,0 +1,13 @@
+---
+
+activation_prefix: postgres_backup_
+
+# Entries added to other components' lists, while those components are in use
+inject:
+  systemd_service_manager:
+    services:
+      - name: "{{ postgres_backup_identifier }}.service"
+        priority: 5000
+        restart_necessary: "{{ postgres_backup_restart_necessary | bool }}"
+        groups: [mash, backup, postgres-backup]
+        when: "{{ postgres_backup_enabled }}"

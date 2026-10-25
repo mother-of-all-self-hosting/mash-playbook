@@ -1,0 +1,5 @@
+---
+
+opengist_environment_variables_index: "{{ 'meilisearch' if meilisearch_enabled }}"
+opengist_environment_variables_meili_host: "http://{{ meilisearch_identifier }}:{{ meilisearch_container_http_port }}"
+opengist_environment_variables_meili_api_key: "{{ meilisearch_default_admin_api_key }}"

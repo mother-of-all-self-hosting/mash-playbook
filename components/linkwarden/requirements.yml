@@ -1,0 +1,5 @@
+---
+
+- src: git+https://progressiv.radicle.garden/zQxCS4UUiKpEWtG4RLzjqgA2gYmz.git
+  version: v2.16.3-1
+  name: linkwarden

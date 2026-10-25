@@ -1,0 +1,19 @@
+---
+
+activation_prefix: prunemate_
+
+# Entries added to other components' lists, while those components are in use
+inject:
+  systemd_service_manager:
+    services:
+      - name: "{{ prunemate_identifier }}.service"
+        priority: 2000
+        restart_necessary: "{{ prunemate_restart_necessary | bool }}"
+        groups: [mash, prunemate]
+        when: "{{ prunemate_enabled }}"
+  container_socket_proxy:
+    permissions:
+      # PruneMate requires write access and these APIs for prune operations.
+      # Without `system`, the socket proxy returns a 403 error.
+      - permissions: [write_access, build, containers, images, network, volumes, system]
+        when: "{{ prunemate_enabled and prunemate_docker_endpoint == container_socket_proxy_endpoint }}"

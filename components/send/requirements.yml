@@ -1,0 +1,5 @@
+---
+
+- src: git+https://github.com/mother-of-all-self-hosting/ansible-role-send.git
+  version: v3.5.0-1
+  name: send

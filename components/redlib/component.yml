@@ -1,0 +1,21 @@
+---
+
+activation_prefix: redlib_
+
+# Entries added to other components' lists, while those components are in use
+inject:
+  systemd_service_manager:
+    services:
+      - name: "{{ redlib_identifier }}.service"
+        priority: 2000
+        restart_necessary: "{{ redlib_restart_necessary | bool }}"
+        groups: [mash, redlib]
+        when: "{{ redlib_enabled }}"
+  hubsite:
+    services:
+      - name: "{{ hubsite_service_redlib_name }}"
+        url: "{{ hubsite_service_redlib_url }}"
+        logo_location: "{{ hubsite_service_redlib_logo_location }}"
+        description: "{{ hubsite_service_redlib_description }}"
+        priority: "{{ hubsite_service_redlib_priority }}"
+        when: "{{ hubsite_service_redlib_enabled }}"

@@ -1,0 +1,5 @@
+---
+
+- src: git+https://github.com/mother-of-all-self-hosting/ansible-role-freshrss.git
+  version: v1.30.4-0
+  name: freshrss

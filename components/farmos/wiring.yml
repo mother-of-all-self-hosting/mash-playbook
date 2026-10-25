@@ -1,0 +1,38 @@
+---
+
+# The role enables itself by default. It stays disabled, unless enabled in your inventory.
+farmos_enabled: false
+
+farmos_identifier: "{{ mash_playbook_service_identifier_prefix }}farmos"
+
+farmos_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}farmos"
+
+# farmOS runs as www-data:www-data
+farmos_uid: "33"
+farmos_gid: "33"
+
+farmos_systemd_required_services_list_auto: |
+  {{
+    ([mariadb_identifier ~ '.service'] if mariadb_enabled | default(false) and farmos_database_mysql_hostname == mariadb_connection_hostname and farmos_database_type == 'mysql' else [])
+    +
+    ([postgres_identifier ~ '.service'] if postgres_enabled | default(false) and farmos_database_postgres_hostname == postgres_connection_hostname and farmos_database_type == 'postgres' else [])
+  }}
+
+farmos_systemd_wanted_services_list_auto: |
+  {{
+    ([exim_relay_identifier ~ '.service'] if exim_relay_enabled | default(false) else [])
+  }}
+
+farmos_container_additional_networks_auto: |
+  {{
+    ([exim_relay_container_network] if exim_relay_enabled | default(false) and farmos_container_network != exim_relay_container_network else [])
+    +
+    ([mariadb_container_network] if mariadb_enabled | default(false) and farmos_database_mysql_hostname == mariadb_connection_hostname and farmos_container_network != mariadb_container_network and farmos_database_type == 'mysql' else [])
+    +
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+    +
+    ([postgres_container_network] if postgres_enabled | default(false) and farmos_database_postgres_hostname == postgres_connection_hostname and farmos_container_network != postgres_container_network and farmos_database_type == 'postgres' else [])
+  }}
+
+farmos_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+farmos_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"

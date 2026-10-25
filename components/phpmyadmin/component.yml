@@ -1,0 +1,13 @@
+---
+
+activation_prefix: phpmyadmin_
+
+# Entries added to other components' lists, while those components are in use
+inject:
+  systemd_service_manager:
+    services:
+      - name: "{{ phpmyadmin_identifier }}.service"
+        priority: 2000
+        restart_necessary: "{{ phpmyadmin_restart_necessary | bool }}"
+        groups: [mash, phpmyadmin]
+        when: "{{ phpmyadmin_enabled }}"

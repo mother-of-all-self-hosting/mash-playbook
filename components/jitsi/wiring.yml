@@ -1,0 +1,37 @@
+---
+
+# The role enables itself by default. It stays disabled, unless enabled in your inventory.
+jitsi_enabled: false
+
+jitsi_architecture: "{{ mash_playbook_architecture }}"
+
+jitsi_identifier: "{{ mash_playbook_service_identifier_prefix }}jitsi"
+
+jitsi_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}jitsi"
+
+jitsi_uid: "{{ mash_playbook_uid }}"
+jitsi_gid: "{{ mash_playbook_gid }}"
+
+jitsi_user_username: "{{ mash_playbook_user_name }}"
+
+jitsi_web_container_additional_networks_auto: |
+  {{
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+  }}
+
+jitsi_prosody_container_additional_networks_auto: |
+  {{
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+  }}
+
+jitsi_jvb_container_additional_networks_auto: |
+  {{
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+  }}
+
+jitsi_jibri_xmpp_password: "{{ (mash_playbook_generic_secret_key + ':jibri') | hash('sha512') | to_uuid }}"
+jitsi_jicofo_auth_password: "{{ (mash_playbook_generic_secret_key + ':jicofo') | hash('sha512') | to_uuid }}"
+jitsi_jvb_auth_password: "{{ (mash_playbook_generic_secret_key + ':jvb') | hash('sha512') | to_uuid }}"
+
+jitsi_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+jitsi_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"

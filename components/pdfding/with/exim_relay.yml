@@ -1,0 +1,7 @@
+---
+
+pdfding_environment_variables_email_backend: "{{ 'smtp' if exim_relay_enabled }}"
+pdfding_environment_variables_smtp_host: "{{ exim_relay_identifier if exim_relay_enabled else '' }}"
+pdfding_environment_variables_smtp_port: "{{ '8025' if exim_relay_enabled else '587' }}"
+pdfding_environment_variables_email_address: "{{ exim_relay_sender_address if exim_relay_enabled else '' }}"
+pdfding_environment_variables_smtp_use_tls: "{{ false if exim_relay_enabled else true }}"

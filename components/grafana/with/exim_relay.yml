@@ -1,0 +1,6 @@
+---
+
+grafana_mailer_enabled: "{{ exim_relay_enabled | default(false) }}"
+grafana_config_smtp_host: "{{ exim_relay_identifier if exim_relay_enabled else '' }}"
+grafana_config_smtp_port: "{{ '8025' if exim_relay_enabled else '587' }}"
+grafana_config_smtp_from_address: "{{ exim_relay_sender_address if exim_relay_enabled else '' }}"

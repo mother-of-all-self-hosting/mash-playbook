@@ -1,0 +1,7 @@
+---
+
+pocket_id_ldap_enabled: "{{ lldap_enabled }}"
+# Note these settings are automatically applied only if `pocket_id_environment_variable_ui_config_disabled` is set to `true`.
+# Otherwise, it is still possible to configure SMTP mailer on the Pocket ID's UI.
+pocket_id_environment_variable_ldap_url: ldap://{{ lldap_identifier }}:{{ lldap_container_ldap_port }}
+pocket_id_environment_variable_ldap_skip_cert_verify: true

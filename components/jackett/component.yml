@@ -1,0 +1,13 @@
+---
+
+activation_prefix: jackett_
+
+# Entries added to other components' lists, while those components are in use
+inject:
+  systemd_service_manager:
+    services:
+      - name: "{{ jackett_identifier }}.service"
+        priority: 2000
+        restart_necessary: "{{ jackett_restart_necessary | bool }}"
+        groups: [mash, jackett]
+        when: "{{ jackett_enabled }}"

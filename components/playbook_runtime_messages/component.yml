@@ -1,0 +1,6 @@
+---
+
+activation_prefix: ''  # Always in use
+
+setup:
+  priority: 9040

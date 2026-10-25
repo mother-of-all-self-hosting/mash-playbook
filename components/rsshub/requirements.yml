@@ -1,0 +1,5 @@
+---
+
+- src: git+https://progressiv.radicle.garden/z3yKvCwcEfxn41ozRTcNR8ad6kpUm.git
+  version: v2025.11.04-7
+  name: rsshub

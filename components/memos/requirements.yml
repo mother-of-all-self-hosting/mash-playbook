@@ -1,0 +1,5 @@
+---
+
+- src: git+https://progressiv.radicle.garden/z2UFFCDXMH6Am1K99TaiYP8BJmqaj.git
+  version: v0.31.0-0
+  name: memos

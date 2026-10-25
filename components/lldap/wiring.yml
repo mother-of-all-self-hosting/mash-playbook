@@ -1,0 +1,40 @@
+---
+
+# The role enables itself by default. It stays disabled, unless enabled in your inventory.
+lldap_enabled: false
+
+lldap_identifier: "{{ mash_playbook_service_identifier_prefix }}lldap"
+
+lldap_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}lldap"
+
+lldap_uid: "{{ mash_playbook_uid }}"
+lldap_gid: "{{ mash_playbook_gid }}"
+
+lldap_systemd_required_services_list_auto: |
+  {{
+    ([mariadb_identifier ~ '.service'] if mariadb_enabled | default(false) and (lldap_database_mysql_hostname == mariadb_connection_hostname or lldap_database_mysql_socket_enabled) and lldap_database_type == 'mysql' else [])
+    +
+    ([postgres_identifier ~ '.service'] if postgres_enabled | default(false) and (lldap_database_postgres_hostname == postgres_connection_hostname or lldap_database_postgres_socket_enabled) and lldap_database_type == 'postgres' else [])
+  }}
+
+lldap_systemd_wanted_services_list_auto: |
+  {{
+    ([exim_relay_identifier ~ '.service'] if exim_relay_enabled | default(false) and lldap_environment_variables_smtp_enabled | default(false) and lldap_environment_variables_smtp_host == exim_relay_identifier else [])
+  }}
+
+lldap_container_additional_networks_auto: |
+  {{
+    ([exim_relay_container_network] if exim_relay_enabled | default(false) and lldap_environment_variables_smtp_enabled | default(false) and lldap_environment_variables_smtp_host == exim_relay_identifier and lldap_container_network != exim_relay_container_network else [])
+    +
+    ([mariadb_container_network] if mariadb_enabled | default(false) and (lldap_database_mysql_hostname == mariadb_connection_hostname and lldap_container_network != mariadb_container_network and not lldap_database_mysql_socket_enabled) and lldap_database_type == 'mysql' else [])
+    +
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+    +
+    ([postgres_container_network] if postgres_enabled | default(false) and (lldap_database_postgres_hostname == postgres_connection_hostname and lldap_container_network != postgres_container_network and not lldap_database_postgres_socket_enabled) and lldap_database_type == 'postgres' else [])
+  }}
+
+lldap_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+lldap_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+
+lldap_environment_variables_lldap_jwt_secret: "{{ (mash_playbook_generic_secret_key + ':lldap.jwt') | hash('sha512') | to_uuid }}"
+lldap_environment_variables_lldap_key_seed: "{{ (mash_playbook_generic_secret_key + ':lldap.key') | hash('sha512') | to_uuid }}"

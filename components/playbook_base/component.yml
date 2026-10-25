@@ -1,0 +1,8 @@
+---
+
+activation_prefix: ''  # Always in use
+
+setup:
+  priority: 110
+  entry:
+    - role: mash/playbook_base

@@ -1,0 +1,35 @@
+---
+
+# The role enables itself by default. It stays disabled, unless enabled in your inventory.
+gitlab_enabled: false
+
+gitlab_identifier: "{{ mash_playbook_service_identifier_prefix }}gitlab"
+
+gitlab_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}gitlab"
+
+gitlab_uid: "{{ mash_playbook_uid }}"
+gitlab_gid: "{{ mash_playbook_gid }}"
+
+gitlab_systemd_required_services_list_auto: |
+  {{
+    ([postgres_identifier ~ '.service'] if postgres_enabled | default(false) and (gitlab_database_postgres_hostname == postgres_connection_hostname or gitlab_database_postgres_socket_enabled) and gitlab_database_type == 'postgres' else [])
+  }}
+
+gitlab_systemd_wanted_services_list_auto: |
+  {{
+    ([exim_relay_identifier ~ '.service'] if exim_relay_enabled | default(false) and gitlab_config_smtp_enabled | default(false) and gitlab_config_smtp_address == exim_relay_identifier else [])
+  }}
+
+gitlab_container_additional_networks_auto: |
+  {{
+    ([exim_relay_container_network] if exim_relay_enabled | default(false) and gitlab_config_smtp_enabled | default(false) and gitlab_config_smtp_address == exim_relay_identifier and gitlab_container_network != exim_relay_container_network else [])
+    +
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+    +
+    ([postgres_container_network] if postgres_enabled | default(false) and (gitlab_database_postgres_hostname == postgres_connection_hostname and gitlab_container_network != postgres_container_network and not gitlab_database_postgres_socket_enabled) and gitlab_database_type == 'postgres' else [])
+  }}
+
+gitlab_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+gitlab_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+gitlab_container_labels_traefik_compression_middleware_enabled: "{{ mash_playbook_reverse_proxy_traefik_middleware_compession_enabled }}"
+gitlab_container_labels_traefik_compression_middleware_name: "{{ mash_playbook_reverse_proxy_traefik_middleware_compession_name if mash_playbook_reverse_proxy_traefik_middleware_compession_enabled else '' }}"

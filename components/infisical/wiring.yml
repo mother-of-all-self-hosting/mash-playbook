@@ -1,0 +1,43 @@
+---
+
+# The role enables itself by default. It stays disabled, unless enabled in your inventory.
+infisical_enabled: false
+
+infisical_identifier: "{{ mash_playbook_service_identifier_prefix }}infisical"
+
+infisical_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}infisical"
+
+# Runs as root for managing SSL certificates (along with a master SSL certificate) internally
+infisical_uid: 0
+infisical_gid: 0
+
+infisical_systemd_required_services_list_auto: |
+  {{
+    ([postgres_identifier ~ '.service'] if postgres_enabled and infisical_database_hostname == postgres_connection_hostname else [])
+  }}
+
+infisical_systemd_wanted_services_list_auto: |
+  {{
+    ([exim_relay_identifier ~ '.service'] if exim_relay_enabled | default(false) and infisical_environment_variables_smtp_host == exim_relay_identifier else [])
+  }}
+
+infisical_container_additional_networks_auto: |
+  {{
+    ([exim_relay_container_network] if exim_relay_enabled | default(false) and infisical_environment_variables_smtp_host == exim_relay_identifier and infisical_container_network != exim_relay_container_network else [])
+    +
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+    +
+    ([postgres_container_network] if postgres_enabled and infisical_database_hostname == postgres_connection_hostname and infisical_container_network != postgres_container_network else [])
+  }}
+
+infisical_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+infisical_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+
+infisical_container_labels_traefik_metrics_enabled: "{{ mash_playbook_metrics_exposure_enabled }}"
+infisical_container_labels_traefik_metrics_hostname: "{{ mash_playbook_metrics_exposure_hostname }}"
+infisical_container_labels_traefik_metrics_path_prefix: "{{ mash_playbook_metrics_exposure_path_prefix }}/{{ infisical_identifier }}"
+infisical_container_labels_traefik_metrics_middleware_basic_auth_enabled: "{{ mash_playbook_metrics_exposure_http_basic_auth_enabled }}"
+infisical_container_labels_traefik_metrics_middleware_basic_auth_users: "{{ mash_playbook_metrics_exposure_http_basic_auth_users }}"
+
+infisical_environment_variables_otel_telemetry_collection_enabled: "{{ true if mash_playbook_metrics_exposure_enabled else false }}"
+infisical_environment_variables_otel_export_type: "{{ 'prometheus' if prometheus_enabled | default(false) or mash_playbook_metrics_exposure_enabled else '' }}"

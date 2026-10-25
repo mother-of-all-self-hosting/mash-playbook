@@ -1,0 +1,21 @@
+---
+
+activation_prefix: radicale_
+
+# Entries added to other components' lists, while those components are in use
+inject:
+  systemd_service_manager:
+    services:
+      - name: "{{ radicale_identifier }}.service"
+        priority: 2000
+        restart_necessary: "{{ radicale_restart_necessary | bool }}"
+        groups: [mash, radicale]
+        when: "{{ radicale_enabled }}"
+  hubsite:
+    services:
+      - name: "{{ hubsite_service_radicale_name }}"
+        url: "{{ hubsite_service_radicale_url }}"
+        logo_location: "{{ hubsite_service_radicale_logo_location }}"
+        description: "{{ hubsite_service_radicale_description }}"
+        priority: "{{ hubsite_service_radicale_priority }}"
+        when: "{{ hubsite_service_radicale_enabled }}"

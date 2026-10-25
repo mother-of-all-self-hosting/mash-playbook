@@ -1,0 +1,8 @@
+---
+
+sftpgo_database_postgres_hostname: "{{ postgres_connection_hostname if postgres_enabled and sftpgo_environment_variables_data_provider_driver == 'postgres' else '' }}"
+sftpgo_database_postgres_port: "{{ postgres_connection_port if postgres_enabled and sftpgo_environment_variables_data_provider_driver == 'postgres' else '5432' }}"
+sftpgo_database_postgres_username: "{{ sftpgo_identifier }}"
+sftpgo_database_postgres_password: "{{ (mash_playbook_generic_secret_key + ':db.sftpgo') | hash('sha512') | to_uuid }}"
+sftpgo_database_postgres_sslmode: "{{ 'disable' if postgres_enabled and (sftpgo_database_postgres_hostname == postgres_connection_hostname or sftpgo_database_postgres_socket_enabled) else 'prefer' }}"
+sftpgo_database_postgres_socket_path_host: "{{ postgres_run_path }}"

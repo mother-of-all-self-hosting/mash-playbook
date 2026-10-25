@@ -1,0 +1,3 @@
+---
+
+onlyoffice_docs_environment_variables_amqp_uri: "amqp://{{ rabbitmq_environment_variables_rabbitmq_default_user }}:{{ rabbitmq_environment_variables_rabbitmq_default_pass }}@{{ rabbitmq_identifier }}:{{ rabbitmq_container_http_port }}"

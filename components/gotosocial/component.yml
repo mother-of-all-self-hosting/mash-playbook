@@ -1,0 +1,27 @@
+---
+
+activation_prefix: gotosocial_
+
+# Entries added to other components' lists, while those components are in use
+inject:
+  systemd_service_manager:
+    services:
+      - name: "{{ gotosocial_identifier }}.service"
+        priority: 2000
+        restart_necessary: "{{ gotosocial_restart_necessary | bool }}"
+        groups: [mash, gotosocial]
+        when: "{{ gotosocial_enabled }}"
+  hubsite:
+    services:
+      - name: "{{ hubsite_service_gotosocial_name }}"
+        url: "{{ hubsite_service_gotosocial_url }}"
+        logo_location: "{{ hubsite_service_gotosocial_logo_location }}"
+        description: "{{ hubsite_service_gotosocial_description }}"
+        priority: "{{ hubsite_service_gotosocial_priority }}"
+        when: "{{ hubsite_service_gotosocial_enabled }}"
+  postgres:
+    managed_databases:
+      - name: "{{ gotosocial_database_name }}"
+        username: "{{ gotosocial_database_username }}"
+        password: "{{ gotosocial_database_password }}"
+        when: "{{ gotosocial_enabled and (gotosocial_database_hostname == postgres_connection_hostname or gotosocial_database_socket_enabled) and gotosocial_database_type == 'postgres' }}"

@@ -1,0 +1,5 @@
+---
+
+- src: git+https://github.com/mother-of-all-self-hosting/ansible-role-prometheus-blackbox-exporter.git
+  version: v0.29.1-0
+  name: prometheus_blackbox_exporter

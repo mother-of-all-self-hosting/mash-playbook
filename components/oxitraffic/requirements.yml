@@ -1,0 +1,5 @@
+---
+
+- src: git+https://github.com/mother-of-all-self-hosting/ansible-role-oxitraffic.git
+  version: v0.10.5-8
+  name: oxitraffic

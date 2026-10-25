@@ -1,0 +1,23 @@
+---
+
+container_socket_proxy_enabled: "{{ traefik_enabled }}"
+
+container_socket_proxy_identifier: "{{ mash_playbook_service_identifier_prefix }}container-socket-proxy"
+
+container_socket_proxy_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}container-socket-proxy"
+
+container_socket_proxy_uid: "{{ mash_playbook_uid }}"
+container_socket_proxy_gid: "{{ mash_playbook_gid }}"
+
+# Socket proxy permissions (`container_socket_proxy_write_access_enabled` and `container_socket_proxy_api_*_enabled`)
+# required by services using the socket proxy, which they request via `inject` in their component.yml.
+# Each request lists permission names (e.g. `images`, `write_access`).
+mash_playbook_container_socket_proxy_permissions_auto: "{{ mash_playbook_container_socket_proxy_permission_requests | map(attribute='permissions') | flatten | unique }}"
+
+container_socket_proxy_write_access_enabled: "{{ 'write_access' in mash_playbook_container_socket_proxy_permissions_auto }}"
+container_socket_proxy_api_build_enabled: "{{ 'build' in mash_playbook_container_socket_proxy_permissions_auto }}"
+container_socket_proxy_api_containers_enabled: "{{ 'containers' in mash_playbook_container_socket_proxy_permissions_auto }}"
+container_socket_proxy_api_images_enabled: "{{ 'images' in mash_playbook_container_socket_proxy_permissions_auto }}"
+container_socket_proxy_api_network_enabled: "{{ 'network' in mash_playbook_container_socket_proxy_permissions_auto }}"
+container_socket_proxy_api_system_enabled: "{{ 'system' in mash_playbook_container_socket_proxy_permissions_auto }}"
+container_socket_proxy_api_volumes_enabled: "{{ 'volumes' in mash_playbook_container_socket_proxy_permissions_auto }}"

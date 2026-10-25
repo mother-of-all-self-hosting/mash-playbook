@@ -1,0 +1,39 @@
+---
+
+activation_prefix: lago_
+
+# Entries added to other components' lists, while those components are in use
+inject:
+  systemd_service_manager:
+    services:
+      - name: "{{ lago_identifier }}-api.service"
+        priority: 2000
+        restart_necessary: true
+        groups: [mash, lago, lago-api]
+        when: "{{ lago_enabled }}"
+      - name: "{{ lago_identifier }}-api-worker.service"
+        priority: 2500
+        restart_necessary: true
+        groups: [mash, lago, lago-api-worker]
+        when: "{{ lago_enabled }}"
+      - name: "{{ lago_identifier }}-api-clock.service"
+        priority: 2500
+        restart_necessary: true
+        groups: [mash, lago, lago-api-clock]
+        when: "{{ lago_enabled }}"
+      - name: "{{ lago_identifier }}-front.service"
+        priority: 2200
+        restart_necessary: true
+        groups: [mash, lago, lago-front]
+        when: "{{ lago_enabled }}"
+      - name: "{{ lago_identifier }}-pdf.service"
+        priority: 1900
+        restart_necessary: true
+        groups: [mash, lago, lago-pdf]
+        when: "{{ lago_enabled }}"
+  postgres:
+    managed_databases:
+      - name: "{{ lago_database_name }}"
+        username: "{{ lago_database_username }}"
+        password: "{{ lago_database_password }}"
+        when: "{{ lago_enabled and lago_database_hostname == postgres_connection_hostname }}"

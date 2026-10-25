@@ -1,0 +1,4 @@
+---
+
+tsdproxy_docker_endpoint_is_unix_socket: "{{ false if container_socket_proxy_enabled else true }}"
+tsdproxy_docker_endpoint: "{{ container_socket_proxy_endpoint if container_socket_proxy_enabled == true and tsdproxy_enabled == true else 'unix:///var/run/docker.sock' }}"

@@ -1,0 +1,5 @@
+---
+
+tinyauth_ldap_enabled: "{{ lldap_enabled }}"
+tinyauth_environment_variable_ldap_address: ldap://{{ lldap_identifier }}:{{ lldap_container_ldap_port }}
+tinyauth_environment_variable_ldap_insecure: "{{ lldap_enabled }}"

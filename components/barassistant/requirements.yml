@@ -1,0 +1,5 @@
+---
+
+- src: git+https://progressiv.radicle.garden/z3JDUHjeHMqbZ3YLxquSUbCmAJLi.git
+  version: v6.9.1-0
+  name: barassistant

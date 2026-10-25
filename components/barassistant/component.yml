@@ -1,0 +1,18 @@
+---
+
+activation_prefix: barassistant_
+
+# Entries added to other components' lists, while those components are in use
+inject:
+  systemd_service_manager:
+    services:
+      - name: "{{ barassistant_saltrim_identifier }}.service"
+        priority: 2000
+        restart_necessary: "{{ barassistant_restart_necessary | bool }}"
+        groups: [mash, barassistant]
+        when: "{{ barassistant_enabled }}"
+      - name: "{{ barassistant_server_identifier }}.service"
+        priority: 2000
+        restart_necessary: "{{ barassistant_restart_necessary | bool }}"
+        groups: [mash, barassistant]
+        when: "{{ barassistant_enabled }}"

@@ -1,0 +1,37 @@
+---
+
+activation_prefix: ergo_
+
+# Entries added to other components' lists, while those components are in use
+inject:
+  systemd_service_manager:
+    services:
+      - name: "{{ ergo_identifier }}.service"
+        priority: 2000
+        restart_necessary: "{{ ergo_restart_necessary | bool }}"
+        groups: [mash, ergo]
+        when: "{{ ergo_enabled }}"
+  mariadb:
+    managed_databases:
+      - name: "{{ ergo_database_name_history }}"
+        username: "{{ ergo_database_mysql_username }}"
+        password: "{{ ergo_database_mysql_password }}"
+        when: "{{ ergo_enabled and (ergo_database_mysql_hostname == mariadb_connection_hostname or ergo_database_mysql_socket_enabled) and ergo_config_datastore_enabled and ergo_database_type == 'mysql' }}"
+  postgres:
+    managed_databases:
+      - name: "{{ ergo_database_name_history }}"
+        username: "{{ ergo_database_postgres_username }}"
+        password: "{{ ergo_database_postgres_password }}"
+        when: "{{ ergo_enabled and (ergo_database_postgres_hostname == postgres_connection_hostname or ergo_database_postgres_socket_enabled) and ergo_config_datastore_enabled and ergo_database_type == 'postgres' }}"
+  traefik:
+    entrypoints:
+      - name: "{{ ergo_container_labels_traefik_entrypoints }}"
+        port: "{{ ergo_container_tcp_tls_port }}"
+        host_bind_port: "{{ ergo_container_tcp_tls_host_bind_port }}"
+        config:
+          transport:
+            respondingTimeouts:
+              readTimeout: "{{ traefik_config_entrypoint_web_transport_respondingTimeouts_readTimeout }}"
+              writeTimeout: "{{ traefik_config_entrypoint_web_transport_respondingTimeouts_writeTimeout }}"
+              idleTimeout: "{{ traefik_config_entrypoint_web_transport_respondingTimeouts_idleTimeout }}"
+        when: "{{ ergo_enabled and ergo_container_labels_traefik_enabled }}"

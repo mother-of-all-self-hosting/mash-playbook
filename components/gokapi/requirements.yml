@@ -1,0 +1,5 @@
+---
+
+- src: git+https://progressiv.radicle.garden/z2zryaw72dpp4pRWKK1qvQzsY4qHR.git
+  version: v2.2.4-1
+  name: gokapi

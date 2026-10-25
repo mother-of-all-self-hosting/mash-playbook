@@ -1,0 +1,25 @@
+---
+
+# The role enables itself by default. It stays disabled, unless enabled in your inventory.
+syncthing_enabled: false
+
+syncthing_identifier: "{{ mash_playbook_service_identifier_prefix }}syncthing"
+
+syncthing_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}syncthing"
+
+syncthing_uid: "{{ mash_playbook_uid }}"
+syncthing_gid: "{{ mash_playbook_gid }}"
+
+syncthing_container_additional_networks_auto: |
+  {{
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+  }}
+
+syncthing_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+syncthing_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+
+syncthing_container_labels_traefik_metrics_enabled: "{{ mash_playbook_metrics_exposure_enabled }}"
+syncthing_container_labels_traefik_metrics_hostname: "{{ mash_playbook_metrics_exposure_hostname }}"
+syncthing_container_labels_traefik_metrics_path_prefix: "{{ mash_playbook_metrics_exposure_path_prefix }}/{{ syncthing_identifier }}"
+syncthing_container_labels_traefik_metrics_middleware_basic_auth_enabled: "{{ mash_playbook_metrics_exposure_http_basic_auth_enabled }}"
+syncthing_container_labels_traefik_metrics_middleware_basic_auth_users: "{{ mash_playbook_metrics_exposure_http_basic_auth_users }}"

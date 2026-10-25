@@ -1,0 +1,6 @@
+---
+
+paperless_database_mariadb_hostname: "{{ mariadb_connection_hostname if mariadb_enabled else '' }}"
+paperless_database_mariadb_port: "{{ mariadb_connection_port if mariadb_enabled else '3306' }}"
+paperless_database_mariadb_password: "{{ (mash_playbook_generic_secret_key + ':db.paperlesm') | hash('sha512') | to_uuid }}"
+paperless_database_mariadb_sslmode: "{{ 'DISABLED' if mariadb_enabled and paperless_database_mariadb_hostname == mariadb_connection_hostname else 'PREFERRED' }}"

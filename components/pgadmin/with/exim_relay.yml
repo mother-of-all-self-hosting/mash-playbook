@@ -1,0 +1,6 @@
+---
+
+pgadmin_environment_variables_pgadmin_disable_postfix: "{{ exim_relay_enabled }}"
+pgadmin_environment_variables_pgadmin_config_mail_server: "{{ exim_relay_identifier if exim_relay_enabled else '' }}"
+pgadmin_environment_variables_pgadmin_config_mail_port: "{{ '8025' if exim_relay_enabled else '587' }}"
+pgadmin_environment_variables_pgadmin_config_security_email_sender: "{{ exim_relay_sender_address if exim_relay_enabled else '' }}"

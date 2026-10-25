@@ -1,0 +1,5 @@
+---
+
+- src: git+https://github.com/mother-of-all-self-hosting/ansible-role-minecraft.git
+  version: v2026.10.0-0
+  name: minecraft

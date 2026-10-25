@@ -1,0 +1,41 @@
+---
+
+# The role enables itself by default. It stays disabled, unless enabled in your inventory.
+redmine_enabled: false
+
+redmine_identifier: "{{ mash_playbook_service_identifier_prefix }}redmine"
+
+redmine_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}redmine"
+
+redmine_uid: "{{ mash_playbook_uid }}"
+redmine_gid: "{{ mash_playbook_gid }}"
+
+redmine_systemd_required_services_list_auto: |
+  {{
+    ([mariadb_identifier ~ '.service'] if mariadb_enabled | default(false) and (redmine_database_mysql_hostname == mariadb_connection_hostname or redmine_database_mysql_socket_enabled) and redmine_database_type == 'mysql' else [])
+    +
+    ([postgres_identifier ~ '.service'] if postgres_enabled | default(false) and (redmine_database_postgres_hostname == postgres_connection_hostname or redmine_database_postgres_socket_enabled) and redmine_database_type == 'postgres' else [])
+  }}
+
+redmine_systemd_wanted_services_list_auto: |
+  {{
+    ([exim_relay_identifier ~ '.service'] if exim_relay_enabled | default(false) else [])
+  }}
+
+redmine_container_additional_networks_auto: |
+  {{
+    ([exim_relay_container_network] if exim_relay_enabled | default(false) and redmine_container_network != exim_relay_container_network else [])
+    +
+    ([mariadb_container_network] if mariadb_enabled | default(false) and (redmine_database_mysql_hostname == mariadb_connection_hostname and redmine_container_network != mariadb_container_network and not redmine_database_mysql_socket_enabled) and redmine_database_type == 'mysql' else [])
+    +
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+    +
+    ([postgres_container_network] if postgres_enabled | default(false) and (redmine_database_postgres_hostname == postgres_connection_hostname and redmine_container_network != postgres_container_network and not redmine_database_postgres_socket_enabled) and redmine_database_type == 'postgres' else [])
+  }}
+
+redmine_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+redmine_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+
+redmine_secret_key_base: "{{ (mash_playbook_generic_secret_key + ':secret.base') | hash('sha512') | to_uuid }}"
+redmine_secret_token: "{{ (mash_playbook_generic_secret_key + ':secret.token') | hash('sha512') | to_uuid }}"
+redmine_database_cipher_key: "{{ (mash_playbook_generic_secret_key + ':db.cipherkey') | hash('sha512') | to_uuid }}"

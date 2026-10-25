@@ -1,0 +1,19 @@
+---
+
+activation_prefix: openarchiver_
+
+# Entries added to other components' lists, while those components are in use
+inject:
+  systemd_service_manager:
+    services:
+      - name: "{{ openarchiver_identifier }}.service"
+        priority: 2000
+        restart_necessary: "{{ openarchiver_restart_necessary | bool }}"
+        groups: [mash, openarchiver]
+        when: "{{ openarchiver_enabled }}"
+  postgres:
+    managed_databases:
+      - name: "{{ openarchiver_database_name }}"
+        username: "{{ openarchiver_database_username }}"
+        password: "{{ openarchiver_database_password }}"
+        when: "{{ openarchiver_enabled and openarchiver_database_hostname == postgres_connection_hostname }}"

@@ -1,0 +1,5 @@
+---
+
+- src: git+https://github.com/mother-of-all-self-hosting/ansible-role-immich.git
+  version: v3.3.5-0
+  name: immich

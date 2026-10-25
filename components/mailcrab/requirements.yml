@@ -1,0 +1,5 @@
+---
+
+- src: git+https://progressiv.radicle.garden/z3rh69mtu7bBk5K1WmAkVEBTy6NpW.git
+  version: v1.9.0-0
+  name: mailcrab

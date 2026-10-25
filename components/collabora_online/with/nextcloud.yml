@@ -1,0 +1,9 @@
+---
+
+#
+# Because a CODE instance requires a backend which works as File Sync
+# and Share (FSS) tool and the playbook currently integrates only one
+# FSS, which is Nextcloud, the Nextcloud and CODE instances are
+# connected by default, if both of them are enabled.
+#
+collabora_online_environment_variable_aliasgroup1: "{{ nextcloud_scheme }}://{{ nextcloud_hostname | replace('.', '\\.') }}{{ ':443' if nextcloud_scheme == 'https' else '' }}"

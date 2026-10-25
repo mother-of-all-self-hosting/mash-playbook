@@ -1,0 +1,13 @@
+---
+
+activation_prefix: radicle_explorer_
+
+# Entries added to other components' lists, while those components are in use
+inject:
+  systemd_service_manager:
+    services:
+      - name: "{{ radicle_explorer_identifier }}.service"
+        priority: 2000
+        restart_necessary: "{{ radicle_explorer_restart_necessary | bool }}"
+        groups: [mash, radicle-explorer]
+        when: "{{ radicle_explorer_enabled }}"

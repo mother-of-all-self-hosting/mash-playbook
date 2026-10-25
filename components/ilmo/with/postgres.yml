@@ -1,0 +1,5 @@
+---
+
+ilmo_database_host: "{{ postgres_connection_hostname if postgres_enabled else '' }}"
+ilmo_database_port: "{{ postgres_connection_port if postgres_enabled else '5432' }}"
+ilmo_database_password: "{{ (mash_playbook_generic_secret_key + ':db.ilmo') | hash('sha512') | to_uuid }}"

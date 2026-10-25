@@ -1,0 +1,9 @@
+---
+
+activation_prefix: system_security_fail2ban_
+
+setup:
+  priority: 170
+  entry:
+    - when: system_security_fail2ban_enabled | bool
+      role: galaxy/fail2ban

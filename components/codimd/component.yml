@@ -1,0 +1,25 @@
+---
+
+activation_prefix: codimd_
+
+# Entries added to other components' lists, while those components are in use
+inject:
+  systemd_service_manager:
+    services:
+      - name: "{{ codimd_identifier }}.service"
+        priority: 2000
+        restart_necessary: "{{ codimd_restart_necessary | bool }}"
+        groups: [mash, codimd]
+        when: "{{ codimd_enabled }}"
+  mariadb:
+    managed_databases:
+      - name: "{{ codimd_database_name }}"
+        username: "{{ codimd_database_mysql_username }}"
+        password: "{{ codimd_database_mysql_password }}"
+        when: "{{ codimd_enabled and codimd_database_mysql_hostname == mariadb_connection_hostname and codimd_database_type == 'mysql' }}"
+  postgres:
+    managed_databases:
+      - name: "{{ codimd_database_name }}"
+        username: "{{ codimd_database_postgres_username }}"
+        password: "{{ codimd_database_postgres_password }}"
+        when: "{{ codimd_enabled and codimd_database_postgres_hostname == postgres_connection_hostname and codimd_database_type == 'postgres' }}"

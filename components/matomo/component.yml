@@ -1,0 +1,19 @@
+---
+
+activation_prefix: matomo_
+
+# Entries added to other components' lists, while those components are in use
+inject:
+  systemd_service_manager:
+    services:
+      - name: "{{ matomo_identifier }}.service"
+        priority: 2000
+        restart_necessary: "{{ matomo_restart_necessary | bool }}"
+        groups: [mash, matomo]
+        when: "{{ matomo_enabled }}"
+  mariadb:
+    managed_databases:
+      - name: "{{ matomo_database_name }}"
+        username: "{{ matomo_database_username }}"
+        password: "{{ matomo_database_password }}"
+        when: "{{ matomo_enabled and (matomo_database_hostname == mariadb_connection_hostname or matomo_database_socket_enabled) }}"

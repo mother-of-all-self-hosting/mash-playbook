@@ -1,0 +1,18 @@
+---
+
+activation_prefix: headplane_
+
+# Entries added to other components' lists, while those components are in use
+inject:
+  systemd_service_manager:
+    services:
+      - name: "{{ headplane_identifier }}.service"
+        priority: 2000
+        restart_necessary: "{{ headplane_restart_necessary | bool }}"
+        groups: [mash, headplane]
+        when: "{{ headplane_enabled }}"
+  container_socket_proxy:
+    permissions:
+      # Headplane's Docker integration requires write access to restart the Headscale container
+      - permissions: [containers, write_access]
+        when: "{{ headplane_enabled and headplane_config_integration_docker_enabled and headplane_config_integration_docker_endpoint == container_socket_proxy_endpoint }}"

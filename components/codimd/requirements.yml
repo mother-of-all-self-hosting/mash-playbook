@@ -1,0 +1,5 @@
+---
+
+- src: git+https://progressiv.radicle.garden/zp12kTQqmgqnFpUU6gPyVq19HNMD.git
+  version: v2.6.1-6
+  name: codimd

@@ -1,0 +1,9 @@
+---
+
+# Keycloak
+hubsite_service_keycloak_enabled: "{{ keycloak_enabled }}"
+hubsite_service_keycloak_name: Keycloak
+hubsite_service_keycloak_url: "{{ keycloak_scheme }}://{{ keycloak_hostname }}{{ keycloak_path_prefix }}"
+hubsite_service_keycloak_logo_location: "{{ role_path }}/assets/keycloak.png"
+hubsite_service_keycloak_description: "An open-source identity and access management solution."
+hubsite_service_keycloak_priority: 1000

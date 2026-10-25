@@ -1,0 +1,47 @@
+---
+
+# The role enables itself by default. It stays disabled, unless enabled in your inventory.
+healthchecks_enabled: false
+
+healthchecks_identifier: "{{ mash_playbook_service_identifier_prefix }}healthchecks"
+
+healthchecks_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}healthchecks"
+
+healthchecks_uid: "{{ mash_playbook_uid }}"
+healthchecks_gid: "{{ mash_playbook_gid }}"
+
+healthchecks_systemd_required_services_list_auto: |
+  {{
+    ([mariadb_identifier ~ '.service'] if mariadb_enabled | default(false) and (healthchecks_database_mysql_hostname == mariadb_connection_hostname or healthchecks_database_mysql_socket_enabled) and healthchecks_database_type == 'mysql' else [])
+    +
+    ([postgres_identifier ~ '.service'] if postgres_enabled | default(false) and (healthchecks_database_postgres_hostname == postgres_connection_hostname or healthchecks_database_postgres_socket_enabled) and healthchecks_database_type == 'postgres' else [])
+  }}
+
+healthchecks_systemd_wanted_services_list_auto: |
+  {{
+    ([exim_relay_identifier ~ '.service'] if exim_relay_enabled | default(false) else [])
+    +
+    ([gotify_identifier ~ '.service'] if gotify_enabled | default(false) else [])
+    +
+    ([ntfy_identifier ~ '.service'] if ntfy_enabled | default(false) else [])
+  }}
+
+healthchecks_container_additional_networks_auto: |
+  {{
+    ([exim_relay_container_network] if exim_relay_enabled | default(false) and healthchecks_container_network != exim_relay_container_network else [])
+    +
+    ([gotify_container_network] if gotify_enabled | default(false) and healthchecks_container_network != gotify_container_network else [])
+    +
+    ([mariadb_container_network] if mariadb_enabled | default(false) and (healthchecks_database_mysql_hostname == mariadb_connection_hostname and healthchecks_container_network != mariadb_container_network and not healthchecks_database_mysql_socket_enabled) and healthchecks_database_type == 'mysql' else [])
+    +
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+    +
+    ([ntfy_container_network] if ntfy_enabled | default(false) and healthchecks_container_network != ntfy_container_network else [])
+    +
+    ([postgres_container_network] if postgres_enabled | default(false) and (healthchecks_database_postgres_hostname == postgres_connection_hostname and healthchecks_container_network != postgres_container_network and not healthchecks_database_postgres_socket_enabled) and healthchecks_database_type == 'postgres' else [])
+  }}
+
+healthchecks_environment_variable_secret_key: "{{ (mash_playbook_generic_secret_key + ':healthchecks') | hash('sha512') | to_uuid }}"
+
+healthchecks_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+healthchecks_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"

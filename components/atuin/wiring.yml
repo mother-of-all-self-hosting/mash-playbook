@@ -1,0 +1,26 @@
+---
+
+# The role enables itself by default. It stays disabled, unless enabled in your inventory.
+atuin_enabled: false
+
+atuin_identifier: "{{ mash_playbook_service_identifier_prefix }}atuin"
+
+atuin_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}atuin"
+
+atuin_uid: "{{ mash_playbook_uid }}"
+atuin_gid: "{{ mash_playbook_gid }}"
+
+atuin_systemd_required_services_list_auto: |
+  {{
+    ([postgres_identifier ~ '.service'] if postgres_enabled | default(false) and (atuin_database_hostname == postgres_connection_hostname or atuin_database_socket_enabled) and atuin_database_type == 'postgres' else [])
+  }}
+
+atuin_container_additional_networks_auto: |
+  {{
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+    +
+    ([postgres_container_network] if postgres_enabled | default(false) and (atuin_database_hostname == postgres_connection_hostname and atuin_container_network != postgres_container_network and not atuin_database_socket_enabled) and atuin_database_type == 'postgres' else [])
+  }}
+
+atuin_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+atuin_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"

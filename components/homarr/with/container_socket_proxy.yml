@@ -1,0 +1,5 @@
+---
+
+homarr_docker_endpoint_is_unix_socket: "{{ false if homarr_docker_endpoint.startswith('tcp://') else true }}"
+homarr_docker_endpoint: "{{ container_socket_proxy_endpoint if container_socket_proxy_enabled else 'unix:///var/run/docker.sock' }}"
+homarr_environment_variables_docker_hostnames: "{{ container_socket_proxy_identifier }}"

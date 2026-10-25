@@ -1,0 +1,43 @@
+---
+
+activation_prefix: nextcloud_
+
+# Entries added to other components' lists, while those components are in use
+inject:
+  systemd_service_manager:
+    services:
+      - name: "{{ nextcloud_identifier }}-server.service"
+        priority: 2000
+        restart_necessary: "{{ nextcloud_restart_necessary | bool }}"
+        groups: [mash, nextcloud, nextcloud-server]
+        when: "{{ nextcloud_enabled }}"
+      - name: "{{ nextcloud_identifier }}-cron.timer"
+        priority: 2500
+        restart_necessary: "{{ nextcloud_restart_necessary | bool }}"
+        groups: [mash, nextcloud, nextcloud-cron]
+        when: "{{ nextcloud_enabled }}"
+      - name: "{{ nextcloud_identifier }}-app-update.timer"
+        priority: 2500
+        restart_necessary: "{{ nextcloud_restart_necessary | bool }}"
+        groups: [mash, nextcloud, nextcloud-app-update]
+        when: "{{ nextcloud_enabled and nextcloud_app_autoupdate_enabled }}"
+  hubsite:
+    services:
+      - name: "{{ hubsite_service_nextcloud_name }}"
+        url: "{{ hubsite_service_nextcloud_url }}"
+        logo_location: "{{ hubsite_service_nextcloud_logo_location }}"
+        description: "{{ hubsite_service_nextcloud_description }}"
+        priority: "{{ hubsite_service_nextcloud_priority }}"
+        when: "{{ hubsite_service_nextcloud_enabled }}"
+  mariadb:
+    managed_databases:
+      - name: "{{ nextcloud_database_name }}"
+        username: "{{ nextcloud_database_mysql_username }}"
+        password: "{{ nextcloud_database_mysql_password }}"
+        when: "{{ nextcloud_enabled and (nextcloud_database_mysql_hostname == mariadb_connection_hostname or nextcloud_database_mysql_socket_enabled) and nextcloud_database_type == 'mysql' }}"
+  postgres:
+    managed_databases:
+      - name: "{{ nextcloud_database_name }}"
+        username: "{{ nextcloud_database_postgres_username }}"
+        password: "{{ nextcloud_database_postgres_password }}"
+        when: "{{ nextcloud_enabled and (nextcloud_database_postgres_hostname == postgres_connection_hostname or nextcloud_database_postgres_socket_enabled) and nextcloud_database_type == 'postgres' }}"

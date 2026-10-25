@@ -1,0 +1,33 @@
+---
+
+activation_prefix: privatebin_
+
+# Entries added to other components' lists, while those components are in use
+inject:
+  systemd_service_manager:
+    services:
+      - name: "{{ privatebin_identifier }}.service"
+        priority: 2000
+        restart_necessary: "{{ privatebin_restart_necessary | bool }}"
+        groups: [mash, privatebin]
+        when: "{{ privatebin_enabled }}"
+  hubsite:
+    services:
+      - name: "{{ hubsite_service_privatebin_name }}"
+        url: "{{ hubsite_service_privatebin_url }}"
+        logo_location: "{{ hubsite_service_privatebin_logo_location }}"
+        description: "{{ hubsite_service_privatebin_description }}"
+        priority: "{{ hubsite_service_privatebin_priority }}"
+        when: "{{ hubsite_service_privatebin_enabled }}"
+  mariadb:
+    managed_databases:
+      - name: "{{ privatebin_database_name }}"
+        username: "{{ privatebin_database_mysql_username }}"
+        password: "{{ privatebin_database_mysql_password }}"
+        when: "{{ privatebin_enabled and (privatebin_database_mysql_hostname == mariadb_connection_hostname or privatebin_database_mysql_socket_enabled) and privatebin_config_model == 'mysql' }}"
+  postgres:
+    managed_databases:
+      - name: "{{ privatebin_database_name }}"
+        username: "{{ privatebin_database_postgres_username }}"
+        password: "{{ privatebin_database_postgres_password }}"
+        when: "{{ privatebin_enabled and (privatebin_database_postgres_hostname == postgres_connection_hostname or privatebin_database_postgres_socket_enabled) and privatebin_config_model == 'postgres' }}"

@@ -1,0 +1,6 @@
+---
+
+soft_serve_database_hostname: "{{ postgres_connection_hostname if postgres_enabled else '' }}"
+soft_serve_database_port: "{{ postgres_connection_port if postgres_enabled else '5432' }}"
+soft_serve_database_password: "{{ (mash_playbook_generic_secret_key + ':db.softserve') | hash('sha512') | to_uuid }}"
+soft_serve_database_sslmode: "{{ 'disable' if postgres_enabled and soft_serve_database_hostname == postgres_connection_hostname else 'prefer' }}"

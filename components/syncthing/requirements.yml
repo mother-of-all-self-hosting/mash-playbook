@@ -1,0 +1,5 @@
+---
+
+- src: git+https://github.com/mother-of-all-self-hosting/ansible-role-syncthing.git
+  version: v2.1.7-0
+  name: syncthing

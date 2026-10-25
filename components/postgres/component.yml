@@ -1,0 +1,27 @@
+---
+
+activation_prefix: postgres_
+
+setup:
+  priority: 220
+  entry:
+    # This role exposes various tags (setup-postgres, setup-all, upgrade-postgres, import-postgres, etc.), so we don't tag it here.
+    - role: galaxy/postgres
+
+# Lists other components can add entries to (via `inject`).
+# The generator puts the entries of the components in use (whose `when` is true) into the `into` variable.
+accepts:
+  managed_databases:
+    description: Databases (and users) to create and keep up to date
+    into: postgres_managed_databases_auto
+    required_keys: [name, password, username]
+
+# Entries added to other components' lists, while those components are in use
+inject:
+  systemd_service_manager:
+    services:
+      - name: "{{ postgres_identifier }}.service"
+        priority: 500
+        restart_necessary: "{{ postgres_restart_necessary | bool }}"
+        groups: [mash, postgres]
+        when: "{{ postgres_enabled }}"

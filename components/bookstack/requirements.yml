@@ -1,0 +1,5 @@
+---
+
+- src: git+https://progressiv.radicle.garden/zQdRwQ2s3FG5BZUjvSn1GYXbzVmw.git
+  version: v26.9.2-0
+  name: bookstack

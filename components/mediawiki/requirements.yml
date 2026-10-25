@@ -1,0 +1,5 @@
+---
+
+- src: git+https://github.com/mother-of-all-self-hosting/ansible-role-mediawiki.git
+  version: v1.46.2-0
+  name: mediawiki

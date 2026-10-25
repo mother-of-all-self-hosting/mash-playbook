@@ -1,0 +1,21 @@
+---
+
+activation_prefix: fmd_server_
+
+# Entries added to other components' lists, while those components are in use
+inject:
+  systemd_service_manager:
+    services:
+      - name: "{{ fmd_server_identifier }}.service"
+        priority: 2000
+        restart_necessary: "{{ fmd_server_restart_necessary | bool }}"
+        groups: [mash, fmd-server]
+        when: "{{ fmd_server_enabled }}"
+  hubsite:
+    services:
+      - name: "{{ hubsite_service_fmd_server_name }}"
+        url: "{{ hubsite_service_fmd_server_url }}"
+        logo_location: "{{ hubsite_service_fmd_server_logo_location }}"
+        description: "{{ hubsite_service_fmd_server_description }}"
+        priority: "{{ hubsite_service_fmd_server_priority }}"
+        when: "{{ hubsite_service_fmd_server_enabled }}"

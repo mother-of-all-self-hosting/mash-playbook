@@ -1,0 +1,5 @@
+---
+
+- src: git+https://github.com/mother-of-all-self-hosting/ansible-role-mongodb.git
+  version: v9.0.4-0
+  name: mongodb

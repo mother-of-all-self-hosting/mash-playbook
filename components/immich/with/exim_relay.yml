@@ -1,0 +1,3 @@
+---
+
+immich_smtp_host: "{{ exim_relay_identifier if exim_relay_enabled else '' }}"

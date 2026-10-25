@@ -1,0 +1,33 @@
+---
+
+activation_prefix: ihatemoney_
+
+# Entries added to other components' lists, while those components are in use
+inject:
+  systemd_service_manager:
+    services:
+      - name: "{{ ihatemoney_identifier }}.service"
+        priority: 2000
+        restart_necessary: "{{ ihatemoney_restart_necessary | bool }}"
+        groups: [mash, ihatemoney]
+        when: "{{ ihatemoney_enabled }}"
+  hubsite:
+    services:
+      - name: "{{ hubsite_service_ihatemoney_name }}"
+        url: "{{ hubsite_service_ihatemoney_url }}"
+        logo_location: "{{ hubsite_service_ihatemoney_logo_location }}"
+        description: "{{ hubsite_service_ihatemoney_description }}"
+        priority: "{{ hubsite_service_ihatemoney_priority }}"
+        when: "{{ hubsite_service_ihatemoney_enabled }}"
+  mariadb:
+    managed_databases:
+      - name: "{{ ihatemoney_database_name }}"
+        username: "{{ ihatemoney_database_mysql_username }}"
+        password: "{{ ihatemoney_database_mysql_password }}"
+        when: "{{ ihatemoney_enabled and (ihatemoney_database_mysql_hostname == mariadb_connection_hostname or ihatemoney_database_mysql_socket_enabled) and ihatemoney_database_type == 'mysql' }}"
+  postgres:
+    managed_databases:
+      - name: "{{ ihatemoney_database_name }}"
+        username: "{{ ihatemoney_database_postgres_username }}"
+        password: "{{ ihatemoney_database_postgres_password }}"
+        when: "{{ ihatemoney_enabled and (ihatemoney_database_postgres_hostname == postgres_connection_hostname or ihatemoney_database_postgres_socket_enabled) and ihatemoney_database_type == 'postgres' }}"

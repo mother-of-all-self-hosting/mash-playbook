@@ -1,0 +1,5 @@
+---
+
+- src: git+https://github.com/mother-of-all-self-hosting/ansible-role-stirling-pdf.git
+  version: v1.6.0-5
+  name: stirling_pdf

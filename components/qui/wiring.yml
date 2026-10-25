@@ -1,0 +1,26 @@
+---
+
+# The role enables itself by default. It stays disabled, unless enabled in your inventory.
+qui_enabled: false
+
+qui_identifier: "{{ mash_playbook_service_identifier_prefix }}qui"
+
+qui_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}qui"
+
+qui_uid: "{{ mash_playbook_uid }}"
+qui_gid: "{{ mash_playbook_gid }}"
+
+qui_systemd_wanted_services_list_auto: |
+  {{
+    ([qbittorrent_identifier ~ '.service'] if qbittorrent_enabled | default(false) else [])
+  }}
+
+qui_container_additional_networks_auto: |
+  {{
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+    +
+    ([qbittorrent_container_network] if qbittorrent_enabled | default(false) and qui_container_network != qbittorrent_container_network else [])
+  }}
+
+qui_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+qui_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"

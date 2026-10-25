@@ -1,0 +1,25 @@
+---
+
+activation_prefix: onlyoffice_docs_
+
+# Entries added to other components' lists, while those components are in use
+inject:
+  systemd_service_manager:
+    services:
+      - name: "{{ onlyoffice_docs_identifier }}.service"
+        priority: 2000
+        restart_necessary: "{{ onlyoffice_docs_restart_necessary | bool }}"
+        groups: [mash, onlyoffice-docs]
+        when: "{{ onlyoffice_docs_enabled }}"
+  mariadb:
+    managed_databases:
+      - name: "{{ onlyoffice_docs_database_name }}"
+        username: "{{ onlyoffice_docs_database_mariadb_username }}"
+        password: "{{ onlyoffice_docs_database_mariadb_password }}"
+        when: "{{ onlyoffice_docs_enabled and onlyoffice_docs_database_mariadb_hostname == mariadb_connection_hostname and onlyoffice_docs_database_type == 'mariadb' }}"
+  postgres:
+    managed_databases:
+      - name: "{{ onlyoffice_docs_database_name }}"
+        username: "{{ onlyoffice_docs_database_postgres_username }}"
+        password: "{{ onlyoffice_docs_database_postgres_password }}"
+        when: "{{ onlyoffice_docs_enabled and onlyoffice_docs_database_postgres_hostname == postgres_connection_hostname and onlyoffice_docs_database_type == 'postgres' }}"

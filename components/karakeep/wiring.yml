@@ -1,0 +1,38 @@
+---
+
+# The role enables itself by default. It stays disabled, unless enabled in your inventory.
+karakeep_enabled: false
+
+karakeep_identifier: "{{ mash_playbook_service_identifier_prefix }}karakeep"
+
+karakeep_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}karakeep"
+
+# Currently root access without read-only option is necessary for Karakeep to work properly.
+# See: https://github.com/karakeep-app/karakeep/issues/865
+karakeep_uid: "0"
+karakeep_gid: "0"
+
+karakeep_systemd_wanted_services_list_auto: |
+  {{
+    ([browserless_identifier ~ '.service'] if browserless_enabled | default(false) else [])
+    +
+    ([exim_relay_identifier ~ '.service'] if exim_relay_enabled | default(false) and karakeep_mailer_enabled | default(false) and karakeep_environment_variables_smtp_host == exim_relay_identifier else [])
+    +
+    ([meilisearch_identifier ~ '.service'] if meilisearch_enabled | default(false) else [])
+  }}
+
+karakeep_container_additional_networks_auto: |
+  {{
+    ([browserless_container_network] if browserless_enabled | default(false) and karakeep_container_network != browserless_container_network else [])
+    +
+    ([exim_relay_container_network] if exim_relay_enabled | default(false) and karakeep_mailer_enabled | default(false) and karakeep_environment_variables_smtp_host == exim_relay_identifier and karakeep_container_network != exim_relay_container_network else [])
+    +
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+    +
+    ([meilisearch_container_network] if meilisearch_enabled | default(false) and karakeep_container_network != meilisearch_container_network else [])
+  }}
+
+karakeep_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+karakeep_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"
+
+karakeep_environment_variables_nextauth_secret: "{{ (mash_playbook_generic_secret_key + ':karakeep.ns') | hash('sha512') | to_uuid }}"

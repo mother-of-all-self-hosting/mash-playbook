@@ -1,0 +1,35 @@
+---
+
+activation_prefix: mailpit_
+
+# Entries added to other components' lists, while those components are in use
+inject:
+  systemd_service_manager:
+    services:
+      - name: "{{ mailpit_identifier }}.service"
+        priority: 2000
+        restart_necessary: "{{ mailpit_restart_necessary | bool }}"
+        groups: [mash, mailpit]
+        when: "{{ mailpit_enabled }}"
+  traefik:
+    entrypoints:
+      - name: "{{ mailpit_container_labels_traefik_pop3_entrypoints }}"
+        port: "{{ mailpit_container_pop3_port }}"
+        host_bind_port: "{{ mailpit_container_pop3_host_bind_port }}"
+        config:
+          transport:
+            respondingTimeouts:
+              readTimeout: "{{ traefik_config_entrypoint_web_transport_respondingTimeouts_readTimeout }}"
+              writeTimeout: "{{ traefik_config_entrypoint_web_transport_respondingTimeouts_writeTimeout }}"
+              idleTimeout: "{{ traefik_config_entrypoint_web_transport_respondingTimeouts_idleTimeout }}"
+        when: "{{ mailpit_enabled and mailpit_container_labels_traefik_pop3_enabled }}"
+      - name: "{{ mailpit_container_labels_traefik_smtp_entrypoints }}"
+        port: "{{ mailpit_container_smtp_port }}"
+        host_bind_port: "{{ mailpit_container_smtp_host_bind_port }}"
+        config:
+          transport:
+            respondingTimeouts:
+              readTimeout: "{{ traefik_config_entrypoint_web_transport_respondingTimeouts_readTimeout }}"
+              writeTimeout: "{{ traefik_config_entrypoint_web_transport_respondingTimeouts_writeTimeout }}"
+              idleTimeout: "{{ traefik_config_entrypoint_web_transport_respondingTimeouts_idleTimeout }}"
+        when: "{{ mailpit_enabled and mailpit_container_labels_traefik_smtp_enabled }}"

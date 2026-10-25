@@ -1,0 +1,13 @@
+---
+
+activation_prefix: plex_
+
+# Entries added to other components' lists, while those components are in use
+inject:
+  systemd_service_manager:
+    services:
+      - name: "{{ plex_identifier }}.service"
+        priority: 2000
+        restart_necessary: "{{ plex_restart_necessary | bool }}"
+        groups: [mash, plex]
+        when: "{{ plex_enabled }}"

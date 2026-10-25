@@ -1,0 +1,22 @@
+---
+
+activation_prefix: gitlab_
+
+# Entries added to other components' lists, while those components are in use
+inject:
+  systemd_service_manager:
+    services:
+      - name: "{{ gitlab_identifier }}.service"
+        priority: 2000
+        restart_necessary: "{{ gitlab_restart_necessary | bool }}"
+        groups: [mash, gitlab]
+        when: "{{ gitlab_enabled }}"
+  postgres:
+    managed_databases:
+      # GitLab requires the `amcheck` extension, which only a superuser may create.
+      # Ref: https://docs.gitlab.com/administration/postgresql/extensions/
+      - name: "{{ gitlab_database_name }}"
+        username: "{{ gitlab_database_postgres_username }}"
+        password: "{{ gitlab_database_postgres_password }}"
+        additional_sql_queries: "{{ [ ('\\c ' ~ gitlab_database_name), 'CREATE EXTENSION IF NOT EXISTS amcheck;', ] }}"
+        when: "{{ gitlab_enabled and (gitlab_database_postgres_hostname == postgres_connection_hostname or gitlab_database_postgres_socket_enabled) and gitlab_database_type == 'postgres' }}"

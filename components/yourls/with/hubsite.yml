@@ -1,0 +1,9 @@
+---
+
+# yourls
+hubsite_service_yourls_enabled: "{{ yourls_enabled }}"
+hubsite_service_yourls_name: YOURLS
+hubsite_service_yourls_url: "{{ yourls_scheme }}://{{ yourls_hostname }}/admin/"  # accessing to the hostname directly returns 403 error
+hubsite_service_yourls_logo_location: ""
+hubsite_service_yourls_description: "Your Own URL Shortener, on your server"
+hubsite_service_yourls_priority: 1000

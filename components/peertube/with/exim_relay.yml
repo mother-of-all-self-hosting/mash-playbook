@@ -1,0 +1,5 @@
+---
+
+peertube_config_smtp_hostname: "{{ exim_relay_identifier if exim_relay_enabled else '' }}"
+peertube_config_smtp_port: "{{ '8025' if exim_relay_enabled else '587' }}"
+peertube_config_smtp_from: "{{ exim_relay_sender_address if exim_relay_enabled else '' }}"

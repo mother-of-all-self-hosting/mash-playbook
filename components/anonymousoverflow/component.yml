@@ -1,0 +1,21 @@
+---
+
+activation_prefix: anonymousoverflow_
+
+# Entries added to other components' lists, while those components are in use
+inject:
+  systemd_service_manager:
+    services:
+      - name: "{{ anonymousoverflow_identifier }}.service"
+        priority: 2000
+        restart_necessary: "{{ anonymousoverflow_restart_necessary | bool }}"
+        groups: [mash, anonymousoverflow]
+        when: "{{ anonymousoverflow_enabled }}"
+  hubsite:
+    services:
+      - name: "{{ hubsite_service_anonymousoverflow_name }}"
+        url: "{{ hubsite_service_anonymousoverflow_url }}"
+        logo_location: "{{ hubsite_service_anonymousoverflow_logo_location }}"
+        description: "{{ hubsite_service_anonymousoverflow_description }}"
+        priority: "{{ hubsite_service_anonymousoverflow_priority }}"
+        when: "{{ hubsite_service_anonymousoverflow_enabled }}"

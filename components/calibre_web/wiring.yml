@@ -1,0 +1,26 @@
+---
+
+# The role enables itself by default. It stays disabled, unless enabled in your inventory.
+calibre_web_enabled: false
+
+calibre_web_identifier: "{{ mash_playbook_service_identifier_prefix }}calibre-web"
+
+calibre_web_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}calibre-web"
+
+calibre_web_uid: "{{ mash_playbook_uid }}"
+calibre_web_gid: "{{ mash_playbook_gid }}"
+
+calibre_web_systemd_wanted_services_list_auto: |
+  {{
+    ([exim_relay_identifier ~ '.service'] if exim_relay_enabled | default(false) else [])
+  }}
+
+calibre_web_container_additional_networks_auto: |
+  {{
+    ([exim_relay_container_network] if exim_relay_enabled | default(false) and calibre_web_container_network != exim_relay_container_network else [])
+    +
+    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
+  }}
+
+calibre_web_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
+calibre_web_container_labels_traefik_docker_network: "{{ mash_playbook_reverse_proxyable_services_additional_network }}"

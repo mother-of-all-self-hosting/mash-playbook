@@ -1,0 +1,5 @@
+---
+
+- src: git+https://github.com/geerlingguy/ansible-role-docker
+  version: 8.0.0
+  name: docker

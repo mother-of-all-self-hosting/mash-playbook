@@ -1,0 +1,9 @@
+---
+
+# Send
+hubsite_service_send_enabled: "{{ send_enabled }}"
+hubsite_service_send_name: Send
+hubsite_service_send_url: "https://{{ send_hostname }}{{ send_path_prefix }}"
+hubsite_service_send_logo_location: ""
+hubsite_service_send_description: "Send end-to-end encrypted files to others with a link."
+hubsite_service_send_priority: 1000

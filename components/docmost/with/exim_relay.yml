@@ -1,0 +1,7 @@
+---
+
+docmost_mailer_enabled: "{{ exim_relay_enabled }}"
+docmost_environment_variable_mail_driver: "{{ 'smtp' if exim_relay_enabled else '' }}"
+docmost_environment_variable_smtp_host: "{{ exim_relay_identifier if exim_relay_enabled else '' }}"
+docmost_environment_variable_smtp_port: "{{ '8025' if exim_relay_enabled else '587' }}"
+docmost_environment_variable_mail_from_address: "{{ exim_relay_sender_address if exim_relay_enabled else '' }}"

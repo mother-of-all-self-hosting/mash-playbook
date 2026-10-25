@@ -1,0 +1,9 @@
+---
+
+# FMD Server
+hubsite_service_fmd_server_enabled: "{{ fmd_server_enabled }}"
+hubsite_service_fmd_server_name: FMD Server
+hubsite_service_fmd_server_url: "{{ fmd_server_scheme }}://{{ fmd_server_hostname }}{{ fmd_server_path_prefix }}"
+hubsite_service_fmd_server_logo_location: ""
+hubsite_service_fmd_server_description: "Official server for FMD (FindMyDevice)"
+hubsite_service_fmd_server_priority: 1000

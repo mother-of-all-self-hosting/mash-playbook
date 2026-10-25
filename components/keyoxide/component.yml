@@ -1,0 +1,18 @@
+---
+
+activation_prefix: keyoxide_
+
+# Entries added to other components' lists, while those components are in use
+inject:
+  systemd_service_manager:
+    services:
+      - name: "{{ keyoxide_identifier }}.service"
+        priority: 2000
+        restart_necessary: "{{ keyoxide_restart_necessary | bool }}"
+        groups: [mash, keyoxide]
+        when: "{{ keyoxide_enabled }}"
+      - name: "{{ keyoxide_proxy_identifier }}.service"
+        priority: 2000
+        restart_necessary: "{{ keyoxide_restart_necessary | bool }}"
+        groups: [mash, keyoxide]
+        when: "{{ keyoxide_proxy_enabled }}"
