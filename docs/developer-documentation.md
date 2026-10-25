@@ -113,6 +113,7 @@ Each role the playbook can use is wired in by a *component*: a directory in [`co
 │       ├── README.md  ← Documentation about how to configure the service
 │       ├── requirements.yml  ← Your Ansible role and its version
 │       ├── wiring.yml  ← Default configuration of your role for this playbook
+│       ├── assets/  ← Media files (pictures, sound files, etc.) to be attached to the documentation
 │       └── with/
 │           ├── postgres.yml  ← Configuration which applies only when Postgres is in use too
 │           └── traefik.yml  ← … or Traefik, etc.
