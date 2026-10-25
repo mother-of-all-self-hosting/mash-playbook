@@ -28,7 +28,6 @@ repos:
           --disable=MD027, # no-multiple-space-blockquote
           --disable=MD033, # no-inline-html
           --disable=MD037, # no-space-in-emphasis
-          --disable=MD040, # fenced-code-language
           --disable=MD041, # first-line-h1
           --disable=MD051, # link-fragments
           --disable=MD059  # descriptive-link-text

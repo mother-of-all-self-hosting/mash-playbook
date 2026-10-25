@@ -482,7 +482,7 @@ By default, Immich configures nightly (at 2am) [automatic database dumps](https:
 
   This is correct. Immich's attempts to create a database dump result in the following error log messages:
 
-  ```
+  ```txt
   ERROR [Microservices:Backup failed with code 1] Database Backup Failure
   ERROR [Microservices:BackupService] Gzip exited with code 0 but pgdump exited with 1
   ERROR [Microservices:{}] Unable to run job handler (DatabaseBackup): Backup failed with code 1

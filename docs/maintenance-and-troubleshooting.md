@@ -35,7 +35,7 @@ See the dedicated [PostgreSQL Maintenance](../components/postgres/README.md#main
 
 You can check the status of your services by using `systemctl status`. Example:
 
-```
+```sh
 sudo systemctl status mash-miniflux
 
 ● mash-miniflux.service - Miniflux (mash-miniflux)

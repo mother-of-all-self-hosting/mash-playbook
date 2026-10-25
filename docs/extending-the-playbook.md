@@ -20,7 +20,7 @@ If your component would be useful to others, consider adding it to the playbook 
 
 This component runs a role of its own (in `roles/`, next to `component.yml`) after all services are set up:
 
-```
+```txt
 inventory/
 ├── hosts
 ├── host_vars/

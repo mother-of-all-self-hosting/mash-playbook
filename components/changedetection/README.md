@@ -77,7 +77,7 @@ As the Changedetection.io instance does not support configuring the notification
 
 To set up notification URLs, open `https://mash.example.com/changedetection/settings#notifications` and add entries by following [the Apprise's URL format](https://github.com/caronc/apprise/blob/master/README.md#supported-notifications). For example, you can have the service send notifications to the ntfy service by adding a line as below:
 
-```
+```txt
 ntfy://YOUR_NTFY_USERNAME_HERE:YOUR_NTFY_PASSWORD_HERE@mash-ntfy:8080/YOUR_NTFY_TOPIC_HERE
 ```
 

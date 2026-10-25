@@ -59,7 +59,7 @@ When it comes to the structure of roles, you can follow existing roles such as [
 
 - Your role's file structure should be similar to this tree:
 
-    ```
+    ```txt
     .
     ├── .github/
     │   ├── renovate.json
@@ -105,7 +105,7 @@ When it comes to the structure of roles, you can follow existing roles such as [
 
 Each role the playbook can use is wired in by a *component*: a directory in [`components/`](../components) named after the role. To add your role, add its component and its documentation:
 
-```
+```txt
 .
 ├── components/
 │   └── YOUR-SERVICE/
