@@ -56,10 +56,6 @@ optimize:
         inventory_path=$(dirname "$inventory_path")
     fi
 
-    {{ just_executable() }} --justfile {{ justfile() }} _save_hash_for_file {{ templates_directory_path }}/requirements.yml {{ justfile_directory() }}/requirements.yml
-    {{ just_executable() }} --justfile {{ justfile() }} _save_hash_for_file {{ templates_directory_path }}/setup.yml {{ justfile_directory() }}/setup.yml
-    {{ just_executable() }} --justfile {{ justfile() }} _save_hash_for_file {{ templates_directory_path }}/group_vars_mash_servers {{ justfile_directory() }}/group_vars/mash_servers
-
     python3 {{ justfile_directory() }}/bin/optimize.py \
     --inventory-path="$inventory_path" \
     --src-requirements-yml-path={{ templates_directory_path }}/requirements.yml \
@@ -69,6 +65,10 @@ optimize:
     --src-group-vars-yml-path={{ templates_directory_path }}/group_vars_mash_servers \
     --dst-group-vars-yml-path={{ justfile_directory() }}/group_vars/mash_servers
 
+    # Only now that all files are generated, mark them as up to date with their templates
+    {{ just_executable() }} --justfile {{ justfile() }} _save_hash_for_file {{ templates_directory_path }}/requirements.yml {{ justfile_directory() }}/requirements.yml
+    {{ just_executable() }} --justfile {{ justfile() }} _save_hash_for_file {{ templates_directory_path }}/setup.yml {{ justfile_directory() }}/setup.yml
+    {{ just_executable() }} --justfile {{ justfile() }} _save_hash_for_file {{ templates_directory_path }}/group_vars_mash_servers {{ justfile_directory() }}/group_vars/mash_servers
     touch {{ quote(optimization_enabled_file_path) }}
     rm -f {{ quote(optimization_legacy_state_file_path) }}
 
@@ -238,24 +238,22 @@ _group-vars-mash-servers:
 
 _ensure_file_prepared src_path dst_path:
     #!/usr/bin/env sh
+    set -eu
     dst_file_name=$(basename "{{ dst_path }}")
     hash_path={{ run_directory_path }}"/"$dst_file_name".srchash"
     src_hash=$(md5sum {{ src_path }} | cut -d ' ' -f 1)
 
-    if [ ! -f "{{ dst_path }}" ] || [ ! -f "$hash_path" ]; then
+    if [ -f "{{ dst_path }}" ] && [ -f "$hash_path" ] && [ "$(cat "$hash_path")" = "$src_hash" ]; then
+        exit 0
+    fi
+
+    if [ -f "{{ optimization_enabled_file_path }}" ] || [ -f "{{ optimization_legacy_state_file_path }}" ]; then
+        # Regenerates all files from their templates and saves their hashes, but only if it succeeds.
+        # Otherwise, the next run tries again instead of continuing with files that do not match each other.
+        {{ just_executable() }} --justfile {{ justfile() }} optimize
+    else
         cp {{ src_path }} {{ dst_path }}
         echo $src_hash > $hash_path
-    else
-        current_hash=$(cat $hash_path)
-
-        if [ "$current_hash" != "$src_hash" ]; then
-            cp {{ src_path }} {{ dst_path }}
-            echo $src_hash > $hash_path
-
-            if [ -f "{{ optimization_enabled_file_path }}" ] || [ -f "{{ optimization_legacy_state_file_path }}" ]; then
-                {{ just_executable() }} --justfile {{ justfile() }} optimize
-            fi
-        fi
     fi
 
 _save_hash_for_file src_path dst_path:

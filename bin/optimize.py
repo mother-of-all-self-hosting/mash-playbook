@@ -162,19 +162,17 @@ def is_role_definition_in_use(role_definition, used_variable_names):
     return False
 
 
-def write_yaml_to_file(definitions, path):
-    with open(path, "w") as file:
-        yaml.dump(definitions, file)
-
-
 def read_file(path):
     with open(path, "r") as file:
         return file.read()
 
 
 def write_to_file(contents, path):
-    with open(path, "w") as file:
+    # Write to a temporary file first, so that an interrupted write does not leave a partial file behind
+    temporary_path = path + ".tmp"
+    with open(temporary_path, "w") as file:
         file.write(contents)
+    os.replace(temporary_path, path)
 
 
 # Matches the beginning of role-specific blocks.
@@ -313,8 +311,6 @@ for role_definition in all_role_definitions:
     if is_role_definition_in_use(role_definition, used_variable_names):
         enabled_role_definitions.append(role_definition)
 
-write_yaml_to_file(enabled_role_definitions, args.dst_requirements_yml_path)
-
 known_role_names = tuple(
     map(lambda definition: definition["name"], all_role_definitions)
 )
@@ -325,9 +321,11 @@ enabled_role_names = tuple(
 setup_yml_processed = process_file_contents(
     args.src_setup_yml_path, enabled_role_names, known_role_names
 )
-write_to_file(setup_yml_processed, args.dst_setup_yml_path)
-
 group_vars_yml_processed = process_file_contents(
     args.src_group_vars_yml_path, enabled_role_names, known_role_names
 )
+
+# Only write once everything has been processed successfully, so that the files always match each other
+write_to_file(yaml.dump(enabled_role_definitions), args.dst_requirements_yml_path)
+write_to_file(setup_yml_processed, args.dst_setup_yml_path)
 write_to_file(group_vars_yml_processed, args.dst_group_vars_yml_path)
