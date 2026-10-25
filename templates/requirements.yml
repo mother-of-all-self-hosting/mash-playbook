@@ -157,7 +157,7 @@
   name: container_socket_proxy
   activation_prefix: mash_
 - src: git+https://progressiv.radicle.garden/z22bUmhZzA5VWtmKERFkEjGzdPuke.git
-  version: v14.0.1-0
+  version: v14.0.1-1
   name: converse
   activation_prefix: converse_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-convertx.git
@@ -177,7 +177,7 @@
   name: cryptpad
   activation_prefix: cryptpad_
 - src: git+https://progressiv.radicle.garden/z2zgHMDh4Pb8yr4DH8BVkMcdboBXd.git
-  version: v11.5.0-0
+  version: v11.5.0-1
   name: cyberchef
   activation_prefix: cyberchef_
 - src: git+https://progressiv.radicle.garden/zeQ4hXq2LkbADcndSsjesgq9kDPf.git
@@ -557,7 +557,7 @@
   name: memos
   activation_prefix: memos_
 - src: git+https://progressiv.radicle.garden/z2RAnfyxCYZSoUiDufyzTM7P3RvEd.git
-  version: v0.0.0-2
+  version: v0.0.0-3
   name: mermaid
   activation_prefix: mermaid_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-minecraft.git
@@ -581,7 +581,7 @@
   name: mollysocket
   activation_prefix: mollysocket_
 - src: git+https://progressiv.radicle.garden/z3i2ogEXxuSzVAxVaRuoydAiDCBKi.git
-  version: v0.0.0-6
+  version: v0.0.0-7
   name: monerooo
   activation_prefix: monerooo_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-mongodb.git
@@ -589,7 +589,7 @@
   name: mongodb
   activation_prefix: mongodb_
 - src: git+https://progressiv.radicle.garden/z4Ez9aU119yFMs59cnA3KUnExFAeN.git
-  version: v3.1.1-0
+  version: v3.1.1-1
   name: moodist
   activation_prefix: moodist_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-mosquitto.git
@@ -697,7 +697,7 @@
   name: openregex
   activation_prefix: openregex_
 - src: git+https://progressiv.radicle.garden/z3aGv2oUAxqmoGddtk1VwRioUTKbs.git
-  version: v0.0.0-7
+  version: v0.0.0-8
   name: origamivault
   activation_prefix: origamivault_
 - src: git+https://progressiv.radicle.garden/z3cspgyZXPNcnzNXCYKsEGJK7dKKA.git
