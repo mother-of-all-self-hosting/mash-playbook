@@ -34,32 +34,6 @@ For details about configuring the [Ansible role for ntfy](https://github.com/mot
 
 **Note**: you need to install [the ntfy Android/iOS app](https://docs.ntfy.sh/subscribe/phone/) on your device in order to receive push notifications from the ntfy server. Notifications can also be sent/received on the ntfy's web app if it is enabled (disabled by default). Refer [this section](#usage) for details about how to use the apps.
 
-### How ntfy works with UnifiedPush
-
-⚠️ [UnifiedPush does not work on iOS.](https://unifiedpush.org/users/faq/#will-unifiedpush-ever-work-on-ios)
-
-ntfy implements [UnifiedPush](https://unifiedpush.org), the standard which makes it possible to send and receive push notifications without using Google's Firebase Cloud Messaging (FCM) service.
-
-Working as a **Push Server**, a ntfy server can forward messages to a **Distributor** running on Android and other devices (refer to [this page](https://unifiedpush.org/users/distributors/#definitions) for the definition of the Push Server and the Distributor).
-
-This role installs and manages a self-hosted ntfy server as the Push Server, which the Distributor (such as the ntfy Android app) on your device listens to.
-
-Your UnifiedPush-compatible applications (such as [DAVx⁵](https://www.davx5.com/), [FMD (FindMyDevice)](https://gitlab.com/fmd-foss/fmd-android/), and [Tusky](https://tusky.app/)) listen to the Distributor, and push notifications are "distributed" from it. This means that the UnifiedPush-compatible applications cannot receive push notifications from the Push Server without the Distributor.
-
-As the ntfy Android app functions as the Distributor too, you do not have to install something else on your device.
-
-💡 **Notes**:
-
-- Refer [this official documentation of UnifiedPush](https://unifiedpush.org/users/troubleshooting/setup/#understand-unifiedpush) for a simple explanation about relationship among UnifiedPush-compatible application, Distributor, Push Server, and the application's server.
-- [Here](https://unifiedpush.org/users/apps/) is a non-exhaustive list of the end-user applications that use UnifiedPush.
-- Unlike push notifications using Google's FCM or Apple's APNs, each end-user can choose the Push Server which one prefer. This means that deploying a ntfy server cannot enforce a UnifiedPush-compatible application (and its users) to use the exact server.
-
-### iOS instant notification
-
-Because iOS heavily restricts background processing, it is impossible to implement instant push notifications without a central server.
-
-To implement instant notification through the self-hosted ntfy server, refer to [this official documentation](https://docs.ntfy.sh/config/#ios-instant-notifications) for instructions.
-
 ## Dependencies
 
 This service requires the following other services:
@@ -149,13 +123,25 @@ If you enable [Uptime Kuma](../uptime_kuma/README.md), the self-hosted monitorin
 
 ### UnifiedPush-compatible application
 
-To receive push notifications on a UnifiedPush-compatible application, it must be able to communicate with the ntfy Android app which works as the Distributor on the same device.
+⚠️ [UnifiedPush does not work on iOS.](https://unifiedpush.org/users/faq/#will-unifiedpush-ever-work-on-ios)
+
+ntfy implements [UnifiedPush](https://unifiedpush.org), the standard which makes it possible to send and receive push notifications without using Google's Firebase Cloud Messaging (FCM) service.
+
+Working as a **Push Server**, a ntfy server can forward messages to a **Distributor** running on Android and other devices (refer to [this page](https://unifiedpush.org/users/distributors/#definitions) for the definition of the Push Server and the Distributor).
+
+To receive push notifications on a UnifiedPush-compatible application (such as [DAVx⁵](https://www.davx5.com/), [FMD (FindMyDevice)](https://gitlab.com/fmd-foss/fmd-android/), and [Tusky](https://tusky.app/)), it must be able to communicate with the ntfy Android app which works as the Distributor on the same device.
 
 Consult to documentation of applications for instruction about how to enable UnifiedPush support. Note that some applications quietly detect and use the Distributor, so you do not always have to configure the applications.
 
 This playbook supports a couple of services which implement UnifiedPush, such as [FMD Server](../fmd_server/README.md). It is the official server for [FMD (FindMyDevice)](https://gitlab.com/fmd-foss/fmd-android/), the Android application which allows you to locate, ring, wipe and issue other commands to your device when it is lost.
 
 If you are configuring UnifiedPush on a [Matrix](https://matrix.org) client, you can refer [this section](https://github.com/spantaleev/matrix-docker-ansible-deploy/blob/master/docs/configuring-playbook-ntfy.md#setting-up-a-unifiedpush-compatible-matrix-client) on matrix-docker-ansible-deploy (MDAD) playbook's documentation.
+
+💡 **Notes**:
+
+- Refer [this official documentation of UnifiedPush](https://unifiedpush.org/users/troubleshooting/setup/#understand-unifiedpush) for a simple explanation about relationship among UnifiedPush-compatible application, Distributor, Push Server, and the application's server.
+- [Here](https://unifiedpush.org/users/apps/) is a non-exhaustive list of the end-user applications that use UnifiedPush.
+- Unlike push notifications using Google's FCM or Apple's APNs, each end-user can choose the Push Server which one prefer. This means that deploying a ntfy server cannot enforce a UnifiedPush-compatible application (and its users) to use the exact server.
 
 ## Troubleshooting
 
