@@ -2,6 +2,19 @@
 
 ## 2026-10-25
 
+### Minecraft plugin web interfaces can be routed through Traefik
+
+You can now declare web interfaces exposed by plugins running inside the Minecraft container and have the playbook attach the matching Traefik routers to it. Add the following to your `vars.yml`:
+
+```yaml
+minecraft_web_interfaces:
+  - name: bluemap
+    hostname: bluemap.example.com
+    port: 8100
+```
+
+Each entry is routed to the Minecraft container on `port`, and the container is joined to the Traefik network. This is opt-in: leave `minecraft_web_interfaces` unset (the default) and nothing changes. Use it when you run, for example, BlueMap or Dynmap as a plugin instead of as a separate container.
+
 ### The playbook's wiring moved from `templates/` to `components/`
 
 This affects you only if you run the playbook without `just`, or keep local changes to the files in `templates/`. If you use `just` and your inventory, nothing changes for you: your inventory stays as it is, and the playbook configures your services as before.
