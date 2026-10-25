@@ -73,7 +73,7 @@ class Playbook:
         )
 
     def touch_template(self, name="setup.yml"):
-        """Simulates a playbook update changing a template."""
+        """Simulates a playbook update changing a template (outside of any `role-specific` block)."""
         with open(self.root / "templates" / name, "a") as file:
             file.write("\n# changed by an update\n")
 
@@ -175,9 +175,8 @@ class TestInventoryLocation(OptimizeTestCase):
         other = self.pb.root / "other-inventory"
         self.pb.write("hosts", "[mash_servers]\nc\n", base=other)
         self.pb.write("host_vars/c/vars.yml", "nextcloud_enabled: true\n", base=other)
-        self.pb.touch_template()
 
-        self.assertSucceeded(self.pb.just("_setup-yml", env={"ANSIBLE_INVENTORY": str(other / "hosts")}))
+        self.assertSucceeded(self.pb.just("_prepare-files", env={"ANSIBLE_INVENTORY": str(other / "hosts")}))
         self.assertEnabled("nextcloud")
         self.assertNotEnabled("miniflux", "gitea")
 
@@ -194,28 +193,55 @@ class TestInventoryLocation(OptimizeTestCase):
 
 
 class TestInventoryChanges(OptimizeTestCase):
-    def test_removed_host_on_template_change(self):
+    def test_removed_host_on_next_run(self):
         self.standard_inventory()
         self.assertSucceeded(self.pb.just("optimize"))
 
         shutil.rmtree(self.pb.inventory / "host_vars" / "b")
         self.pb.hosts("[mash_servers]\na\n")
-        self.pb.touch_template()
 
-        self.assertSucceeded(self.pb.just("_setup-yml"))
+        self.assertSucceeded(self.pb.just("_prepare-files"))
         self.assertEnabled("miniflux")
         self.assertNotEnabled("gitea")
 
-    def test_added_host_on_template_change(self):
+    def test_added_host_on_next_run(self):
         self.standard_inventory()
         self.assertSucceeded(self.pb.just("optimize"))
 
         self.pb.hosts("[mash_servers]\na\nb\nc\n")
         self.pb.write("host_vars/c/vars.yml", "nextcloud_enabled: true\n")
+
+        self.assertSucceeded(self.pb.just("_prepare-files"))
+        self.assertEnabled("miniflux", "gitea", "nextcloud")
+
+    def test_enabled_service_on_next_run(self):
+        self.standard_inventory()
+        self.assertSucceeded(self.pb.just("optimize"))
+
+        with open(self.pb.inventory / "host_vars" / "a" / "vars.yml", "a") as file:
+            file.write("nextcloud_enabled: true\n")
+
+        self.assertSucceeded(self.pb.just("_prepare-files"))
+        self.assertEnabled("miniflux", "gitea", "nextcloud")
+        self.assertIn("nextcloud", self.pb.setup_roles())
+
+    def test_template_change_on_next_run(self):
+        self.standard_inventory()
+        self.assertSucceeded(self.pb.just("optimize"))
         self.pb.touch_template()
 
-        self.assertSucceeded(self.pb.just("_setup-yml"))
-        self.assertEnabled("miniflux", "gitea", "nextcloud")
+        self.assertSucceeded(self.pb.just("_prepare-files"))
+        self.assertIn("# changed by an update", (self.pb.root / "setup.yml").read_text())
+        self.assertNotEnabled("nextcloud")
+
+    def test_unchanged_files_are_not_rewritten(self):
+        self.standard_inventory()
+        self.assertSucceeded(self.pb.just("optimize"))
+        generated = [self.pb.root / "requirements.yml", self.pb.root / "setup.yml", self.pb.root / "group_vars" / "mash_servers"]
+        modification_times = [path.stat().st_mtime_ns for path in generated]
+
+        self.assertSucceeded(self.pb.just("_prepare-files"))
+        self.assertEqual([path.stat().st_mtime_ns for path in generated], modification_times)
 
     def test_legacy_state_keeps_optimization_enabled(self):
         """Older versions stored a list of vars.yml paths. That file still means optimization is enabled."""
@@ -225,9 +251,8 @@ class TestInventoryChanges(OptimizeTestCase):
         (run / "optimization-enabled").unlink()
         (run / "optimization-vars-files.state").write_text("/no/longer/existing/host_vars/x/vars.yml\n")
         self.pb.write("host_vars/c/vars.yml", "nextcloud_enabled: true\n")
-        self.pb.touch_template()
 
-        self.assertSucceeded(self.pb.just("_setup-yml"))
+        self.assertSucceeded(self.pb.just("_prepare-files"))
         self.assertEnabled("miniflux", "gitea", "nextcloud")
         self.assertNotEnabled("vaultwarden")
         self.assertFalse((run / "optimization-vars-files.state").exists())
@@ -238,7 +263,7 @@ class TestInventoryChanges(OptimizeTestCase):
         self.assertSucceeded(self.pb.just("optimize"))
         (self.pb.root / "setup.yml").unlink()
 
-        self.assertSucceeded(self.pb.just("_setup-yml"))
+        self.assertSucceeded(self.pb.just("_prepare-files"))
         self.assertEnabled("miniflux", "gitea")
         self.assertNotIn("nextcloud", self.pb.setup_roles())
 
@@ -249,11 +274,11 @@ class TestInventoryChanges(OptimizeTestCase):
         # An unknown role name in a marker makes the optimization fail.
         with open(self.pb.root / "templates" / "setup.yml", "a") as file:
             file.write("\n    # role-specific:no_such_role\n    # /role-specific:no_such_role\n")
-        self.assertNotEqual(self.pb.just("_setup-yml").returncode, 0)
+        self.assertNotEqual(self.pb.just("_prepare-files").returncode, 0)
 
         # Running again must retry (and fail again), not continue with an unoptimized setup.yml
         # and an optimized requirements.yml.
-        self.assertNotEqual(self.pb.just("_setup-yml").returncode, 0)
+        self.assertNotEqual(self.pb.just("_prepare-files").returncode, 0)
         self.assertConsistent()
 
     def test_optimize_reset(self):
@@ -265,11 +290,25 @@ class TestInventoryChanges(OptimizeTestCase):
 
     def test_templates_are_used_as_they_are_without_optimization(self):
         self.standard_inventory()
-        self.assertSucceeded(self.pb.just("_setup-yml"))
-        self.assertEqual(
-            (self.pb.root / "setup.yml").read_text(),
-            (self.pb.root / "templates" / "setup.yml").read_text(),
-        )
+        self.assertSucceeded(self.pb.just("_prepare-files"))
+        self.pb.touch_template()
+
+        self.assertSucceeded(self.pb.just("_prepare-files"))
+        for template_name, generated_path in (
+            ("requirements.yml", "requirements.yml"),
+            ("setup.yml", "setup.yml"),
+            ("group_vars_mash_servers", "group_vars/mash_servers"),
+        ):
+            self.assertEqual(
+                (self.pb.root / generated_path).read_text(),
+                (self.pb.root / "templates" / template_name).read_text(),
+            )
+
+    def test_leftover_hash_files_are_removed(self):
+        self.standard_inventory()
+        (self.pb.root / "run" / "setup.yml.srchash").write_text("0123\n")
+        self.assertSucceeded(self.pb.just("_prepare-files"))
+        self.assertEqual(list((self.pb.root / "run").glob("*.srchash")), [])
 
 
 class TestVariableFileContents(OptimizeTestCase):

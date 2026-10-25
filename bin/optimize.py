@@ -168,6 +168,8 @@ def read_file(path):
 
 
 def write_to_file(contents, path):
+    if os.path.isfile(path) and read_file(path) == contents:
+        return
     # Write to a temporary file first, so that an interrupted write does not leave a partial file behind
     temporary_path = path + ".tmp"
     with open(temporary_path, "w") as file:

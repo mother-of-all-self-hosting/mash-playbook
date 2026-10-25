@@ -28,7 +28,7 @@ optimization_enabled_file_path := run_directory_path + "/optimization-enabled"
 optimization_legacy_state_file_path := run_directory_path + "/optimization-vars-files.state"
 
 # Pulls external Ansible roles
-roles: _requirements-yml
+roles: _prepare-files
     #!/usr/bin/env sh
     if [ -x "$(command -v agru)" ]; then
         echo "[NOTE] This command just updates the roles, but if you want to update everything at once (playbook, roles, etc.) - use 'just update'"
@@ -43,37 +43,16 @@ roles: _requirements-yml
 # Clears optimizations and resets the playbook to a non-optimized state
 optimize-reset: && _clean_template_derived_files
     #!/usr/bin/env sh
-    rm -f {{ run_directory_path }}/*.srchash
     rm -f {{ quote(optimization_enabled_file_path) }} {{ quote(optimization_legacy_state_file_path) }}
 
-# Optimizes the playbook based on the enabled components in the inventory (or the one $ANSIBLE_INVENTORY points to), and keeps it optimized on playbook updates
-optimize:
+# Optimizes the playbook based on the enabled components in the inventory (or the one $ANSIBLE_INVENTORY points to), and keeps it optimized from then on
+optimize: _optimize-files
     #!/usr/bin/env sh
-    set -eu
-    # The inventory may be a directory or a hosts file inside it
-    inventory_path={{ quote(inventory) }}
-    if [ ! -d "$inventory_path" ]; then
-        inventory_path=$(dirname "$inventory_path")
-    fi
-
-    python3 {{ justfile_directory() }}/bin/optimize.py \
-    --inventory-path="$inventory_path" \
-    --src-requirements-yml-path={{ templates_directory_path }}/requirements.yml \
-    --dst-requirements-yml-path={{ justfile_directory() }}/requirements.yml \
-    --src-setup-yml-path={{ templates_directory_path }}/setup.yml \
-    --dst-setup-yml-path={{ justfile_directory() }}/setup.yml \
-    --src-group-vars-yml-path={{ templates_directory_path }}/group_vars_mash_servers \
-    --dst-group-vars-yml-path={{ justfile_directory() }}/group_vars/mash_servers
-
-    # Only now that all files are generated, mark them as up to date with their templates
-    {{ just_executable() }} --justfile {{ justfile() }} _save_hash_for_file {{ templates_directory_path }}/requirements.yml {{ justfile_directory() }}/requirements.yml
-    {{ just_executable() }} --justfile {{ justfile() }} _save_hash_for_file {{ templates_directory_path }}/setup.yml {{ justfile_directory() }}/setup.yml
-    {{ just_executable() }} --justfile {{ justfile() }} _save_hash_for_file {{ templates_directory_path }}/group_vars_mash_servers {{ justfile_directory() }}/group_vars/mash_servers
     touch {{ quote(optimization_enabled_file_path) }}
     rm -f {{ quote(optimization_legacy_state_file_path) }}
 
 # Updates the playbook and installs the necessary Ansible roles pinned in requirements.yml. If a -u flag is passed, also updates the requirements.yml file with new role versions (if available)
-update *flags: _requirements-yml update-playbook-only
+update *flags: _prepare-files update-playbook-only
     #!/usr/bin/env sh
     if [ -x "$(command -v agru)" ]; then
         echo {{ if flags == "" { "Installing roles pinned in requirements.yml..." } else if flags == "-u" { "Updating roles and pinning new versions in requirements.yml..." } else { "Unknown flags passed" } }}
@@ -173,7 +152,7 @@ setup-service service *extra_args:
     --extra-vars=group={{ service }} {{ extra_args }}
 
 # Runs the playbook with the given list of arguments
-run +extra_args: _requirements-yml _setup-yml _group-vars-mash-servers
+run +extra_args: _prepare-files
     #!/usr/bin/env sh
     set -eu
     if ! [ -x "$(command -v etkepass)" ]; then
@@ -224,44 +203,50 @@ stop-all *extra_args: (run-tags "stop-all" extra_args)
 stop-group group *extra_args:
     @{{ just_executable() }} --justfile {{ justfile() }} run-tags stop-group --extra-vars="group={{ group }}" {{ extra_args }}
 
-# Prepares the requirements.yml file
-_requirements-yml:
-    @{{ just_executable() }} --justfile {{ justfile() }} _ensure_file_prepared {{ templates_directory_path }}/requirements.yml {{ justfile_directory() }}/requirements.yml
-
-# Prepares the setup.yml file
-_setup-yml:
-    @{{ just_executable() }} --justfile {{ justfile() }} _ensure_file_prepared {{ templates_directory_path }}/setup.yml {{ justfile_directory() }}/setup.yml
-
-# Prepares the group_vars/mash_servers file
-_group-vars-mash-servers:
-    @{{ just_executable() }} --justfile {{ justfile() }} _ensure_file_prepared {{ templates_directory_path }}/group_vars_mash_servers {{ justfile_directory() }}/group_vars/mash_servers
-
-_ensure_file_prepared src_path dst_path:
+# Generates requirements.yml, setup.yml and group_vars/mash_servers from their templates (optimized, if optimization is enabled).
+# This runs before every playbook run, so they always match the templates and the inventory. Unchanged files are left as they are.
+_prepare-files:
     #!/usr/bin/env sh
     set -eu
-    dst_file_name=$(basename "{{ dst_path }}")
-    hash_path={{ run_directory_path }}"/"$dst_file_name".srchash"
-    src_hash=$(md5sum {{ src_path }} | cut -d ' ' -f 1)
+    # Left over from older versions, which only regenerated these files when the templates changed
+    rm -f {{ run_directory_path }}/*.srchash
+    if [ -f {{ quote(optimization_legacy_state_file_path) }} ]; then
+        touch {{ quote(optimization_enabled_file_path) }}
+        rm {{ quote(optimization_legacy_state_file_path) }}
+    fi
 
-    if [ -f "{{ dst_path }}" ] && [ -f "$hash_path" ] && [ "$(cat "$hash_path")" = "$src_hash" ]; then
+    if [ -f {{ quote(optimization_enabled_file_path) }} ]; then
+        {{ just_executable() }} --justfile {{ justfile() }} _optimize-files
         exit 0
     fi
 
-    if [ -f "{{ optimization_enabled_file_path }}" ] || [ -f "{{ optimization_legacy_state_file_path }}" ]; then
-        # Regenerates all files from their templates and saves their hashes, but only if it succeeds.
-        # Otherwise, the next run tries again instead of continuing with files that do not match each other.
-        {{ just_executable() }} --justfile {{ justfile() }} optimize
-    else
-        cp {{ src_path }} {{ dst_path }}
-        echo $src_hash > $hash_path
+    for file in requirements.yml:requirements.yml setup.yml:setup.yml group_vars_mash_servers:group_vars/mash_servers; do
+        src_path={{ templates_directory_path }}/${file%%:*}
+        dst_path={{ justfile_directory() }}/${file#*:}
+        if ! cmp -s "$src_path" "$dst_path"; then
+            cp "$src_path" "$dst_path"
+        fi
+    done
+
+# Generates optimized requirements.yml, setup.yml and group_vars/mash_servers files for the inventory.
+# If this fails, none of them is changed.
+_optimize-files:
+    #!/usr/bin/env sh
+    set -eu
+    # The inventory may be a directory or a hosts file inside it
+    inventory_path={{ quote(inventory) }}
+    if [ ! -d "$inventory_path" ]; then
+        inventory_path=$(dirname "$inventory_path")
     fi
 
-_save_hash_for_file src_path dst_path:
-    #!/usr/bin/env sh
-    dst_file_name=$(basename "{{ dst_path }}")
-    hash_path={{ run_directory_path }}"/"$dst_file_name".srchash"
-    src_hash=$(md5sum {{ src_path }} | cut -d ' ' -f 1)
-    echo $src_hash > $hash_path
+    python3 {{ justfile_directory() }}/bin/optimize.py \
+    --inventory-path="$inventory_path" \
+    --src-requirements-yml-path={{ templates_directory_path }}/requirements.yml \
+    --dst-requirements-yml-path={{ justfile_directory() }}/requirements.yml \
+    --src-setup-yml-path={{ templates_directory_path }}/setup.yml \
+    --dst-setup-yml-path={{ justfile_directory() }}/setup.yml \
+    --src-group-vars-yml-path={{ templates_directory_path }}/group_vars_mash_servers \
+    --dst-group-vars-yml-path={{ justfile_directory() }}/group_vars/mash_servers
 
 _clean_template_derived_files:
     #!/usr/bin/env sh
