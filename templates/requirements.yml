@@ -9,7 +9,7 @@
   name: adguard_home
   activation_prefix: adguard_home_
 - src: git+https://progressiv.radicle.garden/z3px8gLDo2opjQZW7qFiLoNuk4eSu.git
-  version: v6.1.2-0
+  version: v6.1.2-1
   name: adminer
   activation_prefix: adminer_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-anki.git
@@ -69,7 +69,7 @@
   name: backup_borg
   activation_prefix: backup_borg_
 - src: git+https://progressiv.radicle.garden/z3JDUHjeHMqbZ3YLxquSUbCmAJLi.git
-  version: v6.8.1-0
+  version: v6.9.1-0
   name: barassistant
   activation_prefix: barassistant_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-bazarr.git
@@ -289,11 +289,11 @@
   name: filebrowser
   activation_prefix: filebrowser_
 - src: git+https://progressiv.radicle.garden/z3ALGSKDhVLeMnR49YPXk5yv2yTge.git
-  version: v1.5.6-0
+  version: v2.0.2-0
   name: filebrowser_quantum
   activation_prefix: filebrowser_quantum_
 - src: git+https://progressiv.radicle.garden/zBuFgpA5FBmUEcLEXHY9ZBVGpqDM.git
-  version: v7.16.5-0
+  version: v7.16.8-0
   name: filegator
   activation_prefix: filegator_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-flaresolverr.git
@@ -389,7 +389,7 @@
   name: heimdall
   activation_prefix: heimdall_
 - src: git+https://progressiv.radicle.garden/zsKztkwnLv9wVMRYbcpoFesx6L5j.git
-  version: v3.0.3-0
+  version: v3.0.4-0
   name: heyform
   activation_prefix: heyform_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-homarr.git
@@ -461,7 +461,7 @@
   name: keyoxide
   activation_prefix: keyoxide_
 - src: git+https://progressiv.radicle.garden/z36dPzLyvPA52m845g1MMqHgoiaEz.git
-  version: v3.2.6-2
+  version: v3.2.6-3
   name: kutt
   activation_prefix: kutt_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-labelstudio.git
@@ -701,7 +701,7 @@
   name: origamivault
   activation_prefix: origamivault_
 - src: git+https://progressiv.radicle.garden/z3cspgyZXPNcnzNXCYKsEGJK7dKKA.git
-  version: v1.23.0-0
+  version: v1.23.1-0
   name: ots
   activation_prefix: ots_
 - src: git+https://progressiv.radicle.garden/zvzJe15VMBkGd2CMBctvpVZgmQG5.git
@@ -857,7 +857,7 @@
   name: radicale
   activation_prefix: radicale_
 - src: git+https://progressiv.radicle.garden/zopwjin5Vh5dMgdHWiifJ2cg3bQW.git
-  version: v0.28.0-0
+  version: v0.28.0-1
   name: radicle_explorer
   activation_prefix: radicle_explorer_
 - src: git+https://progressiv.radicle.garden/z3roZFCprFZhmK8BvkrsKwkLZXr56.git
@@ -961,7 +961,7 @@
   name: soundcloak
   activation_prefix: soundcloak_
 - src: git+https://progressiv.radicle.garden/z2eyt9uovdZtjh8TL5qiyv2PqAYvP.git
-  version: v0.46.3-0
+  version: v0.47.0-0
   name: sqlpage
   activation_prefix: sqlpage_
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-ssh.git
