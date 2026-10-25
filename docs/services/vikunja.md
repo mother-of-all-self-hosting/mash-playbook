@@ -36,7 +36,7 @@ For details about configuring the [Ansible role for Vikunja](https://github.com/
 
 This service requires the following other services:
 
-- [Postgres](postgres.md) / MySQL / [MariaDB](mariadb.md) database
+- [Postgres](postgres.md) / MySQL / [MariaDB](mariadb.md) / [SQLite](https://www.sqlite.org/) database
 - [Traefik](traefik.md) reverse-proxy server
 - (optional) [exim-relay](exim-relay.md) mailer
 - (optional) [Valkey](valkey.md) data-store; see [below](#configuring-valkey-optional) for details about installation

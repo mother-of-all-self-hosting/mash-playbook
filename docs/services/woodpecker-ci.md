@@ -49,7 +49,7 @@ For details about configuring the [Ansible role for Woodpecker CI server](https:
 
 This service requires the following other services:
 
-- [Postgres](postgres.md) / MySQL / [MariaDB](mariadb.md) database
+- [Postgres](postgres.md) / MySQL / [MariaDB](mariadb.md) / [SQLite](https://www.sqlite.org/) database
 - [Traefik](traefik.md) reverse-proxy server
 
 ### Configuration — Woodpecker CI server

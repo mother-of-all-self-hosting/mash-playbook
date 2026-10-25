@@ -35,7 +35,7 @@ For details about configuring the [Ansible role for CodiMD](https://radicle.netw
 
 This service requires the following other services:
 
-- [Postgres](postgres.md) / MySQL / [MariaDB](mariadb.md)
+- [Postgres](postgres.md) / MySQL / [MariaDB](mariadb.md) database
 - [Traefik](traefik.md) reverse-proxy server
 - (optional) [exim-relay](exim-relay.md) mailer
 
