@@ -121,11 +121,20 @@ Each role the playbook can use is wired in by a *component*: a directory in [`co
     └── supported-services.md  ← Add your service
 ```
 
-Components can also live in the inventory, to extend the playbook without changing it (see [Extending the playbook with your own components](extending-the-playbook.md)).
+>[!NOTE]
+> Before every run, `just` generates `requirements.yml`, `setup.yml` and `group_vars/mash_servers/` from the components in use by the inventory (see [`bin/optimize.py`](../bin/optimize.py)). Do not edit those generated files.
 
-The easiest way to start is to copy the component of a similar service and adapt it. [`miniflux`](../components/miniflux) is a typical one (with Postgres and Traefik), [`postgres`](../components/postgres) accepts entries from other components, and [`docker`](../components/docker) has a special entry in `setup.yml`.
+Components can also live in the inventory, to extend the playbook without changing it (refer to [this page](extending-the-playbook.md)).
 
-Before every run, `just` generates `requirements.yml`, `setup.yml` and `group_vars/mash_servers/` from the components in use by the inventory (see [`bin/optimize.py`](../bin/optimize.py)). Do not edit those generated files. The `check-components` pre-commit hook validates the structure of all components, and the `test-optimize` hook ([`tests/optimize/test_optimize.py`](../tests/optimize/test_optimize.py)) tests the generation.
+💡 The easiest way to start is to copy the component of a similar service and adapt it. It is recommended to take a look at the components as below first to grasp the whole picture:
+
+- [`actual`](../components/actual): simple one with Traefik
+- [`freescout`](../components/freescout): with multiple databases (Postgres, MariaDB, SQLite)
+- [`pinepods`](../components/postgres): with multiple databases and a Valkey data-store
+- [`opengist`](../components/opengist): with multiple databases, an additional component (Meilisearch), and optional Prometheus metrics
+- [`reitti`](../components/reitti): with multiple systemd services
+- [`postgres`](../components/postgres): entries from other components
+- [`docker`](../components/docker): with a special entry in `setup.yml`
 
 #### `component.yml`
 
