@@ -468,7 +468,16 @@ class TestTemplates(OptimizeTestCase):
 
 
 class TestRoleInstallation(OptimizeTestCase):
-    """Runs `just roles` with a fake `agru`, which records how it was called."""
+    """Runs `just roles` and `just update` with a fake `agru`, which records how it was called."""
+
+    GIT_ENV = {
+        "GIT_AUTHOR_NAME": "Test",
+        "GIT_AUTHOR_EMAIL": "test@example.com",
+        "GIT_COMMITTER_NAME": "Test",
+        "GIT_COMMITTER_EMAIL": "test@example.com",
+        "GIT_CONFIG_GLOBAL": os.devnull,
+        "GIT_CONFIG_NOSYSTEM": "1",
+    }
 
     def setUp(self):
         super().setUp()
@@ -490,7 +499,10 @@ class TestRoleInstallation(OptimizeTestCase):
             done
             """).format(log=self.agru_log_path))
         agru_path.chmod(0o755)
-        self.env = {"PATH": "{0}:{1}".format(bin_path, os.environ["PATH"])}
+        self.env = {"PATH": "{0}:{1}".format(bin_path, os.environ["PATH"]), **self.GIT_ENV}
+
+    def git(self, *args, cwd):
+        subprocess.run(["git", *args], cwd=cwd, env={**os.environ, **self.GIT_ENV}, check=True, capture_output=True)
 
     def agru_calls(self):
         """Returns (arguments, role names) for each call of the fake agru."""
@@ -499,6 +511,35 @@ class TestRoleInstallation(OptimizeTestCase):
 
     def test_roles_installs_optimized_roles(self):
         self.assertSucceeded(self.pb.just("roles", env=self.env))
+        [(args, roles)] = self.agru_calls()
+        self.assertIn(str(self.pb.root / "requirements.yml"), args)
+        self.assertIn("name: miniflux", roles)
+        self.assertNotIn("name: nextcloud", roles)
+
+    def make_clone_with_upstream_change(self):
+        """Turns the playbook into a clone of an upstream repository, which then gets a template change."""
+        upstream_path = self.pb.root.parent / (self.pb.root.name + "-upstream.git")
+        work_path = self.pb.root.parent / (self.pb.root.name + "-work")
+        self.addCleanup(shutil.rmtree, upstream_path)
+        self.addCleanup(shutil.rmtree, work_path)
+        (self.pb.root / ".gitignore").write_text("/inventory\n/run/\n/requirements.yml\n/setup.yml\n/group_vars/mash_servers\n")
+        self.git("init", "-q", "-b", "main", cwd=self.pb.root)
+        self.git("add", ".", cwd=self.pb.root)
+        self.git("commit", "-q", "-m", "Initial", cwd=self.pb.root)
+        self.git("clone", "-q", "--bare", str(self.pb.root), str(upstream_path), cwd=self.pb.root)
+        self.git("remote", "add", "origin", str(upstream_path), cwd=self.pb.root)
+        self.git("fetch", "-q", "origin", cwd=self.pb.root)
+        self.git("branch", "-q", "--set-upstream-to=origin/main", cwd=self.pb.root)
+        self.git("clone", "-q", str(upstream_path), str(work_path), cwd=self.pb.root)
+        with open(work_path / "templates" / "setup.yml", "a") as file:
+            file.write("\n# changed upstream\n")
+        self.git("commit", "-q", "-am", "Change", cwd=work_path)
+        self.git("push", "-q", "origin", "main", cwd=work_path)
+
+    def test_update_prepares_files_after_pulling(self):
+        self.make_clone_with_upstream_change()
+        self.assertSucceeded(self.pb.just("update", env=self.env))
+        self.assertIn("# changed upstream", (self.pb.root / "setup.yml").read_text())
         [(args, roles)] = self.agru_calls()
         self.assertIn(str(self.pb.root / "requirements.yml"), args)
         self.assertIn("name: miniflux", roles)

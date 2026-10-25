@@ -46,22 +46,22 @@ optimize-disable:
     {{ just_executable() }} --justfile {{ justfile() }} _prepare-files
 
 # Updates the playbook and installs the necessary Ansible roles pinned in requirements.yml. If a -u flag is passed, also updates the requirements.yml file with new role versions (if available)
-update *flags: _prepare-files update-playbook-only
+update *flags: update-playbook-only
     #!/usr/bin/env sh
-    if [ -x "$(command -v agru)" ]; then
-        echo {{ if flags == "" { "Installing roles pinned in requirements.yml..." } else if flags == "-u" { "Updating roles and pinning new versions in requirements.yml..." } else { "Unknown flags passed" } }}
-        agru -r {{ templates_directory_path }}/requirements.yml -p roles/galaxy/ -no-tui {{ flags }}
-    else
-        echo "[NOTE] You are using the standard ansible-galaxy tool to install roles, which is slow and lacks other features. We recommend installing the 'agru' tool to speed up the process: https://github.com/etkecc/agru#where-to-get"
-        echo "Installing roles..."
-        rm -rf roles/galaxy
-        ansible-galaxy install -r requirements.yml -p roles/galaxy/ --force
-    fi
-
-    if [ "{{ flags }}" = "-u" ]; then
+    set -eu
+    if [ "{{ flags }}" = "-u" ] && [ -x "$(command -v agru)" ]; then
+        # This updates the versions pinned in the template, so it works on all roles
+        echo "Updating roles and pinning new versions in templates/requirements.yml..."
+        agru -r {{ templates_directory_path }}/requirements.yml -p roles/galaxy/ -no-tui -u
         {{ just_executable() }} --justfile {{ justfile() }} versions
         {{ just_executable() }} --justfile {{ justfile() }} opml
+    elif [ -n "{{ flags }}" ]; then
+        echo "Ignoring unsupported flags: {{ flags }}"
     fi
+
+    # Run these now, after the playbook update, so they use its new templates (and justfile)
+    {{ just_executable() }} --justfile {{ justfile() }} _prepare-files
+    {{ just_executable() }} --justfile {{ justfile() }} _install-roles
 
 # Updates the playbook without installing/updating Ansible roles
 update-playbook-only:
