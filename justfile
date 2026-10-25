@@ -65,13 +65,6 @@ _reconfigure-for-all-hosts inventory_path='inventory':
     _optimize-for-var-paths \
     $(find {{ inventory_path }}/host_vars/ -maxdepth 2 -name 'vars.yml' -exec readlink -f {} \;)
 
-# Removed in favor of `just optimize`. Kept (hidden) to point existing users to it.
-[private]
-optimize-for-host *args:
-    #!/usr/bin/env sh
-    echo "'just optimize-for-host' has been removed. Run 'just optimize' instead, which optimizes the playbook for all hosts in the inventory. See CHANGELOG.md (2026-10-25)." >&2
-    exit 1
-
 # Optimizes the playbook based on the enabled components found in the given vars.yml files
 _optimize-for-var-paths +PATHS:
     #!/usr/bin/env sh

@@ -2,7 +2,7 @@
 
 ## `just optimize-for-host` has been removed
 
-This only affects you if you have used `just optimize-for-host HOST`. It now stops with an error pointing to `just optimize`.
+This only affects you if you have used `just optimize-for-host HOST`. Use `just optimize` instead.
 
 Optimizing for the whole inventory with `just optimize` covers every host's services, so it is always correct. Optimizing for a single host could only make runs a little faster, at the cost of silently skipping the services of other hosts when running the playbook against them.
 
