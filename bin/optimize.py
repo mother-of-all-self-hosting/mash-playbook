@@ -7,7 +7,6 @@
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
 import argparse
-import glob
 import os
 import re
 import sys
@@ -71,7 +70,14 @@ def load_variable_names_from_file(vars_path):
         # We don't decrypt secrets. Variables which enable roles are not expected to be in such files.
         return set()
 
-    yaml_data = yaml.load(contents, Loader=VarsLoader)
+    try:
+        yaml_data = yaml.load(contents, Loader=VarsLoader)
+    except yaml.YAMLError as e:
+        print(
+            "Warning: skipping {0}, because it is not valid YAML: {1}".format(vars_path, e),
+            file=sys.stderr,
+        )
+        return set()
 
     if yaml_data is None:
         # Empty file or one with comments only
@@ -87,10 +93,49 @@ def load_variable_names_from_file(vars_path):
     return set(yaml_data.keys())
 
 
+# Like Ansible's `yaml_valid_extensions` (files without an extension are loaded too)
+VARS_FILE_EXTENSIONS = ("", ".yml", ".yaml", ".json")
+
+
+def is_ignored_by_ansible(name):
+    # Hidden files and backups
+    return name.startswith(".") or name.endswith("~")
+
+
+def find_vars_file_paths_in_directory(path):
+    """Finds variable files in a host's or group's directory, like Ansible's host_group_vars plugin does."""
+    found = []
+    for name in sorted(os.listdir(path)):
+        if is_ignored_by_ansible(name):
+            continue
+        entry_path = os.path.join(path, name)
+        extension = os.path.splitext(name)[1]
+        if os.path.isdir(entry_path):
+            if extension == "":
+                found.extend(find_vars_file_paths_in_directory(entry_path))
+        elif extension in VARS_FILE_EXTENSIONS:
+            found.append(entry_path)
+    return found
+
+
 def find_vars_file_paths(inventory_path):
-    return sorted(
-        glob.glob(os.path.join(glob.escape(inventory_path), "host_vars", "*", "vars.yml"))
-    )
+    """Finds the variable files of all hosts and groups (host_vars/ and group_vars/) in the inventory."""
+    found = []
+    for vars_directory_name in ("host_vars", "group_vars"):
+        vars_directory_path = os.path.join(inventory_path, vars_directory_name)
+        if not os.path.isdir(vars_directory_path):
+            continue
+        for name in sorted(os.listdir(vars_directory_path)):
+            if is_ignored_by_ansible(name):
+                continue
+            entry_path = os.path.join(vars_directory_path, name)
+            if os.path.isdir(entry_path):
+                found.extend(find_vars_file_paths_in_directory(entry_path))
+            else:
+                # Ansible picks these files by host or group name, which may contain dots (e.g. `host_vars/example.com`),
+                # so their extension tells nothing.
+                found.append(entry_path)
+    return found
 
 
 def load_combined_variable_names_from_files(vars_yml_file_paths):
@@ -248,7 +293,7 @@ if not os.path.isdir(args.inventory_path):
 vars_paths = find_vars_file_paths(args.inventory_path)
 if len(vars_paths) == 0:
     sys.exit(
-        "Cannot optimize the playbook: no variable files (host_vars/*/vars.yml) found in the inventory directory ({0})".format(
+        "Cannot optimize the playbook: no variable files (in host_vars/ or group_vars/) found in the inventory directory ({0})".format(
             args.inventory_path
         )
     )
