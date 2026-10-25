@@ -29,18 +29,18 @@ optimization_legacy_state_file_path := run_directory_path + "/optimization-vars-
 # Versions and checksums of the roles installed into roles/galaxy, for detecting local changes to them
 installed_roles_file_path := run_directory_path + "/installed-roles.yml"
 
-# Pulls external Ansible roles (and deletes unused ones). Roles with local changes are kept, unless --force is passed
+# Pulls external Ansible roles (--force also replaces roles with local changes)
 roles *flags: _prepare-files
     @echo "[NOTE] This command just updates the roles, but if you want to update everything at once (playbook, roles, etc.) - use 'just update'"
     @{{ just_executable() }} --justfile {{ justfile() }} _install-roles {{ flags }}
 
-# Enables optimization: from then on, the playbook only includes the roles of the services enabled in the inventory (or the one $ANSIBLE_INVENTORY points to)
+# Makes the playbook include only the roles of enabled services
 optimize-enable: _optimize-files
     #!/usr/bin/env sh
     touch {{ quote(optimization_enabled_file_path) }}
     rm -f {{ quote(optimization_legacy_state_file_path) }}
 
-# Disables optimization: from then on, the playbook includes all roles
+# Makes the playbook include all roles
 optimize-disable:
     #!/usr/bin/env sh
     set -eu
@@ -156,7 +156,7 @@ setup-service service *extra_args:
     --tags=setup-{{ service }},start-group \
     --extra-vars=group={{ service }} {{ extra_args }}
 
-# Runs the playbook with the given list of arguments, after installing missing and outdated roles
+# Runs the playbook with the given list of arguments
 run +extra_args: _prepare-files (_install-roles "--quiet")
     #!/usr/bin/env sh
     set -eu
@@ -208,7 +208,7 @@ stop-all *extra_args: (run-tags "stop-all" extra_args)
 stop-group group *extra_args:
     @{{ just_executable() }} --justfile {{ justfile() }} run-tags stop-group --extra-vars="group={{ group }}" {{ extra_args }}
 
-# Installs the Ansible roles listed in requirements.yml and deletes the playbook's other roles, keeping roles with local changes (unless --force is passed)
+# Installs the roles in requirements.yml and deletes unused ones, keeping roles with local changes
 _install-roles *flags:
     @python3 {{ justfile_directory() }}/bin/install-roles.py \
     --requirements-path={{ justfile_directory() }}/requirements.yml \
