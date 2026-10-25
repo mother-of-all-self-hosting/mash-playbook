@@ -136,6 +136,6 @@ Because you're `root` in the container running Ansible and this likely differs f
 
 > fatal: unsafe repository ('/work' is owned by someone else)
 > To add an exception for this directory, call:
->  git config --global --add safe.directory /work
+> git config --global --add safe.directory /work
 
 These errors can be resolved by making `git` trust the playbook directory by running `git config --global --add safe.directory /work`
