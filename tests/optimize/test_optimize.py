@@ -3,7 +3,7 @@
 #
 # SPDX-License-Identifier: AGPL-3.0-or-later
 
-# Tests for `just optimize` and the recipes around it (bin/optimize.py and the justfile).
+# Tests for playbook optimization (bin/optimize.py and the justfile recipes around it).
 #
 # Each test copies the justfile, bin/optimize.py and the real templates into a temporary
 # playbook directory under var/tests/optimize/, builds an inventory there and runs the actual `just` recipes.
@@ -140,7 +140,7 @@ class OptimizeTestCase(unittest.TestCase):
 class TestInventoryLocation(OptimizeTestCase):
     def test_default_inventory(self):
         self.standard_inventory()
-        self.assertSucceeded(self.pb.just("optimize"))
+        self.assertSucceeded(self.pb.just("optimize-enable"))
         self.assertEnabled("miniflux", "gitea")
         self.assertNotEnabled("nextcloud")
 
@@ -154,23 +154,23 @@ class TestInventoryLocation(OptimizeTestCase):
 
     def test_ansible_inventory_hosts_file(self):
         other = self.other_inventory()
-        self.assertSucceeded(self.pb.just("optimize", env={"ANSIBLE_INVENTORY": str(other / "hosts")}))
+        self.assertSucceeded(self.pb.just("optimize-enable", env={"ANSIBLE_INVENTORY": str(other / "hosts")}))
         self.assertEnabled("nextcloud")
 
     def test_ansible_inventory_directory(self):
         other = self.other_inventory()
-        self.assertSucceeded(self.pb.just("optimize", env={"ANSIBLE_INVENTORY": str(other)}))
+        self.assertSucceeded(self.pb.just("optimize-enable", env={"ANSIBLE_INVENTORY": str(other)}))
         self.assertEnabled("nextcloud")
 
     def test_inventory_path_with_space(self):
         other = self.other_inventory("my inventory")
-        self.assertSucceeded(self.pb.just("optimize", env={"ANSIBLE_INVENTORY": str(other / "hosts")}))
+        self.assertSucceeded(self.pb.just("optimize-enable", env={"ANSIBLE_INVENTORY": str(other / "hosts")}))
         self.assertEnabled("nextcloud")
 
     def test_reoptimization_follows_ansible_inventory(self):
         """One playbook used with several inventories is re-optimized for the one being used."""
         self.standard_inventory()
-        self.assertSucceeded(self.pb.just("optimize"))
+        self.assertSucceeded(self.pb.just("optimize-enable"))
 
         other = self.pb.root / "other-inventory"
         self.pb.write("hosts", "[mash_servers]\nc\n", base=other)
@@ -182,11 +182,11 @@ class TestInventoryLocation(OptimizeTestCase):
 
     def test_no_variable_files_fails_cleanly(self):
         self.pb.hosts("[mash_servers]\na\n")
-        self.assertFailedCleanly(self.pb.just("optimize"))
+        self.assertFailedCleanly(self.pb.just("optimize-enable"))
         self.assertFalse((self.pb.root / "run" / "optimization-enabled").exists())
 
     def test_missing_inventory_directory_fails_cleanly(self):
-        result = self.pb.just("optimize", env={"ANSIBLE_INVENTORY": str(self.pb.root / "no-such-inventory" / "hosts")})
+        result = self.pb.just("optimize-enable", env={"ANSIBLE_INVENTORY": str(self.pb.root / "no-such-inventory" / "hosts")})
         self.assertFailedCleanly(result)
         self.assertIn("ANSIBLE_INVENTORY", result.stderr)
         self.assertFalse((self.pb.root / "run" / "optimization-enabled").exists())
@@ -195,7 +195,7 @@ class TestInventoryLocation(OptimizeTestCase):
 class TestInventoryChanges(OptimizeTestCase):
     def test_removed_host_on_next_run(self):
         self.standard_inventory()
-        self.assertSucceeded(self.pb.just("optimize"))
+        self.assertSucceeded(self.pb.just("optimize-enable"))
 
         shutil.rmtree(self.pb.inventory / "host_vars" / "b")
         self.pb.hosts("[mash_servers]\na\n")
@@ -206,7 +206,7 @@ class TestInventoryChanges(OptimizeTestCase):
 
     def test_added_host_on_next_run(self):
         self.standard_inventory()
-        self.assertSucceeded(self.pb.just("optimize"))
+        self.assertSucceeded(self.pb.just("optimize-enable"))
 
         self.pb.hosts("[mash_servers]\na\nb\nc\n")
         self.pb.write("host_vars/c/vars.yml", "nextcloud_enabled: true\n")
@@ -216,7 +216,7 @@ class TestInventoryChanges(OptimizeTestCase):
 
     def test_enabled_service_on_next_run(self):
         self.standard_inventory()
-        self.assertSucceeded(self.pb.just("optimize"))
+        self.assertSucceeded(self.pb.just("optimize-enable"))
 
         with open(self.pb.inventory / "host_vars" / "a" / "vars.yml", "a") as file:
             file.write("nextcloud_enabled: true\n")
@@ -227,7 +227,7 @@ class TestInventoryChanges(OptimizeTestCase):
 
     def test_template_change_on_next_run(self):
         self.standard_inventory()
-        self.assertSucceeded(self.pb.just("optimize"))
+        self.assertSucceeded(self.pb.just("optimize-enable"))
         self.pb.touch_template()
 
         self.assertSucceeded(self.pb.just("_prepare-files"))
@@ -236,7 +236,7 @@ class TestInventoryChanges(OptimizeTestCase):
 
     def test_unchanged_files_are_not_rewritten(self):
         self.standard_inventory()
-        self.assertSucceeded(self.pb.just("optimize"))
+        self.assertSucceeded(self.pb.just("optimize-enable"))
         generated = [self.pb.root / "requirements.yml", self.pb.root / "setup.yml", self.pb.root / "group_vars" / "mash_servers"]
         modification_times = [path.stat().st_mtime_ns for path in generated]
 
@@ -246,7 +246,7 @@ class TestInventoryChanges(OptimizeTestCase):
     def test_legacy_state_keeps_optimization_enabled(self):
         """Older versions stored a list of vars.yml paths. That file still means optimization is enabled."""
         self.standard_inventory()
-        self.assertSucceeded(self.pb.just("optimize"))
+        self.assertSucceeded(self.pb.just("optimize-enable"))
         run = self.pb.root / "run"
         (run / "optimization-enabled").unlink()
         (run / "optimization-vars-files.state").write_text("/no/longer/existing/host_vars/x/vars.yml\n")
@@ -260,7 +260,7 @@ class TestInventoryChanges(OptimizeTestCase):
 
     def test_deleted_generated_file_is_regenerated_optimized(self):
         self.standard_inventory()
-        self.assertSucceeded(self.pb.just("optimize"))
+        self.assertSucceeded(self.pb.just("optimize-enable"))
         (self.pb.root / "setup.yml").unlink()
 
         self.assertSucceeded(self.pb.just("_prepare-files"))
@@ -269,7 +269,7 @@ class TestInventoryChanges(OptimizeTestCase):
 
     def test_failed_reoptimization_does_not_leave_mismatched_files(self):
         self.standard_inventory()
-        self.assertSucceeded(self.pb.just("optimize"))
+        self.assertSucceeded(self.pb.just("optimize-enable"))
 
         # An unknown role name in a marker makes the optimization fail.
         with open(self.pb.root / "templates" / "setup.yml", "a") as file:
@@ -281,12 +281,19 @@ class TestInventoryChanges(OptimizeTestCase):
         self.assertNotEqual(self.pb.just("_prepare-files").returncode, 0)
         self.assertConsistent()
 
-    def test_optimize_reset(self):
+    def test_optimize_disable(self):
         self.standard_inventory()
-        self.assertSucceeded(self.pb.just("optimize"))
-        self.assertSucceeded(self.pb.just("optimize-reset"))
+        self.assertSucceeded(self.pb.just("optimize-enable"))
+        self.assertSucceeded(self.pb.just("optimize-disable"))
         self.assertFalse((self.pb.root / "run" / "optimization-enabled").exists())
-        self.assertFalse((self.pb.root / "setup.yml").exists())
+        self.assertEqual(
+            (self.pb.root / "setup.yml").read_text(),
+            (self.pb.root / "templates" / "setup.yml").read_text(),
+        )
+
+        # It stays disabled on the next runs
+        self.assertSucceeded(self.pb.just("_prepare-files"))
+        self.assertIn("nextcloud", self.pb.setup_roles())
 
     def test_templates_are_used_as_they_are_without_optimization(self):
         self.standard_inventory()
@@ -315,32 +322,32 @@ class TestVariableFileContents(OptimizeTestCase):
     def test_empty_file(self):
         self.standard_inventory()
         self.pb.write("host_vars/b/vars.yml", "")
-        self.assertSucceeded(self.pb.just("optimize"))
+        self.assertSucceeded(self.pb.just("optimize-enable"))
         self.assertEnabled("miniflux")
 
     def test_comments_only_file(self):
         self.standard_inventory()
         self.pb.write("host_vars/b/vars.yml", "---\n# gitea_enabled: true\n")
-        self.assertSucceeded(self.pb.just("optimize"))
+        self.assertSucceeded(self.pb.just("optimize-enable"))
         self.assertEnabled("miniflux")
         self.assertNotEnabled("gitea")
 
     def test_non_mapping_file(self):
         self.standard_inventory()
         self.pb.write("host_vars/b/vars.yml", "- gitea_enabled\n")
-        self.assertSucceeded(self.pb.just("optimize"))
+        self.assertSucceeded(self.pb.just("optimize-enable"))
         self.assertEnabled("miniflux")
 
     def test_inline_vault_value(self):
         self.standard_inventory()
         self.pb.write("host_vars/a/vars.yml", "miniflux_enabled: true\n" + INLINE_VAULT)
-        self.assertSucceeded(self.pb.just("optimize"))
+        self.assertSucceeded(self.pb.just("optimize-enable"))
         self.assertEnabled("miniflux", "gitea")
 
     def test_invalid_yaml_is_skipped_with_warning(self):
         self.standard_inventory()
         self.pb.write("host_vars/b/broken.yml", "nextcloud_enabled: [\n")
-        result = self.pb.just("optimize")
+        result = self.pb.just("optimize-enable")
         self.assertSucceeded(result)
         self.assertIn("broken.yml", result.stderr)
         self.assertEnabled("miniflux", "gitea")
@@ -348,7 +355,7 @@ class TestVariableFileContents(OptimizeTestCase):
     def test_fully_encrypted_file_is_skipped_silently(self):
         self.standard_inventory()
         self.pb.write("host_vars/b/vault.yml", FULLY_ENCRYPTED)
-        result = self.pb.just("optimize")
+        result = self.pb.just("optimize-enable")
         self.assertSucceeded(result)
         self.assertNotIn("vault.yml", result.stdout + result.stderr)
         self.assertEnabled("miniflux", "gitea")
@@ -359,7 +366,7 @@ class TestVariableFileLayouts(OptimizeTestCase):
         self.standard_inventory()
         shutil.rmtree(self.pb.inventory / "host_vars" / "b")
         self.pb.write("host_vars/b.yml", "gitea_enabled: true\n")
-        self.assertSucceeded(self.pb.just("optimize"))
+        self.assertSucceeded(self.pb.just("optimize-enable"))
         self.assertEnabled("miniflux", "gitea")
 
     def test_flat_host_vars_file_named_after_a_domain(self):
@@ -367,14 +374,14 @@ class TestVariableFileLayouts(OptimizeTestCase):
         self.standard_inventory()
         shutil.rmtree(self.pb.inventory / "host_vars" / "b")
         self.pb.write("host_vars/b.example.com", "gitea_enabled: true\n")
-        self.assertSucceeded(self.pb.just("optimize"))
+        self.assertSucceeded(self.pb.just("optimize-enable"))
         self.assertEnabled("miniflux", "gitea")
 
     def test_additional_files_in_host_vars_directory(self):
         self.standard_inventory()
         self.pb.write("host_vars/a/nextcloud.yml", "nextcloud_enabled: true\n")
         self.pb.write("host_vars/a/services/syncthing.yaml", "syncthing_enabled: true\n")
-        self.assertSucceeded(self.pb.just("optimize"))
+        self.assertSucceeded(self.pb.just("optimize-enable"))
         self.assertEnabled("miniflux", "gitea", "nextcloud", "syncthing")
 
     def test_group_vars_layouts(self):
@@ -394,13 +401,13 @@ class TestVariableFileLayouts(OptimizeTestCase):
         self.pb.write("group_vars/mash_servers/vars.yml", "aux_file_definitions_custom: []\n")
         self.pb.write("group_vars/web", "nextcloud_enabled: true\n")
         self.pb.write("group_vars/db.yaml", "gitea_enabled: true\n")
-        self.assertSucceeded(self.pb.just("optimize"))
+        self.assertSucceeded(self.pb.just("optimize-enable"))
         self.assertEnabled("miniflux", "auxiliary", "nextcloud", "gitea")
 
     def test_group_vars_without_host_vars(self):
         self.pb.hosts("[mash_servers]\na\n")
         self.pb.write("group_vars/mash_servers.yml", "miniflux_enabled: true\n")
-        self.assertSucceeded(self.pb.just("optimize"))
+        self.assertSucceeded(self.pb.just("optimize-enable"))
         self.assertEnabled("miniflux")
 
     def test_files_ansible_does_not_load_are_ignored(self):
@@ -410,7 +417,7 @@ class TestVariableFileLayouts(OptimizeTestCase):
         self.pb.write("host_vars/a/.vars.yml.swp", "vaultwarden_enabled: true\n")
         # Like Ansible, do not descend into directories with an extension
         self.pb.write("host_vars/a/etc/nginx/conf.d/uptime.yml", "uptime_kuma_enabled: true\n")
-        self.assertSucceeded(self.pb.just("optimize"))
+        self.assertSucceeded(self.pb.just("optimize-enable"))
         self.assertEnabled("miniflux", "gitea")
         self.assertNotEnabled("nextcloud", "syncthing", "vaultwarden", "uptime_kuma")
 
@@ -421,7 +428,7 @@ class TestVariableFileLayouts(OptimizeTestCase):
         self.pb.write("host_vars/a/root/bin/backup.sh", "#!/bin/sh\necho 'nextcloud_enabled: true'\n")
         self.pb.write("host_vars/a/docs/README.md", "# Notes\n")
         self.pb.write("host_vars/a/root/ssh/id_ed25519", "")
-        result = self.pb.just("optimize")
+        result = self.pb.just("optimize-enable")
         self.assertSucceeded(result)
         self.assertEqual(result.stderr, "")
         self.assertEnabled("miniflux", "gitea")
@@ -445,7 +452,7 @@ class TestTemplates(OptimizeTestCase):
             "host_vars/a/vars.yml",
             "".join("{0}optimize_test: true\n".format(prefix) for prefix in sorted(self.all_prefixes())),
         )
-        self.assertSucceeded(self.pb.just("optimize"))
+        self.assertSucceeded(self.pb.just("optimize-enable"))
         self.assertConsistent()
         self.assertGeneratedFilesParse()
 
@@ -455,7 +462,7 @@ class TestTemplates(OptimizeTestCase):
     def test_minimal_roles(self):
         self.pb.hosts("[mash_servers]\na\n")
         self.pb.write("host_vars/a/vars.yml", "mash_playbook_generic_secret_key: x\n")
-        self.assertSucceeded(self.pb.just("optimize"))
+        self.assertSucceeded(self.pb.just("optimize-enable"))
         self.assertConsistent()
         self.assertGeneratedFilesParse()
 

@@ -40,16 +40,18 @@ roles: _prepare-files
         ansible-galaxy install -r {{ justfile_directory() }}/requirements.yml -p roles/galaxy/ --force
     fi
 
-# Clears optimizations and resets the playbook to a non-optimized state
-optimize-reset: && _clean_template_derived_files
-    #!/usr/bin/env sh
-    rm -f {{ quote(optimization_enabled_file_path) }} {{ quote(optimization_legacy_state_file_path) }}
-
-# Optimizes the playbook based on the enabled components in the inventory (or the one $ANSIBLE_INVENTORY points to), and keeps it optimized from then on
-optimize: _optimize-files
+# Enables optimization: from then on, the playbook only includes the roles of the services enabled in the inventory (or the one $ANSIBLE_INVENTORY points to)
+optimize-enable: _optimize-files
     #!/usr/bin/env sh
     touch {{ quote(optimization_enabled_file_path) }}
     rm -f {{ quote(optimization_legacy_state_file_path) }}
+
+# Disables optimization: from then on, the playbook includes all roles
+optimize-disable:
+    #!/usr/bin/env sh
+    set -eu
+    rm -f {{ quote(optimization_enabled_file_path) }} {{ quote(optimization_legacy_state_file_path) }}
+    {{ just_executable() }} --justfile {{ justfile() }} _prepare-files
 
 # Updates the playbook and installs the necessary Ansible roles pinned in requirements.yml. If a -u flag is passed, also updates the requirements.yml file with new role versions (if available)
 update *flags: _prepare-files update-playbook-only
@@ -247,20 +249,6 @@ _optimize-files:
     --dst-setup-yml-path={{ justfile_directory() }}/setup.yml \
     --src-group-vars-yml-path={{ templates_directory_path }}/group_vars_mash_servers \
     --dst-group-vars-yml-path={{ justfile_directory() }}/group_vars/mash_servers
-
-_clean_template_derived_files:
-    #!/usr/bin/env sh
-    if [ -f "{{ justfile_directory() }}/requirements.yml" ]; then
-        rm {{ justfile_directory() }}/requirements.yml
-    fi
-
-    if [ -f "{{ justfile_directory() }}/setup.yml" ]; then
-        rm {{ justfile_directory() }}/setup.yml
-    fi
-
-    if [ -f "{{ justfile_directory() }}/group_vars/mash_servers" ]; then
-        rm {{ justfile_directory() }}/group_vars/mash_servers
-    fi
 
 # Internal - ensures var/mise and var/prek directories exist
 _ensure_mise_data_directory:

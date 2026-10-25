@@ -119,7 +119,7 @@ There are a few files that you need to adapt:
 
 Make sure to edit configuration files inside `templates` — These are source files to be optimized and used when running [`just`](just.md) commands to install, configure, or uninstall services.
 
-The `role-specific:ROLE` and `/role-specific:ROLE` comments mark the parts of these files that `just optimize` removes when a role is not in use. The `test-optimize` pre-commit hook ([`tests/optimize/test_optimize.py`](../tests/optimize/test_optimize.py)) checks that they still work after a change.
+The `role-specific:ROLE` and `/role-specific:ROLE` comments mark the parts of these files that optimization removes when a role is not in use. The `test-optimize` pre-commit hook ([`tests/optimize/test_optimize.py`](../tests/optimize/test_optimize.py)) checks that they still work after a change.
 
 #### Add the role to `group_vars_mash_servers` in `templates` directory
 
