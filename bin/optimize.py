@@ -68,8 +68,14 @@ VarsLoader.add_multi_constructor("!", lambda loader, tag_suffix, node: None)
 
 
 def load_variable_names_from_file(vars_path):
-    with open(vars_path, "r") as file:
-        contents = file.read()
+    with open(vars_path, "rb") as file:
+        raw_contents = file.read()
+
+    try:
+        contents = raw_contents.decode("utf-8")
+    except UnicodeDecodeError:
+        # Binary files are not variable files. If Ansible loads this one, it reports it itself.
+        return set()
 
     if contents.startswith("$ANSIBLE_VAULT;"):
         # We don't decrypt secrets. Variables which enable roles are not expected to be in such files.
@@ -151,7 +157,7 @@ def load_combined_variable_names_from_files(vars_yml_file_paths):
 
 
 def load_yaml_file(path):
-    with open(path, "r") as file:
+    with open(path, "r", encoding="utf-8") as file:
         return yaml.safe_load(file)
 
 
@@ -168,7 +174,7 @@ def is_role_definition_in_use(role_definition, used_variable_names):
 
 
 def read_file(path):
-    with open(path, "r") as file:
+    with open(path, "r", encoding="utf-8") as file:
         return file.read()
 
 
@@ -177,7 +183,7 @@ def write_to_file(contents, path):
         return
     # Write to a temporary file first, so that an interrupted write does not leave a partial file behind
     temporary_path = path + ".tmp"
-    with open(temporary_path, "w") as file:
+    with open(temporary_path, "w", encoding="utf-8") as file:
         file.write(contents)
     os.replace(temporary_path, path)
 

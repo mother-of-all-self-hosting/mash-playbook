@@ -13,6 +13,7 @@
 # Run directly (`tests/optimize/test_optimize.py`) or via the `test-optimize` pre-commit hook.
 
 import ast
+import gzip
 import os
 import shutil
 import subprocess
@@ -383,6 +384,23 @@ class TestVariableFileContents(OptimizeTestCase):
         self.assertSucceeded(result)
         self.assertNotIn("vault.yml", result.stdout + result.stderr)
         self.assertEnabled("miniflux", "gitea")
+
+    def test_binary_file_is_skipped_silently(self):
+        """E.g. a gzip-compressed file without an extension, left in the directory of a host which is gone."""
+        self.standard_inventory()
+        path = self.pb.inventory / "host_vars" / "gone" / "files" / "backup"
+        path.parent.mkdir(parents=True)
+        path.write_bytes(gzip.compress(b"nextcloud_enabled: true\n"))
+        result = self.pb.just("optimize-enable")
+        self.assertSucceeded(result)
+        self.assertEqual(result.stderr, "")
+        self.assertEnabled("miniflux", "gitea")
+
+    def test_non_ascii_text_with_any_locale(self):
+        self.standard_inventory()
+        self.pb.write("host_vars/a/nextcloud.yml", "# Nextcloud für die Familie\nnextcloud_enabled: true\n")
+        self.assertSucceeded(self.pb.just("optimize-enable", env={"LC_ALL": "C", "LANG": "C", "PYTHONUTF8": "0"}))
+        self.assertEnabled("nextcloud")
 
 
 class TestVariableFileLayouts(OptimizeTestCase):
