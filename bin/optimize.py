@@ -47,13 +47,41 @@ parser.add_argument(
 args = parser.parse_args()
 
 
+class VarsLoader(yaml.SafeLoader):
+    """A YAML loader which accepts Ansible-specific tags (like `!vault`) and ignores their values."""
+
+
+VarsLoader.add_multi_constructor("!", lambda loader, tag_suffix, node: None)
+
+
+def load_variable_names_from_file(vars_path):
+    with open(vars_path, "r") as file:
+        contents = file.read()
+
+    if contents.startswith("$ANSIBLE_VAULT;"):
+        # We don't decrypt secrets. Variables which enable roles are not expected to be in such files.
+        return set()
+
+    yaml_data = yaml.load(contents, Loader=VarsLoader)
+
+    if yaml_data is None:
+        # Empty file or one with comments only
+        return set()
+
+    if not isinstance(yaml_data, dict):
+        print(
+            "Warning: skipping {0}, because it does not contain a mapping of variables".format(vars_path),
+            file=sys.stderr,
+        )
+        return set()
+
+    return set(yaml_data.keys())
+
+
 def load_combined_variable_names_from_files(vars_yml_file_paths):
     variable_names = set({})
     for vars_path in vars_yml_file_paths:
-        with open(vars_path, "r") as file:
-            yaml_data = yaml.safe_load(file)
-
-            variable_names = variable_names | set(yaml_data.keys())
+        variable_names = variable_names | load_variable_names_from_file(vars_path)
     return variable_names
 
 
