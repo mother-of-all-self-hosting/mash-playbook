@@ -1,6 +1,7 @@
 <!--
 SPDX-FileCopyrightText: 2023 Nikita Chernyi
 SPDX-FileCopyrightText: 2023 Slavi Pantaleev
+SPDX-FileCopyrightText: 2023 aine-etke
 SPDX-FileCopyrightText: 2025 MASH project contributors
 SPDX-FileCopyrightText: 2025, 2026 Suguru Hirahara
 

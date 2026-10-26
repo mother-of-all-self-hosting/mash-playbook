@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: 2023 aine-etke
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
 ---
 
 system_cleanup_identifier: "{{ mash_playbook_service_identifier_prefix }}system-cleanup"

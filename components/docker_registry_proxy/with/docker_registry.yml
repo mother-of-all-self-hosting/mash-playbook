@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: 2024 aine-etke
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
 ---
 
 docker_registry_proxy_target_scheme: "{{ 'http' if docker_registry_enabled else '' }}"
