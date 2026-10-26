@@ -32,6 +32,7 @@ The guide is meant for anyone preparing a contribution. If you find existing fil
 
 - Link to the role's documentation instead of duplicating its content (installation steps, distro-specific commands, etc.). Copied instructions go stale; links age much better.
 - Reuse existing files to minimize inconsistencies.
+- When reusing, copyright attributions must be preserved on the files. Never strip them away, and **do not pretend you were the sole original author.** This often happens when a Gen-AI / LLM is involved, and it is your responsibility to avoid this slop. Additionally, consider to add URLs to the original files in a commit message, so that one can easily trace and verify the relationship between you and the authors.
 
 ## Support a new service | Create your own role
 
