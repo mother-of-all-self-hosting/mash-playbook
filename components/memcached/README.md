@@ -1,8 +1,8 @@
 <!--
 SPDX-FileCopyrightText: 2021 foxcris
-SPDX-FileCopyrightText: 2021 - 2024 Slavi Pantaleev
+SPDX-FileCopyrightText: 2021-2024 Slavi Pantaleev
 SPDX-FileCopyrightText: 2023 Julian-Samuel Gebühr
-SPDX-FileCopyrightText: 2024 - 2025 Suguru Hirahara
+SPDX-FileCopyrightText: 2024, 2025 Suguru Hirahara
 
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->

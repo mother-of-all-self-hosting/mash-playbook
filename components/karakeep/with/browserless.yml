@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: 2025 Suguru Hirahara
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
 ---
 
 karakeep_environment_variables_browser_websocket_url: "ws://{{ browserless_identifier }}:{{ browserless_container_http_port }}/chromium/playwright"

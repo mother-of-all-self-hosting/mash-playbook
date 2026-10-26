@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: 2026 Suguru Hirahara
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
 ---
 
 silverbullet_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"

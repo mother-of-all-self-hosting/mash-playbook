@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: 2025 Suguru Hirahara
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
 ---
 
 karakeep_environment_variables_meili_addr: "http://{{ meilisearch_identifier }}:{{ meilisearch_container_http_port }}"

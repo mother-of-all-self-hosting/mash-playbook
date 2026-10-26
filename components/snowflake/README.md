@@ -13,8 +13,8 @@ SPDX-FileCopyrightText: 2023 Antonis Christofides
 SPDX-FileCopyrightText: 2023 Felix Stupp
 SPDX-FileCopyrightText: 2023 Julian-Samuel Gebühr
 SPDX-FileCopyrightText: 2023 Pierre 'McFly' Marty
-SPDX-FileCopyrightText: 2024-2025 Suguru Hirahara
 SPDX-FileCopyrightText: 2024 Thomas Miceli
+SPDX-FileCopyrightText: 2024, 2025 Suguru Hirahara
 
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->

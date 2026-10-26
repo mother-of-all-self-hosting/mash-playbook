@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: 2025 Suguru Hirahara
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
 ---
 
 weblate_database_hostname: "{{ postgres_connection_hostname if postgres_enabled and not weblate_database_socket_enabled else '' }}"

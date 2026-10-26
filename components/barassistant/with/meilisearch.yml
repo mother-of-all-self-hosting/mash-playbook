@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: 2025 Suguru Hirahara
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
 ---
 
 barassistant_saltrim_environment_variables_meilisearch_url: "{{ barassistant_server_environment_variables_meilisearch_host }}"

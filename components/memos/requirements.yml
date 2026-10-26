@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: 2026 Suguru Hirahara
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
 ---
 
 - src: git+https://progressiv.radicle.garden/z2UFFCDXMH6Am1K99TaiYP8BJmqaj.git

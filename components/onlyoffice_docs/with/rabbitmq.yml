@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: 2025 Suguru Hirahara
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
 ---
 
 onlyoffice_docs_environment_variables_amqp_uri: "amqp://{{ rabbitmq_environment_variables_rabbitmq_default_user }}:{{ rabbitmq_environment_variables_rabbitmq_default_pass }}@{{ rabbitmq_identifier }}:{{ rabbitmq_container_http_port }}"

@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: 2025 Suguru Hirahara
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
 ---
 
 kanboard_environment_variables_mail_smtp_hostname: "{{ exim_relay_identifier if exim_relay_enabled else '' }}"

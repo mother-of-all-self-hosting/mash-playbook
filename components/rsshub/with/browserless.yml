@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: 2025 Suguru Hirahara
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
 ---
 
 rsshub_environment_variables_puppeteer_ws_endpoint: "ws://{{ browserless_identifier }}:{{ browserless_container_http_port }}"

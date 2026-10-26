@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: 2025 Suguru Hirahara
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
 ---
 
 papra_environment_variables_emails_driver: "{{ 'smtp' if exim_relay_enabled }}"

@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: 2026 Suguru Hirahara
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
 ---
 
 codimd_database_mysql_hostname: "{{ mariadb_connection_hostname if mariadb_enabled else '' }}"

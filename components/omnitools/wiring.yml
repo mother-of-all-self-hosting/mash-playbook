@@ -1,3 +1,8 @@
+# SPDX-FileCopyrightText: 2026 Daniel Warhammar
+# SPDX-FileCopyrightText: 2026 Suguru Hirahara
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
 ---
 
 # The role enables itself by default. It stays disabled, unless enabled in your inventory.
