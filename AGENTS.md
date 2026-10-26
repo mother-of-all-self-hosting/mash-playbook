@@ -11,7 +11,8 @@ For playbook configuration, edit the components under `components/` (one directo
 Follow [developer documentation](docs/developer-documentation.md) for generated files and checks.
 Roles own their configuration validation in `tasks/validate_config.yml`.
 For role bumps, check the affected wiring, especially the role's component (`components/<role>/`)
-and the `with/<role>.yml` files of other components.
+and the `with/<role>.yml` files of other components: setting a variable the role renamed or removed
+has no effect, and nothing reports it.
 If the role handles its configuration changes, the playbook wiring and existing docs remain valid,
 and no consequential manual migration is needed, the version pin alone is usually enough.
 Keep service docs (`components/<role>/README.md`) focused on current configuration and lasting procedures.

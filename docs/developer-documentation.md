@@ -206,6 +206,12 @@ Your role, as for `ansible-galaxy`. The name must match the component's director
 
 `wiring.yml` holds the default configuration of your role for this playbook, which applies whenever the component is in use. `with/OTHER.yml` holds configuration which applies only when the `OTHER` component is in use too. A variable may only be defined in one of these files.
 
+Keep the playbook's variables and the roles' variables apart:
+
+- Only set variables which the role has. Setting one which it does not have (e.g. after the role renamed it) has no effect, and nothing reports it.
+- Name variables which the playbook defines for itself (e.g. a value which several components use, or a switch for an integration) `mash_playbook_*`, not after a role, so that they are not mistaken for the role's.
+- Leave the role's variables meant for users (e.g. `*_custom`, `*_additional_labels` and `*_additional_variables`) to them. The playbook sets the `*_auto` ones, and if a role lacks a variable for something, add one to the role.
+
 ```yaml
 # wiring.yml
 
@@ -348,7 +354,7 @@ Both directories are ignored by git, but they are not interchangeable:
 
 ## Reviewing role dependency updates
 
-Renovate opens pull requests for Ansible role version updates instead of merging their branches directly. Review the released role changes and the playbook wiring before merging; a role update may need a playbook adaptation even when its role tests pass. Other dependency classes retain their separate Renovate policies.
+Renovate opens pull requests for Ansible role version updates instead of merging their branches directly. Review the released role changes and the playbook wiring before merging; a role update may need a playbook adaptation even when its role tests pass. In particular, check that the variables the components set still exist in the role (see [`wiring.yml` and `with/`](#wiringyml-and-with)). Other dependency classes retain their separate Renovate policies.
 
 ## Maintaining the Renovate runner
 
