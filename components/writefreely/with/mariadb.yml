@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: 2025 Suguru Hirahara
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
 ---
 
 writefreely_database_hostname: "{{ mariadb_connection_hostname if mariadb_enabled else '' }}"

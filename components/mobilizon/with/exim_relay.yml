@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: 2026 Suguru Hirahara
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
 ---
 
 mobilizon_environment_variables_email_smtp_server: "{{ exim_relay_identifier if exim_relay_enabled else '' }}"

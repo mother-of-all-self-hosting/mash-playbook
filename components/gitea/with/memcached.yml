@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: 2026 Suguru Hirahara
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
 ---
 
 gitea_config_cache_host: "{{ gitea_cache_memcache_socket_path_container + '/memcached.sock' if gitea_cache_memcache_socket_enabled else memcached_identifier + ':' + (memcached_container_http_port | string) }}"

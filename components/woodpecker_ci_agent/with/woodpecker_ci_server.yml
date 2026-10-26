@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: 2026 Suguru Hirahara
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
 ---
 
 woodpecker_ci_agent_config_server: "{{ (woodpecker_ci_server_identifier + ':' + woodpecker_ci_server_config_grpc_addr_port | string) if woodpecker_ci_server_enabled else '' }}"

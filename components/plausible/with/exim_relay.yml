@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: 2026 Suguru Hirahara
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
 ---
 
 # As of 2024-06-28, only `Bamboo.SMTPAdapter` behaves well when no SMTP username/password AUTH is required (as is the case for exim-relay).

@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: 2026 Suguru Hirahara
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
 ---
 
 # TODO: Use `backup_borg_mariadb_*` variables; see https://torsion.org/borgmatic/reference/configuration/data-sources/mariadb/
