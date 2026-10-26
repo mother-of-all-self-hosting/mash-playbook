@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: 2023 Slavi Pantaleev
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
 ---
 
 # To completely disable this feature, use `devture_playbook_state_preserver_enabled: false`.

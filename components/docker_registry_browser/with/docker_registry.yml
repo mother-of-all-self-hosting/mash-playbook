@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: 2023 Slavi Pantaleev
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
 ---
 
 docker_registry_browser_docker_registry_url: "http://{{ docker_registry_identifier }}:5000"
