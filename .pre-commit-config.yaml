@@ -62,6 +62,12 @@ repos:
         language: python
         additional_dependencies: ['jinja2==3.1.6', 'pyyaml==6.0.3']
         files: '^components/.*\.yml$'
+      - id: check-components-user-variables
+        name: Check that components/ leave users' variables to them
+        entry: bin/check-components-user-variables.py
+        language: python
+        additional_dependencies: ['pyyaml==6.0.3']
+        files: '^components/[^/]+/(wiring|with/[^/]+)\.yml$'
       - id: test-optimize
         name: Test playbook optimization
         entry: tests/optimize/test_optimize.py

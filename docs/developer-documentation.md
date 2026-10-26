@@ -210,7 +210,7 @@ Keep the playbook's variables and the roles' variables apart:
 
 - Only set variables which the role has. Setting one which it does not have (e.g. after the role renamed it) has no effect, and nothing reports it.
 - Name variables which the playbook defines for itself (e.g. a value which several components use, or a switch for an integration) `mash_playbook_*`, not after a role, so that they are not mistaken for the role's.
-- Leave the role's variables meant for users (e.g. `*_custom`, `*_additional_labels` and `*_additional_variables`) to them. The playbook sets the `*_auto` ones, and if a role lacks a variable for something, add one to the role.
+- Leave the role's variables meant for users (e.g. `*_custom`, `*_additional_labels` and `*_additional_variables`) to them. The playbook sets the `*_auto` ones, and if a role lacks a variable for something, add one to the role. A pre-commit hook (`bin/check-components-user-variables.py`) checks this by the variables' names.
 
 ```yaml
 # wiring.yml
