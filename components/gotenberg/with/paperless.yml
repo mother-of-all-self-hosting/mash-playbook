@@ -1,6 +1,5 @@
 ---
 
 # See: https://raw.githubusercontent.com/paperless-ngx/paperless-ngx/refs/heads/main/docker/compose/docker-compose.sqlite-tika.yml
-gotenberg_environment_variables_additional_variables: |
-  CHROMIUM_DISABLE_JAVASCRIPT=true
-  CHROMIUM_ALLOW_LIST=file:///tmp/.*
+gotenberg_environment_variables_chromium_disable_javascript: true
+gotenberg_environment_variables_chromium_allow_list: "file:///tmp/.*"
