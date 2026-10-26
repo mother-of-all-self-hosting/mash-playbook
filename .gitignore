@@ -1,8 +1,5 @@
 /inventory
 
-# ignore the local CodeGraph index
-.codegraph/
-
 # ignore files created by running pre-commit locally
 .ansible
 
