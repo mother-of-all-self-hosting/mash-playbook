@@ -83,6 +83,6 @@ repos:
         files: '^(bin/ansible-python\.sh|tests/ansible_python/.*|\.pre-commit-config\.yaml)$'
         pass_filenames: false
   - repo: https://github.com/renovatebot/pre-commit-hooks
-    rev: 44.181.10
+    rev: 44.181.11
     hooks:
       - id: renovate-config-validator
