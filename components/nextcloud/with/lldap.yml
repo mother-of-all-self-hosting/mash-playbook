@@ -5,7 +5,7 @@
 # available at https://github.com/nextcloud/all-in-one/tree/main/community-containers/lldap
 # and https://github.com/lldap/lldap/blob/main/README.md#general-configuration-guide
 #
-nextcloud_lldap_enabled: "{{ lldap_enabled }}"
+mash_playbook_nextcloud_lldap_integration_enabled: "{{ lldap_enabled }}"
 nextcloud_ldap_admin_group: lldap_admin
 nextcloud_ldap_agent_name_uid: "{{ lldap_environment_variables_lldap_ldap_user_dn }}"
 nextcloud_ldap_agent_name: uid={{ nextcloud_ldap_agent_name_uid }},ou=people,{{ nextcloud_ldap_base }}

@@ -348,7 +348,7 @@ Refer to [this page](https://docs.nextcloud.com/server/latest/admin_manual/confi
 To disable the integration altogether (in case of using another LDAP server for Nextcloud while using LLDAP for other services, etc.), add the following configuration to your `vars.yml` file:
 
 ```yaml
-nextcloud_lldap_enabled: false
+mash_playbook_nextcloud_lldap_integration_enabled: false
 ```
 
 ### Configuring Nextcloud Office application

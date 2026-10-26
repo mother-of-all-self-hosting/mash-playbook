@@ -15,6 +15,7 @@
     - {"old": "docmost_config_redis_hostname", "new": "docmost_redis_hostname"}
     - {"old": "ghostfolio_config_redis_hostname", "new": "ghostfolio_redis_hostname"}
     - {"old": "woodpecker_ci_server_database_datasource", "new": "<Removed in favor of the role's configuration>"}
+    - {"old": "nextcloud_lldap_enabled", "new": "mash_playbook_nextcloud_lldap_integration_enabled"}
 
 - name: (Deprecation) Catch and report devture_postgres_backup variables
   ansible.builtin.fail:

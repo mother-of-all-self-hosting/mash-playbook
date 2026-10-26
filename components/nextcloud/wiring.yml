@@ -23,7 +23,7 @@ nextcloud_systemd_wanted_services_list_auto: |
     +
     ([exim_relay_identifier ~ '.service'] if exim_relay_enabled | default(false) and nextcloud_environment_variables_smtp_host == exim_relay_identifier else [])
     +
-    ([lldap_identifier ~ '.service'] if lldap_enabled | default(false) and nextcloud_lldap_enabled else [])
+    ([lldap_identifier ~ '.service'] if lldap_enabled | default(false) and mash_playbook_nextcloud_lldap_integration_enabled else [])
   }}
 
 nextcloud_container_additional_networks_auto: |
@@ -31,7 +31,7 @@ nextcloud_container_additional_networks_auto: |
     (
       ([exim_relay_container_network] if exim_relay_enabled | default(false) and nextcloud_environment_variables_smtp_host == exim_relay_identifier and nextcloud_container_network != exim_relay_container_network else [])
       +
-      ([lldap_container_network] if lldap_enabled | default(false) and nextcloud_container_network != lldap_container_network and nextcloud_lldap_enabled else [])
+      ([lldap_container_network] if lldap_enabled | default(false) and nextcloud_container_network != lldap_container_network and mash_playbook_nextcloud_lldap_integration_enabled else [])
       +
       ([mariadb_container_network] if mariadb_enabled | default(false) and (nextcloud_database_mysql_hostname == mariadb_connection_hostname and nextcloud_container_network != mariadb_container_network and not nextcloud_database_mysql_socket_enabled) and nextcloud_database_type == 'mysql' else [])
       +
