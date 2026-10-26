@@ -1,4 +1,5 @@
 ---
 
 headscale_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
-headscale_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
+headscale_container_labels_api_tls_certResolver: "{{ traefik_certResolver_primary }}"
+headscale_container_labels_grpc_tls_certResolver: "{{ traefik_certResolver_primary }}"

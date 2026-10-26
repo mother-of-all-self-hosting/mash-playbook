@@ -1,4 +1,5 @@
 ---
 
 jitsi_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
-jitsi_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
+jitsi_web_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
+jitsi_prosody_container_labels_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
