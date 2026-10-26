@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: 2023 Julian-Samuel Gebühr
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
 ---
 
 gotosocial_environment_variables_gts_smtp_host: "{{ exim_relay_identifier if exim_relay_enabled else '' }}"
