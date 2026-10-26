@@ -13,9 +13,9 @@ inject:
         when: "{{ adguard_home_enabled }}"
   hubsite:
     services:
-      - name: "{{ hubsite_service_adguard_home_name }}"
-        url: "{{ hubsite_service_adguard_home_url }}"
-        logo_location: "{{ hubsite_service_adguard_home_logo_location }}"
-        description: "{{ hubsite_service_adguard_home_description }}"
-        priority: "{{ hubsite_service_adguard_home_priority }}"
-        when: "{{ hubsite_service_adguard_home_enabled }}"
+      - name: "{{ mash_playbook_hubsite_service_adguard_home_name }}"
+        url: "{{ mash_playbook_hubsite_service_adguard_home_url }}"
+        logo_location: "{{ mash_playbook_hubsite_service_adguard_home_logo_location }}"
+        description: "{{ mash_playbook_hubsite_service_adguard_home_description }}"
+        priority: "{{ mash_playbook_hubsite_service_adguard_home_priority }}"
+        when: "{{ mash_playbook_hubsite_service_adguard_home_enabled }}"

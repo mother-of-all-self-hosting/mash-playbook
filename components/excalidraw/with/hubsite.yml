@@ -1,9 +1,9 @@
 ---
 
 # Excalidraw
-hubsite_service_excalidraw_enabled: "{{ excalidraw_enabled }}"
-hubsite_service_excalidraw_name: "Excalidraw"
-hubsite_service_excalidraw_url: "{{ excalidraw_scheme }}://{{ excalidraw_hostname }}{{ excalidraw_path_prefix }}"
-hubsite_service_excalidraw_logo_location: ""
-hubsite_service_excalidraw_description: "Virtual whiteboard for sketching hand-drawn like diagrams"
-hubsite_service_excalidraw_priority: 1000
+mash_playbook_hubsite_service_excalidraw_enabled: "{{ excalidraw_enabled }}"
+mash_playbook_hubsite_service_excalidraw_name: "Excalidraw"
+mash_playbook_hubsite_service_excalidraw_url: "{{ excalidraw_scheme }}://{{ excalidraw_hostname }}{{ excalidraw_path_prefix }}"
+mash_playbook_hubsite_service_excalidraw_logo_location: ""
+mash_playbook_hubsite_service_excalidraw_description: "Virtual whiteboard for sketching hand-drawn like diagrams"
+mash_playbook_hubsite_service_excalidraw_priority: 1000

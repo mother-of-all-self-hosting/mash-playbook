@@ -13,12 +13,12 @@ inject:
         when: "{{ privatebin_enabled }}"
   hubsite:
     services:
-      - name: "{{ hubsite_service_privatebin_name }}"
-        url: "{{ hubsite_service_privatebin_url }}"
-        logo_location: "{{ hubsite_service_privatebin_logo_location }}"
-        description: "{{ hubsite_service_privatebin_description }}"
-        priority: "{{ hubsite_service_privatebin_priority }}"
-        when: "{{ hubsite_service_privatebin_enabled }}"
+      - name: "{{ mash_playbook_hubsite_service_privatebin_name }}"
+        url: "{{ mash_playbook_hubsite_service_privatebin_url }}"
+        logo_location: "{{ mash_playbook_hubsite_service_privatebin_logo_location }}"
+        description: "{{ mash_playbook_hubsite_service_privatebin_description }}"
+        priority: "{{ mash_playbook_hubsite_service_privatebin_priority }}"
+        when: "{{ mash_playbook_hubsite_service_privatebin_enabled }}"
   mariadb:
     managed_databases:
       - name: "{{ privatebin_database_name }}"

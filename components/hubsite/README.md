@@ -65,6 +65,21 @@ hubsite_hostname: hubsite.example.com
 
 You also need to specify headers on the UI by adding configurations to your `vars.yml` file. Refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-hubsite/blob/main/docs/configuring-hubsite.md#specify-headers-on-the-ui) on the role's documentation for details.
 
+### Customizing the services' cards
+
+Hubsite shows a card for each service which the playbook manages and which supports Hubsite. To change a card, override the playbook's variables for it (`mash_playbook_hubsite_service_SERVICE_*`, as defined in `components/SERVICE/with/hubsite.yml`) on your `vars.yml` file. For example:
+
+```yaml
+mash_playbook_hubsite_service_miniflux_name: News
+mash_playbook_hubsite_service_miniflux_description: Read the news
+mash_playbook_hubsite_service_miniflux_priority: 100
+
+# Hide the card
+mash_playbook_hubsite_service_miniflux_enabled: false
+```
+
+To add cards of your own, refer to [this section](https://github.com/mother-of-all-self-hosting/ansible-role-hubsite/blob/main/docs/configuring-hubsite.md#define-services-to-display) on the role's documentation about `hubsite_service_list_additional`.
+
 ## Usage
 
 After running the command for installation, the Hubsite instance becomes available at the URL specified with `hubsite_hostname`. With the configuration above, the service is hosted at `https://hubsite.example.com`.

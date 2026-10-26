@@ -13,9 +13,9 @@ inject:
         when: "{{ send_enabled }}"
   hubsite:
     services:
-      - name: "{{ hubsite_service_send_name }}"
-        url: "{{ hubsite_service_send_url }}"
-        logo_location: "{{ hubsite_service_send_logo_location }}"
-        description: "{{ hubsite_service_send_description }}"
-        priority: "{{ hubsite_service_send_priority }}"
-        when: "{{ hubsite_service_send_enabled }}"
+      - name: "{{ mash_playbook_hubsite_service_send_name }}"
+        url: "{{ mash_playbook_hubsite_service_send_url }}"
+        logo_location: "{{ mash_playbook_hubsite_service_send_logo_location }}"
+        description: "{{ mash_playbook_hubsite_service_send_description }}"
+        priority: "{{ mash_playbook_hubsite_service_send_priority }}"
+        when: "{{ mash_playbook_hubsite_service_send_enabled }}"

@@ -13,12 +13,12 @@ inject:
         when: "{{ writefreely_enabled }}"
   hubsite:
     services:
-      - name: "{{ hubsite_service_writefreely_name }}"
-        url: "{{ hubsite_service_writefreely_url }}"
-        logo_location: "{{ hubsite_service_writefreely_logo_location }}"
-        description: "{{ hubsite_service_writefreely_description }}"
-        priority: "{{ hubsite_service_writefreely_priority }}"
-        when: "{{ hubsite_service_writefreely_enabled }}"
+      - name: "{{ mash_playbook_hubsite_service_writefreely_name }}"
+        url: "{{ mash_playbook_hubsite_service_writefreely_url }}"
+        logo_location: "{{ mash_playbook_hubsite_service_writefreely_logo_location }}"
+        description: "{{ mash_playbook_hubsite_service_writefreely_description }}"
+        priority: "{{ mash_playbook_hubsite_service_writefreely_priority }}"
+        when: "{{ mash_playbook_hubsite_service_writefreely_enabled }}"
   mariadb:
     managed_databases:
       - name: "{{ writefreely_database_name }}"

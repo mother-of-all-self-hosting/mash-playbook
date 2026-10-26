@@ -33,12 +33,12 @@ inject:
         when: "{{ funkwhale_enabled and funkwhale_watch_imports_enabled }}"
   hubsite:
     services:
-      - name: "{{ hubsite_service_funkwhale_name }}"
-        url: "{{ hubsite_service_funkwhale_url }}"
-        logo_location: "{{ hubsite_service_funkwhale_logo_location }}"
-        description: "{{ hubsite_service_funkwhale_description }}"
-        priority: "{{ hubsite_service_funkwhale_priority }}"
-        when: "{{ hubsite_service_funkwhale_enabled }}"
+      - name: "{{ mash_playbook_hubsite_service_funkwhale_name }}"
+        url: "{{ mash_playbook_hubsite_service_funkwhale_url }}"
+        logo_location: "{{ mash_playbook_hubsite_service_funkwhale_logo_location }}"
+        description: "{{ mash_playbook_hubsite_service_funkwhale_description }}"
+        priority: "{{ mash_playbook_hubsite_service_funkwhale_priority }}"
+        when: "{{ mash_playbook_hubsite_service_funkwhale_enabled }}"
   postgres:
     managed_databases:
       - name: "{{ funkwhale_database_name }}"

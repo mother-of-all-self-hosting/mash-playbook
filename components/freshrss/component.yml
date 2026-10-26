@@ -13,12 +13,12 @@ inject:
         when: "{{ freshrss_enabled }}"
   hubsite:
     services:
-      - name: "{{ hubsite_service_freshrss_name }}"
-        url: "{{ hubsite_service_freshrss_url }}"
-        logo_location: "{{ hubsite_service_freshrss_logo_location }}"
-        description: "{{ hubsite_service_freshrss_description }}"
-        priority: "{{ hubsite_service_freshrss_priority }}"
-        when: "{{ hubsite_service_freshrss_enabled }}"
+      - name: "{{ mash_playbook_hubsite_service_freshrss_name }}"
+        url: "{{ mash_playbook_hubsite_service_freshrss_url }}"
+        logo_location: "{{ mash_playbook_hubsite_service_freshrss_logo_location }}"
+        description: "{{ mash_playbook_hubsite_service_freshrss_description }}"
+        priority: "{{ mash_playbook_hubsite_service_freshrss_priority }}"
+        when: "{{ mash_playbook_hubsite_service_freshrss_enabled }}"
   mariadb:
     managed_databases:
       - name: "{{ freshrss_database_name }}"

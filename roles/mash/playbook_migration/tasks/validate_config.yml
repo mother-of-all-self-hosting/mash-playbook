@@ -17,6 +17,60 @@
     - {"old": "woodpecker_ci_server_database_datasource", "new": "<Removed in favor of the role's configuration>"}
     - {"old": "nextcloud_lldap_enabled", "new": "mash_playbook_nextcloud_lldap_integration_enabled"}
 
+- name: (Deprecation) Catch and report renamed Hubsite card variables
+  ansible.builtin.fail:
+    msg: |-
+      The playbook's variables for the services' cards on Hubsite now start with `mash_playbook_`, as they are the playbook's own, not the Hubsite role's.
+
+      Please change your configuration (vars.yml) to rename them (`hubsite_service_*` -> `mash_playbook_hubsite_service_*`).
+
+      The following variables in your configuration need to be renamed: {{ lookup('ansible.builtin.varnames', mash_playbook_migration_hubsite_card_variables_regex, wantlist=True) | join(', ') }}
+  when: "lookup('ansible.builtin.varnames', mash_playbook_migration_hubsite_card_variables_regex, wantlist=True) | length > 0"
+  vars:
+    mash_playbook_migration_hubsite_card_variables_regex: "{{ '^hubsite_service_(' + mash_playbook_migration_hubsite_card_services | join('|') + ')_(enabled|name|url|logo_location|description|priority)$' }}"
+    mash_playbook_migration_hubsite_card_services:
+      - adguard_home
+      - anonymousoverflow
+      - appsmith
+      - authentik
+      - docker_registry_browser
+      - docmost
+      - etherpad
+      - excalidraw
+      - fmd_server
+      - focalboard
+      - forgejo
+      - freshrss
+      - funkwhale
+      - gitea
+      - gotosocial
+      - grafana
+      - healthchecks
+      - ihatemoney
+      - joplin_server
+      - keycloak
+      - labelstudio
+      - languagetool
+      - linkding
+      - miniflux
+      - n8n
+      - navidrome
+      - nextcloud
+      - ntfy
+      - owncast
+      - peertube
+      - privatebin
+      - radicale
+      - redlib
+      - send
+      - syncthing
+      - tandoor
+      - uptime_kuma
+      - vaultwarden
+      - woodpecker_ci
+      - writefreely
+      - yourls
+
 - name: (Deprecation) Catch and report devture_postgres_backup variables
   ansible.builtin.fail:
     msg: |-

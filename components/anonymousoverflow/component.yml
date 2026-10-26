@@ -13,9 +13,9 @@ inject:
         when: "{{ anonymousoverflow_enabled }}"
   hubsite:
     services:
-      - name: "{{ hubsite_service_anonymousoverflow_name }}"
-        url: "{{ hubsite_service_anonymousoverflow_url }}"
-        logo_location: "{{ hubsite_service_anonymousoverflow_logo_location }}"
-        description: "{{ hubsite_service_anonymousoverflow_description }}"
-        priority: "{{ hubsite_service_anonymousoverflow_priority }}"
-        when: "{{ hubsite_service_anonymousoverflow_enabled }}"
+      - name: "{{ mash_playbook_hubsite_service_anonymousoverflow_name }}"
+        url: "{{ mash_playbook_hubsite_service_anonymousoverflow_url }}"
+        logo_location: "{{ mash_playbook_hubsite_service_anonymousoverflow_logo_location }}"
+        description: "{{ mash_playbook_hubsite_service_anonymousoverflow_description }}"
+        priority: "{{ mash_playbook_hubsite_service_anonymousoverflow_priority }}"
+        when: "{{ mash_playbook_hubsite_service_anonymousoverflow_enabled }}"

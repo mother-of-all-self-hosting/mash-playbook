@@ -13,12 +13,12 @@ inject:
         when: "{{ docmost_enabled }}"
   hubsite:
     services:
-      - name: "{{ hubsite_service_docmost_name }}"
-        url: "{{ hubsite_service_docmost_url }}"
-        logo_location: "{{ hubsite_service_docmost_logo_location }}"
-        description: "{{ hubsite_service_docmost_description }}"
-        priority: "{{ hubsite_service_docmost_priority }}"
-        when: "{{ hubsite_service_docmost_enabled }}"
+      - name: "{{ mash_playbook_hubsite_service_docmost_name }}"
+        url: "{{ mash_playbook_hubsite_service_docmost_url }}"
+        logo_location: "{{ mash_playbook_hubsite_service_docmost_logo_location }}"
+        description: "{{ mash_playbook_hubsite_service_docmost_description }}"
+        priority: "{{ mash_playbook_hubsite_service_docmost_priority }}"
+        when: "{{ mash_playbook_hubsite_service_docmost_enabled }}"
   postgres:
     managed_databases:
       - name: "{{ docmost_database_name }}"

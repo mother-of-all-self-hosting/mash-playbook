@@ -13,12 +13,12 @@ inject:
         when: "{{ forgejo_enabled }}"
   hubsite:
     services:
-      - name: "{{ hubsite_service_forgejo_name }}"
-        url: "{{ hubsite_service_forgejo_url }}"
-        logo_location: "{{ hubsite_service_forgejo_logo_location }}"
-        description: "{{ hubsite_service_forgejo_description }}"
-        priority: "{{ hubsite_service_forgejo_priority }}"
-        when: "{{ hubsite_service_forgejo_enabled }}"
+      - name: "{{ mash_playbook_hubsite_service_forgejo_name }}"
+        url: "{{ mash_playbook_hubsite_service_forgejo_url }}"
+        logo_location: "{{ mash_playbook_hubsite_service_forgejo_logo_location }}"
+        description: "{{ mash_playbook_hubsite_service_forgejo_description }}"
+        priority: "{{ mash_playbook_hubsite_service_forgejo_priority }}"
+        when: "{{ mash_playbook_hubsite_service_forgejo_enabled }}"
   mariadb:
     managed_databases:
       - name: "{{ forgejo_database_name }}"

@@ -13,12 +13,12 @@ inject:
         when: "{{ labelstudio_enabled }}"
   hubsite:
     services:
-      - name: "{{ hubsite_service_labelstudio_name }}"
-        url: "{{ hubsite_service_labelstudio_url }}"
-        logo_location: "{{ hubsite_service_labelstudio_logo_location }}"
-        description: "{{ hubsite_service_labelstudio_description }}"
-        priority: "{{ hubsite_service_labelstudio_priority }}"
-        when: "{{ hubsite_service_labelstudio_enabled }}"
+      - name: "{{ mash_playbook_hubsite_service_labelstudio_name }}"
+        url: "{{ mash_playbook_hubsite_service_labelstudio_url }}"
+        logo_location: "{{ mash_playbook_hubsite_service_labelstudio_logo_location }}"
+        description: "{{ mash_playbook_hubsite_service_labelstudio_description }}"
+        priority: "{{ mash_playbook_hubsite_service_labelstudio_priority }}"
+        when: "{{ mash_playbook_hubsite_service_labelstudio_enabled }}"
   postgres:
     managed_databases:
       - name: "{{ labelstudio_database_name }}"

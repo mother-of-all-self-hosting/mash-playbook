@@ -13,12 +13,12 @@ inject:
         when: "{{ gitea_enabled }}"
   hubsite:
     services:
-      - name: "{{ hubsite_service_gitea_name }}"
-        url: "{{ hubsite_service_gitea_url }}"
-        logo_location: "{{ hubsite_service_gitea_logo_location }}"
-        description: "{{ hubsite_service_gitea_description }}"
-        priority: "{{ hubsite_service_gitea_priority }}"
-        when: "{{ hubsite_service_gitea_enabled }}"
+      - name: "{{ mash_playbook_hubsite_service_gitea_name }}"
+        url: "{{ mash_playbook_hubsite_service_gitea_url }}"
+        logo_location: "{{ mash_playbook_hubsite_service_gitea_logo_location }}"
+        description: "{{ mash_playbook_hubsite_service_gitea_description }}"
+        priority: "{{ mash_playbook_hubsite_service_gitea_priority }}"
+        when: "{{ mash_playbook_hubsite_service_gitea_enabled }}"
   mariadb:
     managed_databases:
       - name: "{{ gitea_database_name }}"

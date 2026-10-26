@@ -13,12 +13,12 @@ inject:
         when: "{{ joplin_server_enabled }}"
   hubsite:
     services:
-      - name: "{{ hubsite_service_joplin_server_name }}"
-        url: "{{ hubsite_service_joplin_server_url }}"
-        logo_location: "{{ hubsite_service_joplin_server_logo_location }}"
-        description: "{{ hubsite_service_joplin_server_description }}"
-        priority: "{{ hubsite_service_joplin_server_priority }}"
-        when: "{{ hubsite_service_joplin_server_enabled }}"
+      - name: "{{ mash_playbook_hubsite_service_joplin_server_name }}"
+        url: "{{ mash_playbook_hubsite_service_joplin_server_url }}"
+        logo_location: "{{ mash_playbook_hubsite_service_joplin_server_logo_location }}"
+        description: "{{ mash_playbook_hubsite_service_joplin_server_description }}"
+        priority: "{{ mash_playbook_hubsite_service_joplin_server_priority }}"
+        when: "{{ mash_playbook_hubsite_service_joplin_server_enabled }}"
   postgres:
     managed_databases:
       - name: "{{ joplin_server_database_name }}"

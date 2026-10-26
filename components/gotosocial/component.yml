@@ -13,12 +13,12 @@ inject:
         when: "{{ gotosocial_enabled }}"
   hubsite:
     services:
-      - name: "{{ hubsite_service_gotosocial_name }}"
-        url: "{{ hubsite_service_gotosocial_url }}"
-        logo_location: "{{ hubsite_service_gotosocial_logo_location }}"
-        description: "{{ hubsite_service_gotosocial_description }}"
-        priority: "{{ hubsite_service_gotosocial_priority }}"
-        when: "{{ hubsite_service_gotosocial_enabled }}"
+      - name: "{{ mash_playbook_hubsite_service_gotosocial_name }}"
+        url: "{{ mash_playbook_hubsite_service_gotosocial_url }}"
+        logo_location: "{{ mash_playbook_hubsite_service_gotosocial_logo_location }}"
+        description: "{{ mash_playbook_hubsite_service_gotosocial_description }}"
+        priority: "{{ mash_playbook_hubsite_service_gotosocial_priority }}"
+        when: "{{ mash_playbook_hubsite_service_gotosocial_enabled }}"
   postgres:
     managed_databases:
       - name: "{{ gotosocial_database_name }}"

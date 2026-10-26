@@ -13,9 +13,9 @@ inject:
         when: "{{ docker_registry_browser_enabled }}"
   hubsite:
     services:
-      - name: "{{ hubsite_service_docker_registry_browser_name }}"
-        url: "{{ hubsite_service_docker_registry_browser_url }}"
-        logo_location: "{{ hubsite_service_docker_registry_browser_logo_location }}"
-        description: "{{ hubsite_service_docker_registry_browser_description }}"
-        priority: "{{ hubsite_service_docker_registry_browser_priority }}"
-        when: "{{ hubsite_service_docker_registry_browser_enabled }}"
+      - name: "{{ mash_playbook_hubsite_service_docker_registry_browser_name }}"
+        url: "{{ mash_playbook_hubsite_service_docker_registry_browser_url }}"
+        logo_location: "{{ mash_playbook_hubsite_service_docker_registry_browser_logo_location }}"
+        description: "{{ mash_playbook_hubsite_service_docker_registry_browser_description }}"
+        priority: "{{ mash_playbook_hubsite_service_docker_registry_browser_priority }}"
+        when: "{{ mash_playbook_hubsite_service_docker_registry_browser_enabled }}"

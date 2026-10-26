@@ -13,12 +13,12 @@ inject:
         when: "{{ woodpecker_ci_server_enabled }}"
   hubsite:
     services:
-      - name: "{{ hubsite_service_woodpecker_ci_name }}"
-        url: "{{ hubsite_service_woodpecker_ci_url }}"
-        logo_location: "{{ hubsite_service_woodpecker_ci_logo_location }}"
-        description: "{{ hubsite_service_woodpecker_ci_description }}"
-        priority: "{{ hubsite_service_woodpecker_ci_priority }}"
-        when: "{{ hubsite_service_woodpecker_ci_enabled }}"
+      - name: "{{ mash_playbook_hubsite_service_woodpecker_ci_name }}"
+        url: "{{ mash_playbook_hubsite_service_woodpecker_ci_url }}"
+        logo_location: "{{ mash_playbook_hubsite_service_woodpecker_ci_logo_location }}"
+        description: "{{ mash_playbook_hubsite_service_woodpecker_ci_description }}"
+        priority: "{{ mash_playbook_hubsite_service_woodpecker_ci_priority }}"
+        when: "{{ mash_playbook_hubsite_service_woodpecker_ci_enabled }}"
   mariadb:
     managed_databases:
       - name: "{{ woodpecker_ci_server_database_name }}"

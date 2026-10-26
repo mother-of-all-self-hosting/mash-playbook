@@ -13,12 +13,12 @@ inject:
         when: "{{ uptime_kuma_enabled }}"
   hubsite:
     services:
-      - name: "{{ hubsite_service_uptime_kuma_name }}"
-        url: "{{ hubsite_service_uptime_kuma_url }}"
-        logo_location: "{{ hubsite_service_uptime_kuma_logo_location }}"
-        description: "{{ hubsite_service_uptime_kuma_description }}"
-        priority: "{{ hubsite_service_uptime_kuma_priority }}"
-        when: "{{ hubsite_service_uptime_kuma_enabled }}"
+      - name: "{{ mash_playbook_hubsite_service_uptime_kuma_name }}"
+        url: "{{ mash_playbook_hubsite_service_uptime_kuma_url }}"
+        logo_location: "{{ mash_playbook_hubsite_service_uptime_kuma_logo_location }}"
+        description: "{{ mash_playbook_hubsite_service_uptime_kuma_description }}"
+        priority: "{{ mash_playbook_hubsite_service_uptime_kuma_priority }}"
+        when: "{{ mash_playbook_hubsite_service_uptime_kuma_enabled }}"
   mariadb:
     managed_databases:
       - name: "{{ uptime_kuma_database_name }}"

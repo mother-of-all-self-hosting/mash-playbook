@@ -13,12 +13,12 @@ inject:
         when: "{{ healthchecks_enabled }}"
   hubsite:
     services:
-      - name: "{{ hubsite_service_healthchecks_name }}"
-        url: "{{ hubsite_service_healthchecks_url }}"
-        logo_location: "{{ hubsite_service_healthchecks_logo_location }}"
-        description: "{{ hubsite_service_healthchecks_description }}"
-        priority: "{{ hubsite_service_healthchecks_priority }}"
-        when: "{{ hubsite_service_healthchecks_enabled }}"
+      - name: "{{ mash_playbook_hubsite_service_healthchecks_name }}"
+        url: "{{ mash_playbook_hubsite_service_healthchecks_url }}"
+        logo_location: "{{ mash_playbook_hubsite_service_healthchecks_logo_location }}"
+        description: "{{ mash_playbook_hubsite_service_healthchecks_description }}"
+        priority: "{{ mash_playbook_hubsite_service_healthchecks_priority }}"
+        when: "{{ mash_playbook_hubsite_service_healthchecks_enabled }}"
   mariadb:
     managed_databases:
       - name: "{{ healthchecks_database_name }}"

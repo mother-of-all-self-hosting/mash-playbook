@@ -13,9 +13,9 @@ inject:
         when: "{{ grafana_enabled }}"
   hubsite:
     services:
-      - name: "{{ hubsite_service_grafana_name }}"
-        url: "{{ hubsite_service_grafana_url }}"
-        logo_location: "{{ hubsite_service_grafana_logo_location }}"
-        description: "{{ hubsite_service_grafana_description }}"
-        priority: "{{ hubsite_service_grafana_priority }}"
-        when: "{{ hubsite_service_grafana_enabled }}"
+      - name: "{{ mash_playbook_hubsite_service_grafana_name }}"
+        url: "{{ mash_playbook_hubsite_service_grafana_url }}"
+        logo_location: "{{ mash_playbook_hubsite_service_grafana_logo_location }}"
+        description: "{{ mash_playbook_hubsite_service_grafana_description }}"
+        priority: "{{ mash_playbook_hubsite_service_grafana_priority }}"
+        when: "{{ mash_playbook_hubsite_service_grafana_enabled }}"
