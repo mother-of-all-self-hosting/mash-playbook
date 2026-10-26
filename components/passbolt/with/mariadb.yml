@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: 2026 spatterlight
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
 ---
 
 passbolt_database_mysql_hostname: "{{ mariadb_connection_hostname if mariadb_enabled else '' }}"

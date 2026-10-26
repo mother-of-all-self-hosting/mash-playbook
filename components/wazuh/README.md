@@ -1,6 +1,7 @@
 <!--
 SPDX-FileCopyrightText: 2025, 2026 MASH project contributors
 SPDX-FileCopyrightText: 2025, 2026 Suguru Hirahara
+SPDX-FileCopyrightText: 2026 spatterlight
 
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->

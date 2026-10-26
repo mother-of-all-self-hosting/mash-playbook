@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: 2026 spatterlight
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
 ---
 
 gitlab_runner_config_gitlab_url: "{{ gitlab_config_external_url if gitlab_enabled else '' }}"

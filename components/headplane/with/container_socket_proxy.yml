@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: 2025 spatterlight
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
 ---
 
 headplane_docker_endpoint_is_unix_socket: "{{ false if headplane_config_integration_docker_endpoint.startswith('tcp://') else true }}"

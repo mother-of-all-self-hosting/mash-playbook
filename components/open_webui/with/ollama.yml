@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: 2026 spatterlight
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
 ---
 
 open_webui_environment_variables_ollama_base_url: "{{ ('http://' + ollama_identifier + ':' + (ollama_container_http_port | string)) if ollama_enabled else '' }}"
