@@ -107,17 +107,45 @@ If you used it, clone the playbook and run it with your own Ansible, or with the
 
 This affects users with Jellyfin enabled. Before rerunning the playbook, stop Jellyfin and make a full backup of its data and configuration. Check for usernames that differ only by capitalization, and remove third-party plugins until versions compatible with Jellyfin 12 are available. After the upgrade, run a full library scan; let the database migrations and first scan finish without interruption. The database changes cannot be rolled back without restoring a backup. See the [Jellyfin 12 release notes](https://jellyfin.org/posts/jellyfin-release-12.0/) for details.
 
+## 2026-08-25
+
+### APISIX Dashboard support removed
+
+This only affects you if you have the standalone APISIX Dashboard (`apisix_dashboard_*` variables) enabled.
+
+Upstream no longer ships the APISIX Dashboard as a service of its own: it is now served by APISIX itself (since 3.13), at `/ui/` on its Admin API port. Its last standalone release (3.0.1, from March 2023) was only meant for APISIX 3.0. The role that installed it ([ansible-role-apisix-dashboard](https://github.com/mother-of-all-self-hosting/ansible-role-apisix-dashboard)) has been deprecated.
+
+You don't need to install anything to use the bundled dashboard. Making it reachable makes the Admin API reachable, and the bundled dashboard has no login of its own, so see [the APISIX role's documentation](https://github.com/mother-of-all-self-hosting/ansible-role-apisix/blob/main/docs/configuring-apisix.md#configuring-the-bundled-dashboard-web-ui) for the safe ways to reach it.
+
+Remove the `apisix_dashboard_*` variables from your `vars.yml`, and uninstall the standalone dashboard manually, by running these commands on your server:
+
+```sh
+systemctl disable --now mash-apisix-dashboard.service
+
+rm -rf /mash/apisix-dashboard
+```
+
+If you were [running multiple instances of the APISIX Dashboard service](docs/running-multiple-instances.md), repeat the commands for each instance's service name and base path. Your APISIX configuration (routes, upstreams, etc.) is stored in [etcd](components/etcd/README.md), and is not affected.
+
 ## 2026-08-24
 
 ### (Backward Compatibility Break) KeyDB support removed
 
-This only affects you if you have [KeyDB](docs/removed-services/keydb.md) enabled.
+This only affects you if you have KeyDB enabled.
 
 KeyDB has been removed from the playbook, because the KeyDB project has been unmaintained since 2023 — its last release (6.3.4) dates from then. The role that installed it ([ansible-role-keydb](https://github.com/mother-of-all-self-hosting/ansible-role-keydb)) has been deprecated.
 
 [Valkey](components/valkey/README.md) — also a Redis fork, protocol-compatible with KeyDB — is a well-maintained alternative and has been the playbook's recommendation since 2024-11-23. Point services that used your KeyDB instance at a Valkey instance instead.
 
-The playbook will complain about any remaining `keydb_*` variables in your configuration. Uninstalling the service from your server is a manual step — refer to [the KeyDB page](docs/removed-services/keydb.md) for the commands.
+The playbook will complain about any remaining `keydb_*` variables in your configuration. Remove them, and uninstall the service from your server manually, by running these commands on it:
+
+```sh
+systemctl disable --now mash-keydb.service
+
+rm -rf /mash/keydb
+```
+
+If you were [running multiple instances of the KeyDB service](docs/running-multiple-instances.md), repeat the commands for each instance's service name and base path.
 
 ## 2026-08-20
 
@@ -170,7 +198,15 @@ Users with the `admin` role get access to all topics. Others start with no acces
 
 [Firezone](https://www.firezone.dev/) has been removed from the playbook, as the role to install it ([ansible-role-firezone](https://github.com/mother-of-all-self-hosting/ansible-role-firezone)) was deprecated in favor of [ansible-role-wg-easy](https://github.com/mother-of-all-self-hosting/ansible-role-wg-easy). The deprecated role was configured to install the legacy 0.7 version, which has reached end-of-life status and stopped receiving updates since January 31st, 2024.
 
-The playbook will let you know if you're using any `firezone_*` variables. You'll need to remove them from `vars.yml` and potentially [uninstall the service manually](docs/removed-services/firezone.md#uninstalling-the-service-manually).
+The playbook will let you know if you're using any `firezone_*` variables. You'll need to remove them from `vars.yml`. If you still have Firezone installed on your server, uninstall it manually, by running these commands on it:
+
+```sh
+systemctl disable --now mash-firezone.service
+
+rm -rf /mash/firezone
+
+/mash/postgres/bin/cli-non-interactive -c 'DROP DATABASE firezone;'
+```
 
 If you have deployed Firezone, you might be interested in having a look at [WireGuard Easy](components/wg_easy/README.md).
 
@@ -444,7 +480,7 @@ As the role is pretty young and to avoid confusion because of legacy and reverte
 
 ### (Backward Compatibility Break) Firezone database renamed
 
-If you are running [Firezone](docs/removed-services/firezone.md) with the default [Postgres](components/postgres/README.md) integration the playbook automatically created the database with the name `mash-firezone`.
+If you are running Firezone with the default [Postgres](components/postgres/README.md) integration the playbook automatically created the database with the name `mash-firezone`.
 To be consistent with how this playbook names databases for all other services, going forward we've changed the database name to be just `firezone`. You will have to rename you database manually by running the following commands on your server:
 
 1. Stop Firezone: `systemctl stop mash-firezone`
