@@ -25,6 +25,7 @@
 
 /var/
 .direnv/
+.envrc.local
 
 /group_vars/*
 !/group_vars/.gitkeep
