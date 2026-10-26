@@ -1,5 +1,5 @@
 ---
 
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-peertube.git
-  version: v8.3.1-2
+  version: v8.3.2-0
   name: peertube
