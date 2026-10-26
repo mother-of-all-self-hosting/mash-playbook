@@ -590,7 +590,7 @@ class TestComponents(OptimizeTestCase):
         self.assertSucceeded(self.pb.just("optimize-enable"))
         injected = yaml.safe_load((self.pb.root / "group_vars" / "mash_servers" / "postgres" / "injected.yml").read_text())
         self.assertIn("postgres_managed_databases_auto", injected)
-        names = {entry["name"] for entry in injected["postgres_managed_databases_auto_unfiltered"]}
+        names = {entry["name"] for entry in injected["mash_playbook_injected_postgres_managed_databases_auto"]}
         self.assertIn("{{ miniflux_database_name }}", names)
         self.assertNotIn("{{ nextcloud_database_name }}", names)
 
@@ -751,7 +751,7 @@ class TestInventoryComponents(OptimizeTestCase):
         injected = yaml.safe_load(
             (self.pb.root / "group_vars" / "mash_servers" / "systemd_service_manager" / "injected.yml").read_text()
         )
-        names = {entry["name"] for entry in injected["devture_systemd_service_manager_services_list_auto_unfiltered"]}
+        names = {entry["name"] for entry in injected["mash_playbook_injected_devture_systemd_service_manager_services_list_auto"]}
         self.assertIn("{{ notes_identifier }}.service", names)
 
     def test_components_not_in_use(self):

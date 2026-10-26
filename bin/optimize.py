@@ -407,7 +407,9 @@ def generate_injected_yml(components, names, provider):
             for entry in ((components[name]["manifest"].get("inject") or {}).get(provider) or {}).get(list_name) or []:
                 entries.append((name, dict(entry) if "when" in entry else dict(entry, when=True)))
 
-        lines.append("{0}_unfiltered:{1}".format(variable, "" if entries else " []"))
+        # Named in the playbook's namespace, since `variable` is often a role's
+        unfiltered = "mash_playbook_injected_{0}".format(variable)
+        lines.append("{0}:{1}".format(unfiltered, "" if entries else " []"))
         for name, entry in entries:
             lines.append("  # {0}".format(name))
             lines.append(indent(dump_yaml([entry]), "  ").rstrip("\n"))
@@ -416,7 +418,7 @@ def generate_injected_yml(components, names, provider):
             "# The entries above whose `when` is true, without `when`",
             "{0}: >-".format(variable),
             "  {{",
-            "    {0}_unfiltered".format(variable),
+            "    {0}".format(unfiltered),
             "    | selectattr('when')",
             "    | map('dict2items') | map('rejectattr', 'key', 'equalto', 'when') | map('items2dict')",
             "  }}",
