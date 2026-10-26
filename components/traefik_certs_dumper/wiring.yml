@@ -20,8 +20,3 @@ traefik_certs_dumper_systemd_required_services_list_auto: |
   {{
     ([traefik_identifier + '.service'] if traefik_enabled else [])
   }}
-
-traefik_certs_dumper_container_additional_networks_auto: |
-  {{
-    ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
-  }}

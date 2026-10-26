@@ -35,8 +35,6 @@ backup_borg_mongodb_enabled: "{{ mongodb_enabled | default(false) }}"
 backup_borg_mysql_enabled: "{{ mariadb_enabled | default(false) }}"
 backup_borg_postgresql_enabled: "{{ postgres_enabled | default(false) }}"
 
-backup_borg_retention_prefix: "{{ mash_playbook_service_identifier_prefix }}"
-
 backup_borg_storage_archive_name_format: "{{ mash_playbook_service_identifier_prefix }}-{now:%Y-%m-%d-%H%M%S}"
 
 backup_borg_location_source_directories_auto:
