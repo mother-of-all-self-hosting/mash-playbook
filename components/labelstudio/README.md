@@ -1,5 +1,6 @@
 <!--
 SPDX-FileCopyrightText: 2025 Gergely Horváth
+SPDX-FileCopyrightText: 2025 hooger
 SPDX-FileCopyrightText: 2025, 2026 Suguru Hirahara
 
 SPDX-License-Identifier: AGPL-3.0-or-later

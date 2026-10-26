@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: 2024 IUCCA
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
 ---
 
 tandoor_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"

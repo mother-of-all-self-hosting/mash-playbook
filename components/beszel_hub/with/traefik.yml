@@ -1,3 +1,8 @@
+# SPDX-FileCopyrightText: 2026 Slavi Pantaleev
+# SPDX-FileCopyrightText: 2026 Suguru Hirahara
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
 ---
 
 beszel_hub_container_labels_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"

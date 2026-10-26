@@ -17,6 +17,7 @@ SPDX-FileCopyrightText: 2023 Pierre 'McFly' Marty
 SPDX-FileCopyrightText: 2024 Gergely Horváth
 SPDX-FileCopyrightText: 2024 Thomas Miceli
 SPDX-FileCopyrightText: 2024-2026 Suguru Hirahara
+SPDX-FileCopyrightText: 2026 Claude Opus
 
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->

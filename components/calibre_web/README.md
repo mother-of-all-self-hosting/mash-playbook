@@ -13,6 +13,7 @@ SPDX-FileCopyrightText: 2023 Felix Stupp
 SPDX-FileCopyrightText: 2023 Julian-Samuel Gebühr
 SPDX-FileCopyrightText: 2023 Pierre 'McFly' Marty
 SPDX-FileCopyrightText: 2024 Thomas Miceli
+SPDX-FileCopyrightText: 2024 lingawakad
 SPDX-FileCopyrightText: 2024 noah
 SPDX-FileCopyrightText: 2024, 2025 MASH project contributors
 SPDX-FileCopyrightText: 2024-2026 Suguru Hirahara

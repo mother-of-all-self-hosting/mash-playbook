@@ -1,10 +1,10 @@
 <!--
-SPDX-FileCopyrightText: 2022 - 2025 Nikita Chernyi
-SPDX-FileCopyrightText: 2022 - 2024 Slavi Pantaleev
-SPDX-FileCopyrightText: 2022 MDAD project contributors
 SPDX-FileCopyrightText: 2022 Julian-Samuel Gebühr
+SPDX-FileCopyrightText: 2022 MDAD project contributors
+SPDX-FileCopyrightText: 2022-2024 Slavi Pantaleev
+SPDX-FileCopyrightText: 2022-2025 Nikita Chernyi
 SPDX-FileCopyrightText: 2024 Oliver Lorenz
-SPDX-FileCopyrightText: 2024 - 2025 Suguru Hirahara
+SPDX-FileCopyrightText: 2024, 2025 Suguru Hirahara
 
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->

@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: 2025 Bergruebe
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
 ---
 
 tsdproxy_docker_endpoint_is_unix_socket: "{{ false if container_socket_proxy_enabled else true }}"
