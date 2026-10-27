@@ -2,14 +2,23 @@
 SPDX-FileCopyrightText: 2023 Nikita Chernyi
 SPDX-FileCopyrightText: 2023 Slavi Pantaleev
 SPDX-FileCopyrightText: 2023 aine-etke
-SPDX-FileCopyrightText: 2025 Suguru Hirahara
+SPDX-FileCopyrightText: 2025-2026 Suguru Hirahara
 
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 
 # Swap
 
-To enable [swap](https://en.wikipedia.org/wiki/Memory_paging) management (also read more in the [Swap](https://wiki.archlinux.org/title/Swap) article in the [Arch Linux Wiki](https://wiki.archlinux.org/)), add the following configuration to your `vars.yml` file and re-run the [installation](../../docs/installing.md) process:
+The playbook incorporates the [ansible-role-swap](https://github.com/mother-of-all-self-hosting/ansible-role-swap) Ansible role. It helps you to manage [swap](https://en.wikipedia.org/wiki/Memory_paging) management (also read more in the [Swap](https://wiki.archlinux.org/title/Swap) article in the [Arch Linux Wiki](https://wiki.archlinux.org/)) on the remote machine.
+
+For details about configuring the role, you can check them via:
+
+- 🌐 [the role's `defaults/main.yml`](https://github.com/mother-of-all-self-hosting/ansible-role-swap/blob/main/defaults/main.yml) online
+- 📁 `roles/galaxy/swap/defaults/main.yml` locally, if you have [fetched the Ansible roles](../../docs/installing.md)
+
+## Configuration
+
+To enable it, add the following configuration to your `vars.yml` file and re-run the [installation](../../docs/installing.md) process:
 
 ```yaml
 ########################################################################
@@ -37,3 +46,7 @@ system_swap_size: 4096
 
 > [!WARNING]
 > Changing `system_swap_size` subsequently will not recreate the SWAP file with the new size. You will need to disable swap, re-run the playbook (to make it clean up), then enable it again with the new size.
+
+## Related services
+
+Refer to [this section](../../docs/supported-services.md#system-related-components) for other system-related services.

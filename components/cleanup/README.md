@@ -2,14 +2,23 @@
 SPDX-FileCopyrightText: 2023 Nikita Chernyi
 SPDX-FileCopyrightText: 2023 Slavi Pantaleev
 SPDX-FileCopyrightText: 2023 aine-etke
-SPDX-FileCopyrightText: 2025 Suguru Hirahara
+SPDX-FileCopyrightText: 2025-2026 Suguru Hirahara
 
 SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 
 # Cleanup
 
-The playbook can perform some housekeeping: cleaning up Docker leftovers, logs, paths, and (Debian only) packages and old kernels. Everything is off by default. Here is how to enable the different housekeeping tasks:
+The playbook incorporates the [ansible-role-cleanup](https://github.com/mother-of-all-self-hosting/ansible-role-cleanup) Ansible role. It helps you to perform some housekeeping: cleaning up Docker leftovers, logs, paths, and (Debian only) packages and old kernels.
+
+For details about configuring the role, you can check them via:
+
+- 🌐 [the role's `defaults/main.yml`](https://github.com/mother-of-all-self-hosting/ansible-role-cleanup/blob/main/defaults/main.yml) online
+- 📁 `roles/galaxy/cleanup/defaults/main.yml` locally, if you have [fetched the Ansible roles](../../docs/installing.md)
+
+## Configuration
+
+To enable this service, add the following configuration to your `vars.yml` file and re-run the [installation](../../docs/installing.md) process:
 
 ```yaml
 ########################################################################
@@ -47,4 +56,10 @@ system_cleanup_kernels: false
 ########################################################################
 ```
 
-See the role's [`defaults/main.yml`](https://github.com/mother-of-all-self-hosting/ansible-role-cleanup/blob/main/defaults/main.yml) for more options (grace period, exclude patterns, dry run, anonymous volumes, the timer's schedule). The Docker cleanup script (`/mash/system-cleanup/bin/cleanup-docker`) can also be run by hand, with `--dry-run` to only see what it would remove.
+Refer to the role's [`defaults/main.yml`](https://github.com/mother-of-all-self-hosting/ansible-role-cleanup/blob/main/defaults/main.yml) for more options (grace period, exclude patterns, dry run, anonymous volumes, the timer's schedule).
+
+The Docker cleanup script (`/mash/system-cleanup/bin/cleanup-docker`) can also be run by hand, with `--dry-run` to only see what it would remove.
+
+## Related services
+
+Refer to [this section](../../docs/supported-services.md#system-related-components) for other system-related services.

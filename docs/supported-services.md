@@ -298,7 +298,7 @@ Below is an exhaustive list of the components which this playbook supports for m
 | ---- | ----------- | ------------- |
 | [AUX](https://github.com/mother-of-all-self-hosting/ansible-role-aux) | Auxiliary file/directory management on your server via Ansible | [Link](../components/auxiliary/README.md) |
 | Cleanup | Housekeeping on the server: Docker leftovers, logs, paths, packages and old kernels | [Link](../components/cleanup/README.md) |
-| [Fail2ban](https://github.com/fail2ban/fail2ban) | Bans IP addresses which show malicious signs, such as too many failed SSH logins | [Link](../components/fail2ban/README.md) |
+| [Fail2Ban](https://github.com/fail2ban/fail2ban) | Bans IP addresses which show malicious signs, such as too many failed SSH logins | [Link](../components/fail2ban/README.md) |
 | [SSH server](https://www.openssh.com/) | Configuration of the server's SSH daemon and authorized keys | [Link](../components/ssh/README.md) |
 | Swap | A swap file for the server | [Link](../components/swap/README.md) |
 
