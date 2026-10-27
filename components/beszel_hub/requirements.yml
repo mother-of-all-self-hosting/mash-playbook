@@ -1,4 +1,3 @@
-# SPDX-FileCopyrightText: 2026 Slavi Pantaleev
 ---
 
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-beszel-hub.git
