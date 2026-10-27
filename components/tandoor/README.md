@@ -53,8 +53,7 @@ To enable this service, add the following configuration to your `vars.yml` file 
 
 tandoor_enabled: true
 
-tandoor_hostname: mash.example.com
-tandoor_path_prefix: /tandoor
+tandoor_hostname: tandoor.example.com
 
 ########################################################################
 #                                                                      #
@@ -74,6 +73,6 @@ To actually have the service use (and get messages sent through the exim-relay s
 
 ## Usage
 
-After running the command for installation, the Tandoor instance becomes available at the URL specified with `tandoor_hostname` and `tandoor_path_prefix`. With the configuration above, the service is hosted at `https://mash.example.com/tandoor`.
+After running the command for installation, the Tandoor instance becomes available at the URL specified with `tandoor_hostname`. With the configuration above, the service is hosted at `https://tandoor.example.com`.
 
 To get started, open the URL with a web browser to create an administrator account.
