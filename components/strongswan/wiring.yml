@@ -14,3 +14,6 @@ strongswan_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_ba
 
 strongswan_uid: "{{ mash_playbook_uid }}"
 strongswan_gid: "{{ mash_playbook_gid }}"
+
+# The upstream image is only published for amd64.
+strongswan_container_image_self_build: "{{ mash_playbook_architecture != 'amd64' }}"
