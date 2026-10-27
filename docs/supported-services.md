@@ -24,7 +24,6 @@ Below is an exhaustive list of the free and open-source software for self-hostin
 
 | Name | Description | Documentation |
 | ---- | ----------- | ------------- |
-| [AUX](https://github.com/mother-of-all-self-hosting/ansible-role-aux) | Auxiliary file/directory management on your server via Ansible | [Link](../components/auxiliary/README.md) |
 | [Actual](https://actualbudget.org) | Local-first personal finance tool | [Link](../components/actual/README.md) |
 | [AdGuard Home](https://adguard.com/en/adguard-home/overview.html/) | A network-wide DNS software for blocking ads & tracking | [Link](../components/adguard_home/README.md) |
 | [Adminer](https://www.adminer.org/) | Full-featured database server administration software | [Link](../components/adminer/README.md) |
@@ -289,6 +288,14 @@ Below is an exhaustive list of the free and open-source software for self-hostin
 | [YaCy](https://yacy.net) | Distributed web search engine on a P2P network | [Link](../components/yacy/README.md) |
 | [Yggstack](https://github.com/yggdrasil-network/yggstack) | SOCKS5 proxy server and TCP port forwarder for [Yggdrasil Network](https://yggdrasil-network.github.io) | [Link](../components/yggstack/README.md) |
 | [YOURLS](https://yourls.org) | Your Own URL Shortener, on your server | [Link](../components/yourls/README.md) |
+
+### System-related components
+
+Below is an exhaustive list of the components which this playbook supports for managing the remote server.
+
+| Name | Description | Documentation |
+| ---- | ----------- | ------------- |
+| [AUX](https://github.com/mother-of-all-self-hosting/ansible-role-aux) | Auxiliary file/directory management on your server via Ansible | [Link](../components/auxiliary/README.md) |
 | Cleanup | Housekeeping on the server: Docker leftovers, logs, paths, packages and old kernels | [Link](../components/cleanup/README.md) |
 | [Fail2ban](https://github.com/fail2ban/fail2ban) | Bans IP addresses which show malicious signs, such as too many failed SSH logins | [Link](../components/fail2ban/README.md) |
 | [SSH server](https://www.openssh.com/) | Configuration of the server's SSH daemon and authorized keys | [Link](../components/ssh/README.md) |
