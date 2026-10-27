@@ -1,0 +1,4 @@
+---
+
+minecraft_web_interfaces_traefik_entrypoints: "{{ traefik_entrypoint_primary }}"
+minecraft_web_interfaces_traefik_tls_certResolver: "{{ traefik_certResolver_primary }}"
