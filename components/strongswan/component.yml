@@ -1,0 +1,18 @@
+# SPDX-FileCopyrightText: 2023 Slavi Pantaleev
+# SPDX-FileCopyrightText: 2026 spatterlight
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+---
+
+activation_prefix: strongswan_
+
+# Entries added to other components' lists, while those components are in use
+inject:
+  systemd_service_manager:
+    services:
+      - name: "{{ strongswan_identifier }}.service"
+        priority: 2000
+        restart_necessary: "{{ strongswan_restart_necessary | bool }}"
+        groups: [mash, strongswan]
+        when: "{{ strongswan_enabled }}"

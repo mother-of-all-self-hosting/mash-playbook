@@ -1,0 +1,19 @@
+# SPDX-FileCopyrightText: 2023 Slavi Pantaleev
+# SPDX-FileCopyrightText: 2026 spatterlight
+#
+# SPDX-License-Identifier: AGPL-3.0-or-later
+
+---
+
+# The role enables itself by default. It stays disabled, unless enabled in your inventory.
+strongswan_enabled: false
+
+strongswan_identifier: "{{ mash_playbook_service_identifier_prefix }}strongswan"
+
+strongswan_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_directory_name_prefix }}strongswan"
+
+strongswan_uid: "{{ mash_playbook_uid }}"
+strongswan_gid: "{{ mash_playbook_gid }}"
+
+# The upstream image is only published for amd64.
+strongswan_container_image_self_build: "{{ mash_playbook_architecture != 'amd64' }}"
