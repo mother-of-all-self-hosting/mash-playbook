@@ -1,5 +1,5 @@
 ---
 
 - src: git+https://github.com/mother-of-all-self-hosting/ansible-role-valkey.git
-  version: v9.1.2-2
+  version: v9.1.3-0
   name: valkey
