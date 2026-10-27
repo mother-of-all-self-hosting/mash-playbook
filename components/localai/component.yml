@@ -16,7 +16,7 @@ inject:
         when: localai_enabled
   postgres:
     managed_databases:
-      name: "{{ localai_database_name }}"
-      username: "{{ localai_database_postgres_username }}"
-      password: "{{ localai_database_postgres_password }}"
-      when: "{{ localai_enabled and (localai_database_postgres_hostname == postgres_connection_hostname) }}"
+      name: "{{ localai_auth_database_name }}"
+      username: "{{ localai_authn_database_postgres_username }}"
+      password: "{{ localai_authn_database_postgres_password }}"
+      when: "{{ localai_enabled and localai_auth_enabled and (localai_auth_database_postgres_hostname == postgres_connection_hostname) }}"

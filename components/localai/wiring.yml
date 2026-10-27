@@ -12,14 +12,14 @@ localai_base_path: "{{ mash_playbook_base_path }}/{{ mash_playbook_service_base_
 
 localai_systemd_required_services_list_auto: |
   {{
-    ([postgres_identifier ~ '.service'] if postgres_enabled | default(false) and (localai_database_postgres_hostname == postgres_connection_hostname) else [])
+    ([postgres_identifier ~ '.service'] if postgres_enabled | default(false) and (localai_auth_database_postgres_hostname == postgres_connection_hostname) else [])
   }}
 
 localai_container_additional_networks_auto: |
   {{
     ([mash_playbook_reverse_proxyable_services_additional_network] if mash_playbook_reverse_proxyable_services_additional_network else [])
     +
-    ([postgres_container_network] if postgres_enabled | default(false) and (localai_database_postgres_hostname == postgres_connection_hostname) and localai_container_network != postgres_container_network else [])
+    ([postgres_container_network] if postgres_enabled | default(false) and (localai_auth_database_postgres_hostname == postgres_connection_hostname) and localai_container_network != postgres_container_network else [])
   }}
 
 localai_container_labels_traefik_enabled: "{{ mash_playbook_traefik_labels_enabled }}"
